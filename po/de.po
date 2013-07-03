@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-29 02:19+0200\n"
-"PO-Revision-Date: 2013-06-29 02:30+0200\n"
+"POT-Creation-Date: 2013-07-03 23:08+0200\n"
+"PO-Revision-Date: 2013-07-03 23:30+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -504,15 +504,15 @@ msgstr "Starte Import, %s"
 msgid "Import finished..."
 msgstr "Import abgeschlossen..."
 
-#: ../gramps/cli/clidbman.py:371 ../gramps/plugins/importer/importcsv.py:328
+#: ../gramps/cli/clidbman.py:373 ../gramps/plugins/importer/importcsv.py:328
 msgid "Importing data..."
 msgstr "Importiere Daten..."
 
-#: ../gramps/cli/clidbman.py:415
+#: ../gramps/cli/clidbman.py:417
 msgid "Could not rename Family Tree"
 msgstr "Kann Stammbaum nicht umbenennen"
 
-#: ../gramps/cli/clidbman.py:450
+#: ../gramps/cli/clidbman.py:452
 #, python-format
 msgid ""
 "\n"
@@ -531,16 +531,16 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:503 ../gramps/gui/configure.py:1269
+#: ../gramps/cli/clidbman.py:505 ../gramps/gui/configure.py:1269
 msgid "Never"
 msgstr "Nie"
 
-#: ../gramps/cli/clidbman.py:523
+#: ../gramps/cli/clidbman.py:525
 #, python-format
 msgid "Locked by %s"
 msgstr "Gesperrt durch %s"
 
-#: ../gramps/cli/clidbman.py:526 ../gramps/gen/lib/attrtype.py:64
+#: ../gramps/cli/clidbman.py:528 ../gramps/gen/lib/attrtype.py:64
 #: ../gramps/gen/lib/childreftype.py:80 ../gramps/gen/lib/eventroletype.py:59
 #: ../gramps/gen/lib/eventtype.py:146 ../gramps/gen/lib/familyreltype.py:53
 #: ../gramps/gen/lib/grampstype.py:44 ../gramps/gen/lib/nameorigintype.py:81
@@ -561,7 +561,7 @@ msgstr "Gesperrt durch %s"
 #: ../gramps/plugins/gramplet/relativegramplet.py:124
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:167
-#: ../gramps/plugins/graph/gvrelgraph.py:580
+#: ../gramps/plugins/graph/gvrelgraph.py:632
 #: ../gramps/plugins/lib/libnarrate.py:2001
 #: ../gramps/plugins/lib/maps/geography.py:716
 #: ../gramps/plugins/lib/maps/geography.py:723
@@ -3283,7 +3283,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_isfemale.py:47
 #: ../gramps/plugins/gramplet/statsgramplet.py:155
 #: ../gramps/plugins/graph/gvfamilylines.py:163
-#: ../gramps/plugins/graph/gvrelgraph.py:576
+#: ../gramps/plugins/graph/gvrelgraph.py:628
 msgid "Females"
 msgstr "Frauen"
 
@@ -3352,7 +3352,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_ismale.py:47
 #: ../gramps/plugins/gramplet/statsgramplet.py:152
 #: ../gramps/plugins/graph/gvfamilylines.py:159
-#: ../gramps/plugins/graph/gvrelgraph.py:572
+#: ../gramps/plugins/graph/gvrelgraph.py:624
 msgid "Males"
 msgstr "Männer"
 
@@ -5139,17 +5139,17 @@ msgid "Video"
 msgstr "Video"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:66
-#: ../gramps/gui/widgets/styledtexteditor.py:466
+#: ../gramps/gui/widgets/styledtexteditor.py:471
 msgid "Bold"
 msgstr "Fett"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:67
-#: ../gramps/gui/widgets/styledtexteditor.py:464
+#: ../gramps/gui/widgets/styledtexteditor.py:469
 msgid "Italic"
 msgstr "Kursiv"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:68
-#: ../gramps/gui/widgets/styledtexteditor.py:468
+#: ../gramps/gui/widgets/styledtexteditor.py:473
 msgid "Underline"
 msgstr "Unterstrichen"
 
@@ -5176,7 +5176,7 @@ msgstr "Hochgestellt"
 #: ../gramps/gen/lib/styledtexttagtype.py:74
 #: ../gramps/gui/widgets/styledtextbuffer.py:565
 #: ../gramps/gui/widgets/styledtextbuffer.py:601
-#: ../gramps/gui/widgets/styledtexteditor.py:480
+#: ../gramps/gui/widgets/styledtexteditor.py:485
 #: ../gramps/gui/glade/editlink.glade:169
 msgid "Link"
 msgstr "Verknüpfung"
@@ -5347,7 +5347,7 @@ msgid "Relationships"
 msgstr "Beziehungen"
 
 #: ../gramps/gen/plug/_pluginreg.py:90 ../gramps/gen/plug/_pluginreg.py:399
-#: ../gramps/gui/widgets/grampletbar.py:607
+#: ../gramps/gui/widgets/grampletbar.py:608
 #: ../gramps/gui/widgets/grampletpane.py:231
 #: ../gramps/gui/widgets/grampletpane.py:957
 #: ../gramps/gui/glade/grampletpane.glade:156
@@ -5547,7 +5547,7 @@ msgid "GraphViz Layout"
 msgstr "GraphViz Layout"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:140
-#: ../gramps/gui/widgets/styledtexteditor.py:489
+#: ../gramps/gui/widgets/styledtexteditor.py:494
 msgid "Font family"
 msgstr "Schriftfamilie"
 
@@ -5561,7 +5561,7 @@ msgstr ""
 "http://www.nongnu.org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:149
-#: ../gramps/gui/widgets/styledtexteditor.py:501
+#: ../gramps/gui/widgets/styledtexteditor.py:506
 msgid "Font size"
 msgstr "Schriftgröße"
 
@@ -10251,7 +10251,7 @@ msgid "Filter Test"
 msgstr "Filtertest"
 
 #: ../gramps/gui/editors/filtereditor.py:1050
-#: ../gramps/plugins/drawreport/calendarreport.py:427
+#: ../gramps/plugins/drawreport/calendarreport.py:426
 #: ../gramps/plugins/drawreport/statisticschart.py:937
 #: ../gramps/plugins/drawreport/timeline.py:415
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:946
@@ -10263,7 +10263,7 @@ msgstr "Filtertest"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1030
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1044
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1058
-#: ../gramps/plugins/graph/gvrelgraph.py:497
+#: ../gramps/plugins/graph/gvrelgraph.py:533
 #: ../gramps/plugins/quickview/quickview.gpr.py:127
 #: ../gramps/plugins/textreport/birthdayreport.py:417
 #: ../gramps/plugins/textreport/indivcomplete.py:698
@@ -10640,7 +10640,7 @@ msgid "Font"
 msgstr "Schrift"
 
 #: ../gramps/gui/grampsgui.py:159
-#: ../gramps/gui/widgets/styledtexteditor.py:476
+#: ../gramps/gui/widgets/styledtexteditor.py:481
 msgid "Font Color"
 msgstr "Schriftfarbe"
 
@@ -11443,7 +11443,7 @@ msgstr "Addon laden"
 msgid "Fail"
 msgstr "Fehler"
 
-#: ../gramps/gui/plug/_windows.py:499 ../gramps/gui/widgets/grampletbar.py:529
+#: ../gramps/gui/plug/_windows.py:499 ../gramps/gui/widgets/grampletbar.py:530
 msgid "OK"
 msgstr "OK"
 
@@ -11984,11 +11984,11 @@ msgid "Style"
 msgstr "Stil"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:366
-#: ../gramps/plugins/drawreport/calendarreport.py:418
+#: ../gramps/plugins/drawreport/calendarreport.py:417
 #: ../gramps/plugins/drawreport/fanchart.py:648
 #: ../gramps/plugins/drawreport/statisticschart.py:933
 #: ../gramps/plugins/drawreport/timeline.py:413
-#: ../gramps/plugins/graph/gvrelgraph.py:493
+#: ../gramps/plugins/graph/gvrelgraph.py:529
 #: ../gramps/plugins/textreport/ancestorreport.py:269
 #: ../gramps/plugins/textreport/birthdayreport.py:410
 #: ../gramps/plugins/textreport/descendreport.py:401
@@ -13093,24 +13093,24 @@ msgstr ""
 "Wähle den nach unten Pfeil in der rechten Ecke zum Hinzufügen, Entfernen oder "
 "Wiederherstellen von Gramplets."
 
-#: ../gramps/gui/widgets/grampletbar.py:468
+#: ../gramps/gui/widgets/grampletbar.py:469
 #: ../gramps/plugins/view/dashboardview.py:96
 msgid "Add a gramplet"
 msgstr "Ein Gramplet  hinzufügen"
 
-#: ../gramps/gui/widgets/grampletbar.py:478
+#: ../gramps/gui/widgets/grampletbar.py:479
 msgid "Remove a gramplet"
 msgstr "Ein Gramplet entfernen"
 
-#: ../gramps/gui/widgets/grampletbar.py:488
+#: ../gramps/gui/widgets/grampletbar.py:489
 msgid "Restore default gramplets"
 msgstr "Standardgramplets wiederherstellen"
 
-#: ../gramps/gui/widgets/grampletbar.py:526
+#: ../gramps/gui/widgets/grampletbar.py:527
 msgid "Restore to defaults?"
 msgstr "Auf Standardwerte zurücksetzen?"
 
-#: ../gramps/gui/widgets/grampletbar.py:527
+#: ../gramps/gui/widgets/grampletbar.py:528
 msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
@@ -13200,68 +13200,68 @@ msgstr "Beziehungen neu ordnen"
 msgid "Reorder Relationships: %s"
 msgstr "Beziehungen neu ordnen: %s"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:381
+#: ../gramps/gui/widgets/styledtexteditor.py:386
 msgid "Spellcheck"
 msgstr "Rechtschreibprüfung"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:386
+#: ../gramps/gui/widgets/styledtexteditor.py:391
 msgid "Search selection on web"
 msgstr "Suche Auswahl im Web"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:397
+#: ../gramps/gui/widgets/styledtexteditor.py:402
 msgid "_Send Mail To..."
 msgstr "E-Mail _senden an..."
 
-#: ../gramps/gui/widgets/styledtexteditor.py:398
+#: ../gramps/gui/widgets/styledtexteditor.py:403
 msgid "Copy _E-mail Address"
 msgstr "_E-Mail-Adresse kopieren"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:400
+#: ../gramps/gui/widgets/styledtexteditor.py:405
 msgid "_Open Link"
 msgstr "Link _öffnen"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:401
+#: ../gramps/gui/widgets/styledtexteditor.py:406
 msgid "Copy _Link Address"
 msgstr "_Linkadresse kopieren"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:404
+#: ../gramps/gui/widgets/styledtexteditor.py:409
 msgid "_Edit Link"
 msgstr "Verknüpfung _bearbeiten"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:478
+#: ../gramps/gui/widgets/styledtexteditor.py:483
 msgid "Background Color"
 msgstr "Hintergrundfarbe"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:482
+#: ../gramps/gui/widgets/styledtexteditor.py:487
 msgid "Clear Markup"
 msgstr "Markierungen löschen"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:522
+#: ../gramps/gui/widgets/styledtexteditor.py:527
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:525
+#: ../gramps/gui/widgets/styledtexteditor.py:530
 msgid "Redo"
 msgstr "Wiederherstellen"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:648
+#: ../gramps/gui/widgets/styledtexteditor.py:653
 msgid "Select font color"
 msgstr "Wähle Schriftfarbe"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:650
+#: ../gramps/gui/widgets/styledtexteditor.py:655
 msgid "Select background color"
 msgstr "Wähle Hintergrundfarbe"
 
-#: ../gramps/gui/widgets/validatedmaskedentry.py:1300
+#: ../gramps/gui/widgets/validatedmaskedentry.py:1301
 #, python-format
 msgid "'%s' is not a valid value for this field"
 msgstr "'%s' ist kein gültiger Wert für dieses Feld"
 
-#: ../gramps/gui/widgets/validatedmaskedentry.py:1358
+#: ../gramps/gui/widgets/validatedmaskedentry.py:1359
 msgid "This field is mandatory"
 msgstr "Dies ist ein Pflichtfeld"
 
-#: ../gramps/gui/widgets/validatedmaskedentry.py:1407
+#: ../gramps/gui/widgets/validatedmaskedentry.py:1408
 #, python-format
 msgid "'%s' is not a valid date value"
 msgstr "'%s' ist kein gültiger Datumswert"
@@ -13443,9 +13443,10 @@ msgid "Tree Options"
 msgstr "Baumoptionen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:896
-#: ../gramps/plugins/drawreport/calendarreport.py:432
+#: ../gramps/plugins/drawreport/calendarreport.py:431
 #: ../gramps/plugins/drawreport/fanchart.py:650
 #: ../gramps/plugins/graph/gvhourglass.py:273
+#: ../gramps/plugins/graph/gvrelgraph.py:539
 #: ../gramps/plugins/textreport/ancestorreport.py:271
 #: ../gramps/plugins/textreport/birthdayreport.py:422
 #: ../gramps/plugins/textreport/descendreport.py:403
@@ -13802,7 +13803,7 @@ msgstr "Person %s ist nicht in der Datenbank"
 #: ../gramps/plugins/drawreport/calendarreport.py:168
 #: ../gramps/plugins/drawreport/calendarreport.py:192
 #: ../gramps/plugins/drawreport/calendarreport.py:271
-#: ../gramps/plugins/drawreport/calendarreport.py:279
+#: ../gramps/plugins/drawreport/calendarreport.py:278
 msgid "Calendar Report"
 msgstr "Kalenderbericht"
 
@@ -13817,19 +13818,19 @@ msgstr "Formatiere Monate..."
 msgid "Applying Filter..."
 msgstr "Wende Filter an..."
 
-#: ../gramps/plugins/drawreport/calendarreport.py:280
+#: ../gramps/plugins/drawreport/calendarreport.py:279
 #: ../gramps/plugins/textreport/birthdayreport.py:271
 #: ../gramps/plugins/webreport/webcal.py:1093
 msgid "Reading database..."
 msgstr "Lese Datenbank..."
 
-#: ../gramps/plugins/drawreport/calendarreport.py:322
+#: ../gramps/plugins/drawreport/calendarreport.py:321
 #: ../gramps/plugins/textreport/birthdayreport.py:326
 #, python-format
 msgid "%(person)s, birth%(relation)s"
 msgstr "%(person)s, Geburt%(relation)s"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:326
+#: ../gramps/plugins/drawreport/calendarreport.py:325
 #: ../gramps/plugins/textreport/birthdayreport.py:330
 #, python-format
 msgid "%(person)s, %(age)d%(relation)s"
@@ -13837,7 +13838,7 @@ msgid_plural "%(person)s, %(age)d%(relation)s"
 msgstr[0] "%(person)s, %(age)d%(relation)s"
 msgstr[1] "%(person)s, %(age)d%(relation)s"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:381
+#: ../gramps/plugins/drawreport/calendarreport.py:380
 #: ../gramps/plugins/textreport/birthdayreport.py:376
 #, python-format
 msgid ""
@@ -13847,7 +13848,7 @@ msgstr ""
 "%(spouse)s und\n"
 " %(person)s, Heirat"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:386
+#: ../gramps/plugins/drawreport/calendarreport.py:385
 #: ../gramps/plugins/textreport/birthdayreport.py:380
 #, python-format
 msgid ""
@@ -13863,18 +13864,19 @@ msgstr[1] ""
 "%(spouse)s und\n"
 " %(person)s, %(nyears)d"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:422
-#: ../gramps/plugins/drawreport/calendarreport.py:424
+#: ../gramps/plugins/drawreport/calendarreport.py:421
+#: ../gramps/plugins/drawreport/calendarreport.py:423
 msgid "Year of calendar"
 msgstr "Kalenderjahr"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:429
+#: ../gramps/plugins/drawreport/calendarreport.py:428
 #: ../gramps/plugins/webreport/webcal.py:1338
 msgid "Select filter to restrict people that appear on calendar"
 msgstr "Filter wählen um Personen, die im Kalender erscheinen zu begrenzen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:433
+#: ../gramps/plugins/drawreport/calendarreport.py:432
 #: ../gramps/plugins/drawreport/fanchart.py:651
+#: ../gramps/plugins/graph/gvrelgraph.py:540
 #: ../gramps/plugins/textreport/ancestorreport.py:272
 #: ../gramps/plugins/textreport/birthdayreport.py:423
 #: ../gramps/plugins/textreport/descendreport.py:404
@@ -13886,171 +13888,171 @@ msgstr "Filter wählen um Personen, die im Kalender erscheinen zu begrenzen"
 msgid "The center person for the report"
 msgstr "Die Hauptperson für den Bericht"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:441
+#: ../gramps/plugins/drawreport/calendarreport.py:440
 #: ../gramps/plugins/textreport/birthdayreport.py:431
 #: ../gramps/plugins/webreport/webcal.py:1414
 msgid "Country for holidays"
 msgstr "Land für Feiertage"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:452
+#: ../gramps/plugins/drawreport/calendarreport.py:451
 #: ../gramps/plugins/textreport/birthdayreport.py:442
 msgid "Select the country to see associated holidays"
 msgstr "Land wählen um die zugehörigen Feiertage zu sehen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:455
+#: ../gramps/plugins/drawreport/calendarreport.py:454
 #: ../gramps/plugins/textreport/birthdayreport.py:445
 #: ../gramps/plugins/webreport/webcal.py:1439
 msgid "First day of week"
 msgstr "Erster Tag der Woche"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:459
+#: ../gramps/plugins/drawreport/calendarreport.py:458
 #: ../gramps/plugins/webreport/webcal.py:1442
 msgid "Select the first day of the week for the calendar"
 msgstr "Ersten Tag der Woche für den Kalender wählen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:462
+#: ../gramps/plugins/drawreport/calendarreport.py:461
 #: ../gramps/plugins/textreport/birthdayreport.py:452
 #: ../gramps/plugins/webreport/webcal.py:1429
 msgid "Birthday surname"
 msgstr "Nachname bei Geburtstagen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:463
+#: ../gramps/plugins/drawreport/calendarreport.py:462
 #: ../gramps/plugins/textreport/birthdayreport.py:453
 #: ../gramps/plugins/webreport/webcal.py:1430
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
 "Frauen benutzen den Nachnamen vom Mann (von der ersten gelisteten Familie)"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:464
+#: ../gramps/plugins/drawreport/calendarreport.py:463
 #: ../gramps/plugins/textreport/birthdayreport.py:454
 #: ../gramps/plugins/webreport/webcal.py:1432
 msgid "Wives use husband's surname (from last family listed)"
 msgstr ""
 "Frauen benutzen den Nachnamen vom Mann (von der letzten gelisteten Familie)"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:465
+#: ../gramps/plugins/drawreport/calendarreport.py:464
 #: ../gramps/plugins/textreport/birthdayreport.py:455
 #: ../gramps/plugins/webreport/webcal.py:1434
 msgid "Wives use their own surname"
 msgstr "Frauen benutzen ihren Mädchennamen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:466
+#: ../gramps/plugins/drawreport/calendarreport.py:465
 #: ../gramps/plugins/textreport/birthdayreport.py:456
 #: ../gramps/plugins/webreport/webcal.py:1435
 msgid "Select married women's displayed surname"
 msgstr "Angezeigten Nachnamen für verheiratete Frauen wählen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:469
+#: ../gramps/plugins/drawreport/calendarreport.py:468
 #: ../gramps/plugins/textreport/birthdayreport.py:459
 #: ../gramps/plugins/webreport/webcal.py:1452
 msgid "Include only living people"
 msgstr "Nur lebende Personen einbeziehen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:470
+#: ../gramps/plugins/drawreport/calendarreport.py:469
 #: ../gramps/plugins/webreport/webcal.py:1453
 msgid "Include only living people in the calendar"
 msgstr "Kalender nur mit lebenden Personen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:473
+#: ../gramps/plugins/drawreport/calendarreport.py:472
 #: ../gramps/plugins/textreport/birthdayreport.py:463
 #: ../gramps/plugins/webreport/webcal.py:1456
 msgid "Include birthdays"
 msgstr "Geburtstage mit einbeziehen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:474
+#: ../gramps/plugins/drawreport/calendarreport.py:473
 #: ../gramps/plugins/webreport/webcal.py:1457
 msgid "Include birthdays in the calendar"
 msgstr "Kalender mit Geburtstagen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:477
+#: ../gramps/plugins/drawreport/calendarreport.py:476
 #: ../gramps/plugins/textreport/birthdayreport.py:467
 #: ../gramps/plugins/webreport/webcal.py:1460
 msgid "Include anniversaries"
 msgstr "Jubiläen mit einbeziehen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:478
+#: ../gramps/plugins/drawreport/calendarreport.py:477
 #: ../gramps/plugins/webreport/webcal.py:1461
 msgid "Include anniversaries in the calendar"
 msgstr "Kalender mit Jubiläen"
 
+#: ../gramps/plugins/drawreport/calendarreport.py:480
 #: ../gramps/plugins/drawreport/calendarreport.py:481
-#: ../gramps/plugins/drawreport/calendarreport.py:482
 #: ../gramps/plugins/textreport/birthdayreport.py:478
 msgid "Text Options"
 msgstr "Textoptionen"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:484
+#: ../gramps/plugins/drawreport/calendarreport.py:483
 #: ../gramps/plugins/textreport/birthdayreport.py:484
 msgid "Text Area 1"
 msgstr "Textbereich1"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:484
+#: ../gramps/plugins/drawreport/calendarreport.py:483
 msgid "My Calendar"
 msgstr "Mein Kalender"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:485
+#: ../gramps/plugins/drawreport/calendarreport.py:484
 msgid "First line of text at bottom of calendar"
 msgstr "Erste Zeile des Text am Fuß des Kalenders"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:488
+#: ../gramps/plugins/drawreport/calendarreport.py:487
 #: ../gramps/plugins/textreport/birthdayreport.py:488
 msgid "Text Area 2"
 msgstr "Textbereich 2"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:488
+#: ../gramps/plugins/drawreport/calendarreport.py:487
 #: ../gramps/plugins/textreport/birthdayreport.py:68
 msgid "Produced with Gramps"
 msgstr "Erstellt mit Gramps"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:489
+#: ../gramps/plugins/drawreport/calendarreport.py:488
 msgid "Second line of text at bottom of calendar"
 msgstr "Zweite Zeile des Text am Fuß des Kalenders"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:492
+#: ../gramps/plugins/drawreport/calendarreport.py:491
 #: ../gramps/plugins/textreport/birthdayreport.py:492
 msgid "Text Area 3"
 msgstr "Textbereich 3"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:493
+#: ../gramps/plugins/drawreport/calendarreport.py:492
 msgid "Third line of text at bottom of calendar"
 msgstr "Dritte Zeile des Text am Fuß des Kalenders"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:547
+#: ../gramps/plugins/drawreport/calendarreport.py:546
 msgid "Title text and background color"
 msgstr "Titeltext und Hintergrundfarbe"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:551
+#: ../gramps/plugins/drawreport/calendarreport.py:550
 msgid "Calendar day numbers"
 msgstr "Kalendertag-Nummer"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:554
+#: ../gramps/plugins/drawreport/calendarreport.py:553
 msgid "Daily text display"
 msgstr "Tagestext Anzeige"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:556
+#: ../gramps/plugins/drawreport/calendarreport.py:555
 msgid "Holiday text display"
 msgstr "Feiertagstext Anzeige"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:559
+#: ../gramps/plugins/drawreport/calendarreport.py:558
 msgid "Days of the week text"
 msgstr "Text der Wochentage"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:563
+#: ../gramps/plugins/drawreport/calendarreport.py:562
 #: ../gramps/plugins/textreport/birthdayreport.py:557
 msgid "Text at bottom, line 1"
 msgstr "Text unten, Zeile 1"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:565
+#: ../gramps/plugins/drawreport/calendarreport.py:564
 #: ../gramps/plugins/textreport/birthdayreport.py:559
 msgid "Text at bottom, line 2"
 msgstr "Text unten, Zeile 2"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:567
+#: ../gramps/plugins/drawreport/calendarreport.py:566
 #: ../gramps/plugins/textreport/birthdayreport.py:561
 msgid "Text at bottom, line 3"
 msgstr "Text unten, Zeile 3"
 
-#: ../gramps/plugins/drawreport/calendarreport.py:569
+#: ../gramps/plugins/drawreport/calendarreport.py:568
 msgid "Borders"
 msgstr "Ränder"
 
@@ -14588,7 +14590,6 @@ msgstr "Legt fest welche Personen im Bericht enthalten sind."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:943
 #: ../gramps/plugins/drawreport/timeline.py:421
-#: ../gramps/plugins/graph/gvrelgraph.py:503
 #: ../gramps/plugins/textreport/indivcomplete.py:704
 #: ../gramps/plugins/textreport/recordsreport.py:178
 #: ../gramps/plugins/tool/sortevents.py:173
@@ -14738,7 +14739,6 @@ msgid "Determines what people are included in the report"
 msgstr "Legt fest welche Personen im Bericht enthalten sind"
 
 #: ../gramps/plugins/drawreport/timeline.py:422
-#: ../gramps/plugins/graph/gvrelgraph.py:504
 #: ../gramps/plugins/textreport/recordsreport.py:179
 #: ../gramps/plugins/tool/sortevents.py:174
 #: ../gramps/plugins/webreport/narrativeweb.py:8010
@@ -16780,19 +16780,19 @@ msgstr "Erstellt eine Beziehungengrafiken mit GraphViz."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:74
 #: ../gramps/plugins/graph/gvhourglass.py:59
-#: ../gramps/plugins/graph/gvrelgraph.py:71
+#: ../gramps/plugins/graph/gvrelgraph.py:73
 msgid "B&W outline"
 msgstr "Schwarz-Weiß umrandet"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:75
 #: ../gramps/plugins/graph/gvhourglass.py:60
-#: ../gramps/plugins/graph/gvrelgraph.py:72
+#: ../gramps/plugins/graph/gvrelgraph.py:74
 msgid "Colored outline"
 msgstr "Farbig umrandet"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:76
 #: ../gramps/plugins/graph/gvhourglass.py:61
-#: ../gramps/plugins/graph/gvrelgraph.py:73
+#: ../gramps/plugins/graph/gvrelgraph.py:75
 msgid "Color fill"
 msgstr "Farbig gefüllt"
 
@@ -16858,22 +16858,22 @@ msgid "Colors to use for various family lines."
 msgstr " Farben die für verschiedene Familienlinien verwendet werden."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:160
-#: ../gramps/plugins/graph/gvrelgraph.py:573
+#: ../gramps/plugins/graph/gvrelgraph.py:625
 msgid "The color to use to display men."
 msgstr "Die Farbe die für die Anzeige von Männern verwendet wird."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:164
-#: ../gramps/plugins/graph/gvrelgraph.py:577
+#: ../gramps/plugins/graph/gvrelgraph.py:629
 msgid "The color to use to display women."
 msgstr "Die Farbe die für die Anzeige von Frauen verwendet wird."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:168
-#: ../gramps/plugins/graph/gvrelgraph.py:582
+#: ../gramps/plugins/graph/gvrelgraph.py:634
 msgid "The color to use when the gender is unknown."
 msgstr "Die Farbe die verwendet wird, wenn das Geschlecht unbekannt ist."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:172
-#: ../gramps/plugins/graph/gvrelgraph.py:586
+#: ../gramps/plugins/graph/gvrelgraph.py:638
 #: ../gramps/plugins/quickview/filterbyname.py:95
 #: ../gramps/plugins/textreport/tagreport.py:200
 #: ../gramps/plugins/view/familyview.py:117
@@ -16888,7 +16888,7 @@ msgid "Families"
 msgstr "Familien"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:173
-#: ../gramps/plugins/graph/gvrelgraph.py:587
+#: ../gramps/plugins/graph/gvrelgraph.py:639
 msgid "The color to use to display families."
 msgstr "Die Farbe die für die Anzeige von Familien verwendet wird."
 
@@ -16921,7 +16921,7 @@ msgid "Images"
 msgstr "Bilder"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:205
-#: ../gramps/plugins/graph/gvrelgraph.py:544
+#: ../gramps/plugins/graph/gvrelgraph.py:596
 msgid "Include thumbnail images of people"
 msgstr "Mit Miniaturbildern der Personen"
 
@@ -16934,17 +16934,17 @@ msgid "Thumbnail location"
 msgstr "Miniaturbild Position"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:214
-#: ../gramps/plugins/graph/gvrelgraph.py:551
+#: ../gramps/plugins/graph/gvrelgraph.py:603
 msgid "Above the name"
 msgstr "Über dem Namen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:215
-#: ../gramps/plugins/graph/gvrelgraph.py:552
+#: ../gramps/plugins/graph/gvrelgraph.py:604
 msgid "Beside the name"
 msgstr "Neben dem Namen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:216
-#: ../gramps/plugins/graph/gvrelgraph.py:554
+#: ../gramps/plugins/graph/gvrelgraph.py:606
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Wo das Miniaturbild im Verhältnis zum Namen erscheinen soll"
 
@@ -16956,7 +16956,7 @@ msgstr "Optionen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:224
 #: ../gramps/plugins/graph/gvhourglass.py:295
-#: ../gramps/plugins/graph/gvrelgraph.py:564
+#: ../gramps/plugins/graph/gvrelgraph.py:616
 msgid "Graph coloring"
 msgstr "Diagrammfärbung"
 
@@ -16970,13 +16970,13 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:233
 #: ../gramps/plugins/graph/gvhourglass.py:304
-#: ../gramps/plugins/graph/gvrelgraph.py:597
+#: ../gramps/plugins/graph/gvrelgraph.py:649
 msgid "Use rounded corners"
 msgstr "Abgerundete Ecken verwenden"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:234
 #: ../gramps/plugins/graph/gvhourglass.py:306
-#: ../gramps/plugins/graph/gvrelgraph.py:599
+#: ../gramps/plugins/graph/gvrelgraph.py:651
 msgid "Use rounded corners to differentiate between women and men."
 msgstr ""
 "Benutze abgerundete Ecken um zwischen Frauen und Männern zu unterscheiden."
@@ -16990,12 +16990,12 @@ msgid "Whether to include dates for people and families."
 msgstr "Ob Daten für Personen und Familien enthalten sind."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:244
-#: ../gramps/plugins/graph/gvrelgraph.py:519
+#: ../gramps/plugins/graph/gvrelgraph.py:555
 msgid "Limit dates to years only"
 msgstr "Daten auf Jahre begrenzen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:245
-#: ../gramps/plugins/graph/gvrelgraph.py:520
+#: ../gramps/plugins/graph/gvrelgraph.py:556
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -17067,12 +17067,12 @@ msgid "The number of generations of ancestors to include in the graph"
 msgstr "Die Anzahl der Vorfahrengenerationen in der Grafik"
 
 #: ../gramps/plugins/graph/gvhourglass.py:292
-#: ../gramps/plugins/graph/gvrelgraph.py:561
+#: ../gramps/plugins/graph/gvrelgraph.py:613
 msgid "Graph Style"
 msgstr "Diagrammstil"
 
 #: ../gramps/plugins/graph/gvhourglass.py:298
-#: ../gramps/plugins/graph/gvrelgraph.py:567
+#: ../gramps/plugins/graph/gvrelgraph.py:619
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an individual "
 "is unknown it will be shown with gray."
@@ -17080,31 +17080,31 @@ msgstr ""
 "Männer werden in blau gezeigt, Frauen in rot. Personen mit unbekanntem "
 "Geschlecht in grau."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:75
+#: ../gramps/plugins/graph/gvrelgraph.py:77
 msgid "Descendants <- Ancestors"
 msgstr "Nachkommen <- Vorfahren"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:76
+#: ../gramps/plugins/graph/gvrelgraph.py:78
 msgid "Descendants -> Ancestors"
 msgstr "Nachkommen -> Vorfahren"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:77
+#: ../gramps/plugins/graph/gvrelgraph.py:79
 msgid "Descendants <-> Ancestors"
 msgstr "Nachkommen <-> Vorfahren"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:78
+#: ../gramps/plugins/graph/gvrelgraph.py:80
 msgid "Descendants - Ancestors"
 msgstr "Nachkommen - Vorfahren"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:499
+#: ../gramps/plugins/graph/gvrelgraph.py:535
 msgid "Determines what people are included in the graph"
 msgstr "Legt fest welche Personen in der Grafik enthalten sind"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:513
+#: ../gramps/plugins/graph/gvrelgraph.py:549
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Geburts-, Hochzeits- und Sterbedaten einschließen"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:514
+#: ../gramps/plugins/graph/gvrelgraph.py:550
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
@@ -17112,11 +17112,11 @@ msgstr ""
 "Fügt die Daten, wann der Einzelne geboren wurde, heiratete, und/oder "
 "gestorben ist, den Grafbeschriftungen hinzu."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:525
+#: ../gramps/plugins/graph/gvrelgraph.py:561
 msgid "Use place when no date"
 msgstr "Benutze Ort wenn kein Datum vorhanden ist"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:526
+#: ../gramps/plugins/graph/gvrelgraph.py:562
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
@@ -17124,11 +17124,11 @@ msgstr ""
 "Wenn kein Geburts-, Hochzeits- oder Todesdatum verfügbar ist, wird der "
 "entsprechende Ort verwendet."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:531
+#: ../gramps/plugins/graph/gvrelgraph.py:567
 msgid "Include URLs"
 msgstr "URLs aufnehmen"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:532
+#: ../gramps/plugins/graph/gvrelgraph.py:568
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -17138,44 +17138,62 @@ msgstr ""
 "erzeugt werden können, die Links zu den mit \"Erzählende Website generieren\" "
 "erstellten Dateien enthalten."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:539
+#: ../gramps/plugins/graph/gvrelgraph.py:575
 msgid "Include IDs"
 msgstr "IDs aufnehmen"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:540
+#: ../gramps/plugins/graph/gvrelgraph.py:576
 msgid "Include individual and family IDs."
 msgstr "Personen und Familie IDs aufnehmen."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:546
+#: ../gramps/plugins/graph/gvrelgraph.py:580
+msgid "Include relationship to center person"
+msgstr "Mit Beziehungen zur Hauptperson"
+
+#: ../gramps/plugins/graph/gvrelgraph.py:581
+msgid "Whether to show every person's relationship to the center person"
+msgstr "Ob die Beziehung jeder Person zur Hauptperson gezeigt wird"
+
+#: ../gramps/plugins/graph/gvrelgraph.py:588
+msgid "Include relationship debugging numbers also"
+msgstr "Mit Beziehungen Fehlerprüfungnummern"
+
+#: ../gramps/plugins/graph/gvrelgraph.py:591
+msgid ""
+"Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
+msgstr ""
+"Ob 'Ga' und 'Gb' zur Fehlerbehebung beim Beziehungsrechner enthalten sind"
+
+#: ../gramps/plugins/graph/gvrelgraph.py:598
 msgid "Whether to include thumbnails of people."
 msgstr "Zum einschließen von Miniaturbildern von Personen."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:550
+#: ../gramps/plugins/graph/gvrelgraph.py:602
 msgid "Thumbnail Location"
 msgstr "Miniaturbilder Position"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:590
+#: ../gramps/plugins/graph/gvrelgraph.py:642
 msgid "Arrowhead direction"
 msgstr "Pfeilrichtungen"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:593
+#: ../gramps/plugins/graph/gvrelgraph.py:645
 msgid "Choose the direction that the arrows point."
 msgstr "Richtung der Pfeile auswählen."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:604
+#: ../gramps/plugins/graph/gvrelgraph.py:656
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Nicht-leiblich Verwandtschaft durch gestrichelte Linie andeuten"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:605
+#: ../gramps/plugins/graph/gvrelgraph.py:657
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
 "Nicht-leibliche Verwandtschaft erscheint im Graph als gestrichelte Linie."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:609
+#: ../gramps/plugins/graph/gvrelgraph.py:661
 msgid "Show family nodes"
 msgstr "Familienknoten anzeigen"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:610
+#: ../gramps/plugins/graph/gvrelgraph.py:662
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr ""
 "Familien werden als Ellipsen, verbunden mit den Eltern und Kindern, gezeigt."
