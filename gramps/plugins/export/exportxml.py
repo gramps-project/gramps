@@ -64,7 +64,6 @@ from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.version import VERSION
 from gramps.gen.constfunc import win
-from gramps.gui.plug.export import WriterOptionBox
 import gramps.plugins.lib.libgrampsxml as libgrampsxml
 from gramps.gen.constfunc import cuni, conv_to_unicode
 
