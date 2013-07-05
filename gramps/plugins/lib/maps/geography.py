@@ -67,6 +67,7 @@ from . import constants
 from .osmgps import OsmGps
 from .selectionlayer import SelectionLayer
 from .placeselection import PlaceSelection
+from .cairoprint import CairoPrintSave
 
 #------------------------------------------------------------------------
 #
@@ -237,6 +238,25 @@ class GeoGraphyView(OsmGps, NavigationView):
         :return: bool
         """
         return True
+
+    def define_actions(self):
+        """
+        Required define_actions function for PageView. Builds the action
+        group information required.
+        As this function is overriden in some plugins, we need to call
+        another method.
+        """
+        NavigationView.define_actions(self)
+        self.define_print_actions()
+
+    def define_print_actions(self):
+        """
+        Associate the print button to the PrintView action.
+        """
+        self._add_action('PrintView', Gtk.STOCK_PRINT, _("_Print..."), 
+                         accel="<PRIMARY>P", 
+                         tip=_("Print or save the Map"), 
+                         callback=self.printview)
 
     def config_connect(self):
         """
@@ -723,6 +743,21 @@ class GeoGraphyView(OsmGps, NavigationView):
                 fnam = _nd.display(father) if father else _("Unknown")
                 mnam = _nd.display(mother) if mother else _("Unknown")
         return ( fnam, mnam )
+
+    #-------------------------------------------------------------------------
+    #
+    # Printing functionalities
+    #
+    #-------------------------------------------------------------------------
+    def printview(self, obj):
+        """
+        Print or save the view that is currently shown
+        """
+        req = self.osm.get_allocation()
+        widthpx = req.width / 0.70
+        heightpx = req.height / 0.70
+        prt = CairoPrintSave(widthpx, heightpx, self.osm.do_draw, self.osm)
+        prt.run()
 
     #-------------------------------------------------------------------------
     #

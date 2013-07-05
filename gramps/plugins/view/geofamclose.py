@@ -78,6 +78,11 @@ _UI_DEF = '''\
     <separator/>
   </placeholder>
 </menu>
+<menu action="EditMenu">
+  <placeholder name="CommonEdit">
+    <menuitem action="PrintView"/>
+  </placeholder>
+</menu>
 <menu action="BookMenu">
   <placeholder name="AddEditBook">
     <menuitem action="AddBook"/>
@@ -91,6 +96,9 @@ _UI_DEF = '''\
   <toolitem action="Forward"/>  
   <toolitem action="HomePerson"/>
   <toolitem action="RefFamily"/>
+</placeholder>
+<placeholder name="CommonEdit">
+  <toolitem action="PrintView"/>
 </placeholder>
 </toolbar>
 </ui>
@@ -259,6 +267,7 @@ class GeoFamClose(GeoGraphyView):
         """
         NavigationView.define_actions(self)
 
+        self.define_print_actions()
         self.ref_family = Gtk.ActionGroup(self.title + '/Selection')
         self.ref_family.add_actions([
             ('RefFamily', 'gramps-family', _('reference _Family'), None ,

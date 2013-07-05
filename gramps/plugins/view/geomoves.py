@@ -83,6 +83,11 @@ _UI_DEF = '''\
     <separator/>
   </placeholder>
 </menu>
+<menu action="EditMenu">
+  <placeholder name="CommonEdit">
+    <menuitem action="PrintView"/>
+  </placeholder>
+</menu>
 <menu action="BookMenu">
   <placeholder name="AddEditBook">
     <menuitem action="AddBook"/>
@@ -95,6 +100,9 @@ _UI_DEF = '''\
   <toolitem action="Back"/>  
   <toolitem action="Forward"/>  
   <toolitem action="HomePerson"/>
+</placeholder>
+<placeholder name="CommonEdit">
+  <toolitem action="PrintView"/>
 </placeholder>
 </toolbar>
 </ui>
@@ -210,12 +218,6 @@ class GeoMoves(GeoGraphyView):
             p1 = self.dbstate.db.get_person_from_handle(active)
             self._createmap(p1)
         self.uistate.modify_statusbar(self.dbstate)
-
-    def define_actions(self):
-        """
-        Define action for the reference family button.
-        """
-        NavigationView.define_actions(self)
 
     def build_tree(self):
         """

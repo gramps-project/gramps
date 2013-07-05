@@ -82,6 +82,11 @@ _UI_DEF = '''\
     <separator/>
   </placeholder>
 </menu>
+<menu action="EditMenu">
+  <placeholder name="CommonEdit">
+    <menuitem action="PrintView"/>
+  </placeholder>
+</menu>
 <menu action="BookMenu">
   <placeholder name="AddEditBook">
     <menuitem action="AddBook"/>
@@ -93,6 +98,9 @@ _UI_DEF = '''\
 <placeholder name="CommonNavigation">
   <toolitem action="Back"/>  
   <toolitem action="Forward"/>  
+</placeholder>
+<placeholder name="CommonEdit">
+  <toolitem action="PrintView"/>
 </placeholder>
 </toolbar>
 </ui>
