@@ -315,6 +315,9 @@ def find_records(db, filter, top_size, callname,
 
 def _record(lowest, highest, value, text, handle_type, handle, top_size):
 
+    if value < 0: # ignore erroneous data
+        return # (since the data-verification tool already finds it)
+
     if isinstance(value, Span):
         low_value = value.minmax[0]
         high_value = value.minmax[1]
