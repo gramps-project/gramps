@@ -223,8 +223,8 @@ class Span(object):
                     start, stop = self.date1.get_start_stop_range()
                     start = Date(*start)
                     stop = Date(*stop)
-                    v1 = self.date2.sortval - start.sortval  # min
-                    v2 = self.date2.sortval - stop.sortval # max
+                    v1 = start.sortval - self.date2.sortval # min
+                    v2 = stop.sortval - self.date2.sortval # max
                     self.sort = (v1, v2 - v1)
                     self.minmax = (v1, v2)
                     #self.repr = ("between " + self._format(self._diff(start, self.date2)) + 
