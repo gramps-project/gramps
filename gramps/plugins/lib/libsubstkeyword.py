@@ -8,7 +8,7 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 #
-# This program is distributed in the hope that it will be useful, 
+# This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
@@ -45,6 +45,7 @@ from gramps.gen.lib import EventType
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.constfunc import STRTYPE, cuni
 
+
 #------------------------------------------------------------------------
 #
 # Local constants
@@ -52,7 +53,7 @@ from gramps.gen.constfunc import STRTYPE, cuni
 #------------------------------------------------------------------------
 class TextTypes():
     """Four enumerations that are used to for the four main parts of a string.
-    
+
     and used for states.  Separator is not used in states.
     text   -> remove or display
     remove -> display
@@ -69,14 +70,14 @@ TXT = TextTypes()
 class GenericFormat(object):
     """A Generic parsing class.  Will be subclassed by specific format strings
     """
-    
+
     def __init__(self, string_in):
         self.string_in = string_in
-    
+
     def _default_format(self, item):
         """ The default format if there is no format string """
         pass
-    
+
     def is_blank(self, item):
         """ if the information is not known (item is None), remove the format
         string information from the input string if any.
@@ -85,10 +86,10 @@ class GenericFormat(object):
             self.string_in.remove_start_end("(", ")")
             return True
         return False
-    
+
     def generic_format(self, item, code, uppr, function):
         """the main parsing engine.
-        
+
         Needed are the following:  the input string
         code - List of one character (string) codes (all lowercase)
         uppr - list of one character (string) codes that can be uppercased
@@ -99,12 +100,12 @@ class GenericFormat(object):
         if self.string_in.this != "(":
             return self._default_format(item)
         self.string_in.step()
-        
+
         main = VarString()
         separator = SeparatorParse(self.string_in)
         #code given in args
         #function given in args
-        
+
         while self.string_in.this and self.string_in.this != ")":
             #Check to see if _in.this is in code
             to_upper = False
@@ -121,7 +122,7 @@ class GenericFormat(object):
                     tmp = tmp.upper()
                 if tmp == "" or tmp is None:
                     main.add_remove()
-                elif isinstance(tmp, VarString):  #events cause this
+                elif isinstance(tmp, VarString):  # events cause this
                     main.extend(tmp)
                 else:
                     main.add_variable(tmp)
@@ -129,11 +130,12 @@ class GenericFormat(object):
                 main.add_separator(separator.parse_format())
             else:
                 main.add_text(self.string_in.parse_format())
-        
+
         if self.string_in.this == ")":
             self.string_in.step()
-        
+
         return main
+
 
 #------------------------------------------------------------------------
 # Name Format strings
@@ -153,30 +155,31 @@ class NameFormat(GenericFormat):
     def _default_format(self, name):
         """ display the name as set in preferences """
         return name_displayer.sorted_name(name)
-    
+
     def parse_format(self, name):
         """ Parse the name """
         if self.is_blank(name):
             return
-        
+
         def common():
             """ return the common name of the person """
             return (name.get_call_name() or
-                     name.get_first_name().split(' ')[0])
+                    name.get_first_name().split(' ')[0])
 
-        code  = "tfcnxslg"
+        code = "tfcnxslg"
         upper = code.upper()
-        function = [name.get_title,           #t
-                    name.get_first_name,      #f
-                    name.get_call_name,       #c
-                    name.get_nick_name,       #n
-                    common,                   #x
-                    name.get_suffix,          #s
-                    name.get_surname,         #l
-                    name.get_family_nick_name #g
+        function = [name.get_title,            # t
+                    name.get_first_name,       # f
+                    name.get_call_name,        # c
+                    name.get_nick_name,        # n
+                    common,                    # x
+                    name.get_suffix,           # s
+                    name.get_surname,          # l
+                    name.get_family_nick_name  # g
                     ]
-        
+
         return self.generic_format(name, code, upper, function)
+
 
 #------------------------------------------------------------------------
 # Date Format strings
@@ -195,45 +198,45 @@ class DateFormat(GenericFormat):
 
     def _default_format(self, date):
         return displayer.display(date)
-    
+
     def __count_chars(self, char, max_amount):
         """ count the year/month/day codes """
-        count = 1  #already have seen/passed one
+        count = 1  # already have seen/passed one
         while count < max_amount and self.string_in.this == char:
             self.string_in.step()
             count = count +1
         return count
-    
+
     def parse_format(self, date):
         """ Parse the name """
-    
+
         if self.is_blank(date):
             return
-        
+
         def year():
             """  The year part only """
             year = cuni(date.get_year())
             count = self.__count_chars("y", 4)
             if year == "0":
                 return
-            
-            if count == 1:  #found 'y'
+
+            if count == 1:  # found 'y'
                 if len(year) == 1:
                     return year
                 elif year[-2] == "0":
                     return year[-1]
                 else:
                     return year[-2:]
-            elif count == 2:  #found 'yy'
+            elif count == 2:  # found 'yy'
                 tmp = "0" + year
                 return tmp[-2:]
-            elif count == 3:  #found 'yyy'
+            elif count == 3:  # found 'yyy'
                 if len(year) > 2:
                     return year
                 else:
                     tmp = "00" + year
                     return tmp[-3:]
-            else:  #count == 4  #found 'yyyy'
+            else:  #count == 4  # found 'yyyy'
                 tmp = "000" + year
                 return tmp[-4:]
 
@@ -244,47 +247,48 @@ class DateFormat(GenericFormat):
             count = self.__count_chars(char_found, 4)
             if month == "0":
                 return
-                
+
             if count == 1:
                 return month
-            elif count == 2:  #found 'mm'
+            elif count == 2:  # found 'mm'
                 tmp = "0" + month
                 return tmp[-2:]
-            elif count == 3:   #found 'mmm'
+            elif count == 3:   # found 'mmm'
                 return displayer.short_months[int(month)]
-            else: #found 'mmmm'
+            else: # found 'mmmm'
                 return displayer.long_months[int(month)]
-        
+
         def month_up():
             return month("M").upper()
-            
+
 
         def day():
             """  The day part only """
             day = cuni(date.get_day())
             count = self.__count_chars("d", 2)
-            if day == "0":  #0 means not defined!
+            if day == "0":  # 0 means not defined!
                 return
-            
-            if count == 1: #found 'd'
+
+            if count == 1: # found 'd'
                 return day
-            else:  #found 'dd'
+            else:  # found 'dd'
                 tmp = "0" + day
                 return tmp[-2:]
 
 
         def modifier():
             #ui_mods taken from date.py def lookup_modifier(self, modifier):
-            ui_mods = ["", _("before"), _("after"), _("about"), 
+            ui_mods = ["", _("before"), _("after"), _("about"),
                        "", "", ""]
             return ui_mods[date.get_modifier()].capitalize()
 
-        
+
         code  = "ymdMo"
         upper = "O"
         function = [year, month, day, month_up, modifier]
-        
+
         return self.generic_format(date, code, upper, function)
+
 
 #------------------------------------------------------------------------
 # Place Format strings
@@ -305,14 +309,14 @@ class PlaceFormat(GenericFormat):
 
     def _default_format(self, place):
         return place.get_title()
-    
+
     def parse_format(self, place):
         """ Parse the place """
 
         if self.is_blank(place):
             return
-        
-        code = "elcuspnitxy"
+
+        code = "elcuspn" + "oitxy"
         upper = code.upper()
         function = [place.get_main_location().get_street,
                     place.get_main_location().get_locality,
@@ -321,13 +325,16 @@ class PlaceFormat(GenericFormat):
                     place.get_main_location().get_state,
                     place.get_main_location().get_postal_code,
                     place.get_main_location().get_country,
+
+                    place.get_main_location().get_phone,
                     place.get_main_location().get_parish,
                     place.get_title,
                     place.get_longitude,
                     place.get_latitude
                     ]
-        
+
         return self.generic_format(place, code, upper, function)
+
 
 #------------------------------------------------------------------------
 # Event Format strings
@@ -342,18 +349,18 @@ class EventFormat(GenericFormat):
     def __init__(self, database, _in):
         self.database = database
         GenericFormat.__init__(self, _in)
-        
+
     def _default_format(self, event):
         if event is None:
             return
         else:
             return event.get_description()
-    
+
     def __empty_format(self):
         """ clear out a sub format string """
         self.string_in.remove_start_end("(", ")")
         return
-    
+
     def __empty_attrib(self):
         """ clear out an attribute name """
         self.string_in.remove_start_end("[", "]")
@@ -365,18 +372,18 @@ class EventFormat(GenericFormat):
 
         if self.is_blank(event):
             return
-        
+
         def format_date():
             """ start formatting a date in this event """
             date_format = DateFormat(self.string_in)
             return date_format.parse_format(date_format.get_date(event))
-            
+
         def format_place():
             """ start formatting a place in this event """
             place_format = PlaceFormat(self.string_in)
             place = place_format.get_place(self.database, event)
             return place_format.parse_format(place)
-                
+
         def format_attrib():
             """ Get the name and then get the attributes value """
             #Event's Atribute
@@ -388,7 +395,7 @@ class EventFormat(GenericFormat):
                                                   name)
             else:
                 return
-            
+
         code = "ndDia"
         upper = ""
         function = [event.get_description,
@@ -397,18 +404,62 @@ class EventFormat(GenericFormat):
                     event.get_gramps_id,
                     format_attrib
                     ]
-        
+
         return self.generic_format(event, code, upper, function)
 
     def parse_empty(self):
         """ remove the format string """
-        
+
         code = "dDa"
         function = [self.__empty_format, self.__empty_format,
                     self.__empty_attrib]
-        
+
         return self.generic_format(None, code, "", function)
-        
+
+
+#------------------------------------------------------------------------
+# gramps info Format strings
+#------------------------------------------------------------------------
+class GrampsFormat():
+    """ The Gramps Info Format class.
+        This only polls information from system information.
+    """
+
+    def __init__(self, _in, _db):
+        self.string_in = _in
+        self.db = _db
+
+    def parse_format(self):
+        """ Parse the Gramps format string.
+        let the date or place classes handle any sub-format strings """
+        from gramps.version import VERSION
+
+        from gramps.gen.utils.config import get_researcher
+        owner = get_researcher()
+
+        code = "vtd" + "elcspn" + "om"
+        info = [VERSION,
+                owner.get_name(),
+                self.db.get_dbname(),
+
+                owner.get_address(),
+                owner.get_locality(),
+                owner.get_city(),
+                owner.get_state(),
+                owner.get_postal_code(),
+                owner.get_country(),
+
+                owner.get_phone(),
+                owner.get_email()
+                ]
+
+        where = code.find(self.string_in.this)
+        if where != -1:
+            self.string_in.step()
+            return info[where]
+        return "$G"
+
+
 #------------------------------------------------------------------------
 # Gallery Format strings
 #------------------------------------------------------------------------
@@ -422,18 +473,18 @@ class GalleryFormat(GenericFormat):
     def __init__(self, database, _in):
         self.database = database
         GenericFormat.__init__(self, _in)
-        
+
     def _default_format(self, photo):
         if photo is None:
             return
         else:
             return photo.get_description()
-    
+
     def __empty_format(self):
         """ clear out a sub format string """
         self.string_in.remove_start_end("(", ")")
         return
-    
+
     def __empty_attrib(self):
         """ clear out an attribute name """
         self.string_in.remove_start_end("[", "]")
@@ -445,12 +496,12 @@ class GalleryFormat(GenericFormat):
 
         if self.is_blank(photo):
             return
-        
+
         def format_date():
             """ start formatting a date in this photo """
             date_format = DateFormat(self.string_in)
             return date_format.parse_format(date_format.get_date(photo))
-            
+
         def format_attrib():
             """ Get the name and then get the attributes value """
             #photo's Atribute
@@ -461,7 +512,7 @@ class GalleryFormat(GenericFormat):
                                                   name)
             else:
                 return
-            
+
         code = "ndia"
         upper = ""
         function = [photo.get_description,
@@ -469,17 +520,18 @@ class GalleryFormat(GenericFormat):
                     photo.get_gramps_id,
                     format_attrib
                     ]
-        
+
         return self.generic_format(photo, code, upper, function)
 
     def parse_empty(self):
         """ remove the format string """
-        
+
         code = "da"
         function = [self.__empty_format, self.__empty_attrib]
-        
+
         return self.generic_format(None, code, "", function)
-        
+
+
 #------------------------------------------------------------------------
 #
 # ConsumableString - The Input string class
@@ -488,14 +540,14 @@ class GalleryFormat(GenericFormat):
 class ConsumableString(object):
     """
     A simple string implementation with extras to help with parsing.
-    
+
     This will contain the string to be parsed.  or string in.
     There will only be one of these for each processed line.
     """
     def __init__(self, string):
         self.__this_string = string
         self.__setup()
-    
+
     def __setup(self):
         """ update class attributes this and next """
         if len(self.__this_string) > 0:
@@ -506,24 +558,24 @@ class ConsumableString(object):
             self.next = self.__this_string[1]
         else:
             self.next = None
-    
+
     def step(self):
         """ remove the first char from the string """
         self.__this_string = self.__this_string[1:]
         self.__setup()
         return self.this
-    
+
     def step2(self):
         """ remove the first two chars from the string """
         self.__this_string = self.__this_string[2:]
         self.__setup()
         return self.this
-    
+
     def remove_start_end(self, start, end):
         """ Removes a start, end block from the string if there """
         if self.this == start:
             self.text_to_next(end)
-    
+
     def __get_a_char_of_text(self):
         """ Removes one char of TEXT from the string and returns it. """
         if self.this == "\\":
@@ -535,8 +587,8 @@ class ConsumableString(object):
         else:
             rtrn = self.this
             self.step()
-        return rtrn 
-    
+        return rtrn
+
     def text_to_next(self, char):
         """ return/remove a format strings from here """
         new_str = ""
@@ -545,17 +597,17 @@ class ConsumableString(object):
         if self.this == char:
             self.step()
         return new_str
-    
+
     def is_a(self):
         return True
-    
+
     def parse_format(self):
         rtrn = self.__get_a_char_of_text()
 
         if rtrn:
             return rtrn
         return ''
-            
+
 
 #------------------------------------------------------------------------
 #
@@ -566,53 +618,53 @@ class VarString(object):
     """
     The current state of the entire string (integer from TextTypes)
     A list to hold tuple object (integer from TextTypes, string)
-    
+
     This will contain the string that will be displayed.  or string out.
     it is used for groups and format strings.
     """
     def __init__(self, start_state = TXT.remove):
-        self.state = start_state  #overall state of the string.
-        self._text = []  #list of tuples (TXT.?, string)
-    
+        self.state = start_state  # overall state of the string.
+        self._text = []  # list of tuples (TXT.?, string)
+
     def __update_state(self, new_status):
         if new_status > self.state:
             self.state = new_status
-    
+
     def add_text(self, text):
         self._text.append((TXT.text, text))
-    
+
     def add_variable(self, text):
         self.state = TXT.display
         self._text.append((TXT.text, text))
-    
+
     def add_remove(self):
         self.__update_state(TXT.remove)
         self._text.append((TXT.remove, ""))
-    
+
     def add_separator(self, text):
         self._text.append((TXT.separator, text))
-    
+
     def get_final(self):
         #if self.state == TXT.remove:
         #    return (TXT.remove, "")
-        
+
         curr_string = ""
         index = 0
 
         while index < len(self._text):
-        
+
             if self._text[index][0] == TXT.text:
                 curr_string += self._text[index][1]
                 index = index + 1
-                continue  #while self._text:
+                continue  # while self._text:
             if index +1 == len(self._text):
                 if self._text[index][0] == TXT.separator and curr_string != '':
                     curr_string += self._text[index][1]
                 index = index + 1
-                break  #while self._text:
-            
+                break  # while self._text:
+
             type_0_1  = (self._text[index][0], self._text[index+1][0])
-            
+
             #if   type_0_1 == (TXT.remove, TXT.remove):
             #    pass
             if type_0_1 == (TXT.remove, TXT.separator):
@@ -628,23 +680,23 @@ class VarString(object):
             #else:
             #    print "#oops  Should never get here."
             index = index + 1
-        
+
         #return what we have
         return (self.state, curr_string)
         print("===" + str(self.state) + " '" + str(curr_string) + "'")
 
     def extend(self, acquisition):
-        """ 
+        """
             acquisition is a VarString object
-            Merge the content of acquisition into this place. 
+            Merge the content of acquisition into this place.
         """
         self.__update_state(acquisition.state)
-        
+
         if acquisition.state != TXT.display:
             #The sub {} was TXT.remove.  We don't want to simply ignore it.
-            self.add_remove() #add a remove que here to note it.
+            self.add_remove() # add a remove que here to note it.
             return
-        
+
         self._text.extend(acquisition._text)
 
 
@@ -660,7 +712,7 @@ class SeparatorParse(object):
     """ parse out a separator """
     def __init__(self, consumer_in):
         self._in = consumer_in
-        
+
     def is_a(self):
         return self._in.this == "<"
 
@@ -670,56 +722,56 @@ class SeparatorParse(object):
         """ get the text and return it """
         self._in.step()
         return self._in.text_to_next(">")
-        
+
 #------------------------------------------------------------------------
 # AttributeParse
 #------------------------------------------------------------------------
 class AttributeParse(object):
     """  Parse attributes """
-    
+
     def __init__(self, consumer_in):
         self._in = consumer_in
-        
+
     def get_name(self):
         """ Gets a name inside a [] block """
         if self._in.this != "[":
             return
         self._in.step()
         return self._in.text_to_next("]")
-        
+
     def get_attribute(self, attrib_list, attrib_name):
         """ Get an attribute by name """
         if attrib_name == "":
-            return 
+            return
         for attr in attrib_list:
             if str(attr.get_type()) == attrib_name:
                 return str(attr.get_value())
         return
-    
+
     def is_a(self):
         """ check """
         return self._in.this == "a"
-    
+
     def parse_format(self, attrib_list):
         """ Get the attribute and add it to the string out """
         name = self.get_name()
         return self.get_attribute(attrib_list, name)
-        
+
 #------------------------------------------------------------------------
 # VariableParse
 #------------------------------------------------------------------------
 class VariableParse(object):
     """ Parse the individual variables """
-    
+
     def __init__(self, friend, database, consumer_in):
         self.friend = friend
         self.database = database
         self._in = consumer_in
-    
+
     def is_a(self):
         """ check """
         return self._in.this == "$" and self._in.next is not None and \
-                              "nsijbBdDmMvVauetTpP".find(self._in.next) != -1
+                              "nsijbBdDmMvVauetTpPG".find(self._in.next) != -1
 
     def get_event_by_type(self, marriage, e_type):
         """ get an event from a type """
@@ -732,7 +784,7 @@ class VariableParse(object):
             if event.get_type() == e_type:
                 return event
         return None
-    
+
     def get_event_by_name(self, person, event_name):
         """ get an event from a name. """
         if not person:
@@ -744,7 +796,7 @@ class VariableParse(object):
             if event.get_type().is_type(event_name):
                 return event
         return None
-        
+
     def empty_item(self, item):
         """ return false if there is a valid item(date or place).
         Otherwise
@@ -753,10 +805,10 @@ class VariableParse(object):
         """
         if item is not None:
             return False
-        
+
         self._in.remove_start_end("(", ")")
         return True
-    
+
     def empty_attribute(self, person):
         """ return false if there is a valid person.
         Otherwise
@@ -765,10 +817,10 @@ class VariableParse(object):
         """
         if person:
             return False
-        
+
         self._in.remove_start_end("[", "]")
         return True
-    
+
     def __parse_date(self, event):
         """ sub to process a date
         Given an event, get the date object, process the format,
@@ -778,7 +830,7 @@ class VariableParse(object):
         if self.empty_item(date):
             return
         return date_f.parse_format(date)
-    
+
     def __parse_place(self, event):
         """ sub to process a date
         Given an event, get the place object, process the format,
@@ -788,18 +840,18 @@ class VariableParse(object):
         if self.empty_item(place):
             return
         return place_f.parse_format(place)
-    
+
     def __parse_name(self, person):
         name_format = NameFormat(self._in)
         name = name_format.get_name(person)
         return name_format.parse_format(name)
-    
+
     def __parse_id(self, first_class_object):
         if first_class_object is not None:
             return first_class_object.get_gramps_id()
         else:
             return
-    
+
     def __parse_event(self, person, attrib_parse):
         event = self.get_event_by_name(person, attrib_parse.get_name())
         event_f = EventFormat(self.database, self._in)
@@ -808,7 +860,7 @@ class VariableParse(object):
         else:
             event_f.parse_empty()
             return
-            
+
     def __get_photo(self, person_or_marriage):
         """ returns the first photo in the media list or None """
         media_list = person_or_marriage.get_media_list()
@@ -819,7 +871,7 @@ class VariableParse(object):
             if mime_type and mime_type.startswith("image"):
                 return media
         return None
-    
+
     def __parse_photo(self, person_or_marriage):
         photo_f = GalleryFormat(self.database, self._in)
         if person_or_marriage is None:
@@ -829,23 +881,23 @@ class VariableParse(object):
             return photo_f.parse_format(photo)
         else:
             return photo_f.parse_empty()
-    
+
     def parse_format(self):
         """Parse the $ variables. """
         if not self.is_a():
             return
-        
+
         attrib_parse = AttributeParse(self._in)
         next_char = self._in.next
         self._in.step2()
-        
+
         if next_char == "n":
             #Person's name
             return self.__parse_name(self.friend.person)
         elif next_char == "s":
             #Souses name
             return self.__parse_name(self.friend.spouse)
-        
+
         elif next_char == "i":
             #Person's Id
             return self.__parse_id(self.friend.person)
@@ -927,21 +979,25 @@ class VariableParse(object):
                 return
             return attrib_parse.parse_format(
                                       self.friend.family.get_attribute_list())
-        
+
         elif next_char == "e":
             #person event
             return self.__parse_event(self.friend.person, attrib_parse)
         elif next_char == "t":
             #person event
             return self.__parse_event(self.friend.family, attrib_parse)
-        
+
         elif next_char == 'p':
             #photo for the person
             return self.__parse_photo(self.friend.person)
         elif next_char == 'P':
             #photo for the marriage
             return self.__parse_photo(self.friend.family)
-        
+
+        elif next_char == "G":
+            gramps_format = GrampsFormat(self._in, self.database)
+            return gramps_format.parse_format()
+
 
 #------------------------------------------------------------------------
 #
@@ -951,9 +1007,9 @@ class VariableParse(object):
 class SubstKeywords(object):
     """Accepts a person/family with format lines and returns a new set of lines
     using variable substitution to make it.
-    
+
     The individual variables are defined with the classes that look for them.
-    
+
     Needed:
         Database object
         person_handle
@@ -964,30 +1020,30 @@ class SubstKeywords(object):
     """
     def __init__(self, database, person_handle, family_handle=None):
         """get the person and find the family/spouse to use for this display"""
-        
+
         self.database = database
         self.person = database.get_person_from_handle(person_handle)
         self.family = None
         self.spouse = None
-        self.line = None   #Consumable_string - set below
-        
+        self.line = None   # Consumable_string - set below
+
         if self.person is None:
             return
-        
+
         fam_hand_list = self.person.get_family_handle_list()
         if fam_hand_list:
             if family_handle in fam_hand_list:
                 self.family = database.get_family_from_handle(family_handle)
-            else: 
+            else:
                 #Error.  fam_hand_list[0] below may give wrong marriage info.
                 #only here because of OLD specifications.  Specs read:
-                # * $S/%S 
+                # * $S/%S
                 #   Displays the name of the person's preferred ...
-                # 'preferred' means FIRST.  
+                # 'preferred' means FIRST.
                 #The first might not be the correct marriage to display.
                 #else: clause SHOULD be removed.
                 self.family = database.get_family_from_handle(fam_hand_list[0])
-            
+
             father_handle = self.family.get_father_handle()
             mother_handle = self.family.get_mother_handle()
             self.spouse = None
@@ -997,10 +1053,10 @@ class SubstKeywords(object):
             else:
                 if father_handle:
                     self.spouse = database.get_person_from_handle(father_handle)
-    
+
     def __parse_line(self):
         """parse each line of text and return the new displayable line
-        
+
         There are four things we can find here
             A {} group which will make/end as needed.
             A <> separator
@@ -1009,12 +1065,12 @@ class SubstKeywords(object):
         """
         stack_var = []
         curr_var = VarString(TXT.text)
-        
+
         #First we are going take care of all variables/groups
-        #break down all {} (groups) and $ (vars) into either 
+        #break down all {} (groups) and $ (vars) into either
         #(TXT.text, resulting_string) or (TXT.remove, '')
         variable = VariableParse(self, self.database, self.line)  # $
-        
+
         while self.line.this:
             if self.line.this == "{":
                 #Start of a group
@@ -1024,7 +1080,7 @@ class SubstKeywords(object):
                 curr_var = VarString()
                 #step
                 self.line.step()
-                
+
             elif self.line.this == "}" and len(stack_var) > 0: #End of a group
                 #add curr to what is on the (top) stack and pop into current
                 #or pop the stack into current and add TXT.remove
@@ -1032,16 +1088,16 @@ class SubstKeywords(object):
                 if direction == TXT.display:
                     #add curr onto the top slot of the stack
                     stack_var[-1].extend(curr_var)
-                
+
                 #pop what we have on the stack
                 curr_var = stack_var.pop()
-                
+
                 if direction == TXT.remove:
                     #add remove que
                     curr_var.add_remove()
                 #step
                 self.line.step()
-            
+
             elif variable.is_a():  # $  (variables)
                 rtrn = variable.parse_format()
                 if rtrn is None:
@@ -1050,15 +1106,15 @@ class SubstKeywords(object):
                     curr_var.extend(rtrn)
                 else:
                     curr_var.add_variable(rtrn)
-            
+
             elif self.line.this == "<":  # separator
                 self.line.step()
                 curr_var.add_separator(self.line.text_to_next(">"))
-            
+
             else:  #regular text
                 curr_var.add_text(self.line.parse_format())
-            
-        #the stack is for groups/subgroup and may contain items 
+
+        #the stack is for groups/subgroup and may contain items
         #if the user does not close his/her {}
         #squash down the stack
         while stack_var:
@@ -1066,16 +1122,16 @@ class SubstKeywords(object):
             if direction == TXT.display:
                 #add curr onto the top slot of the stack
                 stack_var[-1].extend(curr_var)
-            
+
             #pop what we have on the stack
             curr_var = stack_var.pop()
-            
+
             if direction == TXT.remove:
                 #add remove que
                 curr_var.add_remove()
             #step
             self.line.step()
-        
+
         #return what we have
         return curr_var.get_final()
 
@@ -1086,13 +1142,13 @@ class SubstKeywords(object):
         if self.line.this == "-":
             remove_line_tag = True
             self.line.step()
-        
+
         state, line = self.__parse_line()
 
         if state is TXT.remove and remove_line_tag:
             return None
         return line
-    
+
     def replace_and_clean(self, lines):
         """
         return a new array of lines with all of the substitutions done
@@ -1108,7 +1164,7 @@ class SubstKeywords(object):
             #print "+ ", new_line
             if new_line is not None:
                 new.append(new_line)
-        
+
         if new == []:
             new = [""]
         return new
@@ -1159,7 +1215,7 @@ if __name__ == '__main__':
         main = LevelParse(_in)
         sepa = SeparatorParse(_in)
         test = testing_class(_in)
-        
+
         while _in.this:
             if main.is_a():
                 main.parse_format(_in)
@@ -1184,6 +1240,7 @@ if __name__ == '__main__':
     from gramps.gen.lib.date import Date
     y_or_n = ()
     date_to_test = Date()
+
     def date_set():
         date_to_test.set_yr_mon_day(
             1970 if 0 in y_or_n else 0,
@@ -1191,17 +1248,17 @@ if __name__ == '__main__':
             3 if 2 in y_or_n else 0
             )
         #print date_to_test
-    
+
     line_in = "<Z>$(yyy) <a>$(<Z>Mm)<b>$(mm){<c>$(d)}{<d>$(yyyy)<e>}<f>$(yy)"
     consume_str = ConsumableString(line_in)
-    
+
     print(line_in)
     print("#None are known")
     tmp = main_level_test(consume_str, DateFormat, date_to_test)
     print(tmp)
     print("Good" if tmp == " " else "!! bad !!")
 
-    
+
     print()
     print()
     print("#One is known")
@@ -1259,6 +1316,7 @@ if __name__ == '__main__':
     from gramps.gen.lib.name import Name
     y_or_n = ()
     name_to_test = Name()
+
     def name_set():
         #code  = "tfcnxslg"
         name_to_test.set_call_name("Bob" if 0 in y_or_n else "")
@@ -1268,10 +1326,10 @@ if __name__ == '__main__':
         name_to_test.set_suffix("IV" if 4 in y_or_n else "")
         #now can we put something in for the last name?
         name_to_test.set_family_nick_name("The Clubs" if 5 in y_or_n else "")
-    
+
     line_in = "{$(c)$(t)<1>{<2>$(f)}{<3>$(n){<0> <0>}<4>$(x)}$(s)<5>$(l)<6>$(g)<0>"
     consume_str = ConsumableString(line_in)
-    
+
     print()
     print()
     print(line_in)
@@ -1318,8 +1376,8 @@ if __name__ == '__main__':
     consume_str = ConsumableString(line_in)
     answer = main_level_test(consume_str, NameFormat, name_to_test)
     print(answer)
-    print("Good" if answer == "BobDr.2Billy3Buck4BobIV6The Clubs" \
-                            else "!! bad !!")
+    print("Good" if answer == "BobDr.2Billy3Buck4BobIV6The Clubs"
+                 else "!! bad !!")
 
 
     print()
@@ -1330,6 +1388,7 @@ if __name__ == '__main__':
     from gramps.gen.lib.place import Place
     y_or_n = ()
     place_to_test = Place()
+
     def place_set():
         #code = "elcuspnitxy"
         main_loc = place_to_test.get_main_location()
@@ -1366,12 +1425,12 @@ if __name__ == '__main__':
         place_to_test.set_latitude(
             "W113H18'5\"W" if 10 in y_or_n else ""
         )
-    
+
     #code = "txy"
     line_in = "$(e)<1>{<2>$(l) <3> $(c)<4><0><5>{$(s)<6>$(p)<7>" + \
               "{<1>$(n)<2>}<3>$(i<0>)<4>}<5>$(t)<6>$(x)<7>}<8>$(y)"
     consume_str = ConsumableString(line_in)
-    
+
     print()
     print()
     print(line_in)
@@ -1411,5 +1470,4 @@ if __name__ == '__main__':
         32, 33, 32, 27, 26, 27, 30, 31, 30, 34, 35, 34, 38, 27, 31, 30, 31, 35,
         34, 35, 38, 39, 38, 33, 32, 33, 36, 37, 36, 40, 41, 40, 44, 33, 32, 33,
         36, 37, 36, 40, 41, 40, 44, 38, 39, 38, 42, 46] else "!! bad !!")
-    
-    
+
