@@ -288,6 +288,9 @@ def _find_records(db, filter, callname):
 
 def _record(lowest, highest, value, text, handle_type, handle):
 
+    if value < 0: # ignore erroneous data
+        return # (since the data-verification tool already finds it)
+
     if lowest is not None:
         lowest.append((value, text, handle_type, handle))
         lowest.sort(lambda a,b: cmp(a[0], b[0]))        # FIXME: Ist das lambda notwendig?
