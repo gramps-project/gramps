@@ -25,8 +25,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-04 19:34+0200\n"
-"PO-Revision-Date: 2013-05-06 18:53+0200\n"
+"POT-Creation-Date: 2013-05-09 12:49+0200\n"
+"PO-Revision-Date: 2013-07-08 13:26+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -840,7 +840,7 @@ msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Peter Landgren"
 
 #: ../gramps/gen/const.py:240 ../gramps/gen/const.py:241
-#: ../gramps/gen/lib/date.py:1650 ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1670 ../gramps/gen/lib/date.py:1684
 msgid "none"
 msgstr "inget"
 
@@ -919,6 +919,17 @@ msgid ""
 "If you have made a backup, then you can get Gramps to try to open the tree "
 "and upgrade it"
 msgstr ""
+"Bsddb-versionen, för det Släktträd du försöker öppna, behöver uppgraderas "
+"från %(env_version)s till /(bdb_version)s.\n"
+"\n"
+"Detta innebär sannolikt att släktträdet skapats med en gammal version av "
+"Gramps. Genom att öppna trädet med denna version av Gramps kan oåterkalleligt "
+"förstöra ditt släktträd. Du råds på det bestämdaste att ta en säkerhetskopia "
+"av ditt träd innan du fortsätter, se: \n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n"
+"\n"
+"Om du har gjort en säkerhetskopia så kan du låta Gramps försöka öppna trädet "
+"och uppgradera det."
 
 #: ../gramps/gen/db/exceptions.py:151
 msgid ""
@@ -958,6 +969,17 @@ msgid ""
 "\n"
 "http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
 msgstr ""
+"Strukturen på ditt släktträd har ändrats sedan den version av Gramps du "
+"använde för att skapa detta träd.\n"
+"Därför kan du inte öppna detta släktträd utan att uppgradera strukturens "
+"definition.\n"
+"Om du uppgraderar kan du inte sedan använda tidigare versioner av Gramps även "
+"med .gramps xml export!\n"
+"\n"
+"Uppgradering är ett svårt jobb, som ej får avbrytas för då har Gramps "
+"förstört ditt släkt träd. Därför är det bästa att först ta en säkerhetskopia. "
+"Se: \n"
+"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup"
 
 #: ../gramps/gen/db/undoredo.py:249 ../gramps/gen/db/undoredo.py:286
 #: ../gramps/gen/db/write.py:2026
@@ -4025,151 +4047,151 @@ msgstr "Fadderbarn"
 msgid "Foster"
 msgstr "Fosterbarn"
 
-#: ../gramps/gen/lib/date.py:292 ../gramps/gen/lib/date.py:409
+#: ../gramps/gen/lib/date.py:299 ../gramps/gen/lib/date.py:429
 #: ../gramps/gen/mime/_pythonmime.py:50 ../gramps/gen/mime/_pythonmime.py:58
 #: ../gramps/gen/mime/_winmime.py:64 ../gramps/gen/utils/db.py:521
 #: ../gramps/gui/editors/editperson.py:331
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:92
 #: ../gramps/gui/merge/mergeperson.py:63
 #: ../gramps/gui/views/treemodels/peoplemodel.py:96
-#: ../gramps/plugins/textreport/detancestralreport.py:536
-#: ../gramps/plugins/textreport/detancestralreport.py:543
-#: ../gramps/plugins/textreport/detancestralreport.py:586
-#: ../gramps/plugins/textreport/detancestralreport.py:593
-#: ../gramps/plugins/textreport/detdescendantreport.py:581
-#: ../gramps/plugins/textreport/detdescendantreport.py:588
+#: ../gramps/plugins/textreport/detancestralreport.py:537
+#: ../gramps/plugins/textreport/detancestralreport.py:544
+#: ../gramps/plugins/textreport/detancestralreport.py:587
+#: ../gramps/plugins/textreport/detancestralreport.py:594
+#: ../gramps/plugins/textreport/detdescendantreport.py:582
+#: ../gramps/plugins/textreport/detdescendantreport.py:589
 #: ../gramps/plugins/textreport/indivcomplete.py:450
 #: ../gramps/plugins/view/relview.py:676
 #: ../gramps/plugins/webreport/narrativeweb.py:5390
 msgid "unknown"
 msgstr "okänd"
 
-#: ../gramps/gen/lib/date.py:295
+#: ../gramps/gen/lib/date.py:306
 #, python-format
 msgid "less than %s years"
 msgstr "mindre än %s år"
 
-#: ../gramps/gen/lib/date.py:300 ../gramps/gen/lib/date.py:326
-#: ../gramps/gen/lib/date.py:328 ../gramps/gen/lib/date.py:335
-#: ../gramps/gen/lib/date.py:357
+#: ../gramps/gen/lib/date.py:311 ../gramps/gen/lib/date.py:337
+#: ../gramps/gen/lib/date.py:339 ../gramps/gen/lib/date.py:346
+#: ../gramps/gen/lib/date.py:368
 msgid "more than"
 msgstr "större än"
 
-#: ../gramps/gen/lib/date.py:302 ../gramps/gen/lib/date.py:314
-#: ../gramps/gen/lib/date.py:318 ../gramps/gen/lib/date.py:323
-#: ../gramps/gen/lib/date.py:359
+#: ../gramps/gen/lib/date.py:313 ../gramps/gen/lib/date.py:325
+#: ../gramps/gen/lib/date.py:329 ../gramps/gen/lib/date.py:334
+#: ../gramps/gen/lib/date.py:370
 msgid "less than"
 msgstr "mindre än"
 
-#: ../gramps/gen/lib/date.py:304 ../gramps/gen/lib/date.py:338
-#: ../gramps/gen/lib/date.py:344 ../gramps/gen/lib/date.py:347
-#: ../gramps/gen/lib/date.py:361
+#: ../gramps/gen/lib/date.py:315 ../gramps/gen/lib/date.py:349
+#: ../gramps/gen/lib/date.py:355 ../gramps/gen/lib/date.py:358
+#: ../gramps/gen/lib/date.py:372
 msgid "age|about"
 msgstr "omkring"
 
-#: ../gramps/gen/lib/date.py:310 ../gramps/gen/lib/date.py:354
-#: ../gramps/gen/lib/date.py:370
+#: ../gramps/gen/lib/date.py:321 ../gramps/gen/lib/date.py:365
+#: ../gramps/gen/lib/date.py:381
 msgid "between"
 msgstr "mellan"
 
-#: ../gramps/gen/lib/date.py:311 ../gramps/gen/lib/date.py:355
-#: ../gramps/gen/lib/date.py:371
+#: ../gramps/gen/lib/date.py:322 ../gramps/gen/lib/date.py:366
+#: ../gramps/gen/lib/date.py:382
 #: ../gramps/plugins/quickview/all_relations.py:284
 #: ../gramps/plugins/view/relview.py:1000
 #: ../gramps/plugins/webreport/narrativeweb.py:1156
 msgid "and"
 msgstr "och"
 
-#: ../gramps/gen/lib/date.py:320 ../gramps/gen/lib/date.py:342
+#: ../gramps/gen/lib/date.py:331 ../gramps/gen/lib/date.py:353
 msgid "less than about"
 msgstr "mindre än omkring"
 
-#: ../gramps/gen/lib/date.py:332 ../gramps/gen/lib/date.py:340
+#: ../gramps/gen/lib/date.py:343 ../gramps/gen/lib/date.py:351
 msgid "more than about"
 msgstr "mer än omkring"
 
-#: ../gramps/gen/lib/date.py:413
+#: ../gramps/gen/lib/date.py:433
 #, python-format
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] "%d år"
 msgstr[1] "%d år"
 
-#: ../gramps/gen/lib/date.py:420
+#: ../gramps/gen/lib/date.py:440
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d månad"
 msgstr[1] "%d månader"
 
-#: ../gramps/gen/lib/date.py:427
+#: ../gramps/gen/lib/date.py:447
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] "%d dag"
 msgstr[1] "%d dagar"
 
-#: ../gramps/gen/lib/date.py:432
+#: ../gramps/gen/lib/date.py:452
 msgid "0 days"
 msgstr "0 dagar"
 
-#: ../gramps/gen/lib/date.py:579
+#: ../gramps/gen/lib/date.py:599
 msgid "calendar|Gregorian"
 msgstr "Gregoriansk"
 
-#: ../gramps/gen/lib/date.py:580
+#: ../gramps/gen/lib/date.py:600
 msgid "calendar|Julian"
 msgstr "Juliansk"
 
-#: ../gramps/gen/lib/date.py:581
+#: ../gramps/gen/lib/date.py:601
 msgid "calendar|Hebrew"
 msgstr "Hebreisk"
 
-#: ../gramps/gen/lib/date.py:582
+#: ../gramps/gen/lib/date.py:602
 msgid "calendar|French Republican"
 msgstr "Fransk republikansk"
 
-#: ../gramps/gen/lib/date.py:583
+#: ../gramps/gen/lib/date.py:603
 msgid "calendar|Persian"
 msgstr "Persisk"
 
-#: ../gramps/gen/lib/date.py:584
+#: ../gramps/gen/lib/date.py:604
 msgid "calendar|Islamic"
 msgstr "Islamsk"
 
-#: ../gramps/gen/lib/date.py:585
+#: ../gramps/gen/lib/date.py:605
 msgid "calendar|Swedish"
 msgstr "Svensk"
 
-#: ../gramps/gen/lib/date.py:1650
+#: ../gramps/gen/lib/date.py:1670
 msgid "estimated"
 msgstr "uppskattad"
 
-#: ../gramps/gen/lib/date.py:1650
+#: ../gramps/gen/lib/date.py:1670
 msgid "calculated"
 msgstr "beräknad"
 
-#: ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1684 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "before"
 msgstr "före"
 
-#: ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1684 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "after"
 msgstr "efter"
 
-#: ../gramps/gen/lib/date.py:1664
+#: ../gramps/gen/lib/date.py:1684 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "about"
 msgstr "omkring"
 
-#: ../gramps/gen/lib/date.py:1665
+#: ../gramps/gen/lib/date.py:1685
 msgid "range"
 msgstr "intervall"
 
-#: ../gramps/gen/lib/date.py:1665
+#: ../gramps/gen/lib/date.py:1685
 msgid "span"
 msgstr "tidspann"
 
-#: ../gramps/gen/lib/date.py:1665
+#: ../gramps/gen/lib/date.py:1685
 msgid "textonly"
 msgstr "endast text"
 
@@ -4770,13 +4792,11 @@ msgstr "Källtext"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:116
 #: ../gramps/plugins/quickview/quickview.gpr.py:206
 #: ../gramps/plugins/quickview/references.py:91
-#: ../gramps/webapp/grampsdb/view/citation.py:41
 msgid "Citation"
 msgstr "Citat"
 
 #: ../gramps/gen/lib/notetype.py:87 ../gramps/gen/plug/_pluginreg.py:80
 #: ../gramps/gui/logger/_errorview.py:135
-#: ../gramps/webapp/grampsdb/views.py:602
 msgid "Report"
 msgstr "Rapport"
 
@@ -4786,7 +4806,7 @@ msgstr "Html-kod"
 
 #: ../gramps/gen/lib/notetype.py:89
 msgid "notetype|To Do"
-msgstr ""
+msgstr "Att-göra notis"
 
 #: ../gramps/gen/lib/notetype.py:93
 msgid "Person Note"
@@ -4902,9 +4922,9 @@ msgid "Audio"
 msgstr "Ljud"
 
 #: ../gramps/gen/lib/srcmediatype.py:66
-#: ../gramps/gui/plug/report/_bookdialog.py:342
-#: ../gramps/gui/plug/report/_bookdialog.py:863
-#: ../gramps/gui/plug/report/_bookdialog.py:880
+#: ../gramps/gui/plug/report/_bookdialog.py:374
+#: ../gramps/gui/plug/report/_bookdialog.py:895
+#: ../gramps/gui/plug/report/_bookdialog.py:912
 #: ../gramps/gui/glade/book.glade:132
 msgid "Book"
 msgstr "Bok"
@@ -5102,6 +5122,15 @@ msgstr "Gramplet %s orsakade ett fel"
 msgid "No description was provided"
 msgstr "Det finns ingen beskrivning"
 
+#: ../gramps/gen/plug/_options.py:382
+#, python-format
+msgid ""
+"Option '%(opt_name)s' is present in %(file)s\n"
+"  but is not known to the module.  Ignoring..."
+msgstr ""
+"Valet '%(opt_name)s' finns i %(file)s\n"
+"  men är okänt för modulen. Ignorerar..."
+
 #: ../gramps/gen/plug/_pluginreg.py:62
 msgid "Stable"
 msgstr "Stabil"
@@ -5217,6 +5246,18 @@ msgstr "Filen %s är redan öppnad, stäng den först."
 
 #: ../gramps/gen/plug/docbackend/docbackend.py:164
 #: ../gramps/gen/plug/docbackend/docbackend.py:167
+#: ../gramps/gen/utils/docgen/odstab.py:343
+#: ../gramps/gen/utils/docgen/odstab.py:345
+#: ../gramps/gen/utils/docgen/odstab.py:405
+#: ../gramps/gen/utils/docgen/odstab.py:408
+#: ../gramps/gen/utils/docgen/odstab.py:428
+#: ../gramps/gen/utils/docgen/odstab.py:432
+#: ../gramps/gen/utils/docgen/odstab.py:463
+#: ../gramps/gen/utils/docgen/odstab.py:467
+#: ../gramps/gen/utils/docgen/odstab.py:479
+#: ../gramps/gen/utils/docgen/odstab.py:483
+#: ../gramps/gen/utils/docgen/odstab.py:502
+#: ../gramps/gen/utils/docgen/odstab.py:506
 #: ../gramps/plugins/docgen/asciidoc.py:164
 #: ../gramps/plugins/docgen/odfdoc.py:1201
 #: ../gramps/plugins/docgen/odfdoc.py:1204
@@ -5235,10 +5276,361 @@ msgstr "Filen %s är redan öppnad, stäng den först."
 #: ../gramps/plugins/export/exportvcalendar.py:105
 #: ../gramps/plugins/export/exportvcard.py:73
 #: ../gramps/plugins/export/exportvcard.py:77
+#: ../gramps/plugins/lib/libhtmlbackend.py:248
+#: ../gramps/plugins/lib/libhtmlbackend.py:252
+#: ../gramps/plugins/lib/libhtmlbackend.py:258
+#: ../gramps/plugins/lib/libhtmlbackend.py:262
 #: ../gramps/plugins/webreport/narrativeweb.py:6995
 #, python-format
 msgid "Could not create %s"
 msgstr "Kunde inte skapa %s"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:71
+#: ../gramps/gen/plug/report/stdoptions.py:50
+#: ../gramps/gen/plug/report/stdoptions.py:63
+msgid "Default"
+msgstr "Standard"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:72
+msgid "PostScript / Helvetica"
+msgstr "PostScript / Helvetica"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:73
+msgid "TrueType / FreeSans"
+msgstr "TrueType / FreeSans"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:75
+#: ../gramps/plugins/view/pedigreeview.py:2013
+msgid "Vertical (↓)"
+msgstr "Vertikal (↓)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:76
+#: ../gramps/plugins/view/pedigreeview.py:2014
+msgid "Vertical (↑)"
+msgstr "Vertikal (↑)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:77
+#: ../gramps/plugins/view/pedigreeview.py:2015
+msgid "Horizontal (→)"
+msgstr "Horisontell (→)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:78
+#: ../gramps/plugins/view/pedigreeview.py:2016
+msgid "Horizontal (←)"
+msgstr "Horisontell (←)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:80
+msgid "Bottom, left"
+msgstr "Nederkant, vänster"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:81
+msgid "Bottom, right"
+msgstr "Nederkant, höger"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:82
+msgid "Top, left"
+msgstr "Överkant, vänster"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:83
+msgid "Top, Right"
+msgstr "Överkant, höger"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:84
+msgid "Right, bottom"
+msgstr "Höger, nederkant"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:85
+msgid "Right, top"
+msgstr "Höger, överkant"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:86
+msgid "Left, bottom"
+msgstr "Vänster, nederkant"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:87
+msgid "Left, top"
+msgstr "Vänster, överkant"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:89
+msgid "Compress to minimal size"
+msgstr "Packa till minsta storlek"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:90
+msgid "Fill the given area"
+msgstr "Fyll givet område"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:91
+msgid "Expand uniformly"
+msgstr "Expandera likformigt"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:93
+msgid "Top"
+msgstr "Överkant"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:94
+msgid "Bottom"
+msgstr "Nederkant"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:138
+msgid "GraphViz Layout"
+msgstr "GraphViz Layout"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:140
+#: ../gramps/gui/widgets/styledtexteditor.py:489
+msgid "Font family"
+msgstr "Teckensnittsfamilj"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:143
+msgid ""
+"Choose the font family. If international characters don't show, use FreeSans "
+"font. FreeSans is available from: http://www.nongnu.org/freefont/"
+msgstr ""
+"Välj teckensnittsfamilj. Om internationella tecken inte visas, så använd "
+"FreeSans-teckensnitt. FreeSans finns tillgänglig från: "
+"http://www.nongnu.org/freefont/"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:149
+#: ../gramps/gui/widgets/styledtexteditor.py:501
+msgid "Font size"
+msgstr "Typsnittsstorlek"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:150
+msgid "The font size, in points."
+msgstr "Teckenstorleken i punkter."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:153
+msgid "Graph Direction"
+msgstr "Riktning för diagram"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:156
+msgid "Whether graph goes from top to bottom or left to right."
+msgstr ""
+"Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:160
+msgid "Number of Horizontal Pages"
+msgstr "Antal sidor i horisontalled"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:161
+msgid ""
+"GraphViz can create very large graphs by spreading the graph across a "
+"rectangular array of pages. This controls the number pages in the array "
+"horizontally. Only valid for dot and pdf via Ghostscript."
+msgstr ""
+"GraphViz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
+"rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet "
+"horisontellt. Endast giltigt för dot och pdf via Ghostscript."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:168
+msgid "Number of Vertical Pages"
+msgstr "Antal sidor i vertikalled"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:169
+msgid ""
+"GraphViz can create very large graphs by spreading the graph across a "
+"rectangular array of pages. This controls the number pages in the array "
+"vertically. Only valid for dot and pdf via Ghostscript."
+msgstr ""
+"GraphViz kan skapa mycket stora diagram genom att sprida ut grafen över ett "
+"rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet i "
+"vertikalled. Endast giltigt för dot och pdf via Ghostscript."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:176
+msgid "Paging Direction"
+msgstr "Sidriktning"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:179
+msgid ""
+"The order in which the graph pages are output. This option only applies if "
+"the horizontal pages or vertical pages are greater than 1."
+msgstr ""
+"Den ordning i vilket diagramsidor mats ut. Detta val är tillämpligt om antal "
+"horisontella eller vertikala sidor är större än 1."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:197
+msgid "GraphViz Options"
+msgstr "GraphViz-alternativ"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:200
+msgid "Aspect ratio"
+msgstr "Aspektförhållande"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:203
+msgid ""
+"Affects node spacing and scaling of the graph.\n"
+"If the graph is smaller than the print area:\n"
+"  Compress will not change the node spacing. \n"
+"  Fill will increase the node spacing to fit the print area in both width and "
+"height.\n"
+"  Expand will increase the node spacing uniformly to preserve the aspect "
+"ratio.\n"
+"If the graph is larger than the print area:\n"
+"  Compress will shrink the graph to achieve tight packing at the expense of "
+"symmetry.\n"
+"  Fill will shrink the graph to fit the print area after first increasing the "
+"node spacing.\n"
+"  Expand will shrink the graph uniformly to fit the print area."
+msgstr ""
+"Påverkar nodavstånd och skalning av diagrammet.\n"
+"Om diagrammet är mindre utskriftsytan:\n"
+"  Packning kommer ej att ändra nodavståndet. \n"
+"  Ifyllning kommer att öka nodavståndet för att passa utskriftsytan "
+"på både bredd och höjd.\n"
+"  Expandera kommer att öka nodavståndet likformigt för att bevara "
+"aspektförhållandet.\n"
+"Om diagrammet är större än utskriftsytan:\n"
+"  Packning kommer att krympa diagrammet för att åstadkomma en tätare "
+"packaning "
+"på bekostnad av symmetri.\n"
+"  Ifyllning kommer att krympa diagrammet för att passa utskriftsytan genom "
+"att först öka "
+"nodavståndet.\n"
+"  Expandera kommer att krympa diagrammet likformigt för att passa "
+"utskriftsytan."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:219
+msgid "DPI"
+msgstr "DPI"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:220
+msgid ""
+"Dots per inch.  When creating images such as .gif or .png files for the web, "
+"try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 "
+"DPI."
+msgstr ""
+"Punkter per tum. När bilder, som .gif- eller .png-filer skapas för Internet, "
+"försök med tal som 100 eller 300 DPI. För PostScript- eller PDF-filer använd "
+"72 DPI."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:227
+msgid "Node spacing"
+msgstr "Nodavstånd"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:228
+msgid ""
+"The minimum amount of free space, in inches, between individual nodes.  For "
+"vertical graphs, this corresponds to spacing between columns.  For horizontal "
+"graphs, this corresponds to spacing between rows."
+msgstr ""
+"Det minsta fria utrymme, i tum, mellan individuella noder. För vertikala "
+"diagram motsvarar detta avståndet mellan kolumner. För horisontella diagram "
+"motsvara detta avståndet mellan rader."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:235
+msgid "Rank spacing"
+msgstr "Rangordningsavstånd"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:236
+msgid ""
+"The minimum amount of free space, in inches, between ranks.  For vertical "
+"graphs, this corresponds to spacing between rows.  For horizontal graphs, "
+"this corresponds to spacing between columns."
+msgstr ""
+"Det minsta fria utrymmet, i tum, mellan mellan nivåer. För vertikala diagram "
+"motsvarar detta avståndet mellan kolumner. För horisontella diagram motsvara "
+"detta avståndet mellan rader."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:243
+msgid "Use subgraphs"
+msgstr "Använd underordnade stycken"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:244
+msgid ""
+"Subgraphs can help GraphViz position spouses together, but with non-trivial "
+"graphs will result in longer lines and larger graphs."
+msgstr ""
+"Underordnade stycken kan hjälpa GraphViz att placera makar ihop, men kan även "
+"orsaka längre linjer och större diagram vid komplicerade sådana."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:251 ../gramps/gui/clipboard.py:402
+#: ../gramps/gui/configure.py:542 ../gramps/gui/editors/editlink.py:85
+#: ../gramps/gui/editors/editmedia.py:91
+#: ../gramps/gui/editors/editmedia.py:174
+#: ../gramps/gui/editors/editmediaref.py:136
+#: ../gramps/gui/editors/filtereditor.py:294
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
+#: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
+#: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:96
+#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:137
+#: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:107
+#: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
+#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:95
+#: ../gramps/gui/views/treemodels/mediamodel.py:134
+#: ../gramps/plugins/drawreport/ancestortree.py:1055
+#: ../gramps/plugins/drawreport/descendtree.py:1649
+#: ../gramps/plugins/export/exportcsv.py:352
+#: ../gramps/plugins/export/exportcsv.py:469
+#: ../gramps/plugins/gramplet/quickviewgramplet.py:112
+#: ../gramps/plugins/importer/importcsv.py:193
+#: ../gramps/plugins/quickview/filterbyname.py:201
+#: ../gramps/plugins/quickview/filterbyname.py:252
+#: ../gramps/plugins/quickview/quickview.gpr.py:205
+#: ../gramps/plugins/quickview/references.py:96
+#: ../gramps/plugins/textreport/familygroup.py:347
+#: ../gramps/gui/glade/editnote.glade:370
+msgid "Note"
+msgstr "Notis"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:254
+msgid "Note to add to the graph"
+msgstr "Notis att lägga till grafen"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:256
+msgid "This text will be added to the graph."
+msgstr "Den här texten läggs till grafen."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:259
+msgid "Note location"
+msgstr "Placering av notis"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:262
+msgid "Whether note will appear on top or bottom of the page."
+msgstr "Huruvida notis kommer att placeras i sidans över- eller underkant."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:266
+msgid "Note size"
+msgstr "Notisstorlek"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:267
+msgid "The size of note text, in points."
+msgstr "Storlek på notis, i punkter."
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1029
+msgid "PDF (Ghostscript)"
+msgstr "PDF (Ghostscript)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1035
+msgid "PDF (Graphviz)"
+msgstr "PDF (Graphviz)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1041
+#: ../gramps/plugins/docgen/docgen.gpr.py:158
+msgid "PostScript"
+msgstr "PostScript"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1047
+msgid "Structured Vector Graphics (SVG)"
+msgstr "Structured Vector Graphics (SVG)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1053
+msgid "Compressed Structured Vector Graphs (SVGZ)"
+msgstr "Compressed Structured Vector Graphs (SVGZ)"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1059
+msgid "JPEG image"
+msgstr "JPEG-bild"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1065
+msgid "GIF image"
+msgstr "GIF-bild"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1071
+msgid "PNG image"
+msgstr "PNG-bild"
+
+#: ../gramps/gen/plug/docgen/graphdoc.py:1077
+msgid "Graphviz File"
+msgstr "Graphviz-fil"
 
 #: ../gramps/gen/plug/report/_book.py:75 ../gramps/gui/plug/_dialogs.py:60
 #: ../gramps/gui/plug/report/_bookdialog.py:89
@@ -5284,8 +5676,8 @@ msgstr "Grafik"
 
 #: ../gramps/gen/plug/report/endnotes.py:50
 #: ../gramps/plugins/textreport/ancestorreport.py:352
-#: ../gramps/plugins/textreport/detancestralreport.py:845
-#: ../gramps/plugins/textreport/detdescendantreport.py:1041
+#: ../gramps/plugins/textreport/detancestralreport.py:846
+#: ../gramps/plugins/textreport/detdescendantreport.py:1042
 msgid "The style used for the generation header."
 msgstr "Mall som används för generationsrubriken."
 
@@ -5319,11 +5711,6 @@ msgstr "Slutnoter"
 #: ../gramps/gen/plug/report/stdoptions.py:48
 msgid "Translation"
 msgstr "Översättning"
-
-#: ../gramps/gen/plug/report/stdoptions.py:50
-#: ../gramps/gen/plug/report/stdoptions.py:63
-msgid "Default"
-msgstr "Standard"
 
 #: ../gramps/gen/plug/report/stdoptions.py:54
 msgid "The translation to be used for the report."
@@ -5361,7 +5748,7 @@ msgid "PERSON"
 msgstr "PERSON"
 
 #: ../gramps/gen/plug/report/utils.py:269
-#: ../gramps/gui/plug/report/_bookdialog.py:152
+#: ../gramps/gui/plug/report/_bookdialog.py:154
 #: ../gramps/plugins/tool/eventcmp.py:158
 msgid "Entire Database"
 msgstr "Hela databasen"
@@ -5617,7 +6004,7 @@ msgstr "ex-partner"
 msgid "gender unknown,unknown relation|former partner"
 msgstr "ex-partner"
 
-#: ../gramps/gen/relationship.py:1817
+#: ../gramps/gen/relationship.py:1823
 #, python-format
 msgid ""
 "Family relationship translator not available for language '%s'. Using "
@@ -5724,7 +6111,7 @@ msgstr "inget bevis"
 msgid "%s, ..."
 msgstr "%s, ..."
 
-#: ../gramps/gen/utils/db.py:531 ../gramps/plugins/lib/librecords.py:204
+#: ../gramps/gen/utils/db.py:531 ../gramps/plugins/lib/librecords.py:240
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s och %(mother)s"
@@ -5934,7 +6321,7 @@ msgstr "FÖRNAMN"
 #: ../gramps/gui/configure.py:643 ../gramps/gui/configure.py:644
 #: ../gramps/gui/configure.py:645 ../gramps/gui/configure.py:646
 #: ../gramps/gui/editors/displaytabs/surnametab.py:77
-#: ../gramps/gui/plug/_guioptions.py:91 ../gramps/gui/plug/_guioptions.py:1455
+#: ../gramps/gui/plug/_guioptions.py:91 ../gramps/gui/plug/_guioptions.py:1456
 #: ../gramps/plugins/drawreport/statisticschart.py:327
 #: ../gramps/plugins/export/exportcsv.py:345
 #: ../gramps/plugins/importer/importcsv.py:180
@@ -5942,7 +6329,6 @@ msgstr "FÖRNAMN"
 #: ../gramps/plugins/webreport/narrativeweb.py:2879
 #: ../gramps/plugins/webreport/narrativeweb.py:3960
 #: ../gramps/plugins/webreport/narrativeweb.py:5223
-#: ../gramps/webapp/grampsdb/view/person.py:200
 msgid "Surname"
 msgstr "Efternamn"
 
@@ -6317,7 +6703,6 @@ msgstr "Adress"
 #: ../gramps/plugins/textreport/placereport.py:394
 #: ../gramps/plugins/webreport/narrativeweb.py:378
 #: ../gramps/plugins/webreport/narrativeweb.py:980
-#: ../gramps/webapp/grampsdb/view/event.py:136
 msgid "Event"
 msgstr "Händelse"
 
@@ -6328,7 +6713,7 @@ msgstr "Händelse"
 #: ../gramps/gui/editors/editlink.py:87
 #: ../gramps/gui/editors/filtereditor.py:290
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:107
-#: ../gramps/gui/plug/_guioptions.py:1306
+#: ../gramps/gui/plug/_guioptions.py:1307
 #: ../gramps/gui/selectors/selectevent.py:67
 #: ../gramps/gui/views/treemodels/placemodel.py:330
 #: ../gramps/plugins/export/exportcsv.py:469
@@ -6351,39 +6736,9 @@ msgstr "Händelse"
 #: ../gramps/plugins/webreport/narrativeweb.py:982
 #: ../gramps/plugins/webreport/narrativeweb.py:1230
 #: ../gramps/plugins/webreport/narrativeweb.py:1260
-#: ../gramps/webapp/grampsdb/view/place.py:41
 #: ../gramps/gui/glade/editevent.glade:263
 msgid "Place"
 msgstr "Plats"
-
-#: ../gramps/gui/clipboard.py:402 ../gramps/gui/configure.py:542
-#: ../gramps/gui/editors/editlink.py:85 ../gramps/gui/editors/editmedia.py:91
-#: ../gramps/gui/editors/editmedia.py:174
-#: ../gramps/gui/editors/editmediaref.py:136
-#: ../gramps/gui/editors/filtereditor.py:294
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
-#: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:108
-#: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:96
-#: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:137
-#: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:107
-#: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:106
-#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:95
-#: ../gramps/gui/views/treemodels/mediamodel.py:134
-#: ../gramps/plugins/drawreport/ancestortree.py:1055
-#: ../gramps/plugins/drawreport/descendtree.py:1649
-#: ../gramps/plugins/export/exportcsv.py:352
-#: ../gramps/plugins/export/exportcsv.py:469
-#: ../gramps/plugins/gramplet/quickviewgramplet.py:112
-#: ../gramps/plugins/importer/importcsv.py:193
-#: ../gramps/plugins/quickview/filterbyname.py:201
-#: ../gramps/plugins/quickview/filterbyname.py:252
-#: ../gramps/plugins/quickview/quickview.gpr.py:205
-#: ../gramps/plugins/quickview/references.py:96
-#: ../gramps/plugins/textreport/familygroup.py:347
-#: ../gramps/webapp/grampsdb/view/note.py:51
-#: ../gramps/gui/glade/editnote.glade:370
-msgid "Note"
-msgstr "Notis"
 
 #: ../gramps/gui/clipboard.py:435
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:121
@@ -6430,8 +6785,8 @@ msgstr "Händelsereferens"
 #: ../gramps/gui/editors/filtereditor.py:920
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:129
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:102
-#: ../gramps/gui/plug/_guioptions.py:1129 ../gramps/gui/plug/_windows.py:120
-#: ../gramps/gui/plug/report/_bookdialog.py:391
+#: ../gramps/gui/plug/_guioptions.py:1130 ../gramps/gui/plug/_windows.py:120
+#: ../gramps/gui/plug/report/_bookdialog.py:423
 #: ../gramps/gui/selectors/selectperson.py:76 ../gramps/gui/viewmanager.py:490
 #: ../gramps/gui/views/bookmarks.py:224 ../gramps/gui/views/tags.py:389
 #: ../gramps/gui/views/treemodels/peoplemodel.py:521
@@ -6445,7 +6800,6 @@ msgstr "Händelsereferens"
 #: ../gramps/plugins/tool/removeunused.py:203
 #: ../gramps/plugins/tool/verify.py:528 ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/narrativeweb.py:6407
-#: ../gramps/webapp/grampsdb/view/person.py:327
 msgid "Name"
 msgstr "Namn"
 
@@ -6468,10 +6822,6 @@ msgstr "Namn"
 #: ../gramps/plugins/webreport/narrativeweb.py:2181
 #: ../gramps/plugins/webreport/narrativeweb.py:4402
 #: ../gramps/plugins/webreport/narrativeweb.py:4524
-#: ../gramps/webapp/grampsdb/view/media.py:54
-#: ../gramps/webapp/grampsdb/view/media.py:55
-#: ../gramps/webapp/grampsdb/views.py:84
-#: ../gramps/webapp/grampsdb/views.py:294
 msgid "Media"
 msgstr "Media"
 
@@ -6522,8 +6872,6 @@ msgstr "%(frel)s %(mrel)s"
 #: ../gramps/plugins/webreport/narrativeweb.py:3113
 #: ../gramps/plugins/webreport/narrativeweb.py:3666
 #: ../gramps/plugins/webreport/narrativeweb.py:5988
-#: ../gramps/webapp/grampsdb/view/person.py:345
-#: ../gramps/webapp/grampsdb/view/person.py:475
 #: ../gramps/gui/glade/editpersonref.glade:206
 msgid "Person"
 msgstr "Person"
@@ -6545,7 +6893,6 @@ msgstr "Person"
 #: ../gramps/plugins/view/relview.py:1342
 #: ../gramps/plugins/view/relview.py:1364
 #: ../gramps/plugins/webreport/narrativeweb.py:3114
-#: ../gramps/webapp/grampsdb/view/family.py:42
 #: ../gramps/gui/glade/editldsord.glade:267
 msgid "Family"
 msgstr "Familj"
@@ -6563,7 +6910,6 @@ msgstr "Familj"
 #: ../gramps/plugins/quickview/quickview.gpr.py:202
 #: ../gramps/plugins/quickview/references.py:90
 #: ../gramps/plugins/quickview/reporef.py:64
-#: ../gramps/webapp/grampsdb/view/source.py:41
 msgid "Source"
 msgstr "Källa"
 
@@ -6575,7 +6921,6 @@ msgstr "Källa"
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:114
 #: ../gramps/plugins/quickview/filterbyname.py:181
 #: ../gramps/plugins/quickview/filterbyname.py:240
-#: ../gramps/webapp/grampsdb/view/repository.py:41
 msgid "Repository"
 msgstr "Arkivplats"
 
@@ -6595,8 +6940,8 @@ msgstr "Arkivplats"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:103
 #: ../gramps/gui/merge/mergeperson.py:241 ../gramps/gui/plug/_windows.py:113
 #: ../gramps/gui/plug/_windows.py:231
-#: ../gramps/gui/plug/report/_bookdialog.py:392
-#: ../gramps/gui/plug/report/_bookdialog.py:396
+#: ../gramps/gui/plug/report/_bookdialog.py:424
+#: ../gramps/gui/plug/report/_bookdialog.py:428
 #: ../gramps/gui/selectors/selectevent.py:64
 #: ../gramps/gui/selectors/selectnote.py:69
 #: ../gramps/gui/selectors/selectobject.py:74 ../gramps/gui/viewmanager.py:489
@@ -6986,7 +7331,7 @@ msgstr "Exempel"
 #: ../gramps/gui/configure.py:971
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 #: ../gramps/gui/plug/_windows.py:142 ../gramps/gui/plug/_windows.py:198
-#: ../gramps/gui/plug/report/_bookdialog.py:622
+#: ../gramps/gui/plug/report/_bookdialog.py:654
 #: ../gramps/gui/glade/editfamily.glade:281
 #: ../gramps/gui/glade/editfamily.glade:609
 #: ../gramps/gui/glade/editlink.glade:242
@@ -7139,6 +7484,19 @@ msgid ""
 "For example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
 "will display <u><b>Underlined bold date</b></u>.\n"
 msgstr ""
+"Vanliga markups är:\n"
+"<b>&lt;b&gt;Fetstil&lt;/b&gt;</b>\n"
+"<big>&lt;big&gt;Gör font relativt större&lt;/big&gt;</big>\n"
+"<i>&lt;i&gt;kursivt&lt;/i&gt;</i>\n"
+"<s>&lt;s&gt;Genomstreck&lt;/s&gt;</s>\n"
+"<sub>&lt;sub&gt;Subskrift&lt;/sub&gt;</sub>\n"
+"<sup>&lt;sup&gt;Superskrift&lt;/sup&gt;</sup>\n"
+"<small>&lt;small&gt;Gör font relativt mindre&lt;/small&gt;</small>\n"
+"<tt>&lt;tt&gt;Fast font&lt;/tt&gt;</tt>\n"
+"<u>&lt;u&gt;Understrykning&lt;/u&gt;</u>\n"
+"\n"
+"Till example: &lt;u&gt;&lt;b&gt;%s&lt;/b&gt;&lt;/u&gt;\n"
+"kommer att visa <u><b>Datum i fetstil, understruken</b></u>.\n"
 
 #: ../gramps/gui/configure.py:1208
 msgid "Dates"
@@ -7322,8 +7680,8 @@ msgid "Upgrade now"
 msgstr "Uppgadera nu"
 
 #: ../gramps/gui/dbloader.py:323 ../gramps/gui/dbloader.py:334
-#: ../gramps/gui/plug/report/_bookdialog.py:292
-#: ../gramps/gui/plug/report/_bookdialog.py:691
+#: ../gramps/gui/plug/report/_bookdialog.py:296
+#: ../gramps/gui/plug/report/_bookdialog.py:723
 #: ../gramps/gui/viewmanager.py:1057 ../gramps/plugins/view/familyview.py:239
 msgid "Cancel"
 msgstr "Avbryt"
@@ -7830,8 +8188,8 @@ msgstr "Attrib_ut"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:101
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:90
 #: ../gramps/gui/merge/mergeperson.py:180
-#: ../gramps/gui/plug/_guioptions.py:1130
-#: ../gramps/gui/plug/_guioptions.py:1307
+#: ../gramps/gui/plug/_guioptions.py:1131
+#: ../gramps/gui/plug/_guioptions.py:1308
 #: ../gramps/gui/selectors/selectcitation.py:68
 #: ../gramps/gui/selectors/selectevent.py:63
 #: ../gramps/gui/selectors/selectfamily.py:62
@@ -8260,14 +8618,14 @@ msgid "Set as default name"
 msgstr "Ange som standardnamn"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1211 ../gramps/gui/views/listview.py:543
+#: ../gramps/gui/plug/_guioptions.py:1212 ../gramps/gui/views/listview.py:543
 #: ../gramps/gui/views/tags.py:480
 #: ../gramps/plugins/quickview/all_relations.py:308
 msgid "Yes"
 msgstr "Ja"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1210 ../gramps/gui/views/listview.py:544
+#: ../gramps/gui/plug/_guioptions.py:1211 ../gramps/gui/views/listview.py:544
 #: ../gramps/gui/views/tags.py:481
 #: ../gramps/plugins/quickview/all_relations.py:312
 msgid "No"
@@ -9506,7 +9864,6 @@ msgstr "Redigera flaggor"
 #: ../gramps/gui/views/tags.py:227
 #: ../gramps/plugins/textreport/tagreport.py:541
 #: ../gramps/plugins/textreport/tagreport.py:545
-#: ../gramps/webapp/grampsdb/view/tag.py:41
 msgid "Tag"
 msgstr "Flagga"
 
@@ -9676,7 +10033,7 @@ msgstr "Filtertest"
 #: ../gramps/plugins/quickview/quickview.gpr.py:127
 #: ../gramps/plugins/textreport/birthdayreport.py:376
 #: ../gramps/plugins/textreport/indivcomplete.py:696
-#: ../gramps/plugins/textreport/recordsreport.py:140
+#: ../gramps/plugins/textreport/recordsreport.py:172
 #: ../gramps/plugins/tool/sortevents.py:168
 #: ../gramps/plugins/webreport/narrativeweb.py:8001
 #: ../gramps/plugins/webreport/webcal.py:1336
@@ -9738,7 +10095,7 @@ msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Använd dra-och-släpp eller knapparna för att välja ett mediaobjekt"
 
 #: ../gramps/gui/editors/objectentries.py:311
-#: ../gramps/gui/plug/_guioptions.py:1069
+#: ../gramps/gui/plug/_guioptions.py:1070
 msgid "No image given, click button to select one"
 msgstr "Ingen bild angiven, klicka på knappen för att välja en"
 
@@ -9747,7 +10104,7 @@ msgid "Edit media object"
 msgstr "Redigera mediaobjekt"
 
 #: ../gramps/gui/editors/objectentries.py:313
-#: ../gramps/gui/plug/_guioptions.py:1047
+#: ../gramps/gui/plug/_guioptions.py:1048
 msgid "Select an existing media object"
 msgstr "Välj ett befintligt mediaobjekt"
 
@@ -9765,12 +10122,12 @@ msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Använd dra-och-släpp eller knapparna för att välja en notis"
 
 #: ../gramps/gui/editors/objectentries.py:365
-#: ../gramps/gui/plug/_guioptions.py:968
+#: ../gramps/gui/plug/_guioptions.py:969
 msgid "No note given, click button to select one"
 msgstr "Ingen notis angiven, klicka på knappen för att välja en"
 
 #: ../gramps/gui/editors/objectentries.py:367
-#: ../gramps/gui/plug/_guioptions.py:943
+#: ../gramps/gui/plug/_guioptions.py:944
 msgid "Select an existing note"
 msgstr "Välj en befintlig notis"
 
@@ -10021,9 +10378,6 @@ msgstr "Redigera datum"
 #: ../gramps/plugins/webreport/narrativeweb.py:3631
 #: ../gramps/plugins/webreport/narrativeweb.py:3819
 #: ../gramps/plugins/webreport/narrativeweb.py:6242
-#: ../gramps/webapp/grampsdb/view/event.py:137
-#: ../gramps/webapp/grampsdb/views.py:82
-#: ../gramps/webapp/grampsdb/views.py:284
 msgid "Events"
 msgstr "Händelser"
 
@@ -10112,9 +10466,6 @@ msgstr "Slå samman"
 #: ../gramps/plugins/webreport/narrativeweb.py:383
 #: ../gramps/plugins/webreport/narrativeweb.py:984
 #: ../gramps/plugins/webreport/narrativeweb.py:1566
-#: ../gramps/webapp/grampsdb/view/note.py:52
-#: ../gramps/webapp/grampsdb/views.py:83
-#: ../gramps/webapp/grampsdb/views.py:304
 msgid "Notes"
 msgstr "Notiser"
 
@@ -10158,15 +10509,10 @@ msgstr "Antavla"
 #: ../gramps/plugins/webreport/narrativeweb.py:1875
 #: ../gramps/plugins/webreport/narrativeweb.py:3343
 #: ../gramps/plugins/webreport/narrativeweb.py:3463
-#: ../gramps/webapp/grampsdb/view/place.py:42
-#: ../gramps/webapp/grampsdb/views.py:87
-#: ../gramps/webapp/grampsdb/views.py:334
 msgid "Places"
 msgstr "Platser"
 
-#: ../gramps/gui/grampsgui.py:180 ../gramps/webapp/grampsdb/views.py:75
-#: ../gramps/webapp/grampsdb/views.py:384
-#: ../gramps/webapp/grampsdb/views.py:603
+#: ../gramps/gui/grampsgui.py:180
 msgid "Reports"
 msgstr "Rapporter"
 
@@ -10180,9 +10526,6 @@ msgstr "Rapporter"
 #: ../gramps/plugins/webreport/narrativeweb.py:2725
 #: ../gramps/plugins/webreport/narrativeweb.py:6559
 #: ../gramps/plugins/webreport/narrativeweb.py:6624
-#: ../gramps/webapp/grampsdb/view/repository.py:42
-#: ../gramps/webapp/grampsdb/views.py:88
-#: ../gramps/webapp/grampsdb/views.py:344
 msgid "Repositories"
 msgstr "Arkivplatser"
 
@@ -10201,9 +10544,6 @@ msgstr "Arkivplatser"
 #: ../gramps/plugins/webreport/narrativeweb.py:1876
 #: ../gramps/plugins/webreport/narrativeweb.py:4181
 #: ../gramps/plugins/webreport/narrativeweb.py:4264
-#: ../gramps/webapp/grampsdb/view/source.py:42
-#: ../gramps/webapp/grampsdb/views.py:86
-#: ../gramps/webapp/grampsdb/views.py:364
 msgid "Sources"
 msgstr "Källor"
 
@@ -10260,9 +10600,6 @@ msgstr "Anpassa till sida"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:775
 #: ../gramps/plugins/view/view.gpr.py:267
 #: ../gramps/plugins/view/view.gpr.py:275
-#: ../gramps/webapp/grampsdb/view/citation.py:42
-#: ../gramps/webapp/grampsdb/views.py:85
-#: ../gramps/webapp/grampsdb/views.py:354
 msgid "Citations"
 msgstr "Citeringar"
 
@@ -10600,7 +10937,7 @@ msgid "No parents found"
 msgstr "Inga föräldrar hittades"
 
 #: ../gramps/gui/merge/mergeperson.py:228
-#: ../gramps/plugins/textreport/kinshipreport.py:126
+#: ../gramps/plugins/textreport/kinshipreport.py:130
 #: ../gramps/plugins/view/pedigreeview.py:1652
 msgid "Spouses"
 msgstr "Makar"
@@ -10694,60 +11031,60 @@ msgstr "Letar efternamn"
 msgid "Finding surnames"
 msgstr "Letar efternamn"
 
-#: ../gramps/gui/plug/_guioptions.py:643
+#: ../gramps/gui/plug/_guioptions.py:644
 msgid "Select a different person"
 msgstr "Välj en annan person"
 
-#: ../gramps/gui/plug/_guioptions.py:670
+#: ../gramps/gui/plug/_guioptions.py:671
 msgid "Select a person for the report"
 msgstr "Välj en personen för rapporten"
 
-#: ../gramps/gui/plug/_guioptions.py:751
+#: ../gramps/gui/plug/_guioptions.py:752
 msgid "Select a different family"
 msgstr "Välj en annan familj"
 
-#: ../gramps/gui/plug/_guioptions.py:852
-#: ../gramps/gui/plug/report/_bookdialog.py:177
+#: ../gramps/gui/plug/_guioptions.py:853
+#: ../gramps/gui/plug/report/_bookdialog.py:179
 msgid "unknown father"
 msgstr "okänd far"
 
-#: ../gramps/gui/plug/_guioptions.py:858
-#: ../gramps/gui/plug/report/_bookdialog.py:183
+#: ../gramps/gui/plug/_guioptions.py:859
+#: ../gramps/gui/plug/report/_bookdialog.py:185
 msgid "unknown mother"
 msgstr "okänd mor"
 
-#: ../gramps/gui/plug/_guioptions.py:860
+#: ../gramps/gui/plug/_guioptions.py:861
 #, python-format
 msgid "%(father_name)s and %(mother_name)s (%(family_id)s)"
 msgstr "%(father_name)s och %(mother_name)s (%(family_id)s)"
 
-#: ../gramps/gui/plug/_guioptions.py:1206
+#: ../gramps/gui/plug/_guioptions.py:1207
 #, python-format
 msgid "Also include %s?"
 msgstr "Skall även %s tas med?"
 
-#: ../gramps/gui/plug/_guioptions.py:1208
+#: ../gramps/gui/plug/_guioptions.py:1209
 #: ../gramps/gui/selectors/selectperson.py:69
 msgid "Select Person"
 msgstr "Välj person"
 
-#: ../gramps/gui/plug/_guioptions.py:1456 ../gramps/gui/views/tags.py:390
+#: ../gramps/gui/plug/_guioptions.py:1457 ../gramps/gui/views/tags.py:390
 #: ../gramps/gui/glade/styleeditor.glade:405
 msgid "Color"
 msgstr "Färg"
 
-#: ../gramps/gui/plug/_guioptions.py:1524
+#: ../gramps/gui/plug/_guioptions.py:1525
 #, python-format
 msgid "Select color for %s"
 msgstr "Välj färg på %s"
 
-#: ../gramps/gui/plug/_guioptions.py:1684
-#: ../gramps/gui/plug/report/_reportdialog.py:443
+#: ../gramps/gui/plug/_guioptions.py:1685
+#: ../gramps/gui/plug/report/_reportdialog.py:458
 msgid "Save As"
 msgstr "Spara som"
 
-#: ../gramps/gui/plug/_guioptions.py:1764
-#: ../gramps/gui/plug/report/_reportdialog.py:317
+#: ../gramps/gui/plug/_guioptions.py:1765
+#: ../gramps/gui/plug/report/_reportdialog.py:327
 msgid "Style Editor"
 msgstr "Mallredigerare"
 
@@ -10877,7 +11214,7 @@ msgid "Authors"
 msgstr "Författare"
 
 #: ../gramps/gui/plug/_windows.py:608
-#: ../gramps/gui/plug/report/_reportdialog.py:462
+#: ../gramps/gui/plug/report/_reportdialog.py:477
 msgid "Filename"
 msgstr "Filnamn"
 
@@ -11207,62 +11544,62 @@ msgstr "Snabbrapportvy"
 msgid "See data not in Filter"
 msgstr "Se data ej i filter"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:185
+#: ../gramps/gui/plug/report/_bookdialog.py:187
 #, python-format
 msgid "%(father)s and %(mother)s (%(id)s)"
 msgstr "%(father)s och %(mother)s (%(id)s)"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:221
+#: ../gramps/gui/plug/report/_bookdialog.py:223
 msgid "Available Books"
 msgstr "Tillgängliga böcker"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:289
+#: ../gramps/gui/plug/report/_bookdialog.py:293
 msgid "Discard Unsaved Changes"
 msgstr "Kasta osparade ändringar?"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:290
+#: ../gramps/gui/plug/report/_bookdialog.py:294
 msgid "You have made changes which have not been saved."
 msgstr "Du har gjort ändringar, som inte har sparats."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:291
-#: ../gramps/gui/plug/report/_bookdialog.py:690
+#: ../gramps/gui/plug/report/_bookdialog.py:295
+#: ../gramps/gui/plug/report/_bookdialog.py:722
 msgid "Proceed"
 msgstr "Fortsätt"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:320
+#: ../gramps/gui/plug/report/_bookdialog.py:352
 msgid "Name of the book. MANDATORY"
 msgstr "Namn på bok. OBLIGATORISKT"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:380
+#: ../gramps/gui/plug/report/_bookdialog.py:412
 msgid "New Book"
 msgstr "Ny bok"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:383
+#: ../gramps/gui/plug/report/_bookdialog.py:415
 msgid "_Available items"
 msgstr "_Tillgängliga objekt"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:387
+#: ../gramps/gui/plug/report/_bookdialog.py:419
 msgid "Current _book"
 msgstr "Aktuell _bok"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:395
+#: ../gramps/gui/plug/report/_bookdialog.py:427
 #: ../gramps/plugins/drawreport/statisticschart.py:302
 msgid "Item name"
 msgstr "Objektnamn"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:398
+#: ../gramps/gui/plug/report/_bookdialog.py:430
 msgid "Subject"
 msgstr "Ämne"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:410
+#: ../gramps/gui/plug/report/_bookdialog.py:442
 msgid "Book selection list"
 msgstr "Val av bok"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:450
+#: ../gramps/gui/plug/report/_bookdialog.py:482
 msgid "Different database"
 msgstr "Annan databas"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:451
+#: ../gramps/gui/plug/report/_bookdialog.py:483
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -11279,39 +11616,39 @@ msgstr ""
 "Därför ställs centralpersonen för varje objekt in till den aktiva personen i "
 "den för tillfället öppna databasen."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:552
+#: ../gramps/gui/plug/report/_bookdialog.py:584
 msgid "No selected book item"
 msgstr "Ingen vald bokpost"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:553
+#: ../gramps/gui/plug/report/_bookdialog.py:585
 msgid "Please select a book item to configure."
 msgstr "Välj en bokpost att konfigurera."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:616
+#: ../gramps/gui/plug/report/_bookdialog.py:648
 msgid "Setup"
 msgstr "Inställningar"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:626
+#: ../gramps/gui/plug/report/_bookdialog.py:658
 msgid "Book Menu"
 msgstr "Bokmeny"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:649
+#: ../gramps/gui/plug/report/_bookdialog.py:681
 msgid "Available Items Menu"
 msgstr "Tillgängliga objektmeny"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:667
+#: ../gramps/gui/plug/report/_bookdialog.py:699
 msgid "No items"
 msgstr "Inga poster"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:667
+#: ../gramps/gui/plug/report/_bookdialog.py:699
 msgid "This book has no items."
 msgstr "Denna bok saknar poster."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:678
+#: ../gramps/gui/plug/report/_bookdialog.py:710
 msgid "No book name"
 msgstr "Inget namn på bok"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:679
+#: ../gramps/gui/plug/report/_bookdialog.py:711
 msgid ""
 "You are about to save away a book with no name.\n"
 "\n"
@@ -11321,15 +11658,15 @@ msgstr ""
 "\n"
 "Ange ett namn innan du sparar det."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:686
+#: ../gramps/gui/plug/report/_bookdialog.py:718
 msgid "Book name already exists"
 msgstr "Boknamnet finns redan"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:687
+#: ../gramps/gui/plug/report/_bookdialog.py:719
 msgid "You are about to save away a book with a name which already exists."
 msgstr "Du är på väg att spara en bok med ett namn, som redan finns."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:883
+#: ../gramps/gui/plug/report/_bookdialog.py:915
 msgid "Gramps Book"
 msgstr "Gramps-bok"
 
@@ -11388,29 +11725,29 @@ msgstr "tum"
 msgid "Configuration"
 msgstr "Inställning"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:313
+#: ../gramps/gui/plug/report/_reportdialog.py:323
 #: ../gramps/gui/plug/report/_styleeditor.py:102
 msgid "Style"
 msgstr "Mall"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:356
+#: ../gramps/gui/plug/report/_reportdialog.py:366
 #: ../gramps/plugins/drawreport/calendarreport.py:418
-#: ../gramps/plugins/drawreport/fanchart.py:639
+#: ../gramps/plugins/drawreport/fanchart.py:648
 #: ../gramps/plugins/drawreport/statisticschart.py:932
 #: ../gramps/plugins/drawreport/timeline.py:376
 #: ../gramps/plugins/graph/gvrelgraph.py:493
 #: ../gramps/plugins/textreport/ancestorreport.py:270
 #: ../gramps/plugins/textreport/birthdayreport.py:369
 #: ../gramps/plugins/textreport/descendreport.py:401
-#: ../gramps/plugins/textreport/detancestralreport.py:716
-#: ../gramps/plugins/textreport/detdescendantreport.py:881
+#: ../gramps/plugins/textreport/detancestralreport.py:717
+#: ../gramps/plugins/textreport/detdescendantreport.py:882
 #: ../gramps/plugins/textreport/endoflinereport.py:258
 #: ../gramps/plugins/textreport/familygroup.py:634
 #: ../gramps/plugins/textreport/indivcomplete.py:693
-#: ../gramps/plugins/textreport/kinshipreport.py:339
+#: ../gramps/plugins/textreport/kinshipreport.py:343
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:201
 #: ../gramps/plugins/textreport/placereport.py:374
-#: ../gramps/plugins/textreport/recordsreport.py:138
+#: ../gramps/plugins/textreport/recordsreport.py:170
 #: ../gramps/plugins/textreport/simplebooktitle.py:130
 #: ../gramps/plugins/textreport/summary.py:277
 #: ../gramps/plugins/textreport/tagreport.py:533
@@ -11419,16 +11756,16 @@ msgstr "Mall"
 msgid "Report Options"
 msgstr "Rapportalternativ"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:447
+#: ../gramps/gui/plug/report/_reportdialog.py:462
 msgid "Document Options"
 msgstr "Dokumentalternativ"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:494
-#: ../gramps/gui/plug/report/_reportdialog.py:519
+#: ../gramps/gui/plug/report/_reportdialog.py:509
+#: ../gramps/gui/plug/report/_reportdialog.py:534
 msgid "Permission problem"
 msgstr "Rättighetsproblem"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:495
+#: ../gramps/gui/plug/report/_reportdialog.py:510
 #, python-format
 msgid ""
 "You do not have permission to write under the directory %s\n"
@@ -11439,26 +11776,26 @@ msgstr ""
 "\n"
 "Välj en annan katalog eller korrigera rättigheterna."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:504
+#: ../gramps/gui/plug/report/_reportdialog.py:519
 msgid "File already exists"
 msgstr "Filen finns redan"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:505
+#: ../gramps/gui/plug/report/_reportdialog.py:520
 msgid ""
 "You can choose to either overwrite the file, or change the selected filename."
 msgstr ""
 "Du kan välja att antingen skriva över filen eller att ändra det\n"
 "filnamn som valts."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:507
+#: ../gramps/gui/plug/report/_reportdialog.py:522
 msgid "_Overwrite"
 msgstr "_Skriv över"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:508
+#: ../gramps/gui/plug/report/_reportdialog.py:523
 msgid "_Change filename"
 msgstr "_Ändra filnamn"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:520
+#: ../gramps/gui/plug/report/_reportdialog.py:535
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -11469,24 +11806,24 @@ msgstr ""
 "\n"
 "Välj en annan sökväg eller korrigera rättigheterna."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:650
+#: ../gramps/gui/plug/report/_reportdialog.py:665
 #: ../gramps/gui/plug/tool.py:141 ../gramps/plugins/tool/relcalc.py:150
 msgid "Active person has not been set"
 msgstr "Ingen aktiv person har valts"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:651
+#: ../gramps/gui/plug/report/_reportdialog.py:666
 msgid "You must select an active person for this report to work properly."
 msgstr ""
 "Du måste välja en aktiv person för att den här rapporten skall fungera "
 "ordentligt."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:702
-#: ../gramps/gui/plug/report/_reportdialog.py:707
+#: ../gramps/gui/plug/report/_reportdialog.py:717
+#: ../gramps/gui/plug/report/_reportdialog.py:722
 msgid "Report could not be created"
 msgstr "Rapporten kunde inte skapas"
 
 #: ../gramps/gui/plug/report/_stylecombobox.py:70
-#: ../gramps/gui/plug/report/_stylecombobox.py:89
+#: ../gramps/gui/plug/report/_stylecombobox.py:89 gtklist.h:1
 msgid "default"
 msgstr "standard"
 
@@ -11593,9 +11930,6 @@ msgstr "Välj notis"
 #: ../gramps/plugins/view/placetreeview.py:88
 #: ../gramps/plugins/view/repoview.py:100
 #: ../gramps/plugins/view/sourceview.py:90
-#: ../gramps/webapp/grampsdb/view/tag.py:42
-#: ../gramps/webapp/grampsdb/views.py:89
-#: ../gramps/webapp/grampsdb/views.py:374
 #: ../gramps/gui/glade/editfamily.glade:810
 #: ../gramps/gui/glade/editmedia.glade:438
 #: ../gramps/gui/glade/editmediaref.glade:882
@@ -11634,6 +11968,10 @@ msgid ""
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?title="
 "GEPS_029:_GTK3-GObject_introspection_Conversion#Spell_Check_Install"
 msgstr ""
+"GtkSpell ej laddat. Stavningskontroll kommer ej att vara tillgängligt.\n"
+"För att åstadkomma det för Gramps se http://www.gramps-project.org/wiki/index."
+"php?"
+"title=GEPS_029:_GTK3-GObject_introspection_Conversion#Spell_Check_Install"
 
 #: ../gramps/gui/spell.py:96
 msgid "Off"
@@ -12029,9 +12367,9 @@ msgstr "Media:"
 #: ../gramps/gui/viewmanager.py:1560
 #: ../gramps/plugins/drawreport/ancestortree.py:1026
 #: ../gramps/plugins/drawreport/descendtree.py:1620
-#: ../gramps/plugins/textreport/detancestralreport.py:778
-#: ../gramps/plugins/textreport/detdescendantreport.py:953
+#: ../gramps/plugins/textreport/detancestralreport.py:779
 #: ../gramps/plugins/textreport/detdescendantreport.py:954
+#: ../gramps/plugins/textreport/detdescendantreport.py:955
 #: ../gramps/plugins/textreport/familygroup.py:652
 #: ../gramps/plugins/webreport/narrativeweb.py:8183
 msgid "Include"
@@ -12644,14 +12982,6 @@ msgstr "Bakgrundsfärg"
 msgid "Clear Markup"
 msgstr "Rensa markering"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:489
-msgid "Font family"
-msgstr "Teckensnittsfamilj"
-
-#: ../gramps/gui/widgets/styledtexteditor.py:501
-msgid "Font size"
-msgstr "Typsnittsstorlek"
-
 #: ../gramps/gui/widgets/styledtexteditor.py:522
 msgid "Undo"
 msgstr "Ångra"
@@ -12738,10 +13068,6 @@ msgstr "PDF-dokument"
 msgid "Generates documents in PDF format (.pdf)."
 msgstr "Skapar dokument i PDF-format (.pdf)."
 
-#: ../gramps/plugins/docgen/docgen.gpr.py:158
-msgid "PostScript"
-msgstr "PostScript"
-
 #: ../gramps/plugins/docgen/docgen.gpr.py:159
 msgid "Generates documents in PostScript format (.ps)."
 msgstr "Skapar dokument i formatet PostScript (.ps)."
@@ -12815,7 +13141,7 @@ msgid "transparent background"
 msgstr "genomskinlig bakgrund"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:346
-#: ../gramps/plugins/drawreport/fanchart.py:658
+#: ../gramps/plugins/drawreport/fanchart.py:668
 msgid "white"
 msgstr "vit"
 
@@ -12898,15 +13224,15 @@ msgstr "Trädalternativ"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:896
 #: ../gramps/plugins/drawreport/calendarreport.py:432
-#: ../gramps/plugins/drawreport/fanchart.py:641
+#: ../gramps/plugins/drawreport/fanchart.py:650
 #: ../gramps/plugins/graph/gvhourglass.py:273
 #: ../gramps/plugins/textreport/ancestorreport.py:272
 #: ../gramps/plugins/textreport/birthdayreport.py:381
 #: ../gramps/plugins/textreport/descendreport.py:403
-#: ../gramps/plugins/textreport/detancestralreport.py:719
-#: ../gramps/plugins/textreport/detdescendantreport.py:884
+#: ../gramps/plugins/textreport/detancestralreport.py:720
+#: ../gramps/plugins/textreport/detdescendantreport.py:885
 #: ../gramps/plugins/textreport/endoflinereport.py:260
-#: ../gramps/plugins/textreport/kinshipreport.py:341
+#: ../gramps/plugins/textreport/kinshipreport.py:345
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:203
 msgid "Center Person"
 msgstr "Huvudperson"
@@ -12917,11 +13243,11 @@ msgstr "Huvudpersonen för trädet"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:900
 #: ../gramps/plugins/drawreport/descendtree.py:1501
-#: ../gramps/plugins/drawreport/fanchart.py:645
+#: ../gramps/plugins/drawreport/fanchart.py:654
 #: ../gramps/plugins/textreport/ancestorreport.py:278
 #: ../gramps/plugins/textreport/descendreport.py:417
-#: ../gramps/plugins/textreport/detancestralreport.py:725
-#: ../gramps/plugins/textreport/detdescendantreport.py:899
+#: ../gramps/plugins/textreport/detancestralreport.py:726
+#: ../gramps/plugins/textreport/detdescendantreport.py:900
 msgid "Generations"
 msgstr "Generationer"
 
@@ -13212,15 +13538,15 @@ msgstr "Flera uppsättningar tomma rutor för okända förfäder"
 #: ../gramps/plugins/drawreport/ancestortree.py:1107
 #: ../gramps/plugins/drawreport/descendtree.py:1709
 #: ../gramps/plugins/textreport/ancestorreport.py:362
-#: ../gramps/plugins/textreport/detancestralreport.py:881
-#: ../gramps/plugins/textreport/detdescendantreport.py:1077
+#: ../gramps/plugins/textreport/detancestralreport.py:882
+#: ../gramps/plugins/textreport/detdescendantreport.py:1078
 #: ../gramps/plugins/textreport/endoflinereport.py:299
 #: ../gramps/plugins/textreport/endoflinereport.py:317
 #: ../gramps/plugins/textreport/familygroup.py:733
 #: ../gramps/plugins/textreport/indivcomplete.py:816
-#: ../gramps/plugins/textreport/kinshipreport.py:397
+#: ../gramps/plugins/textreport/kinshipreport.py:403
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:230
-#: ../gramps/plugins/textreport/recordsreport.py:238
+#: ../gramps/plugins/textreport/recordsreport.py:269
 #: ../gramps/plugins/textreport/summary.py:312
 #: ../gramps/plugins/textreport/tagreport.py:587
 msgid "The basic style used for the text display."
@@ -13240,7 +13566,7 @@ msgstr "Grundläggande mall som används för visning av titel."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:100
 #: ../gramps/plugins/drawreport/descendtree.py:678
-#: ../gramps/plugins/drawreport/fanchart.py:180
+#: ../gramps/plugins/drawreport/fanchart.py:183
 #: ../gramps/plugins/graph/gvhourglass.py:105
 #: ../gramps/plugins/textreport/ancestorreport.py:106
 #: ../gramps/plugins/textreport/birthdayreport.py:101
@@ -13248,7 +13574,7 @@ msgstr "Grundläggande mall som används för visning av titel."
 #: ../gramps/plugins/textreport/detancestralreport.py:138
 #: ../gramps/plugins/textreport/detdescendantreport.py:156
 #: ../gramps/plugins/textreport/endoflinereport.py:81
-#: ../gramps/plugins/textreport/kinshipreport.py:94
+#: ../gramps/plugins/textreport/kinshipreport.py:95
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:83
 #, python-format
 msgid "Person %s is not in the Database"
@@ -13329,14 +13655,14 @@ msgid "Select filter to restrict people that appear on calendar"
 msgstr "Välj ett filter, som begränsar vilka personer, som tas med på kalender"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:433
-#: ../gramps/plugins/drawreport/fanchart.py:642
+#: ../gramps/plugins/drawreport/fanchart.py:651
 #: ../gramps/plugins/textreport/ancestorreport.py:273
 #: ../gramps/plugins/textreport/birthdayreport.py:382
 #: ../gramps/plugins/textreport/descendreport.py:404
-#: ../gramps/plugins/textreport/detancestralreport.py:720
-#: ../gramps/plugins/textreport/detdescendantreport.py:885
+#: ../gramps/plugins/textreport/detancestralreport.py:721
+#: ../gramps/plugins/textreport/detdescendantreport.py:886
 #: ../gramps/plugins/textreport/endoflinereport.py:261
-#: ../gramps/plugins/textreport/kinshipreport.py:342
+#: ../gramps/plugins/textreport/kinshipreport.py:346
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:204
 msgid "The center person for the report"
 msgstr "Huvudpersonen för rapporten"
@@ -13752,12 +14078,12 @@ msgstr "Livslängdslinjer"
 msgid "Produces a timeline chart."
 msgstr "Skapar ett tidslinjediagram."
 
-#: ../gramps/plugins/drawreport/fanchart.py:244
+#: ../gramps/plugins/drawreport/fanchart.py:249
 #, python-format
 msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr "%(generations)d generationers cirkeldiagram för %(person)s"
 
-#: ../gramps/plugins/drawreport/fanchart.py:255
+#: ../gramps/plugins/drawreport/fanchart.py:262
 #, python-format
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
@@ -13766,92 +14092,92 @@ msgstr ""
 "%(generations)d generationers cirkeldiagram för \n"
 "%(person)s"
 
-#: ../gramps/plugins/drawreport/fanchart.py:646
+#: ../gramps/plugins/drawreport/fanchart.py:655
 #: ../gramps/plugins/textreport/ancestorreport.py:279
 #: ../gramps/plugins/textreport/descendreport.py:418
-#: ../gramps/plugins/textreport/detancestralreport.py:726
-#: ../gramps/plugins/textreport/detdescendantreport.py:901
+#: ../gramps/plugins/textreport/detancestralreport.py:727
+#: ../gramps/plugins/textreport/detdescendantreport.py:902
 msgid "The number of generations to include in the report"
 msgstr "Antal generationer, som skall tas med i rapporten"
 
-#: ../gramps/plugins/drawreport/fanchart.py:649
+#: ../gramps/plugins/drawreport/fanchart.py:659
 msgid "Type of graph"
 msgstr "Diagramtyp"
 
-#: ../gramps/plugins/drawreport/fanchart.py:650
+#: ../gramps/plugins/drawreport/fanchart.py:660
 msgid "full circle"
 msgstr "hel cirkel"
 
-#: ../gramps/plugins/drawreport/fanchart.py:651
+#: ../gramps/plugins/drawreport/fanchart.py:661
 msgid "half circle"
 msgstr "halvcirkel"
 
-#: ../gramps/plugins/drawreport/fanchart.py:652
+#: ../gramps/plugins/drawreport/fanchart.py:662
 msgid "quarter circle"
 msgstr "kvartscirkel"
 
-#: ../gramps/plugins/drawreport/fanchart.py:653
+#: ../gramps/plugins/drawreport/fanchart.py:663
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr "Utseende på diagrammet: hel cirkel, halvcirkel eller kvartscirkel."
 
-#: ../gramps/plugins/drawreport/fanchart.py:657
+#: ../gramps/plugins/drawreport/fanchart.py:667
 #: ../gramps/gui/glade/styleeditor.glade:709
 msgid "Background color"
 msgstr "Bakgrundsfärg"
 
-#: ../gramps/plugins/drawreport/fanchart.py:659
+#: ../gramps/plugins/drawreport/fanchart.py:669
 msgid "generation dependent"
 msgstr "generationsberoende"
 
-#: ../gramps/plugins/drawreport/fanchart.py:660
+#: ../gramps/plugins/drawreport/fanchart.py:670
 msgid "Background color is either white or generation dependent"
 msgstr "Bakgrundsfärg är antingen vit eller generationsberoende"
 
-#: ../gramps/plugins/drawreport/fanchart.py:664
+#: ../gramps/plugins/drawreport/fanchart.py:674
 msgid "Orientation of radial texts"
 msgstr "Riktning på radial text"
 
-#: ../gramps/plugins/drawreport/fanchart.py:666
+#: ../gramps/plugins/drawreport/fanchart.py:676
 msgid "upright"
 msgstr "rak"
 
-#: ../gramps/plugins/drawreport/fanchart.py:667
+#: ../gramps/plugins/drawreport/fanchart.py:677
 msgid "roundabout"
 msgstr "rundad"
 
-#: ../gramps/plugins/drawreport/fanchart.py:668
+#: ../gramps/plugins/drawreport/fanchart.py:678
 msgid "Print radial texts upright or roundabout"
 msgstr "Skriv radiell text upprätt eller avrundat"
 
-#: ../gramps/plugins/drawreport/fanchart.py:670
+#: ../gramps/plugins/drawreport/fanchart.py:680
 msgid "Draw empty boxes"
 msgstr "Rita tomma rutor"
 
-#: ../gramps/plugins/drawreport/fanchart.py:671
+#: ../gramps/plugins/drawreport/fanchart.py:681
 msgid "Draw the background although there is no information"
 msgstr "Fyll med bakgrundsfärg när informations saknas"
 
-#: ../gramps/plugins/drawreport/fanchart.py:674
+#: ../gramps/plugins/drawreport/fanchart.py:685
 msgid "Use one font style for all generations"
 msgstr "Använd textmall för alla generationer"
 
-#: ../gramps/plugins/drawreport/fanchart.py:675
+#: ../gramps/plugins/drawreport/fanchart.py:687
 msgid ""
 "You can customize font and color for each generation in the style editor"
 msgstr ""
 "Du kan anpassa typsnitt och färg för varje generation i mallredigeraren"
 
-#: ../gramps/plugins/drawreport/fanchart.py:702
+#: ../gramps/plugins/drawreport/fanchart.py:717
 #: ../gramps/plugins/textreport/alphabeticalindex.py:97
 #: ../gramps/plugins/textreport/tableofcontents.py:97
 msgid "The style used for the title."
 msgstr "Mall som används för titeln."
 
-#: ../gramps/plugins/drawreport/fanchart.py:711
+#: ../gramps/plugins/drawreport/fanchart.py:726
 msgid "The basic style used for the default text display."
 msgstr "Grundläggande mall som används för textvisning."
 
-#: ../gramps/plugins/drawreport/fanchart.py:721
+#: ../gramps/plugins/drawreport/fanchart.py:736
 msgid "The style used for the text display of generation "
 msgstr "Mall som används för textvisning av generation "
 
@@ -14027,7 +14353,7 @@ msgid "%s (persons):"
 msgstr "%s (personer):"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:938
-#: ../gramps/plugins/textreport/recordsreport.py:142
+#: ../gramps/plugins/textreport/recordsreport.py:174
 msgid "Determines what people are included in the report."
 msgstr "Avgör vilka personer, som tas med i rapporten."
 
@@ -14035,7 +14361,7 @@ msgstr "Avgör vilka personer, som tas med i rapporten."
 #: ../gramps/plugins/drawreport/timeline.py:384
 #: ../gramps/plugins/graph/gvrelgraph.py:503
 #: ../gramps/plugins/textreport/indivcomplete.py:702
-#: ../gramps/plugins/textreport/recordsreport.py:146
+#: ../gramps/plugins/textreport/recordsreport.py:178
 #: ../gramps/plugins/tool/sortevents.py:173
 #: ../gramps/plugins/webreport/narrativeweb.py:8007
 #: ../gramps/plugins/webreport/webcal.py:1342
@@ -14126,12 +14452,12 @@ msgstr "Mall som används för objekt och värden."
 #: ../gramps/plugins/drawreport/timeline.py:447
 #: ../gramps/plugins/textreport/ancestorreport.py:339
 #: ../gramps/plugins/textreport/descendreport.py:448
-#: ../gramps/plugins/textreport/detancestralreport.py:835
-#: ../gramps/plugins/textreport/detdescendantreport.py:1031
+#: ../gramps/plugins/textreport/detancestralreport.py:836
+#: ../gramps/plugins/textreport/detdescendantreport.py:1032
 #: ../gramps/plugins/textreport/endoflinereport.py:281
 #: ../gramps/plugins/textreport/familygroup.py:724
 #: ../gramps/plugins/textreport/indivcomplete.py:784
-#: ../gramps/plugins/textreport/kinshipreport.py:379
+#: ../gramps/plugins/textreport/kinshipreport.py:385
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:223
 #: ../gramps/plugins/textreport/simplebooktitle.py:166
 #: ../gramps/plugins/textreport/summary.py:293
@@ -14182,7 +14508,7 @@ msgstr "Avgör vilka personer, som tas med i rapporten"
 
 #: ../gramps/plugins/drawreport/timeline.py:385
 #: ../gramps/plugins/graph/gvrelgraph.py:504
-#: ../gramps/plugins/textreport/recordsreport.py:147
+#: ../gramps/plugins/textreport/recordsreport.py:179
 #: ../gramps/plugins/tool/sortevents.py:174
 #: ../gramps/plugins/webreport/narrativeweb.py:8008
 #: ../gramps/plugins/webreport/webcal.py:1343
@@ -15086,6 +15412,12 @@ msgid ""
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?title="
 "GEPS_029:_GTK3-GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 msgstr ""
+"GExiv2 modulen  ej laddad. Bildmetadatafunktionalitet kommer ej att vara "
+"tillgängligt.\n"
+"För att åstadkomma det för  Gramps se http://www.gramps-project.org/wiki/index"
+".php?"
+"title=GEPS_029:_GTK3-"
+"GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:417
 msgid "Person Residence"
@@ -15347,7 +15679,6 @@ msgstr "Gramplet visande referenser för en person"
 #: ../gramps/plugins/webreport/narrativeweb.py:2831
 #: ../gramps/plugins/webreport/narrativeweb.py:4891
 #: ../gramps/plugins/webreport/narrativeweb.py:5743
-#: ../gramps/webapp/grampsdb/views.py:1321
 msgid "References"
 msgstr "Referenser"
 
@@ -15497,7 +15828,7 @@ msgid "Shows some interesting records about people and families"
 msgstr "Visar några intressanta rekord om personer och familjer"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1072
-#: ../gramps/plugins/textreport/recordsreport.py:82
+#: ../gramps/plugins/textreport/recordsreport.py:91
 msgid "Records"
 msgstr "Rekord"
 
@@ -16306,8 +16637,6 @@ msgstr "Färgen som används för att visa okänt kön."
 #: ../gramps/plugins/webreport/narrativeweb.py:1813
 #: ../gramps/plugins/webreport/narrativeweb.py:1868
 #: ../gramps/plugins/webreport/narrativeweb.py:3064
-#: ../gramps/webapp/grampsdb/views.py:81
-#: ../gramps/webapp/grampsdb/views.py:324
 #: ../gramps/plugins/tool/verify.glade:807
 msgid "Families"
 msgstr "Familjer"
@@ -16475,7 +16804,7 @@ msgid "The Center person for the graph"
 msgstr "Huvudpersonen för rapporten"
 
 #: ../gramps/plugins/graph/gvhourglass.py:279
-#: ../gramps/plugins/textreport/kinshipreport.py:347
+#: ../gramps/plugins/textreport/kinshipreport.py:351
 msgid "Max Descendant Generations"
 msgstr "Maximalt antal ättlingsgenerationer"
 
@@ -16484,7 +16813,7 @@ msgid "The number of generations of descendants to include in the graph"
 msgstr "Antal ättlingsgenerationer, som skall ingå i rapporten"
 
 #: ../gramps/plugins/graph/gvhourglass.py:284
-#: ../gramps/plugins/textreport/kinshipreport.py:351
+#: ../gramps/plugins/textreport/kinshipreport.py:355
 msgid "Max Ancestor Generations"
 msgstr "Maximalt antal förfadersgenerationer"
 
@@ -21203,71 +21532,71 @@ msgid ""
 msgstr ""
 "Erbjuder grunddata behövliga för grafiska rapporter om förfäder och ättlingar."
 
-#: ../gramps/plugins/lib/librecords.py:382
+#: ../gramps/plugins/lib/librecords.py:55
 msgid "Youngest living person"
 msgstr "Yngsta levande person"
 
-#: ../gramps/plugins/lib/librecords.py:383
+#: ../gramps/plugins/lib/librecords.py:56
 msgid "Oldest living person"
 msgstr "Äldsta levande person"
 
-#: ../gramps/plugins/lib/librecords.py:384
+#: ../gramps/plugins/lib/librecords.py:57
 msgid "Person died at youngest age"
 msgstr "Yngsta avlidna person"
 
-#: ../gramps/plugins/lib/librecords.py:385
+#: ../gramps/plugins/lib/librecords.py:58
 msgid "Person died at oldest age"
 msgstr "Äldsta avlidna person"
 
-#: ../gramps/plugins/lib/librecords.py:386
+#: ../gramps/plugins/lib/librecords.py:59
 msgid "Person married at youngest age"
 msgstr "Yngsta gifta person"
 
-#: ../gramps/plugins/lib/librecords.py:387
+#: ../gramps/plugins/lib/librecords.py:60
 msgid "Person married at oldest age"
 msgstr "Äldsta gifta person"
 
-#: ../gramps/plugins/lib/librecords.py:388
+#: ../gramps/plugins/lib/librecords.py:61
 msgid "Person divorced at youngest age"
 msgstr "Yngsta skilda person"
 
-#: ../gramps/plugins/lib/librecords.py:389
+#: ../gramps/plugins/lib/librecords.py:62
 msgid "Person divorced at oldest age"
 msgstr "Äldsta skilda person"
 
-#: ../gramps/plugins/lib/librecords.py:390
+#: ../gramps/plugins/lib/librecords.py:63
 msgid "Youngest father"
 msgstr "Yngsta far"
 
-#: ../gramps/plugins/lib/librecords.py:391
+#: ../gramps/plugins/lib/librecords.py:64
 msgid "Youngest mother"
 msgstr "Yngsta mor"
 
-#: ../gramps/plugins/lib/librecords.py:392
+#: ../gramps/plugins/lib/librecords.py:65
 msgid "Oldest father"
 msgstr "Äldsta far"
 
-#: ../gramps/plugins/lib/librecords.py:393
+#: ../gramps/plugins/lib/librecords.py:66
 msgid "Oldest mother"
 msgstr "Äldsta mor"
 
-#: ../gramps/plugins/lib/librecords.py:394
+#: ../gramps/plugins/lib/librecords.py:67
 msgid "Couple with most children"
 msgstr "Par med flest barn"
 
-#: ../gramps/plugins/lib/librecords.py:395
+#: ../gramps/plugins/lib/librecords.py:68
 msgid "Living couple married most recently"
 msgstr "Senaste gifta levande par"
 
-#: ../gramps/plugins/lib/librecords.py:396
+#: ../gramps/plugins/lib/librecords.py:69
 msgid "Living couple married most long ago"
 msgstr "Äldsta levande par gifta för länge sedan"
 
-#: ../gramps/plugins/lib/librecords.py:397
+#: ../gramps/plugins/lib/librecords.py:70
 msgid "Shortest past marriage"
 msgstr "Kortaste varande giftermål"
 
-#: ../gramps/plugins/lib/librecords.py:398
+#: ../gramps/plugins/lib/librecords.py:71
 msgid "Longest past marriage"
 msgstr "Längst varande giftermål"
 
@@ -21776,10 +22105,6 @@ msgstr "Antal/totalt"
 #: ../gramps/plugins/view/view.gpr.py:180
 #: ../gramps/plugins/view/view.gpr.py:188
 #: ../gramps/plugins/view/view.gpr.py:197
-#: ../gramps/webapp/grampsdb/view/person.py:346
-#: ../gramps/webapp/grampsdb/view/person.py:476
-#: ../gramps/webapp/grampsdb/views.py:80
-#: ../gramps/webapp/grampsdb/views.py:314
 msgid "People"
 msgstr "Personer"
 
@@ -21818,7 +22143,6 @@ msgstr "Mediaräknare"
 #: ../gramps/plugins/quickview/onthisday.py:83
 #: ../gramps/plugins/quickview/onthisday.py:84
 #: ../gramps/plugins/quickview/references.py:72
-#: ../gramps/webapp/grampsdb/views.py:1320
 msgid "Reference"
 msgstr "Referens"
 
@@ -22318,14 +22642,14 @@ msgid "The style used for index entries."
 msgstr "Mall som används för indexrader."
 
 #: ../gramps/plugins/textreport/ancestorreport.py:282
-#: ../gramps/plugins/textreport/detancestralreport.py:729
-#: ../gramps/plugins/textreport/detdescendantreport.py:905
+#: ../gramps/plugins/textreport/detancestralreport.py:730
+#: ../gramps/plugins/textreport/detdescendantreport.py:906
 msgid "Page break between generations"
 msgstr "Sidbrytning mellan generationer"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:284
-#: ../gramps/plugins/textreport/detancestralreport.py:731
-#: ../gramps/plugins/textreport/detdescendantreport.py:907
+#: ../gramps/plugins/textreport/detancestralreport.py:732
+#: ../gramps/plugins/textreport/detdescendantreport.py:908
 msgid "Whether to start a new page after each generation."
 msgstr "Huruvida påbörja en ny sida efter varje generation."
 
@@ -22497,7 +22821,7 @@ msgid "%s sp."
 msgstr "%s sp."
 
 #: ../gramps/plugins/textreport/descendreport.py:409
-#: ../gramps/plugins/textreport/detdescendantreport.py:890
+#: ../gramps/plugins/textreport/detdescendantreport.py:891
 msgid "Numbering system"
 msgstr "Numreringssystem"
 
@@ -22514,7 +22838,7 @@ msgid "Meurgey de Tupigny numbering"
 msgstr "Meurgey de Tupigny-numrering"
 
 #: ../gramps/plugins/textreport/descendreport.py:414
-#: ../gramps/plugins/textreport/detdescendantreport.py:896
+#: ../gramps/plugins/textreport/detdescendantreport.py:897
 msgid "The numbering system to be used"
 msgstr "Det numreringssystem som skall användas"
 
@@ -22557,267 +22881,267 @@ msgstr "Mall som används för visning av makar på nivå %d."
 msgid "Ancestral Report for %s"
 msgstr "Antavla för %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:267
-#: ../gramps/plugins/textreport/detdescendantreport.py:387
+#: ../gramps/plugins/textreport/detancestralreport.py:268
+#: ../gramps/plugins/textreport/detdescendantreport.py:388
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s är samma person som [%(id_str)s]."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:309
-#: ../gramps/plugins/textreport/detdescendantreport.py:771
+#: ../gramps/plugins/textreport/detancestralreport.py:310
+#: ../gramps/plugins/textreport/detdescendantreport.py:772
 #, python-format
 msgid "Notes for %s"
 msgstr "Notiser om %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:324
-#: ../gramps/plugins/textreport/detancestralreport.py:348
-#: ../gramps/plugins/textreport/detancestralreport.py:359
-#: ../gramps/plugins/textreport/detancestralreport.py:383
-#: ../gramps/plugins/textreport/detdescendantreport.py:784
-#: ../gramps/plugins/textreport/detdescendantreport.py:802
-#: ../gramps/plugins/textreport/detdescendantreport.py:813
-#: ../gramps/plugins/textreport/detdescendantreport.py:837
+#: ../gramps/plugins/textreport/detancestralreport.py:325
+#: ../gramps/plugins/textreport/detancestralreport.py:349
+#: ../gramps/plugins/textreport/detancestralreport.py:360
+#: ../gramps/plugins/textreport/detancestralreport.py:384
+#: ../gramps/plugins/textreport/detdescendantreport.py:785
+#: ../gramps/plugins/textreport/detdescendantreport.py:803
+#: ../gramps/plugins/textreport/detdescendantreport.py:814
+#: ../gramps/plugins/textreport/detdescendantreport.py:838
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Mer om %(person_name)s:"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:331
-#: ../gramps/plugins/textreport/detdescendantreport.py:791
+#: ../gramps/plugins/textreport/detancestralreport.py:332
+#: ../gramps/plugins/textreport/detdescendantreport.py:792
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:366
-#: ../gramps/plugins/textreport/detdescendantreport.py:826
+#: ../gramps/plugins/textreport/detancestralreport.py:367
+#: ../gramps/plugins/textreport/detdescendantreport.py:827
 msgid "Address: "
 msgstr "Adress: "
 
-#: ../gramps/plugins/textreport/detancestralreport.py:391
-#: ../gramps/plugins/textreport/detancestralreport.py:449
-#: ../gramps/plugins/textreport/detdescendantreport.py:464
-#: ../gramps/plugins/textreport/detdescendantreport.py:711
-#: ../gramps/plugins/textreport/detdescendantreport.py:845
+#: ../gramps/plugins/textreport/detancestralreport.py:392
+#: ../gramps/plugins/textreport/detancestralreport.py:450
+#: ../gramps/plugins/textreport/detdescendantreport.py:465
+#: ../gramps/plugins/textreport/detdescendantreport.py:712
+#: ../gramps/plugins/textreport/detdescendantreport.py:846
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s: %(value)s%(endnotes)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:418
-#: ../gramps/plugins/textreport/detdescendantreport.py:433
+#: ../gramps/plugins/textreport/detancestralreport.py:419
+#: ../gramps/plugins/textreport/detdescendantreport.py:434
 #, python-format
 msgid "%(date)s, %(place)s"
 msgstr "%(date)s, %(place)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:421
-#: ../gramps/plugins/textreport/detdescendantreport.py:436
+#: ../gramps/plugins/textreport/detancestralreport.py:422
+#: ../gramps/plugins/textreport/detdescendantreport.py:437
 #, python-format
 msgid "%(date)s"
 msgstr "%(date)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:423
-#: ../gramps/plugins/textreport/detdescendantreport.py:438
+#: ../gramps/plugins/textreport/detancestralreport.py:424
+#: ../gramps/plugins/textreport/detdescendantreport.py:439
 #, python-format
 msgid "%(place)s"
 msgstr "%(place)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:435
-#: ../gramps/plugins/textreport/detdescendantreport.py:450
+#: ../gramps/plugins/textreport/detancestralreport.py:436
+#: ../gramps/plugins/textreport/detdescendantreport.py:451
 #, python-format
 msgid "%(event_name)s: %(event_text)s"
 msgstr "%(event_name)s: %(event_text)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:547
-#: ../gramps/plugins/textreport/detdescendantreport.py:603
+#: ../gramps/plugins/textreport/detancestralreport.py:548
+#: ../gramps/plugins/textreport/detdescendantreport.py:604
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr "Barn till %(mother_name)s och %(father_name)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:600
-#: ../gramps/plugins/textreport/detdescendantreport.py:684
-#: ../gramps/plugins/textreport/detdescendantreport.py:703
+#: ../gramps/plugins/textreport/detancestralreport.py:601
+#: ../gramps/plugins/textreport/detdescendantreport.py:685
+#: ../gramps/plugins/textreport/detdescendantreport.py:704
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Mer om %(mother_name)s och %(father_name)s:"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:653
-#: ../gramps/plugins/textreport/detdescendantreport.py:552
+#: ../gramps/plugins/textreport/detancestralreport.py:654
+#: ../gramps/plugins/textreport/detdescendantreport.py:553
 #, python-format
 msgid "Spouse: %s"
 msgstr "Make/Maka: %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:655
-#: ../gramps/plugins/textreport/detdescendantreport.py:554
+#: ../gramps/plugins/textreport/detancestralreport.py:656
+#: ../gramps/plugins/textreport/detdescendantreport.py:555
 #, python-format
 msgid "Relationship with: %s"
 msgstr "Släktskap med: %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:734
-#: ../gramps/plugins/textreport/detdescendantreport.py:910
+#: ../gramps/plugins/textreport/detancestralreport.py:735
+#: ../gramps/plugins/textreport/detdescendantreport.py:911
 #: ../gramps/plugins/textreport/indivcomplete.py:715
 msgid "Page break before end notes"
 msgstr "Sidbrytning före slutnotiser"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:736
-#: ../gramps/plugins/textreport/detdescendantreport.py:912
+#: ../gramps/plugins/textreport/detancestralreport.py:737
+#: ../gramps/plugins/textreport/detdescendantreport.py:913
 #: ../gramps/plugins/textreport/indivcomplete.py:717
 msgid "Whether to start a new page before the end notes."
 msgstr "Huruvida påbörja en ny sida före slutnotiserna."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:743
-#: ../gramps/plugins/textreport/detdescendantreport.py:919
+#: ../gramps/plugins/textreport/detancestralreport.py:744
+#: ../gramps/plugins/textreport/detdescendantreport.py:920
 #: ../gramps/plugins/view/relview.py:1691
 msgid "Content"
 msgstr "Innehåll"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:745
-#: ../gramps/plugins/textreport/detdescendantreport.py:921
+#: ../gramps/plugins/textreport/detancestralreport.py:746
+#: ../gramps/plugins/textreport/detdescendantreport.py:922
 msgid "Use callname for common name"
 msgstr "Använd tilltalsnamn"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:746
-#: ../gramps/plugins/textreport/detdescendantreport.py:922
+#: ../gramps/plugins/textreport/detancestralreport.py:747
+#: ../gramps/plugins/textreport/detdescendantreport.py:923
 msgid "Whether to use the call name as the first name."
 msgstr "Huruvida använda tilltalsnamn, som första namn."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:750
-#: ../gramps/plugins/textreport/detdescendantreport.py:925
+#: ../gramps/plugins/textreport/detancestralreport.py:751
+#: ../gramps/plugins/textreport/detdescendantreport.py:926
 msgid "Use full dates instead of only the year"
 msgstr "Använd fullständiga datum i stället för enbart årtal"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:751
-#: ../gramps/plugins/textreport/detdescendantreport.py:927
+#: ../gramps/plugins/textreport/detancestralreport.py:752
+#: ../gramps/plugins/textreport/detdescendantreport.py:928
 msgid "Whether to use full dates instead of just year."
 msgstr "Huruvida använda fullständiga datum i stället för enbart årtal."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:754
-#: ../gramps/plugins/textreport/detdescendantreport.py:930
+#: ../gramps/plugins/textreport/detancestralreport.py:755
+#: ../gramps/plugins/textreport/detdescendantreport.py:931
 msgid "List children"
 msgstr "Lista barn"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:755
-#: ../gramps/plugins/textreport/detdescendantreport.py:931
+#: ../gramps/plugins/textreport/detancestralreport.py:756
+#: ../gramps/plugins/textreport/detdescendantreport.py:932
 msgid "Whether to list children."
 msgstr "Huruvida lista barn."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:758
-#: ../gramps/plugins/textreport/detdescendantreport.py:934
+#: ../gramps/plugins/textreport/detancestralreport.py:759
+#: ../gramps/plugins/textreport/detdescendantreport.py:935
 msgid "Compute death age"
 msgstr "Beräkna ålder vid död"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:759
-#: ../gramps/plugins/textreport/detdescendantreport.py:935
+#: ../gramps/plugins/textreport/detancestralreport.py:760
+#: ../gramps/plugins/textreport/detdescendantreport.py:936
 msgid "Whether to compute a person's age at death."
 msgstr "Huruvida beräkna ålder vid död."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:762
-#: ../gramps/plugins/textreport/detdescendantreport.py:938
+#: ../gramps/plugins/textreport/detancestralreport.py:763
+#: ../gramps/plugins/textreport/detdescendantreport.py:939
 msgid "Omit duplicate ancestors"
 msgstr "Utelämna dubblerade anor"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:763
-#: ../gramps/plugins/textreport/detdescendantreport.py:939
+#: ../gramps/plugins/textreport/detancestralreport.py:764
+#: ../gramps/plugins/textreport/detdescendantreport.py:940
 msgid "Whether to omit duplicate ancestors."
 msgstr "Huruvida utelämna dubblerade anor."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:766
+#: ../gramps/plugins/textreport/detancestralreport.py:767
 msgid "Use Complete Sentences"
 msgstr "Använd fullständiga meningar"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:768
-#: ../gramps/plugins/textreport/detdescendantreport.py:944
+#: ../gramps/plugins/textreport/detancestralreport.py:769
+#: ../gramps/plugins/textreport/detdescendantreport.py:945
 msgid "Whether to use complete sentences or succinct language."
 msgstr "Huruvida använda fullständiga meningar eller ett kortfattat språk."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:771
-#: ../gramps/plugins/textreport/detdescendantreport.py:947
+#: ../gramps/plugins/textreport/detancestralreport.py:772
+#: ../gramps/plugins/textreport/detdescendantreport.py:948
 msgid "Add descendant reference in child list"
 msgstr "Lägg till ättlingareferens i barnlista"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:773
-#: ../gramps/plugins/textreport/detdescendantreport.py:950
+#: ../gramps/plugins/textreport/detancestralreport.py:774
+#: ../gramps/plugins/textreport/detdescendantreport.py:951
 msgid "Whether to add descendant references in child list."
 msgstr "Huruvida lägg till ättlingareferens i barnlista."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:780
-#: ../gramps/plugins/textreport/detdescendantreport.py:956
+#: ../gramps/plugins/textreport/detancestralreport.py:781
+#: ../gramps/plugins/textreport/detdescendantreport.py:957
 msgid "Include notes"
 msgstr "Ta med notiser"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:781
-#: ../gramps/plugins/textreport/detdescendantreport.py:957
+#: ../gramps/plugins/textreport/detancestralreport.py:782
+#: ../gramps/plugins/textreport/detdescendantreport.py:958
 msgid "Whether to include notes."
 msgstr "Huruvida ta med notiser."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:784
-#: ../gramps/plugins/textreport/detdescendantreport.py:960
+#: ../gramps/plugins/textreport/detancestralreport.py:785
+#: ../gramps/plugins/textreport/detdescendantreport.py:961
 msgid "Include attributes"
 msgstr "Ta med attribut"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:785
-#: ../gramps/plugins/textreport/detdescendantreport.py:961
+#: ../gramps/plugins/textreport/detancestralreport.py:786
+#: ../gramps/plugins/textreport/detdescendantreport.py:962
 #: ../gramps/plugins/textreport/familygroup.py:674
 msgid "Whether to include attributes."
 msgstr "Huruvida ta med attribut."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:788
-#: ../gramps/plugins/textreport/detdescendantreport.py:964
+#: ../gramps/plugins/textreport/detancestralreport.py:789
+#: ../gramps/plugins/textreport/detdescendantreport.py:965
 #: ../gramps/plugins/textreport/indivcomplete.py:729
 msgid "Include Photo/Images from Gallery"
 msgstr "Ta med foton/bilder från galleri"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:789
-#: ../gramps/plugins/textreport/detdescendantreport.py:965
+#: ../gramps/plugins/textreport/detancestralreport.py:790
+#: ../gramps/plugins/textreport/detdescendantreport.py:966
 #: ../gramps/plugins/textreport/indivcomplete.py:730
 msgid "Whether to include images."
 msgstr "Huruvida ta med bilder."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:792
-#: ../gramps/plugins/textreport/detdescendantreport.py:968
+#: ../gramps/plugins/textreport/detancestralreport.py:793
+#: ../gramps/plugins/textreport/detdescendantreport.py:969
 msgid "Include alternative names"
 msgstr "Ta med alternativa namn"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:793
-#: ../gramps/plugins/textreport/detdescendantreport.py:969
+#: ../gramps/plugins/textreport/detancestralreport.py:794
+#: ../gramps/plugins/textreport/detdescendantreport.py:970
 msgid "Whether to include other names."
 msgstr "Huruvida ta med andra namn."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:796
-#: ../gramps/plugins/textreport/detdescendantreport.py:972
+#: ../gramps/plugins/textreport/detancestralreport.py:797
+#: ../gramps/plugins/textreport/detdescendantreport.py:973
 msgid "Include events"
 msgstr "Ta med händelser"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:797
-#: ../gramps/plugins/textreport/detdescendantreport.py:973
+#: ../gramps/plugins/textreport/detancestralreport.py:798
+#: ../gramps/plugins/textreport/detdescendantreport.py:974
 msgid "Whether to include events."
 msgstr "Huruvida ta med händelser."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:800
-#: ../gramps/plugins/textreport/detdescendantreport.py:976
+#: ../gramps/plugins/textreport/detancestralreport.py:801
+#: ../gramps/plugins/textreport/detdescendantreport.py:977
 msgid "Include addresses"
 msgstr "Ta med adresser"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:801
-#: ../gramps/plugins/textreport/detdescendantreport.py:977
+#: ../gramps/plugins/textreport/detancestralreport.py:802
+#: ../gramps/plugins/textreport/detdescendantreport.py:978
 msgid "Whether to include addresses."
 msgstr "Huruvida ta med adresser."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:804
-#: ../gramps/plugins/textreport/detdescendantreport.py:980
+#: ../gramps/plugins/textreport/detancestralreport.py:805
+#: ../gramps/plugins/textreport/detdescendantreport.py:981
 msgid "Include sources"
 msgstr "Ta med källor"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:805
-#: ../gramps/plugins/textreport/detdescendantreport.py:981
+#: ../gramps/plugins/textreport/detancestralreport.py:806
+#: ../gramps/plugins/textreport/detdescendantreport.py:982
 msgid "Whether to include source references."
 msgstr "Huruvida ta med källreferenser."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:808
-#: ../gramps/plugins/textreport/detdescendantreport.py:984
+#: ../gramps/plugins/textreport/detancestralreport.py:809
+#: ../gramps/plugins/textreport/detdescendantreport.py:985
 #: ../gramps/plugins/textreport/indivcomplete.py:724
 msgid "Include sources notes"
 msgstr "Ta med källnotiser"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:809
-#: ../gramps/plugins/textreport/detdescendantreport.py:985
+#: ../gramps/plugins/textreport/detancestralreport.py:810
+#: ../gramps/plugins/textreport/detdescendantreport.py:986
 #: ../gramps/plugins/textreport/indivcomplete.py:725
 msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
@@ -22826,52 +23150,52 @@ msgstr ""
 "Huruvida ta ned källnotiser i notförteckningen. Fungerar bara om källor "
 "medtages."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:815
-#: ../gramps/plugins/textreport/detdescendantreport.py:1011
+#: ../gramps/plugins/textreport/detancestralreport.py:816
+#: ../gramps/plugins/textreport/detdescendantreport.py:1012
 msgid "Missing information"
 msgstr "Saknad information"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:817
-#: ../gramps/plugins/textreport/detdescendantreport.py:1013
+#: ../gramps/plugins/textreport/detancestralreport.py:818
+#: ../gramps/plugins/textreport/detdescendantreport.py:1014
 msgid "Replace missing places with ______"
 msgstr "Ersätt saknade platser med ______"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:818
-#: ../gramps/plugins/textreport/detdescendantreport.py:1014
+#: ../gramps/plugins/textreport/detancestralreport.py:819
+#: ../gramps/plugins/textreport/detdescendantreport.py:1015
 msgid "Whether to replace missing Places with blanks."
 msgstr "Huruvida ersätta saknade platser med mellanslag."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:821
-#: ../gramps/plugins/textreport/detdescendantreport.py:1017
+#: ../gramps/plugins/textreport/detancestralreport.py:822
+#: ../gramps/plugins/textreport/detdescendantreport.py:1018
 msgid "Replace missing dates with ______"
 msgstr "Ersätt saknade datum med ______"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:822
-#: ../gramps/plugins/textreport/detdescendantreport.py:1018
+#: ../gramps/plugins/textreport/detancestralreport.py:823
+#: ../gramps/plugins/textreport/detdescendantreport.py:1019
 msgid "Whether to replace missing Dates with blanks."
 msgstr "Huruvida ersätta saknade datum med mellanslag."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:855
-#: ../gramps/plugins/textreport/detdescendantreport.py:1051
+#: ../gramps/plugins/textreport/detancestralreport.py:856
+#: ../gramps/plugins/textreport/detdescendantreport.py:1052
 msgid "The style used for the children list title."
 msgstr "Mall som används för barnlistetiteln."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:865
-#: ../gramps/plugins/textreport/detdescendantreport.py:1061
+#: ../gramps/plugins/textreport/detancestralreport.py:866
+#: ../gramps/plugins/textreport/detdescendantreport.py:1062
 msgid "The style used for the children list."
 msgstr "Mall som används för barnlistan."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:888
-#: ../gramps/plugins/textreport/detdescendantreport.py:1084
+#: ../gramps/plugins/textreport/detancestralreport.py:889
+#: ../gramps/plugins/textreport/detdescendantreport.py:1085
 msgid "The style used for the first personal entry."
 msgstr "Mall som används för den första personinformationen."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:898
+#: ../gramps/plugins/textreport/detancestralreport.py:899
 msgid "The style used for the More About header."
 msgstr "Mall som används för notisdelens rubrik."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:908
-#: ../gramps/plugins/textreport/detdescendantreport.py:1105
+#: ../gramps/plugins/textreport/detancestralreport.py:909
+#: ../gramps/plugins/textreport/detdescendantreport.py:1106
 msgid "The style used for additional detail data."
 msgstr "Mall som används för allmänna data."
 
@@ -22880,54 +23204,54 @@ msgstr "Mall som används för allmänna data."
 msgid "Descendant Report for %(person_name)s"
 msgstr "Stamtavla för %(person_name)s"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:568
+#: ../gramps/plugins/textreport/detdescendantreport.py:569
 #, python-format
 msgid "Ref: %(number)s. %(name)s"
 msgstr "Ref: %(number)s. %(name)s"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:661
+#: ../gramps/plugins/textreport/detdescendantreport.py:662
 #, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
 msgstr "Notiser för %(mother_name)s och %(father_name)s:"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:892
+#: ../gramps/plugins/textreport/detdescendantreport.py:893
 msgid "Henry numbering"
 msgstr "Henry-numrering"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:893
+#: ../gramps/plugins/textreport/detdescendantreport.py:894
 msgid "d'Aboville numbering"
 msgstr "d'Aboville-numrering"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:895
+#: ../gramps/plugins/textreport/detdescendantreport.py:896
 msgid "Record (Modified Register) numbering"
 msgstr "Post(modifierat register)-numrering"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:942
+#: ../gramps/plugins/textreport/detdescendantreport.py:943
 msgid "Use complete sentences"
 msgstr "Använd fullständiga meningar"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:989
-#: ../gramps/plugins/textreport/kinshipreport.py:355
+#: ../gramps/plugins/textreport/detdescendantreport.py:990
+#: ../gramps/plugins/textreport/kinshipreport.py:359
 msgid "Include spouses"
 msgstr "Ta med make/maka"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:990
+#: ../gramps/plugins/textreport/detdescendantreport.py:991
 msgid "Whether to include detailed spouse information."
 msgstr "Huruvida ta med detaljerad information om make/maka."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:993
+#: ../gramps/plugins/textreport/detdescendantreport.py:994
 msgid "Include spouse reference"
 msgstr "Ta med make/maka-referens"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:994
+#: ../gramps/plugins/textreport/detdescendantreport.py:995
 msgid "Whether to include reference to spouse."
 msgstr "Huruvida ta med referenser till make/maka."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:997
+#: ../gramps/plugins/textreport/detdescendantreport.py:998
 msgid "Include sign of succession ('+') in child-list"
 msgstr "Tag med tecken på avkomma ('+') i barnlista"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:999
+#: ../gramps/plugins/textreport/detdescendantreport.py:1000
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the "
 "child-list to indicate a child has succession."
@@ -22935,18 +23259,18 @@ msgstr ""
 "Huruvida ta med ett tecken ('+') före ättlingsnummer i barnlistan för att "
 "indikera att barnet har avkomma."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1004
+#: ../gramps/plugins/textreport/detdescendantreport.py:1005
 msgid "Include path to start-person"
 msgstr "Ta med släktskapsförhållande till startperson"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1005
+#: ../gramps/plugins/textreport/detdescendantreport.py:1006
 msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
 msgstr ""
 "Huruvida ta med släktskapsförhållandet från startpersonen till varje släkting."
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1094
+#: ../gramps/plugins/textreport/detdescendantreport.py:1095
 msgid "The style used for the More About header and for headers of mates."
 msgstr "Mall som används för Mer Om-rubriken samt för rubriker för makar."
 
@@ -22961,7 +23285,7 @@ msgid "All the ancestors of %s who are missing a parent"
 msgstr "Alla de förfäder till %s, vilka saknar en förälder"
 
 #: ../gramps/plugins/textreport/endoflinereport.py:207
-#: ../gramps/plugins/textreport/kinshipreport.py:312
+#: ../gramps/plugins/textreport/kinshipreport.py:316
 #, python-format
 msgid " (%(birth_date)s - %(death_date)s)"
 msgstr " (%(birth_date)s - %(death_date)s)"
@@ -23196,44 +23520,44 @@ msgstr "Mall som används för kategorietiketter."
 msgid "The style used for the spouse's name."
 msgstr "Mall som används för makans/makens namn."
 
-#: ../gramps/plugins/textreport/kinshipreport.py:118
+#: ../gramps/plugins/textreport/kinshipreport.py:122
 #, python-format
 msgid "Kinship Report for %s"
 msgstr "Släktskapsrapport för %s"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:348
+#: ../gramps/plugins/textreport/kinshipreport.py:352
 msgid "The maximum number of descendant generations"
 msgstr "Maximalt antal generationer med ättlingar"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:352
+#: ../gramps/plugins/textreport/kinshipreport.py:356
 msgid "The maximum number of ancestor generations"
 msgstr "Maximalt antal generationer med förfäder"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:356
+#: ../gramps/plugins/textreport/kinshipreport.py:360
 msgid "Whether to include spouses"
 msgstr "Huruvida make/maka skall tas med"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:359
+#: ../gramps/plugins/textreport/kinshipreport.py:363
 msgid "Include cousins"
 msgstr "Ta med kusiner"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:360
+#: ../gramps/plugins/textreport/kinshipreport.py:364
 msgid "Whether to include cousins"
 msgstr "Huruvida ta med kusiner"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:363
+#: ../gramps/plugins/textreport/kinshipreport.py:367
 msgid "Include aunts/uncles/nephews/nieces"
 msgstr ""
 "Ta med fastrar/mostrar/farbröder/morbröder/brorsöner/systersöner/brorsdöttrar/"
 "systerdöttrar"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:364
+#: ../gramps/plugins/textreport/kinshipreport.py:368
 msgid "Whether to include aunts/uncles/nephews/nieces"
 msgstr ""
 "Huruvida ta med fastrar/mostrar/farbröder/morbröder/brorsöner/systersöner/bror"
 "sdöttrar/systerdöttrar"
 
-#: ../gramps/plugins/textreport/kinshipreport.py:389
+#: ../gramps/plugins/textreport/kinshipreport.py:395
 #: ../gramps/plugins/textreport/summary.py:302
 msgid "The basic style used for sub-headings."
 msgstr "Grundläggande mall som används för underrubriker."
@@ -23389,62 +23713,57 @@ msgstr "Den mall, som används för varje sektion."
 msgid "The style used for event and person details."
 msgstr "Den mall, som används för händelse- och persondetaljer."
 
-#: ../gramps/plugins/textreport/recordsreport.py:108
+#: ../gramps/plugins/textreport/recordsreport.py:136
 #, python-format
 msgid "%(number)s. "
 msgstr "%(number)s. "
 
-#: ../gramps/plugins/textreport/recordsreport.py:110
-#, python-format
-msgid " (%(value)s)"
-msgstr " (%(value)s)"
-
-#: ../gramps/plugins/textreport/recordsreport.py:153
+#: ../gramps/plugins/textreport/recordsreport.py:185
 msgid "Number of ranks to display"
 msgstr "Antal ordningar att visa"
 
-#: ../gramps/plugins/textreport/recordsreport.py:156
+#: ../gramps/plugins/textreport/recordsreport.py:188
 msgid "Use call name"
 msgstr "Använd tilltalsnamn"
 
-#: ../gramps/plugins/textreport/recordsreport.py:158
+#: ../gramps/plugins/textreport/recordsreport.py:190
 msgid "Don't use call name"
 msgstr "Använd inte tilltalsnamn"
 
-#: ../gramps/plugins/textreport/recordsreport.py:159
+#: ../gramps/plugins/textreport/recordsreport.py:191
 msgid "Replace first names with call name"
 msgstr "Byt ut förnamn mot tilltalsnamn"
 
-#: ../gramps/plugins/textreport/recordsreport.py:160
+#: ../gramps/plugins/textreport/recordsreport.py:192
 msgid "Underline call name in first names / add call name to first name"
 msgstr ""
 "Stryk under tilltalsnamn bland förnamn / lägg till tilltalsnamn till förnamn"
 
-#: ../gramps/plugins/textreport/recordsreport.py:163
+#: ../gramps/plugins/textreport/recordsreport.py:195
 msgid "Footer text"
 msgstr "Fottext"
 
-#: ../gramps/plugins/textreport/recordsreport.py:169
+#: ../gramps/plugins/textreport/recordsreport.py:203
 msgid "Person Records"
 msgstr "Personposter"
 
-#: ../gramps/plugins/textreport/recordsreport.py:171
+#: ../gramps/plugins/textreport/recordsreport.py:205
 msgid "Family Records"
 msgstr "Familjeposter"
 
-#: ../gramps/plugins/textreport/recordsreport.py:209
+#: ../gramps/plugins/textreport/recordsreport.py:240
 msgid "The style used for the report title."
 msgstr "Mall som används för rapporttiteln."
 
-#: ../gramps/plugins/textreport/recordsreport.py:221
+#: ../gramps/plugins/textreport/recordsreport.py:252
 msgid "The style used for the report subtitle."
 msgstr "Mall som används för rapportundertitel."
 
-#: ../gramps/plugins/textreport/recordsreport.py:230
+#: ../gramps/plugins/textreport/recordsreport.py:261
 msgid "The style used for headings."
 msgstr "Mall som används för rubriker."
 
-#: ../gramps/plugins/textreport/recordsreport.py:248
+#: ../gramps/plugins/textreport/recordsreport.py:279
 #: ../gramps/plugins/textreport/simplebooktitle.py:186
 msgid "The style used for the footer."
 msgstr "Mall som används för sidfoten."
@@ -25901,6 +26220,11 @@ msgid ""
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?title="
 "GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 msgstr ""
+"OsmGpsMap modulen ej laddad. Geografi-functionalittet kommer aj att vara "
+"tillgängligt.\n"
+"För att åstadkomma det för Gramps se http://www.gramps-project.org/wiki/index."
+"php?"
+"title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 
 #: ../gramps/plugins/view/geography.gpr.py:71
 msgid "All known places for one Person"
@@ -26205,8 +26529,6 @@ msgstr "En person har befunnits vara sin egen förfader."
 #: ../gramps/plugins/view/pedigreeview.py:1546
 #: ../gramps/plugins/webreport/narrativeweb.py:4081
 #: ../gramps/plugins/webreport/webcal.py:538
-#: ../gramps/webapp/grampsdb/views.py:127
-#: ../gramps/webapp/grampsdb/views.py:136
 msgid "Home"
 msgstr "Hem"
 
@@ -26271,22 +26593,6 @@ msgstr "Expanderad"
 #: ../gramps/plugins/view/pedigreeview.py:2011
 msgid "Tree direction"
 msgstr "Trädriktning"
-
-#: ../gramps/plugins/view/pedigreeview.py:2013
-msgid "Vertical (↓)"
-msgstr "Vertikal (↓)"
-
-#: ../gramps/plugins/view/pedigreeview.py:2014
-msgid "Vertical (↑)"
-msgstr "Vertikal (↑)"
-
-#: ../gramps/plugins/view/pedigreeview.py:2015
-msgid "Horizontal (→)"
-msgstr "Horisontell (→)"
-
-#: ../gramps/plugins/view/pedigreeview.py:2016
-msgid "Horizontal (←)"
-msgstr "Horisontell (←)"
 
 #: ../gramps/plugins/view/pedigreeview.py:2018
 msgid "Tree size"
@@ -28080,56 +28386,6 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:159
 msgid "No style sheet"
 msgstr "Inget mallblad"
-
-#: ../gramps/webapp/grampsdb/view/family.py:43
-msgid "Familes"
-msgstr "Familjer"
-
-#: ../gramps/webapp/grampsdb/view/person.py:328
-msgid "Names"
-msgstr "Namn"
-
-#: ../gramps/webapp/grampsdb/view/person.py:462
-#: ../gramps/webapp/grampsdb/view/person.py:468
-#: ../gramps/webapp/grampsdb/view/person.py:470
-#: ../gramps/webapp/grampsdb/views.py:478
-#: ../gramps/webapp/grampsdb/views.py:480
-#: ../gramps/webapp/grampsdb/views.py:488
-#: ../gramps/webapp/grampsdb/views.py:496
-#: ../gramps/webapp/grampsdb/views.py:504
-#: ../gramps/webapp/grampsdb/views.py:512
-#: ../gramps/webapp/grampsdb/views.py:520
-#: ../gramps/webapp/grampsdb/views.py:528
-#: ../gramps/webapp/grampsdb/views.py:536
-#: ../gramps/webapp/grampsdb/views.py:544
-#: ../gramps/webapp/grampsdb/views.py:552
-#: ../gramps/webapp/grampsdb/views.py:560
-#, python-format
-msgid "Requested %s does not exist."
-msgstr "Begärd %s finns inte"
-
-#: ../gramps/webapp/grampsdb/views.py:74
-#: ../gramps/webapp/grampsdb/views.py:153
-#: ../gramps/webapp/grampsdb/views.py:472
-msgid "Browse"
-msgstr "Bläddra"
-
-#: ../gramps/webapp/grampsdb/views.py:76
-#: ../gramps/webapp/grampsdb/views.py:171
-msgid "User"
-msgstr "Användare"
-
-#: ../gramps/webapp/grampsdb/views.py:167
-msgid "Requested user not found."
-msgstr "Önskad användare saknas."
-
-#: ../gramps/webapp/grampsdb/views.py:174
-msgid "Requested page is not accessible."
-msgstr "Önskad sida är ej åtkomlig."
-
-#: ../gramps/webapp/grampsdb/views.py:587
-msgid "Requested page type not known"
-msgstr "Önskad sidotyp är okänd"
 
 #: ../gramps/gui/glade/addmedia.glade:173
 #: ../gramps/gui/glade/editcitation.glade:477
@@ -30506,7 +30762,7 @@ msgstr "Maximalt antal år m_ellan barn"
 msgid "Maximum _span of years for all children"
 msgstr "Maximal ålders_skillnad för alla barn"
 
-#: ../data/tips.xml.in.h:1
+#: ../src/data/tips.xml.in.h:1
 msgid ""
 "<b>Working with Dates</b><br/>A range of dates can be given by using the "
 "format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also "
@@ -30514,47 +30770,47 @@ msgid ""
 "different calendars. Try the button next to the date field in the Events "
 "Editor."
 msgstr ""
-"<b>Arbeta med datum</b><br/>Ett datumintervall kan ges geom att använda "
-"formatet &quot;mellan 4 january 2000 och 20 mars 2003&quot;. Du kan även "
-"indikera konfidensnivån på ett datum samt även välja mellan flera olika "
+"<b>Arbeta med datum</b><br/>Ett datumintervall kan ges genom att använda "
+"formatet &quot;mellan 4 januari 2000 och 20 mars 2003&quot;. Du kan även "
+"indikera konfidensintervall på ett datum samt även välja mellan flera olika "
 "kalendrar. Prova knappen bredvid datumfältet i händelseredigeraren."
 
-#: ../data/tips.xml.in.h:2
+#: ../src/data/tips.xml.in.h:2
 msgid ""
 "<b>Editing Objects</b><br/>In most cases double clicking on a name, source, "
 "place or media entry will bring up a window to allow you to edit the object. "
 "Note that the result can be dependent on context. For example, in the Family "
 "View clicking on a parent or child will bring up the Relationship Editor."
 msgstr ""
-"<b>Redigera objekt</b><br/>I de flesta fallen kan du genom att dubbelklicka "
+"<b>Redigera objekt</b><br/>Vanligen kan du genom att dubbelklicka "
 "på en namn-, käll-, plats- eller mediapost få fram ett fönster, där du kan "
-"redigera objektet. Lägg märke till att resultatet kan vara beroende av "
-"sammanhanget. Om du exempelvis klickar på en förälder eller ett barn i "
+"redigera objektet. Notera att resultatet kan vara beroende av "
+"sammanhang. Om du exempelvis klickar på en förälder eller ett barn i "
 "familjevyn så kommer släktskapsredigeraren fram."
 
-#: ../data/tips.xml.in.h:3
+#: ../src/data/tips.xml.in.h:3
 msgid ""
 "<b>Adding Images</b><br/>An image can be added to any gallery or the Media "
 "View by dragging and dropping it from a file manager or a web browser. "
 "Actually you can add any type of file like this, useful for scans of "
 "documents and other digital sources."
 msgstr ""
-"<b>Lägga till bilder</b><br/>En bild kan läggas till i valfritt galleri eller "
-"i mediavyn genom att dra och släppa den från en filhanterare eller en "
+"<b>Lägga till bilder</b><br/>En bild kan läggas till i valfritt galleri "
+"eller i mediavyn genom att dra och släppa den från en filhanterare eller en "
 "webbläsare. Du kan på detta sätt lägga till vilken filtyp som helst, "
 "användbart för inskannade dokument och andra digitala källor."
 
-#: ../data/tips.xml.in.h:4
+#: ../src/data/tips.xml.in.h:4
 msgid ""
 "<b>Ordering Children in a Family</b><br/>The birth order of children in a "
 "family can be set by using drag and drop. This order is preserved even when "
 "they do not have birth dates."
 msgstr ""
 "<b>Sortering av barn inom en familj</b><br/>Barns födelseordning i en familj "
-"kan bestämmas genom att utnyttja drag och släpp. Denna ordning bibehålls även "
-"om de sakna födelsedatum."
+"kan bestämmas genom att utnyttja drag och släpp. Denna ordning behålls "
+"även om födelsedatum saknas."
 
-#: ../data/tips.xml.in.h:5
+#: ../src/data/tips.xml.in.h:5
 msgid ""
 "<b>Talk to Relatives Before It Is Too Late</b><br/>Your oldest relatives can "
 "be your most important source of information. They usually know things about "
@@ -30565,68 +30821,70 @@ msgid ""
 msgstr ""
 "<b>Prata med släktingar innan det är för sent</b><br/>Dina äldsta släktingar "
 "kan vara din viktigaste källa till information. De vet oftast saker om "
-"familjen som inte har blivit nedtecknade. De kan berätta guldkorn om "
-"personer, som kanske någon gång leder till en ny forskningsfält. I vilket "
-"fall kommer du att få höra några fantastiska berättelser. Glöm inte att "
-"skriva ned eller spela in diskussionerna!"
+"familjen som inte blivit nedtecknade. De kan berätta guldkorn om "
+"personer, som kanske någon gång leder till ett nytt forskningsuppslag. Hur "
+"som "
+"helst så kommer du att få höra några fantastiska berättelser. Glöm inte att "
+"skriva ned eller spela in!"
 
-#: ../data/tips.xml.in.h:6
-#, fuzzy
+#: ../src/data/tips.xml.in.h:6
 msgid ""
 "<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
 "based on many criteria. To define a new filter go to &quot;Edit &gt; Person "
-"Filter Editor&quot;. There you can name your filter and add and combine rules "
-"using the many preset rules. For example, you can define a filter to find all "
-"adopted people in the family tree. People without a birth date mentioned can "
-"also be filtered. To get the results save your filter and select it at the "
-"bottom of the Filter Sidebar, then click Apply. If the Filter Sidebar is not "
-"visible, select View &gt; Filter."
+"Filter Editor&quot;. There you can name your filter and add and combine "
+"rules using the many preset rules. For example, you can define a filter to "
+"find all adopted people in the family tree. People without a birth date "
+"mentioned can also be filtered. To get the results save your filter and "
+"select it at the bottom of the Filter Sidebar, then click Apply. If the "
+"Filter Sidebar is not visible, select View &gt; Filter."
 msgstr ""
-"<b>Filtrera personer</b><br/>I personvyn kan du 'filtrera' personer baserat "
-"på många kriterier. För att skapa ett nytt filter går du &quot; Redigera %gt; "
-"Personfilterredigerare&quot;. Där kan du namnge ditt filter och lägga till "
-"och kombinera regler genom att använda många fördefinierade regler. Till "
-"exempel kan alla adopterade personer i släktträdet hittas. Personer utan "
-"noterat födelsedatum kan också filtreras. För att få resultaten, spara ditt "
-"filter och välj det sedan nertill på filtersidopanelen samt klicka på "
-"Tillämpa. Om filtersidopanelen inte är synliga, så aktivera dem genom att "
+"<b>Personfiltrering</b><br/>I personvyn kan du 'filtrera' individer efter "
+"flera "
+"olika kriterier. För att skapa ett nytt filter går du till &quot; Redigera "
+"%gt; Personfilter redigeraren&quot;. Där kan du namnge ditt filter och lägga "
+"till och kombinera regler genom att använda många fördefinierade regler. "
+"Till exempel kan alla adopterade personer i släktträdet hittas. Personer "
+"utan noterat födelsedatum kan också filtreras. För att få resultaten, spara "
+"ditt filter och välj det sedan nertill på filtersidopanelen samt klicka på "
+"Tillämpa. Om filtersidopanelen inte syns, så aktivera genom att "
 "välja <b>Visa &gt; Filter</b>."
 
-#: ../data/tips.xml.in.h:7
+#: ../src/data/tips.xml.in.h:7
 msgid ""
 "<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-"'invert' option. For instance, by inverting the 'People with children' filter "
-"you can select all people without children."
+"'invert' option. For instance, by inverting the 'People with children' "
+"filter you can select all people without children."
 msgstr ""
 "<b>Inverterad filtrering</b><br/>Det är enkelt att få omvända filterresultat "
-"genom att använda alternativet 'invertera'. Om du till exempel inverterar det "
-"förinställda filtret 'personer med barn', så kan du välja alla personer utan "
-"barn."
+"genom att välja 'invertera'. Om du till exempel inverterar "
+"filtret 'personer med barn', så väljs bara personer utan barn."
 
-#: ../data/tips.xml.in.h:8
+#: ../src/data/tips.xml.in.h:8
 msgid ""
 "<b>Locating People</b><br/>By default, each surname in the People View is "
 "listed only once. By clicking on the arrow to the left of a name, the list "
-"will expand to show all individuals with that last name. To locate any Family "
-"Name from a long list, select a Family Name (not a person) and start typing. "
-"The view will jump to the first Family Name matching the letters you enter."
+"will expand to show all individuals with that last name. To locate any "
+"Family Name from a long list, select a Family Name (not a person) and start "
+"typing. The view will jump to the first Family Name matching the letters you "
+"enter."
 msgstr ""
 "<b>Hitta personer</b><br/>Som standard listas varje efternamn i personvyn "
 "endast en gång. Genom att klicka på pilen till vänster om ett namn, utvidgas "
 "listan så att alla personer med det efternamnet visas. För att hitta ett "
-"familjenamn i en lång lista väljs ett familjenamn (ej personnamn) och börja "
-"skriv in det du söker men gör det ganska långsamt. Vyn kommer att flyttas "
-"till det familjenamn som passar de bokstäver di skriver in."
+"visst "
+"familjenamn i en lång lista så välj familjenamnet (ej en person) och börja "
+"skriv in namnet du söker men gör det ganska långsamt. Vyn kommer att flyttas "
+"till det familjenamn som passar de bokstäver du skriver in."
 
-#: ../data/tips.xml.in.h:9
+#: ../src/data/tips.xml.in.h:9
 msgid ""
 "<b>The Family View</b><br/>The Family View is used to display a typical "
 "family unit as two parents and their children."
 msgstr ""
-"<b>Familjevyn</b><br/>Familjevyn används för att visa en typisk familjeenhet "
-"såsomtvå föräldrar och deras barn."
+"<b>Familjevyn</b><br/>Familjevyn används för att visa en typisk familj "
+"såsom två föräldrar och deras barn."
 
-#: ../data/tips.xml.in.h:10
+#: ../src/data/tips.xml.in.h:10
 msgid ""
 "<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
 "easy. In the Relationship view just click on anyone. In the Ancestry View "
@@ -30634,25 +30892,25 @@ msgid ""
 "siblings, children or parents."
 msgstr ""
 "<b>Ändra aktiv person</b><br/>Att ändra aktiv person i vyer är enkelt. I "
-"Släktskapsvyn klickar du bara på någon. I Antavelvyn dubbelklicka du på "
-"personen eller högerklickar för att kunna välja någon av personens makar, "
+"Släktskapsvyn klickar du bara på någon. I Antavelvyn dubbelklicka på "
+"personen eller högerklicka för att välja make, "
 "syskon, barn eller föräldrar."
 
-#: ../data/tips.xml.in.h:11
+#: ../src/data/tips.xml.in.h:11
 msgid ""
-"<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and exploration "
-"&gt; Compare Individual Events...&quot; you can compare the data of "
-"individuals in your database. This is useful, say, if you wish to list the "
-"birth dates of everyone in your database. You can use a custom filter to "
+"<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and "
+"exploration &gt; Compare Individual Events...&quot; you can compare the data "
+"of individuals in your database. This is useful, say, if you wish to list "
+"the birth dates of everyone in your database. You can use a custom filter to "
 "narrow the results."
 msgstr ""
 "<b>Vem föddes när?</b><br/>Under &quot;Verktyg &gt; Analys och utforskning "
 "&gt; Jämför personliga händelser...&quot; låter dig jämföra data för alla "
 "(eller några) personer i din databas. Detta är användbart om du exempelvis "
-"vill lista födelsedata för alla i din databas. Du kan använda anpassade "
-"filter för får färre resultat."
+"vill lista födelsedata för alla i din databas. Du kan använda "
+"filter för att begränsa resultatet."
 
-#: ../data/tips.xml.in.h:12
+#: ../src/data/tips.xml.in.h:12
 msgid ""
 "<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
 "you to undertake operations such as checking the database for errors and "
@@ -30660,75 +30918,82 @@ msgid ""
 "finding duplicate people, interactive descendant browser, and many others. "
 "All tools can be accessed through the &quot;Tools&quot; menu."
 msgstr ""
-"<b>Gramps verktyg</b><br/>Gramps kommer med en rik uppsättning verktyg. Med "
-"dessa kan du genomföra uppgifter som exempelvis att kontrollera databasen "
-"efter fel och överensstämmelse eller använda forsknings- och analysverktyg "
-"som händelsejämförelse, finn dubblerade personer, interaktiv ättlingsläsare "
-"och andra. Alla verktyg finns åtkomliga från menyn &quot;Verktygs&quot;-menyn."
+"<b>Gramps verktyg</b><br/>Gramps kommer med en stor uppsättning verktyg. Med "
+"dessa kan du exempelvis kontrollera databasen. "
+"Finna fel och inkonsekvenser eller använda forsknings- och analysverktyg "
+"som händelsejämförelse, finna dubblerade personer, interaktiv läsa igenom "
+"(browsing) ättlingar "
+"och mycket mer????. Alla verktyg finns åtkomliga från menyn "
+"&quot;Verktygs&quot;-"
+"menyn."
 
-#: ../data/tips.xml.in.h:13
+#: ../src/data/tips.xml.in.h:13
 msgid ""
 "<b>Calculating Relationships</b><br/>To check if two people in the database "
 "are related (by blood, not marriage) try the tool under &quot;Tools &gt; "
 "Utilities &gt; Relationship Calculator...&quot;. The exact relationship as "
 "well as all common ancestors are reported."
 msgstr ""
-"<b>Beräkna släktskap</b><br/>För att kontrollera om någon annan i släktträdet "
-"är besläktad med dig (genetiskt, ej giftermål) använd verktyget under &quot; "
-"verktyg &gt; Hjälmpmdedl &gt;.Släktskapsberäknare...&quot; Så väl exakt "
-"släktskap som gemensamma anor rapporteras."
+"<b>Undersöka släktskap</b><br/>För att kontrollera om t.ex. någon annan i "
+"släktträdet är besläktad med dig (genom blodsband (genetiskt), ej giftermål) "
+"använd verktyget "
+"under &quot; Verktyg &gt; Hjälpmedel &gt;.Släktskapsberäknare...&quot; Så "
+"väl exakt släktskap som gemensamma anor rapporteras."
 
-#: ../data/tips.xml.in.h:14
+#: ../src/data/tips.xml.in.h:14
 msgid ""
 "<b>SoundEx can help with family research</b><br/>SoundEx solves a long "
-"standing problem in genealogy, how to handle spelling variations. The SoundEx "
-"utility takes a surname and generates a simplified form that is equivalent "
-"for similar sounding names. Knowing the SoundEx Code for a surname is very "
-"helpful for researching Census Data files (microfiche) at a library or other "
-"research facility. To get the SoundEx codes for surnames in your database, go "
-"to &quot;Tools &gt; Utilities &gt; Generate SoundEx Codes...&quot;."
+"standing problem in genealogy, how to handle spelling variations. The "
+"SoundEx utility takes a surname and generates a simplified form that is "
+"equivalent for similar sounding names. Knowing the SoundEx Code for a "
+"surname is very helpful for researching Census Data files (microfiche) at a "
+"library or other research facility. To get the SoundEx codes for surnames in "
+"your database, go to &quot;Tools &gt; Utilities &gt; Generate SoundEx "
+"Codes...&quot;."
 msgstr ""
-"<b>SoundEx kan vara till hjälp i släktforskningen</b><br/>SoundEx löser ett "
+"<b>SoundEx kan vara till hjälp i släktforskning</b><br/>SoundEx löser ett "
 "långvarigt problem i genealogi---hur man ska hantera stavningsvarianter. "
 "Verktyget SoundEx tar ett efternamn och generar en förenklad form, som är "
 "likvärdig för likaljudande namn. Att veta SoundEx-koden för ett efternamn är "
-"till stor hjälp vid efterforskning i censusdatafiler (mikrokort) vid ett "
-"bibliotek eller annan forskningsplats. För att få fram SoundExkoder för "
+"till stor hjälp vid efterforskning i censusdatafiler (mikrokort)."
+"För att få fram SoundExkoder för "
 "efternamn i din databas, gå till &quot;Verktyg &gt; Verktyg &gt; Skapa "
-"SoundExkoder...&quot;. (ö. a. detta är mest användbart i engelskspråkiga "
+"SoundExkoder...&quot;. (ö.a. detta är mest användbart i engelskspråkiga "
 "länder)."
 
-#: ../data/tips.xml.in.h:15
+#: ../src/data/tips.xml.in.h:15
 msgid ""
-"<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; lets "
-"you modify a number of settings, such as the path to your media files, and "
-"allows you to adjust many aspects of the Gramps presentation to your needs. "
-"Each separate view can also be configured under &quot;View &gt; Configure "
-"View...&quot;"
+"<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; "
+"lets you modify a number of settings, such as the path to your media files, "
+"and allows you to adjust many aspects of the Gramps presentation to your "
+"needs. Each separate view can also be configured under &quot;View &gt; "
+"Configure View...&quot;"
 msgstr ""
-"<b>Justering av inställningar</b><br/>&quot;Redigera &gt; "
-"Inställningar...&quot; låter dig ändra ett antal inställningar, som sökväg "
-"till dina mediafiler, och låter dig även justera andra aspekter av Gramps "
-"visninga enligt dina önskemål. varje separat vy kan även ställas in under "
-"&quot;Vy &gt; Inställningsvy...&quot;"
+"<b>Ange inställningar</b><br/>&quot;Redigera &gt; Inställningar..."
+"&quot; låter dig ändra ett antal inställningar, som t.ex. sökväg till dina "
+"mediafiler, och låter dig även justera andra aspekter av Gramps "
+"presentationer "
+"enligt dina önskemål. varje separat vy kan även ställas in under &quot;Vy "
+"&gt; Inställningsvy...&quot;"
 
-#: ../data/tips.xml.in.h:16
-#, fuzzy
+#: ../src/data/tips.xml.in.h:16
 msgid ""
 "<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The "
-"Graphical Reports and Graphs can present complex relationships easily and the "
-"Text Reports are particularly useful if you want to send the results of your "
-"family tree to members of the family via email. If you're ready to make a "
-"website for your family tree then there's a report for that as well."
+"Graphical Reports and Graphs can present complex relationships easily and "
+"the Text Reports are particularly useful if you want to send the results of "
+"your family tree to members of the family via email. If you're ready to make "
+"a website for your family tree then there's a report for that as well."
 msgstr ""
-"<b>Gramps-rapporter</b><br/>Gramps erbjuder ett stort antal rapporter. De "
-"grafiska rapporterna och diagrammen kan visa på komplicerade släktskap på ett "
-"överskådligt sätt.Textrapporterna är särskilt användbara om du vill skicka ut "
-"resultatet av ditt släktträd till medlemmar i släkten via e-post. Om du är "
-"klara för en hemsida för ditt släktträd finns det en rapport för detta också."
+"<b>Gramps-rapporter</b><br/>Gramps erbjuder en stor variation av olika "
+"rapporter. De "
+"grafiska rapporterna och diagrammen kan presentera komplexa släktskap på "
+"ett överskådligt sätt. Textrapporterna är särskilt användbara om du vill "
+"skicka ut detaljer eller helhet av ditt släktträd till medlemmar i släkten "
+"via e-post. "
+"Om du vill göra en hemsida för ditt släktträd finns det en rapport för "
+"detta också."
 
-#: ../data/tips.xml.in.h:17
-#, fuzzy
+#: ../src/data/tips.xml.in.h:17
 msgid ""
 "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
 "is to enter all the members of the family into the database using the Person "
@@ -30736,21 +31001,22 @@ msgid ""
 "button from the People View). Then go to the Relationship View and create "
 "relationships between people."
 msgstr ""
-"<b>Starta ett nytt släktträd</b><br/>Ett bra sätt att starta ett nytt "
-"släktträd är att lägga till alla familjemedlemmar i databasen (använd "
-"&quot;Redigera &gt; Lägg till&quot; eller klicka på Lägg till-knappen under "
+"<b>Börja ett nytt släktträd</b><br/>Ett bra sätt att bygga upp ett nytt "
+"släktträd är att lägga till alla familjemedlemmar i databasen genom att "
+"använda personvyn (använd &quot;"
+"Redigera &gt; Lägg till&quot; eller klicka på Lägg till-knappen under "
 "personmenyn). Gå sedan till släktskapsvyn och definiera relationerna mellan "
 "personerna."
 
-#: ../data/tips.xml.in.h:18
+#: ../src/data/tips.xml.in.h:18
 msgid ""
 "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
 "over a button and a tooltip will appear."
 msgstr ""
 "<b>Vad är det där till för?</b><br/>Osäker på vad en knapp gör? Håll bara "
-"musen över en knapp så kommer ett verktygstips fram."
+"musen över en knapp så visas ett verktygstips."
 
-#: ../data/tips.xml.in.h:19
+#: ../src/data/tips.xml.in.h:19
 msgid ""
 "<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
 "occurred, Gramps allows you to enter a wide range of date formats based on a "
@@ -30762,10 +31028,11 @@ msgstr ""
 "inträffade (till exempel födelse eller död), så kan du i Gramps lägga in ett "
 "brett urval av datumformat baserade på en gissning eller en uppskattning. "
 "Exempelvis är &quot;omkring 1908&quot; ett giltigt format för ett "
-"födelsedatum i Gramps. Se wiki-handboken för en komplett beskrivning av "
+"födelsedatum i Gramps. Se Grampshandboken för mer information.    ???Se "
+"wiki-handboken för en komplett beskrivning av "
 "alternativen för inskrivning av datum."
 
-#: ../data/tips.xml.in.h:20
+#: ../src/data/tips.xml.in.h:20
 msgid ""
 "<b>Duplicate Entries</b><br/>&quot;Tools &gt; Database Processing &gt; Find "
 "Possible Duplicate People...&quot; allows you to locate (and merge) entries "
@@ -30775,12 +31042,12 @@ msgstr ""
 "möjliga dubblerade personer...&quot; kan du finna (och slå samman) poster, "
 "som lagts in i databasen mer än en gång."
 
-#: ../data/tips.xml.in.h:21
+#: ../src/data/tips.xml.in.h:21
 msgid ""
-"<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and "
-"Merge...&quot; allows you to combine separately listed people into one. "
-"Select the second entry by holding the Control key as you click. This is very "
-"useful for combining two databases with overlapping people, or combining "
+"<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge..."
+"&quot; allows you to combine separately listed people into one. Select the "
+"second entry by holding the Control key as you click. This is very useful "
+"for combining two databases with overlapping people, or combining "
 "erroneously entered differing names for one individual. This also works for "
 "the Places, Sources and Repositories views."
 msgstr ""
@@ -30790,53 +31057,55 @@ msgstr ""
 "personer eller för att kombinera felaktigt inskrivna olika namn för en enda "
 "person. Motsvarande gäller även för platser, källor och arkivplatser."
 
-#: ../data/tips.xml.in.h:22
+#: ../src/data/tips.xml.in.h:22
 msgid ""
 "<b>Organising the Views</b><br/>Many of the views can present your data as "
 "either a hierarchical tree or as a simple list. Each view can also be "
 "configured to the way you like it. Have a look to the right of the top "
 "toolbar or under the &quot;View&quot; menu."
 msgstr ""
-"<b>Organisering av vyer</b><br/>Många vyer kan visa dina data antingen i en "
-"hierarkiskt träd eller i en enkel lista. Varje vy kan också ställas in på det "
-"sätt du vill ha det. Titta längst upp till höger på verktygsraden under "
+"<b>Organisering av vyer</b><br/>Många vyer kan visa dina data antingen i ett "
+"hierarkiskt träd eller i en enkel lista. Varje vy kan också ställas in på "
+"det sätt du vill ha det. Titta längst upp till höger på verktygsraden under "
 "&quot;Vy&quot;-menyn. "
 
-#: ../data/tips.xml.in.h:23
+#: ../src/data/tips.xml.in.h:23
 msgid ""
 "<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
-"active objects such as People, Events and . You can move forward and backward "
-"through the list using &quot;Go &gt; Forward&quot; and &quot;Go &gt; "
-"Back&quot; or the arrow buttons."
+"active objects such as People, Events and . You can move forward and "
+"backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go "
+"&gt; Back&quot; or the arrow buttons."
 msgstr ""
 "<b>Navigering bakåt och framåt</b><br/>Gramps har en lista med tidigare "
 "aktiva personer. Du kan gå framåt och bakåt genom listan genom att använda "
 "&quot;Gå &gt; Framåt&quot; och &quot;Gå &gt; Bakåt&quot; eller pilknapparna."
 
-#: ../data/tips.xml.in.h:24
+#: ../src/data/tips.xml.in.h:24
 msgid ""
 "<b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the "
 "keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. "
 "If one exists for a function it is displayed on the right side of the menu."
 msgstr ""
-"<b>Tangentbordsgenvägar</b><br/>Trött på att vara tvungen att ta handen från "
+"<b>Kortkommandon</b><br/>Trött på att vara tvungen att ta handen från "
 "tangentbordet för att använda musen? Många funktioner i Gramps har "
-"kortkommandon på tangentbordet. Om det finns en för en funktion så visas den "
+"kortkommandon via tangenter. Om det finns en för en funktion så visas den "
 "på höger sida i menyn."
 
-#: ../data/tips.xml.in.h:25
+#: ../src/data/tips.xml.in.h:25
 msgid ""
-"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, &quot;Help "
-"&gt; User Manual&quot;. The developers have worked hard to make most "
+"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, &quot;"
+"Help &gt; User Manual&quot;. The developers have worked hard to make most "
 "operations intuitive but the manual is full of information that will make "
 "your time spent on genealogy more productive."
 msgstr ""
-"<b>Read the Manual</b><br/>Glöm inte att läsa Gramps-handboken, &quot;Hjälp "
-"&gt; Användarhandbok&quot;. Utvecklarna har arbetat hårt för att göra de "
-"flesta operationerna intuitiva, men manualen är full av information, som "
-"kommer att göra tiden du lägger på släktforskning mer produktiv."
+"<b>Studera handboken</b><br/>Glöm inte att läsa i Grampshandboken, "
+"&quot;Hjälp "
+"&gt; Användarhandbok&quot;. Utvecklarna har lagt ner mycket energi på att "
+"göra de "
+"flesta operationerna intuitiva. Manualen är full av information, som "
+"kommer att göra din släktforskning mer produktiv."
 
-#: ../data/tips.xml.in.h:26
+#: ../src/data/tips.xml.in.h:26
 msgid ""
 "<b>Adding Children</b><br/>To add children in Gramps there are two options. "
 "You can find one of their parents in the Families View and open the family. "
@@ -30844,11 +31113,12 @@ msgid ""
 "add children (or siblings) from inside the Family Editor."
 msgstr ""
 "<b>Lägga till barn</b><br/>Det finns två möjligheter att lägga till barn i "
-"Gramps . Du kan leta reda på en av dess förälder i Familjevyn och öppna "
+"Gramps . Du kan leta reda på den ena föräldern i Familjevyn och öppna "
 "familjen. Du kan välja att skapa en ny person eller lägga till en befintlig "
-"person. Du kan också lägga till barn (och syskon) inifrån Familjeredigeraren."
+"person. Du kan också lägga till barn (eller syskon) inifrån "
+"Familjeredigeraren."
 
-#: ../data/tips.xml.in.h:27
+#: ../src/data/tips.xml.in.h:27
 msgid ""
 "<b>Editing the Parent-Child Relationship</b><br/> You can edit the "
 "relationship of a child to its parents by double clicking the child in the "
@@ -30858,9 +31128,9 @@ msgstr ""
 "<b>Redigera föräldra-barn-förhållande</b><br/> Du kan redigera förhållande "
 "mellan ett barn och dess föräldrar genom att dubbelklicka på barnet i "
 "Familjeredigeraren. Förhållandet kan vara något av adopterad, födelse, "
-"fosterbarn, inget, fadder, styv eller okänt."
+"fosterbarn, inget, fadder, styv och okänt."
 
-#: ../data/tips.xml.in.h:28
+#: ../src/data/tips.xml.in.h:28
 msgid ""
 "<b>Show All Checkbutton</b><br/>When adding an existing person as a spouse, "
 "the list of people shown is filtered to display only people who could "
@@ -30868,19 +31138,20 @@ msgid ""
 "is wrong in making this choice, you can override the filter by checking the "
 "Show All checkbutton."
 msgstr ""
-"<b>Visa-alla-knappen</b><br/>När en maka/make eller barn läggs till, "
-"filtreras listan med personer så att endast personer där möjlighet finns att "
-"de passar (baserat på datum i databasen). Om Gramps gör fel genom att göra "
-"det valet, så kan du alltid åsidosätta filtreringen genom att markera knappen "
-"&quot;visa alla&quot;."
+"<b>Visa-alla-knappen</b><br/>När en existerande person läggs till som "
+"maka/make "
+"eller barn filtreras personlistan så att endast möjliga personer "
+"kan passa in (baserat på datum i databasen). Om Gramps gör ett felval,"
+" så kan du alltid åsidosätta filtreringen genom att markera "
+"knappen &quot;visa alla&quot;."
 
-#: ../data/tips.xml.in.h:29
+#: ../src/data/tips.xml.in.h:29
 msgid ""
 "<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
-"Gramps. Requesting an enhancement can be done either through the gramps-users "
-"or gramps-devel mailing lists, or by going to http://bugs.gramps-project.org "
-"and creating a Feature Request. Filing a Feature Request is preferred but it "
-"can be good to discuss your ideas on the email lists."
+"Gramps. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by going to http://bugs.gramps-"
+"project.org and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
 msgstr ""
 "<b>Att förbättra Gramps</b><br/>Användare uppmanas att göra förfrågningar om "
 "förbättringar i Gramps. En förfrågan kan göras antingen via e-postlistorna "
@@ -30888,7 +31159,7 @@ msgstr ""
 "förbättring (Feature Request) på http://bugs.gramps-project.org. Den "
 "sistnämnda metoden är att föredra."
 
-#: ../data/tips.xml.in.h:30
+#: ../src/data/tips.xml.in.h:30
 msgid ""
 "<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
 "Check out the gramps-users email list. Many helpful people are on the list, "
@@ -30899,44 +31170,45 @@ msgstr ""
 "<b>Gramps e-postlistor</b><br/>Vill du få svar på dina frågor om Gramps? Ta "
 "en titt på listan gramps-users. Många användare finns på listan, så du har "
 "stor chans att få ett snabbt svar. Om du behöver ställa frågor angående "
-"utvecklingen av Gramps, så försök med gramps-devel. Information om båda "
-"e-postlistorna finns på lists.sf.net."
+"utvecklingen av Gramps, så försök med gramps-devel. Information om båda e-"
+"postlistorna finns på lists.sf.net."
 
-#: ../data/tips.xml.in.h:31
+#: ../src/data/tips.xml.in.h:31
 msgid ""
 "<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
 "programs? Not a problem! A project as large as Gramps requires people with a "
 "wide variety of skills. Contributions can be anything from writing "
 "documentation to testing development versions and helping with the web site. "
-"Start by subscribing to the Gramps developers mailing list, gramps-devel, and "
-"introducing yourself. Subscription information can be found at &quot;Help "
-"&gt; Gramps Mailing Lists&quot;"
+"Start by subscribing to the Gramps developers mailing list, gramps-devel, "
+"and introducing yourself. Subscription information can be found at &quot;"
+"Help &gt; Gramps Mailing Lists&quot;"
 msgstr ""
 "<b>Att bidra till Gramps</b>: Vill du hjälpa till med Gramps men kan inte "
 "programmera? Inget problem. Ett projekt som är så stort som Gramps behöver "
 "personer med en bred uppsättning kunskaper. Bidrag kan variera från att "
-"skriva dokumentation till att testa utvecklingsversioner till att hjälpa till "
-"med webbplatsen. Börja med att anmäla dig till grampsutvecklarnas e-postlista "
-"gramps-devel och presentera dig. Anmälningsinformation finns på &quot; Help "
-"&gt; Gramps Mailing Lists&quot;"
+"skriva dokumentation till att testa utvecklingsversioner till att hjälpa "
+"till med webbplatsen. Börja med att anmäla dig till grampsutvecklarnas e-"
+"postlista gramps-devel och presentera dig. Anmälningsinformation finns på "
+"&quot; Help &gt; Gramps Mailing Lists&quot;"
 
-#: ../data/tips.xml.in.h:32
+#: ../src/data/tips.xml.in.h:32
 msgid ""
-"<b>So What's in a Name?</b><br/>The name Gramps was suggested to the original "
-"developer, Don Allingham, by his father. It stands for <i>Genealogical "
-"Research and Analysis Management Program System</i>. It is a full-featured "
-"genealogy program letting you store, edit, and research genealogical data. "
-"The Gramps database back end is so robust that some users are managing "
-"genealogies containing hundreds of thousands of people."
+"<b>So What's in a Name?</b><br/>The name Gramps was suggested to the "
+"original developer, Don Allingham, by his father. It stands for "
+"<i>Genealogical Research and Analysis Management Program System</i>. It is a "
+"full-featured genealogy program letting you store, edit, and research "
+"genealogical data. The Gramps database back end is so robust that some users "
+"are managing genealogies containing hundreds of thousands of people."
 msgstr ""
-"<b>So vad betyder ett namn?</b><br/>Gramps förselogs av fadern till den "
-"ursprunglige utvecklare, Don Allingham. Gramps kan uttolkas som <i>"
-"Genealogical Research and Analysis Management Program System</i>. Med andra "
-"ord, det är ett personligt släktforskningsprogram där du kan lagra, redigera "
-"och utforska genealogiska uppgifter. Gramps databasmotor är så robust att en "
-"del användare hanterar genealogier innehållande hundratusentals personer."
+"<b>Så vad betyder ett namn?</b><br/>Namnet Gramps föreslogs av den "
+"ursprunglige utvecklare, Don Allinghams far. Gramps kan uttolkas som "
+"<i>Genealogical Research and Analysis Management Program System</i>. Med "
+"andra ord, det är ett personligt släktforskningsprogram där du kan lagra, "
+"redigera och utforska genealogiska uppgifter. Gramps databasmotor är så "
+"robust att en del användare hanterar genealogier innehållande "
+"hundratusentals personer."
 
-#: ../data/tips.xml.in.h:33
+#: ../src/data/tips.xml.in.h:33
 msgid ""
 "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
 "to store the names of frequently used individuals. Selecting a bookmark will "
@@ -30944,28 +31216,29 @@ msgid ""
 "Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. "
 "You can also bookmark most of the other objects."
 msgstr ""
-"<b>Att bokmärka personer</b><br/>Bokmärkesmenyn är ett bekvämt ställe för att "
-"spara personer som man använder ofta. Att klicka på en bokmärkt person gör "
-"att den personen till aktiv person. För att skapa ett bokmärke för en person, "
-"så gör den till aktiv person, gå till &quot;Bokmärke &gt; Lägg till "
+"<b>Att bokmärka personer</b><br/>Bokmärkesmenyn är ett bekvämt ställe för "
+"att spara personer som man använder ofta. Klicka på en bokmärkt person "
+"så aktiveras denna. För att skapa ett bokmärke för en "
+"person, så aktivera denne först, gå sedan till &quot;Bokmärke &gt; Lägg till "
 "bokmärke&quot; eller tryck Ctrl+D. Du kan även utnyttja bokmärken för de "
-"flesta övriga objekten."
+"flesta övriga objekt."
+"bookmark brukar få heta bookmark på svenska också"
 
-#: ../data/tips.xml.in.h:34
+#: ../src/data/tips.xml.in.h:34
 msgid ""
-"<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an invalid "
-"format. Incorrect date formats will show up in Gramps with a reddish "
-"background. You can fix the date using the Date Selection dialog which can be "
-"opened by clicking on the date button. The format of the date is set under "
-"&quot;Edit &gt; Preferences &gt; Display&quot;."
+"<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
+"invalid format. Incorrect date formats will show up in Gramps with a reddish "
+"background. You can fix the date using the Date Selection dialog which can "
+"be opened by clicking on the date button. The format of the date is set "
+"under &quot;Edit &gt; Preferences &gt; Display&quot;."
 msgstr ""
-"<b>Felaktiga datum</b><br/>: Alla skriver någon gång in datum med ogiltiga "
-"format. Felaktiga datumformat kommer att visas med den röda knappen vid sidan "
-"om datumet. Grönt betyder bra och lila betyder acceptabelt. Klicka på den "
-"färgade knappen för att starta dialogrutan för datumval. Datumformatet ställs "
-"in under &quot;Redigera &gt; Inställningar &gt; Visa&quot;."
+"<b>Felaktiga datum</b><br/>: Alla skriver någon gång in datum med ogiltigt "
+"format. Felaktiga datumformat kommer att visas med en rödaktig bakgrund. "
+"Rätta till med hjälp av dialogrutan för datumval. Datumformatet "
+"ställs in under &quot;Redigera &gt; Inställningar &gt; Visa&quot;."
+"hit"
 
-#: ../data/tips.xml.in.h:35
+#: ../src/data/tips.xml.in.h:35
 msgid ""
 "<b>Listing Events</b><br/>Events are added using the editor opened with "
 "&quot;Person &gt; Edit Person &gt; Events&quot;. There is a long list of "
@@ -30973,48 +31246,51 @@ msgid ""
 "field, they will be added to the available events, but not translated."
 msgstr ""
 "<b>Listning av händelser</b><br/>Händelser läggs till genom att använda "
-"redigeraren öppnad med&quot;Person &gt; Redigera person &gt; Händelser&quot;. "
-"Det finns en lång lista med förbestända typer. Du kan lägga till egna "
-"händelsetyper genom att skriva skriva in texten i fältet. De kommer att "
-"läggas till tillgängliga händelser, men blir ej översatta."
+"redigeraren öppnad med&quot;Person &gt; Redigera person &gt; "
+"Händelser&quot;. Det finns en lång lista med förbestämda typer. Du kan lägga "
+"till egna händelsetyper genom att skriva in texten i fältet. De "
+"kommer att läggas till tillgängliga händelser, men blir ej översatta."
+"(Men observera de kan f.n. inte tas bort på ett enkelt sätt/ö.s. anm.). "
 
-#: ../data/tips.xml.in.h:36
+#: ../src/data/tips.xml.in.h:36
 msgid ""
 "<b>Managing Names</b><br/>It is easy to manage people with several names in "
 "Gramps. In the Person Editor select the Names tab. You can add names of "
-"different types and set the prefered name by dragging it to the Prefered Name "
-"section."
+"different types and set the prefered name by dragging it to the Prefered "
+"Name section."
 msgstr ""
-"<b>hantering av namn</b><br/>Det är lätt att hantera personer med flera namn "
+"<b>Hantering av namn</b><br/>Det är lätt att hantera personer med flera namn "
 "i Gramps. I personredigeraren välj namnfliken. Du kan lägga till namn av "
-"olika typer och bestämma det föredragna namnet genom att dra det till lämplig "
-"namnsektion."
+"olika slag. Det namn som önskas dras till "
+"lämplig namnsektion."
 
-#: ../data/tips.xml.in.h:37
+#: ../src/data/tips.xml.in.h:37
 msgid ""
 "<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree "
 "chart. Hold the mouse over an individual to see more information about them "
 "or right click on an individual to access other family members and settings. "
 "Play with the settings to see the different options."
 msgstr ""
-"<b>Antavelsvyn</b><br/>Antavelsvyn visar ett traditionellt antavla. Håll "
+"<b>Antavelsvyn</b><br/>Antavelsvyn visar en traditionell antavla. Håll "
 "musen över personerna för att se mer information om dem eller högerklicka på "
-"en person för att få en meny för snabbåtkomst till deras makar, syskon, barn "
-"eller föräldrar. Prova med olika inställningar för ett se olika val."
+"en person för att få tillgång till andra familjemedlemmar och inställningar "
+"Prova med olika inställningar för ett se de olika valmöjligheterna."
 
-#: ../data/tips.xml.in.h:38
+#: ../src/data/tips.xml.in.h:38
 msgid ""
-"<b>Managing Sources</b><br/>The Sources View shows a list of all sources in a "
-"single window. From here you can edit your sources, merge duplicates and see "
-"which individuals reference each source. You can use filters to group your "
-"sources."
+"<b>Managing Sources</b><br/>The Sources View shows a list of all sources in "
+"a single window. From here you can edit your sources, merge duplicates and "
+"see which individuals reference each source. You can use filters to group "
+"your sources."
 msgstr ""
 "<b>Hantera källor</b><br/>Källvyn visar en lista med alla källor i ett enda "
-"fönster. Dubbelklicka på var och en för att redigera, lägga till notiser och "
-"för att se vilka personer som refererar till källan. Du kan använda filter "
-"till att gruppera dina källor."
+"fönster. Dubbelklicka på var och en för att redigera källor, sammanfoga "
+"dubbletter och "
+"för att se vilka personer som refererar till varje specifik källa. Du kan "
+"använda filter "
+"för att gruppera dina källor."
 
-#: ../data/tips.xml.in.h:39
+#: ../src/data/tips.xml.in.h:39
 msgid ""
 "<b>Managing Places</b><br/>The Places View shows a list of all places in the "
 "database. The list can be sorted by a number of different criteria, such as "
@@ -31024,28 +31300,30 @@ msgstr ""
 "databasen. Listan kan sorteras efter ett antal olika kriterier, som "
 "exempelvis stad/kommun, landskap eller län."
 
-#: ../data/tips.xml.in.h:40
+#: ../src/data/tips.xml.in.h:40
 msgid ""
-"<b>Media View</b><br/>The Media View shows a list of all media entered in the "
-"database. These can be graphic images, videos, sound clips, spreadsheets, "
-"documents, and more."
+"<b>Media View</b><br/>The Media View shows a list of all media entered in "
+"the database. These can be graphic images, videos, sound clips, "
+"spreadsheets, documents, and more."
 msgstr ""
 "<b>Mediavy</b><br/>Mediavyn visar en lista över alla media som lagts in i "
 "databasen. Dessa kan vara grafiska bilder, videoupptagningar, ljudklipp, "
 "kalkylblad, dokument med mera."
 
-#: ../data/tips.xml.in.h:41
+#: ../src/data/tips.xml.in.h:41
 msgid ""
 "<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
 "View. In addition to the many preset filters, Custom Filters can be created "
 "limited only by your imagination. Custom filters are created from &quot;Edit "
 "&gt; Person Filter Editor&quot;."
 msgstr ""
-"<b>Filter</b><br/>Med ett filter kan du begränsa de personer du vill se i "
-"Personvyn. Förutom de många förvalda filtren kan du definiera egna, anpassade "
-"filter. Anpassade filter skapas från &quot;Redigera &gt; Personfilter&quot;."
+"<b>Filter</b><br/>Med ett filter kan du begränsa antalet av de personer du "
+"vill se i "
+"Personvyn. Förutom de många förinställda filtren kan du definiera egna, "
+"anpassade filter. Anpassade filter skapas från &quot;Redigera &gt; "
+"Personfilter&quot;."
 
-#: ../data/tips.xml.in.h:42
+#: ../src/data/tips.xml.in.h:42
 msgid ""
 "<b>The GEDCOM File Format</b><br/>Gramps allows you to import from, and "
 "export to, the GEDCOM format. There is extensive support for the industry "
@@ -31053,108 +31331,115 @@ msgid ""
 "from users of most other genealogy programs. Filters exist that make "
 "importing and exporting GEDCOM files trivial."
 msgstr ""
-"<b>The GEDCOM File Format</b><br/>I Gramps kan du importera från och "
+"<b>Filformatet GEDCOM</b><br/>I Gramps kan du importera från och "
 "exportera till GEDCOM-format. Gramps stödjer industristandarden GEDCOM 5.5, "
 "vilket möjliggör utbyte med många andra släktforskningsprogram. Filter finns "
-"för att göra exportering i GECOM enkel. "
+"för att göra exportering i GEDCOM enkelt. "
 
-#: ../data/tips.xml.in.h:43
-#, fuzzy
+#: ../src/data/tips.xml.in.h:43
 msgid ""
-"<b>The Gramps XML Package</b><br/>You can export your Family Tree as a Gramps "
-"XML Package. This is a compressed file containing your family tree data and "
-"all the media files connected to the database (images for example). This file "
-"is completely portable so is useful for backups or sharing with other Gramps "
-"users. This format has the key advantage over GEDCOM that no information is "
-"ever lost when exporting and importing."
+"<b>The Gramps XML Package</b><br/>You can export your Family Tree as a "
+"Gramps XML Package. This is a compressed file containing your family tree "
+"data and all the media files connected to the database (images for example). "
+"This file is completely portable so is useful for backups or sharing with "
+"other Gramps users. This format has the key advantage over GEDCOM that no "
+"information is ever lost when exporting and importing."
 msgstr ""
-"<b>The Gramps XML Package</b><br/>Du kan konvertera dina data till ett "
-"Gramps-paket, vilket är en komprimerad fil som innehåller dina släktdata och "
-"tar med alla andra filer som används av databasen, exempelvis bilder. Denna "
-"fil är helt portabel så den är användbar för säkerhetskopiering eller för att "
-"dela ut till andra Gramps-användare. Detta formatet har fördelar gentemot "
-"GEDCOM eftersom ingen information någonsin går förlorad vid export och import."
+"<b>Gramps XML filsystem</b><br/>Du kan konvertera dina släktdata till en "
+"XML fil, vilket är en komplett fil i komprimerad form som innehåller din "
+"databas inklusive "
+"alla media filer som används av databasen, exempelvis bilder. Denna "
+"fil är helt portabel så den är användbar för säkerhetskopiering eller för "
+"att dela med andra Gramps-användare. XML formatet har fördelar "
+"gentemot GEDCOM. T.ex. kan ingen information gå förlorad vid export "
+"eller import."
+"hit"
 
-#: ../data/tips.xml.in.h:44
-#, fuzzy
+#: ../src/data/tips.xml.in.h:44
 msgid ""
 "<b>Web Family Tree Format</b><br/>Gramps can export data to the Web Family "
 "Tree (WFT) format. This format allows a family tree to be displayed online "
 "using a single file, instead of many html files."
 msgstr ""
-"<b>Web Family Tree Format/b><br/>Gramps kan exportera data till formatet Web "
-"Family Tree (WFT). Detta format möjliggör visning av ett släktträd online med "
-"hjälp av en enda fil, i stället för många html-filer."
+"<b>Web Family Tree format/b><br/>Gramps kan exportera data till formatet Web "
+"Family Tree (WFT). Detta format möjliggör visning av ett släktträd online "
+"med hjälp av en enda fil, i stället för många html-filer."
 
-#: ../data/tips.xml.in.h:45
-#, fuzzy
+#: ../src/data/tips.xml.in.h:45
 msgid ""
 "<b>Making a Genealogy Website</b><br/>You can easily export your family tree "
 "to a web page. Select the entire database, family lines or selected "
 "individuals to a collection of web pages ready for upload to the World Wide "
 "Web. The Gramps project provides free hosting of websites made with Gramps."
 msgstr ""
-"<b>Making a Genealogy Website</b><br/>Du kan lätt exportera ditt släktträd "
-"till en webbsida. Välj hela databasen, släktlinjer eller valda personer till "
+"<b>Skapa en genealogiwebsida</b><br/>Du kan lätt exportera ditt släktträd "
+"till en webbsida. Välj hela databasen, släktlinjer eller utvalda personer "
+"till "
 "en samling webbsidor, klara för uppladdning till Internet. Gramps "
-"tillhandalhåller plats för hemsidor skapade med Gramps."
+"tillhandahåller gratis plats för hemsidor skapade med Gramps."
 
-#: ../data/tips.xml.in.h:46
+#: ../src/data/tips.xml.in.h:46
 msgid ""
-"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is "
-"to use the Gramps bug tracking system at http://bugs.gramps-project.org"
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
 msgstr ""
-"<b>Raportera fel i Gramps</b><br/>Det bästa sättet att rapportera ett fel i "
-"Gramps är att använda Gramps felrapporteringssystem på adressen "
-"http://bugs.gramps-project.org"
+"<b>Felrapportering</b><br/>Det bästa sättet att rapportera ett fel i "
+"Gramps är att använda Gramps felrapporteringssystem på adressen http://bugs."
+"gramps-project.org"
 
-#: ../data/tips.xml.in.h:47
+#: ../src/data/tips.xml.in.h:47
 msgid ""
-"<b>The Gramps Homepage</b><br/>The Gramps homepage is at "
-"http://gramps-project.org/"
+"<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
+"project.org/"
 msgstr ""
 "<b>Gramps hemsida</b><br/>Gramps hemsida finns på http://gramps-project.org/"
 
-#: ../data/tips.xml.in.h:48
+#: ../src/data/tips.xml.in.h:48
 msgid ""
 "<b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information "
-"secure by allowing you to mark information as private. Data marked as private "
-"can be excluded from reports and data exports. Look for the padlock which "
-"toggles records between private and public."
+"secure by allowing you to mark information as private. Data marked as "
+"private can be excluded from reports and data exports. Look for the padlock "
+"which toggles records between private and public."
 msgstr ""
-"<b>Privat i Gramps</b><br/>Gramps hjälper dig att hålla personlig information "
-"säker genom att låta dig markera information som privat. Data som markerats "
-"som privat, kan utelämnas från rapporter och dataexporteringar. Titta efter "
-"hänglåset, som växlar mellan privat och allmänt."
+"<b>Privat information i Gramps</b><br/>Gramps hjälper dig att hålla "
+"personliga "
+"uppgifter säkra genom att låta dig markera information som privat. Data "
+"som markerats som privat, kan utelämnas från rapporter och "
+"dataexporter. Titta efter hänglåset, som växlar mellan privat och "
+"allmänt."
 
-#: ../data/tips.xml.in.h:49
+#: ../src/data/tips.xml.in.h:49
 msgid ""
 "<b>Keeping Good Records</b><br/>Be accurate when recording genealogical "
 "information. Don't make assumptions while recording primary information; "
 "write it exactly as you see it. Use bracketed comments to indicate your "
 "additions, deletions or comments. Use of the Latin 'sic' is recommended to "
-"confirm the accurate transcription of what appears to be an error in a source."
+"confirm the accurate transcription of what appears to be an error in a "
+"source."
 msgstr ""
-"<b>Vidmakthålla bra data</b><br/>Var korrekt när du antecknar genealogisk "
+"<b>Korrekt hantering av indata</b><br/>Var noggrann när du hanterar "
+"genealogisk "
 "information. Gör inte antaganden när du antecknar förstahandsinformation; "
 "skriv ned det exakt som det står. Använd kommentarer inom hakparenteser för "
 "att indikera det du lägger till, tar bort eller kommenterar. Det "
 "rekommenderas att du använder uttrycket 'sic' (latin) för att bekräfta att "
 "avskriften av något som ser ut som en felaktighet faktiskt är riktig."
 
-#: ../data/tips.xml.in.h:50
+#: ../src/data/tips.xml.in.h:50
 msgid ""
-"<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
+"<b>Additional?? Reports and Tools</b><br/>Additional?? tools and reports can "
+"be added to \"        ändring av mig"
 "Gramps with the &quot;Addon&quot; system. See them under &quot;Help &gt; "
 "Extra Reports/Tools&quot;. This is the best way for advanced users to "
 "experiment and create new functionality."
 msgstr ""
-"<b>Extra rapporter och verktyg</b><br/>Extra rapporter och verktyg kan läggas "
-"till Gramps ned &quot;Tilläggs&quot;-system. Se under &quot;Hjälp &gt; Extra "
-"rapporter och verktyg&quot;. Detta är bästa sättet för kunniga användare att "
-"experimentera och skapa ny funktioner."
+"<b>Ytterligare rapporter och verktyg</b><br/>Nya typer av rapporter och "
+"verktyg kan "
+"läggas till Gramps med &quot;Tilläggs&quot;-system. Se under &quot;Hjälp "
+"&gt; Nya rapporttyper och verktyg&quot;. Detta är bästa sättet för avancerade "
+"användare att experimentera och skapa ny funktioner."
 
-#: ../data/tips.xml.in.h:51
+#: ../src/data/tips.xml.in.h:51
 msgid ""
 "<b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; "
 "Book Report...&quot;, allows you to collect a variety of reports into a "
@@ -31162,146 +31447,151 @@ msgid ""
 "reports, especially when printed."
 msgstr ""
 "<b>Bokrapporter</b><br/> Bokrapporten under &quot;Reports &gt; Böcker &gt; "
-"Bokrapport...&quot;, låter användare samla ett antal olika rapporter i ett "
-"enda dokument. Denna enda rapport är enklare att distribuera än flera "
-"rapporter, särskilt vid utskrift."
+"Bokrapport...&quot;, låter användare samla ett antal olika rapporter till ett "
+"enda dokument. En enda rapport är fördelaktig ur många synpunkter."
 
-#: ../data/tips.xml.in.h:52
+#: ../src/data/tips.xml.in.h:52
 msgid ""
 "<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
 "version of Gramps is released? Join the Gramps-announce mailing list at "
 "&quot;Help &gt; Gramps Mailing Lists&quot;"
 msgstr ""
-"<b>Gramps tillkännagivanden </b><br/>Intresserad av att få ett meddelande när "
-"en Gramps-version släpps? Anmäl dig till e-postlistan Gramps-announce på "
+"<b>Gramps tillkännagivanden </b><br/>Intresserad av att få ett meddelande "
+"när en ny Gramps-version släpps? Anmäl dig till e-postlistan Gramps-announce "
+"på "
 "http://lists.sourceforge.net/lists/listinfo/gramps-announce"
 
-#: ../data/tips.xml.in.h:53
+#: ../src/data/tips.xml.in.h:53
 msgid ""
 "<b>Record Your Sources</b><br/>Information collected about your family is "
 "only as good as the source it came from. Take the time and trouble to record "
 "all the details of where the information came from. Whenever possible get a "
 "copy of original documents."
 msgstr ""
-"<b>Registrera ner dina källor</b><br/>Insamlad information om din familj är "
-"bara så bra som källan den kommer från. Gör dig besväret att skriva ned alla "
+"<b>Registrera dina källor</b><br/>Insamlade familjeuppgifter är "
+"inte bättre än källan de kommer från. Gör dig besväret att skriva ned alla "
 "detaljer om var informationen kommer från. Skaffa en kopia av "
 "originaldokumenten närhelst det är möjligt."
 
-#: ../data/tips.xml.in.h:54
+#: ../src/data/tips.xml.in.h:54
 msgid ""
 "<b>Directing Your Research</b><br/>Go from what you know to what you do not. "
 "Always record everything that is known before making conjectures. Often the "
-"facts at hand suggest plenty of direction for more research. Don't waste time "
-"looking through thousands of records hoping for a trail when you have other "
-"unexplored leads."
+"facts at hand suggest plenty of direction for more research. Don't waste "
+"time looking through thousands of records hoping for a trail when you have "
+"other unexplored leads."
 msgstr ""
-"<b>Forksningsinriktning</b><br/>Gå från det du vet till det du inte vet. "
+"<b>Strategi</b><br/>Gå från det du vet till det du inte vet. "
 "Skriv alltid ned allt som är känt innan du drar slutsatser. Ofta ger "
-"tillgängliga fakta många möjliga inriktningar för vidare forskning. Lägg inte "
-"ned tid på att söka igenom tusentals källor i förhoppning om ett spår när du "
-"har andra outforskade alternativ."
+"tillgängliga fakta många möjliga inriktningar för vidare forskning. Lägg "
+"inte ned tid på att söka igenom tusentals poster (källor) i förhoppning om "
+"ett spår "
+"när du har andra outforskade alternativ."
 
-#: ../data/tips.xml.in.h:55
+#: ../src/data/tips.xml.in.h:55
 msgid ""
 "<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only about "
 "dates and names. It is about people. Be descriptive. Include why things "
 "happened, and how descendants might have been shaped by the events they went "
 "through. Narratives go a long way in making your family history come alive."
 msgstr ""
-"<b>'Hur och varför' om din släktforksning</b><br/>Släktforskning handlar inte "
-"bara om datum och namn. Det handlar om personer. Beskriv utförligt. Ta med "
-"varför saker hände och hur ättlingar kan ha formats av de händelser som de "
-"upplevde. Berättelser betyder mycket för att skapa liv i din familjehistoria."
+"<b>'Hur och varför' beträffande din släkt</b><br/>Släktforskning handlar "
+"inte bara om datum och namn. Det handlar om personer. Beskriv. Ta "
+"med varför saker hände och hur ättlingar kan ha formats av de händelser som "
+"de upplevde. Berättelser betyder mycket för att skapa liv i din "
+"familjehistoria."
 
-#: ../data/tips.xml.in.h:56
+#: ../src/data/tips.xml.in.h:56
 msgid ""
 "<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
 "than 20 languages. If Gramps supports your language and it is not being "
 "displayed, set the default language in your operating system and restart "
 "Gramps."
 msgstr ""
-"<b>talar inte engelska?</b><br/>Gramps har översatts till 20 språk. Om Gramps "
+"<b>Talar ej engelska?</b><br/>Gramps har översatts till 20 språk. Om Gramps "
 "stödjer ditt språk och det inte visas, så ställ in standardspråket på din "
-"maskin och starta om Gramps."
+"dator och starta om Gramps."
 
-#: ../data/tips.xml.in.h:57
+#: ../src/data/tips.xml.in.h:57
 msgid ""
 "<b>Gramps Translators</b><br/>Gramps has been designed so that new "
 "translations can easily be added with little development effort. If you are "
 "interested in participating please email gramps-devel@lists.sf.net"
 msgstr ""
 "<b>Gramps översättare</b><br/>Gramps har konstruerats så att nya "
-"översättningar lätt kan läggas till med lite utvecklingsansträngning. Om du "
+"översättningar lätt kan läggas till med lite utvecklingsarbete. Om du "
 "är intresserad av att deltaga så e-posta till gramps-devel@lists.sf.net"
 
-#: ../data/tips.xml.in.h:58
+#: ../src/data/tips.xml.in.h:58
 msgid ""
 "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
 "Unicode support. Characters for all languages are properly displayed."
 msgstr ""
 "<b>Hello, привет or 喂</b><br/>Gramps tillhandahåller fullständigt stöd för "
-"Unicode. Tecken för alla språk visas på rätt sätt."
+"Unicode. Tecken för alla språk visas korrekt."
 
-#: ../data/tips.xml.in.h:59
+#: ../src/data/tips.xml.in.h:59
 msgid ""
-"<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in Gramps. "
-"Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The home person "
-"is the person who is selected when the database is opened or when the home "
-"button is pressed."
+"<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
+"Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The "
+"home person is the person who is selected when the database is opened or "
+"when the home button is pressed."
 msgstr ""
 "<b>Hempersonen</b><br/>Vem som helst kan väljas som 'hemperson' i Gramps. "
 "Använd &quot;Redigera &gt; Välj hemperson&quot;. Hempersonen är den person "
 "som väljes när databasen öppnas eller när man klickar på hemknappen."
 
-#: ../data/tips.xml.in.h:60
+#: ../src/data/tips.xml.in.h:60
 msgid ""
 "<b>The Gramps Code</b><br/>Gramps is written in a computer language called "
 "Python using the GTK and GNOME libraries for the graphical interface. Gramps "
 "is supported on any computer system where these programs have been ported. "
 "Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
 msgstr ""
-"<b>The Gramps Code</b><br/>Gramps är skrivet i ett programmeringspråk som "
-"heter Python, med hjälp av GTK- och GNOME-bibliotek för det grafiska "
+"<b>Gramps koden</b><br/>Gramps är skrivet i programmeringsspråket "
+"Python, med hjälp av GTK- och GNOME-biblioteken för det grafiska "
 "gränssnittet. Gramps stöds på alla datorsystem, där dessa program är "
-"tillgängliga. Gramps fungerar på Linux, BSD, Solaris, Windows och Mac OS X."
+"tillgängliga. Gramps fungerar tillsammans med Linux, BSD, Solaris, Windows "
+"och Mac OS X."
 
-#: ../data/tips.xml.in.h:61
+#: ../src/data/tips.xml.in.h:61
 msgid ""
 "<b>Open Source Software</b><br/>The Free/Libre and Open Source Software "
 "(FLOSS) development model means Gramps can be extended by any programmer "
 "since all of the source code is freely available under its license. So it's "
 "not just about free beer, it's also about freedom to study and change the "
-"tool. For more about Open Source software lookup the Free Software Foundation "
-"and the Open Source Initiative."
+"tool. For more about Open Source software lookup the Free Software "
+"Foundation and the Open Source Initiative."
 msgstr ""
-"<b>Open Source Software</b><br/>Utvecklingsmodellen för Fria/Libre och öppen "
-"källkodsprogram (FLOSS) kan utvidgas av alla programmerare eftersom hela "
-"källkoden är fritt tillgänglig under dess licens. So det är inte bara fråga "
-"om gratis öl, det är också om frihet att studera och ändra verktyget. För "
-"ytterligare om Open Source software slå upp Free Software Foundation och Open "
-"Source Initiative."
+"<b>Open Source källkod</b><br/>Tanken med Fria/Libre och öppen "
+"källkod (FLOSS) är att den kan utvecklas och byggas på av alla programmerare "
+"eftersom hela "
+"källkoden är fritt tillgänglig under dess licens. Så det är inte bara fråga "
+"om gratis öl, det handlar också om frihet att studera och ändra. För "
+"ytterligare information om Open Source software sök efter Free Software "
+"Foundation och "
+"Open Source Initiative."
 
-#: ../data/tips.xml.in.h:62
+#: ../src/data/tips.xml.in.h:62
 msgid ""
 "<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
 "with others. Gramps is freely distributable under the GNU General Public "
 "License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the "
 "rights and restrictions of this license."
 msgstr ""
-"<b>The Gramps programvarulicens</b><br/>Gramps är fritt distribuerbar under "
+"<b>Gramps programvarulicens</b><br/>Gramps är fritt distribuerbar under "
 "GNU General Public License, se http://www.gnu.org/licenses/licenses.html#GPL "
-"för att läsa meer om rättingheter och begränsningar."
+"för att läsa mer om rättigheter och begränsningar."
 
-#: ../data/tips.xml.in.h:63
+#: ../src/data/tips.xml.in.h:63
 msgid ""
 "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with "
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
-"<b>Gramps för Gnom eller KDE?</b><br/>För Linux-användare fungerar Gramps med "
-"vilken skrivbordsmiljö som helst, så länge som de behövda GTK-biblioteken är "
-"installerade."
+"<b>Gramps för Gnome eller KDE?</b><br/>För Linux-användare fungerar Gramps "
+"med vilken skrivbordsmiljö som helst, så länge som de behövda GTK-"
+"biblioteken är installerade."
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:1
 msgid "Bulgaria"
@@ -31488,29 +31778,63 @@ msgid ""
 "Manage genealogical information, perform genealogical research and analysis"
 msgstr "Hantera genealogiska data, utför genealogisk forskning och analys"
 
+#: gtklist.h:2
+msgid "ANSEL"
+msgstr "ANSEL"
+
+#: gtklist.h:3
+msgid "ANSI (iso-8859-1)"
+msgstr "ANSI (iso-8859-1)"
+
+#: gtklist.h:4
+msgid "ASCII"
+msgstr "ASCII"
+
+#: gtklist.h:5
+msgid "UTF8"
+msgstr "UTF8"
+
+#: gtklist.h:6
+msgid "All rules must apply"
+msgstr "Alla regler måste uppfyllas"
+
+#: gtklist.h:7
+msgid "At least one rule must apply"
+msgstr "Minst en regel måste uppfyllas"
+
+#: gtklist.h:8
+msgid "Exactly one rule must apply"
+msgstr "Endast en regel måste uppfyllas"
+
+#~ msgid " (%(value)s)"
+#~ msgstr " (%(value)s)"
+
+#~ msgid "Familes"
+#~ msgstr "Familjer"
+
+#~ msgid "Names"
+#~ msgstr "Namn"
+
+#~ msgid "Requested %s does not exist."
+#~ msgstr "Begärd %s finns inte"
+
+#~ msgid "Browse"
+#~ msgstr "Bläddra"
+
+#~ msgid "User"
+#~ msgstr "Användare"
+
+#~ msgid "Requested user not found."
+#~ msgstr "Önskad användare saknas."
+
+#~ msgid "Requested page is not accessible."
+#~ msgstr "Önskad sida är ej åtkomlig."
+
+#~ msgid "Requested page type not known"
+#~ msgstr "Önskad sidotyp är okänd"
+
 #~ msgid "To Do"
 #~ msgstr "Att göra"
-
-#~ msgid "All rules must apply"
-#~ msgstr "Alla regler måste uppfyllas"
-
-#~ msgid "At least one rule must apply"
-#~ msgstr "Minst en regel måste uppfyllas"
-
-#~ msgid "Exactly one rule must apply"
-#~ msgstr "Endast en regel måste uppfyllas"
-
-#~ msgid "ANSEL"
-#~ msgstr "ANSEL"
-
-#~ msgid "ANSI (iso-8859-1)"
-#~ msgstr "ANSI (iso-8859-1)"
-
-#~ msgid "ASCII"
-#~ msgstr "ASCII"
-
-#~ msgid "UTF8"
-#~ msgstr "UTF8"
 
 #~ msgid "Provides Textual Translation."
 #~ msgstr "Tillhandahåller en textöversättning."
@@ -31988,158 +32312,11 @@ msgstr "Hantera genealogiska data, utför genealogisk forskning och analys"
 #~ msgid "Could not make database directory: "
 #~ msgstr "Kunde inte skapa databasmappen: "
 
-#~ msgid "PostScript / Helvetica"
-#~ msgstr "PostScript / Helvetica"
-
-#~ msgid "TrueType / FreeSans"
-#~ msgstr "TrueType / FreeSans"
-
-#~ msgid "Bottom, left"
-#~ msgstr "Nederkant, vänster"
-
-#~ msgid "Bottom, right"
-#~ msgstr "Nederkant, höger"
-
-#~ msgid "Top, left"
-#~ msgstr "Överkant, vänster"
-
-#~ msgid "Top, Right"
-#~ msgstr "Överkant, höger"
-
-#~ msgid "Right, bottom"
-#~ msgstr "Höger, nederkant"
-
-#~ msgid "Right, top"
-#~ msgstr "Höger, överkant"
-
-#~ msgid "Left, bottom"
-#~ msgstr "Vänster, nederkant"
-
-#~ msgid "Left, top"
-#~ msgstr "Vänster, överkant"
-
-#~ msgid "Minimal size"
-#~ msgstr "Minsta storlek"
-
-#~ msgid "Fill the given area"
-#~ msgstr "Fyll givet område"
-
 #~ msgid "Use optimal number of pages"
 #~ msgstr "Använd optimalt antal sidor"
 
-#~ msgid "Top"
-#~ msgstr "Överkant"
-
-#~ msgid "Bottom"
-#~ msgstr "Nederkant"
-
-#~ msgid "GraphViz Layout"
-#~ msgstr "GraphViz Layout"
-
-#~ msgid "Choose the font family. If international characters don't show, use FreeSans font. FreeSans is available from: http://www.nongnu.org/freefont/"
-#~ msgstr "Välj teckensnittsfamilj. Om internationella tecken inte visas, så använd FreeSans-teckensnitt. FreeSans finns tillgänglig från: http://www.nongnu.org/freefont/"
-
-#~ msgid "The font size, in points."
-#~ msgstr "Teckenstorleken i punkter."
-
-#~ msgid "Graph Direction"
-#~ msgstr "Riktning för diagram"
-
-#~ msgid "Whether graph goes from top to bottom or left to right."
-#~ msgstr "Huruvida diagrammet går uppifrån och ned eller från vänster till höger."
-
-#~ msgid "Number of Horizontal Pages"
-#~ msgstr "Antal sidor i horisontalled"
-
-#~ msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array horizontally. Only valid for dot and pdf via Ghostscript."
-#~ msgstr "GraphViz kan skapa mycket stora diagram genom att sprida ut grafen över ett rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet horisontellt. Endast giltigt för dot och pdf via Ghostscript."
-
-#~ msgid "Number of Vertical Pages"
-#~ msgstr "Antal sidor i vertikalled"
-
-#~ msgid "GraphViz can create very large graphs by spreading the graph across a rectangular array of pages. This controls the number pages in the array vertically. Only valid for dot and pdf via Ghostscript."
-#~ msgstr "GraphViz kan skapa mycket stora diagram genom att sprida ut grafen över ett rektangulärt fält av sidor. Detta kontrollerar antalet sidor i fältet i vertikalled. Endast giltigt för dot och pdf via Ghostscript."
-
-#~ msgid "Paging Direction"
-#~ msgstr "Sidriktning"
-
-#~ msgid "The order in which the graph pages are output. This option only applies if the horizontal pages or vertical pages are greater than 1."
-#~ msgstr "Den ordning i vilket diagramsidor mats ut. Detta val är tillämpligt om antal horisontella eller vertikala sidor är större än 1."
-
-#~ msgid "GraphViz Options"
-#~ msgstr "GraphViz-alternativ"
-
-#~ msgid "Aspect ratio"
-#~ msgstr "Aspektförhållande"
-
 #~ msgid "Affects greatly how the graph is laid out on the page."
 #~ msgstr "Avgör väsentligt hur grafen placeras på papperet."
-
-#~ msgid "DPI"
-#~ msgstr "DPI"
-
-#~ msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  When creating PostScript or PDF files, use 72 DPI."
-#~ msgstr "Punkter per tum. När bilder, som .gif- eller .png-filer skapas för Internet, försök med tal som 100 eller 300 DPI. För PostScript- eller PDF-filer använd 72 DPI."
-
-#~ msgid "Node spacing"
-#~ msgstr "Nodavstånd"
-
-#~ msgid "The minimum amount of free space, in inches, between individual nodes.  For vertical graphs, this corresponds to spacing between columns.  For horizontal graphs, this corresponds to spacing between rows."
-#~ msgstr "Det minsta fria utrymme, i tum, mellan individuella noder. För vertikala diagram motsvarar detta avståndet mellan kolumner. För horisontella diagram motsvara detta avståndet mellan rader."
-
-#~ msgid "Rank spacing"
-#~ msgstr "Rangordningsavstånd"
-
-#~ msgid "The minimum amount of free space, in inches, between ranks.  For vertical graphs, this corresponds to spacing between rows.  For horizontal graphs, this corresponds to spacing between columns."
-#~ msgstr "Det minsta fria utrymmet, i tum, mellan mellan nivåer. För vertikala diagram motsvarar detta avståndet mellan kolumner. För horisontella diagram motsvara detta avståndet mellan rader."
-
-#~ msgid "Use subgraphs"
-#~ msgstr "Använd underordnade stycken"
-
-#~ msgid "Subgraphs can help GraphViz position spouses together, but with non-trivial graphs will result in longer lines and larger graphs."
-#~ msgstr "Underordnade stycken kan hjälpa GraphViz att placera makar ihop, men kan även orsaka längre linjer och större diagram vid komplicerade sådana."
-
-#~ msgid "Note to add to the graph"
-#~ msgstr "Notis att lägga till grafen"
-
-#~ msgid "This text will be added to the graph."
-#~ msgstr "Den här texten läggs till grafen."
-
-#~ msgid "Note location"
-#~ msgstr "Placering av notis"
-
-#~ msgid "Whether note will appear on top or bottom of the page."
-#~ msgstr "Huruvida notis kommer att placeras i sidans över- eller underkant."
-
-#~ msgid "Note size"
-#~ msgstr "Notisstorlek"
-
-#~ msgid "The size of note text, in points."
-#~ msgstr "Storlek på notis, i punkter."
-
-#~ msgid "PDF (Ghostscript)"
-#~ msgstr "PDF (Ghostscript)"
-
-#~ msgid "PDF (Graphviz)"
-#~ msgstr "PDF (Graphviz)"
-
-#~ msgid "Structured Vector Graphics (SVG)"
-#~ msgstr "Structured Vector Graphics (SVG)"
-
-#~ msgid "Compressed Structured Vector Graphs (SVGZ)"
-#~ msgstr "Compressed Structured Vector Graphs (SVGZ)"
-
-#~ msgid "JPEG image"
-#~ msgstr "JPEG-bild"
-
-#~ msgid "GIF image"
-#~ msgstr "GIF-bild"
-
-#~ msgid "PNG image"
-#~ msgstr "PNG-bild"
-
-#~ msgid "Graphviz File"
-#~ msgstr "Graphviz-fil"
 
 #~ msgid "Report a bug: Step 1 of 5"
 #~ msgstr "Rapportera ett programfel: Steg 1 av 5"
