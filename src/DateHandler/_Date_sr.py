@@ -217,15 +217,15 @@ class DateParserSR(DateParser):
         # match Day.Month.Year.
         self._numeric  = re.compile("((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\.?$")
 
-        _span1 = [u'od', u'од']
-        _span2 = [u'do', u'до']
-        _range1 = [u'između', u'између']
-        _range2 = [u'i', u'и']
-        self._span     = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
-                                   ('|'.join(_span1),'|'.join(_span2)),
+        _span_1 = [u'od', u'од']
+        _span_2 = [u'do', u'до']
+        _range_1 = [u'između', u'између']
+        _range_2 = [u'i', u'и']
+        self._span = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+                                   ('|'.join(_span_1),'|'.join(_span_2)),
                                    re.IGNORECASE)
-        self._range    = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                   ('|'.join(_range1),'|'.join(_range2)),
+        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+                                   ('|'.join(_range_1),'|'.join(_range_2)),
                                    re.IGNORECASE)
 
 #-------------------------------------------------------------------------
