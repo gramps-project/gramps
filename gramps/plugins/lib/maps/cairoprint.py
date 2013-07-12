@@ -58,7 +58,11 @@ class CairoPrintSave():
         This class provides the things needed so as to dump a cairo drawing on
         a context to output
         """
-        self.widthpx = widthpx
+        # We try to adapt the cairo dump to an A4 page.
+        widthpx += 30
+        heightpx += 30
+        self.scale = 100.0
+        self.widthpx = widthpx 
         self.heightpx = heightpx
         self.drawfunc = drawfunc
         self.parent = parent
@@ -73,21 +77,32 @@ class CairoPrintSave():
         operation = Gtk.PrintOperation()
         operation.connect("draw_page", self.on_draw_page)
         operation.connect("preview", self.on_preview)
-        operation.connect("paginate", self.on_paginate)
         operation.set_n_pages(1)
-        #paper_size = Gtk.PaperSize.new(name="iso_a4")
-        ## WHY no Gtk.Unit.PIXEL ?? Is there a better way to convert 
-        ## Pixels to MM ??
-        paper_size = Gtk.PaperSize.new_custom("custom",
-                                              "Custom Size",
-                                              round(self.widthpx * 0.2646),
-                                              round(self.heightpx * 0.2646),
-                                              Gtk.Unit.MM)
         page_setup = Gtk.PageSetup()
-        page_setup.set_paper_size(paper_size)
-        #page_setup.set_orientation(Gtk.PageOrientation.PORTRAIT)
+        if PRINT_SETTINGS is None:
+            PRINT_SETTINGS = Gtk.PrintSettings()
+        page_setup = Gtk.print_run_page_setup_dialog(None, page_setup, PRINT_SETTINGS)
+        paper_size_used = page_setup.get_paper_size()
+        if self.widthpx > self.heightpx:
+            szw = self.widthpx
+            szh = self.heightpx
+        else:
+            szh = self.widthpx
+            szw = self.heightpx
+        height_used = paper_size_used.get_height(Gtk.Unit.POINTS)
+        width_used = paper_size_used.get_width(Gtk.Unit.POINTS)
+        coefx = szw / height_used # width and height depends on the selected page (A4, A3, ...)
+        coefy = szh / width_used
+        if coefx < coefy:
+                self.scale = 100.0 / coefy
+        else:
+                self.scale = 100.0 / coefx
+        PRINT_SETTINGS.set_scale(self.scale)
+        if self.widthpx > self.heightpx:
+            page_setup.set_orientation(Gtk.PageOrientation.LANDSCAPE)
+        else:
+            page_setup.set_orientation(Gtk.PageOrientation.PORTRAIT)
         operation.set_default_page_setup(page_setup)
-        #operation.set_use_full_page(True)
         
         if PRINT_SETTINGS is not None:
             operation.set_print_settings(PRINT_SETTINGS)
@@ -103,7 +118,6 @@ class CairoPrintSave():
             operation.set_default_page_setup(page_setup)
             operation.connect("draw_page", self.on_draw_page)
             operation.connect("preview", self.on_preview)
-            operation.connect("paginate", self.on_paginate)
             # set print settings if it was stored previously
             if PRINT_SETTINGS is not None:
                 operation.set_print_settings(PRINT_SETTINGS)
@@ -118,55 +132,11 @@ class CairoPrintSave():
         cr = context.get_cairo_context()
         self.drawfunc(self.parent, cr)
 
-    def on_paginate(self, operation, context):
-        """Paginate the whole document in chunks.
-           We don't need this as there is only one page, however,
-           we provide a dummy holder here, because on_preview crashes if no 
-           default application is set with gir 3.3.2 (typically evince not installed)!
-           It will provide the start of the preview dialog, which cannot be
-           started in on_preview
-        """
-        finished = True
-        # update page number
-        operation.set_n_pages(1)
-        
-        # start preview if needed
-        if self.preview:
-            self.preview.run()
-            
-        return finished
-
     def on_preview(self, operation, preview, context, parent):
         """Implement custom print preview functionality.
            We provide a dummy holder here, because on_preview crashes if no 
            default application is set with gir 3.3.2 (typically evince not installed)!
         """
-        dlg = Gtk.MessageDialog(parent,
-                                   flags=Gtk.DialogFlags.MODAL,
-                                   type=Gtk.MessageType.WARNING,
-                                   buttons=Gtk.ButtonsType.CLOSE,
-                                   message_format=_('No preview available'))
-        self.preview = dlg
-        self.previewopr = operation
-        #dlg.format_secondary_markup(msg2)
-        dlg.set_title("Map Preview - Gramps")
-        dlg.connect('response', self.previewdestroy)
-        
-        # give a dummy cairo context to Gtk.PrintContext,
-        try:
-            width = int(round(context.get_width()))
-        except ValueError:
-            width = 0
-        try:
-            height = int(round(context.get_height()))
-        except ValueError:
-            height = 0
-        surface = cairo.ImageSurface(cairo.FORMAT_ARGB32, width, height)
-        cr = cairo.Context(surface)
-        context.set_cairo_context(cr, 72.0, 72.0)
-        
-        return True 
+        operation.run(Gtk.PrintOperationAction.PREVIEW, None)
+        return False 
 
-    def previewdestroy(self, dlg, res):
-        self.preview.destroy()
-        self.previewopr.end_preview()

@@ -754,8 +754,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         Print or save the view that is currently shown
         """
         req = self.osm.get_allocation()
-        widthpx = req.width / 0.70
-        heightpx = req.height / 0.70
+        widthpx = req.width
+        heightpx = req.height
         prt = CairoPrintSave(widthpx, heightpx, self.osm.do_draw, self.osm)
         prt.run()
 
