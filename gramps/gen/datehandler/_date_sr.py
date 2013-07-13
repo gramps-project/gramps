@@ -220,12 +220,12 @@ class DateParserSR(DateParser):
         _span_2 = ['do', 'до']
         _range_1 = ['između', 'између']
         _range_2 = ['i', 'и']
-        self._span = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                   ('|'.join(_span_1),'|'.join(_span_2)),
-                                   re.IGNORECASE)
+        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+                                 ('|'.join(_span_1), '|'.join(_span_2)),
+                                 re.IGNORECASE)
         self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                   ('|'.join(_range_1),'|'.join(_range_2)),
-                                   re.IGNORECASE)
+                                 ('|'.join(_range_1), '|'.join(_range_2)),
+                                 re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -271,17 +271,18 @@ class DateDisplaySR_latin(DateDisplay):
         "D. Mesec GGGG.",
         "D. Rb GGGG."
         )
-    
+        # this definition must agree with its "_display_gregorian" method
 
     def _display_gregorian(self, date_val):
         """
         display gregorian calendar date in different format
         """
+        # this must agree with its locale-specific "formats" definition
         year = self._slash_year(date_val[2], date_val[3])
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
-        ## DD.MM.YYYY.
+            # day.month_number.year.
             if date_val[3]:
                 return self.display_iso(date_val)
             else:
@@ -294,7 +295,7 @@ class DateDisplaySR_latin(DateDisplay):
                     #some locale magic already provides the right separator
                     #value = value.replace('/', '.')
         elif self.format == 2:
-            # Day. MON Year.
+            # day. month_abbreviation year.
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = "%s." % year
@@ -302,9 +303,9 @@ class DateDisplaySR_latin(DateDisplay):
                     value = "%s %s." % (self.short_months[date_val[1]], year)
             else:
                 value = "%d. %s %s." % (date_val[0], 
-                                self.short_months[date_val[1]], year)
+                                        self.short_months[date_val[1]], year)
         elif self.format == 3:
-            # Day. MONTH Year.
+            # day. month_name year.
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = "%s." % year
@@ -312,9 +313,9 @@ class DateDisplaySR_latin(DateDisplay):
                     value = "%s %s." % (self.long_months[date_val[1]], year)
             else:
                 value = "%d. %s %s." % (date_val[0], 
-                                self.long_months[date_val[1]], year)
+                                        self.long_months[date_val[1]], year)
         else:
-            # Day RomanMon Year
+            # day. Roman_number_month year.
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = "%s." % year
@@ -322,7 +323,7 @@ class DateDisplaySR_latin(DateDisplay):
                     value = "%s %s." % (self.roman_months[date_val[1]], year)
             else:
                 value = "%d. %s %s." % (date_val[0],
-                                self.roman_months[date_val[1]], year)
+                                        self.roman_months[date_val[1]], year)
         if date_val[2] < 0:
             return self._bce_str % value
         else:

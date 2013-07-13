@@ -141,6 +141,8 @@ class DateDisplayFI(DateDisplay):
         "VVVV-KK-PP (ISO)", 
         "PP.KK.VVVV"
         )
+        # this must agree with DateDisplayEn's "formats" definition
+        # (since no locale-specific _display_gregorian exists, here)
     
     def display(self, date):
         """

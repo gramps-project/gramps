@@ -103,19 +103,24 @@ class DateDisplay(object):
         )
 
     formats = ("YYYY-MM-DD (ISO)", )
+    # this will be overridden if a locale-specific date displayer exists
 
     calendar = (
         "", "Julian", "Hebrew", "French Republican", 
         "Persian", "Islamic", "Swedish" 
         )
+    # this will be overridden if a locale-specific date displayer exists
 
     newyear = ("", "Mar1", "Mar25", "Sep1")
     
     _mod_str = ("", "before ", "after ", "about ", "", "", "")
+    # this will be overridden if a locale-specific date displayer exists
 
     _qual_str = ("", "estimated ", "calculated ")
+    # this will be overridden if a locale-specific date displayer exists
     
     _bce_str = "%s B.C.E."
+    # this will be overridden if a locale-specific date displayer exists
 
     def __init__(self, format=None):
         self.display_cal = [
@@ -159,6 +164,7 @@ class DateDisplay(object):
     def display(self, date):
         """
         Return a text string representing the date.
+        (will be overridden if a locale-specific date displayer exists)
         """
         mod = date.get_modifier()
         cal = date.get_calendar()
@@ -213,10 +219,13 @@ class DateDisplay(object):
             return value
 
     def _display_gregorian(self, date_val):
+        # this one must agree with DateDisplayEn's "formats" definition
+        # (it may be overridden if a locale-specific date displayer exists)
         year = self._slash_year(date_val[2], date_val[3])
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
+            # numerical
             if date_val[3]:
                 return self.display_iso(date_val)
             else:
@@ -228,7 +237,7 @@ class DateDisplay(object):
                     value = value.replace('%Y', str(abs(date_val[2])))
                     value = value.replace('-', '/')
         elif self.format == 2:
-            # Month Day, Year
+            # month_name day, year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -238,7 +247,7 @@ class DateDisplay(object):
                 value = "%s %d, %s" % (self.long_months[date_val[1]], 
                                        date_val[0], year)
         elif self.format == 3:
-            # MON Day, Year
+            # month_abbreviation day, year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -248,7 +257,7 @@ class DateDisplay(object):
                 value = "%s %d, %s" % (self.short_months[date_val[1]], 
                                        date_val[0], year)
         elif self.format == 4:
-            # Day Month Year
+            # day month_name year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -257,8 +266,9 @@ class DateDisplay(object):
             else:
                 value = "%d %s %s" % (date_val[0], 
                                       self.long_months[date_val[1]], year)
+        # elif self.format == 5:
         else:
-            # Day MON Year
+            # day month_abbreviation year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -277,6 +287,7 @@ class DateDisplay(object):
         return self._display_gregorian(date_val)
 
     def _display_calendar(self, date_val, month_list):
+        # used to display non-Gregorian calendars (Hebrew, Islamic, etc.)
         year = abs(date_val[2])
         if self.format == 0 or self.format == 1:
             return self.display_iso(date_val)
@@ -333,6 +344,7 @@ class DateDisplayEn(DateDisplay):
         "YYYY-MM-DD (ISO)", "Numerical", "Month Day, Year", 
         "MON DAY, YEAR", "Day Month Year", "DAY MON YEAR"
         )
+    # this (English) "formats" must agree with "_display_gregorian" (above)
 
     def __init__(self, format=None):
         """
