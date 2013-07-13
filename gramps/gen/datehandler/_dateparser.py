@@ -23,8 +23,7 @@
 
 """
 Date parsing class. Serves as the base class for any localized
-date parsing class. The default, base class provides parsing for
-English.
+date parsing class. The default base class provides parsing for English.
 """
 
 #-------------------------------------------------------------------------
@@ -145,6 +144,7 @@ class DateParser(object):
     month_to_int = _grampslocale.month_to_int
 
     # modifiers before the date
+    # (overridden if a locale-specific date parser exists)
     modifier_to_int = {
         'before' : Date.MOD_BEFORE, 'bef'    : Date.MOD_BEFORE,
         'bef.'   : Date.MOD_BEFORE, 'after'  : Date.MOD_AFTER,
@@ -227,6 +227,7 @@ class DateParser(object):
         
 
     bce = ["B.C.E.", "B.C.E", "BCE", "B.C.", "B.C", "BC" ]
+    # (overridden if a locale-specific date parser exists)
 
     calendar_to_int = {
         'gregorian'        : Date.CAL_GREGORIAN,
@@ -245,6 +246,7 @@ class DateParser(object):
         'swedish'          : Date.CAL_SWEDISH,
         's'                : Date.CAL_SWEDISH,
         }
+        # (probably overridden if a locale-specific date parser exists)
 
     newyear_to_int = {
         "jan1":  Date.NEWYEAR_JAN1,
@@ -261,6 +263,7 @@ class DateParser(object):
         'calc'       : Date.QUAL_CALCULATED,
         'calculated' : Date.QUAL_CALCULATED,
         }
+        # (overridden if a locale-specific date parser exists)
     
     def __init__(self):
         self.init_strings()

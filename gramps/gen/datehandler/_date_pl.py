@@ -199,6 +199,7 @@ class DateDisplayPL(DateDisplay):
         "RRRR-MM-DD (ISO)", "Numeryczny", "Miesiąc Dzień, Rok",
         "Dzień.Miesiąc.Rok", "Dzień Miesiąc Rok", "Dzień MieRzym Rok"
         )
+        # this definition must agree with its "_display_gregorian" method
     
     roman_months = (
         "",
@@ -217,10 +218,15 @@ class DateDisplayPL(DateDisplay):
         )
 
     def _display_gregorian(self, date_val):
+        """
+        display gregorian calendar date in different format
+        """
+        # this must agree with its locale-specific "formats" definition
         year = self._slash_year(date_val[2], date_val[3])
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
+            # month_number.day.year
             if date_val[3]:
                 return self.display_iso(date_val)
             else:
@@ -229,9 +235,9 @@ class DateDisplayPL(DateDisplay):
                 else:
                     value = self._tformat.replace('%m', str(date_val[0]))
                     value = value.replace('%d', str(date_val[1]))
-                    value = value.replace('%y', str(date_val[2]))
+                    value = value.replace('%Y', str(date_val[2]))
         elif self.format == 2:
-            # Month Day, Year
+            # month_name day, year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -241,7 +247,7 @@ class DateDisplayPL(DateDisplay):
                 value = "%s %d, %s" % (self.long_months[date_val[1]], 
                                        date_val[0], year)
         elif self.format == 3:
-            # Day. Month. Year
+            # day. month_number. year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -250,7 +256,7 @@ class DateDisplayPL(DateDisplay):
             else:
                 value = "%d.%d.%s" % (date_val[0], date_val[1], year)
         elif self.format == 4:
-            # Day Month Year
+            # day month_name year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -260,7 +266,7 @@ class DateDisplayPL(DateDisplay):
                 value = "%d %s %s" % (date_val[0], 
                                       self.long_months[date_val[1]], year)
         else:
-            # Day RomanMon Year
+            # day Roman_number_month year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year

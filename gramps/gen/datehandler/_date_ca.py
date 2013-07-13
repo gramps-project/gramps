@@ -102,7 +102,7 @@ class DateParserCA(DateParser):
         _span_2 = ['fins a']
         _range_1 = ['entre', 'ent\.', 'ent']
         _range_2 = ['i']
-        self._span  = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
+        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
                                  ('|'.join(_span_1), '|'.join(_span_2)), 
                                  re.IGNORECASE)
         self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
@@ -156,6 +156,8 @@ class DateDisplayCA(DateDisplay):
         "AAAA-MM-DD (ISO)", "Numèrica", "Mes Dia, Any", 
         "MES Dia, Any", "Dia Mes, Any", "Dia MES, Any"
         )
+        # this must agree with DateDisplayEn's "formats" definition
+        # (since no locale-specific _display_gregorian exists, here)
     
     def display(self, date):
         """

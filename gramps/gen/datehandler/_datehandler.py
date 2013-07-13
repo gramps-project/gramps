@@ -49,6 +49,7 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay, DateDisplayEn
 from ..constfunc import win, cuni
 from ..const import GRAMPS_LOCALE as glocale
+
 #-------------------------------------------------------------------------
 #
 # Constants 

@@ -30,13 +30,13 @@ Class handling language-specific selection for date parser and displayer.
 #
 #-------------------------------------------------------------------------
 import time
-from ..lib.date import Date
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from ..lib.date import Date
 from . import LANG_TO_DISPLAY, LANG, parser, displayer
 
 #--------------------------------------------------------------
@@ -46,7 +46,7 @@ from . import LANG_TO_DISPLAY, LANG, parser, displayer
 #--------------------------------------------------------------
 def get_date_formats():
     """
-    Return the lists supported formats for date parsers and displayers.
+    Return the list of supported formats for date parsers and displayers.
     """
     try:
         return LANG_TO_DISPLAY[LANG].formats

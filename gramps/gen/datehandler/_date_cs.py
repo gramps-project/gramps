@@ -218,7 +218,8 @@ class DateDisplayCZ(DateDisplay):
         "den. měsíc rok",
         "den. měs rok"
         )
-
+        # this must agree with DateDisplayEn's "formats" definition
+        # (since no locale-specific _display_gregorian exists, here)
 
     def display(self, date):
         """

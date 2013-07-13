@@ -168,7 +168,7 @@ class DateParserBG(DateParser):
         _span_2 = ['до']
         _range_1 = ['между']
         _range_2 = ['и']
-        self._span  = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
+        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
                                  ('|'.join(_span_1), '|'.join(_span_2)), 
                                  re.IGNORECASE)
         self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
@@ -211,6 +211,8 @@ class DateDisplayBG(DateDisplay):
     formats = (
         "ГГГГ-ММ-ДД (ISO)", "Числов", "Месец Ден, Година", "Мес. Ден, Година", "Ден Месец Година", "Ден Мес. Година"
         )
+        # this must agree with DateDisplayEn's "formats" definition
+        # (since no locale-specific _display_gregorian exists, here)
 
     hebrew = ( "", 
         "Тишрей", 

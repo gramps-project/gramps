@@ -226,16 +226,14 @@ class DateParserUK(DateParser):
         _span_1 = ['з', 'від']
         # b.c.e. pattern also have "до" so skip "до н."
         _span_2 = ['по', 'до?!\sн\.']
-        self._span = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                    ('|'.join(_span_1), '|'.join(_span_2)),
-                                    re.IGNORECASE)
         _range_1 = ['між']
         _range_2 = ['і', 'та']
+        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+                                 ('|'.join(_span_1), '|'.join(_span_2)),
+                                 re.IGNORECASE)
         self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                    ('|'.join(_range_1), '|'.join(_range_2)),
-                                    re.IGNORECASE)
-
-
+                                 ('|'.join(_range_1), '|'.join(_range_2)),
+                                 re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -309,6 +307,8 @@ class DateDisplayUK(DateDisplay):
         "день місяць рік",  #4
         "дд міс. рррр"      #5
         )
+        # this must agree with DateDisplayEn's "formats" definition
+        # (since no locale-specific _display_gregorian exists, here)
 
     calendar = (
         "", "юліанський", "єврейський", "французький республіканський",

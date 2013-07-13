@@ -247,6 +247,7 @@ class DateDisplayHR(DateDisplay):
         "D. MMMM GGGG.",
         "D. Rb GGGG."
         )
+        # this definition must agree with its "_display_gregorian" method
     
     roman_months = (
         "",
@@ -268,10 +269,12 @@ class DateDisplayHR(DateDisplay):
         """
         display gregorian calendar date in different format
         """
+        # this must agree with its locale-specific "formats" definition
         year = self._slash_year(date_val[2], date_val[3])
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
+            # numerical
             if date_val[3]:
                 return self.display_iso(date_val)
             else:
@@ -283,7 +286,7 @@ class DateDisplayHR(DateDisplay):
                     value = value.replace('%Y', str(abs(date_val[2])))
                     value = value.replace('-', '/')
         elif self.format == 2:
-            # Day.Month.Year.
+            # day.month_number.year.
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -292,7 +295,7 @@ class DateDisplayHR(DateDisplay):
             else:
                 value = "%s.%d.%s." % (date_val[0], date_val[1], year)
         elif self.format == 3:
-            # Day. MONTH year.
+            # day. month_name year.
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = "%s." % year
@@ -300,9 +303,9 @@ class DateDisplayHR(DateDisplay):
                     value = "%s %s." % (self.long_months[date_val[1]], year)
             else:
                 value = "%d. %s %s." % (date_val[0], 
-                                self.long_months[date_val[1]], year)
+                                        self.long_months[date_val[1]], year)
         else:
-            # Day RomanMon Year
+            # day. Roman_number_month year.
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = "%s." % year
@@ -310,7 +313,7 @@ class DateDisplayHR(DateDisplay):
                     value = "%s %s." % (self.roman_months[date_val[1]], year)
             else:
                 value = "%d. %s %s." % (date_val[0],
-                                self.roman_months[date_val[1]], year)
+                                        self.roman_months[date_val[1]], year)
         if date_val[2] < 0:
             return self._bce_str % value
         else:
