@@ -99,7 +99,7 @@ class DateParserIT(DateParser):
         _span_2 = [u'al', u'a']
         _range_1 = [u'tra', u'fra']
         _range_2 = [u'e']
-        self._span  = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
+        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
                                  ('|'.join(_span_1), '|'.join(_span_2)), 
                                  re.IGNORECASE)
         self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
@@ -153,6 +153,8 @@ class DateDisplayIT(DateDisplay):
         "AAAA-MM-DD (ISO)", "Numerico", "Mese Giorno Anno", 
         "MES Giorno, Anno", "Giorno Mese Anno", "Giorno MES Anno"
         )
+        # this must agree with DateDisplayEn's "formats" definition
+        # (since no locale-specific _display_gregorian exists, here)
     
     def display(self, date):
         """

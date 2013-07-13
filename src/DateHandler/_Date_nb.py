@@ -121,6 +121,8 @@ class DateDisplayNb(DateDisplay):
         u"Dag måned år", 
         u"Dag Mån År", 
         )
+        # this must agree with DateDisplayEn's "formats" definition
+        # (since no locale-specific _display_gregorian exists, here)
 
     calendar = (
         "", 

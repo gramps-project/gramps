@@ -88,7 +88,7 @@ class DateParserSK(DateParser):
         _span_2 = [u'do']
         _range_1 = [u'medzi']
         _range_2 = [u'a']
-        self._span  = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
+        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
                                  ('|'.join(_span_1), '|'.join(_span_2)), 
                                  re.IGNORECASE)
         self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
@@ -125,6 +125,8 @@ class DateDisplaySK(DateDisplay):
         "RRRR-MM-DD (ISO)", "numerický", "Mesiac Deň, Rok", 
         "MES Deň, Rok", "Deň, Mesiac, Rok", "Deň MES Rok"
         )
+        # this must agree with DateDisplayEn's "formats" definition
+        # (since no locale-specific _display_gregorian exists, here)
 
     def display(self, date):
         """

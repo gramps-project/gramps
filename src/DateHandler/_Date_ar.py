@@ -32,15 +32,6 @@ Arabic-specific classes for parsing and displaying dates.
 #-------------------------------------------------------------------------
 from __future__ import unicode_literals
 import re
-import calendar
-
-#-------------------------------------------------------------------------
-#
-# set up logging
-#
-#-------------------------------------------------------------------------
-import logging
-log = logging.getLogger(".DateParser")
 
 #-------------------------------------------------------------------------
 #
@@ -62,7 +53,6 @@ class DateParserAR(DateParser):
     Convert a text string into a Date object. If the date cannot be
     converted, the text string is assigned.
     """
-
 
     # modifiers before the date
     modifier_to_int = {
@@ -147,7 +137,6 @@ class DateParserAR(DateParser):
         "november"   : 11, "december"   : 12,
         }
         
-
     bce = ["قبل الميلاد", "قبل الميلاد", "قبل الميلاد", "قبل الميلاد", "قبل الميلاد", "قبل الميلاد" ]
 
     calendar_to_int = {
@@ -180,26 +169,18 @@ class DateParserAR(DateParser):
     def init_strings(self):
         """
         This method compiles regular expression strings for matching dates.
-        
-        Most of the re's in most languages can stay as is. span and range
-        most likely will need to change. Whatever change is done, this method
-        may be called first as DateParser.init_strings(self) so that the
-        invariant expresions don't need to be repeteadly coded. All differences
-        can be coded after DateParser.init_strings(self) call, that way they
-        override stuff from this method. See DateParserRU() as an example.
         """
-
         DateParser.init_strings(self)
-        # In the following you should translate from and to as in a date
-        # from 2001 to 2004 and then test if it works for LTR        
-        self._span     = re.compile("من\s+(?P<start>.+)\s+إلى\s+(?P<stop>.+)",
-                                    re.IGNORECASE)
-        # In following you must translate bet|bet.|between and 'and' as in a 
-        # date between 2001 and 2002
-        # Here you see between can be written in 3 different ways, you 
-        #can allow the same in arabic
-        self._range    = re.compile("بين\s+(?P<start>.+)\s+و\s+(?P<stop>.+)",
-                                    re.IGNORECASE)
+        _span_1 = [u'من']
+        _span_2 = [u'إلى']
+        _range_1 = [u'بين']
+        _range_2 = [u'و']
+        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+                                 ('|'.join(_span_1), '|'.join(_span_2)),
+                                 re.IGNORECASE)
+        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+                                 ('|'.join(_range_1), '|'.join(_range_2)),
+                                 re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
@@ -261,11 +242,12 @@ class DateDisplayAR(DateDisplay):
         "Oktober", "November", "December"
         )
 
-    #Following are the formats for date display you can set in the preferences
     formats = (
         "YYYY-MM-DD (قياسي)", "عددي", "شهر يوم, سنة", 
         "شهر يوم, سنة", "يوم شهر سنة", "يوم شهر سنة"
         )
+        # this must agree with DateDisplayEn's "formats" definition
+        # (since no locale-specific _display_gregorian exists, here)
     
     calendar = (
         "", "يوليوسي", "عبري", "فرنسي", 
@@ -298,13 +280,11 @@ class DateDisplayAR(DateDisplay):
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            # translate from and to
             return "%s%s %s %s %s%s" % (qual_str, 'من', d1, 'إلى', d2, scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start)
             d2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            # translate between and and
             return "%s%s %s %s %s%s" % (qual_str, 'بين', d1, 'و', d2, scal)
         else:
             text = self.display_cal[date.get_calendar()](start)

@@ -136,14 +136,12 @@ class DateParserLT(DateParser):
         _span_2 = [u'iki']
         _range_1 = [u'tarp']
         _range_2 = [u'ir']
-        self._span     = re.compile(
-            "(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" % 
-            ('|'.join(_span_1), '|'.join(_span_2)), 
-            re.IGNORECASE)
-        self._range    = re.compile(
-            "(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-            ('|'.join(_range_1), '|'.join(_range_2)), 
-            re.IGNORECASE)
+        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+                                 ('|'.join(_span_1), '|'.join(_span_2)),
+                                 re.IGNORECASE)
+        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+                                 ('|'.join(_range_1), '|'.join(_range_2)),
+                                 re.IGNORECASE)
 
 #------------------------------------------------------------------------
 #
@@ -206,32 +204,30 @@ class DateDisplayLT(DateDisplay):
 
     formats = (
         "mmmm-MM-DD (ISO)", "mmmm m. mėnesio diena d.", "Mėn diena, metai")
+        # this definition must agree with its "_display_gregorian" method
 
     def _display_gregorian(self, date_val):
         """
         display gregorian calendar date in different format
         """
+        # this must agree with its locale-specific "formats" definition
         value = self.display_iso(date_val)
         year = self._slash_year(date_val[2], date_val[3])
-
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
-
-            # mmmm m. mėnesio diena d. (YYYY m. month DD d.)
-
+            # mmmm m. mėnesio diena d. (year m. month_name day d.)
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
                 else:
                     value = "%s m. %s" % (year, self.long_months_vardininkas[date_val[1]])
             else:
-                value = "%s m. %s %d d." % (year, self.long_months[date_val[1]],
-                                       date_val[0])
+                value = "%s m. %s %d d." % (year,
+                                            self.long_months[date_val[1]],
+                                            date_val[0])
         elif self.format == 2:
-
-            # MON Day, Year
-
+            # month_abbreviation day, year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -240,8 +236,6 @@ class DateDisplayLT(DateDisplay):
             else:
                 value = "%s %d, %s" % (self.short_months[date_val[1]],
                                        date_val[0], year)
-        
-        
         if date_val[2] < 0:
             return self._bce_str % value
         else:

@@ -221,12 +221,18 @@ class DateDisplayDE(DateDisplay):
         "JJJJ-MM-DD (ISO)", "Numerisch", "Monat Tag Jahr", 
         "MONAT Tag Jahr", "Tag. Monat Jahr", "Tag. MONAT Jahr"
         )
+        # this definition must agree with its "_display_gregorian" method
 
     def _display_gregorian(self, date_val):
+        """
+        display gregorian calendar date in different format
+        """
+        # this must agree with its locale-specific "formats" definition
         year = self._slash_year(date_val[2], date_val[3])
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
+            # day.month_number.year
             if date_val[3]:
                 return self.display_iso(date_val)
             else:
@@ -237,7 +243,7 @@ class DateDisplayDE(DateDisplay):
                     value = value.replace('%d', str(date_val[0]))
                     value = value.replace('%Y', str(date_val[2]))
         elif self.format == 2:
-            # Month Day, Year
+            # month_name day, year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -247,7 +253,7 @@ class DateDisplayDE(DateDisplay):
                 value = "%s %d, %s" % (self.long_months[date_val[1]], 
                                        date_val[0], year)
         elif self.format == 3:
-            # MON Day, Year
+            # month_abbreviation day, year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -257,7 +263,7 @@ class DateDisplayDE(DateDisplay):
                 value = "%s %d, %s" % (self.short_months[date_val[1]], 
                                        date_val[0], year)
         elif self.format == 4:
-            # Day Month Year
+            # day. month_name year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year
@@ -267,7 +273,7 @@ class DateDisplayDE(DateDisplay):
                 value = "%d. %s %s" % (date_val[0], 
                                        self.long_months[date_val[1]], year)
         else:
-            # Day MON Year
+            # day. month_abbreviation year
             if date_val[0] == 0:
                 if date_val[1] == 0:
                     value = year

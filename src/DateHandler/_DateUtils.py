@@ -38,7 +38,7 @@ from DateHandler import LANG_TO_DISPLAY, LANG, parser, displayer
 #--------------------------------------------------------------
 def get_date_formats():
     """
-    Return the lists supported formats for date parsers and displayers.
+    Return the list of supported formats for date parsers and displayers.
     """
     try:
         return LANG_TO_DISPLAY[LANG].formats

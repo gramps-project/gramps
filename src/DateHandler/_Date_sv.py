@@ -126,6 +126,8 @@ class DateDisplaySv(DateDisplay):
         u"Dag månad år", 
         u"DAG MÅN ÅR", 
         )
+        # this must agree with DateDisplayEn's "formats" definition
+        # (since no locale-specific _display_gregorian exists, here)
 
     calendar = (
         u"", 
