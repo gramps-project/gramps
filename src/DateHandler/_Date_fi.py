@@ -139,7 +139,11 @@ class DateDisplayFI(DateDisplay):
 
     formats = (
         "VVVV-KK-PP (ISO)", 
-        "PP.KK.VVVV"
+        "PP.KK.VVVV",
+        "kuukausi päivä, vuosi", 
+        "kuukausi-lyhennys päivä, vuosi",
+        "päivä kuukausi vuosi",
+        "päivä kuukausi-lyhennys vuosi"
         )
         # this must agree with DateDisplayEn's "formats" definition
         # (since no locale-specific _display_gregorian exists, here)
