@@ -139,14 +139,11 @@ class DateDisplayFI(DateDisplay):
 
     formats = (
         "VVVV-KK-PP (ISO)", 
-        "PP.KK.VVVV",
-        "kuukausi päivä, vuosi", 
-        "kuukausi-lyhennys päivä, vuosi",
-        "päivä kuukausi vuosi",
-        "päivä kuukausi-lyhennys vuosi"
+        "PP.KK.VVVV"
         )
-        # this must agree with DateDisplayEn's "formats" definition
-        # (since no locale-specific _display_gregorian exists, here)
+        # normally, this would agree with DateDisplayEn's "formats"
+        # (since no locale-specific _display_gregorian exists, here),
+        # but the locale-specific "display" (below) forces self.format = 1
     
     def display(self, date):
         """
