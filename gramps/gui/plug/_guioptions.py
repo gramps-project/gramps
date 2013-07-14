@@ -1524,7 +1524,7 @@ class GuiSurnameColorOption(Gtk.HBox):
 
         title = _('Select color for %s') % surname
         colour_dialog = Gtk.ColorSelectionDialog(title)
-        colorsel = colour_dialog.colorsel
+        colorsel = colour_dialog.get_color_selection()
         colorsel.set_current_color(colour)
         response = colour_dialog.run()
 
