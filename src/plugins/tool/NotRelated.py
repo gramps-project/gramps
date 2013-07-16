@@ -328,7 +328,7 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
             # remember that we've now seen this person
             self.handlesOfPeopleAlreadyProcessed.add(handle)
 
-            # we have 3 things to do:  find (1) spouses, (2) parents, and (3) children
+            # we have 4 things to do:  find (1) spouses, (2) parents, siblings(3), and (4) children
 
             # step 1 -- spouses
             for familyHandle in person.get_family_handle_list():
@@ -350,7 +350,16 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow.ManagedWindow) :
                   motherHandle not in self.handlesOfPeopleAlreadyProcessed:
                     self.handlesOfPeopleToBeProcessed.add(motherHandle)
 
-            # step 3 -- children
+            # step 3 -- siblings
+            for familyHandle in person.get_parent_family_handle_list():
+                family = self.db.get_family_from_handle(familyHandle)
+                for childRef in family.get_child_ref_list():
+                    childHandle = childRef.ref
+                    if childHandle and \
+                      childHandle not in self.handlesOfPeopleAlreadyProcessed:
+                        self.handlesOfPeopleToBeProcessed.add(childHandle)
+
+            # step 4 -- children
             for familyHandle in person.get_family_handle_list():
                 family = self.db.get_family_from_handle(familyHandle)
                 for childRef in family.get_child_ref_list():
