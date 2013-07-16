@@ -727,6 +727,7 @@
                                 <property name="xalign">0</property>
                                 <property name="yalign">0</property>
                                 <property name="label" translatable="yes">label</property>
+                                <property name="wrap">True</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -744,6 +745,7 @@
                                 <property name="xalign">0</property>
                                 <property name="yalign">0</property>
                                 <property name="label" translatable="yes">label</property>
+                                <property name="wrap">True</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -761,6 +763,7 @@
                                 <property name="xalign">0</property>
                                 <property name="yalign">0</property>
                                 <property name="label" translatable="yes">label</property>
+                                <property name="wrap">True</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
