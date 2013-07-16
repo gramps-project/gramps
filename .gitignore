@@ -2,11 +2,34 @@
 *.py[cod]
 
 # Distutils
+aclocal.m4
+autom4te.cache
+config.log
+config.status
+configure
+Makefile
+Makefile*.in
+install-sh
 MANIFEST
 build/
 dist/
+m4/intltool.m4
+missing
+mkinstalldirs
+py-compile
 
 # Gramps
-data/tips.xml
+src/const.py
+src/data/tips.xml
 src/plugins/lib/holidays.xml
 po/.intltool-merge-cache
+po/stamp-it
+po/POTFILES
+data/gramps.desktop
+data/gramps.keys
+data/gramps.xml
+*.gmo
+data/man/*.[1-8]
+data/man/*/*.[1-8]
+gramps.sh
+intltool-*.in
