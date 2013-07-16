@@ -11,8 +11,8 @@
 
 TOP_DIR=`dirname $PWD`
 TEST_DIR=$TOP_DIR/test
-SRC_DIR=$TOP_DIR/src
-PRG="python gramps.py"
+SRC_DIR=$TOP_DIR/gramps
+PRG="python ../Gramps.py"
 EXAMPLE_XML=$TOP_DIR/example/gramps/example.gramps
 
 REP_DIR=$TEST_DIR/reports
@@ -23,8 +23,8 @@ OPTS="-i $EXAMPLE_XML"
 GRPH_FMT="sxw ps pdf svg"
 TEXT_FMT="sxw pdf kwd abw rtf txt html tex"
 
-GRPH_REP="ancestor_chart2 descend_chart2 fan_chart statistics_chart timeline calendar"
-TEXT_REP="ancestor_report ancestors_report descend_report det_ancestor_report det_descendant_report family_group"
+GRPH_REP="ancestor_chart descend_chart fan_chart statistics_chart timeline calendar"
+TEXT_REP="ancestor_report descend_report det_ancestor_report det_descendant_report family_group"
 
 # Single run with all graphical reports in all formats
 echo ""
