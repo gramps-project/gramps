@@ -1,0 +1,12 @@
+# Python
+*.py[cod]
+
+# Distutils
+MANIFEST
+build/
+dist/
+
+# Gramps
+data/tips.xml
+src/plugins/lib/holidays.xml
+po/.intltool-merge-cache
