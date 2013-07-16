@@ -253,8 +253,21 @@ class Gramps(object):
         from .viewmanager import ViewManager
         from gramps.cli.arghandler import ArgHandler
         from .tipofday import TipOfDay
+        from .dialog import WarningDialog
+        import gettext
 
         register_stock_icons()
+
+        if glocale.lang != 'C' and not gettext.find('gtk30'):
+            LOG.warn("GTK translations missing, GUI will be broken, especially for RTL languages!")
+            WarningDialog(
+               _("Gramps detected an incomplete GTK installation"),
+               _("""GTK translations for the current language (%s) are missing.
+<b>Gramps</b> will proceed nevertheless.
+The GUI will likely be broken as a result, especially for RTL languages!
+
+See the Gramps README documentation for installation prerequisites,
+typically located in /usr/share/doc/gramps.""") % glocale.lang)
 
         dbstate = DbState()
         self.vm = ViewManager(dbstate, config.get("interface.view-categories"))
