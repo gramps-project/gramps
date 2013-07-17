@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2013       Benny Malengier
+# Copyright (C) 2013       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,7 +44,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib.srcattrtype import (SrcAttributeType, REF_TYPE_F, 
                                 REF_TYPE_S, REF_TYPE_L, EMPTY)
-from gramps.gen.lib import SrcAttribute, SrcTemplate
+from gramps.gen.lib import SrcAttribute, SrcTemplate, SrcTemplateList
 from gramps.gen.plug.report.utils import get_address_ref_str
 from ...autocomp import StandardCustomSelector
 from ...widgets.srctemplatetreeview import SrcTemplateTreeView
@@ -137,7 +138,7 @@ class SrcTemplateTab(GrampsTab):
         If title of the source is what we would set with autotitle, we set
         the checkbox to true. Otherwise to False
         """
-        srctemp = SrcTemplate(self.src.get_template())
+        srctemp = SrcTemplateList().get_template_from_name(self.src.get_template())
         srctemp.set_attr_list(self.src.get_attribute_list())
         title = srctemp.title_gedcom()
         if self.src.get_title() == title:
@@ -204,9 +205,9 @@ class TemplateFields(object):
         """
         show_default_cite_fields = False #we don't do this for now
         #obtain the template of the key
-        if SrcTemplate.template_defined(key):
+        if SrcTemplateList().template_defined(key):
             #a predefined template, 
-            template = SrcTemplate.get_template(key)
+            template = SrcTemplateList().get_template_from_name(key).get_structure()
         else:
             return
         

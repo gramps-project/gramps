@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011-2013  Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -46,6 +46,7 @@ from .datebase import DateBase
 from .tagbase import TagBase
 from .srcattrbase import SrcAttributeBase
 from .srctemplate import SrcTemplate
+from .srctemplatelist import SrcTemplateList
 from ..constfunc import cuni, deprecated
 from .handle import Handle
 
@@ -341,7 +342,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject, DateBase):
         """
         attrlist = self.get_attribute_list()
         if templatekey:
-            stemp = SrcTemplate(templatekey)
+            stemp = SrcTemplateList().get_template_from_name(templatekey)
             return stemp.page_gedcom(attrlist)
         else:
             return self.get_name()

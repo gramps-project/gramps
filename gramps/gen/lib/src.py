@@ -37,6 +37,7 @@ from .notebase import NoteBase
 from .tagbase import TagBase
 from .srcattrbase import SrcAttributeBase
 from .srctemplate import SrcTemplate
+from .srctemplatelist import SrcTemplateList
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from ..constfunc import cuni, deprecated
@@ -449,7 +450,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         :rtype: str
         """
         attrlist = self.get_attribute_list()
-        stemp = SrcTemplate(self.get_template())
+        stemp = SrcTemplateList().get_template_from_name(self.get_template())
         
         return stemp.title_gedcom(attrlist)
 
@@ -461,7 +462,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         3. if no template, it defaults to GEDCOM, so AUTHOR will be used
         """
         attrlist = self.get_attribute_list()
-        stemp = SrcTemplate(self.get_template())
+        stemp = SrcTemplateList().get_template_from_name(self.get_template())
         
         return stemp.author_gedcom(attrlist)
 
@@ -473,6 +474,6 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         3. if no template, it defaults to GEDCOM, so PUB_INFO will be used
         """
         attrlist = self.get_attribute_list()
-        stemp = SrcTemplate(self.get_template())
+        stemp = SrcTemplateList().get_template_from_name(self.get_template())
         
         return stemp.pubinfo_gedcom(attrlist)

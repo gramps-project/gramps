@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011-2013  Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,8 +30,7 @@
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import logging
-log = logging.getLogger(".")
-LOG = logging.getLogger(".citation")
+LOG = logging.getLogger(".template")
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +44,7 @@ from gi.repository import Gtk, Gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import NoteType, Source, SrcTemplate, Citation
+from gramps.gen.lib import NoteType, Source, SrcTemplate, Citation, SrcTemplateList
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import media_path_full
 from ..thumbnails import get_thumbnail_image
@@ -69,6 +68,7 @@ from ..glade import Glade
 #
 #-------------------------------------------------------------------------
 
+FIRST = True
 class EditSource(EditPrimary):
 
     def __init__(self, dbstate, uistate, track, source, citation=None,
@@ -83,6 +83,14 @@ class EditSource(EditPrimary):
                     must handle this (corresponds to closing the editor with 
                     nothing made!)
         """
+        # FIXME: Is there a cleaner place to initially load the template data?
+        global FIRST
+        if FIRST:
+            LOG.debug("**** load csv data")
+            from gramps.plugins.srctemplates.importcsv import load_srctemplates_data
+            load_srctemplates_data()
+            LOG.debug("**** csv data loaded\n\n")
+            FIRST = False
         self.srctemp = None
         self.citation = citation
         self.template_tab = None
@@ -350,10 +358,16 @@ class EditSource(EditPrimary):
         """
         #we only construct once the template to use to format information
         if self.srctemp is None:
-            self.srctemp = SrcTemplate(self.obj.get_template())
-        #if source template changed, reinit template
-        if self.obj.get_template() != self.srctemp.get_template_key():
-            self.srctemp.set_template_key(self.obj.get_template())
+            self.srctemp = SrcTemplateList().get_template_from_name(self.obj.get_template())
+        # FIXME: I am not sure what the code below was doing. The SrcTemplate
+        # had been set from the name in the Src record, then a check was made as
+        # to whether the old name from the Src record was the same as the name
+        # of the template. But since the template was found from its name, this
+        # must be the case.
+        
+#        #if source template changed, reinit template
+#        if self.obj.get_template() != self.srctemp.get_template_key():
+#            self.srctemp.set_template_key(self.obj.get_template())
         #set new attrlist in template
         if self.citation_loaded:
             citeattr = self.citation.get_attribute_list()

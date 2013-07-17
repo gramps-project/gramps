@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2013       Benny Malengier
+# Copyright (C) 2013       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,6 +37,14 @@ from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import csv
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger('.template')
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
@@ -43,6 +52,10 @@ import csv
 #-------------------------------------------------------------------------
 from .srcattrtype import *
 from .date import Date
+from .tableobj import TableObject
+from .secondaryobj import SecondaryObject
+from .handle import Handle
+from ..constfunc import cuni
 
 #columns in a csv file defining templates
 NRCOL = 0
@@ -67,171 +80,13 @@ TOOLTIPCOL = 17
 UNKNOWN = 'UNKNOWN'
 DESCR = -10
 
-# the GEDCOM type is predefined and always present. Other templates will be
-# loaded via plugins
-EVIDENCETEMPLATES = {
-        'GEDCOM': {
-            REF_TYPE_L: [
-                ('', SrcAttributeType.AUTHOR, _(''), '.', EMPTY, False, False, EMPTY, GED_AUTHOR,
-                None, None),
-                ('', SrcAttributeType.TITLE, _(''), '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE,
-                None, None),
-                ('', SrcAttributeType.PUB_INFO, _(''), '', EMPTY, False, False, EMPTY, GED_PUBINF,
-                None, None),
-                ],
-            REF_TYPE_F: [
-                ('', SrcAttributeType.AUTHOR, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.TITLE, _(''), ',', STYLE_QUOTE, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.PUB_INFO, _(''), '.', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.DATE, _(''), ' -', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.PAGE, _('Page(s)'), '.', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ],
-            REF_TYPE_S: [
-                ('', SrcAttributeType.AUTHOR, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.DATE, _(''), ' -', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.PAGE, _('Page(s)'), '.', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ],
-            DESCR: '%(first)s - %(sec)s - %(third)s' % {  'first': _('Basic'), 'sec': _('GEDCOM Style'), 'third': _('')},
-            },
-        UNKNOWN: {
-            REF_TYPE_L: [
-                ],
-            REF_TYPE_F: [
-                ],
-            REF_TYPE_S: [
-                ],
-            DESCR: _("Unrecognized Template. Download it's definition."),
-            },
-        }
-
-def load_srctemplates_data():
-    """
-    Loads the srctemplates defined, and returns a dict with template data
-    """
-    from gramps.gen.plug import BasePluginManager
-    bpmgr = BasePluginManager.get_instance()
-    pdatas = bpmgr.get_reg_srctemplates()
-    templatemap = {}
-    
-    for plugin in pdatas:
-        mod = bpmgr.load_plugin(plugin)
-        if mod:
-            csvfilename = mod.csvfile
-            with open(csvfilename, 'rb') as csvfile:
-                templatemap.update(load_srctemplate_csv(csvfile))
-    return templatemap
-
-def load_srctemplate_csv(csvfile):
-    """
-    Loads a template csvfile, and returns a dict with template data
-    Note: csvfile could be a list containing strings!
-    """
-    first = True
-    TYPE2CITEMAP = {}
-    CITE_TYPES = {'F': REF_TYPE_F, 'L': REF_TYPE_L, 'S': REF_TYPE_S}
-    GEDCOMFIELDS = {'A': GED_AUTHOR, 'T': GED_TITLE, 
-                'P': GED_PUBINF, 'D': GED_DATE}
-    SHORTERALG = {'LOC': SHORTERALG_LOC, 'YEAR': SHORTERALG_YEAR,
-              'ETAL': SHORTERALG_ETAL, 'REV.': SHORTERALG_REVERT_TO_DOT}
-    STYLES = {'Quoted': STYLE_QUOTE, 'Italics': STYLE_EMPH,
-          'QuotedCont': STYLE_QUOTECONT, 'Bold': STYLE_BOLD}
-
-    reader = csv.reader(csvfile, delimiter=';')
-    
-    prevtempl = ''
-    newtempl = True
-    for row in reader:
-        if first:
-            #skip first row with headers
-            first=False
-            continue
-
-        if row[CATCOL]:
-            cat = row[CATCOL].strip()
-            cattype = row[CATTYPECOL].strip()
-            types = row[TYPECOL].strip()
-            descr = row[DESCRCOL].strip()
-            source_type = row[IDENTCOL].strip()
-            if prevtempl != source_type:
-                newtempl = True
-                prevtempl = source_type
-            else:
-                newtempl = False
-            if descr:
-                source_descr = '%s - %s - %s (%s)' % (_(cat), _(cattype),
-                                        _(types), _(descr))
-            else:
-                source_descr = '%s - %s - %s' % (_(cat), _(cattype), _(types))
-            if source_type in TYPE2CITEMAP:
-                if not TYPE2CITEMAP[source_type] [DESCR] == source_descr:
-                    raise NotImplementedError, source_type + ' ' + TYPE2CITEMAP[source_type] [DESCR] + ' NOT equal to known description' + source_descr
-                if newtempl:
-                    #the template is new in this csv, but already defined, probably user error
-                    raise NotImplementedError, 'Source template ' + prevtempl + ' is twice defined in the csv.'
-            else:
-                TYPE2CITEMAP[source_type] = {REF_TYPE_L: [], REF_TYPE_F: [],
-                            REF_TYPE_S: [], DESCR: source_descr}
-
-        if row[CITETYPECOL]:
-            #new citation type,
-            cite_type = row[CITETYPECOL].strip()
-            assert cite_type in ['F', 'L', 'S'], str(cite_type)
-            if cite_type == 'S':
-                shortcite = True
-            else:
-                shortcite = False
-            cite_type = CITE_TYPES[cite_type]
-        #add field for template to evidence style
-        field = row[FIELDCOL].strip()
-        field_type = field.replace('[', '').replace(']','').lower().capitalize()
-        #field_type = field.replace(' ', '_').replace("'","")\
-        #             .replace('&','AND').replace('(', '6').replace(')','9')\
-        #             .replace('[', '').replace(']','').replace('/', '_OR_')\
-        #             .replace(',', '').replace('.', '').replace(':', '')\
-        #             .replace('-', '_')
-        
-        #we need to force English SrcAttributeType
-        ifield_type = SrcAttributeType()
-        ifield_type.set_from_xml_str(field_type)
-        ifield_type = int(SrcAttributeType(ifield_type))
-        if ifield_type == SrcAttributeType.CUSTOM:
-            raise NotImplementedError, "field must be a known SrcAttributeType, is " + str(SrcAttributeType(field_type))
-        field_type = ifield_type
-        #field_descr =  field.replace('[', '').replace(']','').lower().capitalize()
-        field_label = row[LABELCOL].strip()
-        #field_label = field_label.replace("'", "\\'")
-        private = False
-        if  row[PRIVACYCOL].strip():
-            private = True
-        optional = False
-        if  row[OPTCOL].strip():
-            optional = True
-        shorteralg = SHORTERALG.get(row[SHORTERCOL].strip()) or EMPTY
-        gedcommap = GEDCOMFIELDS.get(row[GEDCOMCOL].strip()) or EMPTY
-        style = STYLES.get(row[STYLECOL].strip()) or EMPTY
-        hint = row[HINTCOL]
-        tooltip = row[TOOLTIPCOL]
-
-        TYPE2CITEMAP[source_type][cite_type] += [(row[LDELCOL], field_type, 
-                        _(field_label), row[RDELCOL], style, private, optional, 
-                        shorteralg, gedcommap, _(hint), _(tooltip))]
-    return TYPE2CITEMAP
-
 #-------------------------------------------------------------------------
 #
 #  SrcTemplate class
 #
 #-------------------------------------------------------------------------
 
-class SrcTemplate(object):
+class SrcTemplate(TableObject):
     """
     Sources conform to a certain template, which governs their styling when 
     used in reports.
@@ -275,64 +130,115 @@ class SrcTemplate(object):
         7/ the REF_TYPE_L reference maps to GEDCOM fields on export via
            this column. GEDCOM contains Title, Author and Pub.Info field
     """
-    #on import, only default values present, plugins must still be loaded
-    MAP_LOADED = False
-    
     UNKNOWN = UNKNOWN
     
     def __init__(self, template_key=None):
         """
-        Initialize the template from a given key.
-        If key is an integer, EVIDENCETEMPLATES is used of SrtAttrType. 
-        If Key is string, it is first searched as the Key of EVIDENCETEMPLATES,
-        otherwise from xml templates (not implemented yet !!)
+        Create a new Template instance. 
+        
+        After initialization, most data items have empty or null values,
+        including the database handle.
         """
-        SrcTemplate.check_loaded()
-        if template_key is None:
-            template_key = UNKNOWN
-        self.set_template_key(template_key)
+        TableObject.__init__(self)
+        self.handle = ""
+        self.name = ""
+        self.descr = ""
+        self.template_element_list = []
+        self.mapping_list = []
+        self.structure = {REF_TYPE_L: [], REF_TYPE_F: [],
+                          REF_TYPE_S: []}
+        self.empty()
  
-    @staticmethod
-    def check_loaded():
-        """ we load first the map if needed
+    def serialize(self):
         """
-        if not SrcTemplate.MAP_LOADED:
-            EVIDENCETEMPLATES.update(load_srctemplates_data())
-            SrcTemplate.MAP_LOADED = True
-            
-    @staticmethod
-    def get_templatevalue_default():
-        return 'GEDCOM'
+        Convert the data held in the Template to a Python tuple that
+        represents all the data elements. 
+        
+        This method is used to convert the object into a form that can easily 
+        be saved to a database.
 
-    @staticmethod
-    def template_defined(template_key):
-        """
-        Return True if the given key is known, False otherwise
-        """
-        SrcTemplate.check_loaded()
-        return template_key in EVIDENCETEMPLATES
+        These elements may be primitive Python types (string, integers), 
+        complex Python types (lists or tuples, or Python objects. If the
+        target database cannot handle complex types (such as objects or
+        lists), the database is responsible for converting the data into
+        a form that it can use.
 
-    @staticmethod
-    def all_templates():
-        SrcTemplate.check_loaded()
-        return [x for x in EVIDENCETEMPLATES.keys()]
+        :returns: Returns a python tuple containing the data that should
+            be considered persistent.
+        :rtype: tuple
+        """
+        return (
+            self.handle,
+            self.name,
+            self.descr,
+            [template_element.serialize() for template_element in self.template_element_list],
+            [mapping.serialize() for mapping in self.mapping_list],
+           )
 
-    @staticmethod
-    def template_description(template_key):
+    def to_struct(self):
         """
-        Return True if the given key is known, False otherwise
-        """
-        SrcTemplate.check_loaded()
-        return EVIDENCETEMPLATES[template_key][DESCR]
+        Convert the data held in this object to a structure (eg,
+        struct) that represents all the data elements.
+        
+        This method is used to recursively convert the object into a
+        self-documenting form that can easily be used for various
+        purposes, including diffs and queries.
 
-    @staticmethod
-    def get_template(template_key):
-        """
-        Return True if the given key is known, False otherwise
-        """
-        SrcTemplate.check_loaded()
-        return EVIDENCETEMPLATES[template_key]
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
 
+        :returns: Returns a struct containing the data of the object.
+        :rtype: dict
+        """
+        return {"handle": Handle("Srctemplate", self.handle), 
+                "name": cuni(self.name),
+                "descr": cuni(self.descr),
+                "elements": [e.to_struct() for e in self.template_element_list],
+                "structure": (("%s: %s" % (s, self.structure[s])) for s in self.structure)
+                }
+
+    def get_name(self):
+        return self.name
+    
+    def set_name(self, name):
+        self.name = name
+        
+    def get_descr(self):
+        return self.descr
+    
+    def set_descr(self, descr):
+        self.descr = descr
+        
+    def get_mapping_types_list(self):
+        return self.mapping_types_list
+    
+    def set_mapping_list(self, mapping_list):
+        self.mapping_list = mapping_list
+        
+    def add_mapping(self, mapping):
+        self.mapping_list.append(mapping)
+        
+    def get_template_element_list(self):
+        return self.template_element_list
+    
+    def set_template_element_list(self, template_element_list):
+        self.template_element_list = template_element_list
+
+    def add_template_element(self, template_element):
+        if template_element not in self.template_element_list:
+            self.template_element_list.append(template_element)
+
+    def add_structure_element(self, cite_type, slist):
+        self.structure[cite_type] += slist
+        
+    def get_structure(self):
+        return self.structure
+        
     def empty(self):
         """
         remove all computed data
@@ -345,24 +251,6 @@ class SrcTemplate(object):
         # map is field -> (normal value for ref L, 
         #                  normal value for ref F/S, short value ref S)
         self.attrmap = {}
-
-    def get_template_key(self):
-        """
-        Obtain the current template key used
-        """
-        return self.template_key
-
-    def set_template_key(self, template_key):
-        """
-        Change to the new template key for reference styling
-        """
-        self.empty()
-        self.template_key = template_key
-        if template_key == UNKNOWN or template_key not in EVIDENCETEMPLATES:
-            #for key unknown we use styling according to GEDCOM
-            template_key = 'GEDCOM'
-            
-        self.tempstruct = EVIDENCETEMPLATES[template_key]
 
     def set_attr_list(self, attr_list, attr_list_citation=None, date_citation=None):
         """
@@ -481,8 +369,8 @@ class SrcTemplate(object):
         Construct a derived template reflist for use to construct the gedcom
         page field
         """
-        reflist_F = self.tempstruct[REF_TYPE_F]
-        reflist_L_fields = [field[1] for field in self.tempstruct[REF_TYPE_L]]
+        reflist_F = self.structure[REF_TYPE_F]
+        reflist_L_fields = [field[1] for field in self.structure[REF_TYPE_L]]
         result = []
         for entry in reflist_F:
             if entry[1] in reflist_L_fields:
@@ -502,7 +390,7 @@ class SrcTemplate(object):
         if gedcomfield == GED_PAGE:
             self.__ged_page_reflist()
         else:
-            reflist = self.tempstruct[reftype]
+            reflist = self.structure[reftype]
         # reflist is typically a list like
         # [      ('', AUTHOR, '', ',', EMPTY, False, False, EMPTY, EMPTY, None, None),
         #        ('', TITLE, '', ',', STYLE_QUOTE, False, False, EMPTY, EMPTY, None, None),
@@ -644,3 +532,231 @@ class SrcTemplate(object):
         if attr_list:
             self.set_attr_list(attr_list)
         return self._reference(REF_TYPE_F, GED_PAGE)
+    
+class TemplateElement(SecondaryObject):        
+    """
+    TemplateEelement class.
+
+    This class is for keeping information about each template-element.
+    
+    TemplateElement:
+
+     - template_element_name - English name of the element exactly as it appears
+       in Yates e.g. [WRITER FIRST]
+
+     - name to be displayed in the user interface e.g. 'Name of the first
+       author'
+
+     - hint e.g. "Doe, D.P. & Cameron, E."
+
+     - tooltip e.g. "Give names in following form: 'FirstAuthorSurname, Given
+       Names & SecondAuthorSurname, Given Names'. Like this Gramps can parse the
+       name and shorten as needed."
+
+     - list of Mappings - there would always be a GEDCOM mapping. Also we would
+       expect a CSL mapping
+
+    """
+
+    def __init__(self, source=None):
+        """
+        Create a new TemplateEelement instance, copying from the source if present.
+        """
+        if source:
+            self.name = source.name
+            self.display = source.display
+            self.hint = source.hint
+            self.tooltip = source.tooltip
+            self.template_mapping_list = source.template_mapping_list
+        else:
+            self.name = ""
+            self.display = ""
+            self.hint = ""
+            self.tooltip = ""
+            self.template_mapping_list = []
+        
+    def serialize(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return (self.name,
+                self.display,
+                self.hint,
+                self.tooltip,
+#                [template_mapping.serialize() for template_mapping in self.template_mapping_list]
+               )
+
+    def to_struct(self):
+        """
+        Convert the data held in this object to a structure (eg,
+        struct) that represents all the data elements.
+        
+        This method is used to recursively convert the object into a
+        self-documenting form that can easily be used for various
+        purposes, including diffs and queries.
+
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns a struct containing the data of the object.
+        :rtype: dict
+        """
+        return {"name": cuni(self.name),
+                "display": cuni(self.display),
+                "hint": cuni(self.hint),
+                "tooltip": cuni(self.tooltip),
+                }
+
+    def unserialize(self, data):
+        """
+        Convert a serialized tuple of data to an object.
+        """
+        (self.name, self.type) = data
+        return self
+
+    def get_name(self):
+        """
+        Return the name for the Template element.
+        """
+        return self.name
+
+    def set_name(self, name):
+        """
+        Set the name for the Template element according to the given argument.
+        """
+        self.name = name
+
+    def get_hint(self):
+        """
+        Return the hint for the Template element.
+        """
+        return self.hint
+
+    def set_hint(self, hint):
+        """
+        Set the hint for the Template element according to the given argument.
+        """
+        self.hint = hint
+
+    def get_display(self):
+        """
+        Return the display form for the Template element.
+        """
+        return self.display
+
+    def set_display(self, display):
+        """
+        Set the display form for the Template element according to the given
+        argument.
+        """
+        self.display = display
+        
+    def get_tooltip(self):
+        """
+        Return the tooltip for the Template element.
+        """
+        return self.tooltip
+
+    def set_tooltip(self, tooltip):
+        """
+        Set the tooltip for the Template element according to the given argument.
+        """
+        self.tooltip = tooltip
+        
+    def get_template_mapping_list(self):
+        return self.template_mapping_list
+    
+    def set_template_mapping_list(self, template_mapping_list):
+        self.template_mapping_list = template_mapping_list
+
+    def add_template_mapping(self, template_mapping):
+        self.template_mapping_list.append(template_mapping)
+        
+class MappingElement(SecondaryObject):        
+    """
+    TemplateEelement class.
+
+    This class is for keeping information about how each [input] Template
+    Element is mapped to an Output form.
+    
+    Mapping:
+
+     - Mapping_name - English name of the mapping. One mapping GEDCOM would
+       always be present. Other mappings are optional, but as we have decided
+       that (at least initially) we would use the CSL mapping, then this should
+       also be present). (The mappings should be the same as in the
+       MappingType).
+
+     - map_target - the English interchange-element name onto which this
+       template-element is mapped. e.g. [WRITER FIRST] is mapped onto Recipient,
+       so this would contain recipient.
+
+     - Mapping_order the sequence number for this mapping. So [WRITER LAST],
+       [WRITER FIRST] both map to 'Recipient', [WRITER FIRST] is 2, [WRITER
+       LAST] is 1
+
+     - separator - the separator after this element if there is another one
+       following, e.g.", "
+    """
+
+    def __init__(self, source=None):
+        """
+        Create a new MappingEelement instance, copying from the source if
+        present.
+        """
+        if source:
+            self.name = source.name
+            self.target = source.target
+            self.order = source.order
+            self.separator = source.separator
+        else:
+            self.name = ""
+            self.target = ""
+            self.order = ""
+            self.separator = ""
+        
+    def serialize(self):
+        """
+        Convert the object to a serialized tuple of data.
+        """
+        return (self.name,
+                self.target,
+                self.order,
+                self.separator
+               )
+
+    def unserialize(self, data):
+        """
+        Convert a serialized tuple of data to an object.
+        """
+        (self.name, self.type) = data
+        return self
+
+    def get_name(self):
+        """
+        Return the name for the mapping element.
+        """
+        return self.name
+
+    def set_name(self, name):
+        """
+        Set the role according to the given argument.
+        """
+        self.name = name
+
+    def get_target(self):
+        """
+        Return the tuple corresponding to the preset role.
+        """
+        return self.target
+
+    def set_target(self, target):
+        """
+        Set the role according to the given argument.
+        """
+        self.target = target

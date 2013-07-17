@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2013  Benny Malengier
+# Copyright (C) 2013       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -44,7 +45,7 @@ from gi.repository import Gtk
 # Gramps classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import SrcTemplate
+from gramps.gen.lib import SrcTemplate, SrcTemplateList
 
 #-------------------------------------------------------------------------
 #
@@ -81,7 +82,10 @@ class SrcTemplateTreeView(Gtk.TreeView):
         self.Key2Path = {}
         # store (key, src_type)
         self.model = Gtk.TreeStore(str, str)
-        alltexts = sorted((SrcTemplate.template_description(x), x) for x in SrcTemplate.all_templates())
+        tlist = SrcTemplateList()
+        alltexts = sorted((tlist.get_template_from_handle(handle).get_descr(),
+                           tlist.get_template_from_handle(handle).get_name()) 
+                          for handle in tlist.get_template_list() )
         parentiter = None
         parentiterlev1 = None
         prevstrval = ['', '']
