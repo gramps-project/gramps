@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-09 19:09+0200\n"
-"PO-Revision-Date: 2013-07-09 19:14+0200\n"
+"POT-Creation-Date: 2013-07-17 19:39+0200\n"
+"PO-Revision-Date: 2013-07-17 20:01+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -10883,11 +10883,33 @@ msgstr ""
 "<b>SICHERE</b> deine bestehenden Daten bevor du sie mit dieser Version "
 "öffnest, und exportiere deine Daten öfter im XML-Format."
 
-#: ../gramps/gui/grampsgui.py:290
+#: ../gramps/gui/grampsgui.py:264
+msgid "Gramps detected an incomplete GTK installation"
+msgstr "Gramps hat eine unvollständige GTK installation entdeckt"
+
+#: ../gramps/gui/grampsgui.py:265
+#, python-format
+msgid ""
+"GTK translations for the current language (%s) are missing.\n"
+"<b>Gramps</b> will proceed nevertheless.\n"
+"The GUI will likely be broken as a result, especially for RTL languages!\n"
+"\n"
+"See the Gramps README documentation for installation prerequisites,\n"
+"typically located in /usr/share/doc/gramps."
+msgstr ""
+"GTK Übersetzungen für deine aktuelle Sprache (%s) fehlen.\n"
+"<b>Gramps</b> läuft trotzdem.\n"
+"Die GUI wird voraussichtlich als Folge beschädigt sein, besonders für RNL "
+"Sprachen!\n"
+"\n"
+"Schaue in die Gramps README Dokumentation für Installationsvoraussetzungen,\n"
+"normalerweise unter /usr/share/doc/gramps."
+
+#: ../gramps/gui/grampsgui.py:303
 msgid "Error parsing arguments"
 msgstr "Fehler beim analysieren der Argumente"
 
-#: ../gramps/gui/grampsgui.py:363
+#: ../gramps/gui/grampsgui.py:376
 msgid ""
 "\n"
 "Gramps failed to start. Please report a bug about this.\n"
@@ -25358,14 +25380,14 @@ msgid_plural "Finding relationships between %d people"
 msgstr[0] "Verwandtschaftspfad zwischen %d Person"
 msgstr[1] "Verwandtschaftspfad zwischen %d Personen"
 
-#: ../gramps/plugins/tool/notrelated.py:369
+#: ../gramps/plugins/tool/notrelated.py:378
 #, python-format
 msgid "Looking for %d person"
 msgid_plural "Looking for %d people"
 msgstr[0] "Suche nach %d Person"
 msgstr[1] "Suche nach %d Personen"
 
-#: ../gramps/plugins/tool/notrelated.py:395
+#: ../gramps/plugins/tool/notrelated.py:404
 #, python-format
 msgid "Looking up the name of %d person"
 msgid_plural "Looking up the names of %d people"
