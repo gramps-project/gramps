@@ -36,6 +36,7 @@ from __future__ import print_function
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import csv
+import collections
 
 #-------------------------------------------------------------------------
 #
@@ -79,99 +80,98 @@ TOOLTIPCOL = 17
 UNKNOWN = 'UNKNOWN'
 DESCR = -10
 
-# the GEDCOM type is predefined and always present. Other templates will be
-# loaded via plugins
-TEMPLATES = {
-        'GEDCOM': {
-            REF_TYPE_L: [
-                ('', SrcAttributeType.AUTHOR, _(''), '.', EMPTY, False, False, EMPTY, GED_AUTHOR,
-                None, None),
-                ('', SrcAttributeType.TITLE, _(''), '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE,
-                None, None),
-                ('', SrcAttributeType.PUB_INFO, _(''), '', EMPTY, False, False, EMPTY, GED_PUBINF,
-                None, None),
-                ],
-            REF_TYPE_F: [
-                ('', SrcAttributeType.AUTHOR, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.TITLE, _(''), ',', STYLE_QUOTE, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.PUB_INFO, _(''), '.', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.DATE, _(''), ' -', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.PAGE, _('Page(s)'), '.', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ],
-            REF_TYPE_S: [
-                ('', SrcAttributeType.AUTHOR, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.DATE, _(''), ' -', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ('', SrcAttributeType.PAGE, _('Page(s)'), '.', EMPTY, False, False, EMPTY, EMPTY,
-                None, None),
-                ],
-            DESCR: '%(first)s - %(sec)s - %(third)s' % {  'first': _('Basic'), 'sec': _('GEDCOM Style'), 'third': _('')},
-            },
-        UNKNOWN: {
-            REF_TYPE_L: [
-                ],
-            REF_TYPE_F: [
-                ],
-            REF_TYPE_S: [
-                ],
-            DESCR: _("Unrecognized Template. Download it's definition."),
-            },
-        }
 
 def load_srctemplates_data():
     """
     Loads the srctemplates defined, and returns a dict with template data
     """
+    LOG.debug("**** load_srctemplate_data. Starting")
+    load_srctemplate_gedcom()
+    LOG.debug("**** load_srctemplate_data. GEDCOM and UNKNOWN loaded")
+    
+    
     from gramps.gen.plug import BasePluginManager
     bpmgr = BasePluginManager.get_instance()
     pdatas = bpmgr.get_reg_srctemplates()
-    templatemap = {}
     
     for plugin in pdatas:
         mod = bpmgr.load_plugin(plugin)
         if mod:
             csvfilename = mod.csvfile
+            LOG.debug("**** load_srctemplate_data. Loading csv from %s" % csvfilename)
             with open(csvfilename, 'rb') as csvfile:
-                templatemap.update(load_srctemplate_csv(csvfile))
-    return templatemap
+                load_srctemplate_csv(csvfile)
+            LOG.debug("**** load_srctemplate_data. csv data loaded")
 
-def load_srctemplate_csv(csvfile):
+def load_srctemplate_gedcom():
     """
-    Loads a template csvfile, and returns a dict with template data
-    Note: csvfile could be a list containing strings!
+    Loads the GEDCOM and UNKNOWN templates which are always pre-defined
     """
-    LOG.debug("**** importcsv.load_srctemplate_cvs called")
-    first = True
-    TYPE2CITEMAP = {}
-    TYPE2TEMPLATEMAP = {}
-    tlist = SrcTemplateList()
-    CITE_TYPES = {'F': REF_TYPE_F, 'L': REF_TYPE_L, 'S': REF_TYPE_S}
-    GEDCOMFIELDS = {'A': GED_AUTHOR, 'T': GED_TITLE, 
-                'P': GED_PUBINF, 'D': GED_DATE}
-    SHORTERALG = {'LOC': SHORTERALG_LOC, 'YEAR': SHORTERALG_YEAR,
-              'ETAL': SHORTERALG_ETAL, 'REV.': SHORTERALG_REVERT_TO_DOT}
-    STYLES = {'Quoted': STYLE_QUOTE, 'Italics': STYLE_EMPH,
-          'QuotedCont': STYLE_QUOTECONT, 'Bold': STYLE_BOLD}
+    TEMPLATES = {
+            'GEDCOM': {
+                REF_TYPE_L: [
+                    ('', SrcAttributeType.AUTHOR, _(''), '.', EMPTY, False, False, EMPTY, GED_AUTHOR,
+                    None, None),
+                    ('', SrcAttributeType.TITLE, _(''), '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE,
+                    None, None),
+                    ('', SrcAttributeType.PUB_INFO, _(''), '', EMPTY, False, False, EMPTY, GED_PUBINF,
+                    None, None),
+                    ],
+                REF_TYPE_F: [
+                    ('', SrcAttributeType.AUTHOR, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                    None, None),
+                    ('', SrcAttributeType.TITLE, _(''), ',', STYLE_QUOTE, False, False, EMPTY, EMPTY,
+                    None, None),
+                    ('', SrcAttributeType.PUB_INFO, _(''), '.', EMPTY, False, False, EMPTY, EMPTY,
+                    None, None),
+                    ('', SrcAttributeType.DATE, _(''), ' -', EMPTY, False, False, EMPTY, EMPTY,
+                    None, None),
+                    ('', SrcAttributeType.PAGE, _('Page(s)'), '.', EMPTY, False, False, EMPTY, EMPTY,
+                    None, None),
+                    ],
+                REF_TYPE_S: [
+                    ('', SrcAttributeType.AUTHOR, _(''), ',', EMPTY, False, False, EMPTY, EMPTY,
+                    None, None),
+                    ('', SrcAttributeType.DATE, _(''), ' -', EMPTY, False, False, EMPTY, EMPTY,
+                    None, None),
+                    ('', SrcAttributeType.PAGE, _('Page(s)'), '.', EMPTY, False, False, EMPTY, EMPTY,
+                    None, None),
+                    ],
+                DESCR: '%(first)s - %(sec)s - %(third)s' % {  'first': _('Basic'), 'sec': _('GEDCOM Style'), 'third': _('')},
+                },
+            UNKNOWN: {
+                REF_TYPE_L: [
+                    ],
+                REF_TYPE_F: [
+                    ],
+                REF_TYPE_S: [
+                    ],
+                DESCR: _("Unrecognized Template. Download it's definition."),
+                },
+            }
 
     template = SrcTemplate()
     template.set_name('GEDCOM')
     template.set_descr('%(first)s - %(sec)s - %(third)s' % {  'first': _('Basic'), 'sec': _('GEDCOM Style'), 'third': _('')})
     handle = create_id()
     template.set_handle(handle)
-    TYPE2TEMPLATEMAP['GEDCOM'] = template
     tlist = SrcTemplateList()
     tlist.add_template(handle, template)
 
     for (cite_type, slist) in TEMPLATES['GEDCOM'].iteritems():
         if cite_type != DESCR:
             for struct in slist:
-                LOG.debug(struct)
+                if cite_type == REF_TYPE_L or cite_type == REF_TYPE_F:
+                    elem = [x for x in template.get_template_element_list()
+                                if x.get_name()==struct[1] and x.get_short()==False]
+                    if elem:
+                        te = elem[0]
+                    else:
+                        te = TemplateElement()
+                        template.add_template_element(te)
+                elif cite_type == REF_TYPE_S:
+                    te = TemplateElement()
+                    template.add_template_element(te)
                 ldel = struct[0]
                 field_type = struct[1]
                 field_label = struct[2]
@@ -183,28 +183,62 @@ def load_srctemplate_csv(csvfile):
                 gedcommap = struct[8]
                 hint = struct[9]
                 tooltip = struct[10]
-                te = TemplateElement()
                 te.set_name(field_type)
                 te.set_display(field_label)
                 te.set_hint(hint or SrcAttributeType.get_default_hint(field_type))
                 te.set_tooltip(tooltip or SrcAttributeType.get_default_tooltip(field_type))
-                template.add_template_element(te)
+                if cite_type == REF_TYPE_S:
+                    te.set_short(True)
+                    te.set_name(int(SrcAttributeType().short_version(te.get_name())))
+                if field_type == SrcAttributeType.PAGE or \
+                   field_type == SrcAttributeType.DATE:
+                    te.set_citation(True)
                 template.add_structure_element(cite_type, [(ldel, field_type, 
                                 field_label, rdel, style, private, optional, 
                                 shorteralg, gedcommap, hint, tooltip)])
 
+    for handle in SrcTemplateList().get_template_list():
+        template = SrcTemplateList().get_template_from_handle(handle)
+        LOG.debug("source_type: %s" % template.get_name())
+        for te in template.get_template_element_list():
+            LOG.debug("    name: %s; display: %s; hint: %s; tooltip: %s; citation %s; "
+                      "short %s; short_alg %s" %
+                      (SrcAttributeType(te.get_name()).xml_str(),
+                       te.get_display(), te.get_hint(),
+                       te.get_tooltip(), te.get_citation(),
+                       te.get_short(), te.get_short_alg()
+                      ))
+
+    # Now load the UNKNOWN template
     template = SrcTemplate()
     template.set_name(UNKNOWN)
     template.set_descr(_("Unrecognized Template. Download it's definition."))
     handle = create_id()
     template.set_handle(handle)
-    TYPE2TEMPLATEMAP[UNKNOWN] = template
     tlist = SrcTemplateList()
     tlist.add_template(handle, template)
     
     for cite_type in (REF_TYPE_F, REF_TYPE_L, REF_TYPE_S):
         template.add_structure_element(cite_type, [])
            
+def load_srctemplate_csv(csvfile):
+    """
+    Loads a template csvfile, and returns a dict with template data
+    Note: csvfile could be a list containing strings!
+    """
+    first = True
+    TYPE2CITEMAP = {}
+    TYPE2TEMPLATEMAP = {}
+    TYPE2FIELDS = collections.defaultdict(lambda: collections.defaultdict(list))
+    tlist = SrcTemplateList()
+    CITE_TYPES = {'F': REF_TYPE_F, 'L': REF_TYPE_L, 'S': REF_TYPE_S}
+    GEDCOMFIELDS = {'A': GED_AUTHOR, 'T': GED_TITLE, 
+                'P': GED_PUBINF, 'D': GED_DATE}
+    SHORTERALG = {'LOC': SHORTERALG_LOC, 'YEAR': SHORTERALG_YEAR,
+              'ETAL': SHORTERALG_ETAL, 'REV.': SHORTERALG_REVERT_TO_DOT}
+    STYLES = {'Quoted': STYLE_QUOTE, 'Italics': STYLE_EMPH,
+          'QuotedCont': STYLE_QUOTECONT, 'Bold': STYLE_BOLD}
+    
     reader = csv.reader(csvfile, delimiter=';')
     
     prevtempl = ''
@@ -286,13 +320,6 @@ def load_srctemplate_csv(csvfile):
         shorteralg = SHORTERALG.get(row[SHORTERCOL].strip()) or EMPTY
         gedcommap = GEDCOMFIELDS.get(row[GEDCOMCOL].strip()) or EMPTY
         style = STYLES.get(row[STYLECOL].strip()) or EMPTY
-        hint = row[HINTCOL]
-        tooltip = row[TOOLTIPCOL]
-        te = TemplateElement()
-        te.set_name(field_type)
-        te.set_display(_(field_label))
-        te.set_hint(_(hint) or SrcAttributeType.get_default_hint(field_type))
-        te.set_tooltip(_(tooltip) or SrcAttributeType.get_default_tooltip(field_type))
 
         if source_type in TYPE2TEMPLATEMAP:
             template = TYPE2TEMPLATEMAP[source_type]
@@ -302,13 +329,73 @@ def load_srctemplate_csv(csvfile):
             template.set_handle(handle)
             TYPE2TEMPLATEMAP[source_type] = template
             tlist.add_template(handle, template)
-        # FIXME: If the template element is already present, don't add it again
-        template.add_template_element(te)
+        
+        if cite_type == REF_TYPE_L or REF_TYPE_F:
+            elem = [x for x in template.get_template_element_list()
+                        if x.get_name()==field_type and x.get_short()==False]
+            if elem:
+                te = elem[0]
+            else:
+                te = TemplateElement()
+                template.add_template_element(te)
+            hint = row[HINTCOL]
+            tooltip = row[TOOLTIPCOL]
+            te.set_name(field_type)
+            te.set_display(field_label)
+            te.set_hint(hint or te.get_hint())
+            te.set_tooltip(tooltip or te.get_tooltip())
+            te.set_short_alg(shorteralg)
+        if cite_type == REF_TYPE_S:
+            te = TemplateElement()
+#            field_type = int(SrcAttributeType().short_version(field_type))
+            te.set_name(field_type)
+            te.set_short_alg(shorteralg)
+            te.set_short(True)
+            lblval = field_label
+            if lblval:
+                te.set_display(_('%(normal_version_label)s (Short)') % {
+                                    'normal_version_label': lblval})
+            template.add_template_element(te)
+        TYPE2FIELDS[source_type][cite_type].append(field_type)
         template.add_structure_element(cite_type, [(row[LDELCOL], field_type, 
                         _(field_label), row[RDELCOL], style, private, optional, 
                         shorteralg, gedcommap, _(hint), _(tooltip))])
         
-    LOG.debug(tlist.get_template_list())
-    for handle in tlist.get_template_list():
-        LOG.debug(tlist.get_template_from_handle(handle).to_struct())
-    return TYPE2CITEMAP
+    # Now we adjust some fields that could not be changed till all the data had
+    # been read in
+    for source_type in TYPE2FIELDS:
+        template = TYPE2TEMPLATEMAP[source_type]
+        LOG.debug("source_type: %s" % source_type)
+        # First we determine which are citation fields
+        cite_fields = [field for field in 
+                            TYPE2FIELDS[source_type][REF_TYPE_F] +
+                            TYPE2FIELDS[source_type][REF_TYPE_S]
+                       if field not in TYPE2FIELDS[source_type][REF_TYPE_L]]
+        for te in template.get_template_element_list():
+            # Set the boolean if this is a citation field
+            if te.get_name() in cite_fields:
+                te.set_citation(True)
+            
+            # Set the hint and tooltip to default if not already set
+            if not te.get_hint():
+                te.set_hint(SrcAttributeType.get_default_hint(te.get_name()))
+            if not te.get_tooltip():
+                te.set_tooltip(SrcAttributeType.get_default_tooltip(te.get_name()))
+            
+            # If this is a short version, set the name accordingly. This could
+            # not be done earlier because we needed to keep the old 'non-short'
+            # name to find which fields belonged to citations as opposed to
+            # sources
+            if te.get_short() == True:
+                te.set_name(int(SrcAttributeType().short_version(te.get_name())))
+            LOG.debug("    name: %s; display: %s; hint: %s; tooltip: %s; "
+                      "citation %s; short %s; short_alg %s" %
+                      (SrcAttributeType(te.get_name()).xml_str(),
+                       te.get_display(), te.get_hint(),
+                       te.get_tooltip(), te.get_citation(),
+                       te.get_short(), te.get_short_alg()
+                      ))
+    
+#    LOG.debug(tlist.get_template_list())
+#    for handle in tlist.get_template_list():
+#        LOG.debug(tlist.get_template_from_handle(handle).to_struct())

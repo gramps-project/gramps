@@ -208,6 +208,7 @@ class TemplateFields(object):
         if SrcTemplateList().template_defined(key):
             #a predefined template, 
             template = SrcTemplateList().get_template_from_name(key).get_structure()
+            telist = SrcTemplateList().get_template_from_name(key).get_template_element_list()
         else:
             return
         
@@ -226,24 +227,24 @@ class TemplateFields(object):
         self.btns = []
         row = 1
         # now add new fields
-        fieldsL = []
-        for fielddef in template[REF_TYPE_L]:
-            hint = fielddef[9] or SrcAttributeType.get_default_hint(fielddef[1])
-            
-            fieldsL.append(fielddef[1])
-            if self.cite is None:
-                #these are source fields
-                self._add_entry(row, fielddef[1], fielddef[2],
-                    fielddef[9] or SrcAttributeType.get_default_hint(fielddef[1]),
-                    fielddef[10] or SrcAttributeType.get_default_tooltip(fielddef[1]))
-                row += 1
-
-        tempsattrt = SrcAttributeType()
-        # now add optional short citation values
+        long_source_fields = [x for x in telist
+                              if not x.get_short() and not x.get_citation()]
+        short_source_fields = [x for x in telist
+                               if x.get_short() and not x.get_citation()]
+        long_citation_fields = [x for x in telist
+                                if not x.get_short() and x.get_citation()]
+        short_citation_fields = [x for x in telist
+                                 if x.get_short() and x.get_citation()]
+        
         if self.cite is None:
-            fieldsS = [fielddef for fielddef in template[REF_TYPE_S] 
-                            if fielddef[1] in fieldsL and fielddef[7]==EMPTY]
-            if fieldsS:
+            # source long fileds
+            for te in long_source_fields:
+                self._add_entry(row, te.get_name(), _(te.get_display()),
+                                _(te.get_hint()), _(te.get_tooltip()))
+                row += 1
+            
+            # now add short source fields (if any)
+            if short_source_fields:
                 self.gridfields.insert_row(row)
                 lbl = Gtk.Label('')
                 lbl.set_markup(_("<b>Optional Short Versions:</b>"))
@@ -251,36 +252,33 @@ class TemplateFields(object):
                 self.gridfields.attach(lbl, 0, row-1, 2, 1)
                 self.lbls.append(lbl)
                 row += 1
-            for fielddef in fieldsS:
-                lblval = fielddef[2]
-                if lblval:
-                    lblval = _('%(normal_version_label)s (Short)') % {
-                                'normal_version_label': lblval}
-                self._add_entry(row, tempsattrt.short_version(fielddef[1]), lblval)
+                for te in short_source_fields:
+                    self._add_entry(row, te.get_name(), _(te.get_display()),
+                                    _(te.get_hint()), _(te.get_tooltip()))
+                    row += 1
+            
+            # At source level add a header for the default citation values
+            if (long_citation_fields+short_citation_fields) and \
+                            show_default_cite_fields:
+                self.gridfields.insert_row(row)
+                lbl = Gtk.Label('')
+                lbl.set_markup(_("<b>Optional Default Citation Fields:</b>"))
+                lbl.set_halign(Gtk.Align.START)
+                self.gridfields.attach(lbl, 0, row-1, 2, 1)
+                self.lbls.append(lbl)
                 row += 1
-
-        # now add citation values (optional on source level)
-        fieldsF = [fielddef for fielddef in template[REF_TYPE_F] 
-                                            if fielddef[1] not in fieldsL]
-        if fieldsF and show_default_cite_fields and self.cite is None:
-            self.gridfields.insert_row(row)
-            lbl = Gtk.Label('')
-            lbl.set_markup(_("<b>Optional Default Citation Fields:</b>"))
-            lbl.set_halign(Gtk.Align.START)
-            self.gridfields.attach(lbl, 0, row-1, 2, 1)
-            self.lbls.append(lbl)
-            row += 1
+        
+        # Either show citation fields or at source level the default values
         if show_default_cite_fields or (not self.cite is None):
-            for fielddef in fieldsF:
-                self._add_entry(row, fielddef[1], fielddef[2],
-                        fielddef[9] or SrcAttributeType.get_default_hint(fielddef[1]),
-                        fielddef[10] or SrcAttributeType.get_default_tooltip(fielddef[1]))
+            for te in long_citation_fields:
+                self._add_entry(row, te.get_name(), _(te.get_display()),
+                                _(te.get_hint()), _(te.get_tooltip()))
                 row += 1
-        fieldsS = [fielddef for fielddef in template[REF_TYPE_S] 
-                            if fielddef[1] not in fieldsL and fielddef[7]==EMPTY]
+            
+        # Finally the short citation fields (if any)
         if not self.cite is None:
             #we indicate with a text these are the short versions
-            if fieldsS:
+            if short_citation_fields:
                 self.gridfields.insert_row(row)
                 lbl = Gtk.Label('')
                 lbl.set_markup(_("<b>Optional Short Versions:</b>"))
@@ -289,14 +287,11 @@ class TemplateFields(object):
                 self.lbls.append(lbl)
                 row += 1
         if show_default_cite_fields or (not self.cite is None):
-            for fielddef in fieldsS:
-                lblval = fielddef[2]
-                if lblval:
-                    lblval = _('%(normal_version_label)s (Short)') % {
-                                    'normal_version_label': lblval}
-                self._add_entry(row, tempsattrt.short_version(fielddef[1]), lblval)
+            for te in short_citation_fields:
+                self._add_entry(row, te.get_name(), _(te.get_display()),
+                                _(te.get_hint()), _(te.get_tooltip()))
                 row += 1
-
+        
         self.gridfields.show_all()
 
     def _add_entry(self, row, srcattrtype, alt_label, hint=None, tooltip=None):

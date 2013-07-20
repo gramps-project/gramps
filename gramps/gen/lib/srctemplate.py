@@ -230,8 +230,7 @@ class SrcTemplate(TableObject):
         self.template_element_list = template_element_list
 
     def add_template_element(self, template_element):
-        if template_element not in self.template_element_list:
-            self.template_element_list.append(template_element)
+        self.template_element_list.append(template_element)
 
     def add_structure_element(self, cite_type, slist):
         self.structure[cite_type] += slist
@@ -553,6 +552,13 @@ class TemplateElement(SecondaryObject):
        Names & SecondAuthorSurname, Given Names'. Like this Gramps can parse the
        name and shorten as needed."
 
+     - citation - True if this element appears in a citation (false for a source
+       element)
+       
+     - short - True if this element is an optional short element
+     
+     - short_alg - algorithm to shorten the field.
+     
      - list of Mappings - there would always be a GEDCOM mapping. Also we would
        expect a CSL mapping
 
@@ -567,12 +573,18 @@ class TemplateElement(SecondaryObject):
             self.display = source.display
             self.hint = source.hint
             self.tooltip = source.tooltip
+            self.citation = source.citation
+            self.short - source.short
+            self.short_alg = source.short_alg
             self.template_mapping_list = source.template_mapping_list
         else:
             self.name = ""
             self.display = ""
             self.hint = ""
             self.tooltip = ""
+            self.citation = False
+            self.short = False
+            self.short_alg = ""
             self.template_mapping_list = []
         
     def serialize(self):
@@ -667,6 +679,42 @@ class TemplateElement(SecondaryObject):
         Set the tooltip for the Template element according to the given argument.
         """
         self.tooltip = tooltip
+        
+    def get_citation(self):
+        """
+        Return the citation for the Template element.
+        """
+        return self.citation
+
+    def set_citation(self, citation):
+        """
+        Set the citation for the Template element according to the given argument.
+        """
+        self.citation = citation
+        
+    def get_short(self):
+        """
+        Return the short for the Template element.
+        """
+        return self.short
+
+    def set_short(self, short):
+        """
+        Set the short for the Template element according to the given argument.
+        """
+        self.short = short
+        
+    def get_short_alg(self):
+        """
+        Return the short_alg for the Template element.
+        """
+        return self.short_alg
+
+    def set_short_alg(self, short_alg):
+        """
+        Set the short_alg for the Template element according to the given argument.
+        """
+        self.short_alg = short_alg
         
     def get_template_mapping_list(self):
         return self.template_mapping_list

@@ -86,10 +86,8 @@ class EditSource(EditPrimary):
         # FIXME: Is there a cleaner place to initially load the template data?
         global FIRST
         if FIRST:
-            LOG.debug("**** load csv data")
             from gramps.plugins.srctemplates.importcsv import load_srctemplates_data
             load_srctemplates_data()
-            LOG.debug("**** csv data loaded\n\n")
             FIRST = False
         self.srctemp = None
         self.citation = citation
