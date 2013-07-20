@@ -492,7 +492,7 @@ class RTFDoc(BaseDoc,TextDoc):
                 else:
                     # If (uni)code with more than 8 bits: 
                     # RTF req valus in decimal, not hex.
-                    self.text += '\\uc1\\u%d\\uc0' % ord(i)
+                    self.text += '{\\uc1\\u%d\\uc0}' % ord(i)
             elif i == '{' or i == '}' :
                 self.text += '\\%s' % i
             else:
