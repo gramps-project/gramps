@@ -474,7 +474,6 @@ class RTFDoc(BaseDoc,TextDoc):
     def write_text(self,text,mark=None,links=False):
     # Convert to unicode, just in case it's not. Fix of bug 2449.
         text = unicode(text)
-        text = text.replace('\n','\n\\par ')
         LOG.debug("write_text: opened: %d input text: %s" % 
                   (self.opened, 
                    text))
@@ -490,7 +489,9 @@ class RTFDoc(BaseDoc,TextDoc):
                     # If (uni)code with more than 8 bits: 
                     # RTF req valus in decimal, not hex.
                     self.text += '{\\uc1\\u%d\\uc0}' % ord(i)
-            elif i == '{' or i == '}' :
+            elif i == '\n':
+                self.text += '\n\\par ';
+            elif i == '{' or i == '}' or i == '\\':
                 self.text += '\\%s' % i
             else:
                 self.text += i
