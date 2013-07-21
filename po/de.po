@@ -17432,7 +17432,7 @@ msgstr ""
 "Gruppierung nicht nach \"%(value)s\" geändert."
 
 #: ../gramps/plugins/importer/importxml.py:1673
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Gramps hat Namenskartenwert ignoriert"
 
 #: ../gramps/plugins/importer/importxml.py:1732

@@ -13859,7 +13859,7 @@ msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", di
 msgstr "Nhóm cây gia đình của bạn tên \"%(key)s\" cùng với \"%(parent)s\", không thay đổi nhóm này thành \"%(value)s\". "
 
 #: ../src/plugins/import/ImportXml.py:1571
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Gramps bỏ qua giá trị sơ đồ tên "
 
 #: ../src/plugins/import/ImportXml.py:1774

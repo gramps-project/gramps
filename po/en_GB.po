@@ -14690,8 +14690,8 @@ msgstr ""
 "not change this grouping to \"%(value)s\"."
 
 #: ../src/plugins/import/ImportXml.py:1602
-msgid "Gramps ignored namemap value"
-msgstr "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
+msgstr "Gramps ignored a name grouping"
 
 #: ../src/plugins/import/ImportXml.py:1661
 msgid "Unknown when imported"

@@ -14978,7 +14978,7 @@ msgstr ""
 "\"%(parent)s\", δεν έχει αλλάξει την ομαδοποίηση στο \"%(value)s\"."
 
 #: ../src/plugins/import/ImportXml.py:1605
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Η ομαδοποίηση των ονομάτων αγνοήθηκε"
 
 #: ../src/plugins/import/ImportXml.py:1664

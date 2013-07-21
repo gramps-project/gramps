@@ -14702,7 +14702,7 @@ msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:1571
 #, fuzzy
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "GRAMPS Ana Sayfasi(_H)"
 
 #: ../src/plugins/import/ImportXml.py:1774

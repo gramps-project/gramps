@@ -16939,7 +16939,7 @@ msgid "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", di
 msgstr "Ve vašem rodokmenu se jméno \"%(key)s\"  seskupuje se jménem \" %(parent)s\" , seskupování na \" %(value)s\"  nebylo změněno."
 
 #: ../gramps/plugins/importer/importxml.py:1676
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Gramps ignoroval hodnotu jmenné mapy"
 
 #: ../gramps/plugins/importer/importxml.py:1735

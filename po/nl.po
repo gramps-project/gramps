@@ -19009,7 +19009,7 @@ msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", di
 msgstr "Uw familiestambomengroepnaam \"%(key)s\" samen met \"%(parent)s\", werd niet veranderd naar \"%(value)s\"."
 
 #: ../gramps/plugins/importer/importxml.py:1676
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Gramps negeerde de \"namemap\" waarde"
 
 #: ../gramps/plugins/importer/importxml.py:1735

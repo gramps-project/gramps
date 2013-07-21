@@ -19752,7 +19752,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:1676
 #, fuzzy
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Pagina web di Gramps"
 
 #: ../gramps/plugins/importer/importxml.py:1735
