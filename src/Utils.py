@@ -1173,9 +1173,7 @@ def rm_tempdir(path):
         shutil.rmtree(path)
 
 def cast_to_bool(val):
-    if val == str(True):
-        return True
-    return False
+    return val in ['True', 'true', _('True'), _('true'), '1'] # 3139
 
 def get_type_converter(val):
     """
