@@ -73,8 +73,8 @@ class PageSizeParser(handler.ContentHandler):
     def startElement(self, tag, attrs):
         if tag == "page":
             name = attrs['name']
-            height = glocale.float(attrs['height'])
-            width = glocale.float(attrs['width'])
+            height = float(attrs['height'])
+            width = float(attrs['width'])
             self.paper_list.append(PaperSize(name, height, width))
 
 #-------------------------------------------------------------------------
