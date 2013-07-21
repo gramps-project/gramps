@@ -1670,7 +1670,7 @@ class GrampsParser(UpdateCallback):
                     msg = _('Your Family Tree groups name "%(key)s" together'
                             ' with "%(parent)s", did not change this grouping to "%(value)s".') % {
                             'key' : key, 'parent' : present, 'value' : value }
-                    self.user.warn(_("Gramps ignored namemap value"), msg)
+                    self.user.warn(_("Gramps ignored a name grouping"), msg)
             else:
                 self.db.set_name_group_mapping(key, value)
 

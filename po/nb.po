@@ -20194,7 +20194,7 @@ msgstr ""
 "endret ikke denne grupperingen til \"%(value)s\"."
 
 #: ../gramps/plugins/importer/importxml.py:1673
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Gramps ignorerte verdi på navnekart"
 
 #: ../gramps/plugins/importer/importxml.py:1732

@@ -18884,7 +18884,7 @@ msgid "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", di
 msgstr "Η ομάδα των οικογενειακών σας δέντρων με όνομα \"%(key)s\" μαζί με \"%(parent)s\", δεν έχει αλλάξει την ομαδοποίηση σε \"%(value)s\"."
 
 #: ../gramps/plugins/importer/importxml.py:1673
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Η ομαδοποίηση των ονομάτων αγνοήθηκε"
 
 #: ../gramps/plugins/importer/importxml.py:1732

@@ -19036,7 +19036,7 @@ msgid "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", di
 msgstr "Vaš rodovnik združuje ime »%(key)s« z imenom »%(parent)s«, tako da to združevanje ni bilo spremenjeno v »%(value)s«."
 
 #: ../gramps/plugins/importer/importxml.py:1673
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Program Gramps ni upošteval vrednosti »namemap«"
 
 #: ../gramps/plugins/importer/importxml.py:1732

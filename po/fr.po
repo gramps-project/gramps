@@ -20121,7 +20121,7 @@ msgid "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", di
 msgstr "Votre arbre familial groupe le nom « %(key)s » avec « %(parent)s » ; ce regroupement n'a pas été changé en « %(value)s »."
 
 #: ../gramps/plugins/importer/importxml.py:1673
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Groupement de noms ignorés"
 
 #: ../gramps/plugins/importer/importxml.py:1732

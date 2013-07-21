@@ -19619,7 +19619,7 @@ msgid "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", di
 msgstr "Emri i grupave të bazës tuaj të të dhënave %s së bashku me %s nuk e ndryshuan këtë grupim në %s"
 
 #: ../gramps/plugins/importer/importxml.py:1673
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:1732

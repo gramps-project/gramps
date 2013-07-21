@@ -20708,7 +20708,7 @@ msgstr ""
 "veranderd naar \"%(value)s\"."
 
 #: ../gramps/plugins/importer/importxml.py:1673
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Gramps negeerde de \"namemap\" waarde"
 
 #: ../gramps/plugins/importer/importxml.py:1732

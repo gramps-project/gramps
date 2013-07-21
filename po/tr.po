@@ -20020,7 +20020,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:1673
 #, fuzzy
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "GRAMPS Ana Sayfasi(_H)"
 
 #: ../gramps/plugins/importer/importxml.py:1732

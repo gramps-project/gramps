@@ -18958,7 +18958,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:1673
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr ""
 
 #: ../gramps/plugins/importer/importxml.py:1732

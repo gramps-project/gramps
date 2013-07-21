@@ -20216,7 +20216,7 @@ msgstr ""
 "változtatja meg ezt a csoportosítást \"%(value)s\" értékre."
 
 #: ../gramps/plugins/importer/importxml.py:1673
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "A GRAMPS a névtérkép értéket elveti"
 
 #: ../gramps/plugins/importer/importxml.py:1732

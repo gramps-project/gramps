@@ -19445,7 +19445,7 @@ msgstr "Sukupuusi ryhmittelee nimen %s nimen %s kanssa, ryhmittelyä ei muutettu
 
 #: ../gramps/plugins/importer/importxml.py:1673
 #, fuzzy
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "GRAMPS kotisivu"
 
 #: ../gramps/plugins/importer/importxml.py:1732

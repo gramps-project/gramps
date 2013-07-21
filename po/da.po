@@ -18865,7 +18865,7 @@ msgid "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", di
 msgstr "Din slægtsbog grupperer %(key)s sammen med %(parent)s, jeg undlod at ændre denne gruppering til %(value)s."
 
 #: ../gramps/plugins/importer/importxml.py:1673
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Gramps ignorerede namemap-værdi"
 
 #: ../gramps/plugins/importer/importxml.py:1732
