@@ -247,7 +247,6 @@ gramps/gen/simple/_simpledoc.py
 gramps/gen/utils/__init__.py
 gramps/gen/utils/callback.py
 gramps/gen/utils/callman.py
-gramps/gen/utils/cast.py
 gramps/gen/utils/config.py
 gramps/gen/utils/debug.py
 gramps/gen/utils/file.py
