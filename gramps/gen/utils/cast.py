@@ -41,6 +41,8 @@ LOG = logging.getLogger(".")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from ..datehandler import codeset
 from ..constfunc import conv_to_unicode, conv_to_unicode_direct, UNITYPE, STRTYPE
 
