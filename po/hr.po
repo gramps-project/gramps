@@ -14210,7 +14210,7 @@ msgstr "Grupno ime \"%(key)s\" zajedno sa \"%(parent)s\" nije promijenilo grupir
 
 #: ../src/plugins/import/ImportXml.py:1573
 #, fuzzy
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "GRAMPS Početna stranica"
 
 #: ../src/plugins/import/ImportXml.py:1776

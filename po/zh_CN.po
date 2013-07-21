@@ -13985,7 +13985,7 @@ msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", di
 msgstr "你的家庭树组名 \"%(key)s\" 与 \"%(parent)s\", 不改变该组为 \"%(value)s\"."
 
 #: ../src/plugins/import/ImportXml.py:1571
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "GRAMPS 忽略姓名地图值"
 
 #: ../src/plugins/import/ImportXml.py:1774

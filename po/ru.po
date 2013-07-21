@@ -15002,7 +15002,7 @@ msgstr ""
 "меняем группировку на «%(value)s»."
 
 #: ../src/plugins/import/ImportXml.py:1623
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Gramps игнорирует значение namemap"
 
 #: ../src/plugins/import/ImportXml.py:1682

@@ -14353,7 +14353,7 @@ msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", di
 msgstr "Emri i grupave të bazës tuaj të të dhënave %s së bashku me %s nuk e ndryshuan këtë grupim në %s"
 
 #: ../src/plugins/import/ImportXml.py:1571
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:1774

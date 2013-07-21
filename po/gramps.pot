@@ -14213,7 +14213,7 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:1623
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr ""
 
 #: ../src/plugins/import/ImportXml.py:1682

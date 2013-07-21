@@ -14118,7 +14118,7 @@ msgstr "Родословното ви дърво групира името %(key
 
 #: ../src/plugins/import/ImportXml.py:1571
 #, fuzzy
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Домашна страница на Gramps"
 
 #: ../src/plugins/import/ImportXml.py:1774

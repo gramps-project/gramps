@@ -14593,7 +14593,7 @@ msgstr ""
 "változtatja meg a csoportosítást \"%(value)s\" értékre."
 
 #: ../src/plugins/import/ImportXml.py:1571
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "A GRAMPS a névtérkép értéket elveti"
 
 #: ../src/plugins/import/ImportXml.py:1774

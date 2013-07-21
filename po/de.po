@@ -15257,7 +15257,7 @@ msgstr ""
 "Gruppierung nicht nach \"%(value)s\" geändert."
 
 #: ../src/plugins/import/ImportXml.py:1623
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Gramps hat Namenskartenwert ignoriert"
 
 #: ../src/plugins/import/ImportXml.py:1682

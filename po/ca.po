@@ -14897,7 +14897,7 @@ msgstr ""
 "s'ha canviat aquesta agrupació a \"%(value)s\"."
 
 #: ../src/plugins/import/ImportXml.py:1622
-msgid "Gramps ignored namemap value"
+msgid "Gramps ignored a name grouping"
 msgstr "Gramps ha ignorat el valor del mapa de noms"
 
 #: ../src/plugins/import/ImportXml.py:1681
