@@ -48,9 +48,7 @@ from ..constfunc import conv_to_unicode, conv_to_unicode_direct, UNITYPE, STRTYP
 conv_dbstr_to_unicode = lambda x: conv_to_unicode(x, 'UTF-8')
 
 def cast_to_bool(val):
-    if val == str(True):
-        return True
-    return False
+    return val in ['True', 'true', _('True'), _('true'), '1'] # 3139
 
 def get_type_converter(val):
     """
