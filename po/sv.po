@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-05-22 10:47+0200\n"
-"PO-Revision-Date: 2013-07-08 13:25+0200\n"
+"PO-Revision-Date: 2013-07-22 11:05+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -10008,11 +10008,11 @@ msgstr "Tillgängliga objektmeny"
 
 #: ../src/plugins/BookReport.py:1054
 msgid "No items"
-msgstr ""
+msgstr "Inget innehåll"
 
 #: ../src/plugins/BookReport.py:1054
 msgid "This book has no items."
-msgstr ""
+msgstr "Denna bok saknar innehåll"
 
 #: ../src/plugins/BookReport.py:1065
 msgid "No book name"
@@ -15317,7 +15317,7 @@ msgstr "INDI (individual) Gramps ID %s"
 
 #: ../src/plugins/lib/libgedcom.py:3522
 msgid "Empty Alias <NAME PERSONAL> ignored"
-msgstr ""
+msgstr "Tomt alias <personnamn> ignorerat"
 
 #: ../src/plugins/lib/libgedcom.py:3602 ../src/plugins/lib/libgedcom.py:4905
 #: ../src/plugins/lib/libgedcom.py:5103 ../src/plugins/lib/libgedcom.py:5240
