@@ -194,6 +194,7 @@ LICENSE_FILE = os.path.join(_resources.doc_dir, 'COPYING')
 from gramps.gen.utils.grampslocale import GrampsLocale
 GRAMPS_LOCALE = GrampsLocale(localedir=_resources.locale_dir)
 _ = GRAMPS_LOCALE.translation.sgettext
+GTK_GETTEXT_DOMAIN = 'gtk30'
 
 #-------------------------------------------------------------------------
 #
