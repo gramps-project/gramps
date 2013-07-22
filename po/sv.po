@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-06-23 12:16+0200\n"
-"PO-Revision-Date: 2013-07-08 13:26+0200\n"
+"PO-Revision-Date: 2013-07-22 11:10+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -20526,7 +20526,7 @@ msgstr "INDI (individual) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:3584
 msgid "Empty Alias <NAME PERSONAL> ignored"
-msgstr ""
+msgstr "Tomt alias <personnamn> ignorerat"
 
 #: ../gramps/plugins/lib/libgedcom.py:3664
 #: ../gramps/plugins/lib/libgedcom.py:4971
