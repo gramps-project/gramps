@@ -39,8 +39,8 @@ LOG = logging.getLogger(".grampsgui")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
-from gramps.gen.const import DATA_DIR, IMAGE_DIR
-from gramps.gen.constfunc import has_display, win
+from gramps.gen.const import DATA_DIR, IMAGE_DIR, GTK_GETTEXT_DOMAIN
+from gramps.gen.constfunc import has_display, win, lin
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -258,8 +258,10 @@ class Gramps(object):
 
         register_stock_icons()
 
-        if glocale.lang != 'C' and not gettext.find('gtk30'):
+        if lin() and glocale.lang != 'C' and not gettext.find(GTK_GETTEXT_DOMAIN):
             LOG.warn("GTK translations missing, GUI will be broken, especially for RTL languages!")
+            # Note: the warning dialog below will likely have wrong stock icons!
+            # Translators: the current language will be the one you translate into.
             WarningDialog(
                _("Gramps detected an incomplete GTK installation"),
                _("""GTK translations for the current language (%s) are missing.
