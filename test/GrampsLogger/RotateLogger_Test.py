@@ -1,8 +1,9 @@
 import unittest
 import logging
 import sys
+import os
 
-sys.path.append('../../src/GrampsLogger')
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../src/GrampsLogger'))
 
 logger = logging.getLogger('Gramps.Tests.GrampsLogger')
 

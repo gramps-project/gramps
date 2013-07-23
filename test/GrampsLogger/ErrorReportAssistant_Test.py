@@ -1,10 +1,12 @@
 import unittest
 import logging
 import sys
+import os
 
 log = logging.getLogger('Gramps.Tests.GrampsLogger')
-
-sys.path.append('..')
+import const
+const.rootDir = os.path.join(os.path.dirname(__file__), '../../src')
+sys.path.append(os.path.join(const.rootDir, 'test'))
 try:
     from guitest.gtktest import GtkTestCase
     TestCaseBase = GtkTestCase
@@ -12,11 +14,8 @@ try:
 except:
     TestCaseBase = unittest.TestCase
 
-sys.path.append('../../src')
-sys.path.append('../../src/GrampsLogger')
-
-import const
-const.rootDir = "../../src"
+sys.path.append(const.rootDir)
+sys.path.append(os.path.join(const.rootDir, 'GrampsLogger'))
 
 from GrampsLogger import RotateHandler
 
