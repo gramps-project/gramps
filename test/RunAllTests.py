@@ -48,7 +48,7 @@ def make_parser():
 def getTestSuites():
     # Sorry about this line, but it is the easiest way of doing it.
     # It just walks the filetree from '.' downwards and returns
-    # a tuple per directory of (dirpatch,filelist) if the directory
+    # a tuple per directory of (dirpath,filelist) if the directory
     # contains any test files.
     
     paths = [(f[0],f[2]) for f in os.walk('.') \
@@ -62,7 +62,7 @@ def getTestSuites():
         perf_suites = []
         for module in test_modules:
             if module[-8:] != "_Test.py":
-                break
+                continue
             mod = __import__(module[:-3])
             test_suites.append(mod.testSuite())
             try:
@@ -106,8 +106,5 @@ if __name__ == '__main__':
         logger.setLevel(logging.ERROR)
         console.setLevel(logging.ERROR)
 
-
-    if options.performance:
-        unittest.TextTestRunner(verbosity=options.verbose_level).run(perfTests())
-    else:
-        unittest.TextTestRunner(verbosity=options.verbose_level).run(allTheTests())
+    tests = perfTests() if options.performance else allTheTests()
+    unittest.TextTestRunner(verbosity=options.verbose_level).run(tests)
