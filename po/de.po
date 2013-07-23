@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-17 19:39+0200\n"
-"PO-Revision-Date: 2013-07-17 20:01+0200\n"
+"POT-Creation-Date: 2013-07-23 18:24+0200\n"
+"PO-Revision-Date: 2013-07-23 18:30+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -824,7 +824,7 @@ msgstr "Lebt"
 msgid "Private Record"
 msgstr "Vertraulicher Datensatz"
 
-#: ../gramps/gen/const.py:205
+#: ../gramps/gen/const.py:206
 msgid ""
 "Gramps (Genealogical Research and Analysis Management Programming System) is "
 "a personal genealogy program."
@@ -832,11 +832,11 @@ msgstr ""
 "Gramps (Genealogisches Recherche und Analyse Management Programm System) ist "
 "ein Programm zur Ahnenforschung."
 
-#: ../gramps/gen/const.py:227
+#: ../gramps/gen/const.py:228
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Sebastian Vöcking, Mirko Leonhäuser"
 
-#: ../gramps/gen/const.py:238 ../gramps/gen/const.py:239
+#: ../gramps/gen/const.py:239 ../gramps/gen/const.py:240
 #: ../gramps/gen/lib/date.py:1671 ../gramps/gen/lib/date.py:1685
 msgid "none"
 msgstr "kein"
@@ -6285,6 +6285,14 @@ msgstr "Nachfahre todesbezogenes Datum"
 msgid "no evidence"
 msgstr "kein Beleg"
 
+#: ../gramps/gen/utils/cast.py:53
+msgid "True"
+msgstr "Wahr"
+
+#: ../gramps/gen/utils/cast.py:53
+msgid "true"
+msgstr "wahr"
+
 #: ../gramps/gen/utils/db.py:285 ../gramps/gen/utils/db.py:304
 #, python-format
 msgid "%s, ..."
@@ -6295,192 +6303,192 @@ msgstr "%s, ..."
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s und %(mother)s"
 
-#: ../gramps/gen/utils/grampslocale.py:604
+#: ../gramps/gen/utils/grampslocale.py:603
 msgid "Arabic"
 msgstr "Arabisch"
 
-#: ../gramps/gen/utils/grampslocale.py:605
+#: ../gramps/gen/utils/grampslocale.py:604
 msgid "Bulgarian"
 msgstr "Bulgarisch"
 
-#: ../gramps/gen/utils/grampslocale.py:606
+#: ../gramps/gen/utils/grampslocale.py:605
 msgid "Catalan"
 msgstr "Katalanisch"
 
-#: ../gramps/gen/utils/grampslocale.py:607
+#: ../gramps/gen/utils/grampslocale.py:606
 msgid "Czech"
 msgstr "Tschechisch"
 
-#: ../gramps/gen/utils/grampslocale.py:608
+#: ../gramps/gen/utils/grampslocale.py:607
 msgid "Danish"
 msgstr "Dänisch"
 
-#: ../gramps/gen/utils/grampslocale.py:609
+#: ../gramps/gen/utils/grampslocale.py:608
 msgid "German"
 msgstr "Deutsch"
 
-#: ../gramps/gen/utils/grampslocale.py:610
+#: ../gramps/gen/utils/grampslocale.py:609
 msgid "Greek"
 msgstr "Griechisch"
 
-#: ../gramps/gen/utils/grampslocale.py:611
+#: ../gramps/gen/utils/grampslocale.py:610
 msgid "English"
 msgstr "Englisch"
 
-#: ../gramps/gen/utils/grampslocale.py:612
+#: ../gramps/gen/utils/grampslocale.py:611
 msgid "Esperanto"
 msgstr "Esperanto"
 
-#: ../gramps/gen/utils/grampslocale.py:613
+#: ../gramps/gen/utils/grampslocale.py:612
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: ../gramps/gen/utils/grampslocale.py:614
+#: ../gramps/gen/utils/grampslocale.py:613
 msgid "Finnish"
 msgstr "Finnisch"
 
-#: ../gramps/gen/utils/grampslocale.py:615
+#: ../gramps/gen/utils/grampslocale.py:614
 msgid "French"
 msgstr "Französisch"
 
-#: ../gramps/gen/utils/grampslocale.py:616
+#: ../gramps/gen/utils/grampslocale.py:615
 msgid "Hebrew"
 msgstr "Hebräisch"
 
-#: ../gramps/gen/utils/grampslocale.py:617
+#: ../gramps/gen/utils/grampslocale.py:616
 msgid "Croatian"
 msgstr "Kroatisch"
 
-#: ../gramps/gen/utils/grampslocale.py:618
+#: ../gramps/gen/utils/grampslocale.py:617
 msgid "Hungarian"
 msgstr "Ungarisch"
 
-#: ../gramps/gen/utils/grampslocale.py:619
+#: ../gramps/gen/utils/grampslocale.py:618
 msgid "Italian"
 msgstr "Italienisch"
 
-#: ../gramps/gen/utils/grampslocale.py:620
+#: ../gramps/gen/utils/grampslocale.py:619
 msgid "Japanese"
 msgstr "Japanisch"
 
-#: ../gramps/gen/utils/grampslocale.py:621
+#: ../gramps/gen/utils/grampslocale.py:620
 msgid "Lithuanian"
 msgstr "Litauisch"
 
-#: ../gramps/gen/utils/grampslocale.py:622
+#: ../gramps/gen/utils/grampslocale.py:621
 msgid "Macedonian"
 msgstr "Mazedonisch"
 
-#: ../gramps/gen/utils/grampslocale.py:623
+#: ../gramps/gen/utils/grampslocale.py:622
 msgid "Norwegian Bokmal"
 msgstr "Norwegisch Bokmal"
 
-#: ../gramps/gen/utils/grampslocale.py:624
+#: ../gramps/gen/utils/grampslocale.py:623
 msgid "Dutch"
 msgstr "Niederländisch"
 
-#: ../gramps/gen/utils/grampslocale.py:625
+#: ../gramps/gen/utils/grampslocale.py:624
 msgid "Norwegian Nynorsk"
 msgstr "Norwegisch Nynorsk"
 
-#: ../gramps/gen/utils/grampslocale.py:626
+#: ../gramps/gen/utils/grampslocale.py:625
 msgid "Polish"
 msgstr "Polnisch"
 
-#: ../gramps/gen/utils/grampslocale.py:627
+#: ../gramps/gen/utils/grampslocale.py:626
 msgid "Portuguese"
 msgstr "Portugiesisch"
 
-#: ../gramps/gen/utils/grampslocale.py:628
+#: ../gramps/gen/utils/grampslocale.py:627
 msgid "Romanian"
 msgstr "Rumänisch"
 
-#: ../gramps/gen/utils/grampslocale.py:629
+#: ../gramps/gen/utils/grampslocale.py:628
 msgid "Russian"
 msgstr "Russisch"
 
-#: ../gramps/gen/utils/grampslocale.py:630
+#: ../gramps/gen/utils/grampslocale.py:629
 msgid "Slovak"
 msgstr "Slowakisch"
 
-#: ../gramps/gen/utils/grampslocale.py:631
+#: ../gramps/gen/utils/grampslocale.py:630
 msgid "Slovenian"
 msgstr "Slowenisch"
 
-#: ../gramps/gen/utils/grampslocale.py:632
+#: ../gramps/gen/utils/grampslocale.py:631
 msgid "Albanian"
 msgstr "Albanisch"
 
-#: ../gramps/gen/utils/grampslocale.py:633
+#: ../gramps/gen/utils/grampslocale.py:632
 msgid "Swedish"
 msgstr "Schwedisch"
 
-#: ../gramps/gen/utils/grampslocale.py:634
+#: ../gramps/gen/utils/grampslocale.py:633
 msgid "Turkish"
 msgstr "Türkisch"
 
-#: ../gramps/gen/utils/grampslocale.py:635
+#: ../gramps/gen/utils/grampslocale.py:634
 msgid "Ukrainian"
 msgstr "Ukrainisch"
 
-#: ../gramps/gen/utils/grampslocale.py:636
+#: ../gramps/gen/utils/grampslocale.py:635
 msgid "Vietnamese"
 msgstr "Vietnamesisch"
 
-#: ../gramps/gen/utils/grampslocale.py:637
+#: ../gramps/gen/utils/grampslocale.py:636
 msgid "Chinese"
 msgstr "Chinesisch"
 
-#: ../gramps/gen/utils/grampslocale.py:642
+#: ../gramps/gen/utils/grampslocale.py:641
 msgid "Brazil"
 msgstr "Brasilianisch"
 
-#: ../gramps/gen/utils/grampslocale.py:643
+#: ../gramps/gen/utils/grampslocale.py:642
 #: ../gramps/plugins/lib/holidays.xml.in.h:5
 msgid "China"
 msgstr "China"
 
-#: ../gramps/gen/utils/grampslocale.py:644
+#: ../gramps/gen/utils/grampslocale.py:643
 msgid "Portugal"
 msgstr "Portugal"
 
-#: ../gramps/gen/utils/grampslocale.py:862
+#: ../gramps/gen/utils/grampslocale.py:861
 msgid "the person"
 msgstr "die Person"
 
-#: ../gramps/gen/utils/grampslocale.py:864
+#: ../gramps/gen/utils/grampslocale.py:863
 msgid "the family"
 msgstr "die Familie"
 
-#: ../gramps/gen/utils/grampslocale.py:866
+#: ../gramps/gen/utils/grampslocale.py:865
 msgid "the place"
 msgstr "der Ort"
 
-#: ../gramps/gen/utils/grampslocale.py:868
+#: ../gramps/gen/utils/grampslocale.py:867
 msgid "the event"
 msgstr "das Ereignis"
 
-#: ../gramps/gen/utils/grampslocale.py:870
+#: ../gramps/gen/utils/grampslocale.py:869
 msgid "the repository"
 msgstr "der Aufbewahrungsort"
 
-#: ../gramps/gen/utils/grampslocale.py:872
+#: ../gramps/gen/utils/grampslocale.py:871
 msgid "the note"
 msgstr "die Notiz"
 
-#: ../gramps/gen/utils/grampslocale.py:874
+#: ../gramps/gen/utils/grampslocale.py:873
 msgid "the media"
 msgstr "das Medium"
 
-#: ../gramps/gen/utils/grampslocale.py:876
+#: ../gramps/gen/utils/grampslocale.py:875
 msgid "the source"
 msgstr "die Quelle"
 
-#: ../gramps/gen/utils/grampslocale.py:878
+#: ../gramps/gen/utils/grampslocale.py:877
 msgid "the filter"
 msgstr "der Filter"
 
-#: ../gramps/gen/utils/grampslocale.py:880
+#: ../gramps/gen/utils/grampslocale.py:879
 msgid "See details"
 msgstr "Siehe Details"
 
@@ -10883,11 +10891,11 @@ msgstr ""
 "<b>SICHERE</b> deine bestehenden Daten bevor du sie mit dieser Version "
 "öffnest, und exportiere deine Daten öfter im XML-Format."
 
-#: ../gramps/gui/grampsgui.py:264
+#: ../gramps/gui/grampsgui.py:266
 msgid "Gramps detected an incomplete GTK installation"
 msgstr "Gramps hat eine unvollständige GTK installation entdeckt"
 
-#: ../gramps/gui/grampsgui.py:265
+#: ../gramps/gui/grampsgui.py:267
 #, python-format
 msgid ""
 "GTK translations for the current language (%s) are missing.\n"
@@ -10905,11 +10913,11 @@ msgstr ""
 "Schaue in die Gramps README Dokumentation für Installationsvoraussetzungen,\n"
 "normalerweise unter /usr/share/doc/gramps."
 
-#: ../gramps/gui/grampsgui.py:303
+#: ../gramps/gui/grampsgui.py:305
 msgid "Error parsing arguments"
 msgstr "Fehler beim analysieren der Argumente"
 
-#: ../gramps/gui/grampsgui.py:376
+#: ../gramps/gui/grampsgui.py:378
 msgid ""
 "\n"
 "Gramps failed to start. Please report a bug about this.\n"
