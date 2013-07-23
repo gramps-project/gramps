@@ -16,12 +16,10 @@ except NameError:
     from sets import Set as set
 
 import const
-import RelLib
 
 logger = logging.getLogger('Gramps.GrampsDbBase_Test')
 
 from GrampsDbTestBase import GrampsDbBaseTest
-import GrampsDb
 
 class Data(object):
 
