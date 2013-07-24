@@ -8,7 +8,7 @@
 # Copyright (C) 2008       Raphael Ackermann
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2012       Doug Blank
-# Copyright (C) 2012       Paul Franklin
+# Copyright (C) 2012-2013  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +48,6 @@ import logging
 #-------------------------------------------------------------------------
 import const
 import config
-from gen.utils.configmanager import safe_eval
 import Utils
 
 # Note: Make sure to edit const.py.in POPT_TABLE too!
@@ -315,11 +314,14 @@ class ArgParser(object):
                         print >> sys.stderr, "Current Gramps config setting: " \
                                    "%s:%s" % (setting_name, repr(setting_value))
                         if set_value:
-                            if new_value == "DEFAULT":
+                            # does a user want the default config value?
+                            if new_value in ("DEFAULT", _("DEFAULT")):
                                 new_value = config.get_default(setting_name)
                             else:
-                                new_value = safe_eval(new_value)
+                                converter = Utils.get_type_converter(setting_value)
+                                new_value = converter(new_value)
                             config.set(setting_name, new_value)
+                            # translators: indent "New" to match "Current"
                             print >> sys.stderr, "    New Gramps config " \
                                             "setting: %s:%s" % (
                                                 setting_name,
