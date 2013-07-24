@@ -699,7 +699,7 @@ class GVSvgDoc(GVDocBase):
         fname = self._filename.encode(sys.getfilesystemencoding())
 
         # Generate the SVG file.
-        os.system( 'dot -Tsvg -o"%s" "%s"' % (fname, tmp_dot) )
+        os.system( 'dot -Tsvg:cairo -o"%s" "%s"' % (fname, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
