@@ -564,6 +564,10 @@ class MonitoredStrMenu(object):
         
         if len(mapping) > 20:
             self.obj.set_wrap_width(3)
+        if len(mapping) > 40:
+            self.obj.set_wrap_width(4)
+        if len(mapping) > 100: # currently, there are 153 entries in lds.xml
+            self.obj.set_wrap_width(5)
 
         self.model.append(row=[''])
         index = 0
