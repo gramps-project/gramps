@@ -33,7 +33,9 @@ import sys
 import unittest
 from optparse import OptionParser
 
-sys.path.append('../src')
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+os.environ['GRAMPS_RESOURCES'] = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), '..')
 
 def make_parser():
     usage = "usage: %prog [options]"
@@ -48,7 +50,7 @@ def make_parser():
 def getTestSuites():
     # Sorry about this line, but it is the easiest way of doing it.
     # It just walks the filetree from '.' downwards and returns
-    # a tuple per directory of (dirpatch,filelist) if the directory
+    # a tuple per directory of (dirpath,filelist) if the directory
     # contains any test files.
     
     paths = [(f[0],f[2]) for f in os.walk('.') \
@@ -62,7 +64,7 @@ def getTestSuites():
         perf_suites = []
         for module in test_modules:
             if module[-8:] != "_Test.py":
-                break
+                continue
             mod = __import__(module[:-3])
             test_suites.append(mod.testSuite())
             try:
@@ -79,7 +81,6 @@ def perfTests():
     return unittest.TestSuite(getTestSuites()[1])
     
 if __name__ == '__main__':
-
     console = logging.StreamHandler()
     console.setLevel(logging.INFO)
     console.setFormatter(logging.Formatter('%(name)-12s: %(levelname)-8s %(message)s'))
@@ -106,8 +107,5 @@ if __name__ == '__main__':
         logger.setLevel(logging.ERROR)
         console.setLevel(logging.ERROR)
 
-
-    if options.performance:
-        unittest.TextTestRunner(verbosity=options.verbose_level).run(perfTests())
-    else:
-        unittest.TextTestRunner(verbosity=options.verbose_level).run(allTheTests())
+    tests = perfTests() if options.performance else allTheTests()
+    unittest.TextTestRunner(verbosity=options.verbose_level).run(tests)

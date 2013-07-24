@@ -26,7 +26,7 @@ import tempfile
 import shutil
 import sys
 
-sys.path.append('../src')
+sys.path.append('../gramps')
 
 import GrampsDb
 import const

@@ -25,7 +25,7 @@ from bsddb import dbshelve, db
 import os
 import sys
 
-sys.path.append('../src')
+sys.path.append('../gramps')
 import const
 
 env_name = os.path.expanduser(const.bsddbenv_dir)

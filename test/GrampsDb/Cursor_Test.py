@@ -31,20 +31,18 @@ import traceback
 import sys
 from bsddb import dbshelve, db
 
-sys.path.append('../../src')
+sys.path.append('../../gramps')
 
 try:
     set()
 except NameError:
     from sets import Set as set
 
-import const
-import RelLib
+import gramps.gen.const
 
 logger = logging.getLogger('Gramps.GrampsDbBase_Test')
 
 from GrampsDbTestBase import GrampsDbBaseTest
-import GrampsDb
 
 class Data(object):
 

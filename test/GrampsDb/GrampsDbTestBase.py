@@ -30,7 +30,7 @@ import time
 import traceback
 import sys
 
-sys.path.append('../src')
+sys.path.append('../gramps')
 
 try:
     set()
@@ -38,9 +38,9 @@ except NameError:
     from sets import Set as set
     
 from gramps.gen.db import DbBsddb
-from cli.clidbman import CLIDbManager
-import const
-import gen.lib
+from gramps.cli.clidbman import CLIDbManager
+import gramps.gen.const
+import gramps.gen.lib
 
 logger = logging.getLogger('Gramps.GrampsDbTestBase')
 
