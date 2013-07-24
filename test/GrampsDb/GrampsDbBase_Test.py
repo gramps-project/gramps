@@ -30,15 +30,14 @@ import time
 import traceback
 import sys
 
-sys.path.append('../../src')
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../gramps'))
 
 try:
     set()
 except NameError:
     from sets import Set as set
 
-import const
-import gen.lib
+import gramps.gen.lib
 
 logger = logging.getLogger('Gramps.GrampsDbBase_Test')
 

@@ -25,17 +25,15 @@ import unittest
 import logging
 import sys
 from gi.repository import Gtk
+import os
 
+log = logging.getLogger('Gramps.Tests.GrampsLogger')
+import gramps.gen.const as const
+const.rootDir = os.path.join(os.path.dirname(__file__), '../../gramps')
+sys.path.append(os.path.join(const.rootDir, 'test'))
+sys.path.append(const.rootDir)
 
-sys.path.append('../../src')
-sys.path.append('../../src/GrampsLogger')
-
-logger = logging.getLogger('Gramps.Tests.GrampsLogger')
-
-import const
-const.rootDir = "../../src"
-
-from GrampsLogger import GtkHandler, RotateHandler
+from gramps.gui.logger import RotateHandler, GtkHandler
 
 class GtkHandlerTest(unittest.TestCase):
     """Test the GtkHandler."""
@@ -64,7 +62,8 @@ class GtkHandlerTest(unittest.TestCase):
         except:
             l.error(log_message,exc_info=True)
 
-        Gtk.main()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
 
         

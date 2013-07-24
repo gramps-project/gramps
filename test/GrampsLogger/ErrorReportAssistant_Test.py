@@ -24,10 +24,12 @@
 import unittest
 import logging
 import sys
+import os
 
 log = logging.getLogger('Gramps.Tests.GrampsLogger')
-
-sys.path.append('..')
+import gramps.gen.const as const
+const.rootDir = os.path.join(os.path.dirname(__file__), '../../gramps')
+sys.path.append(os.path.join(const.rootDir, 'test'))
 try:
     from guitest.gtktest import GtkTestCase
     TestCaseBase = GtkTestCase
@@ -35,15 +37,10 @@ try:
 except:
     TestCaseBase = unittest.TestCase
 
-sys.path.append('../../src')
-sys.path.append('../../src/GrampsLogger')
+sys.path.append(const.rootDir)
+sys.path.append(os.path.join(const.rootDir, 'GrampsLogger'))
 
-import const
-const.rootDir = "../../src"
-
-from GrampsLogger import RotateHandler
-
-import _ErrorReportAssistant
+from gramps.gui.logger import RotateHandler, _errorreportassistant
 
 class ErrorReportAssistantTest(TestCaseBase):
     """Test the ErrorReportAssistant."""
@@ -59,7 +56,7 @@ class ErrorReportAssistantTest(TestCaseBase):
         l.info("info message")
 
         error_detail="Test error"
-        ass = _ErrorReportAssistant.ErrorReportAssistant(error_detail=error_detail,
+        ass = _errorreportassistant.ErrorReportAssistant(error_detail=error_detail,
                                                                rotate_handler=rh)
 
         assert ass._error_detail == error_detail

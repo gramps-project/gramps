@@ -24,12 +24,13 @@
 import unittest
 import logging
 import sys
+import os
 
-sys.path.append('../../src/GrampsLogger')
+sys.path.append(os.path.join(os.path.dirname(__file__), '../../gramps/GrampsLogger'))
 
 logger = logging.getLogger('Gramps.Tests.GrampsLogger')
 
-import _RotateHandler
+from gramps.gui.logger import RotateHandler
 
 class RotateHandlerTest(unittest.TestCase):
     """Test the RotateHandler."""
@@ -37,7 +38,7 @@ class RotateHandlerTest(unittest.TestCase):
     def test_buffer_recall(self):
         """Test that simple recall of messages works."""
         
-        rh = _RotateHandler.RotateHandler(10)
+        rh = RotateHandler(10)
         l = logging.getLogger("RotateHandlerTest")
         l.setLevel(logging.DEBUG)
         
@@ -56,7 +57,7 @@ class RotateHandlerTest(unittest.TestCase):
     def test_buffer_rotation(self):
         """Test that buffer correctly rolls over when capacity is reached."""
 
-        rh = _RotateHandler.RotateHandler(10)
+        rh = RotateHandler(10)
         l = logging.getLogger("RotateHandlerTest")
         l.setLevel(logging.DEBUG)
         
