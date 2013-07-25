@@ -26,16 +26,14 @@
 SrcTemplate class for GRAMPS.
 """
 
-from __future__ import print_function
-
 #-------------------------------------------------------------------------
 #
 # Python modules
 #
 #-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-import csv
+from __future__ import print_function
+from collections import defaultdict, OrderedDict
+import sys
 
 #------------------------------------------------------------------------
 #
@@ -50,6 +48,8 @@ LOG = logging.getLogger('.template')
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from .srcattrtype import *
 from .date import Date
 from .tableobj import TableObject
@@ -144,7 +144,7 @@ class SrcTemplate(TableObject):
         self.name = ""
         self.descr = ""
         self.template_element_list = []
-        self.mapping_list = []
+        self.mapdict = defaultdict(str)
         self.structure = {REF_TYPE_L: [], REF_TYPE_F: [],
                           REF_TYPE_S: []}
         self.empty()
@@ -172,7 +172,7 @@ class SrcTemplate(TableObject):
             self.name,
             self.descr,
             [template_element.serialize() for template_element in self.template_element_list],
-            [mapping.serialize() for mapping in self.mapping_list],
+            self.mapdict,
            )
 
     def to_struct(self):
@@ -199,7 +199,7 @@ class SrcTemplate(TableObject):
                 "name": cuni(self.name),
                 "descr": cuni(self.descr),
                 "elements": [e.to_struct() for e in self.template_element_list],
-                "structure": (("%s: %s" % (s, self.structure[s])) for s in self.structure)
+                "mapdict" : self.mapdict,
                 }
 
     def get_name(self):
@@ -214,14 +214,19 @@ class SrcTemplate(TableObject):
     def set_descr(self, descr):
         self.descr = descr
         
-    def get_mapping_types_list(self):
-        return self.mapping_types_list
+    def get_map_dict(self):
+        """Return the map for the template"""
+        return self.mapdict
     
-    def set_mapping_list(self, mapping_list):
-        self.mapping_list = mapping_list
+    def set_map_dict(self, templmap):
+        """Set the map for the template"""
+        self.mapdict = templmap
+    
+    def set_map_element(self, key, value):
+        self.mapdict[key] =  value
         
-    def add_mapping(self, mapping):
-        self.mapping_list.append(mapping)
+    def get_map_element(self, key):
+        return self.mapdict[key]
         
     def get_template_element_list(self):
         return self.template_element_list
@@ -250,83 +255,72 @@ class SrcTemplate(TableObject):
         # map is field -> (normal value for ref L, 
         #                  normal value for ref F/S, short value ref S)
         self.attrmap = {}
+        self.input_dict = defaultdict(str)
 
     def set_attr_list(self, attr_list, attr_list_citation=None, date_citation=None):
         """
         Set the attribute list of this template. Setting once for different
         references saves some time.
         attr_list should be the source attribute list
-        If citation given, citation attributes overrule source attributes for 
+        If citation given, citation attrib
+        utes overrule source attributes for 
         the Full and Short references
         The citation date is not stored as attribute, so pass Date() object via
         date_citation if a date is known.
         """
         self.empty()
+        self.attrmap = {}
+        self.input_dict = defaultdict(str)
         self.attr_list = attr_list or []
         self.attr_list_cite = attr_list_citation or []
         self.date_citation = date_citation
-        # store attributes in a dict last to first. this overwrites data so first
-        # attribute will be the one taken if duplicates are present
-        for attr in self.attr_list[::-1]:
-            lower = False
-            typ = attr.get_type()
-            key = int(typ)
-            keystr = typ.xml_str().lower()
-            if keystr.lower().endswith(' (short)'):
-                #a shorter version, we store with base type
-                key = int(SrcAttributeType(keystr[:-8]))
-                lower = True
-            if key == SrcAttributeType.CUSTOM:
-                key = str(typ)
-            if key in self.attrmap:
-                if lower:
-                    self.attrmap[key] = (self.attrmap[key][0],
-                                self.attrmap[key][0], attr.get_value())
+        
+        # -----------------------------------------------------------------
+        # Construct the input dictionary
+        # First pre-load the dictionary with default settings for citations
+        if not attr_list_citation:
+            for te in [x for x in self.get_template_element_list()
+                       if x.get_citation()]:
+                name = str(SrcAttributeType(te.get_name())).upper().replace(' ', '_')
+                if te.get_display():
+                    val = te.get_display().upper().replace(' ', '_')
                 else:
-                    self.attrmap[key] = (attr.get_value(), 
-                                attr.get_value(), self.attrmap[key][1])
+                    val = name
+                self.input_dict[name] = "[" + val + "]"
+        
+        # Now get the actual attribute values. store attributes in a dict last
+        # to first. this overwrites data so first attribute will be the one
+        # taken if duplicates are present
+        for input_attr in ((attr_list or []) + (attr_list_citation or []))[::-1]:
+            typ = input_attr.get_type()
+            if int(typ) == SrcAttributeType.CUSTOM:
+                name = str(typ).upper().replace(' ', '_')
             else:
-                if lower:
-                    #store also in normal already value of short
-                    self.attrmap[key] = (attr.get_value(),
-                                attr.get_value(), attr.get_value())
-                else:
-                    self.attrmap[key] = (attr.get_value(), 
-                                attr.get_value(), None)
+                name = typ.xml_str().upper().replace(' ', '_')
+            self.input_dict[name] = input_attr.get_value()
+            # if we haven't already got a value for the short attribute, we
+            # store the long attribute in the short attribute
+            if not name.endswith("(SHORT)"):
+                short_name = name + "_(SHORT)"
+                if self.input_dict.get(short_name) is None or \
+                        (self.input_dict.get(short_name) and \
+                        self.input_dict[short_name] == ("[" + short_name + "]")):
+                    self.input_dict[short_name] = self.input_dict[name]
 
-        for attr in self.attr_list_cite[::-1]:
-            #we do same for citation information, but only update last two
-            # values of the attrmap
-            lower = False
-            typ = attr.get_type()
-            key = int(typ)
-            keystr = typ.xml_str().lower()
-            if keystr.lower().endswith(' (short)'):
-                #a shorter version, we store with base type
-                key = int(SrcAttributeType(keystr[:-8]))
-                lower = True
-            if key == SrcAttributeType.CUSTOM:
-                key = str(typ)
-            if key in self.attrmap:
-                if lower:
-                    self.attrmap[key] = (self.attrmap[key][0],
-                                self.attrmap[key][2], attr.get_value())
-                else:
-                    self.attrmap[key] = (self.attrmap[key][0],
-                                attr.get_value(), self.attrmap[key][2])
-            else:
-                #field only present in citation.
-                if lower:
-                    #store also in normal already value of short, keep empty
-                    #string for source fields
-                    self.attrmap[key] = ('', attr.get_value(), attr.get_value())
-                else:
-                    self.attrmap[key] = ('', attr.get_value(), None)
         if self.date_citation:
             #we store the date of the citation in attrmap
-            key = SrcAttributeType.DATE
-            self.attrmap[key] = (None, self.date_citation, None)
+            name = SrcAttributeType(SrcAttributeType.DATE).xml_str().upper().replace(' ', '_')
+            self.input_dict[name] = str(self.date_citation)
+            short_name = name + "_(SHORT)"
+            if self.input_dict.get(short_name) is None or \
+                    (self.input_dict.get(short_name) and \
+                    self.input_dict[short_name] == ("[" + short_name + "]")):
+                self.input_dict[short_name] = self.input_dict[name]
 
+        # FIXME: REPOSITORY, REPOSITORY_ADDRESS and REPOSITORY_CALL_NUMBER all
+        # need to be added to the self.input_dict. See srctemplatetab.py
+        # _add_repo_entry()
+    
     def reference_L(self, attr_list=None):
         """
         Return the list reference based on the passed source attribute list
@@ -342,7 +336,8 @@ class SrcTemplate(TableObject):
     def reference_S(self, attr_list=None, attr_list_citation=None, date_citation=None):
         """
         Return the short reference based on the passed source attribute list
-        If attr_list is None, same list as before is used.
+        If attr_list is None, same list as
+         before is used.
         """
         if attr_list or attr_list_citation or date_citation:
             self.set_attr_list(attr_list, attr_list_citation, date_citation)
@@ -363,155 +358,190 @@ class SrcTemplate(TableObject):
         self.refF = self._reference(REF_TYPE_F)
         return self.refF
 
-    def __ged_page_reflist(self):
-        """
-        Construct a derived template reflist for use to construct the gedcom
-        page field
-        """
-        reflist_F = self.structure[REF_TYPE_F]
-        reflist_L_fields = [field[1] for field in self.structure[REF_TYPE_L]]
-        result = []
-        for entry in reflist_F:
-            if entry[1] in reflist_L_fields:
-                continue
-            if entry[1] == SrcAttributeType.DATE:
-                continue
-            result.append(entry)
-
     def _reference(self, reftype, gedcomfield=None):
         """
         Compute the reference based on data present.
-        At the moment no style is applied!
-        
-        THIS IS UGLY CODE AT THE MOMENT! SHOULD BE ENTIRELY REWRITTEN, FOR 
-        NOW IT JUST GIVES ME SOMETHING TO USE IN THE PROTOTYPE !!
         """
-        if gedcomfield == GED_PAGE:
-            self.__ged_page_reflist()
-        else:
-            reflist = self.structure[reftype]
-        # reflist is typically a list like
-        # [      ('', AUTHOR, '', ',', EMPTY, False, False, EMPTY, EMPTY, None, None),
-        #        ('', TITLE, '', ',', STYLE_QUOTE, False, False, EMPTY, EMPTY, None, None),
-        #        ('', PUB_INFO, '', '.', EMPTY, False, False, EMPTY, EMPTY, None, None),
-        #        ('', DATE, '', ' -', EMPTY, False, False, EMPTY, EMPTY, None, None),
-        #        ('', PAGE, 'Page(s)', '.', EMPTY, False, False, EMPTY, EMPTY, None, None),
-        #        ]
+        # http://bugs.python.org/issue6081
+        class DefaultBlank(dict):
+            def __missing__(self, key):
+                return ""
+         
+        class DefaultKey(dict):
+            def __missing__(self, key):
+                return "[" + key + "]"
+       
+        ged_table = {
+                 GED_AUTHOR : "GEDCOM_A",
+                 GED_TITLE : "GEDCOM_T",
+                 GED_PUBINF : "GEDCOM_P",
+                 GED_DATE : "GEDCOM_D",
+                 GED_PAGE : "GEDCOM_PAGE",
+                 }
+        if gedcomfield:
+            return (self.get_map_element(ged_table[gedcomfield]) %
+                    DefaultKey(self.input_dict)) or ""
         
-        #set col of attrmap to use:
-        if reftype == REF_TYPE_L:
-            COL_NORMAL = 0
-            COL_SHORT = 2
+        use_CSL = False
+        try:
+            import citeproc
+            if sys.version_info[0] >= 3:
+                use_CSL = True
+        except:
+            pass
+        
+        if use_CSL:
+            # -----------------------------------------------------------------
+            # Construct the standard output-elements
+            self.output_dict = OrderedDict()
+            LOG.debug(self.get_map_dict())
+            LOG.debug("input_attributes \n" +
+                      "".join(("%s: %s\n" % item) for item in list(self.input_dict.items())))
+            for key, val in list(self.get_map_dict().items()):
+                if key[0].islower():
+                    try:
+                        self.output_dict[key] = val % DefaultBlank(self.input_dict)
+                    except:
+                        LOG.warn("key error with key %s; val %s; input_dict %s" %
+                                 (key, val, self.input_dict))
+                        self.output_dict[key] = ""
+            
+            LOG.debug("CSL_attributes \n" +
+                      "".join(("%s: %s\n" % item) for item in list(self.output_dict.items())))
+            
+            # Temporary fix for not implemented yet templates
+            if len(self.output_dict) == 0:
+                return ""
+            
+            # Now fix CSL attributes that need special sub-elements
+            for name in ["author", "container_author", "some other name"]:
+                if name in self.output_dict:
+                    self.output_dict[name] = [{"family": self.output_dict[name],
+                                       "given": ""}]
+            # -----------------------------------------------------------------
+            # Modify the output-elements to allow the standard Chicago style to
+            # format the citations close to Evidence Style
+            
+            # literal dates are not specially treated. Date accessed is converted to
+            # a literal publication date to conform to how ESM formats the accessed
+            # date
+            if "accessed" in self.output_dict:
+                self.output_dict["issued"] = {'literal' : "accessed " + self.output_dict['accessed']}
+                del self.output_dict['accessed']
+            # Website is rendered as publisher_place to conform to how ESM renders
+            # it.
+            if "url" in self.output_dict:
+                self.output_dict["publisher_place"] = \
+                    self.output_dict["publisher_place"] if "publisher_place" in self.output_dict \
+                                else "" + self.output_dict["url"]
+            LOG.debug("self.output_dictibutes modified \n" +
+                      "".join(("    %s: %s\n" % item) for item in self.output_dict.items()))
+                
+            try:
+                (refF, refS, refL) = self.get_CSL_references(self.output_dict)
+                if reftype == REF_TYPE_F:
+                    return refF
+                elif reftype == REF_TYPE_S:
+                    return refS
+                else:
+                    return refL
+            except:
+                print(sys.exc_info()[0], sys.exc_info()[1])
+                return ""
+        
         else:
-            COL_NORMAL = 1
-            COL_SHORT = 2
-        ref = ['']
-        fieldadded = [False]
-        for (ldel, field, label, rdel, style, priv, opt, short, gedcom,
-                hint, tooltip) in reflist:
-            if not gedcomfield is None and gedcom != gedcomfield:
-                continue
-            customshort = False
-            #left delimiter
-            if ldel in ['(', '[', '{']:
-                ref += ['']
-                fieldadded += [False]
-                ref[-1] += ldel
-                ldeltodo = ''
-            else:
-                ldeltodo = ldel
-            val = self.attrmap.get(field)
-            #field
-            field = ''
-            if val is not None:
-                if reftype == REF_TYPE_S and val[COL_SHORT] is not None:
-                    customshort = True
-                    field = val[COL_SHORT]
-                else:
-                    field = val[COL_NORMAL]
-            if short and not customshort:
-                #we apply the shortening algorithm
-                ## TODO: not implemented yet
-                pass
-            #if field is a Date object, we now convert to string
-            if isinstance(field, Date):
-                field = str(field)
-            if field.strip():
-                fieldadded[-1] = True
-                ref[-1] += ldeltodo
-                if len(ref[-1]) and ref[-1][-1] == '.':
-                    ref[-1] += ' ' + field[0].capitalize() + field[1:]
-                elif  len(ref[-1]) and ref[-1][-1] in [',', ':', '-']:
-                    ref[-1] += ' ' + field
-                elif len(ref[-1]) and ref[-1] != ' ':
-                    ref[-1] += ' ' + field
-                else:
-                    ref[-1] += field
-            #right delimiter
-            nobracket = True
-            for bracketl, bracketr in [('(', ')'), ('[',']'), ('{','}')]:
-                if bracketr in rdel:
-                    nobracket = False
-                    if len(ref[-1] [ref[-1].find(bracketl)+1:]) > 0 :
-                        newval = ref[-1] + rdel
-                        ref = ref[:-1]
-                        fieldadded = fieldadded[:-1]
-                        fieldadded[-1] = True
-                        ref[-1] += newval
-                    else:
-                        #no data inside of delimiter, we remove it entirely
-                        ref = ref[:-1]
-                        fieldadded = fieldadded[:-1]
-                        #if . at end of rdel, add it
-                        if rdel[-1] == '.':
-                            if ref[-1] and ref[-1][-1] in [',', '.']:
-                                ref[-1] = ref[-1][:-1]
-                            if ref[-1]:
-                                ref[-1] = ref[-1] + '.'
-                        elif rdel[-1] == ',':
-                            if ref[-1] and ref[-1][-1] in [',', '.']:
-                                pass
-                            elif ref[-1]:
-                                ref[-1] = ref[-1] + ','
-            if nobracket:
-                # we add rdel
-                if not ref[-1]:
-                    #nothing there, don't add delimiter
-                    pass
-                elif len(rdel) and rdel[0] == '.':
-                    curval = ref[-1]
-                    if len(curval) and curval[-1] == '.':
-                        pass
-                    elif len(curval) and curval[-1] in [',', ';']:
-                        ref[-1] = ref[-1][:-1] + rdel
-                    else:
-                        ref[-1] = ref[-1] + rdel
-                    #we only add delimiters after this if new fields are added
-                    fieldadded[-1] = False
-                elif len(rdel) and rdel[0] == ',':
-                    curval = ref[-1]
-                    if len(curval) and curval[-1] in ['.', ';']:
-                        pass
-                    elif len(curval) and curval[-1] == ',':
-                        pass
-                    elif fieldadded[-1]:
-                        ref[-1] = ref[-1] + rdel
-                    #we only add delimiters after this if new fields are added
-                    fieldadded[-1] = False
-                else:
-                    if fieldadded[-1]:
-                        ref[-1] = ref[-1] + rdel
-                        #we only add delimiters after this if new fields are added
-                        fieldadded[-1] = False
-                    
-        ref = ' '.join(ref)
-        if ref:
-            ref = ref[0].capitalize() + ref[1:]
-            ref.replace('  ', ' ')
-            return ref
-        else:
-            return ref
+            # -----------------------------------------------------------------
+            # Construct the standard output-elements
+            ref_table = {
+                     REF_TYPE_L : "EE_L",
+                     REF_TYPE_F : "EE_F",
+                     REF_TYPE_S : "EE_S",
+                     }
+            return (self.get_map_element(ref_table[reftype]) %
+                    DefaultKey(self.input_dict)) or ""
+    
+    def get_CSL_references(self, CSL_attributes):
+        # Import the citeproc-py classes we'll use below.
+        from citeproc import CitationStylesStyle, CitationStylesBibliography
+        from citeproc import Citation, CitationItem
+        from citeproc import formatter, Locator
+        from citeproc.source.json import CiteProcJSON
 
+        # Process the JSON data to generate a citeproc-py BibliographySource.
+        if 'locator' in CSL_attributes:
+            loc = Locator("page", CSL_attributes["locator"])
+        
+        import copy
+        c1 = copy.deepcopy(CSL_attributes)
+        c2 = copy.deepcopy(CSL_attributes)
+             
+        bib_source = {"full": c1, "subs" : c2}
+        bib_source = {"full": c1}
+        
+#        for key, entry in bib_source.items():
+#            print(key)
+#            for name, value in entry.items():
+#                print('    {}: {}'.format(name, value))
+        
+        # load a CSL style (from the current directory)
+        
+        bib_style = CitationStylesStyle('chicago-fullnote-bibliography-no-ibid.csl')
+        
+        # Create the citeproc-py bibliography, passing it the:
+        # * CitationStylesStyle,
+        # * BibliographySource (CiteProcJSON in this case), and
+        # * a formatter (plain, html, or you can write a custom formatter)
+        
+        bibliography = CitationStylesBibliography(bib_style, bib_source, formatter.plain)
+        
+        
+        # Processing citations in a document need to be done in two passes as for some
+        # CSL styles, a citation can depend on the order of citations in the
+        # bibliography and thus on citations following the current one.
+        # For this reason, we first need to register all citations with the
+        # CitationStylesBibliography.
+        
+        if loc:
+            citation1 = Citation([CitationItem('full', locator=loc)])
+            citation2 = Citation([CitationItem('subs', locator=loc)])
+        else:
+            citation1 = Citation([CitationItem('full')])
+            citation2 = Citation([CitationItem('subs')])
+            
+        citation1 = Citation([CitationItem('full')])
+        
+        bibliography.register(citation1)
+        bibliography.register(citation2)
+        
+        
+        # In the second pass, CitationStylesBibliography can generate citations.
+        # CitationStylesBibliography.cite() requires a callback function to be passed
+        # along to be called in case a CitationItem's key is not present in the
+        # bilbiography.
+        
+        def warn(citation_item):
+            print("WARNING: Reference with key '{}' not found in the bibliography."
+                  .format(citation_item.key))
+        
+        print('Citations')
+        print('---------')
+        
+        print(bibliography.cite(citation1, warn))
+        print(bibliography.cite(citation2, warn))
+        
+        
+        # And finally, the bibliography can be rendered.
+        
+        print('')
+        print('Bibliography')
+        print('------------')
+        
+        print(bibliography.bibliography())   
+
+        return(bibliography.cite(citation1, warn),
+               bibliography.cite(citation2, warn),
+               bibliography.bibliography())     
+    
     def author_gedcom(self, attr_list=None):
         if attr_list:
             self.set_attr_list(attr_list)
@@ -576,7 +606,6 @@ class TemplateElement(SecondaryObject):
             self.citation = source.citation
             self.short - source.short
             self.short_alg = source.short_alg
-            self.template_mapping_list = source.template_mapping_list
         else:
             self.name = ""
             self.display = ""
@@ -585,7 +614,6 @@ class TemplateElement(SecondaryObject):
             self.citation = False
             self.short = False
             self.short_alg = ""
-            self.template_mapping_list = []
         
     def serialize(self):
         """
@@ -595,7 +623,9 @@ class TemplateElement(SecondaryObject):
                 self.display,
                 self.hint,
                 self.tooltip,
-#                [template_mapping.serialize() for template_mapping in self.template_mapping_list]
+                self.citation,
+                self.short,
+                self.short_alg
                )
 
     def to_struct(self):
@@ -622,13 +652,17 @@ class TemplateElement(SecondaryObject):
                 "display": cuni(self.display),
                 "hint": cuni(self.hint),
                 "tooltip": cuni(self.tooltip),
+                "citation": cuni(self.citation),
+                "short": cuni(self.short),
+                "short_alg": cuni(self.short_alg),
                 }
 
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
         """
-        (self.name, self.type) = data
+        (self.name, self.display, self.hint, self.tooltip, self.citation,
+         self.short, self.short_alg) = data
         return self
 
     def get_name(self):
@@ -715,96 +749,3 @@ class TemplateElement(SecondaryObject):
         Set the short_alg for the Template element according to the given argument.
         """
         self.short_alg = short_alg
-        
-    def get_template_mapping_list(self):
-        return self.template_mapping_list
-    
-    def set_template_mapping_list(self, template_mapping_list):
-        self.template_mapping_list = template_mapping_list
-
-    def add_template_mapping(self, template_mapping):
-        self.template_mapping_list.append(template_mapping)
-        
-class MappingElement(SecondaryObject):        
-    """
-    TemplateEelement class.
-
-    This class is for keeping information about how each [input] Template
-    Element is mapped to an Output form.
-    
-    Mapping:
-
-     - Mapping_name - English name of the mapping. One mapping GEDCOM would
-       always be present. Other mappings are optional, but as we have decided
-       that (at least initially) we would use the CSL mapping, then this should
-       also be present). (The mappings should be the same as in the
-       MappingType).
-
-     - map_target - the English interchange-element name onto which this
-       template-element is mapped. e.g. [WRITER FIRST] is mapped onto Recipient,
-       so this would contain recipient.
-
-     - Mapping_order the sequence number for this mapping. So [WRITER LAST],
-       [WRITER FIRST] both map to 'Recipient', [WRITER FIRST] is 2, [WRITER
-       LAST] is 1
-
-     - separator - the separator after this element if there is another one
-       following, e.g.", "
-    """
-
-    def __init__(self, source=None):
-        """
-        Create a new MappingEelement instance, copying from the source if
-        present.
-        """
-        if source:
-            self.name = source.name
-            self.target = source.target
-            self.order = source.order
-            self.separator = source.separator
-        else:
-            self.name = ""
-            self.target = ""
-            self.order = ""
-            self.separator = ""
-        
-    def serialize(self):
-        """
-        Convert the object to a serialized tuple of data.
-        """
-        return (self.name,
-                self.target,
-                self.order,
-                self.separator
-               )
-
-    def unserialize(self, data):
-        """
-        Convert a serialized tuple of data to an object.
-        """
-        (self.name, self.type) = data
-        return self
-
-    def get_name(self):
-        """
-        Return the name for the mapping element.
-        """
-        return self.name
-
-    def set_name(self, name):
-        """
-        Set the role according to the given argument.
-        """
-        self.name = name
-
-    def get_target(self):
-        """
-        Return the tuple corresponding to the preset role.
-        """
-        return self.target
-
-    def set_target(self, target):
-        """
-        Set the role according to the given argument.
-        """
-        self.target = target

@@ -37,6 +37,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import csv
 import collections
+import sys
 
 #-------------------------------------------------------------------------
 #
@@ -99,8 +100,13 @@ def load_srctemplates_data():
         if mod:
             csvfilename = mod.csvfile
             LOG.debug("**** load_srctemplate_data. Loading csv from %s" % csvfilename)
-            with open(csvfilename, 'rb') as csvfile:
-                load_srctemplate_csv(csvfile)
+            if sys.version_info[0] <3:
+                with open(csvfilename, 'rb') as csvfile:
+                    load_srctemplate_csv(csvfile)
+            else:
+                with open(csvfilename, 'r') as csvfile:
+                    load_srctemplate_csv(csvfile)
+                        
             LOG.debug("**** load_srctemplate_data. csv data loaded")
 
 def load_srctemplate_gedcom():
@@ -158,7 +164,7 @@ def load_srctemplate_gedcom():
     tlist = SrcTemplateList()
     tlist.add_template(handle, template)
 
-    for (cite_type, slist) in TEMPLATES['GEDCOM'].iteritems():
+    for (cite_type, slist) in list(TEMPLATES['GEDCOM'].items()):
         if cite_type != DESCR:
             for struct in slist:
                 if cite_type == REF_TYPE_L or cite_type == REF_TYPE_F:
@@ -196,6 +202,16 @@ def load_srctemplate_gedcom():
                 template.add_structure_element(cite_type, [(ldel, field_type, 
                                 field_label, rdel, style, private, optional, 
                                 shorteralg, gedcommap, hint, tooltip)])
+
+    template.set_map_element("GEDCOM_A", "AUTHOR")
+    template.set_map_element("GEDCOM_T", "TITLE")
+    template.set_map_element("GEDCOM_P", "PUB_INFO")
+    template.set_map_element("GEDCOM_D", "DATE")
+    template.set_map_element("GEDCOM_PAGE", "PAGE")
+
+    template.set_map_element("EE_L", "%(AUTHOR)s. %(TITLE)s. %(PUB_INFO)s")
+    template.set_map_element("EE_F", "%(AUTHOR)s, %(TITLE)s, %(PUB_INFO)s. %(DATE)s - %(PAGE)s")
+    template.set_map_element("EE_S", "%(AUTHOR_(SHORT))s, %(DATE_(SHORT))s - %(PAGE_(SHORT))s.")
 
     for handle in SrcTemplateList().get_template_list():
         template = SrcTemplateList().get_template_from_handle(handle)
@@ -267,10 +283,10 @@ def load_srctemplate_csv(csvfile):
                 source_descr = '%s - %s - %s' % (_(cat), _(cattype), _(types))
             if source_type in TYPE2TEMPLATEMAP:
                 if not TYPE2TEMPLATEMAP[source_type].get_descr() == source_descr:
-                    raise NotImplementedError, source_type + ' ' + TYPE2TEMPLATEMAP[source_type].get_descr() + ' NOT equal to known description' + source_descr
+                    raise NotImplementedError(source_type + ' ' + TYPE2TEMPLATEMAP[source_type].get_descr() + ' NOT equal to known description' + source_descr)
                 if newtempl:
                     #the template is new in this csv, but already defined, probably user error
-                    raise NotImplementedError, 'Source template ' + prevtempl + ' is twice defined in the csv.'
+                    raise NotImplementedError('Source template ' + prevtempl + ' is twice defined in the csv.')
             else:
                 template = SrcTemplate()
                 template.set_name(source_type)
@@ -285,13 +301,13 @@ def load_srctemplate_csv(csvfile):
 
         if row[CITETYPECOL]:
             #new citation type,
-            cite_type = row[CITETYPECOL].strip()
-            assert cite_type in ['F', 'L', 'S'], str(cite_type)
-            if cite_type == 'S':
+            cite_type_text = row[CITETYPECOL].strip()
+            assert cite_type_text in ['F', 'L', 'S'], str(cite_type_text)
+            if cite_type_text == 'S':
                 shortcite = True
             else:
                 shortcite = False
-            cite_type = CITE_TYPES[cite_type]
+            cite_type = CITE_TYPES[cite_type_text]
         #add field for template to evidence style
         field = row[FIELDCOL].strip()
         field_type = field.replace('[', '').replace(']','').lower().capitalize()
@@ -306,7 +322,7 @@ def load_srctemplate_csv(csvfile):
         ifield_type.set_from_xml_str(field_type)
         ifield_type = int(SrcAttributeType(ifield_type))
         if ifield_type == SrcAttributeType.CUSTOM:
-            raise NotImplementedError, "field must be a known SrcAttributeType, is " + str(SrcAttributeType(field_type))
+            raise NotImplementedError("field must be a known SrcAttributeType, is " + str(SrcAttributeType(field_type)))
         field_type = ifield_type
         #field_descr =  field.replace('[', '').replace(']','').lower().capitalize()
         field_label = row[LABELCOL].strip()
@@ -318,6 +334,7 @@ def load_srctemplate_csv(csvfile):
         if  row[OPTCOL].strip():
             optional = True
         shorteralg = SHORTERALG.get(row[SHORTERCOL].strip()) or EMPTY
+        gedcom_type_text = row[GEDCOMCOL].strip()
         gedcommap = GEDCOMFIELDS.get(row[GEDCOMCOL].strip()) or EMPTY
         style = STYLES.get(row[STYLECOL].strip()) or EMPTY
 
@@ -361,11 +378,44 @@ def load_srctemplate_csv(csvfile):
                         _(field_label), row[RDELCOL], style, private, optional, 
                         shorteralg, gedcommap, _(hint), _(tooltip))])
         
+        # Setup the mapping. A typical mapping would look like:
+        # ('EE_Full'  : '%(COMPILER)s, "%(TITLE)s", %(TYPE)s, %(WEBSITE CREATOR/OWNER)s, <i>%(WEBSITE)s</i>, (%(URL (DIGITAL LOCATION))s: accessed %(DATE ACCESSED)s), %(ITEM OF INTEREST)s; %(CREDIT LINE)s.')
+        target = "EE_" + cite_type_text
+        if te.get_short():
+            txt = int(SrcAttributeType().short_version(field_type))
+        else:
+            txt = field_type
+        txt = row[LDELCOL] + "%(" + \
+              SrcAttributeType(txt).xml_str().upper().replace(' ', '_') + \
+               ")s" + row[RDELCOL]
+        if len(row[RDELCOL]) and row[RDELCOL][-1] in ['.', ',', ':', ';', '-']:
+            txt += ' '
+        if style == STYLE_QUOTE:
+            txt = '"' + txt + '"'
+        elif style == STYLE_QUOTECONT:
+            if template.get_map_element(target)[-1] == '"':
+                template.set_map_element(target, template.get_map_element(target)[:-1])
+                txt = txt + '"'
+            else:
+                txt = '"' + txt + '"'
+        elif style == STYLE_EMPH:
+            txt = "<i>" + txt + "</i>"
+        elif style == STYLE_BOLD:
+            txt = "<b>" + txt + "</b>"
+        template.set_map_element(target, template.get_map_element(target) + txt)
+        
+        # Setup the GEDCOM fields. These are only stored in the L template
+        if cite_type == REF_TYPE_L and gedcom_type_text:
+            target = "GEDCOM_" + gedcom_type_text
+            if style == STYLE_QUOTECONT:
+                if template.get_map_element(target) and template.get_map_element(target)[-1] == '"':
+                    template.set_map_element(target, template.get_map_element(target)[:-1])
+            template.set_map_element(target, template.get_map_element(target) + txt)
+        
     # Now we adjust some fields that could not be changed till all the data had
     # been read in
     for source_type in TYPE2FIELDS:
         template = TYPE2TEMPLATEMAP[source_type]
-        LOG.debug("source_type: %s" % source_type)
         # First we determine which are citation fields
         cite_fields = [field for field in 
                             TYPE2FIELDS[source_type][REF_TYPE_F] +
@@ -388,14 +438,51 @@ def load_srctemplate_csv(csvfile):
             # sources
             if te.get_short() == True:
                 te.set_name(int(SrcAttributeType().short_version(te.get_name())))
-            LOG.debug("    name: %s; display: %s; hint: %s; tooltip: %s; "
-                      "citation %s; short %s; short_alg %s" %
-                      (SrcAttributeType(te.get_name()).xml_str(),
-                       te.get_display(), te.get_hint(),
-                       te.get_tooltip(), te.get_citation(),
-                       te.get_short(), te.get_short_alg()
-                      ))
     
+    # Finally we setup the GEDCOM page fields
+    for source_type in TYPE2FIELDS:
+        template = TYPE2TEMPLATEMAP[source_type]
+        for te in [x for x in template.get_template_element_list()
+                   if x.get_citation() and not x.get_short()]:
+            target = "GEDCOM_PAGE"
+            template.set_map_element(target,
+                            ", ".join((template.get_map_element(target), txt)))
+            
+    # Proof of concept for CSL mapping
+    template = TYPE2TEMPLATEMAP.get('ESM254')
+    if template:
+        amap = {
+                  'type' : 'chapter',
+                  'author'  : '%(COMPILER)s',
+                  'title'  : '%(TITLE)s',
+                  'edition'  : '%(TYPE)s',
+                  'container_author'  : '%(WEBSITE_CREATOR/OWNER)s',
+                  'container_title'  : '%(WEBSITE)s',
+                  'url'  : '%(URL_(DIGITAL_LOCATION))s',
+                  'locator'  : '%(ITEM_OF_INTEREST)s; %(CREDIT_LINE)s',
+                  'accessed' : '%(DATE_ACCESSED)s',
+                  'page' : '1-7'
+               }
+        for key, val in list(amap.items()):
+            template.set_map_element(key, val)
+
+#    for source_type in TYPE2FIELDS:
+#        LOG.debug("source_type: %s" % source_type)
+#        template = TYPE2TEMPLATEMAP[source_type]
+#        for te in template.get_template_element_list():
+#            LOG.debug("    name: %s; display: %s; hint: %s; tooltip: %s; "
+#                      "citation %s; short %s; short_alg %s" %
+#                      (SrcAttributeType(te.get_name()).xml_str(),
+#                       te.get_display(), te.get_hint(),
+#                       te.get_tooltip(), te.get_citation(),
+#                       te.get_short(), te.get_short_alg()
+#                      ))
+#        for target in template.get_map_dict():
+#            LOG.debug("Type %s; target %s; map %s" %
+#                      (source_type, target, template.get_map_element(target)))
+            
+        
+        
 #    LOG.debug(tlist.get_template_list())
 #    for handle in tlist.get_template_list():
 #        LOG.debug(tlist.get_template_from_handle(handle).to_struct())

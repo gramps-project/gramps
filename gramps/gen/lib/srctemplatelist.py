@@ -33,6 +33,7 @@ from __future__ import print_function
 # Python modules
 #
 #-------------------------------------------------------------------------
+import sys
 
 #------------------------------------------------------------------------
 #
@@ -56,7 +57,14 @@ class Singleton(type):
             cls._instances[cls] = super(Singleton, cls).__call__(*args, **kwargs)
         return cls._instances[cls]
 
-class SrcTemplateList(object):
+# See http://stackoverflow.com/questions/17237857/python3-singleton-metaclass-
+# method-not-working the syntax has changed
+
+# http://mikewatkins.ca/2008/11/29/python-2-and-3-metaclasses/
+# http://stackoverflow.com/questions/6760685/creating-a-singleton-in-python/17840539
+STL = Singleton('STL', (object, ), {})
+
+class SrcTemplateList(STL):
     """
     Manages a singleton list of the source templates.
     
@@ -68,7 +76,7 @@ class SrcTemplateList(object):
     of keys, and another method to return the Template object for a given key.
     In this way it would act like a database table.
     """
-    __metaclass__ = Singleton
+#    __metaclass__ = Singleton
     def __init__(self):
         self.template_list = {}
         
@@ -84,7 +92,7 @@ class SrcTemplateList(object):
         gedtempl = None
         if name == 'UNKNOWN':
             name = 'GEDCOM'
-        for template in self.template_list.itervalues():
+        for template in list(self.template_list.values()):
             if template.get_name() == name:
                 return template
             if template.get_name() == 'GEDCOM':

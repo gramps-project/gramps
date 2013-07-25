@@ -37,6 +37,14 @@ _ = glocale.translation.gettext
 from gi.repository import Gdk
 from gi.repository import Gtk
 
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger('.template')
+
 #-------------------------------------------------------------------------
 #
 # Gramps libraries
@@ -51,6 +59,7 @@ from ...widgets.srctemplatetreeview import SrcTemplateTreeView
 from ...widgets import (UndoableEntry, MonitoredEntryIndicator, MonitoredDate,
                         ValidatableMaskedEntry)
 from .grampstab import GrampsTab
+from gramps.gen.constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -210,6 +219,7 @@ class TemplateFields(object):
             template = SrcTemplateList().get_template_from_name(key).get_structure()
             telist = SrcTemplateList().get_template_from_name(key).get_template_element_list()
         else:
+            LOG.warn("template not defined %s" % key)
             return
         
         # first remove old fields
@@ -303,8 +313,8 @@ class TemplateFields(object):
         """
         self.gridfields.insert_row(row)
         field = srcattrtype
-        if isinstance(field, basestring):
-            raise NotImplementedError, "type must be the integer key"
+        if isinstance(field, STRTYPE):
+            raise NotImplementedError("type must be the integer key")
         #setup label
         if alt_label:
             label = alt_label

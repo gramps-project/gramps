@@ -357,15 +357,10 @@ class EditSource(EditPrimary):
         #we only construct once the template to use to format information
         if self.srctemp is None:
             self.srctemp = SrcTemplateList().get_template_from_name(self.obj.get_template())
-        # FIXME: I am not sure what the code below was doing. The SrcTemplate
-        # had been set from the name in the Src record, then a check was made as
-        # to whether the old name from the Src record was the same as the name
-        # of the template. But since the template was found from its name, this
-        # must be the case.
         
-#        #if source template changed, reinit template
-#        if self.obj.get_template() != self.srctemp.get_template_key():
-#            self.srctemp.set_template_key(self.obj.get_template())
+        #if source template changed, reinit template
+        if self.obj.get_template() != self.srctemp.get_name():
+            self.srctemp = SrcTemplateList().get_template_from_name(self.obj.get_template())
         #set new attrlist in template
         if self.citation_loaded:
             citeattr = self.citation.get_attribute_list()
@@ -377,15 +372,15 @@ class EditSource(EditPrimary):
                                    citedate)
         
         #set fields with the template
-        self.refL.set_text(self.srctemp.reference_L())
+        self.refL.set_markup(self.srctemp.reference_L())
         if self.citation_loaded:
-            self.refF.set_text(self.srctemp.reference_F())
-            self.refS.set_text(self.srctemp.reference_S())
+            self.refF.set_markup(self.srctemp.reference_F())
+            self.refS.set_markup(self.srctemp.reference_S())
         else:
-            self.refF.set_text(_("<no citation loaded>"))
-            self.refS.set_text(_("<no citation loaded>"))
-        self.author.set_text(self.srctemp.author_gedcom())
-        self.pubinfo.set_text(self.srctemp.pubinfo_gedcom())
+            self.refF.set_markup(_("<no citation loaded>"))
+            self.refS.set_markup(_("<no citation loaded>"))
+        self.author.set_markup(self.srctemp.author_gedcom())
+        self.pubinfo.set_markup(self.srctemp.pubinfo_gedcom())
         if self.template_tab and self.template_tab.autoset_title:
             title = self.srctemp.title_gedcom()
             self.obj.set_name(title)
