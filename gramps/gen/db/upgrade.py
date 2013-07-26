@@ -32,7 +32,7 @@ LOG = logging.getLogger(".citation")
 
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import cuni
+from ..constfunc import cuni, UNITYPE
 
 """
 methods to upgrade a database from version 13 to current version
@@ -43,7 +43,6 @@ if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
 else:
     from bsddb import db
 from . import BSDDBTxn
-from ..constfunc import UNITYPE
 from ..lib.nameorigintype import NameOriginType
 from .write import _mkname, SURNAMES
 from .dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
