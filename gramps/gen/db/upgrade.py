@@ -32,7 +32,7 @@ LOG = logging.getLogger(".citation")
 
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import cuni
+from ..constfunc import cuni, UNITYPE
 
 """
 methods to upgrade a database from version 13 to current version
