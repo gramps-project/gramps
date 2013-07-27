@@ -526,7 +526,7 @@ class EmbeddedList(ButtonTab):
                 column = Gtk.TreeViewColumn(name, self.pb_renderer)
                 column.set_cell_data_func(self.pb_renderer, self.icon_func, pair[1])
             else:
-                raise NotImplementedError, 'Unknown column type'
+                raise NotImplementedError('Unknown column type: %s, with column name %s' % (type_col, self._column_names[pair[1]][3]))
             if col_icon is not None:
                 image = Gtk.Image()
                 image.set_from_stock(col_icon, Gtk.IconSize.MENU)
