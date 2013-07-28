@@ -29,8 +29,6 @@ The User class provides basic interaction with the user.
 # Python Modules
 #
 #------------------------------------------------------------------------
-from __future__ import print_function
-
 import sys
 
 #------------------------------------------------------------------------
@@ -79,13 +77,13 @@ class User(User):
         @type steps: int
         @returns: none
         """
-        print(message)
+        sys.stderr.write(message)
         self.steps = steps
         self.current_step = 0;
         if self.steps == 0:
-            sys.stdout.write(_SPINNER[self.current_step])
+            sys.stderr.write(_SPINNER[self.current_step])
         else:
-            sys.stdout.write("00%")
+            sys.stderr.write("00%")
     
     def step_progress(self):
         """
@@ -94,10 +92,10 @@ class User(User):
         self.current_step += 1
         if self.steps == 0:
             self.current_step %= 4
-            sys.stdout.write("\r  %s  " % _SPINNER[self.current_step])
+            sys.stderr.write("\r  %s  " % _SPINNER[self.current_step])
         else:
             percent = int((float(self.current_step) / self.steps) * 100)
-            sys.stdout.write("\r%02d%%" % percent)
+            sys.stderr.write("\r%02d%%" % percent)
 
     def callback(self, percentage, text=None):
         """
@@ -110,15 +108,15 @@ class User(User):
                 self.callback_function(percentage)
         else:
             if text is None:
-                sys.stdout.write("\r%02d%%" % percentage)
+                sys.stderr.write("\r%02d%%" % percentage)
             else:
-                sys.stdout.write("\r%02d%% %s" % (percentage, text))
+                sys.stderr.write("\r%02d%% %s" % (percentage, text))
 
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
         """
-        sys.stdout.write("\r100%\n")
+        sys.stderr.write("\r100%\n")
     
     def prompt(self, title, question):
         """
@@ -144,7 +142,7 @@ class User(User):
         @type warning: str
         @returns: none
         """
-        print("%s %s" % (title, warning))
+        sys.stderr.write("%s %s" % (title, warning))
     
     def notify_error(self, title, error=""):
         """
@@ -159,7 +157,7 @@ class User(User):
         if self.error_function:
             self.error_function(title, error)
         else:
-            print("%s %s" % (title, error))
+            sys.stderr.write("%s %s" % (title, error))
 
     def notify_db_error(self, error):
         """
@@ -180,5 +178,5 @@ class User(User):
         """
         Displays information to the CLI
         """
-        print(msg1)
-        print(infotext)
+        sys.stderr.write(msg1)
+        sys.stderr.write(infotext)
