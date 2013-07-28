@@ -2,12 +2,14 @@
 #
 # Import/export test for GRAMPS:
 #   o Import example XML data and create internal Gramps DB
-#   o Open produced Gramps DB, then
+#   o Open produced example Gramps DB, then
 #     * check data for integrity
 #     * output in all formats
 #   o Check resulting XML for well-formedness and validate it
 #     against DTD and RelaxNG schema.
-#   o Import ever file produced and run summary on it.
+#   o Import every exported file produced if the format
+#     is also supported for import, and run a text summary report.
+#   o Diff each report with the summary of the produced example DB
 
 # $Id$
 
@@ -18,7 +20,7 @@ PRG="python gramps.py"
 EXAMPLE_XML=$TOP_DIR/example/gramps/example.gramps
 
 OUT_FMT="csv ged gramps gpkg wft gw vcs vcf"
-IN_FMT="ged gramps gpkg"
+IN_FMT="csv ged gramps gpkg gw vcf"
 DATA_DIR=$TEST_DIR/data
 mkdir -p $DATA_DIR
 GRAMPSHOME=$DATA_DIR/grampshome
@@ -78,13 +80,23 @@ echo "* Validate against RelaxNG schema"
 xmllint --noout --relaxng $TOP_DIR/data/grampsxml.rng $RESULT_XML
 
 echo ""
-echo "+--------------------------------------------------------------"
-echo "| Import all produced files and print summary"
-echo "+--------------------------------------------------------------"
+echo "+----------------------------------------------------------------"
+echo "| For each produced format supported for import, generate summary"
+echo "+----------------------------------------------------------------"
 for fmt in $IN_FMT; do
 	EXPORTED_DATA=$DATA_DIR/example.$fmt
 	REPORT_TXT=$EXPORTED_DATA.report.txt
     OPTS="-i $EXPORTED_DATA -f $fmt -a report -p name=summary,off=txt,of=$REPORT_TXT"
     (cd $SRC_DIR; $PRG $OPTS)
-	cat $REPORT_TXT
+done
+
+echo ""
+echo "+--------------------------------------------------------------"
+echo "| Compare to the summary of the original database"
+echo "+--------------------------------------------------------------"
+IMPORTED_REPORT_TXT=$DATA_DIR/example.report.txt
+OPTS="-O example -a report -p name=summary,off=txt,of=$IMPORTED_REPORT_TXT"
+(cd $SRC_DIR; $PRG $OPTS)
+for exported_report_txt in $DATA_DIR/example.*.report.txt; do
+	diff -u $IMPORTED_REPORT_TXT $exported_report_txt
 done
