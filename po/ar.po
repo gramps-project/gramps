@@ -733,7 +733,7 @@ msgstr "زوجة"
 
 #: ../src/Relationship.py:1684
 msgid "gender unknown|spouse"
-msgstr "زوج"
+msgstr "زوج(ـة)"
 
 #: ../src/Relationship.py:1687
 msgid "ex-husband"
@@ -745,7 +745,7 @@ msgstr "زوجة سابقة"
 
 #: ../src/Relationship.py:1691
 msgid "gender unknown|ex-spouse"
-msgstr "زوج سابق(ـة)"
+msgstr "زوج(ـة) سابق(ـة)"
 
 #: ../src/Relationship.py:1694
 msgid "unmarried|husband"
@@ -757,7 +757,7 @@ msgstr "زوجة"
 
 #: ../src/Relationship.py:1698
 msgid "gender unknown,unmarried|spouse"
-msgstr "زوج"
+msgstr "زوج(ـة)"
 
 #: ../src/Relationship.py:1701
 msgid "unmarried|ex-husband"
@@ -769,7 +769,7 @@ msgstr "زوجة سابقة"
 
 #: ../src/Relationship.py:1705
 msgid "gender unknown,unmarried|ex-spouse"
-msgstr "زوج سابق(ـة)"
+msgstr "زوج(ـة) سابق(ـة)"
 
 #: ../src/Relationship.py:1708
 msgid "male,civil union|partner"
@@ -872,7 +872,7 @@ msgstr "أم"
 #: ../src/plugins/textreport/FamilyGroup.py:519
 #: ../src/plugins/view/relview.py:1343
 msgid "Spouse"
-msgstr "زوج"
+msgstr "زوج(ـة)"
 
 #: ../src/Reorder.py:41 ../src/plugins/textreport/TagReport.py:223
 #: ../src/plugins/view/familyview.py:82
@@ -1562,11 +1562,11 @@ msgstr "تاريخ مرتبط بممات الأخ(ـت)"
 #: ../src/Utils.py:725 ../src/Utils.py:729 ../src/Utils.py:736
 #: ../src/Utils.py:740
 msgid "a spouse, "
-msgstr "زوج, "
+msgstr "زوج(ـة), "
 
 #: ../src/Utils.py:758
 msgid "event with spouse"
-msgstr "حدث مع زوج"
+msgstr "حدث مع زوج(ـة)"
 
 #: ../src/Utils.py:782
 msgid "descendant birth date"
@@ -3496,10 +3496,9 @@ msgstr "هبة"
 msgid "Sealed to Parents"
 msgstr "مغلق للأبوين"
 
-# شك
 #: ../src/gen/lib/ldsord.py:98
 msgid "Sealed to Spouse"
-msgstr "مغلق للزوج"
+msgstr "مغلق للزوج(ـة)"
 
 #: ../src/gen/lib/ldsord.py:102
 msgid "<No Status>"
@@ -4122,10 +4121,10 @@ msgstr "ضغط لأصغر حجم"
 msgid "Fill the given area"
 msgstr "ملئ المنطقة المعطاة"
 
-# شك
 #: ../src/gen/plug/docgen/graphdoc.py:83
+#, fuzzy
 msgid "Expand uniformly"
-msgstr "توسيع بشكل موحّد"
+msgstr "عقدة موسعة"
 
 #: ../src/gen/plug/docgen/graphdoc.py:85
 msgid "Top"
@@ -5503,7 +5502,7 @@ msgstr "تصمين أحداث العائلة:"
 
 #: ../src/gui/filtereditor.py:544
 msgid "Also family events where person is wife/husband"
-msgstr "أيضاً أحداث العائلة التي التي يكون بها الشخص زوج"
+msgstr "أيضاً أحداث العائلة التي التي يكون بها الشخص زوج(ـة)"
 
 #: ../src/gui/filtereditor.py:546 ../src/Filters/Rules/Person/_HasTag.py:48
 #: ../src/Filters/Rules/Family/_HasTag.py:48
@@ -5888,7 +5887,7 @@ msgstr "مصادر"
 
 #: ../src/gui/grampsgui.py:140
 msgid "Add Spouse"
-msgstr "إضافة زوج"
+msgstr "إضافة زوج(ـة)"
 
 #: ../src/gui/grampsgui.py:141 ../src/gui/views/tags.py:219
 #: ../src/gui/views/tags.py:224 ../src/gui/widgets/tageditor.py:109
@@ -9506,6 +9505,7 @@ msgid "Book selection list"
 msgstr "قائمة تحديد كتاب"
 
 #: ../src/plugins/BookReport.py:837
+#, fuzzy
 msgid "Different database"
 msgstr "قاعدة بيانات مختلفة"
 
@@ -9521,25 +9521,28 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/BookReport.py:939
+#, fuzzy
 msgid "No selected book item"
-msgstr "لم يتم تحديد أي بند"
+msgstr "لا يوجد بنود مخزنية مؤشر عليها"
 
-# شك
 #: ../src/plugins/BookReport.py:940
 msgid "Please select a book item to configure."
-msgstr "قم بتحديد بند من أجل الإعداد."
+msgstr ""
 
 #: ../src/plugins/BookReport.py:1003
+#, fuzzy
 msgid "Setup"
-msgstr "إعداد"
+msgstr "الإعداد"
 
 #: ../src/plugins/BookReport.py:1013
+#, fuzzy
 msgid "Book Menu"
-msgstr "قائمة الكتاب"
+msgstr "---  DVD قائمة"
 
 #: ../src/plugins/BookReport.py:1036
+#, fuzzy
 msgid "Available Items Menu"
-msgstr "قائمة البنود المتوفرة"
+msgstr "عناصر قائمة الأب"
 
 #: ../src/plugins/BookReport.py:1054
 msgid "No items"
@@ -9547,11 +9550,12 @@ msgstr "لا توجد بنود"
 
 #: ../src/plugins/BookReport.py:1054
 msgid "This book has no items."
-msgstr "لا يحتوي هذا الكتاب على أية بنود."
+msgstr ""
 
 #: ../src/plugins/BookReport.py:1065
+#, fuzzy
 msgid "No book name"
-msgstr "لا يوجد اسم للكتاب"
+msgstr "اسم دفتر العناوين"
 
 #: ../src/plugins/BookReport.py:1066
 msgid ""
@@ -9574,7 +9578,7 @@ msgstr "كتاب غرمبز"
 
 #: ../src/plugins/BookReport.py:1337 ../src/plugins/BookReport.py:1348
 msgid "Please specify a book name"
-msgstr "قم بتخصيص اسم للكتاب"
+msgstr ""
 
 #: ../src/plugins/BookReport.py:1344
 #, python-format
@@ -9586,8 +9590,9 @@ msgid "Produces a book containing several reports."
 msgstr ""
 
 #: ../src/plugins/records.gpr.py:32
+#, fuzzy
 msgid "Records Report"
-msgstr "تقرير السجلات"
+msgstr "أبلغ عن مشكلة"
 
 #: ../src/plugins/records.gpr.py:33 ../src/plugins/records.gpr.py:49
 msgid "Shows some interesting records about people and families"
@@ -9603,7 +9608,7 @@ msgstr "سجلات"
 
 #: ../src/plugins/Records.py:397 ../src/plugins/gramplet/WhatsNext.py:45
 msgid "Double-click name for details"
-msgstr "نقر مزدوج على الاسم لعرض التفاصيل"
+msgstr ""
 
 #. will be overwritten in load
 #: ../src/plugins/Records.py:398
@@ -9617,7 +9622,7 @@ msgstr "نقر مزدوج على الاسم لعرض التفاصيل"
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:49
 #: ../src/plugins/gramplet/WhatsNext.py:46
 msgid "No Family Tree loaded."
-msgstr "لم يتم تحميل شجرة عائلة."
+msgstr ""
 
 #: ../src/plugins/Records.py:406
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
@@ -9654,54 +9659,56 @@ msgstr ""
 msgid "Filter Person"
 msgstr "ترشيح شخص"
 
-# شك
 #: ../src/plugins/Records.py:523 ../src/plugins/drawreport/TimeLine.py:376
 #: ../src/plugins/graph/GVRelGraph.py:483 ../src/plugins/tool/SortEvents.py:174
 #: ../src/plugins/webreport/NarrativeWeb.py:8006
 #: ../src/plugins/webreport/WebCal.py:1325
 msgid "The center person for the filter"
-msgstr "الشخص الرئيسي بالمرشّح"
+msgstr ""
 
 #: ../src/plugins/Records.py:529
+#, fuzzy
 msgid "Use call name"
-msgstr "استعمال اللقب"
+msgstr "نداء بالاسم"
 
-# شك
 #: ../src/plugins/Records.py:531
 msgid "Don't use call name"
-msgstr "لا تستعمل اللقب"
+msgstr ""
 
 #: ../src/plugins/Records.py:532
 msgid "Replace first name with call name"
-msgstr "استبدال الاسم باللقب"
+msgstr ""
 
 #: ../src/plugins/Records.py:533
 msgid "Underline call name in first name / add call name to first name"
 msgstr ""
 
 #: ../src/plugins/Records.py:536
+#, fuzzy
 msgid "Footer text"
-msgstr "نص التذييل"
+msgstr "نص تذييل الصفحة"
 
 #: ../src/plugins/Records.py:542
+#, fuzzy
 msgid "Person Records"
-msgstr "سجلات الشخص"
+msgstr "لا توجد سجلات"
 
 #: ../src/plugins/Records.py:544
+#, fuzzy
 msgid "Family Records"
-msgstr "سجلات العائلة"
+msgstr "لا توجد سجلات"
 
 #: ../src/plugins/Records.py:582
 msgid "The style used for the report title."
-msgstr "القالب المستعمل بعنوان التقرير."
+msgstr ""
 
 #: ../src/plugins/Records.py:594
 msgid "The style used for the report subtitle."
-msgstr "القالب المستعمل بالعنوان الفرعي للتقرير."
+msgstr ""
 
 #: ../src/plugins/Records.py:603
 msgid "The style used for headings."
-msgstr "القالب المستعمل بالترويسات."
+msgstr ""
 
 #: ../src/plugins/Records.py:611 ../src/plugins/drawreport/AncestorTree.py:1070
 #: ../src/plugins/drawreport/DescendTree.py:1674
@@ -9718,12 +9725,12 @@ msgstr "القالب المستعمل بالترويسات."
 #: ../src/plugins/textreport/Summary.py:295
 #: ../src/plugins/textreport/TagReport.py:579
 msgid "The basic style used for the text display."
-msgstr "القالب الأساسي المستعمل بالنّص."
+msgstr ""
 
 #: ../src/plugins/Records.py:621
 #: ../src/plugins/textreport/SimpleBookTitle.py:185
 msgid "The style used for the footer."
-msgstr "القالب المستعمل بالتذييل."
+msgstr ""
 
 #: ../src/plugins/Records.py:631
 msgid "Youngest living person"
@@ -9731,31 +9738,31 @@ msgstr "أصغر شخص على قيد الحياة"
 
 #: ../src/plugins/Records.py:632
 msgid "Oldest living person"
-msgstr "أكبر شخص على قيد الحياة"
+msgstr ""
 
 #: ../src/plugins/Records.py:633
 msgid "Person died at youngest age"
-msgstr "شخص مات بأصغر سن"
+msgstr ""
 
 #: ../src/plugins/Records.py:634
 msgid "Person died at oldest age"
-msgstr "شخص مات بأكبر سن"
+msgstr ""
 
 #: ../src/plugins/Records.py:635
 msgid "Person married at youngest age"
-msgstr "شخص تزوّج(ـت) بأصغر سن"
+msgstr ""
 
 #: ../src/plugins/Records.py:636
 msgid "Person married at oldest age"
-msgstr "شخص تزوّج(ـت) بأكبر سن"
+msgstr ""
 
 #: ../src/plugins/Records.py:637
 msgid "Person divorced at youngest age"
-msgstr "شخص تطلّق(ـت) بأصغر سن"
+msgstr ""
 
 #: ../src/plugins/Records.py:638
 msgid "Person divorced at oldest age"
-msgstr "شخص تطلّق(ـت) بأكبر سن"
+msgstr ""
 
 #: ../src/plugins/Records.py:639
 msgid "Youngest father"
@@ -9766,40 +9773,43 @@ msgid "Youngest mother"
 msgstr "أصغر أم"
 
 #: ../src/plugins/Records.py:641
+#, fuzzy
 msgid "Oldest father"
-msgstr "أكبر أب"
+msgstr "لقب الأب"
 
 #: ../src/plugins/Records.py:642
+#, fuzzy
 msgid "Oldest mother"
-msgstr "أكبر أم"
+msgstr "حدّد أم"
 
 #: ../src/plugins/Records.py:643
 msgid "Couple with most children"
-msgstr "أزواج بأكبر عدد من الأبناء"
+msgstr ""
 
 #: ../src/plugins/Records.py:644
 msgid "Living couple married most recently"
-msgstr "أزواج على قيد الحياة تزوّجوا حديثاً"
+msgstr ""
 
 #: ../src/plugins/Records.py:645
 msgid "Living couple married most long ago"
-msgstr "أزواج على قيد الحياة تزوّجوا من فترة طويلة"
+msgstr ""
 
 #: ../src/plugins/Records.py:646
 msgid "Shortest past marriage"
-msgstr "أقصر فترة زواج"
+msgstr ""
 
 #: ../src/plugins/Records.py:647
 msgid "Longest past marriage"
-msgstr "أطول فترة زواج"
+msgstr ""
 
 #: ../src/plugins/docgen/docgen.gpr.py:31
+#, fuzzy
 msgid "Plain Text"
-msgstr "نص بسيط"
+msgstr "نص"
 
 #: ../src/plugins/docgen/docgen.gpr.py:32
 msgid "Generates documents in plain text format (.txt)."
-msgstr "توليد مستندات بنص بسيط (.txt)."
+msgstr ""
 
 #: ../src/plugins/docgen/docgen.gpr.py:51
 msgid "Print..."
@@ -9807,31 +9817,34 @@ msgstr "طباعة..."
 
 #: ../src/plugins/docgen/docgen.gpr.py:52
 msgid "Generates documents and prints them directly."
-msgstr "توليد المستندات مع طباعتهم مباشرة."
+msgstr ""
 
 #: ../src/plugins/docgen/docgen.gpr.py:71
+#, fuzzy
 msgid "HTML"
-msgstr "هتمل"
+msgstr "HTML"
 
 #: ../src/plugins/docgen/docgen.gpr.py:72
 msgid "Generates documents in HTML format."
-msgstr "توليد مستندات بتنسيق هتمل (.HTML)."
+msgstr ""
 
 #: ../src/plugins/docgen/docgen.gpr.py:91
+#, fuzzy
 msgid "LaTeX"
 msgstr "LaTeX"
 
 #: ../src/plugins/docgen/docgen.gpr.py:92
 msgid "Generates documents in LaTeX format."
-msgstr "توليد مستندات بتنسيق LaTeX."
+msgstr ""
 
 #: ../src/plugins/docgen/docgen.gpr.py:111
+#, fuzzy
 msgid "OpenDocument Text"
-msgstr "نص أوبن دكيومنت"
+msgstr "نص OpenDocument"
 
 #: ../src/plugins/docgen/docgen.gpr.py:112
 msgid "Generates documents in OpenDocument Text format (.odt)."
-msgstr "توليد مستندات بتنسيق أوبن دكيومنت (.odt)."
+msgstr ""
 
 #: ../src/plugins/docgen/docgen.gpr.py:132
 msgid "PDF document"
@@ -9839,15 +9852,16 @@ msgstr "مستند PDF"
 
 #: ../src/plugins/docgen/docgen.gpr.py:133
 msgid "Generates documents in PDF format (.pdf)."
-msgstr "توليد مستندات بتنسيق بدي إف (.pdf)."
+msgstr ""
 
 #: ../src/plugins/docgen/docgen.gpr.py:153
 msgid "Generates documents in PostScript format (.ps)."
-msgstr "توليد مستندات بتنسيق بوست سكريبت (.ps)."
+msgstr ""
 
 #: ../src/plugins/docgen/docgen.gpr.py:172
+#, fuzzy
 msgid "RTF document"
-msgstr "مستند RTF"
+msgstr "مستند PDF"
 
 #: ../src/plugins/docgen/docgen.gpr.py:173
 msgid "Generates documents in Rich Text format (.rtf)."
@@ -9863,18 +9877,18 @@ msgstr ""
 
 #: ../src/plugins/docgen/GtkPrint.py:67
 msgid "PyGtk 2.10 or later is required"
-msgstr "أنت بحاجة لـPyGtk 2.10 أو أحدث"
+msgstr ""
 
 #: ../src/plugins/docgen/GtkPrint.py:485
 #, python-format
 msgid "of %d"
-msgstr "من %d"
+msgstr ""
 
 #: ../src/plugins/docgen/HtmlDoc.py:271
 #: ../src/plugins/webreport/NarrativeWeb.py:7927
 #: ../src/plugins/webreport/WebCal.py:244
 msgid "Possible destination error"
-msgstr "خطأ محتمل بالوجهة"
+msgstr ""
 
 #: ../src/plugins/docgen/HtmlDoc.py:272
 #: ../src/plugins/webreport/NarrativeWeb.py:7928
@@ -9892,15 +9906,17 @@ msgid "Could not create jpeg version of image %(name)s"
 msgstr ""
 
 #: ../src/plugins/docgen/ODFDoc.py:1218
-#, python-format
+#, fuzzy, python-format
 msgid "Could not open %s"
-msgstr "غير قادر على فتح %s"
+msgstr "غير قادر على فتح الملف: %s"
 
 #: ../src/plugins/docgen/ODFDoc.py:1616
+#, fuzzy
 msgid "Contents"
-msgstr "محتويات"
+msgstr "المحتويات"
 
 #: ../src/plugins/docgen/ODFDoc.py:1655
+#, fuzzy
 msgid "Index"
 msgstr "فهرس‎"
 
@@ -9914,30 +9930,31 @@ msgstr "فهرس‎"
 #: ../src/plugins/drawreport/DescendTree.py:59
 #: ../src/plugins/view/pedigreeview.py:77
 msgid "short for born|b."
-msgstr "وُلد."
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:73
 #: ../src/plugins/drawreport/DescendTree.py:60
 #: ../src/plugins/view/pedigreeview.py:78
 msgid "short for died|d."
-msgstr "مات."
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:74
 #: ../src/plugins/drawreport/DescendTree.py:61
 msgid "short for married|m."
-msgstr "تزوّج(ـت)."
+msgstr ""
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/drawreport/AncestorTree.py:151
-#, python-format
+#, fuzzy, python-format
 msgid "Ancestor Graph for %s"
-msgstr "مخطط السلف لـ %s"
+msgstr "المخطط الزمني لـ %s"
 
 #: ../src/plugins/drawreport/AncestorTree.py:698
 #: ../src/plugins/drawreport/AncestorTree.py:787
 #: ../src/plugins/drawreport/drawplugins.gpr.py:48
+#, fuzzy
 msgid "Ancestor Tree"
-msgstr "شجرة السلف"
+msgstr "نمط الشجرة"
 
 #: ../src/plugins/drawreport/AncestorTree.py:699
 msgid "Making the Tree..."
@@ -9953,7 +9970,6 @@ msgstr "طباعة الشجرة..."
 msgid "Tree Options"
 msgstr "خيارت الشجرة"
 
-# شك
 #: ../src/plugins/drawreport/AncestorTree.py:870
 #: ../src/plugins/drawreport/Calendar.py:416
 #: ../src/plugins/drawreport/FanChart.py:396
@@ -9967,12 +9983,11 @@ msgstr "خيارت الشجرة"
 #: ../src/plugins/textreport/KinshipReport.py:340
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:194
 msgid "Center Person"
-msgstr "شخص رئيسي"
+msgstr ""
 
-# شك
 #: ../src/plugins/drawreport/AncestorTree.py:871
 msgid "The center person for the tree"
-msgstr "الشخص الرئيسي بالشجرة"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:874
 #: ../src/plugins/drawreport/DescendTree.py:1476
@@ -9981,21 +9996,20 @@ msgstr "الشخص الرئيسي بالشجرة"
 #: ../src/plugins/textreport/DescendReport.py:415
 #: ../src/plugins/textreport/DetAncestralReport.py:742
 #: ../src/plugins/textreport/DetDescendantReport.py:915
+#, fuzzy
 msgid "Generations"
-msgstr "أجيال"
+msgstr "الأجيال"
 
 #: ../src/plugins/drawreport/AncestorTree.py:875
 #: ../src/plugins/drawreport/DescendTree.py:1477
 msgid "The number of generations to include in the tree"
-msgstr "عدد الأجيال الذين سيتم تضمينهم بالشجرة"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:879
 msgid ""
 "Display unknown\n"
 "generations"
 msgstr ""
-"عرض الأجيال\n"
-"المجهولة"
 
 #: ../src/plugins/drawreport/AncestorTree.py:881
 msgid "The number of generations of empty boxes that will be displayed"
@@ -10004,7 +10018,7 @@ msgstr ""
 #: ../src/plugins/drawreport/AncestorTree.py:888
 #: ../src/plugins/drawreport/DescendTree.py:1485
 msgid "Co_mpress tree"
-msgstr "_ضغط الشجرة"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:889
 msgid ""
@@ -10026,16 +10040,14 @@ msgid ""
 "Center person uses\n"
 "which format"
 msgstr ""
-"الصيغة التي سيستعملها\n"
-"الشخص الرئيسي"
 
 #: ../src/plugins/drawreport/AncestorTree.py:905
 msgid "Use Fathers Display format"
-msgstr "استعمال صيغة عرض الأب"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:906
 msgid "Use Mothers display format"
-msgstr "استعمال صيغة عرض الأم"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:907
 msgid "Which Display format to use the center person"
@@ -10046,12 +10058,10 @@ msgid ""
 "Father\n"
 "Display Format"
 msgstr ""
-"صيغة عرض\n"
-"الأب"
 
 #: ../src/plugins/drawreport/AncestorTree.py:917
 msgid "Display format for the fathers box."
-msgstr "صيغة عرض الآباء."
+msgstr ""
 
 #. Will add when libsubstkeyword supports it.
 #. missing = EnumeratedListOption(_("Replace missing\nplaces\\dates #. with"), 0)
@@ -10065,22 +10075,20 @@ msgid ""
 "Mother\n"
 "Display Format"
 msgstr ""
-"صيغة عرض\n"
-"الأم"
 
 #: ../src/plugins/drawreport/AncestorTree.py:936
 msgid "Display format for the mothers box."
-msgstr "صيغة عرض الأمهات."
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:939
 #: ../src/plugins/drawreport/DescendTree.py:1525
 msgid "Include Marriage box"
-msgstr "تضمين قسم الزواج"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:941
 #: ../src/plugins/drawreport/DescendTree.py:1527
 msgid "Whether to include a separate marital box in the report"
-msgstr "هل سيتم تصمين قسم الزواج بشكل منفصل بالتقرير"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:944
 #: ../src/plugins/drawreport/DescendTree.py:1530
@@ -10088,13 +10096,11 @@ msgid ""
 "Marriage\n"
 "Display Format"
 msgstr ""
-"صيغة عرض\n"
-"الزواج"
 
 #: ../src/plugins/drawreport/AncestorTree.py:945
 #: ../src/plugins/drawreport/DescendTree.py:1531
 msgid "Display format for the marital box."
-msgstr "صيغة عرض الزواج."
+msgstr ""
 
 #. #################
 #: ../src/plugins/drawreport/AncestorTree.py:949
@@ -10105,22 +10111,22 @@ msgstr "قياس"
 #: ../src/plugins/drawreport/AncestorTree.py:951
 #: ../src/plugins/drawreport/DescendTree.py:1546
 msgid "Scale tree to fit"
-msgstr "ملائمة عرض الشجرة"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:952
 #: ../src/plugins/drawreport/DescendTree.py:1547
 msgid "Do not scale tree"
-msgstr "شجرة بدون ملائَمة"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:953
 #: ../src/plugins/drawreport/DescendTree.py:1548
 msgid "Scale tree to fit page width only"
-msgstr "ملائمة الشجرة لعرض الصفحة فقط"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:954
 #: ../src/plugins/drawreport/DescendTree.py:1549
 msgid "Scale tree to fit the size of the page"
-msgstr "ملائمة الشجرة لقياس الصفحة"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:956
 #: ../src/plugins/drawreport/DescendTree.py:1551
@@ -10163,21 +10169,23 @@ msgstr "عنوان التقرير"
 #: ../src/plugins/drawreport/DescendTree.py:1588
 #: ../src/plugins/drawreport/DescendTree.py:1637
 msgid "Do not include a title"
-msgstr "لا تقم بتضمين العنوان"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:993
+#, fuzzy
 msgid "Include Report Title"
-msgstr "تضمين عنوان التقرير"
+msgstr "إعادة عنوان التقرير"
 
 #: ../src/plugins/drawreport/AncestorTree.py:994
 #: ../src/plugins/drawreport/DescendTree.py:1590
 msgid "Choose a title for the report"
-msgstr "اختر عنواناً للتقرير"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:997
 #: ../src/plugins/drawreport/DescendTree.py:1594
+#, fuzzy
 msgid "Include a border"
-msgstr "تضمين الحدود"
+msgstr "ارتفاع حدود"
 
 #: ../src/plugins/drawreport/AncestorTree.py:998
 #: ../src/plugins/drawreport/DescendTree.py:1595
@@ -10186,8 +10194,9 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:1001
 #: ../src/plugins/drawreport/DescendTree.py:1598
+#, fuzzy
 msgid "Include Page Numbers"
-msgstr "تضمين أرقام الصفحات"
+msgstr "تضمين في الصفحة"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1002
 msgid "Whether to print page numbers on each page."
@@ -10195,8 +10204,9 @@ msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:1005
 #: ../src/plugins/drawreport/DescendTree.py:1602
+#, fuzzy
 msgid "Include Blank Pages"
-msgstr "تضمين الصفحات الفارغة"
+msgstr "ت~ضمين إخراج الصفحات الفارغة"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1006
 #: ../src/plugins/drawreport/DescendTree.py:1603
@@ -10206,8 +10216,9 @@ msgstr ""
 #. category_name = _("Notes")
 #: ../src/plugins/drawreport/AncestorTree.py:1013
 #: ../src/plugins/drawreport/DescendTree.py:1608
+#, fuzzy
 msgid "Include a note"
-msgstr "تضمين الملاحظة"
+msgstr "ملاحظة العائلة"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1014
 #: ../src/plugins/drawreport/DescendTree.py:1610
@@ -10221,9 +10232,6 @@ msgid ""
 "\n"
 "$T inserts today's date"
 msgstr ""
-"إضافة ملاحظة\n"
-"\n"
-"$T من أجل إدارج تاريخ اليوم"
 
 #: ../src/plugins/drawreport/AncestorTree.py:1024
 #: ../src/plugins/drawreport/DescendTree.py:1620
@@ -10233,7 +10241,7 @@ msgstr "ملاحظة موقع"
 #: ../src/plugins/drawreport/AncestorTree.py:1027
 #: ../src/plugins/drawreport/DescendTree.py:1623
 msgid "Where to place the note."
-msgstr "مكان الملاحظة"
+msgstr ""
 
 #: ../src/plugins/drawreport/AncestorTree.py:1042
 msgid "No generations of empty boxes for unknown ancestors"
@@ -10250,7 +10258,7 @@ msgstr ""
 #: ../src/plugins/drawreport/AncestorTree.py:1081
 #: ../src/plugins/drawreport/DescendTree.py:1664
 msgid "The basic style used for the title display."
-msgstr "القالب الأساسي المستعمل بالعنوان."
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:98
 #: ../src/plugins/drawreport/DescendTree.py:671
@@ -10266,14 +10274,15 @@ msgstr "القالب الأساسي المستعمل بالعنوان."
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:82
 #, python-format
 msgid "Person %s is not in the Database"
-msgstr "الشخص %s غير موجود بقاعدة البيانات"
+msgstr ""
 
 #. generate the report:
 #: ../src/plugins/drawreport/Calendar.py:166
 #: ../src/plugins/drawreport/Calendar.py:263
 #: ../src/plugins/drawreport/Calendar.py:271
+#, fuzzy
 msgid "Calendar Report"
-msgstr "تقرير التقويم"
+msgstr "أبلغ عن مشكلة"
 
 #: ../src/plugins/drawreport/Calendar.py:167
 #: ../src/plugins/textreport/BirthdayReport.py:177
@@ -10292,26 +10301,19 @@ msgstr "تطبيق المرشّح..."
 msgid "Reading database..."
 msgstr "قراءة قاعدة البيانات..."
 
-# شك
 #: ../src/plugins/drawreport/Calendar.py:313
 #: ../src/plugins/textreport/BirthdayReport.py:276
 #, python-format
 msgid "%(person)s, birth%(relation)s"
-msgstr "%(person)s, ميلاد%(relation)s"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:317
 #: ../src/plugins/textreport/BirthdayReport.py:280
 #, python-format
 msgid "%(person)s, %(age)d%(relation)s"
 msgid_plural "%(person)s, %(age)d%(relation)s"
-msgstr[0] "%(person)s, %(age)d%(relation)s"
-msgstr[1] "%(person)s, %(age)d%(relation)s"
-msgstr[2] "%(person)s, %(age)d%(relation)s"
-msgstr[3] "%(person)s, %(age)d%(relation)s"
-msgstr[4] "%(person)s, %(age)d%(relation)s"
-msgstr[5] "%(person)s, %(age)d%(relation)s"
+msgstr[0] ""
 
-# شك
 #: ../src/plugins/drawreport/Calendar.py:371
 #: ../src/plugins/textreport/BirthdayReport.py:326
 #, python-format
@@ -10319,8 +10321,6 @@ msgid ""
 "%(spouse)s and\n"
 " %(person)s, wedding"
 msgstr ""
-"%(spouse)s و\n"
-" %(person)s, زواج"
 
 #: ../src/plugins/drawreport/Calendar.py:376
 #: ../src/plugins/textreport/BirthdayReport.py:330
@@ -10332,23 +10332,6 @@ msgid_plural ""
 "%(spouse)s and\n"
 " %(person)s, %(nyears)d"
 msgstr[0] ""
-"%(spouse)s و\n"
-" %(person)s, %(nyears)d"
-msgstr[1] ""
-"%(spouse)s و\n"
-" %(person)s, %(nyears)d"
-msgstr[2] ""
-"%(spouse)s و\n"
-" %(person)s, %(nyears)d"
-msgstr[3] ""
-"%(spouse)s و\n"
-" %(person)s, %(nyears)d"
-msgstr[4] ""
-"%(spouse)s و\n"
-" %(person)s, %(nyears)d"
-msgstr[5] ""
-"%(spouse)s و\n"
-" %(person)s, %(nyears)d"
 
 # شك
 #: ../src/plugins/drawreport/Calendar.py:406
@@ -10375,7 +10358,7 @@ msgstr ""
 #: ../src/plugins/textreport/KinshipReport.py:341
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:195
 msgid "The center person for the report"
-msgstr "الشخص الرئيسي بالتقرير"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:429
 #: ../src/plugins/textreport/AncestorReport.py:279
@@ -10391,23 +10374,24 @@ msgstr "الشخص الرئيسي بالتقرير"
 #: ../src/plugins/webreport/NarrativeWeb.py:8025
 #: ../src/plugins/webreport/WebCal.py:1344
 msgid "Select the format to display names"
-msgstr "اختر صيغة عرض الأسماء"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:432
 #: ../src/plugins/textreport/BirthdayReport.py:387
 #: ../src/plugins/webreport/WebCal.py:1396
 msgid "Country for holidays"
-msgstr "عُطل الدولة"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:443
 #: ../src/plugins/textreport/BirthdayReport.py:398
 msgid "Select the country to see associated holidays"
-msgstr "قم بتحديد الدولة لرؤية العطل الخاصة بها"
+msgstr ""
 
 #. Default selection ????
 #: ../src/plugins/drawreport/Calendar.py:446
 #: ../src/plugins/textreport/BirthdayReport.py:401
 #: ../src/plugins/webreport/WebCal.py:1421
+#, fuzzy
 msgid "First day of week"
 msgstr "أول يوم في الأسبوع"
 
@@ -10420,8 +10404,9 @@ msgstr "قم بتحديد اليوم الأول من الأسبوع للتقوي
 #: ../src/plugins/drawreport/Calendar.py:453
 #: ../src/plugins/textreport/BirthdayReport.py:408
 #: ../src/plugins/webreport/WebCal.py:1411
+#, fuzzy
 msgid "Birthday surname"
-msgstr "اسم العائلة عند الميلاد"
+msgstr "لقب الأب"
 
 # شك
 #: ../src/plugins/drawreport/Calendar.py:454
@@ -10453,126 +10438,133 @@ msgstr ""
 #: ../src/plugins/textreport/BirthdayReport.py:415
 #: ../src/plugins/webreport/WebCal.py:1434
 msgid "Include only living people"
-msgstr "تضمين الأشخاص الأحياء فقط"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:461
 #: ../src/plugins/textreport/BirthdayReport.py:416
 #: ../src/plugins/webreport/WebCal.py:1435
 msgid "Include only living people in the calendar"
-msgstr "تضمين الأشخاص الأحياء ضمن التقويم"
+msgstr ""
 
-# شك
 #: ../src/plugins/drawreport/Calendar.py:464
 #: ../src/plugins/textreport/BirthdayReport.py:419
 #: ../src/plugins/webreport/WebCal.py:1438
+#, fuzzy
 msgid "Include birthdays"
-msgstr "تضمين أعياد الميلاد"
+msgstr "ضمّن مؤشر الفأرة"
 
 #: ../src/plugins/drawreport/Calendar.py:465
 #: ../src/plugins/textreport/BirthdayReport.py:420
 #: ../src/plugins/webreport/WebCal.py:1439
 msgid "Include birthdays in the calendar"
-msgstr "تضمين أعياد الميلاد بالتقويم"
+msgstr ""
 
-# شك
 #: ../src/plugins/drawreport/Calendar.py:468
 #: ../src/plugins/textreport/BirthdayReport.py:423
 #: ../src/plugins/webreport/WebCal.py:1442
+#, fuzzy
 msgid "Include anniversaries"
-msgstr "تضمين الذكريات السنوية"
+msgstr "ضمّن مؤشر الفأرة"
 
 #: ../src/plugins/drawreport/Calendar.py:469
 #: ../src/plugins/textreport/BirthdayReport.py:424
 #: ../src/plugins/webreport/WebCal.py:1443
 msgid "Include anniversaries in the calendar"
-msgstr "تضمين الذكريات السنوية بالتقويم"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:472
 #: ../src/plugins/drawreport/Calendar.py:473
 #: ../src/plugins/textreport/BirthdayReport.py:432
+#, fuzzy
 msgid "Text Options"
-msgstr "خصائص النص"
+msgstr "خصائص مستند نصي"
 
 #: ../src/plugins/drawreport/Calendar.py:475
 #: ../src/plugins/textreport/BirthdayReport.py:439
+#, fuzzy
 msgid "Text Area 1"
-msgstr "مساحة نص 1"
+msgstr "منطقة النص"
 
 #: ../src/plugins/drawreport/Calendar.py:475
 #: ../src/plugins/textreport/BirthdayReport.py:439
+#, fuzzy
 msgid "My Calendar"
-msgstr "تقويمي"
+msgstr "محرر التقويم"
 
 #: ../src/plugins/drawreport/Calendar.py:476
 #: ../src/plugins/textreport/BirthdayReport.py:440
 msgid "First line of text at bottom of calendar"
-msgstr "أول سطر نص بأسفل التقويم"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:479
 #: ../src/plugins/textreport/BirthdayReport.py:443
+#, fuzzy
 msgid "Text Area 2"
-msgstr "مساحة نص 2"
+msgstr "منطقة النص"
 
 #: ../src/plugins/drawreport/Calendar.py:479
 #: ../src/plugins/textreport/BirthdayReport.py:443
 msgid "Produced with Gramps"
-msgstr "أنشئ بواسطة غرمبز"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:480
 #: ../src/plugins/textreport/BirthdayReport.py:444
 msgid "Second line of text at bottom of calendar"
-msgstr "ثاني سطر نص بأسفل التقويم"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:483
 #: ../src/plugins/textreport/BirthdayReport.py:447
+#, fuzzy
 msgid "Text Area 3"
-msgstr "مساحة نص 3"
+msgstr "منطقة النص"
 
 #: ../src/plugins/drawreport/Calendar.py:484
 #: ../src/plugins/textreport/BirthdayReport.py:448
 msgid "Third line of text at bottom of calendar"
-msgstr "ثالث سطر نص بأسفل التقويم"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:538
 msgid "Title text and background color"
-msgstr "عنوان النص و لون الخلفية"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:542
 msgid "Calendar day numbers"
-msgstr "أرقام أيام التقويم"
+msgstr ""
 
-# شك
 #: ../src/plugins/drawreport/Calendar.py:545
 msgid "Daily text display"
-msgstr "عرض النص اليومي"
+msgstr ""
 
-# شك
 #: ../src/plugins/drawreport/Calendar.py:547
 msgid "Holiday text display"
-msgstr "عرض نص العطلة"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:550
 msgid "Days of the week text"
-msgstr "نص أيام الأسبوع"
+msgstr ""
 
 #: ../src/plugins/drawreport/Calendar.py:554
 #: ../src/plugins/textreport/BirthdayReport.py:512
+#, fuzzy
 msgid "Text at bottom, line 1"
-msgstr "نص بالأسفل، سطر 1"
+msgstr "أ~سفل الخط الأساسي"
 
 #: ../src/plugins/drawreport/Calendar.py:556
 #: ../src/plugins/textreport/BirthdayReport.py:514
+#, fuzzy
 msgid "Text at bottom, line 2"
-msgstr "نص بالأسفل، سطر 2"
+msgstr "أ~سفل الخط الأساسي"
 
 #: ../src/plugins/drawreport/Calendar.py:558
 #: ../src/plugins/textreport/BirthdayReport.py:516
+#, fuzzy
 msgid "Text at bottom, line 3"
-msgstr "نص بالأسفل، سطر 3"
+msgstr "أ~سفل الخط الأساسي"
 
 #: ../src/plugins/drawreport/Calendar.py:560
+#, fuzzy
 msgid "Borders"
-msgstr "حدود"
+msgstr "الحدود"
 
 #: ../src/plugins/drawreport/DescendTree.py:159
 #, python-format
@@ -10595,18 +10587,18 @@ msgstr ""
 #: ../src/plugins/drawreport/DescendTree.py:182
 #, python-format
 msgid "Descendant Chart for %(person)s"
-msgstr "الرسم البياني لخلف %(person)s"
+msgstr ""
 
 #. Should be two items in names list
 #: ../src/plugins/drawreport/DescendTree.py:185
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
-msgstr "الرسم البياني لخلف %(father)s و %(mother)s"
+msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:322
 #, python-format
 msgid "Family Chart for %(person)s"
-msgstr "الرسم البياني لعائلة %(person)s"
+msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:324
 #, python-format
@@ -10699,7 +10691,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/DescendTree.py:1522
 msgid "Display format for a spouse."
-msgstr "تنسيق عرض زوج."
+msgstr "تنسيق عرض زوج(ـة)."
 
 #. #################
 #: ../src/plugins/drawreport/DescendTree.py:1535
@@ -10843,33 +10835,37 @@ msgid "Type of graph"
 msgstr "المخطط الزمني"
 
 #: ../src/plugins/drawreport/FanChart.py:405
+#, fuzzy
 msgid "full circle"
-msgstr "دائرة كاملة"
+msgstr "دائرة ممتلئة"
 
 #: ../src/plugins/drawreport/FanChart.py:406
+#, fuzzy
 msgid "half circle"
-msgstr "نصف دائرة"
+msgstr "نصف دائرة مفرغة"
 
 #: ../src/plugins/drawreport/FanChart.py:407
+#, fuzzy
 msgid "quarter circle"
-msgstr "ربع دائرة"
+msgstr "دائرة مفرغة"
 
 #: ../src/plugins/drawreport/FanChart.py:408
 msgid "The form of the graph: full circle, half circle, or quarter circle."
 msgstr ""
 
 #: ../src/plugins/drawreport/FanChart.py:412
+#, fuzzy
 msgid "Background color"
-msgstr "لون الخلفية"
+msgstr "اللون الخلفي"
 
 #: ../src/plugins/drawreport/FanChart.py:413
 msgid "white"
 msgstr "أبيض"
 
-# شك
 #: ../src/plugins/drawreport/FanChart.py:414
+#, fuzzy
 msgid "generation dependent"
-msgstr "الجيل التابع"
+msgstr "الحزم المعتمدة"
 
 #: ../src/plugins/drawreport/FanChart.py:415
 msgid "Background color is either white or generation dependent"
@@ -10877,25 +10873,27 @@ msgstr ""
 
 #: ../src/plugins/drawreport/FanChart.py:419
 msgid "Orientation of radial texts"
-msgstr "اتجاه النصوص الشعاعية"
+msgstr ""
 
 #: ../src/plugins/drawreport/FanChart.py:421
+#, fuzzy
 msgid "upright"
-msgstr "عمودي"
+msgstr "رأسي"
 
 #: ../src/plugins/drawreport/FanChart.py:422
+#, fuzzy
 msgid "roundabout"
-msgstr "ملتو"
+msgstr "الدوّار"
 
 #: ../src/plugins/drawreport/FanChart.py:423
 msgid "Print radial texts upright or roundabout"
-msgstr "طبعاة النصوص الشعاعية بشكل ملتوي أو عمودي"
+msgstr ""
 
 #: ../src/plugins/drawreport/FanChart.py:447
 #: ../src/plugins/textreport/AlphabeticalIndex.py:90
 #: ../src/plugins/textreport/TableOfContents.py:90
 msgid "The style used for the title."
-msgstr "القالب المستعمل بالعنوان."
+msgstr ""
 
 # شك
 #: ../src/plugins/drawreport/StatisticsChart.py:295
@@ -10903,14 +10901,16 @@ msgid "Item count"
 msgstr "عدد البند"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:299
+#, fuzzy
 msgid "Both"
 msgstr "كلاهما"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:300
 #: ../src/plugins/drawreport/StatisticsChart.py:391
 #: ../src/plugins/drawreport/StatisticsChart.py:719
+#, fuzzy
 msgid "Men"
-msgstr "رجال"
+msgstr "ذكور"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:301
 #: ../src/plugins/drawreport/StatisticsChart.py:393
@@ -10928,52 +10928,62 @@ msgid "Forename"
 msgstr "الاسم الاول"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:324
+#, fuzzy
 msgid "Birth year"
-msgstr "تاريخ الميلاد"
+msgstr "سنة الولادة"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:326
+#, fuzzy
 msgid "Death year"
-msgstr "تاريخ الممات"
+msgstr "سنة الممات"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:328
+#, fuzzy
 msgid "Birth month"
-msgstr "شهر الميلاد"
+msgstr "شهر الولادة"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:330
+#, fuzzy
 msgid "Death month"
 msgstr "شهر الممات"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:332
 #: ../src/plugins/export/ExportCsv.py:339 ../src/plugins/import/ImportCsv.py:184
+#, fuzzy
 msgid "Birth place"
-msgstr "مكان الميلاد"
+msgstr "مكان الولادة"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:334
 #: ../src/plugins/export/ExportCsv.py:341 ../src/plugins/import/ImportCsv.py:206
+#, fuzzy
 msgid "Death place"
 msgstr "مكان الممات"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:336
+#, fuzzy
 msgid "Marriage place"
 msgstr "مكان الزواج"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:338
+#, fuzzy
 msgid "Number of relationships"
-msgstr "عدد القرابات"
+msgstr "عدد العلاقات"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:340
 msgid "Age when first child born"
-msgstr "العمر عند ميلاد أول ابن"
+msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:342
 msgid "Age when last child born"
-msgstr "العمر عند ميلاد آخر ابن"
+msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:344
+#, fuzzy
 msgid "Number of children"
 msgstr "عدد الأبناء"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:346
+#, fuzzy
 msgid "Age at marriage"
 msgstr "العمر عند الزواج"
 
@@ -11073,7 +11083,7 @@ msgstr "%s (شخص):"
 #: ../src/plugins/drawreport/StatisticsChart.py:918
 #: ../src/plugins/textreport/IndivComplete.py:679
 msgid "The center person for the filter."
-msgstr "الشخص الرئيسي بالمرشّح."
+msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:924
 msgid "Sort chart items by"
@@ -11081,7 +11091,7 @@ msgstr "ترتيب بنود المخطط حسب"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:929
 msgid "Select how the statistical data is sorted."
-msgstr "تحديد طريقة ترتيب البيانات الاحصائية."
+msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:932
 msgid "Sort in reverse order"
@@ -11126,7 +11136,7 @@ msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:962
 msgid "Max. items for a pie"
-msgstr "أكبر عدد بنود بالفطيرة"
+msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:963
 msgid ""
@@ -11135,19 +11145,19 @@ msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:974
 msgid "Charts 1"
-msgstr "رسم بياني 1"
+msgstr "مخطّطات 1"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:976
 msgid "Charts 2"
-msgstr "رسم بياني 2"
+msgstr "مخطّطات 2"
 
 #: ../src/plugins/drawreport/StatisticsChart.py:979
 msgid "Include charts with indicated data."
-msgstr "تضمين الرسوم البيانية مع بياناتها المرفقة."
+msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:1019
 msgid "The style used for the items and values."
-msgstr "القالب المستعمل بالبنود و القيم."
+msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:1028
 #: ../src/plugins/drawreport/TimeLine.py:438
@@ -11164,7 +11174,7 @@ msgstr "القالب المستعمل بالبنود و القيم."
 #: ../src/plugins/textreport/Summary.py:276
 #: ../src/plugins/textreport/TagReport.py:559
 msgid "The style used for the title of the page."
-msgstr "القالب المستعمل بعنوان الصفحة."
+msgstr ""
 
 #. Apply the filter
 #. Sort the people as requested
@@ -11203,10 +11213,9 @@ msgstr "خط زمني لـ %s"
 msgid "No Date Information"
 msgstr "لا توجد معلومات عن التاريخ"
 
-# شك
 #: ../src/plugins/drawreport/TimeLine.py:301
 msgid "Finding date range..."
-msgstr "بحث عن مجال البيانات..."
+msgstr ""
 
 #: ../src/plugins/drawreport/TimeLine.py:371
 msgid "Determines what people are included in the report"
@@ -11224,11 +11233,11 @@ msgstr "طريقة الترتيب التي ستستعمل"
 
 #: ../src/plugins/drawreport/TimeLine.py:420
 msgid "The style used for the person's name."
-msgstr "القالب المستعمل باسم الشخص."
+msgstr ""
 
 #: ../src/plugins/drawreport/TimeLine.py:429
 msgid "The style used for the year labels."
-msgstr "القالب المستعمل بعناوين السنة."
+msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:31 ../src/plugins/import/import.gpr.py:33
 msgid "Comma Separated Values Spreadsheet (CSV)"
@@ -11240,11 +11249,11 @@ msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:33
 msgid "CSV is a common spreadsheet format."
-msgstr "صيغة CSV."
+msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:41
 msgid "CSV spreadsheet options"
-msgstr "خيارات جدول بيانات CSV"
+msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:52
 msgid "Web Family Tree"
@@ -11281,7 +11290,7 @@ msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:84
 msgid "GEDCOM export options"
-msgstr "خيارات تصدير GEDCOM"
+msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:95
 #: ../src/plugins/import/import.gpr.py:70 ../data/gramps.keys.in.h:5
@@ -11317,15 +11326,15 @@ msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:127
 msgid "Gramps package export options"
-msgstr "خيارات تصدير حزمة غرمبز"
+msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:138
 msgid "Gramps XML (family tree)"
-msgstr "غرمبز XML (شجرة العائلة فقط)"
+msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:139
 msgid "Gramps _XML (family tree)"
-msgstr "غرمبز _XML (شجرة العائلة فقط)"
+msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:140
 msgid ""
@@ -11335,7 +11344,7 @@ msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:150
 msgid "Gramps XML export options"
-msgstr "خيارات تصدير غرمبز XML"
+msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:161
 msgid "vCalendar"
@@ -11351,7 +11360,7 @@ msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:171
 msgid "vCalendar export options"
-msgstr "خيارات تصدير vCalendar"
+msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:182
 #: ../src/plugins/import/import.gpr.py:164
@@ -11368,19 +11377,22 @@ msgstr ""
 
 #: ../src/plugins/export/export.gpr.py:192
 msgid "vCard export options"
-msgstr "خيارات تصدير vCard"
+msgstr "خيارات تصدير ملف vCard"
 
 #: ../src/plugins/export/ExportCsv.py:196
+#, fuzzy
 msgid "Include people"
-msgstr "تضمين الأشخاص"
+msgstr "قارن بين الأشخاص"
 
 #: ../src/plugins/export/ExportCsv.py:197
+#, fuzzy
 msgid "Include marriages"
-msgstr "تضمين الزيجات"
+msgstr "عدد الزيجات"
 
 #: ../src/plugins/export/ExportCsv.py:198
+#, fuzzy
 msgid "Include children"
-msgstr "تضمين الأبناء"
+msgstr "أبناء من %s و %s"
 
 #: ../src/plugins/export/ExportCsv.py:199
 msgid "Translate headers"
@@ -11420,7 +11432,7 @@ msgstr "مصدر الممات"
 
 #: ../src/plugins/export/ExportCsv.py:342 ../src/plugins/import/ImportCsv.py:201
 msgid "Burial date"
-msgstr "تاريخ الدفن"
+msgstr "تاريخ الدفن:"
 
 #: ../src/plugins/export/ExportCsv.py:342 ../src/plugins/import/ImportCsv.py:199
 msgid "Burial place"
@@ -11470,7 +11482,7 @@ msgstr "فشل بالتصدير"
 
 #: ../src/plugins/export/ExportGeneWeb.py:106
 msgid "No families matched by selected filter"
-msgstr "لم يتم العثور على أي عائلات بواسطة المرشّح المحدّد"
+msgstr ""
 
 #: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:664
 msgid "Select file"
@@ -11485,9 +11497,9 @@ msgstr "فشل بكتابة %s"
 
 #. feature requests 2356, 1657: avoid genitive form
 #: ../src/plugins/export/ExportVCalendar.py:140
-#, python-format
+#, fuzzy, python-format
 msgid "Marriage of %s"
-msgstr "تزوّج(ـت) من %s"
+msgstr "زواج"
 
 #. feature requests 2356, 1657: avoid genitive form
 #: ../src/plugins/export/ExportVCalendar.py:160
@@ -11504,9 +11516,9 @@ msgid "Death of %s"
 msgstr "ممات %s"
 
 #: ../src/plugins/export/ExportVCalendar.py:243
-#, python-format
+#, fuzzy, python-format
 msgid "Anniversary: %s"
-msgstr "ذكرى سنوية: %s"
+msgstr "المناسبة السنوية"
 
 #: ../src/plugins/export/ExportXml.py:138
 msgid ""
@@ -11524,7 +11536,7 @@ msgstr ""
 #. GUI setup:
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:59
 msgid "Enter a date, click Run"
-msgstr "أدخل تاريخاً ثم انقر تشغيل"
+msgstr ""
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:67
 msgid ""
@@ -11535,43 +11547,45 @@ msgstr ""
 
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:75
 #: ../src/glade/plugins.glade.h:6
+#, fuzzy
 msgid "Run"
 msgstr "تشغيل"
 
 #: ../src/plugins/gramplet/AgeStats.py:47
 #: ../src/plugins/gramplet/AgeStats.py:57 ../src/plugins/gramplet/AgeStats.py:73
+#, fuzzy
 msgid "Max age"
-msgstr "أكبر عمر"
+msgstr "عمر جديد"
 
 #: ../src/plugins/gramplet/AgeStats.py:49
 #: ../src/plugins/gramplet/AgeStats.py:58 ../src/plugins/gramplet/AgeStats.py:74
 msgid "Max age of Mother at birth"
-msgstr "أكبر عمر للأم عند الميلاد"
+msgstr ""
 
 #: ../src/plugins/gramplet/AgeStats.py:51
 #: ../src/plugins/gramplet/AgeStats.py:59 ../src/plugins/gramplet/AgeStats.py:75
 msgid "Max age of Father at birth"
-msgstr "أكبر عمر للأب عند الميلاد"
+msgstr ""
 
 #: ../src/plugins/gramplet/AgeStats.py:53
 #: ../src/plugins/gramplet/AgeStats.py:60 ../src/plugins/gramplet/AgeStats.py:76
+#, fuzzy
 msgid "Chart width"
-msgstr "عرض الرسم البياني"
+msgstr "سمك الخط"
 
 #: ../src/plugins/gramplet/AgeStats.py:170
 msgid "Lifespan Age Distribution"
 msgstr ""
 
 #: ../src/plugins/gramplet/AgeStats.py:171
-#, fuzzy
 msgid "Father - Child Age Diff Distribution"
-msgstr "أب - "
+msgstr ""
 
-# شك
 #: ../src/plugins/gramplet/AgeStats.py:171
 #: ../src/plugins/gramplet/AgeStats.py:172
+#, fuzzy
 msgid "Diff"
-msgstr "إختلاف"
+msgstr "معرفة الإختلاف"
 
 #: ../src/plugins/gramplet/AgeStats.py:172
 msgid "Mother - Child Age Diff Distribution"
@@ -11580,33 +11594,39 @@ msgstr ""
 #: ../src/plugins/gramplet/AgeStats.py:229
 #: ../src/plugins/gramplet/gramplet.gpr.py:213
 #: ../src/plugins/gramplet/gramplet.gpr.py:220
+#, fuzzy
 msgid "Statistics"
-msgstr "إحصائيات"
+msgstr "الأحصائيات"
 
 #: ../src/plugins/gramplet/AgeStats.py:230
+#, fuzzy
 msgid "Total"
-msgstr "إجمالي"
+msgstr "الإجمالي"
 
 #: ../src/plugins/gramplet/AgeStats.py:231
+#, fuzzy
 msgid "Minimum"
-msgstr "أقل"
+msgstr "أقل قيمة"
 
 #: ../src/plugins/gramplet/AgeStats.py:232
+#, fuzzy
 msgid "Average"
-msgstr "متوسط"
+msgstr "المتوسط"
 
 #: ../src/plugins/gramplet/AgeStats.py:233
+#, fuzzy
 msgid "Median"
-msgstr "وسيط"
+msgstr "متوسط"
 
 #: ../src/plugins/gramplet/AgeStats.py:234
+#, fuzzy
 msgid "Maximum"
-msgstr "أكبر"
+msgstr "أقصى قيمة"
 
 #: ../src/plugins/gramplet/AgeStats.py:277
 #, python-format
 msgid "Double-click to see %d people"
-msgstr "نقر مزدوج على الاسم لعرض التفاصيل"
+msgstr ""
 
 #: ../src/plugins/gramplet/Attributes.py:42
 msgid ""
@@ -11640,19 +11660,21 @@ msgstr "تفاصيل مستودع"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:46
 msgid "Gramplet showing details of a repository"
-msgstr "شريط معلومات لعرض تفاصيل المستودع"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:59
+#, fuzzy
 msgid "Place Details"
-msgstr "تفاصيل المكان"
+msgstr "إ_ظهار التفاصيل"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:60
 msgid "Gramplet showing details of a place"
 msgstr "شريط معلومات لعرض تفاصيل المكان"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:73
+#, fuzzy
 msgid "Media Preview"
-msgstr "معاينة الوسائط"
+msgstr "معاينة قبل الطباعة"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:74
 msgid "Gramplet showing a preview of a media object"
@@ -11665,8 +11687,9 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:97
+#, fuzzy
 msgid "Metadata Viewer"
-msgstr "عارض البيانات"
+msgstr "عارض الصوت"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:98
 msgid "Gramplet showing metadata for a media object"
@@ -11760,9 +11783,8 @@ msgid "Person Attributes"
 msgstr "خصائص الصفحة"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:238
-#, fuzzy
 msgid "Gramplet showing the attributes of a person"
-msgstr "شريط معلومات لعرض استشهادات الشخص"
+msgstr ""
 
 #. there is no need to add an ending "</script>",
 #. as it will be added automatically by libhtml()
@@ -11807,8 +11829,9 @@ msgid "Gramplet showing the attributes of a media object"
 msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:293
+#, fuzzy
 msgid "Person Notes"
-msgstr "ملاحظات الشخص"
+msgstr "ملاحظات الدمج"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:294
 msgid "Gramplet showing the notes for a person"
@@ -11887,20 +11910,22 @@ msgid "Gramplet showing the citations for an event"
 msgstr "شريط معلومات لعرض استشهادات الحدث"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:433
+#, fuzzy
 msgid "Family Citations"
-msgstr "استشهادات العائلة"
+msgstr "استشهادات عائلة"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:434
 msgid "Gramplet showing the citations for a family"
-msgstr "شريط معلومات لعرض استشهادات العائلة"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:447
+#, fuzzy
 msgid "Place Citations"
-msgstr "استشهادات المكان"
+msgstr "حذف المكان"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:448
 msgid "Gramplet showing the citations for a place"
-msgstr "شريط معلومات لعرض استشهادات المكان"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:461
 msgid "Media Citations"
@@ -11908,15 +11933,16 @@ msgstr "استشهادات الوسائط"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:462
 msgid "Gramplet showing the citations for a media object"
-msgstr "شريط معلومات لعرض استشهادات كانن الوسائط"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:475
+#, fuzzy
 msgid "Person Children"
-msgstr "أبناء الشخص"
+msgstr "أبناء من %s و %s"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:476
 msgid "Gramplet showing the children of a person"
-msgstr "شريط معلومات لعرض أبناء الشخص"
+msgstr ""
 
 #. Go over children and build their menu
 #: ../src/plugins/gramplet/bottombar.gpr.py:483
@@ -11927,16 +11953,18 @@ msgstr "شريط معلومات لعرض أبناء الشخص"
 #: ../src/plugins/view/fanchartview.py:869
 #: ../src/plugins/view/pedigreeview.py:1912 ../src/plugins/view/relview.py:1358
 #: ../src/plugins/webreport/NarrativeWeb.py:756
+#, fuzzy
 msgid "Children"
-msgstr "أبناء"
+msgstr "الأبناء"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:489
+#, fuzzy
 msgid "Family Children"
-msgstr "أبناء العائلة"
+msgstr "أبناء من %s و %s"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:490
 msgid "Gramplet showing the children of a family"
-msgstr "شريط معلومات لعرض أبناء العائلة"
+msgstr ""
 
 # شك
 #: ../src/plugins/gramplet/bottombar.gpr.py:503
@@ -11984,12 +12012,13 @@ msgid "Gramplet showing the backlinks for a family"
 msgstr "شريط غرمبز سيعرض الروابط العائدة للعائلة"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:545
+#, fuzzy
 msgid "Place Backlinks"
-msgstr "روابط عائدة للمكان"
+msgstr "حذف المكان"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:546
 msgid "Gramplet showing the backlinks for a place"
-msgstr "شريط غرمبز سيعرض الروابط العائدة للمكان"
+msgstr ""
 
 # شك
 #: ../src/plugins/gramplet/bottombar.gpr.py:559
@@ -12038,108 +12067,118 @@ msgstr "شريط غرمبز سيعرض الروابط العائدة للملا�
 msgid "Person Filter"
 msgstr "مرشّح شخص"
 
-# شك
 #: ../src/plugins/gramplet/bottombar.gpr.py:630
 msgid "Gramplet providing a person filter"
-msgstr "شريط معلومات لعرض مرشّح شخص"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:643
+#, fuzzy
 msgid "Family Filter"
-msgstr "مرشّح عائلة"
+msgstr "مرشّح جديد %i"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:644
 msgid "Gramplet providing a family filter"
-msgstr "شريط معلومات لعرض مرشّح عائلة"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:657
+#, fuzzy
 msgid "Event Filter"
-msgstr "مرشّح حدث"
+msgstr "مرشّح جديد %i"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:658
 msgid "Gramplet providing an event filter"
-msgstr "شريط معلومات لعرض مرشّح حدث"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:671
+#, fuzzy
 msgid "Source Filter"
-msgstr "مرشّح مصدر"
+msgstr "مرشّح جديد %i"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:672
 msgid "Gramplet providing a source filter"
-msgstr "شريط معلومات لعرض مرشّح مصدر"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:685
+#, fuzzy
 msgid "Citation Filter"
-msgstr "مرشّح استشهاد"
+msgstr "مرشّح جديد %i"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:686
 msgid "Gramplet providing a citation filter"
-msgstr "شريط معلومات لعرض مرشّح استشهاد"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:699
+#, fuzzy
 msgid "Place Filter"
-msgstr "مرشّح مكان"
+msgstr "مرشّح جديد %i"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:700
 msgid "Gramplet providing a place filter"
-msgstr "شريط معلومات لعرض مرشّح مكان"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:713
+#, fuzzy
 msgid "Media Filter"
-msgstr "مرشّح وسائط"
+msgstr "مرشّح جديد %i"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:714
 msgid "Gramplet providing a media filter"
-msgstr "شريط معلومات لعرض مرشّح وسائط"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:727
+#, fuzzy
 msgid "Repository Filter"
-msgstr "مرشّح مستودع"
+msgstr "مرشّح جديد %i"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:728
 msgid "Gramplet providing a repository filter"
-msgstr "شريط معلومات لعرض مرشّح مستودع"
+msgstr ""
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:741
+#, fuzzy
 msgid "Note Filter"
-msgstr "مرشّح ملاحظة"
+msgstr "مرشّح جديد %i"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:742
 msgid "Gramplet providing a note filter"
-msgstr "شريط معلومات لعرض مرشّح ملاحظة"
+msgstr ""
 
 #: ../src/plugins/gramplet/CalendarGramplet.py:39
 msgid "Double-click a day for details"
-msgstr "نقر مزدوج على اليوم لعرض التفاصيل"
+msgstr ""
 
 #: ../src/plugins/gramplet/Children.py:80
 #: ../src/plugins/gramplet/Children.py:176
 msgid "Double-click on a row to edit the selected child."
-msgstr "نقر مزودج على السطر لتحرير الابن المحدّد."
+msgstr ""
 
 #: ../src/plugins/gramplet/Citations.py:63
 msgid "Double-click on a row to edit the selected source/citation."
-msgstr "نقر مزودج على السطر لتحرير الاستشهاد/المصدر المحدّد."
+msgstr ""
 
 #: ../src/plugins/gramplet/Citations.py:67
+#, fuzzy
 msgid "Source/Citation"
-msgstr "مصدر/استشهاد"
+msgstr "إحضار المصدر %s\n"
 
 #: ../src/plugins/gramplet/Citations.py:69
+#, fuzzy
 msgid "Publisher"
-msgstr "ناشر"
+msgstr "الناشر"
 
 #: ../src/plugins/gramplet/Citations.py:141
+#, fuzzy
 msgid "<No Citation>"
-msgstr "<بدون استشهاد>"
+msgstr "لا يوجد  معلومات"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:49
 #: ../src/plugins/gramplet/PedigreeGramplet.py:51
 msgid "Move mouse over links for options"
-msgstr "حرّك المؤشر فوق الروابط من أجل الخيارات"
+msgstr ""
 
 #: ../src/plugins/gramplet/DescendGramplet.py:63
 msgid "No Active Person selected."
-msgstr "لم يتم تحديد شخص نشط."
+msgstr ""
 
 #: ../src/plugins/gramplet/DescendGramplet.py:139
 #: ../src/plugins/gramplet/DescendGramplet.py:157
@@ -12150,12 +12189,13 @@ msgstr ""
 #: ../src/plugins/gramplet/DescendGramplet.py:140
 #: ../src/plugins/gramplet/DescendGramplet.py:158
 #: ../src/plugins/gramplet/PedigreeGramplet.py:165
+#, fuzzy
 msgid "Right-click to edit"
-msgstr "انقر الزر الأيمن للتحرير"
+msgstr "اضغط لتحرير النص"
 
 #: ../src/plugins/gramplet/DescendGramplet.py:154
 msgid "   sp. "
-msgstr "   زوج. "
+msgstr "   زوج(ـة). "
 
 #. valid converting types for PIL.Image
 #. there are more image formats that PIL.Image can convert to,
@@ -12172,7 +12212,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:173
 msgid "Provide a short descripion for this image."
-msgstr "قم بإدخال وصف قصير لهذه الصورة."
+msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:175
 msgid ""
@@ -12251,8 +12291,9 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:314
+#, fuzzy
 msgid "Thumbnail"
-msgstr "مصغرة"
+msgstr "صورة مصغرة"
 
 #. set Message Ares to Select
 #: ../src/plugins/gramplet/EditExifMetadata.py:396
@@ -12279,11 +12320,11 @@ msgstr ""
 #: ../src/plugins/gramplet/EditExifMetadata.py:469
 #, python-format
 msgid "Image Size : %04d x %04d pixels"
-msgstr "قياس الصورة : %04d x %04d بكسل"
+msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:502
 msgid "Displaying Exif metadata..."
-msgstr "عرض بيانات Exif..."
+msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:669
 msgid "Click Close to close this Thumbnail View Area."
@@ -12291,14 +12332,14 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:673
 msgid "Thumbnail View Area"
-msgstr "مساحة عرض المصغّرة"
+msgstr ""
 
 #. Convert and delete original file or just convert
 #: ../src/plugins/gramplet/EditExifMetadata.py:752
 #: ../src/plugins/gramplet/EditExifMetadata.py:1158
 #: ../src/plugins/gramplet/gramplet.gpr.py:299
 msgid "Edit Image Exif Metadata"
-msgstr "تحرير بيانات الصورة Exif"
+msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:752
 msgid ""
@@ -12307,12 +12348,14 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:754
+#, fuzzy
 msgid "Convert and Delete"
-msgstr "تحويل ثم حذف"
+msgstr "[ت]: تحميل وتحويل الكائن"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:754
+#, fuzzy
 msgid "Convert"
-msgstr "تحويل"
+msgstr "المتحول"
 
 #. notify user about the convert, delete, and new filepath
 #: ../src/plugins/gramplet/EditExifMetadata.py:840
@@ -12340,7 +12383,7 @@ msgstr ""
 #. begin database tranaction to save media object new path
 #: ../src/plugins/gramplet/EditExifMetadata.py:875
 msgid "Media Path Update"
-msgstr "تحديث مسار الوسائط"
+msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:881
 msgid "There has been an error in updating the image file's path!"
@@ -12388,14 +12431,16 @@ msgstr "عنوان الوسائط: "
 #. create the data fields...
 #. ***Description, Artist, and Copyright
 #: ../src/plugins/gramplet/EditExifMetadata.py:1013
+#, fuzzy
 msgid "General Data"
-msgstr "بيانات عامة"
+msgstr "تحليل البيانات"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1023
 msgid "Description: "
-msgstr "وصف:"
+msgstr "وصف؟/"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1024
+#, fuzzy
 msgid "Artist: "
 msgstr "فنان: "
 
@@ -12405,8 +12450,9 @@ msgstr "حقوق النسخ: "
 
 #. iso format: Year, Month, Day spinners...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1038
+#, fuzzy
 msgid "Date/ Time"
-msgstr "تاريخ/وقت"
+msgstr "التاريخ/الوقت"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1052
 msgid "Original: "
@@ -12419,7 +12465,7 @@ msgstr "معدّل: "
 #. GPS coordinates...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1070
 msgid "Latitude/ Longitude/ Altitude GPS coordinates"
-msgstr "إحداثيات ألـGPS خط الطول/ خط العرض/ الارتفاع"
+msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1084
 msgid "Latitude :"
@@ -12434,8 +12480,9 @@ msgid "Altitude :"
 msgstr "خط العرض:"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1138
+#, fuzzy
 msgid "Bad Date/Time"
-msgstr "تاريخ/وقت خاطئ"
+msgstr "التاريخ والتوقيت"
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1158
 msgid ""
@@ -12445,16 +12492,16 @@ msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1323
 msgid "Media Title Update"
-msgstr "تحديث عنوان الوسائط"
+msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1349
 msgid "Media Object Date Created"
-msgstr "تم إنشاء تاريخ كائن الوسائط"
+msgstr ""
 
 #. set Edit Message to Saved...
 #: ../src/plugins/gramplet/EditExifMetadata.py:1421
 msgid "Saving Exif metadata to this image..."
-msgstr "حفظ بيانات Exif لهذه الصورة..."
+msgstr ""
 
 #: ../src/plugins/gramplet/EditExifMetadata.py:1468
 msgid "All Exif metadata has been deleted from this image..."
@@ -12480,6 +12527,7 @@ msgstr ""
 #: ../src/plugins/view/fanchartview.py:764
 #: ../src/plugins/view/pedigreeview.py:1776
 #: ../src/plugins/view/pedigreeview.py:1802
+#, fuzzy
 msgid "People Menu"
 msgstr "قائمة الأشخاص"
 
@@ -12495,8 +12543,9 @@ msgstr "أخوة"
 #: ../src/plugins/gramplet/FanChartGramplet.py:875
 #: ../src/plugins/view/fanchartview.py:943
 #: ../src/plugins/view/pedigreeview.py:2000
+#, fuzzy
 msgid "Related"
-msgstr "مرتبط"
+msgstr "متعلق"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:40
 #, python-format
@@ -12506,8 +12555,9 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/FaqGramplet.py:41
+#, fuzzy
 msgid "Editing Spouses"
-msgstr "تحرير الأزواج"
+msgstr "تغيير @shortcut"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:43
 #, python-format
@@ -12532,7 +12582,7 @@ msgstr ""
 
 #: ../src/plugins/gramplet/FaqGramplet.py:47
 msgid "Backups and Updates"
-msgstr "نسخ احتياطي ثم تحديث"
+msgstr ""
 
 #: ../src/plugins/gramplet/FaqGramplet.py:49
 #, python-format
@@ -12549,8 +12599,9 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/FaqGramplet.py:52
+#, fuzzy
 msgid "Data Entry"
-msgstr "مدخل بيانات"
+msgstr "بيانات المُدخل"
 
 #: ../src/plugins/gramplet/FaqGramplet.py:54
 #, python-format
@@ -12569,6 +12620,7 @@ msgid ""
 msgstr ""
 
 #: ../src/plugins/gramplet/FaqGramplet.py:57
+#, fuzzy
 msgid "Media Files"
 msgstr "ملفات وسائط"
 
@@ -12626,27 +12678,29 @@ msgstr ""
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:43
 msgid "Double-click given name for details"
-msgstr "نقر مزدوج على الاسم لعرض التفاصيل"
+msgstr ""
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:133
 msgid "Total unique given names"
-msgstr "مجموع الأسماء الفريدة"
+msgstr ""
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:135
 msgid "Total given names showing"
-msgstr "مجموع الأسماء المعروضة"
+msgstr ""
 
 #: ../src/plugins/gramplet/GivenNameGramplet.py:136
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:174
 #: ../src/plugins/gramplet/TopSurnamesGramplet.py:109
+#, fuzzy
 msgid "Total people"
-msgstr "مجموع الأشخاص"
+msgstr "قارن بين الأشخاص"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:30
 #: ../src/plugins/gramplet/gramplet.gpr.py:38
 #: ../src/plugins/quickview/quickview.gpr.py:32
+#, fuzzy
 msgid "Age on Date"
-msgstr "عمر حسب التاريخ"
+msgstr "في تاريخ محدد"
 
 #: ../src/plugins/gramplet/gramplet.gpr.py:31
 msgid "Gramplet showing ages of living people on a specific date"
@@ -19879,7 +19933,7 @@ msgstr ""
 #: ../src/plugins/textreport/DescendReport.py:290
 #, python-format
 msgid "%s sp."
-msgstr "%s زوج."
+msgstr "%s زوج(ـة)."
 
 #: ../src/plugins/textreport/DescendReport.py:407
 #: ../src/plugins/textreport/DetDescendantReport.py:906
@@ -27843,7 +27897,7 @@ msgstr "<b>وصف</b>"
 
 #: ../src/glade/styleeditor.glade.h:11
 msgid "<b>Type face</b>"
-msgstr "<b>اسم الخط</b>"
+msgstr ""
 
 # شك
 #: ../src/glade/styleeditor.glade.h:12
@@ -28787,6 +28841,7 @@ msgid "Other"
 msgstr "آخر"
 
 #: ../src/glade/mergedata.glade.h:2
+#, fuzzy
 msgid "<b>Title selection</b>"
 msgstr "<b>تحديد العنوان</b>"
 
