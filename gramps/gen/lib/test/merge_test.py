@@ -23,12 +23,9 @@
 """ Unittest that tests the code involved in merging """
 
 import unittest
-import sys
-import os
-sys.path.append(os.curdir)
 
 from  .. import (Person, Surname, Name, NameType, Family, FamilyRelType,
-                 Event, EventType, Source, Place, Citation,
+                 Event, EventType, Source, Place, Citation, Date,
                  Repository, RepositoryType, MediaObject, Note, NoteType,
                  StyledText, StyledTextTag, StyledTextTagType, Tag,
                  ChildRef, ChildRefType, Attribute, MediaRef, AttributeType,
