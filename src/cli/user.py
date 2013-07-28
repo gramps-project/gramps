@@ -77,9 +77,9 @@ class User(gen.user.User):
         self.steps = steps
         self.current_step = 0;
         if self.steps == 0:
-            sys.stdout.write(_SPINNER[self.current_step])
+            sys.stderr.write(_SPINNER[self.current_step])
         else:
-            sys.stdout.write("00%")
+            sys.stderr.write("00%")
     
     def step_progress(self):
         """
@@ -88,16 +88,16 @@ class User(gen.user.User):
         self.current_step += 1
         if self.steps == 0:
             self.current_step %= 4
-            sys.stdout.write("\r  %s  " % _SPINNER[self.current_step])
+            sys.stderr.write("\r  %s  " % _SPINNER[self.current_step])
         else:
             percent = int((float(self.current_step) / self.steps) * 100)
-            sys.stdout.write("\r%02d%%" % percent)
+            sys.stderr.write("\r%02d%%" % percent)
     
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
         """
-        sys.stdout.write("\r100%\n")
+        sys.stderr.write("\r100%\n")
     
     def prompt(self, title, question):
         """
@@ -123,7 +123,7 @@ class User(gen.user.User):
         @type warning: str
         @returns: none
         """
-        print "%s %s" % (title, warning)
+        sys.stderr.write("%s %s" % (title, warning))
     
     def notify_error(self, title, error=""):
         """
@@ -135,4 +135,4 @@ class User(gen.user.User):
         @type error: str
         @returns: none
         """
-        print "%s %s" % (title, error)
+        sys.stderr.write("%s %s" % (title, error))

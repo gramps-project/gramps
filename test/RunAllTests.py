@@ -106,5 +106,8 @@ if __name__ == '__main__':
         logger.setLevel(logging.ERROR)
         console.setLevel(logging.ERROR)
 
-    tests = perfTests() if options.performance else allTheTests()
-    unittest.TextTestRunner(verbosity=options.verbose_level).run(tests)
+    print allTheTests()
+    print perfTests()
+
+    #tests = perfTests() if options.performance else allTheTests()
+    #unittest.TextTestRunner(verbosity=options.verbose_level).run(tests)
