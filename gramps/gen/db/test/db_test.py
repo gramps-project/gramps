@@ -18,17 +18,15 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# gen/db/test/db_test.py
 # $Id$
 
-from __future__ import print_function
+import unittest
 
-from ..db import (DbReadBase, DbWriteBase, 
-                    DbBsddbRead, DbBsddb)
+from .. import DbReadBase, DbWriteBase, DbBsddbRead, DbBsddb
 from ...proxy.proxybase import ProxyDbBase
 from ...proxy import LivingProxyDb
 
-class DbTest(object):
+class DbTest(unittest.TestCase):
     READ_METHODS = [
         "all_handles",
         "close",
@@ -120,7 +118,6 @@ class DbTest(object):
         "get_repository_types",
         "get_researcher",
         "get_save_path",
-        "get_source_attribute_types",
         "get_source_bookmarks",
         "get_source_cursor",
         "get_source_from_gramps_id",
@@ -183,7 +180,6 @@ class DbTest(object):
         "set_researcher",
         "set_save_path",
         "set_undo_callback",
-
         "version_supported",
         ]
 
@@ -237,49 +233,48 @@ class DbTest(object):
         "write_version",
         ]
 
-    def __init__(self, db):
-        self.db = db
-
-    def _verify_readonly(self):
-        print("Verifying readonly", self.db.__class__.__name__)
+    def _verify_readonly(self, db):
         for method in self.READ_METHODS:
-            assert hasattr(self.db, method), \
-                ("readonly should have a '%s' method" % method)
+            self.assertTrue(hasattr(db, method),
+                ("readonly should have a '%s' method" % method))
         for method in self.WRITE_METHODS:
-            assert not hasattr(self.db, method), \
-                ("readonly should NOT have a '%s' method" % method)
-        print("passed!")
+            self.assertFalse(hasattr(db, method),
+                ("readonly should NOT have a '%s' method" % method))
 
-    def _verify_readwrite(self):
-        print("Verifying readwrite", self.db.__class__.__name__)
+    def _verify_readwrite(self, db):
         for method in self.READ_METHODS:
-            assert hasattr(self.db, method), \
-                ("readwrite should have a '%s' method" % method)
+            self.assertTrue(hasattr(db, method),
+                ("readwrite should have a '%s' method" % method))
         for method in self.WRITE_METHODS:
-            assert hasattr(self.db, method), \
-                ("readwrite should have a '%s' method" % method)
-        print("passed!")
+            self.assertTrue(hasattr(db, method),
+                ("readwrite should have a '%s' method" % method))
 
-db1 = DbTest(DbReadBase())
-db1._verify_readonly()
+    def test_verify_readbase(self):
+        db = DbReadBase()
+        self._verify_readonly(db)
 
-db2 = DbTest(DbWriteBase())
-db2._verify_readwrite()
+    def test_verify_writebase(self):
+        db = DbWriteBase()
+        self._verify_readwrite(db)
 
-from .. import DbBsddbRead
-db3 = DbTest(DbBsddbRead())
-db3._verify_readonly()
+    def test_verify_read(self):
+        db = DbBsddbRead()
+        self._verify_readonly(db)
 
-from .. import DbBsddb
-db4 = DbTest(DbBsddb())
-db4._verify_readwrite()
+    def test_verify_write(self):
+        db = DbBsddb()
+        self._verify_readwrite(db)
 
-from ...proxy.proxybase import ProxyDbBase
-gdb = DbBsddb()
-db5 = DbTest(ProxyDbBase(gdb))
-db5._verify_readonly()
+    def test_verify_proxy(self):
+        gdb = DbBsddb()
+        db = ProxyDbBase(gdb)
+        self._verify_readonly(db)
 
-from ...proxy import LivingProxyDb
-gdb = DbBsddb()
-db6 = DbTest(LivingProxyDb(gdb, LivingProxyDb.MODE_EXCLUDE_ALL))
-db6._verify_readonly()
+    def test_verify_living(self):
+        gdb = DbBsddb()
+        db = LivingProxyDb(gdb, LivingProxyDb.MODE_EXCLUDE_ALL)
+        self._verify_readonly(db)
+
+
+if __name__ == "__main__":
+    unittest.main()
