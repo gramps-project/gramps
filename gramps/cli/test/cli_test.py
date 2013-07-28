@@ -18,7 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# test/gramps_cli_test.py
 # $Id$
 
 """ CLI tests for gramps """
@@ -26,11 +25,6 @@
 import os
 import unittest
 import re
-
-from .test import test_util as tu
-
-pdir = tu.path_append_parent()
-ddir = tu.make_subdir( "cli_test_data")
 
 test_ged = """0 HEAD
 1 SOUR min1r.ged min 1-rec
@@ -42,9 +36,10 @@ test_ged = """0 HEAD
 0 @I1@ INDI
 0 TRLR
 """
+
+ddir = os.path.dirname(__file__)
 min1r = os.path.join(ddir,"min1r.ged")
 out_ged = os.path.join(ddir,"test_out.ged")
-
 
 class Test(unittest.TestCase):
     def setUp(self):
@@ -65,9 +60,9 @@ class Test(unittest.TestCase):
     def test2_exec_CLI(self):
         ifile = min1r
         ofile = out_ged
-        gcmd = "./gramps.py -i%s -o%s" % (ifile, ofile)
-        rc = os.system("cd %s &&  python %s" % (pdir, gcmd)) 
-        self.assertEquals(rc,0, tu.msg(rc,0, "executed CLI cmmand %r" % gcmd))
+        gcmd = "Gramps.py -i %s -e %s" % (ifile, ofile)
+        rc = os.system("python %s" % gcmd)
+        self.assertEquals(rc, 0, "executed CLI cmmand %r" % gcmd)
         # simple validation o output
         self.assertTrue(os.path.isfile(ofile), "output file created")
         content = open(ofile).read()
@@ -89,9 +84,9 @@ class Test(unittest.TestCase):
         # ~same as test 2
         ifile = min1r
         ofile = out_ged
-        gcmd = "./gramps.py -i%s -o%s" % (ifile, ofile)
-        rc = os.system("cd %s &&  python %s" % (pdir, gcmd)) 
-        self.assertEquals(rc,0, tu.msg(rc,0, "executed CLI cmmand %r" % gcmd))
+        gcmd = "Gramps.py -i %s -e %s" % (ifile, ofile)
+        rc = os.system("python %s" % gcmd)
+        self.assertEquals(rc, 0, "executed CLI cmmand %r" % gcmd)
 
         for fn in bogofiles:
             self.assertFalse(os.path.exists(fn))
