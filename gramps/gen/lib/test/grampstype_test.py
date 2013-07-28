@@ -18,25 +18,23 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# gen/lib/test/grampstype_test.py
 # $Id$
 
 """ unittest for grampstype """
 
-import unittest as U
+import unittest
 
-from test.test_util import msg
-from ..grampstype import GrampsType, _init_map
+from ..grampstype import GrampsType
 
 # some simple map items to test with
 vals = "zz ab cd ef".split()
 keys = list(range(len(vals)))
-MAP  = [ (k,v*2,v) for (k,v) in zip(keys, vals) ]
+MAP  = [(k, v*2, v) for (k, v) in zip(keys, vals)]
 BLIST= [1,3]
 
 class GT0(GrampsType):
-    _DEFAULT  = 1 # just avoiding the pre-coded 0
-    _CUSTOM   = 3 # just avoiding the pre-coded 0
+    _DEFAULT = 1 # just avoiding the pre-coded 0
+    _CUSTOM = 3 # just avoiding the pre-coded 0
     _DATAMAP = MAP
 
 # NOTE: this type of code might be used in a migration utility
@@ -47,60 +45,55 @@ class GT1(GT0):
     _BLACKLIST = BLIST
 
 class GT2(GT1):
-    _BLACKLIST=None
+    _BLACKLIST = None
 
-class Test1(U.TestCase):
-
+class Test1(unittest.TestCase):
     # some basic tests
-    def test1a_basic(s):
-        s.gt=GT0()
-        s.assertTrue(isinstance(s.gt, GrampsType))
+    def test_basic(self):
+        self.gt = GT0()
+        self.assertTrue(isinstance(self.gt, GrampsType))
         # spot-check that MAPs get built
-        e= len(keys)
-        g= len(s.gt._E2IMAP)
-        s.assertEquals(g,e, msg(g,e, "expected length of E2IMAP"))
+        e = len(keys)
+        g = len(self.gt._E2IMAP)
+        self.assertEqual(g, e)
 
     # init sets values for int, str, tuple 
     # (we ignore instance here -- maybe SB tested, too?)
     # this test depends on having _DEFAULT=1, _CUSTOM=3
     # NB: tuple tests w/ lengths < 2 fail before release 10403
-    def test1b_init_value(s):
-        for i,v,u in ( 
-                (None, 1,''),      # all DEFAULT
-                (0, 0,''), 
-                (1, 1,''), 
-                ('efef', 3,'efef'), # matches CUSTOM
-                ('zzzz', 0,''),
-                ('x',   3,'x'),   # nomatch gives CUSTOM   
-                ('',     3,''),     # nomatch gives CUSTOM   
-                ((0,'zero'), 0,'zero'), # normal behavior
-                ((2,),       2,''),    # DEFAULT-string, just like int 
-                ((),         1,''),    # DEFAULT-pair      
+    def test_init_value(self):
+        for i, v, u in ( 
+                (None,       1, 'abab'), # all DEFAULT
+                (0,          0, 'zzzz'), 
+                (1,          1, 'abab'), 
+                ('efef',     3, 'efef'), # matches CUSTOM
+                ('zzzz',     0, 'zzzz'),
+                ('x',        3, 'x'),    # nomatch gives CUSTOM   
+                ('',         3, ''),     # nomatch gives CUSTOM   
+                ((0,'zero'), 0, 'zzzz'), # normal behavior
+                ((2,),       2, 'cdcd'), # DEFAULT-string, just like int 
+                ((),         1, 'abab'), # DEFAULT-pair      
                 ):
-            s.gt = GT0(i)
-            g= s.gt.val
-            s.assertEquals(g,v, 
-                msg(g,v, "initialization val from '%s'" % repr(i)))
-            g= s.gt.string
-            s.assertEquals(g,u, 
-                msg(g,u, "initialization string from '%s'" % repr(i)))
+            self.gt = GT0(i)
+            g = self.gt.value
+            self.assertEqual(g, v)
+            g = self.gt.string
+            self.assertEqual(g, u)
 
 # test blacklist functionality added to enable fix of bug #1680
-class Test2(U.TestCase):
-    def test2a_blacklist(s):
-        s.gt=GT1()
+class Test2(unittest.TestCase):
+    def test_blacklist(self):
+        self.gt = GT1()
         # check that MAPs have lengths reduced by blacklist 
-        e= len(keys) - len(BLIST) 
-        g= len(s.gt._E2IMAP)
-        s.assertEquals(g,e, msg(g,e, "expected length of blacklisted MAP"))
+        e = len(keys) - len(BLIST) 
+        g = len(self.gt._E2IMAP)
+        self.assertEqual(g, e)
 
-        s.ub=GT2()
+        self.ub=GT2()
         # check that these MAPS are now un-blacklisted
-        e= len(keys) 
-        g= len(s.ub._E2IMAP)
-        s.assertEquals(g,e, msg(g,e, "expected length of un-blacklisted MAP"))
-
+        e = len(keys) 
+        g = len(self.ub._E2IMAP)
+        self.assertEqual(g, e)
 
 if __name__ == "__main__":
-    U.main()
-
+    unittest.main()

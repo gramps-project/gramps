@@ -25,23 +25,20 @@ Unittest for export to VCard
 To be called from src directory.
 """
 from __future__ import print_function
+
 import unittest
 import sys
-import os
 if sys.version_info[0] < 3:
     from StringIO import StringIO
 else:
     from io import StringIO
 import time
-sys.path.append(os.curdir)
-sys.path.append(os.path.join(os.curdir, 'plugins', 'export'))
-sys.path.append(os.path.join(os.curdir, 'plugins', 'lib'))
 import subprocess
 import libxml2
 
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.version import VERSION
-import exportvcard
+from gramps.plugins.export.exportvcard import VCardWriter
 
 class VCardCheck(unittest.TestCase):
     def setUp(self):
@@ -80,7 +77,7 @@ class VCardCheck(unittest.TestCase):
         if debug:
             print(input_strfile.getvalue())
 
-        process = subprocess.Popen('python gramps.py -i - -f gramps -e - -f vcf',
+        process = subprocess.Popen('python Gramps.py -i - -f gramps -e - -f vcf',
                 stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
         result_str, err_str = process.communicate(input_strfile.getvalue())
         if err_str:
@@ -95,20 +92,20 @@ class VCardCheck(unittest.TestCase):
                      "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_esc_string_none(self):
-        self.assertEqual(ExportVCard.VCardWriter.esc("nothing"), "nothing")
+        self.assertEqual(VCardWriter.esc("nothing"), "nothing")
 
     def test_esc_string_all(self):
-        self.assertEqual(ExportVCard.VCardWriter.esc("backslash\\_comma,_semicolon;"),
+        self.assertEqual(VCardWriter.esc("backslash\\_comma,_semicolon;"),
                          "backslash\\\\_comma\\,_semicolon\\;")
 
     def test_esc_string_list(self):
-        self.assertEqual(ExportVCard.VCardWriter.esc(["comma,", "semicolon;"]),["comma\\,", "semicolon\\;"])
+        self.assertEqual(VCardWriter.esc(["comma,", "semicolon;"]),["comma\\,", "semicolon\\;"])
 
     def test_esc_string_tuple(self):
-        self.assertEqual(ExportVCard.VCardWriter.esc(("comma,", "semicolon;")),("comma\\,", "semicolon\\;"))
+        self.assertEqual(VCardWriter.esc(("comma,", "semicolon;")),("comma\\,", "semicolon\\;"))
 
     def test_esc_string_wrongtype(self):
-        self.assertRaises(TypeError, ExportVCard.VCardWriter.esc,
+        self.assertRaises(TypeError, VCardWriter.esc,
                           {"comma,":"semicolon;"})
 
     def test_write_formatted_name_title(self):

@@ -37,18 +37,15 @@ else:
     from io import StringIO
 import time
 import unittest
-sys.path.append(os.curdir)
-sys.path.append(os.path.join(os.curdir, 'plugins','import'))
-sys.path.append(os.path.join(os.curdir, 'plugins', 'lib'))
 import subprocess
 import libxml2
 import libxslt
 
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
-
-from gramps.gen.const import ROOT_DIR, VERSION
-import importvcard
-from importvcard import VCardParser
+from gramps.gen.const import ROOT_DIR
+from gramps.version import VERSION
+from gramps.plugins.importer.importvcard import (VCardParser, fitin, 
+                                                 splitof_nameprefix)
 
 class VCardCheck(unittest.TestCase):
     def setUp(self):
@@ -63,7 +60,7 @@ class VCardCheck(unittest.TestCase):
             <database xmlns="http://gramps-project.org/xml/%s/">
             <header>
             <created date="%04d-%02d-%02d" version="%s"/>
-            <researcher/>
+            <researcher>\n    </researcher>
             </header>""" % \
             (GRAMPS_XML_VERSION, GRAMPS_XML_VERSION, GRAMPS_XML_VERSION,
                     date[0], date[1], date[2], VERSION)
@@ -100,7 +97,7 @@ class VCardCheck(unittest.TestCase):
         buf = libxml2.createOutputBuffer(expect_canonical_strfile, 'UTF-8')
         self.string2canonicalxml(expect_str, buf)
 
-        process = subprocess.Popen('python gramps.py '
+        process = subprocess.Popen('python Gramps.py '
             '--config=preferences.eprefix:DEFAULT -i - -f vcf -e - -f gramps',
             stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
         result_str, err_str = process.communicate(input_str)
@@ -122,26 +119,26 @@ class VCardCheck(unittest.TestCase):
         self.do_test("\r\n".join(self.vcard), self.gramps)
 
     def test_splitof_nameprefix_noprefix(self):
-        self.assertEqual(ImportVCard.splitof_nameprefix("Noprefix"), ('',"Noprefix"))
+        self.assertEqual(splitof_nameprefix("Noprefix"), ('',"Noprefix"))
 
     def test_splitof_nameprefix_prefix(self):
-        self.assertEqual(ImportVCard.splitof_nameprefix("van Prefix"), ('van',"Prefix"))
+        self.assertEqual(splitof_nameprefix("van Prefix"), ('van',"Prefix"))
 
     def test_splitof_nameprefix_doublespace(self):
-        self.assertEqual(ImportVCard.splitof_nameprefix("van  Prefix"), ('van',"Prefix"))
+        self.assertEqual(splitof_nameprefix("van  Prefix"), ('van',"Prefix"))
 
     def test_fitin_regular(self):
-        self.assertEqual(ImportVCard.fitin("Mr. Gaius Julius Caesar",
+        self.assertEqual(fitin("Mr. Gaius Julius Caesar",
                                            "Gaius Caesar", "Julius"), 6)
 
     def test_fitin_wrong_receiver(self):
-        self.assertEqual(ImportVCard.fitin("A B C", "A D", "B"), -1)
+        self.assertEqual(fitin("A B C", "A D", "B"), -1)
 
     def test_fitin_wrong_element(self):
-        self.assertRaises(ValueError, ImportVCard.fitin, "A B C", "A C", "D")
+        self.assertRaises(ValueError, fitin, "A B C", "A C", "D")
 
     def test_fitin_last_element(self):
-        self.assertRaises(IndexError, ImportVCard.fitin, "A B C", "A B", "C")
+        self.assertRaises(IndexError, fitin, "A B C", "A B", "C")
 
     def test_name_value_split_begin_colon(self):
         self.vcard.insert(4, ":email@example.com")

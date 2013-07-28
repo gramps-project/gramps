@@ -23,9 +23,6 @@
 
 import unittest
 
-from test import test_util as tu
-tu.path_append_parent()
-
 from ..callback import Callback
 
 try:
