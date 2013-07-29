@@ -18,32 +18,25 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# test/GrampsDb/GrampsDbBase_Test.py
 # $Id$
 
 import unittest
 import logging
-import os
-import tempfile
-import shutil
 import time
-import traceback
-import sys
-
-sys.path.append(os.path.join(os.path.dirname(__file__), '../../gramps'))
 
 try:
     set()
 except NameError:
     from sets import Set as set
 
-import gramps.gen.lib
+from .. import DbTxn
+from ...lib import Person, Event, Source, Citation
 
 logger = logging.getLogger('Gramps.GrampsDbBase_Test')
 
-from GrampsDbTestBase import GrampsDbBaseTest
+from grampsdbtestbase import GrampsDbBaseTest
 
-class ReferenceMapTest (GrampsDbBaseTest):
+class ReferenceMapTest(GrampsDbBaseTest):
     """Test methods on the GrampsDbBase class that are related to the reference_map
     index implementation."""
 
@@ -52,74 +45,83 @@ class ReferenceMapTest (GrampsDbBaseTest):
         a lookup for the reference returns the original
         record."""
 
-        source = self._add_source()
-        person = self._add_person_with_sources([source])
+        citation = self._add_source()
+        person = self._add_person_with_sources([citation])
         
-        references = list(self._db.find_backlink_handles(source.get_handle()))
+        references = list(self._db.find_backlink_handles(citation.get_handle()))
 
-        assert len(references) == 1
-        assert references[0] == (gen.lib.Person.__name__,person.get_handle())
+        self.assertEqual(len(references), 1)
+        self.assertEqual(references[0], (Person.__name__, person.get_handle()))
 
     def test_backlink_for_repository(self):
-        """check that the source / repos backlink lookup works."""
+        """check that the citation /source / repos backlink lookup works."""
 
         repos = self._add_repository()
-        source = self._add_source(repos=repos)
+        citation = self._add_source(repos=repos)
         
         references = list(self._db.find_backlink_handles(repos.get_handle()))
 
-        assert len(references) == 1
-        assert references[0] == (gen.lib.Source.__name__,source.get_handle())
+        self.assertEqual(len(references), 1)
+        self.assertEqual(references[0][0], Source.__name__)
+
+        references = list(self._db.find_backlink_handles(references[0][1]))
+
+        self.assertEqual(len(references), 1)
+        self.assertEqual(references[0],
+                        (Citation.__name__, citation.get_handle()))
 
     def test_class_limited_lookup(self):
         """check that class limited lookups work."""
 
-        source = self._add_source()
-        person = self._add_person_with_sources([source])
+        citation = self._add_source()
+        person = self._add_person_with_sources([citation])
 
-        self._add_family_with_sources([source])
-        self._add_event_with_sources([source])
-        self._add_place_with_sources([source])
-        self._add_media_object_with_sources([source])
+        self._add_family_with_sources([citation])
+        self._add_event_with_sources([citation])
+        self._add_place_with_sources([citation])
+        self._add_media_object_with_sources([citation])
 
         # make sure that we have the correct number of references (one for each object)
-        references = list(self._db.find_backlink_handles(source.get_handle()))
+        references = list(self._db.find_backlink_handles(citation.get_handle()))
 
-        assert len(references) == 5, "len(references) == %s " % str(len(references))
+        self.assertEqual(len(references), 5, 
+                         "len(references) == %s " % str(len(references)))
 
         # should just return the person reference
-        references = [ ref for ref in self._db.find_backlink_handles(source.get_handle(),(gen.lib.Person.__name__,)) ]
-        assert len(references) == 1, "len(references) == %s " % str(len(references))
-        assert references[0][0] == gen.lib.Person.__name__, "references = %s" % repr(references)
+        references = [ref for ref in self._db.find_backlink_handles(citation.get_handle(), (Person.__name__,))]
+        self.assertEqual(len(references), 1, 
+                         "len(references) == %s " % str(len(references)))
+        self.assertEqual(references[0][0], Person.__name__, 
+                         "references = %s" % repr(references))
 
         # should just return the person  and event reference
-        references = list(self._db.find_backlink_handles(source.get_handle(),
-                            (gen.lib.Person.__name__, gen.lib.Event.__name__)))
-        assert len(references) == 2, "len(references) == %s " % str(len(references))
-        assert references[0][0] == gen.lib.Person.__name__, "references = %s" % repr(references)
-        assert references[1][0] == gen.lib.Event.__name__, "references = %s" % repr(references)
-
-        
+        references = list(self._db.find_backlink_handles(citation.get_handle(),
+                            (Person.__name__, Event.__name__)))
+        self.assertEqual(len(references), 2, 
+                         "len(references) == %s " % str(len(references)))
+        self.assertEqual(references[0][0], Person.__name__, 
+                         "references = %s" % repr(references))
+        self.assertEqual(references[1][0], Event.__name__, 
+                         "references = %s" % repr(references))
 
     def test_delete_primary(self):
         """check that deleting a primary will remove the backreferences
         from the reference_map"""
 
-        source = self._add_source()
-        person = self._add_person_with_sources([source])
+        citation = self._add_source()
+        person = self._add_person_with_sources([citation])
         
-        assert self._db.get_person_from_handle(person.get_handle()) is not None
+        self.assertIsNotNone(self._db.get_person_from_handle(person.get_handle()))
         
-        tran = self._db.transaction_begin()
-        self._db.remove_person(person.get_handle(),tran)
-        self._db.transaction_commit(tran, "Del Person")
+        with DbTxn("Del Person", self._db) as tran:
+            self._db.remove_person(person.get_handle(),tran)
 
-        assert self._db.get_person_from_handle(person.get_handle()) is None
+        self.assertIsNone(self._db.get_person_from_handle(person.get_handle()))
         
-        references = list(self._db.find_backlink_handles(source.get_handle()))
+        references = list(self._db.find_backlink_handles(citation.get_handle()))
 
-        assert len(references) == 0, "len(references) == %s " % str(len(references))
-
+        self.assertEqual(len(references), 0, 
+                         "len(references) == %s " % str(len(references)))
 
     def test_reindex_reference_map(self):
         """Test that the reindex function works."""
@@ -130,28 +132,28 @@ class ReferenceMapTest (GrampsDbBaseTest):
         # unhook the reference_map update function so that we
         # can insert some records without the reference_map being updated.
         update_method = self._db.update_reference_map
-        self._db._update_reference_map = lambda x,y: 1
+        self._db.update_reference_map = lambda x,y,z: 1
 
         # Insert a person/source pair.
-        source = self._add_source()
-        person = self._add_person_with_sources([source])
+        citation = self._add_source()
+        person = self._add_person_with_sources([citation])
 
         # Check that the reference map does not contain the reference.
-        references = list(self._db.find_backlink_handles(source.get_handle()))
+        references = list(self._db.find_backlink_handles(citation.get_handle()))
 
-        assert len(references) == 0, "len(references) == %s " % str(len(references))
+        self.assertEqual(len(references), 0, 
+                         "len(references) == %s " % str(len(references)))
 
         # Reinstate the reference_map method and reindex the database
-        self._db._update_reference_map = update_method
+        self._db.update_reference_map = update_method
         self._db.reindex_reference_map(cb)
 
         # Check that the reference now appears in the reference_map
-        references = list(self._db.find_backlink_handles(source.get_handle()))
+        references = list(self._db.find_backlink_handles(citation.get_handle()))
 
-        assert len(references) == 1, "len(references) == %s " % str(len(references))
+        self.assertEqual(len(references), 1, 
+                         "len(references) == %s " % str(len(references)))
 
-        
-    
     def perf_simple_search_speed(self):
 
         num_sources = 100
@@ -211,8 +213,9 @@ class ReferenceMapTest (GrampsDbBaseTest):
         logger.info("with refs %s\n", str(with_reference_map))
         logger.info("without refs %s\n", str(without_reference_map))
 
-        assert with_reference_map < (without_reference_map / 10), "Reference_map should an order of magnitude faster."
-        
+        self.assertLess(with_reference_map, without_reference_map / 10, 
+                        "Reference_map should an order of magnitude faster.")
+
 def testSuite():
     suite = unittest.makeSuite(ReferenceMapTest,'test')
     return suite
