@@ -52,7 +52,7 @@ _ = glocale.translation.gettext
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.const import PROGRAM_NAME
 from gramps.version import VERSION
-from gramps.gen.lib import Date
+from gramps.gen.lib import Date, Person
 from gramps.gen.lib.urltype import UrlType
 from gramps.gen.lib.eventtype import EventType
 from gramps.gen.display.name import displayer as _nd
@@ -171,6 +171,7 @@ class VCardWriter(object):
             self.write_name(prname)
             self.write_sortstring(prname)
             self.write_nicknames(person, prname)
+            self.write_gender(person)
             self.write_birthdate(person)
             self.write_addresses(person)
             self.write_urls(person)
@@ -251,6 +252,18 @@ class VCardWriter(object):
             nicknames.insert(0, prname.get_nick_name())
         if len(nicknames) > 0:
             self.writeln("NICKNAME:%s" % (','.join(self.esc(nicknames))))
+
+    def write_gender(self, person):
+        """Write the X-GENDER property of a VCard (X- dropped in 4.0, we're at 3.0)."""
+        gender = person.get_gender()
+        gender_value = ''
+        if gender == Person.MALE:
+            gender_value = 'Male'
+        elif gender == Person.FEMALE:
+            gender_value = 'Female'
+        log.info("gender: %s -> %s" % (gender, gender_value))
+        if gender_value:
+            self.writeln("X-GENDER:%s" % (gender_value))
 
     def write_birthdate(self, person):
         """Write the BDAY property of a VCard."""

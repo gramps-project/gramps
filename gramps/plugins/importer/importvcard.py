@@ -278,6 +278,10 @@ class VCardParser(object):
                 self.add_url(fields, line_parts[1])
             elif property_name == "EMAIL":
                 self.add_email(fields, line_parts[1])
+            elif property_name == "X-GENDER" or property_name == "GENDER":
+                # VCard 3.0 only has X-GENDER, GENDER is 4.0 syntax,
+                # but we want to be robust here.
+                self.add_gender(fields, line_parts[1])
             elif property_name == "PRODID":
                 # Included cause VCards made by Gramps have this prop.
                 pass
@@ -509,3 +513,17 @@ class VCardParser(object):
             url.set_type(UrlType(UrlType.EMAIL))
             url.set_path(self.unesc(email))
             self.person.add_url(url)
+
+    def add_gender(self, fields, data):
+        """Read the GENDER property of a VCard."""
+        gender_value = data.strip()
+        if gender_value:
+            gender_value = gender_value.upper()
+            gender_value = gender_value[0]
+            if gender_value == 'M':
+                gender = gen.lib.Person.MALE
+            elif gender_value == 'F':
+                gender = gen.lib.Person.FEMALE
+            else:
+                return
+            self.person.set_gender(gender)
