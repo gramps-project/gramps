@@ -1,5 +1,5 @@
 Source: gramps
-Maintainer: Gramps Development Team
+Maintainer: Gramps Development Team <gramps-devel@lists.sourceforge.net>
 Section: python
 Priority: optional
 Build-Depends-Indep: libxml-parser-perl, gettext, intltool
@@ -12,6 +12,6 @@ Architecture: all
 Depends: ${misc:Depends}, ${python:Depends}, python-gobject (>= 3.3.2), librsvg2-2
 Recommends: python-pyicu, python-osmgpsmap,  graphviz, xdg-utils
 Suggests: ttf-freefont, python-gtkspell, libgexiv2-1, rcs, python-imaging, python-pygoocanvas
-Description: Gramps (Genealogical Research and Analysis Management
+Description: (Genealogical Research and Analysis Management
  Programming System) is a full featured genealogy program supporting
  a Python based plugin system.
