@@ -18,31 +18,18 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# test/GrampsDb/Cursor_Test.py
 # $Id$
 
 import unittest
-import logging
 import os
 import tempfile
 import shutil
-import time
-import traceback
-import sys
 from bsddb import dbshelve, db
-
-sys.path.append('../../gramps')
 
 try:
     set()
 except NameError:
     from sets import Set as set
-
-import gramps.gen.const
-
-logger = logging.getLogger('Gramps.GrampsDbBase_Test')
-
-from GrampsDbTestBase import GrampsDbBaseTest
 
 class Data(object):
 
@@ -64,7 +51,21 @@ class CursorTest(unittest.TestCase):
         self.env.set_cachesize(0,0x2000000)
         self.env.set_lk_max_locks(25000)
         self.env.set_lk_max_objects(25000)
-        self.env.set_flags(db.DB_LOG_AUTOREMOVE,1)  # clean up unused logs
+
+        # clean up unused logs
+        autoremove_flag = None
+        autoremove_method = None
+        for flag in ["DB_LOG_AUTO_REMOVE", "DB_LOG_AUTOREMOVE"]:
+            if hasattr(db, flag):
+                autoremove_flag = getattr(db, flag)
+                break
+        for method in ["log_set_config", "set_flags"]:
+            if hasattr(self.env, method):
+                autoremove_method = getattr(self.env, method)
+                break
+        if autoremove_method and autoremove_flag:
+            autoremove_method(autoremove_flag, 1)
+
         # The DB_PRIVATE flag must go if we ever move to multi-user setup
         env_flags = db.DB_CREATE|db.DB_RECOVER|db.DB_PRIVATE|\
                     db.DB_INIT_MPOOL|db.DB_INIT_LOCK|\
@@ -105,12 +106,12 @@ class CursorTest(unittest.TestCase):
 
         data = Data(str(1),'surname1','name1')
         the_txn = self.env.txn_begin()
-        self.person_map.put(data.handle,data,txn=the_txn)
+        self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()
         
         v = self.person_map.get(data.handle)
 
-        assert v.handle == data.handle
+        self.assertEqual(v.handle, data.handle)
 
     def test_insert_with_curor_closed(self):
         """test_insert_with_curor_closed"""
@@ -123,15 +124,16 @@ class CursorTest(unittest.TestCase):
         cursor.close()
         cursor_txn.commit()
         
-        data = Data(str(2),'surname2','name2')
+        data = Data(str(2), 'surname2', 'name2')
         the_txn = self.env.txn_begin()
-        self.person_map.put(data.handle,data,txn=the_txn)
+        self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()
                 
         v = self.person_map.get(data.handle)
 
-        assert v.handle == data.handle
+        self.assertEqual(v.handle, data.handle)
 
+    @unittest.skip("Insert expected to fail with open cursor")
     def test_insert_with_curor_open(self):
         """test_insert_with_curor_open"""
         
@@ -140,9 +142,9 @@ class CursorTest(unittest.TestCase):
         cursor.first()
         cursor.next()
         
-        data = Data(str(2),'surname2','name2')
+        data = Data(str(2),'surname2', 'name2')
         the_txn = self.env.txn_begin()
-        self.person_map.put(data.handle,data,txn=the_txn)
+        self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()
         
         cursor.close()
@@ -150,9 +152,10 @@ class CursorTest(unittest.TestCase):
         
         v = self.person_map.get(data.handle)
 
-        assert v.handle == data.handle
+        self.assertEqual(v.handle, data.handle)
 
-    def xtest_insert_with_curor_open_and_db_open(self):
+    @unittest.skip("Insert expected to fail with open cursor")
+    def test_insert_with_curor_open_and_db_open(self):
         """test_insert_with_curor_open_and_db_open"""
 
         (person2,surnames2) = self._open_tables()
@@ -162,9 +165,9 @@ class CursorTest(unittest.TestCase):
         cursor.first()
         cursor.next()
         
-        data = Data(str(2),'surname2','name2')
+        data = Data(str(2),'surname2', 'name2')
         the_txn = self.env.txn_begin()
-        self.person_map.put(data.handle,data,txn=the_txn)
+        self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()
         
         cursor.close()
@@ -172,11 +175,11 @@ class CursorTest(unittest.TestCase):
         
         v = self.person_map.get(data.handle)
 
-        assert v.handle == data.handle
+        self.assertEqual(v.handle, data.handle)
 
         
 def testSuite():
-    suite = unittest.makeSuite(CursorTest,'test')
+    suite = unittest.makeSuite(CursorTest, 'test')
     return suite
 
 

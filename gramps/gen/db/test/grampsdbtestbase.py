@@ -18,31 +18,21 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# test/GrampsDb/GrampsDbTestBase.py
 # $Id$
 
 import unittest
-import logging
-import os
 import tempfile
 import shutil
-import time
-import traceback
-import sys
-
-sys.path.append('../gramps')
 
 try:
     set()
 except NameError:
     from sets import Set as set
-    
-from gramps.gen.db import DbBsddb
-from gramps.cli.clidbman import CLIDbManager
-import gramps.gen.const
-import gramps.gen.lib
 
-logger = logging.getLogger('Gramps.GrampsDbTestBase')
+from gramps.gen.db import DbBsddb, DbTxn
+from gramps.cli.clidbman import CLIDbManager
+from gramps.gen.lib import (Source, RepoRef, Citation, Repository, Person, 
+                            Family, Event, Place, MediaObject)
 
 class GrampsDbBaseTest(unittest.TestCase):
     """Base class for unittest that need to be able to create
@@ -52,7 +42,6 @@ class GrampsDbBaseTest(unittest.TestCase):
         def dummy_callback(dummy):
             pass
         self._tmpdir = tempfile.mkdtemp()
-        #self._filename = os.path.join(self._tmpdir,'test.grdb')
         
         self._db = DbBsddb()
         dbman = CLIDbManager(None)
@@ -107,79 +96,77 @@ class GrampsDbBaseTest(unittest.TestCase):
 
     def _add_source(self,repos=None):
         # Add a Source
-        
-        tran = self._db.transaction_begin()
-        source = gen.lib.Source()
-        if repos is not None:
-            repo_ref = gen.lib.RepoRef()
-            repo_ref.set_reference_handle(repos.get_handle())
-            source.add_repo_reference(repo_ref)
-        self._db.add_source(source,tran)
-        self._db.commit_source(source,tran)
-        self._db.transaction_commit(tran, "Add Source")
 
-        return source
+        with DbTxn("Add Source and Citation", self._db) as tran:
+            source = Source()
+            if repos is not None:
+                repo_ref = RepoRef()
+                repo_ref.set_reference_handle(repos.get_handle())
+                source.add_repo_reference(repo_ref)
+            self._db.add_source(source, tran)
+            self._db.commit_source(source, tran)
+            citation = Citation()
+            citation.set_reference_handle(source.get_handle())
+            self._db.add_citation(citation, tran)
+            self._db.commit_citation(citation, tran)
+
+        return citation
 
     def _add_repository(self):
         # Add a Repository
         
-        tran = self._db.transaction_begin()
-        repos = gen.lib.Repository()
-        self._db.add_repository(repos,tran)
-        self._db.commit_repository(repos,tran)
-        self._db.transaction_commit(tran, "Add Repository")
+        with DbTxn("Add Repository", self._db) as tran:
+            repos = Repository()
+            self._db.add_repository(repos, tran)
+            self._db.commit_repository(repos, tran)
 
         return repos
 
                            
-    def _add_object_with_source(self,sources, object_class,add_method,commit_method):
+    def _add_object_with_source(self, citations, object_class, add_method, 
+                                commit_method):
 
         object = object_class()
 
-        for source in sources:
-            src_ref = gen.lib.SourceRef()
-            src_ref.set_reference_handle(source.get_handle())
-            object.add_source_reference(src_ref)
-
-
-        tran = self._db.transaction_begin()
-        add_method(object,tran)
-        commit_method(object,tran)
-        self._db.transaction_commit(tran, "Add Object")
+        with DbTxn("Add Object", self._db) as tran:
+            for citation in citations:
+                object.add_citation(citation.get_handle())
+            add_method(object, tran)
+            commit_method(object, tran)
 
         return object
 
-    def _add_person_with_sources(self,sources):
+    def _add_person_with_sources(self, citations):
 
-        return self._add_object_with_source(sources,
-                                            gen.lib.Person,
+        return self._add_object_with_source(citations,
+                                            Person,
                                             self._db.add_person,
                                             self._db.commit_person)
 
-    def _add_family_with_sources(self,sources):
+    def _add_family_with_sources(self, citations):
 
-        return self._add_object_with_source(sources,
-                                            gen.lib.Family,
+        return self._add_object_with_source(citations,
+                                            Family,
                                             self._db.add_family,
                                             self._db.commit_family)
 
-    def _add_event_with_sources(self,sources):
+    def _add_event_with_sources(self, citations):
 
-        return self._add_object_with_source(sources,
-                                            gen.lib.Event,
+        return self._add_object_with_source(citations,
+                                            Event,
                                             self._db.add_event,
                                             self._db.commit_event)
 
-    def _add_place_with_sources(self,sources):
+    def _add_place_with_sources(self, citations):
 
-        return self._add_object_with_source(sources,
-                                            gen.lib.Place,
+        return self._add_object_with_source(citations,
+                                            Place,
                                             self._db.add_place,
                                             self._db.commit_place)
 
-    def _add_media_object_with_sources(self,sources):
+    def _add_media_object_with_sources(self, citations):
 
-        return self._add_object_with_source(sources,
-                                            gen.lib.MediaObject,
+        return self._add_object_with_source(citations,
+                                            MediaObject,
                                             self._db.add_object,
                                             self._db.commit_media_object)
