@@ -20,14 +20,11 @@
 
 # $Id$
 
+from __future__ import print_function
+
 import unittest
 import tempfile
 import shutil
-
-try:
-    set()
-except NameError:
-    from sets import Set as set
 
 from gramps.gen.db import DbBsddb, DbTxn
 from gramps.cli.clidbman import CLIDbManager
@@ -88,8 +85,8 @@ class GrampsDbBaseTest(unittest.TestCase):
                 try:
                     add_func(lnk_sources)
                 except:
-                    print "person_idx = ", person_idx
-                    print "lnk_sources = ", repr(lnk_sources)
+                    print ("person_idx = ", person_idx)
+                    print ("lnk_sources = ", repr(lnk_sources))
                     raise
 
         return

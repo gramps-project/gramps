@@ -24,17 +24,12 @@ import unittest
 import logging
 import time
 
-try:
-    set()
-except NameError:
-    from sets import Set as set
-
 from .. import DbTxn
 from ...lib import Person, Event, Source, Citation
 
 logger = logging.getLogger('Gramps.GrampsDbBase_Test')
 
-from grampsdbtestbase import GrampsDbBaseTest
+from .grampsdbtestbase import GrampsDbBaseTest
 
 class ReferenceMapTest(GrampsDbBaseTest):
     """Test methods on the GrampsDbBase class that are related to the reference_map

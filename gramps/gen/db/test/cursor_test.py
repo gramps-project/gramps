@@ -22,14 +22,16 @@
 
 import unittest
 import os
+import sys
 import tempfile
 import shutil
-from bsddb import dbshelve, db
 
-try:
-    set()
-except NameError:
-    from sets import Set as set
+from ...constfunc import UNITYPE
+from ...config import config
+if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
+    from bsddb3 import dbshelve, db
+else:
+    from bsddb import dbshelve, db
 
 class Data(object):
 
@@ -81,7 +83,7 @@ class CursorTest(unittest.TestCase):
         dbmap = dbshelve.DBShelf(self.env)
         dbmap.db.set_pagesize(16384)
         dbmap.open(self.full_name, 'person', db.DB_HASH,
-                       db.DB_CREATE|db.DB_AUTO_COMMIT, 0666)
+                       db.DB_CREATE|db.DB_AUTO_COMMIT, 0o666)
         person_map     = dbmap
 
         table_flags = db.DB_CREATE|db.DB_AUTO_COMMIT
@@ -92,7 +94,10 @@ class CursorTest(unittest.TestCase):
                                flags=table_flags)
         
         def find_surname(key,data):
-            return data.surname
+            val = data.surname
+            if isinstance(val, UNITYPE):
+                val = val.encode('utf-8')
+            return val
         
         person_map.associate(surnames, find_surname, table_flags)
 
@@ -104,7 +109,7 @@ class CursorTest(unittest.TestCase):
     def test_simple_insert(self):
         """test insert and retrieve works."""
 
-        data = Data(str(1),'surname1','name1')
+        data = Data(b'1' ,'surname1', 'name1')
         the_txn = self.env.txn_begin()
         self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()
@@ -124,7 +129,7 @@ class CursorTest(unittest.TestCase):
         cursor.close()
         cursor_txn.commit()
         
-        data = Data(str(2), 'surname2', 'name2')
+        data = Data(b'2', 'surname2', 'name2')
         the_txn = self.env.txn_begin()
         self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()
@@ -142,7 +147,7 @@ class CursorTest(unittest.TestCase):
         cursor.first()
         cursor.next()
         
-        data = Data(str(2),'surname2', 'name2')
+        data = Data(b'2', 'surname2', 'name2')
         the_txn = self.env.txn_begin()
         self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()
@@ -165,7 +170,7 @@ class CursorTest(unittest.TestCase):
         cursor.first()
         cursor.next()
         
-        data = Data(str(2),'surname2', 'name2')
+        data = Data(b'2', 'surname2', 'name2')
         the_txn = self.env.txn_begin()
         self.person_map.put(data.handle, data, txn=the_txn)
         the_txn.commit()

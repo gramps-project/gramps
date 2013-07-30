@@ -402,7 +402,7 @@ class EventRefCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         self.phoenix.add_attribute(attr1)
         self.ref_obj.add_attribute(attr2)
         self.phoenix.replace_citation_references('234567','654321')
-        self.assert_(self.phoenix.is_equal(self.ref_obj))
+        self.assertTrue(self.phoenix.is_equal(self.ref_obj))
 
 class FamilyCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
         CitationBaseTest, MediaBaseTest, AttrBaseTest):
