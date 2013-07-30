@@ -98,16 +98,19 @@ class VCardCheck(unittest.TestCase):
         self.string2canonicalxml(expect_str, buf)
 
         process = subprocess.Popen('python Gramps.py '
-            '--config=preferences.eprefix:DEFAULT -i - -f vcf -e - -f gramps',
-            stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+                                   '--config=preferences.eprefix:DEFAULT '
+                                   '-i - -f vcf -e - -f gramps',
+                                   stdin=subprocess.PIPE, 
+                                   stdout=subprocess.PIPE, 
+                                   stderr=subprocess.PIPE, 
+                                   shell=True)
         result_str, err_str = process.communicate(input_str)
-        if err_str:
-            print(err_str)
         result_canonical_strfile = StringIO()
         buf2 = libxml2.createOutputBuffer(result_canonical_strfile, 'UTF-8')
         self.string2canonicalxml(result_str, buf2)
 
         if debug:
+            print(err_str)
             print(result_canonical_strfile.getvalue())
             print(expect_canonical_strfile.getvalue())
         self.assertEqual(result_canonical_strfile.getvalue(),
