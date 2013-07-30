@@ -22,37 +22,23 @@
 
 """ Unittest for testing dates """
 
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import unittest
-import os
-import sys
-import traceback
-import locale
-import gettext
 
-if "GRAMPSI18N" in os.environ:
-    loc = os.environ["GRAMPSI18N"]
-else:
-    loc = "/usr/share/locale"
-
-try:
-    locale.setlocale(locale.LC_ALL,'C')
-    locale.setlocale(locale.LC_ALL,'')
-except locale.Error:
-    pass
-except ValueError:
-    pass
-
-from test import test_util
-test_util.path_append_parent() 
-
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from ...config import config
 from ...datehandler import get_date_formats, set_format
 from ...datehandler import parser as _dp
 from ...datehandler import displayer as _dd
-from ...lib.date import Date, Span
-
-gettext.textdomain("gramps")
-gettext.install("gramps", loc, unicode=1)
+from ...lib.date import Date
 
 date_tests = {}
 
@@ -215,82 +201,76 @@ for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
 
 date_tests[testset] = dates
 
-# now run the tests using all available date formats
-cal_str = [ "CAL_GREGORIAN", "CAL_JULIAN", "CAL_HEBREW", "CAL_FRENCH", 
-            "CAL_PERSIAN", "CAL_ISLAMIC", "CAL_SWEDISH"]
-mod_str = ["MOD_NONE", "MOD_BEFORE", "MOD_AFTER", "MOD_ABOUT", "MOD_RANGE", 
-           "MOD_SPAN", "MOD_TEXTONLY"]
-qua_str = ["QUAL_NONE", "QUAL_ESTIMATED", "QUAL_CALCULATED"]
-formats = get_date_formats()
+swedish_dates = []
+# CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
+with Context(Date.CAL_SWEDISH) as calendar:
+    for year in range(1701, 1712):
+        for month in range(1,13):
+            d = Date()
+            d.set(quality,modifier,calendar,(4,month,year,False),"Text comment")
+            swedish_dates.append( d)
 
-class Eval(unittest.TestCase):
-    def __init__(self, method_name, dateval, e1, e2, e3, format):
-        self.__dict__[method_name] = lambda: eval_func(dateval, e1, e2, e3, 
-                                                       format)
-        unittest.TestCase.__init__(self, method_name)
-
-def eval_func(dateval, e1, e2, e3, format):
+#-------------------------------------------------------------------------
+#
+# BaseDateTest
+#
+#-------------------------------------------------------------------------
+class BaseDateTest(unittest.TestCase):
     """
-    e1 is datestr = _dd.display(dateval)
-    e2 is ndate = _dp.parse(datestr)
-    e3 is ntxt = _dd.display(ndate)
+    Base class for all date tests.
     """
-    exec(e1)
-    exec(e2)
-    exec(e3)
-    #print datestr, ndate, ntxt
-    assert dateval.is_equal(ndate), ("dateval fails is_equal in format %d:\n"
-                                     "   '%s' != '%s'" % 
-                                     (format, dateval, ndate))
+    def setUp(self):
+        config.set('behavior.date-before-range', 9999)
+        config.set('behavior.date-after-range', 9999)
+        config.set('behavior.date-about-range', 10)
 
-def suite3():
-    suite = unittest.TestSuite()            
-    count = 1
-    for testset in date_tests:
-        for format in range( len( get_date_formats())):
-            set_format(format)
-            for dateval in date_tests[testset]:
-                if dateval.modifier != Date.MOD_TEXTONLY:
-                    dateval.text = ("Comment. Format: %s" % 
-                                    get_date_formats()[format])
-                suite.addTest(
-                    Eval("testset '%s' test_eval%04d" % (testset, count), 
-                         dateval, 
-                         "datestr = _dd.display(dateval)", 
-                         "ndate = _dp.parse(datestr)", 
-                         "ntxt = _dd.display(ndate)",
-                         format,
-                         )
-                    )
-                count += 1
-    return suite
 
-class Tester(unittest.TestCase):
-    def __init__(self, method_name, part, testdata):
-        self.__dict__[method_name + ("-%d" % part)] = lambda: self.helper(part, *testdata)
-        unittest.TestCase.__init__(self, method_name + ("-%d" % part))
+#-------------------------------------------------------------------------
+#
+# ParserDateTest
+#
+#-------------------------------------------------------------------------
+class ParserDateTest(BaseDateTest):
+    """
+    Date displayer and parser tests.
+    """
+    def do_test(self, testset):
+        for date_format in range(len(get_date_formats())):
+            set_format(date_format)
 
-    def helper(self, part, d1, d2, expected1, expected2 = None):
-        """
-        Tests two GRAMPS dates to see if they match.
-        """
-        if expected2 is None:
-            expected2 = expected1
-        date1 = _dp.parse(d1)
-        date2 = _dp.parse(d2)
-        if part == 1:
-            val = date2.match(date1)
-            self.assertTrue(val == expected1, "'%s' and '%s' did not match" % (d1, d2))
-        else:
-            val = date1.match(date2)
-            self.assertTrue(val == expected2, "'%s' and '%s' did not match" % (d2, d1))
+            for dateval in date_tests[testset]:            
+                datestr = _dd.display(dateval)
+                ndate = _dp.parse(datestr)
+                self.assertTrue(dateval.is_equal(ndate),
+                                "dateval fails is_equal in format %d:\n"
+                                "   '%s' != '%s'" % 
+                                (date_format, dateval, ndate))
 
-def suite():
-    """ interface to automated test runner test/regrtest.py """
-    config.set('behavior.date-before-range', 9999)
-    config.set('behavior.date-after-range', 9999)
-    config.set('behavior.date-about-range', 10)
-    # most are symmetric: #date1, date2, does d1 match d2? does d2 match d1?
+    def test_basic(self):
+        self.do_test("basic test")
+
+    def test_partial(self):
+        self.do_test("partial date")
+
+    def test_slash(self):
+        self.do_test("slash-dates")
+
+    def test_bce(self):
+        self.do_test("B. C. E.")
+
+    def test_non_gregorian(self):
+        self.do_test("Non-gregorian")
+
+
+#-------------------------------------------------------------------------
+#
+# MatchDateTest
+#
+#-------------------------------------------------------------------------
+class MatchDateTest(BaseDateTest):
+    """
+    Date match tests.
+    """
     tests = [("before 1960", "before 1961", True),
              ("before 1960", "before 1960", True),
              ("before 1961", "before 1961", True),
@@ -361,30 +341,38 @@ def suite():
              ("1712-02-28 (Julian)", "1712-02-29 (Swedish)", True),  
              ("1712-02-29 (Julian)", "1712-02-30 (Swedish)", True),  
              ]
-    suite = unittest.TestSuite()            
-    count = 1
-    for test in tests:
-        suite.addTest(Tester('test_match%04d' % count, 1, test))
-        suite.addTest(Tester('test_match%04d' % count, 2, test))
-        count += 1
-    return suite
 
-def assert_func(exp1, exp2, env=None):
-    e1 = eval(exp1, env)
-    e2 = eval(exp2, env)
-    assert e1 == e2, "%s should be %s but was %s" % (exp1, e2, e1)
+    def do_test(self, d1, d2, expected1, expected2=None):
+        """
+        Tests two Gramps dates to see if they match.
+        """
+        if expected2 is None:
+            expected2 = expected1
+        date1 = _dp.parse(d1)
+        date2 = _dp.parse(d2)
+        
+        result = date2.match(date1)
+        self.assertEqual(result, expected1, 
+                         "'%s' did not match '%s'" % (d1, d2))
 
-class Assert(unittest.TestCase):
-    def __init__(self, method_name, part, exp1, exp2, env=None):
-        self.__dict__[method_name + ("-%d" % part)] = \
-            lambda: assert_func(exp1, exp2, env)
-        unittest.TestCase.__init__(self, method_name + ("-%d" % part))
+        result = date1.match(date2)
+        self.assertEqual(result, expected2, 
+                         "'%s' did not match '%s'" % (d2, d1))
 
-def suite2():
-    """ interface to automated test runner test/regrtest.py """
-    config.set('behavior.date-before-range', 9999)
-    config.set('behavior.date-after-range', 9999)
-    config.set('behavior.date-about-range', 10)
+    def test_match(self):
+        for testdata in self.tests:
+            self.do_test(*testdata)
+
+
+#-------------------------------------------------------------------------
+#
+# ArithmeticDateTest
+#
+#-------------------------------------------------------------------------
+class ArithmeticDateTest(BaseDateTest):
+    """
+    Date arithmetic tests.
+    """
     tests = [
         # Date +/- int/tuple -> Date
         ("Date(2008, 1, 1) - 1", "Date(2007, 1, 1)"),
@@ -394,10 +382,10 @@ def suite2():
         ("Date(2008) - (0,0,1)", "Date(2007, 12, 31)"),
         ("Date(2008) - 1", "Date(2007, 1, 1)"),
         ("Date(2008, 12, 31) + (0, 0, 1)", "Date(2009, 1, 1)"),
-        ("Date(2000,1,1) - (0,11,0)", "Date(1999,02,01)"),
+        ("Date(2000,1,1) - (0,11,0)", "Date(1999, 2, 1)"),
         ("Date(2000,1,1) - (0,1,0)", "Date(1999, 12, 1)"),
-        ("Date(2008, 1, 1) + (0, 0, 32)", "Date(2008, 02, 02)"),
-        ("Date(2008, 2, 1) + (0, 0, 32)", "Date(2008, 03, 04)"),
+        ("Date(2008, 1, 1) + (0, 0, 32)", "Date(2008, 2, 2)"),
+        ("Date(2008, 2, 1) + (0, 0, 32)", "Date(2008, 3, 4)"),
         ("Date(2000) - (0, 1, 0)", "Date(1999, 12, 1)"),
         ("Date(2000) + (0, 1, 0)", "Date(2000, 1, 0)"), # Ok?
         ("Date(2000, 1, 1) - (0, 1, 0)", "Date(1999, 12, 1)"),
@@ -412,40 +400,28 @@ def suite2():
         ("(Date(2007, 12, 23) - Date(1963, 12, 4)).tuple()", "(44, 0, 19)"),
         ("(Date(1963, 12, 4) - Date(2007, 12, 23)).tuple()", "(-44, 0, -19)"),
         ]
-    suite = unittest.TestSuite()            
-    count = 1
-    for (exp1, exp2) in tests:
-        suite.addTest(Assert('test_assert%04d' % count, 1, exp1, exp2))
-        count += 1
-    return suite
 
-swedish_dates = []
-# CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
-with Context(Date.CAL_SWEDISH) as calendar:
-    for year in range(1701, 1712):
-        for month in range(1,13):
-            d = Date()
-            d.set(quality,modifier,calendar,(4,month,year,False),"Text comment")
-            swedish_dates.append( d)
+    def test_evaluate(self):
+        for exp1, exp2 in self.tests:
+            val1 = eval(exp1)
+            val2 = eval(exp2)
+            self.assertEqual(val1, val2, 
+                        "'%s' should be '%s' but was '%s'" % (exp1, val2, val1))
 
-def suite4():
-    """ interface to automated test runner test/regrtest.py """
-    config.set('behavior.date-before-range', 9999)
-    config.set('behavior.date-after-range', 9999)
-    config.set('behavior.date-about-range', 10)
-    suite = unittest.TestSuite()            
-    count = 1
-    for date in swedish_dates:
-        suite.addTest(Assert('swedish dates test', 
-                             count, 
-                             "date.sortval",
-                             "date.to_calendar('gregorian').sortval",
-                             env = {"date": date}))
-        count += 1
-    return suite
+#-------------------------------------------------------------------------
+#
+# SwedishDateTest
+#
+#-------------------------------------------------------------------------
+class SwedishDateTest(BaseDateTest):
+    """
+    Swedish calendar tests.
+    """
+    def test_swedish(self):
+        for date in swedish_dates:
+            self.assertEqual(date.sortval, 
+                             date.to_calendar('gregorian').sortval)
+
 
 if __name__ == "__main__":
-    unittest.TextTestRunner().run(suite())
-    unittest.TextTestRunner().run(suite2())
-    unittest.TextTestRunner().run(suite3())
-    unittest.TextTestRunner().run(suite4())
+    unittest.main()
