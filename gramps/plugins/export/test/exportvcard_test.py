@@ -42,9 +42,13 @@ from gramps.plugins.export.exportvcard import VCardWriter
 
 class VCardCheck(unittest.TestCase):
     def setUp(self):
-        self.expect = ["BEGIN:VCARD", "VERSION:3.0", "PRODID:-//Gramps//NONSGML Gramps %s//EN" % VERSION, "FN:Lastname", "N:Lastname;;;;", "SORT-STRING:" + "Lastname".ljust(55), "END:VCARD"]
+        self.expect = ["BEGIN:VCARD", "VERSION:3.0", 
+                       "PRODID:-//Gramps//NONSGML Gramps %s//EN" % VERSION, 
+                       "FN:Lastname", "N:Lastname;;;;", 
+                       "SORT-STRING:" + "Lastname".ljust(55), "END:VCARD"]
         date = time.localtime(time.time())
-        self.input_list = ["BEGIN:VCARD", "VERSION:3.0", "FN:Lastname", "N:Lastname;;;;", "END:VCARD"]
+        self.input_list = ["BEGIN:VCARD", "VERSION:3.0", "FN:Lastname", 
+                           "N:Lastname;;;;", "END:VCARD"]
         strng = """<?xml version="1.0" encoding="UTF-8"?>
             <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML %s//EN"
             "http://gramps-project.org/xml/%s/grampsxml.dtd">
@@ -77,12 +81,15 @@ class VCardCheck(unittest.TestCase):
         if debug:
             print(input_strfile.getvalue())
 
-        process = subprocess.Popen('python Gramps.py -i - -f gramps -e - -f vcf',
-                stdin=subprocess.PIPE, stdout=subprocess.PIPE, shell=True)
+        process = subprocess.Popen('python Gramps.py '
+                                   '-i - -f gramps -e - -f vcf',
+                                   stdin=subprocess.PIPE, 
+                                   stdout=subprocess.PIPE, 
+                                   stderr=subprocess.PIPE, 
+                                   shell=True)
         result_str, err_str = process.communicate(input_strfile.getvalue())
-        if err_str:
-            print(err_str)
         if debug:
+            print(err_str)
             print(result_str)
             print(expect_str)
         self.assertEqual(result_str, expect_str)
@@ -99,10 +106,12 @@ class VCardCheck(unittest.TestCase):
                          "backslash\\\\_comma\\,_semicolon\\;")
 
     def test_esc_string_list(self):
-        self.assertEqual(VCardWriter.esc(["comma,", "semicolon;"]),["comma\\,", "semicolon\\;"])
+        self.assertEqual(VCardWriter.esc(["comma,", "semicolon;"]),
+                                         ["comma\\,", "semicolon\\;"])
 
     def test_esc_string_tuple(self):
-        self.assertEqual(VCardWriter.esc(("comma,", "semicolon;")),("comma\\,", "semicolon\\;"))
+        self.assertEqual(VCardWriter.esc(("comma,", "semicolon;")),
+                                         ("comma\\,", "semicolon\\;"))
 
     def test_esc_string_wrongtype(self):
         self.assertRaises(TypeError, VCardWriter.esc,
