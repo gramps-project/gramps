@@ -290,17 +290,18 @@ class RecentDocsMenu(object):
 
         for item in rfiles:
             try:
-                title = item.get_name().replace('_', '__')
+                title = item.get_name()
                 filename = os.path.basename(item.get_path())
                 action_id = "RecentMenu%d" % count
                 buf.write('<menuitem action="%s"/>' % action_id)
                 actions.append((action_id, None, title, None, None, 
                                 make_callback(item, self.load)))
-                mitem = Gtk.MenuItem(label=title)
+                mitem = Gtk.MenuItem(label=title, use_underline=False)
                 mitem.connect('activate', make_callback(item, self.load))
                 mitem.show()
                 new_menu.append(mitem)
             except RuntimeError:
+                _LOG.info("Ignoring the RecentItem %s (%s)" % (title, filename))
                 pass    # ignore no longer existing files
             
             count += 1

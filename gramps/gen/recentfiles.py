@@ -196,8 +196,8 @@ class RecentFiles(object):
             if index > MAX_GRAMPS_ITEMS:
                 break
             xml_file.write('  <RecentItem>\n')
-            xml_file.write('    <Path>%s</Path>\n' % item.get_path())
-            xml_file.write('    <Name>%s</Name>\n' % item.get_name())
+            xml_file.write('    <Path><![CDATA[%s]]></Path>\n' % item.get_path())
+            xml_file.write('    <Name><![CDATA[%s]]></Name>\n' % item.get_name())
             xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
             xml_file.write('  </RecentItem>\n')
         xml_file.write('</RecentFiles>\n')
