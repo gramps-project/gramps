@@ -24,19 +24,16 @@
 Unittest that tests that part of the merge process that influences other
 objects than the objects merging.
 """
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 
 import unittest
 import time
-import sys
 import os
-sys.path.append(os.curdir)
-sys.path.append(os.path.join(os.curdir, 'plugins', 'lib'))
 import subprocess
 import libxml2
 import libxslt
 
-from libgrampsxml import GRAMPS_XML_VERSION
+from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 from ...const import ROOT_DIR, USER_PLUGINS
 from ....version import VERSION
 from ...lib import Name, Surname
@@ -88,7 +85,7 @@ class BaseMergeCheck(unittest.TestCase):
         <database xmlns="http://gramps-project.org/xml/%s/">
         <header>
         <created date="%04d-%02d-%02d" version="%s"/>
-        <researcher/>
+        <researcher>\n    </researcher>
         </header>
         """ % (GRAMPS_XML_VERSION, GRAMPS_XML_VERSION, GRAMPS_XML_VERSION,
                 date[0], date[1], date[2], VERSION)
@@ -107,7 +104,7 @@ class BaseMergeCheck(unittest.TestCase):
         :rtype: string
         """
         result = ''
-        if type(doctxt) == type('string'):
+        if isinstance(doctxt, basestring):
             doc = libxml2.readDoc(doctxt, '', None, libxml2.XML_PARSE_NONET)
         elif isinstance(doctxt, libxml2.xmlDoc):
             doc = doctxt
@@ -117,14 +114,14 @@ class BaseMergeCheck(unittest.TestCase):
         canonical_doc = self.style.applyStylesheet(doc, param)
         result = self.style.saveResultToString(canonical_doc)
         canonical_doc.freeDoc()
-        if type(doctxt) == type('string'):
+        if isinstance(doctxt, basestring):
             doc.freeDoc()
         return result
 
     def do_test(self, phoenix_id, titanic_id, input_doc, expect_doc,
                 test_error_str='', debug=False):
         """Do the merge and "assert" the result."""
-        process = subprocess.Popen('python gramps.py -d .ImportXML '
+        process = subprocess.Popen('python Gramps.py -d .ImportXML '
                                    '--config=preferences.eprefix:DEFAULT '
                                    '-i - -f gramps -a tool '
                                    '-p "name=climerge,primary=%s,secondary=%s" '
@@ -135,7 +132,7 @@ class BaseMergeCheck(unittest.TestCase):
         result_str, err_str = process.communicate(str(input_doc))
         if err_str:
             if test_error_str:
-                self.assert_(test_error_str in err_str)
+                self.assertIn(test_error_str, err_str)
                 return
         if debug:
             print('input :', self.canonicalize(input_doc))
@@ -146,7 +143,7 @@ class BaseMergeCheck(unittest.TestCase):
 
     def do_family_test(self, phoenix_id, titanic_id, father_h, mother_h,
                        input_doc, expect_doc, test_error_str='', debug=False):
-        process = subprocess.Popen('python gramps.py -d .ImportXML '
+        process = subprocess.Popen('python Gramps.py -d .ImportXML '
                                    '--config=preferences.eprefix:DEFAULT '
                                    '-i - -f gramps -a tool '
                                    '-p "name=climerge,primary=%s,secondary=%s,father_h=%s,mother_h=%s" '
@@ -157,7 +154,7 @@ class BaseMergeCheck(unittest.TestCase):
         result_str, err_str = process.communicate(str(input_doc))
         if err_str:
             if test_error_str:
-                self.assert_(test_error_str in err_str)
+                self.assertIn(test_error_str, err_str)
                 return
         if debug:
             print('input :', self.canonicalize(input_doc))
@@ -168,7 +165,7 @@ class BaseMergeCheck(unittest.TestCase):
 
     def raw_contains(self, phoenix_id, titanic_id, input_doc, expect_str,
                 test_error_str='', debug=False):
-        process = subprocess.Popen('python gramps.py -d .ImportXML '
+        process = subprocess.Popen('python Gramps.py -d .ImportXML '
                                    '--config=preferences.eprefix:DEFAULT '
                                    '-i - -f gramps -a tool '
                                    '-p "name=climerge,primary=%s,secondary=%s" '
@@ -179,14 +176,14 @@ class BaseMergeCheck(unittest.TestCase):
         result_str, err_str = process.communicate(str(input_doc))
         if err_str:
             if test_error_str:
-                self.assert_(test_error_str in err_str)
+                self.assertIn(test_error_str, err_str)
                 return
         if debug:
             print('input :', self.canonicalize(input_doc))
             print('result:', result_str)
             print('expect:', expect_str)
         # should I order/canonicalise things?
-        self.assert_(expect_str in result_str)
+        self.assertIn(expect_str, result_str)
 #-------------------------------------------------------------------------
 #
 # PersonCheck class
@@ -220,9 +217,7 @@ class PersonCheck(BaseMergeCheck):
             </lds_ord>
             <objref hlink="_o0000"/>
             <noteref hlink="_n0000"/>
-            <sourceref hlink="_s0000">
-              <spage>p.10</spage>
-            </sourceref>
+            <citationref hlink="_c0000"/>
           </person>
           <person handle="_i0001" id="I0001">
             <gender>M</gender>
@@ -235,11 +230,21 @@ class PersonCheck(BaseMergeCheck):
             </lds_ord>
             <objref hlink="_o0001"/>
             <noteref hlink="_n0001"/>
-            <sourceref hlink="_s0001">
-              <spage>p.11</spage>
-            </sourceref>
+            <citationref hlink="_c0001"/>
           </person>
         </people>
+        <citations>
+          <citation handle="_c0000" id="C0000">
+              <page>p.10</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0000"/>
+          </citation>
+          <citation handle="_c0001" id="C0001">
+              <page>p.11</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0001"/>
+          </citation>
+        </citations>
         <sources>
           <source handle="_s0000" id="S0000">
             <stitle>Source 0</stitle>
@@ -300,17 +305,17 @@ class PersonCheck(BaseMergeCheck):
                 placeobj.freeNode()
                 self.do_test('P0000', 'P0001', self.basedoc, expect)
 
-    def test_source_merge(self):
-        """Merge two sources"""
+    def test_citation_merge(self):
+        """Merge two citations"""
         with CopiedDoc(self.basedoc) as expect:
             with XpathContext(expect) as ctxt:
                 srcref = ctxt.xpathEval(
-                        "//g:person[@handle='_i0001']/g:sourceref")[0]
-                srcref.setProp('hlink', '_s0000')
-                source = ctxt.xpathEval("//g:source[@handle='_s0001']")[0]
-                source.unlinkNode()
-                source.freeNode()
-                self.do_test('S0000', 'S0001', self.basedoc, expect)
+                        "//g:person[@handle='_i0001']/g:citationref")[0]
+                srcref.setProp('hlink', '_c0000')
+                citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
+                citation.unlinkNode()
+                citation.freeNode()
+                self.do_test('C0000', 'C0001', self.basedoc, expect)
 
     def test_media_merge(self):
         """Merge two media objects"""
@@ -366,7 +371,7 @@ class FamilyCheck(BaseMergeCheck):
             </lds_ord>
             <objref hlink="_o0000"/>
             <noteref hlink="_n0000"/>
-            <sourceref hlink="_s0000"/>
+            <citationref hlink="_c0000"/>
           </family>
           <family handle="_f0001" id="F0001">
             <rel type="Married"/>
@@ -376,9 +381,21 @@ class FamilyCheck(BaseMergeCheck):
             </lds_ord>
             <objref hlink="_o0001"/>
             <noteref hlink="_n0001"/>
-            <sourceref hlink="_s0001"/>
+            <citationref hlink="_c0001"/>
           </family>
         </families>
+        <citations>
+          <citation handle="_c0000" id="C0000">
+              <page>p.10</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0000"/>
+          </citation>
+          <citation handle="_c0001" id="C0001">
+              <page>p.11</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0001"/>
+          </citation>
+        </citations>
         <sources>
           <source handle="_s0000" id="S0000">
             <stitle>Source 0</stitle>
@@ -439,17 +456,17 @@ class FamilyCheck(BaseMergeCheck):
                 placeobj.freeNode()
                 self.do_test('P0000', 'P0001', self.basedoc, expect)
 
-    def test_source_merge(self):
-        """Merge two sources"""
+    def test_citation_merge(self):
+        """Merge two citations"""
         with CopiedDoc(self.basedoc) as expect:
             with XpathContext(expect) as ctxt:
-                srcref = ctxt.xpathEval(
-                        "//g:family[@handle='_f0001']/g:sourceref")[0]
-                srcref.setProp('hlink', '_s0000')
-                source = ctxt.xpathEval("//g:source[@handle='_s0001']")[0]
-                source.unlinkNode()
-                source.freeNode()
-                self.do_test('S0000', 'S0001', self.basedoc, expect)
+                citref = ctxt.xpathEval(
+                        "//g:family[@handle='_f0001']/g:citationref")[0]
+                citref.setProp('hlink', '_c0000')
+                citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
+                citation.unlinkNode()
+                citation.freeNode()
+                self.do_test('C0000', 'C0001', self.basedoc, expect)
 
     def test_media_merge(self):
         """Merge two media objects"""
@@ -492,7 +509,7 @@ class EventCheck(BaseMergeCheck):
             <place hlink="_p0000"/>
             <description>Event 0</description>
             <noteref hlink="_n0000"/>
-            <sourceref hlink="_s0000"/>
+            <citationref hlink="_c0000"/>
             <objref hlink="_o0000"/>
           </event>
           <event handle="_e0001" id="E0001">
@@ -500,10 +517,22 @@ class EventCheck(BaseMergeCheck):
             <place hlink="_p0001"/>
             <description>Event 1</description>
             <noteref hlink="_n0001"/>
-            <sourceref hlink="_s0001"/>
+            <citationref hlink="_c0001"/>
             <objref hlink="_o0001"/>
           </event>
         </events>
+        <citations>
+          <citation handle="_c0000" id="C0000">
+              <page>p.10</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0000"/>
+          </citation>
+          <citation handle="_c0001" id="C0001">
+              <page>p.11</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0001"/>
+          </citation>
+        </citations>
         <sources>
           <source handle="_s0000" id="S0000">
             <stitle>Source 0</stitle>
@@ -552,17 +581,17 @@ class EventCheck(BaseMergeCheck):
                 placeobj.freeNode()
                 self.do_test('P0000', 'P0001', self.basedoc, expect)
 
-    def test_source_merge(self):
-        """Merge two sources"""
+    def test_citation_merge(self):
+        """Merge two citations"""
         with CopiedDoc(self.basedoc) as expect:
             with XpathContext(expect) as ctxt:
-                srcref = ctxt.xpathEval(
-                        "//g:event[@handle='_e0001']/g:sourceref")[0]
-                srcref.setProp('hlink', '_s0000')
-                source = ctxt.xpathEval("//g:source[@handle='_s0001']")[0]
-                source.unlinkNode()
-                source.freeNode()
-                self.do_test('S0000', 'S0001', self.basedoc, expect)
+                citref = ctxt.xpathEval(
+                        "//g:event[@handle='_e0001']/g:citationref")[0]
+                citref.setProp('hlink', '_c0000')
+                citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
+                citation.unlinkNode()
+                citation.freeNode()
+                self.do_test('C0000', 'C0001', self.basedoc, expect)
 
     def test_media_merge(self):
         """Merge two media objects"""
@@ -599,6 +628,18 @@ class PlaceCheck(BaseMergeCheck):
     def setUp(self):
         self.base_setup()
         base_str = """
+        <citations>
+          <citation handle="_c0000" id="C0000">
+              <page>p.10</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0000"/>
+          </citation>
+          <citation handle="_c0001" id="C0001">
+              <page>p.11</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0001"/>
+          </citation>
+        </citations>
         <sources>
           <source handle="_s0000" id="S0000">
             <stitle>Source 0</stitle>
@@ -612,13 +653,13 @@ class PlaceCheck(BaseMergeCheck):
             <ptitle>Place 0</ptitle>
             <objref hlink="_o0000"/>
             <noteref hlink="_n0000"/>
-            <sourceref hlink="_s0000"/>
+            <citationref hlink="_c0000"/>
           </placeobj>
           <placeobj handle="_p0001" id="P0001">
             <ptitle>Place 1</ptitle>
             <objref hlink="_o0001"/>
             <noteref hlink="_n0001"/>
-            <sourceref hlink="_s0001"/>
+            <citationref hlink="_c0001"/>
           </placeobj>
         </places>
         <objects>
@@ -641,17 +682,17 @@ class PlaceCheck(BaseMergeCheck):
         self.basedoc = libxml2.readDoc(self.base_str + base_str, '', None,
                                        libxml2.XML_PARSE_NONET)
 
-    def test_source_merge(self):
-        """Merge two sources"""
+    def test_citation_merge(self):
+        """Merge two citations"""
         with CopiedDoc(self.basedoc) as expect:
             with XpathContext(expect) as ctxt:
-                srcref = ctxt.xpathEval(
-                        "//g:placeobj[@handle='_p0001']/g:sourceref")[0]
-                srcref.setProp('hlink', '_s0000')
-                source = ctxt.xpathEval("//g:source[@handle='_s0001']")[0]
-                source.unlinkNode()
-                source.freeNode()
-                self.do_test('S0000', 'S0001', self.basedoc, expect)
+                citref = ctxt.xpathEval(
+                        "//g:placeobj[@handle='_p0001']/g:citationref")[0]
+                citref.setProp('hlink', '_c0000')
+                citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
+                citation.unlinkNode()
+                citation.freeNode()
+                self.do_test('C0000', 'C0001', self.basedoc, expect)
 
     def test_media_merge(self):
         """Merge two media objects"""
@@ -688,6 +729,18 @@ class SourceCheck(BaseMergeCheck):
     def setUp(self):
         self.base_setup()
         base_str = """
+        <citations>
+          <citation handle="_c0000" id="C0000">
+              <page>p.10</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0000"/>
+          </citation>
+          <citation handle="_c0001" id="C0001">
+              <page>p.11</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0001"/>
+          </citation>
+        </citations>
         <sources>
           <source handle="_s0000" id="S0000">
             <stitle>Source 0</stitle>
@@ -732,7 +785,7 @@ class SourceCheck(BaseMergeCheck):
         self.basedoc = libxml2.readDoc(self.base_str + base_str, '', None,
                                        libxml2.XML_PARSE_NONET)
 
-    #def test_source_merge(self): SEE special cases.
+    #def test_citation_merge(self): SEE special cases.
 
     def test_repo_merge(self):
         """Merge two repositories"""
@@ -784,6 +837,18 @@ class RepoCheck(BaseMergeCheck):
     def setUp(self):
         self.base_setup()
         base_str = """
+        <citations>
+          <citation handle="_c0000" id="C0000">
+              <page>p.10</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0000"/>
+          </citation>
+          <citation handle="_c0001" id="C0001">
+              <page>p.11</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0001"/>
+          </citation>
+        </citations>
         <sources>
           <source handle="_s0000" id="S0000">
             <stitle>Source 0</stitle>
@@ -798,7 +863,7 @@ class RepoCheck(BaseMergeCheck):
             <type>Library</type>
             <address>
               <city>Amsterdam</city>
-              <sourceref hlink="_s0000"/>
+              <citationref hlink="_c0000"/>
             </address>
             <noteref hlink="_n0000"/>
           </repository>
@@ -807,7 +872,7 @@ class RepoCheck(BaseMergeCheck):
             <type>Library</type>
             <address>
               <city>Rotterdam</city>
-              <sourceref hlink="_s0001"/>
+              <citationref hlink="_c0001"/>
             </address>
             <noteref hlink="_n0001"/>
           </repository>
@@ -824,17 +889,17 @@ class RepoCheck(BaseMergeCheck):
         self.basedoc = libxml2.readDoc(self.base_str + base_str, '', None,
                                        libxml2.XML_PARSE_NONET)
 
-    def test_source_merge(self):
-        """Merge two sources"""
+    def test_citation_merge(self):
+        """Merge two citations"""
         with CopiedDoc(self.basedoc) as expect:
             with XpathContext(expect) as ctxt:
-                srcref = ctxt.xpathEval(
-                    "//g:repository[@handle='_r0001']/g:address/g:sourceref")[0]
-                srcref.setProp('hlink', '_s0000')
-                source = ctxt.xpathEval("//g:source[@handle='_s0001']")[0]
-                source.unlinkNode()
-                source.freeNode()
-                self.do_test('S0000', 'S0001', self.basedoc, expect)
+                citref = ctxt.xpathEval(
+                    "//g:repository[@handle='_r0001']/g:address/g:citationref")[0]
+                citref.setProp('hlink', '_c0000')
+                citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
+                citation.unlinkNode()
+                citation.freeNode()
+                self.do_test('C0000', 'C0001', self.basedoc, expect)
 
     def test_note_merge(self):
         """Merge two notes"""
@@ -859,6 +924,18 @@ class MediaCheck(BaseMergeCheck):
     def setUp(self):
         self.base_setup()
         base_str = """
+        <citations>
+          <citation handle="_c0000" id="C0000">
+              <page>p.10</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0000"/>
+          </citation>
+          <citation handle="_c0001" id="C0001">
+              <page>p.11</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0001"/>
+          </citation>
+        </citations>
         <sources>
           <source handle="_s0000" id="S0000">
             <stitle>Source 0</stitle>
@@ -871,12 +948,12 @@ class MediaCheck(BaseMergeCheck):
           <object handle="_o0000" id="O0000">
             <file src="image0.jpg" mime="image/jpeg" description="Image 0"/>
             <noteref hlink="_n0000"/>
-            <sourceref hlink="_s0000"/>
+            <citationref hlink="_c0000"/>
           </object>
           <object handle="_o0001" id="O0001">
             <file src="image1.jpg" mime="image/jpeg" description="Image 1"/>
             <noteref hlink="_n0001"/>
-            <sourceref hlink="_s0001"/>
+            <citationref hlink="_c0001"/>
           </object>
         </objects>
         <notes>
@@ -891,17 +968,17 @@ class MediaCheck(BaseMergeCheck):
         self.basedoc = libxml2.readDoc(self.base_str + base_str, '', None,
                                        libxml2.XML_PARSE_NONET)
 
-    def test_source_merge(self):
-        """Merge two sources"""
+    def test_citation_merge(self):
+        """Merge two citations"""
         with CopiedDoc(self.basedoc) as expect:
             with XpathContext(expect) as ctxt:
-                srcref = ctxt.xpathEval(
-                        "//g:object[@handle='_o0001']/g:sourceref")[0]
-                srcref.setProp('hlink', '_s0000')
-                source = ctxt.xpathEval("//g:source[@handle='_s0001']")[0]
-                source.unlinkNode()
-                source.freeNode()
-                self.do_test('S0000', 'S0001', self.basedoc, expect)
+                citref = ctxt.xpathEval(
+                        "//g:object[@handle='_o0001']/g:citationref")[0]
+                citref.setProp('hlink', '_c0000')
+                citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
+                citation.unlinkNode()
+                citation.freeNode()
+                self.do_test('C0000', 'C0001', self.basedoc, expect)
 
     def test_note_merge(self):
         """Merge two notes"""
@@ -921,28 +998,49 @@ class MediaCheck(BaseMergeCheck):
 #
 #=========================================================================
 
+#-------------------------------------------------------------------------
+#
+# SourceSourceCheck class
+#
+#-------------------------------------------------------------------------
 class SourceSourceCheck(BaseMergeCheck):
     def setUp(self):
         self.base_setup()
         base_str = """
+        <citations>
+          <citation handle="_c0000" id="C0000">
+              <page>p.10</page>
+              <confidence>2</confidence>
+              <objref hlink="_o0000">
+                <citationref hlink="_c0002"/>
+              </objref>
+              <sourceref hlink="_s0000"/>
+          </citation>
+          <citation handle="_c0001" id="C0001">
+              <page>p.11</page>
+              <confidence>2</confidence>
+              <objref hlink="_o0001">
+                <citationref hlink="_c0003"/>
+              </objref>
+              <sourceref hlink="_s0000"/>
+          </citation>
+          <citation handle="_c0002" id="C0002">
+              <page>p.12</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0001"/>
+          </citation>
+          <citation handle="_c0003" id="C0003">
+              <page>p.13</page>
+              <confidence>2</confidence>
+              <sourceref hlink="_s0001"/>
+          </citation>
+        </citations>
         <sources>
           <source handle="_s0000" id="S0000">
             <stitle>Source 0</stitle>
-            <objref hlink="_o0000">
-              <sourceref hlink="_s0002"/>
-            </objref>
           </source>
           <source handle="_s0001" id="S0001">
             <stitle>Source 1</stitle>
-            <objref hlink="_o0001">
-              <sourceref hlink="_s0003"/>
-            </objref>
-          </source>
-          <source handle="_s0002" id="S0002">
-            <stitle>Source 2</stitle>
-          </source>
-          <source handle="_s0003" id="S0003">
-            <stitle>Source 3</stitle>
           </source>
         </sources>
         <objects>
@@ -957,43 +1055,46 @@ class SourceSourceCheck(BaseMergeCheck):
         self.basedoc = libxml2.readDoc(self.base_str + base_str, '', None,
                                        libxml2.XML_PARSE_NONET)
 
-    def test_source_merge(self):
+    def test_citation_merge(self):
         with CopiedDoc(self.basedoc) as expect:
             with XpathContext(expect) as ctxt:
-                srcrefs = ctxt.xpathEval(
-                        "//g:source[@handle='_s0001']/g:objref/g:sourceref")
-                srcrefs[0].setProp('hlink', '_s0002')
-                sources = ctxt.xpathEval("//g:source[@handle='_s0003']")
-                sources[0].unlinkNode()
-                sources[0].freeNode()
-                self.do_test('S0002', 'S0003', self.basedoc, expect)
+                citrefs = ctxt.xpathEval(
+                        "//g:citation[@handle='_c0001']/g:objref/g:citationref")
+                citrefs[0].setProp('hlink', '_c0002')
+                citations = ctxt.xpathEval("//g:citation[@handle='_c0003']")
+                citations[0].unlinkNode()
+                citations[0].freeNode()
+                self.do_test('C0002', 'C0003', self.basedoc, expect)
 
-    def test_source_cross_merge(self):
+    def test_citation_cross_merge(self):
         with XpathContext(self.basedoc) as input_ctxt:
-            input_srcrefs = input_ctxt.xpathEval(
-                    "//g:source/g:objref/g:sourceref")
-            input_srcrefs[0].setProp('hlink', '_s0001')
-            input_srcrefs[1].setProp('hlink', '_s0000')
-            rmsrc = input_ctxt.xpathEval("//g:source[@handle='_s0002']")
-            rmsrc[0].unlinkNode()
-            rmsrc[0].freeNode()
-            rmsrc = input_ctxt.xpathEval("//g:source[@handle='_s0003']")
+            input_citrefs = input_ctxt.xpathEval(
+                    "//g:citation/g:objref/g:citationref")
+            input_citrefs[0].setProp('hlink', '_c0001')
+            input_citrefs[1].setProp('hlink', '_c0000')
+            rmcit = input_ctxt.xpathEval("//g:citation[@handle='_c0002']")
+            rmcit[0].unlinkNode()
+            rmcit[0].freeNode()
+            rmcit = input_ctxt.xpathEval("//g:citation[@handle='_c0003']")
+            rmcit[0].unlinkNode()
+            rmcit[0].freeNode()
+            rmsrc = input_ctxt.xpathEval("//g:source[@handle='_s0001']")
             rmsrc[0].unlinkNode()
             rmsrc[0].freeNode()
             with CopiedDoc(self.basedoc) as expect:
                 with XpathContext(expect) as ctxt:
-                    srcrefs = ctxt.xpathEval(
-                        "//g:source[@handle='_s0000']/g:objref/g:sourceref")
-                    srcrefs[0].setProp('hlink', '_s0000')
+                    citrefs = ctxt.xpathEval(
+                        "//g:citation[@handle='_c0000']/g:objref/g:citationref")
+                    citrefs[0].setProp('hlink', '_c0000')
                     # add objref
-                    objref = ctxt.xpathEval("//g:source[@handle='_s0000']/g:objref")
-                    objref2 = ctxt.xpathEval("//g:source[@handle='_s0001']/g:objref")
+                    objref = ctxt.xpathEval("//g:citation[@handle='_c0000']/g:objref")
+                    objref2 = ctxt.xpathEval("//g:citation[@handle='_c0001']/g:objref")
                     objref[0].addNextSibling(objref2[0])
-                    # remove source
-                    sources = ctxt.xpathEval("//g:source[@handle='_s0001']")
-                    sources[0].unlinkNode()
-                    sources[0].freeNode()
-                    self.do_test('S0000', 'S0001', self.basedoc, expect)
+                    # remove citation
+                    citations = ctxt.xpathEval("//g:citation[@handle='_c0001']")
+                    citations[0].unlinkNode()
+                    citations[0].freeNode()
+                    self.do_test('C0000', 'C0001', self.basedoc, expect)
 
 #-------------------------------------------------------------------------
 #
