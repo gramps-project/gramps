@@ -35,7 +35,7 @@ if (sys.version_info < (2, 7) or ( (3,0) <= sys.version_info < (3, 2))):
     raise SystemExit("""Gramps requires Python 2.7 or later, or Python 3.2 or later.""")
 
 from distutils import log
-from distutils.core import setup
+from distutils.core import setup, Command
 from distutils.util import convert_path, newer
 from distutils.command.build import build as _build
 from distutils.command.install import install as _install
@@ -48,6 +48,7 @@ if sys.version_info[0] < 3:
 from stat import ST_MODE
 import io
 from gramps.version import VERSION
+import unittest
 
 ALL_LINGUAS = ('ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'es', 'fi', 'fr',
                'he', 'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
@@ -255,6 +256,22 @@ class install(_install):
 
         os.remove(resource_file)
 
+class test(Command):
+    """Command to run Gramps unit tests"""
+    description = "run all unit tests"
+    user_options = []
+
+    def initialize_options(self):
+        pass
+
+    def finalize_options(self):
+        pass
+
+    def run(self):
+        os.environ['GRAMPS_RESOURCES'] = '.'
+        all_tests = unittest.TestLoader().discover('.', pattern='*_test.py')
+        unittest.TextTestRunner(verbosity=self.verbose).run(all_tests)
+
 #-------------------------------------------------------------------------
 #
 # Packages
@@ -448,7 +465,7 @@ setup(name = 'gramps',
       url = 'http://gramps-project.org', 
       license = 'GPL v2 or greater', 
       platforms = ['FreeBSD', 'Linux', 'MacOS', 'Windows'],
-      cmdclass = {'build': build, 'install': install},
+      cmdclass = {'build': build, 'install': install, 'test': test},
       packages = packages,
       package_data = {'gramps': package_data},
       data_files = data_files,
