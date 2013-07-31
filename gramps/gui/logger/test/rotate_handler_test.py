@@ -18,19 +18,12 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# test/GrampsLogger/RotateLogger_Test.py
 # $Id$
 
 import unittest
 import logging
-import sys
-import os
 
-sys.path.append(os.path.join(os.path.dirname(__file__), '../../gramps/GrampsLogger'))
-
-logger = logging.getLogger('Gramps.Tests.GrampsLogger')
-
-from gramps.gui.logger import RotateHandler
+from .. import RotateHandler
 
 class RotateHandlerTest(unittest.TestCase):
     """Test the RotateHandler."""
@@ -46,10 +39,12 @@ class RotateHandlerTest(unittest.TestCase):
 
         log_message = "Debug message"
         l.info(log_message)
-        assert len(rh.get_buffer()) == 1, "Message buffer wrong size, should be '1' is '%d'" % (len(rh.get_buffer()))
-        assert rh.get_buffer()[0].getMessage() == log_message, \
-               "Message buffer content is wrong, should be '%s' is '%s'" \
-               % (log_message, rh.get_buffer()[0].getMessage())
+        self.assertEqual(len(rh.get_buffer()), 1,
+               "Message buffer wrong size, should be '1' is '%d'"
+               % (len(rh.get_buffer())))
+        self.assertEqual(rh.get_buffer()[0].getMessage(), log_message,
+               "Message buffer content is wrong, should be '%s' is '%s'"
+               % (log_message, rh.get_buffer()[0].getMessage()))
 
         l.removeHandler(rh)
 
@@ -64,42 +59,43 @@ class RotateHandlerTest(unittest.TestCase):
         l.addHandler(rh)
 
         log_messages = 20 * [None]
-        for i in xrange(0,20):
+        for i in range(0,20):
             log_messages[i] = "Message %d" % (i)
 
         
-        [l.info(log_messages[i]) for i in xrange(0,10)]
+        [l.info(log_messages[i]) for i in range(0,10)]
 
-        assert len(rh.get_buffer()) == 10, "Message buffer wrong size, should be '10' is '%d'" % (len(rh.get_buffer()))
+        self.assertEqual(len(rh.get_buffer()), 10, 
+               "Message buffer wrong size, should be '10' is '%d'" %
+               (len(rh.get_buffer())))
 
         buffer = rh.get_buffer()
         
-        for i in xrange(0,10):
-            assert buffer[i].getMessage() == log_messages[i], \
-                   "Message buffer content is wrong, should be '%s' is '%s'. i = '%d'" \
-                   % (log_messages[i], buffer[i].getMessage(),i)
+        for i in range(0,10):
+            self.assertEqual(buffer[i].getMessage(), log_messages[i],
+                   "Message buffer content is wrong, should be '%s' is '%s'. i = '%d'"
+                   % (log_messages[i], buffer[i].getMessage(),i))
 
 
         l.info(log_messages[10])
 
         buffer = rh.get_buffer()
 
-        for i in xrange(0,10):
-            assert buffer[i].getMessage() == log_messages[i+1], \
-                   "Message buffer content is wrong, should be '%s' is '%s'. i = '%d'" \
-                   % (log_messages[i+1], buffer[i].getMessage(),i)
+        for i in range(0,10):
+            self.assertEqual(buffer[i].getMessage(), log_messages[i+1],
+                   "Message buffer content is wrong, should be '%s' is '%s'. i = '%d'"
+                   % (log_messages[i+1], buffer[i].getMessage(),i))
 
 
-        [l.info(log_messages[i]) for i in xrange(11,20)]
+        [l.info(log_messages[i]) for i in range(11,20)]
         
         buffer = rh.get_buffer()
-        for i in xrange(0,10):
-            assert buffer[i].getMessage() == log_messages[i+10], \
-                   "Message buffer content is wrong, should be '%s' is '%s'. i = '%d'" \
-                   % (log_messages[i+10], buffer[i].getMessage(),i)
+        for i in range(0,10):
+            self.assertEqual(buffer[i].getMessage(), log_messages[i+10],
+                   "Message buffer content is wrong, should be '%s' is '%s'. i = '%d'"
+                   % (log_messages[i+10], buffer[i].getMessage(),i))
             
         l.removeHandler(rh)
-
 
         
 def testSuite():
