@@ -55,11 +55,11 @@ def getTestSuites():
              if len ([i for i in f[2] \
                       if i[-8:] == "_Test.py"]) ]
 
+    test_suites = []
+    perf_suites = []
     for (dir,test_modules) in paths:
         sys.path.append(dir)
 
-        test_suites = []
-        perf_suites = []
         for module in test_modules:
             if module[-8:] != "_Test.py":
                 continue
