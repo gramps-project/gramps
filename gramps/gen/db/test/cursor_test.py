@@ -104,6 +104,9 @@ class CursorTest(unittest.TestCase):
         return (person_map,surnames)
     
     def tearDown(self):
+        self.person_map.close()
+        self.surnames.close()
+        self.env.close()
         shutil.rmtree(self._tmpdir)
         
     def test_simple_insert(self):
