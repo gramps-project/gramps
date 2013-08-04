@@ -140,11 +140,12 @@ class DateDisplayEL(DateDisplay):
 
     _bce_str = "%s ð.×."
 
-    #Following are the formats for date display you can set in the preferences
     formats = (
         "ΕΕΕΕ-ΜΜ-ΗΗ (ISO)", "Αριθμητικά", "Ημερομηνία, Έτος", 
         "ΗΜ/ΝΙΑ, ΕΤΟΣ", "Ημέρα Μήνας Έτος", "ΗΜ ΜΗΝ ΕΤΟΣ"
         )
+        # this must agree with DateDisplayEn's "formats" definition
+        # (since no locale-specific _display_gregorian exists, here)
     
     def display(self, date):
         """
