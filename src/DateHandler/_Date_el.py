@@ -20,7 +20,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _Date_el.py 18562 2011-12-10 10:04:35Z m_d_n $
+# $Id$
 
 """
 Greek-specific classes for parsing and displaying dates.
