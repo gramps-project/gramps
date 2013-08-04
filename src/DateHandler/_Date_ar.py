@@ -73,34 +73,6 @@ class DateParserAR(DateParser):
     # in that case the subclass should put them into this dictionary instead
     modifier_after_to_int = {}
 
-    hebrew_to_int = {
-        "tishri"  : 1,   "heshvan" : 2,   "kislev"  : 3,
-        "tevet"   : 4,   "shevat"  : 5,   "adari"   : 6,
-        "adarii"  : 7,   "nisan"   : 8,   "iyyar"   : 9,
-        "sivan"   : 10,  "tammuz"  : 11,  "av"      : 12,
-        "elul"    : 13,
-        #alternative spelling
-        "cheshvan": 2,   "adar sheni":  7, "iyar"    : 9,
-        }
-
-    french_to_int = {
-        'vendémiaire'  : 1,    'brumaire'   : 2,
-        'frimaire'     : 3,    'nivôse': 4,
-        'pluviôse'     : 5,    'ventôse' : 6,
-        'germinal'     : 7,    'floréal' : 8,
-        'prairial'     : 9,    'messidor'   : 10,
-        'thermidor'    : 11,   'fructidor'  : 12,
-        'extra'        : 13,
-        #GEDCOM months
-        'vend'    : 1,    'brum' : 2,
-        'frim'    : 3,    'nivo' : 4,
-        'pluv'    : 5,    'vent' : 6,
-        'germ'    : 7,    'flor' : 8,
-        'prai'    : 9,    'mess' : 10,
-        'ther'    : 11,   'fruc' : 12,
-        'comp'    : 13,
-        }
-
     islamic_to_int = {
         "محرّم"           : 1,  "محرّم الحرام"  : 1,
         "صفر"              : 2,  "ربيع الأول"      : 3,
@@ -119,24 +91,6 @@ class DateParserAR(DateParser):
         "ذو الحجة"          : 12, "ذو الحجة"      : 12,
         }
 
-    persian_to_int = {
-        "farvardin"   : 1,  "ordibehesht" : 2,
-        "khordad"     : 3,  "tir"         : 4,
-        "mordad"      : 5,  "shahrivar"   : 6,
-        "mehr"        : 7,  "aban"        : 8,
-        "azar"        : 9,  "dey"         : 10,
-        "bahman"      : 11, "esfand"      : 12,
-        }
-
-    swedish_to_int = {
-        "januari"    :  1, "februari"   :  2,
-        "mars"       :  3, "april"      :  4,
-        "maj"        :  5, "juni"       :  6,
-        "juli"       :  7, "augusti"    :  8,
-        "september"  :  9, "oktober"    : 10,
-        "november"   : 11, "december"   : 12,
-        }
-        
     bce = ["قبل الميلاد", "قبل الميلاد", "قبل الميلاد", "قبل الميلاد", "قبل الميلاد", "قبل الميلاد" ]
 
     calendar_to_int = {
@@ -199,47 +153,10 @@ class DateDisplayAR(DateDisplay):
     short_months = ( "", "كانون2", "شباط", "آذار", "نيسان", "أيار", "حزيران",
                      "تموز", "آب", "أيلول", "تشرين1", "تشرين2", "كانون1" )
 
-    #Hebrew months - don't translate if not needed
-    hebrew = (
-        "", "Tishri", "Heshvan", "Kislev", "Tevet", "Shevat", 
-        "AdarI", "AdarII", "Nisan", "Iyyar", "Sivan", "Tammuz", 
-        "Av", "Elul"
-        )
-    #french republican months - don't translate if not needed
-    french = (
-        '', 
-        "Vendémiaire", 
-        'Brumaire', 
-        'Frimaire', 
-        "Nivôse", 
-        "Pluviôse", 
-        "Ventôse", 
-        'Germinal', 
-        "Floréal", 
-        'Prairial', 
-        'Messidor', 
-        'Thermidor', 
-        'Fructidor', 
-        'Extra', 
-        )
-    
-    persian = (
-        "", "Farvardin", "Ordibehesht", "Khordad", "Tir", 
-        "Mordad", "Shahrivar", "Mehr", "Aban", "Azar", 
-        "Dey", "Bahman", "Esfand"
-        )
-    
     islamic = (
         "", "محرّم", "صفر", "ربيع الأول", "ربيع الثاني", 
         "جمادى الأولى", "جمادى الثانية", "رجب", "شعبان", 
         "رمضان", "شوال", "ذو القعدة", "ذو الحجة"
-        )
-
-    swedish = (
-        "", "Januari", "Februari", "Mars",
-        "April", "Maj", "Juni",
-        "Juli", "Augusti", "September",
-        "Oktober", "November", "December"
         )
 
     formats = (
