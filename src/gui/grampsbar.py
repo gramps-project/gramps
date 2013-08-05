@@ -91,7 +91,6 @@ class GrampsBar(gtk.Notebook):
         self.set_group_id(1)
         self.set_show_border(False)
         self.set_scrollable(True)
-        self.connect('switch-page', self.__switch_page)
         self.connect('page-added', self.__page_added)
         self.connect('page-removed', self.__page_removed)
         self.connect('create-window', self.__create_window)
@@ -115,6 +114,9 @@ class GrampsBar(gtk.Notebook):
         if config_settings[0]:
             self.show()
         self.set_current_page(config_settings[1])
+
+        # Connect after gramplets added to prevent making them active
+        self.connect('switch-page', self.__switch_page)
 
     def __load(self, defaults):
         """
