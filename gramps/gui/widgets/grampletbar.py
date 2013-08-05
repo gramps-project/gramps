@@ -124,7 +124,6 @@ class GrampletBar(Gtk.Notebook):
         book_button.show()
         self.set_action_widget(book_button, Gtk.PackType.END)
 
-        self.connect('switch-page', self.__switch_page)
         self.connect('page-added', self.__page_added)
         self.connect('page-removed', self.__page_removed)
         self.connect('create-window', self.__create_window)
@@ -149,6 +148,9 @@ class GrampletBar(Gtk.Notebook):
         self.set_current_page(config_settings[1])
 
         uistate.connect('grampletbar-close-changed', self.cb_close_changed)
+
+        # Connect after gramplets added to prevent making them active
+        self.connect('switch-page', self.__switch_page)
 
     def __load(self, defaults):
         """
