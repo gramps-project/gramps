@@ -13,8 +13,7 @@ pkgpython_PYTHON = \
 	HtmlDoc.py \
 	LaTeXDoc.py \
 	ODFDoc.py \
-	PdfDoc.py \
-	PSDrawDoc.py \
+	cairodoc.py \
 	RTFDoc.py \
 	SvgDrawDoc.py
 

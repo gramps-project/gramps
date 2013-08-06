@@ -131,10 +131,10 @@ plg = newplugin()
 plg.id    = 'pdfdoc'
 plg.name  = _('PDF document')
 plg.description =  _("Generates documents in PDF format (.pdf).")
-plg.version = '1.0'
+plg.version = '1.1'
 plg.gramps_target_version = '3.4'
 plg.status = STABLE
-plg.fname = 'PdfDoc.py'
+plg.fname = 'cairodoc.py'
 plg.ptype = DOCGEN
 plg.basedocclass = 'PdfDoc'
 plg.paper = True
@@ -143,7 +143,7 @@ plg.extension = "pdf"
 
 #------------------------------------------------------------------------
 #
-# PSDrawDoc docgen
+# PsDoc docgen
 #
 #------------------------------------------------------------------------
 
@@ -151,12 +151,12 @@ plg = newplugin()
 plg.id    = 'psdrawdoc'
 plg.name  = _('PostScript')
 plg.description =  _("Generates documents in PostScript format (.ps).")
-plg.version = '2.0'
+plg.version = '2.1'
 plg.gramps_target_version = '3.4'
 plg.status = STABLE
-plg.fname = 'PSDrawDoc.py'
+plg.fname = 'cairodoc.py'
 plg.ptype = DOCGEN
-plg.basedocclass = 'PSDrawDoc'
+plg.basedocclass = 'PsDoc'
 plg.paper = True
 plg.style = True
 plg.extension = "ps"

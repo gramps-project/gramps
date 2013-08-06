@@ -291,3 +291,16 @@ def write_index(index, doc):
         doc.end_cell()
         doc.end_row()
     doc.end_table()
+
+class PdfDoc(CairoDocgen):
+    """Render the document into PDF file using Cairo.
+    """
+    def create_cairo_surface(self, fobj, width_in_points, height_in_points):
+        return cairo.PDFSurface(fobj, width_in_points, height_in_points)
+
+class PsDoc(CairoDocgen):
+    """Render the document into PS file using Cairo.
+    """
+    EXT = 'ps'
+    def create_cairo_surface(self, fobj, width_in_points, height_in_points):
+        return cairo.PSSurface(fobj, width_in_points, height_in_points)

@@ -283,9 +283,6 @@ src/Merge/test/merge_ref_test.py
 # plugins gpr directory
 src/plugins/sidebar/sidebar.gpr.py
 
-# plugins/docgen directory
-src/plugins/docgen/PdfDoc.py
-
 # plugins/lib directory
 src/plugins/lib/libformatting.py
 src/plugins/lib/libgrampsxml.py

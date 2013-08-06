@@ -235,7 +235,7 @@ src/plugins/docgen/GtkPrint.py
 src/plugins/docgen/HtmlDoc.py
 src/plugins/docgen/LaTeXDoc.py
 src/plugins/docgen/ODFDoc.py
-src/plugins/docgen/PSDrawDoc.py
+src/plugins/docgen/cairodoc.py
 src/plugins/docgen/RTFDoc.py
 src/plugins/docgen/SvgDrawDoc.py
 
