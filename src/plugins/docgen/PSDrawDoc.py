@@ -1,10 +1,9 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2007-2009  Brian G. Matherly
-# Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
+# Copyright (C) 2007 Zsolt Foldvari
+# Copyright (C) 2008 Brian G. Matherly
+# Copyright (C) 2013 Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -23,371 +22,266 @@
 
 # $Id$
 
-"""
-PostScript document generator.
+"""PS output generator based on Cairo.
 """
 
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 #
-# python modules
+# Python modules
 #
-#-------------------------------------------------------------------------
+#------------------------------------------------------------------------
 from gen.ggettext import gettext as _
-        
-#-------------------------------------------------------------------------
-#Gramps modules
-#-------------------------------------------------------------------------
-from gen.plug.report import utils as ReportUtils
-from gen.plug.docgen import BaseDoc, DrawDoc, FONT_SERIF, PAPER_PORTRAIT, SOLID
-from gen.plug.utils import gformat
+import sys
+
+#------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#------------------------------------------------------------------------
+import libcairodoc
+from gen.plug.docgen import INDEX_TYPE_ALP, INDEX_TYPE_TOC
 import Errors
 
-def lrgb(grp):
-    grp = ReportUtils.rgb_color(grp)
-    return (gformat(grp[0]), gformat(grp[1]), gformat(grp[2]))
-
-def coords(grp):
-    return (gformat(grp[0]), gformat(grp[1]))
+#------------------------------------------------------------------------
+#
+# Set up logging
+#
+#------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".PSDrawDoc")
 
 #-------------------------------------------------------------------------
 #
-# PSDrawDoc
+# GTK modules
 #
 #-------------------------------------------------------------------------
-class PSDrawDoc(BaseDoc, DrawDoc):
+import pango
+import cairo
+import pangocairo
 
-    def __init__(self, styles, type):
-        BaseDoc.__init__(self, styles, type)
-        self.file = None
-        self.filename = None
-        self.level = 0
-        self.page = 0
+#------------------------------------------------------------------------
+#
+# Constants
+#
+#------------------------------------------------------------------------
 
-    def fontdef(self, para):
-        font = para.get_font()
-        if font.get_type_face() == FONT_SERIF:
-            font_name = "/Times"
-            if font.get_bold():
-                font_name += "-Bold"
-                if font.get_italic():
-                    font_name += "Italic"
-            elif font.get_italic():
-                font_name += "-Italic"
-            else:
-                font_name += "-Roman"
+# resolution
+DPI = 72.0
 
-        else: # Use a font without serifs
-            font_name = "/Helvetica"
-            if font.get_bold():
-                font_name += "-Bold"
-                if font.get_italic():
-                    font_name += "Oblique"
-            elif font.get_italic():
-                font_name += "-Oblique"
-        
-        return "%s find-latin-font %d scalefont setfont\n" % \
-            (font_name, font.get_size())
+#------------------------------------------------------------------------
+#
+# PSDrawDoc class
+#
+#------------------------------------------------------------------------
+class PSDrawDoc(libcairodoc.CairoDoc):
+    """Render the document into PS file using Cairo.
+    """
+    EXT = 'ps'
 
-    def translate(self, x, y):
-        return (x, self.paper.get_size().get_height() - y)
-
-    def open(self, filename):
+    def run(self):
+        """Create the PS output.
         """
-        Opens the file so that it can be generated.
+        # get paper dimensions
+        paper_width = self.paper.get_size().get_width() * DPI / 2.54
+        paper_height = self.paper.get_size().get_height() * DPI / 2.54
+        page_width = round(self.paper.get_usable_width() * DPI / 2.54)
+        page_height = round(self.paper.get_usable_height() * DPI / 2.54)
+        left_margin = self.paper.get_left_margin() * DPI / 2.54
+        top_margin = self.paper.get_top_margin() * DPI / 2.54
 
-        @param filename: path name of the file to create
-        """
-        self.filename = filename
-        if not filename.endswith(".ps"):
-            self.filename += ".ps"
-
+        # create cairo context and pango layout
+        filename = self._backend.filename.encode(sys.getfilesystemencoding())
         try:
-            self.file = open(self.filename,"w")
+            surface = cairo.PSSurface(filename, paper_width, paper_height)
         except IOError,msg:
-            errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
+            errmsg = "%s\n%s" % (_("Could not create %s") % filename, msg)
             raise Errors.ReportError(errmsg)
         except:
-            raise Errors.ReportError(_("Could not create %s") % self.filename)
+            raise Errors.ReportError(_("Could not create %s") % filename)
+        surface.set_fallback_resolution(300, 300)
+        cr = pangocairo.CairoContext(cairo.Context(surface))
+
+        fontmap = pangocairo.cairo_font_map_get_default()
+        saved_resolution = fontmap.get_resolution()
+        fontmap.set_resolution(DPI)
         
-        self.file.write(
-            '%!PS-Adobe-3.0\n'
-            '%%LanguageLevel: 2\n'
-            '%%Pages: (atend)\n'
-            '%%PageOrder: Ascend\n'
-            '%%Orientation: '
-            )
-        if self.paper.get_orientation() != PAPER_PORTRAIT:
-            self.file.write('Landscape\n')
-        else:
-            self.file.write('Portrait\n')
-        self.file.write(
-            '%%EndComments\n'
-            '/cm { 28.34 mul } def\n'
-            '% build iso-latin-1 version of a font\n'
-            '/font-to-iso-latin-1 {	% <font> font-to-iso-latin-1 <font>\n'
-            '%% reencode for iso latin1; from the 2nd edition red book, sec 5.6.1\n'
-            'dup length dict begin {1 index /FID ne {def} {pop pop} ifelse} forall\n'
-            '/Encoding ISOLatin1Encoding def currentdict end\n'
-            'dup /FontName get 80 string cvs (-ISOLatin1) concatstrings cvn \n'
-            'exch definefont\n'
-            '} def\n'
-            '\n'
-            '/find-latin-font {	% <name> find-latin-font <font>\n'
-            'findfont font-to-iso-latin-1\n'
-            '} def\n'
-            )
+        pango_context = fontmap.create_context()
+        options = cairo.FontOptions()
+        options.set_hint_metrics(cairo.HINT_METRICS_OFF)
+        pangocairo.context_set_font_options(pango_context, options)
+        layout = pango.Layout(pango_context)
+        cr.update_context(pango_context)
         
-        self.filename = filename
+        # paginate the document
+        self.paginate_document(layout, page_width, page_height, DPI, DPI)
+        body_pages = self._pages
 
-    def close(self):
-        self.file.write(
-            '%%Trailer\n'
-            '%%Pages: ' +
-            '%d\n' % self.page +
-            '%%EOF\n'
-            )
-        self.file.close()
+        # build the table of contents and alphabetical index
+        toc_page = None
+        index_page = None
+        toc = []
+        index = {}
+        for page_nr, page in enumerate(body_pages):
+            if page.has_toc():
+                toc_page = page_nr
+            if page.has_index():
+                index_page = page_nr
+            for mark in page.get_marks():
+                if mark.type == INDEX_TYPE_ALP:
+                    if mark.key in index:
+                        if page_nr + 1 not in index[mark.key]:
+                            index[mark.key].append(page_nr + 1)
+                    else:
+                        index[mark.key] = [page_nr + 1]
+                elif mark.type == INDEX_TYPE_TOC:
+                    toc.append([mark, page_nr + 1])
+
+        # paginate the table of contents
+        rebuild_required = False
+        if toc_page is not None:
+            toc_pages = self.__generate_toc(layout, page_width, page_height, 
+                                            toc)
+            offset = len(toc_pages) - 1
+            if offset > 0:
+                self.__increment_pages(toc, index, toc_page, offset)
+                rebuild_required = True
+        else:
+            toc_pages = []
         
-    def write_text(self, text, mark=None, links=False):
-        pass
-
-    def start_page(self):
-        self.page += 1
-        self.file.write(
-            "%%Page:" +
-            "%d %d\n" % (self.page, self.page)
-            )
-        if self.paper.get_orientation() != PAPER_PORTRAIT:
-            self.file.write('90 rotate %s cm %s cm translate\n' % (
-                gformat(0),gformat(-1*self.paper.get_size().get_height())))
-
-    def end_page(self):
-        self.file.write(
-            'showpage\n'
-            '%%PageTrailer\n'
-            )
-
-    def encode(self, text):
-        try:
-            orig = unicode(text)
-            new_text = orig.encode('iso-8859-1')
-        except:
-            new_text = "?" * len(text)
-        return new_text
-
-    def encode_text(self, p, text):
-        fdef = self.fontdef(p)
-        new_text = self.encode(text)
-        return (new_text, fdef)
-
-    def center_text(self, style, text, x, y):
-        style_sheet = self.get_style_sheet()
-        stype = style_sheet.get_draw_style(style)
-        pname = stype.get_paragraph_style()
-        p = style_sheet.get_paragraph_style(pname)
-
-        x += self.paper.get_left_margin()
-        y += self.paper.get_top_margin() + ReportUtils.pt2cm(p.get_font().get_size())
-
-        (text, fdef) = self.encode_text(p, text)
-
-        self.file.write(
-            'gsave\n'
-            '%s %s %s setrgbcolor\n' % lrgb(stype.get_color()) +
-            fdef +
-            '(%s) dup stringwidth pop -2 div ' % text +
-            '%s cm add %s cm moveto ' % coords(self.translate(x, y)) +
-            'show\n'
-            'grestore\n'
-            )
-
-    def draw_text(self, style, text, x1, y1):
-        style_sheet = self.get_style_sheet()
-        stype = style_sheet.get_draw_style(style)
-        pname = stype.get_paragraph_style()
-        p = style_sheet.get_paragraph_style(pname)
-
-        x1 += self.paper.get_left_margin()
-        y1 += self.paper.get_top_margin() + ReportUtils.pt2cm(p.get_font().get_size())
-
-        (text, fdef) = self.encode_text(p, text)
-
-        self.file.write(
-            'gsave\n'
-            '%s cm %s cm moveto\n' % coords(self.translate(x1, y1)) +
-            fdef +
-            '(%s) show grestore\n' % text
-            )
-
-    def rotate_text(self, style, text, x, y, angle):
-
-        x += self.paper.get_left_margin()
-        y += self.paper.get_top_margin()
-
-        style_sheet = self.get_style_sheet()
-        stype = style_sheet.get_draw_style(style)
-        pname = stype.get_paragraph_style()
-        p = style_sheet.get_paragraph_style(pname)
-        font = p.get_font()
-
-        size = font.get_size()
-
-        (new_text, fdef) = self.encode_text(p, text[0])
-
-        coords = self.translate(x, y)
-        self.file.write(
-            'gsave\n' +
-            fdef +
-            '%s cm %s cm translate\n' % (
-                gformat(coords[0]), gformat(coords[1])) +
-            '%s rotate\n' % gformat(-angle) +
-            '%s %s %s setrgbcolor\n' % lrgb(stype.get_color())
-            )
-
-        y = ((size * len(text)) / 2.0) - size
-
-        for line in text:
-            self.file.write(
-                '(%s) dup stringwidth pop -2 div  '
-                    % self.encode(line) +
-                "%s moveto show\n" % gformat(y)
-                )
-            y -= size
- 
-        self.file.write('grestore\n')
-
-    def draw_path(self, style, path):
-        style_sheet = self.get_style_sheet()
-        stype = style_sheet.get_draw_style(style)
-        self.file.write(
-            'gsave\n'
-            'newpath\n'
-            '%s setlinewidth\n' % gformat(stype.get_line_width())
-            )
-        if stype.get_line_style() == SOLID:
-            self.file.write('[] 0 setdash\n')
+        # paginate the index
+        if index_page is not None:
+            index_pages = self.__generate_index(layout, page_width, page_height,
+                                                index)
+            offset = len(index_pages) - 1
+            if offset > 0:
+                self.__increment_pages(toc, index, index_page, offset)
+                rebuild_required = True
         else:
-            dash_style = stype.get_dash_style(stype.get_line_style())
-            self.file.write('[%s] 0 setdash\n' % (
-                                " ".join(map(str, dash_style)))
-                                )
-
-        point = path[0]
-        x1 = point[0] + self.paper.get_left_margin()
-        y1 = point[1] + self.paper.get_top_margin()
-        self.file.write(
-            '%s cm %s cm moveto\n' % coords(self.translate(x1, y1))
-            )
-
-        for point in path[1:]:
-            x1 = point[0] + self.paper.get_left_margin()
-            y1 = point[1] + self.paper.get_top_margin()
-            self.file.write(
-                '%s cm %s cm lineto\n' % coords(self.translate(x1, y1))
-                )
-        self.file.write('closepath\n')
-
-        color = stype.get_fill_color()
-        self.file.write(
-            'gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(color) +
-            '%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()) +
-            'grestore\n'
-            )
-
-    def draw_line(self, style, x1, y1, x2, y2):
-        x1 += self.paper.get_left_margin()
-        x2 += self.paper.get_left_margin()
-        y1 += self.paper.get_top_margin()
-        y2 += self.paper.get_top_margin()
-        style_sheet = self.get_style_sheet()
-        stype = style_sheet.get_draw_style(style)
-        self.file.write(
-            'gsave newpath\n'
-            '%s cm %s cm moveto\n' % coords(self.translate(x1, y1)) +
-            '%s cm %s cm lineto\n' % coords(self.translate(x2, y2)) +
-            '%s setlinewidth\n' % gformat(stype.get_line_width())
-            )
-        if stype.get_line_style() == SOLID:
-            self.file.write('[] 0 setdash\n')
-        else:
-            dash_style = stype.get_dash_style(stype.get_line_style())
-            self.file.write('[%s] 0 setdash\n' % (
-                                " ".join(map(str, dash_style)))
-                                )
+            index_pages = []
             
-        self.file.write(
-            '2 setlinecap\n' +
-            '%s %s %s setrgbcolor stroke\n' % lrgb(stype.get_color()) +
-            'grestore\n'
-            )
+        # rebuild the table of contents and index if required
+        if rebuild_required:
+            if toc_page is not None:
+                toc_pages = self.__generate_toc(layout, page_width, page_height, 
+                                                toc)
+            if index_page is not None:
+                index_pages = self.__generate_index(layout, page_width, 
+                                                    page_height, index)
 
-    def draw_box(self, style, text, x, y, w, h):
-        x += self.paper.get_left_margin()
-        y += self.paper.get_top_margin()
+        # render the pages
+        if toc_page is not None:
+            body_pages = body_pages[:toc_page] + toc_pages + \
+                         body_pages[toc_page+1:]
+        if index_page is not None:
+            body_pages = body_pages[:index_page] + index_pages + \
+                         body_pages[index_page+1:]
+        self._pages = body_pages
+        for page_nr in range(len(self._pages)):
+            cr.save()
+            cr.translate(left_margin, top_margin)
+            self.draw_page(page_nr, cr, layout,
+                           page_width, page_height,
+                           DPI, DPI)
+            cr.show_page()
+            cr.restore()
+            
+        # close the surface (file)
+        surface.finish()
         
-        style_sheet = self.get_style_sheet()
-        box_style = style_sheet.get_draw_style(style)
+        # Restore the resolution. On windows, Gramps UI fonts will be smaller
+        # if we don't restore the resolution.
+        fontmap.set_resolution(saved_resolution)
 
-        self.file.write('gsave\n')
+    def __increment_pages(self, toc, index, start_page, offset):
+        """
+        Increment the page numbers in the table of contents and index.
+        """
+        for n, value in enumerate(toc):
+            page_nr = toc[n][1]
+            toc[n][1] = page_nr + (offset if page_nr > start_page else 0)
+        for key, value in index.iteritems():
+            index[key] = [page_nr + (offset if page_nr > start_page else 0)
+                          for page_nr in value]
 
-        shadsize = box_style.get_shadow_space()
-        if box_style.get_shadow():
-            self.file.write(
-                'newpath\n'
-                '%s cm %s cm moveto\n'
-                    % coords(self.translate(x+shadsize, y+shadsize)) +
-                '0 -%s cm rlineto\n' % gformat(h) +
-                '%s cm 0 rlineto\n' % gformat(w) +
-                '0 %s cm rlineto\n' % gformat(h) +
-                'closepath\n'
-                '.5 setgray\n'
-                'fill\n'
-                )
-        self.file.write(
-            'newpath\n' 
-            '%s cm %s cm moveto\n' % coords(self.translate(x, y)) +
-            '0 -%s cm rlineto\n' % gformat(h) +
-            '%s cm 0 rlineto\n' % gformat(w) +
-            '0 %s cm rlineto\n' % gformat(h) +
-            'closepath\n'
-            )
+    def __generate_toc(self, layout, page_width, page_height, toc):
+        """
+        Generate the table of contents.
+        """
+        self._doc = libcairodoc.GtkDocDocument()
+        self._active_element = self._doc
+        self._pages = []
+        write_toc(toc, self)
+        self.paginate_document(layout, page_width, page_height, DPI, DPI)
+        return self._pages
+
+    def __generate_index(self, layout, page_width, page_height, index):
+        """
+        Generate the index.
+        """
+        self._doc = libcairodoc.GtkDocDocument()
+        self._active_element = self._doc
+        self._pages = []
+        write_index(index, self)
+        self.paginate_document(layout, page_width, page_height, DPI, DPI)
+        return self._pages
         
-        fill_color = box_style.get_fill_color()
-        color = box_style.get_color()
-        self.file.write(
-            'gsave %s %s %s setrgbcolor fill grestore\n' % lrgb(fill_color) +
-            '%s %s %s setrgbcolor stroke\n' % lrgb(color)
-            )
+def write_toc(toc, doc):
+    """
+    Write the table of contents.
+    """
+    if not toc:
+        return
 
-        self.file.write('newpath\n')
-        if box_style.get_line_width():
-            self.file.write(
-                '%s cm %s cm moveto\n' % coords(self.translate(x, y)) +
-                '0 -%s cm rlineto\n' % gformat(h) +
-                '%s cm 0 rlineto\n' % gformat(w) +
-                '0 %s cm rlineto\n' % gformat(h) +
-                'closepath\n' +
-                '%s setlinewidth\n' % gformat(box_style.get_line_width()) +
-                '%s %s %s setrgbcolor stroke\n' % lrgb(box_style.get_color())
-                )
-        if text:
-            para_name = box_style.get_paragraph_style()
-            assert( para_name != '' )
-            p = style_sheet.get_paragraph_style(para_name)
-            (text, fdef) = self.encode_text(p, text)
-            self.file.write(fdef)
-            lines = text.split('\n')
+    doc.start_paragraph('TOC-Title')
+    doc.write_text(_('Contents'))
+    doc.end_paragraph()
+    
+    doc.start_table('toc', 'TOC-Table')
+    for mark, page_nr in toc:
+        doc.start_row()
+        doc.start_cell('TOC-Cell')
+        if mark.level == 1:
+            style_name = "TOC-Heading1"
+        elif mark.level == 2:
+            style_name = "TOC-Heading2"
+        else:
+            style_name = "TOC-Heading3"
+        doc.start_paragraph(style_name)
+        doc.write_text(mark.key)
+        doc.end_paragraph()
+        doc.end_cell()
+        doc.start_cell('TOC-Cell')
+        doc.start_paragraph(style_name)
+        doc.write_text(str(page_nr))
+        doc.end_paragraph()
+        doc.end_cell()
+        doc.end_row()
+    doc.end_table()
+    
+def write_index(index, doc):
+    """
+    Write the alphabetical index.
+    """
+    if not index:
+        return
 
-            mar = 10/28.35
-            f_in_cm = p.get_font().get_size()/28.35
-            fs = f_in_cm * 1.2
-            center = y + (h + fs)/2.0 + (fs*shadsize)
-            ystart = center - (fs/2.0) * len(lines)
-            for i, line in enumerate(lines):
-                ypos = ystart + (i * fs)
-                self.file.write(
-                    '%s cm %s cm moveto\n'
-                        % coords(self.translate(x+mar, ypos)) +
-                    "(%s) show\n" % lines[i]
-                    )
-        self.file.write('grestore\n')
+    doc.start_paragraph('IDX-Title')
+    doc.write_text(_('Index'))
+    doc.end_paragraph()
+    
+    doc.start_table('index', 'IDX-Table')
+    for key in sorted(index.iterkeys()):
+        doc.start_row()
+        doc.start_cell('IDX-Cell')
+        doc.start_paragraph('IDX-Entry')
+        doc.write_text(key)
+        doc.end_paragraph()
+        doc.end_cell()
+        doc.start_cell('IDX-Cell')
+        doc.start_paragraph('IDX-Entry')
+        pages = [str(page_nr) for page_nr in index[key]]
+        doc.write_text(', '.join(pages))
+        doc.end_paragraph()
+        doc.end_cell()
+        doc.end_row()
+    doc.end_table()

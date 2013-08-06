@@ -1336,10 +1336,21 @@ class CairoDoc(BaseDoc, TextDoc, DrawDoc):
     """
     
     # BaseDoc implementation
+    EXT = 'pdf' 
     
     def open(self, filename):
-        if filename[-4:] != '.pdf':
-            filename = filename + '.pdf'
+        fe = filename.split('.')
+        if len(fe) == 1:
+            filename = filename + '.' + self.EXT
+        elif fe[-1] != self.EXT:
+            # NOTE: the warning will be bogus 
+            # if the EXT isn't properly overridden by derived class
+            log.warn(_(
+"""Mismatch between selected extension %(ext)s and actual format.
+ Writing to %(filename)s in format %(impliedext)s.""") % 
+                {'ext' : fe[-1], 
+                 'filename' : filename, 
+                 'impliedext' : self.EXT} )
         self._backend = CairoBackend(filename)
         self._doc = GtkDocDocument()
         self._active_element = self._doc
