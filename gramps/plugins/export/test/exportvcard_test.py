@@ -21,24 +21,17 @@
 
 """
 Unittest for export to VCard
-
-To be called from src directory.
 """
 from __future__ import print_function
 
 import unittest
-import sys
-if sys.version_info[0] < 3:
-    from StringIO import StringIO
-else:
-    from io import StringIO
 import time
 import subprocess
-import libxml2
+import xml.etree.ElementTree as ET 
 
-from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
+from ...lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.version import VERSION
-from gramps.plugins.export.exportvcard import VCardWriter
+from ..exportvcard import VCardWriter
 
 class VCardCheck(unittest.TestCase):
     def setUp(self):
@@ -49,10 +42,11 @@ class VCardCheck(unittest.TestCase):
         date = time.localtime(time.time())
         self.input_list = ["BEGIN:VCARD", "VERSION:3.0", "FN:Lastname", 
                            "N:Lastname;;;;", "END:VCARD"]
-        strng = """<?xml version="1.0" encoding="UTF-8"?>
+        self.header = """<?xml version="1.0" encoding="UTF-8"?>
             <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML %s//EN"
-            "http://gramps-project.org/xml/%s/grampsxml.dtd">
-            <database xmlns="http://gramps-project.org/xml/%s/">
+            "http://gramps-project.org/xml/%s/grampsxml.dtd">""" % \
+            (GRAMPS_XML_VERSION, GRAMPS_XML_VERSION)
+        strng = """<database xmlns="http://gramps-project.org/xml/%s/">
             <header>
             <created date="%04d-%02d-%02d" version="%s"/>
             <researcher/>
@@ -65,21 +59,18 @@ class VCardCheck(unittest.TestCase):
             </person>
             </people>
             </database>""" % \
-            (GRAMPS_XML_VERSION, GRAMPS_XML_VERSION, GRAMPS_XML_VERSION,
-                    date[0], date[1], date[2], VERSION)
-        self.input_ = libxml2.readDoc(strng, '', None, libxml2.XML_PARSE_NONET)
-        self.database = self.input_.getRootElement()
-        self.people = self.database.firstElementChild().nextElementSibling()
-        self.person = self.people.firstElementChild()
-        self.name = self.person.firstElementChild()
-        self.lastname = self.name.firstElementChild()
+            (GRAMPS_XML_VERSION, date[0], date[1], date[2], VERSION)
+        namespace = "http://gramps-project.org/xml/%s/" % GRAMPS_XML_VERSION
+        ET.register_namespace("", namespace)
+        self.database = ET.XML(strng)
+        self.people = self.database[1]
+        self.person = self.people[0]
+        self.name = self.person[0]
+        self.lastname = self.name[0]
 
     def do_test(self, input_doc, expect_str, debug=False):
-        input_strfile = StringIO()
-        buf = libxml2.createOutputBuffer(input_strfile, 'UTF-8')
-        input_doc.saveFormatFileTo(buf, 'UTF-8', 1)
         if debug:
-            print(input_strfile.getvalue())
+            print(ET.tostring(input_doc))
 
         process = subprocess.Popen('python Gramps.py '
                                    '-i - -f gramps -e - -f vcf',
@@ -87,15 +78,17 @@ class VCardCheck(unittest.TestCase):
                                    stdout=subprocess.PIPE, 
                                    stderr=subprocess.PIPE, 
                                    shell=True)
-        result_str, err_str = process.communicate(input_strfile.getvalue())
+        input_str = (self.header.encode('utf-8') + 
+                     ET.tostring(input_doc, encoding='utf-8'))
+        result_str, err_str = process.communicate(input_str)
         if debug:
             print(err_str)
             print(result_str)
             print(expect_str)
-        self.assertEqual(result_str, expect_str)
+        self.assertEqual(result_str, expect_str.encode('utf-8'))
 
     def test_base(self):
-        self.do_test(self.input_,
+        self.do_test(self.database,
                      "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_esc_string_none(self):
@@ -118,234 +111,205 @@ class VCardCheck(unittest.TestCase):
                           {"comma,":"semicolon;"})
 
     def test_write_formatted_name_title(self):
-        self.name.newTextChild(None, 'title', 'Sir.')
+        ET.SubElement(self.name, "title").text = 'Sir.'
         self.expect[3] = "FN:Sir. Lastname"
         self.expect[4] = "N:Lastname;;;Sir.;"
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_name_multiple_surname(self):
-        self.lastname.setContent("Oranje")
-        self.lastname.newProp("prefix", "van")
-        self.name.newTextChild(None, "surname", "Nassau")
+        self.lastname.text = "Oranje"
+        self.lastname.set("prefix", "van")
+        ET.SubElement(self.name, "surname").text = "Nassau"
         self.expect[3] = "FN:van Oranje Nassau"
         self.expect[4] = "N:van Oranje,Nassau;;;;"
         self.expect[5] = "SORT-STRING:" + "Oranje".ljust(55)
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_name_callname(self):
         # callname not in first names!
-        self.name.newTextChild(None, "first", "B C")
-        self.name.newTextChild(None, "call", "A")
+        ET.SubElement(self.name, "first").text = "B C"
+        ET.SubElement(self.name, "call").text = "A"
         self.expect[3] = "FN:B C Lastname"
         self.expect[4] = "N:Lastname;A;B,C;;"
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(25) + "B C".ljust(30)
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_name_callname_in_addnames(self):
-        self.name.newTextChild(None, "first", "A B C")
-        self.name.newTextChild(None, "call", "B")
+        ET.SubElement(self.name, "first").text = "A B C"
+        ET.SubElement(self.name, "call").text = "B"
         self.expect[3] = "FN:A B C Lastname"
         self.expect[4] = "N:Lastname;B;A,C;;"
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(25) + "A B C".ljust(30)
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_name_no_callname(self):
-        self.name.newTextChild(None, "first", "A B C")
+        ET.SubElement(self.name, "first").text = "A B C"
         self.expect[3] = "FN:A B C Lastname"
         self.expect[4] = "N:Lastname;A;B,C;;"
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(25) + "A B C".ljust(30)
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_name_no_additional_names(self):
-        self.name.newTextChild(None, "first", "A")
+        ET.SubElement(self.name, "first").text = "A"
         self.expect[3] = "FN:A Lastname"
         self.expect[4] = "N:Lastname;A;;;"
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(25) + "A".ljust(30)
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_name_honprefix(self):
-        self.name.newTextChild(None, 'title', 'Sir')
+        ET.SubElement(self.name, "title").text = "Sir"
         self.expect[3] = "FN:Sir Lastname"
         self.expect[4] = "N:Lastname;;;Sir;"
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(55)
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_name_honsuffix(self):
-        self.name.newTextChild(None, 'suffix', 'Jr.')
+        ET.SubElement(self.name, "suffix").text = "Jr."
         self.expect[3] = "FN:Lastname\, Jr."
         self.expect[4] = "N:Lastname;;;;Jr."
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(55)+ "Jr."
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
 
     def test_nicknames_regular(self):
-        name = self.person.newChild(None, 'name', '')
-        name.newProp('type', 'Birth Name')
-        name.newProp('alt', '1')
-        name.newTextChild(None, 'nick', 'Nick')
-        name = self.person.newChild(None, 'name', '')
-        name.newProp('type', 'Birth Name')
-        name.newProp('alt', '1')
-        name.newTextChild(None, 'nick', 'N.')
+        attribs = {'type': 'Birth Name', 'alt': '1'}
+        name = ET.SubElement(self.person, "name", attrib=attribs)
+        ET.SubElement(name, 'nick').text = 'Nick'
+        name = ET.SubElement(self.person, "name", attrib=attribs)
+        ET.SubElement(name, 'nick').text = 'N.'
         self.expect.insert(6, "NICKNAME:Nick,N.")
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_nicknames_primary_nick(self):
-        self.name.newTextChild(None, 'nick', 'Nick')
-        name = self.person.newChild(None, 'name', '')
-        name.newProp('type', 'Birth Name')
-        name.newProp('alt', '1')
-        name.newTextChild(None, 'nick', 'N.')
+        ET.SubElement(self.name, 'nick').text = 'Nick'
+        attribs = {'type': 'Birth Name', 'alt': '1'}
+        name = ET.SubElement(self.person, "name", attrib=attribs)
+        ET.SubElement(name, 'nick').text = 'N.'
         self.expect.insert(6, "NICKNAME:Nick,N.")
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
     
     def test_write_birthdate_regular(self):
-        events = self.database.newChild(None, 'events', None)
-        event = events.newChild(None, 'event', None)
-        event.newProp('handle', '_e0000')
-        event.newProp('id', 'E0000')
-        event.newTextChild(None, 'type', 'Birth')
-        dateval = event.newChild(None, 'dateval', None)
-        dateval.newProp('val', '2001-02-28')
-        evtref = self.person.newChild(None, 'eventref', None)
-        evtref.newProp('hlink', '_e0000')
-        evtref.newProp('role', 'Primary')
-        self.people.addPrevSibling(events)
+        events = ET.Element('events')
+        self.database.insert(1, events)
+        attribs = {'handle': '_e0000', 'id': 'E0000'}
+        event = ET.SubElement(events, 'event', attrib=attribs)
+        ET.SubElement(event, 'type').text = 'Birth'
+        ET.SubElement(event, 'dateval', val='2001-02-28')
+        attribs = {'hlink': '_e0000', 'role': 'Primary'}
+        ET.SubElement(self.person, 'eventref', attrib=attribs)
         self.expect.insert(6, "BDAY:2001-02-28")
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_birthdate_empty(self):
-        events = self.database.newChild(None, 'events', None)
-        event = events.newChild(None, 'event', None)
-        event.newProp('handle', '_e0000')
-        event.newProp('id', 'E0000')
-        event.newTextChild(None, 'type', 'Birth')
-        evtref = self.person.newChild(None, 'eventref', None)
-        evtref.newProp('hlink', '_e0000')
-        evtref.newProp('role', 'Primary')
-        self.people.addPrevSibling(events)
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        events = ET.Element('events')
+        self.database.insert(1, events)
+        attribs = {'handle': '_e0000', 'id': 'E0000'}
+        event = ET.SubElement(events, 'event', attrib=attribs)
+        ET.SubElement(event, 'type').text = 'Birth'
+        attribs = {'hlink': '_e0000', 'role': 'Primary'}
+        ET.SubElement(self.person, 'eventref', attrib=attribs)
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_birhtdate_textonly(self):
-        events = self.database.newChild(None, 'events', None)
-        event = events.newChild(None, 'event', None)
-        event.newProp('handle', '_e0000')
-        event.newProp('id', 'E0000')
-        event.newTextChild(None, 'type', 'Birth')
-        datestr = event.newChild(None, 'datestr', None)
-        datestr.newProp('val', 'Christmas 2001')
-        evtref = self.person.newChild(None, 'eventref', None)
-        evtref.newProp('hlink', '_e0000')
-        evtref.newProp('role', 'Primary')
-        self.people.addPrevSibling(events)
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        events = ET.Element('events')
+        self.database.insert(1, events)
+        attribs = {'handle': '_e0000', 'id': 'E0000'}
+        event = ET.SubElement(events, 'event', attrib=attribs)
+        ET.SubElement(event, 'type').text = 'Birth'
+        ET.SubElement(event, 'dateval', val='Christmas 2001')
+        attribs = {'hlink': '_e0000', 'role': 'Primary'}
+        ET.SubElement(self.person, 'eventref', attrib=attribs)
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_birthdate_span(self):
-        events = self.database.newChild(None, 'events', None)
-        event = events.newChild(None, 'event', None)
-        event.newProp('handle', '_e0000')
-        event.newProp('id', 'E0000')
-        event.newTextChild(None, 'type', 'Birth')
-        datespan = event.newChild(None, 'datespan', None)
-        datespan.newProp('start', '2001-02-28')
-        datespan.newProp('stop', '2002-02-28')
-        evtref = self.person.newChild(None, 'eventref', None)
-        evtref.newProp('hlink', '_e0000')
-        evtref.newProp('role', 'Primary')
-        self.people.addPrevSibling(events)
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        events = ET.Element('events')
+        self.database.insert(1, events)
+        attribs = {'handle': '_e0000', 'id': 'E0000'}
+        event = ET.SubElement(events, 'event', attrib=attribs)
+        ET.SubElement(event, 'type').text = 'Birth'
+        attribs = {'start': '2001-02-28', 'stop': '2002-02-28'}
+        ET.SubElement(event, 'datespan', attrib=attribs)
+        attribs = {'hlink': '_e0000', 'role': 'Primary'}
+        ET.SubElement(self.person, 'eventref', attrib=attribs)
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_birthdate_range(self):
-        events = self.database.newChild(None, 'events', None)
-        event = events.newChild(None, 'event', None)
-        event.newProp('handle', '_e0000')
-        event.newProp('id', 'E0000')
-        event.newTextChild(None, 'type', 'Birth')
-        daterange = event.newChild(None, 'daterange', None)
-        daterange.newProp('start', '2001-02-28')
-        daterange.newProp('stop', '2002-02-28')
-        evtref = self.person.newChild(None, 'eventref', None)
-        evtref.newProp('hlink', '_e0000')
-        evtref.newProp('role', 'Primary')
-        self.people.addPrevSibling(events)
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        events = ET.Element('events')
+        self.database.insert(1, events)
+        attribs = {'handle': '_e0000', 'id': 'E0000'}
+        event = ET.SubElement(events, 'event', attrib=attribs)
+        ET.SubElement(event, 'type').text = 'Birth'
+        attribs = {'start': '2001-02-28', 'stop': '2002-02-28'}
+        ET.SubElement(event, 'daterange', attrib=attribs)
+        attribs = {'hlink': '_e0000', 'role': 'Primary'}
+        ET.SubElement(self.person, 'eventref', attrib=attribs)
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_addresses_regular(self):
-        address = self.person.newChild(None, 'address', None)
-        address.newChild(None, 'street', 'pobox bis street')
-        address.newChild(None, 'city', 'place')
-        address.newChild(None, 'country', 'country')
-        address.newChild(None, 'state', 'province')
-        address.newChild(None, 'postal', 'zip')
+        address = ET.SubElement(self.person, 'address')
+        ET.SubElement(address, 'street').text = 'pobox bis street'
+        ET.SubElement(address, 'city').text = 'place'
+        ET.SubElement(address, 'country').text = 'country'
+        ET.SubElement(address, 'state').text = 'province'
+        ET.SubElement(address, 'postal').text = 'zip'
         self.expect.insert(6, "ADR:;;pobox bis street;place;province;zip;country")
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_addresses_phone(self):
-        address = self.person.newChild(None, 'address', None)
-        address.newChild(None, 'phone', '01234-56789')
+        address = ET.SubElement(self.person, 'address')
+        ET.SubElement(address, 'phone').text = '01234-56789'
         self.expect.insert(6, "TEL:01234-56789")
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_urls_email(self):
-        url = self.person.newChild(None, 'url', None)
-        url.newProp('type', 'E-mail')
-        url.newProp('href', 'me@example.com')
+        attribs = {'type': 'E-mail', 'href': 'me@example.com'}
+        ET.SubElement(self.person, 'url', attrib=attribs)
         self.expect.insert(6, "EMAIL:me@example.com")
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_urls_emial_mailto(self):
-        url = self.person.newChild(None, 'url', None)
-        url.newProp('type', 'E-mail')
-        url.newProp('href', 'mailto:me@example.com')
+        attribs = {'type': 'E-mail', 'href': 'mailto:me@example.com'}
+        ET.SubElement(self.person, 'url', attrib=attribs)
         self.expect.insert(6, "EMAIL:me@example.com")
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_urls_url(self):
-        url = self.person.newChild(None, 'url', None)
-        url.newProp('type', 'Web Home')
-        url.newProp('href', 'http://www.example.org')
+        attribs = {'type': 'Web Home', 'href': 'http://www.example.org'}
+        ET.SubElement(self.person, 'url', attrib=attribs)
         self.expect.insert(6, "URL:http://www.example.org")
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_occupation_regular(self):
-        events = self.database.newChild(None, 'events', None)
-        event = events.newChild(None, 'event', None)
-        event.newProp('handle', '_e0000')
-        event.newProp('id', 'E0000')
-        event.newChild(None, 'type', 'Occupation')
-        event.newChild(None, 'description', 'carpenter')
-        evtref = self.person.newChild(None, 'eventref', None)
-        evtref.newProp('hlink', '_e0000')
-        evtref.newProp('role', 'Primary')
-        self.people.addPrevSibling(events)
+        events = ET.Element('events')
+        self.database.insert(1, events)
+        attribs = {'handle': '_e0000', 'id': 'E0000'}
+        event = ET.SubElement(events, 'event', attrib=attribs)
+        ET.SubElement(event, 'type').text = 'Occupation'
+        ET.SubElement(event, 'description').text = 'carpenter'
+        attribs = {'hlink': '_e0000', 'role': 'Primary'}
+        ET.SubElement(self.person, 'eventref', attrib=attribs)
         self.expect.insert(6, "ROLE:carpenter")
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
     def test_write_occupation_lastdate(self):
-        events = self.database.newChild(None, 'events', None)
-        event = events.newChild(None, 'event', None)
-        event.newProp('handle', '_e0000')
-        event.newProp('id', 'E0000')
-        event.newChild(None, 'type', 'Occupation')
-        dateval = event.newChild(None, 'dateval', None)
-        dateval.newProp('val', '2011-02-28')
-        event.newChild(None, 'description', 'foreman')
-        event = events.newChild(None, 'event', None)
-        event.newProp('handle', '_e0001')
-        event.newProp('id', 'E0001')
-        event.newChild(None, 'type', 'Occupation')
-        dateval = event.newChild(None, 'dateval', None)
-        dateval.newProp('val', '2000-09-21')
-        event.newChild(None, 'description', 'carpenter')
-        evtref = self.person.newChild(None, 'eventref', None)
-        evtref.newProp('hlink', '_e0000')
-        evtref.newProp('role', 'Primary')
-        evtref = self.person.newChild(None, 'eventref', None)
-        evtref.newProp('hlink', '_e0001')
-        evtref.newProp('role', 'Primary')
-        self.people.addPrevSibling(events)
+        events = ET.Element('events')
+        self.database.insert(1, events)
+        attribs = {'handle': '_e0000', 'id': 'E0000'}
+        event = ET.SubElement(events, 'event', attrib=attribs)
+        ET.SubElement(event, 'type').text = 'Occupation'
+        ET.SubElement(event, 'dateval', val='2011-02-28')
+        ET.SubElement(event, 'description').text = 'foreman'
+        attribs = {'handle': '_e0001', 'id': 'E0001'}
+        event = ET.SubElement(events, 'event', attrib=attribs)
+        ET.SubElement(event, 'type').text = 'Occupation'
+        ET.SubElement(event, 'dateval', val='2000-09-21')
+        ET.SubElement(event, 'description').text = 'carpenter'
+        attribs = {'hlink': '_e0000', 'role': 'Primary'}
+        ET.SubElement(self.person, 'eventref', attrib=attribs)
+        attribs = {'hlink': '_e0001', 'role': 'Primary'}
+        ET.SubElement(self.person, 'eventref', attrib=attribs)
         self.expect.insert(6, "ROLE:foreman")
-        self.do_test(self.input_, "\r\n".join(self.expect) + '\r\n\r\n')
+        self.do_test(self.database, "\r\n".join(self.expect) + '\r\n\r\n')
 
 if __name__ == "__main__":
     unittest.main()
