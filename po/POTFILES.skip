@@ -419,7 +419,6 @@ gramps/plugins/export/test/exportvcard_test.py
 # plugins/lib directory
 #
 gramps/plugins/lib/__init__.py
-gramps/plugins/lib/libcairodoc.py
 gramps/plugins/lib/libgrampsxml.py
 gramps/plugins/lib/libholiday.py
 gramps/plugins/lib/libhtml.py

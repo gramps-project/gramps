@@ -508,8 +508,7 @@ gramps/plugins/docgen/gtkprint.py
 gramps/plugins/docgen/htmldoc.py
 gramps/plugins/docgen/latexdoc.py
 gramps/plugins/docgen/odfdoc.py
-gramps/plugins/docgen/pdfdoc.py
-gramps/plugins/docgen/psdrawdoc.py
+gramps/plugins/docgen/cairodoc.py
 gramps/plugins/docgen/rtfdoc.py
 gramps/plugins/docgen/svgdrawdoc.py
 gramps/plugins/drawreport/ancestortree.py
@@ -575,6 +574,7 @@ gramps/plugins/importer/importprogen.py
 gramps/plugins/importer/importvcard.py
 gramps/plugins/importer/importxml.py
 gramps/plugins/lib/holidays.xml.in
+gramps/plugins/lib/libcairodoc.py
 gramps/plugins/lib/libgedcom.py
 gramps/plugins/lib/libhtmlbackend.py
 gramps/plugins/lib/libhtmlconst.py

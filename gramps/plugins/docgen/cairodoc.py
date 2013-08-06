@@ -48,7 +48,7 @@ from gramps.gen.errors import ReportError
 #
 #------------------------------------------------------------------------
 import logging
-LOG = logging.getLogger(".PdfDoc")
+LOG = logging.getLogger(".cairodoc")
 
 #-------------------------------------------------------------------------
 #
@@ -72,11 +72,18 @@ DPI = 72.0
 # PdfDoc class
 #
 #------------------------------------------------------------------------
-class PdfDoc(libcairodoc.CairoDoc):
+class CairoDocgen(libcairodoc.CairoDoc):
     """Render the document into PDF file using Cairo.
     """
+    def create_cairo_surface(self, fobj, width_in_points, height_in_points):
+        # See 
+# http://cairographics.org/documentation/pycairo/3/reference/surfaces.html#class-pssurface-surface
+        # for the arg semantics.
+        raise "Missing surface factory override!!!"
+
     def run(self):
-        """Create the PDF output.
+        """Create the output file.
+        The derived class overrides EXT and create_cairo_surface
         """
         # get paper dimensions
         paper_width = self.paper.get_size().get_width() * DPI / 2.54
@@ -91,7 +98,7 @@ class PdfDoc(libcairodoc.CairoDoc):
         if sys.version_info[0] < 3:
             filename = self._backend.filename.encode(glocale.getfilesystemencoding())
         try:
-            surface = cairo.PDFSurface(filename, paper_width, paper_height)
+            surface = self.create_cairo_surface(filename, paper_width, paper_height)
         except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % filename, msg)
             raise ReportError(errmsg)
@@ -277,3 +284,14 @@ def write_index(index, doc):
         doc.end_cell()
         doc.end_row()
     doc.end_table()
+
+class PdfDoc(CairoDocgen):
+    def create_cairo_surface(self, fobj, width_in_points, height_in_points):
+        return cairo.PDFSurface(fobj, width_in_points, height_in_points)
+
+class PsDoc(CairoDocgen):
+    """Render the document into PS file using Cairo.
+    """
+    EXT = 'ps'
+    def create_cairo_surface(self, fobj, width_in_points, height_in_points):
+        return cairo.PSSurface(fobj, width_in_points, height_in_points)
