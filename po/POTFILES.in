@@ -73,6 +73,7 @@ gramps/gen/filters/rules/event/_hassourcecount.py
 gramps/gen/filters/rules/event/_hastype.py
 gramps/gen/filters/rules/event/_matchesfilter.py
 gramps/gen/filters/rules/event/_matchespersonfilter.py
+gramps/gen/filters/rules/event/_matchesplacefilter.py
 gramps/gen/filters/rules/event/_matchessourceconfidence.py
 gramps/gen/filters/rules/event/_matchessourcefilter.py
 gramps/gen/filters/rules/event/_regexpidof.py
