@@ -587,6 +587,7 @@ src/Filters/Rules/Event/_HasSourceCount.py
 src/Filters/Rules/Event/_HasType.py
 src/Filters/Rules/Event/_MatchesFilter.py
 src/Filters/Rules/Event/_MatchesPersonFilter.py
+src/Filters/Rules/Event/_MatchesPlaceFilter.py
 src/Filters/Rules/Event/_MatchesSourceFilter.py
 src/Filters/Rules/Event/_MatchesSourceConfidence.py
 src/Filters/Rules/Event/_RegExpIdOf.py
