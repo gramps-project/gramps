@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2007 Zsolt Foldvari
 # Copyright (C) 2008 Brian G. Matherly
+# Copyright (C) 2013 Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,7 +22,7 @@
 
 # $Id$
 
-"""PDF output generator based on Cairo.
+"""PS/PDF output generator based on Cairo.
 """
 
 #------------------------------------------------------------------------
@@ -69,11 +70,11 @@ DPI = 72.0
 
 #------------------------------------------------------------------------
 #
-# PdfDoc class
+# CairoDocgen class
 #
 #------------------------------------------------------------------------
 class CairoDocgen(libcairodoc.CairoDoc):
-    """Render the document into PDF file using Cairo.
+    """Render the document into a file using a Cairo surface.
     """
     def create_cairo_surface(self, fobj, width_in_points, height_in_points):
         # See 
@@ -285,10 +286,22 @@ def write_index(index, doc):
         doc.end_row()
     doc.end_table()
 
+#------------------------------------------------------------------------
+#
+# PdfDoc class
+#
+#------------------------------------------------------------------------
 class PdfDoc(CairoDocgen):
+    """Render the document into PDF file using Cairo.
+    """
     def create_cairo_surface(self, fobj, width_in_points, height_in_points):
         return cairo.PDFSurface(fobj, width_in_points, height_in_points)
 
+#------------------------------------------------------------------------
+#
+# PsDoc class
+#
+#------------------------------------------------------------------------
 class PsDoc(CairoDocgen):
     """Render the document into PS file using Cairo.
     """
