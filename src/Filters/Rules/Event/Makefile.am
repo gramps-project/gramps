@@ -20,7 +20,8 @@ pkgpython_PYTHON = \
 	_HasNoteMatchingSubstringOf.py\
 	_HasReferenceCountOf.py\
 	_MatchesPersonFilter.py\
-        _MatchesSourceConfidence.py\
+	_MatchesPlaceFilter.py\
+	_MatchesSourceConfidence.py\
 	_MatchesSourceFilter.py\
 	_HasAttribute.py\
 	__init__.py
