@@ -51,6 +51,7 @@ class HasAttributeBase(Rule):
     description = "Matches objects with the given attribute " \
                    "of a particular value"
     category    = _('General filters')
+    allow_regex = True
 
     def apply(self, db, obj):
         if not self.list[0]:
@@ -61,5 +62,5 @@ class HasAttributeBase(Rule):
             name_match = attr.get_type() == specified_type
 
             if name_match:
-                return attr.get_value().upper().find(self.list[1].upper()) != -1
+                return self.match_substring(1, attr.get_value())
         return False

@@ -51,7 +51,6 @@ editor_rule_list = [
     HasGallery,
     HasIdOf,
     HasNote,
-    HasNoteMatchingSubstringOf,
     HasNoteRegexp,
     HasReferenceCountOf,
     HasSource,

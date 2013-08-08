@@ -41,14 +41,12 @@ from .. import Rule
 class MatchesNameSubstringOf(Rule):
     """Repository name containing <substring>"""
 
-    labels      = [ _('Substring:')]
-    name        = _('Repository name containing <substring>')
+    labels      = [ _('Text:')]
+    name        = _('Repositories with name containing <text>')
     description = _("Matches repositories whose name contains a certain substring")
     category    = _('General filters')
+    allow_regex = True
 
     def apply(self, db, repository):
         """ Apply the filter """
-        name = repository.get_name()
-        if name.upper().find(self.list[0].upper()) != -1:
-            return True
-        return False
+        return self.match_substring(0, repository.get_name())

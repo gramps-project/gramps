@@ -46,6 +46,6 @@ class RegExpIdOf(RegExpIdBase):
     matches regular expression.
     """
 
-    name        = _('Notes with <Id> matching regular expression')
+    name        = _('Notes with Id containing <text>')
     description = _("Matches notes whose Gramps ID matches "
                     "the regular expression")

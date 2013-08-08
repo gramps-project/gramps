@@ -50,14 +50,11 @@ class HasData(Rule):
     name        = _('Events with <data>')
     description = _("Matches events with data of a particular value")
     category    = _('General filters')
+    allow_regex = True
     
-    def __init__(self, list, use_regex=False):
-        Rule.__init__(self, list, use_regex)
-
+    def prepare(self, dbase):
         self.event_type = self.list[0]
         self.date = self.list[1]
-        self.place = self.list[2]
-        self.description = self.list[3]
 
         if self.event_type:
             self.event_type = EventType()
@@ -71,26 +68,24 @@ class HasData(Rule):
             # No match
             return False
 
-        ed = event.get_description().upper()
-        if self.description and ed.find(self.description.upper()) == -1:
-            # No match
-            return False
-
         if self.date and not event.get_date_object().match(self.date):
             # No match
             return False
 
-        if self.place:
-            pl_id = event.get_place_handle()
-            if pl_id:
-                pl = db.get_place_from_handle(pl_id)
-                pn = pl.get_title().upper()
-                if pn.find(self.place.upper()) == -1:
+        if self.list[2]:
+            place_id = event.get_place_handle()
+            if place_id:
+                place = db.get_place_from_handle(place_id)
+                if not self.match_substring(2, place.get_title()):
                     # No match
                     return False
             else:
                 # No place attached to event
                 return False
+
+        if not self.match_substring(3, event.get_description()):
+            # No match
+            return False
 
         # All conditions matched
         return True

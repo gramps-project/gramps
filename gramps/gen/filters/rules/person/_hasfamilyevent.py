@@ -53,6 +53,7 @@ class HasFamilyEvent(Rule):
     name        =  _('People with the family <event>')
     description = _("Matches people with a family event of a particular value")
     category    = _('Event filters')
+    allow_regex = True
     
     def prepare(self,db):
         self.date = None
@@ -78,18 +79,17 @@ class HasFamilyEvent(Rule):
                     specified_type.set_from_xml_str(self.list[0])
                     if event.type != specified_type:
                         val = 0
-                v = self.list[3]
-                if v and event.get_description().upper().find(v.upper())==-1:
-                    val = 0
+                if self.list[3]:
+                    if not self.match_substring(3, event.get_description()):
+                        val = 0
                 if self.date:
                     if event.get_date_object().match(self.date):
                         val = 0
                 if self.list[2]:
-                    pl_id = event.get_place_handle()
-                    if pl_id:
-                        pl = db.get_place_from_handle(pl_id)
-                        pn = pl.get_title().upper()
-                        if pn.find(self.list[2].upper()) == -1:
+                    place_id = event.get_place_handle()
+                    if place_id:
+                        place = db.get_place_from_handle(place_id)
+                        if not self.match_substring(2, place.get_title()):
                             val = 0
                     else:
                         val = 0

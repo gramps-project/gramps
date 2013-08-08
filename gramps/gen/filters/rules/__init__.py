@@ -73,6 +73,7 @@ from ._rule import Rule
 
 from ._everything import Everything
 from ._hasgrampsid import HasGrampsId
+from ._regexpidbase import RegExpIdBase
 from ._isprivate import IsPrivate
 from ._ispublic import IsPublic
 from ._hastextmatchingsubstringof import HasTextMatchingSubstringOf

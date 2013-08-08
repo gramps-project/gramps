@@ -41,15 +41,13 @@ from .. import Rule
 class MatchesTitleSubstringOf(Rule):
     """Source title containing <substring>"""
 
-    labels      = [ _('Substring:')]
-    name        = _('Sources title containing <substring>')
+    labels      = [ _('Text:')]
+    name        = _('Sources with title containing <text>')
     description = _("Matches sources whose title contains a "
                     "certain substring")
     category    = _('General filters')
+    allow_regex = True
 
     def apply(self, db, source):
         """ Apply the filter """
-        title = source.get_title()
-        if title.upper().find(self.list[0].upper()) != -1:
-            return True
-        return False
+        return self.match_substring(0, source.get_title())
