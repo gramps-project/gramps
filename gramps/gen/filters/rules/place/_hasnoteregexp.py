@@ -40,6 +40,6 @@ from .._hasnoteregexbase import HasNoteRegexBase
 #-------------------------------------------------------------------------
 class HasNoteRegexp(HasNoteRegexBase):
 
-    name        = _('Places having notes containing <regular expression>')
+    name        = _('Places having notes containing <text>')
     description = _("Matches places whose notes contain text "
                     "matching a regular expression")

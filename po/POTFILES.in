@@ -81,9 +81,11 @@ gramps/gen/filters/rules/family/_allfamilies.py
 gramps/gen/filters/rules/family/_changedsince.py
 gramps/gen/filters/rules/family/_childhasidof.py
 gramps/gen/filters/rules/family/_childhasnameof.py
+gramps/gen/filters/rules/family/_childregexpidof.py
 gramps/gen/filters/rules/family/_familyprivate.py
 gramps/gen/filters/rules/family/_fatherhasidof.py
 gramps/gen/filters/rules/family/_fatherhasnameof.py
+gramps/gen/filters/rules/family/_fatherregexpidof.py
 gramps/gen/filters/rules/family/_hasattribute.py
 gramps/gen/filters/rules/family/_hascitation.py
 gramps/gen/filters/rules/family/_hasevent.py
@@ -104,6 +106,7 @@ gramps/gen/filters/rules/family/_matchesfilter.py
 gramps/gen/filters/rules/family/_matchessourceconfidence.py
 gramps/gen/filters/rules/family/_motherhasidof.py
 gramps/gen/filters/rules/family/_motherhasnameof.py
+gramps/gen/filters/rules/family/_motherregexpidof.py
 gramps/gen/filters/rules/family/_regexpchildname.py
 gramps/gen/filters/rules/family/_regexpfathername.py
 gramps/gen/filters/rules/family/_regexpidof.py

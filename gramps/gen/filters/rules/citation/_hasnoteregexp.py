@@ -41,6 +41,6 @@ from .._hasnoteregexbase import HasNoteRegexBase
 #-------------------------------------------------------------------------
 class HasNoteRegexp(HasNoteRegexBase):
 
-    name        = _('Citations having notes containing <regular expression>')
+    name        = _('Citations having notes containing <text>')
     description = _("Matches citations whose notes contain text "
                     "matching a regular expression")

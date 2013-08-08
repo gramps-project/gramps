@@ -40,7 +40,6 @@ from .._hasnoteregexbase import HasNoteRegexBase
 #-------------------------------------------------------------------------
 class HasNoteRegexp(HasNoteRegexBase):
 
-    name        = _('Media objects having notes '
-                    'containing <regular expression>')
+    name        = _('Media objects having notes containing <text>')
     description = _("Matches media objects whose notes contain text "
                     "matching a regular expression")

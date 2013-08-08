@@ -37,30 +37,23 @@ _ = glocale.translation.gettext
 from . import Rule
 
 #-------------------------------------------------------------------------
-# "People having notes that contain a substring"
+# Objects having notes that contain a substring or match a regular expression
 #-------------------------------------------------------------------------
 class HasNoteRegexBase(Rule):
-    """People having notes containing <substring>."""
+    """Objects having notes containing <text>."""
 
-    labels      = [ _('Regular expression:')]
-    name        = 'Objects having notes containing <regular expression>'
-    description = "Matches objects whose notes contain text " \
-                    "matching a regular expression"
+    labels      = [ _('Text:')]
+    name        = 'Objects having notes containing <text>'
+    description = ("Matches objects whose notes contain a substring "
+                   "or match a regular expression")
     category    = _('General filters')
-
-    def __init__(self, list, use_regex=False):
-        Rule.__init__(self, list, use_regex)
-        
-        try:
-            self.match = re.compile(list[0],re.I|re.U|re.L)
-        except:
-            self.match = re.compile('')
+    allow_regex = True
 
     def apply(self, db, person):
         notelist = person.get_note_list()
         for notehandle in notelist:
             note = db.get_note_from_handle(notehandle)
             n = note.get()
-            if self.match.search(n) is not None:
+            if self.match_substring(0, n) is not None:
                 return True
         return False

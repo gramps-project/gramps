@@ -2,7 +2,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2002-2006  Donald N. Allingham
-# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,9 +20,6 @@
 
 # $Id$
 
-"""
-Filter rule to match event with a particular citation.
-"""
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
@@ -37,26 +33,21 @@ _ = glocale.translation.gettext
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from .._hascitationbase import HasCitationBase
+from .. import RegExpIdBase
+from ._memberbase import father_base
 
 #-------------------------------------------------------------------------
 #
-# HasEvent
+# HasNameOf
 #
 #-------------------------------------------------------------------------
-class HasCitation(HasCitationBase):
-    """Rule that checks for an event with a particular value"""
+class FatherRegExpIdOf(RegExpIdBase):
+    """Rule that checks for a person with a specific GRAMPS ID"""
 
-    labels      = [ _('Volume/Page:'), 
-                    _('Date:'), 
-                    _('Confidence level:')]
-    name        =  _('Events with the <citation>')
-    description = _("Matches events with a citation of a particular "
-                    "value")
-    
-    def apply(self, dbase, event):
-        for citation_handle in event.get_citation_list():
-            citation = dbase.get_citation_from_handle(citation_handle)
-            if HasCitationBase.apply(self, dbase, citation):
-                return True
-        return False
+    labels      = [ _('Person ID:') ]
+    name        = _('Families having father with Id containing <text>')
+    description = _("Matches families whose father has a specified "
+                    "Gramps ID")
+    category    = _('Father filters')
+    base_class = RegExpIdBase
+    apply = father_base

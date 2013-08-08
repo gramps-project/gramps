@@ -38,27 +38,20 @@ _ = glocale.translation.gettext
 from .. import Rule
 
 #-------------------------------------------------------------------------
-# "Repos having notes that contain a substring"
+# Notes that contain a substring or match a regular expression
 #-------------------------------------------------------------------------
 class MatchesRegexpOf(Rule):
 
-    labels      = [ _('Regular expression:')]
-    name        = _('Notes containing <regular expression>')
-    description = _("Matches notes that contain text "
-                    "which matches a regular expression")
+    labels      = [ _('Text:')]
+    name        = _('Notes containing <text>')
+    description = _("Matches notes that contain a substring "
+                    "or match a regular expression")
     category    = _('General filters')
+    allow_regex = True
 
-    def __init__(self, list, use_regex=False):
-        Rule.__init__(self, list, use_regex)
-        
-        try:
-            self.match = re.compile(list[0], re.I|re.U|re.L)
-        except:
-            self.match = re.compile('')
-            
     def apply(self, db, note):
         """ Apply the filter """
         text = note.get()
-        if self.match.search(text) is not None:
+        if self.match_substring(0, text) is not None:
             return True
         return False

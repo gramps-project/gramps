@@ -40,7 +40,7 @@ from .._hasnoteregexbase import HasNoteRegexBase
 #-------------------------------------------------------------------------
 class HasNoteRegexp(HasNoteRegexBase):
 
-    name        = _('Families having notes containing <regular expression>')
+    name        = _('Families having notes containing <text>')
     description = _("Matches families whose notes contain text "
                     "matching a regular expression")
 

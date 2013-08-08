@@ -43,22 +43,16 @@ from . import Rule
 #-------------------------------------------------------------------------
 class RegExpIdBase(Rule):
     """
-    Rule that checks for an object whose GRAMPS ID matches regular expression.
+    Objects with a Gramps ID that contains a substring or matches a 
+    regular expression.
     """
 
-    labels      = [ _('Regular expression:') ]
+    labels      = [ _('Text:') ]
     name        = 'Objects with <Id>'
-    description = "Matches objects whose Gramps ID matches " \
-                   "the regular expression"
+    description = "Matches objects whose Gramps ID contains a substring " \
+                   "or matches a regular expression"
     category    = _('General filters')
-
-    def __init__(self, list, use_regex=False):
-        Rule.__init__(self, list, use_regex)
-        
-        try:
-            self.match = re.compile(list[0], re.I|re.U|re.L)
-        except:
-            self.match = re.compile('')
+    allow_regex = True
 
     def apply(self, db, obj):
-        return self.match.search(obj.gramps_id) is not None
+        return self.match_substring(0, obj.gramps_id)
