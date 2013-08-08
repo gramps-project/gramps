@@ -291,7 +291,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         pattern_match = re.match(r"(.*)%[0 ](\d+)[diu]$", id_pattern)
         if pattern_match:
             str_prefix = pattern_match.group(1)
-            nr_width = pattern_match.group(2)
+            nr_width = int(pattern_match.group(2))
             def closure_func(gramps_id):
                 if gramps_id and gramps_id.startswith(str_prefix):
                     id_number = gramps_id[len(str_prefix):]
