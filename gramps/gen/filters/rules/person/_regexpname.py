@@ -35,7 +35,6 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from .. import Rule
-import re
 
 #-------------------------------------------------------------------------
 #
@@ -47,7 +46,7 @@ class RegExpName(Rule):
 
     labels      = [_('Text:')]
     name        = _('People with a name matching <text>')
-    description = _("Matches people's names with containing a substring or "
+    description = _("Matches people's names containing a substring or "
                     "matching a regular expression")
     category    = _('General filters')
     allow_regex = True
