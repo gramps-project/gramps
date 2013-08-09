@@ -54,13 +54,10 @@ from ._matchesfilter import MatchesFilter
 from ._matchessourceconfidence import MatchesSourceConfidence
 from ._fatherhasnameof import FatherHasNameOf
 from ._fatherhasidof import FatherHasIdOf
-from ._fatherregexpidof import FatherRegExpIdOf
 from ._motherhasnameof import MotherHasNameOf
 from ._motherhasidof import MotherHasIdOf
-from ._motherregexpidof import MotherRegExpIdOf
 from ._childhasnameof import ChildHasNameOf
 from ._childhasidof import ChildHasIdOf
-from ._childregexpidof import ChildRegExpIdOf
 from ._changedsince import ChangedSince
 from ._hastag import HasTag
 from ._hastwins import HasTwins
@@ -85,11 +82,11 @@ editor_rule_list = [
     MatchesFilter,
     MatchesSourceConfidence,
     FatherHasNameOf,
-    FatherRegExpIdOf,
+    FatherHasIdOf,
     MotherHasNameOf,
-    MotherRegExpIdOf,
+    MotherHasIdOf,
     ChildHasNameOf,
-    ChildRegExpIdOf,
+    ChildHasIdOf,
     ChangedSince,
     HasTag,
     HasTwins,
