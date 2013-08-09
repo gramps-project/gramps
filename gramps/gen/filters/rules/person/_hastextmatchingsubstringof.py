@@ -46,12 +46,12 @@ class HasTextMatchingSubstringOf(Rule):
     """Rule that checks for string matches in any textual information"""
 
     labels      = [ _('Substring:'),
-                    _('Case sensitive:'), 
-                    _('Regular-Expression matching:')]
+                    _('Case sensitive:')]
     name        = _('People with records containing <substring>')
     description = _("Matches people whose records contain text "
                     "matching a substring")
     category    = _('General filters')
+    allow_regex = True
 
     def prepare(self,db):
         self.db = db
@@ -69,13 +69,6 @@ class HasTextMatchingSubstringOf(Rule):
                 self.case_sensitive = False
         except IndexError:
             self.case_sensitive = False
-        try:
-            if int(self.list[2]):
-                self.regexp_match = True
-            else:
-                self.regexp_match = False
-        except IndexError:
-            self.regexp_match = False
         self.cache_repos()
         self.cache_sources()
 
@@ -217,6 +210,6 @@ class HasTextMatchingSubstringOf(Rule):
     def match_object(self, obj):
         if not obj:
             return False
-        if self.regexp_match:
+        if self.use_regex:
             return obj.matches_regexp(self.list[0],self.case_sensitive)
         return obj.matches_string(self.list[0],self.case_sensitive)
