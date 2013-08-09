@@ -434,7 +434,7 @@ class GrampsLocale(object):
         # a lot of locales.
         lang = locale.normalize(self.language[0] if self.language[0] else 'C')
         check_lang = lang.split('.')
-        if not check_lang[0]  in ('C', 'en', 'en_US'):
+        if not check_lang[0]  in ('C', 'en'):
             if len(check_lang) < 2  or check_lang[1] not in ("utf-8", "UTF-8"):
                 lang = '.'.join((check_lang[0], 'UTF-8'))
 
