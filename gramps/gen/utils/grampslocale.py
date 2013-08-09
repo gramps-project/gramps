@@ -65,12 +65,14 @@ mslocales = {
     'cs': ('Czech_Czech Republic', '1250'),
     'da': ('Danish_Denmark', '1252'),
     'de': ('German_Germany', '1252'),
+    'en': ('English_United States', '1252'),
     'en_GB': ('English_United Kingdom', '1252'),
     'eo': None, #Windows has no translation for Esperanto
     'es': ('Spanish_Spain', '1252'),
     'fi': ('Finnish_Finland', '1252'),
     'fr': ('French_France', '1252'),
     'ga': None, #Windows has no translation for Gaelic
+    'gr':  ('Greek_Greece', '1253'),
     'he': ('Hebrew_Israel', '1255'),
     'hr': ('Croatian_Croatia', '1250'),
     'hu': ('Hungarian_Hungary', '1250'),
