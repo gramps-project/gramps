@@ -70,7 +70,6 @@ editor_rule_list = [
     HasNote,
     RegExpIdOf,
     HasNoteRegexp,
-    HasNoteMatchingSubstringOf,
     HasReferenceCountOf,
     HasSourceCount,
     HasSourceOf,

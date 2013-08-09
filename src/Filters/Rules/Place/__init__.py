@@ -53,7 +53,6 @@ editor_rule_list = [
     HasCitation,
     HasNote,
     HasNoteRegexp,
-    HasNoteMatchingSubstringOf,
     HasReferenceCountOf,
     HasSourceOf,
     HasSourceCount,

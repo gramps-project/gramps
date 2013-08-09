@@ -39,6 +39,6 @@ from Filters.Rules._HasNoteRegexBase import HasNoteRegexBase
 #-------------------------------------------------------------------------
 class HasNoteRegexp(HasNoteRegexBase):
 
-    name        = _('Sources having notes containing <regular expression>')
+    name        = _('Sources having notes containing <text>')
     description = _("Matches sources whose notes contain text "
                     "matching a regular expression")

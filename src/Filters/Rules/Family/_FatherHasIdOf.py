@@ -32,7 +32,7 @@ from gen.ggettext import gettext as _
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from Filters.Rules import HasGrampsId
+from Filters.Rules import RegExpIdBase
 from _MemberBase import father_base
 
 #-------------------------------------------------------------------------
@@ -40,13 +40,13 @@ from _MemberBase import father_base
 # HasNameOf
 #
 #-------------------------------------------------------------------------
-class FatherHasIdOf(HasGrampsId):
+class FatherHasIdOf(RegExpIdBase):
     """Rule that checks for a person with a specific GRAMPS ID"""
 
     labels      = [ _('Person ID:') ]
-    name        = _('Families with father with the <Id>')
+    name        = _('Families having father with Id containing <text>')
     description = _("Matches families whose father has a specified "
                     "Gramps ID")
     category    = _('Father filters')
-    base_class = HasGrampsId
+    base_class = RegExpIdBase
     apply = father_base

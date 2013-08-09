@@ -47,6 +47,7 @@ class HasFamilyAttribute(Rule):
     description = _("Matches people with the family attribute "
                     "of a particular value")
     category    = _('General filters')
+    allow_regex = True
     
     def apply(self,db,person):
         if not self.list[0]:
@@ -58,8 +59,7 @@ class HasFamilyAttribute(Rule):
             for attr in f.get_attribute_list():
                 if attr:
                     name_match = self.list[0] == attr.get_type()
-                    value_match = \
-                            attr.get_value().upper().find(self.list[1].upper()) != -1
+                    value_match = self.match_substring(1, attr.get_value())
                     if name_match and value_match:
                         return True
         return False

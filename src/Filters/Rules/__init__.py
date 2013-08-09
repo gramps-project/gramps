@@ -73,6 +73,7 @@ from Filters.Rules._Rule import Rule
 
 from Filters.Rules._Everything import Everything
 from Filters.Rules._HasGrampsId import HasGrampsId
+from Filters.Rules._RegExpIdBase import RegExpIdBase
 from Filters.Rules._IsPrivate import IsPrivate
 from Filters.Rules._IsPublic import IsPublic
 from Filters.Rules._HasTextMatchingSubstringOf import HasTextMatchingSubstringOf

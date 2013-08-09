@@ -41,19 +41,15 @@ from Filters.Rules import Rule
 class HasRepositoryCallNumberRef(Rule):
     """Sources which reference repositories by a special Call Number"""
 
-    labels      = [ _('Substring:')]
-    name        = _('Sources with repository reference containing <substring> in "Call Number"')
+    labels      = [ _('Text:')]
+    name        = _('Sources with repository reference containing <text> in "Call Number"')
     description = _("Matches sources with a repository reference\n"
                     "containing a substring in \"Call Number\"")
     category    = _('General filters')
+    allow_regex = True
       
     def apply(self, db, obj):
-        count = len(obj.get_reporef_list())
-        if count > 0:
-            for RepoRef in obj.get_reporef_list():
-                if len(RepoRef.call_number) > 0:
-                    CallNumb = RepoRef.call_number
-                    if CallNumb.upper().find(self.list[0].upper()) != -1:
-                        return True			
-			    
+        for repo_ref in obj.get_reporef_list():
+            if self.match_substring(0, repo_ref.call_number):
+                return True			
         return False

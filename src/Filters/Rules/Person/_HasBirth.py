@@ -48,11 +48,11 @@ class HasBirth(Rule):
     name        = _('People with the <birth data>')
     description = _("Matches people with birth data of a particular value")
     category    = _('Event filters')
+    allow_regex = True
     
-    def __init__(self, list, use_regex=False):
-        Rule.__init__(self, list, use_regex)
+    def prepare(self, db):
         if self.list[0]:
-            self.date = DateHandler.parser.parse(self.list[0])
+            self.date = parser.parse(self.list[0])
         else:
             self.date = None
         
@@ -67,9 +67,7 @@ class HasBirth(Rule):
             if event.get_type() != EventType.BIRTH:
                 # No match: wrong type
                 continue
-            ed = event.get_description().upper()
-            if self.list[2] \
-                   and ed.find(self.list[2].upper())==-1:
+            if not self.match_substring(2, event.get_description()):
                 # No match: wrong description
                 continue
             if self.date:
@@ -77,11 +75,10 @@ class HasBirth(Rule):
                     # No match: wrong date
                     continue
             if self.list[1]:
-                pl_id = event.get_place_handle()
-                if pl_id:
-                    pl = db.get_place_from_handle(pl_id)
-                    pn = pl.get_title().upper()
-                    if pn.find(self.list[1].upper()) == -1:
+                place_id = event.get_place_handle()
+                if place_id:
+                    place = db.get_place_from_handle(place_id)
+                    if not self.match_substring(1, place.get_title()):
                         # No match: wrong place
                         continue
                 else:

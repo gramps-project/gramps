@@ -34,7 +34,6 @@ from gen.ggettext import gettext as _
 #
 #-------------------------------------------------------------------------
 from Filters.Rules._Rule import Rule
-import re
 
 #-------------------------------------------------------------------------
 #
@@ -44,25 +43,18 @@ import re
 class RegExpName(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels      = [_('Expression:')]
-    name        = _('People matching the <regex_name>')
-    description = _("Matches people's names with a specified regular expression")
+    labels      = [_('Text:')]
+    name        = _('People with a name matching <text>')
+    description = _("Matches people's names containing a substring or "
+                    "matching a regular expression")
     category    = _('General filters')
-
-    def __init__(self, list, use_regex=False):
-        Rule.__init__(self, list, use_regex)
-        
-        try:
-            self.match = re.compile(list[0],re.I|re.U|re.L)
-        except re.error:
-            #indicate error by matching everyone
-            self.match = re.compile('')
+    allow_regex = True
 
     def apply(self,db,person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
             for field in [name.first_name, name.get_surname(), name.suffix, 
                           name.title, name.nick, name.famnick, name.call]:
-                if self.match.search(field):
+                if self.match_substring(0, field):
                     return True
         else:
             return False

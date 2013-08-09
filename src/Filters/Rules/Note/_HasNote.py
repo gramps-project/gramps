@@ -50,6 +50,7 @@ class HasNote(Rule):
     name        = _('Notes matching parameters')
     description = _("Matches Notes with particular parameters")
     category    = _('General filters')
+    allow_regex = True
 
     def prepare(self, dbase):
         if self.list[1]:

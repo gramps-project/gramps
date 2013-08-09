@@ -45,6 +45,6 @@ class RegExpIdOf(RegExpIdBase):
     matches regular expression.
     """
 
-    name        = _('Events with <Id> matching regular expression')
+    name        = _('Events with Id containing <text>')
     description = _("Matches events whose Gramps ID matches "
                     "the regular expression")

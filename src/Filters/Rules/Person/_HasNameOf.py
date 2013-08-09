@@ -27,7 +27,6 @@
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
-import re
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +44,7 @@ from gen.lib import NameOriginType
 class HasNameOf(Rule):
     """Rule that checks for full or partial name matches"""
 
-    labels      =  [ _('Given name:'),
+    labels      =  [_('Given name:'),
                     _('Full Family name:'),
                     _('person|Title:'),
                     _('Suffix:'),
@@ -55,117 +54,47 @@ class HasNameOf(Rule):
                     _('Single Surname:'),
                     _('Connector'),
                     _('Patronymic:'),
-                    _('Family Nick Name:'),
-                    _('Regular-Expression matching:')]
+                    _('Family Nick Name:')]
     name        = _('People with the <name>')
     description = _("Matches people with a specified (partial) name")
     category    = _('General filters')
+    allow_regex = True
 
-    def prepare(self, db):
-        if len(self.list) >= 12:
-            self.regular_expression = bool(int(self.list[11]))
-        else:
-            self.regular_expression = False
-        if self.regular_expression:
-            self.firstn = self.list[0]
-            self.lastn = self.list[1]
-            self.title = self.list[2]
-            self.suffix = self.list[3]
-            self.calln = self.list[4]
-            self.nick = self.list[5]
-            self.famnick = self.list[10]
-            #surname parts
-            self.prefix = self.list[6]
-            self.surn = self.list[7]
-            self.con = self.list[8]
-            self.patr = self.list[9]
-        else:
-            self.firstn = self.list[0].upper()
-            self.lastn = self.list[1].upper()
-            self.title = self.list[2].upper()
-            self.suffix = self.list[3].upper()
-            self.calln = self.list[4].upper()
-            self.nick = self.list[5].upper()
-            self.famnick = self.list[10].upper()
-            #surname parts
-            self.prefix = self.list[6].upper()
-            self.surn = self.list[7].upper()
-            self.con = self.list[8].upper()
-            self.patr = self.list[9].upper()
-        
     def apply(self, db, person):
         for name in [person.get_primary_name()] + person.get_alternate_names():
-            val = 1
-            valpref = 0
-            if not self.prefix:
-                valpref = 1
-            valsurn = 0
-            if not self.surn:
-                valsurn = 1
-            valcon = 0
-            if not self.con:
-                valcon = 1
-            valpatr = 0
-            if not self.patr:
-                valpatr = 1
-            if self.regular_expression:
-                try:
-                    if self.firstn and not re.search(self.firstn, name.get_first_name(), re.I|re.U|re.L):
-                        val = 0
-                    elif self.lastn and not re.search(self.lastn, name.get_surname(), re.I|re.U|re.L):
-                        val = 0
-                    elif self.suffix and not re.search(self.suffix, name.get_suffix(), re.I|re.U|re.L):
-                        val = 0
-                    elif self.title and not re.search(self.title, name.get_title(), re.I|re.U|re.L):
-                        val = 0
-                    elif self.calln and not re.search(self.calln, name.get_call_name(), re.I|re.U|re.L):
-                        val = 0
-                    elif self.nick and not re.search(self.nick, name.get_nick_name(), re.I|re.U|re.L):
-                        val = 0
-                    elif self.famnick and not re.search(self.famnick, name.get_family_nick_name(), re.I|re.U|re.L):
-                        val = 0
-                    else:
-                        #obtain surnames
-                        for surn in name.get_surname_list():
-                            if self.prefix and re.search(self.prefix, surn.get_prefix(), re.I|re.U|re.L):
-                                valpref = 1
-                            if self.surn and re.search(self.surn, surn.get_surname(), re.I|re.U|re.L):
-                                valsurn = 1
-                            if self.con and re.search(self.con, surn.get_connector(), re.I|re.U|re.L):
-                                valcon = 1
-                            if self.patr and surn.get_origintype().value == NameOriginType.PATRONYMIC \
-                                    and re.search(self.patr, surn.get_surname(), re.I|re.U|re.L):
-                                valpatr = 1
-                except re.error:
-                    #indicate error in the pattern by matching everyone
-                    return True
-            else:
-                if self.firstn and name.get_first_name().upper().find(self.firstn) == -1:
-                    val = 0
-                elif self.lastn and name.get_surname().upper().find(self.lastn) == -1:
-                    val = 0
-                elif self.suffix and name.get_suffix().upper().find(self.surn) == -1:
-                    val = 0
-                elif self.title and name.get_title().upper().find(self.title) == -1:
-                    val = 0
-                elif self.calln and name.get_call_name().upper().find(self.calln) == -1:
-                    val = 0
-                elif self.nick and name.get_nick_name().upper().find(self.nick) == -1:
-                    val = 0
-                elif self.famnick and name.get_family_nick_name().upper().find(self.famnick) == -1:
-                    val = 0
-                else:
-                    #obtain surnames
-                    for surn in name.get_surname_list():
-                        if self.prefix and surn.get_prefix().upper().find(self.prefix) != -1:
-                            valpref = 1
-                        if self.surn and surn.get_surname().upper().find(self.surn) != -1:
-                            valsurn = 1
-                        if self.con and surn.get_connector().upper().find(self.con) != -1:
-                            valcon = 1
-                        if self.patr and surn.get_origintype().value == NameOriginType.PATRONYMIC \
-                                and surn.get_surname().upper().find(self.patr) != -1:
-                            valpatr = 1
-            if val == 1 and valpref == 1 and valsurn == 1 and valcon == 1 and valpatr ==1:
+            if self.match_name(name):
                 return True
         return False
+
+    def match_name(self, name):
+        if self.list[0] and not self.match_substring(0, name.get_first_name()):
+            return False
+        elif self.list[1] and not self.match_substring(1, name.get_surname()):
+            return False
+        elif self.list[2] and not self.match_substring(2, name.get_title()):
+            return False
+        elif self.list[3] and not self.match_substring(3, name.get_suffix()):
+            return False
+        elif self.list[4] and not self.match_substring(4, name.get_call_name()):
+            return False
+        elif self.list[5] and not self.match_substring(5, name.get_nick_name()):
+            return False
+        elif self.list[10] and not self.match_substring(10, name.get_family_nick_name()):
+            return False
+        else:
+            for surn in name.get_surname_list():
+                if self.match_surname(surn):
+                    return True
+        return False
+
+    def match_surname(self, surn):
+        if self.list[6] and not self.match_substring(6, surn.get_prefix()):
+            return False
+        if self.list[7] and not self.match_substring(7, surn.get_surname()):
+            return False
+        if self.list[8] and not self.match_substring(8, surn.get_connector()):
+            return False
+        if surn.get_origintype().value == NameOriginType.PATRONYMIC:
+            if self.list[9] and not self.match_substring(9, surn.get_surname()):
+                return False
+        return True

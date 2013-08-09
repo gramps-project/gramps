@@ -43,7 +43,6 @@ editor_rule_list = [
     RegExpIdOf,
     HasNote,
     MatchesRegexpOf,
-    MatchesSubstringOf,
     HasReferenceCountOf,
     NotePrivate,
     MatchesFilter,

@@ -41,25 +41,18 @@ from Filters.Rules import Rule
 class HasNoteRegexBase(Rule):
     """People having notes containing <substring>."""
 
-    labels      = [ _('Regular expression:')]
-    name        = _('Objects having notes containing <regular expression>')
-    description = _("Matches objects whose notes contain text "
-                    "matching a regular expression")
+    labels      = [ _('Text:')]
+    name        = _('Objects having notes containing <text>')
+    description = _("Matches objects whose notes contain a substring "
+                    "or match a regular expression")
     category    = _('General filters')
-
-    def __init__(self, list, use_regex=False):
-        Rule.__init__(self, list, use_regex)
-        
-        try:
-            self.match = re.compile(list[0],re.I|re.U|re.L)
-        except:
-            self.match = re.compile('')
+    allow_regex = True
 
     def apply(self, db, person):
         notelist = person.get_note_list()
         for notehandle in notelist:
             note = db.get_note_from_handle(notehandle)
             n = note.get()
-            if self.match.search(n) is not None:
+            if self.match_substring(0, n) is not None:
                 return True
         return False
