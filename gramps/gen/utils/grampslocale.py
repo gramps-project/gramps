@@ -54,66 +54,69 @@ ICU_LOCALES = None
 if HAVE_ICU:
     ICU_LOCALES = Locale.getAvailableLocales()
 
-        #Map our translated language codes to Microsoft Locale Names
-        #Important: Maintain this list with new translations or they
-        #won't work under MS Windows!
-mslocales = {
-    'ar': ('Arabic_Saudi Arabia', '1256'),
-    'bg': ('Bulgrian_Bulgaria', '1251'),
-    'br': None, #Windows has no translation for Breton
-    'ca': ('Catalang_Spain', '1252'),
-    'cs': ('Czech_Czech Republic', '1250'),
-    'da': ('Danish_Denmark', '1252'),
-    'de': ('German_Germany', '1252'),
-    'en': ('English_United States', '1252'),
-    'en_GB': ('English_United Kingdom', '1252'),
-    'eo': None, #Windows has no translation for Esperanto
-    'es': ('Spanish_Spain', '1252'),
-    'fi': ('Finnish_Finland', '1252'),
-    'fr': ('French_France', '1252'),
-    'ga': None, #Windows has no translation for Gaelic
-    'gr':  ('Greek_Greece', '1253'),
-    'he': ('Hebrew_Israel', '1255'),
-    'hr': ('Croatian_Croatia', '1250'),
-    'hu': ('Hungarian_Hungary', '1250'),
-    'it': ('Italian_Italy', '1252'),
-    'ja': ('Japanese_Japan', '932'),
-    'lt': ('Lithuanian_Lithuania', '1252'),
-    'mk': None, #Windows has no translation for Macedonian
-    'nb': ('Norwegian_Norway', '1252'),
-    'nl': ('Dutch_Netherlands', '1252'),
-    'nn': ('Norwegian-Nynorsk_Norway', '1252'),
-    'pl': ('Polish_Poland', '1250'),
-    'pt_BR': ('Portuguese_Brazil', '1252'),
-    'pt_PT': ('Portuguese_Portugal', '1252'),
-    'ro': ('Romanian_Romania', '1250'),
-    'ru': ('Russian_Russia', '1251'),
-    'sk': ('Slovak_Slovakia', '1250'),
-    'sl': ('Slovenian_Slovenia', '1250'),
-    'sq': ('Albanian_Albania', '1250'),
-    'sr': ('Serbian(Cyrillic)_Serbia and Montenegro', '1251'),
-    'sv': ('Swedish_Sweden', '1252'),
-    'tr': ('Turkish_Turkey', '1254'),
-    'uk': ('Ukrainian_Ukraine', '1251'),
-    'vi': ('Vietnamese_Viet Nam', '1258'),
-    'zh_CN': ('Chinese_China', '936'),
+# Map of languages for converting to Microsoft locales and naming
+# locales for display to the user.  It's important to add to this list
+# when a new translation is added.  Note the dummy _(): That's just to
+# get xgettext to include the string in gramps.pot; actual translation
+# is done in _get_language_string() below.
+_ = lambda x: x
+_LOCALE_NAMES = {
+    'ar': ('Arabic_Saudi Arabia', '1256', _("Arabic")),
+    'bg': ('Bulgrian_Bulgaria', '1251', _("Bulgarian")),
+    'br': (None, None, _("Breton")), #Windows has no translation for Breton
+    'ca': ('Catalan_Spain', '1252', _("Catalan")),
+    'cs': ('Czech_Czech Republic', '1250', _("Czech")),
+    'da': ('Danish_Denmark', '1252', _("Danish")),
+    'de': ('German_Germany', '1252',  _("German")),
+    'el': ('Greek_Greece', '1253', _("Greek")),
+    'en': ('English_United States', '1252', _("English (USA)")),
+    'en_GB': ('English_United Kingdom', '1252', _("English")),
+    'eo': (None, None, _("Esperanto")), #Windows has no translation for Esperanto
+    'es': ('Spanish_Spain', '1252', _("Spanish")),
+    'fi': ('Finnish_Finland', '1252', _("Finnish")),
+    'fr': ('French_France', '1252', _("French")),
+    'ga': (None, None, _("Gaelic")), #Windows has no translation for Gaelic
+    'he': ('Hebrew_Israel', '1255', _("Hebrew")),
+    'hr': ('Croatian_Croatia', '1250', _("Croatian")),
+    'hu': ('Hungarian_Hungary', '1250', _("Hungarian")),
+    'it': ('Italian_Italy', '1252', _("Italian")),
+    'ja': ('Japanese_Japan', '932', _("Japanese")),
+    'lt': ('Lithuanian_Lithuania', '1252', _("Lithuanian")),
+    'mk': (None, None, _("Macedonian")), #Windows has no translation for Macedonian
+    'nb': ('Norwegian_Norway', '1252', _("Norwegian Bokmal")),
+    'nl': ('Dutch_Netherlands', '1252', _("Dutch")),
+    'nn': ('Norwegian-Nynorsk_Norway', '1252', _("Norwegian Nynorsk")),
+    'pl': ('Polish_Poland', '1250', _("Polish")),
+    'pt_BR': ('Portuguese_Brazil', '1252', _("Portuguese (Brazil)")),
+    'pt_PT': ('Portuguese_Portugal', '1252', _("Portuguese (Portugal)")),
+    'ro': ('Romanian_Romania', '1250', _("Romanian")),
+    'ru': ('Russian_Russia', '1251', _("Russian")),
+    'sk': ('Slovak_Slovakia', '1250', _("Slovak"),),
+    'sl': ('Slovenian_Slovenia', '1250', _("Slovenian")),
+    'sq': ('Albanian_Albania', '1250', _("Albanian")),
+    'sr': ('Serbian(Cyrillic)_Serbia and Montenegro', '1251', None), #Gramps's Serbian translation is not yet ready
+    'sv': ('Swedish_Sweden', '1252', _("Swedish")),
+    'tr': ('Turkish_Turkey', '1254', _("Turkish")),
+    'uk': ('Ukrainian_Ukraine', '1251', _("Ukrainian")),
+    'vi': ('Vietnamese_Viet Nam', '1258', _("Vietnamese")),
+    'zh_CN': ('Chinese_China', '936', _("Chinese Simplified")),
     }
 
 def _check_mswin_locale(locale):
     msloc = None
     try:
-        msloc = mslocales[locale[:5]]
+        msloc = _LOCALE_NAMES[locale[:5]]
         locale = locale[:5]
     except KeyError:
         try:
-            msloc = mslocales[locale[:2]]
+            msloc = _LOCALE_NAMES[locale[:2]]
             locale = locale[:2]
         except KeyError:
             return (None, None)
     return (locale, msloc)
 
 def _check_mswin_locale_reverse(locale):
-    for (loc, msloc) in mslocales.items():
+    for (loc, msloc) in _LOCALE_NAMES.items():
         if msloc and locale == msloc[0]:
             return (loc, msloc[1])
 
@@ -545,10 +548,6 @@ class GrampsLocale(object):
             self.translation = GrampsNullTranslations()
             self.translation._language = "en"
 
-        # This is a no-op for secondaries but needs the translation
-        # set, so it needs to be here.
-        self._set_dictionaries()
-
         if _hdlr:
             LOG.removeHandler(_hdlr)
 
@@ -599,72 +598,26 @@ class GrampsLocale(object):
         code. Note that _lang_map and _country_map are class
         variables, so this function is no-op in secondary locales.
         """
-        _ = self.translation.gettext
-        if not self._lang_map:
-            self._lang_map = {
-                "ar" : _("Arabic"),
-                "bg" : _("Bulgarian"),
-                "ca" : _("Catalan"),
-                "cs" : _("Czech"),
-                "da" : _("Danish"),
-                "de" : _("German"),
-                "el" : _("Greek"),
-                "en" : _("English"),
-                "eo" : _("Esperanto"),
-                "es" : _("Spanish"),
-                "fi" : _("Finnish"),
-                "fr" : _("French"),
-                "he" : _("Hebrew"),
-                "hr" : _("Croatian"),
-                "hu" : _("Hungarian"),
-                "it" : _("Italian"),
-                "ja" : _("Japanese"),
-                "lt" : _("Lithuanian"),
-                "mk" : _("Macedonian"),
-                "nb" : _("Norwegian Bokmal"),
-                "nl" : _("Dutch"),
-                "nn" : _("Norwegian Nynorsk"),
-                "pl" : _("Polish"),
-                "pt" : _("Portuguese"),
-                "ro" : _("Romanian"),
-                "ru" : _("Russian"),
-                "sk" : _("Slovak"),
-                "sl" : _("Slovenian"),
-                "sq" : _("Albanian"),
-                "sv" : _("Swedish"),
-                "tr" : _("Turkish"),
-                "uk" : _("Ukrainian"),
-                "vi" : _("Vietnamese"),
-                "zh" : _("Chinese")
-            }
-
-        if not self._country_map:
-            self._country_map = {
-                "BR" : _("Brazil"),
-                "CN" : _("China"),
-                "PT" : _("Portugal")
-                }
 
     def _get_language_string(self, lang_code):
         """
         Given a language code of the form "lang_region", return a text string
         representing that language.
         """
-        code_parts = lang_code.rsplit("_")
+        try:
+            lang = _LOCALE_NAMES[lang_code][2]
+        except KeyError:
+            try:
+                lang = _LOCALE_NAMES[lang_code[:2]][2]
+            except KeyError:
+                LOG.debug("Gramps has no translation for %s", lang_code)
+                lang = None
+        except IndexError as err:
+            LOG.debug("Bad Index for tuple %s\n" % _LOCALE_NAMES[lang_code][0])
+            lang = None
 
-        lang = code_parts[0]
-
-        if lang in self._lang_map:
-            lang = self._lang_map[lang]
-
-        country = None
-        if len(code_parts) > 1:
-            country = code_parts[1]
-        if country in self._country_map:
-            country = self._country_map[country]
-            lang = "%(language)s (%(country)s)" % \
-                { 'language' : lang, 'country'  : country  }
-
+        if lang:
+            return self.translation.gettext(lang)
         return lang
 
 #-------------------------------------------------------------------------
@@ -845,12 +798,14 @@ class GrampsLocale(object):
         return a dictionary of language names : codes for use by language
         pickers.
         '''
-        langs = {}
-        for code in self.get_available_translations():
-            langs[self._get_language_string(code)] = code
+#        langs = {}
+#        for code in self.get_available_translations():
+#            lang = self._get_language_string(code)
+#            if not lang is None:
+#                langs[lang] = code
 
-        return langs
-
+#       return langs
+        return {self._get_language_string(code) : code for code in self.get_available_translations() if not self._get_language_string(code) is None}
 
     def trans_objclass(self, objclass_str):
         """
