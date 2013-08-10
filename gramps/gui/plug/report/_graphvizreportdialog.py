@@ -94,7 +94,7 @@ class GraphvizFormatComboBox(Gtk.ComboBox):
     def get_ext(self):
         return '.%s' % graphdoc.FORMATS[self.get_active()]['ext']
 
-    def get_format_str(self):
+    def get_oformat_str(self): # the report's output-format type
         return graphdoc.FORMATS[self.get_active()]["type"]
 
     def is_file_output(self):
@@ -212,15 +212,15 @@ class GraphvizReportDialog(ReportDialog):
             fname = spath
         self.target_fileentry.set_filename(fname)
             
-        format_str = obj.get_format_str()
-        if format_str in ['gvpdf', 'gspdf', 'ps']:
+        output_format_str = obj.get_oformat_str()
+        if output_format_str in ['gvpdf', 'gspdf', 'ps']:
             # Always use 72 DPI for PostScript and PDF files.
             self.__gvoptions.dpi.set_value(72)
             self.__gvoptions.dpi.set_available(False)
         else:
             self.__gvoptions.dpi.set_available(True)
 
-        if format_str in ['gspdf', 'dot']:
+        if output_format_str in ['gspdf', 'dot']:
             # Multiple pages only valid for dot and PDF via GhostsScript.
             self.__gvoptions.h_pages.set_available(True)
             self.__gvoptions.v_pages.set_available(True)
