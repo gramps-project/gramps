@@ -27,9 +27,14 @@
   <binary>
     ${prefix}/lib/gdk-pixbuf-2.0/${pkg:gdk-pixbuf-2.0:gdk_pixbuf_binary_version}/
   </binary>
-<!-- Copy in the theme engines. -->
+<!-- Copy in the theme engines, -->
   <binary>
     ${prefix}/lib/gtk-2.0/${pkg:gtk+-2.0:gtk_binary_version}/engines/*.so
+  </binary>
+
+<!-- The the quartz input method module, -->
+  <binary>
+    ${prefix}/lib/gtk-2.0/${pkg:gtk+-2.0:gtk_binary_version}/immodules/im-quartz.so
   </binary>
 
 <!-- And the print backends -->
