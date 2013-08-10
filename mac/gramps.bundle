@@ -30,9 +30,14 @@
   <binary>
     ${prefix}/lib/gdk-pixbuf-2.0/${pkg:gdk-pixbuf-2.0:gdk_pixbuf_binary_version}/
   </binary>
-<!-- Copy in the input methods. Dunno if they actually work with OSX. -->
+<!-- Copy in the quartz input method. -->
   <binary>
-    ${prefix}/lib/${gtkdir}/${pkg:${gtk}:gtk_binary_version}/immodules/*.so
+    ${prefix}/lib/${gtkdir}/${pkg:${gtk}:gtk_binary_version}/immodules/im-quartz.so
+  </binary>
+
+<!-- Copy in the theme engines, -->
+  <binary>
+    ${prefix}/lib/gtk-2.0/${pkg:${gtk}:gtk_binary_version}/engines/*.so
   </binary>
 
 <!-- And the print backends -->
