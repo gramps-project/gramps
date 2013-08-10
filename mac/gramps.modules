@@ -19,8 +19,6 @@
 	      href="https://gramps-addons.svn.sourceforge.net/svnroot/gramps-addons/"/>
   <repository type="tarball" name="oracle"
 	      href="http://download.oracle.com/"/>
-  <repository type="tarball" name="pymodules"
-	      href="http://pypi.python.org/packages/source/"/>
   <repository type="tarball" name="stowers"
 	     href="http://www.johnstowers.co.nz/files/"/>
   <repository type="tarball" name="graphviz"
@@ -116,15 +114,6 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <dependencies>
       <dep package="WebKit"/>
       <dep package="sqlite"/>
-    </dependencies>
-  </autotools>
-
-<!-- goocanvas 2.0 is for Gtk+-3.0. Go figure. -->
-  <autotools id="goocanvas" autogen-sh="configure">
-    <branch module="goocanvas/1.0/goocanvas-1.0.0.tar.bz2" version="1.0.0"
-	    repo="ftp.gnome.org" hash="sha256:1c072ef88567cad241fb4addee26e9bd96741b1503ff736d1c152fa6d865711e"/>
-    <dependencies>
-      <dep package="gtk+"/>
     </dependencies>
   </autotools>
 
