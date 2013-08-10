@@ -55,12 +55,9 @@ from .repo import Repository
 from .note import Note
 from .citation import Citation
 
-# Logical objects
-from .srctemplate import SrcTemplate
-from .srctemplatelist import SrcTemplateList
-
 # Table objects
 from .tag import Tag
+from .srctemplate import SrcTemplate
 
 # These are actually metadata
 from .genderstats import GenderStats

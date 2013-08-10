@@ -908,16 +908,20 @@ class GedcomWriter(UpdateCallback):
         for (source_id, handle) in sorted_list:
             source = self.dbase.get_source_from_handle(handle)
             if source is None: continue
+            templatehandle = source.get_template()
+            if templatehandle is None: continue
+            template = self.dbase.get_template_from-handle(templatehandle)
             self._writeln(0, '@%s@' % source_id, 'SOUR')
-            stitle = source.get_gedcom_title()
+            attrlist = source.get_attribute_list()
+            stitle = template.title_gedcom(attrlist)
             if stitle:
                 self._writeln(1, 'TITL', stitle)
 
-            sauth = source.get_gedcom_author()
+            sauth = template.author_gedcom(attrlist)
             if sauth:
                 self._writeln(1, "AUTH", sauth)
 
-            spubi = source.get_gedcom_publication_info()
+            spubi = template.pubinfo_gedcom(attrlist)
             if spubi:
                 self._writeln(1, "PUBL", spubi)
 
@@ -1270,7 +1274,12 @@ class GedcomWriter(UpdateCallback):
 
         # Reference to the source
         self._writeln(level, "SOUR", "@%s@" % src.get_gramps_id())
-        gedcom_page = citation.get_gedcom_page(src.get_template())
+        templatehandle = src.get_template()
+        if templatehandle:
+            template = self.dbase.get_template_from_handle(templatehandle)
+            gedcom_page = template.page_gedcom(citation.get_attribute_list())
+        else:
+            gedcom_page = citation.get_name()
         if gedcom_page != "":
         # PAGE <WHERE_WITHIN_SOURCE> can not have CONC lines.
         # WHERE_WITHIN_SOURCE:= {Size=1:248}

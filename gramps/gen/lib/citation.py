@@ -46,7 +46,6 @@ from .datebase import DateBase
 from .tagbase import TagBase
 from .srcattrbase import SrcAttributeBase
 from .srctemplate import SrcTemplate
-from .srctemplatelist import SrcTemplateList
 from ..constfunc import cuni, deprecated
 from .handle import Handle
 
@@ -329,20 +328,3 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject, DateBase):
         reference information
         """
         return self.get_name()
-
-    def get_gedcom_page(self, templatekey):
-        """
-        Return the descriptive page part as used in GEDCOM
-        page depends on the source template. The logic is:
-        1. obtain template, if no key given, name of citation is used
-        2. create page from the 'full' reference
-
-        :returns: Returns the descriptive page part of the citation
-        :rtype: str
-        """
-        attrlist = self.get_attribute_list()
-        if templatekey:
-            stemp = SrcTemplateList().get_template_from_name(templatekey)
-            return stemp.page_gedcom(attrlist)
-        else:
-            return self.get_name()

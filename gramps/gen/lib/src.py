@@ -58,7 +58,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         NoteBase.__init__(self)
         SrcAttributeBase.__init__(self)
         self.name = ""
-        self.template = 'GEDCOM'
+        self.template = None
         self.abbrev = ""
         self.reporef_list = []
         
@@ -69,7 +69,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
         return (self.handle,                                       # 0
                 self.gramps_id,                                    # 1
                 cuni(self.name),                                   # 2
-                cuni(self.template),                               # 3
+                self.template,                                     # 3
                 NoteBase.serialize(self),                          # 4
                 MediaBase.serialize(self),                         # 5
                 cuni(self.abbrev),                                 # 6
@@ -428,52 +428,15 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
 
     @deprecated
     def get_title(self):
-        return self.get_gedcom_title()
+        return "title not available"
+#        return self.get_gedcom_title()
 
     @deprecated
     def get_author(self):
-        return self.get_gedcom_author()
+        return "author not available"
+#        return self.get_gedcom_author()
 
     @deprecated
     def get_publication_info(self):
-        return self.get_gedcom_publication_info()
-
-    def get_gedcom_title(self):
-        """
-        Return the descriptive title of the source
-        Title depends on the source template. The logic is:
-        1. obtain template
-        2. create title from the 'full' reference
-        3. if no template, it defaults to GEDCOM, so TITLE will be used
-
-        :returns: Returns the descriptive title of the source
-        :rtype: str
-        """
-        attrlist = self.get_attribute_list()
-        stemp = SrcTemplateList().get_template_from_name(self.get_template())
-        
-        return stemp.title_gedcom(attrlist)
-
-    def get_gedcom_author(self):
-        """Return the author of the Source.
-        Author depends on the source template. The logic is:
-        1. obtain template
-        2. create author from the 'full' reference
-        3. if no template, it defaults to GEDCOM, so AUTHOR will be used
-        """
-        attrlist = self.get_attribute_list()
-        stemp = SrcTemplateList().get_template_from_name(self.get_template())
-        
-        return stemp.author_gedcom(attrlist)
-
-    def get_gedcom_publication_info(self):
-        """Return the publication information of the Source.
-        PubInfo depends on the source template. The logic is:
-        1. obtain template
-        2. create pubinfo from the 'full' reference
-        3. if no template, it defaults to GEDCOM, so PUB_INFO will be used
-        """
-        attrlist = self.get_attribute_list()
-        stemp = SrcTemplateList().get_template_from_name(self.get_template())
-        
-        return stemp.pubinfo_gedcom(attrlist)
+        return "pubinfo not available"
+#        return self.get_gedcom_publication_info()

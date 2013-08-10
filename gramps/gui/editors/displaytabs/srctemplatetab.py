@@ -52,7 +52,7 @@ LOG = logging.getLogger('.template')
 #-------------------------------------------------------------------------
 from gramps.gen.lib.srcattrtype import (SrcAttributeType, REF_TYPE_F, 
                                 REF_TYPE_S, REF_TYPE_L, EMPTY)
-from gramps.gen.lib import SrcAttribute, SrcTemplate, SrcTemplateList
+from gramps.gen.lib import SrcAttribute, SrcTemplate
 from gramps.gen.plug.report.utils import get_address_ref_str
 from ...autocomp import StandardCustomSelector
 from ...widgets.srctemplatetreeview import SrcTemplateTreeView
@@ -92,6 +92,7 @@ class SrcTemplateTab(GrampsTab):
         self.glade = glade
         self.callback_src_changed = callback_src_changed
         self.readonly = dbstate.db.readonly
+        self.db = dbstate.db
 
         self.autoset_title = False
 
@@ -133,7 +134,7 @@ class SrcTemplateTab(GrampsTab):
         :param scrolled: GtkScrolledWindow to which to add treeview with templates
         """
         templ = self.src.get_template()
-        self.temp_tv = SrcTemplateTreeView(templ,
+        self.temp_tv = SrcTemplateTreeView(templ, self.db,
                                 sel_callback=self.on_template_selected)
         scrolled.add(self.temp_tv)
         
@@ -147,7 +148,7 @@ class SrcTemplateTab(GrampsTab):
         If title of the source is what we would set with autotitle, we set
         the checkbox to true. Otherwise to False
         """
-        srctemp = SrcTemplateList().get_template_from_name(self.src.get_template())
+        srctemp = self.db.get_template_from_handle(self.src.get_template())
         srctemp.set_attr_list(self.src.get_attribute_list())
         title = srctemp.title_gedcom()
         if self.src.get_title() == title:
@@ -207,19 +208,17 @@ class TemplateFields(object):
         self.btns = []
         self.monentry = []
 
-    def reset_template_fields(self, key):
+    def reset_template_fields(self, handle):
         """
         Method that constructs the actual fields where user can enter data.
-        Template must be the index of the template.
+        handle is the handle of the template.
         """
         show_default_cite_fields = False #we don't do this for now
-        #obtain the template of the key
-        if SrcTemplateList().template_defined(key):
-            #a predefined template, 
-            template = SrcTemplateList().get_template_from_name(key).get_structure()
-            telist = SrcTemplateList().get_template_from_name(key).get_template_element_list()
+        if handle:
+            template = self.db.get_template_from_handle(handle)
+            telist = template.get_template_element_list()
         else:
-            LOG.warn("template not defined %s" % key)
+            LOG.warn("template not defined %s" % handle)
             return
         
         # first remove old fields
@@ -309,18 +308,15 @@ class TemplateFields(object):
         Add an entryfield to the grid of fields at row row, to edit the given
         srcattrtype value. Use alt_label if given to indicate the field
         (otherwise the srcattrtype string description is used)
-        Note srcattrtype should actually be the integer key of the type!
+        Note srcattrtype should actually be the English name of the type!
         """
         self.gridfields.insert_row(row)
         field = srcattrtype
-        if isinstance(field, STRTYPE):
-            raise NotImplementedError("type must be the integer key")
         #setup label
         if alt_label:
-            label = alt_label
+            label = _(alt_label)
         else:
-            srcattr = SrcAttributeType(field)
-            label = str(srcattr)
+            label = _(srcattrtype)
         lbl = Gtk.Label(_("%s:") % label)
         lbl.set_halign(Gtk.Align.START)
         self.gridfields.attach(lbl, 0, row-1, 1, 1)
@@ -329,7 +325,8 @@ class TemplateFields(object):
                 SrcAttributeType.REPOSITORY_ADDRESS,
                 SrcAttributeType.REPOSITORY_CALL_NUMBER]:
             self._add_repo_entry(srcattrtype, row)
-        elif self.cite and srcattrtype == SrcAttributeType.DATE:
+        elif self.cite and \
+             srcattrtype == SrcAttributeType.DATE:
             #the DATE on level citation is not an attribute but stored
             #as date in the citation
             self._add_cite_date(row)
@@ -345,19 +342,19 @@ class TemplateFields(object):
         inpt.set_halign(Gtk.Align.FILL)
         inpt.set_hexpand(True)
         if tooltip:
-            inpt.set_tooltip_text(tooltip)
+            inpt.set_tooltip_text(_(tooltip))
         self.gridfields.attach(inpt, 1, row-1, 1, 1)
         self.inpts.append(inpt)
         if self.cite:
             MonitoredEntryIndicator(inpt, self.set_cite_field, self.get_cite_field,
-                           hint or "",
+                           _(hint or ""),
                            read_only=self.db.readonly, 
-                           parameter=srcattrtype)
+                           parameter=_(srcattrtype))
         else:
             MonitoredEntryIndicator(inpt, self.set_src_field, self.get_src_field,
-                           hint or "",
+                           _(hint or ""),
                            read_only=self.db.readonly, 
-                           parameter=srcattrtype)
+                           parameter=_(srcattrtype))
 
     def _add_cite_date(self, row):
         """
@@ -437,12 +434,12 @@ class TemplateFields(object):
 
     def __get_field(self, srcattrtype, obj):
         """
-        Obtain srcattribute with type srcattrtype, where srcattrtype is an
-        integer key!
+        Obtain srcattribute with type srcattrtype, where srcattrtype is the
+        English name of the attribute!
         """
         val = ''
         for attr in obj.attribute_list:
-            if int(attr.get_type()) == srcattrtype:
+            if attr.get_type() == srcattrtype:
                 val = attr.get_value()
                 break
         return val
@@ -459,13 +456,13 @@ class TemplateFields(object):
 
     def __set_field(self, value, srcattrtype, obj):
         """
-        Set attribute of source of type srcattrtype (which is integer!) to 
-        value. If not present, create attribute. If value == '', remove
+        Set attribute of source of type srcattrtype (which is the English name)
+        to value. If not present, create attribute. If value == '', remove
         """
         value = value.strip()
         foundattr = None
         for attr in obj.attribute_list:
-            if int(attr.get_type()) == srcattrtype:
+            if attr.get_type() == srcattrtype:
                 attr.set_value(value)
                 foundattr = attr
                 break

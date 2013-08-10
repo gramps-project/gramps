@@ -46,7 +46,7 @@ __all__ = (
             
             ('PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'CITATION_KEY',
              'EVENT_KEY', 'MEDIA_KEY', 'PLACE_KEY', 'REPOSITORY_KEY',
-             'NOTE_KEY', 'REFERENCE_KEY', 'TAG_KEY'
+             'NOTE_KEY', 'REFERENCE_KEY', 'TAG_KEY', 'TEMPLATE_KEY'
             ) +
 
             ('TXNADD', 'TXNUPD', 'TXNDEL')
@@ -87,5 +87,6 @@ REFERENCE_KEY  = 7
 NOTE_KEY       = 8
 TAG_KEY        = 9
 CITATION_KEY   = 10
+TEMPLATE_KEY   = 11
 
 TXNADD, TXNUPD, TXNDEL = 0, 1, 2

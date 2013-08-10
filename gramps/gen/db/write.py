@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2008  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011-2013  Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -66,6 +66,7 @@ from ..lib.repo import Repository
 from ..lib.mediaobj import MediaObject
 from ..lib.note import Note
 from ..lib.tag import Tag
+from ..lib.srctemplate import SrcTemplate
 from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher 
 
@@ -98,6 +99,7 @@ NIDTRANS    = "note_id"
 SIDTRANS    = "source_id"
 CIDTRANS    = "citation_id"
 TAGTRANS    = "tag_name"
+TEMPLATETRANS    = "template_name"
 SURNAMES    = "surnames"
 NAME_GROUP  = "name_group"
 META        = "meta_data"
@@ -112,6 +114,7 @@ PERSON_TBL  = "person"
 REPO_TBL    = "repo"
 NOTE_TBL    = "note"
 TAG_TBL     = "tag"
+TEMPLATE_TBL     = "template"
 
 REF_MAP     = "reference_map"
 REF_PRI     = "primary_map"
@@ -135,7 +138,9 @@ CLASS_TO_KEY_MAP = {Person.__name__: PERSON_KEY,
                     Place.__name__: PLACE_KEY, 
                     Repository.__name__:REPOSITORY_KEY,
                     Note.__name__: NOTE_KEY,
-                    Tag.__name__: TAG_KEY}
+                    Tag.__name__: TAG_KEY,
+                    SrcTemplate.__name__: TEMPLATE_KEY,
+                   }
 
 KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__, 
                     FAMILY_KEY: Family.__name__, 
@@ -146,7 +151,9 @@ KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__,
                     PLACE_KEY: Place.__name__, 
                     REPOSITORY_KEY: Repository.__name__,
                     NOTE_KEY: Note.__name__,
-                    TAG_KEY: Tag.__name__}
+                    TAG_KEY: Tag.__name__,
+                    TEMPLATE_KEY: SrcTemplate.__name__,
+                   }
 
 KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
                    FAMILY_KEY: 'family',
@@ -158,7 +165,9 @@ KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
                    REPOSITORY_KEY: 'repository',
                    #REFERENCE_KEY: 'reference',
                    NOTE_KEY: 'note',
-                   TAG_KEY: 'tag'}
+                   TAG_KEY: 'tag',
+                   TEMPLATE_KEY: 'template',
+                  }
 #-------------------------------------------------------------------------
 #
 # Helper functions
@@ -237,7 +246,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     __signals__ = dict((obj+'-'+op, signal)
             for obj in
                 ['person', 'family', 'event', 'place',
-                 'source', 'citation', 'media', 'note', 'repository', 'tag']
+                 'source', 'citation', 'media', 'note', 'repository', 'tag',
+                 'template']
             for op, signal in zip(
                 ['add',   'update', 'delete', 'rebuild'],
                 [(list,), (list,),  (list,),   None]
@@ -379,6 +389,17 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             with BSDDBTxn(self.env, self.metadata) as txn:
                 txn.put(b'default', handle)
             self.emit('home-person-changed')
+
+    @catch_db_error
+    def set_GEDCOM_template_handle(self, handle):
+        """Set the handle of the GEDCOM template to the passed instance."""
+        #we store a byte string!
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
+        if not self.readonly:
+            # Start transaction
+            with BSDDBTxn(self.env, self.metadata) as txn:
+                txn.put(b'gedcom_template', handle)
 
     @catch_db_error
     def get_default_person(self):
@@ -555,7 +576,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # See if we lack write access to any files in the directory
         for base in [FAMILY_TBL, PLACES_TBL, SOURCES_TBL, CITATIONS_TBL, 
                      MEDIA_TBL,  EVENTS_TBL, PERSON_TBL, REPO_TBL,
-                     NOTE_TBL, REF_MAP, META]:
+                     NOTE_TBL, TEMPLATE_TBL, REF_MAP, META]:
             path = os.path.join(name, base + DBEXT)
             if os.path.isfile(path) and not os.access(path, os.W_OK):
                 return True
@@ -679,6 +700,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     ("repository_map", REPO_TBL,    db.DB_HASH),
                     ("note_map",       NOTE_TBL,    db.DB_HASH),
                     ("tag_map",        TAG_TBL,     db.DB_HASH),
+                    ("template_map",   TEMPLATE_TBL, db.DB_HASH),
                     ("reference_map",  REF_MAP,     db.DB_BTREE),
                   ]
 
@@ -746,6 +768,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # Open undo database
         self.__open_undodb()
         self.db_is_open = True
+
+        if gstats is None:
+            # FIXME gstat is used as a proxy to say whether the database is new
+            # or not, This is not a very clean approach
+            from gramps.plugins.srctemplates.importcsv import load_srctemplates_data
+            load_srctemplates_data(self)
 
         if callback:
             callback(87)
@@ -861,6 +889,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             ("rid_trans", RIDTRANS, db.DB_HASH, 0),
             ("nid_trans", NIDTRANS, db.DB_HASH, 0),
             ("tag_trans", TAGTRANS, db.DB_HASH, 0),
+            ("template_trans", TEMPLATETRANS, db.DB_HASH, 0),
             ("reference_map_primary_map",    REF_PRI, db.DB_BTREE, 0),
             ("reference_map_referenced_map", REF_REF, db.DB_BTREE, db.DB_DUPSORT),            
             ]
@@ -884,6 +913,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 (self.repository_map, self.rid_trans, find_idmap),
                 (self.note_map,   self.nid_trans, find_idmap),
                 (self.tag_map,    self.tag_trans, find_idmap),
+                (self.template_map,    self.template_trans, find_idmap),
                 (self.reference_map, self.reference_map_primary_map,
                     find_primary_handle),
                 (self.reference_map, self.reference_map_referenced_map,
@@ -925,6 +955,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             ( self.nid_trans, NIDTRANS ),
             ( self.cid_trans, CIDTRANS ),
             ( self.tag_trans, TAGTRANS ),
+            ( self.template_trans, TEMPLATETRANS ),
             ( self.reference_map_primary_map, REF_PRI),
             ( self.reference_map_referenced_map, REF_REF),
             ]
@@ -1197,6 +1228,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                             (self.get_repository_cursor, Repository),
                             (self.get_note_cursor, Note),
                             (self.get_tag_cursor, Tag),
+                            (self.get_template_cursor, SrcTemplate),
                             )
                          
             # Now we use the functions and classes defined above
@@ -1304,6 +1336,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.cid_trans.close()
         self.pid_trans.close()
         self.tag_trans.close()
+        self.template_trans.close()
         self.reference_map_primary_map.close()
         self.reference_map_referenced_map.close()
         self.reference_map.close()
@@ -1321,6 +1354,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.media_map.close()
         self.event_map.close()
         self.tag_map.close()
+        self.template_map.close()
         self.env.close()
         self.__close_undodb()
 
@@ -1334,6 +1368,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.media_map      = None
         self.event_map      = None
         self.tag_map        = None
+        self.template_map   = None
         self.surnames       = None
         self.env            = None
         self.metadata       = None
@@ -1352,6 +1387,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.media_map = None
         self.event_map = None
         self.tag_map = None
+        self.template_map = None
         self.reference_map_primary_map = None
         self.reference_map_referenced_map = None
         self.reference_map = None
@@ -1503,6 +1539,13 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         return self.__add_object(obj, transaction, None, self.commit_tag)
 
+    def add_template(self, obj, transaction):
+        """
+        Add a Template to the database, assigning a handle if it has not already
+        been defined.
+        """
+        return self.__add_object(obj, transaction, None, self.commit_template)
+
     def __do_remove(self, handle, transaction, data_map, key):
         if self.readonly or not handle:
             return
@@ -1616,6 +1659,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         self.__do_remove(handle, transaction, self.tag_map, 
                               TAG_KEY)
+
+    def remove_template(self, handle, transaction):
+        """
+        Remove the Template specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.template_map, 
+                              TEMPLATE_KEY)
 
     @catch_db_error
     def set_name_group_mapping(self, name, group):
@@ -1943,6 +1994,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         of the transaction.
         """
         self.commit_base(tag, self.tag_map, TAG_KEY, 
+                          transaction, change_time)
+
+    def commit_template(self, tag, transaction, change_time=None):
+        """
+        Commit the specified Template to the database, storing the changes as part 
+        of the transaction.
+        """
+        self.commit_base(tag, self.template_map, TEMPLATE_KEY, 
                           transaction, change_time)
 
     def get_from_handle(self, handle, class_type, data_map):

@@ -202,6 +202,26 @@ class SrcTemplate(TableObject):
                 "mapdict" : self.mapdict,
                 }
 
+    def unserialize(self, data):
+        """
+        Convert the data held in a tuple created by the serialize method
+        back into the data in a SrcTemplate object.
+
+        :param data: tuple containing the persistent data associated the
+            SrcTemplate object
+        :type data: tuple
+        """
+        (self.handle,
+         self.name,
+         self.descr,
+         template_element_list,
+         self.mapdict,
+         ) = data
+         
+        self.template_element_list = [TemplateElement().unserialize(te)
+                                      for te in template_element_list]
+        return self
+    
     def get_name(self):
         return self.name
     
@@ -307,15 +327,16 @@ class SrcTemplate(TableObject):
                         self.input_dict[short_name] == ("[" + short_name + "]")):
                     self.input_dict[short_name] = self.input_dict[name]
 
-        if self.date_citation:
+        if self.date_citation and (not self.date_citation.is_empty()):
             #we store the date of the citation in attrmap
-            name = SrcAttributeType(SrcAttributeType.DATE).xml_str().upper().replace(' ', '_')
-            self.input_dict[name] = str(self.date_citation)
+            name = SrcAttributeType.DATE.upper().replace(' ', '_')
+            txt = str(self.date_citation)
+            self.input_dict[name] = txt
             short_name = name + "_(SHORT)"
             if self.input_dict.get(short_name) is None or \
                     (self.input_dict.get(short_name) and \
                     self.input_dict[short_name] == ("[" + short_name + "]")):
-                self.input_dict[short_name] = self.input_dict[name]
+                self.input_dict[short_name] = txt
 
         # FIXME: REPOSITORY, REPOSITORY_ADDRESS and REPOSITORY_CALL_NUMBER all
         # need to be added to the self.input_dict. See srctemplatetab.py

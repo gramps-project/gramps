@@ -78,36 +78,39 @@ class SrcTemplateList(STL):
     """
 #    __metaclass__ = Singleton
     def __init__(self):
-        self.template_list = {}
+        self.clear()
         
+    def clear(self):
+        self.template_list = {}
+        self.GEDCOM_handle = None
+        self.UNKNOWN_handle = None
+
     def add_template(self, handle, template):
         self.template_list[handle] = template
         
-    def get_template_from_name(self, name):
-        # N.B. names can be ambiguous; it is better to use the handles which are
-        # guaranteed o be unique. This method returns the first matching
-        # template it finds.
-        
-        # Match processing in old set_template_key()
-        gedtempl = None
-        if name == 'UNKNOWN':
-            name = 'GEDCOM'
-        for template in list(self.template_list.values()):
-            if template.get_name() == name:
-                return template
-            if template.get_name() == 'GEDCOM':
-                gedtempl = template
-        # Return the GEDCOM template if one was found
-        return gedtempl
+#    def get_template_from_handle(self, handle):
+#        if handle in self.template_list:
+#            return self.template_list[handle]
+#        else:
+#            return self.template_list[self.get_UNKNOWN_handle()]
 
-    def get_template_from_handle(self, handle):
-        return self.template_list[handle]
-
-    def get_template_list(self):
-        return self.template_list
-    
-    def template_defined(self, name):
-        if self.get_template_from_name(name) is None:
-            return False
-        else:
-            return True
+#    def get_template_list(self):
+#        return self.template_list
+#    
+#    def template_defined(self, handle):
+#        if self.get_template_from_handle(handle) is None:
+#            return False
+#        else:
+#            return True
+#
+#    def set_GEDCOM_handle(self, handle):
+#        self.GEDCOM_handle = handle
+#        
+#    def get_GEDCOM_handle(self):
+#        return self.GEDCOM_handle
+#
+#    def set_UNKNOWN_handle(self, handle):
+#        self.UNKNOWN_handle = handle
+#        
+#    def get_UNKNOWN_handle(self):
+#        return self.UNKNOWN_handle

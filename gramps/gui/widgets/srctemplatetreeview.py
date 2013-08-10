@@ -45,7 +45,7 @@ from gi.repository import Gtk
 # Gramps classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import SrcTemplate, SrcTemplateList
+from gramps.gen.lib import SrcTemplate
 
 #-------------------------------------------------------------------------
 #
@@ -57,13 +57,14 @@ class SrcTemplateTreeView(Gtk.TreeView):
     '''
     TreeView for SrcTemplate templates, to allow fast selection
     '''
-    def __init__(self, default_key, sel_callback):
+    def __init__(self, default_key, db, sel_callback):
         """
         Set up the treeview to select template. 
         TreeView is initialized to default_key
         On setting a selection, sel_callback is called
         """
         Gtk.TreeView.__init__(self)
+        self.db = db
         self.sel_callback = sel_callback
         self.default_key = default_key
         self.build_model()
@@ -82,10 +83,10 @@ class SrcTemplateTreeView(Gtk.TreeView):
         self.Key2Path = {}
         # store (key, src_type)
         self.model = Gtk.TreeStore(str, str)
-        tlist = SrcTemplateList()
-        alltexts = sorted((tlist.get_template_from_handle(handle).get_descr(),
-                           tlist.get_template_from_handle(handle).get_name()) 
-                          for handle in tlist.get_template_list() )
+        tlist = self.db.get_template_handles()
+        alltexts = sorted((self.db.get_template_from_handle(handle).get_descr(),
+                           handle) 
+                          for handle in tlist )
         parentiter = None
         parentiterlev1 = None
         prevstrval = ['', '']

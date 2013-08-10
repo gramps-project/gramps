@@ -6304,13 +6304,17 @@ class GedcomParser(UpdateCallback):
         @param state: The current state
         @type state: CurrentState
         """
-        if state.source.get_gedcom_title() == "":
-            title = line.data.replace('\n', ' ')
-            sattr = SrcAttribute()
-            sattr.set_type(SrcAttributeType.TITLE)
-            sattr.set_value(title)
-            src.add_attribute(sattr)
-            state.source.set_name(title)
+        templatehandle = state.source.get_template()
+        if templatehandle:
+            template = self.dbase.get_template_from_handle(templatehandle)
+            title = template.title_gedcom(state.source.get_attribute_list())
+            if title == "":
+                title = line.data.replace('\n', ' ')
+                sattr = SrcAttribute()
+                sattr.set_type(SrcAttributeType.TITLE)
+                sattr.set_value(title)
+                state.source.add_attribute(sattr)
+                state.source.set_name(title)
 
     #----------------------------------------------------------------------
     #

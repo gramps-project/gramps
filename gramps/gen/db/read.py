@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Nick Hall
-# Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2011-2013  Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,6 +69,7 @@ from ..lib.place import Place
 from ..lib.repo import Repository
 from ..lib.note import Note
 from ..lib.tag import Tag
+from ..lib.srctemplate import SrcTemplate
 from ..lib.genderstats import GenderStats
 from ..lib.researcher import Researcher 
 from ..lib.nameorigintype import NameOriginType
@@ -93,7 +94,7 @@ from .dbconst import *
 
 _SIGBASE = ('person', 'family', 'source', 'citation', 
             'event',  'media', 'place', 'repository',
-            'reference', 'note', 'tag')
+            'reference', 'note', 'tag', 'srctemplate')
 
 DBERRS      = (db.DBRunRecoveryError, db.DBAccessError, 
                db.DBPageNotFoundError, db.DBInvalidArgError)
@@ -339,6 +340,14 @@ class DbBsddbRead(DbReadBase, Callback):
                 "cursor_func": self.get_tag_cursor,
                 "handles_func": self.get_tag_handles,
                 },
+            'SrcTemplate':
+                {
+                "handle_func": self.get_template_from_handle, 
+                "gramps_id_func": None,
+                "class_func": SrcTemplate,
+                "cursor_func": self.get_template_cursor,
+                "handles_func": self.get_template_handles,
+                },
             }
 
         self.set_person_id_prefix('I%04d')
@@ -394,6 +403,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.nid_trans = {}
         self.eid_trans = {}
         self.tag_trans = {}
+        self.template_trans = {}
         self.env = None
         self.person_map = {}
         self.family_map = {}
@@ -404,6 +414,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.note_map = {}
         self.media_map  = {}
         self.event_map  = {}
+        self.template_map  = {}
         self.metadata   = {}
         self.name_group = {}
         self.undo_callback = None
@@ -497,6 +508,9 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_tag_cursor(self, *args, **kwargs):
         return self.get_cursor(self.tag_map, *args, **kwargs)
 
+    def get_template_cursor(self, *args, **kwargs):
+        return self.get_cursor(self.template_map, *args, **kwargs)
+
     def close(self):
         """
         Close the specified database. 
@@ -545,6 +559,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.emit('repository-rebuild')
         self.emit('note-rebuild')
         self.emit('tag-rebuild')
+        self.emit('template-rebuild')
 
     def __find_next_gramps_id(self, prefix, map_index, trans):
         """
@@ -760,6 +775,14 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.get_from_handle(handle, Tag, self.tag_map)
 
+    def get_template_from_handle(self, handle):
+        """
+        Find a Tag in the database from the passed handle.
+        
+        If no such Tag exists, None is returned.
+        """
+        return self.get_from_handle(handle, SrcTemplate, self.template_map)
+
     def __get_obj_from_gramps_id(self, val, tbl, class_, prim_tbl):
         if isinstance(tbl, dict): 
             return None ## trying to get object too early        
@@ -968,6 +991,12 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.get_number_of_records(self.tag_map)
 
+    def get_number_of_templates(self):
+        """
+        Return the number of tags currently in the database.
+        """
+        return self.get_number_of_records(self.template_map)
+
     def all_handles(self, table):
         """ return all the keys of a database table
         CAREFUL: For speed the keys are directly returned, so on python3 
@@ -1137,6 +1166,24 @@ class DbBsddbRead(DbReadBase, Callback):
             return handle_list
         return []
 
+    def get_template_handles(self, sort_handles=False):
+        """
+        Return a list of database handles, one handle for each Tag in
+        the database.
+        
+        If sort_handles is True, the list is sorted by Tag name.
+        
+        CAREFUL: For speed the keys are directly returned, so on python3 
+                 bytestrings are returned! Use constfunc.py handle2internal
+                 on this result!
+        """
+        if self.db_is_open:
+            handle_list = self.all_handles(self.template_map)
+            if sort_handles:
+                handle_list.sort(key=self.__sortbytemplate_key)
+            return handle_list
+        return []
+
     def _f(curs_):
         """
         Closure that returns an iterator over handles in the database.
@@ -1159,6 +1206,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_repository_handles   = _f(get_repository_cursor)
     iter_note_handles         = _f(get_note_cursor)
     iter_tag_handles          = _f(get_tag_cursor)
+    iter_template_handles     = _f(get_template_cursor)
     del _f
     
     def _f(curs_, obj_):
@@ -1185,6 +1233,7 @@ class DbBsddbRead(DbReadBase, Callback):
     iter_repositories  = _f(get_repository_cursor, Repository)
     iter_notes         = _f(get_note_cursor, Note)
     iter_tags          = _f(get_tag_cursor, Tag)
+    iter_templates     = _f(get_template_cursor, SrcTemplate)
     del _f
 
     def get_gramps_ids(self, obj_key):
@@ -1463,6 +1512,12 @@ class DbBsddbRead(DbReadBase, Callback):
             return self.metadata.get(b'default')
         return None
 
+    def get_GEDCOM_template_handle(self):
+        """Return the handle of the GEDCOM template of the database."""
+        if self.metadata is not None:
+            return self.metadata.get(b'gedcom_template')
+        return None
+
     def get_save_path(self):
         """Return the save path of the file, or "" if one does not exist."""
         return self.path
@@ -1627,6 +1682,9 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_raw_tag_data(self, handle):
         return self.__get_raw_data(self.tag_map, handle)
 
+    def get_raw_template_data(self, handle):
+        return self.__get_raw_data(self.template_map, handle)
+
     def __has_handle(self, table, handle):
         """
         Helper function for has_<object>_handle methods
@@ -1698,6 +1756,12 @@ class DbBsddbRead(DbReadBase, Callback):
         Return True if the handle exists in the current Tag database.
         """
         return self.__has_handle(self.tag_map, handle)
+
+    def has_template_handle(self, handle):
+        """
+        Return True if the handle exists in the current Tag database.
+        """
+        return self.__has_handle(self.template_map, handle)
 
     def __sortbyperson_key(self, handle):
         if isinstance(handle, UNITYPE):
@@ -1778,6 +1842,12 @@ class DbBsddbRead(DbReadBase, Callback):
         tag = self.tag_map[key][1]
         return glocale.sort_key(tag)
 
+    def __sortbytemplate_key(self, key):
+        if isinstance(key, UNITYPE):
+            key = key.encode('utf-8')
+        template = self.template_map[key][1]
+        return glocale.sort_key(template)
+
     def set_mediapath(self, path):
         """Set the default media path for database, path should be utf-8."""
         if (self.metadata is not None) and (not self.readonly):
@@ -1854,6 +1924,10 @@ class DbBsddbRead(DbReadBase, Callback):
             'Tag':   {
                 'cursor_func': self.get_tag_cursor, 
                 'class_func': Tag,
+                },
+            'Template':   {
+                'cursor_func': self.get_template_cursor, 
+                'class_func': SrcTemplate,
                 },
             }
 

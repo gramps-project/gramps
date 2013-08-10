@@ -44,7 +44,7 @@ from gi.repository import Gtk, Gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import NoteType, Source, SrcTemplate, Citation, SrcTemplateList
+from gramps.gen.lib import NoteType, Source, SrcTemplate, Citation
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import media_path_full
 from ..thumbnails import get_thumbnail_image
@@ -68,7 +68,6 @@ from ..glade import Glade
 #
 #-------------------------------------------------------------------------
 
-FIRST = True
 class EditSource(EditPrimary):
 
     def __init__(self, dbstate, uistate, track, source, citation=None,
@@ -83,12 +82,7 @@ class EditSource(EditPrimary):
                     must handle this (corresponds to closing the editor with 
                     nothing made!)
         """
-        # FIXME: Is there a cleaner place to initially load the template data?
-        global FIRST
-        if FIRST:
-            from gramps.plugins.srctemplates.importcsv import load_srctemplates_data
-            load_srctemplates_data()
-            FIRST = False
+        self.db = dbstate.db
         self.srctemp = None
         self.citation = citation
         self.template_tab = None
@@ -106,6 +100,8 @@ class EditSource(EditPrimary):
             if citation.get_reference_handle() and \
                 not (citation.get_reference_handle() == source.handle):
                 raise Exception('Citation must be a Citation of the Source edited')
+            if source.get_template() is None:
+                source.set_template(dbstate.db.get_GEDCOM_template_handle())
         else:
             #no citation given.
             self.citation_loaded = False
@@ -354,13 +350,10 @@ class EditSource(EditPrimary):
         """
         Reaction to update on attributes
         """
-        #we only construct once the template to use to format information
-        if self.srctemp is None:
-            self.srctemp = SrcTemplateList().get_template_from_name(self.obj.get_template())
+        if self.srctemp is None or \
+           self.obj.get_template() != self.srctemp.get_name():
+            self.srctemp = self.db.get_template_from_handle(self.obj.get_template())
         
-        #if source template changed, reinit template
-        if self.obj.get_template() != self.srctemp.get_name():
-            self.srctemp = SrcTemplateList().get_template_from_name(self.obj.get_template())
         #set new attrlist in template
         if self.citation_loaded:
             citeattr = self.citation.get_attribute_list()
@@ -373,12 +366,8 @@ class EditSource(EditPrimary):
         
         #set fields with the template
         self.refL.set_markup(self.srctemp.reference_L())
-        if self.citation_loaded:
-            self.refF.set_markup(self.srctemp.reference_F())
-            self.refS.set_markup(self.srctemp.reference_S())
-        else:
-            self.refF.set_markup(_("<no citation loaded>"))
-            self.refS.set_markup(_("<no citation loaded>"))
+        self.refF.set_markup(self.srctemp.reference_F())
+        self.refS.set_markup(self.srctemp.reference_S())
         self.author.set_markup(self.srctemp.author_gedcom())
         self.pubinfo.set_markup(self.srctemp.pubinfo_gedcom())
         if self.template_tab and self.template_tab.autoset_title:
