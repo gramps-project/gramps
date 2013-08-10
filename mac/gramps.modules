@@ -58,14 +58,14 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 
 -->
 
-  <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/>
-  <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
+  <!--include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/-->
+  <include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/>
 
   <distutils id="gramps-svn" supports-non-srcdir-builds="no">
     <branch module="trunk" repo="gramps"/>
     <dependencies>
       <dep package="meta-gtk-osx-python-gtk3"/>
-      <dep package="goocanvas"/>
+      <dep package="goocanvas2"/>
       <dep package="librsvg"/>
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
@@ -83,7 +83,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    checkoutdir="gramps-git"/>
     <dependencies>
       <dep package="meta-gtk-osx-python-gtk3"/>
-      <dep package="goocanvas"/>
+      <dep package="goocanvas2"/>
       <dep package="librsvg"/>
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
@@ -129,8 +129,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
    <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
  </autotools>
 
-  <autotools id="osmgpsmap">
-    <branch module="nzjrs/osm-gps-map" revisioin="gtk3" repo="github"/>
+  <autotools id="osmgpsmap" skip-autogen="never">
+    <branch module="nzjrs/osm-gps-map" repo="github"/>
     <dependencies>
       <dep package="meta-gtk-osx-gtk3"/>
       <dep package="libsoup"/>
