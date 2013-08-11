@@ -154,6 +154,18 @@ class FilterParser(handler.ContentHandler):
             self.a = self.a[0:2] + [self.a[3]] + [self.a[2]] + [self.a[6]] + \
                      [u''] + [self.a[4]] + [u'', u''] + [self.a[5]] + \
                      [u'', u'0']
+        # New regular expression code in v3.4
+        if (self.r in (Rules.Person.HasNameOf, 
+                       Rules.Family.FatherHasNameOf,
+                       Rules.Family.MotherHasNameOf,
+                       Rules.Family.ChildHasNameOf)
+                and len(self.a) == 12):
+            self.use_regex = self.a[11] == '1'
+            self.a = self.a[:11]
+        if (self.r == Rules.Person.HasTextMatchingSubstringOf
+            and len(self.a) == 3):
+            self.use_regex = self.a[2] == '1'
+            self.a = self.a[:2]
 
 #-------------------------------------------------------------------------
 #
