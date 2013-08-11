@@ -530,9 +530,8 @@ class GedcomWriter(UpdateCallback):
         """
         for event_ref in person.get_event_ref_list():
             event = self.dbase.get_event_from_handle(event_ref.ref)
-            if event is None: continue
+            if not event: continue
             self._process_person_event(event, event_ref)
-            self._dump_event_stats(event, event_ref)
         self._adoption_records(person)
 
     def _process_person_event(self, event, event_ref):
@@ -574,6 +573,7 @@ class GedcomWriter(UpdateCallback):
             descr = event.get_description()
             if descr:
                 self._writeln(2, 'NOTE', "Description: " + descr)
+        self._dump_event_stats(event, event_ref)
 
     def _adoption_records(self, person):
         """
