@@ -32,8 +32,7 @@ SrcTemplate class for GRAMPS.
 #
 #-------------------------------------------------------------------------
 from __future__ import print_function
-from collections import defaultdict, OrderedDict
-import sys
+from collections import defaultdict
 
 #------------------------------------------------------------------------
 #
@@ -48,37 +47,10 @@ LOG = logging.getLogger('.template')
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-from .srcattrtype import *
-from .date import Date
 from .tableobj import TableObject
 from .secondaryobj import SecondaryObject
 from .handle import Handle
 from ..constfunc import cuni
-
-#columns in a csv file defining templates
-NRCOL = 0
-CATCOL = 1
-CATTYPECOL = 2
-TYPECOL = 3
-DESCRCOL= 4
-CITETYPECOL = 5
-IDENTCOL = 6
-LDELCOL = 7  # left delimiter
-FIELDCOL = 8
-LABELCOL = 9
-RDELCOL = 10 # right delimiter
-GEDCOMCOL = 11
-SHORTERCOL = 12
-STYLECOL = 13
-PRIVACYCOL = 14
-OPTCOL = 15
-HINTCOL = 16
-TOOLTIPCOL = 17
-
-UNKNOWN = 'UNKNOWN'
-DESCR = -10
 
 #-------------------------------------------------------------------------
 #
@@ -130,7 +102,6 @@ class SrcTemplate(TableObject):
         7/ the REF_TYPE_L reference maps to GEDCOM fields on export via
            this column. GEDCOM contains Title, Author and Pub.Info field
     """
-    UNKNOWN = UNKNOWN
     
     def __init__(self, template_key=None):
         """
@@ -145,9 +116,6 @@ class SrcTemplate(TableObject):
         self.descr = ""
         self.template_element_list = []
         self.mapdict = defaultdict(str)
-        self.structure = {REF_TYPE_L: [], REF_TYPE_F: [],
-                          REF_TYPE_S: []}
-        self.empty()
  
     def serialize(self):
         """
@@ -172,7 +140,7 @@ class SrcTemplate(TableObject):
             self.name,
             self.descr,
             [template_element.serialize() for template_element in self.template_element_list],
-            self.mapdict,
+            self.mapdict
            )
 
     def to_struct(self):
@@ -199,7 +167,7 @@ class SrcTemplate(TableObject):
                 "name": cuni(self.name),
                 "descr": cuni(self.descr),
                 "elements": [e.to_struct() for e in self.template_element_list],
-                "mapdict" : self.mapdict,
+                "mapdict" : {'dict': self.mapdict}
                 }
 
     def unserialize(self, data):
@@ -257,332 +225,6 @@ class SrcTemplate(TableObject):
     def add_template_element(self, template_element):
         self.template_element_list.append(template_element)
 
-    def add_structure_element(self, cite_type, slist):
-        self.structure[cite_type] += slist
-        
-    def get_structure(self):
-        return self.structure
-        
-    def empty(self):
-        """
-        remove all computed data
-        """
-        self.refL = None
-        self.refF = None
-        self.refS = None
-        # attrmap will hold mapping of field to normal value and short value
-        # short value will be None if not given
-        # map is field -> (normal value for ref L, 
-        #                  normal value for ref F/S, short value ref S)
-        self.attrmap = {}
-        self.input_dict = defaultdict(str)
-
-    def set_attr_list(self, attr_list, attr_list_citation=None, date_citation=None):
-        """
-        Set the attribute list of this template. Setting once for different
-        references saves some time.
-        attr_list should be the source attribute list
-        If citation given, citation attrib
-        utes overrule source attributes for 
-        the Full and Short references
-        The citation date is not stored as attribute, so pass Date() object via
-        date_citation if a date is known.
-        """
-        self.empty()
-        self.attrmap = {}
-        self.input_dict = defaultdict(str)
-        self.attr_list = attr_list or []
-        self.attr_list_cite = attr_list_citation or []
-        self.date_citation = date_citation
-        
-        # -----------------------------------------------------------------
-        # Construct the input dictionary
-        # First pre-load the dictionary with default settings for citations
-        if not attr_list_citation:
-            for te in [x for x in self.get_template_element_list()
-                       if x.get_citation()]:
-                name = str(SrcAttributeType(te.get_name())).upper().replace(' ', '_')
-                if te.get_display():
-                    val = te.get_display().upper().replace(' ', '_')
-                else:
-                    val = name
-                self.input_dict[name] = "[" + val + "]"
-        
-        # Now get the actual attribute values. store attributes in a dict last
-        # to first. this overwrites data so first attribute will be the one
-        # taken if duplicates are present
-        for input_attr in ((attr_list or []) + (attr_list_citation or []))[::-1]:
-            typ = input_attr.get_type()
-            if int(typ) == SrcAttributeType.CUSTOM:
-                name = str(typ).upper().replace(' ', '_')
-            else:
-                name = typ.xml_str().upper().replace(' ', '_')
-            self.input_dict[name] = input_attr.get_value()
-            # if we haven't already got a value for the short attribute, we
-            # store the long attribute in the short attribute
-            if not name.endswith("(SHORT)"):
-                short_name = name + "_(SHORT)"
-                if self.input_dict.get(short_name) is None or \
-                        (self.input_dict.get(short_name) and \
-                        self.input_dict[short_name] == ("[" + short_name + "]")):
-                    self.input_dict[short_name] = self.input_dict[name]
-
-        if self.date_citation and (not self.date_citation.is_empty()):
-            #we store the date of the citation in attrmap
-            name = SrcAttributeType.DATE.upper().replace(' ', '_')
-            txt = str(self.date_citation)
-            self.input_dict[name] = txt
-            short_name = name + "_(SHORT)"
-            if self.input_dict.get(short_name) is None or \
-                    (self.input_dict.get(short_name) and \
-                    self.input_dict[short_name] == ("[" + short_name + "]")):
-                self.input_dict[short_name] = txt
-
-        # FIXME: REPOSITORY, REPOSITORY_ADDRESS and REPOSITORY_CALL_NUMBER all
-        # need to be added to the self.input_dict. See srctemplatetab.py
-        # _add_repo_entry()
-    
-    def reference_L(self, attr_list=None):
-        """
-        Return the list reference based on the passed source attribute list
-        If attr_list is None, same list as before is used.
-        """
-        if attr_list:
-            self.set_attr_list(attr_list)
-        if self.refL is not None:
-            return self.refL
-        self.refL = self._reference(REF_TYPE_L)
-        return self.refL
-
-    def reference_S(self, attr_list=None, attr_list_citation=None, date_citation=None):
-        """
-        Return the short reference based on the passed source attribute list
-        If attr_list is None, same list as
-         before is used.
-        """
-        if attr_list or attr_list_citation or date_citation:
-            self.set_attr_list(attr_list, attr_list_citation, date_citation)
-        if self.refS is not None:
-            return self.refS
-        self.refS = self._reference(REF_TYPE_S)
-        return self.refS
-
-    def reference_F(self, attr_list=None, attr_list_citation=None, date_citation=None):
-        """
-        Return the full reference based on the passed source attribute list
-        If attr_list is None, same list as before is used.
-        """
-        if attr_list or attr_list_citation or date_citation:
-            self.set_attr_list(attr_list, attr_list_citation, date_citation)
-        if self.refF is not None:
-            return self.refF
-        self.refF = self._reference(REF_TYPE_F)
-        return self.refF
-
-    def _reference(self, reftype, gedcomfield=None):
-        """
-        Compute the reference based on data present.
-        """
-        # http://bugs.python.org/issue6081
-        class DefaultBlank(dict):
-            def __missing__(self, key):
-                return ""
-         
-        class DefaultKey(dict):
-            def __missing__(self, key):
-                return "[" + key + "]"
-       
-        ged_table = {
-                 GED_AUTHOR : "GEDCOM_A",
-                 GED_TITLE : "GEDCOM_T",
-                 GED_PUBINF : "GEDCOM_P",
-                 GED_DATE : "GEDCOM_D",
-                 GED_PAGE : "GEDCOM_PAGE",
-                 }
-        if gedcomfield:
-            return (self.get_map_element(ged_table[gedcomfield]) %
-                    DefaultKey(self.input_dict)) or ""
-        
-        use_CSL = False
-        try:
-            import citeproc
-            if sys.version_info[0] >= 3:
-                use_CSL = True
-        except:
-            pass
-        
-        if use_CSL:
-            # -----------------------------------------------------------------
-            # Construct the standard output-elements
-            self.output_dict = OrderedDict()
-            LOG.debug(self.get_map_dict())
-            LOG.debug("input_attributes \n" +
-                      "".join(("%s: %s\n" % item) for item in list(self.input_dict.items())))
-            for key, val in list(self.get_map_dict().items()):
-                if key[0].islower():
-                    try:
-                        self.output_dict[key] = val % DefaultBlank(self.input_dict)
-                    except:
-                        LOG.warn("key error with key %s; val %s; input_dict %s" %
-                                 (key, val, self.input_dict))
-                        self.output_dict[key] = ""
-            
-            LOG.debug("CSL_attributes \n" +
-                      "".join(("%s: %s\n" % item) for item in list(self.output_dict.items())))
-            
-            # Temporary fix for not implemented yet templates
-            if len(self.output_dict) == 0:
-                return ""
-            
-            # Now fix CSL attributes that need special sub-elements
-            for name in ["author", "container_author", "some other name"]:
-                if name in self.output_dict:
-                    self.output_dict[name] = [{"family": self.output_dict[name],
-                                       "given": ""}]
-            # -----------------------------------------------------------------
-            # Modify the output-elements to allow the standard Chicago style to
-            # format the citations close to Evidence Style
-            
-            # literal dates are not specially treated. Date accessed is converted to
-            # a literal publication date to conform to how ESM formats the accessed
-            # date
-            if "accessed" in self.output_dict:
-                self.output_dict["issued"] = {'literal' : "accessed " + self.output_dict['accessed']}
-                del self.output_dict['accessed']
-            # Website is rendered as publisher_place to conform to how ESM renders
-            # it.
-            if "url" in self.output_dict:
-                self.output_dict["publisher_place"] = \
-                    self.output_dict["publisher_place"] if "publisher_place" in self.output_dict \
-                                else "" + self.output_dict["url"]
-            LOG.debug("self.output_dictibutes modified \n" +
-                      "".join(("    %s: %s\n" % item) for item in self.output_dict.items()))
-                
-            try:
-                (refF, refS, refL) = self.get_CSL_references(self.output_dict)
-                if reftype == REF_TYPE_F:
-                    return refF
-                elif reftype == REF_TYPE_S:
-                    return refS
-                else:
-                    return refL
-            except:
-                print(sys.exc_info()[0], sys.exc_info()[1])
-                return ""
-        
-        else:
-            # -----------------------------------------------------------------
-            # Construct the standard output-elements
-            ref_table = {
-                     REF_TYPE_L : "EE_L",
-                     REF_TYPE_F : "EE_F",
-                     REF_TYPE_S : "EE_S",
-                     }
-            return (self.get_map_element(ref_table[reftype]) %
-                    DefaultKey(self.input_dict)) or ""
-    
-    def get_CSL_references(self, CSL_attributes):
-        # Import the citeproc-py classes we'll use below.
-        from citeproc import CitationStylesStyle, CitationStylesBibliography
-        from citeproc import Citation, CitationItem
-        from citeproc import formatter, Locator
-        from citeproc.source.json import CiteProcJSON
-
-        # Process the JSON data to generate a citeproc-py BibliographySource.
-        if 'locator' in CSL_attributes:
-            loc = Locator("page", CSL_attributes["locator"])
-        
-        import copy
-        c1 = copy.deepcopy(CSL_attributes)
-        c2 = copy.deepcopy(CSL_attributes)
-             
-        bib_source = {"full": c1, "subs" : c2}
-        bib_source = {"full": c1}
-        
-#        for key, entry in bib_source.items():
-#            print(key)
-#            for name, value in entry.items():
-#                print('    {}: {}'.format(name, value))
-        
-        # load a CSL style (from the current directory)
-        
-        bib_style = CitationStylesStyle('chicago-fullnote-bibliography-no-ibid.csl')
-        
-        # Create the citeproc-py bibliography, passing it the:
-        # * CitationStylesStyle,
-        # * BibliographySource (CiteProcJSON in this case), and
-        # * a formatter (plain, html, or you can write a custom formatter)
-        
-        bibliography = CitationStylesBibliography(bib_style, bib_source, formatter.plain)
-        
-        
-        # Processing citations in a document need to be done in two passes as for some
-        # CSL styles, a citation can depend on the order of citations in the
-        # bibliography and thus on citations following the current one.
-        # For this reason, we first need to register all citations with the
-        # CitationStylesBibliography.
-        
-        if loc:
-            citation1 = Citation([CitationItem('full', locator=loc)])
-            citation2 = Citation([CitationItem('subs', locator=loc)])
-        else:
-            citation1 = Citation([CitationItem('full')])
-            citation2 = Citation([CitationItem('subs')])
-            
-        citation1 = Citation([CitationItem('full')])
-        
-        bibliography.register(citation1)
-        bibliography.register(citation2)
-        
-        
-        # In the second pass, CitationStylesBibliography can generate citations.
-        # CitationStylesBibliography.cite() requires a callback function to be passed
-        # along to be called in case a CitationItem's key is not present in the
-        # bilbiography.
-        
-        def warn(citation_item):
-            print("WARNING: Reference with key '{}' not found in the bibliography."
-                  .format(citation_item.key))
-        
-        print('Citations')
-        print('---------')
-        
-        print(bibliography.cite(citation1, warn))
-        print(bibliography.cite(citation2, warn))
-        
-        
-        # And finally, the bibliography can be rendered.
-        
-        print('')
-        print('Bibliography')
-        print('------------')
-        
-        print(bibliography.bibliography())   
-
-        return(bibliography.cite(citation1, warn),
-               bibliography.cite(citation2, warn),
-               bibliography.bibliography())     
-    
-    def author_gedcom(self, attr_list=None):
-        if attr_list:
-            self.set_attr_list(attr_list)
-        return self._reference(REF_TYPE_L, GED_AUTHOR)
-
-    def title_gedcom(self, attr_list=None):
-        if attr_list:
-            self.set_attr_list(attr_list)
-        return self._reference(REF_TYPE_L, GED_TITLE)
-
-    def pubinfo_gedcom(self, attr_list=None):
-        if attr_list:
-            self.set_attr_list(attr_list)
-        return self._reference(REF_TYPE_L, GED_PUBINF)
-
-    def page_gedcom(self, attr_list=None):
-        if attr_list:
-            self.set_attr_list(attr_list)
-        return self._reference(REF_TYPE_F, GED_PAGE)
-    
 class TemplateElement(SecondaryObject):        
     """
     TemplateEelement class.

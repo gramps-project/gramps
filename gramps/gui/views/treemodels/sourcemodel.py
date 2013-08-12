@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2013       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -43,6 +44,8 @@ from gramps.gen.datehandler import format_time
 from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.utils.citeref import (get_gedcom_title, get_gedcom_author,
+                                      get_gedcom_pubinfo)
 
 
 COLUMN_HANDLE     = 0
@@ -117,7 +120,7 @@ class SourceModel(FlatBaseModel):
 
     def column_author(self, data):
         source = self.db.get_source_from_handle(data[COLUMN_HANDLE])
-        return cuni(source.get_gedcom_author())
+        return cuni(get_gedcom_author(self.db, source))
 
     def column_template(self, data):
         return cuni(data[COLUMN_TEMPLATE])
@@ -130,7 +133,7 @@ class SourceModel(FlatBaseModel):
 
     def column_pubinfo(self, data):
         source = self.db.get_source_from_handle(data[COLUMN_HANDLE])
-        return cuni(source.get_gedcom_publication_info())
+        return cuni(get_gedcom_pubinfo(self.db, source))
 
     def column_private(self, data):
         if data[COLUMN_PRIV]:

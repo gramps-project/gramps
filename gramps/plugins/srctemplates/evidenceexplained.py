@@ -43,6 +43,7 @@ csvfile = path_csv('evidence_style.csv')
 
 #name of this style
 style = 'EE'
+input_type = 'csv'
 
 #strings to translate
 #following translations are generated with extract_trans_csv.py

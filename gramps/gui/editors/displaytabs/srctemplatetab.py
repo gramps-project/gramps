@@ -50,8 +50,7 @@ LOG = logging.getLogger('.template')
 # Gramps libraries
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib.srcattrtype import (SrcAttributeType, REF_TYPE_F, 
-                                REF_TYPE_S, REF_TYPE_L, EMPTY)
+from gramps.gen.lib.srcattrtype import SrcAttributeType
 from gramps.gen.lib import SrcAttribute, SrcTemplate
 from gramps.gen.plug.report.utils import get_address_ref_str
 from ...autocomp import StandardCustomSelector
@@ -60,6 +59,7 @@ from ...widgets import (UndoableEntry, MonitoredEntryIndicator, MonitoredDate,
                         ValidatableMaskedEntry)
 from .grampstab import GrampsTab
 from gramps.gen.constfunc import STRTYPE
+from gramps.gen.utils.citeref import get_gedcom_title
 
 #-------------------------------------------------------------------------
 #
@@ -148,9 +148,7 @@ class SrcTemplateTab(GrampsTab):
         If title of the source is what we would set with autotitle, we set
         the checkbox to true. Otherwise to False
         """
-        srctemp = self.db.get_template_from_handle(self.src.get_template())
-        srctemp.set_attr_list(self.src.get_attribute_list())
-        title = srctemp.title_gedcom()
+        title = get_gedcom_title(self.dbstate.db, self.src)
         if self.src.get_title() == title:
             self.autoset_title = True
         else:
@@ -311,7 +309,6 @@ class TemplateFields(object):
         Note srcattrtype should actually be the English name of the type!
         """
         self.gridfields.insert_row(row)
-        field = srcattrtype
         #setup label
         if alt_label:
             label = _(alt_label)

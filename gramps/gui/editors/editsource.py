@@ -44,7 +44,7 @@ from gi.repository import Gtk, Gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import NoteType, Source, SrcTemplate, Citation
+from gramps.gen.lib import NoteType, Source, Citation
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import media_path_full
 from ..thumbnails import get_thumbnail_image
@@ -61,6 +61,10 @@ from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredTagList,
 from ..dialog import ErrorDialog, QuestionDialog2
 from ..utils import is_right_click, open_file_with_default_application
 from ..glade import Glade
+from gramps.gen.utils.citeref import (set_input_dict_and_template, reference_L,
+                                      reference_S, reference_F,
+                                      get_gedcom_title, get_gedcom_author,
+                                      get_gedcom_pubinfo)
 
 #-------------------------------------------------------------------------
 #
@@ -83,7 +87,6 @@ class EditSource(EditPrimary):
                     nothing made!)
         """
         self.db = dbstate.db
-        self.srctemp = None
         self.citation = citation
         self.template_tab = None
         self.attr_tab = None
@@ -107,6 +110,8 @@ class EditSource(EditPrimary):
             self.citation_loaded = False
             #we put an empty base citation ready.
             self.citation = Citation()
+            if source.get_template() is None:
+                source.set_template(dbstate.db.get_GEDCOM_template_handle())
         self.callertitle = callertitle
 
         self.citation_ready = False
@@ -350,28 +355,19 @@ class EditSource(EditPrimary):
         """
         Reaction to update on attributes
         """
-        if self.srctemp is None or \
-           self.obj.get_template() != self.srctemp.get_name():
-            self.srctemp = self.db.get_template_from_handle(self.obj.get_template())
-        
-        #set new attrlist in template
         if self.citation_loaded:
-            citeattr = self.citation.get_attribute_list()
-            citedate = self.citation.get_date_object()
+            citation = self.citation
         else:
-            citeattr = None
-            citedate = None
-        self.srctemp.set_attr_list(self.obj.get_attribute_list(), citeattr,
-                                   citedate)
-        
+            citation = None
+        set_input_dict_and_template(self.db, self.obj, citation)
         #set fields with the template
-        self.refL.set_markup(self.srctemp.reference_L())
-        self.refF.set_markup(self.srctemp.reference_F())
-        self.refS.set_markup(self.srctemp.reference_S())
-        self.author.set_markup(self.srctemp.author_gedcom())
-        self.pubinfo.set_markup(self.srctemp.pubinfo_gedcom())
+        self.refL.set_markup(reference_L(self.db))
+        self.refF.set_markup(reference_F(self.db))
+        self.refS.set_markup(reference_S(self.db))
+        self.author.set_markup(get_gedcom_author(self.db))
+        self.pubinfo.set_markup(get_gedcom_pubinfo(self.db))
         if self.template_tab and self.template_tab.autoset_title:
-            title = self.srctemp.title_gedcom()
+            title = get_gedcom_title(self.db)
             self.obj.set_name(title)
             self.title.update()
         #lastly update the window title

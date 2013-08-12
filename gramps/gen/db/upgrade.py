@@ -148,25 +148,39 @@ def gramps_upgrade_17(self):
     from ..lib.srcattrtype import SrcAttributeType
     private = False
     
+    first = True
     for handle in self.source_map.keys():
+        if first:
+            from gramps.plugins.srctemplates.gedcomtemplate import build_GEDCOM_template
+            template = build_GEDCOM_template()
+            if isinstance(template.handle, UNITYPE):
+                template.handle = template.handle.encode('utf-8')
+            teml_handle = template.handle
+            from gramps.gen.lib.srctemplate import SrcTemplate
+            template = SrcTemplate.serialize(template)
+            with BSDDBTxn(self.env, self.template_map) as txn:
+                txn.put(teml_handle, template)
+            with BSDDBTxn(self.env, self.metadata) as txn:
+                txn.put(b'gedcom_template', teml_handle)
+            first = False
+            
         source = self.source_map[handle]
         (handle, gramps_id, title, author, pubinfo,
             notelist, medialist, abbrev, change, datamap, reporef_list,
             taglist, private) = source
         srcattributelist = upgrade_datamap_17(datamap)
         if title:
-            the_type = (SrcAttributeType.TITLE, '')
+            the_type = (SrcAttributeType.CUSTOM, SrcAttributeType.TITLE)
             srcattributelist.append((private, the_type, title))
         if author:
-            the_type = (SrcAttributeType.AUTHOR, '')
+            the_type = (SrcAttributeType.CUSTOM, SrcAttributeType.AUTHOR)
             srcattributelist.append((private, the_type, author))
         if pubinfo:
-            the_type = (SrcAttributeType.PUB_INFO, '')
+            the_type = (SrcAttributeType.CUSTOM, SrcAttributeType.PUB_INFO)
             srcattributelist.append((private, the_type, pubinfo))
 
         name = title
-        template = 'GEDCOM'
-        new_source = (handle, gramps_id, name, template,
+        new_source = (handle, gramps_id, name, teml_handle,
             notelist, medialist, abbrev, change, srcattributelist, reporef_list,
             taglist, private)
         with BSDDBTxn(self.env, self.source_map) as txn:
@@ -181,7 +195,7 @@ def gramps_upgrade_17(self):
             notelist, medialist, datamap, change, taglist, private) = citation
         srcattributelist = upgrade_datamap_17(datamap)
         if page:
-            the_type = (SrcAttributeType.PAGE, '')
+            the_type = (SrcAttributeType.CUSTOM, SrcAttributeType.PAGE)
             srcattributelist.append((private, the_type, page))
 
         name = page

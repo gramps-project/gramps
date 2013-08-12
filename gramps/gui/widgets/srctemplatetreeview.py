@@ -71,7 +71,9 @@ class SrcTemplateTreeView(Gtk.TreeView):
         self.make_columns()
         self.selection = self.get_selection()
         self.set_model(self.model)
-        self.goto(default_key)
+        if default_key:
+            # The default key, normally the GEDCOM template, is available
+            self.goto(default_key)
         # set up selection and fields on click
         self.connect('button-release-event', self._on_button_release)
         self.connect('key_press_event', self._on_key_press_event)

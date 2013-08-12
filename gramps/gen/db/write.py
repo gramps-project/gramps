@@ -281,6 +281,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.brief_name = None
         self.update_env_version = False
         self.update_python_version = False
+        # Whether SrcTemplates need to be loaded. They need to be loaded on
+        # creating a new database, and on upgrade from schema version 16 to 17.
+        self.load_templates = False
 
     def catch_db_error(func):
         """
@@ -672,6 +675,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         
         self.__load_metadata()
         gstats = self.metadata.get(b'gender_stats', default=None)
+        self.load_templates = False
 
         # Ensure version info in metadata
         if not self.readonly:
@@ -681,6 +685,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     # New database. Set up the current version.
                     #self.metadata.put(b'version', _DBVERSION, txn=the_txn)
                     txn.put(b'version', _DBVERSION)
+                    self.load_templates = True
                 elif b'version' not in self.metadata:
                     # Not new database, but the version is missing.
                     # Use 0, but it is likely to fail anyway.
@@ -769,7 +774,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.__open_undodb()
         self.db_is_open = True
 
-        if gstats is None:
+        if self.load_templates:
             # FIXME gstat is used as a proxy to say whether the database is new
             # or not, This is not a very clean approach
             from gramps.plugins.srctemplates.importcsv import load_srctemplates_data
@@ -2214,6 +2219,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             upgrade.gramps_upgrade_16(self)
         if version < 17:
             upgrade.gramps_upgrade_17(self)
+            # On upgrade from 16 to 17, SrcTemplate is added, so the templates
+            # need to be loaded. In the future, on upgrade from 17, the
+            # templates will already be present and will not need to be loaded
+            self.load_templates = True
             
             self.reset()
             self.set_total(6)

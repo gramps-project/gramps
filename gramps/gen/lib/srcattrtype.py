@@ -42,37 +42,6 @@ from .grampstype import GrampsType
 
 #-------------------------------------------------------------------------
 #
-# Template constants
-#
-#-------------------------------------------------------------------------
-
-REF_TYPE_F = 1 # Full footnote citation to a source
-REF_TYPE_S = 2 # Short footnote citation to a source
-REF_TYPE_L = 3 # Listed reference of the source (no citation info)
-
-EMPTY = 0
-# template to GEDCOM field mapping for L reference fields
-GED_AUTHOR = 1
-GED_TITLE  = 2
-GED_PUBINF = 3
-# template to GEDCOM field mapping for Date in F reference fields
-GED_DATE   = 4
-GED_PAGE   = 5
-# template to a shortening algorithm mapping for predefined algorithms
-SHORTERALG_LOC  = 1   # reduce a location to a shorter format (typically city level)
-SHORTERALG_YEAR = 2   # reduce a date to only the year part
-SHORTERALG_ETAL = 3   # reduce an author list to "first author et al."
-SHORTERALG_REVERT_TO_DOT = 4  # change a list of first, second, third to 
-                              # a list third. second. first.
-# template to a style mapping
-STYLE_QUOTE      = 1  # add quotes around the field
-STYLE_QUOTECONT  = 2  # add quotes around this field combined with other
-                      # QUOTECONT fields around it
-STYLE_EMPH       = 3  # emphasize field
-STYLE_BOLD       = 4  # make field bold
-
-#-------------------------------------------------------------------------
-#
 # Classes
 #
 #-------------------------------------------------------------------------

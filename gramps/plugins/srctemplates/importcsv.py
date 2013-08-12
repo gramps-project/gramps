@@ -49,6 +49,9 @@ from gramps.gen.utils.id import create_id
 from gramps.gen.lib.srcattrtype import *
 from gramps.gen.lib.date import Date
 from gramps.gen.lib.srctemplate import SrcTemplate, TemplateElement
+from gramps.gen.utils.citeref import (REF_TYPE_L, REF_TYPE_S, REF_TYPE_F,
+                                      GED_TITLE, GED_AUTHOR, GED_PUBINF,
+                                      GED_DATE, GED_PAGE)
 
 #------------------------------------------------------------------------
 #
@@ -184,9 +187,6 @@ def load_srctemplates_data(db):
     Loads the srctemplates defined, and returns a dict with template data
     """
     LOG.debug("**** load_srctemplate_data. Starting")
-    load_srctemplate_gedcom(db)
-    LOG.debug("**** load_srctemplate_data. GEDCOM and UNKNOWN loaded")
-    
     
     from gramps.gen.plug import BasePluginManager
     bpmgr = BasePluginManager.get_instance()
@@ -195,16 +195,20 @@ def load_srctemplates_data(db):
     for plugin in pdatas:
         mod = bpmgr.load_plugin(plugin)
         if mod:
-            csvfilename = mod.csvfile
-            LOG.debug("**** load_srctemplate_data. Loading csv from %s" % csvfilename)
-            if sys.version_info[0] <3:
-                with open(csvfilename, 'rb') as csvfile:
-                    load_srctemplate_csv(csvfile, db)
-            else:
-                with open(csvfilename, 'r') as csvfile:
-                    load_srctemplate_csv(csvfile, db)
-                        
-            LOG.debug("**** load_srctemplate_data. csv data loaded")
+            if mod.input_type == 'csv':
+                csvfilename = mod.csvfile
+                LOG.debug("**** load_srctemplate_data. Loading csv from %s" % csvfilename)
+                if sys.version_info[0] <3:
+                    with open(csvfilename, 'rb') as csvfile:
+                        load_srctemplate_csv(csvfile, db)
+                else:
+                    with open(csvfilename, 'r') as csvfile:
+                        load_srctemplate_csv(csvfile, db)
+                            
+                LOG.debug("**** load_srctemplate_data. csv data loaded")
+            elif mod.input_type == 'code':
+                mod.load_template(db)
+                LOG.debug("**** load_srctemplate_data. GEDCOM loaded")
 
     for handle in db.get_template_handles():
         LOG.debug("handle %s" % handle)
@@ -223,144 +227,6 @@ def load_srctemplates_data(db):
                       (template.get_name(), target, template.get_map_element(target)))
     LOG.debug("**** load_srctemplate_data. finished")
 
-def load_srctemplate_gedcom(db):
-    """
-    Loads the GEDCOM and UNKNOWN templates which are always pre-defined
-    """
-    global DEFAULTS
-    TEMPLATES = {
-            'GEDCOM': {
-                REF_TYPE_L: [
-                    ('', "Author", '', '.', EMPTY, False, False, EMPTY, GED_AUTHOR,
-                    None, None),
-                    ('', "Title", '', '.', STYLE_QUOTE, False, False, EMPTY, GED_TITLE,
-                    None, None),
-                    ('', "Pub_info", '', '', EMPTY, False, False, EMPTY, GED_PUBINF,
-                    None, None),
-                    ],
-                REF_TYPE_F: [
-                    ('', "Author", '', ',', EMPTY, False, False, EMPTY, EMPTY,
-                    None, None),
-                    ('', "Title", '', ',', STYLE_QUOTE, False, False, EMPTY, EMPTY,
-                    None, None),
-                    ('', "Pub_info", '', '.', EMPTY, False, False, EMPTY, EMPTY,
-                    None, None),
-                    ('', "Date", '', ' -', EMPTY, False, False, EMPTY, EMPTY,
-                    None, None),
-                    ('', "Page", 'Page(s)', '.', EMPTY, False, False, EMPTY, EMPTY,
-                    None, None),
-                    ],
-                REF_TYPE_S: [
-                    ('', "Author", '', ',', EMPTY, False, False, EMPTY, EMPTY,
-                    None, None),
-                    ('', "Date", '', ' -', EMPTY, False, False, EMPTY, EMPTY,
-                    None, None),
-                    ('', "Page", 'Page(s)', '.', EMPTY, False, False, EMPTY, EMPTY,
-                    None, None),
-                    ],
-                DESCR: '%(first)s - %(sec)s - %(third)s' % {  'first': _('Basic'), 'sec': _('GEDCOM Style'), 'third': _('')},
-                },
-            UNKNOWN: {
-                REF_TYPE_L: [
-                    ],
-                REF_TYPE_F: [
-                    ],
-                REF_TYPE_S: [
-                    ],
-                DESCR: _("Unrecognized Template. Download it's definition."),
-                },
-            }
-
-    template = SrcTemplate()
-    template.set_name('GEDCOM')
-    template.set_descr('%(first)s - %(sec)s - %(third)s' % {  'first': _('Basic'), 'sec': _('GEDCOM Style'), 'third': _('')})
-    handle = create_id()
-    template.set_handle(handle)
-
-    for (cite_type, slist) in list(TEMPLATES['GEDCOM'].items()):
-        if cite_type != DESCR:
-            for struct in slist:
-                if cite_type == REF_TYPE_L or cite_type == REF_TYPE_F:
-                    elem = [x for x in template.get_template_element_list()
-                                if x.get_name()==struct[1] and x.get_short()==False]
-                    if elem:
-                        te = elem[0]
-                    else:
-                        te = TemplateElement()
-                        template.add_template_element(te)
-                elif cite_type == REF_TYPE_S:
-                    te = TemplateElement()
-                    template.add_template_element(te)
-                ldel = struct[0]
-                field_type = struct[1]
-                field_label = struct[2]
-                rdel = struct[3]
-                style = struct[4]
-                private = struct[5]
-                optional = struct[6]
-                shorteralg = struct[7]
-                gedcommap = struct[8]
-                hint = struct[9]
-                tooltip = struct[10]
-                te.set_name(field_type)
-                te.set_display(field_label)
-                if DEFAULTS.get(field_type):
-                    te.set_hint(hint or (DEFAULTS[field_type][0] or ""))
-                    te.set_tooltip(tooltip or (DEFAULTS[field_type][1] or ""))
-                else:
-                    te.set_hint("")
-                    te.set_tooltip("")
-                if cite_type == REF_TYPE_S:
-                    te.set_short(True)
-                    if field_type.lower().endswith(' (short)'):
-                        te.set_name(field_type)
-                    else:
-                        te.set_name(field_type + ' (Short)')
-                if field_type == "Page" or \
-                   field_type == "Date":
-                    te.set_citation(True)
-                template.add_structure_element(cite_type, [(ldel, field_type, 
-                                field_label, rdel, style, private, optional, 
-                                shorteralg, gedcommap, hint, tooltip)])
-
-    template.set_map_element("GEDCOM_A", "%(AUTHOR)s")
-    template.set_map_element("GEDCOM_T", "%(TITLE)s")
-    template.set_map_element("GEDCOM_P", "%(PUB_INFO)s")
-    template.set_map_element("GEDCOM_D", "%(DATE)s")
-    template.set_map_element("GEDCOM_PAGE", "%(PAGE)s")
-
-    template.set_map_element("EE_L", "%(AUTHOR)s. %(TITLE)s. %(PUB_INFO)s")
-    template.set_map_element("EE_F", "%(AUTHOR)s, %(TITLE)s, %(PUB_INFO)s. %(DATE)s - %(PAGE)s")
-    template.set_map_element("EE_S", "%(AUTHOR_(SHORT))s, %(DATE_(SHORT))s - %(PAGE_(SHORT))s.")
-    msg = _("Add template (%s)") % template.get_name()
-    with DbTxn(msg, db) as trans:
-        db.commit_template(template, trans)
-        db.set_GEDCOM_template_handle(template.get_handle())
-#    for handle in db.get_template_handles():
-#        template = db.get_template_from_handle(handle)
-#        LOG.debug("source_type: %s; handle %s" % (template.get_name(), template.get_handle()))
-#        for te in template.get_template_element_list():
-#            LOG.debug("    name: %s; display: %s; hint: %s; tooltip: %s; citation %s; "
-#                      "short %s; short_alg %s" %
-#                      (te.get_name(),
-#                       te.get_display(), te.get_hint(),
-#                       te.get_tooltip(), te.get_citation(),
-#                       te.get_short(), te.get_short_alg()
-#                      ))
-
-    # Now load the UNKNOWN template
-    template = SrcTemplate()
-    template.set_name(UNKNOWN)
-    template.set_descr(_("Unrecognized Template. Download it's definition."))
-    handle = create_id()
-    template.set_handle(handle)
-    msg = _("Add template (%s)") % template.get_name()
-    with DbTxn(msg, db) as trans:
-        db.commit_template(template, trans)
-
-    for cite_type in (REF_TYPE_F, REF_TYPE_L, REF_TYPE_S):
-        template.add_structure_element(cite_type, [])
-           
 def load_srctemplate_csv(csvfile, db):
     """
     Loads a template csvfile, and returns a dict with template data
@@ -373,6 +239,19 @@ def load_srctemplate_csv(csvfile, db):
     CITE_TYPES = {'F': REF_TYPE_F, 'L': REF_TYPE_L, 'S': REF_TYPE_S}
     GEDCOMFIELDS = {'A': GED_AUTHOR, 'T': GED_TITLE, 
                 'P': GED_PUBINF, 'D': GED_DATE}
+    EMPTY = 0
+    # template to a shortening algorithm mapping for predefined algorithms
+    SHORTERALG_LOC  = 1   # reduce a location to a shorter format (typically city level)
+    SHORTERALG_YEAR = 2   # reduce a date to only the year part
+    SHORTERALG_ETAL = 3   # reduce an author list to "first author et al."
+    SHORTERALG_REVERT_TO_DOT = 4  # change a list of first, second, third to 
+                                  # a list third. second. first.
+    # template to a style mapping
+    STYLE_QUOTE      = 1  # add quotes around the field
+    STYLE_QUOTECONT  = 2  # add quotes around this field combined with other
+                          # QUOTECONT fields around it
+    STYLE_EMPH       = 3  # emphasize field
+    STYLE_BOLD       = 4  # make field bold
     SHORTERALG = {'LOC': SHORTERALG_LOC, 'YEAR': SHORTERALG_YEAR,
               'ETAL': SHORTERALG_ETAL, 'REV.': SHORTERALG_REVERT_TO_DOT}
     STYLES = {'Quoted': STYLE_QUOTE, 'Italics': STYLE_EMPH,
@@ -494,9 +373,6 @@ def load_srctemplate_csv(csvfile, db):
                                     'normal_version_label': lblval})
             template.add_template_element(te)
         TYPE2FIELDS[source_type][cite_type].append(field_type)
-        template.add_structure_element(cite_type, [(row[LDELCOL], field_type, 
-                        field_label, row[RDELCOL], style, private, optional, 
-                        shorteralg, gedcommap, hint, tooltip)])
         
         # Setup the mapping. A typical mapping would look like:
         # ('EE_Full'  : '%(COMPILER)s, "%(TITLE)s", %(TYPE)s, %(WEBSITE CREATOR/OWNER)s, <i>%(WEBSITE)s</i>, (%(URL (DIGITAL LOCATION))s: accessed %(DATE ACCESSED)s), %(ITEM OF INTEREST)s; %(CREDIT LINE)s.')

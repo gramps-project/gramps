@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2011       Tim G L Lyons, Nick Hall
+# Copyright (C) 2011-2013  Tim G L Lyons, Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,6 +45,7 @@ from gramps.gen.utils.string import confidence
 from gramps.gen.config import config
 from gramps.gen.constfunc import cuni
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.utils.citeref import get_gedcom_author, get_gedcom_pubinfo
 
 #-------------------------------------------------------------------------
 #
@@ -184,7 +185,7 @@ class CitationBaseModel(object):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return cuni(source.get_gedcom_author())
+            return cuni(get_gedcom_author(self.db, source))
         except:
             return ''
 
@@ -201,7 +202,7 @@ class CitationBaseModel(object):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return cuni(source.get_gedcom_publication_info())
+            return cuni(get_gedcom_pubinfo(self.db, source))
         except:
             return ''
 
@@ -247,14 +248,14 @@ class CitationBaseModel(object):
 
     def source_src_auth(self, data):
         source = self.db.get_source_from_handle(data[COLUMN2_HANDLE])
-        return cuni(source.get_gedcom_author())
+        return cuni(get_gedcom_author(self.db, source))
 
     def source_src_abbr(self, data):
         return cuni(data[COLUMN2_ABBREV])
 
     def source_src_pinfo(self, data):
         source = self.db.get_source_from_handle(data[COLUMN2_HANDLE])
-        return cuni(source.get_gedcom_publication_info())
+        return cuni(get_gedcom_pubinfo(self.db, source))
 
     def source_src_private(self, data):
         if data[COLUMN2_PRIV]:
