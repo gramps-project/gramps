@@ -53,10 +53,3 @@ class HasCitation(HasCitationBase):
     name        =  _('Events with the <citation>')
     description = _("Matches events with a citation of a particular "
                     "value")
-    
-    def apply(self, dbase, event):
-        for citation_handle in event.get_citation_list():
-            citation = dbase.get_citation_from_handle(citation_handle)
-            if HasCitationBase.apply(self, dbase, citation):
-                return True
-        return False
