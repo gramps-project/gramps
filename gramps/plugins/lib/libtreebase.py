@@ -489,7 +489,7 @@ class Canvas(Page):
         if len(x_page_offsets) > 1:
             if self.title.mark_text and not self.title.text:
                 self.title.width = self.doc.get_usable_width()
-                self.__pages[self.__pages.keys()[0]].add_box(self.title)
+                self.__pages[list(self.__pages.keys())[0]].add_box(self.title)
                 return
             title_list = self.title.text.split(" ")
             title_font = self.__get_font(self.title)
