@@ -349,11 +349,7 @@ class CLIDbManager(object):
                 self.__start_cursor(_("Importing data..."))
                 dbclass = gen.db.DbBsddb
                 dbase = dbclass()
-                from  gen.db.dbconst import BDBVERSFN
-                versionpath = os.path.join(name, BDBVERSFN)
-                _LOG.debug("Write bsddb version %s" % str(dbase.version()))
-                with open(versionpath, "w") as version_file:
-                    version_file.write(str(dbase.version()))
+                dbase.write_version(new_path)
                 dbase.load(new_path, callback)
     
                 import_function = plugin.get_import_function()
