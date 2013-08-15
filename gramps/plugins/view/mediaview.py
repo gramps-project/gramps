@@ -63,7 +63,7 @@ from gramps.gui.views.treemodels import MediaModel
 from gramps.gen.constfunc import win, cuni
 from gramps.gen.config import config
 from gramps.gen.utils.file import (media_path, relative_path, media_path_full, 
-                            fix_encoding)
+                                   fix_encoding, create_checksum)
 from gramps.gen.utils.db import get_media_referents
 from gramps.gui.views.bookmarks import MediaBookmarks
 from gramps.gen.mime import get_type, is_valid_type
@@ -199,6 +199,9 @@ class MediaView(ListView):
                 if not is_valid_type(mime):
                     return
                 photo = MediaObject()
+                self.uistate.set_busy_cursor(True)
+                photo.set_checksum(create_checksum(name))
+                self.uistate.set_busy_cursor(False)
                 base_dir = cuni(media_path(self.dbstate.db))
                 if os.path.exists(base_dir):
                     name = relative_path(name, base_dir)

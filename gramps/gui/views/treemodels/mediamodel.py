@@ -137,9 +137,9 @@ class MediaModel(FlatBaseModel):
         return cuni(data[1])
 
     def column_date(self,data):
-        if data[9]:
+        if data[10]:
             date = Date()
-            date.unserialize(data[9])
+            date.unserialize(data[10])
             return cuni(displayer.display(date))
         return ''
 
@@ -156,17 +156,17 @@ class MediaModel(FlatBaseModel):
         return cuni(data[0])
 
     def column_private(self, data):
-        if data[11]:
+        if data[12]:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
             return ''
 
     def sort_change(self,data):
-        return "%012x" % data[8]
+        return "%012x" % data[9]
 
     def column_change(self,data):
-        return format_time(data[8])
+        return format_time(data[9])
 
     def column_tooltip(self,data):
         return cuni('Media tooltip')
@@ -183,7 +183,7 @@ class MediaModel(FlatBaseModel):
         """
         tag_color = "#000000000000"
         tag_priority = None
-        for handle in data[10]:
+        for handle in data[11]:
             tag = self.db.get_tag_from_handle(handle)
             this_priority = tag.get_priority()
             if tag_priority is None or this_priority < tag_priority:
@@ -195,5 +195,5 @@ class MediaModel(FlatBaseModel):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[10]))
+        tag_list = list(map(self.get_tag_name, data[11]))
         return ', '.join(sorted(tag_list, key=glocale.sort_key))

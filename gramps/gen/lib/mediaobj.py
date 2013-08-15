@@ -86,11 +86,13 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
             self.path = source.path
             self.mime = source.mime
             self.desc = source.desc
+            self.checksum = source.checksum
             self.thumb = source.thumb
         else:
             self.path = ""
             self.mime = ""
             self.desc = ""
+            self.checksum = ""
             self.thumb = None
 
     def serialize(self, no_text_date = False):
@@ -112,6 +114,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         :rtype: tuple
         """
         return (self.handle, self.gramps_id, self.path, self.mime, self.desc,
+                self.checksum,
                 AttributeBase.serialize(self),
                 CitationBase.serialize(self),
                 NoteBase.serialize(self),
@@ -145,6 +148,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
                 "path": self.path, 
                 "mime": self.mime, 
                 "desc": self.desc,
+                "checksum": self.checksum,
                 "attribute_list": AttributeBase.to_struct(self),
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
@@ -162,7 +166,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         :type data: tuple
         """
         (self.handle, self.gramps_id, self.path, self.mime, self.desc,
-         attribute_list, citation_list, note_list, self.change,
+         self.checksum, attribute_list, citation_list, note_list, self.change,
          date, tag_list, self.private) = data
 
         AttributeBase.unserialize(self, attribute_list)
@@ -287,3 +291,12 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
     def get_description(self):
         """Return the description of the image."""
         return self.desc
+
+    def set_checksum(self, text):
+        """Set the checksum of the image."""
+        self.checksum = text
+
+    def get_checksum(self):
+        """Return the checksum of the image."""
+        return self.checksum
+

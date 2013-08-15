@@ -49,8 +49,8 @@ from ..utils import open_file_with_default_application
 from gramps.gen.const import THUMBSCALE
 from gramps.gen.mime import get_description, get_type
 from ..thumbnails import get_thumbnail_image, find_mime_type_pixbuf
-from gramps.gen.utils.file import (media_path_full, find_file, 
-                            get_unicode_path_from_file_chooser)
+from gramps.gen.utils.file import (media_path_full, find_file, create_checksum,
+                                   get_unicode_path_from_file_chooser)
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 from ..glade import Glade
@@ -553,7 +553,14 @@ class EditMediaRef(EditReference):
         for obj in (self.descr_window, self.path_obj):
             obj.update()
         self.determine_mime()
+        self.update_checksum()
         self.draw_preview()
+        
+    def update_checksum(self):
+        self.uistate.set_busy_cursor(True)
+        media_path = media_path_full(self.dbstate.db, self.source.get_path())
+        self.source.set_checksum(create_checksum(os.path.normpath(media_path)))
+        self.uistate.set_busy_cursor(False)
 
     def select_file(self, val):
         self.determine_mime()

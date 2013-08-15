@@ -62,6 +62,7 @@ from gramps.gen.errors import GrampsImportError
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.db import family_name
 from gramps.gen.utils.unknown import make_unknown, create_explanation_note
+from gramps.gen.utils.file import create_checksum
 from gramps.gen.datehandler import parser, set_date
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, 
@@ -1603,6 +1604,14 @@ class GrampsParser(UpdateCallback):
             if self.all_abs and not os.path.isabs(src):
                 self.all_abs = False
                 self.info.add('relative-path', None, None)
+        if 'checksum' in attrs:
+            self.object.checksum = attrs['checksum']
+        else:
+            if os.path.isabs(src):
+                full_path = src
+            else:
+                full_path = os.path.join(self.mediapath, src)
+            self.object.checksum = create_checksum(full_path)
 
     def start_childof(self, attrs):
         """

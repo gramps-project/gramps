@@ -64,7 +64,7 @@ from gramps.gen.constfunc import cuni
 from gramps.gen.lib import MediaObject, MediaRef
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path,
-                            fix_encoding)
+                                   fix_encoding, create_checksum)
 from ...thumbnails import get_thumbnail_image
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.mime import get_type, is_valid_type
@@ -525,6 +525,9 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         if not is_valid_type(mime):
                             return
                         photo = MediaObject()
+                        self.uistate.set_busy_cursor(True)
+                        photo.set_checksum(create_checksum(name))
+                        self.uistate.set_busy_cursor(False)
                         base_dir = cuni(media_path(self.dbstate.db))
                         if os.path.exists(base_dir):
                             name = relative_path(name, base_dir)

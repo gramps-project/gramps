@@ -24,8 +24,10 @@
 from __future__ import with_statement, unicode_literals
 
 import sys
+import os
 from ..lib.markertype import MarkerType
 from ..lib.tag import Tag
+from ..utils.file import create_checksum
 import time
 import logging
 LOG = logging.getLogger(".citation")
@@ -54,10 +56,11 @@ def gramps_upgrade_17(self):
        1. This upgrade adds tags to event, place, repository, source and 
           citation objects.
        2. Data of Source becomes SourceAttributes Secondary Object
+       3. Add checksum field to media objects.
     """
     length = (len(self.event_map) + len(self.place_map) +
               len(self.repository_map) + len(self.source_map) +
-              len(self.citation_map))
+              len(self.citation_map) + len(self.media_map))
     self.set_total(length)
 
     # ---------------------------------
@@ -164,6 +167,27 @@ def gramps_upgrade_17(self):
             if isinstance(handle, UNITYPE):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_citation)
+        self.update()
+
+    # ---------------------------------
+    # Modify Media
+    # ---------------------------------
+    # Add new checksum field.
+    base_path = self.metadata[b'mediapath']
+    for handle in self.media_map.keys():
+        media = self.media_map[handle]
+        new_media = list(media)
+        if os.path.isabs(new_media[2]):
+            full_path = new_media[2]
+        else:
+            full_path = os.path.join(base_path, new_media[2])
+        checksum = create_checksum(full_path)
+        new_media = new_media[:5] + [checksum] + new_media[5:]
+        new_media = tuple(new_media)
+        with BSDDBTxn(self.env, self.media_map) as txn:
+            if isinstance(handle, UNITYPE):
+                handle = handle.encode('utf-8')
+            txn.put(handle, new_media)
         self.update()
 
     # Bump up database version. Separate transaction to save metadata.

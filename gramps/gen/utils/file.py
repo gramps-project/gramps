@@ -34,6 +34,8 @@ File and folder related utility functions
 import os
 import sys
 import shutil
+import io
+import hashlib
 import logging
 LOG = logging.getLogger(".gen.utils.file")
 
@@ -294,3 +296,15 @@ def fix_encoding(value, errors='strict'):
                 return value.decode(encoding=codeset, errors=errors)
     else:
         return value
+
+def create_checksum(full_path):
+    """
+    Create a md5 hash for the given file.
+    """
+    full_path = os.path.normpath(full_path)
+    try:
+        with io.open(full_path, 'rb') as media_file:
+            md5sum = hashlib.md5(media_file.read()).hexdigest()
+    except IOError:
+            md5sum = ''
+    return md5sum

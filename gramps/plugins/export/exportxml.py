@@ -1216,6 +1216,7 @@ class GrampsXmlWriter(UpdateCallback):
         mime_type = obj.get_mime_type()
         path = obj.get_path()
         desc = obj.get_description()
+        checksum = obj.get_checksum()
         if desc:
             desc_text = ' description="%s"' % self.fix(desc)
         else:
@@ -1229,9 +1230,9 @@ class GrampsXmlWriter(UpdateCallback):
             # Always export path with \ replaced with /. Otherwise import
             # from Windows to Linux of gpkg's path to images does not work. 
             path = path.replace('\\','/')
-        self.g.write('%s<file src="%s" mime="%s"%s/>\n'
+        self.g.write('%s<file src="%s" mime="%s" checksum="%s"%s/>\n'
                      % ("  "*(index+1), self.fix(path), self.fix(mime_type), 
-                        desc_text))
+                        checksum, desc_text))
         self.write_attribute_list(obj.get_attribute_list())
         self.write_note_list(obj.get_note_list(), index+1)
         dval = obj.get_date_object()
