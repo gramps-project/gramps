@@ -297,6 +297,7 @@ OBJECTS
 <!ATTLIST file
         src         CDATA #REQUIRED
         mime        CDATA #REQUIRED
+        checksum    CDATA #IMPLIED
         description CDATA #REQUIRED
 >
 

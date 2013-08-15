@@ -503,6 +503,7 @@
     <element name="file">
         <attribute name="src"><text/></attribute>
         <attribute name="mime"><text/></attribute>
+        <attribute name="checksum"><text/></attribute>
         <attribute name="description"><text/></attribute>
     </element>
     <zeroOrMore><element name="attribute">
