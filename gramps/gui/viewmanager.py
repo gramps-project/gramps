@@ -90,7 +90,7 @@ from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
 from .dialog import (ErrorDialog, WarningDialog, QuestionDialog2,
                             InfoDialog)
-from . import widgets
+from .widgets import Statusbar
 from .undohistory import UndoHistory
 from gramps.gen.utils.file import (media_path_full, get_unicode_path_from_env_var, 
                             get_unicode_path_from_file_chooser)
@@ -615,6 +615,7 @@ class ViewManager(CLIManager):
 
         self.window = Gtk.Window()
         self.window.set_icon_from_file(ICON)
+        self.window.set_has_resize_grip(True)
         self.window.set_default_size(width, height)
 
         vbox = Gtk.VBox()
@@ -640,15 +641,13 @@ class ViewManager(CLIManager):
         vbox.pack_start(self.menubar, False, True, 0)
         vbox.pack_start(self.toolbar, False, True, 0)
         vbox.add(hpane)
-        vbox.pack_end(self.__setup_statusbar(), False, True, 0)
+        self.statusbar = Statusbar()
+        self.statusbar.show()
+        vbox.pack_end(self.statusbar, False, True, 0)
         vbox.show()
 
-        self.progress_monitor = ProgressMonitor(
-            GtkProgressDialog, ("", self.window))
-
-        self.uistate = DisplayState(
-            self.window, self.statusbar, self.progress, self.warnbtn,
-            self.uimanager, self.progress_monitor, self)
+        self.uistate = DisplayState(self.window, self.statusbar,
+                                    self.uimanager, self)
 
         self.dbstate.connect('database-changed', self.uistate.db_changed)
 
@@ -684,28 +683,6 @@ class ViewManager(CLIManager):
         # ArgHandler can work without it always shown
         # But we need to realize it here to have Gdk.window handy
         self.window.realize()
-
-    def __setup_statusbar(self):
-        """
-        Create the statusbar that sits at the bottom of the window
-        """
-        self.progress = Gtk.ProgressBar()
-        self.progress.set_size_request(100, -1)
-        self.progress.hide()
-
-        self.statusbar = widgets.Statusbar()
-        self.statusbar.show()
-
-        self.warnbtn = widgets.WarnButton()
-
-        hbox2 = Gtk.HBox()
-        hbox2.set_spacing(4)
-        hbox2.set_border_width(2)
-        hbox2.pack_start(self.progress, False, True, 0)
-        hbox2.pack_start(self.warnbtn, False, True, 0)
-        hbox2.pack_end(self.statusbar, True, True, 0)
-        hbox2.show()
-        return hbox2
 
     def __setup_navigator(self):
         """
@@ -1583,20 +1560,20 @@ class ViewManager(CLIManager):
                 if not yes_no:
                     return
             self.uistate.set_busy_cursor(True)
-            self.pulse_progressbar(0)
+            self.uistate.pulse_progressbar(0)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Making backup..."))
             if include.get_active():
                 from gramps.plugins.export.exportpkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename,
                                        User(error=ErrorDialog,
-                                            callback=self.pulse_progressbar))
+                                       callback=self.uistate.pulse_progressbar))
                 writer.export()
             else:
                 from gramps.plugins.export.exportxml import XmlWriter
                 writer = XmlWriter(self.dbstate.db,
                                    User(error=ErrorDialog,
-                                        callback=self.pulse_progressbar),
+                                   callback=self.uistate.pulse_progressbar),
                                    strip_photos=0, compress=1)
                 writer.write(filename)
             self.uistate.set_busy_cursor(False)
@@ -1607,15 +1584,6 @@ class ViewManager(CLIManager):
         else:
             self.uistate.push_message(self.dbstate, _("Backup aborted"))
         window.destroy()
-
-    def pulse_progressbar(self, value, text=None):
-        self.progress.set_fraction(min(value/100.0, 1.0))
-        if text:
-            self.progress.set_text("%s: %d%%" % (text, value))
-        else:
-            self.progress.set_text("%d%%" % value)
-        while Gtk.events_pending():
-            Gtk.main_iteration()
 
     def select_backup_path(self, widget, path_entry):
         """

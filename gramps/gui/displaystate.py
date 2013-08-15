@@ -69,6 +69,7 @@ from gramps.gen.relationship import get_relationship_calculator
 from .glade import Glade
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.constfunc import UNITYPE, cuni
+from .widgets.progressdialog import ProgressMonitor, GtkProgressDialog
 
 DISABLED = -1
 
@@ -389,30 +390,28 @@ class DisplayState(Callback):
 
     BUSY_CURSOR = Gdk.Cursor.new(Gdk.CursorType.WATCH)
 
-    def __init__(self, window, status, progress, warnbtn, uimanager, 
-                 progress_monitor, viewmanager=None):
+    def __init__(self, window, status, uimanager, viewmanager=None):
 
         self.busy = False
         self.cursor = None
         self.viewmanager = viewmanager
         self.uimanager = uimanager
-        self.progress_monitor = progress_monitor
+        self.progress_monitor = ProgressMonitor(GtkProgressDialog, ("", window))
         self.window = window
         Callback.__init__(self)
         self.status = status
         self.status_id = status.get_context_id('GRAMPS')
-        self.progress = progress
+        self.progress = status.get_progress_bar()
         self.history_lookup = {}
         self.gwm = GrampsWindowManager(uimanager)
         self.widget = None
         self.disprel_old = ''
         self.disprel_defpers = None
         self.disprel_active = None
-        self.warnbtn = warnbtn
-        self.last_bar = self.status.insert(min_width=35, ralign=True)
         self.set_relationship_class()
 
         formatter = logging.Formatter('%(levelname)s %(name)s: %(message)s')
+        warnbtn = status.get_warning_button()
         self.rhandler = WarnHandler(capacity=400, button=warnbtn)
         self.rhandler.setFormatter(formatter)
         self.rhandler.setLevel(logging.WARNING)
@@ -560,12 +559,10 @@ class DisplayState(Callback):
         #text = ((_("%(nav_type)s View") % {"nav_type": _(nav_type)}) + 
         text = (self.viewmanager.active_page.get_title() +
                 (": %d/%d" % (matched, total)))
-        self.status.pop(1, self.last_bar)
-        self.status.push(1, text, self.last_bar)
+        self.status.set_filter(text)
 
     def clear_filter_results(self):
-        self.status.pop(1, self.last_bar)
-        self.status.push(1, '', self.last_bar)
+        self.status.clear_filter()
 
     def modify_statusbar(self, dbstate, active=None):
         view = self.viewmanager.active_page
@@ -593,9 +590,12 @@ class DisplayState(Callback):
         self.status.push(self.status_id, name)
         process_pending_events()
 
-    def pulse_progressbar(self, value):
+    def pulse_progressbar(self, value, text=None):
         self.progress.set_fraction(min(value/100.0, 1.0))
-        self.progress.set_text("%d%%" % value)
+        if text:
+            self.progress.set_text("%s: %d%%" % (text, value))
+        else:
+            self.progress.set_text("%d%%" % value)
         process_pending_events()
 
     def status_text(self, text):
