@@ -60,7 +60,7 @@ class HasData(Rule):
             self.event_type.set_from_xml_str(self.list[0])
 
         if self.date:
-            self.date = parser.parse(self.date)
+            self.date = DateHandler.parser.parse(self.date)
         
     def apply(self, db, event):
         if self.event_type and event.get_type() != self.event_type:

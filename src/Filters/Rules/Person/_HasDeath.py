@@ -52,7 +52,7 @@ class HasDeath(Rule):
     
     def prepare(self, db):
         if self.list[0]:
-            self.date = parser.parse(self.list[0])
+            self.date = DateHandler.parser.parse(self.list[0])
         else:
             self.date = None
 

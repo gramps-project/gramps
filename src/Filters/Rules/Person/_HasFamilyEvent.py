@@ -58,7 +58,7 @@ class HasFamilyEvent(Rule):
         self.date = None
         try:
             if self.list[1]:
-                self.date = parser.parse(self.list[1])
+                self.date = DateHandler.parser.parse(self.list[1])
         except:
             pass
 
