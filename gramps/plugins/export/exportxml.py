@@ -208,11 +208,12 @@ class GrampsXmlWriter(UpdateCallback):
         repo_len = self.db.get_number_of_repositories()
         obj_len = self.db.get_number_of_media_objects()
         note_len = self.db.get_number_of_notes()        
-        tag_len = self.db.get_number_of_tags()        
+        tag_len = self.db.get_number_of_tags() 
+        template_len = self.db.get_number_of_templates()       
         
         total_steps = (person_len + family_len + event_len + citation_len +
                        source_len + place_len + repo_len + obj_len + note_len +
-                       tag_len
+                       tag_len + template_len
                       )
 
         self.set_total(total_steps)
@@ -255,6 +256,14 @@ class GrampsXmlWriter(UpdateCallback):
                 self.write_tag(tag, 2)
                 self.update()
             self.g.write("  </tags>\n")
+
+        if template_len > 0:
+            self.g.write("  <SourceTemplates>\n")
+            for key in sorted(self.db.get_template_handles()):
+                template = self.db.get_template_from_handle(key)
+                self.write_template(template, 2)
+                self.update()
+            self.g.write("  </SourceTemplates>\n")
 
         # Write primary objects
         if event_len > 0:
@@ -350,6 +359,9 @@ class GrampsXmlWriter(UpdateCallback):
         mediapath= self.db.get_mediapath()
         if mediapath is not None:
             self.write_line("mediapath", mediapath, 2)
+        gedcom_handle = self.db.get_GEDCOM_template_handle()
+        if gedcom_handle is not None:
+            self.write_line("gedcom_template", gedcom_handle, 2)
 
     def write_namemaps(self):
         group_map = self.db.get_name_group_keys()
@@ -435,6 +447,22 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write(' priority="%d"' % tag.get_priority())
         self.g.write('/>\n')
         
+    def write_template(self, template, index=2):
+        """
+        Write a template definition.
+        """
+        if not template:
+            return
+
+        sp = "  "*index
+        self.write_template_tag('template', template, index)
+        self.write_force_line("tname", template.get_name(), index+1)
+        self.write_line("tdescription", template.get_descr(), index+1)
+        self.write_map_list(template.get_map_dict(), index+1)
+        self.write_te_list(template.get_template_element_list(), index+1)
+
+        self.g.write("%s</template>\n" % sp)
+                    
     def fix(self,line):
         try:
             l = cuni(line)
@@ -595,7 +623,7 @@ class GrampsXmlWriter(UpdateCallback):
         sp = "  "*index
         self.write_primary_tag("source", source, index)
         self.write_force_line("sname", source.get_name(), index+1)
-        self.write_line("stemplate", source.get_template(), index+1)
+        self.write_ref("stemplate", source.get_template(), index+1)
         self.write_line("sabbrev", source.get_abbreviation(), index+1)
         self.write_note_list(source.get_note_list(), index+1)
         self.write_media_list(source.get_media_list(), index+1)
@@ -805,6 +833,25 @@ class GrampsXmlWriter(UpdateCallback):
         handle_text = ' handle="_%s"' % obj.get_handle()
         
         obj_text = '%s<%s' % (sp, tagname)
+        self.g.write(obj_text + handle_text + change_text)
+        if close:
+            self.g.write('>\n')
+
+    def write_template_tag(self, templatename, obj, index=1, close=True):
+        """
+        Write the template attributes common to all table objects.
+        """
+        if not obj:
+            return
+        sp = "  " * index
+        try:
+            change_text = ' change="%d"' %  obj.get_change_time()
+        except:
+            change_text = ' change="%d"' %  0
+            
+        handle_text = ' handle="_%s"' % obj.get_handle()
+        
+        obj_text = '%s<%s' % (sp, templatename)
         self.g.write(obj_text + handle_text + change_text)
         if close:
             self.g.write('>\n')
@@ -1173,6 +1220,27 @@ class GrampsXmlWriter(UpdateCallback):
                             desc_text
                             )
                         )
+
+    def write_map_list(self, map_dict, indent=3):
+        sp = '  ' * indent
+        for (key, value) in list(map_dict.items()):
+            self.g.write('%s<tmap key="%s" value="%s"' %
+                         (sp, escxml(key), self.fix(value))
+                         )
+            self.g.write('/>\n')
+
+    def write_te_list(self, te_list, index=1):
+        sp = "  "*index
+        for te in te_list:
+            self.g.write('%s<tefield type="text" citation="%s" short="%s" short_alg="%s" >\n' %
+                         (sp, te.get_citation(), te.get_short(), te.get_short_alg())
+                         )
+            self.write_line("tename", te.get_name(), index+1)
+            self.write_line("Display", te.get_display(), index+1)
+            self.write_line("Hint", te.get_hint(), index+1)
+            self.write_line("Tooltip", te.get_tooltip(), index+1)
+            self.g.write('%s</tefield>\n' % sp)
+        pass
 
     def write_place_obj(self, place, index=1):
         self.write_primary_tag("placeobj", place, index)

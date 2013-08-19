@@ -1859,6 +1859,11 @@ class DbBsddbRead(DbReadBase, Callback):
             return self.metadata.get(b'mediapath', None)
         return None
 
+    def set_GEDCOM_template_handle(self, handle):
+        """Set the default GEDCOM template handle for database"""
+        if (self.metadata is not None) and (not self.readonly):
+            self.metadata[b'gedcom_template'] = handle
+
     def find_backlink_handles(self, handle, include_classes=None):
         """
         Find all objects that hold a reference to the object handle.

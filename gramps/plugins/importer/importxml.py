@@ -55,7 +55,7 @@ from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
                             Place, RepoRef, Repository, Researcher, Source, 
                             SrcAttribute, SrcAttributeType,
                             StyledText, StyledTextTag, StyledTextTagType, 
-                            Surname, Tag, Url)
+                            Surname, Tag, Url, SrcTemplate, TemplateElement)
 from gramps.gen.db import DbTxn
 from gramps.gen.db.write import CLASS_TO_KEY_MAP
 from gramps.gen.errors import GrampsImportError
@@ -67,7 +67,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, 
                                    EVENT_KEY, MEDIA_KEY, PLACE_KEY, 
                                    REPOSITORY_KEY, NOTE_KEY, TAG_KEY, 
-                                   CITATION_KEY)
+                                   CITATION_KEY, TEMPLATE_KEY)
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.version import VERSION
 from gramps.gen.config import config
@@ -215,7 +215,8 @@ class ImportInfo(object):
     Class object that can hold information about the import
     """
     keyorder = [PERSON_KEY, FAMILY_KEY, SOURCE_KEY, EVENT_KEY, MEDIA_KEY, 
-                PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, TAG_KEY, CITATION_KEY]
+                PLACE_KEY, REPOSITORY_KEY, NOTE_KEY, TAG_KEY, CITATION_KEY,
+                TEMPLATE_KEY]
     key2data = {
             PERSON_KEY : 0,
             FAMILY_KEY : 1,
@@ -226,7 +227,8 @@ class ImportInfo(object):
             REPOSITORY_KEY: 6, 
             NOTE_KEY: 7,
             TAG_KEY: 8,
-            CITATION_KEY: 9
+            CITATION_KEY: 9,
+            TEMPLATE_KEY: 10
             }
     
     def __init__(self):
@@ -235,9 +237,9 @@ class ImportInfo(object):
         
         This creates the datastructures to hold info
         """
-        self.data_mergecandidate = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
-        self.data_newobject = [0] * 10
-        self.data_unknownobject = [0] * 10
+        self.data_mergecandidate = [{}, {}, {}, {}, {}, {}, {}, {}, {}, {}, {}]
+        self.data_newobject = [0] * 11
+        self.data_unknownobject = [0] * 11
         self.data_families = ''
         self.expl_note = ''
         self.data_relpath = False
@@ -315,6 +317,7 @@ class ImportInfo(object):
             NOTE_KEY        : _('  Notes: %d\n'),
             TAG_KEY         : _('  Tags: %d\n'),
             CITATION_KEY    : _('  Citations: %d\n'),
+            TEMPLATE_KEY    : _('  Source Templates; %d\n'),
             }
         txt = _("Number of new objects imported:\n")
         for key in self.keyorder:
@@ -537,6 +540,7 @@ class GrampsParser(UpdateCallback):
         self.attribute = None
         self.srcattribute = None
         self.placeobj = None
+        self.template = None
         self.locations = 0
         self.place_map = {}
 
@@ -708,18 +712,28 @@ class GrampsParser(UpdateCallback):
             "source": (self.start_source, self.stop_source), 
             "sourceref": (self.start_sourceref, self.stop_sourceref), 
             "sources": (None, None), 
+            "SourceTemplates": (None, None),
             "spage": (None, self.stop_spage), #deprecated
             "spubinfo": (None, self.stop_spubinfo),  #deprecated in 1.6.0
             "state": (None, self.stop_state), 
             "stext": (None, self.stop_stext), 
             "stitle": (None, self.stop_stitle),      #deprecated in 1.6.0
             "sname": (None, self.stop_sname),      #new in 1.6.0
-            "stemplate": (None, self.stop_stemplate),      #new in 1.6.0
+            "stemplate": (self.start_stemplate, None),      #new in 1.6.0
             "street": (None, self.stop_street), 
             "style": (self.start_style, None),
             "tag": (self.start_tag, self.stop_tag),
             "tagref": (self.start_tagref, None),
             "tags": (None, None),
+            "tdescription": (None, self.stop_tdescription),
+            "tefield": (self.start_tefield, self.stop_tefield),
+            "tename": (None, self.stop_tename),
+            "tedisplay": (None, self.stop_tedisplay),
+            "tehint": (None, self.stop_tehint),
+            "tetooltip": (None, self.stop_tetooltip),
+            "template": (self.start_template, self.stop_template),
+            "tmap": (self.start_tmap, None),
+            "tname": (None, self.stop_tname),   # Template name
             "text": (None, self.stop_text),
             "url": (self.start_url, None), 
             "repository": (self.start_repo, self.stop_repo), 
@@ -767,7 +781,8 @@ class GrampsParser(UpdateCallback):
                                     "repository": self.db.get_raw_repository_data,
                                     "media": self.db.get_raw_object_data,
                                     "note": self.db.get_raw_note_data,
-                                    "tag": self.db.get_raw_tag_data}[target]
+                                    "tag": self.db.get_raw_tag_data,
+                                    "template": self.db.get_raw_template_data}[target]
                 raw = get_raw_obj_data(handle)
                 prim_obj.unserialize(raw)
                 self.import_handles[orig_handle][target][INSTANTIATED] = True
@@ -795,7 +810,8 @@ class GrampsParser(UpdateCallback):
                                    "repository": self.db.has_repository_handle,
                                    "media": self.db.has_object_handle,
                                    "note": self.db.has_note_handle,
-                                   "tag": self.db.has_tag_handle}[target]
+                                   "tag": self.db.has_tag_handle,
+                                   "template": self.db.has_template_handle}[target]
                 while has_handle_func(handle):
                     handle = create_id()
             self.import_handles[orig_handle] = {target: [handle, False]}
@@ -806,6 +822,8 @@ class GrampsParser(UpdateCallback):
         prim_obj.set_handle(handle)
         if target == "tag":
             self.db.add_tag(prim_obj, self.trans)
+        elif target == "template":
+            self.db.add_template(prim_obj, self.trans) 
         else:
             add_func = {"person": self.db.add_person,
                         "family": self.db.add_family,
@@ -1807,6 +1825,68 @@ class GrampsParser(UpdateCallback):
         self.note_tags[-1].ranges.append((int(attrs['start']),
                                           int(attrs['end'])))
         
+    def start_template(self, attrs):
+        """
+        Template definition.
+        """
+        # Tag defintion
+        self.template = SrcTemplate()
+        self.inaugurate(attrs['handle'], "template", self.template)
+        self.template.change = int(attrs.get('change', self.change))
+        self.info.add('new-object', TEMPLATE_KEY, self.template)
+        self.template.set_name(attrs.get('tname', _('Unknown when imported')))
+        self.template.set_descr(attrs.get('tdescription', _('Unknown when imported')))
+        return self.template
+
+    def stop_template(self, *tag):
+        self.db.commit_template(self.template, self.trans, self.template.get_change_time())
+        self.template = None
+
+    def stop_tname(self, tag):
+        self.template.set_name(tag)
+    
+    def stop_tdescription(self, tag):
+        self.template.set_descr(tag)
+    
+    def start_tmap(self, attrs):
+        self.template.set_map_element(attrs["key"], attrs["value"])
+    
+    @staticmethod
+    def _conv_bool(val, default):
+        """
+        Converts a string attribute to True or False. If the attribute is absent
+        (val is None) the default value is returned. If the value is "True" then
+        True is returned and vice-versa for False
+        """
+        if val is None:
+            return default
+        if val == "True":
+            return True
+        else:
+            return False
+        
+    def start_tefield(self, attrs):
+        self.template_element = TemplateElement()
+        self.template_element.set_citation(self._conv_bool(attrs.get("citation"), False))
+        self.template_element.set_short(self._conv_bool(attrs.get("short"), False))
+        self.template_element.set_short_alg(attrs.get("short_alg", None))
+
+    def stop_tename(self, tag):
+        self.template_element.set_name(tag)
+
+    def stop_tedisplay(self, tag):
+        self.template_element.set_display(tag)
+
+    def stop_tehint(self, tag):
+        self.template_element.set_hint(tag)
+
+    def stop_tetooltip(self, tag):
+        self.template_element.set_tooltip(tag)
+    
+    def stop_tefield(self, tag):
+        self.template.add_template_element(self.template_element)
+        self.template_element = None
+
     def start_note(self, attrs):
         """
         Add a note to db if it doesn't exist yet and assign
@@ -2083,6 +2163,7 @@ class GrampsParser(UpdateCallback):
             self.inaugurate_id(attrs.get('id'), SOURCE_KEY, self.source)
         self.source.private = bool(attrs.get("priv"))
         self.source.change = int(attrs.get('change', self.change))
+        self.source.template = None
         self.info.add('new-object', SOURCE_KEY, self.source)
         return self.source
 
@@ -2732,10 +2813,13 @@ class GrampsParser(UpdateCallback):
         #store descriptive name of the source
         self.source.name = tag
 
-    def stop_stemplate(self, tag):
-        #store template of the source
-        self.source.template = tag
-
+    def start_stemplate(self, attrs):
+        """
+        Add a template reference to the source object currently being processed
+        """
+        handle = self.inaugurate(attrs['hlink'], "template", SrcTemplate)
+        self.source.set_template(handle)
+    
     def stop_stitle(self, tag):
         #title was deprecated and converted to name and attribute TITLE in 1.6.0
         if not self.source.name:
@@ -2754,6 +2838,18 @@ class GrampsParser(UpdateCallback):
             self.in_old_sourceref = False
 
     def stop_source(self, *tag):
+        # Template are new at 1.6.0. Prior to 1.6.0, sources (and citations) wll
+        # be GEDCOM style, so the template needs to be set to GEDCOM - if the
+        # GEDCOM template has not alraedy been defined, it needs to be built.
+        if self.__xml_version < '1.6.0':
+            gedcom_handle = self.db.get_GEDCOM_template_handle()
+            if gedcom_handle is None:
+                from gramps.plugins.srctemplates.gedcomtemplate import load_template
+                load_template(self.db)
+                gedcom_handle = self.db.get_GEDCOM_template_handle()
+            self.source.set_template(gedcom_handle)
+        # From xml version 1.6.0, if the template is None, this is intentional,
+        # and there is no template defined.
         self.db.commit_source(self.source, self.trans,
                               self.source.get_change_time())
         self.source = None

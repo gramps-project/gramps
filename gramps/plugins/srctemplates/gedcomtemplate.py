@@ -47,7 +47,8 @@ _ = glocale.translation.gettext
 from gramps.gen.db import DbTxn
 
 from gramps.gen.utils.id import create_id
-from gramps.gen.lib.srctemplate import SrcTemplate, TemplateElement
+from gramps.gen.lib.srctemplate import SrcTemplate
+from gramps.gen.lib.templateelement import TemplateElement
 from gramps.gen.utils.citeref import (REF_TYPE_L, REF_TYPE_S, REF_TYPE_F,
                                       GED_TITLE, GED_AUTHOR, GED_PUBINF,
                                       GED_DATE, GED_PAGE)

@@ -48,7 +48,8 @@ from gramps.gen.db import DbTxn
 from gramps.gen.utils.id import create_id
 from gramps.gen.lib.srcattrtype import *
 from gramps.gen.lib.date import Date
-from gramps.gen.lib.srctemplate import SrcTemplate, TemplateElement
+from gramps.gen.lib.srctemplate import SrcTemplate
+from gramps.gen.lib.templateelement import TemplateElement
 from gramps.gen.utils.citeref import (REF_TYPE_L, REF_TYPE_S, REF_TYPE_F,
                                       GED_TITLE, GED_AUTHOR, GED_PUBINF,
                                       GED_DATE, GED_PAGE)
@@ -335,7 +336,7 @@ def load_srctemplate_csv(csvfile, db):
             optional = True
         shorteralg = SHORTERALG.get(row[SHORTERCOL].strip()) or EMPTY
         gedcom_type_text = row[GEDCOMCOL].strip()
-        gedcommap = GEDCOMFIELDS.get(row[GEDCOMCOL].strip()) or EMPTY
+        gedcommap = GEDCOMFIELDS.get(row[GEDCOMCOL].strip())
         style = STYLES.get(row[STYLECOL].strip()) or EMPTY
 
         if source_type in TYPE2TEMPLATEMAP:
@@ -376,7 +377,6 @@ def load_srctemplate_csv(csvfile, db):
         
         # Setup the mapping. A typical mapping would look like:
         # ('EE_Full'  : '%(COMPILER)s, "%(TITLE)s", %(TYPE)s, %(WEBSITE CREATOR/OWNER)s, <i>%(WEBSITE)s</i>, (%(URL (DIGITAL LOCATION))s: accessed %(DATE ACCESSED)s), %(ITEM OF INTEREST)s; %(CREDIT LINE)s.')
-        target = "EE_" + cite_type_text
         if te.get_short():
             if field_type.lower().endswith(' (short)'):
                 txt = field_type
@@ -392,8 +392,8 @@ def load_srctemplate_csv(csvfile, db):
         if style == STYLE_QUOTE:
             txt = '"' + txt + '"'
         elif style == STYLE_QUOTECONT:
-            if template.get_map_element(target)[-1] == '"':
-                template.set_map_element(target, template.get_map_element(target)[:-1])
+            if template.get_map_element(cite_type)[-1] == '"':
+                template.set_map_element(cite_type, template.get_map_element(cite_type)[:-1])
                 txt = txt + '"'
             else:
                 txt = '"' + txt + '"'
@@ -401,15 +401,14 @@ def load_srctemplate_csv(csvfile, db):
             txt = "<i>" + txt + "</i>"
         elif style == STYLE_BOLD:
             txt = "<b>" + txt + "</b>"
-        template.set_map_element(target, template.get_map_element(target) + txt)
+        template.set_map_element(cite_type, template.get_map_element(cite_type) + txt)
         
         # Setup the GEDCOM fields. These are only stored in the L template
         if cite_type == REF_TYPE_L and gedcom_type_text:
-            target = "GEDCOM_" + gedcom_type_text
             if style == STYLE_QUOTECONT:
-                if template.get_map_element(target) and template.get_map_element(target)[-1] == '"':
-                    template.set_map_element(target, template.get_map_element(target)[:-1])
-            template.set_map_element(target, template.get_map_element(target) + txt)
+                if template.get_map_element(gedcommap) and template.get_map_element(gedcommap)[-1] == '"':
+                    template.set_map_element(gedcommap, template.get_map_element(gedcommap)[:-1])
+            template.set_map_element(gedcommap, template.get_map_element(gedcommap) + txt)
         
         msg = _("Add template (%s)") % template.get_name()
         with DbTxn(msg, db) as trans:
@@ -455,9 +454,8 @@ def load_srctemplate_csv(csvfile, db):
         template = TYPE2TEMPLATEMAP[source_type]
         for te in [x for x in template.get_template_element_list()
                    if x.get_citation() and not x.get_short()]:
-            target = "GEDCOM_PAGE"
-            template.set_map_element(target,
-                            ", ".join((template.get_map_element(target), txt)))
+            template.set_map_element(GED_PAGE,
+                            ", ".join((template.get_map_element(GED_PAGE), txt)))
         msg = _("Add template (%s)") % template.get_name()
         with DbTxn(msg, db) as trans:
             db.commit_template(template, trans)

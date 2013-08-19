@@ -79,6 +79,7 @@ from .markertype import MarkerType
 from .nameorigintype import NameOriginType
 from .notetype import NoteType
 from .styledtexttagtype import StyledTextTagType
+from .templateelement import TemplateElement
 
 # Text
 from .styledtexttag import StyledTextTag

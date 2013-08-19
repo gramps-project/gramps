@@ -89,7 +89,8 @@ class EditSource(EditPrimary):
         self.db = dbstate.db
         self.citation = citation
         self.template_tab = None
-        self.attr_tab = None
+        self.citn_attr_tab = None
+        self.src_attr_tab = None
         self.citation_loaded = True
         if not source and not citation:
             raise NotImplementedError
@@ -381,8 +382,10 @@ class EditSource(EditPrimary):
         if templatechanged and self.tmplfields:
             #the citation template fields must be changed!
             self.tmplfields.reset_template_fields(self.obj.get_template())
-        if self.attr_tab:
-            self.attr_tab.rebuild_callback()
+        if self.citn_attr_tab:
+            self.citn_attr_tab.rebuild_callback()
+        if self.src_attr_tab:
+            self.src_attr_tab.rebuild_callback()
         self.update_attr()
 
     def callback_cite_changed(self):
@@ -451,12 +454,12 @@ class EditSource(EditPrimary):
         self._add_tab(notebook, self.repo_tab)
         self.track_ref_for_deletion("repo_tab")
 
-        self.attr_tab = SrcAttrEmbedList(self.dbstate,
+        self.src_attr_tab = SrcAttrEmbedList(self.dbstate,
                                          self.uistate,
                                          self.track,
                                          self.obj.get_attribute_list())
-        self._add_tab(notebook, self.attr_tab)
-        self.track_ref_for_deletion("attr_tab")
+        self._add_tab(notebook, self.src_attr_tab)
+        self.track_ref_for_deletion("src_attr_tab")
 
         self.citedin_tab = CitedInTab(self.dbstate, self.uistate,
                                 self.track, self.obj, self.cite_apply_callback,
@@ -509,10 +512,10 @@ class EditSource(EditPrimary):
         self._add_tab(notebook_ref, self.gallery_tab)
         self.track_ref_for_deletion("gallery_tab")
             
-        self.attr_tab = SrcAttrEmbedList(self.dbstate, self.uistate, self.track,
+        self.citn_attr_tab = SrcAttrEmbedList(self.dbstate, self.uistate, self.track,
                           self.citation.get_attribute_list())
-        self._add_tab(notebook_ref, self.attr_tab)
-        self.track_ref_for_deletion("attr_tab")
+        self._add_tab(notebook_ref, self.citn_attr_tab)
+        self.track_ref_for_deletion("citn_attr_tab")
             
         self.citationref_list = CitationBackRefList(self.dbstate, self.uistate, 
                               self.track,
@@ -837,7 +840,7 @@ class EditSource(EditPrimary):
         #trigger update of the tab fields
         self.comment_tab.rebuild_callback(self.citation.get_note_list())
         self.gallery_tab.rebuild_callback(self.citation.get_media_list())
-        self.attr_tab.rebuild_callback(self.citation.get_attribute_list())
+        self.citn_attr_tab.rebuild_callback(self.citation.get_attribute_list())
         self.citationref_list.rebuild_callback(
                         self.db.find_backlink_handles(self.citation.handle))
 

@@ -36,8 +36,6 @@ from .mediabase import MediaBase
 from .notebase import NoteBase
 from .tagbase import TagBase
 from .srcattrbase import SrcAttributeBase
-from .srctemplate import SrcTemplate
-from .srctemplatelist import SrcTemplateList
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from ..constfunc import cuni, deprecated

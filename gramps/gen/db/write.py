@@ -394,17 +394,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.emit('home-person-changed')
 
     @catch_db_error
-    def set_GEDCOM_template_handle(self, handle):
-        """Set the handle of the GEDCOM template to the passed instance."""
-        #we store a byte string!
-        if isinstance(handle, UNITYPE):
-            handle = handle.encode('utf-8')
-        if not self.readonly:
-            # Start transaction
-            with BSDDBTxn(self.env, self.metadata) as txn:
-                txn.put(b'gedcom_template', handle)
-
-    @catch_db_error
     def get_default_person(self):
         """Return the default Person of the database."""
         person = self.get_person_from_handle(self.get_default_handle())
@@ -415,6 +404,17 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             with BSDDBTxn(self.env, self.metadata) as txn:
                 txn.put(b'default', None)            
         return None
+
+    @catch_db_error
+    def set_GEDCOM_template_handle(self, handle):
+        """Set the handle of the GEDCOM template to the passed instance."""
+        #we store a byte string!
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
+        if not self.readonly:
+            # Start transaction
+            with BSDDBTxn(self.env, self.metadata) as txn:
+                txn.put(b'gedcom_template', handle)
 
     def set_mediapath(self, path):
         """Set the default media path for database, path should be utf-8."""
