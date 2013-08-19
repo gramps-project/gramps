@@ -149,8 +149,9 @@ class GrampsLocale(object):
     @domain:    The name of the applicable translation file. The default is
                 "gramps", indicating files in LC_MESSAGES named gramps.mo.
 
-    @languages: A list of two or five character codes corresponding to
-                subidrectries in the localedir, e.g. "fr" or "zh_CN".
+    @languages: String with a ':'-separated list of two or five character 
+                codes corresponding to subidrectries in the localedir, 
+                e.g.: "fr" or "zh_CN".
     """
     DEFAULT_TRANSLATION_STR = "default"
     __first_instance = None
