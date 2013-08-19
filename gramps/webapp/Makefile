@@ -6,6 +6,7 @@ update: grampsdb/fixtures/initial_data.json
 	PYTHONPATH=../.. python manage.py createsuperuser --username=admin1 --email=bugs@gramps-project.org
 
 grampsdb/fixtures/initial_data.json: init.py
+	mkdir -p grampsdb/fixtures
 	PYTHONPATH=../.. python init.py > grampsdb/fixtures/initial_data.json
 
 init_gramps:
