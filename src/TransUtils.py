@@ -85,6 +85,10 @@ else:
                 logging.warning('Unable to determine your Locale, using English')
                 lang = 'en.UTF-8'
 
+    _lang_ = lang.replace('@', '.').split('.')
+    if not (len(_lang_) == 2 and _lang_[1] == 'UTF-8'):
+        lang = _lang_[0] + '.UTF-8'
+
     os.environ["LANG"] = lang
     os.environ["LANGUAGE"] = lang
 
