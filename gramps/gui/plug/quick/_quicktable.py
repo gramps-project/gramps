@@ -351,7 +351,12 @@ class QuickTable(SimpleTable):
         #treeview.enable_model_drag_dest(DdTargets.all_targets(),
         #                                Gdk.DragAction.DEFAULT)            
         treeview.connect('drag_data_get', self.object_drag_data_get)
-        treeview.set_grid_lines(Gtk.TreeViewGridLines.BOTH)
+        if (treeview.get_direction() == Gtk.TextDirection.RTL and
+            (Gtk.get_major_version(), Gtk.get_minor_version()) < (3, 8)):
+            # Don't show vertical grid lines with RTL (bug #6871)
+            treeview.set_grid_lines(Gtk.TreeViewGridLines.HORIZONTAL)
+        else:
+            treeview.set_grid_lines(Gtk.TreeViewGridLines.BOTH)
         #treeview.connect('row-activated', on_table_doubleclick, self)
         #treeview.connect('cursor-changed', on_table_click, self)
         treeview.connect('button-press-event', self.button_press_event)
