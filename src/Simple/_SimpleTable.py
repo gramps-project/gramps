@@ -507,11 +507,7 @@ class SimpleTable(object):
             #treeview.enable_model_drag_dest(DdTargets.all_targets(),
             #                                gtk.gdk.ACTION_DEFAULT)            
             treeview.connect('drag_data_get', self.object_drag_data_get)
-            if treeview.get_direction() == gtk.TEXT_DIR_RTL:
-                # Don't show vertical grid lines with RTL (bug #6871)
-                treeview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_HORIZONTAL)
-            else:
-                treeview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
+            treeview.set_grid_lines(gtk.TREE_VIEW_GRID_LINES_BOTH)
             #treeview.connect('row-activated', on_table_doubleclick, self)
             #treeview.connect('cursor-changed', on_table_click, self)
             treeview.connect('button-press-event', self.button_press_event)

@@ -42,6 +42,20 @@ class MultiTreeView(gtk.TreeView):
         self.connect('key_press_event', self.key_press_event)
         self.defer_select = False
 
+    __grid_lines_remove_vertical = {
+        gtk.TREE_VIEW_GRID_LINES_NONE : gtk.TREE_VIEW_GRID_LINES_NONE,
+        gtk.TREE_VIEW_GRID_LINES_HORIZONTAL : gtk.TREE_VIEW_GRID_LINES_HORIZONTAL,
+        gtk.TREE_VIEW_GRID_LINES_VERTICAL : gtk.TREE_VIEW_GRID_LINES_NONE,
+        gtk.TREE_VIEW_GRID_LINES_BOTH : gtk.TREE_VIEW_GRID_LINES_HORIZONTAL
+    }
+    def set_grid_lines(self, grid_lines):
+        if self.get_direction() == gtk.TEXT_DIR_RTL:
+            # Work around a gtk RTL bug, see #6871
+            # On post-gramps34 branches should also check for gtk version <(3,8),
+            # but this is always true here on gramps34!
+            grid_lines = MultiTreeView.__grid_lines_remove_vertical[grid_lines]
+        super(MultiTreeView, self).set_grid_lines(grid_lines)
+
     def key_press_event(self, widget, event):
         if event.type == gtk.gdk.KEY_PRESS:
             if event.keyval == gtk.keysyms.Delete:
@@ -73,7 +87,7 @@ class MultiTreeView(gtk.TreeView):
         # re-enable selection
         self.get_selection().set_select_function(lambda *ignore: True)
         
-        target = self.get_path_at_pos(int(event.x), int(event.y))	
+        target = self.get_path_at_pos(int(event.x), int(event.y))
         if (self.defer_select and target 
             and self.defer_select == target[0]
             and not (event.x==0 and event.y==0)): # certain drag and drop
