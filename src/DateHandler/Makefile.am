@@ -25,6 +25,7 @@ pkgpython_PYTHON = \
 	_Date_sl.py\
 	_Date_sr.py\
 	_Date_sv.py\
+	_Date_uk.py\
 	_DateDisplay.py\
 	_DateParser.py\
 	_DateHandler.py\
