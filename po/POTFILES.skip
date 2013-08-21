@@ -28,6 +28,7 @@ src/DateHandler/_Date_bg.py
 src/DateHandler/_Date_cs.py
 src/DateHandler/_Date_de.py
 src/DateHandler/_DateDisplay.py
+src/DateHandler/_Date_el.py
 src/DateHandler/_Date_es.py
 src/DateHandler/_Date_fi.py
 src/DateHandler/_Date_fr.py

@@ -10,6 +10,7 @@ pkgpython_PYTHON = \
 	_Date_cs.py\
 	_Date_da.py\
 	_Date_de.py\
+	_Date_el.py\
 	_Date_es.py\
 	_Date_fi.py\
 	_Date_fr.py\

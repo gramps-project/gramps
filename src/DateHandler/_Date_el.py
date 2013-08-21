@@ -56,48 +56,62 @@ class DateParserEL(DateParser):
 
     # modifiers before the date
     modifier_to_int = {
-        'προ του' : Date.MOD_BEFORE,
-        'προ'       : Date.MOD_BEFORE,
-        'πρ.'       : Date.MOD_BEFORE,
-        'μετά το'   : Date.MOD_AFTER,
-        'μετά'      : Date.MOD_AFTER, 
-        'μετ.'      : Date.MOD_AFTER,
-        'γύρω στο'  : Date.MOD_ABOUT, 
-        'περίπου το': Date.MOD_ABOUT,
-        'περ.'      : Date.MOD_ABOUT, 
-        '~'         : Date.MOD_ABOUT,
+        u'προ του'      : Date.MOD_BEFORE,
+        u'πριν το'      : Date.MOD_BEFORE,
+        u'πριν από τις' : Date.MOD_BEFORE,
+        u'πριν από την' : Date.MOD_BEFORE,
+        u'πριν από το'  : Date.MOD_BEFORE,
+        u'πριν από τον' : Date.MOD_BEFORE,
+        u'προ'          : Date.MOD_BEFORE,
+        u'πρ.'          : Date.MOD_BEFORE,
+        u'μετά το'      : Date.MOD_AFTER,
+        u'μετά από τις' : Date.MOD_AFTER,
+        u'μετά από την' : Date.MOD_AFTER,
+        u'μετά από το'  : Date.MOD_AFTER,
+        u'μετά από τον' : Date.MOD_AFTER,
+        u'μετά'         : Date.MOD_AFTER, 
+        u'μετ.'         : Date.MOD_AFTER,
+        u'γύρω στο'     : Date.MOD_ABOUT,
+        u'γύρω στον'    : Date.MOD_ABOUT,
+        u'γύρω στις'    : Date.MOD_ABOUT, 
+        u'περίπου το'   : Date.MOD_ABOUT,
+        u'περ.'         : Date.MOD_ABOUT,
+        u'γυρ.'         : Date.MOD_ABOUT,
+        u'~'            : Date.MOD_ABOUT,
         }
     # in some languages some of above listed modifiers are after the date,
     # in that case the subclass should put them into this dictionary instead
     modifier_after_to_int = {}
 
-    bce = ["π.Χ.", "π.Κ.Χ.", "π.Κ.Ε.", "π.Χ" ]
+    bce = [u"π.Χ.", u"π.Κ.Χ.", u"π.Κ.Ε.", u"π.Χ" ]
 
     calendar_to_int = {
-        'γρηγοριανό'          : Date.CAL_GREGORIAN,
-        'γ'                   : Date.CAL_GREGORIAN,
-        'ιουλιανό'            : Date.CAL_JULIAN,
-        'ι'                   : Date.CAL_JULIAN,
-        'εβραϊκό'             : Date.CAL_HEBREW,
-        'ε'                   : Date.CAL_HEBREW,
-        'ισλαμικό'            : Date.CAL_ISLAMIC,
-        'ισλ'                  : Date.CAL_ISLAMIC,
-        'γαλλικό'             : Date.CAL_FRENCH,
-        'γαλλικής δημοκρατίας': Date.CAL_FRENCH,
-        'γ'                   : Date.CAL_FRENCH,
-        'περσικό'             : Date.CAL_PERSIAN,
-        'π'                   : Date.CAL_PERSIAN, 
-        'σουηδικό'            : Date.CAL_SWEDISH,
-        'σ'                   : Date.CAL_SWEDISH,
+        u'γρηγοριανό'          : Date.CAL_GREGORIAN,
+        u'γ'                   : Date.CAL_GREGORIAN,
+        u'ιουλιανό'            : Date.CAL_JULIAN,
+        u'ι'                   : Date.CAL_JULIAN,
+        u'εβραϊκό'             : Date.CAL_HEBREW,
+        u'ε'                   : Date.CAL_HEBREW,
+        u'ισλαμικό'            : Date.CAL_ISLAMIC,
+        u'ισλ'                 : Date.CAL_ISLAMIC,
+        u'γαλλικό'             : Date.CAL_FRENCH,
+        u'γαλλικής δημοκρατίας': Date.CAL_FRENCH,
+        u'γ'                   : Date.CAL_FRENCH,
+        u'περσικό'             : Date.CAL_PERSIAN,
+        u'π'                   : Date.CAL_PERSIAN, 
+        u'σουηδικό'            : Date.CAL_SWEDISH,
+        u'σ'                   : Date.CAL_SWEDISH,
         }
     
     quality_to_int = {
-        'κατʼ εκτίμηση' : Date.QUAL_ESTIMATED,
-        'εκτ.'          : Date.QUAL_ESTIMATED,
-        'εκτ'           : Date.QUAL_ESTIMATED,
-        'υπολογ'        : Date.QUAL_CALCULATED,
-        'υπολογ.'       : Date.QUAL_CALCULATED,
-        'με υπολογισμό' : Date.QUAL_CALCULATED,
+        u'κατʼ εκτίμηση' : Date.QUAL_ESTIMATED,
+        u'εκτιμώμενη'    : Date.QUAL_ESTIMATED,
+        u'εκτ.'          : Date.QUAL_ESTIMATED,
+        u'εκτ'           : Date.QUAL_ESTIMATED,
+        u'υπολογ'        : Date.QUAL_CALCULATED,
+        u'υπολογ.'       : Date.QUAL_CALCULATED,
+        u'υπολογισμένη'  : Date.QUAL_CALCULATED,
+        u'με υπολογισμό' : Date.QUAL_CALCULATED,
         }
     
     def init_strings(self):
@@ -134,19 +148,69 @@ class DateDisplayEL(DateDisplay):
     short_months = ( u"", u"Ιαν", u"Φεβ", u"Μαρ", u"Απρ", u"Μάι", u"Ιουν",
                      u"Ιουλ", u"Αύγ", u"Σεπ", u"Οκτ", u"Νοε", u"Δεκ" )
 
-    _mod_str = ("", "ðñï ôïõ ", "ìåôÜ ôï ", "ãýñù óôï ", "", "", "")
+    _mod_str = (u"", u"προ του ", u"μετά το ", u"γύρω στο ", u"", u"", u"")
 
-    _qual_str = ("", "åêôéìþìåíç ", "õðïëïãéóìÝíç ")
+    _qual_str = (u"", u"εκτιμώμενη ", u"υπολογισμένη ")
 
-    _bce_str = "%s ð.×."
+    _bce_str = u"%s π.Χ."
 
     formats = (
-        "ΕΕΕΕ-ΜΜ-ΗΗ (ISO)", "Αριθμητικά", "Ημερομηνία, Έτος", 
-        "ΗΜ/ΝΙΑ, ΕΤΟΣ", "Ημέρα Μήνας Έτος", "ΗΜ ΜΗΝ ΕΤΟΣ"
+        "ΕΕΕΕ-ΜΜ-ΗΗ (ISO)", "ΗΗ-ΜΜ-ΕΕΕΕ", "ΗΗ/ΜΜ/ΕΕΕΕ",
+        "ΗΗ Μήνας ΕΕΕΕ", "ΗΗ Μήν ΕΕΕΕ"
         )
-        # this must agree with DateDisplayEn's "formats" definition
-        # (since no locale-specific _display_gregorian exists, here)
-    
+        # this definition must agree with its "_display_gregorian" method
+
+    def _display_gregorian(self, date_val):
+        """
+        display gregorian calendar date in different format
+        """
+        # this must agree with its locale-specific "formats" definition
+        year = self._slash_year(date_val[2], date_val[3])
+        if self.format == 0:
+            return self.display_iso(date_val)
+        elif self.format == 1:
+            # day-month_number-year
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = "%s-%s" % (date_val[1], year)
+            else:
+                value = "%d-%s-%s" % (date_val[0], date_val[1], year)
+        elif self.format == 2:
+            # day/month_number/year
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = "%s/%s" % (date_val[1], year)
+            else:
+                value = "%d/%s/%s" % (date_val[0], date_val[1], year)
+        elif self.format == 3:
+            # day month_name year
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = "%s %s" % (self.long_months[date_val[1]], year)
+            else:
+                value = "%d %s %s" % (date_val[0], 
+                                      self.long_months[date_val[1]], year)
+        else:
+            # day month_abbreviation year
+            if date_val[0] == 0:
+                if date_val[1] == 0:
+                    value = year
+                else:
+                    value = "%s %s" % (self.short_months[date_val[1]], year)
+            else:
+                value = "%d %s %s" % (date_val[0], 
+                                      self.short_months[date_val[1]], year)
+        if date_val[2] < 0:
+            return self._bce_str % value
+        else:
+            return value
+            
     def display(self, date):
         """
         Return a text string representing the date.
