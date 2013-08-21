@@ -29,11 +29,14 @@ __date__ ="$Apr 20, 2010 3:13:24 PM$"
 
 from . import tool
 
-from ._guioptions import make_gui_option, add_gui_options
-from gramps.gen.plug import MenuOptions
+try:
+    from ._guioptions import make_gui_option, add_gui_options
+    from ._dialogs import ReportPluginDialog, ToolPluginDialog
+    from . import _windows as PluginWindows
+except TypeError: # No GUI
+    pass
 
-from ._dialogs import ReportPluginDialog, ToolPluginDialog
-from . import _windows as PluginWindows
+from gramps.gen.plug import MenuOptions
 
 # This needs to go above Tool and MenuOption as it needs both
 class MenuToolOptions(MenuOptions, tool.ToolOptions):

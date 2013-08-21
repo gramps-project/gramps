@@ -420,7 +420,7 @@ def run():
         LOG.debug('environment: LANGUAGE is not defined')
     
     if argpars.need_gui():
-        #A GUI is needed, set it up
+        LOG.debug("A GUI is needed, set it up")
         if "--qml" in sys.argv:
             from .guiQML.grampsqml import startqml
             startqml(error, argpars)
