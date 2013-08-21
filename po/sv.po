@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-09 14:41+0200\n"
-"PO-Revision-Date: 2013-08-09 14:50+0200\n"
+"POT-Creation-Date: 2013-08-21 16:21+0200\n"
+"PO-Revision-Date: 2013-08-21 16:34+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -621,7 +621,7 @@ msgstr ""
 #. not all families have a spouse.
 #: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:181
 #: ../src/Utils.py:1716 ../src/Utils.py:1718 ../src/Utils.py:1722
-#: ../src/Utils.py:1728 ../src/Utils.py:1733 ../src/cli/clidbman.py:508
+#: ../src/Utils.py:1728 ../src/Utils.py:1733 ../src/cli/clidbman.py:504
 #: ../src/gen/lib/attrtype.py:63 ../src/gen/lib/childreftype.py:79
 #: ../src/gen/lib/eventroletype.py:58 ../src/gen/lib/eventtype.py:143
 #: ../src/gen/lib/familyreltype.py:52 ../src/gen/lib/grampstype.py:34
@@ -1410,43 +1410,43 @@ msgstr "Primär källa"
 msgid "Child"
 msgstr "Barn"
 
-#: ../src/TransUtils.py:314
+#: ../src/TransUtils.py:318
 msgid "the person"
 msgstr "personen"
 
-#: ../src/TransUtils.py:316
+#: ../src/TransUtils.py:320
 msgid "the family"
 msgstr "familjen"
 
-#: ../src/TransUtils.py:318
+#: ../src/TransUtils.py:322
 msgid "the place"
 msgstr "platsen"
 
-#: ../src/TransUtils.py:320
+#: ../src/TransUtils.py:324
 msgid "the event"
 msgstr "händelsen"
 
-#: ../src/TransUtils.py:322
+#: ../src/TransUtils.py:326
 msgid "the repository"
 msgstr "arkivplatsen"
 
-#: ../src/TransUtils.py:324
+#: ../src/TransUtils.py:328
 msgid "the note"
 msgstr "notisen"
 
-#: ../src/TransUtils.py:326
+#: ../src/TransUtils.py:330
 msgid "the media"
 msgstr "mediat"
 
-#: ../src/TransUtils.py:328
+#: ../src/TransUtils.py:332
 msgid "the source"
 msgstr "källan"
 
-#: ../src/TransUtils.py:330
+#: ../src/TransUtils.py:334
 msgid "the filter"
 msgstr "filtret"
 
-#: ../src/TransUtils.py:332
+#: ../src/TransUtils.py:336
 msgid "See details"
 msgstr "Se detaljer"
 
@@ -2375,11 +2375,11 @@ msgstr "Import avslutat..."
 msgid "Importing data..."
 msgstr "Importerar data..."
 
-#: ../src/cli/clidbman.py:398
+#: ../src/cli/clidbman.py:394
 msgid "Could not rename family tree"
 msgstr "Kunde inte döpa om släktträd"
 
-#: ../src/cli/clidbman.py:433
+#: ../src/cli/clidbman.py:429
 #, python-format
 msgid ""
 "\n"
@@ -2398,12 +2398,12 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../src/cli/clidbman.py:485 ../src/gui/configure.py:1106
+#: ../src/cli/clidbman.py:481 ../src/gui/configure.py:1106
 msgid "Never"
 msgstr "Aldrig"
 
 #. feature request 2356: avoid genitive form
-#: ../src/cli/clidbman.py:505
+#: ../src/cli/clidbman.py:501
 #, python-format
 msgid "Locked by %s"
 msgstr "Låst av %s"
@@ -5800,8 +5800,6 @@ msgstr "Använd exakt skiftläge för bokstäver"
 
 #: ../src/gui/filtereditor.py:543
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
-#: ../src/Filters/Rules/Person/_HasNameOf.py:59
-#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:49
 msgid "Regular-Expression matching:"
 msgstr "Reguljärt uttryck som matchar:"
 
@@ -8446,7 +8444,7 @@ msgid "Move the selected surname downwards"
 msgstr "Flytta det valda efternamnet neråt"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:77
-#: ../src/Filters/Rules/Person/_HasNameOf.py:56
+#: ../src/Filters/Rules/Person/_HasNameOf.py:55
 msgid "Connector"
 msgstr "Bindeord"
 
@@ -20306,11 +20304,11 @@ msgstr "Matchar personer utan efternamn"
 #: ../src/Filters/Rules/Person/_HasAlternateName.py:48
 #: ../src/Filters/Rules/Person/_HasAssociation.py:52
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:49
-#: ../src/Filters/Rules/Person/_HasNameOf.py:62
+#: ../src/Filters/Rules/Person/_HasNameOf.py:60
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:50
 #: ../src/Filters/Rules/Person/_HasNameType.py:50
 #: ../src/Filters/Rules/Person/_HasNickname.py:48
-#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:53
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:52
 #: ../src/Filters/Rules/Person/_HasUnknownGender.py:47
 #: ../src/Filters/Rules/Person/_IncompleteNames.py:47
 #: ../src/Filters/Rules/Person/_IsBookmarked.py:47
@@ -20356,10 +20354,6 @@ msgstr "Allmänna filter"
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:43
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:47
 #: ../src/Filters/Rules/Person/_SearchName.py:46
-#: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:44
-#: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:43
-#: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:43
-#: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:43
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:44
 msgid "Substring:"
 msgstr "Delsträng:"
@@ -26273,51 +26267,51 @@ msgstr "Personer med <antal> SDH-händelser"
 msgid "Matches people with a certain number of LDS events"
 msgstr "Matchar personer med ett visst antal SDH-händelser"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:48
+#: ../src/Filters/Rules/Person/_HasNameOf.py:47
 msgid "Given name:"
 msgstr "Förnamn:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:49
+#: ../src/Filters/Rules/Person/_HasNameOf.py:48
 msgid "Full Family name:"
 msgstr "Komplett efternamn:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:50
+#: ../src/Filters/Rules/Person/_HasNameOf.py:49
 msgid "person|Title:"
 msgstr "Titel:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:51
+#: ../src/Filters/Rules/Person/_HasNameOf.py:50
 msgid "Suffix:"
 msgstr "Suffix:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:52
+#: ../src/Filters/Rules/Person/_HasNameOf.py:51
 msgid "Call Name:"
 msgstr "Tilltalsnamn:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:53
+#: ../src/Filters/Rules/Person/_HasNameOf.py:52
 msgid "Nick Name:"
 msgstr "Smeknamn:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:54
+#: ../src/Filters/Rules/Person/_HasNameOf.py:53
 msgid "Prefix:"
 msgstr "Prefix:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:55
+#: ../src/Filters/Rules/Person/_HasNameOf.py:54
 msgid "Single Surname:"
 msgstr "Enkelt efternamn:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:57
+#: ../src/Filters/Rules/Person/_HasNameOf.py:56
 msgid "Patronymic:"
 msgstr "Patronymikon:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:58
+#: ../src/Filters/Rules/Person/_HasNameOf.py:57
 msgid "Family Nick Name:"
 msgstr "Familjesmeknamn:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:60
+#: ../src/Filters/Rules/Person/_HasNameOf.py:58
 msgid "People with the <name>"
 msgstr "Personer med <namn>"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:61
+#: ../src/Filters/Rules/Person/_HasNameOf.py:59
 #: ../src/Filters/Rules/Person/_SearchName.py:48
 msgid "Matches people with a specified (partial) name"
 msgstr "Matchar personer som har ett angivet (del)namn"
@@ -26365,8 +26359,8 @@ msgstr ""
 "innehåller angiven text"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
-msgid "People having notes containing <regular expression>"
-msgstr "Personer med <reguljärt uttryck> i notiser"
+msgid "People having notes containing <text>"
+msgstr "Personer med notiser innehållande <text>"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
 msgid "Matches people whose notes contain text matching a regular expression"
@@ -26427,11 +26421,11 @@ msgstr "Personer med <flaggan>"
 msgid "Matches people with the particular tag"
 msgstr "Matchar personer med den särskilda flaggan"
 
-#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:50
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:49
 msgid "People with records containing <substring>"
 msgstr "Matchar personer vars poster innehåller <delsträng>"
 
-#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:51
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:50
 msgid "Matches people whose records contain text matching a substring"
 msgstr ""
 "Matchar personer vars poster innehåller text\n"
@@ -26789,24 +26783,33 @@ msgid "Matches people without indications of death that are not too old"
 msgstr "Matchar personer utan indikationer på död som inte är för gamla"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
-msgid "People with <Id> matching regular expression"
-msgstr "Personer med <id> som matchar reguljärt uttryck"
+msgid "People with Id containing <text>"
+msgstr "Personer med Id innehållande <text>"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
 msgid "Matches people whose Gramps ID matches the regular expression"
 msgstr "Matchar personer vars Gramps-ID matchar det reguljära uttrycket"
 
+#: ../src/Filters/Rules/Person/_RegExpName.py:46
+#: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:44
+#: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:43
+#: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:43
+#: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:43
+#: ../src/Filters/Rules/Note/_HasNote.py:47 ../src/glade/mergenote.glade.h:5
+msgid "Text:"
+msgstr "Text:"
+
 #: ../src/Filters/Rules/Person/_RegExpName.py:47
-msgid "Expression:"
-msgstr "Utryck:"
+msgid "People with a name matching <text>"
+msgstr "Personer med ett namn matchande <text>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
-msgid "People matching the <regex_name>"
-msgstr "Personer som matchar <reguljärt uttryck för namn>"
-
-#: ../src/Filters/Rules/Person/_RegExpName.py:49
-msgid "Matches people's names with a specified regular expression"
-msgstr "Matchar personers namn med angivet reguljärt uttryck"
+msgid ""
+"Matches people's names containing a substring or matching a regular "
+"expression"
+msgstr ""
+"Matchar personers namn innehållande en delsträng eller matchar ett "
+"reguljärt uttryck"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 msgid "Relationship path between <persons>"
@@ -26864,8 +26867,8 @@ msgid "Person ID:"
 msgstr "Person-id:"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
-msgid "Families with child with the <Id>"
-msgstr "Familjer med barn med <id>"
+msgid "Families having child with Id containing <text>"
+msgstr "Familjer med barn med Id innehållande <text>"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
 msgid "Matches families where child has a specified Gramps ID"
@@ -26895,8 +26898,8 @@ msgid "Matches families that are indicated as private"
 msgstr "Matchar familjer som indikerats som privata"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
-msgid "Families with father with the <Id>"
-msgstr "Familjer med fader med id <id>"
+msgid "Families having father with Id containing <text>"
+msgstr "Familjer med far med Id innehållande <text>"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
 msgid "Matches families whose father has a specified Gramps ID"
@@ -26927,8 +26930,8 @@ msgid "Matches families with the family attribute of a particular value"
 msgstr "Matchar familjer som har familjeattribut med ett visst värde"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:52
-msgid "Family with the <citation>"
-msgstr "Familj med <citering>"
+msgid "Families with the <citation>"
+msgstr "Familjer med <citering>"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:53
 msgid "Matches families with a citation of a particular value"
@@ -26983,8 +26986,8 @@ msgid "Matches families whose notes contain text matching a substring"
 msgstr "Matchar familjer vars notiser innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:42
-msgid "Families having notes containing <regular expression>"
-msgstr "Familjer med <reguljärt uttryck> i notiser"
+msgid "Families having notes containing <text>"
+msgstr "Familjer med notiser innehållande <text>"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
 msgid "Matches families whose notes contain text matching a regular expression"
@@ -27057,8 +27060,8 @@ msgid ""
 msgstr "Matchar familjer med minst en direkt käll med konfidensnivå(er)"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
-msgid "Families with mother with the <Id>"
-msgstr "Familjer med mor med <id>"
+msgid "Families having mother with Id containing <text>"
+msgstr "Familjer med mor med Id innehållande <text>"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
 msgid "Matches families whose mother has a specified Gramps ID"
@@ -27133,8 +27136,8 @@ msgstr ""
 "som matchar ett angivet reguljärt uttryck"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
-msgid "Families with <Id> matching regular expression"
-msgstr "Familjer vars <id> matchar reguljärt uttryck"
+msgid "Families with Id containing <text>"
+msgstr "Familjer med Id innehållande <text>"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose Gramps ID matches the regular expression"
@@ -27177,7 +27180,7 @@ msgid "Matches events with the event attribute of a particular value"
 msgstr "Matchar händelser där det angivna attributet har ett specifikt värde"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:52
-msgid "Event with the <citation>"
+msgid "Events with the <citation>"
 msgstr "Händelser med <citering>"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:53
@@ -27225,8 +27228,8 @@ msgid "Matches events whose notes contain text matching a substring"
 msgstr "Matchar personer vars notiser innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:42
-msgid "Events having notes containing <regular expression>"
-msgstr "Händelser med <reguljärt uttryck> i notiser"
+msgid "Events having notes containing <text>"
+msgstr "Händelser med notiser innehållande <text>"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
@@ -27303,8 +27306,8 @@ msgid "Matches events with at least one direct source with confidence level(s)"
 msgstr "Matchar händelser med minst en direkt källa med konfidensnivå(er)"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
-msgid "Events with <Id> matching regular expression"
-msgstr "Händelser med <id> som matchar reguljärt uttryck"
+msgid "Events with Id containing <text>"
+msgstr "Händelser med Id innehållande <text>"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose Gramps ID matches the regular expression"
@@ -27376,8 +27379,8 @@ msgid "Matches places whose notes contain text matching a substring"
 msgstr "Matchar platser vars notiser innehåller angiven text"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
-msgid "Places having notes containing <regular expression>"
-msgstr "Platser med <reguljärt uttryck> i notiser"
+msgid "Places having notes containing <text>"
+msgstr "Platser med notiser innehållande <text>"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
 msgid "Matches places whose notes contain text matching a regular expression"
@@ -27484,8 +27487,8 @@ msgid "Matches places that are indicated as private"
 msgstr "Matchar platser som indikerats som privata"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
-msgid "Places with <Id> matching regular expression"
-msgstr "Platser med <id> som matchar reguljärt uttryck"
+msgid "Places with Id containing <text>"
+msgstr "Platser med Id innehållande <text>"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -27568,8 +27571,8 @@ msgid "Matches sources having a certain number of notes"
 msgstr "Matchar källor, som har ett visst antal notiser"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
-msgid "Sources having notes containing <regular expression>"
-msgstr "Källor med <reguljärt uttryck> i notiser"
+msgid "Sources having notes containing <text>"
+msgstr "Källor med notiser innehållande <text>"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
 msgid "Matches sources whose notes contain text matching a regular expression"
@@ -27600,10 +27603,8 @@ msgid "Matches sources with a certain number of repository references"
 msgstr "Matchar källor med ett viss antal arkivplatsreferenser"
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:45
-msgid ""
-"Sources with repository reference containing <substring> in \"Call Number\""
-msgstr ""
-"Källor med arkivplatsreferens innehållande <delsträng> i \"Call Number\""
+msgid "Sources with repository reference containing <text> in \"Call Number\""
+msgstr "Källor med arkivplatsreferens innehållande <text> i \"Call Number\""
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:46
 msgid ""
@@ -27634,8 +27635,8 @@ msgstr ""
 "som matchar ett givet arkivplatsfilter"
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:44
-msgid "Sources title containing <substring>"
-msgstr "Källor med <delsträng> i titel"
+msgid "Sources with title containing <text>"
+msgstr "Källor med titel innehållande <text>"
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:45
 msgid "Matches sources whose title contains a certain substring"
@@ -27650,8 +27651,8 @@ msgid "Matches sources that are indicated as private"
 msgstr "Matchar källor som indikerats som privata"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
-msgid "Sources with <Id> matching regular expression"
-msgstr "Källor med <id> som matchar reguljärt uttryck"
+msgid "Sources with Id containing <text>"
+msgstr "Källor  med Id innehållande <text>"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose Gramps ID matches the regular expression"
@@ -27726,8 +27727,8 @@ msgid "Matches citations whose notes contain text matching a substring"
 msgstr "Matchar citeringar vars notiser matchar en delsträng"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:43
-msgid "Citations having notes containing <regular expression>"
-msgstr "Citeringar med notiser innehållande <reguljärt uttryck>"
+msgid "Citations having notes containing <text>"
+msgstr "Citeringar med notiser innehållande <text>"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:44
 msgid ""
@@ -27788,16 +27789,16 @@ msgid "Matches citations matched by the specified filter name"
 msgstr "Matchar den citering, som matchas av det angivna filtret"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:44
-msgid "Citation Volume/Page containing <substring>"
-msgstr "Citering med Volume/sida innehållande <delsträng>"
+msgid "Citations with Volume/Page containing <text>"
+msgstr "Citering med Volume/sida innehållande <text>"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:45
 msgid "Matches citations whose Volume/Page contains a certain substring"
 msgstr "Matchar citeringar vars Volym/sida innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:49
-msgid "Citations with <Id> matching regular expression"
-msgstr "Citeringar med <id> som matchar reguljärt uttryck"
+msgid "Citations with Id containing <text>"
+msgstr "Citeringar  med Id innehållande <text>"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:50
 msgid "Matches citations whose Gramps ID matches the regular expression"
@@ -27890,10 +27891,10 @@ msgid "Matches media objects whose notes contain text matching a substring"
 msgstr "Matchar mediaobjekt vars notiser innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
-msgid "Media objects having notes containing <regular expression>"
-msgstr "Mediaobjekt med <reguljärt uttryck> i notiser"
+msgid "Media objects having notes containing <text>"
+msgstr "Mediaobjekt med notiser innehållande <text>"
 
-#: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
+#: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:43
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
 msgstr "Matchar mediaobjekt vars notiser matchar ett reguljärt uttryck"
@@ -27931,8 +27932,8 @@ msgid "Matches Media objects that are indicated as private"
 msgstr "Matchar mediaobjekt som indikerats som privata"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
-msgid "Media Objects with <Id> matching regular expression"
-msgstr "Mediaobjekt med <id> som matchar reguljärt uttryck"
+msgid "Media objects with Id containing <text>"
+msgstr "Mediaobjekt  med Id innehållande <text>"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose Gramps ID matches the regular expression"
@@ -28007,10 +28008,10 @@ msgid "Matches repositories whose notes contain text matching a substring"
 msgstr "Matchar arkivplatser vars notiser innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-msgid "Repositories having notes containing <regular expression>"
-msgstr "Arkivplatser med <reguljärt uttryck> i notiser"
+msgid "Repositories having notes containing <text>"
+msgstr "Arkivplatser med notiser innehållande <text>"
 
-#: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
+#: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:43
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr "Matchar arkivplatser vars notiser matchar ett reguljärt uttryck"
@@ -28045,16 +28046,16 @@ msgid "Matches repositories matched by the specified filter name"
 msgstr "Matchar arkivplatser som matchar det angivna filtret"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:44
-msgid "Repository name containing <substring>"
-msgstr "Arkivplatser med <delsträng> i namn"
+msgid "Repositories with name containing <text>"
+msgstr "Arkivplatser med namn innehållande <text>"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:45
 msgid "Matches repositories whose name contains a certain substring"
 msgstr "Matchar arkivplatser vars namn innehåller angiven delsträng"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
-msgid "Repositories with <Id> matching regular expression"
-msgstr "Arkivplatser med <id> som matchar reguljärt uttryck"
+msgid "Repositories with Id containing <text>"
+msgstr "Arkivplatser med Id innehållande <text>"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose Gramps ID matches the regular expression"
@@ -28109,16 +28110,12 @@ msgid "Regular expression:"
 msgstr "Reguljärt uttryck:"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:45
-msgid "Notes containing <regular expression>"
-msgstr "Notiser innehållande <reguljärt uttryck>"
+msgid "Notes containing <text>"
+msgstr "Notiser innehållande <text>"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes that contain text which matches a regular expression"
 msgstr "Matchar notiser, som innehåller text, matchande ett reguljärt uttryck"
-
-#: ../src/Filters/Rules/Note/_HasNote.py:47 ../src/glade/mergenote.glade.h:5
-msgid "Text:"
-msgstr "Text:"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:50
 msgid "Notes matching parameters"
@@ -28153,8 +28150,8 @@ msgid "Matches notes matched by the specified filter name"
 msgstr "Matchar notiser, som matchas av det angivna filternamnet"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:48
-msgid "Notes with <Id> matching regular expression"
-msgstr "Notiser med <id> som matchar reguljärt uttryck"
+msgid "Notes with Id containing <text>"
+msgstr "Notiser med Id innehållande <text>"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:49
 msgid "Matches notes whose Gramps ID matches the regular expression"
@@ -31421,6 +31418,81 @@ msgstr ""
 "med vilken skrivbordsmiljö som helst, så länge som de behövda GTK-"
 "biblioteken är installerade."
 
+#~ msgid "People having notes containing <regular expression>"
+#~ msgstr "Personer med <reguljärt uttryck> i notiser"
+
+#~ msgid "People with <Id> matching regular expression"
+#~ msgstr "Personer med <id> som matchar reguljärt uttryck"
+
+#~ msgid "Expression:"
+#~ msgstr "Utryck:"
+
+#~ msgid "People matching the <regex_name>"
+#~ msgstr "Personer som matchar <reguljärt uttryck för namn>"
+
+#~ msgid "Matches people's names with a specified regular expression"
+#~ msgstr "Matchar personers namn med angivet reguljärt uttryck"
+
+#~ msgid "Families with child with the <Id>"
+#~ msgstr "Familjer med barn med <id>"
+
+#~ msgid "Families with father with the <Id>"
+#~ msgstr "Familjer med fader med id <id>"
+
+#~ msgid "Families having notes containing <regular expression>"
+#~ msgstr "Familjer med <reguljärt uttryck> i notiser"
+
+#~ msgid "Families with mother with the <Id>"
+#~ msgstr "Familjer med mor med <id>"
+
+#~ msgid "Families with <Id> matching regular expression"
+#~ msgstr "Familjer vars <id> matchar reguljärt uttryck"
+
+#~ msgid "Events having notes containing <regular expression>"
+#~ msgstr "Händelser med <reguljärt uttryck> i notiser"
+
+#~ msgid "Events with <Id> matching regular expression"
+#~ msgstr "Händelser med <id> som matchar reguljärt uttryck"
+
+#~ msgid "Places having notes containing <regular expression>"
+#~ msgstr "Platser med <reguljärt uttryck> i notiser"
+
+#~ msgid "Places with <Id> matching regular expression"
+#~ msgstr "Platser med <id> som matchar reguljärt uttryck"
+
+#~ msgid "Sources having notes containing <regular expression>"
+#~ msgstr "Källor med <reguljärt uttryck> i notiser"
+
+#~ msgid "Sources with <Id> matching regular expression"
+#~ msgstr "Källor med <id> som matchar reguljärt uttryck"
+
+#~ msgid "Citations having notes containing <regular expression>"
+#~ msgstr "Citeringar med notiser innehållande <reguljärt uttryck>"
+
+#~ msgid "Citations with <Id> matching regular expression"
+#~ msgstr "Citeringar med <id> som matchar reguljärt uttryck"
+
+#~ msgid "Media objects having notes containing <regular expression>"
+#~ msgstr "Mediaobjekt med <reguljärt uttryck> i notiser"
+
+#~ msgid "Media Objects with <Id> matching regular expression"
+#~ msgstr "Mediaobjekt med <id> som matchar reguljärt uttryck"
+
+#~ msgid "Repositories having notes containing <regular expression>"
+#~ msgstr "Arkivplatser med <reguljärt uttryck> i notiser"
+
+#~ msgid "Repository name containing <substring>"
+#~ msgstr "Arkivplatser med <delsträng> i namn"
+
+#~ msgid "Repositories with <Id> matching regular expression"
+#~ msgstr "Arkivplatser med <id> som matchar reguljärt uttryck"
+
+#~ msgid "Notes containing <regular expression>"
+#~ msgstr "Notiser innehållande <reguljärt uttryck>"
+
+#~ msgid "Notes with <Id> matching regular expression"
+#~ msgstr "Notiser med <id> som matchar reguljärt uttryck"
+
 #~ msgid "Patronymic name skipped: '%(patronym)s' (%(msg)s)"
 #~ msgstr "Patronymiskt namn överhoppades: '%(patronym)s' (%(msg)s)"
 
@@ -32794,9 +32866,6 @@ msgstr ""
 
 #~ msgid "What's Next Gramplet"
 #~ msgstr "Gramplet med nästa uppgift"
-
-#~ msgid "Matches repositories with name contains text\n"
-#~ msgstr "Matcher arkivplatser med en namn innehållande text\n"
 
 #~ msgid "Gramplet %s is running"
 #~ msgstr "Gramplet %s körs"
