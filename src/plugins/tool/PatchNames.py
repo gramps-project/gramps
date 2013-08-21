@@ -107,7 +107,7 @@ class PatchNames(tool.BatchTool, ManagedWindow.ManagedWindow):
         ManagedWindow.ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(gtk.Window(), gtk.Label(), '')
 
-        tool.BatchTool.__init__(self, dbstate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, uistate, options_class, name)
         if self.fail:
             return
         

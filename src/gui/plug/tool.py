@@ -99,25 +99,27 @@ class Tool(object):
 class BatchTool(Tool):
     """
     Same as Tool, except the warning is displayed about the potential
-    loss of undo history. Should be used for tools using batch transactions.
+    loss of undo history when GUI is available.
+    Should be used for tools using batch transactions.
 
     """
 
-    def __init__(self, dbstate, options_class, name):
-        # TODO: should we replace this with a callback?
-        from QuestionDialog import QuestionDialog2
-        warn_dialog = QuestionDialog2(
-            _('Undo history warning'),
-            _('Proceeding with this tool will erase the undo history '
-              'for this session. In particular, you will not be able '
-              'to revert the changes made by this tool or any changes '
-              'made prior to it.\n\n'
-              'If you think you may want to revert running this tool, '
-              'please stop here and backup your database.'),
-            _('_Proceed with the tool'), _('_Stop'))
-        if not warn_dialog.run():
-            self.fail = True
-            return
+    def __init__(self, dbstate, uistate, options_class, name):
+        if uistate:
+            # TODO: should we replace this with a callback?
+            from QuestionDialog import QuestionDialog2
+            warn_dialog = QuestionDialog2(
+                _('Undo history warning'),
+                _('Proceeding with this tool will erase the undo history '
+                  'for this session. In particular, you will not be able '
+                  'to revert the changes made by this tool or any changes '
+                  'made prior to it.\n\n'
+                  'If you think you may want to revert running this tool, '
+                  'please stop here and backup your database.'),
+                _('_Proceed with the tool'), _('_Stop'))
+            if not warn_dialog.run():
+                self.fail = True
+                return
 
         Tool.__init__(self, dbstate, options_class, name)
         self.fail = False

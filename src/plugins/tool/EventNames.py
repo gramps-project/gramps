@@ -68,7 +68,7 @@ class EventNames(tool.BatchTool, ManagedWindow.ManagedWindow):
     """
 
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
-        tool.BatchTool.__init__(self, dbstate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, uistate, options_class, name)
 
         if not self.fail:
             uistate.set_busy_cursor(True)
