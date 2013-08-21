@@ -419,7 +419,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(Gtk.Window(), Gtk.Label(), '')
 
-        tool.BatchTool.__init__(self, dbstate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, uistate, options_class, name)
 
         if not self.fail:
             uistate.set_busy_cursor(True)
