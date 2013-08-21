@@ -521,9 +521,9 @@ class VCardParser(object):
             gender_value = gender_value.upper()
             gender_value = gender_value[0]
             if gender_value == 'M':
-                gender = gen.lib.Person.MALE
+                gender = Person.MALE
             elif gender_value == 'F':
-                gender = gen.lib.Person.FEMALE
+                gender = Person.FEMALE
             else:
                 return
             self.person.set_gender(gender)
