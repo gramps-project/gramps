@@ -43,6 +43,7 @@ from . import _date_ca
 from . import _date_cs
 from . import _date_da
 from . import _date_de
+from . import _date_el
 from . import _date_es
 from . import _date_fi
 from . import _date_fr
