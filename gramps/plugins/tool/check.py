@@ -70,7 +70,6 @@ from gramps.gen.utils.db import family_name
 from gramps.gen.utils.unknown import make_unknown
 from gramps.gen.utils.file import (media_path_full, find_file, fix_encoding, 
                                    get_unicode_path_from_file_chooser)
-from gramps.gui.utils import ProgressMeter
 from gramps.gui.managedwindow import ManagedWindow
 
 from gramps.gui.plug import tool
@@ -85,6 +84,12 @@ ngettext = glocale.translation.ngettext
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.
 strip_dict = dict.fromkeys(list(range(9))+list(range(11,13))+list(range(14, 32)),  " ")
+
+class ProgressMeter(object):
+    def __init__(self, *args): pass
+    def set_pass(self, *args): pass
+    def step(self): pass
+    def close(self): pass
 
 #-------------------------------------------------------------------------
 #
@@ -132,11 +137,15 @@ def cross_table_duplicates(db):
 class Check(tool.BatchTool):
     def __init__(self, dbstate, uistate, options_class, name, callback=None):
 
-        tool.BatchTool.__init__(self, dbstate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, uistate, options_class, name)
         if self.fail:
             return
 
         cli = uistate is None
+        if uistate:
+            from gramps.gui.utils import ProgressMeter as PM
+            global ProgressMeter 
+            ProgressMeter = PM
 
         if self.db.readonly:
             # TODO: split plugin in a check and repair part to support
@@ -2242,20 +2251,21 @@ class Report(ManagedWindow):
         if cl:
             print (text)
 
-        ManagedWindow.__init__(self, uistate, [], self)
+        if uistate:
+            ManagedWindow.__init__(self, uistate, [], self)
 
-        topDialog = Glade()
-        topDialog.get_object("close").connect('clicked', self.close)
-        window = topDialog.toplevel
-        textwindow = topDialog.get_object("textwindow")
-        textwindow.get_buffer().set_text(text)
+            topDialog = Glade()
+            topDialog.get_object("close").connect('clicked', self.close)
+            window = topDialog.toplevel
+            textwindow = topDialog.get_object("textwindow")
+            textwindow.get_buffer().set_text(text)
 
-        self.set_window(window,
-                        #topDialog.get_widget("title"),
-                        topDialog.get_object("title"),
-                        _("Integrity Check Results"))
+            self.set_window(window,
+                            #topDialog.get_widget("title"),
+                            topDialog.get_object("title"),
+                            _("Integrity Check Results"))
 
-        self.show()
+            self.show()
 
     def build_menu_names(self, obj):
         return (_('Check and Repair'), None)
