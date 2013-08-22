@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-06-26 20:05+0200\n"
-"PO-Revision-Date: 2013-06-26 20:08+0200\n"
+"POT-Creation-Date: 2013-08-22 19:00+0200\n"
+"PO-Revision-Date: 2013-08-22 19:12+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -81,7 +81,7 @@ msgstr "Lesezeichen organisieren"
 #. Add column with object name
 #: ../src/Bookmarks.py:213 ../src/ScratchPad.py:561 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:451
-#: ../src/gui/filtereditor.py:765 ../src/gui/filtereditor.py:918
+#: ../src/gui/filtereditor.py:767 ../src/gui/filtereditor.py:920
 #: ../src/gui/viewmanager.py:474 ../src/gui/editors/editfamily.py:117
 #: ../src/gui/editors/editname.py:305
 #: ../src/gui/editors/displaytabs/backreflist.py:62
@@ -106,7 +106,7 @@ msgstr "Name"
 
 #. Add column with object gramps_id
 #. GRAMPS ID
-#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:921
+#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:923
 #: ../src/gui/editors/editfamily.py:116
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/citationembedlist.py:85
@@ -220,39 +220,39 @@ msgstr "Datum liegt mehr als ein Jahr in der Zukunft"
 msgid "Date selection"
 msgstr "Datumsauswahl"
 
-#: ../src/DisplayState.py:364 ../src/plugins/gramplet/PersonDetails.py:133
+#: ../src/DisplayState.py:365 ../src/plugins/gramplet/PersonDetails.py:133
 msgid "No active person"
 msgstr "Keine aktive Person"
 
-#: ../src/DisplayState.py:365
+#: ../src/DisplayState.py:366
 msgid "No active family"
 msgstr "Keine aktive Familie"
 
-#: ../src/DisplayState.py:366
+#: ../src/DisplayState.py:367
 msgid "No active event"
 msgstr "Kein aktives Ereignis"
 
-#: ../src/DisplayState.py:367
+#: ../src/DisplayState.py:368
 msgid "No active place"
 msgstr "Kein aktiver Ort"
 
-#: ../src/DisplayState.py:368
+#: ../src/DisplayState.py:369
 msgid "No active source"
 msgstr "Keine aktive Quelle"
 
-#: ../src/DisplayState.py:369
+#: ../src/DisplayState.py:370
 msgid "No active citation"
 msgstr "Keine aktive Fundstelle"
 
-#: ../src/DisplayState.py:370
+#: ../src/DisplayState.py:371
 msgid "No active repository"
 msgstr "Kein aktiver Aufbewahrungsort"
 
-#: ../src/DisplayState.py:371
+#: ../src/DisplayState.py:372
 msgid "No active media"
 msgstr "Keine aktiven Medien"
 
-#: ../src/DisplayState.py:372
+#: ../src/DisplayState.py:373
 msgid "No active note"
 msgstr "Keine aktive Notiz"
 
@@ -612,8 +612,8 @@ msgstr ""
 
 #. not all families have a spouse.
 #: ../src/LdsUtils.py:82 ../src/LdsUtils.py:88 ../src/ScratchPad.py:181
-#: ../src/Utils.py:1718 ../src/Utils.py:1720 ../src/Utils.py:1724
-#: ../src/Utils.py:1730 ../src/Utils.py:1735 ../src/cli/clidbman.py:506
+#: ../src/Utils.py:1716 ../src/Utils.py:1718 ../src/Utils.py:1722
+#: ../src/Utils.py:1728 ../src/Utils.py:1733 ../src/cli/clidbman.py:504
 #: ../src/gen/lib/attrtype.py:63 ../src/gen/lib/childreftype.py:79
 #: ../src/gen/lib/eventroletype.py:58 ../src/gen/lib/eventtype.py:143
 #: ../src/gen/lib/familyreltype.py:52 ../src/gen/lib/grampstype.py:34
@@ -629,7 +629,7 @@ msgstr ""
 #: ../src/plugins/gramplet/RelativeGramplet.py:123
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
 #: ../src/plugins/graph/GVFamilyLines.py:159
-#: ../src/plugins/graph/GVRelGraph.py:555
+#: ../src/plugins/graph/GVRelGraph.py:603
 #: ../src/plugins/lib/libnarrate.py:1994
 #: ../src/plugins/lib/maps/geography.py:845
 #: ../src/plugins/lib/maps/geography.py:852
@@ -1071,7 +1071,7 @@ msgid "Event ref"
 msgstr "Ereignisref."
 
 #. show surname and first name
-#: ../src/ScratchPad.py:577 ../src/Utils.py:1339 ../src/gui/configure.py:537
+#: ../src/ScratchPad.py:577 ../src/Utils.py:1337 ../src/gui/configure.py:537
 #: ../src/gui/configure.py:539 ../src/gui/configure.py:541
 #: ../src/gui/configure.py:543 ../src/gui/configure.py:546
 #: ../src/gui/configure.py:547 ../src/gui/configure.py:548
@@ -1402,43 +1402,43 @@ msgstr "Hauptquelle"
 msgid "Child"
 msgstr "Kind"
 
-#: ../src/TransUtils.py:314
+#: ../src/TransUtils.py:318
 msgid "the person"
 msgstr "die Person"
 
-#: ../src/TransUtils.py:316
+#: ../src/TransUtils.py:320
 msgid "the family"
 msgstr "die Familie"
 
-#: ../src/TransUtils.py:318
+#: ../src/TransUtils.py:322
 msgid "the place"
 msgstr "der Ort"
 
-#: ../src/TransUtils.py:320
+#: ../src/TransUtils.py:324
 msgid "the event"
 msgstr "das Ereignis"
 
-#: ../src/TransUtils.py:322
+#: ../src/TransUtils.py:326
 msgid "the repository"
 msgstr "der Aufbewahrungsort"
 
-#: ../src/TransUtils.py:324
+#: ../src/TransUtils.py:328
 msgid "the note"
 msgstr "die Notiz"
 
-#: ../src/TransUtils.py:326
+#: ../src/TransUtils.py:330
 msgid "the media"
 msgstr "das Medium"
 
-#: ../src/TransUtils.py:328
+#: ../src/TransUtils.py:332
 msgid "the source"
 msgstr "die Quelle"
 
-#: ../src/TransUtils.py:330
+#: ../src/TransUtils.py:334
 msgid "the filter"
 msgstr "der Filter"
 
-#: ../src/TransUtils.py:332
+#: ../src/TransUtils.py:336
 msgid "See details"
 msgstr "Siehe Details"
 
@@ -1657,6 +1657,14 @@ msgstr "Nachfahre todesbezogenes Datum"
 msgid "no evidence"
 msgstr "kein Beleg"
 
+#: ../src/Utils.py:1176
+msgid "True"
+msgstr "Wahr"
+
+#: ../src/Utils.py:1176
+msgid "true"
+msgstr "wahr"
+
 #. -------------------------------------------------------------------------
 #.
 #. Keyword translation interface
@@ -1685,17 +1693,17 @@ msgstr "kein Beleg"
 #. 's' : suffix     = suffix
 #. 'n' : nickname   = nick name
 #. 'g' : familynick = family nick name
-#: ../src/Utils.py:1337 ../src/plugins/export/ExportCsv.py:338
+#: ../src/Utils.py:1335 ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:178
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
 msgstr "Titel"
 
-#: ../src/Utils.py:1337
+#: ../src/Utils.py:1335
 msgid "Person|TITLE"
 msgstr "TITEL"
 
-#: ../src/Utils.py:1338 ../src/gen/display/name.py:327
+#: ../src/Utils.py:1336 ../src/gen/display/name.py:327
 #: ../src/gui/configure.py:537 ../src/gui/configure.py:539
 #: ../src/gui/configure.py:544 ../src/gui/configure.py:546
 #: ../src/gui/configure.py:548 ../src/gui/configure.py:549
@@ -1708,44 +1716,44 @@ msgstr "TITEL"
 msgid "Given"
 msgstr "Vorname"
 
-#: ../src/Utils.py:1338
+#: ../src/Utils.py:1336
 msgid "GIVEN"
 msgstr "VORNAME"
 
-#: ../src/Utils.py:1339 ../src/gui/configure.py:544
+#: ../src/Utils.py:1337 ../src/gui/configure.py:544
 #: ../src/gui/configure.py:551 ../src/gui/configure.py:553
 #: ../src/gui/configure.py:554 ../src/gui/configure.py:555
 #: ../src/gui/configure.py:556 ../src/gui/configure.py:557
 msgid "SURNAME"
 msgstr "FAMILIENNAME"
 
-#: ../src/Utils.py:1340
+#: ../src/Utils.py:1338
 msgid "Name|Call"
 msgstr "Rufname"
 
-#: ../src/Utils.py:1340
+#: ../src/Utils.py:1338
 msgid "Name|CALL"
 msgstr "RUFNAME"
 
-#: ../src/Utils.py:1341 ../src/gui/configure.py:541
+#: ../src/Utils.py:1339 ../src/gui/configure.py:541
 #: ../src/gui/configure.py:543 ../src/gui/configure.py:546
 #: ../src/gui/configure.py:547 ../src/gui/configure.py:553
 msgid "Name|Common"
 msgstr "Üblich"
 
-#: ../src/Utils.py:1341
+#: ../src/Utils.py:1339
 msgid "Name|COMMON"
 msgstr "ÜBLICH"
 
-#: ../src/Utils.py:1342
+#: ../src/Utils.py:1340
 msgid "Initials"
 msgstr "Initialen"
 
-#: ../src/Utils.py:1342
+#: ../src/Utils.py:1340
 msgid "INITIALS"
 msgstr "INITIALEN"
 
-#: ../src/Utils.py:1343 ../src/gui/configure.py:537
+#: ../src/Utils.py:1341 ../src/gui/configure.py:537
 #: ../src/gui/configure.py:539 ../src/gui/configure.py:541
 #: ../src/gui/configure.py:543 ../src/gui/configure.py:544
 #: ../src/gui/configure.py:549 ../src/gui/configure.py:551
@@ -1755,137 +1763,137 @@ msgstr "INITIALEN"
 msgid "Suffix"
 msgstr "Suffix"
 
-#: ../src/Utils.py:1343
+#: ../src/Utils.py:1341
 msgid "SUFFIX"
 msgstr "SUFFIX"
 
 #. name, sort, width, modelcol
-#: ../src/Utils.py:1344 ../src/gui/editors/displaytabs/surnametab.py:80
+#: ../src/Utils.py:1342 ../src/gui/editors/displaytabs/surnametab.py:80
 msgid "Name|Primary"
 msgstr "Primär"
 
-#: ../src/Utils.py:1344
+#: ../src/Utils.py:1342
 msgid "PRIMARY"
 msgstr "PRIMÄR"
 
-#: ../src/Utils.py:1345
+#: ../src/Utils.py:1343
 msgid "Primary[pre]"
 msgstr "Primär[pri]"
 
-#: ../src/Utils.py:1345
+#: ../src/Utils.py:1343
 msgid "PRIMARY[PRE]"
 msgstr "PRIMÄR[PRI]"
 
-#: ../src/Utils.py:1346
+#: ../src/Utils.py:1344
 msgid "Primary[sur]"
 msgstr "Primär[Nach]"
 
-#: ../src/Utils.py:1346
+#: ../src/Utils.py:1344
 msgid "PRIMARY[SUR]"
 msgstr "PRIMÄR[NACH]"
 
-#: ../src/Utils.py:1347
+#: ../src/Utils.py:1345
 msgid "Primary[con]"
 msgstr "Primär[übl]"
 
-#: ../src/Utils.py:1347
+#: ../src/Utils.py:1345
 msgid "PRIMARY[CON]"
 msgstr "PRIMÄR[ÜBL]"
 
-#: ../src/Utils.py:1348 ../src/gen/lib/nameorigintype.py:86
+#: ../src/Utils.py:1346 ../src/gen/lib/nameorigintype.py:86
 #: ../src/gui/configure.py:550
 msgid "Patronymic"
 msgstr "Patronymikon"
 
-#: ../src/Utils.py:1348
+#: ../src/Utils.py:1346
 msgid "PATRONYMIC"
 msgstr "PATRONYMIKON"
 
-#: ../src/Utils.py:1349
+#: ../src/Utils.py:1347
 msgid "Patronymic[pre]"
 msgstr "Patronymikon[pri]"
 
-#: ../src/Utils.py:1349
+#: ../src/Utils.py:1347
 msgid "PATRONYMIC[PRE]"
 msgstr "PATRONYMIKON[PRI]"
 
-#: ../src/Utils.py:1350
+#: ../src/Utils.py:1348
 msgid "Patronymic[sur]"
 msgstr "Patronymikon[Nach]"
 
-#: ../src/Utils.py:1350
+#: ../src/Utils.py:1348
 msgid "PATRONYMIC[SUR]"
 msgstr "PATRONYMIKON[NACH]"
 
-#: ../src/Utils.py:1351
+#: ../src/Utils.py:1349
 msgid "Patronymic[con]"
 msgstr "Patronymikon[übl]"
 
-#: ../src/Utils.py:1351
+#: ../src/Utils.py:1349
 msgid "PATRONYMIC[CON]"
 msgstr "PATRONYMIKON[ÜBL]"
 
-#: ../src/Utils.py:1352 ../src/gui/configure.py:558
+#: ../src/Utils.py:1350 ../src/gui/configure.py:558
 msgid "Rawsurnames"
 msgstr "Familiennamen"
 
-#: ../src/Utils.py:1352
+#: ../src/Utils.py:1350
 msgid "RAWSURNAMES"
 msgstr "FAMILIENNAMEN"
 
-#: ../src/Utils.py:1353
+#: ../src/Utils.py:1351
 msgid "Notpatronymic"
 msgstr "KeinPatronymikon"
 
-#: ../src/Utils.py:1353
+#: ../src/Utils.py:1351
 msgid "NOTPATRONYMIC"
 msgstr "KEINPATRONYMIKON"
 
-#: ../src/Utils.py:1354 ../src/gui/editors/displaytabs/surnametab.py:75
+#: ../src/Utils.py:1352 ../src/gui/editors/displaytabs/surnametab.py:75
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:179 ../src/glade/editperson.glade.h:26
 msgid "Prefix"
 msgstr "Präfix"
 
-#: ../src/Utils.py:1354
+#: ../src/Utils.py:1352
 msgid "PREFIX"
 msgstr "PRÄFIX"
 
-#: ../src/Utils.py:1355 ../src/gen/lib/attrtype.py:71
+#: ../src/Utils.py:1353 ../src/gen/lib/attrtype.py:71
 #: ../src/gui/configure.py:540 ../src/gui/configure.py:542
 #: ../src/gui/configure.py:547 ../src/gui/configure.py:554
 #: ../src/plugins/tool/PatchNames.py:429
 msgid "Nickname"
 msgstr "Spitzname"
 
-#: ../src/Utils.py:1355
+#: ../src/Utils.py:1353
 msgid "NICKNAME"
 msgstr "SPITZNAME"
 
-#: ../src/Utils.py:1356
+#: ../src/Utils.py:1354
 msgid "Familynick"
 msgstr "Familienspitzname"
 
-#: ../src/Utils.py:1356
+#: ../src/Utils.py:1354
 msgid "FAMILYNICK"
 msgstr "FAMILIENSPITZNAME"
 
-#: ../src/Utils.py:1469 ../src/Utils.py:1488
+#: ../src/Utils.py:1467 ../src/Utils.py:1486
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
 
-#: ../src/Utils.py:1738
+#: ../src/Utils.py:1736
 msgid "Unknown, created to replace a missing note object."
 msgstr "Unbekannt, wurde erstellt um ein fehlendes Notizobjekt zu ersetzen."
 
 #. primitive static variable
-#: ../src/Utils.py:1748
+#: ../src/Utils.py:1746
 #, python-format
 msgid "Unknown, was missing %s (%d)"
 msgstr "Unbekannt, hat gefehlt %s (%d)"
 
-#: ../src/Utils.py:1767
+#: ../src/Utils.py:1765
 #, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr ""
@@ -2115,7 +2123,7 @@ msgid "Unknown action: %s."
 msgstr "Unbekannte Aktion: %s."
 
 #. Note: Make sure to edit const.py.in POPT_TABLE too!
-#: ../src/cli/argparser.py:55
+#: ../src/cli/argparser.py:54
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -2171,7 +2179,7 @@ msgstr ""
 "und startet Gramps\n"
 "  -v,--version                       Zeigt Versionen\n"
 
-#: ../src/cli/argparser.py:81
+#: ../src/cli/argparser.py:80
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -2289,11 +2297,11 @@ msgstr ""
 "Bemerkung: Die Beispiele sind für die bash Shell\n"
 "Die Syntax kann sich für andere Shells oder Windows ändern.\n"
 
-#: ../src/cli/argparser.py:234 ../src/cli/argparser.py:360
+#: ../src/cli/argparser.py:233 ../src/cli/argparser.py:362
 msgid "Error parsing the arguments"
 msgstr "Fehler beim analysieren der Argumente"
 
-#: ../src/cli/argparser.py:236
+#: ../src/cli/argparser.py:235
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
@@ -2302,7 +2310,12 @@ msgstr ""
 "Fehler beim analysieren der Argumente: %s \n"
 "Tippe gramps --help für eine Übersicht der Kommandos oder lies die man pages."
 
-#: ../src/cli/argparser.py:361
+#. does a user want the default config value?
+#: ../src/cli/argparser.py:318
+msgid "DEFAULT"
+msgstr "STANDARD"
+
+#: ../src/cli/argparser.py:363
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
@@ -2359,15 +2372,15 @@ msgid "Import finished..."
 msgstr "Import abgeschlossen..."
 
 #. Create a new database
-#: ../src/cli/clidbman.py:347 ../src/plugins/import/ImportCsv.py:311
+#: ../src/cli/clidbman.py:349 ../src/plugins/import/ImportCsv.py:311
 msgid "Importing data..."
 msgstr "Importiere Daten..."
 
-#: ../src/cli/clidbman.py:396
+#: ../src/cli/clidbman.py:394
 msgid "Could not rename family tree"
 msgstr "Kann Stammbaum nicht umbenennen"
 
-#: ../src/cli/clidbman.py:431
+#: ../src/cli/clidbman.py:429
 #, python-format
 msgid ""
 "\n"
@@ -2386,12 +2399,12 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../src/cli/clidbman.py:483 ../src/gui/configure.py:1106
+#: ../src/cli/clidbman.py:481 ../src/gui/configure.py:1106
 msgid "Never"
 msgstr "Nie"
 
 #. feature request 2356: avoid genitive form
-#: ../src/cli/clidbman.py:503
+#: ../src/cli/clidbman.py:501
 #, python-format
 msgid "Locked by %s"
 msgstr "Gesperrt durch %s"
@@ -4069,7 +4082,7 @@ msgid "Relationships"
 msgstr "Beziehungen"
 
 #: ../src/gen/plug/_pluginreg.py:86 ../src/gen/plug/_pluginreg.py:396
-#: ../src/gui/grampsbar.py:565 ../src/gui/widgets/grampletpane.py:206
+#: ../src/gui/grampsbar.py:567 ../src/gui/widgets/grampletpane.py:206
 #: ../src/gui/widgets/grampletpane.py:931 ../src/glade/grampletpane.glade.h:9
 msgid "Gramplet"
 msgstr "Gramplet"
@@ -4136,8 +4149,8 @@ msgstr "Datei %s ist bereits geöffnet, erst schließen."
 #: ../src/docgen/ODSTab.py:483 ../src/docgen/ODSTab.py:502
 #: ../src/docgen/ODSTab.py:506 ../src/plugins/docgen/AsciiDoc.py:151
 #: ../src/plugins/docgen/AsciiDoc.py:154 ../src/plugins/docgen/ODFDoc.py:1191
-#: ../src/plugins/docgen/ODFDoc.py:1194 ../src/plugins/docgen/PSDrawDoc.py:107
-#: ../src/plugins/docgen/PSDrawDoc.py:110 ../src/plugins/docgen/RTFDoc.py:93
+#: ../src/plugins/docgen/ODFDoc.py:1194 ../src/plugins/docgen/cairodoc.py:102
+#: ../src/plugins/docgen/cairodoc.py:106 ../src/plugins/docgen/RTFDoc.py:93
 #: ../src/plugins/docgen/RTFDoc.py:96 ../src/plugins/docgen/SvgDrawDoc.py:79
 #: ../src/plugins/docgen/SvgDrawDoc.py:81
 #: ../src/plugins/export/ExportCsv.py:301
@@ -5182,7 +5195,7 @@ msgstr "Wähle ein Medienverzeichnis"
 msgid "Select database directory"
 msgstr "Wähle Datenbankverzeichnis"
 
-#: ../src/gui/dbloader.py:117 ../src/gui/plug/tool.py:110
+#: ../src/gui/dbloader.py:117 ../src/gui/plug/tool.py:112
 msgid "Undo history warning"
 msgstr "Bearbeitungschronik - Warnung"
 
@@ -5206,7 +5219,7 @@ msgstr ""
 msgid "_Proceed with import"
 msgstr "_Import starten"
 
-#: ../src/gui/dbloader.py:123 ../src/gui/plug/tool.py:117
+#: ../src/gui/dbloader.py:123 ../src/gui/plug/tool.py:119
 msgid "_Stop"
 msgstr "_Stopp"
 
@@ -5777,55 +5790,58 @@ msgstr "Quellenfiltername:"
 msgid "Repository filter name:"
 msgstr "Aufbewahrungsortfiltername:"
 
-#: ../src/gui/filtereditor.py:537
+#: ../src/gui/filtereditor.py:535
+#: ../src/Filters/Rules/Event/_MatchesPlaceFilter.py:50
+msgid "Place filter name:"
+msgstr "Ortefiltername:"
+
+#: ../src/gui/filtereditor.py:539
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
 msgid "Inclusive:"
 msgstr "Einschließlich:"
 
-#: ../src/gui/filtereditor.py:538
+#: ../src/gui/filtereditor.py:540
 msgid "Include original person"
 msgstr "Ursprüngliche Person aufnehmen"
 
-#: ../src/gui/filtereditor.py:539
+#: ../src/gui/filtereditor.py:541
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
 msgid "Case sensitive:"
 msgstr "Groß-/Kleinschreibung:"
 
-#: ../src/gui/filtereditor.py:540
+#: ../src/gui/filtereditor.py:542
 msgid "Use exact case of letters"
 msgstr "Exakte Schreibweise der Buchstaben verwenden"
 
-#: ../src/gui/filtereditor.py:541
+#: ../src/gui/filtereditor.py:543
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
-#: ../src/Filters/Rules/Person/_HasNameOf.py:59
-#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:49
 msgid "Regular-Expression matching:"
 msgstr "Regulärer Ausdruck entsprechend:"
 
-#: ../src/gui/filtereditor.py:542
+#: ../src/gui/filtereditor.py:544
 msgid "Use regular expression"
 msgstr "Regulären Ausdruck benutzen"
 
-#: ../src/gui/filtereditor.py:543
+#: ../src/gui/filtereditor.py:545
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 msgid "Include Family events:"
 msgstr "Familienereignisse aufnehmen:"
 
-#: ../src/gui/filtereditor.py:544
+#: ../src/gui/filtereditor.py:546
 msgid "Also family events where person is wife/husband"
 msgstr "Auch Familienereignisse bei denen die Person Frau/Mann ist"
 
-#: ../src/gui/filtereditor.py:546 ../src/Filters/Rules/Person/_HasTag.py:48
+#: ../src/gui/filtereditor.py:548 ../src/Filters/Rules/Person/_HasTag.py:48
 #: ../src/Filters/Rules/Family/_HasTag.py:48
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:48
 #: ../src/Filters/Rules/Note/_HasTag.py:48
 msgid "Tag:"
 msgstr "Markierung:"
 
-#: ../src/gui/filtereditor.py:550
+#: ../src/gui/filtereditor.py:552
 #: ../src/Filters/Rules/Person/_HasCitation.py:50
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:44
 #: ../src/Filters/Rules/Family/_HasCitation.py:51
@@ -5840,7 +5856,7 @@ msgstr "Markierung:"
 msgid "Confidence level:"
 msgstr "Vertrauensgrad:"
 
-#: ../src/gui/filtereditor.py:562
+#: ../src/gui/filtereditor.py:564
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:74
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:77
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:90
@@ -5853,7 +5869,7 @@ msgstr "Vertrauensgrad:"
 msgid "Use regular expressions"
 msgstr "Regulären Ausdruck benutzen"
 
-#: ../src/gui/filtereditor.py:563
+#: ../src/gui/filtereditor.py:565
 msgid ""
 "Interpret the contents of string fields as regular expressions.\n"
 "A decimal point will match any character. A question mark will match zero or "
@@ -5871,37 +5887,37 @@ msgstr ""
 "Alternativen durch Verwendung eines senkrechten Strich. Ein Caret ^ passt "
 "auf den Beginn einer Zeile. Ein Dollarzeichen passt auf das Ende einer Zeile."
 
-#: ../src/gui/filtereditor.py:590
+#: ../src/gui/filtereditor.py:592
 msgid "Rule Name"
 msgstr "Regelname"
 
-#: ../src/gui/filtereditor.py:707 ../src/gui/filtereditor.py:718
+#: ../src/gui/filtereditor.py:709 ../src/gui/filtereditor.py:720
 #: ../src/glade/rule.glade.h:24
 msgid "No rule selected"
 msgstr "Keine Regel ausgewählt"
 
-#: ../src/gui/filtereditor.py:761
+#: ../src/gui/filtereditor.py:763
 msgid "Define filter"
 msgstr "Filter definieren"
 
-#: ../src/gui/filtereditor.py:765
+#: ../src/gui/filtereditor.py:767
 msgid "Values"
 msgstr "Werte"
 
-#: ../src/gui/filtereditor.py:863
+#: ../src/gui/filtereditor.py:865
 msgid "Add Rule"
 msgstr "Regel hinzufügen"
 
-#: ../src/gui/filtereditor.py:875
+#: ../src/gui/filtereditor.py:877
 msgid "Edit Rule"
 msgstr "Regel bearbeiten"
 
-#: ../src/gui/filtereditor.py:910
+#: ../src/gui/filtereditor.py:912
 msgid "Filter Test"
 msgstr "Filtertest"
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1048 ../src/plugins/Records.py:516
+#: ../src/gui/filtereditor.py:1050 ../src/plugins/Records.py:519
 #: ../src/plugins/drawreport/Calendar.py:411
 #: ../src/plugins/drawreport/StatisticsChart.py:911
 #: ../src/plugins/drawreport/TimeLine.py:369
@@ -5914,7 +5930,7 @@ msgstr "Filtertest"
 #: ../src/plugins/gramplet/bottombar.gpr.py:721
 #: ../src/plugins/gramplet/bottombar.gpr.py:735
 #: ../src/plugins/gramplet/bottombar.gpr.py:749
-#: ../src/plugins/graph/GVRelGraph.py:476
+#: ../src/plugins/graph/GVRelGraph.py:508
 #: ../src/plugins/quickview/quickview.gpr.py:127
 #: ../src/plugins/textreport/BirthdayReport.py:367
 #: ../src/plugins/textreport/IndivComplete.py:672
@@ -5924,19 +5940,19 @@ msgstr "Filtertest"
 msgid "Filter"
 msgstr "Filter"
 
-#: ../src/gui/filtereditor.py:1048
+#: ../src/gui/filtereditor.py:1050
 msgid "Comment"
 msgstr "Kommentar"
 
-#: ../src/gui/filtereditor.py:1056
+#: ../src/gui/filtereditor.py:1058
 msgid "Custom Filter Editor"
 msgstr "Benutzerfiltereditor"
 
-#: ../src/gui/filtereditor.py:1122
+#: ../src/gui/filtereditor.py:1124
 msgid "Delete Filter?"
 msgstr "Filter löschen?"
 
-#: ../src/gui/filtereditor.py:1123
+#: ../src/gui/filtereditor.py:1125
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
@@ -5946,41 +5962,41 @@ msgstr ""
 "Löschen dieses Filters hat zur Folge das alle Filter die von ihm abhängen "
 "auch gelöscht werden."
 
-#: ../src/gui/filtereditor.py:1127
+#: ../src/gui/filtereditor.py:1129
 msgid "Delete Filter"
 msgstr "Filter löschen"
 
-#: ../src/gui/grampsbar.py:155 ../src/gui/widgets/grampletpane.py:1131
+#: ../src/gui/grampsbar.py:157 ../src/gui/widgets/grampletpane.py:1131
 msgid "Unnamed Gramplet"
 msgstr "Unbenanntes Gramplet"
 
-#: ../src/gui/grampsbar.py:308
+#: ../src/gui/grampsbar.py:310
 msgid "Gramps Bar"
 msgstr "Grampsleiste"
 
-#: ../src/gui/grampsbar.py:310
+#: ../src/gui/grampsbar.py:312
 msgid "Right-click to the right of the tab to add a gramplet."
 msgstr ""
 "Rechts-klick auf den rechten Bereich des Reiter zum hinzufügen eines "
 "Gramplet."
 
-#: ../src/gui/grampsbar.py:424 ../src/plugins/view/grampletview.py:95
+#: ../src/gui/grampsbar.py:426 ../src/plugins/view/grampletview.py:95
 msgid "Add a gramplet"
 msgstr "Ein Gramplet  hinzufügen"
 
-#: ../src/gui/grampsbar.py:434
+#: ../src/gui/grampsbar.py:436
 msgid "Remove a gramplet"
 msgstr "Ein Gramplet entfernen"
 
-#: ../src/gui/grampsbar.py:444
+#: ../src/gui/grampsbar.py:446
 msgid "Restore default gramplets"
 msgstr "Standardgramplets wiederherstellen"
 
-#: ../src/gui/grampsbar.py:484
+#: ../src/gui/grampsbar.py:486
 msgid "Restore to defaults?"
 msgstr "Auf Standardwerte zurücksetzen?"
 
-#: ../src/gui/grampsbar.py:485
+#: ../src/gui/grampsbar.py:487
 msgid ""
 "The Grampsbar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
@@ -5988,7 +6004,7 @@ msgstr ""
 "Die Grampsleiste wird zurückgesetzt, damit sie ihre original Gramplets "
 "enthält. Dieser Vorgang kann nicht rückgängig gemacht werden."
 
-#: ../src/gui/grampsbar.py:487 ../src/gui/plug/_windows.py:491
+#: ../src/gui/grampsbar.py:489 ../src/gui/plug/_windows.py:491
 msgid "OK"
 msgstr "OK"
 
@@ -8473,7 +8489,7 @@ msgid "Move the selected surname downwards"
 msgstr "Gewählten Nachnamen nach unten verschieben"
 
 #: ../src/gui/editors/displaytabs/surnametab.py:77
-#: ../src/Filters/Rules/Person/_HasNameOf.py:56
+#: ../src/Filters/Rules/Person/_HasNameOf.py:55
 msgid "Connector"
 msgstr "Verbinder"
 
@@ -8826,12 +8842,12 @@ msgstr "Stil"
 #. Report Options
 #. #########################
 #. ###############################
-#: ../src/gui/plug/report/_reportdialog.py:357 ../src/plugins/Records.py:514
+#: ../src/gui/plug/report/_reportdialog.py:357 ../src/plugins/Records.py:517
 #: ../src/plugins/drawreport/Calendar.py:405
 #: ../src/plugins/drawreport/FanChart.py:394
 #: ../src/plugins/drawreport/StatisticsChart.py:908
 #: ../src/plugins/drawreport/TimeLine.py:367
-#: ../src/plugins/graph/GVRelGraph.py:473
+#: ../src/plugins/graph/GVRelGraph.py:505
 #: ../src/plugins/textreport/AncestorReport.py:266
 #: ../src/plugins/textreport/BirthdayReport.py:360
 #: ../src/plugins/textreport/DescendReport.py:391
@@ -8901,7 +8917,7 @@ msgstr ""
 "\n"
 "Bitte wähle ein anderes Verzeichnis oder korrigiere die Berechtigungen."
 
-#: ../src/gui/plug/report/_reportdialog.py:610 ../src/gui/plug/tool.py:139
+#: ../src/gui/plug/report/_reportdialog.py:610 ../src/gui/plug/tool.py:141
 #: ../src/plugins/tool/RelCalc.py:148
 msgid "Active person has not been set"
 msgstr "Keine Person ausgewählt"
@@ -8970,7 +8986,7 @@ msgstr "Versionsverwaltung"
 msgid "Utilities"
 msgstr "Werkzeuge"
 
-#: ../src/gui/plug/tool.py:111
+#: ../src/gui/plug/tool.py:113
 msgid ""
 "Proceeding with this tool will erase the undo history for this session. In "
 "particular, you will not be able to revert the changes made by this tool or "
@@ -8986,11 +9002,11 @@ msgstr ""
 "Wenn du jedoch die Änderungen, die durch das Werkzeug getätigt werden, "
 "rückgängig machen willst, stoppe hier und sichere deine Datenbank."
 
-#: ../src/gui/plug/tool.py:117
+#: ../src/gui/plug/tool.py:119
 msgid "_Proceed with the tool"
 msgstr "_Mit dem Werkzeug fortfahren"
 
-#: ../src/gui/plug/tool.py:140 ../src/plugins/tool/RelCalc.py:149
+#: ../src/gui/plug/tool.py:142 ../src/plugins/tool/RelCalc.py:149
 msgid "You must select an active person for this tool to work properly."
 msgstr ""
 "Du musst eine aktive Person für dieses Werkzeug wählen, um weiter arbeiten "
@@ -9444,7 +9460,7 @@ msgstr ""
 "Zum bearbeiten Bearbeitungsschaltfläche klicken (Im Einstellungsdialog "
 "aktivieren)"
 
-#: ../src/gui/widgets/monitoredwidgets.py:767
+#: ../src/gui/widgets/monitoredwidgets.py:771
 #: ../src/glade/editfamily.glade.h:21
 msgid "Edit the tag list"
 msgstr "Die Markierungenliste bearbeiten"
@@ -10131,16 +10147,16 @@ msgstr "Zeigt einige interessante Rekorde von Personen und Familien"
 msgid "Records Gramplet"
 msgstr "Rekorde-Gramplet"
 
-#: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:459
+#: ../src/plugins/records.gpr.py:59 ../src/plugins/Records.py:462
 msgid "Records"
 msgstr "Rekorde"
 
-#: ../src/plugins/Records.py:397 ../src/plugins/gramplet/WhatsNext.py:45
+#: ../src/plugins/Records.py:400 ../src/plugins/gramplet/WhatsNext.py:45
 msgid "Double-click name for details"
 msgstr "Namen für Details doppelt-klicken"
 
 #. will be overwritten in load
-#: ../src/plugins/Records.py:398
+#: ../src/plugins/Records.py:401
 #: ../src/plugins/gramplet/AttributesGramplet.py:31
 #: ../src/plugins/gramplet/DescendGramplet.py:48
 #: ../src/plugins/gramplet/GivenNameGramplet.py:45
@@ -10153,7 +10169,7 @@ msgstr "Namen für Details doppelt-klicken"
 msgid "No Family Tree loaded."
 msgstr "Kein Stammbaum geladen."
 
-#: ../src/plugins/Records.py:406
+#: ../src/plugins/Records.py:409
 #: ../src/plugins/gramplet/GivenNameGramplet.py:60
 #: ../src/plugins/gramplet/StatsGramplet.py:70
 #: ../src/plugins/gramplet/SurnameCloudGramplet.py:89
@@ -10161,25 +10177,24 @@ msgstr "Kein Stammbaum geladen."
 msgid "Processing..."
 msgstr "Verarbeitung..."
 
-#: ../src/plugins/Records.py:481
+#: ../src/plugins/Records.py:484
 #, python-format
 msgid "%(number)s. "
 msgstr "%(number)s. "
 
-#: ../src/plugins/Records.py:483
+#: ../src/plugins/Records.py:486
 #, python-format
 msgid " (%(value)s)"
 msgstr " (%(value)s)"
 
-#: ../src/plugins/Records.py:518
+#: ../src/plugins/Records.py:521
 #: ../src/plugins/drawreport/StatisticsChart.py:913
 msgid "Determines what people are included in the report."
 msgstr "Legt fest welche Personen im Bericht enthalten sind."
 
-#: ../src/plugins/Records.py:522
+#: ../src/plugins/Records.py:525
 #: ../src/plugins/drawreport/StatisticsChart.py:917
 #: ../src/plugins/drawreport/TimeLine.py:375
-#: ../src/plugins/graph/GVRelGraph.py:482
 #: ../src/plugins/textreport/IndivComplete.py:678
 #: ../src/plugins/tool/SortEvents.py:173
 #: ../src/plugins/webreport/NarrativeWeb.py:8005
@@ -10187,55 +10202,54 @@ msgstr "Legt fest welche Personen im Bericht enthalten sind."
 msgid "Filter Person"
 msgstr "Filter Person"
 
-#: ../src/plugins/Records.py:523 ../src/plugins/drawreport/TimeLine.py:376
-#: ../src/plugins/graph/GVRelGraph.py:483
+#: ../src/plugins/Records.py:526 ../src/plugins/drawreport/TimeLine.py:376
 #: ../src/plugins/tool/SortEvents.py:174
 #: ../src/plugins/webreport/NarrativeWeb.py:8006
 #: ../src/plugins/webreport/WebCal.py:1325
 msgid "The center person for the filter"
 msgstr "Die Hauptperson für den Filter"
 
-#: ../src/plugins/Records.py:529
+#: ../src/plugins/Records.py:532
 msgid "Use call name"
 msgstr "Rufname"
 
-#: ../src/plugins/Records.py:531
+#: ../src/plugins/Records.py:534
 msgid "Don't use call name"
 msgstr "nicht verwenden"
 
-#: ../src/plugins/Records.py:532
+#: ../src/plugins/Records.py:535
 msgid "Replace first name with call name"
 msgstr "Vornamen durch Rufnamen ersetzen"
 
-#: ../src/plugins/Records.py:533
+#: ../src/plugins/Records.py:536
 msgid "Underline call name in first name / add call name to first name"
 msgstr "Rufnamen im Vornamen unterstreichen / Rufnamen zum Vornamen hinzufügen"
 
-#: ../src/plugins/Records.py:536
+#: ../src/plugins/Records.py:539
 msgid "Footer text"
 msgstr "Fußzeilentext"
 
-#: ../src/plugins/Records.py:542
+#: ../src/plugins/Records.py:545
 msgid "Person Records"
 msgstr "Rekorde von Personen"
 
-#: ../src/plugins/Records.py:544
+#: ../src/plugins/Records.py:547
 msgid "Family Records"
 msgstr "Rekorde von Familien"
 
-#: ../src/plugins/Records.py:582
+#: ../src/plugins/Records.py:585
 msgid "The style used for the report title."
 msgstr "Der Stil, der für Berichttitel verwendet wird."
 
-#: ../src/plugins/Records.py:594
+#: ../src/plugins/Records.py:597
 msgid "The style used for the report subtitle."
 msgstr "Der Stil, der für Berichtuntertitel verwendet wird."
 
-#: ../src/plugins/Records.py:603
+#: ../src/plugins/Records.py:606
 msgid "The style used for headings."
 msgstr "Der Stil für Überschriften."
 
-#: ../src/plugins/Records.py:611
+#: ../src/plugins/Records.py:614
 #: ../src/plugins/drawreport/AncestorTree.py:1070
 #: ../src/plugins/drawreport/DescendTree.py:1674
 #: ../src/plugins/drawreport/FanChart.py:456
@@ -10253,76 +10267,76 @@ msgstr "Der Stil für Überschriften."
 msgid "The basic style used for the text display."
 msgstr "Der Basisstil, der für die Textanzeige verwendet wird."
 
-#: ../src/plugins/Records.py:621
+#: ../src/plugins/Records.py:624
 #: ../src/plugins/textreport/SimpleBookTitle.py:185
 msgid "The style used for the footer."
 msgstr "Der Stil, der für Fußzeilen verwendet wird."
 
-#: ../src/plugins/Records.py:631
+#: ../src/plugins/Records.py:634
 msgid "Youngest living person"
 msgstr "Jüngste lebende Person"
 
-#: ../src/plugins/Records.py:632
+#: ../src/plugins/Records.py:635
 msgid "Oldest living person"
 msgstr "Älteste lebende Person"
 
-#: ../src/plugins/Records.py:633
+#: ../src/plugins/Records.py:636
 msgid "Person died at youngest age"
 msgstr "Geringstes erreichtes Lebensalter"
 
-#: ../src/plugins/Records.py:634
+#: ../src/plugins/Records.py:637
 msgid "Person died at oldest age"
 msgstr "Höchstes erreichtes Lebensalter"
 
-#: ../src/plugins/Records.py:635
+#: ../src/plugins/Records.py:638
 msgid "Person married at youngest age"
 msgstr "Geringstes Alter bei einer Hochzeit"
 
-#: ../src/plugins/Records.py:636
+#: ../src/plugins/Records.py:639
 msgid "Person married at oldest age"
 msgstr "Höchstes Alter bei einer Hochzeit"
 
-#: ../src/plugins/Records.py:637
+#: ../src/plugins/Records.py:640
 msgid "Person divorced at youngest age"
 msgstr "Geringstes Alter bei einer Scheidung"
 
-#: ../src/plugins/Records.py:638
+#: ../src/plugins/Records.py:641
 msgid "Person divorced at oldest age"
 msgstr "Höchstes Alter bei einer Scheidung"
 
-#: ../src/plugins/Records.py:639
+#: ../src/plugins/Records.py:642
 msgid "Youngest father"
 msgstr "Jüngster Vater"
 
-#: ../src/plugins/Records.py:640
+#: ../src/plugins/Records.py:643
 msgid "Youngest mother"
 msgstr "Jüngste Mutter"
 
-#: ../src/plugins/Records.py:641
+#: ../src/plugins/Records.py:644
 msgid "Oldest father"
 msgstr "Ältester Vater"
 
-#: ../src/plugins/Records.py:642
+#: ../src/plugins/Records.py:645
 msgid "Oldest mother"
 msgstr "Älteste Mutter"
 
-#: ../src/plugins/Records.py:643
+#: ../src/plugins/Records.py:646
 msgid "Couple with most children"
 msgstr "Paar mit den meisten Kindern"
 
-#: ../src/plugins/Records.py:644
+#: ../src/plugins/Records.py:647
 msgid "Living couple married most recently"
 msgstr "Kürzeste noch andauernde Ehe"
 
-#: ../src/plugins/Records.py:645
+#: ../src/plugins/Records.py:648
 msgid "Living couple married most long ago"
 msgstr "Längste noch andauernde Ehe"
 
-#: ../src/plugins/Records.py:646
+#: ../src/plugins/Records.py:649
 msgid "Shortest past marriage"
 msgstr "Kürzeste beendete Ehe"
 
-#: ../src/plugins/Records.py:647
+#: ../src/plugins/Records.py:650
 msgid "Longest past marriage"
 msgstr "Längste beendete Ehe"
 
@@ -10433,11 +10447,11 @@ msgstr "Konnte jpeg Version des Bildes %(name)s nicht erstellen"
 msgid "Could not open %s"
 msgstr "Konnte %s nicht öffnen"
 
-#: ../src/plugins/docgen/ODFDoc.py:1616
+#: ../src/plugins/docgen/ODFDoc.py:1616 ../src/plugins/docgen/cairodoc.py:242
 msgid "Contents"
 msgstr "Inhalt"
 
-#: ../src/plugins/docgen/ODFDoc.py:1655
+#: ../src/plugins/docgen/ODFDoc.py:1655 ../src/plugins/docgen/cairodoc.py:275
 msgid "Index"
 msgstr "Index"
 
@@ -10494,6 +10508,7 @@ msgstr "Baumoptionen"
 #: ../src/plugins/drawreport/Calendar.py:416
 #: ../src/plugins/drawreport/FanChart.py:396
 #: ../src/plugins/graph/GVHourGlass.py:261
+#: ../src/plugins/graph/GVRelGraph.py:514
 #: ../src/plugins/textreport/AncestorReport.py:268
 #: ../src/plugins/textreport/BirthdayReport.py:372
 #: ../src/plugins/textreport/DescendReport.py:393
@@ -10901,6 +10916,7 @@ msgstr "Filter wählen um Personen, die im Kalender erscheinen zu begrenzen"
 
 #: ../src/plugins/drawreport/Calendar.py:417
 #: ../src/plugins/drawreport/FanChart.py:397
+#: ../src/plugins/graph/GVRelGraph.py:515
 #: ../src/plugins/textreport/AncestorReport.py:269
 #: ../src/plugins/textreport/BirthdayReport.py:373
 #: ../src/plugins/textreport/DescendReport.py:394
@@ -13688,14 +13704,14 @@ msgstr "Personenzahl"
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:151
 #: ../src/plugins/graph/GVFamilyLines.py:151
-#: ../src/plugins/graph/GVRelGraph.py:547
+#: ../src/plugins/graph/GVRelGraph.py:595
 #: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr "Männer"
 
 #: ../src/plugins/gramplet/StatsGramplet.py:154
 #: ../src/plugins/graph/GVFamilyLines.py:155
-#: ../src/plugins/graph/GVRelGraph.py:551
+#: ../src/plugins/graph/GVRelGraph.py:599
 #: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
 msgstr "Frauen"
@@ -14089,7 +14105,7 @@ msgstr "Erstellt eine Beziehungengrafiken mit GraphViz."
 #. ------------------------------------------------------------------------
 #: ../src/plugins/graph/GVFamilyLines.py:71
 #: ../src/plugins/graph/GVHourGlass.py:56
-#: ../src/plugins/graph/GVRelGraph.py:67
+#: ../src/plugins/graph/GVRelGraph.py:69
 msgid "B&W outline"
 msgstr "Schwarz-Weiß umrandet"
 
@@ -14167,22 +14183,22 @@ msgid "Colours to use for various family lines."
 msgstr " Farben die für verschiedene Familienlinien benutzt werden."
 
 #: ../src/plugins/graph/GVFamilyLines.py:152
-#: ../src/plugins/graph/GVRelGraph.py:548
+#: ../src/plugins/graph/GVRelGraph.py:596
 msgid "The colour to use to display men."
 msgstr "Die Farbe die für die Anzeige von Männern benutzt wird."
 
 #: ../src/plugins/graph/GVFamilyLines.py:156
-#: ../src/plugins/graph/GVRelGraph.py:552
+#: ../src/plugins/graph/GVRelGraph.py:600
 msgid "The colour to use to display women."
 msgstr "Die Farbe die für die Anzeige von Frauen benutzt wird."
 
 #: ../src/plugins/graph/GVFamilyLines.py:160
-#: ../src/plugins/graph/GVRelGraph.py:557
+#: ../src/plugins/graph/GVRelGraph.py:605
 msgid "The colour to use when the gender is unknown."
 msgstr "Die Farbe die für die benutzt wird wenn das Geschlecht unbekannt ist."
 
 #: ../src/plugins/graph/GVFamilyLines.py:164
-#: ../src/plugins/graph/GVRelGraph.py:561
+#: ../src/plugins/graph/GVRelGraph.py:609
 #: ../src/plugins/quickview/FilterByName.py:94
 #: ../src/plugins/textreport/TagReport.py:194
 #: ../src/plugins/view/familyview.py:114 ../src/plugins/view/view.gpr.py:56
@@ -14196,7 +14212,7 @@ msgid "Families"
 msgstr "Familien"
 
 #: ../src/plugins/graph/GVFamilyLines.py:165
-#: ../src/plugins/graph/GVRelGraph.py:562
+#: ../src/plugins/graph/GVRelGraph.py:610
 msgid "The colour to use to display families."
 msgstr "Die Farbe die für die Anzeige von Familien benutzt wird."
 
@@ -14231,7 +14247,7 @@ msgstr "Bilder"
 
 #. --------------------
 #: ../src/plugins/graph/GVFamilyLines.py:197
-#: ../src/plugins/graph/GVRelGraph.py:521
+#: ../src/plugins/graph/GVRelGraph.py:569
 msgid "Include thumbnail images of people"
 msgstr "Mit Miniaturbildern der Personen"
 
@@ -14244,17 +14260,17 @@ msgid "Thumbnail location"
 msgstr "Miniaturbild Position"
 
 #: ../src/plugins/graph/GVFamilyLines.py:206
-#: ../src/plugins/graph/GVRelGraph.py:528
+#: ../src/plugins/graph/GVRelGraph.py:576
 msgid "Above the name"
 msgstr "Über dem Namen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:207
-#: ../src/plugins/graph/GVRelGraph.py:529
+#: ../src/plugins/graph/GVRelGraph.py:577
 msgid "Beside the name"
 msgstr "Neben dem Namen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:208
-#: ../src/plugins/graph/GVRelGraph.py:531
+#: ../src/plugins/graph/GVRelGraph.py:579
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Wo das Miniaturbild im Verhältnis zum Namen erscheinen soll"
 
@@ -14269,7 +14285,7 @@ msgstr "Optionen"
 #. ###############################
 #: ../src/plugins/graph/GVFamilyLines.py:216
 #: ../src/plugins/graph/GVHourGlass.py:279
-#: ../src/plugins/graph/GVRelGraph.py:539
+#: ../src/plugins/graph/GVRelGraph.py:587
 msgid "Graph coloring"
 msgstr "Diagrammfärbung"
 
@@ -14285,13 +14301,13 @@ msgstr ""
 #. see bug report #2180
 #: ../src/plugins/graph/GVFamilyLines.py:225
 #: ../src/plugins/graph/GVHourGlass.py:288
-#: ../src/plugins/graph/GVRelGraph.py:572
+#: ../src/plugins/graph/GVRelGraph.py:620
 msgid "Use rounded corners"
 msgstr "Abgerundete Ecken verwenden"
 
 #: ../src/plugins/graph/GVFamilyLines.py:226
 #: ../src/plugins/graph/GVHourGlass.py:290
-#: ../src/plugins/graph/GVRelGraph.py:574
+#: ../src/plugins/graph/GVRelGraph.py:622
 msgid "Use rounded corners to differentiate between women and men."
 msgstr ""
 "Benutze abgerundete Ecken um zwischen Frauen und Männern zu unterscheiden."
@@ -14305,12 +14321,12 @@ msgid "Whether to include dates for people and families."
 msgstr "Ob Daten für Personen und Familien enthalten sind."
 
 #: ../src/plugins/graph/GVFamilyLines.py:236
-#: ../src/plugins/graph/GVRelGraph.py:496
+#: ../src/plugins/graph/GVRelGraph.py:528
 msgid "Limit dates to years only"
 msgstr "Daten auf Jahre begrenzen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:237
-#: ../src/plugins/graph/GVRelGraph.py:497
+#: ../src/plugins/graph/GVRelGraph.py:529
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -14362,12 +14378,12 @@ msgid "%d children"
 msgstr "%d Kinder"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
-#: ../src/plugins/graph/GVRelGraph.py:68
+#: ../src/plugins/graph/GVRelGraph.py:70
 msgid "Colored outline"
 msgstr "Farbig umrandet"
 
 #: ../src/plugins/graph/GVHourGlass.py:58
-#: ../src/plugins/graph/GVRelGraph.py:69
+#: ../src/plugins/graph/GVRelGraph.py:71
 msgid "Color fill"
 msgstr "Farbig gefüllt"
 
@@ -14395,12 +14411,12 @@ msgstr "Die Anzahl der Vorfahrengenerationen in der Grafik"
 
 #. ###############################
 #: ../src/plugins/graph/GVHourGlass.py:276
-#: ../src/plugins/graph/GVRelGraph.py:536
+#: ../src/plugins/graph/GVRelGraph.py:584
 msgid "Graph Style"
 msgstr "Diagrammstil"
 
 #: ../src/plugins/graph/GVHourGlass.py:282
-#: ../src/plugins/graph/GVRelGraph.py:542
+#: ../src/plugins/graph/GVRelGraph.py:590
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -14408,31 +14424,31 @@ msgstr ""
 "Männer werden in blau gezeigt, Frauen in rot. Personen mit unbekanntem "
 "Geschlecht in grau."
 
-#: ../src/plugins/graph/GVRelGraph.py:71
+#: ../src/plugins/graph/GVRelGraph.py:73
 msgid "Descendants <- Ancestors"
 msgstr "Nachkommen <- Vorfahren"
 
-#: ../src/plugins/graph/GVRelGraph.py:72
+#: ../src/plugins/graph/GVRelGraph.py:74
 msgid "Descendants -> Ancestors"
 msgstr "Nachkommen -> Vorfahren"
 
-#: ../src/plugins/graph/GVRelGraph.py:73
+#: ../src/plugins/graph/GVRelGraph.py:75
 msgid "Descendants <-> Ancestors"
 msgstr "Nachkommen <-> Vorfahren"
 
-#: ../src/plugins/graph/GVRelGraph.py:74
+#: ../src/plugins/graph/GVRelGraph.py:76
 msgid "Descendants - Ancestors"
 msgstr "Nachkommen - Vorfahren"
 
-#: ../src/plugins/graph/GVRelGraph.py:478
+#: ../src/plugins/graph/GVRelGraph.py:510
 msgid "Determines what people are included in the graph"
 msgstr "Legt fest welche Personen in der Grafik enthalten sind"
 
-#: ../src/plugins/graph/GVRelGraph.py:490
+#: ../src/plugins/graph/GVRelGraph.py:522
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Geburts-, Hochzeits- und Sterbedaten einschließen"
 
-#: ../src/plugins/graph/GVRelGraph.py:491
+#: ../src/plugins/graph/GVRelGraph.py:523
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
@@ -14440,11 +14456,11 @@ msgstr ""
 "Fügt die Daten, wann der Einzelne geboren wurde, heiratete, und/oder "
 "gestorben ist, den Grafbeschriftungen hinzu."
 
-#: ../src/plugins/graph/GVRelGraph.py:502
+#: ../src/plugins/graph/GVRelGraph.py:534
 msgid "Use place when no date"
 msgstr "Benutze Ort wenn kein Datum vorhanden ist"
 
-#: ../src/plugins/graph/GVRelGraph.py:503
+#: ../src/plugins/graph/GVRelGraph.py:535
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
@@ -14452,11 +14468,11 @@ msgstr ""
 "Wenn kein Geburts-, Hochzeits- oder Todesdatum verfügbar ist, wird der "
 "entsprechende Ort verwendet."
 
-#: ../src/plugins/graph/GVRelGraph.py:508
+#: ../src/plugins/graph/GVRelGraph.py:540
 msgid "Include URLs"
 msgstr "URLs aufnehmen"
 
-#: ../src/plugins/graph/GVRelGraph.py:509
+#: ../src/plugins/graph/GVRelGraph.py:541
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -14466,44 +14482,62 @@ msgstr ""
 "erzeugt werden können, die Links zu den mit \"Erzählende Website generieren"
 "\" erstellten Dateien enthalten."
 
-#: ../src/plugins/graph/GVRelGraph.py:516
+#: ../src/plugins/graph/GVRelGraph.py:548
 msgid "Include IDs"
 msgstr "IDs aufnehmen"
 
-#: ../src/plugins/graph/GVRelGraph.py:517
+#: ../src/plugins/graph/GVRelGraph.py:549
 msgid "Include individual and family IDs."
 msgstr "Personen und Familie IDs aufnehmen."
 
-#: ../src/plugins/graph/GVRelGraph.py:523
+#: ../src/plugins/graph/GVRelGraph.py:553
+msgid "Include relationship to center person"
+msgstr "Mit Beziehungen zur Hauptperson"
+
+#: ../src/plugins/graph/GVRelGraph.py:554
+msgid "Whether to show every person's relationship to the center person"
+msgstr "Ob die Beziehung jeder Person zur Hauptperson gezeigt wird"
+
+#: ../src/plugins/graph/GVRelGraph.py:561
+msgid "Include relationship debugging numbers also"
+msgstr "Mit Beziehungen Fehlerprüfungnummern"
+
+#: ../src/plugins/graph/GVRelGraph.py:564
+msgid ""
+"Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
+msgstr ""
+"Ob 'Ga' und 'Gb' zur Fehlerbehebung beim Beziehungsrechner enthalten sind"
+
+#: ../src/plugins/graph/GVRelGraph.py:571
 msgid "Whether to include thumbnails of people."
 msgstr "Zum einschließen von Miniaturbildern von Personen."
 
-#: ../src/plugins/graph/GVRelGraph.py:527
+#: ../src/plugins/graph/GVRelGraph.py:575
 msgid "Thumbnail Location"
 msgstr "Miniaturbilder Position"
 
-#: ../src/plugins/graph/GVRelGraph.py:565
+#: ../src/plugins/graph/GVRelGraph.py:613
 msgid "Arrowhead direction"
 msgstr "Pfeilrichtungen"
 
-#: ../src/plugins/graph/GVRelGraph.py:568
+#: ../src/plugins/graph/GVRelGraph.py:616
 msgid "Choose the direction that the arrows point."
 msgstr "Richtung der Pfeile auswählen."
 
-#: ../src/plugins/graph/GVRelGraph.py:579
+#: ../src/plugins/graph/GVRelGraph.py:627
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Nicht-leiblich Verwandtschaft durch gestrichelte Linie andeuten"
 
-#: ../src/plugins/graph/GVRelGraph.py:580
+#: ../src/plugins/graph/GVRelGraph.py:628
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
 "Nicht-leibliche Verwandtschaft erscheint im Graph als gestrichelte Linie."
 
-#: ../src/plugins/graph/GVRelGraph.py:584
+#: ../src/plugins/graph/GVRelGraph.py:632
 msgid "Show family nodes"
 msgstr "Familienknoten anzeigen"
 
-#: ../src/plugins/graph/GVRelGraph.py:585
+#: ../src/plugins/graph/GVRelGraph.py:633
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr ""
 "Familien werden als Ellipsen, verbunden mit den Eltern und Kindern, gezeigt."
@@ -14862,7 +14896,7 @@ msgstr "kann Mutter für I%(person)s (mother=%(mother)d) nicht finden"
 msgid "vCard import"
 msgstr "vKarte importieren"
 
-#: ../src/plugins/import/ImportVCard.py:310
+#: ../src/plugins/import/ImportVCard.py:314
 #, python-format
 msgid "Import of VCards version %s is not supported by Gramps."
 msgstr "Der Import von VCards Version %s von Gramps nicht unterstützt."
@@ -15299,6 +15333,13 @@ msgid ""
 msgstr ""
 "Fehler: Familie '%(family)s' Kind '%(child)s' verweist nicht zurück auf die "
 "Familie.Referenz hinzugefügt."
+
+#: ../src/plugins/lib/libcairodoc.py:1349
+#, python-format
+msgid ""
+"Mismatch between selected extension %(ext)s and actual format.\n"
+" Writing to %(filename)s in format %(impliedext)s."
+msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:1736
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -20437,11 +20478,11 @@ msgstr "Entspricht Personen, bei denen der Familienname fehlt"
 #: ../src/Filters/Rules/Person/_HasAlternateName.py:48
 #: ../src/Filters/Rules/Person/_HasAssociation.py:52
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:49
-#: ../src/Filters/Rules/Person/_HasNameOf.py:62
+#: ../src/Filters/Rules/Person/_HasNameOf.py:60
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:50
 #: ../src/Filters/Rules/Person/_HasNameType.py:50
 #: ../src/Filters/Rules/Person/_HasNickname.py:48
-#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:53
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:52
 #: ../src/Filters/Rules/Person/_HasUnknownGender.py:47
 #: ../src/Filters/Rules/Person/_IncompleteNames.py:47
 #: ../src/Filters/Rules/Person/_IsBookmarked.py:47
@@ -20462,6 +20503,7 @@ msgstr "Entspricht Personen, bei denen der Familienname fehlt"
 #: ../src/Filters/Rules/Event/_HasData.py:51
 #: ../src/Filters/Rules/Event/_HasType.py:49
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:55
+#: ../src/Filters/Rules/Event/_MatchesPlaceFilter.py:54
 #: ../src/Filters/Rules/Place/_HasPlace.py:61
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:54
 #: ../src/Filters/Rules/Source/_HasRepository.py:50
@@ -20486,10 +20528,6 @@ msgstr "Allgemeine Filter"
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:43
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:47
 #: ../src/Filters/Rules/Person/_SearchName.py:46
-#: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:44
-#: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:43
-#: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:43
-#: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:43
 #: ../src/Filters/Rules/Note/_MatchesSubstringOf.py:44
 msgid "Substring:"
 msgstr "Teilzeichenfolge:"
@@ -22951,14 +22989,14 @@ msgid_plural "Finding relationships between %d people"
 msgstr[0] "Verwandtschaftspfad zwischen %d Person"
 msgstr[1] "Verwandtschaftspfad zwischen %d Personen"
 
-#: ../src/plugins/tool/NotRelated.py:374
+#: ../src/plugins/tool/NotRelated.py:383
 #, python-format
 msgid "Looking for %d person"
 msgid_plural "Looking for %d people"
 msgstr[0] "Suche nach %d Person"
 msgstr[1] "Suche nach %d Personen"
 
-#: ../src/plugins/tool/NotRelated.py:400
+#: ../src/plugins/tool/NotRelated.py:409
 #, python-format
 msgid "Looking up the name of %d person"
 msgid_plural "Looking up the names of %d people"
@@ -26437,51 +26475,51 @@ msgstr "Personen mit <Anzahl> HLT Ereignissen"
 msgid "Matches people with a certain number of LDS events"
 msgstr "Entspricht Personen mit einer bestimmten Anzahl von HLT Ereignissen"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:48
+#: ../src/Filters/Rules/Person/_HasNameOf.py:47
 msgid "Given name:"
 msgstr "Vorname:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:49
+#: ../src/Filters/Rules/Person/_HasNameOf.py:48
 msgid "Full Family name:"
 msgstr "Voller Familienname:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:50
+#: ../src/Filters/Rules/Person/_HasNameOf.py:49
 msgid "person|Title:"
 msgstr "Titel:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:51
+#: ../src/Filters/Rules/Person/_HasNameOf.py:50
 msgid "Suffix:"
 msgstr "Suffix:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:52
+#: ../src/Filters/Rules/Person/_HasNameOf.py:51
 msgid "Call Name:"
 msgstr "Rufname:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:53
+#: ../src/Filters/Rules/Person/_HasNameOf.py:52
 msgid "Nick Name:"
 msgstr "Spitzname:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:54
+#: ../src/Filters/Rules/Person/_HasNameOf.py:53
 msgid "Prefix:"
 msgstr "Präfix:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:55
+#: ../src/Filters/Rules/Person/_HasNameOf.py:54
 msgid "Single Surname:"
 msgstr "Einzelner Nachname:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:57
+#: ../src/Filters/Rules/Person/_HasNameOf.py:56
 msgid "Patronymic:"
 msgstr "Patronymikon:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:58
+#: ../src/Filters/Rules/Person/_HasNameOf.py:57
 msgid "Family Nick Name:"
 msgstr "Familienspitzname:"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:60
+#: ../src/Filters/Rules/Person/_HasNameOf.py:58
 msgid "People with the <name>"
 msgstr "Personen mit dem <Namen>"
 
-#: ../src/Filters/Rules/Person/_HasNameOf.py:61
+#: ../src/Filters/Rules/Person/_HasNameOf.py:59
 #: ../src/Filters/Rules/Person/_SearchName.py:48
 msgid "Matches people with a specified (partial) name"
 msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
@@ -26529,8 +26567,8 @@ msgstr ""
 "enthalten"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:42
-msgid "People having notes containing <regular expression>"
-msgstr "Liefert Personen, deren Notizen den <Regulären Ausdruck> enthalten"
+msgid "People having notes containing <text>"
+msgstr "Personen, deren Notizen den <Text> enthalten"
 
 #: ../src/Filters/Rules/Person/_HasNoteRegexp.py:43
 msgid "Matches people whose notes contain text matching a regular expression"
@@ -26593,11 +26631,11 @@ msgstr "Personen mit der <Markierung>"
 msgid "Matches people with the particular tag"
 msgstr "Liefert Personen mit der gegebenen Markierung"
 
-#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:50
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:49
 msgid "People with records containing <substring>"
 msgstr "Personen, deren Aufzeichnungen die <Zeichenfolge> enthalten"
 
-#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:51
+#: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:50
 msgid "Matches people whose records contain text matching a substring"
 msgstr ""
 "Enthält Personen, deren Aufzeichnungen Text, entsprechend einer "
@@ -26957,24 +26995,33 @@ msgid "Matches people without indications of death that are not too old"
 msgstr "Enthält Personen ohne Todeseintrag, die nicht zu alt sind"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:47
-msgid "People with <Id> matching regular expression"
-msgstr "Personen, mit <ID> entsprechend regulärem Ausdruck"
+msgid "People with Id containing <text>"
+msgstr "Personen, deren ID den <Text> enthält"
 
 #: ../src/Filters/Rules/Person/_RegExpIdOf.py:48
 msgid "Matches people whose Gramps ID matches the regular expression"
 msgstr "Liefert Personen, deren Gramps ID dem regulären Ausdruck entspricht"
 
+#: ../src/Filters/Rules/Person/_RegExpName.py:46
+#: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:44
+#: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:43
+#: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:43
+#: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:43
+#: ../src/Filters/Rules/Note/_HasNote.py:47 ../src/glade/mergenote.glade.h:5
+msgid "Text:"
+msgstr "Text:"
+
 #: ../src/Filters/Rules/Person/_RegExpName.py:47
-msgid "Expression:"
-msgstr "Erklärung:"
+msgid "People with a name matching <text>"
+msgstr "Personen mit einem Namen entsprechend <Text>"
 
 #: ../src/Filters/Rules/Person/_RegExpName.py:48
-msgid "People matching the <regex_name>"
-msgstr "Personennamen entsprechend <Regulärem Ausdruck>"
-
-#: ../src/Filters/Rules/Person/_RegExpName.py:49
-msgid "Matches people's names with a specified regular expression"
-msgstr "Liefert Personen, deren Name einen regulären Ausdruck entspricht"
+msgid ""
+"Matches people's names containing a substring or matching a regular "
+"expression"
+msgstr ""
+"Liefert Personennamen die einen Text enthalten oder einem regulären Ausdruck "
+"entsprechen"
 
 #: ../src/Filters/Rules/Person/_RelationshipPathBetween.py:47
 msgid "Relationship path between <persons>"
@@ -27034,8 +27081,8 @@ msgid "Person ID:"
 msgstr "Personen-ID:"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:47
-msgid "Families with child with the <Id>"
-msgstr "Familien, deren Kind die <Id> hat"
+msgid "Families having child with Id containing <text>"
+msgstr "Liefert Familien mit Kind dessen ID den <Text> enthält"
 
 #: ../src/Filters/Rules/Family/_ChildHasIdOf.py:48
 msgid "Matches families where child has a specified Gramps ID"
@@ -27065,8 +27112,8 @@ msgid "Matches families that are indicated as private"
 msgstr "Liefert Familien, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:47
-msgid "Families with father with the <Id>"
-msgstr "Familien, deren Vater die <Id> hat"
+msgid "Families having father with Id containing <text>"
+msgstr "Liefert Familien, deren Vater den <Text> in der ID enthält"
 
 #: ../src/Filters/Rules/Family/_FatherHasIdOf.py:48
 msgid "Matches families whose father has a specified Gramps ID"
@@ -27097,8 +27144,8 @@ msgid "Matches families with the family attribute of a particular value"
 msgstr "Liefert Familien mit einem bestimmten familiären Ereignis"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:52
-msgid "Family with the <citation>"
-msgstr "Familie mit der <Fundstelle>"
+msgid "Families with the <citation>"
+msgstr "Familien mit der <Fundstelle>"
 
 #: ../src/Filters/Rules/Family/_HasCitation.py:53
 msgid "Matches families with a citation of a particular value"
@@ -27156,8 +27203,8 @@ msgstr ""
 "enthalten"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:42
-msgid "Families having notes containing <regular expression>"
-msgstr "Liefert Familien, deren Notizen den <Regulären Ausdruck> enthalten"
+msgid "Families having notes containing <text>"
+msgstr "Familien, deren Notizen den <Text> enthalten"
 
 #: ../src/Filters/Rules/Family/_HasNoteRegexp.py:43
 msgid "Matches families whose notes contain text matching a regular expression"
@@ -27233,8 +27280,8 @@ msgid ""
 msgstr "Entspricht Familien mit mindestens Einer Quelle mit Vertrauensgrad(en)"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:47
-msgid "Families with mother with the <Id>"
-msgstr "Familien mit der Mutter <Id>"
+msgid "Families having mother with Id containing <text>"
+msgstr "Liefert Familien mit Mutter deren ID den <Text> enthält"
 
 #: ../src/Filters/Rules/Family/_MotherHasIdOf.py:48
 msgid "Matches families whose mother has a specified Gramps ID"
@@ -27311,8 +27358,8 @@ msgstr ""
 "Ausdrucks haben"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:48
-msgid "Families with <Id> matching regular expression"
-msgstr "Familien mit <ID> entsprechend regulärem Ausdruck"
+msgid "Families with Id containing <text>"
+msgstr "Familien mit ID die den <Text> enthält"
 
 #: ../src/Filters/Rules/Family/_RegExpIdOf.py:49
 msgid "Matches families whose Gramps ID matches the regular expression"
@@ -27357,8 +27404,8 @@ msgid "Matches events with the event attribute of a particular value"
 msgstr "Liefert Ereignisse mit dem Ereignisattribut mit entsprechendem Wert"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:52
-msgid "Event with the <citation>"
-msgstr "Ereignisse mit <Fundstelle>"
+msgid "Events with the <citation>"
+msgstr "Ereignisse mit der <Fundstelle>"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:53
 msgid "Matches events with a citation of a particular value"
@@ -27409,8 +27456,8 @@ msgstr ""
 "enthalten"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:42
-msgid "Events having notes containing <regular expression>"
-msgstr "Ereignisse mit Notizen entsprechend <Regulärem Ausdruck>"
+msgid "Events having notes containing <text>"
+msgstr "Ereignisse, deren Notizen den <Text> enthalten"
 
 #: ../src/Filters/Rules/Event/_HasNoteRegexp.py:43
 msgid "Matches events whose notes contain text matching a regular expression"
@@ -27461,6 +27508,18 @@ msgid "Matches events of persons matched by the specified person filter name"
 msgstr ""
 "Passt auf Ereignisse von Personen die dem gegeben Personenfilter entsprechen"
 
+#: ../src/Filters/Rules/Event/_MatchesPlaceFilter.py:51
+msgid "Events of places matching the <place filter>"
+msgstr "Ereignisse mit Orten die dem <Ortsfilter> entsprechen"
+
+#: ../src/Filters/Rules/Event/_MatchesPlaceFilter.py:52
+msgid ""
+"Matches events that occurred at places that match the specified place filter "
+"name"
+msgstr ""
+"Passt auf Ereignisse die an Orten stattfanden die einem bestimmten Ortsfilter "
+"entsprechen"
+
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:50
 msgid "Events with source matching the <source filter>"
 msgstr "Ereignisse mit Quellen die dem <Quellenfilter> entsprechen"
@@ -27480,8 +27539,8 @@ msgstr ""
 "Entspricht Ereignissen mit mindestens Einer Quelle mit Vertrauensgrad(en)"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:48
-msgid "Events with <Id> matching regular expression"
-msgstr "Ereignisse mit <ID> entsprechend regulärem Ausdruck"
+msgid "Events with Id containing <text>"
+msgstr "Ereignisse deren ID den <Text> enthält"
 
 #: ../src/Filters/Rules/Event/_RegExpIdOf.py:49
 msgid "Matches events whose Gramps ID matches the regular expression"
@@ -27558,8 +27617,8 @@ msgstr ""
 "enthalten"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:42
-msgid "Places having notes containing <regular expression>"
-msgstr "Orte mit Notizen entsprechend <Regulärem Ausdruck>"
+msgid "Places having notes containing <text>"
+msgstr "Orte, deren Notizen den <Text> enthält"
 
 #: ../src/Filters/Rules/Place/_HasNoteRegexp.py:43
 msgid "Matches places whose notes contain text matching a regular expression"
@@ -27668,8 +27727,8 @@ msgid "Matches places that are indicated as private"
 msgstr "Liefert Orte, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:48
-msgid "Places with <Id> matching regular expression"
-msgstr "Orte mit <ID> entsprechend regulärem Ausdruck"
+msgid "Places with Id containing <text>"
+msgstr "Orte deren ID den <Text> enthält"
 
 #: ../src/Filters/Rules/Place/_RegExpIdOf.py:49
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -27757,8 +27816,8 @@ msgid "Matches sources having a certain number of notes"
 msgstr "Entspricht Quellen mit einer bestimmten Anzahl von Notizen"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:42
-msgid "Sources having notes containing <regular expression>"
-msgstr "Quellen mit Notizen entsprechend <Regulärem Ausdruck>"
+msgid "Sources having notes containing <text>"
+msgstr "Quellen, deren Notizen die <Text> enthalten"
 
 #: ../src/Filters/Rules/Source/_HasNoteRegexp.py:43
 msgid "Matches sources whose notes contain text matching a regular expression"
@@ -27794,11 +27853,10 @@ msgstr ""
 "Passt auf Quellen mit einer bestimmten Anzahl von Aufbewahrungsortereferenzen"
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:45
-msgid ""
-"Sources with repository reference containing <substring> in \"Call Number\""
+msgid "Sources with repository reference containing <text> in \"Call Number\""
 msgstr ""
-"Quellen, deren Aufbewahrungsortereferenz die <Zeichenfolge> in der \"Signatur"
-"\" enthalten"
+"Quellen, deren Aufbewahrungsortereferenz die <Text> in der \"Signatur\" "
+"enthalten"
 
 #: ../src/Filters/Rules/Source/_HasRepositoryCallNumberRef.py:46
 msgid ""
@@ -27831,8 +27889,8 @@ msgstr ""
 "Aufbewahrungsortfilter entspricht"
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:44
-msgid "Sources title containing <substring>"
-msgstr "Quellentitel enthält <Zeichenfolge>"
+msgid "Sources with title containing <text>"
+msgstr "Quellentitel enthält <Text>"
 
 #: ../src/Filters/Rules/Source/_MatchesTitleSubstringOf.py:45
 msgid "Matches sources whose title contains a certain substring"
@@ -27847,8 +27905,8 @@ msgid "Matches sources that are indicated as private"
 msgstr "Liefert Quellen, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:48
-msgid "Sources with <Id> matching regular expression"
-msgstr "Quellen mit <ID> entsprechend regulärem Ausdruck"
+msgid "Sources with Id containing <text>"
+msgstr "Quellen deren ID den <Text> enthält"
 
 #: ../src/Filters/Rules/Source/_RegExpIdOf.py:49
 msgid "Matches sources whose Gramps ID matches the regular expression"
@@ -27929,8 +27987,8 @@ msgstr ""
 "enthalten"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:43
-msgid "Citations having notes containing <regular expression>"
-msgstr "Fundstellen mit Notizen entsprechend <Regulärem Ausdruck>"
+msgid "Citations having notes containing <text>"
+msgstr "Fundstellen deren Notizen den <Text> enthalten"
 
 #: ../src/Filters/Rules/Citation/_HasNoteRegexp.py:44
 msgid ""
@@ -27991,8 +28049,8 @@ msgid "Matches citations matched by the specified filter name"
 msgstr "Liefert Fundstellen, die dem angegebenen Filter entsprechen"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:44
-msgid "Citation Volume/Page containing <substring>"
-msgstr "Fundstelle Band/Seite enthält <Zeichenfolge>"
+msgid "Citations with Volume/Page containing <text>"
+msgstr "Fundstelle Band/Seite enthält <Text>"
 
 #: ../src/Filters/Rules/Citation/_MatchesPageSubstringOf.py:45
 msgid "Matches citations whose Volume/Page contains a certain substring"
@@ -28000,8 +28058,8 @@ msgstr ""
 "Liefert Fundstellen, deren Band/Seite eine bestimmte Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:49
-msgid "Citations with <Id> matching regular expression"
-msgstr "Fundstellen mit <ID> entspricht regulärem Ausdruck"
+msgid "Citations with Id containing <text>"
+msgstr "Fundstellen deren ID den <Text> enthalten"
 
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:50
 msgid "Matches citations whose Gramps ID matches the regular expression"
@@ -28097,10 +28155,10 @@ msgstr ""
 "enthalten"
 
 #: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:42
-msgid "Media objects having notes containing <regular expression>"
-msgstr "Medienobjekte mit Notizen entsprechend <Regulärem Ausdruck>"
+msgid "Media objects having notes containing <text>"
+msgstr "Medienobjekte, deren Notizen den <Text> enthalten"
 
-#: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:44
+#: ../src/Filters/Rules/MediaObject/_HasNoteRegexp.py:43
 msgid ""
 "Matches media objects whose notes contain text matching a regular expression"
 msgstr ""
@@ -28140,8 +28198,8 @@ msgid "Matches Media objects that are indicated as private"
 msgstr "Liefert Medienobjekte, die als vertraulich markiert sind"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:48
-msgid "Media Objects with <Id> matching regular expression"
-msgstr "Medienobjekte mit <ID> entsprechend regulärem Ausdruck"
+msgid "Media objects with Id containing <text>"
+msgstr "Medienobjekt dessen ID den <Text> enthält"
 
 #: ../src/Filters/Rules/MediaObject/_RegExpIdOf.py:49
 msgid "Matches media objects whose Gramps ID matches the regular expression"
@@ -28223,10 +28281,10 @@ msgstr ""
 "Zeichenfolge enthalten"
 
 #: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:42
-msgid "Repositories having notes containing <regular expression>"
-msgstr "Aufbewahrungsorte mit Notizen entsprechend <Regulärem Ausdruck>"
+msgid "Repositories having notes containing <text>"
+msgstr "Aufbewahrungsorte, deren Notizen die <Text> enthalten"
 
-#: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:44
+#: ../src/Filters/Rules/Repository/_HasNoteRegexp.py:43
 msgid ""
 "Matches repositories whose notes contain text matching a regular expression"
 msgstr ""
@@ -28263,8 +28321,8 @@ msgid "Matches repositories matched by the specified filter name"
 msgstr "Liefert Aufbewahrungsorte, die dem gegebenen Filter entsprechenden"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:44
-msgid "Repository name containing <substring>"
-msgstr "Aufbewahrungsortname enthält <Zeichenfolge>"
+msgid "Repositories with name containing <text>"
+msgstr "Aufbewahrungsortname enthält <Text>"
 
 #: ../src/Filters/Rules/Repository/_MatchesNameSubstringOf.py:45
 msgid "Matches repositories whose name contains a certain substring"
@@ -28272,8 +28330,8 @@ msgstr ""
 "Liefert Aufbewahrungsorte, deren Name eine bestimmte Zeichenfolge enthält"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:48
-msgid "Repositories with <Id> matching regular expression"
-msgstr "Aufbewahrungsorte mit <ID> entsprechend regulärem Ausdruck"
+msgid "Repositories with Id containing <text>"
+msgstr "Aufbewahrungsorte deren ID den <Text> enthält"
 
 #: ../src/Filters/Rules/Repository/_RegExpIdOf.py:49
 msgid "Matches repositories whose Gramps ID matches the regular expression"
@@ -28331,17 +28389,13 @@ msgid "Regular expression:"
 msgstr "Regulärer Ausdruck:"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:45
-msgid "Notes containing <regular expression>"
-msgstr "Notizen die <Regulärem Ausdruck> enthalten"
+msgid "Notes containing <text>"
+msgstr "Notizen die <Text> enthalten"
 
 #: ../src/Filters/Rules/Note/_MatchesRegexpOf.py:46
 msgid "Matches notes that contain text which matches a regular expression"
 msgstr ""
 "Liefert Notizen die Text der dem Regulären Ausdruckt entspricht enthalten"
-
-#: ../src/Filters/Rules/Note/_HasNote.py:47 ../src/glade/mergenote.glade.h:5
-msgid "Text:"
-msgstr "Text:"
 
 #: ../src/Filters/Rules/Note/_HasNote.py:50
 msgid "Notes matching parameters"
@@ -28376,8 +28430,8 @@ msgid "Matches notes matched by the specified filter name"
 msgstr "Passt auf Notizen, die dem gegebenen Filter entsprechen"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:48
-msgid "Notes with <Id> matching regular expression"
-msgstr "Notiz mit <ID> entspricht regulärem Ausdruck"
+msgid "Notes with Id containing <text>"
+msgstr "Notizen deren ID den <Text> enthält"
 
 #: ../src/Filters/Rules/Note/_RegExpIdOf.py:49
 msgid "Matches notes whose Gramps ID matches the regular expression"
@@ -31731,6 +31785,81 @@ msgstr ""
 "welche Desktopumgebung du bevorzugst. Solange die benötigten GTK "
 "Bibliotheken installiert sind, läuft es hervorragend."
 
+#~ msgid "People having notes containing <regular expression>"
+#~ msgstr "Liefert Personen, deren Notizen den <Regulären Ausdruck> enthalten"
+
+#~ msgid "People with <Id> matching regular expression"
+#~ msgstr "Personen, mit <ID> entsprechend regulärem Ausdruck"
+
+#~ msgid "Expression:"
+#~ msgstr "Erklärung:"
+
+#~ msgid "People matching the <regex_name>"
+#~ msgstr "Personennamen entsprechend <Regulärem Ausdruck>"
+
+#~ msgid "Matches people's names with a specified regular expression"
+#~ msgstr "Liefert Personen, deren Name einen regulären Ausdruck entspricht"
+
+#~ msgid "Families with child with the <Id>"
+#~ msgstr "Familien, deren Kind die <Id> hat"
+
+#~ msgid "Families with father with the <Id>"
+#~ msgstr "Familien, deren Vater die <Id> hat"
+
+#~ msgid "Families having notes containing <regular expression>"
+#~ msgstr "Liefert Familien, deren Notizen den <Regulären Ausdruck> enthalten"
+
+#~ msgid "Families with mother with the <Id>"
+#~ msgstr "Familien mit der Mutter <Id>"
+
+#~ msgid "Families with <Id> matching regular expression"
+#~ msgstr "Familien mit <ID> entsprechend regulärem Ausdruck"
+
+#~ msgid "Events having notes containing <regular expression>"
+#~ msgstr "Ereignisse mit Notizen entsprechend <Regulärem Ausdruck>"
+
+#~ msgid "Events with <Id> matching regular expression"
+#~ msgstr "Ereignisse mit <ID> entsprechend regulärem Ausdruck"
+
+#~ msgid "Places having notes containing <regular expression>"
+#~ msgstr "Orte mit Notizen entsprechend <Regulärem Ausdruck>"
+
+#~ msgid "Places with <Id> matching regular expression"
+#~ msgstr "Orte mit <ID> entsprechend regulärem Ausdruck"
+
+#~ msgid "Sources having notes containing <regular expression>"
+#~ msgstr "Quellen mit Notizen entsprechend <Regulärem Ausdruck>"
+
+#~ msgid "Sources with <Id> matching regular expression"
+#~ msgstr "Quellen mit <ID> entsprechend regulärem Ausdruck"
+
+#~ msgid "Citations having notes containing <regular expression>"
+#~ msgstr "Fundstellen mit Notizen entsprechend <Regulärem Ausdruck>"
+
+#~ msgid "Citations with <Id> matching regular expression"
+#~ msgstr "Fundstellen mit <ID> entspricht regulärem Ausdruck"
+
+#~ msgid "Media objects having notes containing <regular expression>"
+#~ msgstr "Medienobjekte mit Notizen entsprechend <Regulärem Ausdruck>"
+
+#~ msgid "Media Objects with <Id> matching regular expression"
+#~ msgstr "Medienobjekte mit <ID> entsprechend regulärem Ausdruck"
+
+#~ msgid "Repositories having notes containing <regular expression>"
+#~ msgstr "Aufbewahrungsorte mit Notizen entsprechend <Regulärem Ausdruck>"
+
+#~ msgid "Repository name containing <substring>"
+#~ msgstr "Aufbewahrungsortname enthält <Zeichenfolge>"
+
+#~ msgid "Repositories with <Id> matching regular expression"
+#~ msgstr "Aufbewahrungsorte mit <ID> entsprechend regulärem Ausdruck"
+
+#~ msgid "Notes containing <regular expression>"
+#~ msgstr "Notizen die <Regulärem Ausdruck> enthalten"
+
+#~ msgid "Notes with <Id> matching regular expression"
+#~ msgstr "Notiz mit <ID> entspricht regulärem Ausdruck"
+
 #~ msgid "Patronymic name skipped: '%(patronym)s' (%(msg)s)"
 #~ msgstr "Patronymikon Namen auslassen:  '%(patronym)s' (%(msg)s)"
 
@@ -33227,10 +33356,6 @@ msgstr ""
 
 #~ msgid "What's Next Gramplet"
 #~ msgstr "\"Was nun?\"-Gramplet"
-
-#, fuzzy
-#~ msgid "Matches repositories with name contains text\n"
-#~ msgstr "Liefert Aufbewahrungsorte mit gegebener Anzahl von Referenzen"
 
 #~ msgid "Gramplet %s is running"
 #~ msgstr "Gramplet %s läuft"
