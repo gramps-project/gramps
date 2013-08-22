@@ -132,15 +132,15 @@ def has_display():
     temp, sys.argv = sys.argv, sys.argv[:1]
     try:
         from gi.repository import Gtk
+        from gi.repository import Gdk
     except:
         return False
+
     try:
-        test = Gtk.init_check(temp)
+        test = Gtk.init_check(temp) and \
+            Gdk.Display.get_default()
         sys.argv = temp
-        if test:
-            return True
-        else:
-            return False
+        return bool(test)
     except:
         sys.argv = temp
         return False
