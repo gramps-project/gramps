@@ -25,6 +25,7 @@
 
 from .basicentry import *
 from .buttons import *
+from .dateentry import *
 from .expandcollapsearrow import *
 from .labels import *
 from .linkbox import *
