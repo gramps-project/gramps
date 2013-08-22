@@ -70,7 +70,7 @@ class EventSidebarFilter(SidebarFilter):
             self.filter_event.get_type)
         
         self.filter_mainparts = widgets.BasicEntry()
-        self.filter_date = widgets.BasicEntry()
+        self.filter_date = widgets.DateEntry(uistate, [])
         self.filter_place = widgets.BasicEntry()
         self.filter_note = widgets.BasicEntry()
         

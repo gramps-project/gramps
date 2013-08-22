@@ -68,6 +68,7 @@ import AutoComp
 from gui.selectors import SelectorFactory
 from gen.display.name import displayer as _nd
 import Utils
+from gui.widgets import DateEntry
 
 #-------------------------------------------------------------------------
 #
@@ -552,6 +553,8 @@ class EditRule(ManagedWindow.ManagedWindow):
                 elif v == _('Confidence level:'):
                     t = MyList(map(str, range(5)), 
                                [Utils.confidence[i] for i in range(5)])
+                elif v == _('Date:'):
+                    t = DateEntry(self.uistate, self.track)
                 else:                    
                     t = MyEntry()
                 tlist.append(t)

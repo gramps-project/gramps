@@ -266,6 +266,7 @@ src/gui/views/treemodels/sourcemodel.py
 
 # gui/widgets - the GUI widgets package
 src/gui/widgets/basicentry.py
+src/gui/widgets/dateentry.py
 src/gui/widgets/menutoolbuttonaction.py
 src/gui/widgets/styledtextbuffer.py
 src/gui/widgets/undoablestyledbuffer.py

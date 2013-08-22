@@ -40,7 +40,7 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.widgets import MonitoredMenu
+from gui.widgets import MonitoredMenu, DateEntry
 import gen.lib
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
@@ -60,7 +60,7 @@ class CitationSidebarFilter(SidebarFilter):
         self.clicked_func = clicked
         self.filter_id = gtk.Entry()
         self.filter_page = gtk.Entry()       
-        self.filter_date = gtk.Entry()
+        self.filter_date = DateEntry(uistate, [])
         
         self.filter_conf = gtk.ComboBox()
         model = gtk.ListStore(str)

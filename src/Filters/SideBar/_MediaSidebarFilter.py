@@ -61,7 +61,7 @@ class MediaSidebarFilter(SidebarFilter):
         self.filter_title = widgets.BasicEntry()
         self.filter_type = widgets.BasicEntry()
         self.filter_path = widgets.BasicEntry()
-        self.filter_date = widgets.BasicEntry()
+        self.filter_date = widgets.DateEntry(uistate, [])
         self.filter_note = widgets.BasicEntry()
 
         self.filter_regex = gtk.CheckButton(_('Use regular expressions'))

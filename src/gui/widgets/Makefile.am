@@ -10,6 +10,7 @@ pkgpython_PYTHON = \
 	__init__.py \
 	basicentry.py \
 	buttons.py \
+	dateentry.py \
 	expandcollapsearrow.py \
 	grampletpane.py \
 	labels.py \
