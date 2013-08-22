@@ -76,8 +76,8 @@ class PersonSidebarFilter(SidebarFilter):
         self.clicked_func = clicked
         self.filter_name = widgets.BasicEntry()
         self.filter_id = widgets.BasicEntry()
-        self.filter_birth = widgets.BasicEntry()
-        self.filter_death = widgets.BasicEntry()
+        self.filter_birth = widgets.DateEntry(uistate, [])
+        self.filter_death = widgets.DateEntry(uistate, [])
         self.filter_event = Event()
         self.filter_event.set_type((EventType.CUSTOM, ''))
         self.etype = Gtk.ComboBox(has_entry=True)

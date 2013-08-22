@@ -72,6 +72,7 @@ from gramps.gen.display.name import displayer as _nd
 from gramps.gen.utils.db import family_name
 from gramps.gen.utils.string import confidence
 from gramps.gen.constfunc import cuni
+from ..widgets import DateEntry
 
 #-------------------------------------------------------------------------
 #
@@ -553,6 +554,8 @@ class EditRule(ManagedWindow):
                 elif v == _('Confidence level:'):
                     t = MyList(list(map(str, list(range(5)))), 
                                [confidence[i] for i in range(5)])
+                elif v == _('Date:'):
+                    t = DateEntry(self.uistate, self.track)
                 else:                    
                     t = MyEntry()
                 tlist.append(t)
