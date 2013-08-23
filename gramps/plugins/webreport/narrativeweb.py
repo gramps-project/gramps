@@ -148,6 +148,8 @@ from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.pluginmanager import GuiPluginManager
 
 from gramps.gen.relationship import get_relationship_calculator
+from gramps.gen.utils.citeref import (get_gedcom_title, get_gedcom_author,
+                                      get_gedcom_pubinfo, get_gedcom_page)
 
 COLLATE_LANG = glocale.collation
 SORT_KEY = glocale.sort_key
@@ -2346,7 +2348,7 @@ class BasePage(object):
                 # Add this source and its references to the page
                 source = self.dbase_.get_source_from_handle(citation.get_source_handle())
                 if source is not None:
-                    list = Html("li", self.source_link(source.get_handle(), source.get_title(),
+                    list = Html("li", self.source_link(source.get_handle(), get_gedcom_title(self.dbase_, source),
                         source.get_gramps_id(), cindex, uplink = self.up))
                 else:
                     list = Html("li", "None")
@@ -2361,7 +2363,7 @@ class BasePage(object):
                         conf = None
                     for (label, data) in [
                                           [_("Date"),       _dd.display(sref.date)],
-                                          [_("Page"),       sref.page],
+                                          [_("Page"),       get_gedcom_page(self.dbase_, sref)],
                                           [_("Confidence"), conf] ]:
                         if data:
                             tmp += Html("li", "%s: %s" % (label, data))
@@ -4180,7 +4182,7 @@ class SourcePages(BasePage):
             for handle in source_handles:
                 source = self.db.get_source_from_handle(handle)
                 if source is not None:
-                    key = source.get_title() + str(source.get_gramps_id())
+                    key = get_gedcom_title(report.database, source) + str(source.get_gramps_id())
                     source_dict[key] = (source, handle)
             
             keys = sorted(source_dict, key=SORT_KEY)
@@ -4219,8 +4221,9 @@ class SourcePages(BasePage):
                     )
                     tbody += trow
                     trow.extend(
-                        Html("td", self.source_link(source_handle, source.get_title(),
-                            source.get_gramps_id()), class_ ="ColumnName")
+                        Html("td", self.source_link(source_handle,
+                                get_gedcom_title(report.database, source),
+                                source.get_gramps_id()), class_ ="ColumnName")
                     )
 
         # add clearline for proper styling
@@ -4245,7 +4248,7 @@ class SourcePages(BasePage):
             return
 
         BasePage.__init__(self, report, title, source.get_gramps_id())
-        self.page_title = source.get_title()
+        self.page_title = get_gedcom_title(report.database, source)
 
         inc_repositories = self.report.options["inc_repository"]
         self.navigation = self.report.options['navigation']
@@ -4267,7 +4270,7 @@ class SourcePages(BasePage):
                     sourcedetail += thumbnail
 
             # add section title
-            sourcedetail += Html("h3", html_escape(source.get_title()), inline = True)
+            sourcedetail += Html("h3", html_escape(get_gedcom_title(report.database, source)), inline = True)
 
             # begin sources table
             with Html("table", class_ = "infolist source") as table:
@@ -4282,9 +4285,9 @@ class SourcePages(BasePage):
 
                 for (label, value) in [
                     (_("Gramps ID"),               source_gid),
-                    (_("Author"),                  source.get_author()),
+                    (_("Author"),                  get_gedcom_author(report.database, source)),
                     (_("Abbreviation"),            source.get_abbreviation()),
-                    (_("Publication information"), source.get_publication_info()) ]:
+                    (_("Publication information"), get_gedcom_pubinfo(report.database, source)) ]:
                     if value:
                         trow = Html("tr") + (
                             Html("td", label, class_ = "ColumnAttribute", inline = True),
@@ -7423,7 +7426,7 @@ class NavWebReport(Report):
 
     def _add_source(self, source_handle, bkref_class, bkref_handle):
         source = self.database.get_source_from_handle(source_handle)
-        source_name = source.get_title()
+        source_name = get_gedcom_title(self.database, source)
         source_fname = self.build_url_fname(source_handle, "src",
                                                    False) + self.ext
         self.obj_dict[Source][source_handle] = (source_fname, source_name,

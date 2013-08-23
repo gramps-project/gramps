@@ -64,7 +64,7 @@ from ..glade import Glade
 from gramps.gen.utils.citeref import (set_input_dict_and_template, reference_L,
                                       reference_S, reference_F,
                                       get_gedcom_title, get_gedcom_author,
-                                      get_gedcom_pubinfo)
+                                      get_gedcom_pubinfo, get_gedcom_page)
 
 #-------------------------------------------------------------------------
 #
@@ -124,7 +124,7 @@ class EditSource(EditPrimary):
         return Source()
 
     def get_menu_title(self):
-        title = self.obj.get_title()
+        title = get_gedcom_title(self.db, self.obj)
         if self.obj.get_handle():
             title = _('Source') + ": " + title
         else:
@@ -667,7 +667,7 @@ class EditSource(EditPrimary):
         (uses_dupe_id, id) = self._uses_duplicate_id()
         if uses_dupe_id:
             prim_object = self.get_from_gramps_id(id)
-            name = prim_object.get_title()
+            name = get_gedcom_title(self.db, prim_object)
             msg1 = _("Cannot save source. ID already exists.")
             msg2 = _("You have attempted to use the existing Gramps ID with "
                          "value %(id)s. This value is already used by '" 
@@ -689,7 +689,7 @@ class EditSource(EditPrimary):
                                             self.citation)
             if uses_dupe_id:
                 prim_object = self.db.get_citation_from_gramps_id(gramps_id)
-                name = prim_object.get_page()
+                name = get_gedcom_page(self.db, prim_object)
                 msg1 = _("Cannot save citation. ID already exists.")
                 msg2 = _("You have attempted to use the existing Gramps ID with "
                          "value %(gramps_id)s. This value is already used by '" 
@@ -712,13 +712,13 @@ class EditSource(EditPrimary):
             # First commit the Source Primary object
             if not self.obj.get_handle():
                 self.db.add_source(self.obj, trans)
-                msg = _("Add Source (%s)") % self.obj.get_title()
+                msg = _("Add Source (%s)") % get_gedcom_title(self.db, self.obj)
             elif not only_cite:
                 #a changed source is not saved if only_cite
                 if not self.obj.get_gramps_id():
                     self.obj.set_gramps_id(self.db.find_next_source_gramps_id())
                 self.db.commit_source(self.obj, trans)
-                msg = _("Edit Source (%s)") % self.obj.get_title()
+                msg = _("Edit Source (%s)") % get_gedcom_title(self.db, self.obj)
             else:
                 msg = ''
             # Make sure citation references this source
@@ -728,13 +728,13 @@ class EditSource(EditPrimary):
             if self.citation_loaded:
                 if not self.citation.get_handle():
                     self.db.add_citation(self.citation, trans)
-                    msg += "\n" + _("Add Citation (%s)") % self.citation.get_page()
+                    msg += "\n" + _("Add Citation (%s)") % get_gedcom_page(self.db, self.citation)
                 else:
                     if not self.citation.get_gramps_id():
                         self.citation.set_gramps_id(
                                         self.db.find_next_citation_gramps_id())
                     self.db.commit_citation(self.citation, trans)
-                    msg += "\n" + _("Edit Citation (%s)") % self.citation.get_page()
+                    msg += "\n" + _("Edit Citation (%s)") % get_gedcom_page(self.db, self.citation)
             # set transaction description
             trans.set_description(msg)
 
@@ -881,7 +881,7 @@ class DeleteSrcQuery(object):
         self.the_lists = the_lists
 
     def query_response(self):
-        with DbTxn(_("Delete Source (%s)") % self.source.get_title(),
+        with DbTxn(_("Delete Source (%s)") % get_gedcom_title(self.db, self),
                    self.db) as trans:
             self.db.disable_signals()
             

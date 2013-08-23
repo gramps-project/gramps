@@ -60,6 +60,8 @@ from gramps.gui.editors import (DeleteCitationQuery, EditSource,
                                 DeleteSrcQuery)
 from gramps.gui.filters.sidebar import SourceSidebarFilter
 from gramps.gui.merge import MergeCitation, MergeSource
+from gramps.gen.utils.citeref import (get_gedcom_title, get_gedcom_author,
+                                      get_gedcom_pubinfo, get_gedcom_page)
 
 #-------------------------------------------------------------------------
 #
@@ -194,10 +196,10 @@ class CitationTreeView(ListView):
             _LOG.debug("\n\n\n")
             if source:
                 _LOG.debug("---- %s -- source %s" % 
-                           (text, source.get_title()))
+                           (text, get_gedcom_title(self.dbstate.db, source)))
             elif citation:
                 _LOG.debug("---- %s -- citation %s" % 
-                           (text, citation.get_page()))
+                           (text, get_gedcom_page(self.dbstate.db, citation)))
             else:
                 _LOG.debug("---- %s -- handle %s" % (text, handle))
    

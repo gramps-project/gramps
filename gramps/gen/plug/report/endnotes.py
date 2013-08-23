@@ -32,6 +32,8 @@ from ...lib import NoteType, Citation
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from ...utils.string import confidence
+from gramps.gen.utils.citeref import (get_gedcom_title, get_gedcom_author,
+                                      get_gedcom_pubinfo, get_gedcom_page)
 
 def add_endnote_styles(style_sheet):
     """
@@ -141,7 +143,7 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
         first = True
         
         doc.start_paragraph('Endnotes-Source', "%d." % cindex)
-        doc.write_text(_format_source_text(source), links=links)
+        doc.write_text(_format_source_text(database, source), links=links)
         doc.end_paragraph()
         
         if printnotes:
@@ -149,29 +151,29 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
 
         for key, ref in citation.get_ref_list():
             doc.start_paragraph('Endnotes-Ref', "%s:" % key)
-            doc.write_text(_format_ref_text(ref, key, elocale), links=links)
+            doc.write_text(_format_ref_text(database, ref, key, elocale), links=links)
             doc.end_paragraph()
 
             if printnotes:
                 _print_notes(ref, database, doc, 'Endnotes-Ref-Notes', links)
 
-def _format_source_text(source):
+def _format_source_text(database, source):
     if not source: return ""
 
     src_txt = ""
     
-    if source.get_author():
-        src_txt += source.get_author()
+    if get_gedcom_author(database, source):
+        src_txt += get_gedcom_author(database, source)
     
-    if source.get_title():
+    if get_gedcom_title(database, source):
         if src_txt:
             src_txt += ", "
-        src_txt += '"%s"' % source.get_title()
+        src_txt += '"%s"' % get_gedcom_title(database, source)
         
-    if source.get_publication_info():
+    if get_gedcom_pubinfo(database, source):
         if src_txt:
             src_txt += ", "
-        src_txt += source.get_publication_info()
+        src_txt += get_gedcom_pubinfo(database, source)
         
     if source.get_abbreviation():
         if src_txt:
@@ -180,7 +182,7 @@ def _format_source_text(source):
         
     return src_txt
 
-def _format_ref_text(ref, key, elocale):
+def _format_ref_text(database, ref, key, elocale):
     if not ref: return ""
     
     ref_txt = ""
@@ -190,12 +192,13 @@ def _format_ref_text(ref, key, elocale):
     if date is not None and not date.is_empty():
         datepresent = True
     if datepresent:
-        if ref.get_page():
-            ref_txt = "%s - %s" % (ref.get_page(), elocale.get_date(date))
+        if get_gedcom_page(database, ref):
+            ref_txt = "%s - %s" % (get_gedcom_page(database, ref),
+                                   elocale.get_date(date))
         else:
             ref_txt = elocale.get_date(date)
     else:
-        ref_txt = ref.get_page()
+        ref_txt = get_gedcom_page(database, ref)
         
     # Print only confidence level if it is not Normal
     if (ref.get_confidence_level() != Citation.CONF_NORMAL

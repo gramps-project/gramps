@@ -40,6 +40,8 @@ from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from ..constfunc import STRTYPE
+from gramps.gen.utils.citeref import (get_gedcom_title, get_gedcom_author,
+                                      get_gedcom_pubinfo)
 
 #-------------------------------------------------------------------------
 #
@@ -846,7 +848,7 @@ class SimpleAccess(object):
         """
         assert(source is None or isinstance(source, Source))
         if source:
-            return source.get_title()
+            return get_gedcom_title(self.dbase, source)
         return ''
 
     def page(self, citation):
@@ -860,7 +862,7 @@ class SimpleAccess(object):
         """
         assert(citation is None or isinstance(citation, Citation))
         if citation:
-            return citation.get_page()
+            return get_gedcom_page(self.dbase, citation)
         return ''
 
     def author(self, source):
@@ -874,7 +876,7 @@ class SimpleAccess(object):
         """
         assert(source is None or isinstance(source, Source))
         if source:
-            return source.get_author()
+            return get_gedcom_author(self.dbase, source)
         return ''
 
     def person(self, handle):

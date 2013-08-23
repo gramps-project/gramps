@@ -131,34 +131,34 @@ def get_gedcom_title(db, source=None):
         else:
             return source_cache.get_name()
     return (template_cache.get_map_element(GED_TITLE) %
-            DefaultKey(input_dict)) or ""
+            DefaultBlank(input_dict)) or ""
 
 def get_gedcom_author(db, source=None):
     global template_cache, source_cache
     if source:
         set_input_dict_and_template(db, source)
     if template_cache is None:
-        return "author not available"
+        return ""
     return (template_cache.get_map_element(GED_AUTHOR) %
-            DefaultKey(input_dict)) or ""
+            DefaultBlank(input_dict)) or ""
 
 def get_gedcom_pubinfo(db, source=None):
     global template_cache, source_cache
     if source:
         set_input_dict_and_template(db, source)
     if template_cache is None:
-        return "pubinfo not available"
+        return ""
     return (template_cache.get_map_element(GED_PUBINF) %
-            DefaultKey(input_dict)) or ""
+            DefaultBlank(input_dict)) or ""
 
 def get_gedcom_page(db, citation=None):
     global template_cache
     if citation:
         set_input_dict_and_template(db, source=None, citation=citation)
     if template_cache is None:
-        return "page not available"
+        return ""
     return (template_cache.get_map_element(GED_PAGE) %
-            DefaultKey(input_dict)) or ""
+            DefaultBlank(input_dict)) or ""
 
 # http://bugs.python.org/issue6081
 class DefaultBlank(dict):

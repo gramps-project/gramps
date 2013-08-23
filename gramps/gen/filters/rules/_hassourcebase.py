@@ -35,6 +35,8 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from . import Rule
+from gramps.gen.utils.citeref import (get_gedcom_title, get_gedcom_author,
+                                      get_gedcom_pubinfo)
 
 #-------------------------------------------------------------------------
 #
@@ -55,16 +57,16 @@ class HasSourceBase(Rule):
     allow_regex = True
 
     def apply(self,db,source):
-        if not self.match_substring(0,source.get_title()):
+        if not self.match_substring(0, get_gedcom_title(db, source)):
             return False
 
-        if not self.match_substring(1,source.get_author()):
+        if not self.match_substring(1, get_gedcom_author(db, source)):
             return False
 
         if not self.match_substring(2,source.get_abbreviation()):
             return False
 
-        if not self.match_substring(3,source.get_publication_info()):
+        if not self.match_substring(3, get_gedcom_pubinfo(db, source)):
             return False
 
         return True

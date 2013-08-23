@@ -28,6 +28,8 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.errors import WindowActiveError
 from gi.repository import Gtk
+from gramps.gen.utils.citeref import (get_gedcom_title, get_gedcom_author,
+                                      get_gedcom_pubinfo)
 
 class Citations(Gramplet, DbGUIElement):
 
@@ -142,9 +144,9 @@ class Citations(Gramplet, DbGUIElement):
             page = _('<No Citation>')
         source_handle = citation.get_reference_handle()
         source = self.dbstate.db.get_source_from_handle(source_handle)
-        title = source.get_title()
-        author = source.get_author()
-        publisher = source.get_publication_info()
+        title = get_gedcom_title(self.dbstate.db, source)
+        author = get_gedcom_author(self.dbstate.db, source)
+        publisher = get_gedcom_pubinfo(self.dbstate.db, source)
 
         if source_handle not in self.source_nodes:
             node = self.model.add([source_handle, title, author, publisher])
