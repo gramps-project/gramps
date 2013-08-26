@@ -29,6 +29,7 @@ The User class provides basic interaction with the user.
 # Python Modules
 #
 #------------------------------------------------------------------------
+from __future__ import print_function
 import sys
 
 #------------------------------------------------------------------------
@@ -38,7 +39,7 @@ import sys
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.user import User
+from gramps.gen import user
 
 #------------------------------------------------------------------------
 #
@@ -52,16 +53,22 @@ _SPINNER = ['|', '/', '-', '\\']
 # User class
 #
 #-------------------------------------------------------------------------
-class User(User):
+class User(user.User):
     """
     This class provides a means to interact with the user via CLI.
     It implements the interface in gramps.gen.user.User()
     """
     def __init__(self, callback=None, error=None):
+        """
+        Init.
+
+        @param error: If given, notify_error delegates to this callback
+        @type error: function(title, error)
+        """
+        user.User.__init__(self, callback, error)
         self.steps = 0;
         self.current_step = 0;
-        self.callback_function = callback
-        self.error_function = error
+        self._input = raw_input if sys.version_info[0] < 3 else input
     
     def begin_progress(self, title, message, steps):
         """
@@ -77,13 +84,13 @@ class User(User):
         @type steps: int
         @returns: none
         """
-        sys.stderr.write(message)
+        self._fileout.write(message)
         self.steps = steps
         self.current_step = 0;
         if self.steps == 0:
-            sys.stderr.write(_SPINNER[self.current_step])
+            self._fileout.write(_SPINNER[self.current_step])
         else:
-            sys.stderr.write("00%")
+            self._fileout.write("00%")
     
     def step_progress(self):
         """
@@ -92,45 +99,41 @@ class User(User):
         self.current_step += 1
         if self.steps == 0:
             self.current_step %= 4
-            sys.stderr.write("\r  %s  " % _SPINNER[self.current_step])
+            self._fileout.write("\r  %s  " % _SPINNER[self.current_step])
         else:
             percent = int((float(self.current_step) / self.steps) * 100)
-            sys.stderr.write("\r%02d%%" % percent)
-
-    def callback(self, percentage, text=None):
-        """
-        Display the precentage.
-        """
-        if self.callback_function:
-            if text:
-                self.callback_function(percentage, text)
-            else:
-                self.callback_function(percentage)
-        else:
-            if text is None:
-                sys.stderr.write("\r%02d%%" % percentage)
-            else:
-                sys.stderr.write("\r%02d%% %s" % (percentage, text))
+            self._fileout.write("\r%02d%%" % percent)
 
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
         """
-        sys.stderr.write("\r100%\n")
+        self._fileout.write("\r100%\n")
     
-    def prompt(self, title, question):
+    def prompt(self, title, message, accept_label, reject_label):
         """
-        Ask the user a question. The answer must be "yes" or "no".
-        The user will be forced to answer the question before proceeding.
+        Prompt the user with a message to select an alternative.
         
-        @param title: the title of the question
+        @param title: the title of the question, e.g.: "Undo history warning"
         @type title: str
-        @param question: the question
+        @param message: the message, e.g.: "Proceeding with the tool will
+            erase the undo history. If you think you may want to revert
+            running this tool, please stop here and make a backup of the DB."
         @type question: str
+        @param accept_label: what to call the positive choice, e.g.: "Proceed"
+        @type accept_label: str
+        @param reject_label: what to call the negative choice, e.g.: "Stop"
+        @type reject_label: str
         @returns: the user's answer to the question
         @rtype: bool
         """
-        return False
+        text = "{t} {m} ({y}/{n}): ".format(
+                t = title,
+                m = message,
+                y = accept_label,
+                n = reject_label)
+        print (text, file = self._fileout) # TODO python3 add flush=True
+        return self._input() == accept_label
     
     def warn(self, title, warning=""):
         """
@@ -142,7 +145,7 @@ class User(User):
         @type warning: str
         @returns: none
         """
-        sys.stderr.write("%s %s" % (title, warning))
+        self._fileout.write("%s %s" % (title, warning))
     
     def notify_error(self, title, error=""):
         """
@@ -157,7 +160,7 @@ class User(User):
         if self.error_function:
             self.error_function(title, error)
         else:
-            sys.stderr.write("%s %s" % (title, error))
+            self._fileout.write("%s %s" % (title, error))
 
     def notify_db_error(self, error):
         """
@@ -178,5 +181,5 @@ class User(User):
         """
         Displays information to the CLI
         """
-        sys.stderr.write(msg1)
-        sys.stderr.write(infotext)
+        self._fileout.write(msg1)
+        self._fileout.write(infotext)

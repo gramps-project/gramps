@@ -20,21 +20,23 @@
 # $Id$
 #
 
+import sys
+
 """
 The User class provides basic interaction with the user.
 """
-
-#-------------------------------------------------------------------------
-#
-# User class
-#
-#-------------------------------------------------------------------------
 class User():
     """
     This class provides a means to interact with the user in an abstract way.
     This class should be overridden by each respective user interface to
     provide the appropriate interaction (eg. dialogs for GTK, prompts for CLI).
     """
+
+    def __init__(self, callback=None, error=None):
+        self.callback_function = callback
+        self.error_function = error
+        self._fileout = sys.stderr # redirected to mocks by unit tests
+
     def begin_progress(self, title, message, steps):
         """
         Start showing a progress indicator to the user.
@@ -61,23 +63,37 @@ class User():
         """
         Display the precentage.
         """
-        pass
-    
+        if self.callback_function:
+            if text:
+                self.callback_function(percentage, text)
+            else:
+                self.callback_function(percentage)
+        else:
+            if text is None:
+                self._fileout.write("\r%02d%%" % percentage)
+            else:
+                self._fileout.write("\r%02d%% %s" % (percentage, text))
+
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
         """
         pass
     
-    def prompt(self, title, question):
+    def prompt(self, title, message, accept_label, reject_label):
         """
-        Ask the user a question. The answer must be "yes" or "no".
-        The user will be forced to answer the question before proceeding.
+        Prompt the user with a message to select an alternative.
         
-        @param title: the title of the question
+        @param title: the title of the question, e.g.: "Undo history warning"
         @type title: str
-        @param question: the question
+        @param message: the message, e.g.: "Proceeding with the tool will
+            erase the undo history. If you think you may want to revert
+            running this tool, please stop here and make a backup of the DB."
         @type question: str
+        @param accept_label: what to call the positive choice, e.g.: "Proceed"
+        @type accept_label: str
+        @param reject_label: what to call the negative choice, e.g.: "Stop"
+        @type reject_label: str
         @returns: the user's answer to the question
         @rtype: bool
         """
