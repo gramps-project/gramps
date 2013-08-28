@@ -16,7 +16,7 @@
 TOP_DIR=`dirname $PWD`
 TEST_DIR=$TOP_DIR/test
 SRC_DIR=$TOP_DIR/gramps
-PRG="python ../Gramps.py"
+PRG="python ../Gramps.py --yes --quiet"
 EXAMPLE_XML=$TOP_DIR/example/gramps/example.gramps
 
 OUT_FMT="csv ged gramps gpkg wft gw vcs vcf"

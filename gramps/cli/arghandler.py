@@ -54,7 +54,6 @@ from .clidbman import CLIDbManager, NAME_FILE, find_locker_name
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE, BookList
 from .plug import cl_report, cl_book
-from .user import User
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -153,10 +152,15 @@ class ArgHandler(object):
 
     def __init__(self, dbstate, parser, sessionmanager, 
                         errorfunc=None, gui=False):
+        from .user import User
+
         self.dbstate = dbstate
         self.sm = sessionmanager
         self.errorfunc = errorfunc
         self.gui = gui
+        self.user = User(error=self.__error, 
+                auto_accept=parser.auto_accept,
+                quiet=parser.quiet)
         if self.gui:
             self.actions = []
             self.list = False
@@ -283,19 +287,12 @@ class ArgHandler(object):
         else:
             fullpath = os.path.abspath(os.path.expanduser(fname))
             if os.path.exists(fullpath):
-                self.__error(_("WARNING: Output file already exists!\n"
-                               "WARNING: It will be overwritten:\n   %s") % 
-                               fullpath)
-                try:
-                    if sys.version_info[0] < 3:
-                        ask = raw_input
-                    else:
-                        ask = input
-                    answer = ask(_('OK to overwrite? (yes/no) '))
-                except EOFError:
-                    print()
-                    sys.exit(0)
-                if answer.upper() in ('Y', 'YES', _('YES').upper()):
+                message = _("WARNING: Output file already exists!\n"
+                            "WARNING: It will be overwritten:\n   %s"
+                            ) % fullpath
+                accepted = self.user.prompt(_('OK to overwrite?'), message, 
+                        _('yes'), _('no'))
+                if accepted:
                     self.__error(_("Will overwrite the existing file: %s") 
                                    % fullpath)
                 else:
@@ -551,7 +548,7 @@ class ArgHandler(object):
         for plugin in pmgr.get_import_plugins():
             if family_tree_format == plugin.get_extension():
                 import_function = plugin.get_import_function()
-                import_function(self.dbstate.db, filename, User())
+                import_function(self.dbstate.db, filename, self.user)
         
         if not self.cl:
             if self.imp_db_path:
@@ -573,7 +570,7 @@ class ArgHandler(object):
         for plugin in pmgr.get_export_plugins():
             if family_tree_format == plugin.get_extension():
                 export_function = plugin.get_export_function()
-                export_function(self.dbstate.db, filename, User(error=self.__error))
+                export_function(self.dbstate.db, filename, self.user)
 
     #-------------------------------------------------------------------------
     #

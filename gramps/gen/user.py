@@ -69,10 +69,13 @@ class User():
             else:
                 self.callback_function(percentage)
         else:
-            if text is None:
-                self._fileout.write("\r%02d%%" % percentage)
-            else:
-                self._fileout.write("\r%02d%% %s" % (percentage, text))
+            self._default_callback(percentage, text)
+
+    def _default_callback(self, percentage, text):
+        if text is None:
+            self._fileout.write("\r%02d%%" % percentage)
+        else:
+            self._fileout.write("\r%02d%% %s" % (percentage, text))
 
     def end_progress(self):
         """

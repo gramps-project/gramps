@@ -58,7 +58,7 @@ class User(user.User):
     This class provides a means to interact with the user via CLI.
     It implements the interface in gramps.gen.user.User()
     """
-    def __init__(self, callback=None, error=None):
+    def __init__(self, callback=None, error=None, auto_accept=False, quiet=False):
         """
         Init.
 
@@ -69,6 +69,15 @@ class User(user.User):
         self.steps = 0;
         self.current_step = 0;
         self._input = raw_input if sys.version_info[0] < 3 else input
+
+        def yes(*args): 
+            return True
+
+        if auto_accept:
+            self.prompt = yes
+        if quiet:
+            self.begin_progress = self.end_progress = self.step_progress = \
+                    self._default_callback = yes
     
     def begin_progress(self, title, message, steps):
         """
@@ -127,13 +136,17 @@ class User(user.User):
         @returns: the user's answer to the question
         @rtype: bool
         """
-        text = "{t} {m} ({y}/{n}): ".format(
+        text = "{t}\n{m} ([{y}]/{n}): ".format(
                 t = title,
                 m = message,
                 y = accept_label,
                 n = reject_label)
         print (text, file = self._fileout) # TODO python3 add flush=True
-        return self._input() == accept_label
+        try:
+            reply = self._input()
+            return reply == "" or reply == accept_label
+        except EOFError:
+            return False
     
     def warn(self, title, warning=""):
         """

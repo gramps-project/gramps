@@ -32,9 +32,9 @@ import sys
 
 try:
     if sys.version_info < (3,3):
-        from mock import Mock
+        from mock import Mock, NonCallableMock
     else:
-        from unittest.mock import Mock
+        from unittest.mock import Mock, NonCallableMock
 
     MOCKING = True
     
@@ -47,8 +47,8 @@ class TestUser_prompt(unittest.TestCase):
         self.real_user = user.User()
         if MOCKING:
             self.user = user.User()
-            self.user._fileout = Mock()
-            self.user._input = Mock()
+            self.user._fileout = Mock(spec=sys.stderr)
+            self.user._input = Mock(spec=input)
 
     def test_default_fileout_has_write(self):
         assert hasattr(self.real_user._fileout, 'write')
@@ -100,10 +100,45 @@ class TestUser_prompt(unittest.TestCase):
         self.assert_prompt_contains_text(TestUser.REJECT)
 
     if not MOCKING: #don't use SKIP, to avoid counting a skipped test
-        def testManualRun(self):
+        def test_manual_run(self):
             b = self.real_user.prompt(
                     TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT)
             print ("Returned: {}".format(b))
+
+    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
+    def test_auto_accept_accepts_without_prompting(self):
+        u = user.User(auto_accept=True)
+        u._fileout = Mock(spec=sys.stderr)
+        assert u.prompt(
+                TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT
+                ), "True expected!"
+        assert len(u._fileout.method_calls) == 0, list(u._fileout.method_calls)
+
+    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
+    def test_EOFError_in_prompt_caught_as_False(self):
+        self.user._input.configure_mock(
+                side_effect = EOFError,
+                return_value = TestUser.REJECT)
+        assert not self.user.prompt(
+                TestUser.TITLE, TestUser.MSG, TestUser.ACCEPT, TestUser.REJECT
+                ), "False expected!"
+        self.user._input.assert_called_once_with()
+
+@unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
+class TestUser_quiet(unittest.TestCase):
+    def setUp(self):
+        self.user = user.User(quiet=True)
+        self.user._fileout = Mock(spec=sys.stderr)
+
+    def test_progress_can_begin_step_end(self):
+        self.user.begin_progress("Foo", "Bar", 0)
+        for i in range(10):
+            self.user.step_progress()
+        self.user.end_progress()
+
+    def tearDown(self):
+        assert len(self.user._fileout.method_calls
+                ) == 0, list(self.user._fileout.method_calls)
 
 if __name__ == "__main__":
     unittest.main()

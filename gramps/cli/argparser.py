@@ -53,7 +53,6 @@ from gramps.gen.utils.file import get_unicode_path_from_env_var
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-# Note: Make sure to edit const.py.in POPT_TABLE too!
 _HELP = _("""
 Usage: gramps.py [OPTION...]
   --load-modules=MODULE1,MODULE2,...     Dynamic modules to load
@@ -77,6 +76,8 @@ Application options
   -u, --force-unlock                     Force unlock of Family Tree
   -s, --show                             Show config settings
   -c, --config=[config.setting[:value]]  Set config setting(s) and start Gramps
+  -y, --yes                              Don't ask to confirm dangerous actions (non-GUI mode only)
+  -q, --quiet                            Suppress progress indication output (non-GUI mode only)
   -v, --version                          Show versions
 """)
 
@@ -183,6 +184,8 @@ class ArgParser(object):
         self.force_unlock = False
         self.create = None
         self.runqml = False
+        self.quiet = False
+        self.auto_accept = False
 
         self.errors = []
         self.parse_args()
@@ -198,19 +201,21 @@ class ArgParser(object):
         
         Possible: 
         1/ Just the family tree (name or database dir)
-        2/ -O, --open:   Open of a family tree
-        3/ -i, --import: Import a family tree of any format understood by
+        2/ -O --open:   Open of a family tree
+        3/ -i --import: Import a family tree of any format understood by
                  an importer, optionally provide -f to indicate format
-        4/ -e, --export: export a family tree in required format, optionally
+        4/ -e --export: export a family tree in required format, optionally
                  provide -f to indicate format
-        5/ -f, --format=FORMAT : format after a -i or -e option
-        6/ -a, --action: An action (possible: 'report', 'tool')
-        7/ -p, --options=OPTIONS_STRING : specify options
-        8/ -u, --force-unlock: A locked database can be unlocked by giving
+        5/ -f --format=FORMAT : format after a -i or -e option
+        6/ -a --action: An action (possible: 'report', 'tool')
+        7/ -p --options=OPTIONS_STRING : specify options
+        8/ -u --force-unlock: A locked database can be unlocked by giving
                  this argument when opening it
         9/ -s  --show : Show config settings
         10/ -c --config=config.setting:value : Set config.setting and start
                  Gramps without :value, the actual config.setting is shown
+        11/ -y --yes: assume user's acceptance of any CLI prompt (see cli.user.User.prompt)
+        12/ -q --quiet: suppress extra noise on sys.stderr, such as progress indicators
                             
         """
         try:
@@ -259,23 +264,23 @@ class ArgParser(object):
         need_to_quit = False
         for opt_ix in range(len(options)):
             option, value = options[opt_ix]
-            if option in ( '-O', '--open'):
+            if option in ['-O', '--open']:
                 self.open = value
-            elif option in ( '-C', '--create'):
+            elif option in ['-C', '--create']:
                 self.create = value
-            elif option in ( '-i', '--import'):
+            elif option in ['-i', '--import']:
                 family_tree_format = None
                 if opt_ix < len(options) - 1 \
                    and options[opt_ix + 1][0] in ( '-f', '--format'): 
                     family_tree_format = options[opt_ix + 1][1]
                 self.imports.append((value, family_tree_format))
-            elif option in ( '-e', '--export' ):
+            elif option in ['-e', '--export']:
                 family_tree_format = None
                 if opt_ix < len(options) - 1 \
                    and options[opt_ix + 1][0] in ( '-f', '--format'): 
                     family_tree_format = options[opt_ix + 1][1]
                 self.exports.append((value, family_tree_format))
-            elif option in ( '-a', '--action' ):
+            elif option in ['-a', '--action']:
                 action = value
                 if action not in ('report', 'tool', 'book'):
                     print(_("Unknown action: %s. Ignoring.") % action,
@@ -286,18 +291,18 @@ class ArgParser(object):
                             and options[opt_ix+1][0] in ( '-p', '--options' ): 
                     options_str = options[opt_ix+1][1]
                 self.actions.append((action, options_str))
-            elif option in ('-d', '--debug'):
+            elif option in ['-d', '--debug']:
                 print(_('setup debugging'), value, file=sys.stderr)
                 logger = logging.getLogger(value)
                 logger.setLevel(logging.DEBUG)
                 cleandbg += [opt_ix]
-            elif option in ('-l'):
+            elif option in ['-l']:
                 self.list = True
-            elif option in ('-L'):
+            elif option in ['-L']:
                 self.list_more = True
-            elif option in ('-t'):
+            elif option in ['-t']:
                 self.list_table = True
-            elif option in ('-s','--show'):
+            elif option in ['-s','--show']:
                 print(_("Gramps config settings from %s:")
                               % config.filename)
                 for section in config.data:
@@ -307,7 +312,7 @@ class ArgParser(object):
                                   repr(config.data[section][setting])))
                     print()
                 sys.exit(0)
-            elif option in ('-c', '--config'):
+            elif option in ['-c', '--config']:
                 setting_name = value
                 set_value = False
                 if setting_name:
@@ -339,14 +344,18 @@ class ArgParser(object):
                                       % setting_name, file=sys.stderr)
                         need_to_quit = True
                 cleandbg += [opt_ix]
-            elif option in ('-h', '-?', '--help'):
+            elif option in ['-h', '-?', '--help']:
                 self.help = True
-            elif option in ('-u', '--force-unlock'):
+            elif option in ['-u', '--force-unlock']:
                 self.force_unlock = True
-            elif option in ('--usage'):
+            elif option in ['--usage']:
                 self.usage = True
-            elif option in ('--qml'):
+            elif option in ['--qml']:
                 self.runqml = True
+            elif option in ['-y', '--yes']:
+                self.auto_accept = True
+            elif option in ['-q', '--quiet']:
+                self.quiet = True
         
         #clean options list
         cleandbg.reverse()
