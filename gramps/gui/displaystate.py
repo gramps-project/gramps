@@ -373,6 +373,7 @@ class DisplayState(Callback):
         'filter-name-changed' : (str, UNITYPE, UNITYPE), 
         'nameformat-changed' : None, 
         'grampletbar-close-changed' : None, 
+        'update-available' : (list, ), 
         }
     
     #nav_type to message

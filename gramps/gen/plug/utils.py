@@ -31,10 +31,19 @@ General utility functions useful for the generic plugin system
 #-------------------------------------------------------------------------
 import sys
 import os
+import datetime
 if sys.version_info[0] < 3:
     from StringIO import StringIO
 else:
     from io import StringIO, BytesIO
+
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".gen.plug")
 
 #-------------------------------------------------------------------------
 #
@@ -44,7 +53,10 @@ else:
 from ._pluginreg import make_environment
 from ..const import USER_PLUGINS
 from ...version import VERSION_TUPLE
+from . import BasePluginManager
 from ..utils.file import get_unicode_path_from_file_chooser
+from ..utils.configmanager import safe_eval
+from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -165,6 +177,90 @@ class Zipfile(object):
         Is the name a directory?
         """
         return os.path.split(name)[1]
+
+def available_updates():
+    whattypes = config.get('behavior.check-for-update-types')
+    if sys.version_info[0] < 3:
+        from urllib2 import urlopen
+    else:
+        from urllib.request import urlopen
+    LOG.debug("Checking for updated addons...")
+    langs = glocale.get_language_list()
+    langs.append("en")
+    # now we have a list of languages to try:
+    fp = None
+    for lang in langs:
+        URL = ("%s/listings/addons-%s.txt" %
+               (config.get("behavior.addons-url"), lang))
+        LOG.debug("   trying: %s" % URL)
+        try:
+            fp = urlopen(URL, timeout=10) # abort after 10 seconds
+        except:
+            try:
+                URL = ("%s/listings/addons-%s.txt" %
+                       (config.get("behavior.addons-url"), lang[:2]))
+                fp = urlopen(URL, timeout=10)
+            except Exception as err: # some error
+                LOG.warn("Failed to open %s: %s" % (lang, err))
+                fp = None
+        if fp and fp.getcode() == 200: # ok
+            break
+
+    pmgr = BasePluginManager.get_instance()
+    addon_update_list = []
+    if fp and fp.getcode() == 200:
+        lines = list(fp.readlines())
+        count = 0
+        for line in lines:
+            line = line.decode('utf-8')
+            try:
+                plugin_dict = safe_eval(line)
+                if type(plugin_dict) != type({}):
+                    raise TypeError("Line with addon metadata is not "
+                                    "a dictionary")
+            except:
+                LOG.warning("Skipped a line in the addon listing: " +
+                         str(line))
+                continue
+            id = plugin_dict["i"]
+            plugin = pmgr.get_plugin(id)
+            if plugin:
+                LOG.debug("Comparing %s > %s" %
+                          (version_str_to_tup(plugin_dict["v"], 3),
+                           version_str_to_tup(plugin.version, 3)))
+                if (version_str_to_tup(plugin_dict["v"], 3) >
+                    version_str_to_tup(plugin.version, 3)):
+                    LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
+                    if "update" in whattypes:
+                        if (not config.get('behavior.do-not-show-previously-seen-updates') or
+                             plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
+                            addon_update_list.append((_("Updated"),
+                                                      "%s/download/%s" %
+                                                      (config.get("behavior.addons-url"),
+                                                       plugin_dict["z"]),
+                                                      plugin_dict))
+                else:
+                    LOG.debug("   '%s' is ok" % plugin_dict["n"])
+            else:
+                LOG.debug("   '%s' is not installed" % plugin_dict["n"])
+                if "new" in whattypes:
+                    if (not config.get('behavior.do-not-show-previously-seen-updates') or
+                         plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
+                        addon_update_list.append((_("New"),
+                                                  "%s/download/%s" %
+                                                  (config.get("behavior.addons-url"),
+                                                   plugin_dict["z"]),
+                                                  plugin_dict))
+        config.set("behavior.last-check-for-updates",
+                   datetime.date.today().strftime("%Y/%m/%d"))
+        count += 1
+        if fp:
+            fp.close()
+    else:
+        LOG.debug("Checking Addons Failed")
+    LOG.debug("Done checking!")
+
+    return addon_update_list
 
 def load_addon_file(path, callback=None):
     """

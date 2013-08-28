@@ -34,6 +34,7 @@ from __future__ import print_function, division
 import os
 import sys
 import subprocess
+import threading
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 # gtk is not included here, because this file is currently imported
@@ -46,6 +47,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from gi.repository import PangoCairo
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
@@ -55,6 +57,7 @@ from gi.repository import PangoCairo
 from gramps.gen.lib.person import Person
 from gramps.gen.constfunc import has_display, is_quartz, mac, win
 from gramps.gen.config import config
+from gramps.gen.plug.utils import available_updates
 
 #-------------------------------------------------------------------------
 #
@@ -506,3 +509,22 @@ def hex_to_color(hex):
     from gi.repository import Gdk
     color = Gdk.color_parse(hex)
     return color
+
+#-------------------------------------------------------------------------
+#
+# AvailableUpdates
+#
+#-------------------------------------------------------------------------
+class AvailableUpdates(threading.Thread):
+    def __init__(self, uistate):
+        threading.Thread.__init__(self)
+        self.uistate = uistate
+        self.addon_update_list = []
+
+    def emit_update_available(self):
+        self.uistate.emit('update-available', (self.addon_update_list, ))
+
+    def run(self):
+        self.addon_update_list = available_updates()
+        if len(self.addon_update_list) > 0:
+            GLib.idle_add(self.emit_update_available)
