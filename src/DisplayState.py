@@ -358,6 +358,7 @@ class DisplayState(gen.utils.Callback):
         'filters-changed' : (str, ), 
         'filter-name-changed' : (str, unicode, unicode), 
         'nameformat-changed' : None, 
+        'update-available' : (list, ), 
         }
     
     #nav_type to message

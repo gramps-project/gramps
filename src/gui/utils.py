@@ -32,6 +32,7 @@ Utility functions that depend on GUI components or for GUI components
 import os
 import sys
 import subprocess
+import threading
 from gen.ggettext import gettext as _
 import constfunc
 # gtk is not included here, because this file is currently imported
@@ -43,6 +44,7 @@ import constfunc
 # GNOME/GTK
 #
 #-------------------------------------------------------------------------
+import gobject
 
 #-------------------------------------------------------------------------
 #
@@ -52,6 +54,7 @@ import constfunc
 import gen.lib
 import Errors
 import constfunc
+from gen.plug.utils import available_updates
 
 #-------------------------------------------------------------------------
 #
@@ -391,3 +394,22 @@ def is_right_click(event):
 
         if event.button == 3:
             return True
+
+#-------------------------------------------------------------------------
+#
+# AvailableUpdates
+#
+#-------------------------------------------------------------------------
+class AvailableUpdates(threading.Thread):
+    def __init__(self, uistate):
+        threading.Thread.__init__(self)
+        self.uistate = uistate
+        self.addon_update_list = []
+
+    def emit_update_available(self):
+        self.uistate.emit('update-available', (self.addon_update_list, ))
+
+    def run(self):
+        self.addon_update_list = available_updates()
+        if len(self.addon_update_list) > 0:
+            gobject.idle_add(self.emit_update_available)

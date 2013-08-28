@@ -40,7 +40,6 @@ import os
 import time
 import datetime
 from gen.ggettext import sgettext as _
-from gen.ggettext import ngettext
 from cStringIO import StringIO
 from collections import defaultdict
 import sys
@@ -73,7 +72,7 @@ from gen.plug import REPORT
 from gen.plug.report._constants import standalone_categories
 from gui.plug import (PluginWindows, ReportPluginDialog, ToolPluginDialog)
 from gui.plug.report import report
-from gen.plug.utils import version_str_to_tup, load_addon_file
+from gui.utils import AvailableUpdates
 from gui.pluginmanager import GuiPluginManager
 import Relationship
 import DisplayState
@@ -95,7 +94,6 @@ from gen.db.exceptions import DbException
 from gui.aboutdialog import GrampsAboutDialog
 from gui.navigator import Navigator
 from gui.views.tags import Tags
-from gen.utils.configmanager import safe_eval
 
 #-------------------------------------------------------------------------
 #
@@ -230,32 +228,6 @@ WIKI_HELP_PAGE_MAN = '%s' % const.URL_MANUAL_PAGE
 
 #-------------------------------------------------------------------------
 #
-# Local Functions
-#
-#-------------------------------------------------------------------------
-def update_rows(model, path, iter, user_data):
-    """
-    Update the rows of a model.
-    """
-    #path: (8,)   iter: <GtkTreeIter at 0xbfa89fa0>
-    #path: (8, 0) iter: <GtkTreeIter at 0xbfa89f60>
-    if len(path) == 2:
-        row = model[path]
-        row[0] = user_data
-        model.row_changed(path, iter)
-
-def get_count(addon_update_list, category):
-    """
-    Get the count of matching category items.
-    """
-    count = 0
-    for (status,plugin_url,plugin_dict) in addon_update_list:
-        if plugin_dict["t"] == category and plugin_url:
-            count += 1
-    return count
-
-#-------------------------------------------------------------------------
-#
 # ViewManager
 #
 #-------------------------------------------------------------------------
@@ -333,19 +305,18 @@ class ViewManager(CLIManager):
         self.rel_class = Relationship.get_relationship_calculator()
         self.uistate.set_relationship_class()
         # Need to call after plugins have been registered
+        self.uistate.connect('update-available', self.process_updates)
         self.check_for_updates()
 
-    def check_for_updates(self, force=False):
+    def check_for_updates(self):
         """
+        Check for add-on updates.
         """
         howoften = config.get("behavior.check-for-updates")
-        whattypes = config.get('behavior.check-for-update-types')
         update = False
-        if force:
-            update = True
-        elif howoften != 0: # update never if zero
-            y,m,d = map(int,
-                  config.get("behavior.last-check-for-updates").split("/"))
+        if howoften != 0: # update never if zero
+            y,m,d = list(map(int,
+                  config.get("behavior.last-check-for-updates").split("/")))
             days = (datetime.date.today() - datetime.date(y, m, d)).days
             if howoften == 1 and days >= 30: # once a month
                 update = True
@@ -355,233 +326,20 @@ class ViewManager(CLIManager):
                 update = True
             elif howoften == 4: # always
                 update = True
+
         if update:
-            import urllib2, locale
-            LOG.debug("Checking for updated addons...")
-            langs = []
-            lang = locale.getlocale()[0] # not None
-            if lang:
-                langs.append(lang)
-                if "_" in lang:
-                    lang, variation = lang.split("_", 1)
-                    langs.append(lang)
-            langs.append("en")
-            # now we have a list of languages to try:
-            fp = None
-            for lang in langs:
-                URL = "%s/listings/addons-%s.txt" % (config.get("behavior.addons-url"), lang)
-                LOG.debug("   trying: %s" % URL)
-                try:
-                    fp = urllib2.urlopen(URL, timeout=10) # wait up to 10 seconds
-                except: # some error
-                    LOG.debug("   IOError!")
-                    fp = None
-                if fp and fp.getcode() == 200: # ok
-                    break
-            addon_update_list = []
-            if fp and fp.getcode() == 200:
-                lines = list(fp.readlines())
-                count = 0
-                for line in lines:
-                    try:
-                        plugin_dict = safe_eval(line)
-                        if type(plugin_dict) != type({}):
-                            raise TypeError("Line with addon metadata is not "
-                                            "a dictionary")
-                    except:
-                        LOG.debug("Skipped a line in the addon listing: " +
-                                 str(line))
-                        continue
-                    id = plugin_dict["i"]
-                    plugin = self._pmgr.get_plugin(id)
-                    if plugin:
-                        LOG.debug("Comparing %s > %s" %
-                                  (version_str_to_tup(plugin_dict["v"], 3),
-                                   version_str_to_tup(plugin.version, 3)))
-                        if (version_str_to_tup(plugin_dict["v"], 3) >
-                            version_str_to_tup(plugin.version, 3)):
-                            LOG.debug("   Downloading '%s'..." % plugin_dict["z"])
-                            if "update" in whattypes:
-                                if (not config.get('behavior.do-not-show-previously-seen-updates') or
-                                     plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
-                                    addon_update_list.append((_("Updated"),
-                                                              "%s/download/%s" %
-                                                              (config.get("behavior.addons-url"),
-                                                               plugin_dict["z"]),
-                                                              plugin_dict))
-                        else:
-                            LOG.debug("   '%s' is ok" % plugin_dict["n"])
-                    else:
-                        LOG.debug("   '%s' is not installed" % plugin_dict["n"])
-                        if "new" in whattypes:
-                            if (not config.get('behavior.do-not-show-previously-seen-updates') or
-                                 plugin_dict["i"] not in config.get('behavior.previously-seen-updates')):
-                                addon_update_list.append((_("New"),
-                                                          "%s/download/%s" %
-                                                          (config.get("behavior.addons-url"),
-                                                           plugin_dict["z"]),
-                                                          plugin_dict))
-                config.set("behavior.last-check-for-updates",
-                           datetime.date.today().strftime("%Y/%m/%d"))
-                count += 1
-            else:
-                from QuestionDialog import OkDialog
-                OkDialog(_("Checking Addons Failed"),
-                         _("The addon repository appears to be unavailable. Please try again later."),
-                         self.window)
-                if fp:
-                    fp.close()
-                return
-            LOG.debug("Done checking!")
-            # List of translated strings used here
-            # Dead code for l10n
-            _('new'), _('update')
-            if addon_update_list:
-                self.update_addons(addon_update_list)
-            elif force:
-                from QuestionDialog import OkDialog
-                OkDialog(_("There are no available addons of this type"),
-                         _("Checked for '%s'") %
-                         _("' and '").join([_(t) for t in config.get('behavior.check-for-update-types')]),
-                         self.window)
+            AvailableUpdates(self.uistate).start()
 
-    def update_addons(self, addon_update_list):
-        from glade import Glade
-        import ManagedWindow
-        from ListModel import ListModel, NOSORT, TOGGLE
-        glade = Glade("updateaddons.glade")
-        self.update_dialog = glade.toplevel
-        ManagedWindow.set_titles(self.update_dialog,
-                                 glade.get_object('title'),
-                                 _('Available Gramps Updates for Addons'))
-        apply_button = glade.get_object('apply')
-        cancel_button = glade.get_object('cancel')
-        select_all = glade.get_object('select_all')
-        select_all.connect("clicked", self.select_all_clicked)
-        select_none = glade.get_object('select_none')
-        select_none.connect("clicked", self.select_none_clicked)
-        apply_button.connect("clicked", self.install_addons)
-        cancel_button.connect("clicked",
-                              lambda obj: self.update_dialog.destroy())
-        self.list = ListModel(glade.get_object("list"), [
-                # name, click?, width, toggle
-                {"name": _('Select'),
-                 "width": 60,
-                 "type": TOGGLE,
-                 "visible_col": 6,
-                 "editable": True},                         # 0 selected?
-                (_('Type'), 1, 180),                        # 1 new gramplet
-                (_('Name'), 2, 200),                        # 2 name (version)
-                (_('Description'), 3, 200),                 # 3 description
-                ('', NOSORT, 0),                            # 4 url
-                ('', NOSORT, 0),                            # 5 id
-                {"name": '', "type": TOGGLE},               # 6 visible? bool
-                ], list_mode="tree")
-        pos = None
-        addon_update_list.sort(key=lambda x: "%s %s" % (x[0], x[2]["t"]))
-        last_category = None
-        for (status,plugin_url,plugin_dict) in addon_update_list:
-            count = get_count(addon_update_list, plugin_dict["t"])
-            category = _("%(adjective)s: %(addon)s") % {
-                "adjective": status, 
-                "addon": _(plugin_dict["t"])}
-            if last_category != category:
-                last_category = category
-                node = self.list.add([False, # initially selected?
-                                      category,
-                                      "",
-                                      "",
-                                      "",
-                                      "",
-                                      False]) # checkbox visible?
-            iter = self.list.add([False, # initially selected?
-                                  "%s %s" % (status, _(plugin_dict["t"])),
-                                  "%s (%s)" % (plugin_dict["n"],
-                                               plugin_dict["v"]),
-                                  plugin_dict["d"],
-                                  plugin_url,
-                                  plugin_dict["i"],
-                                  True], node=node)
-            if pos is None:
-                pos = iter
-        if pos:
-            self.list.selection.select_iter(pos)
-        self.update_dialog.run()
-
-    def select_all_clicked(self, widget):
+    def process_updates(self, addon_update_list):
         """
-        Select all of the addons for download.
+        Called when add-on updates are available.
         """
-        self.list.model.foreach(update_rows, True)
-        self.list.tree.expand_all()
+        try:
+            PluginWindows.UpdateAddons(self.uistate, [], addon_update_list)
+        except WindowActiveError:
+            pass
 
-    def select_none_clicked(self, widget):
-        """
-        Select none of the addons for download.
-        """
-        self.list.model.foreach(update_rows, False)
-        self.list.tree.expand_all()
-
-    def install_addons(self, obj):
-        """
-        Process all of the selected addons.
-        """
-        from QuestionDialog import OkDialog
-        from gui.widgets.progressdialog import LongOpStatus
-        self.update_dialog.hide()
-        model = self.list.model
-
-        iter = model.get_iter_first()
-        length = 0
-        while iter:
-            iter = model.iter_next(iter)
-            if iter:
-                length += model.iter_n_children(iter)
-
-        longop = LongOpStatus(
-            _("Downloading and installing selected addons..."),
-            length, 1, # total, increment-by
-            can_cancel=True)
-        pm = ProgressMonitor(GtkProgressDialog,
-                             ("Title", self.window, gtk.DIALOG_MODAL))
-        pm.add_op(longop)
-        count = 0
-        if not config.get('behavior.do-not-show-previously-seen-updates'):
-            # reset list
-            config.get('behavior.previously-seen-updates')[:] = []
-
-        iter = model.get_iter_first()
-        while iter:
-            for rowcnt in range(model.iter_n_children(iter)):
-                child = model.iter_nth_child(iter, rowcnt)
-                row = [model.get_value(child, n) for n in range(6)]
-                if longop.should_cancel():
-                    break
-                elif row[0]: # toggle on
-                    load_addon_file(row[4], callback=LOG.debug)
-                    count += 1
-                else: # add to list of previously seen, but not installed
-                    if row[5] not in config.get('behavior.previously-seen-updates'):
-                        config.get('behavior.previously-seen-updates').append(row[5])
-                longop.heartbeat()
-                pm._get_dlg()._process_events()
-            iter = model.iter_next(iter)
-
-        if not longop.was_cancelled():
-            longop.end()
-        if count:
-            self.do_reg_plugins(self.dbstate, self.uistate)
-            OkDialog(_("Done downloading and installing addons"),
-                     "%s %s" % (ngettext("%d addon was installed.",
-                                         "%d addons were installed.",
-                                         count) % count,
-                                _("You need to restart Gramps to see new views.")),
-                     self.window)
-        else:
-            OkDialog(_("Done downloading and installing addons"),
-                     _("No addons were installed."),
-                     self.window)
-        self.update_dialog.destroy()
+        self.do_reg_plugins(self.dbstate, self.uistate)
 
     def _errordialog(self, title, errormessage):
         """

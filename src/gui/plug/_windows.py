@@ -34,6 +34,14 @@ import sys
 
 #-------------------------------------------------------------------------
 #
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".gui.plug")
+
+#-------------------------------------------------------------------------
+#
 # GTK modules
 #
 #-------------------------------------------------------------------------
@@ -50,14 +58,19 @@ import ManagedWindow
 import Errors
 from gen.plug import PluginRegister, PTYPE_STR, load_addon_file
 from gen.ggettext import gettext as _
+from gen.ggettext import ngettext
 from gui.utils import open_file_with_default_application
 from gui.pluginmanager import GuiPluginManager
 from gui.plug import tool, add_gui_options
-from QuestionDialog import InfoDialog
+from QuestionDialog import InfoDialog, OkDialog
 from gui.editors import EditPerson
+from glade import Glade
+from ListModel import ListModel, NOSORT, TOGGLE
 import Utils
 import const
 import config
+from gui.widgets.progressdialog import (LongOpStatus, ProgressMonitor,
+                                        GtkProgressDialog)
 
 def display_message(message):
     """
@@ -1041,3 +1054,176 @@ class ToolManagedWindow(tool.Tool, ToolManagedWindowBase):
         tool.Tool.__init__(self, dbstate, options_class, name)
         ToolManagedWindowBase.__init__(self, dbstate, uistate, options_class, 
                                        name, callback)
+
+#-------------------------------------------------------------------------
+#
+# UpdateAddons
+#
+#-------------------------------------------------------------------------
+class UpdateAddons(ManagedWindow.ManagedWindow):
+
+    def __init__(self, uistate, track, addon_update_list):
+        self.title = _('Available Gramps Updates for Addons')
+        ManagedWindow.ManagedWindow.__init__(self, uistate, track, 
+                                             self.__class__)
+
+        glade = Glade("updateaddons.glade")
+        self.update_dialog = glade.toplevel
+        self.set_window(self.update_dialog, glade.get_object('title'), 
+                        self.title)
+        self.window.set_size_request(750, 400)
+
+        apply_button = glade.get_object('apply')
+        cancel_button = glade.get_object('cancel')
+        select_all = glade.get_object('select_all')
+        select_all.connect("clicked", self.select_all_clicked)
+        select_none = glade.get_object('select_none')
+        select_none.connect("clicked", self.select_none_clicked)
+        apply_button.connect("clicked", self.install_addons)
+        cancel_button.connect("clicked", self.close)
+
+        self.list = ListModel(glade.get_object("list"), [
+                # name, click?, width, toggle
+                {"name": _('Select'),
+                 "width": 60,
+                 "type": TOGGLE,
+                 "visible_col": 6,
+                 "editable": True},                         # 0 selected?
+                (_('Type'), 1, 180),                        # 1 new gramplet
+                (_('Name'), 2, 200),                        # 2 name (version)
+                (_('Description'), 3, 200),                 # 3 description
+                ('', NOSORT, 0),                            # 4 url
+                ('', NOSORT, 0),                            # 5 id
+                {"name": '', "type": TOGGLE},               # 6 visible? bool
+                ], list_mode="tree")
+        pos = None
+        addon_update_list.sort(key=lambda x: "%s %s" % (x[0], x[2]["t"]))
+        last_category = None
+        for (status,plugin_url,plugin_dict) in addon_update_list:
+            count = get_count(addon_update_list, plugin_dict["t"])
+            category = _("%(adjective)s: %(addon)s") % {
+                "adjective": status, 
+                "addon": _(plugin_dict["t"])}
+            if last_category != category:
+                last_category = category
+                node = self.list.add([False, # initially selected?
+                                      category,
+                                      "",
+                                      "",
+                                      "",
+                                      "",
+                                      False]) # checkbox visible?
+            iter = self.list.add([False, # initially selected?
+                                  "%s %s" % (status, _(plugin_dict["t"])),
+                                  "%s (%s)" % (plugin_dict["n"],
+                                               plugin_dict["v"]),
+                                  plugin_dict["d"],
+                                  plugin_url,
+                                  plugin_dict["i"],
+                                  True], node=node)
+            if pos is None:
+                pos = iter
+        if pos:
+            self.list.selection.select_iter(pos)
+        self.update_dialog.run()
+
+    def build_menu_names(self, obj):
+        return (self.title, "")
+    
+    def select_all_clicked(self, widget):
+        """
+        Select all of the addons for download.
+        """
+        self.list.model.foreach(update_rows, True)
+        self.list.tree.expand_all()
+
+    def select_none_clicked(self, widget):
+        """
+        Select none of the addons for download.
+        """
+        self.list.model.foreach(update_rows, False)
+        self.list.tree.expand_all()
+
+    def install_addons(self, obj):
+        """
+        Process all of the selected addons.
+        """
+        self.update_dialog.hide()
+        model = self.list.model
+
+        iter = model.get_iter_first()
+        length = 0
+        while iter:
+            iter = model.iter_next(iter)
+            if iter:
+                length += model.iter_n_children(iter)
+
+        longop = LongOpStatus(
+            _("Downloading and installing selected addons..."),
+            length, 1, # total, increment-by
+            can_cancel=True)
+        pm = ProgressMonitor(GtkProgressDialog,
+                             ("Title", self.window, gtk.DIALOG_MODAL))
+        pm.add_op(longop)
+        count = 0
+        if not config.get('behavior.do-not-show-previously-seen-updates'):
+            # reset list
+            config.get('behavior.previously-seen-updates')[:] = []
+
+        iter = model.get_iter_first()
+        while iter:
+            for rowcnt in range(model.iter_n_children(iter)):
+                child = model.iter_nth_child(iter, rowcnt)
+                row = [model.get_value(child, n) for n in range(6)]
+                if longop.should_cancel():
+                    break
+                elif row[0]: # toggle on
+                    load_addon_file(row[4], callback=LOG.debug)
+                    count += 1
+                else: # add to list of previously seen, but not installed
+                    if row[5] not in config.get('behavior.previously-seen-updates'):
+                        config.get('behavior.previously-seen-updates').append(row[5])
+                longop.heartbeat()
+                pm._get_dlg()._process_events()
+            iter = model.iter_next(iter)
+
+        if not longop.was_cancelled():
+            longop.end()
+        if count:
+            OkDialog(_("Done downloading and installing addons"),
+                     "%s %s" % (ngettext("%d addon was installed.",
+                                         "%d addons were installed.",
+                                         count) % count,
+                                _("You need to restart Gramps to see new views.")),
+                     self.window)
+        else:
+            OkDialog(_("Done downloading and installing addons"),
+                     _("No addons were installed."),
+                     self.window)
+        self.close()
+
+#-------------------------------------------------------------------------
+#
+# Local Functions
+#
+#-------------------------------------------------------------------------
+def update_rows(model, path, iter, user_data):
+    """
+    Update the rows of a model.
+    """
+    #path: (8,)   iter: <GtkTreeIter at 0xbfa89fa0>
+    #path: (8, 0) iter: <GtkTreeIter at 0xbfa89f60>
+    if len(path) == 2:
+        row = model[path]
+        row[0] = user_data
+        model.row_changed(path, iter)
+
+def get_count(addon_update_list, category):
+    """
+    Get the count of matching category items.
+    """
+    count = 0
+    for (status,plugin_url,plugin_dict) in addon_update_list:
+        if plugin_dict["t"] == category and plugin_url:
+            count += 1
+    return count

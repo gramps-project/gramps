@@ -58,6 +58,9 @@ import ManagedWindow
 from gui.widgets import MarkupLabel, BasicLabel
 from QuestionDialog import ErrorDialog, QuestionDialog2, OkDialog
 from glade import Glade
+from gen.plug.utils import available_updates
+from gui.plug import PluginWindows
+from Errors import WindowActiveError
 
 #-------------------------------------------------------------------------
 #
@@ -1142,11 +1145,38 @@ class GrampsPreferences(ConfigureDialog):
 
         table.attach(checkbutton, 1, 2, 9, 10, yoptions=0)
         button = gtk.Button(_("Check now"))
-        button.connect("clicked", lambda obj: \
-                  self.uistate.viewmanager.check_for_updates(force=True))
+        button.connect("clicked", self.check_for_updates)
         table.attach(button, 3, 4, 9, 10, yoptions=0)
 
         return _('General'), table
+
+    def check_for_updates(self, button):
+        try:
+            addon_update_list = available_updates()
+        except:
+            OkDialog(_("Checking Addons Failed"),
+                     _("The addon repository appears to be unavailable. "
+                       "Please try again later."),
+                     self.window)
+            return
+
+        if len(addon_update_list) > 0:
+            try:
+                PluginWindows.UpdateAddons(self.uistate, [], addon_update_list)
+            except WindowActiveError:
+                pass
+        else:
+            check_types = config.get('behavior.check-for-update-types')
+            OkDialog(_("There are no available addons of this type"),
+                     _("Checked for '%s'") %
+                     _("' and '").join([_(t) for t in check_types]),
+                     self.window)
+
+        # List of translated strings used here
+        # Dead code for l10n
+        _('new'), _('update')
+
+        self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate)
 
     def add_famtree_panel(self, configdialog):
         table = gtk.Table(2, 2)
