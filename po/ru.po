@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-28 19:37+0300\n"
-"PO-Revision-Date: 2013-06-18 10:28+0300\n"
+"PO-Revision-Date: 2013-08-28 21:42+0300\n"
 "Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
 "Language-Team: Russian <gramps-devel@lists.sf.net>\n"
 "Language: ru\n"
@@ -72,9 +72,8 @@ msgstr ""
 "   %s"
 
 #: ../gramps/cli/arghandler.py:293
-#, fuzzy
 msgid "OK to overwrite?"
-msgstr "Перезаписать? (да/нет) "
+msgstr "Перезаписать?"
 
 #: ../gramps/cli/arghandler.py:294 ../gramps/cli/clidbman.py:215
 msgid "yes"
@@ -236,7 +235,6 @@ msgid "Unknown action: %s."
 msgstr "Неизвестное действие: %s."
 
 #: ../gramps/cli/argparser.py:56
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -298,6 +296,11 @@ msgstr ""
 "  -s, --show                             Показать настройки конфигурации\n"
 "  -c, --config=[config.setting[:value]]  Установить параметр(ы) конфигурации "
 "и запустить Gramps\n"
+"  -y, --yes                              Не требовать подтверждения при "
+"опасных действиях\n"
+"                                         (только в режиме командной строки)\n"
+"  -q, --quiet                            Подавлять вывод индикации прогресса\n"
+"                                         (только в режиме командной строки)\n"
 "  -v, --version                          Показать версию\n"
 
 #: ../gramps/cli/argparser.py:84
@@ -908,7 +911,7 @@ msgid "Remove mother from family"
 msgstr "Удалить мать из семьи"
 
 #: ../gramps/gen/db/exceptions.py:82
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The schema version is not supported by this version of Gramps.\n"
 "\n"
@@ -918,9 +921,10 @@ msgid ""
 "Please upgrade to the corresponding version or use XML for porting data "
 "between different schema versions."
 msgstr ""
-"Версия базы данных %(tree_vers)s не поддерживается этой версией Gramps, "
+"Версия базы данных %(tree_vers)s не поддерживается этой версией Gramps,\n"
 "которая распознаёт форматы версии от%(min_vers)s до %(max_vers)s.\n"
-"Пожалуйста, обновите GRAMPS или используйте XML формат для переноски данных "
+"\n"
+"Пожалуйста, обновите GRAMPS или используйте XML формат для переноски данных\n"
 "между различными версиями базы данных."
 
 #: ../gramps/gen/db/exceptions.py:104
@@ -953,7 +957,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/db/exceptions.py:153
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version "
 "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -979,7 +983,11 @@ msgstr ""
 "http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\n"
 "\n"
 "Если Вы уже сделали резервную копию, то Вы можете попробовать открыть это "
-"древо, при этом произойдёт обновление версии BSDDB."
+"древо, при этом произойдёт обновление версии BSDDB.\n"
+"\n"
+"Если Вы ещё не сделали резервной копии, запустите <b>старую</b> версию "
+"Gramps\n"
+"и создайте резервную копию из неё."
 
 #: ../gramps/gen/db/exceptions.py:178
 msgid ""
@@ -1691,7 +1699,6 @@ msgstr ""
 "Выбирает цитаты, записки которых содержат текст, соответствующий подстроке"
 
 #: ../gramps/gen/filters/rules/citation/_hasnoteregexp.py:44
-#, fuzzy
 msgid "Citations having notes containing <text>"
 msgstr "Цитаты с записками, содержащими <подстроку>"
 
@@ -1760,7 +1767,6 @@ msgid "Matches citations matched by the specified filter name"
 msgstr "Выбирает цитаты, соответствующие фильтру с указанным названием"
 
 #: ../gramps/gen/filters/rules/citation/_matchespagesubstringof.py:45
-#, fuzzy
 msgid "Citations with Volume/Page containing <text>"
 msgstr "Цитаты с указанием тома/страницы, содержащим <подстроку>"
 
@@ -1800,9 +1806,8 @@ msgid ""
 msgstr "Выбирает цитаты с источниками, соответствующими указанному фильтру"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:50
-#, fuzzy
 msgid "Citations with Id containing <text>"
-msgstr "Цитаты с записками, содержащими <подстроку>"
+msgstr "Цитаты с идентификаторами, содержащими <подстроку>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:51
 msgid "Matches citations whose Gramps ID matches the regular expression"
@@ -1858,7 +1863,6 @@ msgid "Matches events with the event attribute of a particular value"
 msgstr "Выбирает события с данным значением атрибута"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:53
-#, fuzzy
 msgid "Events with the <citation>"
 msgstr "События с <цитатой>"
 
@@ -1936,7 +1940,6 @@ msgstr ""
 "Выбирает события, записки которых содержат текст, соответствующий подстроке"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Events having notes containing <text>"
 msgstr "События с записками, содержащими <подстроку>"
 
@@ -1999,21 +2002,20 @@ msgstr "Выбирает события людей, соответствующи
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:51
 #: ../gramps/gui/editors/filtereditor.py:537
-#, fuzzy
 msgid "Place filter name:"
-msgstr "Название фильтра источников:"
+msgstr "Название фильтра местоположений:"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:52
-#, fuzzy
 msgid "Events of places matching the <place filter>"
-msgstr "События людей, соответствующих <фильтру>"
+msgstr "События для местоположений, соответствующих <фильтру>"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:53
-#, fuzzy
 msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
-msgstr "Выбирает события с источниками, соответствующими указанному фильтру"
+msgstr ""
+"Выбирает события, случившиеся в местоположениях, соответствующими указанному "
+"фильтру"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:47
 msgid "Events with at least one direct source >= <confidence level>"
@@ -2032,9 +2034,8 @@ msgid "Matches events with sources that match the specified source filter name"
 msgstr "Выбирает события с источниками, соответствующими указанному фильтру"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:49
-#, fuzzy
 msgid "Events with Id containing <text>"
-msgstr "Объекты с записями, содержащими <подстроку>"
+msgstr "Объекты с идентификаторами, содержащими <подстроку>"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:50
 msgid "Matches events whose Gramps ID matches the regular expression"
@@ -2068,9 +2069,8 @@ msgid "Person ID:"
 msgstr "ID Лица:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:48
-#, fuzzy
 msgid "Families having child with Id containing <text>"
-msgstr "Семьи с записками, содержащими <подстроку>"
+msgstr "Семьи с ребёнком, идентификатор которого содержит <подстроку>"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:49
 msgid "Matches families where child has a specified Gramps ID"
@@ -2101,9 +2101,8 @@ msgid "Matches families that are indicated as private"
 msgstr "Выбирает семьи, помеченных как личные"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:48
-#, fuzzy
 msgid "Families having father with Id containing <text>"
-msgstr "Семьи с записками, содержащими <подстроку>"
+msgstr "Семьи с отцом, идентификатор которого содержит <подстроку>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:49
 msgid "Matches families whose father has a specified Gramps ID"
@@ -2140,7 +2139,6 @@ msgid "Matches families with the family attribute of a particular value"
 msgstr "Выбирает семьи с данным значением атрибута"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:53
-#, fuzzy
 msgid "Families with the <citation>"
 msgstr "Семьи с <цитатой>"
 
@@ -2211,7 +2209,6 @@ msgstr ""
 "Выбирает семьи, записки которых содержат текст, соответствующий подстроке"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Families having notes containing <text>"
 msgstr "Семьи с записками, содержащими <подстроку>"
 
@@ -2310,9 +2307,8 @@ msgid ""
 msgstr "Выбирает семьи с хоть одним достоверным источником."
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:48
-#, fuzzy
 msgid "Families having mother with Id containing <text>"
-msgstr "Семьи с записками, содержащими <подстроку>"
+msgstr "Семьи с матерью, идентификатор которой содержит <подстроку>"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:49
 msgid "Matches families whose mother has a specified Gramps ID"
@@ -2359,9 +2355,8 @@ msgstr ""
 "выражению"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
-#, fuzzy
 msgid "Families with Id containing <text>"
-msgstr "Семьи с <событием>"
+msgstr "Семьи с идентификатором, содержащим <подстроку>"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:50
 msgid "Matches families whose Gramps ID matches the regular expression"
@@ -2476,7 +2471,6 @@ msgstr ""
 "Выбирает документы, записки которых содержат текст, соответствующий подстроке"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Media objects having notes containing <text>"
 msgstr "Документы с записками, содержащими <подстроку>"
 
@@ -2545,9 +2539,8 @@ msgid "Matches Media objects that are indicated as private"
 msgstr "Выбирает документы, помеченные как личные"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:49
-#, fuzzy
 msgid "Media objects with Id containing <text>"
-msgstr "Документы с <пометкой>"
+msgstr "Документы с идентификаторами, содержащими <подстроку>"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:50
 msgid "Matches media objects whose Gramps ID matches the regular expression"
@@ -2630,15 +2623,14 @@ msgid "Matches notes matched by the specified filter name"
 msgstr "Выбирает заметки, соответствующие фильтру с указанным названием"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:46
-#, fuzzy
 msgid "Notes containing <text>"
 msgstr "Заметки, содержащие <подстроку>"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:47
-#, fuzzy
 msgid "Matches notes that contain a substring or match a regular expression"
 msgstr ""
-"Выбирает заметки, которые содержат текст, соответствующий регулярному "
+"Выбирает заметки, которые содержат данную подстроку, либо соответствующие "
+"данному регулярному "
 "выражению"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:46
@@ -2658,9 +2650,8 @@ msgid "Matches notes that are indicated as private"
 msgstr "Выбирает заметки, помеченные как личные"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:49
-#, fuzzy
 msgid "Notes with Id containing <text>"
-msgstr "Заметки, содержащие <подстроку>"
+msgstr "Заметки с идентификаторами, содержащими <подстроку>"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:50
 msgid "Matches notes whose Gramps ID matches the regular expression"
@@ -3002,7 +2993,6 @@ msgstr ""
 "Выбирает людей, записки которых содержат текст, соответствующий подстроке"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:43
-#, fuzzy
 msgid "People having notes containing <text>"
 msgstr "Люди с записками, содержащими <подстроку>"
 
@@ -3473,26 +3463,24 @@ msgid "Matches people without indications of death that are not too old"
 msgstr "Выбирает лиц без информации о смерти с не очень большим возрастом"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:48
-#, fuzzy
 msgid "People with Id containing <text>"
-msgstr "Выбирает людей с записями, содержащими <подстроку>"
+msgstr "Люди с идентификаторами, содержащими <подстроку>"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:49
 msgid "Matches people whose Gramps ID matches the regular expression"
 msgstr "Выбирает людей, Gramps ID которых удовлетворяет регулярному выражению"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:48
-#, fuzzy
 msgid "People with a name matching <text>"
-msgstr "Люди с <имяобразованием>"
+msgstr "Люди с именем, содержащим <подстроку>"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:49
-#, fuzzy
 msgid ""
 "Matches people's names containing a substring or matching a regular "
 "expression"
 msgstr ""
-"Выбирает людей, записки которых содержат текст, удовлетворяющий регулярному "
+"Выбирает людей, имена которых содержат данную подстроку, либо соответствуют "
+"данному регулярному "
 "выражению"
 
 # !!!FIXME!!!
@@ -3600,7 +3588,6 @@ msgstr ""
 "Выбирает места, записки которых содержат текст, соответствующий подстроке"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Places having notes containing <text>"
 msgstr "Места с записками, содержащими <подстроку>"
 
@@ -3752,9 +3739,8 @@ msgid "Matches places that are indicated as private"
 msgstr "Выбирает места, помеченных как личные"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:49
-#, fuzzy
 msgid "Places with Id containing <text>"
-msgstr "Выбирает людей с записями, содержащими <подстроку>"
+msgstr "Идентификатор местоположения содержит <подстроку>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:50
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -3799,7 +3785,6 @@ msgstr ""
 "подстроке"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Repositories having notes containing <text>"
 msgstr "Хранилища с записками, содержащими <подстроку>"
 
@@ -3845,9 +3830,8 @@ msgid "Matches repositories matched by the specified filter name"
 msgstr "Выбирает хранилища, соответствующих фильтру с указанным названием"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:45
-#, fuzzy
 msgid "Repositories with name containing <text>"
-msgstr "Хранилища с названием, содержащим <подстроку>"
+msgstr "Название хранилища содержит <подстроку>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:46
 msgid "Matches repositories whose name contains a certain substring"
@@ -3856,9 +3840,8 @@ msgstr ""
 "подстроке"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
-#, fuzzy
 msgid "Repositories with Id containing <text>"
-msgstr "Хранилища с записками, содержащими <подстроку>"
+msgstr "Идентификатор хранилища содержит <подстроку>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:50
 msgid "Matches repositories whose Gramps ID matches the regular expression"
@@ -3927,7 +3910,6 @@ msgstr ""
 "Выбирает источники, записки которых содержат текст, соответствующий подстроке"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Sources having notes containing <text>"
 msgstr "Источники с записками, содержащими <подстроку>"
 
@@ -3955,7 +3937,6 @@ msgid "Matches sources with a certain number of repository references"
 msgstr "Выбирает источники с определенным числом документов в галерее"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:46
-#, fuzzy
 msgid "Sources with repository reference containing <text> in \"Call Number\""
 msgstr ""
 "Источники со ссылкой на хранилища с указанной <подстрокой> в поле «Номер»"
@@ -3989,7 +3970,6 @@ msgstr ""
 "соответствуют указанному фильтру хранилищ"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:45
-#, fuzzy
 msgid "Sources with title containing <text>"
 msgstr "Название источника содержит <подстроку>"
 
@@ -4000,9 +3980,8 @@ msgstr ""
 "подстроке"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:49
-#, fuzzy
 msgid "Sources with Id containing <text>"
-msgstr "Название источника содержит <подстроку>"
+msgstr "Идентификатор источника содержит <подстроку>"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:50
 msgid "Matches sources whose Gramps ID matches the regular expression"
@@ -6296,13 +6275,12 @@ msgid "%(father)s and %(mother)s"
 msgstr "%(father)s и %(mother)s"
 
 #: ../gramps/gen/utils/image.py:113
-#, fuzzy
 msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will not be "
 "available."
 msgstr ""
-"ВНИМАНИЕ: модуль «pyexiv2» не загружен. Работа с метаданными изображений "
-"будет недоступна."
+"ВНИМАНИЕ: модуль «PIL» не загружен. Кадрирование изображений при создании "
+"отчётов недоступно."
 
 #: ../gramps/gen/utils/grampslocale.py:64
 msgid "Arabic"
@@ -6338,9 +6316,8 @@ msgid "Greek"
 msgstr "Греческий"
 
 #: ../gramps/gen/utils/grampslocale.py:72
-#, fuzzy
 msgid "English (USA)"
-msgstr "Английский"
+msgstr "Английский (США)"
 
 #: ../gramps/gen/utils/grampslocale.py:73
 msgid "English"
@@ -6364,7 +6341,6 @@ msgid "French"
 msgstr "Французский"
 
 #: ../gramps/gen/utils/grampslocale.py:78
-#, fuzzy
 msgid "Gaelic"
 msgstr "Мэнский"
 
@@ -6415,14 +6391,12 @@ msgid "Polish"
 msgstr "Польский"
 
 #: ../gramps/gen/utils/grampslocale.py:90
-#, fuzzy
 msgid "Portuguese (Brazil)"
-msgstr "Португальский"
+msgstr "Португальский (Бразилия)"
 
 #: ../gramps/gen/utils/grampslocale.py:91
-#, fuzzy
 msgid "Portuguese (Portugal)"
-msgstr "Португальский"
+msgstr "Португальский (Португалия)"
 
 #: ../gramps/gen/utils/grampslocale.py:92
 msgid "Romanian"
@@ -7546,14 +7520,12 @@ msgid "Show plugin status dialog on plugin load error."
 msgstr "Показывать статус модулей при ошибках загрузки."
 
 #: ../gramps/gui/configure.py:610
-#, fuzzy
 msgid "Suppress warning when OsmGpsMap not installed."
-msgstr "Прятать предупреждение при добавлении родителей к ребёнку."
+msgstr ""
 
 #: ../gramps/gui/configure.py:614
-#, fuzzy
 msgid "Suppress warning when GExiv2 not installed."
-msgstr "Прятать предупреждение при добавлении родителей к ребёнку."
+msgstr ""
 
 #: ../gramps/gui/configure.py:617
 msgid "Warnings"
@@ -7936,16 +7908,14 @@ msgstr ""
 
 #: ../gramps/gui/dbloader.py:327 ../gramps/gui/dbloader.py:341
 #: ../gramps/gui/dbloader.py:369
-#, fuzzy
 msgid "Are you sure you want to upgrade this Family Tree?"
-msgstr "Вы уверены, что хотите очистить историю откатов?"
+msgstr "Вы уверены, что хотите обновить формат этого древа?"
 
 #: ../gramps/gui/dbloader.py:330 ../gramps/gui/dbloader.py:372
-#, fuzzy
 msgid ""
 "I have made a backup,\n"
 "please upgrade my Family Tree"
-msgstr "У меня есть резерная копия, моё древо можно обновить"
+msgstr "У меня есть резервная копия, моё древо можно обновить"
 
 # LDS
 #: ../gramps/gui/dbloader.py:332 ../gramps/gui/dbloader.py:346
@@ -7957,23 +7927,20 @@ msgid "Cancel"
 msgstr "Отменить"
 
 #: ../gramps/gui/dbloader.py:344
-#, fuzzy
 msgid ""
 "I have made a backup,\n"
 "please upgrade my tree"
-msgstr "У меня есть резерная копия, моё древо можно обновить"
+msgstr "У меня есть резервная копия, моё древо можно обновить"
 
 #: ../gramps/gui/dbloader.py:355
-#, fuzzy
 msgid "Are you sure you want to downgrade this Family Tree?"
-msgstr "Вы уверены, что хотите очистить историю откатов?"
+msgstr ""
 
 #: ../gramps/gui/dbloader.py:358
-#, fuzzy
 msgid ""
 "I have made a backup,\n"
 "please downgrade my Family Tree"
-msgstr "У меня есть резерная копия, моё древо можно обновить"
+msgstr ""
 
 #: ../gramps/gui/dbloader.py:439
 msgid "All files"
@@ -14767,9 +14734,8 @@ msgid "manual|Bookmarks"
 msgstr "Закладки"
 
 #: ../gramps/gui/views/bookmarks.py:413
-#, fuzzy
 msgid "Cannot bookmark this reference"
-msgstr "Невозможно совместное использование этой ссылки"
+msgstr ""
 
 #: ../gramps/gui/views/listview.py:214
 #: ../gramps/plugins/lib/libpersonview.py:346
@@ -19361,26 +19327,21 @@ msgid "Include individual and family IDs."
 msgstr "Включать индивидуальные и семейные ID."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:580
-#, fuzzy
 msgid "Include relationship to center person"
-msgstr "Включать родство по отношению к главному лицу"
+msgstr "Включать родство по отношению к центральному лицу"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:581
-#, fuzzy
 msgid "Whether to show every person's relationship to the center person"
-msgstr ""
-"Показывает все родственные отношения, в которых участвует выбранное лицо"
+msgstr "Включать ли родство каждого лица по отношению к центральному лицу"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:588
-#, fuzzy
 msgid "Include relationship debugging numbers also"
-msgstr "Включать родство по отношению к главному лицу"
+msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:591
-#, fuzzy
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
-msgstr "Включать ли комментарий к отчёт."
+msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:598
 msgid "Whether to include thumbnails of people."
@@ -20424,9 +20385,8 @@ msgid "New Zealand"
 msgstr "Новая Зеландия"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:44
-#, fuzzy
 msgid "Ukraine"
-msgstr "Украинский"
+msgstr "Украина"
 
 #: ../gramps/plugins/lib/libcairodoc.py:1400
 #, python-format
@@ -25470,9 +25430,8 @@ msgid "Swedish Relationship Calculator"
 msgstr "Шведский калькулятор отношений"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:301
-#, fuzzy
 msgid "Ukrainian Relationship Calculator"
-msgstr "Хорватский калькулятор отношений"
+msgstr "Украинский калькулятор отношений"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:30
 msgid "Category Sidebar"
@@ -26340,9 +26299,9 @@ msgstr "%s в %s. "
 
 #. for example (a stepfather): John Smith, relationship: Step
 #: ../gramps/plugins/textreport/indivcomplete.py:263
-#, fuzzy, python-format
+#, python-format
 msgid "%(parent-name)s, relationship: %(rel-type)s"
-msgstr "Родительские отношения"
+msgstr "%(parent-name)s, отношение: %(rel-type)s"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:309
 msgid "Alternate Parents"
@@ -27508,9 +27467,8 @@ msgid "Descendant Browser tool"
 msgstr "Инструмент Просмотра Потомков"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:49
-#, fuzzy
 msgid "Gender Statistics tool"
-msgstr "Статистика полов перестроены"
+msgstr "Статистика полов"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:69
 msgid "Guess"
