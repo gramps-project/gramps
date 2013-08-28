@@ -82,7 +82,7 @@ class HasFamilyEvent(Rule):
                     if not self.match_substring(3, event.get_description()):
                         val = 0
                 if self.date:
-                    if event.get_date_object().match(self.date):
+                    if not event.get_date_object().match(self.date):
                         val = 0
                 if self.list[2]:
                     place_id = event.get_place_handle()
