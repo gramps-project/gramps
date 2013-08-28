@@ -66,7 +66,7 @@ Classes for producing the web pages:
 #------------------------------------------------
 # python modules
 #------------------------------------------------
-from __future__ import print_function
+from __future__ import print_function, division
 from functools import partial
 import gc
 import os
