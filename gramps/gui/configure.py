@@ -1176,13 +1176,13 @@ class GrampsPreferences(ConfigureDialog):
 
         self.add_spinner(table, 
                 _('Date about range'),
-                0, 'behavior.date-about-range', (1, 80))
+                0, 'behavior.date-about-range', (0, 9999))
         self.add_spinner(table, 
                 _('Date after range'),
-                1, 'behavior.date-after-range', (1, 80))
+                1, 'behavior.date-after-range', (0, 9999))
         self.add_spinner(table, 
                 _('Date before range'),
-                2, 'behavior.date-before-range', (1, 80))
+                2, 'behavior.date-before-range', (0, 9999))
         self.add_spinner(table,
                 _('Maximum age probably alive'),
                 3, 'behavior.max-age-prob-alive', (80, 140))
