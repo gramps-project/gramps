@@ -334,7 +334,6 @@ gramps/gui/editors/displaytabs/backreflist.py
 gramps/gui/editors/displaytabs/backrefmodel.py
 gramps/gui/editors/displaytabs/buttontab.py
 gramps/gui/editors/displaytabs/citationembedlist.py
-gramps/gui/editors/displaytabs/dataembedlist.py
 gramps/gui/editors/displaytabs/embeddedlist.py
 gramps/gui/editors/displaytabs/eventembedlist.py
 gramps/gui/editors/displaytabs/eventrefmodel.py
@@ -416,7 +415,6 @@ gramps/gui/glade/editplace.glade
 gramps/gui/glade/editreporef.glade
 gramps/gui/glade/editrepository.glade
 gramps/gui/glade/editsource.glade
-gramps/gui/glade/editsourceref.glade
 gramps/gui/glade/editurl.glade
 gramps/gui/glade/grampletpane.glade
 gramps/gui/glade/mergecitation.glade
