@@ -25,6 +25,14 @@ from django.contrib.auth.models import User
 
 from gramps.gen.constfunc import cuni
 
+def save_profile(sender, instance, created, **kwargs):
+    """
+    Creates the profile when the user gets created.
+    """
+    if created:
+        profile = Profile(user=instance)
+        profile.save()
+
 class Profile(models.Model):
     """
     Used to save additional information of a user, such as
@@ -35,13 +43,5 @@ class Profile(models.Model):
 
     def __unicode__(self):
         return cuni(self.user)
-
-def save_profile(sender, instance, created, **kwargs):
-    """
-    Creates the profile when the user gets created.
-    """
-    if created:
-        profile = Profile(user=instance)
-        profile.save()
 
 post_save.connect(save_profile, sender=User)

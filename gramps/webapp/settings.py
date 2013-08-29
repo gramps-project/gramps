@@ -23,8 +23,10 @@
 
 # Need to be able to import Gramps files from here.
 
-from gramps.gen.const import DATA_DIR, WEB_DIR
 import os
+os.environ['GRAMPS_RESOURCES'] = os.path.dirname(os.path.abspath(".."))
+
+from gramps.gen.const import DATA_DIR, WEB_DIR
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG

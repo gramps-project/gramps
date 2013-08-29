@@ -26,6 +26,7 @@
 ####    >>> Person.objects.all()
 
 import os
+os.environ['GRAMPS_RESOURCES'] = os.path.dirname(os.path.abspath(".."))
 pystartup = os.path.expanduser("~/.pystartup")
 if os.path.exists(pystartup):
     execfile(pystartup)
