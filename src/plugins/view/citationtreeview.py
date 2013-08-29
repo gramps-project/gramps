@@ -87,7 +87,7 @@ class CitationTreeView(ListView):
     COL_SRC_PINFO      =  7
     # name of the columns
     COLUMN_NAMES = [
-        _('Title or Page'),
+        _('Source: Title or Citation: Volume/Page'),
         _('ID'),
         _('Date'),
         _('Confidence'),
@@ -168,17 +168,11 @@ class CitationTreeView(ListView):
     def setup_filter(self):
         """
         Override the setup of the default Search Bar in listview, so that only
-        the searchable source fields are shown. This includes renaming the
-        'Title or Page' search to 'Title'
+        the searchable source fields are shown.
         """
-        def name(i):
-            if i == 0:
-                return _('Title')
-            else:
-                return self.colinfo[i]
              
         self.search_bar.setup_filter(
-            [(name(pair[1]), pair[1], pair[1] in self.exact_search())
+            [(self.colinfo[pair[1]], pair[1], pair[1] in self.exact_search())
                 for pair in self.column_order() if pair[0] and 
                                 pair[1] in self.COLUMN_FILTERABLE])
 
