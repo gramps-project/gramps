@@ -33,3 +33,6 @@ data/man/*.[1-8]
 data/man/*/*.[1-8]
 gramps.sh
 intltool-*.in
+
+#Editing
+tags
