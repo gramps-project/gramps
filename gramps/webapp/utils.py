@@ -708,9 +708,9 @@ def data_table(obj, user, act, url=None, *args):
     if user.is_authenticated() or obj.public:
         item_class = obj.__class__.__name__.lower()
         if item_class == "citation":
-            refs = models.CitationDatamap.objects.filter(citation=obj).order_by("order")
+            refs = models.CitationAttribute.objects.filter(citation=obj).order_by("order")
         elif item_class == "source":
-            refs = models.SourceDatamap.objects.filter(source=obj).order_by("order")
+            refs = models.SourceAttribute.objects.filter(source=obj).order_by("order")
         count = 1
         for ref in refs:
             if item_class == "citation":
@@ -729,9 +729,9 @@ def data_table(obj, user, act, url=None, *args):
         text = text.replace("}}", """</div>""")
         count = 1
         for repo_ref in refs:
-            text = text.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/datamap/%d" % (item_class, obj.handle, count)))
-            text = text.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/datamap/%d" % (item_class, obj.handle, count)))
-            text = text.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/datamap/%d" % (item_class, obj.handle, count)))
+            text = text.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/attribute/%d" % (item_class, obj.handle, count)))
+            text = text.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/attribute/%d" % (item_class, obj.handle, count)))
+            text = text.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/attribute/%d" % (item_class, obj.handle, count)))
             count += 1
         retval += text
     if has_data:
