@@ -628,6 +628,7 @@ class Media(DateObject, PrimaryObject):
     path = models.TextField(blank=True)
     mime = models.TextField(blank=True, null=True)
     desc = models.TextField("Title", blank=True)
+    checksum = models.TextField(blank=True)
     references = generic.GenericRelation('MediaRef', related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
@@ -803,16 +804,18 @@ class Markup(models.Model):
     string = models.TextField(blank=True, null=True)
     start_stop_list = models.TextField(default="[]")
 
-class SourceDatamap(models.Model):
+class SourceAttribute(models.Model):
     key = models.CharField(max_length=80, blank=True)
     value = models.CharField(max_length=80, blank=True)
     source = models.ForeignKey("Source")
+    private = models.BooleanField()
     order = models.PositiveIntegerField()
 
-class CitationDatamap(models.Model):
+class CitationAttribute(models.Model):
     key = models.CharField(max_length=80, blank=True)
     value = models.CharField(max_length=80, blank=True)
     citation = models.ForeignKey("Citation")
+    private = models.BooleanField()
     order = models.PositiveIntegerField()
 
 class Address(DateObject, SecondaryObject):
@@ -1043,8 +1046,8 @@ TABLES = [
     ("primary", Tag),
     ("abstract", SecondaryObject),
     ("secondary", Attribute),
-    ("secondary", SourceDatamap),
-    ("secondary", CitationDatamap),
+    ("secondary", SourceAttribute),
+    ("secondary", CitationAttribute),
     ("secondary", Name),
     ("secondary", Surname),
     ("secondary", Lds),

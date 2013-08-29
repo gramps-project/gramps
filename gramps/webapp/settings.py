@@ -147,6 +147,6 @@ FORMAT_MODULE_PATH = ""
 ## End Changes for Django 1.3
 
 # Changes for Django 1.4:
-USE_TZ = True
+USE_TZ = False
 ## End Changes for Django 1.4
 
