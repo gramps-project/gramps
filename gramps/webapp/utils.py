@@ -75,7 +75,7 @@ from gramps.gen.utils.grampslocale import GrampsLocale
 #FIXME: A locale should be obtained from the user and used to
 #initialize the locale. Passing in lang and language parameters to the
 #constructor prevents querying the environment.
-glocale = GrampsLocale(lang='en_US.UTF-8', languages=['en'])
+glocale = GrampsLocale(lang='en_US.UTF-8', languages='en')
 _ = glocale.translation.gettext
 
 TAB_HEIGHT = 200
