@@ -2221,10 +2221,4 @@ class FamilyMergeCheck(BaseMergeCheck):
 
 
 if __name__ == "__main__":
-    if not os.path.isdir(os.path.join(USER_PLUGINS, 'CliMerge')):
-        print('This program needs the third party "CliMerge" plugin.', file=sys.stderr)
-        sys.exit(1)
-    if not os.path.isdir(os.path.join(USER_PLUGINS, 'ExportRaw')):
-        print('This program needs the third party "ExportRaw" plugin.', file=sys.stderr)
-        sys.exit(1)
     unittest.main()
