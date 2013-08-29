@@ -358,6 +358,34 @@ class SystemFonts(object):
 #
 #
 #-------------------------------------------------------------------------
+def poll_external ((proc, errorstrings)):
+    """
+    Check the for completion of a task launched with
+    subprocess.Popen().  This function is intended to be passed to
+    GLib.timeout_add_seconds, so the arguments are in a tuple because that
+    function takes only a single data argument.
+
+    @proc the process, returned from subprocess.Popen()
+    @errorstrings a dict of possible response values and the corresponding messages to display.
+    @returns False when the function has completed.
+    """
+    from .dialog import ErrorDialog
+    resp = proc.poll()
+    if resp is None:
+        return True
+
+    if resp != 0:
+        error = "The external program failed to launch or experienced an error"
+        if errorstrings:
+            try:
+                error = errorstrings[resp]
+            except KeyError:
+                pass
+
+        ErrorDialog(_("Error from external program"), error)
+
+    return False
+
 def open_file_with_default_application( file_path ):
     """
     Launch a program to open an arbitrary file. The file will be opened using
@@ -369,7 +397,6 @@ def open_file_with_default_application( file_path ):
     @type file_path: string
     @return: nothing
     """
-    from .dialog import ErrorDialog
     norm_path = os.path.normpath( file_path )
     if not os.path.exists(norm_path):
         ErrorDialog(_("Error Opening File"), _("File does not exist"))
@@ -382,14 +409,20 @@ def open_file_with_default_application( file_path ):
             ErrorDialog(_("Error Opening File"), str(msg))
         return
 
+    errstrings = None
     if mac():
         utility = '/usr/bin/open'
     else:
         utility = 'xdg-open'
-    try:
-        subprocess.check_output([utility, norm_path], stderr=subprocess.STDOUT)
-    except subprocess.CalledProcessError as err:
-        ErrorDialog(_("Error Opening File"), err.output)
+        errstrings = {1:'Error in command line syntax.',
+                      2:'One of the files passed on the command line did not exist.',
+                      3:' A required tool could not be found.',
+                      4:'The action failed.'}
+
+    proc = subprocess.Popen([utility, norm_path], stderr=subprocess.STDOUT)
+
+    from gi.repository import GLib
+    GLib.timeout_add_seconds(1, poll_external, (proc, errstrings))
     return
 
 def process_pending_events(max_count=10):
