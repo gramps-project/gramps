@@ -40,6 +40,9 @@ from ...lib import Name, Surname
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
+HAS_CLIMERGE = os.path.isdir(os.path.join(USER_PLUGINS, 'CliMerge'))
+HAS_EXPORTRAW = os.path.isdir(os.path.join(USER_PLUGINS, 'ExportRaw'))
+
 class CopiedDoc(object):
     """Context manager that creates a deep copy of an libxml-xml document."""
     def __init__(self, xmldoc):
@@ -70,6 +73,8 @@ class XpathContext(object):
         self.ctxt.xpathFreeContext()
         return False
 
+@unittest.skipUnless(HAS_CLIMERGE and HAS_EXPORTRAW,
+        'These tests need the 3rd-party plugins "CliMerge" and "ExportRaw".')
 class BaseMergeCheck(unittest.TestCase):
     def base_setup(self):
         """Set up code needed by all tests."""
@@ -2221,4 +2226,11 @@ class FamilyMergeCheck(BaseMergeCheck):
 
 
 if __name__ == "__main__":
+    import sys
+    if not HAS_CLIMERGE:
+        print('This program needs the third party "CliMerge" plugin.', file=sys.stderr)
+        sys.exit(1)
+    if not HAS_EXPORTRAW:
+        print('This program needs the third party "ExportRaw" plugin.', file=sys.stderr)
+        sys.exit(1)
     unittest.main()
