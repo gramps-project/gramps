@@ -188,8 +188,15 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         data        The object data.
         """
         sort_key = self.sort_func2(data)
+        # If the source for this citation already exists (in the tree model) we
+        # add the citation as a child of the source. Otherwise (if a search has
+        # found the citation) we add the citation as a child of nothing.
         if self._get_node(data[5]):
+            #             parent   child   sortkey   handle
             self.add_node(data[5], handle, sort_key, handle, secondary=True)
+        else:
+            #            parent child   sortkey   handle
+            self.add_node(None, handle, sort_key, handle, secondary=True)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1

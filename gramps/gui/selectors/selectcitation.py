@@ -64,7 +64,7 @@ class SelectCitation(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Page'), 350, BaseSelector.TEXT, 0),
+            (_('Source: Title or Citation: Volume/Page'), 350, BaseSelector.TEXT, 0),
             (_('ID'),     75, BaseSelector.TEXT, 1)
             ]
 

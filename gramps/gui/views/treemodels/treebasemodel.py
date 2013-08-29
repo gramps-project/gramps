@@ -342,7 +342,10 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         self.__displayed = 0
 
         self.set_search(search)
-        self.rebuild_data(self.current_filter, skip)
+        if self.has_secondary:
+            self.rebuild_data(self.current_filter, self.current_filter2, skip)
+        else:
+            self.rebuild_data(self.current_filter, skip=skip)
 
         _LOG.debug(self.__class__.__name__ + ' __init__ ' +
                     str(time.clock() - cput) + ' sec')
@@ -362,7 +365,9 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         self.rebuild_data = None
         self._build_data = None
         self.search = None
+        self.search2 = None
         self.current_filter = None
+        self.current_filter2 = None
         self.clear_cache()
         self.lru_data = None
 
@@ -447,31 +452,56 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
             if search[0] == 1: # Filter
                 #following is None if no data given in filter sidebar
                 self.search = search[1]
+                if self.has_secondary:
+                    self.search2 = search[1]
+                    _LOG.debug("search2 filter %s %s" % (search[0], search[1]))
                 self._build_data = self._rebuild_filter
             elif search[0] == 0: # Search
                 if search[1]:
                     # we have search[1] = (index, text_unicode, inversion)
                     col, text, inv = search[1]
-                    func = lambda x: self._get_value(x, col, store_cache=False) or ""
+                    func = lambda x: self._get_value(x, col, secondary=False) or u""
+                    if self.has_secondary:
+                        func2 = lambda x: self._get_value(x, col, secondary=True) or u""
                     if search[2]:
                         self.search = ExactSearchFilter(func, text, inv)
+                        if self.has_secondary:
+                            self.search2 = ExactSearchFilter(func2, text, inv)
                     else:
                         self.search = SearchFilter(func, text, inv)
+                        if self.has_secondary:
+                            self.search2 = SearchFilter(func2, text, inv)
                 else:
                     self.search = None
+                    if self.has_secondary:
+                        self.search2 = None
+                        _LOG.debug("search2 search with no data")
                 self._build_data = self._rebuild_search
             else: # Fast filter
                 self.search = search[1]
+                if self.has_secondary:
+                    self.search2 = search[2]
+                    _LOG.debug("search2 fast filter")
                 self._build_data = self._rebuild_search
         else:
             self.search = None
+            if self.has_secondary:
+                self.search2 = search[2]
+                _LOG.debug("search2 no search parameter")
             self._build_data = self._rebuild_search
             
         self.current_filter = self.search
+        if self.has_secondary:
+            self.current_filter2 = self.search2
 
-    def rebuild_data(self, data_filter=None, skip=[]):
+    def rebuild_data(self, data_filter=None, data_filter2=None, skip=[]):
         """
         Rebuild the data map.
+        
+        When called externally (from listview), data_filter and data_filter2
+        should be None; set_search will already have been called to establish
+        the filter functions. When called internally (from __init__) both
+        data_filter and data_filter2 will have been set from set_search
         """
         cput = time.clock()
         self.clear_cache()
@@ -481,16 +511,21 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
             return
 
         self.clear()
-        self._build_data(self.current_filter, skip)
+        if self.has_secondary:
+            self._build_data(self.current_filter, self.current_filter2, skip)
+        else:
+            self._build_data(self.current_filter, None, skip)
 
         self._in_build = False
 
         self.current_filter = data_filter
+        if self.has_secondary:
+            self.current_filter2 = data_filter2
 
         _LOG.debug(self.__class__.__name__ + ' rebuild_data ' +
                     str(time.clock() - cput) + ' sec')
 
-    def _rebuild_search(self, dfilter, skip):
+    def _rebuild_search(self, dfilter, dfilter2, skip):
         """
         Rebuild the data map where a search condition is applied.
         """
@@ -498,12 +533,14 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         self.__displayed = 0
 
         items = self.number_items()
+        _LOG.debug("rebuild search primary")
         self.__rebuild_search(dfilter, skip, items, 
                               self.gen_cursor, self.add_row)
 
         if self.has_secondary:
+            _LOG.debug("rebuild search secondary")
             items = self.number_items2()
-            self.__rebuild_search(dfilter, skip, items, 
+            self.__rebuild_search(dfilter2, skip, items, 
                                   self.gen_cursor2, self.add_row2)
 
     def __rebuild_search(self, dfilter, skip, items, gen_cursor, add_func):
@@ -528,12 +565,13 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
                 self.__total += 1
                 if not (handle in skip or (dfilter and not
                                         dfilter.match(handle, self.db))):
+                    _LOG.debug("    add %s %s" % (handle, data))
                     self.__displayed += 1
                     add_func(handle, data)
         if not status.was_cancelled():
             status.end()
 
-    def _rebuild_filter(self, dfilter, skip):
+    def _rebuild_filter(self, dfilter, dfilter2, skip):
         """
         Rebuild the data map where a filter is applied.
         """
@@ -541,11 +579,13 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         self.__displayed = 0
 
         items = self.number_items()
+        _LOG.debug("rebuild filter primary")
         self.__rebuild_filter(dfilter, skip, items, 
                               self.gen_cursor, self.map, self.add_row)
         if self.has_secondary:
             items = self.number_items2()
-            self.__rebuild_filter(dfilter, skip, items, 
+            _LOG.debug("rebuild filter secondary")
+            self.__rebuild_filter(dfilter2, skip, items, 
                                   self.gen_cursor2, self.map2, self.add_row2)
             
     def __rebuild_filter(self, dfilter, skip, items, gen_cursor, data_map, 
@@ -578,11 +618,14 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         status.heartbeat()
 
         if dfilter:
+            _LOG.debug("rebuild filter %s" % dfilter)
+            _LOG.debug("    list before filter %s" % handle_list)
             status_filter = progressdlg.LongOpStatus(msg=_("Applying filter"),
                         total_steps=items, interval=items//10)
             pmon.add_op(status_filter)
             handle_list = dfilter.apply(self.db, handle_list, 
                                         cb_progress=status_filter.heartbeat)
+            _LOG.debug("    list after filter %s" % handle_list)
             status_filter.end()
         status.heartbeat()
 
@@ -743,13 +786,14 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         if self._get_node(handle) is not None:
             return # row already exists
         cput = time.clock()
-        if not self.search or \
-                (self.search and self.search.match(handle, self.db)):
-            #row needs to be added to the model
-            data = self.map(handle)
-            if data:
+        data = self.map(handle)
+        if data:
+            if not self.search or \
+                    (self.search and self.search.match(handle, self.db)):
                 self.add_row(handle, data)
-            else:
+        else:
+            if not self.search2 or \
+                    (self.search2 and self.search2.match(handle, self.db)):
                 self.add_row2(handle, self.map2(handle))
 
         _LOG.debug(self.__class__.__name__ + ' add_row_by_handle ' +
@@ -916,6 +960,9 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         Returns the contents of a given column of a gramps object
         """
+        if secondary is None:
+            raise NotImplementedError
+        
         if handle in self.lru_data:
             data = self.lru_data[handle]
         else:
@@ -923,16 +970,20 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
                 data = self.map(handle)
             else:
                 data = self.map2(handle)
-        if not self._in_build and store_cache:
-            self.lru_data[handle] = data
-
-        try:
-            if not secondary:
-                return self.fmap[col](data)
-            else:
-                return self.fmap2[col](data)
-        except:
-            return ''
+            if not self._in_build:
+                self.lru_data[handle] = data
+                
+        if not secondary:
+            # None is used to indicate this column has no data
+            if self.fmap[col] is None:
+                return None
+            value = self.fmap[col](data)
+        else:
+            if self.fmap2[col] is None:
+                return ''
+            value = self.fmap2[col](data)
+            
+        return value
 
     def do_get_iter(self, path):
         """
