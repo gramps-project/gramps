@@ -36,24 +36,23 @@ import sys
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.user import User
+from gramps.gen import user
 from .utils import ProgressMeter
 from .dialog import (WarningDialog, ErrorDialog, DBErrorDialog, 
-                            InfoDialog)
+                            InfoDialog, QuestionDialog2)
 #-------------------------------------------------------------------------
 #
 # User class
 #
 #-------------------------------------------------------------------------
-class User(User):
+class User(user.User):
     """
     This class provides a means to interact with the user via GTK.
     It implements the interface in gramps.gen.user.User()
     """
     def __init__(self, callback=None, error=None):
+        user.User.__init__(self, callback, error)
         self.progress = None
-        self.callback_function = callback
-        self.error_function = error
     
     def begin_progress(self, title, message, steps):
         """
@@ -82,21 +81,6 @@ class User(User):
         if self.progress:
             self.progress.step()
 
-    def callback(self, percentage, text=None):
-        """
-        Display the precentage.
-        """
-        if self.callback_function:
-            if text:
-                self.callback_function(percentage, text)
-            else:
-                self.callback_function(percentage)
-        else:
-            if text is None:
-                sys.stdout.write("\r%02d%%" % percentage)
-            else:
-                sys.stdout.write("\r%02d%% %s" % (percentage, text))
-
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
@@ -105,19 +89,25 @@ class User(User):
             self.progress.close()
             self.progress = None
     
-    def prompt(self, title, question):
+    def prompt(self, title, message, accept_label, reject_label):
         """
-        Ask the user a question. The answer must be "yes" or "no".
-        The user will be forced to answer the question before proceeding.
+        Prompt the user with a message to select an alternative.
         
-        @param title: the title of the question
+        @param title: the title of the question, e.g.: "Undo history warning"
         @type title: str
-        @param question: the question
+        @param message: the message, e.g.: "Proceeding with the tool will
+            erase the undo history. If you think you may want to revert
+            running this tool, please stop here and make a backup of the DB."
         @type question: str
+        @param accept_label: what to call the positive choice, e.g.: "Proceed"
+        @type accept_label: str
+        @param reject_label: what to call the negative choice, e.g.: "Stop"
+        @type reject_label: str
         @returns: the user's answer to the question
         @rtype: bool
         """
-        return False
+        dialog = QuestionDialog2(title, message, accept_label, reject_label)
+        return dialog.run()
     
     def warn(self, title, warning=""):
         """
