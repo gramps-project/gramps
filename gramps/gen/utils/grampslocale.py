@@ -155,8 +155,6 @@ class GrampsLocale(object):
     DEFAULT_TRANSLATION_STR = "default"
     __first_instance = None
     encoding = None
-    _lang_map = None
-    _country_map = None
 
     def __new__(cls, localedir=None, lang=None, domain=None, languages=None):
         if not GrampsLocale.__first_instance:
@@ -591,14 +589,6 @@ class GrampsLocale(object):
         translator._language = "en"
         return translator
 
-    def _set_dictionaries(self):
-        """
-        Create a dictionary of language names localized to the
-        GrampsLocale's primary language, keyed by language and country
-        code. Note that _lang_map and _country_map are class
-        variables, so this function is no-op in secondary locales.
-        """
-
     def _get_language_string(self, lang_code):
         """
         Given a language code of the form "lang_region", return a text string
@@ -798,14 +788,9 @@ class GrampsLocale(object):
         return a dictionary of language names : codes for use by language
         pickers.
         '''
-#        langs = {}
-#        for code in self.get_available_translations():
-#            lang = self._get_language_string(code)
-#            if not lang is None:
-#                langs[lang] = code
-
-#       return langs
-        return {self._get_language_string(code) : code for code in self.get_available_translations() if not self._get_language_string(code) is None}
+        return {self._get_language_string(code) : code
+                for code in self.get_available_translations()
+                if self._get_language_string(code)}
 
     def trans_objclass(self, objclass_str):
         """
