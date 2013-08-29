@@ -1,0 +1,60 @@
+# -*- coding: utf-8 -*-
+#
+# Gramps - a GTK+/GNOME based genealogy program
+#
+# Copyright (C) 2013 Vassilii Khachaturov <vassilii@tarunz.org>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 2 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful, 
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write to the Free Software
+# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+#
+
+# $Id$
+
+""" Unittest for user.py """
+
+from __future__ import print_function
+
+import unittest
+from .. import user
+from ...gen.test.user_test import TestUser
+import sys
+
+try:
+    if sys.version_info < (3,3):
+        from mock import Mock, patch
+    else:
+        from unittest.mock import Mock, patch
+
+    MOCKING = True
+    
+except:
+    MOCKING = False
+    print ("Mocking disabled", sys.exc_info()[0:2])
+
+class TestUser_prompt(unittest.TestCase):
+    def setUp(self):
+        self.user = user.User()
+
+    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
+    def test_prompt_runs_QuestionDialog2(self):
+        with patch('gramps.gui.user.QuestionDialog2') as MockQD:
+            self.user.prompt(TestUser.TITLE, TestUser.MSG, 
+                    TestUser.ACCEPT, TestUser.REJECT)
+        MockQD.assert_called_once_with(TestUser.TITLE, TestUser.MSG, 
+                    TestUser.ACCEPT, TestUser.REJECT)
+        MockQD.return_value.run.assert_called_once_with()
+        # TODO test that run's return is the one returned by prompt()...
+
+if __name__ == "__main__":
+    unittest.main()
