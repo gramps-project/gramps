@@ -363,7 +363,7 @@ class ArgHandler(object):
             if not db_path:
                 # Apparently it is not a database. See if it is a file that
                 # can be imported.
-                db_path, title = self.dbman.import_new_db(self.open_gui, None)
+                db_path, title = self.dbman.import_new_db(self.open_gui, self.user)
 
             if db_path:
                 # Test if not locked or problematic
