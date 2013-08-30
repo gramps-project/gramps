@@ -256,3 +256,56 @@ class CitationBase(object):
 
         for item in self.get_citation_child_list():
             item.replace_citation_references(old_handle, new_handle)
+
+class IndirectCitationBase(object):
+    """
+    Citation management logic for objects that don't have citations
+    for the primary objects, but only for the child (secondary) ones.
+
+    The derived class must implement get_citation_child_list method
+    to return the list of child secondary objects that may refer
+    citations.
+
+    Note: for most objects, this functionality is inherited from 
+    CitationBase, which checks both the object and the child objects.
+    """
+    def has_citation_reference(self, citation_handle):
+        """
+        Return True if any of the child objects has reference to this citation 
+        handle.
+        
+        :param citation_handle: The citation handle to be checked.
+        :type citation_handle: str
+        :returns: Returns whether any of it's child objects has reference to 
+                this citation handle.
+        :rtype: bool
+        """
+        for item in self.get_citation_child_list():
+            if item.has_citation_reference(citation_handle):
+                return True
+
+        return False
+
+    def replace_citation_references(self, old_handle, new_handle):
+        """
+        Replace references to citation handles in
+        all child objects and merge equivalent entries.
+
+        :param old_handle: The citation handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The citation handle to replace the old one with.
+        :type new_handle: str
+        """
+        for item in self.get_citation_child_list():
+            item.replace_citation_references(old_handle, new_handle)
+
+    def remove_citation_references(self, citation_handle_list):
+        """
+        Remove references to all citation handles in the list in all child 
+        objects.
+
+        :param citation_handle_list: The list of citation handles to be removed.
+        :type citation_handle_list: list
+        """
+        for item in self.get_citation_child_list():
+            item.remove_citation_references(citation_handle_list)
