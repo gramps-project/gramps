@@ -44,13 +44,15 @@ from .mediabase import MediaBase
 from .notebase import NoteBase
 from .datebase import DateBase
 from ..constfunc import cuni
+from .citationbase import IndirectCitationBase
 
 #-------------------------------------------------------------------------
 #
 # Citation class
 #
 #-------------------------------------------------------------------------
-class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
+class Citation(MediaBase, NoteBase, IndirectCitationBase, 
+        PrimaryObject, DateBase):
     """
     A record of a citation of a source of information.
     
@@ -221,6 +223,16 @@ class Citation(MediaBase, NoteBase, PrimaryObject, DateBase):
 
         :returns: Returns the list of child secondary child objects that may 
                 refer notes.
+        :rtype: list
+        """
+        return self.media_list
+
+    def get_citation_child_list(self):
+        """
+        Return the list of child secondary objects that may refer citations.
+
+        :returns: Returns the list of child secondary child objects that may 
+                refer citations.
         :rtype: list
         """
         return self.media_list
