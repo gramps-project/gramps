@@ -10,7 +10,6 @@ pkgpython_PYTHON = \
 	AgeOnDateGramplet.py \
 	AgeStats.py \
 	Attributes.py \
-	AttributesGramplet.py \
 	Backlinks.py \
 	bottombar.gpr.py \
 	CalendarGramplet.py \

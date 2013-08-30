@@ -55,23 +55,6 @@ register(GRAMPLET,
          )
 
 register(GRAMPLET, 
-         id="Attributes", 
-         name=_("Attributes"), 
-         description = _("Gramplet showing active person's attributes"),
-         status = STABLE,
-         fname="AttributesGramplet.py",
-         height=150,
-         expand=True,
-         gramplet = 'AttributesGramplet',
-         gramplet_title=_("Attributes"),
-         detached_width = 325,
-         detached_height = 250,
-         version="1.0.0",
-         gramps_target_version="3.4",
-         navtypes=["Person"],
-         )
-
-register(GRAMPLET, 
          id="Calendar", 
          name=_("Calendar"), 
          description = _("Gramplet showing calendar and events on specific dates in history"),
