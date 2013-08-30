@@ -58,6 +58,7 @@ from gramps.gen.lib.person import Person
 from gramps.gen.constfunc import has_display, is_quartz, mac, win
 from gramps.gen.config import config
 from gramps.gen.plug.utils import available_updates
+from gramps.gen.errors import WindowActiveError
 
 #-------------------------------------------------------------------------
 #
@@ -542,6 +543,79 @@ def hex_to_color(hex):
     from gi.repository import Gdk
     color = Gdk.color_parse(hex)
     return color
+
+def edit_object(dbstate, uistate, reftype, ref):
+    """
+    Invokes the appropriate editor for an object type and given handle.
+    """
+    from .editors import (EditEvent, EditPerson, EditFamily, EditSource,
+                          EditPlace, EditMedia, EditRepository, EditCitation)
+
+    if reftype == 'Person':
+        try:
+            person = dbstate.db.get_person_from_handle(ref)
+            EditPerson(dbstate, uistate, [], person)
+        except WindowActiveError:
+            pass
+    elif reftype == 'Family':
+        try:
+            family = dbstate.db.get_family_from_handle(ref)
+            EditFamily(dbstate, uistate, [], family)
+        except WindowActiveError:
+            pass
+    elif reftype == 'Source':
+        try:
+            source = dbstate.db.get_source_from_handle(ref)
+            EditSource(dbstate, uistate, [], source)
+        except WindowActiveError:
+            pass
+    elif reftype == 'Citation':
+        try:
+            citation = dbstate.db.get_citation_from_handle(ref)
+            EditCitation(dbstate, uistate, [], citation)
+        except WindowActiveError:
+            """
+            Return the text used when citation cannot be edited
+            """
+            blocked_text = _("Cannot open new citation editor at this time. "
+                             "Either the citation is already being edited, "
+                             "or the associated source is already being "
+                             "edited, and opening a citation editor "
+                             "(which also allows the source "
+                             "to be edited), would create ambiguity "
+                             "by opening two editors on the same source. "
+                             "\n\n"
+                             "To edit the citation, close the source "
+                             "editor and open an editor for the citation "
+                             "alone")
+            
+            from QuestionDialog import WarningDialog
+            WarningDialog(_("Cannot open new citation editor"),
+                          blocked_text)
+    elif reftype == 'Place':
+        try:
+            place = dbstate.db.get_place_from_handle(ref)
+            EditPlace(dbstate, uistate, [], place)
+        except WindowActiveError:
+            pass
+    elif reftype == 'MediaObject':
+        try:
+            obj = dbstate.db.get_object_from_handle(ref)
+            EditMedia(dbstate, uistate, [], obj)
+        except WindowActiveError:
+            pass
+    elif reftype == 'Event':
+        try:
+            event = dbstate.db.get_event_from_handle(ref)
+            EditEvent(dbstate, uistate, [], event)
+        except WindowActiveError:
+            pass
+    elif reftype == 'Repository':
+        try:
+            repo = dbstate.db.get_repository_from_handle(ref)
+            EditRepository(dbstate, uistate, [], repo)
+        except WindowActiveError:
+            pass
 
 #-------------------------------------------------------------------------
 #
