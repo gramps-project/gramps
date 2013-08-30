@@ -37,13 +37,14 @@ from .notebase import NoteBase
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from ..constfunc import cuni
+from .citationbase import IndirectCitationBase
 
 #-------------------------------------------------------------------------
 #
 # Source class
 #
 #-------------------------------------------------------------------------
-class Source(MediaBase, NoteBase, PrimaryObject):
+class Source(MediaBase, NoteBase, IndirectCitationBase, PrimaryObject):
     """A record of a source of information."""
     
     def __init__(self):

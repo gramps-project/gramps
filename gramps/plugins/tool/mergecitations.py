@@ -56,6 +56,7 @@ from gramps.gui.display import display_help
 from gramps.gen.datehandler import get_date
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.merge import MergeCitationQuery
 _ = glocale.translation.sgettext
 
 from gramps.gui.glade import Glade
@@ -189,38 +190,39 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         db.disable_signals()
         num_merges = 0
         for handle in db.iter_source_handles():
-            with DbTxn(_("Merge Citation"), db) as trans:
-                dict = {}
-                citation_handle_list = list(db.find_backlink_handles(handle))
-                for (class_name, citation_handle) in citation_handle_list:
-                    if class_name != Citation.__name__:
-                        raise MergeError("Encountered an object of type %s "
-                        "that has a citation reference." % class_name)
+            dict = {}
+            citation_handle_list = list(db.find_backlink_handles(handle))
+            for (class_name, citation_handle) in citation_handle_list:
+                if class_name != Citation.__name__:
+                    raise MergeError("Encountered an object of type %s "
+                    "that has a citation reference." % class_name)
 
-                    citation = db.get_citation_from_handle(citation_handle)
-                    key = citation.get_page()
-                    if fields != IGNORE_DATE and fields != IGNORE_BOTH:
-                        key += "\n" + get_date(citation)
-                    if fields != IGNORE_CONFIDENCE and fields != IGNORE_BOTH:
-                        key += "\n" + \
-                            confidence[citation.get_confidence_level()]
-                    if key in dict and \
-                        (not dont_merge_notes or len(citation.note_list) == 0):
-                        citation_match_handle = dict[key]
-                        citation_match = \
-                            db.get_citation_from_handle(citation_match_handle)
-                        try:
-                            self.Merge(db, citation_match, citation, trans)
-                        except AssertionError:
-                            print("Tool/Family Tree processing/MergeCitations", \
-                            "citation1 gramps_id", citation_match.get_gramps_id(), \
-                            "citation2 gramps_id", citation.get_gramps_id() , \
-                            "citation backlink handles", \
-                            list(db.find_backlink_handles(citation.get_handle())))
-                        num_merges += 1
-                    elif (not dont_merge_notes or len(citation.note_list) == 0):
-                        dict[key] = citation_handle
-                    self.progress.step()
+                citation = db.get_citation_from_handle(citation_handle)
+                key = citation.get_page()
+                if fields != IGNORE_DATE and fields != IGNORE_BOTH:
+                    key += "\n" + get_date(citation)
+                if fields != IGNORE_CONFIDENCE and fields != IGNORE_BOTH:
+                    key += "\n" + \
+                        confidence[citation.get_confidence_level()]
+                if key in dict and \
+                    (not dont_merge_notes or len(citation.note_list) == 0):
+                    citation_match_handle = dict[key]
+                    citation_match = \
+                        db.get_citation_from_handle(citation_match_handle)
+                    try:
+                        query = MergeCitationQuery(
+                                self.dbstate, citation_match, citation)
+                        query.execute()
+                    except AssertionError:
+                        print("Tool/Family Tree processing/MergeCitations", \
+                        "citation1 gramps_id", citation_match.get_gramps_id(), \
+                        "citation2 gramps_id", citation.get_gramps_id() , \
+                        "citation backlink handles", \
+                        list(db.find_backlink_handles(citation.get_handle())))
+                    num_merges += 1
+                elif (not dont_merge_notes or len(citation.note_list) == 0):
+                    dict[key] = citation_handle
+                self.progress.step()
         db.enable_signals()
         db.request_rebuild()
         self.progress.close()
@@ -229,54 +231,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
             glocale.translation.ngettext("%(num)d citation merged",
             "%(num)d citations merged", num_merges) % {'num': num_merges})
         self.close(obj)
-            
-    def Merge (self, db, citation1, citation2, trans):
-        """
-        Merges two citations into a single citation.
-        """
-        new_handle = citation1.get_handle()
-        old_handle = citation2.get_handle()
 
-        citation1.merge(citation2)
-
-        db.commit_citation(citation1, trans)
-        for (class_name, handle) in db.find_backlink_handles(
-                old_handle):
-            if class_name == Person.__name__:
-                person = db.get_person_from_handle(handle)
-                assert(person.has_citation_reference(old_handle))
-                person.replace_citation_references(old_handle, new_handle)
-                db.commit_person(person, trans)
-            elif class_name == Family.__name__:
-                family = db.get_family_from_handle(handle)
-                assert(family.has_citation_reference(old_handle))
-                family.replace_citation_references(old_handle, new_handle)
-                db.commit_family(family, trans)
-            elif class_name == Event.__name__:
-                event = db.get_event_from_handle(handle)
-                assert(event.has_citation_reference(old_handle))
-                event.replace_citation_references(old_handle, new_handle)
-                db.commit_event(event, trans)
-            elif class_name == Place.__name__:
-                place = db.get_place_from_handle(handle)
-                assert(place.has_citation_reference(old_handle))
-                place.replace_citation_references(old_handle, new_handle)
-                db.commit_place(place, trans)
-            elif class_name == MediaObject.__name__:
-                obj = db.get_object_from_handle(handle)
-                assert(obj.has_citation_reference(old_handle))
-                obj.replace_citation_references(old_handle, new_handle)
-                db.commit_media_object(obj, trans)
-            elif class_name == Repository.__name__:
-                repository = db.get_repository_from_handle(handle)
-                assert(repository.has_citation_reference(old_handle))
-                repository.replace_citation_references(old_handle, new_handle)
-                db.commit_repository(repository, trans)
-            else:
-                raise MergeError("Encountered an object of type %s that has "
-                        "a citation reference." % class_name)
-        db.remove_citation(old_handle, trans)
-            
 #------------------------------------------------------------------------
 #
 # 
