@@ -530,7 +530,6 @@ gramps/plugins/export/exportxml.py
 gramps/plugins/gramplet/ageondategramplet.py
 gramps/plugins/gramplet/agestats.py
 gramps/plugins/gramplet/attributes.py
-gramps/plugins/gramplet/attributesgramplet.py
 gramps/plugins/gramplet/backlinks.py
 gramps/plugins/gramplet/calendargramplet.py
 gramps/plugins/gramplet/children.py
