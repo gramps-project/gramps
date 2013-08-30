@@ -42,6 +42,9 @@ import gen.lib
 from gen.lib import Name, Surname
 from gen.ggettext import sgettext as _
 
+HAS_CLIMERGE = os.path.isdir(os.path.join(USER_PLUGINS, 'CliMerge'))
+HAS_EXPORTRAW = os.path.isdir(os.path.join(USER_PLUGINS, 'ExportRaw'))
+
 class CopiedDoc(object):
     """Context manager that creates a deep copy of an libxml-xml document."""
     def __init__(self, xmldoc):
@@ -72,6 +75,8 @@ class XpathContext(object):
         self.ctxt.xpathFreeContext()
         return False
 
+@unittest.skipUnless(HAS_CLIMERGE and HAS_EXPORTRAW,
+        'These tests need the 3rd-party plugins "CliMerge" and "ExportRaw".')
 class BaseMergeCheck(unittest.TestCase):
     def base_setup(self):
         """Set up code needed by all tests."""
@@ -136,6 +141,9 @@ class BaseMergeCheck(unittest.TestCase):
             if test_error_str:
                 self.assertIn(test_error_str, err_str)
                 return
+            else:
+                if "Traceback (most recent call last):" in err_str:
+                    raise Exception(err_str)
         if debug:
             print('input :', self.canonicalize(input_doc))
             print('result:', self.canonicalize(result_str))
@@ -2223,4 +2231,11 @@ class FamilyMergeCheck(BaseMergeCheck):
 
 
 if __name__ == "__main__":
+    import sys
+    if not HAS_CLIMERGE:
+        print('This program needs the third party "CliMerge" plugin.', file=sys.stderr)
+        sys.exit(1)
+    if not HAS_EXPORTRAW:
+        print('This program needs the third party "ExportRaw" plugin.', file=sys.stderr)
+        sys.exit(1)
     unittest.main()
