@@ -23,6 +23,7 @@
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.utils.db import navigation_label
 from gramps.gen.plug import Gramplet
+from gramps.gui.utils import edit_object
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gi.repository import Gtk
@@ -43,8 +44,10 @@ class Backlinks(Gramplet):
         """
         top = Gtk.TreeView()
         titles = [(_('Type'), 1, 100),
-                  (_('Name'), 2, 100)]
-        self.model = ListModel(top, titles)
+                  (_('Name'), 2, 100),
+                  ('', 3, 1), #hidden column for the handle
+                  ('', 4, 1)] #hidden column for non-localized object type 
+        self.model = ListModel(top, titles, event_func=self.cb_double_click)
         return top
         
     def display_backlinks(self, active_handle):
@@ -54,7 +57,7 @@ class Backlinks(Gramplet):
         for classname, handle in \
                         self.dbstate.db.find_backlink_handles(active_handle):
             name = navigation_label(self.dbstate.db, classname, handle)[0]
-            self.model.add((_(classname), name))
+            self.model.add((_(classname), name, handle, classname))
         self.set_has_data(self.model.count > 0)
 
     def get_has_data(self, active_handle):
@@ -67,6 +70,19 @@ class Backlinks(Gramplet):
             return True
         return False
         
+    def cb_double_click(self, treeview):
+        """
+        Handle double click on treeview.
+        """
+        (model, iter_) = treeview.get_selection().get_selected()
+        if not iter_:
+            return
+
+        (objclass, handle) = (model.get_value(iter_, 3), 
+                              model.get_value(iter_, 2))
+
+        edit_object(self.dbstate, self.uistate, objclass, handle)
+
 class PersonBacklinks(Backlinks):
     """
     Displays the back references for a person.
