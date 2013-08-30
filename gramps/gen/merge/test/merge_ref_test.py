@@ -139,6 +139,9 @@ class BaseMergeCheck(unittest.TestCase):
             if test_error_str:
                 self.assertIn(test_error_str, err_str)
                 return
+            else:
+                if "Traceback (most recent call last):" in err_str:
+                    raise Exception(err_str)
         if debug:
             print('input :', self.canonicalize(input_doc))
             print('result:', self.canonicalize(result_str))
