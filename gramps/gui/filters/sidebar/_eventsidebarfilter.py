@@ -46,9 +46,8 @@ from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.event import (RegExpIdOf, HasIdOf, HasNoteRegexp, 
-                                     HasNoteMatchingSubstringOf, MatchesFilter, 
-                                     HasEvent, HasTag)
+from gramps.gen.filters.rules.event import (RegExpIdOf, HasNoteRegexp, 
+                                            MatchesFilter, HasEvent, HasTag)
 
 GenericEventFilter = GenericFilterFactory('Event')
 #-------------------------------------------------------------------------
@@ -140,10 +139,7 @@ class EventSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericEventFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasEvent([etype, date, place, desc, mainparts],
@@ -151,10 +147,7 @@ class EventSidebarFilter(SidebarFilter):
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             # check the Tag

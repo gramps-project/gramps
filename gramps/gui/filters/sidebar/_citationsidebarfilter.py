@@ -47,9 +47,8 @@ from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.citation import (RegExpIdOf, HasIdOf, HasCitation, 
-                                        HasNoteMatchingSubstringOf, 
-                                        HasNoteRegexp, MatchesFilter, HasTag)
+from gramps.gen.filters.rules.citation import (RegExpIdOf, HasCitation, HasTag,
+                                               HasNoteRegexp, MatchesFilter)
 from gramps.gen.utils.string import confidence
 GenericCitationFilter = GenericFilterFactory('Citation')
 #-------------------------------------------------------------------------
@@ -143,20 +142,14 @@ class CitationSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericCitationFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasCitation([page, date, conf], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             # check the Tag

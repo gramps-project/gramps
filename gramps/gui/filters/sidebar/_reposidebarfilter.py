@@ -46,9 +46,8 @@ from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.repository import (RegExpIdOf, HasIdOf, HasRepo, 
-                                          HasNoteRegexp, MatchesFilter, 
-                                          HasNoteMatchingSubstringOf, HasTag)
+from gramps.gen.filters.rules.repository import (RegExpIdOf, HasRepo, HasTag,
+                                                 HasNoteRegexp, MatchesFilter) 
 
 GenericRepoFilter = GenericFilterFactory('Repository')
 #-------------------------------------------------------------------------
@@ -136,20 +135,14 @@ class RepoSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericRepoFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasRepo([title, rtype, address, url], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             # check the Tag

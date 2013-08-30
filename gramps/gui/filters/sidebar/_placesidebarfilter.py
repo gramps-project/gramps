@@ -47,9 +47,8 @@ from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.place import (RegExpIdOf, HasIdOf, HasPlace, 
-                                     HasNoteRegexp, HasNoteMatchingSubstringOf, 
-                                     MatchesFilter, HasTag)
+from gramps.gen.filters.rules.place import (RegExpIdOf, HasPlace, HasTag,
+                                            HasNoteRegexp, MatchesFilter)
 
 GenericPlaceFilter = GenericFilterFactory('Place')
 #-------------------------------------------------------------------------
@@ -148,10 +147,7 @@ class PlaceSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericPlaceFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasPlace([title, street, locality, city, county, state,
@@ -159,10 +155,7 @@ class PlaceSidebarFilter(SidebarFilter):
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             # check the Tag

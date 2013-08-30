@@ -47,8 +47,8 @@ from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.note import (RegExpIdOf, HasIdOf, HasNote, 
-                                    MatchesFilter, HasTag)
+from gramps.gen.filters.rules.note import (RegExpIdOf, HasNote, MatchesFilter,
+                                           HasTag)
 
 GenericNoteFilter = GenericFilterFactory('Note')
 #-------------------------------------------------------------------------
@@ -122,10 +122,7 @@ class NoteSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericNoteFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasNote([text, ntype], use_regex=regex)
