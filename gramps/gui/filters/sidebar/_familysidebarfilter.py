@@ -47,12 +47,10 @@ from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.family import (RegExpIdOf, HasIdOf, RegExpFatherName, 
-                                      SearchFatherName, RegExpMotherName, 
-                                      SearchMotherName, RegExpChildName, 
-                                      SearchChildName, HasEvent, HasRelType, 
-                                      HasTag, HasNoteRegexp, 
-                                      HasNoteMatchingSubstringOf, MatchesFilter)
+from gramps.gen.filters.rules.family import (RegExpIdOf, RegExpFatherName, 
+                                             RegExpMotherName, RegExpChildName, 
+                                             HasEvent, HasRelType, HasTag, 
+                                             HasNoteRegexp, MatchesFilter)
 
 GenericFamilyFilter = GenericFilterFactory('Family')
 #-------------------------------------------------------------------------
@@ -154,31 +152,19 @@ class FamilySidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericFamilyFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             if father:
-                if regex:
-                    rule = RegExpFatherName([father])
-                else:
-                    rule = SearchFatherName([father])
+                rule = RegExpFatherName([father], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             if mother:
-                if regex:
-                    rule = RegExpMotherName([mother])
-                else:
-                    rule = SearchMotherName([mother])
+                rule = RegExpMotherName([mother], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             if child:
-                if regex:
-                    rule = RegExpChildName([child])
-                else:
-                    rule = SearchChildName([child])
+                rule = RegExpChildName([child], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             if etype:
@@ -190,10 +176,7 @@ class FamilySidebarFilter(SidebarFilter):
                 generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             # check the Tag

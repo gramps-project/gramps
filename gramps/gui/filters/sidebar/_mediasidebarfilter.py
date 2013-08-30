@@ -46,9 +46,8 @@ from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.media import (RegExpIdOf, HasIdOf, HasMedia, HasTag, 
-                                     HasNoteRegexp, MatchesFilter, 
-                                     HasNoteMatchingSubstringOf)
+from gramps.gen.filters.rules.media import (RegExpIdOf, HasMedia, HasTag, 
+                                            HasNoteRegexp, MatchesFilter)
 
 GenericMediaFilter = GenericFilterFactory('Media')
 #-------------------------------------------------------------------------
@@ -126,20 +125,14 @@ class MediaSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericMediaFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasMedia([title, mime, path, date], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             # check the Tag

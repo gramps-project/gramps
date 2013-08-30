@@ -46,9 +46,8 @@ from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.repository import (RegExpIdOf, HasIdOf, HasRepo, 
-                                          HasNoteRegexp, MatchesFilter, 
-                                          HasNoteMatchingSubstringOf)
+from gramps.gen.filters.rules.repository import (RegExpIdOf, HasRepo, HasTag,
+                                                 HasNoteRegexp, MatchesFilter) 
 
 GenericRepoFilter = GenericFilterFactory('Repository')
 #-------------------------------------------------------------------------
@@ -77,6 +76,7 @@ class RepoSidebarFilter(SidebarFilter):
 
         self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
 
+        self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Repository")
@@ -89,6 +89,12 @@ class RepoSidebarFilter(SidebarFilter):
         self.generic.add_attribute(cell, 'text', 0)
         self.on_filters_changed('Repository')
 
+        cell = Gtk.CellRendererText()
+        cell.set_property('width', self._FILTER_WIDTH)
+        cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
+        self.tag.pack_start(cell, True)
+        self.tag.add_attribute(cell, 'text', 0)
+
         self.rtype.get_child().set_width_chars(5)
 
         self.add_text_entry(_('ID'), self.filter_id)
@@ -97,6 +103,7 @@ class RepoSidebarFilter(SidebarFilter):
         self.add_text_entry(_('Address'), self.filter_address)
         self.add_text_entry(_('URL'), self.filter_url)
         self.add_text_entry(_('Note'), self.filter_note)
+        self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_regex_entry(self.filter_regex)
 
@@ -107,6 +114,7 @@ class RepoSidebarFilter(SidebarFilter):
         self.filter_url.set_text('')
         self.rtype.get_child().set_text('')
         self.filter_note.set_text('')
+        self.tag.set_active(0)
         self.generic.set_active(0)
 
     def get_filter(self):
@@ -117,37 +125,40 @@ class RepoSidebarFilter(SidebarFilter):
         rtype = self.repo.get_type().xml_str()
         note = cuni(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
+        tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
         empty = not (gid or title or address or url or rtype
-                     or note or regex or gen)
+                     or note or regex or tag or gen)
         if empty:
             generic_filter = None
         else:
             generic_filter = GenericRepoFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasRepo([title, rtype, address, url], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
-        if self.generic.get_active() != 0:
-            model = self.generic.get_model()
-            node = self.generic.get_active_iter()
-            obj = cuni(model.get_value(node, 0))
-            rule = MatchesFilter([obj])
-            generic_filter.add_rule(rule)
+            # check the Tag
+            if tag:
+                model = self.tag.get_model()
+                node = self.tag.get_active_iter()
+                attr = model.get_value(node, 0)
+                rule = HasTag([attr])
+                generic_filter.add_rule(rule)
+
+            if self.generic.get_active() != 0:
+                model = self.generic.get_model()
+                node = self.generic.get_active_iter()
+                obj = cuni(model.get_value(node, 0))
+                rule = MatchesFilter([obj])
+                generic_filter.add_rule(rule)
 
         return generic_filter
         
@@ -159,3 +170,14 @@ class RepoSidebarFilter(SidebarFilter):
             self.generic.set_model(build_filter_model('Repository', 
                                                       [all_filter]))
             self.generic.set_active(0)
+
+    def on_tags_changed(self, tag_list):
+        """
+        Update the list of tags in the tag filter.
+        """
+        model = Gtk.ListStore(str)
+        model.append(('',))
+        for tag_name in tag_list:
+            model.append((tag_name,))
+        self.tag.set_model(model)
+        self.tag.set_active(0)

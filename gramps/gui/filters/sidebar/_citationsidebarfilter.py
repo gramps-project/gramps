@@ -47,9 +47,8 @@ from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.citation import (RegExpIdOf, HasIdOf, HasCitation, 
-                                        HasNoteMatchingSubstringOf, 
-                                        HasNoteRegexp, MatchesFilter)
+from gramps.gen.filters.rules.citation import (RegExpIdOf, HasCitation, HasTag,
+                                               HasNoteRegexp, MatchesFilter)
 from gramps.gen.utils.string import confidence
 GenericCitationFilter = GenericFilterFactory('Citation')
 #-------------------------------------------------------------------------
@@ -76,6 +75,7 @@ class CitationSidebarFilter(SidebarFilter):
 
         self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
 
+        self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
 
         SidebarFilter.__init__(self, dbstate, uistate, "Citation")
@@ -94,11 +94,18 @@ class CitationSidebarFilter(SidebarFilter):
         self.filter_conf.pack_start(cell, True)
         self.filter_conf.add_attribute(cell, 'text', 0)
 
+        cell = Gtk.CellRendererText()
+        cell.set_property('width', self._FILTER_WIDTH)
+        cell.set_property('ellipsize', self._FILTER_ELLIPSIZE)
+        self.tag.pack_start(cell, True)
+        self.tag.add_attribute(cell, 'text', 0)
+
         self.add_text_entry(_('ID'), self.filter_id)
         self.add_text_entry(_('Volume/Page'), self.filter_page)
         self.add_text_entry(_('Date'), self.filter_date)
         self.add_entry(_('Minimum Confidence|Min. Conf.'), self.filter_conf)
         self.add_text_entry(_('Note'), self.filter_note)
+        self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
@@ -108,6 +115,7 @@ class CitationSidebarFilter(SidebarFilter):
         self.filter_date.set_text('')
         self.filter_conf.set_active(2)
         self.filter_note.set_text('')
+        self.tag.set_active(0)
         self.generic.set_active(0)
 
     def get_filter(self):
@@ -125,36 +133,39 @@ class CitationSidebarFilter(SidebarFilter):
 #        conf = self.citn.get_confidence_level()
         note = cuni(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
+        tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
-        empty = not (gid or page or date or conf or note or regex or gen)
+        empty = not (gid or page or date or conf or note or regex or tag or gen)
         if empty:
             generic_filter = None
         else:
             generic_filter = GenericCitationFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasCitation([page, date, conf], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
-        if self.generic.get_active() != 0:
-            model = self.generic.get_model()
-            node = self.generic.get_active_iter()
-            obj = cuni(model.get_value(node, 0))
-            rule = MatchesFilter([obj])
-            generic_filter.add_rule(rule)
+            # check the Tag
+            if tag:
+                model = self.tag.get_model()
+                node = self.tag.get_active_iter()
+                attr = model.get_value(node, 0)
+                rule = HasTag([attr])
+                generic_filter.add_rule(rule)
+
+            if self.generic.get_active() != 0:
+                model = self.generic.get_model()
+                node = self.generic.get_active_iter()
+                obj = cuni(model.get_value(node, 0))
+                rule = MatchesFilter([obj])
+                generic_filter.add_rule(rule)
 
         return generic_filter
 
@@ -165,3 +176,14 @@ class CitationSidebarFilter(SidebarFilter):
             all_filter.add_rule(rules.citation.AllCitations([]))
             self.generic.set_model(build_filter_model('Citation', [all_filter]))
             self.generic.set_active(0)
+
+    def on_tags_changed(self, tag_list):
+        """
+        Update the list of tags in the tag filter.
+        """
+        model = Gtk.ListStore(str)
+        model.append(('',))
+        for tag_name in tag_list:
+            model.append((tag_name,))
+        self.tag.set_model(model)
+        self.tag.set_active(0)
