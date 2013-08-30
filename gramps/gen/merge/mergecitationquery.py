@@ -31,7 +31,7 @@ Provide merge capabilities for citations.
 #
 #-------------------------------------------------------------------------
 from ..lib import (Person, Family, Event, Place,
-        MediaObject, Repository, Citation)
+        MediaObject, Repository, Citation, Source)
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -101,6 +101,12 @@ class MergeCitationQuery(object):
                     citation.replace_citation_references(old_handle, 
                                                            new_handle)
                     self.database.commit_citation(citation, trans)
+                elif class_name == Source.__name__:
+                    source = self.database.get_source_from_handle(handle)
+                    assert(source.has_citation_reference(old_handle))
+                    source.replace_citation_references(old_handle, 
+                                                           new_handle)
+                    self.database.commit_source(source, trans)
                 else:
                     raise MergeError("Encounter an object of type %s that has "
                             "a citation reference." % class_name)

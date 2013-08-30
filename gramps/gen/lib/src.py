@@ -40,13 +40,15 @@ from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
 from ..constfunc import cuni
 from .handle import Handle
+from .citationbase import IndirectCitationBase
 
 #-------------------------------------------------------------------------
 #
 # Source class
 #
 #-------------------------------------------------------------------------
-class Source(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject):
+class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
+        PrimaryObject):
     """A record of a source of information."""
     
     def __init__(self):
