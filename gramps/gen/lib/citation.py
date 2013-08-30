@@ -204,6 +204,16 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject, DateBase):
            self.get_reference_handle() == old_handle:
             self.set_reference_handle(new_handle)
 
+    def get_citation_child_list(self):
+        """
+        Return the list of child secondary objects that may refer citations.
+
+        :returns: Returns the list of child secondary child objects that may 
+                refer citations.
+        :rtype: list
+        """
+        return self.media_list
+
     def get_text_data_list(self):
         """
         Return the list of all textual attributes of the object.
@@ -255,6 +265,43 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, PrimaryObject, DateBase):
         if self.get_reference_handle():
             ret += [('Source', self.get_reference_handle())]
         return ret
+
+    def has_citation_reference(self, citation_handle) :
+        """
+        Return True if any of the child objects has reference to this citation 
+        handle.
+        
+        HACK cut and paste from Repository.has_citation_reference
+
+        :param citation_handle: The citation handle to be checked.
+        :type citation_handle: str
+        :returns: Returns whether any of it's child objects has reference to 
+                this citation handle.
+        :rtype: bool
+        """
+        for item in self.get_citation_child_list():
+            if item.has_citation_reference(citation_handle):
+                return True
+
+        return False
+
+    def replace_citation_references(self, old_handle, new_handle):
+        """
+        Replace references to citation handles in the list in this object and 
+        all child objects and merge equivalent entries.
+
+        HACK cut and paste from Repository.has_citation_reference
+        
+        Note: the same comment about citationbase in has_citation_reference
+        applies here too.
+
+        :param old_handle: The citation handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The citation handle to replace the old one with.
+        :type new_handle: str
+        """
+        for item in self.get_citation_child_list():
+            item.replace_citation_references(old_handle, new_handle)
 
     def merge(self, acquisition):
         """
