@@ -44,9 +44,8 @@ from gen.lib import Repository, RepositoryType
 
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.Repository import (RegExpIdOf, HasIdOf, HasRepo, 
-                                      HasNoteRegexp, MatchesFilter, 
-                                      HasNoteMatchingSubstringOf)
+from Filters.Rules.Repository import (RegExpIdOf, HasRepo, HasNoteRegexp, 
+                                      MatchesFilter)
 
 GenericRepoFilter = GenericFilterFactory('Repository')
 #-------------------------------------------------------------------------
@@ -124,20 +123,14 @@ class RepoSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericRepoFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasRepo([title, rtype, address, url], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
         if self.generic.get_active() != 0:

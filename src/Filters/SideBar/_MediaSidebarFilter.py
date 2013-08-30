@@ -43,9 +43,8 @@ import gtk
 from gui import widgets
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.MediaObject import (RegExpIdOf, HasIdOf, HasMedia, HasTag,
-                                       HasNoteRegexp, MatchesFilter, 
-                                       HasNoteMatchingSubstringOf)
+from Filters.Rules.MediaObject import (RegExpIdOf, HasMedia, HasTag,
+                                       HasNoteRegexp, MatchesFilter)
 
 GenericMediaFilter = GenericFilterFactory('MediaObject')
 #-------------------------------------------------------------------------
@@ -123,20 +122,14 @@ class MediaSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericMediaFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasMedia([title, mime, path, date], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             # check the Tag

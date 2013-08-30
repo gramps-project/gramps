@@ -42,8 +42,7 @@ import gtk
 from gui import widgets
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.Source import (RegExpIdOf, HasIdOf, HasSource, 
-                                  HasNoteMatchingSubstringOf, HasNoteRegexp, 
+from Filters.Rules.Source import (RegExpIdOf, HasSource, HasNoteRegexp, 
                                   MatchesFilter)
 
 GenericSourceFilter = GenericFilterFactory('Source')
@@ -112,20 +111,14 @@ class SourceSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericSourceFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasSource([title, author, abbr, pub], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
         if self.generic.get_active() != 0:

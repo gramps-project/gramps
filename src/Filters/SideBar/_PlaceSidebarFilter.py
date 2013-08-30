@@ -44,8 +44,8 @@ import gtk
 from gui import widgets
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.Place import (RegExpIdOf, HasIdOf, HasPlace, HasNoteRegexp, 
-                                 HasNoteMatchingSubstringOf, MatchesFilter)
+from Filters.Rules.Place import (RegExpIdOf, HasPlace, HasNoteRegexp, 
+                                 MatchesFilter)
 
 GenericPlaceFilter = GenericFilterFactory('Place')
 #-------------------------------------------------------------------------
@@ -133,10 +133,7 @@ class PlaceSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericPlaceFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasPlace([title, street, locality, city, county, state,
@@ -144,10 +141,7 @@ class PlaceSidebarFilter(SidebarFilter):
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             if self.generic.get_active() != 0:

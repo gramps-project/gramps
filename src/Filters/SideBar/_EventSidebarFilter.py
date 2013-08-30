@@ -44,8 +44,7 @@ import gen.lib
 
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
-from Filters.Rules.Event import (RegExpIdOf, HasIdOf, HasNoteRegexp, 
-                                 HasNoteMatchingSubstringOf, MatchesFilter, 
+from Filters.Rules.Event import (RegExpIdOf, HasNoteRegexp, MatchesFilter, 
                                  HasEvent)
 
 GenericEventFilter = GenericFilterFactory('Event')
@@ -128,10 +127,7 @@ class EventSidebarFilter(SidebarFilter):
         else:
             generic_filter = GenericEventFilter()
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = HasIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             rule = HasEvent([etype, date, place, desc, mainparts],
@@ -139,10 +135,7 @@ class EventSidebarFilter(SidebarFilter):
             generic_filter.add_rule(rule)
                 
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
         if self.generic.get_active() != 0:

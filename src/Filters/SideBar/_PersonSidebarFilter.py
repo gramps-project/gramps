@@ -46,10 +46,9 @@ import gen.lib
 import DateHandler
 
 from Filters.SideBar import SidebarFilter
-from Filters.Rules.Person import (RegExpName, SearchName, RegExpIdOf, MatchIdOf,
-                                  IsMale, IsFemale, HasUnknownGender, HasEvent,
-                                  HasTag, HasBirth, HasDeath, HasNoteRegexp, 
-                                  HasNoteMatchingSubstringOf, MatchesFilter)
+from Filters.Rules.Person import (RegExpName, RegExpIdOf, IsMale, IsFemale, 
+                                  HasUnknownGender, HasEvent, HasTag, HasBirth, 
+                                  HasDeath, HasNoteRegexp, MatchesFilter)
 from Filters import GenericFilter, build_filter_model, Rules
 
 def extract_text(entry_widget):
@@ -182,19 +181,13 @@ class PersonSidebarFilter(SidebarFilter):
             # if the name is not empty, choose either the regular expression
             # version or the normal text match
             if name:
-                if regex:
-                    rule = RegExpName([name])
-                else:
-                    rule = SearchName([name])
+                rule = RegExpName([name], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             # if the id is not empty, choose either the regular expression
             # version or the normal text match
             if gid:
-                if regex:
-                    rule = RegExpIdOf([gid])
-                else:
-                    rule = MatchIdOf([gid])
+                rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             # check the gender, and select the right rule based on gender
@@ -226,10 +219,7 @@ class PersonSidebarFilter(SidebarFilter):
 
             # Build note filter if needed
             if note:
-                if regex:
-                    rule = HasNoteRegexp([note])
-                else:
-                    rule = HasNoteMatchingSubstringOf([note])
+                rule = HasNoteRegexp([note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             # check the Tag
