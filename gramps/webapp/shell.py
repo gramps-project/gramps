@@ -28,8 +28,34 @@
 import os
 os.environ['GRAMPS_RESOURCES'] = os.path.dirname(os.path.abspath(".."))
 pystartup = os.path.expanduser("~/.pystartup")
-if os.path.exists(pystartup):
-    execfile(pystartup)
+if not os.path.exists(pystartup):
+    fp = file(pystartup, "w")
+    fp.write("""
+import atexit
+import os
+import readline
+import rlcompleter
+import sys
+
+# change autocomplete to tab
+readline.parse_and_bind("tab: complete")
+
+historyPath = os.path.expanduser("~/.pyhistory")
+
+def save_history(historyPath=historyPath):
+    import readline
+    readline.write_history_file(historyPath)
+
+if os.path.exists(historyPath):
+    readline.read_history_file(historyPath)
+
+atexit.register(save_history)
+
+# anything not deleted (sys and os) will remain in the interpreter session
+del atexit, readline, rlcompleter, save_history, historyPath""")
+    fp.close()
+
+execfile(pystartup)
 from django.conf import settings
 import gramps.webapp.settings as default_settings
 try:
