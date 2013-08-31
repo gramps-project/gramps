@@ -165,7 +165,7 @@ class SimpleTable(object):
                 if (self._link_col == col or link is None):
                     link = ('Date', item)
             elif isinstance(item, Span):
-                text = str(item)
+                text = unicode(item)
                 retval.append(text)
                 self.row_sort_val(col, item)
             elif isinstance(item, list): # [text, "PersonList", handle, ...]
@@ -238,7 +238,7 @@ class SimpleTable(object):
                     else:
                         doc.start_link("/%s/%s" % 
                                        (obj_type.lower(), handle))
-                doc.write_text(str(col), 'Normal')
+                doc.write_text(unicode(col), 'Normal')
                 if obj_type and handle:
                     doc.stop_link()
                 doc.end_cell()
