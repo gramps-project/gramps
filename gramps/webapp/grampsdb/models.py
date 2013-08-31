@@ -106,7 +106,7 @@ class mGrampsType(models.Model):
     name = models.CharField(max_length=40)
     
     def __unicode__(self): 
-        return str(self.name)
+        return unicode(self.name)
 
     def get_default_type(self):
         """ return a tuple default (val,name) """
@@ -178,10 +178,10 @@ class EventType(mGrampsType):
     val = models.IntegerField('event type', choices=_DATAMAP, blank=False)
 
     def get_url(self):
-        return "/event/?search=type%%3D%s" % self.name
+        return u"/event/?search=type%%3D%s" % self.name
 
     def get_link(self):
-        return "<a href='%s'>%s</a>" % (self.get_url(), self.name)
+        return u"<a href='%s'>%s</a>" % (self.get_url(), self.name)
 
 
 class FamilyRelType(mGrampsType):
@@ -403,7 +403,7 @@ class Config(models.Model):
     value = models.TextField('value')
 
     def __unicode__(self):
-        return str(self.setting)
+        return unicode(self.setting)
 
 class Tag(models.Model):
     handle = models.CharField(max_length=19, unique=True)
@@ -418,13 +418,13 @@ class Tag(models.Model):
     priority = models.IntegerField('priority', blank=True, null=True)
 
     def __unicode__(self):
-        return str(self.name)
+        return unicode(self.name)
 
     def get_url(self):
-        return "/tag/%s" % self.handle
+        return u"/tag/%s" % self.handle
 
     def get_link(self):
-        return "<a href='%s'>%s</a>" % (self.get_url(), self.name)
+        return u"<a href='%s'>%s</a>" % (self.get_url(), self.name)
 
 # Just the following have tag lists:
 # ---------------------------------
@@ -454,11 +454,11 @@ class PrimaryObject(models.Model):
     cache = models.TextField(blank=True, null=True)
 
     def __unicode__(self): 
-        return "%s: %s" % (self.__class__.__name__,
+        return u"%s: %s" % (self.__class__.__name__,
                            self.gramps_id)
 
     def get_url(self):
-        return "/%s/%s" % (self.__class__.__name__.lower(),
+        return u"/%s/%s" % (self.__class__.__name__.lower(),
                            self.handle)
 
 class MyFamilies(models.Model):
@@ -510,7 +510,7 @@ class Person(PrimaryObject):
             return ""
 
     def __unicode__(self):
-        return "%s [%s]" % (self.get_primary_name(), self.gramps_id)
+        return u"%s [%s]" % (self.get_primary_name(), self.gramps_id)
 
     def make_tag_list(self):
         return tuple()
@@ -546,7 +546,7 @@ class Family(PrimaryObject):
     def __unicode__(self):
         father = self.father.get_primary_name() if self.father else "No father"
         mother = self.mother.get_primary_name() if self.mother else "No mother"
-        return str("%s and %s" % (father, mother))
+        return u"%s and %s" % (father, mother)
 
 class Citation(DateObject, PrimaryObject):
     confidence = models.IntegerField(blank=True, null=True)
@@ -557,7 +557,7 @@ class Citation(DateObject, PrimaryObject):
                                          object_id_field="object_id")
 
     def __unicode__(self):
-        return "[%s] (%s, %s) to %s" % (self.gramps_id, 
+        return u"[%s] (%s, %s) to %s" % (self.gramps_id, 
                                         self.confidence,
                                         self.page,
                                         self.source)
@@ -572,7 +572,7 @@ class Source(PrimaryObject):
     abbrev = models.CharField("Abbreviation", max_length=50, blank=True, null=True)
 
     def __unicode__(self):
-        return "[%s] %s" % (self.gramps_id,
+        return u"[%s] %s" % (self.gramps_id,
                             self.title)
 
     # Other keys here:
@@ -587,7 +587,7 @@ class Event(DateObject, PrimaryObject):
                                          object_id_field="object_id")
 
     def __unicode__(self):
-        return "[%s] (%s) %s" % (self.gramps_id, 
+        return u"[%s] (%s) %s" % (self.gramps_id, 
                                  self.event_type, 
                                  self.description)
 
@@ -601,7 +601,7 @@ class Repository(PrimaryObject):
     #url_list = models.ManyToManyField('Url', null=True, blank=True)
 
     def __unicode__(self):
-        return "[%s] %s" % (self.gramps_id, self.name)
+        return u"[%s] %s" % (self.gramps_id, self.name)
 
     # Others keys here:
     #   .address_set
@@ -615,10 +615,10 @@ class Place(PrimaryObject):
     #url_list = models.ManyToManyField('Url', null=True, blank=True)
 
     def get_selection_string(self):
-        return "%s [%s]" % (self.title, self.gramps_id)
+        return u"%s [%s]" % (self.title, self.gramps_id)
 
     def __unicode__(self):
-        return str(self.title)
+        return unicode(self.title)
 
     # Others keys here:
     #   .url_set
@@ -638,7 +638,7 @@ class Media(DateObject, PrimaryObject):
         return tuple()
 
     def __unicode__(self):
-        return str(self.desc)
+        return unicode(self.desc)
 
 class Note(PrimaryObject):
     note_type = models.ForeignKey('NoteType', verbose_name="Type")
@@ -653,7 +653,7 @@ class Note(PrimaryObject):
         return tuple()
 
     def __unicode__(self):
-        return str(self.gramps_id)
+        return unicode(self.gramps_id)
 
 #---------------------------------------------------------------------------
 #
@@ -691,11 +691,11 @@ class Surname(models.Model):
     order = models.PositiveIntegerField()
 
     def __unicode__(self):
-        return "%s" % self.surname
+        return unicode(self.surname)
 
     def get_url(self):
         # /person/handle/name/1/surname/2
-        return "/person/%s/name/%s/surname/%s" % (self.name.person.handle, 
+        return u"/person/%s/name/%s/surname/%s" % (self.name.person.handle, 
                                                   self.name.order, 
                                                   self.order)
 
@@ -726,15 +726,14 @@ class Name(DateObject, SecondaryObject):
             surname = self.surname_set.get(primary=True)
         except:
             surname = "[No primary surname]"
-        return "%s, %s" % (surname,
-                           self.first_name)
+        return u"%s, %s" % (surname, self.first_name)
 
     def get_selection_string(self):
         try:
             surname = self.surname_set.get(primary=True)
         except:
             surname = "[No primary surname]"
-        return "%s, %s [%s]" % (surname, self.first_name, self.person.gramps_id)
+        return u"%s, %s [%s]" % (surname, self.first_name, self.person.gramps_id)
 
     @staticmethod
     def get_dummy():
@@ -758,7 +757,7 @@ class Name(DateObject, SecondaryObject):
 
     def get_url(self):
         # /person/handle/name/1
-        return "/person/%s/name/%s" % (self.person.handle, self.order)
+        return u"/person/%s/name/%s" % (self.person.handle, self.order)
 
 class Lds(DateObject, SecondaryObject):
     """
@@ -890,7 +889,7 @@ class BaseRef(models.Model):
         # /person/3536453463/reference/event/2
         ref_by = self.object_type.model_class().objects.get(id=self.object_id)
         ref_to = self.get_reference_to()
-        return "/%s/%s/reference/%s/%s" % (ref_by.__class__.__name__.lower(), 
+        return u"/%s/%s/reference/%s/%s" % (ref_by.__class__.__name__.lower(), 
                                            ref_by.handle, 
                                            ref_to.__class__.__name__.lower(), 
                                            self.order)
@@ -900,7 +899,7 @@ class Log(BaseRef):
     cache = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
-        return "%s: %s on %s by %s" % (self.log_type, 
+        return u"%s: %s on %s by %s" % (self.log_type, 
                                        self.referenced_by, 
                                        self.last_changed,
                                        self.last_changed_by)
@@ -912,14 +911,14 @@ class NoteRef(BaseRef):
         return self.ref_object
 
     def __unicode__(self):
-        return "NoteRef to " + str(self.ref_object)
+        return u"NoteRef to " + unicode(self.ref_object)
 
 class EventRef(BaseRef):
     ref_object = models.ForeignKey('Event')
     role_type = models.ForeignKey('EventRoleType')
 
     def __unicode__(self):
-        return str(self.ref_object)
+        return unicode(self.ref_object)
 
     def get_reference_to(self):
         return self.ref_object
@@ -928,7 +927,7 @@ class EventRef(BaseRef):
         # /person/3536453463/reference/event/2
         ref_by = self.object_type.model_class().objects.get(id=self.object_id)
         ref_to = self.ref_object
-        return "/%s/%s/reference/%s/%s" % (ref_by.__class__.__name__.lower(), 
+        return u"/%s/%s/reference/%s/%s" % (ref_by.__class__.__name__.lower(), 
                                            ref_by.handle, 
                                            ref_to.__class__.__name__.lower(), 
                                            self.order)
@@ -942,7 +941,7 @@ class RepositoryRef(BaseRef):
         return self.ref_object
 
     def __unicode__(self):
-        return "RepositoryRef to " + str(self.ref_object)
+        return u"RepositoryRef to " + unicode(self.ref_object)
 
 class PersonRef(BaseRef):
     ref_object = models.ForeignKey('Person')
@@ -952,13 +951,13 @@ class PersonRef(BaseRef):
         return self.ref_object
 
     def __unicode__(self):
-        return "PersonRef to " + str(self.ref_object)
+        return u"PersonRef to " + unicode(self.ref_object)
 
 class CitationRef(BaseRef):
     citation = models.ForeignKey('Citation') 
 
     def __unicode__(self):
-        return "CitationRef to " + str(self.citation)
+        return u"CitationRef to " + unicode(self.citation)
   
     def get_reference_to(self):
         return self.citation
@@ -975,10 +974,10 @@ class ChildRef(BaseRef):
 
     def get_url(self):
         # FIXME: go to child reference
-        return "/person/%s" % self.ref_object.handle
+        return u"/person/%s" % self.ref_object.handle
 
     def __unicode__(self):
-        return "ChildRef to " + str(self.ref_object)
+        return u"ChildRef to " + unicode(self.ref_object)
 
 class MediaRef(BaseRef):
     x1 = models.IntegerField()
@@ -991,7 +990,7 @@ class MediaRef(BaseRef):
         return self.ref_object
 
     def __unicode__(self):
-        return "MediaRef to " + str(self.ref_object)
+        return u"MediaRef to " + unicode(self.ref_object)
 
 class Report(models.Model):
     gramps_id = models.TextField(blank=True, null=True)
@@ -1001,7 +1000,7 @@ class Report(models.Model):
     options = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
-        return str(self.name)
+        return unicode(self.name)
 
 class Result(models.Model):
     name = models.TextField(blank=True, null=True)
@@ -1011,7 +1010,7 @@ class Result(models.Model):
     status = models.TextField(blank=True, null=True)
 
     def __unicode__(self):
-        return str(self.name)
+        return unicode(self.name)
 
 TABLES = [
     ("abstract", mGrampsType),
