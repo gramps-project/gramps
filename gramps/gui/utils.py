@@ -359,7 +359,7 @@ class SystemFonts(object):
 #
 #
 #-------------------------------------------------------------------------
-def poll_external (proc, errorstrings):
+def poll_external (args):
     """
     Check the for completion of a task launched with
     subprocess.Popen().  This function is intended to be passed to
@@ -371,6 +371,7 @@ def poll_external (proc, errorstrings):
     @returns False when the function has completed.
     """
     from .dialog import ErrorDialog
+    (proc, errorstrings) = args
     resp = proc.poll()
     if resp is None:
         return True
