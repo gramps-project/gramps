@@ -460,9 +460,9 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
                 if search[1]:
                     # we have search[1] = (index, text_unicode, inversion)
                     col, text, inv = search[1]
-                    func = lambda x: self._get_value(x, col, secondary=False) or u""
+                    func = lambda x: self._get_value(x, col, secondary=False) or ""
                     if self.has_secondary:
-                        func2 = lambda x: self._get_value(x, col, secondary=True) or u""
+                        func2 = lambda x: self._get_value(x, col, secondary=True) or ""
                     if search[2]:
                         self.search = ExactSearchFilter(func, text, inv)
                         if self.has_secondary:
