@@ -26820,7 +26820,7 @@ msgstr "Correspond aux événements avec un attribut de même valeur"
 
 #: ../src/Filters/Rules/Event/_HasCitation.py:52
 msgid "Events with the <citation>"
-msgstr "Événement avec la <citation>."
+msgstr "Événements avec la <citation>."
 
 # trunk
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
