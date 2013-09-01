@@ -359,7 +359,7 @@ class SystemFonts(object):
 #
 #
 #-------------------------------------------------------------------------
-def poll_external ((proc, errorstrings)):
+def poll_external (proc, errorstrings):
     """
     Check the for completion of a task launched with
     subprocess.Popen().  This function is intended to be passed to
