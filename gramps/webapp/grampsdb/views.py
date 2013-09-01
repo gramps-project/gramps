@@ -408,7 +408,7 @@ def view_list(request, view):
     except (EmptyPage, InvalidPage):
         page = paginator.page(paginator.num_pages)
 
-    context["search_terms"] = ", ".join(terms)
+    context["search_terms"] = ", ".join(terms) + "; ^start, end$"
     context["page"] = page
     context["view"] = view
     context["tview"] = _(view.title())
@@ -621,14 +621,15 @@ def build_person_query(request, search):
     """
     protect = not request.user.is_authenticated()
     ### Build the order:
-    terms = ["surname", "given", "id", "tag", "public", "private"]
     if protect:
         # Do this to get the names sorted by private/alive 
         # NOTE: names can be private
+        terms = ["surname", "given", "id", "tag"]
         query = Q(private=False) & Q(person__private=False)
         order = ["surname__surname", "private", "person__probably_alive", 
                  "first_name"]
     else:
+        terms = ["surname", "given", "id", "tag", "public", "private"]
         query = Q()
         order = ["surname__surname", "first_name"]
     ### Build the query:
@@ -712,10 +713,9 @@ def build_family_query(request, search):
     Build and return a Django QuerySet and sort order for the Family
     table.
     """
-    terms = ["father", "mother", "id", "type", "surnames", "father.name.first_name", 
-             "mother.name.first_name", "tag", "public", "private"]
     protect = not request.user.is_authenticated()
     if protect:
+        terms = ["father", "mother", "id", "type", "surnames", "tag"]
         query = (Q(private=False) & Q(father__private=False) & 
                  Q(mother__private=False))
         order = ["father__name__surname__surname", 
@@ -725,6 +725,8 @@ def build_family_query(request, search):
                  "mother__private", "mother__probably_alive", 
                  "mother__name__first_name"]
     else:
+        terms = ["father", "mother", "id", "type", "surnames", "father.name.first_name", 
+                 "mother.name.first_name", "tag", "public", "private"]
         query = Q()
         order = ["father__name__surname__surname", 
                  "father__name__first_name",
@@ -775,16 +777,20 @@ def build_family_query(request, search):
                 else:
                     make_message(request, message="Invalid query field '%s'" % field)
         else: # no search fields, just raw search
-            if protect:
+            if protect: # need to protect!
                 query &= (Q(gramps_id__icontains=search) |
                           Q(family_rel_type__name__icontains=search) |
                           Q(father__name__surname__surname__icontains=search) |
-                          Q(mother__name__surname__surname__icontains=search))
+                          Q(father__name__first_name__icontains=search) |
+                          Q(mother__name__surname__surname__icontains=search) |
+                          Q(mother__name__first_name__icontains=search))
             else:
                 query &= (Q(gramps_id__icontains=search) |
                           Q(family_rel_type__name__icontains=search) |
                           Q(father__name__surname__surname__icontains=search) |
-                          Q(mother__name__surname__surname__icontains=search))
+                          Q(father__name__first_name__icontains=search) |
+                          Q(mother__name__surname__surname__icontains=search) |
+                          Q(mother__name__first_name__icontains=search))
     else: # no search
         pass # nothing left to do
     #make_message(request, query)
