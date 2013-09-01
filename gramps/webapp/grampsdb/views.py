@@ -286,8 +286,8 @@ def view_list(request, view):
         query, order, terms = build_event_query(request, search)
         object_list = Event.objects \
             .filter(query) \
-            .distinct() \
-            .order_by(*order)
+            .order_by(*order) \
+            .distinct()
         view_template = 'view_events.html'
         total = Event.objects.all().count()
     elif view == "media":
@@ -296,8 +296,8 @@ def view_list(request, view):
         query, order, terms = build_media_query(request, search)
         object_list = Media.objects \
             .filter(query) \
-            .distinct() \
-            .order_by(*order)
+            .order_by(*order) \
+            .distinct()
         view_template = 'view_media.html'
         total = Media.objects.all().count()
     elif view == "note":
@@ -306,8 +306,8 @@ def view_list(request, view):
         query, order, terms = build_note_query(request, search)
         object_list = Note.objects \
             .filter(query) \
-            .distinct() \
-            .order_by(*order)
+            .order_by(*order) \
+            .distinct() 
         view_template = 'view_notes.html'
         total = Note.objects.all().count()
     elif view == "person":
@@ -316,8 +316,8 @@ def view_list(request, view):
         query, order, terms = build_person_query(request, search)
         object_list = Name.objects \
             .filter(query) \
-            .distinct() \
-            .order_by(*order)
+            .order_by(*order) \
+            .distinct() 
         view_template = 'view_people.html'
         total = Name.objects.all().count()
     elif view == "family":
@@ -326,8 +326,8 @@ def view_list(request, view):
         query, order, terms = build_family_query(request, search)
         object_list = Family.objects \
             .filter(query) \
-            .distinct() \
-            .order_by(*order)
+            .order_by(*order) \
+            .distinct() 
         view_template = 'view_families.html'
         total = Family.objects.all().count()
     elif view == "place":
@@ -336,8 +336,8 @@ def view_list(request, view):
         query, order, terms = build_place_query(request, search)
         object_list = Place.objects \
             .filter(query) \
-            .distinct() \
-            .order_by(*order)
+            .order_by(*order) \
+            .distinct() 
         view_template = 'view_places.html'
         total = Place.objects.all().count()
     elif view == "repository":
@@ -346,8 +346,8 @@ def view_list(request, view):
         query, order, terms = build_repository_query(request, search)
         object_list = Repository.objects \
             .filter(query) \
-            .distinct() \
-            .order_by(*order)
+            .order_by(*order) \
+            .distinct() 
         view_template = 'view_repositories.html'
         total = Repository.objects.all().count()
     elif view == "citation":
@@ -356,8 +356,8 @@ def view_list(request, view):
         query, order, terms = build_citation_query(request, search)
         object_list = Citation.objects \
             .filter(query) \
-            .distinct() \
-            .order_by(*order)
+            .order_by(*order) \
+            .distinct() 
         view_template = 'view_citations.html'
         total = Citation.objects.all().count()
     elif view == "source":
@@ -366,8 +366,8 @@ def view_list(request, view):
         query, order, terms = build_source_query(request, search)
         object_list = Source.objects \
             .filter(query) \
-            .distinct() \
-            .order_by(*order)
+            .order_by(*order) \
+            .distinct() 
         view_template = 'view_sources.html'
         total = Source.objects.all().count()
     elif view == "tag":
@@ -376,8 +376,8 @@ def view_list(request, view):
         query, order, terms = build_tag_query(request, search)
         object_list = Tag.objects \
             .filter(query) \
-            .distinct() \
-            .order_by(*order)
+            .order_by(*order) \
+            .distinct() 
         view_template = 'view_tags.html'
         total = Tag.objects.all().count()
     elif view == "report":
@@ -386,8 +386,8 @@ def view_list(request, view):
         query, order, terms = build_report_query(request, search)
         object_list = Report.objects \
             .filter(query) \
-            .distinct() \
-            .order_by(*order)
+            .order_by(*order) \
+            .distinct() 
         view_template = 'view_report.html'
         total = Report.objects.all().count()
     else:
