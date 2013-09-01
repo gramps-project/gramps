@@ -43,10 +43,21 @@ out_ged = os.path.join(ddir,"test_out.ged")
 
 class Test(unittest.TestCase):
     def setUp(self):
-        if not os.path.exists(min1r):
-            open(min1r,"wb").write(test_ged)
+        self.tearDown()
+
+    def tearDown(self):
         if os.path.exists(out_ged):
             os.remove(out_ged)
+
+    @classmethod
+    def setUpClass(cls):
+        if not os.path.exists(min1r):
+            open(min1r,"wb").write(test_ged)
+
+    @classmethod
+    def tearDownClass(cls):
+        if os.path.exists(min1r):
+            os.remove(min1r)
 
     # silly test just to illustrate unittest setUp behavior
     def test1_setup_works(self):

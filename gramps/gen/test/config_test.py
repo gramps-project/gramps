@@ -23,6 +23,7 @@
 
 """ Unittest for config.py """
 
+import os
 import unittest
 from ..config import ConfigManager
 
@@ -33,10 +34,15 @@ def callback(*args):
     self = args[0]
     self._x = args[2]
 
+TEMP_INI = "./temp.ini"
+TEST2_INI = "./test2.ini"
 class CompleteCheck(unittest.TestCase):
+    def tearDown(self):
+        os.remove(TEMP_INI)
+        os.remove(TEST2_INI)
     
     def testAll(self):
-        self.CM = ConfigManager("./temp.ini")
+        self.CM = ConfigManager(TEMP_INI)
         self.CM.register("section.setting1", 1) # int
         self.CM.register("section.setting2", 3.1415) # float
         self.CM.register("section.setting3", "String") # string
@@ -115,7 +121,7 @@ class CompleteCheck(unittest.TestCase):
         self.CM.register("section2.dict", {'a': "apple", "b": "banana"})
         self.CM.register("section2.unicode", "Raötröme")
 
-        self.CM.save("./test2.ini")
+        self.CM.save(TEST2_INI)
         self.CM.reset()
 
         self.assertEqual(self.CM.get("section.setting1"), 1, self.CM.get("section.setting1"))
@@ -123,7 +129,7 @@ class CompleteCheck(unittest.TestCase):
         self.assertEqual(self.CM.get("section.setting3"), "String")
         self.assertFalse(self.CM.get("section.setting4"))
     
-        self.CM.load("./test2.ini")
+        self.CM.load(TEST2_INI)
     
         self.assertEqual(self.CM.get("section.setting1"), 2, self.CM.get("section.setting1"))
         self.assertEqual(self.CM.get("section.setting2"), 8.6)
