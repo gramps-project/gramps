@@ -87,7 +87,7 @@ def url(link, uistate=None):
             page = uistate.viewmanager.goto_page(cat_num, None)
             page.open(link)
             return
-    if not open_file_with_default_application(link):
+    if not open_file_with_default_application(link, display_error=False):
         run_browser(link)
 
 def run_browser(url):

@@ -337,11 +337,11 @@ def display_error_dialog (index, errorstrings):
     if errorstrings:
         if isinstance(errorstrings, dict):
             try:
-                error = errorstrings[resp]
+                error = errorstrings[index]
             except KeyError:
                 pass
-            else:
-                error = errorstrings
+        else:
+            error = errorstrings
 
     ErrorDialog(_("Error from external program"), error)
 
@@ -362,10 +362,10 @@ def poll_external ((proc, errorstrings)):
         return True
 
     if resp != 0:
-        display_error(resp, errorstrings)
+        display_error_dialog(resp, errorstrings)
     return False
 
-def open_file_with_default_application(uri):
+def open_file_with_default_application(uri, display_error=True):
     """
     Launch a program to open an arbitrary file. The file will be opened using
     whatever program is configured on the host as the default program for that
@@ -376,7 +376,6 @@ def open_file_with_default_application(uri):
     @type file_path: string
     @return: nothing
     """
-    from QuestionDialog import ErrorDialog
     from urlparse import urlparse
     from time import sleep
     errstrings = None
@@ -385,7 +384,7 @@ def open_file_with_default_application(uri):
     if (not urlcomp.scheme or urlcomp.scheme == 'file'):
         norm_path = os.path.normpath(urlcomp.path)
         if not os.path.exists(norm_path):
-            display_error(0, _("File does not exist"))
+            display_error_dialog(0, _("File does not exist"))
             return False
     else:
         norm_path = uri
@@ -394,7 +393,7 @@ def open_file_with_default_application(uri):
         try:
             os.startfile(norm_path)
         except WindowsError, msg:
-            display_error(0, str(msg))
+            display_error_dialog(0, str(msg))
             return False
         return True
 
@@ -417,7 +416,8 @@ def open_file_with_default_application(uri):
     if resp == 0:
         return True
 
-    display_error(resp, errstrings)
+    if display_error:
+        display_error_dialog(resp, errstrings)
     return False
 
 def process_pending_events(max_count=10):
