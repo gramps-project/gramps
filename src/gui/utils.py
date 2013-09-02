@@ -328,6 +328,20 @@ class ProgressMeter(object):
 #
 #
 #-------------------------------------------------------------------------
+def display_error_dialog (index, errorstrings):
+    """
+    Display a message box for errors resulting from xdg-open/open
+    """
+    from QuestionDialog import ErrorDialog
+    error = "The external program failed to launch or experienced an error"
+    if errorstrings:
+        try:
+            error = errorstrings[resp]
+        except KeyError:
+            pass
+
+    ErrorDialog(_("Error from external program"), error)
+
 def poll_external ((proc, errorstrings)):
     """
     Check the for completion of a task launched with
@@ -345,18 +359,10 @@ def poll_external ((proc, errorstrings)):
         return True
 
     if resp != 0:
-        error = "The external program failed to launch or experienced an error"
-        if errorstrings:
-            try:
-                error = errorstrings[resp]
-            except KeyError:
-                pass
-
-        ErrorDialog(_("Error from external program"), error)
-
+        display_error(resp, errorstrings)
     return False
 
-def open_file_with_default_application( file_path ):
+def open_file_with_default_application(uri):
     """
     Launch a program to open an arbitrary file. The file will be opened using
     whatever program is configured on the host as the default program for that
@@ -368,38 +374,48 @@ def open_file_with_default_application( file_path ):
     @return: nothing
     """
     from QuestionDialog import ErrorDialog
+    from urlparse import urlparse
+    from time import sleep
     errstrings = None
-    norm_path = os.path.normpath( file_path )
-    if not os.path.exists(norm_path):
-        ErrorDialog(_("Error Opening File"), _("File does not exist"))
-        return
+    urlcomp = urlparse(uri)
+
+    if (not urlcomp.scheme or urlcomp.scheme == 'file'):
+        norm_path = os.path.normpath(urlcomp.path)
+        if not os.path.exists(norm_path):
+            ErrorDialog(_("Error Opening File"), _("File does not exist"))
+            return False
+    else:
+        norm_path = uri
 
     if constfunc.win():
         try:
             os.startfile(norm_path)
         except WindowsError, msg:
             ErrorDialog(_("Error Opening File"), str(msg))
-        return
+            return False
+        return True
 
     if constfunc.mac():
         utility = '/usr/bin/open'
     else:
         utility = 'xdg-open'
-        errstrings = {1:'Error in command line syntax.',
-                      2:'One of the files passed on the command line did not exist.',
-                      3:' A required tool could not be found.',
-                      4:'The action failed.'}
-
-    try:
-        subprocess.check_output([utility, norm_path], stderr=subprocess.STDOUT)
-    except subprocess.CalledProcessError as err:
-        ErrorDialog(_("Error Opening File"), err.output)
+        errstrings = {1:_('Error in command line syntax.'),
+                      2:_('One of the files passed on the command line did not exist.'),
+                      3:_('A required tool could not be found.'),
+                      4:_('The action failed.')}
 
     proc = subprocess.Popen([utility, norm_path], stderr=subprocess.STDOUT)
+    sleep(.1)
+    resp = proc.poll()
+    if resp is None:
+        from gobject import timeout_add
+        timeout_add(1000, poll_external, (proc, errstrings))
+        return True
+    if resp == 0:
+        return True
 
-    from gobject import timout_add
-    timeout_add(1000, poll_external, (proc, errstrings))
-    return
+    display_error(resp, errstrings)
+    return False
 
 def process_pending_events(max_count=10):
     """

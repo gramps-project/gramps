@@ -86,25 +86,8 @@ def url(link, uistate=None):
             page = uistate.viewmanager.goto_page(cat_num, None)
             page.open(link)
             return
-    if not run_file(link):
+    if not open_with_default_application(link):
         run_browser(link)
-
-def run_file(file_name):
-    """
-    Open a file or url with the default application. This should work
-    on GNOME, KDE, XFCE, ... as we use a freedesktop application
-    """
-    if constfunc.is_quartz():
-        prog = find_binary('open')
-    else:
-        prog = find_binary('xdg-open')
-    if prog:
-        try:
-            subprocess.check_call([prog, file_name])
-        except subprocess.CalledProcessError:
-            return False
-        return True
-    return False
 
 def run_browser(url):
     """
