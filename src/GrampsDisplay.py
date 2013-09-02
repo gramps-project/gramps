@@ -80,13 +80,14 @@ def url(link, uistate=None):
     """
     Open the specified URL in a browser. 
     """
+    from gui.utils import open_file_with_default_application
     if uistate and config.get('htmlview.url-handler'):
         cat_num = uistate.viewmanager.get_category('Web')
         if cat_num is not None:
             page = uistate.viewmanager.goto_page(cat_num, None)
             page.open(link)
             return
-    if not open_with_default_application(link):
+    if not open_file_with_default_application(link):
         run_browser(link)
 
 def run_browser(url):

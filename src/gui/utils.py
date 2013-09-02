@@ -333,12 +333,15 @@ def display_error_dialog (index, errorstrings):
     Display a message box for errors resulting from xdg-open/open
     """
     from QuestionDialog import ErrorDialog
-    error = "The external program failed to launch or experienced an error"
+    error = _("The external program failed to launch or experienced an error")
     if errorstrings:
-        try:
-            error = errorstrings[resp]
-        except KeyError:
-            pass
+        if isinstance(errorstrings, dict):
+            try:
+                error = errorstrings[resp]
+            except KeyError:
+                pass
+            else:
+                error = errorstrings
 
     ErrorDialog(_("Error from external program"), error)
 
@@ -382,7 +385,7 @@ def open_file_with_default_application(uri):
     if (not urlcomp.scheme or urlcomp.scheme == 'file'):
         norm_path = os.path.normpath(urlcomp.path)
         if not os.path.exists(norm_path):
-            ErrorDialog(_("Error Opening File"), _("File does not exist"))
+            display_error(0, _("File does not exist"))
             return False
     else:
         norm_path = uri
@@ -391,7 +394,7 @@ def open_file_with_default_application(uri):
         try:
             os.startfile(norm_path)
         except WindowsError, msg:
-            ErrorDialog(_("Error Opening File"), str(msg))
+            display_error(0, str(msg))
             return False
         return True
 
