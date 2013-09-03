@@ -26,7 +26,7 @@ from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gui.utils import open_file_with_default_application as run_file
 import os
-import subprocess
+import webbrowser
 
 #list of manuals on wiki, map locale code to wiki extension, add language codes
 #completely, or first part, so pt_BR if Brazilian portugeze wiki manual, and 
@@ -62,51 +62,13 @@ def display_help(webpage='', section=''):
 
 def display_url(link, uistate=None):
     """
-    Open the specified URL in a browser. 
+    Open the specified URL in a browser.
     """
-    from .utils import open_file_with_default_application
     if uistate and config.get('htmlview.url-handler'):
         cat_num = uistate.viewmanager.get_category('Web')
         if cat_num is not None:
             page = uistate.viewmanager.goto_page(cat_num, None)
             page.open(link)
             return
-    if not open_file_with_default_application(link, display_error=False):
-        run_browser(link)
 
-def run_browser(url):
-    """
-    Attempt of find a browswer, and launch with the browser with the
-    specified URL
-    Use run_file first!
-    """
-    try:
-        import webbrowser
-        webbrowser.open_new_tab(url)
-    except ImportError:
-        for browser in ['firefox', 'konqueror', 'epiphany',
-                        'galeon', 'mozilla']:
-            prog = find_binary(browser)
-            if prog:
-                os.spawnvpe(os.P_NOWAIT, prog, [prog, url], os.environ)
-                return
-
-        # If we did not find a browser in the path, try this
-        try:
-            os.startfile(url)
-        except:
-            pass
-
-def find_binary(file):
-    """
-    Find the binary (executable) of a filename in the PATH, and return full
-    path if found, else return None.
-    """
-    import os
-    search = os.environ['PATH'].split(':')
-    for path in search:
-        prog = os.path.join(path, file)
-        if os.path.isfile(prog):
-            return prog
-    return None
-
+    webbrowser.open_new_tab(link)
