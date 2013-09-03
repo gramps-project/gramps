@@ -60,5 +60,6 @@ def suite1():
         suite.addTest(TestCase('translation-%04d', 'translation', upper, keyword.upper()))
     return suite
 
+
 if __name__ == "__main__":
     unittest.TextTestRunner().run(suite1())
