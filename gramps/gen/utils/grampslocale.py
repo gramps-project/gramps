@@ -105,11 +105,11 @@ _LOCALE_NAMES = {
 def _check_mswin_locale(locale):
     msloc = None
     try:
-        msloc = _LOCALE_NAMES[locale[:5]]
+        msloc = _LOCALE_NAMES[locale[:5]][:2]
         locale = locale[:5]
     except KeyError:
         try:
-            msloc = _LOCALE_NAMES[locale[:2]]
+            msloc = _LOCALE_NAMES[locale[:2]][:2]
             locale = locale[:2]
         except KeyError:
             return (None, None)
@@ -196,7 +196,7 @@ class GrampsLocale(object):
             locale.setlocale(locale.LC_ALL, '')
             (lang, encoding) = locale.getlocale()
             loc = _check_mswin_locale_reverse(lang)
-            if loc:
+            if loc[0]:
                 self.lang = loc[0]
                 self.encoding = loc[1]
             else:
