@@ -359,7 +359,24 @@ class SystemFonts(object):
 #
 #
 #-------------------------------------------------------------------------
-def poll_external (args):
+def display_error_dialog (index, errorstrings):
+    """
+    Display a message box for errors resulting from xdg-open/open
+    """
+    from QuestionDialog import ErrorDialog
+    error = _("The external program failed to launch or experienced an error")
+    if errorstrings:
+        if isinstance(errorstrings, dict):
+            try:
+                error = errorstrings[index]
+            except KeyError:
+                pass
+        else:
+            error = errorstrings
+
+    ErrorDialog(_("Error from external program"), error)
+
+def poll_external ((proc, errorstrings)):
     """
     Check the for completion of a task launched with
     subprocess.Popen().  This function is intended to be passed to
@@ -370,25 +387,16 @@ def poll_external (args):
     @errorstrings a dict of possible response values and the corresponding messages to display.
     @returns False when the function has completed.
     """
-    from .dialog import ErrorDialog
-    (proc, errorstrings) = args
+    from QuestionDialog import ErrorDialog
     resp = proc.poll()
     if resp is None:
         return True
 
     if resp != 0:
-        error = "The external program failed to launch or experienced an error"
-        if errorstrings:
-            try:
-                error = errorstrings[resp]
-            except KeyError:
-                pass
-
-        ErrorDialog(_("Error from external program"), error)
-
+        display_error_dialog(resp, errorstrings)
     return False
 
-def open_file_with_default_application( file_path ):
+def open_file_with_default_application(uri):
     """
     Launch a program to open an arbitrary file. The file will be opened using
     whatever program is configured on the host as the default program for that
@@ -399,19 +407,28 @@ def open_file_with_default_application( file_path ):
     @type file_path: string
     @return: nothing
     """
-    norm_path = os.path.normpath( file_path )
-    if not os.path.exists(norm_path):
-        ErrorDialog(_("Error Opening File"), _("File does not exist"))
-        return
+
+    from urlparse import urlparse
+    from time import sleep
+    errstrings = None
+    urlcomp = urlparse(uri)
+
+    if (not urlcomp.scheme or urlcomp.scheme == 'file'):
+        norm_path = os.path.normpath(urlcomp.path)
+        if not os.path.exists(norm_path):
+            display_error_dialog(0, _("File does not exist"))
+            return False
+    else:
+        norm_path = uri
 
     if win():
         try:
             os.startfile(norm_path)
-        except WindowsError as msg:
-            ErrorDialog(_("Error Opening File"), str(msg))
-        return
+        except WindowsError, msg:
+            display_error_dialog(0, str(msg))
+            return False
+        return True
 
-    errstrings = None
     if mac():
         utility = '/usr/bin/open'
     else:
@@ -423,9 +440,18 @@ def open_file_with_default_application( file_path ):
 
     proc = subprocess.Popen([utility, norm_path], stderr=subprocess.STDOUT)
 
-    from gi.repository import GLib
-    GLib.timeout_add_seconds(1, poll_external, (proc, errstrings))
-    return
+    sleep(.1)
+    resp = proc.poll()
+    if resp is None:
+        from gi.repository import GLib
+        GLib.timeout_add_seconds(1, poll_external, (proc, errstrings))
+        return True
+    if resp == 0:
+        return True
+
+    if display_error:
+        display_error_dialog(resp, errstrings)
+    return False
 
 def process_pending_events(max_count=10):
     """
