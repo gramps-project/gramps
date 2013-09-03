@@ -56,5 +56,9 @@ class TestUser_prompt(unittest.TestCase):
         MockQD.return_value.run.assert_called_once_with()
         # TODO test that run's return is the one returned by prompt()...
 
+class TestUser_init_accepts_uistate(unittest.TestCase):
+    def test(self):
+        user.User(uistate = None)
+
 if __name__ == "__main__":
     unittest.main()

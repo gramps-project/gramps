@@ -50,9 +50,10 @@ class User(user.User):
     This class provides a means to interact with the user via GTK.
     It implements the interface in gramps.gen.user.User()
     """
-    def __init__(self, callback=None, error=None):
+    def __init__(self, callback=None, error=None, uistate=None):
         user.User.__init__(self, callback, error)
         self.progress = None
+        self.uistate = uistate
     
     def begin_progress(self, title, message, steps):
         """

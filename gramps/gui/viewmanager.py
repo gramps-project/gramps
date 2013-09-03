@@ -1319,13 +1319,15 @@ class ViewManager(CLIManager):
                 from gramps.plugins.export.exportpkg import PackageWriter
                 writer = PackageWriter(self.dbstate.db, filename,
                                        User(error=ErrorDialog,
-                                       callback=self.uistate.pulse_progressbar))
+                                       callback=self.uistate.pulse_progressbar,
+                                       uistate=self.uistate))
                 writer.export()
             else:
                 from gramps.plugins.export.exportxml import XmlWriter
                 writer = XmlWriter(self.dbstate.db,
                                    User(error=ErrorDialog,
-                                   callback=self.uistate.pulse_progressbar),
+                                   callback=self.uistate.pulse_progressbar,
+                                   uistate=self.uistate),
                                    strip_photos=0, compress=1)
                 writer.write(filename)
             self.uistate.set_busy_cursor(False)
