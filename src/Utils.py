@@ -599,8 +599,12 @@ class ProbablyAlive(object):
         if death_ref and death_ref.get_role().is_primary():
             if death_ref:
                 death = self.db.get_event_from_handle(death_ref.ref)
-                if death and death.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
-                    death_date = death.get_date_object()
+                if death:
+                    if death.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
+                        death_date = death.get_date_object()
+                    else:
+                        death_date = gen.lib.date.Today()
+                        death_date.set_modifier(gen.lib.Date.MOD_BEFORE)
 
         # Look for Cause Of Death, Burial or Cremation events.
         # These are fairly good indications that someone's not alive.
@@ -974,6 +978,9 @@ def probably_alive(person, db,
             max_sib_age_diff, max_age_prob_alive, avg_generation_gap)
     if current_date is None:
         current_date = gen.lib.date.Today()
+    LOG.debug("{}: b.{}, d.{} - {}".format(
+        " ".join(person.get_primary_name().get_text_data_list()),
+        birth, death, explain))
     if not birth or not death:
         # no evidence, must consider alive
         return (True, None, None, _("no evidence"), None) if return_range \
