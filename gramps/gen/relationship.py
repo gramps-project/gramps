@@ -1816,7 +1816,7 @@ def get_relationship_calculator(reinit=False, clocale=glocale):
         # If lang not set default to English relationship calulator
         # See if lang begins with en_, English_ or english_
         # If so return standard relationship calculator.
-        if lang.startswith("en"):
+        if lang.startswith("en") or lang == "C":
             return __RELCALC_CLASS()
         # set correct non English relationship calculator based on lang
         relation_translation_found = False
