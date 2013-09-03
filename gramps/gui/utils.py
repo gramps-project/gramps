@@ -363,7 +363,7 @@ def display_error_dialog (index, errorstrings):
     """
     Display a message box for errors resulting from xdg-open/open
     """
-    from QuestionDialog import ErrorDialog
+    from .dialog import ErrorDialog
     error = _("The external program failed to launch or experienced an error")
     if errorstrings:
         if isinstance(errorstrings, dict):
@@ -395,7 +395,7 @@ def poll_external ((proc, errorstrings)):
         display_error_dialog(resp, errorstrings)
     return False
 
-def open_file_with_default_application(uri):
+def open_file_with_default_application(path):
     """
     Launch a program to open an arbitrary file. The file will be opened using
     whatever program is configured on the host as the default program for that
@@ -407,26 +407,20 @@ def open_file_with_default_application(uri):
     @return: nothing
     """
 
-    from urlparse import urlparse
-    from time import sleep
     errstrings = None
-    urlcomp = urlparse(uri)
 
-    if (not urlcomp.scheme or urlcomp.scheme == 'file'):
-        norm_path = os.path.normpath(urlcomp.path)
-        if not os.path.exists(norm_path):
-            display_error_dialog(0, _("File does not exist"))
-            return False
-    else:
-        norm_path = uri
+    norm_path = os.path.normpath(path)
+    if not os.path.exists(norm_path):
+        display_error_dialog(0, _("File does not exist"))
+        return
 
     if win():
         try:
             os.startfile(norm_path)
         except WindowsError, msg:
             display_error_dialog(0, str(msg))
-            return False
-        return True
+
+        return
 
     if mac():
         utility = '/usr/bin/open'
@@ -439,18 +433,9 @@ def open_file_with_default_application(uri):
 
     proc = subprocess.Popen([utility, norm_path], stderr=subprocess.STDOUT)
 
-    sleep(.1)
-    resp = proc.poll()
-    if resp is None:
-        from gi.repository import GLib
-        GLib.timeout_add_seconds(1, poll_external, (proc, errstrings))
-        return True
-    if resp == 0:
-        return True
-
-    if display_error:
-        display_error_dialog(resp, errstrings)
-    return False
+    from gi.repository import GLib
+    GLib.timeout_add_seconds(1, poll_external, (proc, errstrings))
+    return
 
 def process_pending_events(max_count=10):
     """
