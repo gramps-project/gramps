@@ -60,34 +60,18 @@ def display_help(webpage='', section=''):
             link = link + '#' + section
     display_url(link)
 
-def run_file(file_name):
-    """
-    Open a file or url with the default application. This should work
-    on GNOME, KDE, XFCE, ... as we use a freedesktop application
-    """
-    if is_quartz():
-        prog = find_binary('open')
-    else:
-        prog = find_binary('xdg-open')
-    if prog:
-        try:
-            subprocess.check_call([prog, file_name])
-        except subprocess.CalledProcessError:
-            return False
-        return True
-    return False
-
 def display_url(link, uistate=None):
     """
     Open the specified URL in a browser. 
     """
+    from .utils import open_file_with_default_application
     if uistate and config.get('htmlview.url-handler'):
         cat_num = uistate.viewmanager.get_category('Web')
         if cat_num is not None:
             page = uistate.viewmanager.goto_page(cat_num, None)
             page.open(link)
             return
-    if not run_file(link):
+    if not open_file_with_default_application(link, display_error=False):
         run_browser(link)
 
 def run_browser(url):
