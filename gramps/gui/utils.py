@@ -385,9 +385,8 @@ def poll_external ((proc, errorstrings)):
 
     @proc the process, returned from subprocess.Popen()
     @errorstrings a dict of possible response values and the corresponding messages to display.
-    @returns False when the function has completed.
+    @returns bool returned to timeout_add_seconds: should this function be called again?
     """
-    from QuestionDialog import ErrorDialog
     resp = proc.poll()
     if resp is None:
         return True
@@ -403,7 +402,7 @@ def open_file_with_default_application(uri):
     type of file.
 
     @param file_path: The path to the file to be opened.
-        Example: "c:\foo.txt"
+        Example: "c:\\foo.txt"
     @type file_path: string
     @return: nothing
     """
