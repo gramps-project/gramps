@@ -387,8 +387,8 @@ def poll_external (args):
     @errorstrings a dict of possible response values and the corresponding messages to display.
     @returns bool returned to timeout_add_seconds: should this function be called again?
     """
-   (proc, errorstrings) = args
-   resp = proc.poll()
+    (proc, errorstrings) = args
+    resp = proc.poll()
     if resp is None:
         return True
 
