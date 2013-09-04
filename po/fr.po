@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-01 16:26+0200\n"
-"PO-Revision-Date: 2013-09-01 17:13+0100\n"
+"POT-Creation-Date: 2013-09-04 10:22+0200\n"
+"PO-Revision-Date: 2013-09-04 10:32+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -214,8 +214,8 @@ msgstr ""
 # The same "none" is used for name, surname and date. However, in French we say "aucun" for name and surname, but we say "aucune" for date...
 #: ../src/const.py:235
 #: ../src/const.py:236
-#: ../src/gen/lib/date.py:1665
-#: ../src/gen/lib/date.py:1679
+#: ../src/gen/lib/date.py:1701
+#: ../src/gen/lib/date.py:1715
 msgid "none"
 msgstr "aucun(e)"
 
@@ -654,11 +654,11 @@ msgstr ""
 #: ../src/LdsUtils.py:82
 #: ../src/LdsUtils.py:88
 #: ../src/ScratchPad.py:181
-#: ../src/Utils.py:1716
-#: ../src/Utils.py:1718
-#: ../src/Utils.py:1722
-#: ../src/Utils.py:1728
-#: ../src/Utils.py:1733
+#: ../src/Utils.py:1719
+#: ../src/Utils.py:1721
+#: ../src/Utils.py:1725
+#: ../src/Utils.py:1731
+#: ../src/Utils.py:1736
 #: ../src/cli/clidbman.py:504
 #: ../src/gen/lib/attrtype.py:63
 #: ../src/gen/lib/childreftype.py:79
@@ -1167,7 +1167,7 @@ msgstr "Ref. Événement"
 # trop de références pour faire le changement vers nom. Les développeurs ne tiennent pas toujours compte de la différence (voir rapport Saga)
 #. show surname and first name
 #: ../src/ScratchPad.py:577
-#: ../src/Utils.py:1337
+#: ../src/Utils.py:1340
 #: ../src/gui/configure.py:540
 #: ../src/gui/configure.py:542
 #: ../src/gui/configure.py:544
@@ -1719,102 +1719,94 @@ msgstr "Ni la combinaison langue et pays \"%s\", ni la langue %s ne sont support
 msgid "PyICU not available: sorting may be incorrect"
 msgstr "PyICU n'est pas disponible : le tri peut être incorrect"
 
-#: ../src/Utils.py:613
-msgid "death-related evidence"
-msgstr "événement attestant le décès"
-
-#: ../src/Utils.py:630
-msgid "birth-related evidence"
-msgstr "événement attestant la naissance"
-
-#: ../src/Utils.py:635
+#: ../src/Utils.py:640
 #: ../src/plugins/import/ImportCsv.py:209
 msgid "death date"
 msgstr "date de décès"
 
-#: ../src/Utils.py:640
+#: ../src/Utils.py:645
 #: ../src/plugins/import/ImportCsv.py:187
 msgid "birth date"
 msgstr "date de naissance"
 
-#: ../src/Utils.py:673
+#: ../src/Utils.py:678
 msgid "sibling birth date"
 msgstr "date de naissance d'un frère ou d'une sœur"
 
-#: ../src/Utils.py:685
+#: ../src/Utils.py:690
 msgid "sibling death date"
 msgstr "date de décès d'un frère ou d'une sœur"
 
-#: ../src/Utils.py:699
+#: ../src/Utils.py:704
 msgid "sibling birth-related date"
 msgstr "date d'un événement lié à la naissance d'un frère ou d'une sœur"
 
-#: ../src/Utils.py:710
+#: ../src/Utils.py:715
 msgid "sibling death-related date"
 msgstr "date d'un événement lié au décès d'un frère ou d'une sœur"
 
-#: ../src/Utils.py:725
-#: ../src/Utils.py:729
-#: ../src/Utils.py:736
-#: ../src/Utils.py:740
+#: ../src/Utils.py:730
+#: ../src/Utils.py:734
+#: ../src/Utils.py:741
+#: ../src/Utils.py:745
 msgid "a spouse, "
 msgstr "un conjoint, "
 
-#: ../src/Utils.py:758
+#: ../src/Utils.py:763
 msgid "event with spouse"
 msgstr "événement avec le conjoint"
 
-#: ../src/Utils.py:782
+#: ../src/Utils.py:787
 msgid "descendant birth date"
 msgstr "date de naissance d'un descendant"
 
-#: ../src/Utils.py:791
+#: ../src/Utils.py:796
 msgid "descendant death date"
 msgstr "date de décès d'un descendant"
 
-#: ../src/Utils.py:807
+#: ../src/Utils.py:812
 msgid "descendant birth-related date"
 msgstr "date d'un événement lié à la naissance d'un descendant"
 
-#: ../src/Utils.py:815
+#: ../src/Utils.py:820
 msgid "descendant death-related date"
 msgstr "date d'un événement lié au décès d'un descendant"
 
-#: ../src/Utils.py:828
+#: ../src/Utils.py:833
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Erreur de base de données : %s est défini comme son propre ascendant"
 
-#: ../src/Utils.py:852
-#: ../src/Utils.py:898
+#: ../src/Utils.py:857
+#: ../src/Utils.py:903
 msgid "ancestor birth date"
 msgstr "date de naissance d'un ascendant"
 
-#: ../src/Utils.py:862
-#: ../src/Utils.py:908
+#: ../src/Utils.py:867
+#: ../src/Utils.py:913
 msgid "ancestor death date"
 msgstr "date de décès d'un ascendant"
 
-#: ../src/Utils.py:873
-#: ../src/Utils.py:919
+#: ../src/Utils.py:878
+#: ../src/Utils.py:924
 msgid "ancestor birth-related date"
 msgstr "date d'un événement lié à la naissance d'un ascendant"
 
-#: ../src/Utils.py:881
-#: ../src/Utils.py:927
+#: ../src/Utils.py:886
+#: ../src/Utils.py:932
 msgid "ancestor death-related date"
 msgstr "date d'un événement lié au décès d'un ascendant"
 
 #. no evidence, must consider alive
-#: ../src/Utils.py:985
+#: ../src/Utils.py:987
 msgid "no evidence"
 msgstr "aucune déduction"
 
-#: ../src/Utils.py:1176
+#: ../src/Utils.py:1179
 msgid "True"
 msgstr "Vrai"
 
-#: ../src/Utils.py:1176
+#: ../src/Utils.py:1179
 msgid "true"
 msgstr "vrai"
 
@@ -1846,18 +1838,18 @@ msgstr "vrai"
 #. 's' : suffix     = suffix
 #. 'n' : nickname   = nick name
 #. 'g' : familynick = family nick name
-#: ../src/Utils.py:1335
+#: ../src/Utils.py:1338
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:178
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
 msgstr "Titre"
 
-#: ../src/Utils.py:1335
+#: ../src/Utils.py:1338
 msgid "Person|TITLE"
 msgstr "TITRE"
 
-#: ../src/Utils.py:1336
+#: ../src/Utils.py:1339
 #: ../src/gen/display/name.py:327
 #: ../src/gui/configure.py:540
 #: ../src/gui/configure.py:542
@@ -1878,13 +1870,13 @@ msgstr "TITRE"
 msgid "Given"
 msgstr "Prénom"
 
-#: ../src/Utils.py:1336
+#: ../src/Utils.py:1339
 msgid "GIVEN"
 msgstr "PRÉNOM"
 
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1337
+#: ../src/Utils.py:1340
 #: ../src/gui/configure.py:547
 #: ../src/gui/configure.py:554
 #: ../src/gui/configure.py:556
@@ -1895,16 +1887,16 @@ msgstr "PRÉNOM"
 msgid "SURNAME"
 msgstr "NOM DE FAMILLE"
 
-#: ../src/Utils.py:1338
+#: ../src/Utils.py:1341
 msgid "Name|Call"
 msgstr "Usuel"
 
-#: ../src/Utils.py:1338
+#: ../src/Utils.py:1341
 msgid "Name|CALL"
 msgstr "USUEL"
 
 # courant ou commun
-#: ../src/Utils.py:1339
+#: ../src/Utils.py:1342
 #: ../src/gui/configure.py:544
 #: ../src/gui/configure.py:546
 #: ../src/gui/configure.py:549
@@ -1914,19 +1906,19 @@ msgid "Name|Common"
 msgstr "Courant"
 
 # courant ou commun
-#: ../src/Utils.py:1339
+#: ../src/Utils.py:1342
 msgid "Name|COMMON"
 msgstr "COURANT"
 
-#: ../src/Utils.py:1340
+#: ../src/Utils.py:1343
 msgid "Initials"
 msgstr "Initiales"
 
-#: ../src/Utils.py:1340
+#: ../src/Utils.py:1343
 msgid "INITIALS"
 msgstr "INITIALES"
 
-#: ../src/Utils.py:1341
+#: ../src/Utils.py:1344
 #: ../src/gui/configure.py:540
 #: ../src/gui/configure.py:542
 #: ../src/gui/configure.py:544
@@ -1942,34 +1934,34 @@ msgstr "INITIALES"
 msgid "Suffix"
 msgstr "Suffixe"
 
-#: ../src/Utils.py:1341
+#: ../src/Utils.py:1344
 msgid "SUFFIX"
 msgstr "SUFFIXE"
 
 # à vérifier
 # voir clés traduites et GUI
 #. name, sort, width, modelcol
-#: ../src/Utils.py:1342
+#: ../src/Utils.py:1345
 #: ../src/gui/editors/displaytabs/surnametab.py:80
 msgid "Name|Primary"
 msgstr "Nom"
 
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1342
+#: ../src/Utils.py:1345
 msgid "PRIMARY"
 msgstr "NOM"
 
 # /!\ longue chaîne, voir formats de nom (Préférences)
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1343
+#: ../src/Utils.py:1346
 msgid "Primary[pre]"
 msgstr "Nom[pre]"
 
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1343
+#: ../src/Utils.py:1346
 msgid "PRIMARY[PRE]"
 msgstr "NOM[PRE]"
 
@@ -1977,86 +1969,86 @@ msgstr "NOM[PRE]"
 # /!\ longue chaîne, voir formats de nom (Préférences)
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1344
+#: ../src/Utils.py:1347
 msgid "Primary[sur]"
 msgstr "Nom[nom]"
 
 # surname = notre nom de famille
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1344
+#: ../src/Utils.py:1347
 msgid "PRIMARY[SUR]"
 msgstr "NOM[NOM]"
 
 # /!\ longue chaîne, voir formats de nom (Préférences)
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1345
+#: ../src/Utils.py:1348
 msgid "Primary[con]"
 msgstr "Nom[con]"
 
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1345
+#: ../src/Utils.py:1348
 msgid "PRIMARY[CON]"
 msgstr "NOM[CON]"
 
-#: ../src/Utils.py:1346
+#: ../src/Utils.py:1349
 #: ../src/gen/lib/nameorigintype.py:86
 #: ../src/gui/configure.py:553
 msgid "Patronymic"
 msgstr "Patronyme"
 
-#: ../src/Utils.py:1346
+#: ../src/Utils.py:1349
 msgid "PATRONYMIC"
 msgstr "PATRONYME"
 
-#: ../src/Utils.py:1347
+#: ../src/Utils.py:1350
 msgid "Patronymic[pre]"
 msgstr "Patronyme[pre]"
 
-#: ../src/Utils.py:1347
+#: ../src/Utils.py:1350
 msgid "PATRONYMIC[PRE]"
 msgstr "PATRONYME[PRE]"
 
 # surname = notre nom de famille
 # /!\ longue chaîne, voir formats de nom (Préférences)
-#: ../src/Utils.py:1348
+#: ../src/Utils.py:1351
 msgid "Patronymic[sur]"
 msgstr "Patronyme[nom]"
 
 # surname = notre nom de famille
-#: ../src/Utils.py:1348
+#: ../src/Utils.py:1351
 msgid "PATRONYMIC[SUR]"
 msgstr "PATRONYME[NOM]"
 
-#: ../src/Utils.py:1349
+#: ../src/Utils.py:1352
 msgid "Patronymic[con]"
 msgstr "Patronyme[con]"
 
-#: ../src/Utils.py:1349
+#: ../src/Utils.py:1352
 msgid "PATRONYMIC[CON]"
 msgstr "PATRONYME[CON]"
 
-#: ../src/Utils.py:1350
+#: ../src/Utils.py:1353
 #: ../src/gui/configure.py:561
 msgid "Rawsurnames"
 msgstr "NomsDeFamilleBrut"
 
-#: ../src/Utils.py:1350
+#: ../src/Utils.py:1353
 msgid "RAWSURNAMES"
 msgstr "NOMSDEFAMILLEBRUT"
 
 # /!\ longue chaîne, voir formats de nom (Préférences)
-#: ../src/Utils.py:1351
+#: ../src/Utils.py:1354
 msgid "Notpatronymic"
 msgstr "PasPatronyme"
 
-#: ../src/Utils.py:1351
+#: ../src/Utils.py:1354
 msgid "NOTPATRONYMIC"
 msgstr "PASPATRONYME"
 
-#: ../src/Utils.py:1352
+#: ../src/Utils.py:1355
 #: ../src/gui/editors/displaytabs/surnametab.py:75
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:179
@@ -2064,11 +2056,11 @@ msgstr "PASPATRONYME"
 msgid "Prefix"
 msgstr "Préfixe"
 
-#: ../src/Utils.py:1352
+#: ../src/Utils.py:1355
 msgid "PREFIX"
 msgstr "PRÉFIXE"
 
-#: ../src/Utils.py:1353
+#: ../src/Utils.py:1356
 #: ../src/gen/lib/attrtype.py:71
 #: ../src/gui/configure.py:543
 #: ../src/gui/configure.py:545
@@ -2078,39 +2070,39 @@ msgstr "PRÉFIXE"
 msgid "Nickname"
 msgstr "Surnom"
 
-#: ../src/Utils.py:1353
+#: ../src/Utils.py:1356
 msgid "NICKNAME"
 msgstr "SURNOM"
 
 # à vérifier
 # en Amérique du Nord, les généalogiqtes utilisent nom-dit !
-#: ../src/Utils.py:1354
+#: ../src/Utils.py:1357
 msgid "Familynick"
 msgstr "Nom-dit"
 
 # à vérifier
 # en Amérique du Nord, les généalogiqtes utilisent nom-dit !
-#: ../src/Utils.py:1354
+#: ../src/Utils.py:1357
 msgid "FAMILYNICK"
 msgstr "NOM-DIT"
 
-#: ../src/Utils.py:1467
-#: ../src/Utils.py:1486
+#: ../src/Utils.py:1470
+#: ../src/Utils.py:1489
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
 
-#: ../src/Utils.py:1736
+#: ../src/Utils.py:1739
 msgid "Unknown, created to replace a missing note object."
 msgstr "Inconnu, créé pour remplacer l'objet note manquant."
 
 #. primitive static variable
-#: ../src/Utils.py:1746
+#: ../src/Utils.py:1749
 #, python-format
 msgid "Unknown, was missing %s (%d)"
 msgstr "Inconnu, été manquant %s (%d)"
 
-#: ../src/Utils.py:1765
+#: ../src/Utils.py:1768
 #, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr "Les objets référencés par cette note étaient manquants dans le fichier importé à la date du %s."
@@ -3407,35 +3399,35 @@ msgstr "Islamique"
 msgid "calendar|Swedish"
 msgstr "Suédois"
 
-#: ../src/gen/lib/date.py:1665
+#: ../src/gen/lib/date.py:1701
 msgid "estimated"
 msgstr "Estimé(e)"
 
-#: ../src/gen/lib/date.py:1665
+#: ../src/gen/lib/date.py:1701
 msgid "calculated"
 msgstr "Calculé(e)"
 
-#: ../src/gen/lib/date.py:1679
+#: ../src/gen/lib/date.py:1715
 msgid "before"
 msgstr "Avant"
 
-#: ../src/gen/lib/date.py:1679
+#: ../src/gen/lib/date.py:1715
 msgid "after"
 msgstr "Après"
 
-#: ../src/gen/lib/date.py:1679
+#: ../src/gen/lib/date.py:1715
 msgid "about"
 msgstr "Vers"
 
-#: ../src/gen/lib/date.py:1680
+#: ../src/gen/lib/date.py:1716
 msgid "range"
 msgstr "Étendu(e)"
 
-#: ../src/gen/lib/date.py:1680
+#: ../src/gen/lib/date.py:1716
 msgid "span"
 msgstr "Incrémenté(e)"
 
-#: ../src/gen/lib/date.py:1680
+#: ../src/gen/lib/date.py:1716
 msgid "textonly"
 msgstr "Texte seulement"
 
@@ -4643,7 +4635,7 @@ msgstr "Résolution"
 
 #: ../src/gen/plug/docgen/graphdoc.py:212
 msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 DPI."
-msgstr "Points par pouce (DPI). Pour les images pour internet, comme des .gif ou .png, utiliser des valeurs comme 100 ou 300 DPI. Pour les fichiers PostScript ou PDF utiliser 72 DPI."
+msgstr "La résolution en points par pouce (DPI). Pour les images sur internet, tel que des fichiers .gif ou .png, utilisez des valeurs comme 100 ou 300 DPI. Les fichiers PostScript ou PDF utilisent toujours 72 DPI."
 
 #: ../src/gen/plug/docgen/graphdoc.py:219
 msgid "Node spacing"
@@ -4797,7 +4789,7 @@ msgid "Could not add photo to page"
 msgstr "Impossible d'ajouter une photo à cette page"
 
 #: ../src/gen/plug/report/utils.py:143
-#: ../src/gui/utils.py:374
+#: ../src/gui/utils.py:387
 #: ../src/plugins/textreport/IndivComplete.py:631
 msgid "File does not exist"
 msgstr "Fichier inexistant"
@@ -6622,18 +6614,31 @@ msgstr "Annulation..."
 msgid "Please do not force closing this important dialog."
 msgstr "Veuillez ne pas fermer cette fenêtre."
 
-#: ../src/gui/utils.py:355
+#: ../src/gui/utils.py:336
+msgid "The external program failed to launch or experienced an error"
+msgstr "Le programme externe n'a pas pu être ouvert ou il a rencontré une erreur."
+
+#: ../src/gui/utils.py:346
 msgid "Error from external program"
 msgstr "Erreur depuis le programme externe"
 
-# Substantif (GNOME fr)
-#: ../src/gui/utils.py:374
-#: ../src/gui/utils.py:381
-#: ../src/gui/utils.py:396
-msgid "Error Opening File"
-msgstr "Erreur à l'ouverture du fichier"
+#: ../src/gui/utils.py:404
+msgid "Error in command line syntax."
+msgstr "Erreur de syntaxe dans la ligne de commande."
 
-#: ../src/gui/utils.py:470
+#: ../src/gui/utils.py:405
+msgid "One of the files passed on the command line did not exist."
+msgstr "Un des fichiers de la ligne de commande n'existe pas."
+
+#: ../src/gui/utils.py:406
+msgid "A required tool could not be found."
+msgstr "Un outil requis n'a pas pu être trouvé."
+
+#: ../src/gui/utils.py:407
+msgid "The action failed."
+msgstr "L'action a échoué."
+
+#: ../src/gui/utils.py:489
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already being edited, or the associated source is already being edited, and opening a citation editor (which also allows the source to be edited), would create ambiguity by opening two editors on the same source. \n"
 "\n"
@@ -6644,7 +6649,7 @@ msgstr ""
 "Pour éditer la citation, fermez l'éditeur de source et ouvrez un éditeur pour une seule citation."
 
 # trunk
-#: ../src/gui/utils.py:483
+#: ../src/gui/utils.py:502
 msgid "Cannot open new citation editor"
 msgstr "Impossible d'ouvrir un nouvel éditeur de citation."
 
@@ -30549,8 +30554,8 @@ msgstr "<b>Le droit d'utilisation du programme Gramps</b><br/>Gramps est libreme
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de Linux Gramps fonctionne de la même façon quelque soit l'environnement de bureau. Tant que vous avez les bibliothèques GTK installées il fonctionnera bien."
 
-#~ msgid "Active person: <b>%s</b>"
-#~ msgstr "Individu actif : <b>%s</b>"
+#~ msgid "death-related evidence"
+#~ msgstr "événement attestant le décès"
 
-#~ msgid "Gramplet showing active person's attributes"
-#~ msgstr "Gramplet affichant les attributs de l'individu actif"
+#~ msgid "birth-related evidence"
+#~ msgstr "événement attestant la naissance"
