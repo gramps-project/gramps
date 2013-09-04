@@ -600,7 +600,7 @@ class ProbablyAlive(object):
             if death_ref:
                 death = self.db.get_event_from_handle(death_ref.ref)
                 if death:
-                    if death.get_date_object().get_start_date() != gen.lib.Date.EMPTY:
+                    if death.get_date_object().is_valid():
                         death_date = death.get_date_object()
                     else:
                         death_date = gen.lib.date.Today()
@@ -614,7 +614,9 @@ class ProbablyAlive(object):
                     ev = self.db.get_event_from_handle(ev_ref.ref)
                     if ev and ev.type.is_death_fallback():
                         death_date = ev.get_date_object()
-                        explain = _("death-related evidence")
+                        if not death_date.is_valid():
+                            death_date = Today() # before today
+                            death_date.set_modifier(Date.MOD_BEFORE)
 
         # If they were born within X years before current year then
         # assume they are alive (we already know they are not dead).
@@ -631,7 +633,6 @@ class ProbablyAlive(object):
                 ev = self.db.get_event_from_handle(ev_ref.ref)
                 if ev and ev.type.is_birth_fallback():
                     birth_date = ev.get_date_object()
-                    explain = _("birth-related evidence")
 
         if not birth_date and death_date:
             # person died more than MAX after current year
@@ -983,8 +984,8 @@ def probably_alive(person, db,
         birth, death, explain))
     if not birth or not death:
         # no evidence, must consider alive
-        return (True, None, None, _("no evidence"), None) if return_range \
-                else True
+        return ((True, None, None, _("no evidence"), None) if return_range
+                else True)
     # must have dates from here:
     if limit:
         death += limit # add these years to death

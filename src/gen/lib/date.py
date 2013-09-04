@@ -1322,6 +1322,36 @@ class Date(object):
         if day != 0 or dv[Date._POS_DAY] > 28:
             self.set_yr_mon_day(*self.offset(day))
 
+    def set2_yr_mon_day_offset(self, year=0, month=0, day=0):
+        """
+        Set the year, month, and day values by offset.
+        """
+        dv = list(self.dateval)
+        if dv[Date._POS_RYR]:
+            dv[Date._POS_RYR] += year
+        elif year:
+            dv[Date._POS_RYR] = year
+        if dv[Date._POS_RMON]:
+            dv[Date._POS_RMON] += month
+        elif month:
+            if month < 0:
+                dv[Date._POS_RMON] = 1 + month
+            else:
+                dv[Date._POS_RMON] = month
+        # Fix if month out of bounds:
+        if month != 0: # only check if changed
+            if dv[Date._POS_RMON] == 0: # subtraction
+                dv[Date._POS_RMON] = 12
+                dv[Date._POS_RYR] -= 1
+            elif dv[Date._POS_RMON] < 0: # subtraction
+                dv[Date._POS_RYR] -= int((-dv[Date._POS_RMON]) / 12) + 1
+                dv[Date._POS_RMON] = (dv[Date._POS_RMON] % 12)
+            elif dv[Date._POS_RMON] > 12 or dv[Date._POS_RMON] < 1:
+                dv[Date._POS_RYR] += int(dv[Date._POS_RMON] / 12)
+                dv[Date._POS_RMON] = dv[Date._POS_RMON] % 12
+        if day != 0 or dv[Date._POS_RDAY] > 28:
+            self.set2_yr_mon_day(*self.offset(day))
+
     def copy_offset_ymd(self, year=0, month=0, day=0):
         """
         Return a Date copy based on year, month, and day offset.
@@ -1333,6 +1363,9 @@ class Date(object):
             new_date = self
         retval = Date(new_date)
         retval.set_yr_mon_day_offset(year, month, day)
+        if (self.get_modifier() == Date.MOD_RANGE or 
+            self.get_modifier() == Date.MOD_SPAN): 
+            retval.set2_yr_mon_day_offset(year, month, day)
         if orig_cal == 0:
             return retval
         else:
@@ -1345,6 +1378,9 @@ class Date(object):
         """
         retval = Date(self)
         retval.set_yr_mon_day(year, month, day)
+        if (self.get_modifier() == Date.MOD_RANGE or 
+            self.get_modifier() == Date.MOD_SPAN): 
+            retval.set2_yr_mon_day_offset(year, month, day)
         return retval
 
     def set_year(self, year):
