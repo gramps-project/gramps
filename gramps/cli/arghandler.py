@@ -650,8 +650,13 @@ class ArgHandler(object):
                         category = pdata.category
                         tool_class = eval('mod.' + pdata.toolclass)
                         options_class = eval('mod.' + pdata.optionclass)
-                        tool.cli_tool(self.dbstate, name, category, tool_class,
-                                      options_class, options_str_dict)
+                        tool.cli_tool(
+                                dbstate=self.dbstate, 
+                                name=name, 
+                                category=category, 
+                                tool_class=tool_class,
+                                options_class=options_class, 
+                                options_str_dict=options_str_dict)
                         return
                 msg = _("Unknown tool name.")
             else:

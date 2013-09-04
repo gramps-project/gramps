@@ -248,11 +248,15 @@ class PluginDialog(ManagedWindow):
                    pdata.name, pdata.id, 
                    pdata.category, pdata.require_active)
         else:
-            tool.gui_tool(self.state, self.uistate,
-                           eval('mod.' + pdata.toolclass), 
-                           eval('mod.' + pdata.optionclass),
-                           pdata.name, pdata.id, pdata.category,
-                           self.state.db.request_rebuild)
+            tool.gui_tool(
+                    dbstate = self.state, 
+                    uistate = self.uistate,
+                    tool_class = eval('mod.' + pdata.toolclass), 
+                    options_class = eval('mod.' + pdata.optionclass),
+                    translated_name = pdata.name, 
+                    name = pdata.id, 
+                    category = pdata.category,
+                    callback = self.state.db.request_rebuild)
 
 #-------------------------------------------------------------------------
 #

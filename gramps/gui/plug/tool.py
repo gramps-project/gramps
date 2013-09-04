@@ -253,7 +253,9 @@ def gui_tool(dbstate, uistate, tool_class, options_class, translated_name,
     """
 
     try:
-        tool_class(dbstate, uistate, options_class, name, callback)
+        tool_class(dbstate = dbstate, uistate = uistate, 
+                options_class = options_class, name = name, 
+                callback = callback)
     except WindowActiveError:
         pass
     except:
@@ -272,7 +274,8 @@ def cli_tool(dbstate, name, category, tool_class, options_class, options_str_dic
 
     # run tool
     try:
-        tool_class(dbstate, None, clt.option_class, name, None)
+        tool_class(dbstate = dbstate, uistate = None, 
+                options_class = clt.option_class, name = name, callback = None)
     except:
         log.error("Failed to start tool.", exc_info=True)
 

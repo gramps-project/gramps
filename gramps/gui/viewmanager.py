@@ -1628,11 +1628,13 @@ def run_plugin(pdata, dbstate, uistate):
                pdata.category, pdata.require_active,
                )
     else:
-        tool.gui_tool(dbstate, uistate,
-                      getattr(mod, pdata.toolclass),
-                      getattr(mod, pdata.optionclass),
-                      pdata.name, pdata.id, pdata.category,
-                      dbstate.db.request_rebuild)
+        tool.gui_tool(dbstate = dbstate, uistate = uistate,
+                      tool_class = getattr(mod, pdata.toolclass),
+                      options_class = getattr(mod, pdata.optionclass),
+                      translated_name = pdata.name, 
+                      name = pdata.id, 
+                      category = pdata.category,
+                      callback = dbstate.db.request_rebuild)
 
 def make_plugin_callback(pdata, dbstate, uistate):
     """
