@@ -1296,6 +1296,16 @@ class Date(object):
         self.dateval = tuple(dv)
         self._calc_sort_value()
 
+    def set2_yr_mon_day(self, year, month, day):
+        """
+        Set the year, month, and day values.
+        """
+        dv = list(self.dateval)
+        dv[Date._POS_RYR] = year
+        dv[Date._POS_RMON] = month
+        dv[Date._POS_RDAY] = day
+        self.dateval = tuple(dv)
+
     def set_yr_mon_day_offset(self, year=0, month=0, day=0):
         """
         Set the year, month, and day values by offset.
@@ -1355,6 +1365,7 @@ class Date(object):
             elif dv[Date._POS_RMON] > 12 or dv[Date._POS_RMON] < 1:
                 dv[Date._POS_RYR] += int(dv[Date._POS_RMON] / 12)
                 dv[Date._POS_RMON] = dv[Date._POS_RMON] % 12
+        self.dateval = tuple(dv)
         if day != 0 or dv[Date._POS_RDAY] > 28:
             self.set2_yr_mon_day(*self.offset(day))
 
