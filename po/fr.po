@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-01 17:30+0200\n"
-"PO-Revision-Date: 2013-09-01 17:44+0100\n"
+"POT-Creation-Date: 2013-09-04 10:54+0200\n"
+"PO-Revision-Date: 2013-09-04 11:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -926,8 +926,8 @@ msgstr ""
 # The same "none" is used for name, surname and date. However, in French we say "aucun" for name and surname, but we say "aucune" for date...
 #: ../gramps/gen/const.py:239
 #: ../gramps/gen/const.py:240
-#: ../gramps/gen/lib/date.py:1671
-#: ../gramps/gen/lib/date.py:1685
+#: ../gramps/gen/lib/date.py:1707
+#: ../gramps/gen/lib/date.py:1721
 msgid "none"
 msgstr "aucun(e)"
 
@@ -4413,39 +4413,39 @@ msgstr "Islamique"
 msgid "calendar|Swedish"
 msgstr "Suédois"
 
-#: ../gramps/gen/lib/date.py:1671
+#: ../gramps/gen/lib/date.py:1707
 msgid "estimated"
 msgstr "Estimé(e)"
 
-#: ../gramps/gen/lib/date.py:1671
+#: ../gramps/gen/lib/date.py:1707
 msgid "calculated"
 msgstr "Calculé(e)"
 
 #. ui_mods taken from date.py def lookup_modifier(self, modifier):
-#: ../gramps/gen/lib/date.py:1685
+#: ../gramps/gen/lib/date.py:1721
 #: ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "before"
 msgstr "Avant"
 
-#: ../gramps/gen/lib/date.py:1685
+#: ../gramps/gen/lib/date.py:1721
 #: ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "after"
 msgstr "Après"
 
-#: ../gramps/gen/lib/date.py:1685
+#: ../gramps/gen/lib/date.py:1721
 #: ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "about"
 msgstr "Vers"
 
-#: ../gramps/gen/lib/date.py:1686
+#: ../gramps/gen/lib/date.py:1722
 msgid "range"
 msgstr "Étendu(e)"
 
-#: ../gramps/gen/lib/date.py:1686
+#: ../gramps/gen/lib/date.py:1722
 msgid "span"
 msgstr "Incrémenté(e)"
 
-#: ../gramps/gen/lib/date.py:1686
+#: ../gramps/gen/lib/date.py:1722
 msgid "textonly"
 msgstr "Texte seulement"
 
@@ -5739,7 +5739,7 @@ msgstr "Résolution"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:220
 msgid "Dots per inch.  When creating images such as .gif or .png files for the web, try numbers such as 100 or 300 DPI.  PostScript and PDF files always use 72 DPI."
-msgstr "Points par pouce (DPI). Pour les images pour internet, comme des .gif ou .png, utiliser des valeurs comme 100 ou 300 DPI. Pour les fichiers PostScript ou PDF utiliser 72 DPI."
+msgstr "La résolution en points par pouce (DPI). Pour les images sur internet, tel que des fichiers .gif ou .png, utilisez des valeurs comme 100 ou 300 DPI. Les fichiers PostScript ou PDF utilisent toujours 72 DPI."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:227
 msgid "Node spacing"
@@ -5980,7 +5980,7 @@ msgid "Could not add photo to page"
 msgstr "Impossible d'ajouter une photo à cette page"
 
 #: ../gramps/gen/plug/report/utils.py:145
-#: ../gramps/gui/utils.py:404
+#: ../gramps/gui/utils.py:414
 #: ../gramps/plugins/textreport/indivcomplete.py:656
 msgid "File does not exist"
 msgstr "Fichier inexistant"
@@ -6274,109 +6274,91 @@ msgstr "Père inconnu"
 msgid "Unknown mother"
 msgstr "Mère inconnue"
 
-# trunk
-#: ../gramps/gen/utils/alive.py:114
-msgid "death event without date"
-msgstr "événement décès mais pas de date"
-
-#: ../gramps/gen/utils/alive.py:125
-msgid "death-related evidence"
-msgstr "événement attestant le décès"
-
-# trunk
-#: ../gramps/gen/utils/alive.py:129
-msgid "death-related evidence without date"
-msgstr "événement attestant le décès mais pas de date"
-
-#: ../gramps/gen/utils/alive.py:146
-msgid "birth-related evidence"
-msgstr "événement attestant la naissance"
-
-#: ../gramps/gen/utils/alive.py:151
+#: ../gramps/gen/utils/alive.py:148
 #: ../gramps/plugins/importer/importcsv.py:215
 msgid "death date"
 msgstr "date de décès"
 
-#: ../gramps/gen/utils/alive.py:156
+#: ../gramps/gen/utils/alive.py:153
 #: ../gramps/plugins/importer/importcsv.py:193
 msgid "birth date"
 msgstr "date de naissance"
 
-#: ../gramps/gen/utils/alive.py:189
+#: ../gramps/gen/utils/alive.py:186
 msgid "sibling birth date"
 msgstr "date de naissance d'un frère ou d'une sœur"
 
-#: ../gramps/gen/utils/alive.py:201
+#: ../gramps/gen/utils/alive.py:198
 msgid "sibling death date"
 msgstr "date de décès d'un frère ou d'une sœur"
 
-#: ../gramps/gen/utils/alive.py:215
+#: ../gramps/gen/utils/alive.py:212
 msgid "sibling birth-related date"
 msgstr "date d'un événement lié à la naissance d'un frère ou d'une sœur"
 
-#: ../gramps/gen/utils/alive.py:226
+#: ../gramps/gen/utils/alive.py:223
 msgid "sibling death-related date"
 msgstr "date d'un événement lié au décès d'un frère ou d'une sœur"
 
 # trunk
-#: ../gramps/gen/utils/alive.py:241
-#: ../gramps/gen/utils/alive.py:252
+#: ../gramps/gen/utils/alive.py:238
+#: ../gramps/gen/utils/alive.py:249
 msgid "a spouse's birth-related date, "
 msgstr "date liée à la naissance du conjoint,"
 
 # trunk
-#: ../gramps/gen/utils/alive.py:245
-#: ../gramps/gen/utils/alive.py:256
+#: ../gramps/gen/utils/alive.py:242
+#: ../gramps/gen/utils/alive.py:253
 msgid "a spouse's death-related date, "
 msgstr "date liée au décès du conjoint,"
 
-#: ../gramps/gen/utils/alive.py:274
+#: ../gramps/gen/utils/alive.py:271
 msgid "event with spouse"
 msgstr "événement avec le conjoint"
 
-#: ../gramps/gen/utils/alive.py:298
+#: ../gramps/gen/utils/alive.py:295
 msgid "descendant birth date"
 msgstr "date de naissance d'un descendant"
 
-#: ../gramps/gen/utils/alive.py:307
+#: ../gramps/gen/utils/alive.py:304
 msgid "descendant death date"
 msgstr "date de décès d'un descendant"
 
-#: ../gramps/gen/utils/alive.py:323
+#: ../gramps/gen/utils/alive.py:320
 msgid "descendant birth-related date"
 msgstr "date d'un événement lié à la naissance d'un descendant"
 
-#: ../gramps/gen/utils/alive.py:331
+#: ../gramps/gen/utils/alive.py:328
 msgid "descendant death-related date"
 msgstr "date d'un événement lié au décès d'un descendant"
 
-#: ../gramps/gen/utils/alive.py:344
+#: ../gramps/gen/utils/alive.py:341
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr "Erreur de base de données : %s est défini comme son propre ascendant"
 
-#: ../gramps/gen/utils/alive.py:368
-#: ../gramps/gen/utils/alive.py:414
+#: ../gramps/gen/utils/alive.py:365
+#: ../gramps/gen/utils/alive.py:411
 msgid "ancestor birth date"
 msgstr "date de naissance d'un ascendant"
 
-#: ../gramps/gen/utils/alive.py:378
-#: ../gramps/gen/utils/alive.py:424
+#: ../gramps/gen/utils/alive.py:375
+#: ../gramps/gen/utils/alive.py:421
 msgid "ancestor death date"
 msgstr "date de décès d'un ascendant"
 
-#: ../gramps/gen/utils/alive.py:389
-#: ../gramps/gen/utils/alive.py:435
+#: ../gramps/gen/utils/alive.py:386
+#: ../gramps/gen/utils/alive.py:432
 msgid "ancestor birth-related date"
 msgstr "date d'un événement lié à la naissance d'un ascendant"
 
-#: ../gramps/gen/utils/alive.py:397
-#: ../gramps/gen/utils/alive.py:443
+#: ../gramps/gen/utils/alive.py:394
+#: ../gramps/gen/utils/alive.py:440
 msgid "ancestor death-related date"
 msgstr "date d'un événement lié au décès d'un ascendant"
 
 #. no evidence, must consider alive
-#: ../gramps/gen/utils/alive.py:501
+#: ../gramps/gen/utils/alive.py:497
 msgid "no evidence"
 msgstr "aucune déduction"
 
@@ -6464,9 +6446,10 @@ msgstr "Finnois"
 msgid "French"
 msgstr "Français"
 
+# Irlandais, Écossais, Mannois
 #: ../gramps/gen/utils/grampslocale.py:78
 msgid "Gaelic"
-msgstr ""
+msgstr "Gaélique"
 
 #. Windows has no translation for Gaelic
 #: ../gramps/gen/utils/grampslocale.py:79
@@ -13184,6 +13167,12 @@ msgid ""
 "See the Gramps README documentation for installation prerequisites,\n"
 "typically located in /usr/share/doc/gramps."
 msgstr ""
+"Les traductions GTK pour la langue actuelle (%s) sont manquantes.\n"
+"<b>Gramps</b> fonctionnera tout de même.\n"
+"L'interface (GUI) sera incomplète, surtout pour les languages de droite à gauche (RTL) !\n"
+"\n"
+"Voir le fichier README de Gramps pour une installation des pré-requis,\n"
+"généralement présent sous /usr/share/doc/gramps."
 
 #: ../gramps/gui/grampsgui.py:305
 msgid "Error parsing arguments"
@@ -14560,18 +14549,16 @@ msgstr "Annulation..."
 msgid "Please do not force closing this important dialog."
 msgstr "Veuillez ne pas fermer cette fenêtre."
 
-#: ../gramps/gui/utils.py:387
+#: ../gramps/gui/utils.py:367
+msgid "The external program failed to launch or experienced an error"
+msgstr "Le programme externe n'a pas pu être ouvert ou il a rencontré une erreur."
+
+#: ../gramps/gui/utils.py:377
 msgid "Error from external program"
 msgstr "Erreur depuis le programme externe"
 
-# Substantif (GNOME fr)
-#: ../gramps/gui/utils.py:404
-#: ../gramps/gui/utils.py:411
-msgid "Error Opening File"
-msgstr "Erreur à l'ouverture du fichier"
-
 # trunk
-#: ../gramps/gui/utils.py:581
+#: ../gramps/gui/utils.py:591
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already being edited, or the associated source is already being edited, and opening a citation editor (which also allows the source to be edited), would create ambiguity by opening two editors on the same source. \n"
 "\n"
@@ -14582,7 +14569,7 @@ msgstr ""
 "Pour éditer la citation, fermez l'éditeur de source et ouvrez un éditeur pour une seule citation."
 
 # trunk
-#: ../gramps/gui/utils.py:594
+#: ../gramps/gui/utils.py:604
 msgid "Cannot open new citation editor"
 msgstr "Impossible d'ouvrir un nouvel éditeur de citation."
 
@@ -31549,12 +31536,23 @@ msgstr "<b>Le droit d'utilisation du programme Gramps</b><br/>Gramps est libreme
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de GNU/Linux Gramps fonctionne de la même façon quelque soit l'environnement de bureau. Tant que vous avez les bibliothèques GTK installées il fonctionnera bien."
 
+# trunk
+#~ msgid "death event without date"
+#~ msgstr "événement décès mais pas de date"
+#~ msgid "death-related evidence"
+#~ msgstr "événement attestant le décès"
+# trunk
+#~ msgid "death-related evidence without date"
+#~ msgstr "événement attestant le décès mais pas de date"
+#~ msgid "birth-related evidence"
+#~ msgstr "événement attestant la naissance"
+# Substantif (GNOME fr)
+#~ msgid "Error Opening File"
+#~ msgstr "Erreur à l'ouverture du fichier"
 #~ msgid "YES"
 #~ msgstr "OUI"
-
 #~ msgid "Regular expression:"
 #~ msgstr "Expression rationnelle :"
-
 # trunk
 #~ msgid "Citations having notes containing <regular expression>"
 #~ msgstr "Citations dont les notes contiennent une <expression rationnelle>"

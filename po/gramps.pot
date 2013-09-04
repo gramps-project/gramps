@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-01 17:30+0200\n"
+"POT-Creation-Date: 2013-09-04 10:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -725,7 +725,7 @@ msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 
 #: ../gramps/gen/const.py:239 ../gramps/gen/const.py:240
-#: ../gramps/gen/lib/date.py:1671 ../gramps/gen/lib/date.py:1685
+#: ../gramps/gen/lib/date.py:1707 ../gramps/gen/lib/date.py:1721
 msgid "none"
 msgstr ""
 
@@ -3940,36 +3940,36 @@ msgstr ""
 msgid "calendar|Swedish"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1671
+#: ../gramps/gen/lib/date.py:1707
 msgid "estimated"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1671
+#: ../gramps/gen/lib/date.py:1707
 msgid "calculated"
 msgstr ""
 
 #. ui_mods taken from date.py def lookup_modifier(self, modifier):
-#: ../gramps/gen/lib/date.py:1685 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1721 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "before"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1685 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1721 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "after"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1685 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1721 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "about"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1686
+#: ../gramps/gen/lib/date.py:1722
 msgid "range"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1686
+#: ../gramps/gen/lib/date.py:1722
 msgid "span"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1686
+#: ../gramps/gen/lib/date.py:1722
 msgid "textonly"
 msgstr ""
 
@@ -5472,7 +5472,7 @@ msgstr ""
 msgid "Could not add photo to page"
 msgstr ""
 
-#: ../gramps/gen/plug/report/utils.py:145 ../gramps/gui/utils.py:404
+#: ../gramps/gen/plug/report/utils.py:145 ../gramps/gui/utils.py:414
 #: ../gramps/plugins/textreport/indivcomplete.py:656
 msgid "File does not exist"
 msgstr ""
@@ -5757,99 +5757,83 @@ msgstr ""
 msgid "Unknown mother"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:114
-msgid "death event without date"
-msgstr ""
-
-#: ../gramps/gen/utils/alive.py:125
-msgid "death-related evidence"
-msgstr ""
-
-#: ../gramps/gen/utils/alive.py:129
-msgid "death-related evidence without date"
-msgstr ""
-
-#: ../gramps/gen/utils/alive.py:146
-msgid "birth-related evidence"
-msgstr ""
-
-#: ../gramps/gen/utils/alive.py:151
+#: ../gramps/gen/utils/alive.py:148
 #: ../gramps/plugins/importer/importcsv.py:215
 msgid "death date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:156
+#: ../gramps/gen/utils/alive.py:153
 #: ../gramps/plugins/importer/importcsv.py:193
 msgid "birth date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:189
+#: ../gramps/gen/utils/alive.py:186
 msgid "sibling birth date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:201
+#: ../gramps/gen/utils/alive.py:198
 msgid "sibling death date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:215
+#: ../gramps/gen/utils/alive.py:212
 msgid "sibling birth-related date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:226
+#: ../gramps/gen/utils/alive.py:223
 msgid "sibling death-related date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:241 ../gramps/gen/utils/alive.py:252
+#: ../gramps/gen/utils/alive.py:238 ../gramps/gen/utils/alive.py:249
 msgid "a spouse's birth-related date, "
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:245 ../gramps/gen/utils/alive.py:256
+#: ../gramps/gen/utils/alive.py:242 ../gramps/gen/utils/alive.py:253
 msgid "a spouse's death-related date, "
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:274
+#: ../gramps/gen/utils/alive.py:271
 msgid "event with spouse"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:298
+#: ../gramps/gen/utils/alive.py:295
 msgid "descendant birth date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:307
+#: ../gramps/gen/utils/alive.py:304
 msgid "descendant death date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:323
+#: ../gramps/gen/utils/alive.py:320
 msgid "descendant birth-related date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:331
+#: ../gramps/gen/utils/alive.py:328
 msgid "descendant death-related date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:344
+#: ../gramps/gen/utils/alive.py:341
 #, python-format
 msgid "Database error: %s is defined as his or her own ancestor"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:368 ../gramps/gen/utils/alive.py:414
+#: ../gramps/gen/utils/alive.py:365 ../gramps/gen/utils/alive.py:411
 msgid "ancestor birth date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:378 ../gramps/gen/utils/alive.py:424
+#: ../gramps/gen/utils/alive.py:375 ../gramps/gen/utils/alive.py:421
 msgid "ancestor death date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:389 ../gramps/gen/utils/alive.py:435
+#: ../gramps/gen/utils/alive.py:386 ../gramps/gen/utils/alive.py:432
 msgid "ancestor birth-related date"
 msgstr ""
 
-#: ../gramps/gen/utils/alive.py:397 ../gramps/gen/utils/alive.py:443
+#: ../gramps/gen/utils/alive.py:394 ../gramps/gen/utils/alive.py:440
 msgid "ancestor death-related date"
 msgstr ""
 
 #. no evidence, must consider alive
-#: ../gramps/gen/utils/alive.py:501
+#: ../gramps/gen/utils/alive.py:497
 msgid "no evidence"
 msgstr ""
 
@@ -13524,15 +13508,15 @@ msgstr ""
 msgid "Please do not force closing this important dialog."
 msgstr ""
 
-#: ../gramps/gui/utils.py:387
+#: ../gramps/gui/utils.py:367
+msgid "The external program failed to launch or experienced an error"
+msgstr ""
+
+#: ../gramps/gui/utils.py:377
 msgid "Error from external program"
 msgstr ""
 
-#: ../gramps/gui/utils.py:404 ../gramps/gui/utils.py:411
-msgid "Error Opening File"
-msgstr ""
-
-#: ../gramps/gui/utils.py:581
+#: ../gramps/gui/utils.py:591
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -13543,7 +13527,7 @@ msgid ""
 "citation alone"
 msgstr ""
 
-#: ../gramps/gui/utils.py:594
+#: ../gramps/gui/utils.py:604
 msgid "Cannot open new citation editor"
 msgstr ""
 
