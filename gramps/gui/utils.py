@@ -376,7 +376,7 @@ def display_error_dialog (index, errorstrings):
 
     ErrorDialog(_("Error from external program"), error)
 
-def poll_external ((proc, errorstrings)):
+def poll_external (args):
     """
     Check the for completion of a task launched with
     subprocess.Popen().  This function is intended to be passed to
@@ -387,7 +387,8 @@ def poll_external ((proc, errorstrings)):
     @errorstrings a dict of possible response values and the corresponding messages to display.
     @returns bool returned to timeout_add_seconds: should this function be called again?
     """
-    resp = proc.poll()
+   (proc, errorstrings) = args
+   resp = proc.poll()
     if resp is None:
         return True
 
