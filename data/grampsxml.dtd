@@ -62,7 +62,7 @@ DATABASE
 <!ELEMENT database (header, name-formats?, tags?, events?, people?, families?,
                     citations?, sources?, places?, objects?, repositories?,
                     notes?, bookmarks?, namemaps?)>
-<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.5.0/">
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.6.0/">
 
 
 <!--    ************************************************************
