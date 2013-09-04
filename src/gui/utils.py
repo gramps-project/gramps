@@ -345,7 +345,7 @@ def display_error_dialog (index, errorstrings):
 
     ErrorDialog(_("Error from external program"), error)
 
-def poll_external ((proc, errorstrings)):
+def poll_external (args):
     """
     Check the for completion of a task launched with
     subprocess.Popen().  This function is intended to be passed to
@@ -356,7 +356,7 @@ def poll_external ((proc, errorstrings)):
     @errorstrings a dict of possible response values and the corresponding messages to display.
     @returns False when the function has completed.
     """
-    from QuestionDialog import ErrorDialog
+    (proc, errorstrings)= args
     resp = proc.poll()
     if resp is None:
         return True
@@ -365,37 +365,31 @@ def poll_external ((proc, errorstrings)):
         display_error_dialog(resp, errorstrings)
     return False
 
-def open_file_with_default_application(uri, display_error=True):
+def open_file_with_default_application(file_name):
     """
     Launch a program to open an arbitrary file. The file will be opened using
     whatever program is configured on the host as the default program for that
     type of file.
 
     @param file_path: The path to the file to be opened.
-        Example: "c:\foo.txt"
+        Example: "c:\\foo.txt"
     @type file_path: string
     @return: nothing
     """
-    from urlparse import urlparse
-    from time import sleep
     errstrings = None
-    urlcomp = urlparse(uri)
 
-    if (not urlcomp.scheme or urlcomp.scheme == 'file'):
-        norm_path = os.path.normpath(urlcomp.path)
-        if not os.path.exists(norm_path):
-            display_error_dialog(0, _("File does not exist"))
-            return False
-    else:
-        norm_path = uri
+    norm_path = os.path.normpath(file_name)
+    if not os.path.exists(norm_path):
+        display_error_dialog(0, _("File does not exist"))
+        return
 
     if constfunc.win():
         try:
             os.startfile(norm_path)
         except WindowsError, msg:
             display_error_dialog(0, str(msg))
-            return False
-        return True
+
+        return
 
     if constfunc.mac():
         utility = '/usr/bin/open'
@@ -407,18 +401,10 @@ def open_file_with_default_application(uri, display_error=True):
                       4:_('The action failed.')}
 
     proc = subprocess.Popen([utility, norm_path], stderr=subprocess.STDOUT)
-    sleep(.1)
-    resp = proc.poll()
-    if resp is None:
-        from gobject import timeout_add
-        timeout_add(1000, poll_external, (proc, errstrings))
-        return True
-    if resp == 0:
-        return True
 
-    if display_error:
-        display_error_dialog(resp, errstrings)
-    return False
+    from gobject import timeout_add
+    timeout_add(1000, poll_external, (proc, errstrings))
+    return
 
 def process_pending_events(max_count=10):
     """
