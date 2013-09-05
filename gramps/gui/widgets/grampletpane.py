@@ -112,9 +112,9 @@ def GET_AVAILABLE_GRAMPLETS(name):
     return None
 
 def GET_GRAMPLET_LIST(nav_type, skip):
-    return [(gplug.gramplet_title, gplug.id) 
+    return [(gplug.gramplet_title, gplug.id)
             for gplug in PLUGMAN.get_reg_gramplets()
-            if gplug.navtypes == [] or nav_type in gplug.navtypes
+            if (gplug.navtypes == [] or nav_type in gplug.navtypes)
             and gplug.name not in skip]
 
 def parse_tag_attr(text):
