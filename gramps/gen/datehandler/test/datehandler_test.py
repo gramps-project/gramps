@@ -173,3 +173,6 @@ class DateHandlerTest(unittest.TestCase):
         with self.assertRaises(DateError):
             d.set(Date.QUAL_NONE, Date.MOD_SPAN, Date.CAL_GREGORIAN,
                   (4, 7, 1789, False, 5, 88, 1876, False), "Text comment")
+
+if __name__ == "__main__":
+    unittest.main()
