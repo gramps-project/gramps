@@ -1,8 +1,8 @@
-##########################
-The :mod:`gen.lib` Module
-##########################
+################################
+The :mod:`gramps.gen.lib` Module
+################################
 
-.. automodule:: gen.lib
+.. automodule:: gramps.gen.lib
 
 *****************************
 Base objects
@@ -10,15 +10,15 @@ Base objects
 
 BaseObject
 ====================================
-.. automodule:: gen.lib.baseobj
-.. autoclass:: gen.lib.baseobj.BaseObject
+.. automodule:: gramps.gen.lib.baseobj
+.. autoclass:: gramps.gen.lib.baseobj.BaseObject
    :members:
    :undoc-members:
    :show-inheritance:
 
 AddressBase
 ====================================
-.. automodule:: gen.lib.addressbase
+.. automodule:: gramps.gen.lib.addressbase
 .. autoclass:: AddressBase
    :members:
    :undoc-members:
@@ -26,7 +26,7 @@ AddressBase
 
 AttributeBase
 ====================================
-.. automodule:: gen.lib.attrbase
+.. automodule:: gramps.gen.lib.attrbase
 .. autoclass:: AttributeBase
    :members:
    :undoc-members:
@@ -34,7 +34,7 @@ AttributeBase
 
 CitationBase
 ====================================
-.. automodule:: gen.lib.citationbase
+.. automodule:: gramps.gen.lib.citationbase
 .. autoclass:: CitationBase
    :members:
    :undoc-members:
@@ -42,7 +42,7 @@ CitationBase
    
 DateBase
 ====================================
-.. automodule:: gen.lib.datebase
+.. automodule:: gramps.gen.lib.datebase
 .. autoclass:: DateBase
    :members:
    :undoc-members:
@@ -50,7 +50,7 @@ DateBase
    
 LdsOrdBase
 ====================================
-.. automodule:: gen.lib.ldsordbase
+.. automodule:: gramps.gen.lib.ldsordbase
 .. autoclass:: LdsOrdBase
    :members:
    :undoc-members:
@@ -58,7 +58,7 @@ LdsOrdBase
    
 LocationBase
 ====================================
-.. automodule:: gen.lib.locationbase
+.. automodule:: gramps.gen.lib.locationbase
 .. autoclass:: LocationBase
    :members:
    :undoc-members:
@@ -66,7 +66,7 @@ LocationBase
    
 MediaBase
 ====================================
-.. automodule:: gen.lib.mediabase
+.. automodule:: gramps.gen.lib.mediabase
 .. autoclass:: MediaBase
    :members:
    :undoc-members:
@@ -74,7 +74,7 @@ MediaBase
 
 NoteBase
 ====================================
-.. automodule:: gen.lib.notebase
+.. automodule:: gramps.gen.lib.notebase
 .. autoclass:: NoteBase
    :members:
    :undoc-members:
@@ -82,7 +82,7 @@ NoteBase
 
 PlaceBase
 ====================================
-.. automodule:: gen.lib.placebase
+.. automodule:: gramps.gen.lib.placebase
 .. autoclass:: PlaceBase
    :members:
    :undoc-members:
@@ -90,7 +90,7 @@ PlaceBase
 
 PrivacyBase
 ====================================
-.. automodule:: gen.lib.privacybase
+.. automodule:: gramps.gen.lib.privacybase
 .. autoclass:: PrivacyBase
    :members:
    :undoc-members:
@@ -98,7 +98,7 @@ PrivacyBase
    
 RefBase
 ====================================
-.. automodule:: gen.lib.refbase
+.. automodule:: gramps.gen.lib.refbase
 .. autoclass:: RefBase
    :members:
    :undoc-members:
@@ -106,7 +106,7 @@ RefBase
 
 SurnameBase
 ====================================
-.. automodule:: gen.lib.surnamebase
+.. automodule:: gramps.gen.lib.surnamebase
 .. autoclass:: SurnameBase
    :members:
    :undoc-members:
@@ -114,7 +114,7 @@ SurnameBase
       
 TagBase
 ====================================
-.. automodule:: gen.lib.tagbase
+.. automodule:: gramps.gen.lib.tagbase
 .. autoclass:: TagBase
    :members:
    :undoc-members:
@@ -122,7 +122,7 @@ TagBase
 
 UrlBase
 ====================================
-.. automodule:: gen.lib.urlbase
+.. automodule:: gramps.gen.lib.urlbase
 .. autoclass:: UrlBase
    :members:
    :undoc-members:
@@ -134,7 +134,7 @@ Primary objects
 
 BasicPrimaryObject
 ====================================
-.. automodule:: gen.lib.primaryobj
+.. automodule:: gramps.gen.lib.primaryobj
 .. autoclass:: BasicPrimaryObject
    :members:
    :undoc-members:
@@ -149,7 +149,7 @@ PrimaryObject
 
 Person
 ====================================
-.. automodule:: gen.lib.person
+.. automodule:: gramps.gen.lib.person
 .. autoclass:: Person
    :members:
    :undoc-members:
@@ -157,7 +157,7 @@ Person
 
 Family
 ====================================
-.. automodule:: gen.lib.family
+.. automodule:: gramps.gen.lib.family
 .. autoclass:: Family
    :members:
    :undoc-members:
@@ -165,7 +165,7 @@ Family
 
 Event
 ====================================
-.. automodule:: gen.lib.event
+.. automodule:: gramps.gen.lib.event
 .. autoclass:: Event
    :members:
    :undoc-members:
@@ -173,7 +173,7 @@ Event
 
 Place
 ====================================
-.. automodule:: gen.lib.place
+.. automodule:: gramps.gen.lib.place
 .. autoclass:: Place
    :members:
    :undoc-members:
@@ -181,7 +181,7 @@ Place
 
 Source
 ====================================
-.. automodule:: gen.lib.src
+.. automodule:: gramps.gen.lib.src
 .. autoclass:: Source
    :members:
    :undoc-members:
@@ -189,7 +189,7 @@ Source
 
 Citation
 ====================================
-.. automodule:: gen.lib.citation
+.. automodule:: gramps.gen.lib.citation
 .. autoclass:: Citation
    :members:
    :undoc-members:
@@ -197,7 +197,7 @@ Citation
 
 Media Object
 ====================================
-.. automodule:: gen.lib.mediaobj
+.. automodule:: gramps.gen.lib.mediaobj
 .. autoclass:: MediaObject
    :members:
    :undoc-members:
@@ -205,7 +205,7 @@ Media Object
 
 Repository
 ====================================
-.. automodule:: gen.lib.repo
+.. automodule:: gramps.gen.lib.repo
 .. autoclass:: Repository
    :members:
    :undoc-members:
@@ -213,7 +213,7 @@ Repository
 
 Note
 ====================================
-.. automodule:: gen.lib.note
+.. automodule:: gramps.gen.lib.note
 .. autoclass:: Note
    :members:
    :undoc-members:
@@ -225,7 +225,7 @@ Secondary objects
 
 Secondary Object
 ====================================
-.. automodule:: gen.lib.secondaryobj
+.. automodule:: gramps.gen.lib.secondaryobj
 .. autoclass:: SecondaryObject
    :members:
    :undoc-members:
@@ -233,7 +233,7 @@ Secondary Object
 
 Address
 ====================================
-.. automodule:: gen.lib.address
+.. automodule:: gramps.gen.lib.address
 .. autoclass:: Address
    :members:
    :undoc-members:
@@ -241,7 +241,7 @@ Address
 
 Attribute
 ====================================
-.. automodule:: gen.lib.attribute
+.. automodule:: gramps.gen.lib.attribute
 .. autoclass:: Attribute
    :members:
    :undoc-members:
@@ -249,7 +249,7 @@ Attribute
 
 LdsOrd
 ====================================
-.. automodule:: gen.lib.ldsord
+.. automodule:: gramps.gen.lib.ldsord
 .. autoclass:: LdsOrd
    :members:
    :undoc-members:
@@ -257,7 +257,7 @@ LdsOrd
 
 Location
 ====================================
-.. automodule:: gen.lib.location
+.. automodule:: gramps.gen.lib.location
 .. autoclass:: Location
    :members:
    :undoc-members:
@@ -265,7 +265,7 @@ Location
 
 Name
 ====================================
-.. automodule:: gen.lib.name
+.. automodule:: gramps.gen.lib.name
 .. autoclass:: Name
    :members:
    :undoc-members:
@@ -273,7 +273,7 @@ Name
 
 Surname
 ====================================
-.. automodule:: gen.lib.surname
+.. automodule:: gramps.gen.lib.surname
 .. autoclass:: Surname
    :members:
    :undoc-members:
@@ -281,7 +281,7 @@ Surname
 
 Url
 ====================================
-.. automodule:: gen.lib.url
+.. automodule:: gramps.gen.lib.url
 .. autoclass:: Url
    :members:
    :undoc-members:
@@ -293,7 +293,7 @@ Reference objects
 
 ChildRef
 ====================================
-.. automodule:: gen.lib.childref
+.. automodule:: gramps.gen.lib.childref
 .. autoclass:: ChildRef
    :members:
    :undoc-members:
@@ -301,7 +301,7 @@ ChildRef
 
 EventRef
 ====================================
-.. automodule:: gen.lib.eventref
+.. automodule:: gramps.gen.lib.eventref
 .. autoclass:: EventRef
    :members:
    :undoc-members:
@@ -309,7 +309,7 @@ EventRef
 
 MediaRef
 ====================================
-.. automodule:: gen.lib.mediaref
+.. automodule:: gramps.gen.lib.mediaref
 .. autoclass:: MediaRef
    :members:
    :undoc-members:
@@ -317,7 +317,7 @@ MediaRef
 
 PersonRef
 ====================================
-.. automodule:: gen.lib.personref
+.. automodule:: gramps.gen.lib.personref
 .. autoclass:: PersonRef
    :members:
    :undoc-members:
@@ -325,7 +325,7 @@ PersonRef
 
 RepoRef
 ====================================
-.. automodule:: gen.lib.reporef
+.. automodule:: gramps.gen.lib.reporef
 .. autoclass:: RepoRef
    :members:
    :undoc-members:
@@ -337,7 +337,7 @@ Table object
 
 Table object
 ====================================
-.. automodule:: gen.lib.tableobj
+.. automodule:: gramps.gen.lib.tableobj
    :members:
    :undoc-members:
    :show-inheritance:
@@ -345,7 +345,7 @@ Table object
 *****************************
 Date objects
 *****************************
-.. automodule:: gen.lib.date
+.. automodule:: gramps.gen.lib.date
 
 Date
 ====================================
@@ -371,7 +371,7 @@ Text objects
 
 StyledTextTag
 ===================
-.. automodule:: gen.lib.styledtexttag
+.. automodule:: gramps.gen.lib.styledtexttag
 .. autoclass:: StyledTextTag
    :members:
    :undoc-members:
@@ -379,7 +379,7 @@ StyledTextTag
 
 StyledText
 ===========
-.. automodule:: gen.lib.styledtext
+.. automodule:: gramps.gen.lib.styledtext
 .. autoclass:: StyledText
    :members:
    :undoc-members:
@@ -392,7 +392,7 @@ Meta data
 GenderStats
 ============
 
-.. automodule:: gen.lib.genderstats
+.. automodule:: gramps.gen.lib.genderstats
 .. autoclass:: GenderStats
    :members:
    :undoc-members:
@@ -400,7 +400,7 @@ GenderStats
 
 Researcher
 ===========
-.. automodule:: gen.lib.researcher
+.. automodule:: gramps.gen.lib.researcher
 .. autoclass:: Researcher
    :members:
    :undoc-members:
@@ -409,7 +409,7 @@ Researcher
 *****************************
 Type classes
 *****************************
-.. automodule:: gen.lib.grampstype
+.. automodule:: gramps.gen.lib.grampstype
 .. autoclass:: GrampsTypeMeta
    :members:
    :undoc-members:
@@ -424,21 +424,21 @@ GrampsType
 
 AttributeType
 =============
-.. automodule:: gen.lib.attrtype
+.. automodule:: gramps.gen.lib.attrtype
    :members:
    :undoc-members:
    :show-inheritance:
 
 ChildRefType
 =============
-.. automodule:: gen.lib.childreftype
+.. automodule:: gramps.gen.lib.childreftype
    :members:
    :undoc-members:
    :show-inheritance:
 
 EventType
 ===========
-.. automodule:: gen.lib.eventtype
+.. automodule:: gramps.gen.lib.eventtype
 .. autoclass:: EventType
    :members:
    :undoc-members:
@@ -446,70 +446,70 @@ EventType
    
 EventRoleType
 ==============
-.. automodule:: gen.lib.eventroletype
+.. automodule:: gramps.gen.lib.eventroletype
    :members:
    :undoc-members:
    :show-inheritance:
 
 FamilyRelType
 =============
-.. automodule:: gen.lib.familyreltype
+.. automodule:: gramps.gen.lib.familyreltype
    :members:
    :undoc-members:
    :show-inheritance:
 
 MarkerType
 ==========
-.. automodule:: gen.lib.markertype
+.. automodule:: gramps.gen.lib.markertype
    :members:
    :undoc-members:
    :show-inheritance:
 
 NameType
 ===========
-.. automodule:: gen.lib.nametype
+.. automodule:: gramps.gen.lib.nametype
    :members:
    :undoc-members:
    :show-inheritance:
 
 NameOriginType
 ==============
-.. automodule:: gen.lib.nameorigintype
+.. automodule:: gramps.gen.lib.nameorigintype
    :members:
    :undoc-members:
    :show-inheritance:
 
 NoteType
 =========
-.. automodule:: gen.lib.notetype
+.. automodule:: gramps.gen.lib.notetype
    :members:
    :undoc-members:
    :show-inheritance:
 
 RepositoryType
 ==============
-.. automodule:: gen.lib.repotype
+.. automodule:: gramps.gen.lib.repotype
    :members:
    :undoc-members:
    :show-inheritance:
    
 SourceMediaType
 ================
-.. automodule:: gen.lib.srcmediatype
+.. automodule:: gramps.gen.lib.srcmediatype
    :members:
    :undoc-members:
    :show-inheritance:
 
 StyledTextTagType
 ==================
-.. automodule:: gen.lib.styledtexttagtype
+.. automodule:: gramps.gen.lib.styledtexttagtype
    :members:
    :undoc-members:
    :show-inheritance:
    
 UrlType
 ========
-.. automodule:: gen.lib.urltype
+.. automodule:: gramps.gen.lib.urltype
    :members:
    :undoc-members:
    :show-inheritance:
@@ -521,7 +521,7 @@ Privacy
 PrivateSourceNote
 ============
 
-.. automodule:: gen.lib.privsrcnote
+.. automodule:: gramps.gen.lib.privsrcnote
 .. autoclass:: PrivateSourceNote
    :members:
    :undoc-members:

@@ -1,76 +1,76 @@
-############################
-The :mod:`gen.utils` Module
-############################
+##################################
+The :mod:`gramps.gen.utils` Module
+##################################
 
-.. automodule:: gen.utils
+.. automodule:: gramps.gen.utils
 
 Utils
 ====================================
-.. automodule:: gen.utils.alive
+.. automodule:: gramps.gen.utils.alive
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.callback
+.. automodule:: gramps.gen.utils.callback
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.callman
+.. automodule:: gramps.gen.utils.callman
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.cast
+.. automodule:: gramps.gen.utils.cast
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.config
+.. automodule:: gramps.gen.utils.config
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.configmanager
+.. automodule:: gramps.gen.utils.configmanager
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.db
+.. automodule:: gramps.gen.utils.db
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.file
+.. automodule:: gramps.gen.utils.file
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.id
+.. automodule:: gramps.gen.utils.grampslocale
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.image
+.. automodule:: gramps.gen.utils.id
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.keyword
+.. automodule:: gramps.gen.utils.image
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.lds
+.. automodule:: gramps.gen.utils.keyword
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.mactrans
+.. automodule:: gramps.gen.utils.lds
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.place
+.. automodule:: gramps.gen.utils.maclocale
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.string
+.. automodule:: gramps.gen.utils.place
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.trans
+.. automodule:: gramps.gen.utils.string
    :members:
    :undoc-members:
    :show-inheritance:
-.. automodule:: gen.utils.unknown
+.. automodule:: gramps.gen.utils.unknown
    :members:
    :undoc-members:
    :show-inheritance:

@@ -1,12 +1,12 @@
-#############################
-The :mod:`gen.display` Module
-#############################
+####################################
+The :mod:`gramps.gen.display` Module
+####################################
 
-.. automodule:: gen.display
+.. automodule:: gramps.gen.display
 
 Name
 ====================================
-.. automodule:: gen.display.name
+.. automodule:: gramps.gen.display.name
    :members:
    :undoc-members:
    :show-inheritance:

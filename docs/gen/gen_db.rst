@@ -1,78 +1,78 @@
-##########################
-The :mod:`gen.db` Module
-##########################
+###############################
+The :mod:`gramps.gen.db` Module
+###############################
 
-.. automodule:: gen.db
+.. automodule:: gramps.gen.db
 
 GrampsDbBase
 ====================================
-.. automodule:: gen.db.base
+.. automodule:: gramps.gen.db.base
    :members:
    :undoc-members:
    :show-inheritance:
 
 GrampsDbRead
 ====================================
-.. automodule:: gen.db.read
+.. automodule:: gramps.gen.db.read
    :members:
    :show-inheritance:
 
 GrampsDbWrite
 ====================================
-.. automodule:: gen.db.write
+.. automodule:: gramps.gen.db.write
    :members:
    :undoc-members:
    :show-inheritance:
 
 GrampsCursor
 ====================================
-.. automodule:: gen.db.cursor
+.. automodule:: gramps.gen.db.cursor
    :members:
    :undoc-members:
    :show-inheritance:
 
 BSDDBtxn
 ====================================
-.. automodule:: gen.db.bsddbtxn
+.. automodule:: gramps.gen.db.bsddbtxn
    :members:
    :undoc-members:
    :show-inheritance:
 
 GrampsDbTxn
 ====================================
-.. automodule:: gen.db.txn
+.. automodule:: gramps.gen.db.txn
    :members:
    :undoc-members:
    :show-inheritance:
 
 GrampsDbUndo
 ====================================
-.. automodule:: gen.db.undoredo
+.. automodule:: gramps.gen.db.undoredo
    :members:
    :undoc-members:
    :show-inheritance:
 
 DbConst
 ====================================
-.. automodule:: gen.db.dbconst
+.. automodule:: gramps.gen.db.dbconst
    :members:
 
 GrampsDbException
 ====================================
-.. automodule:: gen.db.exceptions
+.. automodule:: gramps.gen.db.exceptions
    :members:
    :undoc-members:
    :show-inheritance:
 
 Upgrade utilities
 ====================================
-.. automodule:: gen.db.upgrade
+.. automodule:: gramps.gen.db.upgrade
    :members:
    :undoc-members:
 
 Backup
 ====================================
-.. automodule:: gen.db.backup
+.. automodule:: gramps.gen.db.backup
    :members:
    :undoc-members:
    :show-inheritance:

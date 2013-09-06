@@ -1,13 +1,13 @@
-##########################
-The :mod:`gen` Module
-##########################
+############################
+The :mod:`gramps.gen` Module
+############################
 
-.. automodule:: gen
+.. automodule:: gramps.gen
 
 *****************************
 Database State
 *****************************
-.. automodule:: gen.dbstate
+.. automodule:: gramps.gen.dbstate
 .. autoclass::  DbState
    :members:
    :undoc-members:
@@ -16,7 +16,7 @@ Database State
 *****************************
 Errors
 *****************************
-.. automodule:: gen.errors
+.. automodule:: gramps.gen.errors
 .. autoclass::  DatabaseError
    :members:
    :undoc-members:
@@ -35,7 +35,7 @@ TODO
 *****************************
 Recent Files
 *****************************
-.. automodule:: gen.recentfiles
+.. automodule:: gramps.gen.recentfiles
 .. autoclass::  RecentFiles
    :members:
    :undoc-members:
@@ -52,7 +52,7 @@ Recent Files
 *****************************
 Sort
 *****************************
-.. automodule:: gen.sort
+.. automodule:: gramps.gen.sort
 .. autoclass::  Sort
    :members:
    :undoc-members:
@@ -61,7 +61,7 @@ Sort
 *****************************
 Update callback
 *****************************
-.. automodule:: gen.updatecallback
+.. automodule:: gramps.gen.updatecallback
 .. autoclass::  UpdateCallback
    :members:
    :undoc-members:
@@ -70,7 +70,7 @@ Update callback
 *****************************
 User
 *****************************
-.. automodule:: gen.user
+.. automodule:: gramps.gen.user
 .. autoclass:: User
    :members:
    :undoc-members:
