@@ -4,7 +4,7 @@ The :class:`Html` Class
 
 Contents:
 
-.. automodule:: libhtml
+.. automodule:: gramps.plugins.lib.libhtml
 .. autoclass:: Html
    :members:
    :undoc-members:

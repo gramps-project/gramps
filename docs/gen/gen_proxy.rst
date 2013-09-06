@@ -1,40 +1,40 @@
-############################
-The :mod:`gen.proxy` Module
-############################
+##################################
+The :mod:`gramps.gen.proxy` Module
+##################################
 
-.. automodule:: gen.proxy
+.. automodule:: gramps.gen.proxy
 
 Proxy Base
 ====================================
-.. automodule:: gen.proxy.proxybase
+.. automodule:: gramps.gen.proxy.proxybase
    :members:
    :undoc-members:
    :show-inheritance:
 
 Filter
 ====================================
-.. automodule:: gen.proxy.filter
+.. automodule:: gramps.gen.proxy.filter
    :members:
    :undoc-members:
    :show-inheritance:
 
 Living
 ====================================
-.. automodule:: gen.proxy.living
+.. automodule:: gramps.gen.proxy.living
    :members:
    :undoc-members:
    :show-inheritance:
 
 Private
 ====================================
-.. automodule:: gen.proxy.private
+.. automodule:: gramps.gen.proxy.private
    :members:
    :undoc-members:
    :show-inheritance:
 
 References
 ====================================
-.. automodule:: gen.proxy.referencedbyselection
+.. automodule:: gramps.gen.proxy.referencedbyselection
    :members:
    :undoc-members:
    :show-inheritance:

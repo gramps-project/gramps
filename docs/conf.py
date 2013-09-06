@@ -18,13 +18,8 @@ import sys, os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.append(os.path.abspath('.'))
 
-#documentation in root/docs, allow import from root/src where GRAMPS modules life
-sourcedir = (os.path.abspath('.')).split(os.sep)[:-1] + ['gramps']
-sys.path.append((os.sep).join(sourcedir))
-#make it possible to add plugins --> walk the plugin dir and add to sys.path.append
-for (dirpath, dirnames, filenames) in os.walk((os.sep).join(sourcedir + ['plugins'])):
-    # add the directory to the python search path
-    sys.path.append(dirpath)
+#documentation in root/docs, allow import from root
+sys.path.append(os.path.abspath(os.pardir))
 
 # -- General configuration -----------------------------------------------------
 

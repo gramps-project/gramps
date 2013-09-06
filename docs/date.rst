@@ -4,7 +4,7 @@ The :class:`Date Handler` Classes
 
 DateParser
 ====================================
-.. automodule:: gen.datehandler._dateparser
+.. automodule:: gramps.gen.datehandler._dateparser
 .. autoclass:: DateParser
    :members:
    :undoc-members:
@@ -12,7 +12,7 @@ DateParser
 
 DateDisplay
 ====================================
-.. automodule:: gen.datehandler._datedisplay
+.. automodule:: gramps.gen.datehandler._datedisplay
 .. autoclass:: DateDisplay
    :members:
    :undoc-members:
@@ -24,14 +24,14 @@ DateDisplay
 
 DateUtils
 ====================================
-.. automodule:: gen.datehandler._dateutils
+.. automodule:: gramps.gen.datehandler._dateutils
    :members:
    :undoc-members:
    :show-inheritance:
 
 DateHandler
 ====================================
-.. automodule:: gen.datehandler._datehandler
+.. automodule:: gramps.gen.datehandler._datehandler
    :members:
    :undoc-members:
    :show-inheritance:
@@ -42,11 +42,11 @@ Localized Date Handlers
 *****************************
 DateHandler (Bulgarian)
 *****************************
-.. autoclass:: gen.datehandler._date_bg.DateParserBG
+.. autoclass:: gramps.gen.datehandler._date_bg.DateParserBG
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_bg.DateDisplayBG
+.. autoclass:: gramps.gen.datehandler._date_bg.DateDisplayBG
    :members:
    :undoc-members:
    :show-inheritance: 
@@ -54,11 +54,11 @@ DateHandler (Bulgarian)
 *****************************
 DateHandler (Catalan)
 *****************************
-.. autoclass:: gen.datehandler._date_ca.DateParserCA
+.. autoclass:: gramps.gen.datehandler._date_ca.DateParserCA
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_ca.DateDisplayCA
+.. autoclass:: gramps.gen.datehandler._date_ca.DateDisplayCA
    :members:
    :undoc-members:
    :show-inheritance:
@@ -66,11 +66,11 @@ DateHandler (Catalan)
 *****************************
 DateHandler (Czech)
 *****************************
-.. autoclass:: gen.datehandler._date_cs.DateParserCZ
+.. autoclass:: gramps.gen.datehandler._date_cs.DateParserCZ
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_cs.DateDisplayCZ
+.. autoclass:: gramps.gen.datehandler._date_cs.DateDisplayCZ
    :members:
    :undoc-members:
    :show-inheritance:
@@ -78,11 +78,11 @@ DateHandler (Czech)
 *****************************
 DateHandler (German)
 *****************************
-.. autoclass:: gen.datehandler._date_de.DateParserDE
+.. autoclass:: gramps.gen.datehandler._date_de.DateParserDE
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_de.DateDisplayDE
+.. autoclass:: gramps.gen.datehandler._date_de.DateDisplayDE
    :members:
    :undoc-members:
    :show-inheritance:
@@ -90,11 +90,11 @@ DateHandler (German)
 *****************************
 DateHandler (Spanish)
 *****************************
-.. autoclass:: gen.datehandler._date_es.DateParserES
+.. autoclass:: gramps.gen.datehandler._date_es.DateParserES
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_es.DateDisplayES
+.. autoclass:: gramps.gen.datehandler._date_es.DateDisplayES
    :members:
    :undoc-members:
    :show-inheritance: 
@@ -102,11 +102,11 @@ DateHandler (Spanish)
 *****************************
 DateHandler (Finnish)
 *****************************
-.. autoclass:: gen.datehandler._date_fi.DateParserFI
+.. autoclass:: gramps.gen.datehandler._date_fi.DateParserFI
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_fi.DateDisplayFI
+.. autoclass:: gramps.gen.datehandler._date_fi.DateDisplayFI
    :members:
    :undoc-members:
    :show-inheritance: 
@@ -114,11 +114,11 @@ DateHandler (Finnish)
 *****************************
 DateHandler (French)
 *****************************
-.. autoclass:: gen.datehandler._date_fr.DateParserFR
+.. autoclass:: gramps.gen.datehandler._date_fr.DateParserFR
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_fr.DateDisplayFR
+.. autoclass:: gramps.gen.datehandler._date_fr.DateDisplayFR
    :members:
    :undoc-members:
    :show-inheritance: 
@@ -126,11 +126,11 @@ DateHandler (French)
 *****************************
 DateHandler (Croatian)
 *****************************
-.. autoclass:: gen.datehandler._date_hr.DateParserHR
+.. autoclass:: gramps.gen.datehandler._date_hr.DateParserHR
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_hr.DateDisplayHR
+.. autoclass:: gramps.gen.datehandler._date_hr.DateDisplayHR
    :members:
    :undoc-members:
    :show-inheritance:
@@ -138,11 +138,11 @@ DateHandler (Croatian)
 *****************************
 DateHandler (Italian)
 *****************************
-.. autoclass:: gen.datehandler._date_it.DateParserIT
+.. autoclass:: gramps.gen.datehandler._date_it.DateParserIT
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_it.DateDisplayIT
+.. autoclass:: gramps.gen.datehandler._date_it.DateDisplayIT
    :members:
    :undoc-members:
    :show-inheritance: 
@@ -150,11 +150,11 @@ DateHandler (Italian)
 *****************************
 DateHandler (Lituanian)
 *****************************
-.. autoclass:: gen.datehandler._date_lt.DateParserLT
+.. autoclass:: gramps.gen.datehandler._date_lt.DateParserLT
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_lt.DateDisplayLT
+.. autoclass:: gramps.gen.datehandler._date_lt.DateDisplayLT
    :members:
    :undoc-members:
    :show-inheritance:  
@@ -162,11 +162,11 @@ DateHandler (Lituanian)
 *****************************
 DateHandler (Norwegian)
 *****************************
-.. autoclass:: gen.datehandler._date_nb.DateParserNb
+.. autoclass:: gramps.gen.datehandler._date_nb.DateParserNb
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_nb.DateDisplayNb
+.. autoclass:: gramps.gen.datehandler._date_nb.DateDisplayNb
    :members:
    :undoc-members:
    :show-inheritance: 
@@ -174,11 +174,11 @@ DateHandler (Norwegian)
 *****************************
 DateHandler (Dutch)
 *****************************
-.. autoclass:: gen.datehandler._date_nl.DateParserNL
+.. autoclass:: gramps.gen.datehandler._date_nl.DateParserNL
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_nl.DateDisplayNL
+.. autoclass:: gramps.gen.datehandler._date_nl.DateDisplayNL
    :members:
    :undoc-members:
    :show-inheritance: 
@@ -186,11 +186,11 @@ DateHandler (Dutch)
 *****************************
 DateHandler (Polish)
 *****************************
-.. autoclass:: gen.datehandler._date_pl.DateParserPL
+.. autoclass:: gramps.gen.datehandler._date_pl.DateParserPL
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_pl.DateDisplayPL
+.. autoclass:: gramps.gen.datehandler._date_pl.DateDisplayPL
    :members:
    :undoc-members:
    :show-inheritance:
@@ -198,11 +198,11 @@ DateHandler (Polish)
 *****************************
 DateHandler (Portuguese)
 *****************************
-.. autoclass:: gen.datehandler._date_pt.DateParserPT
+.. autoclass:: gramps.gen.datehandler._date_pt.DateParserPT
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_pt.DateDisplayPT
+.. autoclass:: gramps.gen.datehandler._date_pt.DateDisplayPT
    :members:
    :undoc-members:
    :show-inheritance:
@@ -210,11 +210,11 @@ DateHandler (Portuguese)
 *****************************
 DateHandler (Russian)
 *****************************
-.. autoclass:: gen.datehandler._date_ru.DateParserRU
+.. autoclass:: gramps.gen.datehandler._date_ru.DateParserRU
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_ru.DateDisplayRU
+.. autoclass:: gramps.gen.datehandler._date_ru.DateDisplayRU
    :members:
    :undoc-members:
    :show-inheritance:
@@ -222,11 +222,11 @@ DateHandler (Russian)
 *****************************
 DateHandler (Slovak)
 *****************************
-.. autoclass:: gen.datehandler._date_sk.DateParserSK
+.. autoclass:: gramps.gen.datehandler._date_sk.DateParserSK
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_sk.DateDisplaySK
+.. autoclass:: gramps.gen.datehandler._date_sk.DateDisplaySK
    :members:
    :undoc-members:
    :show-inheritance:
@@ -234,11 +234,11 @@ DateHandler (Slovak)
 *****************************
 DateHandler (Slovenian)
 *****************************
-.. autoclass:: gen.datehandler._date_sl.DateParserSL
+.. autoclass:: gramps.gen.datehandler._date_sl.DateParserSL
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_sl.DateDisplaySL
+.. autoclass:: gramps.gen.datehandler._date_sl.DateDisplaySL
    :members:
    :undoc-members:
    :show-inheritance:
@@ -246,11 +246,11 @@ DateHandler (Slovenian)
 *****************************
 DateHandler (Serbian)
 *****************************
-.. autoclass:: gen.datehandler._date_sr.DateParserSR
+.. autoclass:: gramps.gen.datehandler._date_sr.DateParserSR
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass:: gen.datehandler._date_sr.DateDisplaySR_latin
+.. autoclass:: gramps.gen.datehandler._date_sr.DateDisplaySR_latin
    :members:
    :undoc-members:
    :show-inheritance:
@@ -258,11 +258,11 @@ DateHandler (Serbian)
 *****************************
 DateHandler (Swedish)
 *****************************
-.. autoclass::  gen.datehandler._date_sv.DateParserSv
+.. autoclass::  gramps.gen.datehandler._date_sv.DateParserSv
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass::  gen.datehandler._date_sv.DateDisplaySv
+.. autoclass::  gramps.gen.datehandler._date_sv.DateDisplaySv
    :members:
    :undoc-members:
    :show-inheritance:

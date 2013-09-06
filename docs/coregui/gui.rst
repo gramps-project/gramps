@@ -1,6 +1,6 @@
-##########################
+############################
 The :mod:`gramps.gui` Module
-##########################
+############################
 
 .. automodule:: gramps.gui
 
@@ -156,12 +156,12 @@ Filter Editor
 *****************************
 Gramps Bar
 *****************************
-.. automodule:: gramps.gui.grampsbar
+.. automodule:: gramps.gui.widgets.grampletbar
 .. autoclass::  DetachedWindow
    :members:
    :undoc-members:
    :show-inheritance:
-.. autoclass::  GrampsBar
+.. autoclass::  GrampletBar
    :members:
    :undoc-members:
    :show-inheritance:
