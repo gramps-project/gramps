@@ -418,7 +418,7 @@ def open_file_with_default_application(path):
     if win():
         try:
             os.startfile(norm_path)
-        except WindowsError, msg:
+        except WindowsError as msg:
             display_error_dialog(0, str(msg))
 
         return
