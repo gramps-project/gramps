@@ -2,12 +2,12 @@
 The :mod:`cli` Module
 ##########################
 
-.. automodule:: cli
+.. automodule:: gramps.cli
 
 *****************************
 Argument Handler
 *****************************
-.. automodule:: cli.arghandler
+.. automodule:: gramps.cli.arghandler
 .. autoclass:: ArgHandler
    :members:
    :undoc-members:
@@ -16,7 +16,7 @@ Argument Handler
 *****************************
 Argument Parser
 *****************************
-.. automodule:: cli.argparser
+.. automodule:: gramps.cli.argparser
 .. autoclass:: ArgParser
    :members:
    :undoc-members:
@@ -25,7 +25,7 @@ Argument Parser
 *****************************
 CLI DB manager
 *****************************
-.. automodule:: cli.clidbman
+.. automodule:: gramps.cli.clidbman
 .. autoclass:: CLIDbManager
    :members:
    :undoc-members:
@@ -34,7 +34,7 @@ CLI DB manager
 *****************************
 Gramps CLI
 *****************************
-.. automodule:: cli.grampscli
+.. automodule:: gramps.cli.grampscli
 .. autoclass:: CLIDbLoader
    :members:
    :undoc-members:
@@ -47,7 +47,7 @@ Gramps CLI
 *****************************
 User
 *****************************
-.. automodule:: cli.user
+.. automodule:: gramps.cli.user
 .. autoclass:: User
    :members:
    :undoc-members:
