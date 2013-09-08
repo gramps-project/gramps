@@ -213,7 +213,7 @@ class CLIManager(object):
     Aim is to manage a dbstate on which to work (load, unload), and interact
     with the plugin session
     """
-    def __init__(self, dbstate, setloader):
+    def __init__(self, dbstate, setloader, user):
         self.dbstate = dbstate
         if setloader:
             self.db_loader = CLIDbLoader(self.dbstate)
@@ -221,6 +221,7 @@ class CLIManager(object):
             self.db_loader = None
         self.file_loaded = False
         self._pmgr = BasePluginManager.get_instance()
+        self.user = user
 
     def open_activate(self, path):
         """
@@ -335,8 +336,14 @@ def startcli(errors, argparser):
     
     #we need to keep track of the db state
     dbstate = DbState()
+
     #we need a manager for the CLI session
-    climanager = CLIManager(dbstate, True)
+    from .user import User
+    user=User(error=self.__error, 
+            auto_accept=argparser.auto_accept,
+            quiet=argparser.quiet)
+    climanager = CLIManager(dbstate, setloader=True, user=user)
+
     #load the plugins
     climanager.do_reg_plugins(dbstate, uistate=None)
     # handle the arguments

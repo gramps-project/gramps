@@ -43,7 +43,7 @@ def import_as_dict(filename, user=None):
         user = User()
     db = DictionaryDb()
     dbstate = DbState()
-    climanager = CLIManager(dbstate, False) # do not load db_loader
+    climanager = CLIManager(dbstate, setloader=False, user=user)
     climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()
     (name, ext) = os.path.splitext(os.path.basename(filename))

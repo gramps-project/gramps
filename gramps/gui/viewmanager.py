@@ -273,13 +273,13 @@ class ViewManager(CLIManager):
 
     """
 
-    def __init__(self, dbstate, view_category_order):
+    def __init__(self, dbstate, view_category_order, user = None):
         """
         The viewmanager is initialised with a dbstate on which GRAMPS is
         working, and a fixed view_category_order, which is the order in which
         the view categories are accessible in the sidebar.
         """
-        CLIManager.__init__(self, dbstate, False)
+        CLIManager.__init__(self, dbstate, setloader=False, user=user)
         if _GTKOSXAPPLICATION:
             self.macapp = QuartzApp.Application()
 
@@ -304,7 +304,11 @@ class ViewManager(CLIManager):
         self.show_toolbar = config.get('interface.toolbar-on')
         self.fullscreen = config.get('interface.fullscreen')
 
-        self.__build_main_window()
+        self.__build_main_window() # sets self.uistate
+        if self.user is None:
+            self.user = User(error=ErrorDialog,
+                    callback=self.uistate.pulse_progressbar,
+                    uistate=self.uistate)
         self.__connect_signals()
         if _GTKOSXAPPLICATION:
             self.macapp.ready()
@@ -1317,17 +1321,11 @@ class ViewManager(CLIManager):
             self.uistate.push_message(self.dbstate, _("Making backup..."))
             if include.get_active():
                 from gramps.plugins.export.exportpkg import PackageWriter
-                writer = PackageWriter(self.dbstate.db, filename,
-                                       User(error=ErrorDialog,
-                                       callback=self.uistate.pulse_progressbar,
-                                       uistate=self.uistate))
+                writer = PackageWriter(self.dbstate.db, filename, self.user)
                 writer.export()
             else:
                 from gramps.plugins.export.exportxml import XmlWriter
-                writer = XmlWriter(self.dbstate.db,
-                                   User(error=ErrorDialog,
-                                   callback=self.uistate.pulse_progressbar,
-                                   uistate=self.uistate),
+                writer = XmlWriter(self.dbstate.db, self.user,
                                    strip_photos=0, compress=1)
                 writer.write(filename)
             self.uistate.set_busy_cursor(False)

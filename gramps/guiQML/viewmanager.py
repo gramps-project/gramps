@@ -78,16 +78,21 @@ class ViewManager(CLIManager):
     """ 
     Manages main widget by holding what state it is in.
     """
-    def __init__(self, dbstate):
+    def __init__(self, dbstate, user = None):
         """
         The viewmanager is initialised with a dbstate on which GRAMPS is
         working.
         """
         self.__centralview = None
-        CLIManager.__init__(self, dbstate, False)
+        CLIManager.__init__(self, dbstate, setloader=False, user=user)
         self.db_loader = CLIDbLoader(self.dbstate)
         #there is one DeclarativeEngine for global settings
         self.__build_main_window()
+        from .questiondialog import ErrorDialog
+        if self.user is None:
+            self.user = User(error=ErrorDialog,
+                    callback=self.uistate.pulse_progressbar,
+                    uistate=self.uistate)
 
     def __build_main_window(self):
         """

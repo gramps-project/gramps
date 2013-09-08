@@ -272,7 +272,8 @@ See the Gramps README documentation for installation prerequisites,
 typically located in /usr/share/doc/gramps.""") % glocale.lang)
 
         dbstate = DbState()
-        self.vm = ViewManager(dbstate, config.get("interface.view-categories"))
+        self.vm = ViewManager(dbstate, 
+                config.get("interface.view-categories"))
         self.vm.init_interface()
 
         #act based on the given arguments

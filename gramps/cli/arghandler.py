@@ -152,15 +152,11 @@ class ArgHandler(object):
 
     def __init__(self, dbstate, parser, sessionmanager, 
                         errorfunc=None, gui=False):
-        from .user import User
-
         self.dbstate = dbstate
         self.sm = sessionmanager
         self.errorfunc = errorfunc
         self.gui = gui
-        self.user = User(error=self.__error, 
-                auto_accept=parser.auto_accept,
-                quiet=parser.quiet)
+        self.user = sessionmanager.user
         if self.gui:
             self.actions = []
             self.list = False
