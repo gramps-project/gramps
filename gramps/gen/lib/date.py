@@ -1332,6 +1332,8 @@ class Date(object):
         self._calc_sort_value()
         if day != 0 or dv[Date._POS_DAY] > 28:
             self.set_yr_mon_day(*self.offset(day))
+        if self.is_compound(): 
+            self.set2_yr_mon_day_offset(year, month, day)
 
     def set2_yr_mon_day_offset(self, year=0, month=0, day=0):
         """
@@ -1378,8 +1380,6 @@ class Date(object):
             new_date = self
         retval = Date(new_date)
         retval.set_yr_mon_day_offset(year, month, day)
-        if self.is_compound(): 
-            retval.set2_yr_mon_day_offset(year, month, day)
         if orig_cal == 0:
             return retval
         else:
