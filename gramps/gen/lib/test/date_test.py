@@ -444,10 +444,10 @@ class Test_set2(BaseDateTest):
         self.assertEqual(start, (2000, 1, 1))
         self.assertEqual(stop, (2013, 2, 2))
 
-    def test_set2_ymd_overrides_stop_date(self):
-        self.date.set2_yr_mon_day(2013, 2, 2)
+    def test_set_ymd_overrides_both_dates(self):
+        self.date.set_yr_mon_day(2013, 2, 2)
         start,stop = self.date.get_start_stop_range()
-        self.assertEqual(start, (2000, 1, 1))
+        self.assertEqual(start, stop)
         self.assertEqual(stop, (2013, 2, 2))
 
     def test_set_ymd_offset_updates_both_ends(self):

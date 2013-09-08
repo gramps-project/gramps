@@ -1280,13 +1280,15 @@ class Date(object):
         dv[pos_day] = day
         self.dateval = tuple(dv)
 
-    def set_yr_mon_day(self, year, month, day):
+    def set_yr_mon_day(self, year, month, day, _update2 = True):
         """
         Set the year, month, and day values.
         """
         self.__set_yr_mon_day(year, month, day, 
                 Date._POS_YR, Date._POS_MON, Date._POS_DAY)
         self._calc_sort_value()
+        if _update2 and self.is_compound(): 
+            self.set2_yr_mon_day(year, month, day)
 
     def _assert_compound(self):
         if not self.is_compound(): 
@@ -1331,7 +1333,7 @@ class Date(object):
         self.dateval = tuple(dv)
         self._calc_sort_value()
         if day != 0 or dv[Date._POS_DAY] > 28:
-            self.set_yr_mon_day(*self.offset(day))
+            self.set_yr_mon_day(*self.offset(day), _update2 = False)
         if self.is_compound(): 
             self.set2_yr_mon_day_offset(year, month, day)
 
@@ -1392,8 +1394,6 @@ class Date(object):
         """
         retval = Date(self)
         retval.set_yr_mon_day(year, month, day)
-        if self.is_compound(): 
-            retval.set2_yr_mon_day(year, month, day)
         return retval
 
     def set_year(self, year):
