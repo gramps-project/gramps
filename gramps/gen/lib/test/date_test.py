@@ -422,6 +422,53 @@ class SwedishDateTest(BaseDateTest):
             self.assertEqual(date.sortval, 
                              date.to_calendar('gregorian').sortval)
 
+class Test_set2(BaseDateTest):
+    """
+    Test the Date.set2_... setters -- the ones to manipulate the 2nd date
+    of a compound date
+    """
+    def setUp(self):
+        self.date = d = Date()
+        d.set(Date.QUAL_NONE, Date.MOD_RANGE, Date.CAL_GREGORIAN,
+                #d  m  y    sl--d  m  y    sl
+                (1, 1, 2000, 0, 1, 1, 2010, 0))
+
+    def testStartStopSanity(self):
+        start,stop = self.date.get_start_stop_range()
+        self.assertEqual(start, (2000, 1, 1))
+        self.assertEqual(stop, (2010, 1, 1))
+
+    def test_set2_ymd_overrides_stop_date(self):
+        self.date.set2_yr_mon_day(2013, 2, 2)
+        start,stop = self.date.get_start_stop_range()
+        self.assertEqual(start, (2000, 1, 1))
+        self.assertEqual(stop, (2013, 2, 2))
+
+    def test_set2_ymd_overrides_stop_date(self):
+        self.date.set2_yr_mon_day(2013, 2, 2)
+        start,stop = self.date.get_start_stop_range()
+        self.assertEqual(start, (2000, 1, 1))
+        self.assertEqual(stop, (2013, 2, 2))
+
+    def test_set2_ymd_offset_updates_stop_date(self):
+        self.date.set2_yr_mon_day_offset(+7, +5, +5)
+        start,stop = self.date.get_start_stop_range()
+        self.assertEqual(start, (2000, 1, 1))
+        self.assertEqual(stop, (2017, 6, 6))
+
+    def test_copy_offset_ymd_preserves_orig(self):
+        copied = self.date.copy_offset_ymd(year=-1)
+        self.testStartStopSanity()
+        start,stop = copied.get_start_stop_range()
+        self.assertEqual(start, (1999, 1, 1))
+        self.assertEqual(stop, (2009, 1, 1))
+
+    def test_copy_ymd_preserves_orig(self):
+        copied = self.date.copy_ymd(year=1000, month=10, day=10)
+        self.testStartStopSanity()
+        start,stop = copied.get_start_stop_range()
+        self.assertEqual(start, (1000, 10, 10))
+        self.assertEqual(stop, (1000, 10, 10))
 
 if __name__ == "__main__":
     unittest.main()

@@ -1369,7 +1369,8 @@ class Date(object):
                 dv[Date._POS_RMON] = dv[Date._POS_RMON] % 12
         self.dateval = tuple(dv)
         if day != 0 or dv[Date._POS_RDAY] > 28:
-            self.set2_yr_mon_day(*self.offset(day))
+            stop = Date(dv[Date._POS_RYR], dv[Date._POS_RMON], dv[Date._POS_RDAY])
+            self.set2_yr_mon_day(*stop.offset(day))
 
     def copy_offset_ymd(self, year=0, month=0, day=0):
         """
@@ -1399,7 +1400,7 @@ class Date(object):
         retval.set_yr_mon_day(year, month, day)
         if (self.get_modifier() == Date.MOD_RANGE or 
             self.get_modifier() == Date.MOD_SPAN): 
-            retval.set2_yr_mon_day_offset(year, month, day)
+            retval.set2_yr_mon_day(year, month, day)
         return retval
 
     def set_year(self, year):
