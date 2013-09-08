@@ -1273,15 +1273,19 @@ class Date(object):
         """
         self.newyear = value
 
+    def __set_yr_mon_day(self, year, month, day, pos_yr, pos_mon, pos_day):
+        dv = list(self.dateval)
+        dv[pos_yr] = year
+        dv[pos_mon] = month
+        dv[pos_day] = day
+        self.dateval = tuple(dv)
+
     def set_yr_mon_day(self, year, month, day):
         """
         Set the year, month, and day values.
         """
-        dv = list(self.dateval)
-        dv[Date._POS_YR] = year
-        dv[Date._POS_MON] = month
-        dv[Date._POS_DAY] = day
-        self.dateval = tuple(dv)
+        self.__set_yr_mon_day(year, month, day, 
+                Date._POS_YR, Date._POS_MON, Date._POS_DAY)
         self._calc_sort_value()
 
     def _assert_compound(self):
@@ -1294,11 +1298,8 @@ class Date(object):
         a compound date (range or span).
         """
         self._assert_compound()
-        dv = list(self.dateval)
-        dv[Date._POS_RYR] = year
-        dv[Date._POS_RMON] = month
-        dv[Date._POS_RDAY] = day
-        self.dateval = tuple(dv)
+        self.__set_yr_mon_day(year, month, day, 
+                Date._POS_RYR, Date._POS_RMON, Date._POS_RDAY)
 
     def set_yr_mon_day_offset(self, year=0, month=0, day=0):
         """
