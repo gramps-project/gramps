@@ -36,6 +36,7 @@ class User():
         self.callback_function = callback
         self.error_function = error
         self._fileout = sys.stderr # redirected to mocks by unit tests
+        self.uistate = None
 
     def begin_progress(self, title, message, steps):
         """

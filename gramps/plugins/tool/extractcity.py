@@ -413,7 +413,8 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
     or  Paris, ILE DE FRANCE 75000, FRA
     """
 
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
         self.label = _('Extract Place data')
         
         ManagedWindow.__init__(self, uistate, [], self.__class__)

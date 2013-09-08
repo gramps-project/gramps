@@ -1046,7 +1046,8 @@ class ToolManagedWindowBase(ManagedWindow):
 
 
 class ToolManagedWindowBatch(tool.BatchTool, ToolManagedWindowBase):
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
         # This constructor will ask a question, set self.fail:
         self.dbstate = dbstate
         self.uistate = uistate

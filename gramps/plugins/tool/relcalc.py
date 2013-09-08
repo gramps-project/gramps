@@ -71,7 +71,8 @@ column_names = [column[0] for column in BasePersonView.COLUMNS]
 #-------------------------------------------------------------------------
 class RelCalc(tool.Tool, ManagedWindow):
     
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
         """
         Relationship calculator class.
         """

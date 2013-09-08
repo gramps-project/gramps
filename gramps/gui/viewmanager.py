@@ -1626,7 +1626,7 @@ def run_plugin(pdata, dbstate, uistate):
                pdata.category, pdata.require_active,
                )
     else:
-        tool.gui_tool(dbstate = dbstate, uistate = uistate,
+        tool.gui_tool(dbstate = dbstate, user = User(uistate = uistate),
                       tool_class = getattr(mod, pdata.toolclass),
                       options_class = getattr(mod, pdata.optionclass),
                       translated_name = pdata.name, 

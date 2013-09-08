@@ -67,7 +67,8 @@ from gramps.gui.utils import is_right_click
 #
 #-------------------------------------------------------------------------
 class Leak(tool.Tool, ManagedWindow):
-    def __init__(self,dbstate, uistate, options_class, name, callback=None):
+    def __init__(self,dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
         self.title = _('Uncollected Objects Tool')
 
         tool.Tool.__init__(self,dbstate, options_class, name)

@@ -54,7 +54,8 @@ class PopulateSources(tool.Tool, ManagedWindow):
     Gramplet that populates the database with sources and citations.
     """
     
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
         self.label = 'Populate sources and citations tool'
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.set_window(Gtk.Window(), Gtk.Label(), '')

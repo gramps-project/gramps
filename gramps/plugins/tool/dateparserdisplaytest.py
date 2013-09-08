@@ -59,7 +59,8 @@ from gramps.gen.datehandler import displayer as _dd
 #-------------------------------------------------------------------------
 class DateParserDisplayTest(tool.Tool):
 
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
 
         tool.Tool.__init__(self, dbstate, options_class, name)
         if uistate:

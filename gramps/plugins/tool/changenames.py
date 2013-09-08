@@ -72,7 +72,8 @@ WIKI_HELP_SEC = _('manual|Fix_Capitalization_of_Family_Names...')
 #-------------------------------------------------------------------------
 class ChangeNames(tool.BatchTool, ManagedWindow):
 
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
         self.label = _('Capitalization changes')
         self.cb = callback
         

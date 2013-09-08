@@ -57,7 +57,8 @@ WIKI_HELP_SEC = _('manual|Interactive_Descendant_Browser...')
 
 class DesBrowse(tool.ActivePersonTool, ManagedWindow):
 
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
 
         tool.ActivePersonTool.__init__(self, dbstate, uistate, options_class,
                                        name)

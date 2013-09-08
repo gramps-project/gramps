@@ -88,7 +88,8 @@ def is_initial(name):
 #-------------------------------------------------------------------------
 class Merge(tool.Tool,ManagedWindow):
     
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
         
         tool.Tool.__init__(self, dbstate, options_class, name)
         ManagedWindow.__init__(self, uistate, [],

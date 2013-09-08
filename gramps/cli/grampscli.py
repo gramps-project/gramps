@@ -339,8 +339,7 @@ def startcli(errors, argparser):
 
     #we need a manager for the CLI session
     from .user import User
-    user=User(error=self.__error, 
-            auto_accept=argparser.auto_accept,
+    user=User(auto_accept=argparser.auto_accept,
             quiet=argparser.quiet)
     climanager = CLIManager(dbstate, setloader=True, user=user)
 

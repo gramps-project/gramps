@@ -45,7 +45,8 @@ _GENDER = [ _('female'), _('male'), _('unknown') ]
 #-------------------------------------------------------------------------
 class DumpGenderStats(tool.Tool, ManagedWindow):
     
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
         self.label = _("Gender Statistics tool")
         tool.Tool.__init__(self, dbstate, options_class, name)
         if uistate:

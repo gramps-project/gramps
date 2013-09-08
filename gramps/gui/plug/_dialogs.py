@@ -248,9 +248,10 @@ class PluginDialog(ManagedWindow):
                    pdata.name, pdata.id, 
                    pdata.category, pdata.require_active)
         else:
+            from ..user import User
             tool.gui_tool(
                     dbstate = self.state, 
-                    uistate = self.uistate,
+                    user = User(uistate=self.uistate),
                     tool_class = eval('mod.' + pdata.toolclass), 
                     options_class = eval('mod.' + pdata.optionclass),
                     translated_name = pdata.name, 

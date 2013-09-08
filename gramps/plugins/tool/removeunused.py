@@ -77,7 +77,8 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
     OBJ_TYPE_COL   = 3
     OBJ_HANDLE_COL = 4
 
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
         self.title = _('Unused Objects')
 
         tool.Tool.__init__(self, dbstate, options_class, name)

@@ -92,7 +92,8 @@ WIKI_HELP_SEC = _('manual|Merge citations...')
 #-------------------------------------------------------------------------
 class MergeCitations(tool.BatchTool,ManagedWindow):
     
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
         
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate

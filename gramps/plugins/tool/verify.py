@@ -254,7 +254,8 @@ def get_marriage_date(db, family):
 #-------------------------------------------------------------------------
 class Verify(tool.Tool, ManagedWindow, UpdateCallback):
 
-    def __init__(self, dbstate, uistate, options_class, name, callback=None):
+    def __init__(self, dbstate, user, options_class, name, callback=None):
+        uistate = user.uistate
         self.label = _('Data Verify tool')
         self.vr = None
         tool.Tool.__init__(self, dbstate, options_class, name)

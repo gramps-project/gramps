@@ -244,7 +244,7 @@ class CommandLineTool(object):
 #------------------------------------------------------------------------
 # Standard GUI tool generic task
 
-def gui_tool(dbstate, uistate, tool_class, options_class, translated_name,
+def gui_tool(dbstate, user, tool_class, options_class, translated_name,
              name, category, callback):
     """
     tool - task starts the report. The plugin system requires that the
@@ -253,7 +253,7 @@ def gui_tool(dbstate, uistate, tool_class, options_class, translated_name,
     """
 
     try:
-        tool_class(dbstate = dbstate, uistate = uistate, 
+        tool_class(dbstate = dbstate, user = user, 
                 options_class = options_class, name = name, 
                 callback = callback)
     except WindowActiveError:
@@ -262,7 +262,7 @@ def gui_tool(dbstate, uistate, tool_class, options_class, translated_name,
         log.error("Failed to start tool.", exc_info=True)
 
 # Command-line generic task
-def cli_tool(dbstate, name, category, tool_class, options_class, options_str_dict):
+def cli_tool(dbstate, name, category, tool_class, options_class, options_str_dict, user = None):
 
     clt = CommandLineTool(dbstate.db, name, category,
                           options_class, options_str_dict)
@@ -272,9 +272,12 @@ def cli_tool(dbstate, name, category, tool_class, options_class, options_str_dic
     if clt.show:
         return
 
+    if user is None:
+        from ...cli.user import User
+        user = User()
     # run tool
     try:
-        tool_class(dbstate = dbstate, uistate = None, 
+        tool_class(dbstate = dbstate, user = user,
                 options_class = clt.option_class, name = name, callback = None)
     except:
         log.error("Failed to start tool.", exc_info=True)

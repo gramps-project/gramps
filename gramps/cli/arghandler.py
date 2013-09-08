@@ -652,7 +652,8 @@ class ArgHandler(object):
                                 category=category, 
                                 tool_class=tool_class,
                                 options_class=options_class, 
-                                options_str_dict=options_str_dict)
+                                options_str_dict=options_str_dict,
+                                user=self.user)
                         return
                 msg = _("Unknown tool name.")
             else:
