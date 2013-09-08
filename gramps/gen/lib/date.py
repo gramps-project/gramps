@@ -122,8 +122,7 @@ class Span(object):
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     start, stop = self.date2.get_start_stop_range()
                     start = Date(*start)
                     stop = Date(*stop)
@@ -148,8 +147,7 @@ class Span(object):
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
@@ -170,8 +168,7 @@ class Span(object):
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.AFTER)
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
@@ -192,13 +189,11 @@ class Span(object):
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-            elif (self.date1.get_modifier() == Date.MOD_RANGE or 
-                  self.date1.get_modifier() == Date.MOD_SPAN): # SPAN----------------------------
+            elif self.date1.is_compound():
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     start, stop = self.date1.get_start_stop_range()
                     start = Date(*start)
@@ -219,8 +214,7 @@ class Span(object):
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     start1, stop1 = self.date1.get_start_stop_range()
                     start2, stop2 = self.date2.get_start_stop_range()
                     start1 = Date(*start1)
@@ -314,8 +308,7 @@ class Span(object):
                     _repr = trans_text("less than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
                     _repr = trans_text("age|about") + " " + fdate12p1
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     start, stop = self.date2.get_start_stop_range()
                     start = Date(*start)
                     stop = Date(*stop)
@@ -330,8 +323,7 @@ class Span(object):
                     _repr = trans_text("less than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
                     _repr = trans_text("less than about") + " " + fdate12
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     _repr = trans_text("less than") + " " + fdate12
             elif self.date1.get_modifier() == Date.MOD_AFTER:    # AFTER----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
@@ -342,8 +334,7 @@ class Span(object):
                     _repr = self._format((-1, -1 , -1))
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
                     _repr = trans_text("more than about") + " " + fdate12p1
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     _repr = trans_text("more than") + " " + fdate12
             elif self.date1.get_modifier() == Date.MOD_ABOUT: # ABOUT----------------------------
                 if   self.date2.get_modifier() == Date.MOD_NONE:
@@ -354,11 +345,9 @@ class Span(object):
                     _repr =  trans_text("less than about") + " " + fdate12p1
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
                     _repr =  trans_text("age|about") + " " + fdate12p1
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     _repr =  trans_text("age|about") + " " + fdate12p1
-            elif (self.date1.get_modifier() == Date.MOD_RANGE or 
-                  self.date1.get_modifier() == Date.MOD_SPAN): # SPAN----------------------------
+            elif self.date1.is_compound():
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     start, stop = self.date1.get_start_stop_range()
                     start = Date(*start)
@@ -371,8 +360,7 @@ class Span(object):
                     _repr = trans_text("less than") + " " + fdate12
                 elif self.date2.get_modifier() == Date.MOD_ABOUT:
                     _repr =  trans_text("age|about") + " " + fdate12p1
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     start1, stop1 = self.date1.get_start_stop_range()
                     start2, stop2 = self.date2.get_start_stop_range()
                     start1 = Date(*start1)
@@ -1045,7 +1033,7 @@ class Date(object):
                 (self.dateval[Date._POS_YR]) % 10, 
                 self.dateval[Date._POS_MON], 
                 self.dateval[Date._POS_DAY])
-        elif self.modifier == Date.MOD_RANGE or self.modifier == Date.MOD_SPAN:
+        elif self.is_compound():
             val = "%04d-%02d-%02d - %04d-%02d-%02d" % (
                 self.dateval[Date._POS_YR], self.dateval[Date._POS_MON], 
                 self.dateval[Date._POS_DAY], self.dateval[Date._POS_RYR], 
@@ -1208,7 +1196,7 @@ class Date(object):
         of (0, 0, 0, False) is returned. Otherwise, a date of (DD, MM, YY, slash)
         is returned. If slash is True, then the date is in the form of 1530/1.
         """
-        if self.modifier == Date.MOD_RANGE or self.modifier == Date.MOD_SPAN:
+        if self.is_compound():
             val = self.dateval[4:8]
         else:
             val = Date.EMPTY
@@ -1238,7 +1226,7 @@ class Date(object):
         """
         Return the item specified.
         """
-        if self.modifier == Date.MOD_SPAN or self.modifier == Date.MOD_RANGE:
+        if self.is_compound():
             val = self.dateval[index]
         else:
             val = 0
@@ -1296,11 +1284,16 @@ class Date(object):
         self.dateval = tuple(dv)
         self._calc_sort_value()
 
+    def _assert_compound(self):
+        if not self.is_compound(): 
+            raise DateError("Operation allowed for compound dates only!")
+
     def set2_yr_mon_day(self, year, month, day):
         """
         Set the year, month, and day values in the 2nd part of 
         a compound date (range or span).
         """
+        self._assert_compound()
         dv = list(self.dateval)
         dv[Date._POS_RYR] = year
         dv[Date._POS_RMON] = month
@@ -1344,6 +1337,7 @@ class Date(object):
         Set the year, month, and day values by offset in the 2nd part 
         of a compound date (range or span).
         """
+        self._assert_compound()
         dv = list(self.dateval)
         if dv[Date._POS_RYR]:
             dv[Date._POS_RYR] += year
@@ -1383,8 +1377,7 @@ class Date(object):
             new_date = self
         retval = Date(new_date)
         retval.set_yr_mon_day_offset(year, month, day)
-        if (self.get_modifier() == Date.MOD_RANGE or 
-            self.get_modifier() == Date.MOD_SPAN): 
+        if self.is_compound(): 
             retval.set2_yr_mon_day_offset(year, month, day)
         if orig_cal == 0:
             return retval
@@ -1398,8 +1391,7 @@ class Date(object):
         """
         retval = Date(self)
         retval.set_yr_mon_day(year, month, day)
-        if (self.get_modifier() == Date.MOD_RANGE or 
-            self.get_modifier() == Date.MOD_SPAN): 
+        if self.is_compound(): 
             retval.set2_yr_mon_day(year, month, day)
         return retval
 

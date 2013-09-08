@@ -38,7 +38,7 @@ from ...config import config
 from ...datehandler import get_date_formats, set_format
 from ...datehandler import parser as _dp
 from ...datehandler import displayer as _dd
-from ...lib.date import Date
+from ...lib.date import Date, DateError
 
 date_tests = {}
 
@@ -469,6 +469,33 @@ class Test_set2(BaseDateTest):
         start,stop = copied.get_start_stop_range()
         self.assertEqual(start, (1000, 10, 10))
         self.assertEqual(stop, (1000, 10, 10))
+
+    def test_set2_ymd_raises_error_unless_compound(self):
+        for mod in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, 
+                       Date.MOD_ABOUT,
+                       Date.MOD_TEXTONLY):
+            self.date.set_modifier(mod)
+            try:
+                self.date.set2_yr_mon_day(2013, 2, 2)
+                self.assertTrue(False,
+                        "Modifier: {}, dateval: {} - exception expected!".format(
+                            mod, self.date.dateval))
+            except DateError:
+                pass
+
+    def test_set2_ymd_offset_raises_error_unless_compound(self):
+        for mod in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, 
+                       Date.MOD_ABOUT,
+                       Date.MOD_TEXTONLY):
+            self.date.set_modifier(mod)
+            try:
+                self.date.set2_yr_mon_day_offset(year=-1)
+                self.assertTrue(False,
+                        "Modifier: {}, dateval: {} - exception expected!".format(
+                            mod, self.date.dateval))
+            except DateError:
+                pass
+
 
 if __name__ == "__main__":
     unittest.main()
