@@ -1298,7 +1298,8 @@ class Date(object):
 
     def set2_yr_mon_day(self, year, month, day):
         """
-        Set the year, month, and day values.
+        Set the year, month, and day values in the 2nd part of 
+        a compound date (range or span).
         """
         dv = list(self.dateval)
         dv[Date._POS_RYR] = year
@@ -1340,7 +1341,8 @@ class Date(object):
 
     def set2_yr_mon_day_offset(self, year=0, month=0, day=0):
         """
-        Set the year, month, and day values by offset.
+        Set the year, month, and day values by offset in the 2nd part 
+        of a compound date (range or span).
         """
         dv = list(self.dateval)
         if dv[Date._POS_RYR]:
