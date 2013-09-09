@@ -1283,6 +1283,7 @@ class Date(object):
     def set_yr_mon_day(self, year, month, day, _update2 = True):
         """
         Set the year, month, and day values.
+        For a compound date, collapses the range/span to the given date.
         """
         self.__set_yr_mon_day(year, month, day, 
                 Date._POS_YR, Date._POS_MON, Date._POS_DAY)
@@ -1305,7 +1306,7 @@ class Date(object):
 
     def set_yr_mon_day_offset(self, year=0, month=0, day=0):
         """
-        Set the year, month, and day values by offset.
+        Offset the date by the given year, month, and day values.
         """
         dv = list(self.dateval)
         if dv[Date._POS_YR]:
