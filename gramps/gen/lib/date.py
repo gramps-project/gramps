@@ -1304,36 +1304,40 @@ class Date(object):
         self.__set_yr_mon_day(year, month, day, 
                 Date._POS_RYR, Date._POS_RMON, Date._POS_RDAY)
 
+    def __set_yr_mon_day_offset(self, year, month, day, pos_yr, pos_mon, pos_day):
+        dv = list(self.dateval)
+        if dv[pos_yr]:
+            dv[pos_yr] += year
+        elif year:
+            dv[pos_yr] = year
+        if dv[pos_mon]:
+            dv[pos_mon] += month
+        elif month:
+            if month < 0:
+                dv[pos_mon] = 1 + month
+            else:
+                dv[pos_mon] = month
+        # Fix if month out of bounds:
+        if month != 0: # only check if changed
+            if dv[pos_mon] == 0: # subtraction
+                dv[pos_mon] = 12
+                dv[pos_yr] -= 1
+            elif dv[pos_mon] < 0: # subtraction
+                dv[pos_yr] -= int((-dv[pos_mon]) // 12) + 1
+                dv[pos_mon] = (dv[pos_mon] % 12)
+            elif dv[pos_mon] > 12 or dv[pos_mon] < 1:
+                dv[pos_yr] += int(dv[pos_mon] // 12)
+                dv[pos_mon] = dv[pos_mon] % 12
+        self.dateval = tuple(dv)
+        self._calc_sort_value()
+        return (day != 0 or dv[pos_day] > 28)
+
     def set_yr_mon_day_offset(self, year=0, month=0, day=0):
         """
         Offset the date by the given year, month, and day values.
         """
-        dv = list(self.dateval)
-        if dv[Date._POS_YR]:
-            dv[Date._POS_YR] += year
-        elif year:
-            dv[Date._POS_YR] = year
-        if dv[Date._POS_MON]:
-            dv[Date._POS_MON] += month
-        elif month:
-            if month < 0:
-                dv[Date._POS_MON] = 1 + month
-            else:
-                dv[Date._POS_MON] = month
-        # Fix if month out of bounds:
-        if month != 0: # only check if changed
-            if dv[Date._POS_MON] == 0: # subtraction
-                dv[Date._POS_MON] = 12
-                dv[Date._POS_YR] -= 1
-            elif dv[Date._POS_MON] < 0: # subtraction
-                dv[Date._POS_YR] -= int((-dv[Date._POS_MON]) // 12) + 1
-                dv[Date._POS_MON] = (dv[Date._POS_MON] % 12)
-            elif dv[Date._POS_MON] > 12 or dv[Date._POS_MON] < 1:
-                dv[Date._POS_YR] += int(dv[Date._POS_MON] // 12)
-                dv[Date._POS_MON] = dv[Date._POS_MON] % 12
-        self.dateval = tuple(dv)
-        self._calc_sort_value()
-        if day != 0 or dv[Date._POS_DAY] > 28:
+        if self.__set_yr_mon_day_offset(year, month, day,
+                Date._POS_YR, Date._POS_MON, Date._POS_DAY):
             self.set_yr_mon_day(*self.offset(day), _update2 = False)
         if self.is_compound(): 
             self.set2_yr_mon_day_offset(year, month, day)
@@ -1344,32 +1348,9 @@ class Date(object):
         of a compound date (range or span).
         """
         self._assert_compound()
-        dv = list(self.dateval)
-        if dv[Date._POS_RYR]:
-            dv[Date._POS_RYR] += year
-        elif year:
-            dv[Date._POS_RYR] = year
-        if dv[Date._POS_RMON]:
-            dv[Date._POS_RMON] += month
-        elif month:
-            if month < 0:
-                dv[Date._POS_RMON] = 1 + month
-            else:
-                dv[Date._POS_RMON] = month
-        # Fix if month out of bounds:
-        if month != 0: # only check if changed
-            if dv[Date._POS_RMON] == 0: # subtraction
-                dv[Date._POS_RMON] = 12
-                dv[Date._POS_RYR] -= 1
-            elif dv[Date._POS_RMON] < 0: # subtraction
-                dv[Date._POS_RYR] -= int((-dv[Date._POS_RMON]) / 12) + 1
-                dv[Date._POS_RMON] = (dv[Date._POS_RMON] % 12)
-            elif dv[Date._POS_RMON] > 12 or dv[Date._POS_RMON] < 1:
-                dv[Date._POS_RYR] += int(dv[Date._POS_RMON] / 12)
-                dv[Date._POS_RMON] = dv[Date._POS_RMON] % 12
-        self.dateval = tuple(dv)
-        if day != 0 or dv[Date._POS_RDAY] > 28:
-            stop = Date(dv[Date._POS_RYR], dv[Date._POS_RMON], dv[Date._POS_RDAY])
+        if self.__set_yr_mon_day_offset(year, month, day,
+                Date._POS_RYR, Date._POS_RMON, Date._POS_RDAY):
+            stop = Date(self.get_stop_ymd())
             self.set2_yr_mon_day(*stop.offset(day))
 
     def copy_offset_ymd(self, year=0, month=0, day=0):
@@ -1688,6 +1669,12 @@ class Date(object):
         Return (year, month, day).
         """
         return (self.get_year(), self.get_month(), self.get_day())
+
+    def get_stop_ymd(self):
+        """
+        Return (year, month, day) of the stop date, or all-zeros if it's not defined.
+        """
+        return (self.get_stop_year(), self.get_stop_month(), self.get_stop_day())
 
     def offset(self, value):
         """
