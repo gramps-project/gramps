@@ -113,7 +113,7 @@ class GeoPlaces(GeoGraphyView):
     """
 
     def __init__(self, pdata, dbstate, uistate, nav_group=0):
-        GeoGraphyView.__init__(self, _('Places places map'),
+        GeoGraphyView.__init__(self, _('Places map'),
                                       pdata, dbstate, uistate, 
                                       dbstate.db.get_place_bookmarks(), 
                                       Bookmarks.PlaceBookmarks,
