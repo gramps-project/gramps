@@ -617,6 +617,10 @@ class GrampsPreferences(ConfigureDialog):
             table, _('Suppress warning when GExiv2 not installed.'), 
             5, 'behavior.ignore-gexiv2')
         
+        self.add_checkbox(
+            table, _('Suppress warning when spell checking not installed.'), 
+            6, 'behavior.ignore-spellcheck')
+        
         return _('Warnings'), table
 
     def _build_name_format_model(self, active):
