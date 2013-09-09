@@ -57,7 +57,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
 
-        tool.BatchTool.__init__(self, dbstate, uistate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, user, options_class, name)
         if self.fail:
             return
 

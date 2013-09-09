@@ -122,7 +122,7 @@ class TestcaseGenerator(tool.BatchTool):
         if dbstate.db.readonly:
             return
 
-        tool.BatchTool.__init__(self, dbstate, uistate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, user, options_class, name)
 
         if self.fail:
             return

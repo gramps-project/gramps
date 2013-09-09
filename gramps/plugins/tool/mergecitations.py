@@ -99,7 +99,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         self.dbstate = dbstate
         self.set_window(Gtk.Window(), Gtk.Label(), '')
 
-        tool.BatchTool.__init__(self, dbstate, uistate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, user, options_class, name)
 
         if not self.fail:
             uistate.set_busy_cursor(True)

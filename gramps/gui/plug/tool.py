@@ -100,16 +100,13 @@ class Tool(object):
 
 class BatchTool(Tool):
     """
-    Same as Tool, except the warning is displayed about the potential
-    loss of undo history when GUI is available.
+    Same as Tool, except the warning is given about the potential
+    loss of undo history.
     Should be used for tools using batch transactions.
     """
 
-    def __init__(self, dbstate, uistate, options_class, name):
-        if uistate:
-            # TODO: should we replace this with a callback?
-            from ..dialog import QuestionDialog2
-            warn_dialog = QuestionDialog2(
+    def __init__(self, dbstate, user, options_class, name):
+        if not user.prompt(
                 _('Undo history warning'),
                 _('Proceeding with this tool will erase the undo history '
                   'for this session. In particular, you will not be able '
@@ -117,10 +114,9 @@ class BatchTool(Tool):
                   'made prior to it.\n\n'
                   'If you think you may want to revert running this tool, '
                   'please stop here and backup your database.'),
-                _('_Proceed with the tool'), _('_Stop'))
-            if not warn_dialog.run():
-                self.fail = True
-                return
+                _('_Proceed with the tool'), _('_Stop')):
+            self.fail = True
+            return
 
         Tool.__init__(self, dbstate, options_class, name)
         self.fail = False

@@ -1051,7 +1051,7 @@ class ToolManagedWindowBatch(tool.BatchTool, ToolManagedWindowBase):
         # This constructor will ask a question, set self.fail:
         self.dbstate = dbstate
         self.uistate = uistate
-        tool.BatchTool.__init__(self, dbstate, uistate, options_class, name)
+        tool.BatchTool.__init__(self, dbstate, user, options_class, name)
         if not self.fail:
             ToolManagedWindowBase.__init__(self, dbstate, uistate, 
                                            options_class, name, callback)
