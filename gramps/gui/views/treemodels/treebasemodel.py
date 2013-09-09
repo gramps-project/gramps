@@ -976,7 +976,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         if not secondary:
             # None is used to indicate this column has no data
             if self.fmap[col] is None:
-                return None
+                return ''
             value = self.fmap[col](data)
         else:
             if self.fmap2[col] is None:
