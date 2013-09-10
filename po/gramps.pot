@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-04 10:22+0200\n"
+"POT-Creation-Date: 2013-09-10 18:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,8 +156,8 @@ msgstr ""
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 
-#: ../src/const.py:235 ../src/const.py:236 ../src/gen/lib/date.py:1701
-#: ../src/gen/lib/date.py:1715
+#: ../src/const.py:235 ../src/const.py:236 ../src/gen/lib/date.py:1712
+#: ../src/gen/lib/date.py:1726
 msgid "none"
 msgstr ""
 
@@ -659,127 +659,127 @@ msgstr ""
 msgid "Quick View"
 msgstr ""
 
-#: ../src/Relationship.py:810 ../src/plugins/view/pedigreeview.py:1679
+#: ../src/Relationship.py:814 ../src/plugins/view/pedigreeview.py:1679
 msgid "Relationship loop detected"
 msgstr ""
 
-#: ../src/Relationship.py:867
+#: ../src/Relationship.py:871
 #, python-format
 msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
 "It is possible that relationships have been missed"
 msgstr ""
 
-#: ../src/Relationship.py:939
+#: ../src/Relationship.py:943
 msgid "Relationship loop detected:"
 msgstr ""
 
-#: ../src/Relationship.py:940
+#: ../src/Relationship.py:944
 #, python-format
 msgid "Person %(person)s connects to himself via %(relation)s"
 msgstr ""
 
-#: ../src/Relationship.py:1206
+#: ../src/Relationship.py:1212
 msgid "undefined"
 msgstr ""
 
-#: ../src/Relationship.py:1683 ../src/plugins/import/ImportCsv.py:227
+#: ../src/Relationship.py:1689 ../src/plugins/import/ImportCsv.py:227
 msgid "husband"
 msgstr ""
 
-#: ../src/Relationship.py:1685 ../src/plugins/import/ImportCsv.py:223
+#: ../src/Relationship.py:1691 ../src/plugins/import/ImportCsv.py:223
 msgid "wife"
 msgstr ""
 
-#: ../src/Relationship.py:1687
+#: ../src/Relationship.py:1693
 msgid "gender unknown|spouse"
 msgstr ""
 
-#: ../src/Relationship.py:1690
+#: ../src/Relationship.py:1696
 msgid "ex-husband"
 msgstr ""
 
-#: ../src/Relationship.py:1692
+#: ../src/Relationship.py:1698
 msgid "ex-wife"
 msgstr ""
 
-#: ../src/Relationship.py:1694
+#: ../src/Relationship.py:1700
 msgid "gender unknown|ex-spouse"
 msgstr ""
 
-#: ../src/Relationship.py:1697
+#: ../src/Relationship.py:1703
 msgid "unmarried|husband"
 msgstr ""
 
-#: ../src/Relationship.py:1699
+#: ../src/Relationship.py:1705
 msgid "unmarried|wife"
 msgstr ""
 
-#: ../src/Relationship.py:1701
+#: ../src/Relationship.py:1707
 msgid "gender unknown,unmarried|spouse"
 msgstr ""
 
-#: ../src/Relationship.py:1704
+#: ../src/Relationship.py:1710
 msgid "unmarried|ex-husband"
 msgstr ""
 
-#: ../src/Relationship.py:1706
+#: ../src/Relationship.py:1712
 msgid "unmarried|ex-wife"
 msgstr ""
 
-#: ../src/Relationship.py:1708
+#: ../src/Relationship.py:1714
 msgid "gender unknown,unmarried|ex-spouse"
 msgstr ""
 
-#: ../src/Relationship.py:1711
+#: ../src/Relationship.py:1717
 msgid "male,civil union|partner"
 msgstr ""
 
-#: ../src/Relationship.py:1713
+#: ../src/Relationship.py:1719
 msgid "female,civil union|partner"
 msgstr ""
 
-#: ../src/Relationship.py:1715
+#: ../src/Relationship.py:1721
 msgid "gender unknown,civil union|partner"
 msgstr ""
 
-#: ../src/Relationship.py:1718
+#: ../src/Relationship.py:1724
 msgid "male,civil union|former partner"
 msgstr ""
 
-#: ../src/Relationship.py:1720
+#: ../src/Relationship.py:1726
 msgid "female,civil union|former partner"
 msgstr ""
 
-#: ../src/Relationship.py:1722
+#: ../src/Relationship.py:1728
 msgid "gender unknown,civil union|former partner"
 msgstr ""
 
-#: ../src/Relationship.py:1725
+#: ../src/Relationship.py:1731
 msgid "male,unknown relation|partner"
 msgstr ""
 
-#: ../src/Relationship.py:1727
+#: ../src/Relationship.py:1733
 msgid "female,unknown relation|partner"
 msgstr ""
 
-#: ../src/Relationship.py:1729
+#: ../src/Relationship.py:1735
 msgid "gender unknown,unknown relation|partner"
 msgstr ""
 
-#: ../src/Relationship.py:1734
+#: ../src/Relationship.py:1740
 msgid "male,unknown relation|former partner"
 msgstr ""
 
-#: ../src/Relationship.py:1736
+#: ../src/Relationship.py:1742
 msgid "female,unknown relation|former partner"
 msgstr ""
 
-#: ../src/Relationship.py:1738
+#: ../src/Relationship.py:1744
 msgid "gender unknown,unknown relation|former partner"
 msgstr ""
 
-#: ../src/Relationship.py:1856
+#: ../src/Relationship.py:1862
 #, python-format
 msgid ""
 "Family relationship translator not available for language '%s'. Using "
@@ -2919,35 +2919,35 @@ msgstr ""
 msgid "calendar|Swedish"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1701
+#: ../src/gen/lib/date.py:1712
 msgid "estimated"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1701
+#: ../src/gen/lib/date.py:1712
 msgid "calculated"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1715
+#: ../src/gen/lib/date.py:1726
 msgid "before"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1715
+#: ../src/gen/lib/date.py:1726
 msgid "after"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1715
+#: ../src/gen/lib/date.py:1726
 msgid "about"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1716
+#: ../src/gen/lib/date.py:1727
 msgid "range"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1716
+#: ../src/gen/lib/date.py:1727
 msgid "span"
 msgstr ""
 
-#: ../src/gen/lib/date.py:1716
+#: ../src/gen/lib/date.py:1727
 msgid "textonly"
 msgstr ""
 
@@ -4266,7 +4266,7 @@ msgstr ""
 msgid "Could not add photo to page"
 msgstr ""
 
-#: ../src/gen/plug/report/utils.py:143 ../src/gui/utils.py:387
+#: ../src/gen/plug/report/utils.py:143 ../src/gui/utils.py:383
 #: ../src/plugins/textreport/IndivComplete.py:631
 msgid "File does not exist"
 msgstr ""
@@ -5908,23 +5908,23 @@ msgstr ""
 msgid "Error from external program"
 msgstr ""
 
-#: ../src/gui/utils.py:404
+#: ../src/gui/utils.py:398
 msgid "Error in command line syntax."
 msgstr ""
 
-#: ../src/gui/utils.py:405
+#: ../src/gui/utils.py:399
 msgid "One of the files passed on the command line did not exist."
 msgstr ""
 
-#: ../src/gui/utils.py:406
+#: ../src/gui/utils.py:400
 msgid "A required tool could not be found."
 msgstr ""
 
-#: ../src/gui/utils.py:407
+#: ../src/gui/utils.py:401
 msgid "The action failed."
 msgstr ""
 
-#: ../src/gui/utils.py:489
+#: ../src/gui/utils.py:475
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -5935,7 +5935,7 @@ msgid ""
 "citation alone"
 msgstr ""
 
-#: ../src/gui/utils.py:502
+#: ../src/gui/utils.py:488
 msgid "Cannot open new citation editor"
 msgstr ""
 
@@ -22436,7 +22436,7 @@ msgid "The animation parameters"
 msgstr ""
 
 #: ../src/plugins/view/geoplaces.py:116
-msgid "Places places map"
+msgid "Places map"
 msgstr ""
 
 #: ../src/plugins/view/geoplaces.py:330

@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-04 10:22+0200\n"
-"PO-Revision-Date: 2013-09-04 10:32+0100\n"
+"POT-Creation-Date: 2013-09-10 18:46+0200\n"
+"PO-Revision-Date: 2013-09-10 18:49+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -214,8 +214,8 @@ msgstr ""
 # The same "none" is used for name, surname and date. However, in French we say "aucun" for name and surname, but we say "aucune" for date...
 #: ../src/const.py:235
 #: ../src/const.py:236
-#: ../src/gen/lib/date.py:1701
-#: ../src/gen/lib/date.py:1715
+#: ../src/gen/lib/date.py:1712
+#: ../src/gen/lib/date.py:1726
 msgid "none"
 msgstr "aucun(e)"
 
@@ -784,12 +784,12 @@ msgstr "Connexion internet"
 msgid "Quick View"
 msgstr "Rapport express"
 
-#: ../src/Relationship.py:810
+#: ../src/Relationship.py:814
 #: ../src/plugins/view/pedigreeview.py:1679
 msgid "Relationship loop detected"
 msgstr "Relation en boucle détectée"
 
-#: ../src/Relationship.py:867
+#: ../src/Relationship.py:871
 #, python-format
 msgid ""
 "Family tree reaches back more than the maximum %d generations searched.\n"
@@ -798,119 +798,119 @@ msgstr ""
 "L'arbre familial contient plus de générations que les %d recherchées.\n"
 "Il est donc possible que certaines relations n'aient pas été prises en compte"
 
-#: ../src/Relationship.py:939
+#: ../src/Relationship.py:943
 msgid "Relationship loop detected:"
 msgstr "Relation en boucle détectée :"
 
-#: ../src/Relationship.py:940
+#: ../src/Relationship.py:944
 #, python-format
 msgid "Person %(person)s connects to himself via %(relation)s"
 msgstr "L'individu %(person)s est connecté à lui-même via %(relation)s"
 
-#: ../src/Relationship.py:1206
+#: ../src/Relationship.py:1212
 msgid "undefined"
 msgstr "non-défini(e)"
 
-#: ../src/Relationship.py:1683
+#: ../src/Relationship.py:1689
 #: ../src/plugins/import/ImportCsv.py:227
 msgid "husband"
 msgstr "le mari"
 
-#: ../src/Relationship.py:1685
+#: ../src/Relationship.py:1691
 #: ../src/plugins/import/ImportCsv.py:223
 msgid "wife"
 msgstr "la femme"
 
-#: ../src/Relationship.py:1687
+#: ../src/Relationship.py:1693
 msgid "gender unknown|spouse"
 msgstr "le conjoint"
 
-#: ../src/Relationship.py:1690
+#: ../src/Relationship.py:1696
 msgid "ex-husband"
 msgstr "l'ancien époux"
 
-#: ../src/Relationship.py:1692
+#: ../src/Relationship.py:1698
 msgid "ex-wife"
 msgstr "l'ancienne épouse"
 
-#: ../src/Relationship.py:1694
+#: ../src/Relationship.py:1700
 msgid "gender unknown|ex-spouse"
 msgstr "l'ancien conjoint"
 
-#: ../src/Relationship.py:1697
+#: ../src/Relationship.py:1703
 msgid "unmarried|husband"
 msgstr "le conjoint"
 
-#: ../src/Relationship.py:1699
+#: ../src/Relationship.py:1705
 msgid "unmarried|wife"
 msgstr "la conjointe"
 
-#: ../src/Relationship.py:1701
+#: ../src/Relationship.py:1707
 msgid "gender unknown,unmarried|spouse"
 msgstr "le conjoint"
 
-#: ../src/Relationship.py:1704
+#: ../src/Relationship.py:1710
 msgid "unmarried|ex-husband"
 msgstr "l'ancien conjoint"
 
-#: ../src/Relationship.py:1706
+#: ../src/Relationship.py:1712
 msgid "unmarried|ex-wife"
 msgstr "l'ancienne conjointe"
 
-#: ../src/Relationship.py:1708
+#: ../src/Relationship.py:1714
 msgid "gender unknown,unmarried|ex-spouse"
 msgstr "l'ancien conjoint"
 
-#: ../src/Relationship.py:1711
+#: ../src/Relationship.py:1717
 msgid "male,civil union|partner"
 msgstr "le compagnon"
 
-#: ../src/Relationship.py:1713
+#: ../src/Relationship.py:1719
 msgid "female,civil union|partner"
 msgstr "la compagne"
 
-#: ../src/Relationship.py:1715
+#: ../src/Relationship.py:1721
 msgid "gender unknown,civil union|partner"
 msgstr "le compagnon"
 
-#: ../src/Relationship.py:1718
+#: ../src/Relationship.py:1724
 msgid "male,civil union|former partner"
 msgstr "l'ancien compagnon"
 
-#: ../src/Relationship.py:1720
+#: ../src/Relationship.py:1726
 msgid "female,civil union|former partner"
 msgstr "l'ancienne compagne"
 
-#: ../src/Relationship.py:1722
+#: ../src/Relationship.py:1728
 msgid "gender unknown,civil union|former partner"
 msgstr "l'ancien compagnon"
 
-#: ../src/Relationship.py:1725
+#: ../src/Relationship.py:1731
 msgid "male,unknown relation|partner"
 msgstr "le concubin"
 
-#: ../src/Relationship.py:1727
+#: ../src/Relationship.py:1733
 msgid "female,unknown relation|partner"
 msgstr "la concubine"
 
-#: ../src/Relationship.py:1729
+#: ../src/Relationship.py:1735
 msgid "gender unknown,unknown relation|partner"
 msgstr "le concubin"
 
-#: ../src/Relationship.py:1734
+#: ../src/Relationship.py:1740
 msgid "male,unknown relation|former partner"
 msgstr "l'ancien concubin"
 
-#: ../src/Relationship.py:1736
+#: ../src/Relationship.py:1742
 msgid "female,unknown relation|former partner"
 msgstr "l'ancienne concubine"
 
 # Pour cette série de chaîne, doit-on reprendre le même format que l'originale, à savoir "genre inconnu, relation inconnue|ex-partenaire" ? → Non : http://www.gramps-project.org/wiki/index.php?title=Translating_GRAMPS#Context
-#: ../src/Relationship.py:1738
+#: ../src/Relationship.py:1744
 msgid "gender unknown,unknown relation|former partner"
 msgstr "l'ancien concubin"
 
-#: ../src/Relationship.py:1856
+#: ../src/Relationship.py:1862
 #, python-format
 msgid "Family relationship translator not available for language '%s'. Using 'english' instead."
 msgstr "La version traduite du calculateur de relations n'est pas disponible pour la langue '%s'. Utilisation de la version en 'anglais' à la place."
@@ -3399,35 +3399,35 @@ msgstr "Islamique"
 msgid "calendar|Swedish"
 msgstr "Suédois"
 
-#: ../src/gen/lib/date.py:1701
+#: ../src/gen/lib/date.py:1712
 msgid "estimated"
 msgstr "Estimé(e)"
 
-#: ../src/gen/lib/date.py:1701
+#: ../src/gen/lib/date.py:1712
 msgid "calculated"
 msgstr "Calculé(e)"
 
-#: ../src/gen/lib/date.py:1715
+#: ../src/gen/lib/date.py:1726
 msgid "before"
 msgstr "Avant"
 
-#: ../src/gen/lib/date.py:1715
+#: ../src/gen/lib/date.py:1726
 msgid "after"
 msgstr "Après"
 
-#: ../src/gen/lib/date.py:1715
+#: ../src/gen/lib/date.py:1726
 msgid "about"
 msgstr "Vers"
 
-#: ../src/gen/lib/date.py:1716
+#: ../src/gen/lib/date.py:1727
 msgid "range"
 msgstr "Étendu(e)"
 
-#: ../src/gen/lib/date.py:1716
+#: ../src/gen/lib/date.py:1727
 msgid "span"
 msgstr "Incrémenté(e)"
 
-#: ../src/gen/lib/date.py:1716
+#: ../src/gen/lib/date.py:1727
 msgid "textonly"
 msgstr "Texte seulement"
 
@@ -4789,7 +4789,7 @@ msgid "Could not add photo to page"
 msgstr "Impossible d'ajouter une photo à cette page"
 
 #: ../src/gen/plug/report/utils.py:143
-#: ../src/gui/utils.py:387
+#: ../src/gui/utils.py:383
 #: ../src/plugins/textreport/IndivComplete.py:631
 msgid "File does not exist"
 msgstr "Fichier inexistant"
@@ -6622,23 +6622,23 @@ msgstr "Le programme externe n'a pas pu être ouvert ou il a rencontré une erre
 msgid "Error from external program"
 msgstr "Erreur depuis le programme externe"
 
-#: ../src/gui/utils.py:404
+#: ../src/gui/utils.py:398
 msgid "Error in command line syntax."
 msgstr "Erreur de syntaxe dans la ligne de commande."
 
-#: ../src/gui/utils.py:405
+#: ../src/gui/utils.py:399
 msgid "One of the files passed on the command line did not exist."
 msgstr "Un des fichiers de la ligne de commande n'existe pas."
 
-#: ../src/gui/utils.py:406
+#: ../src/gui/utils.py:400
 msgid "A required tool could not be found."
 msgstr "Un outil requis n'a pas pu être trouvé."
 
-#: ../src/gui/utils.py:407
+#: ../src/gui/utils.py:401
 msgid "The action failed."
 msgstr "L'action a échoué."
 
-#: ../src/gui/utils.py:489
+#: ../src/gui/utils.py:475
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already being edited, or the associated source is already being edited, and opening a citation editor (which also allows the source to be edited), would create ambiguity by opening two editors on the same source. \n"
 "\n"
@@ -6649,7 +6649,7 @@ msgstr ""
 "Pour éditer la citation, fermez l'éditeur de source et ouvrez un éditeur pour une seule citation."
 
 # trunk
-#: ../src/gui/utils.py:502
+#: ../src/gui/utils.py:488
 msgid "Cannot open new citation editor"
 msgstr "Impossible d'ouvrir un nouvel éditeur de citation."
 
@@ -23487,7 +23487,7 @@ msgid "The animation parameters"
 msgstr "Les paramètres de l'animation"
 
 #: ../src/plugins/view/geoplaces.py:116
-msgid "Places places map"
+msgid "Places map"
 msgstr "Carte de tous les lieux"
 
 #: ../src/plugins/view/geoplaces.py:330
@@ -30553,6 +30553,9 @@ msgstr "<b>Le droit d'utilisation du programme Gramps</b><br/>Gramps est libreme
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de Linux Gramps fonctionne de la même façon quelque soit l'environnement de bureau. Tant que vous avez les bibliothèques GTK installées il fonctionnera bien."
+
+#~ msgid "Places places map"
+#~ msgstr "Carte de tous les lieux"
 
 #~ msgid "death-related evidence"
 #~ msgstr "événement attestant le décès"
