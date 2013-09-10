@@ -1280,15 +1280,21 @@ class Date(object):
         dv[pos_day] = day
         self.dateval = tuple(dv)
 
-    def set_yr_mon_day(self, year, month, day, _update2 = True):
+    def set_yr_mon_day(self, year, month, day, remove_stop_date = None):
         """
         Set the year, month, and day values.
-        For a compound date, collapses the range/span to the given date.
+
+        @param remove_stop_date Required parameter for a compound date. 
+            When True, the stop date is changed to the same date as well.
+            When False, the stop date is not changed.
         """
+        if self.is_compound() and remove_stop_date is None:
+            raise DateError("Required parameter remove_stop_date not set!")
+
         self.__set_yr_mon_day(year, month, day, 
                 Date._POS_YR, Date._POS_MON, Date._POS_DAY)
         self._calc_sort_value()
-        if _update2 and self.is_compound(): 
+        if remove_stop_date and self.is_compound(): 
             self.set2_yr_mon_day(year, month, day)
 
     def _assert_compound(self):
@@ -1338,7 +1344,7 @@ class Date(object):
         """
         if self.__set_yr_mon_day_offset(year, month, day,
                 Date._POS_YR, Date._POS_MON, Date._POS_DAY):
-            self.set_yr_mon_day(*self.offset(day), _update2 = False)
+            self.set_yr_mon_day(*self.offset(day), remove_stop_date = False)
         if self.is_compound(): 
             self.set2_yr_mon_day_offset(year, month, day)
 
@@ -1370,12 +1376,13 @@ class Date(object):
             retval.convert_calendar(orig_cal)
             return retval
 
-    def copy_ymd(self, year=0, month=0, day=0):
+    def copy_ymd(self, year=0, month=0, day=0, remove_stop_date=None):
         """
         Return a Date copy with year, month, and day set.
+        @param remove_stop_date Same as in set_yr_mon_day.
         """
         retval = Date(self)
-        retval.set_yr_mon_day(year, month, day)
+        retval.set_yr_mon_day(year, month, day, remove_stop_date)
         return retval
 
     def set_year(self, year):
