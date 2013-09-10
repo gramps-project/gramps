@@ -611,6 +611,8 @@ class RelationshipCalculator(object):
         birthmother = None
         for fam in person.get_parent_family_handle_list():
             family = db.get_family_from_handle(fam)
+            if not family:
+                continue
             childrel = [(ref.get_mother_relation(), 
                              ref.get_father_relation()) for ref in 
                                 family.get_child_ref_list() 
@@ -632,6 +634,8 @@ class RelationshipCalculator(object):
         nb_parents = []
         for fam in person.get_parent_family_handle_list():
             family = db.get_family_from_handle(fam)
+            if not family:
+                continue
             childrel = [(ref.get_mother_relation(), 
                              ref.get_father_relation()) for ref in 
                                 family.get_child_ref_list() 
@@ -959,6 +963,8 @@ class RelationshipCalculator(object):
             for family_handle in family_handles :
                 rel_fam_new = rel_fam + [fam]
                 family = db.get_family_from_handle(family_handle)
+                if not family:
+                    continue
                 #obtain childref for this person
                 childrel = [(ref.get_mother_relation(), 
                              ref.get_father_relation()) for ref in 
