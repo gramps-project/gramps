@@ -5,6 +5,7 @@
 # If not using GNU make, then list all .py files individually
 
 pkgpython_PYTHON = \
+    _Date_ar.py\
 	_Date_bg.py\
 	_Date_ca.py\
 	_Date_cs.py\

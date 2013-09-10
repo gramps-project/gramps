@@ -35,6 +35,7 @@ from _DateHandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY,
                           register_datehandler)
 
 # Import all the localized handlers
+import _Date_ar
 import _Date_bg
 import _Date_ca
 import _Date_cs
