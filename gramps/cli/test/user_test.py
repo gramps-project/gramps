@@ -72,16 +72,19 @@ class TestUser_prompt(unittest.TestCase):
                 ), "False expected!"
         self.user._input.assert_called_once_with()
 
-    def assert_prompt_contains_text(self, text):
+    def assert_prompt_contains_text(self, text,
+            title=TestUser.TITLE, msg=TestUser.MSG, 
+            accept=TestUser.ACCEPT, reject=TestUser.REJECT):
         self.user._input.configure_mock(return_value = TestUser.REJECT)
-        self.user.prompt(TestUser.TITLE, TestUser.MSG, 
-                TestUser.ACCEPT, TestUser.REJECT)
+        self.user.prompt(title, msg, accept, reject)
         for call in self.user._fileout.method_calls:
             name, args, kwargs = call
             for a in args:
                 if a.find(text) >= 0:
                     return
-        assert False,"'{}' never printed in prompt".format(text)
+        self.assertTrue(False,
+                "'{}' never printed in prompt: {}".format(
+                    text, self.user._fileout.method_calls))
 
     @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_contains_title_text(self):
@@ -98,6 +101,14 @@ class TestUser_prompt(unittest.TestCase):
     @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
     def test_prompt_contains_reject_text(self):
         self.assert_prompt_contains_text(TestUser.REJECT)
+
+    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
+    def test_prompt_strips_underscore_in_accept(self):
+        self.assert_prompt_contains_text("accepT", accept="accep_T")
+
+    @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
+    def test_prompt_strips_underscore_in_reject(self):
+        self.assert_prompt_contains_text("reJect", reject="re_Ject")
 
     if not MOCKING: #don't use SKIP, to avoid counting a skipped test
         def test_manual_run(self):

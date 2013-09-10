@@ -136,6 +136,8 @@ class User(user.User):
         @returns: the user's answer to the question
         @rtype: bool
         """
+        accept_label = accept_label.replace("_", "")
+        reject_label = reject_label.replace("_", "")
         text = "{t}\n{m} ([{y}]/{n}): ".format(
                 t = title,
                 m = message,
