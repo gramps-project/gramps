@@ -52,7 +52,7 @@ class User(user.User):
     """
     def __init__(self, callback=None, error=None):
         user.User.__init__(self, callback, error)
-        self.progress = None
+        self._progress = None
     
     def begin_progress(self, title, message, steps):
         """
@@ -68,26 +68,26 @@ class User(user.User):
         @type steps: int
         @returns: none
         """
-        self.progress = ProgressMeter(title)
+        self._progress = ProgressMeter(title)
         if steps > 0:
-            self.progress.set_pass(message, steps, ProgressMeter.MODE_FRACTION)
+            self._progress.set_pass(message, steps, ProgressMeter.MODE_FRACTION)
         else:
-            self.progress.set_pass(message, mode=ProgressMeter.MODE_ACTIVITY)
+            self._progress.set_pass(message, mode=ProgressMeter.MODE_ACTIVITY)
     
     def step_progress(self):
         """
         Advance the progress meter.
         """
-        if self.progress:
-            self.progress.step()
+        if self._progress:
+            self._progress.step()
 
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
         """
-        if self.progress:
-            self.progress.close()
-            self.progress = None
+        if self._progress:
+            self._progress.close()
+            self._progress = None
     
     def prompt(self, title, message, accept_label, reject_label):
         """
