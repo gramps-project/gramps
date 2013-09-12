@@ -126,23 +126,22 @@ class PlaceReport(Report):
         """
         place_nbr = 1
 
-        self._user.begin_progress(_("Place Report"), 
+        with self._user.progress(_("Place Report"), 
                                   _("Generating report"), 
-                                  len(self.place_handles))
-        
-        for handle in self.place_handles:
-            self.__write_place(handle, place_nbr)
-            if self.center == "Event":
-                self.__write_referenced_events(handle)
-            elif self.center == "Person":
-                self.__write_referenced_persons(handle)
-            else:
-              raise AttributeError("no such center: '%s'" % self.center)
-            place_nbr += 1
-            # increment progress bar
-            self._user.step_progress()
+                                  len(self.place_handles)) as step:
             
-        self._user.end_progress()
+            for handle in self.place_handles:
+                self.__write_place(handle, place_nbr)
+                if self.center == "Event":
+                    self.__write_referenced_events(handle)
+                elif self.center == "Person":
+                    self.__write_referenced_persons(handle)
+                else:
+                  raise AttributeError("no such center: '%s'" % self.center)
+                place_nbr += 1
+                # increment progress bar
+                step()
+                
 
     def __write_place(self, handle, place_nbr):
         """

@@ -321,30 +321,29 @@ class CSVParser(object):
 
         :param filehandle: open file handle positioned at start of the file
         """
-        data = self.read_csv(filehandle)
         progress_title = _('CSV Import')
-        self.user.begin_progress(progress_title, 
-                _('Reading data...'), 1)
-        self.user.end_progress()
-        self.user.begin_progress(progress_title, 
-                _('Importing data...'), len(data))
-        tym = time.time()
-        self.db.disable_signals()
-        with DbTxn(_("CSV import"), self.db, batch=True) as self.trans:
-            if self.default_tag and self.default_tag.handle is None:
-                self.db.add_tag(self.default_tag, self.trans)
-            self._parse_csv_data(data)
-        self.db.enable_signals()
-        self.db.request_rebuild()
-        tym = time.time() - tym
-        msg = glocale.translation.ngettext('Import Complete: %d second',
-                'Import Complete: %d seconds', tym ) % tym
-        LOG.debug(msg)
-        LOG.debug("New Families: %d" % self.fam_count)
-        LOG.debug("New Individuals: %d" % self.indi_count)
-        self.user.end_progress()
+        with self.user.progress(progress_title, 
+                _('Reading data...'), 1) as step:
+            data = self.read_csv(filehandle)
 
-    def _parse_csv_data(self, data):
+        with self.user.progress(progress_title, 
+                _('Importing data...'), len(data)) as step:
+            tym = time.time()
+            self.db.disable_signals()
+            with DbTxn(_("CSV import"), self.db, batch=True) as self.trans:
+                if self.default_tag and self.default_tag.handle is None:
+                    self.db.add_tag(self.default_tag, self.trans)
+                self._parse_csv_data(data, step)
+            self.db.enable_signals()
+            self.db.request_rebuild()
+            tym = time.time() - tym
+            msg = glocale.translation.ngettext('Import Complete: %d second',
+                    'Import Complete: %d seconds', tym ) % tym
+            LOG.debug(msg)
+            LOG.debug("New Families: %d" % self.fam_count)
+            LOG.debug("New Individuals: %d" % self.indi_count)
+
+    def _parse_csv_data(self, data, step):
         """Parse each line of the input data and act accordingly."""
         self.lineno = 0
         self.index = 0
@@ -355,7 +354,7 @@ class CSVParser(object):
         header = None
         line_number = 0
         for row in data:
-            self.user.step_progress()
+            step()
             line_number += 1
             if "".join(row) == "": # no blanks are allowed inside a table
                 header = None # clear headers, ready for next "table"
