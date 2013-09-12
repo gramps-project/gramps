@@ -707,59 +707,61 @@ class AncestorTree(Report):
         self.canvas.report_opts.box_pgap *= self.connect.get_val('box_Yscale')
         self.canvas.report_opts.box_mgap *= self.connect.get_val('box_Yscale')
 
-        with self._user.progress(_('Ancestor Tree'), 
-                _('Making the Tree...'), 4) as step:
+        self._user.begin_progress(_('Ancestor Tree'), 
+                                  _('Making the Tree...'), 4)
 
-            #make the tree onto the canvas
-            inlc_marr = self.connect.get_val("inc_marr")
-            self.max_generations = self.connect.get_val('maxgen')
-            fillout = self.connect.get_val('fill_out')
-            tree = MakeAncestorTree(database, self.canvas, self.max_generations,
-                               inlc_marr, fillout)
-            tree.start(self.connect.get_val('pid'))
-            tree = None
+        #make the tree onto the canvas
+        inlc_marr = self.connect.get_val("inc_marr")
+        self.max_generations = self.connect.get_val('maxgen')
+        fillout = self.connect.get_val('fill_out')
+        tree = MakeAncestorTree(database, self.canvas, self.max_generations,
+                           inlc_marr, fillout)
+        tree.start(self.connect.get_val('pid'))
+        tree = None
 
-            step()
+        self._user.step_progress()
 
-            #Title
-            title = self.connect.title_class(self.doc)
-            center = self.database.get_person_from_gramps_id(
-                        self.connect.get_val('pid')
-                        )
-            title.calc_title(center)
-            self.canvas.add_title(title)
+        #Title
+        title = self.connect.title_class(self.doc)
+        center = self.database.get_person_from_gramps_id(
+                    self.connect.get_val('pid')
+                    )
+        title.calc_title(center)
+        self.canvas.add_title(title)
 
-            #make the report as big as it wants to be.
-            compress = self.connect.get_val('compress_tree')
-            report = MakeReport(database, self.doc, self.canvas, font_normal,
-                                 inlc_marr, compress)
-            report.start()
-            self.max_generations = report.get_generations()  #already know
-            report = None
+        #make the report as big as it wants to be.
+        compress = self.connect.get_val('compress_tree')
+        report = MakeReport(database, self.doc, self.canvas, font_normal,
+                             inlc_marr, compress)
+        report.start()
+        self.max_generations = report.get_generations()  #already know
+        report = None
 
-            step()
+        self._user.step_progress()
 
-            #Note?
-            if self.connect.get_val("inc_note"):
-                note_box = NoteBox(self.doc, "AC2-note-box", 
-                                   self.connect.get_val("note_place"))
-                subst = SubstKeywords(self.database, None, None)
-                note_box.text = subst.replace_and_clean(
-                    self.connect.get_val('note_disp'))
-                self.canvas.add_note(note_box)
+        #Note?
+        if self.connect.get_val("inc_note"):
+            note_box = NoteBox(self.doc, "AC2-note-box", 
+                               self.connect.get_val("note_place"))
+            subst = SubstKeywords(self.database, None, None)
+            note_box.text = subst.replace_and_clean(
+                self.connect.get_val('note_disp'))
+            self.canvas.add_note(note_box)
 
-            #Now we have the report in its full size.
-            #Do we want to scale the report?
-            one_page = self.connect.get_val("resize_page")
-            scale_report = self.connect.get_val("scale_tree")
+        #Now we have the report in its full size.
+        #Do we want to scale the report?
+        one_page = self.connect.get_val("resize_page")
+        scale_report = self.connect.get_val("scale_tree")
 
-            scale = self.canvas.scale_report(one_page,
-                                             scale_report != 0, scale_report == 2)
-            
-            step()
+        scale = self.canvas.scale_report(one_page,
+                                         scale_report != 0, scale_report == 2)
+        
+        self._user.step_progress()
 
-            if scale != 1 or self.connect.get_val('shadowscale') != 1.0:
-                self.scale_styles(scale)
+        if scale != 1 or self.connect.get_val('shadowscale') != 1.0:
+            self.scale_styles(scale)
+
+        self._user.end_progress()
 
     def write_report(self):
         
@@ -794,26 +796,29 @@ class AncestorTree(Report):
         #lets finally make some pages!!!
         #####################
         pages = self.canvas.page_count(incblank)
-        with self._user.progress( _('Ancestor Tree'), 
-                _('Printing the Tree...'), pages) as step:
+        self._user.begin_progress( _('Ancestor Tree'), 
+                                   _('Printing the Tree...'), pages)
 
-            for page in self.canvas.page_iter_gen(incblank):
+        for page in self.canvas.page_iter_gen(incblank):
 
-                self.doc.start_page()
+            self.doc.start_page()
+    
+            #do we need to print a border?
+            if inc_border:
+                page.draw_border('AC2-line')
+    
+            #Do we need to print the page number?
+            if prnnum:
+                page_num_box.display(page)
+    
+            #Print the individual people and lines
+            page.display()
+                    
+            self._user.step_progress()
+            self.doc.end_page()
+
+        self._user.end_progress()
         
-                #do we need to print a border?
-                if inc_border:
-                    page.draw_border('AC2-line')
-        
-                #Do we need to print the page number?
-                if prnnum:
-                    page_num_box.display(page)
-        
-                #Print the individual people and lines
-                page.display()
-                        
-                step()
-                self.doc.end_page()
 
     def scale_styles(self, scale):
         """

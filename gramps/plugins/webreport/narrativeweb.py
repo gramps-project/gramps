@@ -3037,15 +3037,16 @@ class FamilyPages(BasePage):
         for item in self.report.obj_dict[Family].items():
             log.debug("    %s" % str(item))
 
-        with self.report.user.progress(_("Narrated Web Site Report"),
+        self.report.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating family pages..."), 
-                                  len(self.report.obj_dict[Family]) + 1) as step:
-            self.FamilyListPage(self.report, title,
-                                self.report.obj_dict[Family].keys())
+                                  len(self.report.obj_dict[Family]) + 1)
+        self.FamilyListPage(self.report, title,
+                            self.report.obj_dict[Family].keys())
 
-            for family_handle in self.report.obj_dict[Family]:
-                step()
-                self.FamilyPage(self.report, title, family_handle)
+        for family_handle in self.report.obj_dict[Family]:
+            self.report.user.step_progress()
+            self.FamilyPage(self.report, title, family_handle)
+        self.report.user.end_progress()
     
     def FamilyListPage(self, report, title, fam_list):
         self.dbase_ = report.database
@@ -3313,16 +3314,17 @@ class PlacePages(BasePage):
         log.debug("obj_dict[Place]")
         for item in self.report.obj_dict[Place].items():
             log.debug("    %s" % str(item))
-        with self.report.user.progress(_("Narrated Web Site Report"),
+        self.report.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating place pages"),
-                                  len(self.report.obj_dict[Place]) + 1) as step:
+                                  len(self.report.obj_dict[Place]) + 1)
 
-            self.PlaceListPage(self.report, title,
-                               self.report.obj_dict[Place].keys())
+        self.PlaceListPage(self.report, title,
+                           self.report.obj_dict[Place].keys())
 
-            for place_handle in self.report.obj_dict[Place]:
-                step()
-                self.PlacePage(self.report, title, place_handle)
+        for place_handle in self.report.obj_dict[Place]:
+            self.report.user.step_progress()
+            self.PlacePage(self.report, title, place_handle)
+        self.report.user.end_progress()
         pass
 
     def PlaceListPage(self, report, title, place_handles):
@@ -3596,15 +3598,16 @@ class EventPages(BasePage):
         for event_handle in event_handle_list:
             event = self.report.database.get_event_from_handle(event_handle)
             event_types.append(str(event.get_type()))
-        with self.report.user.progress(_("Narrated Web Site Report"),
+        self.report.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating event pages"), 
-                                  len(event_handle_list) + 1) as step:
-            self.EventListPage(self.report, title, event_types, event_handle_list)
+                                  len(event_handle_list) + 1)
+        self.EventListPage(self.report, title, event_types, event_handle_list)
 
-            for event_handle in event_handle_list:
-                step()
-                self.EventPage(self.report, title, event_handle)
+        for event_handle in event_handle_list:
+            self.report.user.step_progress()
+            self.EventPage(self.report, title, event_handle)
 
+        self.report.user.end_progress()
     
     def EventListPage(self, report, title, event_types, event_handle_list):
         """
@@ -4140,16 +4143,17 @@ class SourcePages(BasePage):
         log.debug("obj_dict[Source]")
         for item in self.report.obj_dict[Source].items():
             log.debug("    %s" % str(item))
-        with self.report.user.progress(_("Narrated Web Site Report"),
+        self.report.user.begin_progress(_("Narrated Web Site Report"),
                                  _("Creating source pages"),
-                                 len(self.report.obj_dict[Source]) + 1) as step:
-            self.SourceListPage(self.report, title,
-                                self.report.obj_dict[Source].keys())
+                                 len(self.report.obj_dict[Source]) + 1)
+        self.SourceListPage(self.report, title,
+                            self.report.obj_dict[Source].keys())
 
-            for source_handle in self.report.obj_dict[Source]:
-                step()
-                self.SourcePage(self.report, title, source_handle)
+        for source_handle in self.report.obj_dict[Source]:
+            self.report.user.step_progress()
+            self.SourcePage(self.report, title, source_handle)
 
+        self.report.user.end_progress()
     
     def SourceListPage(self, report, title, source_handles):
         """
@@ -4354,24 +4358,25 @@ class MediaPages(BasePage):
         log.debug("obj_dict[Media]")
         for item in self.report.obj_dict[MediaObject].items():
             log.debug("    %s" % str(item))
-        with self.report.user.progress(_("Narrated Web Site Report"),
+        self.report.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating media pages"), 
-                                  len(self.report.obj_dict[MediaObject]) + 1) as step:
-            
-            sorted_media_handles = sorted(self.report.obj_dict[MediaObject].keys(),
-                                          key=lambda x: SORT_KEY(self.report.database.get_object_from_handle(x).desc))
-            self.MediaListPage(self.report, title, sorted_media_handles)
+                                  len(self.report.obj_dict[MediaObject]) + 1)
+        
+        sorted_media_handles = sorted(self.report.obj_dict[MediaObject].keys(),
+                                      key=lambda x: SORT_KEY(self.report.database.get_object_from_handle(x).desc))
+        self.MediaListPage(self.report, title, sorted_media_handles)
 
-            prev = None
-            total = len(sorted_media_handles)
-            index = 1
-            for handle in sorted_media_handles:
-                gc.collect() # Reduce memory usage when there are many images.
-                next = None if index == total else sorted_media_handles[index]
-                step()
-                self.MediaPage(self.report, title, handle, (prev, next, index, total))
-                prev = handle
-                index += 1
+        prev = None
+        total = len(sorted_media_handles)
+        index = 1
+        for handle in sorted_media_handles:
+            gc.collect() # Reduce memory usage when there are many images.
+            next = None if index == total else sorted_media_handles[index]
+            self.report.user.step_progress()
+            self.MediaPage(self.report, title, handle, (prev, next, index, total))
+            prev = handle
+            index += 1
+        self.report.user.end_progress()
 
     def MediaListPage(self, report, title, sorted_media_handles):
         """
@@ -5152,15 +5157,16 @@ class PersonPages(BasePage):
         log.debug("obj_dict[Person]")
         for item in self.report.obj_dict[Person].items():
             log.debug("    %s" % str(item))
-        with self.report.user.progress(_("Narrated Web Site Report"),
+        self.report.user.begin_progress(_("Narrated Web Site Report"),
                                   _('Creating individual pages'), 
-                                  len(self.report.obj_dict[Person]) + 1) as step:
-            self.IndividualListPage(self.report, title,
-                                    self.report.obj_dict[Person].keys())
-            for person_handle in self.report.obj_dict[Person]:
-                step()
-                person = self.report.database.get_person_from_handle(person_handle)
-                self.IndividualPage(self.report, title, person)
+                                  len(self.report.obj_dict[Person]) + 1)
+        self.IndividualListPage(self.report, title,
+                                self.report.obj_dict[Person].keys())
+        for person_handle in self.report.obj_dict[Person]:
+            self.report.user.step_progress()
+            person = self.report.database.get_person_from_handle(person_handle)
+            self.IndividualPage(self.report, title, person)
+        self.report.user.end_progress()
         
 #################################################
 #
@@ -6514,26 +6520,27 @@ class RepositoryPages(BasePage):
             log.debug("    %s" % str(item))
 
         # set progress bar pass for Repositories
-        with self.report.user.progress(_("Narrated Web Site Report"),
+        self.report.user.begin_progress(_("Narrated Web Site Report"),
                                   _('Creating repository pages'), 
-                                  len(self.report.obj_dict[Repository]) + 1) as step:
-            # Sort the repositories
-            repos_dict = {}
-            for repository_handle in self.report.obj_dict[Repository]:
-                repository = self.report.database.get_repository_from_handle(repository_handle)
-                key = repository.get_name() + str(repository.get_gramps_id())
-                repos_dict[key] = (repository, repository_handle)
-                
-            keys = sorted(repos_dict, key = SORT_KEY)
+                                  len(self.report.obj_dict[Repository]) + 1)
+        # Sort the repositories
+        repos_dict = {}
+        for repository_handle in self.report.obj_dict[Repository]:
+            repository = self.report.database.get_repository_from_handle(repository_handle)
+            key = repository.get_name() + str(repository.get_gramps_id())
+            repos_dict[key] = (repository, repository_handle)
+            
+        keys = sorted(repos_dict, key = SORT_KEY)
 
-            # RepositoryListPage Class
-            self.RepositoryListPage(self.report, title, repos_dict, keys)
+        # RepositoryListPage Class
+        self.RepositoryListPage(self.report, title, repos_dict, keys)
 
-            for index, key in enumerate(keys):
-                (repo, handle) = repos_dict[key]
+        for index, key in enumerate(keys):
+            (repo, handle) = repos_dict[key]
 
-                step()
-                self.RepositoryPage(self.report, title, repo, handle)
+            self.report.user.step_progress()
+            self.RepositoryPage(self.report, title, repo, handle)
+        self.report.user.end_progress()
 
     def RepositoryListPage(self, report, title, repos_dict, keys):
         self.dbase_ = report.database
@@ -7130,22 +7137,24 @@ class NavWebReport(Report):
             self.obj_dict[obj_class] = defaultdict(set)
             
         ind_list =  self.database.iter_person_handles()
-        with self.user.progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _('Applying Person Filter...'), 
-                                  self.database.get_number_of_people()) as step:
-            ind_list = self.filter.apply(self.database, ind_list,
-                                         step)
+                                  self.database.get_number_of_people())
+        ind_list = self.filter.apply(self.database, ind_list,
+                                     self.user.step_progress)
+        self.user.end_progress()
         
-        with self.user.progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _('Constructing list of other objects...'), 
-                                  sum(1 for _ in ind_list)) as step:
-            for handle in ind_list:
-                # FIXME work around bug that self.database.iter under python 3
-                # returns (binary) data rather than text
-                if not isinstance(handle, UNITYPE):
-                    handle = handle.decode('utf-8')
-                step()
-                self._add_person(handle, "", "")
+                                  sum(1 for _ in ind_list))
+        for handle in ind_list:
+            # FIXME work around bug that self.database.iter under python 3
+            # returns (binary) data rather than text
+            if not isinstance(handle, UNITYPE):
+                handle = handle.decode('utf-8')
+            self.user.step_progress()
+            self._add_person(handle, "", "")
+        self.user.end_progress()
           
         log.debug("final object dictionary \n" + 
                   "".join(("%s: %s\n" % item) for item in self.obj_dict.items()))
@@ -7554,18 +7563,19 @@ class NavWebReport(Report):
 
     def build_gendex(self, ind_list):
         if self.inc_gendex:
-            with self.user.progress(_("Narrated Web Site Report"),
-                    _('Creating GENDEX file'), len(ind_list)) as step:
-                fp_gendex, gendex_io = self.create_file("gendex", ext=".txt")
-                for person_handle in ind_list:
-                    step()
-                    person = self.database.get_person_from_handle(person_handle)
+            self.user.begin_progress(_("Narrated Web Site Report"),
+                                      _('Creating GENDEX file'), len(ind_list))
+            fp_gendex, gendex_io = self.create_file("gendex", ext=".txt")
+            for person_handle in ind_list:
+                self.user.step_progress()
+                person = self.database.get_person_from_handle(person_handle)
+                self.write_gendex(fp_gendex, person)
+                if self.archive:
+                    self.write_gendex(gendex_io, person)
+                else:
                     self.write_gendex(fp_gendex, person)
-                    if self.archive:
-                        self.write_gendex(gendex_io, person)
-                    else:
-                        self.write_gendex(fp_gendex, person)
-                self.close_file(fp_gendex, gendex_io)
+            self.close_file(fp_gendex, gendex_io)
+            self.user.end_progress()
 
     def write_gendex(self, fp, person):
         """
@@ -7598,27 +7608,29 @@ class NavWebReport(Report):
         """
         local_list = sort_people(self.database, ind_list)
 
-        with self.user.progress(_("Narrated Web Site Report"),
-                _("Creating surname pages"), len(local_list)) as step:
+        self.user.begin_progress(_("Narrated Web Site Report"),
+                                  _("Creating surname pages"), len(local_list))
 
-            SurnameListPage(self, self.title, ind_list, SurnameListPage.ORDER_BY_NAME,
-                self.surname_fname)
+        SurnameListPage(self, self.title, ind_list, SurnameListPage.ORDER_BY_NAME,
+            self.surname_fname)
 
-            SurnameListPage(self, self.title, ind_list, SurnameListPage.ORDER_BY_COUNT,
-                "surnames_count")
+        SurnameListPage(self, self.title, ind_list, SurnameListPage.ORDER_BY_COUNT,
+            "surnames_count")
 
-            for (surname, handle_list) in local_list:
-                SurnamePage(self, self.title, surname, handle_list)
-                step()
+        for (surname, handle_list) in local_list:
+            SurnamePage(self, self.title, surname, handle_list)
+            self.user.step_progress()
+        self.user.end_progress()
 
     def thumbnail_preview_page(self):
         """
         creates the thumbnail preview page
         """
-        with self.user.progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating thumbnail preview page..."), 
-                                  len(self.obj_dict[MediaObject])) as step:
-            ThumbnailPreviewPage(self, self.title, step)
+                                  len(self.obj_dict[MediaObject]))
+        ThumbnailPreviewPage(self, self.title, self.user.step_progress)
+        self.user.end_progress()
 
     def addressbook_pages(self, ind_list):
         """
@@ -7656,12 +7668,13 @@ class NavWebReport(Report):
         # begin Address Book pages 
         addr_size = len(url_addr_res)
         
-        with self.user.progress(_("Narrated Web Site Report"),
+        self.user.begin_progress(_("Narrated Web Site Report"),
                                   _("Creating address book pages ..."), 
-                                  addr_size) as step:
-            for (sort_name, person_handle, add, res, url) in url_addr_res:
-                AddressBookPage(self, self.title, person_handle, add, res, url)
-                step()
+                                  addr_size)
+        for (sort_name, person_handle, add, res, url) in url_addr_res:
+            AddressBookPage(self, self.title, person_handle, add, res, url)
+            self.user.step_progress()
+        self.user.end_progress()
 
     def base_pages(self):
         """
