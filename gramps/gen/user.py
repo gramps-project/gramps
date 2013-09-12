@@ -95,7 +95,7 @@ class User():
     @contextmanager
     def progress(self, *args, **kwargs):
         """
-        Preferred form of context reporting.
+        Preferred form of progress reporting.
 
         Parameters: same as for begin_progress.
         
