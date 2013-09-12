@@ -56,6 +56,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
         uistate = user.uistate
+        self.user = user
 
         tool.BatchTool.__init__(self, dbstate, user, options_class, name)
         if self.fail:
@@ -67,7 +68,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
                                                  self.__class__)
             self.init_gui()
         else:
-            self.run_tool(cli=True)
+            self.run_tool()
 
     def init_gui(self):
         # Draw dialog and make it handle everything
@@ -104,7 +105,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
     def build_menu_names(self, obj):
         return (self.title,None)
 
-    def run_tool(self,cli=False):
+    def run_tool(self, parent_window = None):
         # Run tool and return results
         # These are English names, no conversion needed
         fromtype = self.options.handler.options_dict['fromtype']
@@ -114,20 +115,16 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
 
         with DbTxn(_('Change types'), self.db, batch=True) as self.trans:
             self.db.disable_signals()
-            if not cli:
-                progress = ProgressMeter(_('Analyzing Events'),'')
-                progress.set_pass('',self.db.get_number_of_events())
-            
-            for event_handle in self.db.get_event_handles():
-                event = self.db.get_event_from_handle(event_handle)
-                if event.get_type().xml_str() == fromtype:
-                    event.type.set_from_xml_str(totype)
-                    modified += 1
-                    self.db.commit_event(event,self.trans)
-                if not cli:
-                    progress.step()
-            if not cli:
-                progress.close()
+            with self.user.progress(
+                    _('Analyzing Events'), '',
+                    self.db.get_number_of_events()) as step:
+                for event_handle in self.db.get_event_handles():
+                    event = self.db.get_event_from_handle(event_handle)
+                    if event.get_type().xml_str() == fromtype:
+                        event.type.set_from_xml_str(totype)
+                        modified += 1
+                        self.db.commit_event(event,self.trans)
+                        step()
         self.db.enable_signals()
         self.db.request_rebuild()
 
@@ -137,8 +134,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
             msg = glocale.translation.ngettext("%d event record was modified."
                   , "%d event records were modified.", modified) % modified
 
-        if cli:
-            print("Done: ", msg)
+        self.user.info(_('Change types'), msg, parent_window)
         return (bool(modified),msg)
 
     def on_apply_clicked(self, obj):
@@ -151,8 +147,7 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
         the_type.set(self.auto2.get_child().get_text())
         self.options.handler.options_dict['totype'] = the_type.xml_str()
         
-        modified,msg = self.run_tool(cli=False)
-        OkDialog(_('Change types'), msg, self.window)
+        self.run_tool(self.window)
 
         # Save options
         self.options.handler.save_options()
