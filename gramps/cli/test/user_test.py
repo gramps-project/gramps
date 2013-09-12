@@ -32,9 +32,9 @@ import sys
 
 try:
     if sys.version_info < (3,3):
-        from mock import Mock, patch
+        from mock import Mock, NonCallableMock
     else:
-        from unittest.mock import Mock, patch
+        from unittest.mock import Mock, NonCallableMock
 
     MOCKING = True
     
@@ -150,41 +150,6 @@ class TestUser_quiet(unittest.TestCase):
     def tearDown(self):
         assert len(self.user._fileout.method_calls
                 ) == 0, list(self.user._fileout.method_calls)
-
-@unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
-class TestUser_progress(unittest.TestCase):
-    _progress_begin_step_end = \
-            TestUser_quiet.test_progress_can_begin_step_end.__func__
-
-    def setUp(self):
-        self.user = user.User()
-        self.user._fileout = Mock(spec=sys.stderr)
-
-    def test_can_step_using_with(self):
-        # Collect baseline output from the old-style interface (begin/step/end)
-        self._progress_begin_step_end()
-        self.expected_output = list(self.user._fileout.method_calls)
-        self.user._fileout.reset_mock()
-        self.assertTrue(
-                len(self.user._fileout.method_calls) == 0, 
-                list(self.user._fileout.method_calls))
-
-        with self.user.progress("Foo", "Bar", 0) as step:
-            for i in range(10):
-                step()
-
-        # Output using `with' differs from one with `progress_...'
-        self.assertEqual(self.expected_output, 
-                list(self.user._fileout.method_calls))
-
-    def test_ends_progress_upon_exception_in_with(self):
-        with patch('gramps.cli.user.User.end_progress') as MockEP:
-            try:
-                with self.user.progress("Foo", "Bar", 0) as step:
-                    raise Exception()
-            except Exception:
-                pass
-        self.assertTrue(MockEP.called)
 
 if __name__ == "__main__":
     unittest.main()

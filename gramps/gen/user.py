@@ -21,7 +21,6 @@
 #
 
 import sys
-from contextlib import contextmanager
 
 """
 The User class provides basic interaction with the user.
@@ -41,8 +40,6 @@ class User():
     def begin_progress(self, title, message, steps):
         """
         Start showing a progress indicator to the user.
-
-        Don't use this method directly, use progress instead.
         
         @param title: the title of the progress meter
         @type title: str
@@ -59,8 +56,6 @@ class User():
     def step_progress(self):
         """
         Advance the progress meter.
-
-        Don't use this method directly, use progress instead.
         """
         pass
     
@@ -85,33 +80,8 @@ class User():
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
-
-        Don't use this method directly, use progress instead.
         """
         pass
-
-    # Context-manager wrapper of the begin/step/end_progress above
-    @contextmanager
-    def progress(self, *args, **kwargs):
-        """
-        Preferred form of context reporting.
-
-        Parameters: same as for begin_progress.
-        
-        Usage example (see gramps/cli/test/user_test.py):
-            with self.user.progress("Foo", "Bar", 0) as step:
-                for i in range(10):
-                    step()
-
-        Ensures end_progress will be called even if an exception was thrown.
-        """
-        self.begin_progress(*args, **kwargs)
-        try:
-            yield self.step_progress
-        except:
-            raise
-        finally:
-            self.end_progress()
     
     def prompt(self, title, message, accept_label, reject_label):
         """
