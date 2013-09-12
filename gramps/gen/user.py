@@ -21,6 +21,7 @@
 #
 
 import sys
+from contextlib import contextmanager
 
 """
 The User class provides basic interaction with the user.
@@ -83,6 +84,13 @@ class User():
         Stop showing the progress indicator to the user.
         """
         pass
+
+    # Context-manager wrapper of the begin/step/end_progress above
+    @contextmanager
+    def progress(self, *args, **kwargs):
+        self.begin_progress(*args, **kwargs)
+        yield self.step_progress
+        self.end_progress()
     
     def prompt(self, title, message, accept_label, reject_label):
         """

@@ -151,5 +151,32 @@ class TestUser_quiet(unittest.TestCase):
         assert len(self.user._fileout.method_calls
                 ) == 0, list(self.user._fileout.method_calls)
 
+@unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
+class TestUser_progress(unittest.TestCase):
+    _progress_begin_step_end = \
+            TestUser_quiet.test_progress_can_begin_step_end.__func__
+
+    def setUp(self):
+        self.user = user.User()
+        self.user._fileout = Mock(spec=sys.stderr)
+        # Collect baseline output from the old-style interface (begin/step/end)
+        self._progress_begin_step_end()
+        self.expected_output = list(self.user._fileout.method_calls)
+        self.user._fileout.reset_mock()
+        self.assertTrue(
+                len(self.user._fileout.method_calls) == 0, 
+                list(self.user._fileout.method_calls))
+
+    def test(self):
+        with self.user.progress("Foo", "Bar", 0) as step:
+            for i in range(10):
+                step()
+
+    def tearDown(self):
+        # Output using `with' differs from one with `progress_...'
+        self.assertEqual(self.expected_output, 
+                list(self.user._fileout.method_calls))
+
+
 if __name__ == "__main__":
     unittest.main()
