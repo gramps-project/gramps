@@ -123,13 +123,12 @@ class TimeLine(Report):
 
     def write_report(self):
         # Apply the filter
-        self._user.begin_progress(_('Timeline'), 
+        with self._user.progress(_('Timeline'), 
                                   _('Applying filter...'), 
-                                  self.database.get_number_of_people())
-        self.plist = self.filter.apply(self.database, 
-                                       self.database.iter_person_handles(),
-                                       self._user.step_progress)
-        self._user.end_progress()
+                                  self.database.get_number_of_people()) as step:
+            self.plist = self.filter.apply(self.database, 
+                                           self.database.iter_person_handles(),
+                                           step)
 
         # Find the range of dates to include
         (low, high) = self.find_year_range()
@@ -150,9 +149,8 @@ class TimeLine(Report):
         self.header = 2.0
         
         # Sort the people as requested
-        self._user.begin_progress(_('Timeline'), _('Sorting dates...'), 0)
-        self.plist.sort(key=self.sort_func)
-        self._user.end_progress()
+        with self._user.progress(_('Timeline'), _('Sorting dates...'), 0) as step:
+            self.plist.sort(key=self.sort_func)
         
         self.doc.start_page()
         self.build_grid(low, high, start, stop, True)
@@ -162,66 +160,65 @@ class TimeLine(Report):
 
         length = len(self.plist)
         
-        self._user.begin_progress(_('Timeline'), 
-                                  _('Calculating timeline...'), length)
+        with self._user.progress(_('Timeline'), 
+                _('Calculating timeline...'), length) as step:
 
-        for p_id in self.plist:
-            p = self.database.get_person_from_handle(p_id)
-            birth = get_birth_or_fallback(self.database, p)
-            if birth:
-                b = birth.get_date_object().to_calendar(self.calendar).get_year()
-            else:
-                b = None
+            for p_id in self.plist:
+                p = self.database.get_person_from_handle(p_id)
+                birth = get_birth_or_fallback(self.database, p)
+                if birth:
+                    b = birth.get_date_object().to_calendar(self.calendar).get_year()
+                else:
+                    b = None
 
-            death = get_death_or_fallback(self.database, p)
-            if death:
-                d = death.get_date_object().to_calendar(self.calendar).get_year()
-            else:
-                d = None
+                death = get_death_or_fallback(self.database, p)
+                if death:
+                    d = death.get_date_object().to_calendar(self.calendar).get_year()
+                else:
+                    d = None
 
-            n = self._name_display.display(p)
-            mark = ReportUtils.get_person_mark(self.database, p)
-            self.doc.draw_text('TLG-text', n, incr+pad,
-                               self.header + (incr+pad)*index, mark)
-            
-            y1 = self.header + (pad+incr)*index
-            y2 = self.header + ((pad+incr)*index)+incr
-            y3 = (y1+y2)/2.0
-            w = 0.05
-            
-            if b:
-                start_offset = ((float(b-low)/float(high-low)) * (size))
-                x1 = start+start_offset
-                path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
-                self.doc.draw_path('TLG-line',path)
+                n = self._name_display.display(p)
+                mark = ReportUtils.get_person_mark(self.database, p)
+                self.doc.draw_text('TLG-text', n, incr+pad,
+                                   self.header + (incr+pad)*index, mark)
+                
+                y1 = self.header + (pad+incr)*index
+                y2 = self.header + ((pad+incr)*index)+incr
+                y3 = (y1+y2)/2.0
+                w = 0.05
+                
+                if b:
+                    start_offset = ((float(b-low)/float(high-low)) * (size))
+                    x1 = start+start_offset
+                    path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
+                    self.doc.draw_path('TLG-line',path)
 
-            if d:
-                start_offset = ((float(d-low)/float(high-low)) * (size))
-                x1 = start+start_offset
-                path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
-                self.doc.draw_path('TLG-solid',path)
+                if d:
+                    start_offset = ((float(d-low)/float(high-low)) * (size))
+                    x1 = start+start_offset
+                    path = [(x1,y1),(x1+w,y3),(x1,y2),(x1-w,y3)]
+                    self.doc.draw_path('TLG-solid',path)
 
-            if b and d:
-                start_offset = ((float(b-low)/float(high-low)) * size) + w
-                stop_offset = ((float(d-low)/float(high-low)) * size) - w
+                if b and d:
+                    start_offset = ((float(b-low)/float(high-low)) * size) + w
+                    stop_offset = ((float(d-low)/float(high-low)) * size) - w
 
-                x1 = start+start_offset
-                x2 = start+stop_offset
-                self.doc.draw_line('open',x1,y3,x2,y3)
+                    x1 = start+start_offset
+                    x2 = start+stop_offset
+                    self.doc.draw_line('open',x1,y3,x2,y3)
 
-            if (y2 + incr) >= self.doc.get_usable_height():
-                if current != length:
-                    self.doc.end_page()
-                    self.doc.start_page()
-                    self.build_grid(low, high,start,stop)
-                index = 1
-                x1,x2,y1,y2 = (0,0,0,0)
-            else:
-                index += 1;
-            current += 1
-            self._user.step_progress()
-        self.doc.end_page()
-        self._user.end_progress()    
+                if (y2 + incr) >= self.doc.get_usable_height():
+                    if current != length:
+                        self.doc.end_page()
+                        self.doc.start_page()
+                        self.build_grid(low, high,start,stop)
+                    index = 1
+                    x1,x2,y1,y2 = (0,0,0,0)
+                else:
+                    index += 1;
+                current += 1
+                step()
+            self.doc.end_page()
 
     def build_grid(self, year_low, year_high, start_pos, stop_pos, toc=False):
         """
@@ -343,40 +340,39 @@ class TimeLine(Report):
                     high = year
             return (low, high)
         
-        self._user.begin_progress(_('Timeline'), 
+        with self._user.progress(_('Timeline'), 
                                   _('Finding date range...'), 
-                                  len(self.plist))
+                                  len(self.plist)) as step:
 
-        for p_id in self.plist:
-            p = self.database.get_person_from_handle(p_id)
-            birth = get_birth_or_fallback(self.database, p)
-            if birth:
-                b = birth.get_date_object().to_calendar(self.calendar).get_year()
-                (low, high) = min_max_year(low, high, b)
+            for p_id in self.plist:
+                p = self.database.get_person_from_handle(p_id)
+                birth = get_birth_or_fallback(self.database, p)
+                if birth:
+                    b = birth.get_date_object().to_calendar(self.calendar).get_year()
+                    (low, high) = min_max_year(low, high, b)
 
-            death = get_death_or_fallback(self.database, p)
-            if death:
-                d = death.get_date_object().to_calendar(self.calendar).get_year()
-                (low, high) = min_max_year(low, high, d)
-            self._user.step_progress()
+                death = get_death_or_fallback(self.database, p)
+                if death:
+                    d = death.get_date_object().to_calendar(self.calendar).get_year()
+                    (low, high) = min_max_year(low, high, d)
+                step()
 
-        # round the dates to the nearest decade
-        if low is not None:
-            low = int((low/10))*10
-        else:
-            low = high
+            # round the dates to the nearest decade
+            if low is not None:
+                low = int((low/10))*10
+            else:
+                low = high
+                
+            if high is not None:
+                high = int(((high+9)/10))*10
+            else:
+                high = low
             
-        if high is not None:
-            high = int(((high+9)/10))*10
-        else:
-            high = low
-        
-        # Make sure the difference is a multiple of 50 so all year ranges land
-        # on a decade.
-        if low is not None and high is not None:
-            low -= 50 - ((high-low) % 50)
-        
-        self._user.end_progress()
+            # Make sure the difference is a multiple of 50 so all year ranges land
+            # on a decade.
+            if low is not None and high is not None:
+                low -= 50 - ((high-low) % 50)
+            
         return (low, high)
 
     def name_size(self):
