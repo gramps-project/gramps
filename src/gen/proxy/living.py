@@ -111,7 +111,7 @@ class LivingProxyDb(ProxyDbBase):
         """
         Protected version of iter_people
         """
-        for person in filter(None, self.db.iter_people()):
+        for person in ifilter(None, self.db.iter_people()):
             if self.__is_living(person):
                 if self.mode == self.MODE_EXCLUDE_ALL: 
                     continue
