@@ -89,8 +89,12 @@ class User():
     @contextmanager
     def progress(self, *args, **kwargs):
         self.begin_progress(*args, **kwargs)
-        yield self.step_progress
-        self.end_progress()
+        try:
+            yield self.step_progress
+        except:
+            raise
+        finally:
+            self.end_progress()
     
     def prompt(self, title, message, accept_label, reject_label):
         """
