@@ -196,5 +196,4 @@ class User(user.User):
         """
         Displays information to the CLI
         """
-        self._fileout.write(msg1)
-        self._fileout.write(infotext)
+        self._fileout.write("{} {}\n".format(msg1, infotext))
