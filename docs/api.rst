@@ -7,7 +7,7 @@ Code Documentation
 The :mod:`gen` Module
 =======================
 
-.. automodule:: gen
+.. automodule:: gramps.gen
 
 Contents:
 
