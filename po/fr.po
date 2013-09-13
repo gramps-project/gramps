@@ -910,7 +910,8 @@ msgstr "Enregistrement privé"
 
 #: ../gramps/gen/const.py:206
 msgid "Gramps (Genealogical Research and Analysis Management Programming System) is a personal genealogy program."
-msgstr "Gramps (Genealogical Research and Analysis Management Programming System) est un logiciel de généalogie."
+msgstr "Gramps (Genealogical Research and Analysis Management Programming System)\n"
+"est un logiciel de généalogie."
 
 #: ../gramps/gen/const.py:228
 msgid "TRANSLATORS: Translate this to your name in your native language"
