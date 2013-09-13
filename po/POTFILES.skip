@@ -25,6 +25,7 @@ gramps/gen/ggettext.py
 #
 # gen.datehandler package
 #
+gramps/gen/datehandler/_date_ar.py
 gramps/gen/datehandler/_date_bg.py
 gramps/gen/datehandler/_date_ca.py
 gramps/gen/datehandler/_date_cs.py
