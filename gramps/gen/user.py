@@ -80,8 +80,33 @@ class User():
     def end_progress(self):
         """
         Stop showing the progress indicator to the user.
+
+        Don't use this method directly, use progress instead.
         """
         pass
+
+    # Context-manager wrapper of the begin/step/end_progress above
+    @contextmanager
+    def progress(self, *args, **kwargs):
+        """
+        Preferred form of progress reporting.
+
+        Parameters: same as for begin_progress.
+        
+        Usage example (see gramps/cli/test/user_test.py):
+            with self.user.progress("Foo", "Bar", 0) as step:
+                for i in range(10):
+                    step()
+
+        Ensures end_progress will be called even if an exception was thrown.
+        """
+        self.begin_progress(*args, **kwargs)
+        try:
+            yield self.step_progress
+        except:
+            raise
+        finally:
+            self.end_progress()
     
     def prompt(self, title, message, accept_label, reject_label):
         """
