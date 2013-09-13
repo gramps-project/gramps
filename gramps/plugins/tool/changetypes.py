@@ -43,7 +43,6 @@ from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.autocomp import fill_combo
 from gramps.gen.lib import EventType
 from gramps.gen.db import DbTxn
-from gramps.gui.dialog import OkDialog
 from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
 
