@@ -216,12 +216,11 @@ class BirthdayReport(Report):
             self.doc.write_text(self._("Relationships shown are to %s") %
                                 self._name_display.display_name(name), mark)
             self.doc.end_paragraph()
-        self._user.begin_progress(_('Birthday and Anniversary Report'), 
-                                  _('Formatting months...'), 12)
-        for month in range(1, 13):
-            self._user.step_progress()
-            self.print_page(month)
-        self._user.end_progress()
+        with self._user.progress(_('Birthday and Anniversary Report'), 
+                _('Formatting months...'), 12) as step:
+            for month in range(1, 13):
+                step()
+                self.print_page(month)
 
     def print_page(self, month):
         """ Prints a month as a page """
@@ -256,141 +255,139 @@ class BirthdayReport(Report):
         and text.
         """
         people = self.database.iter_person_handles()
-        self._user.begin_progress(_('Birthday and Anniversary Report'), 
+        with self._user.progress(_('Birthday and Anniversary Report'), 
                                   _('Applying Filter...'), 
-                                  self.database.get_number_of_people())
-        people = self.filter.apply(self.database, people, 
-                                   self._user.step_progress)
-        self._user.end_progress()
+                                  self.database.get_number_of_people()) as step:
+            people = self.filter.apply(self.database, people, 
+                                       step)
         
         rel_calc = get_relationship_calculator(reinit=True,
                                                clocale=self._locale)
         ngettext = self._locale.translation.ngettext
 
-        self._user.begin_progress(_('Birthday and Anniversary Report'), 
-                                  _('Reading database...'), len(people))
-        for person_handle in people:
-            self._user.step_progress()
-            person = self.database.get_person_from_handle(person_handle)
-            birth_ref = person.get_birth_ref()
-            birth_date = None
-            if birth_ref:
-                birth_event = self.database.get_event_from_handle(birth_ref.ref)
-                birth_date = birth_event.get_date_object()
+        with self._user.progress(_('Birthday and Anniversary Report'), 
+                _('Reading database...'), len(people)) as step:
+            for person_handle in people:
+                step()
+                person = self.database.get_person_from_handle(person_handle)
+                birth_ref = person.get_birth_ref()
+                birth_date = None
+                if birth_ref:
+                    birth_event = self.database.get_event_from_handle(birth_ref.ref)
+                    birth_date = birth_event.get_date_object()
 
-            if (self.birthdays and birth_date is not None and birth_date.is_valid()):
-                year = birth_date.get_year()
-                month = birth_date.get_month()
-                day = birth_date.get_day()
+                if (self.birthdays and birth_date is not None and birth_date.is_valid()):
+                    year = birth_date.get_year()
+                    month = birth_date.get_month()
+                    day = birth_date.get_day()
 
-                prob_alive_date = Date(self.year, month, day)
+                    prob_alive_date = Date(self.year, month, day)
 
-                nyears = self.year - year
-                # add some things to handle maiden name:
-                father_lastname = None # husband, actually
-                if self.maiden_name in ['spouse_first', 'spouse_last']: # get husband's last name:
-                    if person.get_gender() == Person.FEMALE:
-                        family_list = person.get_family_handle_list()
-                        if len(family_list) > 0:
-                            if self.maiden_name == 'spouse_first':
-                                fhandle = family_list[0]
-                            else:
-                                fhandle = family_list[-1]
-                            fam = self.database.get_family_from_handle(fhandle)
-                            father_handle = fam.get_father_handle()
-                            mother_handle = fam.get_mother_handle()
-                            if mother_handle == person_handle:
-                                if father_handle:
-                                    father = self.database.get_person_from_handle(father_handle)
-                                    if father is not None:
-                                        primary_name = father.get_primary_name()
-                                        if primary_name:
-                                            father_lastname = Surname.get_surname(primary_name.get_primary_surname())
+                    nyears = self.year - year
+                    # add some things to handle maiden name:
+                    father_lastname = None # husband, actually
+                    if self.maiden_name in ['spouse_first', 'spouse_last']: # get husband's last name:
+                        if person.get_gender() == Person.FEMALE:
+                            family_list = person.get_family_handle_list()
+                            if len(family_list) > 0:
+                                if self.maiden_name == 'spouse_first':
+                                    fhandle = family_list[0]
+                                else:
+                                    fhandle = family_list[-1]
+                                fam = self.database.get_family_from_handle(fhandle)
+                                father_handle = fam.get_father_handle()
+                                mother_handle = fam.get_mother_handle()
+                                if mother_handle == person_handle:
+                                    if father_handle:
+                                        father = self.database.get_person_from_handle(father_handle)
+                                        if father is not None:
+                                            primary_name = father.get_primary_name()
+                                            if primary_name:
+                                                father_lastname = Surname.get_surname(primary_name.get_primary_surname())
 
-                short_name = self.get_name(person, father_lastname)
+                    short_name = self.get_name(person, father_lastname)
 
-                alive = probably_alive(person, self.database, prob_alive_date)
-                if ((self.alive and alive) or not self.alive):
+                    alive = probably_alive(person, self.database, prob_alive_date)
+                    if ((self.alive and alive) or not self.alive):
 
-                    comment = ""
-                    if self.relationships:
-                        relation = rel_calc.get_one_relationship(
-                                                         self.database, 
-                                                         self.center_person, 
-                                                         person,
-                                                         olocale=self._locale)
-                        if relation:
-                            # FIXME this won't work for RTL languages
-                            comment = " --- %s" % relation
-                    if nyears == 0:
-                        text = self._('%(person)s, birth%(relation)s') % {
-                            'person'   : short_name,
-                            'relation' : comment}
-                    else:
-                        text = (ngettext('%(person)s, %(age)d%(relation)s', 
-                                         '%(person)s, %(age)d%(relation)s', nyears)
-                                % {'person'   : short_name,
-                                   'age'      : nyears,
-                                   'relation' : comment})
+                        comment = ""
+                        if self.relationships:
+                            relation = rel_calc.get_one_relationship(
+                                                             self.database, 
+                                                             self.center_person, 
+                                                             person,
+                                                             olocale=self._locale)
+                            if relation:
+                                # FIXME this won't work for RTL languages
+                                comment = " --- %s" % relation
+                        if nyears == 0:
+                            text = self._('%(person)s, birth%(relation)s') % {
+                                'person'   : short_name,
+                                'relation' : comment}
+                        else:
+                            text = (ngettext('%(person)s, %(age)d%(relation)s', 
+                                             '%(person)s, %(age)d%(relation)s', nyears)
+                                    % {'person'   : short_name,
+                                       'age'      : nyears,
+                                       'relation' : comment})
 
-                    self.add_day_item(text, month, day, person)
-            if self.anniversaries:
-                family_list = person.get_family_handle_list()
-                for fhandle in family_list: 
-                    fam = self.database.get_family_from_handle(fhandle)
-                    father_handle = fam.get_father_handle()
-                    mother_handle = fam.get_mother_handle()
-                    if father_handle == person.get_handle():
-                        spouse_handle = mother_handle
-                    else:
-                        continue # with next person if the father is not "person"
-                                 # this will keep from duplicating the anniversary
-                    if spouse_handle:
-                        spouse = self.database.get_person_from_handle(spouse_handle)
-                        if spouse:
-                            spouse_name = self.get_name(spouse)
-                            short_name = self.get_name(person)
-                            # TEMP: this will handle ordered events
-                            # GRAMPS 3.0 will have a new mechanism for start/stop events
-                            are_married = None
-                            for event_ref in fam.get_event_ref_list():
-                                event = self.database.get_event_from_handle(event_ref.ref)
-                                if event.type in [EventType.MARRIAGE, 
-                                                  EventType.MARR_ALT]:
-                                    are_married = event
-                                elif event.type in [EventType.DIVORCE, 
-                                                    EventType.ANNULMENT, 
-                                                    EventType.DIV_FILING]:
-                                    are_married = None
-                            if are_married is not None:
+                        self.add_day_item(text, month, day, person)
+                if self.anniversaries:
+                    family_list = person.get_family_handle_list()
+                    for fhandle in family_list: 
+                        fam = self.database.get_family_from_handle(fhandle)
+                        father_handle = fam.get_father_handle()
+                        mother_handle = fam.get_mother_handle()
+                        if father_handle == person.get_handle():
+                            spouse_handle = mother_handle
+                        else:
+                            continue # with next person if the father is not "person"
+                                     # this will keep from duplicating the anniversary
+                        if spouse_handle:
+                            spouse = self.database.get_person_from_handle(spouse_handle)
+                            if spouse:
+                                spouse_name = self.get_name(spouse)
+                                short_name = self.get_name(person)
+                                # TEMP: this will handle ordered events
+                                # GRAMPS 3.0 will have a new mechanism for start/stop events
+                                are_married = None
                                 for event_ref in fam.get_event_ref_list():
                                     event = self.database.get_event_from_handle(event_ref.ref)
-                                    event_obj = event.get_date_object()
-                                    year = event_obj.get_year()
-                                    month = event_obj.get_month()
-                                    day = event_obj.get_day()
-                                    nyears = self.year - year
+                                    if event.type in [EventType.MARRIAGE, 
+                                                      EventType.MARR_ALT]:
+                                        are_married = event
+                                    elif event.type in [EventType.DIVORCE, 
+                                                        EventType.ANNULMENT, 
+                                                        EventType.DIV_FILING]:
+                                        are_married = None
+                                if are_married is not None:
+                                    for event_ref in fam.get_event_ref_list():
+                                        event = self.database.get_event_from_handle(event_ref.ref)
+                                        event_obj = event.get_date_object()
+                                        year = event_obj.get_year()
+                                        month = event_obj.get_month()
+                                        day = event_obj.get_day()
+                                        nyears = self.year - year
 
-                                    if event_obj.is_valid():
-                                        if nyears == 0:
-                                            text = self._("%(spouse)s and\n %(person)s, wedding") % {
-                                                     'spouse' : spouse_name, 
-                                                     'person' : short_name}
-                                        else:
-                                            text = (ngettext("%(spouse)s and\n %(person)s, %(nyears)d",
-                                                             "%(spouse)s and\n %(person)s, %(nyears)d", nyears)
-                                                    % {'spouse' : spouse_name, 
-                                                       'person' : short_name, 
-                                                       'nyears' : nyears})
- 
-                                            prob_alive_date = Date(self.year, month, day)
-                                            alive1 = probably_alive(person, self.database,
-                                                                    prob_alive_date)
-                                            alive2 = probably_alive(spouse, self.database,
-                                                                    prob_alive_date)
-                                            if (self.alive and alive1 and alive2) or not self.alive:
-                                                self.add_day_item(text, month, day, spouse)
-        self._user.end_progress()
+                                        if event_obj.is_valid():
+                                            if nyears == 0:
+                                                text = self._("%(spouse)s and\n %(person)s, wedding") % {
+                                                         'spouse' : spouse_name, 
+                                                         'person' : short_name}
+                                            else:
+                                                text = (ngettext("%(spouse)s and\n %(person)s, %(nyears)d",
+                                                                 "%(spouse)s and\n %(person)s, %(nyears)d", nyears)
+                                                        % {'spouse' : spouse_name, 
+                                                           'person' : short_name, 
+                                                           'nyears' : nyears})
+     
+                                                prob_alive_date = Date(self.year, month, day)
+                                                alive1 = probably_alive(person, self.database,
+                                                                        prob_alive_date)
+                                                alive2 = probably_alive(spouse, self.database,
+                                                                        prob_alive_date)
+                                                if (self.alive and alive1 and alive2) or not self.alive:
+                                                    self.add_day_item(text, month, day, spouse)
 
 #------------------------------------------------------------------------
 #

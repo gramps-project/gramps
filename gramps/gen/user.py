@@ -21,6 +21,7 @@
 #
 
 import sys
+from contextlib import contextmanager
 
 """
 The User class provides basic interaction with the user.
@@ -40,6 +41,8 @@ class User():
     def begin_progress(self, title, message, steps):
         """
         Start showing a progress indicator to the user.
+
+        Don't use this method directly, use progress instead.
         
         @param title: the title of the progress meter
         @type title: str
@@ -56,6 +59,8 @@ class User():
     def step_progress(self):
         """
         Advance the progress meter.
+
+        Don't use this method directly, use progress instead.
         """
         pass
     

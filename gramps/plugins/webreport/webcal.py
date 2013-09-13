@@ -296,21 +296,20 @@ class WebCalReport(Report):
     def __get_holidays(self, year):
 
         # _('translation')
-        self._user.begin_progress(_("Web Calendar Report"),
+        with self._user.progress(_("Web Calendar Report"),
                                   (_('Calculating Holidays for year %04d') % year),
-                                  365)
+                                  365) as step:
 
-        """ Get the holidays for the specified country and year """
-        holiday_table = libholiday.HolidayTable()
-        country = holiday_table.get_countries()[self.country]
-        holiday_table.load_holidays(year, country)
-        for month in range(1, 13):
-            for day in range(1, 32):
-                holiday_names = holiday_table.get_holidays(month, day) 
-                for holiday_name in holiday_names:
-                    self.add_day_item(holiday_name, year, month, day, 'Holiday')
-                self._user.step_progress()
-        self._user.end_progress()
+            """ Get the holidays for the specified country and year """
+            holiday_table = libholiday.HolidayTable()
+            country = holiday_table.get_countries()[self.country]
+            holiday_table.load_holidays(year, country)
+            for month in range(1, 13):
+                for day in range(1, 32):
+                    holiday_names = holiday_table.get_holidays(month, day) 
+                    for holiday_name in holiday_names:
+                        self.add_day_item(holiday_name, year, month, day, 'Holiday')
+                    step()
 
     def copy_calendar_files(self):
         """
@@ -839,59 +838,58 @@ class WebCalReport(Report):
 
         nr_up = 1                   # Number of directory levels up to get to self.html_dir / root
 
-        self._user.begin_progress(_("Web Calendar Report"),
-                                  _('Formatting months ...'), 12)
+        with self._user.progress(_("Web Calendar Report"),
+                _('Formatting months ...'), 12) as step:
 
-        for month in range(1, 13):
-            cal_fname = _dd.long_months[month]
-            of = self.create_file(cal_fname, str(year))
+            for month in range(1, 13):
+                cal_fname = _dd.long_months[month]
+                of = self.create_file(cal_fname, str(year))
 
-            # Add xml, doctype, meta and stylesheets
-            # body has already been added to webcal  already once
-            webcal, body = self.write_header(nr_up, self.title_text)
+                # Add xml, doctype, meta and stylesheets
+                # body has already been added to webcal  already once
+                webcal, body = self.write_header(nr_up, self.title_text)
 
-            # create Year Navigation menu
-            if (self.multiyear and ((self.end_year - self.start_year) > 0)):
-                body += self.year_navigation(nr_up, str(year))
+                # create Year Navigation menu
+                if (self.multiyear and ((self.end_year - self.start_year) > 0)):
+                    body += self.year_navigation(nr_up, str(year))
 
-            # Create Month Navigation Menu
-            # identify currentsection for proper highlighting
-            currentsection = _dd.long_months[month]
-            body += self.month_navigation(nr_up, year, currentsection, True)
+                # Create Month Navigation Menu
+                # identify currentsection for proper highlighting
+                currentsection = _dd.long_months[month]
+                body += self.month_navigation(nr_up, year, currentsection, True)
 
-            # build the calendar
-            content = Html("div", class_="content", id = "WebCal")
-            body += content
-            monthly_calendar = self.calendar_build("wc", year, month)
-            content += monthly_calendar
+                # build the calendar
+                content = Html("div", class_="content", id = "WebCal")
+                body += content
+                monthly_calendar = self.calendar_build("wc", year, month)
+                content += monthly_calendar
 
-            # create note section for webcalendar()
-            # One has to be minused because the array starts at zero, but January =1
-            note = self.month_notes[month-1].strip()
-            if note:
-                note = self.database.get_note_from_gramps_id(note)
-                note = self.get_note_format(note)
+                # create note section for webcalendar()
+                # One has to be minused because the array starts at zero, but January =1
+                note = self.month_notes[month-1].strip()
+                if note:
+                    note = self.database.get_note_from_gramps_id(note)
+                    note = self.get_note_format(note)
 
-            # table foot  section 
-            cal_foot = Html("tfoot")
-            monthly_calendar += cal_foot
+                # table foot  section 
+                cal_foot = Html("tfoot")
+                monthly_calendar += cal_foot
 
-            trow = Html("tr") + (
-                Html("td", note, colspan=7, inline = True)
-                ) 
-            cal_foot += trow
+                trow = Html("tr") + (
+                    Html("td", note, colspan=7, inline = True)
+                    ) 
+                cal_foot += trow
 
-            # create blank line for stylesheets
-            # create footer division section
-            footer = self.write_footer(nr_up)
-            body += (fullclear, footer)
+                # create blank line for stylesheets
+                # create footer division section
+                footer = self.write_footer(nr_up)
+                body += (fullclear, footer)
 
-            # send calendar page to web output
-            # and close the file
-            self.XHTMLWriter(webcal, of)
+                # send calendar page to web output
+                # and close the file
+                self.XHTMLWriter(webcal, of)
 
-            self._user.step_progress()
-        self._user.end_progress()
+                step()
 
     def year_glance(self, year):
         """
@@ -902,55 +900,54 @@ class WebCalReport(Report):
         nr_up = 1                       # Number of directory levels up to get to root
 
         # generate progress pass for "Year At A Glance"
-        self._user.begin_progress(_("Web Calendar Report"),
-                                  _('Creating Year At A Glance calendar'), 12)
+        with self._user.progress(_("Web Calendar Report"),
+                _('Creating Year At A Glance calendar'), 12) as step:
 
-        of = self.create_file('fullyearlinked', str(year))
+            of = self.create_file('fullyearlinked', str(year))
 
-        # page title
-        title = _("%(year)d, At A Glance") % {'year' : year}
+            # page title
+            title = _("%(year)d, At A Glance") % {'year' : year}
 
-        # Create page header
-        # body has already been added to yearglance  already once
-        yearglance, body = self.write_header(nr_up, title, "fullyearlinked", False)
+            # Create page header
+            # body has already been added to yearglance  already once
+            yearglance, body = self.write_header(nr_up, title, "fullyearlinked", False)
 
-        # create Year Navigation menu
-        if (self.multiyear and ((self.end_year - self.start_year) > 0)):
-            body += self.year_navigation(nr_up, str(year))
+            # create Year Navigation menu
+            if (self.multiyear and ((self.end_year - self.start_year) > 0)):
+                body += self.year_navigation(nr_up, str(year))
 
-        # Create Month Navigation Menu
-        # identify currentsection for proper highlighting
-        body += self.month_navigation(nr_up, year, "fullyearlinked", True)
+            # Create Month Navigation Menu
+            # identify currentsection for proper highlighting
+            body += self.month_navigation(nr_up, year, "fullyearlinked", True)
 
-        msg = (_('This calendar is meant to give you access '
-                       'to all your data at a glance compressed into one page. Clicking '
-                       'on a date will take you to a page that shows all the events for '
-                       'that date, if there are any.\n'))
+            msg = (_('This calendar is meant to give you access '
+                           'to all your data at a glance compressed into one page. Clicking '
+                           'on a date will take you to a page that shows all the events for '
+                           'that date, if there are any.\n'))
 
-        # page description 
-        content = Html("div", class_ = "content", id = "YearGlance")
-        body += content
+            # page description 
+            content = Html("div", class_ = "content", id = "YearGlance")
+            body += content
 
-        content += Html("p", msg, id='description')
+            content += Html("p", msg, id='description')
 
-        for month in range(1, 13):
+            for month in range(1, 13):
 
-            # build the calendar
-            monthly_calendar = self.calendar_build("yg", year, month)
-            content += monthly_calendar  
+                # build the calendar
+                monthly_calendar = self.calendar_build("yg", year, month)
+                content += monthly_calendar  
 
-            # increase progress bar
-            self._user.step_progress()
+                # increase progress bar
+                step()
 
-        # create blank line for stylesheets
-        # write footer section
-        footer = self.write_footer(nr_up)
-        body += (fullclear, footer)
+            # create blank line for stylesheets
+            # write footer section
+            footer = self.write_footer(nr_up)
+            body += (fullclear, footer)
 
-        # send calendar page to web output
-        # and close the file
-        self.XHTMLWriter(yearglance, of)
-        self._user.end_progress()
+            # send calendar page to web output
+            # and close the file
+            self.XHTMLWriter(yearglance, of)
 
     def one_day(self, event_date, fname_date, day_list):
         """
@@ -1083,114 +1080,112 @@ class WebCalReport(Report):
         db = self.database
 
         people = db.iter_person_handles()
-        self._user.begin_progress(_("Web Calendar Report"),
+        with self._user.progress(_("Web Calendar Report"),
                                   _('Applying Filter...'), 
-                                  db.get_number_of_people())
-        people = self.filter.apply(db, people, self._user.step_progress)
-        self._user.end_progress()
+                                  db.get_number_of_people()) as step:
+            people = self.filter.apply(db, people, step_progress)
 
-        self._user.begin_progress(_("Web Calendar Report"),
-                                  _("Reading database..."), len(people))
-        for person in map(db.get_person_from_handle, people):
-            self._user.step_progress()
+        with self._user.progress(_("Web Calendar Report"),
+                _("Reading database..."), len(people)) as step:
+            for person in map(db.get_person_from_handle, people):
+                step()
 
-            family_list = person.get_family_handle_list()
-            birth_ref = person.get_birth_ref()
-            birth_date = Date.EMPTY
-            if birth_ref:
-                birth_event = db.get_event_from_handle(birth_ref.ref)
-                birth_date = birth_event.get_date_object()
+                family_list = person.get_family_handle_list()
+                birth_ref = person.get_birth_ref()
+                birth_date = Date.EMPTY
+                if birth_ref:
+                    birth_event = db.get_event_from_handle(birth_ref.ref)
+                    birth_date = birth_event.get_date_object()
 
-            # determine birthday information???
-            if (self.birthday and birth_date is not Date.EMPTY and birth_date.is_valid()):
+                # determine birthday information???
+                if (self.birthday and birth_date is not Date.EMPTY and birth_date.is_valid()):
 
-                year = birth_date.get_year() or this_year
-                month = birth_date.get_month()
-                day = birth_date.get_day()
+                    year = birth_date.get_year() or this_year
+                    month = birth_date.get_month()
+                    day = birth_date.get_day()
 
-                # date to figure if someone is still alive
-                # current year of calendar, month nd day is their birth month and birth day 
-                prob_alive_date = Date(this_year, month, day)
+                    # date to figure if someone is still alive
+                    # current year of calendar, month nd day is their birth month and birth day 
+                    prob_alive_date = Date(this_year, month, day)
 
-                # add some things to handle maiden name:
-                father_surname = None # husband, actually
-                if person.gender == Person.FEMALE:
+                    # add some things to handle maiden name:
+                    father_surname = None # husband, actually
+                    if person.gender == Person.FEMALE:
 
-                    # get husband's last name:
-                    if self.maiden_name in ['spouse_first', 'spouse_last']: 
-                        if family_list:
-                            if self.maiden_name == 'spouse_first':
-                                fhandle = family_list[0]
-                            else:
-                                fhandle = family_list[-1]
-                            fam = db.get_family_from_handle(fhandle)
-                            father_handle = fam.get_father_handle()
-                            mother_handle = fam.get_mother_handle()
-                            if mother_handle == person.handle:
-                                if father_handle:
-                                    father = db.get_person_from_handle(father_handle)
-                                    if father is not None:
-                                        father_surname = _get_regular_surname(person.gender, 
-                                            father.get_primary_name())
-                short_name = self.get_name(person, father_surname)
-                alive = probably_alive(person, db, prob_alive_date)
-                if (self.alive and alive) or not self.alive:
+                        # get husband's last name:
+                        if self.maiden_name in ['spouse_first', 'spouse_last']: 
+                            if family_list:
+                                if self.maiden_name == 'spouse_first':
+                                    fhandle = family_list[0]
+                                else:
+                                    fhandle = family_list[-1]
+                                fam = db.get_family_from_handle(fhandle)
+                                father_handle = fam.get_father_handle()
+                                mother_handle = fam.get_mother_handle()
+                                if mother_handle == person.handle:
+                                    if father_handle:
+                                        father = db.get_person_from_handle(father_handle)
+                                        if father is not None:
+                                            father_surname = _get_regular_surname(person.gender, 
+                                                father.get_primary_name())
+                    short_name = self.get_name(person, father_surname)
+                    alive = probably_alive(person, db, prob_alive_date)
+                    if (self.alive and alive) or not self.alive:
 
-                    # add link to NarrativeWeb
-                    if self.link_to_narweb:
-                        text = str(Html("a", short_name, 
-                                    href = self.build_url_fname_html(person.handle, "ppl", 
-                                                                   prefix = self.narweb_prefix)))
-                    else:
-                        text = short_name
-                    self.add_day_item(text, year, month, day, 'Birthday')
+                        # add link to NarrativeWeb
+                        if self.link_to_narweb:
+                            text = str(Html("a", short_name, 
+                                        href = self.build_url_fname_html(person.handle, "ppl", 
+                                                                       prefix = self.narweb_prefix)))
+                        else:
+                            text = short_name
+                        self.add_day_item(text, year, month, day, 'Birthday')
 
-            # add anniversary if requested
-            if self.anniv:
-                for fhandle in family_list:
-                    fam = db.get_family_from_handle(fhandle)
-                    father_handle = fam.get_father_handle()
-                    mother_handle = fam.get_mother_handle()
-                    if father_handle == person.handle:
-                        spouse_handle = mother_handle
-                    else:
-                        continue # with next person if this was the marriage event
-                    if spouse_handle:
-                        spouse = db.get_person_from_handle(spouse_handle)
-                        if spouse:
-                            spouse_name = self.get_name(spouse)
-                            short_name = self.get_name(person)
+                # add anniversary if requested
+                if self.anniv:
+                    for fhandle in family_list:
+                        fam = db.get_family_from_handle(fhandle)
+                        father_handle = fam.get_father_handle()
+                        mother_handle = fam.get_mother_handle()
+                        if father_handle == person.handle:
+                            spouse_handle = mother_handle
+                        else:
+                            continue # with next person if this was the marriage event
+                        if spouse_handle:
+                            spouse = db.get_person_from_handle(spouse_handle)
+                            if spouse:
+                                spouse_name = self.get_name(spouse)
+                                short_name = self.get_name(person)
 
-                        # will return a marriage event or False if not married any longer 
-                        marriage_event = get_marriage_event(db, fam)
-                        if marriage_event:
-                            event_date = marriage_event.get_date_object()
-                            if event_date is not Date.EMPTY and event_date.is_valid():
-                                year = event_date.get_year()
-                                month = event_date.get_month()
-                                day = event_date.get_day()
+                            # will return a marriage event or False if not married any longer 
+                            marriage_event = get_marriage_event(db, fam)
+                            if marriage_event:
+                                event_date = marriage_event.get_date_object()
+                                if event_date is not Date.EMPTY and event_date.is_valid():
+                                    year = event_date.get_year()
+                                    month = event_date.get_month()
+                                    day = event_date.get_day()
 
-                                # date to figure if someone is still alive
-                                prob_alive_date = Date(this_year, month, day)
+                                    # date to figure if someone is still alive
+                                    prob_alive_date = Date(this_year, month, day)
 
-                                if self.link_to_narweb:
-                                    spouse_name = str(Html("a", spouse_name,
-                                                  href = self.build_url_fname_html(spouse_handle, 'ppl', 
-                                                  prefix = self.narweb_prefix)))
-                                    short_name = str(Html("a", short_name,
-                                                      href = self.build_url_fname_html(person.handle, 'ppl', 
-                                                       prefix = self.narweb_prefix)))
-                                
-                                alive1 = probably_alive(person, db, prob_alive_date)
-                                alive2 = probably_alive(spouse, db, prob_alive_date)
-                                if ((self.alive and alive1 and alive2) or not self.alive):
+                                    if self.link_to_narweb:
+                                        spouse_name = str(Html("a", spouse_name,
+                                                      href = self.build_url_fname_html(spouse_handle, 'ppl', 
+                                                      prefix = self.narweb_prefix)))
+                                        short_name = str(Html("a", short_name,
+                                                          href = self.build_url_fname_html(person.handle, 'ppl', 
+                                                           prefix = self.narweb_prefix)))
+                                    
+                                    alive1 = probably_alive(person, db, prob_alive_date)
+                                    alive2 = probably_alive(spouse, db, prob_alive_date)
+                                    if ((self.alive and alive1 and alive2) or not self.alive):
 
-                                    text = _('%(spouse)s and %(person)s') % {
-                                        'spouse' : spouse_name,
-                                        'person' : short_name}
+                                        text = _('%(spouse)s and %(person)s') % {
+                                            'spouse' : spouse_name,
+                                            'person' : short_name}
 
-                                    self.add_day_item(text, year, month, day, 'Anniversary')
-        self._user.end_progress()
+                                        self.add_day_item(text, year, month, day, 'Anniversary')
         
     def write_footer(self, nr_up):
         """
