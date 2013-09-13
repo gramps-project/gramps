@@ -181,7 +181,7 @@ authors_email = ["don@gramps-project.org"],
 category = TOOL_DBPROC,
 toolclass = 'EventNames',
 optionclass = 'EventNamesOptions',
-tool_modes = [TOOL_MODE_GUI]
+tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
   )
 
 #------------------------------------------------------------------------

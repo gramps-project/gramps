@@ -44,21 +44,19 @@ _ = glocale.translation.gettext
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.lib import EventRoleType
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.db import family_name
 
 from gramps.gui.plug import tool
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gui.dialog import OkDialog
 
 #-------------------------------------------------------------------------
 #
 # EventNames
 #
 #-------------------------------------------------------------------------
-class EventNames(tool.BatchTool, ManagedWindow):
+class EventNames(tool.BatchTool):
     """
     Look for events that do not have a description, and build the description 
     from the item that contains it. 
@@ -69,13 +67,11 @@ class EventNames(tool.BatchTool, ManagedWindow):
     """
 
     def __init__(self, dbstate, user, options_class, name, callback=None):
-        uistate = user.uistate
+        self.user = user
         tool.BatchTool.__init__(self, dbstate, user, options_class, name)
 
         if not self.fail:
-            uistate.set_busy_cursor(True)
             self.run()
-            uistate.set_busy_cursor(False)
 
     def run(self):
         """
@@ -86,37 +82,42 @@ class EventNames(tool.BatchTool, ManagedWindow):
             self.change = False
             counter = 0
         
-            for person in self.db.iter_people():
-                for event_ref in person.get_event_ref_list():
-                    if event_ref.get_role() == EventRoleType.PRIMARY:
-                        event_handle = event_ref.ref
-                        event = self.db.get_event_from_handle(event_handle)
-                        if event.get_description() == "":
-                            person_event_name(event, person)
-                            self.db.commit_event(event, trans)
-                            self.change = True
-                            counter += 1
+            with self.user.progress(
+                    _("Extract Event Description"), '',
+                    2) as step:
+                for person in self.db.iter_people():
+                    for event_ref in person.get_event_ref_list():
+                        if event_ref.get_role() == EventRoleType.PRIMARY:
+                            event_handle = event_ref.ref
+                            event = self.db.get_event_from_handle(event_handle)
+                            if event.get_description() == "":
+                                person_event_name(event, person)
+                                self.db.commit_event(event, trans)
+                                self.change = True
+                                counter += 1
+                step()
 
-            for family in self.db.iter_families():
-                for event_ref in family.get_event_ref_list():
-                    if event_ref.get_role() == EventRoleType.FAMILY:
-                        event_handle = event_ref.ref
-                        event = self.db.get_event_from_handle(event_handle)
-                        if event.get_description() == "":
-                            family_event_name(event, family, self.db)
-                            self.db.commit_event(event, trans)
-                            self.change = True
-                            counter += 1
+                for family in self.db.iter_families():
+                    for event_ref in family.get_event_ref_list():
+                        if event_ref.get_role() == EventRoleType.FAMILY:
+                            event_handle = event_ref.ref
+                            event = self.db.get_event_from_handle(event_handle)
+                            if event.get_description() == "":
+                                family_event_name(event, family, self.db)
+                                self.db.commit_event(event, trans)
+                                self.change = True
+                                counter += 1
+                step()
 
         self.db.enable_signals()
         self.db.request_rebuild()
 
         if self.change == True:
-            OkDialog(_('Modifications made'), 
+            self.user.info(_('Modifications made'), 
                      glocale.translation.ngettext("%s event description has been added", 
                     "%s event descriptions have been added", counter) % counter)
         else:
-            OkDialog(_('No modifications made'), 
+            self.user.info(_('No modifications made'), 
                     _("No event description has been added."))
 
 #-------------------------------------------------------------------------
