@@ -1493,30 +1493,46 @@ class Date(object):
         day = max(d, 1)
         return (year, month, day)
 
-    def set(self, quality, modifier, calendar, value, text=None, 
-            newyear=0):
+    def set(self, quality=None, modifier=None, calendar=None, 
+            value=None, 
+            text=None, newyear=0):
         """
         Set the date to the specified value. 
         
         Parameters are::
 
           quality  - The date quality for the date (see get_quality
-                     for more information)
+                     for more information).
+                     Defaults to the previous value for the date.
           modified - The date modifier for the date (see get_modifier
                      for more information)
+                     Defaults to the previous value for the date.
           calendar - The calendar associated with the date (see
                      get_calendar for more information).
+                     Defaults to the previous value for the date.
           value    - A tuple representing the date information. For a
                      non-compound date, the format is (DD, MM, YY, slash)
                      and for a compound date the tuple stores data as
                      (DD, MM, YY, slash1, DD, MM, YY, slash2)
+                     Defaults to the previous value for the date.
           text     - A text string holding either the verbatim user input
                      or a comment relating to the date.
+                     Defaults to the previous value for the date.
           newyear  - The newyear code, or tuple representing (month, day)
-                     of newyear day.
+                     of newyear day. 
+                     Defaults to 0.
 
         The sort value is recalculated.
         """
+
+        if quality is None:
+            quality = self.quality
+        if modifier is None:
+            modifier = self.modifier
+        if calendar is None:
+            calendar = self.calendar
+        if value is None:
+            value = self.value
         
         if modifier in (Date.MOD_NONE, Date.MOD_BEFORE, 
                         Date.MOD_AFTER, Date.MOD_ABOUT) and len(value) < 4:

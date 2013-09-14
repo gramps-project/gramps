@@ -430,9 +430,9 @@ class Test_set2(BaseDateTest):
     """
     def setUp(self):
         self.date = d = Date()
-        d.set(Date.QUAL_NONE, Date.MOD_RANGE, Date.CAL_GREGORIAN,
+        d.set(modifier=Date.MOD_RANGE,
                 #d  m  y    sl--d  m  y    sl
-                (1, 1, 2000, 0, 1, 1, 2010, 0))
+          value=(1, 1, 2000, 0, 1, 1, 2010, 0))
 
     def testStartStopSanity(self):
         start,stop = self.date.get_start_stop_range()
