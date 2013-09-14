@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -19,6 +20,8 @@
 #
 
 # $Id$
+
+from __future__ import unicode_literals
 
 import sys
 import subprocess
@@ -43,7 +46,10 @@ def _get_svn_revision(path, command, stdout_to_rev):
         return "" # subprocess failed
     # subprocess worked
     if stdout and len(stdout) > 0: # has output
-        stdout = cuni(stdout) # get a proper string
+        try:
+            stdout = cuni(stdout) # get a proper string
+        except UnicodeDecodeError:
+            pass
         rev = stdout_to_rev(stdout)
         return "-r" + rev if rev else ""
     else: # no output from svnversion
