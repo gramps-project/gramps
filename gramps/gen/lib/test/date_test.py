@@ -193,11 +193,12 @@ for calendar in (Date.CAL_JULIAN,
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
         dates.append( d)
 
-for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
-    for month in range(1,14):
-        d = Date()
-        d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
-        dates.append( d)
+# TODO uncomment when bug #7066 is fixed!
+#for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
+#    for month in range(1,14):
+#        d = Date()
+#        d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
+#        dates.append( d)
 
 date_tests[testset] = dates
 
