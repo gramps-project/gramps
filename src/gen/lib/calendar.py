@@ -23,7 +23,7 @@
 """
 Provide calendar to sdn (serial date number) conversion.
 """
-
+from __future__ import division
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -110,9 +110,9 @@ def _tishri_molad(input_day):
     loop below will correct for any error in this estimate. 
     """
     
-    metonic_cycle = (input_day + 310) / 6940
+    metonic_cycle = (input_day + 310) // 6940
     
-    # Calculate the time of the starting molad for this metonic cycle. */
+    # Calculate the time of the starting molad for this metonic cycle.
     
     (molad_day, molad_halakim) = _molad_of_metonic_cycle(metonic_cycle)
     
@@ -124,7 +124,7 @@ def _tishri_molad(input_day):
     while molad_day < (input_day - 6940 + 310): 
         metonic_cycle = metonic_cycle + 1
         molad_halakim = molad_halakim + _HBR_HALAKIM_PER_METONIC_CYCLE
-        molad_day = molad_day + ( molad_halakim / _HBR_HALAKIM_PER_DAY)
+        molad_day = molad_day + ( molad_halakim // _HBR_HALAKIM_PER_DAY)
         molad_halakim = molad_halakim % _HBR_HALAKIM_PER_DAY
 
     # Find the molad of Tishri closest to this date.
@@ -135,7 +135,7 @@ def _tishri_molad(input_day):
             
         molad_halakim = molad_halakim + (_HBR_HALAKIM_PER_LUNAR_CYCLE
                                        * _HBR_MONTHS_PER_YEAR[metonic_year])
-        molad_day =  molad_day + (molad_halakim / _HBR_HALAKIM_PER_DAY)
+        molad_day =  molad_day + (molad_halakim // _HBR_HALAKIM_PER_DAY)
         molad_halakim = molad_halakim % _HBR_HALAKIM_PER_DAY
     else:
         metonic_year += 1
@@ -160,10 +160,10 @@ def _molad_of_metonic_cycle(metonic_cycle):
     # upper 16 bits of the quotient will be in d2 and the lower 16 bits
     # will be in d1.
         
-    d2 = r2 / _HBR_HALAKIM_PER_DAY
+    d2 = r2 // _HBR_HALAKIM_PER_DAY
     r2 = r2 - (d2 * _HBR_HALAKIM_PER_DAY)
     r1 = (r2 << 16) | (r1 & 0xFFFF)
-    d1 = r1 / _HBR_HALAKIM_PER_DAY
+    d1 = r1 // _HBR_HALAKIM_PER_DAY
     r1 = r1 - ( d1 * _HBR_HALAKIM_PER_DAY)
         
     molad_day = (d2 << 16) | d1
@@ -175,13 +175,13 @@ def _start_of_year(year):
     """
     Calculate the start of the year.
     """
-    metonic_cycle = (year - 1) / 19
+    metonic_cycle = (year - 1) // 19
     metonic_year = (year - 1) % 19
     (molad_day, molad_halakim) = _molad_of_metonic_cycle(metonic_cycle)
 
     molad_halakim = molad_halakim + (_HBR_HALAKIM_PER_LUNAR_CYCLE
                                      * _HBR_YEAR_OFFSET[metonic_year])
-    molad_day = molad_day + (molad_halakim / _HBR_HALAKIM_PER_DAY)
+    molad_day = molad_day + (molad_halakim // _HBR_HALAKIM_PER_DAY)
     molad_halakim = molad_halakim % _HBR_HALAKIM_PER_DAY
         
     pTishri1 = _tishri1(metonic_year, molad_day, molad_halakim)
@@ -209,7 +209,7 @@ def hebrew_sdn(year, month, day):
         # Find the end of the year.
         molad_halakim = molad_halakim + (_HBR_HALAKIM_PER_LUNAR_CYCLE
                                          *_HBR_MONTHS_PER_YEAR[metonic_year])
-        molad_day = molad_day + (molad_halakim / _HBR_HALAKIM_PER_DAY)
+        molad_day = molad_day + (molad_halakim // _HBR_HALAKIM_PER_DAY)
         molad_halakim = molad_halakim % _HBR_HALAKIM_PER_DAY
         tishri1_after = _tishri1((metonic_year + 1)
                                  % 19, molad_day, molad_halakim)
@@ -282,11 +282,11 @@ def hebrew_ymd(sdn):
             return (year, month, day)
 
         # We need the length of the year to figure this out, so find
-        # Tishri 1 of the next year. */
+        # Tishri 1 of the next year.
 
         halakim = halakim + (_HBR_HALAKIM_PER_LUNAR_CYCLE
                              * _HBR_MONTHS_PER_YEAR[metonic_year])
-        day = day + (halakim / _HBR_HALAKIM_PER_DAY)
+        day = day + (halakim // _HBR_HALAKIM_PER_DAY)
         halakim = halakim % _HBR_HALAKIM_PER_DAY
         tishri1_after = _tishri1((metonic_year + 1) % 19, day, halakim)
     else:
@@ -383,8 +383,8 @@ def julian_sdn(year, month, day):
         month += 9
         year  -= 1
 
-    return (year * _JLN_DAYS_PER_4_YEARS)/4 \
-           + (month * _JLN_DAYS_PER_5_MONTHS+2)/5 \
+    return (year * _JLN_DAYS_PER_4_YEARS) // 4 \
+           + (month * _JLN_DAYS_PER_5_MONTHS + 2) // 5 \
            + day - _JLN_SDN_OFFSET
 
 def julian_ymd(sdn):
@@ -392,13 +392,13 @@ def julian_ymd(sdn):
     temp = (sdn + _JLN_SDN_OFFSET) * 4 - 1
 
     # Calculate the year and day of year (1 <= day_of_year <= 366)
-    year = temp / _JLN_DAYS_PER_4_YEARS
-    day_of_year = (temp % _JLN_DAYS_PER_4_YEARS) / 4 + 1
+    year = temp // _JLN_DAYS_PER_4_YEARS
+    day_of_year = (temp % _JLN_DAYS_PER_4_YEARS) // 4 + 1
 
     # Calculate the month and day of month
     temp = day_of_year * 5 - 3
-    month = temp / _JLN_DAYS_PER_5_MONTHS
-    day = (temp % _JLN_DAYS_PER_5_MONTHS) / 5 + 1
+    month = temp // _JLN_DAYS_PER_5_MONTHS
+    day = (temp % _JLN_DAYS_PER_5_MONTHS) // 5 + 1
         
     # Convert to the normal beginning of the year
     if month < 10:
@@ -428,9 +428,9 @@ def gregorian_sdn(year, month, day):
         month += 9
         year  -= 1
 
-    return(((year / 100) * _GRG_DAYS_PER_400_YEARS) / 4
-           + ((year % 100) * _GRG_DAYS_PER_4_YEARS) / 4
-           + (month * _GRG_DAYS_PER_5_MONTHS + 2) / 5
+    return(((year // 100) * _GRG_DAYS_PER_400_YEARS) // 4
+           + ((year % 100) * _GRG_DAYS_PER_4_YEARS) // 4
+           + (month * _GRG_DAYS_PER_5_MONTHS + 2) // 5
            + day
            - _GRG_SDN_OFFSET )
 
@@ -439,17 +439,17 @@ def gregorian_ymd(sdn):
     temp = (_GRG_SDN_OFFSET + sdn) * 4 - 1
 
     # Calculate the century (year/100)
-    century = temp / _GRG_DAYS_PER_400_YEARS
+    century = temp // _GRG_DAYS_PER_400_YEARS
     
     # Calculate the year and day of year (1 <= day_of_year <= 366)
-    temp = ((temp % _GRG_DAYS_PER_400_YEARS) / 4) * 4 + 3
-    year = (century * 100) + (temp / _GRG_DAYS_PER_4_YEARS)
-    day_of_year = (temp % _GRG_DAYS_PER_4_YEARS) / 4 + 1
+    temp = ((temp % _GRG_DAYS_PER_400_YEARS) // 4) * 4 + 3
+    year = (century * 100) + (temp // _GRG_DAYS_PER_4_YEARS)
+    day_of_year = (temp % _GRG_DAYS_PER_4_YEARS) // 4 + 1
     
     # Calculate the month and day of month
     temp = day_of_year * 5 - 3
-    month = temp / _GRG_DAYS_PER_5_MONTHS
-    day = (temp % _GRG_DAYS_PER_5_MONTHS) / 5 + 1
+    month = temp // _GRG_DAYS_PER_5_MONTHS
+    day = (temp % _GRG_DAYS_PER_5_MONTHS) // 5 + 1
     
     # Convert to the normal beginning of the year
     if month < 10 :
@@ -466,7 +466,7 @@ def gregorian_ymd(sdn):
 
 def french_sdn(year, month, day):
     """Convert a French Republican Calendar date to an SDN number."""
-    sdn = (year*_FR_DAYS_PER_4_YEARS)/4 + \
+    sdn = (year*_FR_DAYS_PER_4_YEARS) // 4 + \
            (month-1)*_FR_DAYS_PER_MONTH + \
            day + _FR_SDN_OFFSET
     # do not convert dates before 22.9.1792 or after 1.1.1806
@@ -480,10 +480,10 @@ def french_ymd(sdn):
     # only between 22.9.1792 and 1.1.1806
     if sdn >= 2375840 and sdn <= 2380688:
         temp = (sdn-_FR_SDN_OFFSET)*4 - 1
-        year = temp/_FR_DAYS_PER_4_YEARS
-        day_of_year = (temp%_FR_DAYS_PER_4_YEARS)/4
-        month = (day_of_year/_FR_DAYS_PER_MONTH)+1
-        day = (day_of_year%_FR_DAYS_PER_MONTH)+1
+        year = temp // _FR_DAYS_PER_4_YEARS
+        day_of_year = (temp % _FR_DAYS_PER_4_YEARS) // 4
+        month = (day_of_year // _FR_DAYS_PER_MONTH) + 1
+        day = (day_of_year % _FR_DAYS_PER_MONTH) + 1
         return (year, month, day)
     else:
         return gregorian_ymd(sdn)
@@ -501,31 +501,31 @@ def persian_sdn(year, month, day):
         v1 = (month - 1) * 31
     else:
         v1 = ((month - 1) * 30) + 6
-    v2 = math.floor(((epyear * 682) - 110) / 2816)
+    v2 = ((epyear * 682) - 110) // 2816
     v3 = (epyear - 1) * 365 + day
-    v4 = math.floor(epbase / 2820) * 1029983
+    v4 = (epbase // 2820) * 1029983
         
     return int(math.ceil(v1 + v2 + v3 + v4 + _PRS_EPOCH - 1))
 
 def persian_ymd(sdn):
     """Convert an SDN number to a Persian calendar date."""
-    sdn = math.floor(sdn) + 0.5
+    sdn = math.floor(sdn) + 0.5  #float
         
-    depoch = sdn - 2121446
-    cycle = math.floor(depoch / 1029983)
-    cyear = depoch % 1029983
+    depoch = sdn - 2121446       #float
+    cycle = math.floor(depoch / 1029983) #int
+    cyear = depoch % 1029983             #int
     if cyear == 1029982:
         ycycle = 2820
     else:
-        aux1 = math.floor(cyear / 366)
-        aux2 = cyear % 366
-        ycycle = math.floor(((2134*aux1)+(2816*aux2)+2815)/1028522) + aux1 + 1
+        aux1 = cyear // 366 #int
+        aux2 = cyear % 366  #int
+        ycycle = (((2134*aux1)+(2816*aux2)+2815) // 1028522) + aux1 + 1
             
     year = ycycle + (2820 * cycle) + 474
     if year <= 0:
         year = year - 1
 
-    yday = sdn - persian_sdn(year, 1, 1) + 1
+    yday = sdn - persian_sdn(year, 1, 1) + 1   #float !
     if yday < 186:
         month = math.ceil(yday / 31)
     else:
@@ -537,15 +537,15 @@ def islamic_sdn(year, month, day):
     """Convert an Islamic date to an SDN number."""
     v1 = math.ceil(29.5 * (month - 1))
     v2 = (year - 1) * 354
-    v3 = math.floor((3 + (11 *year)) / 30)
+    v3 = math.floor((3 + (11 *year)) // 30)
 
     return int(math.ceil((day + v1 + v2 + v3 + _ISM_EPOCH) - 1))
 
 def islamic_ymd(sdn):
     """Convert an SDN number to an Islamic calendar date."""
     sdn = math.floor(sdn) + 0.5
-    year = int(math.floor(((30*(sdn-_ISM_EPOCH))+10646)/10631))
-    month = int(min(12, math.ceil((sdn-(29+islamic_sdn(year, 1, 1)))/29.5) + 1))
+    year = int(math.floor(((30*(sdn-_ISM_EPOCH))+10646) / 10631))
+    month = int(min(12, math.ceil((sdn-(29+islamic_sdn(year, 1, 1))) / 29.5) + 1))
     day = int((sdn - islamic_sdn(year, month, 1)) + 1)
     return (year, month, day)
 
@@ -553,7 +553,7 @@ def swedish_sdn(year, month, day):
     """Convert a Swedish date to an SDN number."""
     datum = (year, month, day)
     # Swedish Calendar
-    if (1700,3,1) <= datum <= (1712,2,30):
+    if (1700, 3, 1) <= datum <= (1712, 2, 30):
         return julian_sdn(year, month, day) -1
     # Gregorian Calendar (1753-03-01)
     elif (1753, 3, 1) <= datum:
@@ -564,7 +564,7 @@ def swedish_sdn(year, month, day):
 def swedish_ymd(sdn):
     """Convert an SDN number to a Swedish calendar date."""
     if sdn == 2346425:
-         return (1712,2,30)
+         return (1712, 2, 30)
     # Swedish Calendar
     elif 2342042 <= sdn < 2346425:
         return julian_ymd(sdn+1)

@@ -326,6 +326,12 @@ def show_settings():
     except:
         gsversion_str = 'Ghostscript not in system PATH'
 
+    try:
+        import sdn
+        sdn_str = sdn.__version__
+    except ImportError:
+        sdn_str = 'not found'
+
     os_path = os.environ.get('PATH','not set')
     os_path = os_path.split(os.pathsep)
     
@@ -345,6 +351,7 @@ def show_settings():
     print ' cairo     : %s' % cairover_str
     print ' osmgpsmap : %s' % osmgpsmap_str
     print ' pyexiv2   : %s' % pyexiv2_str
+    print ' sdn       : %s' % sdn_str
     print ' o.s.      : %s' % operating_system
     if kernel:
         print ' kernel    : %s' % kernel
