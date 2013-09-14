@@ -1540,7 +1540,7 @@ class Date(object):
         month = max(value[Date._POS_MON], 1)
         day = max(value[Date._POS_DAY], 1)
 
-        if year == month == 0 and day == 0:
+        if year == month == day == 0:
             self.sortval = 0
         else:
             func = Date._calendar_convert[calendar]
@@ -1578,6 +1578,28 @@ class Date(object):
                 d2.set_calendar(self.calendar)
                 d2_val = d2.sortval
                 self.sortval += (d1_val - d2_val) + 1
+        
+        if modifier != Date.MOD_TEXTONLY:
+            self.convert_calendar(self.calendar, known_valid = False)
+            # Did the roundtrip change the date value?!
+            if self.dateval != value:
+                # Maybe it is OK because of undetermined value adjustment?
+                zl = zip(self.dateval, value)
+                # Loop over all values present, whether compound or not
+                for d,m,y,sl in zip(*[iter(zl)]*4):
+                    # each of d,m,y,sl is a pair from dateval and value, to compare
+
+                    for adjusted,original in d,m:
+                        if adjusted != original and not(original == 0 and adjusted == 1):
+                            raise DateError("Invalid day/month {} passed in value {}".
+                                    format(original, value))
+
+                    adjusted,original = y
+                    if adjusted != original:
+                        raise DateError("Invalid year {} passed in value {}".
+                                format(original, value))
+
+                    # ignore slash difference
 
         if text:
             self.text = text
@@ -1603,11 +1625,13 @@ class Date(object):
             func = Date._calendar_convert[self.calendar]
             self.sortval = func(year, month, day)
 
-    def convert_calendar(self, calendar):
+    def convert_calendar(self, calendar, known_valid=True):
         """
         Convert the date from the current calendar to the specified calendar.
         """
-        if calendar == self.calendar and self.newyear == Date.NEWYEAR_JAN1:
+        if (known_valid  # if not known valid, round-trip convert anyway
+                and calendar == self.calendar 
+                and self.newyear == Date.NEWYEAR_JAN1):
             return
         (year, month, day) = Date._calendar_change[calendar](self.sortval)
         if self.is_compound():
