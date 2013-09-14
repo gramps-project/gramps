@@ -1587,11 +1587,15 @@ class Date(object):
                 self.sortval += (d1_val - d2_val) + 1
         
         if modifier != Date.MOD_TEXTONLY:
-            self.convert_calendar(self.calendar, known_valid = False)
+            sanity = Date(self)
+            sanity.convert_calendar(self.calendar, known_valid = False)
+            # We don't do the roundtrip conversion on self, becaue
+            # it would remove uncertainty on day/month expressed with zeros
+
             # Did the roundtrip change the date value?!
-            if self.dateval != value:
+            if sanity.dateval != value:
                 # Maybe it is OK because of undetermined value adjustment?
-                zl = zip(self.dateval, value)
+                zl = zip(sanity.dateval, value)
                 # Loop over all values present, whether compound or not
                 for d,m,y,sl in zip(*[iter(zl)]*4):
                     # each of d,m,y,sl is a pair from dateval and value, to compare
