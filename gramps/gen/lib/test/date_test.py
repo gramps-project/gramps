@@ -470,7 +470,8 @@ class Test_set2(BaseDateTest):
         self.assertEqual(stop, (2009, 1, 1))
 
     def test_copy_ymd_preserves_orig(self):
-        copied = self.date.copy_ymd(year=1000, month=10, day=10)
+        copied = self.date.copy_ymd(year=1000, month=10, day=10, 
+                remove_stop_date=True)
         self.testStartStopSanity()
         start,stop = copied.get_start_stop_range()
         self.assertEqual(start, (1000, 10, 10))
