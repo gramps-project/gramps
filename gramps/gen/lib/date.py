@@ -1487,6 +1487,12 @@ class Date(object):
         """
         return self.text
 
+    def _zero_adjust_ymd(self, y, m, d):
+        year = max(y, 1)
+        month = max(m, 1)
+        day = max(d, 1)
+        return (year, month, day)
+
     def set(self, quality, modifier, calendar, value, text=None, 
             newyear=0):
         """
@@ -1536,9 +1542,10 @@ class Date(object):
         self.calendar = calendar
         self.dateval = value
         self.set_new_year(newyear)
-        year = max(value[Date._POS_YR], 1)
-        month = max(value[Date._POS_MON], 1)
-        day = max(value[Date._POS_DAY], 1)
+        year, month, day = self._zero_adjust_ymd(
+                value[Date._POS_YR],
+                value[Date._POS_MON],
+                value[Date._POS_DAY])
 
         if year == month == day == 0:
             self.sortval = 0
@@ -1616,9 +1623,10 @@ class Date(object):
         """
         Calculate the numerical sort value associated with the date.
         """
-        year = max(self.dateval[Date._POS_YR], 1)
-        month = max(self.dateval[Date._POS_MON], 1)
-        day = max(self.dateval[Date._POS_DAY], 1)
+        year, month, day = self._zero_adjust_ymd(
+                self.dateval[Date._POS_YR],
+                self.dateval[Date._POS_MON],
+                self.dateval[Date._POS_DAY])
         if year == month == 0 and day == 0:
             self.sortval = 0
         else:
@@ -1635,9 +1643,10 @@ class Date(object):
             return
         (year, month, day) = Date._calendar_change[calendar](self.sortval)
         if self.is_compound():
-            ryear = max(self.dateval[Date._POS_RYR], 1)
-            rmonth = max(self.dateval[Date._POS_RMON], 1)
-            rday = max(self.dateval[Date._POS_RDAY], 1)
+            ryear, rmonth, rday = self._zero_adjust_ymd(
+                    self.dateval[Date._POS_RYR],
+                    self.dateval[Date._POS_RMON],
+                    self.dateval[Date._POS_RDAY])
             sdn = Date._calendar_convert[self.calendar](ryear, rmonth, rday)
             (nyear, nmonth, nday) = Date._calendar_change[calendar](sdn)
             self.dateval = (day, month, year, False, 
