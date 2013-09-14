@@ -1488,7 +1488,7 @@ class Date(object):
         return self.text
 
     def _zero_adjust_ymd(self, y, m, d):
-        year = max(y, 1)
+        year = y if y != 0 else 1
         month = max(m, 1)
         day = max(d, 1)
         return (year, month, day)
