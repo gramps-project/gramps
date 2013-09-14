@@ -320,6 +320,12 @@ def show_settings():
     except:
         gsversion_str = 'Ghostscript not in system PATH'
 
+    try:
+        import sdn
+        sdn_str = sdn.__version__
+    except ImportError:
+        sdn_str = 'not found'
+
     os_path = os.environ.get('PATH','not set')
     os_path = os_path.split(os.pathsep)
     
@@ -342,6 +348,7 @@ def show_settings():
     print (' GExiv2    : %s' % gexiv2_str)
     print (' ICU       : %s' % icu_str)
     print (' PyICU     : %s' % pyicu_str)
+    print (' sdn       : %s' % sdn_str)
     print (' o.s.      : %s' % sys.platform)
     if kernel:
         print (' kernel    : %s' % kernel)

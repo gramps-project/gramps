@@ -23,7 +23,7 @@
 """
 Provide calendar to sdn (serial date number) conversion.
 """
-from __future__ import division
+from __future__ import division, print_function
 #-------------------------------------------------------------------------
 #
 # Python modules
@@ -261,7 +261,7 @@ def hebrew_sdn(year, month, day):
     return sdn + _HBR_SDN_OFFSET
 
 def hebrew_ymd(sdn):
-    """Convert an SDN number to a Julian calendar date."""
+    """Convert an SDN number to a Hebrew calendar date."""
         
     input_day = sdn - _HBR_SDN_OFFSET
 
@@ -573,3 +573,14 @@ def swedish_ymd(sdn):
         return gregorian_ymd(sdn)
     else:
         return julian_ymd(sdn)
+
+try:
+    import sdn
+    
+    hebrew_ymd = sdn.SdnToJewish # Fix bug# 7066
+    hebrew_sdn = sdn.JewishToSdn 
+    #TODO maybe alias the other local invented wheels to Calendar convertors
+except ImportError:
+    import sys
+    print("No sdn module. Install Calendar with pypi."
+            "hebrew_sdn has a known bug# 7066!!!", file=sys.stderr)
