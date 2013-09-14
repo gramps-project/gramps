@@ -580,7 +580,26 @@ try:
     hebrew_ymd = sdn.SdnToJewish # Fix bug# 7066
     hebrew_sdn = sdn.JewishToSdn 
     #TODO maybe alias the other local invented wheels to Calendar convertors
+
 except ImportError:
-    import sys
-    print("No sdn module. Install Calendar with pypi."
-            "hebrew_sdn has a known bug# 7066!!!", file=sys.stderr)
+    try: 
+        from icu import Locale, GregorianCalendar, Calendar
+        _hcal = Calendar.createInstance(
+                Locale.createFromName('@calendar=hebrew'))
+        def hebrew_ymd(sdn):
+            y,m,d = gregorian_ymd(sdn)
+            gcal = GregorianCalendar()
+            gcal.set(y,m,d)
+            _hcal.setTime( gcal.getTime() )
+            return (_hcal.get(Calendar.YEAR), 
+                    _hcal.get(Calendar.MONTH), 
+                    _hcal.get(Calendar.DAY_OF_YEAR))
+        # Not much better than our version... fails on 1789-11-4(hebrew),
+        # unlike sdn!
+
+    except ImportError:
+        import sys
+        print("Neither sdn nor ICU available.\n"
+                "Install Calendar with pypi or PyICU with your package manager."
+                "WARNING: hebrew_sdn has a known bug# 7066 without them!", 
+                file=sys.stderr)
