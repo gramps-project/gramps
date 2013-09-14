@@ -585,15 +585,17 @@ except ImportError:
     try: 
         from icu import Locale, GregorianCalendar, Calendar
         _hcal = Calendar.createInstance(
-                Locale.createFromName('@calendar=hebrew'))
+                Locale.createFromName('C@calendar=hebrew'))
         def hebrew_ymd(sdn):
             y,m,d = gregorian_ymd(sdn)
             gcal = GregorianCalendar()
-            gcal.set(y,m,d)
+            gcal.clear()
+            gcal.set(y,m,d, 11, 59)
+            _hcal.clear()
             _hcal.setTime( gcal.getTime() )
             return (_hcal.get(Calendar.YEAR), 
                     _hcal.get(Calendar.MONTH), 
-                    _hcal.get(Calendar.DAY_OF_YEAR))
+                    _hcal.get(Calendar.DATE))
         # Not much better than our version... fails on 1789-11-4(hebrew),
         # unlike sdn!
 
