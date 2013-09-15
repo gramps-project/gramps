@@ -1545,6 +1545,7 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
     def todo_test_replace(self):
         pass
 
+    @unittest.skip("Blocked by BUG# 7027")
     def test_merge_datamap(self):
         self.phoenix.set_data_item('A', 'a')
         self.phoenix.set_data_item('B', 'b')
@@ -1735,6 +1736,7 @@ class CitationCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
             self.phoenix.merge(self.titanic)
             self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
+    @unittest.skip("Blocked by BUG# 7027")
     def test_merge_datamap(self):
         self.phoenix.set_data_item('A', 'a')
         self.phoenix.set_data_item('B', 'b')
