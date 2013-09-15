@@ -58,24 +58,32 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         # Build lists of referenced objects
         # iter through whatever object(s) you want to start
         # the trace.
+        self.queue = []
         if all_people:
             # Do not add references to those not already included
             self.restricted_to["Person"] = [x for x in 
                                             self.db.iter_person_handles()]
             # Spread activation to all other items:
             for handle in self.restricted_to["Person"]:
-                self.process_object("Person", handle)
+                self.queue_object("Person", handle)
         else:
             # get rid of orphaned people:
             # first, get all of the links from people:
             for person in self.db.iter_people():
-                self.process_person(person, reference=False)
+                self.queue_object("Person", person, False)
             # save those people:
             self.restricted_to["Person"] = self.referenced["Person"]
             # reset, and just follow those people
             self.reset_references()
             for handle in self.restricted_to["Person"]:
-                self.process_object("Person", handle)
+                self.queue_object("Person", handle)
+        # process:
+        while len(self.queue):
+            obj_type, handle, reference = self.queue.pop()
+            self.process_object(obj_type, handle, reference)
+
+    def queue_object(self, obj_type, handle, reference=True):
+        self.queue.append((obj_type, handle, reference))
 
     def reset_references(self):
         self.referenced = {
@@ -91,11 +99,11 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             "Tag": set(),
             }
 
-    def process_object(self, class_name, handle):
+    def process_object(self, class_name, handle, reference=True):
         if class_name == "Person":
             obj = self.db.get_person_from_handle(handle)
             if obj:
-                self.process_person(obj)
+                self.process_person(obj, reference)
         elif class_name == "Family":
             obj = self.db.get_family_from_handle(handle)
             if obj:
@@ -152,7 +160,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         # include backward references to this object:
         for (class_name, handle) in self.db.find_backlink_handles(
             person.handle, ["Person", "Family"]):
-            self.process_object(class_name, handle)
+            self.queue_object(class_name, handle)
                 
         name = person.get_primary_name()
         if name:
@@ -161,12 +169,12 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         for handle in person.get_family_handle_list():
             family = self.db.get_family_from_handle(handle)
             if family:
-                self.process_family(family)
+                self.queue_object("Family", family.handle)
 
         for handle in person.get_parent_family_handle_list():
             family = self.db.get_family_from_handle(handle)
             if family:
-                self.process_family(family)
+                self.queue_object("Family", family.handle)
 
         for name in person.get_alternate_names():
             if name:
@@ -197,12 +205,12 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
             return
         self.referenced["Family"].add(family.handle)
 
-        self.process_object("Person", family.mother_handle)
-        self.process_object("Person", family.father_handle)
+        self.queue_object("Person", family.mother_handle)
+        self.queue_object("Person", family.father_handle)
         for child_ref in family.get_child_ref_list():
             if not child_ref:
                 continue
-            self.process_object("Person", child_ref.ref)
+            self.queue_object("Person", child_ref.ref)
             self.process_notes(child_ref)
             self.process_citation_ref_list(child_ref)
 
@@ -323,7 +331,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                     if obj_class == "Media":         # bug6493
                         obj_class = "MediaObject"
                     if prop == "handle":
-                        self.process_object(obj_class, value)
+                        self.queue_object(obj_class, value)
 
     def process_notes(self, original_obj):
         """ Find all of the primary objects referred to """
@@ -401,7 +409,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         fam_handle = lds_ord.get_family_handle()
         fam = self.db.get_family_from_handle(fam_handle)
         if fam:
-            self.process_family(fam)
+            self.queue_object("Family", fam_handle)
 
         place_handle = lds_ord.get_place_handle()
         if place_handle:
@@ -420,7 +428,7 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
                 self.process_notes(person_ref)
                 person = self.db.get_person_from_handle(person_ref.ref)
                 if person:
-                    self.process_person(person)
+                    self.queue_object("Person", person.handle)
 
     def process_event_ref(self, event_ref):
         """ Find all of the primary objects referred to """
