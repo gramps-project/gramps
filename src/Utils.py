@@ -615,7 +615,7 @@ class ProbablyAlive(object):
                     if ev and ev.type.is_death_fallback():
                         death_date = ev.get_date_object()
                         if not death_date.is_valid():
-                            death_date = Today() # before today
+                            death_date = gen.lib.date.Today() # before today
                             death_date.set_modifier(Date.MOD_BEFORE)
 
         # If they were born within X years before current year then
