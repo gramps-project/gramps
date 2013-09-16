@@ -40,12 +40,12 @@ import gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gui.widgets import MonitoredMenu, DateEntry
+from gui.widgets import MonitoredMenu, DateEntry, BasicEntry
 import gen.lib
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
 from Filters.Rules.Citation import (RegExpIdOf, HasCitation, HasNoteRegexp, 
-                                    MatchesFilter)
+                                    MatchesFilter, HasSource, RegExpSourceIdOf)
 from Utils import confidence
 GenericCitationFilter = GenericFilterFactory('Citation')
 #-------------------------------------------------------------------------
@@ -57,6 +57,12 @@ class CitationSidebarFilter(SidebarFilter):
 
     def __init__(self, dbstate, uistate, clicked):
         self.clicked_func = clicked
+        self.filter_src_id = BasicEntry()
+        self.filter_src_title = BasicEntry()
+        self.filter_src_author = BasicEntry()
+        self.filter_src_abbr = BasicEntry()
+        self.filter_src_pub = BasicEntry()
+        self.filter_src_note = BasicEntry()
         self.filter_id = gtk.Entry()
         self.filter_page = gtk.Entry()       
         self.filter_date = DateEntry(uistate, [])
@@ -90,15 +96,27 @@ class CitationSidebarFilter(SidebarFilter):
         self.filter_conf.pack_start(cell, True)
         self.filter_conf.add_attribute(cell, 'text', 0)
 
-        self.add_text_entry(_('ID'), self.filter_id)
-        self.add_text_entry(_('Volume/Page'), self.filter_page)
-        self.add_text_entry(_('Date'), self.filter_date)
-        self.add_entry(_('Minimum Confidence|Min. Conf.'), self.filter_conf)
-        self.add_text_entry(_('Note'), self.filter_note)
+        self.add_text_entry(_('Source: ID'), self.filter_src_id)
+        self.add_text_entry(_('Source: Title'), self.filter_src_title)
+        self.add_text_entry(_('Source: Author'), self.filter_src_author)
+        self.add_text_entry(_('Source: Abbreviation'), self.filter_src_abbr)
+        self.add_text_entry(_('Source: Publication'), self.filter_src_pub)
+        self.add_text_entry(_('Source: Note'), self.filter_src_note)
+        self.add_text_entry(_('Citation: ID'), self.filter_id)
+        self.add_text_entry(_('Citation: Volume/Page'), self.filter_page)
+        self.add_text_entry(_('Citation: Date'), self.filter_date)
+        self.add_entry(_('Citation: Minimum Confidence|Min. Conf.'), self.filter_conf)
+        self.add_text_entry(_('Citation: Note'), self.filter_note)
         self.add_filter_entry(_('Custom filter'), self.generic)
         self.add_entry(None, self.filter_regex)
 
     def clear(self, obj):
+        self.filter_src_id.set_text('')
+        self.filter_src_title.set_text('')
+        self.filter_src_author.set_text('')
+        self.filter_src_abbr.set_text('')
+        self.filter_src_pub.set_text('')
+        self.filter_src_note.set_text('')
         self.filter_id.set_text('')
         self.filter_page.set_text('')
         self.filter_date.set_text('')
@@ -107,6 +125,12 @@ class CitationSidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
+        src_id = unicode(self.filter_src_id.get_text()).strip()
+        src_title = unicode(self.filter_src_title.get_text()).strip()
+        src_author = unicode(self.filter_src_author.get_text()).strip()
+        src_abbr = unicode(self.filter_src_abbr.get_text()).strip()
+        src_pub = unicode(self.filter_src_pub.get_text()).strip()
+        src_note = unicode(self.filter_src_note.get_text()).strip()
         gid = unicode(self.filter_id.get_text()).strip()
         page = unicode(self.filter_page.get_text()).strip()
         date = unicode(self.filter_date.get_text()).strip()
@@ -123,7 +147,9 @@ class CitationSidebarFilter(SidebarFilter):
         regex = self.filter_regex.get_active()
         gen = self.generic.get_active() > 0
 
-        empty = not (gid or page or date or conf or note or regex or gen)
+        empty = not (src_id or src_title or src_author or src_abbr or src_pub or
+                     src_note or
+                     gid or page or date or conf or note or regex or gen)
         if empty:
             generic_filter = None
         else:
@@ -133,6 +159,14 @@ class CitationSidebarFilter(SidebarFilter):
                 generic_filter.add_rule(rule)
 
             rule = HasCitation([page, date, conf], use_regex=regex)
+            generic_filter.add_rule(rule)
+            
+            if src_id:
+                rule = RegExpSourceIdOf([src_id], use_regex=regex)
+                generic_filter.add_rule(rule)
+            
+            rule = HasSource([src_title, src_author, src_abbr, src_pub],
+                             use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:

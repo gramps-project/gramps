@@ -37,11 +37,13 @@ from _HasNoteMatchingSubstringOf import HasNoteMatchingSubstringOf
 from _HasNoteRegexp import HasNoteRegexp
 from _HasReferenceCountOf import HasReferenceCountOf
 from _HasSource import HasSource
+from _HasSourceIdOf import HasSourceIdOf
 from _MatchesFilter import MatchesFilter
 from _MatchesPageSubstringOf import MatchesPageSubstringOf
 from _MatchesRepositoryFilter import MatchesRepositoryFilter
 from _MatchesSourceFilter import MatchesSourceFilter
 from _RegExpIdOf import RegExpIdOf
+from _RegExpSourceIdOf import RegExpSourceIdOf
 
 editor_rule_list = [
     HasCitation,
@@ -54,9 +56,11 @@ editor_rule_list = [
     HasNoteRegexp,
     HasReferenceCountOf,
     HasSource,
+    HasSourceIdOf,
     MatchesFilter,
     MatchesPageSubstringOf,
     MatchesRepositoryFilter,
     MatchesSourceFilter, 
-    RegExpIdOf
+    RegExpIdOf,
+    RegExpSourceIdOf
 ]
