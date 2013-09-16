@@ -16,11 +16,13 @@ pkgpython_PYTHON = \
 	_HasNoteRegexp.py \
 	_HasReferenceCountOf.py \
 	_HasSource.py \
+	_HasSourceIdOf.py \
 	_MatchesFilter.py \
 	_MatchesPageSubstringOf.py \
 	_MatchesRepositoryFilter.py \
 	_MatchesSourceFilter.py \
-	_RegExpIdOf.py
+	_RegExpIdOf.py \
+	_RegExpSourceIdOf.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Citation
 
