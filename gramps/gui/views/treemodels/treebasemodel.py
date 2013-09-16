@@ -578,15 +578,20 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         self.__total = 0
         self.__displayed = 0
 
-        items = self.number_items()
-        _LOG.debug("rebuild filter primary")
-        self.__rebuild_filter(dfilter, skip, items, 
-                              self.gen_cursor, self.map, self.add_row)
-        if self.has_secondary:
-            items = self.number_items2()
-            _LOG.debug("rebuild filter secondary")
-            self.__rebuild_filter(dfilter2, skip, items, 
-                                  self.gen_cursor2, self.map2, self.add_row2)
+        if not self.has_secondary:
+            # The tree only has primary data
+            items = self.number_items()
+            _LOG.debug("rebuild filter primary")
+            self.__rebuild_filter(dfilter, skip, items, 
+                                  self.gen_cursor, self.map, self.add_row)
+        else:
+            # The tree has both primary and secondary data. The navigation type
+            # (navtype) which governs the filters that are offered, is for the
+            # secondary data.
+                items = self.number_items2()
+                _LOG.debug("rebuild filter secondary")
+                self.__rebuild_filter(dfilter2, skip, items, 
+                                      self.gen_cursor2, self.map2, self.add_row2)
             
     def __rebuild_filter(self, dfilter, skip, items, gen_cursor, data_map, 
                          add_func):

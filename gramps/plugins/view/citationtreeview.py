@@ -581,7 +581,7 @@ class CitationTreeView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Source Filter",),
+        return (("Citation Filter",),
                 ("Citation Gallery",
                  "Citation Notes",
                  "Citation Backlinks"))
