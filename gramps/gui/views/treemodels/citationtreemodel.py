@@ -175,14 +175,20 @@ class CitationTreeModel(CitationBaseModel, TreeBaseModel):
         """
         sort_key = self.sort_func2(data)
         # If the source for this citation already exists (in the tree model) we
-        # add the citation as a child of the source. Otherwise (if a search has
-        # found the citation) we add the citation as a child of nothing.
+        # add the citation as a child of the source. Otherwise we add the source
+        # first (because citations don't have any meaning without the associated
+        # source)
         if self._get_node(data[5]):
             #             parent   child   sortkey   handle
             self.add_node(data[5], handle, sort_key, handle, secondary=True)
         else:
-            #            parent child   sortkey   handle
-            self.add_node(None, handle, sort_key, handle, secondary=True)
+            # add the source node first
+            source_sort_key = self.sort_func(self.map(data[5]))
+            #            parent child    sortkey          handle
+            self.add_node(None, data[5], source_sort_key, data[5])
+            
+            #            parent    child   sortkey   handle
+            self.add_node(data[5], handle, sort_key, handle, secondary=True)
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
