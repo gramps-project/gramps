@@ -1,9 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2006 Donald N. Allingham
-#               2009 Gary Burton 
-# Copyright (C) 2011       Tim G L Lyons, Nick Hall
+# Copyright (C) 2002-2006  Donald N. Allingham
+# Copyright (C) 2011       Tim G L Lyons
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,54 +21,40 @@
 
 # $Id$
 
-"""
-SelectCitation class for GRAMPS.
-"""
-
 #-------------------------------------------------------------------------
 #
-# internationalization
+# Standard Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from ....const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# gramps modules
+# GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ..views.treemodels import CitationTreeModel
-from .baseselector import BaseSelector
+from .._regexpidbase import RegExpIdBase
 
 #-------------------------------------------------------------------------
 #
-# SelectSource
+# HasIdOf
 #
 #-------------------------------------------------------------------------
-class SelectCitation(BaseSelector):
+class RegExpSourceIdOf(RegExpIdBase):
+    """
+    Rule that checks for a citation  whose GRAMPS ID
+    matches regular expression.
+    """
 
-    def _local_init(self):
-        """
-        Perform local initialisation for this class
-        """
-        self.width_key = 'interface.source-sel-width'
-        self.height_key = 'interface.source-sel-height'
+    name        = _('Citations with Source Id containing <text>')
+    description = _("Matches citations whose source has a Gramps ID that "
+                    "matches the regular expression")
+    category    = _('Source filters')
 
-    def get_window_title(self):
-        return _("Select Source or Citation")
-        
-    def get_model_class(self):
-        return CitationTreeModel
-
-    def get_column_titles(self):
-        return [
-            (_('Name'), 350, BaseSelector.TEXT, 0),
-            (_('ID'),     75, BaseSelector.TEXT, 1)
-            ]
-
-    def get_from_handle_func(self):
-        return self.db.get_source_from_handle
-        
-    def get_from_handle_func2(self):
-        return self.db.get_citation_from_handle
+    def apply(self, dbase, citation):
+        source = dbase.get_source_from_handle(
+                                    citation.get_reference_handle())
+        if RegExpIdBase.apply(self, dbase, source):
+            return True
+        return False

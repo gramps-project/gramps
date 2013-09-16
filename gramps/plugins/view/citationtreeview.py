@@ -175,17 +175,10 @@ class CitationTreeView(ListView):
     def setup_filter(self):
         """
         Override the setup of the default Search Bar in listview, so that only
-        the searchable source fields are shown. This includes renaming the
-        'Title or Page' search to 'Title'
+        the searchable source fields are shown.
         """
-        def name(i):
-            if i == 0:
-                return _('Title')
-            else:
-                return self.COLUMNS[i][0]
-             
         self.search_bar.setup_filter(
-            [(name(pair[1]), pair[1], pair[1] in self.exact_search())
+            [(self.COLUMNS[(pair[1])][0], pair[1], pair[1] in self.exact_search())
                 for pair in self.column_order() if pair[0] and 
                                 pair[1] in self.COLUMN_FILTERABLE])
 
@@ -593,7 +586,7 @@ class CitationTreeView(ListView):
         """
         Define the default gramplets for the sidebar and bottombar.
         """
-        return (("Source Filter",),
+        return (("Citation Filter",),
                 ("Citation Gallery",
                  "Citation Notes",
                  "Citation Backlinks"))
