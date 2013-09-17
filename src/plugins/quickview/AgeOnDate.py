@@ -52,20 +52,34 @@ def run(database, document, date):
     else:
         sdoc.title(_("People probably alive and their ages on %s") % 
                DateHandler.displayer.display(date))
-    stab.columns(_("Person"), _("Age")) # Actual Date makes column unicode
-    matches = 0
+    stab.columns(_("Person"), _("Age"), _("Status")) # Actual Date makes column unicode
+    alive_matches = 0
+    dead_matches = 0
     for person in sdb.all_people():
         alive, birth, death, explain, relative = \
             probably_alive(person, database, date, return_range=True)
         # Doesn't show people probably alive but no way of figuring an age:
-        if alive and birth:
-            diff_span = (date - birth)
-            stab.row(person, str(diff_span))
-            stab.row_sort_val(1, int(diff_span))
-            matches += 1
+        if alive:
+            if birth:
+                diff_span = (date - birth)
+                stab.row(person, str(diff_span), _("Alive: %s") % explain)
+                stab.row_sort_val(1, int(diff_span))
+            else:
+                stab.row(person, "", _("Alive: %s") % explain)
+                stab.row_sort_val(1, 0)
+            alive_matches += 1
+        else:
+            if birth:
+                diff_span = (date - birth)
+                stab.row(person, str(diff_span), _("Deceased: %s") % explain)
+                stab.row_sort_val(1, int(diff_span))
+            else:
+                stab.row(person, "", _("Deceased: %s") % explain)
+                stab.row_sort_val(1, 1)
+            dead_matches += 1
 
-    document.has_data = matches > 0
-    sdoc.paragraph(_("\n%d matches.\n") % matches)
+    document.has_data = (alive_matches + dead_matches) > 0
+    sdoc.paragraph(_("\nLiving matches: %d, Deceased matches: %d\n") % (alive_matches, dead_matches))
     stab.write(sdoc)
     sdoc.paragraph("")
 
