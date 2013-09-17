@@ -52,11 +52,13 @@ gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py
 gramps/gen/filters/rules/citation/_hasnoteregexp.py
 gramps/gen/filters/rules/citation/_hasreferencecountof.py
 gramps/gen/filters/rules/citation/_hassource.py
+gramps/gen/filters/rules/citation/_hassourceidof.py
 gramps/gen/filters/rules/citation/_matchesfilter.py
 gramps/gen/filters/rules/citation/_matchespagesubstringof.py
 gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py
 gramps/gen/filters/rules/citation/_matchessourcefilter.py
 gramps/gen/filters/rules/citation/_regexpidof.py
+gramps/gen/filters/rules/citation/_regexpsourceidof.py
 gramps/gen/filters/rules/event/_allevents.py
 gramps/gen/filters/rules/event/_changedsince.py
 gramps/gen/filters/rules/event/_eventprivate.py
@@ -587,6 +589,7 @@ gramps/plugins/lib/librecords.py
 gramps/plugins/lib/libsubstkeyword.py
 #gramps/plugins/lib/libtranslate.py
 gramps/plugins/lib/libtreebase.py
+gramps/plugins/lib/maps/cairoprint.py
 gramps/plugins/lib/maps/geography.py
 gramps/plugins/lib/maps/osmgps.py
 gramps/plugins/lib/maps/placeselection.py
