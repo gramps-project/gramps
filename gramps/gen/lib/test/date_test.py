@@ -38,7 +38,7 @@ from ...config import config
 from ...datehandler import get_date_formats, set_format
 from ...datehandler import parser as _dp
 from ...datehandler import displayer as _dd
-from ...lib.date import Date
+from ...lib.date import Date, DateError
 
 date_tests = {}
 
@@ -193,7 +193,7 @@ for calendar in (Date.CAL_JULIAN,
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
         dates.append( d)
 
-for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
+for calendar in (Date.CAL_HEBREW, Date.CAL_HEBREW):
     for month in range(1,14):
         d = Date()
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
@@ -422,6 +422,81 @@ class SwedishDateTest(BaseDateTest):
             self.assertEqual(date.sortval, 
                              date.to_calendar('gregorian').sortval)
 
+class Test_set2(BaseDateTest):
+    """
+    Test the Date.set2_... setters -- the ones to manipulate the 2nd date
+    of a compound date
+    """
+    def setUp(self):
+        self.date = d = Date()
+        d.set(modifier=Date.MOD_RANGE,
+                #d  m  y    sl--d  m  y    sl
+          value=(1, 1, 2000, 0, 1, 1, 2010, 0))
+
+    def testStartStopSanity(self):
+        start,stop = self.date.get_start_stop_range()
+        self.assertEqual(start, (2000, 1, 1))
+        self.assertEqual(stop, (2010, 1, 1))
+
+    def test_set2_ymd_overrides_stop_date(self):
+        self.date.set2_yr_mon_day(2013, 2, 2)
+        start,stop = self.date.get_start_stop_range()
+        self.assertEqual(start, (2000, 1, 1))
+        self.assertEqual(stop, (2013, 2, 2))
+
+    def test_set_ymd_overrides_both_dates(self):
+        self.date.set_yr_mon_day(2013, 2, 2, remove_stop_date = True)
+        start,stop = self.date.get_start_stop_range()
+        self.assertEqual(start, stop)
+        self.assertEqual(stop, (2013, 2, 2))
+
+    def test_set_ymd_offset_updates_both_ends(self):
+        self.date.set_yr_mon_day_offset(+2, +2, +2)
+        start,stop = self.date.get_start_stop_range()
+        self.assertEqual(start, (2002, 3, 3))
+        self.assertEqual(stop, (2012, 3, 3))
+
+    def test_set2_ymd_offset_updates_stop_date(self):
+        self.date.set2_yr_mon_day_offset(+7, +5, +5)
+        start,stop = self.date.get_start_stop_range()
+        self.assertEqual(start, (2000, 1, 1))
+        self.assertEqual(stop, (2017, 6, 6))
+
+    def test_copy_offset_ymd_preserves_orig(self):
+        copied = self.date.copy_offset_ymd(year=-1)
+        self.testStartStopSanity()
+        start,stop = copied.get_start_stop_range()
+        self.assertEqual(start, (1999, 1, 1))
+        self.assertEqual(stop, (2009, 1, 1))
+
+    def test_copy_ymd_preserves_orig(self):
+        copied = self.date.copy_ymd(year=1000, month=10, day=10, 
+                remove_stop_date=True)
+        self.testStartStopSanity()
+        start,stop = copied.get_start_stop_range()
+        self.assertEqual(start, (1000, 10, 10))
+        self.assertEqual(stop, (1000, 10, 10))
+
+    def _test_set2_function_raises_error_unless_compound(self, function):
+        for mod in (Date.MOD_NONE, Date.MOD_BEFORE, Date.MOD_AFTER, 
+                       Date.MOD_ABOUT,
+                       Date.MOD_TEXTONLY):
+            self.date.set_modifier(mod)
+            try:
+                function(self.date)
+                self.assertTrue(False,
+                        "Modifier: {}, dateval: {} - exception expected!".format(
+                            mod, self.date.dateval))
+            except DateError:
+                pass
+
+    def test_set2_ymd_raises_error_unless_compound(self):
+        self._test_set2_function_raises_error_unless_compound(
+                lambda date: date.set2_yr_mon_day(2013, 2, 2))
+
+    def test_set2_ymd_offset_raises_error_unless_compound(self):
+        self._test_set2_function_raises_error_unless_compound(
+                lambda date: date.set2_yr_mon_day_offset(year=-1))
 
 if __name__ == "__main__":
     unittest.main()
