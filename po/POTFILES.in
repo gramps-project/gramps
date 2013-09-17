@@ -641,9 +641,11 @@ src/Filters/Rules/Citation/_HasNoteMatchingSubstringOf.py
 src/Filters/Rules/Citation/_HasNoteRegexp.py
 src/Filters/Rules/Citation/_HasReferenceCountOf.py
 src/Filters/Rules/Citation/_HasSource.py
+src/Filters/Rules/Citation/_HasSourceIdOf.py
 src/Filters/Rules/Citation/_MatchesFilter.py
 src/Filters/Rules/Citation/_MatchesPageSubstringOf.py
 src/Filters/Rules/Citation/_RegExpIdOf.py
+src/Filters/Rules/Citation/_RegExpSourceIdOf.py
 src/Filters/Rules/Citation/_MatchesRepositoryFilter.py
 src/Filters/Rules/Citation/_MatchesSourceFilter.py
 

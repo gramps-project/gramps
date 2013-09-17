@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-10 18:46+0200\n"
-"PO-Revision-Date: 2013-09-10 18:49+0100\n"
+"POT-Creation-Date: 2013-09-17 15:56+0200\n"
+"PO-Revision-Date: 2013-09-17 16:02+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -180,7 +180,6 @@ msgstr "Nom "
 #: ../src/plugins/view/relview.py:604
 #: ../src/plugins/view/repoview.py:83
 #: ../src/plugins/view/sourceview.py:80
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:93
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:92
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:111
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:127
@@ -629,17 +628,17 @@ msgstr ""
 "\n"
 "Gramps va maintenant s'arrêter."
 
-#: ../src/gramps.py:380
 #: ../src/gramps.py:387
-#: ../src/gramps.py:458
+#: ../src/gramps.py:394
+#: ../src/gramps.py:465
 msgid "Configuration error:"
 msgstr "Erreur de configuration :"
 
-#: ../src/gramps.py:384
+#: ../src/gramps.py:391
 msgid "Error reading configuration"
 msgstr "Erreur à la lecture de la configuration"
 
-#: ../src/gramps.py:388
+#: ../src/gramps.py:395
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -654,11 +653,11 @@ msgstr ""
 #: ../src/LdsUtils.py:82
 #: ../src/LdsUtils.py:88
 #: ../src/ScratchPad.py:181
-#: ../src/Utils.py:1719
-#: ../src/Utils.py:1721
-#: ../src/Utils.py:1725
-#: ../src/Utils.py:1731
-#: ../src/Utils.py:1736
+#: ../src/Utils.py:1726
+#: ../src/Utils.py:1728
+#: ../src/Utils.py:1732
+#: ../src/Utils.py:1738
+#: ../src/Utils.py:1743
 #: ../src/cli/clidbman.py:504
 #: ../src/gen/lib/attrtype.py:63
 #: ../src/gen/lib/childreftype.py:79
@@ -1103,7 +1102,6 @@ msgstr "Lieu "
 #: ../src/plugins/quickview/quickview.gpr.py:205
 #: ../src/plugins/quickview/References.py:94
 #: ../src/plugins/textreport/FamilyGroup.py:342
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:97
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:98
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:84
@@ -1167,7 +1165,7 @@ msgstr "Ref. Événement"
 # trop de références pour faire le changement vers nom. Les développeurs ne tiennent pas toujours compte de la différence (voir rapport Saga)
 #. show surname and first name
 #: ../src/ScratchPad.py:577
-#: ../src/Utils.py:1340
+#: ../src/Utils.py:1347
 #: ../src/gui/configure.py:540
 #: ../src/gui/configure.py:542
 #: ../src/gui/configure.py:544
@@ -1774,39 +1772,44 @@ msgstr "date d'un événement lié au décès d'un descendant"
 
 #: ../src/Utils.py:833
 #, python-format
-msgid "Database error: %s is defined as his or her own ancestor"
-msgstr "Erreur de base de données : %s est défini comme son propre ascendant"
+msgid "Database error: loop in %s's descendants"
+msgstr "Erreur dans la base de données : boucle dans les descendants de %s"
 
-#: ../src/Utils.py:857
-#: ../src/Utils.py:903
+#: ../src/Utils.py:859
+#: ../src/Utils.py:905
 msgid "ancestor birth date"
 msgstr "date de naissance d'un ascendant"
 
-#: ../src/Utils.py:867
-#: ../src/Utils.py:913
+#: ../src/Utils.py:869
+#: ../src/Utils.py:915
 msgid "ancestor death date"
 msgstr "date de décès d'un ascendant"
 
-#: ../src/Utils.py:878
-#: ../src/Utils.py:924
+#: ../src/Utils.py:880
+#: ../src/Utils.py:926
 msgid "ancestor birth-related date"
 msgstr "date d'un événement lié à la naissance d'un ascendant"
 
-#: ../src/Utils.py:886
-#: ../src/Utils.py:932
+#: ../src/Utils.py:888
+#: ../src/Utils.py:934
 msgid "ancestor death-related date"
 msgstr "date d'un événement lié au décès d'un ascendant"
 
+#: ../src/Utils.py:949
+#, python-format
+msgid "Database error: loop in %s's ancestors"
+msgstr "Erreur dans la base de données : boucle dans les ascendants de %s"
+
 #. no evidence, must consider alive
-#: ../src/Utils.py:987
+#: ../src/Utils.py:994
 msgid "no evidence"
 msgstr "aucune déduction"
 
-#: ../src/Utils.py:1179
+#: ../src/Utils.py:1186
 msgid "True"
 msgstr "Vrai"
 
-#: ../src/Utils.py:1179
+#: ../src/Utils.py:1186
 msgid "true"
 msgstr "vrai"
 
@@ -1838,18 +1841,18 @@ msgstr "vrai"
 #. 's' : suffix     = suffix
 #. 'n' : nickname   = nick name
 #. 'g' : familynick = family nick name
-#: ../src/Utils.py:1338
+#: ../src/Utils.py:1345
 #: ../src/plugins/export/ExportCsv.py:338
 #: ../src/plugins/import/ImportCsv.py:178
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
 msgstr "Titre"
 
-#: ../src/Utils.py:1338
+#: ../src/Utils.py:1345
 msgid "Person|TITLE"
 msgstr "TITRE"
 
-#: ../src/Utils.py:1339
+#: ../src/Utils.py:1346
 #: ../src/gen/display/name.py:327
 #: ../src/gui/configure.py:540
 #: ../src/gui/configure.py:542
@@ -1870,13 +1873,13 @@ msgstr "TITRE"
 msgid "Given"
 msgstr "Prénom"
 
-#: ../src/Utils.py:1339
+#: ../src/Utils.py:1346
 msgid "GIVEN"
 msgstr "PRÉNOM"
 
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1340
+#: ../src/Utils.py:1347
 #: ../src/gui/configure.py:547
 #: ../src/gui/configure.py:554
 #: ../src/gui/configure.py:556
@@ -1887,16 +1890,16 @@ msgstr "PRÉNOM"
 msgid "SURNAME"
 msgstr "NOM DE FAMILLE"
 
-#: ../src/Utils.py:1341
+#: ../src/Utils.py:1348
 msgid "Name|Call"
 msgstr "Usuel"
 
-#: ../src/Utils.py:1341
+#: ../src/Utils.py:1348
 msgid "Name|CALL"
 msgstr "USUEL"
 
 # courant ou commun
-#: ../src/Utils.py:1342
+#: ../src/Utils.py:1349
 #: ../src/gui/configure.py:544
 #: ../src/gui/configure.py:546
 #: ../src/gui/configure.py:549
@@ -1906,19 +1909,19 @@ msgid "Name|Common"
 msgstr "Courant"
 
 # courant ou commun
-#: ../src/Utils.py:1342
+#: ../src/Utils.py:1349
 msgid "Name|COMMON"
 msgstr "COURANT"
 
-#: ../src/Utils.py:1343
+#: ../src/Utils.py:1350
 msgid "Initials"
 msgstr "Initiales"
 
-#: ../src/Utils.py:1343
+#: ../src/Utils.py:1350
 msgid "INITIALS"
 msgstr "INITIALES"
 
-#: ../src/Utils.py:1344
+#: ../src/Utils.py:1351
 #: ../src/gui/configure.py:540
 #: ../src/gui/configure.py:542
 #: ../src/gui/configure.py:544
@@ -1934,34 +1937,34 @@ msgstr "INITIALES"
 msgid "Suffix"
 msgstr "Suffixe"
 
-#: ../src/Utils.py:1344
+#: ../src/Utils.py:1351
 msgid "SUFFIX"
 msgstr "SUFFIXE"
 
 # à vérifier
 # voir clés traduites et GUI
 #. name, sort, width, modelcol
-#: ../src/Utils.py:1345
+#: ../src/Utils.py:1352
 #: ../src/gui/editors/displaytabs/surnametab.py:80
 msgid "Name|Primary"
 msgstr "Nom"
 
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1345
+#: ../src/Utils.py:1352
 msgid "PRIMARY"
 msgstr "NOM"
 
 # /!\ longue chaîne, voir formats de nom (Préférences)
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1346
+#: ../src/Utils.py:1353
 msgid "Primary[pre]"
 msgstr "Nom[pre]"
 
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1346
+#: ../src/Utils.py:1353
 msgid "PRIMARY[PRE]"
 msgstr "NOM[PRE]"
 
@@ -1969,86 +1972,86 @@ msgstr "NOM[PRE]"
 # /!\ longue chaîne, voir formats de nom (Préférences)
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1347
+#: ../src/Utils.py:1354
 msgid "Primary[sur]"
 msgstr "Nom[nom]"
 
 # surname = notre nom de famille
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1347
+#: ../src/Utils.py:1354
 msgid "PRIMARY[SUR]"
 msgstr "NOM[NOM]"
 
 # /!\ longue chaîne, voir formats de nom (Préférences)
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1348
+#: ../src/Utils.py:1355
 msgid "Primary[con]"
 msgstr "Nom[con]"
 
 # à vérifier
 # voir clés traduites et GUI
-#: ../src/Utils.py:1348
+#: ../src/Utils.py:1355
 msgid "PRIMARY[CON]"
 msgstr "NOM[CON]"
 
-#: ../src/Utils.py:1349
+#: ../src/Utils.py:1356
 #: ../src/gen/lib/nameorigintype.py:86
 #: ../src/gui/configure.py:553
 msgid "Patronymic"
 msgstr "Patronyme"
 
-#: ../src/Utils.py:1349
+#: ../src/Utils.py:1356
 msgid "PATRONYMIC"
 msgstr "PATRONYME"
 
-#: ../src/Utils.py:1350
+#: ../src/Utils.py:1357
 msgid "Patronymic[pre]"
 msgstr "Patronyme[pre]"
 
-#: ../src/Utils.py:1350
+#: ../src/Utils.py:1357
 msgid "PATRONYMIC[PRE]"
 msgstr "PATRONYME[PRE]"
 
 # surname = notre nom de famille
 # /!\ longue chaîne, voir formats de nom (Préférences)
-#: ../src/Utils.py:1351
+#: ../src/Utils.py:1358
 msgid "Patronymic[sur]"
 msgstr "Patronyme[nom]"
 
 # surname = notre nom de famille
-#: ../src/Utils.py:1351
+#: ../src/Utils.py:1358
 msgid "PATRONYMIC[SUR]"
 msgstr "PATRONYME[NOM]"
 
-#: ../src/Utils.py:1352
+#: ../src/Utils.py:1359
 msgid "Patronymic[con]"
 msgstr "Patronyme[con]"
 
-#: ../src/Utils.py:1352
+#: ../src/Utils.py:1359
 msgid "PATRONYMIC[CON]"
 msgstr "PATRONYME[CON]"
 
-#: ../src/Utils.py:1353
+#: ../src/Utils.py:1360
 #: ../src/gui/configure.py:561
 msgid "Rawsurnames"
 msgstr "NomsDeFamilleBrut"
 
-#: ../src/Utils.py:1353
+#: ../src/Utils.py:1360
 msgid "RAWSURNAMES"
 msgstr "NOMSDEFAMILLEBRUT"
 
 # /!\ longue chaîne, voir formats de nom (Préférences)
-#: ../src/Utils.py:1354
+#: ../src/Utils.py:1361
 msgid "Notpatronymic"
 msgstr "PasPatronyme"
 
-#: ../src/Utils.py:1354
+#: ../src/Utils.py:1361
 msgid "NOTPATRONYMIC"
 msgstr "PASPATRONYME"
 
-#: ../src/Utils.py:1355
+#: ../src/Utils.py:1362
 #: ../src/gui/editors/displaytabs/surnametab.py:75
 #: ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:179
@@ -2056,11 +2059,11 @@ msgstr "PASPATRONYME"
 msgid "Prefix"
 msgstr "Préfixe"
 
-#: ../src/Utils.py:1355
+#: ../src/Utils.py:1362
 msgid "PREFIX"
 msgstr "PRÉFIXE"
 
-#: ../src/Utils.py:1356
+#: ../src/Utils.py:1363
 #: ../src/gen/lib/attrtype.py:71
 #: ../src/gui/configure.py:543
 #: ../src/gui/configure.py:545
@@ -2070,39 +2073,39 @@ msgstr "PRÉFIXE"
 msgid "Nickname"
 msgstr "Surnom"
 
-#: ../src/Utils.py:1356
+#: ../src/Utils.py:1363
 msgid "NICKNAME"
 msgstr "SURNOM"
 
 # à vérifier
 # en Amérique du Nord, les généalogiqtes utilisent nom-dit !
-#: ../src/Utils.py:1357
+#: ../src/Utils.py:1364
 msgid "Familynick"
 msgstr "Nom-dit"
 
 # à vérifier
 # en Amérique du Nord, les généalogiqtes utilisent nom-dit !
-#: ../src/Utils.py:1357
+#: ../src/Utils.py:1364
 msgid "FAMILYNICK"
 msgstr "NOM-DIT"
 
-#: ../src/Utils.py:1470
-#: ../src/Utils.py:1489
+#: ../src/Utils.py:1477
+#: ../src/Utils.py:1496
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
 
-#: ../src/Utils.py:1739
+#: ../src/Utils.py:1746
 msgid "Unknown, created to replace a missing note object."
 msgstr "Inconnu, créé pour remplacer l'objet note manquant."
 
 #. primitive static variable
-#: ../src/Utils.py:1749
+#: ../src/Utils.py:1756
 #, python-format
 msgid "Unknown, was missing %s (%d)"
 msgstr "Inconnu, été manquant %s (%d)"
 
-#: ../src/Utils.py:1768
+#: ../src/Utils.py:1775
 #, python-format
 msgid "Objects referenced by this note were missing in a file imported on %s."
 msgstr "Les objets référencés par cette note étaient manquants dans le fichier importé à la date du %s."
@@ -3195,7 +3198,7 @@ msgstr "Heure"
 #: ../src/gen/lib/childreftype.py:73
 #: ../src/gui/configure.py:73
 #: ../src/plugins/tool/Check.py:2004
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:154
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:188
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:199
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:245
@@ -5123,7 +5126,7 @@ msgstr "Exemple"
 #: ../src/plugins/textreport/IndivComplete.py:686
 #: ../src/plugins/textreport/KinshipReport.py:347
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:201
-#: ../src/plugins/webreport/NarrativeWeb.py:8021
+#: ../src/plugins/webreport/NarrativeWeb.py:8022
 #: ../src/plugins/webreport/WebCal.py:1340
 msgid "Name format"
 msgstr "Format des noms "
@@ -6083,7 +6086,7 @@ msgstr "Date :"
 
 # nouvelle ligne = moins long à l'écran
 #: ../src/gui/filtereditor.py:567
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:73
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:79
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:76
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:87
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:92
@@ -6155,7 +6158,7 @@ msgstr "Test du filtre"
 #: ../src/plugins/textreport/BirthdayReport.py:367
 #: ../src/plugins/textreport/IndivComplete.py:672
 #: ../src/plugins/tool/SortEvents.py:168
-#: ../src/plugins/webreport/NarrativeWeb.py:7999
+#: ../src/plugins/webreport/NarrativeWeb.py:8000
 #: ../src/plugins/webreport/WebCal.py:1318
 msgid "Filter"
 msgstr "Filtre"
@@ -6269,7 +6272,6 @@ msgstr "Configuration"
 #: ../src/plugins/webreport/NarrativeWeb.py:3660
 #: ../src/plugins/webreport/NarrativeWeb.py:4427
 #: ../src/plugins/webreport/NarrativeWeb.py:5753
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:95
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
 #: ../src/glade/editcitation.glade.h:4
@@ -6931,7 +6933,7 @@ msgstr "Media :"
 #: ../src/plugins/textreport/DetDescendantReport.py:975
 #: ../src/plugins/textreport/DetDescendantReport.py:976
 #: ../src/plugins/textreport/FamilyGroup.py:651
-#: ../src/plugins/webreport/NarrativeWeb.py:8181
+#: ../src/plugins/webreport/NarrativeWeb.py:8182
 msgid "Include"
 msgstr "Inclure"
 
@@ -6941,7 +6943,7 @@ msgid "Megabyte|MB"
 msgstr "Mo"
 
 #: ../src/gui/viewmanager.py:1310
-#: ../src/plugins/webreport/NarrativeWeb.py:8175
+#: ../src/plugins/webreport/NarrativeWeb.py:8176
 msgid "Exclude"
 msgstr "Exclure"
 
@@ -9099,7 +9101,7 @@ msgstr "Style "
 #: ../src/plugins/textreport/PlaceReport.py:366
 #: ../src/plugins/textreport/SimpleBookTitle.py:129
 #: ../src/plugins/textreport/TagReport.py:527
-#: ../src/plugins/webreport/NarrativeWeb.py:7974
+#: ../src/plugins/webreport/NarrativeWeb.py:7975
 #: ../src/plugins/webreport/WebCal.py:1303
 msgid "Report Options"
 msgstr "Options du rapport"
@@ -9631,21 +9633,21 @@ msgstr "<pas de nom>"
 
 # Substantif (GNOME fr)
 #: ../src/gui/views/treemodels/treebasemodel.py:548
-#: ../src/gui/views/treemodels/treebasemodel.py:591
+#: ../src/gui/views/treemodels/treebasemodel.py:596
 msgid "Building View"
 msgstr "Construction de la vue"
 
 # Substantif (GNOME fr)
-#: ../src/gui/views/treemodels/treebasemodel.py:594
+#: ../src/gui/views/treemodels/treebasemodel.py:599
 msgid "Obtaining all rows"
 msgstr "Obtention de toutes les lignes"
 
 # Substantif (GNOME fr)
-#: ../src/gui/views/treemodels/treebasemodel.py:612
+#: ../src/gui/views/treemodels/treebasemodel.py:617
 msgid "Applying filter"
 msgstr "Application du filtre"
 
-#: ../src/gui/views/treemodels/treebasemodel.py:622
+#: ../src/gui/views/treemodels/treebasemodel.py:627
 msgid "Constructing column data"
 msgstr "Construction des données sur la colonne"
 
@@ -10373,7 +10375,7 @@ msgstr "Détermine quels individus seront inclus dans le rapport."
 #: ../src/plugins/drawreport/TimeLine.py:375
 #: ../src/plugins/textreport/IndivComplete.py:678
 #: ../src/plugins/tool/SortEvents.py:173
-#: ../src/plugins/webreport/NarrativeWeb.py:8005
+#: ../src/plugins/webreport/NarrativeWeb.py:8006
 #: ../src/plugins/webreport/WebCal.py:1324
 msgid "Filter Person"
 msgstr "Filtre sur l'individu"
@@ -10381,7 +10383,7 @@ msgstr "Filtre sur l'individu"
 #: ../src/plugins/Records.py:526
 #: ../src/plugins/drawreport/TimeLine.py:376
 #: ../src/plugins/tool/SortEvents.py:174
-#: ../src/plugins/webreport/NarrativeWeb.py:8006
+#: ../src/plugins/webreport/NarrativeWeb.py:8007
 #: ../src/plugins/webreport/WebCal.py:1325
 msgid "The center person for the filter"
 msgstr "L'individu central pour ce filtre"
@@ -10602,13 +10604,13 @@ msgid "of %d"
 msgstr "sur %d"
 
 #: ../src/plugins/docgen/HtmlDoc.py:271
-#: ../src/plugins/webreport/NarrativeWeb.py:7927
+#: ../src/plugins/webreport/NarrativeWeb.py:7928
 #: ../src/plugins/webreport/WebCal.py:244
 msgid "Possible destination error"
 msgstr "Possible erreur de destination"
 
 #: ../src/plugins/docgen/HtmlDoc.py:272
-#: ../src/plugins/webreport/NarrativeWeb.py:7928
+#: ../src/plugins/webreport/NarrativeWeb.py:7929
 #: ../src/plugins/webreport/WebCal.py:245
 msgid "You appear to have set your target directory to a directory used for data storage. This could create problems with file management. It is recommended that you consider using a different directory to store your generated web pages."
 msgstr "Il semble que le répertoire cible est le répertoire de stockage des données. Cela peut générer des problèmes dans la gestion de fichier. Il est recommandé d'utiliser un répertoire différent pour stocker les pages internet générées."
@@ -11135,7 +11137,7 @@ msgstr "L'individu central pour ce rapport"
 #: ../src/plugins/textreport/IndivComplete.py:690
 #: ../src/plugins/textreport/KinshipReport.py:351
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:205
-#: ../src/plugins/webreport/NarrativeWeb.py:8025
+#: ../src/plugins/webreport/NarrativeWeb.py:8026
 #: ../src/plugins/webreport/WebCal.py:1344
 msgid "Select the format to display names"
 msgstr "Sélection du format d'affichage pour le nom"
@@ -15228,68 +15230,68 @@ msgstr ""
 "Échec entre l'extension sélectionnée %(ext)s et le format actuel.\n"
 " Écriture de %(filename)s au format %(impliedext)s."
 
-#: ../src/plugins/lib/libgedcom.py:1736
+#: ../src/plugins/lib/libgedcom.py:1743
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Votre fichier GEDCOM est corrompu. Il semble avoir été tronqué."
 
-#: ../src/plugins/lib/libgedcom.py:1817
+#: ../src/plugins/lib/libgedcom.py:1824
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importé du GEDCOM (%s)"
 
-#: ../src/plugins/lib/libgedcom.py:2602
-#: ../src/plugins/lib/libgedcom.py:2971
+#: ../src/plugins/lib/libgedcom.py:2609
+#: ../src/plugins/lib/libgedcom.py:2978
 msgid "GEDCOM import"
 msgstr "Importation GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2625
+#: ../src/plugins/lib/libgedcom.py:2632
 msgid "GEDCOM import report: No errors detected"
 msgstr "Rapport d'importation GEDCOM : aucune erreur détectée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2627
+#: ../src/plugins/lib/libgedcom.py:2634
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "Rapport d'importation GEDCOM : %s erreurs détectées"
 
 # trunk
 # limite à 32 caractères !
-#: ../src/plugins/lib/libgedcom.py:2892
+#: ../src/plugins/lib/libgedcom.py:2899
 msgid "Tag recognised but not supported"
 msgstr "Reconnu mais non-supporté (TAG)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2903
+#: ../src/plugins/lib/libgedcom.py:2910
 msgid "Line ignored as not understood"
 msgstr "Ligne ignorée car non-comprise"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2928
+#: ../src/plugins/lib/libgedcom.py:2935
 msgid "Skipped subordinate line"
 msgstr "Ligne suivante ignorée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:2962
+#: ../src/plugins/lib/libgedcom.py:2969
 msgid "Records not imported into "
 msgstr "Enregistrements non-importés dans "
 
-#: ../src/plugins/lib/libgedcom.py:2997
+#: ../src/plugins/lib/libgedcom.py:3004
 #, python-format
 msgid "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record synthesised"
 msgstr "Erreur : %(msg)s  '%(gramps_id)s' (saisi comme @%(xref)s@) absent du fichier Gedcom. Enregistrement synthétisé"
 
-#: ../src/plugins/lib/libgedcom.py:3006
+#: ../src/plugins/lib/libgedcom.py:3013
 #, python-format
 msgid "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record with typifying attribute 'Unknown' created"
 msgstr "Erreur : %(msg)s '%(gramps_id)s' (saisi comme @%(xref)s@) absent du fichier Gedcom. Enregistrement avec le type d'attribut 'Inconnu' créé"
 
-#: ../src/plugins/lib/libgedcom.py:3045
+#: ../src/plugins/lib/libgedcom.py:3052
 #, python-format
 msgid "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s (input as %(orig_person)s) is not a member of the referenced family. Family reference removed from person"
 msgstr "Erreur: famille '%(family)s' (saisie comme @%(orig_family)s@) individu %(person)s (saisi comme %(orig_person)s) n'est pas un membre d'une famille référencée. La référence de la famille a été enlevée pour cet individu"
 
-#: ../src/plugins/lib/libgedcom.py:3123
+#: ../src/plugins/lib/libgedcom.py:3130
 #, python-format
 msgid ""
 "\n"
@@ -15309,73 +15311,73 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../src/plugins/lib/libgedcom.py:3191
+#: ../src/plugins/lib/libgedcom.py:3198
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "'%s' ignoré par ADDR"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3204
+#: ../src/plugins/lib/libgedcom.py:3211
 msgid "TRLR (trailer)"
 msgstr "TRLR (trailer-piste)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3233
+#: ../src/plugins/lib/libgedcom.py:3240
 #, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr "SUBM (Soumetteur) : @%s@"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3257
-#: ../src/plugins/lib/libgedcom.py:6741
+#: ../src/plugins/lib/libgedcom.py:3264
+#: ../src/plugins/lib/libgedcom.py:6748
 msgid "GEDCOM data"
 msgstr "Donnée GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3303
+#: ../src/plugins/lib/libgedcom.py:3310
 msgid "Unknown tag"
 msgstr "Balise inconnue"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3305
-#: ../src/plugins/lib/libgedcom.py:3319
-#: ../src/plugins/lib/libgedcom.py:3323
-#: ../src/plugins/lib/libgedcom.py:3344
+#: ../src/plugins/lib/libgedcom.py:3312
+#: ../src/plugins/lib/libgedcom.py:3326
+#: ../src/plugins/lib/libgedcom.py:3330
+#: ../src/plugins/lib/libgedcom.py:3351
 msgid "Top Level"
 msgstr "Niveau supérieur"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3413
+#: ../src/plugins/lib/libgedcom.py:3420
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (individu) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:3530
+#: ../src/plugins/lib/libgedcom.py:3537
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Alias <NOM PERSONNEL> vide ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3610
-#: ../src/plugins/lib/libgedcom.py:4913
-#: ../src/plugins/lib/libgedcom.py:5111
-#: ../src/plugins/lib/libgedcom.py:5248
-#: ../src/plugins/lib/libgedcom.py:5894
-#: ../src/plugins/lib/libgedcom.py:6038
+#: ../src/plugins/lib/libgedcom.py:3617
+#: ../src/plugins/lib/libgedcom.py:4920
+#: ../src/plugins/lib/libgedcom.py:5118
+#: ../src/plugins/lib/libgedcom.py:5255
+#: ../src/plugins/lib/libgedcom.py:5901
+#: ../src/plugins/lib/libgedcom.py:6045
 msgid "Filename omitted"
 msgstr "Nom de fichier ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:3612
-#: ../src/plugins/lib/libgedcom.py:4915
-#: ../src/plugins/lib/libgedcom.py:5113
-#: ../src/plugins/lib/libgedcom.py:5250
-#: ../src/plugins/lib/libgedcom.py:5896
-#: ../src/plugins/lib/libgedcom.py:6040
+#: ../src/plugins/lib/libgedcom.py:3619
+#: ../src/plugins/lib/libgedcom.py:4922
+#: ../src/plugins/lib/libgedcom.py:5120
+#: ../src/plugins/lib/libgedcom.py:5257
+#: ../src/plugins/lib/libgedcom.py:5903
+#: ../src/plugins/lib/libgedcom.py:6047
 msgid "Form omitted"
 msgstr "Forme ignorée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:4679
+#: ../src/plugins/lib/libgedcom.py:4686
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (famille) Gramps ID %s"
@@ -15384,240 +15386,240 @@ msgstr "FAM (famille) Gramps ID %s"
 # limite à 32 caractères !
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:5413
+#: ../src/plugins/lib/libgedcom.py:5420
 msgid "Empty event note ignored"
 msgstr "Note vide ignorée (événement)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5731
-#: ../src/plugins/lib/libgedcom.py:6544
+#: ../src/plugins/lib/libgedcom.py:5738
+#: ../src/plugins/lib/libgedcom.py:6551
 msgid "Warn: ADDR overwritten"
 msgstr "Attention : ADDR réécrite"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:5908
-#: ../src/plugins/lib/libgedcom.py:6330
+#: ../src/plugins/lib/libgedcom.py:5915
+#: ../src/plugins/lib/libgedcom.py:6337
 msgid "REFN ignored"
 msgstr "REFN ignoré"
 
 # trunk
 #. SOURce with the given gramps_id had no title
-#: ../src/plugins/lib/libgedcom.py:6001
+#: ../src/plugins/lib/libgedcom.py:6008
 #, python-format
 msgid "No title - ID %s"
 msgstr "Aucun titre - ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6006
+#: ../src/plugins/lib/libgedcom.py:6013
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (source) Gramps ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6256
+#: ../src/plugins/lib/libgedcom.py:6263
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (objet multimédia) Gramps ID %s"
 
-#: ../src/plugins/lib/libgedcom.py:6284
-#: ../src/plugins/lib/libgedcom.py:7234
+#: ../src/plugins/lib/libgedcom.py:6291
+#: ../src/plugins/lib/libgedcom.py:7241
 #, python-format
 msgid "Could not import %s"
 msgstr "Impossible d'importer %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6320
+#: ../src/plugins/lib/libgedcom.py:6327
 msgid "BLOB ignored"
 msgstr "BLOB ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6340
+#: ../src/plugins/lib/libgedcom.py:6347
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "REFN multimedia : TYPE ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6350
+#: ../src/plugins/lib/libgedcom.py:6357
 msgid "Mutimedia RIN ignored"
 msgstr "RIN multimedia ignoré"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6437
+#: ../src/plugins/lib/libgedcom.py:6444
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (dépôt) Gramps ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6669
+#: ../src/plugins/lib/libgedcom.py:6676
 msgid "Head (header)"
 msgstr "En-tête (header)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6685
+#: ../src/plugins/lib/libgedcom.py:6692
 msgid "Approved system identification"
 msgstr "Système d'identification approuvé"
 
 # trunk
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6695
+#: ../src/plugins/lib/libgedcom.py:6702
 msgid "Generated by"
 msgstr "Généré par"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6709
+#: ../src/plugins/lib/libgedcom.py:6716
 msgid "Name of software product"
 msgstr "Nom du logiciel source"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6721
+#: ../src/plugins/lib/libgedcom.py:6728
 msgid "Version number of software product"
 msgstr "Numéro de version du logiciel source"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6738
+#: ../src/plugins/lib/libgedcom.py:6745
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Entreprise produisant : %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6759
+#: ../src/plugins/lib/libgedcom.py:6766
 msgid "Name of source data"
 msgstr "Nom de la source des données"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6773
+#: ../src/plugins/lib/libgedcom.py:6780
 msgid "Copyright of source data"
 msgstr "Droit à la copie des données"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6787
+#: ../src/plugins/lib/libgedcom.py:6794
 msgid "Publication date of source data"
 msgstr "Date de publication des données"
 
 # trunk
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6800
+#: ../src/plugins/lib/libgedcom.py:6807
 #, python-format
 msgid "Import from %s"
 msgstr "Importé depuis %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6838
+#: ../src/plugins/lib/libgedcom.py:6845
 msgid "Submission record identifier"
 msgstr "Identifiant de soumission de l'enregistrement"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6849
+#: ../src/plugins/lib/libgedcom.py:6856
 msgid "Language of GEDCOM text"
 msgstr "Language du texte GEDCOM"
 
-#: ../src/plugins/lib/libgedcom.py:6873
+#: ../src/plugins/lib/libgedcom.py:6880
 #, python-format
 msgid "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting database!"
 msgstr "Importation du fichier GEDCOM %s avec DEST=%s, peut générer des erreurs dans la base de données !"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/lib/libgedcom.py:6876
+#: ../src/plugins/lib/libgedcom.py:6883
 msgid "Look for nameless events."
 msgstr "Recherche des événements sans nom."
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6899
+#: ../src/plugins/lib/libgedcom.py:6906
 msgid "Character set"
 msgstr "Encodage du caractère"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6901
+#: ../src/plugins/lib/libgedcom.py:6908
 msgid "Character set and version"
 msgstr "Encodage du caractère et la version"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6917
+#: ../src/plugins/lib/libgedcom.py:6924
 msgid "GEDCOM version not supported"
 msgstr "Version du GEDCOM non-supportée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6920
+#: ../src/plugins/lib/libgedcom.py:6927
 msgid "GEDCOM version"
 msgstr "Version du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6923
+#: ../src/plugins/lib/libgedcom.py:6930
 msgid "GEDCOM form not supported"
 msgstr "Forme de GEDCOM non-supportée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6925
+#: ../src/plugins/lib/libgedcom.py:6932
 msgid "GEDCOM form"
 msgstr "Forme de GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6971
+#: ../src/plugins/lib/libgedcom.py:6978
 msgid "Creation date of GEDCOM"
 msgstr "Date de création du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:6975
+#: ../src/plugins/lib/libgedcom.py:6982
 msgid "Creation date and time of GEDCOM"
 msgstr "Date et heure de création du GEDCOM"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7012
-#: ../src/plugins/lib/libgedcom.py:7049
+#: ../src/plugins/lib/libgedcom.py:7019
+#: ../src/plugins/lib/libgedcom.py:7056
 msgid "Empty note ignored"
 msgstr "Note vide ignorée"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7064
+#: ../src/plugins/lib/libgedcom.py:7071
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "NOTE Gramps ID %s"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7114
+#: ../src/plugins/lib/libgedcom.py:7121
 msgid "Submission: Submitter"
 msgstr "Soumission : soumetteur"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7116
+#: ../src/plugins/lib/libgedcom.py:7123
 msgid "Submission: Family file"
 msgstr "Soumission : fichier de famille"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7118
+#: ../src/plugins/lib/libgedcom.py:7125
 msgid "Submission: Temple code"
 msgstr "Soumission : code du temple (LDS)"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7120
+#: ../src/plugins/lib/libgedcom.py:7127
 msgid "Submission: Generations of ancestors"
 msgstr "Soumission : générations d'ascendants"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7122
+#: ../src/plugins/lib/libgedcom.py:7129
 msgid "Submission: Generations of descendants"
 msgstr "Soumission : générations de descendants"
 
 # trunk
-#: ../src/plugins/lib/libgedcom.py:7124
+#: ../src/plugins/lib/libgedcom.py:7131
 msgid "Submission: Ordinance process flag"
 msgstr "Soumission : marque de l'ordinance (LDS)"
 
 # trunk
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:7336
+#: ../src/plugins/lib/libgedcom.py:7343
 msgid "Invalid temple code"
 msgstr "Code de temple invalide"
 
-#: ../src/plugins/lib/libgedcom.py:7428
+#: ../src/plugins/lib/libgedcom.py:7435
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Votre fichier GEDCOM est corrompu. Ce fichier apparaît comme utilisant l'encodage de caractères UTF-16, mais il manque le marqueur BOM."
 
-#: ../src/plugins/lib/libgedcom.py:7431
+#: ../src/plugins/lib/libgedcom.py:7438
 msgid "Your GEDCOM file is empty."
 msgstr "Votre fichier GEDCOM est vide."
 
-#: ../src/plugins/lib/libgedcom.py:7494
+#: ../src/plugins/lib/libgedcom.py:7501
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ligne %d  invalide dans le fichier GEDCOM."
@@ -19347,7 +19349,7 @@ msgid "Open on maps.google.com"
 msgstr "Ouvrir dans maps.google.com"
 
 #: ../src/plugins/mapservices/mapservice.gpr.py:69
-#: ../src/plugins/webreport/NarrativeWeb.py:8305
+#: ../src/plugins/webreport/NarrativeWeb.py:8306
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -23100,12 +23102,14 @@ msgstr "Niveau de confiance"
 # trunk
 #: ../src/plugins/view/citationtreeview.py:95
 #: ../src/plugins/view/citationlistview.py:102
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:101
 msgid "Source: Author"
 msgstr "Source : auteur"
 
 # trunk
 #: ../src/plugins/view/citationtreeview.py:96
 #: ../src/plugins/view/citationlistview.py:103
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:102
 msgid "Source: Abbreviation"
 msgstr "Source : abréviation"
 
@@ -23238,17 +23242,18 @@ msgstr "Les deux objets doivent être du même type, soit tous les deux sont des
 
 # trunk
 #: ../src/plugins/view/citationlistview.py:95
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:94
 msgid "Volume/Page"
 msgstr "Volume/Page"
 
 # trunk
 #: ../src/plugins/view/citationlistview.py:100
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:100
 msgid "Source: Title"
 msgstr "Source : titre"
 
 # trunk
 #: ../src/plugins/view/citationlistview.py:101
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:99
 msgid "Source: ID"
 msgstr "Source : ID"
 
@@ -24180,7 +24185,7 @@ msgstr "Aperçus"
 #: ../src/plugins/webreport/NarrativeWeb.py:1765
 #: ../src/plugins/webreport/NarrativeWeb.py:1886
 #: ../src/plugins/webreport/NarrativeWeb.py:4974
-#: ../src/plugins/webreport/NarrativeWeb.py:8200
+#: ../src/plugins/webreport/NarrativeWeb.py:8201
 msgid "Download"
 msgstr "Télécharger"
 
@@ -24260,10 +24265,10 @@ msgstr "Prénom"
 #: ../src/plugins/webreport/NarrativeWeb.py:6527
 #: ../src/plugins/webreport/NarrativeWeb.py:7144
 #: ../src/plugins/webreport/NarrativeWeb.py:7151
-#: ../src/plugins/webreport/NarrativeWeb.py:7570
-#: ../src/plugins/webreport/NarrativeWeb.py:7615
-#: ../src/plugins/webreport/NarrativeWeb.py:7633
-#: ../src/plugins/webreport/NarrativeWeb.py:7675
+#: ../src/plugins/webreport/NarrativeWeb.py:7571
+#: ../src/plugins/webreport/NarrativeWeb.py:7616
+#: ../src/plugins/webreport/NarrativeWeb.py:7634
+#: ../src/plugins/webreport/NarrativeWeb.py:7676
 msgid "Narrated Web Site Report"
 msgstr "Saga"
 
@@ -24592,191 +24597,191 @@ msgstr "Famille de %s et %s"
 msgid "Family of %s"
 msgstr "Famille de %s"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7571
+#: ../src/plugins/webreport/NarrativeWeb.py:7572
 msgid "Creating GENDEX file"
 msgstr "Création d'un fichier GENDEX"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7616
+#: ../src/plugins/webreport/NarrativeWeb.py:7617
 msgid "Creating surname pages"
 msgstr "Création des pages pour le patronyme"
 
 # trunk
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7634
+#: ../src/plugins/webreport/NarrativeWeb.py:7635
 msgid "Creating thumbnail preview page..."
 msgstr "Création des pages pour les miniatures..."
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:7676
+#: ../src/plugins/webreport/NarrativeWeb.py:7677
 msgid "Creating address book pages ..."
 msgstr "Création des pages adresses ..."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7977
+#: ../src/plugins/webreport/NarrativeWeb.py:7978
 msgid "Store web pages in .tar.gz archive"
 msgstr "Extrait les pages Web en archive .tar.gz"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7979
+#: ../src/plugins/webreport/NarrativeWeb.py:7980
 msgid "Whether to store the web pages in an archive file"
 msgstr "Conserver ou non les pages internet dans un format d'archive"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7986
+#: ../src/plugins/webreport/NarrativeWeb.py:7987
 #: ../src/plugins/webreport/WebCal.py:1307
 msgid "Destination"
 msgstr "Destination"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7989
+#: ../src/plugins/webreport/NarrativeWeb.py:7990
 #: ../src/plugins/webreport/WebCal.py:1310
 msgid "The destination directory for the web files"
 msgstr "Le répertoire de destination pour les fichiers internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7995
+#: ../src/plugins/webreport/NarrativeWeb.py:7996
 msgid "Web site title"
 msgstr "Titre du site"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7995
+#: ../src/plugins/webreport/NarrativeWeb.py:7996
 msgid "My Family Tree"
 msgstr "Mon arbre généalogique"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:7996
+#: ../src/plugins/webreport/NarrativeWeb.py:7997
 msgid "The title of the web site"
 msgstr "Le titre du site internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8001
+#: ../src/plugins/webreport/NarrativeWeb.py:8002
 msgid "Select filter to restrict people that appear on web site"
 msgstr "Sélectionnez un filtre pour restreindre les individus qui apparaîtront dans le site web"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8028
+#: ../src/plugins/webreport/NarrativeWeb.py:8029
 #: ../src/plugins/webreport/WebCal.py:1347
 msgid "File extension"
 msgstr "Extension"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8031
+#: ../src/plugins/webreport/NarrativeWeb.py:8032
 #: ../src/plugins/webreport/WebCal.py:1350
 msgid "The extension to be used for the web files"
 msgstr "L'extension utilisée pour les fichiers internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8034
+#: ../src/plugins/webreport/NarrativeWeb.py:8035
 #: ../src/plugins/webreport/WebCal.py:1353
 msgid "Copyright"
 msgstr "Licence"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8037
+#: ../src/plugins/webreport/NarrativeWeb.py:8038
 #: ../src/plugins/webreport/WebCal.py:1356
 msgid "The copyright to be used for the web files"
 msgstr "Le droit d'auteur utilisé pour les fichiers internet"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8040
+#: ../src/plugins/webreport/NarrativeWeb.py:8041
 #: ../src/plugins/webreport/WebCal.py:1362
 msgid "StyleSheet"
 msgstr "Feuille de style"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8045
+#: ../src/plugins/webreport/NarrativeWeb.py:8046
 #: ../src/plugins/webreport/WebCal.py:1365
 msgid "The stylesheet to be used for the web pages"
 msgstr "La feuille de style utilisée pour les pages internet"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8050
+#: ../src/plugins/webreport/NarrativeWeb.py:8051
 msgid "Horizontal -- Default"
 msgstr "Horizontal -- défaut"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8051
+#: ../src/plugins/webreport/NarrativeWeb.py:8052
 msgid "Vertical   -- Left Side"
 msgstr "Vertical -- côté gauche"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8052
+#: ../src/plugins/webreport/NarrativeWeb.py:8053
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Fondu   -- que pour les navigateurs Webkit"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8053
-#: ../src/plugins/webreport/NarrativeWeb.py:8065
+#: ../src/plugins/webreport/NarrativeWeb.py:8054
+#: ../src/plugins/webreport/NarrativeWeb.py:8066
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Abaissé  -- que pour les navigateurs Webkit"
 
 # espace limité
-#: ../src/plugins/webreport/NarrativeWeb.py:8055
+#: ../src/plugins/webreport/NarrativeWeb.py:8056
 msgid "Navigation Menu Layout"
 msgstr "Mise en page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8058
+#: ../src/plugins/webreport/NarrativeWeb.py:8059
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Choisissez la mise en page pour les menus de navigation."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8064
+#: ../src/plugins/webreport/NarrativeWeb.py:8065
 msgid "Normal Outline Style"
 msgstr "Style normal de bordure"
 
 # espace limité
-#: ../src/plugins/webreport/NarrativeWeb.py:8067
+#: ../src/plugins/webreport/NarrativeWeb.py:8068
 msgid "Citation Referents Layout"
 msgstr "Mise en page des références de citation"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8070
+#: ../src/plugins/webreport/NarrativeWeb.py:8071
 msgid "Determine the default layout for the Source Page's Citation Referents section"
 msgstr "Déterminer la mise en page par défaut pour la section Références de la citation dans la page source"
 
 # en général plusieurs ascendants
-#: ../src/plugins/webreport/NarrativeWeb.py:8074
+#: ../src/plugins/webreport/NarrativeWeb.py:8075
 msgid "Include ancestor's tree"
 msgstr "Inclure un arbre des ascendants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8075
+#: ../src/plugins/webreport/NarrativeWeb.py:8076
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Inclure ou non un arbre des ascendants sur chaque page des individus"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8079
+#: ../src/plugins/webreport/NarrativeWeb.py:8080
 msgid "Graph generations"
 msgstr "Générations"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8080
+#: ../src/plugins/webreport/NarrativeWeb.py:8081
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Le nombre de générations à inclure dans l'arbre des ascendants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8090
+#: ../src/plugins/webreport/NarrativeWeb.py:8091
 msgid "Page Generation"
 msgstr "Création de page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8093
+#: ../src/plugins/webreport/NarrativeWeb.py:8094
 msgid "Home page note"
 msgstr "Note de la page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8094
+#: ../src/plugins/webreport/NarrativeWeb.py:8095
 msgid "A note to be used on the home page"
 msgstr "La note utilisée pour la page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8097
+#: ../src/plugins/webreport/NarrativeWeb.py:8098
 msgid "Home page image"
 msgstr "Image de la page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8098
+#: ../src/plugins/webreport/NarrativeWeb.py:8099
 msgid "An image to be used on the home page"
 msgstr "L'image utilisée en page d'accueil"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8101
+#: ../src/plugins/webreport/NarrativeWeb.py:8102
 msgid "Introduction note"
 msgstr "Note d'introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8102
+#: ../src/plugins/webreport/NarrativeWeb.py:8103
 msgid "A note to be used as the introduction"
 msgstr "La note utilisée en introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8105
+#: ../src/plugins/webreport/NarrativeWeb.py:8106
 msgid "Introduction image"
 msgstr "Image d'introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8106
+#: ../src/plugins/webreport/NarrativeWeb.py:8107
 msgid "An image to be used as the introduction"
 msgstr "L'image utilisée en introduction"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8109
+#: ../src/plugins/webreport/NarrativeWeb.py:8110
 msgid "Publisher contact note"
 msgstr "Note de la page contact"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8110
+#: ../src/plugins/webreport/NarrativeWeb.py:8111
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -24786,11 +24791,11 @@ msgstr ""
 "Si aucune information sur l'auteur n'est donnée,\n"
 "alors aucune page contact ne sera créée."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8116
+#: ../src/plugins/webreport/NarrativeWeb.py:8117
 msgid "Publisher contact image"
 msgstr "Image de la page contact"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8117
+#: ../src/plugins/webreport/NarrativeWeb.py:8118
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -24801,65 +24806,65 @@ msgstr ""
 "alors aucune page contact ne sera créée."
 
 # espace limité dans la fenêtre, bug #3596
-#: ../src/plugins/webreport/NarrativeWeb.py:8123
+#: ../src/plugins/webreport/NarrativeWeb.py:8124
 msgid "HTML user header"
 msgstr "En-tête HTML"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8124
+#: ../src/plugins/webreport/NarrativeWeb.py:8125
 msgid "A note to be used as the page header"
 msgstr "La note utilisée pour l'en-tête de la page"
 
 # espace limité dans la fenêtre, bug #3596
-#: ../src/plugins/webreport/NarrativeWeb.py:8127
+#: ../src/plugins/webreport/NarrativeWeb.py:8128
 msgid "HTML user footer"
 msgstr "Pied de page HTML"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8128
+#: ../src/plugins/webreport/NarrativeWeb.py:8129
 msgid "A note to be used as the page footer"
 msgstr "La note utilisée pour le pied de page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8131
+#: ../src/plugins/webreport/NarrativeWeb.py:8132
 msgid "Include images and media objects"
 msgstr "Inclure images et objets media"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8132
+#: ../src/plugins/webreport/NarrativeWeb.py:8133
 msgid "Whether to include a gallery of media objects"
 msgstr "Inclure ou non une galerie des objets media"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8136
+#: ../src/plugins/webreport/NarrativeWeb.py:8137
 msgid "Create and only use thumbnail- sized images"
 msgstr "Créer et utiliser uniquement les aperçus des images"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8137
+#: ../src/plugins/webreport/NarrativeWeb.py:8138
 msgid "This option allows you to create only thumbnail images instead of the full-sized images on the Media Page. This will allow you to have a much smaller total upload size to your web hosting site."
 msgstr "Cette option vous permet de choisir de créer uniquement les aperçus des images plutôt que les images en taille réelle dans la page Media. Ceci vous permettra d'obtenir une archive plus petite à envoyer sur votre site internet hébergé."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8143
+#: ../src/plugins/webreport/NarrativeWeb.py:8144
 msgid "Max width of initial image"
 msgstr "Largeur max de l'image initiale"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8145
+#: ../src/plugins/webreport/NarrativeWeb.py:8146
 msgid "This allows you to set the maximum width of the image shown on the media page. Set to 0 for no limit."
 msgstr "Permet de définir la largeur maximum de l'image affichée dans la page media. Définissez 0 pour ignorer la limitation."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8149
+#: ../src/plugins/webreport/NarrativeWeb.py:8150
 msgid "Max height of initial image"
 msgstr "Hauteur max de l'image initiale"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8151
+#: ../src/plugins/webreport/NarrativeWeb.py:8152
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
 msgstr "Permet de définir la hauteur maximum de l'image affichée dans la page media. Définissez 0 pour ignorer la limitation."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8157
+#: ../src/plugins/webreport/NarrativeWeb.py:8158
 msgid "Suppress Gramps ID"
 msgstr "Supprimer les identifiants Gramps"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8158
+#: ../src/plugins/webreport/NarrativeWeb.py:8159
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Inclure ou non les identifiants Gramps des objets"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8165
+#: ../src/plugins/webreport/NarrativeWeb.py:8166
 #: ../src/glade/editperson.glade.h:22
 #: ../src/glade/editsource.glade.h:13
 #: ../src/glade/editcitation.glade.h:17
@@ -24883,254 +24888,254 @@ msgstr "Inclure ou non les identifiants Gramps des objets"
 msgid "Privacy"
 msgstr "Vie privée"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8168
+#: ../src/plugins/webreport/NarrativeWeb.py:8169
 msgid "Include records marked private"
 msgstr "Inclure les données privées"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8169
+#: ../src/plugins/webreport/NarrativeWeb.py:8170
 msgid "Whether to include private objects"
 msgstr "Inclure ou non les objets privés"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8172
+#: ../src/plugins/webreport/NarrativeWeb.py:8173
 msgid "Living People"
 msgstr "Individus vivants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8177
+#: ../src/plugins/webreport/NarrativeWeb.py:8178
 msgid "Include Last Name Only"
 msgstr "N'inclure que le nom"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8179
+#: ../src/plugins/webreport/NarrativeWeb.py:8180
 msgid "Include Full Name Only"
 msgstr "Inclure le nom complet"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/webreport/NarrativeWeb.py:8182
+#: ../src/plugins/webreport/NarrativeWeb.py:8183
 msgid "How to handle living people"
 msgstr "Gestion des individus vivants"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8186
+#: ../src/plugins/webreport/NarrativeWeb.py:8187
 msgid "Years from death to consider living"
 msgstr "Années depuis le décès"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8188
+#: ../src/plugins/webreport/NarrativeWeb.py:8189
 msgid "This allows you to restrict information on people who have not been dead for very long"
 msgstr "Ceci vous permet de restreindre l'information sur les individus décédés il y a peu de temps"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8203
+#: ../src/plugins/webreport/NarrativeWeb.py:8204
 msgid "Include download page"
 msgstr "Inclure une page téléchargement"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8204
+#: ../src/plugins/webreport/NarrativeWeb.py:8205
 msgid "Whether to include a database download option"
 msgstr "Inclure ou non une option pour télécharger une base de données"
 
 # espace limité dans la fenêtre, bug #3596
-#: ../src/plugins/webreport/NarrativeWeb.py:8208
-#: ../src/plugins/webreport/NarrativeWeb.py:8217
+#: ../src/plugins/webreport/NarrativeWeb.py:8209
+#: ../src/plugins/webreport/NarrativeWeb.py:8218
 msgid "Download Filename"
 msgstr "Nom du fichier"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8210
-#: ../src/plugins/webreport/NarrativeWeb.py:8219
+#: ../src/plugins/webreport/NarrativeWeb.py:8211
+#: ../src/plugins/webreport/NarrativeWeb.py:8220
 msgid "File to be used for downloading of database"
 msgstr "Fichier prévu pour être téléchargé"
 
 # espace limité dans la fenêtre, bug #3596
-#: ../src/plugins/webreport/NarrativeWeb.py:8213
-#: ../src/plugins/webreport/NarrativeWeb.py:8222
+#: ../src/plugins/webreport/NarrativeWeb.py:8214
+#: ../src/plugins/webreport/NarrativeWeb.py:8223
 msgid "Description for download"
 msgstr "Description"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8213
+#: ../src/plugins/webreport/NarrativeWeb.py:8214
 msgid "Smith Family Tree"
 msgstr "Arbre de la famille Martin"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8214
-#: ../src/plugins/webreport/NarrativeWeb.py:8223
+#: ../src/plugins/webreport/NarrativeWeb.py:8215
+#: ../src/plugins/webreport/NarrativeWeb.py:8224
 msgid "Give a description for this file."
 msgstr "Donnez une description pour ce fichier."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8222
+#: ../src/plugins/webreport/NarrativeWeb.py:8223
 msgid "Johnson Family Tree"
 msgstr "Arbre de la famille Bernard"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8232
+#: ../src/plugins/webreport/NarrativeWeb.py:8233
 #: ../src/plugins/webreport/WebCal.py:1507
 msgid "Advanced Options"
 msgstr "Options avancées"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8235
+#: ../src/plugins/webreport/NarrativeWeb.py:8236
 #: ../src/plugins/webreport/WebCal.py:1509
 msgid "Character set encoding"
 msgstr "Encodage de caractères"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8238
+#: ../src/plugins/webreport/NarrativeWeb.py:8239
 #: ../src/plugins/webreport/WebCal.py:1512
 msgid "The encoding to be used for the web files"
 msgstr "L'encodage utilisé pour les fichiers internet"
 
 # phrase courte, place limitée
-#: ../src/plugins/webreport/NarrativeWeb.py:8241
+#: ../src/plugins/webreport/NarrativeWeb.py:8242
 msgid "Include link to active person on every page"
 msgstr "Inclure un lien vers la personne active"
 
 # plus de détails dans le tooltip
-#: ../src/plugins/webreport/NarrativeWeb.py:8242
+#: ../src/plugins/webreport/NarrativeWeb.py:8243
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr "Inclure un lien vers la personne active sur chaque page"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8245
+#: ../src/plugins/webreport/NarrativeWeb.py:8246
 msgid "Include a column for birth dates on the index pages"
 msgstr "Inclure une colonne pour les dates de naissance dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8246
+#: ../src/plugins/webreport/NarrativeWeb.py:8247
 msgid "Whether to include a birth column"
 msgstr "Inclure ou non une colonne naissance"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8249
+#: ../src/plugins/webreport/NarrativeWeb.py:8250
 msgid "Include a column for death dates on the index pages"
 msgstr "Inclure une colonne pour les dates de décès dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8250
+#: ../src/plugins/webreport/NarrativeWeb.py:8251
 msgid "Whether to include a death column"
 msgstr "Inclure ou non une colonne décès"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8253
+#: ../src/plugins/webreport/NarrativeWeb.py:8254
 msgid "Include a column for partners on the index pages"
 msgstr "Inclure une colonne pour les conjoints dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8255
+#: ../src/plugins/webreport/NarrativeWeb.py:8256
 msgid "Whether to include a partners column"
 msgstr "Inclure ou non une colonne conjoints"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8258
+#: ../src/plugins/webreport/NarrativeWeb.py:8259
 msgid "Include a column for parents on the index pages"
 msgstr "Inclure une colonne pour les parents dans les pages index"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8260
+#: ../src/plugins/webreport/NarrativeWeb.py:8261
 msgid "Whether to include a parents column"
 msgstr "Inclure ou non une colonne parents"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8263
+#: ../src/plugins/webreport/NarrativeWeb.py:8264
 msgid "Include half and/ or step-siblings on the individual pages"
 msgstr "Inclure les demi-frères et demi-sœurs sur la page de l'individu"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8265
+#: ../src/plugins/webreport/NarrativeWeb.py:8266
 msgid "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr "Inclure ou non les demi-frères et demi-sœurs avec les parents, frères et sœurs."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8269
+#: ../src/plugins/webreport/NarrativeWeb.py:8270
 msgid "Sort all children in birth order"
 msgstr "Trier les enfants selon la date de naissance"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8270
+#: ../src/plugins/webreport/NarrativeWeb.py:8271
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Affiche les enfants selon leurs dates de naissance ou selon l'ordre actuel ?"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8273
+#: ../src/plugins/webreport/NarrativeWeb.py:8274
 msgid "Include family pages"
 msgstr "Inclure les pages de la famille"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8274
+#: ../src/plugins/webreport/NarrativeWeb.py:8275
 msgid "Whether or not to include family pages."
 msgstr "Inclure ou non des pages de la famille."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8277
+#: ../src/plugins/webreport/NarrativeWeb.py:8278
 msgid "Include event pages"
 msgstr "Inclure les pages événement"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8278
+#: ../src/plugins/webreport/NarrativeWeb.py:8279
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Ajouter ou non une liste complète des événements et pages liées"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8281
+#: ../src/plugins/webreport/NarrativeWeb.py:8282
 msgid "Include repository pages"
 msgstr "Inclure les pages dépôt"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8282
+#: ../src/plugins/webreport/NarrativeWeb.py:8283
 msgid "Whether or not to include the Repository Pages."
 msgstr "Inclure ou non des pages dépôt."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8285
+#: ../src/plugins/webreport/NarrativeWeb.py:8286
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Inclure un fichier GENDEX (gendex.txt)"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8286
+#: ../src/plugins/webreport/NarrativeWeb.py:8287
 msgid "Whether to include a GENDEX file or not"
 msgstr "Inclure ou non un fichier GENDEX"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8289
+#: ../src/plugins/webreport/NarrativeWeb.py:8290
 msgid "Include address book pages"
 msgstr "Inclure les pages adresses"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8290
+#: ../src/plugins/webreport/NarrativeWeb.py:8291
 msgid "Whether or not to add Address Book pages,which can include e-mail and website addresses and personal address/ residence events."
 msgstr "Ajouter ou non les adresses qui peuvent être des adresses de messagerie, des adresses de site internet, des adresses individuelles et des événements résidence."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8300
+#: ../src/plugins/webreport/NarrativeWeb.py:8301
 msgid "Place Map Options"
 msgstr "Options Carte du lieu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8304
+#: ../src/plugins/webreport/NarrativeWeb.py:8305
 msgid "Google"
 msgstr "Google"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8306
+#: ../src/plugins/webreport/NarrativeWeb.py:8307
 msgid "Map Service"
 msgstr "Service cartographique"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8309
+#: ../src/plugins/webreport/NarrativeWeb.py:8310
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr "Choisissez votre service cartographique pour la création des pages Carte du lieu."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8314
+#: ../src/plugins/webreport/NarrativeWeb.py:8315
 msgid "Include Place map on Place Pages"
 msgstr "Inclure une carte dans les pages du lieu"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8315
+#: ../src/plugins/webreport/NarrativeWeb.py:8316
 msgid "Whether to include a place map on the Place Pages, where Latitude/ Longitude are available."
 msgstr "Inclure ou non une carte du lieu sur la page des lieux, quand Latitude/ Longitude est disponible."
 
 # traduction qui tient compte du résultat généré ...
-#: ../src/plugins/webreport/NarrativeWeb.py:8320
+#: ../src/plugins/webreport/NarrativeWeb.py:8321
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Inclure des liens vers une carte avec tous les lieux familiaux"
 
 # traduction qui tient compte du résultat généré ...
-#: ../src/plugins/webreport/NarrativeWeb.py:8322
+#: ../src/plugins/webreport/NarrativeWeb.py:8323
 msgid "Whether or not to add an individual page map showing all the places on this page. This will allow you to see how your family traveled around the country."
 msgstr "Ajouter ou non une carte avec tous les lieux familiaux et un lien sur la page de l'individu. Ceci vous permettra de voir votre famille à travers ses lieux."
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8330
+#: ../src/plugins/webreport/NarrativeWeb.py:8331
 msgid "Family Links"
 msgstr "Liens familiaux"
 
 # trunk
-#: ../src/plugins/webreport/NarrativeWeb.py:8331
+#: ../src/plugins/webreport/NarrativeWeb.py:8332
 msgid "Drop"
 msgstr "Déposer"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8332
+#: ../src/plugins/webreport/NarrativeWeb.py:8333
 msgid "Markers"
 msgstr "Marqueurs"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8333
+#: ../src/plugins/webreport/NarrativeWeb.py:8334
 msgid "Google/ FamilyMap Option"
 msgstr "Google/ Option Carte familiale"
 
-#: ../src/plugins/webreport/NarrativeWeb.py:8336
+#: ../src/plugins/webreport/NarrativeWeb.py:8337
 msgid "Select which option that you would like to have for the Google Maps Family Map pages..."
 msgstr "Sélectionnez l'option que vous souhaitez utiliser pour la carte familiale Google Maps..."
 
 # trunk
 #. adding title to hyperlink menu for screen readers and braille writers
-#: ../src/plugins/webreport/NarrativeWeb.py:8796
+#: ../src/plugins/webreport/NarrativeWeb.py:8797
 #, python-format
 msgid "Alphabet Menu: %s"
 msgstr "Menu alphabétique : %s"
@@ -27470,8 +27475,20 @@ msgid "Matches citations with a source of a particular value"
 msgstr "Correspond aux citations avec une source ayant une valeur particulière"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:56
+#: ../src/Filters/Rules/Citation/_HasSourceIdOf.py:50
+#: ../src/Filters/Rules/Citation/_RegExpSourceIdOf.py:52
 msgid "Source filters"
 msgstr "Filtres source"
+
+# trunk
+#: ../src/Filters/Rules/Citation/_HasSourceIdOf.py:47
+msgid "Citation with Source <Id>"
+msgstr "Citations avec la source <Id>"
+
+# trunk
+#: ../src/Filters/Rules/Citation/_HasSourceIdOf.py:48
+msgid "Matches a citation with a source with a specified Gramps ID"
+msgstr "Correspond aux citations avec l'identifiant Gramps de la source spécifié."
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:46
@@ -27500,6 +27517,14 @@ msgstr "Citations dont l'identifiant contient le <texte>."
 #: ../src/Filters/Rules/Citation/_RegExpIdOf.py:50
 msgid "Matches citations whose Gramps ID matches the regular expression"
 msgstr "Correspond aux citations dont l'ID Gramps contient une expression rationnelle"
+
+#: ../src/Filters/Rules/Citation/_RegExpSourceIdOf.py:49
+msgid "Citations with Source Id containing <text>"
+msgstr "Citations dont l'identifiant de la source contient le <texte>."
+
+#: ../src/Filters/Rules/Citation/_RegExpSourceIdOf.py:50
+msgid "Matches citations whose source has a Gramps ID that matches the regular expression"
+msgstr "Correspond aux citations dont l'identifiant Gramps de la source contient une expression rationnelle."
 
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:47
 msgid "Citations with a source with a repository reference matching the <repository filter>"
@@ -27875,11 +27900,37 @@ msgstr "Notes marquées comme privées"
 msgid "Matches notes that are indicated as private"
 msgstr "Correspond aux notes marquées comme privées"
 
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:96
-msgid "Minimum Confidence|Min. Conf."
-msgstr "Conf. min."
+# trunk
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:103
+msgid "Source: Publication"
+msgstr "Source : Publication"
 
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:98
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:104
+msgid "Source: Note"
+msgstr "Source : Note"
+
+# L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:105
+msgid "Citation: ID"
+msgstr "Citation : Id"
+
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:106
+msgid "Citation: Volume/Page"
+msgstr "Citation : Volume/Page"
+
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:107
+msgid "Citation: Date"
+msgstr "Citation : Date"
+
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:108
+msgid "Citation: Minimum Confidence|Min. Conf."
+msgstr "Citation : Conf. min."
+
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:109
+msgid "Citation: Note"
+msgstr "Citation : Note"
+
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:110
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:99
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:119
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:136
