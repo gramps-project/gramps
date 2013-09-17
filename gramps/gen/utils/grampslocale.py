@@ -33,13 +33,15 @@ import os
 import codecs
 import locale
 import logging
-LOG = logging.getLogger(__name__)
+
+LOG = logging.getLogger("." + __name__)
+LOG.addHandler(logging.NullHandler())
 HAVE_ICU = False
 _hdlr = None
 # GrampsLocale initialization comes before command-line argument
 # passing, so one must set the log level directly. The default is
 # logging.WARN. Uncomment the following to change it to logging.DEBUG:
-LOG.setLevel(logging.DEBUG)
+#LOG.setLevel(logging.DEBUG)
 try:
     from icu import Locale, Collator
     HAVE_ICU = True
