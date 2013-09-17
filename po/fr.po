@@ -23104,20 +23104,20 @@ msgstr "Niveau de confiance"
 #: ../src/plugins/view/citationlistview.py:102
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:101
 msgid "Source: Author"
-msgstr "Source : auteur"
+msgstr "Source : Auteur"
 
 # trunk
 #: ../src/plugins/view/citationtreeview.py:96
 #: ../src/plugins/view/citationlistview.py:103
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:102
 msgid "Source: Abbreviation"
-msgstr "Source : abréviation"
+msgstr "Source : Abréviation"
 
 # trunk
 #: ../src/plugins/view/citationtreeview.py:97
 #: ../src/plugins/view/citationlistview.py:104
 msgid "Source: Publication Information"
-msgstr "Source : information de publication"
+msgstr "Source : Information de publication"
 
 # trunk
 #: ../src/plugins/view/citationtreeview.py:118
@@ -23249,18 +23249,18 @@ msgstr "Volume/Page"
 #: ../src/plugins/view/citationlistview.py:100
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:100
 msgid "Source: Title"
-msgstr "Source : titre"
+msgstr "Source : Titre"
 
 # trunk
 #: ../src/plugins/view/citationlistview.py:101
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:99
 msgid "Source: ID"
-msgstr "Source : ID"
+msgstr "Source : Id"
 
 # trunk
 #: ../src/plugins/view/citationlistview.py:105
 msgid "Source: Last Changed"
-msgstr "Source : modifié"
+msgstr "Source : Modifié"
 
 # trunk
 # objet sélectionné
