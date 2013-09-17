@@ -33,7 +33,8 @@ import os
 import codecs
 import locale
 import logging
-LOG = logging.getLogger(__name__)
+LOG = logging.getLogger("." + __name__)
+LOG.addHandler(logging.NullHandler())
 HAVE_ICU = False
 _hdlr = None
 # GrampsLocale initialization comes before command-line argument
