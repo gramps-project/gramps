@@ -338,13 +338,15 @@ class ProbablyAlive(object):
             date1, date2, explain, other = descendants_too_old(person, self.AVG_GENERATION_GAP)
         except RuntimeError:
             raise DatabaseError(
-                _("Database error: %s is defined as his or her own ancestor") %
+                _("Database error: loop in %s's descendants") %
                 name_displayer.display(person))
 
         if date1 and date2:
             return (date1, date2, explain, other)
 
         def ancestors_too_old(person, year):
+            LOG.debug("ancestors_too_old('{}', {})".format(
+                name_displayer.display(person), year) )
             family_handle = person.get_main_parents_family_handle()
             if family_handle:                
                 family = self.db.get_family_from_handle(family_handle)
@@ -446,9 +448,14 @@ class ProbablyAlive(object):
 
             return (None, None, "", None)
 
-        # If there are ancestors that would be too old in the current year
-        # then assume our person must be dead too.
-        date1, date2, explain, other = ancestors_too_old (person, - self.AVG_GENERATION_GAP)
+        try:
+            # If there are ancestors that would be too old in the current year
+            # then assume our person must be dead too.
+            date1, date2, explain, other = ancestors_too_old (person, - self.AVG_GENERATION_GAP)
+        except RuntimeError:
+            raise Errors.DatabaseError(
+                _("Database error: loop in %s's ancestors") %
+                name_displayer.display(person))
         if date1 and date2:
             return (date1, date2, explain, other)
 
