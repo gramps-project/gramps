@@ -125,8 +125,7 @@ class Span(object):
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
                     #self.repr = "about " + self._format(self._diff(self.date1, self.date2))
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     start, stop = self.date2.get_start_stop_range()
                     start = Date(*start)
                     stop = Date(*stop)
@@ -157,8 +156,7 @@ class Span(object):
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
                     #self.repr = "about " + self._format(self._diff(self.date1, self.date2))
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
@@ -184,8 +182,7 @@ class Span(object):
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.AFTER)
                     #self.repr = "more than about " + self._format(self._diff(self.date1, self.date2))
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
@@ -211,14 +208,12 @@ class Span(object):
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
                     #self.repr = "about " + self._format(self._diff(self.date1, self.date2))
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     v = self.date1.sortval - self.date2.sortval
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
                     #self.repr = "about " + self._format(self._diff(self.date1, self.date2))
-            elif (self.date1.get_modifier() == Date.MOD_RANGE or 
-                  self.date1.get_modifier() == Date.MOD_SPAN): # SPAN----------------------------
+            elif self.date1.is_compound():
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     start, stop = self.date1.get_start_stop_range()
                     start = Date(*start)
@@ -244,8 +239,7 @@ class Span(object):
                     self.sort = (v, -Span.ABOUT)
                     self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
                     #self.repr = "about " + self._format(self._diff(self.date1, self.date2))
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     start1, stop1 = self.date1.get_start_stop_range()
                     start2, stop2 = self.date2.get_start_stop_range()
                     start1 = Date(*start1)
@@ -319,8 +313,7 @@ class Span(object):
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
                     # TO_FIX: bug #5293 !
                     self.repr = _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     start, stop = self.date2.get_start_stop_range()
                     start = Date(*start)
                     stop = Date(*stop)
@@ -351,8 +344,7 @@ class Span(object):
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
                     self.repr = _("less than about") + " " + self._format(self._diff(self.date1, self.date2))
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     #v = self.date1.sortval - self.date2.sortval
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
@@ -378,8 +370,7 @@ class Span(object):
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.AFTER)
                     self.repr = _("more than about") + " " +  self._format(self._diff(self.date1, self.date2)).format(precision=1)
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     #v = self.date1.sortval - self.date2.sortval
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
@@ -405,14 +396,12 @@ class Span(object):
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
                     self.repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     #v = self.date1.sortval - self.date2.sortval
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
                     self.repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
-            elif (self.date1.get_modifier() == Date.MOD_RANGE or 
-                  self.date1.get_modifier() == Date.MOD_SPAN): # SPAN----------------------------
+            elif self.date1.is_compound():
                 if   self.date2.get_modifier() == Date.MOD_NONE:
                     start, stop = self.date1.get_start_stop_range()
                     start = Date(*start)
@@ -438,8 +427,7 @@ class Span(object):
                     #self.sort = (v, -Span.ABOUT)
                     #self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
                     self.repr =  _("age|about") + " " + self._format(self._diff(self.date1, self.date2)).format(precision=1)
-                elif (self.date2.get_modifier() == Date.MOD_RANGE or 
-                      self.date2.get_modifier() == Date.MOD_SPAN):
+                elif self.date2.is_compound():
                     start1, stop1 = self.date1.get_start_stop_range()
                     start2, stop2 = self.date2.get_start_stop_range()
                     start1 = Date(*start1)
@@ -1039,7 +1027,7 @@ class Date(object):
                 (self.dateval[Date._POS_YR]) % 10, 
                 self.dateval[Date._POS_MON], 
                 self.dateval[Date._POS_DAY])
-        elif self.modifier == Date.MOD_RANGE or self.modifier == Date.MOD_SPAN:
+        elif self.is_compound():
             val = "%04d-%02d-%02d - %04d-%02d-%02d" % (
                 self.dateval[Date._POS_YR], self.dateval[Date._POS_MON], 
                 self.dateval[Date._POS_DAY], self.dateval[Date._POS_RYR], 
@@ -1202,7 +1190,7 @@ class Date(object):
         of (0, 0, 0, False) is returned. Otherwise, a date of (DD, MM, YY, slash)
         is returned. If slash is True, then the date is in the form of 1530/1.
         """
-        if self.modifier == Date.MOD_RANGE or self.modifier == Date.MOD_SPAN:
+        if self.is_compound():
             val = self.dateval[4:8]
         else:
             val = Date.EMPTY
@@ -1232,7 +1220,7 @@ class Date(object):
         """
         Return the item specified.
         """
-        if self.modifier == Date.MOD_SPAN or self.modifier == Date.MOD_RANGE:
+        if self.is_compound():
             val = self.dateval[index]
         else:
             val = 0
@@ -1279,89 +1267,91 @@ class Date(object):
         """
         self.newyear = value
 
-    def set_yr_mon_day(self, year, month, day):
+    def __set_yr_mon_day(self, year, month, day, pos_yr, pos_mon, pos_day):
+        dv = list(self.dateval)
+        dv[pos_yr] = year
+        dv[pos_mon] = month
+        dv[pos_day] = day
+        self.dateval = tuple(dv)
+
+    def set_yr_mon_day(self, year, month, day, remove_stop_date = None):
         """
         Set the year, month, and day values.
+
+        @param remove_stop_date Required parameter for a compound date. 
+            When True, the stop date is changed to the same date as well.
+            When False, the stop date is not changed.
         """
-        dv = list(self.dateval)
-        dv[Date._POS_YR] = year
-        dv[Date._POS_MON] = month
-        dv[Date._POS_DAY] = day
-        self.dateval = tuple(dv)
+        if self.is_compound() and remove_stop_date is None:
+            raise DateError("Required parameter remove_stop_date not set!")
+
+        self.__set_yr_mon_day(year, month, day, 
+                Date._POS_YR, Date._POS_MON, Date._POS_DAY)
         self._calc_sort_value()
+        if remove_stop_date and self.is_compound(): 
+            self.set2_yr_mon_day(year, month, day)
+
+    def _assert_compound(self):
+        if not self.is_compound(): 
+            raise DateError("Operation allowed for compound dates only!")
 
     def set2_yr_mon_day(self, year, month, day):
         """
-        Set the year, month, and day values.
+        Set the year, month, and day values in the 2nd part of 
+        a compound date (range or span).
         """
+        self._assert_compound()
+        self.__set_yr_mon_day(year, month, day, 
+                Date._POS_RYR, Date._POS_RMON, Date._POS_RDAY)
+
+    def __set_yr_mon_day_offset(self, year, month, day, pos_yr, pos_mon, pos_day):
         dv = list(self.dateval)
-        dv[Date._POS_RYR] = year
-        dv[Date._POS_RMON] = month
-        dv[Date._POS_RDAY] = day
+        if dv[pos_yr]:
+            dv[pos_yr] += year
+        elif year:
+            dv[pos_yr] = year
+        if dv[pos_mon]:
+            dv[pos_mon] += month
+        elif month:
+            if month < 0:
+                dv[pos_mon] = 1 + month
+            else:
+                dv[pos_mon] = month
+        # Fix if month out of bounds:
+        if month != 0: # only check if changed
+            if dv[pos_mon] == 0: # subtraction
+                dv[pos_mon] = 12
+                dv[pos_yr] -= 1
+            elif dv[pos_mon] < 0: # subtraction
+                dv[pos_yr] -= int((-dv[pos_mon]) / 12) + 1
+                dv[pos_mon] = (dv[pos_mon] % 12)
+            elif dv[pos_mon] > 12 or dv[pos_mon] < 1:
+                dv[pos_yr] += int(dv[pos_mon] / 12)
+                dv[pos_mon] = dv[pos_mon] % 12
         self.dateval = tuple(dv)
+        self._calc_sort_value()
+        return (day != 0 or dv[pos_day] > 28)
 
     def set_yr_mon_day_offset(self, year=0, month=0, day=0):
         """
-        Set the year, month, and day values by offset.
+        Offset the date by the given year, month, and day values.
         """
-        dv = list(self.dateval)
-        if dv[Date._POS_YR]:
-            dv[Date._POS_YR] += year
-        elif year:
-            dv[Date._POS_YR] = year
-        if dv[Date._POS_MON]:
-            dv[Date._POS_MON] += month
-        elif month:
-            if month < 0:
-                dv[Date._POS_MON] = 1 + month
-            else:
-                dv[Date._POS_MON] = month
-        # Fix if month out of bounds:
-        if month != 0: # only check if changed
-            if dv[Date._POS_MON] == 0: # subtraction
-                dv[Date._POS_MON] = 12
-                dv[Date._POS_YR] -= 1
-            elif dv[Date._POS_MON] < 0: # subtraction
-                dv[Date._POS_YR] -= int((-dv[Date._POS_MON]) / 12) + 1
-                dv[Date._POS_MON] = (dv[Date._POS_MON] % 12)
-            elif dv[Date._POS_MON] > 12 or dv[Date._POS_MON] < 1:
-                dv[Date._POS_YR] += int(dv[Date._POS_MON] / 12)
-                dv[Date._POS_MON] = dv[Date._POS_MON] % 12
-        self.dateval = tuple(dv)
-        self._calc_sort_value()
-        if day != 0 or dv[Date._POS_DAY] > 28:
-            self.set_yr_mon_day(*self.offset(day))
+        if self.__set_yr_mon_day_offset(year, month, day,
+                Date._POS_YR, Date._POS_MON, Date._POS_DAY):
+            self.set_yr_mon_day(*self.offset(day), remove_stop_date = False)
+        if self.is_compound(): 
+            self.set2_yr_mon_day_offset(year, month, day)
 
     def set2_yr_mon_day_offset(self, year=0, month=0, day=0):
         """
-        Set the year, month, and day values by offset.
+        Set the year, month, and day values by offset in the 2nd part 
+        of a compound date (range or span).
         """
-        dv = list(self.dateval)
-        if dv[Date._POS_RYR]:
-            dv[Date._POS_RYR] += year
-        elif year:
-            dv[Date._POS_RYR] = year
-        if dv[Date._POS_RMON]:
-            dv[Date._POS_RMON] += month
-        elif month:
-            if month < 0:
-                dv[Date._POS_RMON] = 1 + month
-            else:
-                dv[Date._POS_RMON] = month
-        # Fix if month out of bounds:
-        if month != 0: # only check if changed
-            if dv[Date._POS_RMON] == 0: # subtraction
-                dv[Date._POS_RMON] = 12
-                dv[Date._POS_RYR] -= 1
-            elif dv[Date._POS_RMON] < 0: # subtraction
-                dv[Date._POS_RYR] -= int((-dv[Date._POS_RMON]) / 12) + 1
-                dv[Date._POS_RMON] = (dv[Date._POS_RMON] % 12)
-            elif dv[Date._POS_RMON] > 12 or dv[Date._POS_RMON] < 1:
-                dv[Date._POS_RYR] += int(dv[Date._POS_RMON] / 12)
-                dv[Date._POS_RMON] = dv[Date._POS_RMON] % 12
-        self.dateval = tuple(dv)
-        if day != 0 or dv[Date._POS_RDAY] > 28:
-            self.set2_yr_mon_day(*self.offset(day))
+        self._assert_compound()
+        if self.__set_yr_mon_day_offset(year, month, day,
+                Date._POS_RYR, Date._POS_RMON, Date._POS_RDAY):
+            stop = Date(self.get_stop_ymd())
+            self.set2_yr_mon_day(*stop.offset(day))
 
     def copy_offset_ymd(self, year=0, month=0, day=0):
         """
@@ -1374,24 +1364,19 @@ class Date(object):
             new_date = self
         retval = Date(new_date)
         retval.set_yr_mon_day_offset(year, month, day)
-        if (self.get_modifier() == Date.MOD_RANGE or 
-            self.get_modifier() == Date.MOD_SPAN): 
-            retval.set2_yr_mon_day_offset(year, month, day)
         if orig_cal == 0:
             return retval
         else:
             retval.convert_calendar(orig_cal)
             return retval
 
-    def copy_ymd(self, year=0, month=0, day=0):
+    def copy_ymd(self, year=0, month=0, day=0, remove_stop_date=None):
         """
         Return a Date copy with year, month, and day set.
+        @param remove_stop_date Same as in set_yr_mon_day.
         """
         retval = Date(self)
-        retval.set_yr_mon_day(year, month, day)
-        if (self.get_modifier() == Date.MOD_RANGE or 
-            self.get_modifier() == Date.MOD_SPAN): 
-            retval.set2_yr_mon_day_offset(year, month, day)
+        retval.set_yr_mon_day(year, month, day, remove_stop_date)
         return retval
 
     def set_year(self, year):
@@ -1496,30 +1481,52 @@ class Date(object):
         """
         return self.text
 
-    def set(self, quality, modifier, calendar, value, text=None, 
-            newyear=0):
+    def _zero_adjust_ymd(self, y, m, d):
+        year = y if y != 0 else 1
+        month = max(m, 1)
+        day = max(d, 1)
+        return (year, month, day)
+
+    def set(self, quality=None, modifier=None, calendar=None, 
+            value=None, 
+            text=None, newyear=0):
         """
         Set the date to the specified value. 
         
         Parameters are::
 
           quality  - The date quality for the date (see get_quality
-                     for more information)
+                     for more information).
+                     Defaults to the previous value for the date.
           modified - The date modifier for the date (see get_modifier
                      for more information)
+                     Defaults to the previous value for the date.
           calendar - The calendar associated with the date (see
                      get_calendar for more information).
+                     Defaults to the previous value for the date.
           value    - A tuple representing the date information. For a
                      non-compound date, the format is (DD, MM, YY, slash)
                      and for a compound date the tuple stores data as
                      (DD, MM, YY, slash1, DD, MM, YY, slash2)
+                     Defaults to the previous value for the date.
           text     - A text string holding either the verbatim user input
                      or a comment relating to the date.
+                     Defaults to the previous value for the date.
           newyear  - The newyear code, or tuple representing (month, day)
-                     of newyear day.
+                     of newyear day. 
+                     Defaults to 0.
 
         The sort value is recalculated.
         """
+
+        if quality is None:
+            quality = self.quality
+        if modifier is None:
+            modifier = self.modifier
+        if calendar is None:
+            calendar = self.calendar
+        if value is None:
+            value = self.value
         
         if modifier in (Date.MOD_NONE, Date.MOD_BEFORE, 
                         Date.MOD_AFTER, Date.MOD_ABOUT) and len(value) < 4:
@@ -1545,11 +1552,12 @@ class Date(object):
         self.calendar = calendar
         self.dateval = value
         self.set_new_year(newyear)
-        year = max(value[Date._POS_YR], 1)
-        month = max(value[Date._POS_MON], 1)
-        day = max(value[Date._POS_DAY], 1)
+        year, month, day = self._zero_adjust_ymd(
+                value[Date._POS_YR],
+                value[Date._POS_MON],
+                value[Date._POS_DAY])
 
-        if year == month == 0 and day == 0:
+        if year == month == day == 0:
             self.sortval = 0
         else:
             func = Date._calendar_convert[calendar]
@@ -1587,6 +1595,32 @@ class Date(object):
                 d2.set_calendar(self.calendar)
                 d2_val = d2.sortval
                 self.sortval += (d1_val - d2_val) + 1
+        
+        if modifier != Date.MOD_TEXTONLY:
+            sanity = Date(self)
+            sanity.convert_calendar(self.calendar, known_valid = False)
+            # We don't do the roundtrip conversion on self, becaue
+            # it would remove uncertainty on day/month expressed with zeros
+
+            # Did the roundtrip change the date value?!
+            if sanity.dateval != value:
+                # Maybe it is OK because of undetermined value adjustment?
+                zl = zip(sanity.dateval, value)
+                # Loop over all values present, whether compound or not
+                for d,m,y,sl in zip(*[iter(zl)]*4):
+                    # each of d,m,y,sl is a pair from dateval and value, to compare
+
+                    for adjusted,original in d,m:
+                        if adjusted != original and not(original == 0 and adjusted == 1):
+                            raise DateError("Invalid day/month {} passed in value {}".
+                                    format(original, value))
+
+                    adjusted,original = y
+                    if adjusted != original:
+                        raise DateError("Invalid year {} passed in value {}".
+                                format(original, value))
+
+                    # ignore slash difference
 
         if text:
             self.text = text
@@ -1603,26 +1637,30 @@ class Date(object):
         """
         Calculate the numerical sort value associated with the date.
         """
-        year = max(self.dateval[Date._POS_YR], 1)
-        month = max(self.dateval[Date._POS_MON], 1)
-        day = max(self.dateval[Date._POS_DAY], 1)
+        year, month, day = self._zero_adjust_ymd(
+                self.dateval[Date._POS_YR],
+                self.dateval[Date._POS_MON],
+                self.dateval[Date._POS_DAY])
         if year == month == 0 and day == 0:
             self.sortval = 0
         else:
             func = Date._calendar_convert[self.calendar]
             self.sortval = func(year, month, day)
 
-    def convert_calendar(self, calendar):
+    def convert_calendar(self, calendar, known_valid=True):
         """
         Convert the date from the current calendar to the specified calendar.
         """
-        if calendar == self.calendar and self.newyear == Date.NEWYEAR_JAN1:
+        if (known_valid  # if not known valid, round-trip convert anyway
+                and calendar == self.calendar 
+                and self.newyear == Date.NEWYEAR_JAN1):
             return
         (year, month, day) = Date._calendar_change[calendar](self.sortval)
         if self.is_compound():
-            ryear = max(self.dateval[Date._POS_RYR], 1)
-            rmonth = max(self.dateval[Date._POS_RMON], 1)
-            rday = max(self.dateval[Date._POS_RDAY], 1)
+            ryear, rmonth, rday = self._zero_adjust_ymd(
+                    self.dateval[Date._POS_RYR],
+                    self.dateval[Date._POS_RMON],
+                    self.dateval[Date._POS_RDAY])
             sdn = Date._calendar_convert[self.calendar](ryear, rmonth, rday)
             (nyear, nmonth, nday) = Date._calendar_change[calendar](sdn)
             self.dateval = (day, month, year, False, 
@@ -1685,6 +1723,12 @@ class Date(object):
         Return (year, month, day).
         """
         return (self.get_year(), self.get_month(), self.get_day())
+
+    def get_stop_ymd(self):
+        """
+        Return (year, month, day) of the stop date, or all-zeros if it's not defined.
+        """
+        return (self.get_stop_year(), self.get_stop_month(), self.get_stop_day())
 
     def offset(self, value):
         """
