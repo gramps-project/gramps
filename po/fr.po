@@ -19378,7 +19378,7 @@ msgstr "En vie : %s"
 #: ../src/plugins/quickview/AgeOnDate.py:77
 #, python-format
 msgid "Deceased: %s"
-msgstr "Décédés : %s"
+msgstr "Décédé : %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:82
 #, python-format
