@@ -463,29 +463,28 @@ def gregorian_ymd(sdn):
         year = year - 1
     return (year, month, day)
 
-def french_sdn(year, month, day):
+def _check_republican_period(sdn, restrict_period):
+    # French Republican calendar wasn't in use before 22.9.1792 or after 1.1.1806
+    if restrict_period and (sdn < 2375840 or sdn > 2380688):
+        raise ValueError("Outside of the French Republican period")
+
+def french_sdn(year, month, day, restrict_period=False):
     """Convert a French Republican Calendar date to an SDN number."""
     sdn = (year*_FR_DAYS_PER_4_YEARS) // 4 + \
            (month-1)*_FR_DAYS_PER_MONTH + \
            day + _FR_SDN_OFFSET
-    # do not convert dates before 22.9.1792 or after 1.1.1806
-    if sdn < 2375840 or sdn > 2380688 :
-        return gregorian_sdn(year, month, day)
-    else:
-        return sdn
+    _check_republican_period(sdn, restrict_period)
+    return sdn
 
-def french_ymd(sdn):
+def french_ymd(sdn, restrict_period=False):
     """Convert an SDN number to a French Republican Calendar date."""
-    # only between 22.9.1792 and 1.1.1806
-    if sdn >= 2375840 and sdn <= 2380688:
-        temp = (sdn-_FR_SDN_OFFSET)*4 - 1
-        year = temp // _FR_DAYS_PER_4_YEARS
-        day_of_year = (temp % _FR_DAYS_PER_4_YEARS) // 4
-        month = (day_of_year // _FR_DAYS_PER_MONTH) + 1
-        day = (day_of_year % _FR_DAYS_PER_MONTH) + 1
-        return (year, month, day)
-    else:
-        return gregorian_ymd(sdn)
+    _check_republican_period(sdn, restrict_period)
+    temp = (sdn-_FR_SDN_OFFSET)*4 - 1
+    year = temp // _FR_DAYS_PER_4_YEARS
+    day_of_year = (temp % _FR_DAYS_PER_4_YEARS) // 4
+    month = (day_of_year // _FR_DAYS_PER_MONTH) + 1
+    day = (day_of_year % _FR_DAYS_PER_MONTH) + 1
+    return (year, month, day)
 
 def persian_sdn(year, month, day):
     """Convert a Persian date to an SDN number."""

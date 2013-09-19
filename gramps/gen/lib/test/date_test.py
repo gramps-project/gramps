@@ -193,13 +193,7 @@ for calendar in (Date.CAL_JULIAN,
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
         dates.append( d)
 
-@unittest.skip('Blocked by bug# 7068')
-# please restore the commented "for" line below upon fixing the bug!!
-# then remove this class and the skip above it...
-class TestFrenchCalBeforeFrenchRevolution(unittest.TestCase):
-    pass
-#for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
-for calendar in [Date.CAL_HEBREW]:
+for calendar in (Date.CAL_HEBREW, Date.CAL_FRENCH):
     for month in range(1,14):
         d = Date()
         d.set(quality,modifier,calendar,(4,month,1789,False),"Text comment")
