@@ -44,7 +44,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-04 10:54+0200\n"
-"PO-Revision-Date: 2013-09-08 09:54+0100\n"
+"PO-Revision-Date: 2013-09-11 22:02+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@gmail.com>\n"
 "MIME-Version: 1.0\n"
@@ -1921,9 +1921,8 @@ msgid ""
 msgstr "Citaten met bronnen die overeenkomen met een opgegeven bronfilternaam"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:50
-#, fuzzy
 msgid "Citations with Id containing <text>"
-msgstr "Citaten waarvan de notities die <deeltekenreeks> bevatten"
+msgstr "Citaten met Id die de <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/citation/_regexpidof.py:51
 msgid "Matches citations whose Gramps ID matches the regular expression"
@@ -2128,9 +2127,8 @@ msgstr "Vindt persoonsgebeurtenissen met een opgegeven personennaamfilter"
 # naam filteren of filternaam
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:51
 #: ../gramps/gui/editors/filtereditor.py:537
-#, fuzzy
 msgid "Place filter name:"
-msgstr "Bronnenfilternaam:"
+msgstr "Locatiefilternaam:"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:52
 #, fuzzy
@@ -2170,9 +2168,8 @@ msgstr ""
 "bronnenfilternaam"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:49
-#, fuzzy
 msgid "Events with Id containing <text>"
-msgstr "Gebeurtenissen waarvan de notities <deeltekenreeks> bevatten"
+msgstr "Gebeurtenissen met Id die de <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/event/_regexpidof.py:50
 msgid "Matches events whose Gramps ID matches the regular expression"
@@ -2207,9 +2204,8 @@ msgid "Person ID:"
 msgstr "Persoon ID:"
 
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:48
-#, fuzzy
 msgid "Families having child with Id containing <text>"
-msgstr "Gezinnen waarvan notities <deeltekenreeks> bevatten"
+msgstr "Gezinnen met kind met Id de <tekst> bevat"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../gramps/gen/filters/rules/family/_childhasidof.py:49
@@ -2816,9 +2812,8 @@ msgid "Matches notes that are indicated as private"
 msgstr "Vindt opmerkingen die aangegeven zijn als privé"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:49
-#, fuzzy
 msgid "Notes with Id containing <text>"
-msgstr "Opmerkingen die de <deeltekenreeks> bevatten"
+msgstr "Opmerkingen met Id die de <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:50
 msgid "Matches notes whose Gramps ID matches the regular expression"
@@ -3671,9 +3666,8 @@ msgid "Matches people without indications of death that are not too old"
 msgstr "Vindt personen zonder doodsindicatie die niet te oud zijn"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:48
-#, fuzzy
 msgid "People with Id containing <text>"
-msgstr "Personen waarvan de gegevens de <deeltekenreeks> bevatten"
+msgstr "Personen met Id die de <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:49
 msgid "Matches people whose Gramps ID matches the regular expression"
@@ -3959,9 +3953,8 @@ msgid "Matches places that are indicated as private"
 msgstr "Vindt locaties die aangegeven zijn als privé"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:49
-#, fuzzy
 msgid "Places with Id containing <text>"
-msgstr "Personen waarvan de gegevens de <deeltekenreeks> bevatten"
+msgstr "Locaties met Id die de <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:50
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -4210,9 +4203,8 @@ msgid "Matches sources whose title contains a certain substring"
 msgstr "Bronnen zoeken waarvan de titel een bepaalde deeltekenreeks bevat"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:49
-#, fuzzy
 msgid "Sources with Id containing <text>"
-msgstr "Bronnentitle die <deeltekenreeks> bevatten"
+msgstr "Bronnen met Id die de <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:50
 msgid "Matches sources whose Gramps ID matches the regular expression"
@@ -14781,9 +14773,8 @@ msgstr "Bron of citaat selecteren"
 
 #: ../gramps/gui/selectors/selectcitation.py:67
 #: ../gramps/plugins/view/citationtreeview.py:94
-#, fuzzy
 msgid "Source: Title or Citation: Volume/Page"
-msgstr "Bron of citaat"
+msgstr "Bron: titel of citaat: volume/pagina"
 
 #: ../gramps/gui/selectors/selectevent.py:55
 msgid "Select Event"
@@ -21024,6 +21015,9 @@ msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
 " Writing to %(filename)s in format %(impliedext)s."
 msgstr ""
+"Er is een verschil tussen de gekozen extensie %(ext)s en het actuele "
+"formaat.\n"
+" Schrijven naar %(filename)s in formaat %(impliedext)s."
 
 #: ../gramps/plugins/lib/libgedcom.py:1773
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -25073,9 +25067,8 @@ msgid "_Print..."
 msgstr "Afdrukken..."
 
 #: ../gramps/plugins/lib/maps/geography.py:258
-#, fuzzy
 msgid "Print or save the Map"
-msgstr "De waaier afdrukken of opslaan"
+msgstr "De kaart afdrukken of opslaan"
 
 # Mensen
 #: ../gramps/plugins/lib/maps/geography.py:295
