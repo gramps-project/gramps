@@ -82,22 +82,35 @@ class DateParserDisplayTest(tool.Tool):
             for modifier in (Date.MOD_NONE, Date.MOD_BEFORE,
                              Date.MOD_AFTER, Date.MOD_ABOUT):
                 for slash1 in (False,True):
-                    for month in range(1,13):
-                        for day in (5,27):
+                    for month in range(0,13):
+                        for day in (0,5,27):
+                            if not month and day:
+                                continue
                             d = Date()
                             d.set(quality,modifier,calendar,(day,month,1789,slash1),"Text comment")
                             dates.append( d)
             for modifier in (Date.MOD_RANGE, Date.MOD_SPAN):
                 for slash1 in (False,True):
                     for slash2 in (False,True):
-                        for month in range(1,13):
-                            for day in (5,27):
+                        for month in range(0,13):
+                            for day in (0,5,27):
+                                if not month and day:
+                                    continue
+
                                 d = Date()
                                 d.set(quality,modifier,calendar,(day,month,1789,slash1,day,month,1876,slash2),"Text comment")
                                 dates.append( d)
+
+                                if not month:
+                                    continue
+
                                 d = Date()
                                 d.set(quality,modifier,calendar,(day,month,1789,slash1,day,13-month,1876,slash2),"Text comment")
                                 dates.append( d)
+
+                                if not day:
+                                    continue
+
                                 d = Date()
                                 d.set(quality,modifier,calendar,(day,month,1789,slash1,32-day,month,1876,slash2),"Text comment")
                                 dates.append( d)
