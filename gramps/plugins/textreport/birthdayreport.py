@@ -227,7 +227,7 @@ class BirthdayReport(Report):
         year = self.year
         dd = self._locale.date_displayer
         self.doc.start_paragraph('BIR-Monthstyle')
-        self.doc.write_text(dd.long_months[month].capitalize())
+        self.doc.write_text(dd.get_long_month_nom(month).capitalize())
         self.doc.end_paragraph()
         current_date = datetime.date(year, month, 1)
         current_ord = current_date.toordinal()

@@ -890,6 +890,197 @@ msgstr ""
 msgid "Date displayer for '%s' not available, using default"
 msgstr ""
 
+#. TRANSLATORS: see
+#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+#. to learn how to select proper inflection for your language.
+#: ../gramps/gen/datehandler/_datedisplay.py:251
+#: ../gramps/gen/datehandler/_datedisplay.py:278
+msgid "{long_month} {year}"
+msgstr "{long_month} {year}"
+
+#. TRANSLATORS: see
+#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+#. to learn how to select proper inflection for your language.
+#: ../gramps/gen/datehandler/_datedisplay.py:258
+msgid "{long_month} {day:d}, {year}"
+msgstr "{long_month[Р]} {day:d}, {year}"
+
+#. TRANSLATORS: see
+#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+#. to learn how to select proper inflection for your language.
+#: ../gramps/gen/datehandler/_datedisplay.py:285
+msgid "{day:d} {long_month} {year}"
+msgstr "{day:d} {long_month[Р]} {year}"
+
+#. TRANSLATORS: see
+#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+#. to learn how to select proper inflection to be used in your localized
+#. DateDisplayer code!
+#: ../gramps/gen/datehandler/_datestrings.py:53
+msgid "localized lexeme inflections||January"
+msgstr "И=январь|Р=января|Т=январём"
+
+#: ../gramps/gen/datehandler/_datestrings.py:54
+msgid "localized lexeme inflections||February"
+msgstr "И=февраль|Р=февраля|Т=февралём"
+
+#: ../gramps/gen/datehandler/_datestrings.py:55
+msgid "localized lexeme inflections||March"
+msgstr "И=март|Р=марта|Т=мартом"
+
+#: ../gramps/gen/datehandler/_datestrings.py:56
+msgid "localized lexeme inflections||April"
+msgstr "И=апрель|Р=апреля|Т=апрелем"
+
+#: ../gramps/gen/datehandler/_datestrings.py:57
+msgid "localized lexeme inflections||May"
+msgstr "И=май|Р=мая|Т=маем"
+
+#: ../gramps/gen/datehandler/_datestrings.py:58
+msgid "localized lexeme inflections||June"
+msgstr "И=июнь|Р=июня|Т=июнем"
+
+#: ../gramps/gen/datehandler/_datestrings.py:59
+msgid "localized lexeme inflections||July"
+msgstr "И=июль|Р=июля|Т=июлем"
+
+#: ../gramps/gen/datehandler/_datestrings.py:60
+msgid "localized lexeme inflections||August"
+msgstr "И=август|Р=августа|Т=августом"
+
+#: ../gramps/gen/datehandler/_datestrings.py:61
+msgid "localized lexeme inflections||September"
+msgstr "И=сентябрь|Р=сентября|Т=сентябрём"
+
+#: ../gramps/gen/datehandler/_datestrings.py:62
+msgid "localized lexeme inflections||October"
+msgstr "И=октябрь|Р=октября|Т=октябрём"
+
+#: ../gramps/gen/datehandler/_datestrings.py:63
+msgid "localized lexeme inflections||November"
+msgstr "И=ноябрь|Р=ноября|Т=ноябрём"
+
+#: ../gramps/gen/datehandler/_datestrings.py:64
+msgid "localized lexeme inflections||December"
+msgstr "И=декабрь|Р=декабря|Т=декабрём"
+
+#. TRANSLATORS: see
+#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+#. to learn how to select proper inflection to be used in your localized
+#. DateDisplayer code!
+#: ../gramps/gen/datehandler/_datestrings.py:71
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "И=янв|Р=янв|Т=янв"
+
+#: ../gramps/gen/datehandler/_datestrings.py:72
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "И=фев|Р=фев|Т=фев"
+
+#: ../gramps/gen/datehandler/_datestrings.py:73
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "И=мар|Р=мар|Т=мар"
+
+#: ../gramps/gen/datehandler/_datestrings.py:74
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "И=апр|Р=апр|Т=апр"
+
+#: ../gramps/gen/datehandler/_datestrings.py:75
+msgid "localized lexeme inflections - short month form||May"
+msgstr "И=май|Р=мая|Т=маем"
+
+#: ../gramps/gen/datehandler/_datestrings.py:76
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "И=июн|Р=июн|Т=июн"
+
+#: ../gramps/gen/datehandler/_datestrings.py:77
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "И=июл|Р=июл|Т=июл"
+
+#: ../gramps/gen/datehandler/_datestrings.py:78
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "И=авг|Р=авг|Т=авг"
+
+#: ../gramps/gen/datehandler/_datestrings.py:79
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "И=сен|Р=сен|Т=сен"
+
+#: ../gramps/gen/datehandler/_datestrings.py:80
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "И=окт|Р=окт|Т=окт"
+
+#: ../gramps/gen/datehandler/_datestrings.py:81
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "И=ноя|Р=ноя|Т=ноя"
+
+#: ../gramps/gen/datehandler/_datestrings.py:82
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "И=дек|Р=дек|Т=дек"
+
+#. TRANSLATORS: see
+#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+#. to learn how to add proper alternatives to be recognized in your localized
+#. DateParser code!
+#: ../gramps/gen/datehandler/_datestrings.py:90
+#, fuzzy
+msgid "alternative month names for January||"
+msgstr "Альтернативные имена"
+
+#: ../gramps/gen/datehandler/_datestrings.py:91
+#, fuzzy
+msgid "alternative month names for February||"
+msgstr "Альтернативные имена"
+
+#: ../gramps/gen/datehandler/_datestrings.py:92
+#, fuzzy
+msgid "alternative month names for March||"
+msgstr "Альтернативные имена"
+
+#: ../gramps/gen/datehandler/_datestrings.py:93
+#, fuzzy
+msgid "alternative month names for April||"
+msgstr "Альтернативные имена"
+
+#: ../gramps/gen/datehandler/_datestrings.py:94
+#, fuzzy
+msgid "alternative month names for May||"
+msgstr "Альтернативные имена"
+
+#: ../gramps/gen/datehandler/_datestrings.py:95
+#, fuzzy
+msgid "alternative month names for June||"
+msgstr "Альтернативные имена"
+
+#: ../gramps/gen/datehandler/_datestrings.py:96
+#, fuzzy
+msgid "alternative month names for July||"
+msgstr "Альтернативные имена"
+
+#: ../gramps/gen/datehandler/_datestrings.py:97
+#, fuzzy
+msgid "alternative month names for August||"
+msgstr "Альтернативные имена"
+
+#: ../gramps/gen/datehandler/_datestrings.py:98
+#, fuzzy
+msgid "alternative month names for September||"
+msgstr "сентября"
+
+#: ../gramps/gen/datehandler/_datestrings.py:99
+#, fuzzy
+msgid "alternative month names for October||"
+msgstr "Альтернативные имена"
+
+#: ../gramps/gen/datehandler/_datestrings.py:100
+#, fuzzy
+msgid "alternative month names for November||"
+msgstr "Альтернативные имена"
+
+#: ../gramps/gen/datehandler/_datestrings.py:101
+#, fuzzy
+msgid "alternative month names for December||"
+msgstr "Альтернативные имена"
+
+
 #: ../gramps/gen/db/base.py:1624
 msgid "Add child to family"
 msgstr "Добавить ребёнка в семью"

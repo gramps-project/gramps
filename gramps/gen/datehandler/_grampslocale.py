@@ -44,6 +44,13 @@ else:
     to_uni = lambda x, y: x
 codeset = glocale.encoding
 
+# NOTE: depending on the system and versions, the names
+# can be either in genitive or in nominative here.
+# %B and %b, for example, are inconsistent in inflection
+# on some linux systems. 
+# Should probably use _datestrings.py instead!
+# See bug# 6926 for more.
+
 try:
 
     month_to_int = {

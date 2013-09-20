@@ -41,6 +41,7 @@ log = logging.getLogger(".DateDisplay")
 #-------------------------------------------------------------------------
 from ..lib.date import Date
 from . import _grampslocale
+from ._datestrings import DateStrings
 
 #-------------------------------------------------------------------------
 #
@@ -51,9 +52,18 @@ class DateDisplay(object):
     """
     Base date display class. 
     """
-    long_months = ( "", "January", "February", "March", "April", "May", 
-                    "June", "July", "August", "September", "October", 
-                    "November", "December" )
+    # compatibility definition, to be removed when
+    # long_months no longer is used directly...
+    long_months = DateStrings.long_months_genitive
+
+    # TODO do we need multiple languages active at the same time?
+    # if so, we'd need to have an instance of localized date strings 
+    # per date displayer, instead of the following global retrieval
+    def get_long_month_nom(self, month):
+        return DateStrings.long_months_nominative[month]
+
+    def get_long_month_gen(self, month):
+        return DateStrings.long_months_genitive[month]
     
     short_months = ( "", "Jan", "Feb", "Mar", "Apr", "May", "Jun",
                      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec" )

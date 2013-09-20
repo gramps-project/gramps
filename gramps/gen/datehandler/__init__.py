@@ -36,6 +36,7 @@ _ = glocale.translation.sgettext
 # import prerequisites for localized handlers
 from ._datehandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY, 
                           register_datehandler)
+from . import _datestrings
 
 # Import all the localized handlers
 from . import _date_bg
