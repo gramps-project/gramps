@@ -63,7 +63,12 @@ class ErrorReportAssistant(Gtk.Assistant):
     def __init__(self, error_detail, rotate_handler, ownthread=False):
         GObject.GObject.__init__(self)
 
-        self._error_detail = error_detail
+        try:
+            # did we get a handler wrapping the error detail?
+            self._error_detail = error_detail.get_formatted_log()
+        except AttributeError:
+            self._error_detail = error_detail
+
         self._rotate_handler = rotate_handler
 
         self._sys_information_text_buffer = None
@@ -175,8 +180,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         """
         self._error_details_text_buffer.set_text(
             "\n".join(self._rotate_handler.get_formatted_log(
-                        self._error_detail.get_record()))
-            + self._error_detail.get_formatted_log())
+                        self._error_detail)))
 
     def _clear_error_details(self, obj=None):
         """
