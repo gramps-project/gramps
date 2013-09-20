@@ -193,7 +193,7 @@ class Calendar(Report):
         self.doc.draw_box("CAL-Title", "", 0, 0, width, header, mark)
         self.doc.draw_line("CAL-Border", 0, header, width, header)
         year = self.year
-        title = "%s %d" % (_dd.get_long_month_nom(month).capitalize(), year)
+        title = "%s %d" % (_dd.long_months[month].capitalize(), year)
         mark = IndexMark(title, INDEX_TYPE_TOC, 2)
         font_height = pt2cm(ptitle.get_font().get_size())
         self.doc.center_text("CAL-Title", title,

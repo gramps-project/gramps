@@ -418,7 +418,7 @@ class Extract(object):
         if date:
             month = date.get_month()
             if month:
-                return [self._locale.date_displayer.get_long_month_nom(month)]
+                return [self._locale.date_displayer.long_months[month]]
         return [_T_("Date(s) missing")]
 
     def get_place(self, event):

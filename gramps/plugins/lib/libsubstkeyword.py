@@ -256,7 +256,7 @@ class DateFormat(GenericFormat):
             elif count == 3:   # found 'mmm'
                 return displayer.short_months[int(month)]
             else: # found 'mmmm'
-                return displayer.get_long_month_gen(int(month))
+                return displayer.long_months[int(month)]
 
         def month_up():
             return month("M").upper()

@@ -499,7 +499,7 @@ class WebCalReport(Report):
 
                 # each year will link to current month.
                 # this will always need an extension added
-                full_month_name = _dd.get_long_month_nom(self.today.get_month() )
+                full_month_name = _dd.long_months[self.today.get_month() ]
 
                 # Note. We use '/' here because it is a URL, not a OS dependent 
                 # pathname.
@@ -536,7 +536,7 @@ class WebCalReport(Report):
         if self.home_link:
             navs.append((self.home_link,  _('Home'),  add_home))
         navs.extend(
-            (_dd.get_long_month_nom(month), _dd.short_months[month], True) for month in range(1, 13) )
+            (_dd.long_months[month], _dd.short_months[month], True) for month in range(1, 13) )
 
         # Add a link for year_glance() if requested
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))
@@ -602,7 +602,7 @@ class WebCalReport(Report):
         """
 
         # define names for long and short month names
-        full_month_name = _dd.get_long_month_nom(month)
+        full_month_name = _dd.long_months[month]
         abbr_month_name = _dd.short_months[month]
 
         # dow (day-of-week) uses Gramps numbering, sunday => 1, etc
@@ -842,7 +842,7 @@ class WebCalReport(Report):
                 _('Formatting months ...'), 12) as step:
 
             for month in range(1, 13):
-                cal_fname = _dd.get_long_month_nom(month)
+                cal_fname = _dd.long_months[month]
                 of = self.create_file(cal_fname, str(year))
 
                 # Add xml, doctype, meta and stylesheets
@@ -855,7 +855,7 @@ class WebCalReport(Report):
 
                 # Create Month Navigation Menu
                 # identify currentsection for proper highlighting
-                currentsection = _dd.get_long_month_nom(month)
+                currentsection = _dd.long_months[month]
                 body += self.month_navigation(nr_up, year, currentsection, True)
 
                 # build the calendar
@@ -982,7 +982,7 @@ class WebCalReport(Report):
 
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
-        currentsection = _dd.get_long_month_nom(month)
+        currentsection = _dd.long_months[month]
         body += self.month_navigation(nr_up, year, currentsection, True)
 
         # set date display as in user prevferences 

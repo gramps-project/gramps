@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-26 17:21+0300\n"
+"POT-Creation-Date: 2013-08-28 19:37+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,14 +18,14 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: ../gramps/cli/arghandler.py:221
+#: ../gramps/cli/arghandler.py:225
 #, python-format
 msgid ""
 "Error: Family Tree '%s' already exists.\n"
 "The '-C' option cannot be used."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:230
+#: ../gramps/cli/arghandler.py:234
 #, python-format
 msgid ""
 "Error: Input Family Tree \"%s\" does not exist.\n"
@@ -33,17 +33,17 @@ msgid ""
 "Tree instead."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:246
+#: ../gramps/cli/arghandler.py:250
 #, python-format
 msgid "Error: Import file %s not found."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:264
+#: ../gramps/cli/arghandler.py:268
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:286
+#: ../gramps/cli/arghandler.py:290
 #, python-format
 msgid ""
 "WARNING: Output file already exists!\n"
@@ -51,34 +51,38 @@ msgid ""
 "   %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:294
-msgid "OK to overwrite? (yes/no) "
+#: ../gramps/cli/arghandler.py:293
+msgid "OK to overwrite?"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:298
-msgid "YES"
+#: ../gramps/cli/arghandler.py:294 ../gramps/cli/clidbman.py:215
+msgid "yes"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:299
+#: ../gramps/cli/arghandler.py:294 ../gramps/cli/clidbman.py:217
+msgid "no"
+msgstr ""
+
+#: ../gramps/cli/arghandler.py:296
 #, python-format
 msgid "Will overwrite the existing file: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:319
+#: ../gramps/cli/arghandler.py:316
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:402
+#: ../gramps/cli/arghandler.py:399
 msgid "List of known Family Trees in your database path\n"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:407
+#: ../gramps/cli/arghandler.py:404
 #, python-format
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:412 ../gramps/cli/arghandler.py:423
+#: ../gramps/cli/arghandler.py:409 ../gramps/cli/arghandler.py:420
 msgid "Gramps Family Trees:"
 msgstr ""
 
@@ -87,125 +91,124 @@ msgstr ""
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:415 ../gramps/cli/arghandler.py:416
-#: ../gramps/cli/arghandler.py:425 ../gramps/cli/arghandler.py:432
-#: ../gramps/cli/arghandler.py:433 ../gramps/cli/arghandler.py:435
+#: ../gramps/cli/arghandler.py:412 ../gramps/cli/arghandler.py:413
+#: ../gramps/cli/arghandler.py:422 ../gramps/cli/arghandler.py:429
+#: ../gramps/cli/arghandler.py:430 ../gramps/cli/arghandler.py:432
 #: ../gramps/cli/clidbman.py:74 ../gramps/cli/clidbman.py:221
 #: ../gramps/cli/clidbman.py:223 ../gramps/gui/clipboard.py:936
 #: ../gramps/gui/configure.py:1337
 msgid "Family Tree"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:416
+#: ../gramps/cli/arghandler.py:413
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:445
+#: ../gramps/cli/arghandler.py:442
 #, python-format
 msgid "Performing action: %s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:447
+#: ../gramps/cli/arghandler.py:444
 #, python-format
 msgid "Using options string: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:452
+#: ../gramps/cli/arghandler.py:449
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:459
+#: ../gramps/cli/arghandler.py:456
 msgid "Exiting."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:463
+#: ../gramps/cli/arghandler.py:460
 msgid "Cleaning up."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:492
+#: ../gramps/cli/arghandler.py:489
 msgid "Created empty Family Tree successfully"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:495 ../gramps/cli/arghandler.py:520
+#: ../gramps/cli/arghandler.py:492 ../gramps/cli/arghandler.py:517
 msgid "Error opening the file."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:496 ../gramps/cli/arghandler.py:521
+#: ../gramps/cli/arghandler.py:493 ../gramps/cli/arghandler.py:518
 msgid "Exiting..."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:500
+#: ../gramps/cli/arghandler.py:497
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:518
+#: ../gramps/cli/arghandler.py:515
 msgid "Opened successfully!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:532
+#: ../gramps/cli/arghandler.py:529
 msgid "Database is locked, cannot open it!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:533
+#: ../gramps/cli/arghandler.py:530
 #, python-format
 msgid "  Info: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:536
+#: ../gramps/cli/arghandler.py:533
 msgid "Database needs recovery, cannot open it!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:593 ../gramps/cli/arghandler.py:641
-#: ../gramps/cli/arghandler.py:682
+#: ../gramps/cli/arghandler.py:590 ../gramps/cli/arghandler.py:638
+#: ../gramps/cli/arghandler.py:679
 msgid "Ignoring invalid options string."
 msgstr ""
 
 #. name exists, but is not in the list of valid report names
-#: ../gramps/cli/arghandler.py:617
+#: ../gramps/cli/arghandler.py:614
 msgid "Unknown report name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:619
+#: ../gramps/cli/arghandler.py:616
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:623 ../gramps/cli/arghandler.py:665
-#: ../gramps/cli/arghandler.py:698
+#: ../gramps/cli/arghandler.py:620 ../gramps/cli/arghandler.py:662
+#: ../gramps/cli/arghandler.py:695
 #, python-format
 msgid ""
 "%s\n"
 " Available names are:"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:659
+#: ../gramps/cli/arghandler.py:656
 msgid "Unknown tool name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:661
+#: ../gramps/cli/arghandler.py:658
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:692
+#: ../gramps/cli/arghandler.py:689
 msgid "Unknown book name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:694
+#: ../gramps/cli/arghandler.py:691
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:703
+#: ../gramps/cli/arghandler.py:700
 #, python-format
 msgid "Unknown action: %s."
 msgstr ""
 
-#. Note: Make sure to edit const.py.in POPT_TABLE too!
-#: ../gramps/cli/argparser.py:57
+#: ../gramps/cli/argparser.py:56
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -231,10 +234,14 @@ msgid ""
 "  -s, --show                             Show config settings\n"
 "  -c, --config=[config.setting[:value]]  Set config setting(s) and start "
 "Gramps\n"
+"  -y, --yes                              Don't ask to confirm dangerous "
+"actions (non-GUI mode only)\n"
+"  -q, --quiet                            Suppress progress indication output "
+"(non-GUI mode only)\n"
 "  -v, --version                          Show versions\n"
 msgstr ""
 
-#: ../gramps/cli/argparser.py:83
+#: ../gramps/cli/argparser.py:84
 msgid ""
 "\n"
 "Example of usage of Gramps command line interface\n"
@@ -293,58 +300,58 @@ msgid ""
 "Syntax may be different for other shells and for Windows.\n"
 msgstr ""
 
-#: ../gramps/cli/argparser.py:236 ../gramps/cli/argparser.py:367
+#: ../gramps/cli/argparser.py:241 ../gramps/cli/argparser.py:376
 msgid "Error parsing the arguments"
 msgstr ""
 
-#: ../gramps/cli/argparser.py:238
+#: ../gramps/cli/argparser.py:243
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
 "Type gramps --help for an overview of commands, or read the manual pages."
 msgstr ""
 
-#: ../gramps/cli/argparser.py:247
+#: ../gramps/cli/argparser.py:252
 #, python-format
 msgid "Trying to open: %s ..."
 msgstr ""
 
-#: ../gramps/cli/argparser.py:281
+#: ../gramps/cli/argparser.py:286
 #, python-format
 msgid "Unknown action: %s. Ignoring."
 msgstr ""
 
-#: ../gramps/cli/argparser.py:290
+#: ../gramps/cli/argparser.py:295
 msgid "setup debugging"
 msgstr ""
 
-#: ../gramps/cli/argparser.py:301
+#: ../gramps/cli/argparser.py:306
 #, python-format
 msgid "Gramps config settings from %s:"
 msgstr ""
 
-#: ../gramps/cli/argparser.py:319
+#: ../gramps/cli/argparser.py:324
 #, python-format
 msgid "Current Gramps config setting: %s:%s"
 msgstr ""
 
 #. does a user want the default config value?
-#: ../gramps/cli/argparser.py:324
+#: ../gramps/cli/argparser.py:329
 msgid "DEFAULT"
 msgstr ""
 
 #. translators: indent "New" to match "Current"
-#: ../gramps/cli/argparser.py:331
+#: ../gramps/cli/argparser.py:336
 #, python-format
 msgid "    New Gramps config setting: %s:%s"
 msgstr ""
 
-#: ../gramps/cli/argparser.py:338
+#: ../gramps/cli/argparser.py:343
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
 msgstr ""
 
-#: ../gramps/cli/argparser.py:368
+#: ../gramps/cli/argparser.py:377
 #, python-format
 msgid ""
 "Error parsing the arguments: %s \n"
@@ -364,14 +371,6 @@ msgstr ""
 
 #: ../gramps/cli/clidbman.py:215 ../gramps/cli/clidbman.py:217
 msgid "Locked?"
-msgstr ""
-
-#: ../gramps/cli/clidbman.py:215
-msgid "yes"
-msgstr ""
-
-#: ../gramps/cli/clidbman.py:217
-msgid "no"
 msgstr ""
 
 #: ../gramps/cli/clidbman.py:218
@@ -492,12 +491,12 @@ msgstr ""
 msgid "ERROR: %s"
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:103 ../gramps/cli/user.py:174
+#: ../gramps/cli/grampscli.py:103 ../gramps/cli/user.py:187
 #: ../gramps/gui/dialog.py:224
 msgid "Low level database corruption detected"
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:105 ../gramps/cli/user.py:175
+#: ../gramps/cli/grampscli.py:105 ../gramps/cli/user.py:188
 #: ../gramps/gui/dialog.py:225
 msgid ""
 "Gramps has detected a problem in the underlying Berkeley database. This can "
@@ -732,192 +731,14 @@ msgstr ""
 msgid "none"
 msgstr ""
 
-#: ../gramps/gen/datehandler/__init__.py:72
+#: ../gramps/gen/datehandler/__init__.py:71
 #, python-format
 msgid "Date parser for '%s' not available, using default"
 msgstr ""
 
-#: ../gramps/gen/datehandler/__init__.py:88
+#: ../gramps/gen/datehandler/__init__.py:87
 #, python-format
 msgid "Date displayer for '%s' not available, using default"
-msgstr ""
-
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:251
-#: ../gramps/gen/datehandler/_datedisplay.py:278
-msgid "{long_month} {year}"
-msgstr ""
-
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:258
-msgid "{long_month} {day:d}, {year}"
-msgstr ""
-
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:285
-msgid "{day:d} {long_month} {year}"
-msgstr ""
-
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection to be used in your localized
-#. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:53
-msgid "localized lexeme inflections||January"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:54
-msgid "localized lexeme inflections||February"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:55
-msgid "localized lexeme inflections||March"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:56
-msgid "localized lexeme inflections||April"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:57
-msgid "localized lexeme inflections||May"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:58
-msgid "localized lexeme inflections||June"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:59
-msgid "localized lexeme inflections||July"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:60
-msgid "localized lexeme inflections||August"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:61
-msgid "localized lexeme inflections||September"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:62
-msgid "localized lexeme inflections||October"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:63
-msgid "localized lexeme inflections||November"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:64
-msgid "localized lexeme inflections||December"
-msgstr ""
-
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection to be used in your localized
-#. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:71
-msgid "localized lexeme inflections - short month form||Jan"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:72
-msgid "localized lexeme inflections - short month form||Feb"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:73
-msgid "localized lexeme inflections - short month form||Mar"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:74
-msgid "localized lexeme inflections - short month form||Apr"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:75
-msgid "localized lexeme inflections - short month form||May"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:76
-msgid "localized lexeme inflections - short month form||Jun"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:77
-msgid "localized lexeme inflections - short month form||Jul"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:78
-msgid "localized lexeme inflections - short month form||Aug"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:79
-msgid "localized lexeme inflections - short month form||Sep"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:80
-msgid "localized lexeme inflections - short month form||Oct"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:81
-msgid "localized lexeme inflections - short month form||Nov"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:82
-msgid "localized lexeme inflections - short month form||Dec"
-msgstr ""
-
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to add proper alternatives to be recognized in your localized
-#. DateParser code!
-#: ../gramps/gen/datehandler/_datestrings.py:90
-msgid "alternative month names for January||"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:91
-msgid "alternative month names for February||"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:92
-msgid "alternative month names for March||"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:93
-msgid "alternative month names for April||"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:94
-msgid "alternative month names for May||"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:95
-msgid "alternative month names for June||"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:96
-msgid "alternative month names for July||"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:97
-msgid "alternative month names for August||"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:98
-msgid "alternative month names for September||"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:99
-msgid "alternative month names for October||"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:100
-msgid "alternative month names for November||"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:101
-msgid "alternative month names for December||"
 msgstr ""
 
 #: ../gramps/gen/db/base.py:1624
@@ -6063,200 +5884,200 @@ msgid ""
 "available."
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:65
+#: ../gramps/gen/utils/grampslocale.py:64
 msgid "Arabic"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:66
+#: ../gramps/gen/utils/grampslocale.py:65
 msgid "Bulgarian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:67
+#: ../gramps/gen/utils/grampslocale.py:66
 msgid "Breton"
 msgstr ""
 
 #. Windows has no translation for Breton
-#: ../gramps/gen/utils/grampslocale.py:68
+#: ../gramps/gen/utils/grampslocale.py:67
 msgid "Catalan"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:69
+#: ../gramps/gen/utils/grampslocale.py:68
 msgid "Czech"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:70
+#: ../gramps/gen/utils/grampslocale.py:69
 msgid "Danish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:71
+#: ../gramps/gen/utils/grampslocale.py:70
 msgid "German"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:72
+#: ../gramps/gen/utils/grampslocale.py:71
 msgid "Greek"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:73
+#: ../gramps/gen/utils/grampslocale.py:72
 msgid "English (USA)"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:74
+#: ../gramps/gen/utils/grampslocale.py:73
 msgid "English"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:75
+#: ../gramps/gen/utils/grampslocale.py:74
 msgid "Esperanto"
 msgstr ""
 
 #. Windows has no translation for Esperanto
-#: ../gramps/gen/utils/grampslocale.py:76
+#: ../gramps/gen/utils/grampslocale.py:75
 msgid "Spanish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:77
+#: ../gramps/gen/utils/grampslocale.py:76
 msgid "Finnish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:78
+#: ../gramps/gen/utils/grampslocale.py:77
 msgid "French"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:79
+#: ../gramps/gen/utils/grampslocale.py:78
 msgid "Gaelic"
 msgstr ""
 
 #. Windows has no translation for Gaelic
-#: ../gramps/gen/utils/grampslocale.py:80
+#: ../gramps/gen/utils/grampslocale.py:79
 msgid "Hebrew"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:81
+#: ../gramps/gen/utils/grampslocale.py:80
 msgid "Croatian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:82
+#: ../gramps/gen/utils/grampslocale.py:81
 msgid "Hungarian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:83
+#: ../gramps/gen/utils/grampslocale.py:82
 msgid "Italian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:84
+#: ../gramps/gen/utils/grampslocale.py:83
 msgid "Japanese"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:85
+#: ../gramps/gen/utils/grampslocale.py:84
 msgid "Lithuanian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:86
+#: ../gramps/gen/utils/grampslocale.py:85
 msgid "Macedonian"
 msgstr ""
 
 #. Windows has no translation for Macedonian
-#: ../gramps/gen/utils/grampslocale.py:87
+#: ../gramps/gen/utils/grampslocale.py:86
 msgid "Norwegian Bokmal"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:88
+#: ../gramps/gen/utils/grampslocale.py:87
 msgid "Dutch"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:89
+#: ../gramps/gen/utils/grampslocale.py:88
 msgid "Norwegian Nynorsk"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:90
+#: ../gramps/gen/utils/grampslocale.py:89
 msgid "Polish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:91
+#: ../gramps/gen/utils/grampslocale.py:90
 msgid "Portuguese (Brazil)"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:92
+#: ../gramps/gen/utils/grampslocale.py:91
 msgid "Portuguese (Portugal)"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:93
+#: ../gramps/gen/utils/grampslocale.py:92
 msgid "Romanian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:94
+#: ../gramps/gen/utils/grampslocale.py:93
 msgid "Russian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:95
+#: ../gramps/gen/utils/grampslocale.py:94
 msgid "Slovak"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:96
+#: ../gramps/gen/utils/grampslocale.py:95
 msgid "Slovenian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:97
+#: ../gramps/gen/utils/grampslocale.py:96
 msgid "Albanian"
 msgstr ""
 
 #. Gramps's Serbian translation is not yet ready
-#: ../gramps/gen/utils/grampslocale.py:99
+#: ../gramps/gen/utils/grampslocale.py:98
 msgid "Swedish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:100
+#: ../gramps/gen/utils/grampslocale.py:99
 msgid "Turkish"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:101
+#: ../gramps/gen/utils/grampslocale.py:100
 msgid "Ukrainian"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:102
+#: ../gramps/gen/utils/grampslocale.py:101
 msgid "Vietnamese"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:103
+#: ../gramps/gen/utils/grampslocale.py:102
 msgid "Chinese Simplified"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:806
+#: ../gramps/gen/utils/grampslocale.py:804
 msgid "the person"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:808
+#: ../gramps/gen/utils/grampslocale.py:806
 msgid "the family"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:810
+#: ../gramps/gen/utils/grampslocale.py:808
 msgid "the place"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:812
+#: ../gramps/gen/utils/grampslocale.py:810
 msgid "the event"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:814
+#: ../gramps/gen/utils/grampslocale.py:812
 msgid "the repository"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:816
+#: ../gramps/gen/utils/grampslocale.py:814
 msgid "the note"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:818
+#: ../gramps/gen/utils/grampslocale.py:816
 msgid "the media"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:820
+#: ../gramps/gen/utils/grampslocale.py:818
 msgid "the source"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:822
+#: ../gramps/gen/utils/grampslocale.py:820
 msgid "the filter"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:824
+#: ../gramps/gen/utils/grampslocale.py:822
 msgid "See details"
 msgstr ""
 
