@@ -52,6 +52,7 @@ class DateParserRU(DateParser):
     modifier_to_int = {
         'перед'    : Date.MOD_BEFORE, 
         'по'    : Date.MOD_BEFORE, 
+        'до'    : Date.MOD_BEFORE, 
         'после' : Date.MOD_AFTER, 
         'п.'    : Date.MOD_AFTER, 
         'п'    : Date.MOD_AFTER, 
@@ -219,7 +220,7 @@ class DateParserRU(DateParser):
     def init_strings(self):
         DateParser.init_strings(self)
         _span_1 = ['с', 'от']
-        _span_2 = ['по']
+        _span_2 = ['по', 'до']
         _range_1 = ['между', 'меж\.', 'меж']
         _range_2 = ['и']
         self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
