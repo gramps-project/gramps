@@ -1610,15 +1610,10 @@ class Date(object):
                 for d,m,y,sl in zip(*[iter(zl)]*4):
                     # each of d,m,y,sl is a pair from dateval and value, to compare
 
-                    for adjusted,original in d,m:
+                    for adjusted,original in d,m,y:
                         if adjusted != original and not(original == 0 and adjusted == 1):
-                            raise DateError("Invalid day/month {} passed in value {}".
+                            raise DateError("Invalid day/month/year {} passed in value {}".
                                     format(original, value))
-
-                    adjusted,original = y
-                    if adjusted != original:
-                        raise DateError("Invalid year {} passed in value {}".
-                                format(original, value))
 
                     # ignore slash difference
 
