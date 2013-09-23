@@ -382,9 +382,9 @@ class ProxyDbBase(DbReadBase):
         return filter(self.include_tag, self.db.iter_tag_handles())
 
     @staticmethod
-    def __iter_object(filter, method):
+    def __iter_object(selector, method):
         """ Helper function to return an iterator over an object class """
-        return filter(lambda obj: (filter is None or list(filter(obj.handle))),
+        return filter(lambda obj: (selector is None or list(selector(obj.handle))),
                        method())
 
     def iter_people(self):
