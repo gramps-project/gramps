@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-17 15:56+0200\n"
-"PO-Revision-Date: 2013-09-17 16:40+0200\n"
+"POT-Creation-Date: 2013-09-18 15:03+0200\n"
+"PO-Revision-Date: 2013-09-23 15:35+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -174,8 +174,8 @@ msgstr ""
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Peter Landgren"
 
-#: ../src/const.py:235 ../src/const.py:236 ../src/gen/lib/date.py:1712
-#: ../src/gen/lib/date.py:1726
+#: ../src/const.py:235 ../src/const.py:236 ../src/gen/lib/date.py:1756
+#: ../src/gen/lib/date.py:1770
 msgid "none"
 msgstr "inget"
 
@@ -1527,7 +1527,7 @@ msgstr ""
 #. string if the person is None
 #.
 #. -------------------------------------------------------------------------
-#: ../src/Utils.py:216 ../src/gen/lib/date.py:457 ../src/gen/lib/date.py:495
+#: ../src/Utils.py:216 ../src/gen/lib/date.py:445 ../src/gen/lib/date.py:483
 #: ../src/gen/mime/_gnomemime.py:39 ../src/gen/mime/_gnomemime.py:46
 #: ../src/gen/mime/_pythonmime.py:49 ../src/gen/mime/_pythonmime.py:57
 #: ../src/gui/editors/editperson.py:326
@@ -3080,7 +3080,7 @@ msgstr "Fadderbarn"
 msgid "Foster"
 msgstr "Fosterbarn"
 
-#: ../src/gen/lib/date.py:299
+#: ../src/gen/lib/date.py:293
 #, python-format
 msgid "less than %s years"
 msgstr "mindre än %s år"
@@ -3100,9 +3100,9 @@ msgstr "mindre än %s år"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.BEFORE)
 #. self.minmax = (v - Span.BEFORE, v + Span.BEFORE)
-#: ../src/gen/lib/date.py:310 ../src/gen/lib/date.py:365
-#: ../src/gen/lib/date.py:370 ../src/gen/lib/date.py:386
-#: ../src/gen/lib/date.py:430
+#: ../src/gen/lib/date.py:304 ../src/gen/lib/date.py:357
+#: ../src/gen/lib/date.py:362 ../src/gen/lib/date.py:377
+#: ../src/gen/lib/date.py:419
 msgid "more than"
 msgstr "större än"
 
@@ -3121,9 +3121,9 @@ msgstr "större än"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.AFTER)
 #. self.minmax = (v - Span.AFTER, v + Span.AFTER)
-#: ../src/gen/lib/date.py:315 ../src/gen/lib/date.py:338
-#: ../src/gen/lib/date.py:348 ../src/gen/lib/date.py:359
-#: ../src/gen/lib/date.py:435
+#: ../src/gen/lib/date.py:309 ../src/gen/lib/date.py:331
+#: ../src/gen/lib/date.py:341 ../src/gen/lib/date.py:351
+#: ../src/gen/lib/date.py:424
 msgid "less than"
 msgstr "mindre än"
 
@@ -3134,9 +3134,9 @@ msgstr "mindre än"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.ABOUT)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-#: ../src/gen/lib/date.py:321 ../src/gen/lib/date.py:392
-#: ../src/gen/lib/date.py:407 ../src/gen/lib/date.py:413
-#: ../src/gen/lib/date.py:440
+#: ../src/gen/lib/date.py:315 ../src/gen/lib/date.py:383
+#: ../src/gen/lib/date.py:398 ../src/gen/lib/date.py:403
+#: ../src/gen/lib/date.py:429
 msgid "age|about"
 msgstr "omkring"
 
@@ -3152,13 +3152,13 @@ msgstr "omkring"
 #. v2 = stop1.sortval - start2.sortval # max
 #. self.sort = (v1, v2 - v1)
 #. self.minmax = (v1, v2)
-#: ../src/gen/lib/date.py:331 ../src/gen/lib/date.py:424
-#: ../src/gen/lib/date.py:453
+#: ../src/gen/lib/date.py:324 ../src/gen/lib/date.py:413
+#: ../src/gen/lib/date.py:441
 msgid "between"
 msgstr "mellan"
 
-#: ../src/gen/lib/date.py:332 ../src/gen/lib/date.py:425
-#: ../src/gen/lib/date.py:454 ../src/plugins/quickview/all_relations.py:283
+#: ../src/gen/lib/date.py:325 ../src/gen/lib/date.py:414
+#: ../src/gen/lib/date.py:442 ../src/plugins/quickview/all_relations.py:283
 #: ../src/plugins/view/relview.py:976
 #: ../src/plugins/webreport/NarrativeWeb.py:1152
 msgid "and"
@@ -3170,7 +3170,7 @@ msgstr "och"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-#: ../src/gen/lib/date.py:353 ../src/gen/lib/date.py:402
+#: ../src/gen/lib/date.py:346 ../src/gen/lib/date.py:393
 msgid "less than about"
 msgstr "mindre än omkring"
 
@@ -3180,92 +3180,92 @@ msgstr "mindre än omkring"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.BEFORE)
 #. self.minmax = (v - Span.BEFORE, v + Span.ABOUT)
-#: ../src/gen/lib/date.py:380 ../src/gen/lib/date.py:397
+#: ../src/gen/lib/date.py:372 ../src/gen/lib/date.py:388
 msgid "more than about"
 msgstr "mer än omkring"
 
-#: ../src/gen/lib/date.py:499
+#: ../src/gen/lib/date.py:487
 #, python-format
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] "%d år"
 msgstr[1] "%d år"
 
-#: ../src/gen/lib/date.py:506
+#: ../src/gen/lib/date.py:494
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d månad"
 msgstr[1] "%d månader"
 
-#: ../src/gen/lib/date.py:513
+#: ../src/gen/lib/date.py:501
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] "%d dag"
 msgstr[1] "%d dagar"
 
-#: ../src/gen/lib/date.py:518
+#: ../src/gen/lib/date.py:506
 msgid "0 days"
 msgstr "0 dagar"
 
-#: ../src/gen/lib/date.py:665
+#: ../src/gen/lib/date.py:653
 msgid "calendar|Gregorian"
 msgstr "Gregoriansk"
 
-#: ../src/gen/lib/date.py:666
+#: ../src/gen/lib/date.py:654
 msgid "calendar|Julian"
 msgstr "Juliansk"
 
-#: ../src/gen/lib/date.py:667
+#: ../src/gen/lib/date.py:655
 msgid "calendar|Hebrew"
 msgstr "Hebreisk"
 
-#: ../src/gen/lib/date.py:668
+#: ../src/gen/lib/date.py:656
 msgid "calendar|French Republican"
 msgstr "Fransk republikansk"
 
-#: ../src/gen/lib/date.py:669
+#: ../src/gen/lib/date.py:657
 msgid "calendar|Persian"
 msgstr "Persisk"
 
-#: ../src/gen/lib/date.py:670
+#: ../src/gen/lib/date.py:658
 msgid "calendar|Islamic"
 msgstr "Islamsk"
 
-#: ../src/gen/lib/date.py:671
+#: ../src/gen/lib/date.py:659
 msgid "calendar|Swedish"
 msgstr "Svensk"
 
-#: ../src/gen/lib/date.py:1712
+#: ../src/gen/lib/date.py:1756
 msgid "estimated"
 msgstr "uppskattad"
 
-#: ../src/gen/lib/date.py:1712
+#: ../src/gen/lib/date.py:1756
 msgid "calculated"
 msgstr "beräknad"
 
-#: ../src/gen/lib/date.py:1726
+#: ../src/gen/lib/date.py:1770
 msgid "before"
 msgstr "före"
 
-#: ../src/gen/lib/date.py:1726
+#: ../src/gen/lib/date.py:1770
 msgid "after"
 msgstr "efter"
 
-#: ../src/gen/lib/date.py:1726
+#: ../src/gen/lib/date.py:1770
 msgid "about"
 msgstr "omkring"
 
-#: ../src/gen/lib/date.py:1727
+#: ../src/gen/lib/date.py:1771
 msgid "range"
 msgstr "intervall"
 
-#: ../src/gen/lib/date.py:1727
+#: ../src/gen/lib/date.py:1771
 msgid "span"
 msgstr "tidspann"
 
-#: ../src/gen/lib/date.py:1727
+#: ../src/gen/lib/date.py:1771
 msgid "textonly"
 msgstr "endast text"
 
@@ -5351,6 +5351,7 @@ msgstr "Släktträdsnamn"
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:53
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:64
 #: ../src/gui/plug/_windows.py:125 ../src/gui/plug/_windows.py:183
+#: ../src/plugins/quickview/AgeOnDate.py:55
 #: ../src/plugins/webreport/NarrativeWeb.py:388
 #: ../src/plugins/webreport/NarrativeWeb.py:1257
 msgid "Status"
@@ -19699,14 +19700,26 @@ msgstr "Personer som troligen lever och deras ålder den %s"
 msgid "People probably alive and their ages on %s"
 msgstr "Personer som troligen lever och deras ålder av %s"
 
+#: ../src/plugins/quickview/AgeOnDate.py:65
 #: ../src/plugins/quickview/AgeOnDate.py:68
+#, python-format
+msgid "Alive: %s"
+msgstr "Levande: %s"
+
+#: ../src/plugins/quickview/AgeOnDate.py:74
+#: ../src/plugins/quickview/AgeOnDate.py:77
+#, python-format
+msgid "Deceased: %s"
+msgstr "Avlidna: %s"
+
+#: ../src/plugins/quickview/AgeOnDate.py:82
 #, python-format
 msgid ""
 "\n"
-"%d matches.\n"
+"Living matches: %d, Deceased matches: %d\n"
 msgstr ""
 "\n"
-"%d matchningar.\n"
+"Matchningar mot levande: %d, Matchningar mot avlidna: %d\n"
 
 #. display the results
 #. feature request 2356: avoid genitive form
@@ -31465,6 +31478,13 @@ msgstr ""
 "<b>Gramps för Gnome eller KDE?</b><br/>För Linux-användare fungerar Gramps "
 "med vilken skrivbordsmiljö som helst, så länge som de behövda GTK-"
 "biblioteken är installerade."
+
+#~ msgid ""
+#~ "\n"
+#~ "%d matches.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "%d matchningar.\n"
 
 #~ msgid "Places places map"
 #~ msgstr "Karta för platser"
