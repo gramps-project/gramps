@@ -307,6 +307,14 @@ EventRef
    :undoc-members:
    :show-inheritance:
 
+Handle
+====================================
+.. automodule:: gramps.gen.lib.handle
+.. autoclass:: Handle
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 MediaRef
 ====================================
 .. automodule:: gramps.gen.lib.mediaref
