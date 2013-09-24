@@ -38,6 +38,7 @@ from ._datehandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY,
                           register_datehandler)
 
 # Import all the localized handlers
+from . import _date_ar
 from . import _date_bg
 from . import _date_ca
 from . import _date_cs
