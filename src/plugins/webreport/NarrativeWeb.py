@@ -3533,7 +3533,8 @@ class PlacePages(BasePage):
                                 head += jsc
 
                                 # Google adds Latitude/ Longitude to its maps...
-                                jsc += google_jsc % (latitude, longitude, placetitle)
+                                jsc += google_jsc % (latitude, longitude,
+                                                     placetitle.replace("'", "\\'"))
 
                         else:
                             # OpenStreetMap (OSM) adds Longitude/ Latitude to its maps,
@@ -5505,7 +5506,7 @@ class PersonPages(BasePage):
                 individualdetail += self.display_ind_associations(assocs)
 
             # for use in family map pages...
-            if len(place_lat_long):
+            if len(place_lat_long) > 0:
                 if self.report.options["familymappages"]:
                     # save of, string_io and cur_fname before creating a new page
                     sof = of
@@ -5640,13 +5641,17 @@ class PersonPages(BasePage):
                     # are we creating Drop Markers or Markers?
                     elif self.googleopts in ["Drop", "Markers"]:
                         tracelife += """
-    ['%s', %s, %s, %d],""" % (placetitle, latitude, longitude, seq_)
+    ['%s', %s, %s, %d],""" % (placetitle.replace("'", "\\'"), latitude, longitude, seq_)
 
                 # are we using OpenStreetMap?
                 else:
                     tracelife += """
     [%s, %s],""" % (longitude, latitude)
                 seq_ += 1
+            # FIXME: The last element in the place_lat_long list is treated
+            # specially, and the code above is apparently repeated so as to
+            # avoid a comma at the end, and get the right closing. This is very
+            # ugly.
             latitude, longitude, placetitle, handle ,date, etype = place_lat_long[-1]
 
             # are we using Google?
@@ -5662,7 +5667,7 @@ class PersonPages(BasePage):
                 elif self.googleopts in ["Drop", "Markers"]:
                     tracelife += """
     ['%s', %s, %s, %d]
-  ];""" % (placetitle, latitude, longitude, seq_)
+  ];""" % (placetitle.replace("'", "\\'"), latitude, longitude, seq_)
 
             # are we using OpenStreetMap?
             elif self.mapservice == "OpenStreetMap":
@@ -5701,11 +5706,25 @@ class PersonPages(BasePage):
 
                         # are we using Google?
                         if self.mapservice == "Google":
-                            jsc += google_jsc % (latitude, longitude, placetitle)
+                            # FIXME: Horrible hack, because when there is only a
+                            # single marker, the javascript for place is used,
+                            # which has a 'place_canvas' division, instead of a
+                            # 'map_canvas' division.
+                            jsc += google_jsc.replace("place_canvas",
+                                                      "map_canvas") % \
+                                    (latitude, longitude,
+                                                 placetitle.replace("'", "\\'"))
 
                         # we are using OpenStreetMap?
                         else:
-                            jsc += openstreetmap_jsc % (xml_lang()[3:5].lower(), longitude, latitude)
+                            # FIXME: Horrible hack, because when there is only a
+                            # single marker, the javascript for place is used,
+                            # which has a 'place_canvas' division, instead of a
+                            # 'map_canvas' division.
+                            jsc += openstreetmap_jsc.replace("place_canvas",
+                                                             "map_canvas") % \
+                                    (xml_lang()[3:5].lower(),
+                                     longitude, latitude)
 
                     # there is more than one marker...
                     else:
