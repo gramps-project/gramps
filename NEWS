@@ -1,3 +1,17 @@
+2013-??-??
+* Citation merge works now for objects with citations -- hopefully the last reason to upgrade from 3.3 removed for those with big production databases with a lot of citations!
+* Fixed several crashes, hangs, and data corruption scenarios
+* Fixed bugs in determining whether a person is alive, potentially resolving private data leak via export or report.
+* VCF export/import now support gender information
+* Several bugs with filtering fixed, most filters now support regular expressions
+* Fix bug in Hebrew calendar date calculations
+* Multiple fixes in gramplets
+* Multiple fixes in NarWeb report
+* Fix several long-standing problems with report generation
+* Better support of RTL locales (Arabic, Hebrew, etc.) in GUI
+* Platform-specific fixes for Mac and Windows
+* Translation updates and translation-related fixes
+
 2013-05-22
 Version 3.4.5 of Gramps! "We have also developed a tomato which can eject itself when an accident is imminent", a maintenance release.
 * problem after upgrading to 3.4.4 from 3.3.1
