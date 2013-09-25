@@ -244,8 +244,9 @@ class ParserDateTest(BaseDateTest):
                 ndate = _dp.parse(datestr)
                 self.assertTrue(dateval.is_equal(ndate),
                                 "dateval fails is_equal in format %d:\n"
-                                "   '%s' != '%s'" % 
-                                (date_format, dateval, ndate))
+                                "   '%s' != '%s'\n"
+                                "   '%s' != '%s'\n" % 
+                                (date_format, dateval, ndate, dateval.to_struct(), ndate.to_struct()))
 
     def test_basic(self):
         self.do_test("basic test")
