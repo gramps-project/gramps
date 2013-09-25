@@ -87,11 +87,13 @@ def reference_L(db, source=None):
     Return the list reference (bibliography entry) based on the passed source
     If source is None, the same input_dict as before is used.
     """
-    global refL
+    global refL, template_cache
     if source:
         set_input_dict_and_template(db, source)
     if refL is not None:
         return refL
+    if template_cache is None:
+        return ""
     refL = _reference(db, REF_TYPE_L)
     return refL
 
@@ -100,11 +102,13 @@ def reference_S(db, source=None, citation=None):
     Return the short reference based on the passed source and/or citation
     If both source and citation are None, the same list as before is used.
     """
-    global refS
+    global refS, template_cache
     if source or citation:
         set_input_dict_and_template(db, source, citation)
     if refS is not None:
         return refS
+    if template_cache is None:
+        return ""
     refS = _reference(db, REF_TYPE_S)
     return refS
 
@@ -113,11 +117,13 @@ def reference_F(db, source=None, citation=None):
     Return the full reference based on the passed source and/or citation
     If both source and citation are None, the same list as before is used.
     """
-    global refF
+    global refF, template_cache
     if source or citation:
         set_input_dict_and_template(db, source, citation)
     if refF is not None:
         return refF
+    if template_cache is None:
+        return ""
     refF = _reference(db, REF_TYPE_F)
     return refF
 
@@ -205,6 +211,7 @@ def set_input_dict_and_template(db, source=None, citation=None):
         source_cache = db.get_source_from_handle(source_handle)
         template_handle = source_cache.get_template()
         if template_handle is None:
+            template_cache = None
             return
         template_cache = db.get_template_from_handle(template_handle)
         attr_list = source_cache.get_attribute_list() + citation.get_attribute_list()
@@ -221,6 +228,7 @@ def set_input_dict_and_template(db, source=None, citation=None):
 #            raise Exception('Citation must be a Citation of the Source being cited')
         template_handle = source_cache.get_template()
         if template_handle is None:
+            template_cache = None
             return
         template_cache = db.get_template_from_handle(template_handle)
         attr_list = source_cache.get_attribute_list() + citation.get_attribute_list()
@@ -230,6 +238,7 @@ def set_input_dict_and_template(db, source=None, citation=None):
         source_cache = source  
         template_handle = source_cache.get_template()
         if template_handle is None:
+            template_cache = None
             return
         template_cache = db.get_template_from_handle(template_handle)
         attr_list = source_cache.get_attribute_list()
