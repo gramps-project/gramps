@@ -303,8 +303,10 @@ class ChildEmbedList(EmbeddedList):
                 return name
             if not father:
                 preset_name(mother, name)
+                return name
             if not mother:
                 preset_name(father, name)
+                return name
             #we take first surname, and keep that
             mothername = Name()
             preset_name(mother, mothername)
