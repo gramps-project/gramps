@@ -38,6 +38,7 @@ from ...config import config
 from ...datehandler import get_date_formats, set_format
 from ...datehandler import parser as _dp
 from ...datehandler import displayer as _dd
+from ...datehandler._datedisplay import DateDisplayEn
 from ...lib.date import Date, DateError
 
 date_tests = {}
@@ -267,6 +268,8 @@ class ParserDateTest(BaseDateTest):
 # MatchDateTest
 #
 #-------------------------------------------------------------------------
+@unittest.skipIf(_dd.__class__ != DateDisplayEn,
+        "This test of Date() matching logic can only run in English locale.")
 class MatchDateTest(BaseDateTest):
     """
     Date match tests.
