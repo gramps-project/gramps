@@ -41,7 +41,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ...widgets import MonitoredMenu, DateEntry, BasicEntry
+from ...widgets import MonitoredMenu, BasicEntry
 from gramps.gen.lib import Citation
 from .. import build_filter_model
 from . import SidebarFilter
