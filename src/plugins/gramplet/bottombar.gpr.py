@@ -86,9 +86,11 @@ try:
     import pyexiv2
     available = True
 except:
-    import logging
-    logging.warning(_("WARNING: pyexiv2 module not loaded.  "
-                      "Image metadata functionality will not be available."))
+    import config
+    if not config.get('behavior.ignore-gexiv2'):
+        import logging
+        logging.warning(_("WARNING: pyexiv2 module not loaded.  "
+                          "Image metadata functionality will not be available."))
     available = False
 
 if available:

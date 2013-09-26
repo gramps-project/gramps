@@ -38,9 +38,11 @@ try :
                         osmgpsmap.__version__)
 except:
     OSMGPSMAP = False
-    import logging
-    logging.warning(_("WARNING: osmgpsmap module not loaded. "
-                      "Geography functionality will not be available."))
+    import config
+    if not config.get('behavior.ignore-osmgpsmap'):
+        import logging
+        logging.warning(_("WARNING: osmgpsmap module not loaded. "
+                          "Geography functionality will not be available."))
 
 if OSMGPSMAP:
     # Load the view only if osmgpsmap library is present.
