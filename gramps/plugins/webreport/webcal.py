@@ -577,7 +577,7 @@ class WebCalReport(Report):
                     elif url_fname == 'fullyearlinked':
                         myTitle = _('Full year at a Glance')
                     else:
-                        myTitle = _(url_fname)
+	                 myTitle = _(url_fname)
                     hyper = Html("a", nav_text, href = url, name = url_fname, title = myTitle)
 
                     if check_cs:
@@ -1099,6 +1099,7 @@ class WebCalReport(Report):
 
                 # determine birthday information???
                 if (self.birthday and birth_date is not Date.EMPTY and birth_date.is_valid()):
+                    birth_date = gregorian(birth_date)
 
                     year = birth_date.get_year() or this_year
                     month = birth_date.get_month()
@@ -1162,6 +1163,7 @@ class WebCalReport(Report):
                             if marriage_event:
                                 event_date = marriage_event.get_date_object()
                                 if event_date is not Date.EMPTY and event_date.is_valid():
+                                    event_date = gregorian(event_date)
                                     year = event_date.get_year()
                                     month = event_date.get_month()
                                     day = event_date.get_day()
@@ -1725,3 +1727,10 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
  
     # return to its caller calendar_build()
     return day_list
+
+def gregorian(date):
+    """Convert given date to gregorian. Doesn't modify the original object."""
+    if date.get_calendar() != Date.CAL_GREGORIAN:
+        date = Date(date)
+        date.convert_calendar(Date.CAL_GREGORIAN)
+    return date
