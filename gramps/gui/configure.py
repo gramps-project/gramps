@@ -621,6 +621,10 @@ class GrampsPreferences(ConfigureDialog):
             table, _('Suppress warning when spell checking not installed.'), 
             6, 'behavior.ignore-spellcheck')
         
+        self.add_checkbox(
+            table, _("Suppress warning when 'sdn' not installed."), 
+            7, 'behavior.ignore-sdn')
+        
         return _('Warnings'), table
 
     def _build_name_format_model(self, active):
