@@ -1715,8 +1715,9 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
     return day_list
 
 def gregorian(date):
-    """Convert given date to gregorian"""
-    date = gen.lib.Date(date)
-    date.convert_calendar(gen.lib.Date.CAL_GREGORIAN)
+    """Convert given date to gregorian. Doesn't modify the original object."""
+    if date.get_calendar() != gen.lib.Date.CAL_GREGORIAN:
+        date = gen.lib.Date(date)
+        date.convert_calendar(gen.lib.Date.CAL_GREGORIAN)
     return date
 
