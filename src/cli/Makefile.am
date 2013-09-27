@@ -3,9 +3,9 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/cli
+pkgpythondir = $(datadir)/@PACKAGE@/cli
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	arghandler.py \
 	argparser.py \
@@ -13,7 +13,7 @@ pkgdata_PYTHON = \
 	grampscli.py
 
 pkgpyexecdir = @pkgpyexecdir@/cli
-pkgpythondir = @pkgpythondir@/cli
+
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -22,7 +22,7 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));
 
 pylint:
-	PYTHONPATH=$(GRAMPS_PY_MODPATH) pylint $(pkgdata_PYTHON) > pylint.out
+	PYTHONPATH=$(GRAMPS_PY_MODPATH) pylint $(pkgpython_PYTHON) > pylint.out

@@ -9,9 +9,9 @@ SUBDIRS = \
 	views \
 	widgets
 
-pkgdatadir = $(datadir)/@PACKAGE@/gui
+pkgpythondir = $(datadir)/@PACKAGE@/gui
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	columnorder.py \
 	configure.py \
@@ -25,8 +25,6 @@ pkgdata_PYTHON = \
 	viewmanager.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui
-pkgpythondir = @pkgpythondir@/gui
-
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -35,4 +33,4 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

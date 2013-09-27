@@ -1,8 +1,8 @@
 # This is the src/Report level Makefile for Gramps
 
-pkgdatadir = $(datadir)/@PACKAGE@/ReportBase
+pkgpythondir = $(datadir)/@PACKAGE@/ReportBase
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py\
 	_Bibliography.py\
 	_CommandLineReport.py\
@@ -32,4 +32,4 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

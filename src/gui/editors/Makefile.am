@@ -6,9 +6,9 @@
 SUBDIRS = \
 	displaytabs
 
-pkgdatadir = $(datadir)/@PACKAGE@/gui/editors
+pkgpythondir = $(datadir)/@PACKAGE@/gui/editors
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	addmedia.py\
 	__init__.py\
 	editaddress.py \
@@ -37,7 +37,6 @@ pkgdata_PYTHON = \
 	objectentries.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/editors
-pkgpythondir = @pkgpythondir@/gui/editors
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -46,4 +45,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

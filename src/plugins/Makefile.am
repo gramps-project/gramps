@@ -21,14 +21,14 @@ SUBDIRS = \
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
     bookreport.gpr.py\
 	BookReport.py\
 	records.gpr.py\
 	Records.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins
-pkgpythondir = @pkgpythondir@/plugins
+pkgpythondir = $(datadir)/@PACKAGE@/plugins
 
 GLADEFILES = \
 	bookreport.glade
@@ -46,4 +46,4 @@ GRAMPS_PY_MODPATH = "../:../docgen"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

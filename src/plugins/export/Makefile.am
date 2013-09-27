@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/export
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	export.gpr.py \
 	ExportCsv.py \
 	ExportFtree.py \
@@ -17,7 +17,7 @@ pkgdata_PYTHON = \
 	ExportXml.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/export
-pkgpythondir = @pkgpythondir@/plugins/export
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/export
 
 GLADEFILES = \
 	exportcsv.glade \

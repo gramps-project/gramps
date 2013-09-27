@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/lib
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	libcairodoc.py\
 	libformatting.py\
 	libgedcom.py\
@@ -25,7 +25,7 @@ pkgdata_PYTHON = \
 	libtranslate.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/lib
-pkgpythondir = @pkgpythondir@/plugins/lib
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/lib
 
 GLADEFILES = 
 
@@ -43,4 +43,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

@@ -3,9 +3,9 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/gui/views/treemodels
+pkgpythondir = $(datadir)/@PACKAGE@/gui/views/treemodels
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	eventmodel.py \
 	familymodel.py \
@@ -19,7 +19,6 @@ pkgdata_PYTHON = \
 	treebasemodel.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/views/treemodels
-pkgpythondir = @pkgpythondir@/gui/views/treemodels
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -28,7 +27,7 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));
 
 pylint:
-	PYTHONPATH=$(GRAMPS_PY_MODPATH) pylint $(pkgdata_PYTHON) > pylint.out
+	PYTHONPATH=$(GRAMPS_PY_MODPATH) pylint $(pkgpython_PYTHON) > pylint.out

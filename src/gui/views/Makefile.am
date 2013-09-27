@@ -6,16 +6,15 @@
 SUBDIRS = \
 	treemodels
 
-pkgdatadir = $(datadir)/@PACKAGE@/gui/views
+pkgpythondir = $(datadir)/@PACKAGE@/gui/views
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	listview.py \
 	navigationview.py \
 	pageview.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/views
-pkgpythondir = @pkgpythondir@/gui/views
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -24,7 +23,7 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));
 
 pylint:
-	PYTHONPATH=$(GRAMPS_PY_MODPATH) pylint $(pkgdata_PYTHON) > pylint.out
+	PYTHONPATH=$(GRAMPS_PY_MODPATH) pylint $(pkgpython_PYTHON) > pylint.out

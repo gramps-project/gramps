@@ -3,9 +3,9 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/gen/lib
+pkgpythondir = $(datadir)/@PACKAGE@/gen/lib
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	addressbase.py \
 	address.py \
 	attrbase.py \
@@ -66,7 +66,6 @@ pkgdata_PYTHON = \
 	witness.py 
 
 pkgpyexecdir = @pkgpyexecdir@/gen/lib
-pkgpythondir = @pkgpythondir@/gen/lib
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -75,7 +74,7 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));
 
 pylint:
-	pylint --disable-msg=W0403,C0103 $(pkgdata_PYTHON)
+	pylint --disable-msg=W0403,C0103 $(pkgpython_PYTHON)

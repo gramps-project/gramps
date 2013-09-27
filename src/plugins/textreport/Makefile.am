@@ -3,9 +3,9 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/plugins/textreport
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/textreport
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	AncestorReport.py\
 	BirthdayReport.py\
 	CustomBookText.py\
@@ -24,7 +24,6 @@ pkgdata_PYTHON = \
 	textplugins.gpr.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/textreport
-pkgpythondir = @pkgpythondir@/plugins/textreport
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -33,4 +32,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

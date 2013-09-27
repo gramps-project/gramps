@@ -3,9 +3,9 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/gui/widgets
+pkgpythondir = $(datadir)/@PACKAGE@/gui/widgets
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py \
 	buttons.py \
 	expandcollapsearrow.py \
@@ -27,7 +27,6 @@ pkgdata_PYTHON = \
 	valuetoolitem.py
 
 pkgpyexecdir = @pkgpyexecdir@/gui/widgets
-pkgpythondir = @pkgpythondir@/gui/widgets
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -36,5 +35,5 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));
 

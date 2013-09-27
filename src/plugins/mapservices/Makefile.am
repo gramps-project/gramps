@@ -5,14 +5,14 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/mapservices
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	googlemap.py\
 	mapservice.gpr.py\
 	openstreetmap.py\
 	eniroswedenmap.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/mapservices
-pkgpythondir = @pkgpythondir@/plugins/mapservices
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/mapservices
 
 GLADEFILES = 
 
@@ -29,4 +29,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

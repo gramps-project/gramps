@@ -3,9 +3,9 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/PluginUtils
+pkgpythondir = $(datadir)/@PACKAGE@/PluginUtils
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	__init__.py\
 	_GuiOptions.py\
 	_Options.py\
@@ -23,4 +23,4 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

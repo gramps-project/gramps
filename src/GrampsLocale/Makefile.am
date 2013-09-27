@@ -3,16 +3,14 @@
 # but that is not necessarily portable.
 # If not using GNU make, then list all .py files individually
 
-pkgdatadir = $(datadir)/@PACKAGE@/GrampsLocale
+pkgpythondir = $(datadir)/@PACKAGE@/GrampsLocale
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	_GrampsLocale.py\
 	__init__.py
 	
 
 pkgpyexecdir = @pkgpyexecdir@/GrampsLocale
-pkgpythondir = @pkgpythondir@/GrampsLocale
-
 
 dist_pkgdata_DATA = 
 
@@ -23,4 +21,4 @@ GRAMPS_PY_MODPATH = "../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

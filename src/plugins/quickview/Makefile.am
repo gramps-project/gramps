@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/quickview
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	AgeOnDate.py \
 	all_events.py \
 	all_relations.py \
@@ -20,7 +20,7 @@ pkgdata_PYTHON = \
 	siblings.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/quickview
-pkgpythondir = @pkgpythondir@/plugins/quickview
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/quickview
 
 # Clean up all the byte-compiled files
 MOSTLYCLEANFILES = *pyc *pyo
@@ -29,4 +29,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));

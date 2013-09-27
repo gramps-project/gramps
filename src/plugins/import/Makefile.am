@@ -5,7 +5,7 @@
 
 pkgdatadir = $(datadir)/@PACKAGE@/plugins/import
 
-pkgdata_PYTHON = \
+pkgpython_PYTHON = \
 	import.gpr.py \
 	ImportCsv.py \
 	ImportGedcom.py \
@@ -17,7 +17,7 @@ pkgdata_PYTHON = \
 	ImportXml.py
 
 pkgpyexecdir = @pkgpyexecdir@/plugins/import
-pkgpythondir = @pkgpythondir@/plugins/import
+pkgpythondir = $(datadir)/@PACKAGE@/plugins/import
 
 GLADEFILES = \
 	importgedcom.glade
@@ -35,4 +35,4 @@ GRAMPS_PY_MODPATH = "../../"
 
 pycheck: 
 	(export PYTHONPATH=$(GRAMPS_PY_MODPATH); \
-	pychecker $(pkgdata_PYTHON));
+	pychecker $(pkgpython_PYTHON));
