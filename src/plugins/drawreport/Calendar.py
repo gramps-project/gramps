@@ -52,6 +52,7 @@ from Utils import probably_alive
 from DateHandler import displayer as _dd
 import GrampsLocale
 import gen.lib
+from gen.lib.date import gregorian
 
 import libholiday
 from libholiday import g2iso
@@ -280,6 +281,8 @@ class Calendar(Report):
                 birth_date = birth_event.get_date_object()
 
             if (self.birthdays and birth_date is not None and birth_date.is_valid()):
+                birth_date = gregorian(birth_date)
+
                 year = birth_date.get_year()
                 month = birth_date.get_month()
                 day = birth_date.get_day()
@@ -360,6 +363,8 @@ class Calendar(Report):
                                     event_obj = event.get_date_object()
 
                                     if event_obj.is_valid():
+                                        event_obj = gregorian(event_obj)
+
                                         year = event_obj.get_year()
                                         month = event_obj.get_month()
                                         day = event_obj.get_day()
