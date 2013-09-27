@@ -46,7 +46,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 # Person and relation types
 from gramps.gen.lib import Person, FamilyRelType, EventType, EventRoleType
-from gramps.gen.lib.date import Date
+from gramps.gen.lib.date import Date, gregorian
 # gender and report type names
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SANS_SERIF, FONT_SERIF,
@@ -669,6 +669,8 @@ class Extract(object):
             if birth:
                 birthdate = birth.get_date_object()
                 if birthdate.get_year_valid():
+                    birthdate = gregorian(birthdate)
+
                     year = birthdate.get_year()
                     if not (year >= year_from and year <= year_to):
                         continue
@@ -677,8 +679,11 @@ class Extract(object):
                     death = self.get_death(person)
                     if death:
                         deathdate = death.get_date_object()
-                        if deathdate.get_year_valid() and deathdate.get_year() < year_from:
-                            continue
+                        if deathdate.get_year_valid():
+                            deathdate = gregorian(deathdate)
+
+                            if deathdate.get_year() < year_from:
+                                continue
                         if not no_years:
                             # do not accept people who are not known to be in range
                             continue

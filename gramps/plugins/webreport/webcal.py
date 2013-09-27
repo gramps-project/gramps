@@ -71,6 +71,8 @@ from gramps.plugins.lib.libhtml import Html, xml_lang
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gramps.gui.pluginmanager import GuiPluginManager
 
+from gramps.gen.lib.date import gregorian
+
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend
@@ -1727,10 +1729,3 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
  
     # return to its caller calendar_build()
     return day_list
-
-def gregorian(date):
-    """Convert given date to gregorian. Doesn't modify the original object."""
-    if date.get_calendar() != Date.CAL_GREGORIAN:
-        date = Date(date)
-        date.convert_calendar(Date.CAL_GREGORIAN)
-    return date
