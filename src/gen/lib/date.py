@@ -1863,3 +1863,10 @@ def lookup_calendar(calendar):
             return pos
     raise AttributeError("invalid calendar: '%s'" % calendar)
 
+def gregorian(date):
+    """Convert given date to gregorian. Doesn't modify the original object."""
+    if date.get_calendar() != Date.CAL_GREGORIAN:
+        date = Date(date)
+        date.convert_calendar(Date.CAL_GREGORIAN)
+    return date
+

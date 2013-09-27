@@ -40,6 +40,7 @@ import datetime, time
 from gen.display.name import displayer as global_name_display
 from Errors import ReportError
 from gen.lib import NameType, EventType, Name, Date, Person, Surname
+from gen.lib.date import gregorian
 import Relationship
 from gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                              FONT_SERIF, PARA_ALIGN_RIGHT,
@@ -232,6 +233,8 @@ class CalendarReport(Report):
                 birth_date = birth_event.get_date_object()
 
             if (self.birthdays and birth_date is not None and birth_date.is_valid()):
+                birth_date = gregorian(birth_date)
+
                 year = birth_date.get_year()
                 month = birth_date.get_month()
                 day = birth_date.get_day()
@@ -316,6 +319,8 @@ class CalendarReport(Report):
                                 for event_ref in fam.get_event_ref_list():
                                     event = self.database.get_event_from_handle(event_ref.ref)
                                     event_obj = event.get_date_object()
+                                    if event_obj is not Date.EMPTY and event_obj.is_valid():
+                                        event_obj = gregorian(event_obj)
                                     year = event_obj.get_year()
                                     month = event_obj.get_month()
                                     day = event_obj.get_day()

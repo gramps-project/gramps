@@ -69,6 +69,8 @@ from libhtml import Html
 from libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 from gui.pluginmanager import GuiPluginManager
 
+from gen.lib.date import gregorian
+
 # import styled notes from
 # src/plugins/lib/libhtmlbackend.py
 from libhtmlbackend import HtmlBackend
@@ -1713,11 +1715,3 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
  
     # return to its caller calendar_build()
     return day_list
-
-def gregorian(date):
-    """Convert given date to gregorian. Doesn't modify the original object."""
-    if date.get_calendar() != gen.lib.Date.CAL_GREGORIAN:
-        date = gen.lib.Date(date)
-        date.convert_calendar(gen.lib.Date.CAL_GREGORIAN)
-    return date
-
