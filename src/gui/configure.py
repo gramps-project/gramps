@@ -512,22 +512,6 @@ class GrampsPreferences(ConfigureDialog):
             table, _('Show plugin status dialog on plugin load error.'), 
             3, 'behavior.pop-plugin-status')
         
-        self.add_checkbox(
-            table, _('Suppress warning when OsmGpsMap not installed.'), 
-            4, 'behavior.ignore-osmgpsmap')
-        
-        self.add_checkbox(
-            table, _('Suppress warning when pyexiv2 not installed.'), 
-            5, 'behavior.ignore-gexiv2')
-        
-        self.add_checkbox(
-            table, _('Suppress warning when spell checking not installed.'), 
-            6, 'behavior.ignore-spellcheck')
-        
-        self.add_checkbox(
-            table, _("Suppress warning when 'sdn' not installed."), 
-            7, 'behavior.ignore-sdn')
-        
         return _('Warnings'), table
 
     def _build_name_format_model(self, active):

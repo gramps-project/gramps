@@ -581,9 +581,7 @@ try:
     #TODO maybe alias the other local invented wheels to Calendar convertors
 
 except ImportError:
-    import config
-    if not config.get('behavior.ignore-sdn'):
-        import logging
-        LOG = logging.getLogger(".calendar")
-        LOG.warn("sdn not available. "
-                 "Install Calendar with pypi for native Hebrew calendar calculations.")
+    import logging
+    LOG = logging.getLogger(".calendar")
+    LOG.warn("sdn not available. "
+            "Install Calendar with pypi for native Hebrew calendar calculations.")
