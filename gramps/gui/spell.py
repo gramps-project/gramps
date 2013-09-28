@@ -70,19 +70,19 @@ elif repository.enumerate_versions("Gtkspell"):
     except:
         pass
 
+if not HAVE_GTKSPELL:
+    LOG.warning(_("GtkSpell not loaded. "
+                  "Spell checking will not be available.\n"
+                  "To build it for Gramps see http://www.gramps-project.org/"
+                  "wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_"
+                  "Conversion#Spell_Check_Install"))
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
-
-if (not config.get('behavior.ignore-spellcheck')) and (not HAVE_GTKSPELL):
-    LOG.warning(_("GtkSpell not loaded. "
-                  "Spell checking will not be available.\n"
-                  "To build it for Gramps see http://www.gramps-project.org/"
-                  "wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_"
-                  "Conversion#Spell_Check_Install"))
 
 #-------------------------------------------------------------------------
 #
