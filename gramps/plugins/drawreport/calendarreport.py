@@ -54,6 +54,7 @@ from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.datehandler import displayer as _dd, long_days
 from gramps.gen.lib import Date, EventRoleType, EventType, Name, NameType, Person, Surname
+from gramps.gen.lib.date import gregorian
 
 import gramps.plugins.lib.libholiday as libholiday
 from gramps.plugins.lib.libholiday import g2iso
@@ -285,6 +286,8 @@ class Calendar(Report):
                     birth_date = birth_event.get_date_object()
 
                 if (self.birthdays and birth_date is not None and birth_date.is_valid()):
+                    birth_date = gregorian(birth_date)
+
                     year = birth_date.get_year()
                     month = birth_date.get_month()
                     day = birth_date.get_day()
@@ -366,6 +369,8 @@ class Calendar(Report):
                                         event_obj = event.get_date_object()
 
                                         if event_obj.is_valid():
+                                            event_obj = gregorian(event_obj)
+
                                             year = event_obj.get_year()
                                             month = event_obj.get_month()
                                             day = event_obj.get_day()
