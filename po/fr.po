@@ -19360,12 +19360,12 @@ msgstr "Ouvrir dans openstreetmap.org"
 #: ../src/plugins/quickview/AgeOnDate.py:50
 #, python-format
 msgid "People probably alive and their ages the %s"
-msgstr "Individus probablement en vie et leurs âges le %s"
+msgstr "Individus et leurs âges le %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:53
 #, python-format
 msgid "People probably alive and their ages on %s"
-msgstr "Individus probablement en vie et leurs âges en %s"
+msgstr "Individus et leurs âges en %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:65
 #: ../src/plugins/quickview/AgeOnDate.py:68
