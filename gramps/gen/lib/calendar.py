@@ -130,7 +130,7 @@ def _tishri_molad(input_day):
 
     # Find the molad of Tishri closest to this date.
     
-    for metonic_year in range(0, 18):
+    for metonic_year in range(0, 20):
         if molad_day > input_day - 74:
             break
             
@@ -266,8 +266,8 @@ def hebrew_ymd(sdn):
     input_day = sdn - _HBR_SDN_OFFSET
     # TODO if input_day <= 0, the result is a date invalid in Hebrew calendar!
 
-    (metonic_cycle, metonic_year, day, halakim) = _tishri_molad(input_day)
-    tishri1 = _tishri1(metonic_year, day, halakim)
+    (metonic_cycle, metonic_year, day1, halakim) = _tishri_molad(input_day)
+    tishri1 = _tishri1(metonic_year, day1, halakim)
         
     if input_day >= tishri1:
         # It found Tishri 1 at the start of the year
@@ -287,9 +287,9 @@ def hebrew_ymd(sdn):
 
         halakim += (_HBR_HALAKIM_PER_LUNAR_CYCLE
                 * _HBR_MONTHS_PER_YEAR[metonic_year])
-        day += halakim // _HBR_HALAKIM_PER_DAY
+        day1 += halakim // _HBR_HALAKIM_PER_DAY
         halakim = halakim % _HBR_HALAKIM_PER_DAY
-        tishri1_after = _tishri1((metonic_year + 1) % 19, day, halakim)
+        tishri1_after = _tishri1((metonic_year + 1) % 19, day1, halakim)
     else:
         # It found Tishri 1 at the end of the year.
         
@@ -345,8 +345,8 @@ def hebrew_ymd(sdn):
             # We need the length of the year to figure this out, so find
             # Tishri 1 of this year
             tishri1_after = tishri1
-            (metonic_cycle, metonic_year, day, halakim) = _tishri_molad(day-365)
-            tishri1 = _tishri1(metonic_year, day, halakim)
+            (metonic_cycle, metonic_year, day1, halakim) = _tishri_molad(day1-365)
+            tishri1 = _tishri1(metonic_year, day1, halakim)
 
     year_length = tishri1_after - tishri1
     day = input_day - tishri1 - 29
@@ -571,16 +571,3 @@ def swedish_ymd(sdn):
         return gregorian_ymd(sdn)
     else:
         return julian_ymd(sdn)
-
-try:
-    import sdn
-    
-    hebrew_ymd = sdn.SdnToJewish # Fix bug# 7066
-    hebrew_sdn = sdn.JewishToSdn 
-    #TODO maybe alias the other local invented wheels to Calendar convertors
-
-except ImportError:
-    import logging
-    LOG = logging.getLogger(".calendar")
-    LOG.info("sdn not available. "
-             "Install Calendar with pypi for native Hebrew calendar calculations.")
