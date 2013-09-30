@@ -141,7 +141,6 @@ TRANSACTIONS_MANAGED = False
 LOCALE_PATHS = tuple()
 
 # Changes for Django 1.3:
-CACHES = {}
 USE_L10N = True
 FORMAT_MODULE_PATH = ""
 ## End Changes for Django 1.3
@@ -150,3 +149,10 @@ FORMAT_MODULE_PATH = ""
 USE_TZ = False
 ## End Changes for Django 1.4
 
+# Changes for Django 1.5:
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        }
+    }
+## End Changes for Django 1.5
