@@ -583,5 +583,5 @@ try:
 except ImportError:
     import logging
     LOG = logging.getLogger(".calendar")
-    LOG.warn("sdn not available. "
+    LOG.info("sdn not available. "
             "Install Calendar with pypi for native Hebrew calendar calculations.")
