@@ -71,6 +71,7 @@ from .glade import Glade
 from gramps.gen.plug.utils import available_updates
 from .plug import PluginWindows
 from gramps.gen.errors import WindowActiveError
+from .spell import HAVE_GTKSPELL
 
 #-------------------------------------------------------------------------
 #
@@ -299,6 +300,7 @@ class ConfigureDialog(ManagedWindow):
         if extra_callback:
             checkbox.connect('toggled', extra_callback)
         table.attach(checkbox, start, stop, index, index+1, yoptions=0)
+        return checkbox
 
     def add_radiobox(self, table, label, index, constant, group, column,
                      config=None):
@@ -1232,9 +1234,16 @@ class GrampsPreferences(ConfigureDialog):
         self.tag_format_entry.set_sensitive(config.get('preferences.tag-on-import'))
 
         current_line += 1
-        self.add_checkbox(table, 
+        obj = self.add_checkbox(table, 
                 _('Enable spelling checker'), 
                 current_line, 'behavior.spellcheck')
+        if not HAVE_GTKSPELL:
+            obj.set_sensitive(False)
+            obj.set_tooltip_text(_("GtkSpell not loaded. "
+                  "Spell checking will not be available.\n"
+                  "To build it for Gramps see http://www.gramps-project.org/"
+                  "wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_"
+                  "Conversion#Spell_Check_Install"))
 
         current_line += 1
         self.add_checkbox(table, 
