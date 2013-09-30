@@ -56,9 +56,6 @@ try:
 except ImportError:
     HAVE_GTKSPELL = False
 
-if not HAVE_GTKSPELL:
-    LOG.warn(_("Spelling checker is not installed"))
-
 #-------------------------------------------------------------------------
 #
 # GRAMPS classes

@@ -61,6 +61,7 @@ from glade import Glade
 from gen.plug.utils import available_updates
 from gui.plug import PluginWindows
 from Errors import WindowActiveError
+from Spell import HAVE_GTKSPELL
 
 #-------------------------------------------------------------------------
 #
@@ -283,6 +284,7 @@ class ConfigureDialog(ManagedWindow.ManagedWindow):
         if extra_callback:
             checkbox.connect('toggled', extra_callback)
         table.attach(checkbox, start, stop, index, index+1, yoptions=0)
+        return checkbox
 
     def add_radiobox(self, table, label, index, constant, group, column,
                      config=None):
@@ -1086,9 +1088,12 @@ class GrampsPreferences(ConfigureDialog):
         self.add_checkbox(table, 
                 _('Add default source on import'), 
                 0, 'preferences.default-source')
-        self.add_checkbox(table, 
+        obj = self.add_checkbox(table, 
                 _('Enable spelling checker'), 
                 1, 'behavior.spellcheck')
+        if not HAVE_GTKSPELL:
+            obj.set_sensitive(False)
+            obj.set_tooltip_text(_("Spelling checker is not installed"))
         self.add_checkbox(table, 
                 _('Display Tip of the Day'), 
                 2, 'behavior.use-tips')
