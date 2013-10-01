@@ -47,10 +47,10 @@ def run(database, document, date):
         return
     # display the title
     if date.get_day_valid():
-        sdoc.title(_("People probably alive and their ages the %s") % 
+        sdoc.title(_("People and their ages the %s") % 
                DateHandler.displayer.display(date))
     else:
-        sdoc.title(_("People probably alive and their ages on %s") % 
+        sdoc.title(_("People and their ages on %s") % 
                DateHandler.displayer.display(date))
     stab.columns(_("Person"), _("Age"), _("Status")) # Actual Date makes column unicode
     alive_matches = 0

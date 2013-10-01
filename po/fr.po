@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-30 17:44+0200\n"
-"PO-Revision-Date: 2013-09-30 17:49+0100\n"
+"POT-Creation-Date: 2013-10-01 10:24+0200\n"
+"PO-Revision-Date: 2013-10-01 10:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -628,17 +628,17 @@ msgstr ""
 "\n"
 "Gramps va maintenant s'arrêter."
 
+#: ../src/gramps.py:380
 #: ../src/gramps.py:387
-#: ../src/gramps.py:394
-#: ../src/gramps.py:465
+#: ../src/gramps.py:458
 msgid "Configuration error:"
 msgstr "Erreur de configuration :"
 
-#: ../src/gramps.py:391
+#: ../src/gramps.py:384
 msgid "Error reading configuration"
 msgstr "Erreur à la lecture de la configuration"
 
-#: ../src/gramps.py:395
+#: ../src/gramps.py:388
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -19359,12 +19359,12 @@ msgstr "Ouvrir dans openstreetmap.org"
 
 #: ../src/plugins/quickview/AgeOnDate.py:50
 #, python-format
-msgid "People probably alive and their ages the %s"
+msgid "People and their ages the %s"
 msgstr "Individus et leurs âges le %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:53
 #, python-format
-msgid "People probably alive and their ages on %s"
+msgid "People and their ages on %s"
 msgstr "Individus et leurs âges en %s"
 
 #: ../src/plugins/quickview/AgeOnDate.py:65
