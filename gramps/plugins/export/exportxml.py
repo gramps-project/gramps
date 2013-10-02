@@ -540,7 +540,7 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_note_list(person.get_note_list(),index+1)
 
         for citation_handle in person.get_citation_list():
-            self.write_ref("citationref", citation_handle, index+2)
+            self.write_ref("citationref", citation_handle, index+1)
 
         for tag_handle in person.get_tag_list():
             self.write_ref("tagref", tag_handle, index+1)
