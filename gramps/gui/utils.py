@@ -601,7 +601,7 @@ def edit_object(dbstate, uistate, reftype, ref):
                              "editor and open an editor for the citation "
                              "alone")
             
-            from QuestionDialog import WarningDialog
+            from .dialog import WarningDialog
             WarningDialog(_("Cannot open new citation editor"),
                           blocked_text)
     elif reftype == 'Place':
