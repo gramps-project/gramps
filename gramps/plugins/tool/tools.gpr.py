@@ -118,28 +118,6 @@ tool_modes = [TOOL_MODE_GUI]
 
 #------------------------------------------------------------------------
 #
-# Python Evaluation Window
-#
-#------------------------------------------------------------------------
-
-register(TOOL, 
-id    = 'eval',
-name  = "Python Evaluation Window",
-description =  "Provides a window that can evaluate python code",
-version = '1.0',
-gramps_target_version = '4.1',
-status = STABLE,
-fname = 'eval.py',
-authors = ["Donald N. Allingham"],
-authors_email = ["don@gramps-project.org"],
-category = TOOL_DEBUG,
-toolclass = 'Eval',
-optionclass = 'EvalOptions',
-tool_modes = [TOOL_MODE_GUI]
-  )
-
-#------------------------------------------------------------------------
-#
 # Compare Individual Events
 #
 #------------------------------------------------------------------------

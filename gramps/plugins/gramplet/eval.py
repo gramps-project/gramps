@@ -39,49 +39,73 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import traceback
 
+#-------------------------------------------------------------------------
+#
+# Gtk modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import Gtk
+
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gui.plug import tool
-from gramps.gui.managedwindow import ManagedWindow
-from gramps.gui.glade import Glade
+from gramps.gen.plug import Gramplet
 from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
-# Actual tool
+# PythonEvaluation
 #
 #-------------------------------------------------------------------------
-class Eval(tool.Tool,ManagedWindow):
-    def __init__(self,dbstate, user, options_class, name, callback=None):
-        uistate = user.uistate
-        self.title =  _("Python evaluation window")
+class PythonEvaluation(Gramplet):
+    """
+    Allows the user to evaluate python code.
+    """
+    def init(self):
+        self.gui.WIDGET = self.build_gui()
+        self.gui.get_container_widget().remove(self.gui.textview)
+        self.gui.get_container_widget().add_with_viewport(self.gui.WIDGET)
 
-        tool.Tool.__init__(self,dbstate, options_class, name)
-        ManagedWindow.__init__(self,uistate,[],self.__class__)
+    def build_gui(self):
+        """
+        Build the GUI interface.
+        """
+        self.top = Gtk.VBox()
+        self.top.set_border_width(6)
 
-        self.glade = Glade()
+        self.ebuf = self.__add_text_view(_("Evaluation"))
+        self.dbuf = self.__add_text_view(_("Output"))
+        self.error = self.__add_text_view(_("Error"))
+        
+        bbox = Gtk.HButtonBox()
+        apply_button = Gtk.Button(_("Apply"))
+        apply_button.connect('clicked', self.apply_clicked)
+        bbox.pack_start(apply_button, False, False, 6)
+        clear_button = Gtk.Button(_("Clear"))
+        clear_button.connect('clicked', self.clear_clicked)
+        bbox.pack_start(clear_button, False, False, 6)
+        self.top.pack_start(bbox, False, False, 6)
+    
+        self.top.show_all()
 
-        window = self.glade.toplevel
-        self.dbuf = self.glade.get_object("display").get_buffer()
-        self.ebuf = self.glade.get_object("ebuf").get_buffer()
-        self.error = self.glade.get_object("error").get_buffer()
-        self.dbstate = dbstate
+        return self.top
 
-        self.glade.connect_signals({
-            "on_apply_clicked" : self.apply_clicked,
-            "on_close_clicked" : self.close,
-            "on_clear_clicked" : self.clear_clicked,
-            "on_delete_event"  : self.close,
-            })
-
-        self.set_window(window, self.glade.get_object('title'), self.title)
-        self.show()
-
-    def build_menu_names(self, obj):
-        return (self.title,None)
+    def __add_text_view(self, name):
+        """
+        Add a text view to the interface.
+        """
+        label = Gtk.Label(name)
+        label.set_markup('<b>%s</b>' % name)
+        label.set_alignment(0, 0.5)
+        self.top.pack_start(label, False, False, 6)
+        swin = Gtk.ScrolledWindow()
+        swin.set_shadow_type(Gtk.ShadowType.IN)
+        tview = Gtk.TextView()
+        swin.add_with_viewport(tview)
+        self.top.pack_start(swin, True, True, 6)
+        return tview.get_buffer()
 
     def apply_clicked(self, obj):
         text = cuni(self.ebuf.get_text(self.ebuf.get_start_iter(),
@@ -104,16 +128,3 @@ class Eval(tool.Tool,ManagedWindow):
         self.dbuf.set_text("")
         self.ebuf.set_text("")
         self.error.set_text("")
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class EvalOptions(tool.ToolOptions):
-    """
-    Defines options and provides handling interface.
-    """
-
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)
