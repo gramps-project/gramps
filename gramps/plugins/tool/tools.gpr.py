@@ -210,28 +210,6 @@ tool_modes = [TOOL_MODE_GUI]
 
 #------------------------------------------------------------------------
 #
-# Show Uncollected Objects
-#
-#------------------------------------------------------------------------
-
-register(TOOL, 
-id    = 'leak',
-name  = "Show Uncollected Objects",
-description =  "Provide a window listing all uncollected objects",
-version = '1.0',
-gramps_target_version = '4.1',
-status = STABLE,
-fname = 'leak.py',
-authors = ["Donald N. Allingham"],
-authors_email = ["don@gramps-project.org"],
-category = TOOL_DEBUG,
-toolclass = 'Leak',
-optionclass = 'LeakOptions',
-tool_modes = [TOOL_MODE_GUI]
-  )
-
-#------------------------------------------------------------------------
-#
 # Media Manager
 #
 #------------------------------------------------------------------------

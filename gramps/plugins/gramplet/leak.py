@@ -47,48 +47,59 @@ else:
 #------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import Gdk
-from gi.repository import Pango
 import gc
 
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gui.plug import tool
-from gramps.gui.managedwindow import ManagedWindow
+from gramps.gen.plug import Gramplet
 from gramps.gui.dialog import InfoDialog
-from gramps.gui.glade import Glade
 from gramps.gui.utils import is_right_click
 
 #-------------------------------------------------------------------------
 #
-# Actual tool
+# Leak
 #
 #-------------------------------------------------------------------------
-class Leak(tool.Tool, ManagedWindow):
-    def __init__(self,dbstate, user, options_class, name, callback=None):
-        uistate = user.uistate
-        self.title = _('Uncollected Objects Tool')
+class Leak(Gramplet):
+    """
+    Shows uncollected objects.
+    """
+    def init(self):
+        self.gui.WIDGET = self.build_gui()
+        self.gui.get_container_widget().remove(self.gui.textview)
+        self.gui.get_container_widget().add_with_viewport(self.gui.WIDGET)
 
-        tool.Tool.__init__(self,dbstate, options_class, name)
-        ManagedWindow.__init__(self,uistate,[],self.__class__)
+        flags = gc.DEBUG_UNCOLLECTABLE|gc.DEBUG_SAVEALL
+        if hasattr(gc, "DEBUG_OBJECTS"):
+            flags = flags | gc.DEBUG_OBJECTS
+        gc.set_debug(flags)
 
-        self.glade = Glade()
+    def build_gui(self):
+        """
+        Build the GUI interface.
+        """
+        self.top = Gtk.VBox()
+        self.top.set_border_width(6)
 
-        self.window = self.glade.toplevel
-        self.scroll = self.glade.get_object("scrolledwindow1")
+        self.label = Gtk.Label()        
+        self.label.set_alignment(0, 0.5)
+        self.top.pack_start(self.label, False, False, 6)
+
+        self.scroll = Gtk.ScrolledWindow()
         #add a listview to the scrollable
         self.list = Gtk.TreeView()
         self.list.set_headers_visible(True)
         self.list.connect('button-press-event', self._button_press)
-        self.scroll.add(self.list)
+        self.scroll.add_with_viewport(self.list)
         #make a model
         self.modeldata = []
         self.model = Gtk.ListStore(int, str)
         self.list.set_model(self.model)
         
-        #set the colums
+        #set the columns
         self.renderer = Gtk.CellRendererText()
         column = Gtk.TreeViewColumn(_('Number'), self.renderer, text=0)
         column.set_resizable(True)
@@ -100,25 +111,20 @@ class Leak(tool.Tool, ManagedWindow):
         column.set_sizing(Gtk.TreeViewColumnSizing.AUTOSIZE)
         self.list.append_column(column)
         self.selection = self.list.get_selection()
+        self.top.pack_start(self.scroll, True, True, 6)
         
-        flags = gc.DEBUG_UNCOLLECTABLE|gc.DEBUG_SAVEALL
-        if hasattr(gc, "DEBUG_OBJECTS"):
-            flags = flags | gc.DEBUG_OBJECTS
-        gc.set_debug(flags)
+        bbox = Gtk.HButtonBox()
+        apply_button = Gtk.Button(_("Refresh"))
+        apply_button.connect('clicked', self.apply_clicked)
+        bbox.pack_start(apply_button, False, False, 6)
+        self.top.pack_start(bbox,  False, False, 6)
 
-        self.set_window(self.window, self.glade.get_object('title'),
-                        self.title)
+        self.top.show_all()
 
-        self.glade.connect_signals({
-            "on_apply_clicked" : self.apply_clicked,
-            "on_close_clicked" : self.close,
-            "on_delete_event"  : self.close,
-            })
+        return self.top
+
+    def main(self):
         self.display()
-        self.show()
-
-    def build_menu_names(self, obj):
-        return (self.title,None)
 
     def _button_press(self, obj, event):
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
@@ -140,7 +146,7 @@ class Leak(tool.Tool, ManagedWindow):
                 except ReferenceError:
                     pass
             InfoDialog(_('Referrers of %d') % count, text, 
-                        parent=self.window)
+                        parent=self.uistate.window)
 
     def refers_to(self):
         model, iter = self.selection.get_selected()
@@ -154,7 +160,7 @@ class Leak(tool.Tool, ManagedWindow):
                 except ReferenceError:
                     pass
             InfoDialog(_('%d refers to') % count, text, 
-                        parent=self.window)
+                        parent=self.uistate.window)
 
     def display(self):
         gc.collect(2)
@@ -171,20 +177,7 @@ class Leak(tool.Tool, ManagedWindow):
                 except ReferenceError:
                     pass
                 count += 1
-        self.glade.get_object('label2').set_text(_('Uncollected Objects: %s') % str(len(gc.garbage)))
+        self.label.set_text(_('Uncollected Objects: %s') % str(len(gc.garbage)))
 
     def apply_clicked(self, obj):
         self.display()
-        
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class LeakOptions(tool.ToolOptions):
-    """
-    Defines options and provides handling interface.
-    """
-
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)

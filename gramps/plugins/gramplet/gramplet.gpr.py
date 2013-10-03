@@ -1180,3 +1180,16 @@ register(GRAMPLET,
          gramplet = 'PythonEvaluation',
          gramplet_title=_("Python Evaluation"),
          )
+
+register(GRAMPLET, 
+         id="Uncollected Objects", 
+         name=_("Uncollected Objects"), 
+         description = _("Gramplet showing uncollected objects"),
+         version="1.0.0",
+         gramps_target_version="4.1",
+         status = STABLE,
+         fname="leak.py",
+         height=200,
+         gramplet = 'Leak',
+         gramplet_title=_("Uncollected Objects"),
+         )
