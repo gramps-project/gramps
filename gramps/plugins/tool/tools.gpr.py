@@ -95,29 +95,6 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 
 #------------------------------------------------------------------------
 #
-# Interactive Descendant Browser
-#
-#------------------------------------------------------------------------
-
-register(TOOL, 
-id    = 'dbrowse',
-name  = _("Interactive Descendant Browser"),
-description =  _("Provides a browsable hierarchy based on the active person"),
-version = '1.0',
-gramps_target_version = '4.1',
-status = STABLE,
-fname = 'desbrowser.py',
-authors = ["Donald N. Allingham"],
-authors_email = ["don@gramps-project.org"],
-category = TOOL_ANAL,
-toolclass = 'DesBrowse',
-optionclass = 'DesBrowseOptions',
-tool_modes = [TOOL_MODE_GUI]
-  )
-
-
-#------------------------------------------------------------------------
-#
 # Compare Individual Events
 #
 #------------------------------------------------------------------------
