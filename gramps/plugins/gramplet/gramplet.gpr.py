@@ -1210,3 +1210,16 @@ register(GRAMPLET,
          gramplet = 'Leak',
          gramplet_title=_("Uncollected Objects"),
          )
+
+register(GRAMPLET, 
+         id="SoundEx Generator", 
+         name=_("SoundEx Generator"), 
+         description = _("Gramplet to generate SoundEx codes"),
+         version="1.0.0",
+         gramps_target_version="4.1",
+         status = STABLE,
+         fname="soundgen.py",
+         height=80,
+         gramplet = 'SoundGen',
+         gramplet_title=_("SoundEx"),
+         )

@@ -431,28 +431,6 @@ tool_modes = [TOOL_MODE_GUI]
 
 #------------------------------------------------------------------------
 #
-# Generate SoundEx Codes
-#
-#------------------------------------------------------------------------
-
-register(TOOL, 
-id    = 'soundgen',
-name  = _("Generate SoundEx Codes"),
-description =  _("Generates SoundEx codes for names"),
-version = '1.0',
-gramps_target_version = '4.1',
-status = STABLE,
-fname = 'soundgen.py',
-authors = ["Donald N. Allingham"],
-authors_email = ["don@gramps-project.org"],
-category = TOOL_UTILS,
-toolclass = 'SoundGen',
-optionclass = 'SoundGenOptions',
-tool_modes = [TOOL_MODE_GUI]
-  )
-
-#------------------------------------------------------------------------
-#
 # Verify the Data
 #
 #------------------------------------------------------------------------

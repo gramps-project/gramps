@@ -24,63 +24,72 @@
 
 """Tools/Utilities/Generate SoundEx Codes"""
 
+#-------------------------------------------------------------------------
+#
+# Gtk modules
+#
+#-------------------------------------------------------------------------
+from gi.repository import Gtk
+
 #------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.soundex import soundex
-from gramps.gui.display import display_help
-from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.autocomp import fill_combo
+from gramps.gen.plug import Gramplet
+from gramps.gen.constfunc import cuni
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gui.plug import tool
-from gramps.gui.glade import Glade
-from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
-# Constants
+# SoundGen
 #
 #-------------------------------------------------------------------------
-WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Generate_SoundEx_codes')
+class SoundGen(Gramplet):
+    """
+    Generates SoundEx codes.
+    """
+    def init(self):
+        self.gui.WIDGET = self.build_gui()
+        self.gui.get_container_widget().remove(self.gui.textview)
+        self.gui.get_container_widget().add_with_viewport(self.gui.WIDGET)
 
-#-------------------------------------------------------------------------
-#
-# SoundGen.py
-#
-#-------------------------------------------------------------------------
-
-class SoundGen(tool.Tool, ManagedWindow):
-
-    def __init__(self, dbstate, user, options_class, name, callback=None):
-        uistate = user.uistate
-        self.label = _('SoundEx code generator')
-        tool.Tool.__init__(self, dbstate, options_class, name)
-        ManagedWindow.__init__(self,uistate,[],self.__class__)
-
-        self.glade = Glade()
-        self.glade.connect_signals({
-            "destroy_passed_object" : self.close,
-            "on_help_clicked"       : self.on_help_clicked,
-            "on_delete_event"       : self.close,
-        })
-
-        window = self.glade.toplevel
-        self.set_window(window,self.glade.get_object('title'),self.label)
-
-        self.value = self.glade.get_object("value")
-        self.autocomp = self.glade.get_object("name_list")
+    def build_gui(self):
+        """
+        Build the GUI interface.
+        """
+        grid = Gtk.Grid()
+        grid.set_border_width(6)
+        grid.set_row_spacing(6)
+        grid.set_column_spacing(20)
+        label1 = Gtk.Label(_("Name:"))
+        label1.set_alignment(0, 0.5)
+        grid.attach(label1, 0, 0, 1, 1)
+        label2 = Gtk.Label(_("SoundEx code:"))
+        label2.set_alignment(0, 0.5)
+        grid.attach(label2, 0, 1, 1, 1)
+        self.autocomp = Gtk.ComboBox.new_with_entry()
+        grid.attach(self.autocomp, 1, 0, 1, 1)
+        self.value = Gtk.Label()
+        self.value.set_alignment(0, 0.5)
+        grid.attach(self.value, 1, 1, 1, 1)
         self.name = self.autocomp.get_child()
 
-        self.name.connect('changed',self.on_apply_clicked)
+        self.name.connect('changed', self.on_apply_clicked)
+
+        grid.show_all()
+        return grid
+
+    def db_changed(self):
+        if not self.dbstate.open:
+            return
 
         names = []
         person = None
-        for person in self.db.iter_people():
+        for person in self.dbstate.db.iter_people():
             lastname = person.get_primary_name().get_surname()
             if lastname not in names:
                 names.append(lastname)
@@ -99,15 +108,6 @@ class SoundGen(tool.Tool, ManagedWindow):
             self.value.set_text(se_text)
         else:
             self.name.set_text("")
-            
-        self.show()
-
-    def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
-        display_help(WIKI_HELP_PAGE , WIKI_HELP_SEC)
-
-    def build_menu_names(self, obj):
-        return (self.label,None)
 
     def on_apply_clicked(self, obj):
         try:
@@ -115,16 +115,3 @@ class SoundGen(tool.Tool, ManagedWindow):
         except UnicodeEncodeError:
             se_text = soundex('')
         self.value.set_text(se_text)
-
-#------------------------------------------------------------------------
-#
-# 
-#
-#------------------------------------------------------------------------
-class SoundGenOptions(tool.ToolOptions):
-    """
-    Defines options and provides handling interface.
-    """
-
-    def __init__(self, name,person_id=None):
-        tool.ToolOptions.__init__(self, name,person_id)
