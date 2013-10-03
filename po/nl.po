@@ -44,14 +44,14 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-04 10:54+0200\n"
-"PO-Revision-Date: 2013-09-11 22:02+0100\n"
-"Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
+"PO-Revision-Date: 2013-09-26 18:06+0100\n"
+"Last-Translator: Harmen Huizinga\n"
 "Language-Team: nederlands <frederik.de.richter@gmail.com>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.5.4\n"
+"X-Generator: Poedit 1.5.7\n"
 
 #: ../gramps/cli/arghandler.py:225
 #, python-format
@@ -261,7 +261,6 @@ msgid "Unknown action: %s."
 msgstr "Onbekende actie: %s."
 
 #: ../gramps/cli/argparser.py:56
-#, fuzzy
 msgid ""
 "\n"
 "Usage: gramps.py [OPTION...]\n"
@@ -311,13 +310,18 @@ msgstr ""
 "  -f, --format=FORMAAT                    een bestandsformaat opgeven\n"
 "  -a, --action=ACTIE                    actie opgeven\n"
 "  -p, --options=OPTIETEKST           opties opgeven\n"
-"  -d, --debug=LOG_NAAM                foutmeldingen rapportage activeren\n"
+"  -d, --debug=LOG_NAAM                foutmeldingenrapportage activeren\n"
 "  -l                                     Lijst van stambomen\n"
 "  -L                                     Lijst van stambomen met details\n"
+"  -t                                     Lijst van stambomen, tabgescheiden\n"
 "  -u, --force-unlock                     ontgrendelen van stamboom forceren\n"
 "  -s, --show                        instellingen tonen\n"
 "  -c, --config=[config.setting[:waarde]]  instellingen vastleggen en Gramps "
 "starten\n"
+"  -y, --yes                              niet om bevestiging vragen bij het "
+"uitvoeren van gevaarlijke acties (alleen in tekstmodus)\n"
+"  -q, --quiet                            weergave voortgangsindicator "
+"onderdrukken (alleen in tekstmodus)\n"
 "  -v, --version                          versies tonen\n"
 
 #: ../gramps/cli/argparser.py:84
@@ -2059,9 +2063,8 @@ msgstr ""
 "deeltekenreeks overeenkomen"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Events having notes containing <text>"
-msgstr "Gebeurtenissen waarvan de notities <deeltekenreeks> bevatten"
+msgstr "Gebeurtenissen die notities met <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/event/_hasnoteregexp.py:44
 msgid "Matches events whose notes contain text matching a regular expression"
@@ -2131,9 +2134,8 @@ msgid "Place filter name:"
 msgstr "Locatiefilternaam:"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:52
-#, fuzzy
 msgid "Events of places matching the <place filter>"
-msgstr "Persoonsgebeurtenissen uit <personenfilter>"
+msgstr "Plaatsgebeurtenissen die overeenkomen met <plaatsfilter>"
 
 # opgegeven ipv gespecificeerde?
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:53
@@ -2239,9 +2241,8 @@ msgid "Matches families that are indicated as private"
 msgstr "Vindt gezinnen die als privé gemerkt zijn"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:48
-#, fuzzy
 msgid "Families having father with Id containing <text>"
-msgstr "Gezinnen waarvan notities <deeltekenreeks> bevatten"
+msgstr "Gezinnen waarvan de vader met Id <tekst> bevat"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../gramps/gen/filters/rules/family/_fatherhasidof.py:49
@@ -2353,9 +2354,8 @@ msgstr ""
 "overeenkomt"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Families having notes containing <text>"
-msgstr "Gezinnen waarvan notities <deeltekenreeks> bevatten"
+msgstr "Gezinnen die notities met <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:44
 msgid "Matches families whose notes contain text matching a regular expression"
@@ -2454,9 +2454,8 @@ msgstr ""
 "zoeken"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:48
-#, fuzzy
 msgid "Families having mother with Id containing <text>"
-msgstr "Gezinnen waarvan notities <deeltekenreeks> bevatten"
+msgstr "Gezinnen waarvan de moeder met Id <tekst> bevat"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:49
@@ -2505,9 +2504,8 @@ msgstr ""
 "reguliere expressie"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
-#, fuzzy
 msgid "Families with Id containing <text>"
-msgstr "Gezinnen met <gebeurtenis>"
+msgstr "Gezinnen met Id die <tekst> bevat"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:50
 msgid "Matches families whose Gramps ID matches the regular expression"
@@ -2628,9 +2626,8 @@ msgstr ""
 "deeltekenreeks overeenkomen"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Media objects having notes containing <text>"
-msgstr "Media-objecten met notities die <deeltekenreeks> bevatten"
+msgstr "Media-objecten met notities die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:44
 msgid ""
@@ -2698,9 +2695,8 @@ msgid "Matches Media objects that are indicated as private"
 msgstr "Vindt media-objecten die aangegeven zijn als privé"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:49
-#, fuzzy
 msgid "Media objects with Id containing <text>"
-msgstr "Media-objecten met <tag>"
+msgstr "Media-objecten met Id die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:50
 msgid "Matches media objects whose Gramps ID matches the regular expression"
@@ -3171,9 +3167,8 @@ msgstr ""
 "deeltekenreeks overeenkomen"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:43
-#, fuzzy
 msgid "People having notes containing <text>"
-msgstr "Personen met notities, welke een <deeltekenreeks> bevatten"
+msgstr "Personen met notities die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:44
 msgid "Matches people whose notes contain text matching a regular expression"
@@ -3675,9 +3670,8 @@ msgstr ""
 "Vindt personen waarvan de Gramps ID voldoet aan een reguliere uitdrukking"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:48
-#, fuzzy
 msgid "People with a name matching <text>"
-msgstr "Personen met de type <naamoorsprong>"
+msgstr "Personen met een naam die overeenkomst met <tekst>"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:49
 #, fuzzy
@@ -3798,9 +3792,8 @@ msgstr ""
 "overeenkomen"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Places having notes containing <text>"
-msgstr "Locaties waarvan de notities <deeltekenreeks> bevatten"
+msgstr "Locaties met notities die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:44
 msgid "Matches places whose notes contain text matching a regular expression"
@@ -4000,9 +3993,8 @@ msgstr ""
 "deeltekenreeks overeenkomen"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Repositories having notes containing <text>"
-msgstr "Bibliotheken met notities die <substring> bevatten"
+msgstr "Bibliotheken met notities die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:44
 msgid ""
@@ -4045,18 +4037,16 @@ msgid "Matches repositories matched by the specified filter name"
 msgstr "Vindt bibliotheken met een opgegeven filter"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:45
-#, fuzzy
 msgid "Repositories with name containing <text>"
-msgstr "Bibliotheeknaam die <deeltekenreeks> bevatten"
+msgstr "Bibliotheeknaam die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:46
 msgid "Matches repositories whose name contains a certain substring"
 msgstr "Bibliotheken zoeken waarvan de naam een bepaalde deeltekenreeks bevat"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
-#, fuzzy
 msgid "Repositories with Id containing <text>"
-msgstr "Bibliotheken met notities die <substring> bevatten"
+msgstr "Bibliotheken met Id die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:50
 msgid "Matches repositories whose Gramps ID matches the regular expression"
@@ -4129,9 +4119,8 @@ msgstr ""
 "overeenkomen"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Sources having notes containing <text>"
-msgstr "Bronnen met notities die <deeltekenreeks> bevatten"
+msgstr "Bronnen met notities die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:44
 msgid "Matches sources whose notes contain text matching a regular expression"
@@ -4194,9 +4183,8 @@ msgstr ""
 "een bepaalde bibliotheekfilter"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:45
-#, fuzzy
 msgid "Sources with title containing <text>"
-msgstr "Bronnentitle die <deeltekenreeks> bevatten"
+msgstr "Bronnen met titel die <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:46
 msgid "Matches sources whose title contains a certain substring"
@@ -13448,6 +13436,13 @@ msgid ""
 "See the Gramps README documentation for installation prerequisites,\n"
 "typically located in /usr/share/doc/gramps."
 msgstr ""
+"GTK-vertalingen voor de huidige taal (%s) ontbreken.\n"
+"<b>Gramps</b> zal echter verdergaan.\n"
+"De grafische weergave zal waarschijnlijk gebreken vertonen, met name\n"
+"bij talen die van rechts naar links worden geschreven!\n"
+"\n"
+"Zie de Gramps README-documentatie voor de installatievereisten.\n"
+"Deze is normaliter te vinden in /usr/share/doc/gramps."
 
 #: ../gramps/gui/grampsgui.py:305
 msgid "Error parsing arguments"
@@ -29177,7 +29172,7 @@ msgstr "De secundaire indexen worden opnieuw gebouwd"
 
 #: ../gramps/plugins/tool/tools.gpr.py:374
 msgid "Rebuild Reference Maps"
-msgstr "Opnieuw opbouwen van referentiestructuur"
+msgstr "Referentiestructuur opnieuw opbouwen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:375
 msgid "Rebuilds reference maps"
@@ -29193,7 +29188,7 @@ msgstr "Staistieken voor het raden van het geslacht opnieuw opbouwen..."
 
 #: ../gramps/plugins/tool/tools.gpr.py:418
 msgid "Relationship Calculator"
-msgstr "Berekening van de verwantschap"
+msgstr "Verwantschap berekenen"
 
 #: ../gramps/plugins/tool/tools.gpr.py:419
 msgid "Calculates the relationship between two people"
@@ -29227,7 +29222,7 @@ msgstr "SoundEx-codes voor namen aanamken"
 
 #: ../gramps/plugins/tool/tools.gpr.py:529
 msgid "Verify the Data"
-msgstr "De gegevens controleren"
+msgstr "Gegevens controleren"
 
 #: ../gramps/plugins/tool/tools.gpr.py:530
 msgid "Verifies the data against user-defined tests"
