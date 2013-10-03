@@ -1618,6 +1618,8 @@ class Date(object):
 
                     for adjusted,original in d,m,y:
                         if adjusted != original and not(original == 0 and adjusted == 1):
+                            log.debug("Sanity check failed - self: {}, sanity: {}".format(
+                                self.to_struct(), sanity.to_struct()))
                             raise DateError("Invalid day/month/year {} passed in value {}".
                                     format(original, value))
 
