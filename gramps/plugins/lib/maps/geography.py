@@ -881,7 +881,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                     else:
                         gids = gids + ", " + plce.gramps_id
             if nb_places > 1:
-                from QuestionDialog import WarningDialog
+                from gramps.gui.dialog import WarningDialog
                 WarningDialog(
                       _('You have at least two places with the same title.'),
                       _("The title of the places is :\n"
