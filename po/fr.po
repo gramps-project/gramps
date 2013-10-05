@@ -15304,8 +15304,8 @@ msgstr ""
 "\n"
 " Le fichier importé n'est pas auto-suffisant.\n"
 "Pour corriger cela, %d objets ont été créés et\n"
-"le type d'attribute a été défini comme 'Inconnu'.\n"
-"Où ces objets 'Inconnu' ont été référencés\n"
+"le type d'attribut a été défini comme 'Inconnu'.\n"
+"Ces objets 'Inconnu' ont été référencés\n"
 "par la note %s.\n"
 
 #. message means that the element %s was ignored, but
