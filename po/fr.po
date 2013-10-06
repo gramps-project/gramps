@@ -20539,9 +20539,8 @@ msgstr ""
 " Le fichier importé n'est pas auto-suffisant.\n"
 "Pour corriger cela, %(new)d objets ont été créés et\n"
 "le type d'attribut a été défini comme 'Inconnu'.\n"
-"Cette catégorie n'est pas uniforme à cause\n"
-"du nombre de parenthèses. Où ces objets\n"
-"'Inconnu' ont été référencés par la note %(unknown)s.\n"
+"Ces objets 'Inconnu' ont été référencés\n"
+"par la note %(unknown)s.\n"
 
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
