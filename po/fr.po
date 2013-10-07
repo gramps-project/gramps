@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-01 10:35+0200\n"
-"PO-Revision-Date: 2013-10-01 10:52+0100\n"
+"POT-Creation-Date: 2013-10-07 11:14+0200\n"
+"PO-Revision-Date: 2013-10-07 11:20+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -31601,6 +31601,14 @@ msgstr "<b>Le droit d'utilisation du programme Gramps</b><br/>Gramps est libreme
 #: ../data/tips.xml.in.h:63
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de GNU/Linux Gramps fonctionne de la même façon quelque soit l'environnement de bureau. Tant que vous avez les bibliothèques GTK installées il fonctionnera bien."
+
+#: ../data/gramps.appdata.xml.in.h:1
+msgid "Gramps is a free software project and community. We strive to produce a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists."
+msgstr "Gramps est un projet de logiciel libre et une communauté. On essaye de fournir un programme de généalogie intuitif pour le loisir mais également très poussé pour les généalogistes professionels."
+
+#: ../data/gramps.appdata.xml.in.h:2
+msgid "It is a community project, created, developed and governed by genealogists."
+msgstr "C'est un projet communautaire, créé, développé et dirigé par des généalogistes."
 
 #~ msgid "Suppress warning when OsmGpsMap not installed."
 #~ msgstr "Supprimer l'avertissement quand OsmGpsMap n'est pas installé."
