@@ -173,7 +173,7 @@ def gramps_upgrade_17(self):
     # Modify Media
     # ---------------------------------
     # Add new checksum field.
-    base_path = self.metadata[b'mediapath']
+    base_path = self.metadata.get(b'mediapath', '')
     for handle in self.media_map.keys():
         media = self.media_map[handle]
         new_media = list(media)
