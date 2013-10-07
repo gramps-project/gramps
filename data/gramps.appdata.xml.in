@@ -7,10 +7,10 @@
 Gramps is a free software project and community.
 We strive to produce a genealogy program that is both intuitive for hobbyists
 and feature-complete for professional genealogists.
-</p>
+</_p>
 <_p>
 It is a community project, created, developed and governed by genealogists.
-</p>
+</_p>
 <!-- FIXME: Probably needs another paragraph or two -->
 </description>
 <url type="homepage">http://gramps-project.org/</url>

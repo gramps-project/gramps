@@ -227,7 +227,7 @@ def HolidaysParse(filename, mark):
 
 def XmlParse(filename, mark):
     """
-    Experimental alternative to 'intltool-extract' for 'gramps.xml'.
+    Experimental alternative to 'intltool-extract' for 'file.xml.in'.
     """
     
     from xml.etree import ElementTree
@@ -252,17 +252,27 @@ def XmlParse(filename, mark):
     
     msgid "Gramps database"
     msgid "GEDCOM"
+    
+    <_p> Gramps is a free software project and community.
+    We strive to produce a genealogy program that is both intuitive for hobbyists
+    and feature-complete for professional genealogists.
+    </p>
     '''
     
-    mime = open('../data/gramps.xml.in.h', 'w')
+    mime = open(filename + '.h', 'w')
     
     for key in root.iter():
         if key.tag == '{http://www.freedesktop.org/standards/shared-mime-info}%s' % mark:
             comment = 'char *s = N_("%s");\n' % key.text
             mime.write(comment)
+            
+    if root.tag == 'application':
+        for key in root.iter():
+            comment = 'char *s = N_("%s");\n' % key.text
+            mime.write(comment)
     
     mime.close()
-    print ('Wrote ../data/gramps.xml.in.h')
+    print ('Wrote %s' % filename)
     root.clear()
 
         
@@ -532,6 +542,8 @@ def headers():
         headers.append('''../data/gramps.desktop.in.h''')
     if os.path.isfile('''../data/gramps.keys.in.h'''):
         headers.append('''../data/gramps.keys.in.h''')
+    if os.path.isfile('''../data/gramps.appdata.xml.in.h'''):
+        headers.append('''../data/gramps.appdata.xml.in.h''')
     if os.path.isfile('''gtklist.h'''):
         headers.append('''gtklist.h''')
     
@@ -546,6 +558,7 @@ def extract_xml():
     HolidaysParse('../gramps/plugins/lib/holidays.xml.in', '_name')
     TipsParse('../data/tips.xml.in', '_tip')
     XmlParse('../data/gramps.xml.in', '_comment')
+    XmlParse('../data/gramps.appdata.xml.in', '_p')
     DesktopParse('../data/gramps.desktop.in')
     KeyParse('../data/gramps.keys.in', '_description')
     
