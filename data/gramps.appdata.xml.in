@@ -3,13 +3,11 @@
 <id type="desktop">gramps.desktop</id>
 <licence>CC0</licence>
 <description>
-<_p>
-Gramps is a free software project and community.
+<_p>Gramps is a free software project and community.
 We strive to produce a genealogy program that is both intuitive for hobbyists
 and feature-complete for professional genealogists.
 </_p>
-<_p>
-It is a community project, created, developed and governed by genealogists.
+<_p>It is a community project, created, developed and governed by genealogists.
 </_p>
 <!-- FIXME: Probably needs another paragraph or two -->
 </description>
