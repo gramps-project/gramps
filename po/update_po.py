@@ -259,19 +259,20 @@ def XmlParse(filename, mark):
     </p>
     '''
     
-    mime = open(filename + '.h', 'w')
+    head = open(filename + '.h', 'w')
     
     for key in root.iter():
         if key.tag == '{http://www.freedesktop.org/standards/shared-mime-info}%s' % mark:
             comment = 'char *s = N_("%s");\n' % key.text
-            mime.write(comment)
+            head.write(comment)
             
     if root.tag == 'application':
         for key in root.iter():
-            comment = 'char *s = N_("%s");\n' % key.text
-            mime.write(comment)
+            if key.tag == mark:
+                comment = 'char *s = N_("%s");\n' % key.text
+                head.write(comment)
     
-    mime.close()
+    head.close()
     print ('Wrote %s' % filename)
     root.clear()
 
