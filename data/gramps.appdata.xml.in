@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<application>
+<id type="desktop">gramps.desktop</id>
+<licence>CC0</licence>
+<description>
+<_p>
+Gramps is a free software project and community.
+We strive to produce a genealogy program that is both intuitive for hobbyists
+and feature-complete for professional genealogists.
+</p>
+<_p>
+It is a community project, created, developed and governed by genealogists.
+</p>
+<!-- FIXME: Probably needs another paragraph or two -->
+</description>
+<url type="homepage">http://gramps-project.org/</url>
+<screenshots>
+<!-- FIXME: Needs an official up to date screenshot -->
+<screenshot type="default">http://www.gramps-project.org/wiki/images/thumb/f/fe/Mainwin.png/800px-Mainwin.png</screenshot>
+</screenshots>
+<!-- FIXME: change this to an upstream email address for spec updates
+<updatecontact>someone_who_cares@upstream_project.org</updatecontact>
+ -->
+</application>

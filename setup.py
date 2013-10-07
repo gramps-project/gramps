@@ -186,7 +186,8 @@ def build_intl(build_cmd):
 
     merge_files = (('data/gramps.desktop', 'share/applications', '-d'),
                     ('data/gramps.keys', 'share/mime-info', '-k'),
-                    ('data/gramps.xml', 'share/mime/packages', '-x'))
+                    ('data/gramps.xml', 'share/mime/packages', '-x'),
+                    ('data/gramps.appdata.xml', 'share/appdata', '-x'))
 
     for filename, target, option in merge_files:
         filenamelocal = convert_path(filename)
