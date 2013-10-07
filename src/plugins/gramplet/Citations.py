@@ -40,7 +40,7 @@ class Citations(Gramplet, DbGUIElement):
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
-        self.gui.get_container_widget().add_with_viewport(self.gui.WIDGET)
+        self.gui.get_container_widget().add(self.gui.WIDGET)
         self.gui.WIDGET.show()
 
     def _connect_db_signals(self):
