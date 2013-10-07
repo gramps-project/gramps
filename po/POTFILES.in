@@ -721,3 +721,4 @@ data/gramps.desktop.in
 data/gramps.keys.in
 data/gramps.xml.in
 data/tips.xml.in
+data/gramps.appdata.xml.in
