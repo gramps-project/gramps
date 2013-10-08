@@ -131,6 +131,7 @@ class PersonDetails(Gramplet):
         Display empty details when no person is selected.
         """
         self.photo.set_image(None)
+        self.photo.set_uistate(None, None)
         self.name.set_text(_('No active person'))
         self.clear_table()
 
@@ -245,7 +246,10 @@ class PersonDetails(Gramplet):
             if mime_type and mime_type.startswith("image"):
                 self.photo.set_image(full_path, mime_type,
                                      media_ref.get_rectangle())
+                self.photo.set_uistate(self.uistate, object_handle)
             else:
                 self.photo.set_image(None)
+                self.photo.set_uistate(None, None)
         else:
             self.photo.set_image(None)
+            self.photo.set_uistate(None, None)
