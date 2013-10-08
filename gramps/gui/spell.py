@@ -117,6 +117,13 @@ class Spell(object):
                     elif Gtkspell._namespace == "GtkSpell":
                         self.gtkspell_spell = Gtkspell.Checker.new()
                     success = self.gtkspell_spell.attach(self.textview)
+                    try:
+                        #show decoded language codes in the context menu
+                        #requires the iso-codes package from  http://pkg-isocodes.alioth.debian.org
+                        self.gtkspell_spell.set_property("decode-language-codes", True)
+                    except TypeError:
+                        #available in GtkSpell since version 3.0.3 (2013-06-04)
+                        pass
                     self._active_spellcheck = spellcheck_code
                 except:
                     # attaching the spellchecker will fail if
