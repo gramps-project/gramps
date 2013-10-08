@@ -360,6 +360,9 @@ def suite():
              ("1706-12-31 (Julian)", "1707-01-01 (Swedish)", True),  
              ("1712-02-28 (Julian)", "1712-02-29 (Swedish)", True),  
              ("1712-02-29 (Julian)", "1712-02-30 (Swedish)", True),  
+             # See bug# 7100
+             ("1233-12-01", "1234-12-01 (Mar25)", True),  
+             ("1234-01-04", "1234-01-04 (Mar25)", True),  
              ]
     suite = unittest.TestSuite()            
     count = 1
