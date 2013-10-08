@@ -162,6 +162,12 @@ class DateHandlerTest(unittest.TestCase):
             d.set(Date.QUAL_NONE,Date.MOD_NONE, Date.CAL_GREGORIAN,
                   (4, 77, 1789, False), "Text comment")
 
+    def test_invalid_month_with_ny(self):
+        d = Date()
+        with self.assertRaises(DateError):
+            d.set(Date.QUAL_NONE,Date.MOD_NONE, Date.CAL_GREGORIAN,
+                  (4, 77, 1789, False), "Text comment", newyear=2)
+
     def test_invalid_span_day(self):
         d = Date()
         with self.assertRaises(DateError):
