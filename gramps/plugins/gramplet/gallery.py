@@ -64,6 +64,7 @@ class Gallery(Gramplet):
             if mime_type and mime_type.startswith("image"):
                 photo = Photo(self.uistate.screen_height() < 1000)
                 photo.set_image(full_path, mime_type, media_ref.get_rectangle())
+                photo.set_uistate(self.uistate, media_handle)
                 self.image_list.append(photo)
                 self.top.pack_start(photo, False, False, 0)
                 self.top.show_all()

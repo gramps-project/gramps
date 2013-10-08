@@ -34,7 +34,8 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from ..thumbnails import get_thumbnail_image, SIZE_NORMAL, SIZE_LARGE
-from ..utils import open_file_with_default_application
+from ..utils import is_right_click, open_file_with_default_application
+from ..widgets.menuitem import add_menuitem
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -50,9 +51,11 @@ class Photo(Gtk.EventBox):
     def __init__(self, use_small_size=False):
         GObject.GObject.__init__(self)
         self.full_path = None
+        self.uistate = None
+        self.handle = None
         self.photo = Gtk.Image()
         self.add(self.photo)
-        self.connect('button-press-event', self.display_image)
+        self.connect('button-press-event', self.handle_button_press)
         tip = _('Double-click on the picture to view it in the default image '
                 'viewer application.')
         self.set_tooltip_text(tip)
@@ -73,9 +76,27 @@ class Photo(Gtk.EventBox):
         else:
             self.photo.hide()
 
-    def display_image(self, widget, event):
+    def handle_button_press(self, widget, event):
         """
         Display the image with the default external viewer.
         """
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
             open_file_with_default_application(self.full_path)
+            return True
+        elif is_right_click(event):
+            if self.handle and self.uistate:
+                self.menu = Gtk.Menu()
+                self.menu.set_title(_("Media Object"))
+                add_menuitem(self.menu, _("Make Active Media"), widget, 
+                    lambda obj: self.uistate.set_active(self.handle, "Media"))
+                self.menu.popup(None, None, None, None, event.button, event.time)
+                return True
+        return False
+
+    def set_uistate(self, uistate, handle):
+        """
+        Set uistate and media handle so that Photo can be handled by
+        UI.
+        """
+        self.uistate = uistate
+        self.handle = handle
