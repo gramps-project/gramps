@@ -1574,6 +1574,7 @@ class Date(object):
             self.recalc_sort_value()
 
         ny = self.get_new_year() 
+        year_delta = 0
         if ny: # new year offset?
             if ny == Date.NEWYEAR_MAR1:
                 split = (3, 1)
@@ -1585,26 +1586,19 @@ class Date(object):
                 split = ny
             else:
                 split = (0, 0)
-            if (self.get_month(), self.get_day()) >= split:
-                d1 = Date(self.get_year(), 1, 1)
+            if (self.get_month(), self.get_day()) >= split and split != (0, 0):
+                year_delta = -1
+                d1 = Date(self.get_year() + year_delta, self.get_month(), self.get_day())
                 d1.set_calendar(self.calendar)
-                d1_val = d1.sortval
-                d2 = Date(self.get_year(), split[0], split[1])
-                d2.set_calendar(self.calendar)
-                d2_val = d2.sortval
-                self.sortval -= (d2_val - d1_val)
-            else:
-                d1 = Date(self.get_year(), 12, 31)
-                d1.set_calendar(self.calendar)
-                d1_val = d1.sortval
-                d2 = Date(self.get_year(), split[0], split[1])
-                d2.set_calendar(self.calendar)
-                d2_val = d2.sortval
-                self.sortval += (d1_val - d2_val) + 1
-        
+                self.sortval = d1.sortval
+
+        if text:
+            self.text = text
+
         if modifier != Date.MOD_TEXTONLY:
             sanity = Date(self)
             sanity.convert_calendar(self.calendar, known_valid = False)
+
             # We don't do the roundtrip conversion on self, becaue
             # it would remove uncertainty on day/month expressed with zeros
 
@@ -1616,15 +1610,23 @@ class Date(object):
                 for d,m,y,sl in zip(*[iter(zl)]*4):
                     # each of d,m,y,sl is a pair from dateval and value, to compare
 
-                    for adjusted,original in d,m,y:
+                    for adjusted,original in d,m:
                         if adjusted != original and not(original == 0 and adjusted == 1):
-                            raise DateError("Invalid day/month/year {} passed in value {}".
+                            log.debug("Sanity check failed - self: {}, sanity: {}".format(
+                                self.to_struct(), sanity.to_struct()))
+                            raise DateError("Invalid day/month {} passed in value {}".
                                     format(original, value))
+
+                    adjusted,original = y
+                    adjusted -= year_delta
+                    if adjusted != original and not(original == 0 and adjusted == 1):
+                        log.debug("Sanity check failed - self: {}, sanity: {}".format(
+                            self.to_struct(), sanity.to_struct()))
+                        raise DateError("Invalid year {} passed in value {}".
+                                format(original, value))
 
                     # ignore slash difference
 
-        if text:
-            self.text = text
 
     def recalc_sort_value(self):
         """
