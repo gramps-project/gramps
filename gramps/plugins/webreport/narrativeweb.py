@@ -7588,7 +7588,6 @@ class NavWebReport(Report):
                 for person_handle in ind_list:
                     step()
                     person = self.database.get_person_from_handle(person_handle)
-                    self.write_gendex(fp_gendex, person)
                     if self.archive:
                         self.write_gendex(gendex_io, person)
                     else:
