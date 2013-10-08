@@ -162,6 +162,14 @@ class GalleryTab(ButtonTab, DbGUIElement):
             item.show()
             self.menu.append(item)
         
+            item = gtk.MenuItem(_('Make Active Media'))
+            item.connect('activate', lambda obj: self.uistate.set_active(ref_obj.handle, "Media"))
+            item.show()
+            menu.append(item)
+            item = gtk.SeparatorMenuItem()
+            item.show()
+            menu.append(item)
+        
         for (needs_write_access, image, title, func) in itemlist:
             if image:
                 item = Gtk.ImageMenuItem.new_from_stock(title, None)
