@@ -578,7 +578,8 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_primary_tag("citation", citation, index)
         self.write_date(citation.get_date_object(), index+1)
         self.write_line("page", citation.get_page(), index+1)
-        self.write_line("confidence", citation.get_confidence_level(), index+1)
+        self.write_line_always("confidence",
+                               citation.get_confidence_level(), index+1)
         self.write_note_list(citation.get_note_list(), index+1)
         self.write_media_list(citation.get_media_list(), index+1)
         self.write_data_map(citation.get_data_map())
@@ -828,12 +829,17 @@ class GrampsXmlWriter(UpdateCallback):
 
     def write_line_nofix(self,tagname,value,indent=1):
         """Writes a line, but does not escape characters. 
-            Use this instead of write_line is the value is already fixed,
+            Use this instead of write_line if the value is already fixed,
             this avoids &amp; becoming &amp;amp;
         """
         if value:
             self.g.write('%s<%s>%s</%s>\n' %
                          ('  '*indent, tagname, value, tagname))
+
+    def write_line_always(self,tagname,value,indent=1):
+        """Writes a line, always, even with a zero value."""
+        self.g.write('%s<%s>%s</%s>\n' %
+                     ('  '*indent,tagname,self.fix(value),tagname))
 
     def get_iso_date(self,date):
         if date[2] == 0:
