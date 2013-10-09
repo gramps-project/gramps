@@ -31878,35 +31878,6 @@ msgstr "more than one"
 msgid "alternative month names for December||"
 msgstr "more than one"
 
-#. Must appear in the order indexed by Date.CAL_... numeric constants
-#: ../gramps/gen/datehandler/_datestrings.py:118 ../gramps/gen/lib/date.py:588
-msgid "calendar|Gregorian"
-msgstr "Grégorien"
-
-#: ../gramps/gen/datehandler/_datestrings.py:119 ../gramps/gen/lib/date.py:589
-msgid "calendar|Julian"
-msgstr "Julien"
-
-#: ../gramps/gen/datehandler/_datestrings.py:120 ../gramps/gen/lib/date.py:590
-msgid "calendar|Hebrew"
-msgstr "Hébreu"
-
-#: ../gramps/gen/datehandler/_datestrings.py:121 ../gramps/gen/lib/date.py:591
-msgid "calendar|French Republican"
-msgstr "Républicain (France)"
-
-#: ../gramps/gen/datehandler/_datestrings.py:122 ../gramps/gen/lib/date.py:592
-msgid "calendar|Persian"
-msgstr "Persan"
-
-#: ../gramps/gen/datehandler/_datestrings.py:123 ../gramps/gen/lib/date.py:593
-msgid "calendar|Islamic"
-msgstr "Islamique"
-
-#: ../gramps/gen/datehandler/_datestrings.py:124 ../gramps/gen/lib/date.py:594
-msgid "calendar|Swedish"
-msgstr "Suédois"
-
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
