@@ -9,14 +9,13 @@ and feature-complete for professional genealogists.
 </_p>
 <_p>It is a community project, created, developed and governed by genealogists.
 </_p>
-<!-- FIXME: Probably needs another paragraph or two -->
 </description>
 <url type="homepage">http://gramps-project.org/</url>
-<screenshots>
-<!-- FIXME: Needs an official up to date screenshot -->
-<screenshot type="default">http://www.gramps-project.org/wiki/images/thumb/f/fe/Mainwin.png/800px-Mainwin.png</screenshot>
+<screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/5/5f/AppData1.png</screenshot>
+<screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/6/68/AppData2.png</screenshot>
+<screenshot type="default" width="1226" height="740">http://www.gramps-project.org/wiki/images/e/e9/AppData3.png</screenshot>
+<screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/6/68/AppData4.png</screenshot>
+<screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/5/50/AppData5.png</screenshot>
 </screenshots>
-<!-- FIXME: change this to an upstream email address for spec updates
-<updatecontact>someone_who_cares@upstream_project.org</updatecontact>
- -->
+
 </application>

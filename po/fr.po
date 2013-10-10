@@ -31604,7 +31604,7 @@ msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de GNU/Linu
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid "Gramps is a free software project and community. We strive to produce a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists."
-msgstr "Gramps est un projet de logiciel libre et une communauté. On essaye de fournir un programme de généalogie intuitif pour le loisir mais également très poussé pour les généalogistes professionels."
+msgstr "Gramps est un projet de logiciel libre et une communauté. On essaye de fournir un programme de généalogie intuitif pour le loisir mais également très poussé pour les généalogistes professionnels."
 
 #: ../data/gramps.appdata.xml.in.h:2
 msgid "It is a community project, created, developed and governed by genealogists."
