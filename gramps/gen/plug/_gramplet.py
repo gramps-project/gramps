@@ -322,7 +322,7 @@ class Gramplet(object):
             return retval
         except bsddb.db.DBCursorClosedError:
             # not sure why---caused by Data Entry Gramplet
-            LOG.error("bsddb.db.DBCursorClosedError in: %s" % self.gui.title)
+            LOG.warn("bsddb.db.DBCursorClosedError in: %s" % self.gui.title)
             return False
         except StopIteration:
             self._idle_id = 0
@@ -331,7 +331,7 @@ class Gramplet(object):
             return False
         except Exception as e:
             import traceback
-            LOG.error("Gramplet gave an error: %s" % self.gui.title)
+            LOG.warn("Gramplet gave an error: %s" % self.gui.title)
             traceback.print_exc()
             print("Continuing after gramplet error...")
             self._idle_id = 0
