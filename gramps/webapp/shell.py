@@ -67,12 +67,14 @@ except RuntimeError:
 from gramps.webapp.grampsdb.models import *
 from gramps.webapp.grampsdb.forms import *
 from gramps.webapp.dbdjango import DbDjango
-from gramps.webapp.reports import import_file
+from gramps.webapp.reports import import_file, export_file
 from gramps.webapp.libdjango import DjangoInterface, totime, todate
 from gramps.gen.datehandler import displayer, parser
 from gramps.webapp.utils import StyledNoteFormatter, parse_styled_text
 from gramps.gen.lib import StyledText
-#from gramps.cli.user import User
+from gramps.cli.user import User as GUser # gramps user
+
+from django.db.models import Q
 
 db = DbDjango()
 dji = DjangoInterface()
@@ -81,7 +83,7 @@ dp = parser.parse
 
 #import_file(db, 
 #            "/home/dblank/gramps/trunk/example/gramps/data.gramps", 
-#            User())
+#            GUser())
 
 #snf = StyledNoteFormatter(db)
 #for n in Note.objects.all():

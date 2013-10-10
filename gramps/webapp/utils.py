@@ -55,6 +55,7 @@ import gramps.webapp.grampsdb.forms as forms
 from gramps.webapp import libdjango
 from gramps.webapp.dbdjango import DbDjango
 from gramps.gen.constfunc import cuni
+from gramps.cli.user import User as GUser # gramps user
 
 #------------------------------------------------------------------------
 #
@@ -130,9 +131,9 @@ dd = displayer.display
 dp = parser.parse
 db = DbDjango()
 
-def register_plugins():
+def register_plugins(user):
     dbstate = DbState()
-    climanager = CLIManager(dbstate, False) # don't load db
+    climanager = CLIManager(dbstate, setloader=False, user=user) # don't load db
     climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()
     return pmgr
@@ -1487,7 +1488,7 @@ def update_last_changed(obj, user):
     obj.last_changed = datetime.datetime.now()
     obj.last_changed_by = user
 
-register_plugins()
+register_plugins(GUser())
 
 # works after registering plugins:
 from gramps.plugins.docgen.htmldoc import HtmlDoc 
