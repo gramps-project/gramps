@@ -77,13 +77,14 @@ class Descendant(Gramplet):
         """
         Return True if the gramplet has data, else return False.
         """
-        if active_handle is None:
-            return False
-        person = self.dbstate.db.get_person_from_handle(active_handle)
-        for family_handle in person.get_family_handle_list():
-            family = self.dbstate.db.get_family_from_handle(family_handle)
-            for child_ref in family.get_child_ref_list():
-                return True
+        if active_handle:
+            person = self.dbstate.db.get_person_from_handle(active_handle)
+            if person:
+                for family_handle in person.get_family_handle_list():
+                    family = self.dbstate.db.get_family_from_handle(family_handle)
+                    if family:
+                        for child_ref in family.get_child_ref_list():
+                            return True
         return False
         
     def cb_double_click(self, treeview):

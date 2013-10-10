@@ -77,14 +77,14 @@ class Ancestor(Gramplet):
         """
         Return True if the gramplet has data, else return False.
         """
-        if active_handle is None:
-            return False
-        person = self.dbstate.db.get_person_from_handle(active_handle)
-        family_handle = person.get_main_parents_family_handle()
-        family = self.dbstate.db.get_family_from_handle(family_handle)
-        if family and (family.get_father_handle() or 
-                       family.get_mother_handle()):
-                return True
+        if active_handle:
+            person = self.dbstate.db.get_person_from_handle(active_handle)
+            if person:
+                family_handle = person.get_main_parents_family_handle()
+                family = self.dbstate.db.get_family_from_handle(family_handle)
+                if family and (family.get_father_handle() or 
+                               family.get_mother_handle()):
+                    return True
         return False
         
     def cb_double_click(self, treeview):
