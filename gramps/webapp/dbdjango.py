@@ -656,6 +656,15 @@ class DbDjango(DbWriteBase, DbReadBase):
         else:
             return [item.handle for item in self.dji.Note.all()]
 
+    def get_media_from_handle(self, handle):
+        if handle in self.import_cache:
+            return self.import_cache[handle]
+        try:
+            media = self.dji.Media.get(handle=handle)
+        except:
+            return None
+        return self.make_media(media)
+
     def get_event_from_handle(self, handle):
         if handle in self.import_cache:
             return self.import_cache[handle]
@@ -889,6 +898,10 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def iter_tag_handles(self):
         return (tag.handle for tag in self.dji.Tag.all())
+
+    def iter_media_objects(self):
+        return (self.get_media_from_handle(media.handle) 
+                for media in self.dji.Media.all())
 
     def get_tag_from_name(self, name):
         try:

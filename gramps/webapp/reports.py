@@ -28,6 +28,8 @@ from __future__ import print_function
 from gramps.gen.dbstate import DbState
 from gramps.cli.grampscli import CLIManager
 from gramps.gen.plug import BasePluginManager
+from gramps.cli.user import User as GUser # gramps user
+
 import os
 import sys
 
@@ -49,7 +51,7 @@ def get_plugin_options(db, pid):
     Get the default options and help for this plugin.
     """
     dbstate = DbState()
-    climanager = CLIManager(dbstate, False) # do not load db_loader
+    climanager = CLIManager(dbstate, setloader=False, user=GUser()) # do not load db_loader
     climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()
     pdata = pmgr.get_plugin(pid)
@@ -70,7 +72,7 @@ def import_file(db, filename, user):
     """
     from .grampsdb.models import Person
     dbstate = DbState()
-    climanager = CLIManager(dbstate, False) # do not load db_loader
+    climanager = CLIManager(dbstate, setloader=False, user=user) # do not load db_loader
     climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()
     (name, ext) = os.path.splitext(os.path.basename(filename))
@@ -133,7 +135,7 @@ def export_file(db, filename, user):
     >>> export_file(DbDjango(), "/home/user/Untitled_1.ged", User())
     """
     dbstate = DbState()
-    climanager = CLIManager(dbstate, False) # do not load db_loader
+    climanager = CLIManager(dbstate, setloader=False, user=user) # do not load db_loader
     climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()
     (name, ext) = os.path.splitext(os.path.basename(filename))

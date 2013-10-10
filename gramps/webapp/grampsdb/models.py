@@ -453,6 +453,7 @@ class PrimaryObject(models.Model):
     public = models.BooleanField('public', default=True)
     #attributes = models.ManyToManyField("Attribute", blank=True, null=True)
     cache = models.TextField(blank=True, null=True)
+    tags = models.ManyToManyField('Tag', blank=True, null=True)
 
     def __unicode__(self): 
         return cuni("%s: %s") % (self.__class__.__name__,
@@ -461,6 +462,9 @@ class PrimaryObject(models.Model):
     def get_url(self):
         return cuni("/%s/%s") % (self.__class__.__name__.lower(),
                            self.handle)
+
+    def get_tag_list(self):
+        return tuple([tag.handle for tag in self.tags.all()])
 
 class MyFamilies(models.Model):
     person = models.ForeignKey("Person")
@@ -493,8 +497,6 @@ class Person(PrimaryObject):
     birth_ref_index = models.IntegerField("Birth Reference Index", default=-1)
     death_ref_index = models.IntegerField("Death Reference Index", default=-1)
 
-    tags = models.ManyToManyField('Tag', blank=True, null=True)
-
     # Others keys here:
     #   .name_set 
     #   .address_set
@@ -513,9 +515,6 @@ class Person(PrimaryObject):
     def __unicode__(self):
         return cuni("%s [%s]") % (self.get_primary_name(), self.gramps_id)
 
-    def make_tag_list(self):
-        return tuple()
-
     def get_selection_string(self):
         return self.name_set.get(preferred=True).get_selection_string()
 
@@ -525,10 +524,6 @@ class Family(PrimaryObject):
     mother = models.ForeignKey('Person', related_name="mother_ref", 
                                null=True, blank=True)
     family_rel_type = models.ForeignKey('FamilyRelType', verbose_name="Type")
-    tags = models.ManyToManyField('Tag', blank=True, null=True)
-
-    def make_tag_list(self):
-        return tuple()
 
     #lds_list = models.ManyToManyField('Lds', null=True, blank=True)
 
@@ -633,10 +628,6 @@ class Media(DateObject, PrimaryObject):
     references = generic.GenericRelation('MediaRef', related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
-    tags = models.ManyToManyField('Tag', blank=True, null=True)
-
-    def make_tag_list(self):
-        return tuple()
 
     def __unicode__(self):
         return cuni(self.desc)
@@ -648,10 +639,6 @@ class Note(PrimaryObject):
     references = generic.GenericRelation('NoteRef', related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
-    tags = models.ManyToManyField('Tag', blank=True, null=True)
-
-    def make_tag_list(self):
-        return tuple()
 
     def __unicode__(self):
         return cuni(self.gramps_id)
