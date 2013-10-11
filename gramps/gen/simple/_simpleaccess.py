@@ -29,6 +29,7 @@ from __future__ import with_statement, unicode_literals
 
 from ..lib import (Person, Family, Event, Source, Place, Citation, 
                    MediaObject, Repository, Note, Date, Tag)
+from ..lib.handle import Handle
 from ..datehandler import displayer
 from ..utils.string import gender as gender_map
 from ..utils.db import get_birth_or_fallback, get_death_or_fallback
@@ -942,18 +943,21 @@ class SimpleAccess(object):
                     return "%s: [%s]" % (_(object_class), 
                                          obj.name)
                 else:
-                    return "Error: incorrect object class: '%s'" % type(obj)
+                    return "Error: incorrect object class in display: '%s'" % type(obj)
             else:
                 return "Error: missing object"
+        elif object_class == "Handle":
+            return "%s.handle [%s]" % (prop, value)
         else:
-            return "Error: invalid object class: '%s'" % object_class
+            return "Error: invalid object class in display: '%s'" % object_class
 
     def describe(self, obj, prop=None, value=None):
         """
         Given a object, return a string describing the object.  
         """
         if prop and value:
-            obj = self.dbase.get_table_metadata(obj)[prop + "_func"](value)
+            if self.dbase.get_table_metadata(obj):
+                obj = self.dbase.get_table_metadata(obj)[prop + "_func"](value)
         if isinstance(obj, Person):
             return "%s [%s]" % (self.name(obj), 
                                 self.gid(obj))
@@ -984,8 +988,10 @@ class SimpleAccess(object):
                                 self.gid(obj))
         elif isinstance(obj, Tag):
             return "[%s]" % (obj.name)
+        elif isinstance(obj, Handle):
+            return "%s.handle [%s]" % (prop, obj.handle)
         else:
-            return "Error: incorrect object class: '%s'" % type(obj)
+            return "Error: incorrect object class in describe: '%s'" % type(obj)
 
     def get_link(self, object_class, prop, value):
         """
