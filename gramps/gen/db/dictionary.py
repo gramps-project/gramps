@@ -304,7 +304,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         format.
         """
         pattern_match = re.match(r"(.*)%[0 ](\d+)[diu]$", id_pattern)
-        if False: # pattern_match:
+        if pattern_match:
             str_prefix = pattern_match.group(1)
             nr_width = int(pattern_match.group(2))
             def closure_func(gramps_id):
@@ -312,17 +312,17 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                     id_number = gramps_id[len(str_prefix):]
                     if id_number.isdigit():
                         id_value = int(id_number, 10)
-                        if len(str(id_value)) > nr_width:
-                            # The ID to be imported is too large to fit in the
-                            # users format. For now just create a new ID,
-                            # because that is also what happens with IDs that
-                            # are identical to IDs already in the database. If
-                            # the problem of colliding import and already
-                            # present IDs is solved the code here also needs
-                            # some solution.
-                            gramps_id = id_pattern % 1
-                        else:
-                            gramps_id = id_pattern % id_value
+                        #if len(str(id_value)) > nr_width:
+                        #    # The ID to be imported is too large to fit in the
+                        #    # users format. For now just create a new ID,
+                        #    # because that is also what happens with IDs that
+                        #    # are identical to IDs already in the database. If
+                        #    # the problem of colliding import and already
+                        #    # present IDs is solved the code here also needs
+                        #    # some solution.
+                        #    gramps_id = id_pattern % 1
+                        #else:
+                        gramps_id = id_pattern % id_value
                 return gramps_id
         else:
             def closure_func(gramps_id):
