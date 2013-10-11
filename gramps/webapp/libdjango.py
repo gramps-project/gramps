@@ -451,7 +451,7 @@ class DjangoInterface(object):
                 fix_encoding(media.path), 
                 str(media.mime), 
                 fix_encoding(media.desc),
-                int(media.checksum) if media.checksum else 0,
+                media.checksum,
                 attribute_list,
                 citation_list,
                 note_list,
