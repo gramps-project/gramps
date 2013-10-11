@@ -48,7 +48,7 @@ Examples:
       Checks 'de.po' file, tests to compile and generates a textual resume.
 """
 
-from __future__ import print_function, unicode_literals
+from __future__ import print_function
 
 import os
 import sys
