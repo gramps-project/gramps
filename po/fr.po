@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0-beta\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-11 10:02+0200\n"
-"PO-Revision-Date: 2013-10-11 10:08+0100\n"
+"POT-Creation-Date: 2013-10-11 10:21+0200\n"
+"PO-Revision-Date: 2013-10-11 10:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -31615,7 +31615,7 @@ msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whi
 msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de GNU/Linux Gramps fonctionne de la même façon quelque soit l'environnement de bureau. Tant que vous avez les bibliothèques GTK installées il fonctionnera bien."
 
 #: ../data/gramps.appdata.xml.in.h:1
-msgid "Gramps is a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists. It gives you the ability to record the many details of an individual’s life as well as the complex relationships between various people, places and events. All of your research is kept organized, searchable and as precise as you need it to be."
+msgid "Gramps is a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists. It gives you the ability to record the many details of the life of an individual as well as the complex relationships between various people, places and events. All of your research is kept organized, searchable and as precise as you need it to be."
 msgstr "Gramps est un programme de généalogie, intuitif pour le loisir et complet pour un usage professionnel. Il vous permet d'enregistrer de nombreux détails sur la vie d'un individu ainsi que les relations complexes entre différentes personnes, différents lieux et événements. Toutes vos recherches sont organisées, consultables et précises pour votre confort d'utilisation."
 
 #~ msgid "Gramps is a free software project and community. We strive to produce a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists."
