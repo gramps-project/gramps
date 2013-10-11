@@ -95,7 +95,7 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
                 "note_list": NoteBase.to_struct(self),
                 "attribute_list": AttributeBase.to_struct(self),
                 "ref": RefBase.to_struct(self),
-                "rect": self.rect}
+                "rect": self.rect if self.rect != (0,0,0,0) else None}
 
     def unserialize(self, data):
         """

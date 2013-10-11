@@ -304,7 +304,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         format.
         """
         pattern_match = re.match(r"(.*)%[0 ](\d+)[diu]$", id_pattern)
-        if pattern_match:
+        if False: # pattern_match:
             str_prefix = pattern_match.group(1)
             nr_width = int(pattern_match.group(2))
             def closure_func(gramps_id):
