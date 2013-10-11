@@ -58,12 +58,16 @@ if repository.enumerate_versions("OsmGpsMap"):
         pass
 
 if not OSMGPSMAP:
-    _LOG.warning(_("OsmGpsMap module not loaded. "
-                   "Geography functionality will not be available.\n"
+    from gramps.gen.config import config
+    from gramps.gui.dialog import MessageHideDialog
+    if not config.get('interface.ignore-osmgpsmap'):
+        title = _("OsmGpsMap module not loaded.")
+        message = _("Geography functionality will not be available.\n"
                    "To build it for Gramps see "
                    "http://www.gramps-project.org/wiki/index.php?"
                    "title=GEPS_029:_GTK3-GObject_introspection_Conversion"
-                   "#OsmGpsMap_for_Geography"))
+                   "#OsmGpsMap_for_Geography")
+        MessageHideDialog(title, message, 'interface.ignore-osmgpsmap')
 else:
     # Load the view only if osmgpsmap library is present.
     register(VIEW, 
