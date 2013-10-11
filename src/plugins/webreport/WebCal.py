@@ -1684,7 +1684,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
 
         # number of years for birthday, ex: 10 years
         age_str = event_date - date
-        age_str.format(precision = 1)
+        age_str.format(precision = 1, as_age=False)
 
         # a birthday
         if event == 'Birthday':
