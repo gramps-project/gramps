@@ -3,19 +3,17 @@
 <id type="desktop">gramps.desktop</id>
 <licence>CC0</licence>
 <description>
-<_p>Gramps is a free software project and community.
-We strive to produce a genealogy program that is both intuitive for hobbyists
-and feature-complete for professional genealogists.
-</_p>
-<_p>It is a community project, created, developed and governed by genealogists.
+<_p>Gramps is a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists.
+It gives you the ability to record the many details of the life of an individual as well as the complex relationships between various people, places and events.
+All of your research is kept organized, searchable and as precise as you need it to be.
 </_p>
 </description>
 <url type="homepage">http://gramps-project.org/</url>
+<screenshots>
 <screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/5/5f/AppData1.png</screenshot>
 <screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/6/68/AppData2.png</screenshot>
 <screenshot type="default" width="1226" height="740">http://www.gramps-project.org/wiki/images/e/e9/AppData3.png</screenshot>
 <screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/6/68/AppData4.png</screenshot>
 <screenshot width="1226" height="740">http://www.gramps-project.org/wiki/images/5/50/AppData5.png</screenshot>
 </screenshots>
-
 </application>
