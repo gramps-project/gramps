@@ -71,7 +71,7 @@ from gramps.gen.utils.unknown import make_unknown
 from gramps.gen.utils.file import (media_path_full, find_file, fix_encoding, 
                                    get_unicode_path_from_file_chooser)
 from gramps.gui.managedwindow import ManagedWindow
-
+from gramps.gen.utils.file import create_checksum
 from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog, MissingMediaDialog
 from gramps.gen.display.name import displayer as _nd
@@ -202,6 +202,7 @@ class Check(tool.BatchTool):
             checker.check_repo_references()
             checker.check_note_references()
             checker.check_tag_references()
+            checker.check_checksum()
         self.db.enable_signals()
         self.db.request_rebuild()
 
@@ -1786,6 +1787,23 @@ class CheckIntegrity(object):
         else:
             if not missing_references:
                 self.db.add_note(self.explanation, self.trans, set_gid=True)
+
+    def check_checksum(self):
+        self.progress.set_pass(_('Updating checksums on media'),
+                               len(self.db.get_media_object_handles()))
+        for bObjectId in self.db.get_media_object_handles():
+            self.progress.step()
+            ObjectId = handle2internal(bObjectId)
+            obj = self.db.get_object_from_handle(ObjectId)
+            if os.path.isabs(obj.path):
+                full_path = obj.path
+            else:
+                full_path = os.path.join(self.db.get_mediapath(), obj.path)
+            new_checksum = create_checksum(full_path)
+            if new_checksum != obj.checksum:
+                logging.info('checksum: updating ' + obj.gramps_id)
+                obj.checksum = new_checksum
+                self.db.commit_media_object(obj, self.trans)
 
     def check_tag_references(self):
         known_handles = [handle2internal(key) for key in 
