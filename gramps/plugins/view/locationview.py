@@ -30,7 +30,6 @@ Provide the location view.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.ggettext import gettext as _
 import logging
 _LOG = logging.getLogger(".plugins.locationview")
 
@@ -49,6 +48,9 @@ from gramps.gui.ddtargets import DdTargets
 from gramps.gui.dialog import ErrorDialog
 from gramps.gui.editors import EditLocation
 from gramps.gen.plug import CATEGORY_QR_PLACE
+
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.get_translation().gettext
 
 #-------------------------------------------------------------------------
 #
