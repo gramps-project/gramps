@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-09 22:42+0200\n"
-"PO-Revision-Date: 2013-10-09 22:47+0200\n"
+"POT-Creation-Date: 2013-10-13 19:17+0200\n"
+"PO-Revision-Date: 2013-10-13 19:49+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -808,27 +808,27 @@ msgstr ""
 msgid "Failed to write report. "
 msgstr "Schreiben des Berichts fehlgeschlagen. "
 
-#: ../gramps/gen/config.py:285
+#: ../gramps/gen/config.py:287
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr "Importiert %d.%m.%Y %H:%M:%S"
 
-#: ../gramps/gen/config.py:294
+#: ../gramps/gen/config.py:296
 msgid "Missing Given Name"
 msgstr "Fehlender Vorname"
 
-#: ../gramps/gen/config.py:295
+#: ../gramps/gen/config.py:297
 msgid "Missing Record"
 msgstr "Fehlender Datensatz"
 
-#: ../gramps/gen/config.py:296
+#: ../gramps/gen/config.py:298
 msgid "Missing Surname"
 msgstr "Fehlender Nachname"
 
-#: ../gramps/gen/config.py:303 ../gramps/gen/config.py:305
+#: ../gramps/gen/config.py:305 ../gramps/gen/config.py:307
 msgid "Living"
 msgstr "Lebt"
 
-#: ../gramps/gen/config.py:304
+#: ../gramps/gen/config.py:306
 msgid "Private Record"
 msgstr "Vertraulicher Datensatz"
 
@@ -4570,7 +4570,7 @@ msgid "Religion"
 msgstr "Religion"
 
 #: ../gramps/gen/lib/eventtype.py:179
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:409
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:412
 #: ../gramps/plugins/webreport/narrativeweb.py:2768
 #: ../gramps/plugins/webreport/narrativeweb.py:6733
 msgid "Residence"
@@ -8687,7 +8687,7 @@ msgid "_Data"
 msgstr "_Daten"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:429
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:432
 msgid "Family Events"
 msgstr "Familiäre Ereignisse"
 
@@ -10314,15 +10314,15 @@ msgstr "Filtertest"
 #: ../gramps/plugins/drawreport/calendarreport.py:427
 #: ../gramps/plugins/drawreport/statisticschart.py:942
 #: ../gramps/plugins/drawreport/timeline.py:411
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:927
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:941
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:955
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:969
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:983
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:997
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1011
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1025
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1039
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:930
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:944
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:958
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:972
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:986
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1000
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1014
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1028
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1042
 #: ../gramps/plugins/graph/gvrelgraph.py:533
 #: ../gramps/plugins/quickview/quickview.gpr.py:127
 #: ../gramps/plugins/textreport/birthdayreport.py:419
@@ -10706,8 +10706,8 @@ msgid "Edit Date"
 msgstr "Datum bearbeiten"
 
 #: ../gramps/gui/grampsgui.py:154 ../gramps/gui/merge/mergeperson.py:202
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:423
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:437
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:426
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:440
 #: ../gramps/plugins/quickview/filterbyname.py:98
 #: ../gramps/plugins/textreport/tagreport.py:290
 #: ../gramps/plugins/view/eventview.py:118
@@ -10754,13 +10754,13 @@ msgid "Gramplets"
 msgstr "Gramplets"
 
 #: ../gramps/gui/grampsgui.py:162 ../gramps/gui/grampsgui.py:163
-#: ../gramps/gui/grampsgui.py:164 ../gramps/plugins/view/geography.gpr.py:80
-#: ../gramps/plugins/view/geography.gpr.py:97
-#: ../gramps/plugins/view/geography.gpr.py:116
-#: ../gramps/plugins/view/geography.gpr.py:134
-#: ../gramps/plugins/view/geography.gpr.py:152
-#: ../gramps/plugins/view/geography.gpr.py:168
-#: ../gramps/plugins/view/geography.gpr.py:185
+#: ../gramps/gui/grampsgui.py:164 ../gramps/plugins/view/geography.gpr.py:84
+#: ../gramps/plugins/view/geography.gpr.py:101
+#: ../gramps/plugins/view/geography.gpr.py:120
+#: ../gramps/plugins/view/geography.gpr.py:138
+#: ../gramps/plugins/view/geography.gpr.py:156
+#: ../gramps/plugins/view/geography.gpr.py:172
+#: ../gramps/plugins/view/geography.gpr.py:189
 msgid "Geography"
 msgstr "Geografie"
 
@@ -10789,14 +10789,14 @@ msgid "Merge"
 msgstr "Zusammenfassen"
 
 #: ../gramps/gui/grampsgui.py:172
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:591
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:605
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:619
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:633
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:647
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:661
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:675
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:689
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:594
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:608
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:622
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:636
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:650
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:664
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:678
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:692
 #: ../gramps/plugins/quickview/filterbyname.py:113
 #: ../gramps/plugins/textreport/indivcomplete.py:281
 #: ../gramps/plugins/textreport/tagreport.py:376
@@ -10933,11 +10933,11 @@ msgid "Fit Page"
 msgstr "Ganze Seite"
 
 #: ../gramps/gui/grampsgui.py:197
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:703
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:717
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:731
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:745
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:759
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:706
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:720
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:734
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:748
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:762
 #: ../gramps/plugins/view/view.gpr.py:267
 #: ../gramps/plugins/view/view.gpr.py:275
 msgid "Citations"
@@ -15639,14 +15639,14 @@ msgstr "Gramplet zeigt alle Nachnamen als Textwolke"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:253
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:260
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1069
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1083
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1097
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1111
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1125
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1139
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1153
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1167
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1072
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1086
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1100
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1114
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1128
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1142
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1156
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1170
 msgid "gramplet|To Do"
 msgstr "Zu erledigen"
 
@@ -15731,252 +15731,254 @@ msgstr "Gramplet zeigt Metadaten eines Medienobjekts"
 msgid "Image Metadata"
 msgstr "Bildmetadaten"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:392
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:394
+msgid "GExiv2 module not loaded."
+msgstr "GExiv2 Modul nicht geladen."
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:395
 msgid ""
-"GExiv2 module not loaded. Image metadata functionality will not be "
-"available.\n"
+"Image metadata functionality will not be available.\n"
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?title="
 "GEPS_029:_GTK3-GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 msgstr ""
-"GExiv2 Modul nicht geladen. Bilder meta Funktionalität wird nicht zur "
-"Verfügung stehen.\n"
+"Bilder meta Funktionalität wird nicht zur Verfügung stehen.\n"
 "Um es für Gramps zu erstellen siehe http://www.gramps-project.org/wiki/index.p"
 "hp?title=GEPS_029:_GTK3-GObject_introspection_Conversion#GExiv2_for_Image_meta"
 "data"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:401
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:404
 msgid "Person Residence"
 msgstr "Personwohnort"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:402
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:405
 msgid "Gramplet showing residence events for a person"
 msgstr "Gramplet zeigt Wohnortsereignisse für eine Person"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:415
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:418
 msgid "Person Events"
 msgstr "Person Ereignisse"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:416
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:419
 msgid "Gramplet showing the events for a person"
 msgstr "Gramplet zeigt die Ereignisse einer Person"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:430
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:433
 msgid "Gramplet showing the events for a family"
 msgstr "Gramplet zeigt die Ereignisse einer Familie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:443
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:446
 msgid "Person Gallery"
 msgstr "Persongalerie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:444
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:447
 msgid "Gramplet showing media objects for a person"
 msgstr "Gramplet zeigt Medienobjekte einer Person"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:451
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:465
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:479
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:493
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:507
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:521
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:454
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:468
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:482
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:496
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:510
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:524
 msgid "Gallery"
 msgstr "Galerie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:457
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:460
 msgid "Family Gallery"
 msgstr "Familiengalerie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:458
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:461
 msgid "Gramplet showing media objects for a family"
 msgstr "Gramplet zeigt Medienobjekte einer Familie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:471
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:474
 msgid "Event Gallery"
 msgstr "Ereignisgalerie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:472
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:475
 msgid "Gramplet showing media objects for an event"
 msgstr "Gramplet zeigt Medienobjekte eines Ereignisses"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:485
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:488
 msgid "Place Gallery"
 msgstr "Ortsgalerie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:486
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:489
 msgid "Gramplet showing media objects for a place"
 msgstr "Gramplet zeigt Medienobjekte eines Ortes"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:499
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:502
 msgid "Source Gallery"
 msgstr "Quellengalerie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:500
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:503
 msgid "Gramplet showing media objects for a source"
 msgstr "Gramplet zeigt Medienobjekte einer Quelle"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:513
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:516
 msgid "Citation Gallery"
 msgstr "Fundstellegalerie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:514
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:517
 msgid "Gramplet showing media objects for a citation"
 msgstr "Gramplet zeigt Medienobjekte einer Fundstelle"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:527
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:530
 msgid "Person Attributes"
 msgstr "Person Attribute"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:528
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:531
 msgid "Gramplet showing the attributes of a person"
 msgstr "Gramplet zeigt die Attribute einer Person"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:535
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:549
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:563
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:577
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:538
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:552
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:566
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:580
 #: ../gramps/plugins/webreport/narrativeweb.py:370
 #: ../gramps/plugins/webreport/narrativeweb.py:803
 #: ../gramps/plugins/webreport/narrativeweb.py:1549
 msgid "Attributes"
 msgstr "Attribute"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:541
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:544
 msgid "Event Attributes"
 msgstr "Ereignisattribute"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:542
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:545
 msgid "Gramplet showing the attributes of an event"
 msgstr "Gramplet zeigt die Attribute eines Ereignis"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:555
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:558
 msgid "Family Attributes"
 msgstr "Familienattribute"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:556
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:559
 msgid "Gramplet showing the attributes of a family"
 msgstr "Gramplet zeigt die Attribute einer Familie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:569
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:572
 msgid "Media Attributes"
 msgstr "Medienattribute"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:570
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:573
 msgid "Gramplet showing the attributes of a media object"
 msgstr "Gramplet zeigt die Attribute eines Medienobjekts"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:583
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:586
 msgid "Person Notes"
 msgstr "Person Notizen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:584
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:587
 msgid "Gramplet showing the notes for a person"
 msgstr "Gramplet zeigt Notizen einer Person"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:597
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:600
 msgid "Event Notes"
 msgstr "Ereignisnotizen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:598
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:601
 msgid "Gramplet showing the notes for an event"
 msgstr "Gramplet zeigt die Notizen eines Ereignis"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:611
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:614
 msgid "Family Notes"
 msgstr "Familiennotizen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:612
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:615
 msgid "Gramplet showing the notes for a family"
 msgstr "Gramplet zeigt Notizen einer Familie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:625
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:628
 msgid "Place Notes"
 msgstr "Ortsnotizen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:626
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:629
 msgid "Gramplet showing the notes for a place"
 msgstr "Gramplet zeigt Notizen für einen Ort"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:639
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:642
 msgid "Source Notes"
 msgstr "Quellennotizen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:640
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:643
 msgid "Gramplet showing the notes for a source"
 msgstr "Gramplet zeigt Notizen für Quellen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:653
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:656
 msgid "Citation Notes"
 msgstr "Fundstelle Notizen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:654
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:657
 msgid "Gramplet showing the notes for a citation"
 msgstr "Gramplet zeigt Notizen einer Fundstelle"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:667
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:670
 msgid "Repository Notes"
 msgstr "Aufbewahrungsortnotizen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:668
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:671
 msgid "Gramplet showing the notes for a repository"
 msgstr "Gramplet zeigt Notizen eines Aufbewahrungsort"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:681
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:684
 msgid "Media Notes"
 msgstr "Mediumnotizen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:682
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:685
 msgid "Gramplet showing the notes for a media object"
 msgstr "Gramplet zeigt Notizen eines Medienobjekt"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:695
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:698
 msgid "Person Citations"
 msgstr "Personfundstellen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:696
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:699
 msgid "Gramplet showing the citations for a person"
 msgstr "Gramplet zeigt Fundstellen einer Person"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:709
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:712
 msgid "Event Citations"
 msgstr "Ereignisfundstellen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:710
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:713
 msgid "Gramplet showing the citations for an event"
 msgstr "Gramplet zeigt die  Fundstellen eines Ereignis"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:723
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:726
 msgid "Family Citations"
 msgstr "Familienfundstellen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:724
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:727
 msgid "Gramplet showing the citations for a family"
 msgstr "Gramplet zeigt die Fundstellen einer Familie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:737
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:740
 msgid "Place Citations"
 msgstr "Ortsfundstelle"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:738
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:741
 msgid "Gramplet showing the citations for a place"
 msgstr "Gramplet zeigt die Fundstelle für einen Ort"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:751
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:754
 msgid "Media Citations"
 msgstr "Medienfundstelle"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:752
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:755
 msgid "Gramplet showing the citations for a media object"
 msgstr "Gramplet zeigt die Fundstelle eines Medienobjekt"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:765
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:768
 msgid "Person Children"
 msgstr "Person Kinder"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:766
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:769
 msgid "Gramplet showing the children of a person"
 msgstr "Gramplet zeigt die Kinder einer Person"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:773
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:787
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:776
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:790
 #: ../gramps/plugins/textreport/familygroup.py:591
 #: ../gramps/plugins/textreport/indivcomplete.py:466
 #: ../gramps/plugins/view/pedigreeview.py:1741
@@ -15985,31 +15987,31 @@ msgstr "Gramplet zeigt die Kinder einer Person"
 msgid "Children"
 msgstr "Kinder"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:779
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:782
 msgid "Family Children"
 msgstr "Familie Kinder"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:780
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:783
 msgid "Gramplet showing the children of a family"
 msgstr "Gramplet zeigt die Kinder einer Familie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:793
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:796
 msgid "Person Backlinks"
 msgstr "Personenreferenzen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:794
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:797
 msgid "Gramplet showing the backlinks for a person"
 msgstr "Gramplet zeigt Referenzen einer Person"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:801
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:815
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:829
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:843
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:857
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:871
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:885
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:899
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:913
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:804
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:818
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:832
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:846
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:860
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:874
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:888
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:902
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:916
 #: ../gramps/plugins/webreport/narrativeweb.py:2419
 #: ../gramps/plugins/webreport/narrativeweb.py:2831
 #: ../gramps/plugins/webreport/narrativeweb.py:4887
@@ -16017,217 +16019,217 @@ msgstr "Gramplet zeigt Referenzen einer Person"
 msgid "References"
 msgstr "Referenzen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:807
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:810
 msgid "Event Backlinks"
 msgstr "Ereignisreferenzen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:808
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:811
 msgid "Gramplet showing the backlinks for an event"
 msgstr "Gramplet zeigt die  Referenzen eines Ereignis"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:821
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:824
 msgid "Family Backlinks"
 msgstr "Familienreferenzen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:822
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:825
 msgid "Gramplet showing the backlinks for a family"
 msgstr "Gramplet zeigt die Referenzen einer Familie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:835
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:838
 msgid "Place Backlinks"
 msgstr "Ortsreferenzen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:836
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:839
 msgid "Gramplet showing the backlinks for a place"
 msgstr "Gramplet zeigt die Referenzen für einen Ort"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:849
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:852
 msgid "Source Backlinks"
 msgstr "Quellreferenzen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:850
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:853
 msgid "Gramplet showing the backlinks for a source"
 msgstr "Gramplet zeigt die Referenzen für eine Quelle"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:863
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:866
 msgid "Citation Backlinks"
 msgstr "Fundstellenreferenzen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:864
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:867
 msgid "Gramplet showing the backlinks for a citation"
 msgstr "Gramplet zeigt Referenzen einer Fundstelle"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:877
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:880
 msgid "Repository Backlinks"
 msgstr "Aufbewahrungsortreferenzen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:878
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:881
 msgid "Gramplet showing the backlinks for a repository"
 msgstr "Gramplet zeigt die Referenzen eines Aufbewahrungsort"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:891
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:894
 msgid "Media Backlinks"
 msgstr "Mediumreferenzen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:892
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:895
 msgid "Gramplet showing the backlinks for a media object"
 msgstr "Gramplet zeigt die Referenzen eines Medienobjekt"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:905
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:908
 msgid "Note Backlinks"
 msgstr "Notizreferenzen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:906
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:909
 msgid "Gramplet showing the backlinks for a note"
 msgstr "Gramplet zeigt die Referenzen für eine Quelle"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:919
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:922
 msgid "Person Filter"
 msgstr "Personenfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:920
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:923
 msgid "Gramplet providing a person filter"
 msgstr "Gramplet bietet einen Personenfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:933
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:936
 msgid "Family Filter"
 msgstr "Familienfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:934
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:937
 msgid "Gramplet providing a family filter"
 msgstr "Gramplet bietet einen Familienfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:947
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:950
 msgid "Event Filter"
 msgstr "Ereignisfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:948
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:951
 msgid "Gramplet providing an event filter"
 msgstr "Gramplet bietet einen Ereignisfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:961
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:964
 msgid "Source Filter"
 msgstr "Quellenfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:962
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:965
 msgid "Gramplet providing a source filter"
 msgstr "Gramplet bietet einen Quellenfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:975
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:978
 msgid "Citation Filter"
 msgstr "Fundstellenfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:976
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:979
 msgid "Gramplet providing a citation filter"
 msgstr "Gramplet bietet einen Fundstellenfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:989
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:992
 msgid "Place Filter"
 msgstr "Ortsfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:990
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:993
 msgid "Gramplet providing a place filter"
 msgstr "Gramplet bietet einen Ortsfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1003
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1006
 msgid "Media Filter"
 msgstr "Medienfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1004
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1007
 msgid "Gramplet providing a media filter"
 msgstr "Gramplet bietet einen Medienfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1017
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1020
 msgid "Repository Filter"
 msgstr "Aufbewahrungsortfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1018
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1021
 msgid "Gramplet providing a repository filter"
 msgstr "Gramplet bietet einen Aufbewahrungsortsfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1031
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1034
 msgid "Note Filter"
 msgstr "Notizfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1032
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1035
 msgid "Gramplet providing a note filter"
 msgstr "Gramplet bietet einen Notizenfilter"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1045
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1048
 msgid "Records Gramplet"
 msgstr "Rekorde-Gramplet"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1046
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1049
 #: ../gramps/plugins/textreport/textplugins.gpr.py:411
 msgid "Shows some interesting records about people and families"
 msgstr "Zeigt einige interessante Rekorde von Personen und Familien"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1056
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1059
 #: ../gramps/plugins/textreport/recordsreport.py:91
 msgid "Records"
 msgstr "Rekorde"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1061
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1064
 msgid "Person To Do"
 msgstr "Personen zu erledigen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1062
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1065
 msgid "Gramplet showing the To Do notes for a person"
 msgstr "Gramplet zeigt die zu erledigen Notizen für eine Person"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1075
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1078
 msgid "Event To Do"
 msgstr "Ereignis zu erledigen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1076
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1079
 msgid "Gramplet showing the To Do notes for an event"
 msgstr "Gramplet zeigt die zu erledigen Notizen für ein Ereignis"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1089
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1092
 msgid "Family To Do"
 msgstr "Familie zu erledigen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1090
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
 msgid "Gramplet showing the To Do notes for a family"
 msgstr "Gramplet zeigt die zu erledigen Notizen für eine Familie"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1103
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1106
 msgid "Place To Do"
 msgstr "Ort zu erledigen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1104
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1107
 msgid "Gramplet showing the To Do notes for a place"
 msgstr "Gramplet zeigt die zu erledigen Notizen für einen Ort"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1117
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1120
 msgid "Source To Do"
 msgstr "Quelle zu erledigen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1118
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
 msgid "Gramplet showing the To Do notes for a source"
 msgstr "Gramplet zeigt die zu erledigen Notizen für eine Quellen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1131
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1134
 msgid "Citation To Do"
 msgstr "Fundstelle zu erledigen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1132
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1135
 msgid "Gramplet showing the To Do notes for a citation"
 msgstr "Gramplet zeigt die zu erledigen Notizen für eine Fundstelle"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1145
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1148
 msgid "Repository To Do"
 msgstr "Aufbewahrungsort zu erledigen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1146
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1149
 msgid "Gramplet showing the To Do notes for a repository"
 msgstr "Gramplet zeigt die zu erledigen Notizen für einen Aufbewahrungsort"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1159
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1162
 msgid "Media To Do"
 msgstr "Medien zu erledigen"
 
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1160
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1163
 msgid "Gramplet showing the To Do notes for a media object"
 msgstr "Gramplet zeigt die zu erledigen Notizen für ein Medienobjekt"
 
@@ -26452,7 +26454,7 @@ msgid "Show children ring"
 msgstr "Kinderring zeigen"
 
 #: ../gramps/plugins/view/geoclose.py:140
-#: ../gramps/plugins/view/geography.gpr.py:142
+#: ../gramps/plugins/view/geography.gpr.py:146
 msgid "Have they been able to meet?"
 msgstr "War es ihnen möglich sich zu treffen?"
 
@@ -26552,7 +26554,7 @@ msgid "Centering on Place"
 msgstr "Auf Ort zentrieren"
 
 #: ../gramps/plugins/view/geofamclose.py:138
-#: ../gramps/plugins/view/geography.gpr.py:124
+#: ../gramps/plugins/view/geography.gpr.py:128
 msgid "Have these two families been able to meet?"
 msgstr "War es diesen zwei Familien möglich sich zu treffen?"
 
@@ -26657,43 +26659,46 @@ msgstr ""
 "OsmGpsMap Modul nicht geladen. OsmGpsMap Version muss >=0.8 seine. Deine ist %"
 "s"
 
-#: ../gramps/plugins/view/geography.gpr.py:61
+#: ../gramps/plugins/view/geography.gpr.py:64
+msgid "OsmGpsMap module not loaded."
+msgstr "OsmGpsMap Modul nicht geladen."
+
+#: ../gramps/plugins/view/geography.gpr.py:65
 msgid ""
-"OsmGpsMap module not loaded. Geography functionality will not be available.\n"
+"Geography functionality will not be available.\n"
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?title="
 "GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 msgstr ""
-"OsmGpsMap Modul nicht geladen. Geografie Funktionalität wird nicht zur "
-"Verfügung stehen.\n"
+"Geografie Funktionalität wird nicht zur Verfügung stehen.\n"
 "Um es für Gramps zu erstellen siehe http://www.gramps-project.org/wiki/index.p"
 "hp?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geograp"
 "hy"
 
-#: ../gramps/plugins/view/geography.gpr.py:71
+#: ../gramps/plugins/view/geography.gpr.py:75
 msgid "All known places for one Person"
 msgstr "Alle bekannten Orte für eine Person"
 
-#: ../gramps/plugins/view/geography.gpr.py:72
+#: ../gramps/plugins/view/geography.gpr.py:76
 msgid "A view showing the places visited by one person during his life."
 msgstr ""
 "Eine Ansicht die alle Orte zeigt, die von einer Person während ihres gesamten "
 "Lebens besucht wurden."
 
-#: ../gramps/plugins/view/geography.gpr.py:88
+#: ../gramps/plugins/view/geography.gpr.py:92
 msgid "All known places for one Family"
 msgstr "Alle bekannten Orte für eine Familie"
 
-#: ../gramps/plugins/view/geography.gpr.py:89
+#: ../gramps/plugins/view/geography.gpr.py:93
 msgid "A view showing the places visited by one family during all their life."
 msgstr ""
 "Eine Ansicht die alle Orte zeigt, die von einer Familie während ihres "
 "gesamten Lebens besucht wurden."
 
-#: ../gramps/plugins/view/geography.gpr.py:105
+#: ../gramps/plugins/view/geography.gpr.py:109
 msgid "All displacements for one person and their descendants"
 msgstr "Alle Umzüge einer Person und ihrer Nachkommen"
 
-#: ../gramps/plugins/view/geography.gpr.py:106
+#: ../gramps/plugins/view/geography.gpr.py:110
 msgid ""
 "A view showing all the places visited by all persons during their life.\n"
 "This is for one person and their descendant.\n"
@@ -26704,7 +26709,7 @@ msgstr ""
 "Dies ist für eine Person und ihre Nachkommen.\n"
 "Du kannst die Daten zu dem entsprechenden Zeitraum sehen."
 
-#: ../gramps/plugins/view/geography.gpr.py:125
+#: ../gramps/plugins/view/geography.gpr.py:129
 msgid ""
 "A view showing the places visited by all family's members during their life: "
 "have these two people been able to meet?"
@@ -26713,7 +26718,7 @@ msgstr ""
 "ihres gesamten Lebens besucht wurden: war es diesen zwei Personen möglich "
 "sich zu treffen?"
 
-#: ../gramps/plugins/view/geography.gpr.py:143
+#: ../gramps/plugins/view/geography.gpr.py:147
 msgid ""
 "A view showing the places visited by two persons during their life: have "
 "these two people been able to meet?"
@@ -26721,19 +26726,19 @@ msgstr ""
 "Eine Ansicht die alle Orte zeigt, die von zwei Person während ihres gesamten "
 "Lebens besucht wurden: war es ihnen möglich sich zu treffen?"
 
-#: ../gramps/plugins/view/geography.gpr.py:160
+#: ../gramps/plugins/view/geography.gpr.py:164
 msgid "All known Places"
 msgstr "Alle bekannten Orte"
 
-#: ../gramps/plugins/view/geography.gpr.py:161
+#: ../gramps/plugins/view/geography.gpr.py:165
 msgid "A view showing all places of the database."
 msgstr "Eine Ansicht die alle Orte einer Datenbank zeigt."
 
-#: ../gramps/plugins/view/geography.gpr.py:176
+#: ../gramps/plugins/view/geography.gpr.py:180
 msgid "All places related to Events"
 msgstr "Alle Orte die mit Ereignissen verbunden sind"
 
-#: ../gramps/plugins/view/geography.gpr.py:177
+#: ../gramps/plugins/view/geography.gpr.py:181
 msgid "A view showing all the event places of the database."
 msgstr "Eine Ansicht die alle Ereignisorte einer Datenbank zeigt."
 
@@ -32372,16 +32377,13 @@ msgstr ""
 "Verwaltet genealogische Informationen, organisiert genealogische Forschung "
 "und Analyse"
 
-#: ../data/gramps.appdata.xml.in.h:5
-msgid ""
-"It is a community project, created, developed and governed by genealogists.);"
-msgstr ""
-"Es ist eine Community-Projekt; produziert, entwickelt und geleitet von "
-"Genealogen.);"
-
 #: ../data/gramps.appdata.xml.in.h:1
-msgid "Gramps is a free software project and community."
-msgstr "Gramps ist ein freies Softwareprojekt und Gemeinschaft."
+msgid ""
+"Gramps is a genealogy program that is both intuitive for hobbyists and "
+"feature-complete for professional genealogists."
+msgstr ""
+"Gramps ist ein Genealogieprogramm, dass sowohl intuitiv für Amateure als auch "
+"ein mächtiges Werkzeug für professionelle Genealogen ist."
 
 #: gtklist.h:2
 msgid "ANSEL"
@@ -32410,6 +32412,12 @@ msgstr "Mindestens eine Regel muss passen"
 #: gtklist.h:8
 msgid "Exactly one rule must apply"
 msgstr "Genau eine Regel muss passen"
+
+#~ msgid "It is a community project, created, developed and governed by genealogists.);"
+#~ msgstr "Es ist eine Community-Projekt; produziert, entwickelt und geleitet von Genealogen.);"
+
+#~ msgid "Gramps is a free software project and community."
+#~ msgstr "Gramps ist ein freies Softwareprojekt und Gemeinschaft."
 
 #~ msgid "Suppress warning when OsmGpsMap not installed."
 #~ msgstr "Nicht warnen, wenn OsmGpsMap nicht installiert ist."
