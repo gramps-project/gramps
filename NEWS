@@ -1,15 +1,21 @@
 2013-??-??
-* Citation merge works now for objects with citations -- hopefully the last reason to upgrade from 3.3 removed for those with big production databases with a lot of citations!
+* Citation merge works better for all objects with citations
+* Fix link to citation on event reference into family
 * Fixed several crashes, hangs, and data corruption scenarios
 * Fixed bugs in determining whether a person is alive, potentially resolving private data leak via export or report.
 * VCF export/import now support gender information
 * Several bugs with filtering fixed, most filters now support regular expressions
 * Fix bug in Hebrew calendar date calculations
+* Check space in gramps id on gedcom file format
 * Multiple fixes in gramplets
 * Multiple fixes in NarWeb report
+* Some fixes and improvements on webapp
+* Enhancements on Citation TreeView (Sources category)
+* Polish and consistency on Gramps XML export
 * Fix several long-standing problems with report generation
 * Better support of RTL locales (Arabic, Hebrew, etc.) in GUI
 * Platform-specific fixes for Mac and Windows
+* New date handler for Arabic
 * Translation updates and translation-related fixes
 
 2013-05-22
