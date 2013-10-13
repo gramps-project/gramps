@@ -369,7 +369,7 @@ class FamilyGroup(Report):
                     m = event
                     break
 
-        if len(family_list) > 0 or self.missingInfo:
+        if len(family_list) > 0 or self.missingInfo or self.includeAttrs:
             self.doc.start_table("MarriageInfo",'FGR-ParentTable')
             self.doc.start_row()
             self.doc.start_cell('FGR-ParentHead',3)
@@ -387,6 +387,11 @@ class FamilyGroup(Report):
                     if event.get_type() != gen.lib.EventType.MARRIAGE:
                         self.dump_parent_event(str(event.get_type()),event)
             
+            if self.includeAttrs:
+                for attr in family.get_attribute_list():
+                    self.dump_parent_line(str(attr.get_type()),
+                                              attr.get_value())
+
             self.doc.end_table()
 
     def dump_child_event(self,text, name,event):
