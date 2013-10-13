@@ -109,7 +109,8 @@ class FamilyGroup(Report):
         self.incChiMar     = get_value('incChiMar')
         self.includeAttrs  = get_value('incattrs')
 
-        self.set_locale(menu.get_option_by_name('trans').get_value())
+        rlocale = self.set_locale(get_value('trans'))
+        self._ = rlocale.translation.sgettext # needed for English
 
     def dump_parent_event(self, name,event):
         place = ""
@@ -375,7 +376,7 @@ class FamilyGroup(Report):
                     m = event
                     break
 
-        if len(family_list) > 0 or self.missingInfo:
+        if len(family_list) > 0 or self.missingInfo or self.includeAttrs:
             self.doc.start_table("MarriageInfo",'FGR-ParentTable')
             self.doc.start_row()
             self.doc.start_cell('FGR-ParentHead',3)
@@ -394,6 +395,11 @@ class FamilyGroup(Report):
                         event_type = self._get_type(event.get_type())
                         self.dump_parent_event(self._(event_type),event)
             
+            if self.includeAttrs:
+                for attr in family.get_attribute_list():
+                    attr_type = self._get_type(attr.get_type())
+                    self.dump_parent_line(self._(attr_type),attr.get_value())
+
             self.doc.end_table()
 
     def dump_child_event(self,text, name,event):
