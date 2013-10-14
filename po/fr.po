@@ -31173,7 +31173,6 @@ msgstr "MOI Jour, Année"
 msgid "Day. Month Year"
 msgstr "Jour. Mois Année"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:78
 msgid "DAY. MON YEAR"
 msgstr "Jour. MOI Année"
 
@@ -31246,22 +31245,22 @@ msgstr ""
 #. first date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:204
 msgid "from|{short_month} {year}"
-msgstr "de"
+msgstr ""
 
 #. second date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:208
 msgid "to|{short_month} {year}"
-msgstr "à"
+msgstr ""
 
 #. first date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:212
 msgid "between|{short_month} {year}"
-msgstr "entre"
+msgstr ""
 
 #. second date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:216
 msgid "and|{short_month} {year}"
-msgstr "et"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:219
 msgid "before|{short_month} {year}"
@@ -31269,11 +31268,11 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:222
 msgid "after|{short_month} {year}"
-msgstr "après"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:225
 msgid "about|{short_month} {year}"
-msgstr "vers"
+msgstr ""
 
 #. If there is no special inflection for "from <Month>" in your
 #. language, don't translate this string.
@@ -31282,7 +31281,7 @@ msgstr "vers"
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:335
 msgid "from-date|"
-msgstr "de"
+msgstr ""
 
 #. If there is no special inflection for "to <Month>" in your
 #. language, don't translate this string.
@@ -31291,11 +31290,11 @@ msgstr "de"
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:342
 msgid "to-date|"
-msgstr "à"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:344
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr "de {date_quality}{date_start} à {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}de {date_start} à {date_stop}{nonstd_calendar_and_ny}"
 
 # ex : 10 ans et 11 ans
 #. If there is no special inflection for "between <Month>" in your
@@ -31305,7 +31304,7 @@ msgstr "de {date_quality}{date_start} à {date_stop}{nonstd_calendar_and_ny}"
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:357
 msgid "between-date|"
-msgstr "entre"
+msgstr ""
 
 #. If there is no special inflection for "and <Month>" in your
 #. language, don't translate this string.
@@ -31314,11 +31313,11 @@ msgstr "entre"
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:364
 msgid "and-date|"
-msgstr "et"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:366
 msgid "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr "entre {date_quality}{date_start} et {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}entre {date_start} et {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "before/after/around <Month>" in your
 #. language, don't translate this string.
@@ -31329,7 +31328,7 @@ msgstr "entre {date_quality}{date_start} et {date_stop}{nonstd_calendar_and_ny}"
 #. modifiers are different?!
 #: ../gramps/gen/datehandler/_datedisplay.py:381
 msgid "before-date|"
-msgstr "Avant"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:383
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
