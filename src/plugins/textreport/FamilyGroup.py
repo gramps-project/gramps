@@ -390,7 +390,7 @@ class FamilyGroup(Report):
             if self.includeAttrs:
                 for attr in family.get_attribute_list():
                     self.dump_parent_line(str(attr.get_type()),
-                                              attr.get_value())
+                                          attr.get_value())
 
             self.doc.end_table()
 
