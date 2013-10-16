@@ -3983,35 +3983,35 @@ msgstr "Suédois"
 
 #: ../gramps/gen/lib/date.py:1601
 msgid "estimated"
-msgstr "Estimé(e)"
+msgstr "estimé(e)"
 
 #: ../gramps/gen/lib/date.py:1601
 msgid "calculated"
-msgstr "Calculé(e)"
+msgstr "calculé(e)"
 
 #: ../gramps/gen/lib/date.py:1615 ../gramps/plugins/lib/libsubstkeyword.py:275
 msgid "before"
-msgstr "Avant"
+msgstr "avant"
 
 #: ../gramps/gen/lib/date.py:1615 ../gramps/plugins/lib/libsubstkeyword.py:275
 msgid "after"
-msgstr "Après"
+msgstr "après"
 
 #: ../gramps/gen/lib/date.py:1615 ../gramps/plugins/lib/libsubstkeyword.py:275
 msgid "about"
-msgstr "Vers"
+msgstr "vers"
 
 #: ../gramps/gen/lib/date.py:1616
 msgid "range"
-msgstr "Étendu(e)"
+msgstr "étendu(e)"
 
 #: ../gramps/gen/lib/date.py:1616
 msgid "span"
-msgstr "Incrémenté(e)"
+msgstr "incrémenté(e)"
 
 #: ../gramps/gen/lib/date.py:1616
 msgid "textonly"
-msgstr "Texte seulement"
+msgstr "texte seulement"
 
 # /!\ utilisé pour le nom et le type de rôle
 #: ../gramps/gen/lib/eventroletype.py:60
