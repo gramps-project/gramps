@@ -1703,7 +1703,10 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
         if event == 'Birthday':
 
             txt_str = (text + ', <em>'
-            + (_('%s old') % str(age_str) if nyears else _('birth'))
+               # TRANSLATORS: expands to smth like "12 years old",
+               # where "12 years" is already localized to your language
+            + (_('%s old') % str(age_str) 
+                if nyears else _('birth'))
             + '</em>')
 
         # an anniversary

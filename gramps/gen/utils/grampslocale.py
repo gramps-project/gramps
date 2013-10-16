@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -26,12 +27,13 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 import gettext
 import sys
 import os
 import codecs
 import locale
+import collections
 import logging
 
 LOG = logging.getLogger("." + __name__)
@@ -155,6 +157,7 @@ class GrampsLocale(object):
                 codes corresponding to subidrectries in the localedir, 
                 e.g.: "fr" or "zh_CN".
     """
+
     DEFAULT_TRANSLATION_STR = "default"
     __first_instance = None
     encoding = None
@@ -936,6 +939,128 @@ class GrampsLocale(object):
 # Translations Classes
 #
 #-------------------------------------------------------------------------
+if sys.version_info < (3,0):
+    _LexemeBaseStr = unicode 
+    _isstring = lambda s: isinstance(s, basestring)
+else:
+    _LexemeBaseStr = str
+    _isstring = lambda s: isinstance(s, str)
+class Lexeme(_LexemeBaseStr):
+    r"""
+    Created with :meth:`~GrampsTranslations.lexgettext`
+
+    .. rubric:: Example
+    Python code:
+    ::
+        _ = lexgettext
+        dec = _("localized lexeme inflections||December")
+        xmas = _("lexeme||Christmas")
+        text = _("{holiday} is celebrated in {month}".format(
+                    holiday=xmas, month=dec))
+        greeting = _("Merry {holiday}!").format(holiday=xmas)
+        XMAS = xmas.upper()
+        print ("\n".join([XMAS, text, greeting]))
+
+    Translation database (Russian example):
+    ::
+        msgid "lexeme||December"
+        msgstr "NOMINATIVE=декабрь|GENITIVE=декабря|ABLATIVE=декабрём|LOCATIVE=декабре"
+
+        msgid "lexeme||Christmas"
+        msgstr "NOMINATIVE=рождество|GENITIVE=рождества|ABLATIVE=рождеством"
+
+        msgid "{holiday} is celebrated in {month}"
+        msgstr "{holiday} празднуют в {month.f[LOCATIVE]}"
+
+        msgid "Merry {holiday}!"
+        msgstr "Счастливого {holiday.f[GENITIVE]}!"
+
+    Prints out:
+        In English locale:
+        ::
+            CHRISTMAS 
+            Christmas is celebrated in December 
+            Merry Christmas!
+        In Russian locale:
+        ::
+            РОЖДЕСТВО
+            рождество празднуют в декабре
+            Счастливого рождества!
+
+    .. rubric:: Description
+    Stores an arbitrary number of forms, e.g., inflections.
+    These forms are accessible under dictionary keys for each form.
+    The names of the forms are language-specific. They are assigned
+    by the human translator of the corresponding language (in XX.po)
+    as in the example above, 
+    see :meth:`~GrampsTranslations.lexgettext` docs 
+    for more info.
+
+    The translated format string can then refer to a specific form
+    of the lexeme using ``.``:attr:`~Lexeme.f` and square brackets: 
+    ``{holiday.f[GENITIVE]}``
+    expects holiday to be a Lexeme which has a form ``'GENITIVE'`` in it.
+
+    An instance of Lexeme can also be used as a regular unicode string.
+    In this case, the work will be delegated to the string for the very 
+    first form provided in the translated string. In the example above,
+    ``{holiday}`` in the translated string will expand to the Russian
+    nominative form for Christmas, and ``xmas.upper()`` will produce
+    the same nominative form in capital letters.
+
+    .. rubric:: Motivation
+    Lexeme is the term used in linguistics for the set of forms taken 
+    by a particular word, e.g. cases for a noun or tenses for a verb.
+    
+    Gramps often needs to compose sentences from several blocks of
+    text and single words, often by using python string formatting.
+
+    For instance, formatting a date range is done similarly to this: 
+    ::
+        _("Between {startdate_month} {startdate_year}"
+              "and {enddate_month} {enddate_year}").format(
+                 startdate_month = m1,
+                 startdate_year = y1,
+                 enddate_month = m2,
+                 enddate_year = y2)
+
+    To make such text translatable, the arguments injected into 
+    format string need to bear all the linguistical information
+    on how to plug them into a sentence, i.e., the forms, depending
+    on the linguistic context of where the argument appears.
+    The format string needs to select the relevant linguistic form.
+    This is why ``m1`` and ``m2`` are instances of :class:`~Lexeme`.
+
+    On the other hand, for languages where there is no linguistic
+    variation in such sentences, the code needs not to be aware of
+    the underlying :class:`~Lexeme` complexity; 
+    and so they can be processed just like simple strings 
+    both when passed around in the code and when formatted.
+    """
+
+    def __new__(cls, iterable, *args, **kwargs):
+        if _isstring(iterable):
+            newobj = _LexemeBaseStr.__new__(cls, iterable, *args, **kwargs)
+        else:
+            od = collections.OrderedDict(iterable)
+            l = list(od.values()) or [""]
+            newobj = _LexemeBaseStr.__new__(cls, l[0], *args, **kwargs) 
+            newobj._forms = od
+        return newobj
+
+    def variants(self):
+        """All lexeme forms, in the same order as given upon construction.
+        The first one returned is the default form, which is used when the
+        Lexeme instance is used in lieu of a string object.
+        
+        Same as ``f.values()``"""
+        return self._forms.values()
+
+    @property
+    def f(self):
+        """Dictionary of the lexeme forms"""
+        return self._forms
+
 class GrampsTranslations(gettext.GNUTranslations):
     """
     Overrides and extends gettext.GNUTranslations. See the Python gettext
@@ -950,6 +1075,7 @@ class GrampsTranslations(gettext.GNUTranslations):
     def gettext(self, msgid):
         """
         Obtain translation of gettext, return a unicode object
+
         :param msgid: The string to translated.
         :type msgid: unicode
         :returns: Translation or the original.
@@ -1009,6 +1135,32 @@ class GrampsTranslations(gettext.GNUTranslations):
             msgval = msgid[sep_idx+1:]
         return msgval
 
+    def lexgettext(self, msgid):
+        """
+        Extract all inflections of the same lexeme,
+        stripping the '|'-separated context using :meth:`~sgettext`
+
+        The *resulting* message provided by the translator
+        is supposed to be '|'-separated as well. 
+        The possible formats are either (1) a single string
+        for a language with no inflections, or (2) a list of
+        <inflection name>=<inflected form>, separated with '|'.
+        For example:
+
+           (1) "Uninflectable"
+           (2) "n=Inflected-nominative|g=Inflected-genitive|d=Inflected-dative"
+
+        See :class:`~Lexeme` documentation for detailed explanation and example.
+
+        :param msgid: The string to translated.
+        :type msgid: unicode
+        :returns: Translation or the original with context stripped.
+        :rtype: unicode (for option (1)) / Lexeme (option (2))
+        """
+        variants = self.sgettext(msgid).split('|')
+        return Lexeme([v.split('=') for v in variants]
+                ) if len(variants) > 1 else variants[0]
+
 class GrampsNullTranslations(gettext.NullTranslations):
     """
     Extends gettext.NullTranslations to provide the sgettext method.
@@ -1022,6 +1174,8 @@ class GrampsNullTranslations(gettext.NullTranslations):
             sep_idx = msgid.rfind(sep)
             msgval = msgid[sep_idx+1:]
         return msgval
+
+    lexgettext = sgettext
 
     def language(self):
         """

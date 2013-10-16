@@ -530,7 +530,7 @@ class Date(object):
     QUAL_NONE        = 0 # BITWISE
     QUAL_ESTIMATED   = 1
     QUAL_CALCULATED  = 2
-    QUAL_INTERPRETED = 4
+    #QUAL_INTERPRETED = 4 unused in source!!
 
     CAL_GREGORIAN  = 0 # CODE
     CAL_JULIAN     = 1

@@ -46,34 +46,8 @@ codeset = glocale.encoding
 
 try:
 
-    month_to_int = {
-        to_uni(locale.nl_langinfo(locale.MON_1), codeset).lower()   : 1,
-        to_uni(locale.nl_langinfo(locale.ABMON_1), codeset).lower() : 1,
-        to_uni(locale.nl_langinfo(locale.MON_2), codeset).lower()   : 2,
-        to_uni(locale.nl_langinfo(locale.ABMON_2), codeset).lower() : 2,
-        to_uni(locale.nl_langinfo(locale.MON_3), codeset).lower()   : 3,
-        to_uni(locale.nl_langinfo(locale.ABMON_3), codeset).lower() : 3,
-        to_uni(locale.nl_langinfo(locale.MON_4), codeset).lower()   : 4,
-        to_uni(locale.nl_langinfo(locale.ABMON_4), codeset).lower() : 4,
-        to_uni(locale.nl_langinfo(locale.MON_5), codeset).lower()   : 5,
-        to_uni(locale.nl_langinfo(locale.ABMON_5), codeset).lower() : 5,
-        to_uni(locale.nl_langinfo(locale.MON_6), codeset).lower()   : 6,
-        to_uni(locale.nl_langinfo(locale.ABMON_6), codeset).lower() : 6,
-        to_uni(locale.nl_langinfo(locale.MON_7), codeset).lower()   : 7,
-        to_uni(locale.nl_langinfo(locale.ABMON_7), codeset).lower() : 7,
-        to_uni(locale.nl_langinfo(locale.MON_8), codeset).lower()   : 8,
-        to_uni(locale.nl_langinfo(locale.ABMON_8), codeset).lower() : 8,
-        to_uni(locale.nl_langinfo(locale.MON_9), codeset).lower()   : 9,
-        to_uni(locale.nl_langinfo(locale.ABMON_9), codeset).lower() : 9,
-        to_uni(locale.nl_langinfo(locale.MON_10), codeset).lower()  : 10,
-        to_uni(locale.nl_langinfo(locale.ABMON_10), codeset).lower(): 10,
-        to_uni(locale.nl_langinfo(locale.MON_11), codeset).lower()  : 11,
-        to_uni(locale.nl_langinfo(locale.ABMON_11), codeset).lower(): 11,
-        to_uni(locale.nl_langinfo(locale.MON_12), codeset).lower()  : 12,
-        to_uni(locale.nl_langinfo(locale.ABMON_12), codeset).lower(): 12,
-       }
-
-    long_months = (
+    # here only for the upgrade tool, see _datestrings.py __main__
+    _deprecated_long_months = (
         "",
         to_uni(locale.nl_langinfo(locale.MON_1), codeset),
         to_uni(locale.nl_langinfo(locale.MON_2), codeset),
@@ -89,7 +63,7 @@ try:
         to_uni(locale.nl_langinfo(locale.MON_12), codeset),
         )
 
-    short_months = (
+    _deprecated_short_months = (
         "",
         to_uni(locale.nl_langinfo(locale.ABMON_1), codeset),
         to_uni(locale.nl_langinfo(locale.ABMON_2), codeset),
@@ -141,34 +115,7 @@ try:
 except:
     import time
 
-    month_to_int = {
-        to_uni(time.strftime('%B',(1,1,1,1,1,1,1,1,1)), codeset).lower() : 1,
-        to_uni(time.strftime('%b',(1,1,1,1,1,1,1,1,1)), codeset).lower() : 1,
-        to_uni(time.strftime('%B',(1,2,1,1,1,1,1,1,1)), codeset).lower() : 2,
-        to_uni(time.strftime('%b',(1,2,1,1,1,1,1,1,1)), codeset).lower() : 2,
-        to_uni(time.strftime('%B',(1,3,1,1,1,1,1,1,1)), codeset).lower() : 3,
-        to_uni(time.strftime('%b',(1,3,1,1,1,1,1,1,1)), codeset).lower() : 3,
-        to_uni(time.strftime('%B',(1,4,1,1,1,1,1,1,1)), codeset).lower() : 4,
-        to_uni(time.strftime('%b',(1,4,1,1,1,1,1,1,1)), codeset).lower() : 4,
-        to_uni(time.strftime('%B',(1,5,1,1,1,1,1,1,1)), codeset).lower() : 5,
-        to_uni(time.strftime('%b',(1,5,1,1,1,1,1,1,1)), codeset).lower() : 5,
-        to_uni(time.strftime('%B',(1,6,1,1,1,1,1,1,1)), codeset).lower() : 6,
-        to_uni(time.strftime('%b',(1,6,1,1,1,1,1,1,1)), codeset).lower() : 6,
-        to_uni(time.strftime('%B',(1,7,1,1,1,1,1,1,1)), codeset).lower() : 7,
-        to_uni(time.strftime('%b',(1,7,1,1,1,1,1,1,1)), codeset).lower() : 7,
-        to_uni(time.strftime('%B',(1,8,1,1,1,1,1,1,1)), codeset).lower() : 8,
-        to_uni(time.strftime('%b',(1,8,1,1,1,1,1,1,1)), codeset).lower() : 8,
-        to_uni(time.strftime('%B',(1,9,1,1,1,1,1,1,1)), codeset).lower() : 9,
-        to_uni(time.strftime('%b',(1,9,1,1,1,1,1,1,1)), codeset).lower() : 9,
-        to_uni(time.strftime('%B',(1,10,1,1,1,1,1,1,1)), codeset).lower() : 10,
-        to_uni(time.strftime('%b',(1,10,1,1,1,1,1,1,1)), codeset).lower() : 10,
-        to_uni(time.strftime('%B',(1,11,1,1,1,1,1,1,1)), codeset).lower() : 11,
-        to_uni(time.strftime('%b',(1,11,1,1,1,1,1,1,1)), codeset).lower() : 11,
-        to_uni(time.strftime('%B',(1,12,1,1,1,1,1,1,1)), codeset).lower() : 12,
-        to_uni(time.strftime('%b',(1,12,1,1,1,1,1,1,1)), codeset).lower() : 12,
-       }
-
-    long_months = (
+    _deprecated_long_months = (
         "",
         to_uni(time.strftime('%B',(1,1,1,1,1,1,1,1,1)), codeset),
         to_uni(time.strftime('%B',(1,2,1,1,1,1,1,1,1)), codeset),
@@ -184,7 +131,7 @@ except:
         to_uni(time.strftime('%B',(1,12,1,1,1,1,1,1,1)), codeset),
        )
 
-    short_months = (
+    _deprecated_short_months = (
         "",
         to_uni(time.strftime('%b',(1,1,1,1,1,1,1,1,1)), codeset),
         to_uni(time.strftime('%b',(1,2,1,1,1,1,1,1,1)), codeset),

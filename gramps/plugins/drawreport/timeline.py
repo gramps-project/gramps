@@ -41,7 +41,7 @@ import copy
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 from gramps.gen.plug.menu import (PersonOption, FilterOption,
                                   EnumeratedListOption)
 from gramps.gen.plug.report import Report
@@ -71,8 +71,8 @@ cal = config.get('preferences.calendar-format-report')
 #------------------------------------------------------------------------
 def _get_sort_functions(sort):
     return [
-        (_("Birth Date"),sort.by_birthdate_key),
-        (_("Name"),sort.by_last_name_key), 
+        (_("sorted by|Birth Date"),sort.by_birthdate_key),
+        (_("sorted by|Name"),sort.by_last_name_key), 
 ]
 
 #------------------------------------------------------------------------

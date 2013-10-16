@@ -49,6 +49,7 @@ from ._dateparser import DateParser
 from ._datedisplay import DateDisplay, DateDisplayEn
 from ..constfunc import win, cuni
 from ..const import GRAMPS_LOCALE as glocale
+from gramps.gen.utils.grampslocale import GrampsLocale
 
 #-------------------------------------------------------------------------
 #
@@ -99,6 +100,9 @@ def register_datehandler(locales,parse_class,display_class):
     Registers the passed date parser class and date displayer
     classes with the specified language locales.
 
+    Set the parser_class and display_class ._locale attribute
+    to the corresponding GrampsLocale object.
+
     @param locales: tuple of strings containing language codes.
         The character encoding is not included, so the language
         should be in the form of fr_FR, not fr_FR.utf8
@@ -111,3 +115,5 @@ def register_datehandler(locales,parse_class,display_class):
     for lang_str in locales:
         LANG_TO_PARSER[lang_str] = parse_class
         LANG_TO_DISPLAY[lang_str] = display_class
+
+    parse_class._locale = display_class._locale = GrampsLocale(lang=locales[0])

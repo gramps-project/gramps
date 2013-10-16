@@ -51,6 +51,8 @@ log = logging.getLogger(".DateParser")
 #-------------------------------------------------------------------------
 from ..lib.date import Date, DateError
 from . import _grampslocale
+from ..utils.grampslocale import GrampsLocale
+from ._datestrings import DateStrings
 
 #-------------------------------------------------------------------------
 #
@@ -120,6 +122,70 @@ def french_valid(date_tuple):
         valid = False       
     return valid
 
+def _build_prefix_table(month_to_int, month_variants):
+    """
+    Populate a DateParser.month_to_int-like dict
+    with all the prefixes found in month_variants.
+    """
+
+    month_variants = list(month_variants) # drain the generator, if any
+    month_to_int_new = {}
+
+    # Populate with full names first, w/o prefixes
+    log.debug("Mapping full names...")
+    for i in range(0,len(month_variants)):
+        for month in month_variants[i]:
+            m = month.lower()
+            log.debug("Mapping {} -> {}".format(m, i))
+            month_to_int_new[m] = i
+    month_to_int.update(month_to_int_new)
+
+    log.debug("Mapping new prefixes...")
+    months_sorted = list(month_to_int_new.keys())
+    months_sorted.sort(key=len, reverse=True)
+    for m in months_sorted:
+        for prefixlen in reversed(range(1,len(m))):
+            mp = m[:prefixlen]
+            if mp.strip() != mp:
+                continue
+            if mp in month_to_int:
+                break
+            else:
+                i = month_to_int[m]
+                log.debug("Mapping {} -> {}".format(mp, i))
+                month_to_int[mp] = i
+
+def _generate_variants(months):
+    """
+    Generate all month variants for passing to _build_prefix_table
+    @param months an iterable ordered collection, 
+                  1st item is empty, the rest 1..N, for a
+                  calendar with N months overall, contain, each,
+                  an iterable of alternative specifications.
+                  Each such specification can be:
+                    1) a Lexeme, supporting .variants()
+                    to return the list of variants underneath
+                    2) a literal string
+                    3) a |-separated string of alternatives
+                  Empty strings are discarded.
+    @return generator of lists per month with all variants listed once only
+            the 1st item will be empty
+    """
+
+    for month_lexemes_and_alternatives in months:
+        v = []
+        for m in month_lexemes_and_alternatives:
+            try:
+                # Lexeme? ask it to compute the variants it knows
+                mv = list(m.variants())
+            except AttributeError:
+                # plain string, not a lexeme with inflections...
+                # Maybe a '|'-separated list of alternatives, maybe empty,
+                # maybe a single string. Suppress empty strings!
+                mv = (s for s in m.split('|') if s)
+            v.extend(mv)
+        yield(list(set(v)))
+
 #-------------------------------------------------------------------------
 #
 # DateParser class
@@ -131,6 +197,8 @@ class DateParser(object):
     converted, the text string is assigned.
     """
 
+    _locale = GrampsLocale(lang='en', languages='en')
+    
     _fmt_parse = re.compile(".*%(\S).*%(\S).*%(\S).*")
 
     # RFC-2822 only uses capitalized English abbreviated names, no locales.
@@ -141,7 +209,12 @@ class DateParser(object):
         'Sep' : 9,  'Oct' : 10, 'Nov' : 11, 'Dec' : 12,
         }
 
-    month_to_int = _grampslocale.month_to_int
+    # seeded with __init_prefix_tables
+    swedish_to_int = month_to_int = {}
+    """
+    Map Gregorian month names and their prefixes, wherever unambiguous,
+    to the relevant integer index (1..12).
+    """
 
     # modifiers before the date
     # (overridden if a locale-specific date parser exists)
@@ -172,13 +245,7 @@ class DateParser(object):
         }
 
     french_to_int = {
-        'vendémiaire'  : 1,    'brumaire'   : 2,
-        'frimaire'     : 3,    'nivôse': 4,
-        'pluviôse'     : 5,    'ventôse' : 6,
-        'germinal'     : 7,    'floréal' : 8,
-        'prairial'     : 9,    'messidor'   : 10,
-        'thermidor'    : 11,   'fructidor'  : 12,
-        'extra'        : 13,
+# the long ones are seeded with __init_prefix_tables
         #GEDCOM months
         'vend'    : 1,    'brum' : 2,
         'frim'    : 3,    'nivo' : 4,
@@ -190,6 +257,8 @@ class DateParser(object):
         }
 
     islamic_to_int = {
+# some are already seeded with __init_prefix_tables,
+# but it is a pain to separate them out from the variants...
         "muharram"           : 1,  "muharram ul haram"  : 1,
         "safar"              : 2,  "rabi`al-awwal"      : 3,
         "rabi'l"             : 3,  "rabi`ul-akhir"      : 4,
@@ -207,44 +276,14 @@ class DateParser(object):
         "dhu hijja"          : 12, "thw al-hijjah"      : 12,
         }
 
-    persian_to_int = {
-        "farvardin"   : 1,  "ordibehesht" : 2,
-        "khordad"     : 3,  "tir"         : 4,
-        "mordad"      : 5,  "shahrivar"   : 6,
-        "mehr"        : 7,  "aban"        : 8,
-        "azar"        : 9,  "dey"         : 10,
-        "bahman"      : 11, "esfand"      : 12,
-        }
-
-    swedish_to_int = {
-        "januari"    :  1, "februari"   :  2,
-        "mars"       :  3, "april"      :  4,
-        "maj"        :  5, "juni"       :  6,
-        "juli"       :  7, "augusti"    :  8,
-        "september"  :  9, "oktober"    : 10,
-        "november"   : 11, "december"   : 12,
-        }
-        
+    # seeded with __init_prefix_tables
+    persian_to_int = { }
 
     bce = ["B.C.E.", "B.C.E", "BCE", "B.C.", "B.C", "BC" ]
     # (overridden if a locale-specific date parser exists)
 
+    # seeded with __init_prefix_tables
     calendar_to_int = {
-        'gregorian'        : Date.CAL_GREGORIAN,
-        'g'                : Date.CAL_GREGORIAN,
-        'julian'           : Date.CAL_JULIAN,
-        'j'                : Date.CAL_JULIAN,
-        'hebrew'           : Date.CAL_HEBREW,
-        'h'                : Date.CAL_HEBREW,
-        'islamic'          : Date.CAL_ISLAMIC,
-        'i'                : Date.CAL_ISLAMIC,
-        'french'           : Date.CAL_FRENCH,
-        'french republican': Date.CAL_FRENCH,
-        'f'                : Date.CAL_FRENCH,
-        'persian'          : Date.CAL_PERSIAN,
-        'p'                : Date.CAL_PERSIAN, 
-        'swedish'          : Date.CAL_SWEDISH,
-        's'                : Date.CAL_SWEDISH,
         }
         # (probably overridden if a locale-specific date parser exists)
 
@@ -265,6 +304,31 @@ class DateParser(object):
         }
         # (overridden if a locale-specific date parser exists)
     
+    _langs = set()
+    def __init_prefix_tables(self):
+        lang = self._locale.lang
+        if lang in DateParser._langs:
+            log.debug("Prefix tables for {} already built".format(lang))
+            return
+        else:
+            DateParser._langs.add(lang)
+        ds = DateStrings(self._locale)
+        log.debug("Begin building parser prefix tables for {}".format(lang))
+        _build_prefix_table(DateParser.month_to_int, 
+            _generate_variants(
+                    zip(ds.long_months, ds.short_months, 
+                        ds.swedish_SV, ds.alt_long_months)))
+        _build_prefix_table(DateParser.hebrew_to_int,
+            _generate_variants(zip(ds.hebrew)))
+        _build_prefix_table(DateParser.french_to_int,
+            _generate_variants(zip(ds.french)))
+        _build_prefix_table(DateParser.islamic_to_int,
+            _generate_variants(zip(ds.islamic)))
+        _build_prefix_table(DateParser.persian_to_int,
+            _generate_variants(zip(ds.persian)))
+        _build_prefix_table(DateParser.calendar_to_int,
+                _generate_variants(zip(ds.calendar)))
+
     def __init__(self):
         self.init_strings()
         self.parser = {
@@ -294,8 +358,8 @@ class DateParser(object):
         sorted so that longest keys match first.  Any '.' characters
         are quoted.
         """
-        keys.sort(key=lambda x: len(x), reverse=True)
-        return '(' + '|'.join([key.replace('.', '\.') for key in keys]) + ')'
+        keys.sort(key=len, reverse=True)
+        return '(' + '|'.join([re.escape(key) for key in keys]) + ')'
 
     def init_strings(self):
         """
@@ -308,6 +372,8 @@ class DateParser(object):
         can be coded after DateParser.init_strings(self) call, that way they
         override stuff from this method. See DateParserRU() as an example.
         """
+        self.__init_prefix_tables()
+
         self._rfc_mon_str  = '(' + '|'.join(list(self._rfc_mons_to_int.keys())) + ')'
         self._rfc_day_str  = '(' + '|'.join(self._rfc_days) + ')'
 
