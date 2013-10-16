@@ -21,7 +21,7 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id: _date_fr.py 22672 2013-07-13 18:01:08Z paul-franklin $
+# $Id$
 
 #-------------------------------------------------------------------------
 #
@@ -109,19 +109,14 @@ class DateParserFR(DateParser):
         DateParser.init_strings(self)
         
         DateParser.calendar_to_int.update({
-            'grégorien'        : Date.CAL_GREGORIAN,
             'g'                : Date.CAL_GREGORIAN,
-            'julien'           : Date.CAL_JULIAN,
             'j'                : Date.CAL_JULIAN,
-            'hébreu'           : Date.CAL_HEBREW,
             'h'                : Date.CAL_HEBREW,
-            'islamique'        : Date.CAL_ISLAMIC,
             'i'                : Date.CAL_ISLAMIC,
             'révolutionnaire'  : Date.CAL_FRENCH,
             'r'                : Date.CAL_FRENCH,
             'perse'            : Date.CAL_PERSIAN,
             'p'                : Date.CAL_PERSIAN,
-            'suédois'          : Date.CAL_SWEDISH,
             's'                : Date.CAL_SWEDISH, 
         })
         
