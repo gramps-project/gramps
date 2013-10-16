@@ -37,6 +37,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Lokalize 1.4\n"
 
+
 # trunk
 #: ../gramps/cli/arghandler.py:220
 #, python-format
@@ -32090,3 +32091,5 @@ msgstr ""
 #, fuzzy
 #~ msgid "All rules must apply sequentially"
 #~ msgstr "Toutes les règles doivent correspondre"
+# Generating snippets for fr*.po
+# Available languages: ['ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', u'en', 'en_GB', 'es', 'fi', 'fr', 'he', 'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR', 'pt_PT', 'ru', 'sk', 'sl', 'sq', 'sv', 'uk', 'vi', 'zh_CN']

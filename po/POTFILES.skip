@@ -31,7 +31,6 @@ gramps/gen/datehandler/_date_ca.py
 gramps/gen/datehandler/_date_cs.py
 gramps/gen/datehandler/_date_da.py
 gramps/gen/datehandler/_date_de.py
-gramps/gen/datehandler/_datedisplay.py
 gramps/gen/datehandler/_date_el.py
 gramps/gen/datehandler/_date_es.py
 gramps/gen/datehandler/_date_fi.py
