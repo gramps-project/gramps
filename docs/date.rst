@@ -10,6 +10,13 @@ DateParser
    :undoc-members:
    :show-inheritance:
 
+DateStrings
+===========
+.. automodule:: gramps.gen.datehandler._datestrings
+.. autoclass:: DateStrings
+   :members:
+   :show-inheritance:
+
 DateDisplay
 ====================================
 .. automodule:: gramps.gen.datehandler._datedisplay
