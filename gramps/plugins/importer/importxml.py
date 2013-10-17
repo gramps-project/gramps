@@ -436,7 +436,8 @@ class ImportOpenFileContextManager:
 
     def __exit__(self, exc_type, exc_value, traceback):
         if self.filename != '-':
-            self.filehandle.close()
+            if self.filehandle:
+                self.filehandle.close()
         return False
 
     def open_file(self, filename):
