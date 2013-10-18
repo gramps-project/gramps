@@ -29,8 +29,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -45,6 +44,8 @@ from gi.repository import Gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from ..utils import open_file_with_default_application
 from gramps.gen.const import THUMBSCALE
 from gramps.gen.mime import get_description, get_type
