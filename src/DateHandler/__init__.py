@@ -33,6 +33,8 @@ import logging
 # import prerequisites for localized handlers
 from _DateHandler import (LANG, LANG_SHORT, LANG_TO_PARSER, LANG_TO_DISPLAY, 
                           register_datehandler)
+                          
+from gen.ggettext import gettext as _
 
 # Import all the localized handlers
 import _Date_ar
