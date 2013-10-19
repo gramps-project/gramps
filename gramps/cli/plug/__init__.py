@@ -691,7 +691,7 @@ def run_report(db, name, **options_str_dict):
        filename in clr.option_class.get_output()
     """
     dbstate = DbState()
-    climanager = CLIManager(dbstate, False) # don't load db
+    climanager = CLIManager(dbstate, setloader=False, user=User()) # don't load db
     climanager.do_reg_plugins(dbstate, None)
     pmgr = BasePluginManager.get_instance()
     cl_list = pmgr.get_reg_reports()
