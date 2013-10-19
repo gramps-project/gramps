@@ -490,12 +490,11 @@ class GalleryTab(ButtonTab, DbGUIElement):
                     if data:
                         (path, pos) = data
                         row = path.get_indices()[0]
-
-                        if pos ==  Gtk.ICON_VIEW_DROP_LEFT:
+                        if pos ==  Gtk.IconViewDropPosition.DROP_LEFT:
                             row = max(row, 0)
-                        elif pos == Gtk.ICON_VIEW_DROP_RIGHT:
+                        elif pos == Gtk.IconViewDropPosition.DROP_RIGHT:
                             row = min(row, len(self.get_data()))
-                        elif pos == Gtk.ICON_VIEW_DROP_INTO:
+                        elif pos == Gtk.IconViewDropPosition.DROP_INTO:
                             row = min(row+1, len(self.get_data()))
                     else:
                         row = len(self.get_data())
