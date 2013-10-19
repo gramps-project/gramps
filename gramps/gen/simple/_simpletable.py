@@ -111,6 +111,9 @@ class SimpleTable(object):
             elif isinstance(item, (int, float)):
                 retval.append(conv_to_unicode_direct(item))
                 self.row_sort_val(col, item)
+            elif isinstance(item, bool):
+                retval.append(repr(item))
+                self.row_sort_val(col, int(item))
             elif isinstance(item, Person):
                 retval.append(self.access.describe(item))
                 if (self._link_col == col or link is None):
