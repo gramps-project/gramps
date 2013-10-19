@@ -36,3 +36,9 @@ class Handle:
     def __repr__(self):
         return "Handle(%s, %s)" % (self.classname, self.handle)
 
+    def __str__(self):
+        if self.handle:
+            return self.handle
+        else:
+            return "None"
+
