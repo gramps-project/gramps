@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-09-19 23:56+0300\n"
-"PO-Revision-Date: 2013-08-29 11:03+0300\n"
+"PO-Revision-Date: 2013-10-20 13:35+0300\n"
 "Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
 "Language-Team: Russian <gramps-devel@lists.sf.net>\n"
 "Language: ru\n"
@@ -858,7 +858,6 @@ msgstr "Приватная запись"
 
 # !!!FIXME!!!
 #: ../gramps/gen/const.py:206
-#, fuzzy
 msgid ""
 "Gramps (Genealogical Research and Analysis Management Programming System)\n"
 "is a personal genealogy program."
@@ -934,17 +933,15 @@ msgstr "{long_month} {year}"
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "from"
 #: ../gramps/gen/datehandler/_datedisplay.py:160
-#, fuzzy
 msgid "from|{long_month} {year}"
-msgstr "{long_month.f[Р]} {year}"
+msgstr ""
 
 #. second date in a span
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "to"
 #: ../gramps/gen/datehandler/_datedisplay.py:166
-#, fuzzy
 msgid "to|{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr ""
 
 #. first date in a range
 #. You only need to translate this string if you translate one of the
@@ -957,9 +954,8 @@ msgstr "{long_month.f[Т]} {year}"
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "and"
 #: ../gramps/gen/datehandler/_datedisplay.py:178
-#, fuzzy
 msgid "and|{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr ""
 
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "before"
@@ -985,15 +981,13 @@ msgstr "{short_month} {year}"
 
 #. first date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:204
-#, fuzzy
 msgid "from|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. second date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:208
-#, fuzzy
 msgid "to|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. first date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:212
@@ -1002,23 +996,20 @@ msgstr "{short_month.f[Т]} {year}"
 
 #. second date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:216
-#, fuzzy
 msgid "and|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:219
 msgid "before|{short_month} {year}"
 msgstr "{short_month.f[Р]} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:222
-#, fuzzy
 msgid "after|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:225
-#, fuzzy
 msgid "about|{short_month} {year}"
-msgstr "{short_month} {year}"
+msgstr ""
 
 #. If there is no special inflection for "from <Month>" in your
 #. language, don't translate this string.
@@ -1039,10 +1030,8 @@ msgid "to-date|"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:344
-msgid ""
-"{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
-"{date_quality}с {date_start} по {date_stop}{nonstd_calendar_and_ny}"
+msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}с {date_start} по {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "between <Month>" in your
 #. language, don't translate this string.
@@ -1066,8 +1055,7 @@ msgstr "between"
 msgid ""
 "{date_quality}between {date_start} and {date_stop}"
 "{nonstd_calendar_and_ny}"
-msgstr ""
-"{date_quality}между {date_start} и {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}между {date_start} и {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "before/after/around <Month>" in your
 #. language, don't translate this string.
@@ -1081,8 +1069,7 @@ msgid "before-date|"
 msgstr "before"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:383
-msgid ""
-"{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
+msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr ""
 
 #. TRANSLATORS: see
@@ -6860,9 +6847,9 @@ msgid "ancestor death-related date"
 msgstr "дата, связанная со смертью предка"
 
 #: ../gramps/gen/utils/alive.py:457
-#, fuzzy, python-format
+#, python-format
 msgid "Database error: loop in %s's ancestors"
-msgstr "Ошибка базы данных: %s является собственным предком"
+msgstr "Ошибка базы данных: зацикливание предков %s"
 
 #. no evidence, must consider alive
 #: ../gramps/gen/utils/alive.py:504
@@ -8133,16 +8120,15 @@ msgstr "Показывать статус модулей при ошибках �
 
 #: ../gramps/gui/configure.py:613
 msgid "Suppress warning when OsmGpsMap not installed."
-msgstr ""
+msgstr "Отключать предупреждение в случае, если «OsmGpsMap» не установлен."
 
 #: ../gramps/gui/configure.py:617
 msgid "Suppress warning when GExiv2 not installed."
-msgstr ""
+msgstr "Отключать предупреждение в случае, если «GExiv2» не установлен."
 
 #: ../gramps/gui/configure.py:621
-#, fuzzy
 msgid "Suppress warning when spell checking not installed."
-msgstr "Прятать предупреждение при добавлении родителей к ребёнку."
+msgstr ""
 
 #: ../gramps/gui/configure.py:624
 msgid "Warnings"
@@ -11022,39 +11008,32 @@ msgid "Source: Abbreviation"
 msgstr "Источник: сокращение"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
-#, fuzzy
 msgid "Source: Publication"
-msgstr "Источник: сокращение"
+msgstr "Источник: публикация"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
-#, fuzzy
 msgid "Source: Note"
-msgstr "Заметка об источнике"
+msgstr "Источник: заметка"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116
-#, fuzzy
 msgid "Citation: ID"
-msgstr "Цитата"
+msgstr "Цитата: идентификатор"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
-#, fuzzy
 msgid "Citation: Volume/Page"
-msgstr "Источник или цитата"
+msgstr "Цитата: том/страница"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:118
-#, fuzzy
 msgid "Citation: Date"
-msgstr "Заметка о цитате"
+msgstr "Цитата: дата"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:119
-#, fuzzy
 msgid "Citation: Minimum Confidence|Min. Conf."
 msgstr "Мин. достов."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:120
-#, fuzzy
 msgid "Citation: Note"
-msgstr "Заметка о цитате"
+msgstr "Цитата: заметка"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:122
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:109
@@ -14891,9 +14870,8 @@ msgstr "Выберите источник или цитату"
 
 #: ../gramps/gui/selectors/selectcitation.py:67
 #: ../gramps/plugins/view/citationtreeview.py:95
-#, fuzzy
 msgid "Source: Title or Citation: Volume/Page"
-msgstr "Источник или цитата"
+msgstr ""
 
 #: ../gramps/gui/selectors/selectevent.py:55
 msgid "Select Event"
@@ -17479,14 +17457,12 @@ msgid "The style used for the title of the page."
 msgstr "Стиль заголовков страниц."
 
 #: ../gramps/plugins/drawreport/timeline.py:74
-#, fuzzy
 msgid "sorted by|Birth Date"
-msgstr "Дата рождения"
+msgstr "дате рождения"
 
 #: ../gramps/plugins/drawreport/timeline.py:75
-#, fuzzy
 msgid "sorted by|Name"
-msgstr "Отсортировано по %s"
+msgstr "имени"
 
 #. Apply the filter
 #. Sort the people as requested
@@ -18449,6 +18425,11 @@ msgid ""
 "title=GEPS_029:_GTK3-"
 "GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 msgstr ""
+"Модуль «GExiv2» не загружен. Обработка метаданных изображения недоступна.\n\n"
+"Инструкция по сборке этого модуля доступна на "
+"  http://www.gramps-project.org/wiki/index.php?"
+"title=GEPS_029:_GTK3-"
+"GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:403
 msgid "Person Residence"
@@ -25311,15 +25292,15 @@ msgstr "Вероятно живые люди, и их возраст на %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:66
 #: ../gramps/plugins/quickview/ageondate.py:69
-#, fuzzy, python-format
+#, python-format
 msgid "Alive: %s"
-msgstr "Возраст"
+msgstr "жив.: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:75
 #: ../gramps/plugins/quickview/ageondate.py:78
-#, fuzzy, python-format
+#, python-format
 msgid "Deceased: %s"
-msgstr "Просмотр Потомков: %s"
+msgstr "умер.: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:83
 #, python-format
@@ -30159,9 +30140,8 @@ msgid "The animation parameters"
 msgstr ""
 
 #: ../gramps/plugins/view/geoplaces.py:120
-#, fuzzy
 msgid "Places map"
-msgstr "Карта места"
+msgstr "Карта мест"
 
 #: ../gramps/plugins/view/geoplaces.py:289
 msgid "The place name in the status bar is disabled."
