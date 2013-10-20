@@ -32,7 +32,7 @@
 
 <grammar
   datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"  
-  ns="http://gramps-project.org/xml/1.5.0/"
+  ns="http://gramps-project.org/xml/1.5.1/"
   xmlns="http://relaxng.org/ns/structure/1.0">
 
   <start><element name="database">
@@ -434,7 +434,7 @@
     <ref name="primary-object"/>
     <optional><ref name="date-content"/></optional>
     <optional><element name="page"><text/></element></optional>
-    <optional><element name="confidence"><text/></element></optional>
+    <element name="confidence"><text/></element>
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
     </element></zeroOrMore>
