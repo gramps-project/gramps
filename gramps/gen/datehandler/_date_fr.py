@@ -109,15 +109,9 @@ class DateParserFR(DateParser):
         DateParser.init_strings(self)
         
         DateParser.calendar_to_int.update({
-            'g'                : Date.CAL_GREGORIAN,
-            'j'                : Date.CAL_JULIAN,
-            'h'                : Date.CAL_HEBREW,
-            'i'                : Date.CAL_ISLAMIC,
             'révolutionnaire'  : Date.CAL_FRENCH,
             'r'                : Date.CAL_FRENCH,
             'perse'            : Date.CAL_PERSIAN,
-            'p'                : Date.CAL_PERSIAN,
-            's'                : Date.CAL_SWEDISH, 
         })
         
         DateParser.month_to_int.update({
