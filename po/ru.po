@@ -31523,7 +31523,7 @@ msgstr "Базовая ссылка на повествовательный са
 #: ../gramps/plugins/webreport/webcal.py:1706
 #, python-format
 msgid "%s old"
-msgstr "%s лет"
+msgstr "%s"
 
 #: ../gramps/plugins/webreport/webcal.py:1706
 msgid "birth"
