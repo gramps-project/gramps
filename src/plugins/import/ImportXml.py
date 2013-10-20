@@ -36,6 +36,7 @@ from xml.parsers.expat import ExpatError, ParserCreate
 from gen.ggettext import gettext as _
 import re
 import logging
+from gen.plug.utils import version_str_to_tup
 LOG = logging.getLogger(".ImportXML")
 
 #-------------------------------------------------------------------------
@@ -448,7 +449,7 @@ class GrampsParser(UpdateCallback):
     def __init__(self, database, callback, change):
         UpdateCallback.__init__(self, callback)
         self.__gramps_version = 'unknown'
-        self.__xml_version = '1.0.0'
+        self.__xml_version = (1, 0, 0)
         self.stext_list = []
         self.scomments_list = []
         self.note_list = []
@@ -933,17 +934,17 @@ class GrampsParser(UpdateCallback):
         if 'xmlns' in attrs:
             xmlns = attrs.get('xmlns').split('/')
             if len(xmlns)>= 2 and not xmlns[2] == 'gramps-project.org':
-                self.__xml_version = '0.0.0'
+                self.__xml_version = (0, 0, 0)
             else:
                 try:
-                    self.__xml_version = xmlns[4]
+                    self.__xml_version = version_str_to_tup(xmlns[4], 3)
                 except:
                     #leave version at 1.0.0 although it could be 0.0.0 ??
                     pass
         else:
             #1.0 or before xml, no dtd schema yet on 
             # http://www.gramps-project.org/xml/
-            self.__xml_version = '0.0.0'
+            self.__xml_version = (0, 0, 0)
 
     def start_created(self, attrs):
         """
@@ -964,18 +965,13 @@ class GrampsParser(UpdateCallback):
         """
         Check the version of Gramps and XML.
         """
+        xmlversion_str = '.'.join(str(i) for i in self.__xml_version)
         if self.__gramps_version == 'unknown':
             msg = _("The .gramps file you are importing does not contain information about "
                     "the version of Gramps with, which it was produced.\n\n"
                     "The file will not be imported.")
             raise GrampsImportError(_('Import file misses Gramps version'), msg)
-        if not re.match("\d+\.\d+\.\d+", self.__xml_version):
-            msg = _("The .gramps file you are importing does not contain a "
-                    "valid xml-namespace number.\n\n"
-                    "The file will not be imported.")
-            raise GrampsImportError(_('Import file contains unacceptable XML '
-                    'namespace version'), msg)
-        if self.__xml_version > libgrampsxml.GRAMPS_XML_VERSION:
+        if self.__xml_version > libgrampsxml.GRAMPS_XML_VERSION_TUPLE:
             msg = _("The .gramps file you are importing was made by "
                     "version %(newer)s of "
                     "Gramps, while you are running an older version %(older)s. "
@@ -983,7 +979,7 @@ class GrampsParser(UpdateCallback):
                     "latest version of Gramps and try again." ) % {
                     'newer' : self.__gramps_version, 'older' : const.VERSION }
             raise GrampsImportError('', msg)
-        if self.__xml_version < '1.0.0':
+        if self.__xml_version < (1, 0, 0):
             msg = _("The .gramps file you are importing was made by version "
                     "%(oldgramps)s of Gramps, while you are running a more "
                     "recent version %(newgramps)s.\n\n"
@@ -994,10 +990,10 @@ class GrampsParser(UpdateCallback):
                     "\n for more info."
                     ) % {'oldgramps': self.__gramps_version, 
                         'newgramps': const.VERSION,
-                        'xmlversion': self.__xml_version,
+                        'xmlversion': xmlversion_str,
                         }
             raise GrampsImportError(_('The file will not be imported'), msg)
-        elif self.__xml_version < '1.1.0':
+        elif self.__xml_version < (1, 1, 0):
             msg = _("The .gramps file you are importing was made by version "
                     "%(oldgramps)s of Gramps, while you are running a much "
                     "more recent version %(newgramps)s.\n\n"
@@ -1009,7 +1005,7 @@ class GrampsParser(UpdateCallback):
                     "\nfor more info."
                     ) % {'oldgramps': self.__gramps_version, 
                         'newgramps': const.VERSION,
-                        'xmlversion': self.__xml_version,
+                        'xmlversion': xmlversion_str,
                         }
             WarningDialog(_('Old xml file'), msg)
 
@@ -1574,7 +1570,7 @@ class GrampsParser(UpdateCallback):
             self.name = gen.lib.Name()
             name_type = attrs.get('type', "Birth Name")
             # Mapping "Other Name" from gramps 2.0.x to Unknown
-            if (self.__xml_version == '1.0.0') and (name_type == 'Other Name'):
+            if (self.__xml_version == (1, 0, 0)) and (name_type == 'Other Name'):
                 self.name.set_type(gen.lib.NameType.UNKNOWN)
             else:
                 self.name.type.set_from_xml_str(name_type)
@@ -1934,7 +1930,7 @@ class GrampsParser(UpdateCallback):
         self.citation.private = bool(attrs.get("priv"))
         self.citation.change = int(attrs.get('change', self.change))
         self.citation.confidence = (
-                self.conf if self.__xml_version >= '1.5.1' 
+                self.conf if self.__xml_version >= (1, 5, 1)
                 else 0 ) # See bug# 7125
         self.info.add('new-object', CITATION_KEY, self.citation)
         return self.citation
