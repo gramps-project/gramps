@@ -25,15 +25,15 @@
 -->
 
 <!--
-    This is the Document Type Definition file for v1.5.0
+    This is the Document Type Definition file for v1.5.1
     of the GRAMPS XML genealogy data format.
     Please use the following formal public identifier to identify it:
 
-    "-//GRAMPS//DTD GRAMPS XML V1.5.0//EN"
+    "-//GRAMPS//DTD GRAMPS XML V1.5.1//EN"
 
     For example:
-        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.5.0//EN"
-                "http://gramps-project.org/xml/1.5.0/grampsxml.dtd"
+        <!DOCTYPE database PUBLIC "-//GRAMPS//DTD GRAMPS XML V1.5.1//EN"
+                "http://gramps-project.org/xml/1.5.1/grampsxml.dtd"
                 [...]>
 -->
 
@@ -62,7 +62,7 @@ DATABASE
 <!ELEMENT database (header, name-formats?, tags?, events?, people?, families?,
                     citations?, sources?, places?, objects?, repositories?,
                     notes?, bookmarks?, namemaps?)>
-<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.5.0/">
+<!ATTLIST database xmlns CDATA #FIXED "http://gramps-project.org/xml/1.5.1/">
 
 
 <!--    ************************************************************
@@ -367,7 +367,7 @@ CITATIONS
 
 <!ELEMENT citations (citation)*>
 
-<!ELEMENT citation ((daterange|datespan|dateval|datestr)?, page?, confidence?,
+<!ELEMENT citation ((daterange|datespan|dateval|datestr)?, page?, confidence,
                     noteref*, objref*, data_item*, sourceref)>
 <!ATTLIST citation
         id        CDATA #IMPLIED

@@ -1933,7 +1933,9 @@ class GrampsParser(UpdateCallback):
                           self.citation)
         self.citation.private = bool(attrs.get("priv"))
         self.citation.change = int(attrs.get('change', self.change))
-        self.citation.confidence = self.conf # default
+        self.citation.confidence = (
+                self.conf if self.__xml_version >= '1.5.1' 
+                else 0 ) # See bug# 7125
         self.info.add('new-object', CITATION_KEY, self.citation)
         return self.citation
 
