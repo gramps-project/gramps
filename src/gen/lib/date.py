@@ -285,11 +285,21 @@ class Span(object):
             return cmp(int(self), int(other))
 
     def __repr__(self):
+        """
+        Get the Span as an age. Use Span.as_time() to get as a textual
+        description of time greater than Span.ALIVE.
+        """
+        return self.get_repr(as_age=True)
+
+    def get_repr(self, as_age=False):
+        """
+        Get the representation as a time or age.
+        """
         if self.repr is not None:
             return self.repr
         elif self.valid:
             # TO_REWRITE: bug #5293 !
-            if self._diff(self.date1, self.date2)[0] > Span.ALIVE:
+            if as_age and self._diff(self.date1, self.date2)[0] > Span.ALIVE:
                 return _("less than %s years") % Span.ALIVE
             if self.date1.get_modifier() == Date.MOD_NONE:
                 if self.date2.get_modifier() == Date.MOD_NONE:
@@ -468,7 +478,7 @@ class Span(object):
             return True
         return int(self) > int(other)
 
-    def format(self, precision=2):
+    def format(self, precision=2, as_age=True):
         """
         Force a string representation at a level of precision. 
         1 = only most significant level (year, month, day)
@@ -477,7 +487,7 @@ class Span(object):
         """
         self.repr = None
         self.precision = precision
-        return repr(self)
+        return self.get_repr(as_age)
 
     def _format(self, diff_tuple):
         if diff_tuple == (-1, -1, -1): return _("unknown")
