@@ -50,7 +50,7 @@ from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.citation import (RegExpIdOf, HasCitation,
                                                HasNoteRegexp, MatchesFilter,
                                                HasSource, RegExpSourceIdOf)
-from gramps.gen.utils.string import confidence
+from gramps.gen.utils.string import conf_strings
 GenericCitationFilter = GenericFilterFactory('Citation')
 #-------------------------------------------------------------------------
 #
@@ -73,10 +73,10 @@ class CitationSidebarFilter(SidebarFilter):
         
         self.filter_conf = Gtk.ComboBox()
         model = Gtk.ListStore(str)
-        for conf_value in sorted(confidence.keys()):
-            model.append((confidence[conf_value],))
+        for conf_value in sorted(conf_strings.keys()):
+            model.append((_(conf_strings[conf_value]),))
         self.filter_conf.set_model(model)
-        self.filter_conf.set_active(2)  # Citation.CONF_NORMAL
+        self.filter_conf.set_active(Citation.CONF_NORMAL)
         
         self.filter_note = Gtk.Entry()
 
@@ -124,7 +124,7 @@ class CitationSidebarFilter(SidebarFilter):
         self.filter_id.set_text('')
         self.filter_page.set_text('')
         self.filter_date.set_text('')
-        self.filter_conf.set_active(2)
+        self.filter_conf.set_active(Citation.CONF_NORMAL)
         self.filter_note.set_text('')
         self.generic.set_active(0)
 
@@ -144,9 +144,9 @@ class CitationSidebarFilter(SidebarFilter):
         model = self.filter_conf.get_model()
         node = self.filter_conf.get_active_iter()
         conf_name = model.get_value(node, 0)  # The value is actually the text
-        conf = 2
-        for i in list(confidence.keys()):
-            if confidence[i] == conf_name:
+        conf = Citation.CONF_NORMAL
+        for i in list(conf_strings.keys()):
+            if _(conf_strings[i]) == conf_name:
                 conf = i
                 break
 #        conf = self.citn.get_confidence_level()

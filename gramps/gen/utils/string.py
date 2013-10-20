@@ -35,6 +35,10 @@ from ..lib import Person, Citation, FamilyRelType
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
+def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+    return value
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+
 #-------------------------------------------------------------------------
 #
 # Integer to String mappings for constants
@@ -49,13 +53,15 @@ gender = {
 def format_gender( type):
     return gender.get(type[0], _("Invalid"))
 
-confidence = {
-    Citation.CONF_VERY_HIGH : _("Very High"), 
-    Citation.CONF_HIGH      : _("High"), 
-    Citation.CONF_NORMAL    : _("Normal"), 
-    Citation.CONF_LOW       : _("Low"), 
-    Citation.CONF_VERY_LOW  : _("Very Low"), 
-   }
+conf_strings = {
+    Citation.CONF_VERY_HIGH : _T_("Very High"), 
+    Citation.CONF_HIGH      : _T_("High"), 
+    Citation.CONF_NORMAL    : _T_("Normal"), 
+    Citation.CONF_LOW       : _T_("Low"), 
+    Citation.CONF_VERY_LOW  : _T_("Very Low"), 
+    }
+    # note that a list /very/ similar to this is in EditCitation._setup_fields
+    # but that has the glocale's translated values since it is used in the UI
 
 family_rel_descriptions = {
     FamilyRelType.MARRIED     : _("A legal or common-law relationship "

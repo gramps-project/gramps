@@ -31,7 +31,7 @@ from ..docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
 from ...lib import NoteType, Citation
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ...utils.string import confidence
+from ...utils.string import conf_strings
 
 def add_endnote_styles(style_sheet):
     """
@@ -198,21 +198,9 @@ def _format_ref_text(ref, key, elocale):
         ref_txt = ref.get_page()
         
     # Print only confidence level if it is not Normal
-    if (ref.get_confidence_level() != Citation.CONF_NORMAL
-        and elocale == glocale): # FIXME
-        # the correct fix would be to enable deferred translation for at
-        # least the "confidence" list of strings (in gen/utils/string.py),
-        # and possibly others too if they need deferred translation, but that
-        # would require searching out every use of a "confidence" string and
-        # translating it there, either to the UI language or to a "deferred"
-        # language (e.g. when used in a report, as here in this module), but
-        # that would require an immense amount of time and testing and since
-        # a release is imminent this is not the time to consider that, so I
-        # have instead added the above line, which will disable the typeout
-        # of any "confidence" rating /if/ a translated value is needed, while
-        # continuing to show the "confidence" for the normal case of a user
-        # running a report in their own language (when elocale==glocale)
-        ref_txt += " [" + confidence[ref.get_confidence_level()] + "]"
+    if ref.get_confidence_level() != Citation.CONF_NORMAL:
+        ref_txt += " [" + elocale.translation.gettext(
+                              conf_strings[ref.get_confidence_level()]) + "]"
     
     return ref_txt
 

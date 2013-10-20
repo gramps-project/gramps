@@ -56,7 +56,7 @@ from gramps.gen.lib import StyledText, StyledTextTag, StyledTextTagType
 from gramps.gen.db import DbTxn
 from gramps.gen.mime import get_type
 from gramps.gui.plug import tool
-from gramps.gen.utils.string import confidence
+from gramps.gen.utils.string import conf_strings
 from gramps.gui.utils import ProgressMeter
 from gramps.gen.utils.lds import TEMPLES
 from gramps.gen.db.dbconst import *
@@ -1722,7 +1722,7 @@ class TestcaseGenerator(tool.BatchTool):
             #if randint(0,1) == 1:
             #    (year, d) = self.rand_date( )
             #    o.set_date_object( d)
-            o.set_confidence_level(choice(list(confidence.keys())))
+            o.set_confidence_level(choice(list(conf_strings.keys())))
 
         if issubclass(o.__class__,gen.lib.tagbase.TagBase):
             if randint(0,1) == 1:
