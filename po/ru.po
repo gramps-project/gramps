@@ -25815,7 +25815,7 @@ msgstr "Базовая ссылка на повествовательный са
 #: ../src/plugins/webreport/WebCal.py:1693
 #, python-format
 msgid "%s old"
-msgstr "%s лет"
+msgstr "%s"
 
 #: ../src/plugins/webreport/WebCal.py:1693
 msgid "birth"
