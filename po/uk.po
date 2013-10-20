@@ -1,5 +1,5 @@
 # Ukrainian translation for Gramps
-# $Id: uk.po 22497 2013-06-12 16:10:57Z fedik $
+# $Id$
 # This file is distributed under the same license as the Gramps package.
 # Copyright (c) 2011 Gramps
 # Fedir Zinchuk <fedikw@gmail.com>, 2011, 2012, 2013.

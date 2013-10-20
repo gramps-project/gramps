@@ -1,5 +1,5 @@
 # Arabic translation for Gramps
-# $Id: ar.po 22700 2013-07-21 06:57:33Z vassilii $
+# $Id$
 # This file is distributed under the same license as the Gramps package.
 #
 # This file was derived from "revision 6" of the "gramps.po" file in
