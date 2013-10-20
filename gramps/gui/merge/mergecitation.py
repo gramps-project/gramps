@@ -36,7 +36,7 @@ from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help
 from ..managedwindow import ManagedWindow
 from gramps.gen.datehandler import get_date
-from gramps.gen.utils.string import confidence
+from gramps.gen.utils.string import conf_strings
 from gramps.gen.merge import MergeCitationQuery
 
 #-------------------------------------------------------------------------
@@ -92,8 +92,8 @@ class MergeCitation(ManagedWindow):
 
         entry1 = self.get_widget("confidence1")
         entry2 = self.get_widget("confidence2")
-        entry1.set_text(confidence[self.citation1.get_confidence_level()])
-        entry2.set_text(confidence[self.citation2.get_confidence_level()])
+        entry1.set_text(_(conf_strings[self.citation1.get_confidence_level()]))
+        entry2.set_text(_(conf_strings[self.citation2.get_confidence_level()]))
         if entry1.get_text() == entry2.get_text():
             for widget_name in ('confidence1', 'confidence2', 'confidence_btn1',
                     'confidence_btn2'):

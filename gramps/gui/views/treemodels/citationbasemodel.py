@@ -39,12 +39,13 @@ LOG = logging.getLogger(".citation")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Citation
-from gramps.gen.utils.string import confidence
+from gramps.gen.utils.string import conf_strings
 from gramps.gen.config import config
 from gramps.gen.constfunc import cuni
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -116,7 +117,7 @@ class CitationBaseModel(object):
         return cuni(data[COLUMN_PAGE])
 
     def citation_confidence(self, data):
-        return cuni(confidence[data[COLUMN_CONFIDENCE]])
+        return cuni(_(conf_strings[data[COLUMN_CONFIDENCE]]))
 
     def citation_private(self, data):
         if data[COLUMN_PRIV]:

@@ -47,7 +47,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.utils.string import confidence
+from gramps.gen.utils.string import conf_strings
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.plug import tool
@@ -204,7 +204,7 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
                     key += "\n" + get_date(citation)
                 if fields != IGNORE_CONFIDENCE and fields != IGNORE_BOTH:
                     key += "\n" + \
-                        confidence[citation.get_confidence_level()]
+                        conf_strings[citation.get_confidence_level()]
                 if key in dict and \
                     (not dont_merge_notes or len(citation.note_list) == 0):
                     citation_match_handle = dict[key]

@@ -123,7 +123,7 @@ from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 
 from gramps.gen.utils.config import get_researcher
-from gramps.gen.utils.string import confidence
+from gramps.gen.utils.string import conf_strings
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.db import get_source_and_citation_referents
@@ -2356,9 +2356,11 @@ class BasePage(object):
                 for key, sref in citation_ref_list:
                     cit_ref_li = Html("li", id="sref%d%s" % (cindex, key))
                     tmp = Html("ul")
-                    conf = confidence.get(sref.confidence, _('Unknown'))
-                    if conf == _('Normal'):
+                    conf = conf_strings.get(sref.confidence, _('Unknown'))
+                    if conf == conf_strings[Citation.CONF_NORMAL]:
                         conf = None
+                    else:
+                        conf = _(conf)
                     for (label, data) in [
                                           [_("Date"),       _dd.display(sref.date)],
                                           [_("Page"),       sref.page],

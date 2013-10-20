@@ -223,7 +223,7 @@ class IndivCompleteReport(Report):
             # Groups with more than one type
             column_1 = self._(self._get_type(event.get_type()))
             if role not in (EventRoleType.PRIMARY, EventRoleType.FAMILY):
-                column_1 = column_1 + ' (' + str(role) + ')'
+                column_1 = column_1 + ' (' + self._(role.xml_str()) + ')'
             column_2 = combine('%s, %s', '%s', description, date_place)
         else:
             # Groups with a single type (remove event type from first column)
