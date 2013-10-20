@@ -44,10 +44,9 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-11 10:21+0200\n"
-"PO-Revision-Date: 2013-09-26 18:06+0100\n"
+"PO-Revision-Date: 2013-10-20 12:42+0100\n"
 "Last-Translator: Harmen Huizinga\n"
 "Language-Team: nederlands <frederik.de.richter@gmail.com>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -884,13 +883,12 @@ msgid "Private Record"
 msgstr "Gegevens privé"
 
 #: ../gramps/gen/const.py:206
-#, fuzzy
 msgid ""
 "Gramps (Genealogical Research and Analysis Management Programming System)\n"
 "is a personal genealogy program."
 msgstr ""
-"Gramps (Genealogical Research and Analysis Management Programming System) is "
-"een persoonlijk genealogisch programma."
+"Gramps (Genealogical Research and Analysis Management Programming System)\n"
+"is een genealogisch programma."
 
 #: ../gramps/gen/const.py:228
 msgid "TRANSLATORS: Translate this to your name in your native language"
@@ -1879,15 +1877,13 @@ msgid "Source filters"
 msgstr "Bronnenfilters"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:48
-#, fuzzy
 msgid "Citation with Source <Id>"
-msgstr "Citaat met <Id>"
+msgstr "Citaat met bron <Id>"
 
 # opgegeven ipv gespecificeerde?/specifieke
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:49
-#, fuzzy
 msgid "Matches a citation with a source with a specified Gramps ID"
-msgstr "Citaten met de opgegeven Gramps ID zoeken"
+msgstr "Vindt een citaat met een bron met een opgegeven Gramps ID"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
 msgid "Citations matching the <filter>"
@@ -1948,16 +1944,16 @@ msgid "Matches citations whose Gramps ID matches the regular expression"
 msgstr "Citaten waarvan de Gramps ID overeenkomt met de reguliere uitdrukking"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:50
-#, fuzzy
 msgid "Citations with Source Id containing <text>"
-msgstr "Citaten met Id die de <tekst> bevatten"
+msgstr "Citaten met bron Id die de <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:51
-#, fuzzy
 msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
-msgstr "Citaten waarvan de Gramps ID overeenkomt met de reguliere uitdrukking"
+msgstr ""
+"Citaten waarvan de bron een Gramps ID heeft die overeenkomt met de reguliere "
+"uitdrukking"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:46
 msgid "Every event"
@@ -2166,13 +2162,12 @@ msgstr "Plaatsgebeurtenissen die overeenkomen met <plaatsfilter>"
 
 # opgegeven ipv gespecificeerde?
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:53
-#, fuzzy
 msgid ""
 "Matches events that occurred at places that match the specified place filter "
 "name"
 msgstr ""
 "Vindt gebeurtenissen met bronnen die overeenkomen met een opgegeven "
-"bronnenfilternaam"
+"locatiefilternaam"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:47
 msgid "Events with at least one direct source >= <confidence level>"
@@ -2813,10 +2808,10 @@ msgid "Notes containing <text>"
 msgstr "Opmerkingen die de <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:47
-#, fuzzy
 msgid "Matches notes that contain a substring or match a regular expression"
 msgstr ""
-"Opmerkingen zoeken met tekst die met een reguliere uitdrukking overeenkomen"
+"Opmerkingen zoeken met tekst die met een tekstgedeelte of reguliere "
+"uitdrukking overeenkomen"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:46
 msgid "Notes containing <substring>"
@@ -3701,13 +3696,12 @@ msgid "People with a name matching <text>"
 msgstr "Personen met een naam die overeenkomst met <tekst>"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:49
-#, fuzzy
 msgid ""
 "Matches people's names containing a substring or matching a regular "
 "expression"
 msgstr ""
-"Vindt personen van wie de notities tekst bevatten die met een reguliere "
-"uitdrukking overeenkomen"
+"Vindt personen waarvan de naam overeenkomt met een tekstgedeelte of met een "
+"reguliere uitdrukking"
 
 # Berekent de relatie tussen twee personen<
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:48
@@ -4172,11 +4166,10 @@ msgid "Matches sources with a certain number of repository references"
 msgstr "Vindt bronnen waarnaar een bepaald aantal bibliotheken naar verwijzen"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:46
-#, fuzzy
 msgid "Sources with repository reference containing <text> in \"Call Number\""
 msgstr ""
-"Bronnen met een bibliotheekverwijzing die <deeltekenreeks> in "
-"\"inventarisnummer\" hebben"
+"Bronnen met een bibliotheekverwijzing die <tekst> in \"inventarisnummer\" "
+"bevat"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:47
 msgid ""
@@ -6479,7 +6472,7 @@ msgstr "datum in verband met overlijden afstammeling"
 #: ../gramps/gen/utils/alive.py:341
 #, python-format
 msgid "Database error: loop in %s's descendants"
-msgstr ""
+msgstr "Databasefout: Lus in afstammelingen van %s"
 
 #: ../gramps/gen/utils/alive.py:367 ../gramps/gen/utils/alive.py:413
 msgid "ancestor birth date"
@@ -6498,10 +6491,9 @@ msgid "ancestor death-related date"
 msgstr "datum in verband met overlijden voorouder"
 
 #: ../gramps/gen/utils/alive.py:457
-#, fuzzy, python-format
+#, python-format
 msgid "Database error: loop in %s's ancestors"
-msgstr ""
-"Fout in gegevensbestand: %s is gedefinieerd als zijn of haar eigen voorouder"
+msgstr "Databasefout: Lus in voorouders van %s"
 
 #. no evidence, must consider alive
 #: ../gramps/gen/utils/alive.py:504
@@ -9045,9 +9037,8 @@ msgid "Open Containing _Folder"
 msgstr "Map openen"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:165
-#, fuzzy
 msgid "Make Active Media"
-msgstr "Maak actieve persoon"
+msgstr "Maak actieve media"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:272
 #: ../gramps/gui/editors/editperson.py:935
@@ -10772,39 +10763,32 @@ msgid "Source: Abbreviation"
 msgstr "Bron: Afkorting"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
-#, fuzzy
 msgid "Source: Publication"
-msgstr "Bron: Afkorting"
+msgstr "Bron: Publicatie"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
-#, fuzzy
 msgid "Source: Note"
-msgstr "Bronopmerking"
+msgstr "Bron: Opmerking"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
-#, fuzzy
 msgid "Citation: ID"
-msgstr "Citaat"
+msgstr "Citaat: ID"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:110
-#, fuzzy
 msgid "Citation: Volume/Page"
-msgstr "Bron: titel of citaat: volume/pagina"
+msgstr "Citaat: volume/pagina"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
-#, fuzzy
 msgid "Citation: Date"
-msgstr "Citaatopmerkingen"
+msgstr "Citaat: datum"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
-#, fuzzy
 msgid "Citation: Minimum Confidence|Min. Conf."
-msgstr "Min. zekerheid"
+msgstr "Citaat: minimum zekerheid|Min. zekerhd."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:113
-#, fuzzy
 msgid "Citation: Note"
-msgstr "Citaatopmerkingen"
+msgstr "Citaat: opmerking"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:101
@@ -18415,18 +18399,16 @@ msgstr "Beeldmetagegevens"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:394
 msgid "GExiv2 module not loaded."
-msgstr ""
+msgstr "Module GExiv2 niet geladen."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:395
-#, fuzzy
 msgid ""
 "Image metadata functionality will not be available.\n"
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?"
 "title=GEPS_029:_GTK3-"
 "GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 msgstr ""
-"Module GExiv2 niet geladen. Functionaliteit om afbeeldingsmetadata uit te "
-"lezen is niet beschikbaar.\n"
+"Functionaliteit om afbeeldingsmetadata uit te lezen is niet beschikbaar.\n"
 "Zie http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-"
 "GObject_introspection_Conversion#GExiv2_for_Image_metadata om deze "
 "functionaliteit in te bouwen."
@@ -19982,20 +19964,19 @@ msgid "Include relationship to center person"
 msgstr "Verwantschappen van de centrale persoon toevoegen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:581
-#, fuzzy
 msgid "Whether to show every person's relationship to the center person"
-msgstr "Het scherm toont alle Verwantschappen van de geselecteerde persoon"
+msgstr "Maak de keuze om alle verwantschappen met de centrale persoon te tonen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:588
-#, fuzzy
 msgid "Include relationship debugging numbers also"
-msgstr "Verwantschappen van de centrale persoon toevoegen"
+msgstr "Nummering voor foutrapportage van verwantschappen toevoegen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:591
-#, fuzzy
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
-msgstr "Al of niet een opmerking toevoegen aan het verslag."
+msgstr ""
+"Dienen 'Ga' en 'Gb' ook te worden bijgevoegd om fouten op te sporen in de "
+"verwantschapsberekenaar"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:598
 msgid "Whether to include thumbnails of people."
@@ -25375,26 +25356,27 @@ msgid "Open on openstreetmap.org"
 msgstr "Met openstreetmap.org openen"
 
 #: ../gramps/plugins/quickview/ageondate.py:51
-#, fuzzy, python-format
+#, python-format
 msgid "People and their ages the %s"
-msgstr "Personen die waarschijnlijk in leven zijn en hun leeftijden op %s"
+msgstr "Personen en hun leeftijd op %s"
 
+# datum
 #: ../gramps/plugins/quickview/ageondate.py:54
-#, fuzzy, python-format
+#, python-format
 msgid "People and their ages on %s"
-msgstr "Personen die waarschijnlijk in leven zijn en hun leeftijden op %s"
+msgstr "Personen en hun leeftijd op %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:66
 #: ../gramps/plugins/quickview/ageondate.py:69
-#, fuzzy, python-format
+#, python-format
 msgid "Alive: %s"
-msgstr "In leven"
+msgstr "In leven: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:75
 #: ../gramps/plugins/quickview/ageondate.py:78
-#, fuzzy, python-format
+#, python-format
 msgid "Deceased: %s"
-msgstr "Afstammelingenbrowser: %s"
+msgstr "Overleden: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:83
 #, python-format
@@ -25402,6 +25384,8 @@ msgid ""
 "\n"
 "Living matches: %d, Deceased matches: %d\n"
 msgstr ""
+"\n"
+"Gevonden nog in leven: %d, gevonden overledenen: %d\n"
 
 #. display the results
 #. feature request 2356: avoid genitive form
@@ -26144,7 +26128,7 @@ msgstr "Franse relatieberekenaar"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:138
 msgid "Croatian Relationship Calculator"
-msgstr "Kroatische relatieberekenaar"
+msgstr "Kroatische verwantschapsberekenaar"
 
 #: ../gramps/plugins/rel/relplugins.gpr.py:152
 msgid "Hungarian Relationship Calculator"
@@ -30174,17 +30158,15 @@ msgstr ""
 
 #: ../gramps/plugins/view/geography.gpr.py:64
 msgid "OsmGpsMap module not loaded."
-msgstr ""
+msgstr "Module OsmGpsMap niet geladen."
 
 #: ../gramps/plugins/view/geography.gpr.py:65
-#, fuzzy
 msgid ""
 "Geography functionality will not be available.\n"
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?"
 "title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 msgstr ""
-"De module OsmGpsMap kon niet worden geladen. De geografische functionaliteit "
-"zal niet beschikbaar zijn.\n"
+"Geografische functionaliteit is niet beschikbaar.\n"
 "Kijk op http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-"
 "GObject_introspection_Conversion#OsmGpsMap_for_Geography om deze "
 "functionaliteit voor Gramps in te bouwen."
@@ -30320,7 +30302,6 @@ msgid "The animation parameters"
 msgstr "De animatieparameters"
 
 #: ../gramps/plugins/view/geoplaces.py:120
-#, fuzzy
 msgid "Places map"
 msgstr "Locatiekaart"
 
@@ -33294,6 +33275,12 @@ msgid ""
 "relationships between various people, places and events. All of your "
 "research is kept organized, searchable and as precise as you need it to be."
 msgstr ""
+"Gramps is een genealogisch programma dat zowel intuïtief voor hobbymatige- "
+"als compleet voor professionele genealogen is. Met het programma kunt u vele "
+"details van het leven van idividuen bijhouden en daarnaast de complexe "
+"relaties tussen verschillende personen, plaatsen en gebeurtenissen leggen. "
+"Al uw onderzoek wordt geordend en doorzoekbaar gemaakt, precies zoals u dat "
+"wilt."
 
 #~ msgid "Suppress warning when OsmGpsMap not installed."
 #~ msgstr "Onderdruk waarschuwing als 'OsmGpsMap' niet is geïnstalleerd."
@@ -33307,64 +33294,3 @@ msgstr ""
 #~ msgstr ""
 #~ "\n"
 #~ "%d overeenkomsten.\n"
-
-# Plaatsnaam
-#~ msgid "Places places map"
-#~ msgstr "Locatiekaart"
-
-#~ msgid "YES"
-#~ msgstr "JA"
-
-#~ msgid "Regular expression:"
-#~ msgstr "Reguliere uitdrukking:"
-
-#~ msgid "Citations having notes containing <regular expression>"
-#~ msgstr "Citaten waarvan de notities <reguliere uitdrukking> bevatten"
-
-#~ msgid "Citations with <Id> matching regular expression"
-#~ msgstr "Citaten met <Id> die voldoen aan een reguliere uitdrukking"
-
-#~ msgid "Events having notes containing <regular expression>"
-#~ msgstr "Gebeurtenissen met notities die <reguliere uitdrukking> bevatten"
-
-#~ msgid "Events with <Id> matching regular expression"
-#~ msgstr "Gebeurtenissen met <Id> die voldoen aan een reguliere uitdrukking"
-
-#~ msgid "Families with child with the <Id>"
-#~ msgstr "Gezinnen met kind met <Id>"
-
-#~ msgid "Families with father with the <Id>"
-#~ msgstr "Gezinnen met vader met <Id>"
-
-#~ msgid "Families having notes containing <regular expression>"
-#~ msgstr "Gezinnen waarvan notities <reguliere uitdrukking> bevatten"
-
-#~ msgid "Families with mother with the <Id>"
-#~ msgstr "Gezinnen met moeder met <Id>"
-
-#~ msgid "Families with <Id> matching regular expression"
-#~ msgstr "Gezinnen met <Id> die overeenkomen met een reguliere uitdrukking"
-
-#~ msgid "Media objects having notes containing <regular expression>"
-#~ msgstr "Media-objecten met notities die <reguliere uitdrukking> bevatten"
-
-#~ msgid "Media Objects with <Id> matching regular expression"
-#~ msgstr "Media-objecten met <Id> die voldoen aan een reguliere uitdrukking"
-
-#~ msgid "Notes containing <regular expression>"
-#~ msgstr "Opmerkingen die de <reguliere uitdrukking> bevatten"
-
-#~ msgid "Notes with <Id> matching regular expression"
-#~ msgstr "Opmerkingen met <Id> die voldoen aan een reguliere uitdrukking"
-
-#~ msgid "People having notes containing <regular expression>"
-#~ msgstr "Personen met notities die <reguliere uitdrukking> bevatten"
-
-#~ msgid "People with <Id> matching regular expression"
-#~ msgstr "Personen met <Id> die voldoen aan een reguliere uitdrukking"
-
-#~ msgid "Expression:"
-#~ msgstr "Uitdrukking:"
-
-#~ msgid "People matching the <regex_name>"
-#~ msgstr "Personen die overeenkomen met de <naam>"
