@@ -52,7 +52,7 @@ from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.alive import probably_alive
-from gramps.gen.datehandler import displayer as _dd, long_days
+from gramps.gen.datehandler import displayer as _dd
 from gramps.gen.lib import Date, EventRoleType, EventType, Name, NameType, Person, Surname
 from gramps.gen.lib.date import gregorian
 
@@ -182,6 +182,7 @@ class Calendar(Report):
         pdaynames = style_sheet.get_paragraph_style("CAL-Daynames")
         pnumbers = style_sheet.get_paragraph_style("CAL-Numbers")
         ptext1style = style_sheet.get_paragraph_style("CAL-Text1style")
+        long_days = _dd.long_days
 
         self.doc.start_page()
         width = self.doc.get_usable_width()
@@ -459,6 +460,7 @@ class CalendarOptions(MenuReportOptions):
         add_option("country", country)
 
         start_dow = EnumeratedListOption(_("First day of week"), 1)
+        long_days = _dd.long_days
         for count in range(1, 8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
             start_dow.add_item((count+5) % 7 + 1, long_days[count].capitalize()) 

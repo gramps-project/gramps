@@ -62,7 +62,7 @@ from gramps.gen.plug.menu import BooleanOption, NumberOption, StringOption, \
                           DestinationOption, NoteOption
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.alive import probably_alive
-from gramps.gen.datehandler import displayer as _dd, long_days
+from gramps.gen.datehandler import displayer as _dd
 
 from gramps.gen.display.name import displayer as _nd
 
@@ -627,7 +627,7 @@ class WebCalReport(Report):
 
         # Note. gen.datehandler has sunday => 1, monday => 2, etc
         # We slice out the first empty element.
-        day_names = long_days
+        day_names = _dd.long_days # use self._dd.long_days when set_locale is used...
 
         def __get_previous_month_day(year, month, day_col):
 
@@ -1085,7 +1085,7 @@ class WebCalReport(Report):
         with self._user.progress(_("Web Calendar Report"),
                                   _('Applying Filter...'), 
                                   db.get_number_of_people()) as step:
-            people = self.filter.apply(db, people, step_progress)
+            people = self.filter.apply(db, people, step)
 
         with self._user.progress(_("Web Calendar Report"),
                 _("Reading database..."), len(people)) as step:
@@ -1437,7 +1437,7 @@ class WebCalOptions(MenuReportOptions):
         # Default selection ????
         start_dow = EnumeratedListOption(_("First day of week"), 1)
         for count in range(1, 8):
-            start_dow.add_item(count, long_days[count].capitalize()) 
+            start_dow.add_item(count, _dd.long_days[count].capitalize()) 
         start_dow.set_help(_("Select the first day of the week for the calendar"))
         menu.add_option(category_name, "start_dow", start_dow)
 

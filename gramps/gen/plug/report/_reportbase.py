@@ -67,6 +67,7 @@ class Report(object):
         self._ = locale.translation.gettext
         self._get_date = locale.get_date
         self._get_type = locale.get_type
+        self._dd = locale.date_displayer
         return locale
 
     def write_report(self):

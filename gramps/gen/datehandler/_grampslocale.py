@@ -85,7 +85,7 @@ try:
     #  not the international convention (ISO 8601) that Monday
     #  is the first day of the week."
     # see http://docs.python.org/library/locale.html
-    long_days = (
+    _deprecated_long_days = (
         "",
         to_uni(locale.nl_langinfo(locale.DAY_1), codeset), # Sunday
         to_uni(locale.nl_langinfo(locale.DAY_2), codeset), # Monday
@@ -96,7 +96,7 @@ try:
         to_uni(locale.nl_langinfo(locale.DAY_7), codeset), # Saturday
         )
 
-    short_days = (
+    _deprecated_short_days = (
         "",
         to_uni(locale.nl_langinfo(locale.ABDAY_1), codeset), # Sunday
         to_uni(locale.nl_langinfo(locale.ABDAY_2), codeset), # Monday
@@ -156,7 +156,7 @@ except:
     # number. tm_wday => range [0,6], Monday is 0
     # Note. Only the seventh tuple entry matters. The others are
     # just a dummy.
-    long_days = (
+    _deprecated_long_days = (
         "",
         to_uni(time.strftime('%A',(1,1,1,1,1,1,6,1,1)), codeset), # Sunday
         to_uni(time.strftime('%A',(1,1,1,1,1,1,0,1,1)), codeset), # Monday
@@ -167,7 +167,7 @@ except:
         to_uni(time.strftime('%A',(1,1,1,1,1,1,5,1,1)), codeset), # Saturday
         )
 
-    short_days = (
+    _deprecated_short_days = (
         "",
         to_uni(time.strftime('%a',(1,1,1,1,1,1,6,1,1)), codeset), # Sunday
         to_uni(time.strftime('%a',(1,1,1,1,1,1,0,1,1)), codeset), # Monday

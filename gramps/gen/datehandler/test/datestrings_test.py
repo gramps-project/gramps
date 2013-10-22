@@ -66,6 +66,7 @@ class DateStringsTest(unittest.TestCase):
         self.assertEqual(self.ds.long_months[0], "")
         self.assertEqual(self.ds.short_months[0], "")
         self.assertEqual(self.ds.alt_long_months[0], "")
+        self.assertEqual(self.ds.long_days[0], "")
 
     def testCalendarIndex(self):
         self.assertEqual(self.ds_EN.calendar[Date.CAL_GREGORIAN], "Gregorian")
@@ -75,6 +76,9 @@ class DateStringsTest(unittest.TestCase):
         self.assertEqual(self.ds_EN.calendar[Date.CAL_PERSIAN], "Persian")
         self.assertEqual(self.ds_EN.calendar[Date.CAL_ISLAMIC], "Islamic")
         self.assertEqual(self.ds_EN.calendar[Date.CAL_SWEDISH], "Swedish")
+
+    def testDayNamesLenIs8(self):
+        self.assertEqual(len(self.ds.long_days), 8)
 
 if __name__ == "__main__":
     unittest.main()

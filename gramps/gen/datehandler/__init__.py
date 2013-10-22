@@ -94,7 +94,7 @@ except:
 
 # Import utility functions
 from ._dateutils import *
-from ._grampslocale import (codeset, long_days, short_days, tformat)
+from ._grampslocale import (codeset, tformat)
 
 if __name__ == "__main__":
     from ._datedisplay import DateDisplay

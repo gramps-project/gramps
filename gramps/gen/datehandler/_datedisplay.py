@@ -120,6 +120,7 @@ class DateDisplay(object):
             self._display_swedish]
         self._mod_str = self._ds.modifiers
         self._qual_str = self._ds.qualifiers
+        self.long_days = self._ds.long_days
 
         if format is None:
             self.format = 0

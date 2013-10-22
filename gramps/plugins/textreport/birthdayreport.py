@@ -56,9 +56,11 @@ from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.alive import probably_alive
-from gramps.gen.datehandler import long_days
 
 import gramps.plugins.lib.libholiday as libholiday
+
+# localization for BirthdayOptions only!!
+from gramps.gen.datehandler import displayer as _dd
 
 def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
     return value
@@ -445,6 +447,7 @@ class BirthdayOptions(MenuReportOptions):
         menu.add_option(category_name, "country", country)
 
         start_dow = EnumeratedListOption(_("First day of week"), 1)
+        long_days = _dd.long_days
         for count in range(1, 8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
             start_dow.add_item((count+5) % 7 + 1, long_days[count].capitalize()) 

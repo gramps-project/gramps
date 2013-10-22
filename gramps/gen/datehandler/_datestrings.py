@@ -217,9 +217,17 @@ class DateStrings(object):
                 _("date quality|calculated "), 
                 )
 
-
-    # TODO extend with further strings 
-    # along with the date displayer and parser refactoring
+        # 6753: localized day names. Eventually should sprout into 
+        # a per-calendar type thing instead.
+        self.long_days = ("",
+                _("Sunday"),
+                _("Monday"),
+                _("Tuesday"),
+                _("Wednesday"),
+                _("Thursday"),
+                _("Friday"),
+                _("Saturday"),
+            )
 
 __doc__ += """
 __main__
@@ -242,7 +250,8 @@ if __name__ == '__main__':
     from ..utils.grampslocale import GrampsLocale
     from gramps.gen.const import GRAMPS_LOCALE as glocale
     from ._grampslocale import (_deprecated_long_months as old_long, 
-            _deprecated_short_months as old_short)
+            _deprecated_short_months as old_short,
+            _deprecated_long_days as old_days)
     from ._datedisplay import DateDisplay
     import gettext
     lang = glocale.lang
@@ -344,3 +353,5 @@ if __name__ == '__main__':
                 "date quality|")
     except AttributeError:
         pass
+
+    print_po_snippet((ds_EN.long_days, old_days, old_days), "")
