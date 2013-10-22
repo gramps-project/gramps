@@ -31793,6 +31793,34 @@ msgstr ""
 msgid "Persian month lexeme|Esfand"
 msgstr ""
 
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10024
+msgid "Sunday"
+msgstr "dimanche"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10025
+msgid "Monday"
+msgstr "lundi"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10026
+msgid "Tuesday"
+msgstr "mardi"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10027
+msgid "Wednesday"
+msgstr "mercredi"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10028
+msgid "Thursday"
+msgstr "jeudi"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10029
+msgid "Friday"
+msgstr "vendredi"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10030
+msgid "Saturday"
+msgstr "samedi"
+
 #~ msgid "Could not make database directory: "
 #~ msgstr "Impossible de créer le répertoire de la base de données : "
 

@@ -32990,6 +32990,35 @@ msgstr ""
 "работает с любой оконной системой. Если необходимые библиотеки GTK "
 "установлены, то программа будет работать."
 
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10024
+msgid "Sunday"
+msgstr "Воскресенье"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10025
+msgid "Monday"
+msgstr "Понедельник"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10026
+msgid "Tuesday"
+msgstr "Вторник"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10027
+msgid "Wednesday"
+msgstr "Среда"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10028
+msgid "Thursday"
+msgstr "Четверг"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10029
+msgid "Friday"
+msgstr "Пятница"
+
+#: /home/vassilii/Gramps/gramps/gen/datehandler/_datestrings.py:10030
+msgid "Saturday"
+msgstr "Суббота"
+
+
 #~ msgid "death event without date"
 #~ msgstr "не датированная смерть"
 
