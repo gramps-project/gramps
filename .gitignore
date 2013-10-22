@@ -10,6 +10,7 @@ dist/
 data/tips.xml
 gramps/plugins/lib/holidays.xml
 po/.intltool-merge-cache
+docs/_build/
 
 # Editing
 tags
