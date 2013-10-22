@@ -2,7 +2,7 @@
 * Citation merge works better for all objects with citations
 * Fix link to citation on event reference into family
 * Fixed several crashes, hangs, and data corruption scenarios
-* Fixed bugs in determining whether a person is alive, potentially resolving private data leak via export or report.
+* Fixed bugs in determining whether a person is alive, potentially resolving private data leak via export or report
 * VCF export/import now support gender information
 * Several bugs with filtering fixed, most filters now support regular expressions
 * Fix bug in Hebrew calendar date calculations
@@ -17,6 +17,7 @@
 * Platform-specific fixes for Mac and Windows
 * New date handler for Arabic
 * Translation updates and translation-related fixes
+* Repaired and enhanced tests broken since 3.3.x, resulting in overall reliability improvements
 
 2013-05-22
 Version 3.4.5 of Gramps! "We have also developed a tomato which can eject itself when an accident is imminent", a maintenance release.
