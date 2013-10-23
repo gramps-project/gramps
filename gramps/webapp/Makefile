@@ -1,6 +1,6 @@
 # Initialize GRAMPS Django site
 
-PYTHON=GRAMPS_RESOURCES=../.. PYTHONPATH=../.. python 
+PYTHON=GRAMPS_RESOURCES=../.. PYTHONPATH=../.. python2.7
 
 update: grampsdb/fixtures/initial_data.json
 	$(PYTHON) manage.py syncdb --noinput

@@ -24,11 +24,11 @@
 from __future__ import print_function
 
 ## Gramps Modules
-from webapp.utils import _, boolean, update_last_changed, build_search
-from webapp.grampsdb.models import Event, EventType, EventRef, EventRoleType, Person
-from webapp.grampsdb.forms import *
-from webapp.libdjango import DjangoInterface, lookup_role_index
-from webapp.dbdjango import DbDjango
+from gramps.webapp.utils import _, boolean, update_last_changed, build_search
+from gramps.webapp.grampsdb.models import Event, EventType, EventRef, EventRoleType, Person
+from gramps.webapp.grampsdb.forms import *
+from gramps.webapp.libdjango import DjangoInterface, lookup_role_index
+from gramps.webapp.dbdjango import DbDjango
 from gramps.gen.datehandler import displayer, parser
 
 ## Django Modules

@@ -22,10 +22,10 @@
 """ Views for Person, Name, and Surname """
 
 ## Gramps Modules
-from webapp.utils import _, boolean, update_last_changed, build_search
-from webapp.grampsdb.models import Family
-from webapp.grampsdb.forms import *
-from webapp.libdjango import DjangoInterface
+from gramps.webapp.utils import _, boolean, update_last_changed, build_search
+from gramps.webapp.grampsdb.models import Family
+from gramps.webapp.grampsdb.forms import *
+from gramps.webapp.libdjango import DjangoInterface
 from gramps.gen.utils.id import create_id
 
 ## Django Modules

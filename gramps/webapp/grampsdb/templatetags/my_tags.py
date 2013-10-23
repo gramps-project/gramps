@@ -26,9 +26,9 @@ import re
 from django import template
 from django.template import Library
 from django.utils.safestring import mark_safe
-from webapp.utils import *
-from webapp.grampsdb.views import VIEWS
-import webapp.utils
+from gramps.webapp.utils import *
+from gramps.webapp.grampsdb.views import VIEWS
+import gramps.webapp.utils
 
 #escape = lambda text: text
 
@@ -79,12 +79,12 @@ def make_tag(func):
     return do_func
 
 for filter_name in util_filters:
-    func = getattr(webapp.utils, filter_name)
+    func = getattr(gramps.webapp.utils, filter_name)
     func.is_safe = True
     register.filter(filter_name, func)
 
 for tag_name in util_tags:
-    func = getattr(webapp.utils, tag_name)
+    func = getattr(gramps.webapp.utils, tag_name)
     register.tag(tag_name, make_tag(func))
 
 probably_alive.is_safe = True
@@ -182,7 +182,7 @@ format.is_safe = True
 register.simple_tag(format)
 
 def make_args(search, page):
-    return webapp.utils.build_args(search=search, page=page)
+    return gramps.webapp.utils.build_args(search=search, page=page)
 make_args.is_safe = True
 register.simple_tag(make_args)
 
