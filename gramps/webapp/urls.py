@@ -62,7 +62,11 @@ urlpatterns += patterns('',
 # The rest will match views:
 urlpatterns += patterns('',
     (r'^$', main_page),
-    (r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', 
+    ## Prior to django 1.5, use this:
+    ##(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', 
+    ##{'url': '/styles/images/favicon.ico'}),
+    # Django 1.5.4:
+    (r'^favicon\.ico$', 'django.shortcuts.redirect', 
      {'url': '/styles/images/favicon.ico'}),
     (r'^user/$', user_page),
     (r'^json/$', process_json_request),
