@@ -34,10 +34,13 @@ from django.template import Context, RequestContext
 from django.http import HttpResponse
 
 ## Other Python Modules
-from PIL import Image
-NEW_PIL = [int(i) for i in Image.VERSION.split(".")] >= [1, 1, 7]
-if not NEW_PIL:
-    from . import png
+try:
+    from PIL import Image
+    NEW_PIL = [int(i) for i in Image.VERSION.split(".")] >= [1, 1, 7]
+    if not NEW_PIL:
+        from . import png
+except:
+    print("WARNING: No PIL installed or available")
 import os
 
 ## Globals
