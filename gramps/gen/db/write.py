@@ -46,10 +46,19 @@ import logging
 from sys import maxsize, getfilesystemencoding, version_info
 
 from ..config import config
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-    from bsddb3 import dbshelve, db
-else:
-    from bsddb import dbshelve, db
+try:
+    if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
+        from bsddb3 import dbshelve, db
+    else:
+        from bsddb import dbshelve, db
+except:
+    # FIXME: make this more abstract to deal with other backends
+    class db:
+        DB_HASH = 0
+        DBRunRecoveryError = 0
+        DBAccessError = 0
+        DBPageNotFoundError = 0
+        DBInvalidArgError = 0
 
 #-------------------------------------------------------------------------
 #

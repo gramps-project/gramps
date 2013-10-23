@@ -68,13 +68,20 @@ DBOBJECTS = 100000          # Maximum number of simultaneously locked objects
 DBUNDO    = 1000            # Maximum size of undo buffer
 
 from ..config import config
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-    from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
-else:
-    from bsddb.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
-DBFLAGS_O = DB_CREATE | DB_AUTO_COMMIT  # Default flags for database open
-DBFLAGS_R = DB_RDONLY                   # Flags to open a database read-only
-DBFLAGS_D = DB_DUP | DB_DUPSORT         # Default flags for duplicate keys
+try:
+    if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
+        from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
+    else:
+        from bsddb.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
+    DBFLAGS_O = DB_CREATE | DB_AUTO_COMMIT  # Default flags for database open
+    DBFLAGS_R = DB_RDONLY                   # Flags to open a database read-only
+    DBFLAGS_D = DB_DUP | DB_DUPSORT         # Default flags for duplicate keys
+except:
+    print("WARNING: no bsddb support")
+    # FIXME: make this more abstract to deal with other backends, or do not import
+    DBFLAGS_O = DB_CREATE = DB_AUTO_COMMIT = 0
+    DBFLAGS_R = DB_RDONLY = 0
+    DBFLAGS_D = DB_DUP = DB_DUPSORT = 0
 
 PERSON_KEY     = 0
 FAMILY_KEY     = 1

@@ -42,10 +42,19 @@ else:
 from collections import deque
 
 from ..config import config
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-    from bsddb3 import db
-else:
-    from bsddb import db
+try:
+    if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
+        from bsddb3 import db
+    else:
+        from bsddb import db
+except:
+    # FIXME: make this more abstract to deal with other backends
+    class db:
+        DBRunRecoveryError = 0
+        DBAccessError = 0
+        DBPageNotFoundError = 0
+        DBInvalidArgError = 0
+        
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 

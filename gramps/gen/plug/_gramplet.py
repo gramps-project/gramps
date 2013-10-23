@@ -24,11 +24,6 @@
 from __future__ import print_function
 
 import sys
-from ..config import config
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-    import bsddb3 as bsddb
-else:
-    import bsddb
 import types
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -310,6 +305,12 @@ class Gramplet(object):
             self._idle_id = 0
             LOG.debug("gramplet updater: %s : One time, done!" % self.gui.title)
             return False
+        # FIXME: find out why Data Entry has this error, or just ignore it
+        from ..config import config
+        if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
+            import bsddb3 as bsddb
+        else:
+            import bsddb
         try:
             retval = next(self._generator)
             if not retval:

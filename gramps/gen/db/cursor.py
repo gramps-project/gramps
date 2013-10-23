@@ -33,10 +33,20 @@ else:
     from pickle import dumps, loads
 
 from ..config import config
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-    from bsddb3 import db
-else:
-    from bsddb import db
+try:
+    if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
+        from bsddb3 import db
+    else:
+        from bsddb import db
+except:
+    # FIXME: make this more abstract to deal with other backends
+    class db:
+        DB_RMW = 0
+        DB_FIRST = 0
+        DB_LAST = 0
+        DB_CURRENT = 0
+        DB_PREV = 0
+        DB_NEXT = 0
 
 #-------------------------------------------------------------------------
 #
