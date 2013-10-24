@@ -34,7 +34,6 @@ _ = glocale.translation.gettext
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.utils import ProgressMeter
 from .. import Rule
 from . import MatchesFilter
 
@@ -131,6 +130,8 @@ class DeepRelationshipPathBetween(Rule):
                     "  Each path is not necessarily the shortest path.")
     
     def prepare(self, db):
+        # FIXME: this should user the User class
+        from gramps.gui.utils import ProgressMeter
         root_person_id = self.list[0]
         root_person = db.get_person_from_gramps_id(root_person_id)
         
