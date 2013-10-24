@@ -49,7 +49,7 @@ log = logging.getLogger(".DateParser")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ..lib.date import Date, DateError
+from ..lib.date import Date, DateError, Today
 from . import _grampslocale
 from ..utils.grampslocale import GrampsLocale
 from ._datestrings import DateStrings
@@ -628,7 +628,11 @@ class DateParser(object):
             if check and not check((d, m, y)):
                 value = Date.EMPTY
             return value
-        
+
+        match = re.match("^\s*%s\s*$" % "today", text, re.IGNORECASE)
+        if match:
+            return Today().get_dmy(get_slash=True)
+
         return Date.EMPTY
 
     def match_calendar(self, text, cal):

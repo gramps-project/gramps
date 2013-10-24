@@ -1727,6 +1727,15 @@ class Date(object):
         """
         return (self.get_year(), self.get_month(), self.get_day())
 
+    def get_dmy(self, get_slash=False):
+        """
+        Return (day, month, year, [slash]).
+        """
+        if get_slash:
+            return (self.get_day(), self.get_month(), self.get_year(), self.get_slash())
+        else:
+            return (self.get_day(), self.get_month(), self.get_year())
+
     def get_stop_ymd(self):
         """
         Return (year, month, day) of the stop date, or all-zeros if it's not defined.
