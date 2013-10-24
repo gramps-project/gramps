@@ -35,6 +35,7 @@ from .primaryobj import BasicPrimaryObject
 from .tagbase import TagBase
 from .notetype import NoteType
 from .styledtext import StyledText
+from .styledtexttagtype import StyledTextTagType
 from ..constfunc import cuni
 from .handle import Handle
 
@@ -257,3 +258,25 @@ class Note(BasicPrimaryObject):
 
         """
         return self.type
+
+    def get_links(self):
+        """
+        Get the jump links from this note. Links can be external, to
+        urls, or can be internal to gramps objects.
+
+        Return examples: 
+        [("gramps", "Person", "handle", "7657626365362536"),
+         ("external", "www", "url", "http://example.com")]
+
+        :returns: list of [(domain, type, propery, value), ...]
+        :rtype: list
+        """
+        retval = []
+        for styledtext_tag in self.text.get_tags():
+            if int(styledtext_tag.name) == StyledTextTagType.LINK:
+                if styledtext_tag.value.startswith("gramps://"):
+                    object_class, prop, value = styledtext_tag.value[9:].split("/", 2)
+                    retval.append(("gramps", object_class, prop, value))
+                else:
+                    retval.append(("external", "www", "url", styledtext_tag.value))
+        return retval

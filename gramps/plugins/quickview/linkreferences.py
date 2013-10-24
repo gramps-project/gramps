@@ -46,14 +46,10 @@ def run(database, document, obj):
     sdoc.paragraph("\n")
     stab.columns(_("Type"), _("Reference"), _("Link check"))
 
-    tags = obj.text.get_tags()
-
-    for styledtext_tag in tags:
-        if int(styledtext_tag.name) == StyledTextTagType.LINK:
-            if styledtext_tag.value.startswith("gramps://"):
-                object_class, prop, value = styledtext_tag.value[9:].split("/", 2)
-                tagtype = _(object_class)
-                ref_obj = sdb.get_link(object_class, prop, value)
+    for (ldomain, ltype, lprop, lvalue) in obj.get_links():
+            if ldomain == "gramps":
+                tagtype = _(ltype)
+                ref_obj = sdb.get_link(ltype, lprop, lvalue)
                 if ref_obj:
                     tagvalue = ref_obj
                     tagcheck = _("Ok")
@@ -62,7 +58,7 @@ def run(database, document, obj):
                     tagcheck = _("Failed: missing object")
             else:
                 tagtype = _("Internet")
-                tagvalue = styledtext_tag.value
+                tagvalue = lvalue
                 tagcheck = ""
             stab.row(tagtype, tagvalue, tagcheck) 
 
