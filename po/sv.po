@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-09 16:42+0200\n"
-"PO-Revision-Date: 2013-10-13 18:55+0200\n"
+"POT-Creation-Date: 2013-10-24 10:37+0200\n"
+"PO-Revision-Date: 2013-10-24 10:39+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -174,8 +174,8 @@ msgstr ""
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Peter Landgren"
 
-#: ../src/const.py:235 ../src/const.py:236 ../src/gen/lib/date.py:1753
-#: ../src/gen/lib/date.py:1767
+#: ../src/const.py:235 ../src/const.py:236 ../src/gen/lib/date.py:1763
+#: ../src/gen/lib/date.py:1777
 msgid "none"
 msgstr "inget"
 
@@ -911,7 +911,7 @@ msgstr "Mor"
 #: ../src/Reorder.py:41 ../src/gui/selectors/selectperson.py:81
 #: ../src/Merge/mergeperson.py:232 ../src/plugins/gramplet/Children.py:89
 #: ../src/plugins/lib/libpersonview.py:99
-#: ../src/plugins/textreport/FamilyGroup.py:519
+#: ../src/plugins/textreport/FamilyGroup.py:524
 #: ../src/plugins/view/relview.py:1343
 msgid "Spouse"
 msgstr "Maka/make"
@@ -1172,7 +1172,7 @@ msgstr "%(frel)s %(mrel)s"
 #: ../src/plugins/textreport/PlaceReport.py:183
 #: ../src/plugins/textreport/PlaceReport.py:255
 #: ../src/plugins/textreport/PlaceReport.py:387
-#: ../src/plugins/tool/EventCmp.py:250 ../src/plugins/view/geography.gpr.py:49
+#: ../src/plugins/tool/EventCmp.py:250 ../src/plugins/view/geography.gpr.py:52
 #: ../src/plugins/webreport/NarrativeWeb.py:384
 #: ../src/plugins/webreport/NarrativeWeb.py:3109
 #: ../src/plugins/webreport/NarrativeWeb.py:3663
@@ -1198,8 +1198,8 @@ msgstr "Person"
 #: ../src/plugins/quickview/quickview.gpr.py:200
 #: ../src/plugins/quickview/References.py:86
 #: ../src/plugins/textreport/IndivComplete.py:77
-#: ../src/plugins/view/geography.gpr.py:97 ../src/plugins/view/relview.py:1318
-#: ../src/plugins/view/relview.py:1340
+#: ../src/plugins/view/geography.gpr.py:100
+#: ../src/plugins/view/relview.py:1318 ../src/plugins/view/relview.py:1340
 #: ../src/plugins/webreport/NarrativeWeb.py:3110
 #: ../src/glade/editldsord.glade.h:8
 msgid "Family"
@@ -1376,8 +1376,8 @@ msgstr "Källor på arkivplats"
 #: ../src/gen/lib/eventtype.py:146 ../src/Merge/mergeperson.py:180
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/lineage.py:93
-#: ../src/plugins/textreport/FamilyGroup.py:477
-#: ../src/plugins/textreport/FamilyGroup.py:479
+#: ../src/plugins/textreport/FamilyGroup.py:482
+#: ../src/plugins/textreport/FamilyGroup.py:484
 #: ../src/plugins/textreport/TagReport.py:130
 #: ../src/plugins/view/relview.py:614
 #: ../src/plugins/webreport/NarrativeWeb.py:367
@@ -1523,7 +1523,7 @@ msgstr ""
 #. string if the person is None
 #.
 #. -------------------------------------------------------------------------
-#: ../src/Utils.py:216 ../src/gen/lib/date.py:445 ../src/gen/lib/date.py:483
+#: ../src/Utils.py:216 ../src/gen/lib/date.py:455 ../src/gen/lib/date.py:493
 #: ../src/gen/mime/_gnomemime.py:39 ../src/gen/mime/_gnomemime.py:46
 #: ../src/gen/mime/_pythonmime.py:49 ../src/gen/mime/_pythonmime.py:57
 #: ../src/gui/editors/editperson.py:326
@@ -3076,7 +3076,7 @@ msgstr "Fadderbarn"
 msgid "Foster"
 msgstr "Fosterbarn"
 
-#: ../src/gen/lib/date.py:293
+#: ../src/gen/lib/date.py:303
 #, python-format
 msgid "less than %s years"
 msgstr "mindre än %s år"
@@ -3096,9 +3096,9 @@ msgstr "mindre än %s år"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.BEFORE)
 #. self.minmax = (v - Span.BEFORE, v + Span.BEFORE)
-#: ../src/gen/lib/date.py:304 ../src/gen/lib/date.py:357
-#: ../src/gen/lib/date.py:362 ../src/gen/lib/date.py:377
-#: ../src/gen/lib/date.py:419
+#: ../src/gen/lib/date.py:314 ../src/gen/lib/date.py:367
+#: ../src/gen/lib/date.py:372 ../src/gen/lib/date.py:387
+#: ../src/gen/lib/date.py:429
 msgid "more than"
 msgstr "större än"
 
@@ -3117,9 +3117,9 @@ msgstr "större än"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.AFTER)
 #. self.minmax = (v - Span.AFTER, v + Span.AFTER)
-#: ../src/gen/lib/date.py:309 ../src/gen/lib/date.py:331
-#: ../src/gen/lib/date.py:341 ../src/gen/lib/date.py:351
-#: ../src/gen/lib/date.py:424
+#: ../src/gen/lib/date.py:319 ../src/gen/lib/date.py:341
+#: ../src/gen/lib/date.py:351 ../src/gen/lib/date.py:361
+#: ../src/gen/lib/date.py:434
 msgid "less than"
 msgstr "mindre än"
 
@@ -3130,9 +3130,9 @@ msgstr "mindre än"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.ABOUT)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-#: ../src/gen/lib/date.py:315 ../src/gen/lib/date.py:383
-#: ../src/gen/lib/date.py:398 ../src/gen/lib/date.py:403
-#: ../src/gen/lib/date.py:429
+#: ../src/gen/lib/date.py:325 ../src/gen/lib/date.py:393
+#: ../src/gen/lib/date.py:408 ../src/gen/lib/date.py:413
+#: ../src/gen/lib/date.py:439
 msgid "age|about"
 msgstr "omkring"
 
@@ -3148,13 +3148,13 @@ msgstr "omkring"
 #. v2 = stop1.sortval - start2.sortval # max
 #. self.sort = (v1, v2 - v1)
 #. self.minmax = (v1, v2)
-#: ../src/gen/lib/date.py:324 ../src/gen/lib/date.py:413
-#: ../src/gen/lib/date.py:441
+#: ../src/gen/lib/date.py:334 ../src/gen/lib/date.py:423
+#: ../src/gen/lib/date.py:451
 msgid "between"
 msgstr "mellan"
 
-#: ../src/gen/lib/date.py:325 ../src/gen/lib/date.py:414
-#: ../src/gen/lib/date.py:442 ../src/plugins/quickview/all_relations.py:283
+#: ../src/gen/lib/date.py:335 ../src/gen/lib/date.py:424
+#: ../src/gen/lib/date.py:452 ../src/plugins/quickview/all_relations.py:283
 #: ../src/plugins/view/relview.py:976
 #: ../src/plugins/webreport/NarrativeWeb.py:1152
 msgid "and"
@@ -3166,7 +3166,7 @@ msgstr "och"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-#: ../src/gen/lib/date.py:346 ../src/gen/lib/date.py:393
+#: ../src/gen/lib/date.py:356 ../src/gen/lib/date.py:403
 msgid "less than about"
 msgstr "mindre än omkring"
 
@@ -3176,92 +3176,92 @@ msgstr "mindre än omkring"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.BEFORE)
 #. self.minmax = (v - Span.BEFORE, v + Span.ABOUT)
-#: ../src/gen/lib/date.py:372 ../src/gen/lib/date.py:388
+#: ../src/gen/lib/date.py:382 ../src/gen/lib/date.py:398
 msgid "more than about"
 msgstr "mer än omkring"
 
-#: ../src/gen/lib/date.py:487
+#: ../src/gen/lib/date.py:497
 #, python-format
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] "%d år"
 msgstr[1] "%d år"
 
-#: ../src/gen/lib/date.py:494
+#: ../src/gen/lib/date.py:504
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d månad"
 msgstr[1] "%d månader"
 
-#: ../src/gen/lib/date.py:501
+#: ../src/gen/lib/date.py:511
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] "%d dag"
 msgstr[1] "%d dagar"
 
-#: ../src/gen/lib/date.py:506
+#: ../src/gen/lib/date.py:516
 msgid "0 days"
 msgstr "0 dagar"
 
-#: ../src/gen/lib/date.py:653
+#: ../src/gen/lib/date.py:663
 msgid "calendar|Gregorian"
 msgstr "Gregoriansk"
 
-#: ../src/gen/lib/date.py:654
+#: ../src/gen/lib/date.py:664
 msgid "calendar|Julian"
 msgstr "Juliansk"
 
-#: ../src/gen/lib/date.py:655
+#: ../src/gen/lib/date.py:665
 msgid "calendar|Hebrew"
 msgstr "Hebreisk"
 
-#: ../src/gen/lib/date.py:656
+#: ../src/gen/lib/date.py:666
 msgid "calendar|French Republican"
 msgstr "Fransk republikansk"
 
-#: ../src/gen/lib/date.py:657
+#: ../src/gen/lib/date.py:667
 msgid "calendar|Persian"
 msgstr "Persisk"
 
-#: ../src/gen/lib/date.py:658
+#: ../src/gen/lib/date.py:668
 msgid "calendar|Islamic"
 msgstr "Islamsk"
 
-#: ../src/gen/lib/date.py:659
+#: ../src/gen/lib/date.py:669
 msgid "calendar|Swedish"
 msgstr "Svensk"
 
-#: ../src/gen/lib/date.py:1753
+#: ../src/gen/lib/date.py:1763
 msgid "estimated"
 msgstr "uppskattad"
 
-#: ../src/gen/lib/date.py:1753
+#: ../src/gen/lib/date.py:1763
 msgid "calculated"
 msgstr "beräknad"
 
-#: ../src/gen/lib/date.py:1767
+#: ../src/gen/lib/date.py:1777
 msgid "before"
 msgstr "före"
 
-#: ../src/gen/lib/date.py:1767
+#: ../src/gen/lib/date.py:1777
 msgid "after"
 msgstr "efter"
 
-#: ../src/gen/lib/date.py:1767
+#: ../src/gen/lib/date.py:1777
 msgid "about"
 msgstr "omkring"
 
-#: ../src/gen/lib/date.py:1768
+#: ../src/gen/lib/date.py:1778
 msgid "range"
 msgstr "intervall"
 
-#: ../src/gen/lib/date.py:1768
+#: ../src/gen/lib/date.py:1778
 msgid "span"
 msgstr "tidspann"
 
-#: ../src/gen/lib/date.py:1768
+#: ../src/gen/lib/date.py:1778
 msgid "textonly"
 msgstr "endast text"
 
@@ -3298,8 +3298,8 @@ msgid "Informant"
 msgstr "Sagesman"
 
 #: ../src/gen/lib/eventtype.py:147 ../src/Merge/mergeperson.py:184
-#: ../src/plugins/textreport/FamilyGroup.py:483
-#: ../src/plugins/textreport/FamilyGroup.py:485
+#: ../src/plugins/textreport/FamilyGroup.py:488
+#: ../src/plugins/textreport/FamilyGroup.py:490
 #: ../src/plugins/textreport/TagReport.py:136
 #: ../src/plugins/view/relview.py:625 ../src/plugins/view/relview.py:650
 #: ../src/plugins/webreport/NarrativeWeb.py:371
@@ -4233,7 +4233,7 @@ msgstr "Registrerade '%s'"
 #: ../src/plugins/textreport/DetDescendantReport.py:900
 #: ../src/plugins/textreport/DetDescendantReport.py:933
 #: ../src/plugins/textreport/EndOfLineReport.py:261
-#: ../src/plugins/textreport/FamilyGroup.py:638
+#: ../src/plugins/textreport/FamilyGroup.py:643
 #: ../src/plugins/textreport/IndivComplete.py:687
 #: ../src/plugins/textreport/KinshipReport.py:348
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:202
@@ -4936,7 +4936,7 @@ msgstr "Exempel"
 #: ../src/plugins/textreport/DetAncestralReport.py:735
 #: ../src/plugins/textreport/DetDescendantReport.py:899
 #: ../src/plugins/textreport/EndOfLineReport.py:260
-#: ../src/plugins/textreport/FamilyGroup.py:637
+#: ../src/plugins/textreport/FamilyGroup.py:642
 #: ../src/plugins/textreport/IndivComplete.py:686
 #: ../src/plugins/textreport/KinshipReport.py:347
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:201
@@ -6102,7 +6102,7 @@ msgstr "Redigera datum"
 #: ../src/plugins/quickview/FilterByName.py:97
 #: ../src/plugins/textreport/TagReport.py:284
 #: ../src/plugins/view/eventview.py:117
-#: ../src/plugins/view/geography.gpr.py:81 ../src/plugins/view/view.gpr.py:41
+#: ../src/plugins/view/geography.gpr.py:84 ../src/plugins/view/view.gpr.py:41
 #: ../src/plugins/webreport/NarrativeWeb.py:1759
 #: ../src/plugins/webreport/NarrativeWeb.py:1818
 #: ../src/plugins/webreport/NarrativeWeb.py:1870
@@ -6138,10 +6138,10 @@ msgid "Gramplets"
 msgstr "Gramplet"
 
 #: ../src/gui/grampsgui.py:119 ../src/gui/grampsgui.py:120
-#: ../src/gui/grampsgui.py:121 ../src/plugins/view/geography.gpr.py:58
-#: ../src/plugins/view/geography.gpr.py:74
-#: ../src/plugins/view/geography.gpr.py:90
-#: ../src/plugins/view/geography.gpr.py:107
+#: ../src/gui/grampsgui.py:121 ../src/plugins/view/geography.gpr.py:61
+#: ../src/plugins/view/geography.gpr.py:77
+#: ../src/plugins/view/geography.gpr.py:93
+#: ../src/plugins/view/geography.gpr.py:110
 msgid "Geography"
 msgstr "Geografi"
 
@@ -6219,7 +6219,7 @@ msgid "Pedigree"
 msgstr "Antavla"
 
 #: ../src/gui/grampsgui.py:135 ../src/plugins/quickview/FilterByName.py:100
-#: ../src/plugins/view/geography.gpr.py:66
+#: ../src/plugins/view/geography.gpr.py:69
 #: ../src/plugins/view/placetreeview.gpr.py:34
 #: ../src/plugins/view/view.gpr.py:180
 #: ../src/plugins/webreport/NarrativeWeb.py:1760
@@ -6717,7 +6717,7 @@ msgstr "Media:"
 #: ../src/plugins/textreport/DetAncestralReport.py:801
 #: ../src/plugins/textreport/DetDescendantReport.py:975
 #: ../src/plugins/textreport/DetDescendantReport.py:976
-#: ../src/plugins/textreport/FamilyGroup.py:651
+#: ../src/plugins/textreport/FamilyGroup.py:656
 #: ../src/plugins/webreport/NarrativeWeb.py:8200
 msgid "Include"
 msgstr "Ta med"
@@ -8844,7 +8844,7 @@ msgstr "Mall"
 #: ../src/plugins/textreport/DetAncestralReport.py:726
 #: ../src/plugins/textreport/DetDescendantReport.py:890
 #: ../src/plugins/textreport/EndOfLineReport.py:251
-#: ../src/plugins/textreport/FamilyGroup.py:627
+#: ../src/plugins/textreport/FamilyGroup.py:632
 #: ../src/plugins/textreport/IndivComplete.py:669
 #: ../src/plugins/textreport/KinshipReport.py:338
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:192
@@ -9567,23 +9567,23 @@ msgstr "'%s' är ej ett giltigt datumvärde"
 msgid "See data not in Filter"
 msgstr "Se data ej i filter"
 
-#: ../src/config.py:290
+#: ../src/config.py:291
 msgid "Missing Given Name"
 msgstr "Saknat förnamn"
 
-#: ../src/config.py:291
+#: ../src/config.py:292
 msgid "Missing Record"
 msgstr "Saknad post"
 
-#: ../src/config.py:292
+#: ../src/config.py:293
 msgid "Missing Surname"
 msgstr "Saknat efternamn"
 
-#: ../src/config.py:299 ../src/config.py:301
+#: ../src/config.py:300 ../src/config.py:302
 msgid "Living"
 msgstr "Levande"
 
-#: ../src/config.py:300
+#: ../src/config.py:301
 msgid "Private Record"
 msgstr "Privat post"
 
@@ -10235,7 +10235,7 @@ msgstr "Mall som används för rubriker."
 #: ../src/plugins/textreport/DetDescendantReport.py:1099
 #: ../src/plugins/textreport/EndOfLineReport.py:299
 #: ../src/plugins/textreport/EndOfLineReport.py:317
-#: ../src/plugins/textreport/FamilyGroup.py:732
+#: ../src/plugins/textreport/FamilyGroup.py:737
 #: ../src/plugins/textreport/IndivComplete.py:795
 #: ../src/plugins/textreport/KinshipReport.py:404
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:227
@@ -10911,7 +10911,7 @@ msgstr "Huvudpersonen för rapporten"
 #: ../src/plugins/textreport/DetAncestralReport.py:739
 #: ../src/plugins/textreport/DetDescendantReport.py:903
 #: ../src/plugins/textreport/EndOfLineReport.py:264
-#: ../src/plugins/textreport/FamilyGroup.py:641
+#: ../src/plugins/textreport/FamilyGroup.py:646
 #: ../src/plugins/textreport/IndivComplete.py:690
 #: ../src/plugins/textreport/KinshipReport.py:351
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:205
@@ -11674,7 +11674,7 @@ msgstr "Mall som används för objekt och värden."
 #: ../src/plugins/textreport/DetAncestralReport.py:858
 #: ../src/plugins/textreport/DetDescendantReport.py:1053
 #: ../src/plugins/textreport/EndOfLineReport.py:281
-#: ../src/plugins/textreport/FamilyGroup.py:723
+#: ../src/plugins/textreport/FamilyGroup.py:728
 #: ../src/plugins/textreport/IndivComplete.py:763
 #: ../src/plugins/textreport/KinshipReport.py:386
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:220
@@ -11962,14 +11962,14 @@ msgstr "Begravningskälla"
 
 #: ../src/plugins/export/ExportCsv.py:459
 #: ../src/plugins/import/ImportCsv.py:225
-#: ../src/plugins/textreport/FamilyGroup.py:565
+#: ../src/plugins/textreport/FamilyGroup.py:570
 #: ../src/plugins/webreport/NarrativeWeb.py:2460
 msgid "Husband"
 msgstr "Make"
 
 #: ../src/plugins/export/ExportCsv.py:459
 #: ../src/plugins/import/ImportCsv.py:222
-#: ../src/plugins/textreport/FamilyGroup.py:574
+#: ../src/plugins/textreport/FamilyGroup.py:579
 #: ../src/plugins/webreport/NarrativeWeb.py:2458
 msgid "Wife"
 msgstr "Maka"
@@ -12455,7 +12455,7 @@ msgstr "Gramplet visande en persons barn"
 #: ../src/plugins/gramplet/bottombar.gpr.py:483
 #: ../src/plugins/gramplet/bottombar.gpr.py:497
 #: ../src/plugins/gramplet/FanChartGramplet.py:801
-#: ../src/plugins/textreport/FamilyGroup.py:584
+#: ../src/plugins/textreport/FamilyGroup.py:589
 #: ../src/plugins/textreport/IndivComplete.py:442
 #: ../src/plugins/view/fanchartview.py:873
 #: ../src/plugins/view/pedigreeview.py:1919
@@ -14739,8 +14739,8 @@ msgstr ""
 #: ../src/plugins/import/ImportGrdb.py:66
 #: ../src/plugins/import/ImportProGen.py:73
 #: ../src/plugins/import/ImportProGen.py:82
-#: ../src/plugins/import/ImportXml.py:433
-#: ../src/plugins/import/ImportXml.py:436
+#: ../src/plugins/import/ImportXml.py:434
+#: ../src/plugins/import/ImportXml.py:437
 #, python-format
 msgid "%s could not be opened"
 msgstr "%s kunde inte öppnas"
@@ -14902,128 +14902,128 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #. feature requests 2356, 1658: avoid genitive form
-#: ../src/plugins/import/ImportXml.py:85 ../src/plugins/tool/EventNames.py:127
+#: ../src/plugins/import/ImportXml.py:86 ../src/plugins/tool/EventNames.py:127
 #, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr "%(event_name)s mellan %(family)s"
 
 #. feature requests 2356, 1658: avoid genitive form
-#: ../src/plugins/import/ImportXml.py:87 ../src/plugins/tool/EventNames.py:129
+#: ../src/plugins/import/ImportXml.py:88 ../src/plugins/tool/EventNames.py:129
 #, python-format
 msgid "%(event_name)s of %(person)s"
 msgstr "%(person)s: %(event_name)s"
 
-#: ../src/plugins/import/ImportXml.py:134
-#: ../src/plugins/import/ImportXml.py:139
+#: ../src/plugins/import/ImportXml.py:135
+#: ../src/plugins/import/ImportXml.py:140
 #, python-format
 msgid "Error reading %s"
 msgstr "Fel vid läsning av %s"
 
-#: ../src/plugins/import/ImportXml.py:141
+#: ../src/plugins/import/ImportXml.py:142
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr ""
 "Filen är antagligen antingen felaktig eller inte en giltig Gramps-databas."
 
-#: ../src/plugins/import/ImportXml.py:254
+#: ../src/plugins/import/ImportXml.py:255
 #, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr "  %(id)s - %(text)s med %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:260
+#: ../src/plugins/import/ImportXml.py:261
 #, python-format
 msgid "  Family %(id)s with %(id2)s\n"
 msgstr "  Familj %(id)s med %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:263
+#: ../src/plugins/import/ImportXml.py:264
 #, python-format
 msgid "  Source %(id)s with %(id2)s\n"
 msgstr " Källa %(id)s med %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:266
+#: ../src/plugins/import/ImportXml.py:267
 #, python-format
 msgid "  Event %(id)s with %(id2)s\n"
 msgstr "  Händelse %(id)s med %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:269
+#: ../src/plugins/import/ImportXml.py:270
 #, python-format
 msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr "  Mediaobjekt %(id)s med %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:272
+#: ../src/plugins/import/ImportXml.py:273
 #, python-format
 msgid "  Place %(id)s with %(id2)s\n"
 msgstr "  Plats %(id)s med %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:275
+#: ../src/plugins/import/ImportXml.py:276
 #, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
 msgstr "  Arkivplats %(id)s med %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:278
+#: ../src/plugins/import/ImportXml.py:279
 #, python-format
 msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Notis %(id)s med %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:283
+#: ../src/plugins/import/ImportXml.py:284
 #, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
 msgstr "  Citering %(id)s med %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:291
+#: ../src/plugins/import/ImportXml.py:292
 #, python-format
 msgid "  People: %d\n"
 msgstr "  Person: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:292
+#: ../src/plugins/import/ImportXml.py:293
 #, python-format
 msgid "  Families: %d\n"
 msgstr "  Familjer: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:293
+#: ../src/plugins/import/ImportXml.py:294
 #, python-format
 msgid "  Sources: %d\n"
 msgstr "  Källor: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:294
+#: ../src/plugins/import/ImportXml.py:295
 #, python-format
 msgid "  Events: %d\n"
 msgstr "  Händelser: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:295
+#: ../src/plugins/import/ImportXml.py:296
 #, python-format
 msgid "  Media Objects: %d\n"
 msgstr "  Mediaobjekt: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:296
+#: ../src/plugins/import/ImportXml.py:297
 #, python-format
 msgid "  Places: %d\n"
 msgstr "  Platser: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:297
+#: ../src/plugins/import/ImportXml.py:298
 #, python-format
 msgid "  Repositories: %d\n"
 msgstr "  Arkivplatser: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:298
+#: ../src/plugins/import/ImportXml.py:299
 #, python-format
 msgid "  Notes: %d\n"
 msgstr "  Notiser: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:299
+#: ../src/plugins/import/ImportXml.py:300
 #, python-format
 msgid "  Tags: %d\n"
 msgstr "  Flaggor: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:300
+#: ../src/plugins/import/ImportXml.py:301
 #, python-format
 msgid "  Citations: %d\n"
 msgstr "  Citeringar: %d\n"
 
-#: ../src/plugins/import/ImportXml.py:302
+#: ../src/plugins/import/ImportXml.py:303
 msgid "Number of new objects imported:\n"
 msgstr "Antal nya importerade objekt:\n"
 
-#: ../src/plugins/import/ImportXml.py:311
+#: ../src/plugins/import/ImportXml.py:312
 #, python-format
 msgid ""
 "\n"
@@ -15042,7 +15042,7 @@ msgstr ""
 "inom parentes. Om möjligt är dessa \"Okända\"\n"
 "objekt refererade av notisen %s.\n"
 
-#: ../src/plugins/import/ImportXml.py:319
+#: ../src/plugins/import/ImportXml.py:320
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -15056,7 +15056,7 @@ msgstr ""
 "den mediamapp du kan ge i inställningar\n"
 "eller om ej given relativ till användarmappen.\n"
 
-#: ../src/plugins/import/ImportXml.py:330
+#: ../src/plugins/import/ImportXml.py:331
 msgid ""
 "\n"
 "\n"
@@ -15067,26 +15067,26 @@ msgstr ""
 "Objekt, vilka är kandidater till sammanslagning:\n"
 
 #. there is no old style XML
-#: ../src/plugins/import/ImportXml.py:774
-#: ../src/plugins/import/ImportXml.py:1208
-#: ../src/plugins/import/ImportXml.py:1458
-#: ../src/plugins/import/ImportXml.py:1833
+#: ../src/plugins/import/ImportXml.py:775
+#: ../src/plugins/import/ImportXml.py:1204
+#: ../src/plugins/import/ImportXml.py:1454
+#: ../src/plugins/import/ImportXml.py:1829
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Den Gramps XML du försöker importera är felaktigt utformad."
 
-#: ../src/plugins/import/ImportXml.py:775
+#: ../src/plugins/import/ImportXml.py:776
 msgid "Attributes that link the data together are missing."
 msgstr "Attribut, som länkar data tillsammans, saknas."
 
-#: ../src/plugins/import/ImportXml.py:879
+#: ../src/plugins/import/ImportXml.py:880
 msgid "Gramps XML import"
 msgstr "Gramps XML-import"
 
-#: ../src/plugins/import/ImportXml.py:909
+#: ../src/plugins/import/ImportXml.py:910
 msgid "Could not change media path"
 msgstr "Kunde inte ändra mediasökväg"
 
-#: ../src/plugins/import/ImportXml.py:910
+#: ../src/plugins/import/ImportXml.py:911
 #, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
@@ -15099,7 +15099,7 @@ msgstr ""
 "mediasökvägen har behållits. Kopiera filerna till en korrekt mapp eller "
 "ändra mediasökvägen i Inställningar."
 
-#: ../src/plugins/import/ImportXml.py:968
+#: ../src/plugins/import/ImportXml.py:970
 msgid ""
 "The .gramps file you are importing does not contain information about the "
 "version of Gramps with, which it was produced.\n"
@@ -15111,26 +15111,11 @@ msgstr ""
 "\n"
 "Filen kommer ej att importeras."
 
-#: ../src/plugins/import/ImportXml.py:971
+#: ../src/plugins/import/ImportXml.py:973
 msgid "Import file misses Gramps version"
 msgstr "Importfil saknar Gramps-version"
 
-#: ../src/plugins/import/ImportXml.py:973
-msgid ""
-"The .gramps file you are importing does not contain a valid xml-namespace "
-"number.\n"
-"\n"
-"The file will not be imported."
-msgstr ""
-"Den .gramps-fil du importerar innehåller ej ett giltig XML-namspace-tal.\n"
-"\n"
-"Filen kommer ej att importeras."
-
-#: ../src/plugins/import/ImportXml.py:976
-msgid "Import file contains unacceptable XML namespace version"
-msgstr "Importfilen innehååler en oacceptabel XML-namespace-version"
-
-#: ../src/plugins/import/ImportXml.py:979
+#: ../src/plugins/import/ImportXml.py:975
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(newer)s of Gramps, "
@@ -15141,7 +15126,7 @@ msgstr ""
 "kör dock en äldre version %(older)s. Filen kommer inte att importeras. "
 "Uppgradera till senaste version av Gramps och försök igen."
 
-#: ../src/plugins/import/ImportXml.py:987
+#: ../src/plugins/import/ImportXml.py:983
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -15162,11 +15147,11 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=Gramps_XML\n"
 " för mer info."
 
-#: ../src/plugins/import/ImportXml.py:999
+#: ../src/plugins/import/ImportXml.py:995
 msgid "The file will not be imported"
 msgstr "Filen kommer inte att importeras"
 
-#: ../src/plugins/import/ImportXml.py:1001
+#: ../src/plugins/import/ImportXml.py:997
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -15189,25 +15174,25 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=Gramps_XML\n"
 " för mer info."
 
-#: ../src/plugins/import/ImportXml.py:1014
+#: ../src/plugins/import/ImportXml.py:1010
 msgid "Old xml file"
 msgstr "Gammal xml-fil"
 
-#: ../src/plugins/import/ImportXml.py:1129
-#: ../src/plugins/import/ImportXml.py:2479
+#: ../src/plugins/import/ImportXml.py:1125
+#: ../src/plugins/import/ImportXml.py:2477
 #, python-format
 msgid "Witness name: %s"
 msgstr "Vittnets namn: %s"
 
-#: ../src/plugins/import/ImportXml.py:1209
+#: ../src/plugins/import/ImportXml.py:1205
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Alla händelsereferenser måste ha ett 'hlink'-attribut."
 
-#: ../src/plugins/import/ImportXml.py:1459
+#: ../src/plugins/import/ImportXml.py:1455
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Alls personreferenser måste ha ett 'hlink'-attribut."
 
-#: ../src/plugins/import/ImportXml.py:1620
+#: ../src/plugins/import/ImportXml.py:1616
 #, python-format
 msgid ""
 "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did "
@@ -15216,24 +15201,24 @@ msgstr ""
 "Ditt släktträd grupperar namn \"%(key)s\" tillsammans med \"%(parent)s\", "
 "ändrade inte denna gruppering till \"%(value)s\"."
 
-#: ../src/plugins/import/ImportXml.py:1623
+#: ../src/plugins/import/ImportXml.py:1619
 msgid "Gramps ignored a name grouping"
 msgstr "Gramps ignorerar namemap-värde"
 
-#: ../src/plugins/import/ImportXml.py:1682
+#: ../src/plugins/import/ImportXml.py:1678
 msgid "Unknown when imported"
 msgstr "Okänd vid import"
 
-#: ../src/plugins/import/ImportXml.py:1834
+#: ../src/plugins/import/ImportXml.py:1830
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Alla notisreferenser måste ha ett 'hlink'-attribut."
 
-#: ../src/plugins/import/ImportXml.py:2370
+#: ../src/plugins/import/ImportXml.py:2368
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Vittnets kommentar: %s"
 
-#: ../src/plugins/import/ImportXml.py:3000
+#: ../src/plugins/import/ImportXml.py:2998
 #, python-format
 msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
@@ -15242,7 +15227,7 @@ msgstr ""
 "Fel: familjen '%(family)s' far '%(father)s' refererar ej tillbaka till "
 "familjen. Referens tillagd."
 
-#: ../src/plugins/import/ImportXml.py:3016
+#: ../src/plugins/import/ImportXml.py:3014
 #, python-format
 msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
@@ -15251,7 +15236,7 @@ msgstr ""
 "Fel: familjen '%(family)s' mor '%(mother)s' refererar ej tillbaka till "
 "familjen. Referens tillagd."
 
-#: ../src/plugins/import/ImportXml.py:3038
+#: ../src/plugins/import/ImportXml.py:3036
 #, python-format
 msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
@@ -20970,7 +20955,7 @@ msgstr "Ta med attribut"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:808
 #: ../src/plugins/textreport/DetDescendantReport.py:983
-#: ../src/plugins/textreport/FamilyGroup.py:673
+#: ../src/plugins/textreport/FamilyGroup.py:678
 msgid "Whether to include attributes."
 msgstr "Huruvida ta med attribut."
 
@@ -21207,140 +21192,140 @@ msgstr "%(type)s: %(value)s"
 msgid "Marriage:"
 msgstr "Giftermål:"
 
-#: ../src/plugins/textreport/FamilyGroup.py:458
+#: ../src/plugins/textreport/FamilyGroup.py:463
 msgid "acronym for male|M"
 msgstr "M"
 
-#: ../src/plugins/textreport/FamilyGroup.py:460
+#: ../src/plugins/textreport/FamilyGroup.py:465
 msgid "acronym for female|F"
 msgstr "K"
 
-#: ../src/plugins/textreport/FamilyGroup.py:462
+#: ../src/plugins/textreport/FamilyGroup.py:467
 #, python-format
 msgid "acronym for unknown|%dU"
 msgstr "%dO"
 
-#: ../src/plugins/textreport/FamilyGroup.py:556
+#: ../src/plugins/textreport/FamilyGroup.py:561
 #, python-format
 msgid "Family Group Report - Generation %d"
 msgstr "Familjegruppsrapport - generation %d"
 
-#: ../src/plugins/textreport/FamilyGroup.py:558
-#: ../src/plugins/textreport/FamilyGroup.py:607
+#: ../src/plugins/textreport/FamilyGroup.py:563
+#: ../src/plugins/textreport/FamilyGroup.py:612
 #: ../src/plugins/textreport/textplugins.gpr.py:185
 msgid "Family Group Report"
 msgstr "Familjegrupp"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:630
+#: ../src/plugins/textreport/FamilyGroup.py:635
 msgid "Center Family"
 msgstr "Huvudfamilj"
 
-#: ../src/plugins/textreport/FamilyGroup.py:631
+#: ../src/plugins/textreport/FamilyGroup.py:636
 msgid "The center family for the report"
 msgstr "Huvudfamiljen för rapporten"
 
-#: ../src/plugins/textreport/FamilyGroup.py:645
+#: ../src/plugins/textreport/FamilyGroup.py:650
 msgid "Recursive"
 msgstr "Rekursiv"
 
-#: ../src/plugins/textreport/FamilyGroup.py:646
+#: ../src/plugins/textreport/FamilyGroup.py:651
 msgid "Create reports for all descendants of this family."
 msgstr "Skapa rapporter för alla ättlingar till denna familj."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:654
+#: ../src/plugins/textreport/FamilyGroup.py:659
 msgid "Generation numbers (recursive only)"
 msgstr "Generationsnummer (endast rekursivt)"
 
-#: ../src/plugins/textreport/FamilyGroup.py:656
+#: ../src/plugins/textreport/FamilyGroup.py:661
 msgid "Whether to include the generation on each report (recursive only)."
 msgstr "Huruvida ta med generationen på varje rapport (endast rekursivt)."
 
-#: ../src/plugins/textreport/FamilyGroup.py:660
+#: ../src/plugins/textreport/FamilyGroup.py:665
 msgid "Parent Events"
 msgstr "Föräldrarnas händelser"
 
-#: ../src/plugins/textreport/FamilyGroup.py:661
+#: ../src/plugins/textreport/FamilyGroup.py:666
 msgid "Whether to include events for parents."
 msgstr "Huruvida ta med händelser för föräldrar."
 
-#: ../src/plugins/textreport/FamilyGroup.py:664
+#: ../src/plugins/textreport/FamilyGroup.py:669
 msgid "Parent Addresses"
 msgstr "Föräldrarnas adresser"
 
-#: ../src/plugins/textreport/FamilyGroup.py:665
+#: ../src/plugins/textreport/FamilyGroup.py:670
 msgid "Whether to include addresses for parents."
 msgstr "Huruvida ta med adresser till föräldrar."
 
-#: ../src/plugins/textreport/FamilyGroup.py:668
+#: ../src/plugins/textreport/FamilyGroup.py:673
 msgid "Parent Notes"
 msgstr "Föräldrarnas notiser"
 
-#: ../src/plugins/textreport/FamilyGroup.py:669
+#: ../src/plugins/textreport/FamilyGroup.py:674
 msgid "Whether to include notes for parents."
 msgstr "Huruvida ta med notiser för föräldrar."
 
-#: ../src/plugins/textreport/FamilyGroup.py:672
+#: ../src/plugins/textreport/FamilyGroup.py:677
 msgid "Parent Attributes"
 msgstr "Föräldraattribut"
 
-#: ../src/plugins/textreport/FamilyGroup.py:676
+#: ../src/plugins/textreport/FamilyGroup.py:681
 msgid "Alternate Parent Names"
 msgstr "Föräldrarnas alternativa namn"
 
-#: ../src/plugins/textreport/FamilyGroup.py:677
+#: ../src/plugins/textreport/FamilyGroup.py:682
 msgid "Whether to include alternate names for parents."
 msgstr "Huruvida ta med alternativt namn på föräldrar."
 
-#: ../src/plugins/textreport/FamilyGroup.py:681
+#: ../src/plugins/textreport/FamilyGroup.py:686
 msgid "Parent Marriage"
 msgstr "Föräldrarnas giftermål"
 
-#: ../src/plugins/textreport/FamilyGroup.py:682
+#: ../src/plugins/textreport/FamilyGroup.py:687
 msgid "Whether to include marriage information for parents."
 msgstr "Huruvida ta med giftermålssinformation för föräldrar."
 
-#: ../src/plugins/textreport/FamilyGroup.py:686
+#: ../src/plugins/textreport/FamilyGroup.py:691
 msgid "Dates of Relatives"
 msgstr "Släktingars datum"
 
-#: ../src/plugins/textreport/FamilyGroup.py:687
+#: ../src/plugins/textreport/FamilyGroup.py:692
 msgid "Whether to include dates for relatives (father, mother, spouse)."
 msgstr "Huruvida ta med släktingars datum (far, mor, make/maka)."
 
-#: ../src/plugins/textreport/FamilyGroup.py:691
+#: ../src/plugins/textreport/FamilyGroup.py:696
 msgid "Children Marriages"
 msgstr "Barns giftermål"
 
-#: ../src/plugins/textreport/FamilyGroup.py:692
+#: ../src/plugins/textreport/FamilyGroup.py:697
 msgid "Whether to include marriage information for children."
 msgstr "Huruvida ta med giftermålsformation för barn."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:697
+#: ../src/plugins/textreport/FamilyGroup.py:702
 msgid "Missing Information"
 msgstr "Saknad information"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:700
+#: ../src/plugins/textreport/FamilyGroup.py:705
 msgid "Print fields for missing information"
 msgstr "Skriv fält för saknad information"
 
-#: ../src/plugins/textreport/FamilyGroup.py:702
+#: ../src/plugins/textreport/FamilyGroup.py:707
 msgid "Whether to include fields for missing information."
 msgstr "Huruvida ta med fält för saknad information."
 
-#: ../src/plugins/textreport/FamilyGroup.py:744
+#: ../src/plugins/textreport/FamilyGroup.py:749
 #: ../src/plugins/textreport/TagReport.py:597
 msgid "The basic style used for the note display."
 msgstr "Grundläggande mall som används för visning av notiser."
 
-#: ../src/plugins/textreport/FamilyGroup.py:753
+#: ../src/plugins/textreport/FamilyGroup.py:758
 msgid "The style used for the text related to the children."
 msgstr "Mall som används för text angående barnen."
 
-#: ../src/plugins/textreport/FamilyGroup.py:763
+#: ../src/plugins/textreport/FamilyGroup.py:768
 msgid "The style used for the parent's name"
 msgstr "Mall som används för förälderns namn"
 
@@ -23697,28 +23682,28 @@ msgstr ""
 "Varning:  osmgpsmap-modulen el laddad. osmgpsmap måste vara >=0.7.0. Din är "
 "%s"
 
-#: ../src/plugins/view/geography.gpr.py:42
-msgid ""
-"WARNING: osmgpsmap module not loaded. Geography functionality will not be "
-"available."
-msgstr ""
-"Varning:  osmgpsmap-modulen el laddad. Geografifunktionalitet kommer att "
-"saknas."
+#: ../src/plugins/view/geography.gpr.py:44
+msgid "OsmGpsMap module not loaded."
+msgstr "OsmGpsMap-modul ej laddad."
 
-#: ../src/plugins/view/geography.gpr.py:50
+#: ../src/plugins/view/geography.gpr.py:45
+msgid "Geography functionality will not be available."
+msgstr "Geografifunktionen är ej tillgänglig"
+
+#: ../src/plugins/view/geography.gpr.py:53
 msgid "A view showing the places visited by one person during his life."
 msgstr ""
 "En vy, som tillåter dig att se platser, besökta av en person under dess liv."
 
-#: ../src/plugins/view/geography.gpr.py:67
+#: ../src/plugins/view/geography.gpr.py:70
 msgid "A view showing all places of the database."
 msgstr "En vy, som tillåter dig att se alla platser i databasen."
 
-#: ../src/plugins/view/geography.gpr.py:82
+#: ../src/plugins/view/geography.gpr.py:85
 msgid "A view showing all the event places of the database."
 msgstr "En vy, som tillåter dig att se alla händelser i databasen."
 
-#: ../src/plugins/view/geography.gpr.py:98
+#: ../src/plugins/view/geography.gpr.py:101
 msgid "A view showing the places visited by one family during all their life."
 msgstr ""
 "En vy, som tillåter dig att se alla platser besökta av en familj under dess "
@@ -31483,6 +31468,19 @@ msgstr ""
 "<b>Gramps för Gnome eller KDE?</b><br/>För Linux-användare fungerar Gramps "
 "med vilken skrivbordsmiljö som helst, så länge som de behövda GTK-"
 "biblioteken är installerade."
+
+#~ msgid ""
+#~ "The .gramps file you are importing does not contain a valid xml-namespace "
+#~ "number.\n"
+#~ "\n"
+#~ "The file will not be imported."
+#~ msgstr ""
+#~ "Den .gramps-fil du importerar innehåller ej ett giltig XML-namspace-tal.\n"
+#~ "\n"
+#~ "Filen kommer ej att importeras."
+
+#~ msgid "Import file contains unacceptable XML namespace version"
+#~ msgstr "Importfilen innehååler en oacceptabel XML-namespace-version"
 
 #~ msgid ""
 #~ "\n"
