@@ -22180,7 +22180,6 @@ msgstr "Titre du rapport"
 
 # trunk
 #: ../gramps/plugins/textreport/birthdayreport.py:440
-#, fuzzy
 msgid "My Birthday Report"
 msgstr "Jours de naissance et anniversaires"
 
