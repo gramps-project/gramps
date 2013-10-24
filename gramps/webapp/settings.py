@@ -156,4 +156,5 @@ CACHES = {
         'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
         }
     }
+DEFAULT_CHARSET = "utf-8"
 ## End Changes for Django 1.5

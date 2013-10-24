@@ -206,7 +206,7 @@ def process_report_run(request, handle):
     if request.user.is_authenticated():
         profile = request.user.get_profile()
         report = Report.objects.get(handle=handle)
-        args = {"off": "pdf", "iff": "ged"} # basic defaults
+        args = {"off": "html"} # basic defaults
         # override from given defaults in table:
         if report.options:
             for pair in str(report.options).split("\\n"):
@@ -268,7 +268,17 @@ def process_report_run(request, handle):
                 make_message(request, "Failed: '%s' is not found" % filename)
                 return redirect("/report/")
             time.sleep(1)
-        return send_file(request, filename, mimetype)
+        # FIXME: the following should go into a queue for later presentation
+        # like a jobs-result queue
+        if filename.endswith(".html"):
+            # just give it, perhaps in a new tab
+            from django.http import HttpResponse
+            response = HttpResponse(mimetype="text/html")
+            content = "".join(open(filename).readlines())
+            response._set_content(content)
+            return response
+        else:
+            return send_file(request, filename, mimetype)
     # If failure, just fail for now:
     context = RequestContext(request)
     context["message"] = "You need to be logged in to run reports."
