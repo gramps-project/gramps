@@ -304,7 +304,12 @@ class DateParser(object):
         }
         # (overridden if a locale-specific date parser exists)
 
-    today = ["today",] # token(s) to regonise for today's date.
+    today = ["$T",]
+        # Override with a list of *synonyms* for "today" in your language.
+        # Note: the word "today" itself will already be pulled in from your translation DB,
+        # see init_strings, so there is no need to override this if you have no aliases
+        # for "today".
+        # We also secretly support "$T" like in some reports.
     
     _langs = set()
     def __init_prefix_tables(self):
@@ -374,6 +379,7 @@ class DateParser(object):
         can be coded after DateParser.init_strings(self) call, that way they
         override stuff from this method. See DateParserRU() as an example.
         """
+        _ = self._locale.translation.gettext
         self.__init_prefix_tables()
 
         self._rfc_mon_str  = '(' + '|'.join(list(self._rfc_mons_to_int.keys())) + ')'
@@ -394,7 +400,7 @@ class DateParser(object):
         self._cal_str  = self.re_longest_first(list(self.calendar_to_int.keys()))
         self._ny_str   = self.re_longest_first(list(self.newyear_to_int.keys()))
 
-        self._today_str = self.re_longest_first(self.today)
+        self._today_str = self.re_longest_first(self.today + [_("today"),])
 
         # bce, calendar type and quality may be either at the end or at
         # the beginning of the given date string, therefore they will
