@@ -30775,7 +30775,7 @@ msgstr "Альтернативные местоположения"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:401
 msgid "<absent>"
-msgstr ""
+msgstr "<отсутствует>"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1034
 #, python-format
