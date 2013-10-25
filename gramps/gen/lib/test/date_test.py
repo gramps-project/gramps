@@ -269,7 +269,8 @@ class ParserDateTest(BaseDateTest):
 # MatchDateTest
 #
 #-------------------------------------------------------------------------
-@unittest.skipIf(_dd.__class__ != DateDisplayEn,
+ENGLISH_DATE_HANDLER = (_dd.__class__ == DateDisplayEn)
+@unittest.skipUnless(ENGLISH_DATE_HANDLER,
         "This test of Date() matching logic can only run in English locale.")
 class MatchDateTest(BaseDateTest):
     """
@@ -349,14 +350,17 @@ class MatchDateTest(BaseDateTest):
              ("1234-01-04", "1234-01-04 (Mar25)", True),  
              ]
 
+    def convert_to_date(self, d):
+        return d if isinstance(d,Date) else _dp.parse(d)
+
     def do_test(self, d1, d2, expected1, expected2=None):
         """
         Tests two Gramps dates to see if they match.
         """
         if expected2 is None:
             expected2 = expected1
-        date1 = _dp.parse(d1)
-        date2 = _dp.parse(d2)
+        date1 = self.convert_to_date(d1)
+        date2 = self.convert_to_date(d2)
         
         result = date2.match(date1)
         self.assertEqual(result, expected1, 
