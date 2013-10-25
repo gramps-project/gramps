@@ -41,6 +41,8 @@ try:
         from . import png
 except:
     print("WARNING: No PIL installed or available")
+    NEW_PIL = False
+    from . import png
 import os
 
 ## Globals
