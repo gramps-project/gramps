@@ -26,15 +26,15 @@ from __future__ import print_function
 from gramps.webapp.grampsdb.models import *
 from django.contrib import admin
 
+## FIXME: this no longer works in Django 1.5
 class MyAdmin(admin.ModelAdmin): 
     def change_view(self, request, object_id, extra_context=None): 
-        print("object_id:", object_id)
         result = super(MyAdmin, self).change_view(request, object_id, extra_context) 
         if '_addanother' not in request.POST and '_continue' not in request.POST: 
             result['Location'] = "/"
         return result
 
 for type_name in get_tables("all"):
-    admin.site.register(type_name[1], MyAdmin)
-admin.site.register(Profile, MyAdmin)
+    admin.site.register(type_name[1], admin.ModelAdmin)
+admin.site.register(Profile, admin.ModelAdmin)
 

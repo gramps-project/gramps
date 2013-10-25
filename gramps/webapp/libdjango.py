@@ -190,8 +190,6 @@ class DjangoInterface(object):
         return models.clear_tables(*args)
 
     def get_tag_list(self, obj):
-        print(obj)
-        print(dir(obj))
         return obj.get_tag_list()
 
     def get_attribute_list(self, obj):
