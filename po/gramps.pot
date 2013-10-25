@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-22 17:02+0300\n"
+"POT-Creation-Date: 2013-10-25 19:34+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -728,7 +728,7 @@ msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 
 #: ../gramps/gen/const.py:239 ../gramps/gen/const.py:240
-#: ../gramps/gen/lib/date.py:1759 ../gramps/gen/lib/date.py:1773
+#: ../gramps/gen/lib/date.py:1768 ../gramps/gen/lib/date.py:1782
 msgid "none"
 msgstr ""
 
@@ -779,90 +779,90 @@ msgstr ""
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:160
-#: ../gramps/plugins/drawreport/calendarreport.py:200
+#: ../gramps/gen/datehandler/_datedisplay.py:161
+#: ../gramps/plugins/drawreport/calendarreport.py:201
 msgid "{long_month} {year}"
 msgstr ""
 
 #. first date in a span
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "from"
-#: ../gramps/gen/datehandler/_datedisplay.py:166
+#: ../gramps/gen/datehandler/_datedisplay.py:167
 msgid "from|{long_month} {year}"
 msgstr ""
 
 #. second date in a span
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "to"
-#: ../gramps/gen/datehandler/_datedisplay.py:172
+#: ../gramps/gen/datehandler/_datedisplay.py:173
 msgid "to|{long_month} {year}"
 msgstr ""
 
 #. first date in a range
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "between"
-#: ../gramps/gen/datehandler/_datedisplay.py:178
+#: ../gramps/gen/datehandler/_datedisplay.py:179
 msgid "between|{long_month} {year}"
 msgstr ""
 
 #. second date in a range
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "and"
-#: ../gramps/gen/datehandler/_datedisplay.py:184
+#: ../gramps/gen/datehandler/_datedisplay.py:185
 msgid "and|{long_month} {year}"
 msgstr ""
 
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "before"
-#: ../gramps/gen/datehandler/_datedisplay.py:189
+#: ../gramps/gen/datehandler/_datedisplay.py:190
 msgid "before|{long_month} {year}"
 msgstr ""
 
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "after"
-#: ../gramps/gen/datehandler/_datedisplay.py:194
+#: ../gramps/gen/datehandler/_datedisplay.py:195
 msgid "after|{long_month} {year}"
 msgstr ""
 
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "about"
-#: ../gramps/gen/datehandler/_datedisplay.py:199
+#: ../gramps/gen/datehandler/_datedisplay.py:200
 msgid "about|{long_month} {year}"
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:206
+#: ../gramps/gen/datehandler/_datedisplay.py:207
 msgid "{short_month} {year}"
 msgstr ""
 
 #. first date in a span
-#: ../gramps/gen/datehandler/_datedisplay.py:210
+#: ../gramps/gen/datehandler/_datedisplay.py:211
 msgid "from|{short_month} {year}"
 msgstr ""
 
 #. second date in a span
-#: ../gramps/gen/datehandler/_datedisplay.py:214
+#: ../gramps/gen/datehandler/_datedisplay.py:215
 msgid "to|{short_month} {year}"
 msgstr ""
 
 #. first date in a range
-#: ../gramps/gen/datehandler/_datedisplay.py:218
+#: ../gramps/gen/datehandler/_datedisplay.py:219
 msgid "between|{short_month} {year}"
 msgstr ""
 
 #. second date in a range
-#: ../gramps/gen/datehandler/_datedisplay.py:222
+#: ../gramps/gen/datehandler/_datedisplay.py:223
 msgid "and|{short_month} {year}"
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:225
+#: ../gramps/gen/datehandler/_datedisplay.py:226
 msgid "before|{short_month} {year}"
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:228
+#: ../gramps/gen/datehandler/_datedisplay.py:229
 msgid "after|{short_month} {year}"
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:231
+#: ../gramps/gen/datehandler/_datedisplay.py:232
 msgid "about|{short_month} {year}"
 msgstr ""
 
@@ -871,7 +871,7 @@ msgstr ""
 #. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
 #. key appearing above in the FORMATS_... dict
 #. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:341
+#: ../gramps/gen/datehandler/_datedisplay.py:342
 msgid "from-date|"
 msgstr ""
 
@@ -880,11 +880,11 @@ msgstr ""
 #. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
 #. key appearing above in the FORMATS_... dict
 #. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:348
+#: ../gramps/gen/datehandler/_datedisplay.py:349
 msgid "to-date|"
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:350
+#: ../gramps/gen/datehandler/_datedisplay.py:351
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
 
@@ -893,7 +893,7 @@ msgstr ""
 #. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
 #. key appearing above in the FORMATS_... dict
 #. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:363
+#: ../gramps/gen/datehandler/_datedisplay.py:364
 msgid "between-date|"
 msgstr ""
 
@@ -902,11 +902,11 @@ msgstr ""
 #. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
 #. key appearing above in the FORMATS_... dict
 #. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:370
+#: ../gramps/gen/datehandler/_datedisplay.py:371
 msgid "and-date|"
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:372
+#: ../gramps/gen/datehandler/_datedisplay.py:373
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
@@ -918,39 +918,39 @@ msgstr ""
 #. that maps to the special inflected format string that you need to localize.
 #. TODO are there languages for which the inflections for the different
 #. modifiers are different?!
-#: ../gramps/gen/datehandler/_datedisplay.py:387
+#: ../gramps/gen/datehandler/_datedisplay.py:388
 msgid "before-date|"
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datedisplay.py:389
+#: ../gramps/gen/datehandler/_datedisplay.py:390
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr ""
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:451
+#: ../gramps/gen/datehandler/_datedisplay.py:452
 msgid "{long_month} {day:d}, {year}"
 msgstr ""
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:466
+#: ../gramps/gen/datehandler/_datedisplay.py:467
 msgid "{short_month} {day:d}, {year}"
 msgstr ""
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:481
+#: ../gramps/gen/datehandler/_datedisplay.py:482
 msgid "{day:d} {long_month} {year}"
 msgstr ""
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:497
+#: ../gramps/gen/datehandler/_datedisplay.py:498
 msgid "{day:d} {short_month} {year}"
 msgstr ""
 
@@ -1403,6 +1403,10 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
+#: ../gramps/gen/datehandler/_dateparser.py:403
+msgid "today"
+msgstr ""
+
 #: ../gramps/gen/db/base.py:1624
 msgid "Add child to family"
 msgstr ""
@@ -1560,13 +1564,13 @@ msgid ""
 "your Family Tree."
 msgstr ""
 
-#: ../gramps/gen/db/undoredo.py:249 ../gramps/gen/db/undoredo.py:286
-#: ../gramps/gen/db/write.py:2128
+#: ../gramps/gen/db/undoredo.py:258 ../gramps/gen/db/undoredo.py:295
+#: ../gramps/gen/db/write.py:2137
 #, python-format
 msgid "_Undo %s"
 msgstr ""
 
-#: ../gramps/gen/db/undoredo.py:255 ../gramps/gen/db/undoredo.py:292
+#: ../gramps/gen/db/undoredo.py:264 ../gramps/gen/db/undoredo.py:301
 #, python-format
 msgid "_Redo %s"
 msgstr ""
@@ -1619,7 +1623,7 @@ msgstr ""
 msgid "Upgrade Statistics"
 msgstr ""
 
-#: ../gramps/gen/db/write.py:1116
+#: ../gramps/gen/db/write.py:1125
 #, python-format
 msgid ""
 "An attempt is made to safe a reference key which is partly bytecode, this is "
@@ -1629,11 +1633,11 @@ msgstr ""
 
 #. Make a tuple of the functions and classes that we need for
 #. each of the primary object tables.
-#: ../gramps/gen/db/write.py:1185
+#: ../gramps/gen/db/write.py:1194
 msgid "Rebuild reference map"
 msgstr ""
 
-#: ../gramps/gen/db/write.py:1981
+#: ../gramps/gen/db/write.py:1990
 #, python-format
 msgid ""
 "A second transaction is started while there is still a transaction, \"%s\", "
@@ -1973,7 +1977,7 @@ msgid "Number must be:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/_hasgrampsid.py:47
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:124
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:123
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:47
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:46
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:51
@@ -2032,7 +2036,7 @@ msgid "Source ID:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/_matchesfilterbase.py:56
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:124
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:123
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:49
 #: ../gramps/gen/filters/rules/person/_isancestoroffiltermatch.py:48
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:48
@@ -3138,26 +3142,26 @@ msgid ""
 "ss) or in the range, if a second date-time is given."
 msgstr ""
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:51
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:50
 msgid "Preparing sub-filter"
 msgstr ""
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:54
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:53
 msgid "Retrieving all sub-filter matches"
 msgstr ""
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:125
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:124
 msgid "Relationship path between <person> and people matching <filter>"
 msgstr ""
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:126
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:125
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:48
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:49
 #: ../gramps/gen/filters/rules/person/_relationshippathbetweenbookmarks.py:54
 msgid "Relationship filters"
 msgstr ""
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:127
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:126
 msgid ""
 "Searches over the database starting from a specified person and returns "
 "everyone between that person and a set of target people specified with a "
@@ -3166,11 +3170,11 @@ msgid ""
 "necessarily the shortest path."
 msgstr ""
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:137
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:138
 msgid "Finding relationship paths"
 msgstr ""
 
-#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:138
+#: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:139
 msgid "Evaluating people"
 msgstr ""
 
@@ -4647,36 +4651,36 @@ msgstr[1] ""
 msgid "0 days"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1759
+#: ../gramps/gen/lib/date.py:1768
 msgid "estimated"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1759
+#: ../gramps/gen/lib/date.py:1768
 msgid "calculated"
 msgstr ""
 
 #. ui_mods taken from date.py def lookup_modifier(self, modifier):
-#: ../gramps/gen/lib/date.py:1773 ../gramps/plugins/lib/libsubstkeyword.py:281
+#: ../gramps/gen/lib/date.py:1782 ../gramps/plugins/lib/libsubstkeyword.py:281
 msgid "before"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1773 ../gramps/plugins/lib/libsubstkeyword.py:281
+#: ../gramps/gen/lib/date.py:1782 ../gramps/plugins/lib/libsubstkeyword.py:281
 msgid "after"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1773 ../gramps/plugins/lib/libsubstkeyword.py:281
+#: ../gramps/gen/lib/date.py:1782 ../gramps/plugins/lib/libsubstkeyword.py:281
 msgid "about"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1774
+#: ../gramps/gen/lib/date.py:1783
 msgid "range"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1774
+#: ../gramps/gen/lib/date.py:1783
 msgid "span"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1774
+#: ../gramps/gen/lib/date.py:1783
 msgid "textonly"
 msgstr ""
 
@@ -6944,7 +6948,7 @@ msgstr ""
 msgid "Merge Source"
 msgstr ""
 
-#: ../gramps/gen/plug/_gramplet.py:339
+#: ../gramps/gen/plug/_gramplet.py:340
 #, python-format
 msgid "Gramplet %s caused an error"
 msgstr ""
@@ -8094,43 +8098,43 @@ msgstr ""
 msgid "Chinese Simplified"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:809
+#: ../gramps/gen/utils/grampslocale.py:812
 msgid "the person"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:811
+#: ../gramps/gen/utils/grampslocale.py:814
 msgid "the family"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:813
+#: ../gramps/gen/utils/grampslocale.py:816
 msgid "the place"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:815
+#: ../gramps/gen/utils/grampslocale.py:818
 msgid "the event"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:817
+#: ../gramps/gen/utils/grampslocale.py:820
 msgid "the repository"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:819
+#: ../gramps/gen/utils/grampslocale.py:822
 msgid "the note"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:821
+#: ../gramps/gen/utils/grampslocale.py:824
 msgid "the media"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:823
+#: ../gramps/gen/utils/grampslocale.py:826
 msgid "the source"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:825
+#: ../gramps/gen/utils/grampslocale.py:828
 msgid "the filter"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:827
+#: ../gramps/gen/utils/grampslocale.py:830
 msgid "See details"
 msgstr ""
 
@@ -11540,7 +11544,7 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gui/editors/filtereditor.py:1056
-#: ../gramps/plugins/drawreport/calendarreport.py:433
+#: ../gramps/plugins/drawreport/calendarreport.py:434
 #: ../gramps/plugins/drawreport/statisticschart.py:942
 #: ../gramps/plugins/drawreport/timeline.py:411
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:947
@@ -11554,7 +11558,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1059
 #: ../gramps/plugins/graph/gvrelgraph.py:533
 #: ../gramps/plugins/quickview/quickview.gpr.py:127
-#: ../gramps/plugins/textreport/birthdayreport.py:419
+#: ../gramps/plugins/textreport/birthdayreport.py:421
 #: ../gramps/plugins/textreport/indivcomplete.py:696
 #: ../gramps/plugins/textreport/recordsreport.py:172
 #: ../gramps/plugins/tool/sortevents.py:168
@@ -13685,7 +13689,7 @@ msgid "Belo_w:"
 msgstr ""
 
 #: ../gramps/gui/glade/styleeditor.glade.h:28
-#: ../gramps/plugins/drawreport/calendarreport.py:575
+#: ../gramps/plugins/drawreport/calendarreport.py:577
 msgid "Borders"
 msgstr ""
 
@@ -15109,13 +15113,13 @@ msgstr ""
 #. #########################
 #. ###############################
 #: ../gramps/gui/plug/report/_reportdialog.py:366
-#: ../gramps/plugins/drawreport/calendarreport.py:424
+#: ../gramps/plugins/drawreport/calendarreport.py:425
 #: ../gramps/plugins/drawreport/fanchart.py:648
 #: ../gramps/plugins/drawreport/statisticschart.py:938
 #: ../gramps/plugins/drawreport/timeline.py:409
 #: ../gramps/plugins/graph/gvrelgraph.py:529
 #: ../gramps/plugins/textreport/ancestorreport.py:269
-#: ../gramps/plugins/textreport/birthdayreport.py:412
+#: ../gramps/plugins/textreport/birthdayreport.py:414
 #: ../gramps/plugins/textreport/descendreport.py:401
 #: ../gramps/plugins/textreport/detancestralreport.py:719
 #: ../gramps/plugins/textreport/detdescendantreport.py:882
@@ -15673,45 +15677,45 @@ msgstr ""
 msgid "Exclude"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1311
+#: ../gramps/gui/viewmanager.py:1312
 msgid "Backup file already exists! Overwrite?"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1312
+#: ../gramps/gui/viewmanager.py:1313
 #, python-format
 msgid "The file '%s' exists."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1313
+#: ../gramps/gui/viewmanager.py:1314
 msgid "Proceed and overwrite"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1314
+#: ../gramps/gui/viewmanager.py:1315
 msgid "Cancel the backup"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1321
+#: ../gramps/gui/viewmanager.py:1322
 msgid "Making backup..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1334
+#: ../gramps/gui/viewmanager.py:1335
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1337
+#: ../gramps/gui/viewmanager.py:1338
 msgid "Backup aborted"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1346
+#: ../gramps/gui/viewmanager.py:1347
 msgid "Select backup directory"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1606
+#: ../gramps/gui/viewmanager.py:1607
 msgid "Failed Loading Plugin"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1607
+#: ../gramps/gui/viewmanager.py:1608
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -15726,11 +15730,11 @@ msgid ""
 "by using the Plugin Manager on the Help menu."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1661
+#: ../gramps/gui/viewmanager.py:1662
 msgid "Failed Loading View"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1662
+#: ../gramps/gui/viewmanager.py:1663
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -16532,12 +16536,12 @@ msgid "Tree Options"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:891
-#: ../gramps/plugins/drawreport/calendarreport.py:438
+#: ../gramps/plugins/drawreport/calendarreport.py:439
 #: ../gramps/plugins/drawreport/fanchart.py:650
 #: ../gramps/plugins/graph/gvhourglass.py:273
 #: ../gramps/plugins/graph/gvrelgraph.py:539
 #: ../gramps/plugins/textreport/ancestorreport.py:271
-#: ../gramps/plugins/textreport/birthdayreport.py:424
+#: ../gramps/plugins/textreport/birthdayreport.py:426
 #: ../gramps/plugins/textreport/descendreport.py:403
 #: ../gramps/plugins/textreport/detancestralreport.py:722
 #: ../gramps/plugins/textreport/detdescendantreport.py:885
@@ -16861,7 +16865,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/fanchart.py:183
 #: ../gramps/plugins/graph/gvhourglass.py:105
 #: ../gramps/plugins/textreport/ancestorreport.py:105
-#: ../gramps/plugins/textreport/birthdayreport.py:111
+#: ../gramps/plugins/textreport/birthdayreport.py:113
 #: ../gramps/plugins/textreport/descendreport.py:342
 #: ../gramps/plugins/textreport/detancestralreport.py:139
 #: ../gramps/plugins/textreport/detdescendantreport.py:157
@@ -16874,53 +16878,53 @@ msgstr ""
 
 #. generate the report:
 #: ../gramps/plugins/drawreport/calendarreport.py:169
-#: ../gramps/plugins/drawreport/calendarreport.py:192
-#: ../gramps/plugins/drawreport/calendarreport.py:277
-#: ../gramps/plugins/drawreport/calendarreport.py:282
+#: ../gramps/plugins/drawreport/calendarreport.py:193
+#: ../gramps/plugins/drawreport/calendarreport.py:278
+#: ../gramps/plugins/drawreport/calendarreport.py:283
 msgid "Calendar Report"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:170
-#: ../gramps/plugins/textreport/birthdayreport.py:221
+#: ../gramps/plugins/textreport/birthdayreport.py:223
 msgid "Formatting months..."
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:278
-#: ../gramps/plugins/textreport/birthdayreport.py:260
+#: ../gramps/plugins/drawreport/calendarreport.py:279
+#: ../gramps/plugins/textreport/birthdayreport.py:262
 #: ../gramps/plugins/webreport/webcal.py:1086
 msgid "Applying Filter..."
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:283
-#: ../gramps/plugins/textreport/birthdayreport.py:270
+#: ../gramps/plugins/drawreport/calendarreport.py:284
+#: ../gramps/plugins/textreport/birthdayreport.py:272
 #: ../gramps/plugins/webreport/webcal.py:1091
 msgid "Reading database..."
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:327
-#: ../gramps/plugins/textreport/birthdayreport.py:327
+#: ../gramps/plugins/drawreport/calendarreport.py:328
+#: ../gramps/plugins/textreport/birthdayreport.py:329
 #, python-format
 msgid "%(person)s, birth%(relation)s"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:331
-#: ../gramps/plugins/textreport/birthdayreport.py:331
+#: ../gramps/plugins/drawreport/calendarreport.py:332
+#: ../gramps/plugins/textreport/birthdayreport.py:333
 #, python-format
 msgid "%(person)s, %(age)d%(relation)s"
 msgid_plural "%(person)s, %(age)d%(relation)s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:388
-#: ../gramps/plugins/textreport/birthdayreport.py:379
+#: ../gramps/plugins/drawreport/calendarreport.py:389
+#: ../gramps/plugins/textreport/birthdayreport.py:381
 #, python-format
 msgid ""
 "%(spouse)s and\n"
 " %(person)s, wedding"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:393
-#: ../gramps/plugins/textreport/birthdayreport.py:383
+#: ../gramps/plugins/drawreport/calendarreport.py:394
+#: ../gramps/plugins/textreport/birthdayreport.py:385
 #, python-format
 msgid ""
 "%(spouse)s and\n"
@@ -16932,21 +16936,21 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. #########################
-#: ../gramps/plugins/drawreport/calendarreport.py:428
-#: ../gramps/plugins/drawreport/calendarreport.py:430
+#: ../gramps/plugins/drawreport/calendarreport.py:429
+#: ../gramps/plugins/drawreport/calendarreport.py:431
 msgid "Year of calendar"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:435
+#: ../gramps/plugins/drawreport/calendarreport.py:436
 #: ../gramps/plugins/webreport/webcal.py:1337
 msgid "Select filter to restrict people that appear on calendar"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:439
+#: ../gramps/plugins/drawreport/calendarreport.py:440
 #: ../gramps/plugins/drawreport/fanchart.py:651
 #: ../gramps/plugins/graph/gvrelgraph.py:540
 #: ../gramps/plugins/textreport/ancestorreport.py:272
-#: ../gramps/plugins/textreport/birthdayreport.py:425
+#: ../gramps/plugins/textreport/birthdayreport.py:427
 #: ../gramps/plugins/textreport/descendreport.py:404
 #: ../gramps/plugins/textreport/detancestralreport.py:723
 #: ../gramps/plugins/textreport/detdescendantreport.py:886
@@ -16956,166 +16960,166 @@ msgstr ""
 msgid "The center person for the report"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:447
-#: ../gramps/plugins/textreport/birthdayreport.py:433
+#: ../gramps/plugins/drawreport/calendarreport.py:448
+#: ../gramps/plugins/textreport/birthdayreport.py:435
 #: ../gramps/plugins/webreport/webcal.py:1413
 msgid "Country for holidays"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:458
-#: ../gramps/plugins/textreport/birthdayreport.py:444
+#: ../gramps/plugins/drawreport/calendarreport.py:459
+#: ../gramps/plugins/textreport/birthdayreport.py:446
 msgid "Select the country to see associated holidays"
 msgstr ""
 
 #. Default selection ????
-#: ../gramps/plugins/drawreport/calendarreport.py:461
-#: ../gramps/plugins/textreport/birthdayreport.py:447
+#: ../gramps/plugins/drawreport/calendarreport.py:462
+#: ../gramps/plugins/textreport/birthdayreport.py:449
 #: ../gramps/plugins/webreport/webcal.py:1438
 msgid "First day of week"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:465
+#: ../gramps/plugins/drawreport/calendarreport.py:467
 #: ../gramps/plugins/webreport/webcal.py:1441
 msgid "Select the first day of the week for the calendar"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:468
-#: ../gramps/plugins/textreport/birthdayreport.py:454
+#: ../gramps/plugins/drawreport/calendarreport.py:470
+#: ../gramps/plugins/textreport/birthdayreport.py:457
 #: ../gramps/plugins/webreport/webcal.py:1428
 msgid "Birthday surname"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:469
-#: ../gramps/plugins/textreport/birthdayreport.py:455
+#: ../gramps/plugins/drawreport/calendarreport.py:471
+#: ../gramps/plugins/textreport/birthdayreport.py:458
 #: ../gramps/plugins/webreport/webcal.py:1429
 msgid "Wives use husband's surname (from first family listed)"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:470
-#: ../gramps/plugins/textreport/birthdayreport.py:456
+#: ../gramps/plugins/drawreport/calendarreport.py:472
+#: ../gramps/plugins/textreport/birthdayreport.py:459
 #: ../gramps/plugins/webreport/webcal.py:1431
 msgid "Wives use husband's surname (from last family listed)"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:471
-#: ../gramps/plugins/textreport/birthdayreport.py:457
+#: ../gramps/plugins/drawreport/calendarreport.py:473
+#: ../gramps/plugins/textreport/birthdayreport.py:460
 #: ../gramps/plugins/webreport/webcal.py:1433
 msgid "Wives use their own surname"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:472
-#: ../gramps/plugins/textreport/birthdayreport.py:458
+#: ../gramps/plugins/drawreport/calendarreport.py:474
+#: ../gramps/plugins/textreport/birthdayreport.py:461
 #: ../gramps/plugins/webreport/webcal.py:1434
 msgid "Select married women's displayed surname"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:475
-#: ../gramps/plugins/textreport/birthdayreport.py:461
+#: ../gramps/plugins/drawreport/calendarreport.py:477
+#: ../gramps/plugins/textreport/birthdayreport.py:464
 #: ../gramps/plugins/webreport/webcal.py:1451
 msgid "Include only living people"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:476
+#: ../gramps/plugins/drawreport/calendarreport.py:478
 #: ../gramps/plugins/webreport/webcal.py:1452
 msgid "Include only living people in the calendar"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:479
-#: ../gramps/plugins/textreport/birthdayreport.py:465
+#: ../gramps/plugins/drawreport/calendarreport.py:481
+#: ../gramps/plugins/textreport/birthdayreport.py:468
 #: ../gramps/plugins/webreport/webcal.py:1455
 msgid "Include birthdays"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:480
+#: ../gramps/plugins/drawreport/calendarreport.py:482
 #: ../gramps/plugins/webreport/webcal.py:1456
 msgid "Include birthdays in the calendar"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:483
-#: ../gramps/plugins/textreport/birthdayreport.py:469
+#: ../gramps/plugins/drawreport/calendarreport.py:485
+#: ../gramps/plugins/textreport/birthdayreport.py:472
 #: ../gramps/plugins/webreport/webcal.py:1459
 msgid "Include anniversaries"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:484
+#: ../gramps/plugins/drawreport/calendarreport.py:486
 #: ../gramps/plugins/webreport/webcal.py:1460
 msgid "Include anniversaries in the calendar"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:487
-#: ../gramps/plugins/drawreport/calendarreport.py:488
-#: ../gramps/plugins/textreport/birthdayreport.py:480
+#: ../gramps/plugins/drawreport/calendarreport.py:489
+#: ../gramps/plugins/drawreport/calendarreport.py:490
+#: ../gramps/plugins/textreport/birthdayreport.py:483
 msgid "Text Options"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:490
-#: ../gramps/plugins/textreport/birthdayreport.py:486
+#: ../gramps/plugins/drawreport/calendarreport.py:492
+#: ../gramps/plugins/textreport/birthdayreport.py:489
 msgid "Text Area 1"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:490
+#: ../gramps/plugins/drawreport/calendarreport.py:492
 msgid "My Calendar"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:491
+#: ../gramps/plugins/drawreport/calendarreport.py:493
 msgid "First line of text at bottom of calendar"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:494
-#: ../gramps/plugins/textreport/birthdayreport.py:490
+#: ../gramps/plugins/drawreport/calendarreport.py:496
+#: ../gramps/plugins/textreport/birthdayreport.py:493
 msgid "Text Area 2"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:494
-#: ../gramps/plugins/textreport/birthdayreport.py:69
+#: ../gramps/plugins/drawreport/calendarreport.py:496
+#: ../gramps/plugins/textreport/birthdayreport.py:71
 msgid "Produced with Gramps"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:495
+#: ../gramps/plugins/drawreport/calendarreport.py:497
 msgid "Second line of text at bottom of calendar"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:498
-#: ../gramps/plugins/textreport/birthdayreport.py:494
+#: ../gramps/plugins/drawreport/calendarreport.py:500
+#: ../gramps/plugins/textreport/birthdayreport.py:497
 msgid "Text Area 3"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:499
+#: ../gramps/plugins/drawreport/calendarreport.py:501
 msgid "Third line of text at bottom of calendar"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:553
+#: ../gramps/plugins/drawreport/calendarreport.py:555
 msgid "Title text and background color"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:557
+#: ../gramps/plugins/drawreport/calendarreport.py:559
 msgid "Calendar day numbers"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:560
+#: ../gramps/plugins/drawreport/calendarreport.py:562
 msgid "Daily text display"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:562
+#: ../gramps/plugins/drawreport/calendarreport.py:564
 msgid "Holiday text display"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:565
+#: ../gramps/plugins/drawreport/calendarreport.py:567
 msgid "Days of the week text"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:569
-#: ../gramps/plugins/textreport/birthdayreport.py:559
+#: ../gramps/plugins/drawreport/calendarreport.py:571
+#: ../gramps/plugins/textreport/birthdayreport.py:562
 msgid "Text at bottom, line 1"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:571
-#: ../gramps/plugins/textreport/birthdayreport.py:561
+#: ../gramps/plugins/drawreport/calendarreport.py:573
+#: ../gramps/plugins/textreport/birthdayreport.py:564
 msgid "Text at bottom, line 2"
 msgstr ""
 
-#: ../gramps/plugins/drawreport/calendarreport.py:573
-#: ../gramps/plugins/textreport/birthdayreport.py:563
+#: ../gramps/plugins/drawreport/calendarreport.py:575
+#: ../gramps/plugins/textreport/birthdayreport.py:566
 msgid "Text at bottom, line 3"
 msgstr ""
 
@@ -21173,7 +21177,7 @@ msgstr ""
 msgid "Ukraine"
 msgstr ""
 
-#: ../gramps/plugins/lib/libcairodoc.py:1400
+#: ../gramps/plugins/lib/libcairodoc.py:1402
 #, python-format
 msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
@@ -25513,19 +25517,19 @@ msgstr ""
 msgid "Link check"
 msgstr ""
 
-#: ../gramps/plugins/quickview/linkreferences.py:59
+#: ../gramps/plugins/quickview/linkreferences.py:55
 msgid "Ok"
 msgstr ""
 
-#: ../gramps/plugins/quickview/linkreferences.py:62
+#: ../gramps/plugins/quickview/linkreferences.py:58
 msgid "Failed: missing object"
 msgstr ""
 
-#: ../gramps/plugins/quickview/linkreferences.py:64
+#: ../gramps/plugins/quickview/linkreferences.py:60
 msgid "Internet"
 msgstr ""
 
-#: ../gramps/plugins/quickview/linkreferences.py:73
+#: ../gramps/plugins/quickview/linkreferences.py:69
 msgid "No link references for this note"
 msgstr ""
 
@@ -25950,90 +25954,90 @@ msgid "Indicates if a line break should follow the name."
 msgstr ""
 
 #. _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-#: ../gramps/plugins/textreport/birthdayreport.py:67
-#: ../gramps/plugins/textreport/birthdayreport.py:220
-#: ../gramps/plugins/textreport/birthdayreport.py:259
-#: ../gramps/plugins/textreport/birthdayreport.py:269
+#: ../gramps/plugins/textreport/birthdayreport.py:69
+#: ../gramps/plugins/textreport/birthdayreport.py:222
+#: ../gramps/plugins/textreport/birthdayreport.py:261
+#: ../gramps/plugins/textreport/birthdayreport.py:271
 #: ../gramps/plugins/textreport/textplugins.gpr.py:54
 msgid "Birthday and Anniversary Report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:68
+#: ../gramps/plugins/textreport/birthdayreport.py:70
 msgid "My Birthday Report"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/birthdayreport.py:217
+#: ../gramps/plugins/textreport/birthdayreport.py:219
 #, python-format
 msgid "Relationships shown are to %s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:414
 #: ../gramps/plugins/textreport/birthdayreport.py:416
+#: ../gramps/plugins/textreport/birthdayreport.py:418
 msgid "Year of report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:421
+#: ../gramps/plugins/textreport/birthdayreport.py:423
 msgid "Select filter to restrict people that appear on report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:451
+#: ../gramps/plugins/textreport/birthdayreport.py:454
 msgid "Select the first day of the week for the report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:462
+#: ../gramps/plugins/textreport/birthdayreport.py:465
 msgid "Include only living people in the report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:466
+#: ../gramps/plugins/textreport/birthdayreport.py:469
 msgid "Include birthdays in the report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:470
+#: ../gramps/plugins/textreport/birthdayreport.py:473
 msgid "Include anniversaries in the report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:473
+#: ../gramps/plugins/textreport/birthdayreport.py:476
 msgid "Include relationships to center person"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:475
+#: ../gramps/plugins/textreport/birthdayreport.py:478
 msgid "Include relationships to center person (slower)"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:482
+#: ../gramps/plugins/textreport/birthdayreport.py:485
 msgid "Title text"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:483
+#: ../gramps/plugins/textreport/birthdayreport.py:486
 msgid "Title of report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:487
+#: ../gramps/plugins/textreport/birthdayreport.py:490
 msgid "First line of text at bottom of report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:491
+#: ../gramps/plugins/textreport/birthdayreport.py:494
 msgid "Second line of text at bottom of report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:495
+#: ../gramps/plugins/textreport/birthdayreport.py:498
 msgid "Third line of text at bottom of report"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:549
+#: ../gramps/plugins/textreport/birthdayreport.py:552
 msgid "Title text style"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:552
+#: ../gramps/plugins/textreport/birthdayreport.py:555
 msgid "Data text display"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:554
+#: ../gramps/plugins/textreport/birthdayreport.py:557
 msgid "Day text style"
 msgstr ""
 
-#: ../gramps/plugins/textreport/birthdayreport.py:557
+#: ../gramps/plugins/textreport/birthdayreport.py:560
 msgid "Month text style"
 msgstr ""
 
