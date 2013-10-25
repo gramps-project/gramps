@@ -665,6 +665,8 @@ class GtkDocParagraph(GtkDocBaseElement):
         markstarts = []
         #index is in bytecode in the text.. !!
         while pos < index:
+            if realpos >= len(oldtext):
+                break
             char = oldtext[realpos]
             if char == '<' and oldtext[realpos+1] != '/':
                 # a markup starts
