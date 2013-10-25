@@ -26,7 +26,7 @@
 # libcairo
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libcairodoc',
 name  = "Cairodoc lib",
 description =  _("Provides a library for using Cairo to "
@@ -45,7 +45,7 @@ authors_email = ["http://gramps-project.org"],
 # libgedcom
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libgedcom',
 name  = "GEDCOM library",
 description =  _("Provides GEDCOM processing functionality"),
@@ -59,10 +59,27 @@ authors_email = ["http://gramps-project.org"],
 
 #------------------------------------------------------------------------
 #
+# librecurse
+#
+#------------------------------------------------------------------------
+register(GENERAL,
+         id='librecurse',
+         name="Recursive lib",
+         description= _("Provides recursive routines for reports"),
+         version='1.0',
+         gramps_target_version='4.1',
+         status=STABLE,
+         fname='librecurse.py',
+         authors=["The Gramps project"],
+         authors_email=["http://gramps-project.org"],
+         )
+
+#------------------------------------------------------------------------
+#
 # libgrampsxml
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libgrampsxml',
 name  = "Grampsxml lib",
 description =  _("Provides common functionality for Gramps XML "
@@ -80,7 +97,7 @@ authors_email = ["http://gramps-project.org"],
 # libholiday
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libholiday',
 name  = "holiday lib",
 description =  _("Provides holiday information for different countries.") ,
@@ -98,7 +115,7 @@ authors_email = ["http://gramps-project.org"],
 # llibhtmlbackend
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libhtmlbackend',
 name  = "htmlbackend lib",
 description =  _("Manages a HTML file implementing DocBackend.") ,
@@ -116,7 +133,7 @@ authors_email = ["http://gramps-project.org"],
 # libhtmlconst
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libhtmlconst',
 name  = "htmlconst lib",
 description =  _("Common constants for html files.") ,
@@ -134,7 +151,7 @@ authors_email = ["http://gramps-project.org"],
 # libhtml
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libhtml',
 name  = "html lib",
 description =  _("Manages an HTML DOM tree.") ,
@@ -152,7 +169,7 @@ authors_email = ["gerald.britton@gmail.com"],
 # libmapservice
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libmapservice',
 name  = "mapservice lib",
 description =  _("Provides base functionality for map services.") ,
@@ -169,7 +186,7 @@ authors_email = ["http://gramps-project.org"],
 # libnarrate
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libnarrate',
 name  = "narration lib",
 description =  _("Provides Textual Narration.") ,
@@ -186,7 +203,7 @@ authors_email = ["brian@gramps-project.org"],
 # libodfbackend
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libodfbackend',
 name  = "odfbackend lib",
 description =  _("Manages an ODF file implementing DocBackend.") ,
@@ -203,7 +220,7 @@ authors_email = ["http://gramps-project.org"],
 # libpersonview
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libpersonview',
 name  = "person list lib",
 description =  _("Provides the Base needed for the List People views.") ,
@@ -220,7 +237,7 @@ authors_email = ["http://gramps-project.org"],
 # libplaceview
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libplaceview',
 name  = "place list lib",
 description =  _("Provides the Base needed for the List Place views.") ,
@@ -237,7 +254,7 @@ authors_email = ["http://gramps-project.org"],
 # libsubstkeyword
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libsubstkeyword',
 name  = "Substitution Values",
 description =  _("Provides variable substitution on display lines.") ,
@@ -253,7 +270,7 @@ authors_email = ["http://gramps-project.org"],
 # libtreebase
 #
 #------------------------------------------------------------------------
-register(GENERAL, 
+register(GENERAL,
 id    = 'libtreebase',
 name  = "Graphical report lib",
 description =  _("Provides the base needed for the ancestor and "
