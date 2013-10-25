@@ -303,6 +303,8 @@ class DateParser(object):
         'calculated' : Date.QUAL_CALCULATED,
         }
         # (overridden if a locale-specific date parser exists)
+
+    today = ["today",] # token(s) to regonise for today's date.
     
     _langs = set()
     def __init_prefix_tables(self):
@@ -392,6 +394,8 @@ class DateParser(object):
         self._cal_str  = self.re_longest_first(list(self.calendar_to_int.keys()))
         self._ny_str   = self.re_longest_first(list(self.newyear_to_int.keys()))
 
+        self._today_str = self.re_longest_first(self.today)
+
         # bce, calendar type and quality may be either at the end or at
         # the beginning of the given date string, therefore they will
         # be parsed from the middle and will be in match.group(2).
@@ -450,6 +454,7 @@ class DateParser(object):
         self._isotimestamp = re.compile("^\s*?(\d{4})([01]\d)([0123]\d)(?:(?:[012]\d[0-5]\d[0-5]\d)|(?:\s+[012]\d:[0-5]\d(?::[0-5]\d)?))?\s*?$")
         self._rfc      = re.compile("(%s,)?\s+(\d|\d\d)\s+%s\s+(\d+)\s+\d\d:\d\d(:\d\d)?\s+(\+|-)\d\d\d\d" 
                                     % (self._rfc_day_str, self._rfc_mon_str))
+        self._today = re.compile("^\s*%s\s*$" % self._today_str, re.IGNORECASE)
 
     def _get_int(self, val):
         """
@@ -629,7 +634,7 @@ class DateParser(object):
                 value = Date.EMPTY
             return value
 
-        match = re.match("^\s*%s\s*$" % "today", text, re.IGNORECASE)
+        match = self._today.match(text)
         if match:
             today = Today()
             if cal:
