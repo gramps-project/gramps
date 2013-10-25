@@ -2830,7 +2830,7 @@ msgstr "суффикс"
 
 #: ../src/gen/display/name.py:548 ../src/gen/display/name.py:648
 msgid "Name|call"
-msgstr "Имя в быту"
+msgstr "обиходное"
 
 #: ../src/gen/display/name.py:551 ../src/gen/display/name.py:650
 msgid "Name|common"
@@ -4862,7 +4862,7 @@ msgstr "Разговорное"
 #: ../src/gui/configure.py:550 ../src/plugins/export/ExportCsv.py:337
 #: ../src/plugins/import/ImportCsv.py:176
 msgid "Call"
-msgstr "В быту"
+msgstr "Обиходное"
 
 #: ../src/gui/configure.py:555
 msgid "NotPatronymic"
@@ -24486,7 +24486,7 @@ msgstr "Альтернативные местоположения"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:396
 msgid "<absent>"
-msgstr ""
+msgstr "<отсутствует>"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1302
 msgid "Data Map"
