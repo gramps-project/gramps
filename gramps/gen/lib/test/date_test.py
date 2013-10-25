@@ -350,6 +350,7 @@ class MatchDateTest(BaseDateTest):
              ("1234-01-04", "1234-01-04 (Mar25)", True),  
              # See bug# 7158
              ("today", Today(), True),
+             ("today (Hebrew)", Today(), True),
              ]
 
     def convert_to_date(self, d):
@@ -361,16 +362,20 @@ class MatchDateTest(BaseDateTest):
         """
         if expected2 is None:
             expected2 = expected1
+
+        self.assertMatch(d1, d2, expected1)
+        self.assertMatch(d2, d1, expected2)
+        
+    def assertMatch(self, d1, d2, expected):
         date1 = self.convert_to_date(d1)
         date2 = self.convert_to_date(d2)
-        
         result = date2.match(date1)
-        self.assertEqual(result, expected1, 
-                         "'%s' did not match '%s'" % (d1, d2))
-
-        result = date1.match(date2)
-        self.assertEqual(result, expected2, 
-                         "'%s' did not match '%s'" % (d2, d1))
+        self.assertEqual(result, expected, 
+                         "'{}' {} '{}'\n({} vs {})".format(
+                             d1, 
+                             ("did not match" if expected else "matched"),
+                             d2,
+                             date1.to_struct(), date2.to_struct()))
 
     def test_match(self):
         for testdata in self.tests:
