@@ -51,18 +51,9 @@ from .. import displayer as _dd
 #
 #-------------------------------------------------------------------------
 class DateHandlerTest(unittest.TestCase):
-
     def base_test(self, test_date):
-        
-        try:
-            datestr = _dd.display(test_date)
-        except:
-            self.assertFail('Date displayer exception')
-
-        try:
-            new_date = _dp.parse(datestr)
-        except:
-            self.assertFail('Date parser exception')
+        datestr = _dd.display(test_date)
+        new_date = _dp.parse(datestr)
 
         self.assertTrue(test_date.is_equal(new_date))
 
