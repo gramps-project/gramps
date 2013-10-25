@@ -1218,7 +1218,7 @@ msgstr "суффикс"
 
 #: ../gramps/gen/display/name.py:577 ../gramps/gen/display/name.py:677
 msgid "Name|call"
-msgstr "Имя в быту"
+msgstr "обиходное"
 
 #: ../gramps/gen/display/name.py:580 ../gramps/gen/display/name.py:679
 msgid "Name|common"
@@ -7529,7 +7529,7 @@ msgstr "Разговорное"
 #: ../gramps/gui/configure.py:647 ../gramps/plugins/export/exportcsv.py:346
 #: ../gramps/plugins/importer/importcsv.py:182
 msgid "Call"
-msgstr "В быту"
+msgstr "Обиходное"
 
 #: ../gramps/gui/configure.py:652
 msgid "NotPatronymic"
