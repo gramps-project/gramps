@@ -542,7 +542,7 @@ class DateParser(object):
         
         return Date.EMPTY
     
-    def _parse_subdate(self, text, subparser=None):
+    def _parse_subdate(self, text, subparser=None, cal=None):
         """
         Convert only the date portion of a date.
         """
@@ -631,7 +631,10 @@ class DateParser(object):
 
         match = re.match("^\s*%s\s*$" % "today", text, re.IGNORECASE)
         if match:
-            return Today().get_dmy(get_slash=True)
+            today = Today()
+            if cal:
+                today = today.to_calendar(cal)
+            return today.get_dmy(get_slash=True)
 
         return Date.EMPTY
 
@@ -705,14 +708,14 @@ class DateParser(object):
         if match:
             text_parser = self.parser[cal]
             (text1, bc1) = self.match_bce(match.group('start'))
-            start = self._parse_subdate(text1, text_parser)
+            start = self._parse_subdate(text1, text_parser, cal)
             if start == Date.EMPTY and text1 != "":
                 return 0
             if bc1:
                 start = self.invert_year(start)
 
             (text2, bc2) = self.match_bce(match.group('stop'))
-            stop = self._parse_subdate(text2, text_parser)
+            stop = self._parse_subdate(text2, text_parser, cal)
             if stop == Date.EMPTY and text2 != "":
                 return 0
             if bc2:
@@ -732,14 +735,14 @@ class DateParser(object):
         if match:
             text_parser = self.parser[cal]
             (text1, bc1) = self.match_bce(match.group('start'))
-            start = self._parse_subdate(text1, text_parser)
+            start = self._parse_subdate(text1, text_parser, cal)
             if start == Date.EMPTY and text1 != "":
                 return 0
             if bc1:
                 start = self.invert_year(start)
 
             (text2, bc2) = self.match_bce(match.group('stop'))
-            stop = self._parse_subdate(text2, text_parser)
+            stop = self._parse_subdate(text2, text_parser, cal)
             if stop == Date.EMPTY and text2 != "":
                 return 0
             if bc2:
@@ -776,7 +779,7 @@ class DateParser(object):
         match = self._modifier.match(text)
         if match:
             grps = match.groups()
-            start = self._parse_subdate(grps[1], self.parser[cal])
+            start = self._parse_subdate(grps[1], self.parser[cal], cal)
             mod = self.modifier_to_int.get(grps[0].lower(), Date.MOD_NONE)
             if start == Date.EMPTY:
                 date.set_modifier(Date.MOD_TEXTONLY)
@@ -791,7 +794,7 @@ class DateParser(object):
             match = self._modifier_after.match(text)
             if match:
                 grps = match.groups()
-                start = self._parse_subdate(grps[0], self.parser[cal])
+                start = self._parse_subdate(grps[0], self.parser[cal], cal)
                 mod = self.modifier_after_to_int.get(grps[1].lower(),
                                                      Date.MOD_NONE)
                 if start == Date.EMPTY:
@@ -805,7 +808,7 @@ class DateParser(object):
         match = self._abt2.match(text)
         if match:
             grps = match.groups()
-            start = self._parse_subdate(grps[0])
+            start = self._parse_subdate(grps[0], cal=cal)
             mod = Date.MOD_ABOUT
             if start == Date.EMPTY:
                 date.set_modifier(Date.MOD_TEXTONLY)
@@ -842,7 +845,7 @@ class DateParser(object):
             return
 
         try:
-            subdate = self._parse_subdate(text, self.parser[cal])
+            subdate = self._parse_subdate(text, self.parser[cal], cal)
             if subdate == Date.EMPTY and text != "":
                 date.set_as_text(text)
                 return
