@@ -457,7 +457,7 @@ class GrampsXmlWriter(UpdateCallback):
         format = note.get_format()
         text = note.get_styledtext()
         styles = text.get_tags()
-        text = str(text)
+        text = cuni(text)
 
         self.g.write(' type="%s"' % ntype)
         if format != note.FLOWED:
