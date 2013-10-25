@@ -39,7 +39,7 @@ from ...datehandler import get_date_formats, set_format
 from ...datehandler import parser as _dp
 from ...datehandler import displayer as _dd
 from ...datehandler._datedisplay import DateDisplayEn
-from ...lib.date import Date, DateError
+from ...lib.date import Date, DateError, Today
 
 date_tests = {}
 
@@ -348,6 +348,8 @@ class MatchDateTest(BaseDateTest):
              # See bug# 7100
              ("1233-12-01", "1234-12-01 (Mar25)", True),  
              ("1234-01-04", "1234-01-04 (Mar25)", True),  
+             # See bug# 7158
+             ("today", Today(), True),
              ]
 
     def convert_to_date(self, d):
