@@ -11,6 +11,7 @@ gramps/gen/const.py
 gramps/gen/datehandler/__init__.py
 gramps/gen/datehandler/_datedisplay.py
 gramps/gen/datehandler/_datestrings.py
+gramps/gen/datehandler/_dateparser.py
 gramps/gen/db/base.py
 gramps/gen/db/exceptions.py
 gramps/gen/db/undoredo.py

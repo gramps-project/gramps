@@ -43,7 +43,6 @@ gramps/gen/datehandler/_date_nb.py
 gramps/gen/datehandler/_date_nl.py
 gramps/gen/datehandler/_date_pl.py
 gramps/gen/datehandler/_date_pt.py
-gramps/gen/datehandler/_dateparser.py
 gramps/gen/datehandler/_date_ru.py
 gramps/gen/datehandler/_date_sk.py
 gramps/gen/datehandler/_date_sl.py
