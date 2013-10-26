@@ -137,7 +137,7 @@ class DbManager(CLIDbManager):
         if parent:
             self.top.set_transient_for(parent)
 
-        for attr in ['connect', 'cancel', 'new', 'remove',
+        for attr in ['connect', 'cancel', 'new', 'remove', 'copy',
                      'dblist', 'rename', 'repair', 'rcs', 'msg']:
             setattr(self, attr, self.glade.get_object(attr))
 
@@ -167,6 +167,7 @@ class DbManager(CLIDbManager):
         self.remove.connect('clicked', self.__remove_db)
         self.new.connect('clicked', self.__new_db)
         self.rename.connect('clicked', self.__rename_db)
+        self.copy.connect('clicked', self.__copy_db)
         self.repair.connect('clicked', self.__repair_db)
         self.selection.connect('changed', self.__selection_changed)
         self.dblist.connect('button-press-event', self.__button_press)
@@ -223,6 +224,7 @@ class DbManager(CLIDbManager):
         if not node:
             self.connect.set_sensitive(False)
             self.rename.set_sensitive(False)
+            self.copy.set_sensitive(False)
             self.rcs.set_sensitive(False)
             self.repair.set_sensitive(False)
             self.remove.set_sensitive(False)
@@ -254,6 +256,7 @@ class DbManager(CLIDbManager):
             self.repair.set_sensitive(False)
             
         self.rename.set_sensitive(True)
+        self.copy.set_sensitive(True)
         self.remove.set_sensitive(True)
 
     def __build_interface(self):
@@ -421,6 +424,7 @@ class DbManager(CLIDbManager):
         """
         self.connect.set_sensitive(False)
         self.rename.set_sensitive(False)
+        self.copy.set_sensitive(False)
 
     def __change_name(self, renderer_sel, path, new_text):
         """
@@ -635,6 +639,30 @@ class DbManager(CLIDbManager):
         path = self.model.get_path(node)
         self.name_renderer.set_property('editable', True)
         self.dblist.set_cursor(path, self.column, True)
+
+    def __copy_db(self, obj):
+        """
+        Copy the database through low-level file copies.
+        """
+        self.copy.set_sensitive(False)
+        # First, get the selected tree:
+        store, node = self.selection.get_selected()
+        path = self.model.get_path(node)
+        # Next, copy the files
+        dirname = store[node][PATH_COL]
+        try:
+            dir_path, title = self._create_new_db(title=_("%s (copy)") % store[node][NAME_COL])
+        except (OSError, IOError) as msg:
+            DbManager.ERROR(_("Could not create Family Tree"),
+                                       str(msg))
+        #scroll to new position
+        store, node = self.selection.get_selected()
+        tree_path = store.get_path(node)
+        self.dblist.scroll_to_cell(tree_path, None, False, 0.5, 0.5)
+        # Finally, allow user to edit the copied name:
+        self.name_renderer.set_property('editable', True)
+        self.dblist.set_cursor(tree_path, self.column, True)
+        self.copy.set_sensitive(True)
 
     def __repair_db(self, obj):
         """
