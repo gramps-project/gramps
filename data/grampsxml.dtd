@@ -369,7 +369,7 @@ CITATIONS
 
 <!ELEMENT citations (citation)*>
 
-<!ELEMENT citation ((daterange|datespan|dateval|datestr)?, page?, confidence?,
+<!ELEMENT citation ((daterange|datespan|dateval|datestr)?, page?, confidence,
                     noteref*, objref*, srcattribute*, sourceref, tagref*)>
 <!ATTLIST citation
         id        CDATA #IMPLIED
