@@ -36,6 +36,7 @@ import os
 import sys
 import time
 import copy
+import shutil
 import subprocess
 if sys.version_info[0] < 3:
     from urlparse import urlparse
@@ -219,7 +220,7 @@ class DbManager(CLIDbManager):
             
         # Get the current selection
         store, node = selection.get_selected()
-        
+
         # if nothing is selected
         if not node:
             self.connect.set_sensitive(False)
@@ -258,6 +259,7 @@ class DbManager(CLIDbManager):
         self.rename.set_sensitive(True)
         self.copy.set_sensitive(True)
         self.remove.set_sensitive(True)
+        self.new.set_sensitive(True)
 
     def __build_interface(self):
         """
@@ -425,6 +427,10 @@ class DbManager(CLIDbManager):
         self.connect.set_sensitive(False)
         self.rename.set_sensitive(False)
         self.copy.set_sensitive(False)
+        self.rcs.set_sensitive(False)
+        self.repair.set_sensitive(False)
+        self.remove.set_sensitive(False)
+        self.new.set_sensitive(False)
 
     def __change_name(self, renderer_sel, path, new_text):
         """
@@ -644,25 +650,21 @@ class DbManager(CLIDbManager):
         """
         Copy the database through low-level file copies.
         """
-        self.copy.set_sensitive(False)
         # First, get the selected tree:
         store, node = self.selection.get_selected()
-        path = self.model.get_path(node)
-        # Next, copy the files
-        dirname = store[node][PATH_COL]
-        try:
-            dir_path, title = self._create_new_db(title=_("%s (copy)") % store[node][NAME_COL])
-        except (OSError, IOError) as msg:
-            DbManager.ERROR(_("Could not create Family Tree"),
-                                       str(msg))
-        #scroll to new position
-        store, node = self.selection.get_selected()
-        tree_path = store.get_path(node)
-        self.dblist.scroll_to_cell(tree_path, None, False, 0.5, 0.5)
-        # Finally, allow user to edit the copied name:
-        self.name_renderer.set_property('editable', True)
-        self.dblist.set_cursor(tree_path, self.column, True)
-        self.copy.set_sensitive(True)
+        # New title:
+        date_string = time.strftime("%d %b %Y %H:%M:%S", time.gmtime())
+        title = _("%s (copy, %s)") % (store[node][NAME_COL], date_string)
+        # Create the row and directory, awaits user edit of title:
+        (new_dir, title) = self._create_new_db(title, create_db=False)
+        # Copy the files:
+        name_file = store[node][FILE_COL]
+        old_dir = os.path.dirname(name_file)
+        for filename in os.listdir(old_dir):
+            if filename == "name.txt":
+                continue
+            old_file = os.path.abspath(os.path.join(old_dir, filename))
+            shutil.copy2(old_file, new_dir)
 
     def __repair_db(self, obj):
         """
@@ -763,11 +765,11 @@ class DbManager(CLIDbManager):
                                        str(msg))
         self.new.set_sensitive(True)
 
-    def _create_new_db(self, title=None):
+    def _create_new_db(self, title=None, create_db=True):
         """
         Create a new database, append to model
         """
-        new_path, title = self.create_new_db_cli(title)
+        new_path, title = self.create_new_db_cli(title, create_db)
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)
         node = self.model.append(None, [title, new_path, path_name, 
