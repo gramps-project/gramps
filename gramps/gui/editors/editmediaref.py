@@ -6,6 +6,7 @@
 #               2009       Gary Burton
 #               2011       Robert Cheramy <robert@cheramy.net>
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,7 +59,7 @@ from ..glade import Glade
 from .displaytabs import (CitationEmbedList, AttrEmbedList, MediaBackRefList, 
                          NoteTab)
 from ..widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
-                         MonitoredDate, MonitoredTagList)
+                       MonitoredDate, MonitoredTagList, SelectionWidget, Region)
 from .editreference import RefTab, EditReference
 from .addmedia import AddMediaObject
 
@@ -136,7 +137,7 @@ class EditMediaRef(EditReference):
         if not self.source.get_mime_type():
             self.mimetext.set_text(_('Note'))
 
-    def draw_preview(self, onlysub=False):
+    def draw_preview(self):
         """
         Draw the two preview images. This method can be called on eg change of
         the path.
@@ -144,33 +145,18 @@ class EditMediaRef(EditReference):
         mtype = self.source.get_mime_type()
         if mtype:
             fullpath = media_path_full(self.db, self.source.get_path())
-            if not onlysub:
-                pb = get_thumbnail_image(fullpath, mtype)
-                self.pixmap.set_from_pixbuf(pb)
-            subpix = get_thumbnail_image(fullpath, mtype,
-                                                    self.rectangle)
-            self.subpixmap.set_from_pixbuf(subpix)
+            pb = get_thumbnail_image(fullpath, mtype)
+            self.pixmap.set_from_pixbuf(pb)
+            self.selection.load_image(fullpath)
         else:
             pb = find_mime_type_pixbuf('text/plain')
-            if not onlysub:
-                self.pixmap.set_from_pixbuf(pb)
-            self.subpixmap.set_from_pixbuf(pb)
+            self.pixmap.set_from_pixbuf(pb)
+            self.selection.load_image('')
 
     def _setup_fields(self):
         
         ebox_shared = self.top.get_object('eventbox')
         ebox_shared.connect('button-press-event', self.button_press_event)
-
-        if not self.dbstate.db.readonly:
-            self.button_press_coords = (0, 0)
-            ebox_ref = self.top.get_object('eventbox1')
-            ebox_ref.connect('button-press-event', self.button_press_event_ref)
-            ebox_ref.connect('button-release-event', 
-                                                 self.button_release_event_ref)
-            ebox_ref.connect('motion-notify-event', self.motion_notify_event_ref)
-            ebox_ref.add_events(Gdk.EventMask.BUTTON_PRESS_MASK)
-            ebox_ref.add_events(Gdk.EventMask.BUTTON_RELEASE_MASK)
-
         self.pixmap = self.top.get_object("pixmap")
         self.mimetext = self.top.get_object("type")
         self.track_ref_for_deletion("mimetext")
@@ -185,13 +171,22 @@ class EditMediaRef(EditReference):
             ):
             coord = None
 
-        self.rectangle = coord
-        self.subpixmap = self.top.get_object("subpixmap")
-        self.track_ref_for_deletion("subpixmap")
+        if coord is not None:
+            self.rectangle = coord
+        else:
+            self.rectangle = (0, 0, 100, 100)
+        
+        self.selection = SelectionWidget()
+        self.selection.set_multiple_selection(False)
+        self.selection.connect("region-modified", self.region_modified)
+        self.selection.connect("region-created", self.region_modified)
+        frame = self.top.get_object("frame9")
+        frame.add(self.selection)
+        self.track_ref_for_deletion("selection")
+        self.selection.show()
 
         self.setup_filepath()
         self.determine_mime()
-        self.draw_preview()
         
         corners = ["corner1_x", "corner1_y", "corner2_x", "corner2_y"]
 
@@ -278,6 +273,13 @@ class EditMediaRef(EditReference):
             self.uistate, self.track,
             self.db.readonly)
 
+    def _post_init(self):
+        """
+        Initialization that must happen after the window is shown.
+        """
+        self.draw_preview()
+        self.update_region()
+
     def set_corner1_x(self, value):
         """
         Callback for the signal handling of the spinbutton for the first
@@ -287,10 +289,8 @@ class EditMediaRef(EditReference):
         @param value: the first corner x coordinate of the subsection in int
         """
         
-        if self.rectangle is None:
-            self.rectangle = (0,0,100,100)
         self.rectangle = (value,) + self.rectangle[1:]
-        self.update_subpixmap()
+        self.update_region()
 
     def set_corner1_y(self, value):
         """
@@ -301,10 +301,8 @@ class EditMediaRef(EditReference):
         @param value: the first corner y coordinate of the subsection in int
         """
         
-        if self.rectangle is None:
-            self.rectangle = (0,0,100,100)
         self.rectangle = self.rectangle[:1] + (value,) + self.rectangle[2:]
-        self.update_subpixmap()
+        self.update_region()
 
     def set_corner2_x(self, value):
         """
@@ -315,10 +313,8 @@ class EditMediaRef(EditReference):
         @param value: the second corner x coordinate of the subsection in int
         """
         
-        if self.rectangle is None:
-            self.rectangle = (0,0,100,100)
         self.rectangle = self.rectangle[:2] + (value,) + self.rectangle[3:]
-        self.update_subpixmap()
+        self.update_region()
 
     def set_corner2_y(self, value):
         """
@@ -329,10 +325,8 @@ class EditMediaRef(EditReference):
         @param value: the second corner y coordinate of the subsection in int
         """
         
-        if self.rectangle is None:
-            self.rectangle = (0,0,100,100)
         self.rectangle = self.rectangle[:3] + (value,)
-        self.update_subpixmap()
+        self.update_region()
 
     def get_corner1_x(self):
         """
@@ -342,11 +336,7 @@ class EditMediaRef(EditReference):
         @returns: the first corner x coordinate of the subsection or 0 if 
                   there is no selection
         """
-        
-        if self.rectangle is not None:
-            return self.rectangle[0]
-        else:
-            return 0
+        return self.rectangle[0]
 
     def get_corner1_y(self):
         """
@@ -356,11 +346,7 @@ class EditMediaRef(EditReference):
         @returns: the first corner y coordinate of the subsection or 0 if 
                   there is no selection
         """
-         
-        if self.rectangle is not None:
-            return self.rectangle[1]
-        else:
-            return 0
+        return self.rectangle[1]
 
     def get_corner2_x(self):
         """
@@ -370,11 +356,7 @@ class EditMediaRef(EditReference):
         @returns: the second corner x coordinate of the subsection or 100 if 
                   there is no selection
         """
-        
-        if self.rectangle is not None:
-            return self.rectangle[2]
-        else:
-            return 100
+        return self.rectangle[2]
 
     def get_corner2_y(self):
         """
@@ -384,17 +366,29 @@ class EditMediaRef(EditReference):
         @returns: the second corner x coordinate of the subsection or 100 if 
                   there is no selection
         """
-        
-        if self.rectangle is not None:
-            return self.rectangle[3]
-        else:
-            return 100
+        return self.rectangle[3]
 
-    def update_subpixmap(self):
+    def update_region(self):
         """
-        Updates the thumbnail of the specified subsection
+        Updates the thumbnail of the specified subsection.
         """
-        self.draw_preview(onlysub=True)
+        if not self.selection.is_image_loaded():
+            return
+        real = self.selection.proportional_to_real_rect(self.rectangle)
+        region = Region(real[0], real[1], real[2], real[3])
+        self.selection.set_regions([region])
+        self.selection.refresh()
+
+    def region_modified(self, widget):
+        """
+        Update new values when the selection is changed.
+        """
+        real = self.selection.get_selection()
+        coords = self.selection.real_to_proportional_rect(real)
+        self.corner1_x_spinbutton.set_value(coords[0])
+        self.corner1_y_spinbutton.set_value(coords[1])
+        self.corner2_x_spinbutton.set_value(coords[2])
+        self.corner2_y_spinbutton.set_value(coords[3])
 
     def build_menu_names(self, person):
         """
@@ -411,139 +405,6 @@ class EditMediaRef(EditReference):
         if event.button==1 and event.type == Gdk.EventType._2BUTTON_PRESS:
             photo_path = media_path_full(self.db, self.source.get_path())
             open_file_with_default_application(photo_path)
-
-    def button_press_event_ref(self, widget, event):
-        """
-        Handle the button-press-event generated by the eventbox
-        parent of the subpixmap.  Remember these coordinates
-        so we can crop the picture when button-release-event
-        is received.
-        """
-        self.button_press_coords = (event.x, event.y)
-        # prepare drawing of a feedback rectangle
-        self.orig_subpixbuf = self.subpixmap.get_pixbuf()
-        gtkimg_win = self.subpixmap.get_window()
-        self.rect_pixbuf = Gdk.pixbuf_get_from_window(
-                gtkimg_win, 0, 0, 
-                gtkimg_win.get_width(), 
-                gtkimg_win.get_height())
- 
-    def motion_notify_event_ref(self, widget, event):
-        # get the image size and calculate the X and Y offsets
-        # (image is centered *horizontally* when smaller than THUMBSCALE)
-        w, h = self.orig_subpixbuf.get_width(), self.orig_subpixbuf.get_height()
-        offset_x = (THUMBSCALE - w) / 2
-        offset_y = 0
-
-        # get coordinates of the rectangle, so that x1 < x2 and y1 < y2
-        x1 = min(self.button_press_coords[0], event.x)
-        x2 = max(self.button_press_coords[0], event.x)
-        y1 = min(self.button_press_coords[1], event.y)
-        y2 = max(self.button_press_coords[1], event.y)
-
-        width = int(x2 - x1)
-        height = int(y2 - y1)
-        x1 = int(x1 - offset_x)
-        y1 = int(y1 - offset_y)
-        
-        cr_pixbuf = self.subpixmap.get_window().cairo_create()
-        cr_pixbuf.reset_clip()
-        #reset the pixbuf
-        Gdk.cairo_set_source_pixbuf(cr_pixbuf, self.rect_pixbuf, 0, 0)
-        cr_pixbuf.paint()
-        cr_pixbuf.set_source_rgba(0, 0, 1, 0.5) #blue transparant
-        cr_pixbuf.move_to(x1,y1)
-        cr_pixbuf.line_to(x1+width, y1)
-        cr_pixbuf.line_to(x1+width, y1+height)
-        cr_pixbuf.line_to(x1, y1+height)
-        cr_pixbuf.close_path()
-        cr_pixbuf.fill()
-
-    def button_release_event_ref(self, widget, event):
-        """
-        Handle the button-release-event generated by the eventbox
-        parent of the subpixmap.  Crop the picture accordingly.
-        """
-
-        # reset the crop on double-click or click+CTRL
-        if (event.button==1 and event.type == Gdk.EventType._2BUTTON_PRESS) or \
-            (event.button==1 and (event.get_state() & Gdk.ModifierType.CONTROL_MASK) ):
-            self.corner1_x_spinbutton.set_value(0)
-            self.corner1_y_spinbutton.set_value(0)
-            self.corner2_x_spinbutton.set_value(100)
-            self.corner2_y_spinbutton.set_value(100)
-
-        else:
-            if (self.orig_subpixbuf == None):
-                return
-            self.subpixmap.set_from_pixbuf(self.orig_subpixbuf)
-
-            # ensure the clicks happened at least 5 pixels away from each other
-            new_x1 = min(self.button_press_coords[0], event.x)
-            new_y1 = min(self.button_press_coords[1], event.y)
-            new_x2 = max(self.button_press_coords[0], event.x)
-            new_y2 = max(self.button_press_coords[1], event.y)
-
-            if new_x2 - new_x1 >= 5 and new_y2 - new_y1 >= 5:
-
-                # get the image size and calculate the X and Y offsets
-                # (image is centered *horizontally* when smaller than THUMBSCALE)
-                w = self.orig_subpixbuf.get_width()
-                h = self.orig_subpixbuf.get_height()
-                x = (THUMBSCALE - w) / 2
-                y = 0
-
-                # if the click was outside of the image,
-                # bring it within the boundaries
-                if new_x1 < x:
-                    new_x1 = x
-                if new_y1 < y:
-                    new_y1 = y
-                if new_x2 >= x + w:
-                    new_x2 = x + w - 1
-                if new_y2 >= y + h:
-                    new_y2 = y + h - 1
-
-                # get the old spinbutton % values
-                old_x1 = self.corner1_x_spinbutton.get_value()
-                old_y1 = self.corner1_y_spinbutton.get_value()
-                old_x2 = self.corner2_x_spinbutton.get_value()
-                old_y2 = self.corner2_y_spinbutton.get_value()
-                delta_x = old_x2 - old_x1   # horizontal scale
-                delta_y = old_y2 - old_y1   # vertical scale
-
-                # Took a while to figure out the math here.
-                #
-                #   1)  figure out the current crop % values
-                #       by doing the following:
-                #
-                #           xp = click_location_x / width * 100
-                #           yp = click_location_y / height * 100
-                #
-                #       but remember that click_location_x and _y
-                #       might not be zero-based for non-rectangular
-                #       images, so subtract the pixbuf "x" and "y"
-                #       to bring the values back to zero-based
-                #
-                #   2)  the minimum value cannot be less than the
-                #       existing crop value, so add the current
-                #       minimum to the new values
-
-                new_x1 = old_x1 + delta_x * (new_x1 - x) / w
-                new_y1 = old_y1 + delta_y * (new_y1 - y) / h
-                new_x2 = old_x1 + delta_x * (new_x2 - x) / w
-                new_y2 = old_y1 + delta_y * (new_y2 - y) / h
-
-                # set the new values
-                self.corner1_x_spinbutton.set_value(new_x1)
-                self.corner1_y_spinbutton.set_value(new_y1)
-                self.corner2_x_spinbutton.set_value(new_x2)
-                self.corner2_y_spinbutton.set_value(new_y2)
-
-                # Free the pixbuf as it is not needed anymore
-                self.orig_subpixbuf = None
-                self.rect_pixbuf = None
-        self.draw_preview()
 
     def _update_addmedia(self, obj):
         """
