@@ -28352,7 +28352,7 @@ msgstr "Taille totale des media : %s MB"
 #: ../gramps/plugins/textreport/tableofcontents.py:65
 #: ../gramps/plugins/textreport/textplugins.gpr.py:366
 msgid "Table Of Contents"
-msgstr "Table des matières"
+msgstr "Sommaire"
 
 # trunk
 #: ../gramps/plugins/textreport/tableofcontents.py:112
