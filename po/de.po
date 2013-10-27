@@ -11070,7 +11070,7 @@ msgid ""
 "This is the information about your system that will help the developers to "
 "fix the bug."
 msgstr ""
-"Das sind die Informationen über dein System, die den Entwicklern helfen den "
+"Das sind die Informationen über dein System, die den Entwicklern helfen, den "
 "Fehler zu beheben."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:416
@@ -11122,8 +11122,8 @@ msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
 msgstr ""
-"Benutze die zwei Schaltflächen unten um erst den Fehlerbericht in die "
-"Zwischenablage zu kopieren und dann einen Browser zu öffnen um einen "
+"Benutze die zwei Schaltflächen unten, um damit zuerst den Fehlerbericht in die"
+"Zwischenablage zu kopieren, und dann einen Browser zu öffnen, um einen "
 "Fehlerbericht auszufüllen auf "
 
 #: ../gramps/gui/logger/_errorreportassistant.py:566
@@ -11140,9 +11140,9 @@ msgid ""
 "tracking website by using the button below, paste the report and click submit "
 "report"
 msgstr ""
-"Benutze diese Schaltfläche um den Fehlerbericht in die Zwischenablage zu "
-"kopieren.Gehe dann zur bug tracking Website indem du die Schaltfläche unten "
-"benutzt, kopiere den Bericht und klicke submit report"
+"Benutze diese Schaltfläche, um den Fehlerbericht in die Zwischenablage zu"
+"kopieren. Gehe dann zur bug tracking Website, indem du die Schaltfläche unten "
+"benutzt, kopiere den Bericht und klicke submit report."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:630
 #: ../gramps/gui/logger/_errorreportassistant.py:657
@@ -11154,7 +11154,7 @@ msgid ""
 "This is the final step. Use the buttons on this page to start a web browser "
 "and file a bug report on the Gramps bug tracking system."
 msgstr ""
-"Der letzte Schritt. Benutze die Schaltflächen auf der Seite um den Browser zu "
+"Der letzte Schritt. Benutze die Schaltflächen auf der Seite, um den Browser zu "
 "starten und einen Fehlerbericht in dem Gramps bug tracking system auszufüllen."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:664
@@ -11163,7 +11163,7 @@ msgid ""
 "feedback is important. Thank you for taking the time to submit a bug report."
 msgstr ""
 "Gramps ist ein Open Source-Projekt. Sein Erfolg hängt von den Benutzern ab. "
-"Rückmeldungen der Benutzer sind wichtig. Danke, dass du dich für das "
+"Rückmeldungen der Benutzer sind wichtig. Danke, dass du dir für das "
 "Ausfüllen eines Fehlerberichts Zeit genommen hast."
 
 #: ../gramps/gui/logger/_errorview.py:47
@@ -11187,7 +11187,7 @@ msgid ""
 msgstr ""
 "Deine Daten werden gesichert, es wird aber empfohlen, Gramps neu zu starten. "
 "Wenn du das Problem dem Gramps Team melden willst, klicke bitte auf Bericht "
-"und der Fehlerberichtsassistenten, wird dir helfen einen Fehlerbericht zu "
+"und der Fehlerberichtsassistent wird dir helfen, einen Fehlerbericht zu "
 "erstellen."
 
 #: ../gramps/gui/logger/_errorview.py:113
@@ -11234,7 +11234,7 @@ msgstr "Familien zusammenfassen"
 #: ../gramps/gui/merge/mergeperson.py:340
 #: ../gramps/plugins/lib/libpersonview.py:400
 msgid "Cannot merge people"
-msgstr "Kann Personen nicht zusammenfassen"
+msgstr "Die Personen können nicht zusammengefasst werden."
 
 #: ../gramps/gui/merge/mergemedia.py:47
 msgid "manual|Merge_Media_Objects"
@@ -11326,7 +11326,7 @@ msgstr "Auswahl eines Berichts"
 
 #: ../gramps/gui/plug/_dialogs.py:280 ../gramps/gui/glade/plugins.glade:136
 msgid "Select a report from those available on the left."
-msgstr "Einen der links aufgeführten Berichte auswählen."
+msgstr "Einen der linksseitig aufgeführten Berichte auswählen."
 
 #: ../gramps/gui/plug/_dialogs.py:281
 msgid "_Generate"
@@ -11342,7 +11342,7 @@ msgstr "Werkzeugauswahl"
 
 #: ../gramps/gui/plug/_dialogs.py:311
 msgid "Select a tool from those available on the left."
-msgstr "Eines der links aufgeführten Werkzeuge auswählen."
+msgstr "Eines der linksseitig aufgeführten Werkzeuge auswählen."
 
 #: ../gramps/gui/plug/_dialogs.py:312 ../gramps/plugins/tool/verify.glade:380
 msgid "_Run"
@@ -11570,7 +11570,7 @@ msgstr "Hauptfenster"
 
 #: ../gramps/gui/plug/_windows.py:1074
 msgid "Available Gramps Updates for Addons"
-msgstr "Verfügbare Gramps Aktualisierungen für Erweiterungen"
+msgstr "Verfügbare Gramps Aktualisierungen für die Erweiterungen (Addons)"
 
 #: ../gramps/gui/plug/_windows.py:1111
 #, python-format
@@ -11694,7 +11694,7 @@ msgid ""
 "alter the copy you have just made. "
 msgstr ""
 "Die Kopie von deinen Daten wurde erfolgreich gespeichert. Du kannst nun auf "
-"Schließen klicken um fortzufahren.\n"
+"Schließen klicken, um fortzufahren.\n"
 "\n"
 "Anmerkung: Die Datenbank, die gerade in deinem Gramps-Fenster geöffnet ist, "
 "ist NICHT die Datei, die du gerade gespeichert hast. Zukünftige Änderungen "
@@ -11778,7 +11778,7 @@ msgstr[1] "%d Personen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:152
 msgid "Click to see preview of unfiltered data"
-msgstr "Klicken um die Vorschau der ungefilterten Daten zu zeigen"
+msgstr "Klicken zeigt dir die Vorschau der ungefilterten Daten."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:164
 msgid "_Do not include records marked private"
@@ -11799,7 +11799,7 @@ msgstr "_Personenfilter"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:273
 msgid "Click to see preview after person filter"
-msgstr "Klicken um die Vorschau nach dem Personenfilter zu zeigen"
+msgstr "Klicken zeigt dir die Vorschau nach dem Personenfilter."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:278
 msgid "_Note Filter"
@@ -11807,7 +11807,7 @@ msgstr "_Notizfilter"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:290
 msgid "Click to see preview after note filter"
-msgstr "Klicken um Vorschau nach dem Notizfilter zu zeigen"
+msgstr "Klicken zeigt dir die Vorschau nach dem Notizfilter."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:293
 msgid "Privacy Filter"
@@ -11815,7 +11815,7 @@ msgstr "Vertraulichkeitsfilter"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:299
 msgid "Click to see preview after privacy filter"
-msgstr "Klicken um Vorschau nach dem Privatsfährefilter zu zeigen"
+msgstr "Klicken zeigt dir die Vorschau nach dem Vertraulichkeitsfilter."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:302
 msgid "Living Filter"
@@ -11823,7 +11823,7 @@ msgstr "Lebendfilter"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:309
 msgid "Click to see preview after living filter"
-msgstr "Klicken um Vorschau nach Lebendfilter zu zeigen"
+msgstr "Klicken zeigt dir die Vorschau nach dem Lebendfilter."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:313
 msgid "Reference Filter"
@@ -11831,7 +11831,7 @@ msgstr "Referenzfilter"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:319
 msgid "Click to see preview after reference filter"
-msgstr "Klicken um Vorschau nach Referenzfilter"
+msgstr "Klicken zeigt dir die Vorschau nach dem Referenzfilter."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:371
 msgid "Hide order"
@@ -11888,8 +11888,7 @@ msgstr "Alle gewählten Datensätze aufnehmen"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:715
 msgid "Do not include records not linked to a selected person"
-msgstr ""
-"Datensätze die mit keiner gewählten Person verknüpft sind nicht aufnehmen"
+msgstr "Datensätze nicht aufnehmen, die mit der gewählten Person nicht verknüpft sind."
 
 #: ../gramps/gui/plug/quick/_quickreports.py:103
 msgid "Web Connect"
@@ -11942,7 +11941,7 @@ msgstr "Fortsetzen"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:352
 msgid "Name of the book. MANDATORY"
-msgstr "Name des Buches. NOTWENDIG"
+msgstr "Name des Buches. Pflichtfeld!"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:412
 msgid "New Book"
@@ -12031,7 +12030,7 @@ msgid ""
 msgstr ""
 "Du versuchst ein Buch ohne Namen zu speichern.\n"
 "\n"
-"Bitte gib ihm vorm speichern einen Namen."
+"Bitte gib ihm vor dem speichern einen Namen."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:718
 msgid "Book name already exists"
@@ -12063,7 +12062,7 @@ msgstr "Ausgabeformat"
 #: ../gramps/gui/plug/report/_docreportdialog.py:179
 #: ../gramps/gui/plug/report/_graphvizreportdialog.py:158
 msgid "Open with default viewer"
-msgstr "In voreingestellten Programm anzeigen"
+msgstr "Im voreingestellten Programm anzeigen."
 
 #: ../gramps/gui/plug/report/_docreportdialog.py:219
 msgid "CSS file"
@@ -12148,7 +12147,7 @@ msgid ""
 "\n"
 "Please select another directory or correct the permissions."
 msgstr ""
-"Du hast keine Berechtigung um in das Verzeichnis %s zu schreiben\n"
+"Du hast keine Berechtigung, in das Verzeichnis %s hinein zu schreiben.\n"
 "\n"
 "Bitte wähle ein anderes Verzeichnis oder korrigiere die Berechtigungen."
 
@@ -12189,7 +12188,7 @@ msgstr "Keine Person ausgewählt"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:666
 msgid "You must select an active person for this report to work properly."
-msgstr "Du musst eine aktive Person wählen um einen Bericht zu erstellen."
+msgstr "Du musst eine aktive Person wählen, um einen Bericht zu erstellen."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:717
 #: ../gramps/gui/plug/report/_reportdialog.py:722
@@ -12259,11 +12258,11 @@ msgid ""
 "If you think you may want to revert running this tool, please stop here and "
 "backup your database."
 msgstr ""
-"Wenn du diese Werkzeug benutzt, wird die Bearbeitungschronik dieser Sitzung "
+"Wenn du dieses Werkzeug verwendest, wird die Bearbeitungschronik dieser Sitzung"
 "gelöscht. Dadurch können vorherige und durch das Werkzeuge getätigte "
 "Änderungen nicht mehr rückgängig gemacht werden.\n"
 "\n"
-"Wenn du jedoch die Änderungen, die durch das Werkzeug getätigt werden, "
+"Wenn du jedoch die Änderungen, die durch das Werkzeug gemacht werden,"
 "rückgängig machen willst, stoppe hier und sichere deine Datenbank."
 
 #: ../gramps/gui/plug/tool.py:120
@@ -12354,7 +12353,7 @@ msgstr "Tipp des Tages"
 
 #: ../gramps/gui/tipofday.py:89
 msgid "Failed to display tip of the day"
-msgstr "Tipp des Tages anzeigen fehlgeschlagen"
+msgstr "Den Tipp des Tages anzuzeigen ist fehlgeschlagen."
 
 #: ../gramps/gui/tipofday.py:90
 #, python-format
@@ -12401,12 +12400,11 @@ msgstr "Abbruch..."
 
 #: ../gramps/gui/utils.py:306
 msgid "Please do not force closing this important dialog."
-msgstr "Bitte versuche nicht diesen wichtigen Dialog zu Umgehen."
+msgstr "Bitte versuche nicht, diesen wichtigen Dialog zu umgehen."
 
 #: ../gramps/gui/utils.py:367
 msgid "The external program failed to launch or experienced an error"
-msgstr ""
-"Das externe Programm konnte nicht gestartet werden oder erlebte einen Fehler"
+msgstr "Das externe Programm konnte nicht gestartet werden oder erlitt einen Fehler."
 
 #: ../gramps/gui/utils.py:377
 msgid "Error from external program"
@@ -12424,15 +12422,15 @@ msgid ""
 msgstr ""
 "Kann im Moment keinen neuen Fundstelleneditor öffnen. Entweder wird die "
 "Fundstelle oder die dazugehörige Quelle bereits bearbeitet und das Öffnen "
-"eines Fundstelleneditors (der auch ermöglicht die Quelle zu bearbeiten), "
-"erzeugt Unklarheit durch öffnen von zwei Editoren für die selbe Quelle.\n"
+"eines Fundstelleneditors (der es auch ermöglicht, die Quelle zu bearbeiten), "
+"erzeugt Unklarheit durch das Öffnen von zwei Editoren für dieselbe Quelle.\n"
 "\n"
-"Um die Fundstelle zu bearbeiten schließe den Quelleneditor und öffne nur den "
-"Fundstelleneditor"
+"Um die Fundstelle zu bearbeiten, schließe den Quelleneditor und öffne nur den "
+"Fundstelleneditor."
 
 #: ../gramps/gui/utils.py:605
 msgid "Cannot open new citation editor"
-msgstr "Kann neuen Fundstelleneditor nicht öffnen"
+msgstr "Der neue Fundstelleneditor kann nicht geöffnet werden."
 
 #: ../gramps/gui/viewmanager.py:457
 msgid "Connect to a recent database"
@@ -12649,15 +12647,15 @@ msgstr "Änderungen verwerfen"
 
 #: ../gramps/gui/viewmanager.py:794
 msgid "Cannot abandon session's changes"
-msgstr "Sitzungsänderungen können nicht zurück genommen werden werden"
+msgstr "Die Sitzungsänderungen können nicht zurück genommen werden."
 
 #: ../gramps/gui/viewmanager.py:795
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
-"Die Änderungen können nicht vollständig zurück genommen werden werden, da die "
-"Nummer der Änderungen das Limit der Sitzung überschritten hat."
+"Die Änderungen können nicht vollständig zurück genommen werden, da die "
+"Anzahl der Änderungen das Limit der Sitzung überschritten hat."
 
 #: ../gramps/gui/viewmanager.py:949
 msgid "View failed to load. Check error output."
@@ -12761,9 +12759,9 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Wenn du den Fehler nicht alleine beheben kannst, du einen Fehlerbericht über  "
-"http://bugs.gramps-project.org erstellen oder den Zusatzmodulautor "
-"kontaktieren (%(firstauthoremail)s).\n"
+"Wenn du den Fehler nicht alleine beheben kannst, erstelle einen Fehlerbericht über  "
+"http://bugs.gramps-project.org oder kontaktiere den Zusatzmodulautor "
+"(%(firstauthoremail)s).\n"
 "\n"
 "Wenn du nicht willst, das Gramps weiter versucht dieses Zusatzmodul zu laden, "
 "kannst du es in der Zusatzmodulverwaltung über das Hilfemenü verstecken."
@@ -12790,8 +12788,8 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Wenn du den Fehler nicht alleine beheben kannst, du einen Fehlerbericht über  "
-"http://bugs.gramps-project.org erstellen oder den Ansichtsautor kontaktieren "
+"Wenn du den Fehler nicht alleine beheben kannst, erstelle einen Fehlerbericht"
+"über http://bugs.gramps-project.org oder kontaktiere den Ansichtsautor"
 "(%(firstauthoremail)s).\n"
 "\n"
 "Wenn du nicht willst, das Gramps weiter versucht diese Ansicht zu laden, "
@@ -12866,7 +12864,7 @@ msgstr ""
 #: ../gramps/gui/views/listview.py:551
 #: ../gramps/plugins/view/familyview.py:251
 msgid "Deleting item will remove it from the database."
-msgstr "Das Löschen des Element entfernt sie aus der Datenbank."
+msgstr "Das Löschen des Elementes wird es aus der Datenbank ganz entfernen."
 
 #: ../gramps/gui/views/listview.py:558
 #: ../gramps/plugins/lib/libpersonview.py:289
@@ -12932,7 +12930,7 @@ msgstr "_Vor"
 
 #: ../gramps/gui/views/navigationview.py:293
 msgid "Go to the next object in the history"
-msgstr "Gehe zur nächsten Objekt in der Chronik"
+msgstr "Gehe zum nächsten Objekt in der Chronik."
 
 #: ../gramps/gui/views/navigationview.py:300
 #: ../gramps/plugins/view/htmlrenderer.py:497
@@ -12941,7 +12939,7 @@ msgstr "_Zurück"
 
 #: ../gramps/gui/views/navigationview.py:301
 msgid "Go to the previous object in the history"
-msgstr "Gehe zur vorherigen Objekt in der Chronik"
+msgstr "Gehe zum vorherigen Objekt in der Chronik."
 
 #: ../gramps/gui/views/navigationview.py:305
 msgid "_Home"
@@ -12965,9 +12963,9 @@ msgid ""
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit ->Set Home Person."
 msgstr ""
-"Du musst eine 'Hauptperson' um dorthin zu springen. Gehe zur Personenansicht, "
-"wähle die Person die du als 'Hauptperson' setzen willst und bestätige deine "
-"Wahl über Menü Bearbeiten -> Hauptperson setzen."
+"Du musst zuerst eine 'Hauptperson' setzen, um dorthin zu springen."
+"Gehe zur Personenansicht, wähle die Person, die du als 'Hauptperson' setzen"
+"willst und bestätige deine Wahl über Menü Bearbeiten -> Hauptperson setzen."
 
 #: ../gramps/gui/views/navigationview.py:347
 #: ../gramps/gui/views/navigationview.py:350
@@ -13009,11 +13007,11 @@ msgstr "Ansicht %(name)s: %(msg)s"
 
 #: ../gramps/gui/views/tags.py:223
 msgid "New Tag..."
-msgstr "Neuer Markierung..."
+msgstr "Neue Markierung..."
 
 #: ../gramps/gui/views/tags.py:225
 msgid "Organize Tags..."
-msgstr "Markierung organisieren...."
+msgstr "Markierungen organisieren...."
 
 #: ../gramps/gui/views/tags.py:228
 msgid "Tag selected rows"
@@ -13021,7 +13019,7 @@ msgstr "Ausgewählte Reihen markieren"
 
 #: ../gramps/gui/views/tags.py:270
 msgid "Adding Tags"
-msgstr "Markierung hinzufügen"
+msgstr "Markierungen hinzufügen"
 
 #: ../gramps/gui/views/tags.py:275
 #, python-format
@@ -13030,16 +13028,16 @@ msgstr "Markierungenauswahl (%s)"
 
 #: ../gramps/gui/views/tags.py:329
 msgid "Change Tag Priority"
-msgstr "Ändere Markierung Priorität"
+msgstr "Ändere die Priorität der Markierung."
 
 #: ../gramps/gui/views/tags.py:374 ../gramps/gui/views/tags.py:381
 msgid "Organize Tags"
-msgstr "Markierung organisieren"
+msgstr "Markierungen organisieren"
 
 #: ../gramps/gui/views/tags.py:477
 #, python-format
 msgid "Remove tag '%s'?"
-msgstr "Den Markierung '%s' entfernen?"
+msgstr "Die Markierung '%s' entfernen?"
 
 #: ../gramps/gui/views/tags.py:478
 msgid ""
@@ -13163,13 +13161,13 @@ msgid ""
 "Select the down arrow on the right corner for adding, removing or restoring "
 "gramplets."
 msgstr ""
-"Wähle den nach unten Pfeil in der rechten Ecke zum Hinzufügen, Entfernen oder "
+"Wähle den nach unten zeigenden Pfeil in der rechten Ecke zum Hinzufügen, Entfernen oder "
 "Wiederherstellen von Gramplets."
 
 #: ../gramps/gui/widgets/grampletbar.py:471
 #: ../gramps/plugins/view/dashboardview.py:96
 msgid "Add a gramplet"
-msgstr "Ein Gramplet  hinzufügen"
+msgstr "Ein Gramplet hinzufügen"
 
 #: ../gramps/gui/widgets/grampletbar.py:481
 msgid "Remove a gramplet"
@@ -13193,8 +13191,7 @@ msgstr ""
 
 #: ../gramps/gui/widgets/grampletpane.py:790
 msgid "Drag Properties Button to move and click it for setup"
-msgstr ""
-"Eigenschaftenschaltfläche zum verschieben ziehen und klicken zum einrichten"
+msgstr "Ziehe die Eigenschaftenschaltfläche, um sie zu verschieben. Zum Einrichten klicke darauf."
 
 #: ../gramps/gui/widgets/grampletpane.py:986
 msgid "Right click to add gramplets"
@@ -13257,8 +13254,7 @@ msgid ""
 "Double-click on the picture to view it in the default image viewer "
 "application."
 msgstr ""
-"Doppelklick auf das Bild um es in der Standard Bildbetrachtungsanwendung zu "
-"zeigen."
+"Doppelklicke auf das Bild, damit es in der Standard Bildbetrachtungsanwendung angezeigt wird."
 
 #: ../gramps/gui/widgets/progressdialog.py:294
 msgid "Progress Information"
@@ -13434,7 +13430,7 @@ msgstr "von %d"
 #: ../gramps/plugins/webreport/narrativeweb.py:7937
 #: ../gramps/plugins/webreport/webcal.py:248
 msgid "Possible destination error"
-msgstr "Möglicher Zielfehler"
+msgstr "Möglicher Fehler im Ziel."
 
 #: ../gramps/plugins/docgen/htmldoc.py:277
 #: ../gramps/plugins/webreport/narrativeweb.py:7938
@@ -13445,15 +13441,15 @@ msgid ""
 "that you consider using a different directory to store your generated web "
 "pages."
 msgstr ""
-"Es scheint du hast dein Zielverzeichnis auf ein Verzeichnis, das für "
-"Datenspeicherung benutzt wird gesetzt. Dies kann zu Problemen mit dem "
-"Dateimanagement führen. Es wird empfohlen das du ein anderes Verzeichnis für "
+"Es scheint, du hast dein Zielverzeichnis auf ein Verzeichnis gesetzt, das für "
+"Datenspeicherung benutzt wird. Dies kann zu Problemen mit dem Dateimanagement führen. "
+"Es wird empfohlen, dass du ein anderes Verzeichnis für "
 "deine erstellten Websites wählst."
 
 #: ../gramps/plugins/docgen/htmldoc.py:556
 #, python-format
 msgid "Could not create jpeg version of image %(name)s"
-msgstr "Konnte jpeg Version des Bildes %(name)s nicht erstellen"
+msgstr "Konnte die jpeg Version des Bildes %(name)s nicht erstellen."
 
 #: ../gramps/plugins/docgen/latexdoc.py:59
 msgid ""
@@ -13461,9 +13457,9 @@ msgid ""
 "non-jpg images in LaTex documents will not be available. Use your package "
 "manager to install python-imaging"
 msgstr ""
-"PIL (Python Imaging Library) nicht geladen. Erstellung von jpg Bildern aus "
-"nicht jpg Bilden in LaTex Dokumenten wird nicht zur Verfügung stehen. "
-"Verwende deine Paketverwaltung um  python-imaging zu installieren"
+"PIL (Python Imaging Library) wurde nicht geladen. Die Erstellung von jpg Bildern aus "
+"nicht-jpg Bilden in LaTex Dokumenten, wird nicht zur Verfügung stehen. "
+"Verwende deine Paketverwaltung um python-imaging nachzuinstallieren."
 
 #: ../gramps/plugins/docgen/odfdoc.py:1228
 #, python-format
@@ -13560,7 +13556,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:902
 msgid "The number of generations of empty boxes that will be displayed"
-msgstr "Die Anzahl der Generationen mit leeren Boxen die angezeigt werden"
+msgstr "Die Anzahl der Generationen mit leeren Boxen, die angezeigt werden."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:909
 #: ../gramps/plugins/drawreport/descendtree.py:1510
@@ -13571,8 +13567,8 @@ msgstr "Baum komprimieren"
 msgid ""
 "Whether to remove any extra blank spaces set aside for people that are unknown"
 msgstr ""
-"Ob zusätzliche Leerzeichen die für unbekannte Personen vorgesehen sind "
-"entfernt werden oder nicht"
+"Legt fest, ob zusätzliche Leerzeichen, die für unbekannte Personen vorgesehen"
+"sind, entfernt werden oder nicht."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:924
 msgid ""
@@ -13679,9 +13675,9 @@ msgid ""
 "\n"
 "Note: Overrides options in the 'Paper Option' tab"
 msgstr ""
-"Ändere Papiergröße damit sie zur Baumgröße passt.\n"
+"Ändere die Papiergröße, damit sie zur Baumgröße passt.\n"
 "\n"
-"Beachte: Überschreibt Optionen im Papieroptionen Reiter"
+"Beachte: dies überschreibt die Optionen im Reiter 'Papieroptionen'."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:989
 #: ../gramps/plugins/drawreport/descendtree.py:1588
@@ -13701,20 +13697,18 @@ msgid ""
 "With 'Scale tree to fit the size of the page' the page\n"
 "  is resized to remove any gap in either height or width"
 msgstr ""
-"Ob die Seite angepasst wird um der Größe des \n"
-"Baums zu entsprechen.  Beachte: Die Seite hat dann \n"
-"keine Standardgröße.\n"
+"Legt fest, ob die Seite angepasst wird, um der Größe des \n"
+"Baums zu entsprechen.   \n"
+"Beachte: Die Seite hat dann keine Standardgröße.\n"
 "\n"
 "Wenn diese Option gewählt wird, passiert folgendes:\n"
 "\n"
-"Mit der 'Baum nicht skalieren' Option wird die Seite\n"
-"  auf die Höhe/Breite des Baum angepasst\n"
+"'Baum nicht skalieren' paßt die Seite auf die Höhe/Breite des Baums an.\n"
 "\n"
-"Mit 'Baum nur auf Seitenbreite skalieren' die Höhe der\n"
-"  Seite wird an die Höhe des Baum angepasst\n"
+"'Baum nur auf Seitenbreite skalieren' paßt die Höhe der Seite an die Höhe des Baums an.\n"
 "\n"
-"Mit 'Baum auf Seitengröße skalieren' wird die Seite so\n"
-"  angepasst das jeder Abstand in der Höhe und Breite entfernt wird"
+""'Baum auf Seitengröße skalieren' paßt die Seite so an,\n"
+" dass jeder Abstand/Zwischenraum in der Höhe und Breite entfernt wird."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1009
 #: ../gramps/plugins/drawreport/descendtree.py:1608
