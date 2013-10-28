@@ -27,7 +27,8 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from __future__ import print_function, unicode_literals
+# If you enable unicode_literals, some stuff needs fixing for win+py2, see #7162
+#from __future__ import print_function, unicode_literals
 import gettext
 import sys
 import os
