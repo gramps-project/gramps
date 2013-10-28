@@ -1,18 +1,21 @@
-2013-??-??
+2013-10-28
+Version 3.4.6 of Gramps! "The Answer to the Ultimate Question", a maintenance release.
+
 * Citation merge works better for all objects with citations
-* Fix link to citation on event reference into family
+* Fixed citations attached to family events
 * Fixed several crashes, hangs, and data corruption scenarios
 * Fixed bugs in determining whether a person is alive, potentially resolving private data leak via export or report
 * VCF export/import now support gender information
 * Several bugs with filtering fixed, most filters now support regular expressions
-* Fix bug in Hebrew calendar date calculations
-* Check space in gramps id on gedcom file format
+* Fixed bug in Hebrew calendar date calculations
+* Support space in Gramps ID with GEDCOM file format export/import
 * Multiple fixes in gramplets
-* Multiple fixes in NarWeb report
-* Some fixes and improvements on webapp
-* Enhancements on Citation TreeView (Sources category)
+* Multiple fixes in the narrated website report
+* Some fixes and improvements of the webapp
+* Enhancements of the citation tree view (Sources category)
 * Polish and consistency on Gramps XML export
-* Fix several long-standing problems with report generation
+* Bump XML schema to 1.5.1
+* Fixed several long-standing problems with report generation
 * Better support of RTL locales (Arabic, Hebrew, etc.) in GUI
 * Platform-specific fixes for Mac and Windows
 * New date handler for Arabic
