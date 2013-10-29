@@ -341,10 +341,17 @@
     <date name="Pâque juive" type="religious" value="> passover(y)" />
     <date name="Yom Kippour" type="religious" value="> passover(y)" offset="172" />
     <date name="Hanoucca" type="religious" value="> hanuka(y)" />
-    <date name="début Ramadan" value="2006/9/24" type="religious" />
-    <date name="début Ramadan" value="2007/9/13" type="religious" />
-    <date name="début Ramadan" value="2008/9/2" type="religious" />
+    <date name="début Ramadan" value="2006/09/24" type="religious" />
+    <date name="début Ramadan" value="2007/09/13" type="religious" />
+    <date name="début Ramadan" value="2008/09/02" type="religious" />
     <date name="début Ramadan" value="2009/08/22" type="religious" />
+    <date name="début Ramadan" value="2010/08/12" type="religious" />
+    <date name="début Ramadan" value="2011/08/02" type="religious" />
+    <date name="début Ramadan" value="2012/07/21" type="religious" />
+    <date name="début Ramadan" value="2013/07/09" type="religious" />
+    <date name="début Ramadan" value="2014/06/29" type="religious" />
+    <date name="début Ramadan" value="2015/06/19" type="religious" />
+    <date name="début Ramadan" value="2016/06/08" type="religious" />
     <date name="Saint Étienne (Alsace/Moselle)" value="*/12/26" type="religious" />
   </country>
   <country _name="Germany">
