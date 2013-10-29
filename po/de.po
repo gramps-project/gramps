@@ -182,7 +182,8 @@ msgstr "Unbekannter Berichtname."
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr "Der Berichtname ist nicht angegeben."
-"Bitte verwende einen von % (donottranslate)s=reportname."
+"Bitte verwende einen von %(donottranslate)s=Berichtname."
+
 #: ../gramps/cli/arghandler.py:620 ../gramps/cli/arghandler.py:662
 #: ../gramps/cli/arghandler.py:695
 #, python-format
@@ -201,7 +202,7 @@ msgstr "Unbekannter Werkzeugname."
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr "Der Werkzeugname ist nicht angegeben."
-"Bitte verwende einen von % (donottranslate)s=toolname."
+"Bitte verwende einen von %(donottranslate)s=Werkzeugname."
 
 #: ../gramps/cli/arghandler.py:689
 msgid "Unknown book name."
@@ -211,7 +212,7 @@ msgstr "Unbekannter Buchname."
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr "Der Buchname ist nicht angegeben."
-"Bitte verwende einen von % (donottranslate)s=bookname."
+"Bitte verwende einen von %(donottranslate)s=Buchname."
 
 #: ../gramps/cli/arghandler.py:700
 #, python-format
