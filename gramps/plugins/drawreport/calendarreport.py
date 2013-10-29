@@ -3,7 +3,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008-2009  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2012       Paul Franklin
+# Copyright (C) 2012-2013  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -26,8 +26,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from functools import partial
 import datetime
 import time
@@ -37,23 +35,27 @@ import time
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from gramps.gen.const import URL_HOMEPAGE
 from gramps.gen.display.name import displayer as _nd 
 from gramps.gen.errors import ReportError
-from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
-                             FONT_SERIF, PARA_ALIGN_CENTER,
-                             PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT,
-                             IndexMark, INDEX_TYPE_TOC)
+                                    FONT_SERIF, PARA_ALIGN_CENTER,
+                                    PARA_ALIGN_LEFT, PARA_ALIGN_RIGHT,
+                                    IndexMark, INDEX_TYPE_TOC)
 from gramps.gen.plug.docgen.fontscale import string_trim
 from gramps.gen.plug.menu import (BooleanOption, StringOption, NumberOption, 
-                         EnumeratedListOption, FilterOption, PersonOption)
+                                  EnumeratedListOption, FilterOption,
+                                  PersonOption)
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.datehandler import displayer as _dd
-from gramps.gen.lib import Date, EventRoleType, EventType, Name, NameType, Person, Surname
+from gramps.gen.lib import (Date, EventRoleType, EventType, Name, NameType,
+                            Person, Surname)
 from gramps.gen.lib.date import gregorian
 
 import gramps.plugins.lib.libholiday as libholiday
@@ -66,6 +68,12 @@ from gramps.plugins.lib.libholiday import g2iso
 #------------------------------------------------------------------------
 pt2cm = ReportUtils.pt2cm
 cm2pt = ReportUtils.cm2pt
+
+def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+    return value
+
+_TITLE1 = _T_("My Calendar")
+_TITLE2 = _T_("Produced with Gramps")
 
 #------------------------------------------------------------------------
 #
@@ -99,6 +107,8 @@ class Calendar(Report):
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
+
+        self._locale = self.set_locale(get_value('trans'))
 
     def get_name(self, person, maiden_name = None):
         """ Return person's name, unless maiden_name given, 
@@ -152,10 +162,25 @@ class Calendar(Report):
             for day in range(1, 32):
                 holiday_names = holiday_table.get_holidays(month, day) 
                 for holiday_name in holiday_names:
-                    self.add_day_item(holiday_name, month, day, "CAL-Holiday")
+                    self.add_day_item(self._(holiday_name), month, day,
+                                      "CAL-Holiday")
+                    # FIXME translation only works for a limited set of things
+                    # (the right fix is to somehow feed the locale into the
+                    # HolidayTable class in plugins/lib/libholiday.py and then
+                    # probably changing all the holiday code to somehow defer
+                    # the translation of holidays, until it can be based
+                    # on the passed-in locale, but since that would probably
+                    # also mean checking every use of holidays I don't think
+                    # it is advisable to do, with a release so imminent)
+                    # it is also debatable whether it is worth bothering at
+                    # all, since it is hard for me to imagine why a user would
+                    # be wanting to generate a translated report with holidays
+                    # since I believe its main use will be for dates of people
 
     def write_report(self):
-        """ The short method that runs through each month and creates a page. """
+        """
+        The short method that runs through each month and creates a page.
+        """
         # initialize the dict to fill:
         self.calendar = {}
         
@@ -166,8 +191,9 @@ class Calendar(Report):
         # get data from database:
         self.collect_data()
         # generate the report:
-        with self._user.progress( _('Calendar Report'), 
-                _('Formatting months...'), 12) as step:
+        with self._user.progress(_('Calendar Report'), 
+                                 _('Formatting months...'),
+                                 12) as step:
             for month in range(1, 13):
                 step()
                 self.print_page(month)
@@ -182,7 +208,7 @@ class Calendar(Report):
         pdaynames = style_sheet.get_paragraph_style("CAL-Daynames")
         pnumbers = style_sheet.get_paragraph_style("CAL-Numbers")
         ptext1style = style_sheet.get_paragraph_style("CAL-Text1style")
-        long_days = _dd.long_days
+        long_days = self._dd.long_days
 
         self.doc.start_page()
         width = self.doc.get_usable_width()
@@ -190,7 +216,7 @@ class Calendar(Report):
         header = 2.54 # one inch
         mark = None
         if month == 1:
-            mark = IndexMark(_('Calendar Report'), INDEX_TYPE_TOC, 1)
+            mark = IndexMark(self._('Calendar Report'), INDEX_TYPE_TOC, 1)
         self.draw_rectangle("CAL-Border", 0, 0, width, height)
         self.doc.draw_box("CAL-Title", "", 0, 0, width, header, mark)
         self.doc.draw_line("CAL-Border", 0, header, width, header)
@@ -198,10 +224,10 @@ class Calendar(Report):
         # TRANSLATORS: see 
         # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
         # to learn how to select proper inflection for your language.
-        title = _("{long_month} {year}").format(
-                long_month = _dd.long_months[month],
-                year = year
-                ).capitalize()
+        title = self._("{long_month} {year}").format(
+                                long_month = self._dd.long_months[month],
+                                year = year
+                                ).capitalize()
         mark = IndexMark(title, INDEX_TYPE_TOC, 2)
         font_height = pt2cm(ptitle.get_font().get_size())
         self.doc.center_text("CAL-Title", title,
@@ -253,8 +279,8 @@ class Calendar(Report):
                             font = ptext.get_font()
                             line = string_trim(font, line, cm2pt(cell_width + 0.2))
                             self.doc.draw_text(format, line, 
-                                              day_col * cell_width + 0.1, 
-                                              header + (week_row + 1) * cell_height - position + (current * spacing) - 0.1, m_list[0])
+                                               day_col * cell_width + 0.1, 
+                                               header + (week_row + 1) * cell_height - position + (current * spacing) - 0.1, m_list[0])
                             if len(m_list) > 1: # index the spouse too
                                 self.doc.draw_text(format, "",0,0, m_list[1])
                             current += 1
@@ -263,9 +289,18 @@ class Calendar(Report):
             last_edge = 0
         font_height = pt2cm(1.5 * ptext1style.get_font().get_size())
         x = last_edge + (width - last_edge)/2
-        self.doc.center_text("CAL-Text1style", self.text1, x, height - font_height * 3) 
-        self.doc.center_text("CAL-Text2style", self.text2, x, height - font_height * 2) 
-        self.doc.center_text("CAL-Text3style", self.text3, x, height - font_height * 1) 
+        text1 = str(self.text1)
+        if text1 == _(_TITLE1):
+            text1 = self._(_TITLE1)
+        self.doc.center_text("CAL-Text1style", text1,
+                             x, height - font_height * 3) 
+        text2 = str(self.text2)
+        if text2 == _(_TITLE2):
+            text2 = self._(_TITLE2)
+        self.doc.center_text("CAL-Text2style", text2,
+                             x, height - font_height * 2) 
+        self.doc.center_text("CAL-Text3style", self.text3,
+                             x, height - font_height * 1) 
         self.doc.end_page()
 
     def collect_data(self):
@@ -276,12 +311,15 @@ class Calendar(Report):
         db = self.database
         people = db.iter_person_handles()
         with self._user.progress(_('Calendar Report'), 
-                                  _('Applying Filter...'), 
-                                  db.get_number_of_people()) as step:
+                                 _('Applying Filter...'), 
+                                 db.get_number_of_people()) as step:
             people = self.filter.apply(self.database, people, step)
 
+        ngettext = self._locale.translation.ngettext
+
         with self._user.progress(_('Calendar Report'), 
-                _('Reading database...'), len(people)) as step:
+                                 _('Reading database...'),
+                                 len(people)) as step:
             for person_handle in people:
                 step()
                 person = db.get_person_from_handle(person_handle)
@@ -325,15 +363,13 @@ class Calendar(Report):
 
                     if  not self.alive or alive:
                         if nyears == 0:
-                            text = _('%(person)s, birth%(relation)s') % {
-                                'person' : short_name,
-                                'relation' : ""}
+                            text = self._('%(person)s, birth') % {
+                                                'person' : short_name }
                         else:
-                            text = (glocale.translation.ngettext('%(person)s, %(age)d%(relation)s',
-                                              '%(person)s, %(age)d%(relation)s', nyears)
-                                     % {'person'   : short_name,
-                                        'age'      : nyears,  
-                                        'relation' : ""})
+                            text = (ngettext('%(person)s, %(age)d',
+                                             '%(person)s, %(age)d', nyears)
+                                                  % {'person'   : short_name,
+                                                     'age'      : nyears })
                         self.add_day_item(text, month, day, marks=[mark])
                 if self.anniversaries:
                     family_list = person.get_family_handle_list()
@@ -361,14 +397,14 @@ class Calendar(Report):
                                     rt = EventRoleType
                                     if event.type in [et.MARRIAGE, 
                                                       et.MARR_ALT] and \
-                                    (event_ref.get_role() == rt.FAMILY or 
-                                    event_ref.get_role() == rt.PRIMARY ):
+                                        (event_ref.get_role() == rt.FAMILY or 
+                                         event_ref.get_role() == rt.PRIMARY ):
                                         are_married = event
                                     elif event.type in [et.DIVORCE, 
                                                         et.ANNULMENT, 
                                                         et.DIV_FILING] and \
-                                    (event_ref.get_role() == rt.FAMILY or 
-                                    event_ref.get_role() == rt.PRIMARY ):
+                                        (event_ref.get_role() == rt.FAMILY or 
+                                         event_ref.get_role() == rt.PRIMARY ):
                                         are_married = None
                                 if are_married is not None:
                                     for event_ref in fam.get_event_ref_list():
@@ -386,20 +422,22 @@ class Calendar(Report):
         
                                             nyears = self.year - year
                                             if nyears == 0:
-                                                text = _('%(spouse)s and\n %(person)s, wedding') % {
-                                                         'spouse' : spouse_name, 
-                                                         'person' : short_name, 
+                                                text = self._('%(spouse)s and\n %(person)s, wedding') % {
+                                                        'spouse' : spouse_name,
+                                                        'person' : short_name,
                                                         }
                                             else:
-                                                text = (glocale.translation.ngettext("%(spouse)s and\n %(person)s, %(nyears)d", 
+                                                text = (ngettext("%(spouse)s and\n %(person)s, %(nyears)d", 
                                                                  "%(spouse)s and\n %(person)s, %(nyears)d", nyears)
-                                                        % {'spouse' : spouse_name, 
-                                                           'person' : short_name, 
-                                                           'nyears' : nyears})
+                                                      % {'spouse' : spouse_name,
+                                                         'person' : short_name,
+                                                         'nyears' : nyears})
 
-                                            alive1 = probably_alive(person, self.database,
+                                            alive1 = probably_alive(person,
+                                                        self.database,
                                                         prob_alive_date)
-                                            alive2 = probably_alive(spouse, self.database,
+                                            alive2 = probably_alive(spouse,
+                                                        self.database,
                                                         prob_alive_date)
                                             if ((self.alive and alive1 and alive2) or not self.alive):
                                                 self.add_day_item(text, month, day,
@@ -486,18 +524,20 @@ class CalendarOptions(MenuReportOptions):
         anniversaries.set_help(_("Include anniversaries in the calendar"))
         add_option("anniversaries", anniversaries)
 
+        stdoptions.add_localization_option(menu, category_name)
+
         category_name = _("Text Options")
         add_option = partial(menu.add_option, _("Text Options"))
 
-        text1 = StringOption(_("Text Area 1"), _("My Calendar")) 
+        text1 = StringOption(_("Text Area 1"), _(_TITLE1)) 
         text1.set_help(_("First line of text at bottom of calendar"))
         add_option("text1", text1)
 
-        text2 = StringOption(_("Text Area 2"), _("Produced with Gramps"))
+        text2 = StringOption(_("Text Area 2"), _(_TITLE2))
         text2.set_help(_("Second line of text at bottom of calendar"))
         add_option("text2", text2)
 
-        text3 = StringOption(_("Text Area 3"), "http://gramps-project.org/",)
+        text3 = StringOption(_("Text Area 3"), URL_HOMEPAGE)
         text3.set_help(_("Third line of text at bottom of calendar"))
         add_option("text3", text3)
         
