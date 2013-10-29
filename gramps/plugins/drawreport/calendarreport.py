@@ -71,6 +71,7 @@ cm2pt = ReportUtils.cm2pt
 
 def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
     return value
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
 _TITLE1 = _T_("My Calendar")
 _TITLE2 = _T_("Produced with Gramps")
