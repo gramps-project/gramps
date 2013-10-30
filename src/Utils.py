@@ -837,7 +837,7 @@ class ProbablyAlive(object):
             return (date1, date2, explain, other)
 
         def ancestors_too_old(person, year):
-            LOG.debug("ancestors_too_old('{}', {})".format(
+            LOG.debug("ancestors_too_old('{0}', {1})".format(
                 name_displayer.display(person), year) )
             family_handle = person.get_main_parents_family_handle()
             if family_handle:                
@@ -986,7 +986,7 @@ def probably_alive(person, db,
             max_sib_age_diff, max_age_prob_alive, avg_generation_gap)
     if current_date is None:
         current_date = gen.lib.date.Today()
-    LOG.debug("{}: b.{}, d.{} - {}".format(
+    LOG.debug("{0}: b.{1}, d.{2} - {3}".format(
         " ".join(person.get_primary_name().get_text_data_list()),
         birth, death, explain))
     if not birth or not death:

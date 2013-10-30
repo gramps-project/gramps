@@ -1616,7 +1616,7 @@ class Date(object):
 
                     for adjusted,original in d,m:
                         if adjusted != original and not(original == 0 and adjusted == 1):
-                            log.debug("Sanity check failed - self: {}, sanity: {}".format(
+                            log.debug("Sanity check failed - self: {0}, sanity: {1}".format(
                                 self.dateval, sanity.dateval))
                             raise DateError("Invalid day/month {} passed in value {}".
                                     format(original, value))
@@ -1624,7 +1624,7 @@ class Date(object):
                     adjusted,original = y
                     adjusted -= year_delta
                     if adjusted != original and not(original == 0 and adjusted == 1):
-                        log.debug("Sanity check failed - self: {}, sanity: {}".format(
+                        log.debug("Sanity check failed - self: {0}, sanity: {1}".format(
                             self.dateval, sanity.dateval))
                         raise DateError("Invalid year {} passed in value {}".
                                 format(original, value))

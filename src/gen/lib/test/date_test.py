@@ -510,7 +510,7 @@ class Test_set2(unittest.TestCase):
             try:
                 function(self.date)
                 self.assertTrue(False,
-                        "Modifier: {}, dateval: {} - exception expected!".format(
+                        "Modifier: {0}, dateval: {1} - exception expected!".format(
                             mod, self.date.dateval))
             except DateError:
                 pass
