@@ -982,7 +982,7 @@ msgstr ""
 "\n"
 "Das Öffnen des Stammbaum mit dieser Gramps Version kann den Stammbaum "
 "irreparabel beschädigen. Es wird dir dringend empfohlen, deinen Stammbaum zu "
-"sichern.\"\n"
+"sichern.\n"
 "\n"
 "Wenn du nicht bereits eine Sicherung deines Stammbaum erstellt hast, solltest "
 "du deine <b>alte</b> Version von Gramps starten und <a "
@@ -1011,7 +1011,7 @@ msgstr ""
 "schließe die Datenbank; dann aktualisiere erneut auf diese Version und "
 "importiere die XML Datei. Eine Alternative ist, deine Datenbank zu "
 "aktualisieren."
-"zu aktualisieren."
+
 
 #: ../gramps/gen/db/exceptions.py:203
 #, python-format
@@ -3195,8 +3195,7 @@ msgstr "Personen, deren Aufzeichnungen die <Zeichenfolge> enthalten"
 msgid "Matches people whose records contain text matching a substring"
 msgstr ""
 "Entspricht Personen, deren Aufzeichnungen einen Text, entsprechend einer "
-"Zeichenfolge"
-"enthalten."
+"Zeichenfolge enthalten."
 
 #: ../gramps/gen/filters/rules/person/_hasunknowngender.py:47
 msgid "People with unknown gender"
@@ -8777,7 +8776,7 @@ msgid ""
 "To edit this event reference, you need to close the event."
 msgstr ""
 "Diese Ereignis-Referenz kann im Moment nicht bearbeitet werden. Entweder wird "
-"das"
+"das "
 "verbundene Ereignis schon bearbeitet, oder eine andere Ereignis-Referenz,"
 "die mit der selben Quelle verbunden ist, wird gerade bearbeitet.\n"
 "\n"
@@ -9121,7 +9120,7 @@ msgid ""
 "To edit this repository reference, you need to close the repository."
 msgstr ""
 "Diese Aufbewahrungsort-Referenz kann im Moment nicht bearbeitet werden. "
-"Entweder wird der"
+"Entweder wird der "
 "verbundene Aufbewahrungsort schon bearbeitet, oder eine andere "
 "Aufbewahrungsortreferenz, "
 "die mit dem selben Aufbewahrungsort verbunden ist, wird gerade bearbeitet.\n"
@@ -15454,7 +15453,7 @@ msgid ""
 "  4. <a wiki='%s_-_FAQ#How_do_I_keep_backups.3F'>How do I make backups "
 "safely?</a>\n"
 msgstr ""
-"  4. <a wiki='%s_-_FAQ#Wie_bewahre_ich_icherungen_auf.3F'>Wie erstelle ich "
+"  4. <a wiki='%s_-_FAQ#Wie_bewahre_ich_Sicherungen_auf.3F'> Wie erstelle ich "
 "gute Sicherungen?</a>\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:51
@@ -15560,7 +15559,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:44
 msgid "Double-click given name for details"
-msgstr "Vornamen für Details doppelt-klicken"
+msgstr "Details für Vornamen: doppelt-klicken."
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:61
 #: ../gramps/plugins/gramplet/recordsgramplet.py:59
@@ -15601,7 +15600,7 @@ msgstr "Alter Statistiken"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:56
 msgid "Gramplet showing graphs of various ages"
-msgstr "Gramplet zeigt Graphen verschiedener Alter"
+msgstr "Gramplet zeigt Grafen verschiedener Lebensalter."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:72
 msgid "Gramplet showing calendar and events on specific dates in history"
@@ -15707,7 +15706,7 @@ msgstr "Zu erledigen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:254
 msgid "Gramplet for displaying a To Do list"
-msgstr "Gramplet zum anzeigen einer zu erledigen Liste"
+msgstr "Gramplet zeigt die Liste 'noch zu erledigen'."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:267
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:273
@@ -15756,7 +15755,7 @@ msgstr "Aufbewahrungsortdetails"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:326
 msgid "Gramplet showing details of a repository"
-msgstr "Gramplet zeigt Details eines Aufbewahrungsort"
+msgstr "Gramplet zeigt Details eines Aufbewahrungsortes."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:339
 msgid "Place Details"
@@ -15764,7 +15763,7 @@ msgstr "Ortsdetails"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:340
 msgid "Gramplet showing details of a place"
-msgstr "Gramplet zeigt Details eines Ort"
+msgstr "Gramplet zeigt Details eines Ortes."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:353
 msgid "Media Preview"
@@ -15772,7 +15771,7 @@ msgstr "Medienvorschau"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:354
 msgid "Gramplet showing a preview of a media object"
-msgstr "Gramplet zeigt eine Vorschau eines Medienobjekts"
+msgstr "Gramplet zeigt eine Vorschau eines Medienobjektes."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:379
 msgid "Metadata Viewer"
@@ -15780,7 +15779,7 @@ msgstr "Metadatenansicht"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:380
 msgid "Gramplet showing metadata for a media object"
-msgstr "Gramplet zeigt Metadaten eines Medienobjekts"
+msgstr "Gramplet zeigt Metadaten eines Medienobjektes."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:387
 msgid "Image Metadata"
@@ -15796,14 +15795,14 @@ msgid ""
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?title="
 "GEPS_029:_GTK3-GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 msgstr ""
-"Bilder meta Funktionalität wird nicht zur Verfügung stehen.\n"
+"Die Bildmetadaten Funktionalität wird nicht zur Verfügung stehen.\n"
 "Um es für Gramps zu erstellen siehe http://www.gramps-project.org/wiki/index.p"
 "hp?title=GEPS_029:_GTK3-GObject_introspection_Conversion#GExiv2_for_Image_meta"
 "data"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:404
 msgid "Person Residence"
-msgstr "Personwohnort"
+msgstr "Wohnort der Person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:405
 msgid "Gramplet showing residence events for a person"
@@ -15811,7 +15810,7 @@ msgstr "Gramplet zeigt Wohnortsereignisse für eine Person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:418
 msgid "Person Events"
-msgstr "Person Ereignisse"
+msgstr "Ereignisse zur Person"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:419
 msgid "Gramplet showing the events for a person"
@@ -15823,7 +15822,7 @@ msgstr "Gramplet zeigt die Ereignisse einer Familie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:446
 msgid "Person Gallery"
-msgstr "Persongalerie"
+msgstr "Personengalerie"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:447
 msgid "Gramplet showing media objects for a person"
@@ -15922,7 +15921,7 @@ msgstr "Gramplet zeigt die Attribute eines Medienobjekts"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:586
 msgid "Person Notes"
-msgstr "Person Notizen"
+msgstr "Personennotizen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:587
 msgid "Gramplet showing the notes for a person"
@@ -15974,7 +15973,7 @@ msgstr "Aufbewahrungsortnotizen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:671
 msgid "Gramplet showing the notes for a repository"
-msgstr "Gramplet zeigt Notizen eines Aufbewahrungsort"
+msgstr "Gramplet zeigt Notizen eines Aufbewahrungsortes."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:684
 msgid "Media Notes"
@@ -15998,7 +15997,7 @@ msgstr "Ereignisfundstellen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:713
 msgid "Gramplet showing the citations for an event"
-msgstr "Gramplet zeigt die  Fundstellen eines Ereignis"
+msgstr "Gramplet zeigt die Fundstellen eines Ereignisses."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:726
 msgid "Family Citations"
@@ -16022,7 +16021,7 @@ msgstr "Medienfundstelle"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:755
 msgid "Gramplet showing the citations for a media object"
-msgstr "Gramplet zeigt die Fundstelle eines Medienobjekt"
+msgstr "Gramplet zeigt die Fundstelle eines Medienobjektes."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:768
 msgid "Person Children"
@@ -16056,7 +16055,7 @@ msgstr "Personenreferenzen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:797
 msgid "Gramplet showing the backlinks for a person"
-msgstr "Gramplet zeigt Referenzen einer Person"
+msgstr "Gramplet zeigt die Referenzen einer Person."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:804
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:818
@@ -16080,7 +16079,7 @@ msgstr "Ereignisreferenzen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:811
 msgid "Gramplet showing the backlinks for an event"
-msgstr "Gramplet zeigt die  Referenzen eines Ereignis"
+msgstr "Gramplet zeigt die Referenzen eines Ereignisses."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:824
 msgid "Family Backlinks"
@@ -16112,7 +16111,7 @@ msgstr "Fundstellenreferenzen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:867
 msgid "Gramplet showing the backlinks for a citation"
-msgstr "Gramplet zeigt Referenzen einer Fundstelle"
+msgstr "Gramplet zeigt die Referenzen einer Fundstelle."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:880
 msgid "Repository Backlinks"
@@ -16120,7 +16119,7 @@ msgstr "Aufbewahrungsortreferenzen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:881
 msgid "Gramplet showing the backlinks for a repository"
-msgstr "Gramplet zeigt die Referenzen eines Aufbewahrungsort"
+msgstr "Gramplet zeigt die Referenzen eines Aufbewahrungsortes."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:894
 msgid "Media Backlinks"
@@ -16128,7 +16127,7 @@ msgstr "Mediumreferenzen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:895
 msgid "Gramplet showing the backlinks for a media object"
-msgstr "Gramplet zeigt die Referenzen eines Medienobjekt"
+msgstr "Gramplet zeigt die Referenzen eines Medienobjektes."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:908
 msgid "Note Backlinks"
@@ -16226,67 +16225,67 @@ msgstr "Rekorde"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1064
 msgid "Person To Do"
-msgstr "Personen zu erledigen"
+msgstr "Personen 'noch zu erledigen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1065
 msgid "Gramplet showing the To Do notes for a person"
-msgstr "Gramplet zeigt die zu erledigen Notizen für eine Person"
+msgstr "Gramplet zeigt die 'noch zu erledigen' Notizen für eine Person."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1078
 msgid "Event To Do"
-msgstr "Ereignis zu erledigen"
+msgstr "Ereignis 'noch zu erledigen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1079
 msgid "Gramplet showing the To Do notes for an event"
-msgstr "Gramplet zeigt die zu erledigen Notizen für ein Ereignis"
+msgstr "Gramplet zeigt die 'noch zu erledigen' Notizen für ein Ereignis."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1092
 msgid "Family To Do"
-msgstr "Familie zu erledigen"
+msgstr "Familie 'noch zu erledigen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1093
 msgid "Gramplet showing the To Do notes for a family"
-msgstr "Gramplet zeigt die zu erledigen Notizen für eine Familie"
+msgstr "Gramplet zeigt die 'noch zu erledigen' Notizen für eine Familie."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1106
 msgid "Place To Do"
-msgstr "Ort zu erledigen"
+msgstr "Ort 'noch zu erledigen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1107
 msgid "Gramplet showing the To Do notes for a place"
-msgstr "Gramplet zeigt die zu erledigen Notizen für einen Ort"
+msgstr "Gramplet zeigt die 'noch zu erledigen' Notizen für einen Ort."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1120
 msgid "Source To Do"
-msgstr "Quelle zu erledigen"
+msgstr "Quelle 'noch zu erledigen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1121
 msgid "Gramplet showing the To Do notes for a source"
-msgstr "Gramplet zeigt die zu erledigen Notizen für eine Quellen"
+msgstr "Gramplet zeigt die 'noch zu erledigen' Notizen für eine Quelle."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1134
 msgid "Citation To Do"
-msgstr "Fundstelle zu erledigen"
+msgstr "Fundstelle 'noch zu erledigen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1135
 msgid "Gramplet showing the To Do notes for a citation"
-msgstr "Gramplet zeigt die zu erledigen Notizen für eine Fundstelle"
+msgstr "Gramplet zeigt die 'noch zu erledigen' Notizen für eine Fundstelle."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1148
 msgid "Repository To Do"
-msgstr "Aufbewahrungsort zu erledigen"
+msgstr "Aufbewahrungsort 'noch zu erledigen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1149
 msgid "Gramplet showing the To Do notes for a repository"
-msgstr "Gramplet zeigt die zu erledigen Notizen für einen Aufbewahrungsort"
+msgstr "Gramplet zeigt die 'noch zu erledigen' Notizen für einen Aufbewahrungsort."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1162
 msgid "Media To Do"
-msgstr "Medien zu erledigen"
+msgstr "Medien 'noch zu erledigen'"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1163
 msgid "Gramplet showing the To Do notes for a media object"
-msgstr "Gramplet zeigt die zu erledigen Notizen für ein Medienobjekt"
+msgstr "Gramplet zeigt die 'noch zu erledigen' Notizen für ein Medienobjekt."
 
 #: ../gramps/plugins/gramplet/notes.py:101
 #: ../gramps/plugins/gramplet/todo.py:126
@@ -16348,7 +16347,7 @@ msgstr "Generation 1"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:262
 msgid "Double-click to see people in generation"
-msgstr "Um Personen in der Generation zu sehen doppelt klicken"
+msgstr "Zeige Personen in der Generation: Doppelklick"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:264
 #, python-format
@@ -16367,7 +16366,7 @@ msgstr "Generation %d"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:268
 #, python-format
 msgid "Double-click to see people in generation %d"
-msgstr "Um Personen in der Generation%d  zu sehen doppelt klicken"
+msgstr "Zeige Personen in der Generation%d: Doppelklick"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:271
 #, python-format
@@ -16390,7 +16389,7 @@ msgstr "Alle Generationen"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:275
 msgid "Double-click to see all generations"
-msgstr "Doppelt klicken um alle Generationen zu sehen"
+msgstr "Zeige alle Generationen: Doppelklick"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:277
 #, python-format
@@ -16451,15 +16450,15 @@ msgstr "Schnellansichten"
 #: ../gramps/plugins/gramplet/recordsgramplet.py:51
 #: ../gramps/plugins/gramplet/whatsnext.py:46
 msgid "Double-click name for details"
-msgstr "Namen für Details doppelt-klicken"
+msgstr "Zeige Details für Namen: Doppelklick"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:43
 msgid "Click name to make person active\n"
-msgstr "Auf Namen klicken um Person zu aktivieren\n"
+msgstr "Auf den Namen klicken, um die Person zu aktivieren.\n"
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:44
 msgid "Right-click name to edit person"
-msgstr "Name rechts-klicken um Person zu bearbeiten"
+msgstr "Rechtsklick auf den Namen, um die Person zu bearbeiten."
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:72
 #, python-format
@@ -16497,8 +16496,8 @@ msgid ""
 "Click name to change active\n"
 "Double-click name to edit"
 msgstr ""
-"Einmal klicken um Namen zu aktivieren\n"
-"Doppelt klicken um Namen zu bearbeiten"
+"Einmal klicken, um den Namen zu aktivieren.\n"
+"Doppelt klicken, um den Namen zu bearbeiten."
 
 #: ../gramps/plugins/gramplet/sessionloggramplet.py:44
 msgid "Log for this Session"
@@ -16526,7 +16525,7 @@ msgstr "Ausgewählt"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:56
 msgid "Double-click item to see matches"
-msgstr "Eintrag doppelt-klicken um Treffer zu sehen"
+msgstr "Eintrag doppelt-klicken, um die Treffer zu sehen."
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:95
 #: ../gramps/plugins/textreport/summary.py:235
@@ -16561,7 +16560,7 @@ msgstr "Personen ohne Geburtsdatum"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:170
 msgid "Disconnected individuals"
-msgstr "Einzel stehende Personen"
+msgstr "Einzeln stehende Personen"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:174
 #: ../gramps/plugins/textreport/summary.py:206
@@ -16587,7 +16586,7 @@ msgstr "Personen mit Medienobjekten"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:190
 msgid "Total number of media object references"
-msgstr "Gesamtzahl der Medienobjektreferenzen"
+msgstr "Gesamtanzahl der Medienobjektreferenzen"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:194
 msgid "Number of unique media objects"
@@ -16605,7 +16604,7 @@ msgstr "Fehlende Medienobjekte"
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:63
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:48
 msgid "Double-click surname for details"
-msgstr "Nachnamen für Details doppelt-klicken"
+msgstr "Doppelklick auf Nachnamen für Details"
 
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:83
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:178
@@ -16637,22 +16636,22 @@ msgstr "Angezeigte Nachnamen gesamt"
 #: ../gramps/plugins/gramplet/todo.py:49
 #: ../gramps/plugins/gramplet/todogramplet.py:52
 msgid "Previous To Do note"
-msgstr "Vorherige zu erledigen Notiz"
+msgstr "Vorherige 'noch zu erledigen' Notiz"
 
 #: ../gramps/plugins/gramplet/todo.py:53
 #: ../gramps/plugins/gramplet/todogramplet.py:56
 msgid "Next To Do note"
-msgstr "Nächste zu erledigen Notiz"
+msgstr "Nächste 'noch zu erledigen' Notiz"
 
 #: ../gramps/plugins/gramplet/todo.py:57
 #: ../gramps/plugins/gramplet/todogramplet.py:60
 msgid "Edit the selected To Do note"
-msgstr "Gewählte zu erledigen Notiz bearbeiten"
+msgstr "Gewählte 'noch zu erledigen' Notiz bearbeiten"
 
 #: ../gramps/plugins/gramplet/todo.py:61
 #: ../gramps/plugins/gramplet/todogramplet.py:64
 msgid "Add a new To Do note"
-msgstr "Eine neue zu erledigen Notiz hinzufügen"
+msgstr "Eine neue 'noch zu erledigen' Notiz hinzufügen"
 
 #: ../gramps/plugins/gramplet/todogramplet.py:142
 msgid "Unattached"
