@@ -230,6 +230,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         parent_list = place.get_placeref_list()
         while len(parent_list) > 0:
             place = self.dbstate.db.get_place_from_handle(parent_list[0].ref)
+            parent_list = place.get_placeref_list()
             if int(place.get_type()) == PlaceType.COUNTY:
                 county = place.name
                 if parent_place is None:
