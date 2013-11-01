@@ -41,6 +41,8 @@ _ = glocale.translation.gettext
 #------------------------------------------------------------------------
 from gramps.plugins.lib.libmapservice import MapService
 from gramps.gui.dialog import WarningDialog
+from gramps.gen.utils.location import get_main_location
+from gramps.gen.lib import PlaceType
 
 # Make upper case of translaed country so string search works later
 MAP_NAMES_SWEDEN = [_("Sweden").upper(), 
@@ -65,12 +67,13 @@ def _strip_leading_comma(descr):
         descr = descr.strip()[1:]
     return descr.strip()
 
-def _build_title(self):
+def _build_title(db, place):
     """ Builds descrition string for title parameter in url """
-    descr = self.get_title()
-    parish = self.get_main_location().get_parish()
-    city = self.get_main_location().get_city()
-    state = self.get_main_location().get_state()
+    descr = place.get_title()
+    location = get_main_location(db, place)
+    parish = location.get(PlaceType.PARISH)
+    city = location.get(PlaceType.CITY)
+    state = location.get(PlaceType.STATE)
     title_descr = ""
     if descr:
         title_descr += descr.strip()
@@ -82,19 +85,21 @@ def _build_title(self):
         title_descr += ', ' + state.strip() + _(" state")
     return _strip_leading_comma(title_descr)
  
-def _build_city(self):
+def _build_city(db, place):
     """ Builds description string for city parameter in url """
-    county = self.get_main_location().get_county()
+    location = get_main_location(db, place)
+    county = location.get(PlaceType.COUNTY)
     # Build a title description string that will work for Eniro
-    city_descr = _build_area(self)
+    city_descr = _build_area(db, place)
     if county:
         city_descr += ', ' + county
     return _strip_leading_comma(city_descr)
 
-def _build_area(self):
+def _build_area(db, place):
     """ Builds string for area parameter in url """
-    street = self.get_main_location().get_street()
-    city = self.get_main_location().get_city()
+    location = get_main_location(db, place)
+    street = location.get(PlaceType.STREET)
+    city = location.get(PlaceType.CITY)
     # Build a title description string that will work for Eniro
     area_descr = ""
     if street:
@@ -121,7 +126,8 @@ class EniroSVMapService(MapService):
         path = ""
         # First see if we are in or near Sweden or Denmark
         # Change country to upper case
-        country = place.get_main_location().get_country().upper().strip()
+        location = get_main_location(self.database, place)
+        country = location.get(PlaceType.COUNTRY, '').upper().strip()
         country_given = (country in MAP_NAMES_SWEDEN or \
                         country in MAP_NAMES_DENMARK) and (country != "")
         # if no country given, check if we might be in the vicinity defined by
@@ -143,8 +149,8 @@ class EniroSVMapService(MapService):
                 return
 
         if coord_ok:
-            place_title = _build_title(place)
-            place_city =  _build_city(place)
+            place_title = _build_title(self.database, place)
+            place_city =  _build_city(self.database, place)
             x_coord, y_coord = self._lat_lon(place, format="RT90")
             # Set zoom level to 5 if Sweden/Denmark, others 3
             zoom = 5
@@ -157,7 +163,7 @@ class EniroSVMapService(MapService):
             self.url = path.replace(" ","%20")
             return
 
-        place_area = _build_area(place)
+        place_area = _build_area(self.database, place)
         if country_given and place_area:
             if country in MAP_NAMES_SWEDEN:
                 path = "http://kartor.eniro.se/query?&what=map_adr&mop=aq" \

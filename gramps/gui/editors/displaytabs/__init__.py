@@ -56,6 +56,7 @@ from .personeventembedlist import PersonEventEmbedList
 from .personrefembedlist import PersonRefEmbedList
 from .personbackreflist import PersonBackRefList
 from .placebackreflist import PlaceBackRefList
+from .placerefembedlist import PlaceRefEmbedList
 from .repoembedlist import RepoEmbedList
 from .surnametab import SurnameTab
 from .sourcebackreflist import SourceBackRefList

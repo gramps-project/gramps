@@ -51,6 +51,8 @@ from gramps.gen.proxy import PrivateProxyDb
 from gramps.gen.datehandler import get_date
 from gramps.gen.sort import Sort
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.utils.location import get_main_location
+from gramps.gen.lib import PlaceType
 
 class PlaceReport(Report):
     """
@@ -148,16 +150,17 @@ class PlaceReport(Report):
         This procedure writes out the details of a single place
         """
         place = self.database.get_place_from_handle(handle)
-        location = place.get_main_location()
+        location = get_main_location(self.database, place)
 
-        place_details = [self._("Gramps ID: %s ") % place.get_gramps_id(),
-                         self._("Street: %s ") % location.get_street(),
-                         self._("Parish: %s ") % location.get_parish(),
-                         self._("Locality: %s ") % location.get_locality(),
-                         self._("City: %s ") % location.get_city(),
-                         self._("County: %s ") % location.get_county(),
-                         self._("State: %s") % location.get_state(),
-                         self._("Country: %s ") % location.get_country()]
+        place_details = [
+            self._("Gramps ID: %s ") % place.get_gramps_id(),
+            self._("Street: %s ") % location.get(PlaceType.STREET, ''),
+            self._("Parish: %s ") % location.get(PlaceType.PARISH, ''),
+            self._("Locality: %s ") % location.get(PlaceType.LOCALITY, ''),
+            self._("City: %s ") % location.get(PlaceType.CITY, ''),
+            self._("County: %s ") % location.get(PlaceType.COUNTY, ''),
+            self._("State: %s") % location.get(PlaceType.STATE, ''),
+            self._("Country: %s ") % location.get(PlaceType.COUNTRY, '')]
         self.doc.start_paragraph("PLC-PlaceTitle")
         self.doc.write_text(("%(nbr)s. %(place)s") % 
                                 {'nbr' : place_nbr,

@@ -37,7 +37,8 @@ _ = glocale.translation.gettext
 #
 #------------------------------------------------------------------------
 from gramps.plugins.lib.libmapservice import MapService
-
+from gramps.gen.utils.location import get_main_location
+from gramps.gen.lib import PlaceType
 
 class OpensStreetMapService(MapService):
     """Map  service using http://openstreetmap.org
@@ -60,8 +61,9 @@ class OpensStreetMapService(MapService):
                         
             return
         
-        city = place.get_main_location().get_city()
-        country = place.get_main_location().get_country()
+        location = get_main_location(self.database, place)
+        city = location.get(PlaceType.CITY)
+        country = location.get(PlaceType.COUNTRY)
         if city and country:
             self.url = "http://open.mapquestapi.com/nominatim/v1/"\
                         "search.php?q=%s%%2C%s" % (city, country)

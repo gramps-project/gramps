@@ -44,7 +44,10 @@ import io
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.lib import AttributeType, ChildRefType, Citation, Date, EventRoleType, EventType, LdsOrd, NameType, NoteType, Person, UrlType, SrcAttributeType
+from gramps.gen.lib import (AttributeType, ChildRefType, Citation, Date, 
+                            EventRoleType, EventType, LdsOrd, NameType, 
+                            PlaceType, NoteType, Person, UrlType, 
+                            SrcAttributeType)
 from gramps.version import VERSION
 import gramps.plugins.lib.libgedcom as libgedcom
 from gramps.gen.errors import DatabaseError
@@ -53,6 +56,7 @@ from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.constfunc import cuni
+from gramps.gen.utils.location import get_main_location
 
 #-------------------------------------------------------------------------
 #
@@ -1373,23 +1377,28 @@ class GedcomWriter(UpdateCallback):
         # The Gedcom standard shows that an optional address structure can
         # be written out in the event detail.
         # http://homepages.rootsweb.com/~pmcbride/gedcom/55gcch2.htm#EVENT_DETAIL
-        location = place.get_main_location()
-        if location and not location.is_empty():
-            self._writeln(level, "ADDR", location.get_street())
-            if location.get_street():
-                self._writeln(level + 1, 'ADR1', location.get_street())
-            if location.get_locality():
-                self._writeln(level + 1, 'ADR2', location.get_locality())
-            if location.get_city():
-                self._writeln(level + 1, 'CITY', location.get_city())
-            if location.get_state():
-                self._writeln(level + 1, 'STAE', location.get_state())
-            if location.get_postal_code():
-                self._writeln(level + 1, 'POST', location.get_postal_code())
-            if location.get_country():
-                self._writeln(level + 1, 'CTRY', location.get_country())
-            if location.get_phone():
-                self._writeln(level, 'PHON', location.get_phone())
+        location = get_main_location(self.dbase, place)
+        street = location.get(PlaceType.STREET)
+        locality = location.get(PlaceType.LOCALITY)
+        city = location.get(PlaceType.CITY)
+        state = location.get(PlaceType.STATE)
+        country = location.get(PlaceType.COUNTRY)
+        postal_code = place.get_code()
+        
+        if (street or locality or city or state or postal_code or country):
+            self._writeln(level, "ADDR", street)
+            if street:
+                self._writeln(level + 1, 'ADR1', street)
+            if locality:
+                self._writeln(level + 1, 'ADR2', locality)
+            if city:
+                self._writeln(level + 1, 'CITY', city)
+            if state:
+                self._writeln(level + 1, 'STAE', state)
+            if postal_code:
+                self._writeln(level + 1, 'POST', postal_code)
+            if country:
+                self._writeln(level + 1, 'CTRY', country)
 
         self._note_references(place.get_note_list(), level+1)
 

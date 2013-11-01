@@ -131,7 +131,7 @@ from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
         MediaRef, Name, NameType, Note, NoteType, Person, PersonRef, Place,
         RepoRef, Repository, RepositoryType, Researcher,
         Source, SourceMediaType, SrcAttribute, SrcAttributeType,
-        Surname, Tag, Url, UrlType)
+        Surname, Tag, Url, UrlType, PlaceType, PlaceRef)
 from gramps.gen.db import DbTxn
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.mime import get_type
@@ -144,6 +144,7 @@ from gramps.gui.dialog import WarningDialog
 from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE, UNITYPE
+from gramps.plugins.lib.libplaceimport import PlaceImport
 
 #-------------------------------------------------------------------------
 #
@@ -1661,7 +1662,7 @@ class PlaceParser(object):
             fcn = self.__field_map.get(item, lambda x, y: None)
             self.parse_function.append(fcn)
 
-    def load_place(self, place, text):
+    def load_place(self, place_import, place, text):
         """
         Takes the text string representing a place, splits it into
         its subcomponents (comma separated), and calls the approriate
@@ -1671,11 +1672,30 @@ class PlaceParser(object):
         items = [item.strip() for item in text.split(',')]
         if len(items) != len(self.parse_function):
             return
-        loc = place.get_main_location()
         index = 0
+        loc = Location()
         for item in items:
             self.parse_function[index](loc, item)
             index += 1
+
+        location = (loc.get_street(),
+                    loc.get_locality(),
+                    loc.get_parish(),
+                    loc.get_city(),
+                    loc.get_county(),
+                    loc.get_state(),
+                    loc.get_country())
+
+        place_import.store_location(location, place.handle)
+
+        for type_num, name in enumerate(location):
+            if name:
+                break
+
+        place.set_name(name)
+        place.set_type(PlaceType(7-type_num))
+        code = loc.get_postal_code()
+        place.set_code(code)
 
 #-------------------------------------------------------------------------
 #
@@ -1907,6 +1927,8 @@ class GedcomParser(UpdateCallback):
         self.fid2id = {}
         self.rid2id = {}
         self.nid2id = {}
+
+        self.place_import = PlaceImport(self.dbase)
 
         #
         # Parse table for <<SUBMITTER_RECORD>> below the level 0 SUBM tag
@@ -2674,6 +2696,8 @@ class GedcomParser(UpdateCallback):
                 src.set_title(title)
                 self.dbase.add_source(src, self.trans)
             self.__clean_up()
+            
+            self.place_import.generate_hierarchy(self.trans)
             
         if not self.dbase.get_feature("skip-check-xref"):
             self.__check_xref()
@@ -4370,7 +4394,8 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         if sub_state.place:
-            sub_state.place_fields.load_place(sub_state.place, 
+            sub_state.place_fields.load_place(self.place_import,
+                                              sub_state.place, 
                                               sub_state.place.get_title())
 
     def __lds_temple(self, line, state):
@@ -4929,7 +4954,8 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         if sub_state.place:
-            sub_state.place_fields.load_place(sub_state.place, 
+            sub_state.place_fields.load_place(self.place_import,
+                                              sub_state.place, 
                                               sub_state.place.get_title())
 
     def __family_source(self, line, state):
@@ -5236,7 +5262,6 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
 
-        location = None
         if self.is_ftw and state.event.type in FTW_BAD_PLACE:
             state.event.set_description(line.data)
         else:
@@ -5247,9 +5272,6 @@ class GedcomParser(UpdateCallback):
             place_handle = state.event.get_place_handle()
             if place_handle:
                 place = self.dbase.get_place_from_handle(place_handle)
-                location = place.get_main_location()
-                empty_loc = Location()
-                place.set_main_location(empty_loc)
             else:
                 place = self.__find_or_create_place(line.data)
             place.set_title(line.data)
@@ -5258,20 +5280,14 @@ class GedcomParser(UpdateCallback):
             sub_state = CurrentState()
             sub_state.place = place
             sub_state.level = state.level+1
-            sub_state.pf = self.place_parser
+            sub_state.pf = PlaceParser()
 
             self.__parse_level(sub_state, self.event_place_map, 
                              self.__undefined)
             state.msg += sub_state.msg
 
-            sub_state.pf.load_place(place, place.get_title())
-            # If we already had a remembered location, we set it into the main
-            # location if that is empty, else the alternate location
-            if location and not location.is_empty():
-                if place.get_main_location().is_empty():
-                    place.set_main_location(location)
-                else:
-                    place.add_alternate_locations(location)
+            sub_state.pf.load_place(self.place_import, place, place.get_title())
+
             self.dbase.commit_place(place, self.trans)
 
     def __event_place_note(self, line, state):
@@ -5393,7 +5409,6 @@ class GedcomParser(UpdateCallback):
             place_handle = place.handle
 
         self.__add_location(place, location)
-        # place.set_main_location(location)
 
         list(map(place.add_note, note_list))
 
@@ -5407,19 +5422,11 @@ class GedcomParser(UpdateCallback):
         @param location: A location we want to add to this place
         @type location: gen.lib.location
         """
-        # If there is no main location, we add the location
-        if place.main_loc is None:
-            place.set_main_location(location)
-        elif place.get_main_location().is_equivalent(location) == IDENTICAL:
-            # the location is already present as the main location
-            pass
-        else:
-            for loc in place.get_alternate_locations():
-                if loc.is_equivalent(location) == IDENTICAL:
-                    return
-            place.add_alternate_locations(location)
-                
-    
+        for loc in place.get_alternate_locations():
+            if loc.is_equivalent(location) == IDENTICAL:
+                return
+        place.add_alternate_locations(location)
+
     def __event_phon(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -5430,8 +5437,8 @@ class GedcomParser(UpdateCallback):
         place_handle = state.event.get_place_handle()
         if place_handle:
             place = self.dbase.get_place_from_handle(place_handle)
-            location = place.get_main_location()
-            location.set_phone(line.data)
+            codes = [place.get_code(), line.data]
+            place.set_code(' '.join(code for code in codes if code))
             self.dbase.commit_place(place, self.trans)
 
     def __event_privacy(self, line, state):

@@ -39,6 +39,7 @@ from .editnote import EditNote, DeleteNoteQuery
 from .editperson import EditPerson
 from .editpersonref import EditPersonRef
 from .editplace import EditPlace, DeletePlaceQuery
+from .editplaceref import EditPlaceRef
 from .editrepository import EditRepository, DeleteRepositoryQuery
 from .editreporef import EditRepoRef
 from .editsource import EditSource, DeleteSrcQuery

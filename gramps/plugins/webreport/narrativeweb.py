@@ -108,7 +108,7 @@ log = logging.getLogger(".NarrativeWeb")
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.lib import (ChildRefType, Date, EventType, FamilyRelType, Name,
-                            NameType, Person, UrlType, NoteType,
+                            NameType, Person, UrlType, NoteType, PlaceType,
                             EventRoleType, Family, Event, Place, Source,
                             Citation, MediaObject, Repository, Note, Tag)
 from gramps.gen.lib.date import Today
@@ -148,6 +148,7 @@ from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.pluginmanager import GuiPluginManager
 
 from gramps.gen.relationship import get_relationship_calculator
+from gramps.gen.utils.location import get_main_location
 
 COLLATE_LANG = glocale.collation
 SORT_KEY = glocale.sort_key
@@ -508,14 +509,11 @@ def get_gendex_data(database, event_ref):
                 if place_handle:
                     place = database.get_place_from_handle(place_handle)
                     if place:
-                        location = place.get_main_location()
-                        if location and not location.is_empty():
-                            poe = ", ".join(l for l in
-                                            [
-                                                location.get_city().strip(),
-                                                location.get_state().strip(),
-                                                location.get_country().strip()
-                                            ] if l)
+                        location = get_main_location(self.dbase_, place)
+                        poe = ", ".join(l for l in [
+                            location.get(PlaceType.CITY, '').strip(),
+                            location.get(PlaceType.STATE, '').strip(),
+                            location.get(PlaceType.COUNTRY, '').strip()] if l)
     return doe, poe
 
 def format_date(date):
@@ -2641,26 +2639,22 @@ class BasePage(object):
             )
             tbody += trow
 
-        if place.main_loc:
-            ml = place.get_main_location()
-            if ml and not ml.is_empty(): 
-
-                for (label, data) in [
-                    (STREET,         ml.street),
-                    (LOCALITY,       ml.locality), 
-                    (CITY,           ml.city),
-                    (PARISH,         ml.parish),
-                    (COUNTY,         ml.county),
-                    (STATE,          ml.state),
-                    (POSTAL,         ml.postal),
-                    (COUNTRY,        ml.country),
-                    (_("Telephone"), ml.phone) ]:  
-                    if data:
-                        trow = Html("tr") + (
-                            Html("td", label, class_ = "ColumnAttribute", inline = True),
-                            Html("td", data, class_ = "ColumnValue", inline = True)
-                        )
-                        tbody += trow
+        ml = get_main_location(self.dbase_, place)
+        for (label, data) in [
+            (STREET,         ml.get(PlaceType.STREET, '')),
+            (LOCALITY,       ml.get(PlaceType.LOCALITY, '')), 
+            (CITY,           ml.get(PlaceType.CITY, '')),
+            (PARISH,         ml.get(PlaceType.PARISH, '')),
+            (COUNTY,         ml.get(PlaceType.COUNTY, '')),
+            (STATE,          ml.get(PlaceType.STATE, '')),
+            (POSTAL,         place.get_code()),
+            (COUNTRY,        ml.get(PlaceType.COUNTRY, ''))]:  
+            if data:
+                trow = Html("tr") + (
+                    Html("td", label, class_ = "ColumnAttribute", inline = True),
+                    Html("td", data, class_ = "ColumnValue", inline = True)
+                )
+                tbody += trow
 
         altloc = place.get_alternate_locations()
         if altloc:
@@ -3384,7 +3378,7 @@ class PlacePages(BasePage):
                     place = self.dbase_.get_place_from_handle(place_handle)
                     if place: 
                         place_title = place.get_title()
-                        ml = place.get_main_location()
+                        ml = get_main_location(self.dbase_, place)
 
                         if place_title and not place_title.isspace():  
                             letter = get_index_letter(first_letter(place_title),
@@ -3414,8 +3408,8 @@ class PlacePages(BasePage):
                         trow.extend(
                             Html("td", data or "&nbsp;", class_ =colclass, inline =True)
                             for (colclass, data) in [
-                                ["ColumnState",     ml.state],
-                                ["ColumnCountry",   ml.country] ]
+                                ["ColumnState",     ml.get(PlaceType.STATE, '')],
+                                ["ColumnCountry",   ml.get(PlaceType.COUNTRY, '')] ]
                         )
 
                         tcell1 = Html("td", class_ ="ColumnLatitude", inline =True)

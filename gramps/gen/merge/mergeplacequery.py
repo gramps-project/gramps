@@ -30,7 +30,7 @@ Provide merge capabilities for places.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..lib import Person, Family, Event
+from ..lib import Person, Family, Event, Place
 from ..db import DbTxn
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
@@ -81,6 +81,12 @@ class MergePlaceQuery(object):
                     event.replace_handle_reference('Place', old_handle,
                                                    new_handle)
                     self.database.commit_event(event, trans)
+                elif class_name == Place.__name__:
+                    place = self.database.get_place_from_handle(handle)
+                    assert(place.has_handle_reference('Place', old_handle))
+                    place.replace_handle_reference('Place', old_handle,
+                                                   new_handle)
+                    self.database.commit_place(place, trans)
                 else:
                     raise MergeError("Encounter an object of type %s that has "
                             "a place reference." % class_name)

@@ -41,9 +41,10 @@ from __future__ import print_function
 #------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import displayer
-from gramps.gen.lib import EventType
+from gramps.gen.lib import EventType, PlaceType, Location
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.constfunc import STRTYPE, cuni
+from gramps.gen.utils.location import get_main_location
 
 
 #------------------------------------------------------------------------
@@ -159,7 +160,7 @@ class NameFormat(GenericFormat):
     def parse_format(self, name):
         """ Parse the name """
         if self.is_blank(name):
-            return
+            return 
 
         def common():
             """ return the common name of the person """
@@ -310,7 +311,7 @@ class PlaceFormat(GenericFormat):
     def _default_format(self, place):
         return place.get_title()
 
-    def parse_format(self, place):
+    def parse_format(self, database, place):
         """ Parse the place """
 
         if self.is_blank(place):
@@ -318,16 +319,28 @@ class PlaceFormat(GenericFormat):
 
         code = "elcuspn" + "oitxy"
         upper = code.upper()
-        function = [place.get_main_location().get_street,
-                    place.get_main_location().get_locality,
-                    place.get_main_location().get_city,
-                    place.get_main_location().get_county,
-                    place.get_main_location().get_state,
-                    place.get_main_location().get_postal_code,
-                    place.get_main_location().get_country,
+        
+        main_loc = get_main_location(database, place)
+        location = Location()
+        location.set_street(main_loc.get(PlaceType.STREET, ''))
+        location.set_locality(main_loc.get(PlaceType.LOCALITY, ''))
+        location.set_parish(main_loc.get(PlaceType.PARISH, ''))
+        location.set_city(main_loc.get(PlaceType.CITY, ''))
+        location.set_county(main_loc.get(PlaceType.COUNTY, ''))
+        location.set_state(main_loc.get(PlaceType.STATE, ''))
+        location.set_postal_code(main_loc.get(PlaceType.STREET, ''))
+        location.set_country(main_loc.get(PlaceType.COUNTRY, ''))
 
-                    place.get_main_location().get_phone,
-                    place.get_main_location().get_parish,
+        function = [location.get_street,
+                    location.get_locality,
+                    location.get_city,
+                    location.get_county,
+                    location.get_state,
+                    place.get_code,
+                    location.get_country,
+
+                    location.get_phone,
+                    location.get_parish,
                     place.get_title,
                     place.get_longitude,
                     place.get_latitude
@@ -382,7 +395,7 @@ class EventFormat(GenericFormat):
             """ start formatting a place in this event """
             place_format = PlaceFormat(self.string_in)
             place = place_format.get_place(self.database, event)
-            return place_format.parse_format(place)
+            return place_format.parse_format(self.database, place)
 
         def format_attrib():
             """ Get the name and then get the attributes value """
@@ -839,7 +852,7 @@ class VariableParse(object):
         place = place_f.get_place(self.database, event)
         if self.empty_item(place):
             return
-        return place_f.parse_format(place)
+        return place_f.parse_format(self.database, place)
 
     def __parse_name(self, person):
         name_format = NameFormat(self._in)

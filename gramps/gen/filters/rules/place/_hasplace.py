@@ -36,7 +36,8 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from .. import Rule
-from ....lib import Location
+from ....lib import PlaceType
+from ....utils.location import get_locations
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +46,6 @@ from ....lib import Location
 #-------------------------------------------------------------------------
 class HasPlace(Rule):
     """Rule that checks for a place with a particular value"""
-
 
     labels      = [ _('Name:'), 
                     _('Street:'), 
@@ -62,50 +62,37 @@ class HasPlace(Rule):
     category    = _('General filters')
     allow_regex = True
 
+    TYPE2FIELD = {PlaceType.STREET: 1,
+                  PlaceType.LOCALITY: 2,
+                  PlaceType.CITY: 3,
+                  PlaceType.COUNTY: 4,
+                  PlaceType.STATE: 5,
+                  PlaceType.COUNTRY: 6,
+                  PlaceType.PARISH: 8}
+
     def apply(self, db, place):
         if not self.match_substring(0, place.get_title()):
             return False
 
+        if not self.match_substring(7, place.get_code()):
+            return False
+
         # If no location data was given then we're done: match
-        if not any(self.list[1:]):
+        if not any(self.list[1:7] + [self.list[8]]):
             return True
             
-        # Something was given, so checking for location until we match
-        for loc in [place.main_loc] + place.alt_loc:
-            if self.apply_location(loc):
+        for location in get_locations(db, place):
+            if self.check(location):
                 return True
 
-        # Nothing matched
         return False
 
-    def apply_location(self, loc):
-        if not loc:
-            # Allow regular expressions to match empty fields
-            loc = Location()
-
-        if not self.match_substring(1, loc.get_street()):
-            return False
-
-        if not self.match_substring(2, loc.get_locality()):
-            return False
-
-        if not self.match_substring(3, loc.get_city()):
-            return False
-
-        if not self.match_substring(4, loc.get_county()):
-            return False
-
-        if not self.match_substring(5, loc.get_state()):
-            return False
-
-        if not self.match_substring(6, loc.get_country()):
-            return False
-
-        if not self.match_substring(7, loc.get_postal_code()):
-            return False
-
-        if not self.match_substring(8, loc.get_parish()):
-            return False
-
-        # Nothing contradicted, so we're matching this location
+    def check(self, location):
+        """
+        Check each location for a match.
+        """
+        for place_type, field in self.TYPE2FIELD.iteritems():
+            name = location.get(place_type, '')
+            if not self.match_substring(field, name):
+                return False
         return True

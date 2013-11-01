@@ -718,6 +718,16 @@ class GrampsXmlWriter(UpdateCallback):
             self.write_note_list(note_list,index+1)
             self.g.write('%s</eventref>\n' % sp)
 
+    def dump_place_ref(self, placeref, index=1):
+        sp = "  " * index
+        date = placeref.get_date_object()
+        if date.is_empty():
+            self.write_ref('placeref', placeref.ref, index, close=True)
+        else:
+            self.write_ref('placeref', placeref.ref, index, close=False)
+            self.write_date(date, index+1)
+            self.g.write('%s</placeref>\n' % sp)
+
     def write_event(self,event,index=1):
         if not event:
             return
@@ -1185,25 +1195,21 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_primary_tag("placeobj", place, index)
 
         title = self.fix(place.get_title())
+        name = self.fix(place.get_name())
+        ptype = self.fix(place.get_type().xml_str())
+        code = self.fix(place.get_code())
+        self.write_line_nofix("ptitle", title, index+1)
+        self.write_line_nofix("pname", name, index+1)
+        self.write_line_nofix("type", ptype, index+1)
+        self.write_line_nofix("code", code, index+1)
+    
         longitude = self.fix(place.get_longitude())
         lat = self.fix(place.get_latitude())
-        main_loc = place.get_main_location()
-        llen = (len(place.get_alternate_locations()) +
-                len(place.get_url_list()) +
-                len(place.get_media_list()) +
-                len(place.get_citation_list())
-               )
-
-        ml_empty = main_loc.is_empty()
-
-        if title == "":
-            title = self.build_place_title(place.get_main_location())
-        self.write_line_nofix("ptitle", title, index+1)
-    
         if longitude or lat:
             self.g.write('%s<coord long="%s" lat="%s"/>\n'
                          % ("  "*(index+1), longitude, lat))
-        self.dump_location(main_loc)
+        for placeref in place.get_placeref_list():
+            self.dump_place_ref(placeref, index+1)
         list(map(self.dump_location, place.get_alternate_locations()))
         self.write_media_list(place.get_media_list(), index+1)
         self.write_url_list(place.get_url_list())

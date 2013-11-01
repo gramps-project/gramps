@@ -424,11 +424,12 @@ class ListView(NavigationView):
                 parent_iter = self.model.iter_parent(iter_)
                 if parent_iter:
                     parent_path = self.model.get_path(parent_iter)
-                    parent_path_list = parent_path.get_indices()
-                    for i in range(len(parent_path_list)):
-                        expand_path = Gtk.TreePath(
-                                tuple([x for x in parent_path_list[:i+1]]))
-                        self.list.expand_row(expand_path, False)
+                    if parent_path:
+                        parent_path_list = parent_path.get_indices()
+                        for i in range(len(parent_path_list)):
+                            expand_path = Gtk.TreePath(
+                                    tuple([x for x in parent_path_list[:i+1]]))
+                            self.list.expand_row(expand_path, False)
 
             # Select active object
             path = self.model.get_path(iter_)

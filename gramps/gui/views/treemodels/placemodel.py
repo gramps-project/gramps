@@ -30,7 +30,6 @@ Place Model.
 # python modules
 #
 #-------------------------------------------------------------------------
-import cgi
 import logging
 _LOG = logging.getLogger(".gui.views.treemodels.placemodel")
 
@@ -46,6 +45,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.lib.placetype import PlaceType
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.constfunc import cuni
@@ -62,16 +62,6 @@ _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# Constants
-#
-#-------------------------------------------------------------------------
-COUNTRYLEVELS = {
-'default': [_('<Countries>'), _('<States>'), _('<Counties>'), 
-            _('<Places>')]
-}
-
-#-------------------------------------------------------------------------
-#
 # PlaceBaseModel
 #
 #-------------------------------------------------------------------------
@@ -83,39 +73,27 @@ class PlaceBaseModel(object):
         self.fmap = [
             self.column_name,
             self.column_id,
-            self.column_street,
-            self.column_locality,
-            self.column_city,
-            self.column_county,
-            self.column_state,
-            self.column_country,
-            self.column_postal_code,
-            self.column_parish,
+            self.column_title,
+            self.column_type,
+            self.column_code,
             self.column_latitude,
             self.column_longitude,
             self.column_private,
             self.column_tags,
             self.column_change,
-            self.column_place_name,
             self.column_tag_color
             ]
         self.smap = [
             self.column_name,
             self.column_id,
-            self.column_street,
-            self.column_locality,
-            self.column_city,
-            self.column_county,
-            self.column_state,
-            self.column_country,
-            self.column_postal_code,
-            self.column_parish,
+            self.column_title,
+            self.column_type,
+            self.column_code,
             self.sort_latitude,
             self.sort_longitude,
             self.column_private,
             self.column_tags,
             self.sort_change,
-            self.column_place_name,
             self.column_tag_color
             ]
 
@@ -133,13 +111,16 @@ class PlaceBaseModel(object):
         """
         Return the color column.
         """
-        return 16
+        return 10
 
     def on_get_n_columns(self):
         return len(self.fmap)+1
 
-    def column_place_name(self, data):
+    def column_title(self, data):
         return cuni(data[2])
+
+    def column_name(self, data):
+        return cuni(data[6])
 
     def column_longitude(self, data):
         if not data[3]:
@@ -176,66 +157,24 @@ class PlaceBaseModel(object):
     def column_id(self, data):
         return cuni(data[1])
 
-    def column_parish(self, data):
-        try:
-            return data[5][1]
-        except:
-            return ''
+    def column_type(self, data):
+        return str(PlaceType(data[7]))
 
-    def column_street(self, data):
-        try:
-            return data[5][0][0]
-        except:
-            return ''
-
-    def column_locality(self, data):
-        try:
-            return data[5][0][1]
-        except:
-            return ''
-
-    def column_city(self, data):
-        try:
-            return data[5][0][2]
-        except:
-            return ''
-        
-    def column_county(self, data):
-        try:
-            return data[5][0][3]
-        except:
-            return ''
-    
-    def column_state(self, data):
-        try:
-            return data[5][0][4]
-        except:
-            return ''
-
-    def column_country(self, data):
-        try:
-            return data[5][0][5]
-        except:
-            return ''
-
-    def column_postal_code(self, data):
-        try:
-            return data[5][0][6]
-        except:
-            return ''
+    def column_code(self, data):
+        return cuni(data[8])
 
     def column_private(self, data):
-        if data[13]:
+        if data[16]:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
             return ''
     
     def sort_change(self, data):
-        return "%012x" % data[11]
+        return "%012x" % data[14]
     
     def column_change(self, data):
-        return format_time(data[11])
+        return format_time(data[14])
 
     def get_tag_name(self, tag_handle):
         """
@@ -249,7 +188,7 @@ class PlaceBaseModel(object):
         """
         tag_color = "#000000000000"
         tag_priority = None
-        for handle in data[12]:
+        for handle in data[15]:
             tag = self.db.get_tag_from_handle(handle)
             if tag:
                 this_priority = tag.get_priority()
@@ -262,7 +201,7 @@ class PlaceBaseModel(object):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[12]))
+        tag_list = list(map(self.get_tag_name, data[15]))
         return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
 #-------------------------------------------------------------------------
@@ -287,9 +226,6 @@ class PlaceListModel(PlaceBaseModel, FlatBaseModel):
         """
         PlaceBaseModel.destroy(self)
         FlatBaseModel.destroy(self)
-
-    def column_name(self, data):
-        return cgi.escape(cuni(data[2]))
 
 #-------------------------------------------------------------------------
 #
@@ -322,6 +258,7 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         PlaceBaseModel
         """
         self.number_items = self.db.get_number_of_places
+        self.gen_cursor = self.db.get_place_tree_cursor
 
     def get_tree_levels(self):
         """
@@ -336,68 +273,19 @@ class PlaceTreeModel(PlaceBaseModel, TreeBaseModel):
         handle      The handle of the gramps object.
         data        The object data.
         """
-        if data[5] is None:
-            # No primary location
-            level = [''] * 6
-        else:
-            #country, state, county, city, locality, street
-            level = [data[5][0][i] for i in range(5,-1,-1)]
-
-        node1 = (level[0], )
-        node2 = (level[1], level[0])
-        node3 = (level[2], level[1], level[0])
         sort_key = self.sort_func(data)
-
-        if not (level[3] or level[4] or level[5]):
-            if level[2]:
-                self.add_node(None, node1, level[0], None, add_parent=False)
-                self.add_node(node1, node2, level[1], None, add_parent=False)
-                self.add_node(node2, node3, level[2], None, add_parent=False)
-                self.add_node(node3, handle, sort_key, handle, add_parent=False)
-            elif level[1]:
-                self.add_node(None, node1, level[0], None, add_parent=False)
-                self.add_node(node1, node2, level[1], None, add_parent=False)
-                self.add_node(node2, handle, level[1], handle, add_parent=False)
-            elif level[0]:
-                self.add_node(None, node1, level[0], None, add_parent=False)
-                self.add_node(node1, handle, level[0], handle, add_parent=False)
-            else:
-                self.add_node(None, node1, level[0], None, add_parent=False)
-                self.add_node(node1, node2, level[1], None, add_parent=False)
-                self.add_node(node2, node3, level[2], None, add_parent=False)
-                self.add_node(node3, handle, sort_key, handle, add_parent=False)
-               
-        else:        
-            self.add_node(None, node1, level[0], None, add_parent=False)
-            self.add_node(node1, node2, level[1], None, add_parent=False)
-            self.add_node(node2, node3, level[2], None, add_parent=False)
-            self.add_node(node3, handle, sort_key, handle, add_parent=False)
-
-    def column_name(self, data):
-        name = ''
-        if data[5] is not None:
-            level = [data[5][0][i] for i in range(5,-1,-1)]
-            if not (level[3] or level[4] or level[5]):
-                name = cuni(level[2] or level[1] or level[0])
-            else:
-                name = ', '.join([item for item in level[3:] if item])
-        if not name:
-            name = cuni(data[2])
-
-        if name:
-            return cgi.escape(name)
+        if len(data[5]) > 0:
+            parent = data[5][0][0]
         else:
-            return "<i>%s<i>" % cgi.escape(_("<no name>"))
-        
-    def column_header(self, node):
-        """
-        Return a column heading.  This is called for nodes with no associated
-        Gramps handle.
-        """
-        if node.name:
-            return '<i>%s</i>' % cgi.escape(node.name)
-        else:
-            level = len(self.do_get_path(self._get_iter(node)).get_indices())
-            heading = '<i>%s</i>' % cgi.escape(COUNTRYLEVELS['default'][level])
-            # This causes a problem with Gtk3 unless we cast to str.
-            return str(heading)
+            parent = None
+
+        # Add the node as a root node if the parent is not in the tree.  This
+        # will happen when the view is filtered.
+        if not self._get_node(parent):
+            parent = None
+
+        self.add_node(parent, handle, sort_key, handle, add_parent=False)
+
+    def column_header(self, data):
+        # should not get here!
+        return '????'

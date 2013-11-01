@@ -199,6 +199,32 @@ class DbReadCursor(BsddbBaseCursor):
         self.cursor = source.db.cursor(txn)
         self.source = source
 
+#-------------------------------------------------------------------------
+#
+# DbBsddbTreeCursor
+#
+#-------------------------------------------------------------------------
+class DbBsddbTreeCursor(BsddbBaseCursor):
+
+    def __init__(self, source, txn=None, **kwargs):
+        BsddbBaseCursor.__init__(self, txn=txn, **kwargs)
+        self.cursor = source.cursor(txn)
+        self.source = source
+
+    def __iter__(self):
+        """
+        Iterator
+        """
+        to_do = ['']
+        while to_do:
+            data = self.set(str(to_do.pop()))
+            _n = self.next_dup
+            while data:
+                payload = pickle.loads(data[1])
+                yield (payload[0], payload)
+                to_do.append(payload[0])
+                data = _n()
+
 class DbBsddbRead(DbReadBase, Callback):
     """
     Read class for the GRAMPS databases.  Implements methods necessary to read
@@ -487,6 +513,9 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_place_cursor(self, *args, **kwargs):
         return self.get_cursor(self.place_map, *args, **kwargs)
+
+    def get_place_tree_cursor(self, *args, **kwargs):
+        return DbBsddbTreeCursor(self.parents, self.txn)
 
     def get_source_cursor(self, *args, **kwargs):
         return self.get_cursor(self.source_map, *args, **kwargs)

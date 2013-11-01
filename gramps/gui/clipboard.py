@@ -121,6 +121,7 @@ def map2class(target):
          'mediaobj': ClipMediaObj,
          'mediaref': ClipMediaRef,
          'place-link': ClipPlace,
+         'placeref': ClipPlaceRef,
          'note-link': ClipNote,
          }
     return d[target] if target in d else None
@@ -567,6 +568,24 @@ class ClipEventRef(ClipObjWrapper):
             if base:
                 self._title = base.gramps_id
                 self._value = str(base.get_type())
+
+class ClipPlaceRef(ClipObjWrapper):
+
+    DROP_TARGETS = [DdTargets.PLACEREF]
+    DRAG_TARGET  = DdTargets.PLACEREF
+    ICON         = LINK_PIC
+
+    def __init__(self, dbstate, obj):
+        super(ClipPlaceRef, self).__init__(dbstate, obj)
+        self._type  = _("Place ref")
+        self.refresh()
+
+    def refresh(self):
+        if self._obj:
+            base = self._db.get_place_from_handle(self._obj.ref)
+            if base:
+                self._title = base.gramps_id
+                self._value = str(base.get_name())
 
 class ClipName(ClipObjWrapper):
 
@@ -1082,6 +1101,7 @@ class ClipboardListView(object):
         self.register_wrapper_class(ClipEvent)
         self.register_wrapper_class(ClipPlace)
         self.register_wrapper_class(ClipEventRef)
+        self.register_wrapper_class(ClipPlaceRef)
         self.register_wrapper_class(ClipRepoRef)
         self.register_wrapper_class(ClipFamilyEvent)
         self.register_wrapper_class(ClipUrl)

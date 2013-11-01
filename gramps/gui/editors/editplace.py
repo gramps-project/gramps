@@ -50,56 +50,14 @@ from gi.repository import Gtk
 from gramps.gen.lib import NoteType, Place
 from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
-from .displaytabs import (GrampsTab, LocationEmbedList, CitationEmbedList, 
+from .displaytabs import (PlaceRefEmbedList, LocationEmbedList, CitationEmbedList, 
                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
-from ..widgets import MonitoredEntry, PrivacyButton, MonitoredTagList
+from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredTagList,
+                       MonitoredDataType)
 from gramps.gen.errors import ValidationError
 from gramps.gen.utils.place import conv_lat_lon
 from ..dialog import ErrorDialog
 from ..glade import Glade
-
-#-------------------------------------------------------------------------
-#
-# Classes
-#
-#-------------------------------------------------------------------------
-
-class MainLocTab(GrampsTab):
-    """
-    This class provides the tabpage of the main location tab
-    """
-
-    def __init__(self, dbstate, uistate, track, name, widget):
-        """
-        @param dbstate: The database state. Contains a reference to
-        the database, along with other state information. The GrampsTab
-        uses this to access the database and to pass to and created
-        child windows (such as edit dialogs).
-        @type dbstate: DbState
-        @param uistate: The UI state. Used primarily to pass to any created
-        subwindows.
-        @type uistate: DisplayState
-        @param track: The window tracking mechanism used to manage windows.
-        This is only used to pass to generted child windows.
-        @type track: list
-        @param name: Notebook label name
-        @type name: str/unicode
-        @param widget: widget to be shown in the tab
-        @type widge: gtk widget
-        """
-        GrampsTab.__init__(self, dbstate, uistate, track, name)
-        eventbox = Gtk.EventBox()
-        eventbox.add(widget)
-        self.pack_start(eventbox, True, True, 0)
-        self._set_label(show_image=False)
-        eventbox.connect('key_press_event', self.key_pressed)
-        self.show_all()
-
-    def is_empty(self):
-        """
-        Override base class
-        """
-        return False
 
 #-------------------------------------------------------------------------
 #
@@ -121,17 +79,7 @@ class EditPlace(EditPrimary):
         self.height_key = 'interface.place-height'
         
         self.top = Glade()
-
-        self.set_window(self.top.toplevel, None,
-                        self.get_menu_title())
-        tblmloc =  self.top.get_object('table19')
-        notebook = self.top.get_object('notebook3')
-        #recreate start page as GrampsTab
-        notebook.remove_page(0)
-        self.mloc = MainLocTab(self.dbstate, self.uistate, self.track, 
-                              _('_Location'), tblmloc)
-        self.track_ref_for_deletion("mloc")
-
+        self.set_window(self.top.toplevel, None, self.get_menu_title())
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():
@@ -155,23 +103,14 @@ class EditPlace(EditPrimary):
         self._add_db_signal('place-delete', self.check_for_close)
 
     def _setup_fields(self):
-        mloc = self.obj.get_main_location()
         
         self.title = MonitoredEntry(self.top.get_object("place_title"),
                                     self.obj.set_title, self.obj.get_title,
                                     self.db.readonly)
         
-        self.street = MonitoredEntry(self.top.get_object("street"),
-                                     mloc.set_street, mloc.get_street, 
-                                     self.db.readonly)
-
-        self.locality = MonitoredEntry(self.top.get_object("locality"),
-                                     mloc.set_locality, mloc.get_locality, 
-                                     self.db.readonly)
-
-        self.city = MonitoredEntry(self.top.get_object("city"),
-                                   mloc.set_city, mloc.get_city, 
-                                   self.db.readonly)
+        self.name = MonitoredEntry(self.top.get_object("name_entry"),
+                                    self.obj.set_name, self.obj.get_name,
+                                    self.db.readonly)
         
         self.gid = MonitoredEntry(self.top.get_object("gid"),
                                   self.obj.set_gramps_id, 
@@ -188,29 +127,14 @@ class EditPlace(EditPrimary):
         self.privacy = PrivacyButton(self.top.get_object("private"), self.obj, 
                                      self.db.readonly)
 
-        self.parish = MonitoredEntry(self.top.get_object("parish"),
-                                     mloc.set_parish, mloc.get_parish, 
-                                     self.db.readonly)
-        
-        self.county = MonitoredEntry(self.top.get_object("county"),
-                                     mloc.set_county, mloc.get_county, 
-                                     self.db.readonly)
-        
-        self.state = MonitoredEntry(self.top.get_object("state"),
-                                    mloc.set_state, mloc.get_state, 
-                                    self.db.readonly)
+        self.place_type = MonitoredDataType(self.top.get_object("place_type"),
+                                            self.obj.set_type,
+                                            self.obj.get_type)
 
-        self.phone = MonitoredEntry(self.top.get_object("phone"),
-                                    mloc.set_phone, mloc.get_phone, 
-                                    self.db.readonly)
-        
-        self.postal = MonitoredEntry(self.top.get_object("postal"),
-                                     mloc.set_postal_code, 
-                                     mloc.get_postal_code, self.db.readonly)
-
-        self.country = MonitoredEntry(self.top.get_object("country"),
-                                      mloc.set_country, mloc.get_country, 
-                                      self.db.readonly)
+        self.code = MonitoredEntry(
+            self.top.get_object("code_entry"),
+            self.obj.set_code, self.obj.get_code,
+            self.db.readonly)
 
         self.longitude = MonitoredEntry(
             self.top.get_object("lon_entry"),
@@ -247,8 +171,14 @@ class EditPlace(EditPrimary):
         """
         notebook = self.top.get_object('notebook3')
 
-        self._add_tab(notebook, self.mloc)
-
+        self.placeref_list = PlaceRefEmbedList(self.dbstate,
+                                               self.uistate,
+                                               self.track,
+                                               self.obj.get_placeref_list(),
+                                               self.obj.handle)
+        self._add_tab(notebook, self.placeref_list)
+        self.track_ref_for_deletion("placeref_list")
+        
         self.loc_list = LocationEmbedList(self.dbstate,
                                           self.uistate,
                                           self.track,
@@ -303,6 +233,20 @@ class EditPlace(EditPrimary):
             ErrorDialog(_("Cannot save place"),
                         _("No data exists for this place. Please "
                           "enter data or cancel the edit."))
+            self.ok_button.set_sensitive(True)
+            return
+
+        if self.obj.get_title().strip() == '':
+            msg1 = _("Cannot save location. Title not entered.")
+            msg2 = _("You must enter a title before saving.'") 
+            ErrorDialog(msg1, msg2)
+            self.ok_button.set_sensitive(True)
+            return
+
+        if self.obj.get_name().strip() == '':
+            msg1 = _("Cannot save location. Name not entered.")
+            msg2 = _("You must enter a name before saving.'") 
+            ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
 

@@ -47,7 +47,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Place
-from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
+from gramps.gui.views.listview import ListView, TEXT, ICON
 from gramps.gui.widgets.menuitem import add_menuitem
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import PlaceBookmarks
@@ -79,31 +79,21 @@ class PlaceBaseView(ListView):
     """
     COL_NAME = 0
     COL_ID = 1
-    COL_STREET = 2
-    COL_LOCALITY = 3
-    COL_CITY = 4
-    COL_COUNTY = 5
-    COL_STATE = 6
-    COL_COUNTRY = 7
-    COL_ZIP = 8
-    COL_PARISH = 9
-    COL_LAT = 10
-    COL_LON = 11
-    COL_PRIV = 12
-    COL_TAGS = 13
-    COL_CHAN = 14
+    COL_TITLE = 2
+    COL_TYPE = 3
+    COL_CODE = 4
+    COL_LAT = 5
+    COL_LON = 6
+    COL_PRIV = 7
+    COL_TAGS = 8
+    COL_CHAN = 9
     # column definitions
     COLUMNS = [
-        (_('Place Name'), MARKUP, None),
+        (_('Name'), TEXT, None),
         (_('ID'), TEXT, None),
-        (_('Street'), TEXT, None),
-        (_('Locality'), TEXT, None),
-        (_('City'), TEXT, None),
-        (_('County'), TEXT, None),
-        (_('State'), TEXT, None),
-        (_('Country'), TEXT, None),
-        (_('ZIP/Postal Code'), TEXT, None),
-        (_('Church Parish'), TEXT, None),
+        (_('Title'), TEXT, None),
+        (_('Type'), TEXT, None),
+        (_('Code'), TEXT, None),
         (_('Latitude'), TEXT, None),
         (_('Longitude'), TEXT, None),
         (_('Private'), ICON, 'gramps-lock'),
@@ -112,14 +102,10 @@ class PlaceBaseView(ListView):
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_NAME, COL_ID, COL_STREET, COL_LOCALITY,
-                             COL_CITY, COL_COUNTY, COL_STATE]),
-        ('columns.rank', [COL_NAME, COL_ID, COL_STREET, COL_LOCALITY, COL_CITY,
-                           COL_COUNTY, COL_STATE, COL_COUNTRY, COL_ZIP,
-                           COL_PARISH, COL_LAT, COL_LON, COL_PRIV, COL_TAGS,
-                           COL_CHAN]),
-        ('columns.size', [250, 75, 150, 150, 150, 150, 100, 100, 100, 
-                             100, 150, 150, 40, 100, 100])
+        ('columns.visible', [COL_TITLE, COL_ID, COL_TYPE, COL_CODE]),
+        ('columns.rank', [COL_NAME, COL_TITLE, COL_ID, COL_TYPE, COL_CODE,
+                          COL_LAT, COL_LON, COL_PRIV, COL_TAGS, COL_CHAN]),
+        ('columns.size', [250, 250, 75, 100, 100, 150, 150, 40, 100, 100])
         )    
     ADD_MSG     = _("Add a new place")
     EDIT_MSG    = _("Edit the selected place")
@@ -380,7 +366,14 @@ class PlaceBaseView(ListView):
             pass
 
     def remove(self, obj):
-        self.remove_selected_objects()
+        for handle in self.selected_handles():
+            for link in self.dbstate.db.find_backlink_handles(handle,['Place']):
+                msg = _("Cannot delete place.")
+                msg2 = _("This place is currently referenced by another place. "
+                         "First remove the places it contains.")
+                ErrorDialog(msg, msg2)
+                return
+        self.remove_selected_objects()       
 
     def remove_object_from_handle(self, handle):
         person_list = [
@@ -423,7 +416,15 @@ class PlaceBaseView(ListView):
                      "control key while clicking on the desired place.")
             ErrorDialog(msg, msg2)
         else:
-            MergePlace(self.dbstate, self.uistate, mlist[0], mlist[1])
+            MergePlace(self.dbstate, self.uistate, mlist[0], mlist[1],
+                       self.merged)
+
+    def merged(self):
+        """
+        Rebuild the model after a merge to reflect changes in the hierarchy.
+        """
+        if not (self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY):
+            self.build_tree()
 
     def get_handle_from_gramps_id(self, gid):
         obj = self.dbstate.db.get_place_from_gramps_id(gid)

@@ -36,6 +36,7 @@ from .eventref import EventRef
 from .ldsord import LdsOrd
 from .mediaref import MediaRef 
 from .name import Name
+from .placeref import PlaceRef
 from .reporef import RepoRef
 from .surname import Surname
 from .url import Url
@@ -78,6 +79,7 @@ from .markertype import MarkerType
 from .nameorigintype import NameOriginType
 from .notetype import NoteType
 from .styledtexttagtype import StyledTextTagType
+from .placetype import PlaceType
 
 # Text
 from .styledtexttag import StyledTextTag

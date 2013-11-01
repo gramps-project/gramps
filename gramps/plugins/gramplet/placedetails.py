@@ -25,6 +25,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.utils.file import media_path_full
+from gramps.gen.utils.location import get_location_list
 from gi.repository import Gtk
 from gi.repository import Pango
 
@@ -108,7 +109,7 @@ class PlaceDetails(Gramplet):
         self.title.set_text(place.get_title())
 
         self.clear_table()
-        self.display_location(place.get_main_location())
+        self.display_location(place)
         self.display_separator()
         lat, lon = conv_lat_lon(place.get_latitude(),
                                 place.get_longitude(),
@@ -118,11 +119,11 @@ class PlaceDetails(Gramplet):
         if lon:
             self.add_row(_('Longitude'), lon)
 
-    def display_location(self, location):
+    def display_location(self, place):
         """
         Display a location.
         """
-        lines = [line for line in location.get_text_data_list()[:-1] if line]
+        lines = get_location_list(self.dbstate.db, place)
         self.add_row(_('Location'), '\n'.join(lines))
 
     def display_empty(self):

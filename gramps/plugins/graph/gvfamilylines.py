@@ -53,7 +53,7 @@ log = logging.getLogger(".FamilyLines")
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.lib import EventRoleType, EventType, Person
+from gramps.gen.lib import EventRoleType, EventType, Person, PlaceType
 from gramps.gen.utils.file import media_path_full
 from gramps.gui.thumbnails import get_thumbnail_path
 from gramps.gen.plug.report import Report
@@ -65,6 +65,7 @@ from gramps.gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
                                   SurnameColorOption)
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.display.name import displayer as global_name_display
+from gramps.gen.utils.location import get_main_location
 
 #------------------------------------------------------------------------
 #
@@ -772,13 +773,13 @@ class FamilyLinesReport(Report):
                 if not bth_event.private or self._incprivate:
                     place = self._db.get_place_from_handle(bth_event.get_place_handle())
                     if place:
-                        location = place.get_main_location()
-                        if location.get_city:
-                            birthplace = location.get_city()
-                        elif location.get_state:
-                            birthplace = location.get_state()
-                        elif location.get_country:
-                            birthplace = location.get_country()
+                        location = get_main_location(self._db, place)
+                        if location.get(PlaceType.CITY):
+                            birthplace = location.get(PlaceType.CITY)
+                        elif location.get(PlaceType.STATE):
+                            birthplace = location.get(PlaceType.STATE)
+                        elif location.get(PlaceType.COUNTRY):
+                            birthplace = location.get(PlaceType.COUNTRY)
 
             # see if we have a deceased date we can use
             deathStr = None
@@ -796,13 +797,13 @@ class FamilyLinesReport(Report):
                 if not dth_event.private or self._incprivate:
                     place = self._db.get_place_from_handle(dth_event.get_place_handle())
                     if place:
-                        location = place.get_main_location()
-                        if location.get_city:
-                            deathplace = location.get_city()
-                        elif location.get_state:
-                            deathplace = location.get_state()
-                        elif location.get_country:
-                            deathplace = location.get_country()
+                        location = get_main_location(self._db, place)
+                        if location.get(PlaceType.CITY):
+                            deathplace = location.get(PlaceType.CITY)
+                        elif location.get(PlaceType.STATE):
+                            deathplace = location.get(PlaceType.STATE)
+                        elif location.get(PlaceType.COUNTRY):
+                            deathplace = location.get(PlaceType.COUNTRY)
 
             # see if we have an image to use for this person
             imagePath = None
@@ -920,13 +921,13 @@ class FamilyLinesReport(Report):
                             if self._incplaces:
                                 place = self._db.get_place_from_handle(event.get_place_handle())
                                 if place:
-                                    location = place.get_main_location()
-                                    if location.get_city:
-                                        weddingPlace = location.get_city()
-                                    elif location.get_state:
-                                        weddingPlace = location.get_state()
-                                    elif location.get_country:
-                                        weddingPlace = location.get_country()
+                                    location = get_main_location(self._db, place)
+                                    if location.get(PlaceType.CITY):
+                                        weddingPlace = location.get(PlaceType.CITY)
+                                    elif location.get(PlaceType.STATE):
+                                        weddingPlace = location.get(PlaceType.STATE)
+                                    elif location.get(PlaceType.COUNTRY):
+                                        weddingPlace = location.get(PlaceType.COUNTRY)
                         break
 
             # figure out the number of children (if any)

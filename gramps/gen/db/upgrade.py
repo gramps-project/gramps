@@ -25,8 +25,12 @@ from __future__ import with_statement, unicode_literals
 
 import sys
 import os
+import re
 from ..lib.markertype import MarkerType
 from ..lib.tag import Tag
+from ..lib.place import Place
+from ..lib.placeref import PlaceRef
+from ..lib.placetype import PlaceType
 from ..utils.file import create_checksum
 import time
 import logging
@@ -81,11 +85,65 @@ def gramps_upgrade_17(self):
     # ---------------------------------
     # Modify Place
     # ---------------------------------
-    # Add new tag_list field.
+    # Convert to hierarchical structure and add new tag_list field.
+    locations = {}
+    self.max_id = 0
+    index = re.compile('[0-9]+')
     for handle in self.place_map.keys():
         place = self.place_map[handle]
+        match = index.search(place[1])
+        if match:
+            if self.max_id <= int(match.group(0)):
+                self.max_id = int(match.group(0))
+        if place[5] is not None:
+            locations[get_location(place[5])] = handle
+
+    for handle in list(self.place_map.keys()):
+        place = self.place_map[handle]
         new_place = list(place)
-        new_place = new_place[:12] + [[]] + new_place[12:]
+
+        zip_code = ''
+        if new_place[5]:
+            zip_code = new_place[5][0][6]
+
+        # find title and type
+        main_loc = get_location(new_place[5])
+        for type_num, name in enumerate(main_loc):
+            if name:
+                break
+        
+        loc = list(main_loc[:])
+        loc[type_num] = ''
+
+        # find top parent
+        parent_handle = None
+        for n in range(7):
+            if loc[n]:
+                tup = tuple([''] * n + loc[n:])
+                parent_handle = locations.get(tup, None)
+                if parent_handle:
+                    break
+
+        # create nodes
+        if parent_handle:
+            n -= 1
+        while n > type_num:
+            if loc[n]:
+                title = ', '.join([item for item in loc[n:] if item])
+                parent_handle = add_place(self, loc[n], n, parent_handle, title)
+                locations[tuple([''] * n + loc[n:])] = parent_handle
+            n -= 1
+
+        if parent_handle is not None:
+            placeref = PlaceRef()
+            placeref.ref = parent_handle
+            placeref_list = [placeref.serialize()]
+        else:
+            placeref_list = []
+
+        new_place = new_place[:5] + [placeref_list, name, 
+                    PlaceType(7-type_num).serialize(), zip_code] + \
+                    new_place[6:12] + [[]] + new_place[12:]
         new_place = tuple(new_place)
         with BSDDBTxn(self.env, self.place_map) as txn:
             if isinstance(handle, UNITYPE):
@@ -193,6 +251,33 @@ def gramps_upgrade_17(self):
     # Bump up database version. Separate transaction to save metadata.
     with BSDDBTxn(self.env, self.metadata) as txn:
         txn.put(b'version', 17)
+
+def get_location(loc):
+    # (street, locality, parish, city, county, state, country)
+    if loc is None:
+        location = ('',) * 7
+    else:
+        location = loc[0][:2] + (loc[1],) + loc[0][2:6]
+    return location
+
+def add_place(self, name, type_num, parent, title):
+    handle = self.create_id()
+    place = Place()
+    place.handle = handle
+    self.max_id += 1
+    place.gramps_id = self.place_prefix % self.max_id
+    place.name = name
+    place.title = title
+    place.place_type = PlaceType(7-type_num)
+    if parent is not None:
+        placeref = PlaceRef()
+        placeref.ref = parent
+        place.set_placeref_list([placeref])
+    with BSDDBTxn(self.env, self.place_map) as txn:
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
+        txn.put(handle, place.serialize())
+    return handle
 
 def upgrade_datamap_17(datamap):
     """

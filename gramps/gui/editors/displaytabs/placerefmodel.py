@@ -1,9 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2003-2006  Donald N. Allingham
-# Copyright (C) 2009-2010  Gary Burton
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2000-2006  Donald N. Allingham
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,47 +22,32 @@
 
 #-------------------------------------------------------------------------
 #
-# internationalization
+# GTK libraries
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
-#-------------------------------------------------------------------------
-#
-# gramps modules
-#
-#-------------------------------------------------------------------------
-from ..views.treemodels.placemodel import PlaceTreeModel
-from .baseselector import BaseSelector
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
-# SelectPlace
+# Gramps classes
 #
 #-------------------------------------------------------------------------
-class SelectPlace(BaseSelector):
+from gramps.gen.datehandler import displayer
 
-    def _local_init(self):
-        """
-        Perform local initialisation for this class
-        """
-        self.width_key = 'interface.place-sel-width'
-        self.height_key = 'interface.place-sel-height'
+#-------------------------------------------------------------------------
+#
+# PlaceRefModel
+#
+#-------------------------------------------------------------------------
+class PlaceRefModel(Gtk.ListStore):
 
-    def get_window_title(self):
-        return _("Select Place")
-        
-    def get_model_class(self):
-        return PlaceTreeModel
-
-    def get_column_titles(self):
-        return [
-            (_('Name'),  200, BaseSelector.TEXT, 0),
-            (_('ID'),    75,  BaseSelector.TEXT, 1),
-            (_('Type'),  100, BaseSelector.TEXT, 3),
-            (_('Title'), 300, BaseSelector.TEXT, 2),
-            ]
-
-    def get_from_handle_func(self):
-        return self.db.get_place_from_handle
+    def __init__(self, obj_list, db):
+        Gtk.ListStore.__init__(self, str, str, str, str, object)
+        self.db = db
+        for obj in obj_list:
+            place = self.db.get_place_from_handle(obj.ref)
+            self.append(row=[place.get_gramps_id(),
+                             place.get_name(),
+                             str(place.get_type()), 
+                             displayer.display(obj.date), 
+                             obj, ])

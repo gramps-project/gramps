@@ -980,8 +980,11 @@ def sanitize_place(db, place):
     new_place.set_change_time(place.get_change_time())
     new_place.set_longitude(place.get_longitude())
     new_place.set_latitude(place.get_latitude())
-    new_place.set_main_location(place.get_main_location())
     new_place.set_alternate_locations(place.get_alternate_locations())
+    new_place.set_name(place.get_name())
+    new_place.set_type(place.get_type())
+    new_place.set_code(place.get_code())
+    new_place.set_placeref_list(place.get_placeref_list())
 
     copy_citation_ref_list(db, place, new_place)
     copy_notes(db, place, new_place)

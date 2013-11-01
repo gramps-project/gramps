@@ -33,6 +33,8 @@ from __future__ import unicode_literals
 #
 #-------------------------------------------------------------------------
 from .primaryobj import PrimaryObject
+from .placeref import PlaceRef
+from .placetype import PlaceType
 from .citationbase import CitationBase
 from .notebase import NoteBase
 from .mediabase import MediaBase
@@ -40,8 +42,6 @@ from .urlbase import UrlBase
 from .tagbase import TagBase
 from .location import Location
 from .handle import Handle
-
-_EMPTY_LOC = Location().serialize()
 
 #-------------------------------------------------------------------------
 #
@@ -71,13 +71,19 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             self.long = source.long
             self.lat = source.lat
             self.title = source.title
-            self.main_loc = Location(source.main_loc)
+            self.name = source.name
+            self.placeref_list = list(map(PlaceRef, source.placeref_list))
+            self.place_type = source.place_type
+            self.code = source.code
             self.alt_loc = list(map(Location, source.alt_loc))
         else:
             self.long = ""
             self.lat = ""
             self.title = ""
-            self.main_loc = None
+            self.name = ""
+            self.placeref_list = []
+            self.place_type = PlaceType()
+            self.code = ""
             self.alt_loc = []
 
     def serialize(self):
@@ -98,14 +104,10 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             be considered persistent.
         :rtype: tuple
         """
-
-        if self.main_loc is None or self.main_loc.serialize() == _EMPTY_LOC:
-            main_loc = None
-        else:
-            main_loc = self.main_loc.serialize()
-
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
-                main_loc, [al.serialize() for al in self.alt_loc],
+                [pr.serialize() for pr in self.placeref_list], 
+                self.name, self.place_type.serialize(), self.code, 
+                [al.serialize() for al in self.alt_loc],
                 UrlBase.serialize(self),
                 MediaBase.serialize(self),
                 CitationBase.serialize(self),
@@ -132,17 +134,15 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        if self.main_loc is None or self.main_loc.serialize() == _EMPTY_LOC:
-            main_loc = None
-        else:
-            main_loc = self.main_loc.to_struct()
-
         return {"handle": Handle("Place", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "title": self.title, 
                 "long": self.long, 
                 "lat": self.lat,
-                "main_loc": main_loc, 
+                "placeref_list": [pr.to_struct() for pr in self.placeref_list],
+                "name": self.name, 
+                "place_type": self.place_type.to_struct(), 
+                "code": self.code, 
                 "alt_loc": [al.to_struct() for al in self.alt_loc],
                 "urls": UrlBase.to_struct(self),
                 "media_list": MediaBase.to_struct(self),
@@ -162,14 +162,14 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :type data: tuple
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
-         main_loc, alt_loc, urls, media_list, citation_list, note_list,
+         placeref_list, self.name, the_type, self.code, 
+         alt_loc, urls, media_list, citation_list, note_list,
          self.change, tag_list, self.private) = data
 
-        if main_loc is None:
-            self.main_loc = None
-        else:
-            self.main_loc = Location().unserialize(main_loc)
+        self.place_type = PlaceType()
+        self.place_type.unserialize(the_type)
         self.alt_loc = [Location().unserialize(al) for al in alt_loc]
+        self.placeref_list = [PlaceRef().unserialize(pr) for pr in placeref_list]
         UrlBase.unserialize(self, urls)
         MediaBase.unserialize(self, media_list)
         CitationBase.unserialize(self, citation_list)
@@ -184,7 +184,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.long, self.lat, self.title, self.gramps_id]
+        return [self.long, self.lat, self.title, self.name, self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -195,8 +195,6 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
 
         ret = self.media_list + self.alt_loc + self.urls
-        if self.main_loc:
-            ret.append(self.main_loc)
         return ret
 
     def get_citation_child_list(self):
@@ -226,7 +224,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns the list of objects referencing primary objects.
         :rtype: list
         """
-        return self.get_citation_child_list()
+        return self.get_citation_child_list() + self.placeref_list
 
     def get_referenced_handles(self):
         """
@@ -253,6 +251,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         self._merge_note_list(acquisition)
         self._merge_citation_list(acquisition)
         self._merge_tag_list(acquisition)
+        self._merge_placeref_list(acquisition)
 
     def set_title(self, title):
         """
@@ -271,6 +270,24 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :rtype: str
         """
         return self.title
+
+    def set_name(self, name):
+        """
+        Set the name of the Place object.
+
+        :param title: name to assign to the Place
+        :type title: str
+        """
+        self.name = name
+
+    def get_name(self):
+        """
+        Return the name of the Place object.
+
+        :returns: Returns the name of the Place
+        :rtype: str
+        """
+        return self.name
 
     def set_longitude(self, longitude):
         """
@@ -308,31 +325,120 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return self.lat
 
-    def get_main_location(self):
+    def set_type(self, place_type):
         """
-        Return the :class:`~gen.lib.location.Location` object representing the primary information for 
-        the Place instance. 
+        Set the type of the Place object.
+
+        :param type: type to assign to the Place
+        :type type: PlaceType
+        """
+        self.place_type.set(place_type)
+
+    def get_type(self):
+        """
+        Return the type of the Place object.
+
+        :returns: Returns the type of the Place
+        :rtype: PlaceType
+        """
+        return self.place_type
+
+    def set_code(self, code):
+        """
+        Set the code of the Place object.
+
+        :param code: code to assign to the Place
+        :type code: str
+        """
+        self.code = code
+
+    def get_code(self):
+        """
+        Return the code of the Place object.
+
+        :returns: Returns the code of the Place
+        :rtype: str
+        """
+        return self.code
+
+    def add_placeref(self, placeref):
+        """
+        Add a place reference to the list of place references.
+
+        :param code: place reference to append to the list
+        :type code: PlaceRef
+        """
+        self.placeref_list.append(placeref)
+
+    def get_placeref_list(self):
+        """
+        Return the place reference list for the Place object.
+
+        :returns: Returns the place reference list for the Place
+        :rtype: list
+        """
+        return self.placeref_list
+
+    def set_placeref_list(self, placeref_list):
+        """
+        Set the place reference list for the Place object.
+
+        :param code: place reference list to assign to the Place
+        :type code: list
+        """
+        self.placeref_list = placeref_list
+
+    def _merge_placeref_list(self, acquisition):
+        """
+        Add the main and alternate locations of acquisition to the alternate
+        location list.
+
+        :param acquisition: instance to merge
+        :type acquisition: :class:'~gen.lib.place.Place
+        """
+        placeref_list = self.placeref_list[:]
+        add_list = acquisition.placeref_list
+        for addendum in add_list:
+            for placeref in placeref_list:
+                if placeref.is_equal(addendum):
+                    break
+            else:
+                self.placeref_list.append(addendum)
+
+    def _has_handle_reference(self, classname, handle):
+        """
+        Return True if the object has reference to a given handle of given 
+        primary object type.
         
-        If a :class:`~gen.lib.location.Location` hasn't been assigned yet, an empty one is created.
-
-        :returns: Returns the :class:`~gen.lib.location.Location` instance representing the primary 
-                location information about the Place.
-        :rtype: :class:`~gen.lib.location.Location`
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param handle: The handle to be checked.
+        :type handle: str
+        :returns: Returns whether the object has reference to this handle of 
+                this object type.
+        :rtype: bool
         """
-        if not self.main_loc:
-            self.main_loc = Location()
-        return self.main_loc
+        if classname == 'Place':
+            for placeref in self.placeref_list:
+                if placeref.ref == handle:
+                    return True
+        return False
 
-    def set_main_location(self, location):
+    def _replace_handle_reference(self, classname, old_handle, new_handle):
         """
-        Assign the main location information about the Place to the :class:`~gen.lib.location.Location`
-        object passed.
+        Replace all references to old handle with those to the new handle.
 
-        :param location: :class:`~gen.lib.location.Location` instance to assign to as the main 
-                information for the Place.
-        :type location: :class:`~gen.lib.location.Location`
+        :param classname: The name of the primary object class.
+        :type classname: str
+        :param old_handle: The handle to be replaced.
+        :type old_handle: str
+        :param new_handle: The handle to replace the old one with.
+        :type new_handle: str
         """
-        self.main_loc = location
+        if classname == 'Place':
+            for placeref in self.placeref_list:
+                if placeref.ref == old_handle:
+                    placeref.ref = new_handle
 
     def get_alternate_locations(self):
         """
@@ -376,40 +482,10 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :type acquisition: :class:'~gen.lib.place.Place
         """
         altloc_list = self.alt_loc[:]
-        if self.main_loc and not self.main_loc.is_empty():
-            altloc_list.insert(0, self.main_loc)
         add_list = acquisition.get_alternate_locations()
-        acq_main_loc = acquisition.get_main_location()
-        if acq_main_loc and not acq_main_loc.is_empty():
-            add_list.insert(0, acquisition.get_main_location())
         for addendum in add_list:
             for altloc in altloc_list:
                 if altloc.is_equal(addendum):
                     break
             else:
                 self.alt_loc.append(addendum)
-
-    def get_display_info(self):
-        """
-        Get the display information associated with the object.
-
-        This includes the information that is used for display and for sorting.
-        Returns a list consisting of 13 strings. These are:
-        
-        Place Title, Place ID, Main Location Parish, Main Location County,
-        Main Location City, Main Location State/Province,
-        Main Location Country, upper case Place Title, upper case Parish,
-        upper case city, upper case county, upper case state,
-        upper case country.
-        """
-        
-        if self.main_loc:
-            return [self.title, self.gramps_id, self.main_loc.parish,
-                    self.main_loc.city, self.main_loc.county,
-                    self.main_loc.state, self.main_loc.country,
-                    self.title.upper(), self.main_loc.parish.upper(),
-                    self.main_loc.city.upper(), self.main_loc.county.upper(),
-                    self.main_loc.state.upper(), self.main_loc.country.upper()]
-        else:
-            return [self.title, self.gramps_id, '', '', '', '', '',
-                    self.title.upper(), '', '', '', '', '']

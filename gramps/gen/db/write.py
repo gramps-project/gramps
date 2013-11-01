@@ -110,6 +110,7 @@ TAGTRANS    = "tag_name"
 SURNAMES    = "surnames"
 NAME_GROUP  = "name_group"
 META        = "meta_data"
+PPARENT     = "place_parent"
 
 FAMILY_TBL  = "family"
 PLACES_TBL  = "place"
@@ -179,6 +180,15 @@ def find_idmap(key, data):
     returns a byte string
     """
     val = data[1]
+    if isinstance(val, UNITYPE):
+        val = val.encode('utf-8')
+    return val
+
+def find_parent(key, data):
+    if len(data[5]) > 0:
+        val = data[5][0][0]
+    else:
+        val = ''
     if isinstance(val, UNITYPE):
         val = val.encode('utf-8')
     return val
@@ -373,6 +383,13 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         return DbBsddbAssocCursor(self.reference_map_referenced_map, 
                                         self.txn)
+
+    @catch_db_error
+    def get_place_parent_cursor(self):
+        """
+        Returns a reference to a cursor over the place parents
+        """
+        return DbBsddbAssocCursor(self.parents, self.txn)
 
     # These are overriding the DbBsddbRead's methods of saving metadata
     # because we now have txn-capable metadata table
@@ -870,6 +887,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             ("rid_trans", RIDTRANS, db.DB_HASH, 0),
             ("nid_trans", NIDTRANS, db.DB_HASH, 0),
             ("tag_trans", TAGTRANS, db.DB_HASH, 0),
+            ("parents", PPARENT, db.DB_HASH, 0),
             ("reference_map_primary_map",    REF_PRI, db.DB_BTREE, 0),
             ("reference_map_referenced_map", REF_REF, db.DB_BTREE, db.DB_DUPSORT),            
             ]
@@ -887,6 +905,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 (self.family_map, self.fid_trans, find_idmap),
                 (self.event_map,  self.eid_trans, find_idmap),
                 (self.place_map,  self.pid_trans, find_idmap),
+                (self.place_map, self.parents, find_parent),
                 (self.source_map, self.sid_trans, find_idmap),
                 (self.citation_map, self.cid_trans, find_idmap),
                 (self.media_map,  self.oid_trans, find_idmap),
@@ -934,6 +953,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             ( self.nid_trans, NIDTRANS ),
             ( self.cid_trans, CIDTRANS ),
             ( self.tag_trans, TAGTRANS ),
+            ( self.parents, PPARENT ),
             ( self.reference_map_primary_map, REF_PRI),
             ( self.reference_map_referenced_map, REF_REF),
             ]
@@ -959,6 +979,36 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.__connect_secondary()
         if callback:
             callback(12)
+
+    @catch_db_error
+    def find_place_child_handles(self, handle):
+        """
+        Find all child places having the given place as the primary parent.
+        """
+        handle = str(handle)
+        parent_cur = self.get_place_parent_cursor()
+
+        try:
+            ret = parent_cur.set(handle)
+        except:
+            ret = None
+
+        while (ret is not None):
+            (key, data) = ret
+            
+            ### FIXME: this is a dirty hack that works without no
+            ### sensible explanation. For some reason, for a readonly
+            ### database, secondary index returns a primary table key
+            ### corresponding to the data, not the data.
+            if self.readonly:
+                data = self.place_map.get(data)
+            else:
+                data = pickle.loads(data)
+
+            yield data[0]
+            ret = parent_cur.next_dup()
+
+        parent_cur.close()
 
     @catch_db_error
     def find_backlink_handles(self, handle, include_classes=None):
@@ -1303,6 +1353,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.__close_metadata()
         self.name_group.close()
         self.surnames.close()
+        self.parents.close()
         self.id_trans.close()
         self.fid_trans.close()
         self.eid_trans.close()

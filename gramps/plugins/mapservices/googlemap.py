@@ -37,6 +37,8 @@ _ = glocale.translation.gettext
 #
 #------------------------------------------------------------------------
 from gramps.plugins.lib.libmapservice import MapService
+from gramps.gen.utils.location import get_main_location
+from gramps.gen.lib import PlaceType
 
 class GoogleMapService(MapService):
     """Map  service using http://maps.google.com"""
@@ -56,8 +58,9 @@ class GoogleMapService(MapService):
                                                                longitude)
             return
         
-        city = place.get_main_location().get_city()
-        country = place.get_main_location().get_country()
+        location = get_main_location(self.database, place)
+        city = location.get(PlaceType.CITY)
+        country = location.get(PlaceType.COUNTRY)
         if city and country:
             self.url = "http://maps.google.com/maps?q=%s,%s" % (city, country)
             return

@@ -51,7 +51,7 @@ import cairo
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import EventType, Place
+from gramps.gen.lib import EventType, Place, PlaceType, PlaceRef
 from gramps.gen.display.name import displayer as _nd
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gen.utils.libformatting import FormattingHelper
@@ -61,6 +61,7 @@ from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.config import config
 from gramps.gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gramps.gui.selectors.selectplace import SelectPlace
+from gramps.gen.utils.location import get_main_location
 
 from gi.repository import OsmGpsMap as osmgpsmap
 from . import constants
@@ -804,12 +805,14 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         self.mark = mark
         place = self.dbstate.db.get_place_from_gramps_id(self.mark[9])
-        loc = place.get_main_location()
+        parent_list = place.get_placeref_list()
+        if len(parent_list) > 0:
+            parent = parent_list[0].ref
+        else:
+            parent = None
         self.select_fct = PlaceSelection(self.uistate, self.dbstate, self.osm,
                        self.selection_layer, self.place_list,
-                       lat, lon, self.__edit_place,
-                       (loc.get_country(), loc.get_state(), loc.get_county())
-                      )
+                       lat, lon, self.__edit_place, parent)
 
     def edit_person(self, menu, event, lat, lon, mark):
         """
@@ -866,9 +869,11 @@ class GeoGraphyView(OsmGps, NavigationView):
         selector = SelectPlace(self.dbstate, self.uistate, [])
         place = selector.run()
         if place:
-            loc = place.get_main_location()
-            oldv = (loc.get_country(), loc.get_state(),
-                    loc.get_county()) if loc else None
+            parent_list = place.get_placeref_list()
+            if len(parent_list) > 0:
+                parent = parent_list[0].ref
+            else:
+                parent = None
             places_handle = self.dbstate.db.iter_place_handles()
             nb_places = 0
             gids = ""
@@ -903,9 +908,9 @@ class GeoGraphyView(OsmGps, NavigationView):
                                                  lat,
                                                  lon,
                                                  self.__edit_place,
-                                                 oldv)
+                                                 parent)
 
-    def __add_place(self, pcountry, pcounty, pstate, plat, plon):
+    def __add_place(self, parent, plat, plon):
         """
         Add a new place using longitude and latitude of location centered
         on the map
@@ -914,18 +919,17 @@ class GeoGraphyView(OsmGps, NavigationView):
         new_place = Place()
         new_place.set_latitude(str(plat))
         new_place.set_longitude(str(plon))
-        loc = new_place.get_main_location()
-        loc.set_country(pcountry)
-        loc.set_county(pcounty)
-        loc.set_state(pstate)
-        new_place.set_main_location(loc)
+        if parent:
+            placeref = PlaceRef()
+            placeref.ref = parent
+            new_place.add_placeref(placeref)
         try:
             EditPlace(self.dbstate, self.uistate, [], new_place)
             self.add_marker(None, None, plat, plon, None, True, 0)
         except WindowActiveError:
             pass
 
-    def __edit_place(self, pcountry, pcounty, pstate, plat, plon):
+    def __edit_place(self, parent, plat, plon):
         """
         Edit the selected place at the marker position
         """
@@ -933,17 +937,16 @@ class GeoGraphyView(OsmGps, NavigationView):
         place = self.dbstate.db.get_place_from_gramps_id(self.mark[9])
         place.set_latitude(str(plat))
         place.set_longitude(str(plon))
-        loc = place.get_main_location()
-        loc.set_country(pcountry)
-        loc.set_county(pcounty)
-        loc.set_state(pstate)
-        place.set_main_location(loc)
+        if parent:
+            placeref = PlaceRef()
+            placeref.ref = parent
+            place.add_placeref(placeref)
         try:
             EditPlace(self.dbstate, self.uistate, [], place)
         except WindowActiveError:
             pass
 
-    def __link_place(self, pcountry, pcounty, pstate, plat, plon):
+    def __link_place(self, parent, plat, plon):
         """
         Link an existing place using longitude and latitude of location centered
         on the map
@@ -954,11 +957,10 @@ class GeoGraphyView(OsmGps, NavigationView):
             self.select_fct.close()
             place.set_latitude(str(plat))
             place.set_longitude(str(plon))
-            loc = place.get_main_location()
-            loc.set_country(pcountry)
-            loc.set_county(pcounty)
-            loc.set_state(pstate)
-            place.set_main_location(loc)
+            if parent:
+                placeref = PlaceRef()
+                placeref.ref = parent
+                place.add_placeref(placeref)
             try:
                 EditPlace(self.dbstate, self.uistate, [], place)
                 self.add_marker(None, None, plat, plon, None, True, 0)

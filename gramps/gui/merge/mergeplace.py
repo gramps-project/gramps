@@ -63,10 +63,11 @@ class MergePlace(ManagedWindow):
     """
     Displays a dialog box that allows the places to be combined into one.
     """
-    def __init__(self, dbstate, uistate, handle1, handle2):
+    def __init__(self, dbstate, uistate, handle1, handle2, callback=None):
         ManagedWindow.__init__(self, uistate, [], self.__class__)
         self.dbstate = dbstate
         database = dbstate.db
+        self.callback = callback
         self.pl1 = database.get_place_from_handle(handle1)
         self.pl2 = database.get_place_from_handle(handle2)
 
@@ -86,6 +87,30 @@ class MergePlace(ManagedWindow):
             for widget_name in ('title1', 'title2', 'title_btn1', 'title_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
+        entry1 = self.get_widget("name1")
+        entry2 = self.get_widget("name2")
+        entry1.set_text(self.pl1.get_name())
+        entry2.set_text(self.pl2.get_name())
+        if entry1.get_text() == entry2.get_text():
+            for widget_name in ('name1', 'name2', 'name_btn1', 'name_btn2'):
+                self.get_widget(widget_name).set_sensitive(False)
+
+        entry1 = self.get_widget("type1")
+        entry2 = self.get_widget("type2")
+        entry1.set_text(str(self.pl1.get_type()))
+        entry2.set_text(str(self.pl2.get_type()))
+        if entry1.get_text() == entry2.get_text():
+            for widget_name in ('type1', 'type2', 'type_btn1', 'type_btn2'):
+                self.get_widget(widget_name).set_sensitive(False)
+
+        entry1 = self.get_widget("code1")
+        entry2 = self.get_widget("code2")
+        entry1.set_text(self.pl1.get_code())
+        entry2.set_text(self.pl2.get_code())
+        if entry1.get_text() == entry2.get_text():
+            for widget_name in ('code1', 'code2', 'code_btn1', 'code_btn2'):
+                self.get_widget(widget_name).set_sensitive(False)
+
         entry1 = self.get_widget("lat1")
         entry2 = self.get_widget("lat2")
         entry1.set_text(self.pl1.get_latitude())
@@ -100,20 +125,6 @@ class MergePlace(ManagedWindow):
         entry2.set_text(self.pl2.get_longitude())
         if entry1.get_text() == entry2.get_text():
             for widget_name in ('long1', 'long2', 'long_btn1', 'long_btn2'):
-                self.get_widget(widget_name).set_sensitive(False)
-
-        loc1 = self.pl1.get_main_location().get_text_data_list()
-        loc2 = self.pl2.get_main_location().get_text_data_list()
-        tv1 = self.get_widget("loc1")
-        tv2 = self.get_widget("loc2")
-        tb1 = Gtk.TextBuffer()
-        tb2 = Gtk.TextBuffer()
-        tv1.set_buffer(tb1)
-        tv2.set_buffer(tb2)
-        tb1.set_text("\n".join(loc1))
-        tb2.set_text("\n".join(loc2))
-        if loc1 == loc2:
-            for widget_name in ('loc1', 'loc2', 'loc_btn1', 'loc_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
         gramps1 = self.pl1.get_gramps_id()
@@ -144,12 +155,18 @@ class MergePlace(ManagedWindow):
         """first chosen place changes"""
         if obj.get_active():
             self.get_widget("title_btn1").set_active(True)
+            self.get_widget("name_btn1").set_active(True)
+            self.get_widget("type_btn1").set_active(True)
+            self.get_widget("code_btn1").set_active(True)
             self.get_widget("lat_btn1").set_active(True)
             self.get_widget("long_btn1").set_active(True)
             self.get_widget("loc_btn1").set_active(True)
             self.get_widget("gramps_btn1").set_active(True)
         else:
             self.get_widget("title_btn2").set_active(True)
+            self.get_widget("name_btn2").set_active(True)
+            self.get_widget("type_btn2").set_active(True)
+            self.get_widget("code_btn2").set_active(True)
             self.get_widget("lat_btn2").set_active(True)
             self.get_widget("long_btn2").set_active(True)
             self.get_widget("loc_btn2").set_active(True)
@@ -179,18 +196,23 @@ class MergePlace(ManagedWindow):
 
         if self.get_widget("title_btn1").get_active() ^ use_handle1:
             phoenix.set_title(titanic.get_title())
+        if self.get_widget("name_btn1").get_active() ^ use_handle1:
+            phoenix.set_name(titanic.get_name())
+        if self.get_widget("type_btn1").get_active() ^ use_handle1:
+            phoenix.set_type(titanic.get_type())
+        if self.get_widget("code_btn1").get_active() ^ use_handle1:
+            phoenix.set_code(titanic.get_code())
         if self.get_widget("lat_btn1").get_active() ^ use_handle1:
             phoenix.set_latitude(titanic.get_latitude())
         if self.get_widget("long_btn1").get_active() ^ use_handle1:
             phoenix.set_longitude(titanic.get_longitude())
-        if self.get_widget("loc_btn1").get_active() ^ use_handle1:
-            swaploc = phoenix.get_main_location()
-            phoenix.set_main_location(titanic.get_main_location())
-            titanic.set_main_location(swaploc)
         if self.get_widget("gramps_btn1").get_active() ^ use_handle1:
             phoenix.set_gramps_id(titanic.get_gramps_id())
 
         query = MergePlaceQuery(self.dbstate, phoenix, titanic)
         query.execute()
+        
+        if self.callback:
+            self.callback()
         self.uistate.set_busy_cursor(False)
         self.close()

@@ -56,6 +56,8 @@ from gi.repository import Gtk
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
 from .osmgps import OsmGps
+from gramps.gen.utils.location import get_main_location
+from gramps.gen.lib import PlaceType
 
 #-------------------------------------------------------------------------
 #
@@ -77,9 +79,9 @@ def match(self, lat, lon, radius):
         if (math.hypot(lat-float(entry[3]),
                        lon-float(entry[4])) <= rds) == True:
             # Do we already have this place ? avoid duplicates
-            self.get_location(entry[9])
-            if not [self.country, self.state, self.county] in self.places:
-                self.places.append([self.country, self.state, self.county])
+            country, state, county, place = self.get_location(entry[9])
+            if not [country, state, county, place] in self.places:
+                self.places.append([country, state, county, place])
     return self.places
 
 #-------------------------------------------------------------------------
@@ -100,8 +102,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         Place Selection initialization
         """
         try:
-            ManagedWindow.__init__(self, uistate, [],
-                                                 PlaceSelection)
+            ManagedWindow.__init__(self, uistate, [], PlaceSelection)
         except WindowActiveError:
             return
         self.uistate = uistate
@@ -109,9 +110,6 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.lat = lat
         self.lon = lon
         self.osm = maps
-        self.country = None
-        self.state = None
-        self.county = None
         self.radius = 1.0
         self.circle = None
         self.oldvalue = oldvalue
@@ -141,7 +139,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.scroll = Gtk.ScrolledWindow(self.vadjust)
         self.scroll.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.scroll.set_shadow_type(Gtk.ShadowType.IN)
-        self.plist = Gtk.ListStore(str, str, str)
+        self.plist = Gtk.ListStore(str, str, str, str)
         self.choices = Gtk.TreeView(self.plist)
         self.scroll.add(self.choices)
         self.renderer = Gtk.CellRendererText()
@@ -191,17 +189,19 @@ class PlaceSelection(ManagedWindow, OsmGps):
             # In this case, we change the color of the row.
             # display the associated message
             self.label2.show()
-            field1, field2, field3 = self.oldvalue
-            self.plist.append((PLACE_STRING % field1,
-                               PLACE_STRING % field2,
-                               PLACE_STRING % field3)
+            place = self.dbstate.db.get_place_from_handle(self.oldvalue)
+            loc = get_main_location(self.dbstate.db, place)
+            self.plist.append((PLACE_STRING % loc.get(PlaceType.COUNTRY, ''),
+                               PLACE_STRING % loc.get(PlaceType.STATE, ''),
+                               PLACE_STRING % loc.get(PlaceType.COUNTY, ''),
+                               self.oldvalue)
                              )
         for place in self.places:
             self.plist.append(place)
         # here, we could add value from geography names services ...
 
         # if we found no place, we must create a default place.
-        self.plist.append((_("New place with empty fields"), "", "..."))
+        self.plist.append((_("New place with empty fields"), "", "...", None))
 
     def hide_the_region(self):
         """
@@ -220,37 +220,32 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.selection_layer = self.add_selection_layer()
         self.selection_layer.add_circle(rds/2.0, self.lat, self.lon)
 
-    def get_location(self, place):
+    def get_location(self, gramps_id):
         """
         get location values
         """
-        place = self.dbstate.db.get_place_from_gramps_id(place)
-        loc = place.get_main_location()
-        data = loc.get_text_data_list()
-        # new background or font color on gtk fields ?
-        self.country = data[6]
-        self.state = data[5]
-        self.county = data[4]
-        return(self.country, self.state, self.county)
+        parent_place = None
+        country = state = county = ''
+        place = self.dbstate.db.get_place_from_gramps_id(gramps_id)
+        parent_list = place.get_placeref_list()
+        while len(parent_list) > 0:
+            place = self.dbstate.db.get_place_from_handle(parent_list[0].ref)
+            if int(place.get_type()) == PlaceType.COUNTY:
+                county = place.name
+                if parent_place is None:
+                    parent_place = place.get_handle()
+            elif int(place.get_type()) == PlaceType.STATE:
+                state = place.name
+                if parent_place is None:
+                    parent_place = place.get_handle()
+            elif int(place.get_type()) == PlaceType.COUNTRY:
+                country = place.name
+                if parent_place is None:
+                    parent_place = place.get_handle()
+        return(country, state, county, parent_place)
 
     def selection(self, obj, index, column, function):
         """
         get location values and call the real function : add_place, edit_place
         """
-        if self.plist[index][2] == "...":
-            # case with blank values ( New place with empty fields )
-            self.function( "", "", "", self.lat, self.lon)
-        elif self.plist[index][0][1:5] == "span":
-            # case with old values ( keep the old values of the place )
-            name = PLACE_REGEXP.search(self.plist[index][0], 0)
-            country = name.group(1)
-            name = PLACE_REGEXP.search(self.plist[index][1], 0)
-            state = name.group(1)
-            name = PLACE_REGEXP.search(self.plist[index][2], 0)
-            county = name.group(1)
-            self.function( country, county, state, self.lat, self.lon)
-        else:
-            # Set the new values of the country, county and state fields.
-            self.function( self.plist[index][0], self.plist[index][2],
-                           self.plist[index][1], self.lat, self.lon)
-
+        self.function(self.plist[index][3], self.lat, self.lon)
