@@ -109,9 +109,9 @@ def exc_hook(type, value, tb):
     if type == IOError:
         # strange Windows logging error on close
         return
-    import traceback
+    from gramps.gen.utils.debug import format_exception
     LOG.error("Unhandled exception\n" +
-              "".join(traceback.format_exception(type, value, tb)))
+              "".join(format_exception(type, value, tb)))
 
 sys.excepthook = exc_hook
 
