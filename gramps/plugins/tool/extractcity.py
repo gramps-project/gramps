@@ -51,6 +51,9 @@ from gi.repository import GObject
 from gramps.gen.db import DbTxn
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.display import display_help
+from gramps.plugins.lib.libplaceimport import PlaceImport
+from gramps.gen.utils.location import get_main_location
+from gramps.gen.lib import PlaceType
 
 from gramps.gui.plug import tool
 from gramps.gui.utils import ProgressMeter
@@ -437,14 +440,23 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
                                self.db.get_number_of_places())
 
         self.name_list = []
+        self.place_import = PlaceImport(db)
 
         for place in db.iter_places():
             descr = place.get_title()
-            loc = place.get_main_location()
             self.progress.step()
 
-            if loc.get_street() == loc.get_city() == \
-               loc.get_state() == loc.get_postal_code() == "":
+            loc = get_main_location(db, place)
+            location = ((loc.get(PlaceType.STREET, '')),
+                        (loc.get(PlaceType.LOCALITY, '')),
+                        (loc.get(PlaceType.PARISH, '')),
+                        (loc.get(PlaceType.CITY, '')),
+                        (loc.get(PlaceType.COUNTY, '')),
+                        (loc.get(PlaceType.STATE, '')),
+                        (loc.get(PlaceType.COUNTRY, '')))
+            self.place_import.store_location(location, place.handle)           
+
+            if len(place.get_placeref_list()) == 0:
 
                 match = CITY_STATE_ZIP.match(descr.strip())
                 if match:
@@ -603,17 +615,15 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
             for change in changelist:
                 row = self.model[change]
                 place = self.db.get_place_from_handle(row[6])
-                (city, state, postal, country) = (row[2], row[3], row[4], row[5])
-
-                if city:
-                    place.get_main_location().set_city(city)
-                if state:
-                    place.get_main_location().set_state(state)
-                if postal:
-                    place.get_main_location().set_postal_code(postal)
-                if country:
-                    place.get_main_location().set_country(country)
+                location = ('', '', '', row[2], '', row[3], row[5])
+                self.place_import.store_location(location, place.handle)
+                place.set_name(row[2])
+                place.set_type(PlaceType.CITY)
+                if row[4]:
+                    place.set_code(row[4])
                 self.db.commit_place(place, self.trans)
+
+            self.place_import.generate_hierarchy(self.trans)
 
         self.db.enable_signals()
         self.db.request_rebuild()
