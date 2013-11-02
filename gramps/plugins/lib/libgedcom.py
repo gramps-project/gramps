@@ -1688,12 +1688,13 @@ class PlaceParser(object):
 
         place_import.store_location(location, place.handle)
 
-        for type_num, name in enumerate(location):
+        for level, name in enumerate(location):
             if name:
                 break
 
         place.set_name(name)
-        place.set_type(PlaceType(7-type_num))
+        type_num = 7 - level if name else 8
+        place.set_type(PlaceType(type_num))
         code = loc.get_postal_code()
         place.set_code(code)
 

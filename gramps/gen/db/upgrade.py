@@ -108,12 +108,12 @@ def gramps_upgrade_17(self):
 
         # find title and type
         main_loc = get_location(new_place[5])
-        for type_num, name in enumerate(main_loc):
+        for level, name in enumerate(main_loc):
             if name:
                 break
         
         loc = list(main_loc[:])
-        loc[type_num] = ''
+        loc[level] = ''
 
         # find top parent
         parent_handle = None
@@ -127,7 +127,7 @@ def gramps_upgrade_17(self):
         # create nodes
         if parent_handle:
             n -= 1
-        while n > type_num:
+        while n > level:
             if loc[n]:
                 title = ', '.join([item for item in loc[n:] if item])
                 parent_handle = add_place(self, loc[n], n, parent_handle, title)
@@ -141,8 +141,9 @@ def gramps_upgrade_17(self):
         else:
             placeref_list = []
 
+        type_num = 7 - level if name else 8
         new_place = new_place[:5] + [placeref_list, name, 
-                    PlaceType(7-type_num).serialize(), zip_code] + \
+                    PlaceType(type_num).serialize(), zip_code] + \
                     new_place[6:12] + [[]] + new_place[12:]
         new_place = tuple(new_place)
         with BSDDBTxn(self.env, self.place_map) as txn:
@@ -260,15 +261,15 @@ def get_location(loc):
         location = loc[0][:2] + (loc[1],) + loc[0][2:6]
     return location
 
-def add_place(self, name, type_num, parent, title):
+def add_place(self, name, level, parent, title):
     handle = self.create_id()
     place = Place()
     place.handle = handle
     self.max_id += 1
     place.gramps_id = self.place_prefix % self.max_id
-    place.name = name
-    place.title = title
-    place.place_type = PlaceType(7-type_num)
+    place.set_name(name)
+    place.set_title(title)
+    place.set_type(PlaceType(7-level))
     if parent is not None:
         placeref = PlaceRef()
         placeref.ref = parent
