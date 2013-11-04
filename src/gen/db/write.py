@@ -1028,7 +1028,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # Once we have the list of rows that already have a reference
         # we need to compare it with the list of objects that are
         # still references from the primary object.
-        current_references = set(obj.get_referenced_handles_recursively())
+        reflist = obj.get_referenced_handles_recursively()
+        LOG.debug("handle: {0}, reflist: {1}".format(
+            handle, reflist))
+        current_references = set(reflist)
         no_longer_required_references = existing_references.difference(
                                                             current_references)
         new_references = current_references.difference(existing_references)
