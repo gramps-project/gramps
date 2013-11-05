@@ -405,6 +405,12 @@ class SelectionWidget(Gtk.ScrolledWindow):
         self.selection = None
         self.image.queue_draw()
 
+    def find_region(self, x ,y):
+        """
+        Given screen coordinates, find where that point is in the image.
+        """
+        return self._find_region(*self._screen_to_image((x, y)))
+
     # ======================================================
     # thumbnails
     # ======================================================
