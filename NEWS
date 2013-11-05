@@ -1,3 +1,28 @@
+????-??-??
+Version 4.0.2, "...", a maintenance release.
+add more news here from the changelog!
+News items from 3.4.6 (all are relevant to code merged to gramps40):
+* Citation merge works better for all objects with citations
+* Fixed citations attached to family events
+* Fixed several crashes, hangs, and data corruption scenarios
+* Fixed bugs in determining whether a person is alive, potentially resolving private data leak via export or report
+* VCF export/import now support gender information
+* Several bugs with filtering fixed, most filters now support regular expressions
+* Fixed bug in Hebrew calendar date calculations
+* Support space in Gramps ID with GEDCOM file format export/import
+* Multiple fixes in gramplets
+* Multiple fixes in the narrated website report
+* Some fixes and improvements of the webapp
+* Enhancements of the citation tree view (Sources category)
+* Polish and consistency on Gramps XML export
+* Bump XML schema to 1.5.1
+* Fixed several long-standing problems with report generation
+* Better support of RTL locales (Arabic, Hebrew, etc.) in GUI
+* Platform-specific fixes for Mac and Windows
+* New date handler for Arabic
+* Translation updates and translation-related fixes
+* Repaired and enhanced tests broken since 3.3.x, resulting in overall reliability improvements
+
 2013-06-24
 Version 4.0.1, the "What is washing when we are on the verge of a great scientific breakthrough?", a maintenance release.
 * Gtk3: fix menu on person editor and Geography views, convert deprecated code for the indicator in entryfield
