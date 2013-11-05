@@ -19,7 +19,7 @@ News items from 3.4.6 (all are relevant to code merged to gramps40):
 * Fixed several long-standing problems with report generation
 * Better support of RTL locales (Arabic, Hebrew, etc.) in GUI
 * Platform-specific fixes for Mac and Windows
-* New date handler for Arabic
+* New date handlers for Arabic and Greek
 * Translation updates and translation-related fixes
 * Repaired and enhanced tests broken since 3.3.x, resulting in overall reliability improvements
 
