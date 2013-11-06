@@ -421,7 +421,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         """
         w = region.x2 - region.x1
         h = region.y2 - region.y1
-        if w >= 1 and h >= 1:
+        if w >= 1 and h >= 1 and self.pixbuf:
             subpixbuf = self.pixbuf.new_subpixbuf(region.x1, region.y1, w, h)
             size = resize_keep_aspect(w, h, *thumbnail_size)
             return subpixbuf.scale_simple(size[0], size[1], 
