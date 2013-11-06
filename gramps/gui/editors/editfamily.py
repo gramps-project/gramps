@@ -340,7 +340,7 @@ class EditFamily(EditPrimary):
 
     QR_CATEGORY = CATEGORY_QR_FAMILY
     
-    def __init__(self, dbstate, uistate, track, family):
+    def __init__(self, dbstate, uistate, track, family, callback=None):
         
         EditPrimary.__init__(self, dbstate, uistate, track,
                              family, dbstate.db.get_family_from_handle,

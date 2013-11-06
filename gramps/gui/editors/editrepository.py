@@ -52,7 +52,7 @@ from ..glade import Glade
 
 class EditRepository(EditPrimary):
 
-    def __init__(self, dbstate, uistate, track, repository):
+    def __init__(self, dbstate, uistate, track, repository, callback=None):
 
         EditPrimary.__init__(self, dbstate, uistate, track, repository, 
                              dbstate.db.get_repository_from_handle, 
