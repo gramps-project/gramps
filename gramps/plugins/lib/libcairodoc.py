@@ -665,7 +665,9 @@ class GtkDocParagraph(GtkDocBaseElement):
         markstarts = []
         #index is in bytecode in the text.. !!
         while pos < index:
-            char = oldtext[realpos]
+            if realpos >= len(oldtext):
+                break
+             char = oldtext[realpos]
             if char == '<' and oldtext[realpos+1] != '/':
                 # a markup starts
                 end = realpos + oldtext[realpos:].find('>') + 1
