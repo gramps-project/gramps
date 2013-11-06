@@ -63,7 +63,7 @@ from ..glade import Glade
 
 class EditSource(EditPrimary):
 
-    def __init__(self, dbstate, uistate, track, source):
+    def __init__(self, dbstate, uistate, track, source, callback=None):
 
         EditPrimary.__init__(self, dbstate, uistate, track, source, 
                              dbstate.db.get_source_from_handle, 
