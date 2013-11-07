@@ -358,17 +358,21 @@ class SelectionWidget(Gtk.ScrolledWindow):
         """
         Returns whether it is possible to zoom in the image.
         """
-        scaled_size = (self.original_image_size[0] * self.scale * RESIZE_RATIO,
-                       self.original_image_size[1] * self.scale * RESIZE_RATIO)
-        return scaled_size[0] < MAX_SIZE and scaled_size[1] < MAX_SIZE
+        if self.original_image_size:
+            scaled_size = (self.original_image_size[0] * self.scale * RESIZE_RATIO,
+                           self.original_image_size[1] * self.scale * RESIZE_RATIO)
+            return scaled_size[0] < MAX_SIZE and scaled_size[1] < MAX_SIZE
+        return False
 
     def can_zoom_out(self):
         """
         Returns whether it is possible to zoom out the image.
         """
-        scaled_size = (self.original_image_size[0] * self.scale * RESIZE_RATIO,
-                       self.original_image_size[1] * self.scale * RESIZE_RATIO)
-        return scaled_size[0] >= MIN_SIZE and scaled_size[1] >= MIN_SIZE
+        if self.original_image_size:
+            scaled_size = (self.original_image_size[0] * self.scale * RESIZE_RATIO,
+                           self.original_image_size[1] * self.scale * RESIZE_RATIO)
+            return scaled_size[0] >= MIN_SIZE and scaled_size[1] >= MIN_SIZE
+        return False
 
     def zoom_in(self):
         """
