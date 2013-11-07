@@ -667,7 +667,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         while pos < index:
             if realpos >= len(oldtext):
                 break
-             char = oldtext[realpos]
+            char = oldtext[realpos]
             if char == '<' and oldtext[realpos+1] != '/':
                 # a markup starts
                 end = realpos + oldtext[realpos:].find('>') + 1
