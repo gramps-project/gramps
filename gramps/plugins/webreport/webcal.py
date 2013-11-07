@@ -579,7 +579,7 @@ class WebCalReport(Report):
                     elif url_fname == 'fullyearlinked':
                         myTitle = _('Full year at a Glance')
                     else:
-	                 myTitle = _(url_fname)
+                        myTitle = _(url_fname)
                     hyper = Html("a", nav_text, href = url, name = url_fname, title = myTitle)
 
                     if check_cs:
