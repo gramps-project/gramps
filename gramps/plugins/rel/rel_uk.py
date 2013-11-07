@@ -902,7 +902,7 @@ if __name__ == "__main__":
     import sys
     # If someone go out
     def goodby(signal, frame):
-        print 'No more Drink!'
+        print('No more Drink!')
         sys.exit(0)
     signal.signal(signal.SIGINT, goodby)
     # Run test
