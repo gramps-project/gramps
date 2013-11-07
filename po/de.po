@@ -27414,7 +27414,7 @@ msgid ""
 "You can use the mouse on the picture to select a region, or use these spinbuttons to set the top left, and bottom right corner of the referenced region. Point (0,0) is the top left corner of the picture, and (100,100) the bottom right corner.\n"
 msgstr ""
 "Wenn das Medium ein Bild ist, wähle den Bereich des Bildes, auf den du dich beziehen willst.\n"
-"Du kannst die Maus verwenden, um einen Ausschnitt zu wählen oder die Drehschaltfläche verwenden, um die linke obere und rechte untere Ecke des gewünschten Bereiches zu setzen.Punkt (0,0) ist die linke obere und (100,100) die rechte untere Ecke."
+"Du kannst die Maus verwenden, um einen Ausschnitt zu wählen oder die Drehschaltfläche verwenden, um die linke obere und rechte untere Ecke des gewünschten Bereiches zu setzen.Punkt (0,0) ist die linke obere und (100,100) die rechte untere Ecke.\n"
 
 #: ../gramps/gui/glade/editmediaref.glade:571
 msgid "<b>Note:</b> Any changes in the shared media object information will be reflected in the media object itself."
