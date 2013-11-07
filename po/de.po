@@ -31782,7 +31782,7 @@ msgstr ""
 "Du kannst die Maus verwenden, um einen Ausschnitt zu wählen oder die "
 "Drehschaltfläche verwenden, um die linke obere und rechte untere Ecke des "
 "gewünschten Bereiches zu setzen.Punkt (0,0) ist die linke obere und (100,100) "
-"die rechte untere Ecke."
+"die rechte untere Ecke.\n"
 
 #: ../gramps/gui/glade/editmediaref.glade:515
 msgid ""
