@@ -178,7 +178,7 @@ class MetadataView(Gtk.TreeView):
         except:
             return False
 
-        get_human = metadata.get_exif_tag_interpreted_string
+        get_human = metadata.get_tag_interpreted_string
 
         for section, key, key2, func in TAGS:
             if not key in metadata.get_exif_tags():
@@ -197,7 +197,7 @@ class MetadataView(Gtk.TreeView):
                 if key2 in metadata.get_exif_tags():
                     human_value += ' ' + get_human(key2)
 
-            label = metadata.get_exif_tag_label(key)
+            label = metadata.get_tag_label(key)
             node = self.__add_section(section)
             if human_value is None:
                 human_value = ''
