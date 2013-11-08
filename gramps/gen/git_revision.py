@@ -25,7 +25,6 @@ from __future__ import unicode_literals
 
 import sys
 import subprocess
-import re
 
 if sys.version_info[0] < 3:
     cuni = unicode
@@ -34,12 +33,13 @@ else:
         return s.decode("utf-8", errors = 'replace')
     cuni = to_utf8
 
-def _get_svn_revision(path, command, stdout_to_rev):
+def get_git_revision(path=""):
     stdout = ""
+    command = "git log -1 --format=%h"
     try:
         p = subprocess.Popen(
                 "{} \"{}\"".format(command, path),
-                shell=True, 
+                shell=True,
                 stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         (stdout, stderr) = p.communicate()
     except:
@@ -50,19 +50,6 @@ def _get_svn_revision(path, command, stdout_to_rev):
             stdout = cuni(stdout) # get a proper string
         except UnicodeDecodeError:
             pass
-        rev = stdout_to_rev(stdout)
-        return "-r" + rev if rev else ""
-    else: # no output from svnversion
+        return "-" + stdout if stdout else ""
+    else: # no output from git log
         return ""
-
-def get_svn_revision(path=""):
-    return _get_svn_revision(path, "svnversion -n",
-            lambda stdout: stdout if stdout[0].isdigit() else ""
-            ) or get_git_svn_revision(path)
-
-def get_git_svn_revision(path=""):
-    def stdout_to_rev(stdout):
-        m = re.search("Revision:\s+(\d+)", stdout, re.MULTILINE)
-        return m.group(1) if m else ""
-
-    return _get_svn_revision(path, "git svn info", stdout_to_rev)
