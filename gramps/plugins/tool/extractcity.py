@@ -617,7 +617,8 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
                 place = self.db.get_place_from_handle(row[6])
                 location = ('', '', '', row[2], '', row[3], row[5])
                 self.place_import.store_location(location, place.handle)
-                place.set_name(row[2])
+                if row[2]:
+                    place.set_name(row[2])
                 place.set_type(PlaceType.CITY)
                 if row[4]:
                     place.set_code(row[4])
