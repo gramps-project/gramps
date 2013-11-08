@@ -15,6 +15,7 @@ gramps/cli/__init__.py
 gramps/gen/constfunc.py
 gramps/gen/dbstate.py
 gramps/gen/errors.py
+gramps/gen/git_revision.py
 gramps/gen/__init__.py
 gramps/gen/recentfiles.py
 gramps/gen/sort.py
@@ -255,7 +256,6 @@ gramps/gen/utils/file.py
 gramps/gen/utils/id.py
 gramps/gen/utils/libformatting.py
 gramps/gen/utils/mactrans.py
-gramps/gen/utils/svn.py
 gramps/gen/utils/test/callback_test.py
 #
 # gen.utils.docgen
