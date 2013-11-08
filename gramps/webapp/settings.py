@@ -158,3 +158,8 @@ CACHES = {
     }
 DEFAULT_CHARSET = "utf-8"
 ## End Changes for Django 1.5
+
+## Changes for Django 1.5.4:
+LOGGING_CONFIG = None
+AUTH_USER_MODEL = 'auth.User'
+## End Changes for Django 1.5.4
