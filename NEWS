@@ -1,27 +1,34 @@
-????-??-??
-Version 4.0.2, "...", a maintenance release.
-add more news here from the changelog!
-News items from 3.4.6 (all are relevant to code merged to gramps40):
+2013-11-08
+Version 4.0.2, "Welcome to our humble abode", a maintenance release.
 * Citation merge works better for all objects with citations
 * Fixed citations attached to family events
 * Fixed several crashes, hangs, and data corruption scenarios
 * Fixed bugs in determining whether a person is alive, potentially resolving private data leak via export or report
+* Fixed bugs on proxies
 * VCF export/import now support gender information
 * Several bugs with filtering fixed, most filters now support regular expressions
 * Fixed bug in Hebrew calendar date calculations
-* Support space in Gramps ID with GEDCOM file format export/import
-* Multiple fixes in gramplets
-* Multiple fixes in the narrated website report
+* Fix some regressions on GEDCOM file format export and enhancement on CONT/CONC handling
+* Multiple fixes and improvements on gramplets
+* Multiple fixes in the narrated website and web calendar reports
+* Enhancements on date and calendar
 * Some fixes and improvements of the webapp
+* Fix on Database Differences module
 * Enhancements of the citation tree view (Sources category)
+* Improvements on User classes
 * Polish and consistency on Gramps XML export
 * Bump XML schema to 1.5.1
 * Fixed several long-standing problems with report generation
 * Better support of RTL locales (Arabic, Hebrew, etc.) in GUI
+* Better support for selected lang on some reports
+* Better way for displaying missing dependencies
+* Better Spell support
 * Platform-specific fixes for Mac and Windows
+* Add printing functionality for all geography views
 * New date handlers for Arabic and Greek
-* Translation updates and translation-related fixes
+* Translation updates (ar, cs, de, fr, lt, nb, nl, ru, sv) and translation-related fixes
 * Repaired and enhanced tests broken since 3.3.x, resulting in overall reliability improvements
+* Add a support for AppData
 
 2013-06-24
 Version 4.0.1, the "What is washing when we are on the verge of a great scientific breakthrough?", a maintenance release.
