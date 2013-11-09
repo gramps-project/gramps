@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2010       Benny Malengier
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -104,11 +105,12 @@ class Surname(SecondaryObject):
 
         :returns: Returns a serialized object
         """
-        return (struct["surname"],
-                struct["prefix"],
-                struct["primary"],
-                NameOriginType.from_struct(struct["origintype"]),
-                struct["connector"])
+        default = Surname()
+        return (struct.get("surname", default.surname),
+                struct.get("prefix", default.prefix),
+                struct.get("primary", default.primary),
+                NameOriginType.from_struct(struct.get("origintype", {})),
+                struct.get("connector", default.connector))
         
     def is_empty(self):
         """

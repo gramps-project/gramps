@@ -241,10 +241,11 @@ class GrampsType(GrampsTypeC):
 
         :returns: Returns a serialized object
         """
-        if struct["value"] == cls._CUSTOM:
-            return (struct["value"], struct["string"])
+        default = cls()
+        if struct.get("value", cls._CUSTOM) == cls._CUSTOM:
+            return (struct.get("value", default.value), struct.get("string", ""))
         else:
-            return (struct["value"], '')
+            return (struct.get("value", default.value), '')
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object."""

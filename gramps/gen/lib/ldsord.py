@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -182,15 +183,16 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
 
         :returns: Returns a serialized object
         """
-        return (CitationBase.from_struct(struct["citation_list"]),
-                NoteBase.from_struct(struct["note_list"]),
-                DateBase.from_struct(struct["date"]),
-                struct["type"],
-                struct["place"],
-                struct["famc"],
-                struct["temple"],
-                struct["status"],
-                struct["private"])
+        default = LdsOrd()
+        return (CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                DateBase.from_struct(struct.get("date", {})),
+                struct.get("type", {}),
+                struct.get("place", default.place),
+                struct.get("famc", default.famc),
+                struct.get("temple", default.temple),
+                struct.get("status", default.status),
+                struct.get("private", default.private))
 
     def unserialize(self, data):
         """

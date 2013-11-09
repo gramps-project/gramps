@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2010    Nick Hall
+# Copyright (C) 2010      Nick Hall
+# Copyright (C) 2013      Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -233,11 +234,12 @@ class Tag(TableObject):
 
         :returns: Returns a serialized object
         """
-        return (struct["handle"].handle,
-                struct["name"],
-                struct["color"],
-                struct["priority"],
-                struct["change"])
+        default = Tag()
+        return (Handle.from_struct(struct.get("handle", default.handle)),
+                struct.get("name", default.name),
+                struct.get("color", default.color),
+                struct.get("priority", default.priority),
+                struct.get("change", default.change))
         
     priority = property(get_priority, set_priority, None,
                      'Returns or sets priority of the tag')

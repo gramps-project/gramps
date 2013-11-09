@@ -138,18 +138,19 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
 
         :returns: Returns a serialized object
         """
-        return (struct["handle"].handle,
-                struct["gramps_id"],
-                DateBase.from_struct(struct["date"]),
-                struct["page"],
-                struct["confidence"],
-                struct["source_handle"].handle,
-                NoteBase.from_struct(struct["note_list"]),
-                MediaBase.from_struct(struct["media_list"]),
-                SrcAttributeBase.from_struct(struct["srcattr_list"]),
-                struct["change"],
-                TagBase.from_struct(struct["tag_list"]),
-                struct["private"])
+        default = Citation()
+        return (Handle.from_struct(struct.get("handle", default.handle)),
+                struct.get("gramps_id", default.gramps_id),
+                DateBase.from_struct(struct.get("date", {})),
+                struct.get("page", default.page),
+                struct.get("confidence", default.confidence),
+                Handle.from_struct(struct.get("source_handle", default.source_handle)),
+                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                MediaBase.from_struct(struct.get("media_list", default.media_list)),
+                SrcAttributeBase.from_struct(struct.get("srcattr_list", [])),
+                struct.get("change", default.change),
+                TagBase.from_struct(struct.get("tag_list", default.tag_list)),
+                struct.get("private", default.private))
 
     def unserialize(self, data):
         """

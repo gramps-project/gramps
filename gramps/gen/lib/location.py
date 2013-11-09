@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -101,15 +102,16 @@ class Location(SecondaryObject, LocationBase):
 
         :returns: Returns a serialized object
         """
-        return ((struct["street"],
-                 struct["locality"],
-                 struct["city"],
-                 struct["country"],
-                 struct["state"],
-                 struct["country"],
-                 struct["postal"],
-                 struct["phone"]),
-                struct["parish"])
+        default = Location()
+        return ((struct.get("street", default.street),
+                 struct.get("locality", default.locality),
+                 struct.get("city", default.city),
+                 struct.get("country", default.country),
+                 struct.get("state", default.state),
+                 struct.get("country", default.country),
+                 struct.get("postal", default.postal),
+                 struct.get("phone", default.phone)), 
+                struct.get("parish", default.parish))
         
     def unserialize(self, data):
         """

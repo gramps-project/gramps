@@ -104,14 +104,15 @@ class LocationBase(object):
 
         :returns: Returns a serialized object
         """
-        return (struct["street"],
-                struct["locality"],
-                struct["city"],
-                struct["county"],
-                struct["state"],
-                struct["country"],
-                struct["postal"],
-                struct["phone"])
+        default = LocationBase()
+        return (struct.get("street", default.street),
+                struct.get("locality", default.locality),
+                struct.get("city", default.city),
+                struct.get("county", default.county),
+                struct.get("state", default.state),
+                struct.get("country", default.country),
+                struct.get("postal", default.postal),
+                struct.get("phone", default.phone))
 
     def unserialize(self, data):
         """

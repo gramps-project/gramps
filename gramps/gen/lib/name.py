@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -169,21 +170,22 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
 
         :returns: Returns a serialized object
         """
-        return (PrivacyBase.from_struct(struct["private"]),
-                CitationBase.from_struct(struct["citation_list"]),
-                NoteBase.from_struct(struct["note_list"]),
-                DateBase.from_struct(struct["date"]), 
-                struct["first_name"],
-                SurnameBase.from_struct(struct["surname_list"]), 
-                struct["suffix"], 
-                struct["title"], 
-                NameType.from_struct(struct["type"]), 
-                struct["group_as"],
-                struct["sort_as"],
-                struct["display_as"],
-                struct["call"],
-                struct["nick"],
-                struct["famnick"])
+        default = Name()
+        return (PrivacyBase.from_struct(struct.get("private", default.private)),
+                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                DateBase.from_struct(struct.get("date", {})), 
+                struct.get("first_name", default.first_name),
+                SurnameBase.from_struct(struct.get("surname_list", default.surname_list)), 
+                struct.get("suffix", default.suffix), 
+                struct.get("title", default.title), 
+                NameType.from_struct(struct.get("type", {})), 
+                struct.get("group_as", default.group_as),
+                struct.get("sort_as", default.sort_as),
+                struct.get("display_as", default.display_as),
+                struct.get("call", default.call),
+                struct.get("nick", default.nick),
+                struct.get("famnick", default.famnick))
         
     def is_empty(self):
         """

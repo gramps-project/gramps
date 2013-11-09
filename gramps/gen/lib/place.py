@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -159,23 +160,24 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
         :returns: Returns a serialized object
         """
-        return (struct["handle"].handle,
-                struct["gramps_id"],
-                struct["title"],
-                struct["long"],
-                struct["lat"],
-                [PlaceRef.from_struct(pr) for pr in struct["placeref_list"]],
-                struct["name"],
-                PlaceType.from_struct(struct["place_type"]), 
-                struct["code"],
-                [Location.from_struct(al) for al in struct["alt_loc"]],
-                UrlBase.from_struct(struct["urls"]),
-                MediaBase.from_struct(struct["media_list"]),
-                CitationBase.from_struct(struct["citation_list"]),
-                NoteBase.from_struct(struct["note_list"]),
-                struct["change"], 
-                TagBase.from_struct(struct["tag_list"]),
-                struct["private"])
+        default = Place()
+        return (Handle.from_struct(struct.get("handle", default.handle)),
+                struct.get("gramps_id", default.gramps_id),
+                struct.get("title", default.title),
+                struct.get("long", default.long),
+                struct.get("lat", default.lat),
+                [PlaceRef.from_struct(pr) for pr in struct.get("placeref_list", default.placeref_list)],
+                struct.get("name", default.name),
+                PlaceType.from_struct(struct.get("place_type", {})), 
+                struct.get("code", default.code),
+                [Location.from_struct(al) for al in struct.get("alt_loc", default.alt_loc)],
+                UrlBase.from_struct(struct.get("urls", default.urls)),
+                MediaBase.from_struct(struct.get("media_list", default.media_list)),
+                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                struct.get("change", default.change), 
+                TagBase.from_struct(struct.get("tag_list", default.tag_list)),
+                struct.get("private", default.private))
 
     def unserialize(self, data):
         """

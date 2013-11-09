@@ -218,28 +218,29 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
 
         :returns: Returns a serialized object
         """
+        default = Person()
         return (
-            struct["handle"].handle,
-            struct["gramps_id"],
-            struct["gender"],
-            Name.from_struct(struct["primary_name"]),
-            [Name.from_struct(name) for name in struct["alternate_names"]],
-            struct["death_ref_index"],
-            struct["birth_ref_index"],
-            [EventRef.from_struct(er) for er in struct["event_ref_list"]],
-            [handle.handle for handle in struct["family_list"]],
-            [handle.handle for handle in struct["parent_family_list"]],
-            MediaBase.from_struct(struct["media_list"]),
-            AddressBase.from_struct(struct["address_list"]),
-            AttributeBase.from_struct(struct["attribute_list"]),
-            UrlBase.from_struct(struct["urls"]),
-            LdsOrdBase.from_struct(struct["lds_ord_list"]),
-            CitationBase.from_struct(struct["citation_list"]),
-            NoteBase.from_struct(struct["note_list"]),
-            struct["change"],
-            TagBase.from_struct(struct["tag_list"]),
-            struct["private"],
-            [PersonRef.from_struct(p) for p in struct["person_ref_list"]]
+            Handle.from_struct(struct.get("handle", default.handle)),
+            struct.get("gramps_id", default.gramps_id),
+            struct.get("gender", default.gender),
+            Name.from_struct(struct.get("primary_name", {})),
+            [Name.from_struct(name) for name in struct.get("alternate_names", default.alternate_names)],
+            struct.get("death_ref_index", default.death_ref_index),
+            struct.get("birth_ref_index", default.birth_ref_index),
+            [EventRef.from_struct(er) for er in struct.get("event_ref_list", default.event_ref_list)],
+            [Handle.from_struct(handle) for handle in struct.get("family_list", default.family_list)],
+            [Handle.from_struct(handle) for handle in struct.get("parent_family_list", default.parent_family_list)],
+            MediaBase.from_struct(struct.get("media_list", default.media_list)),
+            AddressBase.from_struct(struct.get("address_list", default.address_list)),
+            AttributeBase.from_struct(struct.get("attribute_list", default.attribute_list)),
+            UrlBase.from_struct(struct.get("urls", default.urls)),
+            LdsOrdBase.from_struct(struct.get("lds_ord_list", default.lds_ord_list)),
+            CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
+            NoteBase.from_struct(struct.get("note_list", default.note_list)),
+            struct.get("change", default.change),
+            TagBase.from_struct(struct.get("tag_list", default.tag_list)),
+            struct.get("private", default.private),
+            [PersonRef.from_struct(p) for p in struct.get("person_ref_list", default.person_ref_list)]
         )
 
     def unserialize(self, data):

@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -102,11 +103,12 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
 
         :returns: Returns a serialized object
         """
-        return (PrivacyBase.from_struct(struct["private"]),
-                CitationBase.from_struct(struct["citation_list"]),
-                NoteBase.from_struct(struct["note_list"]),
-                DateBase.from_struct(struct["date"]),
-                LocationBase.from_struct(struct["location"])
+        default = Address()
+        return (PrivacyBase.from_struct(struct.get("private", default.private)),
+                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                DateBase.from_struct(struct.get("date", {})),
+                LocationBase.from_struct(struct.get("location", {}))
             )
 
     def unserialize(self, data):

@@ -96,9 +96,10 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
 
         :returns: Returns a serialized object
         """
+        default = PlaceRef()
         return (
-            RefBase.from_struct(struct["ref"]),
-            DateBase.from_struct(struct["date"])
+            RefBase.from_struct(struct.get("ref", default.ref)),
+            DateBase.from_struct(struct.get("date", {}))
             )
 
     def unserialize(self, data):

@@ -39,3 +39,9 @@ class Handle:
         else:
             return "None"
 
+    @classmethod
+    def from_struct(cls, struct):
+        if isinstance(struct, Handle):
+            return struct.handle
+        else:
+            return struct

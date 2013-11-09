@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -104,12 +105,13 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
 
         :returns: Returns a serialized object
         """
+        default = RepoRef()
         return (
-            NoteBase.from_struct(struct["note_list"]),
-            RefBase.from_struct(struct["ref"]),
-            struct["call_number"],
-            SourceMediaType.from_struct(struct["media_type"]),
-            struct["private"],
+            NoteBase.from_struct(struct.get("note_list", default.note_list)),
+            RefBase.from_struct(struct.get("ref", default.ref)),
+            struct.get("call_number", default.call_number),
+            SourceMediaType.from_struct(struct.get("media_type", {})),
+            struct.get("private", default.private),
             )
 
     def unserialize(self, data):

@@ -33,6 +33,10 @@ class BaseCheck:
         serialized = self.cls.from_struct(struct)
         self.assertEqual(self.object.serialize(), serialized)
 
+    def test_from_empty_struct(self):
+        serialized = self.cls.from_struct({})
+        self.assertEqual(self.object.serialize(), serialized)
+
 class PersonCheck(unittest.TestCase, BaseCheck):
     def setUp(self):
         self.cls = Person

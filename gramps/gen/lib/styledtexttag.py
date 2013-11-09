@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2008  Zsolt Foldvari
+# Copyright (C) 2013  Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -104,9 +105,10 @@ class StyledTextTag(object):
 
         :returns: Returns a serialized object
         """
-        return (StyledTextTagType.from_struct(struct["name"]),
-                struct["value"],
-                struct["ranges"])
+        default = StyledTextTag()
+        return (StyledTextTagType.from_struct(struct.get("name", {})),
+                struct.get("value", default.value),
+                struct.get("ranges", default.ranges))
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.

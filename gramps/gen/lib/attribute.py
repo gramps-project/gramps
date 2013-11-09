@@ -107,9 +107,10 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
 
         :returns: Returns a serialized object
         """
-        return (PrivacyBase.from_struct(struct["private"]),
-                AttributeType.from_struct(struct["type"]), 
-                struct["value"])
+        default = Attribute()
+        return (PrivacyBase.from_struct(struct.get("private", default.private)),
+                AttributeType.from_struct(struct.get("type", {})), 
+                struct.get("value", default.value))
 
     def unserialize(self, data):
         """

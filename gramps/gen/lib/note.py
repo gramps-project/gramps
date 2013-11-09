@@ -135,14 +135,15 @@ class Note(BasicPrimaryObject):
 
         :returns: Returns a serialized object
         """
-        return (struct["handle"].handle,
-                struct["gramps_id"],
-                StyledText.from_struct(struct["text"]),
-                struct["format"],
-                NoteType.from_struct(struct["type"]), 
-                struct["change"],
-                TagBase.from_struct(struct["tag_list"]),
-                struct["private"])
+        default = Note()
+        return (Handle.from_struct(struct.get("handle", default.handle)),
+                struct.get("gramps_id", default.gramps_id),
+                StyledText.from_struct(struct.get("text", {})),
+                struct.get("format", default.format),
+                NoteType.from_struct(struct.get("type", {})), 
+                struct.get("change", default.change),
+                TagBase.from_struct(struct.get("tag_list", default.tag_list)),
+                struct.get("private", default.private))
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.

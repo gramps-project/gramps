@@ -171,21 +171,22 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
         :returns: Returns a serialized object
         """
-        return (struct["handle"].handle,
-                struct["gramps_id"],
-                struct["father_handle"].handle,
-                struct["mother_handle"].handle,
-                [ChildRef.from_struct(cr) for cr in struct["child_ref_list"]],
-                FamilyRelType.from_struct(struct["type"]),
-                [EventRef.from_struct(er) for er in struct["event_ref_list"]],
-                MediaBase.from_struct(struct["media_list"]),
-                AttributeBase.from_struct(struct["attribute_list"]),
-                LdsOrdBase.from_struct(struct["lds_ord_list"]),
-                CitationBase.from_struct(struct["citation_list"]),
-                NoteBase.from_struct(struct["note_list"]),
-                struct["change"], 
-                TagBase.from_struct(struct["tag_list"]), 
-                struct["private"])
+        default = Family()
+        return (Handle.from_struct(struct.get("handle", default.handle)),
+                struct.get("gramps_id", default.gramps_id),
+                Handle.from_struct(struct.get("father_handle", default.father_handle)),
+                Handle.from_struct(struct.get("mother_handle", default.mother_handle)),
+                [ChildRef.from_struct(cr) for cr in struct.get("child_ref_list", default.child_ref_list)],
+                FamilyRelType.from_struct(struct.get("type", {})),
+                [EventRef.from_struct(er) for er in struct.get("event_ref_list", default.event_ref_list)],
+                MediaBase.from_struct(struct.get("media_list", default.media_list)),
+                AttributeBase.from_struct(struct.get("attribute_list", default.attribute_list)),
+                LdsOrdBase.from_struct(struct.get("lds_ord_list", default.lds_ord_list)),
+                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                struct.get("change", default.change), 
+                TagBase.from_struct(struct.get("tag_list", default.tag_list)), 
+                struct.get("private", default.private))
 
     def unserialize(self, data):
         """

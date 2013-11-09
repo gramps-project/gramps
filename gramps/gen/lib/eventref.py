@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -114,12 +115,13 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
 
         :returns: Returns a serialized object
         """
+        default = EventRef()
         return (
-            PrivacyBase.from_struct(struct["private"]),
-            NoteBase.from_struct(struct["note_list"]),
-            AttributeBase.from_struct(struct["attribute_list"]),
-            RefBase.from_struct(struct["ref"]),
-            EventRoleType.from_struct(struct["role"])
+            PrivacyBase.from_struct(struct.get("private", default.private)),
+            NoteBase.from_struct(struct.get("note_list", default.note_list)),
+            AttributeBase.from_struct(struct.get("attribute_list", default.attribute_list)),
+            RefBase.from_struct(struct.get("ref", default.ref)),
+            EventRoleType.from_struct(struct.get("role", {}))
         )
 
     def unserialize(self, data):

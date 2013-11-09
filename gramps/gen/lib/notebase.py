@@ -84,7 +84,7 @@ class NoteBase(object):
 
         :returns: Returns a serialized object
         """
-        return [n.handle for n in struct]
+        return [Handle.from_struct(n) for n in struct]
         
     def unserialize(self, data):
         """

@@ -4,6 +4,7 @@
 # Copyright (C) 2006-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -109,12 +110,13 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
 
         :returns: Returns a serialized object
         """
-        return (PrivacyBase.from_struct(struct["private"]),
-                CitationBase.from_struct(struct["citation_list"]),
-                NoteBase.from_struct(struct["note_list"]),
-                RefBase.from_struct(struct["ref"]),
-                ChildRefType.from_struct(struct["frel"]),
-                ChildRefType.from_struct(struct["mrel"]))
+        default = ChildRef()
+        return (PrivacyBase.from_struct(struct.get("private", default.private)),
+                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                RefBase.from_struct(struct.get("ref", default.ref)),
+                ChildRefType.from_struct(struct.get("frel", {})),
+                ChildRefType.from_struct(struct.get("mrel", {})))
 
     def unserialize(self, data):
         """

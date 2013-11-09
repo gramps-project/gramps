@@ -110,16 +110,17 @@ class Repository(NoteBase, AddressBase, UrlBase,
 
         :returns: Returns a serialized object
         """
-        return (struct["handle"].handle,
-                struct["gramps_id"],
-                RepositoryType.from_struct(struct["type"]),
-                struct["name"],
-                NoteBase.from_struct(struct["note_list"]),
-                AddressBase.from_struct(struct["address_list"]),
-                UrlBase.from_struct(struct["urls"]),
-                struct["change"],
-                TagBase.from_struct(struct["tag_list"]),
-                struct["private"])
+        default = Repository()
+        return (Handle.from_struct(struct.get("handle", default.handle)),
+                struct.get("gramps_id", default.gramps_id),
+                RepositoryType.from_struct(struct.get("type", {})),
+                struct.get("name", default.name),
+                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                AddressBase.from_struct(struct.get("address_list", default.address_list)),
+                UrlBase.from_struct(struct.get("urls", default.urls)),
+                struct.get("change", default.change),
+                TagBase.from_struct(struct.get("tag_list", default.tag_list)),
+                struct.get("private", default.private))
 
     def unserialize(self, data):
         """

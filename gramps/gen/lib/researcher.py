@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -100,17 +101,18 @@ class Researcher(LocationBase):
 
         :returns: Returns a serialized object
         """
-        return (struct["street"],
-                struct["locality"],
-                struct["city"],
-                struct["country"],
-                struct["state"],
-                struct["country"],
-                struct["postal"],
-                struct["phone"],
-                struct["name"],
-                struct["address"],
-                struct["email"])
+        default = Researcher()
+        return (struct.get("street", default.street),
+                struct.get("locality", default.locality),
+                struct.get("city", default.city),
+                struct.get("country", default.country),
+                struct.get("state", default.state),
+                struct.get("country", default.country),
+                struct.get("postal", default.postal),
+                struct.get("phone", default.phone),
+                struct.get("name", default.name),
+                struct.get("address", default.address),
+                struct.get("email", default.email))
         
     def unserialize(self, data):
         """

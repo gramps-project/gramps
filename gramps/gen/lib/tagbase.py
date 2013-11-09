@@ -86,7 +86,7 @@ class TagBase(object):
 
         :returns: Returns a serialized object
         """
-        return [t.handle for t in struct]
+        return [Handle.from_struct(t) for t in struct]
 
     def unserialize(self, data):
         """

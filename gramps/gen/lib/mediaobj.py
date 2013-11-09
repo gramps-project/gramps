@@ -164,19 +164,20 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
 
         :returns: Returns a serialized object
         """
-        return (struct["handle"].handle,
-                struct["gramps_id"],
-                struct["path"],
-                struct["mime"],
-                struct["desc"],
-                struct["checksum"],
-                AttributeBase.from_struct(struct["attribute_list"]),
-                CitationBase.from_struct(struct["citation_list"]),
-                NoteBase.from_struct(struct["note_list"]),
-                struct["change"],
-                DateBase.from_struct(struct["date"]),
-                TagBase.from_struct(struct["tag_list"]),
-                struct["private"])
+        default = MediaObject()
+        return (Handle.from_struct(struct.get("handle", default.handle)),
+                struct.get("gramps_id", default.gramps_id),
+                struct.get("path", default.path),
+                struct.get("mime", default.mime),
+                struct.get("desc", default.desc),
+                struct.get("checksum", default.checksum),
+                AttributeBase.from_struct(struct.get("attribute_list", default.attribute_list)),
+                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                struct.get("change", default.change),
+                DateBase.from_struct(struct.get("date", {})),
+                TagBase.from_struct(struct.get("tag_list", default.tag_list)),
+                struct.get("private", default.private))
 
     def unserialize(self, data):
         """

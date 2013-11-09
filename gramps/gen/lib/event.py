@@ -160,20 +160,20 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
 
         :returns: Returns a serialized object
         """
-        from .grampstype import GrampsType
-        return (struct["handle"].handle,
-                struct["gramps_id"],
-                EventType.from_struct(struct["type"]),
-                DateBase.from_struct(struct["date"]),
-                struct["description"],
-                struct["place"].handle,
-                CitationBase.from_struct(struct["citation_list"]),
-                NoteBase.from_struct(struct["note_list"]),
-                MediaBase.from_struct(struct["media_list"]),
-                AttributeBase.from_struct(struct["attribute_list"]),
-                struct["change"],
-                TagBase.from_struct(struct["tag_list"]),
-                struct["private"])
+        default = Event()
+        return (Handle.from_struct(struct.get("handle", default.handle)),
+                struct.get("gramps_id", default.gramps_id),
+                EventType.from_struct(struct.get("type", {})),
+                DateBase.from_struct(struct.get("date", {})),
+                struct.get("description", default.description),
+                Handle.from_struct(struct.get("place", default.place)),
+                CitationBase.from_struct(struct.get("citation_list", default.citation_list)),
+                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                MediaBase.from_struct(struct.get("media_list", default.media_list)),
+                AttributeBase.from_struct(struct.get("attribute_list", default.attribute_list)),
+                struct.get("change", default.change),
+                TagBase.from_struct(struct.get("tag_list", default.tag_list)),
+                struct.get("private", default.private))
 
     def unserialize(self, data):
         """

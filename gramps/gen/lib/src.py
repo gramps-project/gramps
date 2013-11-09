@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2010       Michiel D. Nauta
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -122,19 +123,21 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
 
         :returns: Returns a serialized object
         """
-        return (struct["handle"].handle,
-                struct["gramps_id"],
-                struct["title"],
-                struct["author"],
-                struct["pubinfo"],
-                NoteBase.from_struct(struct["note_list"]),
-                MediaBase.from_struct(struct["media_list"]), 
-                struct["abbrev"],
-                struct["change"],
-                SrcAttributeBase.from_struct(struct["srcattr_list"]),
-                [RepoRef.from_struct(rr) for rr in struct["reporef_list"]],
-                TagBase.from_struct(struct["tag_list"]),
-                struct["private"])
+        from .srcattribute import SrcAttribute
+        default = Source()
+        return (Handle.from_struct(struct.get("handle", default.handle)),
+                struct.get("gramps_id", default.gramps_id),
+                struct.get("title", default.title),
+                struct.get("author", default.author),
+                struct.get("pubinfo", default.pubinfo),
+                NoteBase.from_struct(struct.get("note_list", default.note_list)),
+                MediaBase.from_struct(struct.get("media_list", default.media_list)), 
+                struct.get("abbrev", default.abbrev),
+                struct.get("change", default.change),
+                SrcAttributeBase.from_struct(struct.get("srcattr_list", {})),
+                [RepoRef.from_struct(rr) for rr in struct.get("reporef_list", default.reporef_list)],
+                TagBase.from_struct(struct.get("tag_list", default.tag_list)),
+                struct.get("private", default.private))
 
     def unserialize(self, data):
         """

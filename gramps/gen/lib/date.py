@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2009       Douglas S. Blank
+# Copyright (C) 2009-2013  Douglas S. Blank
 # Copyright (C) 2013       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
@@ -686,13 +686,14 @@ class Date(object):
 
         :returns: Returns a serialized object
         """
-        retval = (struct["calendar"],
-                  struct["modifier"],
-                  struct["quality"],
-                  struct["dateval"],
-                  struct["text"],
-                  struct["sortval"],
-                  struct["newyear"])
+        default = Date()
+        retval = (struct.get("calendar", default.calendar),
+                  struct.get("modifier", default.modifier),
+                  struct.get("quality", default.quality),
+                  struct.get("dateval", default.dateval),
+                  struct.get("text", default.text),
+                  struct.get("sortval", default.sortval),
+                  struct.get("newyear", default.newyear))
         if retval == (0, 0, 0, (0, 0, 0, False), '', 0, 0):
             return None
         else:

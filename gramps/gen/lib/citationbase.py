@@ -105,7 +105,7 @@ class CitationBase(object):
 
         :returns: Returns a serialized object
         """
-        return [handle.handle for handle in struct]
+        return [Handle.from_struct(handle) for handle in struct]
         
     def unserialize(self, data):
         """

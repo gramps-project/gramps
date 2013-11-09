@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2009       Douglas S. Blank <doug.blank@gmail.com>
+# Copyright (C) 2009-2013  Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -105,10 +105,11 @@ class Url(SecondaryObject, PrivacyBase):
 
         :returns: Returns a serialized object
         """
-        return (struct["private"], 
-                struct["path"], 
-                struct["desc"], 
-                UrlType.from_struct(struct["type"]))
+        default = Url()
+        return (struct.get("private", default.private), 
+                struct.get("path", default.path), 
+                struct.get("desc", default.desc), 
+                UrlType.from_struct(struct.get("type", {})))
         
     def unserialize(self, data):
         (self.private, self.path, self.desc, type_value) = data
