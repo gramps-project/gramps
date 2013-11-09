@@ -56,7 +56,7 @@ class PlaceImport(object):
         """
         Generate missing places in the place hierarchy.
         """
-        for handle, location in self.handle2loc.iteritems():
+        for handle, location in self.handle2loc.items():
 
             # find title and type
             for type_num, name in enumerate(location):
