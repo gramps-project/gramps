@@ -123,7 +123,7 @@ for table, entries in [("grampsdb.config",
                           ("report_type", '"import"')),
                          (("name", '"Gramps package (portable XML) Import"'),
                           ("handle", '"im_gpkg"'),
-                          ("options", '"iff=gramps i=http://gramps.svn.sourceforge.net/viewvc/gramps/trunk/example/gramps/example.gramps?revision=18333"'),
+                          ("options", '"iff=gramps i=http://sourceforge.net/p/gramps/source/ci/master/tree/example/gramps/example.gramps"'),
                           ("report_type", '"import"')),
                          ])]:
     entry_count = 0
