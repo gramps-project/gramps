@@ -53,7 +53,7 @@ def make_parser():
 
 
 def getTestSuites(loc=gramps_root):
-    # in a developer's checkout, it is worth filtering-out .svn
+    # in a developer's checkout, it is worth filtering-out .git
     #  and we only need to look inside test subdirs
     #   (this might change)
     # this is not so performance critical that we can't afford
@@ -65,9 +65,9 @@ def getTestSuites(loc=gramps_root):
     test_dirname = "test"
     test_suffix = "_test.py"
     def test_mod(p,ds):
-        """ test for path p=test dir; removes a dir '.svn' in ds """
-        if ".svn" in ds: 
-            ds.remove(".svn")
+        """ test for path p=test dir; removes a dir '.git' in ds """
+        if ".git" in ds:
+            ds.remove(".git")
         return os.path.basename(p) == test_dirname
     def match_mod(fs):
         """ test for any test modules; deletes all non-tests  """

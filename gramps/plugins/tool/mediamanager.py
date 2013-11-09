@@ -671,8 +671,8 @@ class ImagesNotIncluded(BatchOp):
         self.set_total(len(self.dir_list))
         for directory in self.dir_list:
             for (dirpath, dirnames, filenames) in os.walk(directory):
-                if ".svn" in dirnames: 
-                    dirnames.remove('.svn')  # don't visit .svn directories
+                if ".git" in dirnames:
+                    dirnames.remove('.git')  # don't visit .git directories
                 for filename in filenames:
                     media_full_path = os.path.join(dirpath, filename)
                     if media_full_path not in self.path_list:
