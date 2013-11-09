@@ -128,6 +128,22 @@ class Note(BasicPrimaryObject):
                 "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["handle"].handle,
+                struct["gramps_id"],
+                StyledText.from_struct(struct["text"]),
+                struct["format"],
+                NoteType.from_struct(struct["type"]), 
+                struct["change"],
+                TagBase.from_struct(struct["tag_list"]),
+                struct["private"])
+
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.
         

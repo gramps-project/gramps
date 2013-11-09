@@ -89,6 +89,15 @@ class DateBase(object):
             date = self.date.to_struct()
         return date
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return Date.from_struct(struct)
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

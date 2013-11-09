@@ -93,6 +93,25 @@ class Researcher(LocationBase):
                 "address": self.addr, 
                 "email": self.email}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["street"],
+                struct["locality"],
+                struct["city"],
+                struct["country"],
+                struct["state"],
+                struct["country"],
+                struct["postal"],
+                struct["phone"],
+                struct["name"],
+                struct["address"],
+                struct["email"])
+        
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

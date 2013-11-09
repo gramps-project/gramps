@@ -157,6 +157,27 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
                 "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["handle"].handle,
+                struct["gramps_id"],
+                struct["path"],
+                struct["mime"],
+                struct["desc"],
+                struct["checksum"],
+                AttributeBase.from_struct(struct["attribute_list"]),
+                CitationBase.from_struct(struct["citation_list"]),
+                NoteBase.from_struct(struct["note_list"]),
+                struct["change"],
+                DateBase.from_struct(struct["date"]),
+                TagBase.from_struct(struct["tag_list"]),
+                struct["private"])
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

@@ -234,6 +234,18 @@ class GrampsType(GrampsTypeC):
         return {"value": self.__value, 
                 "string": str(self)}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        if struct["value"] == cls._CUSTOM:
+            return (struct["value"], struct["string"])
+        else:
+            return (struct["value"], '')
+
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object."""
         self.__value, self.__string = data

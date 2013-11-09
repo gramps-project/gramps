@@ -94,6 +94,23 @@ class Location(SecondaryObject, LocationBase):
                 "phone": self.phone,
                 "parish": self.parish}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return ((struct["street"],
+                 struct["locality"],
+                 struct["city"],
+                 struct["country"],
+                 struct["state"],
+                 struct["country"],
+                 struct["postal"],
+                 struct["phone"]),
+                struct["parish"])
+        
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

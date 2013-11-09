@@ -103,6 +103,24 @@ class Repository(NoteBase, AddressBase, UrlBase,
                 "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["handle"].handle,
+                struct["gramps_id"],
+                RepositoryType.from_struct(struct["type"]),
+                struct["name"],
+                NoteBase.from_struct(struct["note_list"]),
+                AddressBase.from_struct(struct["address_list"]),
+                UrlBase.from_struct(struct["urls"]),
+                struct["change"],
+                TagBase.from_struct(struct["tag_list"]),
+                struct["private"])
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

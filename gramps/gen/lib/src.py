@@ -115,6 +115,27 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                 "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["handle"].handle,
+                struct["gramps_id"],
+                struct["title"],
+                struct["author"],
+                struct["pubinfo"],
+                NoteBase.from_struct(struct["note_list"]),
+                MediaBase.from_struct(struct["media_list"]), 
+                struct["abbrev"],
+                struct["change"],
+                SrcAttributeBase.from_struct(struct["srcattr_list"]),
+                [RepoRef.from_struct(rr) for rr in struct["reporef_list"]],
+                TagBase.from_struct(struct["tag_list"]),
+                struct["private"])
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

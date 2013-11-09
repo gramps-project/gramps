@@ -97,6 +97,17 @@ class StyledTextTag(object):
                 "value": self.value, 
                 "ranges": self.ranges}
     
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (StyledTextTagType.from_struct(struct["name"]),
+                struct["value"],
+                struct["ranges"])
+
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.
        

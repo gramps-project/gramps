@@ -28,13 +28,10 @@ class Handle:
         self.classname = classname
         if handle and not isinstance(handle, UNITYPE):
             handle = handle.decode('utf-8')
-        if handle:
-            self.handle = handle
-        else:
-            self.handle = None
+        self.handle = handle
 
     def __repr__(self):
-        return "Handle(%s, %s)" % (self.classname, self.handle)
+        return "Handle(%s, %s)" % (repr(self.classname), repr(self.handle))
 
     def __str__(self):
         if self.handle:

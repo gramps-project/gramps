@@ -152,6 +152,31 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 "tag_list": TagBase.to_struct(self),
                 "private": self.private}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["handle"].handle,
+                struct["gramps_id"],
+                struct["title"],
+                struct["long"],
+                struct["lat"],
+                [PlaceRef.from_struct(pr) for pr in struct["placeref_list"]],
+                struct["name"],
+                PlaceType.from_struct(struct["place_type"]), 
+                struct["code"],
+                [Location.from_struct(al) for al in struct["alt_loc"]],
+                UrlBase.from_struct(struct["urls"]),
+                MediaBase.from_struct(struct["media_list"]),
+                CitationBase.from_struct(struct["citation_list"]),
+                NoteBase.from_struct(struct["note_list"]),
+                struct["change"], 
+                TagBase.from_struct(struct["tag_list"]),
+                struct["private"])
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

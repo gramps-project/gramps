@@ -83,6 +83,15 @@ class AddressBase(object):
         """
         return [addr.to_struct() for addr in self.address_list]
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return [Address.from_struct(addr) for addr in struct]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

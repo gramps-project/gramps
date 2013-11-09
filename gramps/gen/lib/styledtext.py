@@ -315,6 +315,15 @@ class StyledText(object):
         return {"string": self._string, 
                 "tags": the_tags}
     
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["string"], [StyledTextTag.from_struct(t) for t in struct["tags"]])
+
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object.
         

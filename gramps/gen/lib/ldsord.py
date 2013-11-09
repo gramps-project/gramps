@@ -175,6 +175,23 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
                 "status": self.status, 
                 "private": self.private}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (CitationBase.from_struct(struct["citation_list"]),
+                NoteBase.from_struct(struct["note_list"]),
+                DateBase.from_struct(struct["date"]),
+                struct["type"],
+                struct["place"],
+                struct["famc"],
+                struct["temple"],
+                struct["status"],
+                struct["private"])
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

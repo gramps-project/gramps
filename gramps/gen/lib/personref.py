@@ -98,6 +98,19 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
                 "ref": RefBase.to_struct(self),
                 "rel": self.rel}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (PrivacyBase.from_struct(struct["private"]),
+                CitationBase.from_struct(struct["citation_list"]),
+                NoteBase.from_struct(struct["note_list"]),
+                RefBase.from_struct(struct["ref"]),
+                struct["rel"])
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

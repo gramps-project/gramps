@@ -89,6 +89,18 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
             "date": DateBase.to_struct(self)
             }
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (
+            RefBase.from_struct(struct["ref"]),
+            DateBase.from_struct(struct["date"])
+            )
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

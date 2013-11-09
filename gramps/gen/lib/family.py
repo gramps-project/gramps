@@ -164,6 +164,29 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                 "tag_list": TagBase.to_struct(self), 
                 "private": self.private}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["handle"].handle,
+                struct["gramps_id"],
+                struct["father_handle"].handle,
+                struct["mother_handle"].handle,
+                [ChildRef.from_struct(cr) for cr in struct["child_ref_list"]],
+                FamilyRelType.from_struct(struct["type"]),
+                [EventRef.from_struct(er) for er in struct["event_ref_list"]],
+                MediaBase.from_struct(struct["media_list"]),
+                AttributeBase.from_struct(struct["attribute_list"]),
+                LdsOrdBase.from_struct(struct["lds_ord_list"]),
+                CitationBase.from_struct(struct["citation_list"]),
+                NoteBase.from_struct(struct["note_list"]),
+                struct["change"], 
+                TagBase.from_struct(struct["tag_list"]), 
+                struct["private"])
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

@@ -679,6 +679,25 @@ class Date(object):
                 "sortval": self.sortval, 
                 "newyear": self.newyear}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        retval = (struct["calendar"],
+                  struct["modifier"],
+                  struct["quality"],
+                  struct["dateval"],
+                  struct["text"],
+                  struct["sortval"],
+                  struct["newyear"])
+        if retval == (0, 0, 0, (0, 0, 0, False), '', 0, 0):
+            return None
+        else:
+            return retval
+        
     def unserialize(self, data):
         """
         Load from the format created by serialize.

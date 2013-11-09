@@ -70,7 +70,16 @@ class RefBase(object):
         :returns: Returns a struct containing the data of the object.
         :rtype: str
         """
-        return [Handle(*t) for t in self.get_referenced_handles()]
+        return self.ref
+
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return struct
 
     def unserialize(self, data):
         """

@@ -162,6 +162,29 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
                 "nick": self.nick, 
                 "famnick": self.famnick}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (PrivacyBase.from_struct(struct["private"]),
+                CitationBase.from_struct(struct["citation_list"]),
+                NoteBase.from_struct(struct["note_list"]),
+                DateBase.from_struct(struct["date"]), 
+                struct["first_name"],
+                SurnameBase.from_struct(struct["surname_list"]), 
+                struct["suffix"], 
+                struct["title"], 
+                NameType.from_struct(struct["type"]), 
+                struct["group_as"],
+                struct["sort_as"],
+                struct["display_as"],
+                struct["call"],
+                struct["nick"],
+                struct["famnick"])
+        
     def is_empty(self):
         """
         Indicate if the name is empty.

@@ -98,6 +98,15 @@ class CitationBase(object):
         """
         return [Handle("Citation", c) for c in self.citation_list]
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return [handle.handle for handle in struct]
+        
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

@@ -82,6 +82,15 @@ class UrlBase(object):
         """
         return [url.to_struct() for url in self.urls]
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return [Url.from_struct(url) for url in struct]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

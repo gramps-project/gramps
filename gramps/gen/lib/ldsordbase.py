@@ -88,6 +88,15 @@ class LdsOrdBase(object):
         """
         return [lds_ord.to_struct() for lds_ord in self.lds_ord_list]
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return [LdsOrd.from_struct(lds_ord) for lds_ord in struct]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object

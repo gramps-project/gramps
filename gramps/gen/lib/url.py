@@ -98,6 +98,18 @@ class Url(SecondaryObject, PrivacyBase):
                 "desc": self.desc, 
                 "type": self.type.to_struct()}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["private"], 
+                struct["path"], 
+                struct["desc"], 
+                UrlType.from_struct(struct["type"]))
+        
     def unserialize(self, data):
         (self.private, self.path, self.desc, type_value) = data
         self.type.unserialize(type_value)

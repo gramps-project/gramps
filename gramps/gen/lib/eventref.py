@@ -107,6 +107,21 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
             "role": self.__role.to_struct()
             }
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (
+            PrivacyBase.from_struct(struct["private"]),
+            NoteBase.from_struct(struct["note_list"]),
+            AttributeBase.from_struct(struct["attribute_list"]),
+            RefBase.from_struct(struct["ref"]),
+            EventRoleType.from_struct(struct["role"])
+        )
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

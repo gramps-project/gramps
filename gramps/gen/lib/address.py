@@ -92,14 +92,22 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "date": DateBase.to_struct(self),
-                "street": self.street, 
-                "locality": self.locality, 
-                "city": self.city, 
-                "country": self.county, 
-                "state": self.state,
-                "country": self.country, 
-                "postal": self.postal, 
-                "phone": self.phone}
+                "location": LocationBase.to_struct(self)
+        }
+
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (PrivacyBase.from_struct(struct["private"]),
+                CitationBase.from_struct(struct["citation_list"]),
+                NoteBase.from_struct(struct["note_list"]),
+                DateBase.from_struct(struct["date"]),
+                LocationBase.from_struct(struct["location"])
+            )
 
     def unserialize(self, data):
         """

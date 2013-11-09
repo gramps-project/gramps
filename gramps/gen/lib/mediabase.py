@@ -80,6 +80,15 @@ class MediaBase(object):
         """
         return [mref.to_struct() for mref in self.media_list]
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return [MediaRef.from_struct(mref) for mref in struct]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

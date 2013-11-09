@@ -102,6 +102,20 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
                 "frel": self.frel.to_struct(),
                 "mrel": self.mrel.to_struct()}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (PrivacyBase.from_struct(struct["private"]),
+                CitationBase.from_struct(struct["citation_list"]),
+                NoteBase.from_struct(struct["note_list"]),
+                RefBase.from_struct(struct["ref"]),
+                ChildRefType.from_struct(struct["frel"]),
+                ChildRefType.from_struct(struct["mrel"]))
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

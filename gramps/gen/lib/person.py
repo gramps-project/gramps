@@ -211,6 +211,37 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                                 for pr in self.person_ref_list]  # 20
             }
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (
+            struct["handle"].handle,
+            struct["gramps_id"],
+            struct["gender"],
+            Name.from_struct(struct["primary_name"]),
+            [Name.from_struct(name) for name in struct["alternate_names"]],
+            struct["death_ref_index"],
+            struct["birth_ref_index"],
+            [EventRef.from_struct(er) for er in struct["event_ref_list"]],
+            [handle.handle for handle in struct["family_list"]],
+            [handle.handle for handle in struct["parent_family_list"]],
+            MediaBase.from_struct(struct["media_list"]),
+            AddressBase.from_struct(struct["address_list"]),
+            AttributeBase.from_struct(struct["attribute_list"]),
+            UrlBase.from_struct(struct["urls"]),
+            LdsOrdBase.from_struct(struct["lds_ord_list"]),
+            CitationBase.from_struct(struct["citation_list"]),
+            NoteBase.from_struct(struct["note_list"]),
+            struct["change"],
+            TagBase.from_struct(struct["tag_list"]),
+            struct["private"],
+            [PersonRef.from_struct(p) for p in struct["person_ref_list"]]
+        )
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

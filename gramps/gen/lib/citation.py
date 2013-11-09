@@ -131,6 +131,26 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                 "tag_list": TagBase.to_struct(self),             # 10
                 "private": self.private}                         # 11
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["handle"].handle,
+                struct["gramps_id"],
+                DateBase.from_struct(struct["date"]),
+                struct["page"],
+                struct["confidence"],
+                struct["source_handle"].handle,
+                NoteBase.from_struct(struct["note_list"]),
+                MediaBase.from_struct(struct["media_list"]),
+                SrcAttributeBase.from_struct(struct["srcattr_list"]),
+                struct["change"],
+                TagBase.from_struct(struct["tag_list"]),
+                struct["private"])
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

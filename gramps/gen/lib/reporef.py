@@ -97,6 +97,21 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
             "private": PrivacyBase.serialize(self),
             }
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (
+            NoteBase.from_struct(struct["note_list"]),
+            RefBase.from_struct(struct["ref"]),
+            struct["call_number"],
+            SourceMediaType.from_struct(struct["media_type"]),
+            struct["private"],
+            )
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

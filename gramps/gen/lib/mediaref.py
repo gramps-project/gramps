@@ -97,6 +97,20 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
                 "ref": RefBase.to_struct(self),
                 "rect": self.rect if self.rect != (0,0,0,0) else None}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (PrivacyBase.from_struct(struct["private"]),
+                CitationBase.from_struct(struct["citation_list"]),
+                NoteBase.from_struct(struct["note_list"]),
+                AttributeBase.from_struct(struct["attribute_list"]),
+                RefBase.from_struct(struct["ref"]),
+                struct["rect"])
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

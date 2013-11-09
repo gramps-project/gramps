@@ -58,6 +58,13 @@ class BaseObject(object):
         """
         assert False, "Needs to be overridden in the derived class"
 
+    def unserialize(self, data):
+        """
+        Convert a serialized tuple of data to an object.
+        """
+        assert False, "Needs to be overridden in the derived class"
+        return self
+    
     def to_struct(self):
         """
         Convert the data held in this object to a structure (eg,
@@ -79,13 +86,22 @@ class BaseObject(object):
         """
         assert False, "Needs to be overridden in the derived class"
 
-    def unserialize(self, data):
+    def from_struct(self, struct):
         """
-        Convert a serialized tuple of data to an object.
+        Given a struct data representation, return an object of this type.
+
+        These structures may be primitive Python types (string,
+        integer, boolean, etc.) or complex Python types (lists,
+        tuples, or dicts). If the return type is a dict, then the keys
+        of the dict match the fieldname of the object. If the return
+        struct (or value of a dict key) is a list, then it is a list
+        of structs. Otherwise, the struct is just the value of the
+        attribute.
+
+        :returns: Returns an object of this type.
         """
         assert False, "Needs to be overridden in the derived class"
-        return self
-    
+
     def matches_string(self, pattern, case_sensitive=False):
         """
         Return True if any text data in the object or any of it's child

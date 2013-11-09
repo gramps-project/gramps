@@ -226,5 +226,18 @@ class Tag(TableObject):
                 "priority": self.__priority,
                 "change": self.change}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["handle"].handle,
+                struct["name"],
+                struct["color"],
+                struct["priority"],
+                struct["change"])
+        
     priority = property(get_priority, set_priority, None,
                      'Returns or sets priority of the tag')

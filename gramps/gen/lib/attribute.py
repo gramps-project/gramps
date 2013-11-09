@@ -100,6 +100,17 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
                 "type": self.type.to_struct(), 
                 "value": self.value}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (PrivacyBase.from_struct(struct["private"]),
+                AttributeType.from_struct(struct["type"]), 
+                struct["value"])
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.
@@ -257,6 +268,19 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
                 "note_list": NoteBase.to_struct(self),
                 "type": self.type.to_struct(), 
                 "value": self.value}
+
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (PrivacyBase.from_struct(struct["private"]),
+                CitationBase.from_struct(struct["citation_list"]),
+                NoteBase.from_struct(struct["note_list"]),
+                AttributeType.from_struct(struct["type"]), 
+                struct["value"])
 
     def unserialize(self, data):
         """

@@ -79,6 +79,15 @@ class TagBase(object):
         """
         return [Handle('Tag', t) for t in self.tag_list]
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return [t.handle for t in struct]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

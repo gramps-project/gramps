@@ -90,6 +90,15 @@ class AttributeRootBase(object):
         """
         return [attr.to_struct() for attr in self.attribute_list]
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return [cls._CLASS.from_struct(attr) for attr in struct]
+
     def unserialize(self, data):
         """
         Convert a serialized tuple of data to an object.

@@ -97,6 +97,19 @@ class Surname(SecondaryObject):
                 "origintype": self.origintype.to_struct(), 
                 "connector": self.connector}
 
+    @classmethod
+    def from_struct(cls, struct):
+        """
+        Given a struct data representation, return a serialized object.
+
+        :returns: Returns a serialized object
+        """
+        return (struct["surname"],
+                struct["prefix"],
+                struct["primary"],
+                NameOriginType.from_struct(struct["origintype"]),
+                struct["connector"])
+        
     def is_empty(self):
         """
         Indicate if the surname is empty.
