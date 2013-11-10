@@ -107,92 +107,109 @@ class DictionaryDb(DbWriteBase, DbReadBase):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
     """
-
     def __init__(self, *args, **kwargs):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
-        self._tables = {
-            'Person':
-                {
+        self._tables['Person'].update(
+            {
                 "handle_func": self.get_person_from_handle, 
                 "gramps_id_func": self.get_person_from_gramps_id,
                 "class_func": Person,
                 "cursor_func": self.get_person_cursor,
                 "handles_func": self.get_person_handles,
-                },
-            'Family':
-                {
+                "add_func": self.add_person,
+                "commit_func": self.commit_person,
+            })
+        self._tables['Family'].update(
+            {
                 "handle_func": self.get_family_from_handle, 
                 "gramps_id_func": self.get_family_from_gramps_id,
                 "class_func": Family,
                 "cursor_func": self.get_family_cursor,
                 "handles_func": self.get_family_handles,
-                },
-            'Source':
-                {
+                "add_func": self.add_family,
+                "commit_func": self.commit_family,
+            })
+        self._tables['Source'].update(
+            {
                 "handle_func": self.get_source_from_handle, 
                 "gramps_id_func": self.get_source_from_gramps_id,
                 "class_func": Source,
                 "cursor_func": self.get_source_cursor,
                 "handles_func": self.get_source_handles,
-                },
-            'Citation':
-                {
+                "add_func": self.add_source,
+                "commit_func": self.commit_source,
+                })
+        self._tables['Citation'].update(
+            {
                 "handle_func": self.get_citation_from_handle, 
                 "gramps_id_func": self.get_citation_from_gramps_id,
                 "class_func": Citation,
                 "cursor_func": self.get_citation_cursor,
                 "handles_func": self.get_citation_handles,
-                },
-            'Event':
-                {
+                "add_func": self.add_citation,
+                "commit_func": self.commit_citation,
+            })
+        self._tables['Event'].update(
+            {
                 "handle_func": self.get_event_from_handle, 
                 "gramps_id_func": self.get_event_from_gramps_id,
                 "class_func": Event,
                 "cursor_func": self.get_event_cursor,
                 "handles_func": self.get_event_handles,
-                },
-            'Media':
-                {
+                "add_func": self.add_event,
+                "commit_func": self.commit_event,
+            })
+        self._tables['Media'].update(
+            {
                 "handle_func": self.get_object_from_handle, 
                 "gramps_id_func": self.get_object_from_gramps_id,
                 "class_func": MediaObject,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_object_handles,
-                },
-            'Place':
-                {
+                "add_func": self.add_object,
+                "commit_func": self.commit_media_object,
+            })
+        self._tables['Place'].update(
+            {
                 "handle_func": self.get_place_from_handle, 
                 "gramps_id_func": self.get_place_from_gramps_id,
                 "class_func": Place,
                 "cursor_func": self.get_place_cursor,
                 "handles_func": self.get_place_handles,
-                },
-            'Repository':
-                {
+                "add_func": self.add_place,
+                "commit_func": self.commit_place,
+            })
+        self._tables['Repository'].update(
+            {
                 "handle_func": self.get_repository_from_handle, 
                 "gramps_id_func": self.get_repository_from_gramps_id,
                 "class_func": Repository,
                 "cursor_func": self.get_repository_cursor,
                 "handles_func": self.get_repository_handles,
-                },
-            'Note':
-                {
+                "add_func": self.add_repository,
+                "commit_func": self.commit_repository,
+            })
+        self._tables['Note'].update(
+            {
                 "handle_func": self.get_note_from_handle, 
                 "gramps_id_func": self.get_note_from_gramps_id,
                 "class_func": Note,
                 "cursor_func": self.get_note_cursor,
                 "handles_func": self.get_note_handles,
-                },
-            'Tag':
-                {
+                "add_func": self.add_note,
+                "commit_func": self.commit_note,
+            })
+        self._tables['Tag'].update(
+            {
                 "handle_func": self.get_tag_from_handle, 
                 "gramps_id_func": None,
                 "class_func": Tag,
                 "cursor_func": self.get_tag_cursor,
                 "handles_func": self.get_tag_handles,
-                },
-            }
+                "add_func": self.add_tag,
+                "commit_func": self.commit_tag,
+            })
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
         self.set_feature("skip-import-additions", True)
@@ -968,3 +985,9 @@ class DictionaryDb(DbWriteBase, DbReadBase):
             for (handle, data) in cursor():
                 map = getattr(self, "%s_map" % key.lower())
                 map[handle] = class_.create(data)
+
+    def get_transaction_class(self):
+        """
+        Get the transaction class associated with this database backend.
+        """
+        return DictionaryTxn

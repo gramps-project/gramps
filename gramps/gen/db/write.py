@@ -285,6 +285,107 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         DbBsddbRead.__init__(self)
         DbWriteBase.__init__(self)
         #UpdateCallback.__init__(self)
+        self._tables['Person'].update(
+            {
+                "handle_func": self.get_person_from_handle, 
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+                "add_func": self.add_person,
+                "commit_func": self.commit_person,
+            })
+        self._tables['Family'].update(
+            {
+                "handle_func": self.get_family_from_handle, 
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+                "add_func": self.add_family,
+                "commit_func": self.commit_family,
+            })
+        self._tables['Source'].update(
+            {
+                "handle_func": self.get_source_from_handle, 
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                "add_func": self.add_source,
+                "commit_func": self.commit_source,
+                })
+        self._tables['Citation'].update(
+            {
+                "handle_func": self.get_citation_from_handle, 
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+                "add_func": self.add_citation,
+                "commit_func": self.commit_citation,
+            })
+        self._tables['Event'].update(
+            {
+                "handle_func": self.get_event_from_handle, 
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+                "add_func": self.add_event,
+                "commit_func": self.commit_event,
+            })
+        self._tables['Media'].update(
+            {
+                "handle_func": self.get_object_from_handle, 
+                "gramps_id_func": self.get_object_from_gramps_id,
+                "class_func": MediaObject,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_object_handles,
+                "add_func": self.add_object,
+                "commit_func": self.commit_media_object,
+            })
+        self._tables['Place'].update(
+            {
+                "handle_func": self.get_place_from_handle, 
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+                "add_func": self.add_place,
+                "commit_func": self.commit_place,
+            })
+        self._tables['Repository'].update(
+            {
+                "handle_func": self.get_repository_from_handle, 
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+                "add_func": self.add_repository,
+                "commit_func": self.commit_repository,
+            })
+        self._tables['Note'].update(
+            {
+                "handle_func": self.get_note_from_handle, 
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+                "add_func": self.add_note,
+                "commit_func": self.commit_note,
+            })
+        self._tables['Tag'].update(
+            {
+                "handle_func": self.get_tag_from_handle, 
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+                "add_func": self.add_tag,
+                "commit_func": self.commit_tag,
+            })
+
         self.secondary_connected = False
         self.has_changed = False
         self.brief_name = None
@@ -2312,6 +2413,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         return self.brief_name
 
+    def get_transaction_class(self):
+        """
+        Get the transaction class associated with this database backend.
+        """
+        return DbTxn
 
 def _mkname(path, name):
     return os.path.join(path, name + DBEXT)

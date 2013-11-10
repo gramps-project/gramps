@@ -61,6 +61,18 @@ class DbReadBase(object):
         """
         self.basedb = self
         self.__feature = {} # {"feature": VALUE, ...}
+        self._tables = {
+            "Citation": {},
+            "Event": {},
+            "Family": {},
+            "Media": {},
+            "Note": {},
+            "Person": {},
+            "Place": {},
+            "Repository": {},
+            "Source": {},
+            "Tag": {},
+        }
 
     def get_feature(self, feature):
         """
