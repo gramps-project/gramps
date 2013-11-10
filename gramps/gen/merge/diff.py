@@ -185,6 +185,9 @@ def diff_db_to_file(old_db, filename, user=None):
     return diffs, m_old, m_new
     
 def from_struct(struct):
+    """
+    Given a struct with metadata, create a Gramps object.
+    """
     from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation, 
                                  Repository, MediaObject, Note, Tag)
     if isinstance(struct, dict):
@@ -210,3 +213,76 @@ def from_struct(struct):
             elif struct["_class"] == "Tag":
                 return Tag.create(Tag.from_struct(struct))
     raise AttributeError("invalid struct")
+
+class Struct(object):
+    """
+    Class for getting and setting parts of a struct by dotted path.
+
+    >>> s = Struct({"gramps_id": "I0001", ...})
+    >>> s["primary_name.surname_list.0.surname"]
+    Jones
+    >>> s["primary_name.surname_list.0.surname"] = "Smith"
+    >>> s["primary_name.surname_list.0.surname"]
+    Smith
+    """
+    def __init__(self, struct, db=None):
+        self.struct = struct
+        self.db = db
+
+    def __getitem__(self, path): 
+        """
+        Given a path to a struct part, return the part, or None.
+
+        >>> Struct(struct)["primary_name.surname_list.0.surname"]
+        """
+        # First, work way down to last part:
+        struct = self.struct
+        for part in path.split("."):
+            struct = self.getitem(part, struct)
+            if struct is None:
+                return None
+        return struct
+
+    def getitem(self, item, struct=None): 
+        """
+        >>> Struct(struct).getitem("primary_name")
+        {...}
+        """
+        if struct is None:
+            struct = self.struct
+        # Get part
+        if isinstance(struct, (list, tuple)):
+            pos = int(item)
+            if pos < len(struct):
+                return struct[int(item)]
+            else:
+                return None
+        elif isinstance(struct, dict):
+            if item in struct:
+                return struct[item]
+            else:
+                return None
+        else:
+            return None
+
+    def __setitem__(self, path, value):
+        """
+        Given a path to a struct part, set the last part to value.
+
+        >>> Struct(struct).getitem(["primary_name", "surname_list", "0", "surname"])
+        """
+        path = path.split(".")
+        path, item = path[:-1], path[-1]
+        struct = self[".".join(path)]
+        if isinstance(struct, (list, tuple)):
+            pos = int(item)
+            if pos < len(struct):
+                struct[int(item)] = value
+        elif isinstance(struct, dict):
+            struct[item] = value
+        else:
+            return
+        # update the database
+
+    def __str__(self):
+        return str(self.struct)
