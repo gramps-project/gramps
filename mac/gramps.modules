@@ -13,8 +13,8 @@
 	      href="http://www.gnome.org/~fpeters/pyxdg/"/>
   <repository type="tarball" name="xdg-utils"
 	      href="http://portland.freedesktop.org/download/"/>
-  <repository type="svn" name="gramps"
-	      href="http://svn.code.sf.net/p/gramps/code/"/>
+  <repository type="git" name="gramps"
+	      href="git://git.code.sf.net/p/gramps/"/>
   <repository type="svn" name="gramps-addons"
 	      href="https://svn.code.sf.net/p/gramps-addons/code/"/>
   <repository type="tarball" name="oracle"
@@ -61,8 +61,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <include href="http://git.gnome.org/browse/gtk-osx/plain/modulesets-stable/gtk-osx.modules"/>
   <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
-  <distutils id="gramps-svn" supports-non-srcdir-builds="no">
-    <branch module="trunk" repo="gramps"/>
+  <distutils id="gramps-git" supports-non-srcdir-builds="no">
+    <branch module="source" repo="gramps" revision="maintenance/gramps40"
+	    checkoutdir="gramps-git"/>
     <dependencies>
       <dep package="meta-gtk-osx-python-gtk3"/>
       <dep package="goocanvas"/>
@@ -78,7 +79,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </distutils>
 
-  <distutils id="gramps-40" supports-non-srcdir-builds="no">
+  <distutils id="gramps" supports-non-srcdir-builds="no">
     <branch module="gramps/gramps-4.0.2.tar.gz" version="4.0.2"
 	    repo="sourceforge"/>
     <dependencies>
