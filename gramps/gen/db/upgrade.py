@@ -56,11 +56,13 @@ from .dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY,
 from gramps.gui.dialog import (InfoDialog)
 
 def gramps_upgrade_17(self):
-    """Upgrade database from version 16 to 17. 
-       1. This upgrade adds tags to event, place, repository, source and 
-          citation objects.
-       2. Data of Source becomes SourceAttributes Secondary Object
-       3. Add checksum field to media objects.
+    """
+    Upgrade database from version 16 to 17. 
+
+    1. This upgrade adds tags to event, place, repository, source and 
+       citation objects.
+    2. Data of Source becomes SourceAttributes Secondary Object
+    3. Add checksum field to media objects.
     """
     length = (len(self.event_map) + len(self.place_map) +
               len(self.repository_map) + len(self.source_map) +
@@ -294,20 +296,20 @@ def upgrade_datamap_17(datamap):
     return new_srcattr_list
 
 def gramps_upgrade_16(self):
-    """Upgrade database from version 15 to 16. This upgrade converts all
-       SourceRef child objects to Citation Primary objects.
+    """
+    Upgrade database from version 15 to 16. This upgrade converts all
+    SourceRef child objects to Citation Primary objects.
        
-       For each primary object that has a sourceref, what we have to do is: 
-       
-             (1) create each citation
-             (2) update the object to reference the Citations
-             (3) remove backlinks for references from object to Source
-             (4) add backlinks for references from object to Citations
-             (5) add backlinks for references from Citation to Source
-            
-        the backlinks are all updated at the end by calling
-        reindex_reference_map
+    For each primary object that has a sourceref, what we have to do is: 
 
+        (1) create each citation
+        (2) update the object to reference the Citations
+        (3) remove backlinks for references from object to Source
+        (4) add backlinks for references from object to Citations
+        (5) add backlinks for references from Citation to Source
+        
+    the backlinks are all updated at the end by calling
+    :py:meth:`reindex_reference_map <.write.DbBsddb.reindex_reference_map>`
     """
     length = (len(self.note_map) + len(self.person_map) +
               len(self.event_map) + len(self.family_map) +
@@ -806,10 +808,12 @@ def convert_source_list_to_citation_list_16(self, source_list):
     return citation_list
 
 def gramps_upgrade_15(self):
-    """Upgrade database from version 14 to 15. This upgrade adds:
-         * tagging
-         * surname list
-         * remove marker
+    """
+    Upgrade database from version 14 to 15. This upgrade adds:
+
+        * tagging
+        * surname list
+        * remove marker
     """
     length = (len(self.note_map) + len(self.person_map) +
               len(self.event_map) + len(self.family_map) +

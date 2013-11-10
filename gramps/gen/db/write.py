@@ -23,8 +23,8 @@
 # $Id$
 
 """
-Provide the Berkeley DB (DbBsddb) database backend for GRAMPS.
-This is used since GRAMPS version 3.0
+Provide the Berkeley DB (DbBsddb) database backend for Gramps.
+This is used since Gramps version 3.0
 """
 
 #-------------------------------------------------------------------------
@@ -247,7 +247,7 @@ class DbBsddbAssocCursor(BsddbBaseCursor):
 #-------------------------------------------------------------------------
 class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     """
-    GRAMPS database write access object. 
+    Gramps database write access object. 
     """
 
     # Set up dictionary for callback signal handler
@@ -2133,8 +2133,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Prepare the database for the start of a new Transaction.
 
         Supported transaction parameters:
-        no_magic: Boolean, defaults to False, indicating if secondary indices
-                  should be disconnected.
+
+        no_magic
+          Boolean, defaults to False, indicating if secondary indices should be
+          disconnected.
         """
         if self.txn is not None:
             msg = self.transaction.get_description()

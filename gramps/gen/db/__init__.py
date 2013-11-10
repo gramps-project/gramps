@@ -17,59 +17,73 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# gen/db/__init__.py
 # $Id$
 #
 
 """
-    Gramps Database API.
+Gramps Database API.
 
-    Database Architecture
-    =====================
+Database Architecture
+=====================
 
-    Access to the database is made through Python classes. Exactly
-    what functionality you have is dependent on the properties of the
-    database. For example, if you are accessing a read-only view, then
-    you will only have access to a subset of the methods available.
+Access to the database is made through Python classes. Exactly
+what functionality you have is dependent on the properties of the
+database. For example, if you are accessing a read-only view, then
+you will only have access to a subset of the methods available.
 
-    At the root of any database interface is either DbReadBase and/or
-    DbWriteBase. These define the methods to read and write to a
-    database, respectively.
+At the root of any database interface is either :py:class:`.DbReadBase` and/or
+:py:class:`.DbWriteBase`. These define the methods to read and write to a
+database, respectively.
 
-    The full database hierarchy is:
+The full database hierarchy is:
 
-    - B{DbBsddb} - read and write implementation to BSDDB databases (U{gen/db/write<http://svn.code.sf.net/p/gramps/code/trunk/gramps/gen/db/write.py?view=markup>})
-        - B{DbWriteBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://svn.code.sf.net/p/gramps/code/trunk/gramps/gen/db/base.py?view=markup>})
-        - B{DbBsddbRead} - read-only (accessors, getters) implementation to BSDDB databases (U{gen/db/read.py<http://svn.code.sf.net/p/gramps/code/trunk/gramps/gen/db/read.py?view=markup})
-            - B{DbReadBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://svn.code.sf.net/p/gramps/code/trunk/gramps/gen/db/base.py?view=markup})
-            - B{Callback} - callback and signal functions (U{gen/utils/callback.py<http://svn.code.sf.net/p/gramps/code/trunk/gramps/gen/utils/callback.py?view=markup})
-        - B{UpdateCallback} - callback functionality (U{gen/updatecallback.py<http://svn.code.sf.net/p/gramps/code/trunk/gramps/gen/db/read.py?view=markup gen/updatecallback.py?view=markup>})
-    - B{DbDjango} - read and write implementation to Django-based databases (U{web/dbdjango.py<http://svn.code.sf.net/p/gramps/code/trunk/gramps/webapp/dbdjango.py?view=markup})
-        - B{DbWriteBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://svn.code.sf.net/p/gramps/code/trunk/gramps/gen/db/base.py?view=markup})
-        - B{DbReadBase} - virtual and implementation-independent methods for reading data (U{gen/db/base.py<http://svn.code.sf.net/p/gramps/code/trunk/gramps/gen/db/base.py?view=markup})
+- :py:class:`.DbBsddb` - read and write implementation to BSDDB databases
 
-    DbBsddb
-    =======
+  * :py:class:`.DbWriteBase` - virtual and implementation-independent methods
+    for reading data
 
-    The DbBsddb interface defines a hierarchical database
-    (non-relational) written in
-    U{http://www.jcea.es/programacion/pybsddb.htm PyBSDDB}. There is no
-    such thing as a database schema, and the meaning of the data is
-    defined in the Python classes above. The data is stored as pickled
-    tuples and unserialized into the primary data types (below).
+  * :py:class:`.DbBsddbRead` - read-only (accessors, getters) implementation
+    to BSDDB databases
 
-    DbDjango
-    ========
+    + :py:class:`.DbReadBase` - virtual and implementation-independent
+      methods for reading data
 
-    The DbDjango interface defines the Gramps data in terms of
-    I{models} and I{relations} from the
-    U{Django project<http://www.djangoproject.com/}. The database
-    backend can be any implementation that supports Django, including
-    such popular SQL implementations as sqlite, MySQL, Postgresql, and
-    Oracle. The data is retrieved from the SQL fields, serialized and
-    then unserialized into the primary data types (below).
+    + :py:class:`.Callback` - callback and signal functions
 
-    More details can be found in the manual's U{Using database API<http://www.gramps-project.org/wiki/index.php?title=Using_database_API>}.
+  * :py:class:`.UpdateCallback` - callback functionality
+
+- :py:class:`.DbDjango` - read and write implementation to Django-based
+  databases
+
+  * :py:class:`.DbWriteBase` - virtual and implementation-independent methods
+    for reading data
+
+  * :py:class:`.DbReadBase` - virtual and implementation-independent methods
+    for reading data
+
+DbBsddb
+=======
+
+The :py:class:`.DbBsddb` interface defines a hierarchical database
+(non-relational) written in
+`PyBSDDB <http://www.jcea.es/programacion/pybsddb.htm>`_. There is no
+such thing as a database schema, and the meaning of the data is
+defined in the Python classes above. The data is stored as pickled
+tuples and unserialized into the primary data types (below).
+
+DbDjango
+========
+
+The DbDjango interface defines the Gramps data in terms of
+*models* and *relations* from the
+`Django project <http://www.djangoproject.com/>`_. The database
+backend can be any implementation that supports Django, including
+such popular SQL implementations as sqlite, MySQL, Postgresql, and
+Oracle. The data is retrieved from the SQL fields, serialized and
+then unserialized into the primary data types (below).
+
+More details can be found in the manual's
+`Using database API <http://www.gramps-project.org/wiki/index.php?title=Using_database_API>`_.
 """
 
 from .base import *

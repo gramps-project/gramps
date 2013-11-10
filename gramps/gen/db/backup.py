@@ -83,11 +83,11 @@ def backup(database):
     Exports the database to a set of backup files. These files consist
     of the pickled database tables, one file for each table.
 
-    The heavy lifting is done by the private __do__export function. The 
-    purpose of this function is to catch any exceptions that occur.
+    The heavy lifting is done by the private :py:func:`__do__export` function.
+    The purpose of this function is to catch any exceptions that occur.
 
-    @param database: database instance to backup
-    @type database: DbDir
+    :param database: database instance to backup
+    :type database: DbDir
     """
     try:
         __do_export(database)
@@ -98,10 +98,10 @@ def __mk_backup_name(database, base):
     """
     Return the backup name of the database table
 
-    @param database: database instance 
-    @type database: DbDir
-    @param base: base name of the table
-    @type base: str
+    :param database: database instance 
+    :type database: DbDir
+    :param base: base name of the table
+    :type base: str
     """
     return os.path.join(database.get_save_path(), base + ".gbkp")
 
@@ -109,10 +109,10 @@ def __mk_tmp_name(database, base):
     """
     Return the temporary backup name of the database table
 
-    @param database: database instance 
-    @type database: DbDir
-    @param base: base name of the table
-    @type base: str
+    :param database: database instance 
+    :type database: DbDir
+    :param base: base name of the table
+    :type base: str
     """
     return os.path.join(database.get_save_path(), base + ".gbkp.new")
 
@@ -121,8 +121,8 @@ def __do_export(database):
     Loop through each table of the database, saving the pickled data
     a file.
 
-    @param database: database instance to backup
-    @type database: DbDir
+    :param database: database instance to backup
+    :type database: DbDir
     """
     try:
         for (base, tbl) in __build_tbl_map(database):
@@ -151,11 +151,11 @@ def restore(database):
     Restores the database to a set of backup files. These files consist
     of the pickled database tables, one file for each table.
 
-    The heavy lifting is done by the private __do__restore function. The 
-    purpose of this function is to catch any exceptions that occur.
+    The heavy lifting is done by the private :py:func:`__do__restore` function.
+    The purpose of this function is to catch any exceptions that occur.
 
-    @param database: database instance to restore
-    @type database: DbDir
+    :param database: database instance to restore
+    :type database: DbDir
     """
     try:
         __do_restore(database)
@@ -167,8 +167,8 @@ def __do_restore(database):
     Loop through each table of the database, restoring the pickled data
     to the appropriate database file.
 
-    @param database: database instance to backup
-    @type database: DbDir
+    :param database: database instance to backup
+    :type database: DbDir
     """
     for (base, tbl) in __build_tbl_map(database):
         backup_name = __mk_backup_name(database, base)
@@ -181,12 +181,12 @@ def __load_tbl_txn(database, backup_table, tbl):
     """
     Return the temporary backup name of the database table
 
-    @param database: database instance 
-    @type database: DbDir
-    @param backup_table: file containing the backup data
-    @type backup_table: file
-    @param tbl: Berkeley db database table
-    @type tbl: Berkeley db database table
+    :param database: database instance 
+    :type database: DbDir
+    :param backup_table: file containing the backup data
+    :type backup_table: file
+    :param tbl: Berkeley db database table
+    :type tbl: Berkeley db database table
     """
     try:
         while True:
@@ -201,8 +201,8 @@ def __build_tbl_map(database):
     """
     Builds a table map of names to database tables.
 
-    @param database: database instance to backup
-    @type database: DbDir
+    :param database: database instance to backup
+    :type database: DbDir
     """
     return [
         ( PERSON_TBL,  database.person_map.db),

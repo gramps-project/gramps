@@ -23,7 +23,7 @@
 # $Id$
 
 """
-Base class for the GRAMPS databases. All database interfaces should inherit
+Base class for the Gramps databases. All database interfaces should inherit
 from this class.
 """
 
@@ -37,7 +37,7 @@ _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS libraries
+# Gramps libraries
 #
 #-------------------------------------------------------------------------
 from ..lib.childreftype import ChildRefType
@@ -47,7 +47,7 @@ from .exceptions import DbTransactionCancel
 
 class DbReadBase(object):
     """
-    GRAMPS database object. This object is a base class for all
+    Gramps database object. This object is a base class for all
     database interfaces.  All methods raise NotImplementedError
     and must be implemented in the derived class as required.
     """
@@ -143,56 +143,56 @@ class DbReadBase(object):
 
     def find_next_event_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Event object based off the 
+        Return the next available Gramps ID for a Event object based off the 
         event ID prefix.
         """
         raise NotImplementedError
 
     def find_next_family_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Family object based off the 
+        Return the next available Gramps ID for a Family object based off the 
         family ID prefix.
         """
         raise NotImplementedError
 
     def find_next_note_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Note object based off the 
+        Return the next available Gramps ID for a Note object based off the 
         note ID prefix.
         """
         raise NotImplementedError
 
     def find_next_object_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a MediaObject object based
+        Return the next available Gramps ID for a MediaObject object based
         off the media object ID prefix.
         """
         raise NotImplementedError
 
     def find_next_person_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Person object based off the 
+        Return the next available Gramps ID for a Person object based off the 
         person ID prefix.
         """
         raise NotImplementedError
 
     def find_next_place_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Place object based off the 
+        Return the next available Gramps ID for a Place object based off the 
         place ID prefix.
         """
         raise NotImplementedError
 
     def find_next_repository_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Repository object based 
+        Return the next available Gramps ID for a Repository object based 
         off the repository ID prefix.
         """
         raise NotImplementedError
 
     def find_next_source_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Source object based off the 
+        Return the next available Gramps ID for a Source object based off the 
         source ID prefix.
         """
         raise NotImplementedError
@@ -236,7 +236,7 @@ class DbReadBase(object):
 
     def get_event_from_gramps_id(self, val):
         """
-        Find an Event in the database from the passed GRAMPS ID.
+        Find an Event in the database from the passed Gramps ID.
         
         If no such Event exists, None is returned.
         Needs to be overridden by the derived class.
@@ -245,7 +245,7 @@ class DbReadBase(object):
 
     def get_event_from_handle(self, handle):
         """
-        Find a Event in the database from the passed gramps' ID.
+        Find a Event in the database from the passed Gramps ID.
         
         If no such Event exists, None is returned.
         """
@@ -293,7 +293,7 @@ class DbReadBase(object):
 
     def get_family_from_gramps_id(self, val):
         """
-        Find a Family in the database from the passed GRAMPS ID.
+        Find a Family in the database from the passed Gramps ID.
         
         If no such Family exists, None is returned.
         Need to be overridden by the derived class.
@@ -302,7 +302,7 @@ class DbReadBase(object):
 
     def get_family_from_handle(self, handle):
         """
-        Find a Family in the database from the passed gramps' ID.
+        Find a Family in the database from the passed Gramps ID.
         
         If no such Family exists, None is returned.
         """
@@ -408,7 +408,7 @@ class DbReadBase(object):
 
     def get_note_from_gramps_id(self, val):
         """
-        Find a Note in the database from the passed gramps' ID.
+        Find a Note in the database from the passed Gramps ID.
 
         If no such Note exists, None is returned.
         Needs to be overridden by the derived classderri.
@@ -417,7 +417,7 @@ class DbReadBase(object):
 
     def get_note_from_handle(self, handle):
         """
-        Find a Note in the database from the passed gramps' ID.
+        Find a Note in the database from the passed Gramps ID.
         
         If no such Note exists, None is returned.
         """
@@ -493,7 +493,7 @@ class DbReadBase(object):
 
     def get_object_from_gramps_id(self, val):
         """
-        Find a MediaObject in the database from the passed gramps' ID.
+        Find a MediaObject in the database from the passed Gramps ID.
 
         If no such MediaObject exists, None is returned.
         Needs to be overridden by the derived class.
@@ -502,7 +502,7 @@ class DbReadBase(object):
 
     def get_object_from_handle(self, handle):
         """
-        Find an Object in the database from the passed gramps' ID.
+        Find an Object in the database from the passed Gramps ID.
         
         If no such Object exists, None is returned.
         """
@@ -530,7 +530,7 @@ class DbReadBase(object):
 
     def get_person_from_gramps_id(self, val):
         """
-        Find a Person in the database from the passed GRAMPS ID.
+        Find a Person in the database from the passed Gramps ID.
         
         If no such Person exists, None is returned.
         Needs to be overridden by the derived class.
@@ -539,7 +539,7 @@ class DbReadBase(object):
 
     def get_person_from_handle(self, handle):
         """
-        Find a Person in the database from the passed gramps' ID.
+        Find a Person in the database from the passed Gramps ID.
         
         If no such Person exists, None is returned.
         """
@@ -575,7 +575,7 @@ class DbReadBase(object):
 
     def get_place_from_gramps_id(self, val):
         """
-        Find a Place in the database from the passed gramps' ID.
+        Find a Place in the database from the passed Gramps ID.
         
         If no such Place exists, None is returned.
         Needs to be overridden by the derived class.
@@ -584,7 +584,7 @@ class DbReadBase(object):
 
     def get_place_from_handle(self, handle):
         """
-        Find a Place in the database from the passed gramps' ID.
+        Find a Place in the database from the passed Gramps ID.
         
         If no such Place exists, None is returned.
         """
@@ -691,7 +691,7 @@ class DbReadBase(object):
 
     def get_repository_from_gramps_id(self, val):
         """
-        Find a Repository in the database from the passed gramps' ID.
+        Find a Repository in the database from the passed Gramps ID.
 
         If no such Repository exists, None is returned.
         Needs to be overridden by the derived class.
@@ -700,7 +700,7 @@ class DbReadBase(object):
 
     def get_repository_from_handle(self, handle):
         """
-        Find a Repository in the database from the passed gramps' ID.
+        Find a Repository in the database from the passed Gramps ID.
         
         If no such Repository exists, None is returned.
         """
@@ -747,7 +747,7 @@ class DbReadBase(object):
 
     def get_source_from_gramps_id(self, val):
         """
-        Find a Source in the database from the passed gramps' ID.
+        Find a Source in the database from the passed Gramps ID.
         
         If no such Source exists, None is returned.
         Needs to be overridden by the derived class.
@@ -756,7 +756,7 @@ class DbReadBase(object):
 
     def get_source_from_handle(self, handle):
         """
-        Find a Source in the database from the passed gramps' ID.
+        Find a Source in the database from the passed Gramps ID.
         
         If no such Source exists, None is returned.
         """
@@ -792,7 +792,7 @@ class DbReadBase(object):
 
     def get_citation_from_gramps_id(self, val):
         """
-        Find a Citation in the database from the passed gramps' ID.
+        Find a Citation in the database from the passed Gramps ID.
         
         If no such Citation exists, None is returned.
         Needs to be overridden by the derived class.
@@ -801,7 +801,7 @@ class DbReadBase(object):
 
     def get_citation_from_handle(self, handle):
         """
-        Find a Citation in the database from the passed gramps' ID.
+        Find a Citation in the database from the passed Gramps ID.
         
         If no such Citation exists, None is returned.
         """
@@ -1068,8 +1068,9 @@ class DbReadBase(object):
         internal data dependent on the database should be rebuilt.
         Note that all rebuild signals on all objects are emitted at the same
         time. It is correct to assume that this is always the case.
-        TODO: it might be better to replace these rebuild signals by one single
-                database-rebuild signal.
+
+        .. todo:: it might be better to replace these rebuild signals by one
+                  single database-rebuild signal.
         """
         raise NotImplementedError
 
@@ -1081,7 +1082,7 @@ class DbReadBase(object):
 
     def set_event_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Event ID values. 
+        Set the naming template for Gramps Event ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1091,7 +1092,7 @@ class DbReadBase(object):
 
     def set_family_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Family ID values. The string is
+        Set the naming template for Gramps Family ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as F%d
         or F%04d.
@@ -1100,7 +1101,7 @@ class DbReadBase(object):
 
     def set_note_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Note ID values. 
+        Set the naming template for Gramps Note ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1110,7 +1111,7 @@ class DbReadBase(object):
 
     def set_object_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS MediaObject ID values. 
+        Set the naming template for Gramps MediaObject ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1120,7 +1121,7 @@ class DbReadBase(object):
 
     def set_person_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Person ID values. 
+        Set the naming template for Gramps Person ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1130,7 +1131,7 @@ class DbReadBase(object):
 
     def set_place_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Place ID values. 
+        Set the naming template for Gramps Place ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1147,7 +1148,7 @@ class DbReadBase(object):
 
     def set_repository_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Repository ID values. 
+        Set the naming template for Gramps Repository ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1157,7 +1158,7 @@ class DbReadBase(object):
 
     def set_source_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Source ID values. 
+        Set the naming template for Gramps Source ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1217,7 +1218,7 @@ class DbReadBase(object):
 
 class DbWriteBase(DbReadBase):
     """
-    GRAMPS database object. This object is a base class for all
+    Gramps database object. This object is a base class for all
     database interfaces.  All methods raise NotImplementedError
     and must be implemented in the derived class as required.
     """
@@ -1583,9 +1584,9 @@ class DbWriteBase(DbReadBase):
         before the start of such database operations.
 
         :param transaction: Gramps transaction ...
-        :type transaction: DbTxn
+        :type transaction: :py:class:`.DbTxn`
         :returns: Returns the Gramps transaction.
-        :rtype: DbTxn
+        :rtype: :py:class:`.DbTxn`
         """
         raise NotImplementedError
 

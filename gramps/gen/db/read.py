@@ -23,7 +23,7 @@
 # $Id$
 
 """
-Read classes for the GRAMPS databases.
+Read classes for the Gramps databases.
 """
 
 #-------------------------------------------------------------------------
@@ -227,11 +227,13 @@ class DbBsddbTreeCursor(BsddbBaseCursor):
 
 class DbBsddbRead(DbReadBase, Callback):
     """
-    Read class for the GRAMPS databases.  Implements methods necessary to read
+    Read class for the Gramps databases.  Implements methods necessary to read
     the various object classes. Currently, there are nine (9) classes:
 
-    Person, Family, Event, Place, Source, Citation, MediaObject,
-    Repository and Note
+    :py:class:`.Person`, :py:class:`.Family`, :py:class:`.Event`, 
+    :py:class:`.Place`, :py:class:`.Source`, 
+    :py:class:`Citation <.lib.citation.Citation>`, :py:class:`.MediaObject`, 
+    :py:class:`.Repository` and :py:class:`.Note`
 
     For each object class, there are methods to retrieve data in various ways.
     In the methods described below, <object> can be one of person, family,
@@ -598,7 +600,7 @@ class DbBsddbRead(DbReadBase, Callback):
         
     def find_next_person_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Person object based off the 
+        Return the next available Gramps ID for a Person object based off the 
         person ID prefix.
         """
         self.pmap_index, gid = self.__find_next_gramps_id(self.person_prefix,
@@ -607,7 +609,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def find_next_place_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Place object based off the 
+        Return the next available Gramps ID for a Place object based off the 
         place ID prefix.
         """
         self.lmap_index, gid = self.__find_next_gramps_id(self.place_prefix,
@@ -616,7 +618,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def find_next_event_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Event object based off the 
+        Return the next available Gramps ID for a Event object based off the 
         event ID prefix.
         """
         self.emap_index, gid = self.__find_next_gramps_id(self.event_prefix,
@@ -625,7 +627,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def find_next_object_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a MediaObject object based
+        Return the next available Gramps ID for a MediaObject object based
         off the media object ID prefix.
         """
         self.omap_index, gid = self.__find_next_gramps_id(self.mediaobject_prefix,
@@ -634,7 +636,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def find_next_source_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Source object based off the 
+        Return the next available Gramps ID for a Source object based off the 
         source ID prefix.
         """
         self.smap_index, gid = self.__find_next_gramps_id(self.source_prefix,
@@ -643,7 +645,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def find_next_citation_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Source object based off the 
+        Return the next available Gramps ID for a Source object based off the 
         source ID prefix.
         """
         self.cmap_index, gid = self.__find_next_gramps_id(self.citation_prefix,
@@ -652,7 +654,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def find_next_family_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Family object based off the 
+        Return the next available Gramps ID for a Family object based off the 
         family ID prefix.
         """
         self.fmap_index, gid = self.__find_next_gramps_id(self.family_prefix,
@@ -661,7 +663,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def find_next_repository_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Respository object based 
+        Return the next available Gramps ID for a Respository object based 
         off the repository ID prefix.
         """
         self.rmap_index, gid = self.__find_next_gramps_id(self.repository_prefix,
@@ -670,7 +672,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def find_next_note_gramps_id(self):
         """
-        Return the next available GRAMPS' ID for a Note object based off the 
+        Return the next available Gramps ID for a Note object based off the 
         note ID prefix.
         """
         self.nmap_index, gid = self.__find_next_gramps_id(self.note_prefix,
@@ -704,7 +706,7 @@ class DbBsddbRead(DbReadBase, Callback):
     def get_from_name_and_gramps_id(self, table_name, gramps_id):
         """
         Returns a gen.lib object (or None) given table_name and
-        gramps ID.
+        Gramps ID.
 
         Examples:
 
@@ -823,7 +825,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_person_from_gramps_id(self, val):
         """
-        Find a Person in the database from the passed gramps' ID.
+        Find a Person in the database from the passed Gramps ID.
         
         If no such Person exists, None is returned.
         """
@@ -832,7 +834,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_family_from_gramps_id(self, val):
         """
-        Find a Family in the database from the passed gramps' ID.
+        Find a Family in the database from the passed Gramps ID.
         
         If no such Family exists, None is return.
         """
@@ -841,7 +843,7 @@ class DbBsddbRead(DbReadBase, Callback):
     
     def get_event_from_gramps_id(self, val):
         """
-        Find an Event in the database from the passed gramps' ID.
+        Find an Event in the database from the passed Gramps ID.
         
         If no such Family exists, None is returned.
         """
@@ -850,7 +852,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_place_from_gramps_id(self, val):
         """
-        Find a Place in the database from the passed gramps' ID.
+        Find a Place in the database from the passed Gramps ID.
         
         If no such Place exists, None is returned.
         """
@@ -859,7 +861,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_source_from_gramps_id(self, val):
         """
-        Find a Source in the database from the passed gramps' ID.
+        Find a Source in the database from the passed Gramps ID.
         
         If no such Source exists, None is returned.
         """
@@ -868,7 +870,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_citation_from_gramps_id(self, val):
         """
-        Find a Citation in the database from the passed gramps' ID.
+        Find a Citation in the database from the passed Gramps ID.
         
         If no such Citation exists, None is returned.
         """
@@ -877,7 +879,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_object_from_gramps_id(self, val):
         """
-        Find a MediaObject in the database from the passed gramps' ID.
+        Find a MediaObject in the database from the passed Gramps ID.
         
         If no such MediaObject exists, None is returned.
         """
@@ -886,7 +888,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_repository_from_gramps_id(self, val):
         """
-        Find a Repository in the database from the passed gramps' ID.
+        Find a Repository in the database from the passed Gramps ID.
         
         If no such Repository exists, None is returned.
         """
@@ -895,7 +897,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_note_from_gramps_id(self, val):
         """
-        Find a Note in the database from the passed gramps' ID.
+        Find a Note in the database from the passed Gramps ID.
         
         If no such Note exists, None is returned.
         """
@@ -1006,9 +1008,10 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def all_handles(self, table):
         """ return all the keys of a database table
-        CAREFUL: For speed the keys are directly returned, so on python3 
-                 bytestrings are returned! Use constfunc.py handle2internal
-                 on this result!
+
+        .. warning:: For speed the keys are directly returned, so on python3 
+                     bytestrings are returned! Use constfunc.py handle2internal
+                     on this result!
         """
         return table.keys(txn=self.txn)
         
@@ -1019,9 +1022,9 @@ class DbBsddbRead(DbReadBase, Callback):
         
         If sort_handles is True, the list is sorted by surnames.
         
-        CAREFUL: For speed the keys are directly returned, so on python3 
-                 bytestrings are returned! Use constfunc.py handle2internal
-                 on this result!
+        .. warning:: For speed the keys are directly returned, so on python3 
+                     bytestrings are returned! Use constfunc.py handle2internal
+                     on this result!
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.person_map)
@@ -1037,9 +1040,9 @@ class DbBsddbRead(DbReadBase, Callback):
         
         If sort_handles is True, the list is sorted by Place title.
         
-        CAREFUL: For speed the keys are directly returned, so on python3 
-                 bytestrings are returned! Use constfunc.py handle2internal
-                 on this result!
+        .. warning:: For speed the keys are directly returned, so on python3 
+                     bytestrings are returned! Use constfunc.py handle2internal
+                     on this result!
         """
 
         if self.db_is_open:
@@ -1056,9 +1059,9 @@ class DbBsddbRead(DbReadBase, Callback):
         
         If sort_handles is True, the list is sorted by Source title.
         
-        CAREFUL: For speed the keys are directly returned, so on python3 
-                 bytestrings are returned! Use constfunc.py handle2internal
-                 on this result!
+        .. warning:: For speed the keys are directly returned, so on python3 
+                     bytestrings are returned! Use constfunc.py handle2internal
+                     on this result!
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.source_map)
@@ -1074,9 +1077,9 @@ class DbBsddbRead(DbReadBase, Callback):
         
         If sort_handles is True, the list is sorted by Citation Volume/Page.
         
-        CAREFUL: For speed the keys are directly returned, so on python3 
-                 bytestrings are returned! Use constfunc.py handle2internal
-                 on this result!
+        .. warning:: For speed the keys are directly returned, so on python3 
+                     bytestrings are returned! Use constfunc.py handle2internal
+                     on this result!
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.citation_map)
@@ -1092,9 +1095,9 @@ class DbBsddbRead(DbReadBase, Callback):
         
         If sort_handles is True, the list is sorted by title.
         
-        CAREFUL: For speed the keys are directly returned, so on python3 
-                 bytestrings are returned! Use constfunc.py handle2internal
-                 on this result!
+        .. warning:: For speed the keys are directly returned, so on python3 
+                     bytestrings are returned! Use constfunc.py handle2internal
+                     on this result!
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.media_map)
@@ -1108,9 +1111,9 @@ class DbBsddbRead(DbReadBase, Callback):
         Return a list of database handles, one handle for each Event in the 
         database. 
         
-        CAREFUL: For speed the keys are directly returned, so on python3 
-                 bytestrings are returned! Use constfunc.py handle2internal
-                 on this result!
+        .. warning:: For speed the keys are directly returned, so on python3 
+                     bytestrings are returned! Use constfunc.py handle2internal
+                     on this result!
         """
         if self.db_is_open:
             return self.all_handles(self.event_map)
@@ -1121,9 +1124,9 @@ class DbBsddbRead(DbReadBase, Callback):
         Return a list of database handles, one handle for each Family in
         the database.
         
-        CAREFUL: For speed the keys are directly returned, so on python3 
-                 bytestrings are returned! Use constfunc.py handle2internal
-                 on this result!
+        .. warning:: For speed the keys are directly returned, so on python3 
+                     bytestrings are returned! Use constfunc.py handle2internal
+                     on this result!
         """
         if self.db_is_open:
             return self.all_handles(self.family_map)
@@ -1134,9 +1137,9 @@ class DbBsddbRead(DbReadBase, Callback):
         Return a list of database handles, one handle for each Repository in
         the database.
         
-        CAREFUL: For speed the keys are directly returned, so on python3 
-                 bytestrings are returned! Use constfunc.py handle2internal
-                 on this result!
+        .. warning:: For speed the keys are directly returned, so on python3 
+                     bytestrings are returned! Use constfunc.py handle2internal
+                     on this result!
         """
         if self.db_is_open:
             return self.all_handles(self.repository_map)
@@ -1147,9 +1150,9 @@ class DbBsddbRead(DbReadBase, Callback):
         Return a list of database handles, one handle for each Note in the 
         database.
         
-        CAREFUL: For speed the keys are directly returned, so on python3 
-                 bytestrings are returned! Use constfunc.py handle2internal
-                 on this result!
+        .. warning:: For speed the keys are directly returned, so on python3 
+                     bytestrings are returned! Use constfunc.py handle2internal
+                     on this result!
         """
         if self.db_is_open:
             return self.all_handles(self.note_map)
@@ -1162,9 +1165,9 @@ class DbBsddbRead(DbReadBase, Callback):
         
         If sort_handles is True, the list is sorted by Tag name.
         
-        CAREFUL: For speed the keys are directly returned, so on python3 
-                 bytestrings are returned! Use constfunc.py handle2internal
-                 on this result!
+        .. warning:: For speed the keys are directly returned, so on python3 
+                     bytestrings are returned! Use constfunc.py handle2internal
+                     on this result!
         """
         if self.db_is_open:
             handle_list = self.all_handles(self.tag_map)
@@ -1315,7 +1318,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def set_person_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Person ID values. 
+        Set the naming template for Gramps Person ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1326,7 +1329,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def set_source_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Source ID values. 
+        Set the naming template for Gramps Source ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1337,7 +1340,7 @@ class DbBsddbRead(DbReadBase, Callback):
             
     def set_citation_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Citation ID values. 
+        Set the naming template for Gramps Citation ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1348,7 +1351,7 @@ class DbBsddbRead(DbReadBase, Callback):
             
     def set_object_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS MediaObject ID values. 
+        Set the naming template for Gramps MediaObject ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1359,7 +1362,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def set_place_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Place ID values. 
+        Set the naming template for Gramps Place ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1370,7 +1373,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def set_family_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Family ID values. The string is
+        Set the naming template for Gramps Family ID values. The string is
         expected to be in the form of a simple text string, or in a format
         that contains a C/Python style format string using %d, such as F%d
         or F%04d.
@@ -1380,7 +1383,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def set_event_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Event ID values. 
+        Set the naming template for Gramps Event ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1391,7 +1394,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def set_repository_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Repository ID values. 
+        Set the naming template for Gramps Repository ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 
@@ -1402,7 +1405,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def set_note_id_prefix(self, val):
         """
-        Set the naming template for GRAMPS Note ID values. 
+        Set the naming template for Gramps Note ID values. 
         
         The string is expected to be in the form of a simple text string, or 
         in a format that contains a C/Python style format string using %d, 

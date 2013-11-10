@@ -86,7 +86,7 @@ _SIGBASE = ('person', 'family', 'source', 'event', 'media',
 #-------------------------------------------------------------------------            
 class DbUndo(object):
     """
-    Base class for the gramps undo/redo manager.  Needs to be subclassed
+    Base class for the Gramps undo/redo manager.  Needs to be subclassed
     for use with a real backend.
     """
 
@@ -186,7 +186,7 @@ class DbUndo(object):
     def commit(self, txn, msg):
         """
         Commit the transaction to the undo/redo database.  "txn" should be
-        an instance of gramps gramps transaction class
+        an instance of Gramps transaction class
         """
         txn.set_description(msg)
         txn.timestamp = time.time()
@@ -347,7 +347,7 @@ class DbUndo(object):
 
 class DbUndoList(DbUndo):
     """
-    Implementation of the gramps undo database using a Python list
+    Implementation of the Gramps undo database using a Python list
     """
     def __init__(self, grampsdb):
         """
@@ -403,7 +403,7 @@ class DbUndoList(DbUndo):
 
 class DbUndoBSDDB(DbUndo):
     """
-    Class constructor for gramps undo/redo database using a bsddb recno
+    Class constructor for Gramps undo/redo database using a bsddb recno
     database as the backing store.
     """
 
