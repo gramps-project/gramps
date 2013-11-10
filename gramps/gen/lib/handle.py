@@ -44,5 +44,7 @@ class Handle:
     def from_struct(cls, struct):
         if isinstance(struct, Handle):
             return struct.handle
+        elif isinstance(struct, dict):
+            return struct["handle"]
         else:
             return struct
