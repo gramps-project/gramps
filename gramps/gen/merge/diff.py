@@ -31,7 +31,7 @@ from ..dbstate import DbState
 from gramps.cli.grampscli import CLIManager
 from ..plug import BasePluginManager
 from ..db.dictionary import DictionaryDb
-from gramps.gen.lib.handle import Handle
+from gramps.gen.lib.handle import HandleClass
 from ..const import GRAMPS_LOCALE as glocale
 from ..constfunc import handle2internal
 _ = glocale.translation.gettext
@@ -87,9 +87,6 @@ def diff_items(path, json1, json2):
     """
     if json1 == json2:
         return False
-    elif isinstance(json1, Handle) and isinstance(json2, Handle):
-        return not (json1.classname == json2.classname and
-                    json1.handle == json2.handle)
     elif isinstance(json1, list) and isinstance(json2, list):
         if len(json1) != len(json2):
             return True
@@ -214,6 +211,26 @@ def from_struct(struct):
                 return Tag.create(Tag.from_struct(struct))
     raise AttributeError("invalid struct")
 
+def get_dependencies(struct):
+    """
+    Walk the struct recursively, getting all dependencies on other
+    objects.
+    """
+    if isinstance(struct, HandleClass):
+        return [(struct.classname, str(struct))]
+    elif isinstance(struct, (tuple, list)):
+        retval = []
+        for item in struct:
+            retval.extend(get_dependencies(item))
+        return retval
+    elif isinstance(struct, dict):
+        retval = []
+        for key in struct.keys():
+            retval.extend(get_dependencies(struct[key]))
+        return retval
+    else:
+        return []
+
 class Struct(object):
     """
     Class for getting and setting parts of a struct by dotted path.
@@ -228,6 +245,7 @@ class Struct(object):
     def __init__(self, struct, db=None):
         self.struct = struct
         self.db = db
+        self.transaction = db.get_transaction_class()
 
     def __getitem__(self, path): 
         """
@@ -283,6 +301,22 @@ class Struct(object):
         else:
             return
         # update the database
+        if self.db:
+            self.update_db()
+
+    def update_db(self):
+        name = self.struct["_class"]
+        handle = self.struct["handle"]
+        obj = self.db.get_from_name_and_handle(name, handle)
+        new_obj = from_struct(self.struct)
+        with self.transaction("Struct Update", self.db) as trans:
+            if obj:
+                commit_func = self.db._tables[name]["commit_func"]
+                commit_func(new_obj, trans)
+            else:
+                add_func = self.db._tables[name]["add_func"]
+                add_func(new_obj, trans)
 
     def __str__(self):
         return str(self.struct)
+

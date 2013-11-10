@@ -22,29 +22,17 @@
 
 from gramps.gen.constfunc import UNITYPE
 
-class Handle:
-    def __init__(self, classname, handle):
-        """ Class to hold type and handle of referenced item """
-        self.classname = classname
-        if handle and not isinstance(handle, UNITYPE):
-            handle = handle.decode('utf-8')
-        self.handle = handle
+class HandleClass(str):
+    def __init__(self, handle):
+        super(HandleClass, self).__init__()
+        
+def Handle(classname, handle):
+    if handle is None:
+        return None
+    h = HandleClass(handle)
+    h.classname = classname
+    return h
 
-    def __repr__(self):
-        return str({"_class": "Handle",
-                    "handle": self.handle})
-
-    def __str__(self):
-        if self.handle:
-            return self.handle
-        else:
-            return "None"
-
-    @classmethod
-    def from_struct(cls, struct):
-        if isinstance(struct, Handle):
-            return struct.handle
-        elif isinstance(struct, dict):
-            return struct["handle"]
-        else:
-            return struct
+def __from_struct(struct):
+    return struct
+Handle.from_struct = __from_struct
