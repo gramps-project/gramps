@@ -1246,7 +1246,7 @@ class GrampsXmlWriter(UpdateCallback):
             # Always export path with \ replaced with /. Otherwise import
             # from Windows to Linux of gpkg's path to images does not work. 
             path = path.replace('\\','/')
-        self.g.write('%s<file src="%s" mime="%s" %s%s/>\n'
+        self.g.write('%s<file src="%s" mime="%s"%s%s/>\n'
                      % ("  "*(index+1), self.fix(path), self.fix(mime_type), 
                         checksum_text, desc_text))
         self.write_attribute_list(obj.get_attribute_list())
