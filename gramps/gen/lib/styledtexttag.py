@@ -94,7 +94,8 @@ class StyledTextTag(object):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"name": self.name.to_struct(), 
+        return {"_class": "StyledTextTag",
+                "name": self.name.to_struct(), 
                 "value": self.value, 
                 "ranges": self.ranges}
     

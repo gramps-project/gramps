@@ -101,6 +101,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         :rtype: dict
         """
         return {
+            "_class": "EventRef",
             "private": PrivacyBase.to_struct(self),
             "note_list": NoteBase.to_struct(self),
             "attribute_list": AttributeBase.to_struct(self),

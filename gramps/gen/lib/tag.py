@@ -221,7 +221,8 @@ class Tag(TableObject):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": Handle("Tag", self.handle),
+        return {"_class": "Tag",
+                "handle": Handle("Tag", self.handle),
                 "name": self.__name,
                 "color": self.__color,
                 "priority": self.__priority,

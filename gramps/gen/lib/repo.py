@@ -92,7 +92,8 @@ class Repository(NoteBase, AddressBase, UrlBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": Handle("Repository", self.handle), 
+        return {"_class": "Repository",
+                "handle": Handle("Repository", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "type": self.type.to_struct(),
                 "name": cuni(self.name),

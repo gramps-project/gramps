@@ -85,6 +85,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         :rtype: dict
         """
         return {
+            "_class": "PlaceRef",
             "ref": RefBase.to_struct(self),
             "date": DateBase.to_struct(self)
             }

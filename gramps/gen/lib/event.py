@@ -139,7 +139,8 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": Handle("Event", self.handle), 
+        return {"_class": "Event",
+                "handle": Handle("Event", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "type": self.__type.to_struct(),
                 "date": DateBase.to_struct(self),

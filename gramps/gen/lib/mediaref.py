@@ -91,7 +91,8 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"private": PrivacyBase.serialize(self),
+        return {"_class": "MediaRef",
+                "private": PrivacyBase.serialize(self),
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "attribute_list": AttributeBase.to_struct(self),

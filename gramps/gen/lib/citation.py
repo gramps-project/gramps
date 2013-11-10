@@ -118,7 +118,8 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": Handle("Citation", self.handle),       #  0
+        return {"_class": "Citation",
+                "handle": Handle("Citation", self.handle),       #  0
                 "gramps_id": self.gramps_id,                     #  1
                 "date": DateBase.to_struct(self),                #  2
                 "page": cuni(self.page),                         #  3

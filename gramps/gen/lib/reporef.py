@@ -91,6 +91,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         :rtype: dict
         """
         return {
+            "_class": "RepositoryRef",
             "note_list": NoteBase.to_struct(self),
             "ref": RefBase.to_struct(self),
             "call_number": self.call_number, 

@@ -96,7 +96,8 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"private": PrivacyBase.to_struct(self),
+        return {"_class": "ChildRef",
+                "private": PrivacyBase.to_struct(self),
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "ref": RefBase.to_struct(self),

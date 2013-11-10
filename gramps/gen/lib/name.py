@@ -147,7 +147,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"private": PrivacyBase.to_struct(self),
+        return {"_class": "Name",
+                "private": PrivacyBase.to_struct(self),
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "date": DateBase.to_struct(self),

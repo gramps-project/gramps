@@ -231,7 +231,8 @@ class GrampsType(GrampsTypeC):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"value": self.__value, 
+        return {"_class": self.__class__.__name__,
+                "value": self.__value, 
                 "string": str(self)}
 
     @classmethod

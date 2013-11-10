@@ -184,3 +184,29 @@ def diff_db_to_file(old_db, filename, user=None):
     diffs, m_old, m_new = diff_dbs(old_db, new_db, user)
     return diffs, m_old, m_new
     
+def from_struct(struct):
+    from  gramps.gen.lib import (Person, Family, Event, Source, Place, Citation, 
+                                 Repository, MediaObject, Note, Tag)
+    if isinstance(struct, dict):
+        if "_class" in struct.keys():
+            if struct["_class"] == "Person":
+                return Person.create(Person.from_struct(struct))
+            elif struct["_class"] == "Family":
+                return Family.create(Family.from_struct(struct))
+            elif struct["_class"] == "Event":
+                return Event.create(Event.from_struct(struct))
+            elif struct["_class"] == "Source":
+                return Source.create(Source.from_struct(struct))
+            elif struct["_class"] == "Place":
+                return Place.create(Place.from_struct(struct))
+            elif struct["_class"] == "Citation":
+                return Citation.create(Citation.from_struct(struct))
+            elif struct["_class"] == "Repository":
+                return Repository.create(Repository.from_struct(struct))
+            elif struct["_class"] == "MediaObject":
+                return MediaObject.create(MediaObject.from_struct(struct))
+            elif struct["_class"] == "Note":
+                return Note.create(Note.from_struct(struct))
+            elif struct["_class"] == "Tag":
+                return Tag.create(Tag.from_struct(struct))
+    raise AttributeError("invalid struct")

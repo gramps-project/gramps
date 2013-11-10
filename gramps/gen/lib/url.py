@@ -93,7 +93,8 @@ class Url(SecondaryObject, PrivacyBase):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"private": self.private, 
+        return {"_class": "Url",
+                "private": self.private, 
                 "path": self.path, 
                 "desc": self.desc, 
                 "type": self.type.to_struct()}

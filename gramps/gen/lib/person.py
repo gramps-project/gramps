@@ -183,6 +183,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
         :rtype: dict
         """
         return {
+            "_class": "Person",
             "handle":  Handle("Person", self.handle),            #  0
             "gramps_id": self.gramps_id,                         #  1
             "gender": self.gender,                               #  2

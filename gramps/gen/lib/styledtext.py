@@ -313,7 +313,8 @@ class StyledText(object):
         else:
             the_tags = []
             
-        return {"string": self._string, 
+        return {"_class": "StyledText",
+                "string": self._string, 
                 "tags": the_tags}
     
     @classmethod

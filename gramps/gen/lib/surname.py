@@ -92,7 +92,8 @@ class Surname(SecondaryObject):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"surname": self.surname, 
+        return {"_class": "Surname",
+                "surname": self.surname, 
                 "prefix": self.prefix, 
                 "primary": self.primary, 
                 "origintype": self.origintype.to_struct(), 

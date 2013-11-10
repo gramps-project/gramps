@@ -87,6 +87,7 @@ class LocationBase(object):
         :rtype: dict
         """
         return {
+            "_class": "LocationBase",
             "street": self.street, 
             "locality": self.locality, 
             "city": self.city, 

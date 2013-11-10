@@ -135,7 +135,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": Handle("Place", self.handle), 
+        return {"_class": "Place",
+                "handle": Handle("Place", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "title": self.title, 
                 "long": self.long, 

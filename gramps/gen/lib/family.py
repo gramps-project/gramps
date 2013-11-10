@@ -148,7 +148,8 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": Handle("Family", self.handle), 
+        return {"_class": "Family",
+                "handle": Handle("Family", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "father_handle": Handle("Person", self.father_handle),
                 "mother_handle": Handle("Person", self.mother_handle),

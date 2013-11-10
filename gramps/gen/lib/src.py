@@ -102,7 +102,8 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": Handle("Source", self.handle), 
+        return {"_class": "Source",
+                "handle": Handle("Source", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "title": cuni(self.title),
                 "author": cuni(self.author), 

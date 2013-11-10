@@ -85,7 +85,8 @@ class Location(SecondaryObject, LocationBase):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"street": self.street, 
+        return {"_class": "Location",
+                "street": self.street, 
                 "locality": self.locality, 
                 "city": self.city, 
                 "country": self.county, 

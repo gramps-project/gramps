@@ -671,7 +671,8 @@ class Date(object):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"calendar": self.calendar, 
+        return {"_class": "Date",
+                "calendar": self.calendar, 
                 "modifier": self.modifier, 
                 "quality": self.quality, 
                 "dateval": self.dateval, 

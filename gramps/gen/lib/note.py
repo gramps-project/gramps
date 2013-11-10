@@ -119,7 +119,8 @@ class Note(BasicPrimaryObject):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"handle": Handle("Note", self.handle), 
+        return {"_class": "Note",
+                "handle": Handle("Note", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "text": self.text.to_struct(), 
                 "format": self.format,

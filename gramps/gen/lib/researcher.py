@@ -82,7 +82,8 @@ class Researcher(LocationBase):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"street": self.street, 
+        return {"_class": "Researcher",
+                "street": self.street, 
                 "locality": self.locality, 
                 "city": self.city, 
                 "country": self.county, 

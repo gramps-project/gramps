@@ -96,7 +96,8 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"private": PrivacyBase.serialize(self),
+        return {"_class": self.__class__.__name__,
+                "private": PrivacyBase.serialize(self),
                 "type": self.type.to_struct(), 
                 "value": self.value}
 
@@ -264,7 +265,8 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"private": PrivacyBase.serialize(self),
+        return {"_class": "Attribute",
+                "private": PrivacyBase.serialize(self),
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "type": self.type.to_struct(), 

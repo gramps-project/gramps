@@ -89,7 +89,8 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"private": PrivacyBase.serialize(self),
+        return {"_class": "Address",
+                "private": PrivacyBase.serialize(self),
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "date": DateBase.to_struct(self),

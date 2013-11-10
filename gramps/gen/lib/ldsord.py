@@ -166,7 +166,8 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         :returns: Returns a struct containing the data of the object.
         :rtype: dict
         """
-        return {"citation_list": CitationBase.to_struct(self),
+        return {"_class": "LdsOrd",
+                "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "date": DateBase.to_struct(self),
                 "type": self.type, 
