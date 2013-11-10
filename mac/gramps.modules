@@ -13,12 +13,14 @@
 	      href="http://www.gnome.org/~fpeters/pyxdg/"/>
   <repository type="tarball" name="xdg-utils"
 	      href="http://portland.freedesktop.org/download/"/>
-  <repository type="svn" name="gramps"
-	      href="http://svn.code.sf.net/p/gramps/code/"/>
+  <repository type="git" name="gramps"
+	      href="git://git.code.sf.net/p/gramps/"/>
   <repository type="svn" name="gramps-addons"
 	      href="https://gramps-addons.svn.sourceforge.net/svnroot/gramps-addons/"/>
   <repository type="tarball" name="oracle"
 	      href="http://download.oracle.com/"/>
+  <repository type="tarball" name="pymodules"
+	      href="http://pypi.python.org/packages/source/"/>
   <repository type="tarball" name="stowers"
 	     href="http://www.johnstowers.co.nz/files/"/>
   <repository type="tarball" name="graphviz"
@@ -60,7 +62,6 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <include href="https://raw.github.com/jralls/gtk-osx-build/master/modulesets-stable/gtk-osx.modules"/>
   <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
-
   <autotools id="gramps" autogen-sh="configure">
     <branch module="gramps/gramps-3.4.6.tar.gz" version="3.4.6"
 	    repo="sourceforge">
@@ -82,8 +83,9 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
    </after>
   </autotools>
 
-  <autotools id="gramps-34" >
-    <branch module="code" revision="maintenance/gramps34" repo="gramps" />
+  <autotools id="gramps-git" supports-non-srcdir-builds="no">
+    <branch module="source" repo="gramps" revision="maintenance/gramps34"
+	    checkoutdir="gramps-git"/>
     <dependencies>
       <dep package="meta-gtk-osx-python"/>
       <dep package="librsvg"/>
