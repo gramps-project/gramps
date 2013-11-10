@@ -31,7 +31,8 @@ class Handle:
         self.handle = handle
 
     def __repr__(self):
-        return "Handle(%s, %s)" % (repr(self.classname), repr(self.handle))
+        return str({"_class": "Handle",
+                    "handle": self.handle})
 
     def __str__(self):
         if self.handle:
