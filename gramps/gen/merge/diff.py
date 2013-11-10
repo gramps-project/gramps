@@ -217,19 +217,19 @@ def get_dependencies(struct):
     objects.
     """
     if isinstance(struct, HandleClass):
-        return [(struct.classname, str(struct))]
+        return set([(struct.classname, str(struct))])
     elif isinstance(struct, (tuple, list)):
-        retval = []
+        retval = set([])
         for item in struct:
-            retval.extend(get_dependencies(item))
+            retval.update(get_dependencies(item))
         return retval
     elif isinstance(struct, dict):
-        retval = []
+        retval = set([])
         for key in struct.keys():
-            retval.extend(get_dependencies(struct[key]))
+            retval.update(get_dependencies(struct[key]))
         return retval
     else:
-        return []
+        return set([])
 
 class Struct(object):
     """
