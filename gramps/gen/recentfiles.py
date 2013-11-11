@@ -57,7 +57,7 @@ MAX_GRAMPS_ITEMS = 10
 #-------------------------------------------------------------------------
 class RecentItem(object):
     """
-    Interface to a single GRAMPS recent-items item
+    Interface to a single Gramps recent-items item
     """
 
     def __init__(self,p="", n="",t=0):
@@ -182,7 +182,7 @@ class RecentFiles(object):
 
     def do_save(self):
         """
-        Saves the current GRAMPS RecentFiles collection to the associated file.
+        Saves the current Gramps RecentFiles collection to the associated file.
         """
         xml_file = open(os.path.expanduser(GRAMPS_FILENAME),'w')
 
@@ -281,7 +281,7 @@ class RecentParser(object):
 #-------------------------------------------------------------------------
 def recent_files(filename, name):
     """
-    Add an entry to both GNOME and GRAMPS recent-items storages.
+    Add an entry to both GNOME and Gramps recent-items storages.
     """
 
     the_time = int(time.time())

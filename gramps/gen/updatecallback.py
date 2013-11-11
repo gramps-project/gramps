@@ -21,11 +21,11 @@
 # $Id$
 
 """
-A set of basic utilities that everything in GRAMPS can depend upon.
+A set of basic utilities that everything in Gramps can depend upon.
 
 The goal is to have this module not depend on any other gramps module.
 That way, e.g. database classes can safely depend on that without
-other GRAMPS baggage.
+other Gramps baggage.
 """
 from __future__ import division
 #-------------------------------------------------------------------------
@@ -50,10 +50,10 @@ class UpdateCallback(object):
 
     def __init__(self, callback, interval=1):
         """
-        @param callback: a function with one arg to execute every so often
-        @type callback: function
-        @param interval: number of seconds at most between the updates
-        @type interval: int
+        :param callback: a function with one arg to execute every so often
+        :type callback: function
+        :param interval: number of seconds at most between the updates
+        :type interval: int
         """
         if isinstance(callback, collections.Callable): # callback is really callable
             self.update = self.update_real

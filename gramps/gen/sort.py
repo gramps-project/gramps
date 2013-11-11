@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Provide sorting routines for use in GRAMPS. Since these functions are
+Provide sorting routines for use in Gramps. Since these functions are
 intended to provide fast sorting, they tend to bypass access methods, 
 and directly use class members. For this reason, care needs to be taken
 to make sure these remain in sync with the rest of the design.
@@ -77,8 +77,10 @@ class Sort(object):
 ##            return glocale.strcoll(fsn, ssn)
 
     def by_last_name_key(self, first_id):
-        """Sort routine for comparing two last names. If last names are equal, 
-        uses the given name and suffix"""
+        """
+        Sort routine for comparing two last names. If last names are equal, 
+        uses the given name and suffix
+        """
         first = self.database.get_person_from_handle(first_id)
         
         name1 = first.get_primary_name()
@@ -139,8 +141,10 @@ class Sort(object):
 ##        return val
 
     def by_birthdate_key(self, first_id):
-        """Sort routine for comparing two people by birth dates. If the birth dates
-        are equal, sorts by name"""
+        """
+        Sort routine for comparing two people by birth dates. If the birth dates
+        are equal, sorts by name
+        """
         first = self.database.get_person_from_handle(first_id)
 
         birth1 = get_birth_or_fallback(self.database, first)

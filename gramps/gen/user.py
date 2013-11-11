@@ -45,15 +45,15 @@ class User():
 
         Don't use this method directly, use progress instead.
         
-        @param title: the title of the progress meter
-        @type title: str
-        @param message: the message associated with the progress meter
-        @type message: str
-        @param steps: the total number of steps for the progress meter.
+        :param title: the title of the progress meter
+        :type title: str
+        :param message: the message associated with the progress meter
+        :type message: str
+        :param steps: the total number of steps for the progress meter.
             a value of 0 indicates that the ending is unknown and the
             meter should just show activity.
-        @type steps: int
-        @returns: none
+        :type steps: int
+        :returns: none
         """
         pass
     
@@ -99,7 +99,8 @@ class User():
 
         Parameters: same as for begin_progress.
         
-        Usage example (see gramps/cli/test/user_test.py):
+        Usage example (see gramps/cli/test/user_test.py)::
+
             with self.user.progress("Foo", "Bar", 0) as step:
                 for i in range(10):
                     step()
@@ -118,18 +119,18 @@ class User():
         """
         Prompt the user with a message to select an alternative.
         
-        @param title: the title of the question, e.g.: "Undo history warning"
-        @type title: str
-        @param message: the message, e.g.: "Proceeding with the tool will
+        :param title: the title of the question, e.g.: "Undo history warning"
+        :type title: str
+        :param message: the message, e.g.: "Proceeding with the tool will
             erase the undo history. If you think you may want to revert
             running this tool, please stop here and make a backup of the DB."
-        @type question: str
-        @param accept_label: what to call the positive choice, e.g.: "Proceed"
-        @type accept_label: str
-        @param reject_label: what to call the negative choice, e.g.: "Stop"
-        @type reject_label: str
-        @returns: the user's answer to the question
-        @rtype: bool
+        :type question: str
+        :param accept_label: what to call the positive choice, e.g.: "Proceed"
+        :type accept_label: str
+        :param reject_label: what to call the negative choice, e.g.: "Stop"
+        :type reject_label: str
+        :returns: the user's answer to the question
+        :rtype: bool
         """
         return False
     
@@ -137,11 +138,11 @@ class User():
         """
         Warn the user.
         
-        @param title: the title of the warning
-        @type title: str
-        @param warning: the warning
-        @type warning: str
-        @returns: none
+        :param title: the title of the warning
+        :type title: str
+        :param warning: the warning
+        :type warning: str
+        :returns: none
         """
         pass
     
@@ -149,11 +150,11 @@ class User():
         """
         Notify the user of an error.
         
-        @param title: the title of the error
-        @type title: str
-        @param error: the error message
-        @type error: str
-        @returns: none
+        :param title: the title of the error
+        :type title: str
+        :param error: the error message
+        :type error: str
+        :returns: none
         """
         pass
 
@@ -161,9 +162,9 @@ class User():
         """
         Notify the user of a DB error.
         
-        @param error: the error message
-        @type error: str
-        @returns: none
+        :param error: the error message
+        :type error: str
+        :returns: none
         """
         pass
 
