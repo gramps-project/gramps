@@ -323,6 +323,14 @@ PersonRef
    :undoc-members:
    :show-inheritance:
 
+PlaceRef
+====================================
+.. automodule:: gramps.gen.lib.placeref
+.. autoclass:: PlaceRef
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 RepoRef
 ====================================
 .. automodule:: gramps.gen.lib.reporef
@@ -482,6 +490,13 @@ NameOriginType
 NoteType
 =========
 .. automodule:: gramps.gen.lib.notetype
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+PlaceType
+=========
+.. automodule:: gramps.gen.lib.placetype
    :members:
    :undoc-members:
    :show-inheritance:
