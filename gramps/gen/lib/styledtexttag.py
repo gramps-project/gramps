@@ -36,26 +36,26 @@ from .styledtexttagtype import StyledTextTagType
 #
 #-------------------------------------------------------------------------
 class StyledTextTag(object):
-    """Hold formatting information for StyledText.
+    """Hold formatting information for :py:class:`.StyledText`.
     
-    StyledTextTag is a container class, it's attributes are directly accessed.
+    :py:class:`StyledTextTag` is a container class, it's attributes are
+    directly accessed.
     
-    @ivar name: Type (or name) of the tag instance. E.g. 'bold', etc.
-    :type name: :class:`~gen.lib.styledtexttagtype.StyledTextTagType` instace
-    @ivar value: Value of the tag. E.g. color hex string for font color, etc.
+    :ivar name: Type (or name) of the tag instance. E.g. 'bold', etc.
+    :type name: :py:class:`.StyledTextTagType` instace
+    :ivar value: Value of the tag. E.g. color hex string for font color, etc.
     :type value: str or None
-    @ivar ranges: Pointer pairs into the string, where the tag applies.
+    :ivar ranges: Pointer pairs into the string, where the tag applies.
     :type ranges: list of (int(start), int(end)) tuples.
     
     """
     def __init__(self, name=None, value=None, ranges=None):
         """Setup initial instance variable values.
         
-        @note: Since :class:`~gen.lib.grampstype.GrampsType` supports the instance initialization
-        with several different base types, please note that C{name} parameter
-        can be int, str, unicode, tuple, or even another L{StyledTextTagType}
-        instance.
-        
+        .. note:: Since :py:class:`.GrampsType` supports the instance
+                  initialization with several different base types, please note
+                  that ``name`` parameter can be int, str, unicode, tuple, 
+                  or even another :py:class:`.StyledTextTagType` instance.
         """
         self.name = StyledTextTagType(name)
         self.value = value
@@ -68,8 +68,8 @@ class StyledTextTag(object):
     def serialize(self):
         """Convert the object to a serialized tuple of data.
        
-        :returns: Serialized format of the instance.
-        :returnstype: tuple
+        :return: Serialized format of the instance.
+        :rtype: tuple
         
         """
         return (self.name.serialize(), self.value, self.ranges)
@@ -91,7 +91,7 @@ class StyledTextTag(object):
         of structs. Otherwise, the struct is just the value of the
         attribute.
 
-        :returns: Returns a struct containing the data of the object.
+        :return: Returns a struct containing the data of the object.
         :rtype: dict
         """
         return {"_class": "StyledTextTag",
@@ -104,7 +104,7 @@ class StyledTextTag(object):
         """
         Given a struct data representation, return a serialized object.
 
-        :returns: Returns a serialized object
+        :return: Returns a serialized object
         """
         default = StyledTextTag()
         return (StyledTextTagType.from_struct(struct.get("name", {})),

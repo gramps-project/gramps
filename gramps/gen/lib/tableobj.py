@@ -86,10 +86,10 @@ class TableObject(BaseObject):
         """
         Return the time that the data was last changed. 
         
-        The value in the format returned by the time.time() command.
+        The value in the format returned by the :meth:`time.time()` command.
            
         :returns: Time that the data was last changed. The value in the format 
-                returned by the time.time() command.
+                  returned by the :meth:`time.time()` command.
         :rtype: int
         """
         return self.change
@@ -98,10 +98,11 @@ class TableObject(BaseObject):
         """
         Modify the time that the data was last changed. 
         
-        The value must be in the format returned by the time.time() command.
+        The value must be in the format returned by the :meth:`time.time()`
+        command.
 
-        @param change: new time
-        @type change: int in format as time.time() command
+        :param change: new time
+        :type change: int in format as :meth:`time.time()` command
         """
         self.change = change
 

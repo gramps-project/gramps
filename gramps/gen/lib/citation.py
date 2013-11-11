@@ -23,7 +23,7 @@
 # $Id$
 
 """
-Citation object for GRAMPS.
+Citation object for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -55,7 +55,7 @@ from .handle import Handle
 #
 #-------------------------------------------------------------------------
 class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase, 
-        DateBase, PrimaryObject):
+               DateBase, PrimaryObject):
     """
     A record of a citation of a source of information.
     
@@ -189,7 +189,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :param handle: The handle to be checked.
         :type handle: str
         :returns: Returns whether the object has reference to this handle of 
-                this object type.
+                  this object type.
         :rtype: bool
         """
         if classname == 'Note':
@@ -233,7 +233,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer citations.
+                  refer citations.
         :rtype: list
         """
         return self.media_list
@@ -261,7 +261,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return self.media_list
@@ -292,10 +292,10 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
 
     def merge(self, acquisition):
         """
-        Merge the content of acquisition into this source.
+        Merge the content of acquisition into this citation.
 
-        :param acquisition: The source to merge with the present source.
-        :rtype acquisition: Source
+        :param acquisition: The citation to merge with the present citation.
+        :type acquisition: Citation
         """
         self._merge_privacy(acquisition)
         self._merge_note_list(acquisition)

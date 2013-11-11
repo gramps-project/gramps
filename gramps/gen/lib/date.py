@@ -283,11 +283,11 @@ class Span(object):
         """
         Get the representation as a time or age.
 
-        If dlocale is passed in (a GrampsLocale) then
+        If dlocale is passed in (a :class:`.GrampsLocale`) then
         the translated value will be returned instead.
 
-        @param dlocale: allow deferred translation of strings
-        @type dlocale: a GrampsLocale instance
+        :param dlocale: allow deferred translation of strings
+        :type dlocale: a :class:`.GrampsLocale` instance
         """
         trans_text = dlocale.translation.sgettext
         # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
@@ -398,20 +398,23 @@ class Span(object):
     def format(self, precision=2, as_age=True):
         """
         Force a string representation at a level of precision. 
-        1 = only most significant level (year, month, day)
-        2 = only most two significant levels (year, month, day)
-        3 = at most three items of signifance (year, month, day)
+
+        ==  ====================================================
+        1   only most significant level (year, month, day)
+        2   only most two significant levels (year, month, day)
+        3   at most three items of signifance (year, month, day)
+        ==  ====================================================
         """
         self.precision = precision
         return self.get_repr(as_age)
 
     def _format(self, diff_tuple, dlocale=glocale):
         """
-        If dlocale is passed in (a GrampsLocale) then
+        If dlocale is passed in (a :class:`.GrampsLocale`) then
         the translated value will be returned instead.
 
-        @param dlocale: allow deferred translation of strings
-        @type dlocale: a GrampsLocale instance
+        :param dlocale: allow deferred translation of strings
+        :type dlocale: a :class:`.GrampsLocale` instance
         """
         trans_text = dlocale.translation.sgettext
         ngettext = dlocale.translation.ngettext
@@ -515,7 +518,7 @@ class Span(object):
 #-------------------------------------------------------------------------
 class Date(object):
     """
-    The core date handling class for GRAMPs. 
+    The core date handling class for Gramps. 
     
     Supports partial dates, compound dates and alternate calendars.
     """
@@ -950,16 +953,15 @@ class Date(object):
         look for anything other than a straight match, or a simple comparison 
         of the sortval.
 
-        comparison =,== :
-            Returns True if any part of other_date matches any part of self
-        comparison < :
-            Returns True if any part of other_date < any part of self
-        comparison << :
-            Returns True if all parts of other_date < all parts of self
-        comparison > :
-            Returns True if any part of other_date > any part of self
-        comparison >> :
-            Returns True if all parts of other_date > all parts of self
+        ==========  =======================================================
+        Comparison  Returns
+        ==========  =======================================================
+        =,==        True if any part of other_date matches any part of self
+        <           True if any part of other_date < any part of self
+        <<          True if all parts of other_date < all parts of self
+        >           True if any part of other_date > any part of self
+        >>          True if all parts of other_date > all parts of self
+        ==========  =======================================================
         """
         if (other_date.modifier == Date.MOD_TEXTONLY or
             self.modifier == Date.MOD_TEXTONLY):
@@ -1118,7 +1120,8 @@ class Date(object):
         The sort value is an integer representing the value. The sortval is 
         the integer number of days that have elapsed since Monday, January 1, 
         4713 BC in the proleptic Julian calendar. 
-        See http://en.wikipedia.org/wiki/Julian_day
+        
+        .. seealso:: http://en.wikipedia.org/wiki/Julian_day
         """
         return self.sortval
 
@@ -1126,15 +1129,17 @@ class Date(object):
         """
         Return an integer indicating the calendar selected. 
         
-        The valid values are::
+        The valid values are:
         
-           MOD_NONE       = no modifier (default)
-           MOD_BEFORE     = before
-           MOD_AFTER      = after
-           MOD_ABOUT      = about
-           MOD_RANGE      = date range
-           MOD_SPAN       = date span
-           MOD_TEXTONLY   = text only
+        ============  =====================
+        MOD_NONE      no modifier (default)
+        MOD_BEFORE    before
+        MOD_AFTER     after
+        MOD_ABOUT     about
+        MOD_RANGE     date range
+        MOD_SPAN      date span
+        MOD_TEXTONLY  text only
+        ============  =====================
         """
         return self.modifier
 
@@ -1152,11 +1157,13 @@ class Date(object):
         """
         Return an integer indicating the calendar selected. 
         
-        The valid values are::
+        The valid values are:
         
-           QUAL_NONE       = normal (default)
-           QUAL_ESTIMATED  = estimated
-           QUAL_CALCULATED = calculated
+        ===============  ================
+        QUAL_NONE        normal (default)
+        QUAL_ESTIMATED   estimated
+        QUAL_CALCULATED  calculated
+        ===============  ================
         """
         return self.quality
 
@@ -1173,15 +1180,17 @@ class Date(object):
         """
         Return an integer indicating the calendar selected. 
         
-        The valid values are::
+        The valid values are:
 
-           CAL_GREGORIAN  - Gregorian calendar
-           CAL_JULIAN     - Julian calendar
-           CAL_HEBREW     - Hebrew (Jewish) calendar
-           CAL_FRENCH     - French Republican calendar
-           CAL_PERSIAN    - Persian calendar
-           CAL_ISLAMIC    - Islamic calendar
-           CAL_SWEDISH    - Swedish calendar 1700-03-01 -> 1712-02-30!
+        =============  ==========================================
+        CAL_GREGORIAN  Gregorian calendar
+        CAL_JULIAN     Julian calendar
+        CAL_HEBREW     Hebrew (Jewish) calendar
+        CAL_FRENCH     French Republican calendar
+        CAL_PERSIAN    Persian calendar
+        CAL_ISLAMIC    Islamic calendar
+        CAL_SWEDISH    Swedish calendar 1700-03-01 -> 1712-02-30!
+        =============  ==========================================
         """
         return self.calendar
 
@@ -1305,7 +1314,8 @@ class Date(object):
         """
         Set the year, month, and day values.
 
-        @param remove_stop_date Required parameter for a compound date. 
+        :param remove_stop_date:
+            Required parameter for a compound date. 
             When True, the stop date is changed to the same date as well.
             When False, the stop date is not changed.
         """
@@ -1400,7 +1410,8 @@ class Date(object):
     def copy_ymd(self, year=0, month=0, day=0, remove_stop_date=None):
         """
         Return a Date copy with year, month, and day set.
-        @param remove_stop_date Same as in set_yr_mon_day.
+
+        :param remove_stop_date: Same as in set_yr_mon_day.
         """
         retval = Date(self)
         retval.set_yr_mon_day(year, month, day, remove_stop_date)
@@ -1520,28 +1531,26 @@ class Date(object):
         """
         Set the date to the specified value. 
         
-        Parameters are::
-
-          quality  - The date quality for the date (see get_quality
-                     for more information).
-                     Defaults to the previous value for the date.
-          modified - The date modifier for the date (see get_modifier
-                     for more information)
-                     Defaults to the previous value for the date.
-          calendar - The calendar associated with the date (see
-                     get_calendar for more information).
-                     Defaults to the previous value for the date.
-          value    - A tuple representing the date information. For a
-                     non-compound date, the format is (DD, MM, YY, slash)
-                     and for a compound date the tuple stores data as
-                     (DD, MM, YY, slash1, DD, MM, YY, slash2)
-                     Defaults to the previous value for the date.
-          text     - A text string holding either the verbatim user input
+        :param quality: The date quality for the date (see :meth:`get_quality`
+                        for more information).
+                        Defaults to the previous value for the date.
+        :param modified: The date modifier for the date (see
+                         :meth:`get_modifier` for more information)
+                         Defaults to the previous value for the date.
+        :param calendar: The calendar associated with the date (see
+                         :meth:`get_calendar` for more information).
+                         Defaults to the previous value for the date.
+        :param value: A tuple representing the date information. For a
+                      non-compound date, the format is (DD, MM, YY, slash)
+                      and for a compound date the tuple stores data as
+                      (DD, MM, YY, slash1, DD, MM, YY, slash2)
+                      Defaults to the previous value for the date.
+        :param text: A text string holding either the verbatim user input
                      or a comment relating to the date.
                      Defaults to the previous value for the date.
-          newyear  - The newyear code, or tuple representing (month, day)
-                     of newyear day. 
-                     Defaults to 0.
+        :param newyear: The newyear code, or tuple representing (month, day)
+                        of newyear day. 
+                        Defaults to 0.
 
         The sort value is recalculated.
         """

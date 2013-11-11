@@ -22,7 +22,7 @@
 # $Id$
 
 """
-MediaBase class for GRAMPS.
+MediaBase class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -98,30 +98,32 @@ class MediaBase(object):
 
     def add_media_reference(self, media_ref):
         """
-        Add a :class:`~gen.lib.mediaref.MediaRef` instance to the object's media list.
+        Add a :class:`~.mediaref.MediaRef` instance to the object's media list.
 
-        :param media_ref: :class:`~gen.lib.mediaref.MediaRef` instance to be added to the object's
-            media list.
-        :type media_ref: :class:`~gen.lib.mediaref.MediaRef`
+        :param media_ref: :class:`~.mediaref.MediaRef` instance to be added to
+                          the object's media list.
+        :type media_ref: :class:`~.mediaref.MediaRef`
         """
         self.media_list.append(media_ref)
 
     def get_media_list(self):
         """
-        Return the list of :class:`~gen.lib.mediaref.MediaRef` instances associated with the object.
+        Return the list of :class:`~.mediaref.MediaRef` instances associated
+        with the object.
 
-        :returns: list of :class:`~gen.lib.mediaref.MediaRef` instances associated with the object
+        :returns: list of :class:`~.mediaref.MediaRef` instances associated
+                  with the object
         :rtype: list
         """
         return self.media_list
 
     def set_media_list(self, media_ref_list):
         """
-        Set the list of :class:`~gen.lib.mediaref.MediaRef` instances associated with the object.
-        It replaces the previous list.
+        Set the list of :class:`~.mediaref.MediaRef` instances associated with
+        the object. It replaces the previous list.
 
-        :param media_ref_list: list of :class:`~gen.lib.mediaref.MediaRef` instances to be assigned
-            to the object.
+        :param media_ref_list: list of :class:`~.mediaref.MediaRef` instances
+                               to be assigned to the object.
         :type media_ref_list: list
         """
         self.media_list = media_ref_list
@@ -131,7 +133,7 @@ class MediaBase(object):
         Merge the list of media references from acquisition with our own.
 
         :param acquisition: the media list of this object will be merged with
-            the current media reference list.
+                            the current media reference list.
         :rtype acquisition: MediaBase
         """
         media_list = self.media_list[:]
@@ -154,7 +156,7 @@ class MediaBase(object):
         :param obj_handle: The media handle to be checked.
         :type obj_handle: str
         :returns: Returns whether the object or any of it's child objects has 
-                reference to this media handle.
+                  reference to this media handle.
         :rtype: bool
         """
         return obj_handle in [media_ref.ref for media_ref in self.media_list]

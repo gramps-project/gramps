@@ -24,7 +24,7 @@
 # $Id$
 
 """
-Media Reference class for GRAMPS.
+Media Reference class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -140,7 +140,7 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         Return the list of child secondary objects that may refer Citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer Citations.
+                  refer Citations.
         :rtype: list
         """
         return self.attribute_list
@@ -150,7 +150,7 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return self.attribute_list
@@ -185,7 +185,7 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         reference and region, to other.
 
         :param other: The object reference to compare this one to.
-        :rtype other: MediaRef
+        :type other: MediaRef
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
@@ -204,7 +204,7 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
         Lost: hlink and region or acquisition.
 
         :param acquisition: The object reference to merge with the present one.
-        :rtype acquisition: MediaRef
+        :type acquisition: MediaRef
         """
         self._merge_privacy(acquisition)
         self._merge_attribute_list(acquisition)

@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Base Object class for GRAMPS
+Base Object class for Gramps
 """
 
 #-------------------------------------------------------------------------
@@ -45,7 +45,7 @@ from ..constfunc import cuni
 #-------------------------------------------------------------------------
 class BaseObject(object):
     """
-    The BaseObject is the base class for all data objects in GRAMPS,
+    The BaseObject is the base class for all data objects in Gramps,
     whether primary or not. 
     
     Its main goal is to provide common capabilites to all objects, such as 
@@ -111,7 +111,8 @@ class BaseObject(object):
         :type pattern: str
         :param case_sensitive: Whether the match is case-sensitive.
         :type case_sensitive: bool
-        :returns: Returns whether any text data in the object or any of it's child objects matches a given pattern.
+        :returns: Returns whether any text data in the object or any of it's
+                  child objects matches a given pattern.
         :rtype: bool
         """
         # Run through its own items
@@ -143,7 +144,8 @@ class BaseObject(object):
 
         :param pattern: The pattern to match.
         :type pattern: str
-        :returns: Returns whether any text data in the object or any of it's child objects matches a given regexp.
+        :returns: Returns whether any text data in the object or any of it's
+                  child objects matches a given regexp.
         :rtype: bool
         """
 
@@ -186,7 +188,8 @@ class BaseObject(object):
         Return the list of (classname, handle) tuples for all directly
         referenced primary objects.
         
-        :returns: Returns the list of (classname, handle) tuples for referenced objects.
+        :returns: Returns the list of (classname, handle) tuples for referenced
+                  objects.
         :rtype: list
         """
         return []
@@ -206,7 +209,8 @@ class BaseObject(object):
         Return the list of (classname, handle) tuples for all referenced
         primary objects, whether directly or through child objects.
         
-        :returns: Returns the list of (classname, handle) tuples for referenced objects.
+        :returns: Returns the list of (classname, handle) tuples for referenced
+                  objects.
         :rtype: list
         """
         ret = self.get_referenced_handles()
@@ -234,4 +238,3 @@ class BaseObject(object):
     @classmethod
     def create(cls, data):
         return cls().unserialize(data)
-

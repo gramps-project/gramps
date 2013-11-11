@@ -49,16 +49,19 @@ _UNKNOWN = _('Unknown')
 #
 #-------------------------------------------------------------------------
 class GrampsTypeMeta(type):
-    """Metaclass for :class:`~gen.lib.grampstype.GrampsType`.
+    """
+    Metaclass for :class:`~.grampstype.GrampsType`.
     
     Create the class-specific integer/string maps.
-    
     """
     def __init__(cls, name, bases, namespace):
 
         # Helper function to create the maps        
         def init_map(data, key_col, data_col, blacklist=None):
-            """Initialize the map, building a new map from the specified columns."""
+            """
+            Initialize the map, building a new map from the specified
+            columns.
+            """
             if blacklist:
                 return dict([(item[key_col], item[data_col]) 
                                 for item in data if not item[0] in blacklist])
@@ -88,25 +91,25 @@ GrampsTypeC = GrampsTypeMeta(str('GrampsTypeC'), (object, ), {})
 class GrampsType(GrampsTypeC):
     """Base class for all Gramps object types.
         
-    :cvar _DATAMAP: (list) 3-tuple like (index, localized_string, english_string).
+    :cvar _DATAMAP: 
+      (list) 3-tuple like (index, localized_string, english_string).
     :cvar _BLACKLIST: 
-       List of indices to ignore (obsolete/retired entries).
-       (gramps policy is never to delete type values, or reuse the name (TOKEN)
-       of any specific type value)
+      List of indices to ignore (obsolete/retired entries).
+      (gramps policy is never to delete type values, or reuse the name (TOKEN)
+      of any specific type value)
     :cvar POS_<x>: (int) 
       Position of <x> attribute in the serialized format of
       an instance.
 
-    :attention: The POS_<x> class variables reflect the serialized object, they
-      have to be updated in case the data structure or the L{serialize} method
-      changes!
+    .. warning:: The POS_<x> class variables reflect the serialized object,
+                 they have to be updated in case the data structure or the
+                 :meth:`serialize` method changes!
     
     :cvar _CUSTOM:  (int) a custom type object
     :cvar _DEFAULT: (int) the default type, used on creation
     
     :attribute value: (int) Returns or sets integer value
     :attribute string: (str) Returns or sets string value
-
     """
     (POS_VALUE, POS_STRING) = list(range(2))
     

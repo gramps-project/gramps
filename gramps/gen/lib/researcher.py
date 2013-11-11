@@ -22,7 +22,7 @@
 # $Id$
 
 """
-Researcher information for GRAMPS.
+Researcher information for Gramps.
 """
 
 #-------------------------------------------------------------------------

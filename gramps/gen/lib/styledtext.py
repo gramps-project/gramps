@@ -41,46 +41,44 @@ from ..constfunc import cuni, STRTYPE
 class StyledText(object):
     """Helper class to enable character based text formatting.
     
-    StyledText is a wrapper class binding the clear text string and it's
-    formatting tags together.
+    :py:class:`StyledText` is a wrapper class binding the clear text string and
+    it's formatting tags together.
     
-    StyledText provides several string methods in order to manipulate
-    formatted strings, such as :meth:`~gen.lib.styledtext.StyledText.join`,
-    :meth:`~gen.lib.styledtext.StyledText.replace`, 
-    :meth:`~gen.lib.styledtext.StyledText.split`, and also
-    supports the '+' operation (:meth:`~gen.lib.styledtext.StyledText.__add__`).
+    :py:class:`StyledText` provides several string methods in order to
+    manipulate formatted strings, such as :py:meth:`join`, :py:meth:`replace`, 
+    :py:meth:`split`, and also supports the '+' operation (:py:meth:`__add__`).
     
-    To get the clear text of the StyledText use the built-in str() function.
-    To get the list of formatting tags use the L{get_tags} method.
+    To get the clear text of the :py:class:`StyledText` use the built-in
+    :py:func:`str()` function. To get the list of formatting tags use the
+    :py:meth:`get_tags` method.
     
-    StyledText supports the I{creation} of formatted texts too. This feature
+    StyledText supports the *creation* of formatted texts too. This feature
     is intended to replace (or extend) the current report interface.
     To be continued... FIXME
     
     :ivar string: (str) The clear text part.
-    :ivar tags: (list of :class:`~gen.lib.styledtexttag.StyledTextTag`) Text 
-      tags holding formatting information for the string.
+    :ivar tags: (list of :py:class:`.StyledTextTag`) Text tags holding
+                formatting information for the string.
 
     :cvar POS_TEXT: Position of *string* attribute in the serialized format of
-      an instance.
-    :cvar POS_TAGS: (int) Position of *tags* attribute in the serialized format of
-      an instance.
+                    an instance.
+    :cvar POS_TAGS: (int) Position of *tags* attribute in the serialized format
+                    of an instance.
 
-    :attention: The POS_<x> class variables reflect the serialized object,
-      they have to be updated in case the data structure or the L{serialize}
-      method changes!
+    .. warning:: The POS_<x> class variables reflect the serialized object,
+      they have to be updated in case the data structure or the 
+      :py:meth:`serialize` method changes!
     
-    :note:
-     1. There is no sanity check of tags in
-        :meth:`~gen.lib.styledtext.StyledText.__init__`, because when a
-        StyledText is displayed it is passed to a StyledTextBuffer, which
-        in turn will 'eat' all invalid tags (including out-of-range tags too).
-     2. After string methods the tags can become fragmented. That means the
-        same tag may appear more than once in the tag list with different ranges.
-        There could be a 'merge_tags' functionality in 
-        :meth:`~gen.lib.styledtext.StyledText.__init__`, however
-        StyledTextBuffer will merge them automatically if the text is displayed.
-
+    .. note::
+     1. There is no sanity check of tags in :py:meth:`__init__`, because when a
+        :py:class:`StyledText` is displayed it is passed to a
+        :py:class:`.StyledTextBuffer`, which in turn will 'eat' all invalid 
+        tags (including out-of-range tags too).
+     2. After string methods the tags can become fragmented. That means the same
+        tag may appear more than once in the tag list with different ranges.
+        There could be a 'merge_tags' functionality in :py:meth:`__init__`, 
+        however :py:class:`StyledTextBuffer` will merge them automatically if
+        the text is displayed.
     """
     (POS_TEXT, POS_TAGS) = list(range(2))
     
@@ -102,9 +100,9 @@ class StyledText(object):
         """Implement '+' operation on the class.
         
         :param other: string to concatenate to self
-        :type other: basestring or StyledText
-        :returns: concatenated strings
-        :returnstype: StyledText
+        :type other: basestring or :py:class:`StyledText`
+        :return: concatenated strings
+        :rtype: :py:class:`StyledText`
         
         """
         offset = len(self._string)
@@ -185,13 +183,13 @@ class StyledText(object):
     # string methods in alphabetical order:
 
     def join(self, seq):
-        """Emulate __builtin__.str.join method.
+        """
+        Emulate :py:meth:`__builtin__.str.join` method.
         
         :param seq: list of strings to join
-        :type seq: basestring or StyledText
-        :returns: joined strings
-        :returnstype: StyledText
-        
+        :type seq: basestring or :py:class:`StyledText`
+        :return: joined strings
+        :rtype: :py:class:`StyledText`
         """
         new_string = self._string.join([str(string) for string in seq])
         
@@ -211,34 +209,35 @@ class StyledText(object):
         return self.__class__(new_string, new_tags)
     
     def replace(self, old, new, count=-1):
-        """Emulate __builtin__.str.replace method.
+        """
+        Emulate :py:meth:`__builtin__.str.replace` method.
         
         :param old: substring to be replaced
-        :type old: basestring or StyledText
+        :type old: basestring or :py:class:`StyledText`
         :param new: substring to replace by
-        :type new: StyledText
+        :type new: :py:class:`StyledText`
         :param count: if given, only the first count occurrences are replaced
         :type count: int
-        :returns: copy of the string with replaced substring(s)
-        :returnstype: StyledText
+        :return: copy of the string with replaced substring(s)
+        :rtype: :py:class:`StyledText`
         
-        @attention: by the correct implementation parameter I{new}
-        should be StyledText or basestring, however only StyledText
-        is currently supported.
+        .. warning:: by the correct implementation parameter *new* should be
+                     :py:class:`StyledText` or basestring, however only
+                     :py:class:`StyledText` is currently supported.
         """
         # quick and dirty solution: works only if new.__class__ == StyledText
         return new.join(self.split(old, count))
     
     def split(self, sep=None, maxsplit=-1):
-        """Emulate __builtin__.str.split method.
+        """
+        Emulate :py:meth:`__builtin__.str.split` method.
         
         :param sep: the delimiter string
-        :type seq: basestring or StyledText
+        :type seq: basestring or :py:class:`StyledText`
         :param maxsplit: if given, at most maxsplit splits are done
         :type maxsplit: int
-        :returns: a list of the words in the string
-        :returnstype: list of StyledText
-        
+        :return: a list of the words in the string
+        :rtype: list of :py:class:`StyledText`
         """
         # split the clear text first
         if sep is not None:
@@ -275,11 +274,11 @@ class StyledText(object):
     # other public methods
     
     def serialize(self):
-        """Convert the object to a serialized tuple of data.
+        """
+        Convert the object to a serialized tuple of data.
         
-        :returns: Serialized format of the instance.
-        :returnstype: tuple
-        
+        :return: Serialized format of the instance.
+        :rtype: tuple
         """
         if self._tags:
             the_tags = [tag.serialize() for tag in self._tags]
@@ -305,7 +304,7 @@ class StyledText(object):
         of structs. Otherwise, the struct is just the value of the
         attribute.
 
-        :returns: Returns a struct containing the data of the object.
+        :return: Returns a struct containing the data of the object.
         :rtype: dict
         """
         if self._tags:
@@ -322,17 +321,19 @@ class StyledText(object):
         """
         Given a struct data representation, return a serialized object.
 
-        :returns: Returns a serialized object
+        :return: Returns a serialized object
         """
         default = StyledText()
-        return (struct.get("string", default.string), [StyledTextTag.from_struct(t) for t in struct.get("tags", default.tags)])
+        return (struct.get("string", default.string),
+                    [StyledTextTag.from_struct(t) 
+                    for t in struct.get("tags", default.tags)])
 
     def unserialize(self, data):
-        """Convert a serialized tuple of data to an object.
+        """
+        Convert a serialized tuple of data to an object.
         
         :param data: Serialized format of instance variables.
         :type data: tuple
-        
         """
         (self._string, the_tags) = data
         
@@ -345,11 +346,11 @@ class StyledText(object):
         return self
     
     def get_tags(self):
-        """Return the list of formatting tags.
+        """
+        Return the list of formatting tags.
         
-        :returns: The formatting tags applied on the text.
-        :returnstype: list of 0 or more :class:`~gen.lib.styledtexttag.StyledTextTag` instances.
-        
+        :return: The formatting tags applied on the text.
+        :rtype: list of 0 or more :py:class:`.StyledTextTag` instances.
         """
         return self._tags
 

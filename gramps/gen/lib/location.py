@@ -23,7 +23,7 @@
 # $Id$
 
 """
-Location class for GRAMPS.
+Location class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -136,7 +136,7 @@ class Location(SecondaryObject, LocationBase):
         Return if this location is equivalent to other.
 
         :param other: The location to compare this one to.
-        :rtype other: Location
+        :type other: Location
         :returns: Constant inidicating degree of equivalence.
         :rtype: int
         """
@@ -152,7 +152,7 @@ class Location(SecondaryObject, LocationBase):
         Lost: everything of acquisition.
 
         :param acquisition: The location to merge with the present location.
-        :rtype acquisition: Location
+        :type acquisition: Location
         """
         pass
 

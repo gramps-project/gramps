@@ -24,7 +24,7 @@
 # $Id$
 
 """
-LDS Ordinance class for GRAMPS.
+LDS Ordinance class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -230,7 +230,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return []
@@ -267,7 +267,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         place, status, sealed_to, to other.
 
         :param other: The ldsord to compare this one to.
-        :rtype other: LdsOrd
+        :type other: LdsOrd
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
@@ -290,7 +290,7 @@ class LdsOrd(SecondaryObject, CitationBase, NoteBase,
         Lost: type, date, temple, place, status, sealed_to of acquistion.
 
         :param acquisition: The ldsord to merge with the present ldsord.
-        :rtype acquisition: LdsOrd
+        :type acquisition: LdsOrd
         """
         self._merge_privacy(acquisition)
         self._merge_note_list(acquisition)

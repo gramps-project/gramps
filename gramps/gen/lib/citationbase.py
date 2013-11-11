@@ -23,7 +23,7 @@
 # $Id$
 
 """
-CitationBase class for GRAMPS.
+CitationBase class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -115,11 +115,11 @@ class CitationBase(object):
 
     def add_citation(self, handle):
         """
-        Add the :class:`~gen.lib.citation.Citation` handle to the list of 
-        citation handles.
+        Add the :class:`~.citation.Citation` handle to the list of citation
+        handles.
 
-        :param handle: :class:`~gen.lib.citation.Citation` handle to add the 
-            list of citations
+        :param handle: :class:`~.citation.Citation` handle to add the list of
+                       citations
         :type handle: str
 
         :returns: True if handle was added, False if it already was in the list
@@ -160,27 +160,27 @@ class CitationBase(object):
         CitationBase
 
         :returns: Returns the list of child secondary child objects that may 
-                refer citations.
+                  refer citations.
         :rtype: list
         """
         return []
 
     def get_citation_list(self):
         """
-        Return the list of :class:`~gen.lib.citation.Citation` handles 
-        associated with the object.
+        Return the list of :class:`~.citation.Citation` handles associated with
+        the object.
 
-        :returns: The list of :class:`~gen.lib.citation.Citation` handles
+        :returns: The list of :class:`~.citation.Citation` handles
         :rtype: list
         """
         return self.citation_list
 
     def get_all_citation_lists(self):
         """
-        Return the list of :class:`~gen.lib.citation.Citation` handles 
-        associated with the object or with child objects.
+        Return the list of :class:`~.citation.Citation` handles associated with
+        the object or with child objects.
 
-        :returns: The list of :class:`~gen.lib.citation.Citation` handles
+        :returns: The list of :class:`~.citation.Citation` handles
         :rtype: list
         """
         list = self.citation_list
@@ -213,11 +213,11 @@ class CitationBase(object):
 
     def set_citation_list(self, citation_list):
         """
-        Assign the passed list to be object's list of 
-        :class:`~gen.lib.citation.Citation` handles.
+        Assign the passed list to be object's list of
+        :class:`~.citation.Citation` handles.
 
-        :param citation_list: List of :class:`~gen.lib.citation.Citation` 
-            handles to be set on the object
+        :param citation_list: List of :class:`~.citation.Citation` handles to
+                              be set on the object
         :type citation_list: list
         """
         self.citation_list = citation_list
@@ -227,8 +227,8 @@ class CitationBase(object):
         Merge the list of citations from acquisition with our own.
 
         :param acquisition: The citation list of this object will be merged 
-            with the current citation list.
-        :rtype acquisition: CitationBase
+                            with the current citation list.
+        :type acquisition: CitationBase
         """
         for addendum in acquisition.citation_list:
             self.add_citation(addendum)
@@ -238,9 +238,8 @@ class CitationBase(object):
         Return the list of (classname, handle) tuples for all referenced 
         citations.
         
-        This method should be used to get the 
-        :class:`~gen.lib.citation.Citation` portion of the list by objects 
-        that store citation lists.
+        This method should be used to get the :class:`~.citation.Citation`
+        portion of the list by objects that store citation lists.
         
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list
@@ -278,12 +277,13 @@ class IndirectCitationBase(object):
     Citation management logic for objects that don't have citations
     for the primary objects, but only for the child (secondary) ones.
 
-    The derived class must implement get_citation_child_list method
-    to return the list of child secondary objects that may refer
-    citations.
+    The derived class must implement the 
+    :meth:`~CitationBase.get_citation_child_list` method to return the list of 
+    child secondary objects that may refer citations.
 
-    Note: for most objects, this functionality is inherited from 
-    CitationBase, which checks both the object and the child objects.
+    .. note:: for most objects, this functionality is inherited from 
+              :class:`CitationBase`, which checks both the object and the child
+              objects.
     """
     def has_citation_reference(self, citation_handle):
         """
@@ -293,7 +293,7 @@ class IndirectCitationBase(object):
         :param citation_handle: The citation handle to be checked.
         :type citation_handle: str
         :returns: Returns whether any of it's child objects has reference to 
-                this citation handle.
+                  this citation handle.
         :rtype: bool
         """
         for item in self.get_citation_child_list():
@@ -304,8 +304,8 @@ class IndirectCitationBase(object):
 
     def replace_citation_references(self, old_handle, new_handle):
         """
-        Replace references to citation handles in
-        all child objects and merge equivalent entries.
+        Replace references to citation handles in all child objects and merge
+        equivalent entries.
 
         :param old_handle: The citation handle to be replaced.
         :type old_handle: str

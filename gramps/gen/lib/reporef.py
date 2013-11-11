@@ -23,7 +23,7 @@
 # $Id$
 
 """
-Repository Reference class for GRAMPS
+Repository Reference class for Gramps
 """
 
 #-------------------------------------------------------------------------
@@ -155,7 +155,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         reference, call number and medium, to other.
 
         :param other: The repository reference to compare this one to.
-        :rtype other: RepoRef
+        :type other: RepoRef
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
@@ -173,8 +173,8 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         Merge the content of acquisition into this repository reference.
 
         :param acquisition: The repository reference to merge with the present
-            repository reference.
-        :rtype acquisition: RepoRef
+                            repository reference.
+        :type acquisition: RepoRef
         """
         self._merge_privacy(acquisition)
         self._merge_note_list(acquisition)

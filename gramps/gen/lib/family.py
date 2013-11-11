@@ -24,7 +24,7 @@
 # $Id$
 
 """
-Family object for GRAMPS.
+Family object for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -62,16 +62,16 @@ from .handle import Handle
 class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
              PrimaryObject):
     """
-    The Family record is the GRAMPS in-memory representation of the
+    The Family record is the Gramps in-memory representation of the
     relationships between people. It contains all the information
     related to the relationship.
     
     Family objects are usually created in one of two ways.
 
     1. Creating a new Family object, which is then initialized and
-        added to the database.
+       added to the database.
     2. Retrieving an object from the database using the records
-        handle.
+       handle.
 
     Once a Family object has been modified, it must be committed
     to the database using the database object's commit_family function,
@@ -113,7 +113,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         a form that it can use.
 
         :returns: Returns a python tuple containing the data that should
-            be considered persistent.
+                  be considered persistent.
         :rtype: tuple
         """
         return (self.handle, self.gramps_id, self.father_handle,
@@ -223,7 +223,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         :param handle: The handle to be checked.
         :type handle: str
         :returns: Returns whether the object has reference to this handle of 
-                this object type.
+                  this object type.
         :rtype: bool
         """
         if classname == 'Event':
@@ -341,7 +341,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer citations.
+                  refer citations.
         :rtype: list
         """
         check_list = self.media_list + self.attribute_list + \
@@ -353,7 +353,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         check_list = self.media_list + self.attribute_list + \
@@ -396,7 +396,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Lost: handle, id, relation, father, mother of acquisition.
 
         :param acquisition: The family to merge with the present family.
-        :rtype acquisition: Family
+        :type acquisition: Family
         """
         if self.type != acquisition.type and self.type == FamilyRelType.UNKNOWN:
             self.set_relationship(acquisition.get_relationship())
@@ -418,22 +418,28 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         The type is a tuple whose first item is an integer constant and whose 
         second item is the string. The valid values are:
 
-            - C{FamilyRelType.MARRIED} : indicates a legally recognized married
-                relationship between two individuals. This may be either
-                an opposite or a same sex relationship.
-            - C{FamilyRelType.UNMARRIED} : indicates a relationship between two
-                individuals that is not a legally recognized relationship.
-            - C{FamilyRelType.CIVIL_UNION} : indicates a legally recongnized,
-                non-married relationship between two individuals of the
-                same sex.
-            - C{FamilyRelType.UNKNOWN} : indicates that the type of relationship
-                between the two individuals is not know.
-            - C{FamilyRelType.CUSTOM} : indicates that the type of relationship
-                between the two individuals does not match any of the
-                other types.
+        =========================  ============================================ 
+        Type                       Description
+        =========================  ============================================ 
+        FamilyRelType.MARRIED      indicates a legally recognized married
+                                   relationship between two individuals. This
+                                   may be either an opposite or a same sex
+                                   relationship.
+        FamilyRelType.UNMARRIED    indicates a relationship between two
+                                   individuals that is not a legally recognized
+                                   relationship.
+        FamilyRelType.CIVIL_UNION  indicates a legally recongnized, non-married
+                                   relationship between two individuals of the
+                                   same sex.
+        FamilyRelType.UNKNOWN      indicates that the type of relationship
+                                   between the two individuals is not know.
+        FamilyRelType.CUSTOM       indicates that the type of relationship
+                                   between the two individuals does not match
+                                   any of the other types.
+        =========================  ============================================ 
 
         :param relationship_type: (int,str) tuple of the relationship type
-            between the father and mother of the relationship.
+               between the father and mother of the relationship.
         :type relationship_type: tuple
         """
         self.type.set(relationship_type)
@@ -447,53 +453,54 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def set_father_handle(self, person_handle):
         """
-        Set the database handle for :class:`~gen.lib.person.Person` that corresponds to male of the 
-        relationship. 
+        Set the database handle for :class:`~.person.Person` that corresponds 
+        to male of the relationship. 
         
         For a same sex relationship, this can represent either of people 
         involved in the relationship.
 
-        :param person_handle: :class:`~gen.lib.person.Person` database handle
+        :param person_handle: :class:`~.person.Person` database handle
         :type person_handle: str
         """
         self.father_handle = person_handle
 
     def get_father_handle(self):
         """
-        Return the database handle of the :class:`~gen.lib.person.Person` identified as the father 
-        of the Family.
+        Return the database handle of the :class:`~.person.Person` identified 
+        as the father of the Family.
 
-        :returns: :class:`~gen.lib.person.Person` database handle
+        :returns: :class:`~.person.Person` database handle
         :rtype: str
         """
         return self.father_handle
 
     def set_mother_handle(self, person_handle):
         """
-        Set the database handle for :class:`~gen.lib.person.Person` that corresponds to male of the 
-        relationship. 
+        Set the database handle for :class:`~.person.Person` that corresponds 
+        to male of the relationship. 
         
         For a same sex relationship, this can represent either of people 
         involved in the relationship.
 
-        :param person_handle: :class:`~gen.lib.person.Person` database handle
+        :param person_handle: :class:`~.person.Person` database handle
         :type person_handle: str
         """
         self.mother_handle = person_handle
 
     def get_mother_handle(self):
         """
-        Return the database handle of the :class:`~gen.lib.person.Person` identified as the mother 
-        of the Family.
+        Return the database handle of the :class:`~.person.Person` identified 
+        as the mother of the Family.
 
-        :returns: :class:`~gen.lib.person.Person` database handle
+        :returns: :class:`~.person.Person` database handle
         :rtype: str
         """
         return self.mother_handle
 
     def add_child_ref(self, child_ref):
         """
-        Add the database handle for :class:`~gen.lib.person.Person` to the Family's list of children.
+        Add the database handle for :class:`~.person.Person` to the Family's
+        list of children.
 
         :param child_ref: Child Reference instance
         :type  child_ref: ChildRef
@@ -504,13 +511,13 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
             
     def remove_child_ref(self, child_ref):
         """
-        Remove the database handle for :class:`~gen.lib.person.Person` to the Family's list of 
-        children if the :class:`~gen.lib.person.Person` is already in the list.
+        Remove the database handle for :class:`~.person.Person` to the Family's
+        list of children if the :class:`~.person.Person` is already in the list.
 
         :param child_ref: Child Reference instance
         :type child_ref: ChildRef
         :returns: True if the handle was removed, False if it was not
-            in the list.
+                  in the list.
         :rtype: bool
         """
         if not isinstance(child_ref, ChildRef):
@@ -521,13 +528,13 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def remove_child_handle(self, child_handle):
         """
-        Remove the database handle for :class:`~gen.lib.person.Person` to the Family's list of 
-        children if the :class:`~gen.lib.person.Person` is already in the list.
+        Remove the database handle for :class:`~.person.Person` to the Family's
+        list of children if the :class:`~.person.Person` is already in the list.
 
-        :param child_handle: :class:`~gen.lib.person.Person` database handle
+        :param child_handle: :class:`~.person.Person` database handle
         :type  child_handle: str
         :returns: True if the handle was removed, False if it was not
-            in the list.
+                  in the list.
         :rtype: bool
         """
         new_list = [ref for ref in self.child_ref_list
@@ -536,11 +543,11 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_child_ref_list(self):
         """
-        Return the list of :class:`~gen.lib.childref.ChildRef` handles identifying the children of the 
-        Family.
+        Return the list of :class:`~.childref.ChildRef` handles identifying the
+        children of the Family.
 
-        :returns: Returns the list of :class:`~gen.lib.childref.ChildRef` handles associated with
-            the Family.
+        :returns: Returns the list of :class:`~.childref.ChildRef` handles
+                  associated with the Family.
         :rtype: list
         """
         return self.child_ref_list
@@ -551,7 +558,7 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
         :param child_ref_list: List of Child Reference instances to be
                                associated as the Family's list of children.
-        :type child_ref_list: list of :class:`~gen.lib.childref.ChildRef` instances
+        :type child_ref_list: list of :class:`~.childref.ChildRef` instances
         """
         self.child_ref_list = child_ref_list
 
@@ -560,8 +567,8 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Merge the list of child references from acquisition with our own.
 
         :param acquisition: the childref list of this family will be merged
-            with the current childref list.
-        :rtype acquisition: Family
+                            with the current childref list.
+        :type acquisition: Family
         """
         childref_list = self.child_ref_list[:]
         for addendum in acquisition.get_child_ref_list():
@@ -577,13 +584,14 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def add_event_ref(self, event_ref):
         """
-        Add the :class:`~gen.lib.eventref.EventRef` to the Family instance's :class:`~gen.lib.eventref.EventRef` list.
+        Add the :class:`~.eventref.EventRef` to the Family instance's
+        :class:`~.eventref.EventRef` list.
         
-        This is accomplished by assigning the :class:`~gen.lib.eventref.EventRef` for the valid
-        :class:`~gen.lib.event.Event` in the current database.
+        This is accomplished by assigning the :class:`~.eventref.EventRef` for
+        the valid :class:`~.event.Event` in the current database.
         
-        :param event_ref: the :class:`~gen.lib.eventref.EventRef` to be added to the
-            Person's :class:`~gen.lib.eventref.EventRef` list.
+        :param event_ref: the :class:`~.eventref.EventRef` to be added to the
+                          Person's :class:`~.eventref.EventRef` list.
         :type event_ref: EventRef
         """
         if event_ref and not isinstance(event_ref, EventRef):
@@ -602,20 +610,22 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
 
     def get_event_ref_list(self) :
         """
-        Return the list of :class:`~gen.lib.eventref.EventRef` objects associated with :class:`~gen.lib.event.Event`
-        instances.
+        Return the list of :class:`~.eventref.EventRef` objects associated with
+        :class:`~.event.Event` instances.
 
-        :returns: Returns the list of :class:`~gen.lib.eventref.EventRef` objects associated with
-            the Family instance.
+        :returns: Returns the list of :class:`~.eventref.EventRef` objects 
+                  associated with the Family instance.
         :rtype: list
         """
         return self.event_ref_list
 
     def set_event_ref_list(self, event_ref_list) :
         """
-        Set the Family instance's :class:`~gen.lib.eventref.EventRef` list to the passed list.
+        Set the Family instance's :class:`~.eventref.EventRef` list to the
+        passed list.
 
-        :param event_ref_list: List of valid :class:`~gen.lib.eventref.EventRef` objects
+        :param event_ref_list: List of valid :class:`~.eventref.EventRef`
+                               objects
         :type event_ref_list: list
         """
         self.event_ref_list = event_ref_list
@@ -625,8 +635,8 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
         Merge the list of event references from acquisition with our own.
 
         :param acquisition: the event references list of this object will be
-            merged with the current event references list.
-        :rtype acquisition: Person
+                            merged with the current event references list.
+        :type acquisition: Person
         """
         eventref_list = self.event_ref_list[:]
         for addendum in acquisition.get_event_ref_list():
@@ -639,4 +649,3 @@ class Family(CitationBase, NoteBase, MediaBase, AttributeBase, LdsOrdBase,
                     break
             else:
                 self.event_ref_list.append(addendum)
-

@@ -22,7 +22,7 @@
 # $Id$
 
 """
-Surname class for GRAMPS.
+Surname class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -47,8 +47,9 @@ class Surname(SecondaryObject):
     """
 
     def __init__(self, source=None, data=None):
-        """Create a new Surname instance, copying from the source if provided.
-           By default a surname is created as primary, use set_primary to change
+        """
+        Create a new Surname instance, copying from the source if provided.
+        By default a surname is created as primary, use set_primary to change
         """
         if source:
             self.surname = source.surname
@@ -145,7 +146,7 @@ class Surname(SecondaryObject):
         ..., to other.
 
         :param other: The surname to compare this name to.
-        :rtype other: Surame
+        :type other: Surname
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
@@ -166,7 +167,7 @@ class Surname(SecondaryObject):
         Lost: primary, surname, prefix, connector, origintype
 
         :param acquisition: The surname to merge with the present surname.
-        :rtype acquisition: Surname
+        :type acquisition: Surname
         """
         pass
 
@@ -212,13 +213,15 @@ class Surname(SecondaryObject):
         return self.origintype
 
     def set_connector(self, connector):
-        """Set the connector for the Surname instance. This defines how a 
+        """
+        Set the connector for the Surname instance. This defines how a 
         surname connects to the next surname (eg in Spanish names).
         """
         self.connector = connector
 
     def get_connector(self):
-        """Get the connector for the Surname instance. This defines how a 
+        """
+        Get the connector for the Surname instance. This defines how a 
         surname connects to the next surname (eg in Spanish names).
         """
         return self.connector
@@ -228,11 +231,12 @@ class Surname(SecondaryObject):
         return self.primary
 
     def set_primary(self, primary=True):
-        """Set if this surname is the primary surname.replace
-           Use :class:`~gen.lib.surname.SurnameBase` to set the primary surname
-           via :method:`~gen.lib.surname.SurnameBase.set_primary_surname`
-        
-          :param primary: primay surname or not
-          :type primary: bool
+        """
+        Set if this surname is the primary surname.replace
+        Use :class:`~.surnamebase.SurnameBase` to set the primary surname
+        via :meth:`~.surnamebase.SurnameBase.set_primary_surname`
+
+        :param primary: primay surname or not
+        :type primary: bool
         """
         self.primary = primary

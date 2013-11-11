@@ -21,7 +21,7 @@
 # $Id$
 
 """
-DateBase class for GRAMPS.
+DateBase class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -108,10 +108,10 @@ class DateBase(object):
 
     def get_date_object(self):
         """
-        Return the :class:`~gen.lib.date.Date` object associated with the DateBase.
+        Return the :class:`~.date.Date` object associated with the DateBase.
 
-        :returns: Returns a DateBase :class:`~gen.lib.date.Date` instance.
-        :rtype: :class:`~gen.lib.date.Date`
+        :returns: Returns a DateBase :class:`~.date.Date` instance.
+        :rtype: :class:`~.date.Date`
         """
         if not self.date:
             self.date = Date()
@@ -119,9 +119,10 @@ class DateBase(object):
 
     def set_date_object(self, date):
         """
-        Set the :class:`~gen.lib.date.Date` object associated with the DateBase.
+        Set the :class:`~.date.Date` object associated with the DateBase.
 
-        :param date: :class:`~gen.lib.date.Date` instance to be assigned to the DateBase
-        :type date: :class:`~gen.lib.date.Date`
+        :param date: :class:`~.date.Date` instance to be assigned to the
+                     DateBase
+        :type date: :class:`~.date.Date`
         """
         self.date = date

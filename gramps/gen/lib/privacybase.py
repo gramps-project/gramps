@@ -22,7 +22,7 @@
 # $Id$
 
 """
-PrivacyBase Object class for GRAMPS.
+PrivacyBase Object class for Gramps.
 """
 
 #-------------------------------------------------------------------------

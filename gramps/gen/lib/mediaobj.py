@@ -24,7 +24,7 @@
 # $Id$
 
 """
-Media object for GRAMPS.
+Media object for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -110,7 +110,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         a form that it can use.
 
         :returns: Returns a python tuple containing the data that should
-            be considered persistent.
+                  be considered persistent.
         :rtype: tuple
         """
         return (self.handle, self.gramps_id, self.path, self.mime, self.desc,
@@ -183,7 +183,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method
-        back into the data in an Event structure.
+        back into the data in a MediaObject structure.
 
         :param data: tuple containing the persistent data associated the object
         :type data: tuple
@@ -222,7 +222,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         Return the list of child secondary objects that may refer to citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer to citations.
+                  refer to citations.
         :rtype: list
         """
         return self.attribute_list
@@ -232,7 +232,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return self.attribute_list
@@ -266,7 +266,7 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
         Lost: handle, id, file, date of acquisition.
 
         :param acquisition: The media object to merge with the present object.
-        :rtype acquisition: MediaObject
+        :type acquisition: MediaObject
         """
         self._merge_privacy(acquisition)
         self._merge_attribute_list(acquisition)
@@ -322,4 +322,3 @@ class MediaObject(CitationBase, NoteBase, DateBase, AttributeBase,
     def get_checksum(self):
         """Return the checksum of the image."""
         return self.checksum
-

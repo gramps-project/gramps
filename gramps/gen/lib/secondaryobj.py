@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Secondary Object class for GRAMPS.
+Secondary Object class for Gramps.
 """
 
 #-------------------------------------------------------------------------

@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Base Reference class for GRAMPS.
+Base Reference class for Gramps.
 """
 
 from .handle import Handle
@@ -94,7 +94,7 @@ class RefBase(object):
         referenced primary objects.
         
         :returns: Returns the list of (classname, handle) tuples for referenced 
-                objects.
+                  objects.
         :rtype: list
         """
         assert False, "Must be overridden in the derived class"

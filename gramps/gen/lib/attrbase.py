@@ -22,7 +22,7 @@
 # $Id$
 
 """
-AttributeBase class for GRAMPS.
+AttributeRootBase class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -37,7 +37,7 @@ from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
-# AttributeBase class
+# AttributeRootBase class
 #
 #-------------------------------------------------------------------------
 class AttributeRootBase(object):
@@ -107,26 +107,29 @@ class AttributeRootBase(object):
 
     def add_attribute(self, attribute):
         """
-        Add the :class:`~gen.lib.attribute.Attribute` instance to the object's list of attributes.
+        Add the :class:`~.attribute.Attribute` instance to the object's list of
+        attributes.
 
-        :param attribute: :class:`~gen.lib.attribute.Attribute` instance to add.
-        :type attribute: :class:`~gen.lib.attribute.Attribute`
+        :param attribute: :class:`~.attribute.Attribute` instance to add.
+        :type attribute: :class:`~.attribute.Attribute`
         """
         assert not isinstance(attribute, STRTYPE)
         self.attribute_list.append(attribute)
 
     def remove_attribute(self, attribute):
         """
-        Remove the specified :class:`~gen.lib.attribute.Attribute` instance from the attribute list.
+        Remove the specified :class:`~.attribute.Attribute` instance from the
+        attribute list.
         
         If the instance does not exist in the list, the operation has
         no effect.
 
-        :param attribute: :class:`~gen.lib.attribute.Attribute` instance to remove from the list
-        :type attribute: :class:`~gen.lib.attribute.Attribute`
+        :param attribute: :class:`~.attribute.Attribute` instance to remove
+                          from the list
+        :type attribute: :class:`~.attribute.Attribute`
 
-        :returns: True if the attribute was removed, False if it was not
-            in the list.
+        :returns: True if the attribute was removed, False if it was not in the
+                  list.
         :rtype: bool
         """
         if attribute in self.attribute_list:
@@ -137,19 +140,21 @@ class AttributeRootBase(object):
 
     def get_attribute_list(self):
         """
-        Return the list of :class:`~gen.lib.attribute.Attribute` instances associated with the object.
+        Return the list of :class:`~.attribute.Attribute` instances associated
+        with the object.
         
-        :returns: Returns the list of :class:`~gen.lib.attribute.Attribute` instances.
+        :returns: Returns the list of :class:`~.attribute.Attribute` instances.
         :rtype: list
         """
         return self.attribute_list
 
     def set_attribute_list(self, attribute_list):
         """
-        Assign the passed list to the Person's list of :class:`~gen.lib.attribute.Attribute` instances.
+        Assign the passed list to the Person's list of
+        :class:`~.attribute.Attribute` instances.
 
-        :param attribute_list: List of :class:`~gen.lib.attribute.Attribute` instances to ba associated
-            with the Person
+        :param attribute_list: List of :class:`~.attribute.Attribute` instances
+                               to ba associated with the Person
         :type attribute_list: list
         """
         self.attribute_list = attribute_list
@@ -159,8 +164,8 @@ class AttributeRootBase(object):
         Merge the list of attributes from acquisition with our own.
 
         :param acquisition: the attribute list of this object will be merged
-            with the current attribute list.
-        :rtype acquisition: AttributeBase
+                            with the current attribute list.
+        :type acquisition: AttributeBase
         """
         attr_list = self.attribute_list[:]
         for addendum in acquisition.get_attribute_list():
@@ -179,4 +184,3 @@ class AttributeBase(AttributeRootBase):
 
 class SrcAttributeBase(AttributeRootBase):
     _CLASS = SrcAttribute
-

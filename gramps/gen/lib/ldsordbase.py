@@ -22,7 +22,7 @@
 # $Id$
 
 """
-LdsOrdBase class for GRAMPS.
+LdsOrdBase class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -105,23 +105,28 @@ class LdsOrdBase(object):
 
     def add_lds_ord(self, lds_ord):
         """
-        Add the :class:`~gen.lib.ldsord.LdsOrd` instance to the object's list of lds_ordes.
+        Add the :class:`~.ldsord.LdsOrd` instance to the object's list of
+        lds_ords.
 
-        :param lds_ord: :class:`~gen.lib.ldsord.LdsOrd` instance to add to the object's lds_ord list
+        :param lds_ord: :class:`~.ldsord.LdsOrd` instance to add to the object's
+                        lds_ord list
         :type lds_ord: list
         """
         self.lds_ord_list.append(lds_ord)
 
     def remove_lds_ord(self, lds_ord):
         """
-        Remove the specified :class:`~gen.lib.ldsord.LdsOrd` instance from the lds_ord list.
+        Remove the specified :class:`~.ldsord.LdsOrd` instance from the lds_ord
+        list.
         
         If the instance does not exist in the list, the operation has no effect.
 
-        :param lds_ord: :class:`~gen.lib.ldsord.LdsOrd` instance to remove from the list
-        :type lds_ord: :class:`~gen.lib.ldsord.LdsOrd`
+        :param lds_ord: :class:`~.ldsord.LdsOrd` instance to remove from the
+                        list
+        :type lds_ord: :class:`~.ldsord.LdsOrd`
 
-        :returns: True if the lds_ord was removed, False if it was not in the list.
+        :returns: True if the lds_ord was removed, False if it was not in the
+                  list.
         :rtype: bool
         """
         if lds_ord in self.lds_ord_list:
@@ -132,19 +137,21 @@ class LdsOrdBase(object):
 
     def get_lds_ord_list(self):
         """
-        Return the list of :class:`~gen.lib.ldsord.LdsOrd` instances associated with the object.
+        Return the list of :class:`~.ldsord.LdsOrd` instances associated with
+        the object.
 
-        :returns: Returns the list of :class:`~gen.lib.ldsord.LdsOrd` instances
+        :returns: Returns the list of :class:`~.ldsord.LdsOrd` instances
         :rtype: list
         """
         return self.lds_ord_list
 
     def set_lds_ord_list(self, lds_ord_list):
         """
-        Assign the passed list to the object's list of :class:`~gen.lib.ldsord.LdsOrd` instances.
+        Assign the passed list to the object's list of :class:`~.ldsord.LdsOrd`
+        instances.
         
-        :param lds_ord_list: List of :class:`~gen.lib.ldsord.LdsOrd` instances to be associated
-            with the object
+        :param lds_ord_list: List of :class:`~.ldsord.LdsOrd` instances to be
+                             associated with the object
         :type lds_ord_list: list
         """
         self.lds_ord_list = lds_ord_list
@@ -154,8 +161,8 @@ class LdsOrdBase(object):
         Merge the list of ldsord from acquisition with our own.
 
         :param acquisition: the ldsord list of this object will be merged with
-            the current ldsord list.
-        :rtype acquisition: LdsOrdBase
+                            the current ldsord list.
+        :type acquisition: LdsOrdBase
         """
         ldsord_list = self.lds_ord_list[:]
         for addendum in acquisition.get_lds_ord_list():

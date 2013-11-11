@@ -24,7 +24,7 @@
 # $Id$
 
 """
-Source object for GRAMPS.
+Source object for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -143,7 +143,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method
-        back into the data in an Event structure.
+        back into the data in a Source structure.
         """
         (self.handle,       #  0
          self.gramps_id,    #  1
@@ -177,7 +177,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :param handle: The handle to be checked.
         :type handle: str
         :returns: Returns whether the object has reference to this handle of 
-                this object type.
+                  this object type.
         :rtype: bool
         """
         if classname == 'Repository':
@@ -240,7 +240,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer citations.
+                  refer citations.
         :rtype: list
         """
         return self.media_list
@@ -250,7 +250,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return self.media_list + self.reporef_list
@@ -281,7 +281,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         Merge the content of acquisition into this source.
 
         :param acquisition: The source to merge with the present source.
-        :rtype acquisition: Source
+        :type acquisition: Source
         """
         self._merge_privacy(acquisition)
         self._merge_note_list(acquisition)
@@ -334,30 +334,32 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
 
     def add_repo_reference(self, repo_ref):
         """
-        Add a :class:`~gen.lib.reporef,RepoRef` instance to the Source's reporef list.
+        Add a :class:`~.reporef.RepoRef` instance to the Source's reporef list.
 
-        :param repo_ref: :class:`~gen.lib.reporef,RepoRef` instance to be added to the object's 
-                reporef list.
-        :type repo_ref: :class:`~gen.lib.reporef,RepoRef`
+        :param repo_ref: :class:`~.reporef.RepoRef` instance to be added to the
+                         object's reporef list.
+        :type repo_ref: :class:`~.reporef.RepoRef`
         """
         self.reporef_list.append(repo_ref)
 
     def get_reporef_list(self):
         """
-        Return the list of :class:`~gen.lib.reporef,RepoRef` instances associated with the Source.
+        Return the list of :class:`~.reporef.RepoRef` instances associated with
+        the Source.
 
-        @Return: list of :class:`~gen.lib.reporef,RepoRef` instances associated with the Source
+        :returns: list of :class:`~.reporef.RepoRef` instances associated with
+                  the Source
         :rtype: list
         """
         return self.reporef_list
 
     def set_reporef_list(self, reporef_list):
         """
-        Set the list of :class:`~gen.lib.reporef,RepoRef` instances associated with the Source.
-        It replaces the previous list.
+        Set the list of :class:`~.reporef.RepoRef` instances associated with
+        the Source. It replaces the previous list.
 
-        :param reporef_list: list of :class:`~gen.lib.reporef,RepoRef` instances to be assigned to 
-                the Source.
+        :param reporef_list: list of :class:`~.reporef.RepoRef` instances to be
+                             assigned to the Source.
         :type reporef_list: list
         """
         self.reporef_list = reporef_list
@@ -367,8 +369,9 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         Merge the list of repository references from acquisition with our own.
 
         :param acquisition: the repository references list of this object will
-            be merged with the current repository references list.
-        :rtype acquisition: RepoRef
+                            be merged with the current repository references
+                            list.
+        :type acquisition: RepoRef
         """
         reporef_list = self.reporef_list[:]
         for addendum in acquisition.get_reporef_list():
@@ -389,7 +392,7 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :param repo_handle: The Repository handle to be checked.
         :type repo_handle: str
         :returns: Returns whether the Source has reference to this Repository 
-                handle.
+                  handle.
         :rtype: bool
         """
         return repo_handle in [repo_ref.ref for repo_ref in self.reporef_list]
@@ -414,7 +417,6 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         :type old_handle: str
         :param new_handle: The Repository handle to replace the old one with.
         :type new_handle: str
-        indikken
         """
         refs_list = [ repo_ref.ref for repo_ref in self.reporef_list ]
         new_ref = None

@@ -22,7 +22,7 @@
 # $Id$
 
 """
-Url class for GRAMPS.
+Url class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -132,7 +132,7 @@ class Url(SecondaryObject, PrivacyBase):
         name and description, to other.
 
         :param other: The url to compare this one to.
-        :rtype other: Url
+        :type other: Url
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
@@ -151,7 +151,7 @@ class Url(SecondaryObject, PrivacyBase):
         Merge the content of acquisition into this url.
 
         :param acquisition: The url to merge with the present url.
-        :rtype acquisition: Url
+        :type acquisition: Url
         """
         self._merge_privacy(acquisition)
 
@@ -186,7 +186,7 @@ class Url(SecondaryObject, PrivacyBase):
         return self.type
 
     def are_equal(self, other):
-        """Deprecated - use is_equal instead."""
+        """Deprecated - use :meth:`~.SecondaryObject.is_equal` instead."""
 
         warn( "Use is_equal instead of are_equal", DeprecationWarning, 2)
         return self.is_equal(other)
@@ -195,14 +195,16 @@ class Url(SecondaryObject, PrivacyBase):
         """
         Returns a 6 tuple-based object with the following items:
 
+        ======== ===   =================================
         Property Pos   Meaning
-        -------- ---   ---------------------------------
+        ======== ===   =================================
         scheme   0     URL scheme specifier
         netloc   1     Network location part
         path     2     Hierarchical path
         params   3     Parameters for last path element
         query    4     Query component 
         fragment 5     Fragment identifier
+        ======== ===   =================================
         """
         return urlparse(self.path)
 

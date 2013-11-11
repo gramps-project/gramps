@@ -23,7 +23,7 @@
 # $Id$
 
 """
-Event object for GRAMPS.
+Event object for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -66,7 +66,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
     (that we may not know precisely, though), at some place, may involve 
     several people (witnesses, officers, notaries, priests, etc.) and may 
     of course have sources, notes, media, etc.
-    Compare this with attribute: :class:`~gen.lib.attribute.Attribute`
+    Compare this with attribute: :class:`~.attribute.Attribute`
     """
 
     def __init__(self, source=None):
@@ -107,7 +107,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         a form that it can use.
 
         :returns: Returns a python tuple containing the data that should
-            be considered persistent.
+                  be considered persistent.
         :rtype: tuple
         """
         return (self.handle, self.gramps_id, self.__type.serialize(),
@@ -181,8 +181,8 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         Convert the data held in a tuple created by the serialize method
         back into the data in an Event structure.
 
-        :param data: tuple containing the persistent data associated the
-            Person object
+        :param data: tuple containing the persistent data associated with the
+                     Event object
         :type data: tuple
         """
         (self.handle, self.gramps_id, the_type, date,
@@ -210,7 +210,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         :param handle: The handle to be checked.
         :type handle: str
         :returns: Returns whether the object has reference to this handle of 
-                this object type.
+                  this object type.
         :rtype: bool
         """
         if classname == 'Place':
@@ -266,7 +266,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer citations.
+                  refer citations.
         :rtype: list
         """
         return self.media_list + self.attribute_list
@@ -276,7 +276,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return self.media_list + self.attribute_list
@@ -358,7 +358,7 @@ class Event(CitationBase, NoteBase, MediaBase, AttributeBase,
         Lost: handle, id, marker, type, date, place, description of acquisition.
 
         :param acquisition: The event to merge with the present event.
-        :rtype acquisition: Event
+        :type acquisition: Event
         """
         self._merge_privacy(acquisition)
         self._merge_attribute_list(acquisition)

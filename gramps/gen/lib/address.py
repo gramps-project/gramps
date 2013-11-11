@@ -24,7 +24,7 @@
 # $Id$
 
 """
-Address class for GRAMPS.
+Address class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -147,7 +147,8 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         """
         Return the list of child secondary objects that may refer notes.
 
-        :returns: Returns the list of child secondary child objects that may refer notes.
+        :returns: Returns the list of child secondary child objects that may
+                  refer notes.
         :rtype: list
         """
         return []
@@ -179,7 +180,7 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         date, to other.
 
         :param other: The address to compare this one to.
-        :rtype other: Address
+        :type other: Address
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
@@ -200,7 +201,7 @@ class Address(SecondaryObject, PrivacyBase, CitationBase, NoteBase, DateBase,
         acquisition. 
 
         :param acquisition: The address to merge with the present address.
-        :rtype acquisition: Address
+        :type acquisition: Address
         """
         self._merge_privacy(acquisition)
         self._merge_note_list(acquisition)

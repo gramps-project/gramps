@@ -21,7 +21,7 @@
 # $Id$
 
 """
-SurnameBase class for GRAMPS.
+SurnameBase class for Gramps.
 """
 
 from ..const import GRAMPS_LOCALE as glocale
@@ -102,28 +102,29 @@ class SurnameBase(object):
 
     def add_surname(self, surname):
         """
-        Add the :class:`~gen.lib.surname.Surname` instance to the object's 
+        Add the :class:`~.surname.Surname` instance to the object's 
         list of surnames.
 
-        :param surname: :class:`~gen.lib.surname.Surname` instance to add to 
-        the object's address list.
+        :param surname: :class:`~.surname.Surname` instance to add to the
+                        object's address list.
         :type address: list
         """
         self.surname_list.append(surname)
 
     def remove_surname(self, surname):
         """
-        Remove the specified :class:`~gen.lib.surname.Surname` instance from 
-        the surname list.
+        Remove the specified :class:`~.surname.Surname` instance from the
+        surname list.
         
         If the instance does not exist in the list, the operation has
         no effect.
 
-        :param surname: :class:`~gen.lib.surname.Surname` instance to remove 
-            from the list
-        :type surname: :class:`~gen.lib.surname.Surname`
+        :param surname: :class:`~.surname.Surname` instance to remove 
+                        from the list
+        :type surname: :class:`~.surname.Surname`
 
-        :returns: True if the surname was removed, False if it was not in the list.
+        :returns: True if the surname was removed, False if it was not in the
+                  list.
         :rtype: bool
         """
         if surname in self.surname_list:
@@ -134,10 +135,10 @@ class SurnameBase(object):
 
     def get_surname_list(self):
         """
-        Return the list of :class:`~gen.lib.surname.Surname` instances a
-        ssociated with the object.
+        Return the list of :class:`~.surname.Surname` instances
+        associated with the object.
 
-        :returns: Returns the list of :class:`~gen.lib.surname.Surname` instances
+        :returns: Returns the list of :class:`~.surname.Surname` instances
         :rtype: list
         """
         return self.surname_list
@@ -145,10 +146,10 @@ class SurnameBase(object):
     def set_surname_list(self, surname_list):
         """
         Assign the passed list to the object's list of 
-        :class:`~gen.lib.surname.Surname` instances.
+        :class:`~.surname.Surname` instances.
         
-        :param surname_list: List of :class:`~gen.lib.surname.surname` instances
-            to be associated with the object
+        :param surname_list: List of :class:`~.surname.Surname` instances to be
+                             associated with the object
         :type surname_list: list
         """
         self.surname_list = surname_list
@@ -157,10 +158,10 @@ class SurnameBase(object):
         """
         Return the surname that is the primary surname
         
-        :returns: Returns the surname instance that 
-            is the primary surname. If primary not set, and there is a surname,
-            the first surname is given, if no surnames, None is returned
-        :rtype: :class:`~gen.lib.surname.Surname` or None
+        :returns: Returns the surname instance that is the primary surname. If
+                  primary not set, and there is a surname, the first surname is
+                  given, if no surnames, None is returned
+        :rtype: :class:`~.surname.Surname` or None
         """
         for surname in self.surname_list:
             if surname.primary:
@@ -192,8 +193,8 @@ class SurnameBase(object):
         alternate name. For completeness, the code is present nevertheless.
 
         :param acquisition: the surname list of this object will be merged with
-            the current surname list.
-        :rtype acquisition: SurnameBase
+                            the current surname list.
+        :type acquisition: SurnameBase
         """
         surname_list = self.surname_list[:]
         for addendum in acquisition.get_surname_list():

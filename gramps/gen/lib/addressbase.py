@@ -22,7 +22,7 @@
 # $Id$
 
 """
-AddressBase class for GRAMPS.
+AddressBase class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -100,24 +100,28 @@ class AddressBase(object):
 
     def add_address(self, address):
         """
-        Add the :class:`~gen.lib.address.Address` instance to the object's list of addresses.
+        Add the :class:`~.address.Address` instance to the object's list of
+        addresses.
 
-        :param address: :class:`~gen.lib.address.Address` instance to add to the object's address list
+        :param address: :class:`~.address.Address` instance to add to the
+                        object's address list
         :type address: list
         """
         self.address_list.append(address)
 
     def remove_address(self, address):
         """
-        Remove the specified :class:`~gen.lib.address.Address` instance from the address list.
+        Remove the specified :class:`~.address.Address` instance from the address list.
         
         If the instance does not exist in the list, the operation has
         no effect.
 
-        :param address: :class:`~gen.lib.address.Address` instance to remove from the list
-        :type address: :class:`~gen.lib.address.Address`
+        :param address: :class:`~.address.Address` instance to remove from the
+                        list
+        :type address: :class:`~.address.Address`
 
-        :returns: True if the address was removed, False if it was not in the list.
+        :returns: True if the address was removed, False if it was not in the
+                  list.
         :rtype: bool
         """
         if address in self.address_list:
@@ -128,19 +132,21 @@ class AddressBase(object):
 
     def get_address_list(self):
         """
-        Return the list of :class:`~gen.lib.address.Address` instances associated with the object.
+        Return the list of :class:`~.address.Address` instances associated with
+        the object.
 
-        :returns: Returns the list of :class:`~gen.lib.address.Address` instances
+        :returns: Returns the list of :class:`~.address.Address` instances
         :rtype: list
         """
         return self.address_list
 
     def set_address_list(self, address_list):
         """
-        Assign the passed list to the object's list of :class:`~gen.lib.address.Address` instances.
+        Assign the passed list to the object's list of
+        :class:`~.address.Address` instances.
         
-        :param address_list: List of :class:`~gen.lib.address.Address` instances to be associated
-            with the object
+        :param address_list: List of :class:`~.address.Address` instances to be
+                             associated with the object
         :type address_list: list
         """
         self.address_list = address_list
@@ -150,8 +156,8 @@ class AddressBase(object):
         Merge the list of addresses from acquisition with our own.
 
         :param acquisition: the address list of this object will be merged with
-            the current address list.
-        :rtype acquisition: AddressBase
+                            the current address list.
+        :type acquisition: AddressBase
         """
         address_list = self.address_list[:]
         for addendum in acquisition.get_address_list():

@@ -24,7 +24,7 @@
 # $Id$
 
 """
-Person Reference class for GRAMPS.
+Person Reference class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -148,7 +148,7 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return []
@@ -183,7 +183,7 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         and relation, to other.
 
         :param other: The personref to compare this one to.
-        :rtype other: PersonRef
+        :type other: PersonRef
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
@@ -203,7 +203,7 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         Lost: hlink and relation of acquisition.
 
         :param acquisition: The personref to merge with the present personref.
-        :param acquisition: PersonRef
+        :type acquisition: PersonRef
         """
         self._merge_privacy(acquisition)
         self._merge_citation_list(acquisition)

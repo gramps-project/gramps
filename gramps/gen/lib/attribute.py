@@ -23,7 +23,7 @@
 # $Id$
 
 """
-Attribute class for GRAMPS.
+Attribute class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -54,9 +54,9 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
     to a place (a position held, residence, etc.) or may not (eye colour, 
     height, caste, profession, etc.).  They may have sources and notes and 
     media. 
-    Compare with :class:`~gen.lib.event.Event`
+    Compare with :class:`~.event.Event`
     
-    GRAMPS at the moment does not support this GEDCOM Attribute structure.
+    Gramps at the moment does not support this GEDCOM Attribute structure.
     """
     
     def __init__(self, source=None):
@@ -176,7 +176,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         value, to other.
 
         :param other: The attribute to compare this one to.
-        :rtype other: Attribute
+        :type other: Attribute
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
@@ -195,7 +195,7 @@ class AttributeRoot(SecondaryObject, PrivacyBase):
         Lost: type and value of acquisition.
 
         :param acquisition: the attribute to merge with the present attribute.
-        :rtype acquisition: Attribute
+        :type acquisition: Attribute
         """
         self._merge_privacy(acquisition)
 
@@ -314,7 +314,7 @@ class Attribute(AttributeRoot, CitationBase, NoteBase):
         Lost: type and value of acquisition.
 
         :param acquisition: the attribute to merge with the present attribute.
-        :rtype acquisition: Attribute
+        :type acquisition: Attribute
         """
         AttributeRoot.merge(self, acquisition)
         self._merge_citation_list(acquisition)

@@ -21,7 +21,7 @@
 # $Id$
 
 """
-UrlBase class for GRAMPS.
+UrlBase class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -99,18 +99,19 @@ class UrlBase(object):
 
     def get_url_list(self):
         """
-        Return the list of :class:`~gen.lib.url.Url` instances associated with the object.
+        Return the list of :class:`~.url.Url` instances associated with the
+        object.
 
-        :returns: List of :class:`~gen.lib.url.Url` instances
+        :returns: List of :class:`~.url.Url` instances
         :rtype: list
         """
         return self.urls
 
     def set_url_list(self, url_list):
         """
-        Set the list of :class:`~gen.lib.url.Url` instances to passed the list.
+        Set the list of :class:`~.url.Url` instances to passed the list.
 
-        :param url_list: List of :class:`~gen.lib.url.Url` instances
+        :param url_list: List of :class:`~.url.Url` instances
         :type url_list: list
         """
         self.urls = url_list
@@ -120,8 +121,8 @@ class UrlBase(object):
         Merge the list of urls from acquisition with our own.
 
         :param acquisition: The url list of this object will be merged with
-            the current url list.
-        :rtype acquisition: UrlBase
+                            the current url list.
+        :type acquisition: UrlBase
         """
         url_list = self.urls[:]
         for addendum in acquisition.get_url_list():
@@ -137,22 +138,23 @@ class UrlBase(object):
 
     def add_url(self, url):
         """
-        Add a :class:`~gen.lib.url.Url` instance to the object's list of :class:`~gen.lib.url.Url` instances.
+        Add a :class:`~.url.Url` instance to the object's list of
+        :class:`~.url.Url` instances.
 
-        :param url: :class:`~gen.lib.url.Url` instance to be added to the Person's list of
-            related web sites.
-        :type url: :class:`~gen.lib.url.Url`
+        :param url: :class:`~.url.Url` instance to be added to the Person's
+                    list of related web sites.
+        :type url: :class:`~.url.Url`
         """
         self.urls.append(url)
     
     def remove_url(self, url):
         """
-        Remove the specified :class:`~gen.lib.url.Url` instance from the url list.
+        Remove the specified :class:`~.url.Url` instance from the url list.
         
         If the instance does not exist in the list, the operation has no effect.
 
-        :param url: :class:`~gen.lib.url.Url` instance to remove from the list
-        :type url: :class:`~gen.lib.url.Url`
+        :param url: :class:`~.url.Url` instance to remove from the list
+        :type url: :class:`~.url.Url`
 
         :returns: True if the url was removed, False if it was not in the list.
         :rtype: bool

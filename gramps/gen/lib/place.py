@@ -24,7 +24,7 @@
 # $Id$
 
 """
-Place object for GRAMPS.
+Place object for Gramps.
 """
 from __future__ import unicode_literals
 
@@ -102,7 +102,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         a form that it can use.
 
         :returns: Returns a python tuple containing the data that should
-            be considered persistent.
+                  be considered persistent.
         :rtype: tuple
         """
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
@@ -185,8 +185,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         Convert the data held in a tuple created by the serialize method
         back into the data in a Place object.
 
-        :param data: tuple containing the persistent data associated the
-            Person object
+        :param data: tuple containing the persistent data associated with the
+                     Place object
         :type data: tuple
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
@@ -270,7 +270,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """ Merge the content of acquisition into this place.
 
         :param acquisition: The place to merge with the present place.
-        :rtype acquisition: Place
+        :type acquisition: Place
         """
         self._merge_privacy(acquisition)
         self._merge_locations(acquisition)
@@ -422,7 +422,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         location list.
 
         :param acquisition: instance to merge
-        :type acquisition: :class:'~gen.lib.place.Place
+        :type acquisition: :class:'~.place.Place
         """
         placeref_list = self.placeref_list[:]
         add_list = acquisition.placeref_list
@@ -470,33 +470,36 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
     def get_alternate_locations(self):
         """
-        Return a list of alternate :class:`~gen.lib.location.Location` objects the present alternate 
-        information about the current Place. 
+        Return a list of alternate :class:`~.location.Location` objects the
+        present alternate information about the current Place. 
         
-        A Place can have more than one :class:`~gen.lib.location.Location`, since names and 
-        jurisdictions can change over time for the same place.
+        A Place can have more than one :class:`~.location.Location`, since names
+        and jurisdictions can change over time for the same place.
 
-        :returns: Returns the alternate :class:`~gen.lib.location.Location`\ s for the Place
-        :rtype: list of :class:`~gen.lib.location.Location` objects
+        :returns: Returns the alternate :class:`~.location.Location`\ s for the
+                  Place
+        :rtype: list of :class:`~.location.Location` objects
         """
         return self.alt_loc
 
     def set_alternate_locations(self, location_list):
         """
-        Replace the current alternate :class:`~gen.lib.location.Location` object list with the new one.
+        Replace the current alternate :class:`~.location.Location` object list
+        with the new one.
 
-        :param location_list: The list of :class:`~gen.lib.location.Location` objects to assign to the 
-                Place's internal list.
-        :type location_list: list of :class:`~gen.lib.location.Location` objects
+        :param location_list: The list of :class:`~.location.Location` objects
+                              to assign to the Place's internal list.
+        :type location_list: list of :class:`~.location.Location` objects
         """
         self.alt_loc = location_list
 
     def add_alternate_locations(self, location):
         """
-        Add a :class:`~gen.lib.location.Location` object to the alternate location list.
+        Add a :class:`~.location.Location` object to the alternate location
+        list.
 
-        :param location: :class:`~gen.lib.location.Location` instance to add
-        :type location: :class:`~gen.lib.location.Location`
+        :param location: :class:`~.location.Location` instance to add
+        :type location: :class:`~.location.Location`
         """
         if location not in self.alt_loc:
             self.alt_loc.append(location)
@@ -507,7 +510,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         location list.
 
         :param acquisition: instance to merge
-        :type acquisition: :class:'~gen.lib.place.Place
+        :type acquisition: :class:'~.place.Place
         """
         altloc_list = self.alt_loc[:]
         add_list = acquisition.get_alternate_locations()

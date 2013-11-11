@@ -24,10 +24,24 @@ AddressBase
    :undoc-members:
    :show-inheritance:
 
-AttributeBase
+AttributeRootBase
 ====================================
 .. automodule:: gramps.gen.lib.attrbase
+.. autoclass:: AttributeRootBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+AttributeBase
+====================================
 .. autoclass:: AttributeBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+SrcAttributeBase
+====================================
+.. autoclass:: SrcAttributeBase
    :members:
    :undoc-members:
    :show-inheritance:
@@ -36,6 +50,13 @@ CitationBase
 ====================================
 .. automodule:: gramps.gen.lib.citationbase
 .. autoclass:: CitationBase
+   :members:
+   :undoc-members:
+   :show-inheritance:
+   
+IndirectCitationBase
+====================================
+.. autoclass:: IndirectCitationBase
    :members:
    :undoc-members:
    :show-inheritance:
@@ -247,6 +268,13 @@ Attribute
    :undoc-members:
    :show-inheritance:
 
+AttributeRoot
+====================================
+.. autoclass:: AttributeRoot
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 LdsOrd
 ====================================
 .. automodule:: gramps.gen.lib.ldsord
@@ -340,12 +368,20 @@ RepoRef
    :show-inheritance:
    
 *****************************
-Table object
+Table objects
 *****************************
 
 Table object
 ====================================
 .. automodule:: gramps.gen.lib.tableobj
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Tag
+====================================
+.. automodule:: gramps.gen.lib.tag
+.. autoclass:: Tag
    :members:
    :undoc-members:
    :show-inheritance:
@@ -534,7 +570,7 @@ Privacy
 *****************************
 
 PrivateSourceNote
-============
+=================
 
 .. automodule:: gramps.gen.lib.privsrcnote
 .. autoclass:: PrivateSourceNote

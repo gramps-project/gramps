@@ -23,7 +23,7 @@
 # $Id$
 
 """
-Repository object for GRAMPS.
+Repository object for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -162,7 +162,7 @@ class Repository(NoteBase, AddressBase, UrlBase,
         Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer citations.
+                  refer citations.
         :rtype: list
         """
         return self.address_list
@@ -172,7 +172,7 @@ class Repository(NoteBase, AddressBase, UrlBase,
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return self.address_list
@@ -203,7 +203,7 @@ class Repository(NoteBase, AddressBase, UrlBase,
         Merge the content of acquisition into this repository.
 
         :param acquisition: The repository to merge with the present repository.
-        :rtype acquisition: Repository
+        :type acquisition: Repository
         """
         self._merge_privacy(acquisition)
         self._merge_address_list(acquisition)

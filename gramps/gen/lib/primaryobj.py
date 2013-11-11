@@ -22,7 +22,7 @@
 # $Id$
 
 """
-Basic Primary Object class for GRAMPS.
+Basic Primary Object class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -43,14 +43,14 @@ from .tagbase import TagBase
 #-------------------------------------------------------------------------
 class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
     """
-    The BasicPrimaryObject is the base class for Note objects.
+    The BasicPrimaryObject is the base class for :class:`~.note.Note` objects.
     
-    It is also the base class for the PrimaryObject class.    
+    It is also the base class for the :class:`PrimaryObject` class.    
     
-    The PrimaryObject is the base class for all other primary objects in the
-    database. Primary objects are the core objects in the database.
-    Each object has a database handle and a GRAMPS ID value. The database
-    handle is used as the record number for the database, and the GRAMPS
+    The :class:`PrimaryObject` is the base class for all other primary objects
+    in the database. Primary objects are the core objects in the database.
+    Each object has a database handle and a Gramps ID value. The database
+    handle is used as the record number for the database, and the Gramps
     ID is the user visible version.
     """
     
@@ -75,18 +75,18 @@ class BasicPrimaryObject(TableObject, PrivacyBase, TagBase):
 
     def set_gramps_id(self, gramps_id):
         """
-        Set the GRAMPS ID for the primary object.
+        Set the Gramps ID for the primary object.
         
-        :param gramps_id: GRAMPS ID
+        :param gramps_id: Gramps ID
         :type gramps_id: str
         """
         self.gramps_id = gramps_id
 
     def get_gramps_id(self):
         """
-        Return the GRAMPS ID for the primary object.
+        Return the Gramps ID for the primary object.
 
-        :returns: GRAMPS ID associated with the object
+        :returns: Gramps ID associated with the object
         :rtype: str
         """
         return self.gramps_id
@@ -177,8 +177,8 @@ class PrimaryObject(BasicPrimaryObject):
     database. 
     
     Primary objects are the core objects in the database.
-    Each object has a database handle and a GRAMPS ID value. The database
-    handle is used as the record number for the database, and the GRAMPS
+    Each object has a database handle and a Gramps ID value. The database
+    handle is used as the record number for the database, and the Gramps
     ID is the user visible version.
     """
     
@@ -205,7 +205,7 @@ class PrimaryObject(BasicPrimaryObject):
         :param handle: The handle to be checked.
         :type handle: str
         :returns: Returns whether the object has reference to this handle 
-          of this object type.
+                  of this object type.
         :rtype: bool
         """
         if classname == 'Citation' and isinstance(self, CitationBase):
@@ -266,4 +266,3 @@ class PrimaryObject(BasicPrimaryObject):
         Replace the handle reference with the new reference.
         """
         pass
-   

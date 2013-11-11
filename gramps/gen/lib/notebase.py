@@ -22,7 +22,7 @@
 # $Id$
 
 """
-NoteBase class for GRAMPS.
+NoteBase class for Gramps.
 """
 
 from .handle import Handle
@@ -94,9 +94,9 @@ class NoteBase(object):
 
     def add_note(self, handle):
         """
-        Add the :class:`~gen.lib.note.Note` handle to the list of note handles.
+        Add the :class:`~.note.Note` handle to the list of note handles.
 
-        :param handle: :class:`~gen.lib.note.Note` handle to add the list of notes
+        :param handle: :class:`~.note.Note` handle to add the list of notes
         :type handle: str
 
         :returns: True if handle was added, False if it already was in the list
@@ -113,7 +113,8 @@ class NoteBase(object):
         Remove the specified handle from the list of note handles, and all
         secondary child objects.
 
-        :param handle: :class:`~gen.lib.note.Note` handle to remove from the list of notes
+        :param handle: :class:`~.note.Note` handle to remove from the list of
+                       notes
         :type handle: str
         """
         if handle in self.note_list:
@@ -137,9 +138,10 @@ class NoteBase(object):
 
     def get_note_list(self):
         """
-        Return the list of :class:`~gen.lib.note.Note` handles associated with the object.
+        Return the list of :class:`~.note.Note` handles associated with the
+        object.
 
-        :returns: The list of :class:`~gen.lib.note.Note` handles
+        :returns: The list of :class:`~.note.Note` handles
         :rtype: list
         """
         return self.note_list
@@ -167,9 +169,11 @@ class NoteBase(object):
 
     def set_note_list(self, note_list):
         """
-        Assign the passed list to be object's list of :class:`~gen.lib.note.Note` handles.
+        Assign the passed list to be object's list of :class:`~.note.Note`
+        handles.
 
-        :param note_list: List of :class:`~gen.lib.note.Note` handles to be set on the object
+        :param note_list: List of :class:`~.note.Note` handles to be set on the
+                          object
         :type note_list: list
         """
         self.note_list = note_list
@@ -179,7 +183,7 @@ class NoteBase(object):
         Merge the list of notes from acquisition with our own.
 
         :param acquisition: The note list of this object will be merged with
-            the current note list.
+                            the current note list.
         :rtype acquisition: NoteBase
         """
         for addendum in acquisition.note_list:
@@ -189,8 +193,8 @@ class NoteBase(object):
         """
         Return the list of (classname, handle) tuples for all referenced notes.
         
-        This method should be used to get the :class:`~gen.lib.note.Note` portion of the list
-        by objects that store note lists.
+        This method should be used to get the :class:`~.note.Note` portion of
+        the list by objects that store note lists.
         
         :returns: List of (classname, handle) tuples for referenced objects.
         :rtype: list

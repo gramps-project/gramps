@@ -22,7 +22,7 @@
 # $Id$
 
 """
-Tag object for GRAMPS.
+Tag object for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -78,7 +78,7 @@ class Tag(TableObject):
         a form that it can use.
 
         :returns: Returns a python tuple containing the data that should
-            be considered persistent.
+                  be considered persistent.
         :rtype: tuple
         """
         return (self.handle,
@@ -92,8 +92,8 @@ class Tag(TableObject):
         Convert the data held in a tuple created by the serialize method
         back into the data in a Tag structure.
 
-        :param data: tuple containing the persistent data associated the
-            Person object
+        :param data: tuple containing the persistent data associated with the
+                     object
         :type data: tuple
         """
         (self.handle,
@@ -143,8 +143,8 @@ class Tag(TableObject):
         """
         Set the name of the Tag to the passed string.
 
-        :param the_type: Name to assign to the Tag
-        :type the_type: str
+        :param name: Name to assign to the Tag
+        :type name: str
         """
         self.__name = name
 

@@ -22,7 +22,7 @@
 # $Id$
 
 """
-Gender statistics kept in GRAMPS database.
+Gender statistics kept in Gramps database.
 """
 
 #-------------------------------------------------------------------------
@@ -71,7 +71,8 @@ class GenderStats(object):
         return (0, 0, 0)
 
     def count_name (self, name, gender):
-        """count a given name under gender in the gender stats
+        """
+        Count a given name under gender in the gender stats.
         """
         keyname = self._get_key_from_name(name)
         if not keyname:

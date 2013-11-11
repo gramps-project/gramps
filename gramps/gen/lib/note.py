@@ -23,7 +23,7 @@
 # $Id$
 
 """
-Note class for GRAMPS.
+Note class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -47,15 +47,15 @@ from .handle import Handle
 class Note(BasicPrimaryObject):
     """Define a text note.
     
-    Starting from GRAMPS 3.1 Note object stores the text in :class:`gen.lib.styledtext.StyledText`
-    instance, thus it can have text formatting information.
+    Starting from Gramps 3.1 Note object stores the text in
+    :class:`~.styledtext.StyledText` instance, thus it can have text formatting
+    information.
 
-    To get and set only the clear text of the note use the 
-    :meth:`~gen.lib.note.Note.get` and :meth:`~gen.lib.note.Note.set` methods.
+    To get and set only the clear text of the note use the :meth:`get` and
+    :meth:`set` methods.
     
     To get and set the formatted version of the Note's text use the
-    :meth:`~gen.lib.note.Note.get_styledtext` and 
-    :meth:`~gen.lib.note.Note.set_styledtext` methods.
+    :meth:`get_styledtext` and :meth:`set_styledtext` methods.
     
     The note may be 'preformatted' or 'flowed', which indicates that the
     text string is considered to be in paragraphs, separated by newlines.
@@ -65,10 +65,9 @@ class Note(BasicPrimaryObject):
     :cvar POS_<x>: (int) Position of <x> attribute in the serialized format of
         an instance.
 
-    :attention: The POS_<x> class variables reflect the serialized object, they
-        have to be updated in case the data structure or the 
-        :meth:`~gen.lib.note.Note.serialize` method changes!
-    
+    .. warning:: The POS_<x> class variables reflect the serialized object,
+                 they have to be updated in case the data structure or the
+                 :meth:`serialize` method changes!
     """
     (FLOWED, FORMATTED) = list(range(2))
     
@@ -151,7 +150,6 @@ class Note(BasicPrimaryObject):
         
         :param data: The serialized format of a Note.
         :type: data: tuple
-        
         """
         (self.handle, self.gramps_id, the_text, self.format,
          the_type, self.change, tag_list, self.private) = data
@@ -168,7 +166,6 @@ class Note(BasicPrimaryObject):
 
         :returns: The list of all textual attributes of the object.
         :rtype: list
-        
         """
         return [str(self.text)]
 
@@ -189,7 +186,7 @@ class Note(BasicPrimaryObject):
         Lost: handle, id, type, format, text and styles of acquisition.
 
         :param acquisition: The note to merge with the present note.
-        :rtype acquisition: Note
+        :type acquisition: Note
         """
         self._merge_privacy(acquisition)
         self._merge_tag_list(acquisition)
@@ -199,7 +196,6 @@ class Note(BasicPrimaryObject):
 
         :param text: The *clear* text defining the note contents.
         :type text: str
-        
         """
         self.text = StyledText(text)
 
@@ -208,7 +204,6 @@ class Note(BasicPrimaryObject):
 
         :returns: The *clear* text of the note contents.
         :rtype: unicode
-        
         """
         return cuni(self.text)
 
@@ -216,8 +211,7 @@ class Note(BasicPrimaryObject):
         """Set the text associated with the note to the passed string.
 
         :param text: The *formatted* text defining the note contents.
-        :type text: :class:`gen.lib.styledtext.StyledText`
-        
+        :type text: :class:`~.styledtext.StyledText`
         """
         self.text = text
         
@@ -225,8 +219,7 @@ class Note(BasicPrimaryObject):
         """Return the text string associated with the note.
 
         :returns: The *formatted* text of the note contents.
-        :rtype: :class:`gen.lib.styledtext.StyledText`
-        
+        :rtype: :class:`~.styledtext.StyledText`
         """
         return self.text
     
@@ -234,8 +227,7 @@ class Note(BasicPrimaryObject):
         """Append the specified text to the text associated with the note.
 
         :param text: Text string to be appended to the note.
-        :type text: str or :class:`gen.lib.styledtext.StyledText`
-        
+        :type text: str or :class:`~.styledtext.StyledText`
         """
         self.text = self.text + text
 
@@ -244,7 +236,6 @@ class Note(BasicPrimaryObject):
         
         :param format: The value can either indicate Flowed or Preformatted.
         :type format: int
-        
         """
         self.format = format
 
@@ -255,7 +246,6 @@ class Note(BasicPrimaryObject):
 
         :returns: 0 indicates Flowed, 1 indicates Preformated
         :rtype: int
-
         """
         return self.format
 
@@ -264,7 +254,6 @@ class Note(BasicPrimaryObject):
         
         :param the_type: descriptive type of the Note
         :type the_type: str
-
         """
         self.type.set(the_type)
 
@@ -273,7 +262,6 @@ class Note(BasicPrimaryObject):
         
         :returns: the descriptive type of the Note
         :rtype: str
-
         """
         return self.type
 
@@ -282,9 +270,10 @@ class Note(BasicPrimaryObject):
         Get the jump links from this note. Links can be external, to
         urls, or can be internal to gramps objects.
 
-        Return examples: 
-        [("gramps", "Person", "handle", "7657626365362536"),
-         ("external", "www", "url", "http://example.com")]
+        Return examples::
+
+            [("gramps", "Person", "handle", "7657626365362536"),
+             ("external", "www", "url", "http://example.com")]
 
         :returns: list of [(domain, type, propery, value), ...]
         :rtype: list

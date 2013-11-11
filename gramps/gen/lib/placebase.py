@@ -21,7 +21,7 @@
 # $Id$
 
 """
-PlaceBase class for GRAMPS.
+PlaceBase class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -50,18 +50,20 @@ class PlaceBase(object):
 
     def set_place_handle(self, place_handle):
         """
-        Set the database handle for :class:`~gen.lib.place.Place` associated with the object.
+        Set the database handle for :class:`~.place.Place` associated with the
+        object.
 
-        :param place_handle: :class:`~gen.lib.place.Place` database handle
+        :param place_handle: :class:`~.place.Place` database handle
         :type place_handle: str
         """
         self.place = place_handle
 
     def get_place_handle(self):
         """
-        Return the database handle of the :class:`~gen.lib.place.Place` associated with the Event.
+        Return the database handle of the :class:`~.place.Place` associated
+        with the :class:`~.event.Event`.
 
-        :returns: :class:`~gen.lib.place.Place` database handle
+        :returns: :class:`~.place.Place` database handle
         :rtype: str
         """
         return self.place 

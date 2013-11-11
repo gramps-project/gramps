@@ -22,7 +22,7 @@
 # $Id$
 
 """
-LocationBase class for GRAMPS.
+LocationBase class for Gramps.
 """
 
 #-------------------------------------------------------------------------

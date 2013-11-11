@@ -24,7 +24,7 @@
 # $Id$
 
 """
-Name class for GRAMPS.
+Name class for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -239,7 +239,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return []
@@ -271,7 +271,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         call, surname_list, suffix, title and date, to other.
 
         :param other: The name to compare this name to.
-        :rtype other: Name
+        :type other: Name
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
@@ -296,7 +296,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         acquisition.
 
         :param acquisition: The name to merge with the present name.
-        :rtype acquisition: Name
+        :type acquisition: Name
         """
         # TODO what to do with sort and display?
         self._merge_privacy(acquisition)
@@ -312,7 +312,7 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         equivalent names (e.g. Ivanova and Ivanov in Russian are usually 
         considered equivalent.
         
-        Note that there is also a database wide grouping set_name_group_mapping
+        .. note:: There is also a database wide grouping set_name_group_mapping
           So one might map a name Smith to SmithNew, and have one person still
           grouped with name Smith. Hence, group_as can be equal to surname!
         """
@@ -494,8 +494,9 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
     def get_gedcom_parts(self):
         """
         Returns a GEDCOM-formatted name dictionary.
-        Note, field patronymic and prefix are deprecated, prefix_list and 
-        surname list, added.
+
+        .. note:: Fields patronymic and prefix are deprecated, prefix_list and 
+                  surname list, added.
         """
         retval = {}
         retval['given'] = self.first_name.strip()

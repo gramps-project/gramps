@@ -24,7 +24,7 @@
 # $Id$
 
 """
-Event Reference class for GRAMPS
+Event Reference class for Gramps
 """
 
 #-------------------------------------------------------------------------
@@ -161,7 +161,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer citations.
+                  refer citations.
         :rtype: list
         """
         return self.attribute_list
@@ -171,7 +171,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return self.attribute_list
@@ -182,7 +182,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         referenced primary objects.
         
         :returns: Returns the list of (classname, handle) tuples for referenced 
-                objects.
+                  objects.
         :rtype: list
         """
         ret = self.get_referenced_note_handles()
@@ -206,7 +206,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         role, to other.
 
         :param other: The eventref to compare this one to.
-        :rtype other: EventRef
+        :type other: EventRef
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
@@ -225,7 +225,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
         Lost: hlink and role of acquisition.
 
         :param acquisition: The eventref to merge with the present eventref.
-        :param acquisition: EventRef
+        :type acquisition: EventRef
         """
         self._merge_privacy(acquisition)
         self._merge_attribute_list(acquisition)

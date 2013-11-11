@@ -24,7 +24,7 @@
 # $Id$
 
 """
-Child Reference class for GRAMPS.
+Child Reference class for Gramps.
 """
 #-------------------------------------------------------------------------
 #
@@ -157,7 +157,7 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return []
@@ -192,7 +192,7 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         to other.
 
         :param other: The childref to compare this one to.
-        :rtype other: ChildRef
+        :type other: ChildRef
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """
@@ -211,7 +211,7 @@ class ChildRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
         Lost: hlink, mrel and frel of acquisition.
 
         :param acquisition: The childref to merge with the present childref.
-        :rtype acquisition: ChildRef
+        :type acquisition: ChildRef
         """
         self._merge_privacy(acquisition)
         self._merge_note_list(acquisition)

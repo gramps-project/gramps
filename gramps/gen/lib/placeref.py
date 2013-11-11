@@ -135,7 +135,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         Return the list of child secondary objects that may refer citations.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer citations.
+                  refer citations.
         :rtype: list
         """
         return []
@@ -145,7 +145,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         Return the list of child secondary objects that may refer notes.
 
         :returns: Returns the list of child secondary child objects that may 
-                refer notes.
+                  refer notes.
         :rtype: list
         """
         return []
@@ -156,7 +156,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         referenced primary objects.
         
         :returns: Returns the list of (classname, handle) tuples for referenced 
-                objects.
+                  objects.
         :rtype: list
         """
         return [('Place', self.ref)]
@@ -177,7 +177,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         role, to other.
 
         :param other: The eventref to compare this one to.
-        :rtype other: EventRef
+        :type other: PlaceRef
         :returns: Constant indicating degree of equivalence.
         :rtype: int
         """

@@ -21,7 +21,7 @@
 
 # $Id$
 
-"""The core library of GRAMPS objects
+"""The core library of Gramps objects
 """
 # Dates
 from .date import Date, DateError, Span
