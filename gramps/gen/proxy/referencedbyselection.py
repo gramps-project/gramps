@@ -22,7 +22,7 @@
 # $Id$
 
 """
-Proxy class for the GRAMPS databases. Returns objects which are
+Proxy class for the Gramps databases. Returns objects which are
 referenced by a person, or through a chain of references starting with
 a person.
 """
@@ -46,9 +46,10 @@ class ReferencedBySelectionProxyDb(ProxyDbBase):
         """
         Create a new ReferencedByPeopleProxyDb instance.  
 
-        all_people - if True, get all people, and the items they link
-        to;  if False, get all people that are connected to something,
-        and all of items they link to.
+        :param all_people: if True, get all people, and the items they link to;
+                           if False, get all people that are connected to
+                           something, and all of items they link to.
+        :type all_people: boolean
         """
         ProxyDbBase.__init__(self, dbase)
         self.reset_references()

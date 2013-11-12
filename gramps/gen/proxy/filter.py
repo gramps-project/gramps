@@ -24,7 +24,7 @@
 # $Id$
 
 """
-Proxy class for the GRAMPS databases. Apply filter
+Proxy class for the Gramps databases. Apply filter
 """
 
 #-------------------------------------------------------------------------
@@ -85,7 +85,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_person_from_handle(self, handle):
         """
-        Finds a Person in the database from the passed gramps' ID.
+        Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
         if handle in self.plist:
@@ -138,7 +138,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_source_from_handle(self, handle):
         """
-        Finds a Source in the database from the passed gramps' ID.
+        Finds a Source in the database from the passed Gramps ID.
         If no such Source exists, None is returned.
         """
         source = self.db.get_source_from_handle(handle)
@@ -162,7 +162,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_citation_from_handle(self, handle):
         """
-        Finds a Citation in the database from the passed gramps' ID.
+        Finds a Citation in the database from the passed Gramps ID.
         If no such Citation exists, None is returned.
         """
         citation = self.db.get_citation_from_handle(handle)
@@ -172,7 +172,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_object_from_handle(self, handle):
         """
-        Finds a MediaObject in the database from the passed GRAMPS' handle.
+        Finds a MediaObject in the database from the passed Gramps handle.
         If no such Object exists, None is returned.
         """
         media = self.db.get_object_from_handle(handle)
@@ -189,7 +189,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_place_from_handle(self, handle):
         """
-        Finds a Place in the database from the passed GRAMPS' handle.
+        Finds a Place in the database from the passed Gramps handle.
         If no such Place exists, None is returned.
         """
         place = self.db.get_place_from_handle(handle)
@@ -209,7 +209,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_event_from_handle(self, handle):
         """
-        Finds a Event in the database from the passed gramps' ID.
+        Finds a Event in the database from the passed Gramps ID.
         If no such Event exists, None is returned.
         """
         if handle in self.elist:
@@ -222,7 +222,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_family_from_handle(self, handle):
         """
-        Finds a Family in the database from the passed gramps' ID.
+        Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
         if handle in self.flist:
@@ -277,7 +277,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_repository_from_handle(self, handle):
         """
-        Finds a Repository in the database from the passed gramps' ID.
+        Finds a Repository in the database from the passed Gramps ID.
         If no such Repository exists, None is returned.
         """
         repository = self.db.get_repository_from_handle(handle)
@@ -288,7 +288,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_note_from_handle(self, handle):
         """
-        Finds a Note in the database from the passed gramps' ID.
+        Finds a Note in the database from the passed Gramps ID.
         If no such Note exists, None is returned.
         """
         if handle in self.nlist:
@@ -298,7 +298,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_person_from_gramps_id(self, val):
         """
-        Finds a Person in the database from the passed GRAMPS ID.
+        Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
         person = self.db.get_person_from_gramps_id(val)
@@ -309,7 +309,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_family_from_gramps_id(self, val):
         """
-        Finds a Family in the database from the passed GRAMPS ID.
+        Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
         family = self.db.get_family_from_gramps_id(val)
@@ -320,7 +320,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_event_from_gramps_id(self, val):
         """
-        Finds an Event in the database from the passed GRAMPS ID.
+        Finds an Event in the database from the passed Gramps ID.
         If no such Event exists, None is returned.
         """
         event = self.db.get_event_from_gramps_id(val)
@@ -331,7 +331,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_place_from_gramps_id(self, val):
         """
-        Finds a Place in the database from the passed gramps' ID.
+        Finds a Place in the database from the passed Gramps ID.
         If no such Place exists, None is returned.
         """
         place = self.db.get_place_from_gramps_id(val)
@@ -342,7 +342,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_source_from_gramps_id(self, val):
         """
-        Finds a Source in the database from the passed gramps' ID.
+        Finds a Source in the database from the passed Gramps ID.
         If no such Source exists, None is returned.
         """
         source = self.db.get_source_from_gramps_id(val)
@@ -353,7 +353,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_citation_from_gramps_id(self, val):
         """
-        Finds a Citation in the database from the passed gramps' ID.
+        Finds a Citation in the database from the passed Gramps ID.
         If no such Citation exists, None is returned.
         """
         citation = self.db.get_citation_from_gramps_id(val)
@@ -364,7 +364,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_object_from_gramps_id(self, val):
         """
-        Finds a MediaObject in the database from the passed gramps' ID.
+        Finds a MediaObject in the database from the passed Gramps ID.
         If no such MediaObject exists, None is returned.
         """
         media = self.db.get_object_from_gramps_id(val)
@@ -375,7 +375,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_repository_from_gramps_id(self, val):
         """
-        Finds a Repository in the database from the passed gramps' ID.
+        Finds a Repository in the database from the passed Gramps ID.
         If no such Repository exists, None is returned.
         """
         repository = self.db.get_repository_from_gramps_id(val)
@@ -386,7 +386,7 @@ class FilterProxyDb(ProxyDbBase):
 
     def get_note_from_gramps_id(self, val):
         """
-        Finds a Note in the database from the passed gramps' ID.
+        Finds a Note in the database from the passed Gramps ID.
         If no such Note exists, None is returned.
         """
         note = self.db.get_note_from_gramps_id(val)
@@ -521,11 +521,11 @@ class FilterProxyDb(ProxyDbBase):
         Find all objects that hold a reference to the object handle.
         Returns an iterator over a list of (class_name, handle) tuples.
 
-        @param handle: handle of the object to search for.
-        @type handle: database handle
-        @param include_classes: list of class names to include in the results.
+        :param handle: handle of the object to search for.
+        :type handle: database handle
+        :param include_classes: list of class names to include in the results.
                                 Default: None means include all classes.
-        @type include_classes: list of class names
+        :type include_classes: list of class names
         
         This default implementation does a sequential scan through all
         the primary object databases and is very slow. Backends can
@@ -533,7 +533,7 @@ class FilterProxyDb(ProxyDbBase):
         make use of additional capabilities of the backend.
 
         Note that this is a generator function, it returns a iterator for
-        use in loops. If you want a list of the results use:
+        use in loops. If you want a list of the results use::
 
         >    result_list = list(find_backlink_handles(handle))
         """
@@ -543,8 +543,9 @@ class FilterProxyDb(ProxyDbBase):
     def sanitize_notebase(self, notebase):
         """
         Filters notes out of the passed notebase object according to the Note Filter.
-        @param notebase: NoteBase object to clean
-        @type event: NoteBase
+
+        :param notebase: NoteBase object to clean
+        :type event: NoteBase
         """
         if notebase:
             note_list = notebase.get_note_list()
@@ -560,8 +561,9 @@ class FilterProxyDb(ProxyDbBase):
     def sanitize_person(self, person):
         """
         Cleans filtered notes out of the passed person
-        @param event: Person object to clean
-        @type event: Person
+
+        :param event: Person object to clean
+        :type event: Person
         """
         if person:
             # Filter note references

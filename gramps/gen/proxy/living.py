@@ -21,7 +21,7 @@
 # $Id$
 
 """
-Proxy class for the GRAMPS databases. Filter out all living people.
+Proxy class for the Gramps databases. Filter out all living people.
 """
 
 #-------------------------------------------------------------------------
@@ -63,22 +63,23 @@ class LivingProxyDb(ProxyDbBase):
         """
         Create a new LivingProxyDb instance.
         
-        @param dbase: The database to be a proxy for
-        @type dbase: DbBase
-        @param mode: The method for handling living people. 
-         LivingProxyDb.MODE_EXCLUDE_ALL will remove living people altogether. 
-         LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY will remove all information 
-         and change their given name to "[Living]" or what has been set in 
-         Preferences -> Text.
-         LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY will remove all information
-         but leave the entire name intact.
-        @type mode: int
-        @param current_year: The current year to use for living determination.
+        :param dbase: The database to be a proxy for
+        :type dbase: DbBase
+        :param mode:
+            The method for handling living people. 
+            LivingProxyDb.MODE_EXCLUDE_ALL will remove living people altogether. 
+            LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY will remove all
+            information and change their given name to "[Living]" or what has
+            been set in Preferences -> Text.
+            LivingProxyDb.MODE_INCLUDE_FULL_NAME_ONLY will remove all
+            information but leave the entire name intact.
+        :type mode: int
+        :param current_year: The current year to use for living determination.
          If None is supplied, the current year will be found from the system.
-        @type current_year: int or None
-        @param years_after_death: The number of years after a person's death to 
-        still consider them living.
-        @type years_after_death: int
+        :type current_year: int or None
+        :param years_after_death: The number of years after a person's death to 
+                                  still consider them living.
+        :type years_after_death: int
         """
         ProxyDbBase.__init__(self, dbase)
         self.mode = mode
@@ -91,7 +92,7 @@ class LivingProxyDb(ProxyDbBase):
 
     def get_person_from_handle(self, handle):
         """
-        Finds a Person in the database from the passed gramps ID.
+        Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
         person = self.db.get_person_from_handle(handle)
@@ -126,7 +127,7 @@ class LivingProxyDb(ProxyDbBase):
 
     def get_person_from_gramps_id(self, val):
         """
-        Finds a Person in the database from the passed GRAMPS ID.
+        Finds a Person in the database from the passed Gramps ID.
         If no such Person exists, None is returned.
         """
         person = self.db.get_person_from_gramps_id(val)
@@ -140,7 +141,7 @@ class LivingProxyDb(ProxyDbBase):
 
     def get_family_from_gramps_id(self, val):
         """
-        Finds a Family in the database from the passed GRAMPS ID.
+        Finds a Family in the database from the passed Gramps ID.
         If no such Family exists, None is returned.
         """
         family = self.db.get_family_from_gramps_id(val)
@@ -179,11 +180,11 @@ class LivingProxyDb(ProxyDbBase):
         Find all objects that hold a reference to the object handle.
         Returns an iterator over a list of (class_name, handle) tuples.
 
-        @param handle: handle of the object to search for.
-        @type handle: database handle
-        @param include_classes: list of class names to include in the results.
+        :param handle: handle of the object to search for.
+        :type handle: database handle
+        :param include_classes: list of class names to include in the results.
                                 Default: None means include all classes.
-        @type include_classes: list of class names
+        :type include_classes: list of class names
         
         This default implementation does a sequential scan through all
         the primary object databases and is very slow. Backends can
@@ -191,7 +192,7 @@ class LivingProxyDb(ProxyDbBase):
         make use of additional capabilities of the backend.
 
         Note that this is a generator function, it returns a iterator for
-        use in loops. If you want a list of the results use:
+        use in loops. If you want a list of the results use::
 
         >    result_list = list(find_backlink_handles(handle))
         """

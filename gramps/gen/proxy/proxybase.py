@@ -22,7 +22,7 @@
 # $Id$
 
 """
-Proxy class for the GRAMPS databases. Filter out all data marked private.
+Proxy class for the Gramps databases. Filter out all data marked private.
 """
 
 #-------------------------------------------------------------------------
