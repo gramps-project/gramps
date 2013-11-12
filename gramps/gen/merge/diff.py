@@ -311,8 +311,11 @@ class Struct(object):
         Given a path that is already parsed, return item.
         """
         struct = self.struct
-        for part in path:
+        for p in range(len(path)):
+            part = path[p]
             struct = self.getitem(part, struct)
+            if isinstance(struct, Struct):
+                return struct.getitem_from_path(path[p+1:])
             if struct is None:
                 return None
         return struct
@@ -346,8 +349,6 @@ class Struct(object):
                 return self.get_ref_struct(struct[item])
             else:
                 return None
-        elif isinstance(struct, Struct):
-            return self.get_ref_struct(struct[item])
         elif hasattr(struct, item):
             return getattr(struct, item)
         elif item.startswith("("):
@@ -366,7 +367,15 @@ class Struct(object):
 
     def setitem_from_path(self, path, value):
         path, item = path[:-1], path[-1]
-        struct = self.getitem_from_path(path)
+        struct = self.struct
+        for p in range(len(path)):
+            part = path[p]
+            struct = self.getitem(part, struct)
+            if isinstance(struct, Struct):
+                return struct.setitem_from_path(path[p+1:], value)
+            if struct is None:
+                return None
+        # struct is set
         if isinstance(struct, (list, tuple)):
             pos = int(item)
             if pos < len(struct):
@@ -376,8 +385,6 @@ class Struct(object):
                 struct[item] = value
             else:
                 raise AttributeError("no such property: '%s'" % item)
-        elif isinstance(struct, Struct):
-            struct.setitem_from_path(path, value)
         elif hasattr(struct, item):
             setattr(struct, item, value)
         else:
