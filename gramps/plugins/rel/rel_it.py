@@ -463,13 +463,17 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
-        """ Determine the string giving the relation between two siblings of
-            type sib_type.
-            Eg: b is the brother of a
-                Here 'brother' is the string we need to determine
-            For italian, we need to determine 'the brother'
-            This method gives more details about siblings than 
-            get_single_relationship_string can do.
+        """
+        Determine the string giving the relation between two siblings of
+        type sib_type.
+        Eg: b is the brother of a
+        Here 'brother' is the string we need to determine
+        This method gives more details about siblings than 
+        get_single_relationship_string can do.
+        
+        .. warning:: DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR
+                     LANGUAGE, AND SAME METHODS EXIST (get_uncle, get_aunt,
+                     get_sibling)
         """
         if in_law_a or in_law_b :
             inlaw = self.INLAW

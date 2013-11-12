@@ -412,22 +412,25 @@ class RelationshipCalculator(object):
             pass
 
     def set_depth(self, depth):
-        """ set how deep relationships must be searched. Input must be an 
-            integer > 0
+        """
+        Set how deep relationships must be searched. Input must be an 
+        integer > 0
         """
         if not depth == self.depth:
             self.depth = depth
             self.dirtymap = True
 
     def get_depth(self):
-        """ obtain depth of relationship search
+        """
+        Obtain depth of relationship search
         """
         return self.depth
     
     DIST_FATHER = "distant %(step)sancestor%(inlaw)s (%(level)d generations)"
     
     def _get_father(self, level, step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if level > len(_father_level) - 1:
             return self.DIST_FATHER % {'step': step, 'inlaw': inlaw,
@@ -438,7 +441,8 @@ class RelationshipCalculator(object):
     DIST_SON = "distant %(step)sdescendant%(inlaw)s (%(level)d generations)"
     
     def _get_son(self, level, step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if level > len(_son_level) - 1:
             return self.DIST_SON % {'step': step, 'inlaw': inlaw,
@@ -449,7 +453,8 @@ class RelationshipCalculator(object):
     DIST_MOTHER = "distant %(step)sancestor%(inlaw)s (%(level)d generations)"
     
     def _get_mother(self, level, step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if level > len(_mother_level) - 1:
             return self.DIST_MOTHER % {'step': step, 'inlaw': inlaw,
@@ -460,7 +465,8 @@ class RelationshipCalculator(object):
     DIST_DAUGHTER = "distant %(step)sdescendant%(inlaw)s (%(level)d generations)"
 
     def _get_daughter(self, level, step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if level > len(_daughter_level) - 1:
             return self.DIST_DAUGHTER % {'step': step, 'inlaw': inlaw, 
@@ -469,7 +475,8 @@ class RelationshipCalculator(object):
             return _daughter_level[level] % {'step': step, 'inlaw': inlaw}
 
     def _get_parent_unknown(self, level, step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if level < len(_level_name):
             return _level_name[level] + ' ' + '%sancestor%s' % (step, inlaw)
@@ -480,7 +487,8 @@ class RelationshipCalculator(object):
     DIST_CHILD = "distant %(step)sdescendant (%(level)d generations)"
 
     def _get_child_unknown(self, level, step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if level < len(_level_name):
             return _level_name[level] + ' ' + '%(step)sdescendant%(inlaw)s' % {
@@ -491,7 +499,8 @@ class RelationshipCalculator(object):
     DIST_AUNT = "distant %(step)saunt%(inlaw)s"
 
     def _get_aunt(self, level, step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if level > len(_sister_level) - 1:
             return self.DIST_AUNT % {'step': step, 'inlaw': inlaw}
@@ -501,7 +510,8 @@ class RelationshipCalculator(object):
     DIST_UNCLE = "distant %(step)suncle%(inlaw)s"
 
     def _get_uncle(self, level, step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if level > len(_brother_level) - 1:
             return self.DIST_UNCLE % {'step': step, 'inlaw': inlaw}
@@ -511,7 +521,8 @@ class RelationshipCalculator(object):
     DIST_NEPHEW = "distant %(step)snephew%(inlaw)s"
 
     def _get_nephew(self, level, step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if level > len(_nephew_level) - 1:
             return self.DIST_NEPHEW % {'step': step, 'inlaw': inlaw}
@@ -521,7 +532,8 @@ class RelationshipCalculator(object):
     DIST_NIECE = "distant %(step)sniece%(inlaw)s"
 
     def _get_niece(self, level, step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if level > len(_niece_level) - 1:
             return self.DIST_NIECE % {'step': step, 'inlaw': inlaw}
@@ -529,7 +541,8 @@ class RelationshipCalculator(object):
             return _niece_level[level] % {'step': step, 'inlaw': inlaw} 
 
     def _get_cousin(self, level, removed, dir='', step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if removed == 0 and level < len(_level_name):
             return "%s %scousin%s" % (_level_name[level],
@@ -544,7 +557,8 @@ class RelationshipCalculator(object):
     DIST_SIB = "distant %(step)suncle/aunt%(inlaw)s"
 
     def _get_sibling(self, level, step='', inlaw=''):
-        """Internal english method to create relation string
+        """
+        Internal english method to create relation string
         """
         if level < len(_sibling_level):
             return _sibling_level[level] % {'step': step, 'inlaw': inlaw} 
@@ -552,10 +566,11 @@ class RelationshipCalculator(object):
             return self.DIST_SIB % {'step': step, 'inlaw': inlaw} 
 
     def get_sibling_type(self, db, orig, other):
-        """ Translation free determination of type of orig and other as siblings
-            The procedure returns sibling types, these can be passed to 
-            get_sibling_relationship_string.
-            Only call this method if known that orig and other are siblings
+        """
+        Translation free determination of type of orig and other as siblings
+        The procedure returns sibling types, these can be passed to 
+        get_sibling_relationship_string.
+        Only call this method if known that orig and other are siblings
         """
         fatherorig, motherorig = self.get_birth_parents(db, orig)
         fatherother, motherother = self.get_birth_parents(db, other)
@@ -603,9 +618,10 @@ class RelationshipCalculator(object):
             return self.UNKNOWN_SIB
 
     def get_birth_parents(self, db, person):
-        """ method that returns the birthparents of a person as tuple
-            (mother handle, father handle), if no known birthparent, the 
-            handle is replaced by None
+        """
+        Method that returns the birthparents of a person as tuple
+        (mother handle, father handle), if no known birthparent, the 
+        handle is replaced by None
         """
         birthfather = None
         birthmother = None
@@ -626,10 +642,11 @@ class RelationshipCalculator(object):
         return (birthmother, birthfather)
 
     def _get_nonbirth_parent_list(self, db, person):
-        """ returns a list of handles of parents of which it is known 
-            they are not birth parents. 
-            So all parents which do not have relation BIRTH or UNKNOWN
-            are returned.
+        """
+        Returns a list of handles of parents of which it is known 
+        they are not birth parents. 
+        So all parents which do not have relation BIRTH or UNKNOWN
+        are returned.
         """
         nb_parents = []
         for fam in person.get_parent_family_handle_list():
@@ -650,11 +667,12 @@ class RelationshipCalculator(object):
         return list(set(nb_parents))
 
     def _get_spouse_type(self, db, orig, other, all_rel = False):
-        """ Translation free determination if orig and other are partners.
-            The procedure returns partner types, these can be passed to 
-            get_partner_relationship_string.
-            If all_rel=False, returns None or a partner type. 
-            If all_rel=True, returns a list, empty if no partner
+        """
+        Translation free determination if orig and other are partners.
+        The procedure returns partner types, these can be passed to 
+        get_partner_relationship_string.
+        If all_rel=False, returns None or a partner type. 
+        If all_rel=True, returns a list, empty if no partner
         """
         val = []
         for family_handle in orig.get_family_handle_list():
@@ -702,7 +720,8 @@ class RelationshipCalculator(object):
                 return None
         
     def is_spouse(self, db, orig, other, all_rel=False):
-        """ determine the spouse relation
+        """
+        Determine the spouse relation
         """
         spouse_type = self._get_spouse_type(db, orig, other, all_rel)
         if spouse_type:
@@ -718,48 +737,51 @@ class RelationshipCalculator(object):
                                       only_birth=True):
         """
         Return if all_dist == True a 'tuple, string':
-            (rank, person handle, firstRel_str, firstRel_fam,
-             secondRel_str, secondRel_fam), msg 
+        (rank, person handle, firstRel_str, firstRel_fam, 
+        secondRel_str, secondRel_fam), msg 
         or if all_dist == True a 'list of tuple, string': 
-            [.....], msg:
+        [.....], msg:
             
-        NOTE: _new can be removed once all rel_xx modules no longer overwrite
-            get_relationship_distance
+        .. note:: _new can be removed once all rel_xx modules no longer
+                  overwrite get_relationship_distance
         
         The tuple or list of tuples consists of:
          
-        *rank           Total number of generations from common ancestor to 
+        ==============  =====================================================
+        Element         Description
+        ==============  =====================================================
+        rank            Total number of generations from common ancestor to 
                         the two persons, rank is -1 if no relations found
-        *person_handle  The Common ancestor
-        *firstRel_str   String with the path to the common ancestor 
+        person_handle   The Common ancestor
+        firstRel_str    String with the path to the common ancestor 
                         from orig Person
-        *firstRel_fam   Family numbers along the path as a list, eg [0,0,1]. 
+        firstRel_fam    Family numbers along the path as a list, eg [0,0,1]. 
                         For parent in multiple families, eg [0. [0, 2], 1]
-        *secondRel_str  String with the path to the common ancestor 
+        secondRel_str   String with the path to the common ancestor 
                         from otherPerson
-        *secondRel_fam  Family numbers along the path, eg [0,0,1]. 
+        secondRel_fam   Family numbers along the path, eg [0,0,1]. 
                         For parent in multiple families, eg [0. [0, 2], 1]
-        *msg            List of messages indicating errors. Empyt list if no
+        msg             List of messages indicating errors. Empyt list if no
                         errors.
+        ==============  =====================================================
                         
-        Example:
-                firstRel_str = 'ffm' and firstRel_fam = [2,0,1] means 
-                common ancestor is mother of the second family of the 
-                father of the first family of the father of the third 
-                family.
+        Example:  firstRel_str = 'ffm' and firstRel_fam = [2,0,1] means 
+        common ancestor is mother of the second family of the father of the
+        first family of the father of the third family.
+
         Note that the same person might be present twice if the person is
         reached via a different branch too. Path (firstRel_str and 
-        secondRel_str) will of course be different
+        secondRel_str) will of course be different.
         
         :param db: database to work on
         :param orig_person: first person 
-        :type orig_person:  Person Obj
+        :type orig_person: Person Obj
         :param other_person: second person, relation is sought between
                              first and second person
         :type other_person:  Person Obj
         :param all_families: if False only Main family is searched, otherwise
                              all families are used
-        :type all_families:  bool
+        :type all_families: bool
         :param all_dist: if False only the shortest distance is returned, 
                          otherwise all relationships
         :type all_dist:  bool
@@ -887,17 +909,18 @@ class RelationshipCalculator(object):
     
     def __apply_filter(self, db, person, rel_str, rel_fam, pmap,
                             depth=1, stoprecursemap=None):
-        """Typically this method is called recursively in two ways:
-            First method is stoprecursemap= None 
-            In this case a recursemap is builded by storing all data.
+        """
+        Typically this method is called recursively in two ways:
+        First method is stoprecursemap= None 
+        In this case a recursemap is builded by storing all data.
             
-            Second method is with a stoprecursemap given
-            In this case parents are recursively looked up. If present in 
-            stoprecursemap, a common ancestor is found, and the method can 
-            stop looking further. If however self.__crosslinks == True, the data
-            of first contains loops, and parents
-            will be looked up anyway an stored if common. At end the doubles
-            are filtered out
+        Second method is with a stoprecursemap given
+        In this case parents are recursively looked up. If present in 
+        stoprecursemap, a common ancestor is found, and the method can 
+        stop looking further. If however self.__crosslinks == True, the data
+        of first contains loops, and parents
+        will be looked up anyway an stored if common. At end the doubles
+        are filtered out
         """
         if person is None or not person.handle :
             return
@@ -1028,21 +1051,21 @@ class RelationshipCalculator(object):
             return
 
     def collapse_relations(self, relations):
-        """ Internal method to condense the relationships as returned by
-            get_relationship_distance_new.
-            Common ancestors in the same family are collapsed to one entry,
-            changing the person paths to family paths, eg 'mf' and 'mm' become
-            'ma'
+        """
+        Internal method to condense the relationships as returned by
+        get_relationship_distance_new.
+        Common ancestors in the same family are collapsed to one entry,
+        changing the person paths to family paths, eg 'mf' and 'mm' become 'ma'
             
-            relations : list of relations as returned by 
-                        get_relationship_distance_new with all_dist = True
-                        
-            returns : the same data as relations, but collapsed, hence the 
-                        handle entry is now a list of handles, and the 
-                        path to common ancestors can now contain family
-                        identifiers (eg 'a', ...)
-                        In the case of sibling, this is replaced by family
-                        with common ancestor handles empty list []!
+        relations : list of relations as returned by 
+                    get_relationship_distance_new with all_dist = True
+                    
+        returns : the same data as relations, but collapsed, hence the 
+                  handle entry is now a list of handles, and the 
+                  path to common ancestors can now contain family
+                  identifiers (eg 'a', ...)
+                  In the case of sibling, this is replaced by family
+                  with common ancestor handles empty list []!
         """
         if relations[0][0] == -1 :
             return relations
@@ -1157,8 +1180,9 @@ class RelationshipCalculator(object):
         return collapsed
 
     def _famrel_from_persrel(self, persrela, persrelb):
-        """ Conversion from eg 'f' and 'm' to 'a', so relation to the two 
-            persons of a common family is converted to a family relation
+        """
+        Conversion from eg 'f' and 'm' to 'a', so relation to the two 
+        persons of a common family is converted to a family relation
         """
         if persrela == persrelb:
             #should not happen, procedure called in error, just return value
@@ -1186,8 +1210,9 @@ class RelationshipCalculator(object):
         return self.REL_FAM_NONBIRTH
 
     def only_birth(self, path):
-        """ given a path to common ancestor. Return True if only birth 
-            relations, False otherwise
+        """
+        Given a path to common ancestor. Return True if only birth 
+        relations, False otherwise
         """
         only_birth = True
         for str in path:
@@ -1198,14 +1223,14 @@ class RelationshipCalculator(object):
     def get_one_relationship(self, db, orig_person, other_person, 
                              extra_info=False, olocale=glocale):
         """
-        returns a string representing the most relevant relationship between 
+        Returns a string representing the most relevant relationship between 
         the two people. If extra_info = True, extra information is returned:
         (relation_string, distance_common_orig, distance_common_other)
 
         If olocale is passed in (a GrampsLocale) that language will be used.
 
-        @param olocale: allow selection of the relationship language
-        @type olocale: a GrampsLocale instance
+        :param olocale: allow selection of the relationship language
+        :type olocale: a GrampsLocale instance
         """
         self._locale = olocale
         stop = False
@@ -1328,9 +1353,10 @@ class RelationshipCalculator(object):
             return rel_str
 
     def get_all_relationships(self, db, orig_person, other_person):
-        """ Return a tuple, of which the first entry is a list with all
-            relationships in text, and the second a list of lists of all common
-            ancestors that have that text as relationship
+        """
+        Return a tuple, of which the first entry is a list with all
+        relationships in text, and the second a list of lists of all common
+        ancestors that have that text as relationship
         """
         relstrings = []
         commons = {}
@@ -1404,34 +1430,35 @@ class RelationshipCalculator(object):
         "children".
         
         Ga and Gb can be used to mathematically calculate the relationship.
-        See the Wikipedia entry for more information:
+
+        .. seealso::
             http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
         
         :param Ga: The number of generations between the main person and the 
-        common ancestor.
+                   common ancestor.
         :type Ga: int
         :param Gb: The number of generations between the group of people and the
-        common ancestor
+                   common ancestor
         :type Gb: int
-        :param reltocommon_a : relation path to common ancestor or common
-                            Family for person a. 
-                            Note that length = Ga
+        :param reltocommon_a: relation path to common ancestor or common
+                              Family for person a. 
+                              Note that length = Ga
         :type reltocommon_a: str 
-        :param reltocommon_b : relation path to common ancestor or common
-                            Family for person b. 
-                            Note that length = Gb
+        :param reltocommon_b: relation path to common ancestor or common
+                              Family for person b. 
+                              Note that length = Gb
         :type reltocommon_b: str 
-        :param only_birth : True if relation between a and b is by birth only
-                            False otherwise
+        :param only_birth: True if relation between a and b is by birth only
+                           False otherwise
         :type only_birth: bool
-        :param in_law_a : True if path to common ancestors is via the partner
-                          of person a
+        :param in_law_a: True if path to common ancestors is via the partner
+                         of person a
         :type in_law_a: bool
-        :param in_law_b : True if path to common ancestors is via the partner
-                          of person b
+        :param in_law_b: True if path to common ancestors is via the partner
+                         of person b
         :type in_law_b: bool
         :returns: A string describing the relationship between the person and
-        the group.
+                  the group.
         :rtype: str
         """
         rel_str = "distant relatives"
@@ -1496,40 +1523,52 @@ class RelationshipCalculator(object):
         """
         Provide a string that describes the relationsip between a person, and
         another person. E.g. "grandparent" or "child".
-        To be used as: 'person b is the grandparent of a', this will 
-            be in translation string :
-                            'person b is the %(relation)s of a'
-            Note that languages with gender should add 'the' inside the 
-            translation, so eg in french:
-                            'person b est %(relation)s de a'
-            where relation will be here: le grandparent
+        
+        To be used as: 'person b is the grandparent of a', this will be in
+        translation string:  'person b is the %(relation)s of a'
+
+        Note that languages with gender should add 'the' inside the 
+        translation, so eg in french:  'person b est %(relation)s de a'
+        where relation will be here: le grandparent
         
         Ga and Gb can be used to mathematically calculate the relationship.
-        See the Wikipedia entry for more information:
+        
+        .. seealso::
             http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
         
         Some languages need to know the specific path to the common ancestor.
         Those languages should use reltocommon_a and reltocommon_b which is 
-        a string like 'mfmf'. The possible string codes are:
-            REL_MOTHER             # going up to mother
-            REL_FATHER             # going up to father
-            REL_MOTHER_NOTBIRTH    # going up to mother, not birth relation
-            REL_FATHER_NOTBIRTH    # going up to father, not birth relation
-            REL_FAM_BIRTH          # going up to family (mother and father)
-            REL_FAM_NONBIRTH       # going up to family, not birth relation
-            REL_FAM_BIRTH_MOTH_ONLY # going up to fam, only birth rel to mother
-            REL_FAM_BIRTH_FATH_ONLY # going up to fam, only birth rel to father
+        a string like 'mfmf'.
+        
+        The possible string codes are:
+
+        =======================  ===========================================
+        Code                     Description
+        =======================  ===========================================
+        REL_MOTHER               # going up to mother
+        REL_FATHER               # going up to father
+        REL_MOTHER_NOTBIRTH      # going up to mother, not birth relation
+        REL_FATHER_NOTBIRTH      # going up to father, not birth relation
+        REL_FAM_BIRTH            # going up to family (mother and father)
+        REL_FAM_NONBIRTH         # going up to family, not birth relation
+        REL_FAM_BIRTH_MOTH_ONLY  # going up to fam, only birth rel to mother
+        REL_FAM_BIRTH_FATH_ONLY  # going up to fam, only birth rel to father
+        =======================  ===========================================
+
         Prefix codes are stripped, so REL_FAM_INLAW_PREFIX is not present. 
         If the relation starts with the inlaw of the person a, then 'in_law_a'
         is True, if it starts with the inlaw of person b, then 'in_law_b' is
         True.
+
         Also REL_SIBLING (# going sideways to sibling (no parents)) is not 
         passed to this routine. The collapse_relations changes this to a 
         family relation. 
+
         Hence, calling routines should always strip REL_SIBLING and 
         REL_FAM_INLAW_PREFIX before calling get_single_relationship_string()
         Note that only_birth=False, means that in the reltocommon one of the
         NOTBIRTH specifiers is present.
+
         The REL_FAM identifiers mean that the relation is not via a common 
         ancestor, but via a common family (note that that is not possible for 
         direct descendants or direct ancestors!). If the relation to one of the
@@ -1540,36 +1579,36 @@ class RelationshipCalculator(object):
                    common ancestor.
         :type Ga: int
         :param Gb: The number of generations between the other person and the
-                   common ancestor
+                   common ancestor.
         :type Gb: int
-        :param gender_a : gender of person a
+        :param gender_a: gender of person a
         :type gender_a: int gender
-        :param gender_b : gender of person b
+        :param gender_b: gender of person b
         :type gender_b: int gender
-        :param reltocommon_a : relation path to common ancestor or common
-                            Family for person a. 
-                            Note that length = Ga
+        :param reltocommon_a: relation path to common ancestor or common
+                              Family for person a. 
+                              Note that length = Ga
         :type reltocommon_a: str 
-        :param reltocommon_b : relation path to common ancestor or common
-                            Family for person b. 
-                            Note that length = Gb
+        :param reltocommon_b: relation path to common ancestor or common
+                              Family for person b. 
+                              Note that length = Gb
         :type reltocommon_b: str 
-        :param in_law_a : True if path to common ancestors is via the partner
+        :param in_law_a:  True if path to common ancestors is via the partner
                           of person a
         :type in_law_a: bool
-        :param in_law_b : True if path to common ancestors is via the partner
-                          of person b
+        :param in_law_b: True if path to common ancestors is via the partner
+                         of person b
         :type in_law_b: bool
-        :param only_birth : True if relation between a and b is by birth only
-                            False otherwise
+        :param only_birth: True if relation between a and b is by birth only
+                           False otherwise
         :type only_birth: bool
         :returns: A string describing the relationship between the two people
         :rtype: str
         
-        NOTE: 1/the self.REL_SIBLING should not be passed to this routine, 
-                so we should not check on it. All other self.
-              2/for better determination of siblings, use if Ga=1=Gb 
-                get_sibling_relationship_string
+        .. note:: 1. the self.REL_SIBLING should not be passed to this routine, 
+                     so we should not check on it. All other self.
+                  2. for better determination of siblings, use if Ga=1=Gb 
+                     get_sibling_relationship_string
         """
         if only_birth:
             step = ''
@@ -1640,14 +1679,17 @@ class RelationshipCalculator(object):
 
     def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
-        """ Determine the string giving the relation between two siblings of
-            type sib_type.
-            Eg: b is the brother of a
-                Here 'brother' is the string we need to determine
-            This method gives more details about siblings than 
-            get_single_relationship_string can do.
-            DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR LANGUAGE,
-                AND SAME METHODS EXIST (get_uncle, get_aunt, get_sibling)
+        """
+        Determine the string giving the relation between two siblings of
+        type sib_type.
+        Eg: b is the brother of a
+        Here 'brother' is the string we need to determine
+        This method gives more details about siblings than 
+        get_single_relationship_string can do.
+        
+        .. warning:: DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR
+                     LANGUAGE, AND SAME METHODS EXIST (get_uncle, get_aunt,
+                     get_sibling)
         """
         if sib_type == self.NORM_SIB or sib_type == self.UNKNOWN_SIB:
             typestr = ''
@@ -1671,12 +1713,14 @@ class RelationshipCalculator(object):
         return rel_str
 
     def get_partner_relationship_string(self, spouse_type, gender_a, gender_b):
-        """ Determine the string giving the relation between two partnes of
-            type spouse_type.
-            Eg: b is the spouse of a
-                Here 'spouse' is the string we need to determine
-            DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR LANGUAGE,
-                AS GETTEXT IS ALREADY USED !
+        """
+        Determine the string giving the relation between two partners of
+        type spouse_type.
+        Eg: b is the spouse of a
+        Here 'spouse' is the string we need to determine
+
+        .. warning:: DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR
+                     LANGUAGE, AS GETTEXT IS ALREADY USED !
         """
         #english only needs gender of b, we don't guess if unknown like in old 
         # procedure as that is stupid in present day cases!
@@ -1750,9 +1794,10 @@ class RelationshipCalculator(object):
                 return trans_text("gender unknown,unknown relation|former partner")
 
     def connect_db_signals(self, dbstate):
-        """ We can save work by storing a map, however, if database changes
-            this map must be regenerated.
-            Before close, the calling app must call disconnect_db_signals
+        """
+        We can save work by storing a map, however, if database changes
+        this map must be regenerated.
+        Before close, the calling app must call disconnect_db_signals
         """
         if self.__db_connected:
             return
@@ -1772,8 +1817,9 @@ class RelationshipCalculator(object):
         self.__db_connected = True
 
     def disconnect_db_signals(self, dbstate):
-        """ Method to disconnect to all signals the relationship calculator is
-            subscribed
+        """
+        Method to disconnect to all signals the relationship calculator is
+        subscribed
         """
         dbstate.disconnect(self.state_signal_key)
         list(map(dbstate.db.disconnect, self.signal_keys))
@@ -1781,18 +1827,20 @@ class RelationshipCalculator(object):
         self.stored_map = None
 
     def _dbchange_callback(self, db):
-        """ When database changes, the map can no longer be used. 
-            Connects must be remade
+        """
+        When database changes, the map can no longer be used. 
+        Connects must be remade
         """
         self.dirtymap = True
         #signals are disconnected on close of old database, connect to new
         self.__connect_db_signals(db)
 
     def _datachange_callback(self, list=[]):
-        """ When data in database changes, the map can no  longer be used. 
-            As the map might be in use or might be generated at the moment, 
-            this method sets a dirty flag. Before reusing the map, this flag 
-            will be checked
+        """
+        When data in database changes, the map can no  longer be used. 
+        As the map might be in use or might be generated at the moment, 
+        this method sets a dirty flag. Before reusing the map, this flag 
+        will be checked
         """
         self.dirtymap = True
 
@@ -1810,8 +1858,8 @@ def get_relationship_calculator(reinit=False, clocale=glocale):
 
     If clocale is passed in (a GrampsLocale) then that language will be used.
 
-    @param clocale: allow selection of the relationship language
-    @type clocale: a GrampsLocale instance
+    :param clocale: allow selection of the relationship language
+    :type clocale: a GrampsLocale instance
 
     """
     global __RELCALC_CLASS
@@ -1847,8 +1895,9 @@ def get_relationship_calculator(reinit=False, clocale=glocale):
 #-------------------------------------------------------------------------
 
 def _test(rc, onlybirth, inlawa, inlawb, printrelstr, testNum = None):
-    """ this is a generic test suite for the singular relationship
-            TRANSLATORS: do NOT translate, use __main__ !
+    """
+    This is a generic test suite for the singular relationship
+    TRANSLATORS: do NOT translate, use __main__ !
     """
     import sys
     import random
@@ -2233,9 +2282,10 @@ def _test_spouse(rc):
                             ' |info: gender='+strgen+', rel='+str)
 
 def test(rc, printrelstr):
-    """ this is a generic test suite for the singular relationship
-            TRANSLATORS: do NOT translate, call this from
-                         __main__ in the rel_xx.py module.
+    """
+    This is a generic test suite for the singular relationship
+    TRANSLATORS: do NOT translate, call this from
+                 __main__ in the rel_xx.py module.
     """
     import sys
     import argparse
@@ -2293,13 +2343,14 @@ if __name__ == "__main__":
     #    export PYTHONPATH=/path/to/gramps/src python src/plugins/rel_fr.py 
     # (Above not needed here)
     
-    """TRANSLATORS, copy this if statement at the bottom of your 
-        rel_xx.py module, after adding: 'from Relationship import test'
-        and test your work with:
-        export PYTHONPATH=/path/to/gramps/src 
-        python src/plugins/rel_xx.py
-        
-        See eg rel_fr.py at the bottom
+    """
+    TRANSLATORS, copy this if statement at the bottom of your 
+    rel_xx.py module, after adding: 'from Relationship import test'
+    and test your work with:
+    export PYTHONPATH=/path/to/gramps/src 
+    python src/plugins/rel_xx.py
+    
+    See eg rel_fr.py at the bottom
     """
     rc = RelationshipCalculator()
     test(rc, True)

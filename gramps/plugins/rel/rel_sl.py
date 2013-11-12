@@ -172,20 +172,95 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
     self, Ga, Gb, gender_a, gender_b, reltocommon_a, reltocommon_b,
     only_birth=True, in_law_a=False, in_law_b=False):
     """
-        Provide a string that describes the relationsip between a person, and
-        another person. E.g. "grandparent" or "child".
-        To be used as: 'person b is the grandparent of a', this will 
-            be in translation string :
-                            'person b is the %(relation)s of a'
-            Note that languages with gender should add 'the' inside the 
-            translation, so eg in french:
-                            'person b est %(relation)s de a'
-            where relation will be here: le grandparent
+    Provide a string that describes the relationsip between a person, and
+    another person. E.g. "grandparent" or "child".
+    
+    To be used as: 'person b is the grandparent of a', this will be in
+    translation string:  'person b is the %(relation)s of a'
+
+    Note that languages with gender should add 'the' inside the 
+    translation, so eg in french:  'person b est %(relation)s de a'
+    where relation will be here: le grandparent
+    
+    Ga and Gb can be used to mathematically calculate the relationship.
+    
+    .. seealso::
+        http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
+    
+    Some languages need to know the specific path to the common ancestor.
+    Those languages should use reltocommon_a and reltocommon_b which is 
+    a string like 'mfmf'.
+    
+    The possible string codes are:
+
+    =======================  ===========================================
+    Code                     Description
+    =======================  ===========================================
+    REL_MOTHER               # going up to mother
+    REL_FATHER               # going up to father
+    REL_MOTHER_NOTBIRTH      # going up to mother, not birth relation
+    REL_FATHER_NOTBIRTH      # going up to father, not birth relation
+    REL_FAM_BIRTH            # going up to family (mother and father)
+    REL_FAM_NONBIRTH         # going up to family, not birth relation
+    REL_FAM_BIRTH_MOTH_ONLY  # going up to fam, only birth rel to mother
+    REL_FAM_BIRTH_FATH_ONLY  # going up to fam, only birth rel to father
+    =======================  ===========================================
+
+    Prefix codes are stripped, so REL_FAM_INLAW_PREFIX is not present. 
+    If the relation starts with the inlaw of the person a, then 'in_law_a'
+    is True, if it starts with the inlaw of person b, then 'in_law_b' is
+    True.
+
+    Also REL_SIBLING (# going sideways to sibling (no parents)) is not 
+    passed to this routine. The collapse_relations changes this to a 
+    family relation. 
+
+    Hence, calling routines should always strip REL_SIBLING and 
+    REL_FAM_INLAW_PREFIX before calling get_single_relationship_string()
+    Note that only_birth=False, means that in the reltocommon one of the
+    NOTBIRTH specifiers is present.
+
+    The REL_FAM identifiers mean that the relation is not via a common 
+    ancestor, but via a common family (note that that is not possible for 
+    direct descendants or direct ancestors!). If the relation to one of the
+    parents in that common family is by birth, then 'only_birth' is not
+    set to False. The only_birth() method is normally used for this.
         
-        Ga and Gb can be used to mathematically calculate the relationship.
-        See the Wikipedia entry for more information:
-            http://en.wikipedia.org/wiki/Cousin#Mathematical_definitions
-    """        
+    :param Ga: The number of generations between the main person and the 
+               common ancestor.
+    :type Ga: int
+    :param Gb: The number of generations between the other person and the
+               common ancestor.
+    :type Gb: int
+    :param gender_a: gender of person a
+    :type gender_a: int gender
+    :param gender_b: gender of person b
+    :type gender_b: int gender
+    :param reltocommon_a: relation path to common ancestor or common
+                          Family for person a. 
+                          Note that length = Ga
+    :type reltocommon_a: str 
+    :param reltocommon_b: relation path to common ancestor or common
+                          Family for person b. 
+                          Note that length = Gb
+    :type reltocommon_b: str 
+    :param in_law_a:  True if path to common ancestors is via the partner
+                      of person a
+    :type in_law_a: bool
+    :param in_law_b: True if path to common ancestors is via the partner
+                     of person b
+    :type in_law_b: bool
+    :param only_birth: True if relation between a and b is by birth only
+                       False otherwise
+    :type only_birth: bool
+    :returns: A string describing the relationship between the two people
+    :rtype: str
+    
+    .. note:: 1. the self.REL_SIBLING should not be passed to this routine, 
+                 so we should not check on it. All other self.
+              2. for better determination of siblings, use if Ga=1=Gb 
+                 get_sibling_relationship_string
+    """
     if Gb == 0:
       if Ga == 0: rel_str = "ista oseba"
       elif gender_b == Person.MALE:
@@ -223,15 +298,18 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
 
   def get_sibling_relationship_string(self, sib_type, gender_a, gender_b, 
                                         in_law_a=False, in_law_b=False):
-    """ Determine the string giving the relation between two siblings of
-        type sib_type.
-        Eg: b is the brother of a
-          Here 'brother' is the string we need to determine
-          This method gives more details about siblings than 
-          get_single_relationship_string can do.
-          DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR LANGUAGE,
-          AND SAME METHODS EXIST (get_uncle, get_aunt, get_sibling
-    """    
+    """
+    Determine the string giving the relation between two siblings of
+    type sib_type.
+    Eg: b is the brother of a
+    Here 'brother' is the string we need to determine
+    This method gives more details about siblings than 
+    get_single_relationship_string can do.
+    
+    .. warning:: DON'T TRANSLATE THIS PROCEDURE IF LOGIC IS EQUAL IN YOUR
+                 LANGUAGE, AND SAME METHODS EXIST (get_uncle, get_aunt,
+                 get_sibling)
+    """
     gender = gender_b #we don't need gender_a
     inlaw = in_law_a or in_law_b
     if sib_type == self.HALF_SIB_MOTHER or sib_type == self.HALF_SIB_FATHER:

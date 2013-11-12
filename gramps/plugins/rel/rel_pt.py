@@ -369,27 +369,30 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         da pessoa falecida. Esta função chama a si mesma recursivamente até
         atingir max_descend.
         Parâmetros:
-        person_handle: o identificador da próxima pessoa
-        Ga: O número de gerações, desde a pessoa principal até o ancestral
-            comum. É incrementado quando subir as gerações, e
-            deixado inalterado quando descer as gerações.
-        Gb: O número de gerações desta pessoa (person_handle) até o
-           ancestral comum. É incrementado quando descer as
-           gerações and posto a zero quando subir as gerações.
-        skip_handle: Identificador opcional para pular quando descer.
-        Isso é útil para pular o descendente que trouxe essa generação em primeiro lugar.
+
+        :param person_handle: o identificador da próxima pessoa
+        :param Ga: O número de gerações, desde a pessoa principal até o
+                   ancestral comum. É incrementado quando subir as gerações, e
+                   deixado inalterado quando descer as gerações.
+        :param Gb: O número de gerações desta pessoa (person_handle) até o
+                   ancestral comum. É incrementado quando descer as
+                   gerações and posto a zero quando subir as gerações.
+        :param skip_handle: Identificador opcional para pular quando descer.
+                            Isso é útil para pular o descendente que trouxe
+                            essa generação em primeiro lugar.
 
         Preenche um mapa das matrizes contendo os ancestrais
         da pessoa falecida. Esta função chama a si mesma recursivamente até
         atingir max_ascend.
         Parâmetros:
-        person_handle: o identificador da próxima pessoa
-        Ga: O número de gerações, desde a pessoa principal até o ancestral
-            comum. É incrementado quando subir as gerações, e
-            deixado inalterado quando descer as gerações.
-        Gb: O número de gerações desta pessoa (person_handle) até o
-           ancestral comum. É incrementado quando descer as
-           gerações and posto a zero quando subir as gerações.
+
+        :param person_handle: o identificador da próxima pessoa
+        :param Ga: O número de gerações, desde a pessoa principal até o
+                   ancestral comum. É incrementado quando subir as gerações, e
+                   deixado inalterado quando descer as gerações.
+        :param Gb: O número de gerações desta pessoa (person_handle) até o
+                   ancestral comum. É incrementado quando descer as
+                   gerações and posto a zero quando subir as gerações.
         """
 
         rel_str = "???"
