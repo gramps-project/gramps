@@ -21,14 +21,14 @@
 #
 
 """
-Provide a simplified database access interface to the GRAMPS database.
+Provide a simplified database access interface to the Gramps database.
 """
 from ..plug.docgen import StyleSheet, ParagraphStyle, TableStyle,\
                             TableCellStyle,  FONT_SANS_SERIF, PARA_ALIGN_LEFT
 
 class SimpleDoc(object):
     """
-    Provide a simplified database access interface to the GRAMPS database.
+    Provide a simplified database access interface to the Gramps database.
     """
 
     def __init__(self, doc):

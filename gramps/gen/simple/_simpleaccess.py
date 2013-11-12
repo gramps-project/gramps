@@ -23,7 +23,7 @@
 #
 
 """
-Provide a simplified database access interface to the GRAMPS database.
+Provide a simplified database access interface to the Gramps database.
 """
 from __future__ import with_statement, unicode_literals
 
@@ -49,15 +49,14 @@ from ..constfunc import STRTYPE
 #-------------------------------------------------------------------------
 class SimpleAccess(object):
     """
-    Provide a simplified database access system. This system has been designed to
-    ease the development of reports. 
+    Provide a simplified database access system. This system has been designed
+    to ease the development of reports.
     
     The user needs to take care when using this interface. Since it returns real 
     objects instead of database references, it can consume a significant amount
     of memory if the user is not careful.
     
-    Example
-    =======
+    **Example**
     
     A typical system of usage would be::
     
@@ -114,8 +113,8 @@ class SimpleAccess(object):
         """
         Initialize the SimpleAccess object with the database that will be used.
         
-        @param dbase: GRAMPS database object
-        @type dbase: DbBase
+        :param dbase: Gramps database object
+        :type dbase: DbBase
         """
         self.dbase = dbase
 
@@ -123,10 +122,10 @@ class SimpleAccess(object):
         """
         Return the name of the person, or and empty string if the person is None
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns the name of the person based of the program preferences
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns the name of the person based of the program preferences
+        :rtype: unicode
         """
         if isinstance(person, STRTYPE):
             person = self.dbase.get_person_from_handle(person)
@@ -140,10 +139,10 @@ class SimpleAccess(object):
         """
         Return the name of the person, or and empty string if the person is None
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns the name of the person based of the program preferences
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns the name of the person based of the program preferences
+        :rtype: unicode
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -156,12 +155,14 @@ class SimpleAccess(object):
         
     def first_name(self, person):
         """
-        Return the first name of the person, or and empty string if the person is None
+        Return the first name of the person, or and empty string if the person
+        is None
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns the first name of the person based of the program preferences
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns the first name of the person based of the program
+                 preferences
+        :rtype: unicode
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -173,12 +174,12 @@ class SimpleAccess(object):
 
     def gid(self, obj):
         """
-        Return the GRAMPS ID of the person or family
+        Return the Gramps ID of the person or family
 
-        @param obj: Person or Family object
-        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
-        @return: Returns the GRAMPS Id value of the person or family
-        @rtype: unicode
+        :param obj: Person or Family object
+        :type obj: :py:class:`.Person` or :py:class:`.Family`
+        :return: Returns the Gramps ID value of the person or family
+        :rtype: unicode
         """
         if obj:
             return obj.get_gramps_id()
@@ -189,10 +190,10 @@ class SimpleAccess(object):
         """
         Return a string representing the gender of the person
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns a string indentifying the person's gender
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns a string indentifying the person's gender
+        :rtype: unicode
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -205,12 +206,12 @@ class SimpleAccess(object):
         """
         Return a person associated as a parent of the person
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @param func: function used to extract the appropriate parent
-        @type func: function
-        @return: mother or father of the associated person
-        @rtype: L{gen.lib.Person}
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :param func: function used to extract the appropriate parent
+        :type func: function
+        :return: mother or father of the associated person
+        :rtype: :py:class:`.Person`
         """
         assert(person is None or isinstance(person, Person))
 
@@ -226,12 +227,12 @@ class SimpleAccess(object):
         """
         Return a person associated as a parent of the family
 
-        @param family: Family object
-        @type family: L{gen.lib.Family}
-        @param func: function used to extract the appropriate parent
-        @type func: function
-        @return: mother or father of the associated family
-        @rtype: L{gen.lib.Family}
+        :param family: Family object
+        :type family: :py:class:`.Family`
+        :param func: function used to extract the appropriate parent
+        :type func: function
+        :return: mother or father of the associated family
+        :rtype: :py:class:`.Family`
         """
         assert(family is None or isinstance(family, Family))
 
@@ -245,12 +246,12 @@ class SimpleAccess(object):
         """
         Return a string describing the date associated with the person
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @param func: function used to extract the associated date information
-        @type func: function
-        @return: Returns a string describing the date
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :param func: function used to extract the associated date information
+        :type func: function
+        :return: Returns a string describing the date
+        :rtype: unicode
         """
         assert(person is None or isinstance(person, Person))
 
@@ -269,12 +270,12 @@ class SimpleAccess(object):
         """
         Return the date associated with the person
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @param func: function used to extract the associated date information
-        @type func: function
-        @return: Returns the date
-        @rtype: l{gen.lib.Date}
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :param func: function used to extract the associated date information
+        :type func: function
+        :return: Returns the date
+        :rtype: l{gen.lib.Date}
         """
         assert(person is None or isinstance(person, Person))
 
@@ -295,12 +296,12 @@ class SimpleAccess(object):
         """
         Return a string describing the place associated with the person
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @param func: function used to extract the associated place information
-        @type func: function
-        @return: Returns a string describing the place
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :param func: function used to extract the associated place information
+        :type func: function
+        :return: Returns a string describing the place
+        :rtype: unicode
         """
         assert(person is None or isinstance(person, Person))
 
@@ -318,10 +319,10 @@ class SimpleAccess(object):
         """
         Return the primary spouse of the person
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: The spouse identified as the person's primary spouse
-        @rtype: L{gen.lib.Person}
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: The spouse identified as the person's primary spouse
+        :rtype: :py:class:`.Person`
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -345,11 +346,11 @@ class SimpleAccess(object):
         Return a string describing the relationship between the person and
         his/per primary spouse.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns a string describing the relationship between the person and
-        his/per primary spouse.
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns a string describing the relationship between the
+                 person and his/per primary spouse.
+        :rtype: unicode
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -369,11 +370,11 @@ class SimpleAccess(object):
         Return a string describing the place where the person and his/her spouse
         where married.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns a string describing the place where the person and his/her spouse
-        where married.
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns a string describing the place where the person and
+                 his/her spouse where married.
+        :rtype: unicode
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -401,11 +402,11 @@ class SimpleAccess(object):
         Return a string indicating the date when the person and his/her spouse
         where married.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns a string indicicating the date when the person and his/her spouse
-        where married.
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns a string indicicating the date when the person and
+                 his/her spouse where married.
+        :rtype: unicode
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -433,10 +434,11 @@ class SimpleAccess(object):
         """
         Return a list of the children as the children of the primary spouse.
 
-        @param obj: Person or Family object
-        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
-        @return: Returns a list of L{gen.lib.Person} objects representing the children
-        @rtype: list
+        :param obj: Person or Family object
+        :type obj: :py:class:`.Person` or :py:class:`.Family`
+        :return: Returns a list of :py:class:`.Person` objects representing the
+                 children
+        :rtype: list
         """
         assert(obj is None or isinstance(obj, (Person, Family)))
 
@@ -458,11 +460,11 @@ class SimpleAccess(object):
         Return the primary father of the person or the father of the associated
         family.
 
-        @param obj: Person or Family object
-        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
-        @return: The father in the person's primary family or the father of the
+        :param obj: Person or Family object
+        :type obj: :py:class:`.Person` or :py:class:`.Family`
+        :return: The father in the person's primary family or the father of the
                  family
-        @rtype: L{gen.lib.Person}
+        :rtype: :py:class:`.Person`
         """
         if isinstance(obj, Person):
             return self.__parent(obj, Family.get_father_handle)
@@ -476,11 +478,11 @@ class SimpleAccess(object):
         Returns the primary mother of the person or the mother of the associated
         family.
 
-        @param obj: Person object
-        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
-        @return: The mother in the person's primary family or the mother of the
+        :param obj: Person object
+        :type obj: :py:class:`.Person` or :py:class:`.Family`
+        :return: The mother in the person's primary family or the mother of the
                  family
-        @rtype: L{gen.lib.Person}
+        :rtype: :py:class:`.Person`
         """
         if isinstance(obj, Person):
             return self.__parent(obj, Family.get_mother_handle)
@@ -493,10 +495,10 @@ class SimpleAccess(object):
         """
         Return a string indicating the date when the person's birth.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns a string indicating the date when the person's birth.
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns a string indicating the date when the person's birth.
+        :rtype: unicode
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -506,10 +508,10 @@ class SimpleAccess(object):
         """
         Return the date when the person's birth.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns the date when the person's birth.
-        @rtype: L{gen.lib.Date}
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns the date when the person's birth.
+        :rtype: :py:class:`.Date`
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -520,10 +522,10 @@ class SimpleAccess(object):
         """
         Return the date of the person's birth or fallback event.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns the date when the person's birth or fallback.
-        @rtype: L{gen.lib.Date}
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns the date when the person's birth or fallback.
+        :rtype: :py:class:`.Date`
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -539,10 +541,10 @@ class SimpleAccess(object):
         """
         Return a string indicating the place of the person's birth.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns a string indicating the place of the person's birth.
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns a string indicating the place of the person's birth.
+        :rtype: unicode
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -552,10 +554,10 @@ class SimpleAccess(object):
         """
         Return a string indicating the date when the person's death.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns a string indicating the date when the person's death.
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns a string indicating the date when the person's death.
+        :rtype: unicode
         """
         if isinstance(person, STRTYPE):
             person = self.dbase.get_person_from_handle(person)
@@ -565,10 +567,10 @@ class SimpleAccess(object):
         """
         Return the date when the person's death.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns the date when the person's death.
-        @rtype: L{gen.lib.Date}
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns the date when the person's death.
+        :rtype: :py:class:`.Date`
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -578,10 +580,10 @@ class SimpleAccess(object):
         """
         Return the date of the person's death or fallback event.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns the date of the person's death or fallback.
-        @rtype: L{gen.lib.Date}
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns the date of the person's death or fallback.
+        :rtype: :py:class:`.Date`
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -597,10 +599,10 @@ class SimpleAccess(object):
         """
         Return a string indicating the place of the person's death.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: Returns a string indicating the place of the person's death.
-        @rtype: unicode
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: Returns a string indicating the place of the person's death.
+        :rtype: unicode
         """
         if isinstance(person, STRTYPE): 
             person = self.dbase.get_person_from_handle(person)
@@ -610,10 +612,10 @@ class SimpleAccess(object):
         """
         Return a string indicating the place of the event
 
-        @param event: Event object
-        @type event: L{gen.lib.Event}
-        @return: Returns a string indicating the place of the event
-        @rtype: unicode
+        :param event: Event object
+        :type event: :py:class:`.Event`
+        :return: Returns a string indicating the place of the event
+        :rtype: unicode
         """
         assert(event is None or isinstance(event, Event))
 
@@ -627,10 +629,10 @@ class SimpleAccess(object):
         """
         Return a string representation a date_obj
 
-        @param date_obj: Date object
-        @type date_obj: L{gen.lib.Date}
-        @return: Returns a string representation a date_obj
-        @rtype: unicode
+        :param date_obj: Date object
+        :type date_obj: :py:class:`.Date`
+        :return: Returns a string representation a date_obj
+        :rtype: unicode
         """
         if date_obj:
             return displayer.display(date_obj)
@@ -641,10 +643,10 @@ class SimpleAccess(object):
         """
         Return a string indicating the date of the event
 
-        @param event: Event object
-        @type event: L{gen.lib.Event}
-        @return: Returns a string indicating the date of the event
-        @rtype: unicode
+        :param event: Event object
+        :type event: :py:class:`.Event`
+        :return: Returns a string indicating the date of the event
+        :rtype: unicode
         """
         assert(event is None or isinstance(event, Event))
         date_obj = event.get_date_object()
@@ -657,10 +659,10 @@ class SimpleAccess(object):
         """
         Return a string indicating the date of the event
 
-        @param event: Event object
-        @type event: L{gen.lib.Event}
-        @return: Returns a string indicating the date of the event
-        @rtype: unicode
+        :param event: Event object
+        :type event: :py:class:`.Event`
+        :return: Returns a string indicating the date of the event
+        :rtype: unicode
         """
         assert(event is None or isinstance(event, Event))
         if event:
@@ -670,10 +672,10 @@ class SimpleAccess(object):
         """
         Return a string indicating the type of the event
 
-        @param event: Event object
-        @type event: L{gen.lib.Event}
-        @return: Returns a string indicating the type of the event
-        @rtype: unicode
+        :param event: Event object
+        :type event: :py:class:`.Event`
+        :return: Returns a string indicating the type of the event
+        :rtype: unicode
         """
         assert(event is None or isinstance(event, Event))
         if event:
@@ -684,15 +686,15 @@ class SimpleAccess(object):
     def events(self, obj, restrict=None):
         """
         Return a list of events associated with the object. This object
-        can be either a L{gen.lib.Person} or L{gen.lib.Family}.
+        can be either a :py:class:`.Person` or :py:class:`.Family`.
 
-        @param obj: Person or Family
-        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
-        @param restrict: Optional list of strings that will limit the types
-        of events to those of the specified types.
-        @type restrict: list
-        @return: list of events associated with the object
-        @rtype: list
+        :param obj: Person or Family
+        :type obj: :py:class:`.Person` or :py:class:`.Family`
+        :param restrict: Optional list of strings that will limit the types
+                         of events to those of the specified types.
+        :type restrict: list
+        :return: list of events associated with the object
+        :rtype: list
         """
         assert(obj is None or isinstance(obj, (Person, Family)))
         assert(isinstance(restrict, list) or restrict is None)
@@ -712,12 +714,12 @@ class SimpleAccess(object):
     def sources(self, obj):
         """
         Return a list of events associated with the object. This object
-        can be either a L{gen.lib.Person} or L{gen.lib.Family}.
+        can be either a :py:class:`.Person` or :py:class:`.Family`.
 
-        @param obj: Person or Family
-        @type obj: L{gen.lib.Person} or L{gen.lib.Family}
-        @return: list of events associated with the object
-        @rtype: list
+        :param obj: Person or Family
+        :type obj: :py:class:`.Person` or :py:class:`.Family`
+        :return: list of events associated with the object
+        :rtype: list
         """
         assert(obj is None or isinstance(obj, (Person, Family, Event)))
 
@@ -731,11 +733,11 @@ class SimpleAccess(object):
         """
         Return a list of families in which the person is listed as a parent.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: list of L{gen.lib.Family} objects in which the person is listed
-           as a parent.
-        @rtype: list
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: list of :py:class:`.Family` objects in which the person is
+                 listed as a parent.
+        :rtype: list
         """
         if isinstance(person, STRTYPE):
             person = self.dbase.get_person_from_handle(person)
@@ -750,11 +752,11 @@ class SimpleAccess(object):
         """
         Return a list of families in which the person is listed as a child.
 
-        @param person: Person object
-        @type person: L{gen.lib.Person}
-        @return: list of L{gen.lib.Family} objects in which the person is listed
-           as a child.
-        @rtype: list
+        :param person: Person object
+        :type person: :py:class:`.Person`
+        :return: list of :py:class:`.Family` objects in which the person is
+                 listed as a child.
+        :rtype: list
         """
         if isinstance(person, STRTYPE):
             person = self.dbase.get_person_from_handle(person)
@@ -770,8 +772,8 @@ class SimpleAccess(object):
         Return a all the objects of a particular type in the database, one 
         at a time as an iterator. The user can treat this just like a list. 
 
-        @return: list of objects of a particular type in the database
-        @rtype: list
+        :return: list of objects of a particular type in the database
+        :rtype: list
         """
         
         with gen_cursor() as cursor:
@@ -786,8 +788,8 @@ class SimpleAccess(object):
            for person in sa.all_people():
               sa.print(person)
 
-        @return: list of people in the database
-        @rtype: list
+        :return: list of people in the database
+        :rtype: list
         """
         
         with self.dbase.get_person_cursor() as cursor:
@@ -805,8 +807,8 @@ class SimpleAccess(object):
            for person in sa.all_families():
               sa.print(sa.father(person))
 
-        @return: list of families in the database
-        @rtype: list
+        :return: list of families in the database
+        :rtype: list
         """
         return self.__all_objects(self.dbase.get_family_cursor, 
                                   self.dbase.get_family_from_handle)
@@ -819,8 +821,8 @@ class SimpleAccess(object):
            for person in sa.all_events():
               sa.print(sa.event_place(event))
 
-        @return: list of events in the database
-        @rtype: list
+        :return: list of events in the database
+        :rtype: list
         """
         return self.__all_objects(self.dbase.get_event_cursor, 
                                   self.dbase.get_event_from_handle)
@@ -830,8 +832,8 @@ class SimpleAccess(object):
         Return all the sources in the database, one at a time as an iterator.
         The user can treat this just like a list. For example::
 
-        @return: list of sources in the database
-        @rtype: list
+        :return: list of sources in the database
+        :rtype: list
         """
         return self.__all_objects(self.dbase.get_source_cursor, 
                                   self.dbase.get_source_from_handle)
@@ -840,10 +842,10 @@ class SimpleAccess(object):
         """
         Return the title of the source.
 
-        @param source: Source object
-        @type source: L{gen.lib.Source}
-        @return: title of the source
-        @rtype: unicode
+        :param source: Source object
+        :type source: :py:class:`.Source`
+        :return: title of the source
+        :rtype: unicode
         """
         assert(source is None or isinstance(source, Source))
         if source:
@@ -854,10 +856,10 @@ class SimpleAccess(object):
         """
         Return the page of the citation.
 
-        @param citation: Source object
-        @type citation: L{gen.lib.Citation}
-        @return: title of the citation
-        @rtype: unicode
+        :param citation: Source object
+        :type citation: :py:class:`Citation <.lib.citation.Citation>`
+        :return: title of the citation
+        :rtype: unicode
         """
         assert(citation is None or isinstance(citation, Citation))
         if citation:
@@ -868,10 +870,10 @@ class SimpleAccess(object):
         """
         Return the author of the source.
 
-        @param source: Source object
-        @type source: L{gen.lib.Source}
-        @return: author of the source
-        @rtype: unicode
+        :param source: Source object
+        :type source: :py:class:`.Source`
+        :return: author of the source
+        :rtype: unicode
         """
         assert(source is None or isinstance(source, Source))
         if source:
@@ -894,9 +896,10 @@ class SimpleAccess(object):
         """
         Given a object_class, prop, and value return a display string
         describing object.  
-        object_class is "Person", "Source", etc.
-        prop is "gramps_id", or "handle"
-        value is a gramps_id or handle.
+
+        :param object_class: "Person", "Source", etc.
+        :param prop: "gramps_id", or "handle"
+        :param value: gramps_id or handle.
         """
         if object_class in self.dbase.get_table_names():
             obj = self.dbase.get_table_metadata(object_class)\
@@ -996,9 +999,10 @@ class SimpleAccess(object):
     def get_link(self, object_class, prop, value):
         """
         Given a object_class, prop, and value return the object.
-        object_class is "Person", "Source", etc.
-        prop is "gramps_id", or "handle"
-        value is a gramps_id or handle.
+
+        :param object_class: "Person", "Source", etc.
+        :param prop: "gramps_id", or "handle"
+        :param value: gramps_id or handle.
         """
         if object_class in self.dbase.get_table_names():
             return self.dbase.get_table_metadata(object_class) \
@@ -1006,16 +1010,15 @@ class SimpleAccess(object):
 
 def by_date(event1, event2):
     """
-    DEPRECATED! 
     Sort function that will compare two events by their dates.
 
-    @param event1: first event
-    @type event1: L{Event}
-    @param event2: second event
-    @type event2: L{Event}
-    @return: Returns -1 if event1 < event2, 0 if they are equal, and
+    :param event1: first event
+    :type event1: :py:class:`.Event`
+    :param event2: second event
+    :type event2: :py:class:`.Event`
+    :return: Returns -1 if event1 < event2, 0 if they are equal, and
        1 if they are the same.
-    @rtype: int
+    :rtype: int
     """
     if event1 and event2:
         return cmp(event1.get_date_object() , event2.get_date_object())
