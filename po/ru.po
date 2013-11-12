@@ -17488,7 +17488,7 @@ msgstr "Она дочь %(father)s и %(mother)s."
 #: ../src/plugins/lib/libnarrate.py:883
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
-msgstr "Она дочь %(father)s and %(mother)s."
+msgstr "Она дочь %(father)s и %(mother)s."
 
 #: ../src/plugins/lib/libnarrate.py:885
 #, python-format
