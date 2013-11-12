@@ -36,6 +36,53 @@ from ..const import GRAMPS_LOCALE as glocale
 from ..constfunc import handle2internal
 _ = glocale.translation.gettext
 
+def parse(string):
+    """
+    Break a string up into a struct-path:
+
+    >>> parse("primary.first_name.startswith('Sarah')")
+    ["primary_name", "first_name", "startswith", "('Sarah')"]
+    """
+    retval = []
+    stack = []
+    current = ""
+    for p in range(len(string)):
+        c = string[p]
+        if c == ")":
+            if stack and stack[-1] == "(": # end 
+                stack.pop(-1)
+            current += c
+            retval.append(current)
+            current = ""
+        elif c == "(":
+            stack.append(c)
+            retval.append(current)
+            current = ""
+            current += c
+        elif c in ["'", '"']:
+            if stack and stack[-1] == c: # end 
+                stack.pop(-1)
+                current += c
+                if stack and stack[-1] in ["'", '"', '(']: # in quote or args
+                    pass
+                else:
+                    current += c
+                    retval.append(current)
+                    current = ""
+            else:                        # start
+                stack.append(c)
+                current += c
+        elif stack and stack[-1] in ["'", '"', '(']: # in quote or args
+            current += c
+        elif c == ".":
+            retval.append(current)
+            current = ""
+        else:
+            current += c
+    if current:
+        retval.append(current)
+    return retval
+
 def import_as_dict(filename, user=None):
     """
     Import the filename into a DictionaryDb and return it.
@@ -245,7 +292,10 @@ class Struct(object):
     def __init__(self, struct, db=None):
         self.struct = struct
         self.db = db
-        self.transaction = db.get_transaction_class()
+        if self.db:
+            self.transaction = db.get_transaction_class()
+        else:
+            self.transaction = None
 
     def __getitem__(self, path): 
         """
@@ -253,13 +303,29 @@ class Struct(object):
 
         >>> Struct(struct)["primary_name.surname_list.0.surname"]
         """
-        # First, work way down to last part:
+        # Work way down to last part:
+        return self.getitem_from_path(parse(path))
+
+    def getitem_from_path(self, path):
+        """
+        Given a path that is already parsed, return item.
+        """
         struct = self.struct
-        for part in path.split("."):
+        for part in path:
             struct = self.getitem(part, struct)
             if struct is None:
                 return None
         return struct
+
+    def get_ref_struct(self, item):
+        """
+        If the item is a handle, look up reference object.
+        """
+        if hasattr(item, "classname") and self.db:
+            obj = self.db.get_from_name_and_handle(item.classname, str(item))
+            return Struct(obj.to_struct(), self.db)
+        else:
+            return item
 
     def getitem(self, item, struct=None): 
         """
@@ -272,14 +338,21 @@ class Struct(object):
         if isinstance(struct, (list, tuple)):
             pos = int(item)
             if pos < len(struct):
-                return struct[int(item)]
+                return self.get_ref_struct(struct[int(item)])
             else:
                 return None
         elif isinstance(struct, dict):
-            if item in struct:
-                return struct[item]
+            if item in struct.keys():
+                return self.get_ref_struct(struct[item])
             else:
                 return None
+        elif isinstance(struct, Struct):
+            return self.get_ref_struct(struct[item])
+        elif hasattr(struct, item):
+            return getattr(struct, item)
+        elif item.startswith("("):
+            args = eval(item[1:-1] + ",")
+            return struct(*args)
         else:
             return None
 
@@ -289,33 +362,40 @@ class Struct(object):
 
         >>> Struct(struct).getitem(["primary_name", "surname_list", "0", "surname"])
         """
-        path = path.split(".")
+        return self.setitem_from_path(parse(path), value)
+
+    def setitem_from_path(self, path, value):
         path, item = path[:-1], path[-1]
-        struct = self[".".join(path)]
+        struct = self.getitem_from_path(path)
         if isinstance(struct, (list, tuple)):
             pos = int(item)
             if pos < len(struct):
                 struct[int(item)] = value
         elif isinstance(struct, dict):
-            struct[item] = value
+            if item in struct.keys():
+                struct[item] = value
+            else:
+                raise AttributeError("no such property: '%s'" % item)
+        elif isinstance(struct, Struct):
+            struct.setitem_from_path(path, value)
+        elif hasattr(struct, item):
+            setattr(struct, item, value)
         else:
             return
-        # update the database
-        if self.db:
-            self.update_db()
+        self.update_db()
 
     def update_db(self):
-        name = self.struct["_class"]
-        handle = self.struct["handle"]
-        obj = self.db.get_from_name_and_handle(name, handle)
-        new_obj = from_struct(self.struct)
-        with self.transaction("Struct Update", self.db) as trans:
-            if obj:
-                commit_func = self.db._tables[name]["commit_func"]
-                commit_func(new_obj, trans)
-            else:
-                add_func = self.db._tables[name]["add_func"]
-                add_func(new_obj, trans)
+        if self.db:
+            with self.transaction("Struct Update", self.db) as trans:
+                new_obj = from_struct(self.struct)
+                name, handle = self.struct["_class"], self.struct["handle"]
+                old_obj = self.db.get_from_name_and_handle(name, handle)
+                if old_obj:
+                    commit_func = self.db._tables[name]["commit_func"]
+                    commit_func(new_obj, trans)
+                else:
+                    add_func = self.db._tables[name]["add_func"]
+                    add_func(new_obj, trans)
 
     def __str__(self):
         return str(self.struct)
