@@ -43,13 +43,13 @@ class FilterOption(EnumeratedListOption):
     """
     def __init__(self, label, value):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "Filter"
-        @type label: string
-        @param value: A default value for the option.
+        :type label: string
+        :param value: A default value for the option.
             Example: 1
-        @type label: int
-        @return: nothing
+        :type label: int
+        :return: nothing
         """
         EnumeratedListOption.__init__(self, label, value)
         self.__filters = []
@@ -58,9 +58,9 @@ class FilterOption(EnumeratedListOption):
         """
         Set the list of filters available to be chosen from.
         
-        @param filter_list: An array of person filters.
-        @type filter_list: array
-        @return: nothing
+        :param filter_list: An array of person filters.
+        :type filter_list: array
+        :return: nothing
         """
         curval = self.get_value()
         items = [(value, filt.get_name()) 
@@ -76,6 +76,6 @@ class FilterOption(EnumeratedListOption):
         """
         Return the currently selected filter object.
         
-        @return: A filter object.
+        :return: A filter object.
         """
         return self.__filters[self.get_value()]

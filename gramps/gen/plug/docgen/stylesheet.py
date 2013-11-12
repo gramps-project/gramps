@@ -231,8 +231,8 @@ class StyleSheet(object):
         """
         Create a new empty StyleSheet.
 
-        @param obj: if not None, creates the StyleSheet from the values in
-            obj, instead of creating an empty StyleSheet
+        :param obj: if not None, creates the StyleSheet from the values in
+                    obj, instead of creating an empty StyleSheet
         """
         self.para_styles = {}
         self.draw_styles = {}
@@ -253,7 +253,7 @@ class StyleSheet(object):
         """
         Set the name of the StyleSheet
         
-        @param name: The name to be given to the StyleSheet
+        :param name: The name to be given to the StyleSheet
         """
         self.name = name
 
@@ -285,16 +285,16 @@ class StyleSheet(object):
         """
         Add a paragraph style to the style sheet.
 
-        @param name: The name of the ParagraphStyle
-        @param style: ParagraphStyle instance to be added.
+        :param name: The name of the :class:`.ParagraphStyle`
+        :param style: :class:`.ParagraphStyle` instance to be added.
         """
         self.para_styles[name] = ParagraphStyle(style)
         
     def get_paragraph_style(self, name):
         """
-        Return the ParagraphStyle associated with the name
+        Return the :class:`.ParagraphStyle` associated with the name
 
-        @param name: name of the ParagraphStyle that is wanted
+        :param name: name of the :class:`.ParagraphStyle` that is wanted
         """
         return ParagraphStyle(self.para_styles[name])
 
@@ -306,16 +306,16 @@ class StyleSheet(object):
         """
         Add a draw style to the style sheet.
 
-        @param name: The name of the GraphicsStyle
-        @param style: GraphicsStyle instance to be added.
+        :param name: The name of the :class:`.GraphicsStyle`
+        :param style: :class:`.GraphicsStyle` instance to be added.
         """
         self.draw_styles[name] = GraphicsStyle(style)
         
     def get_draw_style(self, name):
         """
-        Return the GraphicsStyle associated with the name
+        Return the :class:`.GraphicsStyle` associated with the name
 
-        @param name: name of the GraphicsStyle that is wanted
+        :param name: name of the :class:`.GraphicsStyle` that is wanted
         """
         return GraphicsStyle(self.draw_styles[name])
 
@@ -327,16 +327,16 @@ class StyleSheet(object):
         """
         Add a table style to the style sheet.
 
-        @param name: The name of the TableStyle
-        @param style: TableStyle instance to be added.
+        :param name: The name of the :class:`.TableStyle`
+        :param style: :class:`.TableStyle` instance to be added.
         """
         self.table_styles[name] = TableStyle(style)
         
     def get_table_style(self, name):
         """
-        Return the TableStyle associated with the name
+        Return the :class:`.TableStyle` associated with the name
 
-        @param name: name of the TableStyle that is wanted
+        :param name: name of the :class:`.TableStyle` that is wanted
         """
         return TableStyle(self.table_styles[name])
 
@@ -348,16 +348,16 @@ class StyleSheet(object):
         """
         Add a cell style to the style sheet.
 
-        @param name: The name of the TableCellStyle
-        @param style: TableCellStyle instance to be added.
+        :param name: The name of the :class:`.TableCellStyle`
+        :param style: :class:`.TableCellStyle` instance to be added.
         """
         self.cell_styles[name] = TableCellStyle(style)
         
     def get_cell_style(self, name):
         """
-        Return the TableCellStyle associated with the name
+        Return the :class:`.TableCellStyle` associated with the name
 
-        @param name: name of the TableCellStyle that is wanted
+        :param name: name of the :class:`.TableCellStyle` that is wanted
         """
         return TableCellStyle(self.cell_styles[name])
 
@@ -380,7 +380,7 @@ class SheetParser(handler.ContentHandler):
         Create a SheetParser class that populates the passed StyleSheetList
         class.
 
-        sheetlist - StyleSheetList instance to be loaded from the file.
+        sheetlist - :class:`StyleSheetList` instance to be loaded from the file.
         """
         handler.ContentHandler.__init__(self)
         self.sheetlist = sheetlist

@@ -44,16 +44,16 @@ class StyleOption(EnumeratedListOption):
     
     def __init__(self, label, default_style, module_name):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "Style"
-        @type label: string
-        @param default_style: A docgen StyleSheet instance which provides the 
+        :type label: string
+        :param default_style: A docgen StyleSheet instance which provides the 
         default styles.
-        @type default_style: docgen StyleSheet
-        @param module_name: The name of the module the style sheets belong to.
+        :type default_style: docgen StyleSheet
+        :param module_name: The name of the module the style sheets belong to.
             Example: "web_cal"
-        @type module_name: string
-        @return: nothing
+        :type module_name: string
+        :return: nothing
         """
         EnumeratedListOption.__init__(self, label, "default")
         

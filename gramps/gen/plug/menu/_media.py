@@ -43,12 +43,12 @@ class MediaOption(StringOption):
     """
     def __init__(self, label):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "Image"
-        @type label: string
-        @param value: A Gramps ID of a media object for this option.
+        :type label: string
+        :param value: A Gramps ID of a media object for this option.
             Example: "m11"
-        @type value: string
-        @return: nothing
+        :type value: string
+        :return: nothing
         """
         StringOption.__init__(self, label, "")

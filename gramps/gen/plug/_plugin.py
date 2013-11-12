@@ -31,16 +31,16 @@ class Plugin(object):
     """
     def __init__(self, name, description, module_name):
         """
-        @param name: A friendly name to call this plugin.
+        :param name: A friendly name to call this plugin.
             Example: "GEDCOM Import"
-        @type name: string
-        @param description: A short description of the plugin.
+        :type name: string
+        :param description: A short description of the plugin.
             Example: "This plugin will import a GEDCOM file into a database"
-        @type description: string
-        @param module_name: The name of the module that contains this plugin.
+        :type description: string
+        :param module_name: The name of the module that contains this plugin.
             Example: "gedcom"
-        @type module_name: string
-        @return: nothing
+        :type module_name: string
+        :return: nothing
         """
         self.__name = name
         self.__desc = description
@@ -50,7 +50,7 @@ class Plugin(object):
         """
         Get the name of this plugin.
         
-        @return: a string representing the name of the plugin
+        :return: a string representing the name of the plugin
         """
         return self.__name
     
@@ -58,7 +58,7 @@ class Plugin(object):
         """
         Get the description of this plugin.
         
-        @return: a string that describes the plugin
+        :return: a string that describes the plugin
         """
         return self.__desc
     
@@ -66,7 +66,7 @@ class Plugin(object):
         """
         Get the name of the module that this plugin lives in.
         
-        @return: a string representing the name of the module for this plugin
+        :return: a string representing the name of the module for this plugin
         """
         return self.__mod_name
     

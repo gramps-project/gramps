@@ -55,13 +55,13 @@ class EnumeratedListOption(Option):
     
     def __init__(self, label, value):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "Paper Size"
-        @type label: string
-        @param value: An initial value for this option.
+        :type label: string
+        :param value: An initial value for this option.
             Example: 5
-        @type value: int
-        @return: nothing
+        :type value: int
+        :return: nothing
         """
         Option.__init__(self, label, value)
         self.__items = []
@@ -70,13 +70,13 @@ class EnumeratedListOption(Option):
         """
         Add an item to the list of possible values.
         
-        @param value: The value that corresponds to this item.
+        :param value: The value that corresponds to this item.
             Example: 5
-        @type value: int
-        @param description: A description of this value.
+        :type value: int
+        :param description: A description of this value.
             Example: "8.5 x 11"
-        @type description: string
-        @return: nothing
+        :type description: string
+        :return: nothing
         """
         self.__items.append((value, description))
         self.emit('options-changed')
@@ -85,10 +85,10 @@ class EnumeratedListOption(Option):
         """
         Add a list of items to the list of possible values.
         
-        @param items: A list of tuples containing value, description pairs.
+        :param items: A list of tuples containing value, description pairs.
             Example: [ (5,"8.5 x 11"), (6,"11 x 17")]
-        @type items: array
-        @return: nothing
+        :type items: array
+        :return: nothing
         """
         self.__items = items
         self.emit('options-changed')
@@ -97,7 +97,7 @@ class EnumeratedListOption(Option):
         """
         Get all the possible values for this option.
         
-        @return: an array of tuples containing (value,description) pairs.
+        :return: an array of tuples containing (value,description) pairs.
         """
         return self.__items
     
@@ -105,7 +105,7 @@ class EnumeratedListOption(Option):
         """
         Clear all possible values from this option.
         
-        @return: nothing.
+        :return: nothing.
         """
         self.__items = []
         self.emit('options-changed')
@@ -114,10 +114,10 @@ class EnumeratedListOption(Option):
         """
         Set the value of this option.
         
-        @param value: A value for this option.
+        :param value: A value for this option.
             Example: True
-        @type value: The type will depend on the type of option.
-        @return: nothing
+        :type value: The type will depend on the type of option.
+        :return: nothing
         """
         if value in (v for v, d in self.__items):
             Option.set_value(self, value)

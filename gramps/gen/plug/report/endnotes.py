@@ -37,8 +37,8 @@ def add_endnote_styles(style_sheet):
     """
     Add paragraph styles to a style sheet to be used for displaying endnotes.
     
-    @param style_sheet: Style sheet
-    @type style_sheet: L{docgen.StyleSheet}
+    :param style_sheet: Style sheet
+    :type style_sheet: :class:`.StyleSheet`
     """
     font = FontStyle()
     font.set(face=FONT_SANS_SERIF, size=14, italic=1)
@@ -82,10 +82,10 @@ def cite_source(bibliography, database, obj):
     """
     Cite any sources for the object and add them to the bibliography.
     
-    @param bibliography: The bibliography to contain the citations.
-    @type bibliography: L{Bibliography}
-    @param obj: An object with source references.
-    @type obj: L{gen.lib.CitationBase}
+    :param bibliography: The bibliography to contain the citations.
+    :type bibliography: :class:`.Bibliography`
+    :param obj: An object with source references.
+    :type obj: :class:`~.citationbase.CitationBase`
     """
     txt = ""
     slist = obj.get_citation_list()
@@ -107,22 +107,22 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
     """
     Write all the entries in the bibliography as endnotes.
     
-    If elocale is passed in (a GrampsLocale), then (insofar as possible)
-    the translated values will be returned instead.
+    If elocale is passed in (a :class:`.GrampsLocale`), then (insofar as
+    possible) the translated values will be returned instead.
 
-    @param bibliography: The bibliography that contains the citations.
-    @type bibliography: L{Bibliography}
-    @param database: The database that the sources come from.
-    @type database: DbBase
-    @param doc: The document to write the endnotes into.
-    @type doc: L{docgen.TextDoc}
-    @param printnotes: Indicate if the notes attached to a source must be
+    :param bibliography: The bibliography that contains the citations.
+    :type bibliography: :class:`.Bibliography`
+    :param database: The database that the sources come from.
+    :type database: DbBase
+    :param doc: The document to write the endnotes into.
+    :type doc: :class:`~.docgen.TextDoc`
+    :param printnotes: Indicate if the notes attached to a source must be
             written too.
-    @type printnotes: bool
-    @param links: Indicate if URL links should be makde 'clickable'.
-    @type links: bool
-    @param elocale: allow deferred translation of dates and strings
-    @type elocale: a GrampsLocale instance
+    :type printnotes: bool
+    :param links: Indicate if URL links should be makde 'clickable'.
+    :type links: bool
+    :param elocale: allow deferred translation of dates and strings
+    :type elocale: a :class:`.GrampsLocale` instance
     """
     if bibliography.get_citation_count() == 0:
         return

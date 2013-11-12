@@ -41,10 +41,10 @@ class BooleanListOption(Option):
     """
     def __init__(self, heading):
         """
-        @param heading: A heading for the entire list of check buttons.
+        :param heading: A heading for the entire list of check buttons.
             Example: "Event groups"
-        @type heading: string
-        @return: nothing
+        :type heading: string
+        :return: nothing
         """
         Option.__init__(self, heading, '')
         self.__descriptions = []
@@ -53,13 +53,13 @@ class BooleanListOption(Option):
         """
         Add a check button to the list.
                 
-        @param description: A description for this check button.
+        :param description: A description for this check button.
             Example: "Census"
-        @type description: string
-        @param value: The default for this check button (True or False).
+        :type description: string
+        :param value: The default for this check button (True or False).
             Example: True
-        @type value: int
-        @return: nothing
+        :type value: int
+        :return: nothing
         """
         self.__descriptions.append(description)
         value = self.get_value()
@@ -73,7 +73,7 @@ class BooleanListOption(Option):
         """
         Get a list of check button descriptions for this option.
         
-        @return: a list of check button descriptions.
+        :return: a list of check button descriptions.
         """
         return self.__descriptions
         
@@ -81,7 +81,7 @@ class BooleanListOption(Option):
         """
         Get a list of descriptions where the check button is selected.
         
-        @return: a list of check button descriptions.
+        :return: a list of check button descriptions.
         """
         descriptions = self.__descriptions
         values = self.get_value().split(',')

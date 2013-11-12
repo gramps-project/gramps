@@ -42,12 +42,12 @@ class ColorOption(Option):
     """
     def __init__(self, label, value):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "Males"
-        @type label: string
-        @param value: An initial value for this option.
+        :type label: string
+        :param value: An initial value for this option.
             Example: "#ff00a0"
-        @type value: string
-        @return: nothing
+        :type value: string
+        :return: nothing
         """
         Option.__init__(self, label, value)

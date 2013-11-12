@@ -76,34 +76,38 @@ class OptionList(object):
     def set_options(self, options):
         """
         Set the whole bunch of options for the OptionList.
-        @param options: list of options to set.
-        @type options: list
+
+        :param options: list of options to set.
+        :type options: list
         """
         self.options = options
 
     def get_options(self):
         """
         Return the whole bunch of  options for the OptionList.
-        @returns: list of options
-        @rtype: list
+
+        :returns: list of options
+        :rtype: list
         """
         return self.options
 
     def set_option(self, name,value):
         """
         Set a particular option in the OptionList.
-        @param name: name of the option to set.
-        @type name: str
-        @param value: value of the option to set.
-        @type str
+
+        :param name: name of the option to set.
+        :type name: str
+        :param value: value of the option to set.
+        :type value: str
         """
         self.options[name] = value
 
     def remove_option(self, name):
         """
         Remove a particular option from the OptionList.
-        @param name: name of the option to remove.
-        @type name: str
+
+        :param name: name of the option to remove.
+        :type name: str
         """
         if name in self.options:
             del self.options[name]
@@ -111,10 +115,11 @@ class OptionList(object):
     def get_option(self, name):
         """
         Return the value of a particular option in the OptionList.
-        @param name: name of the option to retrieve
-        @type name: str
-        @returns: value associated with the passed option
-        @rtype: str
+
+        :param name: name of the option to retrieve
+        :type name: str
+        :returns: value associated with the passed option
+        :rtype: str
         """
         return self.options.get(name,None)
 
@@ -132,8 +137,9 @@ class OptionListCollection(object):
         """
         Create an OptionListCollection instance from the list defined
         in the specified file.
-        @param filename: XML file that contains option definitions
-        @type filename: str
+
+        :param filename: XML file that contains option definitions
+        :type filename: str
         """
 
         self.filename = os.path.expanduser(filename)
@@ -148,37 +154,41 @@ class OptionListCollection(object):
     def get_option_list_map(self):
         """
         Return the map of module names to option lists.
-        @returns: Returns the map of module names to option lists.
-        @rtype: dictionary
+
+        :returns: Returns the map of module names to option lists.
+        :rtype: dictionary
         """
         return self.option_list_map
 
     def get_option_list(self, name):
         """
         Return the option_list associated with the module name
-        @param name: name associated with the desired module.
-        @type name: str
-        @returns: returns the option list associated with the name,
-            or None of no such option exists
-        @rtype: str
+
+        :param name: name associated with the desired module.
+        :type name: str
+        :returns: returns the option list associated with the name,
+                  or None of no such option exists
+        :rtype: str
         """
         return self.option_list_map.get(name,None)
 
     def get_module_names(self):
         """
         Return a list of all the module names in the OptionListCollection
-        @returns: returns the list of module names
-        @rtype: list
+
+        :returns: returns the list of module names
+        :rtype: list
         """
         return list(self.option_list_map.keys())
 
     def set_option_list(self, name, option_list):
         """
         Add or replaces an option_list in the OptionListCollection. 
-        @param name: name associated with the module to add or replace.
-        @type name: str
-        @param option_list: list of options
-        @type option_list: OptionList
+
+        :param name: name associated with the module to add or replace.
+        :type name: str
+        :param option_list: list of options
+        :type option_list: OptionList
         """
         self.option_list_map[name] = option_list
 
@@ -458,7 +468,7 @@ class Options(object):
                 as True then each string will be preneded with the ordinal
                 number when help is printed on the command line.
 
-        NOTE:   Both dictionaries must have identical keys.
+        .. note:: Both dictionaries must have identical keys.
         """
         self.name = name
         self.person_id = person_id
@@ -479,9 +489,9 @@ class Options(object):
 
         This method MUST be overridden by modules that define new options.
         
-        NOTE:   To really have any effect besides looking pretty, each widget
-                set up here must be also parsed in the parse_user_options()
-                method below.
+        .. note:: To really have any effect besides looking pretty, each widget
+                  set up here must be also parsed in the
+                  :meth:`parse_user_options` method below.
         """
         pass
 
@@ -495,8 +505,8 @@ class Options(object):
         appropriate options_dict values. Otherwise the values will not have
         any user-visible effect.
         
-        NOTE:   Any widget parsed here MUST be defined and added to the dialog
-                in the add_user_options() method above.
+        .. note:: Any widget parsed here MUST be defined and added to the dialog
+                  in the :meth:`add_user_options` method above.
         """
         pass
 
@@ -507,8 +517,8 @@ class Options(object):
 #------------------------------------------------------------------------
 class MenuOptions(object):
     """
-    Introduction
-    ============
+    **Introduction**
+
     A MenuOptions is used to implement the necessary functions for adding
     options to a menu.
     """
@@ -534,9 +544,9 @@ class MenuOptions(object):
         """
         Add the user defined options to the menu.
         
-        @param menu: A menu class for the options to belong to.
-        @type menu: Menu
-        @return: nothing
+        :param menu: A menu class for the options to belong to.
+        :type menu: Menu
+        :return: nothing
         """
         raise NotImplementedError
     
@@ -567,4 +577,3 @@ class MenuOptions(object):
         for name in self.menu.get_all_option_names():
             option = self.menu.get_option_by_name(name)
             self.options_dict[name] = option.get_value()
-

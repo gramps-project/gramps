@@ -20,7 +20,7 @@
 # $Id$
 
 """
-This module provides the Plugin class for export plugins.
+This module provides the :class:`.Plugin` class for export plugins.
 """
 
 from . import Plugin
@@ -32,26 +32,26 @@ class ExportPlugin(Plugin):
     def __init__(self, name, description, export_function, 
                  extension, config=None):
         """
-        @param name: A friendly name to call this plugin.
+        :param name: A friendly name to call this plugin.
             Example: "GEDCOM Export"
-        @type name: string
-        @param description: A short description of the plugin.
+        :type name: string
+        :param description: A short description of the plugin.
             Example: "This plugin will export a GEDCOM file from database"
-        @type description: string
-        @param export_function: A function to call to perform the export.
+        :type description: string
+        :param export_function: A function to call to perform the export.
             The function must take the form:
                 def export_function(database, filename, user, option_box):
             where:
                 "db" is a Gramps database to import the data into
                 "filename" is the file that the data will be exported to
                 "user" provides UI output (callback, errors, etc)
-        @type export_function: callable
-        @param extension: The extension for the output file.
+        :type export_function: callable
+        :param extension: The extension for the output file.
             Example: "ged"
-        @type extension: str
-        @param config: Options for the exporter
-        @type config: tuple (??,??)
-        @return: nothing
+        :type extension: str
+        :param config: Options for the exporter
+        :type config: tuple (??,??)
+        :return: nothing
         """
         Plugin.__init__(self, name, description, export_function.__module__)
         self.__export_func = export_function
@@ -62,7 +62,7 @@ class ExportPlugin(Plugin):
         """
         Get the export function for this plugin.
         
-        @return: the callable export_function passed into __init__ 
+        :return: the callable export_function passed into :meth:`__init__`
         """
         return self.__export_func
     
@@ -70,7 +70,7 @@ class ExportPlugin(Plugin):
         """
         Get the file extension for the export file.
         
-        @return: str
+        :return: str
         """
         return self.__extension
 
@@ -78,6 +78,6 @@ class ExportPlugin(Plugin):
         """
         Get the config.
         
-        @return: (??,??)
+        :return: (??,??)
         """
         return self.__config

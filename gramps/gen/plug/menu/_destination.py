@@ -47,17 +47,17 @@ class DestinationOption(StringOption):
     
     def __init__(self, label, value):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "File Name"
-        @type label: string
-        @param value: A default destination for this option.
+        :type label: string
+        :param value: A default destination for this option.
             Example: "/home/username/Desktop/"
             Example: "/home/username/Desktop/report.pdf"
-        @type value: string
-        @param is_directory: Specifies whether the destination is a directory 
-        or a file.
-        @type value: bool
-        @return: nothing
+        :type value: string
+        :param is_directory: Specifies whether the destination is a directory 
+                             or a file.
+        :type is_directory: bool
+        :return: nothing
         """
         StringOption.__init__(self, label, value)
         self.__is_directory = False
@@ -65,31 +65,32 @@ class DestinationOption(StringOption):
         
     def set_directory_entry(self, is_directory):
         """
-        @param is_directory: Specifies whether the destination is a directory 
-        or a file.
-        @type value: bool
-        @return: nothing
+        :param is_directory: Specifies whether the destination is a directory 
+                             or a file.
+        :type is_directory: bool
+        :return: nothing
         """
         self.__is_directory = is_directory
         self.emit('options-changed')
-        
+
     def get_directory_entry(self):
         """
-        @return: True if the destination is a directory. False if the 
-        destination is a file.
+        :return: True if the destination is a directory. False if the
+                 destination is a file.
+        :rtype: bool
         """
         return self.__is_directory
 
     def set_extension(self, extension):
         """
-        @param extension: Specifies the extension for the destination file. 
-        @type value: str
-        @return: nothing
+        :param extension: Specifies the extension for the destination file. 
+        :type extension: str
+        :return: nothing
         """
         self.__extension = extension
         
     def get_extension(self):
         """
-        @return: The extension for the destination file.
+        :return: The extension for the destination file.
         """
         return self.__extension

@@ -180,12 +180,14 @@ class PluginData(object):
     """
     This is the base class for all plugin data objects.
     The workflow is: 
+
     1. plugin manager reads all register files, and stores plugin data
        objects in a plugin register
     2. when plugin is needed, the plugin register creates the plugin, and 
        the manager stores this, after which it can be executed.
     
     Attributes present for all plugins
+
     .. attribute:: id
        A unique identifier for the plugin. This is eg used to store the plugin
        settings.
@@ -234,12 +236,14 @@ class PluginData(object):
        reverts to the plugindirectory itself. 
     
     Attributes for RELCALC plugins:
+
     .. attribute:: relcalcclass 
        The class in the module that is the relationcalc class 
     .. attribute:: lang_list
        List of languages this plugin handles
     
     Attributes for REPORT plugins:
+
     .. attribute:: require_active
        Bool, If the reports requries an active person to be set or not
     .. attribute:: reportclass
@@ -248,6 +252,7 @@ class PluginData(object):
        The report modes: list of REPORT_MODE_GUI ,REPORT_MODE_BKI,REPORT_MODE_CLI
     
     Attributes for REPORT and TOOL and QUICKREPORT and VIEW plugins
+
     .. attribute:: category
        Or the report category the plugin belongs to, default=CATEGORY_TEXT
        or the tool category a plugin belongs to, default=TOOL_UTILS
@@ -256,16 +261,19 @@ class PluginData(object):
            default=("Miscellaneous", _("Miscellaneous"))
     
     Attributes for REPORT and TOOL and DOCGEN plugins
+
     .. attribute:: optionclass
        The class in the module that is the option class
     
     Attributes for TOOL plugins
+
     .. attribute:: toolclass
        The class in the module that is the tool class
     .. attribute:: tool_modes
        The tool modes: list of TOOL_MODE_GUI, TOOL_MODE_CLI
     
     Attributes for DOCGEN plugins
+
     .. attribute :: docclass
        The class in the module that is the BaseDoc defined
     .. attribute :: paper
@@ -274,19 +282,23 @@ class PluginData(object):
        bool, Indicates whether the plugin uses styles or not, default=True
     
     Attribute for DOCGEN, EXPORT plugins
+
     .. attribute :: extension
        str, The file extension to use for output produced by the docgen/export,
        default=''
     
     Attributes for QUICKREPORT plugins
+
     .. attribute:: runfunc
        The function that executes the quick report
     
     Attributes for MAPSERVICE plugins
+
     .. attribute:: mapservice
        The class in the module that is a mapservice
     
     Attributes for EXPORT plugins
+
     .. attribute:: export_function
        Function that produces the export
     .. attribute:: export_options
@@ -295,10 +307,12 @@ class PluginData(object):
        Title for the option page
     
     Attributes for IMPORT plugins
+
     .. attribute:: import_function
        Function that starts an import
     
     Attributes for GRAMPLET plugins
+
     .. attribute:: gramplet
        The function or class that defines the gramplet.
     .. attribute:: height
@@ -318,6 +332,7 @@ class PluginData(object):
        The URL where documentation for the URL can be found
 
     Attributes for VIEW plugins
+
     .. attribute:: viewclass
        A class of type ViewCreator that holds the needed info of the
        view to be created: icon, viewclass that derives from pageview, ...
@@ -325,12 +340,14 @@ class PluginData(object):
        The icon in the toolbar or sidebar used to select the view
 
     Attributes for SIDEBAR plugins
+
     .. attribute:: sidebarclass
        The class that defines the sidebar.
     .. attribute:: menu_label
        A label to use on the seltion menu.
        
     Attributes for VIEW and SIDEBAR plugins
+
     .. attribute:: order
        order can be START or END. Default is END. For END, on registering, 
        the plugin is appended to the list of plugins. If START, then the
@@ -943,7 +960,8 @@ def newplugin():
     """
     Function to create a new plugindata object, add it to list of 
     registered plugins
-    :Returns: a newly created PluginData which is already part of the register
+
+    :returns: a newly created PluginData which is already part of the register
     """
     gpr = PluginRegister.get_instance()
     pgd = PluginData()
@@ -956,12 +974,12 @@ def register(ptype, **kwargs):
     The register functions will call newplugin() function, and use the 
     dictionary kwargs to assign data to the PluginData newplugin() created, 
     as in: plugindata.key = data
+
     :param ptype: the plugin type, one of REPORT, TOOL, ...
     :param kwargs: dictionary with keys attributes of the plugin, and data 
-        the value
-    
-    :Returns: a newly created PluginData which is already part of the register
-        and which has kwargs assigned as attributes
+                   the value
+    :returns: a newly created PluginData which is already part of the register
+              and which has kwargs assigned as attributes
     """
     plg = newplugin()
     plg.ptype = ptype
@@ -1033,9 +1051,11 @@ def make_environment(**kwargs):
 #
 #-------------------------------------------------------------------------
 class PluginRegister(object):
-    """ PluginRegister is a Singleton which holds plugin data
-        .. attribute : stable_only
-            Bool, include stable plugins only or not. Default True
+    """
+    PluginRegister is a Singleton which holds plugin data
+
+    .. attribute : stable_only
+        Bool, include stable plugins only or not. Default True
     """
     __instance = None
     
@@ -1063,9 +1083,9 @@ class PluginRegister(object):
     def scan_dir(self, dir):
         """
         The dir name will be scanned for plugin registration code, which will
-        be loaded in PluginData objects if they satisfy some checks.
+        be loaded in :class:`PluginData` objects if they satisfy some checks.
         
-        :Returns: A list with PluginData objects
+        :returns: A list with :class:`PluginData` objects
         """
         # if the directory does not exist, do nothing
         if not (os.path.isdir(dir) or os.path.islink(dir)):
@@ -1167,7 +1187,9 @@ class PluginRegister(object):
                 del self.__plugindata[ind]
 
     def get_plugin(self, id):
-        """Return the PluginData for the plugin with id"""
+        """
+        Return the :class:`PluginData` for the plugin with id
+        """
         matches = [x for x in self.__plugindata if x.id == id]
         matches.sort(key=lambda x: version(x.version))
         if len(matches) > 0:
@@ -1175,14 +1197,17 @@ class PluginRegister(object):
         return None
 
     def type_plugins(self, ptype):
-        """Return a list of PluginData that are of type ptype
+        """
+        Return a list of :class:`PluginData` that are of type ptype
         """
         return [self.get_plugin(id) for id in 
                 set([x.id for x in self.__plugindata if x.ptype == ptype])]
 
     def report_plugins(self, gui=True):
-        """Return a list of gui or cli PluginData that are of type REPORT
-           :param gui: bool, if True then gui plugin, otherwise cli plugin
+        """
+        Return a list of gui or cli :class:`PluginData` that are of type REPORT
+
+        :param gui: bool, if True then gui plugin, otherwise cli plugin
         """
         if gui:
             return [x for x in self.type_plugins(REPORT) if REPORT_MODE_GUI
@@ -1192,7 +1217,8 @@ class PluginRegister(object):
                                         in x.report_modes]
 
     def tool_plugins(self, gui=True):
-        """Return a list of PluginData that are of type TOOL
+        """
+        Return a list of :class:`PluginData` that are of type TOOL
         """
         if gui:
             return [x for x in self.type_plugins(TOOL) if TOOL_MODE_GUI
@@ -1203,33 +1229,40 @@ class PluginRegister(object):
 
     
     def bookitem_plugins(self):
-        """Return a list of REPORT PluginData that are can be used as bookitem
+        """
+        Return a list of REPORT :class:`PluginData` that are can be used as
+        bookitem
         """
         return [x for x in self.type_plugins(REPORT) if REPORT_MODE_BKI
                                         in x.report_modes]
 
     def quickreport_plugins(self):
-        """Return a list of PluginData that are of type QUICKREPORT
+        """
+        Return a list of :class:`PluginData` that are of type QUICKREPORT
         """
         return self.type_plugins(QUICKREPORT)
 
     def import_plugins(self):
-        """Return a list of PluginData that are of type IMPORT
+        """
+        Return a list of :class:`PluginData` that are of type IMPORT
         """
         return self.type_plugins(IMPORT)
 
     def export_plugins(self):
-        """Return a list of PluginData that are of type EXPORT
+        """
+        Return a list of :class:`PluginData` that are of type EXPORT
         """
         return self.type_plugins(EXPORT)
 
     def docgen_plugins(self):
-        """Return a list of PluginData that are of type DOCGEN
+        """
+        Return a list of :class:`PluginData` that are of type DOCGEN
         """
         return self.type_plugins(DOCGEN)
 
     def general_plugins(self, category=None):
-        """Return a list of PluginData that are of type GENERAL
+        """
+        Return a list of :class:`PluginData` that are of type GENERAL
         """
         plugins = self.type_plugins(GENERAL)
         if category:
@@ -1238,32 +1271,38 @@ class PluginRegister(object):
         return plugins
 
     def mapservice_plugins(self):
-        """Return a list of PluginData that are of type MAPSERVICE
+        """
+        Return a list of :class:`PluginData` that are of type MAPSERVICE
         """
         return self.type_plugins(MAPSERVICE)
 
     def view_plugins(self):
-        """Return a list of PluginData that are of type VIEW
+        """
+        Return a list of :class:`PluginData` that are of type VIEW
         """
         return self.type_plugins(VIEW)
 
     def relcalc_plugins(self):
-        """Return a list of PluginData that are of type RELCALC
+        """
+        Return a list of :class:`PluginData` that are of type RELCALC
         """
         return self.type_plugins(RELCALC)
 
     def gramplet_plugins(self):
-        """Return a list of PluginData that are of type GRAMPLET
+        """
+        Return a list of :class:`PluginData` that are of type GRAMPLET
         """
         return self.type_plugins(GRAMPLET)
         
     def sidebar_plugins(self):
-        """Return a list of PluginData that are of type SIDEBAR
+        """
+        Return a list of :class:`PluginData` that are of type SIDEBAR
         """
         return self.type_plugins(SIDEBAR)
 
     def filter_load_on_reg(self):
-        """Return a list of PluginData that have load_on_reg == True
+        """
+        Return a list of :class:`PluginData` that have load_on_reg == True
         """
         return [self.get_plugin(id) for id in 
                 set([x.id for x in self.__plugindata 

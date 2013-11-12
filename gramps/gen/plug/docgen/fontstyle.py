@@ -76,8 +76,8 @@ class FontStyle(object):
         """
         Create a new FontStyle object, accepting the default values.
 
-        @param style: if specified, initializes the FontStyle from the passed
-            FontStyle instead of using the defaults.
+        :param style: if specified, initializes the FontStyle from the passed
+                      FontStyle instead of using the defaults.
         """
         if style:
             self.face   = style.face
@@ -99,14 +99,14 @@ class FontStyle(object):
         """
         Set font characteristics.
 
-        @param face: font type face, either FONT_SERIF or FONT_SANS_SERIF
-        @param size: type face size in points
-        @param italic: True enables italics, False disables italics
-        @param bold: True enables bold face, False disables bold face
-        @param underline: True enables underline, False disables underline
-        @param color: an RGB color representation in the form of three integers
-            in the range of 0-255 represeting the red, green, and blue
-            components of a color.
+        :param face: font type face, either FONT_SERIF or FONT_SANS_SERIF
+        :param size: type face size in points
+        :param italic: True enables italics, False disables italics
+        :param bold: True enables bold face, False disables bold face
+        :param underline: True enables underline, False disables underline
+        :param color: an RGB color representation in the form of three integers
+                      in the range of 0-255 represeting the red, green, and blue
+                      components of a color.
         """
         if face is not None:
             self.set_type_face(face)

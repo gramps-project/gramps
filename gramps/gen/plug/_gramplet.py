@@ -101,7 +101,7 @@ class Gramplet(object):
     def main(self): # return false finishes
         """
         The main place for the gramplet's code. This is a generator.
-        Generator which will be run in the background, through update().
+        Generator which will be run in the background, through :meth:`update`.
         """
         yield False
 
@@ -188,7 +188,7 @@ class Gramplet(object):
 
     def render_text(self, text):
         """
-        Render the given text, given that set_use_markup is on.
+        Render the given text, given that :meth:`set_use_markup` is on.
         """
         self.gui.render_text(text)
 
@@ -202,9 +202,14 @@ class Gramplet(object):
         """
         Clear and set the text to the given text. Additionally, move the
         cursor to the position given. Positions are: 
-           'start': start of textview
-           'end': end of textview
-           'begin': begin of line, before setting the text.
+
+            ========  =======================================
+            Position  Description
+            ========  =======================================
+            'start'   start of textview
+            'end'     end of textview
+            'begin'   begin of line, before setting the text.
+            ========  =======================================
         """
         self.gui.set_text(text, scroll_to)
 
@@ -212,9 +217,14 @@ class Gramplet(object):
         """
         Append the text to the textview. Additionally, move the
         cursor to the position given. Positions are: 
-           'start': start of textview
-           'end': end of textview
-           'begin': begin of line, before setting the text.
+
+            ========  =======================================
+            Position  Description
+            ========  =======================================
+            'start'   start of textview
+            'end'     end of textview
+            'begin'   begin of line, before setting the text.
+            ========  =======================================
         """
         self.gui.append_text(text, scroll_to)
 
@@ -246,7 +256,8 @@ class Gramplet(object):
 
     def no_wrap(self):
         """
-        The view in gramplet should not wrap. DEPRICATED: use set_wrap instead.
+        The view in gramplet should not wrap.
+        DEPRICATED: use :meth:`set_wrap` instead.
         """
         self.set_wrap(False)
 
@@ -272,7 +283,7 @@ class Gramplet(object):
 
     def update(self, *args):
         """
-        The main interface for running the main method.
+        The main interface for running the :meth:`main` method.
         """
         from gi.repository import GObject
         if ((not self.active or 
@@ -342,13 +353,13 @@ class Gramplet(object):
 
     def pause(self, *args):
         """
-        Pause the main method.
+        Pause the :meth:`main` method.
         """
         self._pause = True
 
     def resume(self, *args):
         """
-        Resume the main method that has previously paused.
+        Resume the :meth:`main` method that has previously paused.
         """
         from gi.repository import GObject
         self._pause = False
@@ -357,7 +368,8 @@ class Gramplet(object):
 
     def update_all(self, *args):
         """
-        Force the main loop to run right now (as opposed to running in background).
+        Force the main loop to run right now (as opposed to running in
+        background).
         """
         self._generator = self.main()
         if isinstance(self._generator, types.GeneratorType):

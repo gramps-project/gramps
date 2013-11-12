@@ -130,9 +130,9 @@ class GVOptions():
         """
         Add all graph related options to the menu.
         
-        @param menu: The menu the options should be added to.
-        @type menu: gen.plug.menu.Menu()
-        @return: nothing
+        :param menu: The menu the options should be added to.
+        :type menu: :class:`.Menu`
+        :return: nothing
         """
         ################################
         category = _("GraphViz Layout")
@@ -297,28 +297,28 @@ class GVDoc(object):
         Add a node to this graph. Nodes can be different shapes like boxes and
         circles.
         
-        @param node_id: A unique identification value for this node.
+        :param node_id: A unique identification value for this node.
             Example: "p55"
-        @type node_id: string
-        @param label: The text to be displayed in the node.
+        :type node_id: string
+        :param label: The text to be displayed in the node.
             Example: "John Smith"
-        @type label: string
-        @param shape: The shape for the node.
+        :type label: string
+        :param shape: The shape for the node.
             Examples: "box", "ellipse", "circle"
-        @type shape: string
-        @param color: The color of the node line.
+        :type shape: string
+        :param color: The color of the node line.
             Examples: "blue", "lightyellow"
-        @type color: string
-        @param style: The style of the node.
-        @type style: string
-        @param fillcolor: The fill color for the node.
+        :type color: string
+        :param style: The style of the node.
+        :type style: string
+        :param fillcolor: The fill color for the node.
             Examples: "blue", "lightyellow"
-        @type fillcolor: string
-        @param url: A URL for the node.
-        @type url: string
-        @param htmloutput: Whether the label contains HTML.
-        @type htmloutput: boolean
-        @return: nothing
+        :type fillcolor: string
+        :param url: A URL for the node.
+        :type url: string
+        :param htmloutput: Whether the label contains HTML.
+        :type htmloutput: boolean
+        :return: nothing
         """
         raise NotImplementedError
 
@@ -326,16 +326,16 @@ class GVDoc(object):
         """
         Add a link between two nodes.
         
-        @param id1: The unique identifier of the starting node.
+        :param id1: The unique identifier of the starting node.
             Example: "p55"
-        @type id1: string
-        @param id2: The unique identifier of the ending node.
+        :type id1: string
+        :param id2: The unique identifier of the ending node.
             Example: "p55"
-        @type id2: string
-        @param comment: A text string displayed at the end of the link line.
+        :type id2: string
+        :param comment: A text string displayed at the end of the link line.
             Example: "person C is the son of person A and person B"
-        @type comment: string
-        @return: nothing
+        :type comment: string
+        :return: nothing
         """
         raise NotImplementedError
 
@@ -343,10 +343,10 @@ class GVDoc(object):
         """
         Add a comment to the source file.
 
-        @param comment: A text string to add as a comment.
+        :param comment: A text string to add as a comment.
             Example: "Next comes the individuals."
-        @type comment: string
-        @return: nothing
+        :type comment: string
+        :return: nothing
         """
         raise NotImplementedError
 
@@ -354,10 +354,10 @@ class GVDoc(object):
         """
         Start a subgraph in this graph.
         
-        @param id: The unique identifier of the subgraph.
+        :param id: The unique identifier of the subgraph.
             Example: "p55"
-        @type id1: string
-        @return: nothing
+        :type id1: string
+        :return: nothing
         """
         raise NotImplementedError
 
@@ -365,7 +365,7 @@ class GVDoc(object):
         """
         End a subgraph that was previously started in this graph.
 
-        @return: nothing
+        :return: nothing
         """
         raise NotImplementedError
 

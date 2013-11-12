@@ -67,10 +67,10 @@ class BaseDoc(object):
         interface. This class should never be instantiated directly, but
         only through a derived class.
 
-        @param styles: StyleSheet containing the styles used.
-        @param paper_style: PaperStyle instance containing information about
-            the paper. If set to None, then the document is not a page
-            oriented document (e.g. HTML)
+        :param styles: :class:`.StyleSheet` containing the styles used.
+        :param paper_style: :class:`.PaperStyle` instance containing information
+                            about the paper. If set to None, then the document
+                            is not a page oriented document (e.g. HTML)
         """
         self.paper = paper_style
         self._style_sheet = styles
@@ -90,16 +90,16 @@ class BaseDoc(object):
         
     def get_style_sheet(self):
         """
-        Return the StyleSheet of the document.
+        Return the :class:`.StyleSheet` of the document.
         """
         return StyleSheet(self._style_sheet)
     
     def set_style_sheet(self, style_sheet):
         """
-        Set the StyleSheet of the document.
+        Set the :class:`.StyleSheet` of the document.
 
-        @param style_sheet: The new style sheet for the document
-        @type  style_sheet: StyleSheet
+        :param style_sheet: The new style sheet for the document
+        :type  style_sheet: :class:`.StyleSheet`
         """
         self._style_sheet = StyleSheet(style_sheet)
 
@@ -107,7 +107,7 @@ class BaseDoc(object):
         """
         Opens the file so that it can be generated.
 
-        @param filename: path name of the file to create
+        :param filename: path name of the file to create
         """
         raise NotImplementedError
 

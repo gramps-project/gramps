@@ -43,8 +43,8 @@ class Citation(object):
         """
         Provide the handle to the source that this citation is for.
         
-        @return: Source Handle
-        @rtype: handle
+        :return: Source Handle
+        :rtype: handle
         """
         return self.__src_handle
     
@@ -52,8 +52,8 @@ class Citation(object):
         """
         Set the handle for the source that this citation is for.
 
-        @param handle: Source Handle
-        @type handle: handle
+        :param handle: Source Handle
+        :type handle: handle
         """
         self.__src_handle = handle
         
@@ -61,8 +61,8 @@ class Citation(object):
         """
         List all the references to this citation.
 
-        @return: a list of references
-        @rtype: list of L{gen.lib.srcref} objects
+        :return: a list of references
+        :rtype: list of :class:`~.citation.Citation` objects
         """
         return self.__ref_list
 
@@ -71,10 +71,10 @@ class Citation(object):
         Add a reference to this citation. If a similar reference exists, don't
         add another one.
 
-        @param source_ref: Source Reference
-        @type source_ref: L{gen.lib.citation}
-        @return: The key of the added reference among all the references.
-        @rtype: char
+        :param source_ref: Source Reference
+        :type source_ref: :class:`~.citation.Citation`
+        :return: The key of the added reference among all the references.
+        :rtype: char
         """
         letter_count = len(string.ascii_lowercase)
         ref_count = len(self.__ref_list)
@@ -120,12 +120,13 @@ class Bibliography(object):
         ref information you are interested in by passing in the mode.
         
         Possible modes include:
-            MODE_DATE
-            MODE_PAGE
-            MODE_CONF
-            MODE_NOTE
-            MODE_MEDIA
-            MODE_ALL
+
+        - MODE_DATE
+        - MODE_PAGE
+        - MODE_CONF
+        - MODE_NOTE
+        - MODE_MEDIA
+        - MODE_ALL
         
         If you only care about pages, set "mode=MODE_PAGE".
         If you only care about dates and pages, set "mode=MODE_DATE|MODE_PAGE".
@@ -140,20 +141,22 @@ class Bibliography(object):
         exists, don't add it again. If a similar reference exists, don't
         add another one.
 
-        @param citation: Citation object
-        @type citation: L{gen.lib.Citation}
-        @return: A tuple containing the index of the source among all the 
-        sources and the key of the reference among all the references. If 
-        there is no reference information, the second element will be None.
-        @rtype: (int,char) or (int,None)
+        :param citation: Citation object
+        :type citation: :class:`~.citation.Citation`
+        :return: A tuple containing the index of the source among all the 
+                 sources and the key of the reference among all the references.
+                 If there is no reference information, the second element will
+                 be None.
+        :rtype: (int,char) or (int,None)
         
-        N.B. Within this file, the name 'citation' is used both for
-        gen.lib.Citation, and for _bibliography.Citation. It is not clear how
-        best to rename the concepts in this file to avoid the clash, so the
-        names have been retained. In this function, lib_citation is used for
-        gen.lib.Citation instances, and citation for _bibliography.Citation
-        instances. Elsewhere in this file, source_ref is used for
-        gen.lib.Citation instances.
+        .. note:: 
+            Within this file, the name 'citation' is used both for
+            gen.lib.Citation, and for _bibliography.Citation. It is not clear
+            how best to rename the concepts in this file to avoid the clash,
+            so the names have been retained. In this function, lib_citation
+            is used for gen.lib.Citation instances, and citation for
+            _bibliography.Citation instances. Elsewhere in this file,
+            source_ref is used for gen.lib.Citation instances.
         """
         source_handle = lib_citation.get_reference_handle()
         cindex = 0
@@ -186,8 +189,8 @@ class Bibliography(object):
         """
         Report the number of citations in this bibliography.
 
-        @return: number of citations
-        @rtype: int
+        :return: number of citations
+        :rtype: int
         """
         return len(self.__citation_list)
     
@@ -195,8 +198,8 @@ class Bibliography(object):
         """
         Return a list containing all the citations in this bibliography.
 
-        @return: citation list
-        @rtype: list of L{Citation} objects
+        :return: citation list
+        :rtype: list of :class:`Citation` objects
         """
         return self.__citation_list
 

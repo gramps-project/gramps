@@ -48,13 +48,13 @@ class Option(Callback):
     
     def __init__(self, label, value):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "Exclude living people"
-        @type label: string
-        @param value: An initial value for this option.
+        :type label: string
+        :param value: An initial value for this option.
             Example: True
-        @type value: The type will depend on the type of option.
-        @return: nothing
+        :type value: The type will depend on the type of option.
+        :return: nothing
         """
         Callback.__init__(self)
         self.__value = value
@@ -66,7 +66,7 @@ class Option(Callback):
         """
         Get the friendly label for this option.
         
-        @return: string
+        :return: string
         """
         return self.__label
     
@@ -74,10 +74,10 @@ class Option(Callback):
         """
         Set the friendly label for this option.
         
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "Exclude living people"
-        @type label: string
-        @return: nothing
+        :type label: string
+        :return: nothing
         """
         self.__label = label
         
@@ -85,7 +85,7 @@ class Option(Callback):
         """
         Get the value of this option.
         
-        @return: The option value.
+        :return: The option value.
         """
         return self.__value
     
@@ -93,10 +93,10 @@ class Option(Callback):
         """
         Set the value of this option.
         
-        @param value: A value for this option.
+        :param value: A value for this option.
             Example: True
-        @type value: The type will depend on the type of option.
-        @return: nothing
+        :type value: The type will depend on the type of option.
+        :return: nothing
         """
         self.__value = value
         self.emit('value-changed')
@@ -105,7 +105,7 @@ class Option(Callback):
         """
         Get the help information for this option.
         
-        @return: A string that provides additional help beyond the label.
+        :return: A string that provides additional help beyond the label.
         """
         return self.__help_str
         
@@ -113,11 +113,11 @@ class Option(Callback):
         """
         Set the help information for this option.
         
-        @param help: A string that provides additional help beyond the label.
+        :param help: A string that provides additional help beyond the label.
             Example: "Whether to include or exclude people who are calculated 
             to be alive at the time of the generation of this report"
-        @type value: string
-        @return: nothing
+        :type value: string
+        :return: nothing
         """
         self.__help_str = help_text
         
@@ -125,11 +125,11 @@ class Option(Callback):
         """
         Set the availability of this option.
         
-        @param avail: An indicator of whether this option is currently 
-        available. True indicates that the option is available. False indicates
-        that the option is not available.
-        @type avail: Bool
-        @return: nothing
+        :param avail: An indicator of whether this option is currently 
+                      available. True indicates that the option is available. 
+                      False indicates that the option is not available.
+        :type avail: Bool
+        :return: nothing
         """
         if avail != self.__available:
             self.__available = avail
@@ -139,8 +139,8 @@ class Option(Callback):
         """
         Get the availability of this option.
         
-        @return: A Bool indicating the availablity of this option. 
-        True indicates that the option is available. 
-        False indicates that the option is not available.
+        :return: A Bool indicating the availablity of this option. True 
+                 indicates that the option is available. False indicates that
+                 the option is not available.
         """
         return self.__available

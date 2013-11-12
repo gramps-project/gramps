@@ -43,12 +43,12 @@ class PersonListOption(Option):
     """
     def __init__(self, label):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "People of interest"
-        @type label: string
-        @param value: A set of GIDs as initial values for this option.
+        :type label: string
+        :param value: A set of GIDs as initial values for this option.
             Example: "111 222 333 444"
-        @type value: string
-        @return: nothing
+        :type value: string
+        :return: nothing
         """
         Option.__init__(self, label, "")

@@ -67,9 +67,9 @@ class PaperSize(object):
         """
         Create a new paper style with.
 
-        @param name: name of the new style
-        @param height: page height in centimeters
-        @param width: page width in centimeters
+        :param name: name of the new style
+        :param height: page height in centimeters
+        :param width: page width in centimeters
         """
         self.name = name
         self.height = height
@@ -117,10 +117,10 @@ class PaperStyle(object):
         """
         Create a new paper style.
 
-        @param size: size of the new style
-        @type size: PaperSize
-        @param orientation: page orientation
-        @type orientation: PAPER_PORTRAIT or PAPER_LANDSCAPE
+        :param size: size of the new style
+        :type size: :class:`.PaperSize`
+        :param orientation: page orientation
+        :type orientation: PAPER_PORTRAIT or PAPER_LANDSCAPE
 
         """
         self.__orientation = orientation
@@ -142,8 +142,8 @@ class PaperStyle(object):
         """
         Return the size of the paper.
 
-        @returns: object indicating the paper size
-        @rtype: PaperSize
+        :returns: object indicating the paper size
+        :rtype: :class:`.PaperSize`
         
         """
         return self.__size
@@ -152,8 +152,8 @@ class PaperStyle(object):
         """
         Return the orientation of the page.
 
-        @returns: PAPER_PORTRIAT or PAPER_LANDSCAPE
-        @rtype: int
+        :returns: PAPER_PORTRIAT or PAPER_LANDSCAPE
+        :rtype: int
         
         """
         return self.__orientation
@@ -180,8 +180,8 @@ class PaperStyle(object):
         """
         Return the right margin.
 
-        @returns: Right margin in centimeters
-        @rtype: float
+        :returns: Right margin in centimeters
+        :rtype: float
         
         """
         return self.__rmargin
@@ -190,8 +190,8 @@ class PaperStyle(object):
         """
         Return the left margin.
 
-        @returns: Left margin in centimeters
-        @rtype: float
+        :returns: Left margin in centimeters
+        :rtype: float
         
         """
         return self.__lmargin
@@ -200,8 +200,8 @@ class PaperStyle(object):
         """
         Return the top margin.
 
-        @returns: Top margin in centimeters
-        @rtype: float
+        :returns: Top margin in centimeters
+        :rtype: float
         
         """
         return self.__tmargin
@@ -210,8 +210,8 @@ class PaperStyle(object):
         """
         Return the bottom margin.
 
-        @returns: Bottom margin in centimeters
-        @rtype: float
+        :returns: Bottom margin in centimeters
+        :rtype: float
         
         """
         return self.__bmargin

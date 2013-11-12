@@ -125,7 +125,7 @@ class DocBackend(object):
 
     def __init__(self, filename=None):
         """
-        @param filename: path name of the file the backend works on
+        :param filename: path name of the file the backend works on
         """
         self.__file = None
         self._filename = filename
@@ -139,8 +139,8 @@ class DocBackend(object):
     def setf(self, value):
         """
         Set the filename on which the backend writes, changing the value 
-        passed on initialization
-        Can only be done if the previous filename is not open
+        passed on initialization.
+        Can only be done if the previous filename is not open.
         """
         if self.__file is not None:
             raise ValueError(_('Close file first'))
@@ -182,40 +182,42 @@ class DocBackend(object):
         self.__file = None        
 
     def write(self, string):
-        """Write a string to the file. There is no return value. 
-            Due to buffering, the string may not actually show up untill the 
-            close() method is called.
+        """
+        Write a string to the file. There is no return value. 
+        Due to buffering, the string may not actually show up until the 
+        :meth:`close` method is called.
         """
         self.__file.write(string)
 
     def writelines(self, sequence):
-        """Write a sequence of strings to the file. The sequence can be any 
-            iterable object producing strings, typically a list of strings. 
+        """
+        Write a sequence of strings to the file. The sequence can be any 
+        iterable object producing strings, typically a list of strings. 
         """
         self.__file.writelines(sequence)
     
     def escape(self, preformatted=False):
         """
         The escape func on text for this file format.
-        @param preformatted: bool: some formats can have different escape 
-                function for normal text and preformatted text
-        
+
+        :param preformatted: some formats can have different escape function
+                             for normal text and preformatted text
+        :type preformatted: bool
         """
         return self.ESCAPE_FUNC()
         
     
     def find_tag_by_stag(self, s_tag):
         """
-        @param s_tag: object: assumed styledtexttag
-        @param s_tagvalue: None/int/str: value associated with the tag
+        :param s_tag: object: assumed styledtexttag
+        :param s_tagvalue: None/int/str: value associated with the tag
         
-        A styled tag is type with a value. 
-        Every styled tag must be converted to the tags used in the corresponding
-            markup for the backend, eg <b>text</b> for bold in html.
-        These markups are stored in STYLETAG_MARKUP. They are tuples for begin
-            and end tag
-        If a markup is not present yet, it is created, using the 
-            _create_xmltag method you can overwrite
+        A styled tag is type with a value. Every styled tag must be converted
+        to the tags used in the corresponding markup for the backend, 
+        eg <b>text</b> for bold in html. These markups are stored in 
+        STYLETAG_MARKUP. They are tuples for begin and end tag. If a markup is
+        not present yet, it is created, using the :meth:`_create_xmltag` method
+        you can overwrite.
         """
         tagtype = s_tag.name
         
@@ -269,23 +271,23 @@ class DocBackend(object):
         s_tags which are assumed to be styledtexttags.
         When split is given the text will be split over the value given, and 
         tags applied in such a way that it the text can be safely splitted in
-        pieces along split
+        pieces along split.
         
-        @param text   : str, a piece of text
-        @param s_tags : styledtexttags that must be applied to the text
-        @param split  : str, optional. A string along which the output can 
-                    be safely split without breaking the styling.
+        :param text: str, a piece of text
+        :param s_tags: styledtexttags that must be applied to the text
+        :param split: str, optional. A string along which the output can 
+                      be safely split without breaking the styling.
+ 
         As adding markup means original text must be escaped, ESCAPE_FUNC is 
-            used
-        This can be used to convert the text of a styledtext to the format 
-            needed for a document backend
-        Do not call this method in a report, use the write_markup method
+        used. This can be used to convert the text of a styledtext to the format 
+        needed for a document backend.  Do not call this method in a report,
+        use the :meth:`write_markup` method.
             
-        @note: the algorithm is complex as it assumes mixing of tags is not
-                allowed: eg <b>text<i> here</b> not</i> is assumed invalid
-                as markup. If the s_tags require such a setup, what is returned
-                is <b>text</b><i><b> here</b> not</i>
-               overwrite this method if this complexity is not needed. 
+        .. note:: the algorithm is complex as it assumes mixing of tags is not
+                  allowed: eg <b>text<i> here</b> not</i> is assumed invalid
+                  as markup. If the s_tags require such a setup, what is
+                  returned is <b>text</b><i><b> here</b> not</i>
+                  overwrite this method if this complexity is not needed. 
         """
         #unicode text must be sliced correctly
         text = cuni(text)

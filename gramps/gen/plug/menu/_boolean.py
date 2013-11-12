@@ -42,12 +42,12 @@ class BooleanOption(Option):
     """
     def __init__(self, label, value):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "Exclude living people"
-        @type label: string
-        @param value: An initial value for this option.
+        :type label: string
+        :param value: An initial value for this option.
             Example: True
-        @type value: boolean
-        @return: nothing
+        :type value: boolean
+        :return: nothing
         """
         Option.__init__(self, label, value)

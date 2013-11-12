@@ -97,19 +97,27 @@ class DrawDoc(object):
         raise NotImplementedError
     
     def draw_box(self, style, text, x, y, w, h, mark=None):
-        """ @param mark:  IndexMark to use for indexing (if supported) """
+        """
+        :param mark: :class:`.IndexMark` to use for indexing (if supported)
+        """
         raise NotImplementedError
 
     def draw_text(self, style, text, x1, y1, mark=None):
-        """ @param mark:  IndexMark to use for indexing (if supported) """
+        """
+        :param mark: :class:`.IndexMark` to use for indexing (if supported)
+        """
         raise NotImplementedError
 
     def center_text(self, style, text, x1, y1, mark=None):
-        """ @param mark:  IndexMark to use for indexing (if supported) """
+        """
+        :param mark: :class:`.IndexMark` to use for indexing (if supported)
+        """
         raise NotImplementedError
 
     def rotate_text(self, style, text, x, y, angle, mark=None):
-        """ @param mark:  IndexMark to use for indexing (if supported) """
+        """
+        :param mark: :class:`.IndexMark` to use for indexing (if supported)
+        """
         raise NotImplementedError
     
     def draw_line(self, style, x1, y1, x2, y2):

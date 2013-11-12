@@ -61,8 +61,9 @@ class TableStyle(object):
         Create a new TableStyle object, with the values initialized to
         empty, with allocating space for up to 100 columns.
 
-        @param obj: if not None, then the object created gets is attributes
-            from the passed object instead of being initialized to empty.
+        :param obj: if not None, then the object created gets is attributes
+                    from the passed object instead of being initialized to
+                    empty.
         """
         if obj:
             self.width = obj.width
@@ -90,7 +91,7 @@ class TableStyle(object):
         """
         Set the number of columns.
 
-        @param columns: number of columns that should be used.
+        :param columns: number of columns that should be used.
         """
         self.columns = columns
 
@@ -113,8 +114,8 @@ class TableStyle(object):
         """
         Set the width of a specified column to the specified width.
 
-        @param index: column being set (index starts at 0)
-        @param width: percentage of the table width assigned to the column
+        :param index: column being set (index starts at 0)
+        :param width: percentage of the table width assigned to the column
         """
         self.colwid[index] = width
 
@@ -123,7 +124,7 @@ class TableStyle(object):
         Return the column width of the specified column as a percentage of
         the entire table width.
 
-        @param index: column to return (index starts at 0)
+        :param index: column to return (index starts at 0)
         """
         return self.colwid[index]
 
@@ -141,8 +142,9 @@ class TableCellStyle(object):
         """
         Create a new TableCellStyle instance.
 
-        @param obj: if not None, specifies that the values should be
-            copied from the passed object instead of being initialized to empty.
+        :param obj: if not None, specifies that the values should be
+                    copied from the passed object instead of being initialized
+                    to empty.
         """
         if obj:
             self.rborder = obj.rborder
@@ -167,7 +169,7 @@ class TableCellStyle(object):
         """
         Defines if a border is used
 
-        @param val: if True, a border is used, if False, it is not
+        :param val: if True, a border is used, if False, it is not
         """
         self.rborder = val
         self.lborder = val
@@ -178,7 +180,7 @@ class TableCellStyle(object):
         """
         Defines if a right border in used
 
-        @param val: if True, a right border is used, if False, it is not
+        :param val: if True, a right border is used, if False, it is not
         """
         self.rborder = val
 
@@ -186,7 +188,7 @@ class TableCellStyle(object):
         """
         Defines if a left border in used
 
-        @param val: if True, a left border is used, if False, it is not
+        :param val: if True, a left border is used, if False, it is not
         """
         self.lborder = val
 
@@ -194,7 +196,7 @@ class TableCellStyle(object):
         """
         Defines if a top border in used
 
-        @param val: if True, a top border is used, if False, it is not
+        :param val: if True, a top border is used, if False, it is not
         """
         self.tborder = val
 
@@ -202,7 +204,7 @@ class TableCellStyle(object):
         """
         Defines if a bottom border in used
 
-        @param val: if 1, a bottom border is used, if 0, it is not
+        :param val: if 1, a bottom border is used, if 0, it is not
         """
         self.bborder = val
 

@@ -43,12 +43,12 @@ class PersonOption(StringOption):
     """
     def __init__(self, label):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "Center Person"
-        @type label: string
-        @param value: A Gramps ID of a person for this option.
+        :type label: string
+        :param value: A Gramps ID of a person for this option.
             Example: "p11"
-        @type value: string
-        @return: nothing
+        :type value: string
+        :return: nothing
         """
         StringOption.__init__(self, label, "")

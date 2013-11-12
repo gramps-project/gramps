@@ -43,22 +43,22 @@ class NumberOption(Option):
     """
     def __init__(self, label, value, min_val, max_val, step = 1):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "Number of generations to include"
-        @type label: string
-        @param value: An initial value for this option.
+        :type label: string
+        :param value: An initial value for this option.
             Example: 5
-        @type value: int
-        @param min: The minimum value for this option.
+        :type value: int
+        :param min: The minimum value for this option.
             Example: 1
-        @type min: int
-        @param max: The maximum value for this option.
+        :type min: int
+        :param max: The maximum value for this option.
             Example: 10
-        @type value: int
-        @param step: The step size for this option.
+        :type value: int
+        :param step: The step size for this option.
             Example: 0.01
-        @type value: int or float
-        @return: nothing
+        :type value: int or float
+        :return: nothing
         """
         Option.__init__(self, label, value)
         self.__min = min_val
@@ -69,7 +69,7 @@ class NumberOption(Option):
         """
         Get the minimum value for this option.
         
-        @return: an int that represents the minimum value for this option.
+        :return: an int that represents the minimum value for this option.
         """
         return self.__min
     
@@ -77,7 +77,7 @@ class NumberOption(Option):
         """
         Get the maximum value for this option.
         
-        @return: an int that represents the maximum value for this option.
+        :return: an int that represents the maximum value for this option.
         """
         return self.__max
     
@@ -85,6 +85,6 @@ class NumberOption(Option):
         """
         Get the step size for this option.
         
-        @return: an int that represents the step size for this option.
+        :return: an int that represents the step size for this option.
         """
         return self.__step

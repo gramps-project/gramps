@@ -44,12 +44,12 @@ class SurnameColorOption(Option):
     """
     def __init__(self, label):
         """
-        @param label: A friendly label to be applied to this option.
+        :param label: A friendly label to be applied to this option.
             Example: "Family lines"
-        @type label: string
-        @param value: A set of surnames and colours.
+        :type label: string
+        :param value: A set of surnames and colours.
             Example: "surname1 colour1 surname2 colour2"
-        @type value: string
-        @return: nothing
+        :type value: string
+        :return: nothing
         """
         Option.__init__(self, label, "")

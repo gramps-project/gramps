@@ -117,10 +117,10 @@ class TextDoc(object):
         """
         Starts a new paragraph, using the specified style name.
 
-        @param style_name: name of the ParagraphStyle to use for the
-            paragraph.
-        @param leader: Leading text for a paragraph. Typically used
-            for numbering.
+        :param style_name: name of the :class:`.ParagraphStyle` to use for the
+                           paragraph.
+        :param leader: Leading text for a paragraph. Typically used
+                       for numbering.
         """
         raise NotImplementedError
 
@@ -134,8 +134,8 @@ class TextDoc(object):
         """
         Starts a new table.
 
-        @param name: Unique name of the table.
-        @param style_name: TableStyle to use for the new table
+        :param name: Unique name of the table.
+        :param style_name: :class:`.TableStyle` to use for the new table
         """
         raise NotImplementedError
 
@@ -159,8 +159,8 @@ class TextDoc(object):
         """
         Starts a new table cell, using the paragraph style specified.
 
-        @param style_name: TableCellStyle to use for the cell
-        @param span: number of columns to span
+        :param style_name: :class:`.TableCellStyle` to use for the cell
+        :param span: number of columns to span
         """
         raise NotImplementedError
 
@@ -175,9 +175,9 @@ class TextDoc(object):
         Writes the text in the current paragraph. Should only be used after a
         start_paragraph and before an end_paragraph.
 
-        @param text: text to write.
-        @param mark:  IndexMark to use for indexing (if supported)
-        @param links: make URLs in the text clickable (if supported)
+        :param text: text to write.
+        :param mark:  :class:`.IndexMark` to use for indexing (if supported)
+        :param links: make URLs in the text clickable (if supported)
         """
         raise NotImplementedError
     
@@ -188,10 +188,10 @@ class TextDoc(object):
         s_tags, then the same happens as with write_text. Backends supporting
         write_markup will overwrite this method 
         
-        @param text: text to write. The text is assumed to be _not_ escaped
-        @param s_tags:  assumed to be list of styledtexttags to apply to the
-                        text
-        @param mark:  IndexMark to use for indexing (if supported)
+        :param text: text to write. The text is assumed to be _not_ escaped
+        :param s_tags: assumed to be list of styledtexttags to apply to the
+                       text
+        :param mark:  :class:`.IndexMark` to use for indexing (if supported)
         """
         self.write_text(text, mark=mark)
 
@@ -200,9 +200,9 @@ class TextDoc(object):
         Writes the note's text and take care of paragraphs, 
         depending on the format. 
 
-        @param text: text to write.
-        @param format: format to use for writing. True for flowed text, 
-            1 for preformatted text.
+        :param text: text to write.
+        :param format: format to use for writing. True for flowed text, 
+                       1 for preformatted text.
         """
         raise NotImplementedError
 
@@ -210,14 +210,16 @@ class TextDoc(object):
                           contains_html=False, links=False):
         """
         Convenience function to write a styledtext to the cairo doc. 
-        styledtext : assumed a StyledText object to write
-        format : = 0 : Flowed, = 1 : Preformatted
-        style_name : name of the style to use for default presentation
-        contains_html: bool, the backend should not check if html is present. 
+
+        :param styledtext: assumed a :class:`.StyledText` object to write
+        :param format: 0 = Flowed, 1 = Preformatted
+        :param style_name: name of the style to use for default presentation
+        :param contains_html:
+            bool, the backend should not check if html is present. 
             If contains_html=True, then the textdoc is free to handle that in 
             some way. Eg, a textdoc could remove all tags, or could make sure
             a link is clickable. 
-        links: bool, make URLs in the text clickable (if supported)
+        :param links: bool, make URLs in the text clickable (if supported)
         
         overwrite this method if the backend supports styled notes
         """
@@ -226,7 +228,7 @@ class TextDoc(object):
     
     def write_text_citation(self, text, mark=None, links=None):
         """
-        Method to write text with GRAMPS <super> citation marks.
+        Method to write text with Gramps <super> citation marks.
         """
         if not text:
             return
@@ -260,21 +262,22 @@ class TextDoc(object):
         """
         Add a photo of the specified width (in centimeters).
 
-        @param name: filename of the image to add
-        @param align: alignment of the image. Valid values are 'left',
-            'right', 'center', and 'single'
-        @param w_cm: width in centimeters
-        @param h_cm: height in centimeters
-        @param alt: an alternative text to use. Useful for eg html reports
-        @param style_name: style to use for captions
-        @param crop: image cropping parameters
+        :param name: filename of the image to add
+        :param align: alignment of the image. Valid values are 'left',
+                      'right', 'center', and 'single'
+        :param w_cm: width in centimeters
+        :param h_cm: height in centimeters
+        :param alt: an alternative text to use. Useful for eg html reports
+        :param style_name: style to use for captions
+        :param crop: image cropping parameters
         """
         raise NotImplementedError
     
     def start_link(self, link):
         """
         Start a link section. This defaults to underlining.
-        @param link: should be an item that makes sense in this
+
+        :param link: should be an item that makes sense in this
                      docgen type, if it implements linking.
         """
         self.start_underline()

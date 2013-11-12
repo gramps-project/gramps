@@ -23,7 +23,7 @@
 # $Id$
 
 """
-The core of the GRAMPS plugin system. This module provides capability to load
+The core of the Gramps plugin system. This module provides capability to load
 plugins from specified directories and provide information about the loaded
 plugins.
 
@@ -66,12 +66,14 @@ _UNAVAILABLE = _("No description was provided")
 #
 #-------------------------------------------------------------------------
 class BasePluginManager(object):
-    """ unique singleton storage class for a PluginManager. """
+    """ unique singleton storage class for a :class:`.PluginManager`. """
 
     __instance = None
     
     def get_instance():
-        """ Use this function to get the instance of the PluginManager """
+        """
+        Use this function to get the instance of the :class:`.PluginManager`
+        """
         if BasePluginManager.__instance is None:
             BasePluginManager.__instance = 1 # Set to 1 for __init__()
             BasePluginManager.__instance = BasePluginManager()
@@ -190,8 +192,8 @@ class BasePluginManager(object):
 
     def load_plugin(self, pdata):
         """
-        Load a PluginData object. This means import of the python module.
-        Plugin directories are added to sys path, so files are found
+        Load a :class:`.PluginData` object. This means import of the python 
+        module. Plugin directories are added to sys path, so files are found
         """
         if pdata.id in self.__loaded_plugins:
             return self.__loaded_plugins[pdata.id]
@@ -338,21 +340,21 @@ class BasePluginManager(object):
 
     def get_plugin(self, id):
         """ 
-        Returns a plugin object from PluginRegister by id.
+        Returns a plugin object from :class:`.PluginRegister` by id.
         """
         return self.__pgr.get_plugin(id)
 
     def get_reg_reports(self, gui=True):
         """ Return list of registered reports
-        :Param gui: bool indicating if GUI reports or CLI reports must be
-            returned
+        :param gui: bool indicating if GUI reports or CLI reports must be
+                    returned
         """
         return self.__pgr.report_plugins(gui)
     
     def get_reg_tools(self, gui=True):
         """ Return list of registered tools
-        :Param gui: bool indicating if GUI reports or CLI reports must be
-            returned
+        :aram gui: bool indicating if GUI reports or CLI reports must be
+                   returned
         """
         return self.__pgr.tool_plugins(gui)
     
@@ -473,7 +475,7 @@ class BasePluginManager(object):
         """
         Get the list of import plugins.
         
-        @return: [gen.plug.ImportPlugin] (a list of ImportPlugin instances)
+        :return: :class:`.ImportPlugin` (a list of ImportPlugin instances)
         """
         ## TODO: would it not be better to remove ImportPlugin and use
         ## only PluginData, loading from module when importfunction needed?
@@ -496,7 +498,7 @@ class BasePluginManager(object):
         """
         Get the list of export plugins.
         
-        @return: [gen.plug.ExportPlugin] (a list of ExportPlugin instances)
+        :return: :class:`.ExportPlugin` (a list of ExportPlugin instances)
         """
         ## TODO: would it not be better to remove ExportPlugin and use
         ## only PluginData, loading from module when export/options needed?
@@ -524,7 +526,7 @@ class BasePluginManager(object):
         """
         Get the list of docgen plugins.
         
-        @return: [gen.plug.DocGenPlugin] (a list of DocGenPlugin instances)
+        :return: :class:`.DocGenPlugin` (a list of DocGenPlugin instances)
         """
         ## TODO: would it not be better to return list of plugindata, and only
         ##       import those docgen that will then actuallly be needed? 
@@ -556,7 +558,7 @@ class BasePluginManager(object):
         """
         Get the list of docgen plugin names.
         
-        @return: a list of DocGenPlugin names
+        :return: a list of :class:`.DocGenPlugin` names
         """
         if self.__docgen_names == []:
             hiddenplugins = config.get("plugin.hiddenplugins")
@@ -572,11 +574,12 @@ class BasePluginManager(object):
         Register a mapping from option to guioption for an option
         that is not native to Gramps but provided by the plugin writer.
         This should typically be called during initialisation of a
-        ReportOptions class.
-        @param option:      the option class
-        @type option:       class that inherits from gen.plug.menu.Option
-        @param guioption:   the gui-option class
-        @type guioption:    class that inherits from Gtk.Widget.
+        :class:`.ReportOptions` class.
+
+        :param option:      the option class
+        :type option:       class that inherits from gen.plug.menu.Option
+        :param guioption:   the gui-option class
+        :type guioption:    class that inherits from Gtk.Widget.
         """
         self.__external_opt_dict[option] = guioption;
 

@@ -55,24 +55,24 @@ from ...constfunc import cuni
 def pt2cm(pt):
     """
     Convert points to centimeters. Fonts are typically specified in points, 
-    but the BaseDoc classes use centimeters.
+    but the :class:`.BaseDoc` classes use centimeters.
 
-    @param pt: points
-    @type pt: float or int
-    @returns: equivalent units in centimeters
-    @rtype: float
+    :param pt: points
+    :type pt: float or int
+    :returns: equivalent units in centimeters
+    :rtype: float
     """
     return pt/28.3465
 
 def cm2pt(cm):
     """
     Convert centimeters to points. Fonts are typically specified in points, 
-    but the BaseDoc classes use centimeters.
+    but the :class:`.BaseDoc` classes use centimeters.
 
-    @param cm: centimeters
-    @type cm: float or int
-    @returns: equivalent units in points
-    @rtype: float
+    :param cm: centimeters
+    :type cm: float or int
+    :returns: equivalent units in points
+    :rtype: float
     """
     return cm*28.3465
 
@@ -80,10 +80,10 @@ def rgb_color(color):
     """
     Convert color value from 0-255 integer range into 0-1 float range.
 
-    @param color: list or tuple of integer values for red, green, and blue
-    @type color: int
-    @returns: (r, g, b) tuple of floating point color values
-    @rtype: 3-tuple
+    :param color: list or tuple of integer values for red, green, and blue
+    :type color: int
+    :returns: (r, g, b) tuple of floating point color values
+    :rtype: 3-tuple
     """
     r = float(color[0])/255.0
     g = float(color[1])/255.0
@@ -178,8 +178,8 @@ def get_person_mark(db, person):
     """
     Return a IndexMark that can be used to index a person in a report
     
-    @param db: the GRAMPS database instance
-    @param person: the key is for
+    :param db: the Gramps database instance
+    :param person: the key is for
     """
     if not person:
         return None
@@ -215,7 +215,7 @@ def get_address_str(addr):
     """
     Return a string that combines the elements of an address
     
-    @param addr: the GRAMPS address instance
+    :param addr: the Gramps address instance
     """
     str = ""
     elems = [ addr.get_street(), 
@@ -244,10 +244,10 @@ def get_person_filters(person, include_single=True):
     """
     Return a list of filters that are relevant for the given person
 
-    @param person: the person the filters should apply to.
-    @type person: L{Person}
-    @param include_single: include a filter to include the single person
-    @type person: boolean
+    :param person: the person the filters should apply to.
+    :type person: :class:`~.person.Person`
+    :param include_single: include a filter to include the single person
+    :type include_single: boolean
     """
     from ...filters import GenericFilter, rules, CustomFilters
     from ...display.name import displayer as name_displayer

@@ -31,23 +31,23 @@ Abstracted option handling.
 #-------------------------------------------------------------------------
 class Menu(object):
     """
-    Introduction
-    ============
+    **Introduction**
+
     A Menu is used to maintain a collection of options that need to be 
     represented to the user in a non-implementation specific way. The options
     can be described using the various option classes. A menu contains many
     options and associates them with a unique name and category.
     
-    Usage
-    =====
+    **Usage**
+
     Menus are used in the following way.
 
-      1. Create an option object and configure all the attributes of the option.
-      2. Add the option to the menu by specifying the option, name and category.
-      3. Add as many options as necessary.
-      4. When all the options are added, the menu can be stored and passed to
-         the part of the system that will actually represent the menu to 
-         the user.
+    1. Create an option object and configure all the attributes of the option.
+    2. Add the option to the menu by specifying the option, name and category.
+    3. Add as many options as necessary.
+    4. When all the options are added, the menu can be stored and passed to
+       the part of the system that will actually represent the menu to 
+       the user.
     """
     def __init__(self):
         # __options holds all the options by their category
@@ -59,16 +59,16 @@ class Menu(object):
         """
         Add an option to the menu.
         
-        @param category: A label that describes the category that the option 
+        :param category: A label that describes the category that the option 
             belongs to. 
             Example: "Report Options"
-        @type category: string
-        @param name: A name that is unique to this option.
+        :type category: string
+        :param name: A name that is unique to this option.
             Example: "generations"
-        @type name: string
-        @param option: The option instance to be added to this menu.
-        @type option: gen.plug.menu.Option
-        @return: nothing
+        :type name: string
+        :param option: The option instance to be added to this menu.
+        :type option: gen.plug.menu.Option
+        :return: nothing
         """
         if category not in self.__options:
             self.__categories.append(category)
@@ -79,7 +79,7 @@ class Menu(object):
         """
         Get a list of categories in this menu.
         
-        @return: a list of strings
+        :return: a list of strings
         """
         return self.__categories
     
@@ -87,7 +87,7 @@ class Menu(object):
         """
         Get a list of option names for the specified category.
         
-        @return: a list of strings
+        :return: a list of strings
         """
         names = []
         for (name, option) in self.__options[category]:
@@ -98,7 +98,7 @@ class Menu(object):
         """
         Get an option with the specified category and name.
         
-        @return: an Option instance or None on failure.
+        :return: an :class:`.Option` instance or None on failure.
         """
         for (oname, option) in self.__options[category]:
             if oname == name:
@@ -109,7 +109,7 @@ class Menu(object):
         """
         Get a list of all the option names in this menu.
         
-        @return: a list of strings
+        :return: a list of strings
         """
         names = []
         for category in self.__options:
@@ -121,7 +121,7 @@ class Menu(object):
         """
         Get an option with the specified name.
         
-        @return: an Option instance or None on failure.
+        :return: an :class:`.Option` instance or None on failure.
         """
         for category in self.__options:
             for (oname, option) in self.__options[category]:

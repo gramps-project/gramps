@@ -20,7 +20,7 @@
 # $Id$
 
 """
-This module provides the Plugin class for import plugins.
+This module provides the :class:`.Plugin` class for import plugins.
 """
 
 from . import Plugin
@@ -31,13 +31,13 @@ class ImportPlugin(Plugin):
     """
     def __init__(self, name, description, import_function, extension):
         """
-        @param name: A friendly name to call this plugin.
+        :param name: A friendly name to call this plugin.
             Example: "GEDCOM Import"
-        @type name: string
-        @param description: A short description of the plugin.
+        :type name: string
+        :param description: A short description of the plugin.
             Example: "This plugin will import a GEDCOM file into a database"
-        @type description: string
-        @param import_function: A function to call to perform the import.
+        :type description: string
+        :param import_function: A function to call to perform the import.
             The function must take the form:
                 def import_function(db, filename, user):
             where:
@@ -45,11 +45,11 @@ class ImportPlugin(Plugin):
                 "filename" is the file that contains data to be imported
                 "user" is an instance of the User class implementing
                        GUI functions (callbacks, errors, warnings, etc)
-        @type import_function: callable
-        @param extension: The extension for the files imported by this plugin.
+        :type import_function: callable
+        :param extension: The extension for the files imported by this plugin.
             Example: "ged"
-        @type extension: str
-        @return: nothing
+        :type extension: str
+        :return: nothing
         """
         Plugin.__init__(self, name, description, import_function.__module__ )
         self.__import_func = import_function
@@ -59,7 +59,7 @@ class ImportPlugin(Plugin):
         """
         Get the import function for this plugins.
         
-        @return: the callable import_function passed into __init__ 
+        :return: the callable import_function passed into :meth:`__init__` 
         """
         return self.__import_func
     
@@ -67,6 +67,6 @@ class ImportPlugin(Plugin):
         """
         Get the extension for the files imported by this plugin.
         
-        @return: str
+        :return: str
         """
         return self.__extension
