@@ -25,27 +25,32 @@
 Class handling language-specific displaying of names.
 
 Specific symbols for parts of a name are defined:
-    't' : title
-    'f' : given (first names)
-    'l' : full surname (lastname)
-    'c' : callname
-    'x' : nick name if existing, otherwise first first name (common name)
-    'i' : initials of the first names
-    'm' : primary surname (main)
-    '0m': primary surname prefix
-    '1m': primary surname surname
-    '2m': primary surname connector
-    'y' : pa/matronymic surname (father/mother) - assumed unique
-    '0y':       "    prefix
-    '1y':       "    surname
-    '2y':       "    connector
-    'o' : surnames without pa/matronymic and primary
-    'r' : non primary surnames (rest)
-    'p' : list of all prefixes
-    'q' : surnames without prefixes and connectors
-    's' : suffix
-    'n' : nick name
-    'g' : family nick name
+
+    ======  ===============================================================
+    Symbol  Description
+    ======  ===============================================================
+    't'     title
+    'f'     given (first names)
+    'l'     full surname (lastname)
+    'c'     callname
+    'x'     nick name if existing, otherwise first first name (common name)
+    'i'     initials of the first names
+    'm'     primary surname (main)
+    '0m'    primary surname prefix
+    '1m'    primary surname surname
+    '2m'    primary surname connector
+    'y'     pa/matronymic surname (father/mother) - assumed unique
+    '0y'    pa/matronymic prefix
+    '1y'    pa/matronymic surname
+    '2y'    pa/matronymic connector
+    'o'     surnames without pa/matronymic and primary
+    'r'     non primary surnames (rest)
+    'p'     list of all prefixes
+    'q'     surnames without prefixes and connectors
+    's'     suffix
+    'n'     nick name
+    'g'     family nick name
+    ======  ===============================================================
 """
 
 #-------------------------------------------------------------------------
@@ -318,10 +323,11 @@ class NameDisplay(object):
     """
     Base class for displaying of Name instances.
     
-    property: 
-      * default_format: the default name format to use
-      * pas_as_surn   : if only one surname, see if pa/ma should be considered as 
-                        'the' surname.
+    Property: 
+      *default_format*
+        the default name format to use
+      *pas_as_surn*
+        if only one surname, see if pa/ma should be considered as 'the' surname.
     """
 
     format_funcs = {}
@@ -475,7 +481,7 @@ class NameDisplay(object):
     def cmp_to_key(self, mycmp):
         """
         python 2 to 3 conversion, python recipe http://code.activestate.com/recipes/576653/
-        Convert a cmp= function into a key= function
+        Convert a :func:`cmp` function into a :func:`key` function
         We use this in Gramps as understanding the old compare function is 
         not trivial. This should be replaced by a proper key function
         """
@@ -529,7 +535,7 @@ class NameDisplay(object):
         function and calling it directly when asked to format a name to the
         same format string again we can be as quick as possible.
 
-        The new function is of the form:
+        The new function is of the form::
 
         def fn(raw_data):
             return "%s %s %s" % (raw_data[_TITLE],
@@ -632,7 +638,7 @@ class NameDisplay(object):
         function and calling it directly when asked to format a name to the
         same format string again we can be as quick as possible.
 
-        The new function is of the form:
+        The new function is of the form::
 
         def fn(first, raw_surname_list, suffix, title, call,):
             return "%s %s" % (first,suffix)
@@ -721,10 +727,11 @@ class NameDisplay(object):
     def format_str_raw(self, raw_data, format_str):
         """
         Format a name from the raw name list. To make this as fast as possible
-        this uses _gen_raw_func to generate a new method for each new format_string.
+        this uses :func:`_gen_raw_func` to generate a new method for each new
+        format_string.
         
-        Is does not call _format_str_base because it would introduce an extra 
-        method call and we need all the speed we can squeeze out of this.
+        Is does not call :meth:`_format_str_base` because it would introduce an
+        extra method call and we need all the speed we can squeeze out of this.
         """
         func = self.__class__.raw_format_funcs.get(format_str)
         if func is None:
@@ -760,7 +767,7 @@ class NameDisplay(object):
         '%s' : suffix
         '%n' : nick name
         '%g' : family nick name
-       The capital letters are substituted for capitalized name components.
+        The capital letters are substituted for capitalized name components.
         The %% is substituted with the single % character.
         All the other characters in the fmt_str are unaffected.
         """
@@ -794,29 +801,29 @@ class NameDisplay(object):
 
     def sorted(self, person):
         """
-        Return a text string representing the L{gen.lib.Person} instance's
-        L{Name} in a manner that should be used for displaying a sorted
-        name.
+        Return a text string representing the :class:`~.person.Person`
+        instance's :class:`~.name.Name` in a manner that should be used for
+        displaying a sortedname.
 
-        @param person: L{gen.lib.Person} instance that contains the
-        L{Name} that is to be displayed. The primary name is used for
-        the display.
-        @type person: L{gen.lib.Person}
-        @returns: Returns the L{gen.lib.Person} instance's name
-        @rtype: str
+        :param person: :class:`~.person.Person` instance that contains the
+                       :class:`~.name.Name` that is to be displayed. The
+                       primary name is used for the display.
+        :type person: :class:`~.person.Person`
+        :returns: Returns the :class:`~.person.Person` instance's name
+        :rtype: str
         """
         name = person.get_primary_name()
         return self.sorted_name(name)
 
     def sorted_name(self, name):
         """
-        Return a text string representing the L{Name} instance
+        Return a text string representing the :class:`~.name.Name` instance
         in a manner that should be used for sorting the name in a list.
 
-        @param name: L{Name} instance that is to be displayed.
-        @type name: L{Name}
-        @returns: Returns the L{Name} string representation
-        @rtype: str
+        :param name: :class:`~.name.Name` instance that is to be displayed.
+        :type name: :class:`~.name.Name`
+        :returns: Returns the :class:`~.name.Name` string representation
+        :rtype: str
         """
         num = self._is_format_valid(name.sort_as)
         return self.name_formats[num][_F_FN](name)
@@ -836,43 +843,45 @@ class NameDisplay(object):
 
     def raw_sorted_name(self, raw_data):
         """
-        Return a text string representing the L{Name} instance
+        Return a text string representing the :class:`~.name.Name` instance
         in a manner that should be used for sorting the name in a list.
 
-        @param name: L{raw_data} raw unserialized data of name that is to be displayed.
-        @type name: tuple
-        @returns: Returns the L{Name} string representation
-        @rtype: str
+        :param name: raw unserialized data of name that is to be displayed.
+        :type name: tuple
+        :returns: Returns the :class:`~.name.Name` string representation
+        :rtype: str
         """
         num = self._is_format_valid(raw_data[_SORT])
         return self.name_formats[num][_F_RAWFN](raw_data)
 
     def display(self, person):
         """
-        Return a text string representing the L{gen.lib.Person} instance's
-        L{Name} in a manner that should be used for normal displaying.
+        Return a text string representing the :class:`~.person.Person`
+        instance's :class:`~.name.Name` in a manner that should be used for
+        normal displaying.
 
-        @param person: L{gen.lib.Person} instance that contains the
-        L{Name} that is to be displayed. The primary name is used for
-        the display.
-        @type person: L{gen.lib.Person}
-        @returns: Returns the L{gen.lib.Person} instance's name
-        @rtype: str
+        :param person: :class:`~.person.Person` instance that contains the
+                       :class:`~.name.Name` that is to be displayed. The
+                       primary name is used for the display.
+        :type person: :class:`~.person.Person`
+        :returns: Returns the :class:`~.person.Person` instance's name
+        :rtype: str
         """
         name = person.get_primary_name()
         return self.display_name(name)
 
     def display_formal(self, person):
         """
-        Return a text string representing the L{gen.lib.Person} instance's
-        L{Name} in a manner that should be used for formal displaying.
+        Return a text string representing the :class:`~.person.Person`
+        instance's :class:`~.name.Name` in a manner that should be used for
+        formal displaying.
 
-        @param person: L{gen.lib.Person} instance that contains the
-        L{Name} that is to be displayed. The primary name is used for
-        the display.
-        @type person: L{gen.lib.Person}
-        @returns: Returns the L{gen.lib.Person} instance's name
-        @rtype: str
+        :param person: :class:`~.person.Person` instance that contains the
+                       :class:`~.name.Name` that is to be displayed. The
+                       primary name is used for the display.
+        :type person: :class:`~.person.Person`
+        :returns: Returns the :class:`~.person.Person` instance's name
+        :rtype: str
         """
         # FIXME: At this time, this is just duplicating display() method
         name = person.get_primary_name()
@@ -880,13 +889,13 @@ class NameDisplay(object):
 
     def display_name(self, name):
         """
-        Return a text string representing the L{Name} instance
+        Return a text string representing the :class:`~.name.Name` instance
         in a manner that should be used for normal displaying.
 
-        @param name: L{Name} instance that is to be displayed.
-        @type name: L{Name}
-        @returns: Returns the L{Name} string representation
-        @rtype: str
+        :param name: :class:`~.name.Name` instance that is to be displayed.
+        :type name: :class:`~.name.Name`
+        :returns: Returns the :class:`~.name.Name` string representation
+        :rtype: str
         """
         if name is None:
             return ""
@@ -896,13 +905,13 @@ class NameDisplay(object):
 
     def raw_display_name(self, raw_data):
         """
-        Return a text string representing the L{Name} instance
+        Return a text string representing the :class:`~.name.Name` instance
         in a manner that should be used for normal displaying.
 
-        @param name: L{raw_data} raw unserialized data of name that is to be displayed.
-        @type name: tuple
-        @returns: Returns the L{Name} string representation
-        @rtype: str
+        :param name: raw unserialized data of name that is to be displayed.
+        :type name: tuple
+        :returns: Returns the :class:`~.name.Name` string representation
+        :rtype: str
         """
         num = self._is_format_valid(raw_data[_DISPLAY])
         return self.name_formats[num][_F_RAWFN](raw_data)
@@ -913,23 +922,26 @@ class NameDisplay(object):
     def name_grouping(self, db, person):
         """
         Return the name under which to group this person. This is defined as:
-        1/ if group name is defined on primary name, use that
-        2/ if group name is defined for the primary surname of the primary name, use that
-        3/ use primary surname of primary name otherwise
+
+        1. if group name is defined on primary name, use that
+        2. if group name is defined for the primary surname of the primary 
+           name, use that
+        3. use primary surname of primary name otherwise
         """
         return self.name_grouping_name(db, person.primary_name)
 
     def name_grouping_name(self, db, pn):
         """
         Return the name under which to group. This is defined as:
-        1/ if group name is defined, use that
-        2/ if group name is defined for the primary surname, use that
-        3/ use primary surname itself otherwise
         
-        @param pn: L{Name} object
-        @type pn: L{Name} instance
-        @returns: Returns the groupname string representation
-        @rtype: str
+        1. if group name is defined, use that
+        2. if group name is defined for the primary surname, use that
+        3. use primary surname itself otherwise
+        
+        :param pn: :class:`~.name.Name` object
+        :type pn: :class:`~.name.Name` instance
+        :returns: Returns the groupname string representation
+        :rtype: str
         """
         if pn.group_as:
             return pn.group_as
@@ -938,14 +950,15 @@ class NameDisplay(object):
     def name_grouping_data(self, db, pn):
         """
         Return the name under which to group. This is defined as:
-        1/ if group name is defined, use that
-        2/ if group name is defined for the primary surname, use that
-        3/ use primary surname itself otherwise
+
+        1. if group name is defined, use that
+        2. if group name is defined for the primary surname, use that
+        3. use primary surname itself otherwise
         
-        @param pn: raw unserialized data of name
-        @type pn: tuple
-        @returns: Returns the groupname string representation
-        @rtype: str
+        :param pn: raw unserialized data of name
+        :type pn: tuple
+        :returns: Returns the groupname string representation
+        :rtype: str
         """
         if pn[_GROUP]:
             return pn[_GROUP]
