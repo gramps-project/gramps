@@ -484,8 +484,8 @@ def probably_alive(person, db,
     be alive.
 
     :param current_date: a date object that is not estimated or modified
-                   (defaults to today)
-    :param limit:  number of years to check beyond death_date
+                         (defaults to today)
+    :param limit: number of years to check beyond death_date
     :param max_sib_age_diff: maximum sibling age difference, in years
     :param max_age_prob_alive: maximum age of a person, in years
     :param avg_generation_gap: average generation gap, in years

@@ -22,19 +22,18 @@
 # $Id$
 
 """
-    Introduction
-    ============
-    
-    Gramps is devided into two parts. The database code, that does not
-    require any particular GUI libraries, and the gtk-based UI code
-    that requires gtk and gnome libraries. The gtk-based code can use
-    the gobject signal support to manage callback signals but the database
-    code can not.
+**Introduction**
 
-    The module provides a subset of the signal mechanisms that are available
-    from the gobject framework. It enables the database code to use signals
-    to communicate events to any callback methods in either the database code
-    or the UI code.
+Gramps is devided into two parts. The database code, that does not
+require any particular GUI libraries, and the gtk-based UI code
+that requires gtk and gnome libraries. The gtk-based code can use
+the gobject signal support to manage callback signals but the database
+code can not.
+
+The module provides a subset of the signal mechanisms that are available
+from the gobject framework. It enables the database code to use signals
+to communicate events to any callback methods in either the database code
+or the UI code.
 """
 import sys
 import types
@@ -54,11 +53,10 @@ class Callback(object):
     """
     Callback and signal support objects.
 
-    Declaring signals
-    =================
+    **Declaring signals**
     
     Classes that want to emit signals need to inherit from the
-    DBCallback class and ensure that its __init__ method
+    DBCallback class and ensure that its :meth:`__init__` method
     is called. They then need to declare the signals that they
     can emit and the types of each callbacks arguments. For
     example::
@@ -85,8 +83,7 @@ class Callback(object):
     signal names in subclasses are not alowed.
 
 
-    Emitting signals
-    ================
+    **Emitting signals**
 
     Signals are emitted using the emit method. e.g.::
 
@@ -96,8 +93,7 @@ class Callback(object):
     The parameters are passed as a tuple so a single parameter
     must be passed as a 1 element tuple.
     
-    Connecting callbacks to signals
-    ===============================
+    **Connecting callbacks to signals**
     
     Attaching a callback to the signals is similar to the gtk
     connect methods. e.g.::
@@ -119,8 +115,7 @@ class Callback(object):
         t.connect('test-signal', r.cb_func)
         
 
-    Disconnecting callbacks
-    =======================
+    **Disconnecting callbacks**
 
     If you want to disconnect a callback from a signals you must remember the
     key returned from the connect call. This key can be passed to the disconnect
@@ -144,13 +139,12 @@ class Callback(object):
         t.disconnect(key)
 
     
-    Stopping and starting signals
-    =============================
+    **Stopping and starting signals**
 
     Signals can be blocked on a per instance bassis or they can be blocked
-    for all instances of the Callback class. disable_signals() can
-    be used to block the signals for a single instance and disable_all_signals()
-    can be used to block signals for the class:
+    for all instances of the Callback class. :meth:`disable_signals` can
+    be used to block the signals for a single instance and
+    :meth:`disable_all_signals` can be used to block signals for the class:
 
     e.g.::
 
@@ -190,14 +184,13 @@ class Callback(object):
     Any signals emitted whilst signals are blocked will be lost. 
             
             
-    Debugging signal callbacks
-    ==========================
+    **Debugging signal callbacks**
 
 
     To help with debugging the signals and callbacks you can turn on
     lots of logging information. To switch on logging for a single
-    instance call self.enable_logging(), to switch it off again call
-    self.disable_logging(). To switch on logging for all instance
+    instance call :meth:`enable_logging`, to switch it off again call
+    :meth:`disable_logging`. To switch on logging for all instance
     you can toggle Callback.__LOG_ALL to True.
     
     """
@@ -277,7 +270,7 @@ class Callback(object):
         with the signal is emitted. The callable must accept the argument
         types declared in the signals signature.
 
-        returns a unique key that can be passed to disconnect().
+        returns a unique key that can be passed to :meth:`disconnect`.
         """
         # Check that signal exists.
         if signal_name not in self.__signal_map:

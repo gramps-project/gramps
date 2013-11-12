@@ -94,9 +94,11 @@ def get_death_or_fallback(db, person, format=None):
 
 def get_age(db, person, fallback=True, calendar="gregorian"):
     """
-    Compute the age of person. Allow fallback events if fallback=True
-    person : person handle or person object
-    Return: tuple of year, month day if valid, None otherwise
+    Compute the age of person.
+
+    :param person: person handle or person object
+    :param fallback: Allow fallback events if True
+    :returns: tuple of year, month day if valid, None otherwise
     """
     birth = None
     death = None
@@ -136,8 +138,9 @@ def get_age(db, person, fallback=True, calendar="gregorian"):
 def get_timeperiod(db, person):
     """
     Compute the timeperiod a person lived in
-    person : person handle or person object
-    Return: the year, None otherwise
+
+    :param person: person handle or person object
+    :returns: the year, None otherwise
     """
     if isinstance(person, str):
         # a handle is passed
@@ -254,7 +257,7 @@ def get_participant_from_event(db, event_handle, all_=False):
     Obtain the first primary or family participant to an event we find in the 
     database. Note that an event can have more than one primary or 
     family participant, only one is returned, adding ellipses if there are
-    more. If the all_ parameter is true a comma-space separated string with
+    more. If the all\_ parameter is true a comma-space separated string with
     the names of all primary participants is returned and no ellipses is used.
     """
     participant = ""
@@ -593,31 +596,32 @@ def get_source_and_citation_referents(source_handle, db):
     This function finds all primary objects that refer (directly or through
     secondary child-objects) to a given source handle in a given database.
     
-    Objects -> Citations -> Source
-    e.g.
-    Media object M1  -> Citation C1 -> Source S1
-    Media object M2  -> Citation C1 -> Source S1
-    Person object P1 -> Citation C2 -> Source S1
+    | Objects -> Citations -> Source
+    | e.g.
+    | Media object M1  -> Citation C1 -> Source S1
+    | Media object M2  -> Citation C1 -> Source S1
+    | Person object P1 -> Citation C2 -> Source S1
     
     The returned structure is rather ugly, but provides all the information in
     a way that is consistent with the other Util functions.
-    (
-    tuple of objects that refer to the source - only first element is present
-        ([C1, C2],),
-    list of citations with objects that refer to them
-        [
-            (C1, 
-                tuple of reference lists
-                  P,  F,  E,  Pl, S,  M,        R
-                ([], [], [], [], [], [M1, M2]. [])
-            )
-            (C2, 
-                tuple of reference lists
-                  P,    F,  E,  Pl, S,  M,  R
-                ([P1], [], [], [], [], []. [])
-            )
-        ]
-    )    
+
+    | (
+    | tuple of objects that refer to the source - only first element is present
+    |     ([C1, C2],),
+    | list of citations with objects that refer to them
+    |     [
+    |         (C1,
+    |             tuple of reference lists
+    |               P,  F,  E,  Pl, S,  M,        R
+    |             ([], [], [], [], [], [M1, M2]. [])
+    |         )
+    |         (C2,
+    |             tuple of reference lists
+    |               P,    F,  E,  Pl, S,  M,  R
+    |             ([P1], [], [], [], [], []. [])
+    |         )
+    |     ]
+    | )
     """
     the_lists = get_source_referents(source_handle, db)
     LOG.debug('source referents %s' % [the_lists])

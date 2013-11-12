@@ -23,7 +23,7 @@
 # $Id$
 
 """
-This package implements access to GRAMPS configuration.
+This package implements access to Gramps configuration.
 """
 
 #---------------------------------------------------------------
@@ -79,7 +79,7 @@ class ConfigManager(object):
         Configure manager constructor takes an optional filename, and
         plugin path.
 
-        The data dictionary stores the settings:
+        The data dictionary stores the settings::
 
            self.data[section][setting] = value
 
@@ -93,11 +93,11 @@ class ConfigManager(object):
         simple types.
 
         The default values are given in Python code and stored here
-        on start-up:
+        on start-up::
 
            self.default[section][setting] = default_value
 
-        Callbacks are stored as callables here:
+        Callbacks are stored as callables here::
 
            self.callbacks[section][setting] = (id, func)
 
@@ -105,8 +105,8 @@ class ConfigManager(object):
         is stored as self.filename. However, you can save to another
         filename using self.save(otherfilename).
 
-        filename (if given) is a fullpath.
-        plugins (if given) is a relative path to filename.
+        :param filename: (if given) is a fullpath.
+        :param plugins: (if given) is a relative path to filename.
 
         """
         self._cb_id = 0 # callback id counter
@@ -124,36 +124,40 @@ class ConfigManager(object):
         """
         Register a plugin manager. 
 
-        name is used as the key of the config manager singleton. It is
-        also be used as the base filename (unless an override is given,
-        or use_config_path or use_plugins_path is True).
+        :param name: is used as the key of the config manager singleton. It is
+                     also be used as the base filename (unless an override is
+                     given, or use_config_path or use_plugins_path is True).
+        :param override: is used to override the default location of the .ini
+                         file.
+        :param use_config_path: if True, use this ConfigManager's path as the
+                                new manager's path, ignoring any path given in
+                                override.
 
-        override is either: 
+        Override is either:
+
         - a full path+filename ending in .ini 
         - a filename ending in .ini 
         - a dir path to put ini file into 
         - a full path+filename to get dir to put ini file into
         - a ConfigManager instance
 
-        If use_config_path is True, use this ConfigManager's path as
-        the new manager's path, ignoring any path given in override.
+        Examples::
 
-        Examples:
-        >>> config.register_manager("Simple", use_plugins_path=False)
-        # will use the calling programs directory, and "Simple.ini"
-        >>> config.register_manager("Simple", __file__, 
-                                    use_plugins_path=False)
-        # will use the __file__'s directory, and "Simple.ini"
-        >>> config.register_manager("Simple", "c:\\temp", 
-                                    use_plugins_path=False)
-        # will use the given directory, "c:\\temp\\Simple.ini"
-        >>> config.register_manager("Simple", use_config_path=True)
-        # will use config's path: ~/.gramps/gramps32/Simple.ini
-        >>> config.register_manager("Simple", "Other.ini")
-        # will use config + plugins path: ~/.gramps/gramps32/plugins/Other.ini
-        >>> config.register_manager("Simple", "/tmp/Other.ini", 
-                                    use_plugins_path=False)
-        # will use /tmp/Other.ini
+          >>> config.register_manager("Simple", use_plugins_path=False)
+          # will use the calling programs directory, and "Simple.ini"
+          >>> config.register_manager("Simple", __file__,
+                                      use_plugins_path=False)
+          # will use the __file__'s directory, and "Simple.ini"
+          >>> config.register_manager("Simple", "c:\\temp",
+                                      use_plugins_path=False)
+          # will use the given directory, "c:\\temp\\Simple.ini"
+          >>> config.register_manager("Simple", use_config_path=True)
+          # will use config's path: ~/.gramps/gramps32/Simple.ini
+          >>> config.register_manager("Simple", "Other.ini")
+          # will use config + plugins path: ~/.gramps/gramps32/plugins/Other.ini
+          >>> config.register_manager("Simple", "/tmp/Other.ini",
+                                      use_plugins_path=False)
+          # will use /tmp/Other.ini
         """
         if isinstance(override, STRTYPE): # directory or filename
             if override:
@@ -510,7 +514,7 @@ class ConfigManager(object):
     def set(self, key, value):
         """
         Set the setting's value. There are only two ways to get into
-        the data dictionary: via the load() method that reads a file,
+        the data dictionary: via the :meth:`load` method that reads a file,
         or from this method.
         """
         if "." in key:

@@ -145,18 +145,18 @@ class GrampsLocale(object):
     new GrampsLocale instance with the specified parameters, but any
     parameters left out will be filled in from the first instance.
 
-    @localedir: The full path to the top level directory containing
-                the translation files. Defaults to sys.prefix/share/locale.
+    :param localedir: The full path to the top level directory containing the
+                      translation files. Defaults to sys.prefix/share/locale.
 
-    @lang:      A single locale value which is used for unset locale.LC_FOO
-                settings.
+    :param lang: A single locale value which is used for unset locale.LC_FOO
+                 settings.
 
-    @domain:    The name of the applicable translation file. The default is
-                "gramps", indicating files in LC_MESSAGES named gramps.mo.
+    :param domain: The name of the applicable translation file. The default is
+                   "gramps", indicating files in LC_MESSAGES named gramps.mo.
 
-    @languages: String with a ':'-separated list of two or five character 
-                codes corresponding to subidrectries in the localedir, 
-                e.g.: "fr" or "zh_CN".
+    :param languages: String with a ':'-separated list of two or five character
+                      codes corresponding to subidrectries in the localedir,
+                      e.g.: "fr" or "zh_CN".
     """
 
     DEFAULT_TRANSLATION_STR = "default"
@@ -632,7 +632,8 @@ class GrampsLocale(object):
         cached, set it from datehandler.LANG_TO_DISPLAY. If one isn't
         available for the selected locale, attempt to fall back on the
         first_instance's locale before settling on the 'C' displayer.
-        NB: This is the getter for the date_displayer property
+
+        .. note:: This is the getter for the date_displayer property
         """
         if self._dd:
             return self._dd
@@ -665,7 +666,8 @@ class GrampsLocale(object):
         cached, set it from datehandler.LANG_TO_PARSER. If one isn't
         available for the selected locale, attempt to fall back on the
         first_instance's locale before settling on the 'C' parser.
-        NB: This is the getter for the date_parser property
+
+        .. note:: This is the getter for the date_parser property
         """
         if self._dp:
             return self._dp
@@ -712,18 +714,19 @@ class GrampsLocale(object):
         """
         Get a translator for an addon.
 
-        filename - filename of a file in directory with full path, or
-                   None to get from self.
-        domain   - the name of the .mo file under the LANG/LC_MESSAGES dir
-        languages - a list of languages to force
-        returns  - a gettext.translation object
+        :param filename: filename of a file in directory with full path, or
+                         None to get from self.
+        :param domain: the name of the .mo file under the LANG/LC_MESSAGES dir
+        :param languages: a list of languages to force
+        :returns: a gettext.translation object
 
-        Example:
+        Example::
+
         _ = glocale.get_addon_translator(languages=["fr_BE.utf8"]).gettext
 
-        See the python gettext documentation.
-        Assumes path/filename
-            path/locale/LANG/LC_MESSAGES/addon.mo.
+        .. seealso:: the python gettext documentation.
+
+        Assumes path/filename = path/locale/LANG/LC_MESSAGES/addon.mo.
         """
         gramps_translator = self._get_translation()
 
@@ -954,8 +957,9 @@ class Lexeme(_LexemeBaseStr):
     Created with :meth:`~GrampsTranslations.lexgettext`
 
     .. rubric:: Example
-    Python code:
-    ::
+
+    Python code::
+
         _ = lexgettext
         dec = _("localized lexeme inflections||December")
         xmas = _("lexeme||Christmas")
@@ -965,8 +969,8 @@ class Lexeme(_LexemeBaseStr):
         XMAS = xmas.upper()
         print ("\n".join([XMAS, text, greeting]))
 
-    Translation database (Russian example):
-    ::
+    Translation database (Russian example)::
+
         msgid "lexeme||December"
         msgstr "NOMINATIVE=декабрь|GENITIVE=декабря|ABLATIVE=декабрём|LOCATIVE=декабре"
 
@@ -979,19 +983,20 @@ class Lexeme(_LexemeBaseStr):
         msgid "Merry {holiday}!"
         msgstr "Счастливого {holiday.f[GENITIVE]}!"
 
-    Prints out:
+    Prints out::
+
         In English locale:
-        ::
             CHRISTMAS 
             Christmas is celebrated in December 
             Merry Christmas!
+
         In Russian locale:
-        ::
             РОЖДЕСТВО
             рождество празднуют в декабре
             Счастливого рождества!
 
     .. rubric:: Description
+
     Stores an arbitrary number of forms, e.g., inflections.
     These forms are accessible under dictionary keys for each form.
     The names of the forms are language-specific. They are assigned
@@ -1013,14 +1018,15 @@ class Lexeme(_LexemeBaseStr):
     the same nominative form in capital letters.
 
     .. rubric:: Motivation
+
     Lexeme is the term used in linguistics for the set of forms taken 
     by a particular word, e.g. cases for a noun or tenses for a verb.
     
     Gramps often needs to compose sentences from several blocks of
     text and single words, often by using python string formatting.
 
-    For instance, formatting a date range is done similarly to this: 
-    ::
+    For instance, formatting a date range is done similarly to this::
+
         _("Between {startdate_month} {startdate_year}"
               "and {enddate_month} {enddate_year}").format(
                  startdate_month = m1,

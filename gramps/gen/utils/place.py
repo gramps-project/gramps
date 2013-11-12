@@ -323,30 +323,44 @@ def __convert_float_val(val, typedeg = "lat"):
 def conv_lat_lon(latitude, longitude, format="D.D4"):
     """
     Convert given string latitude and longitude to a required format. 
+
+    :param latitude: Latitude
+    :type latitude: string
+    :param longitude: Longitude
+    :type longitude: string
+    :param format: Ouput format
+    :type format: string
+    :returns: a tuple of 2 strings, or a string (for ISO formats). If
+              conversion fails: returns: (None, None)  or None (for ISO formats)
+
     Possible formats:
-        'D.D4'    : degree notation, 4 decimals 
-                    eg +12.0154 , -124.3647
-        'D.D8'    : degree notation, 8 decimals (precision like ISO-DMS) 
-                    eg +12.01543265 , -124.36473268
-        'DEG'     : degree, minutes, seconds notation
-                    eg 50°52'21.92''N , 124°52'21.92''E ° has UTF-8 code c2b00a
-                    or N50º52'21.92" , E14º52'21.92"   º has UTF-8 code c2ba0a
-                    or N50º52.3456' , E14º52.9876' ; decimal minutes, no seconds
-        'DEG-:'   : degree, minutes, seconds notation with :
-                    eg -50:52:21.92 , 124:52:21.92
-        'ISO-D'   : ISO 6709 degree notation i.e. ±DD.DDDD±DDD.DDDD
-        'ISO-DM'  : ISO 6709 degree, minutes notation 
-                    i.e. ±DDMM.MMM±DDDMM.MMM
-        'ISO-DMS' : ISO 6709 degree, minutes, seconds notation 
-                    i.e. ±DDMMSS.SS±DDDMMSS.SS
-        'RT90'    : Output format for the Swedish coordinate system RT90
+
+    =========   ============================================================
+    Format      Description
+    =========   ============================================================
+    'D.D4'      degree notation, 4 decimals
+                eg +12.0154 , -124.3647
+    'D.D8'      degree notation, 8 decimals (precision like ISO-DMS)
+                eg +12.01543265 , -124.36473268
+    'DEG'       degree, minutes, seconds notation
+                eg 50°52'21.92''N , 124°52'21.92''E ° has UTF-8 code c2b00a
+                or N50º52'21.92" , E14º52'21.92"   º has UTF-8 code c2ba0a
+                or N50º52.3456' , E14º52.9876' ; decimal minutes, no seconds
+    'DEG-:'     degree, minutes, seconds notation with :
+                eg -50:52:21.92 , 124:52:21.92
+    'ISO-D'     ISO 6709 degree notation i.e. ±DD.DDDD±DDD.DDDD
+    'ISO-DM'    ISO 6709 degree, minutes notation
+                i.e. ±DDMM.MMM±DDDMM.MMM
+    'ISO-DMS'   ISO 6709 degree, minutes, seconds notation
+                i.e. ±DDMMSS.SS±DDDMMSS.SS
+    'RT90'      Output format for the Swedish coordinate system RT90
+    =========   ============================================================
                     
-    Return value: a tuple of 2 strings, or a string (for ISO formats)
-    If conversion fails: returns: (None, None)  or None (for ISO formats)
     Some generalities:
-        -90 <= latitude <= +90 with +00 the equator
-        -180 <= longitude < +180 with +000 prime meridian
-                                  and -180   180th meridian
+
+    * -90 <= latitude <= +90 with +00 the equator
+    * -180 <= longitude < +180 with +000 prime meridian and -180 the 180th
+      meridian
     """
     
     # we start the function changing latitude/longitude in english
