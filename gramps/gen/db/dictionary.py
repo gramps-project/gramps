@@ -991,3 +991,33 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         Get the transaction class associated with this database backend.
         """
         return DictionaryTxn
+
+    def get_from_name_and_handle(self, table_name, handle):
+        """
+        Returns a gen.lib object (or None) given table_name and
+        handle.
+
+        Examples:
+
+        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
+        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
+        """
+        if table_name in self._tables:
+            return self._tables[table_name]["handle_func"](handle)
+        return None
+
+    def get_from_name_and_gramps_id(self, table_name, gramps_id):
+        """
+        Returns a gen.lib object (or None) given table_name and
+        Gramps ID.
+
+        Examples:
+
+        >>> self.get_from_name_and_gramps_id("Person", "I00002")
+        >>> self.get_from_name_and_gramps_id("Family", "F056")
+        >>> self.get_from_name_and_gramps_id("Media", "M00012")
+        """
+        if table_name in self._tables:
+            return self._tables[table_name]["gramps_id_func"](gramps_id)
+        return None
+

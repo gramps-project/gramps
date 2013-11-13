@@ -26,6 +26,7 @@ from  .. import (Person, Family, Event, Source, Place, Citation,
                  Repository, MediaObject, Note, Tag)
 from gramps.gen.merge.diff import import_as_dict, from_struct
 from gramps.cli.user import User
+from gramps.gen.merge.diff import *
 
 class BaseCheck:
     def test_from_struct(self):
@@ -98,7 +99,7 @@ def generate_test(obj):
     serialized = obj.__class__.from_struct(struct)
     def test(self):
         self.assertEqual(obj.serialize(), serialized)
-    name = "test_%s_%s" % (obj.__class__.__name__, obj.handle)
+    name = "test_serialize_%s_%s" % (obj.__class__.__name__, obj.handle)
     setattr(DatabaseCheck, name, test)
     ####
     def test2(self):
@@ -111,6 +112,19 @@ for table in db._tables.keys():
     for handle in db._tables[table]["handles_func"]():
         obj = db._tables[table]["handle_func"](handle)
         generate_test(obj)
+
+class StructTest(unittest.TestCase):
+    def test(self):
+        family = db.get_family_from_gramps_id("F0001")
+        s = Struct(family.to_struct(), db)
+        self.assertEqual(s["gramps_id"], "F0001")
+        s["gramps_id"] = "TEST"
+        self.assertEqual(s["gramps_id"], "TEST")
+        self.assertEqual(s["father_handle.primary_name.first_name"], 
+                         "Allen Carl")
+        s["father_handle.primary_name.first_name"] = "Edward"
+        self.assertEqual(s["father_handle.primary_name.first_name"], 
+                         "Edward")
 
 if __name__ == "__main__":
     unittest.main()

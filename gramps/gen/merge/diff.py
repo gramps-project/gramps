@@ -372,7 +372,7 @@ class Struct(object):
             part = path[p]
             struct = self.getitem(part, struct)
             if isinstance(struct, Struct):
-                return struct.setitem_from_path(path[p+1:], value)
+                return struct.setitem_from_path(path[p+1:] + [item], value)
             if struct is None:
                 return None
         # struct is set
