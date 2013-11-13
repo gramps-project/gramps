@@ -23,9 +23,9 @@
 
 """
 Provides the startcli function, which the main program calls for CLI
-execution of GRAMPS.
+execution of Gramps.
 
-Provides also two small base classes: CLIDbLoader, CLIManager
+Provides also two small base classes: :class:`CLIDbLoader`, :class:`CLIManager`
 """
 
 #-------------------------------------------------------------------------
@@ -73,8 +73,8 @@ from gramps.gen.recentfiles import recent_files
 #-------------------------------------------------------------------------
 class CLIDbLoader(object):
     """
-    Base class for Db loading action inside a dbstate. Only the minimum is 
-    present needed for CLI handling
+    Base class for Db loading action inside a :class:`.DbState`. Only the
+    minimum is present needed for CLI handling
     """
     def __init__(self, dbstate):
         self.dbstate = dbstate
@@ -96,9 +96,11 @@ class CLIDbLoader(object):
     def _dberrordialog(self, msg):
         """
         Show a database error. 
-        @param: msg : an error message
-        @type: string
-        @note: Inherit for GUI action
+
+        :param msg: an error message
+        :type msg : string
+
+        .. note:: Inherit for GUI action
         """
         self._errordialog( '', _("Low level database corruption detected") 
             + '\n' +
@@ -208,7 +210,7 @@ class CLIDbLoader(object):
 
 class CLIManager(object):
     """
-    Sessionmanager for GRAMPS. This is in effect a reduced viewmanager 
+    Sessionmanager for Gramps. This is in effect a reduced :class:`.ViewManager` 
     instance (see gui/viewmanager), suitable for CLI actions. 
     Aim is to manage a dbstate on which to work (load, unload), and interact
     with the plugin session
@@ -314,9 +316,10 @@ class CLIManager(object):
 
 def startcli(errors, argparser):
     """
-    Starts a cli session of GRAMPS. 
-    errors    : errors already encountered 
-    argparser : ArgParser instance
+    Starts a cli session of Gramps.
+
+    :param errors: errors already encountered
+    :param argparser: :class:`.ArgParser` instance
     """
     if errors:
         #already errors encountered. Show first one on terminal and exit

@@ -134,7 +134,8 @@ class CLIDbManager(object):
             self._populate_cli()
 
     def empty(self, val):
-        """Callback that does nothing
+        """
+        Callback that does nothing
         """
         pass
 
@@ -228,7 +229,8 @@ class CLIDbManager(object):
         return summary_list
 
     def _populate_cli(self):
-        """ Get the list of current names in the database dir
+        """
+        Get the list of current names in the database dir
         """
         # make the default directory if it does not exist
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
@@ -270,7 +272,8 @@ class CLIDbManager(object):
         return None
 
     def family_tree_list(self):
-        """Return a list of name, dirname of the known family trees
+        """
+        Return a list of name, dirname of the known family trees
         """
         lst = [(x[0], x[1]) for x in self.current_names]
         return lst
@@ -327,14 +330,14 @@ class CLIDbManager(object):
         A new database will only be created if an appropriate importer was 
         found.
 
-        @param filename: a fully-qualified path, filename, and
-        extension to open.
+        :param filename: a fully-qualified path, filename, and
+                         extension to open.
 
-        @param user: a cli.User or gui.User instance for managing user
-        interaction.
+        :param user: a :class:`.cli.user.User` or :class:`.gui.user.User`
+                     instance for managing user interaction.
         
-        @return: A tuple of (new_path, name) for the new database
-                 or (None, None) if no import was performed.
+        :returns: A tuple of (new_path, name) for the new database
+                  or (None, None) if no import was performed.
         """
         pmgr = BasePluginManager.get_instance()
         # check to see if it isn't a filename directly:
@@ -388,7 +391,7 @@ class CLIDbManager(object):
 
     def is_locked(self, dbpath):
         """
-        returns True if there is a lock file in the dirpath
+        Returns True if there is a lock file in the dirpath
         """
         if os.path.isfile(os.path.join(dbpath,"lock")):
             return True
@@ -396,7 +399,7 @@ class CLIDbManager(object):
 
     def needs_recovery(self, dbpath):
         """
-        returns True if the database in dirpath needs recovery
+        Returns True if the database in dirpath needs recovery
         """
         if os.path.isfile(os.path.join(dbpath,"need_recover")):
             return True

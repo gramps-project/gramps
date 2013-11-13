@@ -28,7 +28,7 @@
 # $Id$
 
 """
-Module responsible for handling the command line arguments for GRAMPS.
+Module responsible for handling the command line arguments for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -133,35 +133,58 @@ class ArgParser(object):
     """
     This class is responsible for parsing the command line arguments (if any)
     given to gramps, and determining if a GUI or a CLI session must be started.
-    The valid arguments are:
+    A filename and/or options may be specified as arguments.
 
-    Possible: 
-        1/ FAMTREE : Just the family tree (name or database dir)
-        2/ -O, --open=FAMTREE, Open of a family tree
-        3/ -i, --import=FILE, Import a family tree of any format understood 
-                 by an importer, optionally provide -f to indicate format
-        4/ -e, --export=FILE, export a family tree in required format,
-                 optionally provide -f to indicate format
-        5/ -f, --format=FORMAT : format after a -i or -e option
-        6/ -a, --action: An action (possible: 'report', 'tool')
-        7/ -p, --options=OPTIONS_STRING : specify options
-        8/ -u, --force-unlock: A locked database can be unlocked by giving
-                 this argument when opening it
-    
-    If the filename (no flags) is specified, the interactive session is 
-    launched using data from filename. 
-    In this mode (filename, no flags), the rest of the arguments is ignored.
-    This is a mode suitable by default for GUI launchers, mime type handlers,
-    and the like
+    The valid options are:
+
+    -O, --open=FAMILY_TREE          Open Family Tree
+    -C, --create=FAMILY_TREE        Create on open if new Family Tree
+    -i, --import=FILENAME           Import file
+    -e, --export=FILENAME           Export file
+    -f, --format=FORMAT             Specify Family Tree format
+    -a, --action=ACTION             Specify action
+    -p, --options=OPTIONS_STRING    Specify options
+    -d, --debug=LOGGER_NAME         Enable debug logs
+    -l                              List Family Trees
+    -L                              List Family Trees in Detail
+    -t                              List Family Trees, tab delimited
+    -u, --force-unlock              Force unlock of Family Tree
+    -s, --show                      Show config settings
+    -c, --config=SETTINGS           Set config setting(s) and start Gramps
+    -y, --yes                       Don't ask to confirm dangerous actions
+    -q, --quiet                     Suppress progress indication output
+    -v, --version                   Show versions
+    -h, --help                      Display the help
+    --usage                         Display usage information
+
+    If the filename (no options) is specified, the interactive session is 
+    launched using data from filename.  In this mode (filename, no options), the 
+    rest of the arguments are ignored.  This is a mode suitable by default for
+    GUI launchers, mime type handlers, and the like.
     
     If no filename or -i option is given, a new interactive session (empty
     database) is launched, since no data is given anyway.
     
     If -O or -i option is given, but no -e or -a options are given, an
-    interactive session is launched with the FILE (specified with -i). 
+    interactive session is launched with the ``FILENAME`` (specified with -i). 
     
     If both input (-O or -i) and processing (-e or -a) options are given,
-    interactive session will not be launched. 
+    interactive session will not be launched.
+    
+    When using import ot export options (-i or -e), the -f option may be
+    specified to indicate the family tree format.
+    
+    Possible values for ``ACTION`` are:  'report', 'book' and 'tool'.
+    
+    Configuration ``SETTINGS`` may be specified using the -c option.  The
+    settings are of the form config.setting[:value].  If used without a value,
+    the setting is shown. 
+    
+    If the -y option is given, the user's acceptance of any CLI prompt is 
+    assumed. (see :meth:`.cli.user.User.prompt`)
+    
+    If the -q option is given, extra noise on sys.stderr, such as progress
+    indicators, is suppressed.
     """
 
     def __init__(self, args):
@@ -198,25 +221,6 @@ class ArgParser(object):
         Fill in lists with open, exports, imports, and actions options.
 
         Any errors are added to self.errors
-        
-        Possible: 
-        1/ Just the family tree (name or database dir)
-        2/ -O --open:   Open of a family tree
-        3/ -i --import: Import a family tree of any format understood by
-                 an importer, optionally provide -f to indicate format
-        4/ -e --export: export a family tree in required format, optionally
-                 provide -f to indicate format
-        5/ -f --format=FORMAT : format after a -i or -e option
-        6/ -a --action: An action (possible: 'report', 'tool')
-        7/ -p --options=OPTIONS_STRING : specify options
-        8/ -u --force-unlock: A locked database can be unlocked by giving
-                 this argument when opening it
-        9/ -s  --show : Show config settings
-        10/ -c --config=config.setting:value : Set config.setting and start
-                 Gramps without :value, the actual config.setting is shown
-        11/ -y --yes: assume user's acceptance of any CLI prompt (see cli.user.User.prompt)
-        12/ -q --quiet: suppress extra noise on sys.stderr, such as progress indicators
-                            
         """
         try:
             # Convert arguments to unicode, otherwise getopt will not work

@@ -28,7 +28,7 @@
 # $Id$
 
 """
-Module responsible for handling the command line arguments for GRAMPS.
+Module responsible for handling the command line arguments for Gramps.
 """
 
 #-------------------------------------------------------------------------
@@ -67,24 +67,31 @@ def _split_options(options_str):
     Split the options for the action.
     
     Rules:
-        * Entries in the list of options are separated by commas without
-          spaces between entries
-        * List values must be inclosed in brackets ("[" and "]")
-        * Entries within a list value are separated by commas
-        * Text values (as a value or as entries in a list) do not have to be
-          enclosed in quotes unless they include commas or quotation marks.
-        * Text containing double quotes must be contained in single quotes
-        * Text containing single quotes must be contained in double quotes
-        * Text cannot include both single and double quotes
+
+    * Entries in the list of options are separated by commas without
+      spaces between entries
+    * List values must be inclosed in brackets ("[" and "]")
+    * Entries within a list value are separated by commas
+    * Text values (as a value or as entries in a list) do not have to be
+      enclosed in quotes unless they include commas or quotation marks.
+    * Text containing double quotes must be contained in single quotes
+    * Text containing single quotes must be contained in double quotes
+    * Text cannot include both single and double quotes
     
     Examples:
-        * Multiple options specified:
-            report -p 'name=ancestor_chart,father_disp=["$n born $b"]'
-        * Using text with commas and quotes:
-            title="This is some text with ,s and 's"
-            title='This is some text with ,s and "s'
-        * Using a list of text
-            textlist=[row1,row2,"row3 with ' and ,"]
+
+    Multiple options specified::
+
+        report -p 'name=ancestor_chart,father_disp=["$n born $b"]'
+
+    Using text with commas and quotes::
+
+        title="This is some text with ,s and 's"
+        title='This is some text with ,s and "s'
+
+    Using a list of text::
+
+        textlist=[row1,row2,"row3 with ' and ,"]
     """
     name = ""
     value = ""
@@ -147,7 +154,7 @@ class ArgHandler(object):
     """
     This class is responsible for the non GUI handling of commands.
     The handler is passed a parser object, sanitizes it, and can execute the 
-    actions requested working on a DbState.
+    actions requested working on a :class:`.DbState`.
     """
 
     def __init__(self, dbstate, parser, sessionmanager, 
@@ -269,8 +276,9 @@ class ArgHandler(object):
             
     def __handle_export_option(self, value, family_tree_format):
         """
-        Handle the "-e" or "--export" option.  
-        Note: this can only happen in the CLI version.                    
+        Handle the "-e" or "--export" option.
+
+        .. note:: this can only happen in the CLI version.
         """
         if self.gui:
             return
@@ -317,8 +325,8 @@ class ArgHandler(object):
         """
         Attempt to find a database path for the given parameter.
         
-        @return: The path to a Gramps DB
-                 or None if a database can not be deduced.
+        :returns: The path to a Gramps DB or None if a database can not be
+                  deduced.
         """
         # First, check if this is the name of a family tree
         db_path = self.dbman.get_family_tree_path(db_name_or_path)
@@ -341,15 +349,16 @@ class ArgHandler(object):
     #-------------------------------------------------------------------------
     def handle_args_gui(self):
         """
-        method to handle the arguments that can be given for a GUI session.
-        Returns the filename of the family tree that should be opened if 
-        user just passed a famtree or a filename
-            1/no options: a family tree can be given, if so, this name is
-                        tested and returned. If a filename, it is imported
-                        in a new db and name of new db returned
-            2/an open and/or import option can have been given, if so, this 
-                is handled, and None is returned
-            
+        Method to handle the arguments that can be given for a GUI session.
+
+        :returns: the filename of the family tree that should be opened if 
+                  user just passed a famtree or a filename.
+                  
+        1. no options: a family tree can be given, if so, this name is tested
+           and returned. If a filename, it is imported in a new db and name of
+           new db returned
+        2. an open and/or import option can have been given, if so, this is
+           handled, and None is returned
         """
         if self.open_gui:
             # First check if a Gramps database was provided
@@ -387,8 +396,8 @@ class ArgHandler(object):
         Depending on the given arguments, import or open data, launch
         session, write files, and/or perform actions.
         
-        @param: climan: the manager of a CLI session
-        @type: CLIManager object
+        :param: climan: the manager of a CLI session
+        :type: :class:`.CLIManager` object
         """
 
         if self.list:
@@ -461,8 +470,10 @@ class ArgHandler(object):
 
     def __import_action(self):
         """
-        Take action for all given import files. Note: Family trees are
-            not supported.
+        Take action for all given import files.
+        
+        .. note:: Family trees are not supported.
+
         If a family tree is open, the import happens on top of it. If not
         open, a new family tree is created, and the import done. If this
         is CLI, the created tree is deleted at the end (as some action will
