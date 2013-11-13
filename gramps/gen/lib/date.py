@@ -1634,29 +1634,35 @@ class Date(object):
 
             # Did the roundtrip change the date value?!
             if sanity.dateval != value:
-                # Maybe it is OK because of undetermined value adjustment?
-                zl = zip(sanity.dateval, value)
-                # Loop over all values present, whether compound or not
-                for d,m,y,sl in zip(*[iter(zl)]*4):
-                    # each of d,m,y,sl is a pair from dateval and value, to compare
+                if sanity.get_new_year() != self.get_new_year():
+                    # convert_calendar resets the new year, so the date value will differ.
+                    # Just check the sort value matches then.
+                    if self.sortval != sanity.sortval:
+                        log.debug("Sanity check failed - self: {}, sanity: {}".format(
+                            self.to_struct(), sanity.to_struct()))
+                        raise DateError("Invalid date value {}".format(value))
+                else:
+                    # Maybe it is OK because of undetermined value adjustment?
+                    zl = zip(sanity.dateval, value)
+                    # Loop over all values present, whether compound or not
+                    for d,m,y,sl in zip(*[iter(zl)]*4):
+                        # each of d,m,y,sl is a pair from dateval and value, to compare
+                        for adjusted,original in d,m:
+                            if adjusted != original and not(original == 0 and adjusted == 1):
+                                log.debug("Sanity check failed - self: {}, sanity: {}".format(
+                                    self.to_struct(), sanity.to_struct()))
+                                raise DateError("Invalid day/month {} passed in value {}".
+                                        format(original, value))
 
-                    for adjusted,original in d,m:
+                        adjusted,original = y
+                        adjusted -= year_delta
                         if adjusted != original and not(original == 0 and adjusted == 1):
                             log.debug("Sanity check failed - self: {}, sanity: {}".format(
                                 self.to_struct(), sanity.to_struct()))
-                            raise DateError("Invalid day/month {} passed in value {}".
+                            raise DateError("Invalid year {} passed in value {}".
                                     format(original, value))
 
-                    adjusted,original = y
-                    adjusted -= year_delta
-                    if adjusted != original and not(original == 0 and adjusted == 1):
-                        log.debug("Sanity check failed - self: {}, sanity: {}".format(
-                            self.to_struct(), sanity.to_struct()))
-                        raise DateError("Invalid year {} passed in value {}".
-                                format(original, value))
-
-                    # ignore slash difference
-
+                        # ignore slash difference
 
     def recalc_sort_value(self):
         """
