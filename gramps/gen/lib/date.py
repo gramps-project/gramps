@@ -1525,6 +1525,30 @@ class Date(object):
         day = max(d, 1)
         return (year, month, day)
 
+    def _adjust_newyear(self):
+        """
+        Returns year adjustment performed (0 or -1).
+        """
+        ny = self.get_new_year() 
+        year_delta = 0
+        if ny: # new year offset?
+            if ny == Date.NEWYEAR_MAR1:
+                split = (3, 1)
+            elif ny == Date.NEWYEAR_MAR25:
+                split = (3, 25)
+            elif ny == Date.NEWYEAR_SEP1:
+                split = (9, 1)
+            elif isinstance(ny, (list, tuple)):
+                split = ny
+            else:
+                split = (0, 0)
+            if (self.get_month(), self.get_day()) >= split and split != (0, 0):
+                year_delta = -1
+                d1 = Date(self.get_year() + year_delta, self.get_month(), self.get_day())
+                d1.set_calendar(self.calendar)
+                self.sortval = d1.sortval
+        return year_delta
+
     def set(self, quality=None, modifier=None, calendar=None, 
             value=None, 
             text=None, newyear=0):
@@ -1603,24 +1627,7 @@ class Date(object):
             self.set_calendar(Date.CAL_JULIAN)
             self.recalc_sort_value()
 
-        ny = self.get_new_year() 
-        year_delta = 0
-        if ny: # new year offset?
-            if ny == Date.NEWYEAR_MAR1:
-                split = (3, 1)
-            elif ny == Date.NEWYEAR_MAR25:
-                split = (3, 25)
-            elif ny == Date.NEWYEAR_SEP1:
-                split = (9, 1)
-            elif isinstance(ny, (list, tuple)):
-                split = ny
-            else:
-                split = (0, 0)
-            if (self.get_month(), self.get_day()) >= split and split != (0, 0):
-                year_delta = -1
-                d1 = Date(self.get_year() + year_delta, self.get_month(), self.get_day())
-                d1.set_calendar(self.calendar)
-                self.sortval = d1.sortval
+        year_delta = self._adjust_newyear()
 
         if text:
             self.text = text
