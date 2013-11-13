@@ -109,9 +109,11 @@ def exc_hook(type, value, tb):
     if type == IOError:
         # strange Windows logging error on close
         return
-    from gramps.gen.utils.debug import format_exception
+    #Use this to show variables in each frame:
+    #from gramps.gen.utils.debug import format_exception
+    import traceback
     LOG.error("Unhandled exception\n" +
-              "".join(format_exception(type, value, tb)))
+              "".join(traceback.format_exception(type, value, tb)))
 
 sys.excepthook = exc_hook
 
