@@ -34,7 +34,15 @@ Based on the Check Localized Date Displayer and Parser tool.
 # standard python modules
 #
 #-------------------------------------------------------------------------
+from __future__ import unicode_literals, division
 import unittest
+
+import sys
+if '-v' in sys.argv or '--verbose' in sys.argv:
+    import logging
+    logging.getLogger('').addHandler(logging.StreamHandler())
+    log = logging.getLogger(".Date")
+    log.setLevel(logging.DEBUG)
 
 #-------------------------------------------------------------------------
 #
