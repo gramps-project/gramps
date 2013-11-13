@@ -63,18 +63,21 @@ class DateHandlerTest(unittest.TestCase):
     def test_simple(self):
         
         dates = []
-        calendar = Date.CAL_GREGORIAN
-        for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED,
-                        Date.QUAL_CALCULATED):
-            for modifier in (Date.MOD_NONE, Date.MOD_BEFORE,
-                             Date.MOD_AFTER, Date.MOD_ABOUT):
-                for slash1 in (False,True):
-                    for month in range(1, 13):
-                        for day in (5, 27):
-                            d = Date()
-                            d.set(quality, modifier, calendar, 
-                                  (day, month, 1789, slash1), "Text comment")
-                            dates.append(d)
+        for calendar in (Date.CAL_GREGORIAN, Date.CAL_JULIAN):
+            for newyear in (Date.NEWYEAR_JAN1, Date.NEWYEAR_MAR25, (5,5)):
+                for quality in (Date.QUAL_NONE, Date.QUAL_ESTIMATED,
+                                Date.QUAL_CALCULATED):
+                    for modifier in (Date.MOD_NONE, Date.MOD_BEFORE,
+                                     Date.MOD_AFTER, Date.MOD_ABOUT):
+                        for slash1 in (False,True):
+                            for month in range(1, 13):
+                                for day in (5, 27):
+                                    d = Date()
+                                    d.set(quality, modifier, calendar, 
+                                          (day, month, 1789, slash1), 
+                                          "Text comment",
+                                          newyear)
+                                    dates.append(d)
 
         for test_date in dates:
             self.base_test(test_date)
