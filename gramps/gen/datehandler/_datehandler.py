@@ -101,16 +101,16 @@ def register_datehandler(locales,parse_class,display_class):
     classes with the specified language locales.
 
     Set the parser_class and display_class ._locale attribute
-    to the corresponding GrampsLocale object.
+    to the corresponding :class:`.GrampsLocale` object.
 
-    @param locales: tuple of strings containing language codes.
-        The character encoding is not included, so the language
-        should be in the form of fr_FR, not fr_FR.utf8
-    @type locales: tuple
-    @param parse_class: Class to be associated with parsing
-    @type parse_class: DateParse
-    @param display_class: Class to be associated with displaying
-    @type display_class: DateDisplay
+    :param locales: tuple of strings containing language codes.
+                    The character encoding is not included, so the language
+                    should be in the form of fr_FR, not fr_FR.utf8
+    :type locales: tuple
+    :param parse_class: Class to be associated with parsing
+    :type parse_class: :class:`.DateParser`
+    :param display_class: Class to be associated with displaying
+    :type display_class: :class:`.DateDisplay`
     """
     for lang_str in locales:
         LANG_TO_PARSER[lang_str] = parse_class

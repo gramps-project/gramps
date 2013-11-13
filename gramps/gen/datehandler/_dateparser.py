@@ -158,18 +158,17 @@ def _build_prefix_table(month_to_int, month_variants):
 def _generate_variants(months):
     """
     Generate all month variants for passing to _build_prefix_table
-    @param months an iterable ordered collection, 
-                  1st item is empty, the rest 1..N, for a
-                  calendar with N months overall, contain, each,
-                  an iterable of alternative specifications.
-                  Each such specification can be:
-                    1) a Lexeme, supporting .variants()
-                    to return the list of variants underneath
-                    2) a literal string
-                    3) a |-separated string of alternatives
-                  Empty strings are discarded.
-    @return generator of lists per month with all variants listed once only
-            the 1st item will be empty
+    :param months: an iterable ordered collection, 1st item is empty, the rest
+                   1..N, for a calendar with N months overall, contain, each,
+                   an iterable of alternative specifications.
+                   Each such specification can be:
+                     1) a Lexeme, supporting .variants() to return the list of
+                        variants underneath
+                     2) a literal string
+                     3) a |-separated string of alternatives
+                   Empty strings are discarded.
+    :return: generator of lists per month with all variants listed once only
+             the 1st item will be empty
     """
 
     for month_lexemes_and_alternatives in months:
@@ -193,7 +192,7 @@ def _generate_variants(months):
 #-------------------------------------------------------------------------
 class DateParser(object):
     """
-    Convert a text string into a Date object. If the date cannot be
+    Convert a text string into a :class:`.Date` object. If the date cannot be
     converted, the text string is assigned.
     """
 
@@ -377,7 +376,9 @@ class DateParser(object):
         may be called first as DateParser.init_strings(self) so that the
         invariant expresions don't need to be repeteadly coded. All differences
         can be coded after DateParser.init_strings(self) call, that way they
-        override stuff from this method. See DateParserRU() as an example.
+        override stuff from this method.
+        
+        .. seealso:: :class:`.DateParserRU` as an example.
         """
         _ = self._locale.translation.gettext
         self.__init_prefix_tables()
@@ -876,7 +877,7 @@ class DateParser(object):
     
     def parse(self, text):
         """
-        Parses the text, returning a Date object.
+        Parses the text, returning a :class:`.Date` object.
         """
         new_date = Date()
         try:

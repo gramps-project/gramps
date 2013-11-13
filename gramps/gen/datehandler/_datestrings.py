@@ -40,7 +40,7 @@ log = logging.getLogger(".DateStrings")
 #-------------------------------------------------------------------------
 class DateStrings(object):
     """
-    String tables for :class:`~DateDisplay` and :class:`~DateParser`.
+    String tables for :class:`.DateDisplay` and :class:`.DateParser`.
     """
 
     # This table needs not be localized, it's only for parsing 
@@ -233,16 +233,17 @@ __doc__ += """
 __main__
 --------
 
-Run this code with the appropriate ``LANG`` and ``LC_DATE`` set for your target language,
-in order to generate the .po snippets initialized with the strings from your locale
-(from the deprecated data provided in _grampslocale).
+Run this code with the appropriate ``LANG`` and ``LC_DATE`` set for your target
+language, in order to generate the .po snippets initialized with the strings
+from your locale (from the deprecated data provided in _grampslocale).
 
-E.g., for French:
-::
+E.g., for French::
+
     LANG=fr_FR.utf8 LC_ALL=fr_FR.utf8 GRAMPS_RESOURCES=$PWD python -m gramps.gen.datehandler._datestrings
 
-Then merge the output into your language's .po file, and further modify the strings as needed.
-Then remove the strings from your language's ``DateParserXX`` and ``DateHandlerXX`` classes.
+Then merge the output into your language's .po file, and further modify the
+strings as needed. Then remove the strings from your language's
+:class:`DateParserXX` and :class:`DateHandlerXX` classes.
 """
 
 if __name__ == '__main__':

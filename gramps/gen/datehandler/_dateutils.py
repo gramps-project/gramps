@@ -61,27 +61,27 @@ def set_format(value):
 
 def set_date(date_base, text) :
     """
-    Set the date of the DateBase instance.
+    Set the date of the :class:`.DateBase` instance.
     
-    The date is parsed into a Date instance.
+    The date is parsed into a :class:`.Date` instance.
     
-    @param date_base: The DateBase instance to set the date to.
-    @type date_base: DateBase
-    @param text: The text to use for the text string in date
-    @type text: str
-    
+    :param date_base: The :class:`.DateBase` instance to set the date to.
+    :type date_base: :class:`.DateBase`
+    :param text: The text to use for the text string in date
+    :type text: str
     """
     parser.set_date(date_base.get_date_object(), text)
 
 def get_date(date_base) :
     """
-    Return a string representation of the date of the DateBase instance.
+    Return a string representation of the date of the :class:`.DateBase`
+    instance.
     
     This representation is based off the default date display format
-    determined by the locale's DateDisplay instance.
-    @return: Returns a string representing the DateBase date
-    @rtype: str
-    
+    determined by the locale's :class:`.DateDisplay` instance.
+
+    :return: Returns a string representing the :class:`.DateBase` date
+    :rtype: str
     """
     return displayer.display(date_base.get_date_object())
 

@@ -82,14 +82,12 @@ class DateDisplay(object):
         _("DAY MON YEAR")
         )
     """
-    :Note:
-    Will be overridden if a locale-specific date displayer exists.
+    .. note:: Will be overridden if a locale-specific date displayer exists.
 
-    If your localized ``_display_gregorian`` / ``_display_calendar`` are overridden,
-    you should override the whole formats list according to your own formats,
-    and you need not localize the format names here.
-    this ``formats`` must agree with 
-    :meth:`~_display_calendar`/:meth:`~_display_gregorian`
+    If your localized :meth:`~_display_calendar`/:meth:`~_display_gregorian` are 
+    overridden,you should override the whole formats list according to your own
+    formats, and you need not localize the format names here. This ``formats``
+    must agree with :meth:`~_display_calendar`/:meth:`~_display_gregorian`.
     """
     del _
 
