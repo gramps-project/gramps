@@ -22,7 +22,7 @@
 # $Id$
 
 """
-Date editing module for GRAMPS. 
+Date editing module for Gramps. 
 
 The EditDate provides visual feedback to the user via a pixamp
 to indicate if the associated GtkEntry box contains a valid date. Green
@@ -109,7 +109,7 @@ WIKI_HELP_SEC = _('manual|Editing_Dates')
 class EditDate(ManagedWindow):
     """
     Dialog allowing to build the date precisely, to correct possible 
-    limitations of parsing and/or underlying structure of Date.
+    limitations of parsing and/or underlying structure of :class:`.Date`.
     """
 
     def __init__(self, date, uistate, track):
@@ -228,7 +228,7 @@ class EditDate(ManagedWindow):
 
     def build_menu_names(self, obj):
         """
-        Define the menu entry for the ManagedWindows
+        Define the menu entry for the :class:`.ManagedWindow`
         """
         return (_("Date selection"), None)
 

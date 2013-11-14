@@ -692,7 +692,7 @@ class EditRule(ManagedWindow):
 
     def on_help_clicked(self, obj):
         """
-        Display the relevant portion of GRAMPS manual.
+        Display the relevant portion of Gramps manual.
         """
         display_help()
 
@@ -807,7 +807,7 @@ class EditFilter(ManagedWindow):
         self.show()
 
     def on_help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
         display_help(webpage=WIKI_HELP_PAGE)
 
     def close_window(self, obj):
@@ -1064,7 +1064,7 @@ class FilterEditor(ManagedWindow):
         return (_("Custom Filter Editor"), _("Custom Filter Editor"))
         
     def help_clicked(self, obj):
-        """Display the relevant portion of GRAMPS manual"""
+        """Display the relevant portion of Gramps manual"""
         display_help()
 
     def filter_select_row(self, obj):

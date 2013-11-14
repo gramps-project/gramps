@@ -154,7 +154,7 @@ Filter Editor
    :show-inheritance:
 
 *****************************
-Gramps Bar
+Gramplet Bar
 *****************************
 .. automodule:: gramps.gui.widgets.grampletbar
 .. autoclass::  DetachedWindow
@@ -180,7 +180,7 @@ Navigator
    :show-inheritance:
 
 *****************************
-Plugins Manager
+Plugin Manager
 *****************************
 .. automodule:: gramps.gui.pluginmanager
 .. autoclass::  GuiPluginManager
@@ -215,7 +215,7 @@ Utils
    :show-inheritance:
 
 *****************************
-Views Manager
+View Manager
 *****************************
 .. automodule:: gramps.gui.viewmanager
 .. autoclass:: ViewManager

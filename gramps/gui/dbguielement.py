@@ -21,7 +21,8 @@
 # $Id$
 
 """
-Group common stuff GRAMPS GUI elements must be able to do when tracking a DB:
+Group common stuff Gramps GUI elements must be able to do when tracking a DB:
+
    * connect to db signals
    * listen to db changes to update themself on relevant changes
    * determine if the GUI has become out of sync with the db
@@ -41,17 +42,13 @@ from gramps.gen.utils.callman import CallbackManager
 #-------------------------------------------------------------------------
 class DbGUIElement(object):
     """
-    Group common stuff GRAMPS GUI elements must be able to do when tracking 
-    a DB:
-        * connect to db signals
-        * listen to db changes to update themself on relevant changes
-        * determine if the GUI has become out of sync with the db
     Most interaction with the DB should be done via the callman attribute.
-    On initialization, the method _connect_db_signals is called. Inheriting 
-    objects are advised to group the setup of the callman attribute here.
+    On initialization, the method :meth:`_connect_db_signals` is called.
+    Inheriting objects are advised to group the setup of the callman attribute
+    here.
     
-    .. attribute callman : a `~gen.utils.callman.CallbackManager` object, to 
-            be used to track specific changes in the db and set up callbacks
+    .. attribute callman: a :class:`.CallbackManager` object, to be used to
+                          track specific changes in the db and set up callbacks
     """
     def __init__(self, database):
         self.callman = CallbackManager(database)

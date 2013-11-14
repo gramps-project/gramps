@@ -243,19 +243,18 @@ WIKI_HELP_PAGE_MAN = '%s' % URL_MANUAL_PAGE
 #-------------------------------------------------------------------------
 class ViewManager(CLIManager):
     """
-    Overview
-    ========
+    **Overview**
 
     The ViewManager is the session manager of the program.
     Specifically, it manages the main window of the program. It is closely tied
     into the Gtk.UIManager to control all menus and actions.
 
-    The ViewManager controls the various Views within the GRAMPS programs.
+    The ViewManager controls the various Views within the Gramps programs.
     Views are organised in categories. The categories can be accessed via
     a sidebar. Within a category, the different views are accesible via the
     toolbar of view menu.
 
-    A View is a particular way of looking a information in the GRAMPS main
+    A View is a particular way of looking a information in the Gramps main
     window. Each view is separate from the others, and has no knowledge of
     the others.
 

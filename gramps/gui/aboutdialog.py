@@ -157,11 +157,11 @@ def ellipses(text):
 #
 #-------------------------------------------------------------------------
 class AuthorParser(handler.ContentHandler):
-    """Parse the 'authors.xml file to show in the About dialog.
+    """Parse the ``authors.xml`` file to show in the About dialog.
     
-    The C{authors.xml} file has the same format as the one in the U{svn2cl
-    <http://ch.tudelft.nl/~arthur/svn2cl/>} package, with an additional
-    C{title} tag in the C{author} element. For example::
+    The ``authors.xml`` file has the same format as the one in the `svn2cl
+    <http://ch.tudelft.nl/~arthur/svn2cl/>`_ package, with an additional
+    ``title`` tag in the ``author`` element. For example::
     
       <author uid="dallingham" title="author">
         Don Allingham &lt;<html:a href="mailto:don@gramps-project.org">don@gramps-project.org</html:a>&gt;
@@ -211,11 +211,11 @@ class AuthorParser(handler.ContentHandler):
 def _get_authors():
     """Return all the authors and contributors in a string.
     
-    Parse the C{authors.xml} file if found, or return the default
-    list from L{const} module in case of I/O or parsing failure.
+    Parse the ``authors.xml`` file if found, or return the default
+    list from :mod:`.const` module in case of I/O or parsing failure.
     
-    If the C{authors.xml} file is successfully parsed the I{Authors} and
-    I{Contributors} are grouped separately with an appropriate header.
+    If the ``authors.xml`` file is successfully parsed the *Authors* and
+    *Contributors* are grouped separately with an appropriate header.
     
     """
     try:

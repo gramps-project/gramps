@@ -2,7 +2,7 @@
 Code Documentation
 ##################
 
-*GRAMPS* provides several general API. The most important is the *gen* module, providing access to all code that can be of interest outside of the GRAMPS program.
+*Gramps* provides several general API. The most important is the *gen* module, providing access to all code that can be of interest outside of the Gramps program.
 
 The :mod:`gen` Module
 =======================
@@ -22,7 +22,7 @@ Contents:
    gen/gen_proxy
    gen/gen_utils
 
-The GRAMPS Application
+The Gramps Application
 ========================
 
 Contents:
@@ -36,7 +36,7 @@ Contents:
    relationship
    simple
 
-Usefull snippets
+Useful snippets
 ===================
 
 Contents:

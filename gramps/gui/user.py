@@ -48,7 +48,7 @@ from .dialog import (WarningDialog, ErrorDialog, DBErrorDialog,
 class User(user.User):
     """
     This class provides a means to interact with the user via GTK.
-    It implements the interface in gramps.gen.user.User()
+    It implements the interface in :class:`.gen.user.User`
     """
     def __init__(self, callback=None, error=None, uistate=None):
         user.User.__init__(self, callback, error)
@@ -59,15 +59,15 @@ class User(user.User):
         """
         Start showing a progress indicator to the user.
         
-        @param title: the title of the progress meter
-        @type title: str
-        @param message: the message associated with the progress meter
-        @type message: str
-        @param steps: the total number of steps for the progress meter.
-            a value of 0 indicates that the ending is unknown and the
-            meter should just show activity.
-        @type steps: int
-        @returns: none
+        :param title: the title of the progress meter
+        :type title: str
+        :param message: the message associated with the progress meter
+        :type message: str
+        :param steps: the total number of steps for the progress meter.
+                      a value of 0 indicates that the ending is unknown and the
+                      meter should just show activity.
+        :type steps: int
+        :returns: none
         """
         self._progress = ProgressMeter(title)
         if steps > 0:
@@ -94,18 +94,19 @@ class User(user.User):
         """
         Prompt the user with a message to select an alternative.
         
-        @param title: the title of the question, e.g.: "Undo history warning"
-        @type title: str
-        @param message: the message, e.g.: "Proceeding with the tool will
-            erase the undo history. If you think you may want to revert
-            running this tool, please stop here and make a backup of the DB."
-        @type question: str
-        @param accept_label: what to call the positive choice, e.g.: "Proceed"
-        @type accept_label: str
-        @param reject_label: what to call the negative choice, e.g.: "Stop"
-        @type reject_label: str
-        @returns: the user's answer to the question
-        @rtype: bool
+        :param title: the title of the question, e.g.: "Undo history warning"
+        :type title: str
+        :param message: the message, e.g.: "Proceeding with the tool will erase
+                        the undo history. If you think you may want to revert
+                        running this tool, please stop here and make a backup
+                        of the DB."
+        :type question: str
+        :param accept_label: what to call the positive choice, e.g.: "Proceed"
+        :type accept_label: str
+        :param reject_label: what to call the negative choice, e.g.: "Stop"
+        :type reject_label: str
+        :returns: the user's answer to the question
+        :rtype: bool
         """
         dialog = QuestionDialog2(title, message, accept_label, reject_label)
         return dialog.run()
@@ -114,11 +115,11 @@ class User(user.User):
         """
         Warn the user.
         
-        @param title: the title of the warning
-        @type title: str
-        @param warning: the warning
-        @type warning: str
-        @returns: none
+        :param title: the title of the warning
+        :type title: str
+        :param warning: the warning
+        :type warning: str
+        :returns: none
         """
         WarningDialog(title, warning)
     
@@ -126,11 +127,11 @@ class User(user.User):
         """
         Notify the user of an error.
         
-        @param title: the title of the error
-        @type title: str
-        @param error: the error message
-        @type error: str
-        @returns: none
+        :param title: the title of the error
+        :type title: str
+        :param error: the error message
+        :type error: str
+        :returns: none
         """
         if self.error_function:
             self.error_function(title, error)
@@ -141,9 +142,9 @@ class User(user.User):
         """
         Notify the user of a DB error.
         
-        @param error: the DB error message
-        @type error: str
-        @returns: none
+        :param error: the DB error message
+        :type error: str
+        :returns: none
         """
         DBErrorDialog(error)
 

@@ -21,7 +21,7 @@
 # $Id$
 
 """
-The core of the GRAMPS plugin system. This module provides capability to load
+The core of the Gramps plugin system. This module provides capability to load
 plugins from specified directories and provide information about the loaded
 plugins.
 
@@ -58,13 +58,13 @@ from gramps.gen.const import ICON
 def base_reg_stock_icons(iconpaths, extraiconsize, items):
     """
     Reusable base to register stock icons in Gramps
-    ..attribute iconpaths: list of main directory of the base icon, and
-      extension, eg:
-      [(os.path.join(IMAGE_DIR, 'scalable'), '.svg')]
-    ..attribute extraiconsize: list of dir with extra prepared icon sizes and
-      the gtk size to use them for, eg:
+    :param iconpaths: list of main directory of the base icon, and extension,
+                      eg:
+                          [(os.path.join(IMAGE_DIR, 'scalable'), '.svg')]
+    :param extraiconsize: list of dir with extra prepared icon sizes and the 
+                          gtk size to use them for, eg:
       [(os.path.join(IMAGE_DIR, '22x22'), Gtk.IconSize.LARGE_TOOLBAR)]
-    ..attribute items: list of icons to register, eg:
+    :param items: list of icons to register, eg:
       [('gramps-db', _('Family Trees'), Gdk.ModifierType.CONTROL_MASK, 0, '')]
     """
     
@@ -168,20 +168,22 @@ class GuiPluginManager(Callback):
 
     def load_icons(self, icons, dir):
         """
-        Load icons in the iconfactory of gramps, so they can be used in the
+        Load icons in the iconfactory of Gramps, so they can be used in the
         plugin.
-        
-        ..attribute icons: 
-          New stock icons to register. A list of tuples (stock_id, icon_label), 
-          eg: 
-            [('gramps_myplugin', _('My Plugin')), 
-            ('gramps_myplugin_open', _('Open Plugin'))]
-          The plugin directory must contain the directories scalable, 48x48, 22x22
-          and 16x16 with the icons, eg in dir we have:
-            scalable/gramps_myplugin.svg
-            48x48/gramps_myplugin.png
-            22x22/gramps_myplugin.png
-        ..attribute dir: directory from where to load the icons
+
+        The plugin directory must contain the directories scalable, 48x48, 22x22
+        and 16x16 with the icons, e.g. in dir we have:
+
+        - scalable/gramps_myplugin.svg
+        - 48x48/gramps_myplugin.png
+        - 22x22/gramps_myplugin.png
+
+        :param icons: New stock icons to register. e.g.
+                     [('gramps_myplugin', _('My Plugin')),
+                     ('gramps_myplugin_open', _('Open Plugin'))]
+        :type icons: A list of tuples (stock_id, icon_label)
+        :param dir: Directory from where to load the icons
+        :type dir: str
         """
         if win():
             iconpaths = [

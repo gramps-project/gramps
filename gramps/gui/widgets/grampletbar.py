@@ -664,7 +664,7 @@ class DetachedWindow(ManagedWindow):
 
     def build_menu_names(self, obj):
         """
-        Part of the GRAMPS window interface.
+        Part of the Gramps window interface.
         """
         return (self.title, 'Gramplet')
 

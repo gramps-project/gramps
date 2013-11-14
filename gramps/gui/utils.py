@@ -109,18 +109,18 @@ class CLIDialog:
 
 class ProgressMeter(object):
     """
-    Progress meter class for GRAMPS.
+    Progress meter class for Gramps.
 
     The progress meter has two modes:
 
     MODE_FRACTION is used when you know the number of steps that will be taken.
-    Set the total number of steps, and then call step() that many times.
+    Set the total number of steps, and then call :meth:`step` that many times.
     The progress bar will progress from left to right.
 
     MODE_ACTIVITY is used when you don't know the number of steps that will be
     taken. Set up the total number of steps for the bar to get from one end of
-    the bar to the other. Then, call step() as many times as you want. The bar
-    will move from left to right until you stop calling step.
+    the bar to the other. Then, call :meth:`step` as many times as you want. The
+    bar will move from left to right until you stop calling :meth:`step`.
     """
 
     MODE_FRACTION = 0
@@ -328,12 +328,14 @@ class SystemFonts(object):
 
     The bug is described here: https://bugzilla.gnome.org/show_bug.cgi?id=679654
 
-    This code generate a warning:
+    This code generates a warning:
     /usr/local/lib/python2.7/site-packages/gi/types.py:47: 
     Warning: g_value_get_object: assertion `G_VALUE_HOLDS_OBJECT (value)' failed
 
-    To get a list of fonts, instantiate this class and call get_system_fonts()
-    #TODO GTK3: the underlying bug may be fixed at some point in the future
+    To get a list of fonts, instantiate this class and call
+    :meth:`get_system_fonts`
+
+    .. todo:: GTK3: the underlying bug may be fixed at some point in the future
     """
 
     __FONTS = None
@@ -383,9 +385,11 @@ def poll_external (args):
     GLib.timeout_add_seconds, so the arguments are in a tuple because that
     function takes only a single data argument.
 
-    @proc the process, returned from subprocess.Popen()
-    @errorstrings a dict of possible response values and the corresponding messages to display.
-    @returns bool returned to timeout_add_seconds: should this function be called again?
+    :param proc: the process, returned from subprocess.Popen()
+    :param errorstrings: a dict of possible response values and the
+                         corresponding messages to display.
+    :return: bool returned to timeout_add_seconds: should this function be
+             called again?
     """
     (proc, errorstrings) = args
     resp = proc.poll()
@@ -402,10 +406,10 @@ def open_file_with_default_application(path):
     whatever program is configured on the host as the default program for that
     type of file.
 
-    @param file_path: The path to the file to be opened.
-        Example: "c:\\foo.txt"
-    @type file_path: string
-    @return: nothing
+    :param file_path: The path to the file to be opened.
+                      Example: "c:\\foo.txt"
+    :type file_path: string
+    :return: nothing
     """
 
     errstrings = None
@@ -472,9 +476,9 @@ def is_right_click(event):
 
 def color_graph_box(alive=False, gender=Person.MALE):
     """
-    Returns based on the config the color for graph boxes in hex
-    If gender is None, an empty box is assumed
-    Return type: tuple (hex color fill, hex color border)
+    :return: based on the config the color for graph boxes in hex
+             If gender is None, an empty box is assumed
+    :rtype: tuple (hex color fill, hex color border)
     """
     if gender == Person.MALE:
         if alive:
