@@ -31,11 +31,96 @@ from ..dbstate import DbState
 from gramps.cli.grampscli import CLIManager
 from ..plug import BasePluginManager
 from ..db.dictionary import DictionaryDb
-from gramps.gen.lib.handle import HandleClass
+from gramps.gen.lib.handle import HandleClass, Handle
+from gramps.gen.lib import *
+from gramps.gen.lib.personref import PersonRef
+from gramps.gen.lib.eventref import EventRef
 from ..const import GRAMPS_LOCALE as glocale
 from ..constfunc import handle2internal
 _ = glocale.translation.gettext
 
+def get_schema(cls):
+    """
+    Given a gramps.gen.lib class, or class name, return a dictionary
+    containing the schema. The schema is a dictionary of fieldname
+    keys with type as value.
+
+    Also, the schema includes the same metadata fields as does struct,
+    including "_class", returned as real class of cls.
+    """
+    orig_cls = cls
+    # Get type as a gramps.gen.lib string name
+    if isinstance(cls, type):
+        cls = cls().__class__.__name__
+    elif isinstance(cls, object) and not isinstance(cls, str):
+        cls = cls.__class__.__name__
+    ### Is there a Path?
+    if "." in cls:
+        items = parse(cls) # "Person.alternate_names"
+        cls, path = items[0], items[1:]
+    else:
+        path = []
+    # Now get the schema
+    if cls in ("str", "int", "bool", "float", "long", "list"):
+        schema = orig_cls
+    elif cls == "Person":
+        schema = {
+            "_class": Person,
+            "handle":  str,
+            "gramps_id": Handle("Person", "PERSON-HANDLE"),
+            "gender": int,
+            "primary_name": Name,
+            "alternate_names": [Name],
+            "death_ref_index": int,
+            "birth_ref_index": int,
+            "event_ref_list": [EventRef],
+            "family_list": [Handle("Family", "FAMILY-HANDLE")],
+            "parent_family_list": [Handle("Family", "FAMILY-HANDLE")],
+            "media_list": [MediaRef],
+            "address_list": [Address],
+            "attribute_list": [Attribute],
+            "urls": [Url],
+            "lds_ord_list": [LdsOrd],
+            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
+            "note_list": [Handle("Note", "NOTE-HANDLE")], 
+            "change": int,
+            "tag_list": [Handle("Tag", "TAG-HANDLE")],
+            "private": bool,
+            "person_ref_list": [PersonRef]
+        }
+    elif cls == "Name":
+        schema = {
+            "_class": Name,
+            "private": bool,
+            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
+            "note_list": [Handle("Note", "NOTE-HANDLE")],
+            "date": Date,
+            "first_name": str,
+            "surname_list": [Surname],
+            "suffix": str,
+            "title": str,
+            "type": NameType,
+            "group_as": str,
+            "sort_as": int,
+            "display_as": int,
+            "call": str,
+            "nick": str,
+            "famnick": str,
+        }
+    else:
+        raise AttributeError("unknown class '%s'" % cls)
+    # walk down path, if given:
+    for p in range(len(path)):
+        # could be a list
+        item = path[p]
+        if isinstance(schema, (list, tuple)):
+            schema = schema[int(item)]
+        else:
+            schema = schema[item]
+        if isinstance(schema, type):
+            schema = get_schema(schema)
+    return schema
+    
 def parse(string):
     """
     Break a string up into a struct-path:
