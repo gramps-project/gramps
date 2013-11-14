@@ -78,7 +78,7 @@
   </binary>
 
   <binary>
-     ${prefix}/lib/libosmgpsmap.3.dylib
+     ${prefix}/lib/libosmgpsmap-1.0.0.dylib
   </binary>
 
   <binary>
@@ -210,7 +210,7 @@
     ${project}/gramps.icns
   </data>
 
-  <data dest="${bundle}/Contents/Resources/lib/python2.7/site-packages/gramps/data/gramps.accel">
+  <data dest="${bundle}/Contents/Resources/share/gramps/gramps.accel">
     ${project}/gramps.accel
   </data>
 
