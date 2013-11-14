@@ -39,6 +39,7 @@ from gramps.gen.lib.attrtype import AttributeType
 from gramps.gen.lib.urltype import UrlType
 from gramps.gen.lib.childreftype import ChildRefType
 from gramps.gen.lib.repotype import RepositoryType
+from gramps.gen.lib.placetype import PlaceType
 from gramps.gen.lib.eventtype import EventType
 from gramps.gen.lib.familyreltype import FamilyRelType
 from gramps.gen.lib.srcmediatype import SourceMediaType
@@ -195,7 +196,7 @@ for section in config.get_sections():
 type_models = [NameType, NameOriginType, AttributeType, UrlType, ChildRefType, 
                RepositoryType, EventType, FamilyRelType, SourceMediaType, 
                EventRoleType, NoteType, GenderType, LdsType, LdsStatus,
-               NameFormatType, StyledTextTagType, ThemeType]
+               NameFormatType, StyledTextTagType, ThemeType, PlaceType]
 for type in type_models:
     count = 1
     # Add each code:

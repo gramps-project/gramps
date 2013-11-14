@@ -169,6 +169,13 @@ class RepositoryType(mGrampsType):
     _DEFAULT = get_default_type_value(RepositoryType)
     val = models.IntegerField('repository type', choices=_DATAMAP, blank=False)
 
+class PlaceType(mGrampsType):
+    from gramps.gen.lib.placetype import PlaceType
+    _DATAMAP = get_datamap(PlaceType)
+    _CUSTOM = PlaceType._CUSTOM
+    _DEFAULT = get_default_type_value(PlaceType)
+    val = models.IntegerField('place type', choices=_DATAMAP, blank=False)
+
 class EventType(mGrampsType):
     from gramps.gen.lib.eventtype import EventType
     _DATAMAP = get_datamap(EventType)
@@ -604,10 +611,14 @@ class Repository(PrimaryObject):
     #   .url_set
 
 class Place(PrimaryObject):
+    place_type = models.ForeignKey('PlaceType', verbose_name="Type")
     title = models.TextField(blank=True)
     #locations = models.ManyToManyField('Location', null=True, blank=True)
     long = models.TextField(blank=True)
     lat = models.TextField(blank=True)
+    name = models.TextField(blank=True)
+    code = models.TextField(blank=True) # zipcode
+
     #url_list = models.ManyToManyField('Url', null=True, blank=True)
 
     def get_selection_string(self):
@@ -931,6 +942,15 @@ class RepositoryRef(BaseRef):
     def __unicode__(self):
         return cuni("RepositoryRef to ") + cuni(self.ref_object)
 
+class PlaceRef(BaseRef, DateObject):
+    ref_object = models.ForeignKey('Place')
+
+    def get_reference_to(self):
+        return self.ref_object
+
+    def __unicode__(self):
+        return cuni("PlaceRef to ") + cuni(self.ref_object)
+
 class PersonRef(BaseRef):
     ref_object = models.ForeignKey('Person')
     description = models.CharField(max_length=50, blank=True, null=True)
@@ -1009,6 +1029,7 @@ TABLES = [
     ("type", UrlType),
     ("type", ChildRefType),
     ("type", RepositoryType),
+    ("type", PlaceType),
     ("type", EventType),
     ("type", FamilyRelType),
     ("type", SourceMediaType),
@@ -1047,6 +1068,7 @@ TABLES = [
     ("ref", NoteRef),
     ("ref", EventRef),
     ("ref", RepositoryRef),
+    ("ref", PlaceRef),
     ("ref", PersonRef),
     ("ref", ChildRef),
     ("ref", MediaRef),

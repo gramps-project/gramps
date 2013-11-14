@@ -243,6 +243,12 @@ class DjangoInterface(object):
                                                    object_type=obj_type)
         return list(map(self.pack_repository_ref, reporefs))
 
+    def get_place_ref_list(self, obj):
+        obj_type = ContentType.objects.get_for_model(obj)
+        refs = models.PlaceRef.objects.filter(object_id=obj.id, 
+                                              object_type=obj_type)
+        return list(map(self.pack_place_ref, refs))
+
     def get_url_list(self, obj):
         return list(map(self.pack_url, obj.url_set.all().order_by("order")))
 
@@ -311,9 +317,9 @@ class DjangoInterface(object):
         media_list = self.get_media_list(event)         
         attribute_list = self.get_attribute_list(event)
         date = self.get_date(event)
-        place = self.get_place_handle(event)
+        place_handle = self.get_place_handle(event)
         tag_list = self.get_tag_list(event)
-        return (str(handle), gid, the_type, date, description, place, 
+        return (str(handle), gid, the_type, date, description, place_handle, 
                 citation_list, note_list, media_list, attribute_list,
                 change, tag_list, private)
 
@@ -516,24 +522,22 @@ class DjangoInterface(object):
 
     def get_place(self, place):
         locations = place.location_set.all().order_by("order")
-        main_loc = None
-        alt_location_list = []
-        for location in locations:
-            if main_loc is None:
-                main_loc = self.pack_location(location, True)
-            else:
-                alt_location_list.append(self.pack_location(location, True))
+        alt_location_list = [self.pack_location(location, True) for location in locations]
         url_list = self.get_url_list(place)
         media_list = self.get_media_list(place)
         citation_list = self.get_citation_list(place)
         note_list = self.get_note_list(place)
         tag_list = self.get_tag_list(place)
+        place_ref_list = self.get_place_ref_list(place)
         return (str(place.handle), 
                 place.gramps_id,
                 place.title, 
                 place.long, 
                 place.lat,
-                main_loc, 
+                place_ref_list,
+                place.name,
+                tuple(place.place_type),
+                place.code,
                 alt_location_list,
                 url_list,
                 media_list,
@@ -585,6 +589,10 @@ class DjangoInterface(object):
                 repo_ref.call_number, 
                 tuple(repo_ref.source_media_type),
                 repo_ref.private)
+
+    def pack_place_ref(self, place_ref):
+        date = self.get_date(place_ref)
+        return (place_ref.ref_object.handle, date)
 
     def pack_media_ref(self, media_ref):
         note_list = self.get_note_list(media_ref)
@@ -641,8 +649,8 @@ class DjangoInterface(object):
             famc = lds.famc.handle
         else:
             famc = None
-        place = self.get_place_handle(lds)
-        return (citation_list, note_list, date, lds.lds_type[0], place,
+        place_handle = self.get_place_handle(lds)
+        return (citation_list, note_list, date, lds.lds_type[0], place_handle,
                 famc, lds.temple, lds.status[0], lds.private)
 
     def pack_source(self, source):
@@ -733,7 +741,7 @@ class DjangoInterface(object):
                 self.add_note_ref(obj, note)
             except:
                 print(("ERROR: Note does not exist: '%s'" % 
-                                      handle), file=sys.stderr)
+                                      str(handle)), file=sys.stderr)
     
     def add_alternate_name_list(self, person, alternate_names):
         for name in alternate_names:
@@ -758,7 +766,7 @@ class DjangoInterface(object):
                 tag = models.Tag.objects.get(handle=tag_handle)
             except:
                 print(("ERROR: Tag does not exist: '%s'" % 
-                                      tag_handle), file=sys.stderr)
+                                      str(tag_handle)), file=sys.stderr)
             obj.tags.add(tag)
     
     def add_url_list(self, field, obj, url_list):
@@ -790,6 +798,10 @@ class DjangoInterface(object):
         for data in reporef_list:
             self.add_repository_ref(obj, data)
     
+    def add_place_ref_list(self, obj, placeref_list):
+        for data in placeref_list:
+            self.add_place_ref(obj, data)
+    
     def add_family_ref_list(self, person, family_list):
         for family_handle in family_list:
             self.add_family_ref(person, family_handle) 
@@ -815,7 +827,7 @@ class DjangoInterface(object):
             person = models.Person.objects.get(handle=handle)
         except:
             print(("ERROR: Person does not exist: '%s'" % 
-                                  handle), file=sys.stderr)
+                                  str(handle)), file=sys.stderr)
             return
             
         count = person.references.count()
@@ -857,7 +869,7 @@ class DjangoInterface(object):
             media = models.Media.objects.get(handle=ref)
         except:
             print(("ERROR: Media does not exist: '%s'" % 
-                                  ref), file=sys.stderr)
+                                  str(ref)), file=sys.stderr)
             return
         count = media.references.count()
         if not role:
@@ -889,7 +901,7 @@ class DjangoInterface(object):
             citation = models.Citation.objects.get(handle=handle)
         except:
             print(("ERROR: Citation does not exist: '%s'" % 
-                                  handle), file=sys.stderr)
+                                  str(handle)), file=sys.stderr)
             return
 
         object_type = ContentType.objects.get_for_model(obj)
@@ -919,13 +931,13 @@ class DjangoInterface(object):
             citation = models.Citation.objects.get(handle=handle)
         except:
             print(("ERROR: Citation does not exist: '%s'" % 
-                                  handle), file=sys.stderr)
+                                  str(handle)), file=sys.stderr)
             return
         try:
             source = models.Source.objects.get(handle=source_handle)
         except:
             print(("ERROR: Source does not exist: '%s'" % 
-                                  source_handle), file=sys.stderr)
+                                  str(source_handle)), file=sys.stderr)
             return
         citation.source = source
         self.add_date(citation, date)
@@ -953,7 +965,7 @@ class DjangoInterface(object):
             child = models.Person.objects.get(handle=ref)
         except:
             print(("ERROR: Person does not exist: '%s'" % 
-                                  ref), file=sys.stderr)
+                                  str(ref)), file=sys.stderr)
             return
         object_type = ContentType.objects.get_for_model(obj)
         count = models.ChildRef.objects.filter(object_id=obj.id,object_type=object_type).count()
@@ -983,7 +995,7 @@ class DjangoInterface(object):
             event = models.Event.objects.get(handle=ref)
         except:
             print(("ERROR: Event does not exist: '%s'" % 
-                                  ref), file=sys.stderr)
+                                  str(ref)), file=sys.stderr)
             return
         object_type = ContentType.objects.get_for_model(obj)
         count = models.EventRef.objects.filter(object_id=obj.id,object_type=object_type).count()
@@ -1019,7 +1031,7 @@ class DjangoInterface(object):
             repository = models.Repository.objects.get(handle=ref)
         except:
             print(("ERROR: Repository does not exist: '%s'" % 
-                                  ref), file=sys.stderr)
+                                  str(ref)), file=sys.stderr)
             return
         object_type = ContentType.objects.get_for_model(obj)
         count = models.RepositoryRef.objects.filter(object_id=obj.id,object_type=object_type).count()
@@ -1038,7 +1050,7 @@ class DjangoInterface(object):
             family = models.Family.objects.get(handle=handle)
         except:
             print(("ERROR: Family does not exist: '%s'" % 
-                                  handle), file=sys.stderr)
+                                  str(handle)), file=sys.stderr)
             return
         #obj.families.add(family)
         pfo = models.MyFamilies(person=obj, family=family,
@@ -1076,7 +1088,7 @@ class DjangoInterface(object):
                 place = models.Place.objects.get(handle=place_handle)
             except:
                 print(("ERROR: Place does not exist: '%s'" % 
-                                      place_handle), file=sys.stderr)
+                                      str(place_handle)), file=sys.stderr)
                 place = None
         else:
             place = None
@@ -1085,7 +1097,7 @@ class DjangoInterface(object):
                 famc = models.Family.objects.get(handle=famc_handle)
             except:
                 print(("ERROR: Family does not exist: '%s'" % 
-                                      famc_handle), file=sys.stderr)
+                                      str(famc_handle)), file=sys.stderr)
                 famc = None
         else:
             famc = None
@@ -1106,7 +1118,7 @@ class DjangoInterface(object):
             lds.family = obj
         else:
             raise AttributeError("invalid field '%s' to attach lds" %
-                                 field)
+                                 str(field))
         lds.save()
         return lds
     
@@ -1124,7 +1136,7 @@ class DjangoInterface(object):
             address.repository = obj
         else:
             raise AttributeError("invalid field '%s' to attach address" %
-                                 field)
+                                 str(field))
         address.save()
         #obj.save()
         #obj.addresses.add(address)
@@ -1158,28 +1170,44 @@ class DjangoInterface(object):
             url.place = obj
         else:
             raise AttributeError("invalid field '%s' to attach to url" %
-                                 field)
+                                 str(field))
         url.save()
         #obj.url_list.add(url)
         #obj.save()
     
-    def add_place_ref(self, event, place_handle):
+    def add_place_ref_default(self, obj, place, date=None):
+        count = place.references.count()
+        object_type = ContentType.objects.get_for_model(obj)
+        count = models.PlaceRef.objects.filter(object_id=obj.id,
+                                               object_type=object_type).count()
+        place_ref = models.PlaceRef(referenced_by=obj,
+                                    ref_object=place,
+                                    order=count + 1)
+        self.add_date(obj, date)
+        place_ref.save()
+    
+    def add_place_ref(self, obj, data):
+        place_handle, date = data
         if place_handle:
             try:
                 place = models.Place.objects.get(handle=place_handle)
             except:
-                print(("ERROR: Place does not exist: '%s'" % 
-                                      place_handle), file=sys.stderr)
+                print(("ERROR: Place does not exist: '%s'" % str(place_handle)), file=sys.stderr)
+                #from gramps.gen.utils.debug import format_exception
+                #print("".join(format_exception()), file=sys.stderr)
                 return
-            event.place = place
-            event.save()
-    
+        object_type = ContentType.objects.get_for_model(obj)
+        count = models.PlaceRef.objects.filter(object_id=obj.id,object_type=object_type).count()
+        place_ref = models.PlaceRef(referenced_by=obj, ref_object=place, order=count + 1)
+        place_ref.save()
+        self.add_date(place_ref, date)
+
     def add_parent_family(self, person, parent_family_handle):
         try:
             family = models.Family.objects.get(handle=parent_family_handle)
         except:
             print(("ERROR: Family does not exist: '%s'" % 
-                                  parent_family_handle), file=sys.stderr)
+                                  str(parent_family_handle)), file=sys.stderr)
             return
         #person.parent_families.add(family)
         pfo = models.MyParentFamilies(person=person, family=family,
@@ -1201,7 +1229,7 @@ class DjangoInterface(object):
             elif len(dateval) == 8:
                 day1, month1, year1, slash1, day2, month2, year2, slash2 = dateval
             else:
-                raise AttributeError("ERROR: dateval format '%s'" % dateval)
+                raise AttributeError("ERROR: dateval format '%s'" % str(dateval))
         obj.calendar = calendar
         obj.modifier = modifier
         obj.quality = quality
@@ -1313,7 +1341,7 @@ class DjangoInterface(object):
             person = models.Person.objects.get(handle=handle)
         except:
             print(("ERROR: Person does not exist: '%s'" % 
-                                  handle), file=sys.stderr)
+                                  str(handle)), file=sys.stderr)
             return
         if primary_name:
             self.add_name(person, primary_name, True)
@@ -1420,7 +1448,7 @@ class DjangoInterface(object):
             family = models.Family.objects.get(handle=handle)
         except:
             print(("ERROR: Family does not exist: '%s'" % 
-                                  handle), file=sys.stderr)
+                                  str(handle)), file=sys.stderr)
             return
         # father_handle and/or mother_handle can be None
         if father_handle:
@@ -1428,14 +1456,14 @@ class DjangoInterface(object):
                 family.father = models.Person.objects.get(handle=father_handle)
             except:
                 print(("ERROR: Father does not exist: '%s'" % 
-                                      father_handle), file=sys.stderr)
+                                      str(father_handle)), file=sys.stderr)
                 family.father = None
         if mother_handle:
             try:
                 family.mother = models.Person.objects.get(handle=mother_handle)
             except:
                 print(("ERROR: Mother does not exist: '%s'" % 
-                                      mother_handle), file=sys.stderr)
+                                      str(mother_handle)), file=sys.stderr)
                 family.mother = None
         family.cache = self.encode_raw(data)
         family.save()
@@ -1478,7 +1506,7 @@ class DjangoInterface(object):
             source = models.Source.objects.get(handle=handle)
         except:
             print(("ERROR: Source does not exist: '%s'" % 
-                                  handle), file=sys.stderr)
+                                  str(handle)), file=sys.stderr)
             return
         source.cache = self.encode_raw(data)
         source.save()
@@ -1508,7 +1536,7 @@ class DjangoInterface(object):
             repository = models.Repository.objects.get(handle=handle)
         except:
             print(("ERROR: Repository does not exist: '%s'" % 
-                                  handle), file=sys.stderr)
+                                  str(handle)), file=sys.stderr)
             return
         repository.cache = self.encode_raw(data)
         repository.save()
@@ -1530,7 +1558,7 @@ class DjangoInterface(object):
             ((street, locality, city, county, state, country, postal, phone), parish) = location_data
         else:
             print(("ERROR: unknown location: '%s'" % 
-                                  location_data), file=sys.stderr)
+                                  str(location_data)), file=sys.stderr)
             (street, locality, city, county, state, country, postal, phone, parish) = \
                 ("", "", "", "", "", "", "", "", "")
         location = models.Location(street = street,
@@ -1549,14 +1577,18 @@ class DjangoInterface(object):
             location.place = obj
         else:
             raise AttributeError("invalid field '%s' to attach to location" %
-                                 field)
+                                 str(field))
         location.save()
         #obj.locations.add(location)
         #obj.save()
     
     def add_place(self, data):
         (handle, gid, title, long, lat,
-         main_loc, alt_location_list,
+         place_ref_list,
+         name,
+         place_type,
+         code,
+         alt_location_list,
          url_list,
          media_list,
          citation_list,
@@ -1564,15 +1596,26 @@ class DjangoInterface(object):
          change, 
          tag_list,
          private) = data
-        place = models.Place(handle=handle, gramps_id=gid, title=title,
-                             long=long, lat=lat, last_changed=todate(change),
-                             private=private)
-        #place.cache = base64.encodestring(cPickle.dumps(data))
+        place = models.Place(
+            handle=handle, 
+            gramps_id=gid, 
+            title=title,
+            long=long, 
+            lat=lat, 
+            name=name,
+            place_type=models.get_type(models.PlaceType, place_type), 
+            code=code, 
+            last_changed=todate(change),
+            private=private)
         place.save()
 
     def add_place_detail(self, data):
         (handle, gid, title, long, lat,
-         main_loc, alt_location_list,
+         place_ref_list,
+         name,
+         place_type,
+         code,
+         alt_location_list,
          url_list,
          media_list,
          citation_list,
@@ -1584,7 +1627,7 @@ class DjangoInterface(object):
             place = models.Place.objects.get(handle=handle)
         except:
             print(("ERROR: Place does not exist: '%s'" % 
-                                  handle), file=sys.stderr)
+                                  str(handle)), file=sys.stderr)
             return
         place.cache = self.encode_raw(data)
         place.save()
@@ -1593,8 +1636,8 @@ class DjangoInterface(object):
         self.add_citation_list(place, citation_list)
         self.add_note_list(place, note_list) 
         self.add_tag_list(place, tag_list)
-        self.add_location("place", place, main_loc, 1)
-        count = 2
+        self.add_place_ref_list(place, place_ref_list)
+        count = 1
         for loc_data in alt_location_list:
             self.add_location("place", place, loc_data, count)
             count + 1
@@ -1655,7 +1698,7 @@ class DjangoInterface(object):
             media = models.Media.objects.get(handle=handle)
         except:
             print(("ERROR: Media does not exist: '%s'" % 
-                                  handle), file=sys.stderr)
+                                  str(handle)), file=sys.stderr)
             return
         media.cache = self.encode_raw(data)
         media.save()
@@ -1686,11 +1729,17 @@ class DjangoInterface(object):
             event = models.Event.objects.get(handle=handle)
         except:
             print(("ERROR: Event does not exist: '%s'" % 
-                                  handle), file=sys.stderr)
+                                  str(handle)), file=sys.stderr)
             return
+        try:
+            place = models.Place.objects.get(handle=place_handle)
+        except:
+            place = None
+            print(("ERROR: Place does not exist: '%s'" % 
+                                  str(place_handle)), file=sys.stderr)
+        event.place = place
         event.cache = self.encode_raw(data)
         event.save()
-        self.add_place_ref(event, place_handle)
         self.add_note_list(event, note_list)
         self.add_attribute_list(event, attribute_list)
         self.add_media_ref_list(event, media_list)
@@ -1971,7 +2020,7 @@ class DjangoInterface(object):
                 try:
                     item = ref_from_class.objects.get(id=reference.object_id)
                 except:
-                    print("Warning: Corrupt reference: %s" % reference)
+                    print("Warning: Corrupt reference: %s" % str(reference))
                     continue
                 # If it is linked to by someone alive? public = False
                 if hasattr(item, "probably_alive") and item.probably_alive:
@@ -2011,7 +2060,7 @@ class DjangoInterface(object):
         elif  obj.__class__.__name__ == "Family":
             objref = self.ChildRef # correct?
         else:
-            raise Exception("Can't compute public of type '%s'" % obj)
+            raise Exception("Can't compute public of type '%s'" % str(obj))
         public, reason = self.is_public(obj, objref) # correct?
         # Ok, update, if needed:
         if obj.public != public:
