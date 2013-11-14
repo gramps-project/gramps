@@ -351,6 +351,9 @@ class MatchDateTest(BaseDateTest):
              # See bug# 7158
              ("today", Today(), True),
              ("today (Hebrew)", Today(), True),
+             # See bug# 7197
+             ("1788-03-27", "1789-03-27 (Mar25)", True),  
+             ("1788-03-27 (Julian)", "1789-03-27 (Julian, Mar25)", True),  
              ]
 
     def convert_to_date(self, d):
