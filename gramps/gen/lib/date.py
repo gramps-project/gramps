@@ -4,6 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009-2013  Douglas S. Blank
 # Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2013       Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1546,6 +1547,7 @@ class Date(object):
                 year_delta = -1
                 d1 = Date(self.get_year() + year_delta, self.get_month(), self.get_day())
                 d1.set_calendar(self.calendar)
+                d1.recalc_sort_value()
                 self.sortval = d1.sortval
         return year_delta
 
