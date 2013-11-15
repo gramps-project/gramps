@@ -21,7 +21,7 @@
 # $Id$
 
 
-"Text editor subclassed from Gtk.TextView handling L{StyledText}."
+"Text editor subclassed from Gtk.TextView handling :class:`.StyledText`."
 
 __all__ = ["StyledTextEditor"]
 
@@ -133,37 +133,38 @@ def find_parent_with_attr(self, attr="dbstate"):
 #
 #-------------------------------------------------------------------------
 class StyledTextEditor(Gtk.TextView):
-    """StyledTextEditor is an enhanced Gtk.TextView to edit L{StyledText}.
+    """
+    StyledTextEditor is an enhanced Gtk.TextView to edit :class:`.StyledText`.
     
-    StyledTextEditor is a gui object for L{StyledTextBuffer}. It offers
-    L{set_text} and L{get_text} convenience methods to set and get the 
+    StyledTextEditor is a gui object for :class:`.StyledTextBuffer`. It offers
+    :meth:`set_text` and :meth:`get_text` convenience methods to set and get the 
     buffer's text.
     
     StyledTextEditor provides a formatting toolbar, which can be retrieved
-    by the L{get_toolbar} method.
+    by the :meth:`get_toolbar` method.
     
     StyledTextEdit defines a new signal: 'match-changed', which is raised
     whenever the mouse cursor reaches or leaves a matched string in the text.
     The feature uses the regexp pattern mathing mechanism of
-    L{StyledTextBuffer}.
+    :class:`.StyledTextBuffer`.
     The signal's default handler highlights the URL strings. URL's can be
     followed from the editor's popup menu or by pressing the <CTRL>Left
     mouse button.
     
-    @ivar last_match: previously matched string, used for generating the
-    'match-changed' signal.
-    @type last_match: tuple or None
-    @ivar match: currently matched string, used for generating the
-    'match-changed' signal.
-    @type match: tuple or None
-    @ivar spellcheck: spell checker object created for the editor instance.
-    @type spellcheck: L{Spell}
-    @ivar textbuffer: text buffer assigned to the edit instance.
-    @type textbuffer: L{StyledTextBuffer}
-    @ivar toolbar: toolbar to be used for text formatting.
-    @type toolbar: Gtk.Toolbar
-    @ivar url_match: stores the matched URL and other mathing parameters.
-    @type url_match: tuple or None
+    :ivar last_match: previously matched string, used for generating the
+                      'match-changed' signal.
+    :type last_match: tuple or None
+    :ivar match: currently matched string, used for generating the
+                 'match-changed' signal.
+    :type match: tuple or None
+    :ivar spellcheck: spell checker object created for the editor instance.
+    :type spellcheck: :class:`.Spell`
+    :ivar textbuffer: text buffer assigned to the edit instance.
+    :type textbuffer: :class:`.StyledTextBuffer`
+    :ivar toolbar: toolbar to be used for text formatting.
+    :type toolbar: Gtk.Toolbar
+    :ivar url_match: stores the matched URL and other mathing parameters.
+    :type url_match: tuple or None
     
     """
     __gtype_name__ = 'StyledTextEditor'
@@ -215,15 +216,15 @@ class StyledTextEditor(Gtk.TextView):
     # virtual methods
     
     def do_match_changed(self, match):
-        """Default signal handler.
+        """
+        Default signal handler.
         
         URL highlighting.
         
-        @param match: the new match parameters
-        @type match: tuple or None
+        :param match: the new match parameters
+        :type match: tuple or None
         
-        @attention: Do not override the handler, but connect to the signal.
-        
+        .. warning:: Do not override the handler, but connect to the signal.
         """
         window = self.get_window(Gtk.TextWindowType.TEXT)
         start, end = self.textbuffer.get_bounds()
@@ -246,10 +247,10 @@ class StyledTextEditor(Gtk.TextView):
             self.url_match = None
         
     def on_unrealize(self, widget):
-        """Signal handler.
+        """
+        Signal handler.
         
         Set the default Gtk settings back before leaving.
-        
         """
         try:
             settings = Gtk.Settings.get_default()
@@ -296,12 +297,12 @@ class StyledTextEditor(Gtk.TextView):
         _LOG.debug("Textview paste clipboard")
     
     def on_motion_notify_event(self, widget, event):
-        """Signal handler.
+        """
+        Signal handler.
         
         As the mouse cursor moves the handler checks if there's a new
         regexp match at the new location. If match changes the
         'match-changed' signal is raised.
-        
         """
         x, y = self.window_to_buffer_coords(Gtk.TextWindowType.WIDGET,
                                             int(event.x), int(event.y))
@@ -354,10 +355,10 @@ class StyledTextEditor(Gtk.TextView):
         return False
             
     def on_button_press_event(self, widget, event):
-        """Signal handler.
+        """
+        Signal handler.
         
         Handles the <CTRL> + Left click over a URL match.
-        
         """
         self.selclick=False
         if ((event.type == Gdk.EventType.BUTTON_PRESS) and
@@ -375,12 +376,13 @@ class StyledTextEditor(Gtk.TextView):
         return False
 
     def on_populate_popup(self, widget, menu):
-        """Signal handler.
+        """
+        Signal handler.
         
         Insert extra menuitems:
+        
         1. Insert spellcheck selector submenu for spell checking.
         2. Insert extra menus depending on ULR match result.
-        
         """
         # spell checker submenu
         spell_menu = Gtk.MenuItem(label=_('Spellcheck'))
@@ -456,11 +458,11 @@ class StyledTextEditor(Gtk.TextView):
         self.connect('unrealize', self.on_unrealize)
         
     def _create_toolbar(self):
-        """Create a formatting toolbar.
+        """
+        Create a formatting toolbar.
         
-        @returns: toolbar containing text formatting toolitems.
-        @returntype: Gtk.Toolbar
-        
+        :returns: toolbar containing text formatting toolitems.
+        :rtype: Gtk.Toolbar
         """
         # define the actions...
         # ...first the toggle actions, which have a ToggleToolButton as proxy
@@ -566,14 +568,14 @@ class StyledTextEditor(Gtk.TextView):
                                   "[a-z0-9-]*(\\.[a-z0-9][a-z0-9-]*)+", MAIL)
         
     def _create_spell_menu(self):
-        """Create a menu with all the installed spellchecks.
+        """
+        Create a menu with all the installed spellchecks.
         
         It is called each time the popup menu is opened. Each spellcheck
         forms a radio menu item, and the selected spellcheck is set as active.
         
-        @returns: menu containing all the installed spellchecks.
-        @returntype: Gtk.Menu
-        
+        :returns: menu containing all the installed spellchecks.
+        :rtype: Gtk.Menu
         """
         active_spellcheck = self.spellcheck.get_active_spellcheck()
 
@@ -593,10 +595,10 @@ class StyledTextEditor(Gtk.TextView):
     # Callback functions
     
     def _on_toggle_action_activate(self, action):
-        """Toggle a style.
+        """
+        Toggle a style.
         
         Toggle styles are e.g. 'bold', 'italic', 'underline'.
-        
         """
         if self._internal_style_change:
             return
@@ -695,7 +697,6 @@ class StyledTextEditor(Gtk.TextView):
         
         Remove only our own tags without touching other ones (e.g. Gtk.Spell),
         thus remove_all_tags() can not be used.
-        
         """
         clear_anything = self.textbuffer.clear_selection()
         if not clear_anything:
@@ -801,31 +802,31 @@ class StyledTextEditor(Gtk.TextView):
     # public methods
     
     def set_text(self, text):
-        """Set the text of the text buffer of the editor.
+        """
+        Set the text of the text buffer of the editor.
         
-        @param text: formatted text to edit in the view.
-        @type text: L{StyledText}
-        
+        :param text: formatted text to edit in the view.
+        :type text: :class:`.StyledText`
         """
         self.textbuffer.set_text(text)
         self.textbuffer.place_cursor(self.textbuffer.get_start_iter())
 
     def get_text(self):
-        """Get the text of the text buffer of the editor.
+        """
+        Get the text of the text buffer of the editor.
         
-        @returns: the formatted text from the editor.
-        @returntype: L{StyledText}
-        
+        :returns: the formatted text from the editor.
+        :rtype: :class:`.StyledText`
         """
         start, end = self.textbuffer.get_bounds()
         return self.textbuffer.get_text(start, end, True)
     
     def get_toolbar(self):
-        """Get the formatting toolbar of the editor.
+        """
+        Get the formatting toolbar of the editor.
         
-        @returns: toolbar widget to use as formatting GUI.
-        @returntype: Gtk.Toolbar
-        
+        :returns: toolbar widget to use as formatting GUI.
+        :rtype: Gtk.Toolbar
         """
         return self.toolbar
 

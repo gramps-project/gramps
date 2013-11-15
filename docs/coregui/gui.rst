@@ -154,23 +154,6 @@ Filter Editor
    :show-inheritance:
 
 *****************************
-Gramplet Bar
-*****************************
-.. automodule:: gramps.gui.widgets.grampletbar
-.. autoclass::  DetachedWindow
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. autoclass::  GrampletBar
-   :members:
-   :undoc-members:
-   :show-inheritance:
-.. autoclass::  TabGramplet
-   :members:
-   :undoc-members:
-   :show-inheritance:
-
-*****************************
 Navigator
 *****************************
 .. automodule:: gramps.gui.navigator

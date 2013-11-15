@@ -56,55 +56,53 @@ from gramps.gen.utils.callback import Callback
 #
 #-------------------------------------------------------------------------
 class LongOpStatus(Callback):
-    """LongOpStatus provides a way of communicating the status of a long
+    """
+    LongOpStatus provides a way of communicating the status of a long
     running operations. The intended use is that when a long running operation
     is about to start it should create an instance of this class and emit
     it so that any listeners can pick it up and use it to record the status 
     of the operation.
 
 
-    Signals
-    =======
+    **Signals**
     
-      op-heartbeat - emitted every 'interval' calls to heartbeat. 
-      op-end       - emitted once when the operation completes.
+    * op-heartbeat - emitted every 'interval' calls to heartbeat. 
+    * op-end       - emitted once when the operation completes.
 
-    
-    Example usage:
+    Example usage::
 
-    class MyClass(Callback):
+        class MyClass(Callback):
 
-        __signals__ = {
-       'op-start'   : object
-    }
-    
-        def long(self):
-            status = LongOpStatus("doing long job", 100, 10)
+            __signals__ = {
+           'op-start'   : object
+            }
+        
+            def long(self):
+                status = LongOpStatus("doing long job", 100, 10)
 
-            for i in xrange(0,99):
-                time.sleep(0.1)
-                status.heartbeat()
+                for i in xrange(0,99):
+                    time.sleep(0.1)
+                    status.heartbeat()
 
-            status.end()
-    
+                status.end()
+        
+        class MyListener(object):
 
-    class MyListener(object):
-
-         def __init__(self):
-         self._op = MyClass()
-         self._op.connect('op-start', self.start)
-         self._current_op = None
-
-         def start(self,long_op):
-         self._current_op.connect('op-heartbeat', self.heartbeat)
-         self._current_op.connect('op-end', self.stop)
-
-         def hearbeat(self):
-         # update status display
-
-         def stop(self):
-         # close the status display
+             def __init__(self):
+             self._op = MyClass()
+             self._op.connect('op-start', self.start)
              self._current_op = None
+
+             def start(self,long_op):
+             self._current_op.connect('op-heartbeat', self.heartbeat)
+             self._current_op.connect('op-end', self.stop)
+
+             def hearbeat(self):
+             # update status display
+
+             def stop(self):
+             # close the status display
+                 self._current_op = None
     """
 
     __signals__ = {
@@ -117,21 +115,18 @@ class LongOpStatus(Callback):
                  interval=1,
                  can_cancel=False):
         """
-        @param msg: A Message to indicated the purpose of the operation.
-        @type msg: string
-        
-        @param total_steps: The total number of steps that the operation 
-        will perform.
-        @type total_steps:
-        
-        @param interval: The number of iterations between emissions.
-        @type interval:
-        
-        @param can_cancel: Set to True if the operation can be cancelled.
-        If this is set the operation that creates the status object should
-        check the 'should_cancel' method regularly so that it can cancel 
-        the operation.
-        @type can_cancel:
+        :param msg: A Message to indicated the purpose of the operation.
+        :type msg: string
+        :param total_steps: The total number of steps that the operation 
+                            will perform.
+        :type total_steps:
+        :param interval: The number of iterations between emissions.
+        :type interval:
+        :param can_cancel: Set to True if the operation can be cancelled.
+                           If this is set the operation that creates the status
+                           object should check the 'should_cancel' method 
+                           regularly so that it can cancel the operation.
+        :type can_cancel:
         """
         Callback.__init__(self)
         self._msg = msg
@@ -169,16 +164,19 @@ class LongOpStatus(Callback):
             self.emit('op-heartbeat')
 
     def step(self):
-        """Convenience function so LongOpStatus can be used as a ProgressBar 
-            if set up correctly"""
+        """
+        Convenience function so LongOpStatus can be used as a ProgressBar 
+        if set up correctly
+        """
         self.heartbeat()
 
     def estimated_secs_to_complete(self):
-        """Return the number of seconds estimated left before operation 
+        """
+        Return the number of seconds estimated left before operation 
         completes. This will change as 'hearbeat' is called.
     
-        @return: estimated seconds to complete.
-        @rtype: int
+        :returns: estimated seconds to complete.
+        :rtype: int
         """
         return self._secs_left
 
@@ -189,61 +187,69 @@ class LongOpStatus(Callback):
         return self._cancel
 
     def cancel(self):
-        """Inform the operation that it should complete.
+        """
+        Inform the operation that it should complete.
         """
         self._cancel = True
         self.end()
 
     def end(self):
-        """End the operation. Causes the 'op-end' signal to be emitted.    
+        """
+        End the operation. Causes the 'op-end' signal to be emitted.    
         """
         self.emit('op-end')
         self._running = False
 
     def should_cancel(self):
-        """Return true of the user has asked for the operation to be cancelled.
+        """
+        Return true of the user has asked for the operation to be cancelled.
     
-        @return: True of the operation should be cancelled.
-        @rtype: bool
+        :returns: True of the operation should be cancelled.
+        :rtype: bool
         """
         return self._cancel
 
     def can_cancel(self):
-        """@return: True if the operation can be cancelled.
-           @rtype: bool
-           """
+        """
+        :returns: True if the operation can be cancelled.
+        :rtype: bool
+        """
         return self._can_cancel
 
     def get_msg(self):
-        """@return: The current status description messages.
-           @rtype: string
-           """
+        """
+        :returns: The current status description messages.
+        :rtype: string
+        """
         return self._msg
 
     def set_msg(self, msg):        
-        """Set the current description message.
+        """
+        Set the current description message.
         
-        @param msg: The description message.
-        @type msg: string
+        :param msg: The description message.
+        :type msg: string
         """
         self._msg = msg
         
     def get_total_steps(self):
-        """Get to total number of steps. NOTE: this is not the 
+        """
+        Get to total number of steps. NOTE: this is not the 
         number of times that the 'op-heartbeat' message will be
         emited. 'op-heartbeat' is emited get_total_steps/interval
         times.
         
-        @return: total number of steps.
-        @rtype: int
+        :returns: total number of steps.
+        :rtype: int
         """
         return self._total_steps
 
     def get_interval(self):
-        """Get the interval between 'op-hearbeat' signals.
+        """
+        Get the interval between 'op-hearbeat' signals.
         
-        @return: the interval between 'op-hearbeat' signals.
-        @rtype: int
+        :returns: the interval between 'op-hearbeat' signals.
+        :rtype: int
         """
         return self._interval
 
@@ -253,19 +259,19 @@ class LongOpStatus(Callback):
 #
 #-------------------------------------------------------------------------
 class _StatusObjectFacade(object):
-    """This provides a simple structure for recording the information
-    needs about a status object."""
+    """
+    This provides a simple structure for recording the information
+    needs about a status object.
+    """
     
     def __init__(self, status_obj, heartbeat_cb_id=None, end_cb_id=None):
         """
-        @param status_obj: 
-        @type status_obj: L{LongOpStatus}
-        
-        @param heartbeat_cb_id: (default: None)
-        @type heartbeat_cb_id: int
-        
-        @param end_cb_id: (default: None)
-        @type end_cb_id: int
+        :param status_obj: 
+        :type status_obj: :class:`.LongOpStatus`
+        :param heartbeat_cb_id: (default: None)
+        :type heartbeat_cb_id: int
+        :param end_cb_id: (default: None)
+        :type end_cb_id: int
         """
         self.status_obj = status_obj
         self.heartbeat_cb_id = heartbeat_cb_id
@@ -279,11 +285,12 @@ class _StatusObjectFacade(object):
 #
 #-------------------------------------------------------------------------
 class ProgressMonitor(object):
-    """A dialog for displaying the status of long running operations.
+    """
+    A dialog for displaying the status of long running operations.
     
-    It will work with L{LongOpStatus} objects to track the 
+    It will work with :class:`.LongOpStatus` objects to track the 
     progress of long running operations. If the operations is going to 
-    take longer than I{popup_time} it will pop up a dialog with a 
+    take longer than *popup_time* it will pop up a dialog with a 
     progress bar so that the user gets some feedback about what is 
     happening.
     """
@@ -294,19 +301,17 @@ class ProgressMonitor(object):
                  title=_("Progress Information"),
                  popup_time = None):
         """
-        @param dialog_class: A class used to display the progress dialog.
-        @type dialog_class: GtkProgressDialog or the same interface.
-        
-        @param dialog_class_params: A tuple that will be used as the initial
-        arguments to the dialog_class, this might be used for passing in
-        a parent window handle.
-        @type dialog_class_params: tuple
-        
-        @param title: The title of the progress dialog
-        @type title: string
-        
-        @param popup_time: number of seconds to wait before popup.
-        @type popup_time: int
+        :param dialog_class: A class used to display the progress dialog.
+        :type dialog_class: GtkProgressDialog or the same interface.
+        :param dialog_class_params: A tuple that will be used as the initial
+                                    arguments to the dialog_class, this might
+                                    be used for passing in a parent window
+                                    handle.
+        :type dialog_class_params: tuple
+        :param title: The title of the progress dialog
+        :type title: string
+        :param popup_time: number of seconds to wait before popup.
+        :type popup_time: int
         """
         self._dialog_class = dialog_class
         self._dialog_class_params = dialog_class_params
@@ -329,10 +334,11 @@ class ProgressMonitor(object):
         return self._dlg
     
     def add_op(self, op_status):
-        """Add a new status object to the progress dialog.
+        """
+        Add a new status object to the progress dialog.
         
-        @param op_status: the status object.        
-        @type op_status: L{LongOpStatus}
+        :param op_status: the status object.        
+        :type op_status: :class:`.LongOpStatus`
         """
         
         log.debug("adding op to Progress Monitor")
@@ -407,13 +413,15 @@ class ProgressMonitor(object):
 #
 #-------------------------------------------------------------------------
 class _GtkProgressBar(Gtk.VBox):
-    """This widget displays the progress bar and labels for a progress
+    """
+    This widget displays the progress bar and labels for a progress
     indicator. It provides an interface to updating the progress bar.
     """
     
     def __init__(self, long_op_status):
-        """:param long_op_status: the status of the operation.
-           :type long_op_status: L{gen.utils.LongOpStatus}
+        """
+        :param long_op_status: the status of the operation.
+        :type long_op_status: :class:`.LongOpStatus`
         """
         GObject.GObject.__init__(self)
         
@@ -454,7 +462,8 @@ class _GtkProgressBar(Gtk.VBox):
         self._hbox.show()
 
     def step(self):
-        """Move the progress bar on a step.
+        """
+        Move the progress bar on a step.
         """
         self._pbar_index = self._pbar_index + 1.0
         
@@ -477,12 +486,15 @@ class _GtkProgressBar(Gtk.VBox):
 #
 #-------------------------------------------------------------------------
 class GtkProgressDialog(Gtk.Dialog):
-    """A gtk window to display the status of a long running
-    process."""
+    """
+    A gtk window to display the status of a long running
+    process.
+    """
     
     def __init__(self, window_params, title):
-        """:param title: The title to display on the top of the window.
-           :type title: string
+        """
+        :param title: The title to display on the top of the window.
+        :type title: string
         """
         #GObject.GObject.__init__(self, *window_params)
         GObject.GObject.__init__(self)
@@ -504,12 +516,13 @@ class GtkProgressDialog(Gtk.Dialog):
         self._progress_bars = []
         
     def add(self, long_op_status):
-        """Add a new status object to the progress dialog.
+        """
+        Add a new status object to the progress dialog.
         
         :param long_op_status: the status object.        
-        :type long_op_status: L{gen.utils.LongOpStatus}
-        :returns: a key that can be used as the L{pbar_idx} 
-                 to the other methods.
+        :type long_op_status: :class:`.LongOpStatus`
+        :returns: a key that can be used as the ``pbar_idx``  to the other
+                  methods.
         :rtype: int
         """
         pbar = _GtkProgressBar(long_op_status)
@@ -526,9 +539,10 @@ class GtkProgressDialog(Gtk.Dialog):
         return len(self._progress_bars)-1
     
     def remove(self, pbar_idx):
-        """Remove the specified status object from the progress dialog.
+        """
+        Remove the specified status object from the progress dialog.
         
-        :param pbar_idx: the index as returned from L{add}
+        :param pbar_idx: the index as returned from :meth:`add`
         :type pbar_idx: int
         """
         if pbar_idx is not None:
@@ -537,10 +551,11 @@ class GtkProgressDialog(Gtk.Dialog):
             del self._progress_bars[pbar_idx]
         
     def step(self, pbar_idx):
-        """Click the progress bar over to the next value.  Be paranoid
+        """
+        Click the progress bar over to the next value.  Be paranoid
         and insure that it doesn't go over 100%.
                 
-        :param pbar_idx: the index as returned from L{add}
+        :param pbar_idx: the index as returned from :meth:`add`
         :type pbar_idx: int
         """
         if pbar_idx < len(self._progress_bars):
@@ -552,13 +567,15 @@ class GtkProgressDialog(Gtk.Dialog):
             Gtk.main_iteration()
 
     def show(self):
-        """Show the dialog and process any events.
+        """
+        Show the dialog and process any events.
         """
         Gtk.Dialog.show(self)
         self._process_events()
         
     def hide(self):
-        """Hide the dialog and process any events.
+        """
+        Hide the dialog and process any events.
         """
         Gtk.Dialog.hide(self)
         self._process_events()

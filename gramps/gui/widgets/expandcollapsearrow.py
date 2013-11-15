@@ -66,19 +66,20 @@ def realize_cb(widget):
 #-------------------------------------------------------------------------
 class ExpandCollapseArrow(Gtk.EventBox):
     """
-        Arrow to be used for expand/collapse of sections.
-        Note: shadow does not work, we indicate action with realize_cb
+    Arrow to be used for expand/collapse of sections.
+
+    .. note:: shadow does not work, we indicate action with realize_cb
     """
     def __init__(self, collapsed, onbuttonpress, pair):
         """
         Constructor for the ExpandCollapseArrow class.
 
-        @param collapsed: True if arrow must be shown collapsed, 
-                        False otherwise
-        @type collapsed: bool
-        @param onbuttonpress: The callback function for button press
-        @type onbuttonpress:  callback
-        @param pair: user param for onbuttonpress function
+        :param collapsed: True if arrow must be shown collapsed, 
+                          False otherwise
+        :type collapsed: bool
+        :param onbuttonpress: The callback function for button press
+        :type onbuttonpress: callback
+        :param pair: user param for onbuttonpress function
         """
         GObject.GObject.__init__(self)
         if collapsed :

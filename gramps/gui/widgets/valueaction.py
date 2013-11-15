@@ -53,10 +53,10 @@ from .valuetoolitem import ValueToolItem
 #
 #-------------------------------------------------------------------------
 class ValueAction(Gtk.Action):
-    """Value action class.
+    """
+    Value action class.
     
     (A ValueAction with menu item doesn't make any sense.)
-    
     """
     __gtype_name__ = "ValueAction"
     
@@ -67,21 +67,22 @@ class ValueAction(Gtk.Action):
     }    
 
     def __init__(self, name, tooltip, default, itemtype, *args):
-        """Create a new ValueAction instance.
+        """
+        Create a new ValueAction instance.
         
-        @param name: the name of the action
-        @type name: str
-        @param tooltip: tooltip string
-        @type tooltip: str
-        @param default: default value for the action, it will set the type of
-        the action and thus the type of all the connected proxies.
-        @type default: set by itemtype
-        @param itemtype: default tool item class
-        @type itemtype: ValueToolItem subclass
-        @param args: arguments to be passed to the default toolitem class 
-        at creation. see: L{do_create_tool_item}
-        @type args: list
-        
+        :param name: the name of the action
+        :type name: str
+        :param tooltip: tooltip string
+        :type tooltip: str
+        :param default: default value for the action, it will set the type of
+                        the action and thus the type of all the connected
+                        proxies.
+        :type default: set by itemtype
+        :param itemtype: default tool item class
+        :type itemtype: :class:`.ValueToolItem` subclass
+        :param args: arguments to be passed to the default toolitem class 
+                     at creation. see: :meth:`do_create_tool_item`
+        :type args: list
         """
         GObject.GObject.__init__(self, name=name, label='', tooltip=tooltip,
                                  stock_id=None)
@@ -100,10 +101,10 @@ class ValueAction(Gtk.Action):
         self._handlers = {}
         
     def do_changed(self):
-        """Default signal handler for 'changed' signal.
+        """
+        Default signal handler for 'changed' signal.
         
         Synchronize all the proxies with the active value.
-        
         """
         for proxy in self.get_proxies():
             proxy.handler_block(self._handlers[proxy])
@@ -111,7 +112,8 @@ class ValueAction(Gtk.Action):
             proxy.handler_unblock(self._handlers[proxy])
     
     def do_create_tool_item(self):
-        """Create a 'default' toolbar item widget.
+        """
+        Create a 'default' toolbar item widget.
         
         Override the default method, to be able to pass the required
         parameters to the proxy's constructor.
@@ -125,9 +127,8 @@ class ValueAction(Gtk.Action):
         Widgets other than the default type has to be created and added
         manually with the Gtk.Action.connect_proxy() method.        
         
-        @returns: a toolbar item connected to the action.
-        @returntype: L{ValueToolItem} subclass
-        
+        :returns: a toolbar item connected to the action.
+        :rtype: :class:`.ValueToolItem` subclass
         """
         proxy = self._default_toolitem_type(self._data_type,
                                             self._args_for_toolitem)
@@ -141,11 +142,11 @@ class ValueAction(Gtk.Action):
             self.set_value(value)
         
     def connect_proxy(self, proxy):
-        """Connect a widget to an action object as a proxy.
+        """
+        Connect a widget to an action object as a proxy.
         
-        @param proxy: widget to be connected
-        @type proxy: L{ValueToolItem} subclass
-        
+        :param proxy: widget to be connected
+        :type proxy: :class:`.ValueToolItem` subclass
         """
         if not isinstance(proxy, ValueToolItem):
             raise TypeError

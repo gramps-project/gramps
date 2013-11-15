@@ -47,10 +47,11 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 class ValidatedComboEntry(Gtk.ComboBox):
-    """A ComboBoxEntry widget with validation.
+    """
+    A ComboBoxEntry widget with validation.
     
     ValidatedComboEntry may have data type other then string, and is set
-    with the C{datatype} contructor parameter.
+    with the ``datatype`` contructor parameter.
     
     Its behaviour is different from Gtk.ComboBoxEntry in the way how
     the entry part of the widget is handled. While Gtk.ComboBoxEntry
@@ -62,8 +63,7 @@ class ValidatedComboEntry(Gtk.ComboBox):
     validator function is given at instantiation.
     
     The entry can be set as editable or not editable using the
-    L{set_entry_editable} method.
-    
+    :meth:`set_entry_editable` method.
     """
     __gtype_name__ = "ValidatedComboEntry"
     
@@ -116,36 +116,36 @@ class ValidatedComboEntry(Gtk.ComboBox):
     # Signal handlers
     
     def _on_entry_activate(self, entry):
-        """Signal handler.
+        """
+        Signal handler.
         
         Called when the entry is activated.
-        
         """
         self._entry_changed(entry)
     
     def _on_entry_focus_in_event(self, widget, event):
-        """Signal handler.
+        """
+        Signal handler.
         
         Called when the focus enters the entry, and is used for saving
         the entry's text for later comparison.
-        
         """
         self._text_on_focus_in = self._entry.get_text()
         
     def _on_entry_focus_out_event(self, widget, event):
-        """Signal handler.
+        """
+        Signal handler.
         
         Called when the focus leaves the entry.
-        
         """
         if (self._entry.get_text() != self._text_on_focus_in):
             self._entry_changed(widget)
     
     def _on_entry_key_press_event(self, entry, event):
-        """Signal handler.
+        """
+        Signal handler.
         
         Its purpose is to handle escape button.
-        
         """
         # FIXME Escape never reaches here, the dialog eats it, I assume.
         if event.keyval == Gdk.KEY_Escape:
@@ -156,10 +156,10 @@ class ValidatedComboEntry(Gtk.ComboBox):
         return False
 
     def _on_changed(self, combobox):
-        """Signal handler.
+        """
+        Signal handler.
         
         Called when the active row is changed in the combo box.
-        
         """
         if self._internal_change:
             return
@@ -172,10 +172,10 @@ class ValidatedComboEntry(Gtk.ComboBox):
             self._entry.set_text(self._active_text)
 
     def _on_notify(self, object, gparamspec):
-        """Signal handler.
+        """
+        Signal handler.
         
         Called whenever a property of the object is changed.
-        
         """
         if gparamspec and gparamspec.name == 'has-frame':
             self._has_frame_changed()
@@ -211,13 +211,13 @@ class ValidatedComboEntry(Gtk.ComboBox):
         self._entry.set_has_frame(has_frame)
         
     def _is_in_model(self, data):
-        """Check if given data is in the model or not.
+        """
+        Check if given data is in the model or not.
         
-        @param data: data value to check
-        @type data: depends on the actual data type of the object
-        @returns: position of 'data' in the model
-        @returntype: Gtk.TreeIter or None
-        
+        :param data: data value to check
+        :type data: depends on the actual data type of the object
+        :returns: position of 'data' in the model
+        :rtype: Gtk.TreeIter or None
         """
         model = self.get_model()
         

@@ -1480,7 +1480,8 @@ class GrampletPane(Gtk.ScrolledWindow):
 
     def can_configure(self):
         """
-        See :class:`~gui.views.pageview.PageView 
+        See :class:`.PageView`
+
         :return: bool
         """
         return True

@@ -20,7 +20,7 @@
 
 # $Id$
 
-"""Text buffer subclassed from Gtk.TextBuffer handling L{StyledText}."""
+"""Text buffer subclassed from Gtk.TextBuffer handling :class:`.StyledText`."""
 
 __all__ = ["ALLOWED_STYLES", "MATCH_START", "MATCH_END", "MATCH_FLAVOR",
            "MATCH_STRING", "StyledTextBuffer"]
@@ -115,11 +115,11 @@ class LinkTag(Gtk.TextTag):
 #
 #-------------------------------------------------------------------------
 class GtkSpellState(object):
-    """A simple state machine kinda thingy.
+    """
+    A simple state machine kinda thingy.
     
     Trying to track Gtk.Spell activities on a buffer and re-apply formatting
     after Gtk.Spell replaces a misspelled word.
-        
     """
     (STATE_NONE,
      STATE_CLICKED,
@@ -174,12 +174,12 @@ class GtkSpellState(object):
         self.reset_state()
 
     def get_word_extents_from_mark(self, textbuffer, mark):
-        """Get the word extents as Gtk.Spell does.
+        """
+        Get the word extents as Gtk.Spell does.
         
         Used to get the beginning of the word, in which user right clicked.
         Formatting found at that position used after Gtk.Spell replaces
         misspelled words.
-        
         """
         start = textbuffer.get_iter_at_mark(mark)
         if not start.starts_word():
@@ -192,10 +192,10 @@ class GtkSpellState(object):
         return start.get_offset(), end.get_offset()
     
     def forward_word_end(self, iter):
-        """Gtk.Spell style Gtk.TextIter.forward_word_end.
+        """
+        Gtk.Spell style Gtk.TextIter.forward_word_end.
         
         The parameter 'iter' is changing as side effect.
-        
         """
         if not iter.forward_word_end():
             return False
@@ -211,10 +211,10 @@ class GtkSpellState(object):
         return True
     
     def backward_word_start(self, iter):
-        """Gtk.Spell style Gtk.TextIter.backward_word_start.
+        """
+        Gtk.Spell style Gtk.TextIter.backward_word_start.
 
         The parameter 'iter' is changing as side effect.
-        
         """
         if not iter.backward_word_start():
             return False
@@ -234,26 +234,27 @@ class GtkSpellState(object):
 #
 #-------------------------------------------------------------------------
 class StyledTextBuffer(UndoableBuffer):
-    """An extended TextBuffer for handling StyledText strings.
+    """
+    An extended TextBuffer for handling :class:`.StyledText` strings.
     
-    StyledTextBuffer is an interface between GRAMPS' L{StyledText} format
-    and Gtk.TextBuffer. To set and get the text use the L{set_text} and 
-    L{get_text} methods.
+    StyledTextBuffer is an interface between GRAMPS' :class:`.StyledText` format
+    and Gtk.TextBuffer. To set and get the text use the :meth:`set_text` and 
+    :meth:`get_text` methods.
     
     To set a style to (a portion of) the text (e.g. from GUI) use the
-    L{apply_style} and L{remove_style} methods.
+    :meth:`apply_style` and :meth:`remove_style` methods.
     
     To receive information about the style of the text at the cursor position
     StyledTextBuffer provides two mechanism: message driven and polling.
     To receive notification of style change as cursor moves connect to the
-    C{style-changed} signal. To get the value of a certain style at the cursor
-    use the L{get_style_at_cursor) method.
+    ``style-changed`` signal. To get the value of a certain style at the cursor
+    use the :meth:`get_style_at_cursor` method.
     
     StyledTextBuffer has a regexp pattern matching mechanism too. To add a
-    regexp pattern to match in the text use the L{match_add} method. To check
-    if there's a match at a certain position in the text use the L{match_check}
-    method. For an example how to use the matching see L{EditNote}.
-    
+    regexp pattern to match in the text use the :meth:`match_add` method. To
+    check if there's a match at a certain position in the text use the
+    :meth:`match_check`nmethod. For an example how to use the matching see
+    :class:`.EditNote`.
     """
     __gtype_name__ = 'StyledTextBuffer'
     
@@ -486,20 +487,20 @@ class StyledTextBuffer(UndoableBuffer):
         return removed_something
                     
     def _get_tag_from_range(self, start=None, end=None):
-        """Extract Gtk.TextTags from buffer.
+        """
+        Extract Gtk.TextTags from buffer.
         
         Return only the name of the TextTag from the specified range.
         If range is not given, tags extracted from the whole buffer.
         
-        @note: TextTag names are always composed like: (%s %s) % (style, value)
+        :note: TextTag names are always composed like: (%s %s) % (style, value)
         
-        @param start: an offset pointing to the start of the range of text
-        @param type: int
-        @param end: an offset pointing to the end of the range of text
-        @param type: int
-        @return: tagdict
-        @rtype: {TextTag_Name: [(start, end),]}
-        
+        :param start: an offset pointing to the start of the range of text
+        :param type: int
+        :param end: an offset pointing to the end of the range of text
+        :param type: int
+        :returns: tagdict
+        :rtype: {TextTag_Name: [(start, end),]}
         """
         if start is None:
             start = 0
@@ -521,10 +522,10 @@ class StyledTextBuffer(UndoableBuffer):
         return tagdict
 
     def _find_tag_by_name(self, style, value):
-        """Fetch TextTag from buffer's tag table by it's name.
+        """
+        Fetch TextTag from buffer's tag table by it's name.
         
         If TextTag does not exist yet, it is created.
-        
         """
         if style not in StyledTextTagType.STYLE_TYPE:
             return None
@@ -552,10 +553,11 @@ class StyledTextBuffer(UndoableBuffer):
     # Public API
 
     def set_text(self, s_text):
-        """Set the content of the buffer with markup tags.
+        """
+        Set the content of the buffer with markup tags.
         
-        @note: 's_' prefix means StyledText*, while 'g_' prefix means Gtk.*.
-        
+        .. note:: ``s_`` prefix means StyledText*, while ``g_`` prefix means
+                  Gtk.*.
         """
         super(StyledTextBuffer, self).set_text(str(s_text))
         #self.remove_all_tags(self.get_start_iter(), self.get_end_iter())
@@ -575,10 +577,11 @@ class StyledTextBuffer(UndoableBuffer):
                     self.apply_tag(g_tag, start_iter, end_iter)
                     
     def get_text(self, start=None, end=None, include_hidden_chars=True):
-        """Return the buffer text.
+        """
+        Return the buffer text.
         
-        @note: 's_' prefix means StyledText*, while 'g_' prefix means Gtk.*.
-        
+        .. note:: ``s_`` prefix means StyledText*, while ``g_`` prefix means
+                  Gtk.*.
         """
         if start is None:
             start = self.get_start_iter()
@@ -622,13 +625,13 @@ class StyledTextBuffer(UndoableBuffer):
         return StyledText(txt, s_tags)
     
     def apply_style(self, style, value):
-        """Apply a style with the given value to the selection.
+        """
+        Apply a style with the given value to the selection.
         
-        @param style: style type to apply
-        @type style: L{StyledTextTagStyle} int value
-        @param value: value of the style type
-        @type value: depends on the I{style} type
-        
+        :param style: style type to apply
+        :type style: :class:`.StyledTextTagStyle` int value
+        :param value: value of the style type
+        :type value: depends on the ``style`` type
         """
         if not isinstance(value, StyledTextTagType.STYLE_TYPE[style]):
             raise TypeError("Style (%d) value must be %s and not %s" %
@@ -638,22 +641,22 @@ class StyledTextBuffer(UndoableBuffer):
         self._apply_style_to_selection(style, value)
         
     def remove_style(self, style):
-        """Delete all occurences with any value of the given style.
+        """
+        Delete all occurences with any value of the given style.
         
-        @param style: style type to apply
-        @type style: L{StyledTextTagStyle} int value
-        
+        :param style: style type to apply
+        :type style: :class:`.StyledTextTagStyle` int value
         """
         self._remove_style_from_selection(style)
         
     def get_style_at_cursor(self, style):
-        """Get the actual value of the given style at the cursor position.
+        """
+        Get the actual value of the given style at the cursor position.
 
-        @param style: style type to apply
-        @type style: L{StyledTextTagStyle} int value
-        @returns: value of the style type
-        @returntype: depends on the C{style} type
-        
+        :param style: style type to apply
+        :type style: :class:`.StyledTextTagStyle` int value
+        :returns: value of the style type
+        :rtype: depends on the ``style`` type
         """
         return self.style_state[style]
         

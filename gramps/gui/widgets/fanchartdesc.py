@@ -111,16 +111,21 @@ class FanChartDescWidget(FanChartBaseWidget):
               filter, alpha_filter, form, angle_algo, dupcolor):
         """
         Reset the values to be used:
-         root_person_handle = person to show
-         maxgen = maximum generations to show
-         background = config setting of which background procedure to use (int)
-         fontdescr = string describing the font to use
-         grad_start, grad_end: colors to use for background procedure
-         filter = the person filter to apply to the people in the chart
-         alpha_filter = the alpha transparency value (0-1) to apply to filtered out data
-         form = the FORM_ constant for the fanchart
-         angle_algo = alorithm to use to calculate the sizes of the boxes
-         dupcolor = color to use for people or families that occur a second or more time
+
+        :param root_person_handle: person to show
+        :param maxgen: maximum generations to show
+        :param background: config setting of which background procedure to use
+        :type background: int
+        :param fontdescr: string describing the font to use
+        :param grad_start: colors to use for background procedure
+        :param grad_end: colors to use for background procedure
+        :param filter: the person filter to apply to the people in the chart
+        :param alpha_filter: the alpha transparency value (0-1) to apply to
+                             filtered out data
+        :param form: the ``FORM_`` constant for the fanchart
+        :param angle_algo: alorithm to use to calculate the sizes of the boxes
+        :param dupcolor: color to use for people or families that occur a second
+                         or more time
         """
         self.rootpersonh = root_person_handle
         self.generations = maxgen

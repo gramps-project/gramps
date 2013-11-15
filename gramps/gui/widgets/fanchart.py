@@ -676,16 +676,17 @@ class FanChartBaseWidget(Gtk.DrawingArea):
 
     @staticmethod
     def create_map_rect_to_sector(radius, rect, arc_used_ratio, start_rad, stop_rad):
-        """Create a 2D-transform, mapping a rectangle onto a circle sector.
+        """
+        Create a 2D-transform, mapping a rectangle onto a circle sector.
 
-        radius -- average radius of the target sector
-        rect -- (x1, y1, x2, y2)
-        arc_used_ratio -- From 0.0 to 1.0. Rather than stretching onto the
-            whole sector, only the middle arc_used_ratio part will be mapped onto.
-        start_rad -- start radial angle of the sector, in radians
-        stop_rad -- stop radial angle of the sector, in radians
-
-        Returns a lambda (x,y)|->(xNew,yNew) to feed to warpPath.
+        :param radius: average radius of the target sector
+        :param rect: (x1, y1, x2, y2)
+        :param arc_used_ratio: From 0.0 to 1.0. Rather than stretching onto the
+                               whole sector, only the middle arc_used_ratio part
+                               will be mapped onto.
+        :param start_rad: start radial angle of the sector, in radians
+        :param stop_rad: stop radial angle of the sector, in radians
+        :returns: a lambda (x,y)|->(xNew,yNew) to feed to warpPath.
         """
 
         x0, y0, w, h = rect[0], rect[1], rect[2]-rect[0], rect[3]-rect[1]
@@ -1042,16 +1043,20 @@ class FanChartWidget(FanChartBaseWidget):
               filter, alpha_filter, form):
         """
         Reset the values to be used:
-         root_person_handle = person to show
-         maxgen = maximum generations to show
-         background = config setting of which background procedure to use (int)
-         childring = to show the center ring with children or not
-         radialtext = try to use radial text or not
-         fontdescr = string describing the font to use
-         grad_start, grad_end: colors to use for background procedure
-         filter = the person filter to apply to the people in the chart
-         alpha = the alpha transparency value (0-1) to apply to filtered out data
-         form = the FORM_ constant for the fanchart 
+         
+        :param root_person_handle: person to show
+        :param maxgen: maximum generations to show
+        :param background: config setting of which background procedure to use
+        :type background: int
+        :param childring: to show the center ring with children or not
+        :param radialtext: try to use radial text or not
+        :param fontdescr: string describing the font to use
+        :param grad_start: colors to use for background procedure
+        :param grad_end: colors to use for background procedure
+        :param filter: the person filter to apply to the people in the chart
+        :param alpha: the alpha transparency value (0-1) to apply to filtered
+                      out data
+        :param form: the ``FORM_`` constant for the fanchart 
         """
         self.rootpersonh = root_person_handle
         self.generations = maxgen

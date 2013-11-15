@@ -77,8 +77,9 @@ except AttributeError:
 #============================================================================
 
 class FadeOut(GObject.GObject):
-    """I am a helper class to draw the fading effect of the background
-    Call my methods start() and stop() to control the fading.
+    """
+    I am a helper class to draw the fading effect of the background
+    Call my methods :meth:`start` and :meth:`stop` to control the fading.
     """
     __gsignals__ = {
         'done': (GObject.SignalFlags.RUN_FIRST, 
@@ -148,9 +149,11 @@ class FadeOut(GObject.GObject):
         self._countdown_timeout_id = -1
 
     def start(self, color):
-        """Schedules a start of the countdown.
-        @param color: initial background color
-        @returns: True if we could start, False if was already in progress
+        """
+        Schedules a start of the countdown.
+        
+        :param color: initial background color
+        :returns: True if we could start, False if was already in progress
         """
         if self._background_timeout_id != -1:
             ##_LOG.debug('start: Background change already running')
@@ -225,12 +228,13 @@ class MaskedEntry(UndoableEntry):
     The MaskedEntry is an Entry subclass with additional features.
 
     Additional features:
+
       - Mask, force the input to meet certain requirements
       - IconEntry, allows you to have an icon inside the entry
       - convenience functions for completion
     
-    Note: Gramps does not use the mask feature at the moment, so that code
-          path is not tested
+    .. note:: Gramps does not use the mask feature at the moment, so that code
+              path is not tested
     """
     __gtype_name__ = 'MaskedEntry'
 
@@ -302,6 +306,7 @@ class MaskedEntry(UndoableEntry):
         Set the mask of the Entry.
         
         Supported format characters are:
+
           - '0' digit
           - 'L' ascii letter (a-z and A-Z)
           - '&' alphabet, honors the locale
@@ -309,12 +314,12 @@ class MaskedEntry(UndoableEntry):
           - 'A' alphanumeric, honors the locale
 
         This is similar to MaskedTextBox: 
-        U{http://msdn2.microsoft.com/en-us/library/system.windows.forms.maskedtextbox.mask(VS.80).aspx}
+        http://msdn2.microsoft.com/en-us/library/system.windows.forms.maskedtextbox.mask(VS.80).aspx
 
         Example mask for a ISO-8601 date
         >>> entry.set_mask('0000-00-00')
 
-        @param mask: the mask to set
+        :param mask: the mask to set
         """
         if not mask:
             self.modify_font(Pango.FontDescription("sans"))
@@ -355,7 +360,7 @@ class MaskedEntry(UndoableEntry):
 
     def get_mask(self):
         """
-        @returns: the mask
+        :returns: the mask
         """
         return self._mask
 
@@ -376,8 +381,8 @@ class MaskedEntry(UndoableEntry):
         if a field is empty it'll return an empty string
         otherwise it'll include the content
 
-        @returns: fields
-        @rtype: list of strings
+        :returns: fields
+        :rtype: list of strings
         """
         if not self._mask:
             raise MaskError("a mask must be set before calling get_fields")
@@ -395,10 +400,10 @@ class MaskedEntry(UndoableEntry):
         """
         Get the empty mask between start and end
 
-        @param start:
-        @param end:
-        @returns: mask
-        @rtype: string
+        :param start:
+        :param end:
+        :returns: mask
+        :rtype: string
         """
 
         if start is None:
@@ -464,13 +469,12 @@ class MaskedEntry(UndoableEntry):
         Shift the text, to the right or left, n positions. Note that this
         does not change the entry text. It returns the shifted text.
 
-        @param start:
-        @param end:
-        @param direction:   DIRECTION_LEFT or DIRECTION_RIGHT
-        @param positions:   the number of positions to shift.
-
-        @return:        returns the text between start and end, shifted to
-                        the direction provided.
+        :param start:
+        :param end:
+        :param direction: DIRECTION_LEFT or DIRECTION_RIGHT
+        :param positions: the number of positions to shift.
+        :returns: returns the text between start and end, shifted to the
+                  direction provided.
         """
         text = self.get_text()
         new_text = ''
@@ -524,8 +528,9 @@ class MaskedEntry(UndoableEntry):
                                       skip=0):
         """
         Get next non-static char position, skiping some chars, if necessary.
-        @param skip:        skip first n chars
-        @param direction:   direction of the search.
+
+        :param skip: skip first n chars
+        :param direction: direction of the search.
         """
         text = self.get_text()
         validators = self._mask_validators
@@ -553,8 +558,8 @@ class MaskedEntry(UndoableEntry):
         Exact means it needs to start with the value typed
         and the case needs to be correct.
 
-        @param value: enable exact completion
-        @type value:  boolean
+        :param value: enable exact completion
+        :type value: boolean
         """
 
         self._exact_completion = value
@@ -640,10 +645,10 @@ class MaskedEntry(UndoableEntry):
         """
         Set the way how completion is presented.
         
-        @param popup: enable completion in popup window
-        @type popup: boolean
-        @param inline: enable inline completion
-        @type inline: boolean
+        :param popup: enable completion in popup window
+        :type popup: boolean
+        :param inline: enable inline completion
+        :type inline: boolean
         """
         completion = self._get_completion()
         if popup is not None:
@@ -700,12 +705,11 @@ class MaskedEntry(UndoableEntry):
         """
         Check if a chararcter can be inserted at some position
 
-        @param new: The char that wants to be inserted.
-        @param pos: The position where it wants to be inserted.
-
-        @return: Returns None if it can be inserted. If it cannot be, 
-                 return the next position where it can be successfuly
-                 inserted.
+        :param new: The char that wants to be inserted.
+        :param pos: The position where it wants to be inserted.
+        :returns: Returns None if it can be inserted. If it cannot be, 
+                  return the next position where it can be successfuly
+                  inserted.
         """
         validators = self._mask_validators
 
@@ -770,12 +774,11 @@ class MaskedEntry(UndoableEntry):
         Inserts the character at the give position in text. Note that the
         insertion won't be applied to the entry, but to the text provided.
 
-        @param text:    Text that it will be inserted into.
-        @param new:     New text to insert.
-        @param pos:     Positon to insert at
-
-        @return:    Returns a tuple, with the position after the insetion
-                    and the new text.
+        :param text: Text that it will be inserted into.
+        :param new: New text to insert.
+        :param pos: Positon to insert at
+        :returns: Returns a tuple, with the position after the insetion and the
+                  new text.
         """
         field = self._get_field_at_pos(pos)
         length = len(new)
@@ -1115,7 +1118,8 @@ MANDATORY_ICON = INFO_ICON
 ERROR_ICON = Gtk.STOCK_STOP
 
 class ValidatableMaskedEntry(MaskedEntry):
-    """It extends the MaskedEntry with validation feature.
+    """
+    It extends the MaskedEntry with validation feature.
 
     Merged from Kiwi's ValidatableProxyWidgetMixin and ProxyEntry.
     To provide custom validation connect to the 'validate' signal
@@ -1218,9 +1222,9 @@ class ValidatableMaskedEntry(MaskedEntry):
         Default error message for an instance is useful when completion is
         used, because this case custom validation is not called.
                 
-        @param text: can contain one and only one '%s', where the actual value
-        of the Entry will be inserted.
-        @type text: str
+        :param text: can contain one and only one '%s', where the actual value
+                     of the Entry will be inserted.
+        :type text: str
         """
         if not isinstance(text, str):
             raise TypeError("text must be a string")
@@ -1229,16 +1233,17 @@ class ValidatableMaskedEntry(MaskedEntry):
         
     def is_valid(self):
         """
-        @returns: True if the widget is in validated state
+        :returns: True if the widget is in validated state
         """
         return self._valid
 
     def validate(self, force=False):
-        """Checks if the data is valid.
+        """
+        Checks if the data is valid.
         Validates data-type and custom validation.
 
-        @param force: if True, force validation
-        @returns:     validated data or ValueUnset if it failed
+        :param force: if True, force validation
+        :returns: validated data or ValueUnset if it failed
         """
 
         # If we're not visible or sensitive return a blank value, except
@@ -1280,7 +1285,8 @@ class ValidatableMaskedEntry(MaskedEntry):
             return None
 
     def set_valid(self):
-        """Change the validation state to valid, which will remove icons and
+        """
+        Change the validation state to valid, which will remove icons and
         reset the background color
         """
         ##_LOG.debug('Setting state for %s to VALID' % self.model_attribute)
@@ -1290,9 +1296,11 @@ class ValidatableMaskedEntry(MaskedEntry):
         self.set_pixbuf(None)
 
     def set_invalid(self, text=None, fade=True):
-        """Change the validation state to invalid.
-        @param text: text of tooltip of None
-        @param fade: if we should fade the background
+        """
+        Change the validation state to invalid.
+
+        :param text: text of tooltip of None
+        :param fade: if we should fade the background
         """
         ##_LOG.debug('Setting state for %s to INVALID' % self.model_attribute)
 
@@ -1348,8 +1356,10 @@ class ValidatableMaskedEntry(MaskedEntry):
             self.set_pixbuf(None)
 
     def set_blank(self):
-        """Change the validation state to blank state, this only applies
-        for mandatory widgets, draw an icon and set a tooltip"""
+        """
+        Change the validation state to blank state, this only applies
+        for mandatory widgets, draw an icon and set a tooltip
+        """
 
         ##_LOG.debug('Setting state for %s to BLANK' % self.model_attribute)
 
@@ -1368,7 +1378,7 @@ class ValidatableMaskedEntry(MaskedEntry):
         """
         Set the text of the entry
 
-        @param text:
+        :param text:
         """
 
         # If content isn't empty set_text emitts changed twice.

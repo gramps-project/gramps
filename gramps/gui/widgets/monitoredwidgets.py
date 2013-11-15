@@ -219,17 +219,17 @@ class MonitoredEntryIndicator(MonitoredEntry):
 class MonitoredSpinButton(object):
     """
     Class for signal handling of spinbuttons.
-    (Code is a modified copy of MonitoredEntry)
+    (Code is a modified copy of :class:`MonitoredEntry`)
     """
 
     def __init__(self, obj, set_val, get_val, read_only=False,
                  autolist=None, changed=None):
         """
-        @param obj: widget to be monitored
-        @type obj: Gtk.SpinButton
-        @param set_val: callback to be called when obj is changed
-        @param get_val: callback to be called to retrieve value for obj
-        @param read_only: If SpinButton is read only.
+        :param obj: widget to be monitored
+        :type obj: Gtk.SpinButton
+        :param set_val: callback to be called when obj is changed
+        :param get_val: callback to be called to retrieve value for obj
+        :param read_only: If SpinButton is read only.
         """
         
         self.obj = obj
@@ -257,8 +257,8 @@ class MonitoredSpinButton(object):
         """
         Reinitialize class with the specified callback functions.
 
-        @param set_val: callback to be called when SpinButton is changed
-        @param get_val: callback to be called to retrieve value for SpinButton
+        :param set_val: callback to be called when SpinButton is changed
+        :param get_val: callback to be called to retrieve value for SpinButton
         """
         
         self.set_val = set_val
@@ -269,7 +269,7 @@ class MonitoredSpinButton(object):
         """
         Set the value of the monitored widget to the specified value.
 
-        @param value: Value to be set.
+        :param value: Value to be set.
         """
         
         self.obj.set_value(value)
@@ -278,8 +278,8 @@ class MonitoredSpinButton(object):
         """
         Connect the signal of monitored widget to the specified callback.
 
-        @param signal: Signal prototype for which a connection should be set up.
-        @param callback: Callback function to be called when signal is emitted.
+        :param signal: Signal prototype for which a connection should be set up.
+        :param callback: Callback function to be called when signal is emitted.
         """
         
         self.obj.connect(signal, callback)
@@ -288,8 +288,8 @@ class MonitoredSpinButton(object):
         """
         Event handler to be called when the monitored widget is changed.
 
-        @param obj: Widget that has been changed.
-        @type obj: Gtk.SpinButton
+        :param obj: Widget that has been changed.
+        :type obj: Gtk.SpinButton
         """
         
         self.set_val(obj.get_value())
@@ -300,7 +300,7 @@ class MonitoredSpinButton(object):
         """
         Set the value of the monitored widget to the specified value.
 
-        @param value: Value to be set.
+        :param value: Value to be set.
         """
         
         self.obj.set_value(value)
@@ -309,17 +309,18 @@ class MonitoredSpinButton(object):
         """
         Get the current value of the monitored widget.
 
-        @returns: Current value of monitored widget.
+        :returns: Current value of monitored widget.
         """
 
         return self.obj.get_value()
 
     def enable(self, value):
         """
-        Change the property editable and sensitive of the monitored widget to value.
+        Change the property editable and sensitive of the monitored widget to
+        value.
 
-        @param value: If widget should be editable or deactivated.
-        @type value: bool
+        :param value: If widget should be editable or deactivated.
+        :type value: bool
         """
         
         self.obj.set_sensitive(value)
@@ -334,7 +335,8 @@ class MonitoredSpinButton(object):
 
     def update(self):
         """
-        Updates value of monitored SpinButton with the value returned by the get_val callback.
+        Updates value of monitored SpinButton with the value returned by the
+        get_val callback.
         """
         
         if self.get_val():
@@ -429,19 +431,21 @@ class MonitoredDataType(object):
         """
         Constructor for the MonitoredDataType class.
 
-        @param obj: Existing ComboBox widget to use with has_entry=True.
-        @type obj: Gtk.ComboBox
-        @param set_val: The function that sets value of the type in the object
-        @type set_val:  method
-        @param get_val: The function that gets value of the type in the object.
-            This returns a GrampsType, of which get_map returns all possible types
-        @type get_val:  method
-        @param custom_values: Extra values to show in the combobox. These can be
-            text of custom type, tuple with type info or GrampsType class
-        @type : list of str, tuple or GrampsType
-        @ignore_values: list of values not to show in the combobox. If the result
-            of get_val is in these, it is not ignored
-        @type : list of int 
+        :param obj: Existing ComboBox widget to use with has_entry=True.
+        :type obj: Gtk.ComboBox
+        :param set_val: The function that sets value of the type in the object
+        :type set_val: method
+        :param get_val: The function that gets value of the type in the object.
+                        This returns a GrampsType, of which get_map returns all
+                        possible types
+        :type get_val: method
+        :param custom_values: Extra values to show in the combobox. These can be
+                              text of custom type, tuple with type info or
+                              GrampsType class
+        :type custom_values: list of str, tuple or GrampsType
+        :param ignore_values: list of values not to show in the combobox. If the
+                              result of get_val is in these, it is not ignored
+        :type ignore_values: list of int 
         """
         self.set_val = set_val
         self.get_val = get_val
@@ -695,7 +699,7 @@ class MonitoredComboSelectedEntry(object):
         Objcombo and objentry should be the gtk widgets to use
         textlist is the values that must be used in the combobox
         Every value needs an entry in set/get_val_list with the data retrieval
-         and storage method of the data entered in the entry box
+        and storage method of the data entered in the entry box
         Read_only should be true if no changes may be done
         default is the entry in the combobox that must be preselected
         """

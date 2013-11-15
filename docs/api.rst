@@ -32,6 +32,7 @@ Contents:
 
    corecli/cli
    coregui/gui
+   coregui/gui_widgets
    date
    relationship
    simple
