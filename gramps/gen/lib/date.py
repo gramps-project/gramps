@@ -1588,7 +1588,7 @@ class Date(object):
         if calendar is None:
             calendar = self.calendar
         if value is None:
-            value = self.value
+            value = self.dateval
         
         if modifier in (Date.MOD_NONE, Date.MOD_BEFORE, 
                         Date.MOD_AFTER, Date.MOD_ABOUT) and len(value) < 4:
