@@ -22764,12 +22764,12 @@ msgstr "%(female_name)s была дочерью %(father)s и %(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:888
 #, python-format
 msgid "She is the daughter of %(father)s and %(mother)s."
-msgstr "Она дочь %(father)s и %(mother)s."
+msgstr "Она -- дочь %(father)s и %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:889
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
-msgstr "Она дочь %(father)s and %(mother)s."
+msgstr "Она была дочерью %(father)s и %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:891
 #, python-format
