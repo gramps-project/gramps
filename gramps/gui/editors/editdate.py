@@ -63,7 +63,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.lib.date import Date
+from gramps.gen.lib.date import Date, DateError
 from gramps.gen.datehandler import displayer
 from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help
@@ -216,13 +216,17 @@ class EditDate(ManagedWindow):
                     (the_quality, the_modifier, the_calendar, the_value, 
                      the_text, the_newyear) = self.build_date_from_ui()
                     self.return_date = Date(self.date)
-                    self.return_date.set(
-                        quality=the_quality,
-                        modifier=the_modifier,
-                        calendar=the_calendar,
-                        value=the_value,
-                        text=the_text,
-                        newyear=the_newyear)
+                    try:
+                        self.return_date.set(
+                            quality=the_quality,
+                            modifier=the_modifier,
+                            calendar=the_calendar,
+                            value=the_value,
+                            text=the_text,
+                            newyear=the_newyear)
+                    except DateError:
+                        self.return_date.set(modifier=Date.MOD_TEXTONLY, 
+                                text=the_text)
                 self.close()
                 break
 
