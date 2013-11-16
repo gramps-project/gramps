@@ -340,14 +340,18 @@ class WarnHandler(RotateHandler):
         self.button.show()
 
     def _check_clear(self):
-        new_last_line = self.get_buffer()[-1]
-        if self.last_line == new_last_line:
-            #buffer has not changed for 3 minutes, let's clear it:
-            self._clear()
-            return False
+        buffer = self.get_buffer()
+        if len(buffer) > 0:
+            new_last_line = self.get_buffer()[-1]
+            if self.last_line == new_last_line:
+                #buffer has not changed for 3 minutes, let's clear it:
+                self._clear()
+                return False
+            else:
+                self.last_line = new_last_line
+                return True
         else:
-            self.last_line = new_last_line
-            return True
+            return False
 
     def _clear(self):
         self.button.hide()
