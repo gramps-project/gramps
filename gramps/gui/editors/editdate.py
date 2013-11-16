@@ -224,9 +224,11 @@ class EditDate(ManagedWindow):
                             value=the_value,
                             text=the_text,
                             newyear=the_newyear)
-                    except DateError:
-                        self.return_date.set(modifier=Date.MOD_TEXTONLY, 
-                                text=the_text)
+                    except DateError: 
+                        # Switch to text only mode, leave the dialog open
+                        # so the user sees the old data. 
+                        self.type_box.set_active(len(MOD_TEXT)-1)
+                        continue
                 self.close()
                 break
 
