@@ -1673,9 +1673,10 @@ class Date(object):
                             raise DateError("Invalid year {} passed in value {}".
                                     format(original, value))
 
-                except DateError:
+                except DateError as e:
                     log.debug("Sanity check failed - self: {}, sanity: {}".format(
                         self.to_struct(), sanity.to_struct()))
+                    e.date = self
                     raise
 
     def recalc_sort_value(self):
