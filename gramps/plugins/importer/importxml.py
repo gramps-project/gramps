@@ -30,10 +30,12 @@
 # Standard Python Modules
 #
 #-------------------------------------------------------------------------
+from __future__ import unicode_literals
 import os
 import sys
 import time
 from xml.parsers.expat import ExpatError, ParserCreate
+from xml.sax.saxutils import escape
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import re
@@ -48,7 +50,7 @@ LOG = logging.getLogger(".ImportXML")
 #-------------------------------------------------------------------------
 from gramps.gen.mime import get_type
 from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef, 
-                            ChildRefType, Citation, Date, Event, EventRef, 
+                            ChildRefType, Citation, Date, DateError, Event, EventRef, 
                             EventRoleType, EventType, Family, LdsOrd, Location, 
                             MediaObject, MediaRef, Name, NameOriginType, 
                             NameType, Note, NoteType, Person, PersonRef, 
@@ -2383,10 +2385,16 @@ class GrampsParser(UpdateCallback):
             else:
                 newyear = Date.newyear_to_code(newyear)
 
-        date_value.set(qual, mode, cal, 
-                       (day, month, year, dualdated, 
-                        rng_day, rng_month, rng_year, dualdated), 
-                       newyear=newyear)
+        try:
+            date_value.set(qual, mode, cal, 
+                           (day, month, year, dualdated, 
+                            rng_day, rng_month, rng_year, dualdated), 
+                           newyear=newyear)
+        except DateError as e:
+            self._set_date_to_xml_text(date_value, e, 
+                    xml_element_name = ("datespan" if mode == Date.MOD_SPAN
+                        else "daterange"),
+                    xml_attrs = attrs)
 
     def start_dateval(self, attrs):
         if self.citation:
@@ -2466,8 +2474,27 @@ class GrampsParser(UpdateCallback):
             else:
                 newyear = Date.newyear_to_code(newyear)
 
-        date_value.set(qual, mod, cal, (day, month, year, dualdated), 
-                       newyear=newyear)
+        try:
+            date_value.set(qual, mod, cal, (day, month, year, dualdated), 
+                           newyear=newyear)
+        except DateError as e:
+            self._set_date_to_xml_text(date_value, e, 'dateval', attrs)
+
+    def _set_date_to_xml_text(self, date_value, date_error, xml_element_name, xml_attrs):
+        """
+        Common handling of invalid dates for the date... element handlers.
+
+        Prints warning on console and sets date_value to a text-only date
+        with the problematic XML inside.
+        """
+        xml = "<{element_name} {attrs}/>".format(
+            element_name = xml_element_name,
+            attrs = " ".join(
+                ['{}="{}"'.format(k,escape(v, entities={'"' : "&quot;"})) 
+                    for k,v in xml_attrs.iteritems()]))
+        LOG.warning(_("Invalid date {} in XML {}, preserving XML as text"
+            ).format(date_error.date.to_struct(), xml))
+        date_value.set(modifier=Date.MOD_TEXTONLY, text=xml)
 
     def start_datestr(self, attrs):
         if self.citation:
