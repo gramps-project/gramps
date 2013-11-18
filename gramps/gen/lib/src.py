@@ -100,7 +100,7 @@ class Source(MediaBase, NoteBase, IndirectCitationBase, PrimaryObject):
                 "media_list": MediaBase.to_struct(self), 
                 "abbrev": cuni(self.abbrev),
                 "change": self.change, 
-                "datamap": {"dict": self.datamap},
+                "datamap": [(key,self.datamap[key]) for key in self.datamap.keys()],#  8
                 "reporef_list": [rr.to_struct() for rr in self.reporef_list],
                 "private": self.private}
 

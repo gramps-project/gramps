@@ -122,7 +122,7 @@ class Citation(MediaBase, NoteBase, IndirectCitationBase,
                 "source_handle": self.source_handle,             #  5
                 "note_list": NoteBase.to_struct(self),           #  6
                 "media_list": MediaBase.to_struct(self),         #  7
-                "datamap": self.datamap,                         #  8
+                "datamap": [(key,self.datamap[key]) for key in self.datamap.keys()],#  8
                 "change": self.change,                           #  9
                 "private": self.private}                         # 10
 
