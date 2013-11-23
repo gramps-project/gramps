@@ -61,20 +61,7 @@ from .calendar import (gregorian_sdn, julian_sdn, hebrew_sdn,
                       french_ymd, persian_ymd, islamic_ymd,
                       swedish_ymd)
 from ..config import config
-
-#-------------------------------------------------------------------------
-#
-# DateError exception
-#
-#-------------------------------------------------------------------------
-class DateError(Exception):
-    """Error used to report Date errors."""
-    def __init__(self, value=""):
-        Exception.__init__(self)
-        self.value = value
-
-    def __str__(self):
-        return self.value
+from ..errors import DateError
 
 class Span(object):
     """
