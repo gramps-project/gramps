@@ -40,7 +40,11 @@ class FilterError(Exception):
         return (self.value, self.value2)
 
 class DateError(Exception):
-    """Error used to report Date errors"""
+    """Error used to report Date errors
+
+    Might have a .date attribute holding an invalid Date object
+    that triggered the error.
+    """
     def __init__(self, value=""):
         Exception.__init__(self)
         self.value = value
