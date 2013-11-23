@@ -57,6 +57,12 @@ urlpatterns += patterns('',
       {'document_root':  IMAGE_DIR,
        'show_indexes':  True},
       ),
+    # Django 1.5.4
+     (r'^static/(?P<path>.*)$', 'django.views.static.serve',
+      {'document_root':  '/usr/share/pyshared/django/contrib/admin/static/',
+       'show_indexes':  True},
+     ),
+    # Django 1.5.4
 )
 
 # The rest will match views:
