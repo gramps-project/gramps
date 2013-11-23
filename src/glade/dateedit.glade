@@ -559,7 +559,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkButton" id="button176">
+              <object class="GtkButton" id="ok_button">
                 <property name="label">gtk-ok</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -585,7 +585,7 @@
     <action-widgets>
       <action-widget response="-11">button174</action-widget>
       <action-widget response="-6">button175</action-widget>
-      <action-widget response="-5">button176</action-widget>
+      <action-widget response="-5">ok_button</action-widget>
     </action-widgets>
   </object>
   <object class="GtkListStore" id="calendar_model">

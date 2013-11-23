@@ -47,7 +47,7 @@ unambiguously built using UI controls such as menus and spin buttons.
 #
 #-------------------------------------------------------------------------
 import logging
-__LOG = logging.getLogger(".DateEdit")
+LOG = logging.getLogger(".DateEdit")
 
 #-------------------------------------------------------------------------
 #
@@ -62,7 +62,7 @@ import gtk
 #
 #-------------------------------------------------------------------------
 from gen.ggettext import sgettext as _
-from gen.lib.date import Date, NextYear
+from gen.lib.date import Date, DateError, NextYear
 import DateHandler
 import const
 import GrampsDisplay
@@ -201,6 +201,7 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
             self.top.get_object('title'),
             _('Date selection'))            
             
+        self.ok_button = self.top.get_object('ok_button')
         self.calendar_box = self.top.get_object('calendar_box')
         for name in Date.ui_calendar_names:
             self.calendar_box.get_model().append([name])
@@ -275,6 +276,13 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
         
         self.return_date = None
 
+        for o in self.top.get_objects():
+            try:
+                if o != self.ok_button:
+                    o.connect_after('changed', self.revalidate)
+            except TypeError:
+                pass # some of them don't support the signal, ignore them...
+        self.revalidate()
         self.show()
 
         while True:
@@ -286,18 +294,42 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
                 break
             else:
                 if response == gtk.RESPONSE_OK:
-                    (the_quality, the_modifier, the_calendar,
-                     the_value, the_text, the_newyear) = self.build_date_from_ui()
-                    self.return_date = Date(self.date)
-                    self.return_date.set(
-                        quality=the_quality,
-                        modifier=the_modifier,
-                        calendar=the_calendar,
-                        value=the_value,
-                        text=the_text,
-                        newyear=the_newyear)
+                    # if the user pressed OK/enter while inside an edit field,
+                    # e.g., the year,
+                    # build_date_from_ui won't pick up the new text in the
+                    # run of revalidate that allowed the OK!
+                    if not self.revalidate():
+                        continue
+                    self.return_date = Date()
+                    self.return_date.copy(self.date)
                 self.close()
                 break
+
+    def revalidate(self, obj = None):
+        """
+        If anything changed, revalidate the date and
+        enable/disable the "OK" button based on the result.
+        """
+        (the_quality, the_modifier, the_calendar, the_value, 
+         the_text, the_newyear) = self.build_date_from_ui()
+        LOG.debug("revalidate: {0} changed, value: {1}".format(
+            obj, the_value))
+        d = Date(self.date)
+        try:
+            d.set(
+                quality=the_quality,
+                modifier=the_modifier,
+                calendar=the_calendar,
+                value=the_value,
+                text=the_text,
+                newyear=the_newyear)
+            self.date.copy(d)
+            LOG.debug("return_date set to: {0}".format(d.dateval))
+            self.ok_button.set_sensitive(1)
+            return True
+        except DateError as e: 
+            self.ok_button.set_sensitive(0)
+            return False
 
     def build_menu_names(self, obj):
         """
