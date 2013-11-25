@@ -79,7 +79,7 @@ class VCardCheck(unittest.TestCase):
         if debug:
             print(input_str)
 
-        process = subprocess.Popen('python Gramps.py '
+        process = subprocess.Popen('python Gramps.py -d .Date -d .ImportVCard '
                                    '--config=preferences.eprefix:DEFAULT '
                                    '-i - -f vcf -e - -f gramps',
                                    stdin=subprocess.PIPE, 
@@ -87,10 +87,11 @@ class VCardCheck(unittest.TestCase):
                                    stderr=subprocess.PIPE, 
                                    shell=True)
         result_str, err_str = process.communicate(input_str.encode('utf-8'))
+        if debug:
+            print(err_str)
         result_doc = ET.XML(result_str)
 
         if debug:
-            print(err_str)
             print(self.canonicalize(result_doc))
             print(self.canonicalize(expect_doc))
         self.assertEqual(self.canonicalize(result_doc), 
@@ -449,6 +450,18 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(event, 'dateval', {'val': '2001-09-28'})
         self.do_test("\r\n".join(self.vcard), self.gramps)
 
+    def test_birthday_long_Feb_converted_to_datestr(self):
+        self.vcard.insert(4, 'BDAY:20010229')
+        attribs = {'hlink': 'E0000', 'role': 'Primary'}
+        eventref = ET.SubElement(self.person, 'eventref', attribs)
+        events = ET.Element('events')
+        self.gramps.insert(1, events)
+        attribs = {'handle': 'E0000', 'id': 'E0000'}
+        event = ET.SubElement(events, 'event', attribs)
+        ET.SubElement(event, 'type').text = 'Birth'
+        ET.SubElement(event, 'datestr', {'val': '20010229'})
+        self.do_test("\r\n".join(self.vcard), self.gramps)
+
     def test_add_birthday_one_dash(self):
         self.vcard.insert(4, 'BDAY:2001-0928')
         attribs = {'hlink': 'E0000', 'role': 'Primary'}
@@ -464,12 +477,6 @@ class VCardCheck(unittest.TestCase):
     def test_add_birthday_ddmmyyyy(self):
         self.vcard.insert(4, "BDAY:28-09-2001")
         self.do_test("\r\n".join(self.vcard), self.gramps)
-
-    #def test_add_birthday_non_existant(self):
-    #    # This test fails, I think gen.lib.date.set_yr_mon_day should raise
-    #    # an error if a wrong date is entered.
-    #    self.vcard.insert(4, 'BDAY:2001-13-28')
-    #    self.do_test("\r\n".join(self.vcard), self.gramps)
 
     def test_add_birthday_empty(self):
         self.vcard.insert(4, "BDAY: ")

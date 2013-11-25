@@ -49,7 +49,8 @@ LOG = logging.getLogger(".ImportVCard")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.errors import GrampsImportError
-from gramps.gen.lib import Address, Date, Event, EventRef, EventType, Name, NameType, Person, Surname, Url, UrlType
+from gramps.gen.lib import (Address, Date, DateError, Event, EventRef, 
+        EventType, Name, NameType, Person, Surname, Url, UrlType)
 from gramps.gen.db import DbTxn
 from gramps.gen.plug.utils import OpenFileOrStdin
 
@@ -473,7 +474,17 @@ class VCardParser(object):
             event = Event()
             event.set_type(EventType(EventType.BIRTH))
             date = Date()
-            date.set_yr_mon_day(*[int(x, 10) for x in date_str.split('-')])
+            y, m, d = [int(x, 10) for x in date_str.split('-')]
+            try:
+                date.set(value=(d, m, y, False))
+            except DateError as e:
+                # TRANSLATORS: leave the {date} and {vcard_snippet} untranslated 
+                # in the format string, but you may re-order them if needed.
+                LOG.warning(_(
+                    "Invalid date {date} in BDAY {vcard_snippet}, "
+                    "preserving date as text"
+                    ).format(date=e.date.to_struct(), vcard_snippet=data))
+                date.set(modifier=Date.MOD_TEXTONLY, text=data)
             event.set_date_object(date)
             self.database.add_event(event, self.trans)
 
