@@ -462,6 +462,18 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(event, 'datestr', {'val': '20010229'})
         self.do_test("\r\n".join(self.vcard), self.gramps)
 
+    def test_birthday_invalid_format_converted_to_datestr(self):
+        self.vcard.insert(4, 'BDAY:unforgettable')
+        attribs = {'hlink': 'E0000', 'role': 'Primary'}
+        eventref = ET.SubElement(self.person, 'eventref', attribs)
+        events = ET.Element('events')
+        self.gramps.insert(1, events)
+        attribs = {'handle': 'E0000', 'id': 'E0000'}
+        event = ET.SubElement(events, 'event', attribs)
+        ET.SubElement(event, 'type').text = 'Birth'
+        ET.SubElement(event, 'datestr', {'val': 'unforgettable'})
+        self.do_test("\r\n".join(self.vcard), self.gramps)
+
     def test_add_birthday_one_dash(self):
         self.vcard.insert(4, 'BDAY:2001-0928')
         attribs = {'hlink': 'E0000', 'role': 'Primary'}

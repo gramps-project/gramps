@@ -465,15 +465,13 @@ class VCardParser(object):
         """Read the BDAY property of a VCard."""
         date_str = data.strip()
         date_match = VCardParser.DATE_RE.match(date_str)
+        date = Date()
         if date_match:
             if date_match.group(2):
                 date_str = "%s-%s-%s" % (date_match.group(2),
                                        date_match.group(3), date_match.group(4))
             else:
                 date_str = date_match.group(1)
-            event = Event()
-            event.set_type(EventType(EventType.BIRTH))
-            date = Date()
             y, m, d = [int(x, 10) for x in date_str.split('-')]
             try:
                 date.set(value=(d, m, y, False))
@@ -482,18 +480,24 @@ class VCardParser(object):
                 # in the format string, but you may re-order them if needed.
                 LOG.warning(_(
                     "Invalid date {date} in BDAY {vcard_snippet}, "
-                    "preserving date as text"
+                    "preserving date as text."
                     ).format(date=e.date.to_struct(), vcard_snippet=data))
                 date.set(modifier=Date.MOD_TEXTONLY, text=data)
-            event.set_date_object(date)
-            self.database.add_event(event, self.trans)
-
-            event_ref = EventRef()
-            event_ref.set_reference_handle(event.get_handle())
-            self.person.set_birth_ref(event_ref)
         else:
-            LOG.warn("Date %s not in appropriate format yyyy-mm-dd, "
-                     "line skipped." % date_str)
+            # TRANSLATORS: leave the {vcard_snippet} untranslated.
+            LOG.warning(_(
+                "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, "
+                "preserving date as text."
+                ).format(vcard_snippet=date_str))
+            date.set(modifier=Date.MOD_TEXTONLY, text=date_str)
+        event = Event()
+        event.set_type(EventType(EventType.BIRTH))
+        event.set_date_object(date)
+        self.database.add_event(event, self.trans)
+
+        event_ref = EventRef()
+        event_ref.set_reference_handle(event.get_handle())
+        self.person.set_birth_ref(event_ref)
 
     def add_occupation(self, fields, data):
         """Read the ROLE property of a VCard."""
