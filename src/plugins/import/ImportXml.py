@@ -2347,8 +2347,10 @@ class GrampsParser(UpdateCallback):
             attrs = " ".join(
                 ['{}="{}"'.format(k,escape(v, entities={'"' : "&quot;"})) 
                     for k,v in xml_attrs.iteritems()]))
-        LOG.warning(_("Invalid date {} in XML {}, preserving XML as text"
-            ).format(date_error.date.dateval, xml))
+        # TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
+        # but you may re-order them if needed.
+        LOG.warning(_("Invalid date {date} in XML {xml}, preserving XML as text"
+            ).format(date=date_error.date.dateval, xml=xml))
         date_value.set(modifier=gen.lib.Date.MOD_TEXTONLY, text=xml)
 
     def start_datestr(self, attrs):
