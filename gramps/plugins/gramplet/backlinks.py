@@ -27,12 +27,14 @@ from gramps.gui.utils import edit_object
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gi.repository import Gtk
+import threading
 
 class Backlinks(Gramplet):
     """
     Displays the back references for an object.
     """
     def init(self):
+        self.lock = threading.Lock()
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.gui.WIDGET)
@@ -54,11 +56,13 @@ class Backlinks(Gramplet):
         """
         Display the back references for an object.
         """
-        for classname, handle in \
-                        self.dbstate.db.find_backlink_handles(active_handle):
-            name = navigation_label(self.dbstate.db, classname, handle)[0]
-            self.model.add((_(classname), name, handle, classname))
-        self.set_has_data(self.model.count > 0)
+        if self.lock.acquire():
+            for classname, handle in \
+                self.dbstate.db.find_backlink_handles(active_handle):
+                name = navigation_label(self.dbstate.db, classname, handle)[0]
+                self.model.add((_(classname), name, handle, classname))
+            self.set_has_data(self.model.count > 0)
+            self.lock.release()
 
     def get_has_data(self, active_handle):
         """
