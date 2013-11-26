@@ -56,13 +56,16 @@ class Backlinks(Gramplet):
         """
         Display the back references for an object.
         """
-        if self.lock.acquire():
+        locked = self.lock.acquire(False)
+        if locked:
             for classname, handle in \
                 self.dbstate.db.find_backlink_handles(active_handle):
                 name = navigation_label(self.dbstate.db, classname, handle)[0]
                 self.model.add((_(classname), name, handle, classname))
             self.set_has_data(self.model.count > 0)
             self.lock.release()
+        else:
+            pass # skipped because already updating
 
     def get_has_data(self, active_handle):
         """
