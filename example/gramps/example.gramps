@@ -17848,6 +17848,16 @@
       <dateval val="1974-03-30"/>
       <description>Marriage of Peters, John C. and Cruz, Joyce Marie</description>
     </event>
+    <event handle="_c99c56a20172a29cfe0" change="1185458159" id="E3403">
+      <type>Birth</type>
+      <datestr val="1975-02-29"/>
+      <description>obviously invalid date, preserved as text in ISO fmt style</description>
+    </event>
+    <event handle="_E3404" change="1185458159" id="E3404">
+      <type>Death</type>
+      <datestr val="29 FEB 1995"/>
+      <description>obviously invalid date, preserved as text in Gedcom fmt style</description>
+    </event>
   </events>
   <people home="_GNUJQCL9MD64AM56OH">
     <person handle="_004KQCGYT27EEPQHK" change="1185438865" id="I0552">
@@ -40062,6 +40072,15 @@
       <childof hlink="_153KQCV7ZDUNW37TAV"/>
       <parentin hlink="_F0WKQCXB6Y8RVGHIC7"/>
         <citationref hlink="_c140d280aa7494978c4"/>
+    </person>
+    <person handle="_c99c56aa6b6598272c0" change="1185458163" id="I0000">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Вася</first>
+        <surname>Пупкин</surname>
+      </name>
+      <eventref hlink="_c99c56a20172a29cfe0" role="Primary"/>
+      <eventref hlink="_E3404" role="Primary"/>
     </person>
   </people>
   <families>
