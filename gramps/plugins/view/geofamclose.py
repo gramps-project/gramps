@@ -194,6 +194,17 @@ class GeoFamClose(GeoGraphyView):
         """
         return 'Family'
 
+    def add_bookmark(self, obj):
+        mlist = self.selected_handles()
+        if mlist:
+            self.bookmarks.add(mlist[0])
+        else:
+            from gramps.gui.dialog import WarningDialog
+            WarningDialog(
+                _("Could Not Set a Bookmark"), 
+                _("A bookmark could not be set because "
+                  "no one was selected."))
+
     def family_label(self,family):
         if family is None:
             return "Unknown"

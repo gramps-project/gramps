@@ -168,6 +168,17 @@ class GeoEvents(GeoGraphyView):
         """
         return 'Event'
 
+    def add_bookmark(self, obj):
+        mlist = self.selected_handles()
+        if mlist:
+            self.bookmarks.add(mlist[0])
+        else:
+            from gramps.gui.dialog import WarningDialog
+            WarningDialog(
+                _("Could Not Set a Bookmark"), 
+                _("A bookmark could not be set because "
+                  "no one was selected."))
+
     def goto_handle(self, handle=None):
         """
         Rebuild the tree with the given events handle as the root.
@@ -202,8 +213,11 @@ class GeoEvents(GeoGraphyView):
         if self.nbplaces >= self._config.get("geography.max_places"):
             return
         descr = descr2 = ""
-        place_handle = event.get_place_handle()
-        eventyear = event.get_date_object().to_calendar(self.cal).get_year()
+        if event:
+            place_handle = event.get_place_handle()
+            eventyear = event.get_date_object().to_calendar(self.cal).get_year()
+        else:
+            place_handle = None
         if place_handle:
             place = dbstate.db.get_place_from_handle(place_handle)
             if place:
