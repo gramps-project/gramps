@@ -170,6 +170,18 @@ class GeoFamily(GeoGraphyView):
         """
         return self.dbstate.db.get_family_bookmarks()
 
+    def add_bookmark(self, obj):
+        mlist = self.selected_handles()
+        print mlist
+        if mlist:
+            self.bookmarks.add(mlist[0])
+        else:
+            from QuestionDialog import WarningDialog
+            WarningDialog(
+                _("Could Not Set a Bookmark"), 
+                _("A bookmark could not be set because "
+                  "no one was selected."))
+
     def goto_handle(self, handle=None):
         """
         Rebuild the tree with the given person handle as the root.
