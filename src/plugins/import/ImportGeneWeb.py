@@ -96,9 +96,10 @@ def importData(database, filename, cb=None):
 class GeneWebParser(object):
     def __init__(self, dbase, file):
         self.db = dbase
-        self.f = open(file,"rU")
-        self.filename = file
-        self.encoding = 'iso-8859-1'
+        if file: # Unit tests can create the parser w/o underlying file
+			self.f = open(file,"rU")
+			self.filename = file
+			self.encoding = 'iso-8859-1'
 
     def get_next_line(self):
         self.lineno += 1
@@ -805,8 +806,17 @@ class GeneWebParser(object):
                 sub2 = (0,0,0)
             cal1 = _cal_map.get(groups[2],gen.lib.Date.CAL_GREGORIAN)
             sub1 = self.sub_date(groups[1])
-            date.set(gen.lib.Date.QUAL_NONE,mod, cal1,
-                     (sub1[0],sub1[1],sub1[2],0,sub2[0],sub2[1],sub2[2],0))
+            try:
+                date.set(gen.lib.Date.QUAL_NONE,mod, cal1,
+                         (sub1[0],sub1[1],sub1[2],0,sub2[0],sub2[1],sub2[2],0))
+            except gen.lib.DateError as e:
+                # TRANSLATORS: leave the {date} and {gw_snippet} untranslated 
+                # in the format string, but you may re-order them if needed.
+                LOG.warning(_(
+                    "Invalid date {date} in {gw_snippet}, "
+                    "preserving date as text."
+                    ).format(date=e.date.dateval, gw_snippet=field))
+                date.set(modifier=gen.lib.Date.MOD_TEXTONLY, text=field)
             return date
         else:
             return None
