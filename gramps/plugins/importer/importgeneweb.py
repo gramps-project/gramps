@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Martin Hawlisch, Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
+# Copyright (C) 2013       Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -18,8 +19,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
-# $Id$
 
 "Import from GeneWeb"
 
@@ -185,7 +184,7 @@ class GeneWebParser(object):
                     elif fields[0] == "encoding:":
                         self.encoding = fields[1]
                     else:
-                        LOG.warn("parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % 
+                        LOG.warning("parse_geneweb_file(): Token >%s< unknown. line %d skipped: %s" % 
                                  (fields[0],self.lineno,line))
             except GedcomError as err:
                 self.errmsg(str(err))
@@ -238,7 +237,7 @@ class GeneWebParser(object):
 
     def read_relation_lines(self):
         if not self.current_relationship_person_handle:
-            LOG.warn("Unknown person for relationship in line %d!" % self.lineno)
+            LOG.warning("Unknown person for relationship in line %d!" % self.lineno)
             return None
         rel_person = self.db.get_person_from_handle(self.current_relationship_person_handle)
         while 1:
@@ -258,21 +257,21 @@ class GeneWebParser(object):
                     (idx,asso_p) = self.parse_person(fields,0,Person.UNKNOWN,None)
                     pref = PersonRef()
                     pref.set_relation(matches.groups()[0])
-                    LOG.warn("TODO: Handle association types properly")
+                    LOG.warning("TODO: Handle association types properly")
                     pref.set_reference_handle(asso_p.get_handle())
                     rel_person.add_person_ref(pref)
                     self.db.commit_person(rel_person,self.trans)
                 else:
-                    LOG.warn("Invalid name of person in line %d" % self.lineno)
+                    LOG.warning("Invalid name of person in line %d" % self.lineno)
             else:
-                LOG.warn("Invalid relationship in line %d" % self.lineno)
+                LOG.warning("Invalid relationship in line %d" % self.lineno)
                 break
         self.current_mode = None
         return None
 
     def read_source_line(self,line,fields):
         if not self.current_family:
-            LOG.warn("Unknown family of child in line %d!" % self.lineno)
+            LOG.warning("Unknown family of child in line %d!" % self.lineno)
             return None
         source = self.get_or_create_source(self.decode(fields[1]))
         self.current_family.add_citation(source.get_handle())
@@ -309,12 +308,12 @@ class GeneWebParser(object):
     def read_children_lines(self):
         father_surname = "Dummy"
         if not self.current_husband_handle:
-            LOG.warn("Unknown father for child in line %d!" % self.lineno)
+            LOG.warning("Unknown father for child in line %d!" % self.lineno)
             return None
         husb = self.db.get_person_from_handle(self.current_husband_handle)
         father_surname = husb.get_primary_name().get_surname()
         if not self.current_family:
-            LOG.warn("Unknown family of child in line %d!" % self.lineno)
+            LOG.warning("Unknown family of child in line %d!" % self.lineno)
             return None
         while 1:
             line = self.get_next_line()
@@ -374,7 +373,7 @@ class GeneWebParser(object):
 
     def read_family_comment(self,line,fields):
         if not self.current_family:
-            LOG.warn("Unknown family of child in line %d!" % self.lineno)
+            LOG.warning("Unknown family of child in line %d!" % self.lineno)
             return None
         n = Note()
         n.set(line)
@@ -435,7 +434,7 @@ class GeneWebParser(object):
         #while idx < len(fields) and not fields[idx][0] == "+":
         while idx < len(fields) and not (fields[idx] and fields[idx][0] == "+"):
             if fields[idx]:
-                LOG.warn(("parse_marriage(): Unknown field: " +
+                LOG.warning(("parse_marriage(): Unknown field: " +
                           "'%s' in line %d!") % (fields[idx], self.lineno))
             idx += 1
 
@@ -471,7 +470,7 @@ class GeneWebParser(object):
                 LOG.debug(" Are engaged.")
                 engaged = 1
             else:
-                LOG.warn(("parse_marriage(): Unknown field " +
+                LOG.warning(("parse_marriage(): Unknown field " +
                           "'%s'for mariage in line %d!") % (field, self.lineno))
 
         if mar_date or mar_place or mar_source:
@@ -511,7 +510,7 @@ class GeneWebParser(object):
         
         if not father_surname:
             if not idx < len(fields):
-                LOG.warn("Missing surname of person in line %d!" % self.lineno)
+                LOG.warning("Missing surname of person in line %d!" % self.lineno)
                 surname =""
             else:
                 surname = self.decode(fields[idx])
@@ -520,7 +519,7 @@ class GeneWebParser(object):
             surname = father_surname
         
         if not idx < len(fields):
-            LOG.warn("Missing firstname of person in line %d!" % self.lineno)
+            LOG.warning("Missing firstname of person in line %d!" % self.lineno)
             firstname = ""
         else:
             firstname = self.decode(fields[idx])
@@ -709,7 +708,7 @@ class GeneWebParser(object):
                         death_cause = "Disappeared"
                     #TODO: Set special death types more properly
             else:
-                LOG.warn(("parse_person(): Unknown field " +
+                LOG.warning(("parse_person(): Unknown field " +
                           "'%s' for person in line %d!") % (field, self.lineno))
         
         if public_name:
