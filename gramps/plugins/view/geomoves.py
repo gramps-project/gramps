@@ -198,6 +198,17 @@ class GeoMoves(GeoGraphyView):
         """
         return 'Person'
 
+    def add_bookmark(self, obj):
+        mlist = self.selected_handles()
+        if mlist:
+            self.bookmarks.add(mlist[0])
+        else:
+            from gramps.gui.dialog import WarningDialog
+            WarningDialog(
+                _("Could Not Set a Bookmark"), 
+                _("A bookmark could not be set because "
+                  "no one was selected."))
+
     def goto_handle(self, handle=None):
         """
         Rebuild the tree with the given family handle as reference.
