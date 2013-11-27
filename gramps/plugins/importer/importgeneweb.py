@@ -50,7 +50,10 @@ LOG = logging.getLogger(".ImportGeneWeb")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.errors import GedcomError
-from gramps.gen.lib import Attribute, AttributeType, ChildRef, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, Name, NameType, Note, Person, PersonRef, Place, Source
+from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation, 
+        Date, DateError, Event, EventRef, EventRoleType, EventType, 
+        Family, FamilyRelType, Name, NameType, Note, Person, PersonRef, 
+        Place, Source)
 from gramps.gen.db import DbTxn
 from gramps.gen.constfunc import STRTYPE, cuni, conv_to_unicode
 if sys.version_info[0] < 3:
@@ -816,8 +819,17 @@ class GeneWebParser(object):
                 sub2 = (0,0,0)
             cal1 = _cal_map.get(groups[2],Date.CAL_GREGORIAN)
             sub1 = self.sub_date(groups[1])
-            date.set(Date.QUAL_NONE,mod, cal1,
-                     (sub1[0],sub1[1],sub1[2],0,sub2[0],sub2[1],sub2[2],0))
+            try:
+                date.set(Date.QUAL_NONE,mod, cal1,
+                         (sub1[0],sub1[1],sub1[2],0,sub2[0],sub2[1],sub2[2],0))
+            except DateError as e:
+                # TRANSLATORS: leave the {date} and {gw_snippet} untranslated 
+                # in the format string, but you may re-order them if needed.
+                LOG.warning(_(
+                    "Invalid date {date} in {gw_snippet}, "
+                    "preserving date as text."
+                    ).format(date=e.date.to_struct(), gw_snippet=field))
+                date.set(modifier=Date.MOD_TEXTONLY, text=field)
             return date
         else:
             return None
