@@ -106,9 +106,10 @@ def importData(database, filename, user):
 class GeneWebParser(object):
     def __init__(self, dbase, file):
         self.db = dbase
-        self.f = open(file, "rU")
-        self.filename = file
-        self.encoding = 'iso-8859-1'
+        if file: # Unit tests can create the parser w/o underlying file
+            self.f = open(file, "rU")
+            self.filename = file
+            self.encoding = 'iso-8859-1'
 
     def get_next_line(self):
         self.lineno += 1
