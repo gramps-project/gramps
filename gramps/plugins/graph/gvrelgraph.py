@@ -433,7 +433,7 @@ class RelGraphReport(Report):
         if self.includedates:
             birth, death = self.get_date_strings(person)
             if birth or death:
-                label += ' %s(' % lineDelimiter
+                label += '%s(' % lineDelimiter
                 if birth:
                     label += '%s' % birth
                 label += ' - '
