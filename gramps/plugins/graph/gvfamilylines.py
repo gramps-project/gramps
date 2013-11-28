@@ -839,7 +839,7 @@ class FamilyLinesReport(Report):
             label += name
 
             if birthStr or deathStr:
-                label += ' %s(' % lineDelimiter
+                label += '%s(' % lineDelimiter
                 if birthStr:
                     label += '%s' % birthStr
                 label += ' - '
@@ -849,7 +849,7 @@ class FamilyLinesReport(Report):
             if birthplace or deathplace:
                 if birthplace == deathplace:
                     deathplace = None    # no need to print the same name twice
-                label += ' %s' % lineDelimiter
+                label += '%s' % lineDelimiter
                 if birthplace:
                     label += '%s' % birthplace
                 if birthplace and deathplace:
