@@ -1,73 +1,16 @@
 #!/usr/bin/make -f
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+#export DH_OPTIONS=-v
 
-build: build-stamp
-build-stamp:
-	dh_testdir
+%:
+	dh $@ --with python2
 
-	#./autogen.sh --prefix=/usr --mandir=\$${prefix}/share/man --sysconfdir=/etc
-	./configure --enable-packager-mode --prefix=/usr --mandir=\$${prefix}/share/man --sysconfdir=/etc
-	# ./configure --prefix=`pwd`/debian/tmp/usr --mandir=\$${prefix}/share/man
-	$(MAKE)
-	# $(MAKE) html
+# Remove COPYING file (duplicates standard copyright)
+override_dh_install:
+	dh_install
+	rm debian/gramps/usr/share/gramps/COPYING
 
-	touch build-stamp
-
-clean:
-	dh_testdir
-	dh_testroot
-
-	# [ ! -f Makefile ] || $(MAKE) distclean
-	# -rm -f src/*.pyo src/*/*.pyo
-	# -rm -f config.status config.log
-
-	dh_auto_clean
-	dh_clean
-
-install: build
-	dh_testdir
-	dh_testroot
-	dh_prep
-	dh_installdirs
-
-	# Add here commands to install the package into debian/tmp.
-	# GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1
-	$(MAKE) install DESTDIR=`pwd`/debian/gramps
-	-rm -f debian/gramps/usr/share/gramps/COPYING
-	ln -s /usr/share/common-licenses/GPL-2 debian/gramps/usr/share/gramps/COPYING
-	-rm -rf debian/gramps/usr/var
-	# cp src/data/gramps.xml debian/gramps/usr/share/mime/packages
-	-find debian/gramps/usr/share/ -name "*.pyo" -exec rm -f '{}' ';'
-
-	cp debian/gramps.xpm debian/gramps/usr/share/pixmaps/
-	# cp src/gramps.xpm debian/tmp/usr/share/pixmaps/
-	# cp src/images/gramps.svg debian/gramps/usr/share/pixmaps/
-	# chmod 644 debian/gramps/usr/share/pixmaps/gramps.svg
-
-# Build architecture-independent files here.
-binary-indep: build install
-	dh_testdir
-	dh_testroot
-	dh_installdocs FAQ
-	dh_installmenu
-	# dh_installman
-	dh_installmime -i
-	# dh_installchangelogs ChangeLog
-	dh_installchangelogs
-	dh_icons
-	# dh_movefiles -i
-	# dh_gconf -i
-	dh_link -i
-	dh_compress -i
-	dh_fixperms -i
-	dh_pycentral -i
-	dh_installdeb -i
-	dh_gencontrol -i
-	dh_md5sums -i
-	dh_builddeb -i
-
-
-# Build architecture-dependent files here.
-binary-arch: build install
-
-binary: binary-indep binary-arch
-.PHONY: build clean binary-indep binary-arch binary install
+# Test packager mode to avoid installing mime type
+override_dh_auto_configure:
+	dh_auto_configure -- --enable-packager-mode
