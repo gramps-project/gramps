@@ -1,251 +1,314 @@
-This package was originally debianized by Brandon L. Griffith
-<brandon@debian.org> on Sat, 19 May 2001 13:37:24 -0400.
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Gramps
+Source: http://gramps-project.org
 
-The current Debian maintainer is James A. Treacy <treacy@debian.org>
+Files: *
+Copyright: 2000-2007, Alex Roitman
+           2000-2002, Bruce J. DeGrasse
+           2000-2008, Donald N. Allingham
+           2000-2007, Martin Hawlisch
+           2001, Andrés Sepúlveda
+           2001, David R. Hampton
+           2001-2013, Free Software Foundation, Inc.
+           2001, Graham J. Williams
+           2001, Jesper Zedlitz
+           2001-2013, The Gramps Project
+           2002, Gary Shao
+           2003-2006, Josiah Carlson
+           2004-2006, Eero Tamminen
+           2004-2013, Julio Sánchez
+           2004, Toshio Kuratomi
+           2005-2011, Serge Noiraud
+           2006-2011, Brian G. Matherly
+           2006, 2008-2011, Kees Bakker           
+           2006-2008, Steve Hall
+           2007-2012, Benny Malengier
+           2007-2012, Douglas S. Blank
+           2007-2012, Gary Burton
+           2007-2011, Jerome Rapinat
+           2007, Johan Gronqvist
+           2007, Robert Cawley
+           2007-2009, Stephane Charette
+           2007, Thom Sturgill
+           2007-2008, Zsolt Foldvari
+           2008-2010, 2012, Craig J. Anderson
+           2008-2009, James Friedmann
+           2008-2009, Jason Simanek
+           2008, Lukasz Rymarczyk
+           2008-2010, Peter G. Landgren
+           2008, 2010, Raphael Ackermann
+           2008-2011, Reinhard Mueller
+           2008, 2011, Robert Cheramy
+           2008-2012, Rob G. Healey
+           2008, Stefan Siegel
+           2008-2010, Stephen George
+           2009-2010, Andrew I Baznikin
+           2009, 2011, The Dojo Foundation
+           2009, Florian Heinle
+           2009, Gerald W. Britton
+           2009, Igal Shapira
+           2009, 2011, John Resig
+           2009-2013, Nick Hall
+           2009, Pander Musubi
+           2009, Robert Ham
+           2009, Swoon on bug tracker
+           2009, Yevgeny Zegzda
+           2010, Gramps
+           2010, Jakim Friant
+           2010, Josip
+           2010, lcc & Robert Jerome
+           2010-2012, Michiel D. Nauta
+           2010-2013, Tim G L Lyons
+           2010-2011, Vlada Perić
+           2011, Adam Stein
+           2011-2012,  Harald Rosemann
+           2011, 2013, Heinz Brinker
+           2011, Helge Herz
+           2011, 2013 John Ralls
+           2011, Matt Keenan
+           2011-2013, Paul Franklin
+           2012, Mathieu MD
+           2012, Nicolas Adenis-Lamarre
+           2013, Fedir Zinchuk
+           2013, Oleh Petrivk
+           2013, Vassilii Khachaturov
+           2013, Zissis Papadopoulos
+License: GPL-2+
 
-It was downloaded from http://gramps-project.org
+Files: data/javascript/jquery-1.3.2.min.js
+Copyright: 2009, John Resig
+License: MIT and GPL
 
-Upstream Authors:
-   Donald N. Allingham, Alexander Roitman, Martin Hawlisch, Richard Taylor,
-   Brian Matherly, Tim Waugh, Donald A. Peterson, David Hampton
+Files: data/javascript/jquery-1.7.1.js
+Copyright: 2011, John Resig
+           2011, The Dojo Foundation
+License: BSD and MIT and GPL-2
 
-========================================================
-Copyright: 2001-2006 Donald N. Allingham
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+Files: data/javascript/jquery-ui-1.7.2.custom.min.js
+Copyright: 2009, jQuery UI Team (http://jqueryui.com/about/)
+License: MIT and GPL-2
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+Files: data/javascript/jquery.flexbox*
+Copyright: 2008-2010, Noah Heldman and Fairway Technologies
+License: Ms-PL
 
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA  02111-1307  USA
+Files: data/jhtmlarea/Readme.txt
+Copyright: 2009, Chris Pietschmann
+License: Ms-RL
 
-On Debian systems, the complete text of the GNU General Public
-License can be found in /usr/share/common-licenses/GPL
+Files: data/jhtmlarea/scripts/jHtmlArea*
+Copyright: 2009, Chris Pietschmann
+License: Ms-RL
 
-========================================================
-The files in help/C directory are Copyright 2006  Alexander Roitman
-  This documentation is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+Files: data/jhtmlarea/scripts/jquery-1.3.2*
+Copyright: 2009, John Resig
+           2009, The Dojo Foundation
+License: MIT
 
-  This documentation is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+Files: data/jhtmlarea/scripts/jquery-ui-*
+Copyright: 2009, jQuery UI Team (http://jqueryui.com/about)
+License: MIT and GPL
 
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA 02111-1307 USA
+Files: debian/*
+Copyright: 2001-2002, Brandon L. Griffith
+           2002, Alex Roitman
+           2002-2012, James A. Treacy
+           2013, Ross Gammon
+License: GPL-2+
 
-========================================================
-The files in help/fr directory are Copyright 2003-2006  Jerome Rapinat
-  This documentation is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+Files: gramps/webapp/grampsdb/view/png.py
+Copyright: 2006, Johann C. Rocholl
+           2009, David Jones
+           2006, Nicko van Someren
+License: MIT
 
-  This documentation is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+License: BSD
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  * Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+  * Neither the name of the <organization> nor the
+    names of its contributors may be used to endorse or promote products
+    derived from this software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY John Resig ''AS IS'' AND ANY
+ EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL <copyright holder> BE LIABLE FOR ANY
+ DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA 02111-1307 USA
+License: GPL
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 1 only of the License.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL'.
 
-========================================================
-The data/grampsxml.dtd file is Copyright 2001 Graham J. William
-                           and Copyright 2000-2006  Donald N. Allingham
+License: GPL-2
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 2 only of the License.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this package; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-2'.
 
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
+License: GPL-2+
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; either version 2 of the License, or
+ (at your option) any later version.
+ .
+ This package is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this package; if not, write to the Free Software
+ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301 USA
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-2'.
 
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
+License: MIT
+ Permission is hereby granted, free of charge, to any person obtaining a
+ copy of this software and associated documentation files (the "Software"),
+ to deal in the Software without restriction, including without limitation
+ the rights to use, copy, modify, merge, publish, distribute, sublicense,
+ and/or sell copies of the Software, and to permit persons to whom the
+ Software is furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included
+ in all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+ OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+ DEALINGS IN THE SOFTWARE.
 
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA  02111-1307  USA
+License: Ms-PL
+ This license governs use of the accompanying software. If you use the
+ software, you accept this license. If you do not accept the license, do not
+ use the software.
+ .
+ 1. Definitions
+ .
+ The terms "reproduce," "reproduction," "derivative works," and "distribution"
+ have the same meaning here as under U.S. copyright law.
+ .
+ A "contribution" is the original software, or any additions or changes to the
+ software.
+ .
+ A "contributor" is any person that distributes its contribution under this
+ license.
+ .
+ "Licensed patents" are a contributor's patent claims that read directly on its
+ contribution.
+ .
+ 2. Grant of Rights
+ .
+ (A) Copyright Grant- Subject to the terms of this license, including the
+ license conditions and limitations in section 3, each contributor grants you a
+ non-exclusive, worldwide, royalty-free copyright license to reproduce its
+ contribution, prepare derivative works of its contribution, and distribute its
+ contribution or any derivative works that you create.
+ .
+ (B) Patent Grant- Subject to the terms of this license, including the license
+ conditions and limitations in section 3, each contributor grants you a
+ non-exclusive, worldwide, royalty-free license under its licensed patents to
+ make, have made, use, sell, offer for sale, import, and/or otherwise dispose of
+ its contribution in the software or derivative works of the contribution in the
+ software.
+ .
+ 3. Conditions and Limitations
+ .
+ (A) No Trademark License- This license does not grant you rights to use any
+ contributors' name, logo, or trademarks.
+ .
+ (B) If you bring a patent claim against any contributor over patents that you
+ claim are infringed by the software, your patent license from such contributor
+ to the software ends automatically.
+ .
+ (C) If you distribute any portion of the software, you must retain all copyright,
+ patent, trademark, and attribution notices that are present in the software.
+ .
+ (D) If you distribute any portion of the software in source code form, you may do
+ so only under this license by including a complete copy of this license with your
+ distribution. If you distribute any portion of the software in compiled or object
+ code form, you may only do so under a license that complies with this license.
+ .
+ (E) The software is licensed "as-is." You bear the risk of using it. The
+ contributors give no express warranties, guarantees or conditions. You may have
+ additional consumer rights under your local laws which this license cannot change.
+ To the extent permitted under your local laws, the contributors exclude the
+ implied warranties of merchantability, fitness for a particular purpose and
+ non-infringement.
 
-========================================================
-The src/TreeTips.py file is Copyright 2004 Toshio Kuratomi
-
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA  02111-1307  USA
-
-========================================================
-The src/data/fdl.txt file is Copyright 2000,2001,2002 
-                             Free Software Foundation, Inc.
-                             59 Temple Place, Suite 330,
-                             Boston, MA  02111-1307  USA
-  Everyone is permitted to copy and distribute verbatim copies
-  of this license document, but changing it is not allowed.
-
-========================================================
-The file src/docgen/ODFDoc.py file is Copyright 2005-2006 Serge Noiraud
-                                  and Copyright 2005-2006 Donald N. Allingham
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA  02111-1307  USA
-
-========================================================
-The file src/Mime/_WinMime.py file is Copyright 2006 Brian Matherly
-                                  and Copyright 2006 Donald N. Allingham
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA  02111-1307  USA
-
-========================================================
-The src/plugins/Ancestors.py file is Copyright 2003 Tim Waugh
-                                 and Copyright 2003-2006  Donald N. Allingham
-
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA  02111-1307  USA
-
-========================================================
-The src/plugins/CountAncestors.py file is Copyright 2001  Jesper Zedlitz
-                             and Copyright 2001-2006 Donald N. Allingham
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA  02111-1307  USA
-
-========================================================
-The files:
-   src/plugins/DetAncestralReport.py
-   src/plugins/DetDescendantReport.py
-are Copyright 2000-2002 Bruce J. DeGrasse
-and Copyright 2002-2006 Donald N. Allingham
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA  02111-1307  USA
-
-========================================================
-The files:
-   src/date_test.py
-   src/DataViews/_PedigreeView.py
-   src/plugins/DumpGenderStats.py
-   src/plugins/ExportVCalendar.py
-   src/plugins/ExportVCard.py
-   src/plugins/ImportGeneWeb.py
-   src/plugins/ImportvCard.py
-   src/plugins/TestcaseGenerator.py
-   src/plugins/WriteGeneWeb.py
-are Copyright 2001-2006 Martin Hawlisch, Donald N. Allingham
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA  02111-1307  USA
-
-========================================================
-The files:
-   src/ReportBase/__init__.py
-   src/ReportBase/_Report.py
-are Copyright 2001 David R. Hampton
-and Copyright 2001-2006 Donald N. Allingham
-  This program is free software; you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation; either version 2 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License with
-  the Debian GNU/Linux distribution in file /usr/share/common-licenses/GPL;
-  if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-  Suite 330, Boston, MA  02111-1307  USA
+License: Ms-RL
+ This license governs use of the accompanying software. If you use the software,
+ you accept this license. If you do not accept the license, do not use the software.
+ .
+ 1. Definitions
+ The terms "reproduce," "reproduction," "derivative works," and "distribution" have
+ the same meaning here as under U.S. copyright law.
+ A "contribution" is the original software, or any additions or changes to the
+ software.
+ A "contributor" is any person that distributes its contribution under this license.
+ "Licensed patents" are a contributor's patent claims that read directly on its
+ contribution.
+ .
+ 2. Grant of Rights
+ (A) Copyright Grant- Subject to the terms of this license, including the license
+ conditions and limitations in section 3, each contributor grants you a
+ non-exclusive, worldwide, royalty-free copyright license to reproduce its
+ contribution, prepare derivative works of its contribution, and distribute its
+ contribution or any derivative works that you create.
+ (B) Patent Grant- Subject to the terms of this license, including the license
+ conditions and limitations in section 3, each contributor grants you a
+ non-exclusive, worldwide, royalty-free license under its licensed patents to make,
+ have made, use, sell, offer for sale, import, and/or otherwise dispose of its
+ contribution in the software or derivative works of the contribution in the software.
+ .
+ 3. Conditions and Limitations
+ (A) Reciprocal Grants- For any file you distribute that contains code from the
+ software (in source code or binary format), you must provide recipients the source
+ code to that file along with a copy of this license, which license will govern that
+ file. You may license other files that are entirely your own work and do not contain
+ code from the software under any terms you choose.
+ (B) No Trademark License- This license does not grant you rights to use any
+ contributors' name, logo, or trademarks.
+ (C) If you bring a patent claim against any contributor over patents that you claim
+ are infringed by the software, your patent license from such contributor to the
+ software ends automatically.
+ (D) If you distribute any portion of the software, you must retain all copyright,
+ patent, trademark, and attribution notices that are present in the software.
+ (E) If you distribute any portion of the software in source code form, you may do so
+ only under this license by including a complete copy of this license with your
+ distribution. If you distribute any portion of the software in compiled or object code
+ form, you may only do so under a license that complies with this license.
+ (F) The software is licensed "as-is." You bear the risk of using it. The contributors
+ give no express warranties, guarantees or conditions. You may have additional consumer
+ rights under your local laws which this license cannot change. To the extent permitted
+ under your local laws, the contributors exclude the implied warranties of
+ merchantability, fitness for a particular purpose and non-infringement.

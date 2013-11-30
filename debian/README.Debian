@@ -1,18 +1,10 @@
 gramps for Debian
 ----------------------
 
-This is the Debian package of GRAMPS.
+This is the Debian package of the 4.0 series of GRAMPS.
 
-Regarding the extra dependencies:
+It is a major update of Gramps to enable a switch to Python 3 as the default interpreter,
+and to upgrade to GTK 3. A switch was also made to distutils from autotools.
 
-Recommends: graphviz
-  Enable creation of graphs 
-Recommends: python-gtkmozembed
-Recommends: python-webkit
-  Enable html rendering for Geographic view and Web view. If both
-  are installed webkit will be used. python-gtkmozembed may be more
-  stable.
-Suggests: ttf-freefont
-  Allows more fonts in reports
-Suggests: python-gtkspell python-enchant
-  allows spell checking in the notes. Both need to be installed.
+The 4.0 series of Gramps is being packaged for the experimental distribution until all dependencies are available
+and it proves stable.
