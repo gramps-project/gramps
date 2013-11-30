@@ -1,17 +1,24 @@
 Source: gramps
-Maintainer: Gramps Development Team <gramps-devel@lists.sourceforge.net>
-Section: python
+Section: gnome
 Priority: optional
-Build-Depends-Indep: libxml-parser-perl, gettext, intltool
-Build-Depends: python-all (>= 2.7.0), debhelper (>= 7.4.3)
-Standards-Version: 3.9.1
+Maintainer: Ross Gammon <rossgammon@mail.dk>
+Build-Depends-Indep: libxml-parser-perl, python-gtk2, gettext, python, intltool
+Build-Depends: debhelper (>= 9.0.0)
+Standards-Version: 3.9.5
+Vcs-Git: git://anonscm.debian.org/collab-maint/gramps.git
+Vcs-browser: http://anonscm.debian.org/git/collab-maint/gramps.git
 Homepage: http://www.gramps-project.org/
 
 Package: gramps
 Architecture: all
-Depends: ${misc:Depends}, ${python:Depends}, python-gobject (>= 3.3.2), librsvg2-2
-Recommends: python-pyicu, python-osmgpsmap,  graphviz, xdg-utils
-Suggests: ttf-freefont, python-gtkspell, libgexiv2-1, rcs, python-imaging, python-pygoocanvas
-Description: (Genealogical Research and Analysis Management
- Programming System) is a full featured genealogy program supporting
- a Python based plugin system.
+Depends: ${python:Depends}, librsvg2-common, python-gtk2, xdg-utils, python-pyexiv2, python-osmgpsmap, ${misc:Depends}
+Recommends: graphviz, python-pyicu
+Suggests: ttf-freefont, python-gtkspell, python-pygoocanvas, python-webkit
+Description: Genealogical research program
+ GRAMPS is an Open Source genealogy program written in Python, using
+ the GTK/GNOME interface. It is an extremely flexible program fitting
+ the needs for both the amateur genealogist and serious genealogical
+ researcher.
+ GRAMPS has the ability to import GEDCOM files exported from many
+ proprietary genealogy programs and can produce a large number of
+ reports in many popular formats.
