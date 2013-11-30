@@ -1,6 +1,10 @@
 gramps for Debian
------------------
+----------------------
 
-python-webkit is "Suggested" as upstream states it as optional in their README file. According to upstream, webkit needs to be tested for stability for Gramps (it is used in the hidden HTML View). If it is unstable, it may be necessary to revert to gecko (python-gtkmozembed).
+This is the Debian package of the 4.0 series of GRAMPS.
 
- -- Ross Gammon <rossgammon@mail.dk>  Wed, 23 Oct 2013 21:24:00 +0200
+It is a major update of Gramps to enable a switch to Python 3 as the default interpreter,
+and to upgrade to GTK 3. A switch was also made to distutils from autotools.
+
+The 4.0 series of Gramps is being packaged for the experimental distribution until all dependencies are available
+and it proves stable.

@@ -1,16 +1,25 @@
 #!/usr/bin/make -f
-# Uncomment this to turn on verbose mode.
-#export DH_VERBOSE=1
-#export DH_OPTIONS=-v
+
+# Remember to remove verbose option once testing is finished
+DH_VERBOSE=1
+export PYBUILD_NAME=gramps
 
 %:
-	dh $@ --with python2
+	dh $@ --with python3 --buildsystem=pybuild
 
-# Remove COPYING file (duplicates standard copyright)
-override_dh_install:
-	dh_install
-	rm debian/gramps/usr/share/gramps/COPYING
+# Override auto test because upstream do not use the standard unittest discover
+override_dh_auto_test:
 
-# Test packager mode to avoid installing mime type
-override_dh_auto_configure:
-	dh_auto_configure -- --enable-packager-mode
+# Override of auto_build to force python 3
+override_dh_auto_build:
+	python3 setup.py build
+
+# Override of auto_install to force python 3
+override_dh_auto_install:
+	python3 setup.py install --root=debian/gramps --install-layout=deb
+	# Remove duplicate copyright information
+	rm debian/gramps/usr/share/doc/gramps/COPYING
+	# Remove install file as it is not needed by package users
+	rm debian/gramps/usr/share/doc/gramps/INSTALL
+	# Remove duplicate license information
+	rm debian/gramps/usr/share/doc/gramps/LICENSE

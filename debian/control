@@ -2,18 +2,19 @@ Source: gramps
 Section: gnome
 Priority: optional
 Maintainer: Ross Gammon <rossgammon@mail.dk>
-Build-Depends-Indep: libxml-parser-perl, python-gtk2, gettext, python, intltool
+Build-Depends-Indep: libxml-parser-perl, gettext, python3-all, intltool, dh-python, python3-setuptools
 Build-Depends: debhelper (>= 9.0.0)
 Standards-Version: 3.9.5
 Vcs-Git: git://anonscm.debian.org/collab-maint/gramps.git
 Vcs-browser: http://anonscm.debian.org/git/collab-maint/gramps.git
 Homepage: http://www.gramps-project.org/
+X-Python3-Version: >= 3.2
 
 Package: gramps
 Architecture: all
-Depends: ${python:Depends}, librsvg2-common, python-gtk2, xdg-utils, python-pyexiv2, python-osmgpsmap, ${misc:Depends}
+Depends: ${python3:Depends}, librsvg2-2, xdg-utils, python-gobject (>= 3.3.2), gir1.2-gtk-3.0, python3-gi-cairo, python3-bsddb3, ${misc:Depends}
 Recommends: graphviz, python-pyicu
-Suggests: ttf-freefont, python-gtkspell, python-pygoocanvas, python-webkit
+Suggests: ttf-freefont, python-gtkspell, rcs, python3-pil.imagetk, python-pygoocanvas, python-webkit, gir1.2-gexiv2-0.4
 Description: Genealogical research program
  GRAMPS is an Open Source genealogy program written in Python, using
  the GTK/GNOME interface. It is an extremely flexible program fitting

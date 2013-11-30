@@ -3,23 +3,26 @@ Upstream-Name: Gramps
 Source: http://gramps-project.org
 
 Files: *
-Copyright: 2000-2002, Bruce J. DeGrasse
+Copyright: 2000-2007, Alex Roitman
+           2000-2002, Bruce J. DeGrasse
            2000-2008, Donald N. Allingham
            2000-2007, Martin Hawlisch
            2001, Andrés Sepúlveda
            2001, David R. Hampton
            2001-2013, Free Software Foundation, Inc.
+           2001, Graham J. Williams
            2001, Jesper Zedlitz
-           2001-2013, the Gramps Project
+           2001-2013, The Gramps Project
            2002, Gary Shao
            2003-2006, Josiah Carlson
            2004-2006, Eero Tamminen
            2004-2013, Julio Sánchez
            2004, Toshio Kuratomi
            2005-2011, Serge Noiraud
-           2000-2007, Alex Roitman
            2006-2011, Brian G. Matherly
-           2007-2011, Benny Malengier
+           2006, 2008-2011, Kees Bakker           
+           2006-2008, Steve Hall
+           2007-2012, Benny Malengier
            2007-2012, Douglas S. Blank
            2007-2012, Gary Burton
            2007-2011, Jerome Rapinat
@@ -31,7 +34,6 @@ Copyright: 2000-2002, Bruce J. DeGrasse
            2008-2010, 2012, Craig J. Anderson
            2008-2009, James Friedmann
            2008-2009, Jason Simanek
-           2008-2011, Kees Bakker
            2008, Lukasz Rymarczyk
            2008-2010, Peter G. Landgren
            2008, 2010, Raphael Ackermann
@@ -39,15 +41,16 @@ Copyright: 2000-2002, Bruce J. DeGrasse
            2008, 2011, Robert Cheramy
            2008-2012, Rob G. Healey
            2008, Stefan Siegel
+           2008-2010, Stephen George
            2009-2010, Andrew I Baznikin
            2009, 2011, The Dojo Foundation
            2009, Florian Heinle
            2009, Gerald W. Britton
+           2009, Igal Shapira
            2009, 2011, John Resig
            2009-2013, Nick Hall
            2009, Pander Musubi
            2009, Robert Ham
-           2009-2010, Stephen George
            2009, Swoon on bug tracker
            2009, Yevgeny Zegzda
            2010, Gramps
@@ -58,17 +61,53 @@ Copyright: 2000-2002, Bruce J. DeGrasse
            2010-2013, Tim G L Lyons
            2010-2011, Vlada Perić
            2011, Adam Stein
-           2011, 2013 Heinz Brinker
+           2011-2012,  Harald Rosemann
+           2011, 2013, Heinz Brinker
            2011, Helge Herz
-           2011, John Ralls
+           2011, 2013 John Ralls
            2011, Matt Keenan
            2011-2013, Paul Franklin
            2012, Mathieu MD
+           2012, Nicolas Adenis-Lamarre
            2013, Fedir Zinchuk
            2013, Oleh Petrivk
            2013, Vassilii Khachaturov
            2013, Zissis Papadopoulos
 License: GPL-2+
+
+Files: data/javascript/jquery-1.3.2.min.js
+Copyright: 2009, John Resig
+License: MIT and GPL
+
+Files: data/javascript/jquery-1.7.1.js
+Copyright: 2011, John Resig
+           2011, The Dojo Foundation
+License: BSD and MIT and GPL-2
+
+Files: data/javascript/jquery-ui-1.7.2.custom.min.js
+Copyright: 2009, jQuery UI Team (http://jqueryui.com/about/)
+License: MIT and GPL-2
+
+Files: data/javascript/jquery.flexbox*
+Copyright: 2008-2010, Noah Heldman and Fairway Technologies
+License: Ms-PL
+
+Files: data/jhtmlarea/Readme.txt
+Copyright: 2009, Chris Pietschmann
+License: Ms-RL
+
+Files: data/jhtmlarea/scripts/jHtmlArea*
+Copyright: 2009, Chris Pietschmann
+License: Ms-RL
+
+Files: data/jhtmlarea/scripts/jquery-1.3.2*
+Copyright: 2009, John Resig
+           2009, The Dojo Foundation
+License: MIT
+
+Files: data/jhtmlarea/scripts/jquery-ui-*
+Copyright: 2009, jQuery UI Team (http://jqueryui.com/about)
+License: MIT and GPL
 
 Files: debian/*
 Copyright: 2001-2002, Brandon L. Griffith
@@ -77,17 +116,42 @@ Copyright: 2001-2002, Brandon L. Griffith
            2013, Ross Gammon
 License: GPL-2+
 
-Files: src/plugins/webstuff/js/jquery-ui-1.7.2.custom.min.js
-Copyright: 2009, jQuery UI Team (http://jqueryui.com/about/)
-License: MIT and GPL-2
+Files: gramps/webapp/grampsdb/view/png.py
+Copyright: 2006, Johann C. Rocholl
+           2009, David Jones
+           2006, Nicko van Someren
+License: MIT
 
-Files: src/plugins/webstuff/js/jquery-1.7.1.js
-Copyright: 2009, jQuery UI Team (http://jqueryui.com/about/)
-License: MIT and GPL-2
+License: BSD
+ Redistribution and use in source and binary forms, with or without
+ modification, are permitted provided that the following conditions are met:
+  * Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  * Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+  * Neither the name of the <organization> nor the
+    names of its contributors may be used to endorse or promote products
+    derived from this software without specific prior written permission.
+ .
+ THIS SOFTWARE IS PROVIDED BY John Resig ''AS IS'' AND ANY
+ EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ DISCLAIMED. IN NO EVENT SHALL <copyright holder> BE LIABLE FOR ANY
+ DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+ (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+ LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND
+ ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+ (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Files: src/plugins/webstuff/js/jquery-1.3.2.min.js
-Copyright: 2009, jQuery UI Team (http://jqueryui.com/about/)
-License: MIT and GPL-2
+License: GPL
+ This package is free software; you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation; version 1 only of the License.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL'.
 
 License: GPL-2
  This package is free software; you can redistribute it and/or modify
@@ -142,3 +206,109 @@ License: MIT
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
  FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
  DEALINGS IN THE SOFTWARE.
+
+License: Ms-PL
+ This license governs use of the accompanying software. If you use the
+ software, you accept this license. If you do not accept the license, do not
+ use the software.
+ .
+ 1. Definitions
+ .
+ The terms "reproduce," "reproduction," "derivative works," and "distribution"
+ have the same meaning here as under U.S. copyright law.
+ .
+ A "contribution" is the original software, or any additions or changes to the
+ software.
+ .
+ A "contributor" is any person that distributes its contribution under this
+ license.
+ .
+ "Licensed patents" are a contributor's patent claims that read directly on its
+ contribution.
+ .
+ 2. Grant of Rights
+ .
+ (A) Copyright Grant- Subject to the terms of this license, including the
+ license conditions and limitations in section 3, each contributor grants you a
+ non-exclusive, worldwide, royalty-free copyright license to reproduce its
+ contribution, prepare derivative works of its contribution, and distribute its
+ contribution or any derivative works that you create.
+ .
+ (B) Patent Grant- Subject to the terms of this license, including the license
+ conditions and limitations in section 3, each contributor grants you a
+ non-exclusive, worldwide, royalty-free license under its licensed patents to
+ make, have made, use, sell, offer for sale, import, and/or otherwise dispose of
+ its contribution in the software or derivative works of the contribution in the
+ software.
+ .
+ 3. Conditions and Limitations
+ .
+ (A) No Trademark License- This license does not grant you rights to use any
+ contributors' name, logo, or trademarks.
+ .
+ (B) If you bring a patent claim against any contributor over patents that you
+ claim are infringed by the software, your patent license from such contributor
+ to the software ends automatically.
+ .
+ (C) If you distribute any portion of the software, you must retain all copyright,
+ patent, trademark, and attribution notices that are present in the software.
+ .
+ (D) If you distribute any portion of the software in source code form, you may do
+ so only under this license by including a complete copy of this license with your
+ distribution. If you distribute any portion of the software in compiled or object
+ code form, you may only do so under a license that complies with this license.
+ .
+ (E) The software is licensed "as-is." You bear the risk of using it. The
+ contributors give no express warranties, guarantees or conditions. You may have
+ additional consumer rights under your local laws which this license cannot change.
+ To the extent permitted under your local laws, the contributors exclude the
+ implied warranties of merchantability, fitness for a particular purpose and
+ non-infringement.
+
+License: Ms-RL
+ This license governs use of the accompanying software. If you use the software,
+ you accept this license. If you do not accept the license, do not use the software.
+ .
+ 1. Definitions
+ The terms "reproduce," "reproduction," "derivative works," and "distribution" have
+ the same meaning here as under U.S. copyright law.
+ A "contribution" is the original software, or any additions or changes to the
+ software.
+ A "contributor" is any person that distributes its contribution under this license.
+ "Licensed patents" are a contributor's patent claims that read directly on its
+ contribution.
+ .
+ 2. Grant of Rights
+ (A) Copyright Grant- Subject to the terms of this license, including the license
+ conditions and limitations in section 3, each contributor grants you a
+ non-exclusive, worldwide, royalty-free copyright license to reproduce its
+ contribution, prepare derivative works of its contribution, and distribute its
+ contribution or any derivative works that you create.
+ (B) Patent Grant- Subject to the terms of this license, including the license
+ conditions and limitations in section 3, each contributor grants you a
+ non-exclusive, worldwide, royalty-free license under its licensed patents to make,
+ have made, use, sell, offer for sale, import, and/or otherwise dispose of its
+ contribution in the software or derivative works of the contribution in the software.
+ .
+ 3. Conditions and Limitations
+ (A) Reciprocal Grants- For any file you distribute that contains code from the
+ software (in source code or binary format), you must provide recipients the source
+ code to that file along with a copy of this license, which license will govern that
+ file. You may license other files that are entirely your own work and do not contain
+ code from the software under any terms you choose.
+ (B) No Trademark License- This license does not grant you rights to use any
+ contributors' name, logo, or trademarks.
+ (C) If you bring a patent claim against any contributor over patents that you claim
+ are infringed by the software, your patent license from such contributor to the
+ software ends automatically.
+ (D) If you distribute any portion of the software, you must retain all copyright,
+ patent, trademark, and attribution notices that are present in the software.
+ (E) If you distribute any portion of the software in source code form, you may do so
+ only under this license by including a complete copy of this license with your
+ distribution. If you distribute any portion of the software in compiled or object code
+ form, you may only do so under a license that complies with this license.
+ (F) The software is licensed "as-is." You bear the risk of using it. The contributors
+ give no express warranties, guarantees or conditions. You may have additional consumer
+ rights under your local laws which this license cannot change. To the extent permitted
+ under your local laws, the contributors exclude the implied warranties of
+ merchantability, fitness for a particular purpose and non-infringement.
