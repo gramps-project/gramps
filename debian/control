@@ -1,18 +1,17 @@
 Source: gramps
-Section: gnome
+Section: python
 Priority: optional
 Maintainer: Ross Gammon <rossgammon@mail.dk>
-Build-Depends-Indep: libxml-parser-perl, gettext, python3-all, intltool, dh-python, python3-setuptools
+Build-Depends-Indep: libxml-parser-perl, gettext, python, intltool, dh-python, python-setuptools
 Build-Depends: debhelper (>= 9.0.0)
 Standards-Version: 3.9.5
 Vcs-Git: git://anonscm.debian.org/collab-maint/gramps.git
 Vcs-browser: http://anonscm.debian.org/git/collab-maint/gramps.git
 Homepage: http://www.gramps-project.org/
-X-Python3-Version: >= 3.2
 
 Package: gramps
 Architecture: all
-Depends: ${python3:Depends}, librsvg2-2, xdg-utils, python-gobject (>= 3.3.2), gir1.2-gtk-3.0, python3-gi-cairo, python3-bsddb3, ${misc:Depends}
+Depends: ${python:Depends}, librsvg2-2, xdg-utils, python-gobject (>= 3.3.2), gir1.2-gtk-3.0, python-gi-cairo, python-bsddb3, ${misc:Depends}
 Recommends: graphviz, python-pyicu
 Suggests: ttf-freefont, python-gtkspell, rcs, python3-pil.imagetk, python-pygoocanvas, python-webkit, gir1.2-gexiv2-0.4
 Description: Genealogical research program

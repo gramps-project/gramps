@@ -3,8 +3,7 @@ gramps for Debian
 
 This is the Debian package of the 4.0 series of GRAMPS.
 
-It is a major update of Gramps to enable a switch to Python 3 as the default interpreter,
-and to upgrade to GTK 3. A switch was also made to distutils from autotools.
+It is a major update of Gramps to upgrade to GTK 3. A switch was also made to distutils from autotools.
 
 The 4.0 series of Gramps is being packaged for the experimental distribution until all dependencies are available
 and it proves stable.
