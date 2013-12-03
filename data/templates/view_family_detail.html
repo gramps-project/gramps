@@ -131,6 +131,35 @@
 </div>
 </div>
 
+{% if user.is_superuser %}
+  {% if action == "edit" %}
+    {% make_button "Cancel" "/family/%s" family.handle args %}
+    <input type="hidden" id="father_return" name="father_return" value=""/>
+    <input type="hidden" id="mother_return" name="mother_return" value=""/>
+    <input type="hidden" name="action" value="save"/>
+    <input type="hidden" name="search" value="{{search}}"/>
+    <input type="hidden" name="page" value="{{page}}"/>
+    <input type="submit" value="Save"/>
+  {% else %}
+    {% ifequal action "add" %}
+      {% make_button "Cancel" "/family/" args %}
+      <input type="hidden" id="father_return" name="father_return" value=""/>
+      <input type="hidden" id="mother_return" name="mother_return" value=""/>
+      <input type="hidden" name="action" value="create"/>
+      <input type="hidden" name="search" value="{{search}}"/>
+      <input type="hidden" name="page" value="{{page}}"/>
+      <input type="submit" value="Create"/>
+    {% else %}
+      <div style="background-color: lightgray; padding: 2px 0px 0px 2px; clear: both;">
+      {% make_button "+Add Family" "/family/add" args %}
+      {% make_button "?Edit Family" "/family/%s/edit" family.handle args %}
+      {% make_button "-Delete Family" "/family/%s/delete" family.handle args %}
+      </div>
+    {% endifequal %}
+  {% endif %}
+{% else %}
+{% endif %}
+
 <!-- Tabs -->
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs" style="border: none;">
@@ -171,34 +200,6 @@
   </div>
 </div>
 
-{% if user.is_superuser %}
-  {% if action == "edit" %}
-    {% make_button "Cancel" "/family/%s" family.handle args %}
-    <input type="hidden" id="father_return" name="father_return" value=""/>
-    <input type="hidden" id="mother_return" name="mother_return" value=""/>
-    <input type="hidden" name="action" value="save"/>
-    <input type="hidden" name="search" value="{{search}}"/>
-    <input type="hidden" name="page" value="{{page}}"/>
-    <input type="submit" value="Save"/>
-  {% else %}
-    {% ifequal action "add" %}
-      {% make_button "Cancel" "/family/" args %}
-      <input type="hidden" id="father_return" name="father_return" value=""/>
-      <input type="hidden" id="mother_return" name="mother_return" value=""/>
-      <input type="hidden" name="action" value="create"/>
-      <input type="hidden" name="search" value="{{search}}"/>
-      <input type="hidden" name="page" value="{{page}}"/>
-      <input type="submit" value="Create"/>
-    {% else %}
-      <div style="background-color: lightgray; padding: 2px 0px 0px 2px; clear: both;">
-      {% make_button "+Add Family" "/family/add" args %}
-      {% make_button "?Edit Family" "/family/%s/edit" family.handle args %}
-      {% make_button "-Delete Family" "/family/%s/delete" family.handle args %}
-      </div>
-    {% endifequal %}
-  {% endif %}
-{% else %}
-{% endif %}
 </form>
 {% endblock %}
 

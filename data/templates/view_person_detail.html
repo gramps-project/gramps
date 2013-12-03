@@ -81,6 +81,38 @@
 
 </div>
 </div>
+
+{% if logform %}
+  <table>
+    {{logform.as_table}}
+  </table>
+{% endif %}
+
+{% if user.is_superuser %}
+  {% if action == "edit" %}
+    {% make_button "Cancel" "/person/%s" person.handle args %}
+    <input type="hidden" name="action" value="save"/>
+    <input type="hidden" name="search" value="{{search}}"/>
+    <input type="hidden" name="page" value="{{page}}"/>
+    <input type="submit" value="Save"/>
+  {% else %}
+    {% ifequal action "add" %}
+      {% make_button "Cancel" "/person/" args %}
+      <input type="hidden" name="action" value="create"/>
+      <input type="hidden" name="search" value="{{search}}"/>
+      <input type="hidden" name="page" value="{{page}}"/>
+      <input type="submit" value="Create"/>
+    {% else %}
+      <div style="background-color: lightgray; padding: 2px 0px 0px 2px; clear: both;">
+      {% make_button "+Add Person" "/person/add" args %}
+      {% make_button "?Edit Person" "/person/%s/edit" person.handle args %}
+      {% make_button "-Delete Person" "/person/%s/delete" person.handle args %}
+      </div>
+    {% endifequal %}
+  {% endif %}
+{% else %}
+{% endif %}
+
 <!-- Tabs -->
 
 <div class="ui-tabs ui-widget ui-widget-content ui-corner-all" id="tabs" style="border: none;">
@@ -138,36 +170,6 @@
   </div>
 </div>
 
-{% if logform %}
-  <table>
-    {{logform.as_table}}
-  </table>
-{% endif %}
-
-{% if user.is_superuser %}
-  {% if action == "edit" %}
-    {% make_button "Cancel" "/person/%s" person.handle args %}
-    <input type="hidden" name="action" value="save"/>
-    <input type="hidden" name="search" value="{{search}}"/>
-    <input type="hidden" name="page" value="{{page}}"/>
-    <input type="submit" value="Save"/>
-  {% else %}
-    {% ifequal action "add" %}
-      {% make_button "Cancel" "/person/" args %}
-      <input type="hidden" name="action" value="create"/>
-      <input type="hidden" name="search" value="{{search}}"/>
-      <input type="hidden" name="page" value="{{page}}"/>
-      <input type="submit" value="Create"/>
-    {% else %}
-      <div style="background-color: lightgray; padding: 2px 0px 0px 2px; clear: both;">
-      {% make_button "+Add Person" "/person/add" args %}
-      {% make_button "?Edit Person" "/person/%s/edit" person.handle args %}
-      {% make_button "-Delete Person" "/person/%s/delete" person.handle args %}
-      </div>
-    {% endifequal %}
-  {% endif %}
-{% else %}
-{% endif %}
 </form>
 {% endblock %}
 
