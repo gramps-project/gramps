@@ -495,7 +495,7 @@ class ListView(NavigationView):
         prompt = True
         if len(self.selected_handles()) > 1:
             q = QuestionDialog2(
-                _("Remove selected items?"),
+                _("Confirm every deletion?"),
                 _("More than one item has been selected for deletion. "
                   "Ask before deleting each one?"),
                 _("Yes"),
