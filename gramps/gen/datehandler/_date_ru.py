@@ -51,6 +51,7 @@ class DateParserRU(DateParser):
 
     modifier_to_int = {
         'перед'    : Date.MOD_BEFORE, 
+        'до'    : Date.MOD_BEFORE, 
         'по'    : Date.MOD_BEFORE, 
         'после' : Date.MOD_AFTER, 
         'п.'    : Date.MOD_AFTER, 
@@ -257,7 +258,7 @@ class DateDisplayRU(DateDisplay):
 
     _mod_str = (
         "", 
-        "перед ", 
+        "до ", 
         "после ", 
         "около ", 
         "", "", "")
