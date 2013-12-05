@@ -39,7 +39,7 @@ else:
 import time
 import logging
 
-_LOG = logging.getLogger('.gui.listview')
+LOG = logging.getLogger('.gui.listview')
 
 #----------------------------------------------------------------
 #
@@ -289,7 +289,7 @@ class ListView(NavigationView):
         if fg_color:
             renderer.set_property('foreground', fg_color)
         else:
-            _LOG.debug('Bad color set: ' + str(fg_color))
+            LOG.debug('Bad color set: ' + str(fg_color))
 
     def set_active(self):
         """
@@ -347,9 +347,9 @@ class ListView(NavigationView):
             self.uistate.show_filter_results(self.dbstate, 
                                              self.model.displayed(), 
                                              self.model.total())
-            _LOG.debug(self.__class__.__name__ + ' build_tree ' +
+            LOG.debug(self.__class__.__name__ + ' build_tree ' +
                     str(time.clock() - cput0) + ' sec')
-            _LOG.debug('parts ' + str(cput1-cput0) + ' , ' 
+            LOG.debug('parts ' + str(cput1-cput0) + ' , ' 
                              + str(cput2-cput1) + ' , ' 
                              + str(cput3-cput2) + ' , ' 
                              + str(cput4-cput3) + ' , ' 
@@ -542,12 +542,12 @@ class ListView(NavigationView):
         prompt = True
         if len(self.selected_handles()) > 1:
             q = QuestionDialog2(
-                _("Remove selected items?"),
+                _("Confirm every deletion?"),
                 _("More than one item has been selected for deletion. "
                   "Ask before deleting each one?"),
-                _("Yes"),
-                _("No"))
-            prompt = q.run()
+                _("No"),
+                _("Yes"))
+            prompt = not q.run()
             
         if not prompt:
             self.uistate.set_busy_cursor(True)
@@ -662,7 +662,7 @@ class ListView(NavigationView):
         
         self.uistate.set_busy_cursor(False)
         
-        _LOG.debug('   ' + self.__class__.__name__ + ' column_clicked ' +
+        LOG.debug('   ' + self.__class__.__name__ + ' column_clicked ' +
                     str(time.clock() - cput) + ' sec')
 
     def __display_column_sort(self):
@@ -737,7 +737,7 @@ class ListView(NavigationView):
            (not self.dirty and not self._dirty_on_change_inactive):
             cput = time.clock()
             list(map(self.model.add_row_by_handle, handle_list))
-            _LOG.debug('   ' + self.__class__.__name__ + ' row_add ' +
+            LOG.debug('   ' + self.__class__.__name__ + ' row_add ' +
                     str(time.clock() - cput) + ' sec')
             if self.active:
                 self.uistate.show_filter_results(self.dbstate, 
@@ -758,7 +758,7 @@ class ListView(NavigationView):
             #store selected handles
             self._sel_handles_before_update = self.selected_handles()
             list(map(self.model.update_row_by_handle, handle_list))
-            _LOG.debug('   ' + self.__class__.__name__ + ' row_update ' +
+            LOG.debug('   ' + self.__class__.__name__ + ' row_update ' +
                     str(time.clock() - cput) + ' sec')
             # Ensure row is still selected after a change of postion in tree.
             if self._sel_handles_before_update:
@@ -777,7 +777,7 @@ class ListView(NavigationView):
            (not self.dirty and not self._dirty_on_change_inactive):
             cput = time.clock()
             list(map(self.model.delete_row_by_handle, handle_list))
-            _LOG.debug('   '  + self.__class__.__name__ + ' row_delete ' +
+            LOG.debug('   '  + self.__class__.__name__ + ' row_delete ' +
                     str(time.clock() - cput) + ' sec')
             if self.active:
                 self.uistate.show_filter_results(self.dbstate, 
