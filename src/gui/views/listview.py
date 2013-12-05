@@ -498,9 +498,9 @@ class ListView(NavigationView):
                 _("Confirm every deletion?"),
                 _("More than one item has been selected for deletion. "
                   "Ask before deleting each one?"),
-                _("Yes"),
-                _("No"))
-            prompt = q.run()
+                _("No"),
+                _("Yes"))
+            prompt = not q.run()
             
         if not prompt:
             self.uistate.set_busy_cursor(1)
