@@ -279,6 +279,16 @@ def show_settings():
     except ImportError:
         pyexiv2_str = 'not found'
 
+    try:
+        import PIL.Image
+        try:
+            pil_str = PIL.Image.VERSION
+        except :# any failure to 'get' the version
+            pil_str = 'unknown version'
+
+    except ImportError:
+        pil_str = 'not found'
+
     import config
     usebsddb3 = config.get('preferences.use-bsddb3')
     try:
@@ -345,6 +355,7 @@ def show_settings():
     print ' cairo     : %s' % cairover_str
     print ' osmgpsmap : %s' % osmgpsmap_str
     print ' pyexiv2   : %s' % pyexiv2_str
+    print ' PIL       : %s' % pil_str
     print ' o.s.      : %s' % operating_system
     if kernel:
         print ' kernel    : %s' % kernel
