@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-03 19:39+0100\n"
-"PO-Revision-Date: 2013-12-03 20:02+0100\n"
+"POT-Creation-Date: 2013-12-11 19:56+0100\n"
+"PO-Revision-Date: 2013-12-11 20:57+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -40,19 +40,21 @@ msgid ""
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a family tree "
 "instead."
 msgstr ""
-"Fehler: Der eingegebene Familienstammbaum \"%s\" existiert nicht.\n"
-"Handelt es sich bei dem Datenformat um GEDCOM, Gramps-XML oder grdb,so "
+"FEHLER: Der vorgegebene Stammbaum \"%s\" existiert nicht.\n"
+"Handelt es sich bei den Daten um ein GEDCOM, Gramps-XML oder grdb-Format, so "
 "verwende stattdessen die -i Option zum Import in einen Stammbaum."
 
 #: ../gramps/cli/arghandler.py:250
 #, python-format
 msgid "Error: Import file %s not found."
-msgstr "Fehler: Importdatei %s nicht gefunden."
+msgstr "FEHLER: die Importdatei %s wurde nicht gefunden."
 
 #: ../gramps/cli/arghandler.py:268
 #, python-format
 msgid "Error: Unrecognized type: \"%(format)s\" for import file: %(filename)s"
-msgstr "Fehler: Unerkannter Typ: \"%(format)s\" für Importdatei: %(filename)s"
+msgstr ""
+"FEHLER: Nicht erkanntes Format: \"%(format)s\" für die Importdatei: %"
+"(filename)s."
 
 #: ../gramps/cli/arghandler.py:290
 #, python-format
@@ -85,7 +87,7 @@ msgstr "Überschreibt die bestehende Datei: %s"
 #: ../gramps/cli/arghandler.py:316
 #, python-format
 msgid "ERROR: Unrecognized format for export file %s"
-msgstr "FEHLER: Nicht erkanntes Format für Exportdatei %s"
+msgstr "FEHLER: Nicht erkanntes Format für die Exportdatei %s."
 
 #: ../gramps/cli/arghandler.py:399
 msgid "List of known Family Trees in your database path\n"
@@ -185,7 +187,7 @@ msgstr "Unbekannter Berichtname."
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
-"Der Berichtname ist nicht angegeben.Bitte verwende einen von %"
+"Der Berichtname ist nicht angegeben. Bitte verwende einen von %"
 "(donottranslate)s=reportname."
 
 #: ../gramps/cli/arghandler.py:620 ../gramps/cli/arghandler.py:662
@@ -206,7 +208,7 @@ msgstr "Unbekannter Werkzeugname."
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
-"Der Werkzeugname ist nicht angegeben.Bitte verwende einen von %"
+"Der Werkzeugname ist nicht angegeben. Bitte verwende einen von %"
 "(donottranslate)s=toolname."
 
 #: ../gramps/cli/arghandler.py:689
@@ -217,7 +219,7 @@ msgstr "Unbekannter Buchname."
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
-"Der Buchname ist nicht angegeben.Bitte verwende einen von %"
+"Der Buchname ist nicht angegeben. Bitte verwende einen von %"
 "(donottranslate)s=bookname."
 
 #: ../gramps/cli/arghandler.py:700
@@ -259,7 +261,7 @@ msgid ""
 msgstr ""
 "\n"
 "Aufruf: gramps.py [OPTION...]\n"
-"  --load-modules=MODUL1,MODUL2,...     Dynamische Module zum laden\n"
+"  --load-modules=MODUL1,MODUL2,...     Softwaremodule zum nachladen\n"
 "\n"
 "Hilfeoptionen\n"
 "  -?, --help                             Zeigt diese Hilfe\n"
@@ -268,8 +270,8 @@ msgstr ""
 "\n"
 "Anwendungsoptionen\n"
 " -O, --open=STAMMBAUM                 Stammbaum öffnen\n"
-" -C, --create=Stammbaum                 Direkt beim Öffnen neu erstellen, "
-"wenn es ein neuer Stammbaum ist\n"
+" -C, --create=Stammbaum                 Erstellt den neuen Stammbaum direkt "
+"beim Öffnen\n"
 "Stammbäumen\n"
 " -i, --import=DATEINAME                 Importiert eine Datei\n"
 " -e, --export=DATEINAME                 Exportiert eine Datei\n"
@@ -290,8 +292,8 @@ msgstr ""
 "Konfigurationseinstellung(en) und startet Gramps\n"
 " -y, --yes                               Bei gefährlichen Aktion nicht "
 "nachfragen (nur nicht-GUI Modus)\n"
-" -q, --quiet                            Blendet die Fortschrittsanzeige "
-"aus(nur nicht-GUI Modus)\n"
+" -q, --quiet                            Blendet die Fortschrittsanzeige aus "
+"(nur nicht-GUI Modus 'Graphical User Interface')\n"
 "  -v,--version                          Zeigt die Versionen\n"
 
 #: ../gramps/cli/argparser.py:84
@@ -414,7 +416,7 @@ msgstr ""
 
 #: ../gramps/cli/argparser.py:241 ../gramps/cli/argparser.py:376
 msgid "Error parsing the arguments"
-msgstr "Fehler beim analysieren der Argumente"
+msgstr "Fehler beim Analysieren der Argumente."
 
 #: ../gramps/cli/argparser.py:243
 #, python-format
@@ -422,8 +424,9 @@ msgid ""
 "Error parsing the arguments: %s \n"
 "Type gramps --help for an overview of commands, or read the manual pages."
 msgstr ""
-"Fehler beim analysieren der Argumente: %s \n"
-"Tippe gramps --help für eine Übersicht der Kommandos oder lies die man pages."
+"Fehler beim Analysieren der Argumente: %s \n"
+"Tippe gramps --help für eine Übersicht der Kommandos oder lies die 'man "
+"pages' (Manual)."
 
 #: ../gramps/cli/argparser.py:252
 #, python-format
@@ -442,12 +445,12 @@ msgstr "Fehlerbehebung Einrichten"
 #: ../gramps/cli/argparser.py:306
 #, python-format
 msgid "Gramps config settings from %s:"
-msgstr "Gramps config Einstellungen von %s:"
+msgstr "Gramps Konfigurationseinstellungen von %s:"
 
 #: ../gramps/cli/argparser.py:324
 #, python-format
 msgid "Current Gramps config setting: %s:%s"
-msgstr "Aktuelle Gramps config Einstellungen: %s:%s"
+msgstr "Aktuelle Gramps Konfigurationseinstellungen: %s:%s"
 
 #: ../gramps/cli/argparser.py:329
 msgid "DEFAULT"
@@ -456,12 +459,12 @@ msgstr "STANDARD"
 #: ../gramps/cli/argparser.py:336
 #, python-format
 msgid "    New Gramps config setting: %s:%s"
-msgstr "    Neue Gramps config Einstellungen: %s:%s"
+msgstr "    Neue Gramps Konfigurationseinstellungen: %s:%s"
 
 #: ../gramps/cli/argparser.py:343
 #, python-format
 msgid "Gramps: no such config setting: '%s'"
-msgstr "Gramps: diese config Einstellung gibt es nicht: '%s'"
+msgstr "Gramps: diese Konfigurationseinstellungen gibt es nicht: '%s'"
 
 #: ../gramps/cli/argparser.py:377
 #, python-format
@@ -469,9 +472,9 @@ msgid ""
 "Error parsing the arguments: %s \n"
 "To use in the command-line mode, supply at least one input file to process."
 msgstr ""
-"Fehler beim analysieren der Argumente: %s \n"
+"Fehler beim Analysieren der Argumente: %s \n"
 "Für die Verwendung im Kommandozeilenmodus gib mindestens eine Eingabedatei "
-"zum bearbeiten an."
+"zum Bearbeiten an."
 
 #: ../gramps/cli/clidbman.py:87
 #, python-format
@@ -622,8 +625,8 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"Gramps hat ein Problem in der zugrunde liegenden Datenbank festgestellt.Dies "
-"kann mit der Stammbaumverwaltung repariert werden.Wähle die Datenbank und "
+"Gramps hat ein Problem in der zugrunde liegenden Datenbank festgestellt. Dies "
+"kann mit der Stammbaumverwaltung repariert werden. Wähle die Datenbank und "
 "klicke auf die Reparatur-Schaltfläche."
 
 #: ../gramps/cli/grampscli.py:149 ../gramps/gui/dbloader.py:297
@@ -770,7 +773,7 @@ msgstr "   Gültige Optionen sind:"
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
 msgstr ""
 "  Verwende '%(donottranslate)s', um eine Beschreibung und gültige Werte zu "
-"sehen"
+"sehen."
 
 #: ../gramps/cli/plug/__init__.py:481
 #, python-format
@@ -809,7 +812,7 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
-"Die Option '%(optionname)s' ist nicht gültig.Verwende '%(donottranslate)s', "
+"Die Option '%(optionname)s' ist nicht gültig. Verwende '%(donottranslate)s', "
 "um alle gültigen Optionen zu sehen."
 
 #: ../gramps/cli/plug/__init__.py:618
@@ -1000,16 +1003,16 @@ msgid ""
 "to this version of Gramps and import the XML file in an empty Family Tree. "
 "Alternatively, it may be possible to use the Berkeley database recovery tools."
 msgstr ""
-"Gramps hat ein Problem beim öffnen der 'Umgebung' der darunterliegenden "
-"Berkeley Datenbank festgestellt. Der wahrscheinlichste Grund ist, die "
-"Datenbank wurde mit einer älteren Version der Berkeley Datenbank erstellt und "
-"du verwendest jetzt eine neuere Version. Es ist sehr wahrscheinlich das ihre "
-"Datenbank nicht von Gramps verändert wurde.\n"
-"Wenn möglich solltest du zu deiner alten Grampsversion und ihrer "
+"Gramps hat ein Problem beim Öffnen der 'Umgebung' der darunterliegenden "
+"Berkeley Datenbank festgestellt. Der wahrscheinlichste Grund ist, dass die "
+"Datenbank mit einer älteren Version der Berkeley Datenbank erstellt wurde und "
+"du jetzt eine neuere Version verwendest. Es ist sehr wahrscheinlich, das die "
+"Datenbankinhalte von Gramps nicht verändert wurde.\n"
+"Wenn möglich solltest du zu deiner alten Grampsversion und der sie "
 "unterstützten Software zurückkehren; exportiere deine Datenbank nach XML; "
-"schließe die Datenbank; dann aktualisiere erneut auf diese Version und "
-"importiere die XML Datei. Eine Alternative ist, deine Datenbank zu "
-"aktualisieren."
+"schließe die Datenbank; dann aktualisiere Gramps erneut auf diese Version und "
+"importiere die XML Datei in einen neuen, leeren Stammbaum. Alternativ ist es "
+"möglich, mit Berkeley Datenbank Rettungswerkzeugen zu arbeiten."
 
 #: ../gramps/gen/db/exceptions.py:203
 #, python-format
@@ -8931,14 +8934,14 @@ msgid "Set as default name"
 msgstr "Als Standardnamen setzen"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1212 ../gramps/gui/views/listview.py:536
+#: ../gramps/gui/plug/_guioptions.py:1212 ../gramps/gui/views/listview.py:537
 #: ../gramps/gui/views/tags.py:480
 #: ../gramps/plugins/quickview/all_relations.py:308
 msgid "Yes"
 msgstr "Ja"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1211 ../gramps/gui/views/listview.py:537
+#: ../gramps/gui/plug/_guioptions.py:1211 ../gramps/gui/views/listview.py:536
 #: ../gramps/gui/views/tags.py:481
 #: ../gramps/plugins/quickview/all_relations.py:312
 msgid "No"
@@ -12915,8 +12918,8 @@ msgid "A bookmark could not be set because nothing was selected."
 msgstr "Das Lesezeichen konnte nicht gesetzt werden, da nichts ausgewählt war."
 
 #: ../gramps/gui/views/listview.py:533
-msgid "Remove selected items?"
-msgstr "Gewählte Elemente löschen?"
+msgid "Confirm every deletion?"
+msgstr "Jedes Löschen bestätigen?"
 
 #: ../gramps/gui/views/listview.py:534
 msgid ""
@@ -32464,6 +32467,9 @@ msgstr "Mindestens eine Regel muss passen"
 #: gtklist.h:8
 msgid "Exactly one rule must apply"
 msgstr "Genau eine Regel muss passen"
+
+#~ msgid "Remove selected items?"
+#~ msgstr "Gewählte Elemente löschen?"
 
 #~ msgid ""
 #~ "The .gramps file you are importing does not contain a valid xml-namespace number.\n"
