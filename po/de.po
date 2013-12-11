@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-03 20:18+0100\n"
-"PO-Revision-Date: 2013-12-03 20:32+0100\n"
+"POT-Creation-Date: 2013-12-11 19:34+0100\n"
+"PO-Revision-Date: 2013-12-11 19:42+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -587,15 +587,15 @@ msgstr ""
 "\n"
 "Gramps wird nun beendet."
 
-#: ../src/gramps.py:380 ../src/gramps.py:387 ../src/gramps.py:458
+#: ../src/gramps.py:391 ../src/gramps.py:398 ../src/gramps.py:469
 msgid "Configuration error:"
 msgstr "Konfigurationsfehler:"
 
-#: ../src/gramps.py:384
+#: ../src/gramps.py:395
 msgid "Error reading configuration"
 msgstr "Fehler beim Lesen der Konfiguration"
 
-#: ../src/gramps.py:388
+#: ../src/gramps.py:399
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -4154,70 +4154,70 @@ msgstr "Datei %s ist bereits geöffnet, erst schließen."
 msgid "Could not create %s"
 msgstr "Konnte %s nicht erstellen"
 
-#: ../src/gen/plug/utils.py:265
+#: ../src/gen/plug/utils.py:266
 msgid "Updated"
 msgstr "Aktualisiert"
 
-#: ../src/gen/plug/utils.py:277
+#: ../src/gen/plug/utils.py:278
 msgid "New"
 msgstr "Neu"
 
-#: ../src/gen/plug/utils.py:307 ../src/gen/plug/utils.py:314
+#: ../src/gen/plug/utils.py:308 ../src/gen/plug/utils.py:315
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Kann '%s' nicht öffnen"
 
-#: ../src/gen/plug/utils.py:320
+#: ../src/gen/plug/utils.py:321
 #, python-format
 msgid "Error in reading '%s'"
 msgstr "Fehler beim Lesen von \"%s\""
 
-#: ../src/gen/plug/utils.py:331
+#: ../src/gen/plug/utils.py:332
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Fehler: Kann '%s' nicht öffnen"
 
-#: ../src/gen/plug/utils.py:335
+#: ../src/gen/plug/utils.py:336
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Fehler: unbekannter Dateityp: '%s'"
 
-#: ../src/gen/plug/utils.py:341
+#: ../src/gen/plug/utils.py:342
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Untersuche '%s'..."
 
-#: ../src/gen/plug/utils.py:354
+#: ../src/gen/plug/utils.py:355
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Fehler in '%s' Datei: kann nicht geladen werden."
 
-#: ../src/gen/plug/utils.py:368
+#: ../src/gen/plug/utils.py:369
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' ist für diese Gramps Version."
 
-#: ../src/gen/plug/utils.py:372
+#: ../src/gen/plug/utils.py:373
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' ist NICHT für diese Gramps Version."
 
-#: ../src/gen/plug/utils.py:373
+#: ../src/gen/plug/utils.py:374
 #, python-format
 msgid "It is for version %d.%d"
 msgstr "Es ist für Version %d.%d"
 
-#: ../src/gen/plug/utils.py:380
+#: ../src/gen/plug/utils.py:381
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
 msgstr "Fehler: fehlende gramps_ziel_version in '%s'..."
 
-#: ../src/gen/plug/utils.py:385
+#: ../src/gen/plug/utils.py:386
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installiere '%s'..."
 
-#: ../src/gen/plug/utils.py:391
+#: ../src/gen/plug/utils.py:392
 #, python-format
 msgid "Registered '%s'"
 msgstr "Registriert '%s'"
@@ -8291,13 +8291,13 @@ msgstr "Als Standardnamen setzen"
 #.
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:53
-#: ../src/gui/plug/_guioptions.py:1193 ../src/gui/views/listview.py:501
+#: ../src/gui/plug/_guioptions.py:1193 ../src/gui/views/listview.py:502
 #: ../src/gui/views/tags.py:478 ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
 msgstr "Ja"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:54
-#: ../src/gui/plug/_guioptions.py:1192 ../src/gui/views/listview.py:502
+#: ../src/gui/plug/_guioptions.py:1192 ../src/gui/views/listview.py:501
 #: ../src/gui/views/tags.py:479 ../src/plugins/quickview/all_relations.py:311
 msgid "No"
 msgstr "Nein"
@@ -9142,8 +9142,8 @@ msgid "A bookmark could not be set because nothing was selected."
 msgstr "Das Lesezeichen konnte nicht gesetzt werden, da nichts ausgewählt war."
 
 #: ../src/gui/views/listview.py:498
-msgid "Remove selected items?"
-msgstr "Gewählte Elemente löschen?"
+msgid "Confirm every deletion?"
+msgstr "Jedes Löschen bestätigen?"
 
 #: ../src/gui/views/listview.py:499
 msgid ""
@@ -23901,11 +23901,8 @@ msgid "OsmGpsMap module not loaded."
 msgstr "OsmGpsMap Modul nicht geladen."
 
 #: ../src/plugins/view/geography.gpr.py:45
-#, fuzzy
 msgid "Geography functionality will not be available."
-msgstr ""
-"WARNUNG: osmgpsmap Modul nicht geladen. Geografiefunktionalität steht nicht "
-"zur Verfügung."
+msgstr "Geografiefunktionalität steht nicht zur Verfügung."
 
 #: ../src/plugins/view/geography.gpr.py:53
 msgid "A view showing the places visited by one person during his life."
@@ -31853,6 +31850,9 @@ msgstr ""
 "<b>Gramps für Gnome oder KDE?</b><br/>Für Linuxanwender läuft Gramps egal "
 "welche Desktopumgebung du bevorzugst. Solange die benötigten GTK "
 "Bibliotheken installiert sind, läuft es hervorragend."
+
+#~ msgid "Remove selected items?"
+#~ msgstr "Gewählte Elemente löschen?"
 
 #~ msgid ""
 #~ "The .gramps file you are importing does not contain a valid xml-namespace "
