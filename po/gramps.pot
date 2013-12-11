@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-25 10:39+0200\n"
+"POT-Creation-Date: 2013-12-11 10:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -464,12 +464,12 @@ msgstr ""
 #: ../gramps/plugins/quickview/all_relations.py:279
 #: ../gramps/plugins/quickview/all_relations.py:296
 #: ../gramps/plugins/textreport/indivcomplete.py:638
-#: ../gramps/plugins/tool/check.py:2021 ../gramps/plugins/view/geoclose.py:498
-#: ../gramps/plugins/view/geofamclose.py:254
-#: ../gramps/plugins/view/geofamclose.py:642
-#: ../gramps/plugins/view/geofamily.py:432
-#: ../gramps/plugins/view/geomoves.py:573
-#: ../gramps/plugins/view/geoperson.py:458
+#: ../gramps/plugins/tool/check.py:2021 ../gramps/plugins/view/geoclose.py:509
+#: ../gramps/plugins/view/geofamclose.py:265
+#: ../gramps/plugins/view/geofamclose.py:653
+#: ../gramps/plugins/view/geofamily.py:444
+#: ../gramps/plugins/view/geomoves.py:584
+#: ../gramps/plugins/view/geoperson.py:469
 #: ../gramps/plugins/view/relview.py:471
 #: ../gramps/plugins/view/relview.py:1019
 #: ../gramps/plugins/view/relview.py:1066
@@ -725,7 +725,7 @@ msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 
 #: ../gramps/gen/const.py:239 ../gramps/gen/const.py:240
-#: ../gramps/gen/lib/date.py:1759 ../gramps/gen/lib/date.py:1773
+#: ../gramps/gen/lib/date.py:1780 ../gramps/gen/lib/date.py:1794
 msgid "none"
 msgstr ""
 
@@ -1399,11 +1399,11 @@ msgid "Miscellaneous filters"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/_rule.py:58 ../gramps/gui/glade/rule.glade.h:26
-#: ../gramps/plugins/view/geoclose.py:509
-#: ../gramps/plugins/view/geofamclose.py:653
-#: ../gramps/plugins/view/geofamily.py:443
-#: ../gramps/plugins/view/geomoves.py:585
-#: ../gramps/plugins/view/geoperson.py:467
+#: ../gramps/plugins/view/geoclose.py:520
+#: ../gramps/plugins/view/geofamclose.py:664
+#: ../gramps/plugins/view/geofamily.py:455
+#: ../gramps/plugins/view/geomoves.py:596
+#: ../gramps/plugins/view/geoperson.py:478
 msgid "No description"
 msgstr ""
 
@@ -3844,7 +3844,7 @@ msgstr ""
 #. string if the person is None
 #.
 #. -------------------------------------------------------------------------
-#: ../gramps/gen/lib/date.py:294 ../gramps/gen/lib/date.py:418
+#: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:419
 #: ../gramps/gen/mime/_pythonmime.py:50 ../gramps/gen/mime/_pythonmime.py:58
 #: ../gramps/gen/mime/_winmime.py:64 ../gramps/gen/utils/db.py:521
 #: ../gramps/gui/editors/editperson.py:331
@@ -3863,133 +3863,133 @@ msgstr ""
 msgid "unknown"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:301
+#: ../gramps/gen/lib/date.py:302
 #, python-format
 msgid "less than %s years"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:306 ../gramps/gen/lib/date.py:330
-#: ../gramps/gen/lib/date.py:332 ../gramps/gen/lib/date.py:338
-#: ../gramps/gen/lib/date.py:358
+#: ../gramps/gen/lib/date.py:307 ../gramps/gen/lib/date.py:331
+#: ../gramps/gen/lib/date.py:333 ../gramps/gen/lib/date.py:339
+#: ../gramps/gen/lib/date.py:359
 msgid "more than"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:308 ../gramps/gen/lib/date.py:319
-#: ../gramps/gen/lib/date.py:323 ../gramps/gen/lib/date.py:327
-#: ../gramps/gen/lib/date.py:360
+#: ../gramps/gen/lib/date.py:309 ../gramps/gen/lib/date.py:320
+#: ../gramps/gen/lib/date.py:324 ../gramps/gen/lib/date.py:328
+#: ../gramps/gen/lib/date.py:361
 msgid "less than"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:310 ../gramps/gen/lib/date.py:341
-#: ../gramps/gen/lib/date.py:347 ../gramps/gen/lib/date.py:349
-#: ../gramps/gen/lib/date.py:362
+#: ../gramps/gen/lib/date.py:311 ../gramps/gen/lib/date.py:342
+#: ../gramps/gen/lib/date.py:348 ../gramps/gen/lib/date.py:350
+#: ../gramps/gen/lib/date.py:363
 msgid "age|about"
-msgstr ""
-
-#: ../gramps/gen/lib/date.py:315 ../gramps/gen/lib/date.py:355
-#: ../gramps/gen/lib/date.py:370
-msgid "between"
 msgstr ""
 
 #: ../gramps/gen/lib/date.py:316 ../gramps/gen/lib/date.py:356
 #: ../gramps/gen/lib/date.py:371
+msgid "between"
+msgstr ""
+
+#: ../gramps/gen/lib/date.py:317 ../gramps/gen/lib/date.py:357
+#: ../gramps/gen/lib/date.py:372
 #: ../gramps/plugins/quickview/all_relations.py:284
 #: ../gramps/plugins/view/relview.py:1000
 #: ../gramps/plugins/webreport/narrativeweb.py:1156
 msgid "and"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:325 ../gramps/gen/lib/date.py:345
+#: ../gramps/gen/lib/date.py:326 ../gramps/gen/lib/date.py:346
 msgid "less than about"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:336 ../gramps/gen/lib/date.py:343
+#: ../gramps/gen/lib/date.py:337 ../gramps/gen/lib/date.py:344
 msgid "more than about"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:422
+#: ../gramps/gen/lib/date.py:423
 #, python-format
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/gen/lib/date.py:429
+#: ../gramps/gen/lib/date.py:430
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/gen/lib/date.py:436
+#: ../gramps/gen/lib/date.py:437
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/gen/lib/date.py:441
+#: ../gramps/gen/lib/date.py:442
 msgid "0 days"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:588
+#: ../gramps/gen/lib/date.py:589
 msgid "calendar|Gregorian"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:589
+#: ../gramps/gen/lib/date.py:590
 msgid "calendar|Julian"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:590
+#: ../gramps/gen/lib/date.py:591
 msgid "calendar|Hebrew"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:591
+#: ../gramps/gen/lib/date.py:592
 msgid "calendar|French Republican"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:592
+#: ../gramps/gen/lib/date.py:593
 msgid "calendar|Persian"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:593
+#: ../gramps/gen/lib/date.py:594
 msgid "calendar|Islamic"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:594
+#: ../gramps/gen/lib/date.py:595
 msgid "calendar|Swedish"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1759
+#: ../gramps/gen/lib/date.py:1780
 msgid "estimated"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1759
+#: ../gramps/gen/lib/date.py:1780
 msgid "calculated"
 msgstr ""
 
 #. ui_mods taken from date.py def lookup_modifier(self, modifier):
-#: ../gramps/gen/lib/date.py:1773 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1794 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "before"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1773 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1794 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "after"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1773 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1794 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "about"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1774
+#: ../gramps/gen/lib/date.py:1795
 msgid "range"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1774
+#: ../gramps/gen/lib/date.py:1795
 msgid "span"
 msgstr ""
 
-#: ../gramps/gen/lib/date.py:1774
+#: ../gramps/gen/lib/date.py:1795
 msgid "textonly"
 msgstr ""
 
@@ -8312,14 +8312,14 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1212 ../gramps/gui/views/listview.py:536
+#: ../gramps/gui/plug/_guioptions.py:1212 ../gramps/gui/views/listview.py:537
 #: ../gramps/gui/views/tags.py:480
 #: ../gramps/plugins/quickview/all_relations.py:308
 msgid "Yes"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1211 ../gramps/gui/views/listview.py:537
+#: ../gramps/gui/plug/_guioptions.py:1211 ../gramps/gui/views/listview.py:536
 #: ../gramps/gui/views/tags.py:481
 #: ../gramps/plugins/quickview/all_relations.py:312
 msgid "No"
@@ -8680,7 +8680,7 @@ msgstr ""
 msgid "manual|Editing_Dates"
 msgstr ""
 
-#: ../gramps/gui/editors/editdate.py:129 ../gramps/gui/editors/editdate.py:233
+#: ../gramps/gui/editors/editdate.py:129 ../gramps/gui/editors/editdate.py:266
 msgid "Date selection"
 msgstr ""
 
@@ -8700,15 +8700,15 @@ msgid "New Event"
 msgstr ""
 
 #: ../gramps/gui/editors/editevent.py:223
-#: ../gramps/plugins/view/geoclose.py:521
-#: ../gramps/plugins/view/geoevents.py:322
-#: ../gramps/plugins/view/geoevents.py:350
-#: ../gramps/plugins/view/geofamclose.py:664
-#: ../gramps/plugins/view/geofamily.py:400
-#: ../gramps/plugins/view/geomoves.py:596
-#: ../gramps/plugins/view/geoperson.py:418
-#: ../gramps/plugins/view/geoperson.py:439
-#: ../gramps/plugins/view/geoperson.py:478
+#: ../gramps/plugins/view/geoclose.py:532
+#: ../gramps/plugins/view/geoevents.py:336
+#: ../gramps/plugins/view/geoevents.py:364
+#: ../gramps/plugins/view/geofamclose.py:675
+#: ../gramps/plugins/view/geofamily.py:412
+#: ../gramps/plugins/view/geomoves.py:607
+#: ../gramps/plugins/view/geoperson.py:429
+#: ../gramps/plugins/view/geoperson.py:450
+#: ../gramps/plugins/view/geoperson.py:489
 msgid "Edit Event"
 msgstr ""
 
@@ -8931,7 +8931,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:501
 #: ../gramps/gui/editors/editfamily.py:1078
-#: ../gramps/plugins/view/geofamily.py:392
+#: ../gramps/plugins/view/geofamily.py:404
 msgid "Edit Family"
 msgstr ""
 
@@ -9241,7 +9241,7 @@ msgid "New Person"
 msgstr ""
 
 #: ../gramps/gui/editors/editperson.py:585
-#: ../gramps/plugins/view/geofamily.py:396
+#: ../gramps/plugins/view/geofamily.py:408
 msgid "Edit Person"
 msgstr ""
 
@@ -9359,8 +9359,8 @@ msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:232
 #: ../gramps/plugins/lib/maps/geography.py:789
-#: ../gramps/plugins/view/geoplaces.py:323
-#: ../gramps/plugins/view/geoplaces.py:343
+#: ../gramps/plugins/view/geoplaces.py:334
+#: ../gramps/plugins/view/geoplaces.py:354
 msgid "Edit Place"
 msgstr ""
 
@@ -13974,6 +13974,13 @@ msgstr ""
 #: ../gramps/gui/views/listview.py:441
 #: ../gramps/gui/views/navigationview.py:256
 #: ../gramps/plugins/view/familyview.py:237
+#: ../gramps/plugins/view/geoclose.py:206
+#: ../gramps/plugins/view/geoevents.py:178
+#: ../gramps/plugins/view/geofamclose.py:204
+#: ../gramps/plugins/view/geofamily.py:178
+#: ../gramps/plugins/view/geomoves.py:208
+#: ../gramps/plugins/view/geoperson.py:207
+#: ../gramps/plugins/view/geoplaces.py:178
 msgid "Could Not Set a Bookmark"
 msgstr ""
 
@@ -13982,7 +13989,7 @@ msgid "A bookmark could not be set because nothing was selected."
 msgstr ""
 
 #: ../gramps/gui/views/listview.py:533
-msgid "Remove selected items?"
+msgid "Confirm every deletion?"
 msgstr ""
 
 #: ../gramps/gui/views/listview.py:534
@@ -14041,6 +14048,13 @@ msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:257
 #: ../gramps/plugins/view/familyview.py:238
+#: ../gramps/plugins/view/geoclose.py:207
+#: ../gramps/plugins/view/geoevents.py:179
+#: ../gramps/plugins/view/geofamclose.py:205
+#: ../gramps/plugins/view/geofamily.py:179
+#: ../gramps/plugins/view/geomoves.py:209
+#: ../gramps/plugins/view/geoperson.py:208
+#: ../gramps/plugins/view/geoplaces.py:179
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
 
@@ -18373,10 +18387,10 @@ msgstr ""
 #: ../gramps/plugins/importer/importcsv.py:154
 #: ../gramps/plugins/importer/importgedcom.py:129
 #: ../gramps/plugins/importer/importgedcom.py:143
-#: ../gramps/plugins/importer/importgeneweb.py:92
-#: ../gramps/plugins/importer/importgeneweb.py:98
-#: ../gramps/plugins/importer/importvcard.py:68
-#: ../gramps/plugins/importer/importvcard.py:71
+#: ../gramps/plugins/importer/importgeneweb.py:94
+#: ../gramps/plugins/importer/importgeneweb.py:100
+#: ../gramps/plugins/importer/importvcard.py:69
+#: ../gramps/plugins/importer/importvcard.py:72
 #, python-format
 msgid "%s could not be opened\n"
 msgstr ""
@@ -18547,8 +18561,8 @@ msgid "CSV import"
 msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:340
-#: ../gramps/plugins/importer/importgeneweb.py:190
-#: ../gramps/plugins/importer/importvcard.py:231
+#: ../gramps/plugins/importer/importgeneweb.py:193
+#: ../gramps/plugins/importer/importvcard.py:232
 #, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
@@ -18632,8 +18646,12 @@ msgstr ""
 msgid "Error reading GEDCOM file"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgeneweb.py:126
+#: ../gramps/plugins/importer/importgeneweb.py:129
 msgid "GeneWeb import"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:828
+msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
 
 #: ../gramps/plugins/importer/importgpkg.py:73
@@ -18691,8 +18709,8 @@ msgstr ""
 #: ../gramps/plugins/importer/importgrdb.py:58
 #: ../gramps/plugins/importer/importprogen.py:76
 #: ../gramps/plugins/importer/importprogen.py:85
-#: ../gramps/plugins/importer/importxml.py:465
-#: ../gramps/plugins/importer/importxml.py:468
+#: ../gramps/plugins/importer/importxml.py:467
+#: ../gramps/plugins/importer/importxml.py:470
 #, python-format
 msgid "%s could not be opened"
 msgstr ""
@@ -18766,13 +18784,23 @@ msgstr ""
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr ""
 
-#: ../gramps/plugins/importer/importvcard.py:226
+#: ../gramps/plugins/importer/importvcard.py:227
 msgid "vCard import"
 msgstr ""
 
-#: ../gramps/plugins/importer/importvcard.py:313
+#: ../gramps/plugins/importer/importvcard.py:314
 #, python-format
 msgid "Import of VCards version %s is not supported by Gramps."
+msgstr ""
+
+#: ../gramps/plugins/importer/importvcard.py:482
+msgid "Invalid date {date} in BDAY {vcard_snippet}, preserving date as text."
+msgstr ""
+
+#: ../gramps/plugins/importer/importvcard.py:489
+msgid ""
+"Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date "
+"as text."
 msgstr ""
 
 #. feature requests 2356, 1658: avoid genitive form
@@ -18782,129 +18810,129 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #. feature requests 2356, 1658: avoid genitive form
-#: ../gramps/plugins/importer/importxml.py:99
+#: ../gramps/plugins/importer/importxml.py:101
 #: ../gramps/plugins/tool/eventnames.py:128
 #, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr ""
 
 #. feature requests 2356, 1658: avoid genitive form
-#: ../gramps/plugins/importer/importxml.py:101
+#: ../gramps/plugins/importer/importxml.py:103
 #: ../gramps/plugins/tool/eventnames.py:130
 #, python-format
 msgid "%(event_name)s of %(person)s"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:147
-#: ../gramps/plugins/importer/importxml.py:152
+#: ../gramps/plugins/importer/importxml.py:149
+#: ../gramps/plugins/importer/importxml.py:154
 #, python-format
 msgid "Error reading %s"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:154
+#: ../gramps/plugins/importer/importxml.py:156
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:267
+#: ../gramps/plugins/importer/importxml.py:269
 #, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:273
+#: ../gramps/plugins/importer/importxml.py:275
 #, python-format
 msgid "  Family %(id)s with %(id2)s\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:276
+#: ../gramps/plugins/importer/importxml.py:278
 #, python-format
 msgid "  Source %(id)s with %(id2)s\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:279
+#: ../gramps/plugins/importer/importxml.py:281
 #, python-format
 msgid "  Event %(id)s with %(id2)s\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:282
+#: ../gramps/plugins/importer/importxml.py:284
 #, python-format
 msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:285
+#: ../gramps/plugins/importer/importxml.py:287
 #, python-format
 msgid "  Place %(id)s with %(id2)s\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:288
+#: ../gramps/plugins/importer/importxml.py:290
 #, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:291
+#: ../gramps/plugins/importer/importxml.py:293
 #, python-format
 msgid "  Note %(id)s with %(id2)s\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:296
+#: ../gramps/plugins/importer/importxml.py:298
 #, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:304
+#: ../gramps/plugins/importer/importxml.py:306
 #, python-format
 msgid "  People: %d\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:305
+#: ../gramps/plugins/importer/importxml.py:307
 #, python-format
 msgid "  Families: %d\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:306
+#: ../gramps/plugins/importer/importxml.py:308
 #, python-format
 msgid "  Sources: %d\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:307
+#: ../gramps/plugins/importer/importxml.py:309
 #, python-format
 msgid "  Events: %d\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:308
+#: ../gramps/plugins/importer/importxml.py:310
 #, python-format
 msgid "  Media Objects: %d\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:309
+#: ../gramps/plugins/importer/importxml.py:311
 #, python-format
 msgid "  Places: %d\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:310
+#: ../gramps/plugins/importer/importxml.py:312
 #, python-format
 msgid "  Repositories: %d\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:311
+#: ../gramps/plugins/importer/importxml.py:313
 #, python-format
 msgid "  Notes: %d\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:312
+#: ../gramps/plugins/importer/importxml.py:314
 #, python-format
 msgid "  Tags: %d\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:313
+#: ../gramps/plugins/importer/importxml.py:315
 #, python-format
 msgid "  Citations: %d\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:315
+#: ../gramps/plugins/importer/importxml.py:317
 msgid "Number of new objects imported:\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:324
+#: ../gramps/plugins/importer/importxml.py:326
 #, python-format
 msgid ""
 "\n"
@@ -18916,7 +18944,7 @@ msgid ""
 "'Unkown' objects are referenced by note %(unknown)s.\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:332
+#: ../gramps/plugins/importer/importxml.py:334
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -18925,7 +18953,7 @@ msgid ""
 "or, if not set, relative to the user's directory.\n"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:343
+#: ../gramps/plugins/importer/importxml.py:345
 msgid ""
 "\n"
 "\n"
@@ -18933,26 +18961,26 @@ msgid ""
 msgstr ""
 
 #. there is no old style XML
-#: ../gramps/plugins/importer/importxml.py:818
-#: ../gramps/plugins/importer/importxml.py:1250
-#: ../gramps/plugins/importer/importxml.py:1502
-#: ../gramps/plugins/importer/importxml.py:1881
+#: ../gramps/plugins/importer/importxml.py:820
+#: ../gramps/plugins/importer/importxml.py:1252
+#: ../gramps/plugins/importer/importxml.py:1504
+#: ../gramps/plugins/importer/importxml.py:1883
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:819
+#: ../gramps/plugins/importer/importxml.py:821
 msgid "Attributes that link the data together are missing."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:923
+#: ../gramps/plugins/importer/importxml.py:925
 msgid "Gramps XML import"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:956
+#: ../gramps/plugins/importer/importxml.py:958
 msgid "Could not change media path"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:957
+#: ../gramps/plugins/importer/importxml.py:959
 #, python-format
 msgid ""
 "The opened file has media path %s, which conflicts with the media path of "
@@ -18961,7 +18989,7 @@ msgid ""
 "Preferences."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1016
+#: ../gramps/plugins/importer/importxml.py:1018
 msgid ""
 "The .gramps file you are importing does not contain information about the "
 "version of Gramps with, which it was produced.\n"
@@ -18969,11 +18997,11 @@ msgid ""
 "The file will not be imported."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1019
+#: ../gramps/plugins/importer/importxml.py:1021
 msgid "Import file misses Gramps version"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1021
+#: ../gramps/plugins/importer/importxml.py:1023
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(newer)s of Gramps, "
@@ -18981,7 +19009,7 @@ msgid ""
 "imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1029
+#: ../gramps/plugins/importer/importxml.py:1031
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -18994,11 +19022,11 @@ msgid ""
 " for more info."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1041
+#: ../gramps/plugins/importer/importxml.py:1043
 msgid "The file will not be imported"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1043
+#: ../gramps/plugins/importer/importxml.py:1045
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
@@ -19012,63 +19040,69 @@ msgid ""
 "for more info."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1056
+#: ../gramps/plugins/importer/importxml.py:1058
 msgid "Old xml file"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1171
-#: ../gramps/plugins/importer/importxml.py:2531
+#: ../gramps/plugins/importer/importxml.py:1173
+#: ../gramps/plugins/importer/importxml.py:2560
 #, python-format
 msgid "Witness name: %s"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1251
+#: ../gramps/plugins/importer/importxml.py:1253
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1503
+#: ../gramps/plugins/importer/importxml.py:1505
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1666
+#: ../gramps/plugins/importer/importxml.py:1668
 #, python-format
 msgid ""
 "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did "
 "not change this grouping to \"%(value)s\"."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1669
+#: ../gramps/plugins/importer/importxml.py:1671
 msgid "Gramps ignored a name grouping"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1728
+#: ../gramps/plugins/importer/importxml.py:1730
 msgid "Unknown when imported"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:1882
+#: ../gramps/plugins/importer/importxml.py:1884
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:2422
+#. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
+#. but you may re-order them if needed.
+#: ../gramps/plugins/importer/importxml.py:2406
+msgid "Invalid date {date} in XML {xml}, preserving XML as text"
+msgstr ""
+
+#: ../gramps/plugins/importer/importxml.py:2451
 #, python-format
 msgid "Witness comment: %s"
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:3051
+#: ../gramps/plugins/importer/importxml.py:3080
 #, python-format
 msgid ""
 "Error: family '%(family)s' father '%(father)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:3067
+#: ../gramps/plugins/importer/importxml.py:3096
 #, python-format
 msgid ""
 "Error: family '%(family)s' mother '%(mother)s' does not refer back to the "
 "family. Reference added."
 msgstr ""
 
-#: ../gramps/plugins/importer/importxml.py:3089
+#: ../gramps/plugins/importer/importxml.py:3118
 #, python-format
 msgid ""
 "Error: family '%(family)s' child '%(child)s' does not refer back to the "
@@ -19254,7 +19288,7 @@ msgstr ""
 msgid "Ukraine"
 msgstr ""
 
-#: ../gramps/plugins/lib/libcairodoc.py:1400
+#: ../gramps/plugins/lib/libcairodoc.py:1402
 #, python-format
 msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
@@ -23012,17 +23046,17 @@ msgid "Replace '%(map)s' by =>"
 msgstr ""
 
 #: ../gramps/plugins/lib/maps/geography.py:793
-#: ../gramps/plugins/view/geoclose.py:526
-#: ../gramps/plugins/view/geoevents.py:327
-#: ../gramps/plugins/view/geoevents.py:354
-#: ../gramps/plugins/view/geofamclose.py:669
-#: ../gramps/plugins/view/geofamily.py:404
-#: ../gramps/plugins/view/geomoves.py:601
-#: ../gramps/plugins/view/geoperson.py:423
-#: ../gramps/plugins/view/geoperson.py:444
-#: ../gramps/plugins/view/geoperson.py:482
-#: ../gramps/plugins/view/geoplaces.py:328
-#: ../gramps/plugins/view/geoplaces.py:347
+#: ../gramps/plugins/view/geoclose.py:537
+#: ../gramps/plugins/view/geoevents.py:341
+#: ../gramps/plugins/view/geoevents.py:368
+#: ../gramps/plugins/view/geofamclose.py:680
+#: ../gramps/plugins/view/geofamily.py:416
+#: ../gramps/plugins/view/geomoves.py:612
+#: ../gramps/plugins/view/geoperson.py:434
+#: ../gramps/plugins/view/geoperson.py:455
+#: ../gramps/plugins/view/geoperson.py:493
+#: ../gramps/plugins/view/geoplaces.py:339
+#: ../gramps/plugins/view/geoplaces.py:358
 msgid "Center on this place"
 msgstr ""
 
@@ -27500,56 +27534,56 @@ msgstr ""
 msgid "GeoClose"
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:220
+#: ../gramps/plugins/view/geoclose.py:231
 #, python-format
 msgid "Reference : %(name)s ( %(birth)s - %(death)s )"
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:225
+#: ../gramps/plugins/view/geoclose.py:236
 #, python-format
 msgid "The other : %(name)s ( %(birth)s - %(death)s )"
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:230
+#: ../gramps/plugins/view/geoclose.py:241
 msgid "The other person is unknown"
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:233
+#: ../gramps/plugins/view/geoclose.py:244
 msgid "You must choose one reference person."
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:234
+#: ../gramps/plugins/view/geoclose.py:245
 msgid ""
 "Go to the person view and select the people you want to compare. Return to "
 "this view and use the history."
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:283
+#: ../gramps/plugins/view/geoclose.py:294
 msgid "reference _Person"
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:284
+#: ../gramps/plugins/view/geoclose.py:295
 msgid "Select the person which is the reference for life ways"
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:297
+#: ../gramps/plugins/view/geoclose.py:308
 msgid "Select the person which will be our reference."
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:391
-#: ../gramps/plugins/view/geofamclose.py:451
-#: ../gramps/plugins/view/geofamily.py:212
-#: ../gramps/plugins/view/geomoves.py:293
-#: ../gramps/plugins/view/geoperson.py:328
+#: ../gramps/plugins/view/geoclose.py:402
+#: ../gramps/plugins/view/geofamclose.py:462
+#: ../gramps/plugins/view/geofamily.py:224
+#: ../gramps/plugins/view/geomoves.py:304
+#: ../gramps/plugins/view/geoperson.py:339
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:545
+#: ../gramps/plugins/view/geoclose.py:556
 msgid "Choose the reference person"
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:568
+#: ../gramps/plugins/view/geoclose.py:579
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -27559,8 +27593,8 @@ msgid ""
 "The value is in tenth of degree."
 msgstr ""
 
-#: ../gramps/plugins/view/geoclose.py:579
-#: ../gramps/plugins/view/geofamclose.py:722
+#: ../gramps/plugins/view/geoclose.py:590
+#: ../gramps/plugins/view/geofamclose.py:733
 msgid "The selection parameters"
 msgstr ""
 
@@ -27568,18 +27602,18 @@ msgstr ""
 msgid "Events places map"
 msgstr ""
 
-#: ../gramps/plugins/view/geoevents.py:250
+#: ../gramps/plugins/view/geoevents.py:264
 msgid "incomplete or unreferenced event ?"
 msgstr ""
 
-#: ../gramps/plugins/view/geoevents.py:371
+#: ../gramps/plugins/view/geoevents.py:385
 msgid "Show all events"
 msgstr ""
 
-#: ../gramps/plugins/view/geoevents.py:375
-#: ../gramps/plugins/view/geoevents.py:380
-#: ../gramps/plugins/view/geoplaces.py:368
-#: ../gramps/plugins/view/geoplaces.py:373
+#: ../gramps/plugins/view/geoevents.py:389
+#: ../gramps/plugins/view/geoevents.py:394
+#: ../gramps/plugins/view/geoplaces.py:379
+#: ../gramps/plugins/view/geoplaces.py:384
 msgid "Centering on Place"
 msgstr ""
 
@@ -27592,70 +27626,70 @@ msgstr ""
 msgid "GeoFamClose"
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:205
-#: ../gramps/plugins/view/geofamily.py:281
+#: ../gramps/plugins/view/geofamclose.py:216
+#: ../gramps/plugins/view/geofamily.py:293
 #, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:250
+#: ../gramps/plugins/view/geofamclose.py:261
 #, python-format
 msgid "Family reference : %s"
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:252
-#: ../gramps/plugins/view/geofamclose.py:254
+#: ../gramps/plugins/view/geofamclose.py:263
+#: ../gramps/plugins/view/geofamclose.py:265
 #, python-format
 msgid "The other family : %s"
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:256
+#: ../gramps/plugins/view/geofamclose.py:267
 msgid "You must choose one reference family."
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:257
+#: ../gramps/plugins/view/geofamclose.py:268
 msgid ""
 "Go to the family view and select the families you want to compare. Return to "
 "this view and use the history."
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:273
+#: ../gramps/plugins/view/geofamclose.py:284
 msgid "reference _Family"
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:274
+#: ../gramps/plugins/view/geofamclose.py:285
 msgid "Select the family which is the reference for life ways"
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:550
-#: ../gramps/plugins/view/geofamily.py:326
+#: ../gramps/plugins/view/geofamclose.py:561
+#: ../gramps/plugins/view/geofamily.py:338
 #, python-format
 msgid "Father : %(id)s : %(name)s"
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:556
-#: ../gramps/plugins/view/geofamily.py:333
+#: ../gramps/plugins/view/geofamclose.py:567
+#: ../gramps/plugins/view/geofamily.py:345
 #, python-format
 msgid "Mother : %(id)s : %(name)s"
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:566
-#: ../gramps/plugins/view/geofamily.py:344
+#: ../gramps/plugins/view/geofamclose.py:577
+#: ../gramps/plugins/view/geofamily.py:356
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:574
-#: ../gramps/plugins/view/geofamily.py:353
+#: ../gramps/plugins/view/geofamclose.py:585
+#: ../gramps/plugins/view/geofamily.py:365
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:688
+#: ../gramps/plugins/view/geofamclose.py:699
 msgid "Choose the reference family"
 msgstr ""
 
-#: ../gramps/plugins/view/geofamclose.py:711
+#: ../gramps/plugins/view/geofamclose.py:722
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -27669,7 +27703,7 @@ msgstr ""
 msgid "Family places map"
 msgstr ""
 
-#: ../gramps/plugins/view/geofamily.py:308
+#: ../gramps/plugins/view/geofamily.py:320
 #, python-format
 msgid "Family places for %s"
 msgstr ""
@@ -27753,20 +27787,20 @@ msgstr ""
 msgid "GeoMoves"
 msgstr ""
 
-#: ../gramps/plugins/view/geomoves.py:469
+#: ../gramps/plugins/view/geomoves.py:480
 #, python-format
 msgid "All descendance for %s"
 msgstr ""
 
-#: ../gramps/plugins/view/geomoves.py:636
+#: ../gramps/plugins/view/geomoves.py:647
 msgid "The maximum number of generations.\n"
 msgstr ""
 
-#: ../gramps/plugins/view/geomoves.py:643
+#: ../gramps/plugins/view/geomoves.py:654
 msgid "Time in milliseconds between drawing two generations.\n"
 msgstr ""
 
-#: ../gramps/plugins/view/geomoves.py:649
+#: ../gramps/plugins/view/geomoves.py:660
 msgid "The parameters for moves"
 msgstr ""
 
@@ -27775,30 +27809,30 @@ msgid "Person places map"
 msgstr ""
 
 #. For each event, if we have a place, set a marker.
-#: ../gramps/plugins/view/geoperson.py:309
+#: ../gramps/plugins/view/geoperson.py:320
 #, python-format
 msgid "Person places for %s"
 msgstr ""
 
-#: ../gramps/plugins/view/geoperson.py:500
+#: ../gramps/plugins/view/geoperson.py:511
 msgid "Animate"
 msgstr ""
 
-#: ../gramps/plugins/view/geoperson.py:523
+#: ../gramps/plugins/view/geoperson.py:534
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr ""
 
-#: ../gramps/plugins/view/geoperson.py:530
+#: ../gramps/plugins/view/geoperson.py:541
 msgid "How many steps between two markers when we are on large move ?"
 msgstr ""
 
-#: ../gramps/plugins/view/geoperson.py:537
+#: ../gramps/plugins/view/geoperson.py:548
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
 msgstr ""
 
-#: ../gramps/plugins/view/geoperson.py:544
+#: ../gramps/plugins/view/geoperson.py:555
 msgid "The animation parameters"
 msgstr ""
 
@@ -27806,32 +27840,32 @@ msgstr ""
 msgid "Places map"
 msgstr ""
 
-#: ../gramps/plugins/view/geoplaces.py:289
+#: ../gramps/plugins/view/geoplaces.py:300
 msgid "The place name in the status bar is disabled."
 msgstr ""
 
-#: ../gramps/plugins/view/geoplaces.py:294
+#: ../gramps/plugins/view/geoplaces.py:305
 #, python-format
 msgid "The maximum number of places is reached (%d)."
 msgstr ""
 
-#: ../gramps/plugins/view/geoplaces.py:297
+#: ../gramps/plugins/view/geoplaces.py:308
 msgid "Some information are missing."
 msgstr ""
 
-#: ../gramps/plugins/view/geoplaces.py:299
+#: ../gramps/plugins/view/geoplaces.py:310
 msgid "Please, use filtering to reduce this number."
 msgstr ""
 
-#: ../gramps/plugins/view/geoplaces.py:301
+#: ../gramps/plugins/view/geoplaces.py:312
 msgid "You can modify this value in the geography option."
 msgstr ""
 
-#: ../gramps/plugins/view/geoplaces.py:303
+#: ../gramps/plugins/view/geoplaces.py:314
 msgid "In this case, it may take time to show all markers."
 msgstr ""
 
-#: ../gramps/plugins/view/geoplaces.py:364
+#: ../gramps/plugins/view/geoplaces.py:375
 msgid "Show all places"
 msgstr ""
 

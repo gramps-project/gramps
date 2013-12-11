@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-25 10:39+0200\n"
+"POT-Creation-Date: 2013-12-11 10:01+0100\n"
 "PO-Revision-Date: 2013-12-06 15:32+0200\n"
 "Last-Translator: Pekka Valta <pekka.valta@kolumbus.fi>\n"
 "Language-Team: Pekka Valta <pekka.valta@kolumbus.fi>\n"
@@ -541,12 +541,12 @@ msgstr "Lukittu %s toimesta"
 #: ../gramps/plugins/quickview/all_relations.py:279
 #: ../gramps/plugins/quickview/all_relations.py:296
 #: ../gramps/plugins/textreport/indivcomplete.py:638
-#: ../gramps/plugins/tool/check.py:2021 ../gramps/plugins/view/geoclose.py:498
-#: ../gramps/plugins/view/geofamclose.py:254
-#: ../gramps/plugins/view/geofamclose.py:642
-#: ../gramps/plugins/view/geofamily.py:432
-#: ../gramps/plugins/view/geomoves.py:573
-#: ../gramps/plugins/view/geoperson.py:458
+#: ../gramps/plugins/tool/check.py:2021 ../gramps/plugins/view/geoclose.py:509
+#: ../gramps/plugins/view/geofamclose.py:265
+#: ../gramps/plugins/view/geofamclose.py:653
+#: ../gramps/plugins/view/geofamily.py:444
+#: ../gramps/plugins/view/geomoves.py:584
+#: ../gramps/plugins/view/geoperson.py:469
 #: ../gramps/plugins/view/relview.py:471
 #: ../gramps/plugins/view/relview.py:1019
 #: ../gramps/plugins/view/relview.py:1066
@@ -800,7 +800,7 @@ msgstr ""
 "Pekka Valta"
 
 #: ../gramps/gen/const.py:239 ../gramps/gen/const.py:240
-#: ../gramps/gen/lib/date.py:1759 ../gramps/gen/lib/date.py:1773
+#: ../gramps/gen/lib/date.py:1780 ../gramps/gen/lib/date.py:1794
 msgid "none"
 msgstr "tyhjä"
 
@@ -1453,11 +1453,11 @@ msgid "Miscellaneous filters"
 msgstr "Muut suotimet"
 
 #: ../gramps/gen/filters/rules/_rule.py:58 ../gramps/gui/glade/rule.glade.h:26
-#: ../gramps/plugins/view/geoclose.py:509
-#: ../gramps/plugins/view/geofamclose.py:653
-#: ../gramps/plugins/view/geofamily.py:443
-#: ../gramps/plugins/view/geomoves.py:585
-#: ../gramps/plugins/view/geoperson.py:467
+#: ../gramps/plugins/view/geoclose.py:520
+#: ../gramps/plugins/view/geofamclose.py:664
+#: ../gramps/plugins/view/geofamily.py:455
+#: ../gramps/plugins/view/geomoves.py:596
+#: ../gramps/plugins/view/geoperson.py:478
 msgid "No description"
 msgstr "Ei kuvausta"
 
@@ -3826,7 +3826,7 @@ msgstr "Kasvattilapsi"
 #. string if the person is None
 #.
 #. -------------------------------------------------------------------------
-#: ../gramps/gen/lib/date.py:294 ../gramps/gen/lib/date.py:418
+#: ../gramps/gen/lib/date.py:295 ../gramps/gen/lib/date.py:419
 #: ../gramps/gen/mime/_pythonmime.py:50 ../gramps/gen/mime/_pythonmime.py:58
 #: ../gramps/gen/mime/_winmime.py:64 ../gramps/gen/utils/db.py:521
 #: ../gramps/gui/editors/editperson.py:331
@@ -3845,133 +3845,133 @@ msgstr "Kasvattilapsi"
 msgid "unknown"
 msgstr "tuntematon"
 
-#: ../gramps/gen/lib/date.py:301
+#: ../gramps/gen/lib/date.py:302
 #, python-format
 msgid "less than %s years"
 msgstr "vähemmän kuin %s vuotta"
 
-#: ../gramps/gen/lib/date.py:306 ../gramps/gen/lib/date.py:330
-#: ../gramps/gen/lib/date.py:332 ../gramps/gen/lib/date.py:338
-#: ../gramps/gen/lib/date.py:358
+#: ../gramps/gen/lib/date.py:307 ../gramps/gen/lib/date.py:331
+#: ../gramps/gen/lib/date.py:333 ../gramps/gen/lib/date.py:339
+#: ../gramps/gen/lib/date.py:359
 msgid "more than"
 msgstr "enemmän kuin"
 
-#: ../gramps/gen/lib/date.py:308 ../gramps/gen/lib/date.py:319
-#: ../gramps/gen/lib/date.py:323 ../gramps/gen/lib/date.py:327
-#: ../gramps/gen/lib/date.py:360
+#: ../gramps/gen/lib/date.py:309 ../gramps/gen/lib/date.py:320
+#: ../gramps/gen/lib/date.py:324 ../gramps/gen/lib/date.py:328
+#: ../gramps/gen/lib/date.py:361
 msgid "less than"
 msgstr "vähemmän kuin"
 
-#: ../gramps/gen/lib/date.py:310 ../gramps/gen/lib/date.py:341
-#: ../gramps/gen/lib/date.py:347 ../gramps/gen/lib/date.py:349
-#: ../gramps/gen/lib/date.py:362
+#: ../gramps/gen/lib/date.py:311 ../gramps/gen/lib/date.py:342
+#: ../gramps/gen/lib/date.py:348 ../gramps/gen/lib/date.py:350
+#: ../gramps/gen/lib/date.py:363
 msgid "age|about"
 msgstr "noin"
 
-#: ../gramps/gen/lib/date.py:315 ../gramps/gen/lib/date.py:355
-#: ../gramps/gen/lib/date.py:370
+#: ../gramps/gen/lib/date.py:316 ../gramps/gen/lib/date.py:356
+#: ../gramps/gen/lib/date.py:371
 msgid "between"
 msgstr "keskellä"
 
-#: ../gramps/gen/lib/date.py:316 ../gramps/gen/lib/date.py:356
-#: ../gramps/gen/lib/date.py:371
+#: ../gramps/gen/lib/date.py:317 ../gramps/gen/lib/date.py:357
+#: ../gramps/gen/lib/date.py:372
 #: ../gramps/plugins/quickview/all_relations.py:284
 #: ../gramps/plugins/view/relview.py:1000
 #: ../gramps/plugins/webreport/narrativeweb.py:1156
 msgid "and"
 msgstr "ja"
 
-#: ../gramps/gen/lib/date.py:325 ../gramps/gen/lib/date.py:345
+#: ../gramps/gen/lib/date.py:326 ../gramps/gen/lib/date.py:346
 msgid "less than about"
 msgstr "vähemmän kuin noin"
 
-#: ../gramps/gen/lib/date.py:336 ../gramps/gen/lib/date.py:343
+#: ../gramps/gen/lib/date.py:337 ../gramps/gen/lib/date.py:344
 msgid "more than about"
 msgstr "enemmän kuin noin"
 
-#: ../gramps/gen/lib/date.py:422
+#: ../gramps/gen/lib/date.py:423
 #, python-format
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] "%d vuosi"
 msgstr[1] "%d years"
 
-#: ../gramps/gen/lib/date.py:429
+#: ../gramps/gen/lib/date.py:430
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d kuukausi"
 msgstr[1] "%d months"
 
-#: ../gramps/gen/lib/date.py:436
+#: ../gramps/gen/lib/date.py:437
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] "%d päivä"
 msgstr[1] "%d days"
 
-#: ../gramps/gen/lib/date.py:441
+#: ../gramps/gen/lib/date.py:442
 msgid "0 days"
 msgstr "0 päivää"
 
-#: ../gramps/gen/lib/date.py:588
+#: ../gramps/gen/lib/date.py:589
 msgid "calendar|Gregorian"
 msgstr "gregoriaaninen"
 
-#: ../gramps/gen/lib/date.py:589
+#: ../gramps/gen/lib/date.py:590
 msgid "calendar|Julian"
 msgstr "juliaaninen"
 
-#: ../gramps/gen/lib/date.py:590
+#: ../gramps/gen/lib/date.py:591
 msgid "calendar|Hebrew"
 msgstr "juutalainen"
 
-#: ../gramps/gen/lib/date.py:591
+#: ../gramps/gen/lib/date.py:592
 msgid "calendar|French Republican"
 msgstr "Ranskan vallankumous"
 
-#: ../gramps/gen/lib/date.py:592
+#: ../gramps/gen/lib/date.py:593
 msgid "calendar|Persian"
 msgstr "persialainen"
 
-#: ../gramps/gen/lib/date.py:593
+#: ../gramps/gen/lib/date.py:594
 msgid "calendar|Islamic"
 msgstr "islamilainen"
 
-#: ../gramps/gen/lib/date.py:594
+#: ../gramps/gen/lib/date.py:595
 msgid "calendar|Swedish"
 msgstr "ruotsalainen"
 
-#: ../gramps/gen/lib/date.py:1759
+#: ../gramps/gen/lib/date.py:1780
 msgid "estimated"
 msgstr "arvioitu"
 
-#: ../gramps/gen/lib/date.py:1759
+#: ../gramps/gen/lib/date.py:1780
 msgid "calculated"
 msgstr "laskettu"
 
 #. ui_mods taken from date.py def lookup_modifier(self, modifier):
-#: ../gramps/gen/lib/date.py:1773 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1794 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "before"
 msgstr "ennen"
 
-#: ../gramps/gen/lib/date.py:1773 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1794 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "after"
 msgstr "jälkeen"
 
-#: ../gramps/gen/lib/date.py:1773 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1794 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "about"
 msgstr "noin"
 
-#: ../gramps/gen/lib/date.py:1774
+#: ../gramps/gen/lib/date.py:1795
 msgid "range"
 msgstr "välillä"
 
-#: ../gramps/gen/lib/date.py:1774
+#: ../gramps/gen/lib/date.py:1795
 msgid "span"
 msgstr "jakso"
 
-#: ../gramps/gen/lib/date.py:1774
+#: ../gramps/gen/lib/date.py:1795
 msgid "textonly"
 msgstr "vain tekstinä"
 
@@ -8308,14 +8308,14 @@ msgstr "Aseta oletusnimeksi"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/displaytabs/namemodel.py:58
-#: ../gramps/gui/plug/_guioptions.py:1212 ../gramps/gui/views/listview.py:536
+#: ../gramps/gui/plug/_guioptions.py:1212 ../gramps/gui/views/listview.py:537
 #: ../gramps/gui/views/tags.py:480
 #: ../gramps/plugins/quickview/all_relations.py:308
 msgid "Yes"
 msgstr "Kyllä"
 
 #: ../gramps/gui/editors/displaytabs/namemodel.py:59
-#: ../gramps/gui/plug/_guioptions.py:1211 ../gramps/gui/views/listview.py:537
+#: ../gramps/gui/plug/_guioptions.py:1211 ../gramps/gui/views/listview.py:536
 #: ../gramps/gui/views/tags.py:481
 #: ../gramps/plugins/quickview/all_relations.py:312
 msgid "No"
@@ -8674,7 +8674,7 @@ msgstr "Laskettu"
 msgid "manual|Editing_Dates"
 msgstr "Päivämäärien_muokkaaminen"
 
-#: ../gramps/gui/editors/editdate.py:129 ../gramps/gui/editors/editdate.py:233
+#: ../gramps/gui/editors/editdate.py:129 ../gramps/gui/editors/editdate.py:266
 msgid "Date selection"
 msgstr "Päivämäärän valinta"
 
@@ -8694,15 +8694,15 @@ msgid "New Event"
 msgstr "Uusi tapahtuma"
 
 #: ../gramps/gui/editors/editevent.py:223
-#: ../gramps/plugins/view/geoclose.py:521
-#: ../gramps/plugins/view/geoevents.py:322
-#: ../gramps/plugins/view/geoevents.py:350
-#: ../gramps/plugins/view/geofamclose.py:664
-#: ../gramps/plugins/view/geofamily.py:400
-#: ../gramps/plugins/view/geomoves.py:596
-#: ../gramps/plugins/view/geoperson.py:418
-#: ../gramps/plugins/view/geoperson.py:439
-#: ../gramps/plugins/view/geoperson.py:478
+#: ../gramps/plugins/view/geoclose.py:532
+#: ../gramps/plugins/view/geoevents.py:336
+#: ../gramps/plugins/view/geoevents.py:364
+#: ../gramps/plugins/view/geofamclose.py:675
+#: ../gramps/plugins/view/geofamily.py:412
+#: ../gramps/plugins/view/geomoves.py:607
+#: ../gramps/plugins/view/geoperson.py:429
+#: ../gramps/plugins/view/geoperson.py:450
+#: ../gramps/plugins/view/geoperson.py:489
 msgid "Edit Event"
 msgstr "Muokkaa tapahtumaa"
 
@@ -8917,7 +8917,7 @@ msgstr "Uusi perhe"
 
 #: ../gramps/gui/editors/editfamily.py:501
 #: ../gramps/gui/editors/editfamily.py:1078
-#: ../gramps/plugins/view/geofamily.py:392
+#: ../gramps/plugins/view/geofamily.py:404
 msgid "Edit Family"
 msgstr "Muokkaa perhettä"
 
@@ -9099,10 +9099,10 @@ msgstr "Poista mediatiedosto"
 msgid "Media Reference Editor"
 msgstr "Mediaviite muokkain"
 
-#, fuzzy
 #: ../gramps/gui/editors/editmediaref.py:88
 #: ../gramps/gui/editors/editmediaref.py:89
 #: ../gramps/gui/glade/editmediaref.glade.h:2
+#, fuzzy
 msgid "Y coordinate|Y"
 msgstr "Y koordinaatti|Y"
 
@@ -9217,7 +9217,7 @@ msgid "New Person"
 msgstr "Uusi henkilö"
 
 #: ../gramps/gui/editors/editperson.py:585
-#: ../gramps/plugins/view/geofamily.py:396
+#: ../gramps/plugins/view/geofamily.py:408
 msgid "Edit Person"
 msgstr "Muokkaa henkilöä"
 
@@ -9335,8 +9335,8 @@ msgstr "48.21\"E, -18.2412 tai -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:232
 #: ../gramps/plugins/lib/maps/geography.py:789
-#: ../gramps/plugins/view/geoplaces.py:323
-#: ../gramps/plugins/view/geoplaces.py:343
+#: ../gramps/plugins/view/geoplaces.py:334
+#: ../gramps/plugins/view/geoplaces.py:354
 msgid "Edit Place"
 msgstr "Muokkaa paikkaa"
 
@@ -13926,6 +13926,13 @@ msgstr "Aktiivinen kohde ei ole näkyvissä"
 #: ../gramps/gui/views/listview.py:441
 #: ../gramps/gui/views/navigationview.py:256
 #: ../gramps/plugins/view/familyview.py:237
+#: ../gramps/plugins/view/geoclose.py:206
+#: ../gramps/plugins/view/geoevents.py:178
+#: ../gramps/plugins/view/geofamclose.py:204
+#: ../gramps/plugins/view/geofamily.py:178
+#: ../gramps/plugins/view/geomoves.py:208
+#: ../gramps/plugins/view/geoperson.py:207
+#: ../gramps/plugins/view/geoplaces.py:178
 msgid "Could Not Set a Bookmark"
 msgstr "Kirjanmerkin asetus epäonnistui"
 
@@ -13934,8 +13941,9 @@ msgid "A bookmark could not be set because nothing was selected."
 msgstr "Kirjanmerkin asetus epäonnistui, koska mitään ei ollut valittuna."
 
 #: ../gramps/gui/views/listview.py:533
-msgid "Remove selected items?"
-msgstr "Poista valitut?"
+#, fuzzy
+msgid "Confirm every deletion?"
+msgstr "Konfirmaatio"
 
 #: ../gramps/gui/views/listview.py:534
 msgid "More than one item has been selected for deletion. Ask before deleting each one?"
@@ -13989,6 +13997,13 @@ msgstr "%s on kirjanmerkitty"
 
 #: ../gramps/gui/views/navigationview.py:257
 #: ../gramps/plugins/view/familyview.py:238
+#: ../gramps/plugins/view/geoclose.py:207
+#: ../gramps/plugins/view/geoevents.py:179
+#: ../gramps/plugins/view/geofamclose.py:205
+#: ../gramps/plugins/view/geofamily.py:179
+#: ../gramps/plugins/view/geomoves.py:209
+#: ../gramps/plugins/view/geoperson.py:208
+#: ../gramps/plugins/view/geoplaces.py:179
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Kirjanmerkin asetus epäonnistui, koska mitään ei ollut valittuna."
 
@@ -15011,7 +15026,6 @@ msgstr "Luetaan tietokantaa..."
 msgid "%(person)s, birth%(relation)s"
 msgstr "%(person)s, syntymä%(relation)s"
 
-#, fuzzy
 #: ../gramps/plugins/drawreport/calendarreport.py:325
 #: ../gramps/plugins/textreport/birthdayreport.py:331
 #, python-format
@@ -15030,7 +15044,6 @@ msgstr ""
 "%(spouse)s ja\n"
 " %(person)s, häät"
 
-#, fuzzy
 #: ../gramps/plugins/drawreport/calendarreport.py:387
 #: ../gramps/plugins/textreport/birthdayreport.py:383
 #, python-format
@@ -18276,10 +18289,10 @@ msgstr "Tuo tiedot vCard tiedostoista"
 #: ../gramps/plugins/importer/importcsv.py:154
 #: ../gramps/plugins/importer/importgedcom.py:129
 #: ../gramps/plugins/importer/importgedcom.py:143
-#: ../gramps/plugins/importer/importgeneweb.py:92
-#: ../gramps/plugins/importer/importgeneweb.py:98
-#: ../gramps/plugins/importer/importvcard.py:68
-#: ../gramps/plugins/importer/importvcard.py:71
+#: ../gramps/plugins/importer/importgeneweb.py:94
+#: ../gramps/plugins/importer/importgeneweb.py:100
+#: ../gramps/plugins/importer/importvcard.py:69
+#: ../gramps/plugins/importer/importvcard.py:72
 #, python-format
 msgid "%s could not be opened\n"
 msgstr "Ei voitu avata: %s\n"
@@ -18450,8 +18463,8 @@ msgid "CSV import"
 msgstr "CSV tuonti"
 
 #: ../gramps/plugins/importer/importcsv.py:340
-#: ../gramps/plugins/importer/importgeneweb.py:190
-#: ../gramps/plugins/importer/importvcard.py:231
+#: ../gramps/plugins/importer/importgeneweb.py:193
+#: ../gramps/plugins/importer/importvcard.py:232
 #, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
@@ -18531,9 +18544,13 @@ msgstr "Tiedoston %s  tuonti ei onnistunut"
 msgid "Error reading GEDCOM file"
 msgstr "GEDCOM tiedoston luku epäonnistui"
 
-#: ../gramps/plugins/importer/importgeneweb.py:126
+#: ../gramps/plugins/importer/importgeneweb.py:129
 msgid "GeneWeb import"
 msgstr "GeneWeb tuonti"
+
+#: ../gramps/plugins/importer/importgeneweb.py:828
+msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
+msgstr ""
 
 #: ../gramps/plugins/importer/importgpkg.py:73
 #, python-format
@@ -18578,8 +18595,8 @@ msgstr "Sukupuussa,  jonne yrität tuoda tietoja, peruspolku mediatiedostoille o
 #: ../gramps/plugins/importer/importgrdb.py:58
 #: ../gramps/plugins/importer/importprogen.py:76
 #: ../gramps/plugins/importer/importprogen.py:85
-#: ../gramps/plugins/importer/importxml.py:465
-#: ../gramps/plugins/importer/importxml.py:468
+#: ../gramps/plugins/importer/importxml.py:467
+#: ../gramps/plugins/importer/importxml.py:470
 #, python-format
 msgid "%s could not be opened"
 msgstr "Avaus epäonnistui: %s"
@@ -18645,14 +18662,22 @@ msgstr "isää ei löydy I%(person)s (isä=%(id)d)"
 msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr "äitiä e löydy I%(person)s (äiti=%(mother)d)"
 
-#: ../gramps/plugins/importer/importvcard.py:226
+#: ../gramps/plugins/importer/importvcard.py:227
 msgid "vCard import"
 msgstr "vCard tuonti"
 
-#: ../gramps/plugins/importer/importvcard.py:313
+#: ../gramps/plugins/importer/importvcard.py:314
 #, python-format
 msgid "Import of VCards version %s is not supported by Gramps."
 msgstr "Gramps ei tue VCards version %s tuontia."
+
+#: ../gramps/plugins/importer/importvcard.py:482
+msgid "Invalid date {date} in BDAY {vcard_snippet}, preserving date as text."
+msgstr ""
+
+#: ../gramps/plugins/importer/importvcard.py:489
+msgid "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date as text."
+msgstr ""
 
 #. feature requests 2356, 1658: avoid genitive form
 #. -------------------------------------------------------------------------
@@ -18661,129 +18686,129 @@ msgstr "Gramps ei tue VCards version %s tuontia."
 #.
 #. -------------------------------------------------------------------------
 #. feature requests 2356, 1658: avoid genitive form
-#: ../gramps/plugins/importer/importxml.py:99
+#: ../gramps/plugins/importer/importxml.py:101
 #: ../gramps/plugins/tool/eventnames.py:128
 #, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr "%(family)s %(event_name)s"
 
 #. feature requests 2356, 1658: avoid genitive form
-#: ../gramps/plugins/importer/importxml.py:101
+#: ../gramps/plugins/importer/importxml.py:103
 #: ../gramps/plugins/tool/eventnames.py:130
 #, python-format
 msgid "%(event_name)s of %(person)s"
 msgstr "%(event_name)s %(person)s"
 
-#: ../gramps/plugins/importer/importxml.py:147
-#: ../gramps/plugins/importer/importxml.py:152
+#: ../gramps/plugins/importer/importxml.py:149
+#: ../gramps/plugins/importer/importxml.py:154
 #, python-format
 msgid "Error reading %s"
 msgstr "Luku epäonnistui: %s"
 
-#: ../gramps/plugins/importer/importxml.py:154
+#: ../gramps/plugins/importer/importxml.py:156
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Tiedosto ei ole Gramps tietokanta tai se on korruptoitunut."
 
-#: ../gramps/plugins/importer/importxml.py:267
+#: ../gramps/plugins/importer/importxml.py:269
 #, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr "  %(id)s - %(text)s with %(id2)s\n"
 
-#: ../gramps/plugins/importer/importxml.py:273
+#: ../gramps/plugins/importer/importxml.py:275
 #, python-format
 msgid "  Family %(id)s with %(id2)s\n"
 msgstr "  Perhe %(id)s with %(id2)s\n"
 
-#: ../gramps/plugins/importer/importxml.py:276
+#: ../gramps/plugins/importer/importxml.py:278
 #, python-format
 msgid "  Source %(id)s with %(id2)s\n"
 msgstr "  Lähde %(id)s with %(id2)s\n"
 
-#: ../gramps/plugins/importer/importxml.py:279
+#: ../gramps/plugins/importer/importxml.py:281
 #, python-format
 msgid "  Event %(id)s with %(id2)s\n"
 msgstr "  Tapahtuma %(id)s with %(id2)s\n"
 
-#: ../gramps/plugins/importer/importxml.py:282
+#: ../gramps/plugins/importer/importxml.py:284
 #, python-format
 msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr "  Mediatiedosto %(id)s with %(id2)s\n"
 
-#: ../gramps/plugins/importer/importxml.py:285
+#: ../gramps/plugins/importer/importxml.py:287
 #, python-format
 msgid "  Place %(id)s with %(id2)s\n"
 msgstr "  Paikka %(id)s with %(id2)s\n"
 
-#: ../gramps/plugins/importer/importxml.py:288
+#: ../gramps/plugins/importer/importxml.py:290
 #, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
 msgstr "  Arkisto %(id)s with %(id2)s\n"
 
-#: ../gramps/plugins/importer/importxml.py:291
+#: ../gramps/plugins/importer/importxml.py:293
 #, python-format
 msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Lisätiedot %(id)s with %(id2)s\n"
 
-#: ../gramps/plugins/importer/importxml.py:296
+#: ../gramps/plugins/importer/importxml.py:298
 #, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
 msgstr "  Lainaus %(id)s jossa %(id2)s\n"
 
-#: ../gramps/plugins/importer/importxml.py:304
+#: ../gramps/plugins/importer/importxml.py:306
 #, python-format
 msgid "  People: %d\n"
 msgstr "  Henkilöt: %d\n"
 
-#: ../gramps/plugins/importer/importxml.py:305
+#: ../gramps/plugins/importer/importxml.py:307
 #, python-format
 msgid "  Families: %d\n"
 msgstr "  Perheet: %d\n"
 
-#: ../gramps/plugins/importer/importxml.py:306
+#: ../gramps/plugins/importer/importxml.py:308
 #, python-format
 msgid "  Sources: %d\n"
 msgstr "  Lähteet: %d\n"
 
-#: ../gramps/plugins/importer/importxml.py:307
+#: ../gramps/plugins/importer/importxml.py:309
 #, python-format
 msgid "  Events: %d\n"
 msgstr "  Tapahtumat: %d\n"
 
-#: ../gramps/plugins/importer/importxml.py:308
+#: ../gramps/plugins/importer/importxml.py:310
 #, python-format
 msgid "  Media Objects: %d\n"
 msgstr "  Mediatiedostot: %d\n"
 
-#: ../gramps/plugins/importer/importxml.py:309
+#: ../gramps/plugins/importer/importxml.py:311
 #, python-format
 msgid "  Places: %d\n"
 msgstr "  Paikat: %d\n"
 
-#: ../gramps/plugins/importer/importxml.py:310
+#: ../gramps/plugins/importer/importxml.py:312
 #, python-format
 msgid "  Repositories: %d\n"
 msgstr "  Arkistot: %d\n"
 
-#: ../gramps/plugins/importer/importxml.py:311
+#: ../gramps/plugins/importer/importxml.py:313
 #, python-format
 msgid "  Notes: %d\n"
 msgstr "  Lisätiedot: %d\n"
 
-#: ../gramps/plugins/importer/importxml.py:312
+#: ../gramps/plugins/importer/importxml.py:314
 #, python-format
 msgid "  Tags: %d\n"
 msgstr "  Tagit: %d\n"
 
-#: ../gramps/plugins/importer/importxml.py:313
+#: ../gramps/plugins/importer/importxml.py:315
 #, python-format
 msgid "  Citations: %d\n"
 msgstr "Lainaukset: %d\n"
 
-#: ../gramps/plugins/importer/importxml.py:315
+#: ../gramps/plugins/importer/importxml.py:317
 msgid "Number of new objects imported:\n"
 msgstr "Tuotujen uusien kohteiden määrä:\n"
 
-#: ../gramps/plugins/importer/importxml.py:324
+#: ../gramps/plugins/importer/importxml.py:326
 #, python-format
 msgid ""
 "\n"
@@ -18802,7 +18827,7 @@ msgstr ""
 "ja jos mahdollista\n"
 "\"Tuntemattomiin\" on liitetty lisätieto %(unknown)s.\n"
 
-#: ../gramps/plugins/importer/importxml.py:332
+#: ../gramps/plugins/importer/importxml.py:334
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -18816,7 +18841,7 @@ msgstr ""
 "jonka voit määrittää Asetuksista tai jos sitä ei ole annettu,\n"
 "suhteellisiksi kotihakemistoosi.\n"
 
-#: ../gramps/plugins/importer/importxml.py:343
+#: ../gramps/plugins/importer/importxml.py:345
 msgid ""
 "\n"
 "\n"
@@ -18827,31 +18852,31 @@ msgstr ""
 "Sulauttamiseen soveltuvat kohteet:\n"
 
 #. there is no old style XML
-#: ../gramps/plugins/importer/importxml.py:818
-#: ../gramps/plugins/importer/importxml.py:1250
-#: ../gramps/plugins/importer/importxml.py:1502
-#: ../gramps/plugins/importer/importxml.py:1881
+#: ../gramps/plugins/importer/importxml.py:820
+#: ../gramps/plugins/importer/importxml.py:1252
+#: ../gramps/plugins/importer/importxml.py:1504
+#: ../gramps/plugins/importer/importxml.py:1883
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Tuotavassa Gramps XML tiedostossa on rakennevirhe."
 
-#: ../gramps/plugins/importer/importxml.py:819
+#: ../gramps/plugins/importer/importxml.py:821
 msgid "Attributes that link the data together are missing."
 msgstr "Tietoja koostavia ominaisuuksia puuttuu."
 
-#: ../gramps/plugins/importer/importxml.py:923
+#: ../gramps/plugins/importer/importxml.py:925
 msgid "Gramps XML import"
 msgstr "Gramps XML tuonti"
 
-#: ../gramps/plugins/importer/importxml.py:956
+#: ../gramps/plugins/importer/importxml.py:958
 msgid "Could not change media path"
 msgstr "Mediatiedostopolun vaihdos ei onnistu"
 
-#: ../gramps/plugins/importer/importxml.py:957
+#: ../gramps/plugins/importer/importxml.py:959
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the Family Tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
 msgstr "Avatussa tiedostossa mediapolku on %s, joka ei vastaa mediapolkua sukupuussa, johon sitä tuot. Sukupuun mediapolku on säilytetty. Kopio tiedostot oikeaan hakemistoon tai vaihda mediapolkua Asetuksista."
 
-#: ../gramps/plugins/importer/importxml.py:1016
+#: ../gramps/plugins/importer/importxml.py:1018
 msgid ""
 "The .gramps file you are importing does not contain information about the version of Gramps with, which it was produced.\n"
 "\n"
@@ -18861,16 +18886,16 @@ msgstr ""
 "\n"
 "Tiedoston tuontia ei jatketa."
 
-#: ../gramps/plugins/importer/importxml.py:1019
+#: ../gramps/plugins/importer/importxml.py:1021
 msgid "Import file misses Gramps version"
 msgstr "Tuontitiedostosta puuttuu Grampsin versio"
 
-#: ../gramps/plugins/importer/importxml.py:1021
+#: ../gramps/plugins/importer/importxml.py:1023
 #, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr ".Gramps tiedosto, jota olet tuomassa on Gramps versiosta %(newer)s, joka on uudempi kuin käyttämäsi versio %(older)s. Tiedoston tuonti on peruttu. Päivitä viimeisimpään julkaistuun Gramps versioon ja yritä uudelleen."
 
-#: ../gramps/plugins/importer/importxml.py:1029
+#: ../gramps/plugins/importer/importxml.py:1031
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
@@ -18887,11 +18912,11 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "lisätietojen saamiseksi."
 
-#: ../gramps/plugins/importer/importxml.py:1041
+#: ../gramps/plugins/importer/importxml.py:1043
 msgid "The file will not be imported"
 msgstr "Tiedoston tuonti ei onnistunut"
 
-#: ../gramps/plugins/importer/importxml.py:1043
+#: ../gramps/plugins/importer/importxml.py:1045
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -18908,57 +18933,63 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "lisätietojen saamiseksi."
 
-#: ../gramps/plugins/importer/importxml.py:1056
+#: ../gramps/plugins/importer/importxml.py:1058
 msgid "Old xml file"
 msgstr "Vanha xml-tiedosto"
 
-#: ../gramps/plugins/importer/importxml.py:1171
-#: ../gramps/plugins/importer/importxml.py:2531
+#: ../gramps/plugins/importer/importxml.py:1173
+#: ../gramps/plugins/importer/importxml.py:2560
 #, python-format
 msgid "Witness name: %s"
 msgstr "Todistajan nimi: %s"
 
-#: ../gramps/plugins/importer/importxml.py:1251
+#: ../gramps/plugins/importer/importxml.py:1253
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Tapahtumaviitteessä täytyy olla \"hlink\" attribuutti."
 
-#: ../gramps/plugins/importer/importxml.py:1503
+#: ../gramps/plugins/importer/importxml.py:1505
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Henkilöviitteessä täytyy olla \"hlink\" attribuutti."
 
-#: ../gramps/plugins/importer/importxml.py:1666
+#: ../gramps/plugins/importer/importxml.py:1668
 #, python-format
 msgid "Your Family Tree groups name \"%(key)s\" together with \"%(parent)s\", did not change this grouping to \"%(value)s\"."
 msgstr "Sukupuusiryhmien nimi \"%(key)s\" liittyen \"%(parent)s\", ei muuttanut ryhmittelyä arvoihin \"%(value)s\"."
 
-#: ../gramps/plugins/importer/importxml.py:1669
+#: ../gramps/plugins/importer/importxml.py:1671
 msgid "Gramps ignored a name grouping"
 msgstr "Gramps ohitti nimiryhmittelyn"
 
-#: ../gramps/plugins/importer/importxml.py:1728
+#: ../gramps/plugins/importer/importxml.py:1730
 msgid "Unknown when imported"
 msgstr "Tuotaessa tuntematon"
 
-#: ../gramps/plugins/importer/importxml.py:1882
+#: ../gramps/plugins/importer/importxml.py:1884
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Lisätietojen viitteessä täytyy olla \"hlink\" attribuutti."
 
-#: ../gramps/plugins/importer/importxml.py:2422
+#. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
+#. but you may re-order them if needed.
+#: ../gramps/plugins/importer/importxml.py:2406
+msgid "Invalid date {date} in XML {xml}, preserving XML as text"
+msgstr ""
+
+#: ../gramps/plugins/importer/importxml.py:2451
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Todistajan-kommentti: %s"
 
-#: ../gramps/plugins/importer/importxml.py:3051
+#: ../gramps/plugins/importer/importxml.py:3080
 #, python-format
 msgid "Error: family '%(family)s' father '%(father)s' does not refer back to the family. Reference added."
 msgstr "Virhe: perheessä '%(family)s' isä '%(father)s' ei viittaa takaisin perheeseen. Viite lisätty."
 
-#: ../gramps/plugins/importer/importxml.py:3067
+#: ../gramps/plugins/importer/importxml.py:3096
 #, python-format
 msgid "Error: family '%(family)s' mother '%(mother)s' does not refer back to the family. Reference added."
 msgstr "Virhe: perheessä '%(family)s' äiti '%(mother)s' ei viittaa takaisin perheeseen. Viite lisätty.."
 
-#: ../gramps/plugins/importer/importxml.py:3089
+#: ../gramps/plugins/importer/importxml.py:3118
 #, python-format
 msgid "Error: family '%(family)s' child '%(child)s' does not refer back to the family. Reference added."
 msgstr "Virhe: perheessä '%(family)s' lapsi '%(child)s' ei viittaa takaisin perheeseen. Viite lisätty."
@@ -19142,7 +19173,7 @@ msgstr "Uusi Seelanti"
 msgid "Ukraine"
 msgstr "Ukraina"
 
-#: ../gramps/plugins/lib/libcairodoc.py:1400
+#: ../gramps/plugins/lib/libcairodoc.py:1402
 #, python-format
 msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
@@ -22633,17 +22664,17 @@ msgid "Replace '%(map)s' by =>"
 msgstr "Korvaa '%(map)s' tällä =>"
 
 #: ../gramps/plugins/lib/maps/geography.py:793
-#: ../gramps/plugins/view/geoclose.py:526
-#: ../gramps/plugins/view/geoevents.py:327
-#: ../gramps/plugins/view/geoevents.py:354
-#: ../gramps/plugins/view/geofamclose.py:669
-#: ../gramps/plugins/view/geofamily.py:404
-#: ../gramps/plugins/view/geomoves.py:601
-#: ../gramps/plugins/view/geoperson.py:423
-#: ../gramps/plugins/view/geoperson.py:444
-#: ../gramps/plugins/view/geoperson.py:482
-#: ../gramps/plugins/view/geoplaces.py:328
-#: ../gramps/plugins/view/geoplaces.py:347
+#: ../gramps/plugins/view/geoclose.py:537
+#: ../gramps/plugins/view/geoevents.py:341
+#: ../gramps/plugins/view/geoevents.py:368
+#: ../gramps/plugins/view/geofamclose.py:680
+#: ../gramps/plugins/view/geofamily.py:416
+#: ../gramps/plugins/view/geomoves.py:612
+#: ../gramps/plugins/view/geoperson.py:434
+#: ../gramps/plugins/view/geoperson.py:455
+#: ../gramps/plugins/view/geoperson.py:493
+#: ../gramps/plugins/view/geoplaces.py:339
+#: ../gramps/plugins/view/geoplaces.py:358
 msgid "Center on this place"
 msgstr "Keskitä tähän paikkaan"
 
@@ -25319,8 +25350,8 @@ msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] "%(quantity)d tupla puoliso/perhe linkkiä löydetty\n"
 msgstr[1] "%(quantity)d duplicate spouse/family links were found\n"
 
-#, fuzzy
 #: ../gramps/plugins/tool/check.py:2076
+#, fuzzy
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "Löydetty %d perhe ilman vanhempia tai lapsia, poistettu.\n"
 
@@ -27100,54 +27131,54 @@ msgstr "Onko heidän ollut mahdollista tavata?"
 msgid "GeoClose"
 msgstr "Maantieteellinen läheisyys"
 
-#: ../gramps/plugins/view/geoclose.py:220
+#: ../gramps/plugins/view/geoclose.py:231
 #, python-format
 msgid "Reference : %(name)s ( %(birth)s - %(death)s )"
 msgstr "Viite : %(name)s ( %(birth)s - %(death)s )"
 
-#: ../gramps/plugins/view/geoclose.py:225
+#: ../gramps/plugins/view/geoclose.py:236
 #, python-format
 msgid "The other : %(name)s ( %(birth)s - %(death)s )"
 msgstr "Toinen : %(name)s ( %(birth)s - %(death)s )"
 
-#: ../gramps/plugins/view/geoclose.py:230
+#: ../gramps/plugins/view/geoclose.py:241
 msgid "The other person is unknown"
 msgstr "Väri henkilöille, joiden sukupuolta ei tunneta."
 
-#: ../gramps/plugins/view/geoclose.py:233
+#: ../gramps/plugins/view/geoclose.py:244
 msgid "You must choose one reference person."
 msgstr "Valitse yksi viitehenkilö"
 
-#: ../gramps/plugins/view/geoclose.py:234
+#: ../gramps/plugins/view/geoclose.py:245
 msgid "Go to the person view and select the people you want to compare. Return to this view and use the history."
 msgstr "Siirry henkilönäkymään ja valitse vertailtavat henkilöt. Palaa tähän näkymään ja käytä historiaa."
 
-#: ../gramps/plugins/view/geoclose.py:283
+#: ../gramps/plugins/view/geoclose.py:294
 msgid "reference _Person"
 msgstr "Asetukset"
 
-#: ../gramps/plugins/view/geoclose.py:284
+#: ../gramps/plugins/view/geoclose.py:295
 msgid "Select the person which is the reference for life ways"
 msgstr "Henkilön poistaminen tuhoaa hänet tietokannasta."
 
-#: ../gramps/plugins/view/geoclose.py:297
+#: ../gramps/plugins/view/geoclose.py:308
 msgid "Select the person which will be our reference."
 msgstr "Valitse kansallisuus nähdäksesi sen lomapäivät"
 
-#: ../gramps/plugins/view/geoclose.py:391
-#: ../gramps/plugins/view/geofamclose.py:451
-#: ../gramps/plugins/view/geofamily.py:212
-#: ../gramps/plugins/view/geomoves.py:293
-#: ../gramps/plugins/view/geoperson.py:328
+#: ../gramps/plugins/view/geoclose.py:402
+#: ../gramps/plugins/view/geofamclose.py:462
+#: ../gramps/plugins/view/geofamily.py:224
+#: ../gramps/plugins/view/geomoves.py:304
+#: ../gramps/plugins/view/geoperson.py:339
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../gramps/plugins/view/geoclose.py:545
+#: ../gramps/plugins/view/geoclose.py:556
 msgid "Choose the reference person"
 msgstr "Poista valittu henkilö"
 
-#: ../gramps/plugins/view/geoclose.py:568
+#: ../gramps/plugins/view/geoclose.py:579
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -27163,8 +27194,8 @@ msgstr ""
 "Arvo 1 tarkoitaa n. 7,5 kilometria (4,6 mailia).\n"
 "Arvo on annettu asteen kymmenysosissa."
 
-#: ../gramps/plugins/view/geoclose.py:579
-#: ../gramps/plugins/view/geofamclose.py:722
+#: ../gramps/plugins/view/geoclose.py:590
+#: ../gramps/plugins/view/geofamclose.py:733
 msgid "The selection parameters"
 msgstr "Lisätiedot jotka vastaavat annettuja arvoja"
 
@@ -27172,18 +27203,18 @@ msgstr "Lisätiedot jotka vastaavat annettuja arvoja"
 msgid "Events places map"
 msgstr "Tapahtumapaikka"
 
-#: ../gramps/plugins/view/geoevents.py:250
+#: ../gramps/plugins/view/geoevents.py:264
 msgid "incomplete or unreferenced event ?"
 msgstr "Keskenjäänyt tai viittaamatta oleva tapahtuma?"
 
-#: ../gramps/plugins/view/geoevents.py:371
+#: ../gramps/plugins/view/geoevents.py:385
 msgid "Show all events"
 msgstr "Lajittele tapahtumat"
 
-#: ../gramps/plugins/view/geoevents.py:375
-#: ../gramps/plugins/view/geoevents.py:380
-#: ../gramps/plugins/view/geoplaces.py:368
-#: ../gramps/plugins/view/geoplaces.py:373
+#: ../gramps/plugins/view/geoevents.py:389
+#: ../gramps/plugins/view/geoevents.py:394
+#: ../gramps/plugins/view/geoplaces.py:379
+#: ../gramps/plugins/view/geoplaces.py:384
 msgid "Centering on Place"
 msgstr "Keskushenkilö"
 
@@ -27196,68 +27227,68 @@ msgstr "Ovatko nämä perheet voineet tavata?"
 msgid "GeoFamClose"
 msgstr "Perhe"
 
-#: ../gramps/plugins/view/geofamclose.py:205
-#: ../gramps/plugins/view/geofamily.py:281
+#: ../gramps/plugins/view/geofamclose.py:216
+#: ../gramps/plugins/view/geofamily.py:293
 #, python-format
 msgid "%(gramps_id)s : %(father)s and %(mother)s"
 msgstr "%(gramps_id)s : %(father)s ja  %(mother)s"
 
-#: ../gramps/plugins/view/geofamclose.py:250
+#: ../gramps/plugins/view/geofamclose.py:261
 #, python-format
 msgid "Family reference : %s"
 msgstr "Näytä viitteet %s"
 
-#: ../gramps/plugins/view/geofamclose.py:252
-#: ../gramps/plugins/view/geofamclose.py:254
+#: ../gramps/plugins/view/geofamclose.py:263
+#: ../gramps/plugins/view/geofamclose.py:265
 #, python-format
 msgid "The other family : %s"
 msgstr "Toinen perhe : %s"
 
-#: ../gramps/plugins/view/geofamclose.py:256
+#: ../gramps/plugins/view/geofamclose.py:267
 msgid "You must choose one reference family."
 msgstr "Valitse ensin viitattava perhe."
 
-#: ../gramps/plugins/view/geofamclose.py:257
+#: ../gramps/plugins/view/geofamclose.py:268
 msgid "Go to the family view and select the families you want to compare. Return to this view and use the history."
 msgstr "Siirry perhenäkymään ja valitse vertailtavat perheet. Palaa tähän näkymään ja käytä historiaa."
 
-#: ../gramps/plugins/view/geofamclose.py:273
+#: ../gramps/plugins/view/geofamclose.py:284
 msgid "reference _Family"
 msgstr "Viite"
 
-#: ../gramps/plugins/view/geofamclose.py:274
+#: ../gramps/plugins/view/geofamclose.py:285
 msgid "Select the family which is the reference for life ways"
 msgstr "Valitse perhe johon viitataan elinkaarissa"
 
-#: ../gramps/plugins/view/geofamclose.py:550
-#: ../gramps/plugins/view/geofamily.py:326
+#: ../gramps/plugins/view/geofamclose.py:561
+#: ../gramps/plugins/view/geofamily.py:338
 #, python-format
 msgid "Father : %(id)s : %(name)s"
 msgstr "Isä : %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:556
-#: ../gramps/plugins/view/geofamily.py:333
+#: ../gramps/plugins/view/geofamclose.py:567
+#: ../gramps/plugins/view/geofamily.py:345
 #, python-format
 msgid "Mother : %(id)s : %(name)s"
 msgstr "Äiti : %(id)s : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:566
-#: ../gramps/plugins/view/geofamily.py:344
+#: ../gramps/plugins/view/geofamclose.py:577
+#: ../gramps/plugins/view/geofamily.py:356
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr "Lapsi : %(id)s - %(index)d : %(name)s"
 
-#: ../gramps/plugins/view/geofamclose.py:574
-#: ../gramps/plugins/view/geofamily.py:353
+#: ../gramps/plugins/view/geofamclose.py:585
+#: ../gramps/plugins/view/geofamily.py:365
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Henkilö : %(id)s %(name)s on perheetön."
 
-#: ../gramps/plugins/view/geofamclose.py:688
+#: ../gramps/plugins/view/geofamclose.py:699
 msgid "Choose the reference family"
 msgstr "Poista valittu perhe"
 
-#: ../gramps/plugins/view/geofamclose.py:711
+#: ../gramps/plugins/view/geofamclose.py:722
 msgid ""
 "The meeting zone probability radius.\n"
 "The colored zone is approximative.\n"
@@ -27277,7 +27308,7 @@ msgstr ""
 msgid "Family places map"
 msgstr "Perhelinja-kaavio"
 
-#: ../gramps/plugins/view/geofamily.py:308
+#: ../gramps/plugins/view/geofamily.py:320
 #, python-format
 msgid "Family places for %s"
 msgstr "%s\" perhepaikat"
@@ -27299,8 +27330,8 @@ msgstr ""
 "OsmGpsMap moduulia ei ole ladattu. Kartatoiminnallisuutta ei ole käytettävissä.\n"
 "Saadaksesi se Grampsiin katso http://www.Gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 
-#, fuzzy
 #: ../gramps/plugins/view/geography.gpr.py:75
+#, fuzzy
 msgid "All known places for one Person"
 msgstr "Henkilön %s kaikki tapahtumapaikat."
 
@@ -27308,8 +27339,8 @@ msgstr "Henkilön %s kaikki tapahtumapaikat."
 msgid "A view showing the places visited by one person during his life."
 msgstr "Näkymässä ovat henkilön elinaikanaan vierailemat paikat."
 
-#, fuzzy
 #: ../gramps/plugins/view/geography.gpr.py:92
+#, fuzzy
 msgid "All known places for one Family"
 msgstr "Henkilön %s kaikki tapahtumapaikat."
 
@@ -27347,8 +27378,8 @@ msgstr "P_aikat"
 msgid "A view showing all places of the database."
 msgstr "Yrittää näyttää kaikki paikat sukupuussa."
 
-#, fuzzy
 #: ../gramps/plugins/view/geography.gpr.py:180
+#, fuzzy
 msgid "All places related to Events"
 msgstr "Ei sukua \"%s\""
 
@@ -27364,20 +27395,20 @@ msgstr "Muokkaa aktiivista henkilöä"
 msgid "GeoMoves"
 msgstr "Karttaliikkeet"
 
-#: ../gramps/plugins/view/geomoves.py:469
+#: ../gramps/plugins/view/geomoves.py:480
 #, python-format
 msgid "All descendance for %s"
 msgstr "%s - jälkeläiset"
 
-#: ../gramps/plugins/view/geomoves.py:636
+#: ../gramps/plugins/view/geomoves.py:647
 msgid "The maximum number of generations.\n"
 msgstr "Enimmäismäärä esivanhempien sukupolvia\n"
 
-#: ../gramps/plugins/view/geomoves.py:643
+#: ../gramps/plugins/view/geomoves.py:654
 msgid "Time in milliseconds between drawing two generations.\n"
 msgstr "Aikaväli millesekunteissa kahden sukupolven piirtämisen välillä.\n"
 
-#: ../gramps/plugins/view/geomoves.py:649
+#: ../gramps/plugins/view/geomoves.py:660
 msgid "The parameters for moves"
 msgstr "Muuttojen parametrit"
 
@@ -27386,24 +27417,24 @@ msgid "Person places map"
 msgstr "Yleisimmät sukunimet Gramplet"
 
 #. For each event, if we have a place, set a marker.
-#: ../gramps/plugins/view/geoperson.py:309
+#: ../gramps/plugins/view/geoperson.py:320
 #, python-format
 msgid "Person places for %s"
 msgstr "Henkilön %s\" paikat"
 
-#: ../gramps/plugins/view/geoperson.py:500
+#: ../gramps/plugins/view/geoperson.py:511
 msgid "Animate"
 msgstr "Arvioitu"
 
-#: ../gramps/plugins/view/geoperson.py:523
+#: ../gramps/plugins/view/geoperson.py:534
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr "Animaation nopeus millisekunteissa (suurempi arvo merkitsee hitaampaa)"
 
-#: ../gramps/plugins/view/geoperson.py:530
+#: ../gramps/plugins/view/geoperson.py:541
 msgid "How many steps between two markers when we are on large move ?"
 msgstr "Askelten lukumäärä kahden markerin välillä kun muutto on pitkä?"
 
-#: ../gramps/plugins/view/geoperson.py:537
+#: ../gramps/plugins/view/geoperson.py:548
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -27411,7 +27442,7 @@ msgstr ""
 "Pienin leveys/pituusaste valittaessa iso muutto.\n"
 "Arvo on asteen kymmenyksinä."
 
-#: ../gramps/plugins/view/geoperson.py:544
+#: ../gramps/plugins/view/geoperson.py:555
 msgid "The animation parameters"
 msgstr "Lisätiedot jotka vastaavat annettuja arvoja"
 
@@ -27419,32 +27450,32 @@ msgstr "Lisätiedot jotka vastaavat annettuja arvoja"
 msgid "Places map"
 msgstr "Paikka 1"
 
-#: ../gramps/plugins/view/geoplaces.py:289
+#: ../gramps/plugins/view/geoplaces.py:300
 msgid "The place name in the status bar is disabled."
 msgstr "Nimeä ei näytetä tilapalkissa."
 
-#: ../gramps/plugins/view/geoplaces.py:294
+#: ../gramps/plugins/view/geoplaces.py:305
 #, python-format
 msgid "The maximum number of places is reached (%d)."
 msgstr "Enin määrä paikkoja saavutettu (%d)."
 
-#: ../gramps/plugins/view/geoplaces.py:297
+#: ../gramps/plugins/view/geoplaces.py:308
 msgid "Some information are missing."
 msgstr "Henkilökohtaiset tiedot puuttuvat"
 
-#: ../gramps/plugins/view/geoplaces.py:299
+#: ../gramps/plugins/view/geoplaces.py:310
 msgid "Please, use filtering to reduce this number."
 msgstr "Tämän luvun pienentämiseksi käytä suodatusta."
 
-#: ../gramps/plugins/view/geoplaces.py:301
+#: ../gramps/plugins/view/geoplaces.py:312
 msgid "You can modify this value in the geography option."
 msgstr "Voit muuttaa tämän arvon kartta-asetuksissa."
 
-#: ../gramps/plugins/view/geoplaces.py:303
+#: ../gramps/plugins/view/geoplaces.py:314
 msgid "In this case, it may take time to show all markers."
 msgstr "Tässä tapauksessa kaikkien markereiden näyttäminen vie aikaa."
 
-#: ../gramps/plugins/view/geoplaces.py:364
+#: ../gramps/plugins/view/geoplaces.py:375
 msgid "Show all places"
 msgstr "Näytä kaikki paikat"
 
@@ -29231,7 +29262,6 @@ msgstr "syntymä"
 msgid "%(couple)s, <em>wedding</em>"
 msgstr "%(couple)s, <em>häät</em>"
 
-#, fuzzy
 #: ../gramps/plugins/webreport/webcal.py:1717
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
@@ -29591,6 +29621,9 @@ msgstr "<b>Gramps Gnomen tai KDEn kanssa?</b><br/>Gramps ei ole riippuvainen val
 #: ../data/gramps.appdata.xml.in.h:1
 msgid "Gramps is a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists. It gives you the ability to record the many details of the life of an individual as well as the complex relationships between various people, places and events. All of your research is kept organized, searchable and as precise as you need it to be."
 msgstr "Gramps on sukututkimusohjelma, joka on intuitiivinen harrastelijalle ja kattava ammattimaiselle sukututkijalle. Sen avulla voit tallentaa henkilön elämänkaaren monia tapahtumia  kuten myös monimutkaisia suhteita henkilöden, paikkojen ja tapahtumien välillä. Tutkimuksesi pysyy juuri niin organisoituna, jäljitettävänä ja tarkkana kuin sinä tarvitset."
+
+#~ msgid "Remove selected items?"
+#~ msgstr "Poista valitut?"
 
 #~ msgid "YES"
 #~ msgstr "YES"
