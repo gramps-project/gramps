@@ -105,33 +105,32 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
 #-------------------------------------------------------------------------
 def image_dpi(source):
     """
-    Return the dpi found in the image header.  None is returned if no dpi attribute
-    is available.
+    Return the dpi found in the image header. Use a sensible
+    default of 96.0 dpi for X and Y if N/A.
 
     :param source: source image file, in any format that PIL recognizes
     :type source: unicode
     :rtype: int
-    :returns: the DPI setting in the image header
+    :returns: (x_dpi, y_dpi) from the image header, or defaults to 96 dpi
     """
+    dpi = (96.0,96.0) #LibOO 3.6 assumes this if image contains no DPI info
+    # TBD Is this safe for all platforms? See bug# 7290.
     try:
         import PIL.Image
     except ImportError:
         import logging
         logging.warning(_("WARNING: PIL module not loaded.  "
                 "Image cropping in report files will not be available."))
-
-        dpi = None
     else:
         try:
             img = PIL.Image.open(source)
         except IOError:
-            dpi = None
+            pass
         else:
             try:
                 dpi = img.info["dpi"]
             except (AttributeError, KeyError):
-                dpi = None
-
+                pass
     return dpi
 
 #-------------------------------------------------------------------------
@@ -251,11 +250,9 @@ def resize_to_jpeg_buffer(source, size, crop=None):
     img = gtk.gdk.pixbuf_new_from_file(source)
 
     if crop:
-        # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
-        start_x = int((crop[0]/100.0)*img.get_width())
-        start_y = int((crop[1]/100.0)*img.get_height())
-        end_x = int((crop[2]/100.0)*img.get_width())
-        end_y = int((crop[3]/100.0)*img.get_height())
+        (start_x, start_y, end_x, end_y
+                ) = crop_percentage_to_pixel(
+                        img.get_width(), img.get_height(), crop)
 
         img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
 

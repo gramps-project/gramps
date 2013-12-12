@@ -1035,8 +1035,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
             )  
             
             dpi = ImgManip.image_dpi(file_name)
-            if not dpi:
-                dpi = (96.0,96.0) #LibOO 3.6 assumes this if image contains no DPI info
 
             # ODF wants crop measurements in inch and as margins from each side
             left = start_x/dpi[0]
