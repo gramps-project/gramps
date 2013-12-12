@@ -46,6 +46,17 @@ import tempfile
 #-------------------------------------------------------------------------
 import Utils
 
+def crop_percentage_to_subpixel(width, height, crop):
+    """
+    Convert from Gramps cropping coordinates [0, 100] to
+    pixels, given image width and height. No rounding to pixel resolution.
+    """
+    return (
+        crop[0]/100.0*width,
+        crop[1]/100.0*height,
+        crop[2]/100.0*width,
+        crop[3]/100.0*height )
+
 #-------------------------------------------------------------------------
 #
 # resize_to_jpeg

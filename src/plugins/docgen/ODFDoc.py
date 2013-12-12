@@ -1025,12 +1025,8 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         pos = pos.title() if pos in ['left', 'right', 'single'] else 'Row'
 
         if crop:
-            # Gramps cropping coordinates are [0, 100], so we need to convert to pixels
-            # No rounding here, would lead to unwanted effects.
-            start_x = crop[0]/100.0*x
-            start_y = crop[1]/100.0*y
-            end_x   = crop[2]/100.0*x
-            end_y   = crop[3]/100.0*y
+            (start_x, start_y, end_x, end_y
+                    ) = ImgManip.crop_percentage_to_subpixel(x, y, crop)
     
             # Need to keep the ratio intact, otherwise scaled images look stretched
             # if the dimensions aren't close in size
