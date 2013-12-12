@@ -1028,26 +1028,35 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
 
         if crop:
             dpi = ImgManip.image_dpi(file_name)
+            if not dpi:
+                dpi = (96.0,96.0) #LibOO 3.6 assumes this if image contains no DPI info
 
-            if dpi:
-                (act_width, act_height) = ImgManip.image_actual_size(
-                    x_cm, y_cm, crop[2] - crop[0], crop[3] - crop[1]
-                )
+            # Gramps cropping coordinates are [0, 100], so we need to convert to pixels
+            # No rounding here, would lead to unwanted effects.
+            start_x = crop[0]/100.0*x
+            start_y = crop[1]/100.0*y
+            end_x   = crop[2]/100.0*x
+            end_y   = crop[3]/100.0*y
+    
+            # Need to keep the ratio intact, otherwise scaled images look stretched
+            # if the dimensions aren't close in size
+            (act_width, act_height) = ImgManip.image_actual_size(
+                x_cm, y_cm, int(end_x-start_x), int(end_y-start_y)
+            )  
+            
+            #  ODF wants crop measurements in inch.
+            left = start_x/dpi[0]
+            right = (x - end_x)/dpi[0]
+            top = start_y/dpi[1]
+            bottom = (y - end_y)/dpi[1]
+            crop = (top, right, bottom, left)
 
-                left = ((crop[0]/100.0)*x)/dpi[0]
-                right = (x - ((crop[2]/100.0)*x))/dpi[0]
-                top = ((crop[1]/100.0)*y)/dpi[1]
-                bottom = (y - ((crop[3]/100.0)*y))/dpi[1]
+            self.StyleList_photos.append(
+                [pos, crop]
+            )
 
-                crop = (top, right, bottom, left)
+            pos += "_" + str(crop)
 
-                self.StyleList_photos.append(
-                    [pos, crop]
-                )
-
-                pos += "_" + str(crop)
-            else:
-                (act_width, act_height) = ImgManip.image_actual_size(x_cm, y_cm, x, y)
         else:
             (act_width, act_height) = ImgManip.image_actual_size(x_cm, y_cm, x, y)
 
