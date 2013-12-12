@@ -57,6 +57,9 @@ def crop_percentage_to_subpixel(width, height, crop):
         crop[2]/100.0*width,
         crop[3]/100.0*height )
 
+def crop_percentage_to_pixel(width, height, crop):
+    return map (int, crop_percentage_to_subpixel(width, height, crop))
+
 #-------------------------------------------------------------------------
 #
 # resize_to_jpeg
@@ -83,12 +86,9 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
     img = gtk.gdk.pixbuf_new_from_file(source)
 
     if crop:
-        # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
-        start_x = int((crop[0]/100.0)*img.get_width())
-        start_y = int((crop[1]/100.0)*img.get_height())
-        end_x = int((crop[2]/100.0)*img.get_width())
-        end_y = int((crop[3]/100.0)*img.get_height())
-
+        (start_x, start_y, end_x, end_y
+                ) = crop_percentage_to_pixel(
+                        img.get_width(), img.get_height(), crop)
         img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
@@ -214,12 +214,9 @@ def resize_to_buffer(source, size, crop=None):
     img = gtk.gdk.pixbuf_new_from_file(source)
 
     if crop:
-        # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
-        start_x = int((crop[0]/100.0)*img.get_width())
-        start_y = int((crop[1]/100.0)*img.get_height())
-        end_x = int((crop[2]/100.0)*img.get_width())
-        end_y = int((crop[3]/100.0)*img.get_height())
-
+        (start_x, start_y, end_x, end_y
+                ) = crop_percentage_to_pixel(
+                        img.get_width(), img.get_height(), crop)
         img = img.subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
 
     # Need to keep the ratio intact, otherwise scaled images look stretched
