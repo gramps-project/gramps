@@ -1025,10 +1025,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         pos = pos.title() if pos in ['left', 'right', 'single'] else 'Row'
 
         if crop:
-            dpi = ImgManip.image_dpi(file_name)
-            if not dpi:
-                dpi = (96.0,96.0) #LibOO 3.6 assumes this if image contains no DPI info
-
             # Gramps cropping coordinates are [0, 100], so we need to convert to pixels
             # No rounding here, would lead to unwanted effects.
             start_x = crop[0]/100.0*x
@@ -1042,7 +1038,11 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                 x_cm, y_cm, int(end_x-start_x), int(end_y-start_y)
             )  
             
-            #  ODF wants crop measurements in inch.
+            dpi = ImgManip.image_dpi(file_name)
+            if not dpi:
+                dpi = (96.0,96.0) #LibOO 3.6 assumes this if image contains no DPI info
+
+            # ODF wants crop measurements in inch and as margins from each side
             left = start_x/dpi[0]
             right = (x - end_x)/dpi[0]
             top = start_y/dpi[1]
