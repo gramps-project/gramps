@@ -45,7 +45,7 @@ from gi.repository import GdkPixbuf
 #-------------------------------------------------------------------------
 from gramps.gen.const import ICON
 from gramps.gen.config import config
-from .glade import Glade
+from gramps.gui.glade import Glade
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.constfunc import cuni
