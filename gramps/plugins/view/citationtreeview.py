@@ -358,6 +358,7 @@ class CitationTreeView(ListView):
             <menuitem action="CloseAllNodes"/>
             <separator/>
             <menuitem action="Add"/>
+            <menuitem action="Add citation"/>
             <menuitem action="Edit"/>
             <menuitem action="Remove"/>
             <menuitem action="Merge"/>
