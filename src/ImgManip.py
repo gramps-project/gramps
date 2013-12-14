@@ -119,7 +119,7 @@ def image_dpi(source):
     except ImportError:
         import logging
         logging.warning(_("WARNING: PIL module not loaded.  "
-                "Image cropping in report files will not be available."))
+                "Image cropping in report files will be impaired."))
     else:
         try:
             img = PIL.Image.open(source)
