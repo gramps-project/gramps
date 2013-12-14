@@ -4169,7 +4169,7 @@ msgid "Bar Mitzvah"
 msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:154
-msgid "Bas Mitzvah"
+msgid "Bat Mitzvah"
 msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:155
@@ -4380,7 +4380,7 @@ msgstr "kisaltma"
 
 #: ../gramps/gen/lib/eventtype.py:208
 #, fuzzy
-msgid "Bas Mitzvah abbreviation|bas."
+msgid "Bat Mitzvah abbreviation|bat."
 msgstr "kisaltma"
 
 #: ../gramps/gen/lib/eventtype.py:209
