@@ -24,8 +24,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 ODFDoc : used to generate Open Office Document
 """
@@ -93,7 +91,8 @@ from gramps.plugins.lib.libodfbackend import OdfBackend
 from gramps.gen.const import PROGRAM_NAME
 from gramps.version import VERSION
 from gramps.gen.plug.report import utils as ReportUtils
-from gramps.gen.utils.image import image_size, image_dpi, image_actual_size
+from gramps.gen.utils.image import (image_size, image_dpi, image_actual_size,
+        crop_percentage_to_subpixel)
 from gramps.gen.errors import ReportError
 
 #-------------------------------------------------------------------------
@@ -1035,27 +1034,30 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         pos = pos.title() if pos in ['left', 'right', 'single'] else 'Row'
 
         if crop:
+            (start_x, start_y, end_x, end_y
+                    ) = crop_percentage_to_subpixel(x, y, crop)
+    
+            # Need to keep the ratio intact, otherwise scaled images look stretched
+            # if the dimensions aren't close in size
+            (act_width, act_height) = image_actual_size(
+                x_cm, y_cm, int(end_x-start_x), int(end_y-start_y)
+            )  
+            
             dpi = image_dpi(file_name)
 
-            if dpi:
-                (act_width, act_height) = image_actual_size(
-                    x_cm, y_cm, crop[2] - crop[0], crop[3] - crop[1]
-                )
+            # ODF wants crop measurements in inch and as margins from each side
+            left = start_x/dpi[0]
+            right = (x - end_x)/dpi[0]
+            top = start_y/dpi[1]
+            bottom = (y - end_y)/dpi[1]
+            crop = (top, right, bottom, left)
 
-                left = ((crop[0]/100.0)*x)/dpi[0]
-                right = (x - ((crop[2]/100.0)*x))/dpi[0]
-                top = ((crop[1]/100.0)*y)/dpi[1]
-                bottom = (y - ((crop[3]/100.0)*y))/dpi[1]
+            self.StyleList_photos.append(
+                [pos, crop]
+            )
 
-                crop = (top, right, bottom, left)
+            pos += "_" + str(crop)
 
-                self.StyleList_photos.append(
-                    [pos, crop]
-                )
-
-                pos += "_" + str(crop)
-            else:
-                (act_width, act_height) = image_actual_size(x_cm, y_cm, x, y)
         else:
             (act_width, act_height) = image_actual_size(x_cm, y_cm, x, y)
 

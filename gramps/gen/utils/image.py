@@ -47,6 +47,20 @@ import tempfile
 #-------------------------------------------------------------------------
 from .file import get_unicode_path_from_env_var
 
+def crop_percentage_to_subpixel(width, height, crop):
+    """
+    Convert from Gramps cropping coordinates [0, 100] to
+    pixels, given image width and height. No rounding to pixel resolution.
+    """
+    return (
+        crop[0]/100.0*width,
+        crop[1]/100.0*height,
+        crop[2]/100.0*width,
+        crop[3]/100.0*height )
+
+def crop_percentage_to_pixel(width, height, crop):
+    return map (int, crop_percentage_to_subpixel(width, height, crop))
+
 #-------------------------------------------------------------------------
 #
 # resize_to_jpeg
@@ -73,12 +87,9 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
     img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
-        # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
-        start_x = int((crop[0]/100.0)*img.get_width())
-        start_y = int((crop[1]/100.0)*img.get_height())
-        end_x = int((crop[2]/100.0)*img.get_width())
-        end_y = int((crop[3]/100.0)*img.get_height())
-
+        (start_x, start_y, end_x, end_y
+                ) = crop_percentage_to_pixel(
+                        img.get_width(), img.get_height(), crop)
         if sys.version_info[0] < 3:
             img = img.new_subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
         else:
@@ -96,35 +107,44 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
 # image_dpi
 #
 #-------------------------------------------------------------------------
+MM_PER_INCH = 25.4
 def image_dpi(source):
     """
-    Return the dpi found in the image header.  None is returned if no dpi attribute
-    is available.
+    Return the dpi found in the image header. Use a sensible
+    default of the screen DPI or 96.0 dpi if N/A.
 
     :param source: source image file, in any format that PIL recognizes
     :type source: unicode
     :rtype: int
-    :returns: the DPI setting in the image header
+    :returns: (x_dpi, y_dpi)
     """
     try:
         import PIL.Image
     except ImportError:
         import logging
         logging.warning(_("WARNING: PIL module not loaded.  "
-                "Image cropping in report files will not be available."))
-
-        dpi = None
+                "Image cropping in report files will be impaired."))
     else:
         try:
             img = PIL.Image.open(source)
         except IOError:
-            dpi = None
+            pass
         else:
             try:
                 dpi = img.info["dpi"]
+                return dpi
             except (AttributeError, KeyError):
-                dpi = None
-
+                pass
+    try:
+        import gtk
+        dpi = (
+            gtk.gdk.screen_width() * MM_PER_INCH / gtk.gdk.screen_width_mm(),
+            gtk.gdk.screen_height() * MM_PER_INCH / gtk.gdk.screen_height_mm()
+            )
+    except:
+        dpi = (96.0,96.0) #LibOO 3.6 assumes this if image contains no DPI info
+        # This isn't safe even within a single platform (Windows), but we
+        # can't do better if all of the above failed. See bug# 7290.
     return dpi
 
 #-------------------------------------------------------------------------
@@ -207,12 +227,9 @@ def resize_to_buffer(source, size, crop=None):
     img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
-        # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
-        start_x = int((crop[0]/100.0)*img.get_width())
-        start_y = int((crop[1]/100.0)*img.get_height())
-        end_x = int((crop[2]/100.0)*img.get_width())
-        end_y = int((crop[3]/100.0)*img.get_height())
-
+        (start_x, start_y, end_x, end_y
+                ) = crop_percentage_to_pixel(
+                        img.get_width(), img.get_height(), crop)
         if sys.version_info[0] < 3:
             img = img.new_subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
         else:
@@ -250,11 +267,9 @@ def resize_to_jpeg_buffer(source, size, crop=None):
     img = GdkPixbuf.Pixbuf.new_from_file(source)
 
     if crop:
-        # Gramps cropping coorinates are [0, 100], so we need to convert to pixels
-        start_x = int((crop[0]/100.0)*img.get_width())
-        start_y = int((crop[1]/100.0)*img.get_height())
-        end_x = int((crop[2]/100.0)*img.get_width())
-        end_y = int((crop[3]/100.0)*img.get_height())
+        (start_x, start_y, end_x, end_y
+                ) = crop_percentage_to_pixel(
+                        img.get_width(), img.get_height(), crop)
 
         if sys.version_info[0] < 3:
             img = img.new_subpixbuf(start_x, start_y, end_x-start_x, end_y-start_y)
