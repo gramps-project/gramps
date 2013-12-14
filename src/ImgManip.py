@@ -103,18 +103,17 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
 # image_dpi
 #
 #-------------------------------------------------------------------------
+INCH_PER_MM = 1/25.4
 def image_dpi(source):
     """
     Return the dpi found in the image header. Use a sensible
-    default of 96.0 dpi for X and Y if N/A.
+    default of the screen DPI or 96.0 dpi if N/A.
 
     :param source: source image file, in any format that PIL recognizes
     :type source: unicode
     :rtype: int
-    :returns: (x_dpi, y_dpi) from the image header, or defaults to 96 dpi
+    :returns: (x_dpi, y_dpi)
     """
-    dpi = (96.0,96.0) #LibOO 3.6 assumes this if image contains no DPI info
-    # TBD Is this safe for all platforms? See bug# 7290.
     try:
         import PIL.Image
     except ImportError:
@@ -129,8 +128,19 @@ def image_dpi(source):
         else:
             try:
                 dpi = img.info["dpi"]
+                return dpi
             except (AttributeError, KeyError):
                 pass
+    try:
+        import gtk
+        dpi = (
+            gtk.gdk.screen_width() / (INCH_PER_MM * gtk.gdk.screen_width_mm()),
+            gtk.gdk.screen_height() / (INCH_PER_MM * gtk.gdk.screen_height_mm())
+            )
+    except:
+        dpi = (96.0,96.0) #LibOO 3.6 assumes this if image contains no DPI info
+        # This isn't safe even within a single platform (Windows), but we
+        # can't do better if all of the above failed. See bug# 7290.
     return dpi
 
 #-------------------------------------------------------------------------
