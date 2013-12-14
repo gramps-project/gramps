@@ -3262,7 +3262,7 @@ msgstr "بلوغ يهودي"
 
 # شك
 #: ../src/gen/lib/eventtype.py:151
-msgid "Bas Mitzvah"
+msgid "Bat Mitzvah"
 msgstr "بلوغ يهودي (بنت)"
 
 # شك
@@ -3467,7 +3467,7 @@ msgstr "بلوغ."
 
 # شك
 #: ../src/gen/lib/eventtype.py:201
-msgid "Bas Mitzvah abbreviation|bas."
+msgid "Bat Mitzvah abbreviation|bat."
 msgstr "بلوغ يهودي (بنت)."
 
 # شك
