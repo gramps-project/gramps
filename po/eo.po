@@ -2895,8 +2895,8 @@ msgid "Bar Mitzvah"
 msgstr "Bar Mitzvah"
 
 #: ../src/gen/lib/eventtype.py:151
-msgid "Bas Mitzvah"
-msgstr "Bas Mitzvah"
+msgid "Bat Mitzvah"
+msgstr "Bat Mitzvah"
 
 #: ../src/gen/lib/eventtype.py:152
 msgid "Blessing"
@@ -3105,7 +3105,7 @@ msgstr "Kremacio"
 
 #: ../src/gen/lib/eventtype.py:201
 #, fuzzy
-msgid "Bas Mitzvah abbreviation|bas."
+msgid "Bat Mitzvah abbreviation|bat."
 msgstr "Kremacio"
 
 #: ../src/gen/lib/eventtype.py:202

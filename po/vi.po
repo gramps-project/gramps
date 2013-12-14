@@ -2824,8 +2824,8 @@ msgid "Bar Mitzvah"
 msgstr "Lễ Thành nhân (Bar Mitzvah)"
 
 #: ../src/gen/lib/eventtype.py:151
-msgid "Bas Mitzvah"
-msgstr "Lễ Thành nhân (Bas Mitzvah)"
+msgid "Bat Mitzvah"
+msgstr "Lễ Thành nhân (Bat Mitzvah)"
 
 #: ../src/gen/lib/eventtype.py:152
 msgid "Blessing"
@@ -3022,7 +3022,7 @@ msgid "Bar Mitzvah abbreviation|bar."
 msgstr "Viết tắt lễ thành nhân Do Thái|bar."
 
 #: ../src/gen/lib/eventtype.py:201
-msgid "Bas Mitzvah abbreviation|bas."
+msgid "Bat Mitzvah abbreviation|bat."
 msgstr "Viết tắt lễ thành nhân|bas. "
 
 #: ../src/gen/lib/eventtype.py:202

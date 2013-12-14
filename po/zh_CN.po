@@ -2862,7 +2862,7 @@ msgid "Bar Mitzvah"
 msgstr "男孩成人13岁成人礼"
 
 #: ../src/gen/lib/eventtype.py:151
-msgid "Bas Mitzvah"
+msgid "Bat Mitzvah"
 msgstr "女孩成人13岁成人礼"
 
 #: ../src/gen/lib/eventtype.py:152
@@ -3060,7 +3060,7 @@ msgid "Bar Mitzvah abbreviation|bar."
 msgstr "犹太受戒礼"
 
 #: ../src/gen/lib/eventtype.py:201
-msgid "Bas Mitzvah abbreviation|bas."
+msgid "Bat Mitzvah abbreviation|bat."
 msgstr "犹太女孩成人仪式"
 
 #: ../src/gen/lib/eventtype.py:202
