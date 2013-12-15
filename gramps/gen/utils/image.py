@@ -136,10 +136,11 @@ def image_dpi(source):
             except (AttributeError, KeyError):
                 pass
     try:
-        import gtk
+        from gi.repository import Gdk
+        s = Gdk.Display.get_default().get_default_screen()
         dpi = (
-            gtk.gdk.screen_width() * MM_PER_INCH / gtk.gdk.screen_width_mm(),
-            gtk.gdk.screen_height() * MM_PER_INCH / gtk.gdk.screen_height_mm()
+            s.get_width() * MM_PER_INCH / s.get_width_mm(),
+            s.get_height() * MM_PER_INCH / s.get_height_mm()
             )
     except:
         dpi = (96.0,96.0) #LibOO 3.6 assumes this if image contains no DPI info
