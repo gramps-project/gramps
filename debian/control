@@ -13,7 +13,7 @@ Package: python-gramps
 Architecture: all
 Depends: ${python:Depends}, librsvg2-2, xdg-utils, python-gobject (>= 3.3.2), gir1.2-gtk-3.0, python-gi-cairo, python-bsddb3, ${misc:Depends}
 Recommends: graphviz, python-pyicu
-Suggests: ttf-freefont, python-gtkspell, rcs, python-pil.imagetk, python-pygoocanvas, python-webkit, gir1.2-gexiv2-0.4
+Suggests: fonts-freefont-ttf, gir1.2-gtkspell3-3.0, rcs, python-pil, gir1.2-goocanvas, gir1.2-webkit-3.0, gir1.2-osmgpsmap-1.0, gir1.2-gexiv2-0.4
 Description: Genealogical research program
  GRAMPS is an Open Source genealogy program written in Python, using
  the GTK/GNOME interface. It is an extremely flexible program fitting
