@@ -208,6 +208,7 @@ class Calendar(Report):
         ptext = style_sheet.get_paragraph_style("CAL-Text")
         pdaynames = style_sheet.get_paragraph_style("CAL-Daynames")
         pnumbers = style_sheet.get_paragraph_style("CAL-Numbers")
+        numpos = pt2cm(pnumbers.get_font().get_size())
         ptext1style = style_sheet.get_paragraph_style("CAL-Text1style")
         long_days = self._dd.long_days
 
@@ -267,24 +268,21 @@ class Calendar(Report):
                                          header + week_row * cell_height)
                     list_ = self.calendar.get(month, {}).get(thisday.day, [])
                     list_.sort() # to get CAL-Holiday on bottom
-                    position = 0.0 
+                    position = spacing
                     for (format, p, m_list) in list_:
-                        lines = p.count("\n") + 1 # lines in the text
-                        position += (lines  * spacing)
-                        current = 0
-                        for line in p.split("\n"):
+                        for line in reversed(p.split("\n")):
                             # make sure text will fit:
                             numpos = pt2cm(pnumbers.get_font().get_size())
-                            if position + (current * spacing) - 0.1 >= cell_height - numpos: # font daynums
-                                continue
+                            if position - 0.1 >= cell_height - numpos: # font daynums
+                                break
                             font = ptext.get_font()
                             line = string_trim(font, line, cm2pt(cell_width + 0.2))
                             self.doc.draw_text(format, line, 
                                                day_col * cell_width + 0.1, 
-                                               header + (week_row + 1) * cell_height - position + (current * spacing) - 0.1, m_list[0])
+                                               header + (week_row + 1) * cell_height - position - 0.1, m_list[0])
                             if len(m_list) > 1: # index the spouse too
                                 self.doc.draw_text(format, "",0,0, m_list[1])
-                            current += 1
+                            position += spacing
                 current_ord += 1
         if not something_this_week:
             last_edge = 0
