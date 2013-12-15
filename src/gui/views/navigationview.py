@@ -82,7 +82,7 @@ class NavigationView(PageView):
     def __init__(self, title, pdata, state, uistate, bookmarks, bm_type, nav_group):
         PageView.__init__(self, title, pdata, state, uistate)
         self.bookmarks = bm_type(self.dbstate, self.uistate, bookmarks,
-                                 self.goto_handle)
+                                 self.change_active)
 
         self.fwd_action = None
         self.back_action = None
