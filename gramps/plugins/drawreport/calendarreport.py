@@ -272,7 +272,6 @@ class Calendar(Report):
                     for (format, p, m_list) in list_:
                         for line in reversed(p.split("\n")):
                             # make sure text will fit:
-                            numpos = pt2cm(pnumbers.get_font().get_size())
                             if position - 0.1 >= cell_height - numpos: # font daynums
                                 break
                             font = ptext.get_font()
