@@ -748,7 +748,6 @@ class PedigreeView(NavigationView):
         if handle:
             person = self.dbstate.db.get_person_from_handle(handle)
             if person:
-                self.change_active(handle)
                 self.rebuild_trees(handle)
             else:
                 self.rebuild_trees(None)
