@@ -364,7 +364,6 @@ class NavigationView(PageView):
             handle = self.get_handle_from_gramps_id(gid)
             if handle is not None:
                 self.change_active(handle)
-                self.goto_handle(handle)
             else:
                 self.uistate.push_message(
                     self.dbstate, 
