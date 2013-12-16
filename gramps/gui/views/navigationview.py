@@ -83,7 +83,7 @@ class NavigationView(PageView):
     
     def __init__(self, title, pdata, state, uistate, bm_type, nav_group):
         PageView.__init__(self, title, pdata, state, uistate)
-        self.bookmarks = bm_type(self.dbstate, self.uistate, self.goto_handle)
+        self.bookmarks = bm_type(self.dbstate, self.uistate, self.change_active)
 
         self.fwd_action = None
         self.back_action = None
@@ -368,7 +368,6 @@ class NavigationView(PageView):
             handle = self.get_handle_from_gramps_id(gid)
             if handle is not None:
                 self.change_active(handle)
-                self.goto_handle(handle)
             else:
                 self.uistate.push_message(
                     self.dbstate, 
