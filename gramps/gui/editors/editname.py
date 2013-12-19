@@ -156,7 +156,9 @@ class EditName(EditSecondary):
 
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object('button119'))
-        self.define_help_button(self.top.get_object('button131'))
+        self.define_help_button(self.top.get_object('button131'),
+                _('Gramps_4.0_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_3'),
+                _('manpage section id|Name_Editor'))
         self.define_ok_button(self.top.get_object('button118'), self.save)
 
     def _validate_call(self, widget, text):

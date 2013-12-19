@@ -234,7 +234,9 @@ class EditPerson(EditPrimary):
         """
         self.define_cancel_button(self.top.get_object("button15"))
         self.define_ok_button(self.top.get_object("ok"), self.save)
-        self.define_help_button(self.top.get_object("button134"))
+        self.define_help_button(self.top.get_object("button134"),
+                _('Gramps_4.0_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1'),
+                _('manpage section id|Editing_information_about_people'))
 
         self.given.connect("focus_out_event", self._given_focus_out_event)
         self.top.get_object("editnamebtn").connect("clicked",
