@@ -423,6 +423,9 @@ class Struct(object):
     def __len__(self):
         return len(self.struct)
 
+    def __contains__(self, item):
+        return item in self.struct 
+
     def __getattr__(self, attr):
         """
         Called when getattr fails. Lookup attr in struct; returns Struct
