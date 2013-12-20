@@ -50,7 +50,7 @@ else:
 
 def display_help(webpage='', section=''):
     """
-    Display the specified webpage and section from the Gramps 3.0 wiki.
+    Display the specified webpage and section from the Gramps wiki.
     """
     if not webpage:
         link = URL_WIKISTRING + URL_MANUAL_PAGE + EXTENSION
