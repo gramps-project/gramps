@@ -92,10 +92,6 @@ def import_file(db, filename, user):
             db.prepare_import()
             retval = import_function(db, filename, user)
             db.commit_import()
-            # FIXME: need to call probably_alive
-            for person in Person.objects.all():
-                person.probably_alive = not bool(person.death)
-                person.save()
             return retval
     return False
 

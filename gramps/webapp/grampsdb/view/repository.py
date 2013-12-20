@@ -70,7 +70,7 @@ def process_repository(request, context, handle, act, add_to=None): # view, edit
             ref_handle = pickform.data["picklist"]
             ref_obj = Repository.objects.get(handle=ref_handle) 
             dji.add_repository_ref_default(parent_obj, ref_obj)
-            dji.rebuild_cache(parent_obj) # rebuild cache
+            parent_obj.save_cache() # rebuild cache
             return redirect("/%s/%s%s#tab-repositories" % (item, handle, build_search(request)))
         else:
             context["pickform"] = pickform
@@ -92,7 +92,6 @@ def process_repository(request, context, handle, act, add_to=None): # view, edit
         if repositoryform.is_valid():
             update_last_changed(repository, request.user.username)
             repository = repositoryform.save()
-            dji.rebuild_cache(repository)
             act = "view"
         else:
             act = "edit"
@@ -103,13 +102,12 @@ def process_repository(request, context, handle, act, add_to=None): # view, edit
         if repositoryform.is_valid():
             update_last_changed(repository, request.user.username)
             repository = repositoryform.save()
-            dji.rebuild_cache(repository)
             if add_to:
                 item, handle = add_to
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_repository_ref_default(obj, repository)
-                dji.rebuild_cache(obj)
+                obj.save_cache()
                 return redirect("/%s/%s#tab-repositories" % (item, handle))
             act = "view"
         else:

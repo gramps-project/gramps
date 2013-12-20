@@ -70,7 +70,7 @@ def process_citation(request, context, handle, act, add_to=None): # view, edit, 
             ref_handle = pickform.data["picklist"]
             ref_obj = Citation.objects.get(handle=ref_handle) 
             dji.add_citation_ref_default(parent_obj, ref_obj)
-            dji.rebuild_cache(parent_obj) # rebuild cache
+            parent_obj.save_cache() # rebuild cache
             return redirect("/%s/%s%s#tab-citations" % (item, handle, build_search(request)))
         else:
             context["pickform"] = pickform
@@ -98,7 +98,6 @@ def process_citation(request, context, handle, act, add_to=None): # view, edit, 
         if citationform.is_valid():
             update_last_changed(citation, request.user.username)
             citation = citationform.save()
-            dji.rebuild_cache(citation)
             act = "view"
         else:
             act = "edit"
@@ -114,15 +113,15 @@ def process_citation(request, context, handle, act, add_to=None): # view, edit, 
             source = sourceform.save()
             citation.source = source
             update_last_changed(citation, request.user.username)
-            citation = citationform.save()
-            dji.rebuild_cache(source)
-            dji.rebuild_cache(citation)
+            citation = citationform.save(save_cache=False)
+            source.save_cache()
+            citation.save_cache()
             if add_to:
                 item, handle = add_to
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_citation_ref(obj, citation.handle)
-                dji.rebuild_cache(obj)
+                obj.save_cache()
                 return redirect("/%s/%s#tab-citations" % (item, handle))
             act = "view"
         else:

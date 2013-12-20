@@ -64,7 +64,6 @@ def process_place(request, context, handle, act, add_to=None): # view, edit, sav
         if placeform.is_valid():
             update_last_changed(place, request.user.username)
             place = placeform.save()
-            dji.rebuild_cache(place)
             act = "view"
         else:
             act = "edit"
@@ -75,13 +74,12 @@ def process_place(request, context, handle, act, add_to=None): # view, edit, sav
         if placeform.is_valid():
             update_last_changed(place, request.user.username)
             place = placeform.save()
-            dji.rebuild_cache(place)
             if add_to:
                 item, handle = add_to
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_place_ref(obj, place.handle)
-                dji.rebuild_cache(obj)
+                obj.save_cache()
                 return redirect("/%s/%s#tab-places" % (item, handle))
             act = "view"
         else:

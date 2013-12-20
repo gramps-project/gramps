@@ -70,7 +70,7 @@ def process_source(request, context, handle, act, add_to=None): # view, edit, sa
             ref_handle = pickform.data["picklist"]
             ref_obj = Source.objects.get(handle=ref_handle) 
             dji.add_source_ref_default(parent_obj, ref_obj)
-            dji.rebuild_cache(parent_obj) # rebuild cache
+            parent_obj.save_cache() # rebuild cache
             return redirect("/%s/%s%s#tab-sources" % (item, handle, build_search(request)))
         else:
             context["pickform"] = pickform

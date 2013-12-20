@@ -27,11 +27,6 @@
 #
 #------------------------------------------------------------------------
 import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
-import base64
 import time
 import re
 import gramps
@@ -723,49 +718,49 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def make_repository(self, repository):
         if self.use_db_cache and repository.cache:
-            data = pickle.loads(base64.decodestring(repository.cache))
+            data = repository.from_cache()
         else:
             data = self.dji.get_repository(repository)
         return Repository.create(data)
 
     def make_citation(self, citation):
         if self.use_db_cache and citation.cache:
-            data = pickle.loads(base64.decodestring(citation.cache))
+            data = citation.from_cache()
         else:
             data = self.dji.get_citation(citation)
         return Citation.create(data)
 
     def make_source(self, source):
         if self.use_db_cache and source.cache:
-            data = pickle.loads(base64.decodestring(source.cache))
+            data = source.from_cache()
         else:
             data = self.dji.get_source(source)
         return Source.create(data)
 
     def make_family(self, family):
         if self.use_db_cache and family.cache:
-            data = pickle.loads(base64.decodestring(family.cache))
+            data = family.from_cache()
         else:
             data = self.dji.get_family(family)
         return Family.create(data)
 
     def make_person(self, person):
         if self.use_db_cache and person.cache:
-            data = pickle.loads(base64.decodestring(person.cache))
+            data = person.from_cache()
         else:
             data = self.dji.get_person(person)
         return Person.create(data)
 
     def make_event(self, event):
         if self.use_db_cache and event.cache:
-            data = pickle.loads(base64.decodestring(event.cache))
+            data = event.from_cache()
         else:
             data = self.dji.get_event(event)
         return Event.create(data)
 
     def make_note(self, note):
         if self.use_db_cache and note.cache:
-            data = pickle.loads(base64.decodestring(note.cache))
+            data = note.from_cache()
         else:
             data = self.dji.get_note(note)
         return Note.create(data)
@@ -776,14 +771,14 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def make_place(self, place):
         if self.use_db_cache and place.cache:
-            data = pickle.loads(base64.decodestring(place.cache))
+            data = place.from_cache()
         else:
             data = self.dji.get_place(place)
         return Place.create(data)
 
     def make_media(self, media):
         if self.use_db_cache and media.cache:
-            data = pickle.loads(base64.decodestring(media.cache))
+            data = media.from_cache()
         else:
             data = self.dji.get_media(media)
         return MediaObject.create(data)
@@ -1347,4 +1342,18 @@ class DbDjango(DbWriteBase, DbReadBase):
                     self.dji.add_tag_detail(data)
             # Next we add the links:
         self.dji.update_publics()
+
+    def get_from_name_and_handle(self, table_name, handle):
+        """
+        Returns a gen.lib object (or None) given table_name and
+        handle.
+
+        Examples:
+
+        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
+        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
+        """
+        if table_name in self._tables:
+            return self._tables[table_name]["handle_func"](handle)
+        return None
 

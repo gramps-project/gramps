@@ -364,13 +364,13 @@ def make_image_button2(button, text, url, kwargs="", last=""):
     elif button == "?": # edit
         filename = "/images/text-editor.png"
     elif button == "add child to existing family":
-        filename = "/images/scalable/gramps-parents-open.svg"
+        filename = "/images/gramps-parents-open.png"
     elif button == "add child to new family":
-        filename = "/images/scalable/gramps-parents-add.svg"
+        filename = "/images/gramps-parents-add.png"
     elif button == "add spouse to existing family":
-        filename = "/images/scalable/add-parent-existing-family.svg"
+        filename = "/images/add-parent-existing-family.png"
     elif button == "add spouse to new family":
-        filename = "/images/scalable/gramps-parents.svg"
+        filename = "/images/gramps-parents.png"
     return cuni("""<img height="22" width="22" alt="%s" title="%s" src="%s" onmouseover="buttonOver(this)" onmouseout="buttonOut(this)" onclick="document.location.href='%s%s%s'" style="background-color: lightgray; border: 1px solid lightgray; border-radius:5px; margin: 0px 1px; padding: 1px;" />""") % (text, text, filename, url, kwargs, last)
 
 def event_table(obj, user, act, url, args):

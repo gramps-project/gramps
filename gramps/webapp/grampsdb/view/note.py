@@ -80,7 +80,7 @@ def process_note(request, context, handle, act, add_to=None): # view, edit, save
             ref_handle = pickform.data["picklist"]
             ref_obj = Note.objects.get(handle=ref_handle) 
             dji.add_note_ref(parent_obj, ref_obj)
-            dji.rebuild_cache(parent_obj) # rebuild cache
+            parent_obj.save_cache() # rebuild cache
             return redirect("/%s/%s%s#tab-notes" % (item, handle, build_search(request)))
         else:
             context["pickform"] = pickform
@@ -109,7 +109,7 @@ def process_note(request, context, handle, act, add_to=None): # view, edit, save
             note.text = notedata[0]
             note = noteform.save()
             dji.save_note_markup(note, notedata[1])
-            dji.rebuild_cache(note)
+            note.save_cache()
             notetext = noteform.data["notetext"] 
             act = "view"
         else:
@@ -126,13 +126,13 @@ def process_note(request, context, handle, act, add_to=None): # view, edit, save
             note.text = notedata[0]
             note = noteform.save()
             dji.save_note_markup(note, notedata[1])
-            dji.rebuild_cache(note)
+            note.save_cache()
             if add_to:
                 item, handle = add_to
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_note_ref(obj, note)
-                dji.rebuild_cache(obj)
+                obj.save_cache()
                 return redirect("/%s/%s#tab-notes" % (item, handle))
             notetext = noteform.data["notetext"] 
             act = "view"

@@ -38,6 +38,13 @@ from gramps.gen.utils.id import create_id, create_uid
 from gramps.webapp.grampsdb.profile import Profile
 from gramps.gen.constfunc import cuni
 
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
+import base64
+
 #---------------------------------------------------------------------------
 #
 # Support functions
@@ -424,6 +431,8 @@ class Tag(models.Model):
     name = models.TextField('name')
     color = models.CharField(max_length=13, blank=True, null=True) # "#000000000000" # Black
     priority = models.IntegerField('priority', blank=True, null=True)
+    cache = models.TextField(blank=True, null=True)
+    dji = None
 
     def __unicode__(self):
         return cuni(self.name)
@@ -433,6 +442,34 @@ class Tag(models.Model):
 
     def get_link(self):
         return cuni("<a href='%s'>%s</a>") % (self.get_url(), self.name)
+
+    def make_cache(self):
+        from gramps.webapp.libdjango import DjangoInterface
+        if self.dji is None:
+            self.dji = DjangoInterface()
+        raw = self.dji.get_tag(self)
+        return base64.encodestring(pickle.dumps(raw))
+
+    def from_cache(self):
+        return pickle.loads(base64.decodestring(self.cache))
+
+    def save_cache(self):
+        cache = self.make_cache()               
+        if cache != self.cache:
+            self.cache = cache
+            models.Model.save(self)
+
+    def save(self, *args, **kwargs):
+        save_cache = True
+        if "save_cache" in kwargs:
+            save_cache = kwargs["save_cache"]
+            del kwargs["save_cache"]
+        if not save_cache:
+            self.cache = ""
+        else:
+            self.cache = self.make_cache()
+        models.Model.save(self, *args, **kwargs) # save to db
+
 
 # Just the following have tag lists:
 # ---------------------------------
@@ -461,6 +498,7 @@ class PrimaryObject(models.Model):
     #attributes = models.ManyToManyField("Attribute", blank=True, null=True)
     cache = models.TextField(blank=True, null=True)
     tags = models.ManyToManyField('Tag', blank=True, null=True)
+    dji = None
 
     def __unicode__(self): 
         return cuni("%s: %s") % (self.__class__.__name__,
@@ -472,6 +510,55 @@ class PrimaryObject(models.Model):
 
     def get_tag_list(self):
         return tuple([tag.handle for tag in self.tags.all()])
+
+    def make_cache(self):
+        from gramps.webapp.libdjango import DjangoInterface
+        if self.dji is None:
+            self.dji = DjangoInterface()
+
+        if isinstance(self, Person):
+            raw = self.dji.get_person(self)
+        elif isinstance(self, Family):
+            raw = self.dji.get_family(self)
+        elif isinstance(self, Place):
+            raw = self.dji.get_place(self)
+        elif isinstance(self, Media):
+            raw = self.dji.get_media(self)
+        elif isinstance(self, Source):
+            raw = self.dji.get_source(self)
+        elif isinstance(self, Citation):
+            raw = self.dji.get_citation(self)
+        elif isinstance(self, Repository):
+            raw = self.dji.get_repository(self)
+        elif isinstance(self, Note):
+            raw = self.dji.get_note(self)
+        elif isinstance(self, Event):
+            raw = self.dji.get_event(self)
+        elif isinstance(self, Tag):
+            raw = self.dji.get_tag(self)
+        else:
+            raise Exception("Don't know how to get raw '%s'" % type(item))
+        return base64.encodestring(pickle.dumps(raw))
+
+    def from_cache(self):
+        return pickle.loads(base64.decodestring(self.cache))
+
+    def save_cache(self):
+        cache = self.make_cache()               
+        if cache != self.cache:
+            self.cache = cache
+            models.Model.save(self)
+
+    def save(self, *args, **kwargs):
+        save_cache = True
+        if "save_cache" in kwargs:
+            save_cache = kwargs["save_cache"]
+            del kwargs["save_cache"]
+        if not save_cache:
+            self.cache = ""
+        else:
+            self.cache = self.make_cache()
+        models.Model.save(self, *args, **kwargs) # save to db
 
 class MyFamilies(models.Model):
     person = models.ForeignKey("Person")

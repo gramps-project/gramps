@@ -274,8 +274,8 @@ def process_report_run(request, handle):
             # just give it, perhaps in a new tab
             from django.http import HttpResponse
             response = HttpResponse(mimetype="text/html")
-            content = "".join(open(filename).readlines())
-            response._set_content(content)
+            for line in open(filename):
+                response.write(line)
             return response
         else:
             return send_file(request, filename, mimetype)
@@ -1474,9 +1474,15 @@ def process_json_request(request):
     """
     Process an Ajax/Json query request.
     """
+    import gramps.gen.lib
+    from gramps.gen.proxy import PrivateProxyDb, LivingProxyDb
+    db = DbDjango()
     if not request.user.is_authenticated():
-        response_data = {"results": [], "total": 0}
-        return HttpResponse(simplejson.dumps(response_data), mimetype="application/json")
+        db = PrivateProxyDb(db)
+        db = LivingProxyDb(db, 
+                           LivingProxyDb.MODE_INCLUDE_LAST_NAME_ONLY, 
+                           None,            # current year
+                           1)               # years after death
     field = request.GET.get("field", None)
     query = request.GET.get("q", "")
     page = int(request.GET.get("p", "1"))
@@ -1485,40 +1491,30 @@ def process_json_request(request):
         q, order, terms = build_person_query(request, query)
         q &= Q(person__gender_type__name="Female")
         matches = Name.objects.filter(q).order_by(*order)
-        response_data = {"results": [], "total": len(matches)}
-        for match in matches[(page - 1) * size:page * size]:
-            response_data["results"].append(
-                {"id": match.person.handle,
-                 "name": match.get_selection_string(), 
-                 })
+        class_type = gramps.gen.lib.Person
+        handle_expr = "match.person.handle"
     elif field == "father":
         q, order, terms = build_person_query(request, query)
         q &= Q(person__gender_type__name="Male")
         matches = Name.objects.filter(q).order_by(*order)
-        response_data = {"results": [], "total": len(matches)}
-        for match in matches[(page - 1) * size:page * size]:
-            response_data["results"].append(
-                {"id": match.person.handle,
-                 "name": match.get_selection_string(), 
-                 })
+        class_type = gramps.gen.lib.Person
+        handle_expr = "match.person.handle"
     elif field == "person":
         q, order, terms = build_person_query(request, query)
         matches = Name.objects.filter(q).order_by(*order)
-        response_data = {"results": [], "total": len(matches)}
-        for match in matches[(page - 1) * size:page * size]:
-            response_data["results"].append(
-                {"id": match.person.handle,
-                 "name": match.get_selection_string(), 
-                 })
+        class_type = gramps.gen.lib.Person
+        handle_expr = "match.person.handle"
     elif field == "place":
         q, order, terms = build_place_query(request, query)
         matches = Place.objects.filter(q).order_by(*order)
-        response_data = {"results": [], "total": len(matches)}
-        for match in matches[(page - 1) * size:page * size]:
-            response_data["results"].append(
-                {"id": match.handle,
-                 "name": match.get_selection_string(), 
-                 })
+        class_type = gramps.gen.lib.Place
+        handle_expr = "match.handle"
     else:
         raise Exception("""Invalid field: '%s'; Example: /json/?field=mother&q=Smith&p=1&size=10""" % field)
+    ## ------------
+    response_data = {"results": [], "total": len(matches)}
+    for match in matches[(page - 1) * size:page * size]:
+        obj = db.get_from_name_and_handle(class_type.__name__, eval(handle_expr))
+        if obj:
+            response_data["results"].append(obj.to_struct())
     return HttpResponse(simplejson.dumps(response_data), mimetype="application/json")

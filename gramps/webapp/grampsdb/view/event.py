@@ -71,7 +71,6 @@ def delete_event(event):
     for person in people:
         recheck_birth_death_refs(person)
         person.save()
-        dji.rebuild_cache(person)
 
 def check_event(event):
     obj_type = ContentType.objects.get_for_model(Person)
@@ -90,7 +89,6 @@ def check_event(event):
             continue
         recheck_birth_death_refs(person)
         person.save()
-        dji.rebuild_cache(person)
 
 def recheck_birth_death_refs(person):
     """
@@ -167,8 +165,8 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
             dji.add_event_ref_default(parent_obj, ref_obj)
             if item == "person": # then need to recheck birth/death indexes:
                 recheck_birth_death_refs(parent_obj)
-                parent_obj.save()
-            dji.rebuild_cache(parent_obj) # rebuild cache
+                parent_obj.save(save_cache=False)
+            parent_obj.save_cache()
             return redirect("/%s/%s%s#tab-events" % (item, handle, build_search(request)))
         else:
             context["pickform"] = pickform
@@ -198,7 +196,6 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
             # birth/death issues changed:
             check_event(event)
             event.save()
-            dji.rebuild_cache(event)
             act = "view"
         else:
             act = "edit"
@@ -209,7 +206,6 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
         if eventform.is_valid():
             update_last_changed(event, request.user.username)
             event = eventform.save()
-            dji.rebuild_cache(event)
             if add_to:
                 item, handle = add_to
                 model = dji.get_model(item)
@@ -217,8 +213,8 @@ def process_event(request, context, handle, act, add_to=None): # view, edit, sav
                 dji.add_event_ref_default(obj, event)
                 if item == "person": # then need to recheck birth/death indexes:
                     recheck_birth_death_refs(obj)
-                    obj.save()
-                dji.rebuild_cache(obj)                
+                    obj.save(save_cache=False)
+                obj.save_cache()
                 return redirect("/%s/%s#tab-events" % (item, handle))
             act = "view"
         else:

@@ -167,7 +167,7 @@ def process_surname(request, handle, order, sorder, act="view"):
             surname = sf.save(commit=False)
             check_primary(surname, surnames)
             surname.save()
-            dji.rebuild_cache(person)
+            person.save_cache()
             return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" % 
                             (person.handle, name.order, sorder, 
                              build_search(request)))
@@ -182,7 +182,7 @@ def process_surname(request, handle, order, sorder, act="view"):
             surname = sf.save(commit=False)
             check_primary(surname, name.surname_set.all().exclude(order=surname.order))
             surname.save()
-            dji.rebuild_cache(person)
+            person.save_cache()
             return redirect("/person/%s/name/%s/surname/%s%s#tab-surnames" % 
                             (person.handle, name.order, sorder,
                              build_search(request)))
@@ -281,7 +281,7 @@ def process_name(request, handle, order, act="view"):
             surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
             surname.primary = True # FIXME: why is this False? Remove from form?
             surname.save()
-            dji.rebuild_cache(person)
+            person.save_cache()
             return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order,             
                                                                    build_search(request)))
         else:
@@ -317,7 +317,7 @@ def process_name(request, handle, order, act="view"):
             surname.prefix = sf.cleaned_data["prefix"] if sf.cleaned_data["prefix"] != " prefix " else ""
             surname.primary = True # FIXME: why is this False? Remove from form?
             surname.save()
-            dji.rebuild_cache(person)
+            person.save_cache()
             return redirect("/person/%s/name/%s%s#tab-surnames" % (person.handle, name.order,
                                                                    build_search(request)))
         else:
@@ -373,8 +373,8 @@ def process_person(request, context, handle, act, add_to=None): # view, edit, sa
                 pfo = MyParentFamilies(person=person, family=obj,
                                        order=len(person.parent_families.all())+1)
                 pfo.save()
-                dji.rebuild_cache(person) # rebuild child
-                dji.rebuild_cache(obj) # rebuild family
+                person.save_cache() # rebuild child
+                obj.save_cache() # rebuild family
                 return redirect("/%s/%s%s" % (item, handle, build_search(request)))
             else:
                 context["pickform"] = pickform
@@ -447,10 +447,10 @@ def process_person(request, context, handle, act, add_to=None): # view, edit, sa
                     pfo = MyParentFamilies(person=person, family=obj,
                                            order=len(person.parent_families.all())+1)
                     pfo.save()
-                    dji.rebuild_cache(person) # rebuild child
-                    dji.rebuild_cache(obj) # rebuild family
+                    person.save_cache() # rebuild child
+                    obj.save_cache() # rebuild family
                     return redirect("/%s/%s%s" % (item, handle, build_search(request)))
-                dji.rebuild_cache(person)
+                person.save_cache()
                 return redirect("/person/%s%s" % (person.handle, build_search(request)))
             else: 
                 # need to edit again

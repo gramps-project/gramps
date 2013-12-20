@@ -88,7 +88,7 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
             ref_handle = pickform.data["picklist"]
             ref_obj = Media.objects.get(handle=ref_handle) 
             dji.add_media_ref_default(parent_obj, ref_obj)
-            dji.rebuild_cache(parent_obj) # rebuild cache
+            parent_obj.save_cache() # rebuild cache
             return redirect("/%s/%s%s#tab-media" % (item, handle, build_search(request)))
         else:
             context["pickform"] = pickform
@@ -167,7 +167,6 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
         if mediaform.is_valid():
             update_last_changed(media, request.user.username)
             media = mediaform.save()
-            dji.rebuild_cache(media)
             act = "view"
         else:
             act = "edit"
@@ -177,16 +176,17 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
         mediaform.model = media
         if mediaform.is_valid():
             update_last_changed(media, request.user.username)
-            media = mediaform.save()
+            media = mediaform.save(save_cache=False)
             if add_to:
                 item, handle = add_to
                 model = dji.get_model(item)
                 obj = model.objects.get(handle=handle)
                 dji.add_media_ref_default(obj, media)
-                dji.rebuild_cache(obj)
+                obj.save_cache()
+                media.save_cache()
                 return redirect("/%s/%s#tab-gallery" % (item, handle))
             else:
-                dji.rebuild_cache(media)
+                media.save_cache()
             act = "view"
         else:
             act = "add"

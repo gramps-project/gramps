@@ -87,8 +87,6 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
                 pfo.save()
             ref_obj.save()
             person.save()
-            dji.rebuild_cache(person) # rebuild child
-            dji.rebuild_cache(ref_obj) # rebuild cache
             return redirect("/%s/%s%s#tab-references" % ("person", handle, build_search(request)))
         else:
             context["pickform"] = pickform
@@ -150,7 +148,6 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
                                      order=len(familyform.cleaned_data["father"].families.all())+1)
                     pfo.save()
             familyform.save()
-            dji.rebuild_cache(family)
             act = "view"
         else:
             act = "edit"
@@ -173,7 +170,7 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
                 pfo = MyFamilies(person=family.father, family=family,
                                  order=len(family.father.families.all())+1)
                 pfo.save()
-            dji.rebuild_cache(family)
+            family.save_cache()
             if add_to: # add child or spouse to family
                 item, handle = add_to
                 person = Person.objects.get(handle=handle)
@@ -186,7 +183,6 @@ def process_family(request, context, handle, act, add_to=None): # view, edit, sa
                 #elif item == "spouse":
                 # already added by selecting
                     person.save()
-                    dji.rebuild_cache(person) # rebuild child
                 return redirect("/%s/%s%s#tab-references" % ("person", handle, build_search(request)))
             act = "view"
         else:
