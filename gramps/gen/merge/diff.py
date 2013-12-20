@@ -159,8 +159,9 @@ def parse(string):
                 current += c
         elif stack and stack[-1] in ["'", '"', '(']: # in quote or args
             current += c
-        elif c == ".":
-            retval.append(current)
+        elif c in [".", "[", "]"]:
+            if current:
+                retval.append(current)
             current = ""
         else:
             current += c
@@ -383,12 +384,67 @@ class Struct(object):
         else:
             self.transaction = None
 
+    def __eq__(self, other):
+        if isinstance(other, Struct):
+            return self.struct == other.struct
+        else:
+            return self.struct == other
+
+    def __lt__(self, other):
+        if isinstance(other, Struct):
+            return self.struct < other.struct
+        else:
+            return self.struct < other
+
+    def __gt__(self, other):
+        if isinstance(other, Struct):
+            return self.struct > other.struct
+        else:
+            return self.struct > other
+
+    def __le__(self, other):
+        if isinstance(other, Struct):
+            return self.struct <= other.struct
+        else:
+            return self.struct <= other
+
+    def __ge__(self, other):
+        if isinstance(other, Struct):
+            return self.struct >= other.struct
+        else:
+            return self.struct >= other
+
+    def __ne__(self, other):
+        if isinstance(other, Struct):
+            return self.struct != other.struct
+        else:
+            return self.struct != other
+
+    def __len__(self):
+        return len(self.struct)
+
+    def __getattr__(self, attr):
+        """
+        Called when getattr fails. Lookup attr in struct; returns Struct
+        if more struct.  This is used only in eval for where clause. 
+        self.setitem_from_path(path, v) should be used to set value of 
+        item.
+        """
+        # for where eval:
+        if attr in self.struct:
+            return Struct(self.getitem(attr), self.db)
+        else:
+            raise AttributeError("no such attribute '%s'" % attr)
+
     def __getitem__(self, path): 
         """
         Given a path to a struct part, return the part, or None.
 
         >>> Struct(struct)["primary_name.surname_list.0.surname"]
         """
+        # For where eval:
+        if isinstance(path, int):
+            return Struct(self.struct[path], self.db)
         # Work way down to last part:
         return self.getitem_from_path(parse(path))
 
@@ -438,7 +494,7 @@ class Struct(object):
         elif hasattr(struct, item):
             return getattr(struct, item)
         elif item.startswith("("):
-            args = eval(item[1:-1] + ",")
+            args = eval(item[1:-1] + ",") # tuple of args
             return struct(*args)
         else:
             return None
