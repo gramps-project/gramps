@@ -34,6 +34,8 @@ The DateEditor provides a dialog in which the date can be
 unambiguously built using UI controls such as menus and spin buttons.
 """
 
+from __future__ import unicode_literals
+
 #-------------------------------------------------------------------------
 #
 # Python modules
