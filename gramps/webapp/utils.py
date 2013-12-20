@@ -152,7 +152,6 @@ def get_person_from_handle(db, handle):
         return None
 
 def probably_alive(handle):
-    return False
     person = db.get_person_from_handle(handle)
     return alive(person, db)
 

@@ -417,9 +417,8 @@ def process_person(request, context, handle, act, add_to=None): # view, edit, sa
             # check if valid:
             if nf.is_valid() and pf.is_valid() and sf.is_valid() and logform.is_valid():
                 # name.preferred and surname.primary get set False in the above is_valid()
-                person.probably_alive = not bool(person.death)
                 update_last_changed(person, request.user.username)
-                person = pf.save()
+                person = pf.save(save_cache=False)
                 # Process data:
                 name.person = person
                 name = nf.save(commit=False)

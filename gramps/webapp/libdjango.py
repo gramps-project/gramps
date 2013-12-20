@@ -1940,6 +1940,7 @@ class DjangoInterface(object):
         referenced events should be marked not public (public = False).
 
         """
+        from gramps.webapp.utils import probably_alive
         if obj.__class__.__name__ == "Event":
             objref = self.EventRef
         elif obj.__class__.__name__ == "Person":
@@ -2040,3 +2041,21 @@ class DjangoInterface(object):
             count += 1
         callback(100 * (count/total if total else 0))
 
+    def update_probably_alive(self, callback=None):
+        """
+        Call this to update primary_alive for people.
+        """
+        from gramps.webapp.utils import probably_alive
+        if not isinstance(callback, collections.Callable): 
+            callback = lambda percent: None # dummy
+        callback(0)
+        count = 0.0
+        total = self.Person.all().count()
+        for item in self.Person.all():
+            pa = probably_alive(item.handle)
+            if pa != item.probably_alive:
+                print("Updating probably_alive")
+                item.probably_alive = pa
+                item.save()
+            count += 1
+        callback(100 * (count/total if total else 0))

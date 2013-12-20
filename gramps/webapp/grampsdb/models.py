@@ -612,6 +612,20 @@ class Person(PrimaryObject):
     def get_selection_string(self):
         return self.name_set.get(preferred=True).get_selection_string()
 
+    def save(self, *args, **kwargs):
+        from gramps.webapp.utils import probably_alive
+        if "save_cache" in kwargs:
+            compute_probably_alive = kwargs["save_cache"]
+        else:
+            compute_probably_alive = True
+        PrimaryObject.save(self, *args, **kwargs)
+        # expensive! only do this if also saving cache
+        if compute_probably_alive:
+            pa = probably_alive(self.handle)
+            if self.probably_alive != pa:
+                self.probably_alive = pa
+                PrimaryObject.save(self, *args, **kwargs)
+
 class Family(PrimaryObject):
     father = models.ForeignKey('Person', related_name="father_ref", 
                                null=True, blank=True)

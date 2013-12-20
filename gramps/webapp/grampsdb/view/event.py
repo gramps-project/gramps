@@ -117,7 +117,6 @@ def recheck_birth_death_refs(person):
         role_type=get_type_from_name(EventRoleType, "Primary"),
         ref_object__event_type__val=EventType.DEATH).order_by("order")
     if events:
-        person.probably_alive = False
         person.death = events[0].ref_object
         new_index = lookup_role_index(EventType.DEATH, all_events)
         if person.death_ref_index != new_index:
@@ -125,7 +124,6 @@ def recheck_birth_death_refs(person):
     else:
         person.death = None
         person.death_ref_index = -1
-        person.probably_alive = True
     
 def process_event(request, context, handle, act, add_to=None): # view, edit, save
     """
