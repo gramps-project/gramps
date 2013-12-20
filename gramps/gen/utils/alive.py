@@ -22,6 +22,8 @@
 
 # $Id$
 
+from __future__ import unicode_literals
+
 """
 A utility to make a best guess if a person is alive.  This is used to provide
 privacy in reports and exports.
