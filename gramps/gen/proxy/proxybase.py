@@ -967,3 +967,4 @@ class ProxyDbBase(DbReadBase):
         Return the database ID.
         """
         return self.basedb.get_dbid()
+

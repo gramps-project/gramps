@@ -41,7 +41,8 @@ else:
 #
 #-------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
-from ..lib import Date, Person, Name, Surname, NameOriginType
+from ..lib import (Date, Person, Name, Surname, NameOriginType, Family, Source,
+                   Citation, Event, MediaObject, Place, Repository, Note, Tag)
 from ..utils.alive import probably_alive
 from ..config import config
 
@@ -89,6 +90,87 @@ class LivingProxyDb(ProxyDbBase):
         else:
             self.current_date = None
         self.years_after_death = years_after_death
+        # need to update _tables with these functions
+        self._tables['Person'].update(
+            {
+                "handle_func": self.get_person_from_handle, 
+                "gramps_id_func": self.get_person_from_gramps_id,
+                "class_func": Person,
+                "cursor_func": self.get_person_cursor,
+                "handles_func": self.get_person_handles,
+            })
+        self._tables['Family'].update(
+            {
+                "handle_func": self.get_family_from_handle, 
+                "gramps_id_func": self.get_family_from_gramps_id,
+                "class_func": Family,
+                "cursor_func": self.get_family_cursor,
+                "handles_func": self.get_family_handles,
+            })
+        self._tables['Source'].update(
+            {
+                "handle_func": self.get_source_from_handle, 
+                "gramps_id_func": self.get_source_from_gramps_id,
+                "class_func": Source,
+                "cursor_func": self.get_source_cursor,
+                "handles_func": self.get_source_handles,
+                })
+        self._tables['Citation'].update(
+            {
+                "handle_func": self.get_citation_from_handle, 
+                "gramps_id_func": self.get_citation_from_gramps_id,
+                "class_func": Citation,
+                "cursor_func": self.get_citation_cursor,
+                "handles_func": self.get_citation_handles,
+            })
+        self._tables['Event'].update(
+            {
+                "handle_func": self.get_event_from_handle, 
+                "gramps_id_func": self.get_event_from_gramps_id,
+                "class_func": Event,
+                "cursor_func": self.get_event_cursor,
+                "handles_func": self.get_event_handles,
+            })
+        self._tables['Media'].update(
+            {
+                "handle_func": self.get_object_from_handle, 
+                "gramps_id_func": self.get_object_from_gramps_id,
+                "class_func": MediaObject,
+                "cursor_func": self.get_media_cursor,
+                "handles_func": self.get_media_object_handles,
+            })
+        self._tables['Place'].update(
+            {
+                "handle_func": self.get_place_from_handle, 
+                "gramps_id_func": self.get_place_from_gramps_id,
+                "class_func": Place,
+                "cursor_func": self.get_place_cursor,
+                "handles_func": self.get_place_handles,
+            })
+        self._tables['Repository'].update(
+            {
+                "handle_func": self.get_repository_from_handle, 
+                "gramps_id_func": self.get_repository_from_gramps_id,
+                "class_func": Repository,
+                "cursor_func": self.get_repository_cursor,
+                "handles_func": self.get_repository_handles,
+            })
+        self._tables['Note'].update(
+            {
+                "handle_func": self.get_note_from_handle, 
+                "gramps_id_func": self.get_note_from_gramps_id,
+                "class_func": Note,
+                "cursor_func": self.get_note_cursor,
+                "handles_func": self.get_note_handles,
+            })
+        self._tables['Tag'].update(
+            {
+                "handle_func": self.get_tag_from_handle, 
+                "gramps_id_func": None,
+                "class_func": Tag,
+                "cursor_func": self.get_tag_cursor,
+                "handles_func": self.get_tag_handles,
+            })
 
     def get_person_from_handle(self, handle):
         """
@@ -297,3 +379,4 @@ class LivingProxyDb(ProxyDbBase):
         new_person.set_tag_list(person.get_tag_list())
     
         return new_person
+
