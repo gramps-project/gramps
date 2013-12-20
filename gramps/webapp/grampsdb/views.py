@@ -471,6 +471,7 @@ def action(request, view, handle, act, add_to=None):
     /object/handle/action, or /object/add.
     """
     from gramps.webapp.reports import get_plugin_options
+    db = DbDjango()
     # redirect:
     rd = None
     obj = None
@@ -488,6 +489,12 @@ def action(request, view, handle, act, add_to=None):
                 raise Http404(_("Requested %s does not exist.") % view)
         if not check_access(request, context, obj, act):
             raise Http404(_("Requested %s does not exist.") % view)
+        if "format" in request.GET:
+            if request.GET["format"] == "json":
+                item = db.get_event_from_handle(obj.handle)
+                content = str(item.to_struct())
+                response = HttpResponse(content, mimetype="application/json")
+                return response
         view_template = 'view_event_detail.html'
         rd = process_event(request, context, handle, act, add_to)
     elif view == "family":
@@ -496,6 +503,14 @@ def action(request, view, handle, act, add_to=None):
                 obj = Family.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
+        if not check_access(request, context, obj, act):
+            raise Http404(_("Requested %s does not exist.") % view)
+        if "format" in request.GET:
+            if request.GET["format"] == "json":
+                item = db.get_family_from_handle(obj.handle)
+                content = str(item.to_struct())
+                response = HttpResponse(content, mimetype="application/json")
+                return response
         view_template = 'view_family_detail.html'
         rd = process_family(request, context, handle, act, add_to)
     elif view == "media":
@@ -504,6 +519,14 @@ def action(request, view, handle, act, add_to=None):
                 obj = Media.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
+        if not check_access(request, context, obj, act):
+            raise Http404(_("Requested %s does not exist.") % view)
+        if "format" in request.GET:
+            if request.GET["format"] == "json":
+                item = db.get_media_from_handle(obj.handle)
+                content = str(item.to_struct())
+                response = HttpResponse(content, mimetype="application/json")
+                return response
         view_template = 'view_media_detail.html'
         rd = process_media(request, context, handle, act, add_to)
     elif view == "note":
@@ -512,6 +535,14 @@ def action(request, view, handle, act, add_to=None):
                 obj = Note.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
+        if not check_access(request, context, obj, act):
+            raise Http404(_("Requested %s does not exist.") % view)
+        if "format" in request.GET:
+            if request.GET["format"] == "json":
+                item = db.get_note_from_handle(obj.handle)
+                content = str(item.to_struct())
+                response = HttpResponse(content, mimetype="application/json")
+                return response
         view_template = 'view_note_detail.html'
         rd = process_note(request, context, handle, act, add_to)
     elif view == "person":
@@ -520,6 +551,14 @@ def action(request, view, handle, act, add_to=None):
                 obj = Person.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
+        if not check_access(request, context, obj, act):
+            raise Http404(_("Requested %s does not exist.") % view)
+        if "format" in request.GET:
+            if request.GET["format"] == "json":
+                person = db.get_person_from_handle(obj.handle)
+                content = str(person.to_struct())
+                response = HttpResponse(content, mimetype="application/json")
+                return response
         view_template = 'view_person_detail.html'
         rd = process_person(request, context, handle, act, add_to)
     elif view == "place":
@@ -528,6 +567,14 @@ def action(request, view, handle, act, add_to=None):
                 obj = Place.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
+        if not check_access(request, context, obj, act):
+            raise Http404(_("Requested %s does not exist.") % view)
+        if "format" in request.GET:
+            if request.GET["format"] == "json":
+                item = db.get_place_from_handle(obj.handle)
+                content = str(item.to_struct())
+                response = HttpResponse(content, mimetype="application/json")
+                return response
         view_template = 'view_place_detail.html'
         rd = process_place(request, context, handle, act, add_to)
     elif view == "repository":
@@ -536,6 +583,14 @@ def action(request, view, handle, act, add_to=None):
                 obj = Repository.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
+        if not check_access(request, context, obj, act):
+            raise Http404(_("Requested %s does not exist.") % view)
+        if "format" in request.GET:
+            if request.GET["format"] == "json":
+                item = db.get_repository_from_handle(obj.handle)
+                content = str(item.to_struct())
+                response = HttpResponse(content, mimetype="application/json")
+                return response
         view_template = 'view_repository_detail.html'
         rd = process_repository(request, context, handle, act, add_to)
     elif view == "citation":
@@ -544,6 +599,14 @@ def action(request, view, handle, act, add_to=None):
                 obj = Citation.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
+        if not check_access(request, context, obj, act):
+            raise Http404(_("Requested %s does not exist.") % view)
+        if "format" in request.GET:
+            if request.GET["format"] == "json":
+                item = db.get_citation_from_handle(obj.handle)
+                content = str(item.to_struct())
+                response = HttpResponse(content, mimetype="application/json")
+                return response
         view_template = 'view_citation_detail.html'
         rd = process_citation(request, context, handle, act, add_to)
     elif view == "source":
@@ -552,6 +615,14 @@ def action(request, view, handle, act, add_to=None):
                 obj = Source.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
+        if not check_access(request, context, obj, act):
+            raise Http404(_("Requested %s does not exist.") % view)
+        if "format" in request.GET:
+            if request.GET["format"] == "json":
+                item = db.get_source_from_handle(obj.handle)
+                content = str(item.to_struct())
+                response = HttpResponse(content, mimetype="application/json")
+                return response
         view_template = 'view_source_detail.html'
         rd = process_source(request, context, handle, act, add_to)
     elif view == "tag":
@@ -560,6 +631,14 @@ def action(request, view, handle, act, add_to=None):
                 obj = Tag.objects.get(handle=handle)
             except:
                 raise Http404(_("Requested %s does not exist.") % view)
+        if not check_access(request, context, obj, act):
+            raise Http404(_("Requested %s does not exist.") % view)
+        if "format" in request.GET:
+            if request.GET["format"] == "json":
+                item = db.get_tag_from_handle(obj.handle)
+                content = str(item.to_struct())
+                response = HttpResponse(content, mimetype="application/json")
+                return response
         view_template = 'view_tag_detail.html'
         rd = process_tag(request, context, handle, act, add_to)
     elif view == "report":
@@ -573,7 +652,6 @@ def action(request, view, handle, act, add_to=None):
             for pair in obj.options.split("\\n"):
                 key, value = pair.split("=", 1)
                 override[key] = value
-        db = DbDjango()
         opt_default, opt_help = get_plugin_options(db, obj.handle)
         retval = ""
         for key in sorted(opt_default.keys()):
