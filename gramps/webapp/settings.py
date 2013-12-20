@@ -163,3 +163,7 @@ DEFAULT_CHARSET = "utf-8"
 LOGGING_CONFIG = None
 AUTH_USER_MODEL = 'auth.User'
 ## End Changes for Django 1.5.4
+
+LOGIN_URL = "/login/"
+LOGOUT_URL = "/logout"
+LOGIN_REDIRECT_URL = "/"
