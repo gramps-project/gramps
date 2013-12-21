@@ -13,3 +13,6 @@ po/.intltool-merge-cache
 
 # Editor
 tags
+
+# Testing
+test/data
