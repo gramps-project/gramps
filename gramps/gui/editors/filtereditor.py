@@ -396,13 +396,14 @@ class MySource(MyID):
 #-------------------------------------------------------------------------
 class MySelect(Gtk.ComboBox):
     
-    def __init__(self, type_class):
+    def __init__(self, type_class, additional):
         #we need to inherit and have an combobox with an entry
         Gtk.ComboBox.__init__(self, has_entry=True)
         self.type_class = type_class
         self.sel = StandardCustomSelector(type_class._I2SMAP, self,
                                           type_class._CUSTOM,
-                                          type_class._DEFAULT)
+                                          type_class._DEFAULT,
+                                          additional)
         self.show()
         
     def get_text(self):
@@ -538,7 +539,29 @@ class EditRule(ManagedWindow):
                 elif v == _('Place filter name:'):
                     t = MyFilters(self.filterdb.get_filters('Place'))
                 elif v in _name2typeclass:
-                    t = MySelect(_name2typeclass[v])
+                    additional = None
+                    if v == _('Personal event:'):
+                        additional = self.db.get_person_event_types()
+                    elif v == _('Family event:'):
+                        additional = self.db.get_family_event_types()
+                    elif v == _('Event type:'):
+                        additional = (self.db.get_person_event_types() +
+                                      self.db.get_family_event_types())
+                    elif v == _('Personal attribute:'):
+                        additional = self.db.get_person_attribute_types()
+                    elif v == _('Family attribute:'):
+                        additional = self.db.get_family_attribute_types()
+                    elif v == _('Media attribute:'):
+                        additional = self.db.get_media_attribute_types()
+                    elif v == _('Relationship type:'):
+                        additional = self.db.get_family_relation_types()
+                    elif v == _('Note type:'):
+                        additional = self.db.get_note_types()
+                    elif v == _('Name type:'):
+                        additional = self.db.get_name_types()
+                    elif v == _('Surname origin type:'):
+                        additional = self.db.get_origin_types()
+                    t = MySelect(_name2typeclass[v], additional)
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
                 elif v == _('Case sensitive:'):
