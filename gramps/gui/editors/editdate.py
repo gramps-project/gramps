@@ -129,6 +129,7 @@ class EditDate(ManagedWindow):
             self.top.get_object('title'),
             _('Date selection'))            
             
+        self.statusbar = self.top.get_object('statusbar')
         self.ok_button = self.top.get_object('ok_button')
         self.calendar_box = self.top.get_object('calendar_box')
         for name in Date.ui_calendar_names:
@@ -244,6 +245,8 @@ class EditDate(ManagedWindow):
         LOG.debug("revalidate: {0} changed, value: {1}".format(
             obj, the_value))
         d = Date(self.date)
+        if not self.ok_button.get_sensitive():
+            self.statusbar.pop(1)
         try:
             d.set(
                 quality=the_quality,
@@ -258,6 +261,11 @@ class EditDate(ManagedWindow):
             return True
         except DateError as e: 
             self.ok_button.set_sensitive(0)
+            self.statusbar.push(1, 
+                    _("Correct the date or switch from `{cur_mode}' to `{text_mode}'"
+                        ).format(
+                            cur_mode = MOD_TEXT[self.type_box.get_active()][1],
+                            text_mode = MOD_TEXT[-1][1]))
             return False
 
     def build_menu_names(self, obj):
