@@ -139,6 +139,27 @@ class EventType(GrampsType):
     RETIREMENT     = 43
     WILL           = 44
 
+    _MENU = [[_('Life Events'),
+              [BIRTH, BAPTISM, DEATH, BURIAL, CREMATION, ADOPT]],
+            [_('Family'),
+              [ENGAGEMENT, MARRIAGE, DIVORCE, ANNULMENT, MARR_SETTL, MARR_LIC,
+               MARR_CONTR, MARR_BANNS, DIV_FILING, MARR_ALT]],
+            [_('Religious'),
+              [CHRISTEN, ADULT_CHRISTEN, CONFIRMATION, FIRST_COMMUN, BLESS,
+               BAR_MITZVAH, BAS_MITZVAH, RELIGION]],
+            [_('Vocational'),
+              [OCCUPATION, RETIREMENT, ELECTED, MILITARY_SERV, ORDINATION]],
+            [_('Academic'),
+              [EDUCATION, DEGREE, GRADUATION]],
+            [_('Travel'),
+              [EMIGRATION, IMMIGRATION, NATURALIZATION]],
+            [_('Legal'),
+              [PROBATE, WILL]],
+            [_('Residence'),
+              [RESIDENCE, CENSUS, PROPERTY]],
+            [_('Other'),
+              [CAUSE_DEATH, MED_INFO, NOB_TITLE, NUM_MARRIAGES]]]
+
     _CUSTOM = CUSTOM
     _DEFAULT = BIRTH
 

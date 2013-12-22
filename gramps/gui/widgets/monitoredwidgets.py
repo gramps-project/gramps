@@ -470,7 +470,8 @@ class MonitoredDataType(object):
             obj, 
             get_val().get_custom(), 
             default, 
-            additional=custom_values)
+            additional=custom_values,
+            menu=get_val().get_menu())
 
         self.sel.set_values((int(get_val()), str(get_val())))
         self.obj.set_sensitive(not readonly)
