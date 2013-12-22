@@ -41,6 +41,7 @@ from gi.repository import GObject
 
 from gramps.gen.constfunc import STRTYPE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 def fill_combo(combo, data_list):
     """
@@ -113,7 +114,7 @@ class StandardCustomSelector(object):
         
     """
     def __init__(self, mapping, cbe=None, custom_key=None, active_key=None,
-                 additional=None):
+                 additional=None, menu=None):
         """
         Constructor for the StandardCustomSelector class.
 
@@ -133,12 +134,7 @@ class StandardCustomSelector(object):
         self.active_key = active_key
         self.active_index = 0
         self.additional = additional
-        
-        # make model
-        self.store = Gtk.ListStore(GObject.TYPE_INT, GObject.TYPE_STRING)
-
-        # fill it up using mapping
-        self.fill()
+        self.menu = menu
 
         # create combo box entry
         if cbe:
@@ -146,47 +142,80 @@ class StandardCustomSelector(object):
             self.selector = cbe
         else:
             self.selector = Gtk.ComboBox(has_entry=True)
+
+        # create models
+        if menu:
+            self.store = self.create_menu()
+            completion_store = self.create_list()
+        else:
+            self.store = self.create_list()
+            completion_store = self.store
+
         self.selector.set_model(self.store)
         self.selector.set_entry_text_column(1)
+
+        if menu:
+            for cell in self.selector.get_cells():
+                self.selector.add_attribute(cell, 'sensitive', 2)
+
         #renderer = Gtk.CellRendererText()
         #self.selector.pack_start(renderer, True)
         #self.selector.add_attribute(renderer, 'text', 1)
-        if self.active_key is not None:
-            self.selector.set_active(self.active_index)
+        #if self.active_key is not None:
+            #self.selector.set_active(self.active_index)
 
         # make autocompletion work
         completion = Gtk.EntryCompletion()
-        completion.set_model(self.store)
+        completion.set_model(completion_store)
         completion.set_minimum_key_length(1)
         completion.set_text_column(1)
         self.selector.get_child().set_completion(completion)
 
-    def fill(self):
+    def create_menu(self):
         """
-        Fill with data
+        Create a model and fill it with a two-level tree corresponding to the
+        menu.
         """
+        store = Gtk.TreeStore(int, str, bool)
+        for heading, items in self.menu:
+            if self.active_key in items:
+                parent = None
+            else:
+                parent = store.append(None, row=[None, heading, False])
+            for item in items:
+                store.append(parent, row=[item, self.mapping[item], True])
+
+        if self.additional:
+            parent = store.append(None, row=[None, _('Custom'), False])
+            for event_type in self.additional:
+                key, value = self.get_key_and_value(event_type)
+                store.append(parent, row=[key, value, True])
+
+        return store
+
+    def create_list(self):
+        """
+        Create a model and fill it with a sorted flat list.
+        """
+        store = Gtk.ListStore(int, str)
         keys = sorted(self.mapping, key=self.by_value)
         index = 0
         for key in keys:
             if key != self.custom_key:
-                self.store.append(row=[key, self.mapping[key]])
+                store.append(row=[key, self.mapping[key]])
                 if key == self.active_key:
                     self.active_index = index
                 index += 1
 
         if self.additional:
             for event_type in self.additional:
-                if isinstance(event_type, STRTYPE):
-                    if event_type:
-                        self.store.append(row=[self.custom_key, event_type])
-                elif isinstance(event_type, tuple):
-                    if event_type[1]:
-                        self.store.append(row=[event_type[0], event_type[1]])
-                else:
-                    self.store.append(row=[int(event_type), str(event_type)])
+                key, value = self.get_key_and_value(event_type)
+                store.append(row=[key, value])
                 if key == self.active_key:
                     self.active_index = index
                 index += 1
+
+        return store
 
     def by_value(self, val):
         """
@@ -240,4 +269,17 @@ class StandardCustomSelector(object):
             return True
         return False
 
-
+    def get_key_and_value(self, event_type):
+        """
+        Return the key and value for the given event type.  The event type may be
+        a string representing a custom type, an (int, str) tuple or an EventType
+        instance.
+        """
+        if isinstance(event_type, STRTYPE):
+            if event_type:
+                return (self.custom_key, event_type)
+        elif isinstance(event_type, tuple):
+            if event_type[1]:
+                return (event_type[0], event_type[1])
+        else:
+            return(int(event_type), str(event_type))

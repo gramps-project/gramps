@@ -403,7 +403,8 @@ class MySelect(Gtk.ComboBox):
         self.sel = StandardCustomSelector(type_class._I2SMAP, self,
                                           type_class._CUSTOM,
                                           type_class._DEFAULT,
-                                          additional)
+                                          additional,
+                                          type_class._MENU)
         self.show()
         
     def get_text(self):

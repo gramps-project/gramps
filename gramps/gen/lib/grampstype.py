@@ -115,6 +115,7 @@ class GrampsType(GrampsTypeC):
 
     _DATAMAP = []
     _BLACKLIST = None
+    _MENU = None
     __slots__ = ('__value', '__string')
 
     def __getstate__(self):
@@ -272,6 +273,9 @@ class GrampsType(GrampsTypeC):
     def get_custom(self):
         return self._CUSTOM
     
+    def get_menu(self):
+        return self._MENU
+
     def __eq__(self, value):
         if isinstance(value, int):
             return self.__value == value
