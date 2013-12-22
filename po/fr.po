@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-22 11:34+0200\n"
-"PO-Revision-Date: 2013-10-22 11:41+0100\n"
+"POT-Creation-Date: 2013-12-22 15:19+0100\n"
+"PO-Revision-Date: 2013-12-22 15:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -113,7 +113,7 @@ msgstr "Édition des signets"
 #: ../src/gui/filtereditor.py:770
 #: ../src/gui/filtereditor.py:923
 #: ../src/gui/editors/editfamily.py:117
-#: ../src/gui/editors/editname.py:305
+#: ../src/gui/editors/editname.py:307
 #: ../src/gui/editors/displaytabs/backreflist.py:62
 #: ../src/gui/editors/displaytabs/nameembedlist.py:72
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
@@ -213,8 +213,8 @@ msgstr ""
 # The same "none" is used for name, surname and date. However, in French we say "aucun" for name and surname, but we say "aucune" for date...
 #: ../src/const.py:235
 #: ../src/const.py:236
-#: ../src/gen/lib/date.py:1763
-#: ../src/gen/lib/date.py:1777
+#: ../src/gen/lib/date.py:1784
+#: ../src/gen/lib/date.py:1798
 msgid "none"
 msgstr "aucun(e)"
 
@@ -270,9 +270,13 @@ msgid "Date more than one year in the future"
 msgstr "Date futuriste de plus d'un an"
 
 #: ../src/DateEdit.py:202
-#: ../src/DateEdit.py:306
+#: ../src/DateEdit.py:347
 msgid "Date selection"
 msgstr "Sélection de la date"
+
+#: ../src/DateEdit.py:337
+msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
+msgstr "Corrigez la date ou passez du mode `{cur_mode}' à `{text_mode}'"
 
 #: ../src/DisplayState.py:366
 #: ../src/plugins/gramplet/PersonDetails.py:133
@@ -628,17 +632,17 @@ msgstr ""
 "\n"
 "Gramps va maintenant s'arrêter."
 
-#: ../src/gramps.py:380
-#: ../src/gramps.py:387
-#: ../src/gramps.py:458
+#: ../src/gramps.py:391
+#: ../src/gramps.py:398
+#: ../src/gramps.py:469
 msgid "Configuration error:"
 msgstr "Erreur de configuration :"
 
-#: ../src/gramps.py:384
+#: ../src/gramps.py:395
 msgid "Error reading configuration"
 msgstr "Erreur à la lecture de la configuration"
 
-#: ../src/gramps.py:388
+#: ../src/gramps.py:399
 #, python-format
 msgid ""
 "A definition for the MIME-type %s could not be found \n"
@@ -690,8 +694,8 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:613
 #: ../src/plugins/tool/Check.py:1958
-#: ../src/plugins/view/geofamily.py:403
-#: ../src/plugins/view/geoperson.py:450
+#: ../src/plugins/view/geofamily.py:415
+#: ../src/plugins/view/geoperson.py:461
 #: ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:995
 #: ../src/plugins/view/relview.py:1042
@@ -1586,7 +1590,7 @@ msgid "See details"
 msgstr "Voir les détails"
 
 #: ../src/Utils.py:83
-#: ../src/gui/editors/editperson.py:325
+#: ../src/gui/editors/editperson.py:327
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
 #: ../src/plugins/webreport/NarrativeWeb.py:5385
@@ -1595,7 +1599,7 @@ msgid "male"
 msgstr "masculin"
 
 #: ../src/Utils.py:84
-#: ../src/gui/editors/editperson.py:324
+#: ../src/gui/editors/editperson.py:326
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
 #: ../src/plugins/webreport/NarrativeWeb.py:5386
@@ -1670,13 +1674,13 @@ msgstr "Les données peuvent être récupérées en annulant l'opération, ou en
 #.
 #. -------------------------------------------------------------------------
 #: ../src/Utils.py:216
-#: ../src/gen/lib/date.py:455
-#: ../src/gen/lib/date.py:493
+#: ../src/gen/lib/date.py:456
+#: ../src/gen/lib/date.py:494
 #: ../src/gen/mime/_gnomemime.py:39
 #: ../src/gen/mime/_gnomemime.py:46
 #: ../src/gen/mime/_pythonmime.py:49
 #: ../src/gen/mime/_pythonmime.py:57
-#: ../src/gui/editors/editperson.py:326
+#: ../src/gui/editors/editperson.py:328
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
 #: ../src/plugins/textreport/DetAncestralReport.py:545
@@ -2997,7 +3001,7 @@ msgstr "Nom de famille"
 
 #: ../src/gen/display/name.py:546
 #: ../src/gen/display/name.py:646
-#: ../src/gui/editors/editperson.py:363
+#: ../src/gui/editors/editperson.py:365
 #: ../src/plugins/import/ImportCsv.py:180
 msgid "suffix"
 msgstr "suffixe"
@@ -3077,7 +3081,7 @@ msgstr "reste"
 
 #: ../src/gen/display/name.py:583
 #: ../src/gen/display/name.py:675
-#: ../src/gui/editors/editperson.py:384
+#: ../src/gui/editors/editperson.py:386
 #: ../src/plugins/import/ImportCsv.py:179
 msgid "prefix"
 msgstr "préfixe"
@@ -3223,7 +3227,7 @@ msgstr "Parrainé"
 msgid "Foster"
 msgstr "En nourrice"
 
-#: ../src/gen/lib/date.py:303
+#: ../src/gen/lib/date.py:304
 #, python-format
 msgid "less than %s years"
 msgstr "moins de %s ans"
@@ -3244,11 +3248,11 @@ msgstr "moins de %s ans"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.BEFORE)
 #. self.minmax = (v - Span.BEFORE, v + Span.BEFORE)
-#: ../src/gen/lib/date.py:314
-#: ../src/gen/lib/date.py:367
-#: ../src/gen/lib/date.py:372
-#: ../src/gen/lib/date.py:387
-#: ../src/gen/lib/date.py:429
+#: ../src/gen/lib/date.py:315
+#: ../src/gen/lib/date.py:368
+#: ../src/gen/lib/date.py:373
+#: ../src/gen/lib/date.py:388
+#: ../src/gen/lib/date.py:430
 msgid "more than"
 msgstr "plus de"
 
@@ -3268,11 +3272,11 @@ msgstr "plus de"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.AFTER)
 #. self.minmax = (v - Span.AFTER, v + Span.AFTER)
-#: ../src/gen/lib/date.py:319
-#: ../src/gen/lib/date.py:341
-#: ../src/gen/lib/date.py:351
-#: ../src/gen/lib/date.py:361
-#: ../src/gen/lib/date.py:434
+#: ../src/gen/lib/date.py:320
+#: ../src/gen/lib/date.py:342
+#: ../src/gen/lib/date.py:352
+#: ../src/gen/lib/date.py:362
+#: ../src/gen/lib/date.py:435
 msgid "less than"
 msgstr "moins de"
 
@@ -3284,11 +3288,11 @@ msgstr "moins de"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.ABOUT)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-#: ../src/gen/lib/date.py:325
-#: ../src/gen/lib/date.py:393
-#: ../src/gen/lib/date.py:408
-#: ../src/gen/lib/date.py:413
-#: ../src/gen/lib/date.py:439
+#: ../src/gen/lib/date.py:326
+#: ../src/gen/lib/date.py:394
+#: ../src/gen/lib/date.py:409
+#: ../src/gen/lib/date.py:414
+#: ../src/gen/lib/date.py:440
 msgid "age|about"
 msgstr "environ"
 
@@ -3305,15 +3309,15 @@ msgstr "environ"
 #. v2 = stop1.sortval - start2.sortval # max
 #. self.sort = (v1, v2 - v1)
 #. self.minmax = (v1, v2)
-#: ../src/gen/lib/date.py:334
-#: ../src/gen/lib/date.py:423
-#: ../src/gen/lib/date.py:451
-msgid "between"
-msgstr "entre"
-
 #: ../src/gen/lib/date.py:335
 #: ../src/gen/lib/date.py:424
 #: ../src/gen/lib/date.py:452
+msgid "between"
+msgstr "entre"
+
+#: ../src/gen/lib/date.py:336
+#: ../src/gen/lib/date.py:425
+#: ../src/gen/lib/date.py:453
 #: ../src/plugins/quickview/all_relations.py:283
 #: ../src/plugins/view/relview.py:976
 #: ../src/plugins/webreport/NarrativeWeb.py:1152
@@ -3327,8 +3331,8 @@ msgstr "et"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, Span.AFTER)
 #. self.minmax = (v - Span.ABOUT, v + Span.ABOUT)
-#: ../src/gen/lib/date.py:356
-#: ../src/gen/lib/date.py:403
+#: ../src/gen/lib/date.py:357
+#: ../src/gen/lib/date.py:404
 msgid "less than about"
 msgstr "moins d'environ"
 
@@ -3339,94 +3343,94 @@ msgstr "moins d'environ"
 #. v = self.date1.sortval - self.date2.sortval
 #. self.sort = (v, -Span.BEFORE)
 #. self.minmax = (v - Span.BEFORE, v + Span.ABOUT)
-#: ../src/gen/lib/date.py:382
-#: ../src/gen/lib/date.py:398
+#: ../src/gen/lib/date.py:383
+#: ../src/gen/lib/date.py:399
 msgid "more than about"
 msgstr "plus d'environ"
 
 # âge
-#: ../src/gen/lib/date.py:497
+#: ../src/gen/lib/date.py:498
 #, python-format
 msgid "%d year"
 msgid_plural "%d years"
 msgstr[0] "%d an"
 msgstr[1] "%d ans"
 
-#: ../src/gen/lib/date.py:504
+#: ../src/gen/lib/date.py:505
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d mois"
 msgstr[1] "%d mois"
 
-#: ../src/gen/lib/date.py:511
+#: ../src/gen/lib/date.py:512
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] "%d jour"
 msgstr[1] "%d jours"
 
-#: ../src/gen/lib/date.py:516
+#: ../src/gen/lib/date.py:517
 msgid "0 days"
 msgstr "0 jour"
 
-#: ../src/gen/lib/date.py:663
+#: ../src/gen/lib/date.py:664
 msgid "calendar|Gregorian"
 msgstr "Grégorien"
 
-#: ../src/gen/lib/date.py:664
+#: ../src/gen/lib/date.py:665
 msgid "calendar|Julian"
 msgstr "Julien"
 
-#: ../src/gen/lib/date.py:665
+#: ../src/gen/lib/date.py:666
 msgid "calendar|Hebrew"
 msgstr "Hébreu"
 
-#: ../src/gen/lib/date.py:666
+#: ../src/gen/lib/date.py:667
 msgid "calendar|French Republican"
 msgstr "Républicain (France)"
 
-#: ../src/gen/lib/date.py:667
+#: ../src/gen/lib/date.py:668
 msgid "calendar|Persian"
 msgstr "Persan"
 
-#: ../src/gen/lib/date.py:668
+#: ../src/gen/lib/date.py:669
 msgid "calendar|Islamic"
 msgstr "Islamique"
 
-#: ../src/gen/lib/date.py:669
+#: ../src/gen/lib/date.py:670
 msgid "calendar|Swedish"
 msgstr "Suédois"
 
-#: ../src/gen/lib/date.py:1763
+#: ../src/gen/lib/date.py:1784
 msgid "estimated"
 msgstr "Estimé(e)"
 
-#: ../src/gen/lib/date.py:1763
+#: ../src/gen/lib/date.py:1784
 msgid "calculated"
 msgstr "Calculé(e)"
 
-#: ../src/gen/lib/date.py:1777
+#: ../src/gen/lib/date.py:1798
 msgid "before"
 msgstr "Avant"
 
-#: ../src/gen/lib/date.py:1777
+#: ../src/gen/lib/date.py:1798
 msgid "after"
 msgstr "Après"
 
-#: ../src/gen/lib/date.py:1777
+#: ../src/gen/lib/date.py:1798
 msgid "about"
 msgstr "Vers"
 
-#: ../src/gen/lib/date.py:1778
+#: ../src/gen/lib/date.py:1799
 msgid "range"
 msgstr "Étendu(e)"
 
-#: ../src/gen/lib/date.py:1778
+#: ../src/gen/lib/date.py:1799
 msgid "span"
 msgstr "Incrémenté(e)"
 
-#: ../src/gen/lib/date.py:1778
+#: ../src/gen/lib/date.py:1799
 msgid "textonly"
 msgstr "Texte seulement"
 
@@ -4341,8 +4345,8 @@ msgstr "Le fichier %s est déjà ouvert, fermez-le d'abord."
 #: ../src/docgen/ODSTab.py:506
 #: ../src/plugins/docgen/AsciiDoc.py:151
 #: ../src/plugins/docgen/AsciiDoc.py:154
-#: ../src/plugins/docgen/ODFDoc.py:1191
-#: ../src/plugins/docgen/ODFDoc.py:1194
+#: ../src/plugins/docgen/ODFDoc.py:1192
+#: ../src/plugins/docgen/ODFDoc.py:1195
 #: ../src/plugins/docgen/cairodoc.py:102
 #: ../src/plugins/docgen/cairodoc.py:106
 #: ../src/plugins/docgen/RTFDoc.py:93
@@ -4363,73 +4367,73 @@ msgstr "Le fichier %s est déjà ouvert, fermez-le d'abord."
 msgid "Could not create %s"
 msgstr "Impossible de créer %s"
 
-#: ../src/gen/plug/utils.py:265
+#: ../src/gen/plug/utils.py:266
 msgid "Updated"
 msgstr "Mis à jour"
 
-#: ../src/gen/plug/utils.py:277
+#: ../src/gen/plug/utils.py:278
 msgid "New"
 msgstr "Nouveau"
 
-#: ../src/gen/plug/utils.py:307
-#: ../src/gen/plug/utils.py:314
+#: ../src/gen/plug/utils.py:308
+#: ../src/gen/plug/utils.py:315
 #, python-format
 msgid "Unable to open '%s'"
 msgstr "Impossible d'ouvrir '%s'"
 
-#: ../src/gen/plug/utils.py:320
+#: ../src/gen/plug/utils.py:321
 #, python-format
 msgid "Error in reading '%s'"
 msgstr "Erreur à la lecture de '%s'"
 
-#: ../src/gen/plug/utils.py:331
+#: ../src/gen/plug/utils.py:332
 #, python-format
 msgid "Error: cannot open '%s'"
 msgstr "Erreur : Impossible d'ouvrir '%s'"
 
-#: ../src/gen/plug/utils.py:335
+#: ../src/gen/plug/utils.py:336
 #, python-format
 msgid "Error: unknown file type: '%s'"
 msgstr "Erreur : type de fichier inconnu : '%s'"
 
 # Substantif (GNOME fr)
-#: ../src/gen/plug/utils.py:341
+#: ../src/gen/plug/utils.py:342
 #, python-format
 msgid "Examining '%s'..."
 msgstr "Analyse '%s'..."
 
-#: ../src/gen/plug/utils.py:354
+#: ../src/gen/plug/utils.py:355
 #, python-format
 msgid "Error in '%s' file: cannot load."
 msgstr "Erreur dans le fichier '%s' : impossible à charger."
 
-#: ../src/gen/plug/utils.py:368
+#: ../src/gen/plug/utils.py:369
 #, python-format
 msgid "'%s' is for this version of Gramps."
 msgstr "'%s' est pour cette version de Gramps."
 
-#: ../src/gen/plug/utils.py:372
+#: ../src/gen/plug/utils.py:373
 #, python-format
 msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' n'est PAS pour cette version de Gramps."
 
-#: ../src/gen/plug/utils.py:373
+#: ../src/gen/plug/utils.py:374
 #, python-format
 msgid "It is for version %d.%d"
 msgstr "C'est pour la version %d.%d"
 
-#: ../src/gen/plug/utils.py:380
+#: ../src/gen/plug/utils.py:381
 #, python-format
 msgid "Error: missing gramps_target_version in '%s'..."
 msgstr "Erreur : gramps_target_version manquant dans '%s'..."
 
 # Substantif (GNOME fr)
-#: ../src/gen/plug/utils.py:385
+#: ../src/gen/plug/utils.py:386
 #, python-format
 msgid "Installing '%s'..."
 msgstr "Installation de '%s'..."
 
-#: ../src/gen/plug/utils.py:391
+#: ../src/gen/plug/utils.py:392
 #, python-format
 msgid "Registered '%s'"
 msgstr "'%s' enregistré"
@@ -5048,7 +5052,7 @@ msgstr "Chercheur"
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 #: ../src/gui/configure.py:485
 #: ../src/gui/filtereditor.py:296
-#: ../src/gui/editors/editperson.py:610
+#: ../src/gui/editors/editperson.py:612
 msgid "Media Object"
 msgstr "Objet medium "
 
@@ -6521,7 +6525,7 @@ msgstr "Sélectionner"
 
 #: ../src/gui/grampsgui.py:148
 #: ../src/gui/grampsgui.py:149
-#: ../src/gui/editors/editperson.py:613
+#: ../src/gui/editors/editperson.py:615
 #: ../src/gui/editors/displaytabs/gallerytab.py:136
 #: ../src/plugins/view/mediaview.py:220
 msgid "View"
@@ -7264,12 +7268,12 @@ msgid "New Event"
 msgstr "Nouvel événement"
 
 #: ../src/gui/editors/editevent.py:222
-#: ../src/plugins/view/geoevents.py:323
-#: ../src/plugins/view/geoevents.py:350
-#: ../src/plugins/view/geofamily.py:372
-#: ../src/plugins/view/geoperson.py:411
-#: ../src/plugins/view/geoperson.py:431
-#: ../src/plugins/view/geoperson.py:469
+#: ../src/plugins/view/geoevents.py:337
+#: ../src/plugins/view/geoevents.py:364
+#: ../src/plugins/view/geofamily.py:384
+#: ../src/plugins/view/geoperson.py:422
+#: ../src/plugins/view/geoperson.py:442
+#: ../src/plugins/view/geoperson.py:480
 msgid "Edit Event"
 msgstr "Éditer l'événement"
 
@@ -7288,7 +7292,7 @@ msgstr "Impossible d'enregistrer l'événement. L'identifiant existe déjà."
 
 #: ../src/gui/editors/editevent.py:241
 #: ../src/gui/editors/editmedia.py:280
-#: ../src/gui/editors/editperson.py:806
+#: ../src/gui/editors/editperson.py:808
 #: ../src/gui/editors/editplace.py:303
 #: ../src/gui/editors/editrepository.py:172
 #: ../src/gui/editors/editsource.py:192
@@ -7490,7 +7494,7 @@ msgstr "Nouvelle famille"
 
 #: ../src/gui/editors/editfamily.py:495
 #: ../src/gui/editors/editfamily.py:1052
-#: ../src/plugins/view/geofamily.py:364
+#: ../src/plugins/view/geofamily.py:376
 msgid "Edit Family"
 msgstr "Éditer la famille"
 
@@ -7683,51 +7687,59 @@ msgid "Y coordinate|Y"
 msgstr "Y"
 
 #: ../src/gui/editors/editname.py:119
-#: ../src/gui/editors/editname.py:308
+#: ../src/gui/editors/editname.py:310
 msgid "Name Editor"
 msgstr "Éditeur de nom"
 
+#: ../src/gui/editors/editname.py:158
+msgid "Gramps_3.4_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_3"
+msgstr "Gramps_3.4_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_3/fr"
+
+#: ../src/gui/editors/editname.py:159
+msgid "manpage section id|Name_Editor"
+msgstr "Éditeur de nom"
+
 # call name = prénom dans le context !
-#: ../src/gui/editors/editname.py:169
-#: ../src/gui/editors/editperson.py:302
+#: ../src/gui/editors/editname.py:171
+#: ../src/gui/editors/editperson.py:304
 msgid "Call name must be the given name that is normally used."
 msgstr "Le prénom usuel est la partie du prénom utilisée habituellement."
 
-#: ../src/gui/editors/editname.py:307
+#: ../src/gui/editors/editname.py:309
 msgid "New Name"
 msgstr "Nouveau nom"
 
-#: ../src/gui/editors/editname.py:374
+#: ../src/gui/editors/editname.py:376
 msgid "Break global name grouping?"
 msgstr "Défaire le groupement du nom ?"
 
-#: ../src/gui/editors/editname.py:375
+#: ../src/gui/editors/editname.py:377
 #, python-format
 msgid "All people with the name of %(surname)s will no longer be grouped with the name of %(group_name)s."
 msgstr "Tous les individus portant le nom %(surname)s ne seront plus groupés avec le nom %(group_name)s."
 
-#: ../src/gui/editors/editname.py:379
+#: ../src/gui/editors/editname.py:381
 msgid "Continue"
 msgstr "Continuer"
 
-#: ../src/gui/editors/editname.py:380
+#: ../src/gui/editors/editname.py:382
 msgid "Return to Name Editor"
 msgstr "Retourner à l'éditeur de nom"
 
-#: ../src/gui/editors/editname.py:405
+#: ../src/gui/editors/editname.py:407
 msgid "Group all people with the same name?"
 msgstr "Regrouper tous les individus ayant le même nom ?"
 
-#: ../src/gui/editors/editname.py:406
+#: ../src/gui/editors/editname.py:408
 #, python-format
 msgid "You have the choice of grouping all people with the name of %(surname)s with the name of %(group_name)s, or just mapping this particular name."
 msgstr "Vous pouvez choisir de regrouper tous les individus du nom de %(surname)s avec le nom de %(group_name)s, ou juste d'afficher ce nom particulier."
 
-#: ../src/gui/editors/editname.py:411
+#: ../src/gui/editors/editname.py:413
 msgid "Group all"
 msgstr "Tout grouper"
 
-#: ../src/gui/editors/editname.py:412
+#: ../src/gui/editors/editname.py:414
 msgid "Group this name only"
 msgstr "Grouper ce nom seulement"
 
@@ -7790,29 +7802,38 @@ msgstr "Nouvel individu: %(name)s"
 msgid "New Person"
 msgstr "Nouvel individu"
 
-#: ../src/gui/editors/editperson.py:570
-#: ../src/plugins/view/geofamily.py:368
+#: ../src/gui/editors/editperson.py:233
+msgid "Gramps_3.4_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1"
+msgstr "Gramps_3.4_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_1/fr"
+
+# manuel wiki
+#: ../src/gui/editors/editperson.py:234
+msgid "manpage section id|Editing_information_about_people"
+msgstr "Édition de l'information sur les individus"
+
+#: ../src/gui/editors/editperson.py:572
+#: ../src/plugins/view/geofamily.py:380
 msgid "Edit Person"
 msgstr "Éditeur d'individu"
 
-#: ../src/gui/editors/editperson.py:615
+#: ../src/gui/editors/editperson.py:617
 msgid "Edit Object Properties"
 msgstr "Éditer les propriétés de l'objet"
 
-#: ../src/gui/editors/editperson.py:654
+#: ../src/gui/editors/editperson.py:656
 msgid "Make Active Person"
 msgstr "Rendre l'individu actif"
 
-#: ../src/gui/editors/editperson.py:658
+#: ../src/gui/editors/editperson.py:660
 msgid "Make Home Person"
 msgstr "Définir comme souche"
 
-#: ../src/gui/editors/editperson.py:769
+#: ../src/gui/editors/editperson.py:771
 msgid "Problem changing the gender"
 msgstr "Problème pour changer le genre"
 
 # Substantif (GNOME fr)
-#: ../src/gui/editors/editperson.py:770
+#: ../src/gui/editors/editperson.py:772
 msgid ""
 "Changing the gender caused problems with marriage information.\n"
 "Please check the person's marriages."
@@ -7820,52 +7841,52 @@ msgstr ""
 "Le changement du genre de l'individu a créé une incohérence par rapport aux informations disponibles sur le mariage de cet individu.\n"
 "Assurez-vous de vérifier les informations de mariage."
 
-#: ../src/gui/editors/editperson.py:781
+#: ../src/gui/editors/editperson.py:783
 msgid "Cannot save person"
 msgstr "Impossible d'enregistrer l'individu"
 
-#: ../src/gui/editors/editperson.py:782
+#: ../src/gui/editors/editperson.py:784
 msgid "No data exists for this person. Please enter data or cancel the edit."
 msgstr "Aucune donnée n'existe pour cet individu. Veuillez entrer une donnée ou annuler l'édition."
 
-#: ../src/gui/editors/editperson.py:805
+#: ../src/gui/editors/editperson.py:807
 msgid "Cannot save person. ID already exists."
 msgstr "Impossible d'enregistrer l'individu. L'identifiant existe déjà."
 
 # historique annulation (action passée)
-#: ../src/gui/editors/editperson.py:823
+#: ../src/gui/editors/editperson.py:825
 #, python-format
 msgid "Add Person (%s)"
 msgstr "Ajout de l'individu (%s)"
 
 # historique annulation (action passée)
-#: ../src/gui/editors/editperson.py:829
+#: ../src/gui/editors/editperson.py:831
 #, python-format
 msgid "Edit Person (%s)"
 msgstr "Édition de l'individu (%s)"
 
-#: ../src/gui/editors/editperson.py:920
+#: ../src/gui/editors/editperson.py:922
 #: ../src/gui/editors/displaytabs/gallerytab.py:259
 msgid "Non existing media found in the Gallery"
 msgstr "Objet medium inexistant trouvé dans la galerie"
 
-#: ../src/gui/editors/editperson.py:1056
+#: ../src/gui/editors/editperson.py:1058
 msgid "Unknown gender specified"
 msgstr "Genre inconnu"
 
-#: ../src/gui/editors/editperson.py:1058
+#: ../src/gui/editors/editperson.py:1060
 msgid "The gender of the person is currently unknown. Usually, this is a mistake. Please specify the gender."
 msgstr "Le genre de cet individu est inconnu. Généralement, c'est une erreur. Veuillez spécifier le genre."
 
-#: ../src/gui/editors/editperson.py:1061
+#: ../src/gui/editors/editperson.py:1063
 msgid "_Male"
 msgstr "_Masculin"
 
-#: ../src/gui/editors/editperson.py:1062
+#: ../src/gui/editors/editperson.py:1064
 msgid "_Female"
 msgstr "_Féminin"
 
-#: ../src/gui/editors/editperson.py:1063
+#: ../src/gui/editors/editperson.py:1065
 msgid "_Unknown"
 msgstr "_Inconnu"
 
@@ -7921,8 +7942,8 @@ msgstr "48.21\"E, -18.2412 ou -18:9:48.21)"
 
 #: ../src/gui/editors/editplace.py:229
 #: ../src/plugins/lib/maps/geography.py:882
-#: ../src/plugins/view/geoplaces.py:293
-#: ../src/plugins/view/geoplaces.py:312
+#: ../src/plugins/view/geoplaces.py:304
+#: ../src/plugins/view/geoplaces.py:323
 msgid "Edit Place"
 msgstr "Éditer le lieu"
 
@@ -8208,13 +8229,13 @@ msgstr "_Citations"
 #: ../src/gui/editors/displaytabs/citationembedlist.py:275
 #: ../src/gui/editors/displaytabs/eventembedlist.py:252
 #: ../src/gui/editors/displaytabs/gallerytab.py:332
-#: ../src/plugins/view/citationtreeview.py:447
-#: ../src/plugins/view/citationtreeview.py:502
+#: ../src/plugins/view/citationtreeview.py:448
+#: ../src/plugins/view/citationtreeview.py:503
 msgid "Cannot share this reference"
 msgstr "Impossible de partager cette référence"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:191
-#: ../src/plugins/view/citationtreeview.py:509
+#: ../src/plugins/view/citationtreeview.py:510
 msgid ""
 "This citation cannot be created at this time. Either the associated Source object is already being edited, or another citation associated with the same source is being edited.\n"
 "\n"
@@ -8471,7 +8492,7 @@ msgstr "Définir comme nom par défaut"
 #. -------------------------------------------------------------------------
 #: ../src/gui/editors/displaytabs/namemodel.py:53
 #: ../src/gui/plug/_guioptions.py:1193
-#: ../src/gui/views/listview.py:501
+#: ../src/gui/views/listview.py:502
 #: ../src/gui/views/tags.py:478
 #: ../src/plugins/quickview/all_relations.py:307
 msgid "Yes"
@@ -8479,7 +8500,7 @@ msgstr "Oui"
 
 #: ../src/gui/editors/displaytabs/namemodel.py:54
 #: ../src/gui/plug/_guioptions.py:1192
-#: ../src/gui/views/listview.py:502
+#: ../src/gui/views/listview.py:501
 #: ../src/gui/views/tags.py:479
 #: ../src/plugins/quickview/all_relations.py:311
 msgid "No"
@@ -9350,6 +9371,10 @@ msgstr "Objet actif non-visible"
 #: ../src/gui/views/listview.py:412
 #: ../src/gui/views/navigationview.py:255
 #: ../src/plugins/view/familyview.py:242
+#: ../src/plugins/view/geoevents.py:181
+#: ../src/plugins/view/geofamily.py:181
+#: ../src/plugins/view/geoperson.py:208
+#: ../src/plugins/view/geoplaces.py:181
 msgid "Could Not Set a Bookmark"
 msgstr "Impossible d'établir un signet"
 
@@ -9357,10 +9382,9 @@ msgstr "Impossible d'établir un signet"
 msgid "A bookmark could not be set because nothing was selected."
 msgstr "Impossible de créer un signet car rien n'est sélectionné."
 
-# enlever la référence
 #: ../src/gui/views/listview.py:498
-msgid "Remove selected items?"
-msgstr "Enlever l'article sélectionné ?"
+msgid "Confirm every deletion?"
+msgstr "Confirmer chaque suppression ?"
 
 #: ../src/gui/views/listview.py:499
 msgid "More than one item has been selected for deletion. Ask before deleting each one?"
@@ -9431,6 +9455,10 @@ msgstr "%s a été défini comme signet"
 # doublon de gui/views/listview.py:412 !!!
 #: ../src/gui/views/navigationview.py:256
 #: ../src/plugins/view/familyview.py:243
+#: ../src/plugins/view/geoevents.py:182
+#: ../src/plugins/view/geofamily.py:182
+#: ../src/plugins/view/geoperson.py:209
+#: ../src/plugins/view/geoplaces.py:182
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Impossible de créer un signet car rien n'est sélectionné."
 
@@ -9486,7 +9514,7 @@ msgstr "Vous avez besoin de définir un 'individu souche'."
 msgid "Jump to by Gramps ID"
 msgstr "Aller à l'identifiant Gramps"
 
-#: ../src/gui/views/navigationview.py:371
+#: ../src/gui/views/navigationview.py:370
 #, python-format
 msgid "Error: %s is not a valid Gramps ID"
 msgstr "Erreur : %s n'est pas un ID Gramps valide"
@@ -10625,20 +10653,20 @@ msgstr "Il semble que le répertoire cible est le répertoire de stockage des do
 msgid "Could not create jpeg version of image %(name)s"
 msgstr "Impossible de créer une version jpeg de l'image %(name)s"
 
-#: ../src/plugins/docgen/ODFDoc.py:1218
+#: ../src/plugins/docgen/ODFDoc.py:1219
 #, python-format
 msgid "Could not open %s"
 msgstr "Impossible d'ouvrir %s"
 
 # Contenus sonne vraiment trop étrange.
 # Il s'agit d'un sommaire pour un livre (paragraphes, pages)
-#: ../src/plugins/docgen/ODFDoc.py:1616
+#: ../src/plugins/docgen/ODFDoc.py:1617
 #: ../src/plugins/docgen/cairodoc.py:242
 msgid "Contents"
 msgstr "Sommaire"
 
 # trunk
-#: ../src/plugins/docgen/ODFDoc.py:1655
+#: ../src/plugins/docgen/ODFDoc.py:1656
 #: ../src/plugins/docgen/cairodoc.py:275
 msgid "Index"
 msgstr "Index"
@@ -14748,7 +14776,7 @@ msgstr "Importation de CSV"
 
 # ngettext
 #: ../src/plugins/import/ImportCsv.py:319
-#: ../src/plugins/import/ImportGeneWeb.py:180
+#: ../src/plugins/import/ImportGeneWeb.py:181
 #: ../src/plugins/import/ImportVCard.py:232
 #, python-format
 msgid "Import Complete: %d second"
@@ -14769,9 +14797,13 @@ msgstr "%s ouverture impossible"
 msgid "Error reading GEDCOM file"
 msgstr "Erreur de lecture du fichier GEDCOM"
 
-#: ../src/plugins/import/ImportGeneWeb.py:116
+#: ../src/plugins/import/ImportGeneWeb.py:117
 msgid "GeneWeb import"
 msgstr "Importation GeneWeb"
+
+#: ../src/plugins/import/ImportGeneWeb.py:816
+msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
+msgstr "Date {date} invalide dans {gw_snippet}, conservation des données en texte."
 
 #: ../src/plugins/import/ImportGrdb.py:60
 msgid ""
@@ -14784,8 +14816,8 @@ msgstr ""
 #: ../src/plugins/import/ImportGrdb.py:66
 #: ../src/plugins/import/ImportProGen.py:73
 #: ../src/plugins/import/ImportProGen.py:82
-#: ../src/plugins/import/ImportXml.py:434
-#: ../src/plugins/import/ImportXml.py:437
+#: ../src/plugins/import/ImportXml.py:435
+#: ../src/plugins/import/ImportXml.py:438
 #, python-format
 msgid "%s could not be opened"
 msgstr "Ouverture impossible de %s"
@@ -14910,129 +14942,129 @@ msgstr "L'arbre familial que vous venez d'importer a déjà un chemin de base me
 #.
 #. -------------------------------------------------------------------------
 #. feature requests 2356, 1658: avoid genitive form
-#: ../src/plugins/import/ImportXml.py:86
+#: ../src/plugins/import/ImportXml.py:87
 #: ../src/plugins/tool/EventNames.py:127
 #, python-format
 msgid "%(event_name)s of %(family)s"
 msgstr "%(event_name)s de %(family)s"
 
 #. feature requests 2356, 1658: avoid genitive form
-#: ../src/plugins/import/ImportXml.py:88
+#: ../src/plugins/import/ImportXml.py:89
 #: ../src/plugins/tool/EventNames.py:129
 #, python-format
 msgid "%(event_name)s of %(person)s"
 msgstr "%(event_name)s de %(person)s"
 
-#: ../src/plugins/import/ImportXml.py:135
-#: ../src/plugins/import/ImportXml.py:140
+#: ../src/plugins/import/ImportXml.py:136
+#: ../src/plugins/import/ImportXml.py:141
 #, python-format
 msgid "Error reading %s"
 msgstr "Erreur de lecture de %s"
 
-#: ../src/plugins/import/ImportXml.py:142
+#: ../src/plugins/import/ImportXml.py:143
 msgid "The file is probably either corrupt or not a valid Gramps database."
 msgstr "Ce fichier est probablement corrompu ou n'est pas une base Gramps valide."
 
-#: ../src/plugins/import/ImportXml.py:255
+#: ../src/plugins/import/ImportXml.py:256
 #, python-format
 msgid "  %(id)s - %(text)s with %(id2)s\n"
 msgstr "  %(id)s - %(text)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:261
+#: ../src/plugins/import/ImportXml.py:262
 #, python-format
 msgid "  Family %(id)s with %(id2)s\n"
 msgstr "  Famille %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:264
+#: ../src/plugins/import/ImportXml.py:265
 #, python-format
 msgid "  Source %(id)s with %(id2)s\n"
 msgstr "  Source %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:267
+#: ../src/plugins/import/ImportXml.py:268
 #, python-format
 msgid "  Event %(id)s with %(id2)s\n"
 msgstr "  Événement %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:270
+#: ../src/plugins/import/ImportXml.py:271
 #, python-format
 msgid "  Media Object %(id)s with %(id2)s\n"
 msgstr "  Objet Medium %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:273
+#: ../src/plugins/import/ImportXml.py:274
 #, python-format
 msgid "  Place %(id)s with %(id2)s\n"
 msgstr "  Lieu %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:276
+#: ../src/plugins/import/ImportXml.py:277
 #, python-format
 msgid "  Repository %(id)s with %(id2)s\n"
 msgstr "  Dépôt %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:279
+#: ../src/plugins/import/ImportXml.py:280
 #, python-format
 msgid "  Note %(id)s with %(id2)s\n"
 msgstr "  Note %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:284
+#: ../src/plugins/import/ImportXml.py:285
 #, python-format
 msgid "  Citation %(id)s with %(id2)s\n"
 msgstr "  Citation %(id)s avec %(id2)s\n"
 
-#: ../src/plugins/import/ImportXml.py:292
+#: ../src/plugins/import/ImportXml.py:293
 #, python-format
 msgid "  People: %d\n"
 msgstr "  Individus : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:293
+#: ../src/plugins/import/ImportXml.py:294
 #, python-format
 msgid "  Families: %d\n"
 msgstr "  Familles : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:294
+#: ../src/plugins/import/ImportXml.py:295
 #, python-format
 msgid "  Sources: %d\n"
 msgstr "  Sources : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:295
+#: ../src/plugins/import/ImportXml.py:296
 #, python-format
 msgid "  Events: %d\n"
 msgstr "  Événements : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:296
+#: ../src/plugins/import/ImportXml.py:297
 #, python-format
 msgid "  Media Objects: %d\n"
 msgstr "  Objets Media : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:297
+#: ../src/plugins/import/ImportXml.py:298
 #, python-format
 msgid "  Places: %d\n"
 msgstr "  Lieux : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:298
+#: ../src/plugins/import/ImportXml.py:299
 #, python-format
 msgid "  Repositories: %d\n"
 msgstr "  Dépôts : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:299
+#: ../src/plugins/import/ImportXml.py:300
 #, python-format
 msgid "  Notes: %d\n"
 msgstr "  Notes : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:300
+#: ../src/plugins/import/ImportXml.py:301
 #, python-format
 msgid "  Tags: %d\n"
 msgstr "  Étiquettes : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:301
+#: ../src/plugins/import/ImportXml.py:302
 #, python-format
 msgid "  Citations: %d\n"
 msgstr "  Citations : %d\n"
 
-#: ../src/plugins/import/ImportXml.py:303
+#: ../src/plugins/import/ImportXml.py:304
 msgid "Number of new objects imported:\n"
 msgstr "Nombre de nouveaux objets importés :\n"
 
-#: ../src/plugins/import/ImportXml.py:312
+#: ../src/plugins/import/ImportXml.py:313
 #, python-format
 msgid ""
 "\n"
@@ -15050,7 +15082,7 @@ msgstr ""
 "Le nombre d'ajouts est noté dans les parenthèses.\n"
 "Ces objets 'Inconnu' ont été référencés par la note %s.\n"
 
-#: ../src/plugins/import/ImportXml.py:320
+#: ../src/plugins/import/ImportXml.py:321
 msgid ""
 "\n"
 "Media objects with relative paths have been\n"
@@ -15064,7 +15096,7 @@ msgstr ""
 "relatifs par rapport au répertoire défini dans les\n"
 "préférences, ou, si absent, le répertoire utilisateur.\n"
 
-#: ../src/plugins/import/ImportXml.py:331
+#: ../src/plugins/import/ImportXml.py:332
 msgid ""
 "\n"
 "\n"
@@ -15075,31 +15107,31 @@ msgstr ""
 "Candidats à la fusion :\n"
 
 #. there is no old style XML
-#: ../src/plugins/import/ImportXml.py:775
-#: ../src/plugins/import/ImportXml.py:1204
-#: ../src/plugins/import/ImportXml.py:1454
-#: ../src/plugins/import/ImportXml.py:1829
+#: ../src/plugins/import/ImportXml.py:776
+#: ../src/plugins/import/ImportXml.py:1205
+#: ../src/plugins/import/ImportXml.py:1455
+#: ../src/plugins/import/ImportXml.py:1830
 msgid "The Gramps Xml you are trying to import is malformed."
 msgstr "Le fichier Gramps Xml que vous tentez d'importer est malformé."
 
-#: ../src/plugins/import/ImportXml.py:776
+#: ../src/plugins/import/ImportXml.py:777
 msgid "Attributes that link the data together are missing."
 msgstr "Les attributs qui lient les données sont absents."
 
-#: ../src/plugins/import/ImportXml.py:880
+#: ../src/plugins/import/ImportXml.py:881
 msgid "Gramps XML import"
 msgstr "Importation XML Gramps"
 
-#: ../src/plugins/import/ImportXml.py:910
+#: ../src/plugins/import/ImportXml.py:911
 msgid "Could not change media path"
 msgstr "Impossible de changer le chemin media"
 
-#: ../src/plugins/import/ImportXml.py:911
+#: ../src/plugins/import/ImportXml.py:912
 #, python-format
 msgid "The opened file has media path %s, which conflicts with the media path of the family tree you import into. The original media path has been retained. Copy the files to a correct directory or change the media path in the Preferences."
 msgstr "Le fichier ouvert ayant pour chemin %s, est en conflit avec le chemin media de l'arbre familial. Copier les fichiers du chemin relatif vers un autre emplacement ou changer le chemin media de la base de données dans les Préférences."
 
-#: ../src/plugins/import/ImportXml.py:970
+#: ../src/plugins/import/ImportXml.py:971
 msgid ""
 "The .gramps file you are importing does not contain information about the version of Gramps with, which it was produced.\n"
 "\n"
@@ -15109,16 +15141,16 @@ msgstr ""
 "\n"
 "Votre fichier ne sera pas importé."
 
-#: ../src/plugins/import/ImportXml.py:973
+#: ../src/plugins/import/ImportXml.py:974
 msgid "Import file misses Gramps version"
 msgstr "Le numéro de version Gramps est manquant sur le fichier importé"
 
-#: ../src/plugins/import/ImportXml.py:975
+#: ../src/plugins/import/ImportXml.py:976
 #, python-format
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr "Le fichier .gramps que vous importez provient de la version %(newer)s de Gramps. alors que vous utilisez une ancienne version %(older)s. Ce fichier ne sera pas importé. Mettez à jour vers la dernière version de Gramps et essayez de nouveau."
 
-#: ../src/plugins/import/ImportXml.py:983
+#: ../src/plugins/import/ImportXml.py:984
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
@@ -15135,11 +15167,11 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "pour plus d'informations."
 
-#: ../src/plugins/import/ImportXml.py:995
+#: ../src/plugins/import/ImportXml.py:996
 msgid "The file will not be imported"
 msgstr "Le fichier n'a pas pu être importé"
 
-#: ../src/plugins/import/ImportXml.py:997
+#: ../src/plugins/import/ImportXml.py:998
 #, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -15156,57 +15188,63 @@ msgstr ""
 "  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
 "pour plus d'informations."
 
-#: ../src/plugins/import/ImportXml.py:1010
+#: ../src/plugins/import/ImportXml.py:1011
 msgid "Old xml file"
 msgstr "Ancien fichier xml"
 
-#: ../src/plugins/import/ImportXml.py:1125
-#: ../src/plugins/import/ImportXml.py:2477
+#: ../src/plugins/import/ImportXml.py:1126
+#: ../src/plugins/import/ImportXml.py:2506
 #, python-format
 msgid "Witness name: %s"
 msgstr "Nom du témoin : %s"
 
-#: ../src/plugins/import/ImportXml.py:1205
+#: ../src/plugins/import/ImportXml.py:1206
 msgid "Any event reference must have a 'hlink' attribute."
 msgstr "Toute référence à un événement doit avoir un attribut 'hlink'."
 
-#: ../src/plugins/import/ImportXml.py:1455
+#: ../src/plugins/import/ImportXml.py:1456
 msgid "Any person reference must have a 'hlink' attribute."
 msgstr "Toute référence à un individu doit avoir un attribut 'hlink'."
 
-#: ../src/plugins/import/ImportXml.py:1616
+#: ../src/plugins/import/ImportXml.py:1617
 #, python-format
 msgid "Your family tree groups name \"%(key)s\" together with \"%(parent)s\", did not change this grouping to \"%(value)s\"."
 msgstr "Votre arbre familial groupe le nom \"%(key)s\" avec \"%(parent)s\", ne pas modifier ce regroupement par \"%(value)s\"."
 
-#: ../src/plugins/import/ImportXml.py:1619
+#: ../src/plugins/import/ImportXml.py:1620
 msgid "Gramps ignored a name grouping"
 msgstr "Groupement de noms ignorés"
 
-#: ../src/plugins/import/ImportXml.py:1678
+#: ../src/plugins/import/ImportXml.py:1679
 msgid "Unknown when imported"
 msgstr "Inconnu lors de l'importation"
 
-#: ../src/plugins/import/ImportXml.py:1830
+#: ../src/plugins/import/ImportXml.py:1831
 msgid "Any note reference must have a 'hlink' attribute."
 msgstr "Toute référence à la note doit avoir un attribut 'hlink'."
 
-#: ../src/plugins/import/ImportXml.py:2368
+#. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
+#. but you may re-order them if needed.
+#: ../src/plugins/import/ImportXml.py:2352
+msgid "Invalid date {date} in XML {xml}, preserving XML as text"
+msgstr "Date {date} invalide dans le fichier xml {xml}, conservation des données en texte"
+
+#: ../src/plugins/import/ImportXml.py:2397
 #, python-format
 msgid "Witness comment: %s"
 msgstr "Commentaire du témoin : %s"
 
-#: ../src/plugins/import/ImportXml.py:2998
+#: ../src/plugins/import/ImportXml.py:3027
 #, python-format
 msgid "Error: family '%(family)s' father '%(father)s' does not refer back to the family. Reference added."
 msgstr "Erreur : la référence famille '%(family)s' père '%(father)s' est manquante. Cette référence a été ajoutée."
 
-#: ../src/plugins/import/ImportXml.py:3014
+#: ../src/plugins/import/ImportXml.py:3043
 #, python-format
 msgid "Error: family '%(family)s' mother '%(mother)s' does not refer back to the family. Reference added."
 msgstr "Erreur : la référence famille '%(family)s' mère '%(mother)s' est manquante. Cette référence a été ajoutée."
 
-#: ../src/plugins/import/ImportXml.py:3036
+#: ../src/plugins/import/ImportXml.py:3065
 #, python-format
 msgid "Error: family '%(family)s' child '%(child)s' does not refer back to the family. Reference added."
 msgstr "Erreur : la référence famille '%(family)s' enfant '%(child)s' est manquante. Cette référence a été ajoutée."
@@ -19197,14 +19235,14 @@ msgid "Replace '%(map)s' by =>"
 msgstr "Remplacer '%(map)s' par =>"
 
 #: ../src/plugins/lib/maps/geography.py:886
-#: ../src/plugins/view/geoevents.py:328
-#: ../src/plugins/view/geoevents.py:354
-#: ../src/plugins/view/geofamily.py:376
-#: ../src/plugins/view/geoperson.py:416
-#: ../src/plugins/view/geoperson.py:436
-#: ../src/plugins/view/geoperson.py:473
-#: ../src/plugins/view/geoplaces.py:298
-#: ../src/plugins/view/geoplaces.py:316
+#: ../src/plugins/view/geoevents.py:342
+#: ../src/plugins/view/geoevents.py:368
+#: ../src/plugins/view/geofamily.py:388
+#: ../src/plugins/view/geoperson.py:427
+#: ../src/plugins/view/geoperson.py:447
+#: ../src/plugins/view/geoperson.py:484
+#: ../src/plugins/view/geoplaces.py:309
+#: ../src/plugins/view/geoplaces.py:327
 msgid "Center on this place"
 msgstr "Centrer sur ce lieu"
 
@@ -23192,17 +23230,17 @@ msgid "Collapse all Nodes"
 msgstr "Fermer tous les nœuds"
 
 # trunk
-#: ../src/plugins/view/citationtreeview.py:450
+#: ../src/plugins/view/citationtreeview.py:451
 msgid "Cannot add citation."
 msgstr "Impossible d'ajouter la citation."
 
 # trunk
-#: ../src/plugins/view/citationtreeview.py:451
+#: ../src/plugins/view/citationtreeview.py:452
 msgid "In order to add a citation to an existing source,  you must select a source."
 msgstr "Pour ajouter une citation à une source existante, vous devez sélectionner une source."
 
 # trunk
-#: ../src/plugins/view/citationtreeview.py:519
+#: ../src/plugins/view/citationtreeview.py:520
 msgid ""
 "This source cannot be edited at this time. Either the associated Source object is already being edited, or another citation associated with the same source is being edited.\n"
 "\n"
@@ -23213,32 +23251,32 @@ msgstr ""
 "Pour éditer source, vous devez fermer cette dernière."
 
 # trunk
-#: ../src/plugins/view/citationtreeview.py:532
-#: ../src/plugins/view/citationtreeview.py:552
+#: ../src/plugins/view/citationtreeview.py:533
+#: ../src/plugins/view/citationtreeview.py:553
 #: ../src/plugins/view/citationlistview.py:321
 #: ../src/plugins/view/citationlistview.py:332
 msgid "Cannot merge citations."
 msgstr "Impossible de fusionner les citations."
 
 # trunk
-#: ../src/plugins/view/citationtreeview.py:533
+#: ../src/plugins/view/citationtreeview.py:534
 #: ../src/plugins/view/citationlistview.py:322
 msgid "Exactly two citations must be selected to perform a merge. A second citation can be selected by holding down the control key while clicking on the desired citation."
 msgstr "Exactement deux citations doivent être sélectionnées pour accomplir une fusion. La deuxième citation peut être sélectionnée en maintenant la touche Contrôle (Ctrl) et en cliquant sur la citation désirée."
 
 # trunk
-#: ../src/plugins/view/citationtreeview.py:553
+#: ../src/plugins/view/citationtreeview.py:554
 #: ../src/plugins/view/citationlistview.py:333
 msgid "The two selected citations must have the same source to perform a merge. If you want to merge these two citations, then you must merge the sources first."
 msgstr "Les deux citations sélectionnées doivent avoir la même source pour une fusion. Si vous souhaitez fusionner ces deux citations, alors vous devez d'abord fusionner les sources."
 
 # trunk
-#: ../src/plugins/view/citationtreeview.py:567
+#: ../src/plugins/view/citationtreeview.py:568
 msgid "Cannot perform merge."
 msgstr "Impossible de fusionner."
 
 # trunk
-#: ../src/plugins/view/citationtreeview.py:568
+#: ../src/plugins/view/citationtreeview.py:569
 msgid "Both objects must be of the same type, either both must be sources, or both must be citations."
 msgstr "Les deux objets doivent être du même type, soit tous les deux sont des sources, soit tous les deux sont des citations."
 
@@ -23416,18 +23454,18 @@ msgstr "Une vue permettant de voir tous les lieux de la famille durant son exist
 msgid "Events places map"
 msgstr "Carte des lieux des événements"
 
-#: ../src/plugins/view/geoevents.py:253
+#: ../src/plugins/view/geoevents.py:267
 msgid "incomplete or unreferenced event ?"
 msgstr "Événement incomplet ou non-référencé ?"
 
-#: ../src/plugins/view/geoevents.py:368
+#: ../src/plugins/view/geoevents.py:382
 msgid "Show all events"
 msgstr "Afficher tous les événements"
 
-#: ../src/plugins/view/geoevents.py:372
-#: ../src/plugins/view/geoevents.py:376
-#: ../src/plugins/view/geoplaces.py:334
-#: ../src/plugins/view/geoplaces.py:338
+#: ../src/plugins/view/geoevents.py:386
+#: ../src/plugins/view/geoevents.py:390
+#: ../src/plugins/view/geoplaces.py:345
+#: ../src/plugins/view/geoplaces.py:349
 msgid "Centering on Place"
 msgstr "Centrer sur ce lieu"
 
@@ -23435,34 +23473,34 @@ msgstr "Centrer sur ce lieu"
 msgid "Family places map"
 msgstr "Carte des lieux familiaux"
 
-#: ../src/plugins/view/geofamily.py:217
-#: ../src/plugins/view/geoperson.py:323
+#: ../src/plugins/view/geofamily.py:229
+#: ../src/plugins/view/geoperson.py:334
 #, python-format
 msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
-#: ../src/plugins/view/geofamily.py:300
+#: ../src/plugins/view/geofamily.py:312
 #, python-format
 msgid "Father : %s : %s"
 msgstr "Père : %s : %s"
 
-#: ../src/plugins/view/geofamily.py:307
+#: ../src/plugins/view/geofamily.py:319
 #, python-format
 msgid "Mother : %s : %s"
 msgstr "Mère : %s : %s"
 
-#: ../src/plugins/view/geofamily.py:318
+#: ../src/plugins/view/geofamily.py:330
 #, python-format
 msgid "Child : %(id)s - %(index)d : %(name)s"
 msgstr "Enfant : %(id)s - %(index)d : %(name)s"
 
-#: ../src/plugins/view/geofamily.py:327
+#: ../src/plugins/view/geofamily.py:339
 #, python-format
 msgid "Person : %(id)s %(name)s has no family."
 msgstr "Individu : %(id)s %(name)s n'a pas de famille."
 
-#: ../src/plugins/view/geofamily.py:414
-#: ../src/plugins/view/geoperson.py:459
+#: ../src/plugins/view/geofamily.py:426
+#: ../src/plugins/view/geoperson.py:470
 #: ../src/Filters/Rules/_Rule.py:55
 #: ../src/glade/rule.glade.h:26
 msgid "No description"
@@ -23473,19 +23511,19 @@ msgid "Person places map"
 msgstr "Carte des lieux de l'individu"
 
 # contexte ? à vérifier
-#: ../src/plugins/view/geoperson.py:488
+#: ../src/plugins/view/geoperson.py:499
 msgid "Animate"
 msgstr "Animation"
 
-#: ../src/plugins/view/geoperson.py:511
+#: ../src/plugins/view/geoperson.py:522
 msgid "Animation speed in milliseconds (big value means slower)"
 msgstr "Vitesse de l'animation en millisecondes (élevé veut dire lent)"
 
-#: ../src/plugins/view/geoperson.py:518
+#: ../src/plugins/view/geoperson.py:529
 msgid "How many steps between two markers when we are on large move ?"
 msgstr "Combien d'étapes entre deux marqueurs lors d'un grand déplacement ?"
 
-#: ../src/plugins/view/geoperson.py:525
+#: ../src/plugins/view/geoperson.py:536
 msgid ""
 "The minimum latitude/longitude to select large move.\n"
 "The value is in tenth of degree."
@@ -23493,7 +23531,7 @@ msgstr ""
 "Latitude/longitude minimum pour un grand déplacement.\n"
 "La valeur est en dixième de degré."
 
-#: ../src/plugins/view/geoperson.py:532
+#: ../src/plugins/view/geoperson.py:543
 msgid "The animation parameters"
 msgstr "Les paramètres de l'animation"
 
@@ -23501,7 +23539,7 @@ msgstr "Les paramètres de l'animation"
 msgid "Places map"
 msgstr "Carte de tous les lieux"
 
-#: ../src/plugins/view/geoplaces.py:330
+#: ../src/plugins/view/geoplaces.py:341
 msgid "Show all places"
 msgstr "Afficher tous les lieux"
 
@@ -30611,30 +30649,3 @@ msgstr "<b>Le droit d'utilisation du programme Gramps</b><br/>Gramps est libreme
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de Linux Gramps fonctionne de la même façon quelque soit l'environnement de bureau. Tant que vous avez les bibliothèques GTK installées il fonctionnera bien."
 
-#~ msgid ""
-#~ "The .gramps file you are importing does not contain a valid xml-namespace number.\n"
-#~ "\n"
-#~ "The file will not be imported."
-#~ msgstr ""
-#~ "Le fichier .gramps que vous êtes en train d'importer n'a pas d'espace de nommage XML valide.\n"
-#~ "\n"
-#~ "Votre fichier ne sera pas importé."
-
-#~ msgid "Import file contains unacceptable XML namespace version"
-#~ msgstr "Le fichier importé a un espace de nommage XML non-accepté"
-
-#~ msgid ""
-#~ "\n"
-#~ "%d matches.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "%d correspondances.\n"
-
-#~ msgid "Places places map"
-#~ msgstr "Carte de tous les lieux"
-
-#~ msgid "death-related evidence"
-#~ msgstr "événement attestant le décès"
-
-#~ msgid "birth-related evidence"
-#~ msgstr "événement attestant la naissance"
