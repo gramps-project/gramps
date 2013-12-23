@@ -1281,11 +1281,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if isinstance(key, tuple):
             #create a byte string key, first validity check in python 3!
-            for val in key:
-                if sys.version_info[0] >= 3 and isinstance(val, bytes):
-                    raise DbError(_('An attempt is made to safe a reference key '
-                        'which is partly bytecode, this is not allowed.\n'
-                        'Key is %s') % str(key))
+            if sys.version_info[0] >= 3:
+                for val in key:
+                    if isinstance(val, bytes):
+                        raise DbError(_('An attempt is made to save a reference key '
+                                        'which is partly bytecode, this is not allowed.\n'
+                                        'Key is %s') % str(key))
             key = str(key)
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
