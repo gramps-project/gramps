@@ -294,6 +294,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_person_handles,
                 "add_func": self.add_person,
                 "commit_func": self.commit_person,
+                "remove_func": self.remove_person,
             })
         self._tables['Family'].update(
             {
@@ -304,6 +305,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_family_handles,
                 "add_func": self.add_family,
                 "commit_func": self.commit_family,
+                "remove_func": self.remove_family,
             })
         self._tables['Source'].update(
             {
@@ -314,6 +316,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_source_handles,
                 "add_func": self.add_source,
                 "commit_func": self.commit_source,
+                "remove_func": self.remove_source,
                 })
         self._tables['Citation'].update(
             {
@@ -324,6 +327,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_citation_handles,
                 "add_func": self.add_citation,
                 "commit_func": self.commit_citation,
+                "remove_func": self.remove_citation,
             })
         self._tables['Event'].update(
             {
@@ -334,6 +338,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_event_handles,
                 "add_func": self.add_event,
                 "commit_func": self.commit_event,
+                "remove_func": self.remove_event,
             })
         self._tables['Media'].update(
             {
@@ -344,6 +349,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_media_object_handles,
                 "add_func": self.add_object,
                 "commit_func": self.commit_media_object,
+                "remove_func": self.remove_object,
             })
         self._tables['Place'].update(
             {
@@ -354,6 +360,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_place_handles,
                 "add_func": self.add_place,
                 "commit_func": self.commit_place,
+                "remove_func": self.remove_place,
             })
         self._tables['Repository'].update(
             {
@@ -364,6 +371,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_repository_handles,
                 "add_func": self.add_repository,
                 "commit_func": self.commit_repository,
+                "remove_func": self.remove_repository,
             })
         self._tables['Note'].update(
             {
@@ -374,6 +382,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_note_handles,
                 "add_func": self.add_note,
                 "commit_func": self.commit_note,
+                "remove_func": self.remove_note,
             })
         self._tables['Tag'].update(
             {
@@ -384,6 +393,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 "handles_func": self.get_tag_handles,
                 "add_func": self.add_tag,
                 "commit_func": self.commit_tag,
+                "remove_func": self.remove_tag,
             })
 
         self.secondary_connected = False
@@ -2420,6 +2430,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Get the transaction class associated with this database backend.
         """
         return DbTxn
+
+    def remove_from_database(self, item, transaction):
+        """
+        Remove the item from the database.
+        """
+        self._tables[item.__class__.__name__]["remove_func"](item.handle, transaction)
 
 def _mkname(path, name):
     return os.path.join(path, name + DBEXT)
