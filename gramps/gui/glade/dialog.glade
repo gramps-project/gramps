@@ -426,6 +426,7 @@
                 <property name="ypad">24</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
+                <property name="ellipsize">start</property>
               </object>
               <packing>
                 <property name="left_attach">2</property>
