@@ -435,7 +435,11 @@ class Struct(object):
         """
         # for where eval:
         if attr in self.struct:
-            return Struct(self.getitem(attr), self.db)
+            attr = self.getitem(attr)
+            if isinstance(attr, (list, dict)): # more struct...
+                return Struct(attr, self.db)
+            else: # just a value:
+                return attr
         else:
             raise AttributeError("no such attribute '%s'" % attr)
 
@@ -502,22 +506,22 @@ class Struct(object):
         else:
             return None
 
-    def __setitem__(self, path, value):
+    def setitem(self, path, value, trans=None):
         """
         Given a path to a struct part, set the last part to value.
 
-        >>> Struct(struct).getitem(["primary_name", "surname_list", "0", "surname"])
+        >>> Struct(struct).setitem("primary_name.surname_list.0.surname", "Smith")
         """
-        return self.setitem_from_path(parse(path), value)
+        return self.setitem_from_path(parse(path), value, trans)
 
-    def setitem_from_path(self, path, value):
+    def setitem_from_path(self, path, value, trans=None):
         path, item = path[:-1], path[-1]
         struct = self.struct
         for p in range(len(path)):
             part = path[p]
             struct = self.getitem(part, struct)
             if isinstance(struct, Struct):
-                return struct.setitem_from_path(path[p+1:] + [item], value)
+                return struct.setitem_from_path(path[p+1:] + [item], value, trans)
             if struct is None:
                 return None
         # struct is set
@@ -534,11 +538,22 @@ class Struct(object):
             setattr(struct, item, value)
         else:
             return
-        self.update_db()
+        self.update_db(trans)
 
-    def update_db(self):
+    def update_db(self, trans=None):
         if self.db:
-            with self.transaction("Struct Update", self.db) as trans:
+            if trans is None:
+                with self.transaction("Struct Update", self.db):
+                    new_obj = from_struct(self.struct)
+                    name, handle = self.struct["_class"], self.struct["handle"]
+                    old_obj = self.db.get_from_name_and_handle(name, handle)
+                    if old_obj:
+                        commit_func = self.db._tables[name]["commit_func"]
+                        commit_func(new_obj, trans)
+                    else:
+                        add_func = self.db._tables[name]["add_func"]
+                        add_func(new_obj, trans)
+            else:
                 new_obj = from_struct(self.struct)
                 name, handle = self.struct["_class"], self.struct["handle"]
                 old_obj = self.db.get_from_name_and_handle(name, handle)
