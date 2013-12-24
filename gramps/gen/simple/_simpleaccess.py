@@ -838,6 +838,72 @@ class SimpleAccess(object):
         return self.__all_objects(self.dbase.get_source_cursor, 
                                   self.dbase.get_source_from_handle)
 
+    def all_citations(self):
+        """
+        Return all the citations in the database, one at a time as an iterator.
+        The user can treat this just like a list. For example::
+
+        :return: list of citations in the database
+        :rtype: list
+        """
+        return self.__all_objects(self.dbase.get_citation_cursor, 
+                                  self.dbase.get_citation_from_handle)
+
+    def all_repositories(self):
+        """
+        Return all the repositories in the database, one at a time as an iterator.
+        The user can treat this just like a list. For example::
+
+        :return: list of repositories in the database
+        :rtype: list
+        """
+        return self.__all_objects(self.dbase.get_repsoitory_cursor, 
+                                  self.dbase.get_repository_from_handle)
+
+    def all_media(self):
+        """
+        Return all the media in the database, one at a time as an iterator.
+        The user can treat this just like a list. For example::
+
+        :return: list of media in the database
+        :rtype: list
+        """
+        return self.__all_objects(self.dbase.get_media_cursor, 
+                                  self.dbase.get_object_from_handle)
+
+    def all_places(self):
+        """
+        Return all the places in the database, one at a time as an iterator.
+        The user can treat this just like a list. For example::
+
+        :return: list of places in the database
+        :rtype: list
+        """
+        return self.__all_objects(self.dbase.get_place_cursor, 
+                                  self.dbase.get_place_from_handle)
+
+    def all_notes(self):
+        """
+        Return all the notes in the database, one at a time as an iterator.
+        The user can treat this just like a list. For example::
+
+        :return: list of notes in the database
+        :rtype: list
+        """
+        return self.__all_objects(self.dbase.get_note_cursor, 
+                                  self.dbase.get_note_from_handle)
+
+    def all_tags(self):
+        """
+        Return all the tags in the database, one at a time as an iterator.
+        The user can treat this just like a list. For example::
+
+        :return: list of tags in the database
+        :rtype: list
+        """
+        return self.__all_objects(self.dbase.get_tag_cursor, 
+                                  self.dbase.get_tag_from_handle)
+
     def title(self, source):
         """
         Return the title of the source.
