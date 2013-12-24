@@ -36,14 +36,16 @@ import time
 import re
 from . import DbReadBase, DbWriteBase, DbTxn
 from . import (PERSON_KEY,
-                    FAMILY_KEY,
-                    CITATION_KEY,
-                    SOURCE_KEY,
-                    EVENT_KEY,
-                    MEDIA_KEY,
-                    PLACE_KEY,
-                    REPOSITORY_KEY,
-                    NOTE_KEY)
+               FAMILY_KEY,
+               CITATION_KEY,
+               SOURCE_KEY,
+               EVENT_KEY,
+               MEDIA_KEY,
+               PLACE_KEY,
+               REPOSITORY_KEY,
+               NOTE_KEY,
+               TAG_KEY)
+
 from ..utils.id import create_id
 from ..lib.researcher import Researcher
 from ..lib.mediaobj import MediaObject
@@ -707,34 +709,34 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         return len(self.repository_map)
 
     def get_place_cursor(self):
-        return Cursor(self.place_map, self.get_raw_place_data).iter()
+        return Cursor(self.place_map, self.get_raw_place_data)
 
     def get_person_cursor(self):
-        return Cursor(self.person_map, self.get_raw_person_data).iter()
+        return Cursor(self.person_map, self.get_raw_person_data)
 
     def get_family_cursor(self):
-        return Cursor(self.family_map, self.get_raw_family_data).iter()
+        return Cursor(self.family_map, self.get_raw_family_data)
 
     def get_event_cursor(self):
-        return Cursor(self.event_map, self.get_raw_event_data).iter()
+        return Cursor(self.event_map, self.get_raw_event_data)
 
     def get_note_cursor(self):
-        return Cursor(self.note_map, self.get_raw_note_data).iter()
+        return Cursor(self.note_map, self.get_raw_note_data)
 
     def get_tag_cursor(self):
-        return Cursor(self.tag_map, self.get_raw_tag_data).iter()
+        return Cursor(self.tag_map, self.get_raw_tag_data)
 
     def get_repository_cursor(self):
-        return Cursor(self.repository_map, self.get_raw_repository_data).iter()
+        return Cursor(self.repository_map, self.get_raw_repository_data)
 
     def get_media_cursor(self):
-        return Cursor(self.media_map, self.get_raw_object_data).iter()
+        return Cursor(self.media_map, self.get_raw_object_data)
 
     def get_citation_cursor(self):
-        return Cursor(self.citation_map, self.get_raw_citation_data).iter()
+        return Cursor(self.citation_map, self.get_raw_citation_data)
 
     def get_source_cursor(self):
-        return Cursor(self.source_map, self.get_raw_source_data).iter()
+        return Cursor(self.source_map, self.get_raw_source_data)
 
     def has_gramps_id(self, obj_key, gramps_id):
         key2table = {
@@ -1031,3 +1033,179 @@ class DictionaryDb(DbWriteBase, DbReadBase):
             return self._tables[table_name]["gramps_id_func"](gramps_id)
         return None
 
+    def remove_person(self, handle, transaction):
+        """
+        Remove the Person specified by the database handle from the database, 
+        preserving the change in the passed transaction. 
+        """
+
+        if self.readonly or not handle:
+            return
+        person = self.get_person_from_handle(handle)
+        #self.genderStats.uncount_person (person)
+        #self.remove_from_surname_list(person)
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
+        if transaction.batch:
+            with BSDDBTxn(self.env, self.person_map) as txn:            
+                self.delete_primary_from_reference_map(handle, transaction,
+                                                       txn=txn.txn)
+                txn.delete(handle)
+        else:
+            self.delete_primary_from_reference_map(handle, transaction,
+                                                   txn=self.txn)
+            self.person_map.delete(handle, txn=self.txn)
+            transaction.add(PERSON_KEY, TXNDEL, handle, person.serialize(), None)
+
+    def remove_source(self, handle, transaction):
+        """
+        Remove the Source specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.source_map, 
+                              SOURCE_KEY)
+
+    def remove_citation(self, handle, transaction):
+        """
+        Remove the Citation specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.citation_map, 
+                              CITATION_KEY)
+
+    def remove_event(self, handle, transaction):
+        """
+        Remove the Event specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.event_map, 
+                              EVENT_KEY)
+
+    def remove_object(self, handle, transaction):
+        """
+        Remove the MediaObjectPerson specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.media_map, 
+                              MEDIA_KEY)
+
+    def remove_place(self, handle, transaction):
+        """
+        Remove the Place specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.place_map, 
+                              PLACE_KEY)
+
+    def remove_family(self, handle, transaction):
+        """
+        Remove the Family specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.family_map, 
+                              FAMILY_KEY)
+
+    def remove_repository(self, handle, transaction):
+        """
+        Remove the Repository specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.repository_map, 
+                              REPOSITORY_KEY)
+
+    def remove_note(self, handle, transaction):
+        """
+        Remove the Note specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.note_map, 
+                              NOTE_KEY)
+
+    def remove_tag(self, handle, transaction):
+        """
+        Remove the Tag specified by the database handle from the
+        database, preserving the change in the passed transaction. 
+        """
+        self.__do_remove(handle, transaction, self.tag_map, 
+                              TAG_KEY)
+
+    def __do_remove(self, handle, transaction, data_map, key):
+        if self.readonly or not handle:
+            return
+
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
+        if transaction.batch:
+            with BSDDBTxn(self.env, data_map) as txn:
+                self.delete_primary_from_reference_map(handle, transaction,
+                                                        txn=txn.txn)
+                txn.delete(handle)
+        else:
+            self.delete_primary_from_reference_map(handle, transaction,
+                                                   txn=self.txn)
+            old_data = data_map.get(handle, txn=self.txn)
+            data_map.delete(handle, txn=self.txn)
+            transaction.add(key, TXNDEL, handle, old_data, None)
+
+    def delete_primary_from_reference_map(self, handle, transaction, txn=None):
+        """
+        Remove all references to the primary object from the reference_map.
+        handle should be utf-8
+        """
+        primary_cur = self.get_reference_map_primary_cursor()
+
+        try:
+            ret = primary_cur.set(handle)
+        except:
+            ret = None
+        
+        remove_list = set()
+        while (ret is not None):
+            (key, data) = ret
+            
+            # data values are of the form:
+            #   ((primary_object_class_name, primary_object_handle),
+            #    (referenced_object_class_name, referenced_object_handle))
+            
+            # so we need the second tuple give us a reference that we can
+            # combine with the primary_handle to get the main key.
+            if sys.version_info[0] < 3:
+                #handle should be in python 2 str
+                main_key = (handle, pickle.loads(data)[1][1])
+            else:
+                #python 3 work internally with unicode
+                main_key = (handle.decode('utf-8'), pickle.loads(data)[1][1])
+            
+            # The trick is not to remove while inside the cursor,
+            # but collect them all and remove after the cursor is closed
+            remove_list.add(main_key)
+
+            ret = primary_cur.next_dup()
+
+        primary_cur.close()
+
+        # Now that the cursor is closed, we can remove things
+        for main_key in remove_list:
+            self.__remove_reference(main_key, transaction, txn)
+
+    def __remove_reference(self, key, transaction, txn):
+        """
+        Remove the reference specified by the key, preserving the change in 
+        the passed transaction.
+        """
+        if isinstance(key, tuple):
+            #create a byte string key, first validity check in python 3!
+            for val in key:
+                if sys.version_info[0] >= 3 and isinstance(val, bytes):
+                    raise DbError(_('An attempt is made to save a reference key '
+                        'which is partly bytecode, this is not allowed.\n'
+                        'Key is %s') % str(key))
+            key = str(key)
+        if isinstance(key, UNITYPE):
+            key = key.encode('utf-8')
+        if not self.readonly:
+            if not transaction.batch:
+                old_data = self.reference_map.get(key, txn=txn)
+                transaction.add(REFERENCE_KEY, TXNDEL, key, old_data, None)
+                #transaction.reference_del.append(str(key))
+            self.reference_map.delete(key, txn=txn)

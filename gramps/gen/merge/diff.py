@@ -550,6 +550,8 @@ class Struct(object):
                     new_obj = from_struct(self.struct)
                     name, handle = self.struct["_class"], self.struct["handle"]
                     old_obj = self.db.get_from_name_and_handle(name, handle)
+                    # FIXME: this needs to find the closest _class before each diff
+                    # and commit that, not the topmost _class
                     if old_obj:
                         commit_func = self.db._tables[name]["commit_func"]
                         commit_func(new_obj, trans)
