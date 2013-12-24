@@ -70,7 +70,8 @@ class RefBase(object):
         :returns: Returns a struct containing the data of the object.
         :rtype: str
         """
-        return self.ref
+        ## Return name of referenced item (remove "Ref" from name)
+        return Handle(self.__class__.__name__[:-3], self.ref)
 
     @classmethod
     def from_struct(cls, struct):
