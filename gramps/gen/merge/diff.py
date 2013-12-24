@@ -475,7 +475,10 @@ class Struct(object):
         """
         if hasattr(item, "classname") and self.db:
             obj = self.db.get_from_name_and_handle(item.classname, str(item))
-            return Struct(obj.to_struct(), self.db)
+            if obj:
+                return Struct(obj.to_struct(), self.db)
+            else:
+                return None
         else:
             return item
 
