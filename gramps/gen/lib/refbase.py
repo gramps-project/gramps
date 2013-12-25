@@ -80,7 +80,7 @@ class RefBase(object):
 
         :returns: Returns a serialized object
         """
-        return struct
+        return str(struct)
 
     def unserialize(self, data):
         """

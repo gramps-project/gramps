@@ -343,7 +343,7 @@ def from_struct(struct):
                 return Note.create(Note.from_struct(struct))
             elif struct["_class"] == "Tag":
                 return Tag.create(Tag.from_struct(struct))
-    raise AttributeError("invalid struct")
+    raise AttributeError("invalid struct: %s" % struct)
 
 def get_dependencies(struct):
     """
@@ -475,16 +475,18 @@ class Struct(object):
         """
         If the item is a handle, look up reference object.
         """
-        if hasattr(item, "classname") and self.db:
+        if hasattr(item, "classname") and self.db: # HandleClass
             obj = self.db.get_from_name_and_handle(item.classname, str(item))
             if obj:
                 return Struct(obj.to_struct(), self.db)
             else:
                 return None
+        elif isinstance(item, dict):
+            return Struct(item, self.db)
         else:
             return item
 
-    def getitem(self, item, struct=None): 
+    def getitem(self, item, struct=None, ref_struct=True): 
         """
         >>> Struct(struct).getitem("primary_name")
         {...}
@@ -500,7 +502,10 @@ class Struct(object):
                 return None
         elif isinstance(struct, dict):
             if item in struct.keys():
-                return self.get_ref_struct(struct[item])
+                if ref_struct:
+                    return self.get_ref_struct(struct[item])
+                else:
+                    return struct[item]
             else:
                 return None
         elif hasattr(struct, item):
@@ -524,7 +529,7 @@ class Struct(object):
         struct = self.struct
         for p in range(len(path)):
             part = path[p]
-            struct = self.getitem(part, struct)
+            struct = self.getitem(part, struct, ref_struct=False) # just get dicts, no Struct
             if isinstance(struct, Struct):
                 return struct.setitem_from_path(path[p+1:] + [item], value, trans)
             if struct is None:
