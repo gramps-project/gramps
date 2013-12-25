@@ -546,7 +546,7 @@ class Struct(object):
     def update_db(self, trans=None):
         if self.db:
             if trans is None:
-                with self.transaction("Struct Update", self.db):
+                with self.transaction("Struct Update", self.db) as trans:
                     new_obj = from_struct(self.struct)
                     name, handle = self.struct["_class"], self.struct["handle"]
                     old_obj = self.db.get_from_name_and_handle(name, handle)
