@@ -447,27 +447,29 @@ class Struct(object):
         """
         Given a path to a struct part, return the part, or None.
 
-        >>> Struct(struct)["primary_name.surname_list.0.surname"]
+        >>> Struct(struct)["primary_name"]
         """
         # For where eval:
-        if isinstance(path, int):
-            return Struct(self.struct[path], self.db)
-        # Work way down to last part:
-        return self.getitem_from_path(parse(path))
+        return self.getitem(path)
 
-    def getitem_from_path(self, path):
-        """
-        Given a path that is already parsed, return item.
-        """
-        struct = self.struct
-        for p in range(len(path)):
-            part = path[p]
-            struct = self.getitem(part, struct)
-            if isinstance(struct, Struct):
-                return struct.getitem_from_path(path[p+1:])
-            if struct is None:
-                return None
-        return struct
+    #     if isinstance(path, int):
+    #         return self.get_ref_struct(self.struct[path])
+    #     # Work way down to last part:
+    #     return self.getitem_from_path(parse(path))
+
+    # def getitem_from_path(self, path):
+    #     """
+    #     Given a path that is already parsed, return item.
+    #     """
+    #     struct = self.struct
+    #     for p in range(len(path)):
+    #         part = path[p]
+    #         struct = self.getitem(part, struct)
+    #         if isinstance(struct, Struct):
+    #             return struct.getitem_from_path(path[p+1:])
+    #         if struct is None:
+    #             return None
+    #     return struct
 
     def get_ref_struct(self, item):
         """
