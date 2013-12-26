@@ -123,23 +123,26 @@ def get_schema(cls):
     
 def parse(string):
     """
-    Break a string up into a struct-path:
+    Break a string up into a struct-path. Used by get_schema() and setitem().
 
-    >>> parse("primary.first_name.startswith('Sarah')")
+    >>> parse("primary_name.first_name.startswith('Sarah')")
     ["primary_name", "first_name", "startswith", "('Sarah')"]
+    >>> parse("primary_name.surname_list[0].surname.startswith('Smith')")
+    ["primary_name", "surname_list", "[0]", "surname", "startswith", "('Smith')"]
     """
+    # FIXME: handle nested same-structures, (len(list) + 1)
     retval = []
     stack = []
     current = ""
     for p in range(len(string)):
         c = string[p]
-        if c == ")":
-            if stack and stack[-1] == "(": # end 
+        if c == "]":
+            if stack and stack[-1] == "[": # end 
                 stack.pop(-1)
             current += c
             retval.append(current)
             current = ""
-        elif c == "(":
+        elif c == "[":
             stack.append(c)
             retval.append(current)
             current = ""
@@ -148,7 +151,7 @@ def parse(string):
             if stack and stack[-1] == c: # end 
                 stack.pop(-1)
                 current += c
-                if stack and stack[-1] in ["'", '"', '(']: # in quote or args
+                if stack and stack[-1] in ["'", '"', '[']: # in quote or args
                     pass
                 else:
                     current += c
@@ -157,12 +160,11 @@ def parse(string):
             else:                        # start
                 stack.append(c)
                 current += c
-        elif stack and stack[-1] in ["'", '"', '(']: # in quote or args
-            current += c
-        elif c in [".", "[", "]"]:
-            if current:
-                retval.append(current)
+        elif c == ".":
+            retval.append(current)
             current = ""
+        elif stack and stack[-1] in ["'", '"', '[']: # in quote or args
+            current += c
         else:
             current += c
     if current:
@@ -369,11 +371,11 @@ class Struct(object):
     """
     Class for getting and setting parts of a struct by dotted path.
 
-    >>> s = Struct({"gramps_id": "I0001", ...})
-    >>> s["primary_name.surname_list.0.surname"]
+    >>> s = Struct({"gramps_id": "I0001", ...}, database)
+    >>> s.primary_name.surname_list[0].surname
     Jones
-    >>> s["primary_name.surname_list.0.surname"] = "Smith"
-    >>> s["primary_name.surname_list.0.surname"]
+    >>> s.primary_name.surname_list[0].surname = "Smith"
+    >>> s.primary_name.surname_list[0]surname
     Smith
     """
     def __init__(self, struct, db=None):
@@ -429,32 +431,42 @@ class Struct(object):
     def __getattr__(self, attr):
         """
         Called when getattr fails. Lookup attr in struct; returns Struct
-        if more struct.  This is used only in eval for where clause. 
+        if more struct.  
+
+        >>> Struct({}, db).primary_name
+        returns: Struct([], db) or value
+
+        struct can be list/tuple, dict with _class, or value (including dict).
+
         self.setitem_from_path(path, v) should be used to set value of 
         item.
         """
-        # for where eval:
-        if attr in self.struct:
-            attr = self.getitem(attr)
-            if isinstance(attr, (list, tuple, dict)): # more struct...
-                return Struct(attr, self.db)
-            elif isinstance(attr, HandleClass): # more struct...
-                return self.get_ref_struct(attr)
-            else: # just a value:
-                return attr
+        if isinstance(self.struct, dict) and "_class" in self.struct.keys():
+            # this is representing an object
+            if attr in self.struct.keys():
+                return self.handle_join(self.struct[attr])
+            else:
+                raise AttributeError("attempt to access a property of an object: '%s', '%s'" % (self.struct, attr))
+        elif isinstance(self.struct, HandleClass):
+            struct = self.handle_join(self.struct)
+            return getattr(struct, attr)
         else:
-            raise AttributeError("no such attribute '%s'" % attr)
+            # better be a property of the list/tuple/dict/value:
+            return getattr(self.struct, attr)
 
-    def __getitem__(self, item): 
+    def __getitem__(self, item):
         """
-        Given a path to a struct part, return the part, or None.
+        Called when getitem fails. Lookup item in struct; returns Struct
+        if more struct.  
 
-        >>> Struct(struct)["primary_name"]
+        >>> Struct({}, db)[12]
+        returns: Struct([], db) or value
+
+        struct can be list/tuple, dict with _class, or value (including dict).
         """
-        # For where eval:
-        return self.getitem(item)
+        return self.handle_join(self.struct[item])
 
-    def get_ref_struct(self, item):
+    def handle_join(self, item):
         """
         If the item is a handle, look up reference object.
         """
@@ -463,38 +475,13 @@ class Struct(object):
             if obj:
                 return Struct(obj.to_struct(), self.db)
             else:
-                return None
-        elif isinstance(item, (dict, tuple, list)):
+                raise AttributeError("missing object: %s" % item)
+        elif isinstance(item, (list, tuple)):
+            return Struct(item, self.db)
+        elif isinstance(item, dict) and "_class" in item.keys():
             return Struct(item, self.db)
         else:
             return item
-
-    def getitem(self, item, struct=None, ref_struct=True): 
-        """
-        >>> Struct(struct).getitem("primary_name")
-        {...}
-        """
-        if struct is None:
-            struct = self.struct
-        # Get part
-        if isinstance(struct, (list, tuple, tuple)):
-            pos = int(item)
-            if pos < len(struct):
-                return self.get_ref_struct(struct[int(item)])
-            else:
-                return None
-        elif isinstance(struct, dict):
-            if item in struct.keys():
-                if ref_struct:
-                    return self.get_ref_struct(struct[item])
-                else:
-                    return struct[item]
-            else:
-                return None
-        elif hasattr(struct, item):
-            return Struct(getattr(struct, item), self.db)
-        else:
-            return None
 
     def setitem(self, path, value, trans=None):
         """
@@ -505,15 +492,22 @@ class Struct(object):
         return self.setitem_from_path(parse(path), value, trans)
 
     def setitem_from_path(self, path, value, trans=None):
+        """
+        Given a path to a struct part, set the last part to value.
+
+        >>> Struct(struct).setitem_from_path(["primary_name", "surname_list", "[0]", "surname"], "Smith", transaction)
+        """
         path, item = path[:-1], path[-1]
         struct = self.struct
+        # FIXME: handle assignment on join on HandleClass
         for p in range(len(path)):
             part = path[p]
-            struct = self.getitem(part, struct, ref_struct=False) # just get dicts, no Struct
-            if isinstance(struct, Struct):
-                return struct.setitem_from_path(path[p+1:] + [item], value, trans)
-            if struct is None:
-                return None
+            if part.startswith("["): # getitem
+                struct = struct[eval(part[1:-1])] # for int or string use
+            else:                    # getattr
+                struct = struct[part]
+            if struct is None:       # invalid part to set, skip
+                return
         # struct is set
         if isinstance(struct, (list, tuple)):
             pos = int(item)
@@ -522,8 +516,6 @@ class Struct(object):
         elif isinstance(struct, dict):
             if item in struct.keys():
                 struct[item] = value
-            else:
-                raise AttributeError("no such property: '%s'" % item)
         elif hasattr(struct, item):
             setattr(struct, item, value)
         else:
@@ -537,7 +529,7 @@ class Struct(object):
                     new_obj = from_struct(self.struct)
                     name, handle = self.struct["_class"], self.struct["handle"]
                     old_obj = self.db.get_from_name_and_handle(name, handle)
-                    # FIXME: this needs to find the closest _class before each diff
+                    # FIXME: this needs to find the closest primary _class before each diff
                     # and commit that, not the topmost _class
                     if old_obj:
                         commit_func = self.db._tables[name]["commit_func"]
