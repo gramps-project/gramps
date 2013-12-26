@@ -436,52 +436,35 @@ class Struct(object):
         # for where eval:
         if attr in self.struct:
             attr = self.getitem(attr)
-            if isinstance(attr, (list, dict)): # more struct...
+            if isinstance(attr, (list, tuple, dict)): # more struct...
                 return Struct(attr, self.db)
+            elif isinstance(attr, HandleClass): # more struct...
+                return self.get_ref_struct(attr)
             else: # just a value:
                 return attr
         else:
             raise AttributeError("no such attribute '%s'" % attr)
 
-    def __getitem__(self, path): 
+    def __getitem__(self, item): 
         """
         Given a path to a struct part, return the part, or None.
 
         >>> Struct(struct)["primary_name"]
         """
         # For where eval:
-        return self.getitem(path)
-
-    #     if isinstance(path, int):
-    #         return self.get_ref_struct(self.struct[path])
-    #     # Work way down to last part:
-    #     return self.getitem_from_path(parse(path))
-
-    # def getitem_from_path(self, path):
-    #     """
-    #     Given a path that is already parsed, return item.
-    #     """
-    #     struct = self.struct
-    #     for p in range(len(path)):
-    #         part = path[p]
-    #         struct = self.getitem(part, struct)
-    #         if isinstance(struct, Struct):
-    #             return struct.getitem_from_path(path[p+1:])
-    #         if struct is None:
-    #             return None
-    #     return struct
+        return self.getitem(item)
 
     def get_ref_struct(self, item):
         """
         If the item is a handle, look up reference object.
         """
-        if hasattr(item, "classname") and self.db: # HandleClass
+        if isinstance(item, HandleClass) and self.db: 
             obj = self.db.get_from_name_and_handle(item.classname, str(item))
             if obj:
                 return Struct(obj.to_struct(), self.db)
             else:
                 return None
-        elif isinstance(item, dict):
+        elif isinstance(item, (dict, tuple, list)):
             return Struct(item, self.db)
         else:
             return item
@@ -494,7 +477,7 @@ class Struct(object):
         if struct is None:
             struct = self.struct
         # Get part
-        if isinstance(struct, (list, tuple)):
+        if isinstance(struct, (list, tuple, tuple)):
             pos = int(item)
             if pos < len(struct):
                 return self.get_ref_struct(struct[int(item)])
@@ -509,10 +492,7 @@ class Struct(object):
             else:
                 return None
         elif hasattr(struct, item):
-            return getattr(struct, item)
-        elif item.startswith("("):
-            args = eval(item[1:-1] + ",") # tuple of args
-            return struct(*args)
+            return Struct(getattr(struct, item), self.db)
         else:
             return None
 
