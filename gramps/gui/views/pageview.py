@@ -214,12 +214,6 @@ class PageView(DbGUIElement):
         special control characters, like control+c (copy) or control+v
         (paste).
         """
-        if self.active:
-            if event.type == Gdk.EventType.KEY_PRESS:
-                if (event.keyval == Gdk.KEY_v and 
-                    (event.get_state() & Gdk.ModifierType.CONTROL_MASK)):
-                    self.call_paste()
-                    return True
         return False
 
     def copy_to_clipboard(self, objclass, handles):
