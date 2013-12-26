@@ -169,7 +169,6 @@ class GeoFamily(GeoGraphyView):
 
     def add_bookmark(self, obj):
         mlist = self.selected_handles()
-        print mlist
         if mlist:
             self.bookmarks.add(mlist[0])
         else:
