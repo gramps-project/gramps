@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2007  Donald N. Allingham
+# Copyright (C) 2013       Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,8 +18,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
-# $Id$
 
 # Written by Alex Roitman
 
@@ -40,7 +39,8 @@ try:
 except:
     use_lock = False
 
-from .const import HOME_DIR
+from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -184,26 +184,23 @@ class RecentFiles(object):
         """
         Saves the current Gramps RecentFiles collection to the associated file.
         """
-        xml_file = open(os.path.expanduser(GRAMPS_FILENAME),'w')
-
-        if use_lock:
-            fcntl.lockf(xml_file,fcntl.LOCK_EX)
-        xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
-        xml_file.write('<RecentFiles>\n')
-        index = 0
-        for item in self.gramps_recent_files:
-            index += 1
-            if index > MAX_GRAMPS_ITEMS:
-                break
-            xml_file.write('  <RecentItem>\n')
-            xml_file.write('    <Path><![CDATA[%s]]></Path>\n' % item.get_path())
-            xml_file.write('    <Name><![CDATA[%s]]></Name>\n' % item.get_name())
-            xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
-            xml_file.write('  </RecentItem>\n')
-        xml_file.write('</RecentFiles>\n')
-        if use_lock:
-            fcntl.lockf(xml_file,fcntl.LOCK_UN)
-        xml_file.close()
+        with open(os.path.expanduser(GRAMPS_FILENAME), 'w') as xml_file:
+            if use_lock:
+                fcntl.lockf(xml_file,fcntl.LOCK_EX)
+            xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
+            xml_file.write('<RecentFiles>\n')
+            index = 0
+            for item in self.gramps_recent_files:
+                index += 1
+                if index > MAX_GRAMPS_ITEMS:
+                    break
+                xml_file.write('  <RecentItem>\n')
+                xml_file.write('    <Path><![CDATA[%s]]></Path>\n' % item.get_path())
+                xml_file.write('    <Name><![CDATA[%s]]></Name>\n' % item.get_name())
+                xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
+                xml_file.write('  </RecentItem>\n')
+            xml_file.write('</RecentFiles>\n')
+            # all advisory locks on a file are released on close
 
 #-------------------------------------------------------------------------
 #
@@ -218,36 +215,34 @@ class RecentParser(object):
     def __init__(self):
         self.recent_files = []
 
-        if not os.path.exists(os.path.expanduser(GRAMPS_FILENAME)):
+        fname = os.path.expanduser(GRAMPS_FILENAME)
+        if not os.path.exists(fname):
             return # it's the first time gramps has ever been run
 
-        xml_file = None
-        # Python3's expat wants bytes, Python2's wants a string.
         try:
-            if sys.version_info[0] < 3:
-                xml_file = open(os.path.expanduser(GRAMPS_FILENAME), "r")
-            else:
-                xml_file = open(os.path.expanduser(GRAMPS_FILENAME), "rb")
+            # Python3's expat wants bytes, Python2's wants a string.
+            fmode = "r" if sys.version_info[0] < 3 else "rb"
+            with open(fname, fmode) as xml_file:
+                if use_lock:
+                    fcntl.lockf(xml_file,fcntl.LOCK_SH)
 
-            if use_lock:
-                fcntl.lockf(xml_file,fcntl.LOCK_SH)
-
-            p = ParserCreate()
-            p.StartElementHandler = self.startElement
-            p.EndElementHandler = self.endElement
-            p.CharacterDataHandler = self.characters
-            p.ParseFile(xml_file)
-
-            if use_lock:
-                fcntl.lockf(xml_file,fcntl.LOCK_UN)
-            xml_file.close()
+                p = ParserCreate()
+                p.StartElementHandler = self.startElement
+                p.EndElementHandler = self.endElement
+                p.CharacterDataHandler = self.characters
+                p.ParseFile(xml_file)
+            # all advisory locks on a file are released on close
         except IOError as err:
-            logging.warning("Unable to open recent file %s because %s",
-                          os.path.expanduser(GRAMPS_FILENAME), str(err))
+            logging.warning(
+                    _("Unable to open list of recent DBs file {fname}: {error}"
+                        ).format(fname=fname, error=err))
         except Exception as err:
-            logging.error("Recent file parse error %s", str(err))
-            if xml_file:
-                xml_file.close()
+            logging.error(
+                    _("Error parsing list of recent DBs from file {fname}: {error}.\n"
+                        "This might indicate a damage to your files.\n"
+                        "If you're sure there is no problem with other files, "
+                        "delete it, and restart Gramps."
+                        ).format(fname=fname, error=err))
 
     def get(self):
         return self.recent_files
