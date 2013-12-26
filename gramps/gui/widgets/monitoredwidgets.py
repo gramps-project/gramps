@@ -562,12 +562,11 @@ class MonitoredStrMenu(object):
         self.obj = obj
         self.model = Gtk.ListStore(GObject.TYPE_STRING)
         
+        # Make sure that the menu is visible on small screen devices.
+        # Some LDS temples were not visible on a 4 or 5 column layout.
+        # See bug #7333
         if len(mapping) > 20:
             self.obj.set_wrap_width(3)
-        if len(mapping) > 40:
-            self.obj.set_wrap_width(4)
-        if len(mapping) > 100: # currently, there are 153 entries in lds.xml
-            self.obj.set_wrap_width(5)
 
         self.model.append(row=[''])
         index = 0
