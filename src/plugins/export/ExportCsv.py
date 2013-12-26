@@ -25,6 +25,8 @@
 
 "Export to CSV Spreadsheet."
 
+
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Standard Python Modules
@@ -319,6 +321,7 @@ class CSVWriter(object):
         LOG.debug("Possible families to export: %s", len(self.flist))
         ########################### sort:
         sortorder = []
+        dropped_surnames = set()
         for key in self.plist:
             person = self.db.get_person_from_handle(key)
             if person:
@@ -326,7 +329,23 @@ class CSVWriter(object):
                 first_name = primary_name.get_first_name()
                 surname_obj = primary_name.get_primary_surname()
                 surname = surname_obj.get_surname()
+
+                # See bug #6955
+                nonprimary_surnames = set(primary_name.get_surname_list())
+                nonprimary_surnames.remove(surname_obj)
+                dropped_surnames.update(nonprimary_surnames)
+
                 sortorder.append( (surname, first_name, key) )
+        if dropped_surnames:
+            LOG.warning(
+                    _("CSV export doesn't support non-primary surnames, "
+                        "{count} dropped").format(
+                            count=len(dropped_surnames)) )
+            LOG.debug(
+                    "Dropped surnames: " + 
+                    ', '.join([("%s %s %s" % (surname.get_prefix(),
+                    surname.get_surname(), surname.get_connector())).strip()
+                    for surname in dropped_surnames]))
         sortorder.sort() # will sort on tuples
         plist = [data[2] for data in sortorder]
         ###########################
