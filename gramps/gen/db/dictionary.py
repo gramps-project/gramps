@@ -88,8 +88,8 @@ class Bookmarks:
         pass
 
 class DictionaryTxn(DbTxn):
-    def __init__(self, message, db):
-        DbTxn.__init__(self, message, db)
+    def __init__(self, message, db, batch=False):
+        DbTxn.__init__(self, message, db, batch)
 
     def get(self, key, default=None, txn=None, **kwargs):
         """
