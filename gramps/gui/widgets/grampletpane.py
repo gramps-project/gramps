@@ -432,7 +432,7 @@ class GuiGramplet(object):
     def get_text(self):
         start = self.buffer.get_start_iter()
         end = self.buffer.get_end_iter()
-        return self.buffer.get_text(start, end)
+        return self.buffer.get_text(start, end, True) # include invisible chars
 
     def insert_text(self, text):
         self.buffer.insert_at_cursor(text)
