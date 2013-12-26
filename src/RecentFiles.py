@@ -162,25 +162,23 @@ class RecentFiles(object):
         """
         Saves the current GRAMPS RecentFiles collection to the associated file.
         """
-        xml_file = file(os.path.expanduser(GRAMPS_FILENAME),'w')
-        if use_lock:
-            fcntl.lockf(xml_file,fcntl.LOCK_EX)
-        xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
-        xml_file.write('<RecentFiles>\n')
-        index = 0
-        for item in self.gramps_recent_files:
-            index += 1
-            if index > MAX_GRAMPS_ITEMS:
-                break
-            xml_file.write('  <RecentItem>\n')
-            xml_file.write('    <Path><![CDATA[%s]]></Path>\n' % item.get_path())
-            xml_file.write('    <Name><![CDATA[%s]]></Name>\n' % item.get_name())
-            xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
-            xml_file.write('  </RecentItem>\n')
-        xml_file.write('</RecentFiles>\n')
-        if use_lock:
-            fcntl.lockf(xml_file,fcntl.LOCK_UN)
-        xml_file.close()
+        with open(os.path.expanduser(GRAMPS_FILENAME), 'w') as xml_file:
+            if use_lock:
+                fcntl.lockf(xml_file,fcntl.LOCK_EX)
+            xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
+            xml_file.write('<RecentFiles>\n')
+            index = 0
+            for item in self.gramps_recent_files:
+                index += 1
+                if index > MAX_GRAMPS_ITEMS:
+                    break
+                xml_file.write('  <RecentItem>\n')
+                xml_file.write('    <Path><![CDATA[%s]]></Path>\n' % item.get_path())
+                xml_file.write('    <Name><![CDATA[%s]]></Name>\n' % item.get_name())
+                xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
+                xml_file.write('  </RecentItem>\n')
+            xml_file.write('</RecentFiles>\n')
+            # all advisory locks on a file are released on close
 
 #-------------------------------------------------------------------------
 #
@@ -196,19 +194,16 @@ class RecentParser(object):
         self.recent_files = []
 
         try:
-            xml_file = open(os.path.expanduser(GRAMPS_FILENAME))
-            if use_lock:
-                fcntl.lockf(xml_file,fcntl.LOCK_SH)
+            with open(os.path.expanduser(GRAMPS_FILENAME)) as xml_file:
+                if use_lock:
+                    fcntl.lockf(xml_file,fcntl.LOCK_SH)
 
-            p = ParserCreate()
-            p.StartElementHandler = self.startElement
-            p.EndElementHandler = self.endElement
-            p.CharacterDataHandler = self.characters
-            p.ParseFile(xml_file)
-
-            if use_lock:
-                fcntl.lockf(xml_file,fcntl.LOCK_UN)
-            xml_file.close()
+                p = ParserCreate()
+                p.StartElementHandler = self.startElement
+                p.EndElementHandler = self.endElement
+                p.CharacterDataHandler = self.characters
+                p.ParseFile(xml_file)
+            # all advisory locks on a file are released on close
         except:
             pass
 
