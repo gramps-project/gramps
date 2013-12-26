@@ -6,6 +6,7 @@
 # Copyright (C) 2008      Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Tim G L Lyons
+# Copyright (C) 2013       Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -21,10 +22,11 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id$
 
 "Export to CSV Spreadsheet."
 
+
+from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Standard Python Modules
@@ -328,6 +330,7 @@ class CSVWriter(object):
         LOG.debug("Possible families to export: %s", len(self.flist))
         ########################### sort:
         sortorder = []
+        dropped_surnames = set()
         for key in self.plist:
             person = self.db.get_person_from_handle(key)
             if person:
@@ -335,7 +338,23 @@ class CSVWriter(object):
                 first_name = primary_name.get_first_name()
                 surname_obj = primary_name.get_primary_surname()
                 surname = surname_obj.get_surname()
+
+                # See bug #6955
+                nonprimary_surnames = set(primary_name.get_surname_list())
+                nonprimary_surnames.remove(surname_obj)
+                dropped_surnames.update(nonprimary_surnames)
+
                 sortorder.append( (surname, first_name, key) )
+        if dropped_surnames:
+            LOG.warning(
+                    _("CSV export doesn't support non-primary surnames, "
+                        "{count} dropped").format(
+                            count=len(dropped_surnames)) )
+            LOG.debug(
+                    "Dropped surnames: " + 
+                    ', '.join([("%s %s %s" % (surname.get_prefix(),
+                    surname.get_surname(), surname.get_connector())).strip()
+                    for surname in dropped_surnames]))
         sortorder.sort() # will sort on tuples
         plist = [data[2] for data in sortorder]
         ###########################
