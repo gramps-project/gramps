@@ -466,12 +466,15 @@ class Struct(object):
         """
         return self.handle_join(self.struct[item])
 
+    def get_object_from_handle(self, handle):
+        return self.db.get_from_name_and_handle(handle.classname, str(handle))
+
     def handle_join(self, item):
         """
         If the item is a handle, look up reference object.
         """
         if isinstance(item, HandleClass) and self.db: 
-            obj = self.db.get_from_name_and_handle(item.classname, str(item))
+            obj = self.get_object_from_handle(item)
             if obj:
                 return Struct(obj.to_struct(), self.db)
             else:
@@ -491,6 +494,10 @@ class Struct(object):
         """
         return self.setitem_from_path(parse(path), value, trans)
 
+    def primary_object_q(self, _class):
+        return _class in ["Person", "Family", "Event", "Source", "Citation",
+                          "Tag", "Repository", "Note", "Media"]
+
     def setitem_from_path(self, path, value, trans=None):
         """
         Given a path to a struct part, set the last part to value.
@@ -499,7 +506,7 @@ class Struct(object):
         """
         path, item = path[:-1], path[-1]
         struct = self.struct
-        # FIXME: handle assignment on join on HandleClass
+        primary_obj = struct
         for p in range(len(path)):
             part = path[p]
             if part.startswith("["): # getitem
@@ -508,6 +515,11 @@ class Struct(object):
                 struct = struct[part]
             if struct is None:       # invalid part to set, skip
                 return
+            if isinstance(struct, HandleClass):
+                struct = self.get_object_from_handle(struct).to_struct()
+            # keep track of primary object for update, below
+            if isinstance(struct, dict) and "_class" in struct and self.primary_object_q(struct["_class"]):
+                primary_obj = struct
         # struct is set
         if isinstance(struct, (list, tuple)):
             pos = int(item)
@@ -520,17 +532,15 @@ class Struct(object):
             setattr(struct, item, value)
         else:
             return
-        self.update_db(trans)
+        self.update_db(primary_obj, trans)
 
-    def update_db(self, trans=None):
+    def update_db(self, struct, trans=None):
         if self.db:
             if trans is None:
                 with self.transaction("Struct Update", self.db, batch=True) as trans:
-                    new_obj = from_struct(self.struct)
-                    name, handle = self.struct["_class"], self.struct["handle"]
+                    new_obj = from_struct(struct)
+                    name, handle = struct["_class"], struct["handle"]
                     old_obj = self.db.get_from_name_and_handle(name, handle)
-                    # FIXME: this needs to find the closest primary _class before each diff
-                    # and commit that, not the topmost _class
                     if old_obj:
                         commit_func = self.db._tables[name]["commit_func"]
                         commit_func(new_obj, trans)
@@ -538,8 +548,8 @@ class Struct(object):
                         add_func = self.db._tables[name]["add_func"]
                         add_func(new_obj, trans)
             else:
-                new_obj = from_struct(self.struct)
-                name, handle = self.struct["_class"], self.struct["handle"]
+                new_obj = from_struct(struct)
+                name, handle = struct["_class"], struct["handle"]
                 old_obj = self.db.get_from_name_and_handle(name, handle)
                 if old_obj:
                     commit_func = self.db._tables[name]["commit_func"]
