@@ -66,8 +66,8 @@ def get_schema(cls):
     elif cls == "Person":
         schema = {
             "_class": Person,
-            "handle":  str,
-            "gramps_id": Handle("Person", "PERSON-HANDLE"),
+            "handle":  Handle("Person", "PERSON-HANDLE"),
+            "gramps_id": str,
             "gender": int,
             "primary_name": Name,
             "alternate_names": [Name],
