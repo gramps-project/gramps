@@ -88,12 +88,12 @@ class SimpleTable(object):
         """
         self._link_col = col
 
-    def row(self, *data):
+    def row(self, *data, **kwargs):
         """
         Add a row of data.
         """
+        link = kwargs.get("link", None)
         retval = [] 
-        link   = None
         row = len(self._rows)
         self._raw_data.append([])
         for col in range(len(data)):
