@@ -473,7 +473,16 @@ class Struct(object):
 
         struct can be list/tuple, dict with _class, or value (including dict).
         """
-        return self.handle_join(self.struct[item])
+        if isinstance(item, str) and isinstance(self.struct, (list, tuple)):
+            fields = [field.strip() for field in item.split(",")]
+            results = []
+            for item in self.struct:
+                sublist = [getattr(Struct(item, self.db), field) for field in fields]
+                if any(sublist):
+                    results.append(tuple(sublist))
+            return results if results else None
+        else:
+            return self.handle_join(self.struct[item])
 
     def get_object_from_handle(self, handle):
         return self.db.get_from_name_and_handle(handle.classname, str(handle))
