@@ -450,6 +450,15 @@ class Struct(object):
         elif isinstance(self.struct, HandleClass):
             struct = self.handle_join(self.struct)
             return getattr(struct, attr)
+        elif isinstance(self.struct, (list, tuple)):
+            # then, let's make this select from the list
+            sublist = [getattr(Struct(item, self.db), attr) for item in self.struct]
+            if len(sublist) == 0:
+                return None
+            elif len(sublist) == 1:
+                return sublist[0]
+            else:
+                return Struct(sublist, self.db)
         else:
             # better be a property of the list/tuple/dict/value:
             return getattr(self.struct, attr)
