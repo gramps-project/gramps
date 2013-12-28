@@ -40,6 +40,7 @@ from .refbase import RefBase
 from .eventroletype import EventRoleType
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from .citationbase import IndirectCitationBase
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -105,7 +106,7 @@ class EventRef(PrivacyBase, NoteBase, AttributeBase, RefBase,
             "private": PrivacyBase.to_struct(self),
             "note_list": NoteBase.to_struct(self),
             "attribute_list": AttributeBase.to_struct(self),
-            "ref": RefBase.to_struct(self),
+            "ref": Handle("Event", self.ref),
             "role": self.__role.to_struct()
             }
 

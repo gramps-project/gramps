@@ -39,6 +39,7 @@ from .notebase import NoteBase
 from .refbase import RefBase
 from .attrbase import AttributeBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -96,7 +97,7 @@ class MediaRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase,
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
                 "attribute_list": AttributeBase.to_struct(self),
-                "ref": RefBase.to_struct(self),
+                "ref": Handle("Media", self.ref),
                 "rect": self.rect if self.rect != (0,0,0,0) else None}
 
     @classmethod

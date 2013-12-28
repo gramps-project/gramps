@@ -243,6 +243,32 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
             [PersonRef.from_struct(p) for p in struct.get("person_ref_list", default.person_ref_list)]
         )
 
+    @classmethod
+    def get_schema(cls):
+        return {
+            "handle":  Handle("Person", "PERSON-HANDLE"),
+            "gramps_id": str,
+            "gender": int,
+            "primary_name": Name,
+            "alternate_names": [Name],
+            "death_ref_index": int,
+            "birth_ref_index": int,
+            "event_ref_list": [EventRef],
+            "family_list": [Handle("Family", "FAMILY-HANDLE")],
+            "parent_family_list": [Handle("Family", "FAMILY-HANDLE")],
+            "media_list": [MediaRef],
+            "address_list": [Address],
+            "attribute_list": [Attribute],
+            "urls": [Url],
+            "lds_ord_list": [LdsOrd],
+            "citation_list": [Handle("Citation", "CITATION-HANDLE")],
+            "note_list": [Handle("Note", "NOTE-HANDLE")], 
+            "change": int,
+            "tag_list": [Handle("Tag", "TAG-HANDLE")],
+            "private": bool,
+            "person_ref_list": [PersonRef]
+        }
+
     def unserialize(self, data):
         """
         Convert the data held in a tuple created by the serialize method

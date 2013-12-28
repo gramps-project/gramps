@@ -37,6 +37,7 @@ from .notebase import NoteBase
 from .refbase import RefBase
 from .srcmediatype import SourceMediaType
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -93,7 +94,7 @@ class RepoRef(SecondaryObject, PrivacyBase, NoteBase, RefBase):
         return {
             "_class": "RepositoryRef",
             "note_list": NoteBase.to_struct(self),
-            "ref": RefBase.to_struct(self),
+            "ref": Handle("Repository", self.ref),
             "call_number": self.call_number, 
             "media_type": self.media_type.to_struct(),
             "private": PrivacyBase.serialize(self),

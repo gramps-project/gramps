@@ -34,6 +34,7 @@ from .secondaryobj import SecondaryObject
 from .refbase import RefBase
 from .datebase import DateBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -86,7 +87,7 @@ class PlaceRef(RefBase, DateBase, SecondaryObject):
         """
         return {
             "_class": "PlaceRef",
-            "ref": RefBase.to_struct(self),
+            "ref": Handle("Place", self.ref),
             "date": DateBase.to_struct(self)
             }
 

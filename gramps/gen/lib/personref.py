@@ -38,6 +38,7 @@ from .citationbase import CitationBase
 from .notebase import NoteBase
 from .refbase import RefBase
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from .handle import Handle
 
 #-------------------------------------------------------------------------
 #
@@ -97,7 +98,7 @@ class PersonRef(SecondaryObject, PrivacyBase, CitationBase, NoteBase, RefBase):
                 "private": PrivacyBase.to_struct(self),
                 "citation_list": CitationBase.to_struct(self),
                 "note_list": NoteBase.to_struct(self),
-                "ref": RefBase.to_struct(self),
+                "ref": Handle("Person", self.ref),
                 "rel": self.rel}
 
     @classmethod
