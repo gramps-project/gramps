@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-11 10:01+0100\n"
-"PO-Revision-Date: 2013-12-12 00:22+0200\n"
+"PO-Revision-Date: 2013-12-27 17:42+0200\n"
 "Last-Translator: Pekka Valta <pekka.valta@kolumbus.fi>\n"
 "Language-Team: Pekka Valta <pekka.valta@kolumbus.fi>\n"
 "Language: fi\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 1.6.2\n"
+"X-Generator: Poedit 1.6.3\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
 #: ../gramps/cli/arghandler.py:225
@@ -8654,7 +8654,7 @@ msgstr "Avain"
 
 #: ../gramps/gui/editors/displaytabs/dataembedlist.py:68
 msgid "_Data"
-msgstr "_Tieto"
+msgstr "_Ominaisuudet"
 
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:432
@@ -10811,7 +10811,7 @@ msgstr "Katu:"
 #: ../gramps/gui/glade/editlocation.glade.h:1
 #: ../gramps/gui/glade/editplace.glade.h:15
 msgid "C_ity:"
-msgstr "_Kylä:"
+msgstr "_Paikkakunta:"
 
 #: ../gramps/gui/glade/editaddress.glade.h:5
 msgid "The town or city of the address"
@@ -12176,7 +12176,7 @@ msgstr "<b>Miehet</b>"
 msgid ""
 "Attributes, notes, sources and media objects of both events will be combined."
 msgstr ""
-"Molempien tapahtumien lisätiedot, mediatiedostot ja muut tiedot yhdistetään."
+"Molempien tapahtumien ominaisuudet, lisätiedot ja mediatiedostot yhdistetään."
 
 #: ../gramps/gui/glade/mergefamily.glade.h:1
 msgid ""
