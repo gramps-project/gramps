@@ -1,6 +1,14 @@
+2014-01-??
+Version 3.4.7 of Gramps! "???", a maintenance release.
+* Invalid dates (like 2013-02-30) no longer crash the date editor or file import.
+* Fixed image handling in ODF docgen, thanks to Matthias Basler for the initial patch.
+* Fixed GEDCOM export for family _UID, added support for _FSFTID, by Enno Borgsteede.
+* Fixed bookmark handling in navigation views.
+* Multiple maintainability and usability improvements.
+* Translation updates and translation-related fixes.
+
 2013-10-28
 Version 3.4.6 of Gramps! "The Answer to the Ultimate Question", a maintenance release.
-
 * Citation merge works better for all objects with citations
 * Fixed citations attached to family events
 * Fixed several crashes, hangs, and data corruption scenarios
