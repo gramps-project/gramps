@@ -635,7 +635,7 @@ class GedcomWriter(UpdateCallback):
             key = str(attr.get_type())
             value = attr.get_value().strip().replace('\r', ' ')
             
-            if key in ("AFN", "RFN", "REFN", "_UID"):
+            if key in ("AFN", "RFN", "REFN", "_UID", "_FSFTID"):
                 self._writeln(1, key, value)
                 continue
 
@@ -882,10 +882,11 @@ class GedcomWriter(UpdateCallback):
             
             attr_type = int(attr.get_type())
             name = libgedcom.FAMILYCONSTANTATTRIBUTES.get(attr_type)
+            key = str(attr.get_type())
             value = attr.get_value().replace('\r', ' ')
 
-            if attr_type in ("AFN", "RFN", "REFN", "_UID"):
-                self._writeln(1, attr_type, value)
+            if key in ("AFN", "RFN", "REFN", "_UID"):
+                self._writeln(1, key, value)
                 continue
             
             if name and name.strip():
@@ -893,7 +894,7 @@ class GedcomWriter(UpdateCallback):
                 continue
             else:
                 self._writeln(1, 'FACT', value)
-                self._writeln(2, 'TYPE', str(attr.get_type()))
+                self._writeln(2, 'TYPE', key)
 
             self._note_references(attr.get_note_list(), level+1)
             self._source_references(attr.get_citation_list(), 
