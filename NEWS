@@ -1,5 +1,6 @@
 2014-01-??
 Version 3.4.7 of Gramps! "???", a maintenance release.
+* Development switched from SVN to git.
 * Invalid dates (like 2013-02-30) no longer crash the date editor or file import.
 * Fixed image handling in ODF docgen, thanks to Matthias Basler for the initial patch.
 * Fixed GEDCOM export for family _UID, added support for _FSFTID, by Enno Borgsteede.
