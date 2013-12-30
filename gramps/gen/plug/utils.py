@@ -194,14 +194,15 @@ def available_updates():
                (config.get("behavior.addons-url"), lang))
         LOG.debug("   trying: %s" % URL)
         try:
-            fp = urlopen(URL, timeout=10) # abort after 10 seconds
+            fp = urlopen(URL, timeout=10) # seconds
         except:
             try:
                 URL = ("%s/listings/addons-%s.txt" %
                        (config.get("behavior.addons-url"), lang[:2]))
                 fp = urlopen(URL, timeout=10)
             except Exception as err: # some error
-                LOG.warn("Failed to open %s: %s" % (lang, err))
+                LOG.warning("Failed to open addon metadata for {lang} {url}: {err}".
+						format(lang=lang, url=URL, err=err))
                 fp = None
         if fp and fp.getcode() == 200: # ok
             break
