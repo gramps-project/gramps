@@ -258,6 +258,7 @@ TOKEN_ROLE = 127
 TOKEN__MAR = 128
 TOKEN__MARN = 129
 TOKEN__ADPN = 130
+TOKEN__FSFTID = 131
 
 TOKENS = {
     "HEAD"         : TOKEN_HEAD,    "MEDI"         : TOKEN_MEDI,
@@ -363,7 +364,7 @@ TOKENS = {
     "EMAI"           : TOKEN_EMAIL, "WWW"           : TOKEN_WWW,
     "_URL"           : TOKEN_URL,   "URL"           : TOKEN_URL,
     "_MAR"           : TOKEN__MAR,  "_MARN"         : TOKEN__MARN,
-    "_ADPN"          : TOKEN__ADPN
+    "_ADPN"          : TOKEN__ADPN, "_FSFTID"       : TOKEN__FSFTID,
 }
 
 ADOPT_NONE         = 0
@@ -991,6 +992,7 @@ _MAP_DATA = {
     TOKEN__STAT   : GedLine.calc_attr,
     TOKEN__UID    : GedLine.calc_attr,
     TOKEN_AFN     : GedLine.calc_attr,
+    TOKEN__FSFTID : GedLine.calc_attr,
     }
 
 #-------------------------------------------------------------------------
