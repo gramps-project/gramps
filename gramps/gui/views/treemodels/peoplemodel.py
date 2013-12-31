@@ -56,7 +56,8 @@ _LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.lib import Name, EventRef, EventType, EventRoleType
+from gramps.gen.lib import (Name, EventRef, EventType, EventRoleType,
+                            FamilyRelType, ChildRefType, NoteType)
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from .lru import LRU
@@ -78,6 +79,8 @@ COLUMN_DEATH  = 5
 COLUMN_BIRTH  = 6
 COLUMN_EVENT  = 7
 COLUMN_FAMILY = 8
+COLUMN_PARENT = 9
+COLUMN_NOTES  = 16
 COLUMN_CHANGE = 17
 COLUMN_TAGS   = 18
 COLUMN_PRIV   = 19
@@ -115,6 +118,10 @@ class PeopleBaseModel(object):
             self.column_death_day,
             self.column_death_place,
             self.column_spouse,
+            self.column_parents,
+            self.column_marriages,
+            self.column_children,
+            self.column_todo,
             self.column_private,
             self.column_tags,
             self.column_change,
@@ -129,6 +136,10 @@ class PeopleBaseModel(object):
             self.sort_death_day,
             self.column_death_place,
             self.column_spouse,
+            self.sort_parents,
+            self.sort_marriages,
+            self.sort_children,
+            self.sort_todo,
             self.column_private,
             self.column_tags,
             self.sort_change,
@@ -158,7 +169,7 @@ class PeopleBaseModel(object):
         """
         Return the color column.
         """
-        return 11
+        return 15
 
     def clear_local_cache(self, handle=None):
         """ Clear the LRU cache """
@@ -434,6 +445,66 @@ class PeopleBaseModel(object):
                     if place_title != "":
                         return "<i>" + cgi.escape(place_title) + "</i>"
         return ""
+
+    def _get_parents_data(self, data):
+        parents = 0
+        if data[COLUMN_PARENT]:
+            family = self.db.get_family_from_handle(data[COLUMN_PARENT][0])
+            if family.get_father_handle():
+                parents += 1
+            if family.get_mother_handle():
+                parents += 1
+        return parents
+
+    def _get_marriages_data(self, data):
+        marriages = 0
+        for family_handle in data[COLUMN_FAMILY]:
+            family = self.db.get_family_from_handle(family_handle)
+            if int(family.get_relationship()) == FamilyRelType.MARRIED:
+                marriages += 1
+        return marriages
+
+    def _get_children_data(self, data):
+        children = 0
+        for family_handle in data[COLUMN_FAMILY]:
+            family = self.db.get_family_from_handle(family_handle)
+            for child_ref in family.get_child_ref_list():
+                if (child_ref.get_father_relation() == ChildRefType.BIRTH and 
+                    child_ref.get_mother_relation() == ChildRefType.BIRTH):
+                    children += 1
+        return children
+
+    def _get_todo_data(self, data):
+        todo = 0
+        for note_handle in data[COLUMN_NOTES]:
+            note = self.db.get_note_from_handle(note_handle)
+            if int(note.get_type()) == NoteType.TODO:
+                todo += 1
+        return todo
+
+    def column_parents(self, data):
+        return cuni(self._get_parents_data(data))
+
+    def sort_parents(self, data):
+        return '%06d' % self._get_parents_data(data)
+
+    def column_marriages(self, data):
+        return cuni(self._get_marriages_data(data))
+
+    def sort_marriages(self, data):
+        return '%06d' % self._get_marriages_data(data)
+
+    def column_children(self, data):
+        return cuni(self._get_children_data(data))
+
+    def sort_children(self, data):
+        return '%06d' % self._get_children_data(data)
+
+    def column_todo(self, data):
+        return cuni(self._get_todo_data(data))
+
+    def sort_todo(self, data):
+        return '%06d' % self._get_todo_data(data)
 
     def get_tag_name(self, tag_handle):
         """

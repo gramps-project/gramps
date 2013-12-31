@@ -87,9 +87,13 @@ class BasePersonView(ListView):
     COL_DDAT = 5
     COL_DPLAC = 6
     COL_SPOUSE = 7
-    COL_PRIV = 8
-    COL_TAGS = 9
-    COL_CHAN = 10
+    COL_PARENTS = 8
+    COL_MARRIAGES = 9
+    COL_CHILDREN = 10
+    COL_TODO = 11
+    COL_PRIV = 12
+    COL_TAGS = 13
+    COL_CHAN = 14
     # column definitions
     COLUMNS = [
         (_('Name'), TEXT, None),
@@ -100,6 +104,10 @@ class BasePersonView(ListView):
         (_('Death Date'), MARKUP, None),
         (_('Death Place'), MARKUP, None),
         (_('Spouse'), TEXT, None),
+        (_('Number of Parents'), TEXT, 'gramps-parents'),
+        (_('Number of Marriages'), TEXT, 'gramps-family'),
+        (_('Number of Children'), TEXT, 'gramps-relation'),
+        (_('Number of To Do Notes'), TEXT, 'gramps-notes'),
         (_('Private'), ICON, 'gramps-lock'),
         (_('Tags'), TEXT, None),
         (_('Last Changed'), TEXT, None),
@@ -108,9 +116,11 @@ class BasePersonView(ListView):
     CONFIGSETTINGS = (
         ('columns.visible', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_DDAT]),
         ('columns.rank', [COL_NAME, COL_ID, COL_GEN, COL_BDAT, COL_BPLAC,
-                           COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_PRIV, COL_TAGS,
-                           COL_CHAN]),
-        ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 40, 100, 100])
+                           COL_DDAT, COL_DPLAC, COL_SPOUSE, COL_PARENTS,
+                           COL_MARRIAGES, COL_CHILDREN, COL_TODO, COL_PRIV,
+                           COL_TAGS, COL_CHAN]),
+        ('columns.size', [250, 75, 75, 100, 175, 100, 175, 100, 30, 30, 30, 30,
+                          30, 100, 100])
         )  
     ADD_MSG     = _("Add a new person")
     EDIT_MSG    = _("Edit the selected person")
