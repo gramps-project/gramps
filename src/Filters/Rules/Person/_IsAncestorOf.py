@@ -70,6 +70,8 @@ class IsAncestorOf(Rule):
     def init_ancestor_list(self, db, person,first):
         if not person:
             return
+        if person.handle in self.map:
+            return
         if not first:
             self.map.add(person.handle)
         
