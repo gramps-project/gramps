@@ -8,13 +8,13 @@
 # Sebastian Vöcking <voeck@web.de>, 2005.
 # Martin Hawlisch <martin@hawlisch.de>, 2005, 2006.
 # Alex Roitman <shura@gramps-project.org>, 2006.
-# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013.
+# Mirko Leonhäuser <mirko@leonhaeuser.de>, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-12-29 00:47+0100\n"
-"PO-Revision-Date: 2013-12-29 01:15+0100\n"
+"PO-Revision-Date: 2014-01-02 11:40+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -11077,7 +11077,7 @@ msgstr ""
 
 #: ../gramps/gui/grampsgui.py:305
 msgid "Error parsing arguments"
-msgstr "Fehler beim analysieren der Argumente"
+msgstr "Fehler beim analysieren der Argumente."
 
 #: ../gramps/gui/grampsgui.py:378
 msgid ""
@@ -11223,9 +11223,9 @@ msgid ""
 "Use the two buttons below to first copy the bug report to the clipboard and "
 "then open a webbrowser to file a bug report at "
 msgstr ""
-"Benutze die zwei Schaltflächen unten, um damit zuerst den Fehlerbericht in "
-"dieZwischenablage zu kopieren, und dann einen Browser zu öffnen, um einen "
-"Fehlerbericht auszufüllen auf "
+"Benutze die zwei Schaltflächen unten, um damit erstens den Fehlerbericht in "
+"die Zwischenablage zu kopieren, und zweitens einen Browser zu öffnen, um "
+"darin einen Fehlerbericht auszufüllen auf "
 
 #: ../gramps/gui/logger/_errorreportassistant.py:566
 msgid ""
@@ -11233,7 +11233,7 @@ msgid ""
 "bug tracking system."
 msgstr ""
 "Benutze diese Schaltfläche um einen Browser zu öffnen und einen Fehlerbericht "
-"auszufüllen im Gramps bug tracking system."
+"im Gramps bug tracking system auszufüllen."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:591
 msgid ""
@@ -11241,9 +11241,9 @@ msgid ""
 "tracking website by using the button below, paste the report and click submit "
 "report"
 msgstr ""
-"Benutze diese Schaltfläche, um den Fehlerbericht in die Zwischenablage "
-"zukopieren. Gehe dann zur bug tracking Website, indem du die Schaltfläche "
-"unten benutzt, kopiere den Bericht und klicke submit report."
+"Benutze diese Schaltfläche, um den Fehlerbericht in die Zwischenablage zu "
+"kopieren. Gehe dann zur bug tracking Webseite, indem du die Schaltfläche "
+"unten benutzt. Kopiere den Bericht und klicke Bericht senden."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:630
 #: ../gramps/gui/logger/_errorreportassistant.py:657
@@ -11581,11 +11581,11 @@ msgstr "Pfad zur Erweiterung:"
 
 #: ../gramps/gui/plug/_windows.py:274
 msgid "Install Addon"
-msgstr "Addon installieren"
+msgstr "Erweiterung installieren"
 
 #: ../gramps/gui/plug/_windows.py:277
 msgid "Install All Addons"
-msgstr "Alle Addons installieren"
+msgstr "Alle Erweiterungen installieren"
 
 #: ../gramps/gui/plug/_windows.py:280
 msgid "Refresh Addon List"
@@ -11597,7 +11597,7 @@ msgstr "Neu laden"
 
 #: ../gramps/gui/plug/_windows.py:319
 msgid "Refreshing Addon List"
-msgstr "Erweiterungsliste aktualisieren"
+msgstr "Erweiterungsliste wird aktualisiert"
 
 #: ../gramps/gui/plug/_windows.py:320 ../gramps/gui/plug/_windows.py:325
 #: ../gramps/gui/plug/_windows.py:415
@@ -11618,7 +11618,7 @@ msgstr "Unbekannte URL"
 
 #: ../gramps/gui/plug/_windows.py:397
 msgid "Install all Addons"
-msgstr "Alle Addons installieren"
+msgstr "Alle Erweiterungen installieren"
 
 #: ../gramps/gui/plug/_windows.py:397
 msgid "Installing..."
@@ -11626,11 +11626,11 @@ msgstr "Installiere..."
 
 #: ../gramps/gui/plug/_windows.py:414
 msgid "Installing Addon"
-msgstr "Installiere Addon"
+msgstr "Installiere Erweiterung"
 
 #: ../gramps/gui/plug/_windows.py:435
 msgid "Load Addon"
-msgstr "Addon laden"
+msgstr "Erweiterung laden"
 
 #: ../gramps/gui/plug/_windows.py:496
 msgid "Fail"
@@ -11696,7 +11696,7 @@ msgstr[1] "%d Erweiterungen wurden installiert."
 
 #: ../gramps/gui/plug/_windows.py:1204
 msgid "You need to restart Gramps to see new views."
-msgstr "Du musst Gramps neu starten um neue Ansichten zu sehen."
+msgstr "Um neue Ansichten zu sehen, muss Gramps neu gestartet werden."
 
 #: ../gramps/gui/plug/_windows.py:1208
 msgid "No addons were installed."
@@ -11965,7 +11965,7 @@ msgstr "Kann einen Systemfilter nicht bearbeiten"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:650
 msgid "Please select a different filter to edit"
-msgstr "Bitte einen anderen Filter zum bearbeiten wählen"
+msgstr "Bitte einen anderen Filter zum bearbeiten wählen."
 
 #: ../gramps/gui/plug/export/_exportoptions.py:679
 #: ../gramps/gui/plug/export/_exportoptions.py:704
@@ -12085,12 +12085,13 @@ msgid ""
 "Therefore, the central person for each item is being set to the active person "
 "of the currently opened database."
 msgstr ""
-"Dieses Buch wurde erstellt mit der Referenz auf die Datenbank %s.\n"
+"Dieses Buch wurde beim Erstellen auf die erstellende Datenbank %s "
+"referenziert.\n"
 "\n"
-"Daher ist die in diesem Buch gespeicherte Referenz auf die Hauptperson "
-"ungültig.\n"
+"Die im Buch gespeicherten Referenzen auf die Hauptperson sind in DIESER "
+"Datenbank ungültig.\n"
 "\n"
-"Deswegen wurde die Hauptperson für jeden Artikel auf die aktive Person in der "
+"Deswegen wurde die Hauptperson für jeden Artikel auf die aktive Person dieser "
 "geöffneten Datenbank gesetzt."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:584
@@ -12133,7 +12134,7 @@ msgid ""
 msgstr ""
 "Du versuchst ein Buch ohne Namen zu speichern.\n"
 "\n"
-"Bitte gib ihm vor dem speichern einen Namen."
+"Bitte gib ihm vor dem Speichern einen Namen."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:718
 msgid "Book name already exists"
@@ -12362,11 +12363,11 @@ msgid ""
 "backup your database."
 msgstr ""
 "Wenn du dieses Werkzeug verwendest, wird die Bearbeitungschronik dieser "
-"Sitzunggelöscht. Dadurch können vorherige und durch das Werkzeuge getätigte "
+"Sitzung gelöscht. Dadurch können vorherige und durch das Werkzeuge getätigte "
 "Änderungen nicht mehr rückgängig gemacht werden.\n"
 "\n"
 "Wenn du jedoch die Änderungen, die durch das Werkzeug gemacht "
-"werden,rückgängig machen willst, stoppe hier und sichere deine Datenbank."
+"werden, rückgängig machen willst, stoppe hier und sichere deine Datenbank."
 
 #: ../gramps/gui/plug/tool.py:120
 msgid "_Proceed with the tool"
@@ -12550,7 +12551,7 @@ msgstr "Stammbäume _verwalten..."
 
 #: ../gramps/gui/viewmanager.py:477
 msgid "Manage databases"
-msgstr "Stammbäume verwalten"
+msgstr "Datenbanken verwalten"
 
 #: ../gramps/gui/viewmanager.py:478
 msgid "Open _Recent"
@@ -12594,7 +12595,7 @@ msgstr "_Programmfehler melden"
 
 #: ../gramps/gui/viewmanager.py:493
 msgid "_Extra Reports/Tools"
-msgstr "_Extra Berichte/Werkzeuge"
+msgstr "_Weitere Berichte/Werkzeuge"
 
 #: ../gramps/gui/viewmanager.py:495
 msgid "_About"
@@ -12731,7 +12732,7 @@ msgstr "Automatisches Backup..."
 
 #: ../gramps/gui/viewmanager.py:770
 msgid "Error saving backup data"
-msgstr "Fehler beim speichern der Sicherungsdaten"
+msgstr "Fehler beim speichern der Sicherungsdaten."
 
 #: ../gramps/gui/viewmanager.py:781
 msgid "Abort changes?"
@@ -12962,7 +12963,7 @@ msgid ""
 "More than one item has been selected for deletion. Ask before deleting each "
 "one?"
 msgstr ""
-"Mehr als ein Element wurden zum löschen gewählt. Vor jedem löschen fragen?"
+"Mehr als ein Element wurden zum Löschen gewählt. Vor jedem löschen fragen?"
 
 #: ../gramps/gui/views/listview.py:547
 msgid ""
@@ -13081,8 +13082,8 @@ msgid ""
 "the person you want as 'Home Person', then confirm your choice via the menu "
 "Edit ->Set Home Person."
 msgstr ""
-"Du musst zuerst eine 'Hauptperson' setzen, um dorthin zu springen.Gehe zur "
-"Personenansicht, wähle die Person, die du als 'Hauptperson' setzenwillst und "
+"Du musst zuerst eine 'Hauptperson' setzen, um dorthin zu springen. Gehe zur "
+"Personenansicht, wähle die Person, die du als 'Hauptperson' setzen willst und "
 "bestätige deine Wahl über Menü Bearbeiten -> Hauptperson setzen."
 
 #: ../gramps/gui/views/navigationview.py:347
@@ -13315,7 +13316,7 @@ msgstr ""
 
 #: ../gramps/gui/widgets/grampletpane.py:986
 msgid "Right click to add gramplets"
-msgstr "Rechts-klick zum hinzufügen von Gramplets"
+msgstr "Rechts-klick zum hinzufügen von Gramplets."
 
 #: ../gramps/gui/widgets/grampletpane.py:1033
 msgid "Untitled Gramplet"
@@ -13335,7 +13336,7 @@ msgstr "Verwende maximale verfügbare Höhe"
 
 #: ../gramps/gui/widgets/grampletpane.py:1561
 msgid "Height if not maximized"
-msgstr "Höhe wenn nicht maximiert"
+msgstr "Höhe, wenn nicht maximiert"
 
 #: ../gramps/gui/widgets/grampletpane.py:1568
 msgid "Detached width"
@@ -13353,8 +13354,8 @@ msgid ""
 msgstr ""
 "Klicken um diese Person zu aktivieren,\n"
 "Rechts-klick zum Anzeigen des Bearbeiten-Menüs\n"
-"Zum bearbeiten Bearbeitungsschaltfläche klicken (Im Einstellungsdialog "
-"aktivieren)"
+"Zum Bearbeiten die Bearbeitungsschaltfläche klicken (Im Einstellungsdialog "
+"aktivieren)."
 
 #: ../gramps/gui/widgets/monitoredwidgets.py:654
 msgid "Bad Date"
@@ -13689,7 +13690,7 @@ msgid ""
 "Whether to remove any extra blank spaces set aside for people that are unknown"
 msgstr ""
 "Legt fest, ob zusätzliche Leerzeichen, die für unbekannte Personen "
-"vorgesehensind, entfernt werden oder nicht."
+"vorgesehen sind, entfernt werden oder nicht."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:924
 msgid ""
@@ -14311,7 +14312,7 @@ msgstr "Die zentrale Familie für den Bericht"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1493
 msgid "Start with the parent(s) of the selected first"
-msgstr "Starte mit den Elter(n) des zuerst gewählten"
+msgstr "Starte mit den Eltern des zuerst gewählten"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1496
 msgid "Will show the parents, brother and sisters of the selected person."
@@ -14328,7 +14329,8 @@ msgstr "0=keine Partner, 1=mit Partnern, 2=mit Partnern der Partner, usw"
 #: ../gramps/plugins/drawreport/descendtree.py:1511
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
-"Legt fest,ob Personen, wo immer möglich nach oben verschoben werden können,um "
+"Legt fest, ob Personen, wo immer möglich nach oben verschoben werden können, "
+"um "
 "einen schmaleren Baum zu erhalten."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1518
@@ -14351,7 +14353,7 @@ msgstr "Direkte Nachkommen fett gedruckt"
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr ""
-"Legt fest, ob Personen, die direkte Nachkommen (nicht Stief- oderHalbkinder) "
+"Legt fest, ob Personen, die direkte Nachkommen (nicht Stief- oder Halbkinder) "
 "sind, fettgedruckt werden."
 
 #: ../gramps/plugins/drawreport/descendtree.py:1539
