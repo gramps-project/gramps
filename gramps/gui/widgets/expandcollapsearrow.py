@@ -57,7 +57,7 @@ if has_display():
 #
 #-------------------------------------------------------------------------
 def realize_cb(widget):
-    widget.get_root_window().set_cursor(HAND_CURSOR)
+    widget.get_window().set_cursor(HAND_CURSOR)
 
 #-------------------------------------------------------------------------
 #
