@@ -63,7 +63,8 @@ class SelectEvent(BaseSelector):
             (_('Type'),              75,  BaseSelector.TEXT, 2),
             (_('Main Participants'), 250, BaseSelector.TEXT, 6),
             (_('Date'),              150, BaseSelector.TEXT, 3),
-            (_('Place'),             150, BaseSelector.TEXT, 4)
+            (_('Place'),             150, BaseSelector.TEXT, 4),
+            (_('Last Change'),       150, BaseSelector.TEXT, 5),
             ]
 
     def get_from_handle_func(self):

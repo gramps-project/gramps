@@ -61,6 +61,7 @@ class SelectFamily(BaseSelector):
             (_('ID'),      75, BaseSelector.TEXT, 0),
             (_('Father'), 200, BaseSelector.TEXT, 1),
             (_('Mother'), 200, BaseSelector.TEXT, 2),
+            (_('Last Change'), 150, BaseSelector.TEXT, 6),
             ]
 
     def get_from_handle_func(self):
