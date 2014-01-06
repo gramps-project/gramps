@@ -31,7 +31,7 @@ class SearchFilter(object):
         self.invert = invert
 
     def match(self, handle, db):
-        return self.invert ^ (self.func(handle).upper().find(self.text) != -1)
+        return self.invert ^ (self.func(handle).upper().find(str(self.text)) != -1)
 
 class ExactSearchFilter(SearchFilter):
     def __init__(self, func, text, invert):
