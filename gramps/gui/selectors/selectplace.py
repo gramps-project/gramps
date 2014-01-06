@@ -64,6 +64,7 @@ class SelectPlace(BaseSelector):
             (_('ID'),    75,  BaseSelector.TEXT, 1),
             (_('Type'),  100, BaseSelector.TEXT, 3),
             (_('Title'), 300, BaseSelector.TEXT, 2),
+            (_('Last Change'), 150, BaseSelector.TEXT, 9),
             ]
 
     def get_from_handle_func(self):
