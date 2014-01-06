@@ -100,6 +100,7 @@ class GrampsType(object):
 
     _DATAMAP = []
     _BLACKLIST = None
+    _MENU = None
     
     __metaclass__ = GrampsTypeMeta
     __slots__ = ('__value', '__string')
@@ -236,6 +237,9 @@ class GrampsType(object):
     def get_custom(self):
         return self._CUSTOM
     
+    def get_menu(self):
+        return self._MENU
+
     def __cmp__(self, value):
         if isinstance(value, int):
             return cmp(self.__value, value)
