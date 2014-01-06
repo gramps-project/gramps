@@ -69,6 +69,7 @@ class SelectPlace(BaseSelector):
             (_('State'),    75, BaseSelector.TEXT, 6),
             (_('Country'),  75, BaseSelector.TEXT, 7),
             (_('Parish'),   75, BaseSelector.TEXT, 9),
+            (_('Last Change'), 150, BaseSelector.TEXT, 13),
             ]
 
     def get_from_handle_func(self):
