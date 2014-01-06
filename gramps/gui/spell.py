@@ -116,6 +116,18 @@ class Spell(object):
                         self.gtkspell_spell = Gtkspell.Spell.new()
                     elif Gtkspell._namespace == "GtkSpell":
                         self.gtkspell_spell = Gtkspell.Checker.new()
+                        try:
+                            #check for dictionary in system locale (LANG)
+                            #if exist it will be default one
+                            self.gtkspell_spell.set_language(None)
+                            #TODO: use "get_language_list" for use when there
+                            #is no English or systemlocale one
+                        except:
+                            #else check for English dictionary
+                            #if exist it will be default one
+                            #other installed one will also be available
+                            self.gtkspell_spell.set_language("en")
+                            #if that fails no spellchecker will be available
                     success = self.gtkspell_spell.attach(self.textview)
                     try:
                         #show decoded language codes in the context menu
