@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-12-22 15:19+0100\n"
+"POT-Creation-Date: 2014-01-06 17:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -900,7 +900,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:66
 #: ../src/gui/plug/_guioptions.py:1288 ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/views/treemodels/placemodel.py:304
-#: ../src/plugins/export/ExportCsv.py:460 ../src/plugins/gramplet/Events.py:53
+#: ../src/plugins/export/ExportCsv.py:479 ../src/plugins/gramplet/Events.py:53
 #: ../src/plugins/gramplet/PersonResidence.py:50
 #: ../src/plugins/gramplet/QuickViewGramplet.py:111
 #: ../src/plugins/import/ImportCsv.py:230
@@ -933,8 +933,8 @@ msgstr ""
 #: ../src/gui/views/treemodels/mediamodel.py:128
 #: ../src/plugins/drawreport/AncestorTree.py:1018
 #: ../src/plugins/drawreport/DescendTree.py:1614
-#: ../src/plugins/export/ExportCsv.py:343
-#: ../src/plugins/export/ExportCsv.py:460
+#: ../src/plugins/export/ExportCsv.py:362
+#: ../src/plugins/export/ExportCsv.py:479
 #: ../src/plugins/gramplet/QuickViewGramplet.py:110
 #: ../src/plugins/import/ImportCsv.py:183
 #: ../src/plugins/quickview/FilterByName.py:200
@@ -1004,7 +1004,7 @@ msgstr ""
 #: ../src/gui/configure.py:554 ../src/gui/editors/displaytabs/surnametab.py:76
 #: ../src/gui/plug/_guioptions.py:88 ../src/gui/plug/_guioptions.py:1437
 #: ../src/plugins/drawreport/StatisticsChart.py:318
-#: ../src/plugins/export/ExportCsv.py:336
+#: ../src/plugins/export/ExportCsv.py:355
 #: ../src/plugins/import/ImportCsv.py:170
 #: ../src/plugins/quickview/FilterByName.py:318
 #: ../src/plugins/webreport/NarrativeWeb.py:2875
@@ -1070,7 +1070,7 @@ msgstr ""
 #. functions for the actual quickreports
 #: ../src/ScratchPad.py:693 ../src/ToolTips.py:200 ../src/gui/configure.py:475
 #: ../src/gui/filtereditor.py:291 ../src/gui/grampsgui.py:134
-#: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:336
+#: ../src/gui/editors/editlink.py:85 ../src/plugins/export/ExportCsv.py:355
 #: ../src/plugins/gramplet/QuickViewGramplet.py:106
 #: ../src/plugins/import/ImportCsv.py:217
 #: ../src/plugins/quickview/AgeOnDate.py:55
@@ -1109,7 +1109,7 @@ msgstr ""
 #: ../src/ScratchPad.py:721 ../src/ToolTips.py:230 ../src/gui/configure.py:477
 #: ../src/gui/filtereditor.py:292 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:489 ../src/gui/editors/editlink.py:82
-#: ../src/plugins/export/ExportCsv.py:503
+#: ../src/plugins/export/ExportCsv.py:522
 #: ../src/plugins/gramplet/QuickViewGramplet.py:108
 #: ../src/plugins/import/ImportCsv.py:220
 #: ../src/plugins/quickview/all_events.py:80
@@ -1132,7 +1132,7 @@ msgstr ""
 #: ../src/gui/editors/editsource.py:77
 #: ../src/gui/editors/displaytabs/nameembedlist.py:77
 #: ../src/gui/views/treemodels/citationtreemodel.py:161
-#: ../src/plugins/export/ExportCsv.py:460
+#: ../src/plugins/export/ExportCsv.py:479
 #: ../src/plugins/gramplet/QuickViewGramplet.py:113
 #: ../src/plugins/import/ImportCsv.py:182
 #: ../src/plugins/quickview/FilterByName.py:170
@@ -1310,7 +1310,7 @@ msgstr ""
 
 #. ----------------------------------
 #: ../src/ToolTips.py:245 ../src/gen/lib/ldsord.py:105
-#: ../src/Merge/mergeperson.py:243 ../src/plugins/export/ExportCsv.py:503
+#: ../src/Merge/mergeperson.py:243 ../src/plugins/export/ExportCsv.py:522
 #: ../src/plugins/gramplet/Children.py:84
 #: ../src/plugins/gramplet/Children.py:180
 #: ../src/plugins/import/ImportCsv.py:219
@@ -1596,7 +1596,7 @@ msgstr ""
 #. 's' : suffix     = suffix
 #. 'n' : nickname   = nick name
 #. 'g' : familynick = family nick name
-#: ../src/Utils.py:1345 ../src/plugins/export/ExportCsv.py:338
+#: ../src/Utils.py:1345 ../src/plugins/export/ExportCsv.py:357
 #: ../src/plugins/import/ImportCsv.py:178
 #: ../src/plugins/tool/PatchNames.py:439
 msgid "Person|Title"
@@ -1614,7 +1614,7 @@ msgstr ""
 #: ../src/gui/configure.py:558 ../src/gui/configure.py:559
 #: ../src/gui/configure.py:560 ../src/gui/configure.py:561
 #: ../src/gui/configure.py:562 ../src/gui/configure.py:563
-#: ../src/plugins/export/ExportCsv.py:336
+#: ../src/plugins/export/ExportCsv.py:355
 #: ../src/plugins/import/ImportCsv.py:173
 msgid "Given"
 msgstr ""
@@ -1661,7 +1661,7 @@ msgstr ""
 #: ../src/gui/configure.py:548 ../src/gui/configure.py:549
 #: ../src/gui/configure.py:554 ../src/gui/configure.py:556
 #: ../src/gui/configure.py:561 ../src/gui/configure.py:563
-#: ../src/plugins/export/ExportCsv.py:337
+#: ../src/plugins/export/ExportCsv.py:356
 #: ../src/plugins/import/ImportCsv.py:180 ../src/glade/editperson.glade.h:8
 msgid "Suffix"
 msgstr ""
@@ -1753,7 +1753,7 @@ msgid "NOTPATRONYMIC"
 msgstr ""
 
 #: ../src/Utils.py:1362 ../src/gui/editors/displaytabs/surnametab.py:75
-#: ../src/plugins/export/ExportCsv.py:337
+#: ../src/plugins/export/ExportCsv.py:356
 #: ../src/plugins/import/ImportCsv.py:179 ../src/glade/editperson.glade.h:26
 msgid "Prefix"
 msgstr ""
@@ -3127,7 +3127,7 @@ msgid "Will"
 msgstr ""
 
 #: ../src/gen/lib/eventtype.py:179 ../src/Merge/mergeperson.py:239
-#: ../src/plugins/export/ExportCsv.py:459
+#: ../src/plugins/export/ExportCsv.py:478
 #: ../src/plugins/import/ImportCsv.py:228
 #: ../src/plugins/textreport/FamilyGroup.py:382
 #: ../src/plugins/webreport/NarrativeWeb.py:3111
@@ -3822,9 +3822,9 @@ msgstr ""
 #: ../src/plugins/docgen/cairodoc.py:106 ../src/plugins/docgen/RTFDoc.py:93
 #: ../src/plugins/docgen/RTFDoc.py:96 ../src/plugins/docgen/SvgDrawDoc.py:79
 #: ../src/plugins/docgen/SvgDrawDoc.py:81
-#: ../src/plugins/export/ExportCsv.py:301
-#: ../src/plugins/export/ExportCsv.py:305
-#: ../src/plugins/export/ExportGedcom.py:1443
+#: ../src/plugins/export/ExportCsv.py:303
+#: ../src/plugins/export/ExportCsv.py:307
+#: ../src/plugins/export/ExportGedcom.py:1444
 #: ../src/plugins/export/ExportGeneWeb.py:97
 #: ../src/plugins/export/ExportGeneWeb.py:101
 #: ../src/plugins/export/ExportVCalendar.py:104
@@ -4510,7 +4510,7 @@ msgstr ""
 msgid "Common"
 msgstr ""
 
-#: ../src/gui/configure.py:550 ../src/plugins/export/ExportCsv.py:337
+#: ../src/gui/configure.py:550 ../src/plugins/export/ExportCsv.py:356
 #: ../src/plugins/import/ImportCsv.py:176
 msgid "Call"
 msgstr ""
@@ -5581,7 +5581,7 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:52
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
 #: ../src/gui/selectors/selectevent.py:65
-#: ../src/plugins/export/ExportCsv.py:460
+#: ../src/plugins/export/ExportCsv.py:479
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:73
 #: ../src/plugins/gramplet/Events.py:51
 #: ../src/plugins/gramplet/PersonResidence.py:49
@@ -6617,7 +6617,7 @@ msgstr ""
 #: ../src/gui/editors/editfamily.py:118
 #: ../src/gui/selectors/selectperson.py:76 ../src/Merge/mergeperson.py:176
 #: ../src/plugins/drawreport/StatisticsChart.py:322
-#: ../src/plugins/export/ExportCsv.py:338
+#: ../src/plugins/export/ExportCsv.py:357
 #: ../src/plugins/import/ImportCsv.py:181
 #: ../src/plugins/lib/libpersonview.py:94
 #: ../src/plugins/quickview/siblings.py:48
@@ -8425,6 +8425,18 @@ msgstr ""
 msgid "Source: Title or Citation: Volume/Page"
 msgstr ""
 
+#: ../src/gui/selectors/selectcitation.py:68
+#: ../src/gui/selectors/selectevent.py:67
+#: ../src/gui/selectors/selectfamily.py:64
+#: ../src/gui/selectors/selectnote.py:70
+#: ../src/gui/selectors/selectobject.py:77
+#: ../src/gui/selectors/selectperson.py:82
+#: ../src/gui/selectors/selectplace.py:71
+#: ../src/gui/selectors/selectrepository.py:63
+#: ../src/gui/selectors/selectsource.py:63
+msgid "Last Change"
+msgstr ""
+
 #: ../src/gui/selectors/selectevent.py:54
 msgid "Select Event"
 msgstr ""
@@ -8455,10 +8467,6 @@ msgstr ""
 
 #: ../src/gui/selectors/selectobject.py:61
 msgid "Select Media Object"
-msgstr ""
-
-#: ../src/gui/selectors/selectperson.py:82
-msgid "Last Change"
 msgstr ""
 
 #: ../src/gui/selectors/selectplace.py:55
@@ -8862,7 +8870,7 @@ msgid ""
 "Click Edit icon (enable in configuration dialog) to edit"
 msgstr ""
 
-#: ../src/gui/widgets/monitoredwidgets.py:771
+#: ../src/gui/widgets/monitoredwidgets.py:770
 #: ../src/glade/editfamily.glade.h:21
 msgid "Edit the tag list"
 msgstr ""
@@ -10768,13 +10776,13 @@ msgid "Death month"
 msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:332
-#: ../src/plugins/export/ExportCsv.py:339
+#: ../src/plugins/export/ExportCsv.py:358
 #: ../src/plugins/import/ImportCsv.py:184
 msgid "Birth place"
 msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:334
-#: ../src/plugins/export/ExportCsv.py:341
+#: ../src/plugins/export/ExportCsv.py:360
 #: ../src/plugins/import/ImportCsv.py:206
 msgid "Death place"
 msgstr ""
@@ -11191,82 +11199,86 @@ msgstr ""
 msgid "vCard export options"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:196
+#: ../src/plugins/export/ExportCsv.py:198
 msgid "Include people"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:197
+#: ../src/plugins/export/ExportCsv.py:199
 msgid "Include marriages"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:198
+#: ../src/plugins/export/ExportCsv.py:200
 msgid "Include children"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:199
+#: ../src/plugins/export/ExportCsv.py:201
 msgid "Translate headers"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:339
+#: ../src/plugins/export/ExportCsv.py:341
+msgid "CSV export doesn't support non-primary surnames, {count} dropped"
+msgstr ""
+
+#: ../src/plugins/export/ExportCsv.py:358
 #: ../src/plugins/import/ImportCsv.py:186
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:129
 msgid "Birth date"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:339
+#: ../src/plugins/export/ExportCsv.py:358
 #: ../src/plugins/import/ImportCsv.py:188
 msgid "Birth source"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:340
+#: ../src/plugins/export/ExportCsv.py:359
 #: ../src/plugins/import/ImportCsv.py:194
 msgid "Baptism date"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:340
+#: ../src/plugins/export/ExportCsv.py:359
 #: ../src/plugins/import/ImportCsv.py:192
 msgid "Baptism place"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:340
+#: ../src/plugins/export/ExportCsv.py:359
 #: ../src/plugins/import/ImportCsv.py:197
 msgid "Baptism source"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:341
+#: ../src/plugins/export/ExportCsv.py:360
 #: ../src/plugins/import/ImportCsv.py:208
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:131
 msgid "Death date"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:341
+#: ../src/plugins/export/ExportCsv.py:360
 #: ../src/plugins/import/ImportCsv.py:210
 msgid "Death source"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:342
+#: ../src/plugins/export/ExportCsv.py:361
 #: ../src/plugins/import/ImportCsv.py:201
 msgid "Burial date"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:342
+#: ../src/plugins/export/ExportCsv.py:361
 #: ../src/plugins/import/ImportCsv.py:199
 msgid "Burial place"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:342
+#: ../src/plugins/export/ExportCsv.py:361
 #: ../src/plugins/import/ImportCsv.py:204
 msgid "Burial source"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:459
+#: ../src/plugins/export/ExportCsv.py:478
 #: ../src/plugins/import/ImportCsv.py:225
 #: ../src/plugins/textreport/FamilyGroup.py:570
 #: ../src/plugins/webreport/NarrativeWeb.py:2460
 msgid "Husband"
 msgstr ""
 
-#: ../src/plugins/export/ExportCsv.py:459
+#: ../src/plugins/export/ExportCsv.py:478
 #: ../src/plugins/import/ImportCsv.py:222
 #: ../src/plugins/textreport/FamilyGroup.py:579
 #: ../src/plugins/webreport/NarrativeWeb.py:2458
@@ -11281,19 +11293,19 @@ msgstr ""
 msgid "Writing families"
 msgstr ""
 
-#: ../src/plugins/export/ExportGedcom.py:900
+#: ../src/plugins/export/ExportGedcom.py:901
 msgid "Writing sources"
 msgstr ""
 
-#: ../src/plugins/export/ExportGedcom.py:935
+#: ../src/plugins/export/ExportGedcom.py:936
 msgid "Writing notes"
 msgstr ""
 
-#: ../src/plugins/export/ExportGedcom.py:973
+#: ../src/plugins/export/ExportGedcom.py:974
 msgid "Writing repositories"
 msgstr ""
 
-#: ../src/plugins/export/ExportGedcom.py:1446
+#: ../src/plugins/export/ExportGedcom.py:1447
 msgid "Export failed"
 msgstr ""
 
@@ -14341,59 +14353,59 @@ msgid ""
 " Writing to %(filename)s in format %(impliedext)s."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:1743
+#: ../src/plugins/lib/libgedcom.py:1745
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:1824
+#: ../src/plugins/lib/libgedcom.py:1826
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:2609 ../src/plugins/lib/libgedcom.py:2978
+#: ../src/plugins/lib/libgedcom.py:2611 ../src/plugins/lib/libgedcom.py:2980
 msgid "GEDCOM import"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:2632
+#: ../src/plugins/lib/libgedcom.py:2634
 msgid "GEDCOM import report: No errors detected"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:2634
+#: ../src/plugins/lib/libgedcom.py:2636
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:2899
+#: ../src/plugins/lib/libgedcom.py:2901
 msgid "Tag recognised but not supported"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:2910
+#: ../src/plugins/lib/libgedcom.py:2912
 msgid "Line ignored as not understood"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:2935
+#: ../src/plugins/lib/libgedcom.py:2937
 msgid "Skipped subordinate line"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:2969
+#: ../src/plugins/lib/libgedcom.py:2971
 msgid "Records not imported into "
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:3004
+#: ../src/plugins/lib/libgedcom.py:3006
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record synthesised"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:3013
+#: ../src/plugins/lib/libgedcom.py:3015
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:3052
+#: ../src/plugins/lib/libgedcom.py:3054
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -14401,7 +14413,7 @@ msgid ""
 "reference removed from person"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:3130
+#: ../src/plugins/lib/libgedcom.py:3132
 #, python-format
 msgid ""
 "\n"
@@ -14415,256 +14427,256 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../src/plugins/lib/libgedcom.py:3198
+#: ../src/plugins/lib/libgedcom.py:3200
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:3211
+#: ../src/plugins/lib/libgedcom.py:3213
 msgid "TRLR (trailer)"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:3240
+#: ../src/plugins/lib/libgedcom.py:3242
 #, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:3264 ../src/plugins/lib/libgedcom.py:6748
+#: ../src/plugins/lib/libgedcom.py:3266 ../src/plugins/lib/libgedcom.py:6750
 msgid "GEDCOM data"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:3310
+#: ../src/plugins/lib/libgedcom.py:3312
 msgid "Unknown tag"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:3312 ../src/plugins/lib/libgedcom.py:3326
-#: ../src/plugins/lib/libgedcom.py:3330 ../src/plugins/lib/libgedcom.py:3351
+#: ../src/plugins/lib/libgedcom.py:3314 ../src/plugins/lib/libgedcom.py:3328
+#: ../src/plugins/lib/libgedcom.py:3332 ../src/plugins/lib/libgedcom.py:3353
 msgid "Top Level"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:3420
+#: ../src/plugins/lib/libgedcom.py:3422
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:3537
+#: ../src/plugins/lib/libgedcom.py:3539
 msgid "Empty Alias <NAME PERSONAL> ignored"
-msgstr ""
-
-#: ../src/plugins/lib/libgedcom.py:3617 ../src/plugins/lib/libgedcom.py:4920
-#: ../src/plugins/lib/libgedcom.py:5118 ../src/plugins/lib/libgedcom.py:5255
-#: ../src/plugins/lib/libgedcom.py:5901 ../src/plugins/lib/libgedcom.py:6045
-msgid "Filename omitted"
 msgstr ""
 
 #: ../src/plugins/lib/libgedcom.py:3619 ../src/plugins/lib/libgedcom.py:4922
 #: ../src/plugins/lib/libgedcom.py:5120 ../src/plugins/lib/libgedcom.py:5257
 #: ../src/plugins/lib/libgedcom.py:5903 ../src/plugins/lib/libgedcom.py:6047
+msgid "Filename omitted"
+msgstr ""
+
+#: ../src/plugins/lib/libgedcom.py:3621 ../src/plugins/lib/libgedcom.py:4924
+#: ../src/plugins/lib/libgedcom.py:5122 ../src/plugins/lib/libgedcom.py:5259
+#: ../src/plugins/lib/libgedcom.py:5905 ../src/plugins/lib/libgedcom.py:6049
 msgid "Form omitted"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:4686
+#: ../src/plugins/lib/libgedcom.py:4688
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr ""
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../src/plugins/lib/libgedcom.py:5420
+#: ../src/plugins/lib/libgedcom.py:5422
 msgid "Empty event note ignored"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5738 ../src/plugins/lib/libgedcom.py:6551
+#: ../src/plugins/lib/libgedcom.py:5740 ../src/plugins/lib/libgedcom.py:6553
 msgid "Warn: ADDR overwritten"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:5915 ../src/plugins/lib/libgedcom.py:6337
+#: ../src/plugins/lib/libgedcom.py:5917 ../src/plugins/lib/libgedcom.py:6339
 msgid "REFN ignored"
 msgstr ""
 
 #. SOURce with the given gramps_id had no title
-#: ../src/plugins/lib/libgedcom.py:6008
+#: ../src/plugins/lib/libgedcom.py:6010
 #, python-format
 msgid "No title - ID %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6013
+#: ../src/plugins/lib/libgedcom.py:6015
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6263
+#: ../src/plugins/lib/libgedcom.py:6265
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6291 ../src/plugins/lib/libgedcom.py:7241
+#: ../src/plugins/lib/libgedcom.py:6293 ../src/plugins/lib/libgedcom.py:7243
 #, python-format
 msgid "Could not import %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6327
+#: ../src/plugins/lib/libgedcom.py:6329
 msgid "BLOB ignored"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6347
+#: ../src/plugins/lib/libgedcom.py:6349
 msgid "Multimedia REFN:TYPE ignored"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6357
+#: ../src/plugins/lib/libgedcom.py:6359
 msgid "Mutimedia RIN ignored"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6444
+#: ../src/plugins/lib/libgedcom.py:6446
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6676
+#: ../src/plugins/lib/libgedcom.py:6678
 msgid "Head (header)"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6692
+#: ../src/plugins/lib/libgedcom.py:6694
 msgid "Approved system identification"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6702
+#: ../src/plugins/lib/libgedcom.py:6704
 msgid "Generated by"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6716
+#: ../src/plugins/lib/libgedcom.py:6718
 msgid "Name of software product"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6728
+#: ../src/plugins/lib/libgedcom.py:6730
 msgid "Version number of software product"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6745
+#: ../src/plugins/lib/libgedcom.py:6747
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6766
+#: ../src/plugins/lib/libgedcom.py:6768
 msgid "Name of source data"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6780
+#: ../src/plugins/lib/libgedcom.py:6782
 msgid "Copyright of source data"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6794
+#: ../src/plugins/lib/libgedcom.py:6796
 msgid "Publication date of source data"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/lib/libgedcom.py:6807
+#: ../src/plugins/lib/libgedcom.py:6809
 #, python-format
 msgid "Import from %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6845
+#: ../src/plugins/lib/libgedcom.py:6847
 msgid "Submission record identifier"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6856
+#: ../src/plugins/lib/libgedcom.py:6858
 msgid "Language of GEDCOM text"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6880
+#: ../src/plugins/lib/libgedcom.py:6882
 #, python-format
 msgid ""
 "Import of GEDCOM file %s with DEST=%s, could cause errors in the resulting "
 "database!"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6883
+#: ../src/plugins/lib/libgedcom.py:6885
 msgid "Look for nameless events."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6906
+#: ../src/plugins/lib/libgedcom.py:6908
 msgid "Character set"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6908
+#: ../src/plugins/lib/libgedcom.py:6910
 msgid "Character set and version"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6924
+#: ../src/plugins/lib/libgedcom.py:6926
 msgid "GEDCOM version not supported"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6927
+#: ../src/plugins/lib/libgedcom.py:6929
 msgid "GEDCOM version"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6930
+#: ../src/plugins/lib/libgedcom.py:6932
 msgid "GEDCOM form not supported"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6932
+#: ../src/plugins/lib/libgedcom.py:6934
 msgid "GEDCOM form"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6978
+#: ../src/plugins/lib/libgedcom.py:6980
 msgid "Creation date of GEDCOM"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:6982
+#: ../src/plugins/lib/libgedcom.py:6984
 msgid "Creation date and time of GEDCOM"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:7019 ../src/plugins/lib/libgedcom.py:7056
+#: ../src/plugins/lib/libgedcom.py:7021 ../src/plugins/lib/libgedcom.py:7058
 msgid "Empty note ignored"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:7071
+#: ../src/plugins/lib/libgedcom.py:7073
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:7121
+#: ../src/plugins/lib/libgedcom.py:7123
 msgid "Submission: Submitter"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:7123
+#: ../src/plugins/lib/libgedcom.py:7125
 msgid "Submission: Family file"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:7125
+#: ../src/plugins/lib/libgedcom.py:7127
 msgid "Submission: Temple code"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:7127
+#: ../src/plugins/lib/libgedcom.py:7129
 msgid "Submission: Generations of ancestors"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:7129
+#: ../src/plugins/lib/libgedcom.py:7131
 msgid "Submission: Generations of descendants"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:7131
+#: ../src/plugins/lib/libgedcom.py:7133
 msgid "Submission: Ordinance process flag"
 msgstr ""
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../src/plugins/lib/libgedcom.py:7343
+#: ../src/plugins/lib/libgedcom.py:7345
 msgid "Invalid temple code"
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:7435
+#: ../src/plugins/lib/libgedcom.py:7437
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:7438
+#: ../src/plugins/lib/libgedcom.py:7440
 msgid "Your GEDCOM file is empty."
 msgstr ""
 
-#: ../src/plugins/lib/libgedcom.py:7501
+#: ../src/plugins/lib/libgedcom.py:7503
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr ""
