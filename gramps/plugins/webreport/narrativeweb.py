@@ -918,12 +918,17 @@ class BasePage(object):
             return ''
 
         s_tags = styledtext.get_tags()
-        markuptext = self._backend.add_markup_from_styled(text, s_tags,
-                                                         split='\n')
         htmllist = Html("div", class_="grampsstylednote")
         if contains_html:
-            htmllist += text
+            markuptext = self._backend.add_markup_from_styled(text, 
+                                                              s_tags, 
+                                                              split='\n',
+                                                              escape=False)
+            htmllist += markuptext
         else:
+            markuptext = self._backend.add_markup_from_styled(text, 
+                                                              s_tags, 
+                                                              split='\n')
             linelist = []
             linenb = 1
             for line in markuptext.split('\n'):
