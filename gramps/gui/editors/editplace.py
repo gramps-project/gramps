@@ -238,14 +238,14 @@ class EditPlace(EditPrimary):
 
         if self.obj.get_title().strip() == '':
             msg1 = _("Cannot save location. Title not entered.")
-            msg2 = _("You must enter a title before saving.'") 
+            msg2 = _("You must enter a title before saving.") 
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
 
         if self.obj.get_name().strip() == '':
             msg1 = _("Cannot save location. Name not entered.")
-            msg2 = _("You must enter a name before saving.'") 
+            msg2 = _("You must enter a name before saving.") 
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
