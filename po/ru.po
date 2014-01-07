@@ -9,14 +9,14 @@
 # Konstantin Dorichev <kdorichev@gmail.com>, 2008.
 # Yevgeny Zegzda <ezegjda@ya.ru>, 2009, 2010.
 # Andrey Baznikin (http://d.scn.ru/), 2009-2011.
-# Vassilii Khachaturov <vassilii@tarunz.org>, 2011-2013.
+# Vassilii Khachaturov <vassilii@tarunz.org>, 2011-2013, 2014.
 # Egor Reentov <egor.gramps@gmail.com>, 2011, 2012, 2013.
 msgid ""
 msgstr ""
 "Project-Id-Version: ru\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-10-25 19:34+0300\n"
-"PO-Revision-Date: 2013-10-20 13:35+0300\n"
+"PO-Revision-Date: 2014-01-07 17:11+0200\n"
 "Last-Translator: Vassilii Khachaturov <vassilii@tarunz.org>\n"
 "Language-Team: Russian <gramps-devel@lists.sf.net>\n"
 "Language: ru\n"
@@ -858,7 +858,6 @@ msgstr "Приватная запись"
 
 # !!!FIXME!!!
 #: ../gramps/gen/const.py:206
-#, fuzzy
 msgid ""
 "Gramps\n"
 " (Genealogical Research and Analysis Management Programming System)\n"
@@ -2433,14 +2432,12 @@ msgid "Source filters"
 msgstr "Фильтры источников"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:48
-#, fuzzy
 msgid "Citation with Source <Id>"
-msgstr "Цитаты с <Id>"
+msgstr "Цитаты источника с <Id>"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:49
-#, fuzzy
 msgid "Matches a citation with a source with a specified Gramps ID"
-msgstr "Выбирает цитаты с указанным Gramps ID"
+msgstr "Выбирает цитаты источника с указанным Gramps ID"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:49
 #: ../gramps/gen/filters/rules/event/_hastag.py:49
@@ -2456,14 +2453,12 @@ msgid "Tag:"
 msgstr "Метка:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:50
-#, fuzzy
 msgid "Citations with the <tag>"
-msgstr "Заметки с <пометкой>"
+msgstr "Цитаты с <пометкой>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:51
-#, fuzzy
 msgid "Matches citations with the particular tag"
-msgstr "Заметки с определенной пометкой"
+msgstr "Выбирает цитаты с определенной пометкой"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
 msgid "Citations matching the <filter>"
@@ -2521,16 +2516,16 @@ msgid "Matches citations whose Gramps ID matches the regular expression"
 msgstr "Выбирает цитаты, Gramps ID которых удовлетворяет регулярному·выражению"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:50
-#, fuzzy
 msgid "Citations with Source Id containing <text>"
-msgstr "Цитаты с идентификаторами, содержащими <подстроку>"
+msgstr "Цитаты с идентификаторами источника, содержащими <подстроку>"
 
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:51
-#, fuzzy
 msgid ""
 "Matches citations whose source has a Gramps ID that matches the regular "
 "expression"
-msgstr "Выбирает цитаты, Gramps ID которых удовлетворяет регулярному·выражению"
+msgstr ""
+"Выбирает цитаты, Gramps ID источника которых удовлетворяет регулярному "
+"выражению"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:46
 msgid "Every event"
@@ -2685,14 +2680,12 @@ msgid "Matches events with a certain number of sources connected to it"
 msgstr "Выбирает события с данным числом источников"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:50
-#, fuzzy
 msgid "Events with the <tag>"
-msgstr "События с <цитатой>"
+msgstr "События с <пометкой>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:51
-#, fuzzy
 msgid "Matches events with the particular tag"
-msgstr "Заметки с определенной пометкой"
+msgstr "Выбирает события с определенной пометкой"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:48
 msgid "Events with the particular type"
@@ -4391,14 +4384,12 @@ msgid "Matches places who have a particular source"
 msgstr "Выбирает местоположения с указанным источником"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
-#, fuzzy
 msgid "Places with the <tag>"
-msgstr "Люди с <пометкой>"
+msgstr "Места с <пометкой>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:51
-#, fuzzy
 msgid "Matches places with the particular tag"
-msgstr "Выбирает людей с указанной меткой"
+msgstr "Выбирает места с указанной меткой"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:51
 #: ../gramps/gui/glade/mergeplace.glade.h:6
@@ -4551,14 +4542,12 @@ msgid "Matches Repositories with particular parameters"
 msgstr "Выбирает хранилища с данными параметрами"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:50
-#, fuzzy
 msgid "Repositories with the <tag>"
-msgstr "Заметки с <пометкой>"
+msgstr "Хранилища с <пометкой>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:51
-#, fuzzy
 msgid "Matches repositories with the particular tag"
-msgstr "Заметки с определенной пометкой"
+msgstr "Выбирает хранилища с определенной пометкой"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
@@ -4689,14 +4678,12 @@ msgstr ""
 "с данной подстрокой в поле «Номер»"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
-#, fuzzy
 msgid "Sources with the <tag>"
-msgstr "Заметки с <пометкой>"
+msgstr "Источники с <пометкой>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:51
-#, fuzzy
 msgid "Matches sources with the particular tag"
-msgstr "Заметки с определенной пометкой"
+msgstr "Выбирает источники с определенной пометкой"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
@@ -5645,7 +5632,7 @@ msgstr "Html-код"
 
 #: ../gramps/gen/lib/notetype.py:89
 msgid "notetype|To Do"
-msgstr ""
+msgstr "Задача"
 
 #: ../gramps/gen/lib/notetype.py:93
 msgid "Person Note"
@@ -5815,21 +5802,18 @@ msgstr "Видео"
 
 #. required attribute to use for Elizabeth Shown Mills citation defs
 #: ../gramps/gen/lib/srcattrtype.py:113
-#, fuzzy
 msgid "Source Template"
-msgstr "Фильтр источников"
+msgstr "Шаблон источника"
 
 #. GEDCOM support
 #: ../gramps/gen/lib/srcattrtype.py:115
-#, fuzzy
 msgid "Events Recorded in Source"
-msgstr "Упорядочиваю ID Источников"
+msgstr "События указанные в источнике"
 
 #. GEDCOM EVENTS_RECORDED
 #: ../gramps/gen/lib/srcattrtype.py:116
-#, fuzzy
 msgid "Event Type Used for Citation"
-msgstr "Цитаты для события"
+msgstr "Тип события, использованный при цитировании"
 
 #. GEDCOM EVENT_TYPE_CITED_FROM
 #: ../gramps/gen/lib/srcattrtype.py:117
@@ -5838,9 +5822,8 @@ msgstr ""
 
 #. GEDCOM ROLE_IN_EVENT
 #: ../gramps/gen/lib/srcattrtype.py:118
-#, fuzzy
 msgid "Generated by"
-msgstr "_Генерировать"
+msgstr "Создано"
 
 #. Generated sources on import
 #. 6
@@ -5856,19 +5839,16 @@ msgid "Repository"
 msgstr "Хранилище"
 
 #: ../gramps/gen/lib/srcattrtype.py:120
-#, fuzzy
 msgid "Repository Address"
-msgstr "ссылка на хранилище"
+msgstr "Адрес хранилища"
 
 #: ../gramps/gen/lib/srcattrtype.py:121
-#, fuzzy
 msgid "Repository (Short)"
-msgstr "Заметка о хранилище"
+msgstr "Хранилище (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:122
-#, fuzzy
 msgid "Repository Call Number"
-msgstr "Название"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:123
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
@@ -5916,9 +5896,8 @@ msgid "Date"
 msgstr "Дата"
 
 #: ../gramps/gen/lib/srcattrtype.py:325
-#, fuzzy
 msgid "Act"
-msgstr "Действие"
+msgstr "Акт"
 
 #: ../gramps/gen/lib/srcattrtype.py:326
 msgid "Act (Short)"
@@ -5935,9 +5914,8 @@ msgid "Address"
 msgstr "Адрес"
 
 #: ../gramps/gen/lib/srcattrtype.py:328
-#, fuzzy
 msgid "Affiliation"
-msgstr "Определение"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:329
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
@@ -5949,19 +5927,16 @@ msgid "Author"
 msgstr "Автор"
 
 #: ../gramps/gen/lib/srcattrtype.py:330
-#, fuzzy
 msgid "Author location"
-msgstr "Нет местоположения."
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:331
-#, fuzzy
 msgid "Author (Short)"
-msgstr "Автор"
+msgstr "Автор (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:333
-#, fuzzy
 msgid "Book (Short)"
-msgstr "Отчёт «Книга»"
+msgstr "Книга (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:334
 msgid "Case"
@@ -5972,28 +5947,24 @@ msgid "Case (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:337
-#, fuzzy
 msgid "Cemetery (Short)"
-msgstr "Кладбище"
+msgstr "Кладбище (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:338
 msgid "Chapter"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:339
-#, fuzzy
 msgid "Chapter pages"
-msgstr "Кодировка символов"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:341
-#, fuzzy
 msgid "Collection (Short)"
-msgstr "Коллекция"
+msgstr "Коллекция (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:342
-#, fuzzy
 msgid "Column"
-msgstr "Колонки"
+msgstr "Колонка"
 
 #: ../gramps/gen/lib/srcattrtype.py:343
 msgid "Column (Short)"
@@ -6002,53 +5973,44 @@ msgstr ""
 # Заполнено?
 # !!!FIXME!!!
 #: ../gramps/gen/lib/srcattrtype.py:344
-#, fuzzy
 msgid "Compiler"
-msgstr "Завершено"
+msgstr "Составитель"
 
 #: ../gramps/gen/lib/srcattrtype.py:345
 msgid "Compiler (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:346
-#, fuzzy
 msgid "Creation date"
-msgstr "Цитата: дата"
+msgstr "Дата создания"
 
 #: ../gramps/gen/lib/srcattrtype.py:347
-#, fuzzy
 msgid "Creation date (Short)"
-msgstr "Отчёт создан для %(author)s"
+msgstr "Дата создания (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:348
-#, fuzzy
 msgid "Creator"
-msgstr "Генератор документов"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:349
-#, fuzzy
 msgid "Creator (Short)"
-msgstr "Отчёт создан для %(author)s"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:350
-#, fuzzy
 msgid "Credit line"
-msgstr "Цветной контур"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:351
-#, fuzzy
 msgid "Date accessed"
 msgstr "Последний доступ"
 
 #: ../gramps/gen/lib/srcattrtype.py:352
-#, fuzzy
 msgid "Date range"
-msgstr "Диапазон для даты «около»"
+msgstr "Диапазон дат"
 
 #: ../gramps/gen/lib/srcattrtype.py:353
-#, fuzzy
 msgid "Date (Short)"
-msgstr "Формат дат"
+msgstr "Дата (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:355
 msgid "District"
@@ -6075,37 +6037,32 @@ msgid "Edition"
 msgstr "Издание"
 
 #: ../gramps/gen/lib/srcattrtype.py:360
-#, fuzzy
 msgid "Editor"
-msgstr "Редактировать"
+msgstr "Редактор"
 
 #: ../gramps/gen/lib/srcattrtype.py:361
-#, fuzzy
 msgid "Editor (Short)"
-msgstr "Редактировать Источник"
+msgstr "Редактор (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:362 ../gramps/gui/plug/_windows.py:182
 msgid "File"
 msgstr "Файл"
 
 #: ../gramps/gen/lib/srcattrtype.py:363
-#, fuzzy
 msgid "File date"
-msgstr "Имя файла"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:364
 msgid "File date (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:365
-#, fuzzy
 msgid "File location"
-msgstr "Расположение комментария"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:366
-#, fuzzy
 msgid "File no."
-msgstr "Файл"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:367
 msgid "File no. (Short)"
@@ -6116,33 +6073,28 @@ msgid "File (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:369
-#, fuzzy
 msgid "File unit"
-msgstr "Файл"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:370
 msgid "File unit (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:371
-#, fuzzy
 msgid "Film id"
-msgstr "Плёнка"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:372
-#, fuzzy
 msgid "Film publication place"
-msgstr "Публикация"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:373
-#, fuzzy
 msgid "Film publisher"
-msgstr "Издательство"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:374
-#, fuzzy
 msgid "Film type"
-msgstr "Тип линии"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:375 ../gramps/gui/configure.py:815
 msgid "Format"
@@ -6153,9 +6105,8 @@ msgid "Frame"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:377
-#, fuzzy
 msgid "Group"
-msgstr "Группировать как:"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:378
 msgid "Group (Short)"
@@ -6183,57 +6134,48 @@ msgid "Id (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:383
-#, fuzzy
 msgid "Institution"
-msgstr "Введение"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:384
-#, fuzzy
 msgid "Institution (Short)"
-msgstr "Заметка для введения"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:385
-#, fuzzy
 msgid "Interviewer"
-msgstr "Интернет"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:386
-#, fuzzy
 msgid "Issue date"
-msgstr "Включать даты"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:387
 msgid "Issue date (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:388
-#, fuzzy
 msgid "Issue range"
-msgstr "отрезок"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:389
-#, fuzzy
 msgid "Item of interest"
-msgstr "Лица, представляющие интерес"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:390
-#, fuzzy
 msgid "Item of interest (Short)"
-msgstr "Лица, представляющие интерес"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:391
-#, fuzzy
 msgid "Jurisdiction"
-msgstr "Назначение"
+msgstr "Юрисдикция"
 
 #: ../gramps/gen/lib/srcattrtype.py:392
 msgid "Jurisdiction (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:394
-#, fuzzy
 msgid "Location (Short)"
-msgstr "Редактор мест"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:395 ../gramps/plugins/gramplet/leak.py:104
 #: ../gramps/plugins/webreport/narrativeweb.py:2728
@@ -6242,29 +6184,24 @@ msgid "Number"
 msgstr "Номер"
 
 #: ../gramps/gen/lib/srcattrtype.py:396
-#, fuzzy
 msgid "Number (total)"
-msgstr "Количество семей"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:397
-#, fuzzy
 msgid "Number (Short)"
-msgstr "Номер"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:398
-#, fuzzy
 msgid "Original repository"
-msgstr "Запись Хранилищ"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:399
-#, fuzzy
 msgid "Original repository location"
-msgstr "Запись Хранилищ"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:400
-#, fuzzy
 msgid "Original year"
-msgstr "Оригинал: "
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:401
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:85
@@ -6273,78 +6210,64 @@ msgid "Page"
 msgstr "Страница"
 
 #: ../gramps/gen/lib/srcattrtype.py:402
-#, fuzzy
 msgid "Page range"
-msgstr "отрезок"
+msgstr "Диапазон страниц"
 
 #: ../gramps/gen/lib/srcattrtype.py:403
 msgid "Page (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:404
-#, fuzzy
 msgid "Part"
-msgstr "Партнёр"
+msgstr "Часть"
 
 #: ../gramps/gen/lib/srcattrtype.py:405
-#, fuzzy
 msgid "Place created"
-msgstr "Иерархия мест"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:406
-#, fuzzy
 msgid "Position"
-msgstr "Фильтры местоположений"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:407
-#, fuzzy
 msgid "Position (Short)"
-msgstr "Фильтры местоположений"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:408
-#, fuzzy
 msgid "Posting date"
-msgstr "Сортирую даты..."
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:409
-#, fuzzy
 msgid "Professional credentials"
-msgstr "Личное событие:"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:410
-#, fuzzy
 msgid "Provenance"
-msgstr "Словенский"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:411
-#, fuzzy
 msgid "Publication format"
-msgstr "Информация о Публикации"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:412
-#, fuzzy
 msgid "Publication place"
-msgstr "Публикация"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:413
-#, fuzzy
 msgid "Publication title"
-msgstr "Публикация"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:414
-#, fuzzy
 msgid "Publication title (Short)"
-msgstr "Информация о публикации"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:415
-#, fuzzy
 msgid "Publication year"
-msgstr "Публикация"
+msgstr "Год издания"
 
 #: ../gramps/gen/lib/srcattrtype.py:416
-#, fuzzy
 msgid "Publication year (Short)"
-msgstr "Информация о Публикации"
+msgstr "Год издания (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:417
 #: ../gramps/plugins/gramplet/citations.py:70
@@ -6352,9 +6275,8 @@ msgid "Publisher"
 msgstr "Издательство"
 
 #: ../gramps/gen/lib/srcattrtype.py:418
-#, fuzzy
 msgid "Pub_info"
-msgstr "_Инф. об изд.:"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:419
 msgid "Recipient"
@@ -6374,28 +6296,24 @@ msgid "Relationship"
 msgstr "Отношение"
 
 #: ../gramps/gen/lib/srcattrtype.py:422
-#, fuzzy
 msgid "Report date"
-msgstr "Заголовок отчёта"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:423
-#, fuzzy
 msgid "Report date (Short)"
-msgstr "Отчёт для"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:424
-#, fuzzy
 msgid "Research comment"
-msgstr "Исследователь"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:425
 msgid "Research comment (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:426
-#, fuzzy
 msgid "Research project"
-msgstr "Исследователь"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:427
 msgid "Roll"
@@ -6414,14 +6332,12 @@ msgid "Schedule (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:431
-#, fuzzy
 msgid "Section"
-msgstr "Разделы"
+msgstr "Раздел"
 
 #: ../gramps/gen/lib/srcattrtype.py:432
-#, fuzzy
 msgid "Section (Short)"
-msgstr "Разделы"
+msgstr "Раздел (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:433
 msgid "Series"
@@ -6440,14 +6356,12 @@ msgid "Series (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:437
-#, fuzzy
 msgid "Session"
-msgstr "Журнал сессии"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:438
-#, fuzzy
 msgid "Session (Short)"
-msgstr "Журнал сессии"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:439
 msgid "Sheet no."
@@ -6463,14 +6377,12 @@ msgid "Subject"
 msgstr "Заголовок"
 
 #: ../gramps/gen/lib/srcattrtype.py:442
-#, fuzzy
 msgid "Subject (Short)"
-msgstr "Заголовок"
+msgstr "Тема (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:443
-#, fuzzy
 msgid "Subseries"
-msgstr "Подстрока:"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:444
 msgid "Subseries (Short)"
@@ -6490,7 +6402,6 @@ msgid "Term (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:448
-#, fuzzy
 msgid "Timestamp"
 msgstr "Время"
 
@@ -6517,9 +6428,8 @@ msgid "Title"
 msgstr "Название"
 
 #: ../gramps/gen/lib/srcattrtype.py:451
-#, fuzzy
 msgid "Title (Short)"
-msgstr "Название отчёта"
+msgstr "Название (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:452
 #: ../gramps/gen/plug/report/stdoptions.py:48
@@ -6585,9 +6495,8 @@ msgid "Url (digital location)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:456
-#, fuzzy
 msgid "Volume"
-msgstr "Том/Страница"
+msgstr "Том"
 
 #: ../gramps/gen/lib/srcattrtype.py:457
 msgid "Volume info"
@@ -6598,7 +6507,6 @@ msgid "Volume (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:459
-#, fuzzy
 msgid "Website"
 msgstr "Веб сайт"
 
@@ -6607,19 +6515,16 @@ msgid "Website creator/owner"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:461
-#, fuzzy
 msgid "Website (Short)"
-msgstr "Название сайта"
+msgstr "Веб сайт (сокр.)"
 
 #: ../gramps/gen/lib/srcattrtype.py:462
-#, fuzzy
 msgid "Year"
-msgstr "Года"
+msgstr "Год"
 
 #: ../gramps/gen/lib/srcattrtype.py:463
-#, fuzzy
 msgid "Year accessed"
-msgstr "Последний доступ"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:464
 msgid "Year (Short)"
@@ -6642,9 +6547,8 @@ msgid "Doe, D.P. & Cameron, E."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:472
-#, fuzzy
 msgid "Chicago"
-msgstr "Банту"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:473
 msgid "The big example Gramps manual"
@@ -6667,9 +6571,8 @@ msgid "24-55"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:478
-#, fuzzy
 msgid "Bruges Lace Collection"
-msgstr "Коллекция"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:479
 msgid "col. 3"
@@ -6716,9 +6619,8 @@ msgid "Peterburg Post Office, or Portland, ward 4"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:490
-#, fuzzy
 msgid "Second Edition"
-msgstr "Вторая дата"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:491
 msgid "Hoover, J.E."
@@ -6753,9 +6655,8 @@ msgid "Kansas City"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:499
-#, fuzzy
 msgid "NY Genealogy Association"
-msgstr "Связь"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:500
 msgid "FHL microfilm"
@@ -6786,9 +6687,8 @@ msgid "Sorbonne University"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:507
-#, fuzzy
 msgid "Materley, B."
-msgstr "Материнский"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:508
 msgid "Jun 2004"
@@ -6819,9 +6719,8 @@ msgid "5"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:515
-#, fuzzy
 msgid "National Archives"
-msgstr "Национальное происхождение"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:516
 msgid "Washington, D.C."
@@ -6840,9 +6739,8 @@ msgid "1-13"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:520
-#, fuzzy
 msgid "Part 3"
-msgstr "Партнёр №1"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:521
 msgid "London"
@@ -6869,9 +6767,8 @@ msgid "CD-ROM or eprint or ..."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:527
-#, fuzzy
 msgid "Berlin"
-msgstr "Подчёркнутый"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:528
 msgid "Title of Blog, Newsletter, DVD, ..."
@@ -6922,9 +6819,8 @@ msgid "1890 section or ER patients or ..."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:540
-#, fuzzy
 msgid "Carnival County Records"
-msgstr "Семейные рекорды"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:541
 msgid "series 34-38"
@@ -6971,28 +6867,24 @@ msgid "Letter"
 msgstr "Буква"
 
 #: ../gramps/gen/lib/srcattrtype.py:551
-#, fuzzy
 msgid "http://gramps-project.org/blog"
-msgstr "Читаю gramps-project.org..."
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:552
 msgid "4"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:553
-#, fuzzy
 msgid "5 volumes"
-msgstr "Колонки"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:554
-#, fuzzy
 msgid "gramps-project.org"
-msgstr "Читаю gramps-project.org..."
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:555
-#, fuzzy
 msgid "Family Historians Inc"
-msgstr "Семейные цитаты"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:556
 msgid "1888"
@@ -7041,14 +6933,12 @@ msgid "Name of cemetery or cemetery office with sources."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:569
-#, fuzzy
 msgid "The pages in the chapter."
-msgstr "Этот человек -- сын %(father)s."
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:570
-#, fuzzy
 msgid "The name of the person who compiled the source."
-msgstr "Число поколений для включения в древо"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:571
 msgid "The name of the creator of the artifact."
@@ -7059,14 +6949,12 @@ msgid "Acknowledgement of writers and contributors"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:573
-#, fuzzy
 msgid "The range of years which are present in the source."
-msgstr "Количество мест без географических координат."
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:574
-#, fuzzy
 msgid "Some important detail of the source."
-msgstr "Название источника."
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:575
 msgid "District as handled by Census"
@@ -7081,9 +6969,8 @@ msgid "The Editor of a multi-author book."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:578
-#, fuzzy
 msgid "The title of a specific file in a source."
-msgstr "Заголовок для календаря"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:579
 msgid "Date of submitting the document to a clerk or court."
@@ -7094,9 +6981,8 @@ msgid "Accession method to the file"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:581
-#, fuzzy
 msgid "Number to indicate a file"
-msgstr "Количество человек"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:582
 msgid "A grouping unit for a number of files in a source."
@@ -7107,19 +6993,16 @@ msgid "ID of a Microfilm."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:584
-#, fuzzy
 msgid "The type of the microfilm."
-msgstr "Заметка для апреля месяца"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:585
-#, fuzzy
 msgid "The format of the source."
-msgstr "Авторы источника."
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:586
-#, fuzzy
 msgid "What frames in the source are relevant."
-msgstr "Отображает источники для выбранного события"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:587
 msgid "A larger grouping to which the source belongs."
@@ -7130,9 +7013,8 @@ msgid "Household of interest on a census."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:589
-#, fuzzy
 msgid "ID to identify the source or citation part"
-msgstr "Уникальный номер для идентификации цитаты."
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:590
 msgid "Institution that issued the source."
@@ -7162,24 +7044,20 @@ msgid "City that is relevant."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:596
-#, fuzzy
 msgid "A number."
-msgstr "Номер"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:597
-#, fuzzy
 msgid "The maximum of entities available."
-msgstr "Использовать всю доступную высоту"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:598
-#, fuzzy
 msgid "Name of the repository where the original is stored."
-msgstr "Название хранилища (где содержатся источники)."
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:599
-#, fuzzy
 msgid "Address or only city of the repository where the original is stored."
-msgstr "Название хранилища (где содержатся источники)."
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:600
 msgid "Year the original source was published/created"
@@ -7214,9 +7092,8 @@ msgstr ""
 "и т.д."
 
 #: ../gramps/gen/lib/srcattrtype.py:606
-#, fuzzy
 msgid "The person to who the letter is addressed."
-msgstr "Город, село, посёлок (часть адреса)"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:607
 msgid ""
@@ -7255,9 +7132,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:615
-#, fuzzy
 msgid "Number of a census sheet."
-msgstr "Число предков"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:616
 msgid ""
@@ -7279,9 +7155,8 @@ msgid "Information about the volumes, eg the amount of volumes."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:621
-#, fuzzy
 msgid "The main internet address."
-msgstr "Интернет-адрес"
+msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:622
 msgid "Organization or person behind a website."
@@ -7965,7 +7840,7 @@ msgstr "GraphViz файл"
 #: ../gramps/gen/plug/menu/_enumeratedlist.py:125
 #, python-format
 msgid "Value '%(val)s' not found for option '%(opt)s'"
-msgstr ""
+msgstr "Значение «%(val)s» не найдено для параметра «%(opt)s»"
 
 #. ------------------------------------------------------------------------
 #.
@@ -8115,7 +7990,7 @@ msgstr "Лица, имеющие общего предка с %s"
 
 #: ../gramps/gen/plug/utils.py:237
 msgid "Updated"
-msgstr ""
+msgstr "Обновления"
 
 #: ../gramps/gen/plug/utils.py:249 ../gramps/gui/glade/editlink.glade.h:7
 msgid "New"
@@ -10775,9 +10650,8 @@ msgstr "Открыть папку с этими _документами"
 # fixme! "Выбрать в закладке %s"?
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:165
 #: ../gramps/gui/widgets/photo.py:90
-#, fuzzy
 msgid "Make Active Media"
-msgstr "Сделать активным %s"
+msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:272
 #: ../gramps/gui/editors/editperson.py:935
@@ -19344,9 +19218,9 @@ msgstr "Двойной щелчок, чтобы увидеть %d человек
 #: ../gramps/plugins/gramplet/ancestor.py:144
 #: ../gramps/plugins/gramplet/descendant.py:136
 #: ../gramps/plugins/gramplet/descendant.py:144
-#, fuzzy, python-format
+#, python-format
 msgid "%(abbr)s %(date)s"
-msgstr "%(date)s %(time)s"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/attributes.py:43
 msgid ""
@@ -19382,23 +19256,20 @@ msgid "<No Citation>"
 msgstr "<Нет цитаты>"
 
 #: ../gramps/plugins/gramplet/eval.py:78
-#, fuzzy
 msgid "Evaluation"
-msgstr "Окно оценки"
+msgstr "Исполнение"
 
 #: ../gramps/plugins/gramplet/eval.py:79
-#, fuzzy
 msgid "Output"
-msgstr "Выходной формат"
+msgstr "Результат"
 
 #: ../gramps/plugins/gramplet/eval.py:80
 msgid "Error"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/eval.py:83
-#, fuzzy
 msgid "Apply"
-msgstr "П_рименить"
+msgstr "Применить"
 
 #: ../gramps/plugins/gramplet/events.py:50
 #: ../gramps/plugins/gramplet/personresidence.py:46
@@ -19661,9 +19532,8 @@ msgid "Descendants"
 msgstr "Потомки"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:101
-#, fuzzy
 msgid "Ancestor"
-msgstr "Предки"
+msgstr "Предок"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:102
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:180
@@ -19843,16 +19713,15 @@ msgid "GExiv2 module not loaded."
 msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:412
-#, fuzzy
 msgid ""
 "Image metadata functionality will not be available.\n"
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?"
 "title=GEPS_029:_GTK3-"
 "GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 msgstr ""
-"Модуль «GExiv2» не загружен. Обработка метаданных изображения недоступна.\n"
+"Обработка метаданных изображения недоступна.\n"
 "\n"
-"Инструкция по сборке этого модуля доступна на   http://www.gramps-project."
+"Инструкция по сборке этого модуля доступна на http://www.gramps-project."
 "org/wiki/index.php?title=GEPS_029:_GTK3-"
 "GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 
@@ -20351,14 +20220,12 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1193
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1201
-#, fuzzy
 msgid "Python Evaluation"
-msgstr "Python"
+msgstr "Исполнение операций Python"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1194
-#, fuzzy
 msgid "Gramplet allowing the evaluation of python code"
-msgstr "Отображает все цитаты для выбранного местоположения"
+msgstr ""
 
 # !!!FIXME!!!
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1206
@@ -20367,24 +20234,20 @@ msgid "Uncollected Objects"
 msgstr "Неуничтоженные объекты"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1207
-#, fuzzy
 msgid "Gramplet showing uncollected objects"
-msgstr "Отображает заметки для выбранного документа"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1219
-#, fuzzy
 msgid "SoundEx Generator"
 msgstr "Генератор кодов SoundEx"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1220
-#, fuzzy
 msgid "Gramplet to generate SoundEx codes"
-msgstr "Генерировать код SoundEx"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1227
-#, fuzzy
 msgid "SoundEx"
-msgstr "Код SoundEx:"
+msgstr "Код SoundEx"
 
 # !!!FIXME!!!
 #: ../gramps/plugins/gramplet/leak.py:108
@@ -20392,7 +20255,6 @@ msgid "Uncollected object"
 msgstr "Неуничтоженный объект"
 
 #: ../gramps/plugins/gramplet/leak.py:117
-#, fuzzy
 msgid "Refresh"
 msgstr "Обновить"
 
@@ -26769,14 +26631,14 @@ msgid "Open on openstreetmap.org"
 msgstr "Открыть на openstreetmap.org"
 
 #: ../gramps/plugins/quickview/ageondate.py:51
-#, fuzzy, python-format
+#, python-format
 msgid "People and their ages the %s"
-msgstr "Вероятно, живые люди, и их возраст %s"
+msgstr "Люди и их возраст на %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:54
-#, fuzzy, python-format
+#, python-format
 msgid "People and their ages on %s"
-msgstr "Вероятно живые люди, и их возраст на %s"
+msgstr "Люди и их возраст на %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:66
 #: ../gramps/plugins/quickview/ageondate.py:69
@@ -31392,17 +31254,16 @@ msgid "OsmGpsMap module not loaded."
 msgstr ""
 
 #: ../gramps/plugins/view/geography.gpr.py:65
-#, fuzzy
 msgid ""
 "Geography functionality will not be available.\n"
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?"
 "title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 msgstr ""
-"Модуль «GExiv2» не загружен. Обработка метаданных изображения недоступна.\n"
+"Работа с картографическими данными недоступна.\n"
 "\n"
-"Инструкция по сборке этого модуля доступна на   http://www.gramps-project."
-"org/wiki/index.php?title=GEPS_029:_GTK3-"
-"GObject_introspection_Conversion#GExiv2_for_Image_metadata"
+"Инструкция по сборке соответствующего модуля доступна на  "
+"http://www.gramps-project.org/wiki/index.php?"
+"title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 
 #: ../gramps/plugins/view/geography.gpr.py:75
 msgid "All known places for one Person"
