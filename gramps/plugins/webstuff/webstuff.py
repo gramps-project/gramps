@@ -168,7 +168,7 @@ def load_on_reg(dbstate, uistate, plugin):
         # all other images for use in NarrativeWeb
         ['All Images', 0, 'All Images', None, None,
          [path_img("blank.gif"),
-          path_img("document.png")], [] ],
+          os.path.join(IMAGE_DIR, "document.png")], [] ],
 
         # Gramps Fav icon #2
         ["favicon2", 0, "FavIcon2",
