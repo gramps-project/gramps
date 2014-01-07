@@ -107,7 +107,7 @@ class DocBackend(object):
     
     SUPPORTED_MARKUP = []
 
-    ESCAPE_FUNC = lambda x: noescape
+    ESCAPE_FUNC = lambda: noescape
     #Map between styletypes and internally used values. This map is needed
     # to make TextDoc officially independant of gen.lib.styledtexttag
     STYLETYPE_MAP = {
@@ -265,7 +265,7 @@ class DocBackend(object):
             return None
         return ('', '')
     
-    def add_markup_from_styled(self, text, s_tags, split=''):
+    def add_markup_from_styled(self, text, s_tags, split='', escape=True):
         """
         Input is plain text, output is text with markup added according to the
         s_tags which are assumed to be styledtexttags.
@@ -289,6 +289,9 @@ class DocBackend(object):
                   returned is <b>text</b><i><b> here</b> not</i>
                   overwrite this method if this complexity is not needed. 
         """
+        if not escape:
+            escape_func = self.ESCAPE_FUNC
+            self.ESCAPE_FUNC = lambda: (lambda text: text)
         #unicode text must be sliced correctly
         text = cuni(text)
         FIRST = 0
@@ -380,7 +383,8 @@ class DocBackend(object):
                 otext += opentag[1]
         else:
             otext += self.ESCAPE_FUNC()(text[start:end])
-
+        if not escape:
+            self.ESCAPE_FUNC = escape_func
         return otext
 
     def format_link(self, value):
