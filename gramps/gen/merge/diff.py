@@ -438,26 +438,34 @@ class Struct(object):
 
         If no args are given, all are provided.
         """
-        selected = self.struct # better be a list
-        for key in kwargs:
-            for item in selected[:]:
-                part = self.getitem_from_path(key.split("__"), item)
-                if part[0] == kwargs[key]:
-                    # ok, keep as selected
-                    pass
-                else:
-                    # remove
-                    selected.remove(item)
+        selected = self.struct # better be dicts
+        # First, find elements of the list that match any given
+        # selection criteria:
+        selected = self.struct # assume dicts
+        # assume True
+        to_delete = []
+        for key in kwargs: # value="Social Security Number"
+            parts = self.getitem_from_path(key.split("__")) # returns all
+            # This will return a list; we keep the ones that match
+            for p in range(len(parts)):
+                # if it matches, keep it:
+                if parts[p] != kwargs[key]:
+                    to_delete.append(p)
+        # delete from highest to lowest, to use pop:
+        for p in reversed(to_delete):
+            selected.pop(p)
         # now select which parts to show:
-        if args:
+        if args: # just some of the parts, ["type.string", ...]
             results = []
-            if len(args) == 1:
-                for item in selected:
-                    results.append(getattr(Struct(item, self.db), args[0]))
-            else:
-                for item in selected:
-                    results.append(tuple([getattr(Struct(item, self.db), field) for field in args]))
-        else:
+            for select in selected: # dict in dicts
+                parts = []
+                for item in args: # ["type.string"]
+                    items = item.split(".") # "type.string"
+                    values = Struct(select, self.db).getitem_from_path(items)
+                    if values:
+                        parts.append((item, values))
+                results.append(parts)  # return [["type.string", "Social Security Number"], ...]
+        else: # return all
             results = selected
         # return them
         return results
@@ -523,7 +531,7 @@ class Struct(object):
         else:
             return self.handle_join(self.struct[item])
 
-    def getitem_from_path(self, items, item):
+    def getitem_from_path(self, items):
         """
         path is a list
         """
