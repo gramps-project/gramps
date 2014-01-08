@@ -428,6 +428,50 @@ class Struct(object):
     def __contains__(self, item):
         return item in self.struct 
 
+    def __call__(self, *args, **kwargs):
+        """
+        You can use this to select and filter a list of structs.
+
+        args are dotted strings of what componets of the structs to
+        select, and kwargs is the selection criteria, double-under
+        scores represent dots.
+
+        If no args are given, all are provided.
+        """
+        selected = self.struct # better be a list
+        for key in kwargs:
+            for item in selected[:]:
+                part = self.getitem_from_path(key.split("__"), item)
+                if part[0] == kwargs[key]:
+                    # ok, keep as selected
+                    pass
+                else:
+                    # remove
+                    selected.remove(item)
+        # now select which parts to show:
+        if args:
+            results = []
+            if len(args) == 1:
+                for item in selected:
+                    results.append(getattr(Struct(item, self.db), args[0]))
+            else:
+                for item in selected:
+                    results.append(tuple([getattr(Struct(item, self.db), field) for field in args]))
+        else:
+            results = selected
+        # return them
+        return results
+
+    def select(self, thing1, thing2):
+        if thing2 == "*":
+            return thing1
+        elif thing2 in thing1:
+            return thing2
+        elif thing1 == thing2:
+            return thing1
+        else:
+            return None
+
     def __getattr__(self, attr):
         """
         Called when getattr fails. Lookup attr in struct; returns Struct
@@ -451,14 +495,9 @@ class Struct(object):
             struct = self.handle_join(self.struct)
             return getattr(struct, attr)
         elif isinstance(self.struct, (list, tuple)):
-            # then, let's make this select from the list
+            # get first item in list that matches:
             sublist = [getattr(Struct(item, self.db), attr) for item in self.struct]
-            if len(sublist) == 0:
-                return None
-            elif len(sublist) == 1:
-                return sublist[0]
-            else:
-                return Struct(sublist, self.db)
+            return Struct(sublist, self.db)
         else:
             # better be a property of the list/tuple/dict/value:
             return getattr(self.struct, attr)
@@ -483,6 +522,15 @@ class Struct(object):
             return results if results else None
         else:
             return self.handle_join(self.struct[item])
+
+    def getitem_from_path(self, items, item):
+        """
+        path is a list
+        """
+        current = self
+        for item in items:
+            current = getattr(current, item)
+        return current
 
     def get_object_from_handle(self, handle):
         return self.db.get_from_name_and_handle(handle.classname, str(handle))
