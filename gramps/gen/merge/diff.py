@@ -579,6 +579,8 @@ class Struct(object):
         >>> Struct(struct).setitem_from_path(["primary_name", "surname_list", "[0]", "surname"], "Smith", transaction)
         """
         path, item = path[:-1], path[-1]
+        if item.startswith("["):
+            item = item[1:-1]
         struct = self.struct
         primary_obj = struct
         for p in range(len(path)):
@@ -594,11 +596,19 @@ class Struct(object):
             # keep track of primary object for update, below
             if isinstance(struct, dict) and "_class" in struct and self.primary_object_q(struct["_class"]):
                 primary_obj = struct
-        # struct is set
-        if isinstance(struct, (list, tuple)):
+        # struct is now set
+        if item in struct and isinstance(struct[item], list): # assigning to a list
+            if value is not None:
+                struct[item].append(value)                    # we append the value
+            else:
+                struct[item] = []
+        elif isinstance(struct, (list, tuple)):
             pos = int(item)
             if pos < len(struct):
-                struct[int(item)] = value
+                if value is not None:
+                    struct[int(item)] = value
+                else:
+                    struct.pop(int(item))
         elif isinstance(struct, dict):
             if item in struct.keys():
                 struct[item] = value
