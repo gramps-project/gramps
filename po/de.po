@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-02 13:19+0100\n"
-"PO-Revision-Date: 2014-01-02 13:24+0100\n"
+"POT-Creation-Date: 2014-01-13 16:04+0100\n"
+"PO-Revision-Date: 2014-01-13 16:09+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -81,7 +81,7 @@ msgstr "Lesezeichen organisieren"
 #. Add column with object name
 #: ../src/Bookmarks.py:213 ../src/ScratchPad.py:561 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:456
-#: ../src/gui/filtereditor.py:770 ../src/gui/filtereditor.py:923
+#: ../src/gui/filtereditor.py:794 ../src/gui/filtereditor.py:947
 #: ../src/gui/editors/editfamily.py:117 ../src/gui/editors/editname.py:307
 #: ../src/gui/editors/displaytabs/backreflist.py:62
 #: ../src/gui/editors/displaytabs/nameembedlist.py:72
@@ -105,7 +105,7 @@ msgstr "Name"
 
 #. Add column with object gramps_id
 #. GRAMPS ID
-#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:926
+#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:950
 #: ../src/gui/editors/editfamily.py:116
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/citationembedlist.py:85
@@ -617,7 +617,7 @@ msgstr ""
 #: ../src/Utils.py:1726 ../src/Utils.py:1728 ../src/Utils.py:1732
 #: ../src/Utils.py:1738 ../src/Utils.py:1743 ../src/cli/clidbman.py:504
 #: ../src/gen/lib/attrtype.py:63 ../src/gen/lib/childreftype.py:79
-#: ../src/gen/lib/eventroletype.py:58 ../src/gen/lib/eventtype.py:143
+#: ../src/gen/lib/eventroletype.py:58 ../src/gen/lib/eventtype.py:164
 #: ../src/gen/lib/familyreltype.py:52 ../src/gen/lib/grampstype.py:34
 #: ../src/gen/lib/nametype.py:53 ../src/gen/lib/nameorigintype.py:80
 #: ../src/gen/lib/notetype.py:78 ../src/gen/lib/repotype.py:59
@@ -1181,7 +1181,8 @@ msgstr "Person"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../src/ScratchPad.py:721 ../src/ToolTips.py:230 ../src/gui/configure.py:477
+#: ../src/ScratchPad.py:721 ../src/ToolTips.py:230
+#: ../src/gen/lib/eventtype.py:141 ../src/gui/configure.py:477
 #: ../src/gui/filtereditor.py:292 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:489 ../src/gui/editors/editlink.py:82
 #: ../src/plugins/export/ExportCsv.py:522
@@ -1369,7 +1370,7 @@ msgid "Sources in repository"
 msgstr "Quellen im Aufbewahrungsort"
 
 #: ../src/ToolTips.py:202 ../src/gen/lib/childreftype.py:74
-#: ../src/gen/lib/eventtype.py:146 ../src/Merge/mergeperson.py:180
+#: ../src/gen/lib/eventtype.py:167 ../src/Merge/mergeperson.py:180
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/lineage.py:93
 #: ../src/plugins/textreport/FamilyGroup.py:482
@@ -2972,7 +2973,7 @@ msgid "familynick"
 msgstr "Familienspitzname"
 
 #: ../src/gen/lib/attrtype.py:64 ../src/gen/lib/childreftype.py:80
-#: ../src/gen/lib/eventroletype.py:59 ../src/gen/lib/eventtype.py:144
+#: ../src/gen/lib/eventroletype.py:59 ../src/gen/lib/eventtype.py:165
 #: ../src/gen/lib/familyreltype.py:53 ../src/gen/lib/markertype.py:58
 #: ../src/gen/lib/nametype.py:54 ../src/gen/lib/nameorigintype.py:81
 #: ../src/gen/lib/notetype.py:79 ../src/gen/lib/repotype.py:60
@@ -3065,7 +3066,7 @@ msgstr "Zeit"
 msgid "None"
 msgstr "Ohne"
 
-#: ../src/gen/lib/childreftype.py:75 ../src/gen/lib/eventtype.py:145
+#: ../src/gen/lib/childreftype.py:75 ../src/gen/lib/eventtype.py:166
 msgid "Adopted"
 msgstr "Adoptiert"
 
@@ -3302,7 +3303,42 @@ msgstr "Familie"
 msgid "Informant"
 msgstr "Informant"
 
-#: ../src/gen/lib/eventtype.py:147 ../src/Merge/mergeperson.py:184
+#: ../src/gen/lib/eventtype.py:139
+msgid "Life Events"
+msgstr "Lebensereignisse"
+
+#: ../src/gen/lib/eventtype.py:144
+msgid "Religious"
+msgstr "Religiös"
+
+#: ../src/gen/lib/eventtype.py:147
+msgid "Vocational"
+msgstr "Beruflich"
+
+#: ../src/gen/lib/eventtype.py:149
+msgid "Academic"
+msgstr "Wissenschaftlich"
+
+#: ../src/gen/lib/eventtype.py:151
+msgid "Travel"
+msgstr "Reisen"
+
+#: ../src/gen/lib/eventtype.py:153
+msgid "Legal"
+msgstr "Juristisch"
+
+#: ../src/gen/lib/eventtype.py:155 ../src/gen/lib/eventtype.py:197
+#: ../src/plugins/gramplet/bottombar.gpr.py:119
+#: ../src/plugins/webreport/NarrativeWeb.py:2764
+#: ../src/plugins/webreport/NarrativeWeb.py:6736
+msgid "Residence"
+msgstr "Wohnort"
+
+#: ../src/gen/lib/eventtype.py:157 ../src/glade/mergedata.glade.h:1
+msgid "Other"
+msgstr "Andere"
+
+#: ../src/gen/lib/eventtype.py:168 ../src/Merge/mergeperson.py:184
 #: ../src/plugins/textreport/FamilyGroup.py:488
 #: ../src/plugins/textreport/FamilyGroup.py:490
 #: ../src/plugins/textreport/TagReport.py:136
@@ -3313,136 +3349,129 @@ msgstr "Informant"
 msgid "Death"
 msgstr "Tod"
 
-#: ../src/gen/lib/eventtype.py:148
+#: ../src/gen/lib/eventtype.py:169
 msgid "Adult Christening"
 msgstr "Erwachsenentaufe"
 
-#: ../src/gen/lib/eventtype.py:149 ../src/gen/lib/ldsord.py:94
+#: ../src/gen/lib/eventtype.py:170 ../src/gen/lib/ldsord.py:94
 msgid "Baptism"
 msgstr "Taufe"
 
-#: ../src/gen/lib/eventtype.py:150
+#: ../src/gen/lib/eventtype.py:171
 msgid "Bar Mitzvah"
 msgstr "Bar Mitzvah"
 
-#: ../src/gen/lib/eventtype.py:151
+#: ../src/gen/lib/eventtype.py:172
 msgid "Bat Mitzvah"
 msgstr "Bat Mitzvah"
 
-#: ../src/gen/lib/eventtype.py:152
+#: ../src/gen/lib/eventtype.py:173
 msgid "Blessing"
 msgstr "Segnung"
 
-#: ../src/gen/lib/eventtype.py:153
+#: ../src/gen/lib/eventtype.py:174
 msgid "Burial"
 msgstr "Beerdigung"
 
-#: ../src/gen/lib/eventtype.py:154
+#: ../src/gen/lib/eventtype.py:175
 msgid "Cause Of Death"
 msgstr "Todesursache"
 
-#: ../src/gen/lib/eventtype.py:155
+#: ../src/gen/lib/eventtype.py:176
 msgid "Census"
 msgstr "Volkszählung"
 
-#: ../src/gen/lib/eventtype.py:156
+#: ../src/gen/lib/eventtype.py:177
 msgid "Christening"
 msgstr "Kleinkindtaufe"
 
-#: ../src/gen/lib/eventtype.py:157 ../src/gen/lib/ldsord.py:96
+#: ../src/gen/lib/eventtype.py:178 ../src/gen/lib/ldsord.py:96
 msgid "Confirmation"
 msgstr "Konfirmation/Firmung"
 
-#: ../src/gen/lib/eventtype.py:158
+#: ../src/gen/lib/eventtype.py:179
 msgid "Cremation"
 msgstr "Einäscherung"
 
-#: ../src/gen/lib/eventtype.py:159
+#: ../src/gen/lib/eventtype.py:180
 msgid "Degree"
 msgstr "Akademischer Grad"
 
-#: ../src/gen/lib/eventtype.py:160
+#: ../src/gen/lib/eventtype.py:181
 msgid "Education"
 msgstr "Ausbildung"
 
-#: ../src/gen/lib/eventtype.py:161
+#: ../src/gen/lib/eventtype.py:182
 msgid "Elected"
 msgstr "Wahl"
 
-#: ../src/gen/lib/eventtype.py:162
+#: ../src/gen/lib/eventtype.py:183
 msgid "Emigration"
 msgstr "Auswanderung"
 
-#: ../src/gen/lib/eventtype.py:163
+#: ../src/gen/lib/eventtype.py:184
 msgid "First Communion"
 msgstr "Erstkommunion"
 
-#: ../src/gen/lib/eventtype.py:164
+#: ../src/gen/lib/eventtype.py:185
 msgid "Immigration"
 msgstr "Einwanderung"
 
-#: ../src/gen/lib/eventtype.py:165
+#: ../src/gen/lib/eventtype.py:186
 msgid "Graduation"
 msgstr "Bildungsabschluss"
 
-#: ../src/gen/lib/eventtype.py:166
+#: ../src/gen/lib/eventtype.py:187
 msgid "Medical Information"
 msgstr "Medizinische Informationen"
 
-#: ../src/gen/lib/eventtype.py:167
+#: ../src/gen/lib/eventtype.py:188
 msgid "Military Service"
 msgstr "Militärdienst"
 
-#: ../src/gen/lib/eventtype.py:168
+#: ../src/gen/lib/eventtype.py:189
 msgid "Naturalization"
 msgstr "Einbürgerung"
 
-#: ../src/gen/lib/eventtype.py:169
+#: ../src/gen/lib/eventtype.py:190
 msgid "Nobility Title"
 msgstr "Adelstitel"
 
-#: ../src/gen/lib/eventtype.py:170
+#: ../src/gen/lib/eventtype.py:191
 msgid "Number of Marriages"
 msgstr "Anzahl der Ehen"
 
-#: ../src/gen/lib/eventtype.py:171 ../src/gen/lib/nameorigintype.py:92
+#: ../src/gen/lib/eventtype.py:192 ../src/gen/lib/nameorigintype.py:92
 #: ../src/plugins/gramplet/PersonDetails.py:124
 msgid "Occupation"
 msgstr "Beruf"
 
-#: ../src/gen/lib/eventtype.py:172
+#: ../src/gen/lib/eventtype.py:193
 msgid "Ordination"
 msgstr "Ordination"
 
-#: ../src/gen/lib/eventtype.py:173
+#: ../src/gen/lib/eventtype.py:194
 msgid "Probate"
 msgstr "Testamentseröffnung"
 
-#: ../src/gen/lib/eventtype.py:174
+#: ../src/gen/lib/eventtype.py:195
 msgid "Property"
 msgstr "Besitz"
 
-#: ../src/gen/lib/eventtype.py:175
+#: ../src/gen/lib/eventtype.py:196
 #: ../src/plugins/gramplet/PersonDetails.py:126
 msgid "Religion"
 msgstr "Religion"
 
-#: ../src/gen/lib/eventtype.py:176
-#: ../src/plugins/gramplet/bottombar.gpr.py:119
-#: ../src/plugins/webreport/NarrativeWeb.py:2764
-#: ../src/plugins/webreport/NarrativeWeb.py:6736
-msgid "Residence"
-msgstr "Wohnort"
-
-#: ../src/gen/lib/eventtype.py:177
+#: ../src/gen/lib/eventtype.py:198
 msgid "Retirement"
 msgstr "Pensionierung"
 
-#: ../src/gen/lib/eventtype.py:178
+#: ../src/gen/lib/eventtype.py:199
 msgid "Will"
 msgstr "Testament"
 
-#: ../src/gen/lib/eventtype.py:179 ../src/Merge/mergeperson.py:239
+#: ../src/gen/lib/eventtype.py:200 ../src/Merge/mergeperson.py:239
 #: ../src/plugins/export/ExportCsv.py:478
 #: ../src/plugins/import/ImportCsv.py:228
 #: ../src/plugins/textreport/FamilyGroup.py:382
@@ -3450,224 +3479,224 @@ msgstr "Testament"
 msgid "Marriage"
 msgstr "Hochzeit"
 
-#: ../src/gen/lib/eventtype.py:180
+#: ../src/gen/lib/eventtype.py:201
 msgid "Marriage Settlement"
 msgstr "Ehevereinbarung"
 
-#: ../src/gen/lib/eventtype.py:181
+#: ../src/gen/lib/eventtype.py:202
 msgid "Marriage License"
 msgstr "Eheerlaubnis"
 
-#: ../src/gen/lib/eventtype.py:182
+#: ../src/gen/lib/eventtype.py:203
 msgid "Marriage Contract"
 msgstr "Ehevertrag"
 
-#: ../src/gen/lib/eventtype.py:183
+#: ../src/gen/lib/eventtype.py:204
 msgid "Marriage Banns"
 msgstr "Hochzeitsaufgebot"
 
-#: ../src/gen/lib/eventtype.py:184
+#: ../src/gen/lib/eventtype.py:205
 msgid "Engagement"
 msgstr "Verlobung"
 
-#: ../src/gen/lib/eventtype.py:185
+#: ../src/gen/lib/eventtype.py:206
 #: ../src/plugins/webreport/NarrativeWeb.py:3112
 msgid "Divorce"
 msgstr "Scheidung"
 
-#: ../src/gen/lib/eventtype.py:186
+#: ../src/gen/lib/eventtype.py:207
 msgid "Divorce Filing"
 msgstr "Einreichung der Scheidung"
 
-#: ../src/gen/lib/eventtype.py:187
+#: ../src/gen/lib/eventtype.py:208
 msgid "Annulment"
 msgstr "Annullierung"
 
-#: ../src/gen/lib/eventtype.py:188
+#: ../src/gen/lib/eventtype.py:209
 msgid "Alternate Marriage"
 msgstr "Alternative Hochzeit"
 
-#: ../src/gen/lib/eventtype.py:192
+#: ../src/gen/lib/eventtype.py:213
 msgid "birth abbreviation|b."
 msgstr "*"
 
-#: ../src/gen/lib/eventtype.py:193
+#: ../src/gen/lib/eventtype.py:214
 msgid "death abbreviation|d."
 msgstr "†"
 
-#: ../src/gen/lib/eventtype.py:194
+#: ../src/gen/lib/eventtype.py:215
 msgid "marriage abbreviation|m."
 msgstr "⚭"
 
-#: ../src/gen/lib/eventtype.py:195
+#: ../src/gen/lib/eventtype.py:216
 msgid "Unknown abbreviation|unkn."
 msgstr "unbk."
 
-#: ../src/gen/lib/eventtype.py:196
+#: ../src/gen/lib/eventtype.py:217
 msgid "Custom abbreviation|cust."
 msgstr "bendef."
 
-#: ../src/gen/lib/eventtype.py:197
+#: ../src/gen/lib/eventtype.py:218
 msgid "Adopted abbreviation|adop."
 msgstr "adop."
 
-#: ../src/gen/lib/eventtype.py:198
+#: ../src/gen/lib/eventtype.py:219
 msgid "Adult Christening abbreviation|a.chr."
 msgstr "~"
 
-#: ../src/gen/lib/eventtype.py:199
+#: ../src/gen/lib/eventtype.py:220
 msgid "Baptism abbreviation|bap."
 msgstr "~"
 
-#: ../src/gen/lib/eventtype.py:200
+#: ../src/gen/lib/eventtype.py:221
 msgid "Bar Mitzvah abbreviation|bar."
 msgstr "bar."
 
-#: ../src/gen/lib/eventtype.py:201
+#: ../src/gen/lib/eventtype.py:222
 msgid "Bat Mitzvah abbreviation|bat."
 msgstr "bas."
 
-#: ../src/gen/lib/eventtype.py:202
+#: ../src/gen/lib/eventtype.py:223
 msgid "Blessing abbreviation|bles."
 msgstr "segn."
 
-#: ../src/gen/lib/eventtype.py:203
+#: ../src/gen/lib/eventtype.py:224
 msgid "Burial abbreviation|bur."
 msgstr "▭"
 
-#: ../src/gen/lib/eventtype.py:204
+#: ../src/gen/lib/eventtype.py:225
 msgid "Cause Of Death abbreviation|d.cau."
 msgstr "Todurs."
 
-#: ../src/gen/lib/eventtype.py:205
+#: ../src/gen/lib/eventtype.py:226
 msgid "Census abbreviation|cens."
 msgstr "Zens."
 
-#: ../src/gen/lib/eventtype.py:206
+#: ../src/gen/lib/eventtype.py:227
 msgid "Christening abbreviation|chr."
 msgstr "~"
 
-#: ../src/gen/lib/eventtype.py:207
+#: ../src/gen/lib/eventtype.py:228
 msgid "Confirmation abbreviation|conf."
 msgstr "Konf."
 
-#: ../src/gen/lib/eventtype.py:208
+#: ../src/gen/lib/eventtype.py:229
 msgid "Cremation abbreviation|crem."
 msgstr "⚱"
 
-#: ../src/gen/lib/eventtype.py:209
+#: ../src/gen/lib/eventtype.py:230
 msgid "Degree abbreviation|deg."
 msgstr "Dipl."
 
-#: ../src/gen/lib/eventtype.py:210
+#: ../src/gen/lib/eventtype.py:231
 msgid "Education abbreviation|edu."
 msgstr "Ausb."
 
-#: ../src/gen/lib/eventtype.py:211
+#: ../src/gen/lib/eventtype.py:232
 msgid "Elected abbreviation|elec."
 msgstr "gew."
 
-#: ../src/gen/lib/eventtype.py:212
+#: ../src/gen/lib/eventtype.py:233
 msgid "Emigration abbreviation|em."
 msgstr "Em."
 
-#: ../src/gen/lib/eventtype.py:213
+#: ../src/gen/lib/eventtype.py:234
 msgid "First Communion abbreviation|f.comm."
 msgstr "Erstko."
 
-#: ../src/gen/lib/eventtype.py:214
+#: ../src/gen/lib/eventtype.py:235
 msgid "Immigration abbreviation|im."
 msgstr "Im."
 
-#: ../src/gen/lib/eventtype.py:215
+#: ../src/gen/lib/eventtype.py:236
 msgid "Graduation abbreviation|grad."
 msgstr "Grad."
 
-#: ../src/gen/lib/eventtype.py:216
+#: ../src/gen/lib/eventtype.py:237
 msgid "Medical Information abbreviation|medinf."
 msgstr "medinf."
 
-#: ../src/gen/lib/eventtype.py:217
+#: ../src/gen/lib/eventtype.py:238
 msgid "Military Service abbreviation|milser."
 msgstr "Wehrd."
 
-#: ../src/gen/lib/eventtype.py:218
+#: ../src/gen/lib/eventtype.py:239
 msgid "Naturalization abbreviation|nat."
 msgstr "Einbg."
 
-#: ../src/gen/lib/eventtype.py:219
+#: ../src/gen/lib/eventtype.py:240
 msgid "Nobility Title abbreviation|nob."
 msgstr "Adel."
 
-#: ../src/gen/lib/eventtype.py:220
+#: ../src/gen/lib/eventtype.py:241
 msgid "Number of Marriages abbreviation|n.o.mar."
 msgstr "Anz.⚭"
 
-#: ../src/gen/lib/eventtype.py:221
+#: ../src/gen/lib/eventtype.py:242
 msgid "Occupation abbreviation|occ."
 msgstr "Beruf"
 
-#: ../src/gen/lib/eventtype.py:222
+#: ../src/gen/lib/eventtype.py:243
 msgid "Ordination abbreviation|ord."
 msgstr "Ord."
 
-#: ../src/gen/lib/eventtype.py:223
+#: ../src/gen/lib/eventtype.py:244
 msgid "Probate abbreviation|prob."
 msgstr "Test. eröf."
 
-#: ../src/gen/lib/eventtype.py:224
+#: ../src/gen/lib/eventtype.py:245
 msgid "Property abbreviation|prop."
 msgstr "Besi."
 
-#: ../src/gen/lib/eventtype.py:225
+#: ../src/gen/lib/eventtype.py:246
 msgid "Religion abbreviation|rel."
 msgstr "rel."
 
-#: ../src/gen/lib/eventtype.py:226
+#: ../src/gen/lib/eventtype.py:247
 msgid "Residence abbreviation|res."
 msgstr "Wohn."
 
-#: ../src/gen/lib/eventtype.py:227
+#: ../src/gen/lib/eventtype.py:248
 msgid "Retirement abbreviation|ret."
 msgstr "Ruhest."
 
-#: ../src/gen/lib/eventtype.py:228
+#: ../src/gen/lib/eventtype.py:249
 msgid "Will abbreviation|will."
 msgstr "Testa."
 
-#: ../src/gen/lib/eventtype.py:229
+#: ../src/gen/lib/eventtype.py:250
 msgid "Marriage Settlement abbreviation|m.set."
 msgstr "Ehevtr."
 
-#: ../src/gen/lib/eventtype.py:230
+#: ../src/gen/lib/eventtype.py:251
 msgid "Marriage License abbreviation|m.lic."
 msgstr "Eheerl."
 
-#: ../src/gen/lib/eventtype.py:231
+#: ../src/gen/lib/eventtype.py:252
 msgid "Marriage Contract abbreviation|m.con."
 msgstr "Ehevtr."
 
-#: ../src/gen/lib/eventtype.py:232
+#: ../src/gen/lib/eventtype.py:253
 msgid "Marriage Banns abbreviation|m.ban."
 msgstr "Aufg."
 
-#: ../src/gen/lib/eventtype.py:233
+#: ../src/gen/lib/eventtype.py:254
 msgid "Alternate Marriage abbreviation|alt.mar."
 msgstr "alt.Trau."
 
-#: ../src/gen/lib/eventtype.py:234
+#: ../src/gen/lib/eventtype.py:255
 msgid "Engagement abbreviation|engd."
 msgstr "o"
 
-#: ../src/gen/lib/eventtype.py:235
+#: ../src/gen/lib/eventtype.py:256
 msgid "Divorce abbreviation|div."
 msgstr "⚮"
 
-#: ../src/gen/lib/eventtype.py:236
+#: ../src/gen/lib/eventtype.py:257
 msgid "Divorce Filing abbreviation|div.f."
 msgstr "⚮ einr."
 
-#: ../src/gen/lib/eventtype.py:237
+#: ../src/gen/lib/eventtype.py:258
 msgid "Annulment abbreviation|annul."
 msgstr "annul."
 
@@ -5637,28 +5666,30 @@ msgstr "Notizfilter"
 msgid "Citation Filters"
 msgstr "Fundstellenfilter"
 
-#: ../src/gui/filtereditor.py:94 ../src/Filters/Rules/Person/_HasEvent.py:49
+#: ../src/gui/filtereditor.py:94 ../src/gui/filtereditor.py:542
+#: ../src/Filters/Rules/Person/_HasEvent.py:49
 msgid "Personal event:"
 msgstr "Persönliches Ereignis:"
 
-#: ../src/gui/filtereditor.py:95
+#: ../src/gui/filtereditor.py:95 ../src/gui/filtereditor.py:544
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:48
 #: ../src/Filters/Rules/Family/_HasEvent.py:48
 msgid "Family event:"
 msgstr "Familiäres Ereignis:"
 
-#: ../src/gui/filtereditor.py:96 ../src/Filters/Rules/Person/_IsWitness.py:44
+#: ../src/gui/filtereditor.py:96 ../src/gui/filtereditor.py:546
+#: ../src/Filters/Rules/Person/_IsWitness.py:44
 #: ../src/Filters/Rules/Event/_HasData.py:47
 #: ../src/Filters/Rules/Event/_HasType.py:46
 msgid "Event type:"
 msgstr "Ereignisart:"
 
-#: ../src/gui/filtereditor.py:97
+#: ../src/gui/filtereditor.py:97 ../src/gui/filtereditor.py:549
 #: ../src/Filters/Rules/Person/_HasAttribute.py:45
 msgid "Personal attribute:"
 msgstr "Attribut einer Person:"
 
-#: ../src/gui/filtereditor.py:98
+#: ../src/gui/filtereditor.py:98 ../src/gui/filtereditor.py:551
 #: ../src/Filters/Rules/Person/_HasFamilyAttribute.py:45
 #: ../src/Filters/Rules/Family/_HasAttribute.py:45
 msgid "Family attribute:"
@@ -5669,27 +5700,28 @@ msgstr "Attribut einer Familie:"
 msgid "Event attribute:"
 msgstr "Ereignisattribut:"
 
-#: ../src/gui/filtereditor.py:100
+#: ../src/gui/filtereditor.py:100 ../src/gui/filtereditor.py:553
 #: ../src/Filters/Rules/MediaObject/_HasAttribute.py:45
 msgid "Media attribute:"
 msgstr "Medienattribut:"
 
-#: ../src/gui/filtereditor.py:101
+#: ../src/gui/filtereditor.py:101 ../src/gui/filtereditor.py:555
 #: ../src/Filters/Rules/Person/_HasRelationship.py:47
 #: ../src/Filters/Rules/Family/_HasRelType.py:46
 msgid "Relationship type:"
 msgstr "Beziehungsart:"
 
-#: ../src/gui/filtereditor.py:102 ../src/Filters/Rules/Note/_HasNote.py:48
+#: ../src/gui/filtereditor.py:102 ../src/gui/filtereditor.py:557
+#: ../src/Filters/Rules/Note/_HasNote.py:48
 msgid "Note type:"
 msgstr "Notiztyp:"
 
-#: ../src/gui/filtereditor.py:103
+#: ../src/gui/filtereditor.py:103 ../src/gui/filtereditor.py:559
 #: ../src/Filters/Rules/Person/_HasNameType.py:47
 msgid "Name type:"
 msgstr "Namenstyp:"
 
-#: ../src/gui/filtereditor.py:104
+#: ../src/gui/filtereditor.py:104 ../src/gui/filtereditor.py:561
 #: ../src/Filters/Rules/Person/_HasNameOriginType.py:47
 msgid "Surname origin type:"
 msgstr "Familiennamenherkunftsart:"
@@ -5725,7 +5757,7 @@ msgstr ""
 "Gib eine Quellen ID ein, wähle eine aus oder lasse sie leer um Objekte ohne "
 "Quelle zu finden."
 
-#: ../src/gui/filtereditor.py:507 ../src/Filters/Rules/Person/_HasBirth.py:47
+#: ../src/gui/filtereditor.py:509 ../src/Filters/Rules/Person/_HasBirth.py:47
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
 #: ../src/Filters/Rules/Person/_HasEvent.py:51
 #: ../src/Filters/Rules/Person/_HasFamilyEvent.py:50
@@ -5734,29 +5766,29 @@ msgstr ""
 msgid "Place:"
 msgstr "Ort:"
 
-#: ../src/gui/filtereditor.py:509
+#: ../src/gui/filtereditor.py:511
 msgid "Reference count:"
 msgstr "Anzahl Referenzen:"
 
-#: ../src/gui/filtereditor.py:510
+#: ../src/gui/filtereditor.py:512
 #: ../src/Filters/Rules/Person/_HasAddress.py:49
 #: ../src/Filters/Rules/Person/_HasAssociation.py:49
 #: ../src/Filters/Rules/Source/_HasRepository.py:47
 msgid "Number of instances:"
 msgstr "Anzahl der Instanzen:"
 
-#: ../src/gui/filtereditor.py:513
+#: ../src/gui/filtereditor.py:515
 msgid "Reference count must be:"
 msgstr "Referenzenanzahl muss sein:"
 
-#: ../src/gui/filtereditor.py:515
+#: ../src/gui/filtereditor.py:517
 #: ../src/Filters/Rules/Person/_HasAddress.py:49
 #: ../src/Filters/Rules/Person/_HasAssociation.py:49
 #: ../src/Filters/Rules/Source/_HasRepository.py:47
 msgid "Number must be:"
 msgstr "Die Anzahl Muss sein:"
 
-#: ../src/gui/filtereditor.py:517
+#: ../src/gui/filtereditor.py:519
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfBookmarked.py:52
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOfDefaultPerson.py:47
 #: ../src/Filters/Rules/Person/_IsLessThanNthGenerationAncestorOf.py:46
@@ -5766,7 +5798,7 @@ msgstr "Die Anzahl Muss sein:"
 msgid "Number of generations:"
 msgstr "Anzahl der Generationen:"
 
-#: ../src/gui/filtereditor.py:519 ../src/Filters/Rules/_HasGrampsId.py:46
+#: ../src/gui/filtereditor.py:521 ../src/Filters/Rules/_HasGrampsId.py:46
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWith.py:46
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
@@ -5783,7 +5815,7 @@ msgstr "Anzahl der Generationen:"
 msgid "ID:"
 msgstr "ID:"
 
-#: ../src/gui/filtereditor.py:522 ../src/Filters/Rules/_HasSourceOfBase.py:46
+#: ../src/gui/filtereditor.py:524 ../src/Filters/Rules/_HasSourceOfBase.py:46
 #: ../src/Filters/Rules/Person/_HasSourceOf.py:46
 #: ../src/Filters/Rules/Family/_HasSourceOf.py:46
 #: ../src/Filters/Rules/Place/_HasSourceOf.py:46
@@ -5791,7 +5823,7 @@ msgstr "ID:"
 msgid "Source ID:"
 msgstr "Ereignis-ID:"
 
-#: ../src/gui/filtereditor.py:524
+#: ../src/gui/filtereditor.py:526
 #: ../src/Filters/Rules/Person/_DeepRelationshipPathBetween.py:123
 #: ../src/Filters/Rules/Person/_HasCommonAncestorWithFilterMatch.py:48
 #: ../src/Filters/Rules/Person/_IsAncestorOfFilterMatch.py:47
@@ -5804,81 +5836,81 @@ msgid "Filter name:"
 msgstr "Filtername:"
 
 #. filters of another namespace, name may be same as caller!
-#: ../src/gui/filtereditor.py:528
+#: ../src/gui/filtereditor.py:530
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 msgid "Person filter name:"
 msgstr "Personenfiltername:"
 
-#: ../src/gui/filtereditor.py:530
+#: ../src/gui/filtereditor.py:532
 #: ../src/Filters/Rules/Person/_MatchesEventFilter.py:52
 #: ../src/Filters/Rules/Place/_MatchesEventFilter.py:50
 msgid "Event filter name:"
 msgstr "Ereignisfiltername:"
 
-#: ../src/gui/filtereditor.py:532
+#: ../src/gui/filtereditor.py:534
 #: ../src/Filters/Rules/Event/_MatchesSourceFilter.py:49
 #: ../src/Filters/Rules/Citation/_MatchesSourceFilter.py:49
 msgid "Source filter name:"
 msgstr "Quellenfiltername:"
 
-#: ../src/gui/filtereditor.py:534
+#: ../src/gui/filtereditor.py:536
 #: ../src/Filters/Rules/Source/_MatchesRepositoryFilter.py:44
 #: ../src/Filters/Rules/Citation/_MatchesRepositoryFilter.py:46
 msgid "Repository filter name:"
 msgstr "Aufbewahrungsortfiltername:"
 
-#: ../src/gui/filtereditor.py:536
+#: ../src/gui/filtereditor.py:538
 #: ../src/Filters/Rules/Event/_MatchesPlaceFilter.py:50
 msgid "Place filter name:"
 msgstr "Ortefiltername:"
 
-#: ../src/gui/filtereditor.py:540
+#: ../src/gui/filtereditor.py:564
 #: ../src/Filters/Rules/Person/_IsAncestorOf.py:45
 #: ../src/Filters/Rules/Person/_IsDescendantFamilyOf.py:50
 #: ../src/Filters/Rules/Person/_IsDescendantOf.py:46
 msgid "Inclusive:"
 msgstr "Einschließlich:"
 
-#: ../src/gui/filtereditor.py:541
+#: ../src/gui/filtereditor.py:565
 msgid "Include original person"
 msgstr "Ursprüngliche Person aufnehmen"
 
-#: ../src/gui/filtereditor.py:542
+#: ../src/gui/filtereditor.py:566
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:44
 #: ../src/Filters/Rules/Person/_HasTextMatchingSubstringOf.py:48
 msgid "Case sensitive:"
 msgstr "Groß-/Kleinschreibung:"
 
-#: ../src/gui/filtereditor.py:543
+#: ../src/gui/filtereditor.py:567
 msgid "Use exact case of letters"
 msgstr "Exakte Schreibweise der Buchstaben verwenden"
 
-#: ../src/gui/filtereditor.py:544
+#: ../src/gui/filtereditor.py:568
 #: ../src/Filters/Rules/_HasTextMatchingSubstringOf.py:45
 msgid "Regular-Expression matching:"
 msgstr "Regulärer Ausdruck entsprechend:"
 
-#: ../src/gui/filtereditor.py:545
+#: ../src/gui/filtereditor.py:569
 msgid "Use regular expression"
 msgstr "Regulären Ausdruck benutzen"
 
-#: ../src/gui/filtereditor.py:546
+#: ../src/gui/filtereditor.py:570
 #: ../src/Filters/Rules/Event/_MatchesPersonFilter.py:51
 msgid "Include Family events:"
 msgstr "Familienereignisse aufnehmen:"
 
-#: ../src/gui/filtereditor.py:547
+#: ../src/gui/filtereditor.py:571
 msgid "Also family events where person is wife/husband"
 msgstr "Auch Familienereignisse bei denen die Person Frau/Mann ist"
 
-#: ../src/gui/filtereditor.py:549 ../src/Filters/Rules/Person/_HasTag.py:48
+#: ../src/gui/filtereditor.py:573 ../src/Filters/Rules/Person/_HasTag.py:48
 #: ../src/Filters/Rules/Family/_HasTag.py:48
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:48
 #: ../src/Filters/Rules/Note/_HasTag.py:48
 msgid "Tag:"
 msgstr "Markierung:"
 
-#: ../src/gui/filtereditor.py:553
+#: ../src/gui/filtereditor.py:577
 #: ../src/Filters/Rules/Person/_HasCitation.py:50
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:44
 #: ../src/Filters/Rules/Family/_HasCitation.py:51
@@ -5893,7 +5925,7 @@ msgstr "Markierung:"
 msgid "Confidence level:"
 msgstr "Vertrauensgrad:"
 
-#: ../src/gui/filtereditor.py:556 ../src/Filters/Rules/Person/_HasBirth.py:47
+#: ../src/gui/filtereditor.py:580 ../src/Filters/Rules/Person/_HasBirth.py:47
 #: ../src/Filters/Rules/Person/_HasCitation.py:49
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
 #: ../src/Filters/Rules/Person/_HasEvent.py:50
@@ -5911,7 +5943,7 @@ msgstr "Vertrauensgrad:"
 msgid "Date:"
 msgstr "Datum:"
 
-#: ../src/gui/filtereditor.py:567
+#: ../src/gui/filtereditor.py:591
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:79
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:76
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:87
@@ -5924,7 +5956,7 @@ msgstr "Datum:"
 msgid "Use regular expressions"
 msgstr "Regulären Ausdruck benutzen"
 
-#: ../src/gui/filtereditor.py:568
+#: ../src/gui/filtereditor.py:592
 msgid ""
 "Interpret the contents of string fields as regular expressions.\n"
 "A decimal point will match any character. A question mark will match zero or "
@@ -5942,37 +5974,37 @@ msgstr ""
 "Alternativen durch Verwendung eines senkrechten Strich. Ein Caret ^ passt "
 "auf den Beginn einer Zeile. Ein Dollarzeichen passt auf das Ende einer Zeile."
 
-#: ../src/gui/filtereditor.py:595
+#: ../src/gui/filtereditor.py:619
 msgid "Rule Name"
 msgstr "Regelname"
 
-#: ../src/gui/filtereditor.py:712 ../src/gui/filtereditor.py:723
+#: ../src/gui/filtereditor.py:736 ../src/gui/filtereditor.py:747
 #: ../src/glade/rule.glade.h:24
 msgid "No rule selected"
 msgstr "Keine Regel ausgewählt"
 
-#: ../src/gui/filtereditor.py:766
+#: ../src/gui/filtereditor.py:790
 msgid "Define filter"
 msgstr "Filter definieren"
 
-#: ../src/gui/filtereditor.py:770
+#: ../src/gui/filtereditor.py:794
 msgid "Values"
 msgstr "Werte"
 
-#: ../src/gui/filtereditor.py:868
+#: ../src/gui/filtereditor.py:892
 msgid "Add Rule"
 msgstr "Regel hinzufügen"
 
-#: ../src/gui/filtereditor.py:880
+#: ../src/gui/filtereditor.py:904
 msgid "Edit Rule"
 msgstr "Regel bearbeiten"
 
-#: ../src/gui/filtereditor.py:915
+#: ../src/gui/filtereditor.py:939
 msgid "Filter Test"
 msgstr "Filtertest"
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1053 ../src/plugins/Records.py:519
+#: ../src/gui/filtereditor.py:1077 ../src/plugins/Records.py:519
 #: ../src/plugins/drawreport/Calendar.py:416
 #: ../src/plugins/drawreport/StatisticsChart.py:914
 #: ../src/plugins/drawreport/TimeLine.py:369
@@ -5995,19 +6027,19 @@ msgstr "Filtertest"
 msgid "Filter"
 msgstr "Filter"
 
-#: ../src/gui/filtereditor.py:1053
+#: ../src/gui/filtereditor.py:1077
 msgid "Comment"
 msgstr "Kommentar"
 
-#: ../src/gui/filtereditor.py:1061
+#: ../src/gui/filtereditor.py:1085
 msgid "Custom Filter Editor"
 msgstr "Benutzerfiltereditor"
 
-#: ../src/gui/filtereditor.py:1127
+#: ../src/gui/filtereditor.py:1151
 msgid "Delete Filter?"
 msgstr "Filter löschen?"
 
-#: ../src/gui/filtereditor.py:1128
+#: ../src/gui/filtereditor.py:1152
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
@@ -6017,7 +6049,7 @@ msgstr ""
 "Löschen dieses Filters hat zur Folge das alle Filter die von ihm abhängen "
 "auch gelöscht werden."
 
-#: ../src/gui/filtereditor.py:1132
+#: ../src/gui/filtereditor.py:1156
 msgid "Delete Filter"
 msgstr "Filter löschen"
 
@@ -7516,8 +7548,8 @@ msgstr "Namenseditor"
 #: ../src/gui/editors/editname.py:158
 msgid "Gramps_3.4_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_3"
 msgstr ""
-"De:Gramps_3.4_Wiki_Handbuch_-_Daten_eingeben_und_bearbeiten:_Ausführlich_-_Tei"
-"l_3"
+"De:Gramps_3.4_Wiki_Handbuch_-_Daten_eingeben_und_bearbeiten:_Ausführlich_-"
+"_Teil_3"
 
 #: ../src/gui/editors/editname.py:159
 msgid "manpage section id|Name_Editor"
@@ -7637,8 +7669,8 @@ msgstr "Neue Person"
 #: ../src/gui/editors/editperson.py:233
 msgid "Gramps_3.4_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1"
 msgstr ""
-"De:Gramps_3.4_Wiki_Handbuch_-_Daten_eingeben_und_bearbeiten:_Ausführlich_-_Tei"
-"l_1"
+"De:Gramps_3.4_Wiki_Handbuch_-_Daten_eingeben_und_bearbeiten:_Ausführlich_-"
+"_Teil_1"
 
 #: ../src/gui/editors/editperson.py:234
 msgid "manpage section id|Editing_information_about_people"
@@ -9078,6 +9110,18 @@ msgstr "Quelle oder Fundstelle wählen"
 msgid "Source: Title or Citation: Volume/Page"
 msgstr "Quelle: Titel  oder Fundstelle: Band/Seite"
 
+#: ../src/gui/selectors/selectcitation.py:68
+#: ../src/gui/selectors/selectevent.py:67
+#: ../src/gui/selectors/selectfamily.py:64
+#: ../src/gui/selectors/selectnote.py:70
+#: ../src/gui/selectors/selectobject.py:77
+#: ../src/gui/selectors/selectperson.py:82
+#: ../src/gui/selectors/selectplace.py:71
+#: ../src/gui/selectors/selectrepository.py:63
+#: ../src/gui/selectors/selectsource.py:63
+msgid "Last Change"
+msgstr "Letzte Änderung"
+
 #: ../src/gui/selectors/selectevent.py:54
 msgid "Select Event"
 msgstr "Ereignis wählen"
@@ -9109,10 +9153,6 @@ msgstr "Markierungen"
 #: ../src/gui/selectors/selectobject.py:61
 msgid "Select Media Object"
 msgstr "Medienobjekt wählen"
-
-#: ../src/gui/selectors/selectperson.py:82
-msgid "Last Change"
-msgstr "Letzte Änderung"
 
 #: ../src/gui/selectors/selectplace.py:55
 msgid "Select Place"
@@ -9526,7 +9566,7 @@ msgstr ""
 "Zum bearbeiten Bearbeitungsschaltfläche klicken (Im Einstellungsdialog "
 "aktivieren)"
 
-#: ../src/gui/widgets/monitoredwidgets.py:770
+#: ../src/gui/widgets/monitoredwidgets.py:771
 #: ../src/glade/editfamily.glade.h:21
 msgid "Edit the tag list"
 msgstr "Die Markierungenliste bearbeiten"
@@ -30192,10 +30232,6 @@ msgstr ""
 #: ../src/glade/mergesource.glade.h:11
 msgid "Detailed Selection"
 msgstr "Detailauswahl"
-
-#: ../src/glade/mergedata.glade.h:1
-msgid "Other"
-msgstr "Andere"
 
 #: ../src/glade/mergedata.glade.h:2
 msgid "<b>Title selection</b>"
