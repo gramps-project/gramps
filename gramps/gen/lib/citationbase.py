@@ -171,6 +171,8 @@ class CitationBase(object):
         
         for item in self.get_citation_child_list():
             list += item.get_citation_list()
+            for subitem in item.get_citation_child_list():
+                list += subitem.get_citation_list()
         return list
 
     def has_citation_reference(self, citation_handle):
@@ -309,3 +311,13 @@ class IndirectCitationBase(object):
         """
         for item in self.get_citation_child_list():
             item.remove_citation_references(citation_handle_list)
+            
+    def get_citation_list(self):
+        """
+        Return the list of :class:`~gen.lib.citation.Citation` handles
+        associated with the object. For an IndirectCitationBase this is always
+        the empty list
+        :returns: The list of :class:`~gen.lib.citation.Citation` handles
+        :rtype: list
+        """
+        return []
