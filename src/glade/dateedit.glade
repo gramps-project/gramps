@@ -220,7 +220,7 @@
                     <child>
                       <object class="UndoableEntry" id="newyear">
                         <property name="visible">True</property>
-                        <property name="can_focus">False</property>
+                        <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Month-Day of first day of new year (e.g., "1-1", "3-1", "3-25")</property>
                         <property name="primary_icon_activatable">False</property>
                         <property name="secondary_icon_activatable">False</property>
