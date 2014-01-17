@@ -23,14 +23,6 @@
 
 #-------------------------------------------------------------------------
 #
-# Python modules
-#
-#-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-
-#-------------------------------------------------------------------------
-#
 # gtk
 #
 #-------------------------------------------------------------------------
@@ -41,6 +33,11 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+
+from gramps.gen.constfunc import cuni
+
 from ...widgets import MonitoredMenu, DateEntry, BasicEntry
 from gramps.gen.lib import Citation
 from .. import build_filter_model
@@ -129,15 +126,15 @@ class CitationSidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
-        src_id = unicode(self.filter_src_id.get_text()).strip()
-        src_title = unicode(self.filter_src_title.get_text()).strip()
-        src_author = unicode(self.filter_src_author.get_text()).strip()
-        src_abbr = unicode(self.filter_src_abbr.get_text()).strip()
-        src_pub = unicode(self.filter_src_pub.get_text()).strip()
-        src_note = unicode(self.filter_src_note.get_text()).strip()
-        gid = unicode(self.filter_id.get_text()).strip()
-        page = unicode(self.filter_page.get_text()).strip()
-        date = unicode(self.filter_date.get_text()).strip()
+        src_id = cuni(self.filter_src_id.get_text()).strip()
+        src_title = cuni(self.filter_src_title.get_text()).strip()
+        src_author = cuni(self.filter_src_author.get_text()).strip()
+        src_abbr = cuni(self.filter_src_abbr.get_text()).strip()
+        src_pub = cuni(self.filter_src_pub.get_text()).strip()
+        src_note = cuni(self.filter_src_note.get_text()).strip()
+        gid = cuni(self.filter_id.get_text()).strip()
+        page = cuni(self.filter_page.get_text()).strip()
+        date = cuni(self.filter_date.get_text()).strip()
         gid = cuni(self.filter_id.get_text()).strip()
         page = cuni(self.filter_page.get_text()).strip()
         date = cuni(self.filter_date.get_text()).strip()
