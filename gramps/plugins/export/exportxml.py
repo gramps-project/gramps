@@ -1336,5 +1336,5 @@ class XmlWriter(GrampsXmlWriter):
             ret = GrampsXmlWriter.write(self, filename)
         except DbWriteFailure as msg:
             (m1, m2) = msg.messages()
-            self.user.notify_db_error("%s\n%s" % (m1, m2))
+            self.user.notify_error("%s\n%s" % (m1, m2))
         return ret
