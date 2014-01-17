@@ -135,9 +135,6 @@ class CitationSidebarFilter(SidebarFilter):
         gid = cuni(self.filter_id.get_text()).strip()
         page = cuni(self.filter_page.get_text()).strip()
         date = cuni(self.filter_date.get_text()).strip()
-        gid = cuni(self.filter_id.get_text()).strip()
-        page = cuni(self.filter_page.get_text()).strip()
-        date = cuni(self.filter_date.get_text()).strip()
         model = self.filter_conf.get_model()
         node = self.filter_conf.get_active_iter()
         conf_name = model.get_value(node, 0)  # The value is actually the text
