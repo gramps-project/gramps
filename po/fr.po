@@ -17778,21 +17778,25 @@ msgstr " 11. <a href='http://sourceforge.net/mailarchive/message.php?msg_id=2148
 msgid " 12. <a wiki='%s_-_FAQ#What_do_I_do_if_I_have_found_a_bug.3F'>What do I do if I have found a bug?</a>\n"
 msgstr " 12. <a wiki='%s_-_FAQ'>Que faire si je trouve une erreur ?</a>\n"
 
+# url
 #: ../gramps/plugins/gramplet/faqgramplet.py:68
 msgid " 13. <a wiki='Portal:Using_GRAMPS'>Is there a manual for Gramps?</a>\n"
-msgstr " 13. <a wiki=« Portal:Using_GRAMPS »>Existe-t-il un manuel d'utilisation de Gramps?</a>\n"
+msgstr " 13. <a wiki='Portal:Using_GRAMPS'>Existe-t-il un manuel d'utilisation de Gramps?</a>\n"
 
+# url
 #: ../gramps/plugins/gramplet/faqgramplet.py:69
 msgid " 14. <a wiki='Category:Tutorials'>Are there tutorials available?</a>\n"
-msgstr " 14. <a wiki=« Category:Fr:Tutorials »>Existe-t-il des tutoriels ?</a>\n"
+msgstr " 14. <a wiki='Category:Fr:Tutorials'>Existe-t-il des tutoriels ?</a>\n"
 
+# url
 #: ../gramps/plugins/gramplet/faqgramplet.py:70
 msgid " 15. <a wiki='Category:How_do_I...'>How do I ...?</a>\n"
-msgstr " 15. <a wiki=« Category:Fr:Comment_je... »>Comment je fais pour... ?</a>\n"
+msgstr " 15. <a wiki='Category:Fr:Comment_je...'>Comment je fais pour... ?</a>\n"
 
+# url
 #: ../gramps/plugins/gramplet/faqgramplet.py:71
 msgid " 16. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
-msgstr " 16. <a wiki=« How_you_can_help »>Comment je peux aider Gramps ?</a>\n"
+msgstr " 16. <a wiki='How_you_can_help'>Comment je peux aider Gramps ?</a>\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:44
 msgid "Double-click given name for details"
