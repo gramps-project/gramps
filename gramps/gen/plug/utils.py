@@ -58,7 +58,7 @@ from ..utils.file import get_unicode_path_from_file_chooser
 from ..utils.configmanager import safe_eval
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
