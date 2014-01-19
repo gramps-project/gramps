@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-17 10:30+0100\n"
-"PO-Revision-Date: 2014-01-17 10:40+0100\n"
+"POT-Creation-Date: 2014-01-19 15:26+0100\n"
+"PO-Revision-Date: 2014-01-19 15:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -949,6 +949,7 @@ msgid "Date displayer for '%s' not available, using default"
 msgstr "L'afficheur de date '%s' n'est pas disponible, utilisation de l'afficheur par défaut "
 
 #: ../gramps/gen/db/base.py:1617
+#: ../gramps/gui/widgets/fanchart.py:1842
 msgid "Add child to family"
 msgstr "Ajouter un enfant à cette famille"
 
@@ -4260,7 +4261,7 @@ msgstr "Heure"
 
 #: ../gramps/gen/lib/childreftype.py:74
 #: ../gramps/gui/configure.py:84
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:195
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:189
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:155
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:202
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:158
@@ -8800,11 +8801,13 @@ msgstr "Éditer la référence"
 msgid "%(part1)s - %(part2)s"
 msgstr "%(part1)s - %(part2)s"
 
+#. we now construct an add menu
 #: ../gramps/gui/editors/displaytabs/buttontab.py:72
 #: ../gramps/gui/glade/editfamily.glade.h:9
 #: ../gramps/gui/glade/editperson.glade.h:20
 #: ../gramps/gui/glade/rule.glade.h:11
 #: ../gramps/gui/glade/styleeditor.glade.h:37
+#: ../gramps/gui/widgets/fanchart.py:1835
 #: ../gramps/plugins/view/relview.py:421
 msgid "Add"
 msgstr "Ajouter"
@@ -10498,7 +10501,7 @@ msgstr "Également les événements familiaux dont l'individu est le conjoint"
 
 # nouvelle ligne = moins long à l'écran
 #: ../gramps/gui/editors/filtereditor.py:593
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:83
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:80
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:78
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:90
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:69
@@ -10703,66 +10706,66 @@ msgid "Updating display..."
 msgstr "Chargement en cours..."
 
 # trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:103
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:100
 #: ../gramps/plugins/view/citationlistview.py:106
 msgid "Source: ID"
 msgstr "Source : ID"
 
 # trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:104
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:101
 #: ../gramps/plugins/view/citationlistview.py:105
 msgid "Source: Title"
 msgstr "Source : titre"
 
 # trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:102
 #: ../gramps/plugins/view/citationlistview.py:107
 #: ../gramps/plugins/view/citationtreeview.py:100
 msgid "Source: Author"
 msgstr "Source : Auteur"
 
 # trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:103
 #: ../gramps/plugins/view/citationlistview.py:108
 #: ../gramps/plugins/view/citationtreeview.py:101
 msgid "Source: Abbreviation"
 msgstr "Source : Abréviation"
 
 # trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:104
 msgid "Source: Publication"
 msgstr "Source : Publication"
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
 msgid "Source: Note"
 msgstr "Source : Note"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
 msgid "Citation: ID"
 msgstr "Citation : Id"
 
 # trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:110
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
 msgid "Citation: Volume/Page"
 msgstr "Citation : Volume/Page"
 
 # trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
 msgid "Citation: Date"
 msgstr "Citation : Date"
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
 msgid "Citation: Minimum Confidence|Min. Conf."
 msgstr "Citation : Conf. min."
 
 # trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:113
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:110
 msgid "Citation: Note"
 msgstr "Citation : Note"
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:101
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:122
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:97
@@ -13134,6 +13137,7 @@ msgstr "Notes"
 #. don't show rest
 #: ../gramps/gui/grampsgui.py:173
 #: ../gramps/gui/merge/mergeperson.py:217
+#: ../gramps/gui/widgets/fanchart.py:1758
 #: ../gramps/plugins/quickview/all_relations.py:307
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/view/pedigreeview.py:1781
@@ -13549,6 +13553,7 @@ msgstr "Aucun parent"
 
 #. Go over spouses and build their menu
 #: ../gramps/gui/merge/mergeperson.py:228
+#: ../gramps/gui/widgets/fanchart.py:1644
 #: ../gramps/plugins/textreport/kinshipreport.py:130
 #: ../gramps/plugins/view/pedigreeview.py:1661
 msgid "Spouses"
@@ -15435,6 +15440,62 @@ msgstr "Élargir la section"
 #: ../gramps/gui/widgets/expandcollapsearrow.py:89
 msgid "Collapse this section"
 msgstr "Compresser la section"
+
+#: ../gramps/gui/widgets/fanchart.py:1588
+#: ../gramps/plugins/view/pedigreeview.py:1605
+#: ../gramps/plugins/view/pedigreeview.py:1631
+msgid "People Menu"
+msgstr "Menu Individus"
+
+#: ../gramps/gui/widgets/fanchart.py:1611
+#: ../gramps/plugins/view/relview.py:827
+msgid "Edit family"
+msgstr "Éditer la famille"
+
+#: ../gramps/gui/widgets/fanchart.py:1628
+#: ../gramps/plugins/view/relview.py:828
+msgid "Reorder families"
+msgstr "Réorganiser les familles"
+
+#. Go over siblings and build their menu
+#: ../gramps/gui/widgets/fanchart.py:1678
+#: ../gramps/plugins/quickview/quickview.gpr.py:316
+#: ../gramps/plugins/view/pedigreeview.py:1696
+#: ../gramps/plugins/view/relview.py:922
+msgid "Siblings"
+msgstr "Frères et sœurs "
+
+#. Go over children and build their menu
+#: ../gramps/gui/widgets/fanchart.py:1721
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:776
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:790
+#: ../gramps/plugins/textreport/familygroup.py:597
+#: ../gramps/plugins/textreport/indivcomplete.py:466
+#: ../gramps/plugins/view/pedigreeview.py:1741
+#: ../gramps/plugins/view/relview.py:1382
+#: ../gramps/plugins/webreport/narrativeweb.py:760
+msgid "Children"
+msgstr "Enfants "
+
+#. Go over parents and build their menu
+#: ../gramps/gui/widgets/fanchart.py:1800
+#: ../gramps/plugins/view/pedigreeview.py:1829
+msgid "Related"
+msgstr "en relation avec"
+
+# trunk
+#: ../gramps/gui/widgets/fanchart.py:1851
+msgid "Add partner to person"
+msgstr "Ajout d'un partenaire à l'individu"
+
+#: ../gramps/gui/widgets/fanchart.py:1859
+msgid "Add a person"
+msgstr "Ajouter un nouvel individu"
+
+#: ../gramps/gui/widgets/fanchart.py:1934
+#: ../gramps/plugins/view/relview.py:1526
+msgid "Add Child to Family"
+msgstr "Ajouter un enfant à la famille"
 
 #: ../gramps/gui/widgets/grampletbar.py:191
 #: ../gramps/gui/widgets/grampletpane.py:1168
@@ -18289,17 +18350,6 @@ msgstr "Enfants (individu)"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:769
 msgid "Gramplet showing the children of a person"
 msgstr "Gramplet affichant les enfants d'un individu"
-
-#. Go over children and build their menu
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:776
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:790
-#: ../gramps/plugins/textreport/familygroup.py:597
-#: ../gramps/plugins/textreport/indivcomplete.py:466
-#: ../gramps/plugins/view/pedigreeview.py:1741
-#: ../gramps/plugins/view/relview.py:1382
-#: ../gramps/plugins/webreport/narrativeweb.py:760
-msgid "Children"
-msgstr "Enfants "
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:782
 msgid "Family Children"
@@ -25082,13 +25132,6 @@ msgstr "Affiche les individus porteurs du même prénom."
 msgid "Same Given Names - stand-alone"
 msgstr "Même prénom - indépendant"
 
-#. Go over siblings and build their menu
-#: ../gramps/plugins/quickview/quickview.gpr.py:316
-#: ../gramps/plugins/view/pedigreeview.py:1696
-#: ../gramps/plugins/view/relview.py:922
-msgid "Siblings"
-msgstr "Frères et sœurs "
-
 #: ../gramps/plugins/quickview/quickview.gpr.py:317
 msgid "Display a person's siblings."
 msgstr "Affiche les frères et sœurs de l'individu."
@@ -29585,20 +29628,10 @@ msgstr "Haut <-> Bas"
 msgid "Left <-> Right"
 msgstr "Gauche <-> Droite"
 
-#: ../gramps/plugins/view/pedigreeview.py:1605
-#: ../gramps/plugins/view/pedigreeview.py:1631
-msgid "People Menu"
-msgstr "Menu Individus"
-
 #: ../gramps/plugins/view/pedigreeview.py:1818
 #: ../gramps/plugins/view/relview.py:423
 msgid "Add New Parents..."
 msgstr "Ajouter des nouveaux parents..."
-
-#. Go over parents and build their menu
-#: ../gramps/plugins/view/pedigreeview.py:1829
-msgid "Related"
-msgstr "en relation avec"
 
 #: ../gramps/plugins/view/pedigreeview.py:1878
 msgid "Family Menu"
@@ -29733,14 +29766,6 @@ msgstr "Réorganiser les parents"
 msgid "Remove person as child of these parents"
 msgstr "Enlever l'individu comme enfant de ces parents"
 
-#: ../gramps/plugins/view/relview.py:827
-msgid "Edit family"
-msgstr "Éditer la famille"
-
-#: ../gramps/plugins/view/relview.py:828
-msgid "Reorder families"
-msgstr "Réorganiser les familles"
-
 # enlever la référence au père
 #: ../gramps/plugins/view/relview.py:829
 msgid "Remove person as parent in this family"
@@ -29838,10 +29863,6 @@ msgstr[1] " (%d enfants)"
 #: ../gramps/plugins/view/relview.py:1399
 msgid " (no children)"
 msgstr " (pas d'enfant)"
-
-#: ../gramps/plugins/view/relview.py:1526
-msgid "Add Child to Family"
-msgstr "Ajouter un enfant à la famille"
 
 #: ../gramps/plugins/view/relview.py:1663
 msgid "Use shading"
@@ -32231,9 +32252,6 @@ msgstr "Gramps est un programme de généalogie, intuitif pour le loisir et comp
 # trunk
 #~ msgid "Affects greatly how the graph is laid out on the page."
 #~ msgstr "Affecte grandement l'affichage du graphique sur la page."
-# trunk
-#~ msgid "Add partner to person"
-#~ msgstr "Ajout d'un partenaire à l'individu"
 # trunk
 #~ msgid "Add a Family Tree"
 #~ msgstr "Ajouter un arbre familial"
