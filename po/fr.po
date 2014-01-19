@@ -29194,7 +29194,7 @@ msgstr "%(father)s et %(mother)s [%(gramps_id)s]"
 #: ../gramps/plugins/view/geofamclose.py:261
 #, python-format
 msgid "Family reference : %s"
-msgstr "Référence de la famille : %s"
+msgstr "Famille de référence : %s"
 
 # trunk
 #: ../gramps/plugins/view/geofamclose.py:263
