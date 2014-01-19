@@ -1,5 +1,6 @@
 2014-01-??
 Version 3.4.7 of Gramps! "???", a maintenance release.
+* Gramps project web hosting now has an HTTPS interface; the old HTTP URLs redirect to it.
 * Development switched from SVN to git.
 * Invalid dates (like 2013-02-30) no longer crash the date editor or file import.
 * Fixed image handling in ODF docgen, thanks to Matthias Basler for the initial patch.
