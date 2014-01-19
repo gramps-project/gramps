@@ -1,7 +1,7 @@
 # French translation for Gramps
 # $Id$
 # This file is distributed under the same license as the Gramps package.
-# Copyright (C) 2001-2013 Free Software Foundation, Inc.
+# Copyright (C) 2001-2014 Free Software Foundation, Inc.
 #
 # Quelques variables pour la cohérence:
 #  ancestor : ascendant
@@ -20,7 +20,7 @@
 # Matthieu Pupat <tieum.tieum@free.fr>, 2004, 2005.
 # Guillaume Pratte <guillaumep@soireevideo.org>, 2005.
 # Frederic Chateaux, 2007-2008.
-# Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2013.
+# Jérôme Rapinat <romjerome@yahoo.fr>, 2005-2014.
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
 msgid ""
 msgstr ""
@@ -10006,9 +10006,10 @@ msgstr "Y"
 msgid "Name Editor"
 msgstr "Éditeur de nom"
 
+# "/fr" ajouté automatiquement (voir GrampsDisplay.py)
 #: ../gramps/gui/editors/editname.py:160
 msgid "Gramps_4.0_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_3"
-msgstr "Gramps_4.0_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_3/fr"
+msgstr "Gramps_4.0_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_3"
 
 # manuel wiki
 #: ../gramps/gui/editors/editname.py:161
@@ -10124,9 +10125,10 @@ msgstr "Nouvel individu: %(name)s"
 msgid "New Person"
 msgstr "Nouvel individu"
 
+# "/fr" ajouté automatiquement (voir GrampsDisplay.py)
 #: ../gramps/gui/editors/editperson.py:238
 msgid "Gramps_4.0_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1"
-msgstr "Gramps_4.0_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_3/fr"
+msgstr "Gramps_4.0_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_1"
 
 # manuel wiki
 #: ../gramps/gui/editors/editperson.py:239
@@ -19013,6 +19015,7 @@ msgstr "Liens"
 msgid "Home Page"
 msgstr "Page d'accueil"
 
+# "/fr" non-ajouté automatiquement (voir GrampsDisplay.py)
 #: ../gramps/plugins/gramplet/welcomegramplet.py:111
 msgid "http://gramps-project.org/"
 msgstr "http://www.gramps-project.org/wiki/index.php?title=Main_Page/fr"
@@ -19021,6 +19024,7 @@ msgstr "http://www.gramps-project.org/wiki/index.php?title=Main_Page/fr"
 msgid "Start with Genealogy and Gramps"
 msgstr "Démarrer avec Gramps"
 
+# "/fr" non-ajouté automatiquement (voir GrampsDisplay.py)
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
 msgid "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy"
 msgstr "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy/fr"
@@ -19029,7 +19033,7 @@ msgstr "http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy/
 msgid "Gramps online manual"
 msgstr "Manuel en ligne de Gramps"
 
-# trunk
+# "/fr" non-ajouté automatiquement (voir GrampsDisplay.py)
 #: ../gramps/plugins/gramplet/welcomegramplet.py:115
 msgid "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual"
 msgstr "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual/fr"
@@ -19038,6 +19042,7 @@ msgstr "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manua
 msgid "Ask questions on gramps-users mailing list"
 msgstr "Poser des questions sur la mailing liste gramps-users"
 
+# "/fr" non-ajouté automatiquement (voir GrampsDisplay.py)
 #: ../gramps/plugins/gramplet/welcomegramplet.py:117
 msgid "http://gramps-project.org/contact/"
 msgstr "http://www.gramps-project.org/wiki/index.php?title=Contact/fr"
