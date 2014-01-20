@@ -18,7 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
 
 """
 Provide merge capabilities for repositories.
@@ -45,6 +44,7 @@ WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % \
     URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Merge_Repositories')
 _GLADE_FILE = 'mergerepository.glade'
+REPO_NAME = _('repo|Name:')
 
 #-------------------------------------------------------------------------
 #
@@ -70,6 +70,8 @@ class MergeRepository(ManagedWindow):
         # Detailed selection widgets
         name1 = self.rp1.get_name()
         name2 = self.rp2.get_name()
+        for widget_name in ('name_btn1', 'name_btn2'):
+            self.get_widget(widget_name).set_label(PLACE_NAME)
         entry1 = self.get_widget('name1')
         entry2 = self.get_widget('name2')
         entry1.set_text(name1)

@@ -21,8 +21,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 #-------------------------------------------------------------------------
 #
 # python modules
@@ -32,6 +30,7 @@ from __future__ import unicode_literals
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+_T_ = glocale.translation.sgettext
 import logging
 log = logging.getLogger(".")
 
@@ -80,6 +79,8 @@ class EditPlace(EditPrimary):
         
         self.top = Glade()
         self.set_window(self.top.toplevel, None, self.get_menu_title())
+        self.place_name_label = self.top.get_object('place_name_label')
+        self.place_name_label.set_text(_('place|Name:'))
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():

@@ -26,7 +26,7 @@
 #
 #-------------------------------------------------------------------------
 from ....const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -45,7 +45,7 @@ class HasRepo(Rule):
     """Rule that checks for a repo with a particular value"""
 
 
-    labels      = [ _('Name:'), 
+    labels      = [ _('repo|Name:'), 
                     _('Type:'), 
                     _('Address:'),
                     _('URL:'), 

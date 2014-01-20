@@ -215,7 +215,7 @@ primary data for the merged repository.</property>
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="name_btn1">
-                            <property name="label" translatable="yes">Name:</property>
+                            <property name="label" translatable="yes">repo|Name:</property>
                             <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
@@ -234,7 +234,7 @@ primary data for the merged repository.</property>
                         </child>
                         <child>
                           <object class="GtkRadioButton" id="name_btn2">
-                            <property name="label" translatable="yes">Name:</property>
+                            <property name="label" translatable="yes">repo|Name:</property>
                             <property name="use_action_appearance">False</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>

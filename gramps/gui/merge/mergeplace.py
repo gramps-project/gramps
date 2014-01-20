@@ -53,6 +53,7 @@ WIKI_HELP_PAGE = '%s_-_Entering_and_Editing_Data:_Detailed_-_part_3' % \
         URL_MANUAL_PAGE
 WIKI_HELP_SEC = _('manual|Merge_Places')
 _GLADE_FILE = 'mergeplace.glade'
+PLACE_NAME = _('place|Name:')
 
 #-------------------------------------------------------------------------
 #
@@ -87,6 +88,8 @@ class MergePlace(ManagedWindow):
             for widget_name in ('title1', 'title2', 'title_btn1', 'title_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)
 
+        for widget_name in ('name_btn1', 'name_btn2'):
+            self.get_widget(widget_name).set_label(PLACE_NAME)
         entry1 = self.get_widget("name1")
         entry2 = self.get_widget("name2")
         entry1.set_text(self.pl1.get_name())
