@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-13 16:04+0100\n"
+"POT-Creation-Date: 2014-01-20 21:41+0100\n"
 "PO-Revision-Date: 2014-01-13 16:09+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -214,11 +214,11 @@ msgstr "Ungültiges Datum"
 msgid "Date more than one year in the future"
 msgstr "Datum liegt mehr als ein Jahr in der Zukunft"
 
-#: ../src/DateEdit.py:202 ../src/DateEdit.py:347
+#: ../src/DateEdit.py:202 ../src/DateEdit.py:348
 msgid "Date selection"
 msgstr "Datumsauswahl"
 
-#: ../src/DateEdit.py:337
+#: ../src/DateEdit.py:338
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr "Korrigiere das Datum oder wechsle von `{cur_mode}' nach `{text_mode}'"
 
