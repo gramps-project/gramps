@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-20 21:41+0100\n"
-"PO-Revision-Date: 2014-01-13 16:09+0100\n"
+"POT-Creation-Date: 2014-01-21 21:30+0100\n"
+"PO-Revision-Date: 2014-01-21 21:34+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -166,59 +166,59 @@ msgstr "Sebastian Vöcking, Mirko Leonhäuser"
 msgid "none"
 msgstr "kein"
 
-#: ../src/DateEdit.py:79 ../src/DateEdit.py:88
+#: ../src/DateEdit.py:78 ../src/DateEdit.py:87
 msgid "Regular"
 msgstr "Regulär"
 
-#: ../src/DateEdit.py:80
+#: ../src/DateEdit.py:79
 msgid "Before"
 msgstr "Vor"
 
-#: ../src/DateEdit.py:81
+#: ../src/DateEdit.py:80
 msgid "After"
 msgstr "Nach"
 
-#: ../src/DateEdit.py:82
+#: ../src/DateEdit.py:81
 msgid "About"
 msgstr "Um"
 
-#: ../src/DateEdit.py:83
+#: ../src/DateEdit.py:82
 msgid "Range"
 msgstr "Zeitraum"
 
-#: ../src/DateEdit.py:84
+#: ../src/DateEdit.py:83
 msgid "Span"
 msgstr "Zeitspanne"
 
-#: ../src/DateEdit.py:85
+#: ../src/DateEdit.py:84
 msgid "Text only"
 msgstr "Nur Text"
 
-#: ../src/DateEdit.py:89
+#: ../src/DateEdit.py:88
 msgid "Estimated"
 msgstr "Geschätzt"
 
-#: ../src/DateEdit.py:90
+#: ../src/DateEdit.py:89
 msgid "Calculated"
 msgstr "Berechnet"
 
-#: ../src/DateEdit.py:102
+#: ../src/DateEdit.py:101
 msgid "manual|Editing_Dates"
 msgstr "Daten_bearbeiten"
 
-#: ../src/DateEdit.py:152
+#: ../src/DateEdit.py:151
 msgid "Bad Date"
 msgstr "Ungültiges Datum"
 
-#: ../src/DateEdit.py:155
+#: ../src/DateEdit.py:154
 msgid "Date more than one year in the future"
 msgstr "Datum liegt mehr als ein Jahr in der Zukunft"
 
-#: ../src/DateEdit.py:202 ../src/DateEdit.py:348
+#: ../src/DateEdit.py:201 ../src/DateEdit.py:349
 msgid "Date selection"
 msgstr "Datumsauswahl"
 
-#: ../src/DateEdit.py:338
+#: ../src/DateEdit.py:339
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr "Korrigiere das Datum oder wechsle von `{cur_mode}' nach `{text_mode}'"
 
@@ -23274,18 +23274,22 @@ msgid "Reordering Source IDs"
 msgstr "Quellen-IDs neu ordnen"
 
 #: ../src/plugins/tool/ReorderIds.py:126
+msgid "Reordering Citation IDs"
+msgstr "Fundstellen-IDs neu ordnen"
+
+#: ../src/plugins/tool/ReorderIds.py:136
 msgid "Reordering Place IDs"
 msgstr "Orte-IDs neu ordnen"
 
-#: ../src/plugins/tool/ReorderIds.py:136
+#: ../src/plugins/tool/ReorderIds.py:146
 msgid "Reordering Repository IDs"
 msgstr "Aufbewahrungsort-IDs neu ordnen"
 
-#: ../src/plugins/tool/ReorderIds.py:147
+#: ../src/plugins/tool/ReorderIds.py:157
 msgid "Reordering Note IDs"
 msgstr "Notiz-IDs neu ordnen"
 
-#: ../src/plugins/tool/ReorderIds.py:221
+#: ../src/plugins/tool/ReorderIds.py:231
 msgid "Finding and assigning unused IDs"
 msgstr "Finden und zuweisen von unbenutzten IDs"
 
