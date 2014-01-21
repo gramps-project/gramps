@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-20 10:44+0200\n"
+"POT-Creation-Date: 2014-01-21 12:37+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -4034,14 +4034,11 @@ msgid "Matches places whose notes contain text matching a regular expression"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:50
-#: ../gramps/gen/filters/rules/repository/_hasrepo.py:48
-#: ../gramps/gui/glade/editfamily.glade.h:3
+#: ../gramps/gui/editors/editplace.py:83
 #: ../gramps/gui/glade/editplace.glade.h:17
-#: ../gramps/gui/glade/mergeperson.glade.h:5
 #: ../gramps/gui/glade/mergeplace.glade.h:9
-#: ../gramps/gui/glade/mergerepository.glade.h:5
-#: ../gramps/plugins/gramplet/soundgen.py:68
-msgid "Name:"
+#: ../gramps/gui/merge/mergeplace.py:56
+msgid "place|Name:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:51
@@ -4236,6 +4233,12 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:45
 msgid "Matches repositories with a certain reference count"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/repository/_hasrepo.py:48
+#: ../gramps/gui/glade/mergerepository.glade.h:5
+#: ../gramps/gui/merge/mergerepository.py:47
+msgid "repo|Name:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:50
@@ -7008,7 +7011,7 @@ msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr ""
 
 #: ../gramps/gen/merge/mergeplacequery.py:62
-#: ../gramps/gui/merge/mergeplace.py:77
+#: ../gramps/gui/merge/mergeplace.py:78
 msgid "Merge Places"
 msgstr ""
 
@@ -10611,11 +10614,11 @@ msgstr ""
 msgid "manual|Editing_Dates"
 msgstr ""
 
-#: ../gramps/gui/editors/editdate.py:131 ../gramps/gui/editors/editdate.py:276
+#: ../gramps/gui/editors/editdate.py:131 ../gramps/gui/editors/editdate.py:279
 msgid "Date selection"
 msgstr ""
 
-#: ../gramps/gui/editors/editdate.py:266
+#: ../gramps/gui/editors/editdate.py:269
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr ""
 
@@ -10663,7 +10666,7 @@ msgstr ""
 #: ../gramps/gui/editors/editevent.py:250
 #: ../gramps/gui/editors/editmedia.py:290
 #: ../gramps/gui/editors/editperson.py:823
-#: ../gramps/gui/editors/editplace.py:258
+#: ../gramps/gui/editors/editplace.py:259
 #: ../gramps/gui/editors/editrepository.py:181
 #: ../gramps/gui/editors/editsource.py:201
 #, python-format
@@ -11278,77 +11281,77 @@ msgstr ""
 msgid "You must either select a person or Cancel the edit"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:87
+#: ../gramps/gui/editors/editplace.py:88
 #, python-format
 msgid "Place: %s"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:89
+#: ../gramps/gui/editors/editplace.py:90
 msgid "New Place"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:157
+#: ../gramps/gui/editors/editplace.py:158
 msgid "Invalid latitude (syntax: 18\\u00b09'"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:158
+#: ../gramps/gui/editors/editplace.py:159
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:160
+#: ../gramps/gui/editors/editplace.py:161
 msgid "Invalid longitude (syntax: 18\\u00b09'"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:161
+#: ../gramps/gui/editors/editplace.py:162
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:164
+#: ../gramps/gui/editors/editplace.py:165
 #: ../gramps/plugins/lib/maps/geography.py:790
 #: ../gramps/plugins/view/geoplaces.py:334
 #: ../gramps/plugins/view/geoplaces.py:354
 msgid "Edit Place"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:233
+#: ../gramps/gui/editors/editplace.py:234
 msgid "Cannot save place"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:234
+#: ../gramps/gui/editors/editplace.py:235
 msgid "No data exists for this place. Please enter data or cancel the edit."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:240
+#: ../gramps/gui/editors/editplace.py:241
 msgid "Cannot save location. Title not entered."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:241
+#: ../gramps/gui/editors/editplace.py:242
 msgid "You must enter a title before saving."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:247
+#: ../gramps/gui/editors/editplace.py:248
 msgid "Cannot save location. Name not entered."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:248
+#: ../gramps/gui/editors/editplace.py:249
 msgid "You must enter a name before saving."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:257
+#: ../gramps/gui/editors/editplace.py:258
 msgid "Cannot save place. ID already exists."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:270
+#: ../gramps/gui/editors/editplace.py:271
 #, python-format
 msgid "Add Place (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:275
+#: ../gramps/gui/editors/editplace.py:276
 #, python-format
 msgid "Edit Place (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:299
+#: ../gramps/gui/editors/editplace.py:300
 #, python-format
 msgid "Delete Place (%s)"
 msgstr ""
@@ -12536,6 +12539,12 @@ msgstr ""
 #: ../gramps/gui/glade/editrepository.glade.h:1
 #: ../gramps/gui/glade/editsource.glade.h:1
 msgid "Abandon changes and close window"
+msgstr ""
+
+#: ../gramps/gui/glade/editfamily.glade.h:3
+#: ../gramps/gui/glade/mergeperson.glade.h:5
+#: ../gramps/plugins/gramplet/soundgen.py:68
+msgid "Name:"
 msgstr ""
 
 #: ../gramps/gui/glade/editfamily.glade.h:4
@@ -14417,7 +14426,7 @@ msgstr ""
 msgid "manual|Merge_Places"
 msgstr ""
 
-#: ../gramps/gui/merge/mergerepository.py:46
+#: ../gramps/gui/merge/mergerepository.py:45
 msgid "manual|Merge_Repositories"
 msgstr ""
 
