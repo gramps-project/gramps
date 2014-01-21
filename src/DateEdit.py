@@ -331,9 +331,11 @@ class DateEditorDialog(ManagedWindow.ManagedWindow):
             self.validated_date = d
             LOG.debug("validated_date set to: {0}".format(d.dateval))
             self.ok_button.set_sensitive(1)
+            self.calendar_box.set_sensitive(1)
             return True
         except DateError as e: 
             self.ok_button.set_sensitive(0)
+            self.calendar_box.set_sensitive(0)
             self.statusbar.push(1, 
                     _("Correct the date or switch from `{cur_mode}' to `{text_mode}'"
                         ).format(
