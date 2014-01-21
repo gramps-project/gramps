@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-08 18:11+0100\n"
-"PO-Revision-Date: 2014-01-08 18:19+0100\n"
+"POT-Creation-Date: 2014-01-21 20:49+0100\n"
+"PO-Revision-Date: 2014-01-21 20:52+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -218,63 +218,63 @@ msgstr ""
 msgid "none"
 msgstr "aucun(e)"
 
-#: ../src/DateEdit.py:79
-#: ../src/DateEdit.py:88
+#: ../src/DateEdit.py:78
+#: ../src/DateEdit.py:87
 msgid "Regular"
 msgstr "Normal"
 
-#: ../src/DateEdit.py:80
+#: ../src/DateEdit.py:79
 msgid "Before"
 msgstr "Avant"
 
-#: ../src/DateEdit.py:81
+#: ../src/DateEdit.py:80
 msgid "After"
 msgstr "Après"
 
-#: ../src/DateEdit.py:82
+#: ../src/DateEdit.py:81
 msgid "About"
 msgstr "Vers"
 
-#: ../src/DateEdit.py:83
+#: ../src/DateEdit.py:82
 msgid "Range"
 msgstr "Étendu(e)"
 
-#: ../src/DateEdit.py:84
+#: ../src/DateEdit.py:83
 msgid "Span"
 msgstr "Incrémenté(e)"
 
-#: ../src/DateEdit.py:85
+#: ../src/DateEdit.py:84
 msgid "Text only"
 msgstr "Texte seulement"
 
-#: ../src/DateEdit.py:89
+#: ../src/DateEdit.py:88
 msgid "Estimated"
 msgstr "Estimé(e)"
 
-#: ../src/DateEdit.py:90
+#: ../src/DateEdit.py:89
 msgid "Calculated"
 msgstr "Calculé(e)"
 
 # manuel wiki
-#: ../src/DateEdit.py:102
+#: ../src/DateEdit.py:101
 msgid "manual|Editing_Dates"
 msgstr "Édition des dates"
 
 # ou date mauvaise
-#: ../src/DateEdit.py:152
+#: ../src/DateEdit.py:151
 msgid "Bad Date"
 msgstr "Date non-valide"
 
-#: ../src/DateEdit.py:155
+#: ../src/DateEdit.py:154
 msgid "Date more than one year in the future"
 msgstr "Date futuriste de plus d'un an"
 
-#: ../src/DateEdit.py:202
-#: ../src/DateEdit.py:347
+#: ../src/DateEdit.py:201
+#: ../src/DateEdit.py:349
 msgid "Date selection"
 msgstr "Sélection de la date"
 
-#: ../src/DateEdit.py:337
+#: ../src/DateEdit.py:339
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr "Corrigez la date ou passez du mode `{cur_mode}' à `{text_mode}'"
 
@@ -22766,7 +22766,7 @@ msgstr "Réorganisation des identifiants des individus"
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/ReorderIds.py:86
 msgid "Reordering Family IDs"
-msgstr "Réorganiser des identifiants des familles"
+msgstr "Réorganisation des identifiants des familles"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/ReorderIds.py:96
@@ -22785,22 +22785,27 @@ msgstr "Réorganisation des identifiants des sources"
 
 # Substantif (GNOME fr)
 #: ../src/plugins/tool/ReorderIds.py:126
+msgid "Reordering Citation IDs"
+msgstr "Réorganisation des identifiants des citations"
+
+# Substantif (GNOME fr)
+#: ../src/plugins/tool/ReorderIds.py:136
 msgid "Reordering Place IDs"
 msgstr "Réorganisation des identifiants des lieux"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/ReorderIds.py:136
+#: ../src/plugins/tool/ReorderIds.py:146
 msgid "Reordering Repository IDs"
 msgstr "Réorganisation des identifiants des dépôts"
 
 # Substantif (GNOME fr)
-#: ../src/plugins/tool/ReorderIds.py:147
+#: ../src/plugins/tool/ReorderIds.py:157
 msgid "Reordering Note IDs"
-msgstr "Réorganiser des identifiants des notes"
+msgstr "Réorganisation des identifiants des notes"
 
 # Substantif (GNOME fr)
 # utiliser plutôt que référencer
-#: ../src/plugins/tool/ReorderIds.py:221
+#: ../src/plugins/tool/ReorderIds.py:231
 msgid "Finding and assigning unused IDs"
 msgstr "Recherche et assignation d'un ID non-utilisé"
 

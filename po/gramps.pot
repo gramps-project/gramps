@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-08 18:11+0100\n"
+"POT-Creation-Date: 2014-01-21 20:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -160,59 +160,59 @@ msgstr ""
 msgid "none"
 msgstr ""
 
-#: ../src/DateEdit.py:79 ../src/DateEdit.py:88
+#: ../src/DateEdit.py:78 ../src/DateEdit.py:87
 msgid "Regular"
 msgstr ""
 
-#: ../src/DateEdit.py:80
+#: ../src/DateEdit.py:79
 msgid "Before"
 msgstr ""
 
-#: ../src/DateEdit.py:81
+#: ../src/DateEdit.py:80
 msgid "After"
 msgstr ""
 
-#: ../src/DateEdit.py:82
+#: ../src/DateEdit.py:81
 msgid "About"
 msgstr ""
 
-#: ../src/DateEdit.py:83
+#: ../src/DateEdit.py:82
 msgid "Range"
 msgstr ""
 
-#: ../src/DateEdit.py:84
+#: ../src/DateEdit.py:83
 msgid "Span"
 msgstr ""
 
-#: ../src/DateEdit.py:85
+#: ../src/DateEdit.py:84
 msgid "Text only"
 msgstr ""
 
-#: ../src/DateEdit.py:89
+#: ../src/DateEdit.py:88
 msgid "Estimated"
 msgstr ""
 
-#: ../src/DateEdit.py:90
+#: ../src/DateEdit.py:89
 msgid "Calculated"
 msgstr ""
 
-#: ../src/DateEdit.py:102
+#: ../src/DateEdit.py:101
 msgid "manual|Editing_Dates"
 msgstr ""
 
-#: ../src/DateEdit.py:152
+#: ../src/DateEdit.py:151
 msgid "Bad Date"
 msgstr ""
 
-#: ../src/DateEdit.py:155
+#: ../src/DateEdit.py:154
 msgid "Date more than one year in the future"
 msgstr ""
 
-#: ../src/DateEdit.py:202 ../src/DateEdit.py:347
+#: ../src/DateEdit.py:201 ../src/DateEdit.py:349
 msgid "Date selection"
 msgstr ""
 
-#: ../src/DateEdit.py:337
+#: ../src/DateEdit.py:339
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr ""
 
@@ -21774,18 +21774,22 @@ msgid "Reordering Source IDs"
 msgstr ""
 
 #: ../src/plugins/tool/ReorderIds.py:126
-msgid "Reordering Place IDs"
+msgid "Reordering Citation IDs"
 msgstr ""
 
 #: ../src/plugins/tool/ReorderIds.py:136
+msgid "Reordering Place IDs"
+msgstr ""
+
+#: ../src/plugins/tool/ReorderIds.py:146
 msgid "Reordering Repository IDs"
 msgstr ""
 
-#: ../src/plugins/tool/ReorderIds.py:147
+#: ../src/plugins/tool/ReorderIds.py:157
 msgid "Reordering Note IDs"
 msgstr ""
 
-#: ../src/plugins/tool/ReorderIds.py:221
+#: ../src/plugins/tool/ReorderIds.py:231
 msgid "Finding and assigning unused IDs"
 msgstr ""
 
