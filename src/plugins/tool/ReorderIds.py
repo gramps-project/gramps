@@ -123,6 +123,16 @@ class ReorderIds(tool.BatchTool):
                          db.commit_source,
                          db.source_prefix)
             if uistate:
+                self.progress.set_pass(_('Reordering Citation IDs'),
+                                       db.get_number_of_citations())
+            self.reorder(gen.lib.Citation,
+                         db.get_citation_from_gramps_id,
+                         db.get_citation_from_handle,
+                         db.find_next_citation_gramps_id,
+                         db.citation_map,
+                         db.commit_citation,
+                         db.citation_prefix)
+            if uistate:
                 self.progress.set_pass(_('Reordering Place IDs'),
                                        db.get_number_of_places())
             self.reorder(gen.lib.Place,
