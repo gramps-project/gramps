@@ -142,7 +142,12 @@ from gramps.gen.db.dbconst import EVENT_KEY
 from gramps.gui.dialog import WarningDialog
 from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
-from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE, UNITYPE
+from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE, UNITYPE, win
+
+# string.whitespace in some configuration is changed if it is imported
+# after setting locale (adding '0xa0')
+if win() and sys.version_info[0] < 3:
+    string.whitespace = ' \t\n\r\v\f'
 
 #-------------------------------------------------------------------------
 #
