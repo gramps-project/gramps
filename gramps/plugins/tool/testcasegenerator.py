@@ -54,10 +54,10 @@ from gi.repository import Gtk
 from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef, 
                 ChildRefType, Citation, Date, Event, EventRef, EventRoleType, 
                 EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location, 
-                MediaObject, MediaRef, Name, NameOriginType, NameType, Note, NoteType,
-                Person, PersonRef, Place, RepoRef, Repository, RepositoryType,
-                Source, SourceMediaType, SrcAttribute, SrcAttributeType,
-                Surname, Tag, Url, UrlType)
+                MediaObject, MediaRef, Name, NameOriginType, NameType, Note,
+                NoteType, Person, PersonRef, Place, PlaceType, PlaceRef,
+                RepoRef, Repository, RepositoryType, Source, SourceMediaType,
+                SrcAttribute, SrcAttributeType, Surname, Tag, Url, UrlType)
 from gramps.gen.lib.addressbase import AddressBase
 from gramps.gen.lib.attrbase import AttributeBase
 from gramps.gen.lib.primaryobj import BasicPrimaryObject
@@ -155,6 +155,10 @@ class TestcaseGenerator(tool.BatchTool):
         self.generated_tags = []
         self.text_serial_number = 1
         
+        self.parent_places = {}
+        for type_num in range(1, 8):
+            self.parent_places[type_num] = []
+
         # If an active persons exists the generated tree is connected to that person
         if self.person:
             # try to get birth and death year
@@ -1664,25 +1668,26 @@ class TestcaseGenerator(tool.BatchTool):
                 n_h = choice(self.generated_notes)
                 o.add_note(n_h)
         
-        if isinstance(o,Place):
-            o.set_title( self.rand_text(self.SHORT))
-            if randint(0,1) == 1:
-                if randint(0,4) == 1:
-                    o.set_longitude( self.rand_text(self.SHORT))
+        if isinstance(o, Place):
+            o.set_title(self.rand_text(self.LONG))
+            o.set_name(self.rand_text(self.SHORT))
+            o.set_code(self.rand_text(self.SHORT))
+            if randint(0, 1) == 1:
+                if randint(0, 4) == 1:
+                    o.set_longitude(self.rand_text(self.SHORT))
                 else:
-                    o.set_longitude( str(random()*360.0-180.0))
-            if randint(0,1) == 1:
-                if randint(0,4) == 1:
+                    o.set_longitude(str(random() * 360.0 - 180.0))
+            if randint(0, 1) == 1:
+                if randint(0, 4) == 1:
                     o.set_latitude( self.rand_text(self.SHORT))
                 else:
-                    o.set_latitude( str(random()*180.0-90.0))
-            o.set_main_location( self.fill_object( Location()))
-            while randint(0,1) == 1:
-                o.add_alternate_locations( self.fill_object( Location()))
+                    o.set_latitude(str(random() * 180.0 - 90.0))
+            while randint(0, 1) == 1:
+                o.add_alternate_locations(self.fill_object(Location()))
 
         if issubclass(o.__class__, PlaceBase):
-            if randint(0,1) == 1:
-                o.set_place_handle( self.rand_place())
+            if randint(0, 1) == 1:
+                o.set_place_handle(self.rand_place())
 
         if issubclass(o.__class__, BasicPrimaryObject):
             if randint(0,1) == 1:
@@ -1806,15 +1811,46 @@ class TestcaseGenerator(tool.BatchTool):
                 value = ''
             gtype.set((key, value))
             return gtype
-        
-    def rand_place( self):
-        if not self.generated_places or randint(0,10) == 1:
+
+    def rand_place(self):
+        if not self.generated_places or randint(0, 10) == 1:
+            self.generate_place()
+        return choice(self.generated_places)
+
+    def generate_place(self):
+        parent_handle = None
+        for type_num in range(1, 8):
+            if type_num > 1 and randint(1, 3) == 1:
+                # skip some levels in the place hierarchy
+                continue
             place = Place()
-            self.fill_object( place)
-            self.db.add_place( place, self.trans)
-            self.generated_places.append( place.get_handle())
-        return choice( self.generated_places)
-        
+            place.set_type(PlaceType(type_num))
+            if parent_handle is not None:
+                self.add_parent_place(place, parent_handle)
+            if type_num > 1 and randint(1, 3) == 1:
+                # add additional parent place
+                parent_handle = self.find_parent_place(type_num - 1)
+                if parent_handle is not None:
+                    self.add_parent_place(place, parent_handle)
+            self.fill_object(place)
+            self.db.add_place(place, self.trans)
+            parent_handle = place.get_handle()
+            self.generated_places.append(place.get_handle())
+            self.parent_places[type_num].append(place.get_handle())
+
+    def find_parent_place(self, type_num):
+        if len(self.parent_places[type_num]) > 0:
+            return choice(self.parent_places[type_num])
+        else:
+            return None
+
+    def add_parent_place(self, place, handle):
+        place_ref = PlaceRef()
+        place_ref.ref = handle
+        year, random_date = self.rand_date()
+        place_ref.set_date_object(random_date)
+        place.add_placeref(place_ref)
+
     def rand_text(self, type=None):
         # for lastnamesnames
         syllables1 = ["sa","li","na","ma","no","re","mi","cha","ki","du","ba","ku","el"]
