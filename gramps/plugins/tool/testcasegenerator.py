@@ -51,7 +51,26 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import Address, Attribute, AttributeType, ChildRef, ChildRefType, Citation, Date, Event, EventRef, EventRoleType, EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location, MediaObject, MediaRef, Name, NameOriginType, NameType, Note, NoteType, Person, PersonRef, Place, RepoRef, Repository, RepositoryType, Source, SourceMediaType, Surname, Tag, Url, UrlType
+from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
+                ChildRefType, Citation, Date, Event, EventRef, EventRoleType,
+                EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location,
+                MediaObject, MediaRef, Name, NameOriginType, NameType, Note,
+                NoteType, Person, PersonRef, Place, RepoRef, Repository,
+                RepositoryType, Source, SourceMediaType, Surname, Tag, Url,
+                UrlType)
+from gramps.gen.lib.addressbase import AddressBase
+from gramps.gen.lib.attrbase import AttributeBase
+from gramps.gen.lib.primaryobj import BasicPrimaryObject
+from gramps.gen.lib.citationbase import CitationBase
+from gramps.gen.lib.datebase import DateBase
+from gramps.gen.lib.ldsordbase import LdsOrdBase
+from gramps.gen.lib.locationbase import LocationBase
+from gramps.gen.lib.mediabase import MediaBase
+from gramps.gen.lib.notebase import NoteBase
+from gramps.gen.lib.placebase import PlaceBase
+from gramps.gen.lib.privacybase import PrivacyBase
+from gramps.gen.lib.tagbase import TagBase
+from gramps.gen.lib.urlbase import UrlBase
 from gramps.gen.lib import StyledText, StyledTextTag, StyledTextTagType
 from gramps.gen.db import DbTxn
 from gramps.gen.mime import get_type
@@ -1497,7 +1516,7 @@ class TestcaseGenerator(tool.BatchTool):
     def fill_object( self, o):
     
         
-        if issubclass(o.__class__,gen.lib.addressbase.AddressBase):
+        if issubclass(o.__class__, AddressBase):
             while randint(0,1) == 1:
                 a = Address()
                 self.fill_object(a)
@@ -1507,7 +1526,7 @@ class TestcaseGenerator(tool.BatchTool):
             o.set_type( self.rand_type(AttributeType()))
             o.set_value( self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__,gen.lib.attrbase.AttributeBase):
+        if issubclass(o.__class__, AttributeBase):
             while randint(0,1) == 1:
                 a = Attribute()
                 self.fill_object(a)
@@ -1519,7 +1538,7 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,3) == 1:
                 o.set_father_relation( self.rand_type( ChildRefType()))
 
-        if issubclass(o.__class__,gen.lib.datebase.DateBase):
+        if issubclass(o.__class__, DateBase):
             if randint(0,1) == 1:
                 (y,d) = self.rand_date()
                 o.set_date_object( d)
@@ -1528,7 +1547,7 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,1) == 1:
                 o.set_description( self.rand_text(self.LONG))
 
-        if issubclass(o.__class__,gen.lib.eventref.EventRef):
+        if issubclass(o.__class__, EventRef):
             o.set_role( self.rand_type(EventRoleType()))
 
         if isinstance(o,Family):
@@ -1541,7 +1560,7 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,1) == 1:
                 o.set_temple( choice(TEMPLES.name_code_data())[1])
 
-        if issubclass(o.__class__,gen.lib.ldsordbase.LdsOrdBase):
+        if issubclass(o.__class__, LdsOrdBase):
             while randint(0,1) == 1:
                 ldsord = LdsOrd()
                 self.fill_object( ldsord)
@@ -1559,7 +1578,7 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,1) == 1:
                 o.set_parish( self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__,gen.lib.locationbase.LocationBase):
+        if issubclass(o.__class__, LocationBase):
             if randint(0,1) == 1:
                 o.set_street( self.rand_text(self.SHORT))
             if randint(0,1) == 1:
@@ -1575,7 +1594,7 @@ class TestcaseGenerator(tool.BatchTool):
             if randint(0,1) == 1:
                 o.set_county( self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__,gen.lib.mediabase.MediaBase):
+        if issubclass(o.__class__, MediaBase):
             # FIXME: frequency changed to prevent recursion
             while randint(0,10) == 1:
                 o.add_media_reference( self.fill_object( MediaRef()))
@@ -1631,7 +1650,7 @@ class TestcaseGenerator(tool.BatchTool):
             o.set_format( choice( (Note.FLOWED,Note.FORMATTED)))
             o.set_type(type)
 
-        if issubclass(o.__class__,gen.lib.notebase.NoteBase):
+        if issubclass(o.__class__, NoteBase):
             while randint(0,1) == 1:
                 if not self.generated_notes or randint(0,10) == 1:
                     n = Note()
@@ -1657,15 +1676,15 @@ class TestcaseGenerator(tool.BatchTool):
             while randint(0,1) == 1:
                 o.add_alternate_locations( self.fill_object( Location()))
 
-        if issubclass(o.__class__,gen.lib.placebase.PlaceBase):
+        if issubclass(o.__class__, PlaceBase):
             if randint(0,1) == 1:
                 o.set_place_handle( self.rand_place())
 
-        if issubclass(o.__class__,gen.lib.primaryobj.BasicPrimaryObject):
+        if issubclass(o.__class__, BasicPrimaryObject):
             if randint(0,1) == 1:
                 o.set_gramps_id( self.rand_text(self.SHORT))
 
-        if issubclass(o.__class__,gen.lib.privacybase.PrivacyBase):
+        if issubclass(o.__class__, PrivacyBase):
             o.set_privacy( randint(0,5) == 1)
             
         if isinstance(o,RepoRef):
@@ -1698,7 +1717,7 @@ class TestcaseGenerator(tool.BatchTool):
                 self.fill_object(r)
                 o.add_repo_reference( r)
 
-        if issubclass(o.__class__,gen.lib.citationbase.CitationBase):
+        if issubclass(o.__class__, CitationBase):
             while randint(0,1) == 1:
                 if not self.generated_citations or randint(1,10) == 1:
                     s = Citation()
@@ -1724,11 +1743,11 @@ class TestcaseGenerator(tool.BatchTool):
             #    o.set_date_object( d)
             o.set_confidence_level(choice(list(conf_strings.keys())))
 
-        if issubclass(o.__class__,gen.lib.tagbase.TagBase):
+        if issubclass(o.__class__, TagBase):
             if randint(0,1) == 1:
                 o.set_tag_list(self.rand_tags())
 
-        if issubclass(o.__class__,gen.lib.urlbase.UrlBase):
+        if issubclass(o.__class__, UrlBase):
             while randint(0,1) == 1:
                 u = Url()
                 self.fill_object(u)
@@ -1770,16 +1789,16 @@ class TestcaseGenerator(tool.BatchTool):
         event_ref.set_reference_handle(event_h)
         return (year, event_ref)
     
-    def rand_type( self, list):
-        if issubclass( list.__class__, GrampsType):
-            map = list.get_map()
-            key = choice( list(map.keys()))
-            if key == list.get_custom():
+    def rand_type(self, gtype):
+        if issubclass(gtype.__class__, GrampsType):
+            map = gtype.get_map()
+            key = choice(list(map.keys()))
+            if key == gtype.get_custom():
                 value = self.rand_text(self.SHORT)
             else:
                 value = ''
-            list.set( (key,value))
-            return list
+            gtype.set((key, value))
+            return gtype
         
     def rand_place( self):
         if not self.generated_places or randint(0,10) == 1:
