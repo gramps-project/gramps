@@ -206,11 +206,12 @@ class EditDate(ManagedWindow):
         self.validated_date = self.return_date = None
 
         for o in self.top.get_objects():
-            try:
-                if o != self.ok_button:
-                    o.connect_after('changed', self.revalidate)
-            except TypeError:
-                pass # some of them don't support the signal, ignore them...
+            if o != self.ok_button:
+                for signal in ['changed', 'value-changed']:
+                    try:
+                        o.connect_after(signal, self.revalidate)
+                    except TypeError:
+                        pass # some of them don't support the signal, ignore them...
         self.revalidate()
         self.show()
 
