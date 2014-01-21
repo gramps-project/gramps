@@ -24,9 +24,8 @@
 """
 Date editing module for GRAMPS. 
 
-The EditDate provides visual feedback to the user via a pixamp
-to indicate if the associated GtkEntry box contains a valid date. Green
-means complete and regular date. Yellow means a valid, but not a regular date.
+The EditDate provides visual feedback to the user to indicate if 
+the associated GtkEntry box contains a valid date.
 Red means that the date is not valid, and will be viewed as a text string
 instead of a date.
 
