@@ -204,7 +204,7 @@ class EditDate(ManagedWindow):
         # want to have several open dialogs, since then the user will
         # loose track of which is which. Much like opening files.
         
-        self.return_date = None
+        self.validated_date = self.return_date = None
 
         for o in self.top.get_objects():
             try:
@@ -232,7 +232,7 @@ class EditDate(ManagedWindow):
                     if not self.revalidate():
                         continue
                     self.return_date = Date()
-                    self.return_date.copy(self.date)
+                    self.return_date.copy(self.validated_date)
                 self.close()
                 break
 
@@ -256,12 +256,15 @@ class EditDate(ManagedWindow):
                 value=the_value,
                 text=the_text,
                 newyear=the_newyear)
-            self.date.copy(d)
-            LOG.debug("return_date set to: {0}".format(d.to_struct()))
+            # didn't throw yet?
+            self.validated_date = d
+            LOG.debug("validated_date set to: {0}".format(d.to_struct()))
             self.ok_button.set_sensitive(1)
+            self.calendar_box.set_sensitive(1)
             return True
         except DateError as e: 
             self.ok_button.set_sensitive(0)
+            self.calendar_box.set_sensitive(0)
             self.statusbar.push(1, 
                     _("Correct the date or switch from `{cur_mode}' to `{text_mode}'"
                         ).format(
@@ -363,19 +366,24 @@ class EditDate(ManagedWindow):
         
         old_cal = self.date.get_calendar()
         new_cal = self.calendar_box.get_active()
+        LOG.debug(">>>switch_calendar: {0} changed, {1} -> {2}".format(
+            obj, old_cal, new_cal))
 
         (the_quality, the_modifier, the_calendar, 
          the_value, the_text, the_newyear) = self.build_date_from_ui()
-        self.date.set(
-                quality=the_quality,
-                modifier=the_modifier,
-                calendar=old_cal,
-                value=the_value,
-                text=the_text,
-                newyear=the_newyear)
-
-        if not self.date.is_empty():
-            self.date.convert_calendar(new_cal)
+        try:
+            self.date.set(
+                    quality=the_quality,
+                    modifier=the_modifier,
+                    calendar=old_cal,
+                    value=the_value,
+                    text=the_text,
+                    newyear=the_newyear)
+        except DateError:
+            pass
+        else:
+            if not self.date.is_empty():
+                self.date.convert_calendar(new_cal)
         
         self.start_month_box.get_model().clear()
         self.stop_month_box.get_model().clear()
@@ -390,3 +398,5 @@ class EditDate(ManagedWindow):
         self.stop_day.set_value(self.date.get_stop_day())
         self.stop_month_box.set_active(self.date.get_stop_month())
         self.stop_year.set_value(self.date.get_stop_year())
+        LOG.debug("<<<switch_calendar: {0} changed, {1} -> {2}".format(
+            obj, old_cal, new_cal))
