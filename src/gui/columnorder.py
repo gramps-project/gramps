@@ -179,11 +179,11 @@ class ColumnOrder(gtk.VBox):
                 newvis.append(index)
             neworder.append(index)
             newsize.append(size)
-        self.config.set('columns.rank', neworder)
-        self.config.set('columns.size', newsize)
-        self.config.set('columns.visible', newvis)
-        self.config.save()
         if len(newvis) > 0 and self.on_apply:
+            self.config.set('columns.rank', neworder)
+            self.config.set('columns.size', newsize)
+            self.config.set('columns.visible', newvis)
+            self.config.save()
             self.on_apply()
 
 def toggled(cell, path, model):
