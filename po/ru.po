@@ -15853,11 +15853,11 @@ msgstr "Спрашивать подтверждения при стирании 
 
 #: ../gramps/gui/views/listview.py:546
 msgid "More than one item has been selected for deletion. Ask before deleting each one?"
-msgstr "Для удаления выделено более одно элемента. Спрашивать перед удалением каждого?"
+msgstr "Для удаления выделено более одного элемента. Спрашивать перед удалением каждого?"
 
 #: ../gramps/gui/views/listview.py:559
 msgid "This item is currently being used. Deleting it will remove it from the database and from all other items that reference it."
-msgstr "Этот элемент в настоящее время используется. Удаление сотрет его из базы данных и из всех других элементов, которые ссылаются на это."
+msgstr "Этот элемент в настоящее время используется. Удаление сотрёт его из базы данных и из всех других элементов, которые ссылаются на это."
 
 #: ../gramps/gui/views/listview.py:563
 #: ../gramps/plugins/view/familyview.py:236
