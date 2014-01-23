@@ -61,80 +61,18 @@ from Utils import media_path_full
 #
 #------------------------------------------------------------------------
 
-
 SECTION_CATEGORY = _("Sections")
-# Translated headers for the sections
-FACTS = _("Individual Facts")
-EDUCATION = str(EventType(EventType.EDUCATION))
-CENSUS = str(EventType(EventType.CENSUS))
-ELECTED = str(EventType(EventType.ELECTED))
-MED_INFO = str(EventType(EventType.MED_INFO))
-MILITARY_SERV = str(EventType(EventType.MILITARY_SERV))
-NOB_TITLE = str(EventType(EventType.NOB_TITLE))
-OCCUPATION = str(EventType(EventType.OCCUPATION))
-PROPERTY = str(EventType(EventType.PROPERTY))
-RESIDENCE = str(EventType(EventType.RESIDENCE))
-FAMILY = _("Family")
 CUSTOM = _("Custom")
 
-SECTION_LIST = [FACTS, CENSUS, EDUCATION, ELECTED, MED_INFO,
-                MILITARY_SERV, NOB_TITLE, OCCUPATION, PROPERTY,
-                RESIDENCE, CUSTOM]
-
-#Grouping of eventtypes in sections
-GROUP_DICT = {FACTS: [EventType.ADOPT,
-                      EventType.ADULT_CHRISTEN,
-                      EventType.BAPTISM,
-                      EventType.BAR_MITZVAH,
-                      EventType.BAS_MITZVAH,
-                      EventType.BIRTH,
-                      EventType.BURIAL,
-                      EventType.CAUSE_DEATH,
-                      EventType.CHRISTEN,
-                      EventType.CONFIRMATION,
-                      EventType.CREMATION,
-                      EventType.DEATH,
-                      EventType.EMIGRATION,
-                      EventType.FIRST_COMMUN,
-                      EventType.IMMIGRATION,
-                      EventType.NATURALIZATION,
-                      EventType.ORDINATION,
-                      EventType.PROBATE,
-                      EventType.RELIGION,
-                      EventType.RETIREMENT,
-                      EventType.UNKNOWN,
-                      EventType.WILL],
-             FAMILY: [EventType.ANNULMENT,
-                      EventType.BLESS,
-                      EventType.ENGAGEMENT,
-                      EventType.DIVORCE,
-                      EventType.DIV_FILING,                      
-                      EventType.MARRIAGE,
-                      EventType.MARR_ALT,
-                      EventType.MARR_BANNS,
-                      EventType.MARR_CONTR,
-                      EventType.MARR_LIC,
-                      EventType.MARR_SETTL,
-                      EventType.NUM_MARRIAGES],
-          EDUCATION: [EventType.DEGREE,
-                      EventType.EDUCATION,
-                      EventType.GRADUATION],
-             CENSUS: [EventType.CENSUS],
-            ELECTED: [EventType.ELECTED],
-           MED_INFO: [EventType.MED_INFO],
-      MILITARY_SERV: [EventType.MILITARY_SERV],
-          NOB_TITLE: [EventType.NOB_TITLE],
-         OCCUPATION: [EventType.OCCUPATION],
-           PROPERTY: [EventType.PROPERTY],
-          RESIDENCE: [EventType.RESIDENCE],
-             CUSTOM: [EventType.CUSTOM],
-        }
-
-#Construct type to group map
+# Construct section list and type to group map
+SECTION_LIST = []
 TYPE2GROUP = {}
-for event_group, type_list in GROUP_DICT.iteritems():
+for event_group, type_list in EventType().get_menu():
+    SECTION_LIST.append(event_group)
     for event_type in type_list:
         TYPE2GROUP[event_type] = event_group
+SECTION_LIST.append(CUSTOM)
+TYPE2GROUP[EventType.CUSTOM] = CUSTOM
 
 #------------------------------------------------------------------------
 #
@@ -191,11 +129,10 @@ class IndivCompleteReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
-    def write_fact(self, event_ref, event, event_group):
+    def write_fact(self, event_ref, event, show_type=True):
         """
         Writes a single event.
         """
-        group_size = len(GROUP_DICT[event_group])
         role = event_ref.get_role()
         description = event.get_description()
         
@@ -207,7 +144,7 @@ class IndivCompleteReport(Report):
                                             place_handle).get_title()
         date_place = combine(_('%s in %s. '), '%s. ', date, place)
 
-        if group_size != 1 or event_group == CUSTOM:
+        if show_type:
             # Groups with more than one type
             column_1 = str(event.get_type())
             if role not in (EventRoleType.PRIMARY, EventRoleType.FAMILY):
@@ -434,7 +371,7 @@ class IndivCompleteReport(Report):
             
             event_ref_list = family.get_event_ref_list()
             for event_ref, event in self.get_event_list(event_ref_list):
-                self.write_fact(event_ref, event, FAMILY)
+                self.write_fact(event_ref, event)
 
             child_ref_list = family.get_child_ref_list()
             if len(child_ref_list):
@@ -488,7 +425,7 @@ class IndivCompleteReport(Report):
         self.doc.end_row()
 
         for event_ref, event in self.get_event_list(event_ref_list):
-            self.write_fact(event_ref, event, event_group)
+            self.write_fact(event_ref, event)
 
         self.doc.end_table()
         self.doc.start_paragraph("IDS-Normal")
@@ -508,7 +445,7 @@ class IndivCompleteReport(Report):
                 event = self.database.get_event_from_handle(event_ref.ref)
                 group = TYPE2GROUP[event.get_type().value]
                 if group not in self.section_list:
-                    group = FACTS
+                    group = SECTION_LIST[0]
                 event_dict[group].append(event_ref)
                     
         # Write separate event group sections
@@ -721,7 +658,7 @@ class IndivCompleteOptions(MenuReportOptions):
         opt = BooleanListOption(_("Event groups"))
         opt.set_help(_("Check if a separate section is required."))
         for section in SECTION_LIST:
-            if section != FACTS:
+            if section != SECTION_LIST[0]:
                 opt.add_button(section, True)
 
         menu.add_option(category_name, "sections", opt)
