@@ -15483,12 +15483,12 @@ msgstr "Enfants "
 #: ../gramps/gui/widgets/fanchart.py:1800
 #: ../gramps/plugins/view/pedigreeview.py:1829
 msgid "Related"
-msgstr "en relation avec"
+msgstr "En relation avec"
 
 # trunk
 #: ../gramps/gui/widgets/fanchart.py:1851
 msgid "Add partner to person"
-msgstr "Ajout d'un partenaire à l'individu"
+msgstr "Ajouter un(e) concubin(e) à l'individu"
 
 #: ../gramps/gui/widgets/fanchart.py:1859
 msgid "Add a person"
