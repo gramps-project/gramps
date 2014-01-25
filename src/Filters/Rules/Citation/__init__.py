@@ -38,6 +38,7 @@ from _HasNoteRegexp import HasNoteRegexp
 from _HasReferenceCountOf import HasReferenceCountOf
 from _HasSource import HasSource
 from _HasSourceIdOf import HasSourceIdOf
+from _HasSourceNoteRegexp import HasSourceNoteRegexp
 from _MatchesFilter import MatchesFilter
 from _MatchesPageSubstringOf import MatchesPageSubstringOf
 from _MatchesRepositoryFilter import MatchesRepositoryFilter
@@ -57,6 +58,7 @@ editor_rule_list = [
     HasReferenceCountOf,
     HasSource,
     HasSourceIdOf,
+    HasSourceNoteRegexp,
     MatchesFilter,
     MatchesPageSubstringOf,
     MatchesRepositoryFilter,

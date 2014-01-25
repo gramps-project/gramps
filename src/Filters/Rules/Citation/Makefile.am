@@ -17,6 +17,7 @@ pkgpython_PYTHON = \
 	_HasReferenceCountOf.py \
 	_HasSource.py \
 	_HasSourceIdOf.py \
+	_HasSourceNoteRegexp.py \
 	_MatchesFilter.py \
 	_MatchesPageSubstringOf.py \
 	_MatchesRepositoryFilter.py \

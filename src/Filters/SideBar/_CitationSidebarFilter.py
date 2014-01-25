@@ -45,7 +45,8 @@ import gen.lib
 from Filters.SideBar import SidebarFilter
 from Filters import GenericFilterFactory, build_filter_model, Rules
 from Filters.Rules.Citation import (RegExpIdOf, HasCitation, HasNoteRegexp, 
-                                    MatchesFilter, HasSource, RegExpSourceIdOf)
+                                    MatchesFilter, HasSource, RegExpSourceIdOf,
+                                    HasSourceNoteRegexp)
 from Utils import confidence
 GenericCitationFilter = GenericFilterFactory('Citation')
 #-------------------------------------------------------------------------
@@ -171,6 +172,10 @@ class CitationSidebarFilter(SidebarFilter):
                 
             if note:
                 rule = HasNoteRegexp([note], use_regex=regex)
+                generic_filter.add_rule(rule)
+
+            if src_note:
+                rule = HasSourceNoteRegexp([src_note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
         if self.generic.get_active() != 0:
