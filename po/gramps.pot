@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-21 20:49+0100\n"
+"POT-Creation-Date: 2014-01-25 21:08+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -84,11 +84,11 @@ msgstr ""
 #: ../src/gui/editors/displaytabs/personrefembedlist.py:63
 #: ../src/gui/plug/_guioptions.py:1111 ../src/gui/plug/_windows.py:128
 #: ../src/gui/plug/_windows.py:1093 ../src/gui/selectors/selectperson.py:74
-#: ../src/gui/views/tags.py:387 ../src/gui/views/treemodels/peoplemodel.py:524
+#: ../src/gui/views/tags.py:387 ../src/gui/views/treemodels/peoplemodel.py:525
 #: ../src/plugins/BookReport.py:778 ../src/plugins/drawreport/TimeLine.py:68
 #: ../src/plugins/gramplet/Backlinks.py:46
 #: ../src/plugins/lib/libpersonview.py:92
-#: ../src/plugins/textreport/IndivComplete.py:600
+#: ../src/plugins/textreport/IndivComplete.py:537
 #: ../src/plugins/textreport/TagReport.py:124
 #: ../src/plugins/tool/NotRelated.py:130
 #: ../src/plugins/tool/RemoveUnused.py:200 ../src/plugins/tool/Verify.py:517
@@ -579,7 +579,7 @@ msgstr ""
 #: ../src/plugins/lib/maps/geography.py:853
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
-#: ../src/plugins/textreport/IndivComplete.py:613
+#: ../src/plugins/textreport/IndivComplete.py:550
 #: ../src/plugins/tool/Check.py:1958 ../src/plugins/view/geofamily.py:415
 #: ../src/plugins/view/geoperson.py:461 ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:995 ../src/plugins/view/relview.py:1042
@@ -799,9 +799,9 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:301
 #: ../src/plugins/textreport/FamilyGroup.py:208
 #: ../src/plugins/textreport/FamilyGroup.py:219
-#: ../src/plugins/textreport/IndivComplete.py:325
-#: ../src/plugins/textreport/IndivComplete.py:327
-#: ../src/plugins/textreport/IndivComplete.py:602
+#: ../src/plugins/textreport/IndivComplete.py:262
+#: ../src/plugins/textreport/IndivComplete.py:264
+#: ../src/plugins/textreport/IndivComplete.py:539
 #: ../src/plugins/textreport/TagReport.py:211
 #: ../src/plugins/view/familyview.py:80 ../src/plugins/view/relview.py:883
 #: ../src/plugins/webreport/NarrativeWeb.py:6320
@@ -818,9 +818,9 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:298
 #: ../src/plugins/textreport/FamilyGroup.py:225
 #: ../src/plugins/textreport/FamilyGroup.py:236
-#: ../src/plugins/textreport/IndivComplete.py:334
-#: ../src/plugins/textreport/IndivComplete.py:336
-#: ../src/plugins/textreport/IndivComplete.py:603
+#: ../src/plugins/textreport/IndivComplete.py:271
+#: ../src/plugins/textreport/IndivComplete.py:273
+#: ../src/plugins/textreport/IndivComplete.py:540
 #: ../src/plugins/textreport/TagReport.py:217
 #: ../src/plugins/view/familyview.py:81 ../src/plugins/view/relview.py:884
 #: ../src/plugins/webreport/NarrativeWeb.py:6334
@@ -1119,7 +1119,6 @@ msgstr ""
 #: ../src/plugins/quickview/FilterByName.py:215
 #: ../src/plugins/quickview/quickview.gpr.py:200
 #: ../src/plugins/quickview/References.py:86
-#: ../src/plugins/textreport/IndivComplete.py:77
 #: ../src/plugins/view/geography.gpr.py:100
 #: ../src/plugins/view/relview.py:1318 ../src/plugins/view/relview.py:1340
 #: ../src/plugins/webreport/NarrativeWeb.py:3110
@@ -1451,7 +1450,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetAncestralReport.py:602
 #: ../src/plugins/textreport/DetDescendantReport.py:589
 #: ../src/plugins/textreport/DetDescendantReport.py:596
-#: ../src/plugins/textreport/IndivComplete.py:428
+#: ../src/plugins/textreport/IndivComplete.py:365
 #: ../src/plugins/view/relview.py:652
 #: ../src/plugins/webreport/NarrativeWeb.py:5387
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:89
@@ -2662,7 +2661,7 @@ msgstr ""
 #: ../src/gen/lib/nametype.py:54 ../src/gen/lib/nameorigintype.py:81
 #: ../src/gen/lib/notetype.py:79 ../src/gen/lib/repotype.py:60
 #: ../src/gen/lib/srcmediatype.py:63 ../src/gen/lib/urltype.py:55
-#: ../src/plugins/textreport/IndivComplete.py:78
+#: ../src/plugins/textreport/IndivComplete.py:65
 msgid "Custom"
 msgstr ""
 
@@ -2738,7 +2737,7 @@ msgstr ""
 
 #: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:74
 #: ../src/plugins/tool/Check.py:2004
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:188
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:193
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:199
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:245
@@ -3949,7 +3948,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:933
 #: ../src/plugins/textreport/EndOfLineReport.py:261
 #: ../src/plugins/textreport/FamilyGroup.py:643
-#: ../src/plugins/textreport/IndivComplete.py:687
+#: ../src/plugins/textreport/IndivComplete.py:624
 #: ../src/plugins/textreport/KinshipReport.py:348
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:202
 msgid "Default"
@@ -4289,7 +4288,7 @@ msgid "Endnotes"
 msgstr ""
 
 #: ../src/gen/plug/report/utils.py:142
-#: ../src/plugins/textreport/IndivComplete.py:630
+#: ../src/plugins/textreport/IndivComplete.py:567
 #: ../src/plugins/textreport/SimpleBookTitle.py:105
 #: ../src/plugins/webreport/NarrativeWeb.py:1961
 #: ../src/plugins/webreport/NarrativeWeb.py:2146
@@ -4299,7 +4298,7 @@ msgid "Could not add photo to page"
 msgstr ""
 
 #: ../src/gen/plug/report/utils.py:143 ../src/gui/utils.py:383
-#: ../src/plugins/textreport/IndivComplete.py:631
+#: ../src/plugins/textreport/IndivComplete.py:568
 msgid "File does not exist"
 msgstr ""
 
@@ -4573,7 +4572,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:899
 #: ../src/plugins/textreport/EndOfLineReport.py:260
 #: ../src/plugins/textreport/FamilyGroup.py:642
-#: ../src/plugins/textreport/IndivComplete.py:686
+#: ../src/plugins/textreport/IndivComplete.py:623
 #: ../src/plugins/textreport/KinshipReport.py:347
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:201
 #: ../src/plugins/webreport/NarrativeWeb.py:8040
@@ -5456,7 +5455,7 @@ msgid "Date:"
 msgstr ""
 
 #: ../src/gui/filtereditor.py:591
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:79
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:80
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:76
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:87
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:92
@@ -5525,7 +5524,7 @@ msgstr ""
 #: ../src/plugins/graph/GVRelGraph.py:508
 #: ../src/plugins/quickview/quickview.gpr.py:127
 #: ../src/plugins/textreport/BirthdayReport.py:372
-#: ../src/plugins/textreport/IndivComplete.py:672
+#: ../src/plugins/textreport/IndivComplete.py:609
 #: ../src/plugins/tool/SortEvents.py:168
 #: ../src/plugins/webreport/NarrativeWeb.py:8018
 #: ../src/plugins/webreport/WebCal.py:1322
@@ -5733,7 +5732,7 @@ msgstr ""
 #: ../src/plugins/gramplet/bottombar.gpr.py:385
 #: ../src/plugins/gramplet/bottombar.gpr.py:399
 #: ../src/plugins/quickview/FilterByName.py:112
-#: ../src/plugins/textreport/IndivComplete.py:267
+#: ../src/plugins/textreport/IndivComplete.py:204
 #: ../src/plugins/textreport/TagReport.py:370
 #: ../src/plugins/view/noteview.py:107 ../src/plugins/view/view.gpr.py:101
 #: ../src/plugins/webreport/NarrativeWeb.py:379
@@ -6653,7 +6652,7 @@ msgstr ""
 #: ../src/plugins/import/ImportCsv.py:181
 #: ../src/plugins/lib/libpersonview.py:94
 #: ../src/plugins/quickview/siblings.py:48
-#: ../src/plugins/textreport/IndivComplete.py:601
+#: ../src/plugins/textreport/IndivComplete.py:538
 #: ../src/plugins/webreport/NarrativeWeb.py:6214
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:128
 msgid "Gender"
@@ -7696,7 +7695,7 @@ msgid "Move the selected name downwards"
 msgstr ""
 
 #: ../src/gui/editors/displaytabs/nameembedlist.py:76
-#: ../src/gui/views/treemodels/peoplemodel.py:524
+#: ../src/gui/views/treemodels/peoplemodel.py:525
 msgid "Group As"
 msgstr ""
 
@@ -8307,7 +8306,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:890
 #: ../src/plugins/textreport/EndOfLineReport.py:251
 #: ../src/plugins/textreport/FamilyGroup.py:632
-#: ../src/plugins/textreport/IndivComplete.py:669
+#: ../src/plugins/textreport/IndivComplete.py:606
 #: ../src/plugins/textreport/KinshipReport.py:338
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:192
 #: ../src/plugins/textreport/PlaceReport.py:366
@@ -9118,7 +9117,7 @@ msgid "Merge People"
 msgstr ""
 
 #: ../src/Merge/mergeperson.py:189
-#: ../src/plugins/textreport/IndivComplete.py:351
+#: ../src/plugins/textreport/IndivComplete.py:288
 msgid "Alternate Names"
 msgstr ""
 
@@ -9144,7 +9143,7 @@ msgid "No spouses or children found"
 msgstr ""
 
 #: ../src/Merge/mergeperson.py:250
-#: ../src/plugins/textreport/IndivComplete.py:381
+#: ../src/plugins/textreport/IndivComplete.py:318
 #: ../src/plugins/webreport/NarrativeWeb.py:1367
 msgid "Addresses"
 msgstr ""
@@ -9568,7 +9567,7 @@ msgstr ""
 #: ../src/plugins/Records.py:525
 #: ../src/plugins/drawreport/StatisticsChart.py:920
 #: ../src/plugins/drawreport/TimeLine.py:375
-#: ../src/plugins/textreport/IndivComplete.py:678
+#: ../src/plugins/textreport/IndivComplete.py:615
 #: ../src/plugins/tool/SortEvents.py:173
 #: ../src/plugins/webreport/NarrativeWeb.py:8024
 #: ../src/plugins/webreport/WebCal.py:1328
@@ -9632,7 +9631,7 @@ msgstr ""
 #: ../src/plugins/textreport/EndOfLineReport.py:299
 #: ../src/plugins/textreport/EndOfLineReport.py:317
 #: ../src/plugins/textreport/FamilyGroup.py:737
-#: ../src/plugins/textreport/IndivComplete.py:795
+#: ../src/plugins/textreport/IndivComplete.py:732
 #: ../src/plugins/textreport/KinshipReport.py:404
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:227
 #: ../src/plugins/textreport/Summary.py:295
@@ -10268,7 +10267,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:903
 #: ../src/plugins/textreport/EndOfLineReport.py:264
 #: ../src/plugins/textreport/FamilyGroup.py:646
-#: ../src/plugins/textreport/IndivComplete.py:690
+#: ../src/plugins/textreport/IndivComplete.py:627
 #: ../src/plugins/textreport/KinshipReport.py:351
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:205
 #: ../src/plugins/webreport/NarrativeWeb.py:8044
@@ -10934,7 +10933,7 @@ msgid "%s (persons):"
 msgstr ""
 
 #: ../src/plugins/drawreport/StatisticsChart.py:921
-#: ../src/plugins/textreport/IndivComplete.py:679
+#: ../src/plugins/textreport/IndivComplete.py:616
 msgid "The center person for the filter."
 msgstr ""
 
@@ -11019,7 +11018,7 @@ msgstr ""
 #: ../src/plugins/textreport/DetDescendantReport.py:1053
 #: ../src/plugins/textreport/EndOfLineReport.py:281
 #: ../src/plugins/textreport/FamilyGroup.py:728
-#: ../src/plugins/textreport/IndivComplete.py:763
+#: ../src/plugins/textreport/IndivComplete.py:700
 #: ../src/plugins/textreport/KinshipReport.py:386
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:220
 #: ../src/plugins/textreport/SimpleBookTitle.py:165
@@ -11787,7 +11786,7 @@ msgstr ""
 #: ../src/plugins/gramplet/bottombar.gpr.py:497
 #: ../src/plugins/gramplet/FanChartGramplet.py:801
 #: ../src/plugins/textreport/FamilyGroup.py:589
-#: ../src/plugins/textreport/IndivComplete.py:442
+#: ../src/plugins/textreport/IndivComplete.py:379
 #: ../src/plugins/view/fanchartview.py:873
 #: ../src/plugins/view/pedigreeview.py:1919
 #: ../src/plugins/view/relview.py:1358
@@ -19709,13 +19708,13 @@ msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:751
 #: ../src/plugins/textreport/DetDescendantReport.py:926
-#: ../src/plugins/textreport/IndivComplete.py:700
+#: ../src/plugins/textreport/IndivComplete.py:637
 msgid "Page break before end notes"
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:753
 #: ../src/plugins/textreport/DetDescendantReport.py:928
-#: ../src/plugins/textreport/IndivComplete.py:702
+#: ../src/plugins/textreport/IndivComplete.py:639
 msgid "Whether to start a new page before the end notes."
 msgstr ""
 
@@ -19819,13 +19818,13 @@ msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:811
 #: ../src/plugins/textreport/DetDescendantReport.py:986
-#: ../src/plugins/textreport/IndivComplete.py:714
+#: ../src/plugins/textreport/IndivComplete.py:651
 msgid "Include Photo/Images from Gallery"
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:812
 #: ../src/plugins/textreport/DetDescendantReport.py:987
-#: ../src/plugins/textreport/IndivComplete.py:715
+#: ../src/plugins/textreport/IndivComplete.py:652
 msgid "Whether to include images."
 msgstr ""
 
@@ -19871,13 +19870,13 @@ msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:831
 #: ../src/plugins/textreport/DetDescendantReport.py:1006
-#: ../src/plugins/textreport/IndivComplete.py:709
+#: ../src/plugins/textreport/IndivComplete.py:646
 msgid "Include sources notes"
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:832
 #: ../src/plugins/textreport/DetDescendantReport.py:1007
-#: ../src/plugins/textreport/IndivComplete.py:710
+#: ../src/plugins/textreport/IndivComplete.py:647
 msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
@@ -20186,76 +20185,71 @@ msgstr ""
 #. Global variables
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/textreport/IndivComplete.py:65
+#: ../src/plugins/textreport/IndivComplete.py:64
 msgid "Sections"
 msgstr ""
 
-#. Translated headers for the sections
-#: ../src/plugins/textreport/IndivComplete.py:67
-msgid "Individual Facts"
-msgstr ""
-
-#: ../src/plugins/textreport/IndivComplete.py:208
+#: ../src/plugins/textreport/IndivComplete.py:145
 #, python-format
 msgid "%s in %s. "
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:297
+#: ../src/plugins/textreport/IndivComplete.py:234
 msgid "Alternate Parents"
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:409
+#: ../src/plugins/textreport/IndivComplete.py:346
 msgid "Marriages/Children"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../src/plugins/textreport/IndivComplete.py:553
+#: ../src/plugins/textreport/IndivComplete.py:490
 #, python-format
 msgid "Summary of %s"
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:609
+#: ../src/plugins/textreport/IndivComplete.py:546
 msgid "Male"
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:611
+#: ../src/plugins/textreport/IndivComplete.py:548
 msgid "Female"
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:674
+#: ../src/plugins/textreport/IndivComplete.py:611
 msgid "Select the filter to be applied to the report."
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:696
+#: ../src/plugins/textreport/IndivComplete.py:633
 msgid "List events chronologically"
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:697
+#: ../src/plugins/textreport/IndivComplete.py:634
 msgid "Whether to sort events into chronological order."
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:705
+#: ../src/plugins/textreport/IndivComplete.py:642
 msgid "Include Source Information"
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:706
+#: ../src/plugins/textreport/IndivComplete.py:643
 msgid "Whether to cite sources."
 msgstr ""
 
 #. ###############################
-#: ../src/plugins/textreport/IndivComplete.py:721
+#: ../src/plugins/textreport/IndivComplete.py:658
 msgid "Event groups"
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:722
+#: ../src/plugins/textreport/IndivComplete.py:659
 msgid "Check if a separate section is required."
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:775
+#: ../src/plugins/textreport/IndivComplete.py:712
 msgid "The style used for category labels."
 msgstr ""
 
-#: ../src/plugins/textreport/IndivComplete.py:786
+#: ../src/plugins/textreport/IndivComplete.py:723
 msgid "The style used for the spouse's name."
 msgstr ""
 
@@ -22172,13 +22166,13 @@ msgstr ""
 
 #: ../src/plugins/view/citationtreeview.py:95
 #: ../src/plugins/view/citationlistview.py:102
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:101
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:102
 msgid "Source: Author"
 msgstr ""
 
 #: ../src/plugins/view/citationtreeview.py:96
 #: ../src/plugins/view/citationlistview.py:103
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:102
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:103
 msgid "Source: Abbreviation"
 msgstr ""
 
@@ -22300,12 +22294,12 @@ msgid "Volume/Page"
 msgstr ""
 
 #: ../src/plugins/view/citationlistview.py:100
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:100
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:101
 msgid "Source: Title"
 msgstr ""
 
 #: ../src/plugins/view/citationlistview.py:101
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:99
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:100
 msgid "Source: ID"
 msgstr ""
 
@@ -26327,6 +26321,7 @@ msgstr ""
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:56
 #: ../src/Filters/Rules/Citation/_HasSourceIdOf.py:50
+#: ../src/Filters/Rules/Citation/_HasSourceNoteRegexp.py:54
 #: ../src/Filters/Rules/Citation/_RegExpSourceIdOf.py:52
 msgid "Source filters"
 msgstr ""
@@ -26337,6 +26332,16 @@ msgstr ""
 
 #: ../src/Filters/Rules/Citation/_HasSourceIdOf.py:48
 msgid "Matches a citation with a source with a specified Gramps ID"
+msgstr ""
+
+#: ../src/Filters/Rules/Citation/_HasSourceNoteRegexp.py:51
+msgid "Citations having source notes containing <text>"
+msgstr ""
+
+#: ../src/Filters/Rules/Citation/_HasSourceNoteRegexp.py:52
+msgid ""
+"Matches citations whose source notes contain a substring or match a regular "
+"expression"
 msgstr ""
 
 #: ../src/Filters/Rules/Citation/_MatchesFilter.py:46
@@ -26722,35 +26727,35 @@ msgstr ""
 msgid "Matches notes that are indicated as private"
 msgstr ""
 
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:103
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:104
 msgid "Source: Publication"
 msgstr ""
 
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:104
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:105
 msgid "Source: Note"
 msgstr ""
 
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:105
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:106
 msgid "Citation: ID"
 msgstr ""
 
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:106
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:107
 msgid "Citation: Volume/Page"
 msgstr ""
 
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:107
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:108
 msgid "Citation: Date"
 msgstr ""
 
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:108
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:109
 msgid "Citation: Minimum Confidence|Min. Conf."
 msgstr ""
 
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:109
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:110
 msgid "Citation: Note"
 msgstr ""
 
-#: ../src/Filters/SideBar/_CitationSidebarFilter.py:110
+#: ../src/Filters/SideBar/_CitationSidebarFilter.py:111
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:99
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:119
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:136
