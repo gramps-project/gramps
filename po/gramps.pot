@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-21 20:59+0100\n"
+"POT-Creation-Date: 2014-01-25 21:16+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -463,7 +463,7 @@ msgstr ""
 #: ../gramps/plugins/lib/maps/geography.py:744
 #: ../gramps/plugins/quickview/all_relations.py:279
 #: ../gramps/plugins/quickview/all_relations.py:296
-#: ../gramps/plugins/textreport/indivcomplete.py:638
+#: ../gramps/plugins/textreport/indivcomplete.py:576
 #: ../gramps/plugins/tool/check.py:2021 ../gramps/plugins/view/geoclose.py:509
 #: ../gramps/plugins/view/geofamclose.py:265
 #: ../gramps/plugins/view/geofamclose.py:653
@@ -1559,6 +1559,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:57
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:51
+#: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:55
 #: ../gramps/gen/filters/rules/citation/_regexpsourceidof.py:53
 msgid "Source filters"
 msgstr ""
@@ -1569,6 +1570,16 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:49
 msgid "Matches a citation with a source with a specified Gramps ID"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:52
+msgid "Citations having source notes containing <text>"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:53
+msgid ""
+"Matches citations whose source notes contain a substring or match a regular "
+"expression"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:47
@@ -3711,13 +3722,14 @@ msgstr ""
 msgid "Matches sources that are indicated as private"
 msgstr ""
 
+#. only used in add_menu_options (so no _T_)
 #: ../gramps/gen/lib/attrtype.py:65 ../gramps/gen/lib/childreftype.py:81
 #: ../gramps/gen/lib/eventroletype.py:60 ../gramps/gen/lib/eventtype.py:168
 #: ../gramps/gen/lib/familyreltype.py:54 ../gramps/gen/lib/markertype.py:59
 #: ../gramps/gen/lib/nameorigintype.py:82 ../gramps/gen/lib/nametype.py:55
 #: ../gramps/gen/lib/notetype.py:81 ../gramps/gen/lib/repotype.py:61
 #: ../gramps/gen/lib/srcmediatype.py:64 ../gramps/gen/lib/urltype.py:56
-#: ../gramps/plugins/textreport/indivcomplete.py:86
+#: ../gramps/plugins/textreport/indivcomplete.py:74
 msgid "Custom"
 msgstr ""
 
@@ -3803,7 +3815,7 @@ msgid "Time"
 msgstr ""
 
 #: ../gramps/gen/lib/childreftype.py:74 ../gramps/gui/configure.py:84
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:189
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:194
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:155
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:202
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:158
@@ -3867,7 +3879,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:596
 #: ../gramps/plugins/textreport/detdescendantreport.py:582
 #: ../gramps/plugins/textreport/detdescendantreport.py:589
-#: ../gramps/plugins/textreport/indivcomplete.py:452
+#: ../gramps/plugins/textreport/indivcomplete.py:390
 #: ../gramps/plugins/view/relview.py:676
 #: ../gramps/plugins/webreport/narrativeweb.py:5392
 msgid "unknown"
@@ -4057,7 +4069,6 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:216
 #: ../gramps/plugins/quickview/quickview.gpr.py:200
 #: ../gramps/plugins/quickview/references.py:88
-#: ../gramps/plugins/textreport/indivcomplete.py:85
 #: ../gramps/plugins/view/relview.py:1342
 #: ../gramps/plugins/view/relview.py:1364
 #: ../gramps/plugins/webreport/narrativeweb.py:3120
@@ -5545,7 +5556,7 @@ msgid "Select the format to display names"
 msgstr ""
 
 #: ../gramps/gen/plug/report/utils.py:144
-#: ../gramps/plugins/textreport/indivcomplete.py:655
+#: ../gramps/plugins/textreport/indivcomplete.py:593
 #: ../gramps/plugins/textreport/simplebooktitle.py:106
 #: ../gramps/plugins/webreport/narrativeweb.py:1970
 #: ../gramps/plugins/webreport/narrativeweb.py:2155
@@ -5555,7 +5566,7 @@ msgid "Could not add photo to page"
 msgstr ""
 
 #: ../gramps/gen/plug/report/utils.py:145 ../gramps/gui/utils.py:415
-#: ../gramps/plugins/textreport/indivcomplete.py:656
+#: ../gramps/plugins/textreport/indivcomplete.py:594
 msgid "File does not exist"
 msgstr ""
 
@@ -6627,7 +6638,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/backlinks.py:47
 #: ../gramps/plugins/lib/libpersonview.py:95
 #: ../gramps/plugins/quickview/filterbyname.py:282
-#: ../gramps/plugins/textreport/indivcomplete.py:625
+#: ../gramps/plugins/textreport/indivcomplete.py:563
 #: ../gramps/plugins/textreport/tagreport.py:130
 #: ../gramps/plugins/tool/notrelated.py:125
 #: ../gramps/plugins/tool/removeunused.py:203
@@ -8858,7 +8869,7 @@ msgstr ""
 #: ../gramps/plugins/importer/importcsv.py:187
 #: ../gramps/plugins/lib/libpersonview.py:97
 #: ../gramps/plugins/quickview/siblings.py:50
-#: ../gramps/plugins/textreport/indivcomplete.py:626
+#: ../gramps/plugins/textreport/indivcomplete.py:564
 #: ../gramps/plugins/webreport/narrativeweb.py:6219
 msgid "Gender"
 msgstr ""
@@ -9653,7 +9664,7 @@ msgid "Also family events where person is wife/husband"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:593
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:80
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:81
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:78
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:90
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:69
@@ -9723,7 +9734,7 @@ msgstr ""
 #: ../gramps/plugins/graph/gvrelgraph.py:533
 #: ../gramps/plugins/quickview/quickview.gpr.py:127
 #: ../gramps/plugins/textreport/birthdayreport.py:419
-#: ../gramps/plugins/textreport/indivcomplete.py:698
+#: ../gramps/plugins/textreport/indivcomplete.py:636
 #: ../gramps/plugins/textreport/recordsreport.py:172
 #: ../gramps/plugins/tool/sortevents.py:168
 #: ../gramps/plugins/webreport/narrativeweb.py:8016
@@ -9854,57 +9865,57 @@ msgstr ""
 msgid "Updating display..."
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:100
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:101
 #: ../gramps/plugins/view/citationlistview.py:106
 msgid "Source: ID"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:101
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:102
 #: ../gramps/plugins/view/citationlistview.py:105
 msgid "Source: Title"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:102
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:103
 #: ../gramps/plugins/view/citationlistview.py:107
 #: ../gramps/plugins/view/citationtreeview.py:100
 msgid "Source: Author"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:103
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:104
 #: ../gramps/plugins/view/citationlistview.py:108
 #: ../gramps/plugins/view/citationtreeview.py:101
 msgid "Source: Abbreviation"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:104
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
 msgid "Source: Publication"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
 msgid "Source: Note"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
 msgid "Citation: ID"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
 msgid "Citation: Volume/Page"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
 msgid "Citation: Date"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:110
 msgid "Citation: Minimum Confidence|Min. Conf."
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:110
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
 msgid "Citation: Note"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:101
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:122
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:97
@@ -9933,9 +9944,9 @@ msgstr ""
 #: ../gramps/plugins/quickview/all_relations.py:302
 #: ../gramps/plugins/textreport/familygroup.py:215
 #: ../gramps/plugins/textreport/familygroup.py:226
-#: ../gramps/plugins/textreport/indivcomplete.py:339
-#: ../gramps/plugins/textreport/indivcomplete.py:341
-#: ../gramps/plugins/textreport/indivcomplete.py:627
+#: ../gramps/plugins/textreport/indivcomplete.py:277
+#: ../gramps/plugins/textreport/indivcomplete.py:279
+#: ../gramps/plugins/textreport/indivcomplete.py:565
 #: ../gramps/plugins/textreport/tagreport.py:217
 #: ../gramps/plugins/view/familyview.py:82
 #: ../gramps/plugins/view/relview.py:907
@@ -9954,9 +9965,9 @@ msgstr ""
 #: ../gramps/plugins/quickview/all_relations.py:299
 #: ../gramps/plugins/textreport/familygroup.py:232
 #: ../gramps/plugins/textreport/familygroup.py:243
-#: ../gramps/plugins/textreport/indivcomplete.py:348
-#: ../gramps/plugins/textreport/indivcomplete.py:350
-#: ../gramps/plugins/textreport/indivcomplete.py:628
+#: ../gramps/plugins/textreport/indivcomplete.py:286
+#: ../gramps/plugins/textreport/indivcomplete.py:288
+#: ../gramps/plugins/textreport/indivcomplete.py:566
 #: ../gramps/plugins/textreport/tagreport.py:223
 #: ../gramps/plugins/view/familyview.py:83
 #: ../gramps/plugins/view/relview.py:908
@@ -11503,7 +11514,7 @@ msgstr ""
 
 #. FIXME this should be lower-case:
 #: ../gramps/gui/glade/mergefamily.glade.h:7
-#: ../gramps/plugins/textreport/indivcomplete.py:266
+#: ../gramps/plugins/textreport/indivcomplete.py:204
 msgid "Relationship:"
 msgstr ""
 
@@ -12145,7 +12156,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:678
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:692
 #: ../gramps/plugins/quickview/filterbyname.py:113
-#: ../gramps/plugins/textreport/indivcomplete.py:281
+#: ../gramps/plugins/textreport/indivcomplete.py:219
 #: ../gramps/plugins/textreport/tagreport.py:376
 #: ../gramps/plugins/view/noteview.py:113
 #: ../gramps/plugins/view/view.gpr.py:95
@@ -12561,7 +12572,7 @@ msgid "Merge People"
 msgstr ""
 
 #: ../gramps/gui/merge/mergeperson.py:195
-#: ../gramps/plugins/textreport/indivcomplete.py:375
+#: ../gramps/plugins/textreport/indivcomplete.py:313
 msgid "Alternate Names"
 msgstr ""
 
@@ -12597,7 +12608,7 @@ msgid "No spouses or children found"
 msgstr ""
 
 #: ../gramps/gui/merge/mergeperson.py:256
-#: ../gramps/plugins/textreport/indivcomplete.py:405
+#: ../gramps/plugins/textreport/indivcomplete.py:343
 #: ../gramps/plugins/webreport/narrativeweb.py:1376
 msgid "Addresses"
 msgstr ""
@@ -13372,7 +13383,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detdescendantreport.py:882
 #: ../gramps/plugins/textreport/endoflinereport.py:258
 #: ../gramps/plugins/textreport/familygroup.py:640
-#: ../gramps/plugins/textreport/indivcomplete.py:695
+#: ../gramps/plugins/textreport/indivcomplete.py:633
 #: ../gramps/plugins/textreport/kinshipreport.py:343
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:201
 #: ../gramps/plugins/textreport/placereport.py:373
@@ -14386,7 +14397,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:776
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:790
 #: ../gramps/plugins/textreport/familygroup.py:597
-#: ../gramps/plugins/textreport/indivcomplete.py:466
+#: ../gramps/plugins/textreport/indivcomplete.py:404
 #: ../gramps/plugins/view/pedigreeview.py:1741
 #: ../gramps/plugins/view/relview.py:1382
 #: ../gramps/plugins/webreport/narrativeweb.py:760
@@ -15123,7 +15134,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/endoflinereport.py:299
 #: ../gramps/plugins/textreport/endoflinereport.py:317
 #: ../gramps/plugins/textreport/familygroup.py:739
-#: ../gramps/plugins/textreport/indivcomplete.py:818
+#: ../gramps/plugins/textreport/indivcomplete.py:756
 #: ../gramps/plugins/textreport/kinshipreport.py:403
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:230
 #: ../gramps/plugins/textreport/recordsreport.py:269
@@ -15941,7 +15952,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:948
 #: ../gramps/plugins/drawreport/timeline.py:417
-#: ../gramps/plugins/textreport/indivcomplete.py:704
+#: ../gramps/plugins/textreport/indivcomplete.py:642
 #: ../gramps/plugins/textreport/recordsreport.py:178
 #: ../gramps/plugins/tool/sortevents.py:173
 #: ../gramps/plugins/webreport/narrativeweb.py:8022
@@ -15950,7 +15961,7 @@ msgid "Filter Person"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:949
-#: ../gramps/plugins/textreport/indivcomplete.py:705
+#: ../gramps/plugins/textreport/indivcomplete.py:643
 msgid "The center person for the filter."
 msgstr ""
 
@@ -16035,7 +16046,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detdescendantreport.py:1032
 #: ../gramps/plugins/textreport/endoflinereport.py:281
 #: ../gramps/plugins/textreport/familygroup.py:730
-#: ../gramps/plugins/textreport/indivcomplete.py:786
+#: ../gramps/plugins/textreport/indivcomplete.py:724
 #: ../gramps/plugins/textreport/kinshipreport.py:385
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:223
 #: ../gramps/plugins/textreport/simplebooktitle.py:166
@@ -24464,13 +24475,13 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/detancestralreport.py:737
 #: ../gramps/plugins/textreport/detdescendantreport.py:911
-#: ../gramps/plugins/textreport/indivcomplete.py:717
+#: ../gramps/plugins/textreport/indivcomplete.py:655
 msgid "Page break before end notes"
 msgstr ""
 
 #: ../gramps/plugins/textreport/detancestralreport.py:739
 #: ../gramps/plugins/textreport/detdescendantreport.py:913
-#: ../gramps/plugins/textreport/indivcomplete.py:719
+#: ../gramps/plugins/textreport/indivcomplete.py:657
 msgid "Whether to start a new page before the end notes."
 msgstr ""
 
@@ -24574,13 +24585,13 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/detancestralreport.py:791
 #: ../gramps/plugins/textreport/detdescendantreport.py:965
-#: ../gramps/plugins/textreport/indivcomplete.py:731
+#: ../gramps/plugins/textreport/indivcomplete.py:669
 msgid "Include Photo/Images from Gallery"
 msgstr ""
 
 #: ../gramps/plugins/textreport/detancestralreport.py:792
 #: ../gramps/plugins/textreport/detdescendantreport.py:966
-#: ../gramps/plugins/textreport/indivcomplete.py:732
+#: ../gramps/plugins/textreport/indivcomplete.py:670
 msgid "Whether to include images."
 msgstr ""
 
@@ -24626,13 +24637,13 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/detancestralreport.py:811
 #: ../gramps/plugins/textreport/detdescendantreport.py:985
-#: ../gramps/plugins/textreport/indivcomplete.py:726
+#: ../gramps/plugins/textreport/indivcomplete.py:664
 msgid "Include sources notes"
 msgstr ""
 
 #: ../gramps/plugins/textreport/detancestralreport.py:812
 #: ../gramps/plugins/textreport/detdescendantreport.py:986
-#: ../gramps/plugins/textreport/indivcomplete.py:727
+#: ../gramps/plugins/textreport/indivcomplete.py:665
 msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
@@ -24930,87 +24941,81 @@ msgstr ""
 msgid "Sections"
 msgstr ""
 
-#. only used in add_menu_options (so no _T_)
-#. headers for the sections
-#: ../gramps/plugins/textreport/indivcomplete.py:75
-msgid "Individual Facts"
-msgstr ""
-
-#: ../gramps/plugins/textreport/indivcomplete.py:220
+#: ../gramps/plugins/textreport/indivcomplete.py:158
 #, python-format
 msgid "%s in %s. "
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:311
+#: ../gramps/plugins/textreport/indivcomplete.py:249
 msgid "Alternate Parents"
 msgstr ""
 
 #. RTL languages are the only reason for "translating" this
-#: ../gramps/plugins/textreport/indivcomplete.py:360
+#: ../gramps/plugins/textreport/indivcomplete.py:298
 #, python-format
 msgid "%(name)s [%(gid)s]"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:433
+#: ../gramps/plugins/textreport/indivcomplete.py:371
 msgid "Marriages/Children"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/indivcomplete.py:578
+#: ../gramps/plugins/textreport/indivcomplete.py:516
 #, python-format
 msgid "Summary of %s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:634
+#: ../gramps/plugins/textreport/indivcomplete.py:572
 msgid "Male"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:636
+#: ../gramps/plugins/textreport/indivcomplete.py:574
 msgid "Female"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:700
+#: ../gramps/plugins/textreport/indivcomplete.py:638
 msgid "Select the filter to be applied to the report."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:713
+#: ../gramps/plugins/textreport/indivcomplete.py:651
 msgid "List events chronologically"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:714
+#: ../gramps/plugins/textreport/indivcomplete.py:652
 msgid "Whether to sort events into chronological order."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:722
+#: ../gramps/plugins/textreport/indivcomplete.py:660
 msgid "Include Source Information"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:723
+#: ../gramps/plugins/textreport/indivcomplete.py:661
 msgid "Whether to cite sources."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:735
+#: ../gramps/plugins/textreport/indivcomplete.py:673
 msgid "Include Gramps ID"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:736
+#: ../gramps/plugins/textreport/indivcomplete.py:674
 msgid "Whether to include Gramps ID next to names."
 msgstr ""
 
 #. ###############################
-#: ../gramps/plugins/textreport/indivcomplete.py:744
+#: ../gramps/plugins/textreport/indivcomplete.py:682
 msgid "Event groups"
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:745
+#: ../gramps/plugins/textreport/indivcomplete.py:683
 msgid "Check if a separate section is required."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:798
+#: ../gramps/plugins/textreport/indivcomplete.py:736
 msgid "The style used for category labels."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:809
+#: ../gramps/plugins/textreport/indivcomplete.py:747
 msgid "The style used for the spouse's name."
 msgstr ""
 
