@@ -46,7 +46,8 @@ from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.citation import (RegExpIdOf, HasCitation,
                                                HasNoteRegexp, MatchesFilter,
-                                               HasSource, RegExpSourceIdOf)
+                                               HasSource, RegExpSourceIdOf,
+                                               HasSourceNoteRegexp)
 from gramps.gen.utils.string import conf_strings
 GenericCitationFilter = GenericFilterFactory('Citation')
 #-------------------------------------------------------------------------
@@ -172,6 +173,10 @@ class CitationSidebarFilter(SidebarFilter):
                 
             if note:
                 rule = HasNoteRegexp([note], use_regex=regex)
+                generic_filter.add_rule(rule)
+
+            if src_note:
+                rule = HasSourceNoteRegexp([src_note], use_regex=regex)
                 generic_filter.add_rule(rule)
 
             if self.generic.get_active() != 0:
