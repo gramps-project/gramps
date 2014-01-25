@@ -245,7 +245,7 @@ class Citations(Gramplet, DbGUIElement):
         model, iter_ = treeview.get_selection().get_selected()
         if iter_:
             handle = model.get_value(iter_, 0)
-            if len(model.get_path(iter_)) == 1:
+            if len(str(model.get_path(iter_))) == 1:
                 self.edit_source(handle)
             else:
                 self.edit_citation(handle)
