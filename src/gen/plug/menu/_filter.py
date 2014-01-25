@@ -48,7 +48,7 @@ class FilterOption(EnumeratedListOption):
         @type label: string
         @param value: A default value for the option.
             Example: 1
-        @type label: int
+        @type value: int
         @return: nothing
         """
         EnumeratedListOption.__init__(self, label, value)
