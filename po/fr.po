@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-25 21:08+0100\n"
-"PO-Revision-Date: 2014-01-25 21:11+0100\n"
+"POT-Creation-Date: 2014-01-26 20:57+0100\n"
+"PO-Revision-Date: 2014-01-26 20:59+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -110,8 +110,8 @@ msgstr "Édition des signets"
 #: ../src/ToolTips.py:201
 #: ../src/ToolTips.py:212
 #: ../src/gui/configure.py:456
-#: ../src/gui/filtereditor.py:794
-#: ../src/gui/filtereditor.py:947
+#: ../src/gui/filtereditor.py:796
+#: ../src/gui/filtereditor.py:949
 #: ../src/gui/editors/editfamily.py:117
 #: ../src/gui/editors/editname.py:307
 #: ../src/gui/editors/displaytabs/backreflist.py:62
@@ -142,7 +142,7 @@ msgstr "Nom "
 #. Add column with object gramps_id
 #. GRAMPS ID
 #: ../src/Bookmarks.py:213
-#: ../src/gui/filtereditor.py:950
+#: ../src/gui/filtereditor.py:952
 #: ../src/gui/editors/editfamily.py:116
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/citationembedlist.py:85
@@ -6087,6 +6087,15 @@ msgid "Also family events where person is wife/husband"
 msgstr "Également les événements familiaux dont l'individu est le conjoint"
 
 #: ../src/gui/filtereditor.py:573
+#: ../src/Filters/Rules/Person/_HasEvent.py:54
+msgid "Primary Role:"
+msgstr "Rôle principal :"
+
+#: ../src/gui/filtereditor.py:574
+msgid "Only include primary participants"
+msgstr "N'inclure que les acteurs principaux"
+
+#: ../src/gui/filtereditor.py:575
 #: ../src/Filters/Rules/Person/_HasTag.py:48
 #: ../src/Filters/Rules/Family/_HasTag.py:48
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:48
@@ -6094,7 +6103,7 @@ msgstr "Également les événements familiaux dont l'individu est le conjoint"
 msgid "Tag:"
 msgstr "Étiquette :"
 
-#: ../src/gui/filtereditor.py:577
+#: ../src/gui/filtereditor.py:579
 #: ../src/Filters/Rules/Person/_HasCitation.py:50
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:44
 #: ../src/Filters/Rules/Family/_HasCitation.py:51
@@ -6109,7 +6118,7 @@ msgstr "Étiquette :"
 msgid "Confidence level:"
 msgstr "Niveau de confiance :"
 
-#: ../src/gui/filtereditor.py:580
+#: ../src/gui/filtereditor.py:582
 #: ../src/Filters/Rules/Person/_HasBirth.py:47
 #: ../src/Filters/Rules/Person/_HasCitation.py:49
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
@@ -6130,7 +6139,7 @@ msgid "Date:"
 msgstr "Date :"
 
 # nouvelle ligne = moins long à l'écran
-#: ../src/gui/filtereditor.py:591
+#: ../src/gui/filtereditor.py:593
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:80
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:76
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:87
@@ -6145,7 +6154,7 @@ msgstr ""
 "Utiliser les\n"
 "expressions rationnelles"
 
-#: ../src/gui/filtereditor.py:592
+#: ../src/gui/filtereditor.py:594
 msgid ""
 "Interpret the contents of string fields as regular expressions.\n"
 "A decimal point will match any character. A question mark will match zero or one occurences of the previous character or group. An asterisk will match zero or more occurences. A plus sign will match one or more occurences. Use parentheses to group expressions. Specify alternatives using a vertical bar. A caret will match the start of a line. A dollar sign will match the end of a line."
@@ -6153,38 +6162,38 @@ msgstr ""
 "Interprète le contenu des champs comme des expressions rationnelles.\n"
 "Un point décimal va correspondre à un caractère quelconque. Un point d'intérogation va correspondre à une ou aucune valeur pour le précédent caractère ou groupe. L'astérisque va correspondre à aucune ou plusieurs occurences. Un signe + va correspondre à une valeur ou plus. Utilisez les parenthèses pour grouper les expressions. Spécifiez les alternatives en utilisant la barre verticale. L'accent circonflexe débute une ligne. Le signe dollar signifie la fin d'une ligne."
 
-#: ../src/gui/filtereditor.py:619
+#: ../src/gui/filtereditor.py:621
 msgid "Rule Name"
 msgstr "Nom de la règle"
 
-#: ../src/gui/filtereditor.py:736
-#: ../src/gui/filtereditor.py:747
+#: ../src/gui/filtereditor.py:738
+#: ../src/gui/filtereditor.py:749
 #: ../src/glade/rule.glade.h:24
 msgid "No rule selected"
 msgstr "Aucune règle retenue"
 
-#: ../src/gui/filtereditor.py:790
+#: ../src/gui/filtereditor.py:792
 msgid "Define filter"
 msgstr "Définir un filtre"
 
-#: ../src/gui/filtereditor.py:794
+#: ../src/gui/filtereditor.py:796
 msgid "Values"
 msgstr "Valeurs"
 
-#: ../src/gui/filtereditor.py:892
+#: ../src/gui/filtereditor.py:894
 msgid "Add Rule"
 msgstr "Ajouter une règle"
 
-#: ../src/gui/filtereditor.py:904
+#: ../src/gui/filtereditor.py:906
 msgid "Edit Rule"
 msgstr "Éditer la règle"
 
-#: ../src/gui/filtereditor.py:939
+#: ../src/gui/filtereditor.py:941
 msgid "Filter Test"
 msgstr "Test du filtre"
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1077
+#: ../src/gui/filtereditor.py:1079
 #: ../src/plugins/Records.py:519
 #: ../src/plugins/drawreport/Calendar.py:416
 #: ../src/plugins/drawreport/StatisticsChart.py:914
@@ -6208,25 +6217,25 @@ msgstr "Test du filtre"
 msgid "Filter"
 msgstr "Filtre"
 
-#: ../src/gui/filtereditor.py:1077
+#: ../src/gui/filtereditor.py:1079
 msgid "Comment"
 msgstr "Commentaire"
 
-#: ../src/gui/filtereditor.py:1085
+#: ../src/gui/filtereditor.py:1087
 msgid "Custom Filter Editor"
 msgstr "Éditeur de filtre personnalisé"
 
 # objet sélectionné
-#: ../src/gui/filtereditor.py:1151
+#: ../src/gui/filtereditor.py:1153
 msgid "Delete Filter?"
 msgstr "Supprimer le filtre ?"
 
-#: ../src/gui/filtereditor.py:1152
+#: ../src/gui/filtereditor.py:1154
 msgid "This filter is currently being used as the base for other filters. Deletingthis filter will result in removing all other filters that depend on it."
 msgstr "Ce filtre est actuellement utilisé comme base pour d'autres filtres. Le supprimer enlèvera également les filtres qui dépendent de lui."
 
 # objet sélectionné
-#: ../src/gui/filtereditor.py:1156
+#: ../src/gui/filtereditor.py:1158
 msgid "Delete Filter"
 msgstr "Supprimer le filtre"
 
@@ -9339,7 +9348,6 @@ msgstr "Sélectionner l'événement"
 
 #: ../src/gui/selectors/selectevent.py:64
 #: ../src/plugins/view/eventview.py:87
-#: ../src/Filters/Rules/Person/_HasEvent.py:53
 #: ../src/Filters/Rules/Family/_HasEvent.py:52
 msgid "Main Participants"
 msgstr "Acteurs principaux"
@@ -25948,12 +25956,16 @@ msgstr "Individus avec une <donnée de décès>"
 msgid "Matches people with death data of a particular value"
 msgstr "Correspond aux individus ayant une donnée de décès particulière"
 
-#: ../src/Filters/Rules/Person/_HasEvent.py:54
+#: ../src/Filters/Rules/Person/_HasEvent.py:53
+msgid "Main Participants:"
+msgstr "Acteurs principaux :"
+
+#: ../src/Filters/Rules/Person/_HasEvent.py:55
 msgid "People with the personal <event>"
 msgstr "Individus avec l'<événement> individuel"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../src/Filters/Rules/Person/_HasEvent.py:55
+#: ../src/Filters/Rules/Person/_HasEvent.py:56
 msgid "Matches people with a personal event of a particular value"
 msgstr "Correspond aux individus ayant le même événement individuel"
 

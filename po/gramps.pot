@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-25 21:08+0100\n"
+"POT-Creation-Date: 2014-01-26 20:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,7 +77,7 @@ msgstr ""
 #. Add column with object name
 #: ../src/Bookmarks.py:213 ../src/ScratchPad.py:561 ../src/ToolTips.py:175
 #: ../src/ToolTips.py:201 ../src/ToolTips.py:212 ../src/gui/configure.py:456
-#: ../src/gui/filtereditor.py:794 ../src/gui/filtereditor.py:947
+#: ../src/gui/filtereditor.py:796 ../src/gui/filtereditor.py:949
 #: ../src/gui/editors/editfamily.py:117 ../src/gui/editors/editname.py:307
 #: ../src/gui/editors/displaytabs/backreflist.py:62
 #: ../src/gui/editors/displaytabs/nameembedlist.py:72
@@ -101,7 +101,7 @@ msgstr ""
 
 #. Add column with object gramps_id
 #. GRAMPS ID
-#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:950
+#: ../src/Bookmarks.py:213 ../src/gui/filtereditor.py:952
 #: ../src/gui/editors/editfamily.py:116
 #: ../src/gui/editors/displaytabs/backreflist.py:61
 #: ../src/gui/editors/displaytabs/citationembedlist.py:85
@@ -5414,14 +5414,22 @@ msgstr ""
 msgid "Also family events where person is wife/husband"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:573 ../src/Filters/Rules/Person/_HasTag.py:48
+#: ../src/gui/filtereditor.py:573 ../src/Filters/Rules/Person/_HasEvent.py:54
+msgid "Primary Role:"
+msgstr ""
+
+#: ../src/gui/filtereditor.py:574
+msgid "Only include primary participants"
+msgstr ""
+
+#: ../src/gui/filtereditor.py:575 ../src/Filters/Rules/Person/_HasTag.py:48
 #: ../src/Filters/Rules/Family/_HasTag.py:48
 #: ../src/Filters/Rules/MediaObject/_HasTag.py:48
 #: ../src/Filters/Rules/Note/_HasTag.py:48
 msgid "Tag:"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:577
+#: ../src/gui/filtereditor.py:579
 #: ../src/Filters/Rules/Person/_HasCitation.py:50
 #: ../src/Filters/Rules/Person/_MatchesSourceConfidence.py:44
 #: ../src/Filters/Rules/Family/_HasCitation.py:51
@@ -5436,7 +5444,7 @@ msgstr ""
 msgid "Confidence level:"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:580 ../src/Filters/Rules/Person/_HasBirth.py:47
+#: ../src/gui/filtereditor.py:582 ../src/Filters/Rules/Person/_HasBirth.py:47
 #: ../src/Filters/Rules/Person/_HasCitation.py:49
 #: ../src/Filters/Rules/Person/_HasDeath.py:47
 #: ../src/Filters/Rules/Person/_HasEvent.py:50
@@ -5454,7 +5462,7 @@ msgstr ""
 msgid "Date:"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:591
+#: ../src/gui/filtereditor.py:593
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:80
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:76
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:87
@@ -5467,7 +5475,7 @@ msgstr ""
 msgid "Use regular expressions"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:592
+#: ../src/gui/filtereditor.py:594
 msgid ""
 "Interpret the contents of string fields as regular expressions.\n"
 "A decimal point will match any character. A question mark will match zero or "
@@ -5478,37 +5486,37 @@ msgid ""
 "a line."
 msgstr ""
 
-#: ../src/gui/filtereditor.py:619
+#: ../src/gui/filtereditor.py:621
 msgid "Rule Name"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:736 ../src/gui/filtereditor.py:747
+#: ../src/gui/filtereditor.py:738 ../src/gui/filtereditor.py:749
 #: ../src/glade/rule.glade.h:24
 msgid "No rule selected"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:790
+#: ../src/gui/filtereditor.py:792
 msgid "Define filter"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:794
+#: ../src/gui/filtereditor.py:796
 msgid "Values"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:892
+#: ../src/gui/filtereditor.py:894
 msgid "Add Rule"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:904
+#: ../src/gui/filtereditor.py:906
 msgid "Edit Rule"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:939
+#: ../src/gui/filtereditor.py:941
 msgid "Filter Test"
 msgstr ""
 
 #. ###############################
-#: ../src/gui/filtereditor.py:1077 ../src/plugins/Records.py:519
+#: ../src/gui/filtereditor.py:1079 ../src/plugins/Records.py:519
 #: ../src/plugins/drawreport/Calendar.py:416
 #: ../src/plugins/drawreport/StatisticsChart.py:914
 #: ../src/plugins/drawreport/TimeLine.py:369
@@ -5531,26 +5539,26 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1077
+#: ../src/gui/filtereditor.py:1079
 msgid "Comment"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1085
+#: ../src/gui/filtereditor.py:1087
 msgid "Custom Filter Editor"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1151
+#: ../src/gui/filtereditor.py:1153
 msgid "Delete Filter?"
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1152
+#: ../src/gui/filtereditor.py:1154
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
 "it."
 msgstr ""
 
-#: ../src/gui/filtereditor.py:1156
+#: ../src/gui/filtereditor.py:1158
 msgid "Delete Filter"
 msgstr ""
 
@@ -8473,7 +8481,6 @@ msgid "Select Event"
 msgstr ""
 
 #: ../src/gui/selectors/selectevent.py:64 ../src/plugins/view/eventview.py:87
-#: ../src/Filters/Rules/Person/_HasEvent.py:53
 #: ../src/Filters/Rules/Family/_HasEvent.py:52
 msgid "Main Participants"
 msgstr ""
@@ -24832,11 +24839,15 @@ msgstr ""
 msgid "Matches people with death data of a particular value"
 msgstr ""
 
-#: ../src/Filters/Rules/Person/_HasEvent.py:54
-msgid "People with the personal <event>"
+#: ../src/Filters/Rules/Person/_HasEvent.py:53
+msgid "Main Participants:"
 msgstr ""
 
 #: ../src/Filters/Rules/Person/_HasEvent.py:55
+msgid "People with the personal <event>"
+msgstr ""
+
+#: ../src/Filters/Rules/Person/_HasEvent.py:56
 msgid "Matches people with a personal event of a particular value"
 msgstr ""
 
