@@ -1302,7 +1302,7 @@ class PedigreeView(NavigationView):
         if person:
             clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
                         Gdk.SELECTION_CLIPBOARD)
-            clipboard.set_text(self.format_helper.format_person(person, 11))
+            clipboard.set_text(self.format_helper.format_person(person, 11), -1)
             return True
         return False
 
@@ -1315,7 +1315,7 @@ class PedigreeView(NavigationView):
         if family:
             clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
                         Gdk.SELECTION_CLIPBOARD)
-            clipboard.set_text(self.format_helper.format_relation(family, 11))
+            clipboard.set_text(self.format_helper.format_relation(family, 11), -1)
             return True
         return False
 

@@ -1975,6 +1975,6 @@ class FanChartGrampsGUI(object):
         if person:
             cb = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
                         Gdk.SELECTION_CLIPBOARD)
-            cb.set_text( self.format_helper.format_person(person,11))
+            cb.set_text( self.format_helper.format_person(person,11), -1)
             return True
         return False
