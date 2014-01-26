@@ -572,6 +572,8 @@ class EditRule(ManagedWindow):
                 elif v == _('Include Family events:'):
                     t = MyBoolean(_('Also family events where person is '
                                     'wife/husband'))
+                elif v == _('Primary Role:'):
+                    t = MyBoolean(_('Only include primary participants'))
                 elif v == _('Tag:'):
                     taglist = ['']
                     taglist = taglist + [tag.get_name() for tag in dbstate.db.iter_tags()]

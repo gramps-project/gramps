@@ -51,7 +51,8 @@ class HasEventBase(Rule):
                     'Date:', 
                     'Place:', 
                     'Description:',
-                    'Main Participants' ]
+                    'Main Participants:',
+                    'Primary Role:' ]
     name        =  'Events matching parameters'
     description =  "Matches events with particular parameters"
     category    = _('Event filters')
