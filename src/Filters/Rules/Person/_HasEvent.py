@@ -50,7 +50,8 @@ class HasEvent(HasEventBase):
                     _('Date:'), 
                     _('Place:'), 
                     _('Description:'),
-                    _('Main Participants') ]
+                    _('Main Participants:'),
+                    _('Primary Role:') ]
     name        =  _('People with the personal <event>')
     description = _("Matches people with a personal event of a particular "
                     "value")
@@ -59,7 +60,7 @@ class HasEvent(HasEventBase):
         for event_ref in person.get_event_ref_list():
             if not event_ref:
                 continue
-            if event_ref.role != EventRoleType.PRIMARY:
+            if int(self.list[5]) and event_ref.role != EventRoleType.PRIMARY:
                 # Only match primaries, no witnesses
                 continue
             event = dbase.get_event_from_handle(event_ref.ref)

@@ -166,6 +166,9 @@ class FilterParser(handler.ContentHandler):
             and len(self.a) == 3):
             self.use_regex = self.a[2] == '1'
             self.a = self.a[:2]
+        # HasEvent rule has extra primary role field in v3.4.7
+        if self.r == Rules.Person.HasEvent and len(self.a) == 5:
+            self.a.append('1')
 
 #-------------------------------------------------------------------------
 #
