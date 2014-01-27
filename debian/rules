@@ -9,7 +9,8 @@
 # Remove COPYING file (duplicates standard copyright)
 override_dh_install:
 	dh_install
-	rm debian/gramps/usr/share/gramps/COPYING
+	# Need COPYING file into About dialog
+	#rm debian/gramps/usr/share/gramps/COPYING
 
 # Test packager mode to avoid installing mime type
 override_dh_auto_configure:
