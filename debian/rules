@@ -17,8 +17,8 @@ override_dh_auto_build:
 # Override of auto_install to force python 3
 override_dh_auto_install:
 	python setup.py install --root=debian/python-gramps --install-layout=deb
-	# Remove duplicate copyright information
-	rm debian/python-gramps/usr/share/doc/gramps/COPYING
+	# Need COPYING file into About dialog
+	#rm debian/python-gramps/usr/share/doc/gramps/COPYING
 	# Remove install file as it is not needed by package users
 	rm debian/python-gramps/usr/share/doc/gramps/INSTALL
 	# Remove duplicate license information
