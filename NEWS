@@ -1,7 +1,26 @@
-2014-01-??
-Version 3.4.7 of Gramps! "???", a maintenance release.
+2014-01-27
+Version 3.4.7 of Gramps! "Ask me tomorrow, but not today", a maintenance release.
 * Gramps project web hosting now has an HTTPS interface; the old HTTP URLs redirect to it.
 * Development switched from SVN to git.
+* Add new filter rule matching citations having a source with a <text> on a note
+* Add primary role option to event filter
+* Add Groups support and reduce number of lines in Event types selector
+* Add 'Last Change' column on selectors, when missing
+* Fix a filter rule on citation sidebar (Source:Note)
+* Fix url in Welcome gramplet when detached
+* Fix bug in associations filter
+* Better support for objects having citations as subobjects
+* Check Tag handling on people views
+* Keep at least one column on views
+* Reorder tool now updates citation IDs
+* Performance improvement in ancestor filter
+* Reduce number of columns in LDS temple selector
+* Fix menu action for last recently opened family trees
+* Fix minor visual issue on Merge Person dialog
+* Use 'Bat Mitzvah' (en_US event name)
+* "Add citation" missing in pop-up menu
+* Fix HTML spacing on GraphViz output
+* Enhancement on date validation into Date Editor
 * Invalid dates (like 2013-02-30) no longer crash the date editor or file import.
 * Fixed image handling in ODF docgen, thanks to Matthias Basler for the initial patch.
 * Fixed GEDCOM export for family _UID, added support for _FSFTID, by Enno Borgsteede.
