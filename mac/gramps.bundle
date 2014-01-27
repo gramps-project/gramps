@@ -138,10 +138,6 @@
     ${prefix}/include/python2.7/pyconfig.h
   </data>
 
-  <data>
-    ${prefix}/etc/pango/
-  </data>
-
   <data recurse="True">
     ${prefix}/share/gramps/*.py
   </data>

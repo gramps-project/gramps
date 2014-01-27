@@ -63,7 +63,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   <!--include href="/Users/john/Development/GTK-OSX/gtk-osx-build/modulesets-stable/gtk-osx.modules"/-->
 
   <autotools id="gramps" autogen-sh="configure">
-    <branch module="gramps/gramps-3.4.6.tar.gz" version="3.4.6"
+    <branch module="gramps/gramps-3.4.7.tar.gz" version="3.4.7"
 	    repo="sourceforge">
     </branch>
     <dependencies>
@@ -169,11 +169,11 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools>
 
-  <autotools id="exiv2">
+  <autotools id="exiv2" supports-non-srcdir-builds="no">
     <branch module="exiv2-0.21.1.tar.gz" repo="exiv2.org" version="0.21.1"/>
   </autotools>
 
-  <autotools id="boost">
+  <autotools id="boost" supports-non-srcdir-builds="no">
     <branch module="boost/boost_1_46_1.tar.bz2" repo="sourceforge"
 	    version="1.46.1"/>
   </autotools>
@@ -182,7 +182,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <branch repo="sourceforge" module="scons/scons-2.0.1.tar.gz" version="2.0.1"/>
   </distutils>
 
-  <autotools id="pyexiv2">
+  <autotools id="pyexiv2" supports-non-srcdir-builds="no">
     <branch module="pyexiv2/0.3.x/0.3/+download/pyexiv2-0.3.0.tar.bz2"
 	    repo="launchpad" version="0.3.0"/>
     <dependencies>
