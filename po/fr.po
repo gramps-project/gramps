@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.3\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-25 21:16+0100\n"
-"PO-Revision-Date: 2014-01-25 21:19+0100\n"
+"POT-Creation-Date: 2014-01-27 15:27+0100\n"
+"PO-Revision-Date: 2014-01-27 15:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -1487,7 +1487,7 @@ msgstr "Volume/Page :"
 #: ../gramps/gen/filters/rules/person/_hasevent.py:51
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:50
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
-#: ../gramps/gui/editors/filtereditor.py:582
+#: ../gramps/gui/editors/filtereditor.py:584
 #: ../gramps/gui/glade/mergecitation.glade.h:6
 #: ../gramps/gui/glade/mergeevent.glade.h:6
 #: ../gramps/gui/glade/mergemedia.glade.h:7
@@ -1527,7 +1527,7 @@ msgstr "Correspond aux citations ayant des paramètres particuliers"
 msgid "Citation/source filters"
 msgstr "Filtres citation/source"
 
-#: ../gramps/gen/filters/rules/_haseventbase.py:57
+#: ../gramps/gen/filters/rules/_haseventbase.py:58
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:47
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:52
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:52
@@ -1729,7 +1729,7 @@ msgstr "Correspond aux citations marquées comme privées"
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:45
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
-#: ../gramps/gui/editors/filtereditor.py:579
+#: ../gramps/gui/editors/filtereditor.py:581
 msgid "Confidence level:"
 msgstr "Niveau de confiance :"
 
@@ -2293,7 +2293,6 @@ msgid "Family event:"
 msgstr "Événement familial :"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:53
-#: ../gramps/gen/filters/rules/person/_hasevent.py:54
 #: ../gramps/gui/selectors/selectevent.py:65
 #: ../gramps/plugins/view/eventview.py:90
 msgid "Main Participants"
@@ -2407,7 +2406,7 @@ msgstr "Correspond aux familles ayant une source particulière"
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
 #: ../gramps/gen/filters/rules/note/_hastag.py:49
 #: ../gramps/gen/filters/rules/person/_hastag.py:49
-#: ../gramps/gui/editors/filtereditor.py:575
+#: ../gramps/gui/editors/filtereditor.py:577
 msgid "Tag:"
 msgstr "Étiquette :"
 
@@ -3000,12 +2999,21 @@ msgstr "Correspond aux individus ayant une donnée de décès particulière"
 msgid "Personal event:"
 msgstr "Événement personnel :"
 
+#: ../gramps/gen/filters/rules/person/_hasevent.py:54
+msgid "Main Participants:"
+msgstr "Acteurs principaux :"
+
 #: ../gramps/gen/filters/rules/person/_hasevent.py:55
+#: ../gramps/gui/editors/filtereditor.py:575
+msgid "Primary Role:"
+msgstr "Rôle principal :"
+
+#: ../gramps/gen/filters/rules/person/_hasevent.py:56
 msgid "People with the personal <event>"
 msgstr "Individus avec l'<événement> individuel"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
-#: ../gramps/gen/filters/rules/person/_hasevent.py:56
+#: ../gramps/gen/filters/rules/person/_hasevent.py:57
 msgid "Matches people with a personal event of a particular value"
 msgstr "Correspond aux individus ayant le même événement individuel"
 
@@ -7233,8 +7241,8 @@ msgstr "Réf. événement"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:64
 #: ../gramps/gui/editors/editfamily.py:123
 #: ../gramps/gui/editors/editname.py:309
-#: ../gramps/gui/editors/filtereditor.py:797
-#: ../gramps/gui/editors/filtereditor.py:950
+#: ../gramps/gui/editors/filtereditor.py:799
+#: ../gramps/gui/editors/filtereditor.py:952
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:129
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:94
 #: ../gramps/gui/plug/_guioptions.py:1130
@@ -8755,7 +8763,7 @@ msgstr "_Attributs"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 #: ../gramps/gui/editors/editfamily.py:122
-#: ../gramps/gui/editors/filtereditor.py:953
+#: ../gramps/gui/editors/filtereditor.py:955
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:94
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:114
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:90
@@ -10512,8 +10520,12 @@ msgstr "Utiliser une expression rationnelle"
 msgid "Also family events where person is wife/husband"
 msgstr "Également les événements familiaux dont l'individu est le conjoint"
 
+#: ../gramps/gui/editors/filtereditor.py:576
+msgid "Only include primary participants"
+msgstr "N'inclure que les acteurs principaux"
+
 # nouvelle ligne = moins long à l'écran
-#: ../gramps/gui/editors/filtereditor.py:593
+#: ../gramps/gui/editors/filtereditor.py:595
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:81
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:78
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:90
@@ -10528,7 +10540,7 @@ msgstr ""
 "Utiliser les\n"
 "expressions rationnelles"
 
-#: ../gramps/gui/editors/filtereditor.py:594
+#: ../gramps/gui/editors/filtereditor.py:596
 msgid ""
 "Interpret the contents of string fields as regular expressions.\n"
 "A decimal point will match any character. A question mark will match zero or one occurences of the previous character or group. An asterisk will match zero or more occurences. A plus sign will match one or more occurences. Use parentheses to group expressions. Specify alternatives using a vertical bar. A caret will match the start of a line. A dollar sign will match the end of a line."
@@ -10536,38 +10548,38 @@ msgstr ""
 "Interprète le contenu des champs comme des expressions rationnelles.\n"
 "Un point décimal va correspondre à un caractère quelconque. Un point d'intérogation va correspondre à une ou aucune valeur pour le précédent caractère ou groupe. L'astérisque va correspondre à aucune ou plusieurs occurences. Un signe + va correspondre à une valeur ou plus. Utilisez les parenthèses pour grouper les expressions. Spécifiez les alternatives en utilisant la barre verticale. L'accent circonflexe débute une ligne. Le signe dollar signifie la fin d'une ligne."
 
-#: ../gramps/gui/editors/filtereditor.py:622
+#: ../gramps/gui/editors/filtereditor.py:624
 msgid "Rule Name"
 msgstr "Nom de la règle"
 
-#: ../gramps/gui/editors/filtereditor.py:739
-#: ../gramps/gui/editors/filtereditor.py:750
+#: ../gramps/gui/editors/filtereditor.py:741
+#: ../gramps/gui/editors/filtereditor.py:752
 #: ../gramps/gui/glade/rule.glade.h:24
 msgid "No rule selected"
 msgstr "Aucune règle retenue"
 
-#: ../gramps/gui/editors/filtereditor.py:793
+#: ../gramps/gui/editors/filtereditor.py:795
 msgid "Define filter"
 msgstr "Définir un filtre"
 
-#: ../gramps/gui/editors/filtereditor.py:797
+#: ../gramps/gui/editors/filtereditor.py:799
 msgid "Values"
 msgstr "Valeurs"
 
-#: ../gramps/gui/editors/filtereditor.py:895
+#: ../gramps/gui/editors/filtereditor.py:897
 msgid "Add Rule"
 msgstr "Ajouter une règle"
 
-#: ../gramps/gui/editors/filtereditor.py:907
+#: ../gramps/gui/editors/filtereditor.py:909
 msgid "Edit Rule"
 msgstr "Éditer la règle"
 
-#: ../gramps/gui/editors/filtereditor.py:942
+#: ../gramps/gui/editors/filtereditor.py:944
 msgid "Filter Test"
 msgstr "Test du filtre"
 
 #. ###############################
-#: ../gramps/gui/editors/filtereditor.py:1080
+#: ../gramps/gui/editors/filtereditor.py:1082
 #: ../gramps/plugins/drawreport/calendarreport.py:424
 #: ../gramps/plugins/drawreport/statisticschart.py:942
 #: ../gramps/plugins/drawreport/timeline.py:411
@@ -10591,25 +10603,25 @@ msgstr "Test du filtre"
 msgid "Filter"
 msgstr "Filtre"
 
-#: ../gramps/gui/editors/filtereditor.py:1080
+#: ../gramps/gui/editors/filtereditor.py:1082
 msgid "Comment"
 msgstr "Commentaire"
 
-#: ../gramps/gui/editors/filtereditor.py:1088
+#: ../gramps/gui/editors/filtereditor.py:1090
 msgid "Custom Filter Editor"
 msgstr "Éditeur de filtre personnalisé"
 
 # objet sélectionné
-#: ../gramps/gui/editors/filtereditor.py:1154
+#: ../gramps/gui/editors/filtereditor.py:1156
 msgid "Delete Filter?"
 msgstr "Supprimer le filtre ?"
 
-#: ../gramps/gui/editors/filtereditor.py:1155
+#: ../gramps/gui/editors/filtereditor.py:1157
 msgid "This filter is currently being used as the base for other filters. Deletingthis filter will result in removing all other filters that depend on it."
 msgstr "Ce filtre est actuellement utilisé comme base pour d'autres filtres. Le supprimer enlèvera également les filtres qui dépendent de lui."
 
 # objet sélectionné
-#: ../gramps/gui/editors/filtereditor.py:1159
+#: ../gramps/gui/editors/filtereditor.py:1161
 msgid "Delete Filter"
 msgstr "Supprimer le filtre"
 
@@ -32620,8 +32632,6 @@ msgstr "Gramps est un programme de généalogie, intuitif pour le loisir et comp
 #~ msgstr "Nom du fichier à enregistrer"
 #~ msgid "Sources in repository"
 #~ msgstr "Sources dans le dépôt"
-#~ msgid "Primary source"
-#~ msgstr "Source principale"
 #~ msgid "Vertical (top to bottom)"
 #~ msgstr "Vertical (↓)"
 #~ msgid "Vertical (bottom to top)"

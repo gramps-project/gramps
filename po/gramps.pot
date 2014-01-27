@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-25 21:16+0100\n"
+"POT-Creation-Date: 2014-01-27 15:27+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1240,7 +1240,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasevent.py:51
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:50
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
-#: ../gramps/gui/editors/filtereditor.py:582
+#: ../gramps/gui/editors/filtereditor.py:584
 #: ../gramps/gui/glade/mergecitation.glade.h:6
 #: ../gramps/gui/glade/mergeevent.glade.h:6
 #: ../gramps/gui/glade/mergemedia.glade.h:7
@@ -1276,7 +1276,7 @@ msgstr ""
 msgid "Citation/source filters"
 msgstr ""
 
-#: ../gramps/gen/filters/rules/_haseventbase.py:57
+#: ../gramps/gen/filters/rules/_haseventbase.py:58
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:47
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:52
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:52
@@ -1468,7 +1468,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:45
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
-#: ../gramps/gui/editors/filtereditor.py:579
+#: ../gramps/gui/editors/filtereditor.py:581
 msgid "Confidence level:"
 msgstr ""
 
@@ -1976,7 +1976,6 @@ msgid "Family event:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:53
-#: ../gramps/gen/filters/rules/person/_hasevent.py:54
 #: ../gramps/gui/selectors/selectevent.py:65
 #: ../gramps/plugins/view/eventview.py:90
 msgid "Main Participants"
@@ -2081,7 +2080,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
 #: ../gramps/gen/filters/rules/note/_hastag.py:49
 #: ../gramps/gen/filters/rules/person/_hastag.py:49
-#: ../gramps/gui/editors/filtereditor.py:575
+#: ../gramps/gui/editors/filtereditor.py:577
 msgid "Tag:"
 msgstr ""
 
@@ -2629,11 +2628,20 @@ msgstr ""
 msgid "Personal event:"
 msgstr ""
 
+#: ../gramps/gen/filters/rules/person/_hasevent.py:54
+msgid "Main Participants:"
+msgstr ""
+
 #: ../gramps/gen/filters/rules/person/_hasevent.py:55
-msgid "People with the personal <event>"
+#: ../gramps/gui/editors/filtereditor.py:575
+msgid "Primary Role:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:56
+msgid "People with the personal <event>"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/person/_hasevent.py:57
 msgid "Matches people with a personal event of a particular value"
 msgstr ""
 
@@ -6624,8 +6632,8 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:64
 #: ../gramps/gui/editors/editfamily.py:123
 #: ../gramps/gui/editors/editname.py:309
-#: ../gramps/gui/editors/filtereditor.py:797
-#: ../gramps/gui/editors/filtereditor.py:950
+#: ../gramps/gui/editors/filtereditor.py:799
+#: ../gramps/gui/editors/filtereditor.py:952
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:129
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:94
 #: ../gramps/gui/plug/_guioptions.py:1130 ../gramps/gui/plug/_windows.py:132
@@ -7958,7 +7966,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 #: ../gramps/gui/editors/editfamily.py:122
-#: ../gramps/gui/editors/filtereditor.py:953
+#: ../gramps/gui/editors/filtereditor.py:955
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:94
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:114
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:90
@@ -9663,7 +9671,11 @@ msgstr ""
 msgid "Also family events where person is wife/husband"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:593
+#: ../gramps/gui/editors/filtereditor.py:576
+msgid "Only include primary participants"
+msgstr ""
+
+#: ../gramps/gui/editors/filtereditor.py:595
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:81
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:78
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:90
@@ -9676,7 +9688,7 @@ msgstr ""
 msgid "Use regular expressions"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:594
+#: ../gramps/gui/editors/filtereditor.py:596
 msgid ""
 "Interpret the contents of string fields as regular expressions.\n"
 "A decimal point will match any character. A question mark will match zero or "
@@ -9687,38 +9699,38 @@ msgid ""
 "a line."
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:622
+#: ../gramps/gui/editors/filtereditor.py:624
 msgid "Rule Name"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:739
-#: ../gramps/gui/editors/filtereditor.py:750
+#: ../gramps/gui/editors/filtereditor.py:741
+#: ../gramps/gui/editors/filtereditor.py:752
 #: ../gramps/gui/glade/rule.glade.h:24
 msgid "No rule selected"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:793
+#: ../gramps/gui/editors/filtereditor.py:795
 msgid "Define filter"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:797
+#: ../gramps/gui/editors/filtereditor.py:799
 msgid "Values"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:895
+#: ../gramps/gui/editors/filtereditor.py:897
 msgid "Add Rule"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:907
+#: ../gramps/gui/editors/filtereditor.py:909
 msgid "Edit Rule"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:942
+#: ../gramps/gui/editors/filtereditor.py:944
 msgid "Filter Test"
 msgstr ""
 
 #. ###############################
-#: ../gramps/gui/editors/filtereditor.py:1080
+#: ../gramps/gui/editors/filtereditor.py:1082
 #: ../gramps/plugins/drawreport/calendarreport.py:424
 #: ../gramps/plugins/drawreport/statisticschart.py:942
 #: ../gramps/plugins/drawreport/timeline.py:411
@@ -9742,26 +9754,26 @@ msgstr ""
 msgid "Filter"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:1080
+#: ../gramps/gui/editors/filtereditor.py:1082
 msgid "Comment"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:1088
+#: ../gramps/gui/editors/filtereditor.py:1090
 msgid "Custom Filter Editor"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:1154
+#: ../gramps/gui/editors/filtereditor.py:1156
 msgid "Delete Filter?"
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:1155
+#: ../gramps/gui/editors/filtereditor.py:1157
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
 "it."
 msgstr ""
 
-#: ../gramps/gui/editors/filtereditor.py:1159
+#: ../gramps/gui/editors/filtereditor.py:1161
 msgid "Delete Filter"
 msgstr ""
 
