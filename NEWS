@@ -1,3 +1,25 @@
+2014-01-27
+Version 4.0.3, "It's tomorrow, ask me now", a maintenance release.
+* Fix copy via context menu on Views into Charts Category / 7399
+* Fix Tab sequence in Name Editor / 6868
+* Fix citations gramplet into media view / 7232
+* Fix unhandled exception when inspecting media / 7348
+* Fix Citation sidebar filter for python3 / 7370
+* Fix add link to a "Html code" note / 7357
+* Fix message on backup dialog / 6690
+* Fix space for selection lists / 7331 7409
+* Fix spell with myspell and LANG / 7339
+* Fix changes root cursor to hand / 7336
+* Recent file parser now gives the file location / 7327
+* Fix vertical overflows on check and repair-tool dialog / 7316
+* Fix custom key/value (data item) on Database difference report / 7209
+* Fix unhandled exception in media exif information under Windows OS / 7182
+* Fix person selector in searchfilter under Windows OS/ 7179
+* Starting Gramps without console is now possible under Windows OS/ 7378
+* Specific OS handling / 7313
+* Common fixes and changes with 3.4.7.
+* Updated translations: ca, de, fi, fr, ru
+
 2013-11-08
 Version 4.0.2, "Welcome to our humble abode", a maintenance release.
 * Citation merge works better for all objects with citations
