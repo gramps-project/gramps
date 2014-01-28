@@ -132,7 +132,7 @@ class EventSidebarFilter(SidebarFilter):
                 rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
-            rule = HasEvent([etype, date, place, desc, mainparts],
+            rule = HasEvent([etype, date, place, desc, mainparts, True],
                             use_regex=regex)
             generic_filter.add_rule(rule)
                 
