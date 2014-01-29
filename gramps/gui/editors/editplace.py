@@ -80,7 +80,7 @@ class EditPlace(EditPrimary):
         self.top = Glade()
         self.set_window(self.top.toplevel, None, self.get_menu_title())
         self.place_name_label = self.top.get_object('place_name_label')
-        self.place_name_label.set_text(_('place|Name:'))
+        self.place_name_label.set_text(_T_('place|Name:'))
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():

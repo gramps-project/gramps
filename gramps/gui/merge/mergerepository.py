@@ -71,7 +71,7 @@ class MergeRepository(ManagedWindow):
         name1 = self.rp1.get_name()
         name2 = self.rp2.get_name()
         for widget_name in ('name_btn1', 'name_btn2'):
-            self.get_widget(widget_name).set_label(PLACE_NAME)
+            self.get_widget(widget_name).set_label(REPO_NAME)
         entry1 = self.get_widget('name1')
         entry2 = self.get_widget('name2')
         entry1.set_text(name1)
