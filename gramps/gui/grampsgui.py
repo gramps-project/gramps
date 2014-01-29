@@ -215,7 +215,7 @@ def _display_welcome_message():
         from .dialog import WarningDialog
         WarningDialog(
             _('Danger: This is unstable code!'),
-            _("This Gramps 3.x-trunk is a development release. "
+            _("This Gramps 4.1-trunk is a development release. "
               "This version is not meant for normal usage. Use "
               "at your own risk.\n"
               "\n"
