@@ -1909,3 +1909,6 @@ def gregorian(date):
         date.convert_calendar(Date.CAL_GREGORIAN)
     return date
 
+def calendar_has_fixed_newyear(cal):
+    """Does the given calendar have a fixed new year, or may it be reset?"""
+    return cal not in (Date.CAL_GREGORIAN, Date.CAL_JULIAN, Date.CAL_SWEDISH)
