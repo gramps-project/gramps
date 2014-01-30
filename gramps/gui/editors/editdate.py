@@ -64,7 +64,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from gramps.gen.lib.date import Date, DateError
+from gramps.gen.lib.date import Date, DateError, calendar_has_fixed_newyear
 from gramps.gen.datehandler import displayer
 from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help
@@ -135,7 +135,12 @@ class EditDate(ManagedWindow):
         for name in Date.ui_calendar_names:
             self.calendar_box.get_model().append([name])
 
-        self.calendar_box.set_active(self.date.get_calendar())
+        self.new_year = self.top.get_object('newyear')
+        self.new_year.set_text(self.date.newyear_to_str())
+
+        cal = self.date.get_calendar()
+        self.calendar_box.set_active(cal)
+        self.align_newyear_ui_with_calendar(cal)
         self.calendar_box.connect('changed', self.switch_calendar)
 
         self.quality_box = self.top.get_object('quality_box')
@@ -171,8 +176,6 @@ class EditDate(ManagedWindow):
         self.stop_year.set_value(self.date.get_stop_year())
         
         self.dual_dated = self.top.get_object('dualdated')
-        self.new_year = self.top.get_object('newyear')
-        self.new_year.set_text(self.date.newyear_to_str())
 
         # Disable second date controls if not compound date
         if not self.date.is_compound():
@@ -358,6 +361,15 @@ class EditDate(ManagedWindow):
         else:
             self.calendar_box.set_sensitive(1)
 
+    def align_newyear_ui_with_calendar(self, cal):
+        if calendar_has_fixed_newyear(cal):
+            LOG.debug("new year disabled for cal {0}".format(cal))
+            self.new_year.set_sensitive(0)
+            self.new_year.set_text('')
+        else:
+            LOG.debug("new year enabled for cal {0}".format(cal))
+            self.new_year.set_sensitive(1)
+
     def switch_calendar(self, obj):
         """
         Change month names and convert the date based on the calendar 
@@ -368,6 +380,8 @@ class EditDate(ManagedWindow):
         new_cal = self.calendar_box.get_active()
         LOG.debug(">>>switch_calendar: {0} changed, {1} -> {2}".format(
             obj, old_cal, new_cal))
+
+        self.align_newyear_ui_with_calendar(new_cal)
 
         (the_quality, the_modifier, the_calendar, 
          the_value, the_text, the_newyear) = self.build_date_from_ui()
