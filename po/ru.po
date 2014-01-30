@@ -9010,7 +9010,7 @@ msgstr "Живые мужского пола"
 
 #: ../gramps/gui/configure.py:560
 msgid "Border Male Alive"
-msgstr "Граница для живых мужского пола"
+msgstr "Рамка для живых мужского пола"
 
 #: ../gramps/gui/configure.py:562
 msgid "Gender Male Death"
@@ -9018,7 +9018,7 @@ msgstr "Умершие мужского пола"
 
 #: ../gramps/gui/configure.py:564
 msgid "Border Male Death"
-msgstr "Граница для умерших мужского пола"
+msgstr "Рамка для умерших мужского пола"
 
 #: ../gramps/gui/configure.py:566
 msgid "Gender Female Alive"
@@ -9026,7 +9026,7 @@ msgstr "Живые женского пола"
 
 #: ../gramps/gui/configure.py:568
 msgid "Border Female Alive"
-msgstr "Граница для живых женского пола"
+msgstr "Рамка для живых женского пола"
 
 #: ../gramps/gui/configure.py:570
 msgid "Gender Female Death"
@@ -9034,7 +9034,7 @@ msgstr "Умершие женского пола"
 
 #: ../gramps/gui/configure.py:572
 msgid "Border Female Death"
-msgstr "Граница для умерших женского пола"
+msgstr "Рамка для умерших женского пола"
 
 #. #        self.add_color(table, _('Gender Other Alive'), 5,
 #. #                        'preferences.color-gender-other-alive')
@@ -9050,7 +9050,7 @@ msgstr "Живые неизвестного пола"
 
 #: ../gramps/gui/configure.py:584
 msgid "Border Unknown Alive"
-msgstr "Граница для живых неизвестного пола"
+msgstr "Рамка для живых неизвестного пола"
 
 #: ../gramps/gui/configure.py:586
 msgid "Gender Unknown Death"
