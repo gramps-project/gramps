@@ -4,7 +4,7 @@
 SUBDIRS = m4 po src data example
 
 EXTRA_DIST = \
-	config.rpath autogen.sh \
+	config.rpath autogen.sh gramps-autogen.sh \
 	FAQ COPYING \
 	intltool-extract.in intltool-merge.in intltool-update.in
 

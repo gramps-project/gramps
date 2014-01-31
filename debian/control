@@ -11,8 +11,8 @@ Homepage: http://www.gramps-project.org/
 
 Package: gramps
 Architecture: all
-Depends: ${python:Depends}, librsvg2-common, python-gtk2, xdg-utils, python-pyexiv2, python-osmgpsmap, ${misc:Depends}
-Recommends: graphviz, python-pyicu
+Depends: ${python:Depends}, librsvg2-common, python-gtk2, xdg-utils, ${misc:Depends}
+Recommends: graphviz, python-pyicu, python-pyexiv2, python-osmgpsmap,
 Suggests: ttf-freefont, python-gtkspell, python-pygoocanvas, python-webkit
 Description: Genealogical research program
  GRAMPS is an Open Source genealogy program written in Python, using
