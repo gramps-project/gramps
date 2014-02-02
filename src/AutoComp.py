@@ -271,8 +271,7 @@ class StandardCustomSelector(object):
         instance.
         """
         if isinstance(event_type, basestring):
-            if event_type:
-                return (self.custom_key, event_type)
+            return (self.custom_key, event_type)
         elif isinstance(event_type, tuple):
             if event_type[1]:
                 return (event_type[0], event_type[1])
