@@ -24,6 +24,7 @@ pkgpython_PYTHON = \
 	_MatchesSourceConfidence.py\
 	_MatchesSourceFilter.py\
 	_HasAttribute.py\
+	_HasDayOfWeek.py\
 	__init__.py
 
 pkgpyexecdir = @pkgpyexecdir@/Filters/Rules/Event

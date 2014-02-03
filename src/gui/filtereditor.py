@@ -69,6 +69,7 @@ from gui.selectors import SelectorFactory
 from gen.display.name import displayer as _nd
 import Utils
 from gui.widgets import DateEntry
+from GrampsLocale import long_days
 
 #-------------------------------------------------------------------------
 #
@@ -581,6 +582,9 @@ class EditRule(ManagedWindow.ManagedWindow):
                                [Utils.confidence[i] for i in range(5)])
                 elif v == _('Date:'):
                     t = DateEntry(self.uistate, self.track)
+                elif v == _('Day of Week:'):
+                    days_of_week = long_days[2:] + long_days[1:2]
+                    t = MyList(map(str, range(7)), days_of_week)
                 else:                    
                     t = MyEntry()
                 tlist.append(t)

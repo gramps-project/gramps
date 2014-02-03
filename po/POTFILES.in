@@ -576,6 +576,7 @@ src/Filters/Rules/Event/_EventPrivate.py
 src/Filters/Rules/Event/_HasAttribute.py
 src/Filters/Rules/Event/_HasCitation.py
 src/Filters/Rules/Event/_HasData.py
+src/Filters/Rules/Event/_HasDayOfWeek.py
 src/Filters/Rules/Event/_HasGallery.py
 src/Filters/Rules/Event/_HasIdOf.py
 src/Filters/Rules/Event/_HasNote.py
