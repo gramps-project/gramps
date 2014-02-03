@@ -74,6 +74,7 @@ from gramps.gen.utils.db import family_name
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.constfunc import cuni
 from ..widgets import DateEntry
+from gramps.gen.datehandler import displayer
 
 #-------------------------------------------------------------------------
 #
@@ -583,6 +584,10 @@ class EditRule(ManagedWindow):
                                [_(conf_strings[i]) for i in range(5)])
                 elif v == _('Date:'):
                     t = DateEntry(self.uistate, self.track)
+                elif v == _('Day of Week:'):
+                    long_days = displayer.long_days
+                    days_of_week = long_days[2:] + long_days[1:2]
+                    t = MyList(map(str, range(7)), days_of_week)
                 else:                    
                     t = MyEntry()
                 tlist.append(t)

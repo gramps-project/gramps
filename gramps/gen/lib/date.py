@@ -1507,6 +1507,16 @@ class Date(object):
         """
         return self.text
 
+    def get_dow(self):
+        """
+        Return an integer representing the day of the week associated with the
+        date (Monday=0).
+        
+        If the day is not defined, a None is returned. If the date is a
+        compound date, the lower date day is returned.
+        """
+        return self.sortval % 7 if self.is_regular() else None
+
     def _zero_adjust_ymd(self, y, m, d):
         year = y if y != 0 else 1
         month = max(m, 1)
