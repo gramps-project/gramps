@@ -48,6 +48,7 @@ from ._hasattribute import HasAttribute
 from ._hasdata import HasData
 from ._changedsince import ChangedSince
 from ._matchesplacefilter import MatchesPlaceFilter
+from ._hasdayofweek import HasDayOfWeek
 
 editor_rule_list = [
     AllEvents,
@@ -68,5 +69,6 @@ editor_rule_list = [
     HasAttribute,
     HasData,
     ChangedSince,
-    MatchesPlaceFilter
+    MatchesPlaceFilter,
+    HasDayOfWeek
 ]

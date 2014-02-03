@@ -66,6 +66,7 @@ gramps/gen/filters/rules/event/_eventprivate.py
 gramps/gen/filters/rules/event/_hasattribute.py
 gramps/gen/filters/rules/event/_hascitation.py
 gramps/gen/filters/rules/event/_hasdata.py
+gramps/gen/filters/rules/event/_hasdayofweek.py
 gramps/gen/filters/rules/event/_hasgallery.py
 gramps/gen/filters/rules/event/_hasidof.py
 gramps/gen/filters/rules/event/_hasnote.py
