@@ -15,7 +15,7 @@ index 3f702ae..9622d75 100644
          with io.open(resource_file, 'w', encoding='utf-8',
                       errors='strict') as fp:
 -            path = os.path.abspath(os.path.join(self.install_data, 'share'))
-+            path = os.path.join('/usr', 'share')
++            path = '/usr/share'
              if sys.version_info[0] < 3:
                  path = unicode(path)
              fp.write(path)
