@@ -3,12 +3,9 @@ Section: gnome
 Priority: optional
 Maintainer: Ross Gammon <rossgammon@mail.dk>
 Build-Depends-Indep:
- dh-linktree,
- dh-python,
  gettext,
  intltool,
  libjs-jquery,
- libjs-jquery-ui,
  libxml-parser-perl,
  python-all,
  python-setuptools

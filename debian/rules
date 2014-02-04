@@ -5,10 +5,14 @@ export DH_VERBOSE=1
 export DH_OPTIONS=-v
 
 %:
-	dh $@ --with python2 --buildsystem=pybuild
+	dh $@ --with python2
 
 # Override auto test because upstream do not use the standard unittest discover
 override_dh_auto_test:
+
+# Override of auto_build
+override_dh_auto_build:
+	python setup.py build
 
 # Override of auto_install to remove information from package
 override_dh_auto_install:
