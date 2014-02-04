@@ -1,25 +1,28 @@
 #!/usr/bin/make -f
 
-# Remember to remove verbose option once testing is finished
-DH_VERBOSE=1
-export PYBUILD_NAME=python-gramps
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+export DH_OPTIONS=-v
 
 %:
-	dh $@ --with python2
+	dh $@ --with python2 --buildsystem=pybuild
 
 # Override auto test because upstream do not use the standard unittest discover
 override_dh_auto_test:
 
-# Override of auto_build to force python 3
-override_dh_auto_build:
-	python setup.py build
-
-# Override of auto_install to force python 3
+# Override of auto_install to remove information from package
 override_dh_auto_install:
-	python setup.py install --root=debian/python-gramps --install-layout=deb
-	# Need COPYING file into About dialog
-	#rm debian/python-gramps/usr/share/doc/gramps/COPYING
+	dh_auto_install
+	# Remove duplicate copyright information
+	#rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/COPYING
 	# Remove install file as it is not needed by package users
-	rm debian/python-gramps/usr/share/doc/gramps/INSTALL
+	rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/INSTALL
 	# Remove duplicate license information
-	rm debian/python-gramps/usr/share/doc/gramps/LICENSE
+	rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/LICENSE
+
+# Make css style sheets and png icons non-executable
+override_dh_fixperms:
+	dh_fixperms
+	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/css/Web_*.css
+	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/22x22/gramps*.png
+	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/16x16/gramps*.png

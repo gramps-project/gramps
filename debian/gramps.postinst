@@ -1,9 +1,0 @@
-#!/bin/sh
-set -e
-
-# Update mime database postinst
-if [ -x /usr/sbin/update-mime-database ]; then
-	update-mime-database /usr/share/mime
-fi
-
-#DEBHELPER#
