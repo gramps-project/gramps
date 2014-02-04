@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-28 23:16+0100\n"
-"PO-Revision-Date: 2014-01-28 23:22+0100\n"
+"POT-Creation-Date: 2014-02-04 21:35+0100\n"
+"PO-Revision-Date: 2014-02-04 22:10+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -856,7 +856,7 @@ msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Sebastian Vöcking, Mirko Leonhäuser"
 
 #: ../gramps/gen/const.py:240 ../gramps/gen/const.py:241
-#: ../gramps/gen/lib/date.py:1780 ../gramps/gen/lib/date.py:1794
+#: ../gramps/gen/lib/date.py:1790 ../gramps/gen/lib/date.py:1804
 msgid "none"
 msgstr "kein"
 
@@ -1395,6 +1395,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:52
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:54
 #: ../gramps/gen/filters/rules/event/_hasdata.py:52
+#: ../gramps/gen/filters/rules/event/_hasdayofweek.py:47
 #: ../gramps/gen/filters/rules/event/_hastype.py:50
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:56
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:55
@@ -1485,7 +1486,7 @@ msgstr "Band/Seite:"
 #: ../gramps/gen/filters/rules/person/_hasevent.py:51
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:50
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
-#: ../gramps/gui/editors/filtereditor.py:584
+#: ../gramps/gui/editors/filtereditor.py:585
 #: ../gramps/gui/glade/mergecitation.glade:267
 #: ../gramps/gui/glade/mergecitation.glade:286
 #: ../gramps/gui/glade/mergeevent.glade:255
@@ -1525,7 +1526,7 @@ msgstr "Passt auf Fundstellen mit bestimmten Parametern"
 msgid "Citation/source filters"
 msgstr "Fundstellen/Quellenfilter"
 
-#: ../gramps/gen/filters/rules/_haseventbase.py:58
+#: ../gramps/gen/filters/rules/_haseventbase.py:57
 #: ../gramps/gen/filters/rules/person/_familywithincompleteevent.py:47
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:52
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:52
@@ -1542,7 +1543,7 @@ msgstr "Ereignisfilter"
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
-#: ../gramps/gui/editors/filtereditor.py:514
+#: ../gramps/gui/editors/filtereditor.py:515
 msgid "Number of instances:"
 msgstr "Anzahl der Instanzen:"
 
@@ -1553,7 +1554,7 @@ msgstr "Anzahl der Instanzen:"
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
-#: ../gramps/gui/editors/filtereditor.py:519
+#: ../gramps/gui/editors/filtereditor.py:520
 msgid "Number must be:"
 msgstr "Die Anzahl muss sein:"
 
@@ -1571,7 +1572,7 @@ msgstr "Die Anzahl muss sein:"
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:46
 #: ../gramps/gen/filters/rules/person/_matchidof.py:46
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:47
-#: ../gramps/gui/editors/filtereditor.py:523
+#: ../gramps/gui/editors/filtereditor.py:524
 msgid "ID:"
 msgstr "ID:"
 
@@ -1599,12 +1600,12 @@ msgid "Substring:"
 msgstr "Teilzeichenfolge:"
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:44
-#: ../gramps/gui/editors/filtereditor.py:517
+#: ../gramps/gui/editors/filtereditor.py:518
 msgid "Reference count must be:"
 msgstr "Referenzenanzahl muss sein:"
 
 #: ../gramps/gen/filters/rules/_hasreferencecountbase.py:44
-#: ../gramps/gui/editors/filtereditor.py:513
+#: ../gramps/gui/editors/filtereditor.py:514
 msgid "Reference count:"
 msgstr "Anzahl Referenzen:"
 
@@ -1613,7 +1614,7 @@ msgstr "Anzahl Referenzen:"
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:47
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:47
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:47
-#: ../gramps/gui/editors/filtereditor.py:526
+#: ../gramps/gui/editors/filtereditor.py:527
 msgid "Source ID:"
 msgstr "Quellen-ID:"
 
@@ -1627,7 +1628,7 @@ msgstr "Quellen-ID:"
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:48
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:47
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:48
-#: ../gramps/gui/editors/filtereditor.py:528
+#: ../gramps/gui/editors/filtereditor.py:529
 msgid "Filter name:"
 msgstr "Filtername:"
 
@@ -1640,7 +1641,7 @@ msgstr "Kann den Filter %s in den Anwenderfiltern nicht finden."
 #: ../gramps/gen/filters/rules/_matchessourcefilterbase.py:49
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:50
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:50
-#: ../gramps/gui/editors/filtereditor.py:536
+#: ../gramps/gui/editors/filtereditor.py:537
 msgid "Source filter name:"
 msgstr "Quellenfiltername:"
 
@@ -1721,7 +1722,7 @@ msgstr "Liefert Fundstellen, die als vertraulich markiert sind."
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:45
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
-#: ../gramps/gui/editors/filtereditor.py:581
+#: ../gramps/gui/editors/filtereditor.py:582
 msgid "Confidence level:"
 msgstr "Vertrauensgrad:"
 
@@ -1871,7 +1872,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:47
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
-#: ../gramps/gui/editors/filtereditor.py:538
+#: ../gramps/gui/editors/filtereditor.py:539
 msgid "Repository filter name:"
 msgstr "Aufbewahrungsortfiltername:"
 
@@ -1953,7 +1954,7 @@ msgid "Matches events that are indicated as private"
 msgstr "Liefert Ereignisse, die als vertraulich markiert sind."
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
-#: ../gramps/gui/editors/filtereditor.py:104
+#: ../gramps/gui/editors/filtereditor.py:105
 msgid "Event attribute:"
 msgstr "Ereignisattribut:"
 
@@ -1984,8 +1985,8 @@ msgstr "Passt auf Ereignisse mit einer Fundstelle mit einem bestimmten Wert"
 #: ../gramps/gen/filters/rules/event/_hasdata.py:48
 #: ../gramps/gen/filters/rules/event/_hastype.py:47
 #: ../gramps/gen/filters/rules/person/_iswitness.py:46
-#: ../gramps/gui/editors/filtereditor.py:101
-#: ../gramps/gui/editors/filtereditor.py:548
+#: ../gramps/gui/editors/filtereditor.py:102
+#: ../gramps/gui/editors/filtereditor.py:549
 msgid "Event type:"
 msgstr "Ereignisart:"
 
@@ -1995,7 +1996,7 @@ msgstr "Ereignisart:"
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:49
 #: ../gramps/gen/filters/rules/person/_hasevent.py:52
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:51
-#: ../gramps/gui/editors/filtereditor.py:511
+#: ../gramps/gui/editors/filtereditor.py:512
 #: ../gramps/gui/glade/mergeevent.glade:296
 #: ../gramps/gui/glade/mergeevent.glade:315
 msgid "Place:"
@@ -2019,6 +2020,19 @@ msgstr "Ereignisse mit <data>"
 #: ../gramps/gen/filters/rules/event/_hasdata.py:51
 msgid "Matches events with data of a particular value"
 msgstr "Passt auf Ereignisse mit Daten mit einem bestimmten Wert"
+
+#: ../gramps/gen/filters/rules/event/_hasdayofweek.py:44
+#: ../gramps/gui/editors/filtereditor.py:587
+msgid "Day of Week:"
+msgstr "Tag der Woche:"
+
+#: ../gramps/gen/filters/rules/event/_hasdayofweek.py:45
+msgid "Events occurring on a particular day of the week"
+msgstr "Ereignisse an einem bestimmten Wochentag stattfanden"
+
+#: ../gramps/gen/filters/rules/event/_hasdayofweek.py:46
+msgid "Matches events occurring on a particular day of the week"
+msgstr "Passt auf Ereignisse, die an einem bestimmten Wochentag stattfanden"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -2100,12 +2114,12 @@ msgid "Matches events matched by the specified filter name"
 msgstr "Liefert Ereignisse, die dem gegebenen Filter entsprechen."
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
-#: ../gramps/gui/editors/filtereditor.py:532
+#: ../gramps/gui/editors/filtereditor.py:533
 msgid "Person filter name:"
 msgstr "Personenfiltername:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
-#: ../gramps/gui/editors/filtereditor.py:572
+#: ../gramps/gui/editors/filtereditor.py:573
 msgid "Include Family events:"
 msgstr "Familienereignisse aufnehmen:"
 
@@ -2119,7 +2133,7 @@ msgstr ""
 "Passt auf Ereignisse von Personen, die dem gegeben Personenfilter entsprechen."
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:51
-#: ../gramps/gui/editors/filtereditor.py:540
+#: ../gramps/gui/editors/filtereditor.py:541
 msgid "Place filter name:"
 msgstr "Ortefiltername:"
 
@@ -2248,8 +2262,8 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:46
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:46
-#: ../gramps/gui/editors/filtereditor.py:103
-#: ../gramps/gui/editors/filtereditor.py:553
+#: ../gramps/gui/editors/filtereditor.py:104
+#: ../gramps/gui/editors/filtereditor.py:554
 msgid "Family attribute:"
 msgstr "Attribut einer Familie:"
 
@@ -2271,8 +2285,8 @@ msgstr "Passt auf Familien mit einer Fundstelle mit einem bestimmten Wert"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:49
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:49
-#: ../gramps/gui/editors/filtereditor.py:100
-#: ../gramps/gui/editors/filtereditor.py:546
+#: ../gramps/gui/editors/filtereditor.py:101
+#: ../gramps/gui/editors/filtereditor.py:547
 msgid "Family event:"
 msgstr "Familiäres Ereignis:"
 
@@ -2353,8 +2367,8 @@ msgstr "Liefert Familienobjekte mir vorgegebener Referenzenanzahl"
 
 #: ../gramps/gen/filters/rules/family/_hasreltype.py:47
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:48
-#: ../gramps/gui/editors/filtereditor.py:106
-#: ../gramps/gui/editors/filtereditor.py:557
+#: ../gramps/gui/editors/filtereditor.py:107
+#: ../gramps/gui/editors/filtereditor.py:558
 msgid "Relationship type:"
 msgstr "Beziehungsart:"
 
@@ -2388,7 +2402,7 @@ msgstr "Entspricht Familien, die eine bestimmte Quelle haben"
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
 #: ../gramps/gen/filters/rules/note/_hastag.py:49
 #: ../gramps/gen/filters/rules/person/_hastag.py:49
-#: ../gramps/gui/editors/filtereditor.py:577
+#: ../gramps/gui/editors/filtereditor.py:578
 msgid "Tag:"
 msgstr "Markierung:"
 
@@ -2541,8 +2555,8 @@ msgstr ""
 "zweites Datum/Zeitpunkt angegeben ist."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
-#: ../gramps/gui/editors/filtereditor.py:105
-#: ../gramps/gui/editors/filtereditor.py:555
+#: ../gramps/gui/editors/filtereditor.py:106
+#: ../gramps/gui/editors/filtereditor.py:556
 msgid "Media attribute:"
 msgstr "Medienattribut:"
 
@@ -2715,8 +2729,8 @@ msgstr "Liefert eine Notiz mit einer bestimmten Gramps-ID"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:49
 #: ../gramps/gen/filters/rules/note/_hastype.py:47
-#: ../gramps/gui/editors/filtereditor.py:107
-#: ../gramps/gui/editors/filtereditor.py:559
+#: ../gramps/gui/editors/filtereditor.py:108
+#: ../gramps/gui/editors/filtereditor.py:560
 msgid "Note type:"
 msgstr "Notiztyp:"
 
@@ -2904,8 +2918,8 @@ msgid "Matches people with a certain number of associations"
 msgstr "Entspricht Personen, mit einer bestimmten Anzahl von Verbindungen"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:46
-#: ../gramps/gui/editors/filtereditor.py:102
-#: ../gramps/gui/editors/filtereditor.py:551
+#: ../gramps/gui/editors/filtereditor.py:103
+#: ../gramps/gui/editors/filtereditor.py:552
 msgid "Personal attribute:"
 msgstr "Attribut einer Person:"
 
@@ -2976,8 +2990,8 @@ msgid "Matches people with death data of a particular value"
 msgstr "Entspricht den Personen mit bestimmten Todesdaten"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:50
-#: ../gramps/gui/editors/filtereditor.py:99
-#: ../gramps/gui/editors/filtereditor.py:544
+#: ../gramps/gui/editors/filtereditor.py:100
+#: ../gramps/gui/editors/filtereditor.py:545
 msgid "Personal event:"
 msgstr "Persönliches Ereignis:"
 
@@ -2986,7 +3000,7 @@ msgid "Main Participants:"
 msgstr "Hauptbeteiligte:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:55
-#: ../gramps/gui/editors/filtereditor.py:575
+#: ../gramps/gui/editors/filtereditor.py:576
 msgid "Primary Role:"
 msgstr "Hauptrolle:"
 
@@ -3096,8 +3110,8 @@ msgid "Matches people with a specified (partial) name"
 msgstr "Entspricht Personen mit einem bestimmten Namen oder Namensteil"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:48
-#: ../gramps/gui/editors/filtereditor.py:109
-#: ../gramps/gui/editors/filtereditor.py:563
+#: ../gramps/gui/editors/filtereditor.py:110
+#: ../gramps/gui/editors/filtereditor.py:564
 msgid "Surname origin type:"
 msgstr "Nachnamenherkunftsart:"
 
@@ -3110,8 +3124,8 @@ msgid "Matches people with a surname origin"
 msgstr "Entspricht Personen mit einer Nachnamenherkunft"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:48
-#: ../gramps/gui/editors/filtereditor.py:108
-#: ../gramps/gui/editors/filtereditor.py:561
+#: ../gramps/gui/editors/filtereditor.py:109
+#: ../gramps/gui/editors/filtereditor.py:562
 msgid "Name type:"
 msgstr "Namenstyp:"
 
@@ -3215,7 +3229,7 @@ msgid "Matches people with the particular tag"
 msgstr "Entspricht Personen mit der vorgegebenen Markierung."
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
-#: ../gramps/gui/editors/filtereditor.py:568
+#: ../gramps/gui/editors/filtereditor.py:569
 msgid "Case sensitive:"
 msgstr "Groß-/Kleinschreibung:"
 
@@ -3264,7 +3278,7 @@ msgstr "Entspricht den Personen, bei den der Vor- oder Nachname fehlt"
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:46
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:51
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:47
-#: ../gramps/gui/editors/filtereditor.py:566
+#: ../gramps/gui/editors/filtereditor.py:567
 msgid "Inclusive:"
 msgstr "Einschließlich:"
 
@@ -3388,7 +3402,7 @@ msgstr "Entspricht allen Frauen"
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:47
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:47
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:47
-#: ../gramps/gui/editors/filtereditor.py:521
+#: ../gramps/gui/editors/filtereditor.py:522
 msgid "Number of generations:"
 msgstr "Anzahl der Generationen:"
 
@@ -3523,7 +3537,7 @@ msgstr "Entspricht Personen, die bei einem Ereignis Zeuge sind."
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:51
-#: ../gramps/gui/editors/filtereditor.py:534
+#: ../gramps/gui/editors/filtereditor.py:535
 msgid "Event filter name:"
 msgstr "Ereignisfiltername:"
 
@@ -4437,35 +4451,35 @@ msgstr "Islamisch"
 msgid "calendar|Swedish"
 msgstr "Schwedisch"
 
-#: ../gramps/gen/lib/date.py:1780
+#: ../gramps/gen/lib/date.py:1790
 msgid "estimated"
 msgstr "geschätzt"
 
-#: ../gramps/gen/lib/date.py:1780
+#: ../gramps/gen/lib/date.py:1790
 msgid "calculated"
 msgstr "berechnet"
 
-#: ../gramps/gen/lib/date.py:1794 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1804 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "before"
 msgstr "vor"
 
-#: ../gramps/gen/lib/date.py:1794 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1804 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "after"
 msgstr "nach"
 
-#: ../gramps/gen/lib/date.py:1794 ../gramps/plugins/lib/libsubstkeyword.py:278
+#: ../gramps/gen/lib/date.py:1804 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "about"
 msgstr "um"
 
-#: ../gramps/gen/lib/date.py:1795
+#: ../gramps/gen/lib/date.py:1805
 msgid "range"
 msgstr "Zeitraum"
 
-#: ../gramps/gen/lib/date.py:1795
+#: ../gramps/gen/lib/date.py:1805
 msgid "span"
 msgstr "Zeitspanne"
 
-#: ../gramps/gen/lib/date.py:1795
+#: ../gramps/gen/lib/date.py:1805
 msgid "textonly"
 msgstr "nur Text"
 
@@ -4508,7 +4522,7 @@ msgstr "Lebensereignisse"
 #: ../gramps/gen/lib/eventtype.py:144 ../gramps/gui/clipboard.py:739
 #: ../gramps/gui/configure.py:533 ../gramps/gui/editors/editfamily.py:495
 #: ../gramps/gui/editors/editlink.py:83
-#: ../gramps/gui/editors/filtereditor.py:290 ../gramps/gui/grampsgui.py:155
+#: ../gramps/gui/editors/filtereditor.py:291 ../gramps/gui/grampsgui.py:155
 #: ../gramps/plugins/export/exportcsv.py:531
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:110
 #: ../gramps/plugins/importer/importcsv.py:226
@@ -5098,7 +5112,7 @@ msgstr "Quelltext"
 #: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/clipboard.py:498
 #: ../gramps/gui/configure.py:539 ../gramps/gui/editors/editcitation.py:141
 #: ../gramps/gui/editors/editcitation.py:147
-#: ../gramps/gui/editors/filtereditor.py:297
+#: ../gramps/gui/editors/filtereditor.py:298
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:157
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:116
 #: ../gramps/plugins/quickview/quickview.gpr.py:206
@@ -5863,7 +5877,7 @@ msgstr ""
 #: ../gramps/gui/editors/editmedia.py:91
 #: ../gramps/gui/editors/editmedia.py:174
 #: ../gramps/gui/editors/editmediaref.py:136
-#: ../gramps/gui/editors/filtereditor.py:296
+#: ../gramps/gui/editors/filtereditor.py:297
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:100
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:95
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:137
@@ -7042,7 +7056,7 @@ msgstr "Adresse"
 
 #: ../gramps/gui/clipboard.py:348 ../gramps/gui/configure.py:543
 #: ../gramps/gui/editors/editlink.py:82
-#: ../gramps/gui/editors/filtereditor.py:291
+#: ../gramps/gui/editors/filtereditor.py:292
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:136
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:109
 #: ../gramps/plugins/quickview/filterbyname.py:151
@@ -7060,7 +7074,7 @@ msgstr "Ereignis"
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:56
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:67
 #: ../gramps/gui/editors/editlink.py:87
-#: ../gramps/gui/editors/filtereditor.py:292
+#: ../gramps/gui/editors/filtereditor.py:293
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:99
 #: ../gramps/gui/plug/_guioptions.py:1307
 #: ../gramps/gui/selectors/selectevent.py:67
@@ -7130,8 +7144,8 @@ msgstr "Ereignisref."
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:64
 #: ../gramps/gui/editors/editfamily.py:123
 #: ../gramps/gui/editors/editname.py:309
-#: ../gramps/gui/editors/filtereditor.py:799
-#: ../gramps/gui/editors/filtereditor.py:952
+#: ../gramps/gui/editors/filtereditor.py:803
+#: ../gramps/gui/editors/filtereditor.py:956
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:129
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:94
 #: ../gramps/gui/plug/_guioptions.py:1130 ../gramps/gui/plug/_windows.py:132
@@ -7154,7 +7168,7 @@ msgid "Name"
 msgstr "Name"
 
 #: ../gramps/gui/clipboard.py:627 ../gramps/gui/editors/editlink.py:84
-#: ../gramps/gui/editors/filtereditor.py:294 ../gramps/gui/grampsgui.py:170
+#: ../gramps/gui/editors/filtereditor.py:295 ../gramps/gui/grampsgui.py:170
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:111
 #: ../gramps/plugins/quickview/filterbyname.py:110
 #: ../gramps/plugins/quickview/filterbyname.py:191
@@ -7194,7 +7208,7 @@ msgstr "%(frel)s %(mrel)s"
 
 #: ../gramps/gui/clipboard.py:711 ../gramps/gui/configure.py:531
 #: ../gramps/gui/editors/editlink.py:86
-#: ../gramps/gui/editors/filtereditor.py:289 ../gramps/gui/grampsgui.py:177
+#: ../gramps/gui/editors/filtereditor.py:290 ../gramps/gui/grampsgui.py:177
 #: ../gramps/plugins/export/exportcsv.py:364
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:108
 #: ../gramps/plugins/importer/importcsv.py:223
@@ -7229,7 +7243,7 @@ msgstr "Person"
 #: ../gramps/gui/clipboard.py:768 ../gramps/gui/configure.py:537
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:78
 #: ../gramps/gui/editors/editlink.py:89 ../gramps/gui/editors/editsource.py:78
-#: ../gramps/gui/editors/filtereditor.py:293
+#: ../gramps/gui/editors/filtereditor.py:294
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:157
 #: ../gramps/plugins/export/exportcsv.py:488
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:115
@@ -7246,7 +7260,7 @@ msgstr "Quelle"
 #: ../gramps/gui/editors/editlink.py:88
 #: ../gramps/gui/editors/editrepository.py:68
 #: ../gramps/gui/editors/editrepository.py:70
-#: ../gramps/gui/editors/filtereditor.py:295
+#: ../gramps/gui/editors/filtereditor.py:296
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:114
 #: ../gramps/plugins/quickview/filterbyname.py:181
 #: ../gramps/plugins/quickview/filterbyname.py:240
@@ -8579,7 +8593,7 @@ msgstr "_Attribute"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:68
 #: ../gramps/gui/editors/editfamily.py:122
-#: ../gramps/gui/editors/filtereditor.py:955
+#: ../gramps/gui/editors/filtereditor.py:959
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:94
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:114
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:90
@@ -10287,98 +10301,98 @@ msgstr "Markierung"
 msgid "Internet Address Editor"
 msgstr "Internetadresseneditor"
 
-#: ../gramps/gui/editors/filtereditor.py:87
+#: ../gramps/gui/editors/filtereditor.py:88
 msgid "Person Filters"
 msgstr "Personenfilter"
 
-#: ../gramps/gui/editors/filtereditor.py:88
+#: ../gramps/gui/editors/filtereditor.py:89
 msgid "Family Filters"
 msgstr "Familienfilter"
 
-#: ../gramps/gui/editors/filtereditor.py:89
+#: ../gramps/gui/editors/filtereditor.py:90
 msgid "Event Filters"
 msgstr "Ereignisfilter"
 
-#: ../gramps/gui/editors/filtereditor.py:90
+#: ../gramps/gui/editors/filtereditor.py:91
 msgid "Place Filters"
 msgstr "Ortsfilter"
 
-#: ../gramps/gui/editors/filtereditor.py:91
+#: ../gramps/gui/editors/filtereditor.py:92
 msgid "Source Filters"
 msgstr "Quellenfilter"
 
-#: ../gramps/gui/editors/filtereditor.py:92
+#: ../gramps/gui/editors/filtereditor.py:93
 msgid "Media Filters"
 msgstr "Medienfilter"
 
-#: ../gramps/gui/editors/filtereditor.py:93
+#: ../gramps/gui/editors/filtereditor.py:94
 msgid "Repository Filters"
 msgstr "Aufbewahrungsortfilter"
 
-#: ../gramps/gui/editors/filtereditor.py:94
+#: ../gramps/gui/editors/filtereditor.py:95
 msgid "Note Filters"
 msgstr "Notizfilter"
 
-#: ../gramps/gui/editors/filtereditor.py:95
+#: ../gramps/gui/editors/filtereditor.py:96
 msgid "Citation Filters"
 msgstr "Fundstellenfilter"
 
-#: ../gramps/gui/editors/filtereditor.py:247
+#: ../gramps/gui/editors/filtereditor.py:248
 msgid "lesser than"
 msgstr "kleiner als"
 
-#: ../gramps/gui/editors/filtereditor.py:247
+#: ../gramps/gui/editors/filtereditor.py:248
 msgid "equal to"
 msgstr "identisch mit"
 
-#: ../gramps/gui/editors/filtereditor.py:247
+#: ../gramps/gui/editors/filtereditor.py:248
 msgid "greater than"
 msgstr "größer als"
 
-#: ../gramps/gui/editors/filtereditor.py:285
+#: ../gramps/gui/editors/filtereditor.py:286
 msgid "Not a valid ID"
 msgstr "Keine gültige ID"
 
-#: ../gramps/gui/editors/filtereditor.py:314
+#: ../gramps/gui/editors/filtereditor.py:315
 msgid "Select..."
 msgstr "Auswählen..."
 
-#: ../gramps/gui/editors/filtereditor.py:319
+#: ../gramps/gui/editors/filtereditor.py:320
 #, python-format
 msgid "Select %s from a list"
 msgstr "Wähle %s von einer Liste"
 
-#: ../gramps/gui/editors/filtereditor.py:386
+#: ../gramps/gui/editors/filtereditor.py:387
 msgid "Give or select a source ID, leave empty to find objects with no source."
 msgstr ""
 "Gib eine Quellen ID ein, wähle eine aus oder lasse sie leer um Objekte ohne "
 "Quelle zu finden."
 
-#: ../gramps/gui/editors/filtereditor.py:567
+#: ../gramps/gui/editors/filtereditor.py:568
 msgid "Include original person"
 msgstr "Ursprüngliche Person aufnehmen"
 
-#: ../gramps/gui/editors/filtereditor.py:569
+#: ../gramps/gui/editors/filtereditor.py:570
 msgid "Use exact case of letters"
 msgstr "Exakte Schreibweise der Buchstaben verwenden"
 
-#: ../gramps/gui/editors/filtereditor.py:570
+#: ../gramps/gui/editors/filtereditor.py:571
 msgid "Regular-Expression matching:"
 msgstr "Regulärer Ausdruck entsprechend:"
 
-#: ../gramps/gui/editors/filtereditor.py:571
+#: ../gramps/gui/editors/filtereditor.py:572
 msgid "Use regular expression"
 msgstr "Regulären Ausdruck benutzen"
 
-#: ../gramps/gui/editors/filtereditor.py:573
+#: ../gramps/gui/editors/filtereditor.py:574
 msgid "Also family events where person is wife/husband"
 msgstr "Auch Familienereignisse bei denen die Person Frau/Mann ist"
 
-#: ../gramps/gui/editors/filtereditor.py:576
+#: ../gramps/gui/editors/filtereditor.py:577
 msgid "Only include primary participants"
 msgstr "Nur Hauptbeteiligte aufnehmen"
 
-#: ../gramps/gui/editors/filtereditor.py:595
+#: ../gramps/gui/editors/filtereditor.py:599
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:81
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:78
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:90
@@ -10391,7 +10405,7 @@ msgstr "Nur Hauptbeteiligte aufnehmen"
 msgid "Use regular expressions"
 msgstr "Reguläre Ausdrücke benutzen"
 
-#: ../gramps/gui/editors/filtereditor.py:596
+#: ../gramps/gui/editors/filtereditor.py:600
 msgid ""
 "Interpret the contents of string fields as regular expressions.\n"
 "A decimal point will match any character. A question mark will match zero or "
@@ -10410,37 +10424,37 @@ msgstr ""
 "Alternativen durch Verwendung eines senkrechten | Striches. Ein Caret ^ passt "
 "auf den Beginn einer Zeile, ein Dollarzeichen $ auf das Ende einer Zeile."
 
-#: ../gramps/gui/editors/filtereditor.py:624
+#: ../gramps/gui/editors/filtereditor.py:628
 msgid "Rule Name"
 msgstr "Regelname"
 
-#: ../gramps/gui/editors/filtereditor.py:741
-#: ../gramps/gui/editors/filtereditor.py:752
+#: ../gramps/gui/editors/filtereditor.py:745
+#: ../gramps/gui/editors/filtereditor.py:756
 #: ../gramps/gui/glade/rule.glade:897
 msgid "No rule selected"
 msgstr "Keine Regel ausgewählt"
 
-#: ../gramps/gui/editors/filtereditor.py:795
+#: ../gramps/gui/editors/filtereditor.py:799
 msgid "Define filter"
 msgstr "Filter definieren"
 
-#: ../gramps/gui/editors/filtereditor.py:799
+#: ../gramps/gui/editors/filtereditor.py:803
 msgid "Values"
 msgstr "Werte"
 
-#: ../gramps/gui/editors/filtereditor.py:897
+#: ../gramps/gui/editors/filtereditor.py:901
 msgid "Add Rule"
 msgstr "Regel hinzufügen"
 
-#: ../gramps/gui/editors/filtereditor.py:909
+#: ../gramps/gui/editors/filtereditor.py:913
 msgid "Edit Rule"
 msgstr "Regel bearbeiten"
 
-#: ../gramps/gui/editors/filtereditor.py:944
+#: ../gramps/gui/editors/filtereditor.py:948
 msgid "Filter Test"
 msgstr "Filtertest"
 
-#: ../gramps/gui/editors/filtereditor.py:1082
+#: ../gramps/gui/editors/filtereditor.py:1086
 #: ../gramps/plugins/drawreport/calendarreport.py:424
 #: ../gramps/plugins/drawreport/statisticschart.py:942
 #: ../gramps/plugins/drawreport/timeline.py:411
@@ -10464,19 +10478,19 @@ msgstr "Filtertest"
 msgid "Filter"
 msgstr "Filter"
 
-#: ../gramps/gui/editors/filtereditor.py:1082
+#: ../gramps/gui/editors/filtereditor.py:1086
 msgid "Comment"
 msgstr "Kommentar"
 
-#: ../gramps/gui/editors/filtereditor.py:1090
+#: ../gramps/gui/editors/filtereditor.py:1094
 msgid "Custom Filter Editor"
 msgstr "Benutzerfiltereditor"
 
-#: ../gramps/gui/editors/filtereditor.py:1156
+#: ../gramps/gui/editors/filtereditor.py:1160
 msgid "Delete Filter?"
 msgstr "Filter löschen?"
 
-#: ../gramps/gui/editors/filtereditor.py:1157
+#: ../gramps/gui/editors/filtereditor.py:1161
 msgid ""
 "This filter is currently being used as the base for other filters. "
 "Deletingthis filter will result in removing all other filters that depend on "
@@ -10486,7 +10500,7 @@ msgstr ""
 "Löschen dieses Filters hat zur Folge, das alle Filter die von ihm abhängen, "
 "auch gelöscht werden."
 
-#: ../gramps/gui/editors/filtereditor.py:1161
+#: ../gramps/gui/editors/filtereditor.py:1165
 msgid "Delete Filter"
 msgstr "Filter löschen"
 
