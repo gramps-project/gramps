@@ -204,7 +204,7 @@ class PersonSidebarFilter(SidebarFilter):
 
             # Build an event filter if needed
             if etype:
-                rule = HasEvent([etype, '', '', '', ''], use_regex=regex)
+                rule = HasEvent([etype, '', '', '', '', True], use_regex=regex)
                 generic_filter.add_rule(rule)
                 
             # Build birth event filter if needed
