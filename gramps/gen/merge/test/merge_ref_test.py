@@ -1143,6 +1143,8 @@ class BirthCheck(BaseMergeCheck):
                                        libxml2.XML_PARSE_NONET)
         surname = Surname()
         surname.set_surname("Person 0")
+        surname.set_prefix("")
+        surname.set_connector("")
         name = Name()
         name.add_surname(surname)
         self.expect_str = "person: i0000 ('i0000', 'I0000', 1, %s, [], " % str(
