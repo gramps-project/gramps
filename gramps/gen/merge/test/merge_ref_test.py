@@ -264,9 +264,11 @@ class PersonCheck(BaseMergeCheck):
         <places>
           <placeobj handle="_p0000" id="P0000">
             <ptitle>Place 0</ptitle>
+            <type>Country</type>
           </placeobj>
           <placeobj handle="_p0001" id="P0001">
             <ptitle>Place 1</ptitle>
+            <type>Country</type>
           </placeobj>
         </places>
         <objects>
@@ -415,9 +417,11 @@ class FamilyCheck(BaseMergeCheck):
         <places>
           <placeobj handle="_p0000" id="P0000">
             <ptitle>Place 0</ptitle>
+            <type>Country</type>
           </placeobj>
           <placeobj handle="_p0001" id="P0001">
             <ptitle>Place 1</ptitle>
+            <type>Country</type>
           </placeobj>
         </places>
         <objects>
@@ -552,9 +556,11 @@ class EventCheck(BaseMergeCheck):
         <places>
           <placeobj handle="_p0000" id="P0000">
             <ptitle>Place 0</ptitle>
+            <type>Country</type>
           </placeobj>
           <placeobj handle="_p0001" id="P0001">
             <ptitle>Place 1</ptitle>
+            <type>Country</type>
           </placeobj>
         </places>
         <objects>
@@ -659,12 +665,14 @@ class PlaceCheck(BaseMergeCheck):
         <places>
           <placeobj handle="_p0000" id="P0000">
             <ptitle>Place 0</ptitle>
+            <type>Country</type>
             <objref hlink="_o0000"/>
             <noteref hlink="_n0000"/>
             <citationref hlink="_c0000"/>
           </placeobj>
           <placeobj handle="_p0001" id="P0001">
             <ptitle>Place 1</ptitle>
+            <type>Country</type>
             <objref hlink="_o0001"/>
             <noteref hlink="_n0001"/>
             <citationref hlink="_c0001"/>
