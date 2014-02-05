@@ -406,15 +406,17 @@ if available:
             )
 else:
     from gramps.gen.config import config
-    from gramps.gui.dialog import MessageHideDialog
     if not config.get('interface.ignore-gexiv2'):
-        title = _("GExiv2 module not loaded.")
-        message = _("Image metadata functionality will not be available.\n"
-                    "To build it for Gramps see "
-                    "http://www.gramps-project.org/wiki/index.php?"
-                    "title=GEPS_029:_GTK3-GObject_introspection"
-                    "_Conversion#GExiv2_for_Image_metadata")
-        MessageHideDialog(title, message, 'interface.ignore-gexiv2')
+        from gramps.gen.constfunc import has_display
+        if has_display():
+            from gramps.gui.dialog import MessageHideDialog
+            title = _("GExiv2 module not loaded.")
+            message = _("Image metadata functionality will not be available.\n"
+                        "To build it for Gramps see "
+                        "http://www.gramps-project.org/wiki/index.php?"
+                        "title=GEPS_029:_GTK3-GObject_introspection"
+                        "_Conversion#GExiv2_for_Image_metadata")
+            MessageHideDialog(title, message, 'interface.ignore-gexiv2')
 
 register(GRAMPLET, 
          id="Person Residence", 
