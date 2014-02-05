@@ -27,23 +27,27 @@
 #
 #------------------------------------------------------------------------
 
-try :
-    import osmgpsmap
-    OSMGPSMAP = True
-    if osmgpsmap.__version__ < '0.7.0':
+from constfunc import has_display
+if has_display():
+    try :
+        import osmgpsmap
+        OSMGPSMAP = True
+        if osmgpsmap.__version__ < '0.7.0':
+            OSMGPSMAP = False
+            import logging
+            logging.warning( _("WARNING: osmgpsmap module not loaded. "
+                               "osmgpsmap must be >= 0.7.0. yours is %s") %
+                            osmgpsmap.__version__)
+    except:
         OSMGPSMAP = False
-        import logging
-        logging.warning( _("WARNING: osmgpsmap module not loaded. "
-                           "osmgpsmap must be >= 0.7.0. yours is %s") %
-                        osmgpsmap.__version__)
-except:
+        import config
+        if not config.get('interface.ignore-osmgpsmap'):
+            from QuestionDialog import MessageHideDialog
+            title = _("OsmGpsMap module not loaded.")
+            message = _("Geography functionality will not be available.")
+            MessageHideDialog(title, message, 'interface.ignore-osmgpsmap')
+else:
     OSMGPSMAP = False
-    import config
-    if not config.get('interface.ignore-osmgpsmap'):
-        from QuestionDialog import MessageHideDialog
-        title = _("OsmGpsMap module not loaded.")
-        message = _("Geography functionality will not be available.")
-        MessageHideDialog(title, message, 'interface.ignore-osmgpsmap')
 
 if OSMGPSMAP:
     # Load the view only if osmgpsmap library is present.
