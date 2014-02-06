@@ -24,7 +24,7 @@
 # Mathieu MD <mathieu.md@gmail.com>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: 4.0.3\n"
+"Project-Id-Version: 4.0.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-04 19:06+0100\n"
 "PO-Revision-Date: 2014-02-04 19:10+0100\n"
@@ -462,7 +462,7 @@ msgstr "La configuration de Gramps depuis %s :"
 #: ../gramps/cli/argparser.py:324
 #, python-format
 msgid "Current Gramps config setting: %s:%s"
-msgstr "La configuration actuelle de Gramps : %s :%s"
+msgstr "La configuration actuelle de Gramps : %s : %s"
 
 #. does a user want the default config value?
 #: ../gramps/cli/argparser.py:329
@@ -473,7 +473,7 @@ msgstr "DÉFAUT"
 #: ../gramps/cli/argparser.py:336
 #, python-format
 msgid "    New Gramps config setting: %s:%s"
-msgstr "    Nouvelle configuration de Gramps : %s :%s"
+msgstr "    Nouvelle configuration de Gramps : %s : %s"
 
 #: ../gramps/cli/argparser.py:343
 #, python-format
@@ -9535,7 +9535,7 @@ msgstr "Éditer la source (%s)"
 #: ../gramps/gui/editors/editcitation.py:444
 #, python-format
 msgid "Add Citation (%s)"
-msgstr "Ajout de la citation (%s)"
+msgstr "Ajouter la citation (%s)"
 
 # trunk
 #: ../gramps/gui/editors/editcitation.py:450
@@ -28844,7 +28844,7 @@ msgstr "Ajout de la source..."
 # trunk
 #: ../gramps/plugins/view/citationtreeview.py:280
 msgid "Add citation..."
-msgstr "Ajouter une citation..."
+msgstr "Ajout de la citation..."
 
 #: ../gramps/plugins/view/citationtreeview.py:296
 #: ../gramps/plugins/view/persontreeview.py:84
