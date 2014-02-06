@@ -1,11 +1,11 @@
 Source: gramps
-Section: gnome
+Section: python
 Priority: optional
 Maintainer: Ross Gammon <rossgammon@mail.dk>
 Build-Depends-Indep:
+ dh-linktree,
  gettext,
  intltool,
- libjs-jquery,
  libxml-parser-perl,
  python-all,
  python-setuptools

@@ -1,11 +1,3 @@
-From: Ross Gammon <rossgammon@mail.dk>
-Date: Fri, 24 Jan 2014 23:20:58 +0100
-Subject: Correct resource path in setup.py
-
----
- setup.py | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
-
 diff --git a/setup.py b/setup.py
 index 3f702ae..9622d75 100644
 --- a/setup.py

@@ -16,13 +16,14 @@ override_dh_auto_build:
 
 # Override of auto_install to remove information from package
 override_dh_auto_install:
-	dh_auto_install
+	#dh_auto_install
 	# Remove duplicate copyright information
 	#rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/COPYING
 	# Remove install file as it is not needed by package users
-	rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/INSTALL
+	#rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/INSTALL
 	# Remove duplicate license information
-	rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/LICENSE
+	#rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/LICENSE
+	python setup.py install --root=debian/python-gramps --install-layout=deb
 
 # Make css style sheets and png icons non-executable
 override_dh_fixperms:
@@ -30,3 +31,7 @@ override_dh_fixperms:
 	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/css/Web_*.css
 	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/22x22/gramps*.png
 	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/16x16/gramps*.png
+
+# Avoid compressing COPYING file so that it can appear in the "About" dialog
+override_dh_compress:
+	dh_compress -X COPYING
