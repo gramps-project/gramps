@@ -286,6 +286,7 @@ gramps/gen/lib/nameorigintype.py
 gramps/gen/lib/nametype.py
 gramps/gen/lib/notetype.py
 gramps/gen/lib/person.py
+gramps/gen/lib/placetype.py
 gramps/gen/lib/repotype.py
 gramps/gen/lib/srcmediatype.py
 gramps/gen/lib/srcattrtype.py
@@ -359,6 +360,7 @@ gramps/gui/editors/displaytabs/namemodel.py
 gramps/gui/editors/displaytabs/notetab.py
 gramps/gui/editors/displaytabs/personeventembedlist.py
 gramps/gui/editors/displaytabs/personrefembedlist.py
+gramps/gui/editors/displaytabs/placerefembedlist.py
 gramps/gui/editors/displaytabs/repoembedlist.py
 gramps/gui/editors/displaytabs/srcattrembedlist.py
 gramps/gui/editors/displaytabs/surnametab.py
@@ -381,6 +383,7 @@ gramps/gui/editors/editnote.py
 gramps/gui/editors/editperson.py
 gramps/gui/editors/editpersonref.py
 gramps/gui/editors/editplace.py
+gramps/gui/editors/editplaceref.py
 gramps/gui/editors/editprimary.py
 gramps/gui/editors/editreporef.py
 gramps/gui/editors/editrepository.py
@@ -426,6 +429,7 @@ gramps/gui/glade/editnote.glade
 gramps/gui/glade/editperson.glade
 gramps/gui/glade/editpersonref.glade
 gramps/gui/glade/editplace.glade
+gramps/gui/glade/editplaceref.glade
 gramps/gui/glade/editreporef.glade
 gramps/gui/glade/editrepository.glade
 gramps/gui/glade/editsource.glade
