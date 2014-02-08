@@ -29139,3 +29139,129 @@ msgstr "<b>Treballar amb Dates</b><br/>Es pot donar un rang de dates fent servir
 #, fuzzy
 #~ msgid "%s."
 #~ msgstr "%s, ..."
+
+msgid "localized lexeme inflections||January"
+msgstr "Gener"
+
+msgid "localized lexeme inflections||February"
+msgstr "Febrer"
+
+msgid "localized lexeme inflections||March"
+msgstr "Març"
+
+msgid "localized lexeme inflections||April"
+msgstr "Abril"
+
+msgid "localized lexeme inflections||May"
+msgstr "Maig"
+
+msgid "localized lexeme inflections||June"
+msgstr "Juny"
+
+msgid "localized lexeme inflections||July"
+msgstr "Juliol"
+
+msgid "localized lexeme inflections||August"
+msgstr "Agost"
+
+msgid "localized lexeme inflections||September"
+msgstr "Setembre"
+
+msgid "localized lexeme inflections||October"
+msgstr "Octubre"
+
+msgid "localized lexeme inflections||November"
+msgstr "Novembre"
+
+msgid "localized lexeme inflections||December"
+msgstr "Desembre"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "Gen"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr ""
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr ""
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "Abr"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "Mai"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr ""
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr ""
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "Ago"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "Set"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr ""
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr ""
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "Des"
+
+msgid "French month lexeme|Vendémiaire"
+msgstr "Vendemiari"
+
+msgid "French month lexeme|Brumaire"
+msgstr "Brumari"
+
+msgid "French month lexeme|Frimaire"
+msgstr "Frimari"
+
+msgid "French month lexeme|Nivôse"
+msgstr "Nivós"
+
+msgid "French month lexeme|Pluviôse"
+msgstr "Pluviós"
+
+msgid "French month lexeme|Ventôse"
+msgstr "Ventós"
+
+msgid "French month lexeme|Germinal"
+msgstr "Germinal"
+
+msgid "French month lexeme|Floréal"
+msgstr "Floreal"
+
+msgid "French month lexeme|Prairial"
+msgstr "Pradial"
+
+msgid "French month lexeme|Messidor"
+msgstr "Messidor"
+
+msgid "French month lexeme|Thermidor"
+msgstr "Termidor"
+
+msgid "French month lexeme|Fructidor"
+msgstr "Fructidor"
+
+msgid "French month lexeme|Extra"
+msgstr "Extra"
+
+msgid "date modifier|before "
+msgstr "abans de "
+
+msgid "date modifier|after "
+msgstr "després de "
+
+msgid "date modifier|about "
+msgstr "cap a "
+
+msgid "date quality|estimated "
+msgstr "estimat "
+
+msgid "date quality|calculated "
+msgstr "calculat "

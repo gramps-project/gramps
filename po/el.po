@@ -31488,3 +31488,91 @@ msgstr ""
 "2003&quot;. Μπορείτε επίσης να δηλώσετε τον βαθμό αξιοπιστίας μιας "
 "ημερομηνίας καθώς και να επιλέξετε από 7 διαφορετικά ημερολόγια. Δοκιμάστε "
 "το κουμπί δίπλα στο πεδίο ημερομηνίας στον επεξεργαστή συμβάντων"
+
+msgid "localized lexeme inflections||January"
+msgstr "Ιανουάριος"
+
+msgid "localized lexeme inflections||February"
+msgstr "Φεβρουάριος"
+
+msgid "localized lexeme inflections||March"
+msgstr "Μάρτιος"
+
+msgid "localized lexeme inflections||April"
+msgstr "Απρίλιος"
+
+msgid "localized lexeme inflections||May"
+msgstr "Μάιος"
+
+msgid "localized lexeme inflections||June"
+msgstr "Ιούνιος"
+
+msgid "localized lexeme inflections||July"
+msgstr "Ιούλιος"
+
+msgid "localized lexeme inflections||August"
+msgstr "Αύγουστος"
+
+msgid "localized lexeme inflections||September"
+msgstr "Σεπτέμβριος"
+
+msgid "localized lexeme inflections||October"
+msgstr "Οκτώβριος"
+
+msgid "localized lexeme inflections||November"
+msgstr "Νοέμβριος"
+
+msgid "localized lexeme inflections||December"
+msgstr "Δεκέμβριος"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "Ιαν"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "Φεβ"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "Μαρ"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "Απρ"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "Μάι"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "Ιουν"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "Ιουλ"
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "Αύγ"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "Σεπ"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "Οκτ"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "Νοε"
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "Δεκ"
+
+msgid "date modifier|before "
+msgstr "προ του "
+
+msgid "date modifier|after "
+msgstr "μετά το "
+
+msgid "date modifier|about "
+msgstr "γύρω στο "
+
+msgid "date quality|estimated "
+msgstr "εκτιμώμενη "
+
+msgid "date quality|calculated "
+msgstr "υπολογισμένη "
+

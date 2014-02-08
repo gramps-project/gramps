@@ -31059,3 +31059,240 @@ msgstr "Лише одне правило повинне виконуватися
 
 #~ msgid "<b>Uncollected Objects</b>"
 #~ msgstr "<b>Незібрані об'єкти</b>"
+
+msgid "localized lexeme inflections||January"
+msgstr "січня"
+
+msgid "localized lexeme inflections||February"
+msgstr "лютого"
+
+msgid "localized lexeme inflections||March"
+msgstr "березня"
+
+msgid "localized lexeme inflections||April"
+msgstr "квітня"
+
+msgid "localized lexeme inflections||May"
+msgstr "травня"
+
+msgid "localized lexeme inflections||June"
+msgstr "червня"
+
+msgid "localized lexeme inflections||July"
+msgstr "липня"
+
+msgid "localized lexeme inflections||August"
+msgstr "серпня"
+
+msgid "localized lexeme inflections||September"
+msgstr "вересня"
+
+msgid "localized lexeme inflections||October"
+msgstr "жовтня"
+
+msgid "localized lexeme inflections||November"
+msgstr "листопада"
+
+msgid "localized lexeme inflections||December"
+msgstr "грудня"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "січ."
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "лют."
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "бер."
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "квіт."
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "трав."
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "черв."
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "лип."
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "серп."
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "вер."
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "жовт."
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "лист."
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "груд."
+
+msgid "Hebrew month lexeme|Tishri"
+msgstr "тішрі"
+
+msgid "Hebrew month lexeme|Heshvan"
+msgstr "хешвен"
+
+msgid "Hebrew month lexeme|Kislev"
+msgstr "кіслев"
+
+msgid "Hebrew month lexeme|Tevet"
+msgstr "тевет"
+
+msgid "Hebrew month lexeme|Shevat"
+msgstr "шват"
+
+msgid "Hebrew month lexeme|AdarI"
+msgstr "адар"
+
+msgid "Hebrew month lexeme|AdarII"
+msgstr "адара"
+
+msgid "Hebrew month lexeme|Nisan"
+msgstr "нісан"
+
+msgid "Hebrew month lexeme|Iyyar"
+msgstr "іяр"
+
+msgid "Hebrew month lexeme|Sivan"
+msgstr "сиван"
+
+msgid "Hebrew month lexeme|Tammuz"
+msgstr "таммуз"
+
+msgid "Hebrew month lexeme|Av"
+msgstr "ав"
+
+msgid "Hebrew month lexeme|Elul"
+msgstr "елул"
+
+msgid "French month lexeme|Vendémiaire"
+msgstr "вандем’єр"
+
+msgid "French month lexeme|Brumaire"
+msgstr "брюмер"
+
+msgid "French month lexeme|Frimaire"
+msgstr "фрімер"
+
+msgid "French month lexeme|Nivôse"
+msgstr "нівоз"
+
+msgid "French month lexeme|Pluviôse"
+msgstr "плювіоз"
+
+msgid "French month lexeme|Ventôse"
+msgstr "вентоз"
+
+msgid "French month lexeme|Germinal"
+msgstr "жерміналь"
+
+msgid "French month lexeme|Floréal"
+msgstr "флореаль"
+
+msgid "French month lexeme|Prairial"
+msgstr "преріаль"
+
+msgid "French month lexeme|Messidor"
+msgstr "мессідор"
+
+msgid "French month lexeme|Thermidor"
+msgstr "термідор"
+
+msgid "French month lexeme|Fructidor"
+msgstr "фрюктідор"
+
+msgid "French month lexeme|Extra"
+msgstr "додатковий"
+
+msgid "Islamic month lexeme|Muharram"
+msgstr "мухаррам"
+
+msgid "Islamic month lexeme|Safar"
+msgstr "сафар"
+
+msgid "Islamic month lexeme|Rabi`al-Awwal"
+msgstr "рабі-аль-авваль"
+
+msgid "Islamic month lexeme|Rabi`ath-Thani"
+msgstr "рабі-ассані"
+
+msgid "Islamic month lexeme|Jumada l-Ula"
+msgstr "джумада-аль-уля"
+
+msgid "Islamic month lexeme|Jumada t-Tania"
+msgstr "джумада-аль-ахіра"
+
+msgid "Islamic month lexeme|Rajab"
+msgstr "раджаб"
+
+msgid "Islamic month lexeme|Sha`ban"
+msgstr "шаабан"
+
+msgid "Islamic month lexeme|Ramadan"
+msgstr "рамадан"
+
+msgid "Islamic month lexeme|Shawwal"
+msgstr "шавваль"
+
+msgid "Islamic month lexeme|Dhu l-Qa`da"
+msgstr "зуль-каада"
+
+msgid "Islamic month lexeme|Dhu l-Hijja"
+msgstr "зуль-хіджжа"
+
+msgid "Persian month lexeme|Farvardin"
+msgstr "фарвардін"
+
+msgid "Persian month lexeme|Ordibehesht"
+msgstr "ордібехешт"
+
+msgid "Persian month lexeme|Khordad"
+msgstr "хордад"
+
+msgid "Persian month lexeme|Tir"
+msgstr "тир"
+
+msgid "Persian month lexeme|Mordad"
+msgstr "мордад"
+
+msgid "Persian month lexeme|Shahrivar"
+msgstr "шахрівар"
+
+msgid "Persian month lexeme|Mehr"
+msgstr "мехр"
+
+msgid "Persian month lexeme|Aban"
+msgstr "абан"
+
+msgid "Persian month lexeme|Azar"
+msgstr "азар"
+
+msgid "Persian month lexeme|Dey"
+msgstr "дей"
+
+msgid "Persian month lexeme|Bahman"
+msgstr "бахман"
+
+msgid "Persian month lexeme|Esfand"
+msgstr "есфанд"
+
+msgid "date modifier|before "
+msgstr "до "
+
+msgid "date modifier|after "
+msgstr "після "
+
+msgid "date modifier|about "
+msgstr "близько "
+
+msgid "date quality|estimated "
+msgstr "орієнтовно "
+
+msgid "date quality|calculated "
+msgstr "розрахунково "

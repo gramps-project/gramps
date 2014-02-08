@@ -29399,3 +29399,91 @@ msgstr ""
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "Apygarda:"
+
+msgid "localized lexeme inflections||January"
+msgstr "sausio"
+
+msgid "localized lexeme inflections||February"
+msgstr "vasario"
+
+msgid "localized lexeme inflections||March"
+msgstr "kovo"
+
+msgid "localized lexeme inflections||April"
+msgstr "balandžio"
+
+msgid "localized lexeme inflections||May"
+msgstr "gegužės"
+
+msgid "localized lexeme inflections||June"
+msgstr "birželio"
+
+msgid "localized lexeme inflections||July"
+msgstr "liepos"
+
+msgid "localized lexeme inflections||August"
+msgstr "rugpjūčio"
+
+msgid "localized lexeme inflections||September"
+msgstr "rugsėjo"
+
+msgid "localized lexeme inflections||October"
+msgstr "spalio"
+
+msgid "localized lexeme inflections||November"
+msgstr "lapkričio"
+
+msgid "localized lexeme inflections||December"
+msgstr "gruodžio"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "Sau"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "Vas"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "Kov"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "Bal"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "Geg"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "Bir"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "Lie"
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "Rgp"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "Rgs"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "Spa"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "Lap"
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "Grd"
+
+msgid "date modifier|before "
+msgstr "prieš "
+
+msgid "date modifier|after "
+msgstr "po "
+
+msgid "date modifier|about "
+msgstr "apie "
+
+msgid "date quality|estimated "
+msgstr "apytikriai "
+
+msgid "date quality|calculated "
+msgstr "apskaičiuota "
+

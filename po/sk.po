@@ -28305,3 +28305,90 @@ msgstr "<b>Práca s dátumami</b><br/>Rozsah dátumov je možné zadať ako <b> 
 #~ msgstr ""
 #~ "·obsahuje·%(count_person)d·z·%(max_count_person)d·osôb·(%(percent)s·kompletné)\n"
 #~ "·obsahuje·%(count_person)d·z·%(max_count_person)d·osôb·(%(percent)s·kompletné)\n"
+
+msgid "localized lexeme inflections||January"
+msgstr "január"
+
+msgid "localized lexeme inflections||February"
+msgstr "február"
+
+msgid "localized lexeme inflections||March"
+msgstr "marec"
+
+msgid "localized lexeme inflections||April"
+msgstr "apríl"
+
+msgid "localized lexeme inflections||May"
+msgstr "máj"
+
+msgid "localized lexeme inflections||June"
+msgstr "jún"
+
+msgid "localized lexeme inflections||July"
+msgstr "júl"
+
+msgid "localized lexeme inflections||August"
+msgstr "august"
+
+msgid "localized lexeme inflections||September"
+msgstr "september"
+
+msgid "localized lexeme inflections||October"
+msgstr "október"
+
+msgid "localized lexeme inflections||November"
+msgstr "november"
+
+msgid "localized lexeme inflections||December"
+msgstr "december"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "jan"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "feb"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "mar"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "apr"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "máj"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "jún"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "júl"
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "aug"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "sep"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "okt"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "nov"
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "dec"
+
+msgid "date modifier|before "
+msgstr "pred "
+
+msgid "date modifier|after "
+msgstr "po "
+
+msgid "date modifier|about "
+msgstr "okolo "
+
+msgid "date quality|estimated "
+msgstr "odh. "
+
+msgid "date quality|calculated "
+msgstr "vyp. "

@@ -29128,3 +29128,90 @@ msgstr "Handsama slektsgranskarinformasjon, utføra slektsgransking og analyse"
 
 #~ msgid "UTF8"
 #~ msgstr "UTF8"
+
+msgid "localized lexeme inflections||January"
+msgstr "januar"
+
+msgid "localized lexeme inflections||February"
+msgstr "februar"
+
+msgid "localized lexeme inflections||March"
+msgstr "mars"
+
+msgid "localized lexeme inflections||April"
+msgstr "april"
+
+msgid "localized lexeme inflections||May"
+msgstr "mai"
+
+msgid "localized lexeme inflections||June"
+msgstr "juni"
+
+msgid "localized lexeme inflections||July"
+msgstr "juli"
+
+msgid "localized lexeme inflections||August"
+msgstr "august"
+
+msgid "localized lexeme inflections||September"
+msgstr "september"
+
+msgid "localized lexeme inflections||October"
+msgstr "oktober"
+
+msgid "localized lexeme inflections||November"
+msgstr "november"
+
+msgid "localized lexeme inflections||December"
+msgstr "desember"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "jan"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "feb"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "mar"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "apr"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "mai"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "jun"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "jul"
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "aug"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "sep"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "okt"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "nov"
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "des"
+
+msgid "date modifier|before "
+msgstr "før "
+
+msgid "date modifier|after "
+msgstr "etter "
+
+msgid "date modifier|about "
+msgstr "ca "
+
+msgid "date quality|estimated "
+msgstr "beregnet "
+
+msgid "date quality|calculated "
+msgstr "beregnet "

@@ -31982,3 +31982,90 @@ msgstr "<b>Gramps voor Gnome of KDE?</b><br/>Voor de Linux-gebruikers, Gramps we
 
 #~ msgid "Repository Reference"
 #~ msgstr "Bibliotheekverwijzing"
+
+msgid "localized lexeme inflections||January"
+msgstr "januari"
+
+msgid "localized lexeme inflections||February"
+msgstr "februari"
+
+msgid "localized lexeme inflections||March"
+msgstr "maart"
+
+msgid "localized lexeme inflections||April"
+msgstr "april"
+
+msgid "localized lexeme inflections||May"
+msgstr "mei"
+
+msgid "localized lexeme inflections||June"
+msgstr "juni"
+
+msgid "localized lexeme inflections||July"
+msgstr "juli"
+
+msgid "localized lexeme inflections||August"
+msgstr "augustus"
+
+msgid "localized lexeme inflections||September"
+msgstr "september"
+
+msgid "localized lexeme inflections||October"
+msgstr "oktober"
+
+msgid "localized lexeme inflections||November"
+msgstr "november"
+
+msgid "localized lexeme inflections||December"
+msgstr "december"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "jan"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "feb"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "mrt"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "apr"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "mei"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "jun"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "jul"
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "aug"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "sep"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "okt"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "nov"
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "dec"
+
+msgid "date modifier|before "
+msgstr "voor "
+
+msgid "date modifier|after "
+msgstr "na "
+
+msgid "date modifier|about "
+msgstr "rond "
+
+msgid "date quality|estimated "
+msgstr "geschat "
+
+msgid "date quality|calculated "
+msgstr "berekend "

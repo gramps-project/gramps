@@ -29620,3 +29620,81 @@ msgstr ""
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "Maakunta:"
+
+msgid "localized lexeme inflections||January"
+msgstr "Tammikuu"
+
+msgid "localized lexeme inflections||February"
+msgstr "Helmikuu"
+
+msgid "localized lexeme inflections||March"
+msgstr "Maaliskuu"
+
+msgid "localized lexeme inflections||April"
+msgstr "Huhtikuu"
+
+msgid "localized lexeme inflections||May"
+msgstr "Toukokuu"
+
+msgid "localized lexeme inflections||June"
+msgstr "Kesäkuu"
+
+msgid "localized lexeme inflections||July"
+msgstr "Heinäkuu"
+
+msgid "localized lexeme inflections||August"
+msgstr "Elokuu"
+
+msgid "localized lexeme inflections||September"
+msgstr "Syyskuu"
+
+msgid "localized lexeme inflections||October"
+msgstr "Lokakuu"
+
+msgid "localized lexeme inflections||November"
+msgstr "Marraskuu"
+
+msgid "localized lexeme inflections||December"
+msgstr "Joulukuu"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "Tammi"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "Helmi"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "Maali"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "Huhti"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "Touko"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "Kesäk"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "Heinä"
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "Eloku"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "Syysk"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "Lokak"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "Marra"
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "Joulu"
+
+msgid "date quality|estimated "
+msgstr "arviolta"
+
+msgid "date quality|calculated "
+msgstr "laskettuna"

@@ -29545,3 +29545,126 @@ msgstr ""
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "البلد:"
+
+msgid "localized lexeme inflections||January"
+msgstr "كانون الثاني"
+
+msgid "localized lexeme inflections||February"
+msgstr "شباط"
+
+msgid "localized lexeme inflections||March"
+msgstr "آذار"
+
+msgid "localized lexeme inflections||April"
+msgstr "نيسان"
+
+msgid "localized lexeme inflections||May"
+msgstr "أيار"
+
+msgid "localized lexeme inflections||June"
+msgstr "حزيران"
+
+msgid "localized lexeme inflections||July"
+msgstr "تموز"
+
+msgid "localized lexeme inflections||August"
+msgstr "آب"
+
+msgid "localized lexeme inflections||September"
+msgstr "أيلول"
+
+msgid "localized lexeme inflections||October"
+msgstr "تشرين الأول"
+
+msgid "localized lexeme inflections||November"
+msgstr "تشرين الثاني"
+
+msgid "localized lexeme inflections||December"
+msgstr "كانون الأول"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "كانون2"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "شباط"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "آذار"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "نيسان"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "أيار"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "حزيران"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "تموز"
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "آب"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "أيلول"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "تشرين1"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "تشرين2"
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "كانون1"
+
+msgid "Islamic month lexeme|Muharram"
+msgstr "محرّم"
+
+msgid "Islamic month lexeme|Safar"
+msgstr "صفر"
+
+msgid "Islamic month lexeme|Rabi`al-Awwal"
+msgstr "ربيع الأول"
+
+msgid "Islamic month lexeme|Rabi`ath-Thani"
+msgstr "ربيع الثاني"
+
+msgid "Islamic month lexeme|Jumada l-Ula"
+msgstr "جمادى الأولى"
+
+msgid "Islamic month lexeme|Jumada t-Tania"
+msgstr "جمادى الثانية"
+
+msgid "Islamic month lexeme|Rajab"
+msgstr "رجب"
+
+msgid "Islamic month lexeme|Sha`ban"
+msgstr "شعبان"
+
+msgid "Islamic month lexeme|Ramadan"
+msgstr "رمضان"
+
+msgid "Islamic month lexeme|Shawwal"
+msgstr "شوال"
+
+msgid "Islamic month lexeme|Dhu l-Qa`da"
+msgstr "ذو القعدة"
+
+msgid "Islamic month lexeme|Dhu l-Hijja"
+msgstr "ذو الحجة"
+
+msgid "date modifier|before "
+msgstr "قبل "
+
+msgid "date modifier|after "
+msgstr "بعد "
+
+msgid "date modifier|about "
+msgstr "حوالي "
+
+msgid "date quality|estimated "
+msgstr "متوقع "
+
+msgid "date quality|calculated "
+msgstr "محسوب "

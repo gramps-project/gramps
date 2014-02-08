@@ -33725,3 +33725,90 @@ msgstr "<b>Praca z datami</b><br/>Zakres dat może być podany przez użycie for
 
 #~ msgid "%(report_name)s for GRAMPS Book"
 #~ msgstr "%(report_name)s dla Książki GRAMPS"
+
+msgid "localized lexeme inflections||January"
+msgstr "Styczeń"
+
+msgid "localized lexeme inflections||February"
+msgstr "Luty"
+
+msgid "localized lexeme inflections||March"
+msgstr "Marzec"
+
+msgid "localized lexeme inflections||April"
+msgstr "Kwiecień"
+
+msgid "localized lexeme inflections||May"
+msgstr "Maj"
+
+msgid "localized lexeme inflections||June"
+msgstr "Czerwiec"
+
+msgid "localized lexeme inflections||July"
+msgstr "Lipiec"
+
+msgid "localized lexeme inflections||August"
+msgstr "Sierpień"
+
+msgid "localized lexeme inflections||September"
+msgstr "Wrzesień"
+
+msgid "localized lexeme inflections||October"
+msgstr "Październik"
+
+msgid "localized lexeme inflections||November"
+msgstr "Listopad"
+
+msgid "localized lexeme inflections||December"
+msgstr "Grudzień"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "Sty"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "Lut"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "mars"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "Kwi"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "Maj"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "Cze"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "Lip"
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "Sie"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "Wrz"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "Paź"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "Lis"
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "Gru"
+
+msgid "date modifier|before "
+msgstr "przed "
+
+msgid "date modifier|after "
+msgstr "po "
+
+msgid "date modifier|about "
+msgstr "ok. "
+
+msgid "date quality|estimated "
+msgstr "szacowany "
+
+msgid "date quality|calculated "
+msgstr "obliczony "

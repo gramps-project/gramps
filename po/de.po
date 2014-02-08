@@ -1412,23 +1412,23 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgid "date modifier|before "
-msgstr "vor"
+msgstr "vor "
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgid "date modifier|after "
-msgstr "nach"
+msgstr "nach "
 
 #: ../gramps/gen/datehandler/_datestrings.py:212
 msgid "date modifier|about "
-msgstr "um"
+msgstr "etwa "
 
 #: ../gramps/gen/datehandler/_datestrings.py:216
 msgid "date quality|estimated "
-msgstr "ca."
+msgstr "geschätzt "
 
 #: ../gramps/gen/datehandler/_datestrings.py:217
 msgid "date quality|calculated "
-msgstr ""
+msgstr "errechnet "
 
 #: ../gramps/gen/datehandler/_datestrings.py:223
 msgid "Sunday"

@@ -30974,3 +30974,90 @@ msgstr "<b>Gramps pro Gnome or KDE?</b><br/>V Linuxu můžete s Gramps pracovat 
 #~ msgstr ""
 #~ "POZOR: modul pyexiv2 nebyl nahrán. Funkčnost metadat obrázků nebude "
 #~ "dostupná."
+
+msgid "localized lexeme inflections||January"
+msgstr "leden"
+
+msgid "localized lexeme inflections||February"
+msgstr "únor"
+
+msgid "localized lexeme inflections||March"
+msgstr "březen"
+
+msgid "localized lexeme inflections||April"
+msgstr "duben"
+
+msgid "localized lexeme inflections||May"
+msgstr "květen"
+
+msgid "localized lexeme inflections||June"
+msgstr "červen"
+
+msgid "localized lexeme inflections||July"
+msgstr "červenec"
+
+msgid "localized lexeme inflections||August"
+msgstr "srpen"
+
+msgid "localized lexeme inflections||September"
+msgstr "září"
+
+msgid "localized lexeme inflections||October"
+msgstr "říjen"
+
+msgid "localized lexeme inflections||November"
+msgstr "listopad"
+
+msgid "localized lexeme inflections||December"
+msgstr "prosinec"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "led"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "úno"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "bře"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "dub"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "kvě"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "čer"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "čvc"
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "srp"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "zář"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "říj"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "lis"
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "pro"
+
+msgid "date modifier|before "
+msgstr "před "
+
+msgid "date modifier|after "
+msgstr "po "
+
+msgid "date modifier|about "
+msgstr "kolem "
+
+msgid "date quality|estimated "
+msgstr "přibližně "
+
+msgid "date quality|calculated "
+msgstr "vypočteno "

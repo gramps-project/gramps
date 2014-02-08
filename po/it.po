@@ -37388,3 +37388,130 @@ msgstr ""
 #~ msgid "Matches notes who contain text "
 #~ msgstr ""
 #~ "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
+
+msgid "localized lexeme inflections||January"
+msgstr "gennaio"
+
+msgid "localized lexeme inflections||February"
+msgstr "febbraio"
+
+msgid "localized lexeme inflections||March"
+msgstr "marzo"
+
+msgid "localized lexeme inflections||April"
+msgstr "aprile"
+
+msgid "localized lexeme inflections||May"
+msgstr "maggio"
+
+msgid "localized lexeme inflections||June"
+msgstr "giugno"
+
+msgid "localized lexeme inflections||July"
+msgstr "luglio"
+
+msgid "localized lexeme inflections||August"
+msgstr "agosto"
+
+msgid "localized lexeme inflections||September"
+msgstr "settembre"
+
+msgid "localized lexeme inflections||October"
+msgstr "ottobre"
+
+msgid "localized lexeme inflections||November"
+msgstr "novembre"
+
+msgid "localized lexeme inflections||December"
+msgstr "dicembre"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "gen"
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "feb"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "mar"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "apr"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "mag"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "giu"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "lug"
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "ago"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "set"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "ott"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "nov"
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "dic"
+
+msgid "French month lexeme|Vendémiaire"
+msgstr "vendemmiaio"
+
+msgid "French month lexeme|Brumaire"
+msgstr "brumaio"
+
+msgid "French month lexeme|Frimaire"
+msgstr "frimaio"
+
+msgid "French month lexeme|Nivôse"
+msgstr "nevoso"
+
+msgid "French month lexeme|Pluviôse"
+msgstr "piovoso"
+
+msgid "French month lexeme|Ventôse"
+msgstr "ventoso"
+
+msgid "French month lexeme|Germinal"
+msgstr "germile"
+
+msgid "French month lexeme|Floréal"
+msgstr "fiorile"
+
+msgid "French month lexeme|Prairial"
+msgstr "pratile"
+
+msgid "French month lexeme|Messidor"
+msgstr "messidoro"
+
+msgid "French month lexeme|Thermidor"
+msgstr "termidoro"
+
+msgid "French month lexeme|Fructidor"
+msgstr "fruttidoro"
+
+msgid "French month lexeme|Extra"
+msgstr "extra"
+
+msgid "date modifier|before "
+msgstr "prima del "
+
+msgid "date modifier|after "
+msgstr "dopo del "
+
+msgid "date modifier|about "
+msgstr "circa il "
+
+msgid "date quality|estimated "
+msgstr "stimata "
+
+msgid "date quality|calculated "
+msgstr "calcolata "
+

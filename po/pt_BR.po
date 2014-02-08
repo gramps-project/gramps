@@ -31159,3 +31159,90 @@ msgstr ""
 "escolher entre sete diferentes calendários. Experimente o botão ao lado do "
 "campo de data no editor de eventos."
 
+msgid "localized lexeme inflections||January"
+msgstr "Janeiro"
+
+msgid "localized lexeme inflections||February"
+msgstr "Fevereiro"
+
+msgid "localized lexeme inflections||March"
+msgstr "Março"
+
+msgid "localized lexeme inflections||April"
+msgstr "Abril"
+
+msgid "localized lexeme inflections||May"
+msgstr "Maio"
+
+msgid "localized lexeme inflections||June"
+msgstr "Junho"
+
+msgid "localized lexeme inflections||July"
+msgstr "Julho"
+
+msgid "localized lexeme inflections||August"
+msgstr "Agosto"
+
+msgid "localized lexeme inflections||September"
+msgstr "Setembro"
+
+msgid "localized lexeme inflections||October"
+msgstr "Outubro"
+
+msgid "localized lexeme inflections||November"
+msgstr "Novembro"
+
+msgid "localized lexeme inflections||December"
+msgstr "Dezembro"
+
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "janv."
+
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "Fev"
+
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "mars"
+
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "Abr"
+
+msgid "localized lexeme inflections - short month form||May"
+msgstr "Mai"
+
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "juin"
+
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "juil."
+
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "Ago"
+
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "Set"
+
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "Out"
+
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "nov."
+
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "Dez"
+
+msgid "date modifier|before "
+msgstr "antes de "
+
+msgid "date modifier|after "
+msgstr "depois de "
+
+msgid "date modifier|about "
+msgstr "por volta de "
+
+msgid "date quality|estimated "
+msgstr "estimado "
+
+msgid "date quality|calculated "
+msgstr "calculado "
+
