@@ -355,12 +355,33 @@ class GeoGraphyView(OsmGps, NavigationView):
             changemapitem.show()
             changemapitem.connect("activate", self.change_map, map)
             changemap.append(changemapitem)
+
+        clear_text = _("Clear the '%(map)s' tiles cache.") % {
+                   'map' : map_name
+                  }
+        self.clearmap = Gtk.MenuItem(label=clear_text)
+        clearmap = self.clearmap
+        clearmap.connect("activate", self.clear_map, constants.tiles_path[config.get("geography.map_service")])
+
+        clearmap.show()
+        menu.append(clearmap)
         menu.show()
         menu.popup(None, None,
                    lambda menu, data: (event.get_root_coords()[0],
                                        event.get_root_coords()[1], True),
                    None, event.button, event.time)
         return 1
+
+
+    def clear_map(self, menu, the_map):
+        """
+        We need to clean the tiles cache for the current map
+        """
+        import shutil
+     
+        path = "%s%c%s" % ( config.get('geography.path'), os.sep, the_map )
+        shutil.rmtree(path)
+        pass
 
     def add_specific_menu(self, menu, event, lat, lon):
         """
@@ -1045,10 +1066,4 @@ class GeoGraphyView(OsmGps, NavigationView):
                 _('The maximum number of places to show'),
                 4, 'geography.max_places',
                 (1000, 10000))
-        # there is no button. I need to found a solution for this.
-        # it can be very dangerous ! if someone put / in geography.path ...
-        # perhaps we need some contrôl on this path :
-        # should begin with : /home, /opt, /map, ...
-        #configdialog.add_button(table, '', 4, 'geography.clean')
-
         return _('The map'), table
