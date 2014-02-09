@@ -133,11 +133,18 @@ class OsmGps():
                              constants.map_title[map_type])
         config.set("geography.map_service", map_type)
         self.current_map = map_type
+        http_proxy = os.environ.get('http_proxy')
         if 0:
             self.osm = DummyMapNoGpsPoint()
         else:
-            self.osm = osmgpsmap.Map(tile_cache=tiles_path,
-                                        map_source=constants.map_type[map_type])
+            if http_proxy:
+                self.osm = osmgpsmap.Map(tile_cache=tiles_path,
+                                         proxy_uri=http_proxy,
+                                         map_source=constants.map_type[map_type])
+            else:
+                self.osm = osmgpsmap.Map(tile_cache=tiles_path,
+                                         map_source=constants.map_type[map_type])
+        self.osm.props.tile_cache = osmgpsmap.MAP_CACHE_AUTO
         current_map = osmgpsmap.MapOsd( show_dpad=False, show_zoom=True)
         self.end_selection = None
         self.osm.layer_add(current_map)
