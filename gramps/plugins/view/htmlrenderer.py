@@ -269,8 +269,7 @@ class RendererWebkit(Renderer):
         self.browser = WEBKIT
         self.title = None
         self.frame = self.window.get_main_frame()
-        self.frame.connect("load-done", self.page_loaded)
-        self.frame.connect("title-changed", self.get_title)
+        self.window.connect("document-load-finished", self.page_loaded)
         self.fct = None
 
     def page_loaded(self, *args):
@@ -297,12 +296,6 @@ class RendererWebkit(Renderer):
         We need to reload the page in the browser.
         """
         self.window.reload()
-
-    def get_title(self, *args):
-        """
-        We need to get the html title page.
-        """
-        self.title = self.frame.get_title()
 
     def execute_script(self, url):
         """
