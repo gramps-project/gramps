@@ -149,7 +149,7 @@ class StyleSheetList(object):
         Saves the current StyleSheet definitions to the associated file.
         """
         xml_file = open(self.__file, "w")
-        xml_file.write("<?xml version=\"1.0\"?>\n")
+        xml_file.write('<?xml version="1.0" encoding="utf-8"?>\n')
         xml_file.write('<stylelist>\n')
         
         for name, sheet in self.map.iteritems():
