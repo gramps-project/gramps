@@ -231,7 +231,7 @@ def _display_welcome_message():
               "them with this version, and make sure to export your "
               "data to XML every now and then."))
         config.set('behavior.autoload', False)
-#        config.set('behavior.betawarn', True)
+        config.set('behavior.betawarn', True)
         config.set('behavior.betawarn', config.get('behavior.betawarn'))
 
 #-------------------------------------------------------------------------
