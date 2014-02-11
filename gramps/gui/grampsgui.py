@@ -256,6 +256,7 @@ class Gramps(object):
         from .dialog import WarningDialog
         import gettext
 
+        _display_welcome_message()
         register_stock_icons()
 
         if lin() and glocale.lang != 'C' and not gettext.find(GTK_GETTEXT_DOMAIN):
