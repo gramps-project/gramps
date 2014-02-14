@@ -148,6 +148,7 @@ class GeoFamClose(GeoGraphyView):
         self.minyear = 9999
         self.maxyear = 0
         self.reffamily = None
+        self.reffamily_bookmark = None
         self.nbplaces = 0
         self.nbmarkers = 0
         self.sort = []
@@ -193,17 +194,6 @@ class GeoFamClose(GeoGraphyView):
         name of any of the primary objects.
         """
         return 'Family'
-
-    def add_bookmark(self, obj):
-        mlist = self.selected_handles()
-        if mlist:
-            self.bookmarks.add(mlist[0])
-        else:
-            from gramps.gui.dialog import WarningDialog
-            WarningDialog(
-                _("Could Not Set a Bookmark"), 
-                _("A bookmark could not be set because "
-                  "no one was selected."))
 
     def family_label(self,family):
         if family is None:
@@ -263,6 +253,9 @@ class GeoFamClose(GeoGraphyView):
                 self.message_layer.add_message(_("The other family : %s" % self.family_label(f1)))
             else:
                 self.message_layer.add_message(_("The other family : %s" % _("Unknown")))
+            if self.reffamily_bookmark is None:
+                self.reffamily_bookmark = self.reffamily.get_handle()
+                self.add_bookmark(None, self.reffamily_bookmark)
         else:
             self.message_layer.add_message(_("You must choose one reference family."))
             self.message_layer.add_message(_("Go to the family view and select "
@@ -293,6 +286,8 @@ class GeoFamClose(GeoGraphyView):
         """
         self.track = []
         self.skip_list = []
+        self.ref_family = None
+        self.reffamily_bookmark = None
         selectFamily = SelectorFactory('Family')
         sel = selectFamily(self.dbstate, self.uistate)
         self.reffamily = sel.run()
@@ -696,7 +691,7 @@ class GeoFamClose(GeoGraphyView):
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
-        add_item = Gtk.MenuItem(label=_("Choose the reference family"))
+        add_item = Gtk.MenuItem(label=_("Choose and bookmark the new reference family"))
         add_item.connect("activate", self.selectFamily)
         add_item.show()
         menu.append(add_item)

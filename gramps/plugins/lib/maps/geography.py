@@ -184,6 +184,18 @@ class GeoGraphyView(OsmGps, NavigationView):
                 pathu = path.encode(glocale.getfilesystemencoding())
             self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(pathu)
 
+    def add_bookmark(self, menu, handle):
+        if handle:
+            self.uistate.set_active(handle, self.navigation_type())
+            self.bookmarks.add(handle)
+            self.bookmarks.redraw()
+        else:
+            from gramps.gui.dialog import WarningDialog
+            WarningDialog(
+                _("Could Not Set a Bookmark"), 
+                _("A bookmark could not be set because "
+                  "no one was selected."))
+
     def change_page(self):
         """
         Called when the page changes.
@@ -232,6 +244,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         if self.active:
             self.bookmarks.redraw()
+        self.build_tree()
 
     def can_configure(self):
         """
@@ -332,7 +345,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         # Add specific module menu
         self.add_specific_menu(menu, event, lat, lon)
         # Add a separator line
-        add_item = Gtk.MenuItem(label=None)
+        add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
 
