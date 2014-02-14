@@ -91,7 +91,7 @@ class HasPlace(Rule):
         """
         Check each location for a match.
         """
-        for place_type, field in self.TYPE2FIELD.iteritems():
+        for place_type, field in self.TYPE2FIELD.items():
             name = location.get(place_type, '')
             if not self.match_substring(field, name):
                 return False

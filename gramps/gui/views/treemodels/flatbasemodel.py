@@ -398,14 +398,9 @@ class FlatNodeMap(object):
         insert_pos = bisect.bisect_left(self._index2hndl, srtkey_hndl)
         self._index2hndl.insert(insert_pos, srtkey_hndl)
         #make sure the index map is updated
-        if sys.version_info[0] < 3:
-            for hndl, index in self._hndl2index.iteritems():
-                if index >= insert_pos:
-                    self._hndl2index[hndl] += 1
-        else:
-            for hndl, index in self._hndl2index.items():
-                if index >= insert_pos:
-                    self._hndl2index[hndl] += 1
+        for hndl, index in self._hndl2index.items():
+            if index >= insert_pos:
+                self._hndl2index[hndl] += 1
         self._hndl2index[srtkey_hndl[1]] = insert_pos
         #update self.__corr so it remains correct
         if self._reverse:
@@ -447,14 +442,9 @@ class FlatNodeMap(object):
         if self._reverse:
             self.__corr = (len(self._index2hndl) - 1, -1)
         #update the handle2path map so it remains correct
-        if sys.version_info[0] < 3:
-            for key, val in self._hndl2index.iteritems():
-                if val > index:
-                    self._hndl2index[key] -= 1
-        else:
-            for key, val in self._hndl2index.items():
-                if val > index:
-                    self._hndl2index[key] -= 1
+        for key, val in self._hndl2index.items():
+            if val > index:
+                self._hndl2index[key] -= 1
         return Gtk.TreePath((delpath,))
 
 #-------------------------------------------------------------------------

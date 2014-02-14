@@ -2491,7 +2491,7 @@ class GrampsParser(UpdateCallback):
             element_name = xml_element_name,
             attrs = " ".join(
                 ['{}="{}"'.format(k,escape(v, entities={'"' : "&quot;"})) 
-                    for k,v in xml_attrs.iteritems()]))
+                    for k,v in xml_attrs.items()]))
         # TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
         # but you may re-order them if needed.
         LOG.warning(_("Invalid date {date} in XML {xml}, preserving XML as text"

@@ -290,7 +290,7 @@ def upgrade_datamap_17(datamap):
     new_srcattr_list = []
     private = False
     from ..lib.srcattrtype import SrcAttributeType
-    for (key, value) in datamap.iteritems():
+    for (key, value) in datamap.items():
         the_type = SrcAttributeType(key).serialize()
         new_srcattr_list.append((private, the_type, value))
     return new_srcattr_list
