@@ -198,7 +198,7 @@ def mac_setup_localization(glocale):
                                                        "AppleCollationOrder")
 
         apple_collation = apple_collation.strip()
-        if apple_collation.startswith("root"):
+        if not apple_collation or apple_collation.startswith("root"):
             return (None, None)
         div = apple_collation.split(b"@")
         collation = div[0]
