@@ -163,7 +163,6 @@ class MergePlace(ManagedWindow):
             self.get_widget("code_btn1").set_active(True)
             self.get_widget("lat_btn1").set_active(True)
             self.get_widget("long_btn1").set_active(True)
-            self.get_widget("loc_btn1").set_active(True)
             self.get_widget("gramps_btn1").set_active(True)
         else:
             self.get_widget("title_btn2").set_active(True)
@@ -172,7 +171,6 @@ class MergePlace(ManagedWindow):
             self.get_widget("code_btn2").set_active(True)
             self.get_widget("lat_btn2").set_active(True)
             self.get_widget("long_btn2").set_active(True)
-            self.get_widget("loc_btn2").set_active(True)
             self.get_widget("gramps_btn2").set_active(True)
 
     def cb_help(self, obj):
