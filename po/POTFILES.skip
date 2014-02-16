@@ -186,7 +186,6 @@ src/gen/plug/docgen/fontscale.py
 src/gen/plug/docgen/fontstyle.py
 src/gen/plug/docgen/graphdoc.py
 src/gen/plug/docgen/graphicstyle.py
-src/gen/plug/docgen/paperstyle.py
 src/gen/plug/docgen/paragraphstyle.py
 src/gen/plug/docgen/stylesheet.py
 src/gen/plug/docgen/tablestyle.py

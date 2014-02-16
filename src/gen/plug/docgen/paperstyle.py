@@ -36,6 +36,7 @@
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gen.ggettext import sgettext as _
 
 #-------------------------------------------------------------------------
 #
@@ -74,6 +75,14 @@ class PaperSize(object):
         self.name = name
         self.height = height
         self.width = width
+        if self.name == 'Letter':
+            self.trans_pname = _('paper size|Letter')
+        elif self.name == 'Legal':
+            self.trans_pname = _('paper size|Legal')
+        elif self.name == 'Custom Size':
+            self.trans_pname = _('Custom Size')
+        else:
+            self.trans_pname = None
 
     def get_name(self):
         "Return the name of the paper style"

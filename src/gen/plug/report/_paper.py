@@ -88,7 +88,7 @@ try:
     the_file = open(const.PAPERSIZE)
     parser.parse(the_file)
     the_file.close()
-    paper_sizes.append(PaperSize(_("Custom Size"), -1, -1))
+    paper_sizes.append(PaperSize("Custom Size", -1, -1)) # always in English
 except (IOError, OSError, SAXParseException):
     paper_sizes = [
         PaperSize("Letter",27.94,21.59),
@@ -110,5 +110,5 @@ except (IOError, OSError, SAXParseException):
         PaperSize("C",55.88,43.18),
         PaperSize("D",86.36, 55.88),
         PaperSize("E",111.76,86.36),
-        PaperSize(_("Custom Size"),-1,-1)
+        PaperSize("Custom Size",-1,-1) # always in English
     ]
