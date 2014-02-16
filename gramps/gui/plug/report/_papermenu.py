@@ -68,10 +68,13 @@ class PaperComboBox(Gtk.ComboBox):
         index = 0
         start_index = 0
         for key in paper_sizes:
-            self.mapping[key.get_name()]  = key
-            self.store.append(row=[key.get_name()])
-            if key.get_name() == default_name:
+            key_name = key.get_name()
+            if default_name == key_name or default_name == key.trans_pname:
                 start_index = index
+            self.mapping[key_name] = key # always use the English paper name
+            if key.trans_pname:
+                key_name = key.trans_pname # display the translated paper name
+            self.store.append(row=[key_name])
             index += 1
             
         self.set_active(start_index)
@@ -81,6 +84,9 @@ class PaperComboBox(Gtk.ComboBox):
         if active < 0:
             return None
         key = cuni(self.store[active][0])
+        for paper in paper_sizes:
+            if key == paper.trans_pname:
+                key = paper.get_name()
         return (self.mapping[key],key)
 
 #-------------------------------------------------------------------------
@@ -182,7 +188,7 @@ class PaperFrame(Gtk.HBox):
         """Paper size combobox 'changed' callback."""
         size, name = self.get_paper_size()
 
-        is_custom = name == _("Custom Size")
+        is_custom = name == "Custom Size"
         self.pwidth.set_sensitive(is_custom)
         self.pheight.set_sensitive(is_custom)
 
@@ -241,9 +247,7 @@ class PaperFrame(Gtk.HBox):
 
         """
         papersize, papername =  self.papersize_menu.get_value()
-        # FIXME it is wrong to use translatable text in comparison.
-        # How can we distinguish custom size though?
-        if papername == _('Custom Size'):
+        if papername == 'Custom Size':
             try:
                 h = float(cuni(self.pheight.get_text().replace(",", ".")))
                 w = float(cuni(self.pwidth.get_text().replace(",", ".") ))

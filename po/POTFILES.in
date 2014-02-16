@@ -300,6 +300,7 @@ gramps/gen/plug/_options.py
 gramps/gen/plug/_pluginreg.py
 gramps/gen/plug/docbackend/docbackend.py
 gramps/gen/plug/docgen/graphdoc.py
+gramps/gen/plug/docgen/paperstyle.py
 gramps/gen/plug/menu/_enumeratedlist.py
 gramps/gen/plug/report/_book.py
 gramps/gen/plug/report/_constants.py

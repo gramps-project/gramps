@@ -221,7 +221,6 @@ gramps/gen/plug/docgen/fontscale.py
 gramps/gen/plug/docgen/fontstyle.py
 gramps/gen/plug/docgen/graphicstyle.py
 gramps/gen/plug/docgen/__init__.py
-gramps/gen/plug/docgen/paperstyle.py
 gramps/gen/plug/docgen/paragraphstyle.py
 gramps/gen/plug/docgen/stylesheet.py
 gramps/gen/plug/docgen/tablestyle.py
