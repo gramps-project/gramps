@@ -117,7 +117,7 @@ class StyleListDisplay(object):
         """Redraws the list of styles that are current available"""
         
         self.list.model.clear()
-        self.list.add(["default"])
+        self.list.add([_("default")])
 
         index = 1
         for style in self.sheetlist.get_style_names():
@@ -130,7 +130,7 @@ class StyleListDisplay(object):
         """Called with the ADD button is clicked. Invokes the StyleEditor to
         create a new style"""
         style = self.sheetlist.get_style_sheet("default")
-        StyleEditor("New Style", style, self)
+        StyleEditor(_("New Style"), style, self)
 
     def on_ok_clicked(self, obj):
         """Called with the OK button is clicked; Calls the callback task, 
