@@ -44,7 +44,8 @@ _ = glocale.translation.gettext
 #
 #------------------------------------------------------------------------
 from gramps.gui.utils import ProgressMeter
-from gramps.gen.lib import Event, Family, MediaObject, Note, Person, Place, Repository, Source
+from gramps.gen.lib import (Event, Family, MediaObject, Note, 
+        Person, Place, Repository, Source, Citation)
 from gramps.gen.db import DbTxn
 from gramps.gui.plug import tool
 
@@ -129,7 +130,7 @@ class ReorderIds(tool.BatchTool):
             if uistate:
                 self.progress.set_pass(_('Reordering Citation IDs'),
                                        db.get_number_of_citations())
-            self.reorder(gen.lib.Citation,
+            self.reorder(Citation,
                          db.get_citation_from_gramps_id,
                          db.get_citation_from_handle,
                          db.find_next_citation_gramps_id,
