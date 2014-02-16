@@ -309,7 +309,7 @@ class CommandLineReport(object):
 
         self.options_help['papers'][2] = \
             [ paper.get_name() for paper in paper_sizes 
-                        if paper.get_name() != _("Custom Size") ]
+                        if paper.get_name() != 'Custom Size' ]
 
         self.options_help['papero'][2] = [
             "%d\tPortrait" % PAPER_PORTRAIT,
