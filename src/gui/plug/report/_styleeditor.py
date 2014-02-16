@@ -159,6 +159,8 @@ class StyleListDisplay(object):
             return
         
         name = unicode(self.list.model.get_value(node, 0))
+        if name == 'default': # the default style cannot be edited
+            return
         style = self.sheetlist.get_style_sheet(name)
         StyleEditor(name, style, self)
 
@@ -168,6 +170,8 @@ class StyleListDisplay(object):
         if not node:
             return
         name = unicode(self.list.model.get_value(node, 0))
+        if name == 'default': # the default style cannot be removed
+            return
         self.sheetlist.delete_style_sheet(name)
         self.redraw()
 
