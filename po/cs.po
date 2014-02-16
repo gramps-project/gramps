@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-06 10:38+0100\n"
-"PO-Revision-Date: 2014-02-14 20:56+0100\n"
+"PO-Revision-Date: 2014-02-16 12:04+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -870,14 +870,14 @@ msgid "Private Record"
 msgstr "Důvěrný záznam"
 
 #: ../gramps/gen/const.py:206
-#, fuzzy
 msgid ""
 "Gramps\n"
 " (Genealogical Research and Analysis Management Programming System)\n"
 "is a personal genealogy program."
 msgstr ""
-"Gramps (programový systém pro správu genealogického výzkumu a analýzy) je "
-"osobní genealogický program."
+"Gramps\n"
+" (programový systém pro správu genealogického výzkumu a analýzy)\n"
+"je osobní genealogický program."
 
 #: ../gramps/gen/const.py:228
 msgid "TRANSLATORS: Translate this to your name in your native language"
@@ -912,9 +912,8 @@ msgstr "RRRR-MM-DD (ISO)"
 #. strftime() for '%x'.
 #. You may translate this string as "Numerical", "System preferred", or similar.
 #: ../gramps/gen/datehandler/_datedisplay.py:70
-#, fuzzy
 msgid "date format|Numerical"
-msgstr "Formát data"
+msgstr "Numerický"
 
 #. Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:73
@@ -928,9 +927,8 @@ msgstr "MĚS DEN, ROK"
 
 #. Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:79
-#, fuzzy
 msgid "Day Month Year"
-msgstr "Jeden den v roce"
+msgstr "Den Měsíc Rok"
 
 #. Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:82
@@ -1042,9 +1040,8 @@ msgstr ""
 #. key appearing above in the FORMATS_... dict
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:347
-#, fuzzy
 msgid "to-date|"
-msgstr "datum"
+msgstr "do"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:349
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
@@ -1056,7 +1053,6 @@ msgstr ""
 #. key appearing above in the FORMATS_... dict
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:362
-#, fuzzy
 msgid "between-date|"
 msgstr "mezi"
 
@@ -1066,9 +1062,8 @@ msgstr "mezi"
 #. key appearing above in the FORMATS_... dict
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:369
-#, fuzzy
 msgid "and-date|"
-msgstr "datum"
+msgstr "a"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:371
 msgid ""
@@ -1083,7 +1078,6 @@ msgstr ""
 #. TODO are there languages for which the inflections for the different
 #. modifiers are different?!
 #: ../gramps/gen/datehandler/_datedisplay.py:386
-#, fuzzy
 msgid "before-date|"
 msgstr "před"
 
@@ -1895,13 +1889,13 @@ msgid "Upgrade Statistics"
 msgstr "Statistiky aktualizace"
 
 #: ../gramps/gen/db/write.py:1287
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An attempt is made to save a reference key which is partly bytecode, this is "
 "not allowed.\n"
 "Key is %s"
 msgstr ""
-"Pokus o zabezpečení referenčního klíče, který je částečně v bytecode není "
+"Pokus o uložení referenčního klíče, který je částečně v bytecode není "
 "povolen.\n"
 "Klíč je %s"
 
@@ -2524,22 +2518,20 @@ msgid "Citation with Source <Id>"
 msgstr "Citace s pramenem <Id>"
 
 #: ../gramps/gen/filters/rules/citation/_hassourceidof.py:49
-#, fuzzy
 msgid "Matches a citation with a source with a specified Gramps ID"
-msgstr "Vyhovují citace se zadaným Gramps ID"
+msgstr "Vyhovují citace s pramenem se zadaným Gramps ID"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:52
-#, fuzzy
 msgid "Citations having source notes containing <text>"
-msgstr "Citace s poznámkami obsahujícími <text>"
+msgstr "Citace s poznámkami pramene obsahujícími <text>"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:53
-#, fuzzy
 msgid ""
 "Matches citations whose source notes contain a substring or match a regular "
 "expression"
 msgstr ""
-"Vyhovují citace jejichž poznámky obsahují text odpovídající reg. výrazu"
+"Vyhovují citace u nichž poznámky pramene obsahují text odpovídající reg. "
+"výrazu"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:49
 #: ../gramps/gen/filters/rules/event/_hastag.py:49
@@ -2727,14 +2719,12 @@ msgid "Day of Week:"
 msgstr "Den v týdnu:"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:45
-#, fuzzy
 msgid "Events occurring on a particular day of the week"
-msgstr "Zobrazit události v konkrétní den"
+msgstr "Události které se staly v konkrétní den"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:46
-#, fuzzy
 msgid "Matches events occurring on a particular day of the week"
-msgstr "Vyhovují události s citací konkrétní hodnoty"
+msgstr "Vyhovují události, které se staly v konkrétní den"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:47
 msgid "Events with <count> media"
@@ -5168,13 +5158,12 @@ msgid "Religious"
 msgstr "Náboženský"
 
 #: ../gramps/gen/lib/eventtype.py:150
-#, fuzzy
 msgid "Vocational"
-msgstr "Místo"
+msgstr "Odborný"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Academic"
-msgstr ""
+msgstr "Akademický"
 
 #: ../gramps/gen/lib/eventtype.py:154
 msgid "Travel"
@@ -5182,7 +5171,7 @@ msgstr "Cestování"
 
 #: ../gramps/gen/lib/eventtype.py:156
 msgid "Legal"
-msgstr ""
+msgstr "Právní"
 
 #: ../gramps/gen/lib/eventtype.py:158 ../gramps/gen/lib/eventtype.py:200
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:431
@@ -6006,9 +5995,8 @@ msgstr "Události zaznamenané v prameni"
 
 #. GEDCOM EVENTS_RECORDED
 #: ../gramps/gen/lib/srcattrtype.py:116
-#, fuzzy
 msgid "Event Type Used for Citation"
-msgstr "Citace události"
+msgstr "Typ události použitý pro citaci"
 
 #. GEDCOM EVENT_TYPE_CITED_FROM
 #: ../gramps/gen/lib/srcattrtype.py:117
@@ -6038,9 +6026,8 @@ msgid "Repository Address"
 msgstr "Adresa archivu"
 
 #: ../gramps/gen/lib/srcattrtype.py:121
-#, fuzzy
 msgid "Repository (Short)"
-msgstr "Poznámka ke archivu"
+msgstr "Archiv (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:122
 #, fuzzy
@@ -6187,23 +6174,20 @@ msgid "Compiler (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:346
-#, fuzzy
 msgid "Creation date"
-msgstr "Kremace"
+msgstr "Datum vytvoření"
 
 #: ../gramps/gen/lib/srcattrtype.py:347
-#, fuzzy
 msgid "Creation date (Short)"
-msgstr "Datum vytvoření GEDCOM"
+msgstr "Datum vytvoření (zkrácené)"
 
 #: ../gramps/gen/lib/srcattrtype.py:348
 msgid "Creator"
 msgstr "Tvůrce"
 
 #: ../gramps/gen/lib/srcattrtype.py:349
-#, fuzzy
 msgid "Creator (Short)"
-msgstr "Vytvořeno pro %(author)s"
+msgstr "Tvůrce (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:350
 #, fuzzy
@@ -6211,19 +6195,16 @@ msgid "Credit line"
 msgstr "Barevné obrysy"
 
 #: ../gramps/gen/lib/srcattrtype.py:351
-#, fuzzy
 msgid "Date accessed"
-msgstr "Poslední přístup"
+msgstr "Datum přístupu"
 
 #: ../gramps/gen/lib/srcattrtype.py:352
-#, fuzzy
 msgid "Date range"
-msgstr "Přibližný rozsah data"
+msgstr "Rozsah data"
 
 #: ../gramps/gen/lib/srcattrtype.py:353
-#, fuzzy
 msgid "Date (Short)"
-msgstr "Formát data"
+msgstr "Datum (zkrácené)"
 
 #: ../gramps/gen/lib/srcattrtype.py:355
 msgid "District"
@@ -6264,23 +6245,20 @@ msgid "File"
 msgstr "Soubor"
 
 #: ../gramps/gen/lib/srcattrtype.py:363
-#, fuzzy
 msgid "File date"
-msgstr "Název souboru"
+msgstr "Datum souboru"
 
 #: ../gramps/gen/lib/srcattrtype.py:364
 msgid "File date (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:365
-#, fuzzy
 msgid "File location"
-msgstr "Umístění poznámky"
+msgstr "Umístění souboru"
 
 #: ../gramps/gen/lib/srcattrtype.py:366
-#, fuzzy
 msgid "File no."
-msgstr "Soubor"
+msgstr "Číslo souboru"
 
 #: ../gramps/gen/lib/srcattrtype.py:367
 msgid "File no. (Short)"
@@ -6300,9 +6278,8 @@ msgid "File unit (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:371
-#, fuzzy
 msgid "Film id"
-msgstr "Film"
+msgstr "Id filmu"
 
 #: ../gramps/gen/lib/srcattrtype.py:372
 #, fuzzy
@@ -6360,38 +6337,32 @@ msgid "Institution"
 msgstr "Instituce"
 
 #: ../gramps/gen/lib/srcattrtype.py:384
-#, fuzzy
 msgid "Institution (Short)"
-msgstr "Úvodní text"
+msgstr "Instituce (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:385
-#, fuzzy
 msgid "Interviewer"
-msgstr "Internet"
+msgstr "Tazatel"
 
 #: ../gramps/gen/lib/srcattrtype.py:386
-#, fuzzy
 msgid "Issue date"
-msgstr "Zahrnout data"
+msgstr "Datum vydání"
 
 #: ../gramps/gen/lib/srcattrtype.py:387
 msgid "Issue date (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:388
-#, fuzzy
 msgid "Issue range"
-msgstr "rozsah"
+msgstr "Rozsah vydání"
 
 #: ../gramps/gen/lib/srcattrtype.py:389
-#, fuzzy
 msgid "Item of interest"
-msgstr "Osoby zájmu"
+msgstr "Předmět zájmu"
 
 #: ../gramps/gen/lib/srcattrtype.py:390
-#, fuzzy
 msgid "Item of interest (Short)"
-msgstr "Osoby zájmu"
+msgstr "Předmět zájmu (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:391
 msgid "Jurisdiction"
@@ -6402,9 +6373,8 @@ msgid "Jurisdiction (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:394
-#, fuzzy
 msgid "Location (Short)"
-msgstr "Editot míst"
+msgstr "Místo (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:395 ../gramps/plugins/gramplet/leak.py:104
 #: ../gramps/plugins/webreport/narrativeweb.py:2727
@@ -6423,19 +6393,16 @@ msgid "Number (Short)"
 msgstr "Číslo"
 
 #: ../gramps/gen/lib/srcattrtype.py:398
-#, fuzzy
 msgid "Original repository"
-msgstr "Zapisují se archivy"
+msgstr "Původní archiv"
 
 #: ../gramps/gen/lib/srcattrtype.py:399
-#, fuzzy
 msgid "Original repository location"
-msgstr "Zapisují se archivy"
+msgstr "Umístění původního archivu"
 
 #: ../gramps/gen/lib/srcattrtype.py:400
-#, fuzzy
 msgid "Original year"
-msgstr "Původ: "
+msgstr "Původní rok"
 
 #: ../gramps/gen/lib/srcattrtype.py:401
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:85
@@ -6482,9 +6449,8 @@ msgid "Professional credentials"
 msgstr "Osobní událost:"
 
 #: ../gramps/gen/lib/srcattrtype.py:410
-#, fuzzy
 msgid "Provenance"
-msgstr "Slovinština"
+msgstr "Původ"
 
 #: ../gramps/gen/lib/srcattrtype.py:411
 #, fuzzy
@@ -6544,28 +6510,24 @@ msgid "Relationship"
 msgstr "Vztah"
 
 #: ../gramps/gen/lib/srcattrtype.py:422
-#, fuzzy
 msgid "Report date"
-msgstr "Název sestavy"
+msgstr "Datum sestavy"
 
 #: ../gramps/gen/lib/srcattrtype.py:423
-#, fuzzy
 msgid "Report date (Short)"
-msgstr "Sestava pro"
+msgstr "Datum sestavy (zkrácené)"
 
 #: ../gramps/gen/lib/srcattrtype.py:424
-#, fuzzy
 msgid "Research comment"
-msgstr "Badatel"
+msgstr "Badatelská poznámka"
 
 #: ../gramps/gen/lib/srcattrtype.py:425
 msgid "Research comment (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:426
-#, fuzzy
 msgid "Research project"
-msgstr "Badatel"
+msgstr "Badatelský projekt"
 
 #: ../gramps/gen/lib/srcattrtype.py:427
 msgid "Roll"
@@ -6588,9 +6550,8 @@ msgid "Section"
 msgstr "Sekce"
 
 #: ../gramps/gen/lib/srcattrtype.py:432
-#, fuzzy
 msgid "Section (Short)"
-msgstr "Sekce"
+msgstr "Sekce (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:433
 msgid "Series"
@@ -6687,9 +6648,8 @@ msgid "Title"
 msgstr "Název"
 
 #: ../gramps/gen/lib/srcattrtype.py:451
-#, fuzzy
 msgid "Title (Short)"
-msgstr "Formát titulku"
+msgstr "Titulek (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:452
 #: ../gramps/gen/plug/report/stdoptions.py:48
@@ -6760,9 +6720,8 @@ msgid "Url (digital location)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:456
-#, fuzzy
 msgid "Volume"
-msgstr "Ročník/Stránka"
+msgstr "Svazek"
 
 #: ../gramps/gen/lib/srcattrtype.py:457
 msgid "Volume info"
@@ -6773,7 +6732,6 @@ msgid "Volume (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:459
-#, fuzzy
 msgid "Website"
 msgstr "Webová stránka"
 
@@ -6782,23 +6740,20 @@ msgid "Website creator/owner"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:461
-#, fuzzy
 msgid "Website (Short)"
-msgstr "Hlavička nadpisu na WWW"
+msgstr "Webová stránka (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:462
 msgid "Year"
 msgstr "Rok"
 
 #: ../gramps/gen/lib/srcattrtype.py:463
-#, fuzzy
 msgid "Year accessed"
-msgstr "Poslední přístup"
+msgstr "Rok přístupu"
 
 #: ../gramps/gen/lib/srcattrtype.py:464
-#, fuzzy
 msgid "Year (Short)"
-msgstr "Rok sestavy"
+msgstr "Rok (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:468
 msgid "Public Law 12-98"
@@ -6890,9 +6845,8 @@ msgid "Peterburg Post Office, or Portland, ward 4"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:490
-#, fuzzy
 msgid "Second Edition"
-msgstr "Druhé datum"
+msgstr "Druhé vydání"
 
 #: ../gramps/gen/lib/srcattrtype.py:491
 msgid "Hoover, J.E."
@@ -7014,9 +6968,8 @@ msgid "1-13"
 msgstr "1-13"
 
 #: ../gramps/gen/lib/srcattrtype.py:520
-#, fuzzy
 msgid "Part 3"
-msgstr "Partner 1"
+msgstr "Část 3"
 
 #: ../gramps/gen/lib/srcattrtype.py:521
 msgid "London"
@@ -7117,7 +7070,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:545
 msgid "Subtitle of article or magazine ..."
-msgstr ""
+msgstr "Podtitul článku nebo časopisu ..."
 
 #: ../gramps/gen/lib/srcattrtype.py:546
 msgid "June Term 1934 or 13th Congress or Reagan Office or ..."
@@ -7144,18 +7097,16 @@ msgid "Letter"
 msgstr "Písmeno"
 
 #: ../gramps/gen/lib/srcattrtype.py:551
-#, fuzzy
 msgid "http://gramps-project.org/blog"
-msgstr "http://gramps-project.org/"
+msgstr "http://gramps-project.org/blog"
 
 #: ../gramps/gen/lib/srcattrtype.py:552
 msgid "4"
 msgstr "4"
 
 #: ../gramps/gen/lib/srcattrtype.py:553
-#, fuzzy
 msgid "5 volumes"
-msgstr "Sloupce"
+msgstr "5 svazků"
 
 #: ../gramps/gen/lib/srcattrtype.py:554
 msgid "gramps-project.org"
@@ -7197,7 +7148,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:565
 msgid "City where author resides or wrote."
-msgstr ""
+msgstr "Město, kde autor žije nebo píše."
 
 #: ../gramps/gen/lib/srcattrtype.py:566
 #: ../gramps/plugins/textreport/simplebooktitle.py:132
@@ -7222,7 +7173,7 @@ msgstr "Jméno osoby která sestavila pramen."
 
 #: ../gramps/gen/lib/srcattrtype.py:571
 msgid "The name of the creator of the artifact."
-msgstr ""
+msgstr "Jméno tvůrce artefaktu."
 
 #: ../gramps/gen/lib/srcattrtype.py:572
 msgid "Acknowledgement of writers and contributors"
@@ -7230,7 +7181,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:573
 msgid "The range of years which are present in the source."
-msgstr ""
+msgstr "Rozsah let obsažených v prameni."
 
 #: ../gramps/gen/lib/srcattrtype.py:574
 msgid "Some important detail of the source."
@@ -7238,7 +7189,7 @@ msgstr "Důležité podrobnosti o pramenu."
 
 #: ../gramps/gen/lib/srcattrtype.py:575
 msgid "District as handled by Census"
-msgstr ""
+msgstr "Okres v působnosti sčítání"
 
 #: ../gramps/gen/lib/srcattrtype.py:576
 msgid "The subdivision of a larger group that is handled in the source."
@@ -7249,9 +7200,8 @@ msgid "The Editor of a multi-author book."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:578
-#, fuzzy
 msgid "The title of a specific file in a source."
-msgstr "Název kalendáře"
+msgstr "Titulek konkrétního souboru v prameni"
 
 #: ../gramps/gen/lib/srcattrtype.py:579
 msgid "Date of submitting the document to a clerk or court."
@@ -7259,20 +7209,19 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:580
 msgid "Accession method to the file"
-msgstr ""
+msgstr "Metoda přístupu k souboru"
 
 #: ../gramps/gen/lib/srcattrtype.py:581
-#, fuzzy
 msgid "Number to indicate a file"
-msgstr "Počet jednotlivců"
+msgstr "Číslo udávající soubor"
 
 #: ../gramps/gen/lib/srcattrtype.py:582
 msgid "A grouping unit for a number of files in a source."
-msgstr ""
+msgstr "Jednotka pro seskupení počtu souborů v prameni."
 
 #: ../gramps/gen/lib/srcattrtype.py:583
 msgid "ID of a Microfilm."
-msgstr ""
+msgstr "ID mikrofilmu."
 
 #: ../gramps/gen/lib/srcattrtype.py:584
 msgid "The type of the microfilm."
@@ -7295,17 +7244,16 @@ msgid "Household of interest on a census."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:589
-#, fuzzy
 msgid "ID to identify the source or citation part"
-msgstr "Unikátní ID identifikující citaci"
+msgstr "ID pro identifikaci části pramene nebo citace"
 
 #: ../gramps/gen/lib/srcattrtype.py:590
 msgid "Institution that issued the source."
-msgstr ""
+msgstr "Instituce, která pramen vydala."
 
 #: ../gramps/gen/lib/srcattrtype.py:591
 msgid "Date the source was issued."
-msgstr ""
+msgstr "Datum vydání pramene."
 
 #: ../gramps/gen/lib/srcattrtype.py:592
 msgid "A range of magazine, journal, ... issues covered in the source"
@@ -7324,7 +7272,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:595
 msgid "City that is relevant."
-msgstr ""
+msgstr "Město, které je relevantní."
 
 #: ../gramps/gen/lib/srcattrtype.py:596
 msgid "A number."
@@ -7347,17 +7295,18 @@ msgstr "Název archivu (ve kterém je pramen uložen)."
 
 #: ../gramps/gen/lib/srcattrtype.py:600
 msgid "Year the original source was published/created"
-msgstr ""
+msgstr "Rok vytvoření/publikace původního pramene"
 
 #: ../gramps/gen/lib/srcattrtype.py:601
 msgid "The page or page(s) relevant for the citation"
-msgstr ""
+msgstr "Stránka nebo stránky relevantní k citaci"
 
 #: ../gramps/gen/lib/srcattrtype.py:602
 msgid ""
 "The range of the pages in the source. The page given for a citation must be "
 "in this range."
 msgstr ""
+"Rozsah stránek pramene. Stránka uvedená v citaci musí být v tomto rozsahu."
 
 #: ../gramps/gen/lib/srcattrtype.py:603
 msgid "Where in or on the source the citation piece can be found."
@@ -7365,7 +7314,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:604
 msgid "Where the material originated from."
-msgstr ""
+msgstr "Odkud materiál pochází."
 
 #: ../gramps/gen/lib/srcattrtype.py:605
 #: ../gramps/gui/glade/editcitation.glade.h:28
@@ -7390,11 +7339,11 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:610
 msgid "The genealogical or scientific research project."
-msgstr ""
+msgstr "Projekt genealogického nebo vědeckého výzkumu."
 
 #: ../gramps/gen/lib/srcattrtype.py:611
 msgid "The Microfilm role."
-msgstr ""
+msgstr "Svitek mikrofilmu."
 
 #: ../gramps/gen/lib/srcattrtype.py:612
 msgid ""
@@ -8269,9 +8218,8 @@ msgid "Updated"
 msgstr "Aktualizováno"
 
 #: ../gramps/gen/plug/utils.py:250
-#, fuzzy
 msgid "updates|New"
-msgstr "aktualizovat"
+msgstr "Nové"
 
 #: ../gramps/gen/plug/utils.py:283 ../gramps/gen/plug/utils.py:290
 #, python-format
@@ -8570,7 +8518,7 @@ msgstr "datum týkající se úmrtí potomka"
 #: ../gramps/gen/utils/alive.py:341
 #, python-format
 msgid "Database error: loop in %s's descendants"
-msgstr ""
+msgstr "Chyba databáze: smyčka v %s's  potomcích"
 
 #: ../gramps/gen/utils/alive.py:367 ../gramps/gen/utils/alive.py:413
 msgid "ancestor birth date"
@@ -8589,9 +8537,9 @@ msgid "ancestor death-related date"
 msgstr "datum týkající se úmrtí předka"
 
 #: ../gramps/gen/utils/alive.py:457
-#, fuzzy, python-format
+#, python-format
 msgid "Database error: loop in %s's ancestors"
-msgstr "Chyba databáze: %s je definován jako svůj následovník"
+msgstr "Chyba databáze: smyčka v %s's  předcích"
 
 #. no evidence, must consider alive
 #: ../gramps/gen/utils/alive.py:504
@@ -8617,12 +8565,11 @@ msgid "%(father)s and %(mother)s"
 msgstr "%(father)s a %(mother)s"
 
 #: ../gramps/gen/utils/image.py:125
-#, fuzzy
 msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
 msgstr ""
-"POZOR: modul PIL nebyl nahrán. Funkčnost ořezu obrázků ve zprávách nebude "
+"POZOR: modul PIL nebyl nahrán. Funkčnost ořezu obrázků v sestavách nebude "
 "dostupná."
 
 #: ../gramps/gen/utils/grampslocale.py:69
@@ -10299,7 +10246,7 @@ msgstr ""
 #: ../gramps/gui/dbman.py:657
 #, python-format
 msgid "%s (copy, %s)"
-msgstr ""
+msgstr "%s (copy, %s)"
 
 #: ../gramps/gui/dbman.py:679
 msgid "Repair Family Tree?"
@@ -11348,7 +11295,7 @@ msgstr "Výběr data"
 
 #: ../gramps/gui/editors/editdate.py:272
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
-msgstr ""
+msgstr "Opravte datum nebo přepněte z '{cur_mode}' do '{text_mode}'"
 
 #: ../gramps/gui/editors/editevent.py:65
 msgid "manual|Editing_Information_About_Events"
@@ -11826,7 +11773,7 @@ msgstr "Gramps_4.1_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_3"
 
 #: ../gramps/gui/editors/editname.py:161
 msgid "manpage section id|Name_Editor"
-msgstr ""
+msgstr "Editor jmen"
 
 #: ../gramps/gui/editors/editname.py:173
 #: ../gramps/gui/editors/editperson.py:309
@@ -12123,9 +12070,8 @@ msgid "Delete Place (%s)"
 msgstr "Odstranit místo (%s)"
 
 #: ../gramps/gui/editors/editplaceref.py:55
-#, fuzzy
 msgid "Place Reference Editor"
-msgstr "Editor odkazů osob"
+msgstr "Editor odkazů míst"
 
 #: ../gramps/gui/editors/editplaceref.py:70
 #, fuzzy
@@ -12344,7 +12290,7 @@ msgstr "Také rodinné události kde osoba je manželka/manžel"
 
 #: ../gramps/gui/editors/filtereditor.py:577
 msgid "Only include primary participants"
-msgstr ""
+msgstr "Zahrnout pouze přímé účastníky"
 
 #: ../gramps/gui/editors/filtereditor.py:600
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:81
@@ -12582,39 +12528,32 @@ msgid "Source: Abbreviation"
 msgstr "Pramen: Zkratka"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
-#, fuzzy
 msgid "Source: Publication"
-msgstr "Pramen: Zkratka"
+msgstr "Pramen: Publikace"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:113
-#, fuzzy
 msgid "Source: Note"
-msgstr "Poznámka k prameni"
+msgstr "Pramen: Poznámka"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
-#, fuzzy
 msgid "Citation: ID"
-msgstr "Citace"
+msgstr "Citace: ID"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
-#, fuzzy
 msgid "Citation: Volume/Page"
-msgstr "Ročník/Stránka"
+msgstr "Citace: Svazek/Strana"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116
-#, fuzzy
 msgid "Citation: Date"
-msgstr "Poznámka k citaci"
+msgstr "Citace: Datum"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
-#, fuzzy
 msgid "Citation: Minimum Confidence|Min. Conf."
-msgstr "Min. důvěrnost"
+msgstr "Citace: Min. důvěrnost"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:118
-#, fuzzy
 msgid "Citation: Note"
-msgstr "Poznámka k citaci"
+msgstr "Citace: Poznámka"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:109
@@ -13969,9 +13908,8 @@ msgid "Select a person that has an association to the edited person."
 msgstr "Vyberte osobu, která má asociaci na upravovanou osobu."
 
 #: ../gramps/gui/glade/editplace.glade.h:1
-#, fuzzy
 msgid "_Place Title:"
-msgstr "Název místa"
+msgstr "Název _místa:"
 
 #: ../gramps/gui/glade/editplace.glade.h:2
 msgid "L_atitude:"
@@ -14022,7 +13960,7 @@ msgstr "Unikátní ID identifikující místo"
 #: ../gramps/gui/glade/editplace.glade.h:13
 #: ../gramps/gui/glade/mergeplace.glade.h:11
 msgid "Code:"
-msgstr ""
+msgstr "Kód:"
 
 #: ../gramps/gui/glade/editplace.glade.h:14
 msgid "Code associated with this place. Eg Country Code or Postal Code."
@@ -15099,7 +15037,6 @@ msgid "Danger: This is unstable code!"
 msgstr "POZOR: Toto je nestabilní vývojové vydání!"
 
 #: ../gramps/gui/grampsgui.py:218
-#, fuzzy
 msgid ""
 "This Gramps 4.1-trunk is a development release. This version is not meant "
 "for normal usage. Use at your own risk.\n"
@@ -15114,7 +15051,7 @@ msgid ""
 "<b>BACKUP</b> your existing databases before opening them with this version, "
 "and make sure to export your data to XML every now and then."
 msgstr ""
-"Gramps 3.x-trunk  je vývojové vydání. Tato verze není určena pro normální "
+"Gramps 4.1-trunk je vývojové vydání. Tato verze není určena pro normální "
 "použití. Používáte ji na vlastní riziko.\n"
 "\n"
 "Tato verze může:\n"
@@ -16423,9 +16360,8 @@ msgstr "Vybrat citaci nebo pramen"
 
 #: ../gramps/gui/selectors/selectcitation.py:67
 #: ../gramps/plugins/view/citationtreeview.py:95
-#, fuzzy
 msgid "Source: Title or Citation: Volume/Page"
-msgstr "Pramen nebo citace"
+msgstr "Pramen: Název nebo citace: Svazek/Strana"
 
 #: ../gramps/gui/selectors/selectcitation.py:69
 #: ../gramps/gui/selectors/selectevent.py:68
@@ -16550,7 +16486,7 @@ msgstr ""
 
 #: ../gramps/gui/utils.py:379
 msgid "Error from external program"
-msgstr ""
+msgstr "Chyba externího programu"
 
 #: ../gramps/gui/utils.py:596
 msgid ""
@@ -18151,17 +18087,17 @@ msgid "Reading database..."
 msgstr "Databáze se načítá..."
 
 #: ../gramps/plugins/drawreport/calendarreport.py:365
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s, birth"
-msgstr "%(person)s, narozen(a)%(relation)s"
+msgstr "%(person)s, narození"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:368
-#, fuzzy, python-format
+#, python-format
 msgid "%(person)s, %(age)d"
 msgid_plural "%(person)s, %(age)d"
-msgstr[0] "%(person)s, %(age)d%(relation)s"
-msgstr[1] "%(person)s, %(age)d%(relation)s"
-msgstr[2] "%(person)s, %(age)d%(relation)s"
+msgstr[0] "%(person)s, %(age)d"
+msgstr[1] "%(person)s, %(age)d"
+msgstr[2] "%(person)s, %(age)d"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:424
 #: ../gramps/plugins/textreport/birthdayreport.py:381
@@ -19255,7 +19191,7 @@ msgstr "Přeložit záhlaví"
 
 #: ../gramps/plugins/export/exportcsv.py:350
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
-msgstr ""
+msgstr "CSV export nepodporuje jiné než primární příjmení, {count} zahozeno"
 
 #: ../gramps/plugins/export/exportcsv.py:367
 #: ../gramps/plugins/importer/importcsv.py:197
@@ -19481,9 +19417,9 @@ msgstr "Dvojklikem zobrazit %d osob"
 #: ../gramps/plugins/gramplet/ancestor.py:144
 #: ../gramps/plugins/gramplet/descendant.py:136
 #: ../gramps/plugins/gramplet/descendant.py:144
-#, fuzzy, python-format
+#, python-format
 msgid "%(abbr)s %(date)s"
-msgstr "%(event)s %(date)s"
+msgstr "%(abbr)s %(date)s"
 
 #: ../gramps/plugins/gramplet/attributes.py:43
 msgid ""
@@ -19521,9 +19457,8 @@ msgid "<No Citation>"
 msgstr "<No Citation>"
 
 #: ../gramps/plugins/gramplet/eval.py:78
-#, fuzzy
 msgid "Evaluation"
-msgstr "Vyhodnocovací okno"
+msgstr "Vyhodnocení"
 
 #: ../gramps/plugins/gramplet/eval.py:79
 msgid "Output"
@@ -19531,7 +19466,7 @@ msgstr "Výstup"
 
 #: ../gramps/plugins/gramplet/eval.py:80
 msgid "Error"
-msgstr ""
+msgstr "Chyba"
 
 #: ../gramps/plugins/gramplet/eval.py:83
 msgid "Apply"
@@ -19966,7 +19901,7 @@ msgstr "Metadata obrázku"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:413
 msgid "GExiv2 module not loaded."
-msgstr ""
+msgstr "Modul GExiv2 nebyl nahrán."
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:414
 #, fuzzy
@@ -21943,7 +21878,7 @@ msgstr "importovat GeneWeb"
 
 #: ../gramps/plugins/importer/importgeneweb.py:828
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
-msgstr ""
+msgstr "Neplatné datum {date} v {gw_snippet}, datum bude zachováno jako text."
 
 #: ../gramps/plugins/importer/importgpkg.py:73
 #, python-format
@@ -22106,12 +22041,15 @@ msgstr "Import VCard verze %s není  podporován Gramps."
 #: ../gramps/plugins/importer/importvcard.py:482
 msgid "Invalid date {date} in BDAY {vcard_snippet}, preserving date as text."
 msgstr ""
+"Neplatné datum {date} v BDAY {vcard_snippet}, datum bude zachováno jako text."
 
 #: ../gramps/plugins/importer/importvcard.py:489
 msgid ""
 "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date "
 "as text."
 msgstr ""
+"Datum {vcard_snippet} není ve správném formátu rrr-mm-dd, datum bude "
+"zachováno jako text."
 
 #. feature requests 2356, 1658: avoid genitive form
 #. -------------------------------------------------------------------------
@@ -22437,7 +22375,7 @@ msgstr "Každý odkaz na poznámku musí mít 'hlink' atribut.."
 #. but you may re-order them if needed.
 #: ../gramps/plugins/importer/importxml.py:2497
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
-msgstr ""
+msgstr "Neplatné daum {date} vXML {xml}, XML bude zachováno jako text"
 
 #: ../gramps/plugins/importer/importxml.py:2547
 #, python-format
@@ -26341,7 +26279,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libplaceview.py:96
 #: ../gramps/plugins/view/placetreeview.py:73
 msgid "Code"
-msgstr ""
+msgstr "Kód"
 
 #: ../gramps/plugins/lib/libplaceview.py:111
 msgid "Edit the selected place"
@@ -30397,9 +30335,8 @@ msgid "Reordering Source IDs"
 msgstr "Přeskupují se ID pramenů"
 
 #: ../gramps/plugins/tool/reorderids.py:130
-#, fuzzy
 msgid "Reordering Citation IDs"
-msgstr "Přeskupují se ID rodin"
+msgstr "Přeskupují se ID citací"
 
 #: ../gramps/plugins/tool/reorderids.py:140
 msgid "Reordering Place IDs"
@@ -31431,16 +31368,15 @@ msgstr "Modul OsmGpsMap nebyl nahrán. OsmGpsMap musí být >= 0.8. váš je %s"
 
 #: ../gramps/plugins/view/geography.gpr.py:66
 msgid "OsmGpsMap module not loaded."
-msgstr ""
+msgstr "Modul OsmGpsMap nebyl nahrán."
 
 #: ../gramps/plugins/view/geography.gpr.py:67
-#, fuzzy
 msgid ""
 "Geography functionality will not be available.\n"
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?"
 "title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 msgstr ""
-"Modul OsmGpsMap nebyl nahrán. Geografické funkce nebudou k dispozici.\n"
+"Geografické funkce nebudou k dispozici.\n"
 "Překladem modulu pro Gramps vás provede http://www.gramps-project.org/wiki/"
 "index.php?title=GEPS_029:_GTK3-"
 "GObject_introspection_Conversion#OsmGpsMap_for_Geography"
@@ -34438,6 +34374,12 @@ msgid ""
 "relationships between various people, places and events. All of your "
 "research is kept organized, searchable and as precise as you need it to be."
 msgstr ""
+"Gramps je genealogický program, který je dostatečně intuitivní pro "
+"amatérského, ale zároveň  svými vlastnostmi uspokojí i profesionálního "
+"genealoga.  Dává vám možnost zaznamenat nespočet podrobností o životě "
+"jedince stejně jako popsat komplexní vztahy mezi různými lidmi, místy a "
+"událostmi. Celý váš výzkum je organizovaný s možností prohledávání a tak "
+"precizní jak od něj požadujete."
 
 #~ msgid "death event without date"
 #~ msgstr "událost úmrtí bez data"
