@@ -33,12 +33,12 @@ from __future__ import print_function
 # Debugging utilities
 #
 #-------------------------------------------------------------------------
-def profile(func, *args):
+def profile(func, *args, **kwargs):
     import hotshot.stats
 
     prf = hotshot.Profile('mystats.profile')
     print("Start")
-    prf.runcall(func, *args)
+    r = prf.runcall(func, *args, **kwargs)
     print("Finished")
     prf.close()
     print("Loading profile")
@@ -48,6 +48,7 @@ def profile(func, *args):
     stats.sort_stats('time', 'calls')
     stats.print_stats(100)
     stats.print_callers(100)
+    return r
 
 def format_exception(tb_type=None, tb_value=None, tb=None):
     """
