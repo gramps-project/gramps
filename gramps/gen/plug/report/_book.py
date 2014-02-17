@@ -4,7 +4,7 @@
 # Copyright (C) 2003-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2011-2012  Paul Franklin
+# Copyright (C) 2011-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -33,6 +33,7 @@
 #-------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+import copy
 
 #------------------------------------------------------------------------
 #
@@ -167,6 +168,13 @@ class Book(object):
 
         self.name = ""
         self.dbname = ""
+        self.paper_name = None
+        self.paper_orientation = None
+        self.paper_metric = None
+        self.paper_custom_size = None
+        self.paper_margins = None
+        self.paper_format = None
+        self.paper_output = None
         if obj:
             self.item_list = obj.item_list
         else:
@@ -253,6 +261,140 @@ class Book(object):
         Return list of items in the current book.
         """
         return self.item_list
+
+    def set_paper_name(self, paper_name):
+        """
+        Set the paper name for the Book.
+        @param paper_name: name of the paper to set.
+        @type paper_name: str
+        """
+        self.paper_name = paper_name
+
+    def get_paper_name(self):
+        """
+        Return the paper name of the Book.
+        @returns: returns the paper name
+        @rtype: str
+        """
+        return self.paper_name
+
+    def set_orientation(self, orientation):
+        """
+        Set the paper orientation for the Book.
+        @param orientation: orientation to set. Possible values are
+            PAPER_LANDSCAPE or PAPER_PORTRAIT
+        @type orientation: int
+        """
+        self.paper_orientation = orientation
+
+    def get_orientation(self):
+        """
+        Return the paper orientation for the Book.
+        @returns: returns the selected orientation. Valid values are
+            PAPER_LANDSCAPE or PAPER_PORTRAIT
+        @rtype: int
+        """
+        return self.paper_orientation
+
+    def set_paper_metric(self, paper_metric):
+        """
+        Set the paper metric for the Book.
+        @param paper_metric: whether to use metric.
+        @type paper_metric: boolean
+        """
+        self.paper_metric = paper_metric
+
+    def get_paper_metric(self):
+        """
+        Return the paper metric of the Book.
+        @returns: returns whether to use metric
+        @rtype: boolean
+        """
+        return self.paper_metric
+
+    def set_custom_paper_size(self, paper_size):
+        """
+        Set the custom paper size for the Book.
+        @param paper_size: paper size to set in cm.
+        @type paper_size: [float, float]
+        """
+        self.paper_custom_size = paper_size
+
+    def get_custom_paper_size(self):
+        """
+        Return the custom paper size for the Book.
+        @returns: returns the custom paper size in cm
+        @rtype: [float, float]
+        """
+        return self.paper_custom_size
+
+    def set_margins(self, margins):
+        """
+        Set the paper margins for the Book.
+        @param margins: margins to set. Possible values are floats in cm
+        @type margins: [float, float, float, float]
+        """
+        self.paper_margins = copy.copy(margins)
+
+    def get_margins(self):
+        """
+        Return the paper margins for the Book.
+        @returns margins: returns the margins, floats in cm
+        @rtype margins: [float, float, float, float]
+        """
+        return copy.copy(self.paper_margins)
+
+    def set_margin(self, pos, value):
+        """
+        Set a paper margin for the Book.
+        @param pos: Position of margin [left, right, top, bottom]
+        @param value: floating point in cm
+        @type pos: int
+        @type value: float
+        """
+        self.paper_margins[pos] = value
+
+    def get_margin(self, pos):
+        """
+        Return a paper margin for the Book.
+        @param pos: Position of margin [left, right, top, bottom]
+        @type pos: int
+        @returns: float cm of margin
+        @rtype: float
+        """
+        return self.paper_margins[pos]
+
+    def set_format_name(self, format_name):
+        """
+        Set the format name for the Book.
+        @param format_name: name of the format to set.
+        @type format_name: str
+        """
+        self.paper_format = format_name
+
+    def get_format_name(self):
+        """
+        Return the format name of the Book.
+        @returns: returns the format name
+        @rtype: str
+        """
+        return self.paper_format
+
+    def set_output(self, output):
+        """
+        Set the output for the Book.
+        @param output: name of the output to set.
+        @type output: str
+        """
+        self.paper_output = output
+
+    def get_output(self):
+        """
+        Return the output of the Book.
+        @returns: returns the output name
+        @rtype: str
+        """
+        return self.paper_output
 
 #------------------------------------------------------------------------
 #
@@ -358,6 +500,24 @@ class BookList(object):
 
                 f.write('    <style name="%s"/>\n' % item.get_style_name() )
                 f.write('  </item>\n')
+            if book.get_paper_name():
+                f.write('  <paper name="%s"/>\n' % book.get_paper_name() )
+            if book.get_orientation() is not None: # 0 is legal
+                f.write('  <orientation value="%s"/>\n' % 
+                        book.get_orientation() )
+            if book.get_paper_metric() is not None: # 0 is legal
+                f.write('  <metric value="%s"/>\n' % book.get_paper_metric() )
+            if book.get_custom_paper_size():
+                size = book.get_custom_paper_size()
+                f.write('  <size value="%f %f"/>\n' % (size[0], size[1]) )
+            if book.get_margins():
+                for pos in range(len(book.get_margins())):
+                    f.write('  <margin number="%s" value="%f"/>\n' %
+                                (pos, book.get_margin(pos)) )
+            if book.get_format_name():
+                f.write('  <format name="%s"/>\n' % book.get_format_name() )
+            if book.get_output():
+                f.write('  <output name="%s"/>\n' % book.get_output() )
             f.write('</book>\n')
 
         f.write('</booklist>\n')
@@ -416,6 +576,13 @@ class BookParser(handler.ContentHandler):
             self.b.set_name(self.bname)
             self.dbname = attrs['database']
             self.b.set_dbname(self.dbname)
+            self.b_p_name = None
+            self.b_p_orient = None
+            self.b_p_metric = None
+            self.b_p_size = None
+            self.b_p_margins = None
+            self.b_p_format = None
+            self.b_p_output = None
         elif tag == "item":
             self.i = BookItem(self.dbase, attrs['name'])
             self.o = {}
@@ -431,6 +598,23 @@ class BookParser(handler.ContentHandler):
             self.an_o_value.append(converter(attrs['value']))
         elif tag == "style":
             self.s = attrs['name']
+        elif tag == 'paper':
+            self.b_p_name = attrs['name']
+        elif tag == 'orientation':
+            self.b_p_orient = int(attrs['value'])
+        elif tag == 'metric':
+            self.b_p_metric = int(attrs['value'])
+        elif tag == 'size':
+            width, height = attrs['value'].split()
+            self.b_p_size = [float(width), float(height)]
+        elif tag == 'margin':
+            if self.b_p_margins is None:
+                self.b_p_margins = [0.0, 0.0, 0.0, 0.0]
+            self.b_p_margins[int(attrs['number'])] = float(attrs['value'])
+        elif tag == 'format':
+            self.b_p_format = attrs['name']
+        elif tag == 'output':
+            self.b_p_output = attrs['name']
         else:
             pass
 
@@ -443,6 +627,20 @@ class BookParser(handler.ContentHandler):
             self.i.set_style_name(self.s)
             self.b.append_item(self.i)
         elif tag == "book":
+            if self.b_p_name:
+                self.b.set_paper_name(self.b_p_name)
+            if self.b_p_orient is not None: # 0 is legal
+                self.b.set_orientation(self.b_p_orient)
+            if self.b_p_metric is not None: # 0 is legal
+                self.b.set_paper_metric(self.b_p_metric)
+            if self.b_p_size:
+                self.b.set_custom_paper_size(self.b_p_size)
+            if self.b_p_margins:
+                self.b.set_margins(self.b_p_margins)
+            if self.b_p_format:
+                self.b.set_format_name(self.b_p_format)
+            if self.b_p_output:
+                self.b.set_output(self.b_p_output)
             self.booklist.set_book(self.bname, self.b)
 
 #-------------------------------------------------------------------------
