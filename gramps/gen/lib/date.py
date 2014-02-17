@@ -4,7 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2009-2013  Douglas S. Blank
 # Copyright (C) 2013       Paul Franklin
-# Copyright (C) 2013       Vassilii Khachaturov
+# Copyright (C) 2013-2014  Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,8 +20,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
-# $Id$
 
 """Support for dates."""
 
@@ -530,6 +528,7 @@ class Date(object):
     CAL_PERSIAN    = 4
     CAL_ISLAMIC    = 5
     CAL_SWEDISH    = 6
+    CALENDARS = range(7)
 
     NEWYEAR_JAN1   = 0 # CODE
     NEWYEAR_MAR1   = 1
@@ -1186,8 +1185,7 @@ class Date(object):
         """
         Set the calendar selected for the date.
         """
-        if val not in (Date.CAL_GREGORIAN, Date.CAL_JULIAN, Date.CAL_HEBREW, 
-                       Date.CAL_FRENCH, Date.CAL_PERSIAN, Date.CAL_ISLAMIC, Date.CAL_SWEDISH):
+        if val not in Date.CALENDARS:
             raise DateError("Invalid calendar")
         self.calendar = val
 
@@ -1600,11 +1598,12 @@ class Date(object):
         if quality not in (Date.QUAL_NONE, Date.QUAL_ESTIMATED, 
                            Date.QUAL_CALCULATED):
             raise DateError("Invalid quality")
-        if calendar not in (Date.CAL_GREGORIAN, Date.CAL_JULIAN,
-                            Date.CAL_HEBREW, Date.CAL_FRENCH,
-                            Date.CAL_PERSIAN, Date.CAL_ISLAMIC,
-                            Date.CAL_SWEDISH):
+        if calendar not in Date.CALENDARS:
             raise DateError("Invalid calendar")
+        if newyear != 0 and calendar_has_fixed_newyear(calendar):
+            raise DateError(
+                    "May not adjust newyear to {ny} for calendar {cal}".format(
+                        ny = newyear, cal = calendar))
 
         self.quality = quality
         self.modifier = modifier
