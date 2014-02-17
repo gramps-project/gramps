@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2007 Donald N. Allingham
+# Copyright (C) 2013-2014  Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,8 +18,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
-# $Id$
 
 """ Unittest for testing dates """
 
@@ -39,7 +38,7 @@ from ...datehandler import get_date_formats, set_format
 from ...datehandler import parser as _dp
 from ...datehandler import displayer as _dd
 from ...datehandler._datedisplay import DateDisplayEn
-from ...lib.date import Date, DateError, Today
+from ...lib.date import Date, DateError, Today, calendar_has_fixed_newyear
 
 date_tests = {}
 
@@ -518,6 +517,20 @@ class Test_set2(BaseDateTest):
     def test_set2_ymd_offset_raises_error_unless_compound(self):
         self._test_set2_function_raises_error_unless_compound(
                 lambda date: date.set2_yr_mon_day_offset(year=-1))
+
+class Test_set_newyear(BaseDateTest):
+    def test_raises_error_iff_calendar_has_fixed_newyear(self):
+        for cal in Date.CALENDARS:
+            d = Date(1111,2,3)
+            should_raise = calendar_has_fixed_newyear(cal)
+            message = "{name} {cal}".format(
+                    name = Date.calendar_names[cal],
+                    cal = cal)
+            try:
+                d.set(calendar=cal, newyear=2)
+                self.assertFalse(should_raise, message)
+            except DateError:
+                self.assertTrue(should_raise, message)
 
 if __name__ == "__main__":
     unittest.main()
