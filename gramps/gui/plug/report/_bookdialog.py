@@ -5,7 +5,7 @@
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Nick Hall
-# Copyright (C) 2011-2013  Paul Franklin
+# Copyright (C) 2011-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -475,6 +475,20 @@ class BookSelector(ManagedWindow):
         
         book:   the book object to load.
         """
+        if book.get_paper_name():
+            self.book.set_paper_name(book.get_paper_name())
+        if book.get_orientation() is not None: # 0 is legal
+            self.book.set_orientation(book.get_orientation())
+        if book.get_paper_metric() is not None: # 0 is legal
+            self.book.set_paper_metric(book.get_paper_metric())
+        if book.get_custom_paper_size():
+            self.book.set_custom_paper_size(book.get_custom_paper_size())
+        if book.get_margins():
+            self.book.set_margins(book.get_margins())
+        if book.get_format_name():
+            self.book.set_format_name(book.get_format_name())
+        if book.get_output():
+            self.book.set_output(book.get_output())
         if book.get_dbname() == self.db.get_save_path():
             same_db = 1
         else:
@@ -898,6 +912,21 @@ class BookDialog(DocReportDialog):
 
         response = self.window.run()
         if response == Gtk.ResponseType.OK:
+            handler = oh = self.options.handler
+            if self.book.get_paper_name() != handler.get_paper_name():
+                self.book.set_paper_name(handler.get_paper_name())
+            if self.book.get_orientation() != handler.get_orientation():
+                self.book.set_orientation(handler.get_orientation())
+            if self.book.get_paper_metric() != handler.get_paper_metric():
+                self.book.set_paper_metric(handler.get_paper_metric())
+            if self.book.get_custom_paper_size() != oh.get_custom_paper_size():
+                self.book.set_custom_paper_size(oh.get_custom_paper_size())
+            if self.book.get_margins() != handler.get_margins():
+                self.book.set_margins(handler.get_margins())
+            if self.book.get_format_name() != handler.get_format_name():
+                self.book.set_format_name(handler.get_format_name())
+            if self.book.get_output() != self.options.get_output():
+                self.book.set_output(self.options.get_output())
             try:
                 self.make_book()
             except (IOError, OSError) as msg:
@@ -967,6 +996,21 @@ class BookDialog(DocReportDialog):
             self.options = option_class
         if not self.is_from_saved_book:
             self.options.load_previous_values()
+        handler = self.options.handler
+        if self.book.get_paper_name():
+            handler.set_paper_name(self.book.get_paper_name())
+        if self.book.get_orientation() is not None: # 0 is legal
+            handler.set_orientation(self.book.get_orientation())
+        if self.book.get_paper_metric() is not None: # 0 is legal
+            handler.set_paper_metric(self.book.get_paper_metric())
+        if self.book.get_custom_paper_size():
+            handler.set_custom_paper_size(self.book.get_custom_paper_size())
+        if self.book.get_margins():
+            handler.set_margins(self.book.get_margins())
+        if self.book.get_format_name():
+            handler.set_format_name(self.book.get_format_name())
+        if self.book.get_output():
+            self.options.set_output(self.book.get_output())
 
 #------------------------------------------------------------------------
 #
