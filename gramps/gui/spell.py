@@ -128,7 +128,9 @@ class Spell(object):
                             #other installed one will also be available
                             self.gtkspell_spell.set_language("en")
                             #if that fails no spellchecker will be available
+                    self.textview.textbuffer.not_undoable_action = True
                     success = self.gtkspell_spell.attach(self.textview)
+                    self.textview.textbuffer.not_undoable_action = False
                     try:
                         #show decoded language codes in the context menu
                         #requires the iso-codes package from  http://pkg-isocodes.alioth.debian.org
