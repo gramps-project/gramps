@@ -150,6 +150,7 @@ class GeoClose(GeoGraphyView):
         self.minyear = 9999
         self.maxyear = 0
         self.refperson = None
+        self.refperson_bookmark = None
         self.nbplaces = 0
         self.nbmarkers = 0
         self.sort = []
@@ -196,17 +197,6 @@ class GeoClose(GeoGraphyView):
         """
         return 'Person'
 
-    def add_bookmark(self, obj):
-        mlist = self.selected_handles()
-        if mlist:
-            self.bookmarks.add(mlist[0])
-        else:
-            from gramps.gui.dialog import WarningDialog
-            WarningDialog(
-                _("Could Not Set a Bookmark"), 
-                _("A bookmark could not be set because "
-                  "no one was selected."))
-
     def goto_handle(self, handle=None):
         """
         Rebuild the tree with the given person handle as the root.
@@ -240,6 +230,9 @@ class GeoClose(GeoGraphyView):
             else:
                 self.message_layer.add_message(_("The other person is unknown"))
             self._createmap(self.refperson, color, self.place_list_ref, True)
+            if self.refperson_bookmark is None:
+                self.refperson_bookmark = self.refperson.get_handle()
+                self.add_bookmark(None, self.refperson_bookmark)
         else:
             self.message_layer.add_message(_("You must choose one reference person."))
             self.message_layer.add_message(_("Go to the person view and select "
@@ -303,6 +296,8 @@ class GeoClose(GeoGraphyView):
         """
         self.track = []
         self.skip_list = []
+        self.refperson = None
+        self.refperson_bookmark = None
         SelectPerson = SelectorFactory('Person')
         sel = SelectPerson(self.dbstate, self.uistate, self.track,
                            _("Select the person which will be our reference."),
@@ -553,7 +548,7 @@ class GeoClose(GeoGraphyView):
         add_item = Gtk.MenuItem()
         add_item.show()
         menu.append(add_item)
-        add_item = Gtk.MenuItem(label=_("Choose the reference person"))
+        add_item = Gtk.MenuItem(label=_("Choose and bookmark the new reference person"))
         add_item.connect("activate", self.selectPerson)
         add_item.show()
         menu.append(add_item)

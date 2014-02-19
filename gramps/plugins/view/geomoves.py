@@ -198,17 +198,6 @@ class GeoMoves(GeoGraphyView):
         """
         return 'Person'
 
-    def add_bookmark(self, obj):
-        mlist = self.selected_handles()
-        if mlist:
-            self.bookmarks.add(mlist[0])
-        else:
-            from gramps.gui.dialog import WarningDialog
-            WarningDialog(
-                _("Could Not Set a Bookmark"), 
-                _("A bookmark could not be set because "
-                  "no one was selected."))
-
     def goto_handle(self, handle=None):
         """
         Rebuild the tree with the given family handle as reference.
@@ -614,6 +603,12 @@ class GeoMoves(GeoGraphyView):
             center.connect("activate", self.center_here,
                            event, lat, lon, prevmark)
             itemoption.append(center)
+            person = self.dbstate.db.get_person_from_gramps_id(mark[8])
+            hdle = person.get_handle()
+            bookm = Gtk.MenuItem(label=_("Bookmark this person"))
+            bookm.show()
+            bookm.connect("activate", self.add_bookmark, hdle)
+            itemoption.append(bookm)
             menu.show()
             menu.popup(None, None,
                        lambda menu, data: (event.get_root_coords()[0],

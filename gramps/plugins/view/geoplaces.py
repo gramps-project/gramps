@@ -168,17 +168,6 @@ class GeoPlaces(GeoGraphyView):
         """
         return 'Place'
 
-    def add_bookmark(self, obj):
-        mlist = self.selected_handles()
-        if mlist:
-            self.bookmarks.add(mlist[0])
-        else:
-            from gramps.gui.dialog import WarningDialog
-            WarningDialog(
-                _("Could Not Set a Bookmark"), 
-                _("A bookmark could not be set because "
-                  "no one was selected."))
-
     def goto_handle(self, handle=None):
         """
         Rebuild the tree with the given places handle as the root.
@@ -341,6 +330,12 @@ class GeoPlaces(GeoGraphyView):
                 center.connect("activate", self.center_here,
                                event, lat, lon, prevmark)
                 itemoption.append(center)
+                place = self.dbstate.db.get_place_from_gramps_id(mark[9])
+                hdle = place.get_handle()
+                bookm = Gtk.MenuItem(label=_("Bookmark this place"))
+                bookm.show()
+                bookm.connect("activate", self.add_bookmark, hdle)
+                itemoption.append(bookm)
             message = "%s" % mark[0]
             prevmark = mark
         add_item = Gtk.MenuItem(label=message)
@@ -359,6 +354,12 @@ class GeoPlaces(GeoGraphyView):
         center.show()
         center.connect("activate", self.center_here, event, lat, lon, prevmark)
         itemoption.append(center)
+        place = self.dbstate.db.get_place_from_gramps_id(mark[9])
+        hdle = place.get_handle()
+        bookm = Gtk.MenuItem(label=_("Bookmark this place"))
+        bookm.show()
+        bookm.connect("activate", self.add_bookmark, hdle)
+        itemoption.append(bookm)
         menu.popup(None, None,
                    lambda menu, data: (event.get_root_coords()[0],
                                        event.get_root_coords()[1], True),
