@@ -128,7 +128,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
    <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
  </autotools>
 
-  <autotools id="osmgpsmap">
+  <autotools id="osmgpsmap" supports-non-srcdir-builds="no">
     <branch module="nzjrs/osm-gps-map" repo="github"/>
     <dependencies>
       <dep package="meta-gtk-osx-gtk3"/>
