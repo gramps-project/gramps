@@ -3,7 +3,8 @@
 #
 # Copyright (C) 2009  Florian Heinle
 # Copyright (C) 2010  Doug Blank <doug.blank@gmail.com>
-# Copyright (C) 2010       Benny Malengier
+# Copyright (C) 2010  Benny Malengier
+# Copyright (C) 2014  Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,13 +21,13 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """ 
 gtk textbuffer with undo functionality 
 """
 
 __all__ = ["UndoableStyledBuffer"]
+
+from contextlib import contextmanager
 
 import gtk
 
@@ -78,6 +79,25 @@ class UndoableStyledBuffer(StyledTextBuffer):
         StyledTextBuffer.__init__(self)
         self.connect('apply-tag', self.on_tag_insert_undoable)
         self.connect_after('apply-tag', self.on_tag_afterinsert_undoable)
+
+    @contextmanager
+    def undo_disabled(self):
+        """
+        Assures that not_undoable_action is False during the context.
+
+        Usage example (see src/gui/widgets/styledtexteditor.py)::
+        
+            with self.buffer.undo_disabled():
+                ... # heavy stuff like spell checking
+        """
+        oldflag = self.not_undoable_action 
+        self.not_undoable_action = True
+        try:
+            yield
+        except:
+            raise
+        finally:
+            self.not_undoable_action = oldflag
 
     def on_tag_insert_undoable(self, buffer, tag, start, end):
         if not self.undo_in_progress:

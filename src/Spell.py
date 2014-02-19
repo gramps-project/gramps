@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2005-2006  Donald N. Allingham
+# Copyright (C) 2014       Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -97,7 +98,8 @@ class Spell(object):
                 return
             else:
                 try:
-                    gtkspell_spell = gtkspell.Spell(self.textview)
+                    with self.textview.undo_disabled():
+                        gtkspell_spell = gtkspell.Spell(self.textview)
                     self._active_spellcheck = spellcheck_code
                 except:
                     # attaching the spellchecker will fail if

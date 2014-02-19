@@ -500,8 +500,8 @@ class StyledTextBuffer(UndoableBuffer):
             end = self.get_char_count()
             
         tagdict = {}
+        iter = self.get_iter_at_offset(start)
         for pos in range(start, end):
-            iter = self.get_iter_at_offset(pos)
             for tag in iter.get_tags():
                 name = tag.get_property('name')
                 if name in tagdict:
@@ -511,6 +511,7 @@ class StyledTextBuffer(UndoableBuffer):
                         tagdict[name].append((pos, pos))
                 else:
                     tagdict[name]=[(pos, pos)]
+            iter.forward_char()
         return tagdict
 
     def _find_tag_by_name(self, style, value):
