@@ -72,12 +72,12 @@ from the source directory.
    this for you.
 
  b) You downloaded the Gramps source code to a directory, and want to run it.
-    First, copy/rename the gramps/gen/const.py.in to gramps/gen/const.py. 
-    Edit this file if needed. Now you can start Gramps from the source code
-    directory with
+    You can start Gramps from the source code directory with
 
      python Gramps.py
 
+    See gramps/gen/const.py how Gramps finds his resource directories in case
+    you encounter problems.
 
 Custom directory installation
 -------------------------------------
