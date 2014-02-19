@@ -155,7 +155,7 @@ class StyleListDisplay(object):
             return
         
         name = cuni(self.list.model.get_value(node, 0))
-        if name == 'default': # the default style cannot be edited
+        if name == _('default'): # the default style cannot be edited
             return
         style = self.sheetlist.get_style_sheet(name)
         StyleEditor(name, style, self)
@@ -166,7 +166,7 @@ class StyleListDisplay(object):
         if not node:
             return
         name = cuni(self.list.model.get_value(node, 0))
-        if name == 'default': # the default style cannot be removed
+        if name == _('default'): # the default style cannot be removed
             return
         self.sheetlist.delete_style_sheet(name)
         self.redraw()
