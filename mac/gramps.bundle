@@ -82,6 +82,10 @@
   </binary>
 
   <binary>
+    ${prefix}/lib/libgoocanvas-2.0.9.dylib
+  </binary>
+
+  <binary>
     ${prefix}/lib/libhunspell-1.3.0.dylib
   </binary>
 
