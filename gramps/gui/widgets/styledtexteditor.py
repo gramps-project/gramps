@@ -178,6 +178,7 @@ class StyledTextEditor(Gtk.TextView):
     def __init__(self):
         """Setup initial instance variable values."""
         self.textbuffer = UndoableStyledBuffer()
+        self.undo_disabled = self.textbuffer.undo_disabled # see bug 7097
         self.textbuffer.connect('style-changed', self._on_buffer_style_changed)
         self.textbuffer.connect('changed', self._on_buffer_changed)
         GObject.GObject.__init__(self, buffer=self.textbuffer)

@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2005-2006  Donald N. Allingham
+# Copyright (C) 2014       Vassilii Khachaturov
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -128,9 +129,8 @@ class Spell(object):
                             #other installed one will also be available
                             self.gtkspell_spell.set_language("en")
                             #if that fails no spellchecker will be available
-                    self.textview.textbuffer.not_undoable_action = True
-                    success = self.gtkspell_spell.attach(self.textview)
-                    self.textview.textbuffer.not_undoable_action = False
+                    with self.textview.undo_disabled():
+                        success = self.gtkspell_spell.attach(self.textview)
                     try:
                         #show decoded language codes in the context menu
                         #requires the iso-codes package from  http://pkg-isocodes.alioth.debian.org
