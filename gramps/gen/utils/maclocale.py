@@ -199,6 +199,8 @@ def mac_setup_localization(glocale):
             apple_collation = _mac_get_gramps_defaults("Global",
                                                        "AppleCollationOrder")
 
+        if not apple_collation:
+            return (None, None)
         apple_collation = apple_collation.strip()
         if not apple_collation or apple_collation.startswith("root"):
             return (None, None)
