@@ -79,7 +79,9 @@ locale, leaving $LANGUAGE unset (which is the same as setting it to
 
 import sys, os, subprocess, locale
 import logging
-LOG = logging.getLogger("grampslocale")
+LOG = logging.getLogger(".gramps.gen.utils.grampslocale.mac")
+LOG.propagate = True
+#LOG.setLevel(logging.DEBUG)
 
 def mac_setup_localization(glocale):
     """
