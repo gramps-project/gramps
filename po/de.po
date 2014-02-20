@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-17 19:25+0100\n"
-"PO-Revision-Date: 2014-02-18 23:21+0100\n"
+"POT-Creation-Date: 2014-02-19 19:48+0100\n"
+"PO-Revision-Date: 2014-02-20 01:15+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1765,7 +1765,7 @@ msgid "Upgrade Statistics"
 msgstr "Aktualisiere Statistiken"
 
 #: ../gramps/gen/db/write.py:1287
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An attempt is made to save a reference key which is partly bytecode, this is "
 "not allowed.\n"
@@ -4463,9 +4463,8 @@ msgid "Places with the <tag>"
 msgstr "Orte mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:51
-#, fuzzy
 msgid "Matches places with the particular tag"
-msgstr "Entspricht Personen mit der vorgegebenen Markierung."
+msgstr "Liefert Orte mit der vorgegebenen Markierung."
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:51
 #: ../gramps/gui/glade/mergeplace.glade:245
@@ -4609,7 +4608,6 @@ msgstr "Entspricht Aufbewahrungsorten mit gegebener Anzahl von Referenzen."
 #: ../gramps/gui/merge/mergerepository.py:47
 #: ../gramps/gui/glade/mergerepository.glade:218
 #: ../gramps/gui/glade/mergerepository.glade:237
-#, fuzzy
 msgid "repo|Name:"
 msgstr "Name:"
 
@@ -4634,9 +4632,8 @@ msgid "Repositories with the <tag>"
 msgstr "Aufbewahrungsorte mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:51
-#, fuzzy
 msgid "Matches repositories with the particular tag"
-msgstr "Liefert Notizen mit der angegebenen Markierung"
+msgstr "Liefert Aufbewahrungsorte mit der angegebenen Markierung"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:46
 msgid "Repositories matching the <filter>"
@@ -4773,14 +4770,12 @@ msgstr ""
 "eine Zeichenfolge in der \"Signatur\" enthält."
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
-#, fuzzy
 msgid "Sources with the <tag>"
-msgstr "Notizen mit der <Markierung>"
+msgstr "Quellen mit der <Markierung>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:51
-#, fuzzy
 msgid "Matches sources with the particular tag"
-msgstr "Liefert Notizen mit der angegebenen Markierung"
+msgstr "Liefert Quellen mit der angegebenen Markierung"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:46
 msgid "Sources matching the <filter>"
@@ -5926,19 +5921,16 @@ msgid "Safe"
 msgstr "Safe"
 
 #: ../gramps/gen/lib/srcattrtype.py:113
-#, fuzzy
 msgid "Source Template"
-msgstr "Quellenfilter"
+msgstr "Quellenvorlage"
 
 #: ../gramps/gen/lib/srcattrtype.py:115
-#, fuzzy
 msgid "Events Recorded in Source"
-msgstr "Quellen-IDs neu ordnen"
+msgstr "In der Quelle aufgezeichnete Ereignisse"
 
 #: ../gramps/gen/lib/srcattrtype.py:116
-#, fuzzy
 msgid "Event Type Used for Citation"
-msgstr "Ereignisfundstellen"
+msgstr "Für Fundstellen verwendete Ereignisart"
 
 #: ../gramps/gen/lib/srcattrtype.py:117
 msgid "Role in Event Cited from"
@@ -5960,9 +5952,8 @@ msgid "Repository"
 msgstr "Aufbewahrungsort"
 
 #: ../gramps/gen/lib/srcattrtype.py:120
-#, fuzzy
 msgid "Repository Address"
-msgstr "Aufbewahrungsortref."
+msgstr "Aufbewahrungsortadresse"
 
 #: ../gramps/gen/lib/srcattrtype.py:121
 #, fuzzy
@@ -6050,9 +6041,8 @@ msgid "Address"
 msgstr "Adresse"
 
 #: ../gramps/gen/lib/srcattrtype.py:328
-#, fuzzy
 msgid "Affiliation"
-msgstr "Verknüpfung"
+msgstr "Zugehörigkeit"
 
 #: ../gramps/gen/lib/srcattrtype.py:329
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
@@ -6075,8 +6065,8 @@ msgstr "Autor"
 
 #: ../gramps/gen/lib/srcattrtype.py:332 ../gramps/gen/lib/srcmediatype.py:66
 #: ../gramps/gui/plug/report/_bookdialog.py:374
-#: ../gramps/gui/plug/report/_bookdialog.py:895
-#: ../gramps/gui/plug/report/_bookdialog.py:912
+#: ../gramps/gui/plug/report/_bookdialog.py:909
+#: ../gramps/gui/plug/report/_bookdialog.py:941
 #: ../gramps/gui/glade/book.glade:132
 msgid "Book"
 msgstr "Buch"
@@ -6153,9 +6143,8 @@ msgid "Credit line"
 msgstr "Farbig umrandet"
 
 #: ../gramps/gen/lib/srcattrtype.py:351
-#, fuzzy
 msgid "Date accessed"
-msgstr "Letzter Zugriff"
+msgstr "Zugriffsdatum"
 
 #: ../gramps/gen/lib/srcattrtype.py:352
 #, fuzzy
@@ -6192,9 +6181,8 @@ msgid "Edition"
 msgstr "Bearbeitung"
 
 #: ../gramps/gen/lib/srcattrtype.py:360
-#, fuzzy
 msgid "Editor"
-msgstr "Bearbeiten"
+msgstr "Bearbeiter"
 
 #: ../gramps/gen/lib/srcattrtype.py:361
 #, fuzzy
@@ -6219,9 +6207,8 @@ msgid "File location"
 msgstr "Position der Notiz"
 
 #: ../gramps/gen/lib/srcattrtype.py:366
-#, fuzzy
 msgid "File no."
-msgstr "Datei"
+msgstr "Akten Nr."
 
 #: ../gramps/gen/lib/srcattrtype.py:367
 msgid "File no. (Short)"
@@ -6241,19 +6228,16 @@ msgid "File unit (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:371
-#, fuzzy
 msgid "Film id"
-msgstr "Film"
+msgstr "Film ID"
 
 #: ../gramps/gen/lib/srcattrtype.py:372
-#, fuzzy
 msgid "Film publication place"
-msgstr "Veröffentlichung"
+msgstr "Filmveröffentlichungsort"
 
 #: ../gramps/gen/lib/srcattrtype.py:373
-#, fuzzy
 msgid "Film publisher"
-msgstr "Herausgeber"
+msgstr "Filmverleger"
 
 #: ../gramps/gen/lib/srcattrtype.py:374
 #, fuzzy
@@ -6308,9 +6292,8 @@ msgid "Institution (Short)"
 msgstr "Einleitungsnotiz"
 
 #: ../gramps/gen/lib/srcattrtype.py:385
-#, fuzzy
 msgid "Interviewer"
-msgstr "Internet"
+msgstr "Befrager"
 
 #: ../gramps/gen/lib/srcattrtype.py:386
 #, fuzzy
@@ -6337,9 +6320,8 @@ msgid "Item of interest (Short)"
 msgstr "Personen von Interesse"
 
 #: ../gramps/gen/lib/srcattrtype.py:391
-#, fuzzy
 msgid "Jurisdiction"
-msgstr "Ordination"
+msgstr "Zuständigkeitsbereich"
 
 #: ../gramps/gen/lib/srcattrtype.py:392
 msgid "Jurisdiction (Short)"
@@ -6367,9 +6349,8 @@ msgid "Number (Short)"
 msgstr "Standortnummer/Signatur"
 
 #: ../gramps/gen/lib/srcattrtype.py:398
-#, fuzzy
 msgid "Original repository"
-msgstr "Schreibe Aufbewahrungsorte"
+msgstr "Original Aufbewahrungsort"
 
 #: ../gramps/gen/lib/srcattrtype.py:399
 #, fuzzy
@@ -6377,9 +6358,8 @@ msgid "Original repository location"
 msgstr "Schreibe Aufbewahrungsorte"
 
 #: ../gramps/gen/lib/srcattrtype.py:400
-#, fuzzy
 msgid "Original year"
-msgstr "Original: "
+msgstr "Original Jahr"
 
 #: ../gramps/gen/lib/srcattrtype.py:401
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:85
@@ -6402,9 +6382,8 @@ msgid "Part"
 msgstr "Partner"
 
 #: ../gramps/gen/lib/srcattrtype.py:405
-#, fuzzy
 msgid "Place created"
-msgstr "Ortsbaum"
+msgstr "Ort erstellt"
 
 #: ../gramps/gen/lib/srcattrtype.py:406
 msgid "Position"
@@ -6426,24 +6405,20 @@ msgid "Professional credentials"
 msgstr "Persönliches Ereignis:"
 
 #: ../gramps/gen/lib/srcattrtype.py:410
-#, fuzzy
 msgid "Provenance"
-msgstr "Slowenisch"
+msgstr "Herkunft"
 
 #: ../gramps/gen/lib/srcattrtype.py:411
-#, fuzzy
 msgid "Publication format"
-msgstr "Publikationsinformation"
+msgstr "Veröffentlichungsformat"
 
 #: ../gramps/gen/lib/srcattrtype.py:412
-#, fuzzy
 msgid "Publication place"
-msgstr "Veröffentlichung"
+msgstr "Veröffentlichungsort"
 
 #: ../gramps/gen/lib/srcattrtype.py:413
-#, fuzzy
 msgid "Publication title"
-msgstr "Veröffentlichung"
+msgstr "Veröffentlichungstitel"
 
 #: ../gramps/gen/lib/srcattrtype.py:414
 #, fuzzy
@@ -6451,9 +6426,8 @@ msgid "Publication title (Short)"
 msgstr "Informationen zur Veröffentlichung"
 
 #: ../gramps/gen/lib/srcattrtype.py:415
-#, fuzzy
 msgid "Publication year"
-msgstr "Veröffentlichung"
+msgstr "Veröffentlichungsjahr"
 
 #: ../gramps/gen/lib/srcattrtype.py:416
 #, fuzzy
@@ -6506,9 +6480,8 @@ msgid "Research comment (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:426
-#, fuzzy
 msgid "Research project"
-msgstr "Informationen zum Forscher"
+msgstr "Forschungsprojekt"
 
 #: ../gramps/gen/lib/srcattrtype.py:427
 msgid "Roll"
@@ -6520,16 +6493,15 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:429
 msgid "Schedule"
-msgstr ""
+msgstr "Plan"
 
 #: ../gramps/gen/lib/srcattrtype.py:430
 msgid "Schedule (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:431
-#, fuzzy
 msgid "Section"
-msgstr "Abschnitte"
+msgstr "Abschnitt"
 
 #: ../gramps/gen/lib/srcattrtype.py:432
 #, fuzzy
@@ -6538,7 +6510,7 @@ msgstr "Abschnitte"
 
 #: ../gramps/gen/lib/srcattrtype.py:433
 msgid "Series"
-msgstr ""
+msgstr "Folge"
 
 #: ../gramps/gen/lib/srcattrtype.py:434
 msgid "Series no."
@@ -6563,7 +6535,7 @@ msgstr "Sitzungsaufzeichnungen"
 
 #: ../gramps/gen/lib/srcattrtype.py:439
 msgid "Sheet no."
-msgstr ""
+msgstr "Blatt Nr."
 
 #: ../gramps/gen/lib/srcattrtype.py:440
 msgid "Sheet no. (Short)"
@@ -6602,9 +6574,8 @@ msgid "Term (Short)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:448
-#, fuzzy
 msgid "Timestamp"
-msgstr "Zeit"
+msgstr "Zeitstempel"
 
 #: ../gramps/gen/lib/srcattrtype.py:449
 msgid "Timestamp (Short)"
@@ -6702,7 +6673,6 @@ msgid "Url (digital location)"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:456
-#, fuzzy
 msgid "Volume"
 msgstr "Band"
 
@@ -7445,17 +7415,17 @@ msgid "Video"
 msgstr "Video"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:66
-#: ../gramps/gui/widgets/styledtexteditor.py:473
+#: ../gramps/gui/widgets/styledtexteditor.py:474
 msgid "Bold"
 msgstr "Fett"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:67
-#: ../gramps/gui/widgets/styledtexteditor.py:471
+#: ../gramps/gui/widgets/styledtexteditor.py:472
 msgid "Italic"
 msgstr "Kursiv"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:68
-#: ../gramps/gui/widgets/styledtexteditor.py:475
+#: ../gramps/gui/widgets/styledtexteditor.py:476
 msgid "Underline"
 msgstr "Unterstrichen"
 
@@ -7480,9 +7450,9 @@ msgid "Superscript"
 msgstr "Hochgestellt"
 
 #: ../gramps/gen/lib/styledtexttagtype.py:74
-#: ../gramps/gui/widgets/styledtextbuffer.py:567
-#: ../gramps/gui/widgets/styledtextbuffer.py:604
-#: ../gramps/gui/widgets/styledtexteditor.py:487
+#: ../gramps/gui/widgets/styledtextbuffer.py:568
+#: ../gramps/gui/widgets/styledtextbuffer.py:605
+#: ../gramps/gui/widgets/styledtexteditor.py:488
 #: ../gramps/gui/glade/editlink.glade:169
 msgid "Link"
 msgstr "Verknüpfung"
@@ -7853,7 +7823,7 @@ msgid "GraphViz Layout"
 msgstr "GraphViz Layout"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:140
-#: ../gramps/gui/widgets/styledtexteditor.py:496
+#: ../gramps/gui/widgets/styledtexteditor.py:497
 msgid "Font family"
 msgstr "Schriftfamilie"
 
@@ -7867,7 +7837,7 @@ msgstr ""
 "http://www.nongnu.org/freefont/"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:149
-#: ../gramps/gui/widgets/styledtexteditor.py:508
+#: ../gramps/gui/widgets/styledtexteditor.py:509
 msgid "Font size"
 msgstr "Schriftgröße"
 
@@ -8126,7 +8096,7 @@ msgstr "Selbst definierte Größe"
 msgid "Value '%(val)s' not found for option '%(opt)s'"
 msgstr "Wert '%(val)s' nicht gefunden für Option '%(opt)s'"
 
-#: ../gramps/gen/plug/report/_book.py:75 ../gramps/gui/plug/_dialogs.py:60
+#: ../gramps/gen/plug/report/_book.py:76 ../gramps/gui/plug/_dialogs.py:60
 #: ../gramps/gui/plug/report/_bookdialog.py:89
 #: ../gramps/gui/viewmanager.py:120
 msgid "Unsupported"
@@ -9716,7 +9686,7 @@ msgstr "Beispiel"
 #: ../gramps/gui/configure.py:976
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
 #: ../gramps/gui/plug/_windows.py:154 ../gramps/gui/plug/_windows.py:210
-#: ../gramps/gui/plug/report/_bookdialog.py:654
+#: ../gramps/gui/plug/report/_bookdialog.py:668
 #: ../gramps/gui/glade/editfamily.glade:281
 #: ../gramps/gui/glade/editfamily.glade:609
 #: ../gramps/gui/glade/editlink.glade:242
@@ -10118,7 +10088,7 @@ msgstr ""
 #: ../gramps/gui/dbloader.py:333 ../gramps/gui/dbloader.py:347
 #: ../gramps/gui/dbloader.py:361 ../gramps/gui/dbloader.py:375
 #: ../gramps/gui/plug/report/_bookdialog.py:296
-#: ../gramps/gui/plug/report/_bookdialog.py:723
+#: ../gramps/gui/plug/report/_bookdialog.py:737
 #: ../gramps/gui/viewmanager.py:788 ../gramps/plugins/view/familyview.py:239
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -12851,7 +12821,7 @@ msgid "Font"
 msgstr "Schrift"
 
 #: ../gramps/gui/grampsgui.py:159
-#: ../gramps/gui/widgets/styledtexteditor.py:483
+#: ../gramps/gui/widgets/styledtexteditor.py:484
 msgid "Font Color"
 msgstr "Schriftfarbe"
 
@@ -14066,7 +14036,7 @@ msgid "You have made changes which have not been saved."
 msgstr "Deine Änderungen wurden noch nicht gespeichert."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:295
-#: ../gramps/gui/plug/report/_bookdialog.py:722
+#: ../gramps/gui/plug/report/_bookdialog.py:736
 msgid "Proceed"
 msgstr "Fortsetzen"
 
@@ -14095,11 +14065,11 @@ msgstr "Artikelname"
 msgid "Book selection list"
 msgstr "Liste zur Auswahl eines Buches"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:482
+#: ../gramps/gui/plug/report/_bookdialog.py:496
 msgid "Different database"
 msgstr "Andere Datenbank"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:483
+#: ../gramps/gui/plug/report/_bookdialog.py:497
 #, python-format
 msgid ""
 "This book was created with the references to database %s.\n"
@@ -14118,39 +14088,39 @@ msgstr ""
 "Deswegen wurde die Hauptperson für jeden Artikel auf die aktive Person dieser "
 "geöffneten Datenbank gesetzt."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:584
+#: ../gramps/gui/plug/report/_bookdialog.py:598
 msgid "No selected book item"
 msgstr "Kein gewähltes Buchelement"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:585
+#: ../gramps/gui/plug/report/_bookdialog.py:599
 msgid "Please select a book item to configure."
 msgstr "Bitte ein Buchelement zum konfigurieren wählen."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:648
+#: ../gramps/gui/plug/report/_bookdialog.py:662
 msgid "Setup"
 msgstr "Einrichten"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:658
+#: ../gramps/gui/plug/report/_bookdialog.py:672
 msgid "Book Menu"
 msgstr "Buchmenü"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:681
+#: ../gramps/gui/plug/report/_bookdialog.py:695
 msgid "Available Items Menu"
 msgstr "Verfügbare Artikel Menü"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:699
+#: ../gramps/gui/plug/report/_bookdialog.py:713
 msgid "No items"
 msgstr "Keine Elemente"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:699
+#: ../gramps/gui/plug/report/_bookdialog.py:713
 msgid "This book has no items."
 msgstr "Dieses Buch besitzt keine Elemente."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:710
+#: ../gramps/gui/plug/report/_bookdialog.py:724
 msgid "No book name"
 msgstr "Kein Buchname"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:711
+#: ../gramps/gui/plug/report/_bookdialog.py:725
 msgid ""
 "You are about to save away a book with no name.\n"
 "\n"
@@ -14160,16 +14130,16 @@ msgstr ""
 "\n"
 "Bitte gib ihm vor dem Speichern einen Namen."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:718
+#: ../gramps/gui/plug/report/_bookdialog.py:732
 msgid "Book name already exists"
 msgstr "Buchname existiert bereits"
 
-#: ../gramps/gui/plug/report/_bookdialog.py:719
+#: ../gramps/gui/plug/report/_bookdialog.py:733
 msgid "You are about to save away a book with a name which already exists."
 msgstr ""
 "Du bist dabei ein Buch mit einem bereits bestehenden Namen zu speichern."
 
-#: ../gramps/gui/plug/report/_bookdialog.py:915
+#: ../gramps/gui/plug/report/_bookdialog.py:944
 msgid "Gramps Book"
 msgstr "Gramps Buch"
 
@@ -14325,7 +14295,9 @@ msgstr "Der Bericht konnte nicht erzeugt werden"
 
 #: ../gramps/gui/plug/report/_stylecombobox.py:70
 #: ../gramps/gui/plug/report/_stylecombobox.py:89
-#: ../gramps/gui/plug/report/_styleeditor.py:116 gtklist.h:1
+#: ../gramps/gui/plug/report/_styleeditor.py:116
+#: ../gramps/gui/plug/report/_styleeditor.py:158
+#: ../gramps/gui/plug/report/_styleeditor.py:169 gtklist.h:1
 msgid "default"
 msgstr "Standardwert"
 
@@ -14479,15 +14451,15 @@ msgstr "Aufbewahrungsort wählen"
 msgid "Select Source"
 msgstr "Quelle wählen"
 
-#: ../gramps/gui/spell.py:89
+#: ../gramps/gui/spell.py:90
 msgid "Off"
 msgstr "Aus"
 
-#: ../gramps/gui/spell.py:92
+#: ../gramps/gui/spell.py:93
 msgid "On"
 msgstr "An"
 
-#: ../gramps/gui/spell.py:144
+#: ../gramps/gui/spell.py:146
 msgid "Spelling checker could not be attached to TextView"
 msgstr "Rechtschreibprüfung kann nicht zur Textansicht hinzugefügt werden."
 
@@ -15401,55 +15373,55 @@ msgstr "Beziehungen neu ordnen"
 msgid "Reorder Relationships: %s"
 msgstr "Beziehungen neu ordnen: %s"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:388
+#: ../gramps/gui/widgets/styledtexteditor.py:389
 msgid "Spellcheck"
 msgstr "Rechtschreibprüfung"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:393
+#: ../gramps/gui/widgets/styledtexteditor.py:394
 msgid "Search selection on web"
 msgstr "Suche Auswahl im Web"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:404
+#: ../gramps/gui/widgets/styledtexteditor.py:405
 msgid "_Send Mail To..."
 msgstr "E-Mail _senden an..."
 
-#: ../gramps/gui/widgets/styledtexteditor.py:405
+#: ../gramps/gui/widgets/styledtexteditor.py:406
 msgid "Copy _E-mail Address"
 msgstr "_E-Mail-Adresse kopieren"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:407
+#: ../gramps/gui/widgets/styledtexteditor.py:408
 msgid "_Open Link"
 msgstr "Link _öffnen"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:408
+#: ../gramps/gui/widgets/styledtexteditor.py:409
 msgid "Copy _Link Address"
 msgstr "_Linkadresse kopieren"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:411
+#: ../gramps/gui/widgets/styledtexteditor.py:412
 msgid "_Edit Link"
 msgstr "Verknüpfung _bearbeiten"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:485
+#: ../gramps/gui/widgets/styledtexteditor.py:486
 msgid "Background Color"
 msgstr "Hintergrundfarbe"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:489
+#: ../gramps/gui/widgets/styledtexteditor.py:490
 msgid "Clear Markup"
 msgstr "Markierungen löschen"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:529
+#: ../gramps/gui/widgets/styledtexteditor.py:530
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:532
+#: ../gramps/gui/widgets/styledtexteditor.py:533
 msgid "Redo"
 msgstr "Wiederherstellen"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:655
+#: ../gramps/gui/widgets/styledtexteditor.py:656
 msgid "Select font color"
 msgstr "Wähle Schriftfarbe"
 
-#: ../gramps/gui/widgets/styledtexteditor.py:657
+#: ../gramps/gui/widgets/styledtexteditor.py:658
 msgid "Select background color"
 msgstr "Wähle Hintergrundfarbe"
 
@@ -21300,8 +21272,8 @@ msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s starb %(month_year)s in %(death_place)s im Alter "
-"von %(age)s."
+"%(unknown_gender_name)s starb %(month_year)s in %(death_place)s im Alter von %"
+"(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:328
 #, python-format
@@ -21326,8 +21298,7 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of %"
 "(age)s."
 msgstr ""
-"%(female_name)s starb %(month_year)s in %(death_place)s im Alter von %"
-"(age)s."
+"%(female_name)s starb %(month_year)s in %(death_place)s im Alter von %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:337
 #, python-format
@@ -21633,8 +21604,7 @@ msgstr "Begraben am %(burial_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde begraben %(month_year)s in %(burial_place)s%"
-"(endnotes)s."
+"%(male_name)s wurde begraben %(month_year)s in %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:495
 #, python-format
@@ -21646,8 +21616,7 @@ msgstr "Er wurde %(month_year)s in %(burial_place)s%(endnotes)s begraben."
 msgid ""
 "%(female_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(female_name)s wurde begraben %(month_year)s in %(burial_place)s%"
-"(endnotes)s."
+"%(female_name)s wurde begraben %(month_year)s in %(burial_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:499
 #, python-format
@@ -21660,8 +21629,8 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde %(month_year)s in %(burial_place)s%"
-"(endnotes)s begraben."
+"%(unknown_gender_name)s wurde %(month_year)s in %(burial_place)s%(endnotes)s "
+"begraben."
 
 #: ../gramps/plugins/lib/libnarrate.py:503
 #, python-format
@@ -21954,8 +21923,7 @@ msgstr "Getauft %(baptism_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was baptized in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde getauft %(month_year)s in %(baptism_place)s%"
-"(endnotes)s."
+"%(male_name)s wurde getauft %(month_year)s in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:628
 #, python-format
@@ -21968,8 +21936,7 @@ msgid ""
 "%(female_name)s was baptized in %(month_year)s in %(baptism_place)s%"
 "(endnotes)s."
 msgstr ""
-"%(female_name)s wurde getauft %(month_year)s in %(baptism_place)s%"
-"(endnotes)s."
+"%(female_name)s wurde getauft %(month_year)s in %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:632
 #, python-format
@@ -22317,8 +22284,8 @@ msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in %"
 "(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde getauft %(month_year)s in %"
-"(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s wurde getauft %(month_year)s in %(christening_place)s%"
+"(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:769
 #, python-format
