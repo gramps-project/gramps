@@ -58,10 +58,19 @@ if repository.enumerate_versions("WebKit"):
         TOOLKIT = WEBKIT
     except:
         pass
-else:
-    _LOG.warning("Webkit module not loaded. "
-                 "Embedded web page viewing will not be available. "
-                 "Use your package manager to install gir1.2-webkit-3.0");
+
+from gramps.gen.config import config
+if TOOLKIT == NOWEB and not config.get('interface.ignore-webkit'):
+    from gramps.gen.constfunc import has_display, mac, win
+    if win() or mac(): # WebKit is not put into either Windows or Mac bundles
+        config.set('interface.ignore-webkit', True)
+    if has_display() and not config.get('interface.ignore-webkit'):
+        from gramps.gui.dialog import MessageHideDialog
+        title = _("Webkit module not loaded.")
+        msg = _("Webkit module not loaded. "
+                "Embedded web page viewing will not be available. "
+                "Use your package manager to install gir1.2-webkit-3.0")
+        MessageHideDialog(title, msg, 'interface.ignore-webkit')
 
 #no interfaces present, we do not register these plugins
 if not (TOOLKIT == NOWEB):
