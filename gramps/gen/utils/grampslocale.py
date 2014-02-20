@@ -450,7 +450,11 @@ class GrampsLocale(object):
                 lang = '.'.join((check_lang[0], 'UTF-8'))
 
         os.environ["LANG"] = lang
-        os.environ["LANGUAGE"] = ':'.join([l for l in self.language])
+        #We need to convert 'en' and 'en_US' to 'C' to avoid confusing
+        #GtkBuilder when it's retrieving strings from our Glade files
+        #since we have neither an en.po nor an en_US.po.
+        os.environ["LANGUAGE"] = ':'.join(['C' if l in ('en', 'en_US') else l
+                                           for l in self.language])
 
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
