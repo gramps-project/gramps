@@ -34,7 +34,7 @@ import codecs
 import locale
 import logging
 LOG = logging.getLogger("." + __name__)
-LOG.addHandler(logging.NullHandler())
+LOG.propagate = True
 HAVE_ICU = False
 _hdlr = None
 # GrampsLocale initialization comes before command-line argument
@@ -549,7 +549,7 @@ class GrampsLocale(object):
 
         if _hdlr:
             LOG.removeHandler(_hdlr)
-
+            _hdlr = None
         self._dd = self._dp = None
         #Guards against running twice on the first instance.
         self.initialized = True
