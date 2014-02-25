@@ -270,7 +270,8 @@ class EditNote(EditPrimary):
         # setup initial values for textview and textbuffer
         if self.obj:
             self.empty = False
-            self.texteditor.set_text(self.obj.get_styledtext())
+            with self.texteditor.undo_disabled():
+                self.texteditor.set_text(self.obj.get_styledtext())
             # Reset the undoable buffer:
             self.texteditor.reset()
             _LOG.debug("Initial Note: %s" % str(self.texteditor.get_text()))
