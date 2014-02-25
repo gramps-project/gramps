@@ -38,7 +38,7 @@ LOG = logging.getLogger(".citation")
 
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import cuni, UNITYPE
+from ..constfunc import cuni, UNITYPE, handle2internal
 
 """
 methods to upgrade a database from version 13 to current version
@@ -138,7 +138,7 @@ def gramps_upgrade_17(self):
 
         if parent_handle is not None:
             placeref = PlaceRef()
-            placeref.ref = parent_handle
+            placeref.ref = handle2internal(parent_handle)
             placeref_list = [placeref.serialize()]
         else:
             placeref_list = []
@@ -274,7 +274,7 @@ def add_place(self, name, level, parent, title):
     place.set_type(PlaceType(7-level))
     if parent is not None:
         placeref = PlaceRef()
-        placeref.ref = parent
+        placeref.ref = handle2internal(parent)
         place.set_placeref_list([placeref])
     with BSDDBTxn(self.env, self.place_map) as txn:
         if isinstance(handle, UNITYPE):

@@ -61,7 +61,7 @@ class RefBase(object):
         """
         Convert a serialized tuple of data to an object.
         """
-        self.ref = str(data)
+        self.ref = data
         return self
 
     def get_referenced_handles(self):

@@ -1096,7 +1096,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         Find all child places having the given place as the primary parent.
         """
-        handle = str(handle)
+        if isinstance(handle, UNITYPE):
+            handle = handle.encode('utf-8')
         parent_cur = self.get_place_parent_cursor()
 
         try:

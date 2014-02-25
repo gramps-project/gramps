@@ -215,10 +215,12 @@ class DbBsddbTreeCursor(BsddbBaseCursor):
         """
         Iterator
         """
-        to_do = ['']
+        _n = self.next_dup
+        to_do = [b'']
         while to_do:
-            data = self.set(str(to_do.pop()))
-            _n = self.next_dup
+            key = to_do.pop()
+            key = key.encode('utf-8') if not isinstance(key, bytes) else key
+            data = self.set(key)
             while data:
                 payload = pickle.loads(data[1])
                 yield (payload[0], payload)
