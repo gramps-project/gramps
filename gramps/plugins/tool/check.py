@@ -1234,10 +1234,29 @@ class CheckIntegrity(object):
         plist = self.db.get_person_handles()
         flist = self.db.get_family_handles()
         elist = self.db.get_event_handles()
+        llist = self.db.get_place_handles()
         self.progress.set_pass(_('Looking for place reference problems'),
-                               len(elist)+len(plist)+len(flist))
+                               len(elist)+len(plist)+len(flist)+len(llist))
         logging.info('Looking for place reference problems')
-        
+
+        for bkey in llist:
+            key = handle2internal(bkey)
+            self.progress.step()
+            place = self.db.get_place_from_handle(key)
+            for placeref in place.get_placeref_list():
+                parent_place = self.db.get_place_from_handle(placeref.ref)
+                if not parent_place:
+                    # The referenced place does not exist in the database
+                    make_unknown(placeref.ref,
+                            self.explanation.handle, self.class_place,
+                            self.commit_place, self.trans)
+                    logging.warning('    FAIL: the place "%(gid)s" refers '
+                                    'to a parent place "%(hand)s" which '
+                                    'does not exist in the database' %
+                                    {'gid' : place.gramps_id,
+                                        'hand' : placeref.ref})
+                    self.invalid_place_references.add(key)
+
         # check persons -> the LdsOrd references a place
         for bkey in plist:
             key = handle2internal(bkey)
