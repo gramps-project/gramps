@@ -62,11 +62,11 @@ from glade import Glade
 
 class EditSource(EditPrimary):
 
-    def __init__(self, dbstate, uistate, track, source):
+    def __init__(self, dbstate, uistate, track, source, callback=None):
 
         EditPrimary.__init__(self, dbstate, uistate, track, source, 
                              dbstate.db.get_source_from_handle, 
-                             dbstate.db.get_source_from_gramps_id)
+                             dbstate.db.get_source_from_gramps_id, callback)
 
     def empty_object(self):
         return gen.lib.Source()
@@ -210,6 +210,8 @@ class EditSource(EditPrimary):
             trans.set_description(msg)
                         
         self.close()
+        if self.callback:
+            self.callback(self.obj)
 
 class DeleteSrcQuery(object):
     def __init__(self, dbstate, uistate, source, the_lists):
