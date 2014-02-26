@@ -291,7 +291,7 @@ class Span(object):
         trans_text = dlocale.translation.sgettext
         # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
         _repr = trans_text("unknown")
-        # FIXME all this concatenation will fail for RTL languages
+        # FIXME all this concatenation will fail for RTL languages -- really??
         if self.valid:
             fdate12 = self._format(self._diff(self.date1, self.date2), dlocale)
             fdate12p1 = self._format(self._diff(self.date1, self.date2),
@@ -413,6 +413,7 @@ class Span(object):
         @type dlocale: a GrampsLocale instance
         """
         trans_text = dlocale.translation.sgettext
+        # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
         ngettext = dlocale.translation.ngettext
         if diff_tuple == (-1, -1, -1): return trans_text("unknown")
         retval = ""
@@ -424,14 +425,16 @@ class Span(object):
             return retval
         if diff_tuple[1] != 0:
             if retval != "":
-                retval += ", "
+                # translators: needed for Arabic, ignore otherwise
+                retval += trans_text(", ")
             retval += ngettext("%d month", "%d months", diff_tuple[1]) % diff_tuple[1]
             detail += 1
         if self.precision == detail:
             return retval
         if diff_tuple[2] != 0:
             if retval != "":
-                retval += ", "
+                # translators: needed for Arabic, ignore otherwise
+                retval += trans_text(", ")
             retval += ngettext("%d day", "%d days", diff_tuple[2]) % diff_tuple[2]
             detail += 1
         if self.precision == detail:
