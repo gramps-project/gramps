@@ -501,14 +501,16 @@ class Span(object):
             return retval
         if diff_tuple[1] != 0:
             if retval != "":
-                retval += ", "
+                # translators: needed for Arabic, ignore otherwise
+                retval += _(", ")
             retval += ngettext("%d month", "%d months", diff_tuple[1]) % diff_tuple[1]
             detail += 1
         if self.precision == detail:
             return retval
         if diff_tuple[2] != 0:
             if retval != "":
-                retval += ", "
+                # translators: needed for Arabic, ignore otherwise
+                retval += _(", ")
             retval += ngettext("%d day", "%d days", diff_tuple[2]) % diff_tuple[2]
             detail += 1
         if self.precision == detail:
