@@ -33,8 +33,6 @@
 	      href="http://exiv2.org/"/>
   <repository type="tarball" name="pythonware"
 	      href="http://effbot.org/downloads/"/>
-  <repository type='tarball' name='icu'
-	      href='http://download.icu-project.org/files/'/>
 <!--
 Special instructions:
 Gramps uses BerkeleyDB (BDB) via Python. BDB is normally included in Linux systems, but Apple prefers other mechanisms for data storage, so it isn't included on Macs.
