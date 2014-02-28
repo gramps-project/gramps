@@ -60,7 +60,8 @@ class SelectSource(BaseSelector):
     def get_column_titles(self):
         return [
             (_('Title'), 350, BaseSelector.TEXT, 0),
-            (_('ID'),     75, BaseSelector.TEXT, 1),
+            (_('Author'), 200, BaseSelector.TEXT, 2),
+            (_('ID'), 75, BaseSelector.TEXT, 1),
             (_('Last Change'), 150, BaseSelector.TEXT, 6),
             ]
 
