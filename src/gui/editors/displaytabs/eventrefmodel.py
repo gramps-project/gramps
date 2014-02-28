@@ -42,8 +42,10 @@ import cgi
 # GRAMPS classes
 #
 #-------------------------------------------------------------------------
+from gen.lib import EventRoleType
 import DateHandler
 import config
+import Utils
 
 #-------------------------------------------------------------------------
 #
@@ -68,12 +70,13 @@ class EventRefModel(gtk.TreeStore):
     COL_DATE = (3, str)
     COL_PLACE = (4, str)
     COL_ROLE = (5, str)
-    COL_SORTDATE = (6, str)
-    COL_EVENTREF = (7, object)
-    COL_FONTWEIGHT = (8, int)
+    COL_PARTIC = (6, str)
+    COL_SORTDATE = (7, str)
+    COL_EVENTREF = (8, object)
+    COL_FONTWEIGHT = (9, int)
     
     COLS = (COL_DESCR, COL_TYPE, COL_GID, COL_DATE, COL_PLACE, COL_ROLE, 
-            COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT)
+            COL_PARTIC, COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT)
 
     def __init__(self, event_list, db, groups):
         """
@@ -96,7 +99,9 @@ class EventRefModel(gtk.TreeStore):
 
     def row_group(self, index, group):
         name = self.namegroup(index, len(group))
-        return [name, '', '', '', '', '', '', (index, None), WEIGHT_BOLD]
+        spouse = self.groups[index][2]
+        return ['', name, '', '', '', '', spouse, '', (index, None),
+                WEIGHT_BOLD]
 
     def namegroup(self, groupindex, length):
         return self._GROUPSTRING % {'groupname': self.groups[groupindex][1],
@@ -109,6 +114,7 @@ class EventRefModel(gtk.TreeStore):
                 self.column_date(eventref), 
                 self.column_place(eventref), 
                 self.column_role(eventref), 
+                self.column_participant(eventref),
                 self.column_sort_date(eventref),
                 (index, eventref),
                 self.colweight(index),
@@ -144,3 +150,10 @@ class EventRefModel(gtk.TreeStore):
                 if place_handle:
                     return self.db.get_place_from_handle(place_handle).get_title()
         return u""
+
+    def column_participant(self, event_ref):
+        if int(event_ref.get_role()) not in (EventRoleType.PRIMARY,
+                                             EventRoleType.FAMILY):
+            return Utils.get_participant_from_event(self.db, event_ref.ref)
+        else:
+            return ""
