@@ -59,13 +59,13 @@ class SelectEvent(BaseSelector):
 
     def get_column_titles(self):
         return [
-            (_('Description'),       250, BaseSelector.TEXT, 0),
-            (_('ID'),                75,  BaseSelector.TEXT, 1),
-            (_('Type'),              75,  BaseSelector.TEXT, 2),
+            (_('Type'),              100, BaseSelector.TEXT, 2),
             (_('Main Participants'), 250, BaseSelector.TEXT, 8),
             (_('Date'),              150, BaseSelector.TEXT, 3),
-            (_('Place'),             150, BaseSelector.TEXT, 4),
-            (_('Last Change'),       150, BaseSelector.TEXT, 7),
+            (_('Place'),             250, BaseSelector.TEXT, 4),
+            (_('Description'),       150, BaseSelector.TEXT, 0),
+            (_('ID'),                75,  BaseSelector.TEXT, 1),
+            (_('Last Change'),       150, BaseSelector.TEXT, 7)
             ]
 
     def get_from_handle_func(self):
