@@ -48,8 +48,10 @@ import cgi
 #
 #-------------------------------------------------------------------------
 from ...widgets.undoablebuffer import UndoableBuffer
+from gramps.gen.lib import EventRoleType
 from gramps.gen.datehandler import get_date, get_date_valid
 from gramps.gen.config import config
+from gramps.gen.utils.db import get_participant_from_event
 
 #-------------------------------------------------------------------------
 #
@@ -75,14 +77,16 @@ class EventRefModel(Gtk.TreeStore):
     COL_DATE = (3, str)
     COL_PLACE = (4, str)
     COL_ROLE = (5, str)
-    COL_SORTDATE = (6, str)
-    COL_EVENTREF = (7, object)
-    COL_FONTWEIGHT = (8, int)
-    COL_AGE = (9, str)
-    COL_SORTAGE = (10, str)
+    COL_PARTIC = (6, str)
+    COL_SORTDATE = (7, str)
+    COL_EVENTREF = (8, object)
+    COL_FONTWEIGHT = (9, int)
+    COL_AGE = (10, str)
+    COL_SORTAGE = (11, str)
     
     COLS = (COL_DESCR, COL_TYPE, COL_GID, COL_DATE, COL_PLACE, COL_ROLE, 
-            COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT, COL_AGE, COL_SORTAGE)
+            COL_PARTIC, COL_SORTDATE, COL_EVENTREF, COL_FONTWEIGHT, COL_AGE,
+            COL_SORTAGE)
 
     def __init__(self, event_list, db, groups, **kwargs):
         """
@@ -107,7 +111,9 @@ class EventRefModel(Gtk.TreeStore):
 
     def row_group(self, index, group):
         name = self.namegroup(index, len(group))
-        return [name, '', '', '', '', '', '', (index, None), WEIGHT_BOLD, '', '']
+        spouse = self.groups[index][2]
+        return ['', name, '', '', '', '', spouse, '', (index, None),
+                WEIGHT_BOLD, '', '']
 
     def namegroup(self, groupindex, length):
         return self._GROUPSTRING % {'groupname': self.groups[groupindex][1],
@@ -120,6 +126,7 @@ class EventRefModel(Gtk.TreeStore):
                 self.column_date(eventref), 
                 self.column_place(eventref), 
                 self.column_role(eventref), 
+                self.column_participant(eventref),
                 self.column_sort_date(eventref),
                 (index, eventref),
                 self.colweight(index),
@@ -157,6 +164,13 @@ class EventRefModel(Gtk.TreeStore):
                 if place_handle:
                     return self.db.get_place_from_handle(place_handle).get_title()
         return ""
+
+    def column_participant(self, event_ref):
+        if int(event_ref.get_role()) not in (EventRoleType.PRIMARY,
+                                             EventRoleType.FAMILY):
+            return get_participant_from_event(self.db, event_ref.ref)
+        else:
+            return ""
 
     def column_age(self, event):
         """
