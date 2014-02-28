@@ -52,14 +52,14 @@ from ...selectors import SelectorFactory
 #-------------------------------------------------------------------------
 class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
-    _HANDLE_COL = 7
+    _HANDLE_COL = 8
     _DND_TYPE   = DdTargets.EVENTREF
     _DND_EXTRA  = DdTargets.EVENT
     _WORKGROUP = EventRefModel._ROOTINDEX
     
-    _WORKNAME = _("Family Events")
-    _FATHNAME = _("Events father")
-    _MOTHNAME = _("Events mother")
+    _WORKNAME = _("Family")
+    _FATHNAME = _("Father")
+    _MOTHNAME = _("Mother")
 
     _MSG = {
         'add'   : _('Add a new family event'),
@@ -73,15 +73,15 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Description'), -1, 240, TEXT_COL,
-                        EventRefModel.COL_FONTWEIGHT[0], None),
-        (_('Type'), EventRefModel.COL_TYPE[0], 100, TEXT_COL, 
-                        EventRefModel.COL_FONTWEIGHT[0], None),
-        (_('ID'), EventRefModel.COL_GID[0], 60, TEXT_COL, 
-                        EventRefModel.COL_FONTWEIGHT[0], None),
+        (_('Description'), EventRefModel.COL_DESCR[0], 150, TEXT_COL, -1, None),
+        (_('Type'), EventRefModel.COL_TYPE[0], 120, TEXT_COL,
+                            EventRefModel.COL_FONTWEIGHT[0], None),
+        (_('ID'), EventRefModel.COL_GID[0], 60, TEXT_COL, -1, None),
         (_('Date'), EventRefModel.COL_SORTDATE[0], 150, MARKUP_COL, -1, None),
-        (_('Place'), EventRefModel.COL_PLACE[0], 150, TEXT_COL, -1, None),
+        (_('Place'), EventRefModel.COL_PLACE[0], 240, 0, -1, None),
         (_('Role'), EventRefModel.COL_ROLE[0], 80, TEXT_COL, -1, None),
+        (_('Main Participants'), EventRefModel.COL_PARTIC[0], 240, TEXT_COL,
+                            EventRefModel.COL_FONTWEIGHT[0], None),
         None,
         None,
         None,
@@ -155,14 +155,14 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         #family events
         if not self._data or self.changed:
             self._data = [self.obj.get_event_ref_list()]
-            self._groups = [(self.obj.get_handle(), self._WORKNAME)]
+            self._groups = [(self.obj.get_handle(), self._WORKNAME, '')]
             #father events
             fhandle = self.obj.get_father_handle()
             if fhandle:
                 fdata = self.dbstate.db.get_person_from_handle(fhandle).\
                                         get_event_ref_list()
                 if fdata:
-                    self._groups.append((fhandle, self._FATHNAME))
+                    self._groups.append((fhandle, self._FATHNAME, ''))
                     self._data.append(fdata)
             #mother events
             mhandle = self.obj.get_mother_handle()
@@ -170,7 +170,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
                 mdata = self.dbstate.db.get_person_from_handle(mhandle).\
                                         get_event_ref_list()
                 if mdata:
-                    self._groups.append((mhandle, self._MOTHNAME))
+                    self._groups.append((mhandle, self._MOTHNAME, ''))
                     self._data.append(mdata)
             #we register all events that need to be tracked
             for group in self._data:
@@ -191,14 +191,15 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         The columns to show as a tuple containing 
         tuples (show/noshow, model column)
         """
-        return ((1, 0),  # desc
-                (1, 1),  # type
-                (1, 2),  # gid
+        return ((1, 1),  # type
+                (1, 6),  # main participants
                 (1, 3),  # date
-                (1, 9),  # age
                 (1, 4),  # place
-                (1, 11), # private
+                (1, 0),  # description
+                (1, 12), # private
                 (1, 5),  # role
+                (1, 2),  # gramps id
+                (1, 10),  # age
                 )
 
     def default_types(self):

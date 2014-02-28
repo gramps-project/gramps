@@ -48,8 +48,9 @@ from gramps.gen.errors import WindowActiveError
 #-------------------------------------------------------------------------
 class PersonEventEmbedList(EventEmbedList):
     
-    _WORKNAME = _("Personal Events")
-    _FAMNAME = _("With %(namepartner)s (%(famid)s)")
+    _WORKNAME = _("Personal")
+    #_FAMNAME = _("With %(namepartner)s (%(famid)s)")
+    _FAMNAME = _("Family")
     _UNKNOWNNAME = _("<Unknown>")
     
     _MSG = {
@@ -69,7 +70,7 @@ class PersonEventEmbedList(EventEmbedList):
     def get_data(self):
         if not self._data or self.changed:
             self._data = [self.obj.get_event_ref_list()]
-            self._groups = [(self.obj.get_handle(), self._WORKNAME)]
+            self._groups = [(self.obj.get_handle(), self._WORKNAME, '')]
             # own family events
             family_handle_list = self.obj.get_family_handle_list()
             if family_handle_list:
@@ -88,10 +89,8 @@ class PersonEventEmbedList(EventEmbedList):
                     else:
                         groupname = self._UNKNOWNNAME
                     self._data.append(family.get_event_ref_list())
-                    self._groups.append((family_handle, self._FAMNAME % {
-                                                'namepartner': groupname,
-                                                'famid': family.get_gramps_id()
-                                                }))
+                    self._groups.append((family_handle, self._FAMNAME,
+                                         groupname))
             self.changed = False
         
         return self._data
