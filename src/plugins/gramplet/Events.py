@@ -20,12 +20,14 @@
 #
 
 from gui.editors import EditEvent
+from gen.lib import EventRoleType
 from ListModel import ListModel, NOSORT
 from gen.plug import Gramplet
 from gen.ggettext import gettext as _
 from gen.display.name import displayer as name_displayer
 import DateHandler
 import Errors
+import Utils
 import gtk
 
 class Events(Gramplet):
@@ -47,11 +49,12 @@ class Events(Gramplet):
         top = gtk.TreeView()
         titles = [('', NOSORT, 50,),
                   (_('Type'), 1, 100),
-                  (_('Details'), 2, 200),
+                  (_('Main Participants'), 2, 200),
                   (_('Date'), 4, 100),
                   ('', 4, 100),
                   (_('Place'), 5, 400),
-                  (_('Role'), 6, 100)]
+                  (_('Description'), 6, 150),
+                  (_('Role'), 7, 100)]
         self.model = ListModel(top, titles, event_func=self.edit_event)
         return top
         
@@ -66,16 +69,24 @@ class Events(Gramplet):
         handle = event.get_place_handle()
         if handle:
             place = self.dbstate.db.get_place_from_handle(handle).get_title()
-        if spouse:
-            details = name_displayer.display(spouse)
-        else:
-            details = event.get_description()
+
+        participants = ''
+        if int(event_ref.get_role()) == EventRoleType.FAMILY:
+            if spouse:
+                participants = name_displayer.display(spouse)
+
+        if int(event_ref.get_role()) not in (EventRoleType.PRIMARY,
+                                             EventRoleType.FAMILY):
+            participants = Utils.get_participant_from_event(self.dbstate.db,
+                                                            event_ref.ref)
+
         self.model.add((event.get_handle(),
                         str(event.get_type()),
-                        details,
+                        participants,
                         event_date,
                         event_sort,
                         place,
+                        event.get_description(),
                         str(event_ref.get_role())))
 
     def edit_event(self, treeview):
