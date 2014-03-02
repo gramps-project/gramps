@@ -50,8 +50,9 @@ from gi.repository import Pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import (Place, MediaObject, Note)
+from gramps.gen.lib import (Place, Source, MediaObject, Note)
 from .editplace import EditPlace
+from .editsource import EditSource
 from .editmedia import EditMedia
 from .editnote import EditNote
 from ..selectors import SelectorFactory
@@ -77,7 +78,7 @@ class ObjEntry(object):
     DEL_STR = ""
 
     def __init__(self, dbstate, uistate, track, label, set_val, 
-                 get_val, add_edt, share):
+                 get_val, add_edt, share, callback=None):
         """Pass the dbstate and uistate and present track.
             label is a Gtk.Label that shows the persent value
             set_val is function that is called when handle changes, use it
@@ -97,6 +98,7 @@ class ObjEntry(object):
         self.set_val = set_val
         self.uistate = uistate
         self.track = track
+        self.callback = callback
         
         #connect drag and drop
         self._init_dnd()
@@ -140,6 +142,8 @@ class ObjEntry(object):
         else:
             self.label.set_text(name)
         self.label.set_ellipsize(Pango.EllipsizeMode.END)
+        if self.callback:
+            self.callback()
 
     def _init_dnd(self):
         """inheriting objects must set this
@@ -166,6 +170,8 @@ class ObjEntry(object):
     def after_edit(self, obj):
         name = self.get_label(obj)
         self.label.set_text(name)
+        if self.callback:
+            self.callback()
 
     def add_edt_clicked(self, obj):
         """ if value, edit, if no value, call editor on new object
@@ -197,6 +203,8 @@ class ObjEntry(object):
         self.set_val(data.handle)
         self.label.set_text(self.get_label(data))
         self.set_button(True)
+        if self.callback:
+            self.callback()
 
     def share_clicked(self, obj):
         """ if value, delete connect, in no value, select existing object
@@ -206,6 +214,8 @@ class ObjEntry(object):
             self.label.set_text(self.EMPTY_TEXT)
             self.label.set_use_markup(True)
             self.set_button(False)
+            if self.callback:
+                self.callback()
         else:
             select = self.call_selector()
             obj = select.run()
@@ -298,6 +308,60 @@ class PlaceEntry(ObjEntry):
 
     def call_selector(self):
         cls = SelectorFactory('Place')
+        return cls(self.dbstate, self.uistate, self.track)
+
+class SourceEntry(ObjEntry):
+    """
+    Handles the selection of a existing or new Source. Supports Drag and Drop
+    to select a source.
+    """
+    EMPTY_TEXT = "<i>%s</i>" % _('To select a source, use drag-and-drop '
+                                 'or use the buttons')
+    EMPTY_TEXT_RED = "<i>%s</i>" % _('No place given, click button to select one')
+    EDIT_STR = _('Edit source')
+    SHARE_STR = _('Select an existing source')
+    ADD_STR = _('Add a new source')
+    DEL_STR = _('Remove source')
+    
+    def __init__(self, dbstate, uistate, track, label, set_val, 
+                 get_val, add_edt, share, callback):
+        ObjEntry.__init__(self, dbstate, uistate, track, label, set_val, 
+                 get_val, add_edt, share, callback)
+
+    def _init_dnd(self):
+        """connect drag and drop of sources
+        """
+        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.PLACE_LINK.atom_drag_type,
+                   DdTargets.PLACE_LINK.target_flags,
+                   DdTargets.PLACE_LINK.app_id)
+        self.label.drag_dest_set_target_list(tglist)
+        self.label.connect('drag_data_received', self.drag_data_received)
+
+    def get_from_handle(self, handle):
+        """ return the object given the handle
+        """
+        return self.db.get_source_from_handle(handle)
+
+    def get_label(self, source):
+        return "%s [%s]" % (source.get_title(), source.gramps_id)
+
+    def call_editor(self, obj=None):
+        if obj is None:
+            source = Source()
+            func = self.obj_added
+        else:
+            source = obj
+            func = self.after_edit
+        try:
+            EditSource(self.dbstate, self.uistate, self.track, 
+                       source, func)
+        except WindowActiveError:
+            pass
+
+    def call_selector(self):
+        cls = SelectorFactory('Source')
         return cls(self.dbstate, self.uistate, self.track)
 
 # FIXME isn't used anywhere
