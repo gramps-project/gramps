@@ -67,7 +67,7 @@ class EditSource(EditPrimary):
 
         EditPrimary.__init__(self, dbstate, uistate, track, source, 
                              dbstate.db.get_source_from_handle, 
-                             dbstate.db.get_source_from_gramps_id)
+                             dbstate.db.get_source_from_gramps_id, callback)
 
     def empty_object(self):
         return Source()
@@ -219,6 +219,8 @@ class EditSource(EditPrimary):
             trans.set_description(msg)
                         
         self.close()
+        if self.callback:
+            self.callback(self.obj)
 
 class DeleteSrcQuery(object):
     def __init__(self, dbstate, uistate, source, the_lists):

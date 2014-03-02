@@ -50,8 +50,9 @@ from gi.repository import Pango
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import (Place, MediaObject, Note)
+from gramps.gen.lib import (Place, Source, MediaObject, Note)
 from .editplace import EditPlace
+from .editsource import EditSource
 from .editmedia import EditMedia
 from .editnote import EditNote
 from ..selectors import SelectorFactory
@@ -298,6 +299,60 @@ class PlaceEntry(ObjEntry):
 
     def call_selector(self):
         cls = SelectorFactory('Place')
+        return cls(self.dbstate, self.uistate, self.track)
+
+class SourceEntry(ObjEntry):
+    """
+    Handles the selection of a existing or new Source. Supports Drag and Drop
+    to select a source.
+    """
+    EMPTY_TEXT = "<i>%s</i>" % _('To select a source, use drag-and-drop '
+                                 'or use the buttons')
+    EMPTY_TEXT_RED = "<i>%s</i>" % _('No place given, click button to select one')
+    EDIT_STR = _('Edit source')
+    SHARE_STR = _('Select an existing source')
+    ADD_STR = _('Add a new source')
+    DEL_STR = _('Remove source')
+    
+    def __init__(self, dbstate, uistate, track, label, set_val, 
+                 get_val, add_edt, share):
+        ObjEntry.__init__(self, dbstate, uistate, track, label, set_val, 
+                 get_val, add_edt, share)
+
+    def _init_dnd(self):
+        """connect drag and drop of sources
+        """
+        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.PLACE_LINK.atom_drag_type,
+                   DdTargets.PLACE_LINK.target_flags,
+                   DdTargets.PLACE_LINK.app_id)
+        self.label.drag_dest_set_target_list(tglist)
+        self.label.connect('drag_data_received', self.drag_data_received)
+
+    def get_from_handle(self, handle):
+        """ return the object given the handle
+        """
+        return self.db.get_source_from_handle(handle)
+
+    def get_label(self, source):
+        return "%s [%s]" % (source.get_title(), source.gramps_id)
+
+    def call_editor(self, obj=None):
+        if obj is None:
+            source = Source()
+            func = self.obj_added
+        else:
+            source = obj
+            func = self.after_edit
+        try:
+            EditSource(self.dbstate, self.uistate, self.track, 
+                       source, func)
+        except WindowActiveError:
+            pass
+
+    def call_selector(self):
+        cls = SelectorFactory('Source')
         return cls(self.dbstate, self.uistate, self.track)
 
 # FIXME isn't used anywhere
