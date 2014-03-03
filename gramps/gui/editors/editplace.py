@@ -179,12 +179,13 @@ class EditPlace(EditPrimary):
         self._add_tab(notebook, self.placeref_list)
         self.track_ref_for_deletion("placeref_list")
         
-        self.loc_list = LocationEmbedList(self.dbstate,
-                                          self.uistate,
-                                          self.track,
-                                          self.obj.alt_loc)
-        self._add_tab(notebook, self.loc_list)
-        self.track_ref_for_deletion("loc_list")
+        if len(self.obj.alt_loc) > 0:
+            self.loc_list = LocationEmbedList(self.dbstate,
+                                              self.uistate,
+                                              self.track,
+                                              self.obj.alt_loc)
+            self._add_tab(notebook, self.loc_list)
+            self.track_ref_for_deletion("loc_list")
         
         self.citation_list = CitationEmbedList(self.dbstate,
                                                self.uistate,
