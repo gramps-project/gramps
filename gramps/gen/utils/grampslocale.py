@@ -429,6 +429,18 @@ class GrampsLocale(object):
         # 'UTF-8' suffix, because that's all that GtkBuilder can
         # digest.
 
+        # Gtk+ has an 'en' po, but we don't. This is worked-around for
+        # our GrampsTranslation class but that isn't used to retrieve
+        # translations in GtkBuilder (glade), a direct call to libintl
+        # (gettext) is. If 'en' is in the translation list it gets
+        # skipped in favor of the next language, which can cause
+        # inappropriate translations of strings in glade/ui files. To
+        # prevent this, if 'en' is in self.language it's the last
+        # entry:
+
+        if 'en' in self.language:
+            self.language = self.language[:self.language.index('en') + 1]
+
         # Linux note: You'll get unsupported locale errors from Gtk
         # and untranslated strings if the requisite UTF-8 locale isn't
         # installed. This is particularly a problem on Debian and
@@ -444,8 +456,8 @@ class GrampsLocale(object):
         #We need to convert 'en' and 'en_US' to 'C' to avoid confusing
         #GtkBuilder when it's retrieving strings from our Glade files
         #since we have neither an en.po nor an en_US.po.
-        os.environ["LANGUAGE"] = ':'.join(['C' if l in ('en', 'en_US') else l
-                                           for l in self.language])
+
+        os.environ["LANGUAGE"] = ':'.join(self.language)
 
         # GtkBuilder uses GLib's g_dgettext wrapper, which oddly is bound
         # with locale instead of gettext. Win32 doesn't support bindtextdomain.
