@@ -48,8 +48,9 @@ from gi.repository import Gtk
 from gramps.gen.lib import NoteType, Place
 from gramps.gen.db import DbTxn
 from .editprimary import EditPrimary
-from .displaytabs import (PlaceRefEmbedList, LocationEmbedList, CitationEmbedList, 
-                         GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
+from .displaytabs import (PlaceRefEmbedList, AltNameEmbedList,
+                          LocationEmbedList, CitationEmbedList,
+                          GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredTagList,
                        MonitoredDataType)
 from gramps.gen.errors import ValidationError
@@ -179,6 +180,13 @@ class EditPlace(EditPrimary):
         self._add_tab(notebook, self.placeref_list)
         self.track_ref_for_deletion("placeref_list")
         
+        self.alt_name_list = AltNameEmbedList(self.dbstate,
+                                              self.uistate,
+                                              self.track,
+                                              self.obj.alt_names)
+        self._add_tab(notebook, self.alt_name_list)
+        self.track_ref_for_deletion("alt_name_list")
+
         if len(self.obj.alt_loc) > 0:
             self.loc_list = LocationEmbedList(self.dbstate,
                                               self.uistate,

@@ -37,6 +37,7 @@ from .childmodel import ChildModel
 from .grampstab import GrampsTab
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from .addrembedlist import AddrEmbedList
+from .altnameembedlist import AltNameEmbedList
 from .attrembedlist import AttrEmbedList
 from .backreflist import BackRefList
 from .eventbackreflist import EventBackRefList

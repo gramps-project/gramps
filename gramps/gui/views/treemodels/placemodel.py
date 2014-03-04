@@ -158,23 +158,23 @@ class PlaceBaseModel(object):
         return cuni(data[1])
 
     def column_type(self, data):
-        return str(PlaceType(data[7]))
+        return str(PlaceType(data[8]))
 
     def column_code(self, data):
-        return cuni(data[8])
+        return cuni(data[9])
 
     def column_private(self, data):
-        if data[16]:
+        if data[17]:
             return 'gramps-lock'
         else:
             # There is a problem returning None here.
             return ''
     
     def sort_change(self, data):
-        return "%012x" % data[14]
+        return "%012x" % data[15]
     
     def column_change(self, data):
-        return format_time(data[14])
+        return format_time(data[15])
 
     def get_tag_name(self, tag_handle):
         """
@@ -188,7 +188,7 @@ class PlaceBaseModel(object):
         """
         tag_color = "#000000000000"
         tag_priority = None
-        for handle in data[15]:
+        for handle in data[16]:
             tag = self.db.get_tag_from_handle(handle)
             if tag:
                 this_priority = tag.get_priority()
@@ -201,7 +201,7 @@ class PlaceBaseModel(object):
         """
         Return the sorted list of tags.
         """
-        tag_list = list(map(self.get_tag_name, data[15]))
+        tag_list = list(map(self.get_tag_name, data[16]))
         return ', '.join(sorted(tag_list, key=glocale.sort_key))
 
 #-------------------------------------------------------------------------

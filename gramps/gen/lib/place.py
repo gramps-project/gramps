@@ -73,6 +73,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             self.lat = source.lat
             self.title = source.title
             self.name = source.name
+            self.alt_names = source.alt_names
             self.placeref_list = list(map(PlaceRef, source.placeref_list))
             self.place_type = source.place_type
             self.code = source.code
@@ -82,6 +83,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             self.lat = ""
             self.title = ""
             self.name = ""
+            self.alt_names = []
             self.placeref_list = []
             self.place_type = PlaceType()
             self.code = ""
@@ -107,7 +109,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
                 [pr.serialize() for pr in self.placeref_list], 
-                self.name, self.place_type.serialize(), self.code, 
+                self.name, self.alt_names,
+                self.place_type.serialize(), self.code,
                 [al.serialize() for al in self.alt_loc],
                 UrlBase.serialize(self),
                 MediaBase.serialize(self),
@@ -143,6 +146,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 "lat": self.lat,
                 "placeref_list": [pr.to_struct() for pr in self.placeref_list],
                 "name": self.name, 
+                "alt_names": self.alt_names,
                 "place_type": self.place_type.to_struct(), 
                 "code": self.code, 
                 "alt_loc": [al.to_struct() for al in self.alt_loc],
@@ -169,6 +173,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 struct.get("lat", default.lat),
                 [PlaceRef.from_struct(pr) for pr in struct.get("placeref_list", default.placeref_list)],
                 struct.get("name", default.name),
+                struct.get("alt_names", default.alt_names),
                 PlaceType.from_struct(struct.get("place_type", {})), 
                 struct.get("code", default.code),
                 [Location.from_struct(al) for al in struct.get("alt_loc", default.alt_loc)],
@@ -190,7 +195,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :type data: tuple
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
-         placeref_list, self.name, the_type, self.code, 
+         placeref_list, self.name, self.alt_names, the_type, self.code,
          alt_loc, urls, media_list, citation_list, note_list,
          self.change, tag_list, self.private) = data
 
@@ -274,6 +279,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         self._merge_privacy(acquisition)
         self._merge_locations(acquisition)
+        self._merge_alt_names(acquisition)
         self._merge_media_list(acquisition)
         self._merge_url_list(acquisition)
         self._merge_note_list(acquisition)
@@ -520,3 +526,18 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                     break
             else:
                 self.alt_loc.append(addendum)
+
+    def _merge_alt_names(self, acquisition):
+        """
+        Add the main and alternative names of acquisition to the alternative
+        names list.
+
+        :param acquisition: instance to merge
+        :type acquisition: :class:'~.place.Place
+        """
+        if acquisition.name not in self.alt_names:
+            self.alt_names.append(acquisition.name)
+
+        for addendum in acquisition.alt_names:
+            if addendum not in self.alt_names:
+                self.alt_names.append(addendum)

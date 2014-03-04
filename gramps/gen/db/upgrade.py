@@ -144,7 +144,7 @@ def gramps_upgrade_17(self):
             placeref_list = []
 
         type_num = 7 - level if name else 8
-        new_place = new_place[:5] + [placeref_list, name, 
+        new_place = new_place[:5] + [placeref_list, name, [],
                     PlaceType(type_num).serialize(), zip_code] + \
                     new_place[6:12] + [[]] + new_place[12:]
         new_place = tuple(new_place)

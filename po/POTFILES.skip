@@ -287,6 +287,7 @@ gramps/gui/editors/editsecondary.py
 #
 gramps/gui/editors/displaytabs/__init__.py
 gramps/gui/editors/displaytabs/addressmodel.py
+gramps/gui/editors/displaytabs/altnamemodel.py
 gramps/gui/editors/displaytabs/attrmodel.py
 gramps/gui/editors/displaytabs/childmodel.py
 gramps/gui/editors/displaytabs/citationbackreflist.py

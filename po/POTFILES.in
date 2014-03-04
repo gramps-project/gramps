@@ -344,6 +344,7 @@ gramps/gui/dialog.py
 gramps/gui/displaystate.py
 gramps/gui/editors/addmedia.py
 gramps/gui/editors/displaytabs/addrembedlist.py
+gramps/gui/editors/displaytabs/altnameembedlist.py
 gramps/gui/editors/displaytabs/attrembedlist.py
 gramps/gui/editors/displaytabs/backreflist.py
 gramps/gui/editors/displaytabs/backrefmodel.py
@@ -384,6 +385,7 @@ gramps/gui/editors/editnote.py
 gramps/gui/editors/editperson.py
 gramps/gui/editors/editpersonref.py
 gramps/gui/editors/editplace.py
+gramps/gui/editors/editplacename.py
 gramps/gui/editors/editplaceref.py
 gramps/gui/editors/editprimary.py
 gramps/gui/editors/editreporef.py
