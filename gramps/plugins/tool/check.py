@@ -201,6 +201,7 @@ class Check(tool.BatchTool):
             checker.check_repo_references()
             checker.check_note_references()
             checker.check_tag_references()
+            checker.check_media_sourceref()
         self.db.enable_signals()
         self.db.request_rebuild()
 
@@ -241,6 +242,7 @@ class CheckIntegrity(object):
         self.invalid_dates = []
         self.removed_name_format = []
         self.empty_objects = defaultdict(list)
+        self.replaced_sourceref = []
         self.last_img_dir = config.get('behavior.addmedia-image-dir')
         self.progress = ProgressMeter(_('Checking Database'),'')
         self.explanation = Note(_('Objects referenced by this note '
@@ -1876,6 +1878,64 @@ class CheckIntegrity(object):
         if len(self.invalid_tag_references) == 0:
             logging.info('   OK: no tag reference problems found')
 
+    def check_media_sourceref(self):
+        """
+        This repairs a problem with database upgrade from database schema
+        version 15 to 16. Mediarefs on source primary objects can contain
+        sourcerefs, and these were not converted to citations.
+        """
+        total = (
+                self.db.get_number_of_sources()
+                )
+
+        self.progress.set_pass(_('Looking for media source reference problems'),
+                               total)
+        logging.info('Looking for media source reference problems')
+
+        for handle in self.db.source_map.keys():
+            self.progress.step()
+            info = self.db.source_map[handle]
+            source = gen.lib.Source()
+            source.unserialize(info)
+            new_media_ref_list = []
+            for media_ref in source.get_media_list():
+                citation_list = media_ref.get_citation_list()
+                new_citation_list = []
+                for citation_handle in citation_list:
+                    # Either citation_handle is a handle, in which case it has
+                    # been converted, or it is a 6-tuple, in which case it now
+                    # needs to be converted.
+                    if len(citation_handle) == 6:
+                        if len(citation_handle) == 6:
+                            sourceref = citation_handle
+                        else:
+                            sourceref = eval(citation_handle)
+                        new_citation = gen.lib.Citation()
+                        new_citation.set_date_object(sourceref[0])
+                        new_citation.set_privacy(sourceref[1])
+                        new_citation.set_note_list(sourceref[2])
+                        new_citation.set_confidence_level(sourceref[3])
+                        new_citation.set_reference_handle(sourceref[4])
+                        new_citation.set_page(sourceref[5])
+                        citation_handle = Utils.create_id()
+                        new_citation.set_handle(citation_handle)
+                        self.replaced_sourceref.append(handle)
+                        logging.warning('    FAIL: the source "%s" has a media '
+                                        'reference with a source citation '
+                                        'which is invalid' % (source.gramps_id))
+                        self.db.add_citation(new_citation, self.trans)
+                        
+                    new_citation_list.append(citation_handle)
+                
+                media_ref.set_citation_list(new_citation_list)
+                new_media_ref_list.append(media_ref)
+                
+            source.set_media_list(new_media_ref_list)
+            self.db.commit_source(source, self.trans)
+
+        if len(self.replaced_sourceref) > 0:
+            logging.info('    OK: no broken source citations on mediarefs found')
+
     def class_person(self, handle):
         person = Person()
         person.set_handle(handle)
@@ -1982,7 +2042,8 @@ class CheckIntegrity(object):
         note_references = len(self.invalid_note_references)
         tag_references = len(self.invalid_tag_references)
         name_format = len(self.removed_name_format)
-        empty_objs = sum(len(obj) for obj in self.empty_objects.values())
+        replaced_sourcerefs = len(self.replaced_sourceref)
+        empty_objs = sum(len(obj) for obj in self.empty_objects.itervalues())
 
         errors = (photos + efam + blink + plink + slink + rel +
                   event_invalid + person +
@@ -2214,6 +2275,13 @@ class CheckIntegrity(object):
                 ngettext("%(quantity)d invalid name format reference was removed\n",
                          "%(quantity)d invalid name format references were removed\n",
                          name_format) % {'quantity' : name_format}
+                )
+
+        if replaced_sourcerefs:
+            self.text.write(
+                ngettext("%(quantity)d invalid source citation was fixed\n",
+                         "%(quantity)d invalid source citations were fixed\n",
+                         replaced_sourcerefs) % {'quantity' : replaced_sourcerefs}
                 )
 
         if empty_objs > 0 :
