@@ -174,7 +174,8 @@ class EditCitation(EditPrimary):
                                       self.glade.get_object("source"),
                                       self.obj.set_reference_handle,
                                       self.obj.get_reference_handle,
-                                      self.add_del_btn, self.share_btn)
+                                      self.add_del_btn, self.share_btn,
+                                      callback=self.source_changed)
         
         self.date = MonitoredDate(
             self.glade.get_object("date_entry"),
@@ -248,6 +249,21 @@ class EditCitation(EditPrimary):
 
         notebook.show_all()
         self.glade.get_object('vbox').pack_start(notebook, True, True, 0)
+
+    def source_changed(self):
+        handle = self.obj.get_reference_handle()
+        if handle:
+            source = self.db.get_source_from_handle(handle)
+            author = source.get_author()
+            pub_info = source.get_publication_info()
+            abbrev = source.get_abbreviation()
+        else:
+            author = ''
+            pub_info = ''
+            abbrev = ''
+        self.glade.get_object("author").set_text(author)
+        self.glade.get_object("pub_info").set_text(pub_info)
+        self.glade.get_object("abbrev").set_text(abbrev)
 
     def build_menu_names(self, source):
         """

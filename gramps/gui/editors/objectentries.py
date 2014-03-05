@@ -78,7 +78,7 @@ class ObjEntry(object):
     DEL_STR = ""
 
     def __init__(self, dbstate, uistate, track, label, set_val, 
-                 get_val, add_edt, share):
+                 get_val, add_edt, share, callback=None):
         """Pass the dbstate and uistate and present track.
             label is a Gtk.Label that shows the persent value
             set_val is function that is called when handle changes, use it
@@ -98,6 +98,7 @@ class ObjEntry(object):
         self.set_val = set_val
         self.uistate = uistate
         self.track = track
+        self.callback = callback
         
         #connect drag and drop
         self._init_dnd()
@@ -141,6 +142,8 @@ class ObjEntry(object):
         else:
             self.label.set_text(name)
         self.label.set_ellipsize(Pango.EllipsizeMode.END)
+        if self.callback:
+            self.callback()
 
     def _init_dnd(self):
         """inheriting objects must set this
@@ -167,6 +170,8 @@ class ObjEntry(object):
     def after_edit(self, obj):
         name = self.get_label(obj)
         self.label.set_text(name)
+        if self.callback:
+            self.callback()
 
     def add_edt_clicked(self, obj):
         """ if value, edit, if no value, call editor on new object
@@ -198,6 +203,8 @@ class ObjEntry(object):
         self.set_val(data.handle)
         self.label.set_text(self.get_label(data))
         self.set_button(True)
+        if self.callback:
+            self.callback()
 
     def share_clicked(self, obj):
         """ if value, delete connect, in no value, select existing object
@@ -207,6 +214,8 @@ class ObjEntry(object):
             self.label.set_text(self.EMPTY_TEXT)
             self.label.set_use_markup(True)
             self.set_button(False)
+            if self.callback:
+                self.callback()
         else:
             select = self.call_selector()
             obj = select.run()
@@ -315,9 +324,9 @@ class SourceEntry(ObjEntry):
     DEL_STR = _('Remove source')
     
     def __init__(self, dbstate, uistate, track, label, set_val, 
-                 get_val, add_edt, share):
+                 get_val, add_edt, share, callback):
         ObjEntry.__init__(self, dbstate, uistate, track, label, set_val, 
-                 get_val, add_edt, share)
+                 get_val, add_edt, share, callback)
 
     def _init_dnd(self):
         """connect drag and drop of sources
