@@ -2043,7 +2043,7 @@ class CheckIntegrity(object):
         tag_references = len(self.invalid_tag_references)
         name_format = len(self.removed_name_format)
         replaced_sourcerefs = len(self.replaced_sourceref)
-        empty_objs = sum(len(obj) for obj in self.empty_objects.itervalues())
+        empty_objs = sum(len(obj) for obj in self.empty_objects.values())
 
         errors = (photos + efam + blink + plink + slink + rel +
                   event_invalid + person +

@@ -285,7 +285,9 @@ def gramps_upgrade_16(self):
                           note_list, change, tag_list, private)
             LOG.debug("      upgrade new_family %s" % [new_family])
             with BSDDBTxn(self.env, self.family_map) as txn:
-                txn.put(str(handle), new_family)
+                if isinstance(handle, UNITYPE):
+                    handle = handle.encode('utf-8')
+                txn.put(handle, new_family)
         self.update()
 
     LOG.debug("%d families upgraded with %d citations in %d seconds. " % 
