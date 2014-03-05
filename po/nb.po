@@ -2069,9 +2069,8 @@ msgid "Matches families whose notes contain text matching a substring"
 msgstr "Samsvarer med familier som har notater som inneholder tekst fra et treff på en delstreng"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Families having notes containing <text>"
-msgstr "Familier med tekstfelt som inneholder <substring>"
+msgstr "Familier med notater som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_hasnoteregexp.py:44
 msgid "Matches families whose notes contain text matching a regular expression"
@@ -2165,9 +2164,8 @@ msgid "Matches families with at least one direct source with confidence level(s)
 msgstr "Samsvarer med familier med minst en direkte kilde med troverdighetsnivå"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:48
-#, fuzzy
 msgid "Families having mother with Id containing <text>"
-msgstr "Familier med tekstfelt som inneholder <substring>"
+msgstr "Familier med mor der ID inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:49
 msgid "Matches families whose mother has a specified Gramps ID"
@@ -2206,9 +2204,8 @@ msgid "Matches families whose father has a name matching a specified regular exp
 msgstr "Samsvarer med familier hvor far har navn som samsvarer med et regulært uttrykk"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:49
-#, fuzzy
 msgid "Families with Id containing <text>"
-msgstr "Familier med <hendelse>"
+msgstr "Familier med ID som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/family/_regexpidof.py:50
 msgid "Matches families whose Gramps ID matches the regular expression"
@@ -2315,9 +2312,8 @@ msgid "Matches media objects whose notes contain text matching a substring"
 msgstr "Samsvarer med mediaobjekt som har notater som inneholder tekst fra et treff på en delstreng"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Media objects having notes containing <text>"
-msgstr "Mediaobjekt med tekstfelt som inneholder <substring>"
+msgstr "Mediaobjekt med notater som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/media/_hasnoteregexp.py:44
 msgid "Matches media objects whose notes contain text matching a regular expression"
@@ -2325,7 +2321,7 @@ msgstr "Samsvarer med mediaobjekt som har notater som inneholder tekst fra et tr
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:44
 msgid "Media objects with a reference count of <count>"
-msgstr "Mediaobjekter som er referert til <count> antall ganger"
+msgstr "Mediaobjekter som er referert til <antall> antall ganger"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:45
 msgid "Matches media objects with a certain reference count"
@@ -2380,9 +2376,8 @@ msgid "Matches Media objects that are indicated as private"
 msgstr "Samsvarer med mediaobjekter som er merket private"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:49
-#, fuzzy
 msgid "Media objects with Id containing <text>"
-msgstr "Mediaobjekt med <merke>"
+msgstr "Mediaobjekt med ID som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/media/_regexpidof.py:50
 msgid "Matches media objects whose Gramps ID matches the regular expression"
@@ -2460,12 +2455,10 @@ msgid "Matches notes matched by the specified filter name"
 msgstr "Samsvarer med notater fra et bestemt filternavn"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:46
-#, fuzzy
 msgid "Notes containing <text>"
-msgstr "Notater som inneholder <substring>"
+msgstr "Notater som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/note/_matchesregexpof.py:47
-#, fuzzy
 msgid "Matches notes that contain a substring or match a regular expression"
 msgstr "Samsvarer med notater som inneholder tekst som samsvarer med et regulært uttrykk"
 
@@ -2486,9 +2479,8 @@ msgid "Matches notes that are indicated as private"
 msgstr "Samsvarer med notater som er merket private"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:49
-#, fuzzy
 msgid "Notes with Id containing <text>"
-msgstr "Notater som inneholder <substring>"
+msgstr "Notater med ID som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/note/_regexpidof.py:50
 msgid "Matches notes whose Gramps ID matches the regular expression"
@@ -2654,15 +2646,13 @@ msgid "Personal event:"
 msgstr "Personlig hendelse:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:54
-#, fuzzy
 msgid "Main Participants:"
-msgstr "Hoveddeltakere"
+msgstr "Hoveddeltakere:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:55
 #: ../gramps/gui/editors/filtereditor.py:576
-#, fuzzy
 msgid "Primary Role:"
-msgstr "Primær[pre]"
+msgstr "Primær Rolle:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:56
 msgid "People with the personal <event>"
@@ -2821,9 +2811,8 @@ msgid "Matches people whose notes contain text matching a substring"
 msgstr "Samsvarer med personer med notater som inneholder tekst fra et treff på en delstreng"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:43
-#, fuzzy
 msgid "People having notes containing <text>"
-msgstr "Personer med tekstfelt som inneholder <delstreng>"
+msgstr "Personer med notater som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/person/_hasnoteregexp.py:44
 msgid "Matches people whose notes contain text matching a regular expression"
@@ -3252,23 +3241,20 @@ msgid "Matches people without indications of death that are not too old"
 msgstr "Samsvarer med personer uten dødsindikasjon, som ikke er for gamle"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:48
-#, fuzzy
 msgid "People with Id containing <text>"
-msgstr "Personer med poster som inneholder <delstreng>"
+msgstr "Personer med ID som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/person/_regexpidof.py:49
 msgid "Matches people whose Gramps ID matches the regular expression"
 msgstr "Samsvarer med personer hvor Gramps ID samsvarer med regulært uttrykk"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:48
-#, fuzzy
 msgid "People with a name matching <text>"
-msgstr "Personer med <Etternavn, opprinnelsestype>"
+msgstr "Personer med navn som samsvarer med <tekst>"
 
 #: ../gramps/gen/filters/rules/person/_regexpname.py:49
-#, fuzzy
 msgid "Matches people's names containing a substring or matching a regular expression"
-msgstr "Samsvarer med personer som har notater som inneholder tekst fra et treff på et regulært uttrykk"
+msgstr "Samsvarer med personers navn som inneholder tekst fra et treff på et regulært uttrykk"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:48
 msgid "Relationship path between <persons>"
@@ -3360,9 +3346,8 @@ msgid "Matches places whose notes contain text matching a substring"
 msgstr "Samsvarer med steder som har notater som inneholder tekst fra et treff på en delstreng"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Places having notes containing <text>"
-msgstr "Steder som har tekstfelt som inneholder <substring>"
+msgstr "Steder som har notater som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/place/_hasnoteregexp.py:44
 msgid "Matches places whose notes contain text matching a regular expression"
@@ -3500,9 +3485,8 @@ msgid "Matches places that are indicated as private"
 msgstr "Samsvarer med steder som er merket private"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:49
-#, fuzzy
 msgid "Places with Id containing <text>"
-msgstr "Personer med poster som inneholder <delstreng>"
+msgstr "Steder med ID som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/place/_regexpidof.py:50
 msgid "Matches places whose Gramps ID matches the regular expression"
@@ -3541,9 +3525,8 @@ msgid "Matches repositories whose notes contain text matching a substring"
 msgstr "Samsvarer med oppbevaringssteder som har notater som inneholder tekst fra et treff på en delstreng"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Repositories having notes containing <text>"
-msgstr "Oppbevaringssteder med tekstfelt som inneholder <delstreng>"
+msgstr "Oppbevaringssteder med notater som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnoteregexp.py:44
 msgid "Matches repositories whose notes contain text matching a regular expression"
@@ -3551,7 +3534,7 @@ msgstr "Samsvarer med oppbevaringssteder som har notater som inneholder tekst fr
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:44
 msgid "Repositories with a reference count of <count>"
-msgstr "Oppbevaringssteder som er blitt referert til <count> ganger"
+msgstr "Oppbevaringssteder som er blitt referert til <antall> ganger"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:45
 msgid "Matches repositories with a certain reference count"
@@ -3582,18 +3565,16 @@ msgid "Matches repositories matched by the specified filter name"
 msgstr "Samsvarer med oppbevaringssted fra et bestemt filternavn"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:45
-#, fuzzy
 msgid "Repositories with name containing <text>"
-msgstr "Oppbevaringssteder inneholder <delstreng>"
+msgstr "Oppbevaringssteder med navn som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:46
 msgid "Matches repositories whose name contains a certain substring"
 msgstr "Samsvarer med oppbevaringssteder som har navn som inneholder en bestemt delstreng"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
-#, fuzzy
 msgid "Repositories with Id containing <text>"
-msgstr "Oppbevaringssteder med tekstfelt som inneholder <delstreng>"
+msgstr "Oppbevaringssteder med ID som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:50
 msgid "Matches repositories whose Gramps ID matches the regular expression"
@@ -3656,9 +3637,8 @@ msgid "Matches sources whose notes contain text matching a substring"
 msgstr "Samsvarer med kilder som har notater som inneholder tekst fra et treff på en delstreng"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:43
-#, fuzzy
 msgid "Sources having notes containing <text>"
-msgstr "Kilder med tekstfelt som inneholder <substring>"
+msgstr "Kilder med notater som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/source/_hasnoteregexp.py:44
 msgid "Matches sources whose notes contain text matching a regular expression"
@@ -3681,9 +3661,8 @@ msgid "Matches sources with a certain number of repository references"
 msgstr "Samsvarer med kilder med et bestemt antall referanser til oppbevaringssteder"
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:46
-#, fuzzy
 msgid "Sources with repository reference containing <text> in \"Call Number\""
-msgstr "Kilder med henvisning til oppbevaringssted som inneholder <delstreng> i \"Henvisningsnummer\""
+msgstr "Kilder med henvisning til oppbevaringssted som inneholder <tekst> i \"Henvisningsnummer\""
 
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:47
 msgid ""
@@ -3712,18 +3691,16 @@ msgstr ""
 "som samsvarer med et angitt filter for oppbevaringssteder"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:45
-#, fuzzy
 msgid "Sources with title containing <text>"
-msgstr "Kildertitler som inneholder <delstring>"
+msgstr "Kilder med tittel som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:46
 msgid "Matches sources whose title contains a certain substring"
 msgstr "Samsvarer med kilder som har en tittel som inneholder en bestemt delstreng"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:49
-#, fuzzy
 msgid "Sources with Id containing <text>"
-msgstr "Kildertitler som inneholder <delstring>"
+msgstr "Kilder med ID som inneholder <tekst>"
 
 #: ../gramps/gen/filters/rules/source/_regexpidof.py:50
 msgid "Matches sources whose Gramps ID matches the regular expression"
@@ -4063,9 +4040,8 @@ msgid "Informant"
 msgstr "Inndataformat"
 
 #: ../gramps/gen/lib/eventtype.py:142
-#, fuzzy
 msgid "Life Events"
-msgstr "Hendelser"
+msgstr "Livshendelser"
 
 #. 1
 #. get the family events
@@ -4092,9 +4068,8 @@ msgid "Family"
 msgstr "Familie"
 
 #: ../gramps/gen/lib/eventtype.py:147
-#, fuzzy
 msgid "Religious"
-msgstr "Religion"
+msgstr "Religiøs"
 
 #: ../gramps/gen/lib/eventtype.py:150
 #, fuzzy
@@ -4103,11 +4078,11 @@ msgstr "Plassering"
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Academic"
-msgstr ""
+msgstr "Akademisk"
 
 #: ../gramps/gen/lib/eventtype.py:154
 msgid "Travel"
-msgstr ""
+msgstr "Reise"
 
 #: ../gramps/gen/lib/eventtype.py:156
 msgid "Legal"
@@ -5449,14 +5424,12 @@ msgid "Graphviz File"
 msgstr "Graphviz-fil"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:80
-#, fuzzy
 msgid "paper size|Letter"
-msgstr "Navn på papirformat."
+msgstr "papirformat"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:82
-#, fuzzy
 msgid "paper size|Legal"
-msgstr "Navn på papirformat."
+msgstr "papirformat"
 
 #: ../gramps/gen/plug/docgen/paperstyle.py:84
 msgid "Custom Size"
@@ -5622,9 +5595,8 @@ msgid "Updated"
 msgstr "Oppdatert"
 
 #: ../gramps/gen/plug/utils.py:250
-#, fuzzy
 msgid "updates|New"
-msgstr "oppdatering"
+msgstr "oppdateringer"
 
 #: ../gramps/gen/plug/utils.py:283 ../gramps/gen/plug/utils.py:290
 #, python-format
@@ -5934,9 +5906,9 @@ msgid "ancestor death-related date"
 msgstr "anes dødsrelaterte dato"
 
 #: ../gramps/gen/utils/alive.py:459
-#, fuzzy, python-format
+#, python-format
 msgid "Database error: loop in %s's ancestors"
-msgstr "Databasefeil: %s er angitt som sin egen ane"
+msgstr "Databasefeil: løkke i %s sine aner"
 
 #. no evidence, must consider alive
 #: ../gramps/gen/utils/alive.py:506
@@ -5962,13 +5934,12 @@ msgid "%(father)s and %(mother)s"
 msgstr "%(father)s og %(mother)s"
 
 #: ../gramps/gen/utils/image.py:125
-#, fuzzy
 msgid "WARNING: PIL module not loaded.  Image cropping in report files will be impaired."
 msgstr "ADVARSEL: modulen PIL er ikke lastet.  Funksjonaliteten for å beskjære bilder vil ikke være tilgjengelig."
 
 #: ../gramps/gen/utils/grampslocale.py:65
 msgid "Arabic"
-msgstr ""
+msgstr "arabisk"
 
 #: ../gramps/gen/utils/grampslocale.py:66
 msgid "Bulgarian"
@@ -5976,7 +5947,7 @@ msgstr "bulgarsk"
 
 #: ../gramps/gen/utils/grampslocale.py:67
 msgid "Breton"
-msgstr ""
+msgstr "bretonsk"
 
 #. Windows has no translation for Breton
 #: ../gramps/gen/utils/grampslocale.py:68
@@ -6000,13 +5971,12 @@ msgid "Greek"
 msgstr "gresk"
 
 #: ../gramps/gen/utils/grampslocale.py:73
-#, fuzzy
 msgid "English (USA)"
-msgstr "britisk"
+msgstr "engelsk (USA)"
 
 #: ../gramps/gen/utils/grampslocale.py:74
 msgid "English"
-msgstr "britisk"
+msgstr "engelsk"
 
 #: ../gramps/gen/utils/grampslocale.py:75
 msgid "Esperanto"
@@ -6027,7 +5997,7 @@ msgstr "fransk"
 
 #: ../gramps/gen/utils/grampslocale.py:79
 msgid "Gaelic"
-msgstr ""
+msgstr "gælisk"
 
 #. Windows has no translation for Gaelic
 #: ../gramps/gen/utils/grampslocale.py:80
@@ -6076,14 +6046,12 @@ msgid "Polish"
 msgstr "polsk"
 
 #: ../gramps/gen/utils/grampslocale.py:91
-#, fuzzy
 msgid "Portuguese (Brazil)"
-msgstr "portugisisk"
+msgstr "portugisisk (Brasil)"
 
 #: ../gramps/gen/utils/grampslocale.py:92
-#, fuzzy
 msgid "Portuguese (Portugal)"
-msgstr "portugisisk"
+msgstr "portugisisk (Portugal)"
 
 #: ../gramps/gen/utils/grampslocale.py:93
 msgid "Romanian"
@@ -6124,7 +6092,7 @@ msgstr "vietnamesisk"
 
 #: ../gramps/gen/utils/grampslocale.py:103
 msgid "Chinese Simplified"
-msgstr ""
+msgstr "kinesisk forenklet"
 
 #: ../gramps/gen/utils/grampslocale.py:804
 msgid "the person"
@@ -8298,9 +8266,8 @@ msgid "Open Containing _Folder"
 msgstr "Åpne innholdskatalog"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:165
-#, fuzzy
 msgid "Make Active Media"
-msgstr "Gjør person aktiv"
+msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:272
 #: ../gramps/gui/editors/editperson.py:937
@@ -9340,9 +9307,8 @@ msgid "Gramps_4.0_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1"
 msgstr ""
 
 #: ../gramps/gui/editors/editperson.py:239
-#, fuzzy
 msgid "manpage section id|Editing_information_about_people"
-msgstr "Rediger_informasjon_om_hendelser"
+msgstr ""
 
 #: ../gramps/gui/editors/editperson.py:587
 #: ../gramps/plugins/view/geofamily.py:396
@@ -9916,39 +9882,32 @@ msgid "Source: Abbreviation"
 msgstr "Kilde: Forkortelse"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
-#, fuzzy
 msgid "Source: Publication"
-msgstr "Kilde: Forkortelse"
+msgstr "Kilde: Publikasjon"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
-#, fuzzy
 msgid "Source: Note"
-msgstr "Kildenotat"
+msgstr "Kilde: Notat"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
-#, fuzzy
 msgid "Citation: ID"
-msgstr "Sitering"
+msgstr "Sitering: ID"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
-#, fuzzy
 msgid "Citation: Volume/Page"
-msgstr "Bind/film/side:"
+msgstr "Sitering: Volum/side:"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
-#, fuzzy
 msgid "Citation: Date"
-msgstr "Siteringsnotater"
+msgstr "Sitering: Dato"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:110
-#, fuzzy
 msgid "Citation: Minimum Confidence|Min. Conf."
-msgstr "Min. Trov."
+msgstr "Sitering: Minste troverdighet."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
-#, fuzzy
 msgid "Citation: Note"
-msgstr "Siteringsnotater"
+msgstr "Sitering: Notat"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:101
@@ -13473,9 +13432,8 @@ msgid "Document Styles"
 msgstr "Dokumentstiler"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:129
-#, fuzzy
 msgid "New Style"
-msgstr "Stil"
+msgstr "Ny stil"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:140
 msgid "Error saving stylesheet"
@@ -13541,9 +13499,8 @@ msgstr "Velg kilde eller sitering"
 
 #: ../gramps/gui/selectors/selectcitation.py:67
 #: ../gramps/plugins/view/citationtreeview.py:94
-#, fuzzy
 msgid "Source: Title or Citation: Volume/Page"
-msgstr "Kilde eller Sitering"
+msgstr "Kilde: tittel eller sitering: Volum/Side"
 
 #: ../gramps/gui/selectors/selectcitation.py:69
 #: ../gramps/gui/selectors/selectevent.py:68
@@ -14085,9 +14042,8 @@ msgid "A bookmark could not be set because nothing was selected."
 msgstr "Bokmerket kunne ikke lages fordi ingen er valgt."
 
 #: ../gramps/gui/views/listview.py:533
-#, fuzzy
 msgid "Confirm every deletion?"
-msgstr "Konfirmasjon"
+msgstr "Bekrefte alle slettinger"
 
 #: ../gramps/gui/views/listview.py:534
 msgid "More than one item has been selected for deletion. Ask before deleting each one?"
@@ -14412,14 +14368,12 @@ msgid "Related"
 msgstr "Relatert"
 
 #: ../gramps/gui/widgets/fanchart.py:1851
-#, fuzzy
 msgid "Add partner to person"
-msgstr "Legge til foreldre til en person"
+msgstr "Legge til partner til en person"
 
 #: ../gramps/gui/widgets/fanchart.py:1859
-#, fuzzy
 msgid "Add a person"
-msgstr "Legg til en ny person"
+msgstr "Legg til en person"
 
 #: ../gramps/gui/widgets/fanchart.py:1934
 #: ../gramps/plugins/view/relview.py:1526
