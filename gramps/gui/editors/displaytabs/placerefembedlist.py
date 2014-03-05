@@ -59,9 +59,10 @@ class PlaceRefEmbedList(EmbeddedList):
         (_('Date'), 3, 150, TEXT_COL, -1, None), 
         ]
     
-    def __init__(self, dbstate, uistate, track, data, handle):
+    def __init__(self, dbstate, uistate, track, data, handle, callback):
         self.data = data
         self.handle = handle
+        self.callback = callback
         EmbeddedList.__init__(self, dbstate, uistate, track, 
                               _('Parents'), PlaceRefModel, 
                               move_buttons=True)
@@ -99,3 +100,6 @@ class PlaceRefEmbedList(EmbeddedList):
 
     def edit_callback(self, name):
         self.rebuild()
+
+    def post_rebuild(self, prebuildpath):
+        self.callback()
