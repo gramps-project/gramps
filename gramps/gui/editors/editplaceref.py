@@ -82,7 +82,10 @@ class EditPlaceRef(EditSecondary):
         return skip
 
     def select_parent(self, button):
-        skip = self.get_skip_list(self.handle)
+        if self.handle:
+            skip = self.get_skip_list(self.handle)
+        else:
+            skip = []
         sel = SelectPlace(self.dbstate, self.uistate, self.track, skip=skip)
         parent = sel.run()
         if parent:
