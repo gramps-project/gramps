@@ -4072,9 +4072,8 @@ msgid "Religious"
 msgstr "Religiøs"
 
 #: ../gramps/gen/lib/eventtype.py:150
-#, fuzzy
 msgid "Vocational"
-msgstr "Plassering"
+msgstr ""
 
 #: ../gramps/gen/lib/eventtype.py:152
 msgid "Academic"
@@ -16893,13 +16892,12 @@ msgid "GExiv2 module not loaded."
 msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:397
-#, fuzzy
 msgid ""
 "Image metadata functionality will not be available.\n"
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 msgstr ""
-"Modulen GExiv2 er ikke åpnet. Metadata fra bilder vil ikke være tilgjengelig.\n"
-"For å bygge den for Gramps kan du se http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#GExiv2_for_Image_metadata"
+"Funksjonalitet for metadata fra bilder er ikke tilgjengelig.\n"
+"For å bygge dette for Gramps, se http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#GExiv2_for_Image_metadata"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:406
 msgid "Person Residence"
@@ -18332,24 +18330,20 @@ msgid "Include individual and family IDs."
 msgstr "Ta med person og famile IDer."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:580
-#, fuzzy
 msgid "Include relationship to center person"
 msgstr "Ta med slektskap til senterpersonen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:581
-#, fuzzy
 msgid "Whether to show every person's relationship to the center person"
 msgstr "Visningen som viser alle slektsforholdene til den valgte personen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:588
-#, fuzzy
 msgid "Include relationship debugging numbers also"
-msgstr "Ta med slektskap til senterpersonen"
+msgstr "Ta også med feilsøkeinformasjon for slektskap"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:591
-#, fuzzy
 msgid "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
-msgstr "Om det skal tas med et notat i rapporten."
+msgstr "Om det skal tas med 'Ga' og 'Gb', for å feilsøke slektsskapkalkulatoren"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:598
 msgid "Whether to include thumbnails of people."
@@ -22764,9 +22758,8 @@ msgid "_Print..."
 msgstr "_Skriv ut..."
 
 #: ../gramps/plugins/lib/maps/geography.py:271
-#, fuzzy
 msgid "Print or save the Map"
-msgstr "Skriv ut og lagre vifteformet tavle"
+msgstr "Skriv ut og lagre kartet"
 
 #: ../gramps/plugins/lib/maps/geography.py:308
 msgid "Map Menu"
@@ -22982,26 +22975,26 @@ msgid "Open on openstreetmap.org"
 msgstr "Åpner fra openstreetmap.org"
 
 #: ../gramps/plugins/quickview/ageondate.py:51
-#, fuzzy, python-format
+#, python-format
 msgid "People and their ages the %s"
-msgstr "Personer som sannsynligvis lever og deres alder den %s"
+msgstr "Personer og deres alder den %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:54
-#, fuzzy, python-format
+#, python-format
 msgid "People and their ages on %s"
-msgstr "Personer som sannsynligvis lever og deres alder den %s"
+msgstr "Personer og deres alder den %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:66
 #: ../gramps/plugins/quickview/ageondate.py:69
-#, fuzzy, python-format
+#, python-format
 msgid "Alive: %s"
-msgstr "Levende"
+msgstr "Levende: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:75
 #: ../gramps/plugins/quickview/ageondate.py:78
-#, fuzzy, python-format
+#, python-format
 msgid "Deceased: %s"
-msgstr "Etterkommerutforsker: %s"
+msgstr "Død: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:83
 #, python-format
@@ -23009,6 +23002,8 @@ msgid ""
 "\n"
 "Living matches: %d, Deceased matches: %d\n"
 msgstr ""
+"\n"
+"Levende treff: %d, Død treff: %d\n"
 
 #. display the results
 #. feature request 2356: avoid genitive form
@@ -26434,9 +26429,8 @@ msgid "Reordering Source IDs"
 msgstr "Reorganiserer kilde IDer"
 
 #: ../gramps/plugins/tool/reorderids.py:130
-#, fuzzy
 msgid "Reordering Citation IDs"
-msgstr "Reorganiserer familie IDer"
+msgstr "Reorganiserer siterings-IDer"
 
 #: ../gramps/plugins/tool/reorderids.py:140
 msgid "Reordering Place IDs"
@@ -27307,9 +27301,8 @@ msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:551
-#, fuzzy
 msgid "Choose and bookmark the new reference person"
-msgstr "Velg referanseperson"
+msgstr "Velg og bokmerke den nye referansepersonen"
 
 #: ../gramps/plugins/view/geoclose.py:574
 msgid ""
@@ -27342,9 +27335,8 @@ msgstr "ukomplett eller ureferert hendelse ?"
 
 #: ../gramps/plugins/view/geoevents.py:337
 #: ../gramps/plugins/view/geoevents.py:369
-#, fuzzy
 msgid "Bookmark this event"
-msgstr "Klarte ikke å lage bokmerke for denne referansen"
+msgstr "Bokmerke denne hendelsen"
 
 #: ../gramps/plugins/view/geoevents.py:386
 msgid "Show all events"
@@ -27424,9 +27416,8 @@ msgid "Person : %(id)s %(name)s has no family."
 msgstr "Person : %(id)s %(name)s har ingen familie."
 
 #: ../gramps/plugins/view/geofamclose.py:694
-#, fuzzy
 msgid "Choose and bookmark the new reference family"
-msgstr "Velg referansefamilien"
+msgstr "Velg og bokmerk den nye referansefamilien"
 
 #: ../gramps/plugins/view/geofamclose.py:717
 msgid ""
@@ -27463,12 +27454,11 @@ msgid "OsmGpsMap module not loaded."
 msgstr ""
 
 #: ../gramps/plugins/view/geography.gpr.py:67
-#, fuzzy
 msgid ""
 "Geography functionality will not be available.\n"
 "To build it for Gramps see http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 msgstr ""
-"Modulen OsmGpsMap er ikke lastet. Funksjonaliteten for geografi vil ikke være tilgjengelig.\n"
+"Geografifunksjonaliteten er ikke tilgjengelig.\n"
 "For å bygge den opp for Gramps kan du lese http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
 
 #: ../gramps/plugins/view/geography.gpr.py:77
@@ -27536,9 +27526,8 @@ msgid "All descendance for %s"
 msgstr "Alle etterkommere av %s"
 
 #: ../gramps/plugins/view/geomoves.py:608
-#, fuzzy
 msgid "Bookmark this person"
-msgstr "Logge for denne sesjonen"
+msgstr "Lage bokmerke for denne personen"
 
 #: ../gramps/plugins/view/geomoves.py:642
 msgid "The maximum number of generations.\n"
@@ -27587,13 +27576,12 @@ msgid "The animation parameters"
 msgstr "Animasjonsparametrene"
 
 #: ../gramps/plugins/view/geoplaces.py:120
-#, fuzzy
 msgid "Places map"
 msgstr "Stedskart"
 
 #: ../gramps/plugins/view/geoplaces.py:289
 msgid "The place name in the status bar is disabled."
-msgstr ""
+msgstr "Stedskartet i statuslinja er deaktivert."
 
 #: ../gramps/plugins/view/geoplaces.py:294
 #, python-format
@@ -27618,9 +27606,8 @@ msgstr "I dette tilfellet kan det ta noe tid å vise alle markørene."
 
 #: ../gramps/plugins/view/geoplaces.py:335
 #: ../gramps/plugins/view/geoplaces.py:359
-#, fuzzy
 msgid "Bookmark this place"
-msgstr "Dåpssted"
+msgstr "Lag bokmerke for dette stedet"
 
 #: ../gramps/plugins/view/geoplaces.py:376
 msgid "Show all places"
@@ -27628,11 +27615,11 @@ msgstr "Vis alle steder"
 
 #: ../gramps/plugins/view/htmlrenderer.gpr.py:69
 msgid "Webkit module not loaded."
-msgstr ""
+msgstr "Modulen Webkit er ikke lastet."
 
 #: ../gramps/plugins/view/htmlrenderer.gpr.py:70
 msgid "Webkit module not loaded. Embedded web page viewing will not be available. Use your package manager to install gir1.2-webkit-3.0"
-msgstr ""
+msgstr "Modulen Webkit er ikke lastet. Innpakking av Internettsider vil ikke være tilgjengelig. Bruk pakkebehandleren for å installere gir1.2-webkit-3.0"
 
 #: ../gramps/plugins/view/htmlrenderer.gpr.py:79
 msgid "Html View"
