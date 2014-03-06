@@ -262,6 +262,7 @@ class test(Command):
     description = "run all unit tests"
     user_options = []
 
+
     def initialize_options(self):
         pass
 
@@ -269,6 +270,8 @@ class test(Command):
         pass
 
     def run(self):
+        if not os.path.exists('build'):
+            raise RuntimeError("No build directory. Run `python setup.py build` before trying to run tests.")
         os.environ['GRAMPS_RESOURCES'] = '.'
         all_tests = unittest.TestLoader().discover('.', pattern='*_test.py')
         unittest.TextTestRunner(verbosity=self.verbose).run(all_tests)
