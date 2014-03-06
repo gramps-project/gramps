@@ -40,6 +40,7 @@ import logging
 LOG = logging.getLogger("." + __name__)
 LOG.propagate = True
 HAVE_ICU = False
+_icu_err = None
 _hdlr = None
 # GrampsLocale initialization comes before command-line argument
 # passing, so one must set the log level directly. The default is
@@ -53,8 +54,10 @@ except ImportError:
         from PyICU import Locale, Collator
         HAVE_ICU = True
     except ImportError as err:
-        LOG.warning("ICU not loaded because %s. Localization will be impaired. "
-                    "Use your package manager to install PyICU", str(err))
+        # No logger, save the warning message for later.
+        _icu_err = ("ICU not loaded because %s. Localization will be impaired. "
+                    "Use your package manager to install PyICU" % str(err))
+
 ICU_LOCALES = None
 if HAVE_ICU:
     ICU_LOCALES = Locale.getAvailableLocales()
@@ -382,6 +385,10 @@ class GrampsLocale(object):
         _hdlr = logging.StreamHandler()
         _hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
         LOG.addHandler(_hdlr)
+
+        #Now that we have a logger set up we can issue the icu error if needed.
+        if not HAVE_ICU:
+            LOG.warning(_icu_err)
 
         # Even the first instance can be overridden by passing lang
         # and languages to the constructor. If it isn't (which is the
