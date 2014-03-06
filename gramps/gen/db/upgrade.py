@@ -28,7 +28,7 @@ from ..lib.markertype import MarkerType
 from ..lib.tag import Tag
 import time
 import logging
-LOG = logging.getLogger(".citation")
+LOG = logging.getLogger(".upgrade")
 
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -46,7 +46,7 @@ from . import BSDDBTxn
 from ..lib.nameorigintype import NameOriginType
 from .write import _mkname, SURNAMES
 from .dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
-                            MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY)
+                            MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, SOURCE_KEY)
 from gramps.gui.dialog import (InfoDialog)
 
 def gramps_upgrade_16(self):
@@ -61,26 +61,30 @@ def gramps_upgrade_16(self):
              (4) add backlinks for references from object to Citations
              (5) add backlinks for references from Citation to Source
             
-        the backlinks are all updated at the end by calling
-        reindex_reference_map
+        the backlinks are all updated on return to write.py gramps_upgrade by
+        calling reindex_reference_map
 
     """
-    length = (len(self.note_map) + len(self.person_map) +
+    # Only People, Families, Events, Media Objects, Places, Sources and
+    # Repositories need to be updated, because these are the only primary
+    # objects that can have source citations.
+    length = (len(self.person_map) +
               len(self.event_map) + len(self.family_map) +
               len(self.repository_map) + len(self.media_map) +
-              len(self.place_map) + len(self.source_map)) + 10
+              len(self.place_map) + len(self.source_map))
     self.set_total(length)
 
     # Setup data for upgrade statistics information dialogue
     keyorder = [PERSON_KEY, FAMILY_KEY, EVENT_KEY, MEDIA_KEY, 
-                PLACE_KEY, REPOSITORY_KEY]
+                PLACE_KEY, REPOSITORY_KEY, SOURCE_KEY]
     key2data = {
             PERSON_KEY : 0,
             FAMILY_KEY : 1,
             EVENT_KEY: 2, 
             MEDIA_KEY: 3, 
             PLACE_KEY: 4,
-            REPOSITORY_KEY: 5, 
+            REPOSITORY_KEY: 5,
+            SOURCE_KEY : 6, 
             }
     key2string = {
         PERSON_KEY      : _('%6d  People        upgraded with %6d citations in %6d secs\n'),
@@ -89,8 +93,9 @@ def gramps_upgrade_16(self):
         MEDIA_KEY       : _('%6d  Media Objects upgraded with %6d citations in %6d secs\n'),
         PLACE_KEY       : _('%6d  Places        upgraded with %6d citations in %6d secs\n'),
         REPOSITORY_KEY  : _('%6d  Repositories  upgraded with %6d citations in %6d secs\n'),
+        SOURCE_KEY      : _('%6d  Sources       upgraded with %6d citations in %6d secs\n'),
         }
-    data_upgradeobject = [0] * 6
+    data_upgradeobject = [0] * 7
 
     # Initialise the citation gramps ID number
     self.cmap_index = 0
@@ -102,6 +107,15 @@ def gramps_upgrade_16(self):
     start_time = time.time()
     for person_handle in self.person_map.keys():
         person = self.person_map[person_handle]
+        try:
+            # The parameters are evaluated before deciding whether logging is on
+            # or not. Since the retrieval of names is so complex, I think it is
+            # safer to protect this with a try except block, even though it
+            # seems to work for names being present and not.
+            LOG.debug("upgrade person %s %s" % (person[3][4],
+                      " ".join([name[0] for name in person[3][5]])))
+        except:
+            pass
         (handle, gramps_id, gender, primary_name, alternate_names, 
          death_ref_index, birth_ref_index, event_ref_list, family_list, 
          parent_family_list, media_list, address_list, attribute_list, 
@@ -144,6 +158,7 @@ def gramps_upgrade_16(self):
                           attribute_list, urls, lds_seal_list, 
                           new_citation_list, note_list, change, tag_list, 
                           private, person_ref_list)
+            LOG.debug("      upgrade new_person %s" % [new_person])
             with BSDDBTxn(self.env, self.person_map) as txn:
                 if isinstance(handle, UNITYPE):
                     handle = handle.encode('utf-8')
@@ -165,7 +180,7 @@ def gramps_upgrade_16(self):
     start_time = time.time()
     for media_handle in self.media_map.keys():
         media = self.media_map[media_handle]
-        LOG.debug("upgrade media %s" % media[4])
+        LOG.debug("upgrade media object %s" % media[4])
         (handle, gramps_id, path, mime, desc,
          attribute_list, source_list, note_list, change,
          date, tag_list, private) = media
@@ -182,12 +197,11 @@ def gramps_upgrade_16(self):
             if isinstance(handle, UNITYPE):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_media)
-        LOG.debug("      update ref map media %s" % [handle,
-                        self.get_object_from_handle(handle) ])
         self.update()
 
-    LOG.debug("Media upgrade %d citations upgraded in %d seconds" % 
-              (self.cmap_index - start_num_citations, 
+    LOG.debug("%d media objects upgraded with %d citations in %d seconds" % 
+              (len(self.media_map.keys()),
+               self.cmap_index - start_num_citations, 
                int(time.time() - start_time)))
     data_upgradeobject[key2data[MEDIA_KEY]] = (len(list(self.media_map.keys())),
                                        self.cmap_index - start_num_citations,
@@ -200,6 +214,7 @@ def gramps_upgrade_16(self):
     start_time = time.time()
     for place_handle in self.place_map.keys():
         place = self.place_map[place_handle]
+        LOG.debug("upgrade place %s" % place[2])
         (handle, gramps_id, title, longi, lat,
          main_loc, alt_loc, urls, media_list, source_list, note_list,
          change, private) = place
@@ -216,6 +231,7 @@ def gramps_upgrade_16(self):
                          longi, lat, main_loc, alt_loc, urls,
                          media_list, new_citation_list, note_list, 
                          change, private)
+            LOG.debug("      upgrade new_place %s" % [new_place])
             with BSDDBTxn(self.env, self.place_map) as txn:
                 if isinstance(handle, UNITYPE):
                     handle = handle.encode('utf-8')
@@ -237,6 +253,7 @@ def gramps_upgrade_16(self):
     start_time = time.time()
     for family_handle in self.family_map.keys():
         family = self.family_map[family_handle]
+        LOG.debug("upgrade family (gramps_id) %s" % family[1])
         (handle, gramps_id, father_handle, mother_handle,
          child_ref_list, the_type, event_ref_list, media_list,
          attribute_list, lds_seal_list, source_list, note_list,
@@ -266,13 +283,14 @@ def gramps_upgrade_16(self):
                           child_ref_list, the_type, event_ref_list, media_list,
                           attribute_list, lds_seal_list, new_citation_list, 
                           note_list, change, tag_list, private)
+            LOG.debug("      upgrade new_family %s" % [new_family])
             with BSDDBTxn(self.env, self.family_map) as txn:
                 if isinstance(handle, UNITYPE):
                     handle = handle.encode('utf-8')
                 txn.put(handle, new_family)
         self.update()
 
-    LOG.debug("%d familys upgraded with %d citations in %d seconds. " % 
+    LOG.debug("%d families upgraded with %d citations in %d seconds. " % 
               (len(list(self.family_map.keys())), 
                self.cmap_index - start_num_citations, 
                time.time() - start_time))
@@ -282,13 +300,11 @@ def gramps_upgrade_16(self):
     # ---------------------------------
     # Modify Events
     # ---------------------------------
-    upgrade_time = 0
-    backlink_time = 0
     start_num_citations = self.cmap_index
     start_time = time.time()
     for event_handle in self.event_map.keys():
-        t1 = time.time()
         event = self.event_map[event_handle]
+        LOG.debug("upgrade event %s" % event[4])
         (handle, gramps_id, the_type, date, description, place, 
          source_list, note_list, media_list, attribute_list,
          change, private) = event
@@ -308,21 +324,17 @@ def gramps_upgrade_16(self):
                          new_citation_list, note_list, media_list,
                          attribute_list, 
                          change, private)
+            LOG.debug("      upgrade new_event %s" % [new_event])
             with BSDDBTxn(self.env, self.event_map) as txn:
                 if isinstance(handle, UNITYPE):
                     handle = handle.encode('utf-8')
                 txn.put(handle, new_event)
-        t2 = time.time()
-        upgrade_time += t2 - t1
-        t3 = time.time()
-        backlink_time += t3 - t2
         self.update()
 
-    LOG.debug("%d events upgraded with %d citations in %d seconds. "
-              "Backlinks took %d seconds" % 
-              (len(list(self.event_map.keys())), 
+    LOG.debug("%d events upgraded with %d citations in %d seconds. " % 
+              (len(self.event_map.keys()), 
                self.cmap_index - start_num_citations, 
-               int(upgrade_time), int(backlink_time)))
+               time.time() - start_time))
     data_upgradeobject[key2data[EVENT_KEY]] = (len(list(self.event_map.keys())),
                                        self.cmap_index - start_num_citations,
                                        time.time() - start_time)
@@ -334,6 +346,7 @@ def gramps_upgrade_16(self):
     start_time = time.time()
     for repository_handle in self.repository_map.keys():
         repository = self.repository_map[repository_handle]
+        LOG.debug("upgrade repository %s" % repository[3])
         (handle, gramps_id, the_type, name, note_list,
          address_list, urls, change, private) = repository
         if address_list:
@@ -342,19 +355,54 @@ def gramps_upgrade_16(self):
         if address_list:
             new_repository = (handle, gramps_id, the_type, name, note_list,
                               address_list, urls, change, private)
+            LOG.debug("      upgrade new_repository %s" % [new_repository])
             with BSDDBTxn(self.env, self.repository_map) as txn:
                 if isinstance(handle, UNITYPE):
                     handle = handle.encode('utf-8')
                 txn.put(handle, new_repository)
         self.update()
 
-    LOG.debug("%d repositorys upgraded with %d citations in %d seconds. " % 
+    LOG.debug("%d repositories upgraded with %d citations in %d seconds. " % 
               (len(list(self.repository_map.keys())), 
                self.cmap_index - start_num_citations, 
                time.time() - start_time))
     data_upgradeobject[key2data[REPOSITORY_KEY]] = (len(list(self.repository_map.keys())),
                                        self.cmap_index - start_num_citations,
                                        time.time() - start_time)
+
+    # ---------------------------------
+    # Modify Source
+    # ---------------------------------
+    start_num_citations = self.cmap_index
+    start_time = time.time()
+    for source_handle in self.source_map.keys():
+        source = self.source_map[source_handle]
+        LOG.debug("upgrade source %s" % source[2])
+        (handle, gramps_id, title, author,
+         pubinfo, note_list, media_list,
+         abbrev, change, datamap, reporef_list,
+         private) = source
+        if media_list:
+            media_list = upgrade_media_list_16(
+                                        self, media_list)
+            
+        new_source = (handle, gramps_id, title, author,
+                      pubinfo, note_list, media_list,
+                      abbrev, change, datamap, reporef_list,
+                      private)
+        LOG.debug("      upgrade new_source %s" % [new_source])
+        with BSDDBTxn(self.env, self.source_map) as txn:
+            txn.put(str(handle), new_source)
+        self.update()
+
+    LOG.debug("%d sources upgraded with %d citations in %d seconds" % 
+              (len(self.source_map.keys()), 
+               self.cmap_index - start_num_citations, 
+               int(time.time() - start_time)))
+    data_upgradeobject[key2data[SOURCE_KEY]] = (len(self.source_map.keys()),
+                                       self.cmap_index - start_num_citations,
+                                       time.time() - start_time)
+
     # ---------------------------------
 
     
@@ -552,12 +600,6 @@ def convert_source_list_to_citation_list_16(self, source_list):
                 new_handle = new_handle.encode('utf-8')
             txn.put(new_handle, new_citation)
         self.cmap_index += 1
-#        # add backlinks for references from Citation to Source
-#        with BSDDBTxn(self.env) as txn:
-#            self.update_reference_map( 
-#                    self.get_citation_from_handle(new_handle),
-#                    transaction,
-#                    txn.txn)
         citation_list.append((new_handle))
     return citation_list
 
