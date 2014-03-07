@@ -194,24 +194,27 @@ def mac_setup_localization(glocale):
         """
         Extract the collation (sort order) locale from the defaults string.
         """
-        apple_collation = _mac_get_gramps_defaults("Gramps", "AppleCollationOrder")
+        # The locale module can't deal with collation-qualified
+        # locales, so we read $LC_COLLATE directly rather than trying
+        # to use locale.getlocale.
+        if ('LC_COLLATE') in os.environ:
+            apple_collation = os.environ['LC_COLLATE']
+        else:
+            apple_collation = _mac_get_gramps_defaults("Gramps",
+                                                       "AppleCollationOrder")
         if not apple_collation:
             apple_collation = _mac_get_gramps_defaults("Global",
                                                        "AppleCollationOrder")
 
         if not apple_collation:
-            return (None, None)
+            print('No apple collation')
+            return None
         apple_collation = apple_collation.strip()
         if not apple_collation or apple_collation.startswith("root"):
-            return (None, None)
-        div = apple_collation.split(b"@")
-        collation = div[0]
-        qualifier = None
-        if len(div) > 1:
-            parts = div[1].split(b"=")
-            if len(parts) == 2 and parts[0] == 'collation':
-                qualifier = parts[1]
-        return (collation, qualifier)
+            print('No meaningful apple collation')
+            return None
+        print('Got collation %s from defaults' % apple_collation)
+        return apple_collation
 
 #The action starts here
     _locale = None
@@ -234,12 +237,11 @@ def mac_setup_localization(glocale):
         (glocale.lang, glocale.currency, glocale.calendar) = _mac_get_locale()
 
     glocale.coll_qualifier = None
-    glocale.collation = locale.getlocale(locale.LC_COLLATE)[0]
-    if not glocale.collation:
-        (glocale.collation, glocale.coll_qualifier) = _mac_get_collation()
+    glocale.collation = _mac_get_collation()
 
     if not glocale.lang and glocale.collation:
-        glocale.lang = glocale.check_available_translations(glocale.collation)
+        coll_parts = glocale.collation.split('@')
+        glocale.lang = glocale.check_available_translations(coll_parts[0])
 
     glocale.lang = locale.normalize(glocale.lang)
     glocale.encoding = glocale.lang.split('.')[1]
