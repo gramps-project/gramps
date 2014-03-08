@@ -62,6 +62,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    checkoutdir="gramps-git"/>
     <dependencies>
       <dep package="meta-gtk-osx-python-gtk3"/>
+      <dep package="meta-gtk-osx-gtk3-core-themes"/>
       <dep package="goocanvas2"/>
       <dep package="librsvg"/>
       <dep package="shared-mime-info"/>
@@ -97,7 +98,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <branch module="gramps-addons/trunk/contrib"
 	    repo="gramps-addons"/>
     <dependencies>
-      <dep package="gramps-svn"/>
+      <dep package="gramps-git"/>
     </dependencies>
   </distutils>
 
