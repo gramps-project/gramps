@@ -290,7 +290,11 @@ class EditMedia(EditPrimary):
             return
         
         path = self.file_path.get_text()
-        if os.path.isfile(path):
+        ref_obj = self.dbstate.db.get_object_from_handle(self.obj.handle)
+        if ref_obj:
+            media_path = media_path_full(self.dbstate.db,
+                                               ref_obj.get_path())
+        if os.path.exists(os.path.join(os.path.dirname(media_path), path)):
             self.determine_mime()
         else:
             msg1 = _("There is no media matching the current path value!")
