@@ -207,13 +207,10 @@ def mac_setup_localization(glocale):
                                                        "AppleCollationOrder")
 
         if not apple_collation:
-            print('No apple collation')
             return None
         apple_collation = apple_collation.strip()
         if not apple_collation or apple_collation.startswith("root"):
-            print('No meaningful apple collation')
             return None
-        print('Got collation %s from defaults' % apple_collation)
         return apple_collation
 
 #The action starts here
