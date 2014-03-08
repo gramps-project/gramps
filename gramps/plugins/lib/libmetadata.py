@@ -23,6 +23,13 @@
 #
 #-------------------------------------------------------------------------
 #
+# Python modules
+#
+#-------------------------------------------------------------------------
+import os
+
+#-------------------------------------------------------------------------
+#
 # GNOME modules
 #
 #-------------------------------------------------------------------------
@@ -173,11 +180,14 @@ class MetadataView(Gtk.TreeView):
         self.sections = {}
         self.model.clear()
 
-        try:
-            metadata = GExiv2.Metadata(full_path)
-        except:
+        if os.path.exists(full_path):
+            try:
+                metadata = GExiv2.Metadata(full_path)
+            except:
+                return False
+        else:
             return False
-
+            
         get_human = metadata.get_tag_interpreted_string
 
         for section, key, key2, func in TAGS:
@@ -221,9 +231,12 @@ class MetadataView(Gtk.TreeView):
         """
         Return True if the gramplet has data, else return False.
         """
-        try:
-            metadata = GExiv2.Metadata(full_path)
-        except:
+        if os.path.exists(full_path):
+            try:
+                metadata = GExiv2.Metadata(full_path)
+            except:
+                return False
+        else:
             return False
 
         for tag in TAGS:
