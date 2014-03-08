@@ -41,6 +41,9 @@ from __future__ import print_function
 import os
 import sys
 import re
+import logging
+LOG = logging.getLogger('.' + __name__)
+LOG.progagate = True
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -250,7 +253,12 @@ class BasePluginManager(object):
         if pdata.fpath not in sys.path:
             if pdata.mod_name:
                 sys.path.insert(0, pdata.fpath)
-                module = __import__(pdata.mod_name)
+                try:
+                    module = __import__(pdata.mod_name)
+                except ValueError as err:
+                    LOG.warning('Plugin error: %s', err)
+                except ImportError as err:
+                    LOG.warning('Plugin error: %s', err)
                 sys.path.pop(0)
             else:
                 print("WARNING: module cannot be loaded")
