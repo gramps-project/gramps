@@ -237,10 +237,10 @@ class GrampsLocale(object):
         if not self.language:
             self.language = [self.lang[:5]]
 
-        if 'COLLATION' in os.environ:
-            coll = os.environ['COLLATION']
+        if 'LC_COLLATE' in os.environ:
+            coll = os.environ['LC_COLLATE']
             if HAVE_ICU:
-                if coll[:2] in ICU_LOCALES:
+                if coll[:5] in ICU_LOCALES:
                     self.collation = coll
                 else:
                     self.collation = self.lang
@@ -346,9 +346,6 @@ class GrampsLocale(object):
             self.collation = '.'.join(loc)
         else:
             self.collation = self.lang
-
-        if HAVE_ICU and 'COLLATION' in os.environ:
-            self.collation = os.environ['COLLATION']
 
         loc = locale.getlocale(locale.LC_NUMERIC)
         if loc and loc[0]:
@@ -550,6 +547,9 @@ class GrampsLocale(object):
         else:
             self.language = None
 
+         #For alternate collation sequences. Works only with ICU, and
+         #set only on Macs.
+        self.coll_qualifier = None
         _first = self._GrampsLocale__first_instance
         if self == _first:
             self._GrampsLocale__init_first_instance()
@@ -561,7 +561,6 @@ class GrampsLocale(object):
         if HAVE_ICU:
             self.icu_locales["default"] = Locale.createFromName(self.lang)
             if self.collation and self.collation != self.lang:
-                print ("Setting up for collation %s" % self.collation)
                 self.icu_locales["collation"] = Locale.createFromName(self.collation)
             else:
                 self.icu_locales["collation"] = self.icu_locales["default"]
@@ -617,7 +616,7 @@ class GrampsLocale(object):
         if not languages or len(languages) == 0:
             LOG.warning("No language provided, using US English")
         else:
-            raise ValueError("No usable translations in %s for " %
+            raise ValueError("No usable translations in %s" %
                              ':'.join(languages))
         translator = GrampsNullTranslations()
         translator._language = "en"
