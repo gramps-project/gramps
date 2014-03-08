@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-07 14:53+0100\n"
-"PO-Revision-Date: 2014-03-07 22:15+0100\n"
+"PO-Revision-Date: 2014-03-08 21:23+0100\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -20217,6 +20217,8 @@ msgid ""
 "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date "
 "as text."
 msgstr ""
+"Dato {vcard_snippet} er ikke i et godkjent format yyyy-mm-dd så det vil bli "
+"håndtert som tekst."
 
 #. feature requests 2356, 1658: avoid genitive form
 #. -------------------------------------------------------------------------
