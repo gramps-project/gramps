@@ -37,7 +37,7 @@
 
 <!-- Copy in the theme engines, -->
   <binary>
-    ${prefix}/lib/gtk-2.0/${pkg:${gtk}:gtk_binary_version}/engines/*.so
+    ${prefix}/lib/gtk-3.0/${pkg:${gtk}:gtk_binary_version}/theming-engines/*.so
   </binary>
 
 <!-- And the print backends -->
@@ -206,6 +206,10 @@
     ${prefix}/share/themes
   </data>
 
+  <data>
+    ${prefix}/share/icons
+  </data>
+
   <!-- Copy icons. Note that the .icns file is an Apple format which
        contains up to 4 sizes of icon. You can use
        /Developer/Applications/Utilities/Icon Composer.app to import
@@ -218,17 +222,9 @@
     ${project}/gramps.accel
   </data>
 
-  <!-- Icon themes to copy. The "icons" property can be either of
-       "auto", "all", or "none". All or none should be
-       self-explanatory, while auto means that the script will try to
-       figure out which icons are needed. This is done by getting all
-       the strings from all copied binaries, and matching them against
-       icon names. To be safe, you should use "all". "none" is useful
-       if you want just the index.theme file but no icons, mostly
-       needed for the "hicolor" base theme.
-  >
-  <icon-theme icons="auto">
-    Tango
-  </icon-theme -->
+  <!-- Default settings file to set the theme. -->
+  <data dest="${bundle}/Contents/Resources/etc/gtk-3.0/settings.ini">
+    ${project}/settings.ini
+  </data>
 
 </app-bundle>
