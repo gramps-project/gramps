@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: nb\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-07 14:53+0100\n"
-"PO-Revision-Date: 2014-03-08 21:23+0100\n"
+"PO-Revision-Date: 2014-03-08 21:29+0100\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmål <i18n-nb@lister.ping.uio.no>\n"
 "Language: nb\n"
@@ -13277,6 +13277,13 @@ msgid ""
 "See the Gramps README documentation for installation prerequisites,\n"
 "typically located in /usr/share/doc/gramps."
 msgstr ""
+"GTK-oversetting for det gjeldende språket (%s) finnes ikke.\n"
+"<b>Gramps</b> vil uansett fortsette.\n"
+"På grunn av dette vil sannsynligvis det grafiske grensesnittet være ødelagt, "
+"spesielt for RLT-språk!\n"
+"\n"
+"Les README-fila til Gramps for å se hva som kreves før Gramps installeres.\n"
+"Fila er vanligvis å finne i /usr/share/doc/gramps."
 
 #: ../gramps/gui/grampsgui.py:305
 msgid "Error parsing arguments"
@@ -29352,12 +29359,12 @@ msgstr "Bakgrunn"
 #: ../gramps/plugins/view/fanchartdescview.py:307
 #: ../gramps/plugins/view/fanchartview.py:304
 msgid "Start gradient/Main color"
-msgstr ""
+msgstr "Start gradient/hovedfarge"
 
 #: ../gramps/plugins/view/fanchartdescview.py:309
 #: ../gramps/plugins/view/fanchartview.py:306
 msgid "End gradient/2nd color"
-msgstr ""
+msgstr "Avslutt gradient/farge nummer to"
 
 #: ../gramps/plugins/view/fanchartdescview.py:311
 msgid "Color for duplicates"
