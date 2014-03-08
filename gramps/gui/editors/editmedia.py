@@ -290,7 +290,17 @@ class EditMedia(EditPrimary):
             return
         
         path = self.file_path.get_text()
-        self.determine_mime()
+        if os.path.isfile(path):
+            self.determine_mime()
+        else:
+            msg1 = _("There is no media matching the current path value!")
+            msg2 = _("You have attempted to use the path with "
+                         "value '%(path)s'. This path does not exist!" 
+                         " Please enter a different path") % {
+                         'path' : path }
+            ErrorDialog(msg1, msg2)
+            self.ok_button.set_sensitive(True)
+            return
 
         self.obj.set_path(get_unicode_path_from_file_chooser(path))
 

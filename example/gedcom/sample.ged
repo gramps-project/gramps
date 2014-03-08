@@ -1,12 +1,12 @@
 0 HEAD
 1 SOUR Gramps
-2 VERS 3.3.0
+2 VERS 4.0.4
 2 NAME Gramps
-1 DATE 27 DEC 2010
-2 TIME 15:35:24
+1 DATE 16 FEB 2014
+2 TIME 12:14:10
 1 SUBM @SUBM@
-1 FILE gramps33/example/gedcom/sample.ged
-1 COPR Copyright (c) 2010 Alex Roitman,,,.
+1 FILE gramps40/example/gedcom/sample.ged
+1 COPR Copyright (c) 2014 Alex Roitman,,,.
 1 GEDC
 2 VERS 5.5
 2 FORM LINEAGE-LINKED
@@ -14,10 +14,8 @@
 1 LANG French
 0 @SUBM@ SUBM
 1 NAME Alex Roitman,,,
-1 ADDR Not Provided
-2 CONT Not Provided
-2 ADR1 Not Provided
-0 @I0@ INDI
+1 ADDR
+0 @I0000@ INDI
 1 NAME Anna /Hansdotter/
 2 GIVN Anna
 2 SURN Hansdotter
@@ -30,11 +28,11 @@
 2 TYPE Death of Anna Hansdotter
 2 DATE 29 SEP 1945
 2 PLAC Sparks, Washoe Co., NV
-1 FAMS @F3@
+1 FAMS @F0003@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I1@ INDI
+0 @I0001@ INDI
 1 NAME Keith Lloyd /Smith/
 2 GIVN Keith Lloyd
 2 SURN Smith
@@ -43,166 +41,11 @@
 2 TYPE Birth of Keith Lloyd Smith
 2 DATE 11 AUG 1966
 2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F8@
+1 FAMC @F0008@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I10@ INDI
-1 NAME Hans Peter /Smith/
-2 GIVN Hans Peter
-2 SURN Smith
-1 SEX M
-1 BIRT
-2 TYPE Birth of Hans Peter Smith
-2 DATE 17 APR 1904
-2 PLAC Ronne, Bornholm, Denmark
-1 DEAT
-2 TYPE Death of Hans Peter Smith
-2 DATE 29 JAN 1977
-2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F3@
-1 FAMS @F9@
-1 FAMS @F14@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I11@ INDI
-1 NAME Hanna /Smith/
-2 GIVN Hanna
-2 SURN Smith
-1 SEX F
-1 BIRT
-2 TYPE Birth of Hanna Smith
-2 DATE 29 JAN 1821
-2 PLAC Gladsax, Kristianstad Lan, Sweden
-1 FAMC @F0@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I12@ INDI
-1 NAME Herman Julius /Nielsen/
-2 GIVN Herman Julius
-2 SURN Nielsen
-1 SEX M
-1 BIRT
-2 TYPE Birth of Herman Julius Nielsen
-2 DATE 31 AUG 1889
-2 PLAC Ronne, Bornholm, Denmark
-1 DEAT
-2 TYPE Death of Herman Julius Nielsen
-2 DATE 1945
-1 FAMS @F5@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I13@ INDI
-1 NAME Evelyn /Michaels/
-2 GIVN Evelyn
-2 SURN Michaels
-1 SEX F
-1 BIRT
-2 TYPE Birth of Evelyn Michaels
-2 DATE ABT 1897
-1 FAMS @F7@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I14@ INDI
-1 NAME Marjorie Lee /Smith/
-2 GIVN Marjorie Lee
-2 SURN Smith
-1 SEX F
-1 BIRT
-2 TYPE Birth of Marjorie Lee Smith
-2 DATE 4 NOV 1934
-2 PLAC Reno, Washoe Co., NV
-1 FAMC @F6@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I15@ INDI
-1 NAME Gus /Smith/
-2 GIVN Gus
-2 SURN Smith
-1 SEX M
-1 BIRT
-2 TYPE Birth of Gus Smith
-2 DATE 11 SEP 1897
-2 PLAC Ronne, Bornholm, Denmark
-1 DEAT
-2 TYPE Death of Gus Smith
-2 DATE 21 OCT 1963
-2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F3@
-1 FAMS @F7@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I16@ INDI
-1 NAME Jennifer /Anderson/
-2 GIVN Jennifer
-2 SURN Anderson
-1 SEX F
-1 BIRT
-2 TYPE Birth of Jennifer Anderson
-2 DATE 5 NOV 1907
-2 PLAC Ronne, Bornholm, Denmark
-1 DEAT
-2 TYPE Death of Jennifer Anderson
-2 DATE 29 MAY 1985
-2 PLAC San Francisco, San Francisco Co., CA
-1 FAMS @F14@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I17@ INDI
-1 NAME Lillie Harriet /Jones/
-2 GIVN Lillie Harriet
-2 SURN Jones
-1 SEX F
-1 BIRT
-2 TYPE Birth of Lillie Harriet Jones
-2 DATE 2 MAY 1910
-2 PLAC Ronne, Bornholm, Denmark
-1 DEAT
-2 TYPE Death of Lillie Harriet Jones
-2 DATE 26 JUN 1990
-1 FAMS @F9@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I18@ INDI
-1 NAME John Hjalmar /Smith/
-2 GIVN John Hjalmar
-2 SURN Smith
-1 SEX M
-1 BIRT
-2 TYPE Birth of John Hjalmar Smith
-2 DATE 30 JAN 1932
-2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F6@
-1 FAMS @F12@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I19@ INDI
-1 NAME Eric Lloyd /Smith/
-2 GIVN Eric Lloyd
-2 SURN Smith
-1 SEX M
-1 BIRT
-2 TYPE Birth of Eric Lloyd Smith
-2 DATE 28 AUG 1963
-2 PLAC San Francisco, San Francisco Co., CA
-1 ADOP Y
-2 FAMC @F8@
-3 ADOP BOTH
-1 FAMC @F8@
-1 FAMS @F10@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I2@ INDI
+0 @I0002@ INDI
 1 NAME Amber Marie /Smith/
 2 GIVN Amber Marie
 2 SURN Smith
@@ -215,11 +58,279 @@
 2 TYPE Christening of Amber Marie Smith
 2 DATE 26 APR 1998
 2 PLAC Community Presbyterian Church, Danville, CA
-1 FAMC @F13@
+1 FAMC @F0013@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I20@ INDI
+0 @I0003@ INDI
+1 NAME Magnes /Smith/
+2 GIVN Magnes
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 TYPE Birth of Magnes Smith
+2 DATE 6 OCT 1858
+2 PLAC Simrishamn, Kristianstad Lan, Sweden
+1 DEAT
+2 TYPE Death of Magnes Smith
+2 DATE 20 FEB 1910
+2 PLAC Ronne, Bornholm, Denmark
+1 FAMC @F0002@
+1 FAMS @F0011@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0004@ INDI
+1 NAME Ingeman /Smith/
+2 GIVN Ingeman
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 TYPE Birth of Ingeman Smith
+2 DATE 29 JAN 1826
+2 PLAC Gladsax, Kristianstad Lan, Sweden
+1 FAMC @F0000@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0005@ INDI
+1 NAME Mason Michael /Smith/
+2 GIVN Mason Michael
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 TYPE Birth of Mason Michael Smith
+2 DATE 26 JUN 1996
+2 PLAC Hayward, Alameda Co., CA
+1 CHR
+2 TYPE Christening of Mason Michael Smith
+2 DATE 10 JUL 1996
+2 PLAC Community Presbyterian Church, Danville, CA
+1 FAMC @F0013@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0006@ INDI
+1 NAME Edwin /Willard/
+2 GIVN Edwin
+2 SURN Willard
+1 SEX M
+1 BIRT
+2 TYPE Birth of Edwin Willard
+2 DATE ABT 1886
+1 FAMS @F0004@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0007@ INDI
+1 NAME Ingar /Smith/
+2 GIVN Ingar
+2 SURN Smith
+1 SEX F
+1 BIRT
+2 TYPE Birth of Ingar Smith
+2 DATE AFT 1823
+2 PLAC Gladsax, Kristianstad Lan, Sweden
+1 FAMC @F0000@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0008@ INDI
+1 NAME Hjalmar /Smith/
+2 GIVN Hjalmar
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 TYPE Birth of Hjalmar Smith
+2 DATE 7 APR 1895
+2 PLAC Ronne, Bornholm, Denmark
+1 DEAT
+2 TYPE Death of Hjalmar Smith
+2 DATE 26 JUN 1975
+2 PLAC Reno, Washoe Co., NV
+1 BAPM
+2 TYPE Baptism of Hjalmar Smith
+2 DATE 3 JUN 1895
+2 PLAC Ronne Bornholm, Denmark
+1 EVEN
+2 TYPE Immi
+2 DATE 14 NOV 1912
+2 PLAC Copenhagen, Denmark
+1 FAMC @F0003@
+1 FAMS @F0006@
+1 NOTE @N0003@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0009@ INDI
+1 NAME Emil /Smith/
+2 GIVN Emil
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 TYPE Birth of Emil Smith
+2 DATE 27 SEP 1860
+2 PLAC Simrishamn, Kristianstad Lan, Sweden
+1 FAMC @F0002@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0010@ INDI
+1 NAME Hans Peter /Smith/
+2 GIVN Hans Peter
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 TYPE Birth of Hans Peter Smith
+2 DATE 17 APR 1904
+2 PLAC Ronne, Bornholm, Denmark
+1 DEAT
+2 TYPE Death of Hans Peter Smith
+2 DATE 29 JAN 1977
+2 PLAC San Francisco, San Francisco Co., CA
+1 FAMC @F0003@
+1 FAMS @F0014@
+1 FAMS @F0009@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0011@ INDI
+1 NAME Hanna /Smith/
+2 GIVN Hanna
+2 SURN Smith
+1 SEX F
+1 BIRT
+2 TYPE Birth of Hanna Smith
+2 DATE 29 JAN 1821
+2 PLAC Gladsax, Kristianstad Lan, Sweden
+1 FAMC @F0000@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0012@ INDI
+1 NAME Herman Julius /Nielsen/
+2 GIVN Herman Julius
+2 SURN Nielsen
+1 SEX M
+1 BIRT
+2 TYPE Birth of Herman Julius Nielsen
+2 DATE 31 AUG 1889
+2 PLAC Ronne, Bornholm, Denmark
+1 DEAT
+2 TYPE Death of Herman Julius Nielsen
+2 DATE 1945
+1 FAMS @F0005@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0013@ INDI
+1 NAME Evelyn /Michaels/
+2 GIVN Evelyn
+2 SURN Michaels
+1 SEX F
+1 BIRT
+2 TYPE Birth of Evelyn Michaels
+2 DATE ABT 1897
+1 FAMS @F0007@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0014@ INDI
+1 NAME Marjorie Lee /Smith/
+2 GIVN Marjorie Lee
+2 SURN Smith
+1 SEX F
+1 BIRT
+2 TYPE Birth of Marjorie Lee Smith
+2 DATE 4 NOV 1934
+2 PLAC Reno, Washoe Co., NV
+1 FAMC @F0006@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0015@ INDI
+1 NAME Gus /Smith/
+2 GIVN Gus
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 TYPE Birth of Gus Smith
+2 DATE 11 SEP 1897
+2 PLAC Ronne, Bornholm, Denmark
+1 DEAT
+2 TYPE Death of Gus Smith
+2 DATE 21 OCT 1963
+2 PLAC San Francisco, San Francisco Co., CA
+1 FAMC @F0003@
+1 FAMS @F0007@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0016@ INDI
+1 NAME Jennifer /Anderson/
+2 GIVN Jennifer
+2 SURN Anderson
+1 SEX F
+1 BIRT
+2 TYPE Birth of Jennifer Anderson
+2 DATE 5 NOV 1907
+2 PLAC Ronne, Bornholm, Denmark
+1 DEAT
+2 TYPE Death of Jennifer Anderson
+2 DATE 29 MAY 1985
+2 PLAC San Francisco, San Francisco Co., CA
+1 FAMS @F0014@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0017@ INDI
+1 NAME Lillie Harriet /Jones/
+2 GIVN Lillie Harriet
+2 SURN Jones
+1 SEX F
+1 BIRT
+2 TYPE Birth of Lillie Harriet Jones
+2 DATE 2 MAY 1910
+2 PLAC Ronne, Bornholm, Denmark
+1 DEAT
+2 TYPE Death of Lillie Harriet Jones
+2 DATE 26 JUN 1990
+1 FAMS @F0009@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0018@ INDI
+1 NAME John Hjalmar /Smith/
+2 GIVN John Hjalmar
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 TYPE Birth of John Hjalmar Smith
+2 DATE 30 JAN 1932
+2 PLAC San Francisco, San Francisco Co., CA
+1 FAMC @F0006@
+1 FAMS @F0012@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0019@ INDI
+1 NAME Eric Lloyd /Smith/
+2 GIVN Eric Lloyd
+2 SURN Smith
+1 SEX M
+1 BIRT
+2 TYPE Birth of Eric Lloyd Smith
+2 DATE 28 AUG 1963
+2 PLAC San Francisco, San Francisco Co., CA
+1 ADOP Y
+2 FAMC @F0008@
+3 ADOP BOTH
+1 FAMC @F0008@
+1 FAMS @F0010@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @I0020@ INDI
 1 NAME Carl Emil /Smith/
 2 GIVN Carl Emil
 2 SURN Smith
@@ -233,11 +344,12 @@
 2 DATE 28 JAN 1959
 2 PLAC Reno, Washoe Co., NV
 2 CAUS Bad breath
-1 FAMC @F3@
+1 FAMC @F0003@
+1 FAMS @F0015@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I21@ INDI
+0 @I0021@ INDI
 1 NAME Hjalmar /Smith/
 2 GIVN Hjalmar
 2 SURN Smith
@@ -250,11 +362,11 @@
 2 TYPE Death of Hjalmar Smith
 2 DATE 25 SEP 1894
 2 PLAC Ronne, Bornholm, Denmark
-1 FAMC @F3@
+1 FAMC @F0003@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I22@ INDI
+0 @I0022@ INDI
 1 NAME Martin /Smith/
 2 GIVN Martin
 2 SURN Smith
@@ -271,13 +383,13 @@
 2 TYPE Baptism of Martin Smith
 2 DATE 23 NOV 1830
 2 PLAC Gladsax, Kristianstad Lan, Sweden
-1 FAMC @F0@
-1 FAMS @F2@
+1 FAMC @F0000@
+1 FAMS @F0002@
 1 NOTE @N0002@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I23@ INDI
+0 @I0023@ INDI
 1 NAME Astrid Shermanna Augusta /Smith/
 2 GIVN Astrid Shermanna Augusta
 2 SURN Smith
@@ -290,12 +402,12 @@
 2 TYPE Death of Astrid Shermanna Augusta Smith
 2 DATE 21 DEC 1963
 2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F3@
-1 FAMS @F5@
+1 FAMC @F0003@
+1 FAMS @F0005@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I24@ INDI
+0 @I0024@ INDI
 1 NAME Gustaf /Smith/ Sr.
 2 GIVN Gustaf
 2 SURN Smith
@@ -317,12 +429,12 @@
 2 TYPE Christening of Gustaf Smith, Sr.
 2 DATE 7 DEC 1862
 2 PLAC Gladsax, Kristianstad Lan, Sweden
-1 FAMC @F2@
-1 FAMS @F3@
+1 FAMC @F0002@
+1 FAMS @F0003@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I25@ INDI
+0 @I0025@ INDI
 1 NAME Marta /Ericsdotter/
 2 GIVN Marta
 2 SURN Ericsdotter
@@ -331,11 +443,11 @@
 2 TYPE Birth of Marta Ericsdotter
 2 DATE ABT 1775
 2 PLAC Sweden
-1 FAMS @F1@
+1 FAMS @F0001@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I26@ INDI
+0 @I0026@ INDI
 1 NAME Kirsti Marie /Smith/
 2 GIVN Kirsti Marie
 2 SURN Smith
@@ -348,12 +460,12 @@
 2 TYPE Death of Kirsti Marie Smith
 2 DATE 18 JUL 1966
 2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F3@
-1 FAMS @F4@
+1 FAMC @F0003@
+1 FAMS @F0004@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I27@ INDI
+0 @I0027@ INDI
 1 NAME Ingeman /Smith/
 2 GIVN Ingeman
 2 SURN Smith
@@ -362,11 +474,11 @@
 2 TYPE Birth of Ingeman Smith
 2 DATE ABT 1770
 2 PLAC Sweden
-1 FAMS @F1@
+1 FAMS @F0001@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I28@ INDI
+0 @I0028@ INDI
 1 NAME Anna /Streiffert/
 2 GIVN Anna
 2 SURN Streiffert
@@ -379,11 +491,11 @@
 2 TYPE Death of Anna Streiffert
 2 DATE 2 FEB 1927
 2 PLAC Ronne, Bornholm, Denmark
-1 FAMS @F11@
+1 FAMS @F0011@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I29@ INDI
+0 @I0029@ INDI
 1 NAME Craig Peter /Smith/
 2 GIVN Craig Peter
 2 SURN Smith
@@ -395,29 +507,11 @@
 1 CENS
 2 TYPE Census of Craig Peter Smith
 2 NOTE @N0000@
-1 FAMC @F8@
+1 FAMC @F0008@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I3@ INDI
-1 NAME Magnes /Smith/
-2 GIVN Magnes
-2 SURN Smith
-1 SEX M
-1 BIRT
-2 TYPE Birth of Magnes Smith
-2 DATE 6 OCT 1858
-2 PLAC Simrishamn, Kristianstad Lan, Sweden
-1 DEAT
-2 TYPE Death of Magnes Smith
-2 DATE 20 FEB 1910
-2 PLAC Ronne, Bornholm, Denmark
-1 FAMC @F2@
-1 FAMS @F11@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I30@ INDI
+0 @I0030@ INDI
 1 NAME Janice Ann /Adams/
 2 GIVN Janice Ann
 2 SURN Adams
@@ -430,11 +524,11 @@
 1 _DEG
 2 TYPE Business Management
 2 DATE 1988
-1 FAMS @F13@
+1 FAMS @F0013@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I31@ INDI
+0 @I0031@ INDI
 1 NAME Marjorie /Ohman/
 2 GIVN Marjorie
 2 SURN Ohman
@@ -447,11 +541,11 @@
 2 TYPE Death of Marjorie Ohman
 2 DATE 22 JUN 1980
 2 PLAC Reno, Washoe Co., NV
-1 FAMS @F6@
+1 FAMS @F0006@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I32@ INDI
+0 @I0032@ INDI
 1 NAME Darcy /Horne/
 2 GIVN Darcy
 2 SURN Horne
@@ -460,11 +554,11 @@
 2 TYPE Birth of Darcy Horne
 2 DATE 2 JUL 1966
 2 PLAC Sacramento, Sacramento Co., CA
-1 FAMS @F10@
+1 FAMS @F0010@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I33@ INDI
+0 @I0033@ INDI
 1 NAME Lloyd /Smith/
 2 GIVN Lloyd
 2 SURN Smith
@@ -473,12 +567,12 @@
 2 TYPE Birth of Lloyd Smith
 2 DATE 13 MAR 1935
 2 PLAC San Francisco, San Francisco Co., CA
-1 FAMC @F9@
-1 FAMS @F8@
+1 FAMC @F0009@
+1 FAMS @F0008@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I34@ INDI
+0 @I0034@ INDI
 1 NAME Alice Paula /Perkins/
 2 GIVN Alice Paula
 2 SURN Perkins
@@ -487,11 +581,11 @@
 2 TYPE Birth of Alice Paula Perkins
 2 DATE 22 NOV 1933
 2 PLAC Sparks, Washoe Co., NV
-1 FAMS @F12@
+1 FAMS @F0012@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I35@ INDI
+0 @I0035@ INDI
 1 NAME Lars Peter /Smith/
 2 GIVN Lars Peter
 2 SURN Smith
@@ -501,13 +595,13 @@
 2 DATE 16 SEP 1991
 2 PLAC Santa Rosa, Sonoma Co., CA
 1 ADOP Y
-2 FAMC @F10@
+2 FAMC @F0010@
 3 ADOP BOTH
-1 FAMC @F10@
+1 FAMC @F0010@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I36@ INDI
+0 @I0036@ INDI
 1 NAME Elna /Jefferson/
 2 GIVN Elna
 2 SURN Jefferson
@@ -523,21 +617,21 @@
 2 TYPE Christening of Elna Jefferson
 2 DATE 16 SEP 1800
 2 PLAC Gladsax, Kristianstad Lan, Sweden
-1 FAMS @F0@
+1 FAMS @F0000@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I37@ INDI
+0 @I0037@ INDI
 1 NAME Edwin Michael /Smith/
 2 GIVN Edwin Michael
 2 SURN Smith
-2 SOUR @S1@
+2 SOUR @S0001@
 1 SEX M
 1 BIRT
 2 TYPE Birth of Edwin Michael Smith
 2 DATE 24 MAY 1961
 2 PLAC San Jose, Santa Clara Co., CA
-2 SOUR @S3@
+2 SOUR @S0003@
 1 OCCU Software Engineer
 2 AGE 23
 2 NOTE @N0001@
@@ -547,12 +641,12 @@
 1 _DEG
 2 TYPE B.S.E.E.
 2 DATE 1984
-1 FAMC @F12@
-1 FAMS @F13@
+1 FAMC @F0012@
+1 FAMS @F0013@
 1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I38@ INDI
+2 DATE 2 JUN 2013
+3 TIME 22:09:01
+0 @I0038@ INDI
 1 NAME Kerstina /Hansdotter/
 2 GIVN Kerstina
 2 SURN Hansdotter
@@ -565,11 +659,11 @@
 2 TYPE Death of Kerstina Hansdotter
 2 DATE BEF 1908
 2 PLAC Sweden
-1 FAMS @F2@
+1 FAMS @F0002@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I39@ INDI
+0 @I0039@ INDI
 1 NAME Martin /Smith/
 2 GIVN Martin
 2 SURN Smith
@@ -581,25 +675,12 @@
 1 DEAT
 2 TYPE Death of Martin Smith
 2 PLAC Sweden
-1 FAMC @F1@
-1 FAMS @F0@
+1 FAMC @F0001@
+1 FAMS @F0000@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I4@ INDI
-1 NAME Ingeman /Smith/
-2 GIVN Ingeman
-2 SURN Smith
-1 SEX M
-1 BIRT
-2 TYPE Birth of Ingeman Smith
-2 DATE 29 JAN 1826
-2 PLAC Gladsax, Kristianstad Lan, Sweden
-1 FAMC @F0@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I40@ INDI
+0 @I0040@ INDI
 1 NAME Marjorie Alice /Smith/
 2 GIVN Marjorie Alice
 2 SURN Smith
@@ -608,11 +689,11 @@
 2 TYPE Birth of Marjorie Alice Smith
 2 DATE 5 FEB 1960
 2 PLAC San Jose, Santa Clara Co., CA
-1 FAMC @F12@
+1 FAMC @F0012@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I41@ INDI
+0 @I0041@ INDI
 1 NAME Janis Elaine /Green/
 2 GIVN Janis Elaine
 2 SURN Green
@@ -620,131 +701,365 @@
 1 BIRT
 2 TYPE Birth of Janis Elaine Green
 2 DATE 2 DEC 1935
-1 FAMS @F8@
+1 FAMS @F0008@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @I5@ INDI
-1 NAME Mason Michael /Smith/
-2 GIVN Mason Michael
-2 SURN Smith
-1 SEX M
+0 @I0056@ INDI
+1 NAME Alvera C. /Erickson/
+2 GIVN Alvera C.
+2 SURN Erickson
+1 SEX F
 1 BIRT
-2 TYPE Birth of Mason Michael Smith
-2 DATE 26 JUN 1996
-2 PLAC Hayward, Alameda Co., CA
-1 CHR
-2 TYPE Christening of Mason Michael Smith
-2 DATE 10 JUL 1996
-2 PLAC Community Presbyterian Church, Danville, CA
-1 FAMC @F13@
+2 DATE 28 JUN 1902
+1 DEAT
+2 DATE 16 NOV 1987
+2 PLAC Reno, Washoe Co., NV
+1 FAMS @F0015@
 1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I6@ INDI
-1 NAME Edwin /Willard/
-2 GIVN Edwin
-2 SURN Willard
-1 SEX M
-1 BIRT
-2 TYPE Birth of Edwin Willard
-2 DATE ABT 1886
-1 FAMS @F4@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I7@ INDI
-1 NAME Ingar /Smith/
-2 GIVN Ingar
+2 DATE 4 APR 2011
+3 TIME 20:05:19
+0 @I0057@ INDI
+1 NAME Anna Louise /Smith/
+2 GIVN Anna Louise
 2 SURN Smith
 1 SEX F
 1 BIRT
-2 TYPE Birth of Ingar Smith
-2 DATE AFT 1823
-2 PLAC Gladsax, Kristianstad Lan, Sweden
-1 FAMC @F0@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I8@ INDI
-1 NAME Hjalmar /Smith/
-2 GIVN Hjalmar
-2 SURN Smith
-1 SEX M
-1 BIRT
-2 TYPE Birth of Hjalmar Smith
-2 DATE 7 APR 1895
-2 PLAC Ronne, Bornholm, Denmark
+2 DATE 22 DEC 1920
 1 DEAT
-2 TYPE Death of Hjalmar Smith
-2 DATE 26 JUN 1975
-2 PLAC Reno, Washoe Co., NV
-1 BAPM
-2 TYPE Baptism of Hjalmar Smith
-2 DATE 3 JUN 1895
-2 PLAC Ronne Bornholm, Denmark
-1 EVEN
-2 TYPE Immi
-2 DATE 14 NOV 1912
-2 PLAC Copenhagen, Denmark
-1 FAMC @F3@
-1 FAMS @F6@
-1 NOTE @N0003@
+2 DATE 21 JUN 2002
+1 FAMC @F0015@
+1 FAMS @F0016@
+1 FAMS @F0017@
 1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @I9@ INDI
-1 NAME Emil /Smith/
-2 GIVN Emil
+2 DATE 4 APR 2011
+3 TIME 21:01:45
+0 @I0058@ INDI
+1 NAME Elaine Marie /Smith/
+2 GIVN Elaine Marie
+2 SURN Smith
+1 SEX F
+1 BIRT
+2 DATE 24 JUN 1923
+2 PLAC Reno, Washoe Co., NV
+1 FAMC @F0015@
+1 FAMS @F0019@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 20:44:12
+0 @I0059@ INDI
+1 NAME Eli Harry /Jones/
+2 GIVN Eli Harry
+2 SURN Jones
+1 SEX M
+1 BIRT
+2 DATE 21 JUN 1917
+1 DEAT
+2 DATE 22 FEB 1990
+1 FAMS @F0016@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 20:14:35
+0 @I0060@ INDI
+1 NAME Leroy Verl /Morgan/
+2 GIVN Leroy Verl
+2 SURN Morgan
+1 SEX M
+1 BIRT
+2 DATE 14 SEP 1914
+1 DEAT
+2 DATE 17 NOV 1970
+2 PLAC San Francisco, San Francisco Co., CA
+1 FAMS @F0017@
+1 FAMS @F0018@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 20:28:55
+0 @I0061@ INDI
+1 NAME Roberta Michele /Jones/
+2 GIVN Roberta Michele
+2 SURN Jones
+1 SEX F
+1 BIRT
+2 DATE 21 AUG 1941
+2 PLAC Reno, Washoe Co., NV
+1 FAMC @F0016@
+1 FAMC @F0017@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 21:03:14
+0 @I0063@ INDI
+1 NAME Frank Albert /Jones/
+2 GIVN Frank Albert
+2 SURN Jones
+1 SEX M
+1 BIRT
+2 DATE ABT 29 APR 1945
+1 FAMC @F0016@
+1 FAMC @F0017@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 21:03:14
+0 @I0064@ INDI
+1 NAME Margaret Ann /Morgan/
+2 GIVN Margaret Ann
+2 SURN Morgan
+1 SEX F
+1 BIRT
+2 DATE 6 FEB 1950
+2 PLAC San Francisco, San Francisco Co., CA
+1 FAMC @F0017@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 21:02:13
+0 @I0065@ INDI
+1 NAME Robert Alfred /Shannon/
+2 GIVN Robert Alfred
+2 SURN Shannon
+1 SEX M
+1 BIRT
+2 DATE 7 JUL 1920
+1 DEAT
+2 DATE 12 JUL 1993
+1 FAMS @F0019@
+1 FAMS @F0020@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 20:51:40
+0 @I0066@ INDI
+1 NAME Kelly Christine /Shannon/
+2 GIVN Kelly Christine
+2 SURN Shannon
+1 SEX F
+1 BIRT
+2 DATE 14 SEP 1947
+1 FAMC @F0019@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 20:48:34
+0 @I0067@ INDI
+1 NAME Lisa Marie /Shannon/
+2 GIVN Lisa Marie
+2 SURN Shannon
+1 SEX F
+1 BIRT
+2 DATE 3 JUL 1949
+1 FAMC @F0019@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 20:48:34
+0 @I0068@ INDI
+1 NAME Matthew John /Shannon/
+2 GIVN Matthew John
+2 SURN Shannon
+1 SEX M
+1 BIRT
+2 DATE 23 SEP 1952
+1 FAMC @F0019@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 20:48:34
+0 @I0071@ INDI
+1 NAME Warren Edward /Smith/
+2 GIVN Warren Edward
 2 SURN Smith
 1 SEX M
 1 BIRT
-2 TYPE Birth of Emil Smith
-2 DATE 27 SEP 1860
-2 PLAC Simrishamn, Kristianstad Lan, Sweden
-1 FAMC @F2@
+2 DATE 12 SEP 1925
+2 PLAC Reno, Washoe Co., NV
+1 DEAT
+2 DATE 25 JAN 2000
+1 FAMC @F0015@
+1 FAMS @F0021@
+1 FAMS @F0022@
 1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @F0@ FAM
-1 HUSB @I39@
-1 WIFE @I36@
+2 DATE 4 APR 2011
+3 TIME 21:16:59
+0 @I0072@ INDI
+1 NAME Alice Hannah /Iverson/
+2 GIVN Alice Hannah
+2 SURN Iverson
+1 SEX F
+1 BIRT
+2 DATE 26 SEP 1925
+1 FAMS @F0021@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 21:13:25
+0 @I0073@ INDI
+1 NAME Evelyn Lucille /Watson/
+2 GIVN Evelyn Lucille
+2 SURN Watson
+1 SEX F
+1 BIRT
+2 DATE 17 FEB 1927
+1 FAMS @F0022@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 21:16:59
+0 @I0076@ INDI
+1 NAME Marie Astri /Smith/
+2 GIVN Marie Astri
+2 SURN Smith
+1 SEX F
+1 BIRT
+2 DATE 15 NOV 1947
+1 FAMC @F0021@
+1 FAMC @F0022@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 21:27:36
+0 @I0077@ INDI
+1 NAME Susan Elizabeth /Smith/
+2 GIVN Susan Elizabeth
+2 SURN Smith
+1 SEX F
+1 BIRT
+2 DATE 5 JAN 1949
+1 FAMC @F0021@
+1 FAMC @F0022@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 21:27:36
+0 @I0078@ INDI
+1 NAME Karen Christine /Smith/
+2 GIVN Karen Christine
+2 SURN Smith
+1 SEX F
+1 BIRT
+2 DATE 27 JUL 1950
+1 FAMC @F0022@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 21:27:36
+0 @F0000@ FAM
+1 HUSB @I0039@
+1 WIFE @I0036@
 1 MARR
 2 TYPE Marriage of Martin Smith and Elna Jefferson
 2 DATE ABT 1816
 2 PLAC Gladsax, Kristianstad Lan, Sweden
-1 CHIL @I11@
-1 CHIL @I7@
-1 CHIL @I4@
-1 CHIL @I22@
+1 CHIL @I0011@
+1 CHIL @I0007@
+1 CHIL @I0004@
+1 CHIL @I0022@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @F1@ FAM
-1 HUSB @I27@
-1 WIFE @I25@
+0 @F0001@ FAM
+1 HUSB @I0027@
+1 WIFE @I0025@
 1 MARR
 2 TYPE Marriage of Ingeman Smith and Marta Ericsdotter
 2 DATE ABT 1790
 2 PLAC Sweden
-1 CHIL @I39@
+1 CHIL @I0039@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @F10@ FAM
-1 HUSB @I19@
-1 WIFE @I32@
+0 @F0002@ FAM
+1 HUSB @I0022@
+1 WIFE @I0038@
+1 MARR
+2 TYPE Marriage of Martin Smith and Kerstina Hansdotter
+2 DATE ABT 1856
+1 CHIL @I0003@
+1 CHIL @I0009@
+1 CHIL @I0024@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @F0003@ FAM
+1 HUSB @I0024@
+1 WIFE @I0000@
+1 MARR
+2 TYPE Marriage of Gustaf Smith, Sr. and Anna Hansdotter
+2 DATE 27 NOV 1885
+2 PLAC Ronne, Bornholm, Denmark
+1 CHIL @I0026@
+1 CHIL @I0023@
+1 CHIL @I0021@
+1 CHIL @I0008@
+1 CHIL @I0015@
+1 CHIL @I0020@
+1 CHIL @I0010@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @F0004@ FAM
+1 HUSB @I0006@
+1 WIFE @I0026@
+1 MARR
+2 TYPE Marriage of Edwin Willard and Kirsti Marie Smith
+2 DATE ABT 1910
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @F0005@ FAM
+1 HUSB @I0012@
+1 WIFE @I0023@
+1 MARR
+2 TYPE Marriage of Herman Julius Nielsen and Astrid Shermanna Augusta Smith
+2 DATE 30 NOV 1912
+2 PLAC Ronne, Bornholm, Denmark
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @F0006@ FAM
+1 HUSB @I0008@
+1 WIFE @I0031@
+1 MARR
+2 TYPE Marriage of Hjalmar Smith and Marjorie Ohman
+2 DATE 31 OCT 1927
+2 PLAC Reno, Washoe Co., NV
+1 CHIL @I0018@
+1 CHIL @I0014@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @F0007@ FAM
+1 HUSB @I0015@
+1 WIFE @I0013@
+1 MARR
+2 TYPE Marriage of Gus Smith and Evelyn Michaels
+2 DATE ABT 1920
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @F0008@ FAM
+1 HUSB @I0033@
+1 WIFE @I0041@
+1 MARR
+2 TYPE Marriage of Lloyd Smith and Janis Elaine Green
+2 DATE 10 AUG 1958
+2 PLAC San Francisco, San Francisco Co., CA
+1 CHIL @I0019@
+1 CHIL @I0001@
+1 CHIL @I0029@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @F0009@ FAM
+1 HUSB @I0010@
+1 WIFE @I0017@
+1 CHIL @I0033@
+1 CHAN
+2 DATE 21 DEC 2007
+3 TIME 01:35:26
+0 @F0010@ FAM
+1 HUSB @I0019@
+1 WIFE @I0032@
 1 MARR
 2 TYPE Marriage of Eric Lloyd Smith and Darcy Horne
 2 DATE 12 JUL 1986
 2 PLAC Woodland, Yolo Co., CA
-1 CHIL @I35@
+1 CHIL @I0035@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @F11@ FAM
-1 HUSB @I3@
-1 WIFE @I28@
+0 @F0011@ FAM
+1 HUSB @I0003@
+1 WIFE @I0028@
 1 MARR
 2 TYPE Marriage of Magnes Smith and Anna Streiffert
 2 DATE 24 AUG 1884
@@ -752,22 +1067,22 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @F12@ FAM
-1 HUSB @I18@
-1 WIFE @I34@
+0 @F0012@ FAM
+1 HUSB @I0018@
+1 WIFE @I0034@
 1 MARR
 2 TYPE Marriage of John Hjalmar Smith and Alice Paula Perkins
 2 DATE 4 JUN 1954
 2 PLAC Sparks, Washoe Co., NV
-2 SOUR @S0@
-1 CHIL @I40@
-1 CHIL @I37@
+2 SOUR @S0000@
+1 CHIL @I0040@
+1 CHIL @I0037@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @F13@ FAM
-1 HUSB @I37@
-1 WIFE @I30@
+0 @F0013@ FAM
+1 HUSB @I0037@
+1 WIFE @I0030@
 1 MARR
 2 TYPE Marriage of Edwin Michael Smith and Janice Ann Adams
 2 DATE 27 MAY 1995
@@ -776,107 +1091,106 @@
 2 TYPE Engagement of Edwin Michael Smith and Janice Ann Adams
 2 DATE 5 OCT 1994
 2 PLAC San Francisco, San Francisco Co., CA
-1 CHIL @I5@
-1 CHIL @I2@
+1 CHIL @I0005@
+1 CHIL @I0002@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @F14@ FAM
-1 HUSB @I10@
-1 WIFE @I16@
+0 @F0014@ FAM
+1 HUSB @I0010@
+1 WIFE @I0016@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @F2@ FAM
-1 HUSB @I22@
-1 WIFE @I38@
+0 @F0015@ FAM
+1 HUSB @I0020@
+1 WIFE @I0056@
 1 MARR
-2 TYPE Marriage of Martin Smith and Kerstina Hansdotter
-2 DATE ABT 1856
-1 CHIL @I3@
-1 CHIL @I9@
-1 CHIL @I24@
+2 DATE 14 MAY 1920
+1 CHIL @I0057@
+1 CHIL @I0058@
+1 CHIL @I0071@
 1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @F3@ FAM
-1 HUSB @I24@
-1 WIFE @I0@
+2 DATE 4 APR 2011
+3 TIME 21:08:44
+0 @F0016@ FAM
+1 HUSB @I0059@
+1 WIFE @I0057@
 1 MARR
-2 TYPE Marriage of Gustaf Smith, Sr. and Anna Hansdotter
-2 DATE 27 NOV 1885
-2 PLAC Ronne, Bornholm, Denmark
-1 CHIL @I26@
-1 CHIL @I23@
-1 CHIL @I21@
-1 CHIL @I8@
-1 CHIL @I15@
-1 CHIL @I20@
-1 CHIL @I10@
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @F4@ FAM
-1 HUSB @I6@
-1 WIFE @I26@
-1 MARR
-2 TYPE Marriage of Edwin Willard and Kirsti Marie Smith
-2 DATE ABT 1910
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @F5@ FAM
-1 HUSB @I12@
-1 WIFE @I23@
-1 MARR
-2 TYPE Marriage of Herman Julius Nielsen and Astrid Shermanna Augusta Smith
-2 DATE 30 NOV 1912
-2 PLAC Ronne, Bornholm, Denmark
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @F6@ FAM
-1 HUSB @I8@
-1 WIFE @I31@
-1 MARR
-2 TYPE Marriage of Hjalmar Smith and Marjorie Ohman
-2 DATE 31 OCT 1927
+2 DATE 6 APR 1940
 2 PLAC Reno, Washoe Co., NV
-1 CHIL @I18@
-1 CHIL @I14@
+1 DIV
+2 DATE ABT JUL 1946
+1 CHIL @I0061@
+1 CHIL @I0063@
 1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @F7@ FAM
-1 HUSB @I15@
-1 WIFE @I13@
+2 DATE 4 APR 2011
+3 TIME 21:03:14
+0 @F0017@ FAM
+1 HUSB @I0060@
+1 WIFE @I0057@
 1 MARR
-2 TYPE Marriage of Gus Smith and Evelyn Michaels
-2 DATE ABT 1920
-1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @F8@ FAM
-1 HUSB @I33@
-1 WIFE @I41@
-1 MARR
-2 TYPE Marriage of Lloyd Smith and Janis Elaine Green
-2 DATE 10 AUG 1958
+2 DATE 16 JAN 1948
 2 PLAC San Francisco, San Francisco Co., CA
-1 CHIL @I19@
-1 CHIL @I1@
-1 CHIL @I29@
+1 CHIL @I0061@
+1 CHIL @I0063@
+1 CHIL @I0064@
 1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @F9@ FAM
-1 HUSB @I10@
-1 WIFE @I17@
-1 CHIL @I33@
+2 DATE 4 APR 2011
+3 TIME 20:33:56
+0 @F0018@ FAM
+1 HUSB @I0060@
+1 MARR
+2 DATE 4 MAR 1939
+1 DIV
+2 DATE 16 APR 1941
 1 CHAN
-2 DATE 21 DEC 2007
-3 TIME 01:35:26
-0 @S0@ SOUR
+2 DATE 4 APR 2011
+3 TIME 20:28:45
+0 @F0019@ FAM
+1 HUSB @I0065@
+1 WIFE @I0058@
+1 MARR
+2 DATE 13 AUG 1945
+1 DIV
+2 DATE 1955
+1 CHIL @I0066@
+1 CHIL @I0067@
+1 CHIL @I0068@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 20:48:34
+0 @F0020@ FAM
+1 HUSB @I0065@
+1 MARR
+2 DATE 15 MAR 1956
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 20:54:56
+0 @F0021@ FAM
+1 HUSB @I0071@
+1 WIFE @I0072@
+1 MARR
+2 DATE 1946
+1 DIV
+2 DATE ABT JUN 1949
+1 CHIL @I0076@
+1 CHIL @I0077@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 21:22:20
+0 @F0022@ FAM
+1 HUSB @I0071@
+1 WIFE @I0073@
+1 MARR
+2 DATE 30 JAN 1950
+1 CHIL @I0076@
+1 CHIL @I0077@
+1 CHIL @I0078@
+1 CHAN
+2 DATE 4 APR 2011
+3 TIME 21:27:36
+0 @S0000@ SOUR
 1 TITL Marriage Certificae
 1 REPO @R0002@
 2 CALN what-321-ever
@@ -885,17 +1199,17 @@
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @S1@ SOUR
+0 @S0001@ SOUR
 1 TITL Birth Certificate
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @S2@ SOUR
+0 @S0002@ SOUR
 1 TITL Birth Records
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
-0 @S3@ SOUR
+0 @S0003@ SOUR
 1 TITL Birth, Death and Marriage Records
 1 REPO @R0002@
 2 CALN CA-123-LL-456_Num/ber
@@ -907,6 +1221,10 @@
 0 @R0002@ REPO
 1 NAME New York Public Library
 1 ADDR 5th Ave at 42 street
+2 CONT New York
+2 CONT New York
+2 CONT 11111
+2 CONT USA
 2 ADR1 5th Ave at 42 street
 2 CITY New York
 2 STAE New York
@@ -915,6 +1233,9 @@
 0 @R0003@ REPO
 1 NAME Aunt Martha's Attic
 1 ADDR 123 Main St
+2 CONT Someville
+2 CONT ST
+2 CONT USA
 2 ADR1 123 Main St
 2 CITY Someville
 2 STAE ST
