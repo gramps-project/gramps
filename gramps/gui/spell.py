@@ -139,11 +139,14 @@ class Spell(object):
                         #available in GtkSpell since version 3.0.3 (2013-06-04)
                         pass
                     self._active_spellcheck = spellcheck_code
-                except:
+                except Exception as err:
                     # attaching the spellchecker will fail if
                     # the language does not exist
                     # and presumably if there is no dictionary
-                    LOG.warn(_("Spelling checker could not be attached to TextView"))
+                    if not self.gtkspell_spell.get_language_list():
+                        LOG.warn(_("You have no installed dictionaries. Either install one or disable spell checking"))
+                    else:
+                        LOG.warn(_("Spelling checker initialization failed: %s"), err)
         else:
             if spellcheck_code == 'on':
                 return
