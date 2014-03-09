@@ -50,7 +50,11 @@ _ = glocale.translation.gettext
 
 def safe_eval(exp):
     # restrict eval to empty environment
-    return eval(exp, {})
+    try:
+        return eval(exp, {})
+    except SyntaxError:
+        logging.warning ("Invalid command string: %s", exp)
+        return exp
 
 ##try:
 ##    from ast import literal_eval as safe_eval
@@ -368,9 +372,17 @@ class ConfigManager(object):
                             default = ""
                         if isinstance(value, int):
                             value = int(value)
-                        key_file.write(("%s%s=%s\n")% (default, 
-                                                       key, 
-                                                       repr(value)))
+                        # repr() in Py2 effectively runs "encode(val,
+                        # ascii, backslashreplace)" on its argument,
+                        # and there's no way to reconstruct the
+                        # string, so we special-case handling writing
+                        # to ensure the unicode is preserved.
+                        if isinstance(value, str) or isinstance(value, unicode):
+                            key_file.write(("%s%s=u'%s'\n") % (default, key,
+                                                            value))
+                        else:
+                            key_file.write(("%s%s=%s\n")% (default, key,
+                                                           repr(value)))
                 key_file.write("\n")
             key_file.close()
         # else, no filename given; nothing to save so do nothing quietly
