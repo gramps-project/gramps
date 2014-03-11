@@ -29,6 +29,8 @@ _hdlr = logging.StreamHandler()
 _hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
 LOG.addHandler(_hdlr)
 
+from ..constfunc import get_env_var
+
 class ResourcePath(object):
     """
     ResourcePath is a singleton, meaning that only one of them is ever
@@ -58,10 +60,9 @@ class ResourcePath(object):
         else:
             test_path = os.path.join("data", "authors.xml")
         resource_path = None
-        if ('GRAMPS_RESOURCES' in os.environ and
-            os.path.exists(os.path.join(os.environ['GRAMPS_RESOURCES'],
-                                        test_path))):
-            resource_path = os.environ['GRAMPS_RESOURCES']
+        tmp_path = get_env_var('GRAMPS_RESOURCES')
+        if (tmp_path and os.path.exists(os.path.join(tmp_path, test_path))):
+            resource_path = tmp_path
         elif installed:
             try:
                 with io.open(resource_file, encoding='utf-8',

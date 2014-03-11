@@ -178,7 +178,7 @@ class GrampsLocale(object):
             and (localedir is None or localedir == cls.__first_instance.localedir)
             and (domain is None or domain == cls.__first_instance.localedomain)
             and (languages is None or len(languages) == 0 or
-                 languages == cls.__first_instance.languages)):
+                 languages == cls.__first_instance.language)):
             return cls.__first_instance
 
         return super(GrampsLocale, cls).__new__(cls)
@@ -530,7 +530,7 @@ class GrampsLocale(object):
         if hasattr(self, 'initialized') and self.initialized:
             return
         _first = self._GrampsLocale__first_instance
-
+        self.localedir = None
         # Everything breaks without localedir, so get that set up
         # first.  Warnings are logged in _init_first_instance or
         # _init_secondary_locale if this comes up empty.
@@ -539,7 +539,7 @@ class GrampsLocale(object):
         elif _first and hasattr(_first, 'localedir'):
             self.localedir = _first.localedir
         else:
-            self.localedir = None
+            LOG.warn("No Localedir or localdir %s invalid", localedir)
 
         self.lang = lang
         self.localedomain = domain or 'gramps'

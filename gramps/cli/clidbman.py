@@ -234,8 +234,6 @@ class CLIDbManager(object):
         """
         # make the default directory if it does not exist
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
-        if sys.version_info[0] < 3:
-            dbdir = dbdir.encode(glocale.getfilesystemencoding())
         db_ok = make_dbdir(dbdir)
 
         self.current_names = []
@@ -411,6 +409,7 @@ class CLIDbManager(object):
         Returns old_name, new_name if success, None, None if no success
         """
         try:
+            filepath = conv_to_unicode(filepath, 'utf8')
             name_file = open(filepath, "r")
             old_text=name_file.read()
             name_file.close()

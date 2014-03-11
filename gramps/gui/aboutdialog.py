@@ -27,8 +27,9 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+
+from __future__ import unicode_literals
+
 import os
 import sys
 
@@ -57,6 +58,9 @@ from gi.repository import GdkPixbuf
 from gramps.gen.const import (AUTHORS, AUTHORS_FILE, COMMENTS, COPYRIGHT_MSG, 
                        DOCUMENTERS, LICENSE_FILE, PROGRAM_NAME, SPLASH, 
                        TRANSLATORS, URL_HOMEPAGE, VERSION)
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from gramps.gen.constfunc import get_env_var
 from .display import display_url
 from gramps.gen.config import config
 
@@ -139,7 +143,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
                 % (ellipses(str(VERSION)),
                    ellipses(str(sys.version).replace('\n','')),
                    ellipses(str(bsddb.__version__) + " " + str(bsddb.db.version())),
-                   ellipses(os.environ.get('LANG','')),
+                   ellipses(get_env_var('LANG','')),
                    ellipses(operatingsystem),
                    ellipses(distribution)))
 
