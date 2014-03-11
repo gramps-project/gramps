@@ -34,6 +34,8 @@ perform a translation on import, eg Gtk.
 #------------------------------------------------------------------------
 import platform
 import sys
+import ctypes
+import os
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +55,11 @@ WINDOWS = ["Windows", "win32"]
 
 #python 2 and 3 support, use correct conversion to unicode
 if sys.version_info[0] < 3:
-    conv_to_unicode = unicode
+    def conv_to_unicode(x, y):
+        if isinstance(x, unicode):
+            return x
+        return unicode(x, y)
+
     conv_to_unicode_direct = unicode
     STRTYPE = basestring
     UNITYPE = unicode
@@ -159,3 +165,28 @@ def mod_key():
         return "<ctrl>"
 
     return "<alt>"
+
+# Python2 on Windows munges environemnt variables to match the system
+# code page. This breaks all manner of things and the workaround
+# though a bit ugly, is encapsulated here. Use this to retrieve
+# environment variables if there's any chance they might contain
+# Unicode, and especially for paths.
+
+# Shamelessly lifted from http://stackoverflow.com/questions/2608200/problems-with-umlauts-in-python-appdata-environvent-variable, answer 1.
+
+
+def get_env_var(name, default=None):
+    if not name or not name in os.environ:
+        return default
+
+    if sys.version_info[0] < 3 and win():
+        name = unicode(name) # make sure string argument is unicode
+        n = ctypes.windll.kernel32.GetEnvironmentVariableW(name, None, 0)
+        if n==0:
+            return default
+        buf = ctypes.create_unicode_buffer(u'\0'*n)
+        ctypes.windll.kernel32.GetEnvironmentVariableW(name, buf, n)
+        return buf.value
+
+    return os.environ[name]
+    

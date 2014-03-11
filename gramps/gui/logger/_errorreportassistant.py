@@ -26,8 +26,8 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
+from __future__ import unicode_literals
+
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
@@ -46,7 +46,9 @@ else:
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import ICON, SPLASH
+from gramps.gen.const import ICON, SPLASH, GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from gramps.gen.constfunc import get_env_var
 from gramps.version import VERSION
 from ..display import display_help, display_url
 
@@ -166,7 +168,7 @@ class ErrorReportAssistant(Gtk.Assistant):
                % (str(sys.version).replace('\n',''),
                   str(bsddb.__version__) + " " + str(bsddb.db.version()),
                   str(VERSION),
-                  os.environ.get('LANG',''),
+                  get_env_var('LANG',''),
                   operatingsystem,
                   distribution,
                   '%d.%d.%d' % (Gtk.get_major_version(), 

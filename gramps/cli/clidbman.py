@@ -64,7 +64,7 @@ _ = glocale.translation.gettext
 from gramps.gen.db import DbBsddb
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config
-from gramps.gen.constfunc import win, conv_to_unicode
+from gramps.gen.constfunc import win, conv_to_unicode, UNITYPE
 #-------------------------------------------------------------------------
 #
 # constants
@@ -167,6 +167,8 @@ class CLIDbManager(object):
         flags = db.DB_CREATE | db.DB_PRIVATE |\
             db.DB_INIT_MPOOL |\
             db.DB_INIT_LOG | db.DB_INIT_TXN
+        if (isinstance(dirpath, UNITYPE) and win() and sys.version_info[0] < 3):
+            dirpath = dirpath.encode(sys.getfilesystemencoding())
         try:
             env.open(dirpath, flags)
         except Exception as msg:
@@ -232,8 +234,6 @@ class CLIDbManager(object):
         """
         # make the default directory if it does not exist
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
-        if sys.version_info[0] < 3:
-            dbdir = dbdir.encode(glocale.getfilesystemencoding())
         db_ok = make_dbdir(dbdir)
 
         self.current_names = []
@@ -407,6 +407,7 @@ class CLIDbManager(object):
         Returns old_name, new_name if success, None, None if no success
         """
         try:
+            filepath = conv_to_unicode(filepath, 'utf8')
             name_file = open(filepath, "r")
             old_text=name_file.read()
             name_file.close()

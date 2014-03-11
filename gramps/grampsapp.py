@@ -29,7 +29,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 
 import sys
 ## hack to avoid mentioning 'utf8' encoding everywhere unicode or str is is used
@@ -53,7 +53,7 @@ from subprocess import Popen, PIPE
 #-------------------------------------------------------------------------
 from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR
 from .version import VERSION_TUPLE
-from .gen.constfunc import win
+from .gen.constfunc import win, get_env_var
 
 #-------------------------------------------------------------------------
 #
@@ -293,11 +293,11 @@ def show_settings():
     else:
         kernel = None
 
-    lang_str = os.environ.get('LANG','not set')
-    language_str = os.environ.get('LANGUAGE','not set')
-    grampsi18n_str = os.environ.get('GRAMPSI18N','not set')
-    grampshome_str = os.environ.get('GRAMPSHOME','not set')
-    grampsdir_str = os.environ.get('GRAMPSDIR','not set')
+    lang_str = get_env_var('LANG','not set')
+    language_str = get_env_var('LANGUAGE','not set')
+    grampsi18n_str = get_env_var('GRAMPSI18N','not set')
+    grampshome_str = get_env_var('GRAMPSHOME','not set')
+    grampsdir_str = get_env_var('GRAMPSDIR','not set')
 
     try:
         dotversion_str = Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1]
@@ -320,7 +320,7 @@ def show_settings():
     except:
         gsversion_str = 'Ghostscript not in system PATH'
 
-    os_path = os.environ.get('PATH','not set')
+    os_path = get_env_var('PATH','not set')
     os_path = os_path.split(os.pathsep)
     
     print ("Gramps Settings:")
@@ -410,12 +410,12 @@ def run():
 
     if 'LANG' in os.environ:
         LOG.debug('Using LANG: %s' %
-                         os.environ.get('LANG'))
+                         get_env_var('LANG'))
     else:
         LOG.debug('environment: LANG is not defined')
     if 'LANGUAGE' in os.environ:
         LOG.debug('Using LANGUAGE: %s' %
-                         os.environ.get('LANGUAGE'))
+                         get_env_var('LANGUAGE'))
     else:
         LOG.debug('environment: LANGUAGE is not defined')
     

@@ -48,10 +48,8 @@ if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import db
 else:
     from bsddb import db
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-import re
 
+import re
 import logging
 
 #-------------------------------------------------------------------------
@@ -79,8 +77,9 @@ from ..utils.cast import conv_dbstr_to_unicode
 from . import (BsddbBaseCursor, DbReadBase)
 from ..utils.id import create_id
 from ..errors import DbError
-from ..constfunc import UNITYPE, STRTYPE, cuni, handle2internal
+from ..constfunc import UNITYPE, STRTYPE, cuni, handle2internal, get_env_var
 from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
@@ -248,7 +247,7 @@ class DbBsddbRead(DbReadBase, Callback):
     __signals__ = {}
     # If this is True logging will be turned on.
     try:
-        _LOG_ALL = int(os.environ.get('GRAMPS_SIGNAL', "0")) == 1
+        _LOG_ALL = int(get_env_var('GRAMPS_SIGNAL', "0")) == 1
     except:
         _LOG_ALL = False
 

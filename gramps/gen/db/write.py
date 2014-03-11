@@ -79,7 +79,8 @@ from ..utils.callback import Callback
 from ..utils.cast import conv_dbstr_to_unicode
 from ..updatecallback import UpdateCallback
 from ..errors import DbError
-from ..constfunc import win, conv_to_unicode, cuni, UNITYPE, handle2internal
+from ..constfunc import (win, conv_to_unicode, cuni, UNITYPE, handle2internal,
+                         get_env_var)
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -197,6 +198,16 @@ def find_referenced_handle(key, data):
         val = val.encode('utf-8')
     return val
 
+def _encode(path):
+    """
+    Conditionally return the unicode string encoded to sys.filesystem.encoding
+    """
+    if not (isinstance(path, UNITYPE) and win() and sys.version_info[0] < 3):
+        _LOG.debug("Didn't Encode %s", repr(path))
+        return path
+    _LOG.debug("Encoding %s", repr(path))
+    return path.encode(sys.getfilesystemencoding())
+
 #-------------------------------------------------------------------------
 #
 # BsddbWriteCursor
@@ -291,7 +302,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         dbmap = db.DB(self.env)
         dbmap.set_flags(flags)
 
-        fname = os.path.join(file_name, table_name + DBEXT)
+        fname = _encode(os.path.join(file_name, table_name + DBEXT))
 
         if self.readonly:
             dbmap.open(fname, table_name, dbtype, DBFLAGS_R)
@@ -302,7 +313,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     def __open_shelf(self, file_name, table_name, dbtype=db.DB_HASH):
         dbmap = dbshelve.DBShelf(self.env)
 
-        fname = os.path.join(file_name, table_name + DBEXT)
+        fname = _encode(os.path.join(file_name, table_name + DBEXT))
 
         if self.readonly:
             dbmap.open(fname, table_name, dbtype, DBFLAGS_R)
@@ -426,7 +437,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """Older version of Berkeley DB can't read data created by a newer
         version."""
         bdb_version = db.version()
-        versionpath = os.path.join(self.path, BDBVERSFN)
+        versionpath = os.path.join(self.path, cuni(BDBVERSFN))
         # Compare the current version of the database (bsddb_version) with the
         # version of the database code (env_version). If it is a downgrade,
         # raise an exception because we can't do anything. If they are the same,
@@ -625,7 +636,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         env_name = name
 
         try:
-            self.env.open(env_name, env_flags)
+            self.env.open(_encode(env_name), env_flags)
         except Exception as msg:
             _LOG.warning("Error opening db environment: " + str(msg))
             try:
@@ -2203,7 +2214,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # Environment name is now based on the filename
         env_name = name
 
-        self.env.open(env_name, env_flags)
+        self.env.open(_encode(env_name), env_flags)
         self.env.txn_checkpoint()
 
         self.metadata  = self.__open_shelf(full_name, META)
@@ -2266,7 +2277,7 @@ def write_lock_file(name):
         try:
             user = os.getlogin()
         except:
-            user = os.environ.get('USER')
+            user = get_env_var('USER')
     if host:
         text = "%s@%s" % (user, host)
     else:

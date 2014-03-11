@@ -29,6 +29,8 @@ import os
 import tempfile
 import unittest as U
 
+from gramps.gen.constfunc import get_env_var
+
 usage_note="""
   **************************************************************
   Testing (and runing) Gramps requires that PYTHONPATH include
@@ -134,7 +136,7 @@ class Test3(U.TestCase):
     here = tu.absdir()
     bases = (here, tempfile.gettempdir())
     asubs = [os.path.join(b,"test_sub") for b in bases]
-    home= os.environ["HOME"]
+    home = get_env_var("HOME")
     if home:
         home_junk = os.path.join(home,"test_junk")
     def _rmsubs(self):

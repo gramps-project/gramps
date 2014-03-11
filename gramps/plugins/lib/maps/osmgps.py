@@ -64,6 +64,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.config import config
 from gramps.gui.dialog import ErrorDialog
+from gramps.gen.constfunc import get_env_var
 
 #-------------------------------------------------------------------------
 #
@@ -133,7 +134,7 @@ class OsmGps():
                              constants.map_title[map_type])
         config.set("geography.map_service", map_type)
         self.current_map = map_type
-        http_proxy = os.environ.get('http_proxy')
+        http_proxy = get_env_var('http_proxy')
         if 0:
             self.osm = DummyMapNoGpsPoint()
         else:

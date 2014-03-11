@@ -50,7 +50,7 @@ else:
 import logging
 LOG = logging.getLogger(".DbManager")
 
-from gramps.gen.constfunc import win, UNITYPE
+from gramps.gen.constfunc import win, UNITYPE, conv_to_unicode
 if win():
     _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
     if _RCS_FOUND and "TZ" not in os.environ:
@@ -247,8 +247,8 @@ class DbManager(CLIDbManager):
                 self.rcs.set_sensitive(False)
 
         if store.get_value(node, STOCK_COL) == Gtk.STOCK_DIALOG_ERROR:
-            path = get_unicode_path_from_env_var(store.get_value(node, PATH_COL))
-            backup = os.path.join(path, "person.gbkp")
+            path = conv_to_unicode(store.get_value(node, PATH_COL), 'utf8')
+            backup = os.path.join(path, u"person.gbkp")
             self.repair.set_sensitive(os.path.isfile(backup))
         else:
             self.repair.set_sensitive(False)
@@ -365,7 +365,7 @@ class DbManager(CLIDbManager):
                     self.top.destroy()
                     del self.selection
                     del self.name_renderer
-                    path = get_unicode_path_from_env_var(store.get_value(node, PATH_COL))
+                    path = conv_to_unicode(store.get_value(node, PATH_COL), 'utf8')
                     return (path, store.get_value(node, NAME_COL))
             else:
                 self.top.destroy()
@@ -400,7 +400,7 @@ class DbManager(CLIDbManager):
         try:
             self.break_lock(self.lock_file)
             store, node = self.selection.get_selected()
-            dbpath = get_unicode_path_from_env_var(store.get_value(node, PATH_COL))
+            dbpath = conv_to_unicode(store.get_value(node, PATH_COL), 'utf8')
             (tval, last) = time_val(dbpath)
             store.set_value(node, OPEN_COL, 0)
             store.set_value(node, STOCK_COL, "")
@@ -582,19 +582,20 @@ class DbManager(CLIDbManager):
         store, node = self.selection.get_selected()
         path = store.get_path(node)
         node = self.model.get_iter(path)
-        filename = self.model.get_value(node, FILE_COL)
+        filename = conv_to_unicode(self.model.get_value(node, FILE_COL), 'utf8')
         try:
             name_file = open(filename, "r")
             file_name_to_delete=name_file.read()
             name_file.close()
             remove_filename(file_name_to_delete)
-            for (top, dirs, files) in os.walk(self.data_to_delete[1]):
+            directory = conv_to_unicode(self.data_to_delete[1], 'utf8')
+            for (top, dirs, files) in os.walk(directory):
                 for filename in files:
                     os.unlink(os.path.join(top, filename))
-            os.rmdir(self.data_to_delete[1])
+            os.rmdir(directory)
         except (IOError, OSError) as msg:
             DbManager.ERROR(_("Could not delete Family Tree"),
-                                       str(msg))
+                            str(msg))
         # rebuild the display
         self.__populate()
             

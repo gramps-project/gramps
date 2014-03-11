@@ -44,7 +44,7 @@ import uuid
 #
 #-------------------------------------------------------------------------
 from .git_revision import get_git_revision
-
+from .constfunc import get_env_var
 #-------------------------------------------------------------------------
 #
 # Gramps Version
@@ -88,28 +88,18 @@ APP_VCARD       = ["text/x-vcard", "text/x-vcalendar"]
 #
 #-------------------------------------------------------------------------
 if 'GRAMPSHOME' in os.environ:
-    USER_HOME = os.environ['GRAMPSHOME'] 
+    USER_HOME = get_env_var('GRAMPSHOME') 
     HOME_DIR = os.path.join(USER_HOME, 'gramps')
 elif 'USERPROFILE' in os.environ:
-    USER_HOME = os.environ['USERPROFILE'] 
+    USER_HOME = get_env_var('USERPROFILE') 
     if 'APPDATA' in os.environ:
         HOME_DIR = os.path.join(os.environ['APPDATA'], 'gramps')
     else:
         HOME_DIR = os.path.join(USER_HOME, 'gramps')
 else:
-    USER_HOME = os.environ['HOME'] 
+    USER_HOME = get_env_var('HOME') 
     HOME_DIR = os.path.join(USER_HOME, '.gramps')
 
-# Conversion of USER_HOME to unicode was needed to have better
-# support for non ASCII path names in Windows for the Gramps database.
-
-if sys.version_info[0] < 3:
-    if not isinstance(USER_HOME, unicode):
-        USER_HOME = unicode(USER_HOME, sys.getfilesystemencoding())
-    if not isinstance(HOME_DIR, unicode):
-        HOME_DIR = unicode(HOME_DIR, sys.getfilesystemencoding())
-else:
-    pass
 
 VERSION_DIR    = os.path.join(
     HOME_DIR, "gramps%s%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1]))
@@ -125,7 +115,7 @@ THUMB_NORMAL   = os.path.join(THUMB_DIR, "normal")
 THUMB_LARGE    = os.path.join(THUMB_DIR, "large")
 USER_PLUGINS   = os.path.join(VERSION_DIR, "plugins")
 # dirs checked/made for each Gramps session
-USER_DIRLIST = (HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
+USER_DIRLIST = (USER_HOME, HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
                 THUMB_NORMAL, THUMB_LARGE, USER_PLUGINS)
 
 #-------------------------------------------------------------------------

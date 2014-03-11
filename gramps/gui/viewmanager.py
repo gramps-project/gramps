@@ -85,7 +85,7 @@ from .displaystate import DisplayState, RecentDocsMenu
 from gramps.gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE, 
                        URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING, 
                        WIKI_EXTRAPLUGINS)
-from gramps.gen.constfunc import is_quartz
+from gramps.gen.constfunc import is_quartz, conv_to_unicode
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
 from .dialog import ErrorDialog, WarningDialog, QuestionDialog2, InfoDialog
@@ -1097,6 +1097,7 @@ class ViewManager(CLIManager):
         value = dialog.run()
         if value:
             (filename, title) = value
+            filename = conv_to_unicode(filename, 'utf8')
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, 'x-directory/normal', title)
 
