@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-04 21:46+0100\n"
-"PO-Revision-Date: 2014-03-04 23:10+0100\n"
+"POT-Creation-Date: 2014-03-10 19:32+0100\n"
+"PO-Revision-Date: 2014-03-11 21:02+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1165,11 +1165,11 @@ msgstr "%6d  Aufbewahrungsorte aktualisiert mit %6d Fundstellen in %6d sek.\n"
 msgid "%6d  Sources       upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  Quellen          aktualisiert mit %6d Fundstellen in %6d sek.\n"
 
-#: ../gramps/gen/db/upgrade.py:477
+#: ../gramps/gen/db/upgrade.py:479
 msgid "Number of new objects upgraded:\n"
 msgstr "Anzahl von neuen, aktualisierten Objekten:\n"
 
-#: ../gramps/gen/db/upgrade.py:483
+#: ../gramps/gen/db/upgrade.py:485
 msgid ""
 "\n"
 "\n"
@@ -1185,7 +1185,7 @@ msgstr ""
 "um Fundstellen zusammenzufassen, die identische\n"
 "Informationen enthalten."
 
-#: ../gramps/gen/db/upgrade.py:487
+#: ../gramps/gen/db/upgrade.py:489
 msgid "Upgrade Statistics"
 msgstr "Aktualisiere Statistiken"
 
@@ -4222,7 +4222,7 @@ msgstr "Gesellschaftsklasse"
 #: ../gramps/gui/plug/_windows.py:616 ../gramps/gui/plug/_windows.py:1101
 #: ../gramps/gui/selectors/selectevent.py:66
 #: ../gramps/plugins/gramplet/events.py:64
-#: ../gramps/plugins/lib/libmetadata.py:93
+#: ../gramps/plugins/lib/libmetadata.py:100
 #: ../gramps/plugins/textreport/placereport.py:187
 #: ../gramps/plugins/textreport/placereport.py:262
 #: ../gramps/plugins/textreport/tagreport.py:319
@@ -5460,7 +5460,7 @@ msgstr "Quellen zusammenfassen"
 msgid "Gramplet %s caused an error"
 msgstr "Gramplet %s verursachte einen Fehler"
 
-#: ../gramps/gen/plug/_manager.py:61
+#: ../gramps/gen/plug/_manager.py:64
 msgid "No description was provided"
 msgstr "Keine Beschreibung angegeben"
 
@@ -6488,195 +6488,195 @@ msgstr "%s, ..."
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s und %(mother)s"
 
-#: ../gramps/gen/utils/grampslocale.py:65
+#: ../gramps/gen/utils/grampslocale.py:68
 msgid "Arabic"
 msgstr "Arabisch"
 
-#: ../gramps/gen/utils/grampslocale.py:66
+#: ../gramps/gen/utils/grampslocale.py:69
 msgid "Bulgarian"
 msgstr "Bulgarisch"
 
-#: ../gramps/gen/utils/grampslocale.py:67
+#: ../gramps/gen/utils/grampslocale.py:70
 msgid "Breton"
 msgstr "Bretonisch"
 
-#: ../gramps/gen/utils/grampslocale.py:68
+#: ../gramps/gen/utils/grampslocale.py:71
 msgid "Catalan"
 msgstr "Katalanisch"
 
-#: ../gramps/gen/utils/grampslocale.py:69
+#: ../gramps/gen/utils/grampslocale.py:72
 msgid "Czech"
 msgstr "Tschechisch"
 
-#: ../gramps/gen/utils/grampslocale.py:70
+#: ../gramps/gen/utils/grampslocale.py:73
 msgid "Danish"
 msgstr "Dänisch"
 
-#: ../gramps/gen/utils/grampslocale.py:71
+#: ../gramps/gen/utils/grampslocale.py:74
 msgid "German"
 msgstr "Deutsch"
 
-#: ../gramps/gen/utils/grampslocale.py:72
+#: ../gramps/gen/utils/grampslocale.py:75
 msgid "Greek"
 msgstr "Griechisch"
 
-#: ../gramps/gen/utils/grampslocale.py:73
+#: ../gramps/gen/utils/grampslocale.py:76
 msgid "English (USA)"
 msgstr "Englisch (USA)"
 
-#: ../gramps/gen/utils/grampslocale.py:74
+#: ../gramps/gen/utils/grampslocale.py:77
 msgid "English"
 msgstr "Englisch"
 
-#: ../gramps/gen/utils/grampslocale.py:75
+#: ../gramps/gen/utils/grampslocale.py:78
 msgid "Esperanto"
 msgstr "Esperanto"
 
-#: ../gramps/gen/utils/grampslocale.py:76
+#: ../gramps/gen/utils/grampslocale.py:79
 msgid "Spanish"
 msgstr "Spanisch"
 
-#: ../gramps/gen/utils/grampslocale.py:77
+#: ../gramps/gen/utils/grampslocale.py:80
 msgid "Finnish"
 msgstr "Finnisch"
 
-#: ../gramps/gen/utils/grampslocale.py:78
+#: ../gramps/gen/utils/grampslocale.py:81
 msgid "French"
 msgstr "Französisch"
 
-#: ../gramps/gen/utils/grampslocale.py:79
+#: ../gramps/gen/utils/grampslocale.py:82
 msgid "Gaelic"
 msgstr "Gälisch"
 
-#: ../gramps/gen/utils/grampslocale.py:80
+#: ../gramps/gen/utils/grampslocale.py:83
 msgid "Hebrew"
 msgstr "Hebräisch"
 
-#: ../gramps/gen/utils/grampslocale.py:81
+#: ../gramps/gen/utils/grampslocale.py:84
 msgid "Croatian"
 msgstr "Kroatisch"
 
-#: ../gramps/gen/utils/grampslocale.py:82
+#: ../gramps/gen/utils/grampslocale.py:85
 msgid "Hungarian"
 msgstr "Ungarisch"
 
-#: ../gramps/gen/utils/grampslocale.py:83
+#: ../gramps/gen/utils/grampslocale.py:86
 msgid "Italian"
 msgstr "Italienisch"
 
-#: ../gramps/gen/utils/grampslocale.py:84
+#: ../gramps/gen/utils/grampslocale.py:87
 msgid "Japanese"
 msgstr "Japanisch"
 
-#: ../gramps/gen/utils/grampslocale.py:85
+#: ../gramps/gen/utils/grampslocale.py:88
 msgid "Lithuanian"
 msgstr "Litauisch"
 
-#: ../gramps/gen/utils/grampslocale.py:86
+#: ../gramps/gen/utils/grampslocale.py:89
 msgid "Macedonian"
 msgstr "Mazedonisch"
 
-#: ../gramps/gen/utils/grampslocale.py:87
+#: ../gramps/gen/utils/grampslocale.py:90
 msgid "Norwegian Bokmal"
 msgstr "Norwegisch Bokmal"
 
-#: ../gramps/gen/utils/grampslocale.py:88
+#: ../gramps/gen/utils/grampslocale.py:91
 msgid "Dutch"
 msgstr "Niederländisch"
 
-#: ../gramps/gen/utils/grampslocale.py:89
+#: ../gramps/gen/utils/grampslocale.py:92
 msgid "Norwegian Nynorsk"
 msgstr "Norwegisch Nynorsk"
 
-#: ../gramps/gen/utils/grampslocale.py:90
+#: ../gramps/gen/utils/grampslocale.py:93
 msgid "Polish"
 msgstr "Polnisch"
 
-#: ../gramps/gen/utils/grampslocale.py:91
+#: ../gramps/gen/utils/grampslocale.py:94
 msgid "Portuguese (Brazil)"
 msgstr "Portugiesisch (Brasilien)"
 
-#: ../gramps/gen/utils/grampslocale.py:92
+#: ../gramps/gen/utils/grampslocale.py:95
 msgid "Portuguese (Portugal)"
 msgstr "Portugiesisch (Portugal)"
 
-#: ../gramps/gen/utils/grampslocale.py:93
+#: ../gramps/gen/utils/grampslocale.py:96
 msgid "Romanian"
 msgstr "Rumänisch"
 
-#: ../gramps/gen/utils/grampslocale.py:94
+#: ../gramps/gen/utils/grampslocale.py:97
 msgid "Russian"
 msgstr "Russisch"
 
-#: ../gramps/gen/utils/grampslocale.py:95
+#: ../gramps/gen/utils/grampslocale.py:98
 msgid "Slovak"
 msgstr "Slowakisch"
 
-#: ../gramps/gen/utils/grampslocale.py:96
+#: ../gramps/gen/utils/grampslocale.py:99
 msgid "Slovenian"
 msgstr "Slowenisch"
 
-#: ../gramps/gen/utils/grampslocale.py:97
+#: ../gramps/gen/utils/grampslocale.py:100
 msgid "Albanian"
 msgstr "Albanisch"
 
-#: ../gramps/gen/utils/grampslocale.py:99
+#: ../gramps/gen/utils/grampslocale.py:102
 msgid "Swedish"
 msgstr "Schwedisch"
 
-#: ../gramps/gen/utils/grampslocale.py:100
+#: ../gramps/gen/utils/grampslocale.py:103
 msgid "Turkish"
 msgstr "Türkisch"
 
-#: ../gramps/gen/utils/grampslocale.py:101
+#: ../gramps/gen/utils/grampslocale.py:104
 msgid "Ukrainian"
 msgstr "Ukrainisch"
 
-#: ../gramps/gen/utils/grampslocale.py:102
+#: ../gramps/gen/utils/grampslocale.py:105
 msgid "Vietnamese"
 msgstr "Vietnamesisch"
 
-#: ../gramps/gen/utils/grampslocale.py:103
+#: ../gramps/gen/utils/grampslocale.py:106
 msgid "Chinese Simplified"
 msgstr "vereinfachtes Chinesisch"
 
-#: ../gramps/gen/utils/grampslocale.py:820
+#: ../gramps/gen/utils/grampslocale.py:827
 msgid "the person"
 msgstr "die Person"
 
-#: ../gramps/gen/utils/grampslocale.py:822
+#: ../gramps/gen/utils/grampslocale.py:829
 msgid "the family"
 msgstr "die Familie"
 
-#: ../gramps/gen/utils/grampslocale.py:824
+#: ../gramps/gen/utils/grampslocale.py:831
 msgid "the place"
 msgstr "der Ort"
 
-#: ../gramps/gen/utils/grampslocale.py:826
+#: ../gramps/gen/utils/grampslocale.py:833
 msgid "the event"
 msgstr "das Ereignis"
 
-#: ../gramps/gen/utils/grampslocale.py:828
+#: ../gramps/gen/utils/grampslocale.py:835
 msgid "the repository"
 msgstr "der Aufbewahrungsort"
 
-#: ../gramps/gen/utils/grampslocale.py:830
+#: ../gramps/gen/utils/grampslocale.py:837
 msgid "the note"
 msgstr "die Notiz"
 
-#: ../gramps/gen/utils/grampslocale.py:832
+#: ../gramps/gen/utils/grampslocale.py:839
 msgid "the media"
 msgstr "das Medium"
 
-#: ../gramps/gen/utils/grampslocale.py:834
+#: ../gramps/gen/utils/grampslocale.py:841
 msgid "the source"
 msgstr "die Quelle"
 
-#: ../gramps/gen/utils/grampslocale.py:836
+#: ../gramps/gen/utils/grampslocale.py:843
 msgid "the filter"
 msgstr "der Filter"
 
-#: ../gramps/gen/utils/grampslocale.py:838
+#: ../gramps/gen/utils/grampslocale.py:845
 msgid "See details"
 msgstr "Siehe Details"
 
@@ -7362,7 +7362,7 @@ msgstr "Titel"
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/dataembedlist.py:62
 #: ../gramps/plugins/gramplet/attributes.py:48
-#: ../gramps/plugins/lib/libmetadata.py:166
+#: ../gramps/plugins/lib/libmetadata.py:173
 #: ../gramps/plugins/tool/patchnames.py:402
 #: ../gramps/plugins/webreport/narrativeweb.py:397
 #: ../gramps/plugins/webreport/narrativeweb.py:1321
@@ -8813,7 +8813,7 @@ msgstr "Gewählten Dateneintrag nach unten verschieben"
 
 #: ../gramps/gui/editors/displaytabs/dataembedlist.py:61
 #: ../gramps/plugins/gramplet/attributes.py:47
-#: ../gramps/plugins/lib/libmetadata.py:165
+#: ../gramps/plugins/lib/libmetadata.py:172
 #: ../gramps/plugins/webreport/narrativeweb.py:1320
 msgid "Key"
 msgstr "Schlüssel"
@@ -9909,18 +9909,31 @@ msgid "Cannot save media object. ID already exists."
 msgstr "Das Medienobjekt kann nicht gespeichert werden. ID existiert bereits."
 
 #: ../gramps/gui/editors/editmedia.py:300
+msgid "There is no media matching the current path value!"
+msgstr "Es gibt kein Medium, welches den aktuellem Pfadwerten entspricht!"
+
+#: ../gramps/gui/editors/editmedia.py:301
+#, python-format
+msgid ""
+"You have attempted to use the path with value '%(path)s'. This path does not "
+"exist! Please enter a different path"
+msgstr ""
+"Du hast versucht, den Pfad mit dem Wert '%(path)s' zu verwenden. Dieser Pfad "
+"existiert nicht! Gib bitte einen anderen Pfad ein."
+
+#: ../gramps/gui/editors/editmedia.py:314
 #: ../gramps/gui/editors/editmediaref.py:641
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Medienobjekt (%s) hinzufügen"
 
-#: ../gramps/gui/editors/editmedia.py:305
+#: ../gramps/gui/editors/editmedia.py:319
 #: ../gramps/gui/editors/editmediaref.py:637
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Medienobjekt (%s) bearbeiten"
 
-#: ../gramps/gui/editors/editmedia.py:342
+#: ../gramps/gui/editors/editmedia.py:356
 msgid "Remove Media Object"
 msgstr "Medienobjekt entfernen"
 
@@ -12555,9 +12568,18 @@ msgstr "Aus"
 msgid "On"
 msgstr "An"
 
-#: ../gramps/gui/spell.py:146
-msgid "Spelling checker could not be attached to TextView"
-msgstr "Rechtschreibprüfung kann nicht zur Textansicht hinzugefügt werden."
+#: ../gramps/gui/spell.py:147
+msgid ""
+"You have no installed dictionaries. Either install one or disable spell "
+"checking"
+msgstr ""
+"Du hast keine Wörterbücher installiert. Entweder installiere eines oder "
+"deaktiviere die Rechtschreibprüfung."
+
+#: ../gramps/gui/spell.py:149
+#, python-format
+msgid "Spelling checker initialization failed: %s"
+msgstr "Die Einrichtung der Rechtschreibprüfung ist fehlgeschlagen: %s"
 
 #: ../gramps/gui/tipofday.py:70 ../gramps/gui/tipofday.py:71
 #: ../gramps/gui/tipofday.py:122 ../gramps/gui/viewmanager.py:503
@@ -18697,37 +18719,37 @@ msgstr ""
 msgid "No copyright notice"
 msgstr "Keine Copyright Notiz"
 
-#: ../gramps/plugins/lib/libmetadata.py:55
-#: ../gramps/plugins/lib/libmetadata.py:91
+#: ../gramps/plugins/lib/libmetadata.py:62
+#: ../gramps/plugins/lib/libmetadata.py:98
 msgid "Invalid format"
 msgstr "Ungültiges Format"
 
-#: ../gramps/plugins/lib/libmetadata.py:59
+#: ../gramps/plugins/lib/libmetadata.py:66
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
-#: ../gramps/plugins/lib/libmetadata.py:62
+#: ../gramps/plugins/lib/libmetadata.py:69
 #, python-format
 msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
-#: ../gramps/plugins/lib/libmetadata.py:94
+#: ../gramps/plugins/lib/libmetadata.py:101
 #: ../gramps/plugins/textreport/simplebooktitle.py:148
 #: ../gramps/gui/glade/addmedia.glade:126
 #: ../gramps/gui/glade/editperson.glade:290
 msgid "Image"
 msgstr "Bild"
 
-#: ../gramps/plugins/lib/libmetadata.py:95
+#: ../gramps/plugins/lib/libmetadata.py:102
 msgid "Camera"
 msgstr "Kamera"
 
-#: ../gramps/plugins/lib/libmetadata.py:96
+#: ../gramps/plugins/lib/libmetadata.py:103
 msgid "GPS"
 msgstr "GPS"
 
-#: ../gramps/plugins/lib/libmetadata.py:97
+#: ../gramps/plugins/lib/libmetadata.py:104
 msgid "Advanced"
 msgstr "Erweitert"
 
@@ -32663,6 +32685,9 @@ msgstr ""
 "Gramps ist ein Genealogieprogramm, dass sowohl intuitiv für Amateure, als "
 "auch ein vollständiges Werkzeug für professionelle Genealogen ist."
 
+#~ msgid "Spelling checker could not be attached to TextView"
+#~ msgstr "Rechtschreibprüfung kann nicht zur Textansicht hinzugefügt werden."
+
 #~ msgid "Events father"
 #~ msgstr "Ereignisse Vater"
 
@@ -32918,9 +32943,6 @@ msgstr ""
 #~ "Diese Datenbank kann nicht geöffnet werden, ohne sie zu aktualisieren.\n"
 #~ "Wenn du aktualisierst, dann kannst du die vorigen Versionen von Gramps nicht mehr benutzen.\n"
 #~ "Du solltest vorher eine Sicherung erstellen.."
-
-#~ msgid "Spelling checker is not installed"
-#~ msgstr "Rechtschreibprüfung ist nicht installiert"
 
 #~ msgid "Base class for ImportGrdb"
 #~ msgstr "Basisklasse für ImportGrdb"
