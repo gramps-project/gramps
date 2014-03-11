@@ -19123,7 +19123,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:132
 msgid "Dashboard View"
-msgstr ""
+msgstr "Instrumentpanel"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:133
 msgid ""
@@ -19136,6 +19136,15 @@ msgid ""
 "can also drag the Properties button to reposition the gramplet  on this "
 "page, and detach the gramplet to float above Gramps."
 msgstr ""
+"Du er for øyeblikket i \"Instrumentpanelet\" hvor du kan legge til "
+"dine egne Smågramps. Du kan også legge til Smågramps til andre visninger "
+"ved å legge til en sidemeny og/eller bunnmeny og høyreklikke til høyre "
+"for flippen.\n"
+"\n"
+"Du kan klikke på ikon for oppsett i verktøylinja for å legge til flere "
+"kolonner, mens ved å høyreklikke på bakgrunnen gir mulighet for å legge "
+"til Smågramps. Du kan også dra Egenskapikonet for å flytte Smågrampsen "
+"på denne siden og frikoble Smågrampsen til å flyte over Gramps." 
 
 #. Minimum number of lines we want to see. Further lines with the same
 #. distance to the main person will be added on top of this.
@@ -29214,7 +29223,7 @@ msgstr ""
 #: ../gramps/plugins/view/dashboardview.py:53
 #: ../gramps/plugins/view/view.gpr.py:65 ../gramps/plugins/view/view.gpr.py:73
 msgid "Dashboard"
-msgstr ""
+msgstr "Instrumentpanel"
 
 #: ../gramps/plugins/view/dashboardview.py:97
 msgid "Restore a gramplet"
