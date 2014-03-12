@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-02-19 19:48+0100\n"
-"PO-Revision-Date: 2014-02-20 01:15+0100\n"
+"PO-Revision-Date: 2014-03-12 00:56+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1112,64 +1112,57 @@ msgid "localized lexeme inflections - short month form||Dec"
 msgstr "Dez"
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
-#, fuzzy
 msgid "alternative month names for January||"
-msgstr "Die Notiz für den Monat Januar"
+msgstr "Jänner|Jenner|Hartung|Hartmonat|Hartmond|Eismonat|Eismond|Lassmonat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
-#, fuzzy
 msgid "alternative month names for February||"
-msgstr "Die Notiz für den Monat Februar"
+msgstr ""
+"Feber|Hornung|Hintester|Rebmonat|Rebmond|Schmelzmond|Taumond|Narrenmond|letzte"
+"r Wintermonat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
-#, fuzzy
 msgid "alternative month names for March||"
-msgstr "Alternative Namen"
+msgstr "Märzen|Lenzing|Lenzmond|Lenzmonat|Frühlingsmonat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
-#, fuzzy
 msgid "alternative month names for April||"
-msgstr "Alternative Namen"
+msgstr "Launing|Grasmond|Ostermond|Ostermonat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
-#, fuzzy
 msgid "alternative month names for May||"
-msgstr "Alternative Namen"
+msgstr "Bleuet|Blühmond|Blumenmond|Winnemond|Wonnemond|Wonnemonat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
-#, fuzzy
 msgid "alternative month names for June||"
-msgstr "Alternative Namen"
+msgstr "Brachet|Brachmond|Brachmonat|Johannismond|Weidemaent"
 
 #: ../gramps/gen/datehandler/_datestrings.py:109
-#, fuzzy
 msgid "alternative month names for July||"
-msgstr "Alternative Namen"
+msgstr "Heuet|Heuert|Heumond|Heumonat|Bärenmonat|Honigmonat|Honigmond"
 
 #: ../gramps/gen/datehandler/_datestrings.py:110
-#, fuzzy
 msgid "alternative month names for August||"
-msgstr "Alternative Namen"
+msgstr "Ernting|Erntemond|Erntemonat|Bisemond"
 
 #: ../gramps/gen/datehandler/_datestrings.py:111
-#, fuzzy
 msgid "alternative month names for September||"
-msgstr "Die Notiz für den Monat September"
+msgstr ""
+"Holzing|Holzmond|Herbstmonat|Erster Herbstmond|Scheiding|Scheidung|Engelmonat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
-#, fuzzy
 msgid "alternative month names for October||"
-msgstr "Die Notiz für den Monat Oktober"
+msgstr "Gilbhart|Gilbhard|Weinmond|Weinmonat|zweiter Herbstmond"
 
 #: ../gramps/gen/datehandler/_datestrings.py:113
-#, fuzzy
 msgid "alternative month names for November||"
-msgstr "Die Notiz für den Monat November"
+msgstr ""
+"Nebelung|Windmond|Windmonat|Nebelmond|Wintermonat|Schlachtmond|Dritter "
+"Herbstmond"
 
 #: ../gramps/gen/datehandler/_datestrings.py:114
-#, fuzzy
 msgid "alternative month names for December||"
-msgstr "Die Notiz für den Monat Dezember"
+msgstr "Christmond|Christmonat|Julmond|Dustermond|Heilmond|Heiligenmonat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:118 ../gramps/gen/lib/date.py:578
 msgid "calendar|Gregorian"
@@ -6761,7 +6754,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:480
 msgid "T. Da Silva"
-msgstr ""
+msgstr "T. Da Silva"
 
 #: ../gramps/gen/lib/srcattrtype.py:481
 msgid "13 Aug 1965"
@@ -6866,7 +6859,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:506
 msgid "Sorbonne University"
-msgstr ""
+msgstr "Universität Sorbonne"
 
 #: ../gramps/gen/lib/srcattrtype.py:507
 msgid "Materley, B."
@@ -7013,7 +7006,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:542
 msgid "2nd session"
-msgstr ""
+msgstr "2. Sitzung"
 
 #: ../gramps/gen/lib/srcattrtype.py:543
 msgid "sheet 13-C"
