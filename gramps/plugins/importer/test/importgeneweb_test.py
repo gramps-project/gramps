@@ -32,7 +32,7 @@ class ParseDateTest(unittest.TestCase):
 
     def test_regular_date_parsed_dmy(self):
         d = self.parse("28/2/1876")
-        self.assertEqual(d.get_dmy(), (28, 2, 1876))
+        self.assertEqual(d.get_ymd(), (1876, 2, 28))
 
     def test_invalid_date_stays_verbatim_text(self):
         text = "29/2/1875"
