@@ -936,12 +936,8 @@ class GVPdfGvDoc(GVDocBase):
             dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
-        # Convert filename to str using file system encoding.
-        if sys.version_info[0] < 3:
-            fname = self._filename.encode(glocale.getfilesystemencoding())
-        else:
-            fname = self._filename
-        
+        fname = self._filename
+
         # Generate the PDF file.
         os.system( 'dot -Tpdf -o"%s" "%s"' % (fname, tmp_dot) )
         

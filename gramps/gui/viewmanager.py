@@ -1097,8 +1097,6 @@ class ViewManager(CLIManager):
         value = dialog.run()
         if value:
             (filename, title) = value
-            if sys.version_info[0] < 3:
-                filename = filename.encode(glocale.getfilesystemencoding())
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, 'x-directory/normal', title)
 

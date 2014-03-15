@@ -476,8 +476,6 @@ def find_next_db_dir():
     while True:
         base = "%x" % int(time.time())
         dbdir = os.path.expanduser(config.get('behavior.database-path'))
-        if sys.version_info[0] < 3:
-            dbdir = dbdir.encode(glocale.getfilesystemencoding())
         new_path = os.path.join(dbdir, base)
         if not os.path.isdir(new_path):
             break
