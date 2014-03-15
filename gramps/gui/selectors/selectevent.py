@@ -65,7 +65,7 @@ class SelectEvent(BaseSelector):
             (_('Place'),             250, BaseSelector.TEXT, 4),
             (_('Description'),       150, BaseSelector.TEXT, 0),
             (_('ID'),                75,  BaseSelector.TEXT, 1),
-            (_('Last Change'),       150, BaseSelector.TEXT, 5)
+            (_('Last Change'),       150, BaseSelector.TEXT, 6)
             ]
 
     def get_from_handle_func(self):
