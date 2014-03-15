@@ -94,8 +94,8 @@ class EventView(ListView):
         ('columns.visible', [COL_TYPE, COL_PARTIC, COL_DATE, COL_PLACE,
                              COL_DESCR, COL_ID]),
         ('columns.rank', [COL_TYPE, COL_PARTIC, COL_DATE, COL_PLACE, COL_DESCR,
-                          COL_ID, COL_CHAN]),
-        ('columns.size', [100, 230, 150, 200, 100, 75, 100])
+                          COL_ID, COL_PRIV, COL_CHAN]),
+        ('columns.size', [100, 230, 150, 200, 100, 75, 40, 100])
         )    
     ADD_MSG     = _("Add a new event")
     EDIT_MSG    = _("Edit the selected event")
