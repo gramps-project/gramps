@@ -255,15 +255,9 @@ class EditCitation(EditPrimary):
         if handle:
             source = self.db.get_source_from_handle(handle)
             author = source.get_author()
-            pub_info = source.get_publication_info()
-            abbrev = source.get_abbreviation()
         else:
             author = ''
-            pub_info = ''
-            abbrev = ''
         self.glade.get_object("author").set_text(author)
-        self.glade.get_object("pub_info").set_text(pub_info)
-        self.glade.get_object("abbrev").set_text(abbrev)
 
     def build_menu_names(self, source):
         """
