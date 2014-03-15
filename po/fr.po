@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-07 14:49+0100\n"
-"PO-Revision-Date: 2014-03-07 14:51+0100\n"
+"POT-Creation-Date: 2014-03-15 21:25+0100\n"
+"PO-Revision-Date: 2014-03-15 21:28+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -1141,8 +1141,8 @@ msgstr "Attribut de la famille"
 #: ../src/gen/lib/notetype.py:84
 #: ../src/gui/configure.py:483
 #: ../src/gui/filtereditor.py:300
-#: ../src/gui/editors/editcitation.py:140
-#: ../src/gui/editors/editcitation.py:146
+#: ../src/gui/editors/editcitation.py:106
+#: ../src/gui/editors/editcitation.py:112
 #: ../src/gui/views/treemodels/citationtreemodel.py:161
 #: ../src/plugins/gramplet/QuickViewGramplet.py:114
 #: ../src/plugins/quickview/quickview.gpr.py:206
@@ -1621,30 +1621,30 @@ msgid "Invalid"
 msgstr "Invalide"
 
 #: ../src/Utils.py:92
-#: ../src/gui/editors/editcitation.py:276
+#: ../src/gui/editors/editcitation.py:200
 msgid "Very High"
 msgstr "Très haut"
 
 #: ../src/Utils.py:93
-#: ../src/gui/editors/editcitation.py:275
+#: ../src/gui/editors/editcitation.py:199
 #: ../src/plugins/tool/FindDupes.py:63
 msgid "High"
 msgstr "Haut"
 
 #: ../src/Utils.py:94
-#: ../src/gui/editors/editcitation.py:274
+#: ../src/gui/editors/editcitation.py:198
 #: ../src/plugins/webreport/NarrativeWeb.py:2364
 msgid "Normal"
 msgstr "Normal"
 
 #: ../src/Utils.py:95
-#: ../src/gui/editors/editcitation.py:273
+#: ../src/gui/editors/editcitation.py:197
 #: ../src/plugins/tool/FindDupes.py:61
 msgid "Low"
 msgstr "Bas"
 
 #: ../src/Utils.py:96
-#: ../src/gui/editors/editcitation.py:272
+#: ../src/gui/editors/editcitation.py:196
 msgid "Very Low"
 msgstr "Très bas"
 
@@ -4034,8 +4034,6 @@ msgstr "Lignée maternelle (nom de la mère)"
 
 #: ../src/gen/lib/notetype.py:80
 #: ../src/gui/configure.py:1156
-#: ../src/gui/editors/editcitation.py:202
-#: ../src/gui/editors/editcitation.py:208
 #: ../src/gui/editors/editeventref.py:79
 #: ../src/gui/editors/editmediaref.py:94
 #: ../src/gui/editors/editreporef.py:73
@@ -6358,7 +6356,7 @@ msgstr "Configuration"
 #: ../src/plugins/webreport/NarrativeWeb.py:5773
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
-#: ../src/glade/editcitation.glade.h:4
+#: ../src/glade/editcitation.glade.h:3
 #: ../src/glade/editaddress.glade.h:19
 #: ../src/glade/editmedia.glade.h:11
 #: ../src/glade/editmediaref.glade.h:26
@@ -7147,87 +7145,115 @@ msgstr "Impossible d'afficher %s"
 msgid "Gramps is not able to display the image file. This may be caused by a corrupt file."
 msgstr "Gramps ne peut pas afficher cette image. Le fichier est peut-être corrompu."
 
-#: ../src/gui/editors/objectentries.py:249
+#: ../src/gui/editors/objectentries.py:259
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr "Pour sélectionner un lieu, faites un glisser-déposer ou utilisez les boutons"
 
-#: ../src/gui/editors/objectentries.py:251
+#: ../src/gui/editors/objectentries.py:261
 msgid "No place given, click button to select one"
 msgstr "Aucun lieu choisi, cliquez sur le bouton pour en sélectionner un"
 
-#: ../src/gui/editors/objectentries.py:252
+#: ../src/gui/editors/objectentries.py:262
 msgid "Edit place"
 msgstr "Éditer le lieu"
 
-#: ../src/gui/editors/objectentries.py:253
+#: ../src/gui/editors/objectentries.py:263
 msgid "Select an existing place"
 msgstr "Sélectionner un lieu existant"
 
-#: ../src/gui/editors/objectentries.py:254
+#: ../src/gui/editors/objectentries.py:264
 #: ../src/plugins/lib/libplaceview.py:118
 msgid "Add a new place"
 msgstr "Ajouter un nouveau lieu"
 
 # enlever une référence à un lieu
-#: ../src/gui/editors/objectentries.py:255
+#: ../src/gui/editors/objectentries.py:265
 msgid "Remove place"
 msgstr "Enlever le lieu"
 
-#: ../src/gui/editors/objectentries.py:300
+#: ../src/gui/editors/objectentries.py:309
+msgid "To select a source, use drag-and-drop or use the buttons"
+msgstr "Pour sélectionner une source, faites un glisser-déposer ou utilisez les boutons"
+
+#: ../src/gui/editors/objectentries.py:311
+msgid "No source given, click button to select one"
+msgstr "Aucune source choisie, cliquez sur le bouton pour en sélectionner une"
+
+#: ../src/gui/editors/objectentries.py:312
+msgid "Edit source"
+msgstr "Éditer la source"
+
+#: ../src/gui/editors/objectentries.py:313
+msgid "Select an existing source"
+msgstr "Sélectionner une source existante"
+
+#: ../src/gui/editors/objectentries.py:314
+#: ../src/plugins/view/citationtreeview.py:119
+#: ../src/plugins/view/citationlistview.py:119
+#: ../src/plugins/view/sourceview.py:93
+msgid "Add a new source"
+msgstr "Ajouter une nouvelle source"
+
+# enlever une référence
+#: ../src/gui/editors/objectentries.py:315
+msgid "Remove source"
+msgstr "Enlever la source"
+
+#: ../src/gui/editors/objectentries.py:360
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Pour sélectionner un objet medium, faites un glisser-déposer ou utilisez les boutons"
 
-#: ../src/gui/editors/objectentries.py:302
+#: ../src/gui/editors/objectentries.py:362
 #: ../src/gui/plug/_guioptions.py:1051
 msgid "No image given, click button to select one"
 msgstr "Aucune image choisie, cliquez sur le bouton pour en sélectionner une"
 
-#: ../src/gui/editors/objectentries.py:303
+#: ../src/gui/editors/objectentries.py:363
 msgid "Edit media object"
 msgstr "Éditer l'objet medium"
 
-#: ../src/gui/editors/objectentries.py:304
+#: ../src/gui/editors/objectentries.py:364
 #: ../src/gui/plug/_guioptions.py:1029
 msgid "Select an existing media object"
 msgstr "Sélectionner un objet medium existant"
 
-#: ../src/gui/editors/objectentries.py:305
+#: ../src/gui/editors/objectentries.py:365
 #: ../src/plugins/view/mediaview.py:110
 msgid "Add a new media object"
 msgstr "Ajouter un nouveau medium"
 
 # enlever la référence au media
-#: ../src/gui/editors/objectentries.py:306
+#: ../src/gui/editors/objectentries.py:366
 msgid "Remove media object"
 msgstr "Enlever l'objet medium"
 
-#: ../src/gui/editors/objectentries.py:351
+#: ../src/gui/editors/objectentries.py:411
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Pour sélectionner une note, faites un glisser-déposer ou utilisez les boutons"
 
-#: ../src/gui/editors/objectentries.py:353
+#: ../src/gui/editors/objectentries.py:413
 #: ../src/gui/plug/_guioptions.py:950
 msgid "No note given, click button to select one"
 msgstr "Aucune note choisie, cliquez sur le bouton pour en sélectionner une"
 
-#: ../src/gui/editors/objectentries.py:354
+#: ../src/gui/editors/objectentries.py:414
 #: ../src/gui/editors/editnote.py:286
 #: ../src/gui/editors/editnote.py:331
 msgid "Edit Note"
 msgstr "Éditer la note"
 
-#: ../src/gui/editors/objectentries.py:355
+#: ../src/gui/editors/objectentries.py:415
 #: ../src/gui/plug/_guioptions.py:925
 msgid "Select an existing note"
 msgstr "Sélectionner une note existante"
 
-#: ../src/gui/editors/objectentries.py:356
+#: ../src/gui/editors/objectentries.py:416
 #: ../src/plugins/view/noteview.py:89
 msgid "Add a new note"
 msgstr "Ajouter une nouvelle note"
 
 # enlever une référence aux parents
-#: ../src/gui/editors/objectentries.py:357
+#: ../src/gui/editors/objectentries.py:417
 msgid "Remove note"
 msgstr "Enlever la note"
 
@@ -7263,69 +7289,47 @@ msgstr "Éditeur de la référence à un enfant"
 msgid "Child Reference"
 msgstr "Référence d'enfant"
 
-#: ../src/gui/editors/editcitation.py:149
-#: ../src/gui/editors/editcitation.py:155
+#: ../src/gui/editors/editcitation.py:115
+#: ../src/gui/editors/editcitation.py:121
 msgid "New Citation"
 msgstr "Ajouter une citation"
 
-#: ../src/gui/editors/editcitation.py:386
+#: ../src/gui/editors/editcitation.py:254
 msgid "Edit Citation"
 msgstr "Éditer une citation"
 
-#: ../src/gui/editors/editcitation.py:392
-#: ../src/gui/editors/editsource.py:181
-msgid "Cannot save source"
-msgstr "Impossible d'enregistrer la source"
+#: ../src/gui/editors/editcitation.py:262
+msgid "Cannot save citation. No source selected."
+msgstr "Impossible d'enregistrer la citation. Aucune source sélectionnée."
 
-#: ../src/gui/editors/editcitation.py:393
-#: ../src/gui/editors/editsource.py:182
-msgid "No data exists for this source. Please enter data or cancel the edit."
-msgstr "Aucune donnée n'existe pour cette source. Veuillez entrer une donnée ou annuler l'édition."
+#: ../src/gui/editors/editcitation.py:263
+msgid "Please select a source or cancel the edit."
+msgstr "Vous devriez plutôt sélectionner une source ou annuler l'édition"
 
-#: ../src/gui/editors/editcitation.py:402
+#: ../src/gui/editors/editcitation.py:271
 msgid "Cannot save citation. ID already exists."
 msgstr "Impossible d'enregistrer la citation. L'identifiant existe déjà."
 
 # trunk
-#: ../src/gui/editors/editcitation.py:403
-#: ../src/gui/editors/editcitation.py:417
+#: ../src/gui/editors/editcitation.py:272
 #, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(gramps_id)s. This value is already used by '%(prim_object)s'. Please enter a different ID or leave blank to get the next available ID value."
 msgstr "Vous avez essayé d'utiliser l'identifiant Gramps existant %(gramps_id)s. Cette valeur est déjà utilisée par « %(prim_object)s ». Veuillez entrer un identifiant différent ou laissez vide pour obtenir la valeur du prochain identifiant disponible."
 
-#: ../src/gui/editors/editcitation.py:416
-#: ../src/gui/editors/editsource.py:191
-msgid "Cannot save source. ID already exists."
-msgstr "Impossible d'enregistrer la source. L'identifiant existe déjà."
-
 # historique annulation (action passée)
-#: ../src/gui/editors/editcitation.py:430
-#: ../src/gui/editors/editsource.py:204
-#, python-format
-msgid "Add Source (%s)"
-msgstr "Ajout de la source (%s)"
-
-# historique annulation (action passée)
-#: ../src/gui/editors/editcitation.py:436
-#: ../src/gui/editors/editsource.py:209
-#, python-format
-msgid "Edit Source (%s)"
-msgstr "Édition de la source (%s)"
-
-# historique annulation (action passée)
-#: ../src/gui/editors/editcitation.py:443
+#: ../src/gui/editors/editcitation.py:284
 #, python-format
 msgid "Add Citation (%s)"
 msgstr "Ajout de la citation (%s)"
 
 # historique annulation (action passée)
-#: ../src/gui/editors/editcitation.py:449
+#: ../src/gui/editors/editcitation.py:290
 #, python-format
 msgid "Edit Citation (%s)"
 msgstr "Édition de la citation (%s)"
 
 # historique annulation (action passée)
-#: ../src/gui/editors/editcitation.py:532
+#: ../src/gui/editors/editcitation.py:327
 #, python-format
 msgid "Delete Citation (%s)"
 msgstr "Suppression de la citation (%s)"
@@ -8132,8 +8136,32 @@ msgstr "Nouvelle source"
 msgid "Edit Source"
 msgstr "Éditer la source"
 
+#: ../src/gui/editors/editsource.py:181
+msgid "Cannot save source"
+msgstr "Impossible d'enregistrer la source"
+
+#: ../src/gui/editors/editsource.py:182
+msgid "No data exists for this source. Please enter data or cancel the edit."
+msgstr "Aucune donnée n'existe pour cette source. Veuillez entrer une donnée ou annuler l'édition."
+
+#: ../src/gui/editors/editsource.py:191
+msgid "Cannot save source. ID already exists."
+msgstr "Impossible d'enregistrer la source. L'identifiant existe déjà."
+
 # historique annulation (action passée)
-#: ../src/gui/editors/editsource.py:222
+#: ../src/gui/editors/editsource.py:204
+#, python-format
+msgid "Add Source (%s)"
+msgstr "Ajout de la source (%s)"
+
+# historique annulation (action passée)
+#: ../src/gui/editors/editsource.py:209
+#, python-format
+msgid "Edit Source (%s)"
+msgstr "Édition de la source (%s)"
+
+# historique annulation (action passée)
+#: ../src/gui/editors/editsource.py:224
 #, python-format
 msgid "Delete Source (%s)"
 msgstr "Suppression de la source (%s)"
@@ -23257,12 +23285,6 @@ msgstr "Source : Information de publication"
 msgid "Add a new citation and a new source"
 msgstr "Créer et ajouter une nouvelle citation et source"
 
-#: ../src/plugins/view/citationtreeview.py:119
-#: ../src/plugins/view/citationlistview.py:119
-#: ../src/plugins/view/sourceview.py:93
-msgid "Add a new source"
-msgstr "Ajouter une nouvelle source"
-
 # trunk
 #: ../src/plugins/view/citationtreeview.py:120
 #: ../src/plugins/view/citationlistview.py:120
@@ -27590,6 +27612,7 @@ msgid "Title:"
 msgstr "Titre :"
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:50
+#: ../src/glade/editcitation.glade.h:18
 #: ../src/glade/mergedata.glade.h:11
 #: ../src/glade/mergesource.glade.h:6
 #: ../src/glade/plugins.glade.h:3
@@ -28252,7 +28275,6 @@ msgstr ""
 "Indique que le nom de famille est composé de plusieurs parties. Chaque nom de famille a son propre préfixe et un possible connecteur vers le nom suivant. Par exemple, le nom de famille Ramón y Cajal peut être enregistré comme Ramón, lequel nom est hérité du père, les connecteur est y, et Cajal est hérité de la mère."
 
 #: ../src/glade/editperson.glade.h:19
-#: ../src/glade/editcitation.glade.h:19
 #: ../src/glade/editreporef.glade.h:9
 #: ../src/glade/editmediaref.glade.h:32
 #: ../src/glade/editeventref.glade.h:5
@@ -28300,7 +28322,7 @@ msgstr "Ge_nre :"
 
 #: ../src/glade/editperson.glade.h:33
 #: ../src/glade/editsource.glade.h:9
-#: ../src/glade/editcitation.glade.h:18
+#: ../src/glade/editcitation.glade.h:13
 #: ../src/glade/editrepository.glade.h:5
 #: ../src/glade/editreporef.glade.h:14
 #: ../src/glade/editfamily.glade.h:16
@@ -28435,7 +28457,6 @@ msgstr "<b>Aperçu</b>"
 
 #: ../src/glade/addmedia.glade.h:3
 #: ../src/glade/editsource.glade.h:1
-#: ../src/glade/editcitation.glade.h:20
 #: ../src/glade/editmedia.glade.h:2
 #: ../src/glade/editmediaref.glade.h:18
 #: ../src/glade/editsourceref.glade.h:17
@@ -28596,19 +28617,16 @@ msgid "Te_xt comment:"
 msgstr "Co_mmentaire :"
 
 #: ../src/glade/editsource.glade.h:2
-#: ../src/glade/editcitation.glade.h:21
 #: ../src/glade/editsourceref.glade.h:18
 msgid "_Author:"
 msgstr "_Auteur :"
 
 #: ../src/glade/editsource.glade.h:3
-#: ../src/glade/editcitation.glade.h:29
 #: ../src/glade/editsourceref.glade.h:27
 msgid "Title of the source."
 msgstr "Le titre de la source."
 
 #: ../src/glade/editsource.glade.h:4
-#: ../src/glade/editcitation.glade.h:24
 #: ../src/glade/editsourceref.glade.h:21
 msgid "Authors of the source."
 msgstr "Les auteurs de la source."
@@ -28618,25 +28636,21 @@ msgid "_Pub. info.:"
 msgstr "_Pub. info :"
 
 #: ../src/glade/editsource.glade.h:6
-#: ../src/glade/editcitation.glade.h:27
 #: ../src/glade/editsourceref.glade.h:24
 msgid "Publication Information, such as city and year of publication, name of publisher, ..."
 msgstr "L'information de publication, tel que un village, l'année de publication, le nom de l'organisme publiant cette source, ..."
 
 #: ../src/glade/editsource.glade.h:7
-#: ../src/glade/editcitation.glade.h:26
 #: ../src/glade/editsourceref.glade.h:23
 msgid "Provide a short title used for sorting, filing, and retrieving source records."
 msgstr "Fournit un simple titre utilisé pour trier, classer et trouver les enregistrements de la source. "
 
 #: ../src/glade/editsource.glade.h:8
-#: ../src/glade/editcitation.glade.h:22
 #: ../src/glade/editsourceref.glade.h:19
 msgid "A_bbreviation:"
 msgstr "A_bréviation :"
 
 #: ../src/glade/editsource.glade.h:10
-#: ../src/glade/editcitation.glade.h:28
 #: ../src/glade/editsourceref.glade.h:26
 msgid "A unique ID to identify the source"
 msgstr "Un identifiant unique pour la source, laisser vide pour que Gramps le choisisse."
@@ -28837,10 +28851,6 @@ msgid "<b>Version description</b>"
 msgstr "<b>Description de la version</b>"
 
 #: ../src/glade/editcitation.glade.h:1
-msgid "<b>Citation information</b>"
-msgstr "<b>Information sur la citation</b>"
-
-#: ../src/glade/editcitation.glade.h:2
 #: ../src/glade/editaddress.glade.h:1
 #: ../src/glade/editmedia.glade.h:3
 #: ../src/glade/editmediaref.glade.h:24
@@ -28851,7 +28861,7 @@ msgstr "<b>Information sur la citation</b>"
 msgid "_Date:"
 msgstr "_Date :"
 
-#: ../src/glade/editcitation.glade.h:3
+#: ../src/glade/editcitation.glade.h:2
 #: ../src/glade/editaddress.glade.h:18
 #: ../src/glade/editmedia.glade.h:10
 #: ../src/glade/editmediaref.glade.h:25
@@ -28863,20 +28873,25 @@ msgstr "_Date :"
 msgid "Invoke date editor"
 msgstr "Ouvrir l'éditeur de date"
 
-#: ../src/glade/editcitation.glade.h:5
+#: ../src/glade/editcitation.glade.h:4
 #: ../src/glade/editsourceref.glade.h:5
 msgid "Specific location within the information referenced. For a published work, this could include the volume of a multi-volume work and the page number(s). For a periodical, it could include volume, issue, and page numbers. For a newspaper, it could include a column number and page number. For an unpublished source, this could be a sheet number, page number, frame number, etc. A census record might have a line number or dwelling and family numbers in addition to the page number. "
 msgstr "Un emplacement spécifique avec l'information référencée. Pour un travail de publication, ceci peut correspondre au volume d'un travail en plusieurs parties et le numéro de(s) page(s). Pour un périodique, ceci peut correspondre à un volume, et les numéros de pages. Pour un journal, ceci peut correspondre à un numéro de colonne et de page. Pour une source non-publiée, ceci peut être le numéro de feuillet, le numéro de page, de partie, etc. Un enregistrement pour le recensement peut avoir un numéro de ligne ou la localisation d'une famille en supplément du numéro de page. "
 
-#: ../src/glade/editcitation.glade.h:6
+#: ../src/glade/editcitation.glade.h:5
 #: ../src/glade/editsourceref.glade.h:6
 msgid "_Volume/Page:"
 msgstr "_Volume/Page :"
 
-#: ../src/glade/editcitation.glade.h:7
+#: ../src/glade/editcitation.glade.h:6
 #: ../src/glade/editsourceref.glade.h:7
 msgid "Con_fidence:"
 msgstr "Niveau de _confiance :"
+
+#: ../src/glade/editcitation.glade.h:7
+#: ../src/glade/editsourceref.glade.h:15
+msgid "The date of the entry in the source you are referencing, e.g. the date a house was visited during a census, or the date an entry was made in a birth log/registry. "
+msgstr "La date de l'écriture de la source que vous êtes en train de référencer, par exemple, la date de visite lors d'un recensement, ou la date de saisie d'une naissance dans un registre."
 
 #: ../src/glade/editcitation.glade.h:8
 #: ../src/glade/editsourceref.glade.h:10
@@ -28893,33 +28908,14 @@ msgstr ""
 "Haut = preuve secondaire, données officiellement enregistrées parfois après un événement\n"
 "Très haut = preuve directe et principale, ou qui n'entraîne pas de doute"
 
-#: ../src/glade/editcitation.glade.h:13
-#: ../src/glade/editsourceref.glade.h:15
-msgid "The date of the entry in the source you are referencing, e.g. the date a house was visited during a census, or the date an entry was made in a birth log/registry. "
-msgstr "La date de l'écriture de la source que vous êtes en train de référencer, par exemple, la date de visite lors d'un recensement, ou la date de saisie d'une naissance dans un registre."
-
 #: ../src/glade/editcitation.glade.h:14
-msgid "<b>Note:</b> Any changes in the shared citation information will be reflected in the citation itself, for all items that reference the citation."
-msgstr "<b>Remarque :</b> tout changement effectué dans les informations partagées de cette citation seront répercutées dans la citation elle-même, et ce pour tous les enregistrements qui la référencent."
-
-#: ../src/glade/editcitation.glade.h:15
 msgid "A unique ID to identify the citation"
 msgstr "Un identifiant unique pour la citation, laisser vide pour que Gramps le choisisse."
 
-#: ../src/glade/editcitation.glade.h:23
-#: ../src/glade/editsourceref.glade.h:20
-msgid "_Pub. Info.:"
-msgstr "_Pub. Info :"
-
-#: ../src/glade/editcitation.glade.h:25
-#: ../src/glade/editsourceref.glade.h:22
-msgid "<b>Note:</b> Any changes in the shared source information will be reflected in the source itself, for all items that reference the source."
-msgstr "<b>Remarque :</b> tout changement effectué dans les informations partagées de cette source seront répercutées dans la source elle-même, et ce pour tous les enregistrements qui la référencent."
-
-#: ../src/glade/editcitation.glade.h:30
-#: ../src/glade/editsourceref.glade.h:28
-msgid "<b>Shared source information</b>"
-msgstr "<b>Information partagée de la source</b>"
+# L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+#: ../src/glade/editcitation.glade.h:15
+msgid "Source:"
+msgstr "Source : "
 
 #: ../src/glade/editurl.glade.h:1
 msgid "_Web address:"
@@ -29501,6 +29497,18 @@ msgstr ""
 #: ../src/glade/editplace.glade.h:35
 msgid "<b>Location</b>"
 msgstr "<b>Lieu</b>"
+
+#: ../src/glade/editsourceref.glade.h:20
+msgid "_Pub. Info.:"
+msgstr "_Pub. Info :"
+
+#: ../src/glade/editsourceref.glade.h:22
+msgid "<b>Note:</b> Any changes in the shared source information will be reflected in the source itself, for all items that reference the source."
+msgstr "<b>Remarque :</b> tout changement effectué dans les informations partagées de cette source seront répercutées dans la source elle-même, et ce pour tous les enregistrements qui la référencent."
+
+#: ../src/glade/editsourceref.glade.h:28
+msgid "<b>Shared source information</b>"
+msgstr "<b>Information partagée de la source</b>"
 
 #: ../src/glade/editname.glade.h:7
 msgid "Suffi_x:"
@@ -30755,6 +30763,12 @@ msgstr "<b>Le droit d'utilisation du programme Gramps</b><br/>Gramps est libreme
 #: ../src/data/tips.xml.in.h:63
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
 msgstr "<b>Gramps pour Gnome ou KDE ?</b><br/>Pour les utilisateurs de Linux Gramps fonctionne de la même façon quelque soit l'environnement de bureau. Tant que vous avez les bibliothèques GTK installées il fonctionnera bien."
+
+#~ msgid "<b>Citation information</b>"
+#~ msgstr "<b>Information sur la citation</b>"
+
+#~ msgid "<b>Note:</b> Any changes in the shared citation information will be reflected in the citation itself, for all items that reference the citation."
+#~ msgstr "<b>Remarque :</b> tout changement effectué dans les informations partagées de cette citation seront répercutées dans la citation elle-même, et ce pour tous les enregistrements qui la référencent."
 
 #~ msgid "Events father"
 #~ msgstr "Événements du père"

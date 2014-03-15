@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-07 14:49+0100\n"
+"POT-Creation-Date: 2014-03-15 21:25+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -972,8 +972,8 @@ msgstr ""
 
 #: ../src/ScratchPad.py:480 ../src/gen/lib/notetype.py:84
 #: ../src/gui/configure.py:483 ../src/gui/filtereditor.py:300
-#: ../src/gui/editors/editcitation.py:140
-#: ../src/gui/editors/editcitation.py:146
+#: ../src/gui/editors/editcitation.py:106
+#: ../src/gui/editors/editcitation.py:112
 #: ../src/gui/views/treemodels/citationtreemodel.py:161
 #: ../src/plugins/gramplet/QuickViewGramplet.py:114
 #: ../src/plugins/quickview/quickview.gpr.py:206
@@ -1388,26 +1388,26 @@ msgstr ""
 msgid "Invalid"
 msgstr ""
 
-#: ../src/Utils.py:92 ../src/gui/editors/editcitation.py:276
+#: ../src/Utils.py:92 ../src/gui/editors/editcitation.py:200
 msgid "Very High"
 msgstr ""
 
-#: ../src/Utils.py:93 ../src/gui/editors/editcitation.py:275
+#: ../src/Utils.py:93 ../src/gui/editors/editcitation.py:199
 #: ../src/plugins/tool/FindDupes.py:63
 msgid "High"
 msgstr ""
 
-#: ../src/Utils.py:94 ../src/gui/editors/editcitation.py:274
+#: ../src/Utils.py:94 ../src/gui/editors/editcitation.py:198
 #: ../src/plugins/webreport/NarrativeWeb.py:2364
 msgid "Normal"
 msgstr ""
 
-#: ../src/Utils.py:95 ../src/gui/editors/editcitation.py:273
+#: ../src/Utils.py:95 ../src/gui/editors/editcitation.py:197
 #: ../src/plugins/tool/FindDupes.py:61
 msgid "Low"
 msgstr ""
 
-#: ../src/Utils.py:96 ../src/gui/editors/editcitation.py:272
+#: ../src/Utils.py:96 ../src/gui/editors/editcitation.py:196
 msgid "Very Low"
 msgstr ""
 
@@ -3526,8 +3526,6 @@ msgid "Matrilineal"
 msgstr ""
 
 #: ../src/gen/lib/notetype.py:80 ../src/gui/configure.py:1156
-#: ../src/gui/editors/editcitation.py:202
-#: ../src/gui/editors/editcitation.py:208
 #: ../src/gui/editors/editeventref.py:79 ../src/gui/editors/editmediaref.py:94
 #: ../src/gui/editors/editreporef.py:73 ../src/glade/editmediaref.glade.h:15
 #: ../src/glade/editname.glade.h:33
@@ -5676,7 +5674,7 @@ msgstr ""
 #: ../src/plugins/webreport/NarrativeWeb.py:5773
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:96
 #: ../src/Filters/SideBar/_MediaSidebarFilter.py:91
-#: ../src/glade/editcitation.glade.h:4 ../src/glade/editaddress.glade.h:19
+#: ../src/glade/editcitation.glade.h:3 ../src/glade/editaddress.glade.h:19
 #: ../src/glade/editmedia.glade.h:11 ../src/glade/editmediaref.glade.h:26
 #: ../src/glade/editeventref.glade.h:12 ../src/glade/editldsord.glade.h:4
 #: ../src/glade/editsourceref.glade.h:4 ../src/glade/editname.glade.h:28
@@ -6409,78 +6407,105 @@ msgid ""
 "corrupt file."
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:249
+#: ../src/gui/editors/objectentries.py:259
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:251
+#: ../src/gui/editors/objectentries.py:261
 msgid "No place given, click button to select one"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:252
+#: ../src/gui/editors/objectentries.py:262
 msgid "Edit place"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:253
+#: ../src/gui/editors/objectentries.py:263
 msgid "Select an existing place"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:254
+#: ../src/gui/editors/objectentries.py:264
 #: ../src/plugins/lib/libplaceview.py:118
 msgid "Add a new place"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:255
+#: ../src/gui/editors/objectentries.py:265
 msgid "Remove place"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:300
+#: ../src/gui/editors/objectentries.py:309
+msgid "To select a source, use drag-and-drop or use the buttons"
+msgstr ""
+
+#: ../src/gui/editors/objectentries.py:311
+msgid "No source given, click button to select one"
+msgstr ""
+
+#: ../src/gui/editors/objectentries.py:312
+msgid "Edit source"
+msgstr ""
+
+#: ../src/gui/editors/objectentries.py:313
+msgid "Select an existing source"
+msgstr ""
+
+#: ../src/gui/editors/objectentries.py:314
+#: ../src/plugins/view/citationtreeview.py:119
+#: ../src/plugins/view/citationlistview.py:119
+#: ../src/plugins/view/sourceview.py:93
+msgid "Add a new source"
+msgstr ""
+
+#: ../src/gui/editors/objectentries.py:315
+msgid "Remove source"
+msgstr ""
+
+#: ../src/gui/editors/objectentries.py:360
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:302 ../src/gui/plug/_guioptions.py:1051
+#: ../src/gui/editors/objectentries.py:362 ../src/gui/plug/_guioptions.py:1051
 msgid "No image given, click button to select one"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:303
+#: ../src/gui/editors/objectentries.py:363
 msgid "Edit media object"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:304 ../src/gui/plug/_guioptions.py:1029
+#: ../src/gui/editors/objectentries.py:364 ../src/gui/plug/_guioptions.py:1029
 msgid "Select an existing media object"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:305
+#: ../src/gui/editors/objectentries.py:365
 #: ../src/plugins/view/mediaview.py:110
 msgid "Add a new media object"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:306
+#: ../src/gui/editors/objectentries.py:366
 msgid "Remove media object"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:351
+#: ../src/gui/editors/objectentries.py:411
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:353 ../src/gui/plug/_guioptions.py:950
+#: ../src/gui/editors/objectentries.py:413 ../src/gui/plug/_guioptions.py:950
 msgid "No note given, click button to select one"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:354 ../src/gui/editors/editnote.py:286
+#: ../src/gui/editors/objectentries.py:414 ../src/gui/editors/editnote.py:286
 #: ../src/gui/editors/editnote.py:331
 msgid "Edit Note"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:355 ../src/gui/plug/_guioptions.py:925
+#: ../src/gui/editors/objectentries.py:415 ../src/gui/plug/_guioptions.py:925
 msgid "Select an existing note"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:356 ../src/plugins/view/noteview.py:89
+#: ../src/gui/editors/objectentries.py:416 ../src/plugins/view/noteview.py:89
 msgid "Add a new note"
 msgstr ""
 
-#: ../src/gui/editors/objectentries.py:357
+#: ../src/gui/editors/objectentries.py:417
 msgid "Remove note"
 msgstr ""
 
@@ -6515,29 +6540,28 @@ msgstr ""
 msgid "Child Reference"
 msgstr ""
 
-#: ../src/gui/editors/editcitation.py:149
-#: ../src/gui/editors/editcitation.py:155
+#: ../src/gui/editors/editcitation.py:115
+#: ../src/gui/editors/editcitation.py:121
 msgid "New Citation"
 msgstr ""
 
-#: ../src/gui/editors/editcitation.py:386
+#: ../src/gui/editors/editcitation.py:254
 msgid "Edit Citation"
 msgstr ""
 
-#: ../src/gui/editors/editcitation.py:392 ../src/gui/editors/editsource.py:181
-msgid "Cannot save source"
+#: ../src/gui/editors/editcitation.py:262
+msgid "Cannot save citation. No source selected."
 msgstr ""
 
-#: ../src/gui/editors/editcitation.py:393 ../src/gui/editors/editsource.py:182
-msgid "No data exists for this source. Please enter data or cancel the edit."
+#: ../src/gui/editors/editcitation.py:263
+msgid "Please select a source or cancel the edit."
 msgstr ""
 
-#: ../src/gui/editors/editcitation.py:402
+#: ../src/gui/editors/editcitation.py:271
 msgid "Cannot save citation. ID already exists."
 msgstr ""
 
-#: ../src/gui/editors/editcitation.py:403
-#: ../src/gui/editors/editcitation.py:417
+#: ../src/gui/editors/editcitation.py:272
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(gramps_id)s. "
@@ -6545,31 +6569,17 @@ msgid ""
 "or leave blank to get the next available ID value."
 msgstr ""
 
-#: ../src/gui/editors/editcitation.py:416 ../src/gui/editors/editsource.py:191
-msgid "Cannot save source. ID already exists."
-msgstr ""
-
-#: ../src/gui/editors/editcitation.py:430 ../src/gui/editors/editsource.py:204
-#, python-format
-msgid "Add Source (%s)"
-msgstr ""
-
-#: ../src/gui/editors/editcitation.py:436 ../src/gui/editors/editsource.py:209
-#, python-format
-msgid "Edit Source (%s)"
-msgstr ""
-
-#: ../src/gui/editors/editcitation.py:443
+#: ../src/gui/editors/editcitation.py:284
 #, python-format
 msgid "Add Citation (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editcitation.py:449
+#: ../src/gui/editors/editcitation.py:290
 #, python-format
 msgid "Edit Citation (%s)"
 msgstr ""
 
-#: ../src/gui/editors/editcitation.py:532
+#: ../src/gui/editors/editcitation.py:327
 #, python-format
 msgid "Delete Citation (%s)"
 msgstr ""
@@ -7343,7 +7353,29 @@ msgstr ""
 msgid "Edit Source"
 msgstr ""
 
-#: ../src/gui/editors/editsource.py:222
+#: ../src/gui/editors/editsource.py:181
+msgid "Cannot save source"
+msgstr ""
+
+#: ../src/gui/editors/editsource.py:182
+msgid "No data exists for this source. Please enter data or cancel the edit."
+msgstr ""
+
+#: ../src/gui/editors/editsource.py:191
+msgid "Cannot save source. ID already exists."
+msgstr ""
+
+#: ../src/gui/editors/editsource.py:204
+#, python-format
+msgid "Add Source (%s)"
+msgstr ""
+
+#: ../src/gui/editors/editsource.py:209
+#, python-format
+msgid "Edit Source (%s)"
+msgstr ""
+
+#: ../src/gui/editors/editsource.py:224
 #, python-format
 msgid "Delete Source (%s)"
 msgstr ""
@@ -22223,12 +22255,6 @@ msgstr ""
 msgid "Add a new citation and a new source"
 msgstr ""
 
-#: ../src/plugins/view/citationtreeview.py:119
-#: ../src/plugins/view/citationlistview.py:119
-#: ../src/plugins/view/sourceview.py:93
-msgid "Add a new source"
-msgstr ""
-
 #: ../src/plugins/view/citationtreeview.py:120
 #: ../src/plugins/view/citationlistview.py:120
 msgid "Add a new citation to an existing source"
@@ -26340,8 +26366,8 @@ msgid "Title:"
 msgstr ""
 
 #: ../src/Filters/Rules/Citation/_HasSource.py:50
-#: ../src/glade/mergedata.glade.h:11 ../src/glade/mergesource.glade.h:6
-#: ../src/glade/plugins.glade.h:3
+#: ../src/glade/editcitation.glade.h:18 ../src/glade/mergedata.glade.h:11
+#: ../src/glade/mergesource.glade.h:6 ../src/glade/plugins.glade.h:3
 msgid "Author:"
 msgstr ""
 
@@ -26955,10 +26981,9 @@ msgid ""
 "the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
 
-#: ../src/glade/editperson.glade.h:19 ../src/glade/editcitation.glade.h:19
-#: ../src/glade/editreporef.glade.h:9 ../src/glade/editmediaref.glade.h:32
-#: ../src/glade/editeventref.glade.h:5 ../src/glade/editsourceref.glade.h:16
-#: ../src/plugins/tool/verify.glade.h:9
+#: ../src/glade/editperson.glade.h:19 ../src/glade/editreporef.glade.h:9
+#: ../src/glade/editmediaref.glade.h:32 ../src/glade/editeventref.glade.h:5
+#: ../src/glade/editsourceref.glade.h:16 ../src/plugins/tool/verify.glade.h:9
 msgid "<b>General</b>"
 msgstr ""
 
@@ -27004,7 +27029,7 @@ msgid "G_ender:"
 msgstr ""
 
 #: ../src/glade/editperson.glade.h:33 ../src/glade/editsource.glade.h:9
-#: ../src/glade/editcitation.glade.h:18 ../src/glade/editrepository.glade.h:5
+#: ../src/glade/editcitation.glade.h:13 ../src/glade/editrepository.glade.h:5
 #: ../src/glade/editreporef.glade.h:14 ../src/glade/editfamily.glade.h:16
 #: ../src/glade/editmedia.glade.h:1 ../src/glade/editmediaref.glade.h:17
 #: ../src/glade/editeventref.glade.h:10 ../src/glade/editnote.glade.h:4
@@ -27117,8 +27142,8 @@ msgid "<b>Preview</b>"
 msgstr ""
 
 #: ../src/glade/addmedia.glade.h:3 ../src/glade/editsource.glade.h:1
-#: ../src/glade/editcitation.glade.h:20 ../src/glade/editmedia.glade.h:2
-#: ../src/glade/editmediaref.glade.h:18 ../src/glade/editsourceref.glade.h:17
+#: ../src/glade/editmedia.glade.h:2 ../src/glade/editmediaref.glade.h:18
+#: ../src/glade/editsourceref.glade.h:17
 msgid "_Title:"
 msgstr ""
 
@@ -27266,18 +27291,15 @@ msgstr ""
 msgid "Te_xt comment:"
 msgstr ""
 
-#: ../src/glade/editsource.glade.h:2 ../src/glade/editcitation.glade.h:21
-#: ../src/glade/editsourceref.glade.h:18
+#: ../src/glade/editsource.glade.h:2 ../src/glade/editsourceref.glade.h:18
 msgid "_Author:"
 msgstr ""
 
-#: ../src/glade/editsource.glade.h:3 ../src/glade/editcitation.glade.h:29
-#: ../src/glade/editsourceref.glade.h:27
+#: ../src/glade/editsource.glade.h:3 ../src/glade/editsourceref.glade.h:27
 msgid "Title of the source."
 msgstr ""
 
-#: ../src/glade/editsource.glade.h:4 ../src/glade/editcitation.glade.h:24
-#: ../src/glade/editsourceref.glade.h:21
+#: ../src/glade/editsource.glade.h:4 ../src/glade/editsourceref.glade.h:21
 msgid "Authors of the source."
 msgstr ""
 
@@ -27285,27 +27307,23 @@ msgstr ""
 msgid "_Pub. info.:"
 msgstr ""
 
-#: ../src/glade/editsource.glade.h:6 ../src/glade/editcitation.glade.h:27
-#: ../src/glade/editsourceref.glade.h:24
+#: ../src/glade/editsource.glade.h:6 ../src/glade/editsourceref.glade.h:24
 msgid ""
 "Publication Information, such as city and year of publication, name of "
 "publisher, ..."
 msgstr ""
 
-#: ../src/glade/editsource.glade.h:7 ../src/glade/editcitation.glade.h:26
-#: ../src/glade/editsourceref.glade.h:23
+#: ../src/glade/editsource.glade.h:7 ../src/glade/editsourceref.glade.h:23
 msgid ""
 "Provide a short title used for sorting, filing, and retrieving source "
 "records."
 msgstr ""
 
-#: ../src/glade/editsource.glade.h:8 ../src/glade/editcitation.glade.h:22
-#: ../src/glade/editsourceref.glade.h:19
+#: ../src/glade/editsource.glade.h:8 ../src/glade/editsourceref.glade.h:19
 msgid "A_bbreviation:"
 msgstr ""
 
-#: ../src/glade/editsource.glade.h:10 ../src/glade/editcitation.glade.h:28
-#: ../src/glade/editsourceref.glade.h:26
+#: ../src/glade/editsource.glade.h:10 ../src/glade/editsourceref.glade.h:26
 msgid "A unique ID to identify the source"
 msgstr ""
 
@@ -27493,18 +27511,14 @@ msgstr ""
 msgid "<b>Version description</b>"
 msgstr ""
 
-#: ../src/glade/editcitation.glade.h:1
-msgid "<b>Citation information</b>"
-msgstr ""
-
-#: ../src/glade/editcitation.glade.h:2 ../src/glade/editaddress.glade.h:1
+#: ../src/glade/editcitation.glade.h:1 ../src/glade/editaddress.glade.h:1
 #: ../src/glade/editmedia.glade.h:3 ../src/glade/editmediaref.glade.h:24
 #: ../src/glade/editeventref.glade.h:7 ../src/glade/editldsord.glade.h:1
 #: ../src/glade/editsourceref.glade.h:2 ../src/glade/editevent.glade.h:2
 msgid "_Date:"
 msgstr ""
 
-#: ../src/glade/editcitation.glade.h:3 ../src/glade/editaddress.glade.h:18
+#: ../src/glade/editcitation.glade.h:2 ../src/glade/editaddress.glade.h:18
 #: ../src/glade/editmedia.glade.h:10 ../src/glade/editmediaref.glade.h:25
 #: ../src/glade/editeventref.glade.h:11 ../src/glade/editldsord.glade.h:3
 #: ../src/glade/editsourceref.glade.h:3 ../src/glade/editname.glade.h:27
@@ -27512,7 +27526,7 @@ msgstr ""
 msgid "Invoke date editor"
 msgstr ""
 
-#: ../src/glade/editcitation.glade.h:5 ../src/glade/editsourceref.glade.h:5
+#: ../src/glade/editcitation.glade.h:4 ../src/glade/editsourceref.glade.h:5
 msgid ""
 "Specific location within the information referenced. For a published work, "
 "this could include the volume of a multi-volume work and the page number(s). "
@@ -27523,12 +27537,19 @@ msgid ""
 "in addition to the page number. "
 msgstr ""
 
-#: ../src/glade/editcitation.glade.h:6 ../src/glade/editsourceref.glade.h:6
+#: ../src/glade/editcitation.glade.h:5 ../src/glade/editsourceref.glade.h:6
 msgid "_Volume/Page:"
 msgstr ""
 
-#: ../src/glade/editcitation.glade.h:7 ../src/glade/editsourceref.glade.h:7
+#: ../src/glade/editcitation.glade.h:6 ../src/glade/editsourceref.glade.h:7
 msgid "Con_fidence:"
+msgstr ""
+
+#: ../src/glade/editcitation.glade.h:7 ../src/glade/editsourceref.glade.h:15
+msgid ""
+"The date of the entry in the source you are referencing, e.g. the date a "
+"house was visited during a census, or the date an entry was made in a birth "
+"log/registry. "
 msgstr ""
 
 #: ../src/glade/editcitation.glade.h:8 ../src/glade/editsourceref.glade.h:10
@@ -27543,35 +27564,12 @@ msgid ""
 "Very High =Direct and primary evidence used, or by dominance of the evidence "
 msgstr ""
 
-#: ../src/glade/editcitation.glade.h:13 ../src/glade/editsourceref.glade.h:15
-msgid ""
-"The date of the entry in the source you are referencing, e.g. the date a "
-"house was visited during a census, or the date an entry was made in a birth "
-"log/registry. "
-msgstr ""
-
 #: ../src/glade/editcitation.glade.h:14
-msgid ""
-"<b>Note:</b> Any changes in the shared citation information will be "
-"reflected in the citation itself, for all items that reference the citation."
-msgstr ""
-
-#: ../src/glade/editcitation.glade.h:15
 msgid "A unique ID to identify the citation"
 msgstr ""
 
-#: ../src/glade/editcitation.glade.h:23 ../src/glade/editsourceref.glade.h:20
-msgid "_Pub. Info.:"
-msgstr ""
-
-#: ../src/glade/editcitation.glade.h:25 ../src/glade/editsourceref.glade.h:22
-msgid ""
-"<b>Note:</b> Any changes in the shared source information will be reflected "
-"in the source itself, for all items that reference the source."
-msgstr ""
-
-#: ../src/glade/editcitation.glade.h:30 ../src/glade/editsourceref.glade.h:28
-msgid "<b>Shared source information</b>"
+#: ../src/glade/editcitation.glade.h:15
+msgid "Source:"
 msgstr ""
 
 #: ../src/glade/editurl.glade.h:1
@@ -28120,6 +28118,20 @@ msgstr ""
 
 #: ../src/glade/editplace.glade.h:35
 msgid "<b>Location</b>"
+msgstr ""
+
+#: ../src/glade/editsourceref.glade.h:20
+msgid "_Pub. Info.:"
+msgstr ""
+
+#: ../src/glade/editsourceref.glade.h:22
+msgid ""
+"<b>Note:</b> Any changes in the shared source information will be reflected "
+"in the source itself, for all items that reference the source."
+msgstr ""
+
+#: ../src/glade/editsourceref.glade.h:28
+msgid "<b>Shared source information</b>"
 msgstr ""
 
 #: ../src/glade/editname.glade.h:7
