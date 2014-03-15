@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-07 14:53+0100\n"
+"POT-Creation-Date: 2014-03-15 20:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1528,6 +1528,7 @@ msgid "Title:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:51
+#: ../gramps/gui/glade/editcitation.glade.h:18
 #: ../gramps/gui/glade/mergedata.glade.h:12
 #: ../gramps/gui/glade/mergesource.glade.h:6
 #: ../gramps/gui/glade/plugins.glade.h:5
@@ -3766,7 +3767,7 @@ msgstr ""
 #: ../gramps/gui/plug/_windows.py:616 ../gramps/gui/plug/_windows.py:1101
 #: ../gramps/gui/selectors/selectevent.py:66
 #: ../gramps/plugins/gramplet/events.py:64
-#: ../gramps/plugins/lib/libmetadata.py:93
+#: ../gramps/plugins/lib/libmetadata.py:100
 #: ../gramps/plugins/textreport/placereport.py:187
 #: ../gramps/plugins/textreport/placereport.py:262
 #: ../gramps/plugins/textreport/tagreport.py:319
@@ -4659,8 +4660,6 @@ msgid "Married Name"
 msgstr ""
 
 #: ../gramps/gen/lib/notetype.py:82 ../gramps/gui/configure.py:1318
-#: ../gramps/gui/editors/editcitation.py:203
-#: ../gramps/gui/editors/editcitation.py:209
 #: ../gramps/gui/editors/editeventref.py:80
 #: ../gramps/gui/editors/editmediaref.py:97
 #: ../gramps/gui/editors/editreporef.py:74
@@ -4682,8 +4681,8 @@ msgid "Source text"
 msgstr ""
 
 #: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/clipboard.py:498
-#: ../gramps/gui/configure.py:539 ../gramps/gui/editors/editcitation.py:141
-#: ../gramps/gui/editors/editcitation.py:147
+#: ../gramps/gui/configure.py:539 ../gramps/gui/editors/editcitation.py:108
+#: ../gramps/gui/editors/editcitation.py:114
 #: ../gramps/gui/editors/filtereditor.py:298
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:157
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:116
@@ -5012,7 +5011,7 @@ msgstr ""
 #. Constants
 #.
 #. -------------------------------------------------------------------------
-#: ../gramps/gen/plug/_manager.py:61
+#: ../gramps/gen/plug/_manager.py:64
 msgid "No description was provided"
 msgstr ""
 
@@ -6430,25 +6429,25 @@ msgstr ""
 msgid "Invalid"
 msgstr ""
 
-#: ../gramps/gen/utils/string.py:57 ../gramps/gui/editors/editcitation.py:277
+#: ../gramps/gen/utils/string.py:57 ../gramps/gui/editors/editcitation.py:203
 msgid "Very High"
 msgstr ""
 
-#: ../gramps/gen/utils/string.py:58 ../gramps/gui/editors/editcitation.py:276
+#: ../gramps/gen/utils/string.py:58 ../gramps/gui/editors/editcitation.py:202
 #: ../gramps/plugins/tool/finddupes.py:64
 msgid "High"
 msgstr ""
 
-#: ../gramps/gen/utils/string.py:59 ../gramps/gui/editors/editcitation.py:275
+#: ../gramps/gen/utils/string.py:59 ../gramps/gui/editors/editcitation.py:201
 msgid "Normal"
 msgstr ""
 
-#: ../gramps/gen/utils/string.py:60 ../gramps/gui/editors/editcitation.py:274
+#: ../gramps/gen/utils/string.py:60 ../gramps/gui/editors/editcitation.py:200
 #: ../gramps/plugins/tool/finddupes.py:62
 msgid "Low"
 msgstr ""
 
-#: ../gramps/gen/utils/string.py:61 ../gramps/gui/editors/editcitation.py:273
+#: ../gramps/gen/utils/string.py:61 ../gramps/gui/editors/editcitation.py:199
 msgid "Very Low"
 msgstr ""
 
@@ -6877,7 +6876,7 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/dataembedlist.py:62
 #: ../gramps/plugins/gramplet/attributes.py:48
-#: ../gramps/plugins/lib/libmetadata.py:166
+#: ../gramps/plugins/lib/libmetadata.py:173
 #: ../gramps/plugins/tool/patchnames.py:402
 #: ../gramps/plugins/webreport/narrativeweb.py:397
 #: ../gramps/plugins/webreport/narrativeweb.py:1321
@@ -7922,7 +7921,7 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:98
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:94
 #: ../gramps/gui/glade/editaddress.glade.h:20
-#: ../gramps/gui/glade/editcitation.glade.h:4
+#: ../gramps/gui/glade/editcitation.glade.h:3
 #: ../gramps/gui/glade/editevent.glade.h:6
 #: ../gramps/gui/glade/editeventref.glade.h:12
 #: ../gramps/gui/glade/editldsord.glade.h:5
@@ -8186,7 +8185,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/dataembedlist.py:61
 #: ../gramps/plugins/gramplet/attributes.py:47
-#: ../gramps/plugins/lib/libmetadata.py:165
+#: ../gramps/plugins/lib/libmetadata.py:172
 #: ../gramps/plugins/webreport/narrativeweb.py:1320
 msgid "Key"
 msgstr ""
@@ -8706,31 +8705,28 @@ msgstr ""
 msgid "Child Reference"
 msgstr ""
 
-#: ../gramps/gui/editors/editcitation.py:150
-#: ../gramps/gui/editors/editcitation.py:156
+#: ../gramps/gui/editors/editcitation.py:117
+#: ../gramps/gui/editors/editcitation.py:123
 msgid "New Citation"
 msgstr ""
 
-#: ../gramps/gui/editors/editcitation.py:387
+#: ../gramps/gui/editors/editcitation.py:257
 msgid "Edit Citation"
 msgstr ""
 
-#: ../gramps/gui/editors/editcitation.py:393
-#: ../gramps/gui/editors/editsource.py:182
-msgid "Cannot save source"
+#: ../gramps/gui/editors/editcitation.py:265
+msgid "Cannot save citation. No source selected."
 msgstr ""
 
-#: ../gramps/gui/editors/editcitation.py:394
-#: ../gramps/gui/editors/editsource.py:183
-msgid "No data exists for this source. Please enter data or cancel the edit."
+#: ../gramps/gui/editors/editcitation.py:266
+msgid "Please select a source or cancel the edit."
 msgstr ""
 
-#: ../gramps/gui/editors/editcitation.py:403
+#: ../gramps/gui/editors/editcitation.py:274
 msgid "Cannot save citation. ID already exists."
 msgstr ""
 
-#: ../gramps/gui/editors/editcitation.py:404
-#: ../gramps/gui/editors/editcitation.py:418
+#: ../gramps/gui/editors/editcitation.py:275
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(gramps_id)s. "
@@ -8738,34 +8734,17 @@ msgid ""
 "or leave blank to get the next available ID value."
 msgstr ""
 
-#: ../gramps/gui/editors/editcitation.py:417
-#: ../gramps/gui/editors/editsource.py:192
-msgid "Cannot save source. ID already exists."
-msgstr ""
-
-#: ../gramps/gui/editors/editcitation.py:431
-#: ../gramps/gui/editors/editsource.py:205
-#, python-format
-msgid "Add Source (%s)"
-msgstr ""
-
-#: ../gramps/gui/editors/editcitation.py:437
-#: ../gramps/gui/editors/editsource.py:210
-#, python-format
-msgid "Edit Source (%s)"
-msgstr ""
-
-#: ../gramps/gui/editors/editcitation.py:444
+#: ../gramps/gui/editors/editcitation.py:287
 #, python-format
 msgid "Add Citation (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editcitation.py:450
+#: ../gramps/gui/editors/editcitation.py:293
 #, python-format
 msgid "Edit Citation (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editcitation.py:528
+#: ../gramps/gui/editors/editcitation.py:328
 #, python-format
 msgid "Delete Citation (%s)"
 msgstr ""
@@ -9234,18 +9213,29 @@ msgid "Cannot save media object. ID already exists."
 msgstr ""
 
 #: ../gramps/gui/editors/editmedia.py:300
+msgid "There is no media matching the current path value!"
+msgstr ""
+
+#: ../gramps/gui/editors/editmedia.py:301
+#, python-format
+msgid ""
+"You have attempted to use the path with value '%(path)s'. This path does not "
+"exist! Please enter a different path"
+msgstr ""
+
+#: ../gramps/gui/editors/editmedia.py:314
 #: ../gramps/gui/editors/editmediaref.py:641
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:305
+#: ../gramps/gui/editors/editmedia.py:319
 #: ../gramps/gui/editors/editmediaref.py:637
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:342
+#: ../gramps/gui/editors/editmedia.py:356
 msgid "Remove Media Object"
 msgstr ""
 
@@ -9343,7 +9333,7 @@ msgid "_Note"
 msgstr ""
 
 #: ../gramps/gui/editors/editnote.py:285 ../gramps/gui/editors/editnote.py:330
-#: ../gramps/gui/editors/objectentries.py:366
+#: ../gramps/gui/editors/objectentries.py:430
 msgid "Edit Note"
 msgstr ""
 
@@ -9615,7 +9605,29 @@ msgstr ""
 msgid "Edit Source"
 msgstr ""
 
-#: ../gramps/gui/editors/editsource.py:223
+#: ../gramps/gui/editors/editsource.py:182
+msgid "Cannot save source"
+msgstr ""
+
+#: ../gramps/gui/editors/editsource.py:183
+msgid "No data exists for this source. Please enter data or cancel the edit."
+msgstr ""
+
+#: ../gramps/gui/editors/editsource.py:192
+msgid "Cannot save source. ID already exists."
+msgstr ""
+
+#: ../gramps/gui/editors/editsource.py:205
+#, python-format
+msgid "Add Source (%s)"
+msgstr ""
+
+#: ../gramps/gui/editors/editsource.py:210
+#, python-format
+msgid "Edit Source (%s)"
+msgstr ""
+
+#: ../gramps/gui/editors/editsource.py:225
 #, python-format
 msgid "Delete Source (%s)"
 msgstr ""
@@ -9848,78 +9860,102 @@ msgstr ""
 msgid "Delete Filter"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:255
+#: ../gramps/gui/editors/objectentries.py:265
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:257
+#: ../gramps/gui/editors/objectentries.py:267
+#: ../gramps/gui/editors/objectentries.py:320
 msgid "No place given, click button to select one"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:258
+#: ../gramps/gui/editors/objectentries.py:268
 msgid "Edit place"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:259
+#: ../gramps/gui/editors/objectentries.py:269
 msgid "Select an existing place"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:260
+#: ../gramps/gui/editors/objectentries.py:270
 #: ../gramps/plugins/lib/libplaceview.py:121
 msgid "Add a new place"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:261
+#: ../gramps/gui/editors/objectentries.py:271
 msgid "Remove place"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:309
+#: ../gramps/gui/editors/objectentries.py:318
+msgid "To select a source, use drag-and-drop or use the buttons"
+msgstr ""
+
+#: ../gramps/gui/editors/objectentries.py:321
+msgid "Edit source"
+msgstr ""
+
+#: ../gramps/gui/editors/objectentries.py:322
+msgid "Select an existing source"
+msgstr ""
+
+#: ../gramps/gui/editors/objectentries.py:323
+#: ../gramps/plugins/view/citationlistview.py:125
+#: ../gramps/plugins/view/citationtreeview.py:122
+#: ../gramps/plugins/view/sourceview.py:98
+msgid "Add a new source"
+msgstr ""
+
+#: ../gramps/gui/editors/objectentries.py:324
+msgid "Remove source"
+msgstr ""
+
+#: ../gramps/gui/editors/objectentries.py:373
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:311
+#: ../gramps/gui/editors/objectentries.py:375
 #: ../gramps/gui/plug/_guioptions.py:1070
 msgid "No image given, click button to select one"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:312
+#: ../gramps/gui/editors/objectentries.py:376
 msgid "Edit media object"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:313
+#: ../gramps/gui/editors/objectentries.py:377
 #: ../gramps/gui/plug/_guioptions.py:1048
 msgid "Select an existing media object"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:314
+#: ../gramps/gui/editors/objectentries.py:378
 #: ../gramps/plugins/view/mediaview.py:122
 msgid "Add a new media object"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:315
+#: ../gramps/gui/editors/objectentries.py:379
 msgid "Remove media object"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:363
+#: ../gramps/gui/editors/objectentries.py:427
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:365
+#: ../gramps/gui/editors/objectentries.py:429
 #: ../gramps/gui/plug/_guioptions.py:969
 msgid "No note given, click button to select one"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:367
+#: ../gramps/gui/editors/objectentries.py:431
 #: ../gramps/gui/plug/_guioptions.py:944
 msgid "Select an existing note"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:368
+#: ../gramps/gui/editors/objectentries.py:432
 #: ../gramps/plugins/view/noteview.py:95
 msgid "Add a new note"
 msgstr ""
 
-#: ../gramps/gui/editors/objectentries.py:369
+#: ../gramps/gui/editors/objectentries.py:433
 msgid "Remove note"
 msgstr ""
 
@@ -10079,7 +10115,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/addmedia.glade.h:1
 #: ../gramps/gui/glade/editperson.glade.h:13
-#: ../gramps/plugins/lib/libmetadata.py:94
+#: ../gramps/plugins/lib/libmetadata.py:101
 #: ../gramps/plugins/textreport/simplebooktitle.py:148
 msgid "Image"
 msgstr ""
@@ -10091,7 +10127,6 @@ msgid "<b>Preview</b>"
 msgstr ""
 
 #: ../gramps/gui/glade/addmedia.glade.h:3
-#: ../gramps/gui/glade/editcitation.glade.h:20
 #: ../gramps/gui/glade/editmedia.glade.h:2
 #: ../gramps/gui/glade/editmediaref.glade.h:18
 #: ../gramps/gui/glade/editsource.glade.h:3
@@ -10280,7 +10315,7 @@ msgid "Accept changes and close window"
 msgstr ""
 
 #: ../gramps/gui/glade/editaddress.glade.h:2
-#: ../gramps/gui/glade/editcitation.glade.h:2
+#: ../gramps/gui/glade/editcitation.glade.h:1
 #: ../gramps/gui/glade/editevent.glade.h:4
 #: ../gramps/gui/glade/editeventref.glade.h:7
 #: ../gramps/gui/glade/editldsord.glade.h:2
@@ -10375,7 +10410,7 @@ msgid "Privacy"
 msgstr ""
 
 #: ../gramps/gui/glade/editaddress.glade.h:19
-#: ../gramps/gui/glade/editcitation.glade.h:3
+#: ../gramps/gui/glade/editcitation.glade.h:2
 #: ../gramps/gui/glade/editevent.glade.h:5
 #: ../gramps/gui/glade/editeventref.glade.h:11
 #: ../gramps/gui/glade/editldsord.glade.h:4
@@ -10448,11 +10483,7 @@ msgstr ""
 msgid "Edition"
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade.h:1
-msgid "<b>Citation information</b>"
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:5
+#: ../gramps/gui/glade/editcitation.glade.h:4
 #: ../gramps/gui/glade/editsourceref.glade.h:5
 msgid ""
 "Specific location within the information referenced. For a published work, "
@@ -10464,14 +10495,22 @@ msgid ""
 "in addition to the page number. "
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade.h:6
+#: ../gramps/gui/glade/editcitation.glade.h:5
 #: ../gramps/gui/glade/editsourceref.glade.h:6
 msgid "_Volume/Page:"
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade.h:7
+#: ../gramps/gui/glade/editcitation.glade.h:6
 #: ../gramps/gui/glade/editsourceref.glade.h:7
 msgid "Con_fidence:"
+msgstr ""
+
+#: ../gramps/gui/glade/editcitation.glade.h:7
+#: ../gramps/gui/glade/editsourceref.glade.h:15
+msgid ""
+"The date of the entry in the source you are referencing, e.g. the date a "
+"house was visited during a census, or the date an entry was made in a birth "
+"log/registry. "
 msgstr ""
 
 #: ../gramps/gui/glade/editcitation.glade.h:8
@@ -10488,24 +10527,6 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/glade/editcitation.glade.h:13
-#: ../gramps/gui/glade/editsourceref.glade.h:15
-msgid ""
-"The date of the entry in the source you are referencing, e.g. the date a "
-"house was visited during a census, or the date an entry was made in a birth "
-"log/registry. "
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:14
-msgid ""
-"<b>Note:</b> Any changes in the shared citation information will be "
-"reflected in the citation itself, for all items that reference the citation."
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:15
-msgid "A unique ID to identify the citation"
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:18
 #: ../gramps/gui/glade/editevent.glade.h:16
 #: ../gramps/gui/glade/editeventref.glade.h:10
 #: ../gramps/gui/glade/editfamily.glade.h:18
@@ -10521,77 +10542,12 @@ msgstr ""
 msgid "_ID:"
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade.h:19
-#: ../gramps/gui/glade/editeventref.glade.h:5
-#: ../gramps/gui/glade/editmediaref.glade.h:32
-#: ../gramps/gui/glade/editperson.glade.h:21
-#: ../gramps/gui/glade/editreporef.glade.h:11
-#: ../gramps/gui/glade/editsourceref.glade.h:16
-#: ../gramps/plugins/tool/verify.glade.h:15
-msgid "<b>General</b>"
+#: ../gramps/gui/glade/editcitation.glade.h:14
+msgid "A unique ID to identify the citation"
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade.h:21
-#: ../gramps/gui/glade/editsource.glade.h:4
-#: ../gramps/gui/glade/editsourceref.glade.h:18
-msgid "_Author:"
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:22
-#: ../gramps/gui/glade/editsource.glade.h:10
-#: ../gramps/gui/glade/editsourceref.glade.h:19
-msgid "A_bbreviation:"
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:23
-#: ../gramps/gui/glade/editsourceref.glade.h:20
-msgid "_Pub. Info.:"
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:24
-#: ../gramps/gui/glade/editsource.glade.h:6
-#: ../gramps/gui/glade/editsourceref.glade.h:21
-msgid "Authors of the source."
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:25
-#: ../gramps/gui/glade/editsourceref.glade.h:22
-msgid ""
-"<b>Note:</b> Any changes in the shared source information will be reflected "
-"in the source itself, for all items that reference the source."
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:26
-#: ../gramps/gui/glade/editsource.glade.h:9
-#: ../gramps/gui/glade/editsourceref.glade.h:23
-msgid ""
-"Provide a short title used for sorting, filing, and retrieving source "
-"records."
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:27
-#: ../gramps/gui/glade/editsource.glade.h:8
-#: ../gramps/gui/glade/editsourceref.glade.h:24
-msgid ""
-"Publication Information, such as city and year of publication, name of "
-"publisher, ..."
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:28
-#: ../gramps/gui/glade/editsource.glade.h:12
-#: ../gramps/gui/glade/editsourceref.glade.h:26
-msgid "A unique ID to identify the source"
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:29
-#: ../gramps/gui/glade/editsource.glade.h:5
-#: ../gramps/gui/glade/editsourceref.glade.h:27
-msgid "Title of the source."
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:30
-#: ../gramps/gui/glade/editsourceref.glade.h:28
-msgid "<b>Shared source information</b>"
+#: ../gramps/gui/glade/editcitation.glade.h:15
+msgid "Source:"
 msgstr ""
 
 #: ../gramps/gui/glade/editdate.glade.h:1
@@ -10719,6 +10675,15 @@ msgstr ""
 
 #: ../gramps/gui/glade/editeventref.glade.h:2
 msgid "_Role:"
+msgstr ""
+
+#: ../gramps/gui/glade/editeventref.glade.h:5
+#: ../gramps/gui/glade/editmediaref.glade.h:32
+#: ../gramps/gui/glade/editperson.glade.h:21
+#: ../gramps/gui/glade/editreporef.glade.h:11
+#: ../gramps/gui/glade/editsourceref.glade.h:16
+#: ../gramps/plugins/tool/verify.glade.h:15
+msgid "<b>General</b>"
 msgstr ""
 
 #: ../gramps/gui/glade/editeventref.glade.h:14
@@ -11371,8 +11336,61 @@ msgstr ""
 msgid "Type of repository, eg., 'Library', 'Album', ..."
 msgstr ""
 
+#: ../gramps/gui/glade/editsource.glade.h:4
+#: ../gramps/gui/glade/editsourceref.glade.h:18
+msgid "_Author:"
+msgstr ""
+
+#: ../gramps/gui/glade/editsource.glade.h:5
+#: ../gramps/gui/glade/editsourceref.glade.h:27
+msgid "Title of the source."
+msgstr ""
+
+#: ../gramps/gui/glade/editsource.glade.h:6
+#: ../gramps/gui/glade/editsourceref.glade.h:21
+msgid "Authors of the source."
+msgstr ""
+
 #: ../gramps/gui/glade/editsource.glade.h:7
 msgid "_Pub. info.:"
+msgstr ""
+
+#: ../gramps/gui/glade/editsource.glade.h:8
+#: ../gramps/gui/glade/editsourceref.glade.h:24
+msgid ""
+"Publication Information, such as city and year of publication, name of "
+"publisher, ..."
+msgstr ""
+
+#: ../gramps/gui/glade/editsource.glade.h:9
+#: ../gramps/gui/glade/editsourceref.glade.h:23
+msgid ""
+"Provide a short title used for sorting, filing, and retrieving source "
+"records."
+msgstr ""
+
+#: ../gramps/gui/glade/editsource.glade.h:10
+#: ../gramps/gui/glade/editsourceref.glade.h:19
+msgid "A_bbreviation:"
+msgstr ""
+
+#: ../gramps/gui/glade/editsource.glade.h:12
+#: ../gramps/gui/glade/editsourceref.glade.h:26
+msgid "A unique ID to identify the source"
+msgstr ""
+
+#: ../gramps/gui/glade/editsourceref.glade.h:20
+msgid "_Pub. Info.:"
+msgstr ""
+
+#: ../gramps/gui/glade/editsourceref.glade.h:22
+msgid ""
+"<b>Note:</b> Any changes in the shared source information will be reflected "
+"in the source itself, for all items that reference the source."
+msgstr ""
+
+#: ../gramps/gui/glade/editsourceref.glade.h:28
+msgid "<b>Shared source information</b>"
 msgstr ""
 
 #: ../gramps/gui/glade/editurl.glade.h:2
@@ -13628,11 +13646,15 @@ msgstr ""
 msgid "On"
 msgstr ""
 
-#. attaching the spellchecker will fail if
-#. the language does not exist
-#. and presumably if there is no dictionary
-#: ../gramps/gui/spell.py:146
-msgid "Spelling checker could not be attached to TextView"
+#: ../gramps/gui/spell.py:147
+msgid ""
+"You have no installed dictionaries. Either install one or disable spell "
+"checking"
+msgstr ""
+
+#: ../gramps/gui/spell.py:149
+#, python-format
+msgid "Spelling checker initialization failed: %s"
 msgstr ""
 
 #: ../gramps/gui/tipofday.py:70 ../gramps/gui/tipofday.py:71
@@ -19834,30 +19856,30 @@ msgstr ""
 msgid "No copyright notice"
 msgstr ""
 
-#: ../gramps/plugins/lib/libmetadata.py:55
-#: ../gramps/plugins/lib/libmetadata.py:91
+#: ../gramps/plugins/lib/libmetadata.py:62
+#: ../gramps/plugins/lib/libmetadata.py:98
 msgid "Invalid format"
 msgstr ""
 
-#: ../gramps/plugins/lib/libmetadata.py:59
+#: ../gramps/plugins/lib/libmetadata.py:66
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr ""
 
-#: ../gramps/plugins/lib/libmetadata.py:62
+#: ../gramps/plugins/lib/libmetadata.py:69
 #, python-format
 msgid "%(date)s %(time)s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libmetadata.py:95
+#: ../gramps/plugins/lib/libmetadata.py:102
 msgid "Camera"
 msgstr ""
 
-#: ../gramps/plugins/lib/libmetadata.py:96
+#: ../gramps/plugins/lib/libmetadata.py:103
 msgid "GPS"
 msgstr ""
 
-#: ../gramps/plugins/lib/libmetadata.py:97
+#: ../gramps/plugins/lib/libmetadata.py:104
 msgid "Advanced"
 msgstr ""
 
@@ -27357,12 +27379,6 @@ msgstr ""
 #: ../gramps/plugins/view/citationlistview.py:124
 #: ../gramps/plugins/view/citationtreeview.py:121
 msgid "Add a new citation and a new source"
-msgstr ""
-
-#: ../gramps/plugins/view/citationlistview.py:125
-#: ../gramps/plugins/view/citationtreeview.py:122
-#: ../gramps/plugins/view/sourceview.py:98
-msgid "Add a new source"
 msgstr ""
 
 #: ../gramps/plugins/view/citationlistview.py:126
