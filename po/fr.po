@@ -11418,7 +11418,7 @@ msgstr "Un enregistrement unique pour identifier la citation, laissez Gramps le 
 
 #: ../gramps/gui/glade/editcitation.glade.h:15
 msgid "Source:"
-msgstr "Source"
+msgstr "Source :"
 
 #: ../gramps/gui/glade/editdate.glade.h:1
 msgid "Calenda_r:"
