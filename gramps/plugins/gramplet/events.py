@@ -87,8 +87,8 @@ class Events(Gramplet):
 
         if int(event_ref.get_role()) not in (EventRoleType.PRIMARY,
                                              EventRoleType.FAMILY):
-            participants = Utils.get_participant_from_event(self.dbstate.db,
-                                                            event_ref.ref)
+            participants = get_participant_from_event(self.dbstate.db,
+                                                      event_ref.ref)
 
         self.model.add((event.get_handle(),
                         str(event.get_type()),
