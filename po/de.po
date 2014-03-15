@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-18 21:03+0100\n"
-"PO-Revision-Date: 2014-02-18 21:33+0100\n"
+"POT-Creation-Date: 2014-03-15 15:30+0100\n"
+"PO-Revision-Date: 2014-03-15 16:32+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -116,14 +116,14 @@ msgstr "Name"
 #: ../src/gui/editors/displaytabs/repoembedlist.py:67
 #: ../src/gui/plug/_guioptions.py:1112 ../src/gui/plug/_guioptions.py:1289
 #: ../src/gui/selectors/selectcitation.py:67
-#: ../src/gui/selectors/selectevent.py:62
+#: ../src/gui/selectors/selectevent.py:66
 #: ../src/gui/selectors/selectfamily.py:61
 #: ../src/gui/selectors/selectnote.py:67
 #: ../src/gui/selectors/selectobject.py:75
 #: ../src/gui/selectors/selectperson.py:75
 #: ../src/gui/selectors/selectplace.py:63
 #: ../src/gui/selectors/selectrepository.py:62
-#: ../src/gui/selectors/selectsource.py:62
+#: ../src/gui/selectors/selectsource.py:63
 #: ../src/gui/views/navigationview.py:352 ../src/Merge/mergeperson.py:174
 #: ../src/plugins/lib/libpersonview.py:93
 #: ../src/plugins/lib/libplaceview.py:93 ../src/plugins/tool/EventCmp.py:250
@@ -163,8 +163,8 @@ msgstr ""
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr "Sebastian Vöcking, Mirko Leonhäuser"
 
-#: ../src/const.py:235 ../src/const.py:236 ../src/gen/lib/date.py:1794
-#: ../src/gen/lib/date.py:1808
+#: ../src/const.py:235 ../src/const.py:236 ../src/gen/lib/date.py:1796
+#: ../src/gen/lib/date.py:1810
 msgid "none"
 msgstr "kein"
 
@@ -221,6 +221,7 @@ msgid "Date selection"
 msgstr "Datumsauswahl"
 
 #: ../src/DateEdit.py:339
+#, python-brace-format
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr "Korrigiere das Datum oder wechsle von `{cur_mode}' nach `{text_mode}'"
 
@@ -642,7 +643,7 @@ msgstr ""
 #: ../src/plugins/quickview/all_relations.py:278
 #: ../src/plugins/quickview/all_relations.py:295
 #: ../src/plugins/textreport/IndivComplete.py:550
-#: ../src/plugins/tool/Check.py:1958 ../src/plugins/view/geofamily.py:415
+#: ../src/plugins/tool/Check.py:2019 ../src/plugins/view/geofamily.py:415
 #: ../src/plugins/view/geoperson.py:461 ../src/plugins/view/relview.py:450
 #: ../src/plugins/view/relview.py:995 ../src/plugins/view/relview.py:1042
 #: ../src/plugins/webreport/NarrativeWeb.py:395
@@ -729,7 +730,7 @@ msgstr "Webverbindung"
 #: ../src/plugins/lib/libplaceview.py:174
 #: ../src/plugins/view/citationtreeview.py:299
 #: ../src/plugins/view/citationlistview.py:182
-#: ../src/plugins/view/eventview.py:222 ../src/plugins/view/familyview.py:213
+#: ../src/plugins/view/eventview.py:223 ../src/plugins/view/familyview.py:213
 #: ../src/plugins/view/mediaview.py:228 ../src/plugins/view/noteview.py:214
 #: ../src/plugins/view/repoview.py:152 ../src/plugins/view/sourceview.py:138
 msgid "Quick View"
@@ -871,6 +872,7 @@ msgstr ""
 #. may be a step family. However, it will be odd to display the
 #. parent as anything other than "Father"
 #: ../src/Reorder.py:40 ../src/ToolTips.py:235
+#: ../src/gui/editors/displaytabs/eventembedlist.py:59
 #: ../src/gui/selectors/selectfamily.py:62 ../src/Merge/mergeperson.py:216
 #: ../src/plugins/gramplet/PersonDetails.py:186
 #: ../src/plugins/import/ImportCsv.py:225
@@ -890,6 +892,7 @@ msgstr "Vater"
 
 #. ----------------------------------
 #: ../src/Reorder.py:40 ../src/ToolTips.py:240
+#: ../src/gui/editors/displaytabs/eventembedlist.py:60
 #: ../src/gui/selectors/selectfamily.py:63 ../src/Merge/mergeperson.py:218
 #: ../src/plugins/gramplet/PersonDetails.py:187
 #: ../src/plugins/import/ImportCsv.py:222
@@ -973,12 +976,12 @@ msgstr "Ereignis"
 #. 5
 #: ../src/ScratchPad.py:357 ../src/gui/configure.py:479
 #: ../src/gui/filtereditor.py:295 ../src/gui/editors/editlink.py:86
-#: ../src/gui/editors/displaytabs/eventembedlist.py:80
+#: ../src/gui/editors/displaytabs/eventembedlist.py:79
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:55
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:66
-#: ../src/gui/plug/_guioptions.py:1288 ../src/gui/selectors/selectevent.py:66
+#: ../src/gui/plug/_guioptions.py:1288 ../src/gui/selectors/selectevent.py:64
 #: ../src/gui/views/treemodels/placemodel.py:304
-#: ../src/plugins/export/ExportCsv.py:479 ../src/plugins/gramplet/Events.py:53
+#: ../src/plugins/export/ExportCsv.py:479 ../src/plugins/gramplet/Events.py:55
 #: ../src/plugins/gramplet/PersonResidence.py:50
 #: ../src/plugins/gramplet/QuickViewGramplet.py:111
 #: ../src/plugins/import/ImportCsv.py:230
@@ -1181,6 +1184,7 @@ msgid "Person"
 msgstr "Person"
 
 #. 1
+#. _FAMNAME = _("With %(namepartner)s (%(famid)s)")
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
@@ -1188,6 +1192,8 @@ msgstr "Person"
 #: ../src/gen/lib/eventtype.py:141 ../src/gui/configure.py:477
 #: ../src/gui/filtereditor.py:293 ../src/gui/grampsgui.py:113
 #: ../src/gui/editors/editfamily.py:489 ../src/gui/editors/editlink.py:82
+#: ../src/gui/editors/displaytabs/eventembedlist.py:58
+#: ../src/gui/editors/displaytabs/personeventembedlist.py:52
 #: ../src/plugins/export/ExportCsv.py:522
 #: ../src/plugins/gramplet/QuickViewGramplet.py:108
 #: ../src/plugins/import/ImportCsv.py:220
@@ -1244,12 +1250,12 @@ msgstr "Aufbewahrungsort"
 #: ../src/gui/editors/displaytabs/repoembedlist.py:70
 #: ../src/gui/editors/displaytabs/webembedlist.py:65
 #: ../src/gui/plug/_windows.py:121 ../src/gui/plug/_windows.py:239
-#: ../src/gui/plug/_windows.py:1092 ../src/gui/selectors/selectevent.py:63
+#: ../src/gui/plug/_windows.py:1092 ../src/gui/selectors/selectevent.py:61
 #: ../src/gui/selectors/selectnote.py:68
 #: ../src/gui/selectors/selectobject.py:76 ../src/Merge/mergeperson.py:235
 #: ../src/plugins/BookReport.py:779 ../src/plugins/BookReport.py:783
 #: ../src/plugins/gramplet/Backlinks.py:45
-#: ../src/plugins/gramplet/Events.py:49
+#: ../src/plugins/gramplet/Events.py:51
 #: ../src/plugins/quickview/FilterByName.py:290
 #: ../src/plugins/quickview/OnThisDay.py:80
 #: ../src/plugins/quickview/OnThisDay.py:81
@@ -1335,11 +1341,11 @@ msgstr "Aktiviere %s"
 msgid "the object|Create Filter from %s selected..."
 msgstr "Erstelle Filter aus Auswahl %s..."
 
-#: ../src/Spell.py:75
+#: ../src/Spell.py:76
 msgid "Off"
 msgstr "Aus"
 
-#: ../src/Spell.py:78
+#: ../src/Spell.py:79
 msgid "On"
 msgstr "An"
 
@@ -2804,41 +2810,46 @@ msgstr "_Rückgängig %s"
 msgid "_Redo %s"
 msgstr "_Wiederherstellen %s"
 
-#: ../src/gen/db/upgrade.py:83
+#: ../src/gen/db/upgrade.py:87
 #, python-format
 msgid "%6d  People        upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  Personen      aktualisiert mit %6d Fundstellen in %6d sek.\n"
 
-#: ../src/gen/db/upgrade.py:84
+#: ../src/gen/db/upgrade.py:88
 #, python-format
 msgid "%6d  Families      upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  Familien      aktualisiert mit %6d Fundstellen in %6d sek.\n"
 
-#: ../src/gen/db/upgrade.py:85
+#: ../src/gen/db/upgrade.py:89
 #, python-format
 msgid "%6d  Events        upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  Ereignisse    aktualisiert mit %6d Fundstellen in %6d sek.\n"
 
-#: ../src/gen/db/upgrade.py:86
+#: ../src/gen/db/upgrade.py:90
 #, python-format
 msgid "%6d  Media Objects upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  Medienobjekte aktualisiert mit %6d Fundstellen in %6d Sek.\n"
 
-#: ../src/gen/db/upgrade.py:87
+#: ../src/gen/db/upgrade.py:91
 #, python-format
 msgid "%6d  Places        upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  Orte          aktualisiert mit %6d Fundstellen in %6d sek.\n"
 
-#: ../src/gen/db/upgrade.py:88
+#: ../src/gen/db/upgrade.py:92
 #, python-format
 msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  Aufbewahrungsorte aktualisiert mit %6d Fundstellen in %6d sek.\n"
 
-#: ../src/gen/db/upgrade.py:416
+#: ../src/gen/db/upgrade.py:93
+#, python-format
+msgid "%6d  Sources       upgraded with %6d citations in %6d secs\n"
+msgstr "%6d  Quellen          aktualisiert mit %6d Fundstellen in %6d sek.\n"
+
+#: ../src/gen/db/upgrade.py:464
 msgid "Number of new objects upgraded:\n"
 msgstr "Anzahl von neuen, aktualisierten Objekten:\n"
 
-#: ../src/gen/db/upgrade.py:422
+#: ../src/gen/db/upgrade.py:470
 msgid ""
 "\n"
 "\n"
@@ -2854,7 +2865,7 @@ msgstr ""
 "um Fundstellen zusammenzufassen, die identische\n"
 "Informationen enthalten."
 
-#: ../src/gen/db/upgrade.py:426
+#: ../src/gen/db/upgrade.py:474
 msgid "Upgrade Statistics"
 msgstr "Aktualisiere Statistiken"
 
@@ -2990,7 +3001,8 @@ msgstr "Gesellschaftsklasse"
 #: ../src/gui/editors/displaytabs/webembedlist.py:67
 #: ../src/gui/plug/_windows.py:132 ../src/gui/plug/_windows.py:243
 #: ../src/gui/plug/_windows.py:608 ../src/gui/plug/_windows.py:1094
-#: ../src/gui/selectors/selectevent.py:61 ../src/plugins/lib/libmetadata.py:88
+#: ../src/gui/selectors/selectevent.py:65 ../src/plugins/gramplet/Events.py:56
+#: ../src/plugins/lib/libmetadata.py:88
 #: ../src/plugins/textreport/PlaceReport.py:183
 #: ../src/plugins/textreport/PlaceReport.py:256
 #: ../src/plugins/textreport/TagReport.py:313
@@ -3051,7 +3063,7 @@ msgid "Time"
 msgstr "Zeit"
 
 #: ../src/gen/lib/childreftype.py:73 ../src/gui/configure.py:74
-#: ../src/plugins/tool/Check.py:2004
+#: ../src/plugins/tool/Check.py:2065
 #: ../src/Filters/SideBar/_CitationSidebarFilter.py:193
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:153
 #: ../src/Filters/SideBar/_FamilySidebarFilter.py:199
@@ -3191,81 +3203,92 @@ msgid_plural "%d years"
 msgstr[0] "%d Jahr"
 msgstr[1] "%d Jahre"
 
-#: ../src/gen/lib/date.py:505
+#. translators: needed for Arabic, ignore otherwise
+#: ../src/gen/lib/date.py:505 ../src/gen/lib/date.py:513
+#: ../src/plugins/gramplet/PersonDetails.py:198
+#: ../src/plugins/gramplet/WhatsNext.py:371
+#: ../src/plugins/gramplet/WhatsNext.py:393
+#: ../src/plugins/gramplet/WhatsNext.py:443
+#: ../src/plugins/gramplet/WhatsNext.py:478
+#: ../src/plugins/gramplet/WhatsNext.py:499
+msgid ", "
+msgstr ", "
+
+#: ../src/gen/lib/date.py:506
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
 msgstr[0] "%d Monat"
 msgstr[1] "%d Monate"
 
-#: ../src/gen/lib/date.py:512
+#: ../src/gen/lib/date.py:514
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
 msgstr[0] "%d Tag"
 msgstr[1] "%d Tage"
 
-#: ../src/gen/lib/date.py:517
+#: ../src/gen/lib/date.py:519
 msgid "0 days"
 msgstr "0 Tage"
 
-#: ../src/gen/lib/date.py:664
+#: ../src/gen/lib/date.py:666
 msgid "calendar|Gregorian"
 msgstr "Gregorianisch"
 
-#: ../src/gen/lib/date.py:665
+#: ../src/gen/lib/date.py:667
 msgid "calendar|Julian"
 msgstr "Julianisch"
 
-#: ../src/gen/lib/date.py:666
+#: ../src/gen/lib/date.py:668
 msgid "calendar|Hebrew"
 msgstr "Hebräisch"
 
-#: ../src/gen/lib/date.py:667
+#: ../src/gen/lib/date.py:669
 msgid "calendar|French Republican"
 msgstr "Französisch-Republikanisch"
 
-#: ../src/gen/lib/date.py:668
+#: ../src/gen/lib/date.py:670
 msgid "calendar|Persian"
 msgstr "Persisch"
 
-#: ../src/gen/lib/date.py:669
+#: ../src/gen/lib/date.py:671
 msgid "calendar|Islamic"
 msgstr "Islamisch"
 
-#: ../src/gen/lib/date.py:670
+#: ../src/gen/lib/date.py:672
 msgid "calendar|Swedish"
 msgstr "Schwedisch"
 
-#: ../src/gen/lib/date.py:1794
+#: ../src/gen/lib/date.py:1796
 msgid "estimated"
 msgstr "geschätzt"
 
-#: ../src/gen/lib/date.py:1794
+#: ../src/gen/lib/date.py:1796
 msgid "calculated"
 msgstr "berechnet"
 
-#: ../src/gen/lib/date.py:1808
+#: ../src/gen/lib/date.py:1810
 msgid "before"
 msgstr "vor"
 
-#: ../src/gen/lib/date.py:1808
+#: ../src/gen/lib/date.py:1810
 msgid "after"
 msgstr "nach"
 
-#: ../src/gen/lib/date.py:1808
+#: ../src/gen/lib/date.py:1810
 msgid "about"
 msgstr "um"
 
-#: ../src/gen/lib/date.py:1809
+#: ../src/gen/lib/date.py:1811
 msgid "range"
 msgstr "Zeitraum"
 
-#: ../src/gen/lib/date.py:1809
+#: ../src/gen/lib/date.py:1811
 msgid "span"
 msgstr "Zeitspanne"
 
-#: ../src/gen/lib/date.py:1809
+#: ../src/gen/lib/date.py:1811
 msgid "textonly"
 msgstr "nur Text"
 
@@ -4364,7 +4387,7 @@ msgstr "GraphViz Layout"
 
 #. ###############################
 #: ../src/gen/plug/docgen/graphdoc.py:132
-#: ../src/gui/widgets/styledtexteditor.py:476
+#: ../src/gui/widgets/styledtexteditor.py:477
 msgid "Font family"
 msgstr "Schriftfamilie"
 
@@ -4378,7 +4401,7 @@ msgstr ""
 "www.nongnu.org/freefont/"
 
 #: ../src/gen/plug/docgen/graphdoc.py:141
-#: ../src/gui/widgets/styledtexteditor.py:488
+#: ../src/gui/widgets/styledtexteditor.py:489
 msgid "Font size"
 msgstr "Schriftgröße"
 
@@ -6146,13 +6169,13 @@ msgstr "Konfiguriere"
 
 #: ../src/gui/grampsgui.py:110
 #: ../src/gui/editors/displaytabs/addrembedlist.py:72
-#: ../src/gui/editors/displaytabs/eventembedlist.py:79
+#: ../src/gui/editors/displaytabs/eventembedlist.py:78
 #: ../src/gui/editors/displaytabs/familyldsembedlist.py:52
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:63
-#: ../src/gui/selectors/selectevent.py:65
+#: ../src/gui/selectors/selectevent.py:63
 #: ../src/plugins/export/ExportCsv.py:479
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:73
-#: ../src/plugins/gramplet/Events.py:51
+#: ../src/plugins/gramplet/Events.py:53
 #: ../src/plugins/gramplet/PersonResidence.py:49
 #: ../src/plugins/import/ImportCsv.py:229
 #: ../src/plugins/quickview/OnThisDay.py:80
@@ -6193,7 +6216,7 @@ msgstr "Datum bearbeiten"
 #: ../src/plugins/gramplet/bottombar.gpr.py:147
 #: ../src/plugins/quickview/FilterByName.py:97
 #: ../src/plugins/textreport/TagReport.py:284
-#: ../src/plugins/view/eventview.py:117
+#: ../src/plugins/view/eventview.py:118
 #: ../src/plugins/view/geography.gpr.py:88 ../src/plugins/view/view.gpr.py:41
 #: ../src/plugins/webreport/NarrativeWeb.py:1759
 #: ../src/plugins/webreport/NarrativeWeb.py:1818
@@ -6216,7 +6239,7 @@ msgstr "Fächergrafik"
 msgid "Font"
 msgstr "Schrift"
 
-#: ../src/gui/grampsgui.py:116 ../src/gui/widgets/styledtexteditor.py:462
+#: ../src/gui/grampsgui.py:116 ../src/gui/widgets/styledtexteditor.py:463
 msgid "Font Color"
 msgstr "Schriftfarbe"
 
@@ -7024,8 +7047,8 @@ msgid "No note given, click button to select one"
 msgstr ""
 "Die Notiz wurde nicht angegeben. Zum Auswählen klicke auf die Schaltfläche."
 
-#: ../src/gui/editors/objectentries.py:354 ../src/gui/editors/editnote.py:285
-#: ../src/gui/editors/editnote.py:330
+#: ../src/gui/editors/objectentries.py:354 ../src/gui/editors/editnote.py:286
+#: ../src/gui/editors/editnote.py:331
 msgid "Edit Note"
 msgstr "Notiz bearbeiten"
 
@@ -7474,7 +7497,7 @@ msgstr ""
 msgid "Cannot save family. ID already exists."
 msgstr "Die Familie kann nicht gespeichert werden. ID existiert bereits."
 
-#: ../src/gui/editors/editfamily.py:1011 ../src/gui/editors/editnote.py:313
+#: ../src/gui/editors/editfamily.py:1011 ../src/gui/editors/editnote.py:314
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -7666,25 +7689,25 @@ msgstr "Neue Notiz"
 msgid "_Note"
 msgstr "_Notiz"
 
-#: ../src/gui/editors/editnote.py:304
+#: ../src/gui/editors/editnote.py:305
 msgid "Cannot save note"
 msgstr "Die Notiz kann nicht gespeichert werden."
 
-#: ../src/gui/editors/editnote.py:305
+#: ../src/gui/editors/editnote.py:306
 msgid "No data exists for this note. Please enter data or cancel the edit."
 msgstr ""
 "Es existieren keine Daten für diese Notiz. Bitte gib Daten ein oder brich "
 "die Bearbeitung ab."
 
-#: ../src/gui/editors/editnote.py:312
+#: ../src/gui/editors/editnote.py:313
 msgid "Cannot save note. ID already exists."
 msgstr "Die Notiz kann nicht gespeichert werden. ID existiert bereits."
 
-#: ../src/gui/editors/editnote.py:325
+#: ../src/gui/editors/editnote.py:326
 msgid "Add Note"
 msgstr "Notiz hinzufügen"
 
-#: ../src/gui/editors/editnote.py:345
+#: ../src/gui/editors/editnote.py:346
 #, python-format
 msgid "Delete Note (%s)"
 msgstr "Notiz (%s) löschen"
@@ -8094,6 +8117,7 @@ msgid "Move the selected citation downwards"
 msgstr "Gewählte Fundstelle nach unten verschieben"
 
 #: ../src/gui/editors/displaytabs/citationembedlist.py:83
+#: ../src/gui/selectors/selectsource.py:62
 #: ../src/plugins/gramplet/Citations.py:68
 #: ../src/plugins/view/sourceview.py:81
 #: ../src/plugins/webreport/NarrativeWeb.py:4290
@@ -8114,7 +8138,7 @@ msgstr "_Quelle Fundstellen"
 #: ../src/gui/editors/displaytabs/citationembedlist.py:182
 #: ../src/gui/editors/displaytabs/citationembedlist.py:255
 #: ../src/gui/editors/displaytabs/citationembedlist.py:275
-#: ../src/gui/editors/displaytabs/eventembedlist.py:252
+#: ../src/gui/editors/displaytabs/eventembedlist.py:253
 #: ../src/gui/editors/displaytabs/gallerytab.py:332
 #: ../src/plugins/view/citationtreeview.py:448
 #: ../src/plugins/view/citationtreeview.py:503
@@ -8167,19 +8191,6 @@ msgstr "Schlüssel"
 msgid "_Data"
 msgstr "_Daten"
 
-#: ../src/gui/editors/displaytabs/eventembedlist.py:58
-#: ../src/plugins/gramplet/bottombar.gpr.py:139
-msgid "Family Events"
-msgstr "Familiäre Ereignisse"
-
-#: ../src/gui/editors/displaytabs/eventembedlist.py:59
-msgid "Events father"
-msgstr "Ereignisse Vater"
-
-#: ../src/gui/editors/displaytabs/eventembedlist.py:60
-msgid "Events mother"
-msgstr "Ereignisse Mutter"
-
 #: ../src/gui/editors/displaytabs/eventembedlist.py:63
 msgid "Add a new family event"
 msgstr "Neues Familienereignis hinzufügen"
@@ -8193,7 +8204,7 @@ msgid "Edit the selected family event or edit person"
 msgstr "Bearbeite das gewählte Familienereignis oder die Person"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:66
-#: ../src/gui/editors/displaytabs/personeventembedlist.py:58
+#: ../src/gui/editors/displaytabs/personeventembedlist.py:59
 msgid "Share an existing event"
 msgstr "An einem existierenden Ereignis teilnehmen"
 
@@ -8205,17 +8216,24 @@ msgstr "Gewähltes Ereignis nach oben verschieben"
 msgid "Move the selected event downwards"
 msgstr "Gewähltes Ereignis nach unten verschieben"
 
-#: ../src/gui/editors/displaytabs/eventembedlist.py:81
-#: ../src/plugins/gramplet/Events.py:54
+#: ../src/gui/editors/displaytabs/eventembedlist.py:80
+#: ../src/plugins/gramplet/Events.py:57
 msgid "Role"
 msgstr "Rolle"
 
-#: ../src/gui/editors/displaytabs/eventembedlist.py:93
+#: ../src/gui/editors/displaytabs/eventembedlist.py:81
+#: ../src/gui/selectors/selectevent.py:62 ../src/plugins/gramplet/Events.py:52
+#: ../src/plugins/view/eventview.py:87
+#: ../src/Filters/Rules/Family/_HasEvent.py:52
+msgid "Main Participants"
+msgstr "Hauptbeteiligte"
+
+#: ../src/gui/editors/displaytabs/eventembedlist.py:94
 msgid "_Events"
 msgstr "_Ereignisse"
 
-#: ../src/gui/editors/displaytabs/eventembedlist.py:232
-#: ../src/gui/editors/displaytabs/eventembedlist.py:331
+#: ../src/gui/editors/displaytabs/eventembedlist.py:233
+#: ../src/gui/editors/displaytabs/eventembedlist.py:332
 msgid ""
 "This event reference cannot be edited at this time. Either the associated "
 "event is already being edited or another event reference that is associated "
@@ -8229,22 +8247,22 @@ msgstr ""
 "\n"
 "Um die Ereignis-Referenz zu bearbeiten, muss die Quelle geschlossen werden."
 
-#: ../src/gui/editors/displaytabs/eventembedlist.py:265
-#: ../src/gui/editors/displaytabs/eventembedlist.py:330
+#: ../src/gui/editors/displaytabs/eventembedlist.py:266
+#: ../src/gui/editors/displaytabs/eventembedlist.py:331
 #: ../src/gui/editors/displaytabs/gallerytab.py:352
 #: ../src/gui/editors/displaytabs/repoembedlist.py:168
 msgid "Cannot edit this reference"
 msgstr "Kann diese Referenz nicht bearbeiten"
 
-#: ../src/gui/editors/displaytabs/eventembedlist.py:307
+#: ../src/gui/editors/displaytabs/eventembedlist.py:308
 msgid "Cannot change Person"
 msgstr "Diese Person kann nicht geändert werden."
 
-#: ../src/gui/editors/displaytabs/eventembedlist.py:308
+#: ../src/gui/editors/displaytabs/eventembedlist.py:309
 msgid "You cannot change Person events in the Family Editor"
 msgstr "Du kannst persönliche Ereignisse nicht im Familieneditor ändern."
 
-#: ../src/gui/editors/displaytabs/eventrefmodel.py:63
+#: ../src/gui/editors/displaytabs/eventrefmodel.py:65
 #: ../src/gui/editors/displaytabs/namemodel.py:63
 #, python-format
 msgid "%(groupname)s - %(groupnumber)d"
@@ -8440,48 +8458,45 @@ msgstr "Vorschau"
 msgid "_Notes"
 msgstr "_Notizen"
 
+#. add personal column
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:50
-msgid "Personal Events"
-msgstr "Persönliche Ereignisse"
+#: ../src/plugins/webreport/NarrativeWeb.py:1908
+msgid "Personal"
+msgstr "Persönlich"
 
-#: ../src/gui/editors/displaytabs/personeventembedlist.py:51
-#, python-format
-msgid "With %(namepartner)s (%(famid)s)"
-msgstr "Mit %(namepartner)s (%(famid)s)"
-
-#: ../src/gui/editors/displaytabs/personeventembedlist.py:52
+#: ../src/gui/editors/displaytabs/personeventembedlist.py:53
 msgid "<Unknown>"
 msgstr "<Unbekannt>"
 
-#: ../src/gui/editors/displaytabs/personeventembedlist.py:55
+#: ../src/gui/editors/displaytabs/personeventembedlist.py:56
 msgid "Add a new personal event"
 msgstr "Neues persönliches Ereignis hinzufügen"
 
-#: ../src/gui/editors/displaytabs/personeventembedlist.py:56
+#: ../src/gui/editors/displaytabs/personeventembedlist.py:57
 msgid "Remove the selected personal event"
 msgstr "Entferne das gewählte persönliche Ereignis"
 
-#: ../src/gui/editors/displaytabs/personeventembedlist.py:57
+#: ../src/gui/editors/displaytabs/personeventembedlist.py:58
 msgid "Edit the selected personal event or edit family"
 msgstr "Bearbeite das gewählte persönliche Ereignis oder die Familie"
 
-#: ../src/gui/editors/displaytabs/personeventembedlist.py:59
+#: ../src/gui/editors/displaytabs/personeventembedlist.py:60
 msgid "Move the selected event upwards or change family order"
 msgstr ""
 "Verschiebe das gewählte Ereignis nach oben oder ändere die "
 "Familienreihenfolge."
 
-#: ../src/gui/editors/displaytabs/personeventembedlist.py:60
+#: ../src/gui/editors/displaytabs/personeventembedlist.py:61
 msgid "Move the selected event downwards or change family order"
 msgstr ""
 "Verschiebe das gewählte Ereignis nach unten oder ändere die "
 "Familienreihenfolge."
 
-#: ../src/gui/editors/displaytabs/personeventembedlist.py:128
+#: ../src/gui/editors/displaytabs/personeventembedlist.py:127
 msgid "Cannot change Family"
 msgstr "Die Familie kann nicht geändert werden."
 
-#: ../src/gui/editors/displaytabs/personeventembedlist.py:129
+#: ../src/gui/editors/displaytabs/personeventembedlist.py:128
 msgid "You cannot change Family events in the Person Editor"
 msgstr "Du kannst Familienereignisse nicht im Personeneditor ändern."
 
@@ -9064,6 +9079,8 @@ msgstr "Der Bericht konnte nicht erzeugt werden"
 #: ../src/gui/plug/report/_stylecombobox.py:66
 #: ../src/gui/plug/report/_stylecombobox.py:85
 #: ../src/gui/plug/report/_styleeditor.py:120
+#: ../src/gui/plug/report/_styleeditor.py:162
+#: ../src/gui/plug/report/_styleeditor.py:173
 #: ../src/plugins/import/importgedcom.glade.h:1
 msgid "default"
 msgstr "Standardwert"
@@ -9164,18 +9181,13 @@ msgstr "Quelle: Titel  oder Fundstelle: Band/Seite"
 #: ../src/gui/selectors/selectperson.py:82
 #: ../src/gui/selectors/selectplace.py:71
 #: ../src/gui/selectors/selectrepository.py:63
-#: ../src/gui/selectors/selectsource.py:63
+#: ../src/gui/selectors/selectsource.py:64
 msgid "Last Change"
 msgstr "Letzte Änderung"
 
 #: ../src/gui/selectors/selectevent.py:54
 msgid "Select Event"
 msgstr "Ereignis wählen"
-
-#: ../src/gui/selectors/selectevent.py:64 ../src/plugins/view/eventview.py:87
-#: ../src/Filters/Rules/Family/_HasEvent.py:52
-msgid "Main Participants"
-msgstr "Hauptbeteiligte"
 
 #: ../src/gui/selectors/selectfamily.py:54
 msgid "Select Family"
@@ -9630,71 +9642,71 @@ msgid "Progress Information"
 msgstr "Fortschritt Informationen"
 
 #. spell checker submenu
-#: ../src/gui/widgets/styledtexteditor.py:367
+#: ../src/gui/widgets/styledtexteditor.py:368
 msgid "Spellcheck"
 msgstr "Rechtschreibprüfung"
 
-#: ../src/gui/widgets/styledtexteditor.py:372
+#: ../src/gui/widgets/styledtexteditor.py:373
 msgid "Search selection on web"
 msgstr "Suche Auswahl im Web"
 
-#: ../src/gui/widgets/styledtexteditor.py:383
+#: ../src/gui/widgets/styledtexteditor.py:384
 msgid "_Send Mail To..."
 msgstr "E-Mail _senden an..."
 
-#: ../src/gui/widgets/styledtexteditor.py:384
+#: ../src/gui/widgets/styledtexteditor.py:385
 msgid "Copy _E-mail Address"
 msgstr "_E-Mail-Adresse kopieren"
 
-#: ../src/gui/widgets/styledtexteditor.py:386
+#: ../src/gui/widgets/styledtexteditor.py:387
 msgid "_Open Link"
 msgstr "Link _öffnen"
 
-#: ../src/gui/widgets/styledtexteditor.py:387
+#: ../src/gui/widgets/styledtexteditor.py:388
 msgid "Copy _Link Address"
 msgstr "_Linkadresse kopieren"
 
-#: ../src/gui/widgets/styledtexteditor.py:390
+#: ../src/gui/widgets/styledtexteditor.py:391
 msgid "_Edit Link"
 msgstr "Verknüpfung _bearbeiten"
 
-#: ../src/gui/widgets/styledtexteditor.py:450
+#: ../src/gui/widgets/styledtexteditor.py:451
 msgid "Italic"
 msgstr "Kursiv"
 
-#: ../src/gui/widgets/styledtexteditor.py:452
+#: ../src/gui/widgets/styledtexteditor.py:453
 msgid "Bold"
 msgstr "Fett"
 
-#: ../src/gui/widgets/styledtexteditor.py:454
+#: ../src/gui/widgets/styledtexteditor.py:455
 msgid "Underline"
 msgstr "Unterstrichen"
 
-#: ../src/gui/widgets/styledtexteditor.py:464
+#: ../src/gui/widgets/styledtexteditor.py:465
 msgid "Background Color"
 msgstr "Hintergrundfarbe"
 
-#: ../src/gui/widgets/styledtexteditor.py:466 ../src/glade/editlink.glade.h:4
+#: ../src/gui/widgets/styledtexteditor.py:467 ../src/glade/editlink.glade.h:4
 msgid "Link"
 msgstr "Verknüpfung"
 
-#: ../src/gui/widgets/styledtexteditor.py:468
+#: ../src/gui/widgets/styledtexteditor.py:469
 msgid "Clear Markup"
 msgstr "Markierungen löschen"
 
-#: ../src/gui/widgets/styledtexteditor.py:509
+#: ../src/gui/widgets/styledtexteditor.py:510
 msgid "Undo"
 msgstr "Rückgängig"
 
-#: ../src/gui/widgets/styledtexteditor.py:512
+#: ../src/gui/widgets/styledtexteditor.py:513
 msgid "Redo"
 msgstr "Wiederherstellen"
 
-#: ../src/gui/widgets/styledtexteditor.py:625
+#: ../src/gui/widgets/styledtexteditor.py:626
 msgid "Select font color"
 msgstr "Wähle Schriftfarbe"
 
-#: ../src/gui/widgets/styledtexteditor.py:627
+#: ../src/gui/widgets/styledtexteditor.py:628
 msgid "Select background color"
 msgstr "Wähle Hintergrundfarbe"
 
@@ -11312,8 +11324,8 @@ msgid "Family Chart for %(father1)s and %(mother1)s"
 msgstr "Familienschaubild für %(father1)s und %(mother1)s"
 
 #: ../src/plugins/drawreport/DescendTree.py:347
-msgid "Cousin Chart for "
-msgstr "Cousinenschaubild für "
+msgid "Cousin Chart for , "
+msgstr "Cousinenschaubild für , "
 
 #: ../src/plugins/drawreport/DescendTree.py:739
 #, python-format
@@ -12095,6 +12107,7 @@ msgid "Translate headers"
 msgstr "Überschriften übersetzen"
 
 #: ../src/plugins/export/ExportCsv.py:341
+#, python-brace-format
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
 msgstr "CSV Export unterstützt nur Hauptnachnamen, {count} ausgelassen."
 
@@ -12192,7 +12205,7 @@ msgstr "Export fehlgeschlagen"
 msgid "No families matched by selected filter"
 msgstr "Keine Familien entsprechen dem ausgewählten Filter"
 
-#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:664
+#: ../src/plugins/export/ExportPkg.py:166 ../src/plugins/tool/Check.py:666
 msgid "Select file"
 msgstr "Datei wählen"
 
@@ -12360,7 +12373,6 @@ msgstr "Gramplet zeigt Details einer Person"
 #: ../src/plugins/gramplet/bottombar.gpr.py:39
 #: ../src/plugins/gramplet/bottombar.gpr.py:53
 #: ../src/plugins/gramplet/bottombar.gpr.py:67
-#: ../src/plugins/gramplet/Events.py:50
 msgid "Details"
 msgstr "Details"
 
@@ -12423,6 +12435,10 @@ msgstr "Ereignisse zur Person"
 #: ../src/plugins/gramplet/bottombar.gpr.py:126
 msgid "Gramplet showing the events for a person"
 msgstr "Gramplet zeigt die Ereignisse einer Person"
+
+#: ../src/plugins/gramplet/bottombar.gpr.py:139
+msgid "Family Events"
+msgstr "Familiäre Ereignisse"
 
 #: ../src/plugins/gramplet/bottombar.gpr.py:140
 msgid "Gramplet showing the events for a family"
@@ -13226,7 +13242,7 @@ msgstr ""
 "Beim reinitialisieren der Exif Metadaten für dieses Bild ist ein Fehler "
 "aufgetreten..."
 
-#: ../src/plugins/gramplet/Events.py:45
+#: ../src/plugins/gramplet/Events.py:47
 #: ../src/plugins/gramplet/PersonResidence.py:45
 msgid "Double-click on a row to edit the selected event."
 msgstr "Das gewählte Ereigniss bearbeiten: Doppelklick auf eine Zeile."
@@ -13694,15 +13710,6 @@ msgid " have %d individual\n"
 msgid_plural " have %d individuals\n"
 msgstr[0] " enthalten %d Person\n"
 msgstr[1] " enthalten %d Personen\n"
-
-#: ../src/plugins/gramplet/PersonDetails.py:198
-#: ../src/plugins/gramplet/WhatsNext.py:371
-#: ../src/plugins/gramplet/WhatsNext.py:393
-#: ../src/plugins/gramplet/WhatsNext.py:443
-#: ../src/plugins/gramplet/WhatsNext.py:478
-#: ../src/plugins/gramplet/WhatsNext.py:499
-msgid ", "
-msgstr ", "
 
 #: ../src/plugins/gramplet/PersonDetails.py:227
 #, python-format
@@ -14939,6 +14946,7 @@ msgid "GeneWeb import"
 msgstr "GeneWeb importieren"
 
 #: ../src/plugins/import/ImportGeneWeb.py:816
+#, python-brace-format
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
 "Ungültiges Datum {date} in {gw_snippet}, Datum wird als Text gespeichert."
@@ -15437,6 +15445,7 @@ msgstr "Alle Notizreferenzen müssen ein 'hlink' Attribut besitzen."
 #. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
 #: ../src/plugins/import/ImportXml.py:2352
+#, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr "Ungültiges Datum {date} in XML {xml}, Datum wird als Text gespeichert"
 
@@ -16450,8 +16459,8 @@ msgid ""
 "%(unknown_gender_name)s died in %(month_year)s in %(death_place)s at the age "
 "of %(age)s."
 msgstr ""
-"%(unknown_gender_name)s starb %(month_year)s in %(death_place)s im Alter "
-"von %(age)s."
+"%(unknown_gender_name)s starb %(month_year)s in %(death_place)s im Alter von "
+"%(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:322
 #, python-format
@@ -16464,8 +16473,7 @@ msgid ""
 "%(male_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(male_name)s starb %(month_year)s in %(death_place)s im Alter von "
-"%(age)s."
+"%(male_name)s starb %(month_year)s in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:326
 #, python-format
@@ -16478,8 +16486,7 @@ msgid ""
 "%(female_name)s died in %(month_year)s in %(death_place)s at the age of "
 "%(age)s."
 msgstr ""
-"%(female_name)s starb %(month_year)s in %(death_place)s im Alter von "
-"%(age)s."
+"%(female_name)s starb %(month_year)s in %(death_place)s im Alter von %(age)s."
 
 #: ../src/plugins/lib/libnarrate.py:331
 #, python-format
@@ -16786,8 +16793,7 @@ msgstr "Begraben am %(burial_date)s%(endnotes)s."
 msgid ""
 "%(male_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde begraben %(month_year)s in %(burial_place)s"
-"%(endnotes)s."
+"%(male_name)s wurde begraben %(month_year)s in %(burial_place)s%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:489
 #, python-format
@@ -16813,8 +16819,8 @@ msgid ""
 "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde %(month_year)s in %(burial_place)s"
-"%(endnotes)s begraben."
+"%(unknown_gender_name)s wurde %(month_year)s in %(burial_place)s%(endnotes)s "
+"begraben."
 
 #: ../src/plugins/lib/libnarrate.py:497
 #, python-format
@@ -17109,8 +17115,7 @@ msgid ""
 "%(male_name)s was baptised in %(month_year)s in %(baptism_place)s"
 "%(endnotes)s."
 msgstr ""
-"%(male_name)s wurde %(month_year)s in %(baptism_place)s getauft"
-"%(endnotes)s."
+"%(male_name)s wurde %(month_year)s in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:622
 #, python-format
@@ -17145,8 +17150,7 @@ msgstr ""
 msgid ""
 "This person was baptised in %(month_year)s in %(baptism_place)s%(endnotes)s."
 msgstr ""
-"Diese Person wurde %(month_year)s in %(baptism_place)s getauft"
-"%(endnotes)s."
+"Diese Person wurde %(month_year)s in %(baptism_place)s getauft%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:632
 #, python-format
@@ -17475,8 +17479,8 @@ msgid ""
 "%(unknown_gender_name)s was christened in %(month_year)s in "
 "%(christening_place)s%(endnotes)s."
 msgstr ""
-"%(unknown_gender_name)s wurde getauft %(month_year)s in "
-"%(christening_place)s%(endnotes)s."
+"%(unknown_gender_name)s wurde getauft %(month_year)s in %(christening_place)s"
+"%(endnotes)s."
 
 #: ../src/plugins/lib/libnarrate.py:763
 #, python-format
@@ -22258,7 +22262,7 @@ msgid_plural "%d event records were modified."
 msgstr[0] "%d Ereigniseintrag wurde geändert."
 msgstr[1] "%d Ereigniseinträge wurden geändert."
 
-#: ../src/plugins/tool/Check.py:97 ../src/plugins/tool/Check.py:227
+#: ../src/plugins/tool/Check.py:97 ../src/plugins/tool/Check.py:229
 msgid "Checking Database"
 msgstr "Datenbank überprüfen"
 
@@ -22285,7 +22289,7 @@ msgstr ""
 msgid "Check Integrity"
 msgstr "Integrität überprüfen"
 
-#: ../src/plugins/tool/Check.py:228
+#: ../src/plugins/tool/Check.py:230
 #, python-format
 msgid ""
 "Objects referenced by this note were referenced but missing so that is why "
@@ -22295,35 +22299,35 @@ msgstr ""
 "fehlen aber praktisch. Als du 'prüfen und reparieren' auf %s ausgeführt "
 "hast, wurde die Notiz erzeugt, damit du sie finden und überarbeiten kannst."
 
-#: ../src/plugins/tool/Check.py:250
+#: ../src/plugins/tool/Check.py:252
 msgid "Looking for invalid name format references"
 msgstr "Suche nach Referenzen mit falschen Namensformat"
 
-#: ../src/plugins/tool/Check.py:302
+#: ../src/plugins/tool/Check.py:304
 msgid "Looking for duplicate spouses"
 msgstr "Suche nach doppelt vorkommenden Partnern"
 
-#: ../src/plugins/tool/Check.py:325
+#: ../src/plugins/tool/Check.py:327
 msgid "Looking for character encoding errors"
 msgstr "Suche nach Zeichenkodierungsfehlern"
 
-#: ../src/plugins/tool/Check.py:365
+#: ../src/plugins/tool/Check.py:367
 msgid "Looking for ctrl characters in notes"
 msgstr "Suche nach Strg Zeichen in den Notizen"
 
-#: ../src/plugins/tool/Check.py:390
+#: ../src/plugins/tool/Check.py:392
 msgid "Looking for broken family links"
 msgstr "Suche nach ungültige Familienverknüpfungen"
 
-#: ../src/plugins/tool/Check.py:590
+#: ../src/plugins/tool/Check.py:592
 msgid "Looking for unused objects"
 msgstr "Suche nach unbenutzten Objekten"
 
-#: ../src/plugins/tool/Check.py:696
+#: ../src/plugins/tool/Check.py:698
 msgid "Media object could not be found"
 msgstr "Medienobjekt konnte nicht gefunden werden"
 
-#: ../src/plugins/tool/Check.py:697
+#: ../src/plugins/tool/Check.py:699
 #, python-format
 msgid ""
 "The file:\n"
@@ -22340,99 +22344,103 @@ msgstr ""
 "kannst entweder die Verknüpfung aus der Datenbank entfernen, die Verknüpfung "
 "zur fehlenden Datei behalten, oder eine neue Datei auswählen."
 
-#: ../src/plugins/tool/Check.py:774
+#: ../src/plugins/tool/Check.py:776
 msgid "Looking for empty people records"
 msgstr "Suche nach leeren Personendatensätzen"
 
-#: ../src/plugins/tool/Check.py:782
+#: ../src/plugins/tool/Check.py:784
 msgid "Looking for empty family records"
 msgstr "Suche nach leeren Familiendatensätzen"
 
-#: ../src/plugins/tool/Check.py:790
+#: ../src/plugins/tool/Check.py:792
 msgid "Looking for empty event records"
 msgstr "Suche nach leeren Ereignisdatensätzen"
 
-#: ../src/plugins/tool/Check.py:798
+#: ../src/plugins/tool/Check.py:800
 msgid "Looking for empty source records"
 msgstr "Suche nach leeren Quellendatensätzen"
 
-#: ../src/plugins/tool/Check.py:806
+#: ../src/plugins/tool/Check.py:808
 msgid "Looking for empty citation records"
 msgstr "Suche nach leeren Fundstellendatensätzen"
 
-#: ../src/plugins/tool/Check.py:814
+#: ../src/plugins/tool/Check.py:816
 msgid "Looking for empty place records"
 msgstr "Suche nach leeren Ortsdatensätzen"
 
-#: ../src/plugins/tool/Check.py:822
+#: ../src/plugins/tool/Check.py:824
 msgid "Looking for empty media records"
 msgstr "Suche nach leeren Mediendatensätzen"
 
-#: ../src/plugins/tool/Check.py:830
+#: ../src/plugins/tool/Check.py:832
 msgid "Looking for empty repository records"
 msgstr "Suche nach leeren Aufbewahrungsortedatensätzen"
 
-#: ../src/plugins/tool/Check.py:838
+#: ../src/plugins/tool/Check.py:840
 msgid "Looking for empty note records"
 msgstr "Suche nach leeren Notizdatensätzen"
 
-#: ../src/plugins/tool/Check.py:884
+#: ../src/plugins/tool/Check.py:886
 msgid "Looking for empty families"
 msgstr "Suche nach leeren Familien"
 
-#: ../src/plugins/tool/Check.py:919
+#: ../src/plugins/tool/Check.py:921
 msgid "Looking for broken parent relationships"
 msgstr "Suche nach kaputten Beziehungen von Elternteilen"
 
-#: ../src/plugins/tool/Check.py:956
+#: ../src/plugins/tool/Check.py:958
 msgid "Looking for event problems"
 msgstr "Suche nach Problemen mit Ereignissen"
 
-#: ../src/plugins/tool/Check.py:1120
+#: ../src/plugins/tool/Check.py:1122
 msgid "Looking for person reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Personen"
 
-#: ../src/plugins/tool/Check.py:1150
+#: ../src/plugins/tool/Check.py:1152
 msgid "Looking for family reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Familien"
 
-#: ../src/plugins/tool/Check.py:1174
+#: ../src/plugins/tool/Check.py:1176
 msgid "Looking for repository reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Aufbewahrungsorten"
 
-#: ../src/plugins/tool/Check.py:1205
+#: ../src/plugins/tool/Check.py:1207
 msgid "Looking for place reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Orten"
 
-#: ../src/plugins/tool/Check.py:1285
+#: ../src/plugins/tool/Check.py:1287
 msgid "Looking for citation reference problems"
 msgstr "Suche nach Problemen mit Fundstellenreferenzen"
 
-#: ../src/plugins/tool/Check.py:1414
+#: ../src/plugins/tool/Check.py:1416
 msgid "Looking for source reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Quellen"
 
-#: ../src/plugins/tool/Check.py:1453
+#: ../src/plugins/tool/Check.py:1455
 msgid "Looking for media object reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Medienobjekten"
 
-#: ../src/plugins/tool/Check.py:1589
+#: ../src/plugins/tool/Check.py:1591
 msgid "Looking for note reference problems"
 msgstr "Suche nach Problemen mit Referenzen von Notizen"
 
-#: ../src/plugins/tool/Check.py:1741
+#: ../src/plugins/tool/Check.py:1743
 msgid "Looking for tag reference problems"
 msgstr "Suche nach Problemen mit Markierungsreferenzen"
 
-#: ../src/plugins/tool/Check.py:1934
+#: ../src/plugins/tool/Check.py:1828
+msgid "Looking for media source reference problems"
+msgstr "Suche nach Problemen mit Referenzen von Medienquellen"
+
+#: ../src/plugins/tool/Check.py:1995
 msgid "No errors were found"
 msgstr "Keine Fehler gefunden"
 
-#: ../src/plugins/tool/Check.py:1935
+#: ../src/plugins/tool/Check.py:1996
 msgid "The database has passed internal checks"
 msgstr "Die internen Prüfungen der Datenbank wurden erfolgreich durchgeführt"
 
-#: ../src/plugins/tool/Check.py:1944
+#: ../src/plugins/tool/Check.py:2005
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were fixed\n"
@@ -22440,16 +22448,16 @@ msgstr[0] "%(quantity)d beschädigte Kind/Familie Beziehung wurde repariert\n"
 msgstr[1] ""
 "%(quantity)d beschädigte Kind/Familie Beziehungen wurden repariert\n"
 
-#: ../src/plugins/tool/Check.py:1953
+#: ../src/plugins/tool/Check.py:2014
 msgid "Non existing child"
 msgstr "Kein existierendes Kind"
 
-#: ../src/plugins/tool/Check.py:1961
+#: ../src/plugins/tool/Check.py:2022
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "%(person)s wurde von der Familie von %(family)s entfernt\n"
 
-#: ../src/plugins/tool/Check.py:1967
+#: ../src/plugins/tool/Check.py:2028
 #, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were fixed\n"
@@ -22458,60 +22466,60 @@ msgstr[0] ""
 msgstr[1] ""
 "%(quantity)d beschädigte Partner/Familie Beziehungen wurden repariert\n"
 
-#: ../src/plugins/tool/Check.py:1976 ../src/plugins/tool/Check.py:1999
+#: ../src/plugins/tool/Check.py:2037 ../src/plugins/tool/Check.py:2060
 msgid "Non existing person"
 msgstr "Nicht-existierende Person"
 
-#: ../src/plugins/tool/Check.py:1984 ../src/plugins/tool/Check.py:2007
+#: ../src/plugins/tool/Check.py:2045 ../src/plugins/tool/Check.py:2068
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s wurde in der Familie von %(family)s wiederhergestellt\n"
 
-#: ../src/plugins/tool/Check.py:1990
+#: ../src/plugins/tool/Check.py:2051
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
 msgstr[0] "%(quantity)d doppelte Partner/Familienverbindung wurde gefunden\n"
 msgstr[1] "%(quantity)d doppelte Partner/Familienverbindungen wurde gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2013
+#: ../src/plugins/tool/Check.py:2074
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "1 Familie ohne Kinder und Eltern gefunden, entfernt.\n"
 
-#: ../src/plugins/tool/Check.py:2018
+#: ../src/plugins/tool/Check.py:2079
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%(quantity)d Familien ohne Kinder und Eltern gefunden, entfernt.\n"
 
-#: ../src/plugins/tool/Check.py:2024
+#: ../src/plugins/tool/Check.py:2085
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] "%d beschädigte Familienbeziehung repariert\n"
 msgstr[1] "%d beschädigte Familienbeziehungen repariert\n"
 
-#: ../src/plugins/tool/Check.py:2031
+#: ../src/plugins/tool/Check.py:2092
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
 msgstr[0] "%d Person wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%d Personen wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2038
+#: ../src/plugins/tool/Check.py:2099
 #, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
 msgstr[0] "%d Familie wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%d Familien wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2044
+#: ../src/plugins/tool/Check.py:2105
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
 msgstr[0] "%d Datum wurde korrigiert\n"
 msgstr[1] "%d Daten wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:2050
+#: ../src/plugins/tool/Check.py:2111
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
@@ -22520,7 +22528,7 @@ msgstr[0] ""
 msgstr[1] ""
 "%(quantity)d Aufbewahrungsorte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2056
+#: ../src/plugins/tool/Check.py:2117
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
@@ -22528,70 +22536,70 @@ msgstr[0] "%(quantity)d Medienobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2063
+#: ../src/plugins/tool/Check.py:2124
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
 msgstr[0] "Referenz zu %(quantity)d fehlenden Medienobjekt wurde behalten\n"
 msgstr[1] "Referenz zu %(quantity)d fehlenden Medienobjekten wurde behalten\n"
 
-#: ../src/plugins/tool/Check.py:2070
+#: ../src/plugins/tool/Check.py:2131
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] "%(quantity)d fehlendes Medienobjekt wurde ersetzt\n"
 msgstr[1] "%(quantity)d fehlende Medienobjekte wurden ersetzt\n"
 
-#: ../src/plugins/tool/Check.py:2077
+#: ../src/plugins/tool/Check.py:2138
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] "%(quantity)d fehlendes Medienobjekt wurde entfernt\n"
 msgstr[1] "%(quantity)d fehlende Medienobjekte wurden entfernt\n"
 
-#: ../src/plugins/tool/Check.py:2084
+#: ../src/plugins/tool/Check.py:2145
 #, python-format
 msgid "%(quantity)d event was referenced but not found\n"
 msgid_plural "%(quantity)d events were referenced, but not found\n"
 msgstr[0] "%(quantity)d Ereignis wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Ereignisse wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2091
+#: ../src/plugins/tool/Check.py:2152
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] "%(quantity)d ungültiger Geburtsereignisname wurde korrigiert\n"
 msgstr[1] "%(quantity)d ungültige Geburtsereignisnamen wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:2098
+#: ../src/plugins/tool/Check.py:2159
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] "%(quantity)d ungültiger Todesereignisname wurde korrigiert\n"
 msgstr[1] "%(quantity)d ungültige Todesereignisnamen wurden korrigiert\n"
 
-#: ../src/plugins/tool/Check.py:2105
+#: ../src/plugins/tool/Check.py:2166
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] "%(quantity)d Ort wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Orte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2112
+#: ../src/plugins/tool/Check.py:2173
 #, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
 msgstr[0] "%(quantity)d Fundstelle wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Fundstellen wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2119
+#: ../src/plugins/tool/Check.py:2180
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] "%(quantity)d Quelle wurde referenziert, aber nicht gefunden\n"
 msgstr[1] "%(quantity)d Quellen wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2126
+#: ../src/plugins/tool/Check.py:2187
 #, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
@@ -22599,7 +22607,7 @@ msgstr[0] "%(quantity)d Medienobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Medienobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2133
+#: ../src/plugins/tool/Check.py:2194
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
@@ -22607,7 +22615,7 @@ msgstr[0] "%(quantity)d Notizobjekt wurde referenziert, aber nicht gefunden\n"
 msgstr[1] ""
 "%(quantity)d Notizobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2139 ../src/plugins/tool/Check.py:2145
+#: ../src/plugins/tool/Check.py:2200 ../src/plugins/tool/Check.py:2206
 #, python-format
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
@@ -22616,14 +22624,21 @@ msgstr[0] ""
 msgstr[1] ""
 "%(quantity)d Markierungsobjekte wurden referenziert, aber nicht gefunden\n"
 
-#: ../src/plugins/tool/Check.py:2151
+#: ../src/plugins/tool/Check.py:2212
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] "%(quantity)d ungültige Namensformatreferenz wurde entfernt\n"
 msgstr[1] "%(quantity)d ungültige Namensformatreferenzen wurden entfernt\n"
 
-#: ../src/plugins/tool/Check.py:2157
+#: ../src/plugins/tool/Check.py:2219
+#, python-format
+msgid "%(quantity)d invalid source citation was fixed\n"
+msgid_plural "%(quantity)d invalid source citations were fixed\n"
+msgstr[0] "%(quantity)d ungültiger Quellenfundstelle wurde korrigiert\n"
+msgstr[1] "%(quantity)d ungültige Quellenfundstellen wurden korrigiert\n"
+
+#: ../src/plugins/tool/Check.py:2225
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -22646,11 +22661,11 @@ msgstr ""
 "   %(repo)d Aufbewahrungsorteobjekte\n"
 "   %(note)d Notizobjekte\n"
 
-#: ../src/plugins/tool/Check.py:2204
+#: ../src/plugins/tool/Check.py:2272
 msgid "Integrity Check Results"
 msgstr "Resultate der Integritätsprüfung"
 
-#: ../src/plugins/tool/Check.py:2209
+#: ../src/plugins/tool/Check.py:2277
 msgid "Check and Repair"
 msgstr "Prüfen und reparieren"
 
@@ -23918,31 +23933,31 @@ msgstr ""
 "\n"
 "Um die Fundstelle zu bearbeiten, muss das Objekt geschlossen werden."
 
-#: ../src/plugins/view/eventview.py:98
+#: ../src/plugins/view/eventview.py:99
 msgid "Add a new event"
 msgstr "Neues Ereignis hinzufügen"
 
-#: ../src/plugins/view/eventview.py:99
+#: ../src/plugins/view/eventview.py:100
 msgid "Edit the selected event"
 msgstr "Gewähltes Ereignis bearbeiten"
 
-#: ../src/plugins/view/eventview.py:100
+#: ../src/plugins/view/eventview.py:101
 msgid "Delete the selected event"
 msgstr "Gewähltes Ereignis löschen"
 
-#: ../src/plugins/view/eventview.py:101
+#: ../src/plugins/view/eventview.py:102
 msgid "Merge the selected events"
 msgstr "Die gewählten Ereignisse zusammenfassen"
 
-#: ../src/plugins/view/eventview.py:219
+#: ../src/plugins/view/eventview.py:220
 msgid "Event Filter Editor"
 msgstr "Filtereditor für Ereignisse"
 
-#: ../src/plugins/view/eventview.py:273
+#: ../src/plugins/view/eventview.py:274
 msgid "Cannot merge event objects."
 msgstr "Kann Ereignisobjekte nicht zusammenfassen."
 
-#: ../src/plugins/view/eventview.py:274
+#: ../src/plugins/view/eventview.py:275
 msgid ""
 "Exactly two events must be selected to perform a merge. A second object can "
 "be selected by holding down the control key while clicking on the desired "
@@ -24831,11 +24846,6 @@ msgstr "Adressbuch"
 #: ../src/plugins/webreport/NarrativeWeb.py:5076
 msgid "Contact"
 msgstr "Kontakt"
-
-#. add personal column
-#: ../src/plugins/webreport/NarrativeWeb.py:1908
-msgid "Personal"
-msgstr "Persönlich"
 
 #. add section title
 #: ../src/plugins/webreport/NarrativeWeb.py:2230
@@ -32012,6 +32022,18 @@ msgstr ""
 "hervorragend auf jeder Desktopumgebung, die du bevorzugst. Hauptsache, die "
 "benötigten GTK Bibliotheken sind installiert."
 
+#~ msgid "Events father"
+#~ msgstr "Ereignisse Vater"
+
+#~ msgid "Events mother"
+#~ msgstr "Ereignisse Mutter"
+
+#~ msgid "Personal Events"
+#~ msgstr "Persönliche Ereignisse"
+
+#~ msgid "With %(namepartner)s (%(famid)s)"
+#~ msgstr "Mit %(namepartner)s (%(famid)s)"
+
 #~ msgid "Unknown book name."
 #~ msgstr "Unbekannter Buchname."
 
@@ -33776,15 +33798,15 @@ msgstr ""
 #~ "%(age)d Monaten."
 
 #~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d years."
+#~ "This person died on %(death_date)s in %(death_place)s at the age of "
+#~ "%(age)d years."
 #~ msgstr ""
 #~ "Diese Person starb am %(death_date)s in %(death_place)s im Alter von "
 #~ "%(age)d Jahren."
 
 #~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d months."
+#~ "This person died on %(death_date)s in %(death_place)s at the age of "
+#~ "%(age)d months."
 #~ msgstr ""
 #~ "Diese Person starb am %(death_date)s in %(death_place)s im Alter von "
 #~ "%(age)d Monaten."
@@ -33834,15 +33856,15 @@ msgstr ""
 #~ "Alter von %(age)d Monaten."
 
 #~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d years."
+#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of "
+#~ "%(age)d years."
 #~ msgstr ""
 #~ "%(male_name)s starb am %(death_date)s in %(death_place)s im Alter von "
 #~ "%(age)d Jahren."
 
 #~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d months."
+#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of "
+#~ "%(age)d months."
 #~ msgstr ""
 #~ "%(male_name)s starb am %(death_date)s in %(death_place)s im Alter von "
 #~ "%(age)d Monaten."
@@ -34038,18 +34060,18 @@ msgstr ""
 #~ "%(age)d Monaten."
 
 #~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
-#~ "d years."
+#~ "This person died in %(month_year)s in %(death_place)s at the age of "
+#~ "%(age)d years."
 #~ msgstr ""
-#~ "Die Person starb im %(month_year)s in %(death_place)s im Alter von %(age)"
-#~ "d Jahren."
+#~ "Die Person starb im %(month_year)s in %(death_place)s im Alter von "
+#~ "%(age)d Jahren."
 
 #~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
-#~ "d months."
+#~ "This person died in %(month_year)s in %(death_place)s at the age of "
+#~ "%(age)d months."
 #~ msgstr ""
-#~ "Die Person starb im %(month_year)s in %(death_place)s im Alter von %(age)"
-#~ "d Monaten."
+#~ "Die Person starb im %(month_year)s in %(death_place)s im Alter von "
+#~ "%(age)d Monaten."
 
 #~ msgid ""
 #~ "He died in %(month_year)s in %(death_place)s at the age of %(age)d years."
