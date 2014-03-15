@@ -173,7 +173,13 @@ class GroupEmbeddedList(EmbeddedList):
         and decide if this is a move or a reorder.
         """
         if sel_data and sel_data.get_data():
-            (mytype, selfid, obj, row_from) = pickle.loads(sel_data.get_data())
+
+            # make sure data = 1 row
+            # pickle.loads(sel_data.data)[3] = 0
+            try:
+                (mytype, selfid, obj, row_from) = pickle.loads(sel_data.get_data())
+            except ValueError:
+                return
 
             # make sure this is the correct DND type for this object
             if mytype == self._DND_TYPE.drag_type:
