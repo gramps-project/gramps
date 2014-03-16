@@ -178,6 +178,7 @@
                 <property name="label" translatable="yes">Con_fidence:</property>
                 <property name="use_underline">True</property>
                 <property name="justify">center</property>
+                <property name="mnemonic_widget">confidence</property>
               </object>
               <packing>
                 <property name="top_attach">4</property>
@@ -211,7 +212,7 @@
                 <child>
                   <object class="GtkComboBox" id="confidence">
                     <property name="visible">True</property>
-                    <property name="can_focus">False</property>
+                    <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Conveys the submitter's quantitative evaluation of the credibility of a piece of information, based upon its supporting evidence. It is not intended to eliminate the receiver's need to evaluate the evidence for themselves.
 Very Low =Unreliable evidence or estimated data
 Low =Questionable reliability of evidence (interviews, census, oral genealogies, or potential for bias for example, an autobiography)
