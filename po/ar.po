@@ -1,16 +1,17 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-#
+# 
 # mbnoimi, 2013.
 # Muhammad Bashir Al-Noimi <mbnoimi@gmail.com>, 2013.
+# Munzir Taha (منذر طه) <munzirtaha@gmail.com>, 2014.
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps-4.0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-07 14:53+0100\n"
-"PO-Revision-Date: 2013-07-11 14:16+0200\n"
-"Last-Translator: Muhammad Bashir Al-Noimi <mbnoimi@gmail.com>\n"
-"Language-Team: Muhammad Bashir Al-Noimi <mbnoimi@gmail.com>\n"
+"POT-Creation-Date: 2014-03-17 18:23+0100\n"
+"PO-Revision-Date: 2014-03-17 07:36+0300\n"
+"Last-Translator: Munzir Taha (منذر طه) <munzirtaha@gmail.com>\n"
+"Language-Team: Arabic <>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -130,7 +131,7 @@ msgstr "استعمال سلسلة الخيارات: %s"
 #: ../gramps/cli/arghandler.py:449
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
-msgstr "تصدير: ملف %(filename)s, بصيغة %(format)s."
+msgstr "تصدير: ملف %(filename)s، بصيغة %(format)s."
 
 #: ../gramps/cli/arghandler.py:456
 msgid "Exiting."
@@ -156,7 +157,7 @@ msgstr "خروج..."
 #: ../gramps/cli/arghandler.py:497
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
-msgstr "استيراد: ملف %(filename)s, بصيغة %(format)s."
+msgstr "استيراد: ملف %(filename)s، بصيغة %(format)s."
 
 #: ../gramps/cli/arghandler.py:515
 msgid "Opened successfully!"
@@ -572,7 +573,7 @@ msgstr "مُقفل بواسطة %s"
 #: ../gramps/plugins/lib/maps/geography.py:757
 #: ../gramps/plugins/quickview/all_relations.py:279
 #: ../gramps/plugins/quickview/all_relations.py:296
-#: ../gramps/plugins/textreport/indivcomplete.py:576
+#: ../gramps/plugins/textreport/indivcomplete.py:578
 #: ../gramps/plugins/tool/check.py:2082 ../gramps/plugins/view/geoclose.py:504
 #: ../gramps/plugins/view/geofamclose.py:255
 #: ../gramps/plugins/view/geofamclose.py:648
@@ -1687,6 +1688,7 @@ msgid "Title:"
 msgstr "عنوان:"
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:51
+#: ../gramps/gui/glade/editcitation.glade.h:18
 #: ../gramps/gui/glade/mergedata.glade.h:12
 #: ../gramps/gui/glade/mergesource.glade.h:6
 #: ../gramps/gui/glade/plugins.glade.h:5
@@ -4002,7 +4004,7 @@ msgstr "طائفة"
 #: ../gramps/gui/plug/_windows.py:616 ../gramps/gui/plug/_windows.py:1101
 #: ../gramps/gui/selectors/selectevent.py:66
 #: ../gramps/plugins/gramplet/events.py:64
-#: ../gramps/plugins/lib/libmetadata.py:93
+#: ../gramps/plugins/lib/libmetadata.py:100
 #: ../gramps/plugins/textreport/placereport.py:187
 #: ../gramps/plugins/textreport/placereport.py:262
 #: ../gramps/plugins/textreport/tagreport.py:319
@@ -4134,13 +4136,13 @@ msgstr "تبنى"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:92
 #: ../gramps/gui/merge/mergeperson.py:63
 #: ../gramps/gui/views/treemodels/peoplemodel.py:96
-#: ../gramps/plugins/textreport/detancestralreport.py:539
-#: ../gramps/plugins/textreport/detancestralreport.py:546
-#: ../gramps/plugins/textreport/detancestralreport.py:589
-#: ../gramps/plugins/textreport/detancestralreport.py:596
+#: ../gramps/plugins/textreport/detancestralreport.py:540
+#: ../gramps/plugins/textreport/detancestralreport.py:547
+#: ../gramps/plugins/textreport/detancestralreport.py:590
+#: ../gramps/plugins/textreport/detancestralreport.py:597
 #: ../gramps/plugins/textreport/detdescendantreport.py:582
 #: ../gramps/plugins/textreport/detdescendantreport.py:589
-#: ../gramps/plugins/textreport/indivcomplete.py:390
+#: ../gramps/plugins/textreport/indivcomplete.py:392
 #: ../gramps/plugins/view/relview.py:676
 #: ../gramps/plugins/webreport/narrativeweb.py:5393
 msgid "unknown"
@@ -4211,7 +4213,7 @@ msgstr[5] "%d سنة"
 #: ../gramps/plugins/gramplet/whatsnext.py:479
 #: ../gramps/plugins/gramplet/whatsnext.py:500
 msgid ", "
-msgstr ", "
+msgstr "، "
 
 #: ../gramps/gen/lib/date.py:430
 #, python-format
@@ -4888,6 +4890,27 @@ msgstr "مُكتمل"
 msgid "ToDo"
 msgstr "قائمة مهام"
 
+#. translators: needed for Arabic, ignore otherwise
+#: ../gramps/gen/lib/name.py:443 ../gramps/gen/lib/name.py:457
+#, python-format
+msgid "%s, %s %s"
+msgstr ""
+
+#. translators: needed for Arabic, ignore otherwise
+#: ../gramps/gen/lib/name.py:446 ../gramps/gen/lib/name.py:460
+#: ../gramps/gen/plug/report/utils.py:236
+#: ../gramps/plugins/textreport/indivcomplete.py:166
+#: ../gramps/plugins/textreport/indivcomplete.py:171
+#, fuzzy, python-format
+msgid "%s, %s"
+msgstr "%s، ..."
+
+#. translators: needed for Arabic, ignore otherwise
+#: ../gramps/gen/lib/name.py:473
+#, python-format
+msgid "%s %s, %s"
+msgstr ""
+
 # شك
 #: ../gramps/gen/lib/nameorigintype.py:84
 msgid "Surname|Inherited"
@@ -4950,8 +4973,6 @@ msgid "Married Name"
 msgstr "اسم الزواج"
 
 #: ../gramps/gen/lib/notetype.py:82 ../gramps/gui/configure.py:1318
-#: ../gramps/gui/editors/editcitation.py:203
-#: ../gramps/gui/editors/editcitation.py:209
 #: ../gramps/gui/editors/editeventref.py:80
 #: ../gramps/gui/editors/editmediaref.py:97
 #: ../gramps/gui/editors/editreporef.py:74
@@ -4974,8 +4995,8 @@ msgid "Source text"
 msgstr "نص المصدر"
 
 #: ../gramps/gen/lib/notetype.py:86 ../gramps/gui/clipboard.py:498
-#: ../gramps/gui/configure.py:539 ../gramps/gui/editors/editcitation.py:141
-#: ../gramps/gui/editors/editcitation.py:147
+#: ../gramps/gui/configure.py:539 ../gramps/gui/editors/editcitation.py:108
+#: ../gramps/gui/editors/editcitation.py:114
 #: ../gramps/gui/editors/filtereditor.py:298
 #: ../gramps/gui/views/treemodels/citationtreemodel.py:157
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:116
@@ -5310,7 +5331,7 @@ msgstr "قام شريط المعلومات %s بخطأ"
 #. Constants
 #.
 #. -------------------------------------------------------------------------
-#: ../gramps/gen/plug/_manager.py:61
+#: ../gramps/gen/plug/_manager.py:64
 msgid "No description was provided"
 msgstr "لم يتم تقديم أي وصف"
 
@@ -5868,8 +5889,8 @@ msgstr "رسوم"
 
 #: ../gramps/gen/plug/report/endnotes.py:50
 #: ../gramps/plugins/textreport/ancestorreport.py:346
-#: ../gramps/plugins/textreport/detancestralreport.py:848
-#: ../gramps/plugins/textreport/detdescendantreport.py:1042
+#: ../gramps/plugins/textreport/detancestralreport.py:849
+#: ../gramps/plugins/textreport/detdescendantreport.py:1043
 msgid "The style used for the generation header."
 msgstr "القالب المستعمل بتوليد الترويسة."
 
@@ -5917,7 +5938,7 @@ msgid "Select the format to display names"
 msgstr "اختر صيغة عرض الأسماء"
 
 #: ../gramps/gen/plug/report/utils.py:144
-#: ../gramps/plugins/textreport/indivcomplete.py:593
+#: ../gramps/plugins/textreport/indivcomplete.py:595
 #: ../gramps/plugins/textreport/simplebooktitle.py:106
 #: ../gramps/plugins/webreport/narrativeweb.py:1970
 #: ../gramps/plugins/webreport/narrativeweb.py:2155
@@ -5927,23 +5948,23 @@ msgid "Could not add photo to page"
 msgstr "غير قادر على إضافة الصورة للصفحة"
 
 #: ../gramps/gen/plug/report/utils.py:145 ../gramps/gui/utils.py:415
-#: ../gramps/plugins/textreport/indivcomplete.py:594
+#: ../gramps/plugins/textreport/indivcomplete.py:596
 msgid "File does not exist"
 msgstr "الملف غير موجود"
 
 #. Do this in case of command line options query (show=filter)
-#: ../gramps/gen/plug/report/utils.py:260
+#: ../gramps/gen/plug/report/utils.py:261
 msgid "PERSON"
 msgstr "شخص"
 
-#: ../gramps/gen/plug/report/utils.py:269
+#: ../gramps/gen/plug/report/utils.py:270
 #: ../gramps/gui/plug/report/_bookdialog.py:154
 #: ../gramps/plugins/tool/eventcmp.py:158
 msgid "Entire Database"
 msgstr "كل قاعدة البيانات"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/gen/plug/report/utils.py:274
+#: ../gramps/gen/plug/report/utils.py:275
 #: ../gramps/gui/plug/export/_exportoptions.py:429
 #: ../gramps/plugins/gramplet/descendgramplet.py:72
 #: ../gramps/plugins/textreport/descendreport.py:377
@@ -5952,20 +5973,20 @@ msgid "Descendants of %s"
 msgstr "خلف %s"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/gen/plug/report/utils.py:279
+#: ../gramps/gen/plug/report/utils.py:280
 #: ../gramps/gui/plug/export/_exportoptions.py:434
 #, python-format
 msgid "Descendant Families of %s"
 msgstr "عائلات من خَلَف %s"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/gen/plug/report/utils.py:284
+#: ../gramps/gen/plug/report/utils.py:285
 #: ../gramps/gui/plug/export/_exportoptions.py:439
 #, python-format
 msgid "Ancestors of %s"
 msgstr "سلف %s"
 
-#: ../gramps/gen/plug/report/utils.py:288
+#: ../gramps/gen/plug/report/utils.py:289
 #: ../gramps/gui/plug/export/_exportoptions.py:443
 #, python-format
 msgid "People with common ancestor with %s"
@@ -6315,7 +6336,7 @@ msgstr ""
 #: ../gramps/gen/utils/db.py:285 ../gramps/gen/utils/db.py:304
 #, python-format
 msgid "%s, ..."
-msgstr "%s, ..."
+msgstr "%s، ..."
 
 #: ../gramps/gen/utils/db.py:531 ../gramps/plugins/lib/librecords.py:242
 #, python-format
@@ -6785,25 +6806,25 @@ msgstr "مجهول"
 msgid "Invalid"
 msgstr "غير صالح"
 
-#: ../gramps/gen/utils/string.py:57 ../gramps/gui/editors/editcitation.py:277
+#: ../gramps/gen/utils/string.py:57 ../gramps/gui/editors/editcitation.py:203
 msgid "Very High"
 msgstr "مرتفع جداً"
 
-#: ../gramps/gen/utils/string.py:58 ../gramps/gui/editors/editcitation.py:276
+#: ../gramps/gen/utils/string.py:58 ../gramps/gui/editors/editcitation.py:202
 #: ../gramps/plugins/tool/finddupes.py:64
 msgid "High"
 msgstr "مرتفع"
 
-#: ../gramps/gen/utils/string.py:59 ../gramps/gui/editors/editcitation.py:275
+#: ../gramps/gen/utils/string.py:59 ../gramps/gui/editors/editcitation.py:201
 msgid "Normal"
 msgstr "عادي"
 
-#: ../gramps/gen/utils/string.py:60 ../gramps/gui/editors/editcitation.py:274
+#: ../gramps/gen/utils/string.py:60 ../gramps/gui/editors/editcitation.py:200
 #: ../gramps/plugins/tool/finddupes.py:62
 msgid "Low"
 msgstr "منخض"
 
-#: ../gramps/gen/utils/string.py:61 ../gramps/gui/editors/editcitation.py:273
+#: ../gramps/gen/utils/string.py:61 ../gramps/gui/editors/editcitation.py:199
 msgid "Very Low"
 msgstr "منخفص جداً"
 
@@ -7059,11 +7080,11 @@ msgstr "مرجع الحدث"
 #: ../gramps/plugins/gramplet/backlinks.py:47
 #: ../gramps/plugins/lib/libpersonview.py:95
 #: ../gramps/plugins/quickview/filterbyname.py:282
-#: ../gramps/plugins/textreport/indivcomplete.py:563
+#: ../gramps/plugins/textreport/indivcomplete.py:565
 #: ../gramps/plugins/textreport/tagreport.py:130
 #: ../gramps/plugins/tool/notrelated.py:125
 #: ../gramps/plugins/tool/removeunused.py:203
-#: ../gramps/plugins/tool/verify.py:528 ../gramps/plugins/view/repoview.py:86
+#: ../gramps/plugins/tool/verify.py:531 ../gramps/plugins/view/repoview.py:86
 #: ../gramps/plugins/webreport/narrativeweb.py:6428
 msgid "Name"
 msgstr "اسم"
@@ -7251,7 +7272,7 @@ msgstr "عنوان"
 #: ../gramps/gui/editors/displaytabs/attrembedlist.py:65
 #: ../gramps/gui/editors/displaytabs/dataembedlist.py:62
 #: ../gramps/plugins/gramplet/attributes.py:48
-#: ../gramps/plugins/lib/libmetadata.py:166
+#: ../gramps/plugins/lib/libmetadata.py:173
 #: ../gramps/plugins/tool/patchnames.py:402
 #: ../gramps/plugins/webreport/narrativeweb.py:397
 #: ../gramps/plugins/webreport/narrativeweb.py:1321
@@ -8362,7 +8383,7 @@ msgstr "تحريك العنوان المحدّد للأسفل"
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:98
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:94
 #: ../gramps/gui/glade/editaddress.glade.h:20
-#: ../gramps/gui/glade/editcitation.glade.h:4
+#: ../gramps/gui/glade/editcitation.glade.h:3
 #: ../gramps/gui/glade/editevent.glade.h:6
 #: ../gramps/gui/glade/editeventref.glade.h:12
 #: ../gramps/gui/glade/editldsord.glade.h:5
@@ -8479,7 +8500,7 @@ msgstr "م_يزات"
 #: ../gramps/plugins/tool/patchnames.py:396
 #: ../gramps/plugins/tool/removeunused.py:197
 #: ../gramps/plugins/tool/sortevents.py:58
-#: ../gramps/plugins/tool/verify.py:521
+#: ../gramps/plugins/tool/verify.py:524
 #: ../gramps/plugins/view/citationlistview.py:100
 #: ../gramps/plugins/view/citationtreeview.py:95
 #: ../gramps/plugins/view/eventview.py:84
@@ -8629,7 +8650,7 @@ msgstr "تحريك مدخل البيانات المحدّد للأسفل"
 
 #: ../gramps/gui/editors/displaytabs/dataembedlist.py:61
 #: ../gramps/plugins/gramplet/attributes.py:47
-#: ../gramps/plugins/lib/libmetadata.py:165
+#: ../gramps/plugins/lib/libmetadata.py:172
 #: ../gramps/plugins/webreport/narrativeweb.py:1320
 msgid "Key"
 msgstr "مفتاح"
@@ -8652,9 +8673,9 @@ msgstr "_تاريخ"
 #: ../gramps/plugins/quickview/all_relations.py:302
 #: ../gramps/plugins/textreport/familygroup.py:215
 #: ../gramps/plugins/textreport/familygroup.py:226
-#: ../gramps/plugins/textreport/indivcomplete.py:277
 #: ../gramps/plugins/textreport/indivcomplete.py:279
-#: ../gramps/plugins/textreport/indivcomplete.py:565
+#: ../gramps/plugins/textreport/indivcomplete.py:281
+#: ../gramps/plugins/textreport/indivcomplete.py:567
 #: ../gramps/plugins/textreport/tagreport.py:217
 #: ../gramps/plugins/view/familyview.py:82
 #: ../gramps/plugins/view/relview.py:907
@@ -8674,9 +8695,9 @@ msgstr "أب"
 #: ../gramps/plugins/quickview/all_relations.py:299
 #: ../gramps/plugins/textreport/familygroup.py:232
 #: ../gramps/plugins/textreport/familygroup.py:243
-#: ../gramps/plugins/textreport/indivcomplete.py:286
 #: ../gramps/plugins/textreport/indivcomplete.py:288
-#: ../gramps/plugins/textreport/indivcomplete.py:566
+#: ../gramps/plugins/textreport/indivcomplete.py:290
+#: ../gramps/plugins/textreport/indivcomplete.py:568
 #: ../gramps/plugins/textreport/tagreport.py:223
 #: ../gramps/plugins/view/familyview.py:83
 #: ../gramps/plugins/view/relview.py:908
@@ -9156,31 +9177,30 @@ msgstr "محرر مرجع الابن"
 msgid "Child Reference"
 msgstr "مرجع الابن"
 
-#: ../gramps/gui/editors/editcitation.py:150
-#: ../gramps/gui/editors/editcitation.py:156
+#: ../gramps/gui/editors/editcitation.py:117
+#: ../gramps/gui/editors/editcitation.py:123
 msgid "New Citation"
 msgstr "استشهاد جديد"
 
-#: ../gramps/gui/editors/editcitation.py:387
+#: ../gramps/gui/editors/editcitation.py:257
 msgid "Edit Citation"
 msgstr "تحرير الاستشهاد"
 
-#: ../gramps/gui/editors/editcitation.py:393
-#: ../gramps/gui/editors/editsource.py:182
-msgid "Cannot save source"
-msgstr "غير قادر على حفظ المصدر"
+#: ../gramps/gui/editors/editcitation.py:265
+#, fuzzy
+msgid "Cannot save citation. No source selected."
+msgstr "غير قادر على حفظ الاستشهاد. المعرّف موجود مسبقاً."
 
-#: ../gramps/gui/editors/editcitation.py:394
-#: ../gramps/gui/editors/editsource.py:183
-msgid "No data exists for this source. Please enter data or cancel the edit."
-msgstr "لا توجد بيانات لهذا المصدر. قم بإدخال البيانات أو تراجع عن التحرير."
+#: ../gramps/gui/editors/editcitation.py:266
+#, fuzzy
+msgid "Please select a source or cancel the edit."
+msgstr "ينبغي عليك تحديد شخص أو تراجع عن التحرير"
 
-#: ../gramps/gui/editors/editcitation.py:403
+#: ../gramps/gui/editors/editcitation.py:274
 msgid "Cannot save citation. ID already exists."
 msgstr "غير قادر على حفظ الاستشهاد. المعرّف موجود مسبقاً."
 
-#: ../gramps/gui/editors/editcitation.py:404
-#: ../gramps/gui/editors/editcitation.py:418
+#: ../gramps/gui/editors/editcitation.py:275
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(gramps_id)s. "
@@ -9188,34 +9208,17 @@ msgid ""
 "or leave blank to get the next available ID value."
 msgstr ""
 
-#: ../gramps/gui/editors/editcitation.py:417
-#: ../gramps/gui/editors/editsource.py:192
-msgid "Cannot save source. ID already exists."
-msgstr "غير قادر على حفظ المصدر. المعرّف موجود مسبقاً."
-
-#: ../gramps/gui/editors/editcitation.py:431
-#: ../gramps/gui/editors/editsource.py:205
-#, python-format
-msgid "Add Source (%s)"
-msgstr "إضافة مصدر (%s)"
-
-#: ../gramps/gui/editors/editcitation.py:437
-#: ../gramps/gui/editors/editsource.py:210
-#, python-format
-msgid "Edit Source (%s)"
-msgstr "تحرير مصدر (%s)"
-
-#: ../gramps/gui/editors/editcitation.py:444
+#: ../gramps/gui/editors/editcitation.py:287
 #, python-format
 msgid "Add Citation (%s)"
 msgstr "إضافة استشهاد (%s)"
 
-#: ../gramps/gui/editors/editcitation.py:450
+#: ../gramps/gui/editors/editcitation.py:293
 #, python-format
 msgid "Edit Citation (%s)"
 msgstr "تحرير الاستشهاد (%s)"
 
-#: ../gramps/gui/editors/editcitation.py:528
+#: ../gramps/gui/editors/editcitation.py:328
 #, python-format
 msgid "Delete Citation (%s)"
 msgstr "حذف استشهاد (%s)"
@@ -9399,7 +9402,7 @@ msgstr "#"
 #: ../gramps/plugins/importer/importcsv.py:187
 #: ../gramps/plugins/lib/libpersonview.py:97
 #: ../gramps/plugins/quickview/siblings.py:50
-#: ../gramps/plugins/textreport/indivcomplete.py:564
+#: ../gramps/plugins/textreport/indivcomplete.py:566
 #: ../gramps/plugins/webreport/narrativeweb.py:6220
 msgid "Gender"
 msgstr "جنس"
@@ -9686,18 +9689,29 @@ msgid "Cannot save media object. ID already exists."
 msgstr "غير قادر على حفظ كائن الوسائط. المعرّف موجود مسبقاً."
 
 #: ../gramps/gui/editors/editmedia.py:300
+msgid "There is no media matching the current path value!"
+msgstr ""
+
+#: ../gramps/gui/editors/editmedia.py:301
+#, python-format
+msgid ""
+"You have attempted to use the path with value '%(path)s'. This path does not "
+"exist! Please enter a different path"
+msgstr ""
+
+#: ../gramps/gui/editors/editmedia.py:314
 #: ../gramps/gui/editors/editmediaref.py:641
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "إضافة كائن الوسائط (%s)"
 
-#: ../gramps/gui/editors/editmedia.py:305
+#: ../gramps/gui/editors/editmedia.py:319
 #: ../gramps/gui/editors/editmediaref.py:637
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "تحرير كائن الوسائط (%s)"
 
-#: ../gramps/gui/editors/editmedia.py:342
+#: ../gramps/gui/editors/editmedia.py:356
 msgid "Remove Media Object"
 msgstr "حذف كائن الوسائط"
 
@@ -9800,7 +9814,7 @@ msgid "_Note"
 msgstr "م_لاحظة"
 
 #: ../gramps/gui/editors/editnote.py:285 ../gramps/gui/editors/editnote.py:330
-#: ../gramps/gui/editors/objectentries.py:366
+#: ../gramps/gui/editors/objectentries.py:430
 msgid "Edit Note"
 msgstr "تحرير ملاحظة"
 
@@ -9957,7 +9971,7 @@ msgstr "خط العرض غير صالح (مثال: 18°9'"
 
 #: ../gramps/gui/editors/editplace.py:226
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
-msgstr "48.21\"S, -18.2412 أو -18:9:48.21)"
+msgstr "48.21\"S، -18.2412 أو -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:228
 #, fuzzy
@@ -10076,7 +10090,29 @@ msgstr "مصدر جديد"
 msgid "Edit Source"
 msgstr "تحرير مصدر"
 
-#: ../gramps/gui/editors/editsource.py:223
+#: ../gramps/gui/editors/editsource.py:182
+msgid "Cannot save source"
+msgstr "غير قادر على حفظ المصدر"
+
+#: ../gramps/gui/editors/editsource.py:183
+msgid "No data exists for this source. Please enter data or cancel the edit."
+msgstr "لا توجد بيانات لهذا المصدر. قم بإدخال البيانات أو تراجع عن التحرير."
+
+#: ../gramps/gui/editors/editsource.py:192
+msgid "Cannot save source. ID already exists."
+msgstr "غير قادر على حفظ المصدر. المعرّف موجود مسبقاً."
+
+#: ../gramps/gui/editors/editsource.py:205
+#, python-format
+msgid "Add Source (%s)"
+msgstr "إضافة مصدر (%s)"
+
+#: ../gramps/gui/editors/editsource.py:210
+#, python-format
+msgid "Edit Source (%s)"
+msgstr "تحرير مصدر (%s)"
+
+#: ../gramps/gui/editors/editsource.py:225
 #, python-format
 msgid "Delete Source (%s)"
 msgstr "حذف المصدر (%s)"
@@ -10283,7 +10319,7 @@ msgstr "إختبار مرشّح"
 #: ../gramps/plugins/graph/gvrelgraph.py:533
 #: ../gramps/plugins/quickview/quickview.gpr.py:127
 #: ../gramps/plugins/textreport/birthdayreport.py:419
-#: ../gramps/plugins/textreport/indivcomplete.py:636
+#: ../gramps/plugins/textreport/indivcomplete.py:638
 #: ../gramps/plugins/textreport/recordsreport.py:172
 #: ../gramps/plugins/tool/sortevents.py:168
 #: ../gramps/plugins/webreport/narrativeweb.py:8017
@@ -10316,79 +10352,107 @@ msgstr ""
 msgid "Delete Filter"
 msgstr "حذف مرشّح"
 
-#: ../gramps/gui/editors/objectentries.py:255
+#: ../gramps/gui/editors/objectentries.py:265
 msgid "To select a place, use drag-and-drop or use the buttons"
 msgstr "لتحديد مكان، قم بالنقر و السحب أو استعمل الأزرار"
 
-#: ../gramps/gui/editors/objectentries.py:257
+#: ../gramps/gui/editors/objectentries.py:267
+#: ../gramps/gui/editors/objectentries.py:320
 msgid "No place given, click button to select one"
 msgstr "لم يتم تحديد أي مكان، انقر على الزر لتحديد مكان ما"
 
-#: ../gramps/gui/editors/objectentries.py:258
+#: ../gramps/gui/editors/objectentries.py:268
 msgid "Edit place"
 msgstr "تحرير مكان"
 
-#: ../gramps/gui/editors/objectentries.py:259
+#: ../gramps/gui/editors/objectentries.py:269
 msgid "Select an existing place"
 msgstr "قم بتحديد مكان موجود"
 
-#: ../gramps/gui/editors/objectentries.py:260
+#: ../gramps/gui/editors/objectentries.py:270
 #: ../gramps/plugins/lib/libplaceview.py:121
 msgid "Add a new place"
 msgstr "إضافة مكان جديد"
 
-#: ../gramps/gui/editors/objectentries.py:261
+#: ../gramps/gui/editors/objectentries.py:271
 msgid "Remove place"
 msgstr "حذف مكان"
 
-#: ../gramps/gui/editors/objectentries.py:309
+#: ../gramps/gui/editors/objectentries.py:318
+#, fuzzy
+msgid "To select a source, use drag-and-drop or use the buttons"
+msgstr "لتحديد ملاحظة، قم بالنقر و السحب أو استعمل الأزرار"
+
+#: ../gramps/gui/editors/objectentries.py:321
+#, fuzzy
+msgid "Edit source"
+msgstr "تحرير مصدر"
+
+#: ../gramps/gui/editors/objectentries.py:322
+#, fuzzy
+msgid "Select an existing source"
+msgstr "قم بتحديد ملاحظة موجودة"
+
+#: ../gramps/gui/editors/objectentries.py:323
+#: ../gramps/plugins/view/citationlistview.py:125
+#: ../gramps/plugins/view/citationtreeview.py:122
+#: ../gramps/plugins/view/sourceview.py:98
+msgid "Add a new source"
+msgstr "إضافة مصدر جديد"
+
+#: ../gramps/gui/editors/objectentries.py:324
+#, fuzzy
+msgid "Remove source"
+msgstr "حذف ملاحظة"
+
+#: ../gramps/gui/editors/objectentries.py:373
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "لتحديد كائن وسائط قم بالنقر و السحب أو استعمل الأزرار"
 
-#: ../gramps/gui/editors/objectentries.py:311
+#: ../gramps/gui/editors/objectentries.py:375
 #: ../gramps/gui/plug/_guioptions.py:1070
 msgid "No image given, click button to select one"
 msgstr "لم يتم تحديد أي صورة، انقر على الزر لتحديد صورة ما"
 
-#: ../gramps/gui/editors/objectentries.py:312
+#: ../gramps/gui/editors/objectentries.py:376
 msgid "Edit media object"
 msgstr "تحرير كائن الوسائط"
 
 # شك
-#: ../gramps/gui/editors/objectentries.py:313
+#: ../gramps/gui/editors/objectentries.py:377
 #: ../gramps/gui/plug/_guioptions.py:1048
 msgid "Select an existing media object"
 msgstr "قم بتحديد كائن وسائط موجود"
 
-#: ../gramps/gui/editors/objectentries.py:314
+#: ../gramps/gui/editors/objectentries.py:378
 #: ../gramps/plugins/view/mediaview.py:122
 msgid "Add a new media object"
 msgstr "إضافة كائن وسائط جديد"
 
-#: ../gramps/gui/editors/objectentries.py:315
+#: ../gramps/gui/editors/objectentries.py:379
 msgid "Remove media object"
 msgstr "حذف كائن وسائط"
 
-#: ../gramps/gui/editors/objectentries.py:363
+#: ../gramps/gui/editors/objectentries.py:427
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "لتحديد ملاحظة، قم بالنقر و السحب أو استعمل الأزرار"
 
-#: ../gramps/gui/editors/objectentries.py:365
+#: ../gramps/gui/editors/objectentries.py:429
 #: ../gramps/gui/plug/_guioptions.py:969
 msgid "No note given, click button to select one"
 msgstr "لم يتم تحديد أي ملاحظة، انقر على الزر لتحديد ملاحظة ما"
 
-#: ../gramps/gui/editors/objectentries.py:367
+#: ../gramps/gui/editors/objectentries.py:431
 #: ../gramps/gui/plug/_guioptions.py:944
 msgid "Select an existing note"
 msgstr "قم بتحديد ملاحظة موجودة"
 
-#: ../gramps/gui/editors/objectentries.py:368
+#: ../gramps/gui/editors/objectentries.py:432
 #: ../gramps/plugins/view/noteview.py:95
 msgid "Add a new note"
 msgstr "إضافة ملاحظة جديدة"
 
-#: ../gramps/gui/editors/objectentries.py:369
+#: ../gramps/gui/editors/objectentries.py:433
 msgid "Remove note"
 msgstr "حذف ملاحظة"
 
@@ -10556,7 +10620,7 @@ msgstr "نشر"
 
 #: ../gramps/gui/glade/addmedia.glade.h:1
 #: ../gramps/gui/glade/editperson.glade.h:13
-#: ../gramps/plugins/lib/libmetadata.py:94
+#: ../gramps/plugins/lib/libmetadata.py:101
 #: ../gramps/plugins/textreport/simplebooktitle.py:148
 #, fuzzy
 msgid "Image"
@@ -10569,7 +10633,6 @@ msgid "<b>Preview</b>"
 msgstr "<b>معاينة</b>"
 
 #: ../gramps/gui/glade/addmedia.glade.h:3
-#: ../gramps/gui/glade/editcitation.glade.h:20
 #: ../gramps/gui/glade/editmedia.glade.h:2
 #: ../gramps/gui/glade/editmediaref.glade.h:18
 #: ../gramps/gui/glade/editsource.glade.h:3
@@ -10759,7 +10822,7 @@ msgid "Accept changes and close window"
 msgstr ""
 
 #: ../gramps/gui/glade/editaddress.glade.h:2
-#: ../gramps/gui/glade/editcitation.glade.h:2
+#: ../gramps/gui/glade/editcitation.glade.h:1
 #: ../gramps/gui/glade/editevent.glade.h:4
 #: ../gramps/gui/glade/editeventref.glade.h:7
 #: ../gramps/gui/glade/editldsord.glade.h:2
@@ -10856,7 +10919,7 @@ msgid "Privacy"
 msgstr "خصوصية"
 
 #: ../gramps/gui/glade/editaddress.glade.h:19
-#: ../gramps/gui/glade/editcitation.glade.h:3
+#: ../gramps/gui/glade/editcitation.glade.h:2
 #: ../gramps/gui/glade/editevent.glade.h:5
 #: ../gramps/gui/glade/editeventref.glade.h:11
 #: ../gramps/gui/glade/editldsord.glade.h:4
@@ -10931,11 +10994,7 @@ msgstr ""
 msgid "Edition"
 msgstr "تعديل"
 
-#: ../gramps/gui/glade/editcitation.glade.h:1
-msgid "<b>Citation information</b>"
-msgstr "<b>معلومات الاستشهاد</b>"
-
-#: ../gramps/gui/glade/editcitation.glade.h:5
+#: ../gramps/gui/glade/editcitation.glade.h:4
 #: ../gramps/gui/glade/editsourceref.glade.h:5
 msgid ""
 "Specific location within the information referenced. For a published work, "
@@ -10947,15 +11006,23 @@ msgid ""
 "in addition to the page number. "
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade.h:6
+#: ../gramps/gui/glade/editcitation.glade.h:5
 #: ../gramps/gui/glade/editsourceref.glade.h:6
 msgid "_Volume/Page:"
 msgstr "_مجلد/صفحة:"
 
-#: ../gramps/gui/glade/editcitation.glade.h:7
+#: ../gramps/gui/glade/editcitation.glade.h:6
 #: ../gramps/gui/glade/editsourceref.glade.h:7
 msgid "Con_fidence:"
 msgstr "_ثقة:"
+
+#: ../gramps/gui/glade/editcitation.glade.h:7
+#: ../gramps/gui/glade/editsourceref.glade.h:15
+msgid ""
+"The date of the entry in the source you are referencing, e.g. the date a "
+"house was visited during a census, or the date an entry was made in a birth "
+"log/registry. "
+msgstr ""
 
 #: ../gramps/gui/glade/editcitation.glade.h:8
 #: ../gramps/gui/glade/editsourceref.glade.h:10
@@ -10971,24 +11038,6 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/glade/editcitation.glade.h:13
-#: ../gramps/gui/glade/editsourceref.glade.h:15
-msgid ""
-"The date of the entry in the source you are referencing, e.g. the date a "
-"house was visited during a census, or the date an entry was made in a birth "
-"log/registry. "
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:14
-msgid ""
-"<b>Note:</b> Any changes in the shared citation information will be "
-"reflected in the citation itself, for all items that reference the citation."
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:15
-msgid "A unique ID to identify the citation"
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:18
 #: ../gramps/gui/glade/editevent.glade.h:16
 #: ../gramps/gui/glade/editeventref.glade.h:10
 #: ../gramps/gui/glade/editfamily.glade.h:18
@@ -11004,78 +11053,14 @@ msgstr ""
 msgid "_ID:"
 msgstr "_معرّف:"
 
-#: ../gramps/gui/glade/editcitation.glade.h:19
-#: ../gramps/gui/glade/editeventref.glade.h:5
-#: ../gramps/gui/glade/editmediaref.glade.h:32
-#: ../gramps/gui/glade/editperson.glade.h:21
-#: ../gramps/gui/glade/editreporef.glade.h:11
-#: ../gramps/gui/glade/editsourceref.glade.h:16
-#: ../gramps/plugins/tool/verify.glade.h:15
-msgid "<b>General</b>"
-msgstr "<b>عام</b>"
-
-#: ../gramps/gui/glade/editcitation.glade.h:21
-#: ../gramps/gui/glade/editsource.glade.h:4
-#: ../gramps/gui/glade/editsourceref.glade.h:18
-msgid "_Author:"
-msgstr "_مؤلّف:"
-
-#: ../gramps/gui/glade/editcitation.glade.h:22
-#: ../gramps/gui/glade/editsource.glade.h:10
-#: ../gramps/gui/glade/editsourceref.glade.h:19
-msgid "A_bbreviation:"
-msgstr "ا_ختصار:"
-
-#: ../gramps/gui/glade/editcitation.glade.h:23
-#: ../gramps/gui/glade/editsourceref.glade.h:20
-msgid "_Pub. Info.:"
-msgstr "معلومات ال_نشر :"
-
-#: ../gramps/gui/glade/editcitation.glade.h:24
-#: ../gramps/gui/glade/editsource.glade.h:6
-#: ../gramps/gui/glade/editsourceref.glade.h:21
-msgid "Authors of the source."
-msgstr "مؤلفوا المصدر."
-
-#: ../gramps/gui/glade/editcitation.glade.h:25
-#: ../gramps/gui/glade/editsourceref.glade.h:22
-msgid ""
-"<b>Note:</b> Any changes in the shared source information will be reflected "
-"in the source itself, for all items that reference the source."
+#: ../gramps/gui/glade/editcitation.glade.h:14
+msgid "A unique ID to identify the citation"
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade.h:26
-#: ../gramps/gui/glade/editsource.glade.h:9
-#: ../gramps/gui/glade/editsourceref.glade.h:23
-msgid ""
-"Provide a short title used for sorting, filing, and retrieving source "
-"records."
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:27
-#: ../gramps/gui/glade/editsource.glade.h:8
-#: ../gramps/gui/glade/editsourceref.glade.h:24
-msgid ""
-"Publication Information, such as city and year of publication, name of "
-"publisher, ..."
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:28
-#: ../gramps/gui/glade/editsource.glade.h:12
-#: ../gramps/gui/glade/editsourceref.glade.h:26
-msgid "A unique ID to identify the source"
-msgstr ""
-
-#: ../gramps/gui/glade/editcitation.glade.h:29
-#: ../gramps/gui/glade/editsource.glade.h:5
-#: ../gramps/gui/glade/editsourceref.glade.h:27
-msgid "Title of the source."
-msgstr "عنوان المصدر."
-
-#: ../gramps/gui/glade/editcitation.glade.h:30
-#: ../gramps/gui/glade/editsourceref.glade.h:28
-msgid "<b>Shared source information</b>"
-msgstr "<b>معلومات المصدر المشارَك</b>"
+#: ../gramps/gui/glade/editcitation.glade.h:15
+#, fuzzy
+msgid "Source:"
+msgstr "مصدر"
 
 #: ../gramps/gui/glade/editdate.glade.h:1
 msgid "Calenda_r:"
@@ -11207,6 +11192,15 @@ msgstr "<b>معلومات المرجع</b>"
 #: ../gramps/gui/glade/editeventref.glade.h:2
 msgid "_Role:"
 msgstr "_شرط:"
+
+#: ../gramps/gui/glade/editeventref.glade.h:5
+#: ../gramps/gui/glade/editmediaref.glade.h:32
+#: ../gramps/gui/glade/editperson.glade.h:21
+#: ../gramps/gui/glade/editreporef.glade.h:11
+#: ../gramps/gui/glade/editsourceref.glade.h:16
+#: ../gramps/plugins/tool/verify.glade.h:15
+msgid "<b>General</b>"
+msgstr "<b>عام</b>"
 
 #: ../gramps/gui/glade/editeventref.glade.h:14
 msgid ""
@@ -11867,9 +11861,62 @@ msgstr ""
 msgid "Type of repository, eg., 'Library', 'Album', ..."
 msgstr ""
 
+#: ../gramps/gui/glade/editsource.glade.h:4
+#: ../gramps/gui/glade/editsourceref.glade.h:18
+msgid "_Author:"
+msgstr "_مؤلّف:"
+
+#: ../gramps/gui/glade/editsource.glade.h:5
+#: ../gramps/gui/glade/editsourceref.glade.h:27
+msgid "Title of the source."
+msgstr "عنوان المصدر."
+
+#: ../gramps/gui/glade/editsource.glade.h:6
+#: ../gramps/gui/glade/editsourceref.glade.h:21
+msgid "Authors of the source."
+msgstr "مؤلفوا المصدر."
+
 #: ../gramps/gui/glade/editsource.glade.h:7
 msgid "_Pub. info.:"
 msgstr "معلومات ال_نشر :"
+
+#: ../gramps/gui/glade/editsource.glade.h:8
+#: ../gramps/gui/glade/editsourceref.glade.h:24
+msgid ""
+"Publication Information, such as city and year of publication, name of "
+"publisher, ..."
+msgstr ""
+
+#: ../gramps/gui/glade/editsource.glade.h:9
+#: ../gramps/gui/glade/editsourceref.glade.h:23
+msgid ""
+"Provide a short title used for sorting, filing, and retrieving source "
+"records."
+msgstr ""
+
+#: ../gramps/gui/glade/editsource.glade.h:10
+#: ../gramps/gui/glade/editsourceref.glade.h:19
+msgid "A_bbreviation:"
+msgstr "ا_ختصار:"
+
+#: ../gramps/gui/glade/editsource.glade.h:12
+#: ../gramps/gui/glade/editsourceref.glade.h:26
+msgid "A unique ID to identify the source"
+msgstr ""
+
+#: ../gramps/gui/glade/editsourceref.glade.h:20
+msgid "_Pub. Info.:"
+msgstr "معلومات ال_نشر :"
+
+#: ../gramps/gui/glade/editsourceref.glade.h:22
+msgid ""
+"<b>Note:</b> Any changes in the shared source information will be reflected "
+"in the source itself, for all items that reference the source."
+msgstr ""
+
+#: ../gramps/gui/glade/editsourceref.glade.h:28
+msgid "<b>Shared source information</b>"
+msgstr "<b>معلومات المصدر المشارَك</b>"
 
 #: ../gramps/gui/glade/editurl.glade.h:2
 msgid "_Web address:"
@@ -12055,7 +12102,7 @@ msgstr "أم:"
 
 #. FIXME this should be lower-case:
 #: ../gramps/gui/glade/mergefamily.glade.h:7
-#: ../gramps/plugins/textreport/indivcomplete.py:204
+#: ../gramps/plugins/textreport/indivcomplete.py:206
 msgid "Relationship:"
 msgstr "قرابة:"
 
@@ -12730,7 +12777,7 @@ msgstr "دمج"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:680
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:694
 #: ../gramps/plugins/quickview/filterbyname.py:113
-#: ../gramps/plugins/textreport/indivcomplete.py:219
+#: ../gramps/plugins/textreport/indivcomplete.py:221
 #: ../gramps/plugins/textreport/tagreport.py:376
 #: ../gramps/plugins/view/noteview.py:113
 #: ../gramps/plugins/view/view.gpr.py:95
@@ -13150,7 +13197,7 @@ msgid "Merge People"
 msgstr "دمج أشخاص"
 
 #: ../gramps/gui/merge/mergeperson.py:195
-#: ../gramps/plugins/textreport/indivcomplete.py:313
+#: ../gramps/plugins/textreport/indivcomplete.py:315
 msgid "Alternate Names"
 msgstr "أسماء أخرى"
 
@@ -13186,7 +13233,7 @@ msgid "No spouses or children found"
 msgstr "لم يتم العثور على أزواج أو أبناء"
 
 #: ../gramps/gui/merge/mergeperson.py:256
-#: ../gramps/plugins/textreport/indivcomplete.py:343
+#: ../gramps/plugins/textreport/indivcomplete.py:345
 #: ../gramps/plugins/webreport/narrativeweb.py:1376
 msgid "Addresses"
 msgstr "عناوين"
@@ -14000,11 +14047,11 @@ msgstr "قالب"
 #: ../gramps/plugins/textreport/ancestorreport.py:269
 #: ../gramps/plugins/textreport/birthdayreport.py:412
 #: ../gramps/plugins/textreport/descendreport.py:401
-#: ../gramps/plugins/textreport/detancestralreport.py:719
-#: ../gramps/plugins/textreport/detdescendantreport.py:882
+#: ../gramps/plugins/textreport/detancestralreport.py:720
+#: ../gramps/plugins/textreport/detdescendantreport.py:883
 #: ../gramps/plugins/textreport/endoflinereport.py:258
 #: ../gramps/plugins/textreport/familygroup.py:640
-#: ../gramps/plugins/textreport/indivcomplete.py:633
+#: ../gramps/plugins/textreport/indivcomplete.py:635
 #: ../gramps/plugins/textreport/kinshipreport.py:343
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:201
 #: ../gramps/plugins/textreport/placereport.py:373
@@ -14221,13 +14268,16 @@ msgstr "تعطيل"
 msgid "On"
 msgstr "تشغيل "
 
-#. attaching the spellchecker will fail if
-#. the language does not exist
-#. and presumably if there is no dictionary
-#: ../gramps/gui/spell.py:146
-#, fuzzy
-msgid "Spelling checker could not be attached to TextView"
-msgstr "لم يتم تنصيب المدقق الإملائي"
+#: ../gramps/gui/spell.py:147
+msgid ""
+"You have no installed dictionaries. Either install one or disable spell "
+"checking"
+msgstr ""
+
+#: ../gramps/gui/spell.py:149
+#, python-format
+msgid "Spelling checker initialization failed: %s"
+msgstr ""
 
 #: ../gramps/gui/tipofday.py:70 ../gramps/gui/tipofday.py:71
 #: ../gramps/gui/tipofday.py:122 ../gramps/gui/viewmanager.py:503
@@ -14578,9 +14628,9 @@ msgstr "وسائط:"
 #: ../gramps/gui/viewmanager.py:1288
 #: ../gramps/plugins/drawreport/ancestortree.py:1021
 #: ../gramps/plugins/drawreport/descendtree.py:1620
-#: ../gramps/plugins/textreport/detancestralreport.py:781
-#: ../gramps/plugins/textreport/detdescendantreport.py:954
+#: ../gramps/plugins/textreport/detancestralreport.py:782
 #: ../gramps/plugins/textreport/detdescendantreport.py:955
+#: ../gramps/plugins/textreport/detdescendantreport.py:956
 #: ../gramps/plugins/textreport/familygroup.py:658
 #: ../gramps/plugins/webreport/narrativeweb.py:8199
 msgid "Include"
@@ -14738,7 +14788,7 @@ msgstr ""
 #: ../gramps/gui/views/listview.py:551
 #: ../gramps/plugins/view/familyview.py:251
 msgid "Deleting item will remove it from the database."
-msgstr "حذف البند سيؤدي لإزالته من قاعدة البيانات,"
+msgstr "حذف البند سيؤدي لإزالته من قاعدة البيانات."
 
 #: ../gramps/gui/views/listview.py:558
 #: ../gramps/plugins/lib/libpersonview.py:289
@@ -15043,7 +15093,7 @@ msgstr "أخوة"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:778
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:792
 #: ../gramps/plugins/textreport/familygroup.py:597
-#: ../gramps/plugins/textreport/indivcomplete.py:404
+#: ../gramps/plugins/textreport/indivcomplete.py:406
 #: ../gramps/plugins/view/pedigreeview.py:1741
 #: ../gramps/plugins/view/relview.py:1382
 #: ../gramps/plugins/webreport/narrativeweb.py:760
@@ -15489,8 +15539,8 @@ msgstr "خيارت الشجرة"
 #: ../gramps/plugins/textreport/ancestorreport.py:271
 #: ../gramps/plugins/textreport/birthdayreport.py:424
 #: ../gramps/plugins/textreport/descendreport.py:403
-#: ../gramps/plugins/textreport/detancestralreport.py:722
-#: ../gramps/plugins/textreport/detdescendantreport.py:885
+#: ../gramps/plugins/textreport/detancestralreport.py:723
+#: ../gramps/plugins/textreport/detdescendantreport.py:886
 #: ../gramps/plugins/textreport/endoflinereport.py:260
 #: ../gramps/plugins/textreport/kinshipreport.py:345
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:203
@@ -15507,8 +15557,8 @@ msgstr "الشخص الرئيسي بالشجرة"
 #: ../gramps/plugins/drawreport/fanchart.py:654
 #: ../gramps/plugins/textreport/ancestorreport.py:277
 #: ../gramps/plugins/textreport/descendreport.py:417
-#: ../gramps/plugins/textreport/detancestralreport.py:728
-#: ../gramps/plugins/textreport/detdescendantreport.py:900
+#: ../gramps/plugins/textreport/detancestralreport.py:729
+#: ../gramps/plugins/textreport/detdescendantreport.py:901
 msgid "Generations"
 msgstr "أجيال"
 
@@ -15801,12 +15851,12 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:1102
 #: ../gramps/plugins/drawreport/descendtree.py:1709
 #: ../gramps/plugins/textreport/ancestorreport.py:356
-#: ../gramps/plugins/textreport/detancestralreport.py:884
-#: ../gramps/plugins/textreport/detdescendantreport.py:1078
+#: ../gramps/plugins/textreport/detancestralreport.py:885
+#: ../gramps/plugins/textreport/detdescendantreport.py:1079
 #: ../gramps/plugins/textreport/endoflinereport.py:299
 #: ../gramps/plugins/textreport/endoflinereport.py:317
 #: ../gramps/plugins/textreport/familygroup.py:739
-#: ../gramps/plugins/textreport/indivcomplete.py:756
+#: ../gramps/plugins/textreport/indivcomplete.py:758
 #: ../gramps/plugins/textreport/kinshipreport.py:403
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:230
 #: ../gramps/plugins/textreport/recordsreport.py:269
@@ -15873,7 +15923,7 @@ msgstr "قراءة قاعدة البيانات..."
 #: ../gramps/plugins/textreport/birthdayreport.py:327
 #, python-format
 msgid "%(person)s, birth%(relation)s"
-msgstr "%(person)s, ميلاد%(relation)s"
+msgstr "%(person)s، ميلاد%(relation)s"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:322
 #: ../gramps/plugins/textreport/birthdayreport.py:331
@@ -15944,8 +15994,8 @@ msgstr ""
 #: ../gramps/plugins/textreport/ancestorreport.py:272
 #: ../gramps/plugins/textreport/birthdayreport.py:425
 #: ../gramps/plugins/textreport/descendreport.py:404
-#: ../gramps/plugins/textreport/detancestralreport.py:723
-#: ../gramps/plugins/textreport/detdescendantreport.py:886
+#: ../gramps/plugins/textreport/detancestralreport.py:724
+#: ../gramps/plugins/textreport/detdescendantreport.py:887
 #: ../gramps/plugins/textreport/endoflinereport.py:261
 #: ../gramps/plugins/textreport/kinshipreport.py:346
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:204
@@ -16395,8 +16445,8 @@ msgstr "الرسم البياني لخلف %(person)s"
 #: ../gramps/plugins/drawreport/fanchart.py:655
 #: ../gramps/plugins/textreport/ancestorreport.py:278
 #: ../gramps/plugins/textreport/descendreport.py:418
-#: ../gramps/plugins/textreport/detancestralreport.py:729
-#: ../gramps/plugins/textreport/detdescendantreport.py:902
+#: ../gramps/plugins/textreport/detancestralreport.py:730
+#: ../gramps/plugins/textreport/detdescendantreport.py:903
 msgid "The number of generations to include in the report"
 msgstr ""
 
@@ -16669,7 +16719,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:948
 #: ../gramps/plugins/drawreport/timeline.py:417
-#: ../gramps/plugins/textreport/indivcomplete.py:642
+#: ../gramps/plugins/textreport/indivcomplete.py:644
 #: ../gramps/plugins/textreport/recordsreport.py:178
 #: ../gramps/plugins/tool/sortevents.py:173
 #: ../gramps/plugins/webreport/narrativeweb.py:8023
@@ -16678,7 +16728,7 @@ msgid "Filter Person"
 msgstr "ترشيح شخص"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:949
-#: ../gramps/plugins/textreport/indivcomplete.py:643
+#: ../gramps/plugins/textreport/indivcomplete.py:645
 msgid "The center person for the filter."
 msgstr "الشخص الرئيسي بالمرشّح."
 
@@ -16760,11 +16810,11 @@ msgstr "القالب المستعمل بالبنود و القيم."
 #: ../gramps/plugins/drawreport/timeline.py:484
 #: ../gramps/plugins/textreport/ancestorreport.py:333
 #: ../gramps/plugins/textreport/descendreport.py:448
-#: ../gramps/plugins/textreport/detancestralreport.py:838
-#: ../gramps/plugins/textreport/detdescendantreport.py:1032
+#: ../gramps/plugins/textreport/detancestralreport.py:839
+#: ../gramps/plugins/textreport/detdescendantreport.py:1033
 #: ../gramps/plugins/textreport/endoflinereport.py:281
 #: ../gramps/plugins/textreport/familygroup.py:730
-#: ../gramps/plugins/textreport/indivcomplete.py:724
+#: ../gramps/plugins/textreport/indivcomplete.py:726
 #: ../gramps/plugins/textreport/kinshipreport.py:385
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:223
 #: ../gramps/plugins/textreport/simplebooktitle.py:166
@@ -18256,7 +18306,7 @@ msgstr "نوع الحد"
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:223
 #, python-format
 msgid "(b. %(birthdate)s, d. %(deathdate)s)"
-msgstr "(ميلاد. %(birthdate)s, ممات. %(deathdate)s)"
+msgstr "(ميلاد. %(birthdate)s، ممات. %(deathdate)s)"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:228
 #, python-format
@@ -18319,6 +18369,11 @@ msgid_plural ""
 " has %(count_person)d of %(max_count_person)d individuals (%(percent)s "
 "complete)\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:274
 msgid "All generations"
@@ -20656,33 +20711,33 @@ msgstr ""
 msgid "No copyright notice"
 msgstr ""
 
-#: ../gramps/plugins/lib/libmetadata.py:55
-#: ../gramps/plugins/lib/libmetadata.py:91
+#: ../gramps/plugins/lib/libmetadata.py:62
+#: ../gramps/plugins/lib/libmetadata.py:98
 #, fuzzy
 msgid "Invalid format"
 msgstr "تنسيق تاريخ غير مقبول"
 
-#: ../gramps/plugins/lib/libmetadata.py:59
+#: ../gramps/plugins/lib/libmetadata.py:66
 #, python-format
 msgid "%(hr)02d:%(min)02d:%(sec)02d"
 msgstr "%(hr)02d:%(min)02d:%(sec)02d"
 
-#: ../gramps/plugins/lib/libmetadata.py:62
+#: ../gramps/plugins/lib/libmetadata.py:69
 #, python-format
 msgid "%(date)s %(time)s"
 msgstr "%(date)s %(time)s"
 
-#: ../gramps/plugins/lib/libmetadata.py:95
+#: ../gramps/plugins/lib/libmetadata.py:102
 #, fuzzy
 msgid "Camera"
 msgstr "آلة تصوير"
 
-#: ../gramps/plugins/lib/libmetadata.py:96
+#: ../gramps/plugins/lib/libmetadata.py:103
 #, fuzzy
 msgid "GPS"
 msgstr "نظام تحديد المواقع عالميا"
 
-#: ../gramps/plugins/lib/libmetadata.py:97
+#: ../gramps/plugins/lib/libmetadata.py:104
 #, fuzzy
 msgid "Advanced"
 msgstr "متقدم"
@@ -24702,7 +24757,7 @@ msgstr "لا توجد قرابة بالميلاد مع الابن(ـة)"
 
 #: ../gramps/plugins/quickview/lineage.py:160
 #: ../gramps/plugins/quickview/lineage.py:180
-#: ../gramps/plugins/tool/verify.py:965
+#: ../gramps/plugins/tool/verify.py:968
 msgid "Unknown gender"
 msgstr "جنس مجهول"
 
@@ -24952,6 +25007,11 @@ msgstr "أشخاص يتشاركون باسم العائلة '%s'"
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:149
@@ -25102,14 +25162,14 @@ msgid "Ahnentafel Report for %s"
 msgstr ""
 
 #: ../gramps/plugins/textreport/ancestorreport.py:281
-#: ../gramps/plugins/textreport/detancestralreport.py:732
-#: ../gramps/plugins/textreport/detdescendantreport.py:906
+#: ../gramps/plugins/textreport/detancestralreport.py:733
+#: ../gramps/plugins/textreport/detdescendantreport.py:907
 msgid "Page break between generations"
 msgstr "فاصل صفحة بين الأجيال"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:283
-#: ../gramps/plugins/textreport/detancestralreport.py:734
-#: ../gramps/plugins/textreport/detdescendantreport.py:908
+#: ../gramps/plugins/textreport/detancestralreport.py:735
+#: ../gramps/plugins/textreport/detdescendantreport.py:909
 msgid "Whether to start a new page after each generation."
 msgstr ""
 
@@ -25282,7 +25342,7 @@ msgid "%s sp."
 msgstr "%s زوج."
 
 #: ../gramps/plugins/textreport/descendreport.py:409
-#: ../gramps/plugins/textreport/detdescendantreport.py:891
+#: ../gramps/plugins/textreport/detdescendantreport.py:892
 msgid "Numbering system"
 msgstr "نظام الترقيم"
 
@@ -25299,7 +25359,7 @@ msgid "Meurgey de Tupigny numbering"
 msgstr "ترقيم Meurgey de Tupigny"
 
 #: ../gramps/plugins/textreport/descendreport.py:414
-#: ../gramps/plugins/textreport/detdescendantreport.py:897
+#: ../gramps/plugins/textreport/detdescendantreport.py:898
 msgid "The numbering system to be used"
 msgstr "نظام الترقيم الذي سيتم استعماله"
 
@@ -25361,11 +25421,11 @@ msgstr "ملاحظات %s"
 #: ../gramps/plugins/textreport/detancestralreport.py:327
 #: ../gramps/plugins/textreport/detancestralreport.py:351
 #: ../gramps/plugins/textreport/detancestralreport.py:362
-#: ../gramps/plugins/textreport/detancestralreport.py:386
+#: ../gramps/plugins/textreport/detancestralreport.py:387
 #: ../gramps/plugins/textreport/detdescendantreport.py:785
 #: ../gramps/plugins/textreport/detdescendantreport.py:803
 #: ../gramps/plugins/textreport/detdescendantreport.py:814
-#: ../gramps/plugins/textreport/detdescendantreport.py:838
+#: ../gramps/plugins/textreport/detdescendantreport.py:839
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "المزيد عن %(person_name)s:"
@@ -25381,241 +25441,248 @@ msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 msgid "Address: "
 msgstr "عنوان:"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:394
-#: ../gramps/plugins/textreport/detancestralreport.py:452
+#. translators: needed for Arabic, ignore otherwise
+#: ../gramps/plugins/textreport/detancestralreport.py:378
+#: ../gramps/plugins/textreport/detdescendantreport.py:830
+#, fuzzy, python-format
+msgid "%s, "
+msgstr "%s، ..."
+
+#: ../gramps/plugins/textreport/detancestralreport.py:395
+#: ../gramps/plugins/textreport/detancestralreport.py:453
 #: ../gramps/plugins/textreport/detdescendantreport.py:465
 #: ../gramps/plugins/textreport/detdescendantreport.py:712
-#: ../gramps/plugins/textreport/detdescendantreport.py:846
+#: ../gramps/plugins/textreport/detdescendantreport.py:847
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s: %(value)s%(endnotes)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:421
+#: ../gramps/plugins/textreport/detancestralreport.py:422
 #: ../gramps/plugins/textreport/detdescendantreport.py:434
 #, python-format
 msgid "%(date)s, %(place)s"
-msgstr "%(date)s, %(place)s"
+msgstr "%(date)s، %(place)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:424
+#: ../gramps/plugins/textreport/detancestralreport.py:425
 #: ../gramps/plugins/textreport/detdescendantreport.py:437
 #, python-format
 msgid "%(date)s"
 msgstr "%(date)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:426
+#: ../gramps/plugins/textreport/detancestralreport.py:427
 #: ../gramps/plugins/textreport/detdescendantreport.py:439
 #, python-format
 msgid "%(place)s"
 msgstr "%(place)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:438
+#: ../gramps/plugins/textreport/detancestralreport.py:439
 #: ../gramps/plugins/textreport/detdescendantreport.py:451
 #, python-format
 msgid "%(event_name)s: %(event_text)s"
 msgstr "%(event_name)s: %(event_text)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:550
+#: ../gramps/plugins/textreport/detancestralreport.py:551
 #: ../gramps/plugins/textreport/detdescendantreport.py:604
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr "أبناء %(mother_name)s و %(father_name)s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:603
+#: ../gramps/plugins/textreport/detancestralreport.py:604
 #: ../gramps/plugins/textreport/detdescendantreport.py:685
 #: ../gramps/plugins/textreport/detdescendantreport.py:704
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "المزيد عن %(mother_name)s و %(father_name)s:"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:656
+#: ../gramps/plugins/textreport/detancestralreport.py:657
 #: ../gramps/plugins/textreport/detdescendantreport.py:553
 #, python-format
 msgid "Spouse: %s"
 msgstr "زوج(ـة): %s"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:658
+#: ../gramps/plugins/textreport/detancestralreport.py:659
 #: ../gramps/plugins/textreport/detdescendantreport.py:555
 #, python-format
 msgid "Relationship with: %s"
 msgstr "على قرابة بـ: %s"
 
 # شك
-#: ../gramps/plugins/textreport/detancestralreport.py:737
-#: ../gramps/plugins/textreport/detdescendantreport.py:911
-#: ../gramps/plugins/textreport/indivcomplete.py:655
+#: ../gramps/plugins/textreport/detancestralreport.py:738
+#: ../gramps/plugins/textreport/detdescendantreport.py:912
+#: ../gramps/plugins/textreport/indivcomplete.py:657
 msgid "Page break before end notes"
 msgstr "فاصل صفحة قبل الملاخظات الأخيرة"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:739
-#: ../gramps/plugins/textreport/detdescendantreport.py:913
-#: ../gramps/plugins/textreport/indivcomplete.py:657
+#: ../gramps/plugins/textreport/detancestralreport.py:740
+#: ../gramps/plugins/textreport/detdescendantreport.py:914
+#: ../gramps/plugins/textreport/indivcomplete.py:659
 msgid "Whether to start a new page before the end notes."
 msgstr ""
 
 #. Content options
 #. Content
-#: ../gramps/plugins/textreport/detancestralreport.py:746
-#: ../gramps/plugins/textreport/detdescendantreport.py:920
+#: ../gramps/plugins/textreport/detancestralreport.py:747
+#: ../gramps/plugins/textreport/detdescendantreport.py:921
 #: ../gramps/plugins/view/relview.py:1691
 msgid "Content"
 msgstr "محتوى"
 
 # شك
-#: ../gramps/plugins/textreport/detancestralreport.py:748
-#: ../gramps/plugins/textreport/detdescendantreport.py:922
+#: ../gramps/plugins/textreport/detancestralreport.py:749
+#: ../gramps/plugins/textreport/detdescendantreport.py:923
 msgid "Use callname for common name"
 msgstr "استعمال اللقب كاسم شائع"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:749
-#: ../gramps/plugins/textreport/detdescendantreport.py:923
+#: ../gramps/plugins/textreport/detancestralreport.py:750
+#: ../gramps/plugins/textreport/detdescendantreport.py:924
 msgid "Whether to use the call name as the first name."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:753
-#: ../gramps/plugins/textreport/detdescendantreport.py:926
+#: ../gramps/plugins/textreport/detancestralreport.py:754
+#: ../gramps/plugins/textreport/detdescendantreport.py:927
 msgid "Use full dates instead of only the year"
 msgstr "استعمال التواريخ الكاملة بدلاً عن السنة فقط"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:754
-#: ../gramps/plugins/textreport/detdescendantreport.py:928
+#: ../gramps/plugins/textreport/detancestralreport.py:755
+#: ../gramps/plugins/textreport/detdescendantreport.py:929
 msgid "Whether to use full dates instead of just year."
 msgstr ""
 
 # شك
-#: ../gramps/plugins/textreport/detancestralreport.py:757
-#: ../gramps/plugins/textreport/detdescendantreport.py:931
+#: ../gramps/plugins/textreport/detancestralreport.py:758
+#: ../gramps/plugins/textreport/detdescendantreport.py:932
 msgid "List children"
 msgstr "قائمة الأبناء"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:758
-#: ../gramps/plugins/textreport/detdescendantreport.py:932
+#: ../gramps/plugins/textreport/detancestralreport.py:759
+#: ../gramps/plugins/textreport/detdescendantreport.py:933
 msgid "Whether to list children."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:761
-#: ../gramps/plugins/textreport/detdescendantreport.py:935
+#: ../gramps/plugins/textreport/detancestralreport.py:762
+#: ../gramps/plugins/textreport/detdescendantreport.py:936
 msgid "Compute death age"
 msgstr "حساب العمر عند الممات"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:762
-#: ../gramps/plugins/textreport/detdescendantreport.py:936
+#: ../gramps/plugins/textreport/detancestralreport.py:763
+#: ../gramps/plugins/textreport/detdescendantreport.py:937
 msgid "Whether to compute a person's age at death."
 msgstr ""
 
 # شك
-#: ../gramps/plugins/textreport/detancestralreport.py:765
-#: ../gramps/plugins/textreport/detdescendantreport.py:939
+#: ../gramps/plugins/textreport/detancestralreport.py:766
+#: ../gramps/plugins/textreport/detdescendantreport.py:940
 msgid "Omit duplicate ancestors"
 msgstr "تجاهل السّلف المتكرّر"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:766
-#: ../gramps/plugins/textreport/detdescendantreport.py:940
+#: ../gramps/plugins/textreport/detancestralreport.py:767
+#: ../gramps/plugins/textreport/detdescendantreport.py:941
 msgid "Whether to omit duplicate ancestors."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:769
+#: ../gramps/plugins/textreport/detancestralreport.py:770
 msgid "Use Complete Sentences"
 msgstr "استعمال جمل كاملة"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:771
-#: ../gramps/plugins/textreport/detdescendantreport.py:945
+#: ../gramps/plugins/textreport/detancestralreport.py:772
+#: ../gramps/plugins/textreport/detdescendantreport.py:946
 msgid "Whether to use complete sentences or succinct language."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:774
-#: ../gramps/plugins/textreport/detdescendantreport.py:948
+#: ../gramps/plugins/textreport/detancestralreport.py:775
+#: ../gramps/plugins/textreport/detdescendantreport.py:949
 msgid "Add descendant reference in child list"
 msgstr "إضافة مرجع الخلف بقائمة الأبناء"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:776
-#: ../gramps/plugins/textreport/detdescendantreport.py:951
+#: ../gramps/plugins/textreport/detancestralreport.py:777
+#: ../gramps/plugins/textreport/detdescendantreport.py:952
 msgid "Whether to add descendant references in child list."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:783
-#: ../gramps/plugins/textreport/detdescendantreport.py:957
+#: ../gramps/plugins/textreport/detancestralreport.py:784
+#: ../gramps/plugins/textreport/detdescendantreport.py:958
 msgid "Include notes"
 msgstr "تضمين الملاحظات"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:784
-#: ../gramps/plugins/textreport/detdescendantreport.py:958
+#: ../gramps/plugins/textreport/detancestralreport.py:785
+#: ../gramps/plugins/textreport/detdescendantreport.py:959
 msgid "Whether to include notes."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:787
-#: ../gramps/plugins/textreport/detdescendantreport.py:961
+#: ../gramps/plugins/textreport/detancestralreport.py:788
+#: ../gramps/plugins/textreport/detdescendantreport.py:962
 #, fuzzy
 msgid "Include attributes"
 msgstr "خصائص الصفحة"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:788
-#: ../gramps/plugins/textreport/detdescendantreport.py:962
+#: ../gramps/plugins/textreport/detancestralreport.py:789
+#: ../gramps/plugins/textreport/detdescendantreport.py:963
 #: ../gramps/plugins/textreport/familygroup.py:680
 msgid "Whether to include attributes."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:791
-#: ../gramps/plugins/textreport/detdescendantreport.py:965
-#: ../gramps/plugins/textreport/indivcomplete.py:669
+#: ../gramps/plugins/textreport/detancestralreport.py:792
+#: ../gramps/plugins/textreport/detdescendantreport.py:966
+#: ../gramps/plugins/textreport/indivcomplete.py:671
 msgid "Include Photo/Images from Gallery"
 msgstr "تضمين الصور من المعرض"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:792
-#: ../gramps/plugins/textreport/detdescendantreport.py:966
-#: ../gramps/plugins/textreport/indivcomplete.py:670
+#: ../gramps/plugins/textreport/detancestralreport.py:793
+#: ../gramps/plugins/textreport/detdescendantreport.py:967
+#: ../gramps/plugins/textreport/indivcomplete.py:672
 msgid "Whether to include images."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:795
-#: ../gramps/plugins/textreport/detdescendantreport.py:969
+#: ../gramps/plugins/textreport/detancestralreport.py:796
+#: ../gramps/plugins/textreport/detdescendantreport.py:970
 msgid "Include alternative names"
 msgstr "تضمين الأسماء الأخرى"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:796
-#: ../gramps/plugins/textreport/detdescendantreport.py:970
+#: ../gramps/plugins/textreport/detancestralreport.py:797
+#: ../gramps/plugins/textreport/detdescendantreport.py:971
 msgid "Whether to include other names."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:799
-#: ../gramps/plugins/textreport/detdescendantreport.py:973
+#: ../gramps/plugins/textreport/detancestralreport.py:800
+#: ../gramps/plugins/textreport/detdescendantreport.py:974
 msgid "Include events"
 msgstr "تضمين الأحداث"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:800
-#: ../gramps/plugins/textreport/detdescendantreport.py:974
+#: ../gramps/plugins/textreport/detancestralreport.py:801
+#: ../gramps/plugins/textreport/detdescendantreport.py:975
 msgid "Whether to include events."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:803
-#: ../gramps/plugins/textreport/detdescendantreport.py:977
+#: ../gramps/plugins/textreport/detancestralreport.py:804
+#: ../gramps/plugins/textreport/detdescendantreport.py:978
 msgid "Include addresses"
 msgstr "تضمين العناوين"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:804
-#: ../gramps/plugins/textreport/detdescendantreport.py:978
+#: ../gramps/plugins/textreport/detancestralreport.py:805
+#: ../gramps/plugins/textreport/detdescendantreport.py:979
 msgid "Whether to include addresses."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:807
-#: ../gramps/plugins/textreport/detdescendantreport.py:981
+#: ../gramps/plugins/textreport/detancestralreport.py:808
+#: ../gramps/plugins/textreport/detdescendantreport.py:982
 msgid "Include sources"
 msgstr "تضمين المصادر"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:808
-#: ../gramps/plugins/textreport/detdescendantreport.py:982
+#: ../gramps/plugins/textreport/detancestralreport.py:809
+#: ../gramps/plugins/textreport/detdescendantreport.py:983
 msgid "Whether to include source references."
 msgstr ""
 
 # شك
-#: ../gramps/plugins/textreport/detancestralreport.py:811
-#: ../gramps/plugins/textreport/detdescendantreport.py:985
-#: ../gramps/plugins/textreport/indivcomplete.py:664
+#: ../gramps/plugins/textreport/detancestralreport.py:812
+#: ../gramps/plugins/textreport/detdescendantreport.py:986
+#: ../gramps/plugins/textreport/indivcomplete.py:666
 msgid "Include sources notes"
 msgstr "تضمين ملاحظات المصادر"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:812
-#: ../gramps/plugins/textreport/detdescendantreport.py:986
-#: ../gramps/plugins/textreport/indivcomplete.py:665
+#: ../gramps/plugins/textreport/detancestralreport.py:813
+#: ../gramps/plugins/textreport/detdescendantreport.py:987
+#: ../gramps/plugins/textreport/indivcomplete.py:667
 msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
 "Include sources is selected."
@@ -25623,53 +25690,53 @@ msgstr ""
 
 #. How to handle missing information
 #. Missing information
-#: ../gramps/plugins/textreport/detancestralreport.py:818
-#: ../gramps/plugins/textreport/detdescendantreport.py:1012
+#: ../gramps/plugins/textreport/detancestralreport.py:819
+#: ../gramps/plugins/textreport/detdescendantreport.py:1013
 msgid "Missing information"
 msgstr "معلومات مفقودة"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:820
-#: ../gramps/plugins/textreport/detdescendantreport.py:1014
+#: ../gramps/plugins/textreport/detancestralreport.py:821
+#: ../gramps/plugins/textreport/detdescendantreport.py:1015
 msgid "Replace missing places with ______"
 msgstr "استبدال الأماكن المفقودة بـ ______"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:821
-#: ../gramps/plugins/textreport/detdescendantreport.py:1015
+#: ../gramps/plugins/textreport/detancestralreport.py:822
+#: ../gramps/plugins/textreport/detdescendantreport.py:1016
 msgid "Whether to replace missing Places with blanks."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:824
-#: ../gramps/plugins/textreport/detdescendantreport.py:1018
+#: ../gramps/plugins/textreport/detancestralreport.py:825
+#: ../gramps/plugins/textreport/detdescendantreport.py:1019
 msgid "Replace missing dates with ______"
 msgstr "استبدال التواريخ المفقودة بـ ______"
 
-#: ../gramps/plugins/textreport/detancestralreport.py:825
-#: ../gramps/plugins/textreport/detdescendantreport.py:1019
+#: ../gramps/plugins/textreport/detancestralreport.py:826
+#: ../gramps/plugins/textreport/detdescendantreport.py:1020
 msgid "Whether to replace missing Dates with blanks."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detancestralreport.py:858
-#: ../gramps/plugins/textreport/detdescendantreport.py:1052
+#: ../gramps/plugins/textreport/detancestralreport.py:859
+#: ../gramps/plugins/textreport/detdescendantreport.py:1053
 msgid "The style used for the children list title."
 msgstr "القالب المستعمل بعنوان قائمة الأبناء."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:868
-#: ../gramps/plugins/textreport/detdescendantreport.py:1062
+#: ../gramps/plugins/textreport/detancestralreport.py:869
+#: ../gramps/plugins/textreport/detdescendantreport.py:1063
 msgid "The style used for the children list."
 msgstr "القالب المستعمل بقائمة الأبناء."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:891
-#: ../gramps/plugins/textreport/detdescendantreport.py:1085
+#: ../gramps/plugins/textreport/detancestralreport.py:892
+#: ../gramps/plugins/textreport/detdescendantreport.py:1086
 msgid "The style used for the first personal entry."
 msgstr "القالب المستعمل بأول مدخل شخصي."
 
 # شك
-#: ../gramps/plugins/textreport/detancestralreport.py:901
+#: ../gramps/plugins/textreport/detancestralreport.py:902
 msgid "The style used for the More About header."
 msgstr "القالب المستعمل بترويسة المزيد عن."
 
-#: ../gramps/plugins/textreport/detancestralreport.py:911
-#: ../gramps/plugins/textreport/detdescendantreport.py:1106
+#: ../gramps/plugins/textreport/detancestralreport.py:912
+#: ../gramps/plugins/textreport/detdescendantreport.py:1107
 msgid "The style used for additional detail data."
 msgstr "القالب المستعمل ببيانات التفاصيل الإضافية."
 
@@ -25689,63 +25756,63 @@ msgstr "%(name1)s و %(name2)s"
 msgid "Notes for %(mother_name)s and %(father_name)s:"
 msgstr "ملاحظات %(mother_name)s و %(father_name)s:"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:893
+#: ../gramps/plugins/textreport/detdescendantreport.py:894
 msgid "Henry numbering"
 msgstr "ترقيم Henry"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:894
+#: ../gramps/plugins/textreport/detdescendantreport.py:895
 msgid "d'Aboville numbering"
 msgstr "ترقيم d'Aboville"
 
 # شك
-#: ../gramps/plugins/textreport/detdescendantreport.py:896
+#: ../gramps/plugins/textreport/detdescendantreport.py:897
 msgid "Record (Modified Register) numbering"
 msgstr "ترقيم السجلات"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:943
+#: ../gramps/plugins/textreport/detdescendantreport.py:944
 msgid "Use complete sentences"
 msgstr "استعمال جمل كاملة"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:990
+#: ../gramps/plugins/textreport/detdescendantreport.py:991
 #: ../gramps/plugins/textreport/kinshipreport.py:359
 msgid "Include spouses"
 msgstr "تضمين الأزواج"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:991
+#: ../gramps/plugins/textreport/detdescendantreport.py:992
 msgid "Whether to include detailed spouse information."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:994
+#: ../gramps/plugins/textreport/detdescendantreport.py:995
 msgid "Include spouse reference"
 msgstr "تضمين مرجع الزوج(ـة)"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:995
+#: ../gramps/plugins/textreport/detdescendantreport.py:996
 msgid "Whether to include reference to spouse."
 msgstr ""
 
 # شك
-#: ../gramps/plugins/textreport/detdescendantreport.py:998
+#: ../gramps/plugins/textreport/detdescendantreport.py:999
 msgid "Include sign of succession ('+') in child-list"
 msgstr "تضمين إشارة ('+') بقائمة الأبناء"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1000
+#: ../gramps/plugins/textreport/detdescendantreport.py:1001
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
 msgstr ""
 
 # شك
-#: ../gramps/plugins/textreport/detdescendantreport.py:1005
+#: ../gramps/plugins/textreport/detdescendantreport.py:1006
 msgid "Include path to start-person"
 msgstr "تضمين مسار الشخص الرئيسي"
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1006
+#: ../gramps/plugins/textreport/detdescendantreport.py:1007
 msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
 msgstr ""
 
-#: ../gramps/plugins/textreport/detdescendantreport.py:1095
+#: ../gramps/plugins/textreport/detdescendantreport.py:1096
 msgid "The style used for the More About header and for headers of mates."
 msgstr ""
 
@@ -25931,77 +25998,77 @@ msgid "%s in %s. "
 msgstr "%s في %s. "
 
 # شك
-#: ../gramps/plugins/textreport/indivcomplete.py:249
+#: ../gramps/plugins/textreport/indivcomplete.py:251
 msgid "Alternate Parents"
 msgstr "أبوان آخران"
 
 #. RTL languages are the only reason for "translating" this
-#: ../gramps/plugins/textreport/indivcomplete.py:298
+#: ../gramps/plugins/textreport/indivcomplete.py:300
 #, fuzzy, python-format
 msgid "%(name)s [%(gid)s]"
 msgstr "%(father)s [%(gramps_id)s]"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:371
+#: ../gramps/plugins/textreport/indivcomplete.py:373
 msgid "Marriages/Children"
 msgstr "زيجات/أبناء"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/indivcomplete.py:516
+#: ../gramps/plugins/textreport/indivcomplete.py:518
 #, python-format
 msgid "Summary of %s"
 msgstr "ملخّص %s"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:572
+#: ../gramps/plugins/textreport/indivcomplete.py:574
 msgid "Male"
 msgstr "ذكر"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:574
+#: ../gramps/plugins/textreport/indivcomplete.py:576
 msgid "Female"
 msgstr "أنثى"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:638
+#: ../gramps/plugins/textreport/indivcomplete.py:640
 msgid "Select the filter to be applied to the report."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:651
+#: ../gramps/plugins/textreport/indivcomplete.py:653
 msgid "List events chronologically"
 msgstr "قائمة الأحداث مرتبة زمنياً"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:652
+#: ../gramps/plugins/textreport/indivcomplete.py:654
 msgid "Whether to sort events into chronological order."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:660
+#: ../gramps/plugins/textreport/indivcomplete.py:662
 msgid "Include Source Information"
 msgstr "تضمين معلومات المصدر"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:661
+#: ../gramps/plugins/textreport/indivcomplete.py:663
 msgid "Whether to cite sources."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:673
+#: ../gramps/plugins/textreport/indivcomplete.py:675
 #, fuzzy
 msgid "Include Gramps ID"
 msgstr "تضمين المعرّفات"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:674
+#: ../gramps/plugins/textreport/indivcomplete.py:676
 msgid "Whether to include Gramps ID next to names."
 msgstr ""
 
 #. ###############################
-#: ../gramps/plugins/textreport/indivcomplete.py:682
+#: ../gramps/plugins/textreport/indivcomplete.py:684
 msgid "Event groups"
 msgstr "مجموعات الحدث"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:683
+#: ../gramps/plugins/textreport/indivcomplete.py:685
 msgid "Check if a separate section is required."
 msgstr ""
 
-#: ../gramps/plugins/textreport/indivcomplete.py:736
+#: ../gramps/plugins/textreport/indivcomplete.py:738
 msgid "The style used for category labels."
 msgstr "القالب المستعمل بعناوين التصنيف."
 
-#: ../gramps/plugins/textreport/indivcomplete.py:747
+#: ../gramps/plugins/textreport/indivcomplete.py:749
 msgid "The style used for the spouse's name."
 msgstr "القالب المستعمل باسم الزوج(ـة)."
 
@@ -26963,72 +27030,132 @@ msgstr[5] "تم الاحتفاظ بـ %(quantity)d مرجع للوسائط\n"
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2201
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2208
 #, python-format
 msgid "%(quantity)d event was referenced but not found\n"
 msgid_plural "%(quantity)d events were referenced, but not found\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2215
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2222
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2229
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2236
 #, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2243
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2250
 #, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2257
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2263 ../gramps/plugins/tool/check.py:2269
 #, python-format
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2275
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
 msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+msgstr[3] ""
+msgstr[4] ""
+msgstr[5] ""
 
 #: ../gramps/plugins/tool/check.py:2282
 #, fuzzy, python-format
@@ -27254,7 +27381,7 @@ msgstr "بحث عن إمكانية وجود أشخاص متكررين"
 
 #: ../gramps/plugins/tool/finddupes.py:144
 #: ../gramps/plugins/tool/mergecitations.py:163
-#: ../gramps/plugins/tool/verify.py:308
+#: ../gramps/plugins/tool/verify.py:311
 msgid "Tool settings"
 msgstr "إعدادات الأداة"
 
@@ -27857,7 +27984,7 @@ msgstr "كائنات غير مستعملة"
 #. Add mark column
 #. Add ignore column
 #: ../gramps/plugins/tool/removeunused.py:186
-#: ../gramps/plugins/tool/verify.py:503
+#: ../gramps/plugins/tool/verify.py:506
 msgid "Mark"
 msgstr "تحديد"
 
@@ -28147,7 +28274,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/tool/verify.glade.h:5
-#: ../gramps/plugins/tool/verify.py:619
+#: ../gramps/plugins/tool/verify.py:622
 msgid "_Hide marked"
 msgstr "إ_خفاء المؤشّرة"
 
@@ -28236,160 +28363,178 @@ msgstr "manual|Verify_the_Data..."
 msgid "Data Verify tool"
 msgstr "أداة التحقق من قاعدة البيانات"
 
-#: ../gramps/plugins/tool/verify.py:451
+#. translators: needed for Arabic, ignore otherwise
+#: ../gramps/plugins/tool/verify.py:277
+#, python-format
+msgid "W: %s, %s: %s, %s"
+msgstr ""
+
+#. translators: needed for Arabic, ignore otherwise
+#: ../gramps/plugins/tool/verify.py:280
+#, python-format
+msgid "E: %s, %s: %s, %s"
+msgstr ""
+
+#. translators: needed for Arabic, ignore otherwise
+#: ../gramps/plugins/tool/verify.py:283
+#, python-format
+msgid "S: %s, %s: %s, %s"
+msgstr ""
+
+#: ../gramps/plugins/tool/verify.py:454
 #, fuzzy
 msgid "Data Verification Results"
 msgstr "نتائج التحقق من قاعدة البيانات"
 
 #. Add column with the warning text
-#: ../gramps/plugins/tool/verify.py:514
+#: ../gramps/plugins/tool/verify.py:517
 msgid "Warning"
 msgstr "تحذير"
 
-#: ../gramps/plugins/tool/verify.py:609
+#: ../gramps/plugins/tool/verify.py:612
 msgid "_Show all"
 msgstr "_عرض الكل"
 
-#: ../gramps/plugins/tool/verify.py:871
+#: ../gramps/plugins/tool/verify.py:874
 msgid "Baptism before birth"
 msgstr "تعميد قبل الميلاد"
 
-#: ../gramps/plugins/tool/verify.py:884
+#: ../gramps/plugins/tool/verify.py:887
 msgid "Death before baptism"
 msgstr "ممات قبل التعميد"
 
-#: ../gramps/plugins/tool/verify.py:897
+#: ../gramps/plugins/tool/verify.py:900
 msgid "Burial before birth"
 msgstr "دفن قبل الميلاد"
 
-#: ../gramps/plugins/tool/verify.py:910
+#: ../gramps/plugins/tool/verify.py:913
 msgid "Burial before death"
 msgstr "دفن قبل الممات"
 
-#: ../gramps/plugins/tool/verify.py:923
+#: ../gramps/plugins/tool/verify.py:926
 msgid "Death before birth"
 msgstr "ممات قبل المليلاد"
 
-#: ../gramps/plugins/tool/verify.py:936
+#: ../gramps/plugins/tool/verify.py:939
 msgid "Burial before baptism"
 msgstr "دفن قبل التعميد"
 
-#: ../gramps/plugins/tool/verify.py:954
+#: ../gramps/plugins/tool/verify.py:957
 msgid "Old age at death"
 msgstr "كبير بالسن عند الممات"
 
-#: ../gramps/plugins/tool/verify.py:975
+#: ../gramps/plugins/tool/verify.py:978
 msgid "Multiple parents"
 msgstr "تعدّد بالآباء"
 
 # شك
-#: ../gramps/plugins/tool/verify.py:992
+#: ../gramps/plugins/tool/verify.py:995
 msgid "Married often"
 msgstr "متزوّج(ـة) على الأغلب"
 
-#: ../gramps/plugins/tool/verify.py:1011
+#: ../gramps/plugins/tool/verify.py:1014
 msgid "Old and unmarried"
 msgstr "كبير بالسن غير متزوّج(ـة)"
 
-#: ../gramps/plugins/tool/verify.py:1038
+#: ../gramps/plugins/tool/verify.py:1041
 msgid "Too many children"
 msgstr "عدد كبير من الأبناء"
 
-#: ../gramps/plugins/tool/verify.py:1053
+#: ../gramps/plugins/tool/verify.py:1056
 msgid "Same sex marriage"
 msgstr "زواج مثلي"
 
 # شك
-#: ../gramps/plugins/tool/verify.py:1063
+#: ../gramps/plugins/tool/verify.py:1066
 msgid "Female husband"
 msgstr "زوج أنثى"
 
 # شك
-#: ../gramps/plugins/tool/verify.py:1073
+#: ../gramps/plugins/tool/verify.py:1076
 msgid "Male wife"
 msgstr "زوجة ذكر"
 
-#: ../gramps/plugins/tool/verify.py:1100
+#: ../gramps/plugins/tool/verify.py:1103
 msgid "Husband and wife with the same surname"
 msgstr "زوج و زوجة بنفس اسم العائلة"
 
-#: ../gramps/plugins/tool/verify.py:1125
+#: ../gramps/plugins/tool/verify.py:1128
 msgid "Large age difference between spouses"
 msgstr "فرق كبير بالسن بين الأزواج"
 
-#: ../gramps/plugins/tool/verify.py:1156
+#: ../gramps/plugins/tool/verify.py:1159
 msgid "Marriage before birth"
 msgstr "زواج قبل الميلاد"
 
-#: ../gramps/plugins/tool/verify.py:1187
+#: ../gramps/plugins/tool/verify.py:1190
 msgid "Marriage after death"
 msgstr "زواج بعد الممات"
 
-#: ../gramps/plugins/tool/verify.py:1221
+#: ../gramps/plugins/tool/verify.py:1224
 msgid "Early marriage"
 msgstr "زواج مبكّر"
 
-#: ../gramps/plugins/tool/verify.py:1253
+#: ../gramps/plugins/tool/verify.py:1256
 msgid "Late marriage"
 msgstr "زواج متأخّر"
 
-#: ../gramps/plugins/tool/verify.py:1314
+#: ../gramps/plugins/tool/verify.py:1317
 msgid "Old father"
 msgstr "أب مسنّ"
 
-#: ../gramps/plugins/tool/verify.py:1317
+#: ../gramps/plugins/tool/verify.py:1320
 msgid "Old mother"
 msgstr "أم مسنّة"
 
-#: ../gramps/plugins/tool/verify.py:1359
+#: ../gramps/plugins/tool/verify.py:1362
 msgid "Young father"
 msgstr "أب شاب"
 
-#: ../gramps/plugins/tool/verify.py:1362
+#: ../gramps/plugins/tool/verify.py:1365
 msgid "Young mother"
 msgstr "أم شابة"
 
-#: ../gramps/plugins/tool/verify.py:1401
+#: ../gramps/plugins/tool/verify.py:1404
 msgid "Unborn father"
 msgstr "أب غير مولود"
 
-#: ../gramps/plugins/tool/verify.py:1404
+#: ../gramps/plugins/tool/verify.py:1407
 msgid "Unborn mother"
 msgstr "أم غير مولودة"
 
-#: ../gramps/plugins/tool/verify.py:1449
+#: ../gramps/plugins/tool/verify.py:1452
 msgid "Dead father"
 msgstr "أب ميت"
 
-#: ../gramps/plugins/tool/verify.py:1452
+#: ../gramps/plugins/tool/verify.py:1455
 msgid "Dead mother"
 msgstr "أم ميتة"
 
-#: ../gramps/plugins/tool/verify.py:1474
+#: ../gramps/plugins/tool/verify.py:1477
 msgid "Large year span for all children"
 msgstr "مدى سنوات كبير لكل الأبناء"
 
-#: ../gramps/plugins/tool/verify.py:1496
+#: ../gramps/plugins/tool/verify.py:1499
 msgid "Large age differences between children"
 msgstr "فرق كبير بالسن بين الأبناء"
 
-#: ../gramps/plugins/tool/verify.py:1506
+#: ../gramps/plugins/tool/verify.py:1509
 msgid "Disconnected individual"
 msgstr "أفراد منقطعين"
 
-#: ../gramps/plugins/tool/verify.py:1528
+#: ../gramps/plugins/tool/verify.py:1531
 msgid "Invalid birth date"
 msgstr "تاريخ ميلاد خاطئ"
 
-#: ../gramps/plugins/tool/verify.py:1550
+#: ../gramps/plugins/tool/verify.py:1553
 msgid "Invalid death date"
 msgstr "تاريخ ممات خاطئ"
 
-#: ../gramps/plugins/tool/verify.py:1566
+#: ../gramps/plugins/tool/verify.py:1569
 msgid "Marriage date but not married"
 msgstr "تاريخ للزواج لكن بدون زواج"
 
-#: ../gramps/plugins/tool/verify.py:1588
+#: ../gramps/plugins/tool/verify.py:1591
 msgid "Old age but no death"
 msgstr "عمر كبير لكن دون ممات"
 
@@ -28421,12 +28566,6 @@ msgstr "مصدر: آخر تعديل"
 #: ../gramps/plugins/view/citationtreeview.py:121
 msgid "Add a new citation and a new source"
 msgstr "إضافة استشهاد جديد و مصدر جديد"
-
-#: ../gramps/plugins/view/citationlistview.py:125
-#: ../gramps/plugins/view/citationtreeview.py:122
-#: ../gramps/plugins/view/sourceview.py:98
-msgid "Add a new source"
-msgstr "إضافة مصدر جديد"
 
 #: ../gramps/plugins/view/citationlistview.py:126
 #: ../gramps/plugins/view/citationtreeview.py:123
@@ -29472,7 +29611,7 @@ msgstr "إضافة ابن موجود سابقاً للعائلة"
 #: ../gramps/plugins/view/relview.py:1197
 #, python-format
 msgid "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
-msgstr "%(birthabbrev)s %(birthdate)s, %(deathabbrev)s %(deathdate)s"
+msgstr "%(birthabbrev)s %(birthdate)s، %(deathabbrev)s %(deathdate)s"
 
 #: ../gramps/plugins/view/relview.py:1204
 #: ../gramps/plugins/view/relview.py:1206
@@ -31035,7 +31174,7 @@ msgstr "ميلاد"
 #: ../gramps/plugins/webreport/webcal.py:1713
 #, python-format
 msgid "%(couple)s, <em>wedding</em>"
-msgstr "%(couple)s, <em>زواج</em>"
+msgstr "%(couple)s، <em>زواج</em>"
 
 # شك
 #: ../gramps/plugins/webreport/webcal.py:1717
@@ -31949,419 +32088,3 @@ msgid ""
 "relationships between various people, places and events. All of your "
 "research is kept organized, searchable and as precise as you need it to be."
 msgstr ""
-
-#~ msgid "State/Province:"
-#~ msgstr "ولاية/مقاطعة:"
-
-#~ msgid "ZIP/Postal code:"
-#~ msgstr "رمز بريدي:"
-
-#~ msgid "Phone:"
-#~ msgstr "هاتف:"
-
-#~ msgid "Email:"
-#~ msgstr "بريد إلكتروني:"
-
-#~ msgid "Select Save File"
-#~ msgstr "تحديد حفظ الملف"
-
-#~ msgid ""
-#~ "WARNING: Setting locale failed. Please fix the LC_* and/or the LANG "
-#~ "environment variables to prevent this error"
-#~ msgstr ""
-#~ "WARNING: Setting locale failed. Please fix the LC_* and/or the LANG "
-#~ "environment variables to prevent this error"
-
-#~ msgid "ERROR: Setting the 'C' locale didn't work either"
-#~ msgstr "خطأ: فشل باستعمال المحلية 'C' أيضاً"
-
-#~ msgid "Sources in repository"
-#~ msgstr "مصادر في المستودع"
-
-#~ msgid ""
-#~ "The language and country combination \"%s\" is not supported by ICU, but "
-#~ "language %s is supported and will be used"
-#~ msgstr ""
-#~ "The language and country combination \"%s\" is not supported by ICU, but "
-#~ "language %s is supported and will be used"
-
-#~ msgid ""
-#~ "Neither the language and country combination \"%s\" nor language %s is "
-#~ "supported by ICU: using en_GB"
-#~ msgstr ""
-#~ "Neither the language and country combination \"%s\" nor language %s is "
-#~ "supported by ICU: using en_GB"
-
-#~ msgid "PyICU not available: sorting may be incorrect"
-#~ msgstr "هنالك خطا ما: مكتبة PyICU غير موجودة"
-
-#~ msgid "death-related evidence"
-#~ msgstr "شهادة مرتبطة بالممات"
-
-#~ msgid "birth-related evidence"
-#~ msgstr "شهادة مرتبطة  بالميلاد"
-
-#~ msgid "a spouse, "
-#~ msgstr "زوج, "
-
-#~ msgid "YES"
-#~ msgstr "نعم"
-
-#~ msgid "Family tree"
-#~ msgstr "شجرة العائلة"
-
-# شك
-#~ msgid "Bas Mitzvah"
-#~ msgstr "بلوغ يهودي (بنت)"
-
-# شك
-#~ msgid "Bas Mitzvah abbreviation|bas."
-#~ msgstr "بلوغ يهودي (بنت)."
-
-#~ msgid "Vertical (top to bottom)"
-#~ msgstr "شاقولي (من أعلى إلى أسفل)"
-
-#~ msgid "Vertical (bottom to top)"
-#~ msgstr "شاقولي (من أسفل إلى أعلى)"
-
-#~ msgid "Horizontal (right to left)"
-#~ msgstr "يمين إلى اليسار (أفقيًا)"
-
-#~ msgid "Gramps: Import database"
-#~ msgstr "غرميز: إستيراد قاعدة بيانات"
-
-#~ msgid "Media Object Filters"
-#~ msgstr "مرشّحات كائن الوسائط"
-
-#~ msgid "Right-click to the right of the tab to add a gramplet."
-#~ msgstr "انقر بالزر الأيمن فوق عنوان التبويبة لإضافة شريط معلومات."
-
-#~ msgid "Events father"
-#~ msgstr "أحداث الأب"
-
-#~ msgid "Events mother"
-#~ msgstr "أحداث الأم"
-
-#~ msgid "Personal Events"
-#~ msgstr "أحداث شخصية"
-
-# شك
-#~ msgid "With %(namepartner)s (%(famid)s)"
-#~ msgstr "بـ %(namepartner)s (%(famid)s)"
-
-#~ msgid "%s and %s (%s)"
-#~ msgstr "%s و %s (%s)"
-
-#~ msgid "Colour"
-#~ msgstr "لون"
-
-#~ msgid "Remove selected items?"
-#~ msgstr "هل تريد إزالة البنود المحدّدة؟"
-
-#~ msgid "Report a bug: Step 1 of 5"
-#~ msgstr "إبلاغ عن ثغرة: خطوة 1 من 5"
-
-#~ msgid "Report a bug: Step 2 of 5"
-#~ msgstr "إبلاغ عن ثغرة: خطوة 2 من 5"
-
-#~ msgid "Report a bug: Step 3 of 5"
-#~ msgstr "إبلاغ عن ثغرة: خطوة 3 من 5"
-
-#~ msgid "Report a bug: Step 4 of 5"
-#~ msgstr "إبلاغ عن ثغرة: خطوة 4 من 5"
-
-#~ msgid "Report a bug: Step 5 of 5"
-#~ msgstr "إبلاغ عن ثغرة: خطوة 5 من 5"
-
-#~ msgid "Book List"
-#~ msgstr "قائمة الكتب"
-
-#~ msgid "Book Report"
-#~ msgstr "تقرير عن كتاب"
-
-#~ msgid "Please specify a book name"
-#~ msgstr "قم بتخصيص اسم للكتاب"
-
-#~ msgid "No such book '%s'"
-#~ msgstr "لا يوجد مثل هذا الكتاب '%s'"
-
-#~ msgid " (%(value)s)"
-#~ msgstr " (%(value)s)"
-
-#~ msgid "PyGtk 2.10 or later is required"
-#~ msgstr "أنت بحاجة لـPyGtk 2.10 أو أحدث"
-
-#~ msgid "Timeline Graph for %s"
-#~ msgstr "خط زمني لـ %s"
-
-#~ msgid "Active person: <b>%s</b>"
-#~ msgstr "شخص نشط: <b>%s</b>"
-
-#~ msgid "<-- Image Types -->"
-#~ msgstr "<-- أنواع الصور -->"
-
-#~ msgid "Provide a short descripion for this image."
-#~ msgstr "قم بإدخال وصف قصير لهذه الصورة."
-
-#~ msgid "Thumbnail"
-#~ msgstr "مصغرة"
-
-#~ msgid "Select an image to begin..."
-#~ msgstr "إختر صورة للبدء..."
-
-#~ msgid "Image Size : %04d x %04d pixels"
-#~ msgstr "قياس الصورة : %04d x %04d بكسل"
-
-#~ msgid "Displaying Exif metadata..."
-#~ msgstr "عرض بيانات Exif..."
-
-#~ msgid "Thumbnail View Area"
-#~ msgstr "مساحة عرض المصغّرة"
-
-#~ msgid "Edit Image Exif Metadata"
-#~ msgstr "تحرير بيانات الصورة Exif"
-
-#~ msgid "Convert and Delete"
-#~ msgstr "تحويل ثم حذف"
-
-#~ msgid "Convert"
-#~ msgstr "تحويل"
-
-#~ msgid ""
-#~ "Your image has been converted and the original file has been deleted, and "
-#~ "the full path has been updated!"
-#~ msgstr "تم تحويل صورتك مع حذف الملف الأصلي، كذلك تم تحديث المسار الكامل!"
-
-#~ msgid "Media Path Update"
-#~ msgstr "تحديث مسار الوسائط"
-
-#~ msgid "Media Object Title"
-#~ msgstr "عنوان كائن الوسائط"
-
-#~ msgid "media Title: "
-#~ msgstr "عنوان الوسائط: "
-
-#~ msgid "General Data"
-#~ msgstr "بيانات عامة"
-
-#~ msgid "Description: "
-#~ msgstr "وصف:"
-
-#~ msgid "Artist: "
-#~ msgstr "فنان: "
-
-#~ msgid "Copyright: "
-#~ msgstr "حقوق النسخ: "
-
-#~ msgid "Date/ Time"
-#~ msgstr "تاريخ/وقت"
-
-#~ msgid "Original: "
-#~ msgstr "أصلي: "
-
-#~ msgid "Modified: "
-#~ msgstr "معدّل: "
-
-#~ msgid "Latitude/ Longitude/ Altitude GPS coordinates"
-#~ msgstr "إحداثيات ألـGPS خط الطول/ خط العرض/ الارتفاع"
-
-#~ msgid "Latitude :"
-#~ msgstr "خطّ عرض:"
-
-#~ msgid "Longitude :"
-#~ msgstr "خطّ طول :"
-
-#~ msgid "Altitude :"
-#~ msgstr "خط عرض :"
-
-#~ msgid "Bad Date/Time"
-#~ msgstr "تاريخ/وقت خاطئ"
-
-#~ msgid ""
-#~ "WARNING!  You are about to completely delete the Exif metadata from this "
-#~ "image?"
-#~ msgstr "تحذير!  أنت بصدد حذف كل البيانات الوصفية لهذه الصورة بشكل كامل؟"
-
-#~ msgid "Media Title Update"
-#~ msgstr "تحديث عنوان الوسائط"
-
-#~ msgid "Media Object Date Created"
-#~ msgstr "تم إنشاء تاريخ كائن الوسائط"
-
-#~ msgid "Saving Exif metadata to this image..."
-#~ msgstr "حفظ بيانات Exif لهذه الصورة..."
-
-#~ msgid "All Exif metadata has been deleted from this image..."
-#~ msgstr "كل البيانات الوصفية تم حذفها من هذه الصورة..."
-
-#~ msgid "There was an error in stripping the Exif metadata from this image..."
-#~ msgstr "حدثت مشكلة باستخلاص البيانات الوصفية من هذه الصورة..."
-
-#~ msgid "TODO"
-#~ msgstr "قائمة مهام"
-
-#~ msgid "Gramplet for generic notes"
-#~ msgstr "شريط معلومات لعرض الملاحظات"
-
-#~ msgid "TODO List"
-#~ msgstr "قائمة المهام"
-
-#~ msgid "Edit Exif Metadata"
-#~ msgstr "تحرير بيانات Exif"
-
-#~ msgid "%d of %d"
-#~ msgstr "%d من %d"
-
-#~ msgid "Individuals with incomplete names"
-#~ msgstr "أفراد بأسماء غير مكتملة"
-
-#~ msgid "Enter text"
-#~ msgstr "أدخل نص"
-
-#~ msgid "Enter your TODO list here."
-#~ msgstr "أدخل قائمة مهامك هنا."
-
-# شك
-#~ msgid "Gramplet View"
-#~ msgstr "عرض شريط المعلومات"
-
-#~ msgid "Coloured outline"
-#~ msgstr "حدّ ملوّن"
-
-#~ msgid "Colour fill"
-#~ msgstr "لون التعبئة"
-
-#~ msgid "Chinese"
-#~ msgstr "الصينية"
-
-#~ msgid "Brazil"
-#~ msgstr "البرازيل"
-
-#~ msgid "Portugal"
-#~ msgstr "البرتغال"
-
-#~ msgid "%(language)s (%(country)s)"
-#~ msgstr "%(language)s (%(country)s)"
-
-#~ msgid "Father Age"
-#~ msgstr "عمر الأب"
-
-#~ msgid "Mother Age"
-#~ msgstr "عمر الأم"
-
-#~ msgid ""
-#~ "\n"
-#~ "%d matches.\n"
-#~ msgstr ""
-#~ "\n"
-#~ "%d مطابقة.\n"
-
-# شك
-#~ msgid "Ref: %s. %s"
-#~ msgstr "مرجع: %s. %s"
-
-# شك
-#~ msgid "Individual Facts"
-#~ msgstr "وقائع فردية"
-
-# شك
-#~ msgid "Selecting operation"
-#~ msgstr "عمليّة التحديد"
-
-#~ msgid "Title or Page"
-#~ msgstr "عنوان أو صفحة"
-
-#~ msgid "Ancestry"
-#~ msgstr "شجرة"
-
-#~ msgid ""
-#~ "WARNING: osmgpsmap module not loaded. Geography functionality will not be "
-#~ "available."
-#~ msgstr ""
-#~ "WARNING: osmgpsmap module not loaded. Geography functionality will not be "
-#~ "available."
-
-# شك
-#~ msgid "Places places map"
-#~ msgstr "خريطة الأماكن"
-
-#~ msgid "%s %s"
-#~ msgstr "%s %s"
-
-#~ msgid "Event View"
-#~ msgstr "عرض الحدث"
-
-#~ msgid "Family View"
-#~ msgstr "عرض العائلة"
-
-#~ msgid "Media View"
-#~ msgstr "عرض الوساط"
-
-#~ msgid "Note View"
-#~ msgstr "عرض الملاحظة"
-
-#~ msgid "Relationship View"
-#~ msgstr "عرض القرابة"
-
-#~ msgid "Pedigree View"
-#~ msgstr "شجرة"
-
-#~ msgid "Person Tree View"
-#~ msgstr "شجرة الشخص"
-
-#~ msgid "The view showing all people in the family tree"
-#~ msgstr "عرض كل الأشخاص في شجرة العائلة"
-
-#~ msgid "Repository View"
-#~ msgstr "عرض المستودع"
-
-#~ msgid "Source View"
-#~ msgstr "عرض المصدر"
-
-#~ msgid "Objects changed after <date time>"
-#~ msgstr "كائنات تم تعديلها بعد <تاريخ وقت>"
-
-#~ msgid "Every object"
-#~ msgstr "كل كائن"
-
-#~ msgid "Matches every object in the database"
-#~ msgstr "العثور على كل كائن في قاعدة البيانات"
-
-#~ msgid "Object with <Id>"
-#~ msgstr "كائن بـ <معرّف>"
-
-#~ msgid "Objects marked private"
-#~ msgstr "كائنا مشار إليهم كخاص"
-
-#~ msgid "Matches objects that are indicated as private"
-#~ msgstr "العثور على الكائنات المشار إليهم كـ خاص"
-
-#~ msgid "Object with the <source>"
-#~ msgstr "كائن بـ <مصدر>"
-
-#~ msgid "Expression:"
-#~ msgstr "تعبير:"
-
-#~ msgid "People matching the <regex_name>"
-#~ msgstr "أشخاص يطابقون <اسم_التعبير_المنتظم>"
-
-#~ msgid "Regular expression:"
-#~ msgstr "تعبير منتظم:"
-
-#~ msgid "- default -"
-#~ msgstr "- افتراضي -"
-
-#~ msgid "phpGedView import"
-#~ msgstr "phpGedView استيراد"
-
-#~ msgid "<b>phpGedView import</b>"
-#~ msgstr "<b>استيراد phpGedView</b>"
-
-#~ msgid "http://"
-#~ msgstr "http://"
-
-#~ msgid "Username:"
-#~ msgstr "اسم المستخدم:"
-
-#~ msgid "Password:"
-#~ msgstr "كلمة المرور:"
