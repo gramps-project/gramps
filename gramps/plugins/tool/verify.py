@@ -274,11 +274,14 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         # print data for the user, no GUI
         (msg,gramps_id, name, the_type, rule_id, severity, handle) = results
         if severity == Rule.WARNING:
-            print("W: %s, %s: %s, %s" % (msg,the_type, gramps_id, name))
+            # translators: needed for Arabic, ignore otherwise
+            print(_("W: %s, %s: %s, %s") % (msg, the_type, gramps_id, name))
         elif severity == Rule.ERROR:
-            print("E: %s, %s: %s, %s" % (msg,the_type,gramps_id, name))
+            # translators: needed for Arabic, ignore otherwise
+            print(_("E: %s, %s: %s, %s") % (msg, the_type, gramps_id, name))
         else:
-            print("S: %s, %s: %s, %s" % (msg,the_type,gramps_id, name))
+            # translators: needed for Arabic, ignore otherwise
+            print(_("S: %s, %s: %s, %s") % (msg, the_type,gramps_id, name))
 
     def init_gui(self):
         # Draw dialog and make it handle everything

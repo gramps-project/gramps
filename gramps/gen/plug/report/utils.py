@@ -232,7 +232,8 @@ def get_address_str(addr):
             if str == "":
                 str = info
             else:
-                str = "%s, %s" % (str, info)
+                # translators: needed for Arabic, ignore otherwise
+                str = _("%s, %s") % (str, info)
     return str
     
 #-------------------------------------------------------------------------

@@ -162,11 +162,13 @@ class IndivCompleteReport(Report):
             column_1 = self._(self._get_type(event.get_type()))
             if role not in (EventRoleType.PRIMARY, EventRoleType.FAMILY):
                 column_1 = column_1 + ' (' + self._(role.xml_str()) + ')'
-            column_2 = combine('%s, %s', '%s', description, date_place)
+            # translators: needed for Arabic, ignore otherwise
+            column_2 = combine(self._('%s, %s'), '%s', description, date_place)
         else:
             # Groups with a single type (remove event type from first column)
             column_1 = date
-            column_2 = combine('%s, %s', '%s', description, place)
+            # translators: needed for Arabic, ignore otherwise
+            column_2 = combine(self._('%s, %s'), '%s', description, place)
 
         endnotes = ""
         if self.use_srcs:
