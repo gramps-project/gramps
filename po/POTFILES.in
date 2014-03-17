@@ -50,6 +50,7 @@ src/gen/lib/familyreltype.py
 src/gen/lib/grampstype.py
 src/gen/lib/ldsord.py
 src/gen/lib/markertype.py
+src/gen/lib/name.py
 src/gen/lib/nametype.py
 src/gen/lib/nameorigintype.py
 src/gen/lib/notetype.py

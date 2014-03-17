@@ -833,7 +833,8 @@ class DetDescendantReport(Report):
 
                 self.doc.write_text(self._('Address: '))
                 if date:
-                    self.doc.write_text( '%s, ' % date )
+                    # translators: needed for Arabic, ignore otherwise
+                    self.doc.write_text(self._('%s, ') % date )
                 self.doc.write_text( text )
                 self.doc.write_text_citation( self.endnotes(addr) )
                 self.doc.end_paragraph()

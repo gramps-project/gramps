@@ -124,7 +124,6 @@ src/gen/lib/locationbase.py
 src/gen/lib/mediaobj.py
 src/gen/lib/mediabase.py
 src/gen/lib/mediaref.py
-src/gen/lib/name.py
 src/gen/lib/note.py
 src/gen/lib/notebase.py
 src/gen/lib/personref.py
