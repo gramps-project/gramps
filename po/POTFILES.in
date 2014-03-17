@@ -274,6 +274,7 @@ gramps/gen/lib/familyreltype.py
 gramps/gen/lib/grampstype.py
 gramps/gen/lib/ldsord.py
 gramps/gen/lib/markertype.py
+gramps/gen/lib/name.py
 gramps/gen/lib/nameorigintype.py
 gramps/gen/lib/nametype.py
 gramps/gen/lib/notetype.py

@@ -146,7 +146,6 @@ gramps/gen/lib/locationbase.py
 gramps/gen/lib/mediaobj.py
 gramps/gen/lib/mediabase.py
 gramps/gen/lib/mediaref.py
-gramps/gen/lib/name.py
 gramps/gen/lib/note.py
 gramps/gen/lib/notebase.py
 gramps/gen/lib/personref.py

@@ -39,6 +39,8 @@ from .datebase import DateBase
 from .surnamebase import SurnameBase
 from .nametype import NameType
 from .const import IDENTICAL, EQUAL, DIFFERENT
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -437,9 +439,11 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         first = self.first_name
         surname = self.get_surname()
         if self.suffix:
-            return "%s, %s %s" % (surname, first, self.suffix)
+            # translators: needed for Arabic, ignore otherwise
+            return _("%s, %s %s") % (surname, first, self.suffix)
         else:
-            return "%s, %s" % (surname, first)
+            # translators: needed for Arabic, ignore otherwise
+            return _("%s, %s") % (surname, first)
 
     def get_upper_name(self):
         """
@@ -449,9 +453,11 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         first = self.first_name
         surname = self.get_surname().upper()
         if self.suffix:
-            return "%s, %s %s" % (surname, first, self.suffix)
+            # translators: needed for Arabic, ignore otherwise
+            return _("%s, %s %s") % (surname, first, self.suffix)
         else:
-            return "%s, %s" % (surname, first)
+            # translators: needed for Arabic, ignore otherwise
+            return _("%s, %s") % (surname, first)
 
     def get_regular_name(self):
         """
@@ -463,7 +469,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         if (self.suffix == ""):
             return "%s %s" % (first, surname)
         else:
-            return "%s %s, %s" % (first, surname, self.suffix)
+            # translators: needed for Arabic, ignore otherwise
+            return _("%s %s, %s") % (first, surname, self.suffix)
 
     def get_gedcom_parts(self):
         """
