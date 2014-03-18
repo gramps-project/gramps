@@ -486,10 +486,6 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(event, 'dateval', {'val': '2001-09-28'})
         self.do_test("\r\n".join(self.vcard), self.gramps)
 
-    def test_add_birthday_ddmmyyyy(self):
-        self.vcard.insert(4, "BDAY:28-09-2001")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
-
     def test_add_birthday_empty(self):
         self.vcard.insert(4, "BDAY: ")
         self.do_test("\r\n".join(self.vcard), self.gramps)

@@ -20,8 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 "Import from vCard (RFC 2426)"
 
 #-------------------------------------------------------------------------
@@ -484,12 +482,15 @@ class VCardParser(object):
                     ).format(date=e.date.to_struct(), vcard_snippet=data))
                 date.set(modifier=Date.MOD_TEXTONLY, text=data)
         else:
-            # TRANSLATORS: leave the {vcard_snippet} untranslated.
-            LOG.warning(_(
-                "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, "
-                "preserving date as text."
-                ).format(vcard_snippet=date_str))
-            date.set(modifier=Date.MOD_TEXTONLY, text=date_str)
+            if date_str:
+                # TRANSLATORS: leave the {vcard_snippet} untranslated.
+                LOG.warning(_(
+                    "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, "
+                    "preserving date as text."
+                    ).format(vcard_snippet=date_str))
+                date.set(modifier=Date.MOD_TEXTONLY, text=date_str)
+            else: # silently ignore an empty BDAY record
+                return
         event = Event()
         event.set_type(EventType(EventType.BIRTH))
         event.set_date_object(date)
