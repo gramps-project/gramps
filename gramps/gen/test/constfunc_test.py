@@ -19,8 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """ Unittest for constfunc.py """
 
 from __future__ import print_function
@@ -33,13 +31,13 @@ from os import environ as env
 class Test_has_display(unittest.TestCase):
     def setUp(self):
         self.has = constfunc.has_display()
-        self.display_nonempty = env.has_key('DISPLAY') and bool(env['DISPLAY'])
+        self.display_nonempty = ('DISPLAY' in env) and bool(env['DISPLAY'])
 
     @unittest.skipUnless(constfunc.lin(), "Written for Linux only...")
     def test_consistent_with_DISPLAY_env(self):
         assert self.has == self.display_nonempty, \
                 "has_display(): {}, $DISPLAY: {}".format(
-                        self.has, env['DISPLAY'] if env.has_key('DISPLAY') \
+                        self.has, env['DISPLAY'] if ('DISPLAY' in env) \
                                 else "(unset)")
 
 if __name__ == "__main__":
