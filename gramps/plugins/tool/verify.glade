@@ -315,7 +315,7 @@
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
@@ -452,7 +452,6 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Maximum _age</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">oldage</property>
                       </object>
                       <packing>
@@ -466,7 +465,6 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Mi_nimum age to marry</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">yngmar</property>
                       </object>
                       <packing>
@@ -498,7 +496,6 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Ma_ximum age to marry</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">oldmar</property>
                       </object>
                       <packing>
@@ -530,7 +527,6 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Maximum number of _spouses for a person</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">wedder</property>
                       </object>
                       <packing>
@@ -579,7 +575,6 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Maximum number of consecutive years of _widowhood before next marriage</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">lngwdw</property>
                       </object>
                       <packing>
@@ -595,7 +590,6 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Maximum age for an _unmarried person</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">oldunm</property>
                       </object>
                       <packing>
@@ -690,7 +684,6 @@
                         <property name="ypad">2</property>
                         <property name="label" translatable="yes">Mi_nimum age to bear a child</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">yngmom</property>
                       </object>
                       <packing>
@@ -706,7 +699,6 @@
                         <property name="ypad">2</property>
                         <property name="label" translatable="yes">Ma_ximum age to bear a child</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">oldmom</property>
                       </object>
                       <packing>
@@ -724,7 +716,6 @@
                         <property name="ypad">2</property>
                         <property name="label" translatable="yes">Maximum number of chil_dren</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">mxchildmom</property>
                       </object>
                       <packing>
@@ -815,7 +806,6 @@
                         <property name="ypad">2</property>
                         <property name="label" translatable="yes">Mi_nimum age to father a child</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">yngdad</property>
                       </object>
                       <packing>
@@ -831,7 +821,6 @@
                         <property name="ypad">2</property>
                         <property name="label" translatable="yes">Ma_ximum age to father a child</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">olddad</property>
                       </object>
                       <packing>
@@ -849,7 +838,6 @@
                         <property name="ypad">2</property>
                         <property name="label" translatable="yes">Maximum number of chil_dren</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">mxchilddad</property>
                       </object>
                       <packing>
@@ -984,7 +972,6 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Maximum husband-wife age _difference</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">hwdif</property>
                       </object>
                       <packing>
@@ -998,7 +985,6 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Maximum number of years _between children</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">cspace</property>
                       </object>
                       <packing>
@@ -1014,7 +1000,6 @@
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Maximum _span of years for all children</property>
                         <property name="use_underline">True</property>
-                        <property name="wrap">True</property>
                         <property name="mnemonic_widget">cbspan</property>
                       </object>
                       <packing>
