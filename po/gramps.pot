@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-17 19:01+0100\n"
+"POT-Creation-Date: 2014-03-19 09:09+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -571,7 +571,7 @@ msgstr ""
 #: ../src/plugins/gramplet/PersonDetails.py:184
 #: ../src/plugins/gramplet/RelativeGramplet.py:123
 #: ../src/plugins/gramplet/RelativeGramplet.py:134
-#: ../src/plugins/graph/GVFamilyLines.py:159
+#: ../src/plugins/graph/GVFamilyLines.py:160
 #: ../src/plugins/graph/GVRelGraph.py:603
 #: ../src/plugins/lib/libnarrate.py:1994
 #: ../src/plugins/lib/maps/geography.py:845
@@ -12953,7 +12953,7 @@ msgstr ""
 
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:145
-#: ../src/plugins/graph/GVFamilyLines.py:148
+#: ../src/plugins/graph/GVFamilyLines.py:149
 #: ../src/plugins/textreport/Summary.py:103
 #: ../src/plugins/webreport/NarrativeWeb.py:1756
 #: ../src/plugins/webreport/NarrativeWeb.py:1806
@@ -12968,14 +12968,14 @@ msgstr ""
 
 #. -------------------------
 #: ../src/plugins/gramplet/StatsGramplet.py:151
-#: ../src/plugins/graph/GVFamilyLines.py:151
+#: ../src/plugins/graph/GVFamilyLines.py:152
 #: ../src/plugins/graph/GVRelGraph.py:595
 #: ../src/Filters/Rules/Person/_IsMale.py:46
 msgid "Males"
 msgstr ""
 
 #: ../src/plugins/gramplet/StatsGramplet.py:154
-#: ../src/plugins/graph/GVFamilyLines.py:155
+#: ../src/plugins/graph/GVFamilyLines.py:156
 #: ../src/plugins/graph/GVRelGraph.py:599
 #: ../src/Filters/Rules/Person/_IsFemale.py:46
 msgid "Females"
@@ -13337,94 +13337,94 @@ msgstr ""
 #. Constant options items
 #.
 #. ------------------------------------------------------------------------
-#: ../src/plugins/graph/GVFamilyLines.py:71
+#: ../src/plugins/graph/GVFamilyLines.py:72
 #: ../src/plugins/graph/GVHourGlass.py:56
 #: ../src/plugins/graph/GVRelGraph.py:69
 msgid "B&W outline"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:72
+#: ../src/plugins/graph/GVFamilyLines.py:73
 msgid "Coloured outline"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:73
+#: ../src/plugins/graph/GVFamilyLines.py:74
 msgid "Colour fill"
 msgstr ""
 
 #. --------------------------------
-#: ../src/plugins/graph/GVFamilyLines.py:111
+#: ../src/plugins/graph/GVFamilyLines.py:112
 msgid "People of Interest"
 msgstr ""
 
 #. --------------------------------
-#: ../src/plugins/graph/GVFamilyLines.py:114
+#: ../src/plugins/graph/GVFamilyLines.py:115
 msgid "People of interest"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:115
+#: ../src/plugins/graph/GVFamilyLines.py:116
 msgid ""
 "People of interest are used as a starting point when determining \"family "
 "lines\"."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:120
+#: ../src/plugins/graph/GVFamilyLines.py:121
 msgid "Follow parents to determine family lines"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:121
+#: ../src/plugins/graph/GVFamilyLines.py:122
 msgid ""
 "Parents and their ancestors will be considered when determining \"family "
 "lines\"."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:125
+#: ../src/plugins/graph/GVFamilyLines.py:126
 msgid "Follow children to determine \"family lines\""
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:127
+#: ../src/plugins/graph/GVFamilyLines.py:128
 msgid "Children will be considered when determining \"family lines\"."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:132
+#: ../src/plugins/graph/GVFamilyLines.py:133
 msgid "Try to remove extra people and families"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:133
+#: ../src/plugins/graph/GVFamilyLines.py:134
 msgid ""
 "People and families not directly related to people of interest will be "
 "removed when determining \"family lines\"."
 msgstr ""
 
 #. ----------------------------
-#: ../src/plugins/graph/GVFamilyLines.py:140
+#: ../src/plugins/graph/GVFamilyLines.py:141
 msgid "Family Colours"
 msgstr ""
 
 #. ----------------------------
-#: ../src/plugins/graph/GVFamilyLines.py:143
+#: ../src/plugins/graph/GVFamilyLines.py:144
 msgid "Family colours"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:144
+#: ../src/plugins/graph/GVFamilyLines.py:145
 msgid "Colours to use for various family lines."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:152
+#: ../src/plugins/graph/GVFamilyLines.py:153
 #: ../src/plugins/graph/GVRelGraph.py:596
 msgid "The colour to use to display men."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:156
+#: ../src/plugins/graph/GVFamilyLines.py:157
 #: ../src/plugins/graph/GVRelGraph.py:600
 msgid "The colour to use to display women."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:160
+#: ../src/plugins/graph/GVFamilyLines.py:161
 #: ../src/plugins/graph/GVRelGraph.py:605
 msgid "The colour to use when the gender is unknown."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:164
+#: ../src/plugins/graph/GVFamilyLines.py:165
 #: ../src/plugins/graph/GVRelGraph.py:609
 #: ../src/plugins/quickview/FilterByName.py:94
 #: ../src/plugins/textreport/TagReport.py:194
@@ -13438,71 +13438,71 @@ msgstr ""
 msgid "Families"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:165
+#: ../src/plugins/graph/GVFamilyLines.py:166
 #: ../src/plugins/graph/GVRelGraph.py:610
 msgid "The colour to use to display families."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:168
+#: ../src/plugins/graph/GVFamilyLines.py:169
 msgid "Limit the number of ancestors"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:170
+#: ../src/plugins/graph/GVFamilyLines.py:171
 msgid "Whether to limit the number of ancestors."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:176
+#: ../src/plugins/graph/GVFamilyLines.py:177
 msgid "The maximum number of ancestors to include."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:180
+#: ../src/plugins/graph/GVFamilyLines.py:181
 msgid "Limit the number of descendants"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:183
+#: ../src/plugins/graph/GVFamilyLines.py:184
 msgid "Whether to limit the number of descendants."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:189
+#: ../src/plugins/graph/GVFamilyLines.py:190
 msgid "The maximum number of descendants to include."
 msgstr ""
 
 #. --------------------
-#: ../src/plugins/graph/GVFamilyLines.py:194
+#: ../src/plugins/graph/GVFamilyLines.py:195
 msgid "Images"
 msgstr ""
 
 #. --------------------
-#: ../src/plugins/graph/GVFamilyLines.py:197
+#: ../src/plugins/graph/GVFamilyLines.py:198
 #: ../src/plugins/graph/GVRelGraph.py:569
 msgid "Include thumbnail images of people"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:200
+#: ../src/plugins/graph/GVFamilyLines.py:201
 msgid "Whether to include thumbnail images of people."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:205
+#: ../src/plugins/graph/GVFamilyLines.py:206
 msgid "Thumbnail location"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:206
+#: ../src/plugins/graph/GVFamilyLines.py:207
 #: ../src/plugins/graph/GVRelGraph.py:576
 msgid "Above the name"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:207
+#: ../src/plugins/graph/GVFamilyLines.py:208
 #: ../src/plugins/graph/GVRelGraph.py:577
 msgid "Beside the name"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:208
+#: ../src/plugins/graph/GVFamilyLines.py:209
 #: ../src/plugins/graph/GVRelGraph.py:579
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr ""
 
 #. ---------------------
-#: ../src/plugins/graph/GVFamilyLines.py:213
+#: ../src/plugins/graph/GVFamilyLines.py:214
 #: ../src/plugins/graph/GVHourGlass.py:259
 #: ../src/plugins/tool/SortEvents.py:84
 msgid "Options"
@@ -13510,13 +13510,13 @@ msgstr ""
 
 #. ---------------------
 #. ###############################
-#: ../src/plugins/graph/GVFamilyLines.py:216
+#: ../src/plugins/graph/GVFamilyLines.py:217
 #: ../src/plugins/graph/GVHourGlass.py:279
 #: ../src/plugins/graph/GVRelGraph.py:587
 msgid "Graph coloring"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:219
+#: ../src/plugins/graph/GVFamilyLines.py:220
 msgid ""
 "Males will be shown with blue, females with red, unless otherwise set above "
 "for filled. If the sex of an individual is unknown it will be shown with "
@@ -13524,77 +13524,79 @@ msgid ""
 msgstr ""
 
 #. see bug report #2180
-#: ../src/plugins/graph/GVFamilyLines.py:225
+#: ../src/plugins/graph/GVFamilyLines.py:226
 #: ../src/plugins/graph/GVHourGlass.py:288
 #: ../src/plugins/graph/GVRelGraph.py:620
 msgid "Use rounded corners"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:226
+#: ../src/plugins/graph/GVFamilyLines.py:227
 #: ../src/plugins/graph/GVHourGlass.py:290
 #: ../src/plugins/graph/GVRelGraph.py:622
 msgid "Use rounded corners to differentiate between women and men."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:230
+#: ../src/plugins/graph/GVFamilyLines.py:231
 msgid "Include dates"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:231
+#: ../src/plugins/graph/GVFamilyLines.py:232
 msgid "Whether to include dates for people and families."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:236
+#: ../src/plugins/graph/GVFamilyLines.py:237
 #: ../src/plugins/graph/GVRelGraph.py:528
 msgid "Limit dates to years only"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:237
+#: ../src/plugins/graph/GVFamilyLines.py:238
 #: ../src/plugins/graph/GVRelGraph.py:529
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:242
+#: ../src/plugins/graph/GVFamilyLines.py:243
 msgid "Include places"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:243
+#: ../src/plugins/graph/GVFamilyLines.py:244
 msgid "Whether to include placenames for people and families."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:248
+#: ../src/plugins/graph/GVFamilyLines.py:249
 msgid "Include the number of children"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:249
+#: ../src/plugins/graph/GVFamilyLines.py:250
 msgid ""
 "Whether to include the number of children for families with more than 1 "
 "child."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:254
+#: ../src/plugins/graph/GVFamilyLines.py:255
 msgid "Include private records"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:255
+#: ../src/plugins/graph/GVFamilyLines.py:256
 msgid ""
 "Whether to include names, dates, and families that are marked as private."
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:341
+#: ../src/plugins/graph/GVFamilyLines.py:342
 msgid "Empty report"
 msgstr ""
 
-#: ../src/plugins/graph/GVFamilyLines.py:342
+#: ../src/plugins/graph/GVFamilyLines.py:343
 msgid "You did not specify anybody"
 msgstr ""
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr ""
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:70
