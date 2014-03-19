@@ -35,6 +35,7 @@ Family Lines, a GraphViz-based plugin for Gramps.
 #
 #------------------------------------------------------------------------
 from gen.ggettext import gettext as _
+from gen.ggettext import ngettext
 from functools import partial
 
 #------------------------------------------------------------------------
@@ -915,10 +916,9 @@ class FamilyLinesReport(Report):
             childrenStr = None
             if self._incchildcount:
                 child_count = len(family.get_child_ref_list())
-#                if child_count == 1:
-#                    childrenStr = _('1 child')
-                if child_count > 1:
-                    childrenStr = _('%d children') % child_count
+                if child_count >= 1:
+                    childrenStr = ngettext(
+                        "%d child", "%d children", child_count) % child_count
 
             label = ''
             if weddingDate:
