@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-17 18:23+0100\n"
-"PO-Revision-Date: 2014-03-17 18:28+0100\n"
+"POT-Creation-Date: 2014-03-19 08:54+0100\n"
+"PO-Revision-Date: 2014-03-19 08:56+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -566,19 +566,19 @@ msgstr ""
 "    %s\n"
 "\n"
 
-#: ../gramps/cli/clidbman.py:505
+#: ../gramps/cli/clidbman.py:503
 #: ../gramps/gui/configure.py:1273
 msgid "Never"
 msgstr "Jamais"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/cli/clidbman.py:525
+#: ../gramps/cli/clidbman.py:523
 #, python-format
 msgid "Locked by %s"
 msgstr "Verrouillé par %s"
 
 #. not all families have a spouse.
-#: ../gramps/cli/clidbman.py:528
+#: ../gramps/cli/clidbman.py:526
 #: ../gramps/gen/lib/attrtype.py:64
 #: ../gramps/gen/lib/childreftype.py:80
 #: ../gramps/gen/lib/eventroletype.py:59
@@ -2607,7 +2607,7 @@ msgstr "Type :"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:50
 #: ../gramps/gui/glade/mergemedia.glade.h:6
-#: ../gramps/gui/viewmanager.py:1231
+#: ../gramps/gui/viewmanager.py:1229
 msgid "Path:"
 msgstr "Chemin :"
 
@@ -5981,40 +5981,40 @@ msgstr "Taille de la note"
 msgid "The size of note text, in points."
 msgstr "La taille du texte de la note, en points."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1029
+#: ../gramps/gen/plug/docgen/graphdoc.py:1025
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1035
+#: ../gramps/gen/plug/docgen/graphdoc.py:1031
 msgid "PDF (Graphviz)"
 msgstr "PDF (GraphViz)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1041
+#: ../gramps/gen/plug/docgen/graphdoc.py:1037
 #: ../gramps/plugins/docgen/docgen.gpr.py:158
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1047
+#: ../gramps/gen/plug/docgen/graphdoc.py:1043
 msgid "Structured Vector Graphics (SVG)"
 msgstr "SVG (Scalable Vector Graphics)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1053
+#: ../gramps/gen/plug/docgen/graphdoc.py:1049
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "SVG compressé (SVGZ)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1059
+#: ../gramps/gen/plug/docgen/graphdoc.py:1055
 msgid "JPEG image"
 msgstr "Image JPEG"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1065
+#: ../gramps/gen/plug/docgen/graphdoc.py:1061
 msgid "GIF image"
 msgstr "Image GIF"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1071
+#: ../gramps/gen/plug/docgen/graphdoc.py:1067
 msgid "PNG image"
 msgstr "Image PNG"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1077
+#: ../gramps/gen/plug/docgen/graphdoc.py:1073
 msgid "Graphviz File"
 msgstr "Fichier GraphViz"
 
@@ -14980,12 +14980,12 @@ msgid "F_ull Screen"
 msgstr "_Plein Écran"
 
 #: ../gramps/gui/viewmanager.py:579
-#: ../gramps/gui/viewmanager.py:1169
+#: ../gramps/gui/viewmanager.py:1167
 msgid "_Undo"
 msgstr "Ann_uler"
 
 #: ../gramps/gui/viewmanager.py:584
-#: ../gramps/gui/viewmanager.py:1186
+#: ../gramps/gui/viewmanager.py:1184
 msgid "_Redo"
 msgstr "_Rétablir"
 
@@ -15052,27 +15052,27 @@ msgstr "Échec au chargement de la vue. Regardez la sortie d'erreur."
 msgid "Import Statistics"
 msgstr "Statistiques d'importation"
 
-#: ../gramps/gui/viewmanager.py:1138
+#: ../gramps/gui/viewmanager.py:1136
 msgid "Read Only"
 msgstr "Lecture seule"
 
-#: ../gramps/gui/viewmanager.py:1221
+#: ../gramps/gui/viewmanager.py:1219
 msgid "Gramps XML Backup"
 msgstr "Sauvegarde Gramps XML"
 
-#: ../gramps/gui/viewmanager.py:1251
+#: ../gramps/gui/viewmanager.py:1249
 #: ../gramps/plugins/importer/importgedcom.glade.h:11
 msgid "File:"
 msgstr "Fichier :"
 
-#: ../gramps/gui/viewmanager.py:1283
+#: ../gramps/gui/viewmanager.py:1281
 msgid "Media:"
 msgstr "Media :"
 
 #. #################
 #. What to include
 #. #########################
-#: ../gramps/gui/viewmanager.py:1288
+#: ../gramps/gui/viewmanager.py:1286
 #: ../gramps/plugins/drawreport/ancestortree.py:1021
 #: ../gramps/plugins/drawreport/descendtree.py:1620
 #: ../gramps/plugins/textreport/detancestralreport.py:782
@@ -15083,57 +15083,57 @@ msgstr "Media :"
 msgid "Include"
 msgstr "Inclure"
 
-#: ../gramps/gui/viewmanager.py:1289
+#: ../gramps/gui/viewmanager.py:1287
 #: ../gramps/plugins/gramplet/statsgramplet.py:201
 msgid "Megabyte|MB"
 msgstr "Mo"
 
-#: ../gramps/gui/viewmanager.py:1290
+#: ../gramps/gui/viewmanager.py:1288
 #: ../gramps/plugins/webreport/narrativeweb.py:8193
 msgid "Exclude"
 msgstr "Exclure"
 
-#: ../gramps/gui/viewmanager.py:1308
+#: ../gramps/gui/viewmanager.py:1306
 msgid "Backup file already exists! Overwrite?"
 msgstr "Le fichier de sauvegarde existe déjà ! L'écraser ?"
 
-#: ../gramps/gui/viewmanager.py:1309
+#: ../gramps/gui/viewmanager.py:1307
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Le fichier « %s » existe."
 
-#: ../gramps/gui/viewmanager.py:1310
+#: ../gramps/gui/viewmanager.py:1308
 msgid "Proceed and overwrite"
 msgstr "Procéder et écraser"
 
-#: ../gramps/gui/viewmanager.py:1311
+#: ../gramps/gui/viewmanager.py:1309
 msgid "Cancel the backup"
 msgstr "Annuler la sauvegarde"
 
-#: ../gramps/gui/viewmanager.py:1318
+#: ../gramps/gui/viewmanager.py:1316
 msgid "Making backup..."
 msgstr "Création de la sauvegarde..."
 
-#: ../gramps/gui/viewmanager.py:1335
+#: ../gramps/gui/viewmanager.py:1333
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Sauvegarde sous « %s »"
 
-#: ../gramps/gui/viewmanager.py:1338
+#: ../gramps/gui/viewmanager.py:1336
 msgid "Backup aborted"
 msgstr "Sauvegarde échouée"
 
-#: ../gramps/gui/viewmanager.py:1347
+#: ../gramps/gui/viewmanager.py:1345
 msgid "Select backup directory"
 msgstr "Sélection du répertoire de sauvegarde"
 
 # Substantif (GNOME fr)
-#: ../gramps/gui/viewmanager.py:1607
+#: ../gramps/gui/viewmanager.py:1605
 msgid "Failed Loading Plugin"
 msgstr "Échec du chargement du greffon"
 
 # trunk
-#: ../gramps/gui/viewmanager.py:1608
+#: ../gramps/gui/viewmanager.py:1606
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -15152,12 +15152,12 @@ msgstr ""
 "\n"
 "Si vous ne souhaitez plus que Gramps essaye de charger ce greffon, alors vous pouvez le cacher en utilisant le gestionnaire de greffons dans le menu Aide."
 
-#: ../gramps/gui/viewmanager.py:1660
+#: ../gramps/gui/viewmanager.py:1658
 msgid "Failed Loading View"
 msgstr "Échec du chargement de la vue"
 
 # trunk
-#: ../gramps/gui/viewmanager.py:1661
+#: ../gramps/gui/viewmanager.py:1659
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -19591,8 +19591,10 @@ msgstr "Vous avez spécifié personne"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
-msgid "%d children"
-msgstr "%d enfants"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d enfant"
+msgstr[1] "%d enfants"
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
 msgid "The Center person for the graph"

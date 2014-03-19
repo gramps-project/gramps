@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-17 18:23+0100\n"
+"POT-Creation-Date: 2014-03-19 08:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -424,18 +424,18 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:505 ../gramps/gui/configure.py:1273
+#: ../gramps/cli/clidbman.py:503 ../gramps/gui/configure.py:1273
 msgid "Never"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/cli/clidbman.py:525
+#: ../gramps/cli/clidbman.py:523
 #, python-format
 msgid "Locked by %s"
 msgstr ""
 
 #. not all families have a spouse.
-#: ../gramps/cli/clidbman.py:528 ../gramps/gen/lib/attrtype.py:64
+#: ../gramps/cli/clidbman.py:526 ../gramps/gen/lib/attrtype.py:64
 #: ../gramps/gen/lib/childreftype.py:80 ../gramps/gen/lib/eventroletype.py:59
 #: ../gramps/gen/lib/eventtype.py:167 ../gramps/gen/lib/familyreltype.py:53
 #: ../gramps/gen/lib/grampstype.py:44 ../gramps/gen/lib/nameorigintype.py:81
@@ -2274,7 +2274,7 @@ msgid "Type:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:50
-#: ../gramps/gui/glade/mergemedia.glade.h:6 ../gramps/gui/viewmanager.py:1231
+#: ../gramps/gui/glade/mergemedia.glade.h:6 ../gramps/gui/viewmanager.py:1229
 msgid "Path:"
 msgstr ""
 
@@ -5474,40 +5474,40 @@ msgstr ""
 msgid "The size of note text, in points."
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1029
+#: ../gramps/gen/plug/docgen/graphdoc.py:1025
 msgid "PDF (Ghostscript)"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1035
+#: ../gramps/gen/plug/docgen/graphdoc.py:1031
 msgid "PDF (Graphviz)"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1041
+#: ../gramps/gen/plug/docgen/graphdoc.py:1037
 #: ../gramps/plugins/docgen/docgen.gpr.py:158
 msgid "PostScript"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1047
+#: ../gramps/gen/plug/docgen/graphdoc.py:1043
 msgid "Structured Vector Graphics (SVG)"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1053
+#: ../gramps/gen/plug/docgen/graphdoc.py:1049
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1059
+#: ../gramps/gen/plug/docgen/graphdoc.py:1055
 msgid "JPEG image"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1065
+#: ../gramps/gen/plug/docgen/graphdoc.py:1061
 msgid "GIF image"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1071
+#: ../gramps/gen/plug/docgen/graphdoc.py:1067
 msgid "PNG image"
 msgstr ""
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1077
+#: ../gramps/gen/plug/docgen/graphdoc.py:1073
 msgid "Graphviz File"
 msgstr ""
 
@@ -13920,11 +13920,11 @@ msgstr ""
 msgid "F_ull Screen"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:579 ../gramps/gui/viewmanager.py:1169
+#: ../gramps/gui/viewmanager.py:579 ../gramps/gui/viewmanager.py:1167
 msgid "_Undo"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:584 ../gramps/gui/viewmanager.py:1186
+#: ../gramps/gui/viewmanager.py:584 ../gramps/gui/viewmanager.py:1184
 msgid "_Redo"
 msgstr ""
 
@@ -13991,27 +13991,27 @@ msgstr ""
 msgid "Import Statistics"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1138
+#: ../gramps/gui/viewmanager.py:1136
 msgid "Read Only"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1221
+#: ../gramps/gui/viewmanager.py:1219
 msgid "Gramps XML Backup"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1251
+#: ../gramps/gui/viewmanager.py:1249
 #: ../gramps/plugins/importer/importgedcom.glade.h:11
 msgid "File:"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1283
+#: ../gramps/gui/viewmanager.py:1281
 msgid "Media:"
 msgstr ""
 
 #. #################
 #. What to include
 #. #########################
-#: ../gramps/gui/viewmanager.py:1288
+#: ../gramps/gui/viewmanager.py:1286
 #: ../gramps/plugins/drawreport/ancestortree.py:1021
 #: ../gramps/plugins/drawreport/descendtree.py:1620
 #: ../gramps/plugins/textreport/detancestralreport.py:782
@@ -14022,55 +14022,55 @@ msgstr ""
 msgid "Include"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1289
+#: ../gramps/gui/viewmanager.py:1287
 #: ../gramps/plugins/gramplet/statsgramplet.py:201
 msgid "Megabyte|MB"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1290
+#: ../gramps/gui/viewmanager.py:1288
 #: ../gramps/plugins/webreport/narrativeweb.py:8193
 msgid "Exclude"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1308
+#: ../gramps/gui/viewmanager.py:1306
 msgid "Backup file already exists! Overwrite?"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1309
+#: ../gramps/gui/viewmanager.py:1307
 #, python-format
 msgid "The file '%s' exists."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1310
+#: ../gramps/gui/viewmanager.py:1308
 msgid "Proceed and overwrite"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1311
+#: ../gramps/gui/viewmanager.py:1309
 msgid "Cancel the backup"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1318
+#: ../gramps/gui/viewmanager.py:1316
 msgid "Making backup..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1335
+#: ../gramps/gui/viewmanager.py:1333
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1338
+#: ../gramps/gui/viewmanager.py:1336
 msgid "Backup aborted"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1347
+#: ../gramps/gui/viewmanager.py:1345
 msgid "Select backup directory"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1607
+#: ../gramps/gui/viewmanager.py:1605
 msgid "Failed Loading Plugin"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1608
+#: ../gramps/gui/viewmanager.py:1606
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -14085,11 +14085,11 @@ msgid ""
 "by using the Plugin Manager on the Help menu."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1660
+#: ../gramps/gui/viewmanager.py:1658
 msgid "Failed Loading View"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1661
+#: ../gramps/gui/viewmanager.py:1659
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -18390,8 +18390,10 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
-msgid "%d children"
-msgstr ""
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] ""
+msgstr[1] ""
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
 msgid "The Center person for the graph"
