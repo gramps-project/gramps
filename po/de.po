@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-18 20:29+0100\n"
-"PO-Revision-Date: 2014-03-18 21:16+0100\n"
+"POT-Creation-Date: 2014-03-20 19:56+0100\n"
+"PO-Revision-Date: 2014-03-20 20:00+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -17428,8 +17428,10 @@ msgstr "Du hast niemanden angegeben"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
-msgid "%d children"
-msgstr "%d Kinder"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d Kind"
+msgstr[1] "%d Kinder"
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
 msgid "The Center person for the graph"
@@ -17643,8 +17645,8 @@ msgstr "Daten aus vKarte-Dateien importieren"
 #: ../gramps/plugins/importer/importgedcom.py:143
 #: ../gramps/plugins/importer/importgeneweb.py:94
 #: ../gramps/plugins/importer/importgeneweb.py:100
-#: ../gramps/plugins/importer/importvcard.py:69
-#: ../gramps/plugins/importer/importvcard.py:72
+#: ../gramps/plugins/importer/importvcard.py:67
+#: ../gramps/plugins/importer/importvcard.py:70
 #, python-format
 msgid "%s could not be opened\n"
 msgstr "%s konnte nicht geöffnet werden\n"
@@ -17816,7 +17818,7 @@ msgstr "CSV Import"
 
 #: ../gramps/plugins/importer/importcsv.py:340
 #: ../gramps/plugins/importer/importgeneweb.py:193
-#: ../gramps/plugins/importer/importvcard.py:232
+#: ../gramps/plugins/importer/importvcard.py:230
 #, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
@@ -17992,23 +17994,23 @@ msgid "cannot find mother for I%(person)s (mother=%(mother)d)"
 msgstr ""
 "Die Mutter für I%(person)s (mother=%(mother)d) kann nicht gefunden werden."
 
-#: ../gramps/plugins/importer/importvcard.py:227
+#: ../gramps/plugins/importer/importvcard.py:225
 msgid "vCard import"
 msgstr "vKarte importieren"
 
-#: ../gramps/plugins/importer/importvcard.py:314
+#: ../gramps/plugins/importer/importvcard.py:312
 #, python-format
 msgid "Import of VCards version %s is not supported by Gramps."
 msgstr "Der Import von VCards Version %s wird von Gramps nicht unterstützt."
 
-#: ../gramps/plugins/importer/importvcard.py:482
+#: ../gramps/plugins/importer/importvcard.py:480
 #, python-brace-format
 msgid "Invalid date {date} in BDAY {vcard_snippet}, preserving date as text."
 msgstr ""
 "Ungültiges Datum {date} in BDAY {vcard_snippet}, Datum wird als Text "
 "gespeichert."
 
-#: ../gramps/plugins/importer/importvcard.py:489
+#: ../gramps/plugins/importer/importvcard.py:488
 #, python-brace-format
 msgid ""
 "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date as "
@@ -29776,7 +29778,7 @@ msgstr "_Rolle:"
 #: ../gramps/gui/glade/editreporef.glade:457
 #: ../gramps/gui/glade/editsourceref.glade:301
 #: ../gramps/gui/glade/editsourceref.glade:607
-#: ../gramps/plugins/tool/verify.glade:668
+#: ../gramps/plugins/tool/verify.glade:662
 msgid "<b>General</b>"
 msgstr "<b>Allgemeines</b>"
 
@@ -31615,78 +31617,78 @@ msgstr "SoundEx-Code:"
 msgid "Maximum _age"
 msgstr "Maximales _Alter"
 
-#: ../gramps/plugins/tool/verify.glade:467
+#: ../gramps/plugins/tool/verify.glade:466
 msgid "Mi_nimum age to marry"
 msgstr "Mi_nimales Alter bei Heirat"
 
-#: ../gramps/plugins/tool/verify.glade:499
+#: ../gramps/plugins/tool/verify.glade:497
 msgid "Ma_ximum age to marry"
 msgstr "Ma_ximales Alter bei Hochzeit"
 
-#: ../gramps/plugins/tool/verify.glade:531
+#: ../gramps/plugins/tool/verify.glade:528
 msgid "Maximum number of _spouses for a person"
 msgstr "Maximale Anzahl von (Ehe-)Partnern pro Per_son"
 
-#: ../gramps/plugins/tool/verify.glade:580
+#: ../gramps/plugins/tool/verify.glade:576
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
 msgstr ""
 "Maximale Anzahl aufeinander folgender Jahre der Witwenschaft, vor der "
 "nächsten Hochzeit"
 
-#: ../gramps/plugins/tool/verify.glade:596
+#: ../gramps/plugins/tool/verify.glade:591
 msgid "Maximum age for an _unmarried person"
 msgstr "Ma_ximales Alter für eine unverheiratete Person"
 
-#: ../gramps/plugins/tool/verify.glade:625
+#: ../gramps/plugins/tool/verify.glade:619
 msgid "_Estimate missing or inexact dates"
 msgstr "Fehlenden oder ungenaue Daten _schätzen"
 
-#: ../gramps/plugins/tool/verify.glade:644
+#: ../gramps/plugins/tool/verify.glade:638
 msgid "_Identify invalid dates"
 msgstr "Ungültige Daten erkennen"
 
-#: ../gramps/plugins/tool/verify.glade:691
+#: ../gramps/plugins/tool/verify.glade:685
 msgid "Mi_nimum age to bear a child"
 msgstr "Mi_nimales Alter bei der Geburt eines Kindes"
 
-#: ../gramps/plugins/tool/verify.glade:707
+#: ../gramps/plugins/tool/verify.glade:700
 msgid "Ma_ximum age to bear a child"
 msgstr "Ma_ximales Alter bei der Geburt eines Kindes"
 
-#: ../gramps/plugins/tool/verify.glade:725
-#: ../gramps/plugins/tool/verify.glade:850
+#: ../gramps/plugins/tool/verify.glade:717
+#: ../gramps/plugins/tool/verify.glade:839
 msgid "Maximum number of chil_dren"
 msgstr "Maximale Anza_hl an Kindern"
 
-#: ../gramps/plugins/tool/verify.glade:792
+#: ../gramps/plugins/tool/verify.glade:783
 msgid "<b>Women</b>"
 msgstr "<b>Frauen</b>"
 
-#: ../gramps/plugins/tool/verify.glade:816
+#: ../gramps/plugins/tool/verify.glade:807
 msgid "Mi_nimum age to father a child"
 msgstr "Mi_nimales Alter bei der Zeugung eines Kindes"
 
-#: ../gramps/plugins/tool/verify.glade:832
+#: ../gramps/plugins/tool/verify.glade:822
 msgid "Ma_ximum age to father a child"
 msgstr "Ma_ximales Alter bei der Zeugung eines Kindes"
 
-#: ../gramps/plugins/tool/verify.glade:917
+#: ../gramps/plugins/tool/verify.glade:905
 msgid "<b>Men</b>"
 msgstr "<b>Männer</b>"
 
-#: ../gramps/plugins/tool/verify.glade:985
+#: ../gramps/plugins/tool/verify.glade:973
 msgid "Maximum husband-wife age _difference"
 msgstr "Maximaler Altersabstan_d in einer Partnerschaft"
 
-#: ../gramps/plugins/tool/verify.glade:999
+#: ../gramps/plugins/tool/verify.glade:986
 msgid "Maximum number of years _between children"
 msgstr "Maximaler Altersa_bstand zwischen zwei Kindern"
 
-#: ../gramps/plugins/tool/verify.glade:1015
+#: ../gramps/plugins/tool/verify.glade:1001
 msgid "Maximum _span of years for all children"
 msgstr "Maximaler Zeitra_um für die Geburt aller Kinder"
 
-#: ../gramps/plugins/tool/verify.glade:1036
+#: ../gramps/plugins/tool/verify.glade:1021
 msgid "<b>Families</b>"
 msgstr "<b>Familien</b>"
 
