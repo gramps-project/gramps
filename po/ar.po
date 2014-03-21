@@ -1,6 +1,6 @@
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # mbnoimi, 2013.
 # Muhammad Bashir Al-Noimi <mbnoimi@gmail.com>, 2013.
 # Munzir Taha (منذر طه) <munzirtaha@gmail.com>, 2014.
@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps-4.0.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-17 18:23+0100\n"
-"PO-Revision-Date: 2014-03-17 07:36+0300\n"
+"POT-Creation-Date: 2014-03-19 08:54+0100\n"
+"PO-Revision-Date: 2014-03-21 07:27+0300\n"
 "Last-Translator: Munzir Taha (منذر طه) <munzirtaha@gmail.com>\n"
 "Language-Team: Arabic <>\n"
 "Language: en_US\n"
@@ -17,8 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: Arabic\n"
-"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : (n%100>=3 "
-"&& n%100<=10) ? 3 : n%100>=11 ? 4 : 5);\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Language: ar\n"
 "X-Source-Language: C\n"
 "X-Generator: Lokalize 1.5\n"
@@ -534,18 +533,18 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:505 ../gramps/gui/configure.py:1273
+#: ../gramps/cli/clidbman.py:503 ../gramps/gui/configure.py:1273
 msgid "Never"
 msgstr "أبداً"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/cli/clidbman.py:525
+#: ../gramps/cli/clidbman.py:523
 #, python-format
 msgid "Locked by %s"
 msgstr "مُقفل بواسطة %s"
 
 #. not all families have a spouse.
-#: ../gramps/cli/clidbman.py:528 ../gramps/gen/lib/attrtype.py:64
+#: ../gramps/cli/clidbman.py:526 ../gramps/gen/lib/attrtype.py:64
 #: ../gramps/gen/lib/childreftype.py:80 ../gramps/gen/lib/eventroletype.py:59
 #: ../gramps/gen/lib/eventtype.py:167 ../gramps/gen/lib/familyreltype.py:53
 #: ../gramps/gen/lib/grampstype.py:44 ../gramps/gen/lib/nameorigintype.py:81
@@ -602,7 +601,7 @@ msgstr "خطأ: %s"
 #: ../gramps/cli/grampscli.py:103 ../gramps/cli/user.py:189
 #: ../gramps/gui/dialog.py:224
 msgid "Low level database corruption detected"
-msgstr "تم العثور على فشل منخفض المستوى بقاعدة البيانات"
+msgstr "عُثِرَ على فشل منخفض المستوى بقاعدة البيانات"
 
 #: ../gramps/cli/grampscli.py:105 ../gramps/cli/user.py:190
 #: ../gramps/gui/dialog.py:225
@@ -611,8 +610,9 @@ msgid ""
 "be repaired from the Family Tree Manager. Select the database and click on "
 "the Repair button"
 msgstr ""
-"عثر غرمبز على مشكلة بقاعدة بيانات بيركلي. بإمكان حلّها بالنقر على زر إصلاح "
-"الموجود ضمن إدارة أشجار العائلة"
+"عثر البرنامج على مشكلة بقاعدة بيانات بيركلي. بالإمكان حلّها بالنقر على زر "
+"إصلاح "
+"الموجود ضمن إدارة أشجار العائلة. اختر قاعدة البيانات واضغط على زر إصلاح"
 
 #: ../gramps/cli/grampscli.py:149 ../gramps/gui/dbloader.py:297
 msgid "Read only database"
@@ -813,7 +813,7 @@ msgstr "فشل بكتابة التقرير."
 
 #: ../gramps/gen/config.py:288
 msgid "Imported %Y/%m/%d %H:%M:%S"
-msgstr ""
+msgstr "تم الاستيراد في %Y/%m/%d %H:%M:%S"
 
 #: ../gramps/gen/config.py:297
 msgid "Missing Given Name"
@@ -1565,7 +1565,7 @@ msgstr "بدون وصف"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:47
 msgid "Every citation"
-msgstr "كل الاستشهاد"
+msgstr "كل استشهاد"
 
 #: ../gramps/gen/filters/rules/citation/_allcitations.py:48
 msgid "Matches every citation in the database"
@@ -2290,14 +2290,12 @@ msgid "Matches families with the particular tag"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:47
-#, fuzzy
 msgid "Families with twins"
-msgstr "استشهادات العائلة"
+msgstr "العائلات ذات التوائم"
 
 #: ../gramps/gen/filters/rules/family/_hastwins.py:48
-#, fuzzy
 msgid "Matches families with twins"
-msgstr "العثور على الأشخاص الذين أسماء عائلاتهم مفقودة"
+msgstr "العثور على العائلات التي لها توائم"
 
 #: ../gramps/gen/filters/rules/family/_isbookmarked.py:46
 #, fuzzy
@@ -2463,7 +2461,7 @@ msgid "Type:"
 msgstr "نوع:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:50
-#: ../gramps/gui/glade/mergemedia.glade.h:6 ../gramps/gui/viewmanager.py:1231
+#: ../gramps/gui/glade/mergemedia.glade.h:6 ../gramps/gui/viewmanager.py:1229
 msgid "Path:"
 msgstr "مسار:"
 
@@ -3114,7 +3112,6 @@ msgid "Matches people who have children"
 msgstr "العثور على الأشخاص الذين لديهم أبناء"
 
 #: ../gramps/gen/filters/rules/person/_incompletenames.py:46
-#, fuzzy
 msgid "People with incomplete names"
 msgstr "أشخاص بأسماء غير مكتملة"
 
@@ -4197,12 +4194,7 @@ msgstr "حوالي أكثر من"
 #, python-format
 msgid "%d year"
 msgid_plural "%d years"
-msgstr[0] "%d سنة"
-msgstr[1] "%d سنة"
-msgstr[2] "%d سنتان"
-msgstr[3] "%d سنوات"
-msgstr[4] "%d سنة"
-msgstr[5] "%d سنة"
+msgstr[0] "%d من السنوات"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/date.py:429 ../gramps/gen/lib/date.py:437
@@ -4219,27 +4211,17 @@ msgstr "، "
 #, python-format
 msgid "%d month"
 msgid_plural "%d months"
-msgstr[0] "%d شهر"
-msgstr[1] "%d شهر"
-msgstr[2] "%d شهران"
-msgstr[3] "%d أشهر"
-msgstr[4] "%d شهر"
-msgstr[5] "%d شهر"
+msgstr[0] "%d من الأشهر"
 
 #: ../gramps/gen/lib/date.py:438
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] "%d يوم"
-msgstr[1] "%d يوم"
-msgstr[2] "%d يومان"
-msgstr[3] "%d أيام"
-msgstr[4] "%d يوم"
-msgstr[5] "%d يوم"
+msgstr[0] "%d من الأيام"
 
 #: ../gramps/gen/lib/date.py:443
 msgid "0 days"
-msgstr "0 يوم"
+msgstr "0 من الأيام"
 
 #: ../gramps/gen/lib/date.py:591
 msgid "calendar|Gregorian"
@@ -4894,22 +4876,22 @@ msgstr "قائمة مهام"
 #: ../gramps/gen/lib/name.py:443 ../gramps/gen/lib/name.py:457
 #, python-format
 msgid "%s, %s %s"
-msgstr ""
+msgstr "%s، %s %s"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:446 ../gramps/gen/lib/name.py:460
 #: ../gramps/gen/plug/report/utils.py:236
 #: ../gramps/plugins/textreport/indivcomplete.py:166
 #: ../gramps/plugins/textreport/indivcomplete.py:171
-#, fuzzy, python-format
+#, python-format
 msgid "%s, %s"
-msgstr "%s، ..."
+msgstr "%s، %s"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:473
 #, python-format
 msgid "%s %s, %s"
-msgstr ""
+msgstr "%s %s، %s"
 
 # شك
 #: ../gramps/gen/lib/nameorigintype.py:84
@@ -5784,40 +5766,40 @@ msgstr "حجم الملاحظة"
 msgid "The size of note text, in points."
 msgstr "حجم نص الملاحظة، بالنقاط."
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1029
+#: ../gramps/gen/plug/docgen/graphdoc.py:1025
 msgid "PDF (Ghostscript)"
 msgstr "PDF (Ghostscript)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1035
+#: ../gramps/gen/plug/docgen/graphdoc.py:1031
 msgid "PDF (Graphviz)"
 msgstr "PDF (Graphviz)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1041
+#: ../gramps/gen/plug/docgen/graphdoc.py:1037
 #: ../gramps/plugins/docgen/docgen.gpr.py:158
 msgid "PostScript"
 msgstr "PostScript"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1047
+#: ../gramps/gen/plug/docgen/graphdoc.py:1043
 msgid "Structured Vector Graphics (SVG)"
 msgstr "رسوم متجهة قابلة للتمديد (SVG)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1053
+#: ../gramps/gen/plug/docgen/graphdoc.py:1049
 msgid "Compressed Structured Vector Graphs (SVGZ)"
 msgstr "رسوم متجهة مضغوطة قابلة للتمديد (SVGZ)"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1059
+#: ../gramps/gen/plug/docgen/graphdoc.py:1055
 msgid "JPEG image"
 msgstr "صورة JPEG"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1065
+#: ../gramps/gen/plug/docgen/graphdoc.py:1061
 msgid "GIF image"
 msgstr "صورة GIF"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1071
+#: ../gramps/gen/plug/docgen/graphdoc.py:1067
 msgid "PNG image"
 msgstr "صورة PNG"
 
-#: ../gramps/gen/plug/docgen/graphdoc.py:1077
+#: ../gramps/gen/plug/docgen/graphdoc.py:1073
 msgid "Graphviz File"
 msgstr "ملف Graphviz"
 
@@ -6042,9 +6024,9 @@ msgid "'%s' is NOT for this version of Gramps."
 msgstr "'%s' ليس لهذا الإصدار من غرمبز"
 
 #: ../gramps/gen/plug/utils.py:353
-#, fuzzy, python-format
+#, python-format
 msgid "It is for version %(v1)d.%(v2)d"
-msgstr "مخصّص للإصدار %d.%d."
+msgstr "مخصّص للإصدار %(v1)d.%(v2)d"
 
 #: ../gramps/gen/plug/utils.py:363
 #, python-format
@@ -6098,7 +6080,7 @@ msgstr "خاص"
 #: ../gramps/gen/relationship.py:809
 #: ../gramps/plugins/view/pedigreeview.py:1503
 msgid "Relationship loop detected"
-msgstr "تم العثور على حلقة قرابة"
+msgstr "عُثِر على حلقة قرابة"
 
 #: ../gramps/gen/relationship.py:866
 #, fuzzy, python-format
@@ -6111,7 +6093,7 @@ msgstr ""
 
 #: ../gramps/gen/relationship.py:938
 msgid "Relationship loop detected:"
-msgstr "تم العثور على حلقة قرابة:"
+msgstr "عُثِر على حلقة قرابة:"
 
 # شك
 #: ../gramps/gen/relationship.py:939
@@ -6861,9 +6843,9 @@ msgstr "مجهول، تم إنشاؤه لاستبدال كائن ملاحظة م
 
 #. primitive static variable
 #: ../gramps/gen/utils/unknown.py:151
-#, fuzzy, python-format
+#, python-format
 msgid "Unknown, was missing %(time)s (%(count)d)"
-msgstr "مجهول, يفتقد %s (%d)"
+msgstr "مجهول، مفقود %(time)s (%(count)d)"
 
 #: ../gramps/gen/utils/unknown.py:170
 #, python-format
@@ -7623,17 +7605,16 @@ msgid "Date format"
 msgstr "صيغة التاريخ"
 
 #: ../gramps/gui/configure.py:1008
-#, fuzzy
 msgid "Years"
-msgstr "_سنة"
+msgstr "سنوات"
 
 #: ../gramps/gui/configure.py:1009
 msgid "Years, Months"
-msgstr ""
+msgstr "سنوات، أشهر"
 
 #: ../gramps/gui/configure.py:1010
 msgid "Years, Months, Days"
-msgstr ""
+msgstr "سنوات، أشهر، أيام"
 
 #: ../gramps/gui/configure.py:1022
 msgid "Age display precision (requires restart)"
@@ -8250,7 +8231,7 @@ msgstr ""
 
 #: ../gramps/gui/dialog.py:209
 msgid "Error detected in database"
-msgstr "تم العثور على خطأ بقاعدة البيانات"
+msgstr "عُثِرَ على على خطأ بقاعدة البيانات"
 
 #: ../gramps/gui/dialog.py:210
 msgid ""
@@ -8264,7 +8245,7 @@ msgstr ""
 "عثر غرمبز على خطأ بقاعدة البيانات. عادة يمكن إصلاح هذه المشكلة بواسطة أداة "
 "\"فحص و إصلاح قاعدة البيانات\".\n"
 "\n"
-"ان استمرت هذه المشكلة بعد تشغيل أداة الإصلاح بإمكانك الابلاغ عنها من خلال "
+"إن استمرت هذه المشكلة بعد تشغيل أداة الإصلاح بإمكانك الإبلاغ عنها من خلال "
 "http://bugs.gramps-project.org\n"
 "\n"
 
@@ -9980,7 +9961,7 @@ msgstr "خط الطول غير صالح (مثال: 18°9'"
 
 #: ../gramps/gui/editors/editplace.py:229
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
-msgstr "48.21\"E, -18.2412 او -18:9:48.21)"
+msgstr "48.21\"E، -18.2412 او -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:232
 #: ../gramps/plugins/lib/maps/geography.py:802
@@ -13208,7 +13189,7 @@ msgstr "معرّف العائلة"
 
 #: ../gramps/gui/merge/mergeperson.py:226
 msgid "No parents found"
-msgstr "لم يتم العثور على أبوين"
+msgstr "لم يُعْثَر على أبوين"
 
 #. Go over spouses and build their menu
 #: ../gramps/gui/merge/mergeperson.py:228
@@ -13230,7 +13211,7 @@ msgstr "زوج"
 
 #: ../gramps/gui/merge/mergeperson.py:252
 msgid "No spouses or children found"
-msgstr "لم يتم العثور على أزواج أو أبناء"
+msgstr "لم يُعْثَر على أزواج أو أبناء"
 
 #: ../gramps/gui/merge/mergeperson.py:256
 #: ../gramps/plugins/textreport/indivcomplete.py:345
@@ -13541,12 +13522,7 @@ msgstr "إنتهاء تحميل و تنصيب الإضافات"
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
-msgstr[0] "تم تنصيب %d إضافة."
-msgstr[1] "تم تنصيب %d إضافة."
-msgstr[2] "تم تنصيب %d إضافة."
-msgstr[3] "تم تنصيب %d إضافة."
-msgstr[4] "تم تنصيب %d إضافة."
-msgstr[5] "تم تنصيب %d إضافة."
+msgstr[0] "تم تنصيب %d من الإضافات."
 
 #: ../gramps/gui/plug/_windows.py:1204
 msgid "You need to restart Gramps to see new views."
@@ -13718,12 +13694,7 @@ msgstr "شجرة عائلة لم يتم ترشيحها:"
 #, python-format
 msgid "%d Person"
 msgid_plural "%d People"
-msgstr[0] "%d شخص"
-msgstr[1] "%d شخص"
-msgstr[2] "%d شخصان"
-msgstr[3] "%d أشخاص"
-msgstr[4] "%d شخص"
-msgstr[5] "%d شخص"
+msgstr[0] "%d من الأشخاص"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:152
 msgid "Click to see preview of unfiltered data"
@@ -14531,11 +14502,11 @@ msgstr "_شريط الأدوات"
 msgid "F_ull Screen"
 msgstr "ملء الشا_شة"
 
-#: ../gramps/gui/viewmanager.py:579 ../gramps/gui/viewmanager.py:1169
+#: ../gramps/gui/viewmanager.py:579 ../gramps/gui/viewmanager.py:1167
 msgid "_Undo"
 msgstr "_تراجع"
 
-#: ../gramps/gui/viewmanager.py:584 ../gramps/gui/viewmanager.py:1186
+#: ../gramps/gui/viewmanager.py:584 ../gramps/gui/viewmanager.py:1184
 msgid "_Redo"
 msgstr "إ_عادة"
 
@@ -14605,27 +14576,27 @@ msgstr "فشل بتحميل العرض. راجع خرج الخطأ."
 msgid "Import Statistics"
 msgstr "استيراد الإحصاءات"
 
-#: ../gramps/gui/viewmanager.py:1138
+#: ../gramps/gui/viewmanager.py:1136
 msgid "Read Only"
 msgstr "للقراءة فقط"
 
-#: ../gramps/gui/viewmanager.py:1221
+#: ../gramps/gui/viewmanager.py:1219
 msgid "Gramps XML Backup"
 msgstr "نسخ احتياطي بصيغة ملفات غرمبز XML"
 
-#: ../gramps/gui/viewmanager.py:1251
+#: ../gramps/gui/viewmanager.py:1249
 #: ../gramps/plugins/importer/importgedcom.glade.h:11
 msgid "File:"
 msgstr "ملف:"
 
-#: ../gramps/gui/viewmanager.py:1283
+#: ../gramps/gui/viewmanager.py:1281
 msgid "Media:"
 msgstr "وسائط:"
 
 #. #################
 #. What to include
 #. #########################
-#: ../gramps/gui/viewmanager.py:1288
+#: ../gramps/gui/viewmanager.py:1286
 #: ../gramps/plugins/drawreport/ancestortree.py:1021
 #: ../gramps/plugins/drawreport/descendtree.py:1620
 #: ../gramps/plugins/textreport/detancestralreport.py:782
@@ -14636,55 +14607,55 @@ msgstr "وسائط:"
 msgid "Include"
 msgstr "تضمين"
 
-#: ../gramps/gui/viewmanager.py:1289
+#: ../gramps/gui/viewmanager.py:1287
 #: ../gramps/plugins/gramplet/statsgramplet.py:201
 msgid "Megabyte|MB"
 msgstr "ميغابايت"
 
-#: ../gramps/gui/viewmanager.py:1290
+#: ../gramps/gui/viewmanager.py:1288
 #: ../gramps/plugins/webreport/narrativeweb.py:8193
 msgid "Exclude"
 msgstr "استثناء"
 
-#: ../gramps/gui/viewmanager.py:1308
+#: ../gramps/gui/viewmanager.py:1306
 msgid "Backup file already exists! Overwrite?"
 msgstr "ملف النسخ الاحتياطي موجود مسبقاً! هل تريد استبداله؟"
 
-#: ../gramps/gui/viewmanager.py:1309
+#: ../gramps/gui/viewmanager.py:1307
 #, python-format
 msgid "The file '%s' exists."
 msgstr "الملف '%s' موجود مسبقاً."
 
-#: ../gramps/gui/viewmanager.py:1310
+#: ../gramps/gui/viewmanager.py:1308
 msgid "Proceed and overwrite"
 msgstr "متابعة و استبدال"
 
-#: ../gramps/gui/viewmanager.py:1311
+#: ../gramps/gui/viewmanager.py:1309
 msgid "Cancel the backup"
 msgstr "إلغاء أمر النسخ الاحتياطي"
 
-#: ../gramps/gui/viewmanager.py:1318
+#: ../gramps/gui/viewmanager.py:1316
 msgid "Making backup..."
 msgstr "إنشاء نسخة أحتياطية..."
 
-#: ../gramps/gui/viewmanager.py:1335
+#: ../gramps/gui/viewmanager.py:1333
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "تم حفظ النسخة الاحتياطية إلى '%s'"
 
-#: ../gramps/gui/viewmanager.py:1338
+#: ../gramps/gui/viewmanager.py:1336
 msgid "Backup aborted"
 msgstr "إحباط النسخ الاحتياطي"
 
-#: ../gramps/gui/viewmanager.py:1347
+#: ../gramps/gui/viewmanager.py:1345
 msgid "Select backup directory"
 msgstr "تحديد مجلد النسخ الاحتياطي"
 
-#: ../gramps/gui/viewmanager.py:1607
+#: ../gramps/gui/viewmanager.py:1605
 msgid "Failed Loading Plugin"
 msgstr "فشل بتحميل الإضافة"
 
-#: ../gramps/gui/viewmanager.py:1608
+#: ../gramps/gui/viewmanager.py:1606
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -14699,11 +14670,11 @@ msgid ""
 "by using the Plugin Manager on the Help menu."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1660
+#: ../gramps/gui/viewmanager.py:1658
 msgid "Failed Loading View"
 msgstr "فشل بتحميل العرض"
 
-#: ../gramps/gui/viewmanager.py:1661
+#: ../gramps/gui/viewmanager.py:1659
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -15930,12 +15901,7 @@ msgstr "%(person)s، ميلاد%(relation)s"
 #, python-format
 msgid "%(person)s, %(age)d%(relation)s"
 msgid_plural "%(person)s, %(age)d%(relation)s"
-msgstr[0] "%(person)s, %(age)d%(relation)s"
-msgstr[1] "%(person)s, %(age)d%(relation)s"
-msgstr[2] "%(person)s, %(age)d%(relation)s"
-msgstr[3] "%(person)s, %(age)d%(relation)s"
-msgstr[4] "%(person)s, %(age)d%(relation)s"
-msgstr[5] "%(person)s, %(age)d%(relation)s"
+msgstr[0] "%(person)s، %(age)d%(relation)s"
 
 # شك
 #: ../gramps/plugins/drawreport/calendarreport.py:379
@@ -15959,22 +15925,7 @@ msgid_plural ""
 " %(person)s, %(nyears)d"
 msgstr[0] ""
 "%(spouse)s و\n"
-" %(person)s, %(nyears)d"
-msgstr[1] ""
-"%(spouse)s و\n"
-" %(person)s, %(nyears)d"
-msgstr[2] ""
-"%(spouse)s و\n"
-" %(person)s, %(nyears)d"
-msgstr[3] ""
-"%(spouse)s و\n"
-" %(person)s, %(nyears)d"
-msgstr[4] ""
-"%(spouse)s و\n"
-" %(person)s, %(nyears)d"
-msgstr[5] ""
-"%(spouse)s و\n"
-" %(person)s, %(nyears)d"
+" %(person)s، %(nyears)d"
 
 # شك
 #. #########################
@@ -17142,7 +17093,7 @@ msgstr "فشل بالتصدير"
 
 #: ../gramps/plugins/export/exportgeneweb.py:104
 msgid "No families matched by selected filter"
-msgstr "لم يتم العثور على أي عائلات بواسطة المرشّح المحدّد"
+msgstr "لم يُعْثَر على أي عائلات بواسطة المرشّح المحدّد"
 
 #: ../gramps/plugins/export/exportpkg.py:185
 #: ../gramps/plugins/export/exportxml.py:138
@@ -17274,7 +17225,7 @@ msgstr "أكبر"
 #: ../gramps/plugins/gramplet/agestats.py:277
 #, python-format
 msgid "Double-click to see %d people"
-msgstr "نقر مزدوج لعرض %d شخص"
+msgstr "نقر مزدوج لعرض %d من الأشخاص"
 
 #: ../gramps/plugins/gramplet/attributes.py:43
 msgid ""
@@ -18369,11 +18320,6 @@ msgid_plural ""
 " has %(count_person)d of %(max_count_person)d individuals (%(percent)s "
 "complete)\n"
 msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:274
 msgid "All generations"
@@ -18387,12 +18333,7 @@ msgstr "نقر مزدوج لرؤية كل الأجيال"
 #, python-format
 msgid " have %d individual\n"
 msgid_plural " have %d individuals\n"
-msgstr[0] " لديك %d فرد\n"
-msgstr[1] " لديك %d فرد\n"
-msgstr[2] " لديك %d فرد\n"
-msgstr[3] " لديك %d فرد\n"
-msgstr[4] " لديك %d فرد\n"
-msgstr[5] " لديك %d فرد\n"
+msgstr[0] " لديك %d من الأفراد\n"
 
 #: ../gramps/plugins/gramplet/persondetails.py:228
 #, python-format
@@ -18542,9 +18483,8 @@ msgid "Individuals with unknown gender"
 msgstr "أفراد بجنس مجهول"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:162
-#, fuzzy
 msgid "Incomplete names"
-msgstr "أشخاص بأسماء غير مكتملة"
+msgstr "أسماء غير مكتملة"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:166
 msgid "Individuals missing birth dates"
@@ -18731,9 +18671,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:132
-#, fuzzy
 msgid "Dashboard View"
-msgstr "عرض مخطط المروحة"
+msgstr "عرض لوحة المعلومات"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:133
 msgid ""
@@ -19140,7 +19079,7 @@ msgstr ""
 #: ../gramps/plugins/graph/gvfamilylines.py:244
 #: ../gramps/plugins/graph/gvrelgraph.py:555
 msgid "Limit dates to years only"
-msgstr ""
+msgstr "تحديد التواريخ بالسنوات فقط"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:245
 #: ../gramps/plugins/graph/gvrelgraph.py:556
@@ -19187,8 +19126,9 @@ msgstr "لم تقم بتحديد أي شخص"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
-msgid "%d children"
-msgstr "%d ابن"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d من الأبناء"
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
 msgid "The Center person for the graph"
@@ -19570,12 +19510,7 @@ msgstr "استيراد CSV"
 #, python-format
 msgid "Import Complete: %d second"
 msgid_plural "Import Complete: %d seconds"
-msgstr[0] "اكملت عملية الاستيراد خلال %d ثانية"
-msgstr[1] "اكملت عملية الاستيراد خلال %d ثانية"
-msgstr[2] "اكملت عملية الاستيراد خلال %d ثانية"
-msgstr[3] "اكملت عملية الاستيراد خلال %d ثانية"
-msgstr[4] "اكملت عملية الاستيراد خلال %d ثانية"
-msgstr[5] "اكملت عملية الاستيراد خلال %d ثانية"
+msgstr[0] "أكملت عملية الاستيراد خلال %d من الثوان"
 
 #: ../gramps/plugins/importer/importgedcom.glade.h:1
 msgid "Gramps - GEDCOM Encoding"
@@ -20335,12 +20270,12 @@ msgstr "إستيراد GEDCOM"
 
 #: ../gramps/plugins/lib/libgedcom.py:2689
 msgid "GEDCOM import report: No errors detected"
-msgstr "تقرير استيراد GEDCOM: لم يتم العثور على أي خطأ"
+msgstr "تقرير استيراد GEDCOM: لم يُعْثَر على أي خطأ"
 
 #: ../gramps/plugins/lib/libgedcom.py:2691
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
-msgstr "تقرير استيراد GEDCOM: تم العثور على %s خطأ"
+msgstr "تقرير استيراد GEDCOM: عُثِر على %s من الأخطاء"
 
 #: ../gramps/plugins/lib/libgedcom.py:2956
 #, fuzzy
@@ -24108,9 +24043,8 @@ msgstr "أسفل لليمين"
 #: ../gramps/plugins/lib/maps/cairoprint.py:148
 #: ../gramps/plugins/view/fanchartdescview.py:503
 #: ../gramps/plugins/view/fanchartview.py:512
-#, fuzzy
 msgid "No preview available"
-msgstr "لا يوجد وصف"
+msgstr "لا تتوفر معاينة"
 
 #: ../gramps/plugins/lib/maps/geography.py:269
 #: ../gramps/plugins/view/fanchartdescview.py:167
@@ -24487,7 +24421,7 @@ msgstr ""
 
 #: ../gramps/plugins/quickview/filterbyname.py:42
 msgid "Filtering_on|all"
-msgstr "كل"
+msgstr "الكل"
 
 #: ../gramps/plugins/quickview/filterbyname.py:43
 msgid "Filtering_on|Inverse Person"
@@ -24567,9 +24501,8 @@ msgid "Filtering_on|people with unknown gender"
 msgstr "أشخاص بجنس مجهول"
 
 #: ../gramps/plugins/quickview/filterbyname.py:64
-#, fuzzy
 msgid "Filtering_on|incomplete names"
-msgstr "أشخاص بأسماء غير مكتملة"
+msgstr "أسماء غير مكتملة"
 
 #: ../gramps/plugins/quickview/filterbyname.py:66
 msgid "Filtering_on|people with missing birth dates"
@@ -24690,12 +24623,7 @@ msgstr "حجم بالبايت"
 #, python-format
 msgid "Filter matched %d record."
 msgid_plural "Filter matched %d records."
-msgstr[0] "تم العثور على %d سجل."
-msgstr[1] "تم العثور على %d سجل."
-msgstr[2] "تم العثور على %d سجل."
-msgstr[3] "تم العثور على %d سجل."
-msgstr[4] "تم العثور على %d سجل."
-msgstr[5] "تم العثور على %d سجل."
+msgstr[0] "عُثِرَ على %d من السجلات."
 
 #. display the results
 #. feature request 2356: avoid genitive form
@@ -25006,12 +24934,7 @@ msgstr "أشخاص يتشاركون باسم العائلة '%s'"
 #, python-format
 msgid "There is %d person with a matching name, or alternate name.\n"
 msgid_plural "There are %d people with a matching name, or alternate name.\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "هناك %d من الأشخاص باسم مطابق، أو اسم بديل.\n"
 
 #. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:149
@@ -25191,9 +25114,8 @@ msgid "Birthday and Anniversary Report"
 msgstr "تقرير الذكرى السنوية و عيد الميلاد"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:68
-#, fuzzy
 msgid "My Birthday Report"
-msgstr "تقرير الذكرى السنوية و عيد الميلاد"
+msgstr "تقرير عيد ميلادي"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/birthdayreport.py:217
@@ -25444,9 +25366,9 @@ msgstr "عنوان:"
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:378
 #: ../gramps/plugins/textreport/detdescendantreport.py:830
-#, fuzzy, python-format
+#, python-format
 msgid "%s, "
-msgstr "%s، ..."
+msgstr "%s، "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:395
 #: ../gramps/plugins/textreport/detancestralreport.py:453
@@ -26122,12 +26044,7 @@ msgstr "عدد السلف لـ %s"
 #, python-format
 msgid "Generation %(generation)d has %(count)d individual. %(percent)s"
 msgid_plural "Generation %(generation)d has %(count)d individuals. %(percent)s"
-msgstr[0] "جيل %(generation)d لديه %(count)d فرد. %(percent)s"
-msgstr[1] "جيل %(generation)d لديه %(count)d فرد. %(percent)s"
-msgstr[2] "جيل %(generation)d لديه %(count)d فرد. %(percent)s"
-msgstr[3] "جيل %(generation)d لديه %(count)d فرد. %(percent)s"
-msgstr[4] "جيل %(generation)d لديه %(count)d فرد. %(percent)s"
-msgstr[5] "جيل %(generation)d لديه %(count)d فرد. %(percent)s"
+msgstr[0] "جيل %(generation)d لديه %(count)d من الأفراد. %(percent)s"
 
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
@@ -26417,9 +26334,9 @@ msgid "Individuals with unknown gender: %d"
 msgstr "أفراد بجنس مجهول: %d"
 
 #: ../gramps/plugins/textreport/summary.py:179
-#, fuzzy, python-format
+#, python-format
 msgid "Incomplete names: %d"
-msgstr "أفراد بأسماء غير مكتملة: %d"
+msgstr "أسماء غير مكتملة: %d"
 
 #: ../gramps/plugins/textreport/summary.py:183
 #, python-format
@@ -26707,12 +26624,7 @@ msgstr "لم يتم تعديل سجل أي حدث."
 #, python-format
 msgid "%d event record was modified."
 msgid_plural "%d event records were modified."
-msgstr[0] "%d سجل جدث تم تعديله."
-msgstr[1] "%d سجل جدث تم تعديله."
-msgstr[2] "%d سجل جدث تم تعديله."
-msgstr[3] "%d سجل جدث تم تعديله."
-msgstr[4] "%d سجل جدث تم تعديله."
-msgstr[5] "%d سجل جدث تم تعديله."
+msgstr[0] "%d من سجلات الأحداث تم تعديلها."
 
 #: ../gramps/plugins/tool/check.py:111 ../gramps/plugins/tool/check.py:247
 msgid "Checking Database"
@@ -26772,7 +26684,7 @@ msgstr "تحديد ملف"
 
 #: ../gramps/plugins/tool/check.py:721
 msgid "Media object could not be found"
-msgstr "لم يتم العثور على كائن الوسائط"
+msgstr "لم يُعْثَر على كائن الوسائط"
 
 #: ../gramps/plugins/tool/check.py:722
 #, python-format
@@ -26876,7 +26788,7 @@ msgstr "بحث عن مشاكل مرجع المصدر"
 
 #: ../gramps/plugins/tool/check.py:2058
 msgid "No errors were found"
-msgstr "لم يتم العثور على أية أخطاء"
+msgstr "لم يُعْثَر على أية أخطاء"
 
 #: ../gramps/plugins/tool/check.py:2059
 msgid "The database has passed internal checks"
@@ -26891,12 +26803,7 @@ msgstr "نجحت قاعدة البيانات بتخطي كل الفحوصات ا
 #, python-format
 msgid "%(quantity)d broken child/family link was fixed\n"
 msgid_plural "%(quantity)d broken child-family links were fixed\n"
-msgstr[0] "%(quantity)d رابط ابن/عائلة مكسور تم إصلاحه\n"
-msgstr[1] "%(quantity)d رابط ابن/عائلة مكسور تم إصلاحه\n"
-msgstr[2] "%(quantity)d رابط ابن/عائلة مكسور تم إصلاحه\n"
-msgstr[3] "%(quantity)d رابط ابن/عائلة مكسور تم إصلاحه\n"
-msgstr[4] "%(quantity)d رابط ابن/عائلة مكسور تم إصلاحه\n"
-msgstr[5] "%(quantity)d رابط ابن/عائلة مكسور تم إصلاحه\n"
+msgstr[0] "أُصْلِحت %(quantity)d من روابط العائلة أو الأبناء المعطلة\n"
 
 #: ../gramps/plugins/tool/check.py:2077
 msgid "Non existing child"
@@ -26911,12 +26818,7 @@ msgstr "تم إزالة %(person)s من عائلة %(family)s\n"
 #, python-format
 msgid "%(quantity)d broken spouse/family link was fixed\n"
 msgid_plural "%(quantity)d broken spouse/family links were fixed\n"
-msgstr[0] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
-msgstr[1] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
-msgstr[2] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
-msgstr[3] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
-msgstr[4] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
-msgstr[5] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
+msgstr[0] "أُصْلِحت %(quantity)d من روابط الأسرة أو الأزواج المعطلة\n"
 
 #: ../gramps/plugins/tool/check.py:2100 ../gramps/plugins/tool/check.py:2123
 msgid "Non existing person"
@@ -26931,12 +26833,7 @@ msgstr "تم استعادة %(person)s من عائلة %(family)s\n"
 #, python-format
 msgid "%(quantity)d duplicate spouse/family link was found\n"
 msgid_plural "%(quantity)d duplicate spouse/family links were found\n"
-msgstr[0] "%(quantity)d رابط ابن/عائلة متكرر تم العثور عليه\n"
-msgstr[1] "%(quantity)d رابط ابن/عائلة متكرر تم العثور عليه\n"
-msgstr[2] "%(quantity)d رابط ابن/عائلة متكرر تم العثور عليه\n"
-msgstr[3] "%(quantity)d رابط ابن/عائلة متكرر تم العثور عليه\n"
-msgstr[4] "%(quantity)d رابط ابن/عائلة متكرر تم العثور عليه\n"
-msgstr[5] "%(quantity)d رابط ابن/عائلة متكرر تم العثور عليه\n"
+msgstr[0] "عُثِرَ على %(quantity)d من الروابط المتكررة لعائلة أو زوج\n"
 
 #: ../gramps/plugins/tool/check.py:2137
 msgid "1 family with no parents or children found, removed.\n"
@@ -26945,228 +26842,128 @@ msgstr "تم إزالة عائلة واحدة دون أبوين أو أبناء.
 #: ../gramps/plugins/tool/check.py:2142
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
-msgstr "تم إزالة %(quantity)d عائلة دون أبوين أو أبناء.\n"
+msgstr "أُزِيْلت %(quantity)d من العائلات ممن ليس له أبوان أو أبناء.\n"
 
 #: ../gramps/plugins/tool/check.py:2148
 #, python-format
 msgid "%d corrupted family relationship fixed\n"
 msgid_plural "%d corrupted family relationship fixed\n"
 msgstr[0] "تم إصلاح %d قرابة عائلية معطوبة\n"
-msgstr[1] "تم إصلاح %d قرابة عائلية معطوبة\n"
-msgstr[2] "تم إصلاح %d قرابة عائلية معطوبة\n"
-msgstr[3] "تم إصلاح %d قرابة عائلية معطوبة\n"
-msgstr[4] "تم إصلاح %d قرابة عائلية معطوبة\n"
-msgstr[5] "تم إصلاح %d قرابة عائلية معطوبة\n"
 
 #: ../gramps/plugins/tool/check.py:2155
 #, python-format
 msgid "%d person was referenced but not found\n"
 msgid_plural "%d persons were referenced, but not found\n"
-msgstr[0] "%d شخص تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[1] "%d شخص تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[2] "%d شخص تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[3] "%d شخص تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[4] "%d شخص تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[5] "%d شخص تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
+msgstr[0] "أُشِيْر إلي %d من الأشخاص برغم عدم وجودهم\n"
 
 #: ../gramps/plugins/tool/check.py:2162
 #, python-format
 msgid "%d family was referenced but not found\n"
 msgid_plural "%d families were referenced, but not found\n"
-msgstr[0] "%d عائلة تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[1] "%d عائلة تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[2] "%d عائلة تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[3] "%d عائلة تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[4] "%d عائلة تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[5] "%d عائلة تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
+msgstr[0] "%d من العائلات أشير إليها مع عدم وجودها\n"
 
 # %d تاريخ تم تصحيحه
 #: ../gramps/plugins/tool/check.py:2168
 #, python-format
 msgid "%d date was corrected\n"
 msgid_plural "%d dates were corrected\n"
-msgstr[0] "%d تاريخ تم تصحيحه\n"
-msgstr[1] "%d تاريخ تم تصحيحه\n"
-msgstr[2] "%d تاريخ تم تصحيحه\n"
-msgstr[3] "%d تاريخ تم تصحيحه\n"
-msgstr[4] "%d تاريخ تم تصحيحه\n"
-msgstr[5] "%d تاريخ تم تصحيحه\n"
+msgstr[0] "%d من التواريخ تم تصحيحها\n"
 
 #: ../gramps/plugins/tool/check.py:2174
 #, python-format
 msgid "%(quantity)d repository was referenced but not found\n"
 msgid_plural "%(quantity)d repositories were referenced, but not found\n"
-msgstr[0] "%(quantity)d مستودع تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[1] "%(quantity)d مستودع تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[2] "%(quantity)d مستودع تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[3] "%(quantity)d مستودع تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[4] "%(quantity)d مستودع تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[5] "%(quantity)d مستودع تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
+msgstr[0] "%(quantity)d من المستودعات أُشِيْر إليها برغم عدم وجودها\n"
 
 #: ../gramps/plugins/tool/check.py:2180
 #, python-format
 msgid "%(quantity)d media object was referenced, but not found\n"
 msgid_plural "%(quantity)d media objects were referenced, but not found\n"
-msgstr[0] "%(quantity)d كائن وسائط تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[1] "%(quantity)d كائن وسائط تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[2] "%(quantity)d كائن وسائط تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[3] "%(quantity)d كائن وسائط تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[4] "%(quantity)d كائن وسائط تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
-msgstr[5] "%(quantity)d كائن وسائط تم الإشارة إليهم كمرجع لكنهم غير موجودين\n"
+msgstr[0] "أُشِيْر إلى %(quantity)d من كائنات الوسائط رغم عدم وجودها\n"
 
 #: ../gramps/plugins/tool/check.py:2187
 #, python-format
 msgid "Reference to %(quantity)d missing media object was kept\n"
 msgid_plural "References to %(quantity)d media objects were kept\n"
-msgstr[0] "تم الاحتفاظ بـ %(quantity)d مرجع للوسائط\n"
-msgstr[1] "تم الاحتفاظ بـ %(quantity)d مرجع للوسائط\n"
-msgstr[2] "تم الاحتفاظ بـ %(quantity)d مرجع للوسائط\n"
-msgstr[3] "تم الاحتفاظ بـ %(quantity)d مرجع للوسائط\n"
-msgstr[4] "تم الاحتفاظ بـ %(quantity)d مرجع للوسائط\n"
-msgstr[5] "تم الاحتفاظ بـ %(quantity)d مرجع للوسائط\n"
+msgstr[0] "أُحْتُفِظ بـ %(quantity)d مرجعا لكائنات الوسائط\n"
 
 #: ../gramps/plugins/tool/check.py:2194
 #, python-format
 msgid "%(quantity)d missing media object was replaced\n"
 msgid_plural "%(quantity)d missing media objects were replaced\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "اُسْتُبدلت %(quantity)d من الوسائط المفقودة\n"
 
 #: ../gramps/plugins/tool/check.py:2201
 #, python-format
 msgid "%(quantity)d missing media object was removed\n"
 msgid_plural "%(quantity)d missing media objects were removed\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أُزِيْلت %(quantity)d من الوسائط المفقودة\n"
 
 #: ../gramps/plugins/tool/check.py:2208
 #, python-format
 msgid "%(quantity)d event was referenced but not found\n"
 msgid_plural "%(quantity)d events were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أُشِيْر إلى %(quantity)d من الأحداث برغم عدم وجوده\n"
 
 #: ../gramps/plugins/tool/check.py:2215
 #, python-format
 msgid "%(quantity)d invalid birth event name was fixed\n"
 msgid_plural "%(quantity)d invalid birth event names were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أُصْلِحت أسماء %(quantity)d من أحداث الميلاد غير الصحيحة\n"
 
 #: ../gramps/plugins/tool/check.py:2222
 #, python-format
 msgid "%(quantity)d invalid death event name was fixed\n"
 msgid_plural "%(quantity)d invalid death event names were fixed\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أُصْلِحت أسماء %(quantity)d من أحداث الممات غير الصحيحة\n"
 
 #: ../gramps/plugins/tool/check.py:2229
 #, python-format
 msgid "%(quantity)d place was referenced but not found\n"
 msgid_plural "%(quantity)d places were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أُشِيْر إلى %(quantity)d من الأماكن رغم عدم وجودها\n"
 
 #: ../gramps/plugins/tool/check.py:2236
 #, python-format
 msgid "%(quantity)d citation was referenced but not found\n"
 msgid_plural "%(quantity)d citations were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أُشِيْر إلى %(quantity)d من الاستشهادات رغم عدم وجودها\n"
 
 #: ../gramps/plugins/tool/check.py:2243
 #, python-format
 msgid "%(quantity)d source was referenced but not found\n"
 msgid_plural "%(quantity)d sources were referenced, but not found\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أُشِيْر إلى %(quantity)d من المصادر رغم عدم وجودها\n"
 
 #: ../gramps/plugins/tool/check.py:2250
 #, python-format
 msgid "%(quantity)d media object was referenced but not found\n"
 msgid_plural "%(quantity)d media objects were referenced but not found\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أُشِيْر إلى %(quantity)d من الوسائط رغم عدم وجودها\n"
 
 #: ../gramps/plugins/tool/check.py:2257
 #, python-format
 msgid "%(quantity)d note object was referenced but not found\n"
 msgid_plural "%(quantity)d note objects were referenced but not found\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أُشِيْر إلى %(quantity)d من الملاحظات رغم عدم وجودها\n"
 
 #: ../gramps/plugins/tool/check.py:2263 ../gramps/plugins/tool/check.py:2269
 #, python-format
 msgid "%(quantity)d tag object was referenced but not found\n"
 msgid_plural "%(quantity)d tag objects were referenced but not found\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أُشِيْر إلى %(quantity)d من الوسومات رغم عدم وجودها\n"
 
 #: ../gramps/plugins/tool/check.py:2275
 #, python-format
 msgid "%(quantity)d invalid name format reference was removed\n"
 msgid_plural "%(quantity)d invalid name format references were removed\n"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-msgstr[4] ""
-msgstr[5] ""
+msgstr[0] "أُزِيْلت %(quantity)d من الإحالات إلى تنسيقات أسماء غير صحيحة\n"
 
 #: ../gramps/plugins/tool/check.py:2282
-#, fuzzy, python-format
+#, python-format
 msgid "%(quantity)d invalid source citation was fixed\n"
 msgid_plural "%(quantity)d invalid source citations were fixed\n"
-msgstr[0] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
-msgstr[1] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
-msgstr[2] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
-msgstr[3] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
-msgstr[4] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
-msgstr[5] "%(quantity)d رابط زوج(ـة)/عائلة مكسور تم إصلاحه\n"
+msgstr[0] "أُصْلِحت %(quantity)d من استشهادات المصدر غير الصحيحة\n"
 
 #: ../gramps/plugins/tool/check.py:2288
 #, python-format
@@ -27266,7 +27063,7 @@ msgstr "تحديد أشخاص"
 
 #: ../gramps/plugins/tool/eventcmp.py:194
 msgid "No matches were found"
-msgstr "لم يتم العثور على أي شيء"
+msgstr "لم يُعْثَر على أي شيء"
 
 #: ../gramps/plugins/tool/eventcmp.py:244
 #: ../gramps/plugins/tool/eventcmp.py:277
@@ -27310,12 +27107,7 @@ msgstr "تم تطبيق التعديلات"
 #, python-format
 msgid "%s event description has been added"
 msgid_plural "%s event descriptions have been added"
-msgstr[0] "تم إضافة  %s وصف حدث"
-msgstr[1] "تم إضافة  %s وصف حدث"
-msgstr[2] "تم إضافة  %s وصف حدث"
-msgstr[3] "تم إضافة  %s وصف حدث"
-msgstr[4] "تم إضافة  %s وصف حدث"
-msgstr[5] "تم إضافة  %s وصف حدث"
+msgstr[0] "أُضِيْفت %s من أوصاف الأحداث"
 
 #: ../gramps/plugins/tool/eventnames.py:119
 msgid "No event description has been added."
@@ -27391,7 +27183,7 @@ msgstr "أداة البحث عن التكرارات"
 
 #: ../gramps/plugins/tool/finddupes.py:178
 msgid "No matches found"
-msgstr "لم يتم العثور على أي شيء"
+msgstr "لم يُعْثَر على أي شيء"
 
 #: ../gramps/plugins/tool/finddupes.py:179
 msgid "No potential duplicate people were found"
@@ -27669,12 +27461,7 @@ msgstr "عدد عمليات الدمج التي تمت"
 #, python-format
 msgid "%(num)d citation merged"
 msgid_plural "%(num)d citations merged"
-msgstr[0] "%(num)d استشهاد تم دمجه"
-msgstr[1] "%(num)d استشهاد تم دمجه"
-msgstr[2] "%(num)d استشهاد تم دمجه"
-msgstr[3] "%(num)d استشهاد تم دمجه"
-msgstr[4] "%(num)d استشهاد تم دمجه"
-msgstr[5] "%(num)d استشهاد تم دمجه"
+msgstr[0] "دُمِجَت %(num)d من الاستشهادات"
 
 #: ../gramps/plugins/tool/notrelated.glade.h:1
 msgid "_Tag"
@@ -27710,45 +27497,25 @@ msgstr "كل شخص بقاعدة البيانات على قرابة بـ %s"
 #, python-format
 msgid "Setting tag for %d person"
 msgid_plural "Setting tag for %d people"
-msgstr[0] "تخصيص وسم لـ %d شخص"
-msgstr[1] "تخصيص وسم لـ %d شخص"
-msgstr[2] "تخصيص وسم لـ %d شخص"
-msgstr[3] "تخصيص وسم لـ %d شخص"
-msgstr[4] "تخصيص وسم لـ %d شخص"
-msgstr[5] "تخصيص وسم لـ %d شخص"
+msgstr[0] "تخصيص وسم لـ %d من الأشخاص"
 
 #: ../gramps/plugins/tool/notrelated.py:299
 #, python-format
 msgid "Finding relationships between %d person"
 msgid_plural "Finding relationships between %d people"
-msgstr[0] "العثور على القرابة بين %d شخص"
-msgstr[1] "العثور على القرابة بين %d شخص"
-msgstr[2] "العثور على القرابة بين %d شخص"
-msgstr[3] "العثور على القرابة بين %d شخص"
-msgstr[4] "العثور على القرابة بين %d شخص"
-msgstr[5] "العثور على القرابة بين %d شخص"
+msgstr[0] "العثور على قرابة بين %d من الأشخاص"
 
 #: ../gramps/plugins/tool/notrelated.py:378
 #, python-format
 msgid "Looking for %d person"
 msgid_plural "Looking for %d people"
-msgstr[0] "بحث عن %d شخص"
-msgstr[1] "بحث عن %d شخص"
-msgstr[2] "بحث عن %d شخص"
-msgstr[3] "بحث عن %d شخص"
-msgstr[4] "بحث عن %d شخص"
-msgstr[5] "بحث عن %d شخص"
+msgstr[0] "بحث عن %d من الأشخاص"
 
 #: ../gramps/plugins/tool/notrelated.py:404
 #, python-format
 msgid "Looking up the name of %d person"
 msgid_plural "Looking up the names of %d people"
-msgstr[0] "بحث عن اسم(ـاء) %d شخص"
-msgstr[1] "بحث عن اسم(ـاء) %d شخص"
-msgstr[2] "بحث عن اسم(ـاء) %d شخص"
-msgstr[3] "بحث عن اسم(ـاء) %d شخص"
-msgstr[4] "بحث عن اسم(ـاء) %d شخص"
-msgstr[5] "بحث عن اسم(ـاء) %d شخص"
+msgstr[0] "بحث عن أسماء %d من الأشخاص"
 
 #: ../gramps/plugins/tool/ownereditor.glade.h:2
 msgid "_Street:"
@@ -28367,19 +28134,19 @@ msgstr "أداة التحقق من قاعدة البيانات"
 #: ../gramps/plugins/tool/verify.py:277
 #, python-format
 msgid "W: %s, %s: %s, %s"
-msgstr ""
+msgstr "W: %s، %s: %s، %s"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/tool/verify.py:280
 #, python-format
 msgid "E: %s, %s: %s, %s"
-msgstr ""
+msgstr "E: %s، %s: %s، %s"
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/tool/verify.py:283
 #, python-format
 msgid "S: %s, %s: %s, %s"
-msgstr ""
+msgstr "S: %s، %s: %s، %s"
 
 #: ../gramps/plugins/tool/verify.py:454
 #, fuzzy
@@ -28430,7 +28197,7 @@ msgstr "تعدّد بالآباء"
 # شك
 #: ../gramps/plugins/tool/verify.py:995
 msgid "Married often"
-msgstr "متزوّج(ـة) على الأغلب"
+msgstr "متزوج كثيرا"
 
 #: ../gramps/plugins/tool/verify.py:1014
 msgid "Old and unmarried"
@@ -28687,7 +28454,7 @@ msgstr ""
 #: ../gramps/plugins/view/dashboardview.py:53
 #: ../gramps/plugins/view/view.gpr.py:65 ../gramps/plugins/view/view.gpr.py:73
 msgid "Dashboard"
-msgstr ""
+msgstr "لوحة المعلومات"
 
 #: ../gramps/plugins/view/dashboardview.py:97
 msgid "Restore a gramplet"
@@ -29391,7 +29158,7 @@ msgstr "تعميد."
 
 #: ../gramps/plugins/view/pedigreeview.py:92
 msgid "short for christened|chr."
-msgstr "تعميد (طفل),"
+msgstr "تعميد (طفل)."
 
 #: ../gramps/plugins/view/pedigreeview.py:93
 msgid "short for buried|bur."
@@ -29575,12 +29342,7 @@ msgstr "إزالة شخص كوالد(ة) في هذه العائلة"
 #, python-format
 msgid " (%d sibling)"
 msgid_plural " (%d siblings)"
-msgstr[0] "%d أخ(ـت)"
-msgstr[1] "%d أخ(ـت)"
-msgstr[2] "%d أخ(ـت)"
-msgstr[3] "%d أخ(ـت)"
-msgstr[4] "%d أخ(ـت)"
-msgstr[5] "%d أخ(ـت)"
+msgstr[0] " (%d من الإخوة)"
 
 #: ../gramps/plugins/view/relview.py:887 ../gramps/plugins/view/relview.py:943
 msgid " (1 brother)"
@@ -29642,7 +29404,7 @@ msgstr "%(event_type)s: %(place)s"
 # شك
 #: ../gramps/plugins/view/relview.py:1328
 msgid "Broken family detected"
-msgstr "تم العثور على عائلة مقطوعة"
+msgstr "عُثِرَ على عائلة مقطوعة"
 
 #: ../gramps/plugins/view/relview.py:1329
 msgid "Please run the Check and Repair Database tool"
@@ -29653,12 +29415,7 @@ msgstr "يرجى تشغيل أداة فحص و إصلاح قاعدة البيا�
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
-msgstr[0] " (%d ابن)"
-msgstr[1] " (%d ابن)"
-msgstr[2] " (%d ابن)"
-msgstr[3] " (%d ابن)"
-msgstr[4] " (%d ابن)"
-msgstr[5] " (%d ابن)"
+msgstr[0] " (%d من الأبناء)"
 
 #: ../gramps/plugins/view/relview.py:1352
 #: ../gramps/plugins/view/relview.py:1399
@@ -29783,9 +29540,8 @@ msgstr "عرض شجرة السلف للشخص المحدّد"
 #: ../gramps/plugins/view/view.gpr.py:133
 #: ../gramps/plugins/view/view.gpr.py:142
 #: ../gramps/plugins/view/view.gpr.py:157
-#, fuzzy
 msgid "Charts"
-msgstr "رسم بياني 1"
+msgstr "رسوم بيانية"
 
 #: ../gramps/plugins/view/view.gpr.py:143
 msgid "A view showing parents through a fanchart"
@@ -30350,7 +30106,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7137
 msgid "Missing media objects:"
-msgstr ""
+msgstr "وسائط مفقودة:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7169
 msgid "Applying Person Filter..."
@@ -31162,10 +30918,11 @@ msgstr " بادءه إسم الملف"
 msgid "A Prefix on the links to take you to Narrated Web Report"
 msgstr ""
 
+# FIXME
 #: ../gramps/plugins/webreport/webcal.py:1706
 #, python-format
 msgid "%s old"
-msgstr "%s قديم"
+msgstr "%s عمر"
 
 #: ../gramps/plugins/webreport/webcal.py:1706
 msgid "birth"
@@ -31181,12 +30938,7 @@ msgstr "%(couple)s، <em>زواج</em>"
 #, python-format
 msgid "%(couple)s, <em>%(years)d</em> year anniversary"
 msgid_plural "%(couple)s, <em>%(years)d</em> year anniversary"
-msgstr[0] "%(couple)s, <em>%(years)d</em> عام الذكرى السنوية"
-msgstr[1] "%(couple)s, <em>%(years)d</em> عام الذكرى السنوية"
-msgstr[2] "%(couple)s, <em>%(years)d</em> عام الذكرى السنوية"
-msgstr[3] "%(couple)s, <em>%(years)d</em> عام الذكرى السنوية"
-msgstr[4] "%(couple)s, <em>%(years)d</em> عام الذكرى السنوية"
-msgstr[5] "%(couple)s, <em>%(years)d</em> عام الذكرى السنوية"
+msgstr[0] "%(couple)s, <em>%(years)d</em> من الأعوام على الذكرى السنوية"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:31
 #, fuzzy
@@ -32088,3 +31840,5 @@ msgid ""
 "relationships between various people, places and events. All of your "
 "research is kept organized, searchable and as precise as you need it to be."
 msgstr ""
+
+
