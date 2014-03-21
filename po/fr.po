@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: 4.0.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-19 08:54+0100\n"
-"PO-Revision-Date: 2014-03-19 08:56+0100\n"
+"PO-Revision-Date: 2014-03-21 18:39+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -225,7 +225,7 @@ msgstr "Nom de rapport inconnu."
 #: ../gramps/cli/arghandler.py:616
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
-msgstr "Nom de rapport absent. Utilisez %(donottranslate)s=reportname."
+msgstr "Nom de rapport absent. Utilisez %(donottranslate)s=nom_du_rapport."
 
 # trunk
 #: ../gramps/cli/arghandler.py:620
@@ -248,7 +248,7 @@ msgstr "Nom d'outil inconnu."
 #: ../gramps/cli/arghandler.py:658
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
-msgstr "Nom d'outil absent. Utilisez %(donottranslate)s=toolname."
+msgstr "Nom d'outil absent. Utilisez %(donottranslate)s=nom_de_l'outil."
 
 # trunk
 #: ../gramps/cli/arghandler.py:689
@@ -313,7 +313,7 @@ msgstr ""
 "  -f, --format=FORMAT                    Spécifie le format de l'arbre\n"
 "  -a, --action=ACTION                    Spécifie l'action\n"
 "  -p, --options=OPTIONS                  Spécifie les options\n"
-"  -d, --debug=NOM_DE_LOGGER              Active les logs de déboguage\n"
+"  -d, --debug=NOM_DE_LOGGER              Active les logs de débogage\n"
 "  -l                                     Liste les arbres familiaux\n"
 "  -L                                     Liste les arbres familiaux en détail\n"
 "  -t                                     Liste les arbres familiaux dans un format tabulaire (tab)\n"
@@ -25456,7 +25456,7 @@ msgstr "Ajouter un retrait après le nom"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:287
 msgid "Indicates if a line break should follow the name."
-msgstr "Indique si un espace d'identation doit suivre le nom."
+msgstr "Indique si un espace d'indentation doit suivre le nom."
 
 #. _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 #: ../gramps/plugins/textreport/birthdayreport.py:67
@@ -27666,7 +27666,7 @@ msgstr "<b>Objets non-collectés</b>"
 
 #: ../gramps/plugins/tool/leak.py:71
 msgid "Uncollected Objects Tool"
-msgstr "Outil de déboguage des objets"
+msgstr "Outil de débogage des objets"
 
 #: ../gramps/plugins/tool/leak.py:92
 #: ../gramps/plugins/webreport/narrativeweb.py:2741
@@ -28043,7 +28043,7 @@ msgstr "Outil d'extraction du nom et du titre"
 
 #: ../gramps/plugins/tool/patchnames.py:115
 msgid "Default prefix and connector settings"
-msgstr "Paramètres par défaut du préfix et du connecteur"
+msgstr "Paramètres par défaut du préfixe et du connecteur"
 
 #: ../gramps/plugins/tool/patchnames.py:122
 msgid "Prefixes to search for:"
@@ -29255,7 +29255,7 @@ msgstr ""
 "L'aire de rencontre n'est affichée que pour l'individu de référence.\n"
 "La valeur 9 correspond à environ 42 miles ou 67 kms.\n"
 "La valeur 1 correspond à environ 4,6 miles ou 7,5 kms.\n"
-"L'unité est en dizième de degré."
+"L'unité est en dixième de degré."
 
 # trunk
 #: ../gramps/plugins/view/geoclose.py:585
@@ -29382,7 +29382,7 @@ msgstr ""
 "L'aire de rencontre n'est affichée que pour la famille de référence.\n"
 "La valeur 9 correspond à environ 42 miles ou 67 kms.\n"
 "La valeur 1 correspond à environ 4,6 miles ou 7,5 kms.\n"
-"L'unité est en dizième de degré."
+"L'unité est en dixième de degré."
 
 #: ../gramps/plugins/view/geofamily.py:120
 msgid "Family places map"
@@ -31256,7 +31256,7 @@ msgstr "Création d'un calendrier résumant l'année"
 #: ../gramps/plugins/webreport/webcal.py:911
 #, python-format
 msgid "%(year)d, At A Glance"
-msgstr "%(year)d, au coup d'oeil"
+msgstr "%(year)d, au coup d’œil"
 
 #: ../gramps/plugins/webreport/webcal.py:925
 msgid "This calendar is meant to give you access to all your data at a glance compressed into one page. Clicking on a date will take you to a page that shows all the events for that date, if there are any.\n"
@@ -31830,7 +31830,7 @@ msgstr "<b>Traducteurs Gramps</b><br/>Gramps est prévu pour que toute nouvelle 
 
 #: ../data/tips.xml.in.h:58
 msgid "<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full Unicode support. Characters for all languages are properly displayed."
-msgstr "<b>Hello, привет or 喂</b><br/>Quel que soit vos caractères, Gramps offre un support unicode total. Les caractères de chaque langue s'affichent correctement."
+msgstr "<b>Hello, привет or 喂</b><br/>Quel que soit vos caractères, Gramps offre un support Unicode total. Les caractères de chaque langue s'affichent correctement."
 
 #: ../data/tips.xml.in.h:59
 msgid "<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The home person is the person who is selected when the database is opened or when the home button is pressed."
