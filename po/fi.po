@@ -4329,8 +4329,8 @@ msgstr[1] "%d kuukautta"
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] "%d päivä"
-msgstr[1] "%d days"
+msgstr[0] "%d päivää"
+msgstr[1] "%d päivää"
 
 #: ../gramps/gen/lib/date.py:443
 msgid "0 days"
@@ -13863,8 +13863,8 @@ msgstr "Laajennusten lataus ja asennus suoritettu"
 #, python-format
 msgid "%d addon was installed."
 msgid_plural "%d addons were installed."
-msgstr[0] "%d addon asennettu."
-msgstr[1] "%d addons were installed."
+msgstr[0] "%d laajennus asennettu."
+msgstr[1] "%d laajennusta asennettu."
 
 #: ../gramps/gui/plug/_windows.py:1204
 msgid "You need to restart Gramps to see new views."
@@ -14043,8 +14043,8 @@ msgstr "Suodattamaton sukupuu:"
 #, python-format
 msgid "%d Person"
 msgid_plural "%d People"
-msgstr[0] "%d Henkilö"
-msgstr[1] "%d People"
+msgstr[0] "%d henkilö"
+msgstr[1] "%d henkilöä"
 
 #: ../gramps/gui/plug/export/_exportoptions.py:152
 msgid "Click to see preview of unfiltered data"
@@ -18703,11 +18703,11 @@ msgid_plural ""
 " has %(count_person)d of %(max_count_person)d individuals (%(percent)s "
 "complete)\n"
 msgstr[0] ""
-" on %(count_person)d kaikista %(max_count_person)d henkilöistä (%(percent)s "
-"suoritettu)\n"
+" %(max_count_person)d henkilöstä on käsitelty %(count_person)d eli "
+"(%(percent)s\n"
 msgstr[1] ""
-" has %(count_person)d of %(max_count_person)d individuals (%(percent)s "
-"complete)\n"
+" %(max_count_person)d henkilöistä on käsitelty %(count_person)d eli "
+"(%(percent)s\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:274
 msgid "All generations"
@@ -19532,7 +19532,7 @@ msgid "You did not specify anybody"
 msgstr "Et valinnut ketään"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
-#, fuzzy, python-format
+#, python-format
 msgid "%d child"
 msgid_plural "%d children"
 msgstr[0] "%d lasta"
