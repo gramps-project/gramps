@@ -4329,7 +4329,7 @@ msgstr[1] "%d kuukautta"
 #, python-format
 msgid "%d day"
 msgid_plural "%d days"
-msgstr[0] "%d päivää"
+msgstr[0] "%d päivä"
 msgstr[1] "%d päivää"
 
 #: ../gramps/gen/lib/date.py:443
@@ -19535,7 +19535,7 @@ msgstr "Et valinnut ketään"
 #, python-format
 msgid "%d child"
 msgid_plural "%d children"
-msgstr[0] "%d lasta"
+msgstr[0] "%d lapsi"
 msgstr[1] "%d lasta"
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
