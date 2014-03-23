@@ -670,13 +670,8 @@ class GVPsDoc(GVDocBase):
         # disappeared. I used 1 inch margins always.
         # See bug tracker issue 2815
         # :cairo does not work with Graphviz 2.26.3 and later See issue 4164
-        # Covert filename to str using file system encoding.
-        if sys.version_info[0] < 3:
-            fname = self._filename.encode(glocale.getfilesystemencoding())
-        else:
-            fname = self._filename
 
-        command = 'dot -Tps:cairo -o"%s" "%s"' % (fname, tmp_dot)
+        command = 'dot -Tps:cairo -o"%s" "%s"' % (self._filename, tmp_dot)
         dotversion = str(Popen(['dot', '-V'], stderr=PIPE).communicate(input=None)[1])
         # Problem with dot 2.26.3 and later and multiple pages, which gives "cairo: out of
         # memory" If the :cairo is skipped for these cases it gives acceptable
@@ -718,14 +713,8 @@ class GVSvgDoc(GVDocBase):
             dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
-        # Covert filename to str using file system encoding.
-        if sys.version_info[0] < 3:
-            fname = self._filename.encode(glocale.getfilesystemencoding())
-        else:
-            fname = self._filename
-
         # Generate the SVG file.
-        os.system( 'dot -Tsvg:cairo -o"%s" "%s"' % (fname, tmp_dot) )
+        os.system( 'dot -Tsvg:cairo -o"%s" "%s"' % (self._filename, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -761,14 +750,8 @@ class GVSvgzDoc(GVDocBase):
             dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
-        # Covert filename to str using file system encoding.
-        if sys.version_info[0] < 3:
-            fname = self._filename.encode(glocale.getfilesystemencoding())
-        else:
-            fname = self._filename
-        
         # Generate the SVGZ file.
-        os.system( 'dot -Tsvgz -o"%s" "%s"' % (fname, tmp_dot) )
+        os.system( 'dot -Tsvgz -o"%s" "%s"' % (self._filename, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -804,14 +787,8 @@ class GVPngDoc(GVDocBase):
             dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
-        # Covert filename to str using file system encoding.
-        if sys.version_info[0] < 3:
-            fname = self._filename.encode(glocale.getfilesystemencoding())
-        else:
-            fname = self._filename
-        
         # Generate the PNG file.
-        os.system( 'dot -Tpng -o"%s" "%s"' % (fname, tmp_dot) )
+        os.system( 'dot -Tpng -o"%s" "%s"' % (self._filename, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -847,15 +824,9 @@ class GVJpegDoc(GVDocBase):
             dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
-        # Covert filename to str using file system encoding.
-        if sys.version_info[0] < 3:
-            fname = self._filename.encode(glocale.getfilesystemencoding())
-        else:
-            fname = self._filename
-        
         # Generate the JPEG file.
-        os.system( 'dot -Tjpg -o"%s" "%s"' % (fname, tmp_dot) )
-        
+        os.system( 'dot -Tjpg -o"%s" "%s"' % (self._filename, tmp_dot) )
+
         # Delete the temporary dot file
         os.remove(tmp_dot)
 
@@ -890,14 +861,8 @@ class GVGifDoc(GVDocBase):
             dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
-        # Covert filename to str using file system encoding.
-        if sys.version_info[0] < 3:
-            fname = self._filename.encode(glocale.getfilesystemencoding())
-        else:
-            fname = self._filename
-        
         # Generate the GIF file.
-        os.system( 'dot -Tgif -o"%s" "%s"' % (fname, tmp_dot) )
+        os.system( 'dot -Tgif -o"%s" "%s"' % (self._filename, tmp_dot) )
         
         # Delete the temporary dot file
         os.remove(tmp_dot)
@@ -998,13 +963,9 @@ class GVPdfGsDoc(GVDocBase):
         height_pt = int( (paper_size.get_height_inches() * 72) + 0.5 )
         
         # Convert to PDF using ghostscript
-        if sys.version_info[0] < 3:
-            fname = self._filename.encode(glocale.getfilesystemencoding())
-        else:
-            fname = self._filename
         command = '%s -q -sDEVICE=pdfwrite -dNOPAUSE -dDEVICEWIDTHPOINTS=%d' \
                   ' -dDEVICEHEIGHTPOINTS=%d -sOutputFile="%s" "%s" -c quit' \
-                  % ( _GS_CMD, width_pt, height_pt, fname, tmp_ps )
+                  % ( _GS_CMD, width_pt, height_pt, self._filename, tmp_ps )
         os.system(command)
         
         os.remove(tmp_ps)
