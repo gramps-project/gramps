@@ -19493,8 +19493,10 @@ msgstr "No especificó ninguna persona"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
-msgid "%d children"
-msgstr "%d hijos"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d hijo"
+msgstr[1] "%d hijos"
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
 msgid "The Center person for the graph"

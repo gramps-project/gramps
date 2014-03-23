@@ -19270,8 +19270,10 @@ msgstr "Senkit sem határozott meg"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
-msgid "%d children"
-msgstr "%d gyermekek"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d gyermek"
+msgstr[1] "%d gyermek"
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
 msgid "The Center person for the graph"

@@ -19464,8 +19464,11 @@ msgstr "Nie określiłeś nikogo"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
-msgid "%d children"
-msgstr "%d dzieci"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d dziecko"
+msgstr[1] "%d dzieci"
+msgstr[2] "%d dzieci"
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
 msgid "The Center person for the graph"
@@ -30158,9 +30161,9 @@ msgstr "Proszę najpierw uruchomić narzędzie Sprawdź i napraw bazę danych"
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
-msgstr[0] "(%d dziecko)"
-msgstr[1] "(%d dzieci)"
-msgstr[2] "(%d dzieci)"
+msgstr[0] " (%d dziecko)"
+msgstr[1] " (%d dzieci)"
+msgstr[2] " (%d dzieci)"
 
 #: ../gramps/plugins/view/relview.py:1352
 #: ../gramps/plugins/view/relview.py:1399

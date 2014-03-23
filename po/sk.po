@@ -17851,8 +17851,10 @@ msgstr "Nevybrali ste nikoho"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
-msgid "%d children"
-msgstr "Počet detí %d"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d dieťa"
+msgstr[1] "%d detí"
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
 msgid "The Center person for the graph"

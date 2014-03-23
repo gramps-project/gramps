@@ -19853,8 +19853,10 @@ msgstr "U hebt niet opgegeven"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
-msgid "%d children"
-msgstr "%d kinderen"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d kind"
+msgstr[1] "%d kinderen"
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
 msgid "The Center person for the graph"

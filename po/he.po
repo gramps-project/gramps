@@ -17934,8 +17934,10 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
-msgid "%d children"
-msgstr "%d ילדים"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "ילד %d"
+msgstr[1] "%d ילדים"
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
 msgid "The Center person for the graph"

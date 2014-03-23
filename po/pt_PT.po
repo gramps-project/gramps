@@ -17959,8 +17959,10 @@ msgstr "Você não especificou ninguém"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:939
 #, python-format
-msgid "%d children"
-msgstr "%d filhos"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d filho"
+msgstr[1] "%d filhos"
 
 #: ../gramps/plugins/graph/gvhourglass.py:274
 msgid "The Center person for the graph"
