@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gramps-4.0.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-19 08:54+0100\n"
-"PO-Revision-Date: 2014-03-21 07:27+0300\n"
+"PO-Revision-Date: 2014-03-22 20:38+0300\n"
 "Last-Translator: Munzir Taha (منذر طه) <munzirtaha@gmail.com>\n"
 "Language-Team: Arabic <>\n"
 "Language: en_US\n"
@@ -849,7 +849,8 @@ msgstr ""
 "محمد بشير النعيمي <mbnoimi@gmail.com>\n"
 "\n"
 "لصالح:\n"
-"منتدى العلاقات العربية الدولية http://fairforum.org"
+"منتدى العلاقات العربية الدولية http://fairforum.org "
+"ومنذر طه (Munzir Taha)"
 
 #: ../gramps/gen/const.py:240 ../gramps/gen/const.py:241
 #: ../gramps/gen/lib/date.py:1792 ../gramps/gen/lib/date.py:1806
@@ -3153,7 +3154,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:49
 msgid "Children of <filter> match"
-msgstr ""
+msgstr "أبناء <filter> توافق"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:51
 msgid "Matches children of anybody matched by a filter"
@@ -3170,7 +3171,7 @@ msgstr "إذهب للشخص الإفتراضي"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:52
 msgid "Descendant family members of <person>"
-msgstr ""
+msgstr "أعضاء أسرة ذرية <person>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:53
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:50
@@ -3179,7 +3180,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:50
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:49
 msgid "Descendant filters"
-msgstr "مُرشحات الخلف"
+msgstr "مُرشحات الذرية"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:54
 msgid ""
@@ -5952,7 +5953,7 @@ msgstr "كل قاعدة البيانات"
 #: ../gramps/plugins/textreport/descendreport.py:377
 #, python-format
 msgid "Descendants of %s"
-msgstr "خلف %s"
+msgstr "ذريّة %s"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/gen/plug/report/utils.py:280
@@ -6262,19 +6263,19 @@ msgstr "حدث مع زوج"
 
 #: ../gramps/gen/utils/alive.py:297
 msgid "descendant birth date"
-msgstr "تاريخ مولد الخلف"
+msgstr "تاريخ مولد الذّرّيّة"
 
 #: ../gramps/gen/utils/alive.py:306
 msgid "descendant death date"
-msgstr "تاريخ ممات الخلف"
+msgstr "تاريخ ممات الذّرّيّة"
 
 #: ../gramps/gen/utils/alive.py:322
 msgid "descendant birth-related date"
-msgstr "تاريخ مرتبط بمولد الخلف"
+msgstr "تاريخ مرتبط بمولد الذّرّيّة"
 
 #: ../gramps/gen/utils/alive.py:330
 msgid "descendant death-related date"
-msgstr "تاريخ مرتبط بممات الخلف"
+msgstr "تاريخ مرتبط بممات الذّرّيّة"
 
 #: ../gramps/gen/utils/alive.py:343
 #, python-format
@@ -12687,14 +12688,13 @@ msgstr "أحداث"
 #: ../gramps/plugins/view/fanchartview.py:73
 #: ../gramps/plugins/view/view.gpr.py:141
 msgid "Fan Chart"
-msgstr "مخطط المروحة"
+msgstr "تخطيط المروحة"
 
 #: ../gramps/gui/grampsgui.py:157
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:118
 #: ../gramps/plugins/view/fanchartdescview.py:74
-#, fuzzy
 msgid "Descendant Fan Chart"
-msgstr "مخطط الخلف"
+msgstr "تخطيط الذّرّيّة المروحي"
 
 #: ../gramps/gui/grampsgui.py:158
 msgid "Font"
@@ -15332,7 +15332,7 @@ msgstr "مستند PDF"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:138
 msgid "Generates documents in PDF format (.pdf)."
-msgstr "توليد مستندات بتنسيق بدي إف (.pdf)."
+msgstr "توليد مستندات بتنسيق بي دي إف (.pdf)."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:159
 msgid "Generates documents in PostScript format (.ps)."
@@ -15471,15 +15471,14 @@ msgstr "تزوّج(ـت)."
 
 #. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/ancestortree.py:141
-#, fuzzy
 msgid "Ancestor Graph"
-msgstr "مخطط السلف لـ %s"
+msgstr "رسم السلف"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/drawreport/ancestortree.py:156
 #, python-format
 msgid "Ancestor Graph for %s"
-msgstr "مخطط السلف لـ %s"
+msgstr "رسم سلف %s"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:710
 #: ../gramps/plugins/drawreport/ancestortree.py:797
@@ -16129,37 +16128,36 @@ msgstr "حدود"
 #: ../gramps/plugins/drawreport/descendtree.py:161
 #, python-format
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
-msgstr ""
+msgstr "تخطيط ذّرّيّة %(person)s و %(father1)s، %(mother1)s"
 
 #. Should be 2 items in names list
 #: ../gramps/plugins/drawreport/descendtree.py:168
 #, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
-msgstr ""
+msgstr "تخطيط ذّرّيّة %(person)s، %(father1)s و %(mother1)s"
 
 #. Should be 2 items in both names and names2 lists
 #: ../gramps/plugins/drawreport/descendtree.py:175
 #, python-format
 msgid ""
 "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
-msgstr ""
+msgstr "تخطيط ذّرّيّة %(father1)s، %(father2)s و %(mother1)s، %(mother2)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:184
 #, python-format
 msgid "Descendant Chart for %(person)s"
-msgstr "الرسم البياني لخلف %(person)s"
+msgstr "الرسم البياني لذّرّيّة %(person)s"
 
 #. Should be two items in names list
 #: ../gramps/plugins/drawreport/descendtree.py:187
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
-msgstr "الرسم البياني لخلف %(father)s و %(mother)s"
+msgstr "الرسم البياني لذّرّيّة %(father)s و %(mother)s"
 
 #. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/descendtree.py:214
-#, fuzzy
 msgid "Descendant Graph"
-msgstr "شجرة الخلف"
+msgstr "رسم ذّرّيّة"
 
 #: ../gramps/plugins/drawreport/descendtree.py:326
 #, python-format
@@ -16223,7 +16221,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/descendtree.py:1522
 msgid "Display format for a descendant."
-msgstr "تنسيق عرض الخلف"
+msgstr "تنسيق عرض الذّرّيّة"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1525
 msgid "Bold direct descendants"
@@ -16280,7 +16278,7 @@ msgstr "الولايات المتّحدة الأميركيّة"
 #: ../gramps/plugins/drawreport/descendtree.py:1624
 #: ../gramps/plugins/drawreport/descendtree.py:1673
 msgid "Descendant Chart for [selected person(s)]"
-msgstr ""
+msgstr "تخطيط ذّرّيّة  [الأشخاص المختارون]"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1634
 msgid "Whether to include page numbers on each page."
@@ -16300,7 +16298,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:32
 msgid "Ancestor Chart"
-msgstr "مخطط السلف"
+msgstr "تخطيط السلف"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:33
 msgid "Produces a graphical ancestral chart"
@@ -16322,7 +16320,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:92
 msgid "Descendant Chart"
-msgstr "مخطط الخلف"
+msgstr "تخطيط الذرية"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:93
 msgid "Produces a graphical descendant chart"
@@ -16330,7 +16328,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:108
 msgid "Descendant Tree"
-msgstr "شجرة الخلف"
+msgstr "شجرة الذّرّيّة"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:109
 msgid "Produces a graphical descendant tree"
@@ -16338,7 +16336,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:130
 msgid "Family Descendant Chart"
-msgstr ""
+msgstr "تخطيط ذّرّيّة أسرة"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:131
 msgid "Produces a graphical descendant chart around a family"
@@ -16372,9 +16370,8 @@ msgstr ""
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:216
 #: ../gramps/plugins/drawreport/timeline.py:269
-#, fuzzy
 msgid "Timeline Chart"
-msgstr "مخطط جانت"
+msgstr "تخطيط زمني"
 
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:217
 msgid "Produces a timeline chart."
@@ -16387,11 +16384,13 @@ msgid "%(generations)d Generation Fan Chart for %(person)s"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/fanchart.py:262
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(generations)d Generation Fan Chart for\n"
 "%(person)s"
-msgstr "الرسم البياني لخلف %(person)s"
+msgstr ""
+"%(generations)d التخطيط المروحي لأجيال\n"
+"%(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:655
 #: ../gramps/plugins/textreport/ancestorreport.py:278
@@ -16403,7 +16402,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/fanchart.py:659
 msgid "Type of graph"
-msgstr "نوع المخطط"
+msgstr "نوع الرسم"
 
 #: ../gramps/plugins/drawreport/fanchart.py:660
 msgid "full circle"
@@ -16685,7 +16684,7 @@ msgstr "الشخص الرئيسي بالمرشّح."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:955
 msgid "Sort chart items by"
-msgstr "ترتيب بنود المخطط حسب"
+msgstr "ترتيب بنود التخطيط حسب"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:960
 msgid "Select how the statistical data is sorted."
@@ -16793,7 +16792,7 @@ msgstr "ترتيب التواريخ..."
 
 #: ../gramps/plugins/drawreport/timeline.py:164
 msgid "Calculating timeline..."
-msgstr "حساب المخطط الزمني..."
+msgstr "حساب الجدول الزمني..."
 
 #. feature request 2356: avoid genitive form
 #. FIXME the %(author)s was chosen because it already existed in the
@@ -16803,7 +16802,7 @@ msgstr "حساب المخطط الزمني..."
 #: ../gramps/plugins/webreport/webcal.py:471
 #, python-format
 msgid "Created for %(author)s"
-msgstr ""
+msgstr "أنشئت لـ %(author)s"
 
 #: ../gramps/plugins/drawreport/timeline.py:267
 #, python-format
@@ -17514,7 +17513,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:84
 msgid "Descendant"
-msgstr "خلف"
+msgstr "ذّرّيّة"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:85
 msgid "Gramplet showing active person's descendants"
@@ -17522,7 +17521,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:91
 msgid "Descendants"
-msgstr "خلف"
+msgstr "ذّرّيّة"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:102
 msgid "Gramplet showing active person's direct ancestors as a fanchart"
@@ -17534,9 +17533,8 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:127
 #: ../gramps/plugins/view/view.gpr.py:156
-#, fuzzy
 msgid "Descendant Fan"
-msgstr "خلف"
+msgstr "ذّرّيّة في شكل مروحي"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:135
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:141
@@ -18805,7 +18803,7 @@ msgstr "%(type)s: %(list)s"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:506
 msgid "spouse missing"
-msgstr "زوج(ـة) مفقود(ة)"
+msgstr "زوج مفقود"
 
 #: ../gramps/plugins/gramplet/whatsnext.py:510
 msgid "father missing"
@@ -18833,9 +18831,8 @@ msgid "Produces family line graphs using GraphViz."
 msgstr ""
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:54
-#, fuzzy
 msgid "Hourglass Graph"
-msgstr "المخطط الزمني"
+msgstr "رسم الساعة الرملية"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:55
 msgid "Produces an hourglass graph using Graphviz."
@@ -18950,9 +18947,8 @@ msgstr "اللون الذي سيستعمل لعرض النساء."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:168
 #: ../gramps/plugins/graph/gvrelgraph.py:634
-#, fuzzy
 msgid "The color to use when the gender is unknown."
-msgstr "اللون الذي سيستعمل في حالة ظهور جنس مجهول."
+msgstr "اللون الذي يستعمل في حالة أن الجنس مجهول."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:172
 #: ../gramps/plugins/graph/gvrelgraph.py:638
@@ -19167,19 +19163,19 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:77
 msgid "Descendants <- Ancestors"
-msgstr "خلف <- سلف"
+msgstr "ذّرّيّة <- سلف"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:78
 msgid "Descendants -> Ancestors"
-msgstr "خلف -> سلف"
+msgstr "ذّرّيّة -> سلف"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:79
 msgid "Descendants <-> Ancestors"
-msgstr "خلف <-> سلف"
+msgstr "ذّرّيّة <-> سلف"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:80
 msgid "Descendants - Ancestors"
-msgstr "خلف - سلف"
+msgstr "ذّرّيّة - سلف"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:535
 msgid "Determines what people are included in the graph"
@@ -20680,12 +20676,12 @@ msgstr "متقدم"
 #: ../gramps/plugins/lib/libnarrate.py:89
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s وُلِدَ في %(birth_date)s في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:90
 #, python-format
 msgid "%(male_name)s was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
+msgstr "%(male_name)s وُلِدَ في %(birth_date)s في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:91
 #, python-format
@@ -20695,17 +20691,17 @@ msgstr "%(female_name)s وُلدت في %(birth_date)s في %(birth_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:94
 #, python-format
 msgid "This person was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
+msgstr "هذا الشخص وُلِدَ في %(birth_date)s في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:95
 #, python-format
 msgid "He was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
+msgstr "وُلِدَ في %(birth_date)s في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:96
 #, python-format
 msgid "She was born on %(birth_date)s in %(birth_place)s."
-msgstr ""
+msgstr "وُلِدَت في %(birth_date)s في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:98
 #, python-format
@@ -20750,12 +20746,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:117
 #, python-format
 msgid "%(unknown_gender_name)s was born on %(birth_date)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s وُلِدَ في %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:118
 #, python-format
 msgid "%(male_name)s was born on %(birth_date)s."
-msgstr ""
+msgstr "%(male_name)s وُلِدَ في %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:119
 #, python-format
@@ -20765,17 +20761,17 @@ msgstr "%(female_name)s وُلدت في %(birth_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:122
 #, python-format
 msgid "This person was born on %(birth_date)s."
-msgstr ""
+msgstr "هذا الشخص وُلِدَ في %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:123
 #, python-format
 msgid "He was born on %(birth_date)s."
-msgstr ""
+msgstr "وُلِدَ في %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:124
 #, python-format
 msgid "She was born on %(birth_date)s."
-msgstr ""
+msgstr "وُلِدَت في %(birth_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:126
 #, python-format
@@ -20820,12 +20816,12 @@ msgstr "وُلد في %(modified_date)s."
 #: ../gramps/plugins/lib/libnarrate.py:145
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s وُلِد في %(month_year)s في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:146
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s in %(birth_place)s."
-msgstr ""
+msgstr "%(male_name)s وُلِدَ في %(month_year)s في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:147
 #, python-format
@@ -20835,17 +20831,17 @@ msgstr "%(female_name)s وُلدت في %(month_year)s في %(birth_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:150
 #, python-format
 msgid "This person was born in %(month_year)s in %(birth_place)s."
-msgstr ""
+msgstr "وُلِدَ في %(month_year)s في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:151
 #, python-format
 msgid "He was born in %(month_year)s in %(birth_place)s."
-msgstr ""
+msgstr "وُلِدَ في %(month_year)s في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:152
 #, python-format
 msgid "She was born in %(month_year)s in %(birth_place)s."
-msgstr ""
+msgstr "وُلِدَت في %(month_year)s في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:154
 #, python-format
@@ -20855,12 +20851,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:159
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(month_year)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s وُلِدَ في %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:160
 #, python-format
 msgid "%(male_name)s was born in %(month_year)s."
-msgstr ""
+msgstr "%(male_name)s وُلِدَ في %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:161
 #, python-format
@@ -20870,17 +20866,17 @@ msgstr "%(female_name)s وُلدت في %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:164
 #, python-format
 msgid "This person was born in %(month_year)s."
-msgstr ""
+msgstr "وُلِدَ في %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:165
 #, python-format
 msgid "He was born in %(month_year)s."
-msgstr ""
+msgstr "وُلِدَ في %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:166
 #, python-format
 msgid "She was born in %(month_year)s."
-msgstr ""
+msgstr "وُلِدَ في %(month_year)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:168
 #, python-format
@@ -20890,12 +20886,12 @@ msgstr "وُلد في %(month_year)s."
 #: ../gramps/plugins/lib/libnarrate.py:173
 #, python-format
 msgid "%(unknown_gender_name)s was born in %(birth_place)s."
-msgstr ""
+msgstr "%(unknown_gender_name)s وُلِدَ في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:174
 #, python-format
 msgid "%(male_name)s was born in %(birth_place)s."
-msgstr ""
+msgstr "%(male_name)s وُلِدَ في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:175
 #, python-format
@@ -20905,17 +20901,17 @@ msgstr "%(female_name)s وُلدت في %(birth_place)s."
 #: ../gramps/plugins/lib/libnarrate.py:178
 #, python-format
 msgid "This person was born in %(birth_place)s."
-msgstr ""
+msgstr "وُلِدَ في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:179
 #, python-format
 msgid "He was born in %(birth_place)s."
-msgstr ""
+msgstr "وُلِدَ في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:180
 #, python-format
 msgid "She was born in %(birth_place)s."
-msgstr ""
+msgstr "وُلِدَت في %(birth_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:182
 #, python-format
@@ -20974,22 +20970,22 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:209
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s."
-msgstr ""
+msgstr "تُوُفِّي في %(death_date)s في %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:210
 #, python-format
 msgid "He died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
+msgstr "تُوُفِّي في %(death_date)s في %(death_place)s وعمره %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:213
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s."
-msgstr ""
+msgstr "تُوُفِّيت في %(death_date)s في %(death_place)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:214
 #, python-format
 msgid "She died on %(death_date)s in %(death_place)s at the age of %(age)s."
-msgstr ""
+msgstr "تُوُفِّيت في %(death_date)s في %(death_place)s وعمرها %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:218
 #: ../gramps/plugins/lib/libnarrate.py:251
@@ -21114,22 +21110,22 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:275
 #, python-format
 msgid "He died on %(death_date)s."
-msgstr ""
+msgstr "تُوُفِّي في %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:276
 #, python-format
 msgid "He died on %(death_date)s at the age of %(age)s."
-msgstr ""
+msgstr "تُوُفِّي في %(death_date)s وعمره %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:279
 #, python-format
 msgid "She died on %(death_date)s."
-msgstr ""
+msgstr "تُوُفِّيت في %(death_date)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:280
 #, python-format
 msgid "She died on %(death_date)s at the age of %(age)s."
-msgstr ""
+msgstr "تُوُفِّيت في %(death_date)s وعمرها %(age)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:284
 #: ../gramps/plugins/lib/libnarrate.py:317
@@ -22468,12 +22464,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:877
 #, python-format
 msgid "He is the son of %(father)s and %(mother)s."
-msgstr ""
+msgstr "هو ابن %(father)s و %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:878
 #, python-format
 msgid "He was the son of %(father)s and %(mother)s."
-msgstr ""
+msgstr "هو ابن %(father)s و %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:880
 #, python-format
@@ -22493,12 +22489,12 @@ msgstr "%(female_name)s كانت ابنة %(father)s و %(mother)s."
 #: ../gramps/plugins/lib/libnarrate.py:888
 #, python-format
 msgid "She is the daughter of %(father)s and %(mother)s."
-msgstr ""
+msgstr "هي ابنة %(father)s و %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:889
 #, python-format
 msgid "She was the daughter of %(father)s and %(mother)s."
-msgstr ""
+msgstr "هي ابنة %(father)s و %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:891
 #, python-format
@@ -22543,12 +22539,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:913
 #, python-format
 msgid "He is the son of %(father)s."
-msgstr ""
+msgstr "هو ابن %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:914
 #, python-format
 msgid "He was the son of %(father)s."
-msgstr ""
+msgstr "هو ابن %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:916
 #, python-format
@@ -22568,12 +22564,12 @@ msgstr "%(female_name)s كانت ابنة %(father)s."
 #: ../gramps/plugins/lib/libnarrate.py:924
 #, python-format
 msgid "She is the daughter of %(father)s."
-msgstr ""
+msgstr "هي ابنة %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:925
 #, python-format
 msgid "She was the daughter of %(father)s."
-msgstr ""
+msgstr "وهي ابنة %(father)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:927
 #, python-format
@@ -22648,7 +22644,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:961
 #, python-format
 msgid "She was the daughter of %(mother)s."
-msgstr ""
+msgstr "وهي ابنة %(mother)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:963
 #, python-format
@@ -22676,32 +22672,32 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:979
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج %(spouse)s في %(partial_date)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:980
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج %(spouse)s في %(full_date)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:981
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج %(spouse)s %(modified_date)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:984
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت %(spouse)s في %(partial_date)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:985
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت %(spouse)s في %(full_date)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:986
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت %(spouse)s %(modified_date)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:989
 #, python-format
@@ -22743,33 +22739,33 @@ msgstr ""
 #, python-format
 msgid ""
 "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج أيضا %(spouse)s في %(partial_date)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1003
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج أيضا %(spouse)s في %(full_date)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1004
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج أيضا %(spouse)s %(modified_date)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1007
 #, python-format
 msgid ""
 "She also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت أيضا %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1008
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت أيضا %(spouse)s في %(full_date)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1009
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت أيضا %(spouse)s %(modified_date)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1012
 #, python-format
@@ -22804,32 +22800,32 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1025
 #, python-format
 msgid "He married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج %(spouse)s في %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1026
 #, python-format
 msgid "He married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج %(spouse)s في %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1027
 #, python-format
 msgid "He married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1030
 #, python-format
 msgid "She married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت %(spouse)s في %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1031
 #, python-format
 msgid "She married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت %(spouse)s في %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1032
 #, python-format
 msgid "She married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1035
 #, python-format
@@ -22864,32 +22860,32 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1048
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج أيضا %(spouse)s في %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1049
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج أيضا %(spouse)s في %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1050
 #, python-format
 msgid "He also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج أيضا %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1053
 #, python-format
 msgid "She also married %(spouse)s in %(partial_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت أيضا %(spouse)s في %(partial_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1054
 #, python-format
 msgid "She also married %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت أيضا %(spouse)s في %(full_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1055
 #, python-format
 msgid "She also married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت أيضا %(spouse)s %(modified_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1058
 #, python-format
@@ -22914,12 +22910,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1066
 #, python-format
 msgid "He married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج %(spouse)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1067
 #, python-format
 msgid "She married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت %(spouse)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1068
 #, python-format
@@ -22934,12 +22930,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1073
 #, python-format
 msgid "He also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت أيضا %(spouse)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1074
 #, python-format
 msgid "She also married %(spouse)s in %(place)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت أيضا %(spouse)s في %(place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1075
 #, python-format
@@ -22954,12 +22950,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1080
 #, python-format
 msgid "He married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1081
 #, python-format
 msgid "She married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1082
 #, python-format
@@ -22974,12 +22970,12 @@ msgstr ""
 #: ../gramps/plugins/lib/libnarrate.py:1087
 #, python-format
 msgid "He also married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّج أيضا %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1088
 #, python-format
 msgid "She also married %(spouse)s%(endnotes)s."
-msgstr ""
+msgstr "تزوّجت أيضا %(spouse)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1089
 #, python-format
@@ -24279,9 +24275,9 @@ msgstr "حيّ"
 
 #: ../gramps/plugins/quickview/ageondate.py:75
 #: ../gramps/plugins/quickview/ageondate.py:78
-#, fuzzy, python-format
+#, python-format
 msgid "Deceased: %s"
-msgstr "مستعرض الخلف: %s"
+msgstr "المرحوم: %s"
 
 #: ../gramps/plugins/quickview/ageondate.py:83
 #, python-format
@@ -25251,12 +25247,12 @@ msgstr "القالب الذي سيستعمل في القسم الأخير من �
 #: ../gramps/plugins/textreport/descendreport.py:231
 #, python-format
 msgid "sp. %(spouse)s"
-msgstr "زوج(ـة). %(spouse)s"
+msgstr "زوج. %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:242
 #, python-format
 msgid "sp. see  %(reference)s : %(spouse)s"
-msgstr "زوج(ـة). شاهد  %(reference)s : %(spouse)s"
+msgstr "زوج. شاهد  %(reference)s : %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:298
 #, python-format
@@ -25318,7 +25314,7 @@ msgstr "القالب المستعمل بمستوى العرض %d."
 #: ../gramps/plugins/textreport/descendreport.py:469
 #, python-format
 msgid "The style used for the spouse level %d display."
-msgstr "القالب المستعمل بمستوى عرض زوج(ـة) %d."
+msgstr "القالب المستعمل بمستوى عرض زوج %d."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detancestralreport.py:190
@@ -25420,7 +25416,7 @@ msgstr "المزيد عن %(mother_name)s و %(father_name)s:"
 #: ../gramps/plugins/textreport/detdescendantreport.py:553
 #, python-format
 msgid "Spouse: %s"
-msgstr "زوج(ـة): %s"
+msgstr "زوج: %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:659
 #: ../gramps/plugins/textreport/detdescendantreport.py:555
@@ -25514,7 +25510,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:775
 #: ../gramps/plugins/textreport/detdescendantreport.py:949
 msgid "Add descendant reference in child list"
-msgstr "إضافة مرجع الخلف بقائمة الأبناء"
+msgstr "إضافة مرجع الذّرّيّة بقائمة الأبناء"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:777
 #: ../gramps/plugins/textreport/detdescendantreport.py:952
@@ -25666,7 +25662,7 @@ msgstr "القالب المستعمل ببيانات التفاصيل الإضا
 #: ../gramps/plugins/textreport/detdescendantreport.py:282
 #, python-format
 msgid "Descendant Report for %(person_name)s"
-msgstr "تقرير خلف %(person_name)s"
+msgstr "تقرير ذّرّيّة %(person_name)s"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:569
 #, fuzzy, python-format
@@ -25706,7 +25702,7 @@ msgstr ""
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:995
 msgid "Include spouse reference"
-msgstr "تضمين مرجع الزوج(ـة)"
+msgstr "تضمين مرجع الزوج"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:996
 msgid "Whether to include reference to spouse."
@@ -25749,7 +25745,7 @@ msgstr "تقرير نهاية السطر لـ %s"
 #: ../gramps/plugins/textreport/endoflinereport.py:163
 #, python-format
 msgid "All the ancestors of %s who are missing a parent"
-msgstr ""
+msgstr "كل أسلاف %s الذين لهم والد مفقود"
 
 #: ../gramps/plugins/textreport/endoflinereport.py:207
 #: ../gramps/plugins/textreport/kinshipreport.py:316
@@ -25787,7 +25783,7 @@ msgstr "%d مجهول"
 #: ../gramps/plugins/textreport/familygroup.py:569
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "تقرير مجموعة عائلة - توليد %d"
+msgstr "تقرير مجموعة عائلة - جيل %d"
 
 # شك
 #: ../gramps/plugins/textreport/familygroup.py:571
@@ -25813,13 +25809,13 @@ msgstr "عودي"
 # شك
 #: ../gramps/plugins/textreport/familygroup.py:651
 msgid "Create reports for all descendants of this family."
-msgstr "إنشاء تقارير لكل خلف هذه العائلة."
+msgstr "إنشاء تقارير لكل ذّرّيّة لهذه العائلة."
 
 # شك
 #. #########################
 #: ../gramps/plugins/textreport/familygroup.py:661
 msgid "Generation numbers (recursive only)"
-msgstr "أرقام التوليد (عودي فقط)"
+msgstr "أرقام الأجيال (عودي فقط)"
 
 #: ../gramps/plugins/textreport/familygroup.py:663
 msgid "Whether to include the generation on each report (recursive only)."
@@ -25992,7 +25988,7 @@ msgstr "القالب المستعمل بعناوين التصنيف."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:749
 msgid "The style used for the spouse's name."
-msgstr "القالب المستعمل باسم الزوج(ـة)."
+msgstr "القالب المستعمل باسم الزوج."
 
 # شك
 #. feature request 2356: avoid genitive form
@@ -26439,11 +26435,11 @@ msgstr "إضافة نص مخصّص لتقرير الكتاب"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:98
 msgid "Descendant Report"
-msgstr "تقرير الخلف"
+msgstr "تقرير الذّرّيّة"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:99
 msgid "Produces a list of descendants of the active person"
-msgstr "يقوم بإنشاء قائمة بخلف الشخص النشط"
+msgstr "يقوم بإنشاء قائمة بذّرّيّة الشخص النشط"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:120
 msgid "Detailed Ancestral Report"
@@ -26455,11 +26451,11 @@ msgstr "يقوم بإنشاء تقرير مفصّل عن السلف"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:142
 msgid "Detailed Descendant Report"
-msgstr "تقرير مفصّل عن الخلف"
+msgstr "تقرير مفصّل عن الذّرّيّة"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:143
 msgid "Produces a detailed descendant report"
-msgstr "يقوم بإنشاء تقرير مفصّل عن الخلف"
+msgstr "يقوم بإنشاء تقرير مفصّل عن الذّرّيّة"
 
 # شك
 #: ../gramps/plugins/textreport/textplugins.gpr.py:164
@@ -26999,11 +26995,11 @@ msgstr "manual|Interactive_Descendant_Browser..."
 #: ../gramps/plugins/tool/desbrowser.py:71
 #, python-format
 msgid "Descendant Browser: %s"
-msgstr "مستعرض الخلف: %s"
+msgstr "مستعرض الذّرّيّة: %s"
 
 #: ../gramps/plugins/tool/desbrowser.py:99
 msgid "Descendant Browser tool"
-msgstr "أداة استعراض الخلف"
+msgstr "أداة استعراض الذّرّيّة"
 
 #: ../gramps/plugins/tool/eval.glade.h:1
 msgid "<b>Evaluation Window</b>"
@@ -27898,7 +27894,7 @@ msgstr "مستعرض تفاعلي للسلف"
 
 #: ../gramps/plugins/tool/tools.gpr.py:105
 msgid "Provides a browsable hierarchy based on the active person"
-msgstr "توفير شجرة قابلة للتصفح بدءً من الشخص النشط"
+msgstr "توفير شجرة قابلة للتصفح بدءاً من الشخص النشط"
 
 #: ../gramps/plugins/tool/tools.gpr.py:149
 msgid "Compare Individual Events"
@@ -28536,9 +28532,8 @@ msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:169
 #: ../gramps/plugins/view/fanchartview.py:167
-#, fuzzy
 msgid "Print or save the Fan Chart View"
-msgstr "عرض مخطط المروحة"
+msgstr "طباعة أو حفظ عرض تخطيط المروحة"
 
 #: ../gramps/plugins/view/fanchartdescview.py:279
 #: ../gramps/plugins/view/fanchartview.py:277
@@ -28592,9 +28587,8 @@ msgstr ""
 
 #: ../gramps/plugins/view/fanchartdescview.py:300
 #: ../gramps/plugins/view/fanchartview.py:298
-#, fuzzy
 msgid "Background"
-msgstr "لون الخلفية"
+msgstr "الخلفية"
 
 #. colors, stored as hex values
 #: ../gramps/plugins/view/fanchartdescview.py:307
@@ -28615,9 +28609,8 @@ msgstr "بحث عن أزواج متكرّرين"
 #. form of the fan
 #: ../gramps/plugins/view/fanchartdescview.py:314
 #: ../gramps/plugins/view/fanchartview.py:309
-#, fuzzy
 msgid "Fan chart type"
-msgstr "عرض مخطط المروحة"
+msgstr "نوع تخطيط المروحة"
 
 #: ../gramps/plugins/view/fanchartdescview.py:316
 #: ../gramps/plugins/view/fanchartview.py:311
@@ -28945,9 +28938,9 @@ msgid "GeoMoves"
 msgstr ""
 
 #: ../gramps/plugins/view/geomoves.py:469
-#, fuzzy, python-format
+#, python-format
 msgid "All descendance for %s"
-msgstr "خلف %s"
+msgstr "كل ذّرّيّة %s"
 
 #: ../gramps/plugins/view/geomoves.py:608
 #, fuzzy
@@ -29424,7 +29417,7 @@ msgstr " (بدون أبناء)"
 
 #: ../gramps/plugins/view/relview.py:1663
 msgid "Use shading"
-msgstr "خلفية مميّزة"
+msgstr "استخدم التظليل"
 
 #: ../gramps/plugins/view/relview.py:1666
 msgid "Display edit buttons"
@@ -29637,7 +29630,8 @@ msgstr "بيانات الخريطة"
 #, python-format
 msgid ""
 "Generated by <a href = \"%(homepage)s\">Gramps</a> %(version)s on %(date)s"
-msgstr "تم توليده <a href = \"%(homepage)s\">غرمبز</a> %(version)s في %(date)s"
+msgstr ""
+"أُنْشِئت بواسطة <a href = \"%(homepage)s\">غرمبز</a> %(version)s في %(date)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1626
 #, python-format
@@ -30672,7 +30666,7 @@ msgstr ""
 #: ../gramps/plugins/webreport/webcal.py:467
 #, python-format
 msgid "Created for <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
-msgstr ""
+msgstr "أنشئ لـ <a href=\"mailto:%(email)s?subject=WebCal\">%(author)s</a>"
 
 # شك#. Add a link for year_glance() if requested
 #. Add a link for year_glance() if requested
@@ -30726,6 +30720,7 @@ msgstr ""
 msgid ""
 "Generated by <a href=\"http://gramps-project.org\">Gramps</a> on %(date)s"
 msgstr ""
+"أُنْشِئت بواسطة <a href=\"http://gramps-project.org\">Gramps</a> في %(date)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1331
 msgid "Calendar Title"
