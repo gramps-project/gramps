@@ -68,6 +68,12 @@ class GivenNameCloudGramplet(Gramplet):
             allnames = [person.get_primary_name()] + person.get_alternate_names()
             allnames = set(name.get_first_name().strip() for name in allnames)
             for givenname in allnames:
+                anyNBSP = givenname.split(u'\u00A0')
+                if len(anyNBSP) > 1: # there was an NBSP, a non-breaking space
+                    first_two = anyNBSP[0] + u'\u00A0' + anyNBSP[1].split()[0]
+                    givensubnames[first_two] += 1
+                    representative_handle[first_two] = person.handle
+                    givenname = ' '.join(anyNBSP[1].split()[1:])
                 for givensubname in givenname.split():
                     givensubnames[givensubname] += 1
                     representative_handle[givensubname] = person.handle
