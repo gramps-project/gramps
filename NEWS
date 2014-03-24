@@ -1,22 +1,64 @@
+2014-03-xx
+Version 4.0.4, " ", a maintenance release.
+* Upgrade to db version 17 fails in Python 3 due to use of iteritems
+* Error when leaving a Gramps type field blank in an editor
+* Database corrupted - TypeError: unhashable type: 'list'
+* Better handling for non-ASCII characters on database-path
+* Fix vcard date converter
+* View does not communicate over proxy server with autorisation
+* Enhanced Bookmark support
+* Event gramplet filter does not have field for primary role,
+* New HasDayOfWeek filter rule
+* Crash when opening details of a person
+* List in Unused Objects interface has limited space
+* Edit window will be too small when editing notes
+* Selection lists in Attribute Editor have limited space
+* date editor and Date class allow e.g. Hebrew dates with newyear (Mar25)
+* Poor contrast mouse on mouse over
+* Drag and drop only one data into Editors tabs
+* NotRelated and Verify data dialogs appear either too small or too big
+* Enhancements and consitency on events gramplet, selector and view
+* Sometimes says 'no data exists for note' when saving
+* Enhanced Citation Editor
+* Cleanup on warnings and messages around locale directory
+* Media Editor error if Path value was changed to a non existing file
+* Given Name Cloud Gramplet splits up given names into words
+* Users should not be allowed to edit and delete 'default' style into Style Editor
+* Filename Decoding Error in Graphical Reports
+* Reorder tool: global name 'gen' is not defined
+* the scroll windows for patchname tools didn't expand
+* Some fixes and enhancements
+* Ver 4.0.2 starts in East Asian language
+* Gramps does not start
+* Spelling messages at random cause hang for a few seconds.
+* Media viewer list crashes during start if one try to select an entry where the media isn't available
+* HTML View fails to load
+* Paper names and Styles values are now translated
+* Sort failure using glocale.sort_key
+* Improve support for collation variants
+* Translate some punctuation marks
+* Fix unit tests and python3 issues
+Updated translations: ar, cs, de, fi, fr, (he), it, lt, nb, pl, pt_BR, ru, sv, uk
+
 2014-01-27
 Version 4.0.3, "It's tomorrow, ask me now", a maintenance release.
-* Fix copy via context menu on Views into Charts Category / 7399
-* Fix Tab sequence in Name Editor / 6868
-* Fix citations gramplet into media view / 7232
-* Fix unhandled exception when inspecting media / 7348
-* Fix Citation sidebar filter for python3 / 7370
-* Fix add link to a "Html code" note / 7357
-* Fix message on backup dialog / 6690
-* Fix space for selection lists / 7331 7409
-* Fix spell with myspell and LANG / 7339
-* Fix changes root cursor to hand / 7336
-* Recent file parser now gives the file location / 7327
-* Fix vertical overflows on check and repair-tool dialog / 7316
-* Fix custom key/value (data item) on Database difference report / 7209
-* Fix unhandled exception in media exif information under Windows OS / 7182
-* Fix person selector in searchfilter under Windows OS/ 7179
-* Starting Gramps without console is now possible under Windows OS/ 7378
-* Specific OS handling / 7313
+* Fix copy via context menu on Views into Charts Category
+* Fix Tab sequence in Name Editor
+* Fix citations gramplet into media view
+* Fix unhandled exception when inspecting media
+* Fix Citation sidebar filter for python3
+* Fix add link to a "Html code" note
+* Fix message on backup dialog
+* Fix space for selection lists
+* Fix spell with myspell and LANG
+* Fix changes root cursor to hand
+* Recent file parser now gives the file location
+* Fix vertical overflows on check and repair-tool dialog
+* Fix custom key/value (data item) on Database difference report
+* Fix unhandled exception in media exif information under Windows OS
+* Fix person selector in searchfilter under Windows OS
+* Starting Gramps without console is now possible under Windows OS
+* Specific OS handling
 * Common fixes and changes with 3.4.7.
 * Updated translations: ca, de, fi, fr, ru
 
