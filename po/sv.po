@@ -3976,7 +3976,7 @@ msgstr "Matchar arkivplatser vars namn innehåller angiven delsträng"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:49
 msgid "Repositories with Id containing <text>"
-msgstr "Arkivplatser med Id innehållande text\n"
+msgstr "Arkivplatser med Id innehållande <text>"
 
 #: ../gramps/gen/filters/rules/repository/_regexpidof.py:50
 msgid "Matches repositories whose Gramps ID matches the regular expression"
