@@ -2885,7 +2885,7 @@ msgstr ""
 #: ../src/plugins/lib/libgrdb.py:1818
 #, python-format
 msgid "_Undo %s"
-msgstr "Ann_uler %s"
+msgstr "_Défaire %s"
 
 #: ../src/gen/db/undoredo.py:247
 #: ../src/gen/db/undoredo.py:284
@@ -6932,7 +6932,7 @@ msgstr "_Plein Écran"
 #: ../src/gui/viewmanager.py:607
 #: ../src/gui/viewmanager.py:1189
 msgid "_Undo"
-msgstr "Ann_uler"
+msgstr "_Défaire"
 
 #: ../src/gui/viewmanager.py:612
 #: ../src/gui/viewmanager.py:1206
