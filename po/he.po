@@ -10117,7 +10117,6 @@ msgid "Revision comment - Gramps"
 msgstr "Gramps - הערת גרסה"
 
 #: ../gramps/gui/glade/dbman.glade.h:2
-#, fuzzy
 msgid "<b>Version description</b>"
 msgstr "<b>תיאור גרסה</b>"
 
@@ -10450,7 +10449,6 @@ msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
 msgstr ""
 
 #: ../gramps/gui/glade/editdate.glade.h:6
-#, fuzzy
 msgid "<b>Q_uality</b>"
 msgstr "<b>_איכות</b>"
 
@@ -10475,7 +10473,6 @@ msgid "_Year"
 msgstr "_שנה"
 
 #: ../gramps/gui/glade/editdate.glade.h:12
-#, fuzzy
 msgid "<b>Second date</b>"
 msgstr "<b>תאריך שני</b>"
 
@@ -10571,7 +10568,6 @@ msgstr "<b>שימי לב:</b> כל שינוי במידע של אירוע משו�
 
 #: ../gramps/gui/glade/editeventref.glade.h:15
 #: ../gramps/gui/glade/editreporef.glade.h:19
-#, fuzzy
 msgid "<b>Shared information</b>"
 msgstr "<b>מידע משותף</b>"
 
@@ -10608,7 +10604,6 @@ msgid "Indicates if the record is private"
 msgstr "מציין אם הרשומה פרטית"
 
 #: ../gramps/gui/glade/editfamily.glade.h:17
-#, fuzzy
 msgid "<b>Relationship Information</b>"
 msgstr "<b>מידע מערכת יחסים</b>"
 
@@ -10788,7 +10783,6 @@ msgid "_Corner 2:  X"
 msgstr "פינה 2: X"
 
 #: ../gramps/gui/glade/editmediaref.glade.h:3
-#, fuzzy
 msgid "<b>Referenced Region</b>"
 msgstr "<b>שם מועדף</b>"
 
@@ -10833,7 +10827,6 @@ msgid "Select a file"
 msgstr "בחרי קובץ"
 
 #: ../gramps/gui/glade/editmediaref.glade.h:33
-#, fuzzy
 msgid "<b>Shared Information</b>"
 msgstr "<b>מידע משותף</b>"
 
@@ -10974,7 +10967,6 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/glade/editnote.glade.h:14
-#, fuzzy
 msgid "<b>Note</b>"
 msgstr "<b>אם</b>"
 
@@ -11126,7 +11118,6 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade.h:35
-#, fuzzy
 msgid "<b>Location</b>"
 msgstr "<b>אפשרויות</b>"
 
@@ -11620,7 +11611,6 @@ msgid "Author's email:"
 msgstr "דואר אלקטרוני של המחבר:"
 
 #: ../gramps/gui/glade/reorder.glade.h:1
-#, fuzzy
 msgid "<b>Parent relationships</b>"
 msgstr "<b>קשרי הורה</b>"
 
@@ -11713,7 +11703,6 @@ msgid "<b>Options</b>"
 msgstr "<b>אפשרויות</b>"
 
 #: ../gramps/gui/glade/rule.glade.h:18
-#, fuzzy
 msgid "<b>Rule list</b>"
 msgstr "<b>רשימת כללים</b>"
 
@@ -11730,7 +11719,6 @@ msgid "Return values that do no_t match the filter rules"
 msgstr ""
 
 #: ../gramps/gui/glade/rule.glade.h:23
-#, fuzzy
 msgid "<b>Selected Rule</b>"
 msgstr "<b>כלל נבחר</b>"
 
@@ -11812,7 +11800,6 @@ msgid "Cen_ter"
 msgstr "מר_כז"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:19
-#, fuzzy
 msgid "<b>Alignment</b>"
 msgstr "<b>יישור</b>"
 
@@ -11870,12 +11857,10 @@ msgid "_Bottom"
 msgstr "_למטה"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:34
-#, fuzzy
 msgid "<b>Indentation</b>"
 msgstr "<b>הזחה</b>"
 
 #: ../gramps/gui/glade/styleeditor.glade.h:35
-#, fuzzy
 msgid "<b>Paragraph options</b>"
 msgstr "<b>אפשרויות פסקה</b>"
 
@@ -18673,7 +18658,6 @@ msgid "UTF8"
 msgstr ""
 
 #: ../gramps/plugins/importer/importgedcom.glade.h:10
-#, fuzzy
 msgid "<b>Warning messages</b>"
 msgstr "<b>הודעות אזהרה</b>"
 
@@ -25733,7 +25717,6 @@ msgid "Descendant Browser tool"
 msgstr "כלי דפדפן צאצאים"
 
 #: ../gramps/plugins/tool/eval.glade.h:1
-#, fuzzy
 msgid "<b>Evaluation Window</b>"
 msgstr "<b>חלון שגיאה</b>"
 
@@ -26442,7 +26425,6 @@ msgstr "ה_פוך סמנים"
 
 #: ../gramps/plugins/tool/removeunused.glade.h:10
 #: ../gramps/plugins/tool/verify.glade.h:1
-#, fuzzy
 msgid "<b>Double-click on a row to view/edit data</b>"
 msgstr "<b>הקליקי פעמיים על שורה בשביל לראות/לערוך מידע</b>"
 
