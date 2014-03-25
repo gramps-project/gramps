@@ -1078,7 +1078,7 @@ msgstr ""
 #: ../gramps/gen/db/write.py:2118
 #, python-format
 msgid "_Undo %s"
-msgstr "Ann_uler %s"
+msgstr "_Défaire %s"
 
 #: ../gramps/gen/db/undoredo.py:255
 #: ../gramps/gen/db/undoredo.py:292
@@ -14982,7 +14982,7 @@ msgstr "_Plein Écran"
 #: ../gramps/gui/viewmanager.py:579
 #: ../gramps/gui/viewmanager.py:1167
 msgid "_Undo"
-msgstr "Ann_uler"
+msgstr "_Défaire"
 
 #: ../gramps/gui/viewmanager.py:584
 #: ../gramps/gui/viewmanager.py:1184
