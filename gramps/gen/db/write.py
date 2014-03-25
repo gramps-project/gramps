@@ -186,7 +186,7 @@ def find_idmap(key, data):
     return val
 
 def find_parent(key, data):
-    if len(data[5]) > 0:
+    if hasattr(data[5], '__len__') and len(data[5]) > 0:
         val = data[5][0][0]
     else:
         val = ''
