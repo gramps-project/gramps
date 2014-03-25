@@ -906,7 +906,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Open the undo database
         """
         if not self.readonly:
-            self.undolog = _encode(os.path.join(self.full_name, DBUNDOFN))
+            self.undolog = os.path.join(self.full_name, DBUNDOFN)
             self.undodb = DbUndo(self, self.undolog)
             self.undodb.open()
 

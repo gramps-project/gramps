@@ -63,7 +63,7 @@ _ = glocale.translation.gettext
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..constfunc import conv_to_unicode, handle2internal
+from ..constfunc import conv_to_unicode, handle2internal, win, UNITYPE
 from .dbconst import *
 from . import BSDDBTxn
 from ..errors import DbError
@@ -419,7 +419,11 @@ class DbUndoBSDDB(DbUndo):
         """
         Open the undo/redo database
         """
-        self.undodb.open(self.path, db.DB_RECNO, db.DB_CREATE)
+        path = (self.path.encode(sys.getfilesystemencoding())
+                if (isinstance(self.path, UNITYPE) and win()
+                    and sys.version_info[0] < 3) 
+                else self.path)
+        self.undodb.open(path, db.DB_RECNO, db.DB_CREATE)
         
     def close(self):
         """
