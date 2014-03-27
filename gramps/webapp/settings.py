@@ -24,7 +24,7 @@
 # Need to be able to import Gramps files from here.
 
 import os
-if os.environ.get('GRAMPS_RESOURCES', None) is None:
+if not 'GRAMPS_RESOURCES' in os.environ:
     os.environ['GRAMPS_RESOURCES'] = os.path.dirname(os.path.abspath("../.."))
 
 from gramps.gen.const import DATA_DIR, WEB_DIR

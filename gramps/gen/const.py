@@ -93,7 +93,7 @@ if 'GRAMPSHOME' in os.environ:
 elif 'USERPROFILE' in os.environ:
     USER_HOME = get_env_var('USERPROFILE') 
     if 'APPDATA' in os.environ:
-        HOME_DIR = os.path.join(os.environ['APPDATA'], 'gramps')
+        HOME_DIR = os.path.join(get_env_var('APPDATA'), 'gramps')
     else:
         HOME_DIR = os.path.join(USER_HOME, 'gramps')
 else:

@@ -2464,10 +2464,9 @@ def write_lock_file(name):
         os.mkdir(name)
     f = open(os.path.join(name, DBLOCKFN), "w")
     if win():
-        user = os.environ['USERNAME']
-        try:
-            host = os.environ['USERDOMAIN']
-        except:
+        user = get_env_var('USERNAME')
+        host = get_env_var('USERDOMAIN')
+        if host == None:
             host = ""
     else:
         host = os.uname()[1]
