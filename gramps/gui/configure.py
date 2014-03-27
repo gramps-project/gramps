@@ -1407,7 +1407,7 @@ class GrampsPreferences(ConfigureDialog):
                      Gtk.ResponseType.OK))
         dbpath = config.get('behavior.database-path')
         if not dbpath:
-            dbpath = os.path.join(os.environ['HOME'], '.gramps','grampsdb')
+            dbpath = os.path.join(HOME_DIR,'grampsdb')
         f.set_current_folder(os.path.dirname(dbpath))
 
         status = f.run()
