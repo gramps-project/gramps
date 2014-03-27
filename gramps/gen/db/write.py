@@ -32,7 +32,7 @@ This is used since Gramps version 3.0
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, with_statement
+from __future__ import print_function, with_statement, unicode_literals
 import sys
 if sys.version_info[0] < 3:
     import cPickle as pickle
@@ -90,7 +90,7 @@ from ..updatecallback import UpdateCallback
 from ..errors import DbError
 from ..constfunc import (win, conv_to_unicode, cuni, UNITYPE, handle2internal,
                          get_env_var)
-from ..const import GRAMPS_LOCALE as glocale
+from ..const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 _LOG = logging.getLogger(DBLOGNAME)
@@ -2474,7 +2474,7 @@ def write_lock_file(name):
         try:
             user = os.getlogin()
         except:
-            user = get_env_var('USER')
+            user = os.environ['USER'] #not win, don't need get_env_var
     if host:
         text = "%s@%s" % (user, host)
     else:
@@ -2500,7 +2500,7 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         db_name = sys.argv[1]
     else:
-        db_home = os.path.join(os.environ['HOME'], '.gramps','grampsdb')
+        db_home = os.path.join(HOME_DIR,'grampsdb')
         for dir in os.listdir(db_home):
             db_path = os.path.join(db_home, dir)
             db_fn = os.path.join(db_path, 'name.txt')
