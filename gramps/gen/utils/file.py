@@ -42,7 +42,7 @@ LOG = logging.getLogger(".gen.utils.file")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..constfunc import win, mac, cuni, conv_to_unicode, UNITYPE
+from ..constfunc import win, mac, cuni, conv_to_unicode, UNITYPE, get_env_var
 from ..const import TEMP_DIR, USER_HOME, GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
@@ -258,14 +258,14 @@ def search_for(name):
     else:
         name = name.split()[0]
     if win():
-        for i in os.environ['PATH'].split(';'):
+        for i in get_env_var('PATH').split(';'):
             fname = os.path.join(i, name)
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
                 return 1
         if os.access(name, os.X_OK) and not os.path.isdir(name):
             return 1
-    else:
-        for i in os.environ['PATH'].split(':'):
+    else: 
+        for i in os.environ['PATH'].split(':'): #not win()
             fname = os.path.join(i, name)
             if os.access(fname, os.X_OK) and not os.path.isdir(fname):
                 return 1
