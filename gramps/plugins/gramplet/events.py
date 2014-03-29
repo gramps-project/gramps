@@ -23,6 +23,7 @@ from gramps.gui.editors import EditEvent
 from gramps.gen.lib import EventRoleType
 from gramps.gui.listmodel import ListModel, NOSORT
 from gramps.gen.plug import Gramplet
+from gramps.gui.dbguielement import DbGUIElement
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as name_displayer
@@ -36,7 +37,12 @@ from gramps.gen.config import config
 
 age_precision = config.get('preferences.age-display-precision')
 
-class Events(Gramplet):
+class Events(Gramplet, DbGUIElement):
+
+    def __init__(self, gui, nav_group=0):
+        Gramplet.__init__(self, gui, nav_group)
+        DbGUIElement.__init__(self, self.dbstate.db)
+
     """
     Displays the events for a person or family.
     """
@@ -45,6 +51,19 @@ class Events(Gramplet):
         self.gui.get_container_widget().remove(self.gui.textview)
         self.gui.get_container_widget().add(self.gui.WIDGET)
         self.gui.WIDGET.show()
+
+    def _connect_db_signals(self):
+        """
+        called on init of DbGUIElement, connect to db as required.
+        """
+        self.callman.register_callbacks({'event-update': self.changed})
+        self.callman.connect_all(keys=['event'])
+
+    def changed(self, handle):
+        """
+        Called when a registered event is updated.
+        """
+        self.update()
 
     def build_gui(self):
         """
@@ -70,6 +89,7 @@ class Events(Gramplet):
         """
         Add an event to the model.
         """
+        self.callman.register_handles({'event': [event_ref.ref]})
         event = self.dbstate.db.get_event_from_handle(event_ref.ref)
         event_date = get_date(event)
         event_sort = '%012d' % event.get_date_object().get_sort_value()
@@ -170,6 +190,7 @@ class PersonEvents(Events):
         active_handle = self.get_active('Person')
             
         self.model.clear()
+        self.callman.unregister_all()
         if active_handle:
             self.display_person(active_handle)
         else:
@@ -231,6 +252,7 @@ class FamilyEvents(Events):
         active_handle = self.get_active('Family')
             
         self.model.clear()
+        self.callman.unregister_all()
         if active_handle:
             self.display_family(active_handle)
         else:
