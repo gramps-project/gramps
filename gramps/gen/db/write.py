@@ -2133,12 +2133,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.undo_history_callback()            
 
     def undo(self, update_history=True):
-        self.undodb.undo(update_history)
-        return
+        return self.undodb.undo(update_history)
 
     def redo(self, update_history=True):
-        self.undodb.redo(update_history)
-        return
+        return self.undodb.redo(update_history)
 
     def gramps_upgrade(self, callback=None):
         UpdateCallback.__init__(self, callback)
