@@ -1933,7 +1933,7 @@ class CheckIntegrity(object):
         for handle in self.db.source_map.keys():
             self.progress.step()
             info = self.db.source_map[handle]
-            source = gen.lib.Source()
+            source = Source()
             source.unserialize(info)
             new_media_ref_list = []
             for media_ref in source.get_media_list():
@@ -1948,7 +1948,7 @@ class CheckIntegrity(object):
                             sourceref = citation_handle
                         else:
                             sourceref = eval(citation_handle)
-                        new_citation = gen.lib.Citation()
+                        new_citation = Citation()
                         new_citation.set_date_object(sourceref[0])
                         new_citation.set_privacy(sourceref[1])
                         new_citation.set_note_list(sourceref[2])
