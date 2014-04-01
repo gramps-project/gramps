@@ -30,6 +30,7 @@ Base Object class for GRAMPS
 #
 #-------------------------------------------------------------------------
 import re
+import logging
 
 #-------------------------------------------------------------------------
 #
@@ -43,6 +44,8 @@ from ..constfunc import cuni
 # Base Object
 #
 #-------------------------------------------------------------------------
+LOG = logging.getLogger(".baseobj")
+
 class BaseObject(object):
     """
     The BaseObject is the base class for all data objects in GRAMPS,
@@ -198,6 +201,7 @@ class BaseObject(object):
         # Run through child objects
         for obj in self.get_handle_referents():
             ret += obj.get_referenced_handles_recursively()
+        LOG.info("List of classname, handle: %s" % ret)
         return ret
 
     def merge(self, acquisition):
