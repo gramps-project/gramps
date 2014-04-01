@@ -1895,7 +1895,7 @@ class CheckIntegrity(object):
         for handle in self.db.source_map.keys():
             self.progress.step()
             info = self.db.source_map[handle]
-            source = gen.lib.Source()
+            source = Source()
             source.unserialize(info)
             new_media_ref_list = []
             for media_ref in source.get_media_list():
