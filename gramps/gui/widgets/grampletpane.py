@@ -173,6 +173,9 @@ def make_requested_gramplet(gui_class, pane, opts, dbstate, uistate):
     """
     Make a GUI gramplet given its name.
     """
+    if opts == None:
+        return None
+
     if "name" in opts:
         name = opts["name"]
         if name in AVAILABLE_GRAMPLETS():

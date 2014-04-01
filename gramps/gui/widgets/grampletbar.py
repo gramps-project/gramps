@@ -291,7 +291,7 @@ class GrampletBar(Gtk.Notebook):
         gramplet = make_requested_gramplet(TabGramplet, self, all_opts,
                                            self.dbstate, self.uistate)
         if not gramplet:
-            LOG.warning("Problem creating ", gname)
+            LOG.warning("Problem creating '%s'", gname)
             return
 
         page_num = self.__add_tab(gramplet)
