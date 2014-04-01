@@ -237,7 +237,10 @@ class Navigator(object):
             self.merge_ids.append(mergeid)
 
         # Call the view_changed method for the active sidebar
-        sidebar = self.pages[self.notebook.get_current_page()][1]
+        try:
+            sidebar = self.pages[self.notebook.get_current_page()][1]
+        except IndexError:
+            return
         sidebar.view_changed(cat_num, view_num)
 
     def cb_view_clicked(self, radioaction, current, cat_num):
