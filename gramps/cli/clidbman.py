@@ -45,6 +45,7 @@ else:
     from urllib.parse import urlparse
     from urllib.request import urlopen, url2pathname
 import tempfile
+import io
 #-------------------------------------------------------------------------
 #
 # set up logging
@@ -219,10 +220,7 @@ class CLIDbManager(object):
                 retval[_("Locked?")] = _("no")
             retval[_("Bsddb version")] = bsddb_version
             retval[_("Schema version")] = schema_version
-            if sys.version_info[0] < 3:
-                retval[_("Family Tree")] = name.encode(glocale.getfilesystemencoding())
-            else:
-                retval[_("Family Tree")] = name
+            retval[_("Family Tree")] = name
             retval[_("Path")] = dirpath
             retval[_("Last accessed")] = time.strftime('%x %X', 
                                                     time.localtime(tval))
@@ -517,12 +515,8 @@ def find_locker_name(dirpath):
     """
     try:
         fname = os.path.join(dirpath, "lock")
-        ifile = open(fname, 'rb')
+        ifile = io.open(fname, 'rb', encoding='utf8')
         username = ifile.read().strip()
-        # Convert username to unicode according to system encoding
-        # Otherwise problems with non ASCII characters in
-        # username in Windows
-        username = conv_to_unicode(username, glocale.getfilesystemencoding())
         # feature request 2356: avoid genitive form
         last = _("Locked by %s") % username
         ifile.close()

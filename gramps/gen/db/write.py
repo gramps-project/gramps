@@ -41,6 +41,7 @@ else:
 import os
 import time
 import bisect
+import io
 from functools import wraps
 import logging
 from sys import maxsize, getfilesystemencoding, version_info
@@ -2464,7 +2465,7 @@ def clear_lock_file(name):
 def write_lock_file(name):
     if not os.path.isdir(name):
         os.mkdir(name)
-    f = open(os.path.join(name, DBLOCKFN), "w")
+    f = io.open(os.path.join(name, DBLOCKFN), "w", encoding='utf8')
     if win():
         user = get_env_var('USERNAME')
         host = get_env_var('USERDOMAIN')
