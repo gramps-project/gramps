@@ -17769,7 +17769,7 @@ msgstr "Défaire"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:533
 msgid "Redo"
-msgstr "Réfaire"
+msgstr "Refaire"
 
 #: ../gramps/gui/widgets/styledtexteditor.py:656
 msgid "Select font color"
