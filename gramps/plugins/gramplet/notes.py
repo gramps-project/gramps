@@ -42,7 +42,7 @@ class Notes(Gramplet):
         """
         Build the GUI interface.
         """
-        top = Gtk.VBox(False)
+        top = Gtk.VBox(homogeneous=False)
         
         hbox = Gtk.HBox()
         self.left = SimpleButton(Gtk.STOCK_GO_BACK, self.left_clicked)

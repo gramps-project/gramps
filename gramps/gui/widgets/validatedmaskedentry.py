@@ -177,10 +177,10 @@ class FadeOut(GObject.GObject):
         """Stops the fadeout and restores the background color"""
         ##_LOG.debug('Stopping')
         if self._background_timeout_id != -1:
-            GObject.source_remove(self._background_timeout_id)
+            GLib.source_remove(self._background_timeout_id)
             self._background_timeout_id = -1
         if self._countdown_timeout_id != -1:
-            GObject.source_remove(self._countdown_timeout_id)
+            GLib.source_remove(self._countdown_timeout_id)
             self._countdown_timeout_id = -1
 
         self._widget.update_background(self._start_color, unset=True)

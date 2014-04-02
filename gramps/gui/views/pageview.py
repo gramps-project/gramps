@@ -628,7 +628,7 @@ class DummyPage(PageView):
         PageView.__init__(self, title, pdata, dbstate, uistate)
     
     def build_widget(self):
-        box = Gtk.VBox(False, 1)
+        box = Gtk.VBox(homogeneous=False, spacing=1)
         #top widget at the top
         box.pack_start(Gtk.Label(label=_('View %(name)s: %(msg)s') % {
                 'name': self.title,

@@ -63,7 +63,7 @@ class BackRefModel(Gtk.ListStore):
             self.idle = GLib.idle_add(self.load_model().__next__)
 
     def destroy(self):
-        GObject.source_remove(self.idle)
+        GLib.source_remove(self.idle)
 
     def load_model(self):
         """

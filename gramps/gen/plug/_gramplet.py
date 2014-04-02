@@ -380,10 +380,10 @@ class Gramplet(object):
         """
         Force the generator to stop running.
         """
-        from gi.repository import GObject
+        from gi.repository import GLib
         self._pause = True
         if self._idle_id != 0:
-            GObject.source_remove(self._idle_id)
+            GLib.source_remove(self._idle_id)
             self._idle_id = 0
 
     def _db_changed(self, db):

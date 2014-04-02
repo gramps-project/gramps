@@ -42,7 +42,7 @@ class ToDo(Gramplet):
         """
         Build the GUI interface.
         """
-        top = Gtk.VBox(False)
+        top = Gtk.VBox(homogeneous=False)
         
         hbox = Gtk.HBox()
         self.left = SimpleButton(Gtk.STOCK_GO_BACK, self.left_clicked)
@@ -51,7 +51,7 @@ class ToDo(Gramplet):
         hbox.pack_start(self.left, False, False, 0)
         self.right = SimpleButton(Gtk.STOCK_GO_FORWARD, self.right_clicked)
         self.right.set_tooltip_text(_('Next To Do note'))
-        self.right.set_sensitive(False)
+        self.right.set_sensitive(homogeneous=False)
         hbox.pack_start(self.right, False, False, 0)
         self.edit = SimpleButton(Gtk.STOCK_EDIT, self.edit_clicked)
         self.edit.set_tooltip_text(_('Edit the selected To Do note'))

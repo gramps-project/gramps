@@ -558,9 +558,9 @@ class GuiGramplet(object):
         if len(self.pui.option_order) == 0: return
         frame = Gtk.Frame()
         topbox = Gtk.VBox(homogeneous=False)
-        hbox = Gtk.HBox(False, 5)
-        labels = Gtk.VBox(True)
-        options = Gtk.VBox(True)
+        hbox = Gtk.HBox(homogeneous=False, spacing=5)
+        labels = Gtk.VBox(homogeneous=True)
+        options = Gtk.VBox(homogeneous=True)
         hbox.pack_start(labels, False, True, 0)
         hbox.pack_start(options, True, True, 0)
         topbox.pack_start(hbox, False, False, 0)

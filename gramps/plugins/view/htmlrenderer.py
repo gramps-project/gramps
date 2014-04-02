@@ -346,14 +346,14 @@ class HtmlView(NavigationView):
         contains the interface. This containter will be inserted into
         a Gtk.Notebook page.
         """
-        self.box = Gtk.VBox(False, 4)
+        self.box = Gtk.VBox(homogeneous=False, spacing=4)
         #top widget at the top
         self.box.pack_start(self.top_widget(), False, False, 0 )
         #web page under it in a scrolled window
         #self.table = Gtk.Table(1, 1, False)
         self.toolkit = TOOLKIT = get_toolkits()
         self.renderer = RendererWebkit()
-        self.frames = Gtk.HBox(False, 4)
+        self.frames = Gtk.HBox(homogeneous=False, spacing=4)
         frame = Gtk.ScrolledWindow(hadjustment=None,
                                                     vadjustment=None)
         frame.set_shadow_type(Gtk.ShadowType.NONE)
@@ -377,7 +377,7 @@ class HtmlView(NavigationView):
         """
         The default class gives a widget where user can type an url
         """
-        hbox = Gtk.HBox(False, 4)
+        hbox = Gtk.HBox(homogeneous=False, spacing=4)
         self.urlfield = Gtk.Entry()
         self.urlfield.set_text(config.get("htmlview.start-url"))
         self.urlfield.connect('activate', self._on_activate)
