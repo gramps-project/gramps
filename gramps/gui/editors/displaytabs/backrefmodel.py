@@ -30,6 +30,7 @@ import sys
 #-------------------------------------------------------------------------
 from gi.repository import GObject
 from gi.repository import Gtk
+from gi.repository import GLib
 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -57,9 +58,9 @@ class BackRefModel(Gtk.ListStore):
         self.sref_list = sref_list
         self.count = 0
         if sys.version_info[0] < 3:
-            self.idle = GObject.idle_add(self.load_model().next)
+            self.idle = GLib.idle_add(self.load_model().next)
         else:
-            self.idle = GObject.idle_add(self.load_model().__next__)
+            self.idle = GLib.idle_add(self.load_model().__next__)
 
     def destroy(self):
         GObject.source_remove(self.idle)
@@ -68,7 +69,7 @@ class BackRefModel(Gtk.ListStore):
         """
         Objects can have very large backreferences. To avoid blocking the 
         interface up to the moment that the model is created, this method is 
-        called via GObject.idle_add.
+        called via GLib.idle_add.
         WARNING: a consequence of above is that loading can still be happening
             while the GUI using this model is no longer used. Disconnect any
             methods before closing the GUI.

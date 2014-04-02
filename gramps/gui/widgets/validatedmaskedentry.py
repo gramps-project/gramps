@@ -42,6 +42,7 @@ _LOG = logging.getLogger(".widgets.validatedmaskedentry")
 #
 #-------------------------------------------------------------------------
 from gi.repository import GObject
+from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf
@@ -736,7 +737,7 @@ class MaskedEntry(UndoableEntry):
             if field is not False:
                 pos = self.get_field_pos(field+1)
                 if pos is not None:
-                    GObject.idle_add(self.set_position, pos)
+                    GLib.idle_add(self.set_position, pos)
             return pos
 
         return None
@@ -795,11 +796,11 @@ class MaskedEntry(UndoableEntry):
 #                    text[pos+length:end]+
 #                    text[end:])
         new_pos = pos+1
-        GObject.idle_add(self.set_position, new_pos)
+        GLib.idle_add(self.set_position, new_pos)
 
         # If the field is full, jump to the next field
         if len(self.get_field_text(field)) == self.get_field_length(field)-1:
-            GObject.idle_add(self.set_field, field+1, True)
+            GLib.idle_add(self.set_field, field+1, True)
             self.set_field(field+1)
 
         return new_pos, new_text

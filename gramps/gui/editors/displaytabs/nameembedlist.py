@@ -28,6 +28,7 @@
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
 from gi.repository import GObject
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
@@ -170,7 +171,7 @@ class NameEmbedList(GroupEmbeddedList):
         data = self.get_data()[self._WORKGROUP]
         data.append(name)
         self.rebuild()
-        GObject.idle_add(self.tree.scroll_to_cell,
+        GLib.idle_add(self.tree.scroll_to_cell,
                          (self._WORKGROUP, len(data) - 1))
 
     def edit_button_clicked(self, obj):

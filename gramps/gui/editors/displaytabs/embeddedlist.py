@@ -40,6 +40,7 @@ else:
 #
 #-------------------------------------------------------------------------
 from gi.repository import GObject
+from gi.repository import GLib
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
@@ -346,7 +347,7 @@ class EmbeddedList(ButtonTab):
         self.tree.get_selection().select_path(path)
         # The height/location of Gtk.treecells is calculated in an idle handler
         # so use idle_add to scroll cell into view.
-        GObject.idle_add(self.tree.scroll_to_cell, path)
+        GLib.idle_add(self.tree.scroll_to_cell, path)
         
     def _move_down(self, row_from, obj, selmethod=None):
         """ 
@@ -364,7 +365,7 @@ class EmbeddedList(ButtonTab):
         #select the row
         path = '%d' % (row_from+1) 
         self.tree.get_selection().select_path(path)
-        GObject.idle_add(self.tree.scroll_to_cell, path)
+        GLib.idle_add(self.tree.scroll_to_cell, path)
 
     def get_icon_name(self):
         """
@@ -599,7 +600,7 @@ class EmbeddedList(ButtonTab):
         self.dirty_selection = False
         self._selection_changed()
         if self.tree.get_realized():
-            GObject.idle_add(self.tree.scroll_to_point, offset.x, offset.y)
+            GLib.idle_add(self.tree.scroll_to_point, offset.x, offset.y)
         self.post_rebuild(selectedpath)
     
     def post_rebuild(self, prebuildpath):

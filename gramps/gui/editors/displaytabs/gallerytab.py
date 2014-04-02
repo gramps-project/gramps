@@ -51,6 +51,7 @@ from gi.repository import GdkPixbuf
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import GObject
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
@@ -311,7 +312,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
             itr_last = model.iter_nth_child(None, len(data) - 1)
             if itr_last:
                 path = model.get_path(itr_last)
-                GObject.idle_add(self.iconlist.scroll_to_path, path, False,
+                GLib.idle_add(self.iconlist.scroll_to_path, path, False,
                                                                      0.0, 0.0)
 
     def __blocked_text(self):

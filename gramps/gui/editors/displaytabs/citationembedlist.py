@@ -36,7 +36,7 @@ LOG = logging.getLogger(".citation")
 # GTK/Gnome modules
 #
 #-------------------------------------------------------------------------
-from gi.repository import GObject
+from gi.repository import GObject, GLib
 
 #-------------------------------------------------------------------------
 #
@@ -152,7 +152,7 @@ class CitationEmbedList(EmbeddedList, DbGUIElement):
         self.callman.register_handles({'citation': [value]})
         self.changed = True
         self.rebuild()
-        GObject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
+        GLib.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def share_button_clicked(self, obj):
         SelectCitation = SelectorFactory('Citation')

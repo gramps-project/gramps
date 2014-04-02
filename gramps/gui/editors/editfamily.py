@@ -60,6 +60,7 @@ from gi.repository import Gtk
 from gi.repository import Gdk
 from gi.repository import Pango
 from gi.repository import GObject
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
@@ -204,7 +205,7 @@ class ChildEmbedList(EmbeddedList):
         ref.ref = person.get_handle()
         self.family.add_child_ref(ref)
         self.rebuild()
-        GObject.idle_add(self.tree.scroll_to_cell,
+        GLib.idle_add(self.tree.scroll_to_cell,
                          len(self.family.get_child_ref_list()) - 1)
         self.call_edit_childref(ref)
 
@@ -226,7 +227,7 @@ class ChildEmbedList(EmbeddedList):
             ref.ref = person.get_handle()
             self.family.add_child_ref(ref)
             self.rebuild()
-            GObject.idle_add(self.tree.scroll_to_cell,
+            GLib.idle_add(self.tree.scroll_to_cell,
                              len(self.family.get_child_ref_list()) - 1)
             self.call_edit_childref(ref)
 

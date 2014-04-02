@@ -41,6 +41,7 @@ from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import Pango
 from gi.repository import GObject
+from gi.repository import GLib
 #-------------------------------------------------------------------------
 #
 # GRAMPS classes
@@ -320,7 +321,7 @@ class GroupEmbeddedList(EmbeddedList):
             #select the row
             path = (self._WORKGROUP, row_from[1]-1)
             self.tree.get_selection().select_path(path)
-            GObject.idle_add(self.tree.scroll_to_cell, path)
+            GLib.idle_add(self.tree.scroll_to_cell, path)
         else:
             self._move_up_notwork(row_from, obj, selmethod)
 
@@ -353,7 +354,7 @@ class GroupEmbeddedList(EmbeddedList):
             #select the row
             path = (self._WORKGROUP, row_from[1]+1)
             self.tree.get_selection().select_path(path)
-            GObject.idle_add(self.tree.scroll_to_cell, path)
+            GLib.idle_add(self.tree.scroll_to_cell, path)
         else:
             self._move_down_notwork(row_from, obj, selmethod)
 

@@ -285,7 +285,7 @@ class Gramplet(object):
         """
         The main interface for running the :meth:`main` method.
         """
-        from gi.repository import GObject
+        from gi.repository import GObject, GLib
         if ((not self.active or 
              self.gui.gstate in ["closed", "minimized"] or 
              not self.dbstate.open) and 
@@ -304,7 +304,7 @@ class Gramplet(object):
             self.interrupt()
         self._generator = self.main()
         self._pause = False
-        self._idle_id = GObject.idle_add(self._updater, 
+        self._idle_id = GLib.idle_add(self._updater, 
                                          priority=GObject.PRIORITY_LOW - 10)
 
     def _updater(self):
@@ -361,9 +361,9 @@ class Gramplet(object):
         """
         Resume the :meth:`main` method that has previously paused.
         """
-        from gi.repository import GObject
+        from gi.repository import GObject, Glib
         self._pause = False
-        self._idle_id = GObject.idle_add(self._updater, 
+        self._idle_id = GLib.idle_add(self._updater, 
                                          priority=GObject.PRIORITY_LOW - 10)
 
     def update_all(self, *args):

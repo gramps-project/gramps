@@ -25,7 +25,7 @@
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gi.repository import GObject
+from gi.repository import GObject, GLib
 
 #-------------------------------------------------------------------------
 #
@@ -74,7 +74,7 @@ class AltNameEmbedList(EmbeddedList):
     def add_callback(self, place_name):
         data = self.get_data()
         self.rebuild()
-        GObject.idle_add(self.tree.scroll_to_cell, len(data) - 1)
+        GLib.idle_add(self.tree.scroll_to_cell, len(data) - 1)
 
     def edit_button_clicked(self, obj):
         place_name = self.get_selected()

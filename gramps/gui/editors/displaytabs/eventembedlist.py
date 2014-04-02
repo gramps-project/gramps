@@ -30,6 +30,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gi.repository import Gtk
 from gi.repository import GObject
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
@@ -290,7 +291,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self.callman.register_handles({'event': [primary.handle]}) 
         self.changed = True
         self.rebuild()
-        GObject.idle_add(self.tree.scroll_to_cell,
+        GLib.idle_add(self.tree.scroll_to_cell,
                          (self._WORKGROUP, len(data) - 1))
 
     def object_edited(self, ref, event):

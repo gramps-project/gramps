@@ -27,7 +27,7 @@
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gi.repository import GObject
+from gi.repository import GObject, GLib
 
 #-------------------------------------------------------------------------
 #
@@ -108,7 +108,7 @@ class AttrEmbedList(EmbeddedList):
         data.append(name)
         self.changed = True
         self.rebuild()
-        GObject.idle_add(self.tree.scroll_to_cell, len(data)-1)
+        GLib.idle_add(self.tree.scroll_to_cell, len(data)-1)
 
     def edit_button_clicked(self, obj):
         attr = self.get_selected()
