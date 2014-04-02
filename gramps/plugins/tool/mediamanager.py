@@ -251,7 +251,7 @@ class SelectionPage(Gtk.VBox):
 
         self.set_spacing(12)
 
-        table = Gtk.Table(2 * len(batch_ops), 2)
+        table = Gtk.Table(n_rows=2 * len(batch_ops), n_columns=2)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
         
@@ -485,7 +485,7 @@ class PathChange(BatchOp):
         box = Gtk.VBox()
         box.set_spacing(12)
 
-        table = Gtk.Table(2, 2)
+        table = Gtk.Table(n_rows=2, n_columns=2)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
 

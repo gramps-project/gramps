@@ -202,7 +202,7 @@ class FamilyView(ListView):
         self._add_action('FilterEdit', None, _('Family Filter Editor'),
                         callback=self.filter_editor,)
                         
-        self.all_action = Gtk.ActionGroup(self.title + "/FamilyAll")
+        self.all_action = Gtk.ActionGroup(name=self.title + "/FamilyAll")
         self.all_action.add_actions([
                 ('MakeFatherActive', Gtk.STOCK_APPLY, _("Make Father Active Person"), 
                  None, None, self._make_father_active),

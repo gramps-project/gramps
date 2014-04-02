@@ -92,7 +92,7 @@ class PersonSidebarFilter(SidebarFilter):
             [ _('any'), _('male'), _('female'), _('unknown') ]))
         self.filter_gender.set_active(0)
             
-        self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
+        self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
 
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()

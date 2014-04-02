@@ -206,7 +206,7 @@ class Tags(DbGUIElement):
 
         if self.db is None:
             self.tag_ui = ''
-            self.tag_action = Gtk.ActionGroup('Tag')
+            self.tag_action = Gtk.ActionGroup(name='Tag')
             return
 
         tag_menu = '<menuitem action="NewTag"/>'
@@ -227,7 +227,7 @@ class Tags(DbGUIElement):
         actions.append(('TagButton', 'gramps-tag', _('Tag'), None,
                         _('Tag selected rows'), self.cb_tag_button))
  
-        self.tag_action = Gtk.ActionGroup('Tag')
+        self.tag_action = Gtk.ActionGroup(name='Tag')
         self.tag_action.add_actions(actions)
         
     def cb_tag_button(self, action):

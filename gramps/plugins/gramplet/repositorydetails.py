@@ -45,7 +45,7 @@ class RepositoryDetails(Gramplet):
         self.name.set_alignment(0, 0)
         self.name.modify_font(Pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.name, fill=True, expand=False, padding=7)
-        self.table = Gtk.Table(1, 2)
+        self.table = Gtk.Table(n_rows=1, n_columns=2)
         vbox.pack_start(self.table, fill=True, expand=False, padding=0)
         self.top.pack_start(vbox, fill=True, expand=False, padding=10)
         self.top.show_all()

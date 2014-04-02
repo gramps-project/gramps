@@ -282,7 +282,7 @@ class GeoClose(GeoGraphyView):
         NavigationView.define_actions(self)
 
         self.define_print_actions()
-        self.ref_person = Gtk.ActionGroup(self.title + '/Selection')
+        self.ref_person = Gtk.ActionGroup(name=self.title + '/Selection')
         self.ref_person.add_actions([
             ('RefPerson', 'gramps-person', _('reference _Person'), None ,
             _("Select the person which is the reference for life ways"),
@@ -566,7 +566,7 @@ class GeoClose(GeoGraphyView):
         Add specific entry to the preference menu.
         Must be done in the associated view.
         """
-        table = Gtk.Table(2, 2)
+        table = Gtk.Table(n_rows=2, n_columns=2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)

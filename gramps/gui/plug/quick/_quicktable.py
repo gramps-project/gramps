@@ -301,12 +301,12 @@ class QuickTable(SimpleTable):
             if isinstance(handle, list):
                 handle = handle[0]
             if objclass == 'Person':
-                from gi.repository import GObject
+                from gi.repository import GLib
                 # If you emmit the signal here and it causes this table to be deleted, 
                 # then you'll crash Python:
                 #self.simpledoc.doc.uistate.set_active(handle, 'Person')
                 # So, let's return from this, then change the active person:
-                return GObject.timeout_add(100, self.simpledoc.doc.uistate.set_active, handle, 'Person')
+                return GLib.timeout_add(100, self.simpledoc.doc.uistate.set_active, handle, 'Person')
                 return True
         return False # didn't handle event
 

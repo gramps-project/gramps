@@ -83,10 +83,12 @@ class ExpandCollapseArrow(Gtk.EventBox):
         """
         GObject.GObject.__init__(self)
         if collapsed :
-            self.arrow = Gtk.Arrow(Gtk.ArrowType.RIGHT, Gtk.ShadowType.OUT)
+            self.arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.RIGHT,
+                                              shadow_type=Gtk.ShadowType.OUT)
             self.set_tooltip_text(_("Expand this section"))
         else:
-            self.arrow = Gtk.Arrow(Gtk.ArrowType.DOWN, Gtk.ShadowType.OUT)
+            self.arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN,
+                                              shadow_type=Gtk.ShadowType.OUT)
             self.set_tooltip_text(_("Collapse this section"))
         self.add(self.arrow)
         self.connect('button-press-event', onbuttonpress, pair)

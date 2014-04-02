@@ -192,7 +192,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         box.set_border_width(12)
         box.set_spacing(12)
 
-        table = Gtk.Table(2*len(self.__exporters),2)
+        table = Gtk.Table(n_rows=2*len(self.__exporters), n_columns=2)
         table.set_row_spacings(6)
         table.set_col_spacings(6)
         

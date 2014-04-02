@@ -209,7 +209,7 @@ class ListView(NavigationView):
         
         NavigationView.define_actions(self)
 
-        self.edit_action = Gtk.ActionGroup(self.title + '/ChangeOrder')
+        self.edit_action = Gtk.ActionGroup(name=self.title + '/ChangeOrder')
         self.edit_action.add_actions([
                 ('Add', Gtk.STOCK_ADD, _("_Add..."), "<PRIMARY>Insert", 
                     self.ADD_MSG, self.add), 

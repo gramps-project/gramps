@@ -53,7 +53,7 @@ class PersonDetails(Gramplet):
         self.name.set_alignment(0, 0)
         self.name.modify_font(Pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.name, fill=True, expand=False, padding=7)
-        self.table = Gtk.Table(1, 2)
+        self.table = Gtk.Table(n_rows=1, n_columns=2)
         vbox.pack_start(self.table, fill=True, expand=False, padding=5)
         vbox.show_all()
         self.top.pack_start(self.photo, fill=True, expand=False, padding=5)

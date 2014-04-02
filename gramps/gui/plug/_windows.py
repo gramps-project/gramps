@@ -1006,7 +1006,7 @@ class ToolManagedWindowBase(ManagedWindow):
         the add_user_options task."""
         for key in self.frame_names:
             flist = self.frames[key]
-            table = Gtk.Table(3, len(flist))
+            table = Gtk.Table(n_rows=3, n_columns=len(flist))
             table.set_col_spacings(12)
             table.set_row_spacings(6)
             table.set_border_width(6)

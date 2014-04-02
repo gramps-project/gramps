@@ -49,7 +49,7 @@ class PlaceDetails(Gramplet):
         self.title.set_alignment(0, 0)
         self.title.modify_font(Pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.title, False, True, 7)
-        self.table = Gtk.Table(1, 2)
+        self.table = Gtk.Table(n_rows=1, n_columns=2)
         vbox.pack_start(self.table, False, True, 0)
         self.top.pack_start(self.photo, False, True, 5)
         self.top.pack_start(vbox, False, True, 10)

@@ -284,8 +284,8 @@ class CitationTreeView(ListView):
                          tip=self.ADD_CITATION_MSG, 
                          callback=self.share)
         
-        self.all_action = Gtk.ActionGroup(self.title + "/CitationAll")
-        self.edit_action = Gtk.ActionGroup(self.title + "/CitationEdit")
+        self.all_action = Gtk.ActionGroup(name=self.title + "/CitationAll")
+        self.edit_action = Gtk.ActionGroup(name=self.title + "/CitationEdit")
 
         self._add_action('FilterEdit', None, _('Citation Filter Editor'),
                          callback=self.filter_editor,)

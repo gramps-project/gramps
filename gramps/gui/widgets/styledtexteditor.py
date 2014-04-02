@@ -526,12 +526,13 @@ class StyledTextEditor(Gtk.TextView):
         }
 
         # create the action group and insert all the actions
-        self.action_group = Gtk.ActionGroup('Format')
+        self.action_group = Gtk.ActionGroup(name='Format')
         self.action_group.add_toggle_actions(format_toggle_actions)
-        self.undo_action = Gtk.Action("Undo", _('Undo'), _('Undo'), 
-                                        Gtk.STOCK_UNDO)
+        self.undo_action = Gtk.Action(name="Undo", label=_('Undo'),
+                                        tooltip=_('Undo'), 
+                                        stock_id=Gtk.STOCK_UNDO)
         self.undo_action.connect('activate', self.undo)
-        self.redo_action = Gtk.Action("Redo", _('Redo'), _('Redo'),
+        self.redo_action = Gtk.Action.new("Redo", _('Redo'), _('Redo'),
                                         Gtk.STOCK_REDO)
         self.redo_action.connect('activate', self.redo)
         self.action_group.add_action(self.undo_action)

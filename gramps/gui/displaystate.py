@@ -53,6 +53,7 @@ _LOG = logging.getLogger(".DisplayState")
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GObject
+from gi.repository import GLib
 
 #-------------------------------------------------------------------------
 #
@@ -259,7 +260,7 @@ import os
 
 class RecentDocsMenu(object):
     def __init__(self, uistate, state, fileopen):
-        self.action_group = Gtk.ActionGroup('RecentFiles')
+        self.action_group = Gtk.ActionGroup(name='RecentFiles')
         self.active = DISABLED
         self.uistate = uistate
         self.uimanager = uistate.uimanager
@@ -280,7 +281,7 @@ class RecentDocsMenu(object):
         if self.active != DISABLED:
             self.uimanager.remove_ui(self.active)
             self.uimanager.remove_action_group(self.action_group)
-            self.action_group = Gtk.ActionGroup('RecentFiles')
+            self.action_group = Gtk.ActionGroup(name='RecentFiles')
             self.active = DISABLED
             
         actions = []
@@ -335,7 +336,7 @@ class WarnHandler(RotateHandler):
     def emit(self, record):
         if self.timer is None:
             #check every 3 minutes if warn button can disappear
-            self.timer = GObject.timeout_add(3*60*1000, self._check_clear)
+            self.timer = GLib.timeout_add(3*60*1000, self._check_clear)
         RotateHandler.emit(self, record)
         self.button.show()
 
@@ -557,7 +558,7 @@ class DisplayState(Callback):
 
     def push_message(self, dbstate, text):
         self.status_text(text)
-        GObject.timeout_add(5000, self.modify_statusbar, dbstate)
+        GLib.timeout_add(5000, self.modify_statusbar, dbstate)
 
     def show_filter_results(self, dbstate, matched, total):
         #nav_type = self.viewmanager.active_page.navigation_type()

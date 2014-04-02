@@ -587,7 +587,8 @@ class PedigreeView(NavigationView):
         contains the interface. This containter will be inserted into
         a Gtk.ScrolledWindow page.
         """
-        self.scrolledwindow = Gtk.ScrolledWindow(None, None)
+        self.scrolledwindow = Gtk.ScrolledWindow(hadjustment=None, 
+                                                    vadjustment=None)  
         self.scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
                                        Gtk.PolicyType.AUTOMATIC)
         self.scrolledwindow.add_events(Gdk.EventMask.SCROLL_MASK)
@@ -1195,7 +1196,8 @@ class PedigreeView(NavigationView):
                     except KeyError:
                         # fill unused cells
                         label = Gtk.Label(label="%d,%d"%(x_pos, y_pos))
-                        frame = Gtk.ScrolledWindow(None, None)
+                        frame = Gtk.ScrolledWindow(hadjustment=None, 
+                                                vadjustment=None)
                         frame.set_shadow_type(Gtk.ShadowType.NONE)
                         frame.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
                         frame.add_with_viewport(label)
@@ -1995,7 +1997,7 @@ class PedigreeView(NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        table = Gtk.Table(7, 2)
+        table = Gtk.Table(n_rows=7, n_columns=2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)

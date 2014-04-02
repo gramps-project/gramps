@@ -354,7 +354,8 @@ class HtmlView(NavigationView):
         self.toolkit = TOOLKIT = get_toolkits()
         self.renderer = RendererWebkit()
         self.frames = Gtk.HBox(False, 4)
-        frame = Gtk.ScrolledWindow(None, None)
+        frame = Gtk.ScrolledWindow(hadjustment=None,
+                                                    vadjustment=None)
         frame.set_shadow_type(Gtk.ShadowType.NONE)
         frame.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         frame.add(self.renderer.get_window())
@@ -485,7 +486,7 @@ class HtmlView(NavigationView):
         accel doesn't work in webkit and gtkmozembed !
         we must do that ...
         """
-        self.back_action = Gtk.ActionGroup(self.title + '/Back')
+        self.back_action = Gtk.ActionGroup(name=self.title + '/Back')
         self.back_action.add_actions([
             ('Back', Gtk.STOCK_GO_BACK, _("_Back"), 
              "<ALT>Left", _("Go to the previous page in the history"), 
@@ -493,7 +494,7 @@ class HtmlView(NavigationView):
             ])
         self._add_action_group(self.back_action)
         # add the Forward action to handle the Forward button
-        self.forward_action = Gtk.ActionGroup(self.title + '/Forward')
+        self.forward_action = Gtk.ActionGroup(name=self.title + '/Forward')
         self.forward_action.add_actions([
             ('Forward', Gtk.STOCK_GO_FORWARD, _("_Forward"), 
              "<ALT>Right", _("Go to the next page in the history"), 

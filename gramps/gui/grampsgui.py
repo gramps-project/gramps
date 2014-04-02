@@ -65,7 +65,7 @@ except:
             
 if not PYGOBJ_ERR:
     try:
-        from gi.repository import GObject
+        from gi.repository import GObject, GLib
         if not GObject.pygobject_version >= MIN_PYGOBJECT_VERSION :
             PYGOBJ_ERR = True
     except:
@@ -410,9 +410,10 @@ def __startgramps(errors, argparser):
 def startgtkloop(errors, argparser):
     """ We start the gtk loop and run the function to start up GRAMPS
     """
-    GObject.threads_init()
+    if GObject.pygobject_version < (3, 10, 2):
+        GObject.threads_init()
 
-    GObject.timeout_add(100, __startgramps, errors, argparser, priority=100)
+    GLib.timeout_add(100, __startgramps, errors, argparser, priority=100)
     if os.path.exists(os.path.join(DATA_DIR, "gramps.accel")):
         Gtk.AccelMap.load(os.path.join(DATA_DIR, "gramps.accel"))
     Gtk.main()

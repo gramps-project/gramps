@@ -498,9 +498,9 @@ class EditRule(ManagedWindow):
             the_map[class_obj] = c
             # Only add a table with parameters if there are any parameters
             if arglist:
-                table = Gtk.Table(3, len(arglist))
+                table = Gtk.Table(n_rows=3, n_columns=len(arglist))
             else:
-                table = Gtk.Table(1, 1)
+                table = Gtk.Table(n_rows=1, n_columns=1)
             table.set_border_width(6)
             table.set_col_spacings(6)
             table.set_row_spacings(6)
@@ -597,7 +597,7 @@ class EditRule(ManagedWindow):
 
             use_regex = None
             if class_obj.allow_regex:
-                use_regex = Gtk.CheckButton(_('Use regular expressions'))
+                use_regex = Gtk.CheckButton(label=_('Use regular expressions'))
                 tip = _('Interpret the contents of string fields as regular '
                         'expressions.\n'
                         'A decimal point will match any character. '

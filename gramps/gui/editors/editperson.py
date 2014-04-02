@@ -662,8 +662,8 @@ class EditPerson(EditPrimary):
         Override from base class, the menuitems and actiongroups for the top
         of context menu.
         """
-        self.all_action    = Gtk.ActionGroup("/PersonAll")
-        self.home_action   = Gtk.ActionGroup("/PersonHome")
+        self.all_action    = Gtk.ActionGroup(name="/PersonAll")
+        self.home_action   = Gtk.ActionGroup(name="/PersonHome")
         self.track_ref_for_deletion("all_action")
         self.track_ref_for_deletion("home_action")
 

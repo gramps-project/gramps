@@ -73,7 +73,7 @@ class PlaceSidebarFilter(SidebarFilter):
         self.filter_parish = widgets.BasicEntry()
         self.filter_note = widgets.BasicEntry()
         
-        self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
+        self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()
 

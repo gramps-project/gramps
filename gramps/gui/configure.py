@@ -294,7 +294,7 @@ class ConfigureDialog(ManagedWindow):
                      config=None, extra_callback=None):
         if not config:
             config = self.__config
-        checkbox = Gtk.CheckButton(label)
+        checkbox = Gtk.CheckButton(label=label)
         checkbox.set_active(config.get(constant))
         checkbox.connect('toggled', self.update_checkbox, constant, config)
         if extra_callback:
@@ -503,7 +503,7 @@ class GrampsPreferences(ConfigureDialog):
                                  on_close=update_constants)
 
     def add_researcher_panel(self, configdialog):
-        table = Gtk.Table(3, 8)
+        table = Gtk.Table(n_rows=3, n_columns=8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -524,7 +524,7 @@ class GrampsPreferences(ConfigureDialog):
         """
         Add the ID prefix tab to the preferences.
         """
-        table = Gtk.Table(3, 8)
+        table = Gtk.Table(n_rows=3, n_columns=8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -552,7 +552,7 @@ class GrampsPreferences(ConfigureDialog):
         """
         Add the tab to set defaults colors for graph boxes
         """
-        table = Gtk.Table(17, 8)
+        table = Gtk.Table(n_rows=17, n_columns=8)
         self.add_text(table, _('Set the colors used for boxes in the graphical views'),
                         0, line_wrap=False)
         self.add_color(table, _('Gender Male Alive'), 1, 
@@ -590,7 +590,7 @@ class GrampsPreferences(ConfigureDialog):
         return _('Colors'), table
 
     def add_advanced_panel(self, configdialog):
-        table = Gtk.Table(4, 8)
+        table = Gtk.Table(n_rows=4, n_columns=8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -804,7 +804,7 @@ class GrampsPreferences(ConfigureDialog):
         UI to manage the custom name formats
         """
 
-        table = Gtk.Table(2, 3)
+        table = Gtk.Table(n_rows=2, n_columns=3)
         table.set_border_width(6)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -929,7 +929,7 @@ class GrampsPreferences(ConfigureDialog):
 
     def add_formats_panel(self, configdialog):
         row = 0
-        table = Gtk.Table(4, 4)
+        table = Gtk.Table(n_rows=4, n_columns=4)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1103,7 +1103,7 @@ class GrampsPreferences(ConfigureDialog):
 
     def add_text_panel(self, configdialog):
         row = 0
-        table = Gtk.Table(6, 8)
+        table = Gtk.Table(n_rows=6, n_columns=8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1166,7 +1166,7 @@ class GrampsPreferences(ConfigureDialog):
         config.set('preferences.calendar-format-report', obj.get_active())
     
     def add_date_panel(self, configdialog):
-        table = Gtk.Table(2, 7)
+        table = Gtk.Table(n_rows=2, n_columns=7)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1213,7 +1213,7 @@ class GrampsPreferences(ConfigureDialog):
         return _('Dates'), table
         
     def add_behavior_panel(self, configdialog):
-        table = Gtk.Table(2, 8)
+        table = Gtk.Table(n_rows=2, n_columns=8)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1224,7 +1224,7 @@ class GrampsPreferences(ConfigureDialog):
                 current_line, 'preferences.default-source')
 
         current_line += 1
-        checkbutton = Gtk.CheckButton(_("Add tag on import"))
+        checkbutton = Gtk.CheckButton(label=_("Add tag on import"))
         checkbutton.set_active(config.get('preferences.tag-on-import'))
         checkbutton.connect("toggled", self.toggle_tag_on_import)
         table.attach(checkbutton, 1, 2, current_line, current_line+1, yoptions=0)
@@ -1306,7 +1306,7 @@ class GrampsPreferences(ConfigureDialog):
 
         current_line += 1
         checkbutton = Gtk.CheckButton(
-            _("Do not ask about previously notified addons"))
+            label=_("Do not ask about previously notified addons"))
         checkbutton.set_active(config.get('behavior.do-not-show-previously-seen-updates'))
         checkbutton.connect("toggled", self.toggle_hide_previous_addons)
 
@@ -1346,7 +1346,7 @@ class GrampsPreferences(ConfigureDialog):
         self.uistate.viewmanager.do_reg_plugins(self.dbstate, self.uistate)
 
     def add_famtree_panel(self, configdialog):
-        table = Gtk.Table(2, 2)
+        table = Gtk.Table(n_rows=2, n_columns=2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)

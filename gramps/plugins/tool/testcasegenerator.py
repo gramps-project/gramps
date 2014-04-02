@@ -201,33 +201,33 @@ class TestcaseGenerator(tool.BatchTool):
         label.set_use_markup(True)
         self.top.vbox.pack_start(label,0,0,5)
 
-        self.check_lowlevel = Gtk.CheckButton( _("Generate low level database "
+        self.check_lowlevel = Gtk.CheckButton(label=_("Generate low level database "
                                 "errors\nCorrection needs database reload"))
         self.check_lowlevel.set_active( self.options.handler.options_dict['lowlevel'])
         self.top.vbox.pack_start(self.check_lowlevel,0,0,5)
 
-        self.check_bugs = Gtk.CheckButton( _("Generate database errors"))
+        self.check_bugs = Gtk.CheckButton(label=_("Generate database errors"))
         self.check_bugs.set_active( self.options.handler.options_dict['bugs'])
         self.top.vbox.pack_start(self.check_bugs,0,0,5)
 
-        self.check_persons = Gtk.CheckButton( _("Generate dummy data"))
+        self.check_persons = Gtk.CheckButton(label=_("Generate dummy data"))
         self.check_persons.set_active( self.options.handler.options_dict['persons'])
         self.check_persons.connect('clicked', self.on_dummy_data_clicked)
         self.top.vbox.pack_start(self.check_persons,0,0,5)
 
-        self.check_longnames = Gtk.CheckButton( _("Generate long names"))
+        self.check_longnames = Gtk.CheckButton(label=_("Generate long names"))
         self.check_longnames.set_active( self.options.handler.options_dict['long_names'])
         self.top.vbox.pack_start(self.check_longnames,0,0,5)
 
-        self.check_specialchars = Gtk.CheckButton( _("Add special characters"))
+        self.check_specialchars = Gtk.CheckButton(label=_("Add special characters"))
         self.check_specialchars.set_active( self.options.handler.options_dict['specialchars'])
         self.top.vbox.pack_start(self.check_specialchars,0,0,5)
 
-        self.check_serial = Gtk.CheckButton( _("Add serial number"))
+        self.check_serial = Gtk.CheckButton(label=_("Add serial number"))
         self.check_serial.set_active( self.options.handler.options_dict['add_serial'])
         self.top.vbox.pack_start(self.check_serial,0,0,5)
 
-        self.check_linebreak = Gtk.CheckButton( _("Add line break"))
+        self.check_linebreak = Gtk.CheckButton(label=_("Add line break"))
         self.check_linebreak.set_active( self.options.handler.options_dict['add_linebreak'])
         self.top.vbox.pack_start(self.check_linebreak,0,0,5)
 

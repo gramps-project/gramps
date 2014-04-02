@@ -314,7 +314,7 @@ class EditPrimary(ManagedWindow, DbGUIElement):
             (ui_qr, reportactions) = create_quickreport_menu(self.QR_CATEGORY,
                                     self.dbstate, self.uistate, 
                                     self.obj.get_handle())
-            self.report_action = Gtk.ActionGroup("/PersonReport")
+            self.report_action = Gtk.ActionGroup(name="/PersonReport")
             self.report_action.add_actions(reportactions)
             self.report_action.set_visible(True)
             self.popupmanager.insert_action_group(self.report_action, -1)

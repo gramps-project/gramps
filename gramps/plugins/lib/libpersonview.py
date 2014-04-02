@@ -338,8 +338,8 @@ class BasePersonView(ListView):
 
         ListView.define_actions(self)
 
-        self.all_action = Gtk.ActionGroup(self.title + "/PersonAll")
-        self.edit_action = Gtk.ActionGroup(self.title + "/PersonEdit")
+        self.all_action = Gtk.ActionGroup(name=self.title + "/PersonAll")
+        self.edit_action = Gtk.ActionGroup(name=self.title + "/PersonEdit")
 
         self.all_action.add_actions([
                 ('FilterEdit', None, _('Person Filter Editor'), None, None,

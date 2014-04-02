@@ -96,7 +96,7 @@ class Bookmarks :
         self.bookmarks = None
         self.update_bookmarks()
         self.active = DISABLED
-        self.action_group = Gtk.ActionGroup('Bookmarks')
+        self.action_group = Gtk.ActionGroup(name='Bookmarks')
         self.connect_signals()
         self.dbstate.connect('database-changed', self.db_changed)
 
@@ -138,7 +138,7 @@ class Bookmarks :
         if self.active != DISABLED:
             self.uistate.uimanager.remove_ui(self.active)
             self.uistate.uimanager.remove_action_group(self.action_group)
-            self.action_group = Gtk.ActionGroup('Bookmarks')
+            self.action_group = Gtk.ActionGroup(name='Bookmarks')
             self.uistate.uimanager.ensure_update()
             self.active = DISABLED
 

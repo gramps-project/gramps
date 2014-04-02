@@ -267,7 +267,7 @@ class NavigationView(PageView):
         """
         Define the bookmark menu actions.
         """
-        self.book_action = Gtk.ActionGroup(self.title + '/Bookmark')
+        self.book_action = Gtk.ActionGroup(name=self.title + '/Bookmark')
         self.book_action.add_actions([
             ('AddBook', 'gramps-bookmark-new', _('_Add Bookmark'), 
              '<PRIMARY>d', None, self.add_bookmark), 
@@ -287,7 +287,7 @@ class NavigationView(PageView):
         Define the navigation menu actions.
         """
         # add the Forward action group to handle the Forward button
-        self.fwd_action = Gtk.ActionGroup(self.title + '/Forward')
+        self.fwd_action = Gtk.ActionGroup(name=self.title + '/Forward')
         self.fwd_action.add_actions([
             ('Forward', Gtk.STOCK_GO_FORWARD, _("_Forward"), 
              "%sRight" % mod_key(), _("Go to the next object in the history"), 
@@ -295,7 +295,7 @@ class NavigationView(PageView):
             ])
 
         # add the Backward action group to handle the Forward button
-        self.back_action = Gtk.ActionGroup(self.title + '/Backward')
+        self.back_action = Gtk.ActionGroup(name=self.title + '/Backward')
         self.back_action.add_actions([
             ('Back', Gtk.STOCK_GO_BACK, _("_Back"), 
              "%sLeft" % mod_key(), _("Go to the previous object in the history"), 
@@ -306,7 +306,7 @@ class NavigationView(PageView):
                          accel="%sHome" % mod_key(), 
                          tip=_("Go to the default person"), callback=self.home)
 
-        self.other_action = Gtk.ActionGroup(self.title + '/PersonOther')
+        self.other_action = Gtk.ActionGroup(name=self.title + '/PersonOther')
         self.other_action.add_actions([
                 ('SetActive', Gtk.STOCK_HOME, _("Set _Home Person"), None, 
                  None, self.set_default_person), 
@@ -451,7 +451,7 @@ class NavigationView(PageView):
                          "%s%d" % (mod_key(), index), None,
                          make_callback(hobj.push, handle)))
  
-        self.mru_action = Gtk.ActionGroup(self.title + '/MRU')
+        self.mru_action = Gtk.ActionGroup(name=self.title + '/MRU')
         self.mru_action.add_actions(data)
         self.mru_enable()
 

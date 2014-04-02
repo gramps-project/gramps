@@ -114,7 +114,7 @@ class GrampsWindowManager(object):
         self.uimanager = uimanager
         self.window_tree = []
         self.id2item = {}
-        self.action_group = Gtk.ActionGroup('WindowManger')
+        self.action_group = Gtk.ActionGroup(name='WindowManger')
         self.active = DISABLED
         self.ui = _win_top + _win_btm
         
@@ -292,7 +292,7 @@ class GrampsWindowManager(object):
             self.uimanager.remove_ui(self.active)
             self.uimanager.remove_action_group(self.action_group)
 
-        self.action_group = Gtk.ActionGroup('WindowManger')
+        self.action_group = Gtk.ActionGroup(name='WindowManger')
         action_data = []
 
         data = StringIO()

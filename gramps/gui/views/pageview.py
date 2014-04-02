@@ -420,7 +420,7 @@ class PageView(DbGUIElement):
         and self.action_toggle_list. The user should define these in 
         self.define_actions
         """
-        self.action_group = Gtk.ActionGroup(self.title)
+        self.action_group = Gtk.ActionGroup(name=self.title)
         if len(self.action_list) > 0:
             self.action_group.add_actions(self.action_list)
         if len(self.action_toggle_list) > 0:

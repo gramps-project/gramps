@@ -1813,7 +1813,7 @@ class GuiBooleanListOption(Gtk.HBox):
         this_column_counter = 0
         ncolumn = 0
         for description in option.get_descriptions():
-            button = Gtk.CheckButton(description)
+            button = Gtk.CheckButton(label=description)
             self.__cbutton.append(button)
             if counter < len(default):
                 if default[counter] == 'True':

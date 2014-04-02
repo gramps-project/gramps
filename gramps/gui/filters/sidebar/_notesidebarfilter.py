@@ -71,7 +71,7 @@ class NoteSidebarFilter(SidebarFilter):
             self.note.set_type,
             self.note.get_type)
 
-        self.filter_regex = Gtk.CheckButton(_('Use regular expressions'))
+        self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
 
         self.tag = Gtk.ComboBox()
         self.generic = Gtk.ComboBox()

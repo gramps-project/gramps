@@ -557,7 +557,7 @@ class GuiGramplet(object):
         # END WORKAROUND
         if len(self.pui.option_order) == 0: return
         frame = Gtk.Frame()
-        topbox = Gtk.VBox(False)
+        topbox = Gtk.VBox(homogeneous=False)
         hbox = Gtk.HBox(False, 5)
         labels = Gtk.VBox(True)
         options = Gtk.VBox(True)
@@ -1510,7 +1510,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         """
         Function that builds the widget in the configuration dialog
         """
-        table = Gtk.Table(3, 2)
+        table = Gtk.Table(n_rows=3, n_columns=2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1543,7 +1543,7 @@ class GrampletPane(Gtk.ScrolledWindow):
                               bool, gramplet.get_expand, gramplet.set_expand)
         def gramplet_panel(configdialog):
             configdialog.window.set_size_request(600, -1)
-            table = Gtk.Table(3, 2)
+            table = Gtk.Table(n_rows=3, n_columns=2)
             table.set_border_width(12)
             table.set_col_spacings(6)
             table.set_row_spacings(6)

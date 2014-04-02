@@ -803,7 +803,7 @@ class ViewManager(CLIManager):
         """
         Initialize an action group for the UIManager
         """
-        new_group = Gtk.ActionGroup(name)
+        new_group = Gtk.ActionGroup(name=name)
         new_group.add_actions(actions)
         if toggles:
             new_group.add_toggle_actions(toggles)
@@ -1162,7 +1162,7 @@ class ViewManager(CLIManager):
         Change the UNDO label
         """
         self.uimanager.remove_action_group(self.undoactions)
-        self.undoactions = Gtk.ActionGroup('Undo')
+        self.undoactions = Gtk.ActionGroup(name='Undo')
         if label:
             self.undoactions.add_actions([
                 ('Undo', Gtk.STOCK_UNDO, label, '<PRIMARY>z', None, self.undo)])
@@ -1178,7 +1178,7 @@ class ViewManager(CLIManager):
         Change the REDO label
         """
         self.uimanager.remove_action_group(self.redoactions)
-        self.redoactions = Gtk.ActionGroup('Redo')
+        self.redoactions = Gtk.ActionGroup(name='Redo')
         if label:
             self.redoactions.add_actions([
                 ('Redo', Gtk.STOCK_REDO, label, '<shift><PRIMARY>z',
@@ -1461,7 +1461,7 @@ class ViewManager(CLIManager):
         if self.toolactions:
             self.uistate.uimanager.remove_action_group(self.toolactions)
             self.uistate.uimanager.remove_ui(self.tool_menu_ui_id)
-        self.toolactions = Gtk.ActionGroup('ToolWindow')
+        self.toolactions = Gtk.ActionGroup(name='ToolWindow')
         (uidef, actions) = self.build_plugin_menu(
             'ToolsMenu', tool_menu_list, tool.tool_categories,
             make_plugin_callback)
@@ -1477,7 +1477,7 @@ class ViewManager(CLIManager):
         if self.reportactions:
             self.uistate.uimanager.remove_action_group(self.reportactions)
             self.uistate.uimanager.remove_ui(self.report_menu_ui_id)
-        self.reportactions = Gtk.ActionGroup('ReportWindow')
+        self.reportactions = Gtk.ActionGroup(name='ReportWindow')
         (uidef, actions) = self.build_plugin_menu(
             'ReportsMenu', report_menu_list, standalone_categories,
             make_plugin_callback)

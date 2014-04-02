@@ -99,7 +99,8 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
 
     def build_widget(self):
         self.set_fan(fanchart.FanChartWidget(self.dbstate, self.uistate, self.on_popup))
-        self.scrolledwindow = Gtk.ScrolledWindow(None, None)
+        self.scrolledwindow = Gtk.ScrolledWindow(hadjustment=None, 
+                                                                        vadjustment=None)
         self.scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
                                        Gtk.PolicyType.AUTOMATIC)
         self.fan.show_all()
@@ -265,7 +266,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         Function that builds the widget in the configuration dialog
         """
         nrentry = 7
-        table = Gtk.Table(6, 3)
+        table = Gtk.Table(n_rows=6, n_columns=3)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)

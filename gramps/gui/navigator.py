@@ -103,7 +103,8 @@ class Navigator(object):
         self.select_button.set_relief(Gtk.ReliefStyle.NONE)
         select_hbox = Gtk.HBox()
         self.title_label = Gtk.Label(label='')
-        arrow = Gtk.Arrow(Gtk.ArrowType.DOWN, Gtk.ShadowType.NONE)
+        arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN, 
+                                    shadow_type=Gtk.ShadowType.NONE)
         select_hbox.pack_start(self.title_label, False, True, 0)
         select_hbox.pack_end(arrow, False, True, 0)
         self.select_button.add(select_hbox)
@@ -227,7 +228,7 @@ class Navigator(object):
             list(map(uimanager.remove_ui, self.merge_ids))
 
         if cat_num in self.ui_category:
-            self.cat_view_group = Gtk.ActionGroup('viewmenu')
+            self.cat_view_group = Gtk.ActionGroup(name='viewmenu')
             self.cat_view_group.add_radio_actions(
                     self.view_toggle_actions[cat_num], value=view_num,
                     on_change=self.cb_view_clicked, user_data=cat_num)

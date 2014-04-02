@@ -176,7 +176,7 @@ class ReportDialog(ManagedWindow):
 
         self.setup_title()
         self.setup_header()
-        self.tbl = Gtk.Table(4, 4, False)
+        self.tbl = Gtk.Table(n_rows=4, n_columns=4, homogeneous=False)
         self.tbl.set_col_spacings(12)
         self.tbl.set_row_spacings(6)
         self.tbl.set_border_width(6)
@@ -359,7 +359,7 @@ class ReportDialog(ManagedWindow):
         if max_rows == 0:
             return
 
-        table = Gtk.Table(3, max_rows+1)
+        table = Gtk.Table(n_rows=3, n_columns=max_rows+1)
         table.set_col_spacings(12)
         table.set_row_spacings(6)
         
@@ -389,7 +389,7 @@ class ReportDialog(ManagedWindow):
         from gramps.gui.plug._guioptions import GuiTextOption
         for key in self.frame_names:
             flist = self.frames[key]
-            table = Gtk.Table(3, len(flist))
+            table = Gtk.Table(n_rows=3, n_columns=len(flist))
             table.set_col_spacings(12)
             table.set_row_spacings(6)
             table.set_border_width(6)

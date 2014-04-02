@@ -176,7 +176,7 @@ class DocReportDialog(ReportDialog):
                         yoptions=Gtk.AttachOptions.SHRINK)
         self.row += 1
 
-        self.open_with_app = Gtk.CheckButton(_("Open with default viewer"))
+        self.open_with_app = Gtk.CheckButton(label=_("Open with default viewer"))
         self.open_with_app.set_active(
             config.get('interface.open-with-default-viewer'))
         self.tbl.attach(self.open_with_app, 2, 4, self.row, self.row+1,
@@ -211,7 +211,7 @@ class DocReportDialog(ReportDialog):
         this function is to grab a pointer for later use in the parse
         html frame function."""
 
-        self.html_table = Gtk.Table(3,3)
+        self.html_table = Gtk.Table(n_rows=3, n_columns=3)
         self.html_table.set_col_spacings(12)
         self.html_table.set_row_spacings(6)
         self.html_table.set_border_width(0)

@@ -114,7 +114,8 @@ class GrampletBar(Gtk.Notebook):
 
         book_button = Gtk.Button()
         box = Gtk.VBox() # Arrow is too small unless in a Vbox
-        arrow = Gtk.Arrow(Gtk.ArrowType.DOWN, Gtk.ShadowType.NONE)
+        arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN, 
+                                    shadow_type=Gtk.ShadowType.NONE)
         arrow.show()
         box.add(arrow)
         box.show()

@@ -155,7 +155,7 @@ class GraphvizReportDialog(ReportDialog):
                         yoptions=Gtk.AttachOptions.SHRINK)
         self.row += 1
 
-        self.open_with_app = Gtk.CheckButton(_("Open with default viewer"))
+        self.open_with_app = Gtk.CheckButton(build=_("Open with default viewer"))
         self.open_with_app.set_active(
             config.get('interface.open-with-default-viewer'))
         self.tbl.attach(self.open_with_app, 2, 4, self.row, self.row+1,

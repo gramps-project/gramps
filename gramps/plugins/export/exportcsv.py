@@ -206,10 +206,10 @@ class CSVWriterOptionBox(WriterOptionBox):
         from gi.repository import Gtk
         option_box = WriterOptionBox.get_option_box(self)
 
-        self.include_individuals_check = Gtk.CheckButton(_("Include people"))
-        self.include_marriages_check = Gtk.CheckButton(_("Include marriages"))
-        self.include_children_check = Gtk.CheckButton(_("Include children"))
-        self.translate_headers_check = Gtk.CheckButton(_("Translate headers"))
+        self.include_individuals_check = Gtk.CheckButton(label=_("Include people"))
+        self.include_marriages_check = Gtk.CheckButton(label=_("Include marriages"))
+        self.include_children_check = Gtk.CheckButton(label=_("Include children"))
+        self.translate_headers_check = Gtk.CheckButton(label=_("Translate headers"))
 
         self.include_individuals_check.set_active(1) 
         self.include_marriages_check.set_active(1) 

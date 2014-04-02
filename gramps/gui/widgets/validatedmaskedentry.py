@@ -146,7 +146,7 @@ class FadeOut(GObject.GObject):
         else:
             func = generator.__next__
         self._background_timeout_id = (
-            GObject.timeout_add(FadeOut.MERGE_COLORS_DELAY, func))
+            GLib.timeout_add(FadeOut.MERGE_COLORS_DELAY, func))
         self._countdown_timeout_id = -1
 
     def start(self, color):
@@ -168,7 +168,7 @@ class FadeOut(GObject.GObject):
 
         self._start_color = color
         ##_LOG.debug('start: Scheduling')
-        self._countdown_timeout_id = GObject.timeout_add(
+        self._countdown_timeout_id = GLib.timeout_add(
             FadeOut.COMPLAIN_DELAY, self._start_merging)
 
         return True
@@ -1178,7 +1178,7 @@ class ValidatableMaskedEntry(MaskedEntry):
     def do_changed(self):
         block_changed = getattr(self, '_block_changed', True)
         if block_changed:
-            self.emit_stop_by_name('changed')
+            self.stop_emission_by_name('changed')
             return
         self.emit('content-changed')
         self.validate()

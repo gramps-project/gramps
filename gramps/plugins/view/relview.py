@@ -404,13 +404,13 @@ class RelationshipView(NavigationView):
     def define_actions(self):
         NavigationView.define_actions(self)
 
-        self.order_action = Gtk.ActionGroup(self.title + '/ChangeOrder')
+        self.order_action = Gtk.ActionGroup(name=self.title + '/ChangeOrder')
         self.order_action.add_actions([
             ('ChangeOrder', Gtk.STOCK_SORT_ASCENDING, _('_Reorder'), None ,
             _("Change order of parents and families"), self.reorder),
             ])
 
-        self.family_action = Gtk.ActionGroup(self.title + '/Family')
+        self.family_action = Gtk.ActionGroup(name=self.title + '/Family')
         self.family_action.add_actions([
             ('Edit', Gtk.STOCK_EDIT, _('Edit...'), "<PRIMARY>Return",
                 _("Edit the active person"), self.edit_active),
@@ -563,7 +563,7 @@ class RelationshipView(NavigationView):
         else:
             cols = self.attach.max_x-1
 
-        self.child = Gtk.Table(self.attach.max_y, cols)
+        self.child = Gtk.Table(n_rows=self.attach.max_y, n_columns=cols)
         self.child.set_border_width(12)
         self.child.set_col_spacings(12)
         self.child.set_row_spacings(0)
@@ -594,7 +594,7 @@ class RelationshipView(NavigationView):
     def write_title(self, person):
 
         list(map(self.header.remove, self.header.get_children()))
-        table = Gtk.Table(2, 3)
+        table = Gtk.Table(n_rows=2, n_columns=3)
         table.set_col_spacings(12)
         table.set_row_spacings(0)
 
@@ -618,7 +618,7 @@ class RelationshipView(NavigationView):
         if self.use_shade:
             eventbox.override_background_color(Gtk.StateType.NORMAL, self.color)
         table.attach(eventbox, 1, 2, 1, 2)
-        subtbl = Gtk.Table(3, 3)
+        subtbl = Gtk.Table(n_rows=3, n_columns=3)
         subtbl.set_col_spacings(12)
         subtbl.set_row_spacings(0)
         eventbox.add(subtbl)
@@ -792,7 +792,8 @@ class RelationshipView(NavigationView):
                                                     self.expand_collapse_press,
                                                     (person, family.handle))
         else :
-            arrow = Gtk.Arrow(Gtk.ArrowType.RIGHT, Gtk.ShadowType.OUT)
+            arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.RIGHT, 
+                                        shadow_type=Gtk.ShadowType.OUT)
         hbox.pack_start(arrow, False, True, 0)
         hbox.pack_start(label, True, True, 0)
         self.attach.attach(hbox,
@@ -1654,7 +1655,7 @@ class RelationshipView(NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        table = Gtk.Table(3, 2)
+        table = Gtk.Table(n_rows=3, n_columns=2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1665,7 +1666,7 @@ class RelationshipView(NavigationView):
         configdialog.add_checkbox(table, 
                 _('Display edit buttons'), 
                 1, 'preferences.releditbtn')
-        checkbox = Gtk.CheckButton(_('View links as website links'))
+        checkbox = Gtk.CheckButton(label=_('View links as website links'))
         theme = self._config.get('preferences.relation-display-theme')
         checkbox.set_active(theme == 'WEBPAGE')
         checkbox.connect('toggled', self._config_update_theme)
@@ -1677,7 +1678,7 @@ class RelationshipView(NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        table = Gtk.Table(2, 2)
+        table = Gtk.Table(n_rows=2, n_columns=2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)

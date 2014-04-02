@@ -50,7 +50,7 @@ class SidebarFilter(DbGUIElement):
 
         self.position = 1
         self.vbox = Gtk.VBox()
-        self.table = Gtk.Table(4, 11)
+        self.table = Gtk.Table(n_rows=4, n_columns=11)
         self.vbox.pack_start(self.table, False, False, 0)
         self.table.set_border_width(6)
         self.table.set_row_spacings(6)

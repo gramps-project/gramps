@@ -154,7 +154,8 @@ class DropdownSidebar(BaseSidebar):
             dropdown = Gtk.Button()
             dropdown.set_relief(Gtk.ReliefStyle.NONE)
             dropdown.set_alignment(0.5, 0.5)
-            arrow = Gtk.Arrow(Gtk.ArrowType.DOWN, Gtk.ShadowType.NONE)
+            arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN, 
+                                        shadow_type=Gtk.ShadowType.NONE)
             dropdown.add(arrow)
             dropdown.connect('clicked', self.__view_clicked, cat_num)
             dropdown.set_tooltip_text(_('Click to select a view'))

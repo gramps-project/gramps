@@ -1040,7 +1040,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         Add specific entry to the preference menu.
         Must be done in the associated view.
         """
-        table = Gtk.Table(2, 2)
+        table = Gtk.Table(n_rows=2, n_columns=2)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
@@ -1057,7 +1057,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                          config.get('geography.zoom_when_center'))
         self._config.set('geography.max_places',
                          self._config.get('geography.max_places'))
-        table = Gtk.Table(1, 1)
+        table = Gtk.Table(n_rows=1, n_columns=1)
         table.set_border_width(12)
         table.set_col_spacings(6)
         table.set_row_spacings(6)
