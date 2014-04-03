@@ -262,8 +262,14 @@ class EditCitation(EditPrimary):
         """
         self.ok_button.set_sensitive(False)
         if not self.obj.get_reference_handle():
-            ErrorDialog(_("Cannot save citation. No source selected."),
-                        _("Please select a source or cancel the edit."))
+            ErrorDialog(_("No source selected"),
+                        _("A source is anything (personal testimony, "
+                          "video recording, photograph, newspaper column, "
+                          "gravestone...) from which information can be "
+                          "derived. To create a citation, first select the "
+                          "required source, and then record the location of "
+                          "the information referenced within the source in the "
+                          "'Volume/Page' field."))
             self.ok_button.set_sensitive(True)
             return
         

@@ -315,9 +315,8 @@ class SourceEntry(ObjEntry):
     Handles the selection of a existing or new Source. Supports Drag and Drop
     to select a source.
     """
-    EMPTY_TEXT = "<i>%s</i>" % _('To select a source, use drag-and-drop '
-                                 'or use the buttons')
-    EMPTY_TEXT_RED = "<i>%s</i>" % _('No place given, click button to select one')
+    EMPTY_TEXT = "<i>%s</i>" % _('First add a source using the buttons')
+    EMPTY_TEXT_RED = "<i>%s</i>" % _('First add a source using the button')
     EDIT_STR = _('Edit source')
     SHARE_STR = _('Select an existing source')
     ADD_STR = _('Add a new source')
