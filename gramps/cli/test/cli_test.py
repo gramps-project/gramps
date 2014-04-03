@@ -25,6 +25,7 @@
 import os
 import unittest
 import re
+import io
 
 test_ged = """0 HEAD
 1 SOUR min1r.ged min 1-rec
@@ -101,6 +102,40 @@ class Test(unittest.TestCase):
 
         for fn in bogofiles:
             self.assertFalse(os.path.exists(fn))
+
+class UnicodeTest(unittest.TestCase):
+
+    @unittest.skipIf(sys.version_info[0] < 3 and sys.platform == 'win32')
+
+    def setUp(self):
+        from gramps.cli.clidbman import CLIDbManager
+        from gramps.gen.config import set as setconfig
+        from gramps.gen.dbstate import DbState
+        self.newpath = os.path.join(os.path.dirname(__file__),
+                                    u'\u0393\u03c1\u03b1\u03bc\u03c3\u03c0')
+        self.newtitle = u'Gr\u00e4mps T\u00e9st'
+        os.makedirs(self.newpath)
+        setconfig('behavior.database-path', self.newpath)
+        self.cli = CLIDbManager(DbState())
+
+    def tearDown(self):
+        for (dirpath, dirnames, filenames) in os.walk(self.newpath, False):
+            for afile in filenames:
+                os.remove(os.path.join(dirpath, afile))
+            for adir in dirnames:
+                os.rmdir(os.path.join(dirpath, adir))
+        os.rmdir(self.newpath)
+
+    # Test that clidbman will open files in a path containing
+    # arbitrary Unicode characters.
+    def test4_arbitrary_uncode_path(self):
+        (dbpath, title) = self.cli.create_new_db_cli(self.newtitle)
+
+        self.assertEquals(self.newpath, os.path.dirname(dbpath),
+                          "Compare paths %s and %s" % (repr(self.newpath),
+                                                       repr(dbpath)))
+        self.assertEquals(self.newtitle, title, "Compare titles %s and %s" %
+                          (repr(self.newtitle), repr(title)))
 
 
 if __name__ == "__main__":
