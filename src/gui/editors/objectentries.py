@@ -189,7 +189,7 @@ class ObjEntry(object):
     def drag_data_received(self, widget, context, x, y, selection, info, time):
         (drag_type, idval, obj, val) = pickle.loads(selection.data)
         
-        data = self.db.get_place_from_handle(obj)
+        data = self.get_from_handle(obj)
         self.obj_added(data)
         
     def obj_added(self, data):
