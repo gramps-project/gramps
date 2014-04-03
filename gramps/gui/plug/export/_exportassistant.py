@@ -168,6 +168,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         image.set_from_file(SPLASH)
 
         box = Gtk.VBox()
+        box.set_size_request(600, -1) # wide enough it won't have to expand
         box.pack_start(image, False, False, 5)
         box.pack_start(label, False, False, 5)
 
