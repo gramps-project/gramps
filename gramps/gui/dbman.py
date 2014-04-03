@@ -443,6 +443,7 @@ class DbManager(CLIDbManager):
         #path is a string, convert to TreePath first
         path = Gtk.TreePath(path=path)
         if len(new_text) > 0:
+            new_text = conv_to_unicode(new_text, 'utf8')
             node = self.model.get_iter(path)
             old_text = self.model.get_value(node, NAME_COL)
             if not old_text.strip() == new_text.strip():

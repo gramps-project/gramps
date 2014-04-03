@@ -31,6 +31,7 @@ from xml.sax import make_parser, SAXParseException
 import os
 import sys
 import collections
+import io
 
 #-------------------------------------------------------------------------
 #
@@ -108,7 +109,7 @@ class FilterList(object):
             if os.path.isfile(self.file):
                 parser = make_parser()
                 parser.setContentHandler(FilterParser(self))
-                the_file = open(self.file)
+                the_file = io.open(self.file, 'r', encoding='utf8')
                 parser.parse(the_file)
                 the_file.close()
         except (IOError, OSError):
@@ -125,7 +126,7 @@ class FilterList(object):
         return l.replace('"', '&quot;')
 
     def save(self):
-        f = open(self.file.encode(glocale.getfilesystemencoding()), 'w')
+        f = io.open(self.file, 'w', encoding='utf8')
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<filters>\n')
         for namespace in self.filter_namespaces:

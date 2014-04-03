@@ -55,10 +55,10 @@ WINDOWS = ["Windows", "win32"]
 
 #python 2 and 3 support, use correct conversion to unicode
 if sys.version_info[0] < 3:
-    def conv_to_unicode(x, y):
+    def conv_to_unicode(x, y=None):
         if isinstance(x, unicode):
             return x
-        return unicode(x, y)
+        return unicode(x, y) if y else unicode(x)
 
     conv_to_unicode_direct = unicode
     STRTYPE = basestring
