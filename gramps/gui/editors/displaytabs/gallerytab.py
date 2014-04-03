@@ -525,16 +525,13 @@ class GalleryTab(ButtonTab, DbGUIElement):
                     d = fix_encoding(file.replace('\0',' ').strip())
                     protocol, site, mfile, j, k, l = urlparse(d)
                     if protocol == "file":
-                        name = fix_encoding(mfile)
-                        name = cuni(url2pathname(
-                                    name.encode(glocale.getfilesystemencoding())))
-                        mime = get_type(name)
+                        mime = get_type(mfile)
                         if not is_valid_type(mime):
                             return
                         photo = MediaObject()
                         base_dir = cuni(media_path(self.dbstate.db))
                         if os.path.exists(base_dir):
-                            name = relative_path(name, base_dir)
+                            name = relative_path(mfile, base_dir)
                         photo.set_path(name)
                         photo.set_mime_type(mime)
                         basename = os.path.basename(name)

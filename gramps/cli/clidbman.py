@@ -462,7 +462,7 @@ def find_next_db_name(name_list):
     while True:
         title = "%s %d" % (DEFAULT_TITLE, i)
         if title not in name_list:
-            return title
+            return conv_to_unicode(title)
         i += 1
 
 def find_next_db_dir():

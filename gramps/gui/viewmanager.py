@@ -1299,13 +1299,10 @@ class ViewManager(CLIManager):
             basefile = file_entry.get_text()
             basefile = basefile.replace("/", r"-")
             filename = os.path.join(path_entry.get_text(), basefile)
-            if sys.version_info[0] < 3:
-                filename = filename.encode(glocale.getfilesystemencoding())
             if os.path.exists(filename):
-                sfilename = get_unicode_path_from_env_var(filename)
                 question = QuestionDialog2(
                     _("Backup file already exists! Overwrite?"),
-                    _("The file '%s' exists.") % sfilename,
+                    _("The file '%s' exists.") % filename,
                     _("Proceed and overwrite"),
                     _("Cancel the backup"))
                 yes_no = question.run()

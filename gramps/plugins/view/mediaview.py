@@ -191,11 +191,7 @@ class MediaView(ListView):
                             file.replace('\0',' ').replace("\r", " ").strip())
             protocol, site, mfile, j, k, l = urlparse(clean_string)
             if protocol == "file":
-                if sys.version_info[0] < 3:
-                    name = cuni(url2pathname(
-                                mfile.encode(glocale.getfilesystemencoding())))
-                else:
-                    name = cuni(url2pathname(mfile))
+                name = mfile
                 mime = get_type(name)
                 if not is_valid_type(mime):
                     return

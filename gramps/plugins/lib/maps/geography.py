@@ -153,16 +153,10 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.geo_mainmap = None
         path = os.path.join(IMAGE_DIR, "48x48",
                             ('gramps-geo-mainmap' + '.png' ))
-        pathu = path
-        if sys.version_info[0] < 3:
-            pathu = path.encode(glocale.getfilesystemencoding())
-        self.geo_mainmap = cairo.ImageSurface.create_from_png(pathu)
+        self.geo_mainmap = cairo.ImageSurface.create_from_png(path)
         path = os.path.join(IMAGE_DIR, "48x48",
                             ('gramps-geo-altmap' + '.png' ))
-        pathu = path
-        if sys.version_info[0] < 3:
-            pathu = path.encode(glocale.getfilesystemencoding())
-        self.geo_altmap = cairo.ImageSurface.create_from_png(pathu)
+        self.geo_altmap = cairo.ImageSurface.create_from_png(path)
         if ( config.get('geography.map_service') in
             ( constants.OPENSTREETMAP,
               constants.MAPS_FOR_FREE,
@@ -178,10 +172,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                     EventType.MARRIAGE ):
             path = os.path.join(IMAGE_DIR, "48x48",
                                 (constants.ICONS.get(int(ident), default_image) + '.png' ))
-            pathu = path
-            if sys.version_info[0] < 3:
-                pathu = path.encode(glocale.getfilesystemencoding())
-            self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(pathu)
+            self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(path)
 
     def add_bookmark(self, menu, handle):
         if handle:
