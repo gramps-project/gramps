@@ -195,7 +195,7 @@ class ObjEntry(object):
     def drag_data_received(self, widget, context, x, y, selection, info, time):
         (drag_type, idval, obj, val) = pickle.loads(selection.get_data())
         
-        data = self.db.get_place_from_handle(obj)
+        data = self.get_from_handle(obj)
         self.obj_added(data)
         
     def obj_added(self, data):
@@ -333,9 +333,9 @@ class SourceEntry(ObjEntry):
         """
         self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
         tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.PLACE_LINK.atom_drag_type,
-                   DdTargets.PLACE_LINK.target_flags,
-                   DdTargets.PLACE_LINK.app_id)
+        tglist.add(DdTargets.SOURCE_LINK.atom_drag_type,
+                   DdTargets.SOURCE_LINK.target_flags,
+                   DdTargets.SOURCE_LINK.app_id)
         self.label.drag_dest_set_target_list(tglist)
         self.label.connect('drag_data_received', self.drag_data_received)
 
