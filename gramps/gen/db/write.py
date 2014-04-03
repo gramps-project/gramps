@@ -86,6 +86,10 @@ _ = glocale.translation.gettext
 
 _LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
+#_LOG.setLevel(logging.DEBUG)
+#_hdlr = logging.StreamHandler()
+#_hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
+#_LOG.addHandler(_hdlr)
 _MINVERSION = 9
 _DBVERSION = 16
 
@@ -202,7 +206,7 @@ def _encode(path):
     """
     Conditionally return the unicode string encoded to sys.filesystem.encoding
     """
-    if not (isinstance(path, UNITYPE) and win() and sys.version_info[0] < 3):
+    if not (isinstance(path, UNITYPE) and sys.version_info[0] < 3):
         _LOG.debug("Didn't Encode %s", repr(path))
         return path
     _LOG.debug("Encoding %s", repr(path))

@@ -37,6 +37,7 @@ from __future__ import print_function
 import os
 import sys
 import time
+import io
 if sys.version_info[0] < 3:
     from urlparse import urlparse
     from urllib2 import urlopen, url2pathname
@@ -242,7 +243,7 @@ class CLIDbManager(object):
                 dirpath = os.path.join(dbdir, dpath)
                 path_name = os.path.join(dirpath, NAME_FILE)
                 if os.path.isfile(path_name):
-                    file = open(path_name)
+                    file = io.open(path_name, 'r', encoding='utf8')
                     name = file.readline().strip()
                     file.close()
 
@@ -299,8 +300,8 @@ class CLIDbManager(object):
         if title is None:
             name_list = [ name[0] for name in self.current_names ]
             title = find_next_db_name(name_list)
-        
-        name_file = open(path_name, "w")
+
+        name_file = io.open(path_name, "w", encoding='utf8')
         name_file.write(title)
         name_file.close()
 
@@ -408,10 +409,10 @@ class CLIDbManager(object):
         """
         try:
             filepath = conv_to_unicode(filepath, 'utf8')
-            name_file = open(filepath, "r")
+            name_file = io.open(filepath, "r", encoding='utf8')
             old_text=name_file.read()
             name_file.close()
-            name_file = open(filepath, "w")
+            name_file = io.open(filepath, "w", encoding='utf8')
             name_file.write(new_text)
             name_file.close()
         except (OSError, IOError) as msg:
