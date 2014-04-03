@@ -26,6 +26,7 @@ import os
 import unittest
 import re
 import io
+import sys
 
 test_ged = """0 HEAD
 1 SOUR min1r.ged min 1-rec
@@ -105,7 +106,8 @@ class Test(unittest.TestCase):
 
 class UnicodeTest(unittest.TestCase):
 
-    @unittest.skipIf(sys.version_info[0] < 3 and sys.platform == 'win32')
+    @unittest.skipIf(sys.version_info[0] < 3 and sys.platform == 'win32',
+                     "Python2 bsddb doesn't handle unicode paths")
 
     def setUp(self):
         from gramps.cli.clidbman import CLIDbManager
@@ -119,12 +121,13 @@ class UnicodeTest(unittest.TestCase):
         self.cli = CLIDbManager(DbState())
 
     def tearDown(self):
-        for (dirpath, dirnames, filenames) in os.walk(self.newpath, False):
-            for afile in filenames:
-                os.remove(os.path.join(dirpath, afile))
-            for adir in dirnames:
-                os.rmdir(os.path.join(dirpath, adir))
-        os.rmdir(self.newpath)
+#        for (dirpath, dirnames, filenames) in os.walk(self.newpath, False):
+#            for afile in filenames:
+#                os.remove(os.path.join(dirpath, afile))
+#            for adir in dirnames:
+#                os.rmdir(os.path.join(dirpath, adir))
+#        os.rmdir(self.newpath)
+        pass
 
     # Test that clidbman will open files in a path containing
     # arbitrary Unicode characters.
