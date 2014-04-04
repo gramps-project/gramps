@@ -184,7 +184,7 @@ class RecentFiles(object):
         """
         Saves the current GRAMPS RecentFiles collection to the associated file.
         """
-        with open(os.path.expanduser(GRAMPS_FILENAME), 'w') as xml_file:
+        with open(os.path.expanduser(GRAMPS_FILENAME), 'w', encoding='utf8') as xml_file:
             if use_lock:
                 fcntl.lockf(xml_file,fcntl.LOCK_EX)
             xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
@@ -222,7 +222,7 @@ class RecentParser(object):
         try:
             # Python3's expat wants bytes, Python2's wants a string.
             fmode = "r" if sys.version_info[0] < 3 else "rb"
-            with open(fname, fmode) as xml_file:
+            with io.open(fname, fmode) as xml_file:
                 if use_lock:
                     fcntl.lockf(xml_file,fcntl.LOCK_SH)
 

@@ -214,7 +214,7 @@ def merge(in_file, out_file, option, po_dir='po', cache=True):
 
     if (not os.path.exists(out_file) and os.path.exists(in_file)):
         if sys.platform == 'win32':
-            cmd = (('set LC_ALL=C && intltool-merge %(opt)s %(po_dir)s %(in_file)s '
+            cmd = (('set LC_ALL=C && perl -S intltool-merge %(opt)s %(po_dir)s %(in_file)s '
                 '%(out_file)s') % 
               {'opt' : option, 
                'po_dir' : po_dir,
