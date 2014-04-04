@@ -96,7 +96,6 @@ class EmbeddedList(ButtonTab):
         self.pb_renderer = None
 
         # handle the selection
-        self.tree.set_hover_selection(True)
         self.selection = self.tree.get_selection()
         self.selection.connect('changed', self._selection_changed)
         self.track_ref_for_deletion("selection")
@@ -130,14 +129,6 @@ class EmbeddedList(ButtonTab):
             if fun:
                 fun()
                 return True
-        elif event.type == Gdk.EventType.BUTTON_PRESS and event.button == 1:
-            if self.tree.get_hover_selection():
-                self.tree.set_hover_selection(False)
-                return True
-            else:
-                self.tree.set_hover_selection(True)
-                #let code for single click still select the current row:
-                return False
         return False
 
     def get_popup_menu_items(self):
