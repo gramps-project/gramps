@@ -184,7 +184,7 @@ class RecentFiles(object):
         """
         Saves the current GRAMPS RecentFiles collection to the associated file.
         """
-        with open(os.path.expanduser(GRAMPS_FILENAME), 'w', encoding='utf8') as xml_file:
+        with io.open(os.path.expanduser(GRAMPS_FILENAME), 'w', encoding='utf8') as xml_file:
             if use_lock:
                 fcntl.lockf(xml_file,fcntl.LOCK_EX)
             xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
