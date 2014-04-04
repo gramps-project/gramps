@@ -121,12 +121,12 @@ class UnicodeTest(unittest.TestCase):
         self.cli = CLIDbManager(DbState())
 
     def tearDown(self):
-#        for (dirpath, dirnames, filenames) in os.walk(self.newpath, False):
-#            for afile in filenames:
-#                os.remove(os.path.join(dirpath, afile))
-#            for adir in dirnames:
-#                os.rmdir(os.path.join(dirpath, adir))
-#        os.rmdir(self.newpath)
+        for (dirpath, dirnames, filenames) in os.walk(self.newpath, False):
+            for afile in filenames:
+                os.remove(os.path.join(dirpath, afile))
+            for adir in dirnames:
+                os.rmdir(os.path.join(dirpath, adir))
+        os.rmdir(self.newpath)
         pass
 
     # Test that clidbman will open files in a path containing
