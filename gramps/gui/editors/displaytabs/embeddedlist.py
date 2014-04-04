@@ -100,10 +100,20 @@ class EmbeddedList(ButtonTab):
         self.rebuild()
         self.show_all()
 
+    def _select_row_at_coords(self, x, y):
+        """
+        Select the row at the current cursor position.
+        """
+        wx, wy = self.tree.convert_bin_window_to_widget_coords(x, y)
+        row = self.tree.get_dest_row_at_pos(wx, wy)
+        if row:
+            self.tree.get_selection().select_path(row[0])
+
     def _on_button_press(self, obj, event):
         """
         Handle button press, not double-click, that is done in init_interface
         """
+        self._select_row_at_coords(event.x, event.y)
         if is_right_click(event):
             #ref = self.get_selected()
             #if ref:

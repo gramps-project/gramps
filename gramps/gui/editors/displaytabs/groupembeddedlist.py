@@ -108,6 +108,7 @@ class GroupEmbeddedList(EmbeddedList):
         """
         Handle button press, not double-click, that is done in init_interface
         """
+        self._select_row_at_coords(event.x, event.y)
         if is_right_click(event):
             obj = self.get_selected()
             if obj and obj[1]:
