@@ -741,7 +741,7 @@ class DbManager(CLIDbManager):
         """
         Create a new database, append to model
         """
-        new_path, title = self.create_new_db_cli(title)
+        new_path, title = self.create_new_db_cli(conv_to_unicode(title, 'utf8'))
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)
         node = self.model.append(None, [title, new_path, path_name, 
