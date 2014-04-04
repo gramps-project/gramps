@@ -86,7 +86,7 @@ class PlaceTest(unittest.TestCase):
         self._test_formats_fail(lat, lon)
 
     def test_dm_ds(self):
-        lat, lon =  ' 50°59.60"N', '  2°53\'E'
+        lat, lon =  ' 50°59.60\'N', '  2°53\'E'
         self._test_formats_success(lat, lon)
 
     def test_both_in_latitude(self):
@@ -109,7 +109,7 @@ class PlaceTest(unittest.TestCase):
         self._test_formats_fail(lat, lon)
 
     def test_precision(self):
-        lat, lon =  ' 50°59.99"S', '  2°59\'59.99"E'
+        lat, lon =  ' 50°59\'59.99"S', '  2°59\'59.99"E'
         self._test_formats_success(lat, lon)
 
         lat, lon = 'N50.849888888888', 'E2.885897222222'
@@ -151,7 +151,7 @@ class PlaceTest(unittest.TestCase):
         self._test_formats_fail(lat, lon)
 
         lat, lon =  ' 89°40\'00"N', '  2°53.1\'W'
-        self._test_formats_fail(lat, lon)
+        self._test_formats_success(lat, lon)
 
         lat, lon = '+61° 43\' 60.00"', '+17° 7\' 60.00"'
         self._test_formats_fail(lat, lon)
@@ -165,7 +165,7 @@ class PlaceTest(unittest.TestCase):
         self._test_formats_success(lat, lon)
 
     def test_roundoff(self):
-        lat, lon =  ' 1°59.999"N', '  1°59.999"E'
+        lat, lon =  ' 1°59.999\'N', '  1°59.999\'E'
         self._test_formats_success(lat, lon)
 
         lat, lon =  ' 1°59\'59.9999"N', '  1°59\'59.9999"E'
@@ -295,3 +295,6 @@ def conv_SWED_RT90_WGS84(X, Y):
     LAT = math.degrees(LAT)
     LON = math.degrees(LON)
     return LAT, LON
+
+if __name__ == "__main__":
+    unittest.main()

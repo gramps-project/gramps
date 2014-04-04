@@ -42,7 +42,7 @@ class GrampsDbBaseTest(unittest.TestCase):
         
         self._db = DbBsddb()
         dbman = CLIDbManager(None)
-        self._filename, title = dbman.create_new_db_cli(title="Test")
+        self._filename, title = dbman.create_new_db_cli(title=u"Test")
         self._db.load(self._filename, dummy_callback, "w")
 
     def tearDown(self):
