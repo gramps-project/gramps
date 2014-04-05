@@ -511,7 +511,7 @@ def find_locker_name(dirpath):
     """
     try:
         fname = os.path.join(dirpath, "lock")
-        ifile = io.open(fname, 'rb', encoding='utf8')
+        ifile = io.open(fname, 'r', encoding='utf8')
         username = ifile.read().strip()
         # feature request 2356: avoid genitive form
         last = _("Locked by %s") % username
