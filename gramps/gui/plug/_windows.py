@@ -72,6 +72,7 @@ from ..glade import Glade
 from ..listmodel import ListModel, NOSORT, TOGGLE
 from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from gramps.gen.const import URL_WIKISTRING, USER_HOME, WIKI_EXTRAPLUGINS_RAWDATA
+from gramps.gen.constfunc import win
 from gramps.gen.config import config
 from ..widgets.progressdialog import (LongOpStatus, ProgressMonitor,
                                       GtkProgressDialog)
@@ -1080,6 +1081,9 @@ class UpdateAddons(ManagedWindow):
         self.set_window(self.update_dialog, glade.get_object('title'), 
                         self.title)
         self.window.set_size_request(750, 400)
+
+        if win() and Gtk.get_minor_version() < 11:
+            self.window.set_transient_for(self.window.get_toplevel())
 
         apply_button = glade.get_object('apply')
         cancel_button = glade.get_object('cancel')
