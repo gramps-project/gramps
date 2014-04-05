@@ -202,8 +202,7 @@ class MergeFamily(ManagedWindow):
             titanic = self.fy1
             # Add second handle to history so that when merge is complete, 
             # phoenix is the selected row.
-            self.uistate.viewmanager.active_page.get_history().push(
-                    phoenix.get_handle())
+            self.uistate.set_active(phoenix.get_handle(), 'Family')
 
         phoenix_fh = phoenix.get_father_handle()
         phoenix_mh = phoenix.get_mother_handle()

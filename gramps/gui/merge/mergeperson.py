@@ -319,8 +319,7 @@ class MergePerson(ManagedWindow):
             titanic = self.pr1
             # Add second handle to history so that when merge is complete, 
             # phoenix is the selected row.
-            self.uistate.viewmanager.active_page.get_history().push(
-                    phoenix.get_handle())
+            self.uistate.set_active(phoenix.get_handle(), 'Person')
 
         if self.get_widget("name_btn1").get_active() ^ use_handle1:
             swapname = phoenix.get_primary_name()
