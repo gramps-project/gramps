@@ -156,8 +156,7 @@ class MergeCitations(ManagedWindow.ManagedWindow):
             titanic = self.citation1
             # Add second handle to history so that when merge is complete, 
             # phoenix is the selected row.
-            self.uistate.viewmanager.active_page.get_history().push(
-                    phoenix.get_handle())
+            self.uistate.set_active(phoenix.get_handle(), 'Citation')
 
         if self.get_widget("page_btn1").get_active() ^ use_handle1:
             phoenix.set_page(titanic.get_page())
