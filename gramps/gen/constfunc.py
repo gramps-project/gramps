@@ -184,7 +184,8 @@ def get_env_var(name, default=None):
         n = ctypes.windll.kernel32.GetEnvironmentVariableW(name, None, 0)
         if n==0:
             return default
-        buf = ctypes.create_unicode_buffer(u'\0'*n)
+        # n is number of codepoints
+        buf = ctypes.create_unicode_buffer(n+1)
         ctypes.windll.kernel32.GetEnvironmentVariableW(name, buf, n)
         return buf.value
 
