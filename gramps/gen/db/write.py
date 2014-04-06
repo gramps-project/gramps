@@ -1132,9 +1132,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                         'which is partly bytecode, this is not allowed.\n'
                         'Key is %s') % str(key))
             if sys.version_info[0] >= 3:
-                key= str(tuple(k for k in key))
+                key= str(key)
             else:
-                key = str(tuple(k.decode('utf-8') for k in key))
+                key = str(tuple(str(k) for k in key))
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         if not self.readonly:
