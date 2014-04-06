@@ -55,24 +55,17 @@ WINDOWS = ["Windows", "win32"]
 
 #python 2 and 3 support, use correct conversion to unicode
 if sys.version_info[0] < 3:
-    def conv_to_unicode(x, y=None):
-        if isinstance(x, unicode):
-            return x
-        return unicode(x, y) if y else unicode(x)
-
     conv_to_unicode_direct = unicode
     STRTYPE = basestring
     UNITYPE = unicode
 else:
-    def conv_to_unicode(x, y):
-        if isinstance(x, str):
-            return x
-        else:
-            return x.decode(y)
     conv_to_unicode_direct = str
     STRTYPE = str
     UNITYPE = str
 cuni = conv_to_unicode_direct
+def conv_to_unicode(x, y='utf8'):
+    return x if x is None or isinstance(x, UNITYPE) else cuni(x, y)
+
 
 # handle in database is bytes, while internally Gramps wants unicode for py3
 if sys.version_info[0] < 3:
