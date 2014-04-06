@@ -437,7 +437,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         dbmap = db.DB(self.env)
         dbmap.set_flags(flags)
 
-        fname = _encode(os.path.join(file_name, table_name + DBEXT))
+        fname = os.path.join(file_name, table_name + DBEXT)
 
         if self.readonly:
             dbmap.open(fname, table_name, dbtype, DBFLAGS_R)
@@ -448,7 +448,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     def __open_shelf(self, file_name, table_name, dbtype=db.DB_HASH):
         dbmap = dbshelve.DBShelf(self.env)
 
-        fname = _encode(os.path.join(file_name, table_name + DBEXT))
+        fname = os.path.join(file_name, table_name + DBEXT)
 
         if self.readonly:
             dbmap.open(fname, table_name, dbtype, DBFLAGS_R)
@@ -778,7 +778,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         env_name = name
 
         try:
-            self.env.open(_encode(env_name), env_flags)
+            self.env.open(env_name, env_flags)
         except Exception as msg:
             _LOG.warning("Error opening db environment: " + str(msg))
             try:
@@ -1304,7 +1304,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                         raise DbError(_('An attempt is made to save a reference key '
                                         'which is partly bytecode, this is not allowed.\n'
                                         'Key is %s') % str(key))
-            key = str(key)
+            if sys.version_info[0] >= 3:
+                key= str(tuple(k for k in key))
+            else:
+                key = str(tuple(k.decode('utf-8') for k in key))
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         if not self.readonly:
@@ -2404,7 +2407,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # Environment name is now based on the filename
         env_name = name
 
-        self.env.open(_encode(env_name), env_flags)
+        self.env.open(env_name, env_flags)
         self.env.txn_checkpoint()
 
         self.metadata  = self.__open_shelf(full_name, META)
