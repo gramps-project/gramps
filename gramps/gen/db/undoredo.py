@@ -410,10 +410,8 @@ class DbUndoBSDDB(DbUndo):
         """
         Open the undo/redo database
         """
-        path = (self.path.encode(sys.getfilesystemencoding())
-                if (isinstance(self.path, UNITYPE) and win()
-                    and sys.version_info[0] < 3) 
-                else self.path)
+        path = self.path
+
         self.undodb.open(path, db.DB_RECNO, db.DB_CREATE)
         
     def close(self):
