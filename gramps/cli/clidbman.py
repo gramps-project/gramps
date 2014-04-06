@@ -409,6 +409,7 @@ class CLIDbManager(object):
         """
         try:
             filepath = conv_to_unicode(filepath, 'utf8')
+            new_text = conv_to_unicode(new_text, 'utf8')
             name_file = io.open(filepath, "r", encoding='utf8')
             old_text=name_file.read()
             name_file.close()
