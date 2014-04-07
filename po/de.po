@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-04 22:05+0200\n"
-"PO-Revision-Date: 2014-04-04 22:38+0200\n"
+"POT-Creation-Date: 2014-04-07 17:27+0200\n"
+"PO-Revision-Date: 2014-04-07 18:05+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -7160,6 +7160,11 @@ msgid ""
 "location of the information referenced within the source in the 'Volume/"
 "Page' field."
 msgstr ""
+"Eine Quelle ist alles (persönliche Aussagen, Videoaufzeichnungen, Fotos, "
+"Zeitungsausschnitte, Grabsteine,....) von dem Informationen abgeleitet werden "
+"können. Um eine Fundstelle zu erstellen, wähle zuerst die benötigte Quelle "
+"und gib dann den Ort ein, an dem sich die Informationen in dieser Quelle "
+"befinden, im 'Band/Seite' Feld ein."
 
 #: ../src/gui/editors/editcitation.py:277
 msgid "Cannot save citation. ID already exists."
@@ -9821,7 +9826,7 @@ msgstr "Fundstellen_zusammenfassen"
 msgid "Merge Citations"
 msgstr "Fundstellen zusammenfassen"
 
-#: ../src/Merge/mergecitation.py:194
+#: ../src/Merge/mergecitation.py:193
 msgid "Merge Citation"
 msgstr "Fundstellen zusammenfassen"
 
@@ -9833,7 +9838,7 @@ msgstr "Ereignisse_zusammenfassen"
 msgid "Merge Events"
 msgstr "Ereignisse zusammenfassen"
 
-#: ../src/Merge/mergeevent.py:216
+#: ../src/Merge/mergeevent.py:215
 msgid "Merge Event Objects"
 msgstr "Ereignisobjekte zusammenfassen"
 
@@ -9845,17 +9850,17 @@ msgstr "Familien_zusammenfassen"
 msgid "Merge Families"
 msgstr "Familien zusammenfassen"
 
-#: ../src/Merge/mergefamily.py:225 ../src/Merge/mergeperson.py:334
+#: ../src/Merge/mergefamily.py:224 ../src/Merge/mergeperson.py:333
 #: ../src/plugins/lib/libpersonview.py:417
 msgid "Cannot merge people"
 msgstr "Die Personen können nicht zusammengefasst werden."
 
-#: ../src/Merge/mergefamily.py:278
+#: ../src/Merge/mergefamily.py:277
 msgid "A parent should be a father or mother."
 msgstr "Ein Elternteil sollte entweder Vater oder Mutter sein."
 
-#: ../src/Merge/mergefamily.py:291 ../src/Merge/mergefamily.py:302
-#: ../src/Merge/mergeperson.py:352
+#: ../src/Merge/mergefamily.py:290 ../src/Merge/mergefamily.py:301
+#: ../src/Merge/mergeperson.py:351
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
@@ -9864,7 +9869,7 @@ msgstr ""
 "Personen zusammenzufassen, musst du zuerst die Verbindung zwischen ihnen "
 "lösen."
 
-#: ../src/Merge/mergefamily.py:323
+#: ../src/Merge/mergefamily.py:322
 msgid "Merge Family"
 msgstr "Familien zusammenfassen"
 
@@ -9872,7 +9877,7 @@ msgstr "Familien zusammenfassen"
 msgid "manual|Merge_Media_Objects"
 msgstr "Medienobjekte_zusammenfassen"
 
-#: ../src/Merge/mergemedia.py:70 ../src/Merge/mergemedia.py:190
+#: ../src/Merge/mergemedia.py:70 ../src/Merge/mergemedia.py:189
 msgid "Merge Media Objects"
 msgstr "Medienobjekte zusammenfassen"
 
@@ -9880,7 +9885,7 @@ msgstr "Medienobjekte zusammenfassen"
 msgid "manual|Merge_Notes"
 msgstr "Notizen_zusammenfassen"
 
-#: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:205
+#: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:204
 msgid "Merge Notes"
 msgstr "Notizen zusammenfassen"
 
@@ -9932,7 +9937,7 @@ msgstr "Keine (Ehe-)Partner oder Kinder gefunden"
 msgid "Addresses"
 msgstr "Adressen"
 
-#: ../src/Merge/mergeperson.py:349
+#: ../src/Merge/mergeperson.py:348
 msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
@@ -9940,11 +9945,11 @@ msgstr ""
 "Ehepaare können nicht zusammengefasst werden. Um diese Personen "
 "zusammenzufassen, musst du zuerst die Verbindung zwischen ihnen lösen."
 
-#: ../src/Merge/mergeperson.py:415
+#: ../src/Merge/mergeperson.py:414
 msgid "Merge Person"
 msgstr "Personen zusammenfassen"
 
-#: ../src/Merge/mergeperson.py:454
+#: ../src/Merge/mergeperson.py:453
 msgid ""
 "A person with multiple relations with the same spouse is about to be merged. "
 "This is beyond the capabilities of the merge routine. The merge is aborted."
@@ -9953,7 +9958,7 @@ msgstr ""
 "zusammengefasst werden. Dies liegt über den Möglichkeiten der "
 "Zusammenfassungsroutine. Das Zusammenfassen wurde daher abgebrochen."
 
-#: ../src/Merge/mergeperson.py:465
+#: ../src/Merge/mergeperson.py:464
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr ""
 "Mehrere Familien wurden zusammengefasst. Dies ist unüblich, das "
@@ -9963,7 +9968,7 @@ msgstr ""
 msgid "manual|Merge_Places"
 msgstr "Orte_zusammenfassen"
 
-#: ../src/Merge/mergeplace.py:77 ../src/Merge/mergeplace.py:217
+#: ../src/Merge/mergeplace.py:77 ../src/Merge/mergeplace.py:215
 msgid "Merge Places"
 msgstr "Orte zusammenfassen"
 
@@ -9971,7 +9976,7 @@ msgstr "Orte zusammenfassen"
 msgid "manual|Merge_Repositories"
 msgstr "Aufbewahrungsorte_zusammenfassen"
 
-#: ../src/Merge/mergerepository.py:69 ../src/Merge/mergerepository.py:177
+#: ../src/Merge/mergerepository.py:69 ../src/Merge/mergerepository.py:176
 msgid "Merge Repositories"
 msgstr "Aufbewahrungsorte zusammenfassen"
 
@@ -9983,7 +9988,7 @@ msgstr "Quellen_zusammenfassen"
 msgid "Merge Sources"
 msgstr "Quellen zusammenfassen"
 
-#: ../src/Merge/mergesource.py:205
+#: ../src/Merge/mergesource.py:204
 msgid "Merge Source"
 msgstr "Quellen zusammenfassen"
 
@@ -14578,7 +14583,7 @@ msgid "You did not specify anybody"
 msgstr "Du hast niemanden angegeben"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
-#, fuzzy, python-format
+#, python-format
 msgid "%d child"
 msgid_plural "%d children"
 msgstr[0] "%d Kind"
