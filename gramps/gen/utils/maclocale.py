@@ -231,6 +231,7 @@ def mac_setup_localization(glocale):
             LOG.debug("Environment locale %s not supported", _locale)
 
     if not glocale.lang:
+        LOG.debug("Setting from the environment didn't work out, checking defaults")
         (glocale.lang, glocale.currency, glocale.calendar) = _mac_get_locale()
 
     glocale.coll_qualifier = None
@@ -241,6 +242,13 @@ def mac_setup_localization(glocale):
         glocale.lang = glocale.check_available_translations(coll_parts[0])
 
     glocale.lang = locale.normalize(glocale.lang)
+    if not glocale.lang.split('.')[1].lower() in ['utf8', 'utf-8']:
+        LOG.debug('Forcing locale encoding to UTF-8')
+        glocale.lang = '.'.join([glocale.lang.split('.')[0], 'UTF-8'])
+        try:
+            locale.setlocale(locale.LC_ALL, glocale.lang)
+        except locale.Error:
+            LOG.debug('Attempt failed, locale %s unsupported', glocale.lang)
     glocale.encoding = glocale.lang.split('.')[1]
     if not glocale.language:
         lang = locale.getlocale(locale.LC_MESSAGES)[0]
