@@ -1122,7 +1122,7 @@ class PluginRegister(object):
                 local_gettext = glocale.translation.gettext
             try:
                 #execfile(full_filename,
-                exec (compile(stream, full_filename, 'exec'),
+                exec (compile(stream, filename, 'exec'),
                       make_environment(_=local_gettext), {})
             except ValueError as msg:
                 print(_('ERROR: Failed reading plugin registration %(filename)s') % \
