@@ -54,7 +54,7 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 from ..config import config
 from . import PluginRegister, ImportPlugin, ExportPlugin, DocGenPlugin
-from ..constfunc import STRTYPE
+from ..constfunc import STRTYPE, win
 
 #-------------------------------------------------------------------------
 #
@@ -258,9 +258,36 @@ class BasePluginManager(object):
                 try:
                     module = __import__(pdata.mod_name)
                 except ValueError as err:
-                    LOG.warning('Plugin error: %s', err)
+                    # Python3 on Windows  work with unicode in sys.path
+                    # but they are mbcs encode for checking validity
+                    if (sys.version_info[0] >= 3) and win():
+                        # we don't want to load Gramps core plugin like this
+                        # only 3rd party plugins
+                        if "gramps"  in pdata.fpath:
+                            try:
+                                sys.path.insert(0, ".")
+                                oldwd = os.getcwd()
+                                os.chdir(pdata.fpath)
+                                module = __import__(pdata.mod_name)
+                                os.chdir(oldwd)
+                                sys.path.pop(0)
+                            except ValueError as err:
+                                LOG.warning('Plugin error: %s', err)
+                    else:
+                        LOG.warning('Plugin error: %s', err)
                 except ImportError as err:
-                    LOG.warning('Plugin error: %s', err)
+                    # Python2 on Windows not work with unicode in sys.path
+                    # but module can be loaded from current directory
+                    if (sys.version_info[0] < 3) and win():
+                        try:
+                            oldwd = os.getcwd()
+                            os.chdir(pdata.fpath)
+                            module = __import__(pdata.mod_name)
+                            os.chdir(oldwd)
+                        except ImportError as err:
+                            LOG.warning('Plugin error: %s', err)
+                    else:
+                        LOG.warning('Plugin error: %s', err)
                 sys.path.pop(0)
             else:
                 print("WARNING: module cannot be loaded")
