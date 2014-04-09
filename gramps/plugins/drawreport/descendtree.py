@@ -1,10 +1,11 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2000-2007 Donald N. Allingham
-# Copyright (C) 2007-2008 Brian G. Matherly
-# Copyright (C) 2010 Jakim Friant
-# Copyright (C) 2009-2010 Craig J. Anderson
+# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2007-2008  Brian G. Matherly
+# Copyright (C) 2010       Jakim Friant
+# Copyright (C) 2009-2010  Craig J. Anderson
+# Copyright (C) 2014       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -36,20 +37,15 @@ from __future__ import division
 #------------------------------------------------------------------------ 
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-
 from gramps.gen.errors import ReportError
-
-from gramps.gen.plug.menu import TextOption
-from gramps.gen.plug.menu import NumberOption
-from gramps.gen.plug.menu import EnumeratedListOption
-from gramps.gen.plug.menu import StringOption
-from gramps.gen.plug.menu import BooleanOption
-from gramps.gen.plug.menu import PersonOption
-from gramps.gen.plug.menu import FamilyOption
-
-from gramps.gen.plug.report import Report
+from gramps.gen.plug.menu import (TextOption, NumberOption, BooleanOption,
+                                  EnumeratedListOption, StringOption,
+                                  PersonOption, FamilyOption)
+from gramps.gen.plug.report import Report, MenuReportOptions, stdoptions
 from gramps.gen.plug.report import utils as ReportUtils
-from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+                                    FONT_SANS_SERIF, PARA_ALIGN_CENTER)
+from gramps.plugins.lib.libtreebase import *
 
 PT2CM = ReportUtils.pt2cm
 
@@ -58,13 +54,11 @@ PT2CM = ReportUtils.pt2cm
 # Constants
 #
 #------------------------------------------------------------------------
-_BORN = _('short for born|b.')
-_DIED = _('short for died|d.')
-_MARR = _('short for married|m.')
+_BORN = _("birth abbreviation|b."),
+_DIED = _("death abbreviation|d."),
+_MARR = _("marriage abbreviation|m."),
 
 _RPT_NAME = 'descend_chart'
-
-from gramps.plugins.lib.libtreebase import *
 
 #------------------------------------------------------------------------
 #
@@ -137,9 +131,10 @@ class PlaceHolderBox(BoxBase):
 #
 #------------------------------------------------------------------------
 class DescendantTitleBase(TitleBox):
-    def __init__(self, dbase, doc, boxstr = "CG2-Title"):
+    def __init__(self, dbase, doc, locale, boxstr = "CG2-Title"):
         TitleBox.__init__(self, doc, boxstr)
         self.database = dbase
+        self._ = locale.translation.sgettext
     
     def descendant_print(self, person_list, person_list2 = []):
         """ calculate the Descendant title
@@ -158,36 +153,37 @@ class DescendantTitleBase(TitleBox):
             names2 = self._get_names(person_list2)
             if len(names) + len(names2) == 3:
                 if len(names) == 1:
-                    title = _("Descendant Chart for %(person)s and "
-                              "%(father1)s, %(mother1)s") % \
-                              {'person':  names[0],
-                               'father1': names2[0],
-                               'mother1': names2[1],
-                              }
+                    title = self._("Descendant Chart for %(person)s and "
+                                   "%(father1)s, %(mother1)s") % {
+                                       'person':  names[0],
+                                       'father1': names2[0],
+                                       'mother1': names2[1],
+                                       }
                 else: # Should be 2 items in names list
-                    title = _("Descendant Chart for %(person)s, %(father1)s "
-                              "and %(mother1)s") % \
-                              {'father1': names[0],
-                               'mother1': names[1],
-                               'person':  names2[0],
-                              }
+                    title = self._("Descendant Chart for %(person)s, "
+                                   "%(father1)s and %(mother1)s") % {
+                                       'father1': names[0],
+                                       'mother1': names[1],
+                                       'person':  names2[0],
+                                       }
             else: # Should be 2 items in both names and names2 lists
-                title = _("Descendant Chart for %(father1)s, %(father2)s "
-                          "and %(mother1)s, %(mother2)s") % \
-                          {'father1': names[0],
-                           'mother1': names[1],
-                           'father2': names2[0],
-                           'mother2': names2[1],
-                          }
+                title = self._("Descendant Chart for %(father1)s, %(father2)s "
+                               "and %(mother1)s, %(mother2)s") % {
+                                   'father1': names[0],
+                                   'mother1': names[1],
+                                   'father2': names2[0],
+                                   'mother2': names2[1],
+                                   }
         else: # No person_list2: Just one family
             if len(names) == 1:
-                title = _("Descendant Chart for %(person)s") % \
-                          {'person': names[0]}
+                title = self._("Descendant Chart for %(person)s") % {
+                                   'person': names[0]}
             else: # Should be two items in names list
-                title = _("Descendant Chart for %(father)s and %(mother)s") % \
-                          {'father': names[0],
-                           'mother': names[1],
-                          }
+                title = self._("Descendant Chart for %(father)s and "
+                               "%(mother)s") % {
+                                   'father': names[0],
+                                   'mother': names[1],
+                                   }
         return title
     
     def get_parents(self, family_id):
@@ -205,21 +201,22 @@ class DescendantTitleBase(TitleBox):
 class TitleNone(TitleNoDisplay):
     """No Title class for the report """
     
-    def __init__(self, dbase, doc):
+    def __init__(self, dbase, doc, locale):
         TitleNoDisplay.__init__(self, doc, "CG2-Title")
+        self._ = locale.translation.sgettext
         
     def calc_title(self, persons):
         """Calculate the title of the report"""
         #we want no text, but need a text for the TOC in a book!
-        self.mark_text = _('Descendant Graph')
+        self.mark_text = self._('Descendant Graph')
         self.text = ''
 
 class TitleDPY(DescendantTitleBase):
     """Descendant (Person yes start with parents) Chart 
     Title class for the report """
     
-    def __init__(self, dbase, doc):
-        DescendantTitleBase.__init__(self, dbase, doc)
+    def __init__(self, dbase, doc, locale):
+        DescendantTitleBase.__init__(self, dbase, doc, locale)
         
     def calc_title(self, person_id):
         """Calculate the title of the report"""
@@ -245,8 +242,8 @@ class TitleDPN(DescendantTitleBase):
     """Descendant (Person no start with parents) Chart 
     Title class for the report """
     
-    def __init__(self, dbase, doc):
-        DescendantTitleBase.__init__(self, dbase, doc)
+    def __init__(self, dbase, doc, locale):
+        DescendantTitleBase.__init__(self, dbase, doc, locale)
         
     def calc_title(self, person_id):
         """Calculate the title of the report"""
@@ -261,8 +258,8 @@ class TitleDFY(DescendantTitleBase):
     """Descendant (Family yes start with parents) Chart 
     Title class for the report """
     
-    def __init__(self, dbase, doc):
-        DescendantTitleBase.__init__(self, dbase, doc)
+    def __init__(self, dbase, doc, locale):
+        DescendantTitleBase.__init__(self, dbase, doc, locale)
     
     def get_parent_list(self, person):
         """ return a list of my parents.  If none, return me """
@@ -301,8 +298,8 @@ class TitleDFN(DescendantTitleBase):
     """Descendant (Family no start with parents) Chart
     Title class for the report """
     
-    def __init__(self, dbase, doc):
-        DescendantTitleBase.__init__(self, dbase, doc)
+    def __init__(self, dbase, doc, locale):
+        DescendantTitleBase.__init__(self, dbase, doc, locale)
         
     def calc_title(self, family_id):
         """Calculate the title of the report"""
@@ -313,8 +310,9 @@ class TitleDFN(DescendantTitleBase):
 
 class TitleF(DescendantTitleBase):
     """Family Chart Title class for the report """
-    def __init__(self, dbase, doc):
-        DescendantTitleBase.__init__(self, dbase, doc)
+
+    def __init__(self, dbase, doc, locale):
+        DescendantTitleBase.__init__(self, dbase, doc, locale)
         
     def calc_title(self, family_id):
         """Calculate the title of the report"""
@@ -323,10 +321,11 @@ class TitleF(DescendantTitleBase):
         names = self._get_names(parents)
 
         if len(parents) == 1:
-            title = _("Family Chart for %(person)s") % {'person':  names[0] }
+            title = self._("Family Chart for %(person)s") % {
+                               'person':  names[0] }
         elif len(parents) == 2:
-            title = _("Family Chart for %(father1)s and %(mother1)s") % \
-               {'father1':  names[0],  'mother1': names[1] }
+            title = self._("Family Chart for %(father1)s and %(mother1)s") % {
+                               'father1':  names[0],  'mother1': names[1] }
         #else:
         #    title = str(tmp) + " " + str(len(tmp))
         self.text = title
@@ -334,8 +333,9 @@ class TitleF(DescendantTitleBase):
         
 class TitleC(DescendantTitleBase):
     """Cousin Chart Title class for the report """
-    def __init__(self, dbase, doc):
-        DescendantTitleBase.__init__(self, dbase, doc)
+
+    def __init__(self, dbase, doc, locale):
+        DescendantTitleBase.__init__(self, dbase, doc, locale)
         
     def calc_title(self, family_id):
         """Calculate the title of the report"""
@@ -346,9 +346,11 @@ class TitleC(DescendantTitleBase):
                 for kid in family.get_child_ref_list()]
 
         #ok we have the children.  Make a title off of them
-        tmp = self._get_names(kids)
+        # translators: needed for Arabic, ignore otherwise
+        cousin_names = _(', ').join(self._get_names(kids))
         
-        self.text = _("Cousin Chart for " + ", ".join(self._get_names(kids)))
+        # FIXME it should be reformatted, but that would mean new translations
+        self.text = self._("Cousin Chart for ") + cousin_names
             
         self.set_box_height_width()
 
@@ -1189,9 +1191,10 @@ class GuiConnect():
     def __init__(self):  #We are BORG!
         self.__dict__ = self.__shared_state
 
-    def set__opts(self, options, which):
+    def set__opts(self, options, which, locale):
         self._opts = options
         self._which_report = which.split(",")[0]
+        self._locale = locale
         
     def get_val(self, val):
         """ Get a GUI value. """
@@ -1204,24 +1207,24 @@ class GuiConnect():
     def Title_class(self, database, doc):
         Title_type = self.get_val('report_title')
         if Title_type == 0:  #None
-            return TitleNone(database, doc)
+            return TitleNone(database, doc, self._locale)
         
         if Title_type == 1:  #Descendant Chart
             if self._which_report == _RPT_NAME:
                 if self.get_val('show_parents'):
-                    return TitleDPY(database, doc)
+                    return TitleDPY(database, doc, self._locale)
                 else:
-                    return TitleDPN(database, doc)
+                    return TitleDPN(database, doc, self._locale)
             else:
                 if self.get_val('show_parents'):
-                    return TitleDFY(database, doc)
+                    return TitleDFY(database, doc, self._locale)
                 else:
-                    return TitleDFN(database, doc)
+                    return TitleDFN(database, doc, self._locale)
         
         if Title_type == 2:
-            return TitleF(database, doc)
+            return TitleF(database, doc, self._locale)
         else: #Title_type == 3
-            return TitleC(database, doc)
+            return TitleC(database, doc, self._locale)
     
     def Make_Tree(self, database, canvas):
         if self._which_report == _RPT_NAME:
@@ -1235,7 +1238,7 @@ class GuiConnect():
         #str = ""
         #if self.get_val('miss_val'):
         #    str = "_____"
-        return CalcLines(database, display_repl)
+        return CalcLines(database, display_repl, self._locale)
     
     def working_lines(self, box):
         display = self.get_val("descend_disp")
@@ -1275,6 +1278,9 @@ class DescendTree(Report):
         self.options = options
         self.database = database
         
+        lang = options.menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
     def begin_report(self):
         """ make the report in its full size and pages to print on
         scale one or both as needed/desired.
@@ -1283,7 +1289,8 @@ class DescendTree(Report):
         database = self.database
 
         self.Connect = GuiConnect()
-        self.Connect.set__opts(self.options.menu, self.options.name)
+        self.Connect.set__opts(self.options.menu, self.options.name,
+                               self._locale)
         
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("CG2-Normal").get_font()
@@ -1320,7 +1327,7 @@ class DescendTree(Report):
         if self.Connect.get_val("inc_note"):
             note_box = NoteBox(self.doc, "CG2-note-box",
                                self.Connect.get_val("note_place"))
-            subst = SubstKeywords(self.database, None, None)
+            subst = SubstKeywords(self.database, self._locale, None, None)
             note_box.text = subst.replace_and_clean(
                 self.Connect.get_val('note_disp'))
             self.canvas.add_note(note_box)
@@ -1365,7 +1372,7 @@ class DescendTree(Report):
         #p = self.doc.get_style_sheet().get_paragraph_style("CG2-Normal")
         #font = p.get_font()
         if prnnum:
-            page_num_box = PageNumberBox(self.doc, 'CG2-box')
+            page_num_box = PageNumberBox(self.doc, 'CG2-box', self._locale)
         
         #####################
         #ok, everyone is now ready to print on the canvas.  Paginate?
@@ -1512,6 +1519,8 @@ class DescendTreeOptions(MenuReportOptions):
         "resulting in a smaller tree"))
         menu.add_option(category_name, "compress_tree", compresst)
 
+        stdoptions.add_localization_option(menu, category_name)
+
         ##################
         category_name = _("Display")
 
@@ -1622,6 +1631,12 @@ class DescendTreeOptions(MenuReportOptions):
         self.title = EnumeratedListOption(_("Report Title"), 0)
         self.title.add_item( 0, _("Do not include a title"))
         self.title.add_item( 1, _("Descendant Chart for [selected person(s)]"))
+        if self.name.split(",")[0] != _RPT_NAME:
+            self.title.add_item(2,
+                                _("Family Chart for [names of chosen family]"))
+            if self.showparents.get_value():
+                self.title.add_item(3,
+                                    _("Cousin Chart for [names of children]"))
         self.title.set_help(_("Choose a title for the report"))
         menu.add_option(category_name, "report_title", self.title)
         self.showparents.connect('value-changed', self.__Title_enum)
@@ -1684,9 +1699,6 @@ class DescendTreeOptions(MenuReportOptions):
 
     def make_default_style(self, default_style):
         """Make the default output style for the Descendant Tree."""
-
-        from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
-                            FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 
         ## Paragraph Styles:
         font = FontStyle()

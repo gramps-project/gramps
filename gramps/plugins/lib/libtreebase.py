@@ -1,7 +1,8 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2008-2010 Craig J. Anderson
+# Copyright (C) 2008-2010  Craig J. Anderson
+# Copyright (C) 2014       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -55,10 +56,11 @@ class CalcLines(object):
     Receive:  Individual and family handle, and display format [string]
     return: [Text] ready for a box.
     """
-    def __init__(self, dbase, repl):
+    def __init__(self, dbase, repl, locale):
         self.database = dbase
         self.display_repl = repl
         #self.default_string = default_str
+        self._locale = locale
 
     def calc_lines(self, _indi_handle, _fams_handle, workinglines):
         """
@@ -69,7 +71,8 @@ class CalcLines(object):
 
         ####################
         #1.1  Get our line information here
-        subst = SubstKeywords(self.database, _indi_handle, _fams_handle)
+        subst = SubstKeywords(self.database, self._locale,
+                              _indi_handle, _fams_handle)
         lines = subst.replace_and_clean(workinglines)
 
         ####################
@@ -700,15 +703,17 @@ class PageNumberBox(BoxBase):
     do not put in a value for PageNumberBox.text.  this will be calculated for
     each page """
     
-    def __init__(self, doc, boxstr):
+    def __init__(self, doc, boxstr, locale):
         """ initialize the page number box """
         BoxBase.__init__(self)
         self.doc = doc
         self.boxstr = boxstr
+        self._ = locale.translation.sgettext
     
     def __calc_position(self, page):
         """ calculate where I am to print on the page(s) """
-        self.text = "(%d,%d)"
+        # translators: needed for Arabic, ignore otherwise
+        self.text = self._("(%d,%d)")
 
         style_sheet = self.doc.get_style_sheet()
         style_name = style_sheet.get_draw_style(self.boxstr)
@@ -778,10 +783,10 @@ class NoteType(object):
 class NoteBox(BoxBase, NoteType):
     """ Box that will hold the note to display on the page """
     
-    def __init__(self, doc, boxstr, locale, exclude=None):
+    def __init__(self, doc, boxstr, box_corner, exclude=None):
         """ initialize the NoteBox """
         BoxBase.__init__(self)
-        NoteType.__init__(self, locale, exclude)
+        NoteType.__init__(self, box_corner, exclude)
         self.doc = doc
         self.boxstr = boxstr
 

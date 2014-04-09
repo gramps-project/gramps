@@ -4,6 +4,7 @@
 # Copyright (C) 2007-2008  Brian G. Matherly 
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2010       Craig J. Anderson
+# Copyright (C) 2014       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -39,29 +40,23 @@ def log2(val):
 
 X_INDEX = log2
     
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
 
-#from gramps.gen.errors import ReportError
-
-from gramps.gen.plug.menu import BooleanOption
-from gramps.gen.plug.menu import NumberOption
-from gramps.gen.plug.menu import StringOption
-from gramps.gen.plug.menu import EnumeratedListOption
-from gramps.gen.plug.menu import TextOption
-from gramps.gen.plug.menu import PersonOption
-
-from gramps.gen.plug.report import Report
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+from gramps.gen.plug.menu import (TextOption, NumberOption, BooleanOption,
+                                  EnumeratedListOption, StringOption,
+                                  PersonOption)
+from gramps.gen.plug.report import Report, MenuReportOptions, stdoptions
 from gramps.gen.plug.report import utils as ReportUtils
-from gramps.gen.plug.report import MenuReportOptions
-
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
+                                    FONT_SANS_SERIF, PARA_ALIGN_CENTER)
+from gramps.plugins.lib.libtreebase import *
 
 PT2CM = ReportUtils.pt2cm
 #cm2pt = ReportUtils.cm2pt
@@ -71,11 +66,9 @@ PT2CM = ReportUtils.pt2cm
 # Constants
 #
 #------------------------------------------------------------------------
-_BORN = _('short for born|b.')
-_DIED = _('short for died|d.')
-_MARR = _('short for married|m.')
-
-from gramps.plugins.lib.libtreebase import *
+_BORN = _("birth abbreviation|b."),
+_DIED = _("death abbreviation|d."),
+_MARR = _("marriage abbreviation|m."),
 
 #------------------------------------------------------------------------
 #
@@ -132,19 +125,21 @@ class FamilyBox(AncestorBoxBase):
 class TitleN(TitleNoDisplay):
     """No Title class for the report """
 
-    def __init__(self, doc):
+    def __init__(self, doc, locale):
         TitleNoDisplay.__init__(self, doc, "AC2-Title")
+        self._ = locale.translation.sgettext
         
     def calc_title(self, center):
         """Calculate the title of the report"""
         #we want no text, but need a text for the TOC in a book!
-        self.mark_text = _("Ancestor Graph")
+        self.mark_text = self._("Ancestor Graph")
         self.text = ''
 
 class TitleA(TitleBox):
     """Title class for the report """
-    def __init__(self, doc):
+    def __init__(self, doc, locale):
         TitleBox.__init__(self, doc, "AC2-Title")
+        self._ = locale.translation.sgettext
 
     def calc_title(self, center):
         """Calculate the title of the report"""
@@ -153,7 +148,7 @@ class TitleA(TitleBox):
             name = name_displayer.display(center)
         
         # feature request 2356: avoid genitive form
-        self.text = _("Ancestor Graph for %s") % name
+        self.text = self._("Ancestor Graph for %s") % name
         self.set_box_height_width()
 
 
@@ -172,7 +167,7 @@ class CalcItems(object):
         #str = ""
         #if self.get_val('miss_val'):
         #    str = "_____"
-        self.__calc_l =  CalcLines(dbase, [])
+        self.__calc_l =  CalcLines(dbase, [], __gui._locale)
         
         self.__blank_father = None
         self.__blank_mother = None
@@ -628,9 +623,10 @@ class GUIConnect():
     def __init__(self):  #We are BORG!
         self.__dict__ = self.__shared_state
     
-    def set__opts(self, options):
+    def set__opts(self, options, locale):
         """ Set only once as we are BORG.  """
         self.__opts = options
+        self._locale = locale
         
     def get_val(self, val):
         """ Get a GUI value. """
@@ -644,7 +640,10 @@ class GUIConnect():
         """  Return a class that holds the proper title based off of the
         GUI options """
         title_type = self.get_val('report_title')
-        return TitleA(doc) if title_type else TitleN(doc)
+        if title_type:
+            return TitleA(doc, self._locale)
+        else:
+            return TitleN(doc, self._locale)
 
 #------------------------------------------------------------------------
 #
@@ -670,6 +669,9 @@ class AncestorTree(Report):
         self.database = database
         self._user = user
 
+        lang = options.menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
     def begin_report(self):
         """
         This report needs the following parameters (class variables)
@@ -692,7 +694,7 @@ class AncestorTree(Report):
         database = self.database
 
         self.connect = GUIConnect()
-        self.connect.set__opts(self.options.menu)
+        self.connect.set__opts(self.options.menu, self._locale)
 
         #Set up the canvas that we will print on.
         style_sheet = self.doc.get_style_sheet()
@@ -743,7 +745,7 @@ class AncestorTree(Report):
             if self.connect.get_val("inc_note"):
                 note_box = NoteBox(self.doc, "AC2-note-box", 
                                    self.connect.get_val("note_place"))
-                subst = SubstKeywords(self.database, None, None)
+                subst = SubstKeywords(self.database, self._locale, None, None)
                 note_box.text = subst.replace_and_clean(
                     self.connect.get_val('note_disp'))
                 self.canvas.add_note(note_box)
@@ -783,7 +785,7 @@ class AncestorTree(Report):
         #####################
         #Vars
         if prnnum:
-            page_num_box = PageNumberBox(self.doc, 'AC2-box')
+            page_num_box = PageNumberBox(self.doc, 'AC2-box', self._locale)
         
         #####################
         #ok, everyone is now ready to print on the canvas.  Paginate?
@@ -821,8 +823,6 @@ class AncestorTree(Report):
         """
         style_sheet = self.doc.get_style_sheet()
         
-        from gramps.gen.plug.docgen import GraphicsStyle
-
         graph_style = style_sheet.get_draw_style("AC2-box")
         graph_style.set_shadow(graph_style.get_shadow(),
                                self.canvas.report_opts.box_shadow * scale)
@@ -927,6 +927,8 @@ class AncestorTreeOptions(MenuReportOptions):
         centerDisp.add_item( 1, _("Use Mothers display format"))
         centerDisp.set_help(_("Which Display format to use the center person"))
         menu.add_option(category_name, "center_uses", centerDisp)
+
+        stdoptions.add_localization_option(menu, category_name)
 
         ##################
         category_name = _("Display")
@@ -1090,9 +1092,6 @@ class AncestorTreeOptions(MenuReportOptions):
     def make_default_style(self, default_style):
         """Make the default output style for the Ancestor Tree."""
         
-        from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
-                            FONT_SANS_SERIF, PARA_ALIGN_CENTER)
-
         ## Paragraph Styles:
         font = FontStyle()
         font.set_size(9)

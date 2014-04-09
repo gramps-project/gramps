@@ -1,7 +1,10 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
+# Copyright (C) 2000-2007  Donald N. Allingham
+# Copyright (C) 2010       Peter G. Landgren
 # Copyright (C) 2010       Craig J. Anderson
+# Copyright (C) 2014       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,7 +25,7 @@
 
 """
 Provide the SubstKeywords class that will replace keywords in a passed
-string with information about the person/marriage/spouse. For sample:
+string with information about the person/marriage/spouse. For example:
 
 foo = SubstKeywords(database, person_handle)
 print foo.replace_and_clean(['$n was born on $b.'])
@@ -40,11 +43,11 @@ from __future__ import print_function
 #
 #------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gen.datehandler import displayer
 from gramps.gen.lib import EventType, PlaceType, Location
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.constfunc import STRTYPE, cuni
 from gramps.gen.utils.location import get_main_location
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 
 #------------------------------------------------------------------------
@@ -72,8 +75,9 @@ class GenericFormat(object):
     """A Generic parsing class.  Will be subclassed by specific format strings
     """
 
-    def __init__(self, string_in):
+    def __init__(self, string_in, qlocale=glocale):
         self.string_in = string_in
+        self._locale = qlocale
 
     def _default_format(self, item):
         """ The default format if there is no format string """
@@ -198,7 +202,7 @@ class DateFormat(GenericFormat):
         return None
 
     def _default_format(self, date):
-        return displayer.display(date)
+        return self._locale.date_displayer.display(date)
 
     def __count_chars(self, char, max_amount):
         """ count the year/month/day codes """
@@ -255,13 +259,14 @@ class DateFormat(GenericFormat):
                 tmp = "0" + month
                 return tmp[-2:]
             elif count == 3:   # found 'mmm'
-                return displayer.short_months[int(month)]
+                return self._locale.date_displayer.short_months[int(month)]
             else: # found 'mmmm'
-                return displayer.long_months[int(month)]
+                return self._locale.date_displayer.long_months[int(month)]
 
         def month_up():
-            return month("M").upper()
-
+            tmp = month("M") # only call it ONCE, then use the value
+            if tmp:
+                return tmp.upper()
 
         def day():
             """  The day part only """
@@ -279,9 +284,11 @@ class DateFormat(GenericFormat):
 
         def modifier():
             #ui_mods taken from date.py def lookup_modifier(self, modifier):
-            ui_mods = ["", _("before"), _("after"), _("about"),
-                       "", "", ""]
-            return ui_mods[date.get_modifier()].capitalize()
+            # trans_text is a defined keyword (in po/update_po.py, po/genpot.sh)
+            trans_text = self._locale.translation.gettext
+            ui_mods = ["", trans_text("before"), trans_text("after"),
+                       trans_text("about"), "", "", ""]
+            return ui_mods[date.get_modifier()]
 
 
         code  = "ymdMo"
@@ -359,9 +366,9 @@ class EventFormat(GenericFormat):
         dates and places can have their own format strings
     """
 
-    def __init__(self, database, _in):
+    def __init__(self, database, _in, locale):
         self.database = database
-        GenericFormat.__init__(self, _in)
+        GenericFormat.__init__(self, _in, locale)
 
     def _default_format(self, event):
         if event is None:
@@ -388,7 +395,7 @@ class EventFormat(GenericFormat):
 
         def format_date():
             """ start formatting a date in this event """
-            date_format = DateFormat(self.string_in)
+            date_format = DateFormat(self.string_in, self._locale)
             return date_format.parse_format(date_format.get_date(event))
 
         def format_place():
@@ -483,9 +490,9 @@ class GalleryFormat(GenericFormat):
         dates (no places) can have their own format strings
     """
 
-    def __init__(self, database, _in):
+    def __init__(self, database, _in, locale):
         self.database = database
-        GenericFormat.__init__(self, _in)
+        GenericFormat.__init__(self, _in, locale)
 
     def _default_format(self, photo):
         if photo is None:
@@ -512,7 +519,7 @@ class GalleryFormat(GenericFormat):
 
         def format_date():
             """ start formatting a date in this photo """
-            date_format = DateFormat(self.string_in)
+            date_format = DateFormat(self.string_in, self._locale)
             return date_format.parse_format(date_format.get_date(photo))
 
         def format_attrib():
@@ -776,10 +783,11 @@ class AttributeParse(object):
 class VariableParse(object):
     """ Parse the individual variables """
 
-    def __init__(self, friend, database, consumer_in):
+    def __init__(self, friend, database, consumer_in, locale):
         self.friend = friend
         self.database = database
         self._in = consumer_in
+        self._locale = locale
 
     def is_a(self):
         """ check """
@@ -838,7 +846,7 @@ class VariableParse(object):
         """ sub to process a date
         Given an event, get the date object, process the format,
         return the result """
-        date_f = DateFormat(self._in)
+        date_f = DateFormat(self._in, self._locale)
         date = date_f.get_date(event)
         if self.empty_item(date):
             return
@@ -867,7 +875,7 @@ class VariableParse(object):
 
     def __parse_event(self, person, attrib_parse):
         event = self.get_event_by_name(person, attrib_parse.get_name())
-        event_f = EventFormat(self.database, self._in)
+        event_f = EventFormat(self.database, self._in, self._locale)
         if event:
             return event_f.parse_format(event)
         else:
@@ -886,7 +894,7 @@ class VariableParse(object):
         return None
 
     def __parse_photo(self, person_or_marriage):
-        photo_f = GalleryFormat(self.database, self._in)
+        photo_f = GalleryFormat(self.database, self._in, self._locale)
         if person_or_marriage is None:
             return photo_f.parse_empty()
         photo = self.__get_photo(person_or_marriage)
@@ -997,7 +1005,7 @@ class VariableParse(object):
             #person event
             return self.__parse_event(self.friend.person, attrib_parse)
         elif next_char == "t":
-            #person event
+            #family event
             return self.__parse_event(self.friend.family, attrib_parse)
 
         elif next_char == 'p':
@@ -1031,7 +1039,7 @@ class SubstKeywords(object):
             this will specify the specific family/spouse to work with.
             If none given, then the first/preferred family/spouse is used
     """
-    def __init__(self, database, person_handle, family_handle=None):
+    def __init__(self, database, locale, person_handle, family_handle=None):
         """get the person and find the family/spouse to use for this display"""
 
         self.database = database
@@ -1039,6 +1047,7 @@ class SubstKeywords(object):
         self.family = None
         self.spouse = None
         self.line = None   # Consumable_string - set below
+        self._locale = locale
 
         if self.person is None:
             return
@@ -1082,7 +1091,7 @@ class SubstKeywords(object):
         #First we are going take care of all variables/groups
         #break down all {} (groups) and $ (vars) into either
         #(TXT.text, resulting_string) or (TXT.remove, '')
-        variable = VariableParse(self, self.database, self.line)  # $
+        variable = VariableParse(self, self.database, self.line, self._locale)  # $
 
         while self.line.this:
             if self.line.this == "{":
