@@ -1134,7 +1134,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             if sys.version_info[0] >= 3:
                 key= str(key)
             else:
-                key = str(tuple(str(k) for k in key))
+                key = str(tuple(k.encode('utf-8') for k in key))
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         if not self.readonly:

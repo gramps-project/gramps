@@ -135,7 +135,10 @@ if sys.version_info[0] < 3:
         ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
             unicode(__file__, sys.getfilesystemencoding())), os.pardir))
 
-VERSION += get_git_revision(ROOT_DIR)
+git_revision = get_git_revision(ROOT_DIR)
+if sys.platform == 'win32' and git_revision == "":
+    git_revision = get_git_revision(os.path.split(ROOT_DIR)[1])
+VERSION += git_revision
 #VERSION += "-1"
 
 #
