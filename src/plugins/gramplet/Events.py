@@ -207,7 +207,6 @@ class FamilyEvents(Events):
         self.model.clear()
         self.callman.unregister_all()
         if active_handle:
-            self.callman.register_obj(active)
             self.display_family(active_handle)
         else:
             self.set_has_data(False)
