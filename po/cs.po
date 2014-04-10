@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-19 09:09+0100\n"
-"PO-Revision-Date: 2014-03-20 16:41+0100\n"
+"POT-Creation-Date: 2014-04-04 15:46+0200\n"
+"PO-Revision-Date: 2014-04-10 10:22+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -998,7 +998,7 @@ msgstr "Událost"
 #: ../src/gui/editors/displaytabs/ldsembedlist.py:66
 #: ../src/gui/plug/_guioptions.py:1288 ../src/gui/selectors/selectevent.py:64
 #: ../src/gui/views/treemodels/placemodel.py:304
-#: ../src/plugins/export/ExportCsv.py:479 ../src/plugins/gramplet/Events.py:55
+#: ../src/plugins/export/ExportCsv.py:479 ../src/plugins/gramplet/Events.py:74
 #: ../src/plugins/gramplet/PersonResidence.py:50
 #: ../src/plugins/gramplet/QuickViewGramplet.py:111
 #: ../src/plugins/import/ImportCsv.py:230
@@ -1272,7 +1272,7 @@ msgstr "Archiv"
 #: ../src/gui/selectors/selectobject.py:76 ../src/Merge/mergeperson.py:235
 #: ../src/plugins/BookReport.py:779 ../src/plugins/BookReport.py:783
 #: ../src/plugins/gramplet/Backlinks.py:45
-#: ../src/plugins/gramplet/Events.py:51
+#: ../src/plugins/gramplet/Events.py:70
 #: ../src/plugins/quickview/FilterByName.py:290
 #: ../src/plugins/quickview/OnThisDay.py:80
 #: ../src/plugins/quickview/OnThisDay.py:81
@@ -2987,7 +2987,7 @@ msgstr "Kasta"
 #: ../src/gui/editors/displaytabs/webembedlist.py:67
 #: ../src/gui/plug/_windows.py:132 ../src/gui/plug/_windows.py:243
 #: ../src/gui/plug/_windows.py:608 ../src/gui/plug/_windows.py:1094
-#: ../src/gui/selectors/selectevent.py:65 ../src/plugins/gramplet/Events.py:56
+#: ../src/gui/selectors/selectevent.py:65 ../src/plugins/gramplet/Events.py:75
 #: ../src/plugins/lib/libmetadata.py:88
 #: ../src/plugins/textreport/PlaceReport.py:183
 #: ../src/plugins/textreport/PlaceReport.py:256
@@ -6136,7 +6136,7 @@ msgstr "Nastavit"
 #: ../src/gui/selectors/selectevent.py:63
 #: ../src/plugins/export/ExportCsv.py:479
 #: ../src/plugins/gramplet/AgeOnDateGramplet.py:73
-#: ../src/plugins/gramplet/Events.py:53
+#: ../src/plugins/gramplet/Events.py:72
 #: ../src/plugins/gramplet/PersonResidence.py:49
 #: ../src/plugins/import/ImportCsv.py:229
 #: ../src/plugins/quickview/OnThisDay.py:80
@@ -6964,79 +6964,79 @@ msgid "Remove place"
 msgstr "Odstranit místo"
 
 #: ../src/gui/editors/objectentries.py:309
-msgid "To select a source, use drag-and-drop or use the buttons"
-msgstr "Pro výběr pramene použijte drag-and-drop nebo tlačítka"
+msgid "First add a source using the buttons"
+msgstr "Nejprve pomocí tlačítek přidejte pramen"
+
+#: ../src/gui/editors/objectentries.py:310
+msgid "First add a source using the button"
+msgstr "Nejprve pomocí tlačítka přidejte pramen"
 
 #: ../src/gui/editors/objectentries.py:311
-msgid "No source given, click button to select one"
-msgstr "Nebylo zvoleno žádné místo. Pro volbu klikněte na tlačítko"
-
-#: ../src/gui/editors/objectentries.py:312
 msgid "Edit source"
 msgstr "Upravit pramen"
 
-#: ../src/gui/editors/objectentries.py:313
+#: ../src/gui/editors/objectentries.py:312
 msgid "Select an existing source"
 msgstr "Vybrat existující pramen"
 
-#: ../src/gui/editors/objectentries.py:314
+#: ../src/gui/editors/objectentries.py:313
 #: ../src/plugins/view/citationtreeview.py:119
 #: ../src/plugins/view/citationlistview.py:119
 #: ../src/plugins/view/sourceview.py:93
 msgid "Add a new source"
 msgstr "Vytvořit nový pramen"
 
-#: ../src/gui/editors/objectentries.py:315
+#: ../src/gui/editors/objectentries.py:314
 msgid "Remove source"
 msgstr "Odstranit zdroj"
 
-#: ../src/gui/editors/objectentries.py:360
+#: ../src/gui/editors/objectentries.py:359
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Pro výběr média použijte drag-and-drop nebo tlačítka"
 
-#: ../src/gui/editors/objectentries.py:362 ../src/gui/plug/_guioptions.py:1051
+#: ../src/gui/editors/objectentries.py:361 ../src/gui/plug/_guioptions.py:1051
 msgid "No image given, click button to select one"
 msgstr "Nebyl zvolen žádný obrázek. Pro volbu klikněte na tlačítko"
 
-#: ../src/gui/editors/objectentries.py:363
+#: ../src/gui/editors/objectentries.py:362
 msgid "Edit media object"
 msgstr "Upravit mediální objekt"
 
-#: ../src/gui/editors/objectentries.py:364 ../src/gui/plug/_guioptions.py:1029
+#: ../src/gui/editors/objectentries.py:363 ../src/gui/plug/_guioptions.py:1029
 msgid "Select an existing media object"
 msgstr "Vybrat existující mediální objekt"
 
-#: ../src/gui/editors/objectentries.py:365
+#: ../src/gui/editors/objectentries.py:364
 #: ../src/plugins/view/mediaview.py:110
 msgid "Add a new media object"
 msgstr "Přidat nový mediální objekt"
 
-#: ../src/gui/editors/objectentries.py:366
+#: ../src/gui/editors/objectentries.py:365
 msgid "Remove media object"
 msgstr "Odstranit mediální objekt"
 
-#: ../src/gui/editors/objectentries.py:411
+#: ../src/gui/editors/objectentries.py:410
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Pro výběr poznámky použijte drag-and-drop nebo tlačítka"
 
-#: ../src/gui/editors/objectentries.py:413 ../src/gui/plug/_guioptions.py:950
+#: ../src/gui/editors/objectentries.py:412 ../src/gui/plug/_guioptions.py:950
 msgid "No note given, click button to select one"
 msgstr "Nebylo zvolena žádná poznámka. Pro volbu klikněte na tlačítko"
 
-#: ../src/gui/editors/objectentries.py:414 ../src/gui/editors/editnote.py:286
+#: ../src/gui/editors/objectentries.py:413 ../src/gui/editors/editnote.py:286
 #: ../src/gui/editors/editnote.py:331
 msgid "Edit Note"
 msgstr "Upravit poznámku"
 
-#: ../src/gui/editors/objectentries.py:415 ../src/gui/plug/_guioptions.py:925
+#: ../src/gui/editors/objectentries.py:414 ../src/gui/plug/_guioptions.py:925
 msgid "Select an existing note"
 msgstr "Vybrat existující poznámku"
 
-#: ../src/gui/editors/objectentries.py:416 ../src/plugins/view/noteview.py:89
+#: ../src/gui/editors/objectentries.py:415 ../src/plugins/view/noteview.py:89
 msgid "Add a new note"
 msgstr "Přidat novou poznámku"
 
-#: ../src/gui/editors/objectentries.py:417
+#: ../src/gui/editors/objectentries.py:416
 msgid "Remove note"
 msgstr "Odstranit poznámku"
 
@@ -7081,18 +7081,27 @@ msgid "Edit Citation"
 msgstr "Upravit citaci"
 
 #: ../src/gui/editors/editcitation.py:262
-msgid "Cannot save citation. No source selected."
-msgstr "Citaci nelze uložit. Nebyl vybrán pramen."
+msgid "No source selected"
+msgstr "Žádný pramen nevybrán"
 
 #: ../src/gui/editors/editcitation.py:263
-msgid "Please select a source or cancel the edit."
-msgstr "Musíte vybrat pramen, nebo zrušit operaci"
+msgid ""
+"A source is anything (personal testimony, video recording, photograph, "
+"newspaper column, gravestone...) from which information can be derived. To "
+"create a citation, first select the required source, and then record the "
+"location of the information referenced within the source in the 'Volume/"
+"Page' field."
+msgstr ""
+"Pramen je cokoli (osobní svědectví, videonahrávka, fotografie, novinový "
+"sloupek, náhrobní kámen ...) z čeho leze získat informace. Pro vytvoření "
+"citace nejprve vyberte požadovaný pramen a poté do pole 'Svazek/Strana' "
+"zapište místo, kde je v prameni odkazovaná informace."
 
-#: ../src/gui/editors/editcitation.py:271
+#: ../src/gui/editors/editcitation.py:277
 msgid "Cannot save citation. ID already exists."
 msgstr "Citaci nelze uložit. ID již existuje."
 
-#: ../src/gui/editors/editcitation.py:272
+#: ../src/gui/editors/editcitation.py:278
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(gramps_id)s. "
@@ -7103,17 +7112,17 @@ msgstr ""
 "hodnotu už používá '%(prim_object)s'. Zvolte prosím jiné ID. Ponecháte-li "
 "pole prázdné, bude zvolena nejbližší volná hodnota."
 
-#: ../src/gui/editors/editcitation.py:284
+#: ../src/gui/editors/editcitation.py:290
 #, python-format
 msgid "Add Citation (%s)"
 msgstr "Přidat citaci (%s)"
 
-#: ../src/gui/editors/editcitation.py:290
+#: ../src/gui/editors/editcitation.py:296
 #, python-format
 msgid "Edit Citation (%s)"
 msgstr "Upravit citaci (%s)"
 
-#: ../src/gui/editors/editcitation.py:327
+#: ../src/gui/editors/editcitation.py:333
 #, python-format
 msgid "Delete Citation (%s)"
 msgstr "Odstranit citaci (%s)"
@@ -8187,12 +8196,12 @@ msgid "Move the selected event downwards"
 msgstr "Posunout vybranou událost níže"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:80
-#: ../src/plugins/gramplet/Events.py:57
+#: ../src/plugins/gramplet/Events.py:76
 msgid "Role"
 msgstr "Role"
 
 #: ../src/gui/editors/displaytabs/eventembedlist.py:81
-#: ../src/gui/selectors/selectevent.py:62 ../src/plugins/gramplet/Events.py:52
+#: ../src/gui/selectors/selectevent.py:62 ../src/plugins/gramplet/Events.py:71
 #: ../src/plugins/view/eventview.py:87
 #: ../src/Filters/Rules/Family/_HasEvent.py:52
 msgid "Main Participants"
@@ -13156,7 +13165,7 @@ msgstr "Z tohoto obrázku byla odstraněna všechna Exif metadata..."
 msgid "There was an error in stripping the Exif metadata from this image..."
 msgstr "Při odstraňování Exif metadat z obrázku došlo k chybě..."
 
-#: ../src/plugins/gramplet/Events.py:47
+#: ../src/plugins/gramplet/Events.py:66
 #: ../src/plugins/gramplet/PersonResidence.py:45
 msgid "Double-click on a row to edit the selected event."
 msgstr "Dvojklik na řádek upraví zvolenou událost."
@@ -31531,6 +31540,18 @@ msgstr ""
 "<b>Gramps pro Gnome or KDE?</b><br/>V Linuxu můžete s Gramps pracovat v "
 "prostředí jaké vám vyhovuje. Pokud jsou ve vašem prostředí instalovány "
 "požadované GTK knihovny, bude Gramps fungovat dobře."
+
+#~ msgid "To select a source, use drag-and-drop or use the buttons"
+#~ msgstr "Pro výběr pramene použijte drag-and-drop nebo tlačítka"
+
+#~ msgid "No source given, click button to select one"
+#~ msgstr "Nebylo zvoleno žádné místo. Pro volbu klikněte na tlačítko"
+
+#~ msgid "Cannot save citation. No source selected."
+#~ msgstr "Citaci nelze uložit. Nebyl vybrán pramen."
+
+#~ msgid "Please select a source or cancel the edit."
+#~ msgstr "Musíte vybrat pramen, nebo zrušit operaci"
 
 #~ msgid "Events father"
 #~ msgstr "Události otec"
