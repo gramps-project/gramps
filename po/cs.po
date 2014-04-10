@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-07 14:57+0100\n"
-"PO-Revision-Date: 2014-03-25 14:54+0100\n"
+"PO-Revision-Date: 2014-04-10 10:53+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1307,55 +1307,55 @@ msgstr "Švédský"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:133
 msgid "Hebrew month lexeme|Tishri"
-msgstr "Tišri"
+msgstr "tišri"
 
 #: ../gramps/gen/datehandler/_datestrings.py:134
 msgid "Hebrew month lexeme|Heshvan"
-msgstr "Chešvan"
+msgstr "chešvan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135
 msgid "Hebrew month lexeme|Kislev"
-msgstr "Kislev"
+msgstr "kislev"
 
 #: ../gramps/gen/datehandler/_datestrings.py:136
 msgid "Hebrew month lexeme|Tevet"
-msgstr "Tevet"
+msgstr "tevet"
 
 #: ../gramps/gen/datehandler/_datestrings.py:137
 msgid "Hebrew month lexeme|Shevat"
-msgstr "Ševat"
+msgstr "ševat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:138
 msgid "Hebrew month lexeme|AdarI"
-msgstr "Adar"
+msgstr "adar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:139
 msgid "Hebrew month lexeme|AdarII"
-msgstr "Adar"
+msgstr "adar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:140
 msgid "Hebrew month lexeme|Nisan"
-msgstr "Nisan"
+msgstr "nisan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:141
 msgid "Hebrew month lexeme|Iyyar"
-msgstr "Ijar"
+msgstr "ijar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:142
 msgid "Hebrew month lexeme|Sivan"
-msgstr "Sivan"
+msgstr "sivan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:143
 msgid "Hebrew month lexeme|Tammuz"
-msgstr "Tamuz"
+msgstr "tamuz"
 
 #: ../gramps/gen/datehandler/_datestrings.py:144
 msgid "Hebrew month lexeme|Av"
-msgstr "Av"
+msgstr "av"
 
 #: ../gramps/gen/datehandler/_datestrings.py:145
 msgid "Hebrew month lexeme|Elul"
-msgstr "Elul"
+msgstr "elul"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1363,55 +1363,55 @@ msgstr "Elul"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:154
 msgid "French month lexeme|Vendémiaire"
-msgstr ""
+msgstr "vendémiaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:155
 msgid "French month lexeme|Brumaire"
-msgstr ""
+msgstr "brumaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:156
 msgid "French month lexeme|Frimaire"
-msgstr ""
+msgstr "frimaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:157
 msgid "French month lexeme|Nivôse"
-msgstr ""
+msgstr "nivôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:158
 msgid "French month lexeme|Pluviôse"
-msgstr ""
+msgstr "pluviôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:159
 msgid "French month lexeme|Ventôse"
-msgstr ""
+msgstr "ventôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:160
 msgid "French month lexeme|Germinal"
-msgstr ""
+msgstr "germinal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:161
 msgid "French month lexeme|Floréal"
-msgstr ""
+msgstr "floréal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:162
 msgid "French month lexeme|Prairial"
-msgstr ""
+msgstr "prairial"
 
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgid "French month lexeme|Messidor"
-msgstr ""
+msgstr "messidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgid "French month lexeme|Thermidor"
-msgstr ""
+msgstr "thermidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:165
 msgid "French month lexeme|Fructidor"
-msgstr ""
+msgstr "fructidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:166
 msgid "French month lexeme|Extra"
-msgstr ""
+msgstr "extra"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1419,51 +1419,51 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:175
 msgid "Islamic month lexeme|Muharram"
-msgstr ""
+msgstr "muharrem"
 
 #: ../gramps/gen/datehandler/_datestrings.py:176
 msgid "Islamic month lexeme|Safar"
-msgstr ""
+msgstr "safar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:177
 msgid "Islamic month lexeme|Rabi`al-Awwal"
-msgstr ""
+msgstr "rebí’u l-Awwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:178
 msgid "Islamic month lexeme|Rabi`ath-Thani"
-msgstr ""
+msgstr "rebí'u s-sání"
 
 #: ../gramps/gen/datehandler/_datestrings.py:179
 msgid "Islamic month lexeme|Jumada l-Ula"
-msgstr ""
+msgstr "džumádá al-úlá"
 
 #: ../gramps/gen/datehandler/_datestrings.py:180
 msgid "Islamic month lexeme|Jumada t-Tania"
-msgstr ""
+msgstr "džumádá al-áchira"
 
 #: ../gramps/gen/datehandler/_datestrings.py:181
 msgid "Islamic month lexeme|Rajab"
-msgstr ""
+msgstr "redžeb"
 
 #: ../gramps/gen/datehandler/_datestrings.py:182
 msgid "Islamic month lexeme|Sha`ban"
-msgstr ""
+msgstr "ša'bán"
 
 #: ../gramps/gen/datehandler/_datestrings.py:183
 msgid "Islamic month lexeme|Ramadan"
-msgstr ""
+msgstr "ramadán"
 
 #: ../gramps/gen/datehandler/_datestrings.py:184
 msgid "Islamic month lexeme|Shawwal"
-msgstr ""
+msgstr "šawwal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:185
 msgid "Islamic month lexeme|Dhu l-Qa`da"
-msgstr ""
+msgstr "zú l-Ka'da"
 
 #: ../gramps/gen/datehandler/_datestrings.py:186
 msgid "Islamic month lexeme|Dhu l-Hijja"
-msgstr ""
+msgstr "zú l-Hidždž"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1471,51 +1471,51 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgid "Persian month lexeme|Farvardin"
-msgstr ""
+msgstr "farvardin"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgid "Persian month lexeme|Ordibehesht"
-msgstr ""
+msgstr "ordibehešt"
 
 #: ../gramps/gen/datehandler/_datestrings.py:197
 msgid "Persian month lexeme|Khordad"
-msgstr ""
+msgstr "chordád"
 
 #: ../gramps/gen/datehandler/_datestrings.py:198
 msgid "Persian month lexeme|Tir"
-msgstr ""
+msgstr "tír"
 
 #: ../gramps/gen/datehandler/_datestrings.py:199
 msgid "Persian month lexeme|Mordad"
-msgstr ""
+msgstr "mordád"
 
 #: ../gramps/gen/datehandler/_datestrings.py:200
 msgid "Persian month lexeme|Shahrivar"
-msgstr ""
+msgstr "šahrí var"
 
 #: ../gramps/gen/datehandler/_datestrings.py:201
 msgid "Persian month lexeme|Mehr"
-msgstr ""
+msgstr "mehr"
 
 #: ../gramps/gen/datehandler/_datestrings.py:202
 msgid "Persian month lexeme|Aban"
-msgstr ""
+msgstr "ábán"
 
 #: ../gramps/gen/datehandler/_datestrings.py:203
 msgid "Persian month lexeme|Azar"
-msgstr ""
+msgstr "ázar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:204
 msgid "Persian month lexeme|Dey"
-msgstr ""
+msgstr "dei"
 
 #: ../gramps/gen/datehandler/_datestrings.py:205
 msgid "Persian month lexeme|Bahman"
-msgstr ""
+msgstr "bahman"
 
 #: ../gramps/gen/datehandler/_datestrings.py:206
 msgid "Persian month lexeme|Esfand"
-msgstr ""
+msgstr "esfand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgid "date modifier|before "
@@ -1856,7 +1856,7 @@ msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  Archivů      aktualizováno %6d citací  během %6d sec\n"
 
 #: ../gramps/gen/db/upgrade.py:342
-#, fuzzy, python-format
+#, python-format
 msgid "%6d  Sources       upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  Pramenů            aktualizováno %6d citací  během %6d sec\n"
 
@@ -2165,7 +2165,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
 #: ../gramps/gui/glade/mergecitation.glade.h:5
 msgid "Volume/Page:"
-msgstr "Ročník/Stránka:"
+msgstr "Svazek/Stránka:"
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:52
 #: ../gramps/gen/filters/rules/citation/_hascitation.py:51
@@ -6014,7 +6014,7 @@ msgstr "Typ události použitý pro citaci"
 #. GEDCOM EVENT_TYPE_CITED_FROM
 #: ../gramps/gen/lib/srcattrtype.py:117
 msgid "Role in Event Cited from"
-msgstr ""
+msgstr "Role v citované události"
 
 #. GEDCOM ROLE_IN_EVENT
 #: ../gramps/gen/lib/srcattrtype.py:118
@@ -6095,14 +6095,12 @@ msgid "Date"
 msgstr "Datum"
 
 #: ../gramps/gen/lib/srcattrtype.py:325
-#, fuzzy
 msgid "Act"
-msgstr "ACT"
+msgstr "Zákon"
 
 #: ../gramps/gen/lib/srcattrtype.py:326
-#, fuzzy
 msgid "Act (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Zákon (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:327 ../gramps/gui/clipboard.py:312
 #: ../gramps/gui/configure.py:513 ../gramps/gui/editors/editaddress.py:157
@@ -6162,18 +6160,16 @@ msgid "Chapter pages"
 msgstr "Počet stran v kapitole."
 
 #: ../gramps/gen/lib/srcattrtype.py:341
-#, fuzzy
 msgid "Collection (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Kolekce (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:342
 msgid "Column"
 msgstr "Sloupec"
 
 #: ../gramps/gen/lib/srcattrtype.py:343
-#, fuzzy
 msgid "Column (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Sloupec (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:344
 #, fuzzy
@@ -6223,19 +6219,16 @@ msgid "District"
 msgstr "Okres"
 
 #: ../gramps/gen/lib/srcattrtype.py:356
-#, fuzzy
 msgid "District (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Okres (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:357
-#, fuzzy
 msgid "Division"
-msgstr "Dělení"
+msgstr "Oddělení"
 
 #: ../gramps/gen/lib/srcattrtype.py:358
-#, fuzzy
 msgid "Division (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Oddělení (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:359
 #: ../gramps/gui/glade/editchildref.glade.h:9
@@ -6325,19 +6318,16 @@ msgid "Group"
 msgstr "Skupina"
 
 #: ../gramps/gen/lib/srcattrtype.py:378
-#, fuzzy
 msgid "Group (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Skupina (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:379
-#, fuzzy
 msgid "Household"
-msgstr "Domácí produkty"
+msgstr "Domácnost"
 
 #: ../gramps/gen/lib/srcattrtype.py:380
-#, fuzzy
 msgid "Household (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Domácnost (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:381
 #: ../gramps/plugins/textreport/tagreport.py:124
@@ -6349,9 +6339,8 @@ msgid "Id"
 msgstr "Id"
 
 #: ../gramps/gen/lib/srcattrtype.py:382
-#, fuzzy
 msgid "Id (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Id (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:383
 msgid "Institution"
@@ -6390,9 +6379,8 @@ msgid "Jurisdiction"
 msgstr "Jurisdikce"
 
 #: ../gramps/gen/lib/srcattrtype.py:392
-#, fuzzy
 msgid "Jurisdiction (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Jurisdikce (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:394
 msgid "Location (Short)"
@@ -6538,9 +6526,8 @@ msgid "Research comment"
 msgstr "Badatelská poznámka"
 
 #: ../gramps/gen/lib/srcattrtype.py:425
-#, fuzzy
 msgid "Research comment (Short)"
-msgstr "*"
+msgstr "Badatelská poznámka (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:426
 msgid "Research project"
@@ -6551,18 +6538,16 @@ msgid "Roll"
 msgstr "Svitek"
 
 #: ../gramps/gen/lib/srcattrtype.py:428
-#, fuzzy
 msgid "Roll (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Svitek (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:429
 msgid "Schedule"
 msgstr "Plán"
 
 #: ../gramps/gen/lib/srcattrtype.py:430
-#, fuzzy
 msgid "Schedule (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Plán (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:431
 msgid "Section"
@@ -6573,43 +6558,36 @@ msgid "Section (Short)"
 msgstr "Sekce (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:433
-#, fuzzy
 msgid "Series"
-msgstr "Indikovat nekonečné řady"
+msgstr "Série"
 
 #: ../gramps/gen/lib/srcattrtype.py:434
-#, fuzzy
 msgid "Series no."
-msgstr "Bez popisu"
+msgstr "Číslo série"
 
 #: ../gramps/gen/lib/srcattrtype.py:435
-#, fuzzy
 msgid "Series no. (Short)"
-msgstr "*"
+msgstr "Číslo série (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:436
-#, fuzzy
 msgid "Series (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Série (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:437
 msgid "Session"
 msgstr "Relace"
 
 #: ../gramps/gen/lib/srcattrtype.py:438
-#, fuzzy
 msgid "Session (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Relace (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:439
-#, fuzzy
 msgid "Sheet no."
-msgstr "Žádná šablona"
+msgstr "Číslo listu"
 
 #: ../gramps/gen/lib/srcattrtype.py:440
-#, fuzzy
 msgid "Sheet no. (Short)"
-msgstr "Žádná šablona"
+msgstr "Číslo listu (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:441
 #: ../gramps/gui/plug/report/_bookdialog.py:430
@@ -6617,9 +6595,8 @@ msgid "Subject"
 msgstr "Předmět"
 
 #: ../gramps/gen/lib/srcattrtype.py:442
-#, fuzzy
 msgid "Subject (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Předmět (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:443
 #, fuzzy
@@ -6756,9 +6733,8 @@ msgid "Volume info"
 msgstr "Podrobné informace"
 
 #: ../gramps/gen/lib/srcattrtype.py:458
-#, fuzzy
 msgid "Volume (Short)"
-msgstr "Zkrácené datum:"
+msgstr "Svazek (zkráceně)"
 
 #: ../gramps/gen/lib/srcattrtype.py:459
 msgid "Website"
@@ -6790,7 +6766,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:469
 msgid "Broadway Avenue, New York"
-msgstr ""
+msgstr "Broadway Avenue, New York"
 
 #: ../gramps/gen/lib/srcattrtype.py:470
 #, fuzzy
@@ -6799,7 +6775,7 @@ msgstr "Název softwarového produktu"
 
 #: ../gramps/gen/lib/srcattrtype.py:471
 msgid "Doe, D.P. & Cameron, E."
-msgstr ""
+msgstr "Doe, D.P. & Cameron, E."
 
 #: ../gramps/gen/lib/srcattrtype.py:472
 msgid "Chicago"
@@ -6815,9 +6791,8 @@ msgid "B. Malengier versus N. Hall"
 msgstr "%1 vyhrál proti %2 s %4 proti %3 bodu!"
 
 #: ../gramps/gen/lib/srcattrtype.py:475
-#, fuzzy
 msgid "Greenwich Cemetery Office"
-msgstr "Poznámka \"mimo kancelář\""
+msgstr "Hřbitovní správa Greenwich"
 
 #: ../gramps/gen/lib/srcattrtype.py:476
 #, fuzzy
@@ -6838,14 +6813,12 @@ msgid "col. 3"
 msgstr "col. 3"
 
 #: ../gramps/gen/lib/srcattrtype.py:480
-#, fuzzy
 msgid "T. Da Silva"
-msgstr "Abner Silva"
+msgstr "T. Da Silva"
 
 #: ../gramps/gen/lib/srcattrtype.py:481
-#, fuzzy
 msgid "13 Aug 1965"
-msgstr "ISO-8859-13"
+msgstr "13. srp 1965"
 
 #: ../gramps/gen/lib/srcattrtype.py:482
 msgid "P. Picasso"
@@ -6856,14 +6829,12 @@ msgid "Based on unnamed document lost in fire"
 msgstr "Vychází z neznámého shořelého dokumentu "
 
 #: ../gramps/gen/lib/srcattrtype.py:484
-#, fuzzy
 msgid "17 Sep 1745"
-msgstr "Přidat prvočíslo 17."
+msgstr "17. zář 1745"
 
 #: ../gramps/gen/lib/srcattrtype.py:485
-#, fuzzy
 msgid "18 Jun 2013"
-msgstr "Poznámky pro leden - červen"
+msgstr "18. čvn 2013"
 
 #: ../gramps/gen/lib/srcattrtype.py:486
 msgid "2003-6"
@@ -6895,9 +6866,8 @@ msgid "Membership application J. Rapinat"
 msgstr "O této aplikaci"
 
 #: ../gramps/gen/lib/srcattrtype.py:493
-#, fuzzy
 msgid "15 Jan 1870"
-msgstr "Poznámky pro leden - červen"
+msgstr "15. led 1870"
 
 #: ../gramps/gen/lib/srcattrtype.py:494
 #, fuzzy
@@ -6948,7 +6918,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:505
 msgid "I50-68, or 1910 U.S. census, or ..."
-msgstr ""
+msgstr "I50-68, nebo sčítání osob 1910, nebo ..."
 
 #: ../gramps/gen/lib/srcattrtype.py:506
 msgid "Sorbonne University"
@@ -6959,9 +6929,8 @@ msgid "Materley, B."
 msgstr "Materley, B."
 
 #: ../gramps/gen/lib/srcattrtype.py:508
-#, fuzzy
 msgid "Jun 2004"
-msgstr "(c) 2004 Tobias Koenig"
+msgstr "led 2004"
 
 #: ../gramps/gen/lib/srcattrtype.py:509
 msgid "145-394, scattered issues"
@@ -7018,12 +6987,11 @@ msgstr "Londýn"
 
 #: ../gramps/gen/lib/srcattrtype.py:522
 msgid "written in the left margin, or second row, 3th line"
-msgstr ""
+msgstr "zapsáno na levém okraji, na druhém řádku , 3. řádek"
 
 #: ../gramps/gen/lib/srcattrtype.py:523
-#, fuzzy
 msgid "5 Jul 1799"
-msgstr "Poznámky pro červenec - prosinec"
+msgstr "5. čvc 1799"
 
 #: ../gramps/gen/lib/srcattrtype.py:524
 msgid "Prof.; or Dr. ..."
@@ -7068,18 +7036,16 @@ msgid "Paul's uncle and brother of Erik"
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:534
-#, fuzzy
 msgid "3 May 1999"
-msgstr "Poznámka pro květen"
+msgstr "3. kvě 1999"
 
 #: ../gramps/gen/lib/srcattrtype.py:535 ../gramps/gen/lib/srcattrtype.py:609
 msgid "Descriptive detail or provenance or research analysis conclusion, ..."
 msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:536
-#, fuzzy
 msgid "Tahiti Natives"
-msgstr "Tichomoří/Tahiti"
+msgstr "tahitští domorodci"
 
 #: ../gramps/gen/lib/srcattrtype.py:537
 msgid "176, or rolls 145-160"
@@ -7210,7 +7176,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:568
 msgid "Name of cemetery or cemetery office with sources."
-msgstr ""
+msgstr "Název hřbitova nebo hřbitovní správy s prameny."
 
 #: ../gramps/gen/lib/srcattrtype.py:569
 msgid "The pages in the chapter."
@@ -7287,7 +7253,7 @@ msgstr "Které snímky pramene jsou relevantní."
 
 #: ../gramps/gen/lib/srcattrtype.py:587
 msgid "A larger grouping to which the source belongs."
-msgstr ""
+msgstr "Větší množina do které pramen patří."
 
 #: ../gramps/gen/lib/srcattrtype.py:588
 #, fuzzy
@@ -7339,9 +7305,8 @@ msgid "Name of the repository where the original is stored."
 msgstr "Název archivu ve kterém je uložen originál."
 
 #: ../gramps/gen/lib/srcattrtype.py:599
-#, fuzzy
 msgid "Address or only city of the repository where the original is stored."
-msgstr "Název archivu (ve kterém je pramen uložen)."
+msgstr "Adresa nebo pouze město sídla archivu kde je uložen originál."
 
 #: ../gramps/gen/lib/srcattrtype.py:600
 msgid "Year the original source was published/created"
@@ -7360,7 +7325,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:603
 msgid "Where in or on the source the citation piece can be found."
-msgstr ""
+msgstr "Kde v prameni je možné citaci nalézt."
 
 #: ../gramps/gen/lib/srcattrtype.py:604
 msgid "Where the material originated from."
@@ -7384,7 +7349,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/srcattrtype.py:608
 msgid "Date the report was written/submitted."
-msgstr ""
+msgstr "Datum, kdy byla zpráva napsána/vložena."
 
 #: ../gramps/gen/lib/srcattrtype.py:610
 msgid "The genealogical or scientific research project."
