@@ -65,7 +65,7 @@ class PlaceRefEmbedList(EmbeddedList):
         self.handle = handle
         self.callback = callback
         EmbeddedList.__init__(self, dbstate, uistate, track, 
-                              _('Parents'), PlaceRefModel, 
+                              _('Enclosed By'), PlaceRefModel,
                               move_buttons=True)
 
     def get_data(self):
