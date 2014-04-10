@@ -350,7 +350,8 @@ class EditFamily(EditPrimary):
         
         EditPrimary.__init__(self, dbstate, uistate, track,
                              family, dbstate.db.get_family_from_handle,
-                             dbstate.db.get_family_from_gramps_id)
+                             dbstate.db.get_family_from_gramps_id,
+                             callback)
 
         # look for the scenerio of a child and no parents on a new
         # family
@@ -1112,6 +1113,9 @@ class EditFamily(EditPrimary):
                     self.db.commit_family(self.obj, trans)
 
         self._do_close()
+        if self.callback:
+            self.callback(self.obj)
+        self.callback = None
 
     def no_name(self):
         """
