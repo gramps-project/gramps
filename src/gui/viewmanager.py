@@ -393,6 +393,11 @@ class ViewManager(CLIManager):
             self.window, self.statusbar, self.progress, self.warnbtn,
             self.uimanager, self.progress_monitor, self)
 
+        # Create history objects
+        for nav_type in ('Person', 'Family', 'Event', 'Place', 'Source',
+                         'Citation', 'Repository', 'Note', 'Media'):
+            self.uistate.register(self.dbstate, nav_type, 0)
+
         self.dbstate.connect('database-changed', self.uistate.db_changed)
 
         self.tags = Tags(self.uistate, self.dbstate)
