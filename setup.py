@@ -68,7 +68,7 @@ def intltool_version():
         cmd = ["perl", "-e print qx(intltool-update --version) =~ m/(\d+.\d+.\d+)/;"]
         try: 
             ver, ret = subprocess.Popen(cmd ,stdout=subprocess.PIPE, 
-                stderr=subprocess.PIPE).communicate()
+                stderr=subprocess.PIPE, shell=True).communicate()
             if sys.version_info[0] > 2:
                 ver = ver.decode("utf-8")
             if ver > "":
