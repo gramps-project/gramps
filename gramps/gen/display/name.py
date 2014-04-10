@@ -110,11 +110,6 @@ _F_RAWFN = 4 # name format raw function
 
 PAT_AS_SURN = False
 
-# translators: needed for Arabic, ignore otherwise
-COMMAGLYPH = _(',')
-
-LNFN_STR = "%s" + COMMAGLYPH + " %s %s"
-
 #-------------------------------------------------------------------------
 #
 # Local functions
@@ -308,7 +303,7 @@ def cleanup_name(namestring):
         return ""
     result = parts[0]
     for val in parts[1:]:
-        if len(val) == 1 and val in [',', ';', ':', COMMAGLYPH]:
+        if len(val) == 1 and val in [',', ';', ':']:
             result +=  val
         else:
             result += ' ' + val
@@ -334,15 +329,15 @@ class NameDisplay(object):
 
     STANDARD_FORMATS = [
         (Name.DEF, _("Default format (defined by Gramps preferences)"), '', _ACT),
-        (Name.LNFN, _("Surname, Given Suffix"), '%l' + COMMAGLYPH + ' %f %s', _ACT),
+        (Name.LNFN, _("Surname, Given Suffix"), '%l, %f %s', _ACT),
         (Name.FN, _("Given"), '%f', _ACT),
         (Name.FNLN, _("Given Surname Suffix"), '%f %l %s', _ACT),
         # primary name primconnector other, given pa/matronynic suffix, primprefix
         # translators, long string, have a look at Preferences dialog
         (Name.LNFNP, _("Main Surnames, Given Patronymic Suffix Prefix"), 
-                     '%1m %2m %o' + COMMAGLYPH + ' %f %1y %s %0m', _ACT),
+                     '%1m %2m %o, %f %1y %s %0m', _ACT),
         # DEPRECATED FORMATS
-        (Name.PTFN, _("Patronymic, Given"), '%y' + COMMAGLYPH + ' %s %f', _INA),
+        (Name.PTFN, _("Patronymic, Given"), '%y, %s %f', _INA),
     ]
 
     def __init__(self):
@@ -383,9 +378,9 @@ class NameDisplay(object):
         return lambda x: self.format_str_raw(x, fmt_str)
 
     def _raw_lnfn(self, raw_data):
-        result = LNFN_STR % (_raw_full_surname(raw_data[_SURNAME_LIST]),
-                             raw_data[_FIRSTNAME],
-                             raw_data[_SUFFIX])
+        result =  "%s, %s %s" % (_raw_full_surname(raw_data[_SURNAME_LIST]),
+                                 raw_data[_FIRSTNAME],
+                                 raw_data[_SUFFIX])
         return ' '.join(result.split())
 
     def _raw_fnln(self, raw_data):
