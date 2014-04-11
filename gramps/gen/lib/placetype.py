@@ -39,29 +39,53 @@ from .grampstype import GrampsType
 
 class PlaceType(GrampsType):
 
-    UNKNOWN     = -1
-    CUSTOM      = 0
-    COUNTRY     = 1
-    STATE       = 2
-    COUNTY      = 3
-    CITY        = 4
-    PARISH      = 5
-    LOCALITY    = 6
-    STREET      = 7
+    UNKNOWN      = -1
+    CUSTOM       = 0
+    COUNTRY      = 1
+    STATE        = 2
+    COUNTY       = 3
+    CITY         = 4
+    PARISH       = 5
+    LOCALITY     = 6
+    STREET       = 7
+    PROVINCE     = 8
+    REGION       = 9
+    DEPARTMENT   = 10
+    NEIGHBORHOOD = 11
+    DISTRICT     = 12
+    BOROUGH      = 13
+    MUNICIPALITY = 14
+    TOWN         = 15
+    VILLAGE      = 16
+    HAMLET       = 17
+    FARM         = 18
+    BUILDING     = 19
 
     _CUSTOM = CUSTOM
     _DEFAULT = COUNTRY
 
     _DATAMAP = [
-        (UNKNOWN,  _("Unknown"),  "Unknown"),
-        (CUSTOM,   _("Custom"),   "Custom"),
-        (COUNTRY,  _("Country"),  "Country"),
-        (STATE,    _("State"),    "State"),
-        (COUNTY,   _("County"),   "County"),
-        (CITY,     _("City"),     "City"),
-        (PARISH,   _("Parish"),   "Parish"),
-        (LOCALITY, _("Locality"), "Locality"),
-        (STREET,   _("Street"),   "Street"),
+        (UNKNOWN,      _("Unknown"),      "Unknown"),
+        (CUSTOM,       _("Custom"),       "Custom"),
+        (COUNTRY,      _("Country"),      "Country"),
+        (STATE,        _("State"),        "State"),
+        (COUNTY,       _("County"),       "County"),
+        (CITY,         _("City"),         "City"),
+        (PARISH,       _("Parish"),       "Parish"),
+        (LOCALITY,     _("Locality"),     "Locality"),
+        (STREET,       _("Street"),       "Street"),
+        (PROVINCE,     _("Province"),     "Province"),
+        (REGION,       _("Region"),       "Region"),
+        (DEPARTMENT,   _("Department"),   "Department"),
+        (NEIGHBORHOOD, _("Neighborhood"), "Neighborhood"),
+        (DISTRICT,     _("District"),     "District"),
+        (BOROUGH,      _("Borough"),      "Borough"),
+        (MUNICIPALITY, _("Municipality"), "Municipality"),
+        (TOWN,         _("Town"),         "Town"),
+        (VILLAGE,      _("Village"),      "Village"),
+        (HAMLET,       _("Hamlet"),       "Hamlet"),
+        (FARM,         _("Farm"),         "Farm"),
+        (BUILDING,     _("Building"),     "Building"),
         ]
 
     def __init__(self, value=None):
