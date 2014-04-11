@@ -1,14 +1,16 @@
-2014-03-xx
-Version 4.0.4, " ", a maintenance release.
+2014-04-xx
+Version 4.0.4, "Not the comfy chair", a maintenance release.
 * Upgrade to db version 17 fails in Python 3 due to use of iteritems
-* Error when leaving a Gramps type field blank in an editor
 * Database corrupted - TypeError: unhashable type: 'list'
+* Fix bug in abandon changes and quit
+* Paths, unicode and bsddb module
 * Better handling for non-ASCII characters on database-path
 * Fix vcard date converter
 * View does not communicate over proxy server with autorisation
 * Enhanced Bookmark support
 * Event gramplet filter does not have field for primary role,
 * New HasDayOfWeek filter rule
+* Error when leaving a Gramps type field blank in an editor
 * Crash when opening details of a person
 * List in Unused Objects interface has limited space
 * Edit window will be too small when editing notes
@@ -20,8 +22,13 @@ Version 4.0.4, " ", a maintenance release.
 * Enhancements and consitency on events gramplet, selector and view
 * Sometimes says 'no data exists for note' when saving
 * Enhanced Citation Editor
+* Do not always raise errors when some plugins are hidden
+* Remove hover selection from embedded lists
+* Fix update of active object after merge
 * Cleanup on warnings and messages around locale directory
 * Media Editor error if Path value was changed to a non existing file
+* Register history objects at startup
+* Avoid dumb encoding error when compiling gpr file
 * Given Name Cloud Gramplet splits up given names into words
 * Users should not be allowed to edit and delete 'default' style into Style Editor
 * Filename Decoding Error in Graphical Reports
@@ -29,16 +36,18 @@ Version 4.0.4, " ", a maintenance release.
 * the scroll windows for patchname tools didn't expand
 * Some fixes and enhancements
 * Ver 4.0.2 starts in East Asian language
-* Gramps does not start
+* Can not start in Chinese, force UTF-8 locale on Mac
+* Fix apple_collation
 * Spelling messages at random cause hang for a few seconds.
 * Media viewer list crashes during start if one try to select an entry where the media isn't available
+* 'Available Gramps Updates for Addons' window not on top
 * HTML View fails to load
 * Paper names and Styles values are now translated
 * Sort failure using glocale.sort_key
 * Improve support for collation variants
 * Translate some punctuation marks
 * Fix unit tests and python3 issues
-Updated translations: ar, cs, de, fi, fr, (he), it, lt, nb, pl, pt_BR, ru, sv, uk
+* Updated translations: ar, cs, de, fi, fr, he, it, lt, nb, pl, pt_BR, ru, sv, uk
 
 2014-01-27
 Version 4.0.3, "It's tomorrow, ask me now", a maintenance release.
