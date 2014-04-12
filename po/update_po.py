@@ -650,7 +650,7 @@ def retrieve():
     listing('python.txt', ['.py', '.py.in'])
     
     # additional keywords must always be kept in sync with those in genpot.sh
-    os.system('''%(xgettext)s -j --directory=./ -d gramps '''
+    os.system('''%(xgettext)s -c -j --directory=./ -d gramps '''
               '''-L Python -o gramps.pot --files-from=python.txt '''
               '''--keyword=_ --keyword=ngettext '''
               '''--keyword=_T_ --keyword=trans_text '''
