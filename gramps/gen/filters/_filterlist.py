@@ -18,14 +18,12 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 #-------------------------------------------------------------------------
 #
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
+from __future__ import unicode_literals
 
 from xml.sax import make_parser, SAXParseException
 import os
