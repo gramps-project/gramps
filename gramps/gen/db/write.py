@@ -567,8 +567,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         (grampsdb_path, db_code) = os.path.split(dirname)
         dotgramps_path = os.path.dirname(grampsdb_path)
         zipname = title + time.strftime("_%Y-%m-%d_%H-%M-%S") + ".zip"
-        if sys.version_info[0] < 3:
-            zipname = zipname.encode(glocale.getfilesystemencoding())
         zippath = os.path.join(dotgramps_path, zipname)
         myzip = zipfile.ZipFile(zippath, 'w')
         for filename in os.listdir(dirname):
