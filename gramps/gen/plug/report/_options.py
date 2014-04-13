@@ -33,7 +33,8 @@ Report option handling, including saving and parsing.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-import os
+from __future__ import unicode_literals
+import os, io
 import copy
 from xml.sax.saxutils import escape
 
@@ -505,7 +506,7 @@ class OptionListCollection(_options.OptionListCollection):
             if os.path.isfile(self.filename):
                 p = make_parser()
                 p.setContentHandler(OptionParser(self))
-                the_file = open(self.filename)
+                the_file = io.open(self.filename, encoding="utf-8")
                 p.parse(the_file)
                 the_file.close()
         except (IOError, OSError, SAXParseException):
@@ -1001,7 +1002,7 @@ class DocOptionListCollection(_options.OptionListCollection):
             if os.path.isfile(self.filename):
                 p = make_parser()
                 p.setContentHandler(DocOptionParser(self))
-                the_file = open(self.filename)
+                the_file = io.open(self.filename, encoding="utf-8")
                 p.parse(the_file)
                 the_file.close()
         except (IOError, OSError, SAXParseException):

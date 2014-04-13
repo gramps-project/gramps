@@ -32,6 +32,7 @@ from __future__ import print_function
 
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+import io
 
 #-------------------------------------------------------------------------
 #
@@ -159,7 +160,7 @@ class DocBackend(object):
                                             % self.filename)
         self._checkfilename()
         try:
-            self.__file = open(self.filename, "w")
+            self.__file = io.open(self.filename, "w", encoding="utf-8")
         except IOError as msg:
             errmsg = "%s\n%s" % (_("Could not create %s") % self.filename, msg)
             raise DocBackendError(errmsg)

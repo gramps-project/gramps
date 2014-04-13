@@ -1104,7 +1104,7 @@ class PluginRegister(object):
             if sys.version_info[0] < 3:
                 fd = open(full_filename, "r")
             else:
-                fd = io.open(full_filename, "r")
+                fd = io.open(full_filename, "r", encoding='utf-8')
             stream = fd.read()
             fd.close()
             if os.path.exists(os.path.join(os.path.dirname(full_filename),

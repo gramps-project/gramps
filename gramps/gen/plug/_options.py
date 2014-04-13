@@ -32,8 +32,8 @@ General option handling, including saving and parsing.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-import os
+from __future__ import print_function, unicode_literals
+import os, io
 import sys
 
 #-------------------------------------------------------------------------
@@ -208,7 +208,7 @@ class OptionListCollection(object):
         """
         Saves the current OptionListCollection to the associated file.
         """
-        f = open(self.filename,"w")
+        f = io.open(self.filename,"w", encoding="utf-8")
         f.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
         f.write('<options>\n')
 

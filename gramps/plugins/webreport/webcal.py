@@ -579,7 +579,7 @@ class WebCalReport(Report):
                     elif url_fname == 'fullyearlinked':
                         myTitle = _('Full year at a Glance')
                     else:
-	                 myTitle = _(url_fname)
+                        myTitle = _(url_fname)
                     hyper = Html("a", nav_text, href = url, name = url_fname, title = myTitle)
 
                     if check_cs:
@@ -1728,7 +1728,10 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
 
     # sort them based on number of years
     # holidays will always be on top of event list
-    day_list.sort()
+    if sys.version_info[0] < 3:
+        day_list.sort()
+    else:
+        day_list= sorted(day_list, key=lambda x: (isinstance(x[0], str), x[0]))
  
     # return to its caller calendar_build()
     return day_list
