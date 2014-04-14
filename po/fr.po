@@ -6472,13 +6472,13 @@ msgstr "date d'un événement lié au décès d'un frère ou d'une sœur"
 #: ../gramps/gen/utils/alive.py:240
 #: ../gramps/gen/utils/alive.py:251
 msgid "a spouse's birth-related date, "
-msgstr "date liée à la naissance du conjoint,"
+msgstr "date liée à la naissance du conjoint, "
 
 # trunk
 #: ../gramps/gen/utils/alive.py:244
 #: ../gramps/gen/utils/alive.py:255
 msgid "a spouse's death-related date, "
-msgstr "date liée au décès du conjoint,"
+msgstr "date liée au décès du conjoint, "
 
 #: ../gramps/gen/utils/alive.py:273
 msgid "event with spouse"
@@ -8766,7 +8766,7 @@ msgstr "Déplacer l'adresse sélectionnée vers le bas"
 #: ../gramps/plugins/webreport/narrativeweb.py:4434
 #: ../gramps/plugins/webreport/narrativeweb.py:5778
 msgid "Date"
-msgstr "Date"
+msgstr "Date "
 
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/locationembedlist.py:56
