@@ -21,8 +21,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  021111307  USA
 #
 
-# $Id$
-
 """
 Provide the base for a list person view.
 """

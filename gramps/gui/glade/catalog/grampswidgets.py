@@ -19,7 +19,6 @@
 #
 
 # glade/catalog/grampswidgets.py
-# $Id$
 
 from gi.repository import Gtk
 

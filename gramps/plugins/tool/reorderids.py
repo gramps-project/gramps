@@ -20,8 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Change id IDs of all the elements in the database to conform to the
 scheme specified in the database's prefix ids

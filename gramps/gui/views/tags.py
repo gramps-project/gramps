@@ -16,8 +16,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  021111307  USA
 #
-
-# $Id$
 """
 Provide tagging functionality.
 """

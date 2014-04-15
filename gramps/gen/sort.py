@@ -18,8 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Provide sorting routines for use in Gramps. Since these functions are
 intended to provide fast sorting, they tend to bypass access methods, 

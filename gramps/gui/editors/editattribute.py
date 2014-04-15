@@ -20,8 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$ 
-
 """
 The EditAttribute module provides the AttributeEditor class. This provides a
 mechanism for the user to edit attribute information.

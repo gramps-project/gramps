@@ -22,8 +22,6 @@
 #
 # gui.plug.__init__.py
 #
-# $Id$
-#
 __author__="jfriant"
 __date__ ="$Apr 20, 2010 3:13:24 PM$"
 

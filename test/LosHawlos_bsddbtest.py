@@ -19,7 +19,6 @@
 #
 
 # test/LosHawlos_bsddbtest.py
-# $Id$
 
 from bsddb import dbshelve, db
 import os

@@ -21,8 +21,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 #
 # Written by Lorenzo Cappelletti <lorenzo.cappelletti@email.it>, 2003
 #            Benny Malengier <benny.malengier@gramps-project.org, 2007

@@ -22,8 +22,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 # gramps/plugins/rel/rel_uk.py
-# $Id$
-#
 # UA: Пояснення щодо родинних відносин див. relationship.py
 # EN: Ukrainian relationship calculator. For more information see relationship.py
 

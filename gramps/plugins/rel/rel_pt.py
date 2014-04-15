@@ -23,8 +23,6 @@
 
 # Portuguese version by Duarte Loreto <happyguy_pt@hotmail.com>, 2007.
 # Based on the Spanish version by Julio Sanchez <julio.sanchez@gmail.com>
-
-# $Id$
 """
 Specific classes for relationships.
 """

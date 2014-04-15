@@ -18,8 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 # gen/utils/__init__.py
-# $Id$
-#
 
 """
 Generic utilities useful for users of the gen package

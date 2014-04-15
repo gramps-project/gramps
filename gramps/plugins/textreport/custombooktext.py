@@ -23,8 +23,6 @@
 # Written by Alex Roitman, 
 # largely based on the SimpleBookTitle.py by Don Allingham
 
-# $Id$
-
 #------------------------------------------------------------------------
 #
 # python modules

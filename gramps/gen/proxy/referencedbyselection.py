@@ -19,8 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Proxy class for the Gramps databases. Returns objects which are
 referenced by a person, or through a chain of references starting with

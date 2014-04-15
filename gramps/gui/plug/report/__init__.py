@@ -23,7 +23,6 @@
 
 # gui.plug.report.__init__
 #
-# $Id$
 
 "Report Generation Framework"
 

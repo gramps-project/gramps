@@ -19,8 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 # Written by Benny Malengier
 # Last change 2005/12/05:
 # Correspond  naming of dates with actual action, so for abbreviation

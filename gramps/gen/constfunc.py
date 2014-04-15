@@ -19,8 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Some independent constants/functions that can be safely imported
 without any translation happening yet.  Do _not_ add imports that will

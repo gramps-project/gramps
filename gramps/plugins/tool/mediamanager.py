@@ -24,8 +24,6 @@
 
 # Written by Alex Roitman
 
-# $Id$
-
 """Tools/Utilities/Media Manager"""
 
 #------------------------------------------------------------------------

@@ -19,7 +19,6 @@
 #
 
 # webapp/grampsdb/admin.py
-# $Id$
 
 from __future__ import print_function
 

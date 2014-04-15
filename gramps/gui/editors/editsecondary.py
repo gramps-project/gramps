@@ -19,8 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 from ..managedwindow import ManagedWindow
 from ..display import display_help
 from gramps.gen.config import config

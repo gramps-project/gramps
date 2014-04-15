@@ -18,8 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """Text buffer subclassed from Gtk.TextBuffer handling :class:`.StyledText`."""
 
 __all__ = ["ALLOWED_STYLES", "MATCH_START", "MATCH_END", "MATCH_FLAVOR",

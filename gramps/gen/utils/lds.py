@@ -18,8 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Parses the lds.xml file to build the temple/code maps
 """

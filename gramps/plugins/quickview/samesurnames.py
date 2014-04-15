@@ -20,8 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 #
-# $Id$
-#
 
 """
 Display a people who have a person's same surname or given name.

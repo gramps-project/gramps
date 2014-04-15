@@ -20,8 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Provide the Berkeley DB (DbBsddb) database backend for Gramps.
 This is used since Gramps version 3.0

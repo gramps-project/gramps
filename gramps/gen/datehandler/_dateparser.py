@@ -19,8 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Date parsing class. Serves as the base class for any localized
 date parsing class. The default base class provides parsing for English.

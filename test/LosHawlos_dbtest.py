@@ -19,7 +19,6 @@
 #
 
 # test/LosHawlos_dbtest.py
-# $Id$
 
 import os
 import tempfile

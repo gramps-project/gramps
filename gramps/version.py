@@ -18,8 +18,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 VERSION_TUPLE = (4, 1, 0)
 VERSION        = '.'.join(map(str,VERSION_TUPLE))
 major_version = "%s.%s" % (VERSION_TUPLE[0], VERSION_TUPLE[1])

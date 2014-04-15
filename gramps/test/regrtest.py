@@ -19,8 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 # test/regrtest.py
-# $Id$
-#
 # Original: RunAllTests.py Written by Richard Taylor 
 # (jgs: revised for embedded "test" subdirs as regrtest.py )
 

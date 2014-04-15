@@ -19,8 +19,6 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# $Id$
-#
 
 # Rewritten in 2008 for 3.x version by Łukasz Rymarczyk
 # Written in 2007 by Piotr Czubaszek, largely based on rel_de.py by Alex Roitman.

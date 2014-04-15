@@ -19,7 +19,6 @@
 #
 
 # webapp/grampsdb/forms.py
-# $Id$
 
 # forms.py forms for Django web project 
 

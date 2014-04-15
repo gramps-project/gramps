@@ -19,7 +19,6 @@
 #
 
 # test/test/gedread_util_test.py
-# $Id$
 
 """test for test/gedread_util.py
 

@@ -22,8 +22,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Provide base interface to text based documents. Specific document
 interfaces should be derived from the core classes.

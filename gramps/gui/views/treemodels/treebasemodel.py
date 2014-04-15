@@ -22,8 +22,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 # gui/views/treemodels/treebasemodel.py
-# $Id$
-#
 
 """
 This module provides the model that is used for all hierarchical treeviews.

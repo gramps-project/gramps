@@ -19,7 +19,6 @@
 #
 
 # webapp/grampsdb/templatetags/my_tags.py
-# $Id$
 
 import re
 

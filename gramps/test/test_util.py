@@ -19,7 +19,6 @@
 #
 
 # test/test_util.py
-# $Id$
 
 """unittest support utility module"""
 

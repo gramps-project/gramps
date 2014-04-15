@@ -19,7 +19,6 @@
 #
 
 # test/GrampsLogger/GtkHandler_Test.py
-# $Id$
 
 import unittest
 import logging

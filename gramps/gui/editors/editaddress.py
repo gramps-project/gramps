@@ -21,8 +21,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 The EditAddress module provides the EditAddress class. This provides a
 mechanism for the user to edit address information.

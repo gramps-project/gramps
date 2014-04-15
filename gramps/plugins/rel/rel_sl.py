@@ -21,8 +21,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 # Written by Bernard Banko, inspired from rel_ru.py by Alex Roitman.
 """
 Slovenian-specific definitions of relationships

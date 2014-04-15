@@ -21,8 +21,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 # Written by Alex Roitman, largely based on relationship.py by Don Allingham
 # and on valuable input from Jens Arvidsson
 # Updated to 3.0 by Peter Landgren 2007-12-30.

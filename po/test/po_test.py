@@ -19,8 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """ Unittest for testing POTFILES.in and Makefile contents """
 
 # PYTHONPATH=/../gramps python po_test.py

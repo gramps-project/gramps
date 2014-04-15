@@ -19,8 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Provide an interface to the gtkspell interface. This requires
 python-gnome-extras package. If the gtkspell package is not

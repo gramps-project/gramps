@@ -19,7 +19,6 @@
 #
 
 # webapp/reports.py
-# $Id$
 
 # imports for import/export:
 

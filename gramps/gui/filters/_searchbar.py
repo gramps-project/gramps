@@ -19,8 +19,6 @@
 #
 from gi.repository import GObject
 
-# $Id$
-
 """
 Package providing filtering framework for GRAMPS.
 """

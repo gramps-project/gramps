@@ -19,7 +19,6 @@
 #
 
 # test/GrampsLogger/ErrorReportAssistant_Test.py
-# $Id$
 
 import unittest
 import logging

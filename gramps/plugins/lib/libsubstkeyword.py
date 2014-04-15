@@ -21,8 +21,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Provide the SubstKeywords class that will replace keywords in a passed
 string with information about the person/marriage/spouse. For example:

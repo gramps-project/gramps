@@ -21,8 +21,6 @@
 # Portuguese version translated by Duarte Loreto <happyguy_pt@hotmail.com>, 2007.
 # Based on the Spanish file.
 
-# $Id$
-
 """
 Portuguese-specific classes for parsing and displaying dates.
 """

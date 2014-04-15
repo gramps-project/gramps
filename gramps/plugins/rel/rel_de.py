@@ -21,8 +21,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 # Original version written by Alex Roitman, largely based on relationship.py
 # by Don Allingham and on valuable input from Dr. Martin Senftleben
 # Modified by Joachim Breitner to not use „Großcousine“, in accordance with

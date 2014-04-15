@@ -20,8 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 A utility to make a best guess if a person is alive.  This is used to provide
 privacy in reports and exports.

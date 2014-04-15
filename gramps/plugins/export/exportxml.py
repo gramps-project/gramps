@@ -25,8 +25,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Contains the interface to allow a database to get written using
 Gramps' XML file format.
