@@ -122,7 +122,7 @@ class DropdownSidebar(BaseSidebar):
         """
         Called when a view drop-down arrow is clicked.
         """
-        menu = Gtk.Menu()
+        self.menu = Gtk.Menu()
         for item in self.views[cat_num]:
             menuitem = Gtk.ImageMenuItem(label=item[1])
             image = Gtk.Image.new_from_stock(item[2], Gtk.IconSize.MENU)
@@ -130,8 +130,8 @@ class DropdownSidebar(BaseSidebar):
             menuitem.set_image(image)
             menuitem.connect("activate", self.cb_menu_clicked, cat_num, item[0])
             menuitem.show()
-            menu.append(menuitem)
-        menu.popup(None, None, cb_menu_position, button, 0, 0)
+            self.menu.append(menuitem)
+        self.menu.popup(None, None, cb_menu_position, button, 0, 0)
 
     def cb_menu_clicked(self, menuitem, cat_num, view_num):
         """
