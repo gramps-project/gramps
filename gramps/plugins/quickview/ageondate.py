@@ -80,7 +80,9 @@ def run(database, document, date):
             dead_matches += 1
 
     document.has_data = (alive_matches + dead_matches) > 0
-    sdoc.paragraph(_("\nLiving matches: %d, Deceased matches: %d\n") % (alive_matches, dead_matches))
+    sdoc.paragraph(_("\nLiving matches: %(alive)d, "
+                     "Deceased matches: %(dead)d\n") % 
+                         {'alive' : alive_matches, 'dead' : dead_matches})
     stab.write(sdoc)
     sdoc.paragraph("")
 

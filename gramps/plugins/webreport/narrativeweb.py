@@ -7365,7 +7365,8 @@ class NavWebReport(Report):
         if husband and spouse:
             husband_name = self.get_person_name(husband)
             spouse_name = self.get_person_name(spouse)
-            title_str = _("Family of %s and %s") % (husband_name, spouse_name)
+            title_str = _("Family of %(husband)s and %(spouse)s") % {
+                              'husband' : husband_name, 'spouse' : spouse_name}
         elif husband:
             husband_name = self.get_person_name(husband)
             # Only the name of the husband is known 

@@ -275,13 +275,19 @@ class Verify(tool.Tool, ManagedWindow, UpdateCallback):
         (msg,gramps_id, name, the_type, rule_id, severity, handle) = results
         if severity == Rule.WARNING:
             # translators: needed for Arabic, ignore otherwise
-            print(_("W: %s, %s: %s, %s") % (msg, the_type, gramps_id, name))
+            print(_("%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s") %
+                       {'severity':'W', 'msg':msg, 'type':the_type,
+                        'gid':gramps_id, 'name':name})
         elif severity == Rule.ERROR:
             # translators: needed for Arabic, ignore otherwise
-            print(_("E: %s, %s: %s, %s") % (msg, the_type, gramps_id, name))
+            print(_("%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s") %
+                       {'severity':'E', 'msg':msg, 'type':the_type,
+                        'gid':gramps_id, 'name':name})
         else:
             # translators: needed for Arabic, ignore otherwise
-            print(_("S: %s, %s: %s, %s") % (msg, the_type,gramps_id, name))
+            print(_("%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s") %
+                       {'severity':'S', 'msg':msg, 'type':the_type,
+                        'gid':gramps_id, 'name':name})
 
     def init_gui(self):
         # Draw dialog and make it handle everything

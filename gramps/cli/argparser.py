@@ -325,9 +325,11 @@ class ArgParser(object):
                         set_value = True
                     if config.has_default(setting_name):
                         setting_value = config.get(setting_name)
-                        print(_("Current Gramps config setting: %s:%s")
-                                      % (setting_name, repr(setting_value)),
-                                      file=sys.stderr)
+                        print(_("Current Gramps config setting: "
+                                "%(name)s:%(value)s")
+                                    % {'name' : setting_name,
+                                       'value' : repr(setting_value)},
+                              file=sys.stderr)
                         if set_value:
                             # does a user want the default config value?
                             if new_value in ("DEFAULT", _("DEFAULT")):
@@ -337,10 +339,12 @@ class ArgParser(object):
                                 new_value = converter(new_value)
                             config.set(setting_name, new_value)
                             # translators: indent "New" to match "Current"
-                            print(_("    New Gramps config setting: %s:%s")
-                                          % (setting_name,
-                                             repr(config.get(setting_name))),
-                                          file=sys.stderr)
+                            print(_("    New Gramps config setting: "
+                                    "%(name)s:%(value)s") %
+                                        {'name' : setting_name,
+                                         'value' : repr(
+                                                 config.get(setting_name))},
+                                  file=sys.stderr)
                         else:
                             need_to_quit = True
                     else:

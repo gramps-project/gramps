@@ -8,7 +8,7 @@
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2011      Tim G L Lyons
 # Copyright (C) 2012      Mathieu MD
-# Copyright (C) 2013      Paul Franklin
+# Copyright (C) 2013-2014 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -155,7 +155,10 @@ class IndivCompleteReport(Report):
         if place_handle:
             place = self.database.get_place_from_handle(
                                             place_handle).get_title()
-        date_place = combine(self._('%s in %s. '), '%s. ', date, place)
+        # make sure it's translated, so it can be used below, in "combine"
+        ignore1 = _('%(str1)s in %(str2)s. ') % {'str1':'', 'str2':''}
+        date_place = self.combine('%(str1)s in %(str2)s. ', '%s. ',
+                                  date, place)
 
         if show_type:
             # Groups with more than one type
@@ -163,12 +166,18 @@ class IndivCompleteReport(Report):
             if role not in (EventRoleType.PRIMARY, EventRoleType.FAMILY):
                 column_1 = column_1 + ' (' + self._(role.xml_str()) + ')'
             # translators: needed for Arabic, ignore otherwise
-            column_2 = combine(self._('%s, %s'), '%s', description, date_place)
+            # make sure it's translated, so it can be used below, in "combine"
+            ignore2 = _('%(str1)s, %(str2)s') % {'str1':'', 'str2':''}
+            column_2 = self.combine('%(str1)s, %(str2)s', '%s',
+                                    description, date_place)
         else:
             # Groups with a single type (remove event type from first column)
             column_1 = date
             # translators: needed for Arabic, ignore otherwise
-            column_2 = combine(self._('%s, %s'), '%s', description, place)
+            # make sure it's translated, so it can be used below, in "combine"
+            ignore3 = _('%(str1)s, %(str2)s') % {'str1':'', 'str2':''}
+            column_2 = self.combine('%(str1)s, %(str2)s', '%s',
+                                    description, place)
 
         endnotes = ""
         if self.use_srcs:
@@ -613,6 +622,17 @@ class IndivCompleteReport(Report):
                                     printnotes=self.use_srcs_notes,
                                     elocale=self._locale)
             
+    def combine(self, format_both, format_single, str1, str2):
+        """ Combine two strings with a given format. """
+        text = ""
+        if str1 and str2:
+            text = self._(format_both) % {'str1':str1, 'str2':str2}
+        elif str1 and not str2:
+            text = format_single % str1
+        elif str2 and not str1:
+            text = format_single % str2
+        return text
+
 #------------------------------------------------------------------------
 #
 # IndivCompleteOptions
@@ -792,19 +812,3 @@ class IndivCompleteOptions(MenuReportOptions):
         default_style.add_table_style('IDS-PersonTable', tbl)
 
         Endnotes.add_endnote_styles(default_style)
-
-#------------------------------------------------------------------------
-#
-# Functions
-#
-#------------------------------------------------------------------------
-def combine(format_both, format_single, str1, str2):
-    """ Combine two strings with a given format. """
-    text = ""
-    if str1 and str2:
-        text = format_both % (str1, str2)
-    elif str1 and not str2:
-        text = format_single % str1
-    elif str2 and not str1:
-        text = format_single % str2
-    return text

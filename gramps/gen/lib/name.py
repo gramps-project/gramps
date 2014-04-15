@@ -466,10 +466,11 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         surname = self.get_surname()
         if self.suffix:
             # translators: needed for Arabic, ignore otherwise
-            return _("%s, %s %s") % (surname, first, self.suffix)
+            return _("%(surname)s, %(first)s %(suffix)s"
+                    ) % {'surname':surname, 'first':first, 'suffix':self.suffix}
         else:
             # translators: needed for Arabic, ignore otherwise
-            return _("%s, %s") % (surname, first)
+            return _("%(str1)s, %(str2)s") % {'str1':surname, 'str2':first}
 
     def get_upper_name(self):
         """
@@ -480,10 +481,11 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
         surname = self.get_surname().upper()
         if self.suffix:
             # translators: needed for Arabic, ignore otherwise
-            return _("%s, %s %s") % (surname, first, self.suffix)
+            return _("%(surname)s, %(first)s %(suffix)s"
+                    ) % {'surname':surname, 'first':first, 'suffix':self.suffix}
         else:
             # translators: needed for Arabic, ignore otherwise
-            return _("%s, %s") % (surname, first)
+            return _("%(str1)s, %(str2)s") % {'str1':surname, 'str2':first}
 
     def get_regular_name(self):
         """
@@ -496,7 +498,8 @@ class Name(SecondaryObject, PrivacyBase, SurnameBase, CitationBase, NoteBase,
             return "%s %s" % (first, surname)
         else:
             # translators: needed for Arabic, ignore otherwise
-            return _("%s %s, %s") % (first, surname, self.suffix)
+            return _("%(first)s %(surname)s, %(suffix)s"
+                    ) % {'surname':surname, 'first':first, 'suffix':self.suffix}
 
     def get_gedcom_parts(self):
         """
