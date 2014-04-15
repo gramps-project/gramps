@@ -352,7 +352,6 @@ class PlaceBaseView(ListView):
               <toolitem action="Remove"/>
               <toolitem action="Merge"/>
               <separator/>
-              <toolitem action="MapsList"/>
             </placeholder>
           </toolbar>
           <popup name="Popup">
