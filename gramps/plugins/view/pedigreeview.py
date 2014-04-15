@@ -31,8 +31,6 @@
 #-------------------------------------------------------------------------
 from __future__ import unicode_literals, division
 
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 from cgi import escape
 import math
 import sys
@@ -77,7 +75,9 @@ from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.constfunc import is_quartz, win
 from gramps.gui.dialog import RunDatabaseRepair, ErrorDialog
 from gramps.gui.utils import color_graph_box, hex_to_rgb_float, is_right_click
-from gramps.gen.constfunc import STRTYPE
+from gramps.gen.constfunc import STRTYPE, lin
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -209,6 +209,10 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         if image:
             image_path = self.get_image(dbstate, person)
             if image_path and os.path.exists(image_path):
+                # Work around a bug in pycairo 1.8.10 and earlier. OSX and
+                # Win32 AIOs use pycairo 1.10.0, in which the bug is fixed.
+                if (sys.version_info[0] < 3 and lin()):
+                    image_path = image_path.encode(glocale.getfilesystemencoding())
                 self.img_surf = cairo.ImageSurface.create_from_png(image_path)
 
         # enable mouse-over

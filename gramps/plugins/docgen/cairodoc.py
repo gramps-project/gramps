@@ -30,8 +30,6 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import sys
 
 #------------------------------------------------------------------------
@@ -42,7 +40,9 @@ import sys
 import gramps.plugins.lib.libcairodoc as libcairodoc
 from gramps.gen.plug.docgen import INDEX_TYPE_ALP, INDEX_TYPE_TOC
 from gramps.gen.errors import ReportError
-
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from gramps.gen.constfunc import lin
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -96,6 +96,10 @@ class CairoDocgen(libcairodoc.CairoDoc):
 
         # create cairo context and pango layout
         filename = self._backend.filename
+        # Work around a bug in pycairo 1.8.10 and earlier. OSX and
+        # Win32 AIOs use pycairo 1.10.0, in which the bug is fixed.
+        if (sys.version_info[0] < 3 and lin()):
+            filename = filename.encode(glocale.getfilesystemencoding())
         try:
             surface = self.create_cairo_surface(filename, paper_width, paper_height)
         except IOError as msg:
