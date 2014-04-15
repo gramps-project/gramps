@@ -36,9 +36,10 @@ from __future__ import print_function
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gramps.gui.utils import ProgressMeter
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
+from gramps.gui.utils import ProgressMeter
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.autocomp import fill_combo
 from gramps.gen.lib import EventType
@@ -130,8 +131,10 @@ class ChangeTypes(tool.BatchTool, ManagedWindow):
         if modified == 0:
             msg = _("No event record was modified.")
         else:
-            msg = glocale.translation.ngettext("%d event record was modified."
-                  , "%d event records were modified.", modified) % modified
+            # translators: leave all/any {...} untranslated
+            msg = ngettext("{number_of} event record was modified.",
+                           "{number_of} event records were modified.", modified
+                          ).format(number_of=modified)
 
         self.user.info(_('Change types'), msg, parent_window)
         return (bool(modified),msg)

@@ -404,12 +404,15 @@ class Span(object):
         """
         trans_text = dlocale.translation.sgettext
         # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
-        ngettext = dlocale.translation.ngettext
+        ngettext = dlocale.translation.ngettext # to see "nearby" comments
         if diff_tuple == (-1, -1, -1): return trans_text("unknown")
         retval = ""
         detail = 0
         if diff_tuple[0] != 0:
-            retval += ngettext("%d year", "%d years", diff_tuple[0]) % diff_tuple[0]
+            # translators: leave all/any {...} untranslated
+            retval += ngettext("{number_of} year", "{number_of} years",
+                               diff_tuple[0]
+                              ).format(number_of=diff_tuple[0])
             detail += 1
         if self.precision == detail:
             return retval
@@ -417,7 +420,10 @@ class Span(object):
             if retval != "":
                 # translators: needed for Arabic, ignore otherwise
                 retval += trans_text(", ")
-            retval += ngettext("%d month", "%d months", diff_tuple[1]) % diff_tuple[1]
+            # translators: leave all/any {...} untranslated
+            retval += ngettext("{number_of} month", "{number_of} months",
+                               diff_tuple[1]
+                              ).format(number_of=diff_tuple[1])
             detail += 1
         if self.precision == detail:
             return retval
@@ -425,7 +431,10 @@ class Span(object):
             if retval != "":
                 # translators: needed for Arabic, ignore otherwise
                 retval += trans_text(", ")
-            retval += ngettext("%d day", "%d days", diff_tuple[2]) % diff_tuple[2]
+            # translators: leave all/any {...} untranslated
+            retval += ngettext("{number_of} day", "{number_of} days",
+                               diff_tuple[2]
+                              ).format(number_of=diff_tuple[2])
             detail += 1
         if self.precision == detail:
             return retval

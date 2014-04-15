@@ -27,10 +27,11 @@
 Display a people who have a person's same surname or given name.
 """
 
-from gramps.gen.simple import SimpleAccess, SimpleDoc
-from gramps.gui.plug.quick import QuickTable
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
+from gramps.gen.simple import SimpleAccess, SimpleDoc
+from gramps.gui.plug.quick import QuickTable
 from gramps.gen.lib import Person
 from gramps.gen.filters.rules import Rule
 from gramps.gen.filters import GenericFilterFactory
@@ -131,10 +132,13 @@ def run(database, document, person):
         matches += 1
 
     document.has_data = matches > 0
-    sdoc.paragraph(glocale.translation.ngettext("There is %d person with a matching name, or alternate name.\n"
-                   ,
-                   "There are %d people with a matching name, or alternate name.\n"
-                   , matches) % matches)
+    sdoc.paragraph(
+        # translators: leave all/any {...} untranslated
+        ngettext("There is {number_of} person "
+                     "with a matching name, or alternate name.\n",
+                 "There are {number_of} people "
+                     "with a matching name, or alternate name.\n", matches
+                ).format(number_of=matches) )
     stab.write(sdoc)
 
 def run_given(database, document, person):
@@ -173,8 +177,11 @@ def run_given(database, document, person):
         matches += 1
 
     document.has_data = matches > 0
-    sdoc.paragraph(glocale.translation.ngettext("There is %d person with a matching name, or alternate name.\n"
-                   ,
-                   "There are %d people with a matching name, or alternate name.\n"
-                   , matches) % matches)
+    sdoc.paragraph(
+        # translators: leave all/any {...} untranslated
+        ngettext("There is {number_of} person "
+                     "with a matching name, or alternate name.\n",
+                 "There are {number_of} people "
+                     "with a matching name, or alternate name.\n", matches
+                ).format(number_of=matches) )
     stab.write(sdoc)

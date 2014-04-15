@@ -895,6 +895,7 @@ class FamilyLinesReport(Report):
     def writeFamilies(self):
 
         self.doc.add_comment('')
+        ngettext = self._locale.translation.ngettext # to see "nearby" comments
 
         # loop through all the families we need to output
         for family_handle in self._families:
@@ -936,8 +937,10 @@ class FamilyLinesReport(Report):
             if self._incchildcount:
                 child_count = len(family.get_child_ref_list())
                 if child_count >= 1:
-                    childrenStr = self._locale.translation.ngettext(
-                        "%d child", "%d children", child_count) % child_count
+                    # translators: leave all/any {...} untranslated
+                    childrenStr = ngettext("{number_of} child",
+                                           "{number_of} children", child_count
+                                          ).format(number_of=child_count)
 
             label = ''
             if weddingDate:

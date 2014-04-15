@@ -38,6 +38,9 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gui.plug import tool
 from gramps.gen.plug.report import utils as ReportUtils
@@ -45,9 +48,6 @@ from gramps.gui.editors import EditPerson, EditFamily
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.display import display_help
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
-ngettext = glocale.translation.ngettext
 from gramps.gui.glade import Glade
 from gramps.gen.lib import Tag
 from gramps.gen.db import DbTxn
@@ -255,10 +255,13 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
             # if more than 1 person is selected, use a progress indicator
             if rows > 1:
                 progress = ProgressMeter(self.title,_('Starting'))
-                #TRANS: no singular form needed, as rows is always > 1
-                progress.set_pass(ngettext("Setting tag for %d person",
-                                           "Setting tag for %d people", 
-                                            rows) % rows, rows)
+                progress.set_pass(
+                    # translators: leave all/any {...} untranslated
+                    #TRANS: no singular form needed, as rows is always > 1
+                    ngettext("Setting tag for {number_of} person",
+                             "Setting tag for {number_of} people", 
+                             rows).format(number_of=rows),
+                    rows)
 
     
             # iterate through all of the selected rows
@@ -295,12 +298,13 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
 
     def findRelatedPeople(self) :
 
-        #TRANS: No singular form is needed.
         self.progress.set_pass(
-           ngettext("Finding relationships between %d person",
-                     "Finding relationships between %d people",
-                     self.numberOfPeopleInDatabase) %
-                        self.numberOfPeopleInDatabase,
+            # translators: leave all/any {...} untranslated
+            #TRANS: No singular form is needed.
+            ngettext("Finding relationships between {number_of} person",
+                     "Finding relationships between {number_of} people",
+                     self.numberOfPeopleInDatabase
+                    ).format(number_of=self.numberOfPeopleInDatabase),
             self.numberOfPeopleInDatabase)
 
         # as long as we have people we haven't processed yet, keep looping
@@ -376,10 +380,12 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
             # we have at least 1 "unrelated" person to find
 
             self.progress.set_pass(
-                   ngettext("Looking for %d person", "Looking for %d people",
-                    self.numberOfUnrelatedPeople) %
-                        self.numberOfUnrelatedPeople,
-                    self.numberOfPeopleInDatabase) 
+                # translators: leave all/any {...} untranslated
+                ngettext("Looking for {number_of} person",
+                         "Looking for {number_of} people",
+                         self.numberOfUnrelatedPeople
+                        ).format(number_of=self.numberOfUnrelatedPeople),
+                self.numberOfPeopleInDatabase)
 
             # loop through everyone in the database
             for handle in self.db.iter_person_handles():
@@ -402,11 +408,12 @@ class NotRelated(tool.ActivePersonTool, ManagedWindow) :
     def populateModel(self) :
 
         self.progress.set_pass(
-               ngettext("Looking up the name of %d person",
-                         "Looking up the names of %d people",
-                         self.numberOfUnrelatedPeople) %
-                            self.numberOfUnrelatedPeople,
-                self.numberOfUnrelatedPeople)
+            # translators: leave all/any {...} untranslated
+            ngettext("Looking up the name of {number_of} person",
+                     "Looking up the names of {number_of} people",
+                     self.numberOfUnrelatedPeople
+                    ).format(number_of=self.numberOfUnrelatedPeople),
+            self.numberOfUnrelatedPeople)
 
         # loop through the entire list of unrelated people
         for handle in self.handlesOfPeopleNotRelated:

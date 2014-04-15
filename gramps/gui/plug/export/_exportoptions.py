@@ -37,7 +37,7 @@
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-ngettext = glocale.translation.ngettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.filters import GenericFilter, rules
@@ -147,8 +147,10 @@ class WriterOptionBox(object):
         full_database_row = Gtk.HBox()
         full_database_row.pack_start(Gtk.Label(_("Unfiltered Family Tree:")), True, True, 0)
         people_count = len(self.dbstate.db.get_person_handles())
-        button = Gtk.Button(ngettext("%d Person", "%d People", people_count) % 
-                            people_count)
+        # translators: leave all/any {...} untranslated
+        button = Gtk.Button(ngettext("{number_of} Person",
+                                     "{number_of} People", people_count
+                                    ).format(number_of=people_count) )
         button.set_tooltip_text(_("Click to see preview of unfiltered data"))
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
@@ -251,7 +253,10 @@ class WriterOptionBox(object):
         # Make a box and put the option in it:
         from gi.repository import Gtk
         from ...widgets import SimpleButton
-        button = Gtk.Button(ngettext("%d Person", "%d People", 0) % 0)
+        # translators: leave all/any {...} untranslated
+        button = Gtk.Button(ngettext("{number_of} Person",
+                                     "{number_of} People", 0
+                                    ).format(number_of=0) )
         button.set_size_request(107, -1)
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = proxy_name
@@ -547,8 +552,10 @@ class WriterOptionBox(object):
                 self.preview_proxy_button[proxy_name].set_sensitive(1)
                 people_count = len(dbase.get_person_handles())
                 self.preview_proxy_button[proxy_name].set_label(
-                    ngettext("%d Person", "%d People", people_count) %
-                    people_count)
+                    # translators: leave all/any {...} untranslated
+                    ngettext("{number_of} Person",
+                             "{number_of} People", people_count
+                            ).format(number_of=people_count) )
         return dbase
 
     def apply_proxy(self, proxy_name, dbase, progress=None):

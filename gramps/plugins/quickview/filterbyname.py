@@ -38,6 +38,7 @@ import posixpath
 from collections import defaultdict
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 
 fname_map = {'all': _('Filtering_on|all'),
              'Inverse Person': _('Filtering_on|Inverse Person'),
@@ -392,9 +393,10 @@ def run(database, document, filter_name, *args, **kwargs):
 
     else:
         raise AttributeError("invalid filter name: '%s'" % filter_name)
-    sdoc.paragraph(glocale.translation.ngettext("Filter matched %d record."
-                   ,
-                   "Filter matched %d records.", matches) % matches)
+    # translators: leave all/any {...} untranslated
+    sdoc.paragraph(ngettext("Filter matched {number_of} record.",
+                            "Filter matched {number_of} records.", matches
+                           ).format(number_of=matches) )
     sdoc.paragraph("")
     document.has_data = matches > 0
     if matches > 0:

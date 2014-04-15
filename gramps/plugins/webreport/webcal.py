@@ -36,8 +36,6 @@ Web Calendar generator.
 from functools import partial
 import os, codecs, shutil, re, sys
 import datetime, calendar
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 # Set up logging
@@ -48,6 +46,9 @@ log = logging.getLogger(".WebPage")
 #------------------------------------------------------------------------
 # GRAMPS module
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.lib import Date, Name, NameType, Person
 from gramps.gen.lib.date import Today
 from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE, USER_HOME
@@ -1716,12 +1717,11 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                 txt_str = _('%(couple)s, <em>wedding</em>') % {
                             'couple' : text}
             else: 
-                txt_str = (glocale.translation.ngettext(
-                        '%(couple)s, <em>%(years)d'
-                        '</em> year anniversary',
-                        '%(couple)s, <em>%(years)d'
-                        '</em> year anniversary', nyears)
-                           % {'couple' : text, 'years'  : nyears})
+                years_str = '<em>' + nyears + '</em>'
+                # translators: leave all/any {...} untranslated
+                txt_str = ngettext("{couple}, {years} year anniversary",
+                                   "{couple}, {years} year anniversary",
+                                   nyears).format(couple=text, years=years_str)
             txt_str = Html('span', txt_str, class_ = "yearsmarried")
 
         day_list.append((nyears, date, txt_str, event))

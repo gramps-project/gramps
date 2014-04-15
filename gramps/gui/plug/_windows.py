@@ -57,11 +57,12 @@ from gi.repository import GObject
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from ..managedwindow import ManagedWindow
 from gramps.gen.errors import UnavailableError, WindowActiveError
 from gramps.gen.plug import PluginRegister, PTYPE_STR, load_addon_file
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from ..utils import open_file_with_default_application
 from ..pluginmanager import GuiPluginManager
 from . import tool
@@ -1203,9 +1204,10 @@ class UpdateAddons(ManagedWindow):
             longop.end()
         if count:
             OkDialog(_("Done downloading and installing addons"),
-                     "%s %s" % (glocale.translation.ngettext("%d addon was installed.",
-                                         "%d addons were installed.",
-                                         count) % count,
+                     # translators: leave all/any {...} untranslated
+                     "%s %s" % (ngettext("{number_of} addon was installed.",
+                                         "{number_of} addons were installed.",
+                                         count).format(number_of=count),
                                 _("You need to restart Gramps to see new views.")),
                      self.window)
         else:

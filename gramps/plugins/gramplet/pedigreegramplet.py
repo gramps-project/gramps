@@ -33,9 +33,10 @@ import cgi
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
+from gramps.gen.plug import Gramplet
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.lib import EventType
@@ -267,16 +268,22 @@ class PedigreeGramplet(Gramplet):
                 self.link(_("Generation %d") % g, 'PersonList', handles,
                           tooltip=_("Double-click to see people in generation %d") % g)
                 percent = glocale.format('%.2f', float(count)/2**(g-1) * 100) + percent_sign
-                self.append_text(glocale.translation.ngettext(
-                    " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n",
-                    " has %(count_person)d of %(max_count_person)d individuals (%(percent)s complete)\n",
-                    2**(g-1)) %  {'count_person': count, 'max_count_person': 2**(g-1), 'percent': percent})
+                self.append_text(
+                    # translators: leave all/any {...} untranslated
+                    ngettext(" has {count_person} of {max_count_person} "
+                                 "individuals ({percent} complete)\n",
+                             " has {count_person} of {max_count_person} "
+                                 "individuals ({percent} complete)\n", 2**(g-1)
+                            ).format(count_person=count,
+                                     max_count_person=2**(g-1),
+                                     percent=percent) )
         self.link(_("All generations"), 'PersonList', all,
                   tooltip=_("Double-click to see all generations"))
-        self.append_text(glocale.translation.ngettext(
-            " have %d individual\n",
-            " have %d individuals\n",
-            len(all)) % len(all))
+        self.append_text(
+            # translators: leave all/any {...} untranslated
+            ngettext(" have {number_of} individual\n",
+                     " have {number_of} individuals\n", len(all)
+                    ).format(number_of=len(all)) )
         # Set to a fixed font
         if self.box_mode == "UTF":
             start, end = self.gui.buffer.get_bounds()

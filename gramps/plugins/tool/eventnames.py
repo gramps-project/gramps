@@ -29,8 +29,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 
 #-------------------------------------------------------------------------
@@ -44,6 +42,9 @@ _ = glocale.translation.gettext
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.lib import EventRoleType
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.db import family_name
@@ -113,12 +114,14 @@ class EventNames(tool.BatchTool):
         self.db.request_rebuild()
 
         if self.change == True:
-            self.user.info(_('Modifications made'), 
-                     glocale.translation.ngettext("%s event description has been added", 
-                    "%s event descriptions have been added", counter) % counter)
+            # translators: leave all/any {...} untranslated
+            message = ngettext("{quantity} event description has been added", 
+                               "{quantity} event descriptions have been added",
+                               counter).format(quantity=counter)
+            self.user.info(_('Modifications made'), message)
         else:
             self.user.info(_('No modifications made'), 
-                    _("No event description has been added."))
+                           _("No event description has been added."))
 
 #-------------------------------------------------------------------------
 #

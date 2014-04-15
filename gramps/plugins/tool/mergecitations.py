@@ -47,6 +47,9 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gui.utils import ProgressMeter
@@ -55,9 +58,7 @@ from gramps.gui.dialog import OkDialog
 from gramps.gui.display import display_help
 from gramps.gen.datehandler import get_date
 from gramps.gui.managedwindow import ManagedWindow
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.merge import MergeCitationQuery
-_ = glocale.translation.sgettext
 
 from gramps.gui.glade import Glade
 from gramps.gen.db import DbTxn
@@ -227,10 +228,11 @@ class MergeCitations(tool.BatchTool,ManagedWindow):
         db.enable_signals()
         db.request_rebuild()
         self.progress.close()
-        OkDialog(
-            _("Number of merges done"),
-            glocale.translation.ngettext("%(num)d citation merged",
-            "%(num)d citations merged", num_merges) % {'num': num_merges})
+        OkDialog(_("Number of merges done"),
+                 # translators: leave all/any {...} untranslated
+                 ngettext("{number_of} citation merged",
+                          "{number_of} citations merged", num_merges
+                         ).format(number_of=num_merges) )
         self.close(obj)
 
 #------------------------------------------------------------------------

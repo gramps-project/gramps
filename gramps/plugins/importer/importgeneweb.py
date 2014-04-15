@@ -32,8 +32,6 @@ from __future__ import print_function
 import re
 import time
 import sys
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
@@ -48,6 +46,9 @@ LOG = logging.getLogger(".ImportGeneWeb")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.errors import GedcomError
 from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation, 
         Date, DateError, Event, EventRef, EventRoleType, EventType, 
@@ -190,7 +191,10 @@ class GeneWebParser(object):
                 self.errmsg(str(err))
                 
             t = time.time() - t
-            msg = glocale.translation.ngettext('Import Complete: %d second','Import Complete: %d seconds', t ) % t
+            # translators: leave all/any {...} untranslated
+            msg = ngettext('Import Complete: {number_of} second',
+                           'Import Complete: {number_of} seconds', t
+                          ).format(number_of=t)
     
         self.db.enable_signals()
         self.db.request_rebuild()

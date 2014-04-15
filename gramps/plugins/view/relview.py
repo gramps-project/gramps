@@ -32,7 +32,7 @@ from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-ngettext = glocale.translation.ngettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 import cgi
 
 #-------------------------------------------------------------------------
@@ -880,7 +880,10 @@ class RelationshipView(NavigationView):
             else:
                 count = 0
             if count > 1 :
-                childmsg = ngettext(" (%d sibling)", " (%d siblings)", count) % count
+                # translators: leave all/any {...} untranslated
+                childmsg = ngettext(" ({number_of} sibling)",
+                                    " ({number_of} siblings)", count
+                                   ).format(number_of=count)
             elif count == 1 :
                 gender = self.dbstate.db.get_person_from_handle(
                                         child_list[0]).gender
@@ -936,7 +939,10 @@ class RelationshipView(NavigationView):
                     else:
                         count = 0
                     if count > 1 :
-                        childmsg = ngettext(" (%d sibling)"," (%d siblings)", count) % count
+                        # translators: leave all/any {...} untranslated
+                        childmsg = ngettext(" ({number_of} sibling)",
+                                            " ({number_of} siblings)", count
+                                           ).format(number_of=count)
                     elif count == 1 :
                         gender = self.dbstate.db.get_person_from_handle(
                                                 child_list[0]).gender
@@ -1348,7 +1354,10 @@ class RelationshipView(NavigationView):
             else:
                 count = 0
             if count >= 1 :
-                childmsg = ngettext(" (%d child)"," (%d children)", count) % count
+                # translators: leave all/any {...} untranslated
+                childmsg = ngettext(" ({number_of} child)",
+                                    " ({number_of} children)", count
+                                   ).format(number_of=count)
             else :
                 childmsg = _(" (no children)")
             box = self.get_people_box(handle, post_msg=childmsg)
@@ -1395,7 +1404,10 @@ class RelationshipView(NavigationView):
                 else:
                     count = 0
                 if count >= 1 :
-                    childmsg = ngettext(" (%d child)"," (%d children)", count) % count
+                    # translators: leave all/any {...} untranslated
+                    childmsg = ngettext(" ({number_of} child)",
+                                        " ({number_of} children)", count
+                                       ).format(number_of=count)
                 else :
                     childmsg = _(" (no children)")
                 box = self.get_people_box(post_msg=childmsg)

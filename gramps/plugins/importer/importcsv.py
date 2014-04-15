@@ -50,6 +50,7 @@ LOG = logging.getLogger(".ImportCSV")
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.lib import ChildRef, Citation, Event, EventRef, EventType, Family, FamilyRelType, Name, NameType, Note, NoteType, Person, Place, Source, Surname, Tag
 from gramps.gen.db import DbTxn
 from gramps.gen.plug.utils import OpenFileOrStdin
@@ -340,8 +341,10 @@ class CSVParser(object):
             self.db.enable_signals()
             self.db.request_rebuild()
             tym = time.time() - tym
-            msg = glocale.translation.ngettext('Import Complete: %d second',
-                    'Import Complete: %d seconds', tym ) % tym
+            # translators: leave all/any {...} untranslated
+            msg = ngettext('Import Complete: {number_of} second',
+                           'Import Complete: {number_of} seconds', tym
+                          ).format(number_of=tym)
             LOG.debug(msg)
             LOG.debug("New Families: %d" % self.fam_count)
             LOG.debug("New Individuals: %d" % self.indi_count)

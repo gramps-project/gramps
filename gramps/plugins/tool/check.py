@@ -60,6 +60,9 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.lib import (Citation, Event, EventType, Family, MediaObject,
                             Name, Note, Person, Place, Repository, Source,
                             StyledText, Tag)
@@ -77,9 +80,6 @@ from gramps.gui.dialog import OkDialog, MissingMediaDialog
 from gramps.gen.display.name import displayer as _nd
 from gramps.gui.glade import Glade
 from gramps.gen.constfunc import UNITYPE, cuni, handle2internal
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-ngettext = glocale.translation.ngettext
 
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.
@@ -2103,10 +2103,11 @@ class CheckIntegrity(object):
         self.text = StringIO()
         if blink > 0:
             self.text.write(
-                ngettext("%(quantity)d broken child/family link was fixed\n",
-                         "%(quantity)d broken child-family links were fixed\n",
-                         blink) % {'quantity': blink}
-                 )
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} broken child/family link was fixed\n",
+                         "{quantity} broken child/family links were fixed\n",
+                         blink).format(quantity=blink)
+                )
             for (person_handle, family_handle) in self.broken_links:
                 person = self.db.get_person_from_handle(person_handle)
                 if person:
@@ -2126,9 +2127,10 @@ class CheckIntegrity(object):
 
         if plink > 0:
             self.text.write(
-                ngettext("%(quantity)d broken spouse/family link was fixed\n", 
-                         "%(quantity)d broken spouse/family links were fixed\n",
-                         plink) % {'quantity' : plink}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} broken spouse/family link was fixed\n",
+                         "{quantity} broken spouse/family links were fixed\n",
+                         plink).format(quantity=plink)
                 )
             for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
@@ -2149,9 +2151,12 @@ class CheckIntegrity(object):
 
         if slink > 0:
             self.text.write(
-                ngettext("%(quantity)d duplicate spouse/family link was found\n",
-                         "%(quantity)d duplicate spouse/family links were found\n",
-                         slink) % {'quantity': slink}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} duplicate "
+                             "spouse/family link was found\n",
+                         "{quantity} duplicate "
+                             "spouse/family links were found\n",
+                         slink).format(quantity=slink)
                 )
             for (person_handle, family_handle) in self.broken_parent_links:
                 person = self.db.get_person_from_handle(person_handle)
@@ -2183,143 +2188,195 @@ class CheckIntegrity(object):
 
         if rel:
             self.text.write(
-                ngettext("%d corrupted family relationship fixed\n", 
-                         "%d corrupted family relationship fixed\n",
-                         rel) % rel
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} corrupted family relationship fixed\n", 
+                         "{quantity} corrupted family relationships fixed\n",
+                         rel).format(quantity=rel)
                 )
 
         if person_references:
             self.text.write(
-                ngettext("%d person was referenced but not found\n", 
-                         "%d persons were referenced, but not found\n", 
-                         person_references) % person_references
+                # translators: leave all/any {...} untranslated
+                ngettext(
+                    "{quantity} person was referenced but not found\n", 
+                    "{quantity} persons were referenced, but not found\n", 
+                    person_references).format(quantity=person_references)
                 )
         
         if family_references:
             self.text.write(
-                ngettext("%d family was referenced but not found\n", 
-                         "%d families were referenced, but not found\n", 
-                         family_references) % family_references
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} family was "
+                             "referenced but not found\n", 
+                         "{quantity} families were "
+                             "referenced, but not found\n", 
+                         family_references).format(quantity=family_references)
                 )
         
         if invalid_dates:
-            self.text.write(ngettext("%d date was corrected\n", 
-                                     "%d dates were corrected\n", 
-                                     invalid_dates) % invalid_dates)
+            self.text.write(
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} date was corrected\n", 
+                         "{quantity} dates were corrected\n", 
+                         invalid_dates).format(quantity=invalid_dates)
+                )
         
         if repo_references:
             self.text.write(
-                ngettext("%(quantity)d repository was referenced but not found\n",
-                         "%(quantity)d repositories were referenced, but not found\n",
-                         repo_references) % {'quantity': repo_references})
+                # translators: leave all/any {...} untranslated
+                ngettext(
+                    "{quantity} repository was "
+                        "referenced but not found\n",
+                    "{quantity} repositories were "
+                        "referenced, but not found\n",
+                    repo_references).format(quantity=repo_references)
+                )
 
         if photos:
             self.text.write(
-                ngettext("%(quantity)d media object was referenced, but not found\n",
-                         "%(quantity)d media objects were referenced, but not found\n",
-                         photos) % {'quantity' :photos}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} media object was "
+                             "referenced but not found\n",
+                         "{quantity} media objects were "
+                             "referenced, but not found\n",
+                         photos).format(quantity=photos)
                 )
 
         if bad_photos:
             self.text.write(
-                ngettext("Reference to %(quantity)d missing media object was kept\n",
-                         "References to %(quantity)d media objects were kept\n",
-                        bad_photos) % {'quantity' :bad_photos}
+                # translators: leave all/any {...} untranslated
+                ngettext(
+                    "Reference to {quantity} missing media object was kept\n",
+                    "References to {quantity} media objects were kept\n",
+                    bad_photos).format(quantity=bad_photos)
                 )
 
         if replaced_photos:
             self.text.write(
-                ngettext("%(quantity)d missing media object was replaced\n",
-                         "%(quantity)d missing media objects were replaced\n",
-                         replaced_photos) % {'quantity': replaced_photos}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} missing media object was replaced\n",
+                         "{quantity} missing media objects were replaced\n",
+                         replaced_photos).format(quantity=replaced_photos)
                 )
 
         if removed_photos:
             self.text.write(
-                ngettext("%(quantity)d missing media object was removed\n",
-                         "%(quantity)d missing media objects were removed\n",
-                         removed_photos) % {'quantity' : removed_photos}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} missing media object was removed\n",
+                         "{quantity} missing media objects were removed\n",
+                         removed_photos).format(quantity=removed_photos)
                 )
 
         if event_invalid:
             self.text.write(
-                ngettext("%(quantity)d event was referenced but not found\n",
-                         "%(quantity)d events were referenced, but not found\n",
-                         event_invalid) % {'quantity': event_invalid}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} event was referenced but not found\n",
+                         "{quantity} events were referenced, but not found\n",
+                         event_invalid).format(quantity=event_invalid)
                 )
 
         if birth_invalid:
             self.text.write(
-                ngettext("%(quantity)d invalid birth event name was fixed\n",
-                         "%(quantity)d invalid birth event names were fixed\n",
-                         birth_invalid) % {'quantity' : birth_invalid}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} invalid birth event name was fixed\n",
+                         "{quantity} invalid birth event names were fixed\n",
+                         birth_invalid).format(quantity=birth_invalid)
                 )
 
         if death_invalid:
             self.text.write(
-                ngettext("%(quantity)d invalid death event name was fixed\n",
-                         "%(quantity)d invalid death event names were fixed\n",
-                         death_invalid) % {'quantity': death_invalid}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} invalid death event name was fixed\n",
+                         "{quantity} invalid death event names were fixed\n",
+                         death_invalid).format(quantity=death_invalid)
                 )
 
         if place_references:
             self.text.write(
-                ngettext("%(quantity)d place was referenced but not found\n",
-                         "%(quantity)d places were referenced, but not found\n",
-                         place_references) % {'quantity': place_references}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} place was referenced but not found\n",
+                         "{quantity} places were referenced, but not found\n",
+                         place_references).format(quantity=place_references)
                 )
 
         if citation_references:
             self.text.write(
-                ngettext("%(quantity)d citation was referenced but not found\n",
-                         "%(quantity)d citations were referenced, but not found\n",
-                         citation_references) % {'quantity': citation_references}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} citation was "
+                             "referenced but not found\n",
+                         "{quantity} citations were "
+                             "referenced, but not found\n",
+                         citation_references
+                        ).format(quantity=citation_references)
                 )
 
         if source_references:
             self.text.write(
-                ngettext("%(quantity)d source was referenced but not found\n",
-                         "%(quantity)d sources were referenced, but not found\n",
-                         source_references) % {'quantity': source_references}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} source was "
+                             "referenced but not found\n",
+                         "{quantity} sources were "
+                             "referenced, but not found\n",
+                         source_references).format(quantity=source_references)
                 )
 
         if media_references:
             self.text.write(
-                ngettext("%(quantity)d media object was referenced but not found\n",
-                         "%(quantity)d media objects were referenced but not found\n",
-                         media_references) % {'quantity': media_references}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} media object was "
+                             "referenced but not found\n",
+                         "{quantity} media objects were "
+                             "referenced, but not found\n",
+                         media_references).format(quantity=media_references)
                 )
 
         if note_references:
             self.text.write(
-                ngettext("%(quantity)d note object was referenced but not found\n",
-                         "%(quantity)d note objects were referenced but not found\n",
-                         note_references) % {'quantity': note_references})
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} note object was "
+                             "referenced but not found\n",
+                         "{quantity} note objects were "
+                             "referenced, but not found\n",
+                         note_references).format(quantity=note_references)
+                )
 
         if tag_references:
             self.text.write(
-                ngettext("%(quantity)d tag object was referenced but not found\n",
-                         "%(quantity)d tag objects were referenced but not found\n",
-                         tag_references) % {'quantity': tag_references})
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} tag object was "
+                             "referenced but not found\n",
+                         "{quantity} tag objects were "
+                             "referenced, but not found\n",
+                         tag_references).format(quantity=tag_references)
+                )
 
         if tag_references:
             self.text.write(
-                ngettext("%(quantity)d tag object was referenced but not found\n",
-                         "%(quantity)d tag objects were referenced but not found\n",
-                         tag_references) % {'quantity': tag_references})
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} tag object was "
+                             "referenced but not found\n",
+                         "{quantity} tag objects were "
+                             "referenced, but not found\n",
+                         tag_references).format(quantity=tag_references)
+                )
 
         if name_format:
             self.text.write(
-                ngettext("%(quantity)d invalid name format reference was removed\n",
-                         "%(quantity)d invalid name format references were removed\n",
-                         name_format) % {'quantity' : name_format}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} invalid name format "
+                             "reference was removed\n",
+                         "{quantity} invalid name format "
+                             "references were removed\n",
+                         name_format).format(quantity=name_format)
                 )
 
         if replaced_sourcerefs:
             self.text.write(
-                ngettext("%(quantity)d invalid source citation was fixed\n",
-                         "%(quantity)d invalid source citations were fixed\n",
-                         replaced_sourcerefs) % {'quantity' : replaced_sourcerefs}
+                # translators: leave all/any {...} untranslated
+                ngettext("{quantity} invalid source citation was fixed\n",
+                         "{quantity} invalid source citations were fixed\n",
+                         replaced_sourcerefs
+                        ).format(quantity=replaced_sourcerefs)
                 )
 
         if empty_objs > 0 :

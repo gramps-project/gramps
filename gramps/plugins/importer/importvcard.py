@@ -30,8 +30,6 @@
 import sys
 import re
 import time
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
@@ -46,6 +44,9 @@ LOG = logging.getLogger(".ImportVCard")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.errors import GrampsImportError
 from gramps.gen.lib import (Address, Date, DateError, Event, EventRef, 
         EventType, Name, NameType, Person, Surname, Url, UrlType)
@@ -227,8 +228,10 @@ class VCardParser(object):
         self.database.enable_signals()
         self.database.request_rebuild()
         tym = time.time() - tym
-        msg = glocale.translation.ngettext('Import Complete: %d second', 
-                       'Import Complete: %d seconds', tym ) % tym
+        # translators: leave all/any {...} untranslated
+        msg = ngettext('Import Complete: {number_of} second',
+                       'Import Complete: {number_of} seconds', tym
+                      ).format(number_of=tym)
         LOG.debug(msg)
 
     def _parse_vCard_file(self, filehandle):

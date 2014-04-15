@@ -101,6 +101,7 @@ class NumberOfAncestorsReport(Report):
         all_people = {}
         total_theoretical = 0
         thisgen[self.__person.get_handle()]=1
+        ngettext = self._locale.translation.ngettext # to see "nearby" comments
         
         self.doc.start_paragraph("NOA-Title")
         name = self._name_display.display(self.__person)
@@ -124,15 +125,13 @@ class NumberOfAncestorsReport(Report):
                 
                 # TC # English return something like:
                 # Generation 3 has 2 individuals. (50.00%)
-                text = self._locale.translation.ngettext(
-                    "Generation %(generation)d has %(count)d individual. "
-                        "%(percent)s",
-                    "Generation %(generation)d has %(count)d individuals. "
-                        "%(percent)s",
-                    thisgensize) % {
-                        'generation': gen,
-                        'count': thisgensize,
-                        'percent': percent}
+                # translators: leave all/any {...} untranslated
+                text = ngettext(
+                    "Generation {number} has {count} individual. {percent}",
+                    "Generation {number} has {count} individuals. {percent}",
+                    thisgensize).format(number=gen,
+                                        count=thisgensize,
+                                        percent=percent)
                             
                 self.doc.start_paragraph('NOA-Normal')
                 self.doc.write_text(text)

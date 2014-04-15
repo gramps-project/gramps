@@ -314,7 +314,7 @@ class Calendar(Report):
                                  db.get_number_of_people()) as step:
             people = self.filter.apply(self.database, people, step)
 
-        ngettext = self._locale.translation.ngettext
+        ngettext = self._locale.translation.ngettext # to see "nearby" comments
 
         with self._user.progress(_('Calendar Report'), 
                                  _('Reading database...'),
@@ -365,10 +365,11 @@ class Calendar(Report):
                             text = self._('%(person)s, birth') % {
                                                 'person' : short_name }
                         else:
-                            text = (ngettext('%(person)s, %(age)d',
-                                             '%(person)s, %(age)d', nyears)
-                                                  % {'person'   : short_name,
-                                                     'age'      : nyears })
+                            # translators: leave all/any {...} untranslated
+                            text = ngettext('{person}, {age}',
+                                            '{person}, {age}',
+                                            nyears).format(person=short_name,
+                                                           age=nyears)
                         self.add_day_item(text, month, day, marks=[mark])
                 if self.anniversaries:
                     family_list = person.get_family_handle_list()
@@ -426,11 +427,10 @@ class Calendar(Report):
                                                         'person' : short_name,
                                                         }
                                             else:
-                                                text = (ngettext("%(spouse)s and\n %(person)s, %(nyears)d", 
-                                                                 "%(spouse)s and\n %(person)s, %(nyears)d", nyears)
-                                                      % {'spouse' : spouse_name,
-                                                         'person' : short_name,
-                                                         'nyears' : nyears})
+                                                # translators: leave all/any {...} untranslated
+                                                text = ngettext("{spouse} and\n {person}, {nyears}", 
+                                                                "{spouse} and\n {person}, {nyears}",
+                                                                nyears).format(spouse=spouse_name, person=short_name, nyears=nyears)
 
                                             alive1 = probably_alive(person,
                                                         self.database,
