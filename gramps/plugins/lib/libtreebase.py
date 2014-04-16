@@ -711,7 +711,9 @@ class PageNumberBox(BoxBase):
     def __calc_position(self, page):
         """ calculate where I am to print on the page(s) """
         # translators: needed for Arabic, ignore otherwise
-        self.text = self._("(%d,%d)")
+        # make sure it's translated, so it can be used below, in "display"
+        ignore1 = _("(%(x)d,%(y)d)") % {'x':0, 'y':0}
+        self.text = "(%(x)d,%(y)d)"
 
         style_sheet = self.doc.get_style_sheet()
         style_name = style_sheet.get_draw_style(self.boxstr)
@@ -744,9 +746,10 @@ class PageNumberBox(BoxBase):
         then display the page number """
         if self.text == "":
             self.__calc_position(page)
+            self.text = self._(self.text)
             
         self.doc.draw_text(self.boxstr,
-                   self.text % (page.x_page_num+1,page.y_page_num+1),
+                   self.text % {'x':page.x_page_num+1, 'y':page.y_page_num+1},
                    self.x_cm, self.y_cm)
 
 class NoteType(object):
