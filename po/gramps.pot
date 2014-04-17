@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-17 16:30+0200\n"
+"POT-Creation-Date: 2014-04-17 16:36+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,579 +17,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-
-#: ../data/gramps.appdata.xml.in.h:1
-msgid ""
-"Gramps is a genealogy program that is both intuitive for hobbyists and "
-"feature-complete for professional genealogists."
-msgstr ""
-
-#: ../data/gramps.desktop.in.h:1 ../gramps/gui/glade/displaystate.glade:7
-msgid "Gramps"
-msgstr ""
-
-#: ../data/gramps.desktop.in.h:2
-msgid "Genealogy System"
-msgstr ""
-
-#: ../data/gramps.desktop.in.h:3
-msgid "Gramps Genealogy System"
-msgstr ""
-
-#: ../data/gramps.desktop.in.h:4
-msgid ""
-"Manage genealogical information, perform genealogical research and analysis"
-msgstr ""
-
-#: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
-msgid "Gramps database"
-msgstr ""
-
-#: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:3
-msgid "Gramps package"
-msgstr ""
-
-#: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:4
-msgid "Gramps XML database"
-msgstr ""
-
-#: ../data/gramps.keys.in.h:4 ../data/gramps.xml.in.h:2
-#: ../gramps/plugins/export/export.gpr.py:73
-#: ../gramps/plugins/importer/import.gpr.py:51
-msgid "GEDCOM"
-msgstr ""
-
-#: ../data/gramps.keys.in.h:5 ../gramps/plugins/export/export.gpr.py:95
-#: ../gramps/plugins/importer/import.gpr.py:70
-msgid "GeneWeb"
-msgstr ""
-
-#: ../data/gramps.xml.in.h:5
-msgid "GeneWeb source file"
-msgstr ""
-
-#: ../data/tips.xml.in.h:1
-msgid ""
-"<b>Working with Dates</b><br/>A range of dates can be given by using the "
-"format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also "
-"indicate the level of confidence in a date and even choose between seven "
-"different calendars. Try the button next to the date field in the Events "
-"Editor."
-msgstr ""
-
-#: ../data/tips.xml.in.h:2
-msgid ""
-"<b>Editing Objects</b><br/>In most cases double clicking on a name, source, "
-"place or media entry will bring up a window to allow you to edit the object. "
-"Note that the result can be dependent on context. For example, in the Family "
-"View clicking on a parent or child will bring up the Relationship Editor."
-msgstr ""
-
-#: ../data/tips.xml.in.h:3
-msgid ""
-"<b>Adding Images</b><br/>An image can be added to any gallery or the Media "
-"View by dragging and dropping it from a file manager or a web browser. "
-"Actually you can add any type of file like this, useful for scans of "
-"documents and other digital sources."
-msgstr ""
-
-#: ../data/tips.xml.in.h:4
-msgid ""
-"<b>Ordering Children in a Family</b><br/>The birth order of children in a "
-"family can be set by using drag and drop. This order is preserved even when "
-"they do not have birth dates."
-msgstr ""
-
-#: ../data/tips.xml.in.h:5
-msgid ""
-"<b>Talk to Relatives Before It Is Too Late</b><br/>Your oldest relatives can "
-"be your most important source of information. They usually know things about "
-"the family that haven't been written down. They might tell you nuggets about "
-"people that may one day lead to a new avenue of research. At the very least, "
-"you will get to hear some great stories. Don't forget to record the "
-"conversations!"
-msgstr ""
-
-#: ../data/tips.xml.in.h:6
-msgid ""
-"<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
-"based on many criteria. To define a new filter go to &quot;Edit &gt; Person "
-"Filter Editor&quot;. There you can name your filter and add and combine "
-"rules using the many preset rules. For example, you can define a filter to "
-"find all adopted people in the family tree. People without a birth date "
-"mentioned can also be filtered. To get the results save your filter and "
-"select it at the bottom of the Filter Sidebar, then click Apply. If the "
-"Filter Sidebar is not visible, select View &gt; Filter."
-msgstr ""
-
-#: ../data/tips.xml.in.h:7
-msgid ""
-"<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
-"'invert' option. For instance, by inverting the 'People with children' "
-"filter you can select all people without children."
-msgstr ""
-
-#: ../data/tips.xml.in.h:8
-msgid ""
-"<b>Locating People</b><br/>By default, each surname in the People View is "
-"listed only once. By clicking on the arrow to the left of a name, the list "
-"will expand to show all individuals with that last name. To locate any "
-"Family Name from a long list, select a Family Name (not a person) and start "
-"typing. The view will jump to the first Family Name matching the letters you "
-"enter."
-msgstr ""
-
-#: ../data/tips.xml.in.h:9
-msgid ""
-"<b>The Family View</b><br/>The Family View is used to display a typical "
-"family unit as two parents and their children."
-msgstr ""
-
-#: ../data/tips.xml.in.h:10
-msgid ""
-"<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
-"easy. In the Relationship view just click on anyone. In the Ancestry View "
-"doubleclick on the person or right click to select any of their spouses, "
-"siblings, children or parents."
-msgstr ""
-
-#: ../data/tips.xml.in.h:11
-msgid ""
-"<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and "
-"exploration &gt; Compare Individual Events...&quot; you can compare the data "
-"of individuals in your database. This is useful, say, if you wish to list "
-"the birth dates of everyone in your database. You can use a custom filter to "
-"narrow the results."
-msgstr ""
-
-#: ../data/tips.xml.in.h:12
-msgid ""
-"<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
-"you to undertake operations such as checking the database for errors and "
-"consistency. There are research and analysis tools such as event comparison, "
-"finding duplicate people, interactive descendant browser, and many others. "
-"All tools can be accessed through the &quot;Tools&quot; menu."
-msgstr ""
-
-#: ../data/tips.xml.in.h:13
-msgid ""
-"<b>Calculating Relationships</b><br/>To check if two people in the database "
-"are related (by blood, not marriage) try the tool under &quot;Tools &gt; "
-"Utilities &gt; Relationship Calculator...&quot;. The exact relationship as "
-"well as all common ancestors are reported."
-msgstr ""
-
-#: ../data/tips.xml.in.h:14
-msgid ""
-"<b>SoundEx can help with family research</b><br/>SoundEx solves a long "
-"standing problem in genealogy, how to handle spelling variations. The "
-"SoundEx utility takes a surname and generates a simplified form that is "
-"equivalent for similar sounding names. Knowing the SoundEx Code for a "
-"surname is very helpful for researching Census Data files (microfiche) at a "
-"library or other research facility. To get the SoundEx codes for surnames in "
-"your database, go to &quot;Tools &gt; Utilities &gt; Generate SoundEx "
-"Codes...&quot;."
-msgstr ""
-
-#: ../data/tips.xml.in.h:15
-msgid ""
-"<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; "
-"lets you modify a number of settings, such as the path to your media files, "
-"and allows you to adjust many aspects of the Gramps presentation to your "
-"needs. Each separate view can also be configured under &quot;View &gt; "
-"Configure View...&quot;"
-msgstr ""
-
-#: ../data/tips.xml.in.h:16
-msgid ""
-"<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The "
-"Graphical Reports and Graphs can present complex relationships easily and "
-"the Text Reports are particularly useful if you want to send the results of "
-"your family tree to members of the family via email. If you're ready to make "
-"a website for your family tree then there's a report for that as well."
-msgstr ""
-
-#: ../data/tips.xml.in.h:17
-msgid ""
-"<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
-"is to enter all the members of the family into the database using the Person "
-"View (use &quot;Edit &gt; Add...&quot; or click on the Add a new person "
-"button from the People View). Then go to the Relationship View and create "
-"relationships between people."
-msgstr ""
-
-#: ../data/tips.xml.in.h:18
-msgid ""
-"<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
-"over a button and a tooltip will appear."
-msgstr ""
-
-#: ../data/tips.xml.in.h:19
-msgid ""
-"<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
-"occurred, Gramps allows you to enter a wide range of date formats based on a "
-"guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry "
-"for a birth date in Gramps. Click the Date button next to the date field and "
-"see the Gramps Manual to learn more."
-msgstr ""
-
-#: ../data/tips.xml.in.h:20
-msgid ""
-"<b>Duplicate Entries</b><br/>&quot;Tools &gt; Database Processing &gt; Find "
-"Possible Duplicate People...&quot; allows you to locate (and merge) entries "
-"of the same person entered more than once in the database."
-msgstr ""
-
-#: ../data/tips.xml.in.h:21
-msgid ""
-"<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge..."
-"&quot; allows you to combine separately listed people into one. Select the "
-"second entry by holding the Control key as you click. This is very useful "
-"for combining two databases with overlapping people, or combining "
-"erroneously entered differing names for one individual. This also works for "
-"the Places, Sources and Repositories views."
-msgstr ""
-
-#: ../data/tips.xml.in.h:22
-msgid ""
-"<b>Organising the Views</b><br/>Many of the views can present your data as "
-"either a hierarchical tree or as a simple list. Each view can also be "
-"configured to the way you like it. Have a look to the right of the top "
-"toolbar or under the &quot;View&quot; menu."
-msgstr ""
-
-#: ../data/tips.xml.in.h:23
-msgid ""
-"<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
-"active objects such as People, Events and . You can move forward and "
-"backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go "
-"&gt; Back&quot; or the arrow buttons."
-msgstr ""
-
-#: ../data/tips.xml.in.h:24
-msgid ""
-"<b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the "
-"keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. "
-"If one exists for a function it is displayed on the right side of the menu."
-msgstr ""
-
-#: ../data/tips.xml.in.h:25
-msgid ""
-"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, &quot;"
-"Help &gt; User Manual&quot;. The developers have worked hard to make most "
-"operations intuitive but the manual is full of information that will make "
-"your time spent on genealogy more productive."
-msgstr ""
-
-#: ../data/tips.xml.in.h:26
-msgid ""
-"<b>Adding Children</b><br/>To add children in Gramps there are two options. "
-"You can find one of their parents in the Families View and open the family. "
-"Then choose to create a new person or add an existing person. You can also "
-"add children (or siblings) from inside the Family Editor."
-msgstr ""
-
-#: ../data/tips.xml.in.h:27
-msgid ""
-"<b>Editing the Parent-Child Relationship</b><br/> You can edit the "
-"relationship of a child to its parents by double clicking the child in the "
-"Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
-"Sponsored, Stepchild and Unknown."
-msgstr ""
-
-#: ../data/tips.xml.in.h:28
-msgid ""
-"<b>Show All Checkbutton</b><br/>When adding an existing person as a spouse, "
-"the list of people shown is filtered to display only people who could "
-"realistically fit the role (based on dates in the database). In case Gramps "
-"is wrong in making this choice, you can override the filter by checking the "
-"Show All checkbutton."
-msgstr ""
-
-#: ../data/tips.xml.in.h:29
-msgid ""
-"<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
-"Gramps. Requesting an enhancement can be done either through the gramps-"
-"users or gramps-devel mailing lists, or by going to http://bugs.gramps-"
-"project.org and creating a Feature Request. Filing a Feature Request is "
-"preferred but it can be good to discuss your ideas on the email lists."
-msgstr ""
-
-#: ../data/tips.xml.in.h:30
-msgid ""
-"<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
-"Check out the gramps-users email list. Many helpful people are on the list, "
-"so you're likely to get an answer quickly. If you have questions related to "
-"the development of Gramps, try the gramps-devel list. You can see the lists "
-"by selecting &quot;Help &gt; Gramps Mailing Lists&quot;."
-msgstr ""
-
-#: ../data/tips.xml.in.h:31
-msgid ""
-"<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
-"programs? Not a problem! A project as large as Gramps requires people with a "
-"wide variety of skills. Contributions can be anything from writing "
-"documentation to testing development versions and helping with the web site. "
-"Start by subscribing to the Gramps developers mailing list, gramps-devel, "
-"and introducing yourself. Subscription information can be found at &quot;"
-"Help &gt; Gramps Mailing Lists&quot;"
-msgstr ""
-
-#: ../data/tips.xml.in.h:32
-msgid ""
-"<b>So What's in a Name?</b><br/>The name Gramps was suggested to the "
-"original developer, Don Allingham, by his father. It stands for "
-"<i>Genealogical Research and Analysis Management Program System</i>. It is a "
-"full-featured genealogy program letting you store, edit, and research "
-"genealogical data. The Gramps database back end is so robust that some users "
-"are managing genealogies containing hundreds of thousands of people."
-msgstr ""
-
-#: ../data/tips.xml.in.h:33
-msgid ""
-"<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
-"to store the names of frequently used individuals. Selecting a bookmark will "
-"make that person the Active Person. To bookmark someone make them the Active "
-"Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. "
-"You can also bookmark most of the other objects."
-msgstr ""
-
-#: ../data/tips.xml.in.h:34
-msgid ""
-"<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
-"invalid format. Incorrect date formats will show up in Gramps with a reddish "
-"background. You can fix the date using the Date Selection dialog which can "
-"be opened by clicking on the date button. The format of the date is set "
-"under &quot;Edit &gt; Preferences &gt; Display&quot;."
-msgstr ""
-
-#: ../data/tips.xml.in.h:35
-msgid ""
-"<b>Listing Events</b><br/>Events are added using the editor opened with "
-"&quot;Person &gt; Edit Person &gt; Events&quot;. There is a long list of "
-"preset event types. You can add your own event types by typing in the text "
-"field, they will be added to the available events, but not translated."
-msgstr ""
-
-#: ../data/tips.xml.in.h:36
-msgid ""
-"<b>Managing Names</b><br/>It is easy to manage people with several names in "
-"Gramps. In the Person Editor select the Names tab. You can add names of "
-"different types and set the prefered name by dragging it to the Prefered "
-"Name section."
-msgstr ""
-
-#: ../data/tips.xml.in.h:37
-msgid ""
-"<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree "
-"chart. Hold the mouse over an individual to see more information about them "
-"or right click on an individual to access other family members and settings. "
-"Play with the settings to see the different options."
-msgstr ""
-
-#: ../data/tips.xml.in.h:38
-msgid ""
-"<b>Managing Sources</b><br/>The Sources View shows a list of all sources in "
-"a single window. From here you can edit your sources, merge duplicates and "
-"see which individuals reference each source. You can use filters to group "
-"your sources."
-msgstr ""
-
-#: ../data/tips.xml.in.h:39
-msgid ""
-"<b>Managing Places</b><br/>The Places View shows a list of all places in the "
-"database. The list can be sorted by a number of different criteria, such as "
-"City, County or State."
-msgstr ""
-
-#: ../data/tips.xml.in.h:40
-msgid ""
-"<b>Media View</b><br/>The Media View shows a list of all media entered in "
-"the database. These can be graphic images, videos, sound clips, "
-"spreadsheets, documents, and more."
-msgstr ""
-
-#: ../data/tips.xml.in.h:41
-msgid ""
-"<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
-"View. In addition to the many preset filters, Custom Filters can be created "
-"limited only by your imagination. Custom filters are created from &quot;Edit "
-"&gt; Person Filter Editor&quot;."
-msgstr ""
-
-#: ../data/tips.xml.in.h:42
-msgid ""
-"<b>The GEDCOM File Format</b><br/>Gramps allows you to import from, and "
-"export to, the GEDCOM format. There is extensive support for the industry "
-"standard GEDCOM version 5.5, so you can exchange Gramps information to and "
-"from users of most other genealogy programs. Filters exist that make "
-"importing and exporting GEDCOM files trivial."
-msgstr ""
-
-#: ../data/tips.xml.in.h:43
-msgid ""
-"<b>The Gramps XML Package</b><br/>You can export your Family Tree as a "
-"Gramps XML Package. This is a compressed file containing your family tree "
-"data and all the media files connected to the database (images for example). "
-"This file is completely portable so is useful for backups or sharing with "
-"other Gramps users. This format has the key advantage over GEDCOM that no "
-"information is ever lost when exporting and importing."
-msgstr ""
-
-#: ../data/tips.xml.in.h:44
-msgid ""
-"<b>Web Family Tree Format</b><br/>Gramps can export data to the Web Family "
-"Tree (WFT) format. This format allows a family tree to be displayed online "
-"using a single file, instead of many html files."
-msgstr ""
-
-#: ../data/tips.xml.in.h:45
-msgid ""
-"<b>Making a Genealogy Website</b><br/>You can easily export your family tree "
-"to a web page. Select the entire database, family lines or selected "
-"individuals to a collection of web pages ready for upload to the World Wide "
-"Web. The Gramps project provides free hosting of websites made with Gramps."
-msgstr ""
-
-#: ../data/tips.xml.in.h:46
-msgid ""
-"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
-"is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
-msgstr ""
-
-#: ../data/tips.xml.in.h:47
-msgid ""
-"<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
-"project.org/"
-msgstr ""
-
-#: ../data/tips.xml.in.h:48
-msgid ""
-"<b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information "
-"secure by allowing you to mark information as private. Data marked as "
-"private can be excluded from reports and data exports. Look for the padlock "
-"which toggles records between private and public."
-msgstr ""
-
-#: ../data/tips.xml.in.h:49
-msgid ""
-"<b>Keeping Good Records</b><br/>Be accurate when recording genealogical "
-"information. Don't make assumptions while recording primary information; "
-"write it exactly as you see it. Use bracketed comments to indicate your "
-"additions, deletions or comments. Use of the Latin 'sic' is recommended to "
-"confirm the accurate transcription of what appears to be an error in a "
-"source."
-msgstr ""
-
-#: ../data/tips.xml.in.h:50
-msgid ""
-"<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
-"Gramps with the &quot;Addon&quot; system. See them under &quot;Help &gt; "
-"Extra Reports/Tools&quot;. This is the best way for advanced users to "
-"experiment and create new functionality."
-msgstr ""
-
-#: ../data/tips.xml.in.h:51
-msgid ""
-"<b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; "
-"Book Report...&quot;, allows you to collect a variety of reports into a "
-"single document. This single report is easier to distribute than multiple "
-"reports, especially when printed."
-msgstr ""
-
-#: ../data/tips.xml.in.h:52
-msgid ""
-"<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
-"version of Gramps is released? Join the Gramps-announce mailing list at "
-"&quot;Help &gt; Gramps Mailing Lists&quot;"
-msgstr ""
-
-#: ../data/tips.xml.in.h:53
-msgid ""
-"<b>Record Your Sources</b><br/>Information collected about your family is "
-"only as good as the source it came from. Take the time and trouble to record "
-"all the details of where the information came from. Whenever possible get a "
-"copy of original documents."
-msgstr ""
-
-#: ../data/tips.xml.in.h:54
-msgid ""
-"<b>Directing Your Research</b><br/>Go from what you know to what you do not. "
-"Always record everything that is known before making conjectures. Often the "
-"facts at hand suggest plenty of direction for more research. Don't waste "
-"time looking through thousands of records hoping for a trail when you have "
-"other unexplored leads."
-msgstr ""
-
-#: ../data/tips.xml.in.h:55
-msgid ""
-"<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only about "
-"dates and names. It is about people. Be descriptive. Include why things "
-"happened, and how descendants might have been shaped by the events they went "
-"through. Narratives go a long way in making your family history come alive."
-msgstr ""
-
-#: ../data/tips.xml.in.h:56
-msgid ""
-"<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
-"than 20 languages. If Gramps supports your language and it is not being "
-"displayed, set the default language in your operating system and restart "
-"Gramps."
-msgstr ""
-
-#: ../data/tips.xml.in.h:57
-msgid ""
-"<b>Gramps Translators</b><br/>Gramps has been designed so that new "
-"translations can easily be added with little development effort. If you are "
-"interested in participating please email gramps-devel@lists.sf.net"
-msgstr ""
-
-#: ../data/tips.xml.in.h:58
-msgid ""
-"<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
-"Unicode support. Characters for all languages are properly displayed."
-msgstr ""
-
-#: ../data/tips.xml.in.h:59
-msgid ""
-"<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
-"Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The "
-"home person is the person who is selected when the database is opened or "
-"when the home button is pressed."
-msgstr ""
-
-#: ../data/tips.xml.in.h:60
-msgid ""
-"<b>The Gramps Code</b><br/>Gramps is written in a computer language called "
-"Python using the GTK and GNOME libraries for the graphical interface. Gramps "
-"is supported on any computer system where these programs have been ported. "
-"Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
-msgstr ""
-
-#: ../data/tips.xml.in.h:61
-msgid ""
-"<b>Open Source Software</b><br/>The Free/Libre and Open Source Software "
-"(FLOSS) development model means Gramps can be extended by any programmer "
-"since all of the source code is freely available under its license. So it's "
-"not just about free beer, it's also about freedom to study and change the "
-"tool. For more about Open Source software lookup the Free Software "
-"Foundation and the Open Source Initiative."
-msgstr ""
-
-#: ../data/tips.xml.in.h:62
-msgid ""
-"<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
-"with others. Gramps is freely distributable under the GNU General Public "
-"License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the "
-"rights and restrictions of this license."
-msgstr ""
-
-#: ../data/tips.xml.in.h:63
-msgid ""
-"<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with "
-"whichever desktop environment you prefer. As long as the required GTK "
-"libraries are installed it will run fine."
-msgstr ""
 
 #: ../gramps/cli/arghandler.py:225
 #, python-format
@@ -628,12 +55,12 @@ msgstr ""
 msgid "OK to overwrite?"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:294 ../gramps/cli/clidbman.py:219
-msgid "no"
-msgstr ""
-
 #: ../gramps/cli/arghandler.py:294 ../gramps/cli/clidbman.py:217
 msgid "yes"
+msgstr ""
+
+#: ../gramps/cli/arghandler.py:294 ../gramps/cli/clidbman.py:219
+msgid "no"
 msgstr ""
 
 #: ../gramps/cli/arghandler.py:296
@@ -956,8 +383,8 @@ msgstr ""
 #: ../gramps/cli/clidbman.py:223
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:93
-#: ../gramps/gui/glade/editmedia.glade:300
-#: ../gramps/gui/glade/editmediaref.glade:791
+#: ../gramps/gui/glade/editmedia.glade.h:13
+#: ../gramps/gui/glade/editmediaref.glade.h:28
 #: ../gramps/plugins/view/mediaview.py:107
 msgid "Path"
 msgstr ""
@@ -1791,8 +1218,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/media/_hascitation.py:49
 #: ../gramps/gen/filters/rules/person/_hascitation.py:49
 #: ../gramps/gen/filters/rules/place/_hascitation.py:50
-#: ../gramps/gui/glade/mergecitation.glade:226
-#: ../gramps/gui/glade/mergecitation.glade:245
+#: ../gramps/gui/glade/mergecitation.glade.h:5
 msgid "Volume/Page:"
 msgstr ""
 
@@ -1811,18 +1237,14 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:50
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 #: ../gramps/gui/editors/filtereditor.py:585
-#: ../gramps/gui/glade/mergecitation.glade:267
-#: ../gramps/gui/glade/mergecitation.glade:286
-#: ../gramps/gui/glade/mergeevent.glade:255
-#: ../gramps/gui/glade/mergeevent.glade:274
-#: ../gramps/gui/glade/mergemedia.glade:296
-#: ../gramps/gui/glade/mergemedia.glade:315
+#: ../gramps/gui/glade/mergecitation.glade.h:6
+#: ../gramps/gui/glade/mergeevent.glade.h:6
+#: ../gramps/gui/glade/mergemedia.glade.h:7
 msgid "Date:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/_hascitationbase.py:53
-#: ../gramps/gui/glade/mergecitation.glade:308
-#: ../gramps/gui/glade/mergecitation.glade:327
+#: ../gramps/gui/glade/mergecitation.glade.h:7
 msgid "Confidence:"
 msgstr ""
 
@@ -1867,8 +1289,8 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
-#: ../gramps/gui/editors/filtereditor.py:520
-msgid "Number must be:"
+#: ../gramps/gui/editors/filtereditor.py:515
+msgid "Number of instances:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/_hasgallerybase.py:47
@@ -1878,8 +1300,8 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
-#: ../gramps/gui/editors/filtereditor.py:515
-msgid "Number of instances:"
+#: ../gramps/gui/editors/filtereditor.py:520
+msgid "Number must be:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/_hasgrampsid.py:47
@@ -1909,8 +1331,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:44
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:45
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:44
-#: ../gramps/gui/glade/mergenote.glade:214
-#: ../gramps/gui/glade/mergenote.glade:233
+#: ../gramps/gui/glade/mergenote.glade.h:5
 msgid "Text:"
 msgstr ""
 
@@ -1973,7 +1394,7 @@ msgstr ""
 msgid "Miscellaneous filters"
 msgstr ""
 
-#: ../gramps/gen/filters/rules/_rule.py:58 ../gramps/gui/glade/rule.glade:928
+#: ../gramps/gen/filters/rules/_rule.py:58 ../gramps/gui/glade/rule.glade.h:26
 #: ../gramps/plugins/view/geoclose.py:515
 #: ../gramps/plugins/view/geofamclose.py:659
 #: ../gramps/plugins/view/geofamily.py:443
@@ -2098,40 +1519,30 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:50
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
-#: ../gramps/gui/glade/mergedata.glade:866
-#: ../gramps/gui/glade/mergedata.glade:887
-#: ../gramps/gui/glade/mergemedia.glade:214
-#: ../gramps/gui/glade/mergemedia.glade:233
-#: ../gramps/gui/glade/mergeplace.glade:214
-#: ../gramps/gui/glade/mergeplace.glade:233
-#: ../gramps/gui/glade/mergesource.glade:214
-#: ../gramps/gui/glade/mergesource.glade:233
+#: ../gramps/gui/glade/mergedata.glade.h:11
+#: ../gramps/gui/glade/mergemedia.glade.h:5
+#: ../gramps/gui/glade/mergeplace.glade.h:5
+#: ../gramps/gui/glade/mergesource.glade.h:5
 msgid "Title:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:51
-#: ../gramps/gui/glade/editcitation.glade:383
-#: ../gramps/gui/glade/mergedata.glade:909
-#: ../gramps/gui/glade/mergedata.glade:930
-#: ../gramps/gui/glade/mergesource.glade:255
-#: ../gramps/gui/glade/mergesource.glade:274
-#: ../gramps/gui/glade/plugins.glade:185
+#: ../gramps/gui/glade/editcitation.glade.h:18
+#: ../gramps/gui/glade/mergedata.glade.h:12
+#: ../gramps/gui/glade/mergesource.glade.h:6
+#: ../gramps/gui/glade/plugins.glade.h:5
 msgid "Author:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:52
-#: ../gramps/gui/glade/mergedata.glade:952
-#: ../gramps/gui/glade/mergedata.glade:973
-#: ../gramps/gui/glade/mergesource.glade:296
-#: ../gramps/gui/glade/mergesource.glade:315
+#: ../gramps/gui/glade/mergedata.glade.h:13
+#: ../gramps/gui/glade/mergesource.glade.h:7
 msgid "Abbreviation:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hassource.py:53
-#: ../gramps/gui/glade/mergedata.glade:995
-#: ../gramps/gui/glade/mergedata.glade:1016
-#: ../gramps/gui/glade/mergesource.glade:337
-#: ../gramps/gui/glade/mergesource.glade:356
+#: ../gramps/gui/glade/mergedata.glade.h:14
+#: ../gramps/gui/glade/mergesource.glade.h:8
 msgid "Publication:"
 msgstr ""
 
@@ -2299,8 +1710,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasevent.py:52
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:51
 #: ../gramps/gui/editors/filtereditor.py:512
-#: ../gramps/gui/glade/mergeevent.glade:296
-#: ../gramps/gui/glade/mergeevent.glade:315
+#: ../gramps/gui/glade/mergeevent.glade.h:7
 msgid "Place:"
 msgstr ""
 
@@ -2310,8 +1720,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:49
 #: ../gramps/gen/filters/rules/person/_hasevent.py:53
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:52
-#: ../gramps/gui/glade/mergeevent.glade:337
-#: ../gramps/gui/glade/mergeevent.glade:356
+#: ../gramps/gui/glade/mergeevent.glade.h:8
 msgid "Description:"
 msgstr ""
 
@@ -2408,15 +1817,15 @@ msgstr ""
 msgid "Matches events matched by the specified filter name"
 msgstr ""
 
-#: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
-#: ../gramps/gui/editors/filtereditor.py:573
-msgid "Include Family events:"
-msgstr ""
-
 #. filters of another namespace, name may be same as caller!
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
 #: ../gramps/gui/editors/filtereditor.py:533
 msgid "Person filter name:"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
+#: ../gramps/gui/editors/filtereditor.py:573
+msgid "Include Family events:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:53
@@ -2856,19 +2265,15 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:49
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:49
-#: ../gramps/gui/glade/editmediaref.glade:632
-#: ../gramps/gui/glade/mergeevent.glade:214
-#: ../gramps/gui/glade/mergeevent.glade:233
-#: ../gramps/gui/glade/mergenote.glade:255
-#: ../gramps/gui/glade/mergenote.glade:274
-#: ../gramps/gui/glade/mergerepository.glade:255
-#: ../gramps/gui/glade/mergerepository.glade:274
+#: ../gramps/gui/glade/editmediaref.glade.h:22
+#: ../gramps/gui/glade/mergeevent.glade.h:5
+#: ../gramps/gui/glade/mergenote.glade.h:6
+#: ../gramps/gui/glade/mergerepository.glade.h:6
 msgid "Type:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:50
-#: ../gramps/gui/glade/mergemedia.glade:255
-#: ../gramps/gui/glade/mergemedia.glade:274 ../gramps/gui/viewmanager.py:1235
+#: ../gramps/gui/glade/mergemedia.glade.h:6 ../gramps/gui/viewmanager.py:1235
 msgid "Path:"
 msgstr ""
 
@@ -3970,13 +3375,10 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:50
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:48
-#: ../gramps/gui/glade/editfamily.glade:114
-#: ../gramps/gui/glade/editfamily.glade:379
-#: ../gramps/gui/glade/mergeperson.glade:225
-#: ../gramps/gui/glade/mergeperson.glade:244
-#: ../gramps/gui/glade/mergerepository.glade:214
-#: ../gramps/gui/glade/mergerepository.glade:233
-#: ../gramps/plugins/tool/soundgen.glade:95
+#: ../gramps/gui/glade/editfamily.glade.h:3
+#: ../gramps/gui/glade/mergeperson.glade.h:5
+#: ../gramps/gui/glade/mergerepository.glade.h:5
+#: ../gramps/plugins/tool/soundgen.glade.h:2
 msgid "Name:"
 msgstr ""
 
@@ -4045,14 +3447,12 @@ msgid "Matches places who have a particular source"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:51
-#: ../gramps/gui/glade/mergeplace.glade:255
-#: ../gramps/gui/glade/mergeplace.glade:274
+#: ../gramps/gui/glade/mergeplace.glade.h:6
 msgid "Latitude:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:51
-#: ../gramps/gui/glade/mergeplace.glade:296
-#: ../gramps/gui/glade/mergeplace.glade:315
+#: ../gramps/gui/glade/mergeplace.glade.h:7
 msgid "Longitude:"
 msgstr ""
 
@@ -4615,24 +4015,24 @@ msgid "calendar|Swedish"
 msgstr ""
 
 #: ../gramps/gen/lib/date.py:1792
-msgid "calculated"
-msgstr ""
-
-#: ../gramps/gen/lib/date.py:1792
 msgid "estimated"
 msgstr ""
 
+#: ../gramps/gen/lib/date.py:1792
+msgid "calculated"
+msgstr ""
+
+#. ui_mods taken from date.py def lookup_modifier(self, modifier):
 #: ../gramps/gen/lib/date.py:1806 ../gramps/plugins/lib/libsubstkeyword.py:278
-msgid "about"
+msgid "before"
 msgstr ""
 
 #: ../gramps/gen/lib/date.py:1806 ../gramps/plugins/lib/libsubstkeyword.py:278
 msgid "after"
 msgstr ""
 
-#. ui_mods taken from date.py def lookup_modifier(self, modifier):
 #: ../gramps/gen/lib/date.py:1806 ../gramps/plugins/lib/libsubstkeyword.py:278
-msgid "before"
+msgid "about"
 msgstr ""
 
 #: ../gramps/gen/lib/date.py:1807
@@ -4695,7 +4095,7 @@ msgstr ""
 #: ../gramps/gui/editors/editfamily.py:496
 #: ../gramps/gui/editors/editlink.py:83
 #: ../gramps/gui/editors/filtereditor.py:291
-#: ../gramps/gui/glade/editldsord.glade:267 ../gramps/gui/grampsgui.py:155
+#: ../gramps/gui/glade/editldsord.glade.h:9 ../gramps/gui/grampsgui.py:155
 #: ../gramps/plugins/export/exportcsv.py:531
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:110
 #: ../gramps/plugins/importer/importcsv.py:226
@@ -4738,8 +4138,7 @@ msgstr ""
 msgid "Residence"
 msgstr ""
 
-#: ../gramps/gen/lib/eventtype.py:160 ../gramps/gui/glade/mergedata.glade:555
-#: ../gramps/gui/glade/mergedata.glade:659
+#: ../gramps/gen/lib/eventtype.py:160 ../gramps/gui/glade/mergedata.glade.h:5
 msgid "Other"
 msgstr ""
 
@@ -5146,7 +4545,7 @@ msgstr ""
 #. ----------------------------------
 #: ../gramps/gen/lib/ldsord.py:106
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:117
-#: ../gramps/gui/glade/editchildref.glade:253
+#: ../gramps/gui/glade/editchildref.glade.h:8
 #: ../gramps/gui/merge/mergeperson.py:249
 #: ../gramps/plugins/export/exportcsv.py:531
 #: ../gramps/plugins/gramplet/children.py:85
@@ -5284,8 +4683,8 @@ msgstr ""
 #: ../gramps/gui/editors/editeventref.py:80
 #: ../gramps/gui/editors/editmediaref.py:97
 #: ../gramps/gui/editors/editreporef.py:74
-#: ../gramps/gui/glade/editmediaref.glade:432
-#: ../gramps/gui/glade/editname.glade:767
+#: ../gramps/gui/glade/editmediaref.glade.h:15
+#: ../gramps/gui/glade/editname.glade.h:35
 msgid "General"
 msgstr ""
 
@@ -5438,7 +4837,7 @@ msgstr ""
 msgid "Audio"
 msgstr ""
 
-#: ../gramps/gen/lib/srcmediatype.py:66 ../gramps/gui/glade/book.glade:132
+#: ../gramps/gen/lib/srcmediatype.py:66 ../gramps/gui/glade/book.glade.h:1
 #: ../gramps/gui/plug/report/_bookdialog.py:374
 #: ../gramps/gui/plug/report/_bookdialog.py:895
 #: ../gramps/gui/plug/report/_bookdialog.py:912
@@ -5525,7 +4924,7 @@ msgid "Superscript"
 msgstr ""
 
 #: ../gramps/gen/lib/styledtexttagtype.py:74
-#: ../gramps/gui/glade/editlink.glade:169
+#: ../gramps/gui/glade/editlink.glade.h:5
 #: ../gramps/gui/widgets/styledtextbuffer.py:566
 #: ../gramps/gui/widgets/styledtextbuffer.py:602
 #: ../gramps/gui/widgets/styledtexteditor.py:487
@@ -5691,7 +5090,7 @@ msgid "Relationships"
 msgstr ""
 
 #: ../gramps/gen/plug/_pluginreg.py:90 ../gramps/gen/plug/_pluginreg.py:399
-#: ../gramps/gui/glade/grampletpane.glade:156
+#: ../gramps/gui/glade/grampletpane.glade.h:9
 #: ../gramps/gui/widgets/grampletbar.py:610
 #: ../gramps/gui/widgets/grampletpane.py:235
 #: ../gramps/gui/widgets/grampletpane.py:961
@@ -5768,10 +5167,10 @@ msgstr ""
 #: ../gramps/gen/utils/docgen/odstab.py:502
 #: ../gramps/gen/utils/docgen/odstab.py:506
 #: ../gramps/plugins/docgen/asciidoc.py:164
-#: ../gramps/plugins/docgen/cairodoc.py:106
-#: ../gramps/plugins/docgen/cairodoc.py:109
 #: ../gramps/plugins/docgen/odfdoc.py:1203
 #: ../gramps/plugins/docgen/odfdoc.py:1206
+#: ../gramps/plugins/docgen/cairodoc.py:106
+#: ../gramps/plugins/docgen/cairodoc.py:109
 #: ../gramps/plugins/docgen/rtfdoc.py:96 ../gramps/plugins/docgen/rtfdoc.py:99
 #: ../gramps/plugins/docgen/svgdrawdoc.py:84
 #: ../gramps/plugins/docgen/svgdrawdoc.py:86
@@ -6347,29 +5746,25 @@ msgid "Registered '%s'"
 msgstr ""
 
 #: ../gramps/gen/proxy/private.py:808
-#: ../gramps/gui/glade/editaddress.glade:327
-#: ../gramps/gui/glade/editattribute.glade:147
-#: ../gramps/gui/glade/editchildref.glade:183
-#: ../gramps/gui/glade/editcitation.glade:347
-#: ../gramps/gui/glade/editevent.glade:200
-#: ../gramps/gui/glade/editeventref.glade:134
-#: ../gramps/gui/glade/editeventref.glade:434
-#: ../gramps/gui/glade/editldsord.glade:387
-#: ../gramps/gui/glade/editmedia.glade:351
-#: ../gramps/gui/glade/editmediaref.glade:370
-#: ../gramps/gui/glade/editmediaref.glade:743
-#: ../gramps/gui/glade/editname.glade:154
-#: ../gramps/gui/glade/editnote.glade:242
-#: ../gramps/gui/glade/editperson.glade:449
-#: ../gramps/gui/glade/editpersonref.glade:152
-#: ../gramps/gui/glade/editplace.glade:198
-#: ../gramps/gui/glade/editreporef.glade:184
-#: ../gramps/gui/glade/editreporef.glade:397
-#: ../gramps/gui/glade/editrepository.glade:207
-#: ../gramps/gui/glade/editsource.glade:263
-#: ../gramps/gui/glade/editsourceref.glade:231
-#: ../gramps/gui/glade/editsourceref.glade:537
-#: ../gramps/gui/glade/editurl.glade:152 ../gramps/gui/grampsgui.py:190
+#: ../gramps/gui/glade/editaddress.glade.h:17
+#: ../gramps/gui/glade/editattribute.glade.h:4
+#: ../gramps/gui/glade/editchildref.glade.h:4
+#: ../gramps/gui/glade/editcitation.glade.h:16
+#: ../gramps/gui/glade/editevent.glade.h:9
+#: ../gramps/gui/glade/editeventref.glade.h:3
+#: ../gramps/gui/glade/editldsord.glade.h:12
+#: ../gramps/gui/glade/editmedia.glade.h:16
+#: ../gramps/gui/glade/editmediaref.glade.h:13
+#: ../gramps/gui/glade/editname.glade.h:5
+#: ../gramps/gui/glade/editnote.glade.h:10
+#: ../gramps/gui/glade/editperson.glade.h:23
+#: ../gramps/gui/glade/editpersonref.glade.h:7
+#: ../gramps/gui/glade/editplace.glade.h:7
+#: ../gramps/gui/glade/editreporef.glade.h:8
+#: ../gramps/gui/glade/editrepository.glade.h:10
+#: ../gramps/gui/glade/editsource.glade.h:14
+#: ../gramps/gui/glade/editsourceref.glade.h:8
+#: ../gramps/gui/glade/editurl.glade.h:5 ../gramps/gui/grampsgui.py:190
 #: ../gramps/plugins/lib/libpersonview.py:103
 #: ../gramps/plugins/lib/libplaceview.py:108
 #: ../gramps/plugins/view/citationlistview.py:103
@@ -6625,6 +6020,12 @@ msgstr ""
 msgid "%(father)s and %(mother)s"
 msgstr ""
 
+#: ../gramps/gen/utils/image.py:125
+msgid ""
+"WARNING: PIL module not loaded.  Image cropping in report files will be "
+"impaired."
+msgstr ""
+
 #: ../gramps/gen/utils/grampslocale.py:68
 msgid "Arabic"
 msgstr ""
@@ -6822,31 +6223,18 @@ msgstr ""
 msgid "See details"
 msgstr ""
 
-#: ../gramps/gen/utils/image.py:125
-msgid ""
-"WARNING: PIL module not loaded.  Image cropping in report files will be "
-"impaired."
-msgstr ""
-
-#: ../gramps/gen/utils/keyword.py:56
-msgid "Person|TITLE"
-msgstr ""
-
 #: ../gramps/gen/utils/keyword.py:56 ../gramps/plugins/export/exportcsv.py:366
 #: ../gramps/plugins/importer/importcsv.py:184
 #: ../gramps/plugins/tool/patchnames.py:436
 msgid "Person|Title"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:57
-msgid "GIVEN"
+#: ../gramps/gen/utils/keyword.py:56
+msgid "Person|TITLE"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:646
-#: ../gramps/gui/configure.py:653 ../gramps/gui/configure.py:655
-#: ../gramps/gui/configure.py:656 ../gramps/gui/configure.py:657
-#: ../gramps/gui/configure.py:658 ../gramps/gui/configure.py:659
-msgid "SURNAME"
+#: ../gramps/gen/utils/keyword.py:57
+msgid "GIVEN"
 msgstr ""
 
 #. show surname and first name
@@ -6867,16 +6255,19 @@ msgstr ""
 msgid "Surname"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:59
-msgid "Name|CALL"
+#: ../gramps/gen/utils/keyword.py:58 ../gramps/gui/configure.py:646
+#: ../gramps/gui/configure.py:653 ../gramps/gui/configure.py:655
+#: ../gramps/gui/configure.py:656 ../gramps/gui/configure.py:657
+#: ../gramps/gui/configure.py:658 ../gramps/gui/configure.py:659
+msgid "SURNAME"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:59
 msgid "Name|Call"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:60
-msgid "Name|COMMON"
+#: ../gramps/gen/utils/keyword.py:59
+msgid "Name|CALL"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:60 ../gramps/gui/configure.py:643
@@ -6885,16 +6276,16 @@ msgstr ""
 msgid "Name|Common"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:61
-msgid "INITIALS"
+#: ../gramps/gen/utils/keyword.py:60
+msgid "Name|COMMON"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:61
 msgid "Initials"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:62
-msgid "SUFFIX"
+#: ../gramps/gen/utils/keyword.py:61
+msgid "INITIALS"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:62 ../gramps/gui/configure.py:639
@@ -6902,10 +6293,14 @@ msgstr ""
 #: ../gramps/gui/configure.py:645 ../gramps/gui/configure.py:646
 #: ../gramps/gui/configure.py:651 ../gramps/gui/configure.py:653
 #: ../gramps/gui/configure.py:658 ../gramps/gui/configure.py:660
-#: ../gramps/gui/glade/editperson.glade:232
+#: ../gramps/gui/glade/editperson.glade.h:10
 #: ../gramps/plugins/export/exportcsv.py:365
 #: ../gramps/plugins/importer/importcsv.py:186
 msgid "Suffix"
+msgstr ""
+
+#: ../gramps/gen/utils/keyword.py:62
+msgid "SUFFIX"
 msgstr ""
 
 #. name, sort, width, modelcol
@@ -6919,27 +6314,27 @@ msgid "PRIMARY"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:64
-msgid "PRIMARY[PRE]"
-msgstr ""
-
-#: ../gramps/gen/utils/keyword.py:64
 msgid "Primary[pre]"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:65
-msgid "PRIMARY[SUR]"
+#: ../gramps/gen/utils/keyword.py:64
+msgid "PRIMARY[PRE]"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:65
 msgid "Primary[sur]"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:66
-msgid "PRIMARY[CON]"
+#: ../gramps/gen/utils/keyword.py:65
+msgid "PRIMARY[SUR]"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:66
 msgid "Primary[con]"
+msgstr ""
+
+#: ../gramps/gen/utils/keyword.py:66
+msgid "PRIMARY[CON]"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:67
@@ -6947,55 +6342,55 @@ msgid "PATRONYMIC"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:68
-msgid "PATRONYMIC[PRE]"
-msgstr ""
-
-#: ../gramps/gen/utils/keyword.py:68
 msgid "Patronymic[pre]"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:69
-msgid "PATRONYMIC[SUR]"
+#: ../gramps/gen/utils/keyword.py:68
+msgid "PATRONYMIC[PRE]"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:69
 msgid "Patronymic[sur]"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:70
-msgid "PATRONYMIC[CON]"
+#: ../gramps/gen/utils/keyword.py:69
+msgid "PATRONYMIC[SUR]"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:70
 msgid "Patronymic[con]"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:71
-msgid "RAWSURNAMES"
+#: ../gramps/gen/utils/keyword.py:70
+msgid "PATRONYMIC[CON]"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:71 ../gramps/gui/configure.py:660
 msgid "Rawsurnames"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:72
-msgid "NOTPATRONYMIC"
+#: ../gramps/gen/utils/keyword.py:71
+msgid "RAWSURNAMES"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:72
 msgid "Notpatronymic"
 msgstr ""
 
-#: ../gramps/gen/utils/keyword.py:73
-msgid "PREFIX"
+#: ../gramps/gen/utils/keyword.py:72
+msgid "NOTPATRONYMIC"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:73
 #: ../gramps/gui/editors/displaytabs/surnametab.py:76
-#: ../gramps/gui/glade/editperson.glade:543
+#: ../gramps/gui/glade/editperson.glade.h:28
 #: ../gramps/plugins/export/exportcsv.py:365
 #: ../gramps/plugins/importer/importcsv.py:185
 msgid "Prefix"
+msgstr ""
+
+#: ../gramps/gen/utils/keyword.py:73
+msgid "PREFIX"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:74
@@ -7003,11 +6398,11 @@ msgid "NICKNAME"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:75
-msgid "FAMILYNICK"
+msgid "Familynick"
 msgstr ""
 
 #: ../gramps/gen/utils/keyword.py:75
-msgid "Familynick"
+msgid "FAMILYNICK"
 msgstr ""
 
 #: ../gramps/gen/utils/place.py:53
@@ -7224,7 +6619,7 @@ msgstr ""
 #: ../gramps/gui/editors/editlink.py:87
 #: ../gramps/gui/editors/filtereditor.py:293
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:99
-#: ../gramps/gui/glade/editevent.glade:314
+#: ../gramps/gui/glade/editevent.glade.h:13
 #: ../gramps/gui/plug/_guioptions.py:1307
 #: ../gramps/gui/selectors/selectevent.py:65
 #: ../gramps/gui/views/treemodels/placemodel.py:292
@@ -7370,7 +6765,7 @@ msgstr ""
 #: ../gramps/gui/clipboard.py:711 ../gramps/gui/configure.py:531
 #: ../gramps/gui/editors/editlink.py:86
 #: ../gramps/gui/editors/filtereditor.py:290
-#: ../gramps/gui/glade/editpersonref.glade:206 ../gramps/gui/grampsgui.py:177
+#: ../gramps/gui/glade/editpersonref.glade.h:11 ../gramps/gui/grampsgui.py:177
 #: ../gramps/plugins/export/exportcsv.py:364
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:108
 #: ../gramps/plugins/importer/importcsv.py:223
@@ -7511,7 +6906,7 @@ msgstr ""
 
 #: ../gramps/gui/clipboard.py:1354 ../gramps/gui/clipboard.py:1360
 #: ../gramps/gui/clipboard.py:1398 ../gramps/gui/clipboard.py:1442
-#: ../gramps/gui/glade/clipboard.glade:7
+#: ../gramps/gui/glade/clipboard.glade.h:1
 msgid "Clipboard"
 msgstr ""
 
@@ -7815,12 +7210,11 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:976
 #: ../gramps/gui/editors/displaytabs/buttontab.py:74
-#: ../gramps/gui/glade/editfamily.glade:280
-#: ../gramps/gui/glade/editfamily.glade:606
-#: ../gramps/gui/glade/editlink.glade:242
-#: ../gramps/gui/glade/editperson.glade:611
-#: ../gramps/gui/glade/editperson.glade:846 ../gramps/gui/glade/rule.glade:481
-#: ../gramps/gui/glade/styleeditor.glade:1394
+#: ../gramps/gui/glade/editfamily.glade.h:11
+#: ../gramps/gui/glade/editlink.glade.h:8
+#: ../gramps/gui/glade/editperson.glade.h:31
+#: ../gramps/gui/glade/rule.glade.h:13
+#: ../gramps/gui/glade/styleeditor.glade.h:39
 #: ../gramps/gui/plug/_windows.py:155 ../gramps/gui/plug/_windows.py:211
 #: ../gramps/gui/plug/report/_bookdialog.py:654
 msgid "Edit"
@@ -8217,12 +7611,12 @@ msgstr ""
 msgid "Select file _type:"
 msgstr ""
 
-#: ../gramps/gui/dbman.py:112 ../gramps/gui/glade/dbman.glade:375
-msgid "_Archive"
-msgstr ""
-
 #: ../gramps/gui/dbman.py:112
 msgid "_Extract"
+msgstr ""
+
+#: ../gramps/gui/dbman.py:112 ../gramps/gui/glade/dbman.glade.h:8
+msgid "_Archive"
 msgstr ""
 
 #: ../gramps/gui/dbman.py:282
@@ -8546,24 +7940,15 @@ msgstr ""
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:98
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:94
-#: ../gramps/gui/glade/editaddress.glade:367
-#: ../gramps/gui/glade/editaddress.glade:377
-#: ../gramps/gui/glade/editcitation.glade:114
-#: ../gramps/gui/glade/editcitation.glade:124
-#: ../gramps/gui/glade/editevent.glade:147
-#: ../gramps/gui/glade/editevent.glade:159
-#: ../gramps/gui/glade/editeventref.glade:399
-#: ../gramps/gui/glade/editeventref.glade:409
-#: ../gramps/gui/glade/editldsord.glade:151
-#: ../gramps/gui/glade/editldsord.glade:161
-#: ../gramps/gui/glade/editmedia.glade:261
-#: ../gramps/gui/glade/editmedia.glade:271
-#: ../gramps/gui/glade/editmediaref.glade:708
-#: ../gramps/gui/glade/editmediaref.glade:718
-#: ../gramps/gui/glade/editname.glade:638
-#: ../gramps/gui/glade/editname.glade:648
-#: ../gramps/gui/glade/editsourceref.glade:148
-#: ../gramps/gui/glade/editsourceref.glade:158 ../gramps/gui/grampsgui.py:152
+#: ../gramps/gui/glade/editaddress.glade.h:20
+#: ../gramps/gui/glade/editcitation.glade.h:3
+#: ../gramps/gui/glade/editevent.glade.h:6
+#: ../gramps/gui/glade/editeventref.glade.h:12
+#: ../gramps/gui/glade/editldsord.glade.h:5
+#: ../gramps/gui/glade/editmedia.glade.h:11
+#: ../gramps/gui/glade/editmediaref.glade.h:26
+#: ../gramps/gui/glade/editname.glade.h:30
+#: ../gramps/gui/glade/editsourceref.glade.h:4 ../gramps/gui/grampsgui.py:152
 #: ../gramps/gui/selectors/selectevent.py:64
 #: ../gramps/plugins/export/exportcsv.py:488
 #: ../gramps/plugins/gramplet/ageondategramplet.py:74
@@ -8698,30 +8083,20 @@ msgstr ""
 
 #. we now construct an add menu
 #: ../gramps/gui/editors/displaytabs/buttontab.py:72
-#: ../gramps/gui/glade/editfamily.glade:215
-#: ../gramps/gui/glade/editfamily.glade:225
-#: ../gramps/gui/glade/editfamily.glade:509
-#: ../gramps/gui/glade/editfamily.glade:519
-#: ../gramps/gui/glade/editperson.glade:404
-#: ../gramps/gui/glade/editperson.glade:856 ../gramps/gui/glade/rule.glade:446
-#: ../gramps/gui/glade/rule.glade:457
-#: ../gramps/gui/glade/styleeditor.glade:1361
-#: ../gramps/gui/glade/styleeditor.glade:1372
+#: ../gramps/gui/glade/editfamily.glade.h:9
+#: ../gramps/gui/glade/editperson.glade.h:20
+#: ../gramps/gui/glade/rule.glade.h:11
+#: ../gramps/gui/glade/styleeditor.glade.h:37
 #: ../gramps/gui/widgets/fanchart.py:1835
 #: ../gramps/plugins/view/relview.py:421
 msgid "Add"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/buttontab.py:73
-#: ../gramps/gui/glade/editfamily.glade:247
-#: ../gramps/gui/glade/editfamily.glade:257
-#: ../gramps/gui/glade/editfamily.glade:573
-#: ../gramps/gui/glade/editfamily.glade:583
-#: ../gramps/gui/glade/grampletpane.glade:98
-#: ../gramps/gui/glade/grampletpane.glade:108
-#: ../gramps/gui/glade/rule.glade:516 ../gramps/gui/glade/rule.glade:527
-#: ../gramps/gui/glade/styleeditor.glade:1427
-#: ../gramps/gui/glade/styleeditor.glade:1438
+#: ../gramps/gui/glade/editfamily.glade.h:10
+#: ../gramps/gui/glade/grampletpane.glade.h:5
+#: ../gramps/gui/glade/rule.glade.h:16
+#: ../gramps/gui/glade/styleeditor.glade.h:42
 msgid "Remove"
 msgstr ""
 
@@ -8844,7 +8219,7 @@ msgstr ""
 #. parent as anything other than "Father"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:60
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:115
-#: ../gramps/gui/glade/editfamily.glade:182
+#: ../gramps/gui/glade/editfamily.glade.h:7
 #: ../gramps/gui/merge/mergeperson.py:222
 #: ../gramps/gui/selectors/selectfamily.py:63
 #: ../gramps/gui/widgets/reorderfam.py:85
@@ -8866,7 +8241,7 @@ msgstr ""
 #. ----------------------------------
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:61
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:116
-#: ../gramps/gui/glade/editfamily.glade:477
+#: ../gramps/gui/glade/editfamily.glade.h:14
 #: ../gramps/gui/merge/mergeperson.py:224
 #: ../gramps/gui/selectors/selectfamily.py:64
 #: ../gramps/gui/widgets/reorderfam.py:86
@@ -9896,8 +9271,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editmediaref.py:88
 #: ../gramps/gui/editors/editmediaref.py:89
-#: ../gramps/gui/glade/editmediaref.glade:150
-#: ../gramps/gui/glade/editmediaref.glade:320
+#: ../gramps/gui/glade/editmediaref.glade.h:2
 msgid "Y coordinate|Y"
 msgstr ""
 
@@ -10357,15 +9731,15 @@ msgid "Citation Filters"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:248
+msgid "lesser than"
+msgstr ""
+
+#: ../gramps/gui/editors/filtereditor.py:248
 msgid "equal to"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:248
 msgid "greater than"
-msgstr ""
-
-#: ../gramps/gui/editors/filtereditor.py:248
-msgid "lesser than"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:286
@@ -10439,7 +9813,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:745
 #: ../gramps/gui/editors/filtereditor.py:756
-#: ../gramps/gui/glade/rule.glade:897
+#: ../gramps/gui/glade/rule.glade.h:24
 msgid "No rule selected"
 msgstr ""
 
@@ -10461,10 +9835,6 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:948
 msgid "Filter Test"
-msgstr ""
-
-#: ../gramps/gui/editors/filtereditor.py:1086
-msgid "Comment"
 msgstr ""
 
 #. ###############################
@@ -10490,6 +9860,10 @@ msgstr ""
 #: ../gramps/plugins/webreport/narrativeweb.py:8017
 #: ../gramps/plugins/webreport/webcal.py:1335
 msgid "Filter"
+msgstr ""
+
+#: ../gramps/gui/editors/filtereditor.py:1086
+msgid "Comment"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:1094
@@ -10767,89 +10141,89 @@ msgstr ""
 msgid "Publication"
 msgstr ""
 
-#: ../gramps/gui/glade/addmedia.glade:126
-#: ../gramps/gui/glade/editperson.glade:290
+#: ../gramps/gui/glade/addmedia.glade.h:1
+#: ../gramps/gui/glade/editperson.glade.h:13
 #: ../gramps/plugins/lib/libmetadata.py:101
 #: ../gramps/plugins/textreport/simplebooktitle.py:148
 msgid "Image"
 msgstr ""
 
-#: ../gramps/gui/glade/addmedia.glade:135
-#: ../gramps/gui/glade/editmedia.glade:205
-#: ../gramps/gui/glade/editmediaref.glade:243
-#: ../gramps/gui/glade/editmediaref.glade:616
+#: ../gramps/gui/glade/addmedia.glade.h:2
+#: ../gramps/gui/glade/editmedia.glade.h:6
+#: ../gramps/gui/glade/editmediaref.glade.h:8
 msgid "<b>Preview</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/addmedia.glade:171
-#: ../gramps/gui/glade/editmedia.glade:116
-#: ../gramps/gui/glade/editmediaref.glade:517
-#: ../gramps/gui/glade/editsource.glade:101
-#: ../gramps/gui/glade/editsourceref.glade:341
+#: ../gramps/gui/glade/addmedia.glade.h:3
+#: ../gramps/gui/glade/editmedia.glade.h:2
+#: ../gramps/gui/glade/editmediaref.glade.h:18
+#: ../gramps/gui/glade/editsource.glade.h:3
+#: ../gramps/gui/glade/editsourceref.glade.h:17
 msgid "_Title:"
 msgstr ""
 
-#: ../gramps/gui/glade/addmedia.glade:195
+#: ../gramps/gui/glade/addmedia.glade.h:4
 msgid "Convert to a relative path"
 msgstr ""
 
-#: ../gramps/gui/glade/baseselector.glade:104
+#: ../gramps/gui/glade/baseselector.glade.h:1
 msgid "Show all"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:171
+#: ../gramps/gui/glade/book.glade.h:2
 msgid "Book _name:"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:210
+#: ../gramps/gui/glade/book.glade.h:3
 msgid "Clear the book"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:232
+#: ../gramps/gui/glade/book.glade.h:4
 msgid "Save current set of configured selections"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:255
+#: ../gramps/gui/glade/book.glade.h:5
 msgid "Open previously created book"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:277
+#: ../gramps/gui/glade/book.glade.h:6
 msgid "Manage previously created books"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:437
+#: ../gramps/gui/glade/book.glade.h:7
 msgid "Add an item to the book"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:460
+#: ../gramps/gui/glade/book.glade.h:8
 msgid "Remove currently selected item from the book"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:482
+#: ../gramps/gui/glade/book.glade.h:9
 msgid "Move current selection one step up in the book"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:504
+#: ../gramps/gui/glade/book.glade.h:10
 msgid "Move current selection one step down in the book"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:526
+#: ../gramps/gui/glade/book.glade.h:11
 msgid "Configure currently selected item"
 msgstr ""
 
-#: ../gramps/gui/glade/clipboard.glade:41
+#: ../gramps/gui/glade/clipboard.glade.h:2
 msgid "Clear _All"
 msgstr ""
 
-#: ../gramps/gui/glade/configure.glade:79
+#: ../gramps/gui/glade/configure.glade.h:1
 msgid "Format _name:"
 msgstr ""
 
-#: ../gramps/gui/glade/configure.glade:94
+#: ../gramps/gui/glade/configure.glade.h:2
 msgid "Format _definition:"
 msgstr ""
 
-#: ../gramps/gui/glade/configure.glade:143
+#: ../gramps/gui/glade/configure.glade.h:4
+#, no-c-format
 msgid ""
 "The following conventions are used:\n"
 "<tt>  <b>%f</b> - Given Name       <b>%F</b> - GIVEN NAME\n"
@@ -10861,248 +10235,248 @@ msgid ""
 "  <b>%y</b> - Patronymic       <b>%Y</b> - PATRONYMIC</tt>"
 msgstr ""
 
-#: ../gramps/gui/glade/configure.glade:158
+#: ../gramps/gui/glade/configure.glade.h:12
 msgid "Format definition details"
 msgstr ""
 
-#: ../gramps/gui/glade/configure.glade:174
+#: ../gramps/gui/glade/configure.glade.h:13
 msgid "Example:"
 msgstr ""
 
-#: ../gramps/gui/glade/dbman.glade:6
+#: ../gramps/gui/glade/dbman.glade.h:1
 msgid "Revision comment - Gramps"
 msgstr ""
 
-#: ../gramps/gui/glade/dbman.glade:62
+#: ../gramps/gui/glade/dbman.glade.h:2
 msgid "<b>Version description</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/dbman.glade:102
+#: ../gramps/gui/glade/dbman.glade.h:3
 msgid "Family Trees - Gramps"
 msgstr ""
 
-#: ../gramps/gui/glade/dbman.glade:153
+#: ../gramps/gui/glade/dbman.glade.h:4
 msgid "_Close Window"
 msgstr ""
 
-#: ../gramps/gui/glade/dbman.glade:208
+#: ../gramps/gui/glade/dbman.glade.h:5
 msgid "_Load Family Tree"
 msgstr ""
 
-#: ../gramps/gui/glade/dbman.glade:341
+#: ../gramps/gui/glade/dbman.glade.h:6
 msgid "_Rename"
 msgstr ""
 
-#: ../gramps/gui/glade/dbman.glade:358
+#: ../gramps/gui/glade/dbman.glade.h:7
 msgid "Re_pair"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:86
+#: ../gramps/gui/glade/dialog.glade.h:1
 msgid "Do not show this dialog again"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:273
+#: ../gramps/gui/glade/dialog.glade.h:2
 msgid "Remove object and all references to it from the database"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:301
+#: ../gramps/gui/glade/dialog.glade.h:3
 msgid "_Remove Object"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:323
+#: ../gramps/gui/glade/dialog.glade.h:4
 msgid "_Keep Reference"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:328
+#: ../gramps/gui/glade/dialog.glade.h:5
 msgid "Keep reference to the missing file"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:345
+#: ../gramps/gui/glade/dialog.glade.h:6
 msgid "Select replacement for the missing file"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:373
+#: ../gramps/gui/glade/dialog.glade.h:7
 msgid "_Select File"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:472
+#: ../gramps/gui/glade/dialog.glade.h:8
 msgid "_Use this selection for all missing media files"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:476
+#: ../gramps/gui/glade/dialog.glade.h:9
 msgid ""
 "If you check this button, all the missing media files will be automatically "
 "treated according to the currently selected option. No further dialogs will "
 "be presented for any missing media files."
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:667 ../gramps/gui/glade/dialog.glade:681
-#: ../gramps/gui/glade/dialog.glade:841
+#: ../gramps/gui/glade/dialog.glade.h:10
 msgid "label"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:769
+#: ../gramps/gui/glade/dialog.glade.h:11
 msgid "Close _without saving"
 msgstr ""
 
-#: ../gramps/gui/glade/dialog.glade:886
+#: ../gramps/gui/glade/dialog.glade.h:12
 msgid "Do not ask again"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:41
-#: ../gramps/gui/glade/editchildref.glade:46
-#: ../gramps/gui/glade/editevent.glade:48
-#: ../gramps/gui/glade/editfamily.glade:49
-#: ../gramps/gui/glade/editldsord.glade:47
-#: ../gramps/gui/glade/editlink.glade:46 ../gramps/gui/glade/editname.glade:47
-#: ../gramps/gui/glade/editperson.glade:49
-#: ../gramps/gui/glade/editpersonref.glade:44
-#: ../gramps/gui/glade/editreporef.glade:48
-#: ../gramps/gui/glade/editrepository.glade:48
-#: ../gramps/gui/glade/editsource.glade:46
-#: ../gramps/gui/glade/editurl.glade:45
+#: ../gramps/gui/glade/displaystate.glade.h:1 ../data/gramps.desktop.in.h:1
+msgid "Gramps"
+msgstr ""
+
+#: ../gramps/gui/glade/editaddress.glade.h:1
+#: ../gramps/gui/glade/editchildref.glade.h:1
+#: ../gramps/gui/glade/editevent.glade.h:2
+#: ../gramps/gui/glade/editfamily.glade.h:2
+#: ../gramps/gui/glade/editldsord.glade.h:1
+#: ../gramps/gui/glade/editlink.glade.h:1
+#: ../gramps/gui/glade/editname.glade.h:2
+#: ../gramps/gui/glade/editperson.glade.h:2
+#: ../gramps/gui/glade/editpersonref.glade.h:1
+#: ../gramps/gui/glade/editreporef.glade.h:2
+#: ../gramps/gui/glade/editrepository.glade.h:2
+#: ../gramps/gui/glade/editsource.glade.h:2
+#: ../gramps/gui/glade/editurl.glade.h:1
 msgid "Accept changes and close window"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:100
-#: ../gramps/gui/glade/editcitation.glade:91
-#: ../gramps/gui/glade/editevent.glade:119
-#: ../gramps/gui/glade/editeventref.glade:249
-#: ../gramps/gui/glade/editldsord.glade:106
-#: ../gramps/gui/glade/editmedia.glade:132
-#: ../gramps/gui/glade/editmediaref.glade:665
-#: ../gramps/gui/glade/editsourceref.glade:122
+#: ../gramps/gui/glade/editaddress.glade.h:2
+#: ../gramps/gui/glade/editcitation.glade.h:1
+#: ../gramps/gui/glade/editevent.glade.h:4
+#: ../gramps/gui/glade/editeventref.glade.h:7
+#: ../gramps/gui/glade/editldsord.glade.h:2
+#: ../gramps/gui/glade/editmedia.glade.h:3
+#: ../gramps/gui/glade/editmediaref.glade.h:24
+#: ../gramps/gui/glade/editsourceref.glade.h:2
 msgid "_Date:"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:115
+#: ../gramps/gui/glade/editaddress.glade.h:3
 msgid "St_reet:"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:132
-#: ../gramps/gui/glade/editlocation.glade:95
-#: ../gramps/gui/glade/editplace.glade:282
+#: ../gramps/gui/glade/editaddress.glade.h:4
+#: ../gramps/gui/glade/editlocation.glade.h:1
+#: ../gramps/gui/glade/editplace.glade.h:15
 msgid "C_ity:"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:148
+#: ../gramps/gui/glade/editaddress.glade.h:5
 msgid "The town or city of the address"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:164
-#: ../gramps/plugins/tool/ownereditor.glade:172
+#: ../gramps/gui/glade/editaddress.glade.h:6
+#: ../gramps/plugins/tool/ownereditor.glade.h:4
 msgid "_State/County:"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:183
-#: ../gramps/gui/glade/editlocation.glade:274
-#: ../gramps/gui/glade/editplace.glade:477
+#: ../gramps/gui/glade/editaddress.glade.h:7
+#: ../gramps/gui/glade/editlocation.glade.h:12
+#: ../gramps/gui/glade/editplace.glade.h:30
 msgid "_ZIP/Postal code:"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:199
+#: ../gramps/gui/glade/editaddress.glade.h:8
 msgid "Postal code"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:215
-#: ../gramps/gui/glade/editlocation.glade:242
+#: ../gramps/gui/glade/editaddress.glade.h:9
+#: ../gramps/gui/glade/editlocation.glade.h:10
 msgid "Cou_ntry:"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:234
-#: ../gramps/gui/glade/editlocation.glade:306
-#: ../gramps/gui/glade/editplace.glade:510
+#: ../gramps/gui/glade/editaddress.glade.h:10
+#: ../gramps/gui/glade/editlocation.glade.h:13
+#: ../gramps/gui/glade/editplace.glade.h:31
 msgid "Phon_e:"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:251
+#: ../gramps/gui/glade/editaddress.glade.h:11
 msgid "Phone number linked to the address."
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:266
+#: ../gramps/gui/glade/editaddress.glade.h:12
 msgid ""
 "The state or county of the address in case a mail address must contain this."
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:281
+#: ../gramps/gui/glade/editaddress.glade.h:13
 msgid "Country of the address"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:296
+#: ../gramps/gui/glade/editaddress.glade.h:14
 msgid ""
 "Mail address. \n"
 "\n"
 "Note: Use Residence Event for genealogical address data."
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:337
-#: ../gramps/gui/glade/editattribute.glade:157
-#: ../gramps/gui/glade/editchildref.glade:193
-#: ../gramps/gui/glade/editcitation.glade:357
-#: ../gramps/gui/glade/editevent.glade:210
-#: ../gramps/gui/glade/editeventref.glade:144
-#: ../gramps/gui/glade/editeventref.glade:444
-#: ../gramps/gui/glade/editfamily.glade:550
-#: ../gramps/gui/glade/editldsord.glade:397
-#: ../gramps/gui/glade/editmedia.glade:361
-#: ../gramps/gui/glade/editmediaref.glade:380
-#: ../gramps/gui/glade/editmediaref.glade:753
-#: ../gramps/gui/glade/editname.glade:164
-#: ../gramps/gui/glade/editnote.glade:252
-#: ../gramps/gui/glade/editperson.glade:460
-#: ../gramps/gui/glade/editpersonref.glade:162
-#: ../gramps/gui/glade/editplace.glade:208
-#: ../gramps/gui/glade/editreporef.glade:194
-#: ../gramps/gui/glade/editreporef.glade:407
-#: ../gramps/gui/glade/editrepository.glade:217
-#: ../gramps/gui/glade/editsource.glade:273
-#: ../gramps/gui/glade/editsourceref.glade:241
-#: ../gramps/gui/glade/editsourceref.glade:547
-#: ../gramps/gui/glade/editurl.glade:162
+#: ../gramps/gui/glade/editaddress.glade.h:18
+#: ../gramps/gui/glade/editattribute.glade.h:5
+#: ../gramps/gui/glade/editchildref.glade.h:5
+#: ../gramps/gui/glade/editcitation.glade.h:17
+#: ../gramps/gui/glade/editevent.glade.h:10
+#: ../gramps/gui/glade/editeventref.glade.h:4
+#: ../gramps/gui/glade/editfamily.glade.h:16
+#: ../gramps/gui/glade/editldsord.glade.h:13
+#: ../gramps/gui/glade/editmedia.glade.h:17
+#: ../gramps/gui/glade/editmediaref.glade.h:14
+#: ../gramps/gui/glade/editname.glade.h:6
+#: ../gramps/gui/glade/editnote.glade.h:11
+#: ../gramps/gui/glade/editperson.glade.h:24
+#: ../gramps/gui/glade/editpersonref.glade.h:8
+#: ../gramps/gui/glade/editplace.glade.h:8
+#: ../gramps/gui/glade/editreporef.glade.h:9
+#: ../gramps/gui/glade/editrepository.glade.h:11
+#: ../gramps/gui/glade/editsource.glade.h:15
+#: ../gramps/gui/glade/editsourceref.glade.h:9
+#: ../gramps/gui/glade/editurl.glade.h:6
 #: ../gramps/plugins/webreport/narrativeweb.py:8183
 msgid "Privacy"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:359
-#: ../gramps/gui/glade/editcitation.glade:109
-#: ../gramps/gui/glade/editevent.glade:138
-#: ../gramps/gui/glade/editeventref.glade:390
-#: ../gramps/gui/glade/editldsord.glade:142
-#: ../gramps/gui/glade/editmedia.glade:252
-#: ../gramps/gui/glade/editmediaref.glade:699
-#: ../gramps/gui/glade/editname.glade:629
-#: ../gramps/gui/glade/editsourceref.glade:139
+#: ../gramps/gui/glade/editaddress.glade.h:19
+#: ../gramps/gui/glade/editcitation.glade.h:2
+#: ../gramps/gui/glade/editevent.glade.h:5
+#: ../gramps/gui/glade/editeventref.glade.h:11
+#: ../gramps/gui/glade/editldsord.glade.h:4
+#: ../gramps/gui/glade/editmedia.glade.h:10
+#: ../gramps/gui/glade/editmediaref.glade.h:25
+#: ../gramps/gui/glade/editname.glade.h:29
+#: ../gramps/gui/glade/editsourceref.glade.h:3
 msgid "Invoke date editor"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:394
+#: ../gramps/gui/glade/editaddress.glade.h:21
 msgid "Date at which the address is valid."
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:408
-#: ../gramps/gui/glade/editlocation.glade:351
-#: ../gramps/gui/glade/editplace.glade:542
-#: ../gramps/plugins/tool/ownereditor.glade:362
+#: ../gramps/gui/glade/editaddress.glade.h:22
+#: ../gramps/gui/glade/editlocation.glade.h:15
+#: ../gramps/gui/glade/editplace.glade.h:32
+#: ../gramps/plugins/tool/ownereditor.glade.h:9
 msgid "_Locality:"
 msgstr ""
 
-#: ../gramps/gui/glade/editaddress.glade:423
+#: ../gramps/gui/glade/editaddress.glade.h:23
 msgid "The locality of the address"
 msgstr ""
 
-#: ../gramps/gui/glade/editattribute.glade:94
+#: ../gramps/gui/glade/editattribute.glade.h:1
 msgid "_Attribute:"
 msgstr ""
 
-#: ../gramps/gui/glade/editattribute.glade:109
+#: ../gramps/gui/glade/editattribute.glade.h:2
 msgid "_Value:"
 msgstr ""
 
-#: ../gramps/gui/glade/editattribute.glade:125
+#: ../gramps/gui/glade/editattribute.glade.h:3
 msgid "The value of the attribute. Eg. 1.8, Sunny, or Blue eyes."
 msgstr ""
 
-#: ../gramps/gui/glade/editattribute.glade:175
+#: ../gramps/gui/glade/editattribute.glade.h:6
 msgid ""
 "The name of an attribute you want to use. For example: Height (for a "
 "person), Weather on this Day (for an event), ... \n"
@@ -11114,31 +10488,31 @@ msgid ""
 "standard."
 msgstr ""
 
-#: ../gramps/gui/glade/editchildref.glade:102
+#: ../gramps/gui/glade/editchildref.glade.h:2
 msgid "Relationship to _Mother:"
 msgstr ""
 
-#: ../gramps/gui/glade/editchildref.glade:140
+#: ../gramps/gui/glade/editchildref.glade.h:3
 msgid "Relationship to _Father:"
 msgstr ""
 
-#: ../gramps/gui/glade/editchildref.glade:214
+#: ../gramps/gui/glade/editchildref.glade.h:6
 msgid "Name Child:"
 msgstr ""
 
-#: ../gramps/gui/glade/editchildref.glade:244
+#: ../gramps/gui/glade/editchildref.glade.h:7
 msgid "Open person editor of this child"
 msgstr ""
 
-#: ../gramps/gui/glade/editchildref.glade:263
-#: ../gramps/gui/glade/editfamily.glade:290
-#: ../gramps/gui/glade/editfamily.glade:616 ../gramps/gui/glade/rule.glade:492
-#: ../gramps/gui/glade/styleeditor.glade:1405
+#: ../gramps/gui/glade/editchildref.glade.h:9
+#: ../gramps/gui/glade/editfamily.glade.h:12
+#: ../gramps/gui/glade/rule.glade.h:14
+#: ../gramps/gui/glade/styleeditor.glade.h:40
 msgid "Edition"
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade:143
-#: ../gramps/gui/glade/editsourceref.glade:175
+#: ../gramps/gui/glade/editcitation.glade.h:4
+#: ../gramps/gui/glade/editsourceref.glade.h:5
 msgid ""
 "Specific location within the information referenced. For a published work, "
 "this could include the volume of a multi-volume work and the page number(s). "
@@ -11149,26 +10523,26 @@ msgid ""
 "in addition to the page number. "
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade:161
-#: ../gramps/gui/glade/editsourceref.glade:191
+#: ../gramps/gui/glade/editcitation.glade.h:5
+#: ../gramps/gui/glade/editsourceref.glade.h:6
 msgid "_Volume/Page:"
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade:178
-#: ../gramps/gui/glade/editsourceref.glade:208
+#: ../gramps/gui/glade/editcitation.glade.h:6
+#: ../gramps/gui/glade/editsourceref.glade.h:7
 msgid "Con_fidence:"
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade:194
-#: ../gramps/gui/glade/editsourceref.glade:286
+#: ../gramps/gui/glade/editcitation.glade.h:7
+#: ../gramps/gui/glade/editsourceref.glade.h:15
 msgid ""
 "The date of the entry in the source you are referencing, e.g. the date a "
 "house was visited during a census, or the date an entry was made in a birth "
 "log/registry. "
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade:216
-#: ../gramps/gui/glade/editsourceref.glade:260
+#: ../gramps/gui/glade/editcitation.glade.h:8
+#: ../gramps/gui/glade/editsourceref.glade.h:10
 msgid ""
 "Conveys the submitter's quantitative evaluation of the credibility of a "
 "piece of information, based upon its supporting evidence. It is not intended "
@@ -11180,258 +10554,251 @@ msgid ""
 "Very High =Direct and primary evidence used, or by dominance of the evidence "
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade:240
-#: ../gramps/gui/glade/editevent.glade:371
-#: ../gramps/gui/glade/editeventref.glade:301
-#: ../gramps/gui/glade/editfamily.glade:692
-#: ../gramps/gui/glade/editmedia.glade:97
-#: ../gramps/gui/glade/editmediaref.glade:500
-#: ../gramps/gui/glade/editnote.glade:179
-#: ../gramps/gui/glade/editperson.glade:718
-#: ../gramps/gui/glade/editplace.glade:161
-#: ../gramps/gui/glade/editreporef.glade:355
-#: ../gramps/gui/glade/editrepository.glade:170
-#: ../gramps/gui/glade/editsource.glade:222
-#: ../gramps/gui/glade/editsourceref.glade:498
+#: ../gramps/gui/glade/editcitation.glade.h:13
+#: ../gramps/gui/glade/editevent.glade.h:16
+#: ../gramps/gui/glade/editeventref.glade.h:10
+#: ../gramps/gui/glade/editfamily.glade.h:18
+#: ../gramps/gui/glade/editmedia.glade.h:1
+#: ../gramps/gui/glade/editmediaref.glade.h:17
+#: ../gramps/gui/glade/editnote.glade.h:4
+#: ../gramps/gui/glade/editperson.glade.h:35
+#: ../gramps/gui/glade/editplace.glade.h:5
+#: ../gramps/gui/glade/editreporef.glade.h:16
+#: ../gramps/gui/glade/editrepository.glade.h:7
+#: ../gramps/gui/glade/editsource.glade.h:11
+#: ../gramps/gui/glade/editsourceref.glade.h:25
 msgid "_ID:"
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade:254
+#: ../gramps/gui/glade/editcitation.glade.h:14
 msgid "A unique ID to identify the citation"
 msgstr ""
 
-#: ../gramps/gui/glade/editcitation.glade:280
+#: ../gramps/gui/glade/editcitation.glade.h:15
 msgid "Source:"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:128
+#: ../gramps/gui/glade/editdate.glade.h:1
 msgid "Calenda_r:"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:184
+#: ../gramps/gui/glade/editdate.glade.h:2
 msgid "Dua_l dated"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:188
+#: ../gramps/gui/glade/editdate.glade.h:3
 msgid "Old Style/New Style"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:204
+#: ../gramps/gui/glade/editdate.glade.h:4
 msgid "Ne_w year begins:  "
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:218
+#: ../gramps/gui/glade/editdate.glade.h:5
 msgid "Month-Day of first day of new year (e.g., \"1-1\", \"3-1\", \"3-25\")"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:267
+#: ../gramps/gui/glade/editdate.glade.h:6
 msgid "<b>Q_uality</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:301
+#: ../gramps/gui/glade/editdate.glade.h:7
 msgid "<b>_Type</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:335
+#: ../gramps/gui/glade/editdate.glade.h:8
 msgid "<b>Date</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:350
+#: ../gramps/gui/glade/editdate.glade.h:9
 msgid "_Day"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:367
+#: ../gramps/gui/glade/editdate.glade.h:10
 msgid "_Month"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:384
+#: ../gramps/gui/glade/editdate.glade.h:11
 msgid "_Year"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:451
+#: ../gramps/gui/glade/editdate.glade.h:12
 msgid "<b>Second date</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:467
+#: ../gramps/gui/glade/editdate.glade.h:13
 msgid "D_ay"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:484
+#: ../gramps/gui/glade/editdate.glade.h:14
 msgid "Mo_nth"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:501
+#: ../gramps/gui/glade/editdate.glade.h:15
 msgid "Y_ear"
 msgstr ""
 
-#: ../gramps/gui/glade/editdate.glade:578
+#: ../gramps/gui/glade/editdate.glade.h:16
 msgid "Te_xt comment:"
 msgstr ""
 
-#: ../gramps/gui/glade/editevent.glade:28
+#: ../gramps/gui/glade/editevent.glade.h:1
 msgid "Close window without changes"
 msgstr ""
 
-#: ../gramps/gui/glade/editevent.glade:104
-#: ../gramps/gui/glade/editeventref.glade:234
+#: ../gramps/gui/glade/editevent.glade.h:3
+#: ../gramps/gui/glade/editeventref.glade.h:6
 msgid "_Event type:"
 msgstr ""
 
-#: ../gramps/gui/glade/editevent.glade:155
+#: ../gramps/gui/glade/editevent.glade.h:7
 msgid "Show Date Editor"
 msgstr ""
 
-#: ../gramps/gui/glade/editevent.glade:177
-#: ../gramps/gui/glade/editeventref.glade:266
+#: ../gramps/gui/glade/editevent.glade.h:8
+#: ../gramps/gui/glade/editeventref.glade.h:8
 msgid "De_scription:"
 msgstr ""
 
-#: ../gramps/gui/glade/editevent.glade:229
+#: ../gramps/gui/glade/editevent.glade.h:11
 msgid ""
 "Description of the event. Leave empty if you want to autogenerate this with "
 "the tool 'Extract Event Description'."
 msgstr ""
 
-#: ../gramps/gui/glade/editevent.glade:246
-#: ../gramps/gui/glade/editeventref.glade:284
-#: ../gramps/gui/glade/editldsord.glade:123
+#: ../gramps/gui/glade/editevent.glade.h:12
+#: ../gramps/gui/glade/editeventref.glade.h:9
+#: ../gramps/gui/glade/editldsord.glade.h:3
 msgid "_Place:"
 msgstr ""
 
-#: ../gramps/gui/glade/editevent.glade:324
-#: ../gramps/gui/glade/editfamily.glade:192
-#: ../gramps/gui/glade/editfamily.glade:487
-#: ../gramps/gui/glade/editldsord.glade:277
-#: ../gramps/gui/glade/editlink.glade:179
-#: ../gramps/gui/glade/editpersonref.glade:216
+#: ../gramps/gui/glade/editevent.glade.h:14
+#: ../gramps/gui/glade/editfamily.glade.h:8
+#: ../gramps/gui/glade/editldsord.glade.h:10
+#: ../gramps/gui/glade/editlink.glade.h:6
+#: ../gramps/gui/glade/editpersonref.glade.h:12
 msgid "Selector"
 msgstr ""
 
-#: ../gramps/gui/glade/editevent.glade:350
+#: ../gramps/gui/glade/editevent.glade.h:15
 msgid "What type of event this is. Eg 'Burial', 'Graduation', ... ."
 msgstr ""
 
-#: ../gramps/gui/glade/editevent.glade:386
-#: ../gramps/gui/glade/editeventref.glade:483
+#: ../gramps/gui/glade/editevent.glade.h:17
+#: ../gramps/gui/glade/editeventref.glade.h:13
 msgid "A unique ID to identify the event"
 msgstr ""
 
-#: ../gramps/gui/glade/editevent.glade:402
+#: ../gramps/gui/glade/editevent.glade.h:18
 msgid ""
 "Date of the event. This can be an exact date, a range (from ... to, "
 "between, ...), or an inexact date (about, ...)."
 msgstr ""
 
-#: ../gramps/gui/glade/editeventref.glade:83
-#: ../gramps/gui/glade/editreporef.glade:94
-#: ../gramps/gui/glade/editsourceref.glade:89
+#: ../gramps/gui/glade/editeventref.glade.h:1
+#: ../gramps/gui/glade/editreporef.glade.h:3
+#: ../gramps/gui/glade/editsourceref.glade.h:1
 msgid "<b>Reference information</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editeventref.glade:113
+#: ../gramps/gui/glade/editeventref.glade.h:2
 msgid "_Role:"
 msgstr ""
 
-#: ../gramps/gui/glade/editeventref.glade:182
-#: ../gramps/gui/glade/editeventref.glade:597
-#: ../gramps/gui/glade/editmediaref.glade:887
-#: ../gramps/gui/glade/editperson.glade:427
-#: ../gramps/gui/glade/editreporef.glade:228
-#: ../gramps/gui/glade/editreporef.glade:457
-#: ../gramps/gui/glade/editsourceref.glade:301
-#: ../gramps/gui/glade/editsourceref.glade:607
-#: ../gramps/plugins/tool/verify.glade:662
+#: ../gramps/gui/glade/editeventref.glade.h:5
+#: ../gramps/gui/glade/editmediaref.glade.h:32
+#: ../gramps/gui/glade/editperson.glade.h:21
+#: ../gramps/gui/glade/editreporef.glade.h:11
+#: ../gramps/gui/glade/editsourceref.glade.h:16
+#: ../gramps/plugins/tool/verify.glade.h:15
 msgid "<b>General</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editeventref.glade:534
+#: ../gramps/gui/glade/editeventref.glade.h:14
 msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
 msgstr ""
 
-#: ../gramps/gui/glade/editeventref.glade:618
-#: ../gramps/gui/glade/editreporef.glade:470
+#: ../gramps/gui/glade/editeventref.glade.h:15
+#: ../gramps/gui/glade/editreporef.glade.h:19
 msgid "<b>Shared information</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:28
-#: ../gramps/gui/glade/editname.glade:27
-#: ../gramps/gui/glade/editperson.glade:30
-#: ../gramps/gui/glade/editreporef.glade:27
-#: ../gramps/gui/glade/editrepository.glade:27
-#: ../gramps/gui/glade/editsource.glade:26
+#: ../gramps/gui/glade/editfamily.glade.h:1
+#: ../gramps/gui/glade/editname.glade.h:1
+#: ../gramps/gui/glade/editperson.glade.h:1
+#: ../gramps/gui/glade/editreporef.glade.h:1
+#: ../gramps/gui/glade/editrepository.glade.h:1
+#: ../gramps/gui/glade/editsource.glade.h:1
 msgid "Abandon changes and close window"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:129
-#: ../gramps/gui/glade/editfamily.glade:394
+#: ../gramps/gui/glade/editfamily.glade.h:4
 msgid "Birth:"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:144
-#: ../gramps/gui/glade/editfamily.glade:409
+#: ../gramps/gui/glade/editfamily.glade.h:5
 msgid "Death:"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:163
+#: ../gramps/gui/glade/editfamily.glade.h:6
 msgid "<b>Father</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:458
+#: ../gramps/gui/glade/editfamily.glade.h:13
 msgid "<b>Mother</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:539
-#: ../gramps/gui/glade/editreporef.glade:178
-#: ../gramps/gui/glade/editreporef.glade:392
-#: ../gramps/gui/glade/editrepository.glade:201
-#: ../gramps/gui/glade/editsource.glade:257
+#: ../gramps/gui/glade/editfamily.glade.h:15
+#: ../gramps/gui/glade/editreporef.glade.h:7
+#: ../gramps/gui/glade/editrepository.glade.h:9
+#: ../gramps/gui/glade/editsource.glade.h:13
 msgid "Indicates if the record is private"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:678
+#: ../gramps/gui/glade/editfamily.glade.h:17
 msgid "<b>Relationship Information</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:708
+#: ../gramps/gui/glade/editfamily.glade.h:19
 msgid "A unique ID for the family"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:725
-#: ../gramps/gui/glade/editname.glade:100
-#: ../gramps/gui/glade/editnote.glade:140
-#: ../gramps/gui/glade/editperson.glade:329
-#: ../gramps/gui/glade/editreporef.glade:281
-#: ../gramps/gui/glade/editrepository.glade:116
-#: ../gramps/gui/glade/editurl.glade:132
+#: ../gramps/gui/glade/editfamily.glade.h:20
+#: ../gramps/gui/glade/editname.glade.h:3
+#: ../gramps/gui/glade/editnote.glade.h:2
+#: ../gramps/gui/glade/editperson.glade.h:15
+#: ../gramps/gui/glade/editreporef.glade.h:13
+#: ../gramps/gui/glade/editrepository.glade.h:4
+#: ../gramps/gui/glade/editurl.glade.h:4
 msgid "_Type:"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:743
+#: ../gramps/gui/glade/editfamily.glade.h:21
 msgid ""
 "The relationship type, eg 'Married' or 'Unmarried'. Use Events for more "
 "details."
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:765
-#: ../gramps/gui/glade/editmedia.glade:396
-#: ../gramps/gui/glade/editmediaref.glade:833
-#: ../gramps/gui/glade/editnote.glade:271
-#: ../gramps/gui/glade/editperson.glade:750
+#: ../gramps/gui/glade/editfamily.glade.h:22
+#: ../gramps/gui/glade/editmedia.glade.h:19
+#: ../gramps/gui/glade/editmediaref.glade.h:30
+#: ../gramps/gui/glade/editnote.glade.h:12
+#: ../gramps/gui/glade/editperson.glade.h:37
 msgid "_Tags:"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:798
+#: ../gramps/gui/glade/editfamily.glade.h:23
 #: ../gramps/gui/widgets/monitoredwidgets.py:845
 msgid "Edit the tag list"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:805
-#: ../gramps/gui/glade/editmedia.glade:436
-#: ../gramps/gui/glade/editmediaref.glade:870
-#: ../gramps/gui/glade/editnote.glade:309
-#: ../gramps/gui/glade/editperson.glade:784
+#: ../gramps/gui/glade/editfamily.glade.h:24
+#: ../gramps/gui/glade/editmedia.glade.h:20
+#: ../gramps/gui/glade/editmediaref.glade.h:31
+#: ../gramps/gui/glade/editnote.glade.h:13
+#: ../gramps/gui/glade/editperson.glade.h:38
 #: ../gramps/gui/selectors/selectnote.py:70
 #: ../gramps/plugins/lib/libpersonview.py:104
 #: ../gramps/plugins/tool/notrelated.py:128
@@ -11441,103 +10808,103 @@ msgstr ""
 msgid "Tags"
 msgstr ""
 
-#: ../gramps/gui/glade/editldsord.glade:181
+#: ../gramps/gui/glade/editldsord.glade.h:6
 msgid "Ordinance:"
 msgstr ""
 
-#: ../gramps/gui/glade/editldsord.glade:193
+#: ../gramps/gui/glade/editldsord.glade.h:7
 msgid "LDS _Temple:"
 msgstr ""
 
-#: ../gramps/gui/glade/editldsord.glade:229
+#: ../gramps/gui/glade/editldsord.glade.h:8
 msgid "_Family:"
 msgstr ""
 
-#: ../gramps/gui/glade/editldsord.glade:297
+#: ../gramps/gui/glade/editldsord.glade.h:11
 msgid "_Status:"
 msgstr ""
 
-#: ../gramps/gui/glade/editlink.glade:99
+#: ../gramps/gui/glade/editlink.glade.h:2
 msgid "Gramps item:"
 msgstr ""
 
-#: ../gramps/gui/glade/editlink.glade:115
+#: ../gramps/gui/glade/editlink.glade.h:3
 msgid "Internet Address:"
 msgstr ""
 
-#: ../gramps/gui/glade/editlink.glade:132
+#: ../gramps/gui/glade/editlink.glade.h:4
 msgid "_Link Type:"
 msgstr ""
 
-#: ../gramps/gui/glade/editlink.glade:227
+#: ../gramps/gui/glade/editlink.glade.h:7
 msgid "New"
 msgstr ""
 
-#: ../gramps/gui/glade/editlocation.glade:111
+#: ../gramps/gui/glade/editlocation.glade.h:2
 msgid "The town or city where the place is."
 msgstr ""
 
-#: ../gramps/gui/glade/editlocation.glade:127
-#: ../gramps/gui/glade/editplace.glade:299
+#: ../gramps/gui/glade/editlocation.glade.h:3
+#: ../gramps/gui/glade/editplace.glade.h:16
 msgid "S_treet:"
 msgstr ""
 
-#: ../gramps/gui/glade/editlocation.glade:142
-#: ../gramps/gui/glade/editplace.glade:359
+#: ../gramps/gui/glade/editlocation.glade.h:4
+#: ../gramps/gui/glade/editplace.glade.h:22
 msgid "Ch_urch parish:"
 msgstr ""
 
-#: ../gramps/gui/glade/editlocation.glade:160
-#: ../gramps/gui/glade/editplace.glade:343
+#: ../gramps/gui/glade/editlocation.glade.h:5
+#: ../gramps/gui/glade/editplace.glade.h:21
 msgid ""
 "Lowest clergical division of this place. Typically used for church sources "
 "that only mention the parish."
 msgstr ""
 
-#: ../gramps/gui/glade/editlocation.glade:176
-#: ../gramps/gui/glade/editplace.glade:378
+#: ../gramps/gui/glade/editlocation.glade.h:6
+#: ../gramps/gui/glade/editplace.glade.h:23
 msgid "Co_unty:"
 msgstr ""
 
-#: ../gramps/gui/glade/editlocation.glade:192
-#: ../gramps/gui/glade/editplace.glade:394
+#: ../gramps/gui/glade/editlocation.glade.h:7
+#: ../gramps/gui/glade/editplace.glade.h:24
 msgid "Third level of place division. Eg., in the USA a county."
 msgstr ""
 
-#: ../gramps/gui/glade/editlocation.glade:208
-#: ../gramps/gui/glade/editplace.glade:410
+#: ../gramps/gui/glade/editlocation.glade.h:8
+#: ../gramps/gui/glade/editplace.glade.h:25
 msgid "_State:"
 msgstr ""
 
-#: ../gramps/gui/glade/editlocation.glade:226
-#: ../gramps/gui/glade/editplace.glade:428
+#: ../gramps/gui/glade/editlocation.glade.h:9
+#: ../gramps/gui/glade/editplace.glade.h:26
 msgid ""
 "Second level of place division, eg., in the USA a state, in Germany a "
 "Bundesland."
 msgstr ""
 
-#: ../gramps/gui/glade/editlocation.glade:258
+#: ../gramps/gui/glade/editlocation.glade.h:11
 msgid "The country where the place is."
 msgstr ""
 
-#: ../gramps/gui/glade/editlocation.glade:337
+#: ../gramps/gui/glade/editlocation.glade.h:14
 msgid "Lowest level of a place division: eg the street name."
 msgstr ""
 
-#: ../gramps/gui/glade/editlocation.glade:366
+#: ../gramps/gui/glade/editlocation.glade.h:16
 msgid "A district within, or a settlement near to, a town or city."
 msgstr ""
 
-#: ../gramps/gui/glade/editmedia.glade:150
-#: ../gramps/gui/glade/editmediaref.glade:481
+#: ../gramps/gui/glade/editmedia.glade.h:4
+#: ../gramps/gui/glade/editmediaref.glade.h:16
 msgid "_Path:"
 msgstr ""
 
-#: ../gramps/gui/glade/editmedia.glade:194
+#: ../gramps/gui/glade/editmedia.glade.h:5
 msgid "Image preview"
 msgstr ""
 
-#: ../gramps/gui/glade/editmedia.glade:220
+#: ../gramps/gui/glade/editmedia.glade.h:7
 msgid ""
 "Path of the media object on your computer.\n"
 "Gramps does not store the media internally, it only stores the path! Set the "
@@ -11546,40 +10913,38 @@ msgid ""
 "managing paths of a collection of media objects. "
 msgstr ""
 
-#: ../gramps/gui/glade/editmedia.glade:236
-#: ../gramps/gui/glade/editmediaref.glade:535
+#: ../gramps/gui/glade/editmedia.glade.h:9
+#: ../gramps/gui/glade/editmediaref.glade.h:19
 msgid "Descriptive title for this media object."
 msgstr ""
 
-#: ../gramps/gui/glade/editmedia.glade:292
+#: ../gramps/gui/glade/editmedia.glade.h:12
 msgid "Open File Browser to select a media file on your computer."
 msgstr ""
 
-#: ../gramps/gui/glade/editmedia.glade:310
-#: ../gramps/gui/glade/editmediaref.glade:801
+#: ../gramps/gui/glade/editmedia.glade.h:14
+#: ../gramps/gui/glade/editmediaref.glade.h:29
 msgid "Folder"
 msgstr ""
 
-#: ../gramps/gui/glade/editmedia.glade:329
+#: ../gramps/gui/glade/editmedia.glade.h:15
 msgid "A unique ID to identify the Media object."
 msgstr ""
 
-#: ../gramps/gui/glade/editmedia.glade:380
+#: ../gramps/gui/glade/editmedia.glade.h:18
 msgid ""
 "A date associated with the media, eg., for a picture the date it is taken."
 msgstr ""
 
-#: ../gramps/gui/glade/editmediaref.glade:132
+#: ../gramps/gui/glade/editmediaref.glade.h:1
 msgid "_Corner 2:  X"
 msgstr ""
 
-#: ../gramps/gui/glade/editmediaref.glade:168
+#: ../gramps/gui/glade/editmediaref.glade.h:3
 msgid "<b>Referenced Region</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editmediaref.glade:183
-#: ../gramps/gui/glade/editmediaref.glade:202
-#: ../gramps/gui/glade/editmediaref.glade:300
+#: ../gramps/gui/glade/editmediaref.glade.h:4
 msgid ""
 "If media is an image, select the specific part of the image you want to "
 "reference.\n"
@@ -11589,7 +10954,7 @@ msgid ""
 "bottom right corner."
 msgstr ""
 
-#: ../gramps/gui/glade/editmediaref.glade:221
+#: ../gramps/gui/glade/editmediaref.glade.h:6
 msgid ""
 "Referenced region of the image media object.\n"
 "Select a region with clicking and holding the mouse button on the top left "
@@ -11597,11 +10962,11 @@ msgid ""
 "of the region, and then releasing the mouse button."
 msgstr ""
 
-#: ../gramps/gui/glade/editmediaref.glade:260
+#: ../gramps/gui/glade/editmediaref.glade.h:9
 msgid "_Corner 1:  X"
 msgstr ""
 
-#: ../gramps/gui/glade/editmediaref.glade:280
+#: ../gramps/gui/glade/editmediaref.glade.h:10
 msgid ""
 "If media is an image, select the specific part of the image you want to "
 "reference.\n"
@@ -11611,117 +10976,117 @@ msgid ""
 "bottom right corner.\n"
 msgstr ""
 
-#: ../gramps/gui/glade/editmediaref.glade:571
+#: ../gramps/gui/glade/editmediaref.glade.h:20
 msgid ""
 "<b>Note:</b> Any changes in the shared media object information will be "
 "reflected in the media object itself."
 msgstr ""
 
-#: ../gramps/gui/glade/editmediaref.glade:601
+#: ../gramps/gui/glade/editmediaref.glade.h:21
 msgid "Double click image to view in an external viewer"
 msgstr ""
 
-#: ../gramps/gui/glade/editmediaref.glade:648
+#: ../gramps/gui/glade/editmediaref.glade.h:23
 msgid "Type of media object as indicated by the computer, eg Image, Video, ..."
 msgstr ""
 
-#: ../gramps/gui/glade/editmediaref.glade:783
+#: ../gramps/gui/glade/editmediaref.glade.h:27
 msgid "Select a file"
 msgstr ""
 
-#: ../gramps/gui/glade/editmediaref.glade:900
+#: ../gramps/gui/glade/editmediaref.glade.h:33
 msgid "<b>Shared Information</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:116
-#: ../gramps/gui/glade/editperson.glade:349
+#: ../gramps/gui/glade/editname.glade.h:4
+#: ../gramps/gui/glade/editperson.glade.h:16
 msgid ""
 "An identification of what type of Name this is, eg. Birth Name, Married Name."
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:209
-#: ../gramps/gui/glade/editperson.glade:111
+#: ../gramps/gui/glade/editname.glade.h:7
+#: ../gramps/gui/glade/editperson.glade.h:3
 msgid "_Given:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:224
-#: ../gramps/gui/glade/editperson.glade:190
+#: ../gramps/gui/glade/editname.glade.h:8
+#: ../gramps/gui/glade/editperson.glade.h:7
 msgid "T_itle:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:240
+#: ../gramps/gui/glade/editname.glade.h:9
 msgid "Suffi_x:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:258
+#: ../gramps/gui/glade/editname.glade.h:10
 msgid "C_all Name:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:275
-#: ../gramps/gui/glade/editperson.glade:132
+#: ../gramps/gui/glade/editname.glade.h:11
+#: ../gramps/gui/glade/editperson.glade.h:4
 msgid "The person's given names"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:289
+#: ../gramps/gui/glade/editname.glade.h:12
 msgid "_Nick Name:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:306
-#: ../gramps/gui/glade/editperson.glade:171
+#: ../gramps/gui/glade/editname.glade.h:13
+#: ../gramps/gui/glade/editperson.glade.h:6
 msgid ""
 "Part of the Given name that is the normally used name. If background is red, "
 "call name is not part of Given name and will not be printed underlined in "
 "some reports."
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:318
-#: ../gramps/gui/glade/editperson.glade:209
+#: ../gramps/gui/glade/editname.glade.h:14
+#: ../gramps/gui/glade/editperson.glade.h:8
 msgid "A title used to refer to the person, such as 'Dr.' or 'Rev.'"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:332
-#: ../gramps/gui/glade/editperson.glade:228
+#: ../gramps/gui/glade/editname.glade.h:15
+#: ../gramps/gui/glade/editperson.glade.h:9
 msgid "An optional suffix to the name, such as \"Jr.\" or \"III\""
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:346
-#: ../gramps/gui/glade/editperson.glade:269
+#: ../gramps/gui/glade/editname.glade.h:16
+#: ../gramps/gui/glade/editperson.glade.h:12
 msgid ""
 "A descriptive name given in place of or in addition to the official given "
 "name."
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:365
+#: ../gramps/gui/glade/editname.glade.h:17
 msgid "<i>Given Name(s)    </i>"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:418
+#: ../gramps/gui/glade/editname.glade.h:18
 msgid "_Family Nick Name:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:432
+#: ../gramps/gui/glade/editname.glade.h:19
 msgid ""
 "A non official name given to a family to distinguish them of people with the "
 "same family name. Often referred to as eg. Farm name."
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:460
+#: ../gramps/gui/glade/editname.glade.h:20
 msgid "<i>Family Names     </i>"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:512
+#: ../gramps/gui/glade/editname.glade.h:21
 msgid "G_roup as:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:528
+#: ../gramps/gui/glade/editname.glade.h:22
 msgid "_Sort as:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:546
+#: ../gramps/gui/glade/editname.glade.h:23
 msgid "_Display as:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:563
+#: ../gramps/gui/glade/editname.glade.h:24
 msgid ""
 "People are displayed according to the name format given in the Preferences "
 "(the default).\n"
@@ -11729,11 +11094,11 @@ msgid ""
 "format (extra formats can be set in the Preferences)."
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:586
+#: ../gramps/gui/glade/editname.glade.h:26
 msgid "Dat_e:"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:604
+#: ../gramps/gui/glade/editname.glade.h:27
 msgid ""
 "People are sorted according to the name format given in the Preferences (the "
 "default).\n"
@@ -11741,7 +11106,7 @@ msgid ""
 "format (extra formats can be set in the Preferences)."
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:673
+#: ../gramps/gui/glade/editname.glade.h:31
 msgid ""
 "The Person Tree view groups people under the primary surname. You can "
 "override this by setting here a group value. \n"
@@ -11749,33 +11114,33 @@ msgid ""
 "this specific primary surname."
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:686
+#: ../gramps/gui/glade/editname.glade.h:33
 msgid "O_verride"
 msgstr ""
 
-#: ../gramps/gui/glade/editname.glade:714
+#: ../gramps/gui/glade/editname.glade.h:34
 msgid ""
 "A Date associated with this name. Eg. for a Married Name, date the name is "
 "first used or marriage date."
 msgstr ""
 
-#: ../gramps/gui/glade/editnote.glade:103
+#: ../gramps/gui/glade/editnote.glade.h:1
 msgid "Styled Text Editor"
 msgstr ""
 
-#: ../gramps/gui/glade/editnote.glade:157
+#: ../gramps/gui/glade/editnote.glade.h:3
 msgid "A type to classify the note."
 msgstr ""
 
-#: ../gramps/gui/glade/editnote.glade:194
+#: ../gramps/gui/glade/editnote.glade.h:5
 msgid "A unique ID to identify the note."
 msgstr ""
 
-#: ../gramps/gui/glade/editnote.glade:207
+#: ../gramps/gui/glade/editnote.glade.h:6
 msgid "_Preformatted"
 msgstr ""
 
-#: ../gramps/gui/glade/editnote.glade:215
+#: ../gramps/gui/glade/editnote.glade.h:7
 msgid ""
 "When active the whitespace in your note will be respected in reports. Use "
 "this to add formatting layout with spaces, eg a table. \n"
@@ -11784,27 +11149,27 @@ msgid ""
 "Use monospace font to keep preformatting."
 msgstr ""
 
-#: ../gramps/gui/glade/editnote.glade:362
+#: ../gramps/gui/glade/editnote.glade.h:14
 msgid "<b>Note</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:152
+#: ../gramps/gui/glade/editperson.glade.h:5
 msgid "C_all:"
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:251
+#: ../gramps/gui/glade/editperson.glade.h:11
 msgid "_Nick:"
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:310
+#: ../gramps/gui/glade/editperson.glade.h:14
 msgid "<b>Image</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:372
+#: ../gramps/gui/glade/editperson.glade.h:17
 msgid "Click on a table cell to edit."
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:396
+#: ../gramps/gui/glade/editperson.glade.h:18
 msgid ""
 "Use Multiple Surnames\n"
 "Indicate that the surname consists of different parts. Every surname has its "
@@ -11813,60 +11178,60 @@ msgid ""
 "the connector y, and Cajal, which is inherited from the mother."
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:442
+#: ../gramps/gui/glade/editperson.glade.h:22
 msgid "Set person as private data"
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:493
+#: ../gramps/gui/glade/editperson.glade.h:25
 msgid "<b>Preferred Name </b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:523
+#: ../gramps/gui/glade/editperson.glade.h:26
 msgid "_Surname:"
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:539
+#: ../gramps/gui/glade/editperson.glade.h:27
 msgid ""
 "An optional prefix for the family that is not used in sorting, such as \"de"
 "\" or \"van\"."
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:558
+#: ../gramps/gui/glade/editperson.glade.h:29
 msgid ""
 "Part of a person's name indicating the family to which the person belongs"
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:605
+#: ../gramps/gui/glade/editperson.glade.h:30
 msgid "Go to Name Editor to add more information about this name"
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:635
+#: ../gramps/gui/glade/editperson.glade.h:32
 msgid "O_rigin:"
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:650
+#: ../gramps/gui/glade/editperson.glade.h:33
 msgid ""
 "The origin of this family name for this family, eg 'Inherited' or "
 "'Patronymic'."
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:686
+#: ../gramps/gui/glade/editperson.glade.h:34
 msgid "G_ender:"
 msgstr ""
 
-#: ../gramps/gui/glade/editperson.glade:734
+#: ../gramps/gui/glade/editperson.glade.h:36
 msgid "A unique ID for the person."
 msgstr ""
 
-#: ../gramps/gui/glade/editpersonref.glade:97
+#: ../gramps/gui/glade/editpersonref.glade.h:2
 msgid "_Person:"
 msgstr ""
 
-#: ../gramps/gui/glade/editpersonref.glade:112
+#: ../gramps/gui/glade/editpersonref.glade.h:3
 msgid "_Association:"
 msgstr ""
 
-#: ../gramps/gui/glade/editpersonref.glade:128
+#: ../gramps/gui/glade/editpersonref.glade.h:4
 msgid ""
 "Description of the association, eg. Godfather, Friend, ...\n"
 "\n"
@@ -11875,37 +11240,37 @@ msgid ""
 "in the event."
 msgstr ""
 
-#: ../gramps/gui/glade/editpersonref.glade:182
+#: ../gramps/gui/glade/editpersonref.glade.h:9
 msgid ""
 "Use the select button to choose a person that has an association to the "
 "edited person."
 msgstr ""
 
-#: ../gramps/gui/glade/editpersonref.glade:198
+#: ../gramps/gui/glade/editpersonref.glade.h:10
 msgid "Select a person that has an association to the edited person."
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:97
+#: ../gramps/gui/glade/editplace.glade.h:1
 msgid "_Place Name:"
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:112
+#: ../gramps/gui/glade/editplace.glade.h:2
 msgid "L_atitude:"
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:129
+#: ../gramps/gui/glade/editplace.glade.h:3
 msgid "_Longitude:"
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:147
+#: ../gramps/gui/glade/editplace.glade.h:4
 msgid "Full name of this place."
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:176
+#: ../gramps/gui/glade/editplace.glade.h:6
 msgid "A unique ID to identify the place"
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:227
+#: ../gramps/gui/glade/editplace.glade.h:9
 msgid ""
 "Latitude (position above the Equator) of the place in decimal or degree "
 "notation. \n"
@@ -11914,7 +11279,7 @@ msgid ""
 "via a map service in the place view."
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:244
+#: ../gramps/gui/glade/editplace.glade.h:12
 msgid ""
 "Longitude (position relative to the Prime, or Greenwich, Meridian) of the "
 "place in decimal or degree notation. \n"
@@ -11924,264 +11289,249 @@ msgid ""
 "via a map service in the place view."
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:313
+#: ../gramps/gui/glade/editplace.glade.h:17
 msgid ""
 "Lowest level of a place division: eg the street name. \n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:327
+#: ../gramps/gui/glade/editplace.glade.h:19
 msgid ""
 "The town or city where the place is. \n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:444
+#: ../gramps/gui/glade/editplace.glade.h:27
 msgid "Count_ry:"
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:460
+#: ../gramps/gui/glade/editplace.glade.h:28
 msgid "The country where the place is. \n"
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:557
+#: ../gramps/gui/glade/editplace.glade.h:33
 msgid ""
 "A district within, or a settlement near to, a town or city.\n"
 "Use Alternate Locations tab to store the current name."
 msgstr ""
 
-#: ../gramps/gui/glade/editplace.glade:592
+#: ../gramps/gui/glade/editplace.glade.h:35
 msgid "<b>Location</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editreporef.glade:124
+#: ../gramps/gui/glade/editreporef.glade.h:4
 msgid "_Media Type:"
 msgstr ""
 
-#: ../gramps/gui/glade/editreporef.glade:139
+#: ../gramps/gui/glade/editreporef.glade.h:5
 msgid "Call n_umber:"
 msgstr ""
 
-#: ../gramps/gui/glade/editreporef.glade:155
+#: ../gramps/gui/glade/editreporef.glade.h:6
 msgid "On what type of media this source is available in the repository."
 msgstr ""
 
-#: ../gramps/gui/glade/editreporef.glade:211
+#: ../gramps/gui/glade/editreporef.glade.h:10
 msgid "Id number of the source in the repository."
 msgstr ""
 
-#: ../gramps/gui/glade/editreporef.glade:266
-#: ../gramps/gui/glade/editrepository.glade:101
-#: ../gramps/gui/glade/rule.glade:643
-#: ../gramps/plugins/tool/ownereditor.glade:126
+#: ../gramps/gui/glade/editreporef.glade.h:12
+#: ../gramps/gui/glade/editrepository.glade.h:3
+#: ../gramps/gui/glade/rule.glade.h:21
+#: ../gramps/plugins/tool/ownereditor.glade.h:1
 msgid "_Name:"
 msgstr ""
 
-#: ../gramps/gui/glade/editreporef.glade:297
-#: ../gramps/gui/glade/editrepository.glade:132
+#: ../gramps/gui/glade/editreporef.glade.h:14
+#: ../gramps/gui/glade/editrepository.glade.h:5
 msgid "Name of the repository (where sources are stored)."
 msgstr ""
 
-#: ../gramps/gui/glade/editreporef.glade:331
+#: ../gramps/gui/glade/editreporef.glade.h:15
 msgid ""
 "<b>Note:</b> Any changes in the shared repository information will be "
 "reflected in the repository itself, for all items that reference the "
 "repository."
 msgstr ""
 
-#: ../gramps/gui/glade/editreporef.glade:375
-#: ../gramps/gui/glade/editrepository.glade:184
+#: ../gramps/gui/glade/editreporef.glade.h:17
+#: ../gramps/gui/glade/editrepository.glade.h:8
 msgid "A unique ID to identify the repository."
 msgstr ""
 
-#: ../gramps/gui/glade/editreporef.glade:433
-#: ../gramps/gui/glade/editrepository.glade:150
+#: ../gramps/gui/glade/editreporef.glade.h:18
+#: ../gramps/gui/glade/editrepository.glade.h:6
 msgid "Type of repository, eg., 'Library', 'Album', ..."
 msgstr ""
 
-#: ../gramps/gui/glade/editsource.glade:116
-#: ../gramps/gui/glade/editsourceref.glade:356
+#: ../gramps/gui/glade/editsource.glade.h:4
+#: ../gramps/gui/glade/editsourceref.glade.h:18
 msgid "_Author:"
 msgstr ""
 
-#: ../gramps/gui/glade/editsource.glade:133
-#: ../gramps/gui/glade/editsourceref.glade:573
+#: ../gramps/gui/glade/editsource.glade.h:5
+#: ../gramps/gui/glade/editsourceref.glade.h:27
 msgid "Title of the source."
 msgstr ""
 
-#: ../gramps/gui/glade/editsource.glade:145
-#: ../gramps/gui/glade/editsourceref.glade:407
+#: ../gramps/gui/glade/editsource.glade.h:6
+#: ../gramps/gui/glade/editsourceref.glade.h:21
 msgid "Authors of the source."
 msgstr ""
 
-#: ../gramps/gui/glade/editsource.glade:160
+#: ../gramps/gui/glade/editsource.glade.h:7
 msgid "_Pub. info.:"
 msgstr ""
 
-#: ../gramps/gui/glade/editsource.glade:176
-#: ../gramps/gui/glade/editsourceref.glade:482
+#: ../gramps/gui/glade/editsource.glade.h:8
+#: ../gramps/gui/glade/editsourceref.glade.h:24
 msgid ""
 "Publication Information, such as city and year of publication, name of "
 "publisher, ..."
 msgstr ""
 
-#: ../gramps/gui/glade/editsource.glade:190
-#: ../gramps/gui/glade/editsourceref.glade:467
+#: ../gramps/gui/glade/editsource.glade.h:9
+#: ../gramps/gui/glade/editsourceref.glade.h:23
 msgid ""
 "Provide a short title used for sorting, filing, and retrieving source "
 "records."
 msgstr ""
 
-#: ../gramps/gui/glade/editsource.glade:205
-#: ../gramps/gui/glade/editsourceref.glade:374
+#: ../gramps/gui/glade/editsource.glade.h:10
+#: ../gramps/gui/glade/editsourceref.glade.h:19
 msgid "A_bbreviation:"
 msgstr ""
 
-#: ../gramps/gui/glade/editsource.glade:242
-#: ../gramps/gui/glade/editsourceref.glade:518
+#: ../gramps/gui/glade/editsource.glade.h:12
+#: ../gramps/gui/glade/editsourceref.glade.h:26
 msgid "A unique ID to identify the source"
 msgstr ""
 
-#: ../gramps/gui/glade/editsourceref.glade:391
+#: ../gramps/gui/glade/editsourceref.glade.h:20
 msgid "_Pub. Info.:"
 msgstr ""
 
-#: ../gramps/gui/glade/editsourceref.glade:443
+#: ../gramps/gui/glade/editsourceref.glade.h:22
 msgid ""
 "<b>Note:</b> Any changes in the shared source information will be reflected "
 "in the source itself, for all items that reference the source."
 msgstr ""
 
-#: ../gramps/gui/glade/editsourceref.glade:628
+#: ../gramps/gui/glade/editsourceref.glade.h:28
 msgid "<b>Shared source information</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/editurl.glade:98
+#: ../gramps/gui/glade/editurl.glade.h:2
 msgid "_Web address:"
 msgstr ""
 
-#: ../gramps/gui/glade/editurl.glade:115
+#: ../gramps/gui/glade/editurl.glade.h:3
 msgid "_Description:"
 msgstr ""
 
-#: ../gramps/gui/glade/editurl.glade:179
+#: ../gramps/gui/glade/editurl.glade.h:7
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
 msgstr ""
 
-#: ../gramps/gui/glade/editurl.glade:199
+#: ../gramps/gui/glade/editurl.glade.h:8
 msgid ""
 "The internet address as needed to navigate to it, eg. http://gramps-project."
 "org"
 msgstr ""
 
-#: ../gramps/gui/glade/editurl.glade:218
+#: ../gramps/gui/glade/editurl.glade.h:9
 msgid "Open the web address in the default browser."
 msgstr ""
 
-#: ../gramps/gui/glade/editurl.glade:235
+#: ../gramps/gui/glade/editurl.glade.h:10
 msgid "A descriptive caption of the Internet location you are storing."
 msgstr ""
 
-#: ../gramps/gui/glade/grampletpane.glade:7
-msgid "window2"
-msgstr ""
-
-#: ../gramps/gui/glade/grampletpane.glade:60
+#: ../gramps/gui/glade/grampletpane.glade.h:1
 msgid "Drag to move; click to detach"
 msgstr ""
 
-#: ../gramps/gui/glade/grampletpane.glade:64
+#: ../gramps/gui/glade/grampletpane.glade.h:2
 msgid "Detach"
 msgstr ""
 
-#: ../gramps/gui/glade/grampletpane.glade:74
+#: ../gramps/gui/glade/grampletpane.glade.h:3
 msgid "Config"
 msgstr ""
 
-#: ../gramps/gui/glade/grampletpane.glade:94
+#: ../gramps/gui/glade/grampletpane.glade.h:4
 msgid "Click to expand/collapse"
 msgstr ""
 
-#: ../gramps/gui/glade/grampletpane.glade:128
+#: ../gramps/gui/glade/grampletpane.glade.h:6
 msgid "Click to delete gramplet from view"
 msgstr ""
 
-#: ../gramps/gui/glade/grampletpane.glade:132
+#: ../gramps/gui/glade/grampletpane.glade.h:7
 msgid "Delete"
 msgstr ""
 
-#: ../gramps/gui/glade/grampletpane.glade:142
+#: ../gramps/gui/glade/grampletpane.glade.h:8
 msgid "Close"
 msgstr ""
 
-#: ../gramps/gui/glade/mergecitation.glade:99
+#: ../gramps/gui/glade/mergecitation.glade.h:1
 msgid ""
 "Select the citation that will provide the\n"
 "primary data for the merged citation."
 msgstr ""
 
-#: ../gramps/gui/glade/mergecitation.glade:202
-#: ../gramps/gui/glade/mergedata.glade:836
-#: ../gramps/gui/glade/mergesource.glade:190
+#: ../gramps/gui/glade/mergecitation.glade.h:3
+#: ../gramps/gui/glade/mergedata.glade.h:9
+#: ../gramps/gui/glade/mergesource.glade.h:3
 msgid "<b>Source 1</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergecitation.glade:214
-#: ../gramps/gui/glade/mergedata.glade:852
-#: ../gramps/gui/glade/mergesource.glade:202
+#: ../gramps/gui/glade/mergecitation.glade.h:4
+#: ../gramps/gui/glade/mergedata.glade.h:10
+#: ../gramps/gui/glade/mergesource.glade.h:4
 msgid "<b>Source 2</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergecitation.glade:349
-#: ../gramps/gui/glade/mergecitation.glade:368
-#: ../gramps/gui/glade/mergedata.glade:1038
-#: ../gramps/gui/glade/mergedata.glade:1059
-#: ../gramps/gui/glade/mergeevent.glade:378
-#: ../gramps/gui/glade/mergeevent.glade:397
-#: ../gramps/gui/glade/mergefamily.glade:340
-#: ../gramps/gui/glade/mergefamily.glade:359
-#: ../gramps/gui/glade/mergemedia.glade:337
-#: ../gramps/gui/glade/mergemedia.glade:356
-#: ../gramps/gui/glade/mergenote.glade:337
-#: ../gramps/gui/glade/mergenote.glade:356
-#: ../gramps/gui/glade/mergeperson.glade:307
-#: ../gramps/gui/glade/mergeperson.glade:326
-#: ../gramps/gui/glade/mergeplace.glade:378
-#: ../gramps/gui/glade/mergeplace.glade:397
-#: ../gramps/gui/glade/mergerepository.glade:296
-#: ../gramps/gui/glade/mergerepository.glade:315
-#: ../gramps/gui/glade/mergesource.glade:378
-#: ../gramps/gui/glade/mergesource.glade:397
+#: ../gramps/gui/glade/mergecitation.glade.h:8
+#: ../gramps/gui/glade/mergedata.glade.h:15
+#: ../gramps/gui/glade/mergeevent.glade.h:9
+#: ../gramps/gui/glade/mergefamily.glade.h:8
+#: ../gramps/gui/glade/mergemedia.glade.h:8
+#: ../gramps/gui/glade/mergenote.glade.h:8
+#: ../gramps/gui/glade/mergeperson.glade.h:7
+#: ../gramps/gui/glade/mergeplace.glade.h:9
+#: ../gramps/gui/glade/mergerepository.glade.h:7
+#: ../gramps/gui/glade/mergesource.glade.h:9
 msgid "Gramps ID:"
 msgstr ""
 
-#: ../gramps/gui/glade/mergecitation.glade:517
+#: ../gramps/gui/glade/mergecitation.glade.h:9
 msgid "Notes, media objects and data-items of both citations will be combined."
 msgstr ""
 
-#: ../gramps/gui/glade/mergecitation.glade:533
-#: ../gramps/gui/glade/mergeevent.glade:590
-#: ../gramps/gui/glade/mergefamily.glade:524
-#: ../gramps/gui/glade/mergemedia.glade:521
-#: ../gramps/gui/glade/mergenote.glade:534
-#: ../gramps/gui/glade/mergeperson.glade:464
-#: ../gramps/gui/glade/mergeplace.glade:602
-#: ../gramps/gui/glade/mergerepository.glade:452
-#: ../gramps/gui/glade/mergesource.glade:590
+#: ../gramps/gui/glade/mergecitation.glade.h:10
+#: ../gramps/gui/glade/mergeevent.glade.h:11
+#: ../gramps/gui/glade/mergefamily.glade.h:10
+#: ../gramps/gui/glade/mergemedia.glade.h:10
+#: ../gramps/gui/glade/mergenote.glade.h:9
+#: ../gramps/gui/glade/mergeperson.glade.h:9
+#: ../gramps/gui/glade/mergeplace.glade.h:11
+#: ../gramps/gui/glade/mergerepository.glade.h:9
+#: ../gramps/gui/glade/mergesource.glade.h:11
 msgid "Detailed Selection"
 msgstr ""
 
-#: ../gramps/gui/glade/mergedata.glade:41
+#: ../gramps/gui/glade/mergedata.glade.h:1
 msgid "Merge and _edit"
 msgstr ""
 
-#: ../gramps/gui/glade/mergedata.glade:60
+#: ../gramps/gui/glade/mergedata.glade.h:2
 msgid "_Merge and close"
 msgstr ""
 
 #. name, click?, width, toggle
-#: ../gramps/gui/glade/mergedata.glade:169
-#: ../gramps/gui/glade/mergedata.glade:190 ../gramps/gui/grampsgui.py:189
+#: ../gramps/gui/glade/mergedata.glade.h:3 ../gramps/gui/grampsgui.py:189
 #: ../gramps/gui/plug/_windows.py:1098
 #: ../gramps/plugins/tool/changenames.py:195
 #: ../gramps/plugins/tool/extractcity.py:542
@@ -12189,547 +11539,539 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: ../gramps/gui/glade/mergedata.glade:328
+#: ../gramps/gui/glade/mergedata.glade.h:4
 msgid ""
 "Select the person that will provide the primary data for the merged person."
 msgstr ""
 
-#: ../gramps/gui/glade/mergedata.glade:604
+#: ../gramps/gui/glade/mergedata.glade.h:6
 msgid "<b>Title selection</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergedata.glade:615
+#: ../gramps/gui/glade/mergedata.glade.h:7
 msgid "Place 1"
 msgstr ""
 
-#: ../gramps/gui/glade/mergedata.glade:637
+#: ../gramps/gui/glade/mergedata.glade.h:8
 msgid "Place 2"
 msgstr ""
 
-#: ../gramps/gui/glade/mergeevent.glade:99
+#: ../gramps/gui/glade/mergeevent.glade.h:1
 msgid ""
 "Select the event that will provide the\n"
 "primary data for the merged event."
 msgstr ""
 
-#: ../gramps/gui/glade/mergeevent.glade:190
+#: ../gramps/gui/glade/mergeevent.glade.h:3
 msgid "<b>Event 1</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergeevent.glade:202
+#: ../gramps/gui/glade/mergeevent.glade.h:4
 msgid "<b>Event 2</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergeevent.glade:574
+#: ../gramps/gui/glade/mergeevent.glade.h:10
 msgid ""
 "Attributes, notes, sources and media objects of both events will be combined."
 msgstr ""
 
-#: ../gramps/gui/glade/mergefamily.glade:100
+#: ../gramps/gui/glade/mergefamily.glade.h:1
 msgid ""
 "Select the family that will provide the\n"
 "primary data for the merged family."
 msgstr ""
 
-#: ../gramps/gui/glade/mergefamily.glade:193
+#: ../gramps/gui/glade/mergefamily.glade.h:3
 msgid "<b>Family 1</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergefamily.glade:205
+#: ../gramps/gui/glade/mergefamily.glade.h:4
 msgid "<b>Family 2</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergefamily.glade:217
-#: ../gramps/gui/glade/mergefamily.glade:236
+#: ../gramps/gui/glade/mergefamily.glade.h:5
 msgid "Father:"
 msgstr ""
 
-#: ../gramps/gui/glade/mergefamily.glade:258
-#: ../gramps/gui/glade/mergefamily.glade:277
+#: ../gramps/gui/glade/mergefamily.glade.h:6
 msgid "Mother:"
 msgstr ""
 
 #. FIXME this should be lower-case:
-#: ../gramps/gui/glade/mergefamily.glade:299
-#: ../gramps/gui/glade/mergefamily.glade:318
+#: ../gramps/gui/glade/mergefamily.glade.h:7
 #: ../gramps/plugins/textreport/indivcomplete.py:206
 msgid "Relationship:"
 msgstr ""
 
-#: ../gramps/gui/glade/mergefamily.glade:508
+#: ../gramps/gui/glade/mergefamily.glade.h:9
 msgid ""
 "Events, lds_ord, media objects, attributes, notes, sources and tags of both "
 "families will be combined."
 msgstr ""
 
-#: ../gramps/gui/glade/mergemedia.glade:99
+#: ../gramps/gui/glade/mergemedia.glade.h:1
 msgid ""
 "Select the object that will provide the\n"
 "primary data for the merged object."
 msgstr ""
 
-#: ../gramps/gui/glade/mergemedia.glade:190
+#: ../gramps/gui/glade/mergemedia.glade.h:3
 msgid "<b>Object 1</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergemedia.glade:202
+#: ../gramps/gui/glade/mergemedia.glade.h:4
 msgid "<b>Object 2</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergemedia.glade:505
+#: ../gramps/gui/glade/mergemedia.glade.h:9
 msgid "Attributes, sources, notes and tags of both objects will be combined."
 msgstr ""
 
-#: ../gramps/gui/glade/mergenote.glade:99
+#: ../gramps/gui/glade/mergenote.glade.h:1
 msgid ""
 "Select the note that will provide the\n"
 "primary data for the merged note."
 msgstr ""
 
-#: ../gramps/gui/glade/mergenote.glade:190
+#: ../gramps/gui/glade/mergenote.glade.h:3
 msgid "<b>Note 1</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergenote.glade:202
+#: ../gramps/gui/glade/mergenote.glade.h:4
 msgid "<b>Note 2</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergenote.glade:296
-#: ../gramps/gui/glade/mergenote.glade:315 ../gramps/gui/views/listview.py:994
+#: ../gramps/gui/glade/mergenote.glade.h:7 ../gramps/gui/views/listview.py:994
 msgid "Format:"
 msgstr ""
 
-#: ../gramps/gui/glade/mergeperson.glade:105
+#: ../gramps/gui/glade/mergeperson.glade.h:1
 msgid ""
 "Select the person that will provide the\n"
 "primary data for the merged person."
 msgstr ""
 
-#: ../gramps/gui/glade/mergeperson.glade:201
+#: ../gramps/gui/glade/mergeperson.glade.h:3
 msgid "<b>Person 1</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergeperson.glade:213
+#: ../gramps/gui/glade/mergeperson.glade.h:4
 msgid "<b>Person 2</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergeperson.glade:266
-#: ../gramps/gui/glade/mergeperson.glade:285
+#: ../gramps/gui/glade/mergeperson.glade.h:6
 msgid "Gender:"
 msgstr ""
 
-#: ../gramps/gui/glade/mergeperson.glade:448
+#: ../gramps/gui/glade/mergeperson.glade.h:8
 msgid ""
 "Events, media objects, addresses, attributes, urls, notes, sources and tags "
 "of both persons will be combined."
 msgstr ""
 
-#: ../gramps/gui/glade/mergeperson.glade:535
+#: ../gramps/gui/glade/mergeperson.glade.h:10
 msgid "Context Information"
 msgstr ""
 
-#: ../gramps/gui/glade/mergeplace.glade:99
+#: ../gramps/gui/glade/mergeplace.glade.h:1
 msgid ""
 "Select the place that will provide the\n"
 "primary data for the merged place."
 msgstr ""
 
-#: ../gramps/gui/glade/mergeplace.glade:190
+#: ../gramps/gui/glade/mergeplace.glade.h:3
 msgid "<b>Place 1</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergeplace.glade:202
+#: ../gramps/gui/glade/mergeplace.glade.h:4
 msgid "<b>Place 2</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergeplace.glade:337
-#: ../gramps/gui/glade/mergeplace.glade:356
+#: ../gramps/gui/glade/mergeplace.glade.h:8
 msgid "Location:"
 msgstr ""
 
-#: ../gramps/gui/glade/mergeplace.glade:586
+#: ../gramps/gui/glade/mergeplace.glade.h:10
 msgid ""
 "Alternate locations, sources, urls, media objects and notes of both places "
 "will be combined."
 msgstr ""
 
-#: ../gramps/gui/glade/mergerepository.glade:99
+#: ../gramps/gui/glade/mergerepository.glade.h:1
 msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
 msgstr ""
 
-#: ../gramps/gui/glade/mergerepository.glade:190
+#: ../gramps/gui/glade/mergerepository.glade.h:3
 msgid "<b>Repository 1</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergerepository.glade:202
+#: ../gramps/gui/glade/mergerepository.glade.h:4
 msgid "<b>Repository 2</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/mergerepository.glade:436
+#: ../gramps/gui/glade/mergerepository.glade.h:8
 msgid "Addresses, urls and notes of both repositories will be combined."
 msgstr ""
 
-#: ../gramps/gui/glade/mergesource.glade:99
+#: ../gramps/gui/glade/mergesource.glade.h:1
 msgid ""
 "Select the source that will provide the\n"
 "primary data for the merged source."
 msgstr ""
 
-#: ../gramps/gui/glade/mergesource.glade:574
+#: ../gramps/gui/glade/mergesource.glade.h:10
 msgid ""
 "Notes, media objects, data-items and repository references of both sources "
 "will be combined."
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:6
+#: ../gramps/gui/glade/papermenu.glade.h:1
 msgid "Paper Settings"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:25
+#: ../gramps/gui/glade/papermenu.glade.h:2
 msgid "Paper format"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:58
+#: ../gramps/gui/glade/papermenu.glade.h:3
 msgid "Size:"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:70
+#: ../gramps/gui/glade/papermenu.glade.h:4
 msgid "_Width:"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:86
+#: ../gramps/gui/glade/papermenu.glade.h:5
 msgid "_Height:"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:102
+#: ../gramps/gui/glade/papermenu.glade.h:6
 msgid "Orientation:"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:131
-#: ../gramps/gui/glade/papermenu.glade:148
-#: ../gramps/gui/glade/papermenu.glade:295
-#: ../gramps/gui/glade/papermenu.glade:310
-#: ../gramps/gui/glade/papermenu.glade:327
-#: ../gramps/gui/glade/papermenu.glade:402
-#: ../gramps/gui/glade/styleeditor.glade:731
-#: ../gramps/gui/glade/styleeditor.glade:748
-#: ../gramps/gui/glade/styleeditor.glade:765
-#: ../gramps/gui/glade/styleeditor.glade:877
-#: ../gramps/gui/glade/styleeditor.glade:894
-#: ../gramps/gui/glade/styleeditor.glade:1114
+#: ../gramps/gui/glade/papermenu.glade.h:7
+#: ../gramps/gui/glade/styleeditor.glade.h:22
 #: ../gramps/gui/plug/report/_papermenu.py:213
 msgid "cm"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:206
+#: ../gramps/gui/glade/papermenu.glade.h:8
 msgid "Margins"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:233
+#: ../gramps/gui/glade/papermenu.glade.h:9
 msgid "_Left:"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:247
+#: ../gramps/gui/glade/papermenu.glade.h:10
 msgid "_Right:"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:263
+#: ../gramps/gui/glade/papermenu.glade.h:11
 msgid "_Top:"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:279
+#: ../gramps/gui/glade/papermenu.glade.h:12
 msgid "_Bottom:"
 msgstr ""
 
-#: ../gramps/gui/glade/papermenu.glade:439
+#: ../gramps/gui/glade/papermenu.glade.h:13
 msgid "Metric"
 msgstr ""
 
-#: ../gramps/gui/glade/plugins.glade:45
+#: ../gramps/gui/glade/plugins.glade.h:1
 msgid "Perform selected action"
 msgstr ""
 
-#: ../gramps/gui/glade/plugins.glade:50
+#: ../gramps/gui/glade/plugins.glade.h:2
 #: ../gramps/plugins/gramplet/ageondategramplet.py:76
 msgid "Run"
 msgstr ""
 
-#: ../gramps/gui/glade/plugins.glade:136 ../gramps/gui/plug/_dialogs.py:280
+#: ../gramps/gui/glade/plugins.glade.h:3 ../gramps/gui/plug/_dialogs.py:280
 msgid "Select a report from those available on the left."
 msgstr ""
 
-#: ../gramps/gui/glade/plugins.glade:157
+#: ../gramps/gui/glade/plugins.glade.h:4
 msgid "Status:"
 msgstr ""
 
-#: ../gramps/gui/glade/plugins.glade:201
+#: ../gramps/gui/glade/plugins.glade.h:6
 msgid "Author's email:"
 msgstr ""
 
-#: ../gramps/gui/glade/reorder.glade:90
+#: ../gramps/gui/glade/reorder.glade.h:1
 msgid "<b>Parent relationships</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/reorder.glade:111
+#: ../gramps/gui/glade/reorder.glade.h:2
 msgid "Move parent up"
 msgstr ""
 
-#: ../gramps/gui/glade/reorder.glade:121 ../gramps/gui/glade/reorder.glade:261
+#: ../gramps/gui/glade/reorder.glade.h:3
 msgid "Arrow top"
 msgstr ""
 
-#: ../gramps/gui/glade/reorder.glade:142
+#: ../gramps/gui/glade/reorder.glade.h:4
 msgid "Move parent down"
 msgstr ""
 
-#: ../gramps/gui/glade/reorder.glade:152 ../gramps/gui/glade/reorder.glade:292
+#: ../gramps/gui/glade/reorder.glade.h:5
 msgid "Arrow bottom"
 msgstr ""
 
-#: ../gramps/gui/glade/reorder.glade:204
+#: ../gramps/gui/glade/reorder.glade.h:6
 msgid "<b>Family relationships</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/reorder.glade:251
+#: ../gramps/gui/glade/reorder.glade.h:7
 msgid "Move family up"
 msgstr ""
 
-#: ../gramps/gui/glade/reorder.glade:282
+#: ../gramps/gui/glade/reorder.glade.h:8
 msgid "Move family down"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:122
+#: ../gramps/gui/glade/rule.glade.h:1
 msgid "Add a new filter"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:147
+#: ../gramps/gui/glade/rule.glade.h:2
 msgid "Edit the selected filter"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:172
+#: ../gramps/gui/glade/rule.glade.h:3
 msgid "Clone the selected filter"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:195
+#: ../gramps/gui/glade/rule.glade.h:4
 msgid "Test the selected filter"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:220
+#: ../gramps/gui/glade/rule.glade.h:5
 msgid "Delete the selected filter"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:260
+#: ../gramps/gui/glade/rule.glade.h:6
 msgid "<i>Note: changes take effect only after this window is closed</i>"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:442
+#: ../gramps/gui/glade/rule.glade.h:7
+msgid "All rules must apply"
+msgstr ""
+
+#: ../gramps/gui/glade/rule.glade.h:8
+msgid "At least one rule must apply"
+msgstr ""
+
+#: ../gramps/gui/glade/rule.glade.h:9
+msgid "Exactly one rule must apply"
+msgstr ""
+
+#: ../gramps/gui/glade/rule.glade.h:10
 msgid "Add another rule to the filter"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:477
+#: ../gramps/gui/glade/rule.glade.h:12
 msgid "Edit the selected rule"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:512
+#: ../gramps/gui/glade/rule.glade.h:15
 msgid "Delete the selected rule"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:557
-#: ../gramps/gui/glade/styleeditor.glade:418
-#: ../gramps/plugins/tool/finddupes.glade:140
-#: ../gramps/plugins/tool/mergecitations.glade:146
+#: ../gramps/gui/glade/rule.glade.h:17
+#: ../gramps/gui/glade/styleeditor.glade.h:10
+#: ../gramps/plugins/tool/finddupes.glade.h:2
+#: ../gramps/plugins/tool/mergecitations.glade.h:2
 msgid "<b>Options</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:573
+#: ../gramps/gui/glade/rule.glade.h:18
 msgid "<b>Rule list</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:589
+#: ../gramps/gui/glade/rule.glade.h:19
 msgid "<b>Definition</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:603
+#: ../gramps/gui/glade/rule.glade.h:20
 msgid "Co_mment:"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:658
+#: ../gramps/gui/glade/rule.glade.h:22
 msgid "Return values that do no_t match the filter rules"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:882
+#: ../gramps/gui/glade/rule.glade.h:23
 msgid "<b>Selected Rule</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:912
-#: ../gramps/gui/glade/styleeditor.glade:241
+#: ../gramps/gui/glade/rule.glade.h:25
+#: ../gramps/gui/glade/styleeditor.glade.h:3
 msgid "<b>Description</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/rule.glade:943
+#: ../gramps/gui/glade/rule.glade.h:27
 msgid "<b>Values</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:132
+#: ../gramps/gui/glade/styleeditor.glade.h:1
 msgid "Style n_ame:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:151
+#: ../gramps/gui/glade/styleeditor.glade.h:2
 msgid "Style name"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:288
+#: ../gramps/gui/glade/styleeditor.glade.h:4
 msgid "<b>Type face</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:300
+#: ../gramps/gui/glade/styleeditor.glade.h:5
 msgid "_Roman (Times, serif)"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:321
+#: ../gramps/gui/glade/styleeditor.glade.h:6
 msgid "_Swiss (Arial, Helvetica, sans-serif)"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:347
+#: ../gramps/gui/glade/styleeditor.glade.h:7
 msgid "<b>Size</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:381
+#: ../gramps/gui/glade/styleeditor.glade.h:8
 #: ../gramps/gui/plug/report/_styleeditor.py:216
 msgid "point size|pt"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:399
+#: ../gramps/gui/glade/styleeditor.glade.h:9
 msgid "<b>Color</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:432
+#: ../gramps/gui/glade/styleeditor.glade.h:11
 msgid "_Bold"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:453
+#: ../gramps/gui/glade/styleeditor.glade.h:12
 msgid "_Italic"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:474
+#: ../gramps/gui/glade/styleeditor.glade.h:13
 msgid "_Underline"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:535
+#: ../gramps/gui/glade/styleeditor.glade.h:14
 msgid "<b>Font options</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:587
+#: ../gramps/gui/glade/styleeditor.glade.h:15
 msgid "_Left"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:608
+#: ../gramps/gui/glade/styleeditor.glade.h:16
 msgid "_Right"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:630
+#: ../gramps/gui/glade/styleeditor.glade.h:17
 msgid "J_ustify"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:652
+#: ../gramps/gui/glade/styleeditor.glade.h:18
 msgid "Cen_ter"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:679
+#: ../gramps/gui/glade/styleeditor.glade.h:19
 msgid "<b>Alignment</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:695
+#: ../gramps/gui/glade/styleeditor.glade.h:20
 msgid "<b>Background color</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:712
+#: ../gramps/gui/glade/styleeditor.glade.h:21
 msgid "First li_ne:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:782
+#: ../gramps/gui/glade/styleeditor.glade.h:23
 msgid "R_ight:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:801
+#: ../gramps/gui/glade/styleeditor.glade.h:24
 msgid "L_eft:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:822
+#: ../gramps/gui/glade/styleeditor.glade.h:25
 msgid "<b>Spacing</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:839
+#: ../gramps/gui/glade/styleeditor.glade.h:26
 msgid "Abo_ve:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:858
+#: ../gramps/gui/glade/styleeditor.glade.h:27
 msgid "Belo_w:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:913
+#: ../gramps/gui/glade/styleeditor.glade.h:28
 msgid "<b>Borders</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1012
+#: ../gramps/gui/glade/styleeditor.glade.h:29
 msgid "Le_ft"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1033
+#: ../gramps/gui/glade/styleeditor.glade.h:30
 msgid "Righ_t"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1054
+#: ../gramps/gui/glade/styleeditor.glade.h:31
 msgid "_Top"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1078
+#: ../gramps/gui/glade/styleeditor.glade.h:32
 msgid "_Padding:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1128
+#: ../gramps/gui/glade/styleeditor.glade.h:33
 msgid "_Bottom"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1168
+#: ../gramps/gui/glade/styleeditor.glade.h:34
 msgid "<b>Indentation</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1205
+#: ../gramps/gui/glade/styleeditor.glade.h:35
 msgid "<b>Paragraph options</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1357
+#: ../gramps/gui/glade/styleeditor.glade.h:36
 msgid "Add a new style"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1390
+#: ../gramps/gui/glade/styleeditor.glade.h:38
 msgid "Edit the selected style"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1423
+#: ../gramps/gui/glade/styleeditor.glade.h:41
 msgid "Delete the selected style"
 msgstr ""
 
-#: ../gramps/gui/glade/tipofday.glade:9
-msgid "window1"
-msgstr ""
-
-#: ../gramps/gui/glade/tipofday.glade:22
+#: ../gramps/gui/glade/tipofday.glade.h:1
 msgid "_Display on startup"
 msgstr ""
 
-#: ../gramps/gui/glade/updateaddons.glade:40
+#: ../gramps/gui/glade/updateaddons.glade.h:1
 msgid "Install Selected _Addons"
 msgstr ""
 
-#: ../gramps/gui/glade/updateaddons.glade:69
+#: ../gramps/gui/glade/updateaddons.glade.h:2
 msgid "<b>Available Gramps Updates for Addons</b>"
 msgstr ""
 
-#: ../gramps/gui/glade/updateaddons.glade:84
+#: ../gramps/gui/glade/updateaddons.glade.h:3
 msgid ""
 "Gramps comes with a core set of plugins which provide all of the necessary "
 "features. However, you can extend this functionality with additional Addons. "
@@ -12740,11 +12082,11 @@ msgid ""
 "under Edit -> Preferences."
 msgstr ""
 
-#: ../gramps/gui/glade/updateaddons.glade:100
+#: ../gramps/gui/glade/updateaddons.glade.h:4
 msgid "_Select All"
 msgstr ""
 
-#: ../gramps/gui/glade/updateaddons.glade:114
+#: ../gramps/gui/glade/updateaddons.glade.h:5
 msgid "Select _None"
 msgstr ""
 
@@ -13381,11 +12723,11 @@ msgid "Report Selection"
 msgstr ""
 
 #: ../gramps/gui/plug/_dialogs.py:281
-msgid "Generate selected report"
+msgid "_Generate"
 msgstr ""
 
 #: ../gramps/gui/plug/_dialogs.py:281
-msgid "_Generate"
+msgid "Generate selected report"
 msgstr ""
 
 #: ../gramps/gui/plug/_dialogs.py:310
@@ -13396,7 +12738,7 @@ msgstr ""
 msgid "Select a tool from those available on the left."
 msgstr ""
 
-#: ../gramps/gui/plug/_dialogs.py:312 ../gramps/plugins/tool/verify.glade:380
+#: ../gramps/gui/plug/_dialogs.py:312 ../gramps/plugins/tool/verify.glade.h:6
 msgid "_Run"
 msgstr ""
 
@@ -14200,7 +13542,8 @@ msgstr ""
 #: ../gramps/gui/plug/report/_stylecombobox.py:89
 #: ../gramps/gui/plug/report/_styleeditor.py:116
 #: ../gramps/gui/plug/report/_styleeditor.py:158
-#: ../gramps/gui/plug/report/_styleeditor.py:169 gtklist.h:1
+#: ../gramps/gui/plug/report/_styleeditor.py:169
+#: ../gramps/plugins/importer/importgedcom.glade.h:5
 msgid "default"
 msgstr ""
 
@@ -14664,7 +14007,7 @@ msgid "Gramps XML Backup"
 msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1255
-#: ../gramps/plugins/importer/importgedcom.glade:282
+#: ../gramps/plugins/importer/importgedcom.glade.h:11
 msgid "File:"
 msgstr ""
 
@@ -15050,15 +14393,15 @@ msgid "Pick a Color"
 msgstr ""
 
 #: ../gramps/gui/views/treemodels/placemodel.py:69
-msgid "<Counties>"
-msgstr ""
-
-#: ../gramps/gui/views/treemodels/placemodel.py:69
 msgid "<Countries>"
 msgstr ""
 
 #: ../gramps/gui/views/treemodels/placemodel.py:69
 msgid "<States>"
+msgstr ""
+
+#: ../gramps/gui/views/treemodels/placemodel.py:69
+msgid "<Counties>"
 msgstr ""
 
 #: ../gramps/gui/views/treemodels/placemodel.py:70
@@ -15351,16 +14694,6 @@ msgstr ""
 msgid "The number of characters per line"
 msgstr ""
 
-#: ../gramps/plugins/docgen/cairodoc.py:238
-#: ../gramps/plugins/docgen/odfdoc.py:1634
-msgid "Contents"
-msgstr ""
-
-#: ../gramps/plugins/docgen/cairodoc.py:271
-#: ../gramps/plugins/docgen/odfdoc.py:1673
-msgid "Index"
-msgstr ""
-
 #: ../gramps/plugins/docgen/docgen.gpr.py:31
 msgid "Plain Text"
 msgstr ""
@@ -15429,47 +14762,47 @@ msgstr ""
 msgid "Generates documents in Scalable Vector Graphics format (.svg)."
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.glade:6
+#: ../gramps/plugins/docgen/gtkprint.glade.h:1
 msgid "Print Preview"
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.glade:26
+#: ../gramps/plugins/docgen/gtkprint.glade.h:2
 msgid "Closes print preview window"
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.glade:41
+#: ../gramps/plugins/docgen/gtkprint.glade.h:3
 msgid "Prints the current file"
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.glade:66
+#: ../gramps/plugins/docgen/gtkprint.glade.h:4
 msgid "Shows the first page"
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.glade:83
+#: ../gramps/plugins/docgen/gtkprint.glade.h:5
 msgid "Shows previous page"
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.glade:100
+#: ../gramps/plugins/docgen/gtkprint.glade.h:6
 msgid "Shows the next page"
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.glade:117
+#: ../gramps/plugins/docgen/gtkprint.glade.h:7
 msgid "Shows the last page"
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.glade:195
+#: ../gramps/plugins/docgen/gtkprint.glade.h:8
 msgid "Zooms to fit the page width"
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.glade:210
+#: ../gramps/plugins/docgen/gtkprint.glade.h:9
 msgid "Zooms to fit the whole page"
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.glade:225
+#: ../gramps/plugins/docgen/gtkprint.glade.h:10
 msgid "Zooms the page in"
 msgstr ""
 
-#: ../gramps/plugins/docgen/gtkprint.glade:240
+#: ../gramps/plugins/docgen/gtkprint.glade.h:11
 msgid "Zooms the page out"
 msgstr ""
 
@@ -15509,6 +14842,16 @@ msgstr ""
 #: ../gramps/plugins/docgen/odfdoc.py:1230
 #, python-format
 msgid "Could not open %s"
+msgstr ""
+
+#: ../gramps/plugins/docgen/odfdoc.py:1634
+#: ../gramps/plugins/docgen/cairodoc.py:238
+msgid "Contents"
+msgstr ""
+
+#: ../gramps/plugins/docgen/odfdoc.py:1673
+#: ../gramps/plugins/docgen/cairodoc.py:271
+msgid "Index"
 msgstr ""
 
 #. cm2pt = ReportUtils.cm2pt
@@ -15659,7 +15002,8 @@ msgid "Display format for the fathers box."
 msgstr ""
 
 #. Will add when libsubstkeyword supports it.
-#. missing = EnumeratedListOption(_("Replace missing\nplaces\\dates #. with"), 0)
+#. missing = EnumeratedListOption(_("Replace missing\nplaces\\dates \
+#. with"), 0)
 #. missing.add_item( 0, _("Does not display anything"))
 #. missing.add_item( 1, _("Displays '_____'"))
 #. missing.set_help(_("What will print when information is not known"))
@@ -16088,12 +15432,12 @@ msgid "Text Options"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:481
-msgid "My Calendar"
+#: ../gramps/plugins/textreport/birthdayreport.py:486
+msgid "Text Area 1"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:481
-#: ../gramps/plugins/textreport/birthdayreport.py:486
-msgid "Text Area 1"
+msgid "My Calendar"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:482
@@ -16101,13 +15445,13 @@ msgid "First line of text at bottom of calendar"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:485
-#: ../gramps/plugins/textreport/birthdayreport.py:69
-msgid "Produced with Gramps"
+#: ../gramps/plugins/textreport/birthdayreport.py:490
+msgid "Text Area 2"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:485
-#: ../gramps/plugins/textreport/birthdayreport.py:490
-msgid "Text Area 2"
+#: ../gramps/plugins/textreport/birthdayreport.py:69
+msgid "Produced with Gramps"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:486
@@ -16902,6 +16246,12 @@ msgstr ""
 msgid "Web Family Tree export options"
 msgstr ""
 
+#: ../gramps/plugins/export/export.gpr.py:73
+#: ../gramps/plugins/importer/import.gpr.py:51 ../data/gramps.keys.in.h:4
+#: ../data/gramps.xml.in.h:2
+msgid "GEDCOM"
+msgstr ""
+
 #: ../gramps/plugins/export/export.gpr.py:74
 msgid "GE_DCOM"
 msgstr ""
@@ -16915,6 +16265,11 @@ msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:84
 msgid "GEDCOM export options"
+msgstr ""
+
+#: ../gramps/plugins/export/export.gpr.py:95
+#: ../gramps/plugins/importer/import.gpr.py:70 ../data/gramps.keys.in.h:5
+msgid "GeneWeb"
 msgstr ""
 
 #: ../gramps/plugins/export/export.gpr.py:96
@@ -17187,12 +16542,12 @@ msgid "Lifespan Age Distribution"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/agestats.py:171
-#: ../gramps/plugins/gramplet/agestats.py:172
-msgid "Diff"
+msgid "Father - Child Age Diff Distribution"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/agestats.py:171
-msgid "Father - Child Age Diff Distribution"
+#: ../gramps/plugins/gramplet/agestats.py:172
+msgid "Diff"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/agestats.py:172
@@ -19423,15 +18778,15 @@ msgid_plural "Import Complete: %d seconds"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/plugins/importer/importgedcom.glade:8
+#: ../gramps/plugins/importer/importgedcom.glade.h:1
 msgid "Gramps - GEDCOM Encoding"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgedcom.glade:53
+#: ../gramps/plugins/importer/importgedcom.glade.h:2
 msgid "<span size=\"larger\" weight=\"bold\">GEDCOM Encoding</span>"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgedcom.glade:69
+#: ../gramps/plugins/importer/importgedcom.glade.h:3
 msgid ""
 "This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, "
 "this is in error. If the imported data contains unusual characters, undo the "
@@ -19439,35 +18794,51 @@ msgid ""
 "below."
 msgstr ""
 
-#: ../gramps/plugins/importer/importgedcom.glade:95
+#: ../gramps/plugins/importer/importgedcom.glade.h:4
 msgid "Encoding: "
 msgstr ""
 
-#: ../gramps/plugins/importer/importgedcom.glade:232
+#: ../gramps/plugins/importer/importgedcom.glade.h:6
+msgid "ANSEL"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgedcom.glade.h:7
+msgid "ANSI (iso-8859-1)"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgedcom.glade.h:8
+msgid "ASCII"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgedcom.glade.h:9
+msgid "UTF8"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgedcom.glade.h:10
 msgid "<b>Warning messages</b>"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgedcom.glade:297
+#: ../gramps/plugins/importer/importgedcom.glade.h:12
 msgid "Created by:"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgedcom.glade:314
+#: ../gramps/plugins/importer/importgedcom.glade.h:13
 msgid "People:"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgedcom.glade:371
+#: ../gramps/plugins/importer/importgedcom.glade.h:14
 msgid "Encoding:"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgedcom.glade:386
+#: ../gramps/plugins/importer/importgedcom.glade.h:15
 msgid "Version:"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgedcom.glade:403
+#: ../gramps/plugins/importer/importgedcom.glade.h:16
 msgid "Families:"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgedcom.glade:505
+#: ../gramps/plugins/importer/importgedcom.glade.h:17
 msgid "<b>Status</b>"
 msgstr ""
 
@@ -24084,6 +23455,13 @@ msgid "Sorted events of %s"
 msgstr ""
 
 #: ../gramps/plugins/quickview/all_events.py:62
+#: ../gramps/plugins/quickview/all_events.py:107
+#: ../gramps/plugins/quickview/all_events.py:119
+#: ../gramps/plugins/webreport/narrativeweb.py:5780
+msgid "Event Type"
+msgstr ""
+
+#: ../gramps/plugins/quickview/all_events.py:62
 #: ../gramps/plugins/quickview/all_events.py:108
 #: ../gramps/plugins/quickview/all_events.py:120
 msgid "Event Date"
@@ -24093,13 +23471,6 @@ msgstr ""
 #: ../gramps/plugins/quickview/all_events.py:108
 #: ../gramps/plugins/quickview/all_events.py:120
 msgid "Event Place"
-msgstr ""
-
-#: ../gramps/plugins/quickview/all_events.py:62
-#: ../gramps/plugins/quickview/all_events.py:107
-#: ../gramps/plugins/quickview/all_events.py:119
-#: ../gramps/plugins/webreport/narrativeweb.py:5780
-msgid "Event Type"
 msgstr ""
 
 #. display the results
@@ -24329,11 +23700,11 @@ msgid "Right-click row (or press ENTER) to see selected items."
 msgstr ""
 
 #: ../gramps/plugins/quickview/filterbyname.py:91
-msgid "Count/Total"
+msgid "Object"
 msgstr ""
 
 #: ../gramps/plugins/quickview/filterbyname.py:91
-msgid "Object"
+msgid "Count/Total"
 msgstr ""
 
 #: ../gramps/plugins/quickview/filterbyname.py:92
@@ -24658,12 +24029,12 @@ msgid "No references for this %s"
 msgstr ""
 
 #: ../gramps/plugins/quickview/reporef.py:64
-#: ../gramps/plugins/webreport/narrativeweb.py:2744
-msgid "Call number"
+msgid "Type of media"
 msgstr ""
 
 #: ../gramps/plugins/quickview/reporef.py:64
-msgid "Type of media"
+#: ../gramps/plugins/webreport/narrativeweb.py:2744
+msgid "Call number"
 msgstr ""
 
 #: ../gramps/plugins/quickview/samesurnames.py:40
@@ -25988,11 +25359,11 @@ msgid "File %s does not exist"
 msgstr ""
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:132
-msgid "Title of the Book"
+msgid "book|Title"
 msgstr ""
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:132
-msgid "book|Title"
+msgid "Title of the Book"
 msgstr ""
 
 #: ../gramps/plugins/textreport/simplebooktitle.py:133
@@ -26265,14 +25636,14 @@ msgstr ""
 msgid "Records Report"
 msgstr ""
 
-#: ../gramps/plugins/tool/changenames.glade:32
+#: ../gramps/plugins/tool/changenames.glade.h:1
 msgid ""
 "Below is a list of the family names that \n"
 "Gramps can convert to correct capitalization. \n"
 "Select the names you wish Gramps to convert. "
 msgstr ""
 
-#: ../gramps/plugins/tool/changenames.glade:107
+#: ../gramps/plugins/tool/changenames.glade.h:4
 msgid "_Accept changes and close"
 msgstr ""
 
@@ -26319,17 +25690,17 @@ msgstr ""
 msgid "Building display"
 msgstr ""
 
-#: ../gramps/plugins/tool/changetypes.glade:87
+#: ../gramps/plugins/tool/changetypes.glade.h:1
 msgid ""
 "This tool will rename all events of one type to a different type. Once "
 "completed, this cannot be undone by the regular Undo function."
 msgstr ""
 
-#: ../gramps/plugins/tool/changetypes.glade:110
+#: ../gramps/plugins/tool/changetypes.glade.h:2
 msgid "_Original event type:"
 msgstr ""
 
-#: ../gramps/plugins/tool/changetypes.glade:123
+#: ../gramps/plugins/tool/changetypes.glade.h:3
 msgid "_New event type:"
 msgstr ""
 
@@ -26738,7 +26109,7 @@ msgstr ""
 msgid "Check and Repair"
 msgstr ""
 
-#: ../gramps/plugins/tool/desbrowser.glade:106
+#: ../gramps/plugins/tool/desbrowser.glade.h:1
 msgid "<i>Double-click on the row to edit personal information</i>"
 msgstr ""
 
@@ -26755,15 +26126,15 @@ msgstr ""
 msgid "Descendant Browser tool"
 msgstr ""
 
-#: ../gramps/plugins/tool/eval.glade:162
+#: ../gramps/plugins/tool/eval.glade.h:1
 msgid "<b>Evaluation Window</b>"
 msgstr ""
 
-#: ../gramps/plugins/tool/eval.glade:176
+#: ../gramps/plugins/tool/eval.glade.h:2
 msgid "<b>Output Window</b>"
 msgstr ""
 
-#: ../gramps/plugins/tool/eval.glade:213
+#: ../gramps/plugins/tool/eval.glade.h:3
 msgid "<b>Error Window</b>"
 msgstr ""
 
@@ -26771,17 +26142,17 @@ msgstr ""
 msgid "Python evaluation window"
 msgstr ""
 
-#: ../gramps/plugins/tool/eventcmp.glade:239
+#: ../gramps/plugins/tool/eventcmp.glade.h:1
 msgid "_Filter:"
 msgstr ""
 
-#: ../gramps/plugins/tool/eventcmp.glade:254
+#: ../gramps/plugins/tool/eventcmp.glade.h:2
 msgid ""
 "The event comparison utility uses the filters defined in the Custom Filter "
 "Editor."
 msgstr ""
 
-#: ../gramps/plugins/tool/eventcmp.glade:268
+#: ../gramps/plugins/tool/eventcmp.glade.h:3
 msgid "Custom filter _editor"
 msgstr ""
 
@@ -26794,11 +26165,11 @@ msgid "Event comparison filter selection"
 msgstr ""
 
 #: ../gramps/plugins/tool/eventcmp.py:169
-msgid "Event Comparison tool"
+msgid "Filter selection"
 msgstr ""
 
 #: ../gramps/plugins/tool/eventcmp.py:169
-msgid "Filter selection"
+msgid "Event Comparison tool"
 msgstr ""
 
 #: ../gramps/plugins/tool/eventcmp.py:181
@@ -26887,21 +26258,21 @@ msgid ""
 "the place title. Select the places you wish Gramps to convert."
 msgstr ""
 
-#: ../gramps/plugins/tool/finddupes.glade:126
-#: ../gramps/plugins/tool/mergecitations.glade:132
+#: ../gramps/plugins/tool/finddupes.glade.h:1
+#: ../gramps/plugins/tool/mergecitations.glade.h:1
 msgid "<b>Match Threshold</b>"
 msgstr ""
 
-#: ../gramps/plugins/tool/finddupes.glade:153
+#: ../gramps/plugins/tool/finddupes.glade.h:3
 msgid "Use soundex codes"
 msgstr ""
 
-#: ../gramps/plugins/tool/finddupes.glade:256
+#: ../gramps/plugins/tool/finddupes.glade.h:4
 msgid "Co_mpare"
 msgstr ""
 
-#: ../gramps/plugins/tool/finddupes.glade:380
-#: ../gramps/plugins/tool/mergecitations.glade:246
+#: ../gramps/plugins/tool/finddupes.glade.h:5
+#: ../gramps/plugins/tool/mergecitations.glade.h:4
 msgid "Please be patient. This may take a while."
 msgstr ""
 
@@ -26919,13 +26290,13 @@ msgid "Find Possible Duplicate People"
 msgstr ""
 
 #: ../gramps/plugins/tool/finddupes.py:144
-msgid "Find Duplicates tool"
-msgstr ""
-
-#: ../gramps/plugins/tool/finddupes.py:144
 #: ../gramps/plugins/tool/mergecitations.py:163
 #: ../gramps/plugins/tool/verify.py:311
 msgid "Tool settings"
+msgstr ""
+
+#: ../gramps/plugins/tool/finddupes.py:144
+msgid "Find Duplicates tool"
 msgstr ""
 
 #: ../gramps/plugins/tool/finddupes.py:178
@@ -26972,7 +26343,7 @@ msgstr ""
 msgid "Merge candidates"
 msgstr ""
 
-#: ../gramps/plugins/tool/leak.glade:94
+#: ../gramps/plugins/tool/leak.glade.h:1
 msgid "<b>Uncollected Objects</b>"
 msgstr ""
 
@@ -27151,7 +26522,7 @@ msgid ""
 "in the database."
 msgstr ""
 
-#: ../gramps/plugins/tool/mergecitations.glade:159
+#: ../gramps/plugins/tool/mergecitations.glade.h:3
 msgid "Don't merge if citation has notes"
 msgstr ""
 
@@ -27203,7 +26574,7 @@ msgid_plural "%(num)d citations merged"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/plugins/tool/notrelated.glade:172
+#: ../gramps/plugins/tool/notrelated.glade.h:1
 msgid "_Tag"
 msgstr ""
 
@@ -27261,27 +26632,27 @@ msgid_plural "Looking up the names of %d people"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/plugins/tool/ownereditor.glade:140
+#: ../gramps/plugins/tool/ownereditor.glade.h:2
 msgid "_Street:"
 msgstr ""
 
-#: ../gramps/plugins/tool/ownereditor.glade:156
+#: ../gramps/plugins/tool/ownereditor.glade.h:3
 msgid "_City:"
 msgstr ""
 
-#: ../gramps/plugins/tool/ownereditor.glade:188
+#: ../gramps/plugins/tool/ownereditor.glade.h:5
 msgid "_Country:"
 msgstr ""
 
-#: ../gramps/plugins/tool/ownereditor.glade:204
+#: ../gramps/plugins/tool/ownereditor.glade.h:6
 msgid "_ZIP/Postal Code:"
 msgstr ""
 
-#: ../gramps/plugins/tool/ownereditor.glade:220
+#: ../gramps/plugins/tool/ownereditor.glade.h:7
 msgid "_Phone:"
 msgstr ""
 
-#: ../gramps/plugins/tool/ownereditor.glade:236
+#: ../gramps/plugins/tool/ownereditor.glade.h:8
 msgid "_Email:"
 msgstr ""
 
@@ -27297,11 +26668,11 @@ msgstr ""
 msgid "Edit database owner information"
 msgstr ""
 
-#: ../gramps/plugins/tool/patchnames.glade:92
+#: ../gramps/plugins/tool/patchnames.glade.h:1
 msgid "_Accept and close"
 msgstr ""
 
-#: ../gramps/plugins/tool/patchnames.glade:143
+#: ../gramps/plugins/tool/patchnames.glade.h:2
 msgid ""
 "Below is a list of the nicknames, titles, prefixes and compound surnames "
 "that Gramps can extract from the Family Tree.\n"
@@ -27405,7 +26776,7 @@ msgstr ""
 msgid "All reference maps have been rebuilt."
 msgstr ""
 
-#: ../gramps/plugins/tool/relcalc.glade:75
+#: ../gramps/plugins/tool/relcalc.glade.h:1
 msgid "Select a person to determine the relationship"
 msgstr ""
 
@@ -27442,47 +26813,47 @@ msgstr ""
 msgid "Their common ancestors are: "
 msgstr ""
 
-#: ../gramps/plugins/tool/removeunused.glade:94
+#: ../gramps/plugins/tool/removeunused.glade.h:1
 msgid "Search for events"
 msgstr ""
 
-#: ../gramps/plugins/tool/removeunused.glade:112
+#: ../gramps/plugins/tool/removeunused.glade.h:2
 msgid "Search for sources"
 msgstr ""
 
-#: ../gramps/plugins/tool/removeunused.glade:130
+#: ../gramps/plugins/tool/removeunused.glade.h:3
 msgid "Search for places"
 msgstr ""
 
-#: ../gramps/plugins/tool/removeunused.glade:148
+#: ../gramps/plugins/tool/removeunused.glade.h:4
 msgid "Search for media"
 msgstr ""
 
-#: ../gramps/plugins/tool/removeunused.glade:166
+#: ../gramps/plugins/tool/removeunused.glade.h:5
 msgid "Search for repositories"
 msgstr ""
 
-#: ../gramps/plugins/tool/removeunused.glade:184
+#: ../gramps/plugins/tool/removeunused.glade.h:6
 msgid "Search for notes"
 msgstr ""
 
-#: ../gramps/plugins/tool/removeunused.glade:275
-#: ../gramps/plugins/tool/verify.glade:237
+#: ../gramps/plugins/tool/removeunused.glade.h:7
+#: ../gramps/plugins/tool/verify.glade.h:2
 msgid "_Mark all"
 msgstr ""
 
-#: ../gramps/plugins/tool/removeunused.glade:292
-#: ../gramps/plugins/tool/verify.glade:254
+#: ../gramps/plugins/tool/removeunused.glade.h:8
+#: ../gramps/plugins/tool/verify.glade.h:3
 msgid "_Unmark all"
 msgstr ""
 
-#: ../gramps/plugins/tool/removeunused.glade:309
-#: ../gramps/plugins/tool/verify.glade:271
+#: ../gramps/plugins/tool/removeunused.glade.h:9
+#: ../gramps/plugins/tool/verify.glade.h:4
 msgid "In_vert marks"
 msgstr ""
 
-#: ../gramps/plugins/tool/removeunused.glade:335
-#: ../gramps/plugins/tool/verify.glade:214
+#: ../gramps/plugins/tool/removeunused.glade.h:10
+#: ../gramps/plugins/tool/verify.glade.h:1
 msgid "<b>Double-click on a row to view/edit data</b>"
 msgstr ""
 
@@ -27590,11 +26961,11 @@ msgstr ""
 msgid "Sort family events of the person"
 msgstr ""
 
-#: ../gramps/plugins/tool/soundgen.glade:27
+#: ../gramps/plugins/tool/soundgen.glade.h:1
 msgid "Close Window"
 msgstr ""
 
-#: ../gramps/plugins/tool/soundgen.glade:108
+#: ../gramps/plugins/tool/soundgen.glade.h:3
 msgid "SoundEx code:"
 msgstr ""
 
@@ -27777,85 +27148,84 @@ msgid ""
 "Volume/Page, Date and Confidence."
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:295
+#: ../gramps/plugins/tool/verify.glade.h:5
 #: ../gramps/plugins/tool/verify.py:622
 msgid "_Hide marked"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:453
+#: ../gramps/plugins/tool/verify.glade.h:7
 msgid "Maximum _age"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:466
+#: ../gramps/plugins/tool/verify.glade.h:8
 msgid "Mi_nimum age to marry"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:497
+#: ../gramps/plugins/tool/verify.glade.h:9
 msgid "Ma_ximum age to marry"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:528
+#: ../gramps/plugins/tool/verify.glade.h:10
 msgid "Maximum number of _spouses for a person"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:576
+#: ../gramps/plugins/tool/verify.glade.h:11
 msgid "Maximum number of consecutive years of _widowhood before next marriage"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:591
+#: ../gramps/plugins/tool/verify.glade.h:12
 msgid "Maximum age for an _unmarried person"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:619
+#: ../gramps/plugins/tool/verify.glade.h:13
 msgid "_Estimate missing or inexact dates"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:638
+#: ../gramps/plugins/tool/verify.glade.h:14
 msgid "_Identify invalid dates"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:685
+#: ../gramps/plugins/tool/verify.glade.h:16
 msgid "Mi_nimum age to bear a child"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:700
+#: ../gramps/plugins/tool/verify.glade.h:17
 msgid "Ma_ximum age to bear a child"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:717
-#: ../gramps/plugins/tool/verify.glade:839
+#: ../gramps/plugins/tool/verify.glade.h:18
 msgid "Maximum number of chil_dren"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:783
+#: ../gramps/plugins/tool/verify.glade.h:19
 msgid "<b>Women</b>"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:807
+#: ../gramps/plugins/tool/verify.glade.h:20
 msgid "Mi_nimum age to father a child"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:822
+#: ../gramps/plugins/tool/verify.glade.h:21
 msgid "Ma_ximum age to father a child"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:905
+#: ../gramps/plugins/tool/verify.glade.h:22
 msgid "<b>Men</b>"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:973
+#: ../gramps/plugins/tool/verify.glade.h:23
 msgid "Maximum husband-wife age _difference"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:986
+#: ../gramps/plugins/tool/verify.glade.h:24
 msgid "Maximum number of years _between children"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:1001
+#: ../gramps/plugins/tool/verify.glade.h:25
 msgid "Maximum _span of years for all children"
 msgstr ""
 
-#: ../gramps/plugins/tool/verify.glade:1021
+#: ../gramps/plugins/tool/verify.glade.h:26
 msgid "<b>Families</b>"
 msgstr ""
 
@@ -29841,11 +29211,11 @@ msgid "The destination directory for the web files"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8013
-msgid "My Family Tree"
+msgid "Web site title"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8013
-msgid "Web site title"
+msgid "My Family Tree"
 msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8014
@@ -30661,30 +30031,563 @@ msgstr ""
 msgid "No style sheet"
 msgstr ""
 
-#: gtklist.h:2
-msgid "ANSEL"
+#: ../data/gramps.desktop.in.h:2
+msgid "Genealogy System"
 msgstr ""
 
-#: gtklist.h:3
-msgid "ANSI (iso-8859-1)"
+#: ../data/gramps.desktop.in.h:3
+msgid "Gramps Genealogy System"
 msgstr ""
 
-#: gtklist.h:4
-msgid "ASCII"
+#: ../data/gramps.desktop.in.h:4
+msgid ""
+"Manage genealogical information, perform genealogical research and analysis"
 msgstr ""
 
-#: gtklist.h:5
-msgid "UTF8"
+#: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
+msgid "Gramps database"
 msgstr ""
 
-#: gtklist.h:6
-msgid "All rules must apply"
+#: ../data/gramps.keys.in.h:2 ../data/gramps.xml.in.h:3
+msgid "Gramps package"
 msgstr ""
 
-#: gtklist.h:7
-msgid "At least one rule must apply"
+#: ../data/gramps.keys.in.h:3 ../data/gramps.xml.in.h:4
+msgid "Gramps XML database"
 msgstr ""
 
-#: gtklist.h:8
-msgid "Exactly one rule must apply"
+#: ../data/gramps.xml.in.h:5
+msgid "GeneWeb source file"
+msgstr ""
+
+#: ../data/tips.xml.in.h:1
+msgid ""
+"<b>Working with Dates</b><br/>A range of dates can be given by using the "
+"format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also "
+"indicate the level of confidence in a date and even choose between seven "
+"different calendars. Try the button next to the date field in the Events "
+"Editor."
+msgstr ""
+
+#: ../data/tips.xml.in.h:2
+msgid ""
+"<b>Editing Objects</b><br/>In most cases double clicking on a name, source, "
+"place or media entry will bring up a window to allow you to edit the object. "
+"Note that the result can be dependent on context. For example, in the Family "
+"View clicking on a parent or child will bring up the Relationship Editor."
+msgstr ""
+
+#: ../data/tips.xml.in.h:3
+msgid ""
+"<b>Adding Images</b><br/>An image can be added to any gallery or the Media "
+"View by dragging and dropping it from a file manager or a web browser. "
+"Actually you can add any type of file like this, useful for scans of "
+"documents and other digital sources."
+msgstr ""
+
+#: ../data/tips.xml.in.h:4
+msgid ""
+"<b>Ordering Children in a Family</b><br/>The birth order of children in a "
+"family can be set by using drag and drop. This order is preserved even when "
+"they do not have birth dates."
+msgstr ""
+
+#: ../data/tips.xml.in.h:5
+msgid ""
+"<b>Talk to Relatives Before It Is Too Late</b><br/>Your oldest relatives can "
+"be your most important source of information. They usually know things about "
+"the family that haven't been written down. They might tell you nuggets about "
+"people that may one day lead to a new avenue of research. At the very least, "
+"you will get to hear some great stories. Don't forget to record the "
+"conversations!"
+msgstr ""
+
+#: ../data/tips.xml.in.h:6
+msgid ""
+"<b>Filtering People</b><br/>In the People View, you can 'filter' individuals "
+"based on many criteria. To define a new filter go to &quot;Edit &gt; Person "
+"Filter Editor&quot;. There you can name your filter and add and combine "
+"rules using the many preset rules. For example, you can define a filter to "
+"find all adopted people in the family tree. People without a birth date "
+"mentioned can also be filtered. To get the results save your filter and "
+"select it at the bottom of the Filter Sidebar, then click Apply. If the "
+"Filter Sidebar is not visible, select View &gt; Filter."
+msgstr ""
+
+#: ../data/tips.xml.in.h:7
+msgid ""
+"<b>Inverted Filtering</b><br/>Filters can easily be reversed by using the "
+"'invert' option. For instance, by inverting the 'People with children' "
+"filter you can select all people without children."
+msgstr ""
+
+#: ../data/tips.xml.in.h:8
+msgid ""
+"<b>Locating People</b><br/>By default, each surname in the People View is "
+"listed only once. By clicking on the arrow to the left of a name, the list "
+"will expand to show all individuals with that last name. To locate any "
+"Family Name from a long list, select a Family Name (not a person) and start "
+"typing. The view will jump to the first Family Name matching the letters you "
+"enter."
+msgstr ""
+
+#: ../data/tips.xml.in.h:9
+msgid ""
+"<b>The Family View</b><br/>The Family View is used to display a typical "
+"family unit as two parents and their children."
+msgstr ""
+
+#: ../data/tips.xml.in.h:10
+msgid ""
+"<b>Changing the Active Person</b><br/>Changing the Active Person in views is "
+"easy. In the Relationship view just click on anyone. In the Ancestry View "
+"doubleclick on the person or right click to select any of their spouses, "
+"siblings, children or parents."
+msgstr ""
+
+#: ../data/tips.xml.in.h:11
+msgid ""
+"<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and "
+"exploration &gt; Compare Individual Events...&quot; you can compare the data "
+"of individuals in your database. This is useful, say, if you wish to list "
+"the birth dates of everyone in your database. You can use a custom filter to "
+"narrow the results."
+msgstr ""
+
+#: ../data/tips.xml.in.h:12
+msgid ""
+"<b>Gramps Tools</b><br/>Gramps comes with a rich set of tools. These allow "
+"you to undertake operations such as checking the database for errors and "
+"consistency. There are research and analysis tools such as event comparison, "
+"finding duplicate people, interactive descendant browser, and many others. "
+"All tools can be accessed through the &quot;Tools&quot; menu."
+msgstr ""
+
+#: ../data/tips.xml.in.h:13
+msgid ""
+"<b>Calculating Relationships</b><br/>To check if two people in the database "
+"are related (by blood, not marriage) try the tool under &quot;Tools &gt; "
+"Utilities &gt; Relationship Calculator...&quot;. The exact relationship as "
+"well as all common ancestors are reported."
+msgstr ""
+
+#: ../data/tips.xml.in.h:14
+msgid ""
+"<b>SoundEx can help with family research</b><br/>SoundEx solves a long "
+"standing problem in genealogy, how to handle spelling variations. The "
+"SoundEx utility takes a surname and generates a simplified form that is "
+"equivalent for similar sounding names. Knowing the SoundEx Code for a "
+"surname is very helpful for researching Census Data files (microfiche) at a "
+"library or other research facility. To get the SoundEx codes for surnames in "
+"your database, go to &quot;Tools &gt; Utilities &gt; Generate SoundEx "
+"Codes...&quot;."
+msgstr ""
+
+#: ../data/tips.xml.in.h:15
+msgid ""
+"<b>Setting Your Preferences</b><br/>&quot;Edit &gt; Preferences...&quot; "
+"lets you modify a number of settings, such as the path to your media files, "
+"and allows you to adjust many aspects of the Gramps presentation to your "
+"needs. Each separate view can also be configured under &quot;View &gt; "
+"Configure View...&quot;"
+msgstr ""
+
+#: ../data/tips.xml.in.h:16
+msgid ""
+"<b>Gramps Reports</b><br/>Gramps offers a wide variety of reports. The "
+"Graphical Reports and Graphs can present complex relationships easily and "
+"the Text Reports are particularly useful if you want to send the results of "
+"your family tree to members of the family via email. If you're ready to make "
+"a website for your family tree then there's a report for that as well."
+msgstr ""
+
+#: ../data/tips.xml.in.h:17
+msgid ""
+"<b>Starting a New Family Tree</b><br/>A good way to start a new family tree "
+"is to enter all the members of the family into the database using the Person "
+"View (use &quot;Edit &gt; Add...&quot; or click on the Add a new person "
+"button from the People View). Then go to the Relationship View and create "
+"relationships between people."
+msgstr ""
+
+#: ../data/tips.xml.in.h:18
+msgid ""
+"<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse "
+"over a button and a tooltip will appear."
+msgstr ""
+
+#: ../data/tips.xml.in.h:19
+msgid ""
+"<b>Unsure of a Date?</b><br/>If you're unsure about the date an event "
+"occurred, Gramps allows you to enter a wide range of date formats based on a "
+"guess or an estimate. For instance, &quot;about 1908&quot; is a valid entry "
+"for a birth date in Gramps. Click the Date button next to the date field and "
+"see the Gramps Manual to learn more."
+msgstr ""
+
+#: ../data/tips.xml.in.h:20
+msgid ""
+"<b>Duplicate Entries</b><br/>&quot;Tools &gt; Database Processing &gt; Find "
+"Possible Duplicate People...&quot; allows you to locate (and merge) entries "
+"of the same person entered more than once in the database."
+msgstr ""
+
+#: ../data/tips.xml.in.h:21
+msgid ""
+"<b>Merging Entries</b><br/>The function &quot;Edit &gt; Compare and Merge..."
+"&quot; allows you to combine separately listed people into one. Select the "
+"second entry by holding the Control key as you click. This is very useful "
+"for combining two databases with overlapping people, or combining "
+"erroneously entered differing names for one individual. This also works for "
+"the Places, Sources and Repositories views."
+msgstr ""
+
+#: ../data/tips.xml.in.h:22
+msgid ""
+"<b>Organising the Views</b><br/>Many of the views can present your data as "
+"either a hierarchical tree or as a simple list. Each view can also be "
+"configured to the way you like it. Have a look to the right of the top "
+"toolbar or under the &quot;View&quot; menu."
+msgstr ""
+
+#: ../data/tips.xml.in.h:23
+msgid ""
+"<b>Navigating Back and Forward</b><br/>Gramps maintains a list of previous "
+"active objects such as People, Events and . You can move forward and "
+"backward through the list using &quot;Go &gt; Forward&quot; and &quot;Go "
+"&gt; Back&quot; or the arrow buttons."
+msgstr ""
+
+#: ../data/tips.xml.in.h:24
+msgid ""
+"<b>Keyboard Shortcuts</b><br/>Tired of having to take your hand off the "
+"keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. "
+"If one exists for a function it is displayed on the right side of the menu."
+msgstr ""
+
+#: ../data/tips.xml.in.h:25
+msgid ""
+"<b>Read the Manual</b><br/>Don't forget to read the Gramps manual, &quot;"
+"Help &gt; User Manual&quot;. The developers have worked hard to make most "
+"operations intuitive but the manual is full of information that will make "
+"your time spent on genealogy more productive."
+msgstr ""
+
+#: ../data/tips.xml.in.h:26
+msgid ""
+"<b>Adding Children</b><br/>To add children in Gramps there are two options. "
+"You can find one of their parents in the Families View and open the family. "
+"Then choose to create a new person or add an existing person. You can also "
+"add children (or siblings) from inside the Family Editor."
+msgstr ""
+
+#: ../data/tips.xml.in.h:27
+msgid ""
+"<b>Editing the Parent-Child Relationship</b><br/> You can edit the "
+"relationship of a child to its parents by double clicking the child in the "
+"Family Editor. Relationships can be any of Adopted, Birth, Foster, None, "
+"Sponsored, Stepchild and Unknown."
+msgstr ""
+
+#: ../data/tips.xml.in.h:28
+msgid ""
+"<b>Show All Checkbutton</b><br/>When adding an existing person as a spouse, "
+"the list of people shown is filtered to display only people who could "
+"realistically fit the role (based on dates in the database). In case Gramps "
+"is wrong in making this choice, you can override the filter by checking the "
+"Show All checkbutton."
+msgstr ""
+
+#: ../data/tips.xml.in.h:29
+msgid ""
+"<b>Improving Gramps</b><br/>Users are encouraged to request enhancements to "
+"Gramps. Requesting an enhancement can be done either through the gramps-"
+"users or gramps-devel mailing lists, or by going to http://bugs.gramps-"
+"project.org and creating a Feature Request. Filing a Feature Request is "
+"preferred but it can be good to discuss your ideas on the email lists."
+msgstr ""
+
+#: ../data/tips.xml.in.h:30
+msgid ""
+"<b>Gramps Mailing Lists</b><br/>Want answers to your questions about Gramps? "
+"Check out the gramps-users email list. Many helpful people are on the list, "
+"so you're likely to get an answer quickly. If you have questions related to "
+"the development of Gramps, try the gramps-devel list. You can see the lists "
+"by selecting &quot;Help &gt; Gramps Mailing Lists&quot;."
+msgstr ""
+
+#: ../data/tips.xml.in.h:31
+msgid ""
+"<b>Contributing to Gramps</b><br/>Want to help with Gramps but can't write "
+"programs? Not a problem! A project as large as Gramps requires people with a "
+"wide variety of skills. Contributions can be anything from writing "
+"documentation to testing development versions and helping with the web site. "
+"Start by subscribing to the Gramps developers mailing list, gramps-devel, "
+"and introducing yourself. Subscription information can be found at &quot;"
+"Help &gt; Gramps Mailing Lists&quot;"
+msgstr ""
+
+#: ../data/tips.xml.in.h:32
+msgid ""
+"<b>So What's in a Name?</b><br/>The name Gramps was suggested to the "
+"original developer, Don Allingham, by his father. It stands for "
+"<i>Genealogical Research and Analysis Management Program System</i>. It is a "
+"full-featured genealogy program letting you store, edit, and research "
+"genealogical data. The Gramps database back end is so robust that some users "
+"are managing genealogies containing hundreds of thousands of people."
+msgstr ""
+
+#: ../data/tips.xml.in.h:33
+msgid ""
+"<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place "
+"to store the names of frequently used individuals. Selecting a bookmark will "
+"make that person the Active Person. To bookmark someone make them the Active "
+"Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. "
+"You can also bookmark most of the other objects."
+msgstr ""
+
+#: ../data/tips.xml.in.h:34
+msgid ""
+"<b>Incorrect Dates</b><br/>Everyone occasionally enters dates with an "
+"invalid format. Incorrect date formats will show up in Gramps with a reddish "
+"background. You can fix the date using the Date Selection dialog which can "
+"be opened by clicking on the date button. The format of the date is set "
+"under &quot;Edit &gt; Preferences &gt; Display&quot;."
+msgstr ""
+
+#: ../data/tips.xml.in.h:35
+msgid ""
+"<b>Listing Events</b><br/>Events are added using the editor opened with "
+"&quot;Person &gt; Edit Person &gt; Events&quot;. There is a long list of "
+"preset event types. You can add your own event types by typing in the text "
+"field, they will be added to the available events, but not translated."
+msgstr ""
+
+#: ../data/tips.xml.in.h:36
+msgid ""
+"<b>Managing Names</b><br/>It is easy to manage people with several names in "
+"Gramps. In the Person Editor select the Names tab. You can add names of "
+"different types and set the prefered name by dragging it to the Prefered "
+"Name section."
+msgstr ""
+
+#: ../data/tips.xml.in.h:37
+msgid ""
+"<b>Ancestor View</b><br/>The Ancestry View displays a traditional pedigree "
+"chart. Hold the mouse over an individual to see more information about them "
+"or right click on an individual to access other family members and settings. "
+"Play with the settings to see the different options."
+msgstr ""
+
+#: ../data/tips.xml.in.h:38
+msgid ""
+"<b>Managing Sources</b><br/>The Sources View shows a list of all sources in "
+"a single window. From here you can edit your sources, merge duplicates and "
+"see which individuals reference each source. You can use filters to group "
+"your sources."
+msgstr ""
+
+#: ../data/tips.xml.in.h:39
+msgid ""
+"<b>Managing Places</b><br/>The Places View shows a list of all places in the "
+"database. The list can be sorted by a number of different criteria, such as "
+"City, County or State."
+msgstr ""
+
+#: ../data/tips.xml.in.h:40
+msgid ""
+"<b>Media View</b><br/>The Media View shows a list of all media entered in "
+"the database. These can be graphic images, videos, sound clips, "
+"spreadsheets, documents, and more."
+msgstr ""
+
+#: ../data/tips.xml.in.h:41
+msgid ""
+"<b>Filters</b><br/>Filters allow you to limit the people seen in the People "
+"View. In addition to the many preset filters, Custom Filters can be created "
+"limited only by your imagination. Custom filters are created from &quot;Edit "
+"&gt; Person Filter Editor&quot;."
+msgstr ""
+
+#: ../data/tips.xml.in.h:42
+msgid ""
+"<b>The GEDCOM File Format</b><br/>Gramps allows you to import from, and "
+"export to, the GEDCOM format. There is extensive support for the industry "
+"standard GEDCOM version 5.5, so you can exchange Gramps information to and "
+"from users of most other genealogy programs. Filters exist that make "
+"importing and exporting GEDCOM files trivial."
+msgstr ""
+
+#: ../data/tips.xml.in.h:43
+msgid ""
+"<b>The Gramps XML Package</b><br/>You can export your Family Tree as a "
+"Gramps XML Package. This is a compressed file containing your family tree "
+"data and all the media files connected to the database (images for example). "
+"This file is completely portable so is useful for backups or sharing with "
+"other Gramps users. This format has the key advantage over GEDCOM that no "
+"information is ever lost when exporting and importing."
+msgstr ""
+
+#: ../data/tips.xml.in.h:44
+msgid ""
+"<b>Web Family Tree Format</b><br/>Gramps can export data to the Web Family "
+"Tree (WFT) format. This format allows a family tree to be displayed online "
+"using a single file, instead of many html files."
+msgstr ""
+
+#: ../data/tips.xml.in.h:45
+msgid ""
+"<b>Making a Genealogy Website</b><br/>You can easily export your family tree "
+"to a web page. Select the entire database, family lines or selected "
+"individuals to a collection of web pages ready for upload to the World Wide "
+"Web. The Gramps project provides free hosting of websites made with Gramps."
+msgstr ""
+
+#: ../data/tips.xml.in.h:46
+msgid ""
+"<b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps "
+"is to use the Gramps bug tracking system at http://bugs.gramps-project.org"
+msgstr ""
+
+#: ../data/tips.xml.in.h:47
+msgid ""
+"<b>The Gramps Homepage</b><br/>The Gramps homepage is at http://gramps-"
+"project.org/"
+msgstr ""
+
+#: ../data/tips.xml.in.h:48
+msgid ""
+"<b>Privacy in Gramps</b><br/>Gramps helps you to keep personal information "
+"secure by allowing you to mark information as private. Data marked as "
+"private can be excluded from reports and data exports. Look for the padlock "
+"which toggles records between private and public."
+msgstr ""
+
+#: ../data/tips.xml.in.h:49
+msgid ""
+"<b>Keeping Good Records</b><br/>Be accurate when recording genealogical "
+"information. Don't make assumptions while recording primary information; "
+"write it exactly as you see it. Use bracketed comments to indicate your "
+"additions, deletions or comments. Use of the Latin 'sic' is recommended to "
+"confirm the accurate transcription of what appears to be an error in a "
+"source."
+msgstr ""
+
+#: ../data/tips.xml.in.h:50
+msgid ""
+"<b>Extra Reports and Tools</b><br/>Extra tools and reports can be added to "
+"Gramps with the &quot;Addon&quot; system. See them under &quot;Help &gt; "
+"Extra Reports/Tools&quot;. This is the best way for advanced users to "
+"experiment and create new functionality."
+msgstr ""
+
+#: ../data/tips.xml.in.h:51
+msgid ""
+"<b>Book Reports</b><br/>The Book report under &quot;Reports &gt; Books &gt; "
+"Book Report...&quot;, allows you to collect a variety of reports into a "
+"single document. This single report is easier to distribute than multiple "
+"reports, especially when printed."
+msgstr ""
+
+#: ../data/tips.xml.in.h:52
+msgid ""
+"<b>Gramps Announcements</b><br/>Interested in getting notified when a new "
+"version of Gramps is released? Join the Gramps-announce mailing list at "
+"&quot;Help &gt; Gramps Mailing Lists&quot;"
+msgstr ""
+
+#: ../data/tips.xml.in.h:53
+msgid ""
+"<b>Record Your Sources</b><br/>Information collected about your family is "
+"only as good as the source it came from. Take the time and trouble to record "
+"all the details of where the information came from. Whenever possible get a "
+"copy of original documents."
+msgstr ""
+
+#: ../data/tips.xml.in.h:54
+msgid ""
+"<b>Directing Your Research</b><br/>Go from what you know to what you do not. "
+"Always record everything that is known before making conjectures. Often the "
+"facts at hand suggest plenty of direction for more research. Don't waste "
+"time looking through thousands of records hoping for a trail when you have "
+"other unexplored leads."
+msgstr ""
+
+#: ../data/tips.xml.in.h:55
+msgid ""
+"<b>The 'How and Why' of Your Genealogy</b><br/> Genealogy isn't only about "
+"dates and names. It is about people. Be descriptive. Include why things "
+"happened, and how descendants might have been shaped by the events they went "
+"through. Narratives go a long way in making your family history come alive."
+msgstr ""
+
+#: ../data/tips.xml.in.h:56
+msgid ""
+"<b>Don't speak English?</b><br/>Volunteers have translated Gramps into more "
+"than 20 languages. If Gramps supports your language and it is not being "
+"displayed, set the default language in your operating system and restart "
+"Gramps."
+msgstr ""
+
+#: ../data/tips.xml.in.h:57
+msgid ""
+"<b>Gramps Translators</b><br/>Gramps has been designed so that new "
+"translations can easily be added with little development effort. If you are "
+"interested in participating please email gramps-devel@lists.sf.net"
+msgstr ""
+
+#: ../data/tips.xml.in.h:58
+msgid ""
+"<b>Hello, привет or 喂</b><br/>Whatever script you use Gramps offers full "
+"Unicode support. Characters for all languages are properly displayed."
+msgstr ""
+
+#: ../data/tips.xml.in.h:59
+msgid ""
+"<b>The Home Person</b><br/>Anyone can be chosen as the Home Person in "
+"Gramps. Use &quot;Edit &gt; Set Home Person&quot; in the Person View. The "
+"home person is the person who is selected when the database is opened or "
+"when the home button is pressed."
+msgstr ""
+
+#: ../data/tips.xml.in.h:60
+msgid ""
+"<b>The Gramps Code</b><br/>Gramps is written in a computer language called "
+"Python using the GTK and GNOME libraries for the graphical interface. Gramps "
+"is supported on any computer system where these programs have been ported. "
+"Gramps is known to be run on Linux, BSD, Solaris, Windows and Mac OS X."
+msgstr ""
+
+#: ../data/tips.xml.in.h:61
+msgid ""
+"<b>Open Source Software</b><br/>The Free/Libre and Open Source Software "
+"(FLOSS) development model means Gramps can be extended by any programmer "
+"since all of the source code is freely available under its license. So it's "
+"not just about free beer, it's also about freedom to study and change the "
+"tool. For more about Open Source software lookup the Free Software "
+"Foundation and the Open Source Initiative."
+msgstr ""
+
+#: ../data/tips.xml.in.h:62
+msgid ""
+"<b>The Gramps Software License</b><br/>You are free to use and share Gramps "
+"with others. Gramps is freely distributable under the GNU General Public "
+"License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the "
+"rights and restrictions of this license."
+msgstr ""
+
+#: ../data/tips.xml.in.h:63
+msgid ""
+"<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with "
+"whichever desktop environment you prefer. As long as the required GTK "
+"libraries are installed it will run fine."
+msgstr ""
+
+#: ../data/gramps.appdata.xml.in.h:1
+msgid ""
+"Gramps is a genealogy program that is both intuitive for hobbyists and "
+"feature-complete for professional genealogists. It gives you the ability to "
+"record the many details of the life of an individual as well as the complex "
+"relationships between various people, places and events. All of your "
+"research is kept organized, searchable and as precise as you need it to be."
 msgstr ""
