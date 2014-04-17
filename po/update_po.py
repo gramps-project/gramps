@@ -577,7 +577,7 @@ def extract_glade():
         create_template()
 
     listing('glade.txt', ['.glade'])
-    os.system('''%(xgettext)s --add-comments -j -L Glade '''
+    os.system('''%(xgettext)s -F --add-comments -j -L Glade '''
               '''--from-code=UTF-8 -o gramps.pot --files-from=glade.txt'''
              % {'xgettext': xgettextCmd}
              )
@@ -649,7 +649,7 @@ def retrieve():
     listing('python.txt', ['.py', '.py.in'])
     
     # additional keywords must always be kept in sync with those in genpot.sh
-    os.system('''%(xgettext)s -c -j --directory=./ -d gramps '''
+    os.system('''%(xgettext)s -F -c -j --directory=./ -d gramps '''
               '''-L Python -o gramps.pot --files-from=python.txt '''
               '''--keyword=_ --keyword=ngettext '''
               '''--keyword=_T_ --keyword=trans_text '''
@@ -661,7 +661,7 @@ def retrieve():
     # C format header (.h extension)
     for h in headers():
         print ('xgettext for %s' % h)
-        os.system('''%(xgettext)s --add-comments -j -o gramps.pot '''
+        os.system('''%(xgettext)s -F --add-comments -j -o gramps.pot '''
                   '''--keyword=N_ --from-code=UTF-8 %(head)s''' 
                   % {'xgettext': xgettextCmd, 'head': h}
                   )
