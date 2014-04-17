@@ -97,17 +97,17 @@ class PopulateSources(tool.Tool, ManagedWindow):
         self.sources_entry = Gtk.Entry()
         self.sources_entry.set_text("%d" % num_sources)
         hbox1.pack_start(label_sources, False, True, 0)
-        hbox1.pack_start(self.sources_entry, True)
+        hbox1.pack_start(self.sources_entry, True, True, 0)
 
         hbox2 = Gtk.HBox()
         label_citations = Gtk.Label(label="Number of citations" + ":")
         self.citations_entry = Gtk.Entry()
         self.citations_entry.set_text("%d" % num_citations)
         hbox2.pack_start(label_citations, False, True, 0)
-        hbox2.pack_start(self.citations_entry, True)
+        hbox2.pack_start(self.citations_entry, True, True, 0)
         
         vbox = Gtk.VBox()
-        vbox.pack_start(label, True)
+        vbox.pack_start(label, True, True, 0)
         vbox.pack_start(hbox1, False, True, 0)
         vbox.pack_start(hbox2, False, True, 0)
 
@@ -124,7 +124,10 @@ class PopulateSources(tool.Tool, ManagedWindow):
         """
       
         num_sources_text = self.sources_entry.get_text()
-        num_sources = int(num_sources_text)
+        try:
+            num_sources = int(num_sources_text)
+        except:
+            return
         num_citations_text = self.citations_entry.get_text()
         num_citations = int(num_citations_text)
         
