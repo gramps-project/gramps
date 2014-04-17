@@ -1004,7 +1004,7 @@ class StatisticsChartOptions(MenuReportOptions):
         chart_types = []
         for (chart_opt, tuple) in _Extract.extractors.items():
             chart_types.append((_(tuple[1]), chart_opt, tuple))
-        sorted_chart_types = sorted(chart_types, key=lambda(x):glocale.sort_key(x[0]))
+        sorted_chart_types = sorted(chart_types, key=lambda x:glocale.sort_key(x[0]))
         for (translated_option_name, opt_name, tuple) in sorted_chart_types:
             if idx <= half:
                 category_name = _("Charts 1")
