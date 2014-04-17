@@ -4,7 +4,7 @@
   <object class="GtkWindow" id="grampletview">
     <property name="can_focus">False</property>
     <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
-    <property name="title" translatable="yes">window2</property>
+    <property name="title" translatable="no">window2</property>
     <child>
       <object class="GtkVBox" id="gvgramplet">
         <property name="visible">True</property>
