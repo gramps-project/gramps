@@ -1945,51 +1945,51 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:65
 msgid "localized lexeme inflections||January"
-msgstr ""
+msgstr "كانون الثاني"
 
 #: ../gramps/gen/datehandler/_datestrings.py:66
 msgid "localized lexeme inflections||February"
-msgstr ""
+msgstr "شباط"
 
 #: ../gramps/gen/datehandler/_datestrings.py:67
 msgid "localized lexeme inflections||March"
-msgstr ""
+msgstr "آذار"
 
 #: ../gramps/gen/datehandler/_datestrings.py:68
 msgid "localized lexeme inflections||April"
-msgstr ""
+msgstr "نيسان"
 
 #: ../gramps/gen/datehandler/_datestrings.py:69
 msgid "localized lexeme inflections||May"
-msgstr ""
+msgstr "أيار"
 
 #: ../gramps/gen/datehandler/_datestrings.py:70
 msgid "localized lexeme inflections||June"
-msgstr ""
+msgstr "حزيران"
 
 #: ../gramps/gen/datehandler/_datestrings.py:71
 msgid "localized lexeme inflections||July"
-msgstr ""
+msgstr "تموز"
 
 #: ../gramps/gen/datehandler/_datestrings.py:72
 msgid "localized lexeme inflections||August"
-msgstr ""
+msgstr "آب"
 
 #: ../gramps/gen/datehandler/_datestrings.py:73
 msgid "localized lexeme inflections||September"
-msgstr ""
+msgstr "أيلول"
 
 #: ../gramps/gen/datehandler/_datestrings.py:74
 msgid "localized lexeme inflections||October"
-msgstr ""
+msgstr "تشرين الأول"
 
 #: ../gramps/gen/datehandler/_datestrings.py:75
 msgid "localized lexeme inflections||November"
-msgstr ""
+msgstr "تشرين الثاني"
 
 #: ../gramps/gen/datehandler/_datestrings.py:76
 msgid "localized lexeme inflections||December"
-msgstr ""
+msgstr "كانون الأول"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1997,51 +1997,51 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:83
 msgid "localized lexeme inflections - short month form||Jan"
-msgstr ""
+msgstr "كانون2"
 
 #: ../gramps/gen/datehandler/_datestrings.py:84
 msgid "localized lexeme inflections - short month form||Feb"
-msgstr ""
+msgstr "شباط"
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
 msgid "localized lexeme inflections - short month form||Mar"
-msgstr ""
+msgstr "آذار"
 
 #: ../gramps/gen/datehandler/_datestrings.py:86
 msgid "localized lexeme inflections - short month form||Apr"
-msgstr ""
+msgstr "نيسان"
 
 #: ../gramps/gen/datehandler/_datestrings.py:87
 msgid "localized lexeme inflections - short month form||May"
-msgstr ""
+msgstr "أيار"
 
 #: ../gramps/gen/datehandler/_datestrings.py:88
 msgid "localized lexeme inflections - short month form||Jun"
-msgstr ""
+msgstr "حزيران"
 
 #: ../gramps/gen/datehandler/_datestrings.py:89
 msgid "localized lexeme inflections - short month form||Jul"
-msgstr ""
+msgstr "تموز"
 
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgid "localized lexeme inflections - short month form||Aug"
-msgstr ""
+msgstr "آب"
 
 #: ../gramps/gen/datehandler/_datestrings.py:91
 msgid "localized lexeme inflections - short month form||Sep"
-msgstr ""
+msgstr "أيلول"
 
 #: ../gramps/gen/datehandler/_datestrings.py:92
 msgid "localized lexeme inflections - short month form||Oct"
-msgstr ""
+msgstr "تشرين1"
 
 #: ../gramps/gen/datehandler/_datestrings.py:93
 msgid "localized lexeme inflections - short month form||Nov"
-msgstr ""
+msgstr "تشرين2"
 
 #: ../gramps/gen/datehandler/_datestrings.py:94
 msgid "localized lexeme inflections - short month form||Dec"
-msgstr ""
+msgstr "كانون1"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2248,51 +2248,51 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:174
 msgid "Islamic month lexeme|Muharram"
-msgstr ""
+msgstr "محرّم"
 
 #: ../gramps/gen/datehandler/_datestrings.py:175
 msgid "Islamic month lexeme|Safar"
-msgstr ""
+msgstr "صفر"
 
 #: ../gramps/gen/datehandler/_datestrings.py:176
 msgid "Islamic month lexeme|Rabi`al-Awwal"
-msgstr ""
+msgstr "ربيع الأول"
 
 #: ../gramps/gen/datehandler/_datestrings.py:177
 msgid "Islamic month lexeme|Rabi`ath-Thani"
-msgstr ""
+msgstr "ربيع الثاني"
 
 #: ../gramps/gen/datehandler/_datestrings.py:178
 msgid "Islamic month lexeme|Jumada l-Ula"
-msgstr ""
+msgstr "جمادى الأولى"
 
 #: ../gramps/gen/datehandler/_datestrings.py:179
 msgid "Islamic month lexeme|Jumada t-Tania"
-msgstr ""
+msgstr "جمادى الثانية"
 
 #: ../gramps/gen/datehandler/_datestrings.py:180
 msgid "Islamic month lexeme|Rajab"
-msgstr ""
+msgstr "رجب"
 
 #: ../gramps/gen/datehandler/_datestrings.py:181
 msgid "Islamic month lexeme|Sha`ban"
-msgstr ""
+msgstr "شعبان"
 
 #: ../gramps/gen/datehandler/_datestrings.py:182
 msgid "Islamic month lexeme|Ramadan"
-msgstr ""
+msgstr "رمضان"
 
 #: ../gramps/gen/datehandler/_datestrings.py:183
 msgid "Islamic month lexeme|Shawwal"
-msgstr ""
+msgstr "شوال"
 
 #: ../gramps/gen/datehandler/_datestrings.py:184
 msgid "Islamic month lexeme|Dhu l-Qa`da"
-msgstr ""
+msgstr "ذو القعدة"
 
 #: ../gramps/gen/datehandler/_datestrings.py:185
 msgid "Islamic month lexeme|Dhu l-Hijja"
-msgstr ""
+msgstr "ذو الحجة"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2348,23 +2348,23 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgid "date modifier|before "
-msgstr ""
+msgstr "قبل "
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgid "date modifier|after "
-msgstr ""
+msgstr "بعد "
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgid "date modifier|about "
-msgstr ""
+msgstr "حوالي "
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgid "date quality|estimated "
-msgstr ""
+msgstr "متوقع "
 
 #: ../gramps/gen/datehandler/_datestrings.py:216
 msgid "date quality|calculated "
-msgstr ""
+msgstr "محسوب "
 
 #: ../gramps/gen/datehandler/_datestrings.py:222
 msgid "Sunday"
