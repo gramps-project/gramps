@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-17 16:43+0200\n"
+"POT-Creation-Date: 2014-04-18 20:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18881,24 +18881,6 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1180
 msgid "Gramplet showing the To Do notes for a media object"
-msgstr ""
-
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1193
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1201
-msgid "Python Evaluation"
-msgstr ""
-
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1194
-msgid "Gramplet allowing the evaluation of python code"
-msgstr ""
-
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1206
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1214
-msgid "Uncollected Objects"
-msgstr ""
-
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:1207
-msgid "Gramplet showing uncollected objects"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1219
