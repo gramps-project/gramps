@@ -552,13 +552,15 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
     def __make_zip_backup(self, dirname):
         import zipfile
-        if sys.version_info[0] < 3:
-            from string import maketrans
-        title = self.get_dbname()
         # In Windows resrved characters is "<>:"/\|?*"
         reserved_char = r':,<>"/\|?* '
         replace_char = "-__________"
-        trans = title.maketrans(reserved_char, replace_char)
+        title = self.get_dbname()
+        if sys.version_info[0] < 3:
+            from string import maketrans
+            trans = maketrans(reserved_char, replace_char)
+        else:
+            trans = title.maketrans(reserved_char, replace_char)
         title = title.translate(trans)
         
         if not os.access(dirname, os.W_OK):
