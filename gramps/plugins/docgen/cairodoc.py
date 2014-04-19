@@ -96,104 +96,106 @@ class CairoDocgen(libcairodoc.CairoDoc):
 
         # create cairo context and pango layout
         filename = self._backend.filename
-        # Work around a bug in pycairo 1.8.10 and earlier. OSX and
-        # Win32 AIOs use pycairo 1.10.0, in which the bug is fixed.
-        if (sys.version_info[0] < 3 and lin()):
-            filename = filename.encode(glocale.getfilesystemencoding())
-        try:
-            surface = self.create_cairo_surface(filename, paper_width, paper_height)
-        except IOError as msg:
-            errmsg = "%s\n%s" % (_("Could not create %s") % filename, msg)
-            raise ReportError(errmsg)
-        except Exception as err:
-            errmsg = "%s\n%s" % (_("Could not create %s") % filename, err)
-            raise ReportError(errmsg)
-        surface.set_fallback_resolution(300, 300)
-        cr = cairo.Context(surface)
-        fontmap = PangoCairo.font_map_new()
-        fontmap.set_resolution(DPI)
-        pango_context = fontmap.create_context()
-        options = cairo.FontOptions()
-        options.set_hint_metrics(cairo.HINT_METRICS_OFF)
-        PangoCairo.context_set_font_options(pango_context, options)
-        layout = Pango.Layout(pango_context)
-        PangoCairo.update_context(cr, pango_context)
-        # paginate the document
-        self.paginate_document(layout, page_width, page_height, DPI, DPI)
-        body_pages = self._pages
+        # Cairo can't reliably handle unicode filenames on Linux or
+        # Windows, so open the file for it.
+        with open(filename, 'wb') as fd:
+            try:
+                surface = self.create_cairo_surface(fd, paper_width,
+                                                    paper_height)
+                surface.set_fallback_resolution(300, 300)
+                cr = cairo.Context(surface)
+                fontmap = PangoCairo.font_map_new()
+                fontmap.set_resolution(DPI)
+                pango_context = fontmap.create_context()
+                options = cairo.FontOptions()
+                options.set_hint_metrics(cairo.HINT_METRICS_OFF)
+                PangoCairo.context_set_font_options(pango_context, options)
+                layout = Pango.Layout(pango_context)
+                PangoCairo.update_context(cr, pango_context)
+                # paginate the document
+                self.paginate_document(layout, page_width, page_height,
+                                       DPI, DPI)
+                body_pages = self._pages
 
-        # build the table of contents and alphabetical index
-        toc_page = None
-        index_page = None
-        toc = []
-        index = {}
-        for page_nr, page in enumerate(body_pages):
-            if page.has_toc():
-                toc_page = page_nr
-            if page.has_index():
-                index_page = page_nr
-            for mark in page.get_marks():
-                if mark.type == INDEX_TYPE_ALP:
-                    if mark.key in index:
-                        if page_nr + 1 not in index[mark.key]:
-                            index[mark.key].append(page_nr + 1)
+                # build the table of contents and alphabetical index
+                toc_page = None
+                index_page = None
+                toc = []
+                index = {}
+                for page_nr, page in enumerate(body_pages):
+                    if page.has_toc():
+                        toc_page = page_nr
+                    if page.has_index():
+                        index_page = page_nr
+                for mark in page.get_marks():
+                    if mark.type == INDEX_TYPE_ALP:
+                        if mark.key in index:
+                            if page_nr + 1 not in index[mark.key]:
+                                index[mark.key].append(page_nr + 1)
+                            else:
+                                index[mark.key] = [page_nr + 1]
+                        elif mark.type == INDEX_TYPE_TOC:
+                            toc.append([mark, page_nr + 1])
+
+                # paginate the table of contents
+                rebuild_required = False
+                if toc_page is not None:
+                    toc_pages = self.__generate_toc(layout, page_width,
+                                                    page_height, toc)
+                    offset = len(toc_pages) - 1
+                    if offset > 0:
+                        self.__increment_pages(toc, index, toc_page, offset)
+                        rebuild_required = True
                     else:
-                        index[mark.key] = [page_nr + 1]
-                elif mark.type == INDEX_TYPE_TOC:
-                    toc.append([mark, page_nr + 1])
-
-        # paginate the table of contents
-        rebuild_required = False
-        if toc_page is not None:
-            toc_pages = self.__generate_toc(layout, page_width, page_height, 
-                                            toc)
-            offset = len(toc_pages) - 1
-            if offset > 0:
-                self.__increment_pages(toc, index, toc_page, offset)
-                rebuild_required = True
-        else:
-            toc_pages = []
+                        toc_pages = []
         
-        # paginate the index
-        if index_page is not None:
-            index_pages = self.__generate_index(layout, page_width, page_height,
-                                                index)
-            offset = len(index_pages) - 1
-            if offset > 0:
-                self.__increment_pages(toc, index, index_page, offset)
-                rebuild_required = True
-        else:
-            index_pages = []
+                # paginate the index
+                if index_page is not None:
+                    index_pages = self.__generate_index(layout, page_width,
+                                                        page_height, index)
+                    offset = len(index_pages) - 1
+                    if offset > 0:
+                        self.__increment_pages(toc, index, index_page, offset)
+                        rebuild_required = True
+                else:
+                    index_pages = []
             
-        # rebuild the table of contents and index if required
-        if rebuild_required:
-            if toc_page is not None:
-                toc_pages = self.__generate_toc(layout, page_width, page_height, 
-                                                toc)
-            if index_page is not None:
-                index_pages = self.__generate_index(layout, page_width, 
-                                                    page_height, index)
+                # rebuild the table of contents and index if required
+                if rebuild_required:
+                    if toc_page is not None:
+                        toc_pages = self.__generate_toc(layout, page_width,
+                                                        page_height, toc)
+                    if index_page is not None:
+                        index_pages = self.__generate_index(layout, page_width,
+                                                            page_height, index)
 
-        # render the pages
-        if toc_page is not None:
-            body_pages = body_pages[:toc_page] + toc_pages + \
-                         body_pages[toc_page+1:]
-        if index_page is not None:
-            body_pages = body_pages[:index_page] + index_pages + \
-                         body_pages[index_page+1:]
-        self._pages = body_pages
-        for page_nr in range(len(self._pages)):
-            cr.save()
-            cr.translate(left_margin, top_margin)
-            self.draw_page(page_nr, cr, layout,
-                           page_width, page_height,
-                           DPI, DPI)
-            cr.show_page()
-            cr.restore()
+                # render the pages
+                if toc_page is not None:
+                    body_pages = body_pages[:toc_page] + toc_pages + \
+                                 body_pages[toc_page+1:]
+                if index_page is not None:
+                    body_pages = body_pages[:index_page] + index_pages + \
+                                 body_pages[index_page+1:]
+                self._pages = body_pages
+                for page_nr in range(len(self._pages)):
+                    cr.save()
+                    cr.translate(left_margin, top_margin)
+                    self.draw_page(page_nr, cr, layout,
+                                   page_width, page_height,
+                                   DPI, DPI)
+                    cr.show_page()
+                    cr.restore()
 
-        # close the surface (file)
-        surface.finish()
+                # close the surface (file)
+                surface.finish()
 
+            except IOError as msg:
+                errmsg = "%s\n%s" % (_("Could not create %s") % filename, msg)
+                raise ReportError(errmsg)
+            except Exception as err:
+                errmsg = "%s\n%s" % (_("Could not create %s") % filename, err)
+                raise ReportError(errmsg)
+ 
     def __increment_pages(self, toc, index, start_page, offset):
         """
         Increment the page numbers in the table of contents and index.
