@@ -2644,9 +2644,8 @@ msgstr ""
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:117
-#, fuzzy
 msgid ","
-msgstr "، "
+msgstr "،"
 
 #: ../gramps/gen/display/name.py:340
 msgid "Default format (defined by Gramps preferences)"
