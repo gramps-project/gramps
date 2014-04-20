@@ -447,7 +447,6 @@ def make_dbdir(dbdir):
         if not os.path.isdir(dbdir):
             os.makedirs(dbdir)
     except (IOError, OSError) as msg:
-        msg = conv_to_unicode(str(msg), glocale.getfilesystemencoding())
         LOG.error(_("\nERROR: Wrong database path in Edit Menu->Preferences.\n"
                     "Open preferences and set correct database path.\n\n"
                     "Details: Could not make database directory:\n    %s\n\n") % msg)
