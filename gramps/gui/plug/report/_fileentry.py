@@ -62,7 +62,7 @@ class FileEntry(Gtk.HBox):
                                                 Gtk.STOCK_OPEN,
                                                 Gtk.ResponseType.OK))
 
-        name = os.path.basename(self.entry.get_text())
+        name = os.path.basename(conv_to_unicode(self.entry.get_text()))
         if self.dir:
             if os.path.isdir(name):
                 dialog.set_current_name(name)
@@ -74,7 +74,7 @@ class FileEntry(Gtk.HBox):
         dialog.present()
         status = dialog.run()
         if status == Gtk.ResponseType.OK:
-            self.set_filename(get_unicode_path_from_file_chooser(dialog.get_filename()))
+            self.set_filename(conv_to_unicode(dialog.get_filename()))
         dialog.destroy()
 
     def set_filename(self, path):
@@ -87,7 +87,8 @@ class FileEntry(Gtk.HBox):
         else:
             self.__base_path = get_curr_dir()
             self.__file_name = path
-        self.entry.set_text(os.path.join(self.__base_path, self.__file_name))
+        self.entry.set_text(uni_to_gui(os.path.join(self.__base_path,
+                                                    self.__file_name)))
 
     def get_full_path(self, val):
         """ Get the full path of the currently selected file. """

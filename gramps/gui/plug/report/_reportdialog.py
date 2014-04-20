@@ -47,7 +47,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import GRAMPS_LOCALE as glocale,  URL_MANUAL_PAGE
 _ = glocale.translation.gettext
 from gramps.gen.config import config
 from gramps.gen.errors import DatabaseError, FilterError, ReportError, WindowActiveError
@@ -63,8 +63,7 @@ from ...managedwindow import ManagedWindow
 from ._stylecombobox import StyleComboBox
 from ._styleeditor import StyleListDisplay
 from ._fileentry import FileEntry
-from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gen.utils.file import get_unicode_path_from_file_chooser
+from gramps.gen.constfunc import conv_to_unicode
 #-------------------------------------------------------------------------
 #
 # Private Constants
@@ -494,7 +493,7 @@ class ReportDialog(ManagedWindow):
         to tell the calling routine to give up.  This function also
         saves the current directory so that any future reports will
         default to the most recently used directory."""
-        self.target_path = get_unicode_path_from_file_chooser(self.target_fileentry.get_full_path(0))
+        self.target_path = conv_to_unicode(self.target_fileentry.get_full_path(0))
         if not self.target_path:
             return None
 

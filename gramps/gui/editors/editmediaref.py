@@ -45,12 +45,14 @@ from gi.repository import Gdk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+from gramps.gen.constfunc import conv_to_unicode
 from ..utils import open_file_with_default_application
 from gramps.gen.const import THUMBSCALE
 from gramps.gen.mime import get_description, get_type
 from ..thumbnails import get_thumbnail_image, find_mime_type_pixbuf
-from gramps.gen.utils.file import (media_path_full, find_file, 
-                            get_unicode_path_from_file_chooser)
+from gramps.gen.utils.file import (media_path_full, find_file)
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 from ..glade import Glade
@@ -558,7 +560,7 @@ class EditMediaRef(EditReference):
     def select_file(self, val):
         self.determine_mime()
         path = self.file_path.get_text()
-        self.source.set_path(get_unicode_path_from_file_chooser(path))
+        self.source.set_path(conv_to_unicode(path))
         AddMediaObject(self.dbstate, self.uistate, self.track, self.source, 
                        self._update_addmedia)
 

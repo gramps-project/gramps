@@ -36,7 +36,7 @@ Module responsible for handling the command line arguments for GRAMPS.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
+from __future__ import print_function, unicode_literals
 import sys
 import getopt
 import logging
@@ -49,9 +49,9 @@ import logging
 from gramps.gen.const import LONGOPTS, SHORTOPTS
 from gramps.gen.config import config
 from gramps.gen.utils.cast import get_type_converter
-from gramps.gen.utils.file import get_unicode_path_from_env_var
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.constfunc import conv_to_unicode
 
 _HELP = _("""
 Usage: gramps.py [OPTION...]
@@ -225,7 +225,8 @@ class ArgParser(object):
             # -Ärik is '-\xc3\x84rik' and getopt will respond :
             # option -\xc3 not recognized
             for arg in range(len(self.args) - 1):
-                self.args[arg+1] = get_unicode_path_from_env_var(self.args[arg + 1])
+                self.args[arg+1] = conv_to_unicode(self.args[arg + 1],
+                                                   sys.stdin.encoding)
             options, leftargs = getopt.getopt(self.args[1:],
                                              SHORTOPTS, LONGOPTS)
         except getopt.GetoptError as msg:
@@ -371,7 +372,8 @@ class ArgParser(object):
             # but not for non-latin characters in list elements
             cliargs = "[ "
             for arg in range(len(self.args) - 1):
-                cliargs += get_unicode_path_from_env_var(self.args[arg + 1]) + " "
+                cliargs += conv_to_unicode(self.args[arg + 1],
+                                           sys.stdin.encoding) + ' '
             cliargs += "]"
             self.errors += [(_('Error parsing the arguments'),
                              _("Error parsing the arguments: %s \n"

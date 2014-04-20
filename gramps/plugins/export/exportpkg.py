@@ -65,8 +65,8 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.plugins.export.exportxml import XmlWriter
-from gramps.gen.utils.file import media_path_full, get_unicode_path_from_file_chooser
-from gramps.gen.constfunc import win
+from gramps.gen.utils.file import media_path_full
+from gramps.gen.constfunc import win, conv_to_unicode
 
 #-------------------------------------------------------------------------
 #
@@ -161,7 +161,7 @@ class PackageWriter(object):
         #         pass
 
         #     def fs_ok_clicked(obj):
-        #         name = get_unicode_path_from_file_chooser(fs_top.get_filename())
+        #         name = conv_to_unicode(fs_top.get_filename())
         #         if os.path.isfile(name):
         #             archive.add(name)
                     

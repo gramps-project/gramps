@@ -50,8 +50,7 @@ from gramps.gen.lib import MediaObject, NoteType
 from gramps.gen.db import DbTxn
 from gramps.gen.mime import get_description, get_type
 from ..thumbnails import get_thumbnail_image, find_mime_type_pixbuf
-from gramps.gen.utils.file import (media_path_full, find_file, 
-                            get_unicode_path_from_file_chooser)
+from gramps.gen.utils.file import (media_path_full, find_file)
 from .editprimary import EditPrimary
 from ..widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
                          MonitoredTagList)
@@ -307,7 +306,7 @@ class EditMedia(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        self.obj.set_path(get_unicode_path_from_file_chooser(path))
+        self.obj.set_path(conv_to_unicode(path))
 
         with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():

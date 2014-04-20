@@ -68,8 +68,7 @@ from gramps.gen.config import config
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.db import family_name
 from gramps.gen.utils.unknown import make_unknown
-from gramps.gen.utils.file import (media_path_full, find_file, fix_encoding, 
-                                   get_unicode_path_from_file_chooser)
+from gramps.gen.utils.file import (media_path_full, find_file, fix_encoding)
 from gramps.gui.managedwindow import ManagedWindow
 
 from gramps.gui.plug import tool
@@ -673,7 +672,7 @@ class CheckIntegrity(object):
                 logging.warning('        FAIL: references to missing file kept')
 
             def fs_ok_clicked(obj):
-                name = get_unicode_path_from_file_chooser(fs_top.get_filename())
+                name = conv_to_unicode(fs_top.get_filename())
                 if os.path.isfile(name):
                     obj = self.db.get_object_from_handle(ObjectId)
                     obj.set_path(name)

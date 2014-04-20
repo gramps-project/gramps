@@ -46,8 +46,7 @@ import sys
 #
 #-------------------------------------------------------------------------
 from gramps.gen.recentfiles import recent_files
-from gramps.gen.utils.file import (rm_tempdir, get_empty_tempdir, 
-                                   get_unicode_path_from_env_var)
+from gramps.gen.utils.file import rm_tempdir, get_empty_tempdir
 from gramps.gen.db import DbBsddb
 from .clidbman import CLIDbManager, NAME_FILE, find_locker_name
 
@@ -56,6 +55,7 @@ from gramps.gen.plug.report import CATEGORY_BOOK, CATEGORY_CODE, BookList
 from .plug import cl_report, cl_book
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.constfunc import conv_to_unicode
 
 #-------------------------------------------------------------------------
 #
@@ -213,7 +213,7 @@ class ArgHandler(object):
         """
         if value is None:
             return None
-        value = get_unicode_path_from_env_var(value)
+        value = conv_to_unicode(value, sys.stdin.encoding)
         db_path = self.__deduce_db_path(value)
 
         if db_path:
@@ -243,8 +243,7 @@ class ArgHandler(object):
         """
         # Need to convert path/filename to unicode before opening
         # For non latin characters in Windows path/file/user names
-        value = get_unicode_path_from_env_var(value)
-        fname = value
+        fname = conv_to_unicode(value, sys.stdin.encoding)
         fullpath = os.path.abspath(os.path.expanduser(fname))
         if fname != '-' and not os.path.exists(fullpath):
             self.__error(_('Error: Import file %s not found.') % fname)
@@ -280,8 +279,7 @@ class ArgHandler(object):
             return
         # Need to convert path/filename to unicode before opening
         # For non latin characters in Windows path/file/user names
-        value = get_unicode_path_from_env_var(value)
-        fname = value
+        fname = conv_to_unicode(value, sys.stdin.encoding)
         if fname == '-':
             fullpath = '-'
         else:

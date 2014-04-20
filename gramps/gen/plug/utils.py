@@ -54,11 +54,11 @@ from ._pluginreg import make_environment
 from ..const import USER_PLUGINS
 from ...version import VERSION_TUPLE
 from . import BasePluginManager
-from ..utils.file import get_unicode_path_from_file_chooser
 from ..utils.configmanager import safe_eval
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
+from ..constfunc import conv_to_unicode
 
 #-------------------------------------------------------------------------
 #
@@ -369,7 +369,7 @@ def load_addon_file(path, callback=None):
         gpr_files = set([os.path.split(os.path.join(USER_PLUGINS, name))[0]
                          for name in good_gpr])
         for gpr_file in gpr_files:
-            u_gpr_file = get_unicode_path_from_file_chooser(gpr_file)
+            u_gpr_file = conv_to_unicode(gpr_file)
             if callback:
                 callback("   " + (_("Registered '%s'") % u_gpr_file) + "\n")
     file_obj.close()

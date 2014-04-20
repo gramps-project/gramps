@@ -38,7 +38,7 @@ import os
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.constfunc import cuni
+from gramps.gen.constfunc import cuni, conv_to_unicode
 
 #-------------------------------------------------------------------------
 #
@@ -54,8 +54,8 @@ from gi.repository import GdkPixbuf
 #-------------------------------------------------------------------------
 from gramps.gen.const import ICON, THUMBSCALE, USER_HOME
 from gramps.gen.config import config
-from gramps.gen.utils.file import (media_path_full, media_path, relative_path, 
-                            find_file, get_unicode_path_from_file_chooser)
+from gramps.gen.utils.file import (media_path_full, media_path, relative_path,
+                                   find_file)
 from gramps.gen.mime import get_type
 from ..thumbnails import find_mime_type_pixbuf
 from ..display import display_help
@@ -152,7 +152,7 @@ class AddMediaObject(ManagedWindow):
             ErrorDialog(msgstr, msgstr2)
             return
 
-        filename = get_unicode_path_from_file_chooser(self.file_text.get_filename())
+        filename = conv_to_unicode(self.file_text.get_filename())
         full_file = filename
 
         if self.relpath.get_active():
@@ -189,7 +189,7 @@ class AddMediaObject(ManagedWindow):
         fname = self.file_text.get_filename()
         if not fname:
             return
-        filename = get_unicode_path_from_file_chooser(fname)
+        filename = conv_to_unicode(fname)
         basename = os.path.basename(filename)
         (root, ext) = os.path.splitext(basename)
         old_title  = cuni(self.description.get_text())
