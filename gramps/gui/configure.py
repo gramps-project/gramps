@@ -30,8 +30,6 @@
 from __future__ import print_function
 
 import random
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import os
 from xml.sax.saxutils import escape
 import collections
@@ -51,17 +49,16 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
-from gramps.gen.const import HOME_DIR
+from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
 from gramps.gen.datehandler import get_date_formats
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.name import NameDisplayError
-from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from gramps.gen.utils.alive import update_constants
 from gramps.gen.utils.keyword import (get_keywords, get_translation_from_keyword, 
                                get_translations, get_keyword_from_translation)
 from gramps.gen.lib import Date, FamilyRelType
 from gramps.gen.lib import Name, Surname, NameOriginType
-from gramps.gen.constfunc import cuni
+from gramps.gen.constfunc import conv_to_unicode
 from .managedwindow import ManagedWindow
 from .widgets import MarkupLabel, BasicLabel
 from .dialog import ErrorDialog, QuestionDialog2, OkDialog
@@ -70,6 +67,7 @@ from gramps.gen.plug.utils import available_updates
 from .plug import PluginWindows
 from gramps.gen.errors import WindowActiveError
 from .spell import HAVE_GTKSPELL
+_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
@@ -249,7 +247,7 @@ class ConfigureDialog(ManagedWindow):
         :param constant: the config setting to which the text value must be 
             saved
         """
-        self.__config.set(constant, cuni(obj.get_text()))
+        self.__config.set(constant, conv_to_unicode(obj.get_text()))
 
     def update_color(self, obj, constant, color_hex_label):
         color = obj.get_color()
@@ -1386,7 +1384,7 @@ class GrampsPreferences(ConfigureDialog):
 
         status = f.run()
         if status == Gtk.ResponseType.OK:
-            val = get_unicode_path_from_file_chooser(f.get_filename())
+            val = conv_to_unicode(f.get_filename())
             if val:
                 self.path_entry.set_text(val)
         f.destroy()
@@ -1410,13 +1408,13 @@ class GrampsPreferences(ConfigureDialog):
 
         status = f.run()
         if status == Gtk.ResponseType.OK:
-            val =  get_unicode_path_from_file_chooser(f.get_filename())
+            val =  conv_to_unicode(f.get_filename())
             if val:
                 self.dbpath_entry.set_text(val)
         f.destroy()
 
     def update_idformat_entry(self, obj, constant):
-        config.set(constant, cuni(obj.get_text()))
+        config.set(constant, conv_to_unicode(obj.get_text()))
         self.dbstate.db.set_prefixes(
             config.get('preferences.iprefix'),
             config.get('preferences.oprefix'),

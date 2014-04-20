@@ -84,7 +84,6 @@ from gramps.gen.recentfiles import rename_filename, remove_filename
 from .glade import Glade
 from gramps.gen.db.backup import restore
 from gramps.gen.db.exceptions import DbException
-from gramps.gen.utils.file import get_unicode_path_from_env_var
 
 
 _RETURN = Gdk.keyval_from_name("Return")

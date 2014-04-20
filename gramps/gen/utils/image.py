@@ -43,7 +43,7 @@ import tempfile
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from .file import get_unicode_path_from_env_var
+from ..constfunc import conv_to_unicode
 
 def crop_percentage_to_subpixel(width, height, crop):
     """
@@ -281,7 +281,7 @@ def resize_to_jpeg_buffer(source, size, crop=None):
 
     scaled = img.scale_simple(int(size[0]), int(size[1]), GdkPixbuf.InterpType.BILINEAR)
     os.close(filed)
-    dest = get_unicode_path_from_env_var(dest)
+    dest = conv_to_unicode(dest, None)
     scaled.savev(dest, "jpeg", "", "")
     ofile = open(dest, mode='rb')
     data = ofile.read()

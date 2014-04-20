@@ -64,8 +64,7 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       BsddbDowngradeRequiredError,
                                       PythonUpgradeRequiredError,
                                       PythonDowngradeError)
-from gramps.gen.constfunc import STRTYPE
-from gramps.gen.utils.file import get_unicode_path_from_file_chooser
+from gramps.gen.constfunc import STRTYPE, UNITYPE, conv_to_unicode
 from .pluginmanager import GuiPluginManager
 from .dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
@@ -172,7 +171,7 @@ class DbLoader(CLIDbLoader):
             if response == Gtk.ResponseType.CANCEL:
                 break
             elif response == Gtk.ResponseType.OK:
-                filename = get_unicode_path_from_file_chooser(import_dialog.get_filename())
+                filename = conv_to_unicode(import_dialog.get_filename())
                 if self.check_errors(filename):
                     # displays errors if any
                     continue
@@ -211,7 +210,7 @@ class DbLoader(CLIDbLoader):
         In this process, a warning dialog can pop up.
         
         """
-        if not isinstance(filename, STRTYPE):
+        if not isinstance(filename, (STRTYPE, UNITYPE)):
             return True
 
         filename = os.path.normpath(os.path.abspath(filename))

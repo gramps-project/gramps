@@ -89,8 +89,7 @@ from gramps.gen.errors import WindowActiveError
 from .dialog import ErrorDialog, WarningDialog, QuestionDialog2, InfoDialog
 from .widgets import Statusbar
 from .undohistory import UndoHistory
-from gramps.gen.utils.file import (media_path_full, get_unicode_path_from_env_var, 
-                            get_unicode_path_from_file_chooser)
+from gramps.gen.utils.file import media_path_full
 from .dbloader import DbLoader
 from .display import display_help, display_url
 from .configure import GrampsPreferences
@@ -1103,7 +1102,7 @@ class ViewManager(CLIManager):
         value = dialog.run()
         if value:
             (filename, title) = value
-            filename = conv_to_unicode(filename, 'utf8')
+            filename = conv_to_unicode(filename)
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, 'x-directory/normal', title)
 
@@ -1302,9 +1301,10 @@ class ViewManager(CLIManager):
         window.hide()
         if d == Gtk.ResponseType.APPLY:
             # if file exists, ask if overwrite; else abort
-            basefile = file_entry.get_text()
+            basefile = conv_to_unicode(file_entry.get_text())
             basefile = basefile.replace("/", r"-")
-            filename = os.path.join(path_entry.get_text(), basefile)
+            filename = os.path.join(conv_to_unicode(path_entry.get_text()),
+                                    basefile)
             if os.path.exists(filename):
                 question = QuestionDialog2(
                     _("Backup file already exists! Overwrite?"),
@@ -1329,7 +1329,6 @@ class ViewManager(CLIManager):
                 writer.write(filename)
             self.uistate.set_busy_cursor(False)
             self.uistate.progress.hide()
-            filename = get_unicode_path_from_env_var(filename)
             self.uistate.push_message(self.dbstate, _("Backup saved to '%s'") % filename)
             config.set('paths.quick-backup-directory', path_entry.get_text())
         else:
@@ -1352,14 +1351,12 @@ class ViewManager(CLIManager):
         if not mpath:
             mpath = HOME_DIR
         f.set_current_folder(os.path.dirname(mpath))
-        f.set_filename(os.path.join(mpath, "."))
+        f.set_filename(uni_to_gui(os.path.join(mpath, ".")))
         status = f.run()
         if status == Gtk.ResponseType.OK:
             filename = f.get_filename()
             if filename:
-                val = get_unicode_path_from_file_chooser(filename)
-                if val:
-                    path_entry.set_text(val)
+                path_entry.set_text(val)
         f.destroy()
         return True
 

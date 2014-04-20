@@ -60,11 +60,10 @@ from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
 from ..filters import SearchBar
 from ..widgets.menuitem import add_menuitem
-from gramps.gen.constfunc import UNITYPE
+from gramps.gen.constfunc import UNITYPE, conv_to_unicode
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.utils.debug import profile
 from gramps.gen.utils.string import data_recover_msg
-from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from ..dialog import QuestionDialog, QuestionDialog2
 from ..editors import FilterEditor
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -1016,7 +1015,7 @@ class ListView(NavigationView):
         while True:
             value = chooser.run()
             fn = chooser.get_filename()
-            fn = get_unicode_path_from_file_chooser(fn)
+            fn = conv_to_unicode(fn)
             fl = combobox.get_active()
             if value == Gtk.ResponseType.OK:
                 if fn:

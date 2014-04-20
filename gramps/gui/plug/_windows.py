@@ -69,9 +69,8 @@ from ..dialog import InfoDialog, OkDialog
 from ..editors import EditPerson
 from ..glade import Glade
 from ..listmodel import ListModel, NOSORT, TOGGLE
-from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from gramps.gen.const import URL_WIKISTRING, USER_HOME, WIKI_EXTRAPLUGINS_RAWDATA
-from gramps.gen.constfunc import win
+from gramps.gen.constfunc import win, conv_to_unicode
 from gramps.gen.config import config
 from ..widgets.progressdialog import (LongOpStatus, ProgressMonitor,
                                       GtkProgressDialog)
@@ -450,7 +449,7 @@ class PluginStatus(ManagedWindow):
 
         status = fcd.run()
         if status == Gtk.ResponseType.OK:
-            path = get_unicode_path_from_file_chooser(fcd.get_filename())
+            path = conv_to_unicode(fcd.get_filename())
             if path:
                 self.install_addon_path.set_text(path)
         fcd.destroy()

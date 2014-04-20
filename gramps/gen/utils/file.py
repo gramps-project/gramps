@@ -60,7 +60,6 @@ _NEW_NAME_PATTERN = '%s%sUntitled_%d.%s'
 def find_file( filename):
     # try the filename we got
     try:
-        fname = filename
         if os.path.isfile(filename):
             return(filename)
     except UnicodeError:
@@ -72,7 +71,6 @@ def find_file( filename):
 def find_folder( filename):
     # try the filename we got
     try:
-        fname = filename
         if os.path.isdir(filename):
             return(filename)
     except UnicodeError:
@@ -81,26 +79,6 @@ def find_folder( filename):
     LOG.debug("Filename %s either not found or not a directory.",
               repr(filename))
     return ''
-
-def get_unicode_path_from_file_chooser(path):
-    """
-    Return the Unicode version of a path string.
-
-    :type  path: str
-    :param path: The path to be converted to Unicode
-    :rtype:      unicode
-    :returns:    The Unicode version of path.
-    """
-    # make only unicode of path of type 'str'
-    return conv_to_unicode(path)
-
-
-def get_unicode_path_from_env_var(path):
-    '''
-    Environment variables should always return unicodes.
-    '''
-    assert isinstance(path, UNITYPE)
-    return path
 
 def get_new_filename(ext, folder='~/'):
     ix = 1

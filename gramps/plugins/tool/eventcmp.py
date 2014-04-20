@@ -45,7 +45,6 @@ from gi.repository import Gtk
 from gramps.gen.filters import GenericFilter, rules
 from gramps.gui.filters import build_filter_model
 from gramps.gen.sort import Sort
-from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from gramps.gui.utils import ProgressMeter
 from gramps.gen.utils.docgen import ODSTab
 from gramps.gen.const import CUSTOM_FILTERS, URL_MANUAL_PAGE
@@ -402,7 +401,7 @@ class DisplayChart(ManagedWindow):
         f.hide()
 
         if status == Gtk.ResponseType.OK:
-            name = get_unicode_path_from_file_chooser(f.get_filename())
+            name = conv_to_unicode(f.get_filename())
             doc = ODSTab(len(self.row_data))
             doc.creator(self.db.get_researcher().get_name())
 

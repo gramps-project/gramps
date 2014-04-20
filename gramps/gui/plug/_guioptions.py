@@ -51,7 +51,6 @@ from gi.repository import GObject
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.utils.file import get_unicode_path_from_file_chooser
 from ..utils import ProgressMeter
 from ..pluginmanager import GuiPluginManager
 from .. import widgets
@@ -1701,12 +1700,12 @@ class GuiDestinationOption(Gtk.HBox):
 
         status = fcd.run()
         if status == Gtk.ResponseType.OK:
-            path = get_unicode_path_from_file_chooser(fcd.get_filename())
+            path = conv_to_unicode(fcd.get_filename())
             if path:
                 if not self.__option.get_directory_entry() and \
                    not path.endswith(self.__option.get_extension()):
                     path = path + self.__option.get_extension()
-                self.__entry.set_text(path)
+                self.__entry.set_text(uni_to_gui(path))
                 self.__option.set_value(path)
         fcd.destroy()
         
