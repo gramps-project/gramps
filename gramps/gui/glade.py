@@ -49,7 +49,7 @@ from gi.repository import Gtk
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GLADE_DIR, GRAMPS_LOCALE as glocale
-from gramps.gen.constfunc import STRTYPE
+from gramps.gen.constfunc import STRTYPE, uni_to_gui
 
 #------------------------------------------------------------------------
 #
@@ -124,7 +124,7 @@ class Glade(Gtk.Builder):
         
         # try to build Gtk objects from glade file.  Let exceptions happen
         
-        self.add_from_file(path)
+        self.add_from_file(uni_to_gui(path))
         self.__dirname, self.__filename = os.path.split(path)
         
         # try to find the toplevel widget
