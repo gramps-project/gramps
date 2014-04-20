@@ -17,9 +17,7 @@
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-
-# $Id$
-
+from __future__ import unicode_literals
 import sys
 import io
 import os
@@ -29,7 +27,7 @@ _hdlr = logging.StreamHandler()
 _hdlr.setFormatter(logging.Formatter(fmt="%(name)s.%(levelname)s: %(message)s"))
 LOG.addHandler(_hdlr)
 
-from ..constfunc import get_env_var
+from ..constfunc import get_env_var, conv_to_unicode
 
 class ResourcePath(object):
     """
@@ -52,8 +50,8 @@ class ResourcePath(object):
         if self.initialized:
             return
 
-        resource_file = os.path.join(os.path.abspath(os.path.dirname(__file__)),
-                                     'resource-path')
+        resource_file = os.path.join(os.path.abspath(os.path.dirname(
+            conv_to_unicode(__file__))), 'resource-path')
         installed = os.path.exists(resource_file)
         if installed:
             test_path = os.path.join("gramps", "authors.xml")
@@ -67,7 +65,7 @@ class ResourcePath(object):
             try:
                 with io.open(resource_file, encoding='utf-8',
                                 errors='strict') as fp:
-                    resource_path = fp.readline()
+                    resource_path = conv_to_unicode(fp.readline())
             except UnicodeError as err:
                 LOG.exception("Encoding error while parsing resource path", err)
                 sys.exit(1)
