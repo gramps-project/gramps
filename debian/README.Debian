@@ -1,10 +1,18 @@
-gramps for Debian
+Gramps for Debian
 ----------------------
 
 This is the Debian package of the 4.0 series of GRAMPS.
 
-It is a major update of Gramps to enable a switch to Python 3 as the default interpreter,
-and to upgrade to GTK 3. A switch was also made to distutils from autotools.
+It is a major update of Gramps to upgrade to GTK 3. A switch was also made to distutils from autotools.
 
 The 4.0 series of Gramps is being packaged for the experimental distribution until all dependencies are available
 and it proves stable.
+
+Webkit - gir1.2-webkit-3.0 crashes. Gramps has been patched disable the hidden
+HTML view instead until a solution is found.
+
+Goocanvas2 - The latest Goocanvas is not available in Debian yet. If you miss
+the Graphview plugin, you could try installing the gir1.2-goocanvas-2.0-9 which
+is available in Ubuntu.
+
+ -- Ross Gammon <rossgammon@mail.dk>  Sat, 25 Jan 2014 18:00:00 +0100

@@ -1,3 +1,15 @@
+gramps (4.0.3) precise; urgency=low
+
+  * - 4.0.4-git.f08e40 Experimental stream gramps.git
+
+ -- Jérôme Rapinat <romjerome@yahoo.fr>  Tue, 04 Feb 2014 19:49:32 +0100
+ 
+gramps (4.0.2) precise; urgency=low
+
+  * experimental .deb for gramps 4.0.2
+  
+-- Jérôme Rapinat <romjerome@yahoo.fr>  Wed, 04 Dec 2013 10:23:36 +0100
+
 gramps (4.0.1-2) precise; urgency=low
 
   * bug 6918: make package more compliant according to Debian policy

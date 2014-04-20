@@ -1,3 +1,4 @@
-# watch control file for uscan
 version=3
-http://sf.net/gramps/gramps-(.+)\.tar\.gz debian uupdate
+
+opts="dversionmangle=s/\+dfsg//g" \
+http://sf.net/gramps/gramps-(.+)\.tar\.gz
