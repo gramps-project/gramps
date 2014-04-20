@@ -176,6 +176,11 @@ def mod_key():
 
 
 def get_env_var(name, default=None):
+    '''
+    Python2 on Windows can't directly read unicode values from
+    environment variables. This routine does so using the native C
+    wide-character function.
+    '''
     if not name or not name in os.environ:
         return default
 
@@ -190,4 +195,22 @@ def get_env_var(name, default=None):
         return buf.value
 
     return os.environ[name]
-    
+
+def get_curr_dir():
+    '''
+    In Python2 on Windows, os.getcwd() returns a string encoded with
+    the current code page, which may not be able to correctly handle
+    an arbitrary unicode character in a path. This function uses the
+    native GetCurrentDirectory function to return a unicode cwd.
+    '''
+    if not sys.version_info[0] < 3 and win():
+        return os.getcwd()
+
+    n = ctypes.windll.kernel32.GetCurrentDirectoryW(0, None)
+    if n == 0:
+        return None
+    buf = ctypes.create_unicode_buffer(n+1)
+    ctypes.windll.kernel32.GetCurrentDirectoryW(n, buf)
+    return buf.value
+
+

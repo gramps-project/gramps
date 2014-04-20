@@ -60,6 +60,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
 from gramps.gui.editors import FilterEditor
+from gramps.gen.constfunc import conv_to_unicode, uni_to_gui, get_curr_dir
 
 #-------------------------------------------------------------------------
 #
@@ -396,7 +397,7 @@ class DisplayChart(ManagedWindow):
                                            Gtk.STOCK_SAVE,
                                            Gtk.ResponseType.OK))
 
-        f.set_current_folder(os.getcwd())
+        f.set_current_folder(get_curr_dir())
         status = f.run()
         f.hide()
 
