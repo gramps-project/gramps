@@ -526,10 +526,11 @@ class GrampsLocale(object):
         # _init_secondary_locale if this comes up empty.
         if localedir and os.path.exists(os.path.abspath(localedir)):
             self.localedir = localedir
-        elif _first and hasattr(_first, 'localedir'):
+        elif (_first and hasattr(_first, 'localedir') and
+              os.path.exists(os.path.abspath(_first.localedir))):
             self.localedir = _first.localedir
         else:
-            LOG.warn("No Localedir or localdir %s invalid", localedir)
+            LOG.warn('Missing or invalid localedir %s; no translations will be available.', repr(localedir))
 
         self.lang = lang
         self.localedomain = domain or 'gramps'
@@ -540,7 +541,6 @@ class GrampsLocale(object):
         else:
             self.language = None
 
-        _first = self._GrampsLocale__first_instance
         if self == _first:
             self._GrampsLocale__init_first_instance()
         else:
