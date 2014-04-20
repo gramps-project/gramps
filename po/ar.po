@@ -17863,7 +17863,7 @@ msgstr "الرسم البياني لعائلة %(person)s"
 #: ../gramps/plugins/drawreport/descendtree.py:325
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
-msgstr ""
+msgstr "الرسم البياني لعائلة %(father1)s و %(mother1)s"
 
 #. FIXME it should be reformatted, but that would mean new translations
 #: ../gramps/plugins/drawreport/descendtree.py:351
