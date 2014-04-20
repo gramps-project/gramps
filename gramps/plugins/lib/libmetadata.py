@@ -178,41 +178,45 @@ class MetadataView(Gtk.TreeView):
         self.sections = {}
         self.model.clear()
 
-        if os.path.exists(full_path):
-            try:
-                metadata = GExiv2.Metadata(full_path)
-            except:
-                return False
-        else:
+        if not os.path.exists(full_path):
             return False
-            
-        get_human = metadata.get_tag_interpreted_string
 
-        for section, key, key2, func in TAGS:
-            if not key in metadata.get_exif_tags():
-                continue
+        retval = False
+        with open(full_path, 'rb') as fd:
+            try:
+                metadata = GExiv2.Metadata(self.fd)
 
-            if func is not None:
-                if key2 is None:
-                    human_value = func(metadata[key])
-                else:
-                    if key2 in metadata.get_exif_tags():
-                        human_value = func(metadata[key], metadata[key2])
+                get_human = metadata.get_tag_interpreted_string
+
+                for section, key, key2, func in TAGS:
+                    if not key in metadata.get_exif_tags():
+                        continue
+
+                if func is not None:
+                    if key2 is None:
+                        human_value = func(metadata[key])
                     else:
-                        human_value = func(metadata[key], None)
-            else:
-                human_value = get_human(key)
-                if key2 in metadata.get_exif_tags():
-                    human_value += ' ' + get_human(key2)
+                        if key2 in metadata.get_exif_tags():
+                            human_value = func(metadata[key], metadata[key2])
+                        else:
+                            human_value = func(metadata[key], None)
+                else:
+                    human_value = get_human(key)
+                    if key2 in metadata.get_exif_tags():
+                        human_value += ' ' + get_human(key2)
 
-            label = metadata.get_tag_label(key)
-            node = self.__add_section(section)
-            if human_value is None:
-                human_value = ''
-            self.model.add((label, human_value), node=node)
+                label = metadata.get_tag_label(key)
+                node = self.__add_section(section)
+                if human_value is None:
+                    human_value = ''
+                self.model.add((label, human_value), node=node)
 
-        self.model.tree.expand_all()
-        return self.model.count > 0
+                self.model.tree.expand_all()
+                retval = self.model.count > 0
+            except:
+                pass
+
+        return retval
 
     def __add_section(self, section):
         """
@@ -229,15 +233,17 @@ class MetadataView(Gtk.TreeView):
         """
         Return True if the gramplet has data, else return False.
         """
-        if os.path.exists(full_path):
-            try:
-                metadata = GExiv2.Metadata(full_path)
-            except:
-                return False
-        else:
+        if not os.path.exists(full_path):
             return False
+        with open(full_path, 'rb') as fd:
+            retval = False
+            try:
+                metadata = GExiv2.Metadata(fd)
+                for tag in TAGS:
+                    if tag in metadata.get_exif_tags():
+                        retval = True
+                        break
+            except:
+                pass
 
-        for tag in TAGS:
-            if tag in metadata.get_exif_tags():
-                return True
-        return False
+        return retval
