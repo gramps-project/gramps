@@ -126,7 +126,7 @@ from gramps.gen.utils.string import conf_strings
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.db import get_source_and_citation_referents
-from gramps.gen.constfunc import win, cuni, conv_to_unicode, UNITYPE
+from gramps.gen.constfunc import win, cuni, conv_to_unicode, UNITYPE, get_curr_dir
 from gramps.gen.config import config
 from gramps.gui.thumbnails import get_thumbnail_path, run_thumbnailer
 from gramps.gen.utils.image import image_size, resize_to_jpeg_buffer
@@ -6965,7 +6965,7 @@ class NavWebReport(Report):
         if not self.use_archive:
             dir_name = self.target_path
             if dir_name is None:
-                dir_name = os.getcwd()
+                dir_name = get_curr_dir()
             elif not os.path.isdir(dir_name):
                 parent_dir = os.path.dirname(dir_name)
                 if not os.path.isdir(parent_dir):

@@ -25,8 +25,7 @@
 import os
 from gi.repository import Gtk
 from gi.repository import GObject
-from gramps.gen.utils.file import get_unicode_path_from_file_chooser
-
+from gramps.gen.constfunc import conv_to_unicode, get_curr_dir, uni_to_gui
 class FileEntry(Gtk.HBox):
     """ A widget that allows the user to select a file from the file system """
     def __init__(self, defname, title):
@@ -86,7 +85,7 @@ class FileEntry(Gtk.HBox):
             self.__base_path = os.path.dirname(path)
             self.__file_name = os.path.basename(path)
         else:
-            self.__base_path = os.getcwd()
+            self.__base_path = get_curr_dir()
             self.__file_name = path
         self.entry.set_text(os.path.join(self.__base_path, self.__file_name))
 

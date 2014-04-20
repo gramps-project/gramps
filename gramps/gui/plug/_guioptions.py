@@ -35,8 +35,6 @@ from __future__ import unicode_literals
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import os
 import sys
 
@@ -63,7 +61,9 @@ from ..dialog import OptionDialog
 from ..selectors import SelectorFactory
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.filters import GenericFilterFactory, GenericFilter, rules
-from gramps.gen.constfunc import cuni, STRTYPE
+from gramps.gen.constfunc import conv_to_unicode, uni_to_gui, get_curr_dir
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
@@ -1695,7 +1695,7 @@ class GuiDestinationOption(Gtk.HBox):
                 name, tail = os.path.split(name)
                 if not name:
                     # Avoid infinite loops
-                    name = os.getcwd()
+                    name = get_curr_dir
             fcd.set_current_folder(name)
         else:
             fcd.set_current_name(name)
