@@ -44,6 +44,7 @@ from gi.repository import Gdk
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.constfunc import conv_to_unicode
 from ..utils import open_file_with_default_application
 from gramps.gen.lib import MediaObject, NoteType
 from gramps.gen.db import DbTxn
@@ -248,7 +249,7 @@ class EditMedia(EditPrimary):
     def select_file(self, val):
         self.determine_mime()
         path = self.file_path.get_text()
-        self.obj.set_path(get_unicode_path_from_file_chooser(path))
+        self.obj.set_path(conv_to_unicode(path))
         AddMediaObject(self.dbstate, self.uistate, self.track, self.obj, 
                        self._update_addmedia)
 
@@ -288,8 +289,8 @@ class EditMedia(EditPrimary):
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
-        
-        path = self.file_path.get_text()
+
+        path = conv_to_unicode(self.file_path.get_text())
         ref_obj = self.dbstate.db.get_object_from_handle(self.obj.handle)
         if ref_obj:
             media_path = media_path_full(self.dbstate.db,
