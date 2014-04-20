@@ -64,14 +64,9 @@ def find_file( filename):
         if os.path.isfile(filename):
             return(filename)
     except UnicodeError:
-        try:
-            fname = filename.encode(glocale.getfilesystemencoding())
-            if os.path.isfile(fname):
-                return fname
-        except UnicodeError:
-            pass
- 
-    # not found
+        LOG.error("Filename %s raised a Unicode Error %s.", repr(filename), err)
+
+    LOG.debug("Filename %s not found.", repr(filename))
     return ''
 
 def find_folder( filename):
@@ -81,14 +76,10 @@ def find_folder( filename):
         if os.path.isdir(filename):
             return(filename)
     except UnicodeError:
-        try:
-            fname = filename.encode(glocale.getfilesystemencoding())
-            if os.path.isdir(fname):
-                return fname
-        except UnicodeError:
-            pass
-        
-    # not found
+        LOG.error("Filename %s raised a Unicode Error %s", repr(filename), err)
+
+    LOG.debug("Filename %s either not found or not a directory.",
+              repr(filename))
     return ''
 
 def get_unicode_path_from_file_chooser(path):
@@ -101,75 +92,15 @@ def get_unicode_path_from_file_chooser(path):
     :returns:    The Unicode version of path.
     """
     # make only unicode of path of type 'str'
-    if isinstance(path, UNITYPE):
-        return path
-    
-    if not (isinstance(path,  str)):
-        return path
-    ## ONLY PYTHON 2 code shoulr reach this !
-    if win():
-        # in windows filechooser returns officially utf-8, not filesystemencoding
-        try:
-            return cuni(path)
-        except:
-            LOG.warn("Problem encountered converting string: %s." % path)
-            if sys.version_info[0] < 3:
-                return unicode(path, sys.getfilesystemencoding(), 
-                                    errors='replace')
-            else:
-                #no idea, need to know what path is to know what to do
-                raise NotImplementedError("Path of type", type(path))
-    else:
-        try:
-            return cuni(path, sys.getfilesystemencoding())
-        except:
-            LOG.warn("Problem encountered converting string: %s." % path)
-            if sys.version_info[0] < 3:
-                return unicode(path, sys.getfilesystemencoding(), errors='replace')
-            else:
-                #no idea, need to know what path is to know what to do
-                raise NotImplementedError("Path of type", type(path))
-            
+    return conv_to_unicode(path)
+
 
 def get_unicode_path_from_env_var(path):
-    """
-    Return the Unicode version of a path string.
-
-    :type  path: str
-    :param path: The path to be converted to Unicode
-    :rtype:      unicode
-    :returns:    The Unicode version of path.
-    """
-    #No need to do anything if it's already unicode
-    if isinstance(path, UNITYPE):
-        return path
-
-    # make only unicode of path of type 'str'
-    if not (isinstance(path,  str)):
-        raise TypeError("path %s isn't a str" % str(path))
-
-    if win():
-        # In Windows path/filename returned from a environment variable is in filesystemencoding
-        try:
-            new_path = conv_to_unicode(path, sys.getfilesystemencoding())
-            return new_path
-        except:
-            LOG.warn("Problem encountered converting string: %s." % path)
-            if sys.version_info[0] < 3:
-                return unicode(path, sys.getfilesystemencoding(), errors='replace')
-            else:
-                #no idea, need to know what path is to know what to do
-                raise NotImplementedError("Path of type", type(path))
-    else:
-        try:
-            return str(path)
-        except:
-            LOG.warn("Problem encountered converting string: %s." % path)
-            if sys.version_info[0] < 3:
-                return unicode(path, sys.getfilesystemencoding(), errors='replace')
-            else:
-                #no idea, need to know what path is to know what to do
-                raise NotImplementedError("Path of type", type(path))
+    '''
+    Environment variables should always return unicodes.
+    '''
+    assert isinstance(path, UNITYPE)
+    return path
 
 def get_new_filename(ext, folder='~/'):
     ix = 1

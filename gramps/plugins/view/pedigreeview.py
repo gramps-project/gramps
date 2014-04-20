@@ -207,11 +207,8 @@ class PersonBoxWidgetCairo(_PersonWidgetBase):
         if image:
             image_path = self.get_image(dbstate, person)
             if image_path and os.path.exists(image_path):
-                # Work around a bug in pycairo 1.8.10 and earlier. OSX and
-                # Win32 AIOs use pycairo 1.10.0, in which the bug is fixed.
-                if (sys.version_info[0] < 3 and lin()):
-                    image_path = image_path.encode(glocale.getfilesystemencoding())
-                self.img_surf = cairo.ImageSurface.create_from_png(image_path)
+                with open(image_path, 'rb') as image:
+                    self.img_surf = cairo.ImageSurface.create_from_png(image)
 
         # enable mouse-over
         self.connect("enter-notify-event", self.cb_on_enter)

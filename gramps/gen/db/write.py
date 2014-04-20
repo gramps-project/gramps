@@ -220,16 +220,6 @@ def find_referenced_handle(key, data):
         val = val.encode('utf-8')
     return val
 
-def _encode(path):
-    """
-    Conditionally return the unicode string encoded to sys.filesystem.encoding
-    """
-    if not (isinstance(path, UNITYPE) and sys.version_info[0] < 3):
-        _LOG.debug("Didn't Encode %s", repr(path))
-        return path
-    _LOG.debug("Encoding %s", repr(path))
-    return path.encode(sys.getfilesystemencoding())
-
 #-------------------------------------------------------------------------
 #
 # BsddbWriteCursor

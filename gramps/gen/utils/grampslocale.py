@@ -368,8 +368,7 @@ class GrampsLocale(object):
         from ctypes import cdll
         try:
             libintl = cdll.LoadLibrary('libintl-8')
-            libintl.bindtextdomain(localedomain,
-                                   localedir.encode(sys.getfilesystemencoding()))
+            libintl.bindtextdomain(localedomain, localedir)
             libintl.textdomain(localedomain)
             libintl.bind_textdomain_codeset(localedomain, "UTF-8")
 
@@ -853,21 +852,6 @@ class GrampsLocale(object):
             return _("the filter")
         else:
             return _("See details")
-
-    def getfilesystemencoding(self):
-        """
-        If the locale isn't configured correctly, this will return
-        'ascii' or 'ANSI_X3.4-1968' or some other unfortunate
-        result. Current unix systems all encode filenames in utf-8,
-        and Microsoft Windows uses utf-16 (which they call mbcs). Make
-        sure we return the right value.
-        """
-        encoding = sys.getfilesystemencoding()
-
-        if encoding in ("utf-8", "UTF-8", "utf8", "UTF8", "mbcs", "MBCS"):
-            return encoding
-
-        return "utf-8"
 
     def sort_key(self, string):
         """

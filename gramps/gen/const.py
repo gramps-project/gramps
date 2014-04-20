@@ -42,7 +42,7 @@ import uuid
 #
 #-------------------------------------------------------------------------
 from .git_revision import get_git_revision
-from .constfunc import get_env_var
+from .constfunc import get_env_var, conv_to_unicode
 #-------------------------------------------------------------------------
 #
 # Gramps Version
@@ -122,17 +122,15 @@ USER_DIRLIST = (USER_HOME, HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
 # above this one, and that the plugins directory is below the root directory.
 #
 #-------------------------------------------------------------------------
-ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
-            __file__), os.pardir))
-if sys.version_info[0] < 3:
-    # test for sys.frozen to detect a py2exe executable on Windows
-    if hasattr(sys, "frozen"):
-        ROOT_DIR = os.path.abspath(os.path.dirname(
-            unicode(sys.executable, sys.getfilesystemencoding())))
-    else:
-        ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
-            unicode(__file__, sys.getfilesystemencoding())), os.pardir))
+# test for sys.frozen to detect a py2exe executable on Windows
 
+if sys.version_info[0] < 3 and hasattr(sys, "frozen"):
+    ROOT_DIR = os.path.abspath(os.path.dirname(unicode(sys.executable)))
+else:
+    ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
+        conv_to_unicode(__file__)), os.pardir))
+
+sys.path.insert(0, ROOT_DIR)
 git_revision = get_git_revision(ROOT_DIR)
 if sys.platform == 'win32' and git_revision == "":
     git_revision = get_git_revision(os.path.split(ROOT_DIR)[1])
