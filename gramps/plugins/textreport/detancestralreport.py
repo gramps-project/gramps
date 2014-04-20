@@ -448,7 +448,8 @@ class DetAncestorReport(Report):
             attr_list.extend(event_ref.get_attribute_list())
             for attr in attr_list:
                 if text:
-                    text += "; "
+                    # translators: needed for Arabic, ignore otherwise
+                    text += self._("; ")
                 attrName = self._get_type(attr.get_type())
                 text += self._("%(type)s: %(value)s%(endnotes)s") % {
                     'type'     : self._(attrName),

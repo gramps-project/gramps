@@ -125,7 +125,8 @@ class FamilyGroup(Report):
             if self.includeAttrs:
                 for attr in event.get_attribute_list():
                     if descr:
-                        descr += "; "
+                        # translators: needed for Arabic, ignore otherwise
+                        descr += self._("; ")
                     attr_type = self._get_type(attr.get_type())
                     descr += "%(type)s: %(value)s" % {
                                     'type'  : self._(attr_type),

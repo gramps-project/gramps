@@ -346,7 +346,8 @@ class DetDescendantReport(Report):
             if index == 1:
                 self.doc.write_text(name + "-" + str(index) + ") ")
             else:
-                self.doc.write_text(name + "-" + str(index) + "; ")
+                # translators: needed for Arabic, ignore otherwise
+                self.doc.write_text(name + "-" + str(index) + self._("; "))
             index -= 1
 
     def write_person(self, key):
@@ -460,7 +461,8 @@ class DetDescendantReport(Report):
             attr_list.extend(event_ref.get_attribute_list())
             for attr in attr_list:
                 if text:
-                    text += "; "
+                    # translators: needed for Arabic, ignore otherwise
+                    text += self._("; ")
                 attrName = self._get_type(attr.get_type())
                 text += self._("%(type)s: %(value)s%(endnotes)s") % {
                     'type'     : self._(attrName),
