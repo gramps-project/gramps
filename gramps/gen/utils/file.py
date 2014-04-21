@@ -186,24 +186,6 @@ def search_for(name):
                 return 1
     return 0
 
-def fix_encoding(value, errors='strict'):
-    # The errors argument specifies the response when the input string can't be
-    # converted according to the encoding's rules. Legal values for this
-    # argument are 'strict' (raise a UnicodeDecodeError exception), 'replace'
-    # (add U+FFFD, 'REPLACEMENT CHARACTER'), or 'ignore' (just leave the
-    # character out of the Unicode result).
-    if not isinstance(value, UNITYPE):
-        try:
-            return cuni(value)
-        except:
-            codeset = glocale.encoding
-            if sys.version_info[0] < 3:
-                return unicode(value, codeset, errors)
-            else:
-                return value.decode(encoding=codeset, errors=errors)
-    else:
-        return value
-
 def create_checksum(full_path):
     """
     Create a md5 hash for the given file.

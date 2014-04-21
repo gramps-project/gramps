@@ -24,8 +24,6 @@
 # Python classes
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 import os
 import sys
 if sys.version_info[0] < 3:
@@ -59,18 +57,19 @@ from gi.repository import GLib
 from ...utils import is_right_click, open_file_with_default_application
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
-from gramps.gen.constfunc import cuni
+from gramps.gen.constfunc import cuni, win, conv_to_unicode
 from gramps.gen.lib import MediaObject, MediaRef
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path,
-                                   fix_encoding, create_checksum)
+                                   create_checksum)
 from ...thumbnails import get_thumbnail_image
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.mime import get_type, is_valid_type
 from ...ddtargets import DdTargets
 from .buttontab import ButtonTab
-from gramps.gen.constfunc import win
 from gramps.gen.const import THUMBSCALE
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 #
 # 
@@ -521,7 +520,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 else:
                     files =  sel_data.get_uris()
                 for file in files:
-                    d = fix_encoding(file.replace('\0',' ').strip())
+                    d = conv_to_unicode((file.replace('\0',' ').strip()), None)
                     protocol, site, mfile, j, k, l = urlparse(d)
                     if protocol == "file":
                         mime = get_type(mfile)

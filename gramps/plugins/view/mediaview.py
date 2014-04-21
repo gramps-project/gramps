@@ -60,8 +60,8 @@ from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.views.treemodels import MediaModel
 from gramps.gen.constfunc import win, cuni
 from gramps.gen.config import config
-from gramps.gen.utils.file import (media_path, relative_path, media_path_full, 
-                                   fix_encoding, create_checksum)
+from gramps.gen.utils.file import (media_path, relative_path, media_path_full,
+                                   create_checksum)
 from gramps.gen.utils.db import get_media_referents
 from gramps.gui.views.bookmarks import MediaBookmarks
 from gramps.gen.mime import get_type, is_valid_type
@@ -184,8 +184,9 @@ class MediaView(ListView):
         #modern file managers provide URI_LIST. For Windows split sel_data.data
         files = sel_data.get_uris()
         for file in files:
-            clean_string = fix_encoding(
-                            file.replace('\0',' ').replace("\r", " ").strip())
+            clean_string = conv_to_unicode(
+                file.replace('\0',' ').replace("\r", " ").strip(),
+                None)
             protocol, site, mfile, j, k, l = urlparse(clean_string)
             if protocol == "file":
                 name = mfile
