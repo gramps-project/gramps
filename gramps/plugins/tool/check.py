@@ -68,7 +68,7 @@ from gramps.gen.config import config
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.db import family_name
 from gramps.gen.utils.unknown import make_unknown
-from gramps.gen.utils.file import (media_path_full, find_file, fix_encoding)
+from gramps.gen.utils.file import (media_path_full, find_file)
 from gramps.gui.managedwindow import ManagedWindow
 
 from gramps.gui.plug import tool
@@ -351,8 +351,8 @@ class CheckIntegrity(object):
             data = self.db.media_map[bhandle]
             if not isinstance(data[2], UNITYPE) or not isinstance(data[4], UNITYPE):
                 obj = self.db.get_object_from_handle(handle)
-                obj.path = fix_encoding( obj.path, errors='ignore')
-                obj.desc = fix_encoding( obj.desc, errors='ignore')
+                obj.path = conv_to_unicode(obj.path, None)
+                obj.desc = conv_to_unicode(obj.desc, None)
                 self.db.commit_media_object(obj, self.trans)
                 if not isinstance(data[2], UNITYPE):
                     logging.warning('    FAIL: encoding error on media object '
