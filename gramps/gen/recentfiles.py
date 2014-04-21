@@ -184,26 +184,26 @@ class RecentFiles(object):
         """
         Saves the current GRAMPS RecentFiles collection to the associated file.
         """
-        if sys.version_info[0] < 3:
-            xml_file = open(os.path.expanduser(GRAMPS_FILENAME), 'w')
-        else:
-            xml_file = open(os.path.expanduser(GRAMPS_FILENAME), 'w', encoding='utf8')
-        if use_lock:
-            fcntl.lockf(xml_file,fcntl.LOCK_EX)
-        xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
-        xml_file.write('<RecentFiles>\n')
-        index = 0
-        for item in self.gramps_recent_files:
-            index += 1
-            if index > MAX_GRAMPS_ITEMS:
-                break
-            xml_file.write('  <RecentItem>\n')
-            xml_file.write('    <Path><![CDATA[%s]]></Path>\n' % item.get_path())
-            xml_file.write('    <Name><![CDATA[%s]]></Name>\n' % item.get_name())
-            xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
-            xml_file.write('  </RecentItem>\n')
-        xml_file.write('</RecentFiles>\n')
-        xml_file.close()
+        with (open(os.path.expanduser(GRAMPS_FILENAME), 'w')
+              if sys.version_info[0] < 3 else
+              open(os.path.expanduser(GRAMPS_FILENAME), 'w', encoding='utf8'))\
+            as xml_file:
+            if use_lock:
+                fcntl.lockf(xml_file,fcntl.LOCK_EX)
+            xml_file.write("<?xml version=\"1.0\" encoding=\"utf-8\"?>\n")
+            xml_file.write('<RecentFiles>\n')
+            index = 0
+            for item in self.gramps_recent_files:
+                index += 1
+                if index > MAX_GRAMPS_ITEMS:
+                    break
+                xml_file.write('  <RecentItem>\n')
+                xml_file.write('    <Path><![CDATA[%s]]></Path>\n' % item.get_path())
+                xml_file.write('    <Name><![CDATA[%s]]></Name>\n' % item.get_name())
+                xml_file.write('    <Timestamp>%d</Timestamp>\n' % item.get_time())
+                xml_file.write('  </RecentItem>\n')
+            xml_file.write('</RecentFiles>\n')
+
         # all advisory locks on a file are released on close
 
 #-------------------------------------------------------------------------
