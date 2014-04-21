@@ -1645,7 +1645,7 @@ class GrampsParser(UpdateCallback):
                 if display_as in self.name_formats_map:
                     self.name.display_as = self.name_formats_map[display_as]
                 else:
-                    self.name_display_as = display_as
+                    self.name.display_as = display_as
             except KeyError:
                 pass
 
