@@ -533,7 +533,7 @@ class GrampsLocale(object):
         # _init_secondary_locale if this comes up empty.
         if localedir and os.path.exists(os.path.abspath(localedir)):
             self.localedir = localedir
-        elif (_first and hasattr(_first, 'localedir') and
+        elif (_first and hasattr(_first, 'localedir') and _first.localedir and
               os.path.exists(os.path.abspath(_first.localedir))):
             self.localedir = _first.localedir
         else:
