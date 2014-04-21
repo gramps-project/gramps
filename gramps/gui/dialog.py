@@ -200,7 +200,7 @@ class ErrorDialog(Gtk.MessageDialog):
 
 class RunDatabaseRepair(ErrorDialog):
     def __init__(self, msg, parent=None):
-         ErrorDialog.__init__(
+        ErrorDialog.__init__(
             self,
             _('Error detected in database'),
             _('Gramps has detected an error in the database. This can '
@@ -211,7 +211,7 @@ class RunDatabaseRepair(ErrorDialog):
 
 class DBErrorDialog(ErrorDialog):
     def __init__(self, msg, parent=None):
-         ErrorDialog.__init__(
+        ErrorDialog.__init__(
             self,
             _("Low level database corruption detected"),
             _("Gramps has detected a problem in the underlying "
