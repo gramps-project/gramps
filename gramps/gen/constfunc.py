@@ -62,7 +62,7 @@ else:
     UNITYPE = str
 cuni = conv_to_unicode_direct
 def conv_to_unicode(x, y='utf8'):
-    return x if x is None or isinstance(x, UNITYPE) else cuni(x, y)
+    return x if x is None or isinstance(x, UNITYPE) else cuni(x, y) if y else cuni(x)
 
 def uni_to_gui(x):
     '''
@@ -203,7 +203,7 @@ def get_curr_dir():
     an arbitrary unicode character in a path. This function uses the
     native GetCurrentDirectory function to return a unicode cwd.
     '''
-    if not sys.version_info[0] < 3 and win():
+    if not (sys.version_info[0] < 3 and win()):
         return os.getcwd()
 
     n = ctypes.windll.kernel32.GetCurrentDirectoryW(0, None)
