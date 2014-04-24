@@ -25994,6 +25994,14 @@ msgstr ""
 msgid "%(event_name)s: %(event_text)s"
 msgstr ""
 
+#. translators: needed for Arabic, ignore otherwise
+#: ../gramps/plugins/textreport/detancestralreport.py:450
+#: ../gramps/plugins/textreport/detdescendantreport.py:348
+#: ../gramps/plugins/textreport/detdescendantreport.py:463
+#: ../gramps/plugins/textreport/familygroup.py:127
+msgid "; "
+msgstr ""
+
 #: ../gramps/plugins/textreport/detancestralreport.py:549
 #: ../gramps/plugins/textreport/detdescendantreport.py:602
 #, python-format

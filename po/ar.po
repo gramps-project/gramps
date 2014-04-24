@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: gramps-4.0.4\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-17 16:43+0200\n"
-"PO-Revision-Date: 2014-03-22 20:38+0300\n"
+"PO-Revision-Date: 2014-04-24 08:00+0000\n"
 "Last-Translator: Munzir Taha (منذر طه) <munzirtaha@gmail.com>\n"
 "Language-Team: Arabic <>\n"
 "Language: en_US\n"
@@ -27262,6 +27262,14 @@ msgstr "%(place)s"
 #, python-format
 msgid "%(event_name)s: %(event_text)s"
 msgstr "%(event_name)s: %(event_text)s"
+
+#. translators: needed for Arabic, ignore otherwise
+#: ../gramps/plugins/textreport/detancestralreport.py:450
+#: ../gramps/plugins/textreport/detdescendantreport.py:348
+#: ../gramps/plugins/textreport/detdescendantreport.py:463
+#: ../gramps/plugins/textreport/familygroup.py:127
+msgid "; "
+msgstr "؛ "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:549
 #: ../gramps/plugins/textreport/detdescendantreport.py:602
