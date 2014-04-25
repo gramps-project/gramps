@@ -4,7 +4,7 @@
 # Copyright (C) 2008,2011  Gary Burton
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Heinz Brinker
-# Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2013-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
+import copy
 
 #------------------------------------------------------------------------
 #
@@ -48,9 +49,8 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     FONT_SANS_SERIF, FONT_SERIF, 
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.proxy import PrivateProxyDb
-from gramps.gen.datehandler import get_date
 from gramps.gen.sort import Sort
-from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.name import displayer as global_name_display
 
 class PlaceReport(Report):
     """
@@ -84,6 +84,14 @@ class PlaceReport(Report):
         self.incpriv = menu.get_option_by_name('incpriv').get_value()
 
         self.set_locale(menu.get_option_by_name('trans').get_value())
+
+        # Copy the global NameDisplay so that we don't change application
+        # defaults.
+        self._name_display = copy.deepcopy(global_name_display)
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
+        self._nd = self._name_display
 
         if self.incpriv:
             self.database = database
@@ -197,9 +205,9 @@ class PlaceReport(Report):
         for evt_handle in event_handles:
             event = self.database.get_event_from_handle(evt_handle)
             if event:
-                date = get_date(event)
+                date = self._get_date(event.get_date_object())
                 descr = event.get_description()
-                event_type = str(event.get_type())
+                event_type = self._(self._get_type(event.get_type()))
 
                 person_list = []
                 ref_handles = [x for x in
@@ -223,13 +231,13 @@ class PlaceReport(Report):
                     if person:
                         if people == "":
                             people = "%(name)s (%(id)s)" \
-                                     % {'name': _nd.display(person),
+                                     % {'name': self._nd.display(person),
                                         'id': person.get_gramps_id()}
                         else:
                             people = self._("%(persons)s and %(name)s "
                                             "(%(id)s)") \
                                      % {'persons': people,
-                                        'name': _nd.display(person),
+                                        'name': self._nd.display(person),
                                         'id': person.get_gramps_id()}
 
                 event_details = [date, event_type, people, descr]
@@ -276,7 +284,7 @@ class PlaceReport(Report):
             for (ref_type, ref_handle) in ref_handles:
                 if ref_type == 'Person':
                     person = self.database.get_person_from_handle(ref_handle)
-                    nameEntry = "%s (%s)" % (_nd.display(person),
+                    nameEntry = "%s (%s)" % (self._nd.display(person),
                                              person.get_gramps_id())
                     if nameEntry in person_dict:
                         person_dict[nameEntry].append(evt_handle)
@@ -292,9 +300,9 @@ class PlaceReport(Report):
                         mother = self.database.get_person_from_handle(m_handle)
                         nameEntry = self._("%(father)s (%(father_id)s) and "
                                            "%(mother)s (%(mother_id)s)") % \
-                                        { 'father' : _nd.display(father),
+                                        { 'father' : self._nd.display(father),
                                           'father_id' : father.get_gramps_id(),
-                                          'mother' : _nd.display(mother),
+                                          'mother' : self._nd.display(mother),
                                           'mother_id' : mother.get_gramps_id()}
                     else:
                         if f_handle:
@@ -304,7 +312,7 @@ class PlaceReport(Report):
                         person = self.database.get_person_from_handle(p_handle)
                         
                         nameEntry = "%s (%s)" % \
-                                     (_nd.display(person),
+                                     (self._nd.display(person),
                                       person.get_gramps_id())
 
                     if nameEntry in person_dict:
@@ -322,9 +330,9 @@ class PlaceReport(Report):
             for evt_handle in person_dict[entry]:
                 event = self.database.get_event_from_handle(evt_handle)
                 if event:
-                    date = get_date(event)
+                    date = self._get_date(event.get_date_object())
                     descr = event.get_description()
-                    event_type = str(event.get_type())
+                    event_type = self._(self._get_type(event.get_type()))
                 event_details = [people, event_type, descr, date]
                 self.doc.start_row()
                 for detail in event_details:
@@ -383,6 +391,8 @@ class PlaceOptions(MenuReportOptions):
         filter_list.extend(CustomFilters.get_filters('Place'))
         opt.set_filters(filter_list)
         menu.add_option(category_name, "filter", opt)
+
+        stdoptions.add_name_format_option(menu, category_name)
 
         places = PlaceListOption(_("Select places individually"))
         places.set_help(_("List of places to report on"))
