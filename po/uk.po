@@ -13391,8 +13391,11 @@ msgstr "Ви нікого не вказали"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d дітей"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d дитина"
+msgstr[1] "%d дитини"
+msgstr[2] "%d дітей"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:68

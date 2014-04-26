@@ -14111,8 +14111,10 @@ msgstr "Você não especificou ninguém"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d filhos"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d filho(a)"
+msgstr[1] "%d filhos(as)"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:68

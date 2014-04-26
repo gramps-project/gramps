@@ -13994,8 +13994,10 @@ msgstr "No heu especificat ningú"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d fills"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d fill"
+msgstr[1] "%d fills"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:68

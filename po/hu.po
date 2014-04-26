@@ -13719,8 +13719,10 @@ msgstr "Senkit sem határozott meg"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d gyermekek"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d gyermek"
+msgstr[1] "%d gyermek"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:68

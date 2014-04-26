@@ -13466,8 +13466,9 @@ msgstr "Bạn chưa nêu một người nào"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d con cái "
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d con cái "
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:68

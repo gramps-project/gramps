@@ -13287,8 +13287,10 @@ msgstr ""
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d 人の子供"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d 人の子供"
+msgstr[1] "%d 人の子供"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:68

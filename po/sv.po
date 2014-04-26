@@ -14447,8 +14447,10 @@ msgstr "Du specificerad ingen"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d barn"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d barn"
+msgstr[1] "%d barn"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:70

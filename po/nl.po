@@ -14463,8 +14463,10 @@ msgstr "U heeft niemand opgegeven"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d kinderen"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d kind"
+msgstr[1] "%d kinderen"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:68

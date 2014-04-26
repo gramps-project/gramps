@@ -13208,8 +13208,9 @@ msgstr ""
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d 子女"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d 子女"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:68
@@ -21889,7 +21890,7 @@ msgstr "请运行检查和修复数据库工具"
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
-msgstr[0] "(%d 子女)"
+msgstr[0] " (%d 子女)"
 
 #: ../src/plugins/view/relview.py:1328 ../src/plugins/view/relview.py:1375
 msgid " (no children)"

@@ -14140,8 +14140,10 @@ msgstr "Δεν προσδιορίσατε κανέναν"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d τέκνα"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d τέκνο"
+msgstr[1] "%d τέκνα"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:68

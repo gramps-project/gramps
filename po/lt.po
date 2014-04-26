@@ -14337,8 +14337,11 @@ msgstr "Nieko nenurodėte!"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d vaikai"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d vaikas"
+msgstr[1] "%d vaikai"
+msgstr[2] "%d vaikų"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:68
@@ -23706,9 +23709,9 @@ msgstr "Prašom paleisti \"Tikrinti ir Taisyti duomenų bazę\" įrankį"
 #, python-format
 msgid " (%d child)"
 msgid_plural " (%d children)"
-msgstr[0] "(%d vaikas)"
-msgstr[1] "(%d vaikai)"
-msgstr[2] "(%d vaikų)"
+msgstr[0] " (%d vaikas)"
+msgstr[1] " (%d vaikai)"
+msgstr[2] " (%d vaikų)"
 
 #: ../src/plugins/view/relview.py:1328
 #: ../src/plugins/view/relview.py:1375

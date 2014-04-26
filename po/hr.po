@@ -13419,8 +13419,11 @@ msgstr "Niste nikoga odabrali"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d djece"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d dijete"
+msgstr[1] "%d djece"
+msgstr[2] "%d djece"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:68

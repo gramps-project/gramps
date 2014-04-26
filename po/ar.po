@@ -13567,8 +13567,14 @@ msgstr "لم تقم بتحديد أي شخص"
 
 #: ../src/plugins/graph/GVFamilyLines.py:921
 #, python-format
-msgid "%d children"
-msgstr "%d ابن"
+msgid "%d child"
+msgid_plural "%d children"
+msgstr[0] "%d ابن"
+msgstr[1] "%d ابن"
+msgstr[2] "%d ابن"
+msgstr[3] "%d ابن"
+msgstr[4] "%d ابن"
+msgstr[5] "%d ابن"
 
 #: ../src/plugins/graph/GVHourGlass.py:57
 #: ../src/plugins/graph/GVRelGraph.py:70
