@@ -31,7 +31,6 @@
 #
 #------------------------------------------------------------------------
 import os
-import copy
 from collections import defaultdict
 
 #------------------------------------------------------------------------
@@ -55,7 +54,6 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import Bibliography
 from gramps.gen.plug.report import endnotes as Endnotes
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.utils.file import media_path_full
 
 #------------------------------------------------------------------------
@@ -130,15 +128,12 @@ class IndivCompleteReport(Report):
 
         self.section_list = menu.get_option_by_name('sections').get_selected()
 
-        # Copy the global NameDisplay so that we don't change application 
-        # defaults.
-        self._name_display = copy.deepcopy(global_name_display)
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
-
-        lang = menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
 
     def write_fact(self, event_ref, event, show_type=True):
         """

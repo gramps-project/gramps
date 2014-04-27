@@ -26,7 +26,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import copy
 import datetime, time
 
 #------------------------------------------------------------------------
@@ -37,7 +36,6 @@ import datetime, time
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.const import URL_HOMEPAGE
-from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import NameType, EventType, Name, Date, Person, Surname
 from gramps.gen.lib.date import gregorian
@@ -99,9 +97,9 @@ class BirthdayReport(Report):
         self.filter = self.filter_option.get_filter()
         pid = mgobn('pid')
         
-        # Copy the global NameDisplay so that we don't change application 
-        # defaults.
-        self._name_display = copy.deepcopy(global_name_display)
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
@@ -109,9 +107,6 @@ class BirthdayReport(Report):
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
-
-        lang = menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
 
     def get_name(self, person, maiden_name = None):
         """ 

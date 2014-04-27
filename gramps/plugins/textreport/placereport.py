@@ -28,7 +28,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import copy
 
 #------------------------------------------------------------------------
 #
@@ -48,7 +47,6 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.proxy import PrivateProxyDb
 from gramps.gen.sort import Sort
-from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.lib import PlaceType
 
@@ -85,9 +83,6 @@ class PlaceReport(Report):
 
         self.set_locale(menu.get_option_by_name('trans').get_value())
 
-        # Copy the global NameDisplay so that we don't change application
-        # defaults.
-        self._name_display = copy.deepcopy(global_name_display)
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)

@@ -34,7 +34,6 @@ Family Lines, a GraphViz-based plugin for Gramps.
 #------------------------------------------------------------------------
 from __future__ import unicode_literals
 from functools import partial
-import copy
 
 #------------------------------------------------------------------------
 #
@@ -62,7 +61,6 @@ from gramps.gen.plug.menu import (NumberOption, ColorOption, BooleanOption,
                                   EnumeratedListOption, PersonListOption,
                                   SurnameColorOption)
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
-from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.utils.location import get_main_location
 
 #------------------------------------------------------------------------
@@ -353,15 +351,12 @@ class FamilyLinesReport(Report):
                 #option can be from another family tree, so person can be None
                 self._interest_set.add(person.get_handle())
 
-        # Copy the global NameDisplay so that we don't change application 
-        # defaults.
-        self._name_display = copy.deepcopy(global_name_display)
+        lang = menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
-
-        lang = menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
 
         # convert the 'surnamecolors' string to a dictionary of names and colors
         self._surnamecolors = {}

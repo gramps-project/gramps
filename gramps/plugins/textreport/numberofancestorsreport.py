@@ -30,7 +30,6 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-import copy
 import math
 
 #------------------------------------------------------------------------
@@ -40,7 +39,6 @@ import math
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.menu import PersonOption
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
@@ -80,15 +78,12 @@ class NumberOfAncestorsReport(Report):
         if (self.__person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
-        # Copy the global NameDisplay so that we don't change application 
-        # defaults.
-        self._name_display = copy.deepcopy(global_name_display)
+        lang = options.menu.get_option_by_name('trans').get_value()
+        self._locale = self.set_locale(lang)
+
         name_format = options.menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
-
-        lang = options.menu.get_option_by_name('trans').get_value()
-        self._locale = self.set_locale(lang)
 
     def write_report(self):
         """

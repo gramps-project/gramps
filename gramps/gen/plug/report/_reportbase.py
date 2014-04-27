@@ -23,11 +23,17 @@
 
 #-------------------------------------------------------------------------
 #
-# Report
+# GRAMPS modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.utils.grampslocale import GrampsLocale
+from gramps.gen.display.name import NameDisplay
 
+#-------------------------------------------------------------------------
+#
+# Report
+#
+#-------------------------------------------------------------------------
 class Report(object):
     """
     The Report base class.  This is a base class for generating
@@ -66,6 +72,7 @@ class Report(object):
         self._get_date = locale.get_date
         self._get_type = locale.get_type
         self._dd = locale.date_displayer
+        self._name_display = NameDisplay(locale) # a legacy/historical name
         return locale
 
     def write_report(self):

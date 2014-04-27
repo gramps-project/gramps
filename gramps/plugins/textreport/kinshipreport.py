@@ -29,7 +29,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import copy
 
 #------------------------------------------------------------------------
 #
@@ -38,7 +37,6 @@ import copy
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
@@ -92,14 +90,11 @@ class KinshipReport(Report):
         if (self.person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
-        # Copy the global NameDisplay so that we don't change application 
-        # defaults.
-        self._name_display = copy.deepcopy(global_name_display)
+        rlocale = self.set_locale(menu.get_option_by_name('trans').get_value())
+
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
-
-        rlocale = self.set_locale(menu.get_option_by_name('trans').get_value())
 
         self.__db = database
         self.rel_calc = get_relationship_calculator(reinit=True,

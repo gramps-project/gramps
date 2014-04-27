@@ -28,7 +28,6 @@
 # Python Library
 #
 #------------------------------------------------------------------------
-import copy
 from functools import partial
 
 #------------------------------------------------------------------------
@@ -48,7 +47,6 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     TableStyle, TableCellStyle,
                                     FONT_SANS_SERIF, FONT_SERIF, 
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gramps.gen.display.name import displayer as global_name_display
 
 #------------------------------------------------------------------------
 #
@@ -86,13 +84,6 @@ class FamilyGroup(Report):
         else:
             self.family_handle = None
 
-        # Copy the global NameDisplay so that we don't change application 
-        # defaults.
-        self._name_display = copy.deepcopy(global_name_display)
-        name_format = menu.get_option_by_name("name_format").get_value()
-        if name_format != 0:
-            self._name_display.set_default_format(name_format)
-
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name:get_option_by_name(name).get_value()        
         self.recursive     = get_value('recursive')
@@ -109,6 +100,10 @@ class FamilyGroup(Report):
 
         rlocale = self.set_locale(get_value('trans'))
         self._ = rlocale.translation.sgettext # needed for English
+
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
 
     def dump_parent_event(self, name,event):
         place = ""

@@ -33,7 +33,6 @@ Reports/Text Reports/Descendant Report.
 # standard python modules
 #
 #------------------------------------------------------------------------
-import copy
 
 #------------------------------------------------------------------------
 #
@@ -47,7 +46,6 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     PARA_ALIGN_CENTER)
 from gramps.gen.plug.menu import (NumberOption, PersonOption, BooleanOption,
                                   EnumeratedListOption)
-from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
@@ -359,8 +357,6 @@ class DescendantReport(Report):
         marrs = menu.get_option_by_name('marrs').get_value()
         divs = menu.get_option_by_name('divs').get_value()
 
-        # Copy the global NameDisplay so that we don't change application defaults.
-        self._name_display = copy.deepcopy(global_name_display)
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)

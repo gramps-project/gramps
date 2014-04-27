@@ -27,7 +27,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-import copy
 
 #------------------------------------------------------------------------
 #
@@ -36,7 +35,6 @@ import copy
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     TableStyle, TableCellStyle,
@@ -78,14 +76,11 @@ class EndOfLineReport(Report):
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
-        # Copy the global NameDisplay so that we don't change application 
-        # defaults.
-        self._name_display = copy.deepcopy(global_name_display)
+        self.set_locale(menu.get_option_by_name('trans').get_value())
+
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
-
-        self.set_locale(menu.get_option_by_name('trans').get_value())
 
         # eol_map is a map whose:
         #   keys are the generations of the people

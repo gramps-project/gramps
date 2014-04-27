@@ -35,7 +35,6 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-import copy
 from functools import partial
 
 #------------------------------------------------------------------------
@@ -45,7 +44,6 @@ from functools import partial
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import FamilyRelType, Person, NoteType
 from gramps.gen.plug.menu import (BooleanOption, NumberOption, PersonOption, 
@@ -170,14 +168,11 @@ class DetDescendantReport(Report):
         else:
             empty_place = ""
 
-        # Copy the global NameDisplay so that we don't change application 
-        # defaults.
-        self._name_display = copy.deepcopy(global_name_display)
+        self._locale = self.set_locale(get_value('trans'))
+
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
-
-        self._locale = self.set_locale(get_value('trans'))
 
         self.__narrator = Narrator(self.database, self.verbose,
                                    use_call, use_fulldate, 

@@ -31,7 +31,6 @@ Timeline Chart
 #
 #------------------------------------------------------------------------
 from __future__ import division
-import copy
 
 #------------------------------------------------------------------------
 #
@@ -51,7 +50,6 @@ from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SANS_SERIF, DASHED, PARA_ALIGN_CENTER,
                                     IndexMark, INDEX_TYPE_TOC)
 from gramps.gen.sort import Sort
-from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 
@@ -103,9 +101,9 @@ class TimeLine(Report):
         menu = options.menu
         self.filter = menu.get_option_by_name('filter').get_filter()
 
-        # Copy the global NameDisplay so that we don't change application 
-        # defaults.
-        self._name_display = copy.deepcopy(global_name_display)
+        self._lang = options.menu.get_option_by_name('trans').get_value()
+        self.set_locale(self._lang)
+
         name_format = menu.get_option_by_name("name_format").get_value()
         if name_format != 0:
             self._name_display.set_default_format(name_format)
@@ -115,9 +113,6 @@ class TimeLine(Report):
         self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
         self.calendar = config.get('preferences.calendar-format-report')
-
-        self._lang = options.menu.get_option_by_name('trans').get_value()
-        self.set_locale(self._lang)
 
     def write_report(self):
         # Apply the filter
