@@ -40,7 +40,7 @@ from __future__ import print_function
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.name import NameDisplay
 from gramps.gen.lib import EventType, PlaceType, Location
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.constfunc import STRTYPE, cuni
@@ -157,7 +157,7 @@ class NameFormat(GenericFormat):
 
     def _default_format(self, name):
         """ display the name as set in preferences """
-        return name_displayer.sorted_name(name)
+        return NameDisplay(self._locale).sorted_name(name)
 
     def parse_format(self, name):
         """ Parse the name """
@@ -861,7 +861,7 @@ class VariableParse(object):
         return place_f.parse_format(self.database, place)
 
     def __parse_name(self, person):
-        name_format = NameFormat(self._in)
+        name_format = NameFormat(self._in, self._locale)
         name = name_format.get_name(person)
         return name_format.parse_format(name)
 

@@ -36,7 +36,7 @@ from __future__ import division
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.plug.report import utils as ReportUtils
-from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.name import NameDisplay
 from gramps.plugins.lib.libsubstkeyword import SubstKeywords
 from gramps.gen.plug.docgen import (IndexMark, INDEX_TYPE_TOC)
 
@@ -681,7 +681,8 @@ class TitleBox(BoxBase):
     def _get_names(self, persons):
         """  A helper function that receives a list of persons and
         returns their names in a list """
-        return [name_displayer.display(person) for person in persons]
+        return [NameDisplay(self._locale).display(person)
+                    for person in persons]
 
     def display(self):
         """ display the title box.  """
@@ -711,9 +712,7 @@ class PageNumberBox(BoxBase):
     def __calc_position(self, page):
         """ calculate where I am to print on the page(s) """
         # translators: needed for Arabic, ignore otherwise
-        # make sure it's translated, so it can be used below, in "display"
-        ignore1 = _("(%(x)d,%(y)d)") % {'x':0, 'y':0}
-        self.text = "(%(x)d,%(y)d)"
+        self.text = "(%d" + self._(',') + "%d)"
 
         style_sheet = self.doc.get_style_sheet()
         style_name = style_sheet.get_draw_style(self.boxstr)
@@ -746,10 +745,9 @@ class PageNumberBox(BoxBase):
         then display the page number """
         if self.text == "":
             self.__calc_position(page)
-            self.text = self._(self.text)
             
         self.doc.draw_text(self.boxstr,
-                   self.text % {'x':page.x_page_num+1, 'y':page.y_page_num+1},
+                   self.text % (page.x_page_num+1, page.y_page_num+1),
                    self.x_cm, self.y_cm)
 
 class NoteType(object):

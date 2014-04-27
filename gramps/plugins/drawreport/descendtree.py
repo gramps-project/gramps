@@ -130,6 +130,7 @@ class PlaceHolderBox(BoxBase):
 #------------------------------------------------------------------------
 class DescendantTitleBase(TitleBox):
     def __init__(self, dbase, doc, locale, boxstr = "CG2-Title"):
+        self._locale = locale
         TitleBox.__init__(self, doc, boxstr)
         self.database = dbase
         self._ = locale.translation.sgettext
@@ -345,10 +346,10 @@ class TitleC(DescendantTitleBase):
 
         #ok we have the children.  Make a title off of them
         # translators: needed for Arabic, ignore otherwise
-        cousin_names = _(', ').join(self._get_names(kids))
+        cousin_names = self._(', ').join(self._get_names(kids))
         
-        # FIXME it should be reformatted, but that would mean new translations
-        self.text = self._("Cousin Chart for ") + cousin_names
+        self.text = self._("Cousin Chart for %(names)s") % {
+                                   'names' : cousin_names}
             
         self.set_box_height_width()
 

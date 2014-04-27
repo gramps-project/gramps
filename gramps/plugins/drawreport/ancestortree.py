@@ -51,7 +51,7 @@ from gramps.gen.plug.menu import (TextOption, NumberOption, BooleanOption,
                                   PersonOption)
 from gramps.gen.plug.report import Report, MenuReportOptions, stdoptions
 from gramps.gen.plug.report import utils as ReportUtils
-from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.name import NameDisplay
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gramps.plugins.lib.libtreebase import *
@@ -136,6 +136,7 @@ class TitleN(TitleNoDisplay):
 class TitleA(TitleBox):
     """Title class for the report """
     def __init__(self, doc, locale):
+        self._locale = locale
         TitleBox.__init__(self, doc, "AC2-Title")
         self._ = locale.translation.sgettext
 
@@ -143,7 +144,7 @@ class TitleA(TitleBox):
         """Calculate the title of the report"""
         name = ""
         if center is not None:
-            name = name_displayer.display(center)
+            name = NameDisplay(self._locale).display(center)
         
         # feature request 2356: avoid genitive form
         self.text = self._("Ancestor Graph for %s") % name
