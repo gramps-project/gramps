@@ -227,6 +227,8 @@ THUMBSCALE_LARGE = 180.0
 XMLFILE          = "data.gramps"
 NO_SURNAME       = "(%s)" % _("none")
 NO_GIVEN         = "(%s)" % _("none")
+ARABIC_COMMA     = "،"
+ARABIC_SEMICOLON = "؛"
 
 #-------------------------------------------------------------------------
 #

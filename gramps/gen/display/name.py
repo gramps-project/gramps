@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2004-2007  Donald N. Allingham
 # Copyright (C) 2010       Brian G. Matherly
+# Copyright (C) 2014       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -56,8 +57,6 @@ Specific symbols for parts of a name are defined:
 # Python modules
 #
 #-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 import re
 import logging
 LOG = logging.getLogger(".gramps.gen")
@@ -67,6 +66,8 @@ LOG = logging.getLogger(".gramps.gen")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from ..const import ARABIC_COMMA, ARABIC_SEMICOLON, GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from ..constfunc import cuni, conv_to_unicode, UNITYPE
 from ..lib.name import Name
 from ..lib.nameorigintype import NameOriginType
@@ -112,11 +113,6 @@ _F_FN = 3    # name format function
 _F_RAWFN = 4 # name format raw function
 
 PAT_AS_SURN = False
-
-# translators: needed for Arabic, ignore otherwise
-COMMAGLYPH = _(',')
-
-LNFN_STR = "%s" + COMMAGLYPH + " %s %s"
 
 #-------------------------------------------------------------------------
 #
@@ -311,7 +307,8 @@ def cleanup_name(namestring):
         return ""
     result = parts[0]
     for val in parts[1:]:
-        if len(val) == 1 and val in [',', ';', ':', COMMAGLYPH]:
+        if len(val) == 1 and val in [',', ';', ':',
+                                     ARABIC_COMMA, ARABIC_SEMICOLON]:
             result +=  val
         else:
             result += ' ' + val
@@ -336,22 +333,42 @@ class NameDisplay(object):
     format_funcs = {}
     raw_format_funcs = {}
 
-    STANDARD_FORMATS = [
-        (Name.DEF, _("Default format (defined by Gramps preferences)"), '', _ACT),
-        (Name.LNFN, _("Surname, Given Suffix"), '%l' + COMMAGLYPH + ' %f %s', _ACT),
-        (Name.FN, _("Given"), '%f', _ACT),
-        (Name.FNLN, _("Given Surname Suffix"), '%f %l %s', _ACT),
-        # primary name primconnector other, given pa/matronynic suffix, primprefix
-        # translators, long string, have a look at Preferences dialog
-        (Name.LNFNP, _("Main Surnames, Given Patronymic Suffix Prefix"), 
-                     '%1m %2m %o' + COMMAGLYPH + ' %f %1y %s %0m', _ACT),
-        # DEPRECATED FORMATS
-        (Name.PTFN, _("Patronymic, Given"), '%y' + COMMAGLYPH + ' %s %f', _INA),
-    ]
+    def __init__(self, xlocale=glocale):
+        """
+        Initialize the NameDisplay class.
+        
+        If xlocale is passed in (a GrampsLocale), then
+        the translated script will be returned instead.
 
-    def __init__(self):
-        global WITH_GRAMP_CONFIG
+        :param xlocale: allow selection of the displayer script
+        :type xlocale: a GrampsLocale instance
+        """
+        global WITH_GRAMPS_CONFIG
         global PAT_AS_SURN
+
+        # translators: needed for Arabic, ignore otherwise
+        COMMAGLYPH = xlocale.translation.gettext(',')
+
+        self.STANDARD_FORMATS = [
+            (Name.DEF,   _("Default format (defined by Gramps preferences)"),
+                         '', _ACT),
+            (Name.LNFN,  _("Surname, Given Suffix"),
+                         '%l' + COMMAGLYPH + ' %f %s', _ACT),
+            (Name.FN,    _("Given"),
+                         '%f', _ACT),
+            (Name.FNLN,  _("Given Surname Suffix"),
+                         '%f %l %s', _ACT),
+            # primary name primconnector other, given pa/matronynic suffix, primprefix
+            # translators: long string, have a look at Preferences dialog
+            (Name.LNFNP, _("Main Surnames, Given Patronymic Suffix Prefix"), 
+                         '%1m %2m %o' + COMMAGLYPH + ' %f %1y %s %0m', _ACT),
+            # DEPRECATED FORMATS
+            (Name.PTFN,  _("Patronymic, Given"),
+                         '%y' + COMMAGLYPH + ' %s %f', _INA),
+        ]
+
+        self.LNFN_STR = "%s" + COMMAGLYPH + " %s %s"
+
         self.name_formats = {}
         
         if WITH_GRAMPS_CONFIG:
@@ -387,7 +404,7 @@ class NameDisplay(object):
         return lambda x: self.format_str_raw(x, fmt_str)
 
     def _raw_lnfn(self, raw_data):
-        result = LNFN_STR % (_raw_full_surname(raw_data[_SURNAME_LIST]),
+        result = self.LNFN_STR % (_raw_full_surname(raw_data[_SURNAME_LIST]),
                              raw_data[_FIRSTNAME],
                              raw_data[_SUFFIX])
         return ' '.join(result.split())
