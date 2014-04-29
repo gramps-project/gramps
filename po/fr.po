@@ -24,8 +24,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 3.4.4\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-04 15:46+0200\n"
-"PO-Revision-Date: 2014-04-04 15:50+0100\n"
+"POT-Creation-Date: 2014-04-29 10:53+0200\n"
+"PO-Revision-Date: 2014-04-29 10:54+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -930,8 +930,8 @@ msgstr "La version traduite du calculateur de relations n'est pas disponible pou
 #: ../src/plugins/gramplet/PersonDetails.py:186
 #: ../src/plugins/import/ImportCsv.py:225
 #: ../src/plugins/quickview/all_relations.py:301
-#: ../src/plugins/textreport/FamilyGroup.py:208
-#: ../src/plugins/textreport/FamilyGroup.py:219
+#: ../src/plugins/textreport/FamilyGroup.py:209
+#: ../src/plugins/textreport/FamilyGroup.py:220
 #: ../src/plugins/textreport/IndivComplete.py:262
 #: ../src/plugins/textreport/IndivComplete.py:264
 #: ../src/plugins/textreport/IndivComplete.py:539
@@ -954,8 +954,8 @@ msgstr "Père "
 #: ../src/plugins/gramplet/PersonDetails.py:187
 #: ../src/plugins/import/ImportCsv.py:222
 #: ../src/plugins/quickview/all_relations.py:298
-#: ../src/plugins/textreport/FamilyGroup.py:225
-#: ../src/plugins/textreport/FamilyGroup.py:236
+#: ../src/plugins/textreport/FamilyGroup.py:226
+#: ../src/plugins/textreport/FamilyGroup.py:237
 #: ../src/plugins/textreport/IndivComplete.py:271
 #: ../src/plugins/textreport/IndivComplete.py:273
 #: ../src/plugins/textreport/IndivComplete.py:540
@@ -974,7 +974,7 @@ msgstr "Mère "
 #: ../src/Merge/mergeperson.py:232
 #: ../src/plugins/gramplet/Children.py:89
 #: ../src/plugins/lib/libpersonview.py:99
-#: ../src/plugins/textreport/FamilyGroup.py:524
+#: ../src/plugins/textreport/FamilyGroup.py:525
 #: ../src/plugins/view/relview.py:1343
 msgid "Spouse"
 msgstr "Conjoint "
@@ -1015,7 +1015,7 @@ msgstr "Non-disponible"
 #: ../src/gui/grampsgui.py:103
 #: ../src/gui/editors/editaddress.py:156
 #: ../src/plugins/gramplet/RepositoryDetails.py:123
-#: ../src/plugins/textreport/FamilyGroup.py:324
+#: ../src/plugins/textreport/FamilyGroup.py:325
 #: ../src/plugins/webreport/NarrativeWeb.py:6736
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:94
 msgid "Address"
@@ -1107,7 +1107,7 @@ msgstr "Lieu "
 #: ../src/plugins/quickview/FilterByName.py:251
 #: ../src/plugins/quickview/quickview.gpr.py:205
 #: ../src/plugins/quickview/References.py:94
-#: ../src/plugins/textreport/FamilyGroup.py:342
+#: ../src/plugins/textreport/FamilyGroup.py:343
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:98
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:84
@@ -1304,7 +1304,7 @@ msgstr "Individu "
 #: ../src/gui/configure.py:477
 #: ../src/gui/filtereditor.py:293
 #: ../src/gui/grampsgui.py:113
-#: ../src/gui/editors/editfamily.py:489
+#: ../src/gui/editors/editfamily.py:490
 #: ../src/gui/editors/editlink.py:82
 #: ../src/gui/editors/displaytabs/eventembedlist.py:58
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:52
@@ -1492,7 +1492,7 @@ msgstr "Activé"
 #: ../src/TipOfDay.py:68
 #: ../src/TipOfDay.py:69
 #: ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:532
+#: ../src/gui/viewmanager.py:537
 msgid "Tip of the Day"
 msgstr "Astuce du jour"
 
@@ -1527,8 +1527,8 @@ msgstr "Sources dans le dépôt"
 #: ../src/Merge/mergeperson.py:180
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/lineage.py:93
-#: ../src/plugins/textreport/FamilyGroup.py:482
-#: ../src/plugins/textreport/FamilyGroup.py:484
+#: ../src/plugins/textreport/FamilyGroup.py:483
+#: ../src/plugins/textreport/FamilyGroup.py:485
 #: ../src/plugins/textreport/TagReport.py:130
 #: ../src/plugins/view/relview.py:614
 #: ../src/plugins/webreport/NarrativeWeb.py:367
@@ -1688,12 +1688,12 @@ msgstr "Les données peuvent être récupérées en annulant l'opération, ou en
 #: ../src/gui/editors/editperson.py:328
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
-#: ../src/plugins/textreport/DetAncestralReport.py:546
-#: ../src/plugins/textreport/DetAncestralReport.py:553
-#: ../src/plugins/textreport/DetAncestralReport.py:596
-#: ../src/plugins/textreport/DetAncestralReport.py:603
-#: ../src/plugins/textreport/DetDescendantReport.py:589
-#: ../src/plugins/textreport/DetDescendantReport.py:596
+#: ../src/plugins/textreport/DetAncestralReport.py:547
+#: ../src/plugins/textreport/DetAncestralReport.py:554
+#: ../src/plugins/textreport/DetAncestralReport.py:597
+#: ../src/plugins/textreport/DetAncestralReport.py:604
+#: ../src/plugins/textreport/DetDescendantReport.py:592
+#: ../src/plugins/textreport/DetDescendantReport.py:599
 #: ../src/plugins/textreport/IndivComplete.py:365
 #: ../src/plugins/view/relview.py:652
 #: ../src/plugins/webreport/NarrativeWeb.py:5388
@@ -3519,8 +3519,8 @@ msgstr "Autre"
 
 #: ../src/gen/lib/eventtype.py:168
 #: ../src/Merge/mergeperson.py:184
-#: ../src/plugins/textreport/FamilyGroup.py:488
-#: ../src/plugins/textreport/FamilyGroup.py:490
+#: ../src/plugins/textreport/FamilyGroup.py:489
+#: ../src/plugins/textreport/FamilyGroup.py:491
 #: ../src/plugins/textreport/TagReport.py:136
 #: ../src/plugins/view/relview.py:625
 #: ../src/plugins/view/relview.py:650
@@ -3667,7 +3667,7 @@ msgstr "Testament / Inventaire après décès"
 #: ../src/Merge/mergeperson.py:239
 #: ../src/plugins/export/ExportCsv.py:478
 #: ../src/plugins/import/ImportCsv.py:228
-#: ../src/plugins/textreport/FamilyGroup.py:382
+#: ../src/plugins/textreport/FamilyGroup.py:383
 #: ../src/plugins/webreport/NarrativeWeb.py:3111
 msgid "Marriage"
 msgstr "Mariage"
@@ -4510,12 +4510,12 @@ msgstr "'%s' enregistré"
 #: ../src/plugins/textreport/AncestorReport.py:297
 #: ../src/plugins/textreport/BirthdayReport.py:386
 #: ../src/plugins/textreport/DescendReport.py:401
-#: ../src/plugins/textreport/DetAncestralReport.py:737
-#: ../src/plugins/textreport/DetAncestralReport.py:759
-#: ../src/plugins/textreport/DetDescendantReport.py:901
-#: ../src/plugins/textreport/DetDescendantReport.py:934
+#: ../src/plugins/textreport/DetAncestralReport.py:738
+#: ../src/plugins/textreport/DetAncestralReport.py:760
+#: ../src/plugins/textreport/DetDescendantReport.py:904
+#: ../src/plugins/textreport/DetDescendantReport.py:937
 #: ../src/plugins/textreport/EndOfLineReport.py:261
-#: ../src/plugins/textreport/FamilyGroup.py:643
+#: ../src/plugins/textreport/FamilyGroup.py:644
 #: ../src/plugins/textreport/IndivComplete.py:624
 #: ../src/plugins/textreport/KinshipReport.py:348
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:202
@@ -4830,8 +4830,8 @@ msgstr "Graphiques"
 
 #: ../src/gen/plug/report/endnotes.py:49
 #: ../src/plugins/textreport/AncestorReport.py:357
-#: ../src/plugins/textreport/DetAncestralReport.py:869
-#: ../src/plugins/textreport/DetDescendantReport.py:1064
+#: ../src/plugins/textreport/DetAncestralReport.py:870
+#: ../src/plugins/textreport/DetDescendantReport.py:1067
 msgid "The style used for the generation header."
 msgstr "Le style utilisé pour les en-têtes des générations."
 
@@ -5193,10 +5193,10 @@ msgstr "Exemple"
 #: ../src/plugins/textreport/AncestorReport.py:275
 #: ../src/plugins/textreport/BirthdayReport.py:385
 #: ../src/plugins/textreport/DescendReport.py:400
-#: ../src/plugins/textreport/DetAncestralReport.py:736
-#: ../src/plugins/textreport/DetDescendantReport.py:900
+#: ../src/plugins/textreport/DetAncestralReport.py:737
+#: ../src/plugins/textreport/DetDescendantReport.py:903
 #: ../src/plugins/textreport/EndOfLineReport.py:260
-#: ../src/plugins/textreport/FamilyGroup.py:642
+#: ../src/plugins/textreport/FamilyGroup.py:643
 #: ../src/plugins/textreport/IndivComplete.py:623
 #: ../src/plugins/textreport/KinshipReport.py:347
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:201
@@ -5589,7 +5589,7 @@ msgstr ""
 #: ../src/gui/dbloader.py:332
 #: ../src/gui/dbloader.py:346
 #: ../src/gui/dbloader.py:360
-#: ../src/gui/viewmanager.py:804
+#: ../src/gui/viewmanager.py:809
 #: ../src/plugins/BookReport.py:679
 #: ../src/plugins/BookReport.py:1078
 #: ../src/plugins/view/familyview.py:259
@@ -6771,325 +6771,325 @@ msgstr "Impossible d'ouvrir un nouvel éditeur de citation."
 msgid "Unsupported"
 msgstr "Non-supportés"
 
-#: ../src/gui/viewmanager.py:486
+#: ../src/gui/viewmanager.py:491
 msgid "Connect to a recent database"
 msgstr "Ouvrir une base de données récente\""
 
-#: ../src/gui/viewmanager.py:504
+#: ../src/gui/viewmanager.py:509
 msgid "_Family Trees"
 msgstr "Arbres _familiaux"
 
-#: ../src/gui/viewmanager.py:505
+#: ../src/gui/viewmanager.py:510
 msgid "_Manage Family Trees..."
 msgstr "_Gestion des arbres familiaux..."
 
-#: ../src/gui/viewmanager.py:506
+#: ../src/gui/viewmanager.py:511
 msgid "Manage databases"
 msgstr "Gestion des bases de données"
 
-#: ../src/gui/viewmanager.py:507
+#: ../src/gui/viewmanager.py:512
 msgid "Open _Recent"
 msgstr "Fichiers _récemment ouverts"
 
-#: ../src/gui/viewmanager.py:508
+#: ../src/gui/viewmanager.py:513
 msgid "Open an existing database"
 msgstr "Ouvrir une base de données existante"
 
-#: ../src/gui/viewmanager.py:509
+#: ../src/gui/viewmanager.py:514
 msgid "_Quit"
 msgstr "_Quitter"
 
-#: ../src/gui/viewmanager.py:511
+#: ../src/gui/viewmanager.py:516
 msgid "_View"
 msgstr "_Affichage"
 
-#: ../src/gui/viewmanager.py:512
+#: ../src/gui/viewmanager.py:517
 msgid "_Edit"
 msgstr "É_dition"
 
-#: ../src/gui/viewmanager.py:513
+#: ../src/gui/viewmanager.py:518
 msgid "_Preferences..."
 msgstr "_Préférences..."
 
-#: ../src/gui/viewmanager.py:515
+#: ../src/gui/viewmanager.py:520
 msgid "_Help"
 msgstr "Aid_e"
 
-#: ../src/gui/viewmanager.py:516
+#: ../src/gui/viewmanager.py:521
 msgid "Gramps _Home Page"
 msgstr "Page d'accueil de _Gramps"
 
-#: ../src/gui/viewmanager.py:518
+#: ../src/gui/viewmanager.py:523
 msgid "Gramps _Mailing Lists"
 msgstr "Listes de diffusion de Gra_mps"
 
-#: ../src/gui/viewmanager.py:520
+#: ../src/gui/viewmanager.py:525
 msgid "_Report a Bug"
 msgstr "_Rapporter un bogue"
 
-#: ../src/gui/viewmanager.py:522
+#: ../src/gui/viewmanager.py:527
 msgid "_Extra Reports/Tools"
 msgstr "R_apports et outils supplémentaires"
 
-#: ../src/gui/viewmanager.py:524
+#: ../src/gui/viewmanager.py:529
 msgid "_About"
 msgstr "À _propos"
 
-#: ../src/gui/viewmanager.py:526
+#: ../src/gui/viewmanager.py:531
 msgid "_Plugin Manager"
 msgstr "_Gestionnaire de greffons"
 
-#: ../src/gui/viewmanager.py:528
+#: ../src/gui/viewmanager.py:533
 msgid "_FAQ"
 msgstr "_Foire aux questions (FAQ)"
 
-#: ../src/gui/viewmanager.py:529
+#: ../src/gui/viewmanager.py:534
 msgid "_Key Bindings"
 msgstr "Raccourcis _clavier"
 
-#: ../src/gui/viewmanager.py:530
+#: ../src/gui/viewmanager.py:535
 msgid "_User Manual"
 msgstr "_Manuel utilisateur"
 
-#: ../src/gui/viewmanager.py:537
+#: ../src/gui/viewmanager.py:542
 msgid "_Export..."
 msgstr "_Exporter..."
 
-#: ../src/gui/viewmanager.py:539
+#: ../src/gui/viewmanager.py:544
 msgid "Make Backup..."
 msgstr "Faire une sauvegarde..."
 
-#: ../src/gui/viewmanager.py:540
+#: ../src/gui/viewmanager.py:545
 msgid "Make a Gramps XML backup of the database"
 msgstr "Générer une sauvegarde de la base de données au format Gramps XML"
 
-#: ../src/gui/viewmanager.py:542
+#: ../src/gui/viewmanager.py:547
 msgid "_Abandon Changes and Quit"
 msgstr "_Abandonner les modifications et quitter"
 
-#: ../src/gui/viewmanager.py:543
-#: ../src/gui/viewmanager.py:546
+#: ../src/gui/viewmanager.py:548
+#: ../src/gui/viewmanager.py:551
 msgid "_Reports"
 msgstr "_Rapports"
 
-#: ../src/gui/viewmanager.py:544
+#: ../src/gui/viewmanager.py:549
 msgid "Open the reports dialog"
 msgstr "Ouvrir le dialogue des rapports"
 
-#: ../src/gui/viewmanager.py:545
+#: ../src/gui/viewmanager.py:550
 msgid "_Go"
 msgstr "A_ller à"
 
-#: ../src/gui/viewmanager.py:547
+#: ../src/gui/viewmanager.py:552
 msgid "_Windows"
 msgstr "Fenê_tres"
 
-#: ../src/gui/viewmanager.py:584
+#: ../src/gui/viewmanager.py:589
 msgid "Clip_board"
 msgstr "_Presse-papiers"
 
-#: ../src/gui/viewmanager.py:585
+#: ../src/gui/viewmanager.py:590
 msgid "Open the Clipboard dialog"
 msgstr "Ouvrir le presse-papiers"
 
-#: ../src/gui/viewmanager.py:586
+#: ../src/gui/viewmanager.py:591
 msgid "_Import..."
 msgstr "_Importer..."
 
-#: ../src/gui/viewmanager.py:588
-#: ../src/gui/viewmanager.py:591
+#: ../src/gui/viewmanager.py:593
+#: ../src/gui/viewmanager.py:596
 msgid "_Tools"
 msgstr "_Outils"
 
-#: ../src/gui/viewmanager.py:589
+#: ../src/gui/viewmanager.py:594
 msgid "Open the tools dialog"
 msgstr "Ouvrir le dialogue d'outils"
 
-#: ../src/gui/viewmanager.py:590
+#: ../src/gui/viewmanager.py:595
 msgid "_Bookmarks"
 msgstr "_Signets"
 
-#: ../src/gui/viewmanager.py:592
+#: ../src/gui/viewmanager.py:597
 msgid "_Configure View..."
 msgstr "_Configurer la vue active..."
 
-#: ../src/gui/viewmanager.py:593
+#: ../src/gui/viewmanager.py:598
 msgid "Configure the active view"
 msgstr "Configurer la vue active"
 
-#: ../src/gui/viewmanager.py:598
+#: ../src/gui/viewmanager.py:603
 msgid "_Navigator"
 msgstr "_Navigateur"
 
-#: ../src/gui/viewmanager.py:600
+#: ../src/gui/viewmanager.py:605
 msgid "_Toolbar"
 msgstr "Barre d'ou_tils"
 
-#: ../src/gui/viewmanager.py:602
+#: ../src/gui/viewmanager.py:607
 msgid "F_ull Screen"
 msgstr "_Plein Écran"
 
-#: ../src/gui/viewmanager.py:607
-#: ../src/gui/viewmanager.py:1189
+#: ../src/gui/viewmanager.py:612
+#: ../src/gui/viewmanager.py:1194
 msgid "_Undo"
 msgstr "_Défaire"
 
-#: ../src/gui/viewmanager.py:612
-#: ../src/gui/viewmanager.py:1206
+#: ../src/gui/viewmanager.py:617
+#: ../src/gui/viewmanager.py:1211
 msgid "_Redo"
 msgstr "_Rétablir"
 
-#: ../src/gui/viewmanager.py:618
+#: ../src/gui/viewmanager.py:623
 msgid "Undo History..."
 msgstr "Historique d'annulations..."
 
-#: ../src/gui/viewmanager.py:632
+#: ../src/gui/viewmanager.py:637
 #, python-format
 msgid "Key %s is not bound"
 msgstr "La clé %s n'est pas définie"
 
 # Substantif (GNOME fr)
 #. load plugins
-#: ../src/gui/viewmanager.py:733
+#: ../src/gui/viewmanager.py:738
 msgid "Loading plugins..."
 msgstr "Chargement des greffons..."
 
-#: ../src/gui/viewmanager.py:740
-#: ../src/gui/viewmanager.py:755
+#: ../src/gui/viewmanager.py:745
+#: ../src/gui/viewmanager.py:760
 msgid "Ready"
 msgstr "Prêt"
 
 # Substantif (GNOME fr)
 #. registering plugins
-#: ../src/gui/viewmanager.py:748
+#: ../src/gui/viewmanager.py:753
 msgid "Registering plugins..."
 msgstr "Enregistrement des greffons..."
 
-#: ../src/gui/viewmanager.py:785
+#: ../src/gui/viewmanager.py:790
 msgid "Autobackup..."
 msgstr "Sauvegarde automatique..."
 
-#: ../src/gui/viewmanager.py:789
+#: ../src/gui/viewmanager.py:794
 msgid "Error saving backup data"
 msgstr "Erreur d'enregistrement des données de sauvegarde"
 
-#: ../src/gui/viewmanager.py:800
+#: ../src/gui/viewmanager.py:805
 msgid "Abort changes?"
 msgstr "Abandonner les changements ?"
 
 # Substantif (GNOME fr)
-#: ../src/gui/viewmanager.py:801
+#: ../src/gui/viewmanager.py:806
 msgid "Aborting changes will return the database to the state it was before you started this editing session."
 msgstr "L'abandon des changements ramènera la base de données à son état du début de session."
 
-#: ../src/gui/viewmanager.py:803
+#: ../src/gui/viewmanager.py:808
 msgid "Abort changes"
 msgstr "Abandonner les changements"
 
-#: ../src/gui/viewmanager.py:813
+#: ../src/gui/viewmanager.py:818
 msgid "Cannot abandon session's changes"
 msgstr "Impossible d'abandonner les changements de la session"
 
-#: ../src/gui/viewmanager.py:814
+#: ../src/gui/viewmanager.py:819
 msgid "Changes cannot be completely abandoned because the number of changes made in the session exceeded the limit."
 msgstr "Les changements ne peuvent être complètement abandonner car le nombre de modifications effectuées pendant la session excèdent la limite."
 
-#: ../src/gui/viewmanager.py:968
+#: ../src/gui/viewmanager.py:973
 msgid "View failed to load. Check error output."
 msgstr "Échec au chargement de la vue. Regardez la sortie d'erreur."
 
-#: ../src/gui/viewmanager.py:1107
+#: ../src/gui/viewmanager.py:1112
 msgid "Import Statistics"
 msgstr "Statistiques d'importation"
 
-#: ../src/gui/viewmanager.py:1158
+#: ../src/gui/viewmanager.py:1163
 msgid "Read Only"
 msgstr "Lecture seule"
 
-#: ../src/gui/viewmanager.py:1241
+#: ../src/gui/viewmanager.py:1246
 msgid "Gramps XML Backup"
 msgstr "Sauvegarde Gramps XML"
 
-#: ../src/gui/viewmanager.py:1251
+#: ../src/gui/viewmanager.py:1256
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/mergemedia.glade.h:6
 msgid "Path:"
 msgstr "Chemin :"
 
-#: ../src/gui/viewmanager.py:1271
+#: ../src/gui/viewmanager.py:1276
 #: ../src/plugins/tool/phpgedview.glade.h:5
 #: ../src/plugins/import/importgedcom.glade.h:7
 msgid "File:"
 msgstr "Fichier :"
 
-#: ../src/gui/viewmanager.py:1303
+#: ../src/gui/viewmanager.py:1308
 msgid "Media:"
 msgstr "Media :"
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1308
+#: ../src/gui/viewmanager.py:1313
 #: ../src/plugins/drawreport/AncestorTree.py:989
 #: ../src/plugins/drawreport/DescendTree.py:1585
-#: ../src/plugins/textreport/DetAncestralReport.py:802
-#: ../src/plugins/textreport/DetDescendantReport.py:976
-#: ../src/plugins/textreport/DetDescendantReport.py:977
-#: ../src/plugins/textreport/FamilyGroup.py:656
+#: ../src/plugins/textreport/DetAncestralReport.py:803
+#: ../src/plugins/textreport/DetDescendantReport.py:979
+#: ../src/plugins/textreport/DetDescendantReport.py:980
+#: ../src/plugins/textreport/FamilyGroup.py:657
 #: ../src/plugins/webreport/NarrativeWeb.py:8201
 msgid "Include"
 msgstr "Inclure"
 
-#: ../src/gui/viewmanager.py:1309
+#: ../src/gui/viewmanager.py:1314
 #: ../src/plugins/gramplet/StatsGramplet.py:200
 msgid "Megabyte|MB"
 msgstr "Mo"
 
-#: ../src/gui/viewmanager.py:1310
+#: ../src/gui/viewmanager.py:1315
 #: ../src/plugins/webreport/NarrativeWeb.py:8195
 msgid "Exclude"
 msgstr "Exclure"
 
-#: ../src/gui/viewmanager.py:1327
+#: ../src/gui/viewmanager.py:1332
 msgid "Backup file already exists! Overwrite?"
 msgstr "Le fichier de sauvegarde existe déjà ! L'écraser ?"
 
-#: ../src/gui/viewmanager.py:1328
+#: ../src/gui/viewmanager.py:1333
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Le fichier '%s' existe."
 
-#: ../src/gui/viewmanager.py:1329
+#: ../src/gui/viewmanager.py:1334
 msgid "Proceed and overwrite"
 msgstr "Procéder et écraser"
 
-#: ../src/gui/viewmanager.py:1330
+#: ../src/gui/viewmanager.py:1335
 msgid "Cancel the backup"
 msgstr "Annuler la sauvegarde"
 
-#: ../src/gui/viewmanager.py:1337
+#: ../src/gui/viewmanager.py:1342
 msgid "Making backup..."
 msgstr "Création de la sauvegarde..."
 
-#: ../src/gui/viewmanager.py:1354
+#: ../src/gui/viewmanager.py:1359
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Sauvegarde sous '%s'"
 
-#: ../src/gui/viewmanager.py:1357
+#: ../src/gui/viewmanager.py:1362
 msgid "Backup aborted"
 msgstr "Sauvegarde échouée"
 
-#: ../src/gui/viewmanager.py:1375
+#: ../src/gui/viewmanager.py:1380
 msgid "Select backup directory"
 msgstr "Sélection du répertoire de sauvegarde"
 
 # Substantif (GNOME fr)
-#: ../src/gui/viewmanager.py:1641
+#: ../src/gui/viewmanager.py:1646
 msgid "Failed Loading Plugin"
 msgstr "Échec du chargement du greffon"
 
-#: ../src/gui/viewmanager.py:1642
+#: ../src/gui/viewmanager.py:1647
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -7108,11 +7108,11 @@ msgstr ""
 "\n"
 "Si vous ne souhaitez plus que Gramps essaye de charger ce greffon, alors vous pouvez le cacher en utilisant le gestionnaire de greffons dans le menu Aide."
 
-#: ../src/gui/viewmanager.py:1690
+#: ../src/gui/viewmanager.py:1695
 msgid "Failed Loading View"
 msgstr "Échec du chargement de la vue"
 
-#: ../src/gui/viewmanager.py:1691
+#: ../src/gui/viewmanager.py:1696
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -7564,19 +7564,19 @@ msgid "Select Child"
 msgstr "Sélectionner un enfant"
 
 # Substantif (GNOME fr)
-#: ../src/gui/editors/editfamily.py:357
+#: ../src/gui/editors/editfamily.py:358
 msgid "Adding parents to a person"
 msgstr "Ajout des parents à l'individu"
 
-#: ../src/gui/editors/editfamily.py:358
+#: ../src/gui/editors/editfamily.py:359
 msgid "It is possible to accidentally create multiple families with the same parents. To help avoid this problem, only the buttons to select parents are available when you create a new family. The remaining fields will become available after you attempt to select a parent."
 msgstr "Il est possible de créer accidentellement plusieurs familles avec les mêmes parents. Pour éviter ce problème, seuls les boutons pour sélectionner les parents sont disponibles quand vous créez une nouvelle famille. Les champs restants seront accessibles après avoir sélectionné un parent."
 
-#: ../src/gui/editors/editfamily.py:452
+#: ../src/gui/editors/editfamily.py:453
 msgid "Family has changed"
 msgstr "La famille a été modifiée"
 
-#: ../src/gui/editors/editfamily.py:453
+#: ../src/gui/editors/editfamily.py:454
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be due to a change in one of the main views, for example a source used here is deleted in the source view.\n"
@@ -7585,66 +7585,66 @@ msgstr ""
 "L'objet %(object)s que vous êtes en train d'éditer a été modifié hors de l'éditeur. Ceci peut être du à un changement dans une des vues principales, par exemple une source utilisée ici est enlevée depuis la vue sources.\n"
 "Pour être certain que l'information affichée est toujours exacte, les données affichées ont été mises à jour. Certaines de vos éditions peuvent avoir été perdues."
 
-#: ../src/gui/editors/editfamily.py:458
+#: ../src/gui/editors/editfamily.py:459
 #: ../src/plugins/import/ImportCsv.py:220
 #: ../src/plugins/view/familyview.py:258
 msgid "family"
 msgstr "famille"
 
-#: ../src/gui/editors/editfamily.py:488
-#: ../src/gui/editors/editfamily.py:491
+#: ../src/gui/editors/editfamily.py:489
+#: ../src/gui/editors/editfamily.py:492
 msgid "New Family"
 msgstr "Nouvelle famille"
 
-#: ../src/gui/editors/editfamily.py:495
-#: ../src/gui/editors/editfamily.py:1052
+#: ../src/gui/editors/editfamily.py:496
+#: ../src/gui/editors/editfamily.py:1053
 #: ../src/plugins/view/geofamily.py:376
 msgid "Edit Family"
 msgstr "Éditer la famille"
 
-#: ../src/gui/editors/editfamily.py:528
+#: ../src/gui/editors/editfamily.py:529
 msgid "Select a person as the mother"
 msgstr "Sélectionner un individu en tant que mère"
 
-#: ../src/gui/editors/editfamily.py:529
+#: ../src/gui/editors/editfamily.py:530
 msgid "Add a new person as the mother"
 msgstr "Ajouter un nouvel individu en tant que mère"
 
 # enlever la référence à la mère
-#: ../src/gui/editors/editfamily.py:530
+#: ../src/gui/editors/editfamily.py:531
 msgid "Remove the person as the mother"
 msgstr "Enlever l'individu en tant que mère"
 
-#: ../src/gui/editors/editfamily.py:543
+#: ../src/gui/editors/editfamily.py:544
 msgid "Select a person as the father"
 msgstr "Sélectionner un individu en tant que père"
 
-#: ../src/gui/editors/editfamily.py:544
+#: ../src/gui/editors/editfamily.py:545
 msgid "Add a new person as the father"
 msgstr "Ajouter un nouvel individu en tant que père"
 
 # enlever la référence au père
-#: ../src/gui/editors/editfamily.py:545
+#: ../src/gui/editors/editfamily.py:546
 msgid "Remove the person as the father"
 msgstr "Enlever l'individu en tant que père"
 
-#: ../src/gui/editors/editfamily.py:758
+#: ../src/gui/editors/editfamily.py:759
 msgid "Select Mother"
 msgstr "Sélectionner la mère"
 
-#: ../src/gui/editors/editfamily.py:803
+#: ../src/gui/editors/editfamily.py:804
 msgid "Select Father"
 msgstr "Sélectionner le père"
 
-#: ../src/gui/editors/editfamily.py:827
+#: ../src/gui/editors/editfamily.py:828
 msgid "Duplicate Family"
 msgstr "Famille double"
 
-#: ../src/gui/editors/editfamily.py:828
+#: ../src/gui/editors/editfamily.py:829
 msgid "A family with these parents already exists in the database. If you save, you will create a duplicate family. It is recommended that you cancel the editing of this window, and select the existing family"
 msgstr "Une famille avec ces parents existe déjà dans la base de données. Si vous l'enregistrez, vous créerez une famille dupliquée. Il est recommandé d'annuler l'édition de cette fenêtre et de sélectionner la famille existante"
 
-#: ../src/gui/editors/editfamily.py:876
+#: ../src/gui/editors/editfamily.py:877
 #: ../src/plugins/view/relview.py:586
 #: ../src/plugins/view/relview.py:989
 #: ../src/plugins/view/relview.py:1037
@@ -7654,43 +7654,43 @@ msgstr "Une famille avec ces parents existe déjà dans la base de données. Si 
 msgid "Edit %s"
 msgstr "Éditer %s"
 
-#: ../src/gui/editors/editfamily.py:984
+#: ../src/gui/editors/editfamily.py:985
 msgid "A father cannot be his own child"
 msgstr "Un père ne peut pas être son propre enfant"
 
-#: ../src/gui/editors/editfamily.py:985
+#: ../src/gui/editors/editfamily.py:986
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s est défini comme le père et l'enfant de la famille."
 
-#: ../src/gui/editors/editfamily.py:994
+#: ../src/gui/editors/editfamily.py:995
 msgid "A mother cannot be her own child"
 msgstr "Une mère ne peut pas être son propre enfant"
 
-#: ../src/gui/editors/editfamily.py:995
+#: ../src/gui/editors/editfamily.py:996
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s est définie comme la mère et l'enfant de la famille."
 
-#: ../src/gui/editors/editfamily.py:1002
+#: ../src/gui/editors/editfamily.py:1003
 msgid "Cannot save family"
 msgstr "Impossible d'enregistrer la famille"
 
-#: ../src/gui/editors/editfamily.py:1003
+#: ../src/gui/editors/editfamily.py:1004
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr "Aucune donnée n'existe pour cette famille. Veuillez entrer une donnée ou annuler l'édition."
 
-#: ../src/gui/editors/editfamily.py:1010
+#: ../src/gui/editors/editfamily.py:1011
 msgid "Cannot save family. ID already exists."
 msgstr "Impossible d'enregistrer la famille. L'identifiant existe déjà."
 
-#: ../src/gui/editors/editfamily.py:1011
+#: ../src/gui/editors/editfamily.py:1012
 #: ../src/gui/editors/editnote.py:314
 #, python-format
 msgid "You have attempted to use the existing Gramps ID with value %(id)s. This value is already used. Please enter a different ID or leave blank to get the next available ID value."
 msgstr "Vous tentez d'utiliser la valeur de l'identifiant Gramps %(id)s. Cette valeur est déjà utilisée. Veuillez entrer un identifiant différent ou ne mettez rien pour obtenir la valeur du prochain identifiant disponible."
 
-#: ../src/gui/editors/editfamily.py:1026
+#: ../src/gui/editors/editfamily.py:1027
 msgid "Add Family"
 msgstr "Ajouter une famille"
 
@@ -9239,10 +9239,10 @@ msgstr "Style "
 #: ../src/plugins/textreport/AncestorReport.py:266
 #: ../src/plugins/textreport/BirthdayReport.py:365
 #: ../src/plugins/textreport/DescendReport.py:391
-#: ../src/plugins/textreport/DetAncestralReport.py:727
-#: ../src/plugins/textreport/DetDescendantReport.py:891
+#: ../src/plugins/textreport/DetAncestralReport.py:728
+#: ../src/plugins/textreport/DetDescendantReport.py:894
 #: ../src/plugins/textreport/EndOfLineReport.py:251
-#: ../src/plugins/textreport/FamilyGroup.py:632
+#: ../src/plugins/textreport/FamilyGroup.py:633
 #: ../src/plugins/textreport/IndivComplete.py:606
 #: ../src/plugins/textreport/KinshipReport.py:338
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:192
@@ -10021,7 +10021,7 @@ msgstr "Fusion_des_citations"
 msgid "Merge Citations"
 msgstr "Fusion des citations"
 
-#: ../src/Merge/mergecitation.py:194
+#: ../src/Merge/mergecitation.py:193
 msgid "Merge Citation"
 msgstr "Fusion de la citation"
 
@@ -10034,7 +10034,7 @@ msgstr "Fusion_des_événements"
 msgid "Merge Events"
 msgstr "Fusion des événements"
 
-#: ../src/Merge/mergeevent.py:216
+#: ../src/Merge/mergeevent.py:215
 msgid "Merge Event Objects"
 msgstr "Fusion des objets événements"
 
@@ -10047,23 +10047,23 @@ msgstr "Fusion_des_familles"
 msgid "Merge Families"
 msgstr "Fusion des familles"
 
-#: ../src/Merge/mergefamily.py:225
-#: ../src/Merge/mergeperson.py:334
+#: ../src/Merge/mergefamily.py:224
+#: ../src/Merge/mergeperson.py:333
 #: ../src/plugins/lib/libpersonview.py:417
 msgid "Cannot merge people"
 msgstr "Impossible de fusionner les individus"
 
-#: ../src/Merge/mergefamily.py:278
+#: ../src/Merge/mergefamily.py:277
 msgid "A parent should be a father or mother."
 msgstr "Un parent devrait être un père ou une mère."
 
-#: ../src/Merge/mergefamily.py:291
-#: ../src/Merge/mergefamily.py:302
-#: ../src/Merge/mergeperson.py:352
+#: ../src/Merge/mergefamily.py:290
+#: ../src/Merge/mergefamily.py:301
+#: ../src/Merge/mergeperson.py:351
 msgid "A parent and child cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Un parent et un enfant ne peuvent pas fusionner. Pour fusionner ces individus, vous devez d'abord supprimer le lien entre eux."
 
-#: ../src/Merge/mergefamily.py:323
+#: ../src/Merge/mergefamily.py:322
 msgid "Merge Family"
 msgstr "Fusion de la famille"
 
@@ -10073,7 +10073,7 @@ msgid "manual|Merge_Media_Objects"
 msgstr "Fusion_des_objets_media"
 
 #: ../src/Merge/mergemedia.py:70
-#: ../src/Merge/mergemedia.py:190
+#: ../src/Merge/mergemedia.py:189
 msgid "Merge Media Objects"
 msgstr "Fusion des objets media"
 
@@ -10083,7 +10083,7 @@ msgid "manual|Merge_Notes"
 msgstr "Fusion_des_notes"
 
 #: ../src/Merge/mergenote.py:71
-#: ../src/Merge/mergenote.py:205
+#: ../src/Merge/mergenote.py:204
 msgid "Merge Notes"
 msgstr "Fusion des notes"
 
@@ -10138,19 +10138,19 @@ msgstr "Aucun conjoint ni d'enfant trouvé"
 msgid "Addresses"
 msgstr "Adresses"
 
-#: ../src/Merge/mergeperson.py:349
+#: ../src/Merge/mergeperson.py:348
 msgid "Spouses cannot be merged. To merge these people, you must first break the relationship between them."
 msgstr "Impossible de fusionner les conjoints. Pour fusionner ces individus, vous devez d'abord supprimer le lien entre eux."
 
-#: ../src/Merge/mergeperson.py:415
+#: ../src/Merge/mergeperson.py:414
 msgid "Merge Person"
 msgstr "Fusion de l'individu"
 
-#: ../src/Merge/mergeperson.py:454
+#: ../src/Merge/mergeperson.py:453
 msgid "A person with multiple relations with the same spouse is about to be merged. This is beyond the capabilities of the merge routine. The merge is aborted."
 msgstr "Un individu avec de multiples relations et le même conjoint est sur le point d'être fusionné. Ceci va au-delà des capacités de la fonction de fusion. La fusion est annulée."
 
-#: ../src/Merge/mergeperson.py:465
+#: ../src/Merge/mergeperson.py:464
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr "Plusieurs familles ont été fusionnées. Ce n'est pas habituel, la fusion est annulée."
 
@@ -10160,7 +10160,7 @@ msgid "manual|Merge_Places"
 msgstr "Fusion des lieux"
 
 #: ../src/Merge/mergeplace.py:77
-#: ../src/Merge/mergeplace.py:217
+#: ../src/Merge/mergeplace.py:215
 msgid "Merge Places"
 msgstr "Fusionner les lieux"
 
@@ -10170,7 +10170,7 @@ msgid "manual|Merge_Repositories"
 msgstr "Fusion des dépôts"
 
 #: ../src/Merge/mergerepository.py:69
-#: ../src/Merge/mergerepository.py:177
+#: ../src/Merge/mergerepository.py:176
 msgid "Merge Repositories"
 msgstr "Fusion des dépôts"
 
@@ -10183,7 +10183,7 @@ msgstr "Fusion des sources"
 msgid "Merge Sources"
 msgstr "Fusionner les sources"
 
-#: ../src/Merge/mergesource.py:205
+#: ../src/Merge/mergesource.py:204
 msgid "Merge Source"
 msgstr "Fusion de la source"
 
@@ -10602,11 +10602,11 @@ msgstr "Le style utilisé pour les en-têtes."
 #: ../src/plugins/drawreport/DescendTree.py:1674
 #: ../src/plugins/drawreport/FanChart.py:456
 #: ../src/plugins/textreport/AncestorReport.py:367
-#: ../src/plugins/textreport/DetAncestralReport.py:905
-#: ../src/plugins/textreport/DetDescendantReport.py:1100
+#: ../src/plugins/textreport/DetAncestralReport.py:906
+#: ../src/plugins/textreport/DetDescendantReport.py:1103
 #: ../src/plugins/textreport/EndOfLineReport.py:299
 #: ../src/plugins/textreport/EndOfLineReport.py:317
-#: ../src/plugins/textreport/FamilyGroup.py:737
+#: ../src/plugins/textreport/FamilyGroup.py:738
 #: ../src/plugins/textreport/IndivComplete.py:732
 #: ../src/plugins/textreport/KinshipReport.py:404
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:227
@@ -10861,8 +10861,8 @@ msgstr "Options de l'arbre"
 #: ../src/plugins/textreport/AncestorReport.py:268
 #: ../src/plugins/textreport/BirthdayReport.py:377
 #: ../src/plugins/textreport/DescendReport.py:393
-#: ../src/plugins/textreport/DetAncestralReport.py:729
-#: ../src/plugins/textreport/DetDescendantReport.py:893
+#: ../src/plugins/textreport/DetAncestralReport.py:730
+#: ../src/plugins/textreport/DetDescendantReport.py:896
 #: ../src/plugins/textreport/EndOfLineReport.py:253
 #: ../src/plugins/textreport/KinshipReport.py:340
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:194
@@ -10879,8 +10879,8 @@ msgstr "L'individu central pour ce rapport"
 #: ../src/plugins/drawreport/FanChart.py:400
 #: ../src/plugins/textreport/AncestorReport.py:282
 #: ../src/plugins/textreport/DescendReport.py:415
-#: ../src/plugins/textreport/DetAncestralReport.py:743
-#: ../src/plugins/textreport/DetDescendantReport.py:916
+#: ../src/plugins/textreport/DetAncestralReport.py:744
+#: ../src/plugins/textreport/DetDescendantReport.py:919
 msgid "Generations"
 msgstr "Générations "
 
@@ -11281,8 +11281,8 @@ msgstr "Sélectionne un filtre pour restreindre les individus qui apparaîtront 
 #: ../src/plugins/textreport/AncestorReport.py:269
 #: ../src/plugins/textreport/BirthdayReport.py:378
 #: ../src/plugins/textreport/DescendReport.py:394
-#: ../src/plugins/textreport/DetAncestralReport.py:730
-#: ../src/plugins/textreport/DetDescendantReport.py:894
+#: ../src/plugins/textreport/DetAncestralReport.py:731
+#: ../src/plugins/textreport/DetDescendantReport.py:897
 #: ../src/plugins/textreport/EndOfLineReport.py:254
 #: ../src/plugins/textreport/KinshipReport.py:341
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:195
@@ -11293,10 +11293,10 @@ msgstr "L'individu central pour ce rapport"
 #: ../src/plugins/textreport/AncestorReport.py:279
 #: ../src/plugins/textreport/BirthdayReport.py:389
 #: ../src/plugins/textreport/DescendReport.py:404
-#: ../src/plugins/textreport/DetAncestralReport.py:740
-#: ../src/plugins/textreport/DetDescendantReport.py:904
+#: ../src/plugins/textreport/DetAncestralReport.py:741
+#: ../src/plugins/textreport/DetDescendantReport.py:907
 #: ../src/plugins/textreport/EndOfLineReport.py:264
-#: ../src/plugins/textreport/FamilyGroup.py:646
+#: ../src/plugins/textreport/FamilyGroup.py:647
 #: ../src/plugins/textreport/IndivComplete.py:627
 #: ../src/plugins/textreport/KinshipReport.py:351
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:205
@@ -11741,8 +11741,8 @@ msgstr "Génération %(generations)d - roue des ascendants de %(person)s"
 #: ../src/plugins/drawreport/FanChart.py:401
 #: ../src/plugins/textreport/AncestorReport.py:283
 #: ../src/plugins/textreport/DescendReport.py:416
-#: ../src/plugins/textreport/DetAncestralReport.py:744
-#: ../src/plugins/textreport/DetDescendantReport.py:918
+#: ../src/plugins/textreport/DetAncestralReport.py:745
+#: ../src/plugins/textreport/DetDescendantReport.py:921
 msgid "The number of generations to include in the report"
 msgstr "Le nombre de générations à inclure dans le rapport"
 
@@ -12061,10 +12061,10 @@ msgstr "Le style utilisé pour l'en-tête et les valeurs."
 #: ../src/plugins/drawreport/TimeLine.py:438
 #: ../src/plugins/textreport/AncestorReport.py:344
 #: ../src/plugins/textreport/DescendReport.py:444
-#: ../src/plugins/textreport/DetAncestralReport.py:859
-#: ../src/plugins/textreport/DetDescendantReport.py:1054
+#: ../src/plugins/textreport/DetAncestralReport.py:860
+#: ../src/plugins/textreport/DetDescendantReport.py:1057
 #: ../src/plugins/textreport/EndOfLineReport.py:281
-#: ../src/plugins/textreport/FamilyGroup.py:728
+#: ../src/plugins/textreport/FamilyGroup.py:729
 #: ../src/plugins/textreport/IndivComplete.py:700
 #: ../src/plugins/textreport/KinshipReport.py:386
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:220
@@ -12356,14 +12356,14 @@ msgstr "Source de l'inhumation"
 
 #: ../src/plugins/export/ExportCsv.py:478
 #: ../src/plugins/import/ImportCsv.py:225
-#: ../src/plugins/textreport/FamilyGroup.py:570
+#: ../src/plugins/textreport/FamilyGroup.py:571
 #: ../src/plugins/webreport/NarrativeWeb.py:2460
 msgid "Husband"
 msgstr "Mari"
 
 #: ../src/plugins/export/ExportCsv.py:478
 #: ../src/plugins/import/ImportCsv.py:222
-#: ../src/plugins/textreport/FamilyGroup.py:579
+#: ../src/plugins/textreport/FamilyGroup.py:580
 #: ../src/plugins/webreport/NarrativeWeb.py:2458
 msgid "Wife"
 msgstr "Femme"
@@ -12840,7 +12840,7 @@ msgstr "Gramplet affichant les enfants d'un individu"
 #: ../src/plugins/gramplet/bottombar.gpr.py:483
 #: ../src/plugins/gramplet/bottombar.gpr.py:497
 #: ../src/plugins/gramplet/FanChartGramplet.py:801
-#: ../src/plugins/textreport/FamilyGroup.py:589
+#: ../src/plugins/textreport/FamilyGroup.py:590
 #: ../src/plugins/textreport/IndivComplete.py:379
 #: ../src/plugins/view/fanchartview.py:873
 #: ../src/plugins/view/pedigreeview.py:1919
@@ -20411,14 +20411,14 @@ msgid "Ahnentafel Report for %s"
 msgstr "Liste Ahnentafel (Sosa-Stradonitz) de %s"
 
 #: ../src/plugins/textreport/AncestorReport.py:286
-#: ../src/plugins/textreport/DetAncestralReport.py:747
-#: ../src/plugins/textreport/DetDescendantReport.py:922
+#: ../src/plugins/textreport/DetAncestralReport.py:748
+#: ../src/plugins/textreport/DetDescendantReport.py:925
 msgid "Page break between generations"
 msgstr "Saut de page entre les générations"
 
 #: ../src/plugins/textreport/AncestorReport.py:288
-#: ../src/plugins/textreport/DetAncestralReport.py:749
-#: ../src/plugins/textreport/DetDescendantReport.py:924
+#: ../src/plugins/textreport/DetAncestralReport.py:750
+#: ../src/plugins/textreport/DetDescendantReport.py:927
 msgid "Whether to start a new page after each generation."
 msgstr "Démarrer ou non une nouvelle page après chaque génération."
 
@@ -20432,14 +20432,14 @@ msgstr "Indique si un espace d'identation doit suivre le nom."
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes
 #: ../src/plugins/textreport/AncestorReport.py:295
-#: ../src/plugins/textreport/DetAncestralReport.py:757
-#: ../src/plugins/textreport/DetDescendantReport.py:932
+#: ../src/plugins/textreport/DetAncestralReport.py:758
+#: ../src/plugins/textreport/DetDescendantReport.py:935
 msgid "Translation"
 msgstr "Traduction "
 
 #: ../src/plugins/textreport/AncestorReport.py:300
-#: ../src/plugins/textreport/DetAncestralReport.py:762
-#: ../src/plugins/textreport/DetDescendantReport.py:937
+#: ../src/plugins/textreport/DetAncestralReport.py:763
+#: ../src/plugins/textreport/DetDescendantReport.py:940
 msgid "The translation to be used for the report."
 msgstr "La traduction à utiliser pour le rapport."
 
@@ -20542,7 +20542,7 @@ msgid "%s sp."
 msgstr "%s sp."
 
 #: ../src/plugins/textreport/DescendReport.py:407
-#: ../src/plugins/textreport/DetDescendantReport.py:907
+#: ../src/plugins/textreport/DetDescendantReport.py:910
 msgid "Numbering system"
 msgstr "Système de numérotation"
 
@@ -20559,7 +20559,7 @@ msgid "Meurgey de Tupigny numbering"
 msgstr "Numérotation Meurgey de Tupigny"
 
 #: ../src/plugins/textreport/DescendReport.py:412
-#: ../src/plugins/textreport/DetDescendantReport.py:913
+#: ../src/plugins/textreport/DetDescendantReport.py:916
 msgid "The numbering system to be used"
 msgstr "Le système de numérotation à utiliser"
 
@@ -20604,14 +20604,14 @@ msgid "Ancestral Report for %s"
 msgstr "Liste détaillée des ascendants de %s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:276
-#: ../src/plugins/textreport/DetDescendantReport.py:395
+#: ../src/plugins/textreport/DetDescendantReport.py:396
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s est le même individu que [%(id_str)s]."
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/DetAncestralReport.py:318
-#: ../src/plugins/textreport/DetDescendantReport.py:779
+#: ../src/plugins/textreport/DetDescendantReport.py:782
 #, python-format
 msgid "Notes for %s"
 msgstr "Notes pour %s"
@@ -20620,314 +20620,322 @@ msgstr "Notes pour %s"
 #: ../src/plugins/textreport/DetAncestralReport.py:357
 #: ../src/plugins/textreport/DetAncestralReport.py:368
 #: ../src/plugins/textreport/DetAncestralReport.py:393
-#: ../src/plugins/textreport/DetDescendantReport.py:792
-#: ../src/plugins/textreport/DetDescendantReport.py:810
-#: ../src/plugins/textreport/DetDescendantReport.py:821
-#: ../src/plugins/textreport/DetDescendantReport.py:846
+#: ../src/plugins/textreport/DetDescendantReport.py:795
+#: ../src/plugins/textreport/DetDescendantReport.py:813
+#: ../src/plugins/textreport/DetDescendantReport.py:824
+#: ../src/plugins/textreport/DetDescendantReport.py:849
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Plus de détails sur %(person_name)s :"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:340
-#: ../src/plugins/textreport/DetDescendantReport.py:799
+#: ../src/plugins/textreport/DetDescendantReport.py:802
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s : %(name)s%(endnotes)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:375
-#: ../src/plugins/textreport/DetDescendantReport.py:834
+#: ../src/plugins/textreport/DetDescendantReport.py:837
 msgid "Address: "
 msgstr "Adresse : "
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../src/plugins/textreport/DetAncestralReport.py:384
-#: ../src/plugins/textreport/DetDescendantReport.py:837
+#: ../src/plugins/textreport/DetDescendantReport.py:840
 #, python-format
 msgid "%s, "
 msgstr ""
 
 #: ../src/plugins/textreport/DetAncestralReport.py:401
-#: ../src/plugins/textreport/DetAncestralReport.py:459
-#: ../src/plugins/textreport/DetDescendantReport.py:472
-#: ../src/plugins/textreport/DetDescendantReport.py:719
-#: ../src/plugins/textreport/DetDescendantReport.py:854
+#: ../src/plugins/textreport/DetAncestralReport.py:460
+#: ../src/plugins/textreport/DetDescendantReport.py:475
+#: ../src/plugins/textreport/DetDescendantReport.py:722
+#: ../src/plugins/textreport/DetDescendantReport.py:857
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s : %(value)s%(endnotes)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:428
-#: ../src/plugins/textreport/DetDescendantReport.py:441
+#: ../src/plugins/textreport/DetDescendantReport.py:442
 #, python-format
 msgid "%(date)s, %(place)s"
 msgstr "%(date)s, %(place)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:431
-#: ../src/plugins/textreport/DetDescendantReport.py:444
+#: ../src/plugins/textreport/DetDescendantReport.py:445
 #, python-format
 msgid "%(date)s"
 msgstr "%(date)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:433
-#: ../src/plugins/textreport/DetDescendantReport.py:446
+#: ../src/plugins/textreport/DetDescendantReport.py:447
 #, python-format
 msgid "%(place)s"
 msgstr "%(place)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:445
-#: ../src/plugins/textreport/DetDescendantReport.py:458
+#: ../src/plugins/textreport/DetDescendantReport.py:459
 #, python-format
 msgid "%(event_name)s: %(event_text)s"
 msgstr "%(event_name)s : %(event_text)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:557
-#: ../src/plugins/textreport/DetDescendantReport.py:611
+#. translators: needed for Arabic, ignore otherwise
+#: ../src/plugins/textreport/DetAncestralReport.py:458
+#: ../src/plugins/textreport/DetDescendantReport.py:357
+#: ../src/plugins/textreport/DetDescendantReport.py:473
+#: ../src/plugins/textreport/FamilyGroup.py:123
+msgid "; "
+msgstr ""
+
+#: ../src/plugins/textreport/DetAncestralReport.py:558
+#: ../src/plugins/textreport/DetDescendantReport.py:614
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr "Enfants de %(mother_name)s et %(father_name)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:610
-#: ../src/plugins/textreport/DetDescendantReport.py:692
-#: ../src/plugins/textreport/DetDescendantReport.py:711
+#: ../src/plugins/textreport/DetAncestralReport.py:611
+#: ../src/plugins/textreport/DetDescendantReport.py:695
+#: ../src/plugins/textreport/DetDescendantReport.py:714
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Plus de détails sur %(mother_name)s et %(father_name)s :"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:663
-#: ../src/plugins/textreport/DetDescendantReport.py:560
+#: ../src/plugins/textreport/DetAncestralReport.py:664
+#: ../src/plugins/textreport/DetDescendantReport.py:563
 #, python-format
 msgid "Spouse: %s"
 msgstr "Conjoint : %s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:665
-#: ../src/plugins/textreport/DetDescendantReport.py:562
+#: ../src/plugins/textreport/DetAncestralReport.py:666
+#: ../src/plugins/textreport/DetDescendantReport.py:565
 #, python-format
 msgid "Relationship with: %s"
 msgstr "Relation avec : %s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:752
-#: ../src/plugins/textreport/DetDescendantReport.py:927
+#: ../src/plugins/textreport/DetAncestralReport.py:753
+#: ../src/plugins/textreport/DetDescendantReport.py:930
 #: ../src/plugins/textreport/IndivComplete.py:637
 msgid "Page break before end notes"
 msgstr "Saut de page avant les références bibliographiques"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:754
-#: ../src/plugins/textreport/DetDescendantReport.py:929
+#: ../src/plugins/textreport/DetAncestralReport.py:755
+#: ../src/plugins/textreport/DetDescendantReport.py:932
 #: ../src/plugins/textreport/IndivComplete.py:639
 msgid "Whether to start a new page before the end notes."
 msgstr "Ajouter ou non une page avant les références bibliographiques."
 
 #. Content options
 #. Content
-#: ../src/plugins/textreport/DetAncestralReport.py:767
-#: ../src/plugins/textreport/DetDescendantReport.py:942
+#: ../src/plugins/textreport/DetAncestralReport.py:768
+#: ../src/plugins/textreport/DetDescendantReport.py:945
 #: ../src/plugins/view/relview.py:1669
 msgid "Content"
 msgstr "Contenu"
 
 # call name = prénom dans le context !
-#: ../src/plugins/textreport/DetAncestralReport.py:769
-#: ../src/plugins/textreport/DetDescendantReport.py:944
+#: ../src/plugins/textreport/DetAncestralReport.py:770
+#: ../src/plugins/textreport/DetDescendantReport.py:947
 msgid "Use callname for common name"
 msgstr "Utiliser le prénom usuel comme prénom"
 
 # call name = prénom dans le context !
-#: ../src/plugins/textreport/DetAncestralReport.py:770
-#: ../src/plugins/textreport/DetDescendantReport.py:945
+#: ../src/plugins/textreport/DetAncestralReport.py:771
+#: ../src/plugins/textreport/DetDescendantReport.py:948
 msgid "Whether to use the call name as the first name."
 msgstr "Utiliser ou non le prénom usuel comme prénom."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:774
-#: ../src/plugins/textreport/DetDescendantReport.py:948
+#: ../src/plugins/textreport/DetAncestralReport.py:775
+#: ../src/plugins/textreport/DetDescendantReport.py:951
 msgid "Use full dates instead of only the year"
 msgstr "Utiliser la date complète à la place de l'année seule"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:775
-#: ../src/plugins/textreport/DetDescendantReport.py:950
+#: ../src/plugins/textreport/DetAncestralReport.py:776
+#: ../src/plugins/textreport/DetDescendantReport.py:953
 msgid "Whether to use full dates instead of just year."
 msgstr "Utiliser ou non la date complète à la place de l'année seule."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:778
-#: ../src/plugins/textreport/DetDescendantReport.py:953
+#: ../src/plugins/textreport/DetAncestralReport.py:779
+#: ../src/plugins/textreport/DetDescendantReport.py:956
 msgid "List children"
 msgstr "Lister les enfants"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:779
-#: ../src/plugins/textreport/DetDescendantReport.py:954
+#: ../src/plugins/textreport/DetAncestralReport.py:780
+#: ../src/plugins/textreport/DetDescendantReport.py:957
 msgid "Whether to list children."
 msgstr "Lister ou non les enfants."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:782
-#: ../src/plugins/textreport/DetDescendantReport.py:957
+#: ../src/plugins/textreport/DetAncestralReport.py:783
+#: ../src/plugins/textreport/DetDescendantReport.py:960
 msgid "Compute death age"
 msgstr "Calculer l'âge au décès"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:783
-#: ../src/plugins/textreport/DetDescendantReport.py:958
+#: ../src/plugins/textreport/DetAncestralReport.py:784
+#: ../src/plugins/textreport/DetDescendantReport.py:961
 msgid "Whether to compute a person's age at death."
 msgstr "Calculer ou non l'âge de l'individu au décès."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:786
-#: ../src/plugins/textreport/DetDescendantReport.py:961
+#: ../src/plugins/textreport/DetAncestralReport.py:787
+#: ../src/plugins/textreport/DetDescendantReport.py:964
 msgid "Omit duplicate ancestors"
 msgstr "Omettre les ascendants dupliqués"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:787
-#: ../src/plugins/textreport/DetDescendantReport.py:962
+#: ../src/plugins/textreport/DetAncestralReport.py:788
+#: ../src/plugins/textreport/DetDescendantReport.py:965
 msgid "Whether to omit duplicate ancestors."
 msgstr "Omettre ou non les ascendants dupliqués."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:790
+#: ../src/plugins/textreport/DetAncestralReport.py:791
 msgid "Use Complete Sentences"
 msgstr "Utiliser les phrases complètes"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:792
-#: ../src/plugins/textreport/DetDescendantReport.py:967
+#: ../src/plugins/textreport/DetAncestralReport.py:793
+#: ../src/plugins/textreport/DetDescendantReport.py:970
 msgid "Whether to use complete sentences or succinct language."
 msgstr "Utiliser une phrase complète ou courte."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:795
-#: ../src/plugins/textreport/DetDescendantReport.py:970
+#: ../src/plugins/textreport/DetAncestralReport.py:796
+#: ../src/plugins/textreport/DetDescendantReport.py:973
 msgid "Add descendant reference in child list"
 msgstr "Ajouter une référence aux descendants dans la liste des enfants"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:797
-#: ../src/plugins/textreport/DetDescendantReport.py:973
+#: ../src/plugins/textreport/DetAncestralReport.py:798
+#: ../src/plugins/textreport/DetDescendantReport.py:976
 msgid "Whether to add descendant references in child list."
 msgstr "Ajouter ou non les références du descendant dans la liste de l'enfant."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:804
-#: ../src/plugins/textreport/DetDescendantReport.py:979
+#: ../src/plugins/textreport/DetAncestralReport.py:805
+#: ../src/plugins/textreport/DetDescendantReport.py:982
 msgid "Include notes"
 msgstr "Inclure les notes"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:805
-#: ../src/plugins/textreport/DetDescendantReport.py:980
+#: ../src/plugins/textreport/DetAncestralReport.py:806
+#: ../src/plugins/textreport/DetDescendantReport.py:983
 msgid "Whether to include notes."
 msgstr "Inclure ou non les notes."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:808
-#: ../src/plugins/textreport/DetDescendantReport.py:983
+#: ../src/plugins/textreport/DetAncestralReport.py:809
+#: ../src/plugins/textreport/DetDescendantReport.py:986
 msgid "Include attributes"
 msgstr "Inclure les attributs"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:809
-#: ../src/plugins/textreport/DetDescendantReport.py:984
-#: ../src/plugins/textreport/FamilyGroup.py:678
+#: ../src/plugins/textreport/DetAncestralReport.py:810
+#: ../src/plugins/textreport/DetDescendantReport.py:987
+#: ../src/plugins/textreport/FamilyGroup.py:679
 msgid "Whether to include attributes."
 msgstr "Inclure ou non les attributs."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:812
-#: ../src/plugins/textreport/DetDescendantReport.py:987
+#: ../src/plugins/textreport/DetAncestralReport.py:813
+#: ../src/plugins/textreport/DetDescendantReport.py:990
 #: ../src/plugins/textreport/IndivComplete.py:651
 msgid "Include Photo/Images from Gallery"
 msgstr "Inclure les media de la galerie"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:813
-#: ../src/plugins/textreport/DetDescendantReport.py:988
+#: ../src/plugins/textreport/DetAncestralReport.py:814
+#: ../src/plugins/textreport/DetDescendantReport.py:991
 #: ../src/plugins/textreport/IndivComplete.py:652
 msgid "Whether to include images."
 msgstr "Inclure ou non les images."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:816
-#: ../src/plugins/textreport/DetDescendantReport.py:991
+#: ../src/plugins/textreport/DetAncestralReport.py:817
+#: ../src/plugins/textreport/DetDescendantReport.py:994
 msgid "Include alternative names"
 msgstr "Inclure les noms alternatifs"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:817
-#: ../src/plugins/textreport/DetDescendantReport.py:992
+#: ../src/plugins/textreport/DetAncestralReport.py:818
+#: ../src/plugins/textreport/DetDescendantReport.py:995
 msgid "Whether to include other names."
 msgstr "Inclure ou non les noms alternatifs."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:820
-#: ../src/plugins/textreport/DetDescendantReport.py:995
+#: ../src/plugins/textreport/DetAncestralReport.py:821
+#: ../src/plugins/textreport/DetDescendantReport.py:998
 msgid "Include events"
 msgstr "Inclure les événements"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:821
-#: ../src/plugins/textreport/DetDescendantReport.py:996
+#: ../src/plugins/textreport/DetAncestralReport.py:822
+#: ../src/plugins/textreport/DetDescendantReport.py:999
 msgid "Whether to include events."
 msgstr "Inclure ou non les événements."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:824
-#: ../src/plugins/textreport/DetDescendantReport.py:999
+#: ../src/plugins/textreport/DetAncestralReport.py:825
+#: ../src/plugins/textreport/DetDescendantReport.py:1002
 msgid "Include addresses"
 msgstr "Inclure les adresses"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:825
-#: ../src/plugins/textreport/DetDescendantReport.py:1000
+#: ../src/plugins/textreport/DetAncestralReport.py:826
+#: ../src/plugins/textreport/DetDescendantReport.py:1003
 msgid "Whether to include addresses."
 msgstr "Inclure ou non les adresses."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:828
-#: ../src/plugins/textreport/DetDescendantReport.py:1003
+#: ../src/plugins/textreport/DetAncestralReport.py:829
+#: ../src/plugins/textreport/DetDescendantReport.py:1006
 msgid "Include sources"
 msgstr "Inclure les sources"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:829
-#: ../src/plugins/textreport/DetDescendantReport.py:1004
+#: ../src/plugins/textreport/DetAncestralReport.py:830
+#: ../src/plugins/textreport/DetDescendantReport.py:1007
 msgid "Whether to include source references."
 msgstr "Inclure ou non les références de la source."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:832
-#: ../src/plugins/textreport/DetDescendantReport.py:1007
+#: ../src/plugins/textreport/DetAncestralReport.py:833
+#: ../src/plugins/textreport/DetDescendantReport.py:1010
 #: ../src/plugins/textreport/IndivComplete.py:646
 msgid "Include sources notes"
 msgstr "Inclure les notes des sources"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:833
-#: ../src/plugins/textreport/DetDescendantReport.py:1008
+#: ../src/plugins/textreport/DetAncestralReport.py:834
+#: ../src/plugins/textreport/DetDescendantReport.py:1011
 #: ../src/plugins/textreport/IndivComplete.py:647
 msgid "Whether to include source notes in the Endnotes section. Only works if Include sources is selected."
 msgstr "Inclure ou non les notes de la source dans la section Bibliographie. Ne fonctionne que si l'option inclure les sources est sélectionnée."
 
 #. How to handle missing information
 #. Missing information
-#: ../src/plugins/textreport/DetAncestralReport.py:839
-#: ../src/plugins/textreport/DetDescendantReport.py:1034
+#: ../src/plugins/textreport/DetAncestralReport.py:840
+#: ../src/plugins/textreport/DetDescendantReport.py:1037
 msgid "Missing information"
 msgstr "Informations absentes"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:841
-#: ../src/plugins/textreport/DetDescendantReport.py:1036
+#: ../src/plugins/textreport/DetAncestralReport.py:842
+#: ../src/plugins/textreport/DetDescendantReport.py:1039
 msgid "Replace missing places with ______"
 msgstr "Remplacer les lieux manquants par ______"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:842
-#: ../src/plugins/textreport/DetDescendantReport.py:1037
+#: ../src/plugins/textreport/DetAncestralReport.py:843
+#: ../src/plugins/textreport/DetDescendantReport.py:1040
 msgid "Whether to replace missing Places with blanks."
 msgstr "Remplacer ou non les lieux manquants par des blancs."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:845
-#: ../src/plugins/textreport/DetDescendantReport.py:1040
+#: ../src/plugins/textreport/DetAncestralReport.py:846
+#: ../src/plugins/textreport/DetDescendantReport.py:1043
 msgid "Replace missing dates with ______"
 msgstr "Remplacer les dates manquantes par ______"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:846
-#: ../src/plugins/textreport/DetDescendantReport.py:1041
+#: ../src/plugins/textreport/DetAncestralReport.py:847
+#: ../src/plugins/textreport/DetDescendantReport.py:1044
 msgid "Whether to replace missing Dates with blanks."
 msgstr "Remplacer ou non les dates manquantes par des blancs."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:879
-#: ../src/plugins/textreport/DetDescendantReport.py:1074
+#: ../src/plugins/textreport/DetAncestralReport.py:880
+#: ../src/plugins/textreport/DetDescendantReport.py:1077
 msgid "The style used for the children list title."
 msgstr "Le style utilisé pour le titre de la liste des enfants."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:889
-#: ../src/plugins/textreport/DetDescendantReport.py:1084
+#: ../src/plugins/textreport/DetAncestralReport.py:890
+#: ../src/plugins/textreport/DetDescendantReport.py:1087
 msgid "The style used for the children list."
 msgstr "Le style utilisé pour la liste des enfants."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:912
-#: ../src/plugins/textreport/DetDescendantReport.py:1107
+#: ../src/plugins/textreport/DetAncestralReport.py:913
+#: ../src/plugins/textreport/DetDescendantReport.py:1110
 msgid "The style used for the first personal entry."
 msgstr "Style pour la première entrée personnelle."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:922
+#: ../src/plugins/textreport/DetAncestralReport.py:923
 msgid "The style used for the More About header."
 msgstr "Le style utilisé pour l'en-tête Plus de détails."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:932
-#: ../src/plugins/textreport/DetDescendantReport.py:1128
+#: ../src/plugins/textreport/DetAncestralReport.py:933
+#: ../src/plugins/textreport/DetDescendantReport.py:1131
 msgid "The style used for additional detail data."
 msgstr "Style pour l'ajout de détails additionnels."
 
@@ -20938,68 +20946,68 @@ msgid "Descendant Report for %(person_name)s"
 msgstr "Liste détaillée des descendants de %(person_name)s"
 
 # trunk
-#: ../src/plugins/textreport/DetDescendantReport.py:576
+#: ../src/plugins/textreport/DetDescendantReport.py:579
 #, python-format
 msgid "Ref: %s. %s"
 msgstr "Ref: %s. %s"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:669
+#: ../src/plugins/textreport/DetDescendantReport.py:672
 #, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
 msgstr "Notes pour %(mother_name)s et %(father_name)s :"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:909
+#: ../src/plugins/textreport/DetDescendantReport.py:912
 msgid "Henry numbering"
 msgstr "Numérotation Henry"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:910
+#: ../src/plugins/textreport/DetDescendantReport.py:913
 msgid "d'Aboville numbering"
 msgstr "Numérotation d'Aboville"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:912
+#: ../src/plugins/textreport/DetDescendantReport.py:915
 msgid "Record (Modified Register) numbering"
 msgstr "Numérotation Enregistrement"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:965
+#: ../src/plugins/textreport/DetDescendantReport.py:968
 msgid "Use complete sentences"
 msgstr "Utiliser les phrases complètes"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1012
+#: ../src/plugins/textreport/DetDescendantReport.py:1015
 #: ../src/plugins/textreport/KinshipReport.py:362
 msgid "Include spouses"
 msgstr "Inclure les conjoints"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1013
+#: ../src/plugins/textreport/DetDescendantReport.py:1016
 msgid "Whether to include detailed spouse information."
 msgstr "Inclure ou non les informations détaillées concernant le conjoint."
 
 # trunk
-#: ../src/plugins/textreport/DetDescendantReport.py:1016
+#: ../src/plugins/textreport/DetDescendantReport.py:1019
 msgid "Include spouse reference"
 msgstr "Inclure une référence au conjoint"
 
 # trunk
-#: ../src/plugins/textreport/DetDescendantReport.py:1017
+#: ../src/plugins/textreport/DetDescendantReport.py:1020
 msgid "Whether to include reference to spouse."
 msgstr "Inclure ou non une référence au conjoint."
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1020
+#: ../src/plugins/textreport/DetDescendantReport.py:1023
 msgid "Include sign of succession ('+') in child-list"
 msgstr "Inclure le signe d'une descendance ('+') dans la liste des enfants"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1022
+#: ../src/plugins/textreport/DetDescendantReport.py:1025
 msgid "Whether to include a sign ('+') before the descendant number in the child-list to indicate a child has succession."
 msgstr "Inclure ou non un signe ('+') avant le numéro du descendant dans la liste des enfants pour indiquer que l'enfant a une descendance."
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1027
+#: ../src/plugins/textreport/DetDescendantReport.py:1030
 msgid "Include path to start-person"
 msgstr "Inclure un chemin vers la personne de départ"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1028
+#: ../src/plugins/textreport/DetDescendantReport.py:1031
 msgid "Whether to include the path of descendancy from the start-person to each descendant."
 msgstr "Inclure ou non la lignée des descendants de l'individu de départ vers chaque descendant."
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1117
+#: ../src/plugins/textreport/DetDescendantReport.py:1120
 msgid "The style used for the More About header and for headers of mates."
 msgstr "Le style utilisé pour les en-têtes plus de détails et conjoints."
 
@@ -21030,150 +21038,150 @@ msgstr "Le style utilisé pour les en-têtes de section."
 msgid "The basic style used for generation headings."
 msgstr "Le style de base pour les intitulés de génération."
 
-#: ../src/plugins/textreport/FamilyGroup.py:123
+#: ../src/plugins/textreport/FamilyGroup.py:124
 #: ../src/plugins/webreport/NarrativeWeb.py:1038
 #, python-format
 msgid "%(type)s: %(value)s"
 msgstr "%(type)s : %(value)s"
 
-#: ../src/plugins/textreport/FamilyGroup.py:377
+#: ../src/plugins/textreport/FamilyGroup.py:378
 msgid "Marriage:"
 msgstr "Mariage :"
 
-#: ../src/plugins/textreport/FamilyGroup.py:463
+#: ../src/plugins/textreport/FamilyGroup.py:464
 msgid "acronym for male|M"
 msgstr "H"
 
-#: ../src/plugins/textreport/FamilyGroup.py:465
+#: ../src/plugins/textreport/FamilyGroup.py:466
 msgid "acronym for female|F"
 msgstr "F"
 
-#: ../src/plugins/textreport/FamilyGroup.py:467
+#: ../src/plugins/textreport/FamilyGroup.py:468
 #, python-format
 msgid "acronym for unknown|%dU"
 msgstr "%dI"
 
-#: ../src/plugins/textreport/FamilyGroup.py:561
+#: ../src/plugins/textreport/FamilyGroup.py:562
 #, python-format
 msgid "Family Group Report - Generation %d"
 msgstr "Fiche familiale - Génération %d"
 
-#: ../src/plugins/textreport/FamilyGroup.py:563
-#: ../src/plugins/textreport/FamilyGroup.py:612
+#: ../src/plugins/textreport/FamilyGroup.py:564
+#: ../src/plugins/textreport/FamilyGroup.py:613
 #: ../src/plugins/textreport/textplugins.gpr.py:185
 msgid "Family Group Report"
 msgstr "Fiche familiale"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:635
+#: ../src/plugins/textreport/FamilyGroup.py:636
 msgid "Center Family"
 msgstr "Famille centrale"
 
-#: ../src/plugins/textreport/FamilyGroup.py:636
+#: ../src/plugins/textreport/FamilyGroup.py:637
 msgid "The center family for the report"
 msgstr "La famille centrale pour ce rapport"
 
-#: ../src/plugins/textreport/FamilyGroup.py:650
+#: ../src/plugins/textreport/FamilyGroup.py:651
 msgid "Recursive"
 msgstr "Récursif"
 
-#: ../src/plugins/textreport/FamilyGroup.py:651
+#: ../src/plugins/textreport/FamilyGroup.py:652
 msgid "Create reports for all descendants of this family."
 msgstr "Créer des rapports pour tous les descendants de cette famille."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:659
+#: ../src/plugins/textreport/FamilyGroup.py:660
 msgid "Generation numbers (recursive only)"
 msgstr "Numéros de génération (seulement récursif)"
 
-#: ../src/plugins/textreport/FamilyGroup.py:661
+#: ../src/plugins/textreport/FamilyGroup.py:662
 msgid "Whether to include the generation on each report (recursive only)."
 msgstr "Inclure ou non la génération dans chaque rapport (seulement récursif)."
 
-#: ../src/plugins/textreport/FamilyGroup.py:665
+#: ../src/plugins/textreport/FamilyGroup.py:666
 msgid "Parent Events"
 msgstr "Événements des parents"
 
-#: ../src/plugins/textreport/FamilyGroup.py:666
+#: ../src/plugins/textreport/FamilyGroup.py:667
 msgid "Whether to include events for parents."
 msgstr "Inclure ou non les événements pour les parents."
 
-#: ../src/plugins/textreport/FamilyGroup.py:669
+#: ../src/plugins/textreport/FamilyGroup.py:670
 msgid "Parent Addresses"
 msgstr "Adresses des parents"
 
-#: ../src/plugins/textreport/FamilyGroup.py:670
+#: ../src/plugins/textreport/FamilyGroup.py:671
 msgid "Whether to include addresses for parents."
 msgstr "Inclure ou non les adresses pour les parents."
 
-#: ../src/plugins/textreport/FamilyGroup.py:673
+#: ../src/plugins/textreport/FamilyGroup.py:674
 msgid "Parent Notes"
 msgstr "Notes des parents"
 
-#: ../src/plugins/textreport/FamilyGroup.py:674
+#: ../src/plugins/textreport/FamilyGroup.py:675
 msgid "Whether to include notes for parents."
 msgstr "Inclure ou non les notes pour les parents."
 
-#: ../src/plugins/textreport/FamilyGroup.py:677
+#: ../src/plugins/textreport/FamilyGroup.py:678
 msgid "Parent Attributes"
 msgstr "Attributs des parents"
 
-#: ../src/plugins/textreport/FamilyGroup.py:681
+#: ../src/plugins/textreport/FamilyGroup.py:682
 msgid "Alternate Parent Names"
 msgstr "Noms alternatifs des parents"
 
-#: ../src/plugins/textreport/FamilyGroup.py:682
+#: ../src/plugins/textreport/FamilyGroup.py:683
 msgid "Whether to include alternate names for parents."
 msgstr "Inclure ou non les noms alternatifs pour les parents."
 
-#: ../src/plugins/textreport/FamilyGroup.py:686
+#: ../src/plugins/textreport/FamilyGroup.py:687
 msgid "Parent Marriage"
 msgstr "Mariage des parents"
 
-#: ../src/plugins/textreport/FamilyGroup.py:687
+#: ../src/plugins/textreport/FamilyGroup.py:688
 msgid "Whether to include marriage information for parents."
 msgstr "Inclure ou non les informations du mariage des parents."
 
-#: ../src/plugins/textreport/FamilyGroup.py:691
+#: ../src/plugins/textreport/FamilyGroup.py:692
 msgid "Dates of Relatives"
 msgstr "Dates des proches"
 
-#: ../src/plugins/textreport/FamilyGroup.py:692
+#: ../src/plugins/textreport/FamilyGroup.py:693
 msgid "Whether to include dates for relatives (father, mother, spouse)."
 msgstr "Inclure ou non les dates pour les proches (père, mère, conjoint)."
 
-#: ../src/plugins/textreport/FamilyGroup.py:696
+#: ../src/plugins/textreport/FamilyGroup.py:697
 msgid "Children Marriages"
 msgstr "Mariages des enfants"
 
-#: ../src/plugins/textreport/FamilyGroup.py:697
+#: ../src/plugins/textreport/FamilyGroup.py:698
 msgid "Whether to include marriage information for children."
 msgstr "Inclure ou non les informations du mariage des enfants."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:702
+#: ../src/plugins/textreport/FamilyGroup.py:703
 msgid "Missing Information"
 msgstr "Information manquante"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:705
+#: ../src/plugins/textreport/FamilyGroup.py:706
 msgid "Print fields for missing information"
 msgstr "Champs d'impression pour les informations manquantes"
 
-#: ../src/plugins/textreport/FamilyGroup.py:707
+#: ../src/plugins/textreport/FamilyGroup.py:708
 msgid "Whether to include fields for missing information."
 msgstr "Inclure ou non les champs pour l'information manquante."
 
-#: ../src/plugins/textreport/FamilyGroup.py:749
+#: ../src/plugins/textreport/FamilyGroup.py:750
 #: ../src/plugins/textreport/TagReport.py:597
 msgid "The basic style used for the note display."
 msgstr "Le style de base pour afficher la note."
 
-#: ../src/plugins/textreport/FamilyGroup.py:758
+#: ../src/plugins/textreport/FamilyGroup.py:759
 msgid "The style used for the text related to the children."
 msgstr "Le style utilisé pour le texte relatif aux enfants."
 
-#: ../src/plugins/textreport/FamilyGroup.py:768
+#: ../src/plugins/textreport/FamilyGroup.py:769
 msgid "The style used for the parent's name"
 msgstr "Le style utilisé pour le nom des parents"
 
