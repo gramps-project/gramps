@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-29 11:02+0200\n"
-"PO-Revision-Date: 2014-04-29 11:10+0100\n"
+"PO-Revision-Date: 2014-04-29 11:19+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -39,7 +39,7 @@ msgstr ""
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid "Gramps is a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists."
-msgstr ""
+msgstr "Gramps est un programme de généalogie, intuitif pour le loisir et complet pour un usage professionnel."
 
 # trunk
 #: ../data/gramps.appdata.xml.in.h:2
@@ -48,7 +48,7 @@ msgstr "Il vous permet d'enregistrer de nombreux détails sur la vie d'un indivi
 
 #: ../data/gramps.appdata.xml.in.h:3
 msgid "All of your research is kept organized, searchable and as precise as you need it to be."
-msgstr ""
+msgstr "Toutes vos recherches sont organisées, consultables et précises pour votre confort d'utilisation."
 
 #: ../data/gramps.desktop.in.h:1
 #: ../gramps/gui/glade/displaystate.glade:7
