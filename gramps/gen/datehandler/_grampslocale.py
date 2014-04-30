@@ -141,182 +141,95 @@ try:
 except:
     import time
 
-    if codeset == 'ascii':
-        month_to_int = {
-            time.strftime('%B',(1,1,1,1,1,1,1,1,1)).lower() : 1,
-            time.strftime('%b',(1,1,1,1,1,1,1,1,1)).lower() : 1,
-            time.strftime('%B',(1,2,1,1,1,1,1,1,1)).lower() : 2,
-            time.strftime('%b',(1,2,1,1,1,1,1,1,1)).lower() : 2,
-            time.strftime('%B',(1,3,1,1,1,1,1,1,1)).lower() : 3,
-            time.strftime('%b',(1,3,1,1,1,1,1,1,1)).lower() : 3,
-            time.strftime('%B',(1,4,1,1,1,1,1,1,1)).lower() : 4,
-            time.strftime('%b',(1,4,1,1,1,1,1,1,1)).lower() : 4,
-            time.strftime('%B',(1,5,1,1,1,1,1,1,1)).lower() : 5,
-            time.strftime('%b',(1,5,1,1,1,1,1,1,1)).lower() : 5,
-            time.strftime('%B',(1,6,1,1,1,1,1,1,1)).lower() : 6,
-            time.strftime('%b',(1,6,1,1,1,1,1,1,1)).lower() : 6,
-            time.strftime('%B',(1,7,1,1,1,1,1,1,1)).lower() : 7,
-            time.strftime('%b',(1,7,1,1,1,1,1,1,1)).lower() : 7,
-            time.strftime('%B',(1,8,1,1,1,1,1,1,1)).lower() : 8,
-            time.strftime('%b',(1,8,1,1,1,1,1,1,1)).lower() : 8,
-            time.strftime('%B',(1,9,1,1,1,1,1,1,1)).lower() : 9,
-            time.strftime('%b',(1,9,1,1,1,1,1,1,1)).lower() : 9,
-            time.strftime('%B',(1,10,1,1,1,1,1,1,1)).lower() : 10,
-            time.strftime('%b',(1,10,1,1,1,1,1,1,1)).lower() : 10,
-            time.strftime('%B',(1,11,1,1,1,1,1,1,1)).lower() : 11,
-            time.strftime('%b',(1,11,1,1,1,1,1,1,1)).lower() : 11,
-            time.strftime('%B',(1,12,1,1,1,1,1,1,1)).lower() : 12,
-            time.strftime('%b',(1,12,1,1,1,1,1,1,1)).lower() : 12,
-            }
+    month_to_int = {
+        to_uni(time.strftime('%B',(1,1,1,1,1,1,1,1,1)), codeset).lower() : 1,
+        to_uni(time.strftime('%b',(1,1,1,1,1,1,1,1,1)), codeset).lower() : 1,
+        to_uni(time.strftime('%B',(1,2,1,1,1,1,1,1,1)), codeset).lower() : 2,
+        to_uni(time.strftime('%b',(1,2,1,1,1,1,1,1,1)), codeset).lower() : 2,
+        to_uni(time.strftime('%B',(1,3,1,1,1,1,1,1,1)), codeset).lower() : 3,
+        to_uni(time.strftime('%b',(1,3,1,1,1,1,1,1,1)), codeset).lower() : 3,
+        to_uni(time.strftime('%B',(1,4,1,1,1,1,1,1,1)), codeset).lower() : 4,
+        to_uni(time.strftime('%b',(1,4,1,1,1,1,1,1,1)), codeset).lower() : 4,
+        to_uni(time.strftime('%B',(1,5,1,1,1,1,1,1,1)), codeset).lower() : 5,
+        to_uni(time.strftime('%b',(1,5,1,1,1,1,1,1,1)), codeset).lower() : 5,
+        to_uni(time.strftime('%B',(1,6,1,1,1,1,1,1,1)), codeset).lower() : 6,
+        to_uni(time.strftime('%b',(1,6,1,1,1,1,1,1,1)), codeset).lower() : 6,
+        to_uni(time.strftime('%B',(1,7,1,1,1,1,1,1,1)), codeset).lower() : 7,
+        to_uni(time.strftime('%b',(1,7,1,1,1,1,1,1,1)), codeset).lower() : 7,
+        to_uni(time.strftime('%B',(1,8,1,1,1,1,1,1,1)), codeset).lower() : 8,
+        to_uni(time.strftime('%b',(1,8,1,1,1,1,1,1,1)), codeset).lower() : 8,
+        to_uni(time.strftime('%B',(1,9,1,1,1,1,1,1,1)), codeset).lower() : 9,
+        to_uni(time.strftime('%b',(1,9,1,1,1,1,1,1,1)), codeset).lower() : 9,
+        to_uni(time.strftime('%B',(1,10,1,1,1,1,1,1,1)), codeset).lower() : 10,
+        to_uni(time.strftime('%b',(1,10,1,1,1,1,1,1,1)), codeset).lower() : 10,
+        to_uni(time.strftime('%B',(1,11,1,1,1,1,1,1,1)), codeset).lower() : 11,
+        to_uni(time.strftime('%b',(1,11,1,1,1,1,1,1,1)), codeset).lower() : 11,
+        to_uni(time.strftime('%B',(1,12,1,1,1,1,1,1,1)), codeset).lower() : 12,
+        to_uni(time.strftime('%b',(1,12,1,1,1,1,1,1,1)), codeset).lower() : 12,
+       }
 
-        long_months = (
-            "",
-            time.strftime('%B',(1,1,1,1,1,1,1,1,1)),
-            time.strftime('%B',(1,2,1,1,1,1,1,1,1)),
-            time.strftime('%B',(1,3,1,1,1,1,1,1,1)),
-            time.strftime('%B',(1,4,1,1,1,1,1,1,1)),
-            time.strftime('%B',(1,5,1,1,1,1,1,1,1)),
-            time.strftime('%B',(1,6,1,1,1,1,1,1,1)),
-            time.strftime('%B',(1,7,1,1,1,1,1,1,1)),
-            time.strftime('%B',(1,8,1,1,1,1,1,1,1)),
-            time.strftime('%B',(1,9,1,1,1,1,1,1,1)),
-            time.strftime('%B',(1,10,1,1,1,1,1,1,1)),
-            time.strftime('%B',(1,11,1,1,1,1,1,1,1)),
-            time.strftime('%B',(1,12,1,1,1,1,1,1,1)),
-            )
+    long_months = (
+        "",
+        to_uni(time.strftime('%B',(1,1,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(1,2,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(1,3,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(1,4,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(1,5,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(1,6,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(1,7,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(1,8,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(1,9,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(1,10,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(1,11,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%B',(1,12,1,1,1,1,1,1,1)), codeset),
+       )
 
-        short_months = (
-            "",
-            time.strftime('%b',(1,1,1,1,1,1,1,1,1)),
-            time.strftime('%b',(1,2,1,1,1,1,1,1,1)),
-            time.strftime('%b',(1,3,1,1,1,1,1,1,1)),
-            time.strftime('%b',(1,4,1,1,1,1,1,1,1)),
-            time.strftime('%b',(1,5,1,1,1,1,1,1,1)),
-            time.strftime('%b',(1,6,1,1,1,1,1,1,1)),
-            time.strftime('%b',(1,7,1,1,1,1,1,1,1)),
-            time.strftime('%b',(1,8,1,1,1,1,1,1,1)),
-            time.strftime('%b',(1,9,1,1,1,1,1,1,1)),
-            time.strftime('%b',(1,10,1,1,1,1,1,1,1)),
-            time.strftime('%b',(1,11,1,1,1,1,1,1,1)),
-            time.strftime('%b',(1,12,1,1,1,1,1,1,1)),
-            )
+    short_months = (
+        "",
+        to_uni(time.strftime('%b',(1,1,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(1,2,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(1,3,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(1,4,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(1,5,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(1,6,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(1,7,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(1,8,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(1,9,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(1,10,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(1,11,1,1,1,1,1,1,1)), codeset),
+        to_uni(time.strftime('%b',(1,12,1,1,1,1,1,1,1)), codeset),
+       )
 
-        long_days = (
-            "",
-            time.strftime('%A',(1,1,1,1,1,1,6,1,1)), # Sunday
-            time.strftime('%A',(1,1,1,1,1,1,0,1,1)), # Monday
-            time.strftime('%A',(1,1,1,1,1,1,1,1,1)), # Tuesday
-            time.strftime('%A',(1,1,1,1,1,1,2,1,1)), # Wednesday
-            time.strftime('%A',(1,1,1,1,1,1,3,1,1)), # Thursday
-            time.strftime('%A',(1,1,1,1,1,1,4,1,1)), # Friday
-            time.strftime('%A',(1,1,1,1,1,1,5,1,1)), # Saturday
-            )
+    # Gramps day number: Sunday => 1, Monday => 2, etc
+    # strftime takes a (from the doc of standard Python library "time")
+    #  "tuple or struct_time representing a time as returned by gmtime()
+    #   or localtime()"
+    # see http://docs.python.org/library/time.html
+    # The seventh tuple entry returned by gmtime() is the day-of-the-week
+    # number. tm_wday => range [0,6], Monday is 0
+    # Note. Only the seventh tuple entry matters. The others are
+    # just a dummy.
+    long_days = (
+        "",
+        to_uni(time.strftime('%A',(1,1,1,1,1,1,6,1,1)), codeset), # Sunday
+        to_uni(time.strftime('%A',(1,1,1,1,1,1,0,1,1)), codeset), # Monday
+        to_uni(time.strftime('%A',(1,1,1,1,1,1,1,1,1)), codeset), # Tuesday
+        to_uni(time.strftime('%A',(1,1,1,1,1,1,2,1,1)), codeset), # Wednesday
+        to_uni(time.strftime('%A',(1,1,1,1,1,1,3,1,1)), codeset), # Thursday
+        to_uni(time.strftime('%A',(1,1,1,1,1,1,4,1,1)), codeset), # Friday
+        to_uni(time.strftime('%A',(1,1,1,1,1,1,5,1,1)), codeset), # Saturday
+        )
 
-        short_days = (
-            "",
-            time.strftime('%a',(1,1,1,1,1,1,6,1,1)), # Sunday
-            time.strftime('%a',(1,1,1,1,1,1,0,1,1)), # Monday
-            time.strftime('%a',(1,1,1,1,1,1,1,1,1)), # Tuesday
-            time.strftime('%a',(1,1,1,1,1,1,2,1,1)), # Wednesday
-            time.strftime('%a',(1,1,1,1,1,1,3,1,1)), # Thursday
-            time.strftime('%a',(1,1,1,1,1,1,4,1,1)), # Friday
-            time.strftime('%a',(1,1,1,1,1,1,5,1,1)), # Saturday
-            )
-
-    else:
-
-        # localized names
-
-        month_to_int = {
-            to_uni(time.strftime('%B',(1,1,1,1,1,1,1,1,1)), codeset).lower() : 1,
-            to_uni(time.strftime('%b',(1,1,1,1,1,1,1,1,1)), codeset).lower() : 1,
-            to_uni(time.strftime('%B',(1,2,1,1,1,1,1,1,1)), codeset).lower() : 2,
-            to_uni(time.strftime('%b',(1,2,1,1,1,1,1,1,1)), codeset).lower() : 2,
-            to_uni(time.strftime('%B',(1,3,1,1,1,1,1,1,1)), codeset).lower() : 3,
-            to_uni(time.strftime('%b',(1,3,1,1,1,1,1,1,1)), codeset).lower() : 3,
-            to_uni(time.strftime('%B',(1,4,1,1,1,1,1,1,1)), codeset).lower() : 4,
-            to_uni(time.strftime('%b',(1,4,1,1,1,1,1,1,1)), codeset).lower() : 4,
-            to_uni(time.strftime('%B',(1,5,1,1,1,1,1,1,1)), codeset).lower() : 5,
-            to_uni(time.strftime('%b',(1,5,1,1,1,1,1,1,1)), codeset).lower() : 5,
-            to_uni(time.strftime('%B',(1,6,1,1,1,1,1,1,1)), codeset).lower() : 6,
-            to_uni(time.strftime('%b',(1,6,1,1,1,1,1,1,1)), codeset).lower() : 6,
-            to_uni(time.strftime('%B',(1,7,1,1,1,1,1,1,1)), codeset).lower() : 7,
-            to_uni(time.strftime('%b',(1,7,1,1,1,1,1,1,1)), codeset).lower() : 7,
-            to_uni(time.strftime('%B',(1,8,1,1,1,1,1,1,1)), codeset).lower() : 8,
-            to_uni(time.strftime('%b',(1,8,1,1,1,1,1,1,1)), codeset).lower() : 8,
-            to_uni(time.strftime('%B',(1,9,1,1,1,1,1,1,1)), codeset).lower() : 9,
-            to_uni(time.strftime('%b',(1,9,1,1,1,1,1,1,1)), codeset).lower() : 9,
-            to_uni(time.strftime('%B',(1,10,1,1,1,1,1,1,1)), codeset).lower() : 10,
-            to_uni(time.strftime('%b',(1,10,1,1,1,1,1,1,1)), codeset).lower() : 10,
-            to_uni(time.strftime('%B',(1,11,1,1,1,1,1,1,1)), codeset).lower() : 11,
-            to_uni(time.strftime('%b',(1,11,1,1,1,1,1,1,1)), codeset).lower() : 11,
-            to_uni(time.strftime('%B',(1,12,1,1,1,1,1,1,1)), codeset).lower() : 12,
-            to_uni(time.strftime('%b',(1,12,1,1,1,1,1,1,1)), codeset).lower() : 12,
-            }
-
-        long_months = (
-            "",
-            to_uni(time.strftime('%B',(1,1,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%B',(1,2,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%B',(1,3,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%B',(1,4,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%B',(1,5,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%B',(1,6,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%B',(1,7,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%B',(1,8,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%B',(1,9,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%B',(1,10,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%B',(1,11,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%B',(1,12,1,1,1,1,1,1,1)), codeset),
-            )
-
-        short_months = (
-            "",
-            to_uni(time.strftime('%b',(1,1,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%b',(1,2,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%b',(1,3,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%b',(1,4,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%b',(1,5,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%b',(1,6,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%b',(1,7,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%b',(1,8,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%b',(1,9,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%b',(1,10,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%b',(1,11,1,1,1,1,1,1,1)), codeset),
-            to_uni(time.strftime('%b',(1,12,1,1,1,1,1,1,1)), codeset),
-            )
-
-        # Gramps day number: Sunday => 1, Monday => 2, etc
-        # strftime takes a (from the doc of standard Python library "time")
-        #  "tuple or struct_time representing a time as returned by gmtime()
-        #   or localtime()"
-        # see http://docs.python.org/library/time.html
-        # The seventh tuple entry returned by gmtime() is the day-of-the-week
-        # number. tm_wday => range [0,6], Monday is 0
-        # Note. Only the seventh tuple entry matters. The others are
-        # just a dummy.
-
-        long_days = (
-            "",
-            to_uni(time.strftime('%A',(1,1,1,1,1,1,6,1,1)), codeset), # Sunday
-            to_uni(time.strftime('%A',(1,1,1,1,1,1,0,1,1)), codeset), # Monday
-            to_uni(time.strftime('%A',(1,1,1,1,1,1,1,1,1)), codeset), # Tuesday
-            to_uni(time.strftime('%A',(1,1,1,1,1,1,2,1,1)), codeset), # Wednesday
-            to_uni(time.strftime('%A',(1,1,1,1,1,1,3,1,1)), codeset), # Thursday
-            to_uni(time.strftime('%A',(1,1,1,1,1,1,4,1,1)), codeset), # Friday
-            to_uni(time.strftime('%A',(1,1,1,1,1,1,5,1,1)), codeset), # Saturday
-            )
-
-        short_days = (
-            "",
-            to_uni(time.strftime('%a',(1,1,1,1,1,1,6,1,1)), codeset), # Sunday
-            to_uni(time.strftime('%a',(1,1,1,1,1,1,0,1,1)), codeset), # Monday
-            to_uni(time.strftime('%a',(1,1,1,1,1,1,1,1,1)), codeset), # Tuesday
-            to_uni(time.strftime('%a',(1,1,1,1,1,1,2,1,1)), codeset), # Wednesday
-            to_uni(time.strftime('%a',(1,1,1,1,1,1,3,1,1)), codeset), # Thursday
-            to_uni(time.strftime('%a',(1,1,1,1,1,1,4,1,1)), codeset), # Friday
-            to_uni(time.strftime('%a',(1,1,1,1,1,1,5,1,1)), codeset), # Saturday
-            )
+    short_days = (
+        "",
+        to_uni(time.strftime('%a',(1,1,1,1,1,1,6,1,1)), codeset), # Sunday
+        to_uni(time.strftime('%a',(1,1,1,1,1,1,0,1,1)), codeset), # Monday
+        to_uni(time.strftime('%a',(1,1,1,1,1,1,1,1,1)), codeset), # Tuesday
+        to_uni(time.strftime('%a',(1,1,1,1,1,1,2,1,1)), codeset), # Wednesday
+        to_uni(time.strftime('%a',(1,1,1,1,1,1,3,1,1)), codeset), # Thursday
+        to_uni(time.strftime('%a',(1,1,1,1,1,1,4,1,1)), codeset), # Friday
+        to_uni(time.strftime('%a',(1,1,1,1,1,1,5,1,1)), codeset), # Saturday
+        )
 
     # depending on the locale, the value returned for 20th Feb 2009 could be 
     # of the format '20/2/2009', '20/02/2009', '20.2.2009', '20.02.2009', 
