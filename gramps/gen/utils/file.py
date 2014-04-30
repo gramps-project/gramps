@@ -95,11 +95,10 @@ def get_empty_tempdir(dirname):
     or for inadequate permissions to delete dir/files or create dir(s)
 
     """
-    dirpath = os.path.join(TEMP_DIR,dirname)
+    dirpath = os.path.join(TEMP_DIR,cuni(dirname))
     if os.path.isdir(dirpath):
         shutil.rmtree(dirpath)
     os.makedirs(dirpath)
-    dirpath = get_unicode_path_from_env_var(dirpath)
     return dirpath
 
 def rm_tempdir(path):
