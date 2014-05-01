@@ -45,7 +45,6 @@ else:
     from urllib.parse import urlparse
     from urllib.request import urlopen, url2pathname
 import tempfile
-import io
 #-------------------------------------------------------------------------
 #
 # set up logging
