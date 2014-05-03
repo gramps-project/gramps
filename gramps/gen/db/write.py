@@ -85,6 +85,7 @@ from . import (DbBsddbRead, DbWriteBase, BSDDBTxn,
 from .dbconst import *
 from ..utils.callback import Callback
 from ..utils.cast import conv_dbstr_to_unicode
+from ..utils.id import create_id
 from ..updatecallback import UpdateCallback
 from ..errors import DbError
 from ..constfunc import (win, conv_to_unicode, cuni, UNITYPE, handle2internal,
@@ -1552,15 +1553,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         except IOError:
             pass
 
-    def create_id(self):
-        return "%08x%08x" % ( int(time.time()*10000), 
-                              self.rand.randint(0, maxsize))
-
     def __add_object(self, obj, transaction, find_next_func, commit_func):
         if find_next_func and not obj.gramps_id:
             obj.gramps_id = find_next_func()
         if not obj.handle:
-            obj.handle = self.create_id()
+            obj.handle = create_id()
         commit_func(obj, transaction)
         return obj.handle
 

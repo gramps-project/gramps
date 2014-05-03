@@ -747,7 +747,7 @@ class CSVParser(object):
             id_ = self.db.fid2user_format(family_ref[1:-1])
             family.set_gramps_id(id_)
         # add it:
-        family.set_handle(self.db.create_id())
+        family.set_handle(create_id())
         if self.default_tag:
             family.add_tag(self.default_tag.handle)
         if husband:

@@ -19,39 +19,51 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-from __future__ import with_statement, unicode_literals
-
-import sys
-import os
-import re
-from ..lib.markertype import MarkerType
-from ..lib.tag import Tag
-from ..lib.place import Place
-from ..lib.placeref import PlaceRef
-from ..lib.placetype import PlaceType
-from ..utils.file import create_checksum
-import time
-import logging
-LOG = logging.getLogger(".upgrade")
-
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-from ..constfunc import cuni, UNITYPE, handle2internal
-
 """
 methods to upgrade a database from version 13 to current version
 """
+
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+from __future__ import with_statement, unicode_literals
+import sys
+import os
+import re
+import time
+import logging
+
 from ..config import config
 if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
     from bsddb3 import db
 else:
     from bsddb import db
-from . import BSDDBTxn
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from ..constfunc import cuni, UNITYPE, handle2internal
+from ..lib.markertype import MarkerType
 from ..lib.nameorigintype import NameOriginType
+from ..lib.place import Place
+from ..lib.placeref import PlaceRef
+from ..lib.placetype import PlaceType
+from ..lib.tag import Tag
+from ..utils.file import create_checksum
+from ..utils.id import create_id
+from . import BSDDBTxn
 from .write import _mkname, SURNAMES
 from .dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
-                            MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, SOURCE_KEY)
+                      MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, SOURCE_KEY)
 from gramps.gui.dialog import (InfoDialog)
+
+LOG = logging.getLogger(".upgrade")
 
 def gramps_upgrade_17(self):
     """
@@ -262,7 +274,7 @@ def get_location(loc):
     return location
 
 def add_place(self, name, level, parent, title):
-    handle = self.create_id()
+    handle = create_id()
     place = Place()
     place.handle = handle
     self.max_id += 1
@@ -831,7 +843,7 @@ def convert_source_list_to_citation_list_16(self, source_list):
     citation_list = []
     for source in source_list:
         (date, private, note_list, confidence, ref, page) = source
-        new_handle = self.create_id()
+        new_handle = create_id()
         new_media_list = []
         new_data_map = {}
         new_change = time.time()
@@ -1066,7 +1078,7 @@ def convert_marker(self, marker_field):
     if tag_name != '':
         if tag_name not in self.tags:
             tag = Tag()
-            handle = self.create_id()
+            handle = create_id()
             tag.set_handle(handle)
             tag.set_change_time(time.time())
             tag.set_name(tag_name)
