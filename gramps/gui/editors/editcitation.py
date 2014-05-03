@@ -279,10 +279,10 @@ class EditCitation(EditPrimary):
             name = prim_object.get_page()
             msg1 = _("Cannot save citation. ID already exists.")
             msg2 = _("You have attempted to use the existing Gramps ID with "
-                     "value %(gramps_id)s. This value is already used by '" 
+                     "value %(id)s. This value is already used by '" 
                      "%(prim_object)s'. Please enter a different ID or leave "
                      "blank to get the next available ID value.") % {
-                         'gramps_id' : gramps_id, 'prim_object' : name }
+                         'id' : gramps_id, 'prim_object' : name }
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)
             return
