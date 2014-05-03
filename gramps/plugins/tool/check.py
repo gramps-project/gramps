@@ -1916,7 +1916,7 @@ class CheckIntegrity(object):
                         new_citation.set_confidence_level(sourceref[3])
                         new_citation.set_reference_handle(sourceref[4])
                         new_citation.set_page(sourceref[5])
-                        citation_handle = Utils.create_id()
+                        citation_handle = create_id()
                         new_citation.set_handle(citation_handle)
                         self.replaced_sourceref.append(handle)
                         logging.warning('    FAIL: the source "%s" has a media '

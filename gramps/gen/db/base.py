@@ -87,12 +87,6 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
-    def create_id(self):
-        """
-        Create an id
-        """
-        raise NotImplementedError
-
     def db_has_bm_changes(self):
         """
         Return whethere there were bookmark changes during the session.
