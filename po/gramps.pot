@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-29 10:53+0200\n"
+"POT-Creation-Date: 2014-05-04 15:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6585,12 +6585,16 @@ msgstr ""
 msgid "Cannot save citation. ID already exists."
 msgstr ""
 
-#: ../src/gui/editors/editcitation.py:278
+#: ../src/gui/editors/editcitation.py:278 ../src/gui/editors/editevent.py:241
+#: ../src/gui/editors/editmedia.py:280 ../src/gui/editors/editperson.py:808
+#: ../src/gui/editors/editplace.py:303
+#: ../src/gui/editors/editrepository.py:172
+#: ../src/gui/editors/editsource.py:192
 #, python-format
 msgid ""
-"You have attempted to use the existing Gramps ID with value %(gramps_id)s. "
-"This value is already used by '%(prim_object)s'. Please enter a different ID "
-"or leave blank to get the next available ID value."
+"You have attempted to use the existing Gramps ID with value %(id)s. This "
+"value is already used by '%(prim_object)s'. Please enter a different ID or "
+"leave blank to get the next available ID value."
 msgstr ""
 
 #: ../src/gui/editors/editcitation.py:290
@@ -6638,17 +6642,6 @@ msgstr ""
 
 #: ../src/gui/editors/editevent.py:240
 msgid "Cannot save event. ID already exists."
-msgstr ""
-
-#: ../src/gui/editors/editevent.py:241 ../src/gui/editors/editmedia.py:280
-#: ../src/gui/editors/editperson.py:808 ../src/gui/editors/editplace.py:303
-#: ../src/gui/editors/editrepository.py:172
-#: ../src/gui/editors/editsource.py:192
-#, python-format
-msgid ""
-"You have attempted to use the existing Gramps ID with value %(id)s. This "
-"value is already used by '%(prim_object)s'. Please enter a different ID or "
-"leave blank to get the next available ID value."
 msgstr ""
 
 #: ../src/gui/editors/editevent.py:254
