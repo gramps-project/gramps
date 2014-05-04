@@ -1,10 +1,12 @@
-2014-04-xx
+2014-05-xx
 Version 4.0.4, "Not the comfy chair", a maintenance release.
 * Upgrade to db version 17 fails in Python 3 due to use of iteritems
 * Database corrupted - TypeError: unhashable type: 'list'
 * Fix bug in abandon changes and quit
 * Paths, unicode and bsddb module
+* Consistency on create_id method
 * Better handling for non-ASCII characters on database-path
+* 'Display as' field in Name Editor reverts to Preferences default
 * Fix vcard date converter
 * View does not communicate over proxy server with autorisation
 * Enhanced Bookmark support
@@ -19,6 +21,8 @@ Version 4.0.4, "Not the comfy chair", a maintenance release.
 * Poor contrast mouse on mouse over
 * Drag and drop only one data into Editors tabs
 * NotRelated and Verify data dialogs appear either too small or too big
+* Unable to edit citations on association
+* Relationship calculator not displaying data
 * Enhancements and consitency on events gramplet, selector and view
 * Sometimes says 'no data exists for note' when saving
 * Enhanced Citation Editor
@@ -29,9 +33,11 @@ Version 4.0.4, "Not the comfy chair", a maintenance release.
 * Media Editor error if Path value was changed to a non existing file
 * Register history objects at startup
 * Avoid dumb encoding error when compiling gpr file
+* Work around Py2Cairo
 * Given Name Cloud Gramplet splits up given names into words
 * Users should not be allowed to edit and delete 'default' style into Style Editor
 * Filename Decoding Error in Graphical Reports
+* Missing closing bracket in Web_Basic-Spruce.css
 * Reorder tool: global name 'gen' is not defined
 * the scroll windows for patchname tools didn't expand
 * Some fixes and enhancements
