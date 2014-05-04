@@ -28,7 +28,6 @@ class DbTest(unittest.TestCase):
     READ_METHODS = [
         "all_handles",
         "close",
-        "create_id",
         "db_has_bm_changes",
         "find_backlink_handles",
         "find_initial_person",
