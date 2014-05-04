@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-29 10:59+0200\n"
+"POT-Creation-Date: 2014-05-04 16:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,11 +55,11 @@ msgstr ""
 msgid "OK to overwrite?"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:292 ../gramps/cli/clidbman.py:217
+#: ../gramps/cli/arghandler.py:292 ../gramps/cli/clidbman.py:216
 msgid "yes"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:292 ../gramps/cli/clidbman.py:219
+#: ../gramps/cli/arghandler.py:292 ../gramps/cli/clidbman.py:218
 msgid "no"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 #: ../gramps/cli/arghandler.py:410 ../gramps/cli/arghandler.py:411
 #: ../gramps/cli/arghandler.py:420 ../gramps/cli/arghandler.py:427
 #: ../gramps/cli/arghandler.py:428 ../gramps/cli/arghandler.py:430
-#: ../gramps/cli/clidbman.py:76 ../gramps/cli/clidbman.py:222
+#: ../gramps/cli/clidbman.py:75 ../gramps/cli/clidbman.py:221
 #: ../gramps/gui/clipboard.py:936 ../gramps/gui/configure.py:1366
 msgid "Family Tree"
 msgstr ""
@@ -357,30 +357,30 @@ msgid ""
 "To use in the command-line mode, supply at least one input file to process."
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:89
+#: ../gramps/cli/clidbman.py:88
 #, python-format
 msgid ""
 "ERROR: %(title)s \n"
 "       %(message)s"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:215
+#: ../gramps/cli/clidbman.py:214
 msgid "Number of people"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:217 ../gramps/cli/clidbman.py:219
+#: ../gramps/cli/clidbman.py:216 ../gramps/cli/clidbman.py:218
 msgid "Locked?"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:220
+#: ../gramps/cli/clidbman.py:219
 msgid "Bsddb version"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:221
+#: ../gramps/cli/clidbman.py:220
 msgid "Schema version"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:223
+#: ../gramps/cli/clidbman.py:222
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:93
 #: ../gramps/gui/glade/editmedia.glade.h:13
@@ -389,29 +389,29 @@ msgstr ""
 msgid "Path"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:224 ../gramps/gui/dbman.py:300
+#: ../gramps/cli/clidbman.py:223 ../gramps/gui/dbman.py:300
 msgid "Last accessed"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:279
+#: ../gramps/cli/clidbman.py:278
 #, python-format
 msgid "Starting Import, %s"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:285
+#: ../gramps/cli/clidbman.py:284
 msgid "Import finished..."
 msgstr ""
 
 #. Create a new database
-#: ../gramps/cli/clidbman.py:370 ../gramps/plugins/importer/importcsv.py:330
+#: ../gramps/cli/clidbman.py:369 ../gramps/plugins/importer/importcsv.py:330
 msgid "Importing data..."
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:416
+#: ../gramps/cli/clidbman.py:415
 msgid "Could not rename Family Tree"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:450
+#: ../gramps/cli/clidbman.py:449
 #, python-format
 msgid ""
 "\n"
@@ -423,18 +423,18 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:501 ../gramps/gui/configure.py:1271
+#: ../gramps/cli/clidbman.py:500 ../gramps/gui/configure.py:1271
 msgid "Never"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/cli/clidbman.py:517
+#: ../gramps/cli/clidbman.py:516
 #, python-format
 msgid "Locked by %s"
 msgstr ""
 
 #. not all families have a spouse.
-#: ../gramps/cli/clidbman.py:520 ../gramps/gen/lib/attrtype.py:64
+#: ../gramps/cli/clidbman.py:519 ../gramps/gen/lib/attrtype.py:64
 #: ../gramps/gen/lib/childreftype.py:80 ../gramps/gen/lib/eventroletype.py:59
 #: ../gramps/gen/lib/eventtype.py:167 ../gramps/gen/lib/familyreltype.py:53
 #: ../gramps/gen/lib/grampstype.py:44 ../gramps/gen/lib/nameorigintype.py:81
@@ -729,23 +729,23 @@ msgstr ""
 msgid "Date displayer for '%s' not available, using default"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1617 ../gramps/gui/widgets/fanchart.py:1842
+#: ../gramps/gen/db/base.py:1611 ../gramps/gui/widgets/fanchart.py:1842
 msgid "Add child to family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1630 ../gramps/gen/db/base.py:1635
+#: ../gramps/gen/db/base.py:1624 ../gramps/gen/db/base.py:1629
 msgid "Remove child from family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1710 ../gramps/gen/db/base.py:1714
+#: ../gramps/gen/db/base.py:1704 ../gramps/gen/db/base.py:1708
 msgid "Remove Family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1755
+#: ../gramps/gen/db/base.py:1749
 msgid "Remove father from family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1757
+#: ../gramps/gen/db/base.py:1751
 msgid "Remove mother from family"
 msgstr ""
 
@@ -887,7 +887,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/db/undoredo.py:249 ../gramps/gen/db/undoredo.py:286
-#: ../gramps/gen/db/write.py:2124
+#: ../gramps/gen/db/write.py:2121
 #, python-format
 msgid "_Undo %s"
 msgstr ""
@@ -897,46 +897,46 @@ msgstr ""
 msgid "_Redo %s"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:90
+#: ../gramps/gen/db/upgrade.py:102
 #, python-format
 msgid "%6d  People        upgraded with %6d citations in %6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:91
+#: ../gramps/gen/db/upgrade.py:103
 #, python-format
 msgid "%6d  Families      upgraded with %6d citations in %6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:92
+#: ../gramps/gen/db/upgrade.py:104
 #, python-format
 msgid "%6d  Events        upgraded with %6d citations in %6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:93
+#: ../gramps/gen/db/upgrade.py:105
 #, python-format
 msgid "%6d  Media Objects upgraded with %6d citations in %6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:94
+#: ../gramps/gen/db/upgrade.py:106
 #, python-format
 msgid "%6d  Places        upgraded with %6d citations in %6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:95
+#: ../gramps/gen/db/upgrade.py:107
 #, python-format
 msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:96
+#: ../gramps/gen/db/upgrade.py:108
 #, python-format
 msgid "%6d  Sources       upgraded with %6d citations in %6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:479
+#: ../gramps/gen/db/upgrade.py:491
 msgid "Number of new objects upgraded:\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:485
+#: ../gramps/gen/db/upgrade.py:497
 msgid ""
 "\n"
 "\n"
@@ -946,11 +946,11 @@ msgid ""
 "information"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:489
+#: ../gramps/gen/db/upgrade.py:501
 msgid "Upgrade Statistics"
 msgstr ""
 
-#: ../gramps/gen/db/write.py:1119
+#: ../gramps/gen/db/write.py:1120
 #, python-format
 msgid ""
 "An attempt is made to safe a reference key which is partly bytecode, this is "
@@ -960,11 +960,11 @@ msgstr ""
 
 #. Make a tuple of the functions and classes that we need for
 #. each of the primary object tables.
-#: ../gramps/gen/db/write.py:1190
+#: ../gramps/gen/db/write.py:1191
 msgid "Rebuild reference map"
 msgstr ""
 
-#: ../gramps/gen/db/write.py:1977
+#: ../gramps/gen/db/write.py:1974
 #, python-format
 msgid ""
 "A second transaction is started while there is still a transaction, \"%s\", "
@@ -8752,11 +8752,17 @@ msgid "Cannot save citation. ID already exists."
 msgstr ""
 
 #: ../gramps/gui/editors/editcitation.py:281
+#: ../gramps/gui/editors/editevent.py:242
+#: ../gramps/gui/editors/editmedia.py:283
+#: ../gramps/gui/editors/editperson.py:823
+#: ../gramps/gui/editors/editplace.py:306
+#: ../gramps/gui/editors/editrepository.py:173
+#: ../gramps/gui/editors/editsource.py:193
 #, python-format
 msgid ""
-"You have attempted to use the existing Gramps ID with value %(gramps_id)s. "
-"This value is already used by '%(prim_object)s'. Please enter a different ID "
-"or leave blank to get the next available ID value."
+"You have attempted to use the existing Gramps ID with value %(id)s. This "
+"value is already used by '%(prim_object)s'. Please enter a different ID or "
+"leave blank to get the next available ID value."
 msgstr ""
 
 #: ../gramps/gui/editors/editcitation.py:293
@@ -8861,19 +8867,6 @@ msgstr ""
 
 #: ../gramps/gui/editors/editevent.py:241
 msgid "Cannot save event. ID already exists."
-msgstr ""
-
-#: ../gramps/gui/editors/editevent.py:242
-#: ../gramps/gui/editors/editmedia.py:283
-#: ../gramps/gui/editors/editperson.py:823
-#: ../gramps/gui/editors/editplace.py:306
-#: ../gramps/gui/editors/editrepository.py:173
-#: ../gramps/gui/editors/editsource.py:193
-#, python-format
-msgid ""
-"You have attempted to use the existing Gramps ID with value %(id)s. This "
-"value is already used by '%(prim_object)s'. Please enter a different ID or "
-"leave blank to get the next available ID value."
 msgstr ""
 
 #: ../gramps/gui/editors/editevent.py:255
