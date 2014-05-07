@@ -37,7 +37,7 @@ from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import STRTYPE
+from ..constfunc import STRTYPE, cuni
 
 _UNKNOWN = _('Unknown')
 
@@ -235,7 +235,7 @@ class GrampsType(GrampsTypeC):
         """
         return {"_class": self.__class__.__name__,
                 "value": self.__value, 
-                "string": str(self)}
+                "string": cuni(self)}
 
     @classmethod
     def from_struct(cls, struct):
