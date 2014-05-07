@@ -39,7 +39,7 @@ from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import STRTYPE
+from ..constfunc import STRTYPE, cuni
 
 _UNKNOWN = _('Unknown')
 
@@ -233,7 +233,7 @@ class GrampsType(GrampsTypeC):
         :rtype: dict
         """
         return {"value": self.__value, 
-                "string": str(self)}
+                "string": cuni(self)}
 
     def unserialize(self, data):
         """Convert a serialized tuple of data to an object."""
