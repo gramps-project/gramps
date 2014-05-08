@@ -75,7 +75,7 @@ from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog, MissingMediaDialog
 from gramps.gen.display.name import displayer as _nd
 from gramps.gui.glade import Glade
-from gramps.gen.constfunc import UNITYPE, cuni, handle2internal
+from gramps.gen.constfunc import UNITYPE, cuni, handle2internal, conv_to_unicode
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext
