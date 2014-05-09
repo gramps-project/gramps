@@ -94,10 +94,10 @@ _mother_level = [ "", "mãe", "avó", "bisavó", "trisavó",
 # "tetravô", the "quinto avô", "sexto avô", etc.
 
 _son_level = [ "", "filho", "neto", "bisneto",
-               "trineto", "tretaneto", "pentaneto", "hexaneto", "heptaneto", "octaneto"]
+               "trineto", "tetraneto", "pentaneto", "hexaneto", "heptaneto", "octaneto"]
 
 _daughter_level = [ "", "filha", "neta", "bisneta",
-                    "trineta", "tretaneta", "pentaneta", "hexaneta", "heptaneta", "octaneta"]
+                    "trineta", "tetraneta", "pentaneta", "hexaneta", "heptaneta", "octaneta"]
 
 _sister_level = [ "", "irmã", "tia", "tia avó", "tia bisavó", "tia trisavó", "tia tetravó",
 		  "tia pentavó", "tia hexavó", "tia heptavó", "tia octovó"]
