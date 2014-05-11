@@ -26,14 +26,14 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import EventType, NoteType
 from gramps.gen.db import DbTxn
 from ..glade import Glade
@@ -242,6 +242,9 @@ class EditEventRef(EditReference):
         return (_('Event Reference Editor'),submenu_label)
         
     def ok_clicked(self, obj):
+
+        if self.check_for_duplicate_id('Event'):
+            return
 
         if self.source.handle:
             with DbTxn(_("Modify Event"), self.db) as trans:

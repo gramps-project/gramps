@@ -389,6 +389,7 @@ gramps/gui/editors/editplace.py
 gramps/gui/editors/editplacename.py
 gramps/gui/editors/editplaceref.py
 gramps/gui/editors/editprimary.py
+gramps/gui/editors/editreference.py
 gramps/gui/editors/editreporef.py
 gramps/gui/editors/editrepository.py
 gramps/gui/editors/editsource.py

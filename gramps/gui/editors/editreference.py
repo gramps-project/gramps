@@ -3,6 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 #               2009       Gary Burton
+# Copyright (C) 2014       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,6 +32,9 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from ..dialog import ErrorDialog
 from ..managedwindow import ManagedWindow
 from .displaytabs import GrampsTab
 from gramps.gen.config import config
@@ -253,3 +257,43 @@ class EditReference(ManagedWindow, DbGUIElement):
         of the main interface, not of the displaytabs.
         """
         pass
+
+    def check_for_duplicate_id(self, type):
+        """
+        check to see if the gramps ID (if any) already exists
+
+        type    : the gramps primary object type, a string
+        returns : True if the gramps ID already exists, else False
+
+        N.B. the various strings, string variables, and titles existed already
+        """
+        new_id = self.source.get_gramps_id()
+        if new_id:
+            old_primary = self.db.get_from_name_and_gramps_id(type, new_id)
+            if old_primary:
+                if type == 'Event':
+                    msg1 = _("Cannot save event. ID already exists.")
+                    description = old_primary.get_description()
+                elif type == 'Media':
+                    msg1 = _("Cannot save media object. ID already exists.")
+                    description = old_primary.get_description()
+                elif type == 'Repository':
+                    msg1 = _("Cannot save repository. ID already exists.")
+                    description = old_primary.get_name()
+                if description:
+                    msg2 = _("You have attempted to use the existing Gramps "
+                             "ID with value %(id)s. This value is already " 
+                             "used by '%(prim_object)s'. Please enter a "
+                             "different ID or leave blank to get the next "
+                             "available ID value.") % {
+                                 'id' : new_id, 'prim_object' : description }
+                else:
+                    msg2 = _("You have attempted to use the existing Gramps "
+                             "ID with value %(id)s. This value is already "
+                             "used. Please enter a "
+                             "different ID or leave blank to get the next "
+                             "available ID value.") % {
+                                 'id' : new_id}
+                ErrorDialog(msg1, msg2)
+                return True
+        return False
