@@ -375,6 +375,7 @@ gramps/gui/editors/editperson.py
 gramps/gui/editors/editpersonref.py
 gramps/gui/editors/editplace.py
 gramps/gui/editors/editprimary.py
+gramps/gui/editors/editreference.py
 gramps/gui/editors/editreporef.py
 gramps/gui/editors/editrepository.py
 gramps/gui/editors/editsource.py

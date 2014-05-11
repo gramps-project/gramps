@@ -26,14 +26,14 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
 #
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 
@@ -190,6 +190,9 @@ class EditRepoRef(EditReference):
         return (_('Repo Reference Editor'),submenu_label)
         
     def ok_clicked(self, obj):
+
+        if self.check_for_duplicate_id('Repository'):
+            return
 
         if self.source.handle:
             with DbTxn(_("Modify Repository"), self.db) as trans:

@@ -29,8 +29,6 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 
 #-------------------------------------------------------------------------
 #
@@ -634,6 +632,10 @@ class EditMediaRef(EditReference):
         self._setup_notebook_tabs(notebook_ref)
 
     def save(self,*obj):
+
+        if self.check_for_duplicate_id('Media'):
+            return
+
         #first save primary object
         if self.source.handle:
             with DbTxn(_("Edit Media Object (%s)") %

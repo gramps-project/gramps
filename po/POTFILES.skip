@@ -281,7 +281,6 @@ gramps/gui/glade/catalog/grampswidgets.py
 # gui/editors - the GUI editors package
 #
 gramps/gui/editors/__init__.py
-gramps/gui/editors/editreference.py
 gramps/gui/editors/editsecondary.py
 #
 # gui/editors/displaytabs - the GUI display tabs package
