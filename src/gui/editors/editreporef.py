@@ -190,6 +190,9 @@ class EditRepoRef(EditReference):
         
     def ok_clicked(self, obj):
 
+        if self.check_for_duplicate_id('Repository'):
+            return
+
         if self.source.handle:
             with DbTxn(_("Modify Repository"), self.db) as trans:
                 self.db.commit_repository(self.source,trans)

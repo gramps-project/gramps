@@ -118,6 +118,7 @@ src/gui/editors/editperson.py
 src/gui/editors/editpersonref.py
 src/gui/editors/editplace.py
 src/gui/editors/editprimary.py
+src/gui/editors/editreference.py
 src/gui/editors/editreporef.py
 src/gui/editors/editrepository.py
 src/gui/editors/editsource.py

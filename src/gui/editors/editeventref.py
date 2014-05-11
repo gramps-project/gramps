@@ -244,6 +244,9 @@ class EditEventRef(EditReference):
         
     def ok_clicked(self, obj):
 
+        if self.check_for_duplicate_id('Event'):
+            return
+
         if self.source.handle:
             with DbTxn(_("Modify Event"), self.db) as trans:
                 self.commit_event(self.source,trans)
