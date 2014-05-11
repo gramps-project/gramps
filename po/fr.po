@@ -6137,15 +6137,15 @@ msgstr "Mariés"
 # Dotation ?
 #: ../gramps/gen/lib/ldsord.py:95
 msgid "Endowment"
-msgstr "Bénédiction spirituelle"
+msgstr "Dotation"
 
 #: ../gramps/gen/lib/ldsord.py:97
 msgid "Sealed to Parents"
-msgstr "Ordonnance éternelle d'un enfant aux parents"
+msgstr "Scellement aux parents"
 
 #: ../gramps/gen/lib/ldsord.py:98
 msgid "Sealed to Spouse"
-msgstr "Ordonnance éternelle au conjoint"
+msgstr "Scellement au conjoint"
 
 #: ../gramps/gen/lib/ldsord.py:102
 msgid "<No Status>"
