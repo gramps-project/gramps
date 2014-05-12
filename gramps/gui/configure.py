@@ -1390,7 +1390,7 @@ class GrampsPreferences(ConfigureDialog):
         f.destroy()
 
     def set_dbpath(self, *obj):
-        path = self.dbpath_entry.get_text().strip()
+        path = conv_to_unicode(self.dbpath_entry.get_text().strip())
         config.set('behavior.database-path', path)
 
     def select_dbpath(self, *obj):
