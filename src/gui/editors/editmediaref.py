@@ -656,15 +656,14 @@ class EditMediaRef(EditReference):
 
     def save(self,*obj):
 
-        if self.check_for_duplicate_id('Media'):
-            return
-
         #first save primary object
         if self.source.handle:
             with DbTxn(_("Edit Media Object (%s)") %
                        self.source.get_description(), self.db) as trans:
                 self.db.commit_media_object(self.source, trans)
         else:
+            if self.check_for_duplicate_id('Media'):
+                return
             with DbTxn(_("Add Media Object (%s)") % 
                        self.source.get_description(), self.db) as trans:
                 self.db.add_object(self.source, trans)
