@@ -28,6 +28,8 @@ import re
 import io
 import sys
 
+from gramps.gen.constfunc import cuni
+
 test_ged = """0 HEAD
 1 SOUR min1r.ged min 1-rec
 1 SUBM @SUBM1@
@@ -114,8 +116,8 @@ class UnicodeTest(unittest.TestCase):
         from gramps.gen.config import set as setconfig
         from gramps.gen.dbstate import DbState
         self.newpath = os.path.join(os.path.dirname(__file__),
-                                    u'\u0393\u03c1\u03b1\u03bc\u03c3\u03c0')
-        self.newtitle = u'Gr\u00e4mps T\u00e9st'
+                                    cuni('\u0393\u03c1\u03b1\u03bc\u03c3\u03c0'))
+        self.newtitle = cuni('Gr\u00e4mps T\u00e9st')
         os.makedirs(self.newpath)
         setconfig('behavior.database-path', self.newpath)
         self.cli = CLIDbManager(DbState())
