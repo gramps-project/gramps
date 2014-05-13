@@ -540,13 +540,9 @@ class EditRule(ManagedWindow):
                     t = MyFilters(self.filterdb.get_filters('Place'))
                 elif v in _name2typeclass:
                     additional = None
-                    if v == _('Personal event:'):
-                        additional = self.db.get_person_event_types()
-                    elif v == _('Family event:'):
-                        additional = self.db.get_family_event_types()
-                    elif v == _('Event type:'):
-                        additional = (self.db.get_person_event_types() +
-                                      self.db.get_family_event_types())
+                    if v in (_('Event type:'), _('Personal event:'),
+                             _('Family event:')):
+                        additional = self.db.get_event_types()
                     elif v == _('Personal attribute:'):
                         additional = self.db.get_person_attribute_types()
                     elif v == _('Family attribute:'):

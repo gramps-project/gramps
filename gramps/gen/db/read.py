@@ -397,8 +397,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.nmap_index = 0
         self.db_is_open = False
 
-        self.family_event_names = set()
-        self.individual_event_names = set()
+        self.event_names = set()
         self.individual_attributes = set()
         self.family_attributes = set()
         self.source_attributes = set()
@@ -1508,12 +1507,17 @@ class DbBsddbRead(DbReadBase, Callback):
         """Set the save path for the database."""
         self.path = path
 
+    def get_event_types(self):
+        """
+        Return a list of all event types in the database.
+        """
+        return list(self.event_names)
+
     def get_person_event_types(self):
         """
-        Return a list of all Event types assocated with Person instances in 
-        the database.
+        Deprecated:  Use get_event_types
         """
-        return list(self.individual_event_names)
+        return list(self.event_names)
 
     def get_person_attribute_types(self):
         """
@@ -1531,10 +1535,9 @@ class DbBsddbRead(DbReadBase, Callback):
 
     def get_family_event_types(self):
         """
-        Return a list of all Event types assocated with Family instances in 
-        the database.
+        Deprecated:  Use get_event_types
         """
-        return list(self.family_event_names)
+        return list(self.event_names)
 
     def get_media_attribute_types(self):
         """

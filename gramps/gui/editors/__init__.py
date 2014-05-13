@@ -26,7 +26,7 @@ from .editchildref import EditChildRef
 from .editcitation import EditCitation, DeleteCitationQuery
 from .editdate import EditDate
 from .editevent import EditEvent, DeleteEventQuery
-from .editeventref import EditEventRef, EditFamilyEventRef
+from .editeventref import EditEventRef
 from .editfamily import EditFamily
 from .editldsord import EditLdsOrd, EditFamilyLdsOrd
 from .editlocation import EditLocation

@@ -257,6 +257,12 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_event_types(self):
+        """
+        Return a list of all event types in the database.
+        """
+        raise NotImplementedError
+
     def get_family_attribute_types(self):
         """
         Return a list of all Attribute types associated with Family instances 
@@ -278,8 +284,7 @@ class DbReadBase(object):
 
     def get_family_event_types(self):
         """
-        Return a list of all Event types associated with Family instances in 
-        the database.
+        Deprecated:  Use get_event_types
         """
         raise NotImplementedError
 
@@ -515,8 +520,7 @@ class DbReadBase(object):
 
     def get_person_event_types(self):
         """
-        Return a list of all Event types associated with Person instances in 
-        the database.
+        Deprecated:  Use get_event_types
         """
         raise NotImplementedError
 
@@ -1244,8 +1248,7 @@ class DbWriteBase(DbReadBase):
 
     def add_family_event(self, event, transaction):
         """
-        Add an Event to the database, assigning internal IDs if they have
-        not already been defined.
+        Deprecated:  Use add_event
         """
         raise NotImplementedError
 
@@ -1278,8 +1281,7 @@ class DbWriteBase(DbReadBase):
 
     def add_person_event(self, event, transaction):
         """
-        Add an Event to the database, assigning internal IDs if they have
-        not already been defined.
+        Deprecated:  Use add_event
         """
         raise NotImplementedError
 
@@ -1352,8 +1354,7 @@ class DbWriteBase(DbReadBase):
 
     def commit_family_event(self, event, transaction, change_time=None):
         """
-        Commit the specified family Event to the database, storing the
-        changes as part of the transaction.
+        Deprecated:  Use commit_event
         """
         raise NotImplementedError
 
@@ -1380,8 +1381,7 @@ class DbWriteBase(DbReadBase):
 
     def commit_personal_event(self, event, transaction, change_time=None):
         """
-        Commit the specified personal Event to the database, storing the
-        changes as part of the transaction.
+        Deprecated:  Use commit_event
         """
         raise NotImplementedError
 

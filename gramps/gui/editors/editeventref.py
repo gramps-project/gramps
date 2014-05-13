@@ -90,11 +90,11 @@ class EditEventRef(EditReference):
 
     def _init_event(self):
         if not self.db.readonly:
-            self.commit_event = self.db.commit_personal_event
-            self.add_event = self.db.add_person_event
+            self.commit_event = self.db.commit_event
+            self.add_event = self.db.add_event
 
     def get_custom_events(self):
-        return self.db.get_person_event_types()
+        return self.db.get_event_types()
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'),self.ok_clicked)
@@ -258,19 +258,3 @@ class EditEventRef(EditReference):
             self.update(self.source_ref,self.source)
 
         self.close()
-
-class EditFamilyEventRef(EditEventRef):
-
-    def __init__(self, state, uistate, track, event, event_ref, update):
-        
-        EditEventRef.__init__(self, state, uistate, track, event,
-                              event_ref, update)
-        
-    def _init_event(self):
-        if not self.db.readonly:
-            self.commit_event = self.db.commit_family_event
-            self.add_event = self.db.add_family_event
-
-    def get_custom_events(self):
-        return [EventType((EventType.CUSTOM,val))
-                 for val in self.dbstate.db.get_family_event_types()]

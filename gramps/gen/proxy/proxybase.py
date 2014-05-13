@@ -722,10 +722,13 @@ class ProxyDbBase(DbReadBase):
         """returns the save path of the file, or "" if one does not exist"""
         return self.db.get_save_path()
 
+    def get_event_types(self):
+        """returns a list of all event types in the database"""
+        return self.db.get_event_types()
+
     def get_person_event_types(self):
-        """returns a list of all Event types associated with Person
-        instances in the database"""
-        return self.db.get_person_event_types()
+        """Deprecated:  Use get_event_types"""
+        return self.db.get_event_types()
 
     def get_person_attribute_types(self):
         """returns a list of all Attribute types associated with Person
@@ -738,9 +741,8 @@ class ProxyDbBase(DbReadBase):
         return self.db.get_family_attribute_types()
 
     def get_family_event_types(self):
-        """returns a list of all Event types associated with Family
-        instances in the database"""
-        return self.db.get_family_event_types()
+        """Deprecated:  Use get_event_types"""
+        return self.db.get_event_types()
 
     def get_media_attribute_types(self):
         """returns a list of all Attribute types associated with Media

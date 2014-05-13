@@ -144,8 +144,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         self.rebuild_callback()
 
     def get_ref_editor(self):
-        from .. import EditFamilyEventRef
-        return EditFamilyEventRef
+        from .. import EditEventRef
+        return EditEventRef
 
     def get_icon_name(self):
         return 'gramps-event'

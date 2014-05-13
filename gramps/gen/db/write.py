@@ -964,8 +964,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.note_bookmarks.set(meta(b'note_bookmarks'))
 
         # Custom type values
-        self.family_event_names = set(meta(b'fevent_names'))
-        self.individual_event_names = set(meta(b'pevent_names'))
+        self.event_names = set(meta(b'event_names'))
         self.family_attributes = set(meta(b'fattr_names'))
         self.individual_attributes = set(meta(b'pattr_names'))
         self.source_attributes = set(meta(b'sattr_names'))
@@ -1436,8 +1435,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 txn.put(b'gender_stats', self.genderStats.save_stats())
 
                 # Custom type values
-                txn.put(b'fevent_names', list(self.family_event_names))
-                txn.put(b'pevent_names', list(self.individual_event_names))
+                txn.put(b'event_names', list(self.event_names))
                 txn.put(b'fattr_names', list(self.family_attributes))
                 txn.put(b'pattr_names', list(self.individual_attributes))
                 txn.put(b'sattr_names', list(self.source_attributes))
@@ -1614,26 +1612,22 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         
         If not set_gid, then gramps_id is not set.
         """
+        if event.type.is_custom():
+            self.event_names.add(str(event.type))
         return self.__add_object(event, transaction, 
                     self.find_next_event_gramps_id if set_gid else None,
                     self.commit_event)
 
     def add_person_event(self, event, transaction):
         """
-        Add an Event to the database, assigning internal IDs if they have
-        not already been defined.
+        Deprecated:  Use add_event
         """
-        if event.type.is_custom():
-            self.individual_event_names.add(str(event.type))
         return self.add_event(event, transaction)
 
     def add_family_event(self, event, transaction):
         """
-        Add an Event to the database, assigning internal IDs if they have
-        not already been defined.
+        Deprecated:  Use add_event
         """
-        if event.type.is_custom():
-            self.family_event_names.add(str(event.type))
         return self.add_event(event, transaction)
 
     def add_place(self, place, transaction, set_gid=True):
@@ -2041,13 +2035,15 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.media_attributes.update(attr_list)
 
     def commit_personal_event(self, event, transaction, change_time=None):
-        if event.type.is_custom():
-            self.individual_event_names.add(str(event.type))
+        """
+        Deprecated:  Use commit_event
+        """
         self.commit_event(event, transaction, change_time)
 
     def commit_family_event(self, event, transaction, change_time=None):
-        if event.type.is_custom():
-            self.family_event_names.add(str(event.type))
+        """
+        Deprecated:  Use commit_event
+        """
         self.commit_event(event, transaction, change_time)
 
     def commit_event(self, event, transaction, change_time=None):
@@ -2055,6 +2051,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Event to the database, storing the changes as 
         part of the transaction.
         """
+        if event.type.is_custom():
+            self.event_names.add(str(event.type))
         self.commit_base(event, self.event_map, EVENT_KEY, 
                   transaction, change_time)
         attr_list = []

@@ -54,6 +54,7 @@ from ..lib.nameorigintype import NameOriginType
 from ..lib.place import Place
 from ..lib.placeref import PlaceRef
 from ..lib.placetype import PlaceType
+from ..lib.eventtype import EventType
 from ..lib.tag import Tag
 from ..utils.file import create_checksum
 from ..utils.id import create_id
@@ -72,7 +73,9 @@ def gramps_upgrade_17(self):
     1. This upgrade adds tags to event, place, repository, source and 
        citation objects.
     2. Data of Source becomes SourceAttributes Secondary Object
-    3. Add checksum field to media objects.
+    3. Create a place hierarchy.
+    4. Add checksum field to media objects.
+    5. Rebuild list of custom events.
     """
     length = (len(self.event_map) + len(self.place_map) +
               len(self.repository_map) + len(self.source_map) +
@@ -83,9 +86,14 @@ def gramps_upgrade_17(self):
     # Modify Event
     # ---------------------------------
     # Add new tag_list field.
+    self.event_names = set()
     for handle in self.event_map.keys():
         event = self.event_map[handle]
         new_event = list(event)
+        event_type = EventType()
+        event_type.unserialize(new_event[2])
+        if event_type.is_custom():
+            self.event_names.add(str(event_type))
         new_event = new_event[:11] + [[]] + new_event[11:]
         new_event = tuple(new_event)
         with BSDDBTxn(self.env, self.event_map) as txn:

@@ -100,9 +100,7 @@ class EditEvent(EditPrimary):
         return dialog_title
 
     def get_custom_events(self):
-        return (self.dbstate.db.get_person_event_types() +
-                self.dbstate.db.get_family_event_types()
-               )
+        return self.dbstate.db.get_event_types()
 
     def _local_init(self):
         self.width_key = 'interface.event-width'
@@ -299,31 +297,6 @@ class EditEvent(EditPrimary):
         else:
             cmp_obj = self.empty_object()
             return cmp_obj.serialize(True)[1:] != self.obj.serialize()[1:]
-
-
-class EditPersonEvent(EditEvent):
-
-    def __init__(self, dbstate, uistate, track, event, callback=None):
-        EditEvent.__init__(self, dbstate, uistate, track, event, callback)
-
-    def _init_event(self):
-        if not self.db.readonly:
-            self.commit_event = self.db.commit_personal_event
-
-    def get_custom_events(self):
-        return self.dbstate.db.get_person_event_types()
-
-class EditFamilyEvent(EditEvent):
-
-    def __init__(self, dbstate, uistate, track, event, callback=None):
-        EditEvent.__init__(self, dbstate, uistate, track, event, callback)
-
-    def _init_event(self):
-        if not self.db.readonly:
-            self.commit_event = self.db.commit_family_event
-
-    def get_custom_events(self):
-        return self.dbstate.db.get_family_event_types()
 
 #-------------------------------------------------------------------------
 #
