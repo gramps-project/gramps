@@ -38,6 +38,7 @@ from .addrembedlist import AddrEmbedList
 from .altnameembedlist import AltNameEmbedList
 from .attrembedlist import AttrEmbedList
 from .backreflist import BackRefList
+from .eventattrembedlist import EventAttrEmbedList
 from .eventbackreflist import EventBackRefList
 from .eventembedlist import EventEmbedList
 from .familyattrembedlist import FamilyAttrEmbedList

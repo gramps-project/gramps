@@ -49,7 +49,7 @@ from .objectentries import PlaceEntry
 from ..glade import Glade
 from ..dialog import ErrorDialog
 from .displaytabs import (CitationEmbedList, NoteTab, GalleryTab, 
-                          EventBackRefList, AttrEmbedList)
+                          EventBackRefList, EventAttrEmbedList)
 from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredDataType, 
                        MonitoredDate, MonitoredTagList)
 from gramps.gen.utils.db import get_participant_from_event
@@ -199,10 +199,10 @@ class EditEvent(EditPrimary):
                                        self.obj.get_media_list())
         self._add_tab(notebook, self.gallery_list)
 
-        self.attr_list = AttrEmbedList(self.dbstate,
-                                       self.uistate,
-                                       self.track,
-                                       self.obj.get_attribute_list())
+        self.attr_list = EventAttrEmbedList(self.dbstate,
+                                            self.uistate,
+                                            self.track,
+                                            self.obj.get_attribute_list())
         self._add_tab(notebook, self.attr_list)
 
         handle_list = self.dbstate.db.find_backlink_handles(self.obj.handle)

@@ -43,6 +43,7 @@ class DbTest(unittest.TestCase):
         "get_child_reference_types",
         "get_default_handle",
         "get_default_person",
+        "get_event_attribute_types",
         "get_event_bookmarks",
         "get_event_cursor",
         "get_event_from_gramps_id",

@@ -979,6 +979,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.source_media_types = set(meta(b'sm_types'))
         self.url_types = set(meta(b'url_types'))
         self.media_attributes = set(meta(b'mattr_names'))
+        self.event_attributes = set(meta(b'eattr_names'))
 
         # surname list
         self.surname_list = meta(b'surname_list')
@@ -1450,6 +1451,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 txn.put(b'sm_types', list(self.source_media_types))
                 txn.put(b'url_types', list(self.url_types))
                 txn.put(b'mattr_names', list(self.media_attributes))
+                txn.put(b'eattr_names', list(self.event_attributes))
 
                 # name display formats
                 txn.put(b'surname_list', self.surname_list)
@@ -2051,10 +2053,16 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         Commit the specified Event to the database, storing the changes as 
         part of the transaction.
         """
-        if event.type.is_custom():
-            self.event_names.add(str(event.type))
         self.commit_base(event, self.event_map, EVENT_KEY, 
                   transaction, change_time)
+
+        self.event_attributes.update(
+            [str(attr.type) for attr in event.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+
+        if event.type.is_custom():
+            self.event_names.add(str(event.type))
+
         attr_list = []
         for mref in event.media_list:
             attr_list += [str(attr.type) for attr in mref.attribute_list

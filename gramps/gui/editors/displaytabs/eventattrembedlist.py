@@ -20,17 +20,17 @@
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS classes
+# Gramps classes
 #
 #-------------------------------------------------------------------------
 from .attrembedlist import AttrEmbedList
 
 #-------------------------------------------------------------------------
 #
-# 
+# EventAttrEmbedList
 #
 #-------------------------------------------------------------------------
-class FamilyAttrEmbedList(AttrEmbedList):
+class EventAttrEmbedList(AttrEmbedList):
 
     def __init__(self, dbstate, uistate, track, data):
         AttrEmbedList.__init__(self, dbstate, uistate, track, data)
@@ -40,4 +40,4 @@ class FamilyAttrEmbedList(AttrEmbedList):
         return EditAttribute
 
     def get_user_values(self):
-        return self.dbstate.db.get_family_attribute_types()        
+        return self.dbstate.db.get_event_attribute_types()

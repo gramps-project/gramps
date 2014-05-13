@@ -1507,6 +1507,13 @@ class DbBsddbRead(DbReadBase, Callback):
         """Set the save path for the database."""
         self.path = path
 
+    def get_event_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Event instances
+        in the database.
+        """
+        return list(self.event_attributes)
+
     def get_event_types(self):
         """
         Return a list of all event types in the database.

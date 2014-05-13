@@ -547,6 +547,8 @@ class EditRule(ManagedWindow):
                         additional = self.db.get_person_attribute_types()
                     elif v == _('Family attribute:'):
                         additional = self.db.get_family_attribute_types()
+                    elif v == _('Event attribute:'):
+                        additional = self.db.get_event_attribute_types()
                     elif v == _('Media attribute:'):
                         additional = self.db.get_media_attribute_types()
                     elif v == _('Relationship type:'):

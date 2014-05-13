@@ -21,7 +21,7 @@
 # gui/editors/__init__.py
 
 from .editaddress import EditAddress
-from .editattribute import EditAttribute, EditFamilyAttribute, EditSrcAttribute
+from .editattribute import EditAttribute, EditSrcAttribute
 from .editchildref import EditChildRef
 from .editcitation import EditCitation, DeleteCitationQuery
 from .editdate import EditDate

@@ -257,6 +257,13 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_event_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Event instances
+        in the database.
+        """
+        raise NotImplementedError
+
     def get_event_types(self):
         """
         Return a list of all event types in the database.

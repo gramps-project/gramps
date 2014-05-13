@@ -722,6 +722,11 @@ class ProxyDbBase(DbReadBase):
         """returns the save path of the file, or "" if one does not exist"""
         return self.db.get_save_path()
 
+    def get_event_attribute_types(self):
+        """returns a list of all Attribute types associated with Event
+        instances in the database"""
+        return self.db.get_event_attribute_types()
+
     def get_event_types(self):
         """returns a list of all event types in the database"""
         return self.db.get_event_types()
