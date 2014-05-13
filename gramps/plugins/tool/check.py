@@ -1813,10 +1813,7 @@ class CheckIntegrity(object):
             self.progress.step()
             ObjectId = handle2internal(bObjectId)
             obj = self.db.get_object_from_handle(ObjectId)
-            if os.path.isabs(obj.path):
-                full_path = obj.path
-            else:
-                full_path = os.path.join(self.db.get_mediapath(), obj.path)
+            full_path = media_path_full(self.db, obj.get_path())
             new_checksum = create_checksum(full_path)
             if new_checksum != obj.checksum:
                 logging.info('checksum: updating ' + obj.gramps_id)
