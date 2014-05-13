@@ -55,13 +55,15 @@ class BackRefModel(Gtk.ListStore):
         self.db = db
         self.sref_list = sref_list
         self.count = 0
+        self.loading = False
         if sys.version_info[0] < 3:
             self.idle = GLib.idle_add(self.load_model().next)
         else:
             self.idle = GLib.idle_add(self.load_model().__next__)
 
     def destroy(self):
-        GLib.source_remove(self.idle)
+        if self.loading:
+            GLib.source_remove(self.idle)
 
     def load_model(self):
         """
@@ -72,6 +74,7 @@ class BackRefModel(Gtk.ListStore):
             while the GUI using this model is no longer used. Disconnect any
             methods before closing the GUI.
         """
+        self.loading = True
         self.count = 0
         for ref in self.sref_list:
             self.count += 1
@@ -148,4 +151,5 @@ class BackRefModel(Gtk.ListStore):
             # but we don't need to show that in the view.
             self.append(row=[_(dtype), gid, name, handle, dtype])
             yield True
+        self.loading = False
         yield False
