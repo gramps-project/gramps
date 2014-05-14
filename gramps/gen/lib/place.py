@@ -472,6 +472,35 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 if placeref.ref == old_handle:
                     placeref.ref = new_handle
 
+    def get_alternative_names(self):
+        """
+        Return a list of alternative names for the current Place.
+
+        :returns: Returns the alternative names for the Place
+        :rtype: list of strings
+        """
+        return self.alt_names
+
+    def set_alternative_names(self, name_list):
+        """
+        Replace the current alternative names list with the new one.
+
+        :param name_list: The list of names to assign to the Place's internal
+                          list.
+        :type name_list: list of strings
+        """
+        self.alt_names = name_list
+
+    def add_alternative_name(self, name):
+        """
+        Add a name to the alternative names list.
+
+        :param name: name to add
+        :type name: string
+        """
+        if name not in self.alt_names:
+            self.alt_names.append(name)
+
     def get_alternate_locations(self):
         """
         Return a list of alternate :class:`~.location.Location` objects the

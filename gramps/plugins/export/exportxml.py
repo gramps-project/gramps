@@ -1200,7 +1200,9 @@ class GrampsXmlWriter(UpdateCallback):
         self.write_line_nofix("pname", name, index+1)
         self.write_line_nofix("type", ptype, index+1)
         self.write_line_nofix("code", code, index+1)
-    
+        for name in place.get_alternative_names():
+            self.write_line("alt_name", name, index+1)
+
         longitude = self.fix(place.get_longitude())
         lat = self.fix(place.get_latitude())
         if longitude or lat:

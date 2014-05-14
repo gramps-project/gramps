@@ -626,6 +626,7 @@ class GrampsParser(UpdateCallback):
             #other
             "address": (self.start_address, self.stop_address), 
             "addresses": (None, None), 
+            "alt_name": (None, self.stop_alt_name),
             "childlist": (None, None),  
             "attribute": (self.start_attribute, self.stop_attribute), 
             "attr_type": (None, self.stop_attr_type), 
@@ -2582,6 +2583,9 @@ class GrampsParser(UpdateCallback):
 
     def stop_code(self, tag):
         self.placeobj.code = tag
+
+    def stop_alt_name(self, tag):
+        self.placeobj.add_alternative_name(tag)
 
     def stop_placeobj(self, *tag):
         self.db.commit_place(self.placeobj, self.trans, 
