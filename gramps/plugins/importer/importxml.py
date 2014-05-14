@@ -689,7 +689,6 @@ class GrampsParser(UpdateCallback):
             "places": (None, self.stop_places), 
             "placeobj": (self.start_placeobj, self.stop_placeobj), 
             "placeref": (self.start_placeref, self.stop_placeref), 
-            "pname": (None, self.stop_pname), 
             "ptitle": (None, self.stop_ptitle), 
             "location": (self.start_location, None), 
             "lds_ord": (self.start_lds_ord, self.stop_lds_ord), 
@@ -1150,6 +1149,8 @@ class GrampsParser(UpdateCallback):
             self.inaugurate_id(attrs.get('id'), PLACE_KEY, self.placeobj)
         self.placeobj.private = bool(attrs.get("priv"))
         self.placeobj.change = int(attrs.get('change', self.change))
+        self.placeobj.name = attrs.get("name")
+        self.placeobj.place_type.set_from_xml_str(attrs.get("type"))
         self.info.add('new-object', PLACE_KEY, self.placeobj)
         
         # GRAMPS LEGACY: title in the placeobj tag
@@ -2578,9 +2579,6 @@ class GrampsParser(UpdateCallback):
     def stop_ptitle(self, tag):
         self.placeobj.title = tag
 
-    def stop_pname(self, tag):
-        self.placeobj.name = tag
-
     def stop_code(self, tag):
         self.placeobj.code = tag
 
@@ -2604,9 +2602,6 @@ class GrampsParser(UpdateCallback):
         elif self.repo:
             # Repository type
             self.repo.type.set_from_xml_str(tag)
-        elif self.placeobj:
-            # Place type
-            self.placeobj.place_type.set_from_xml_str(tag)
 
     def stop_childref(self, tag):
         self.childref = None

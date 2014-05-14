@@ -1190,15 +1190,16 @@ class GrampsXmlWriter(UpdateCallback):
                         )
 
     def write_place_obj(self, place, index=1):
-        self.write_primary_tag("placeobj", place, index)
+        self.write_primary_tag("placeobj", place, index, close=False)
+        pname = self.fix(place.get_name())
+        ptype = self.fix(place.get_type().xml_str())
+        self.g.write(' name="%s"' % pname)
+        self.g.write(' type="%s"' % ptype)
+        self.g.write('>\n')
 
         title = self.fix(place.get_title())
-        name = self.fix(place.get_name())
-        ptype = self.fix(place.get_type().xml_str())
         code = self.fix(place.get_code())
         self.write_line_nofix("ptitle", title, index+1)
-        self.write_line_nofix("pname", name, index+1)
-        self.write_line_nofix("type", ptype, index+1)
         self.write_line_nofix("code", code, index+1)
         for name in place.get_alternative_names():
             self.write_line("alt_name", name, index+1)

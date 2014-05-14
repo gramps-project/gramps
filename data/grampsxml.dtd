@@ -5,7 +5,7 @@
 #
 # Copyright (C) 2001       Graham J. Williams
 # Copyright (C) 2000-2007  Donald N. Allingham
-# Copyright (C) 2010-2011  Nick Hall
+# Copyright (C) 2010-2014  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -248,16 +248,20 @@ PLACES
 
 <!ELEMENT places (placeobj)*>
 
-<!ELEMENT placeobj (ptitle?, coord?, location*, objref*, url*, noteref*,
-                    citationref*, tagref*)>
+<!ELEMENT placeobj (ptitle?, code?, alt_name*, coord?, placeref*, location*,
+                    objref*, url*, noteref*, citationref*, tagref*)>
 <!ATTLIST placeobj
         id        CDATA #IMPLIED
         handle    ID    #REQUIRED
         priv      (0|1) #IMPLIED
         change    CDATA #REQUIRED
+        name      CDATA #REQUIRED
+        type      CDATA #REQUIRED
 >
 
 <!ELEMENT ptitle (#PCDATA)>
+<!ELEMENT code (#PCDATA)>
+<!ELEMENT alt_name (#PCDATA)>
 
 <!ELEMENT coord EMPTY>
 <!ATTLIST coord
@@ -520,6 +524,11 @@ SHARED ELEMENTS
 <!ATTLIST objref 
         hlink IDREF #REQUIRED
         priv (0|1)  #IMPLIED
+>
+
+<!ELEMENT placeref ((daterange|datespan|dateval|datestr)?)>
+<!ATTLIST placeref
+        hlink IDREF #REQUIRED
 >
 
 <!ELEMENT region EMPTY>

@@ -4,7 +4,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2005-2007  Donald N. Allingham
-# Copyright (C) 2010-2011  Nick Hall
+# Copyright (C) 2010-2014  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,11 +22,10 @@
 
 # Written by Alex Roitman
 
-# $Id$
 -->
 
 <!--
-  This is the RELAX NG schema for the GRAMPS XML genealogy data format.
+  This is the RELAX NG schema for the Gramps XML genealogy data format.
 -->
 
 
@@ -160,9 +159,6 @@
         <value>0</value>
         <value>1</value>
     </choice></attribute></optional>
-    <zeroOrMore><element name="tagref">
-        <ref name="tagref-content"/>
-    </element></zeroOrMore>
   </define>
 
   <define name="person-content">
@@ -207,6 +203,9 @@
     </element></zeroOrMore>
     <zeroOrMore><element name="citationref">
         <ref name="citationref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
     </element></zeroOrMore>
   </define>
 
@@ -403,6 +402,9 @@
     <zeroOrMore><element name="citationref">
         <ref name="citationref-content"/>
     </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="event-content">
@@ -425,6 +427,9 @@
     <zeroOrMore><element name="objref">
         <ref name="objref-content"/>
     </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="citation-content">
@@ -444,6 +449,9 @@
     <element name="sourceref">
         <ref name="sourceref-content"/>
     </element>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="source-content">
@@ -464,15 +472,25 @@
     <zeroOrMore><element name="reporef">
         <ref name="reporef-content"/>
     </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="place-content">
     <ref name="primary-object"/>
+    <attribute name="name"><text/></attribute>
+    <attribute name="type"><text/></attribute>
     <optional><element name="ptitle"><text/></element></optional>
+    <optional><element name="code"><text/></element></optional>
+    <zeroOrMore><element name="alt_name"><text/></element></zeroOrMore>
     <optional><element name="coord">
         <attribute name="long"><text/></attribute>
         <attribute name="lat"><text/></attribute>
     </element></optional>
+    <zeroOrMore><element name="placeref">
+        <ref name="placeref-content"/>
+    </element></zeroOrMore>
     <zeroOrMore><element name="location">
         <optional><attribute name="street"><text/></attribute></optional>
         <optional><attribute name="locality"><text/></attribute></optional>
@@ -496,6 +514,9 @@
     <zeroOrMore><element name="citationref">
         <ref name="citationref-content"/>
     </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="object-content">
@@ -503,8 +524,8 @@
     <element name="file">
         <attribute name="src"><text/></attribute>
         <attribute name="mime"><text/></attribute>
-        <attribute name="checksum"><text/></attribute>
-        <attribute name="description"><text/></attribute>
+        <optional><attribute name="checksum"><text/></attribute></optional>
+        <optional><attribute name="description"><text/></attribute></optional>
     </element>
     <zeroOrMore><element name="attribute">
         <ref name="attribute-content"/>
@@ -515,6 +536,9 @@
     <optional><ref name="date-content"/></optional>
     <zeroOrMore><element name="citationref">
         <ref name="citationref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
     </element></zeroOrMore>
   </define>
 
@@ -530,6 +554,9 @@
     </element></zeroOrMore>
     <zeroOrMore><element name="noteref">
         <ref name="noteref-content"/>
+    </element></zeroOrMore>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
     </element></zeroOrMore>
   </define>
 
@@ -574,6 +601,9 @@
     </choice></attribute></optional>
     <attribute name="type"><text/></attribute>
     <ref name="styledtext"/>
+    <zeroOrMore><element name="tagref">
+        <ref name="tagref-content"/>
+    </element></zeroOrMore>
   </define>
 
   <define name="styledtext">
@@ -740,6 +770,11 @@
     <attribute name="corner2_x"><data type="integer"/></attribute>
     <attribute name="corner2_y"><data type="integer"/></attribute>
     <text/>
+  </define>
+
+  <define name="placeref-content">
+    <attribute name="hlink"><data type="IDREF"/></attribute>
+    <optional><ref name="date-content"/></optional>
   </define>
 
   <define name="tagref-content">
