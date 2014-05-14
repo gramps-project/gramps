@@ -52,7 +52,7 @@ from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SANS_SERIF, FONT_SERIF,
                                     PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,
                                     IndexMark, INDEX_TYPE_TOC)
-from gramps.gen.plug.menu import (BooleanOption, BooleanListOption,
+from gramps.gen.plug.menu import (BooleanOption,
                                   EnumeratedListOption, NumberOption,
                                   FilterOption, PersonOption)
 from gramps.gen.plug.report import Report
