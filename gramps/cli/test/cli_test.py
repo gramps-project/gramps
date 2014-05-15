@@ -20,13 +20,17 @@
 
 """ CLI tests for gramps """
 
+from __future__ import unicode_literals
+
 import os
 import unittest
 import re
 import io
 import sys
+import subprocess
 
 from gramps.gen.constfunc import cuni
+from gramps.gen.const import TEMP_DIR
 
 test_ged = """0 HEAD
 1 SOUR min1r.ged min 1-rec
@@ -40,8 +44,8 @@ test_ged = """0 HEAD
 """
 
 ddir = os.path.dirname(__file__)
-min1r = os.path.join(ddir,"min1r.ged")
-out_ged = os.path.join(ddir,"test_out.ged")
+min1r = os.path.join(ddir, "min1r.ged")
+out_ged = os.path.join(ddir, "test_out.ged")
 
 class Test(unittest.TestCase):
     def setUp(self):
@@ -54,7 +58,8 @@ class Test(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         if not os.path.exists(min1r):
-            open(min1r,"wb").write(test_ged)
+            with io.open(min1r, "w") as f:
+                f.write(test_ged)
 
     @classmethod
     def tearDownClass(cls):
@@ -74,11 +79,17 @@ class Test(unittest.TestCase):
         ifile = min1r
         ofile = out_ged
         gcmd = "Gramps.py -i %s -e %s" % (ifile, ofile)
-        rc = os.system("python %s" % gcmd)
-        self.assertEquals(rc, 0, "executed CLI cmmand %r" % gcmd)
+        process = subprocess.Popen("python %s" % gcmd,
+                                   stdin=subprocess.PIPE,
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE, shell=True)
+        result_str, err_str = process.communicate()
+        self.assertEqual(process.returncode, 0,
+                         "executed CLI command %r" % gcmd)
         # simple validation o output
         self.assertTrue(os.path.isfile(ofile), "output file created")
-        content = open(ofile).read()
+        with io.open(ofile) as f:
+            content = f.read()
         g = re.search("INDI", content)
         self.assertTrue(g, "found 'INDI' in output file")
 
@@ -86,20 +97,24 @@ class Test(unittest.TestCase):
     # get cleaned before (and after) running a CLI
     # (eg cleanout stale files from prior crash-runs)
     def test3_files_in_import_dir(self):
-        from gramps.gen.const import TEMP_DIR
-        ddir = os.path.join(TEMP_DIR,"import_dbdir")
+        ddir = os.path.join(TEMP_DIR, "import_dbdir")
         os.makedirs(ddir)
-        bogofiles = [os.path.join(ddir,fn) 
-            for fn in ("family.db", "lock")]
+        bogofiles = [os.path.join(ddir, fn) for fn in ("family.db", "lock")]
         for fn in bogofiles:
-            f = open(fn, "w").write("garbage")
+            with io.open(fn, "w") as f:
+                f.write("garbage")
         
         # ~same as test 2
         ifile = min1r
         ofile = out_ged
         gcmd = "Gramps.py -i %s -e %s" % (ifile, ofile)
-        rc = os.system("python %s" % gcmd)
-        self.assertEquals(rc, 0, "executed CLI cmmand %r" % gcmd)
+        process = subprocess.Popen("python %s" % gcmd,
+                                   stdin=subprocess.PIPE,
+                                   stdout=subprocess.PIPE,
+                                   stderr=subprocess.PIPE, shell=True)
+        result_str, err_str = process.communicate()
+        self.assertEqual(process.returncode, 0,
+                         "executed CLI command %r" % gcmd)
 
         for fn in bogofiles:
             self.assertFalse(os.path.exists(fn))
@@ -134,10 +149,10 @@ class UnicodeTest(unittest.TestCase):
     def test4_arbitrary_uncode_path(self):
         (dbpath, title) = self.cli.create_new_db_cli(self.newtitle)
 
-        self.assertEquals(self.newpath, os.path.dirname(dbpath),
+        self.assertEqual(self.newpath, os.path.dirname(dbpath),
                           "Compare paths %s and %s" % (repr(self.newpath),
                                                        repr(dbpath)))
-        self.assertEquals(self.newtitle, title, "Compare titles %s and %s" %
+        self.assertEqual(self.newtitle, title, "Compare titles %s and %s" %
                           (repr(self.newtitle), repr(title)))
 
 
