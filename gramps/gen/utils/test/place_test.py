@@ -202,7 +202,7 @@ class PlaceTest(unittest.TestCase):
         self._test_formats_fail(lat, lon)
 
         lat, lon =  '-50:10:1', '-+2:1:2'
-        self._test_formats_success(lat, lon)
+        self._test_formats_fail(lat, lon)
 
     def test_missing_minute(self):
         lat, lon =  '-50::1', '-2:1:2'

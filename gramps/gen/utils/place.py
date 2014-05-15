@@ -116,9 +116,12 @@ def __convert_using_colon_repr(stringValue):
     # if no characters before ':' nothing useful is input!
     if len(l[0]) == 0:
         return None
-    if l[0][0] == '-':
-        sign = '-'
-        l[0]=l[0][1:]
+    if l[0][0] in ['+', '-']:
+        sign = l[0][0]
+        l[0]=l[0][1:].strip()
+        # regard a second sign as an error
+        if l[0][0] in ['+', '-']:
+            return None
     else:
         sign = '+'
     try:
