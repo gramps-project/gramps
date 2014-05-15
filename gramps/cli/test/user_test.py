@@ -151,8 +151,6 @@ class TestUser_quiet(unittest.TestCase):
 
 @unittest.skipUnless(MOCKING, "Requires unittest.mock to run")
 class TestUser_progress(unittest.TestCase):
-    _progress_begin_step_end = \
-            TestUser_quiet.test_progress_can_begin_step_end.__func__
 
     def setUp(self):
         self.user = user.User()
@@ -183,6 +181,12 @@ class TestUser_progress(unittest.TestCase):
             except Exception:
                 pass
         self.assertTrue(MockEP.called)
+
+    def _progress_begin_step_end(self):
+        self.user.begin_progress("Foo", "Bar", 0)
+        for i in range(10):
+            self.user.step_progress()
+        self.user.end_progress()
 
 if __name__ == "__main__":
     unittest.main()
