@@ -1523,79 +1523,79 @@
     </source>
   </sources>
   <places>
-    <placeobj handle="_4ZLT6DVCWT9LTZRDCS" change="1198197326" id="P0003" name="None" type="None">
+    <placeobj handle="_4ZLT6DVCWT9LTZRDCS" change="1198197326" id="P0003" name="Ronne" type="None">
       <ptitle>Ronne, Bornholm, Denmark</ptitle>
     </placeobj>
-    <placeobj handle="_61NT6D3G1JMOTO6Z7Y" change="1198197326" id="P0012" name="None" type="None">
+    <placeobj handle="_61NT6D3G1JMOTO6Z7Y" change="1198197326" id="P0012" name="Grostorp" type="None">
       <ptitle>Grostorp, Kristianstad Lan, Sweden</ptitle>
     </placeobj>
-    <placeobj handle="_67MT6DB6KWOVMBAXSY" change="1198197326" id="P0002" name="None" type="None">
+    <placeobj handle="_67MT6DB6KWOVMBAXSY" change="1198197326" id="P0002" name="San Francisco" type="None">
       <ptitle>San Francisco, San Francisco Co., CA</ptitle>
     </placeobj>
-    <placeobj handle="_7JMT6DN2LOF54KXHTU" change="1198197326" id="P0010" name="None" type="None">
+    <placeobj handle="_7JMT6DN2LOF54KXHTU" change="1198197326" id="P0010" name="Reno" type="None">
       <ptitle>Reno, Washoe Co., NV</ptitle>
     </placeobj>
-    <placeobj handle="_A9MT6DHVWGWRP59DEV" change="1198197326" id="P0011" name="None" type="None">
+    <placeobj handle="_A9MT6DHVWGWRP59DEV" change="1198197326" id="P0011" name="Sweden" type="None">
       <ptitle>Sweden</ptitle>
     </placeobj>
-    <placeobj handle="_AANT6D026O5SHNUCDH" change="1198197326" id="P0015" name="None" type="None">
+    <placeobj handle="_AANT6D026O5SHNUCDH" change="1198197326" id="P0015" name="Simrishamn" type="None">
       <ptitle>Simrishamn, Kristianstad Lan, Sweden</ptitle>
     </placeobj>
-    <placeobj handle="_AKMT6DMEYZDTG9J6DS" change="1198197326" id="P0013" name="None" type="None">
+    <placeobj handle="_AKMT6DMEYZDTG9J6DS" change="1198197326" id="P0013" name="Copenhagen" type="None">
       <ptitle>Copenhagen, Denmark</ptitle>
     </placeobj>
-    <placeobj handle="_BAOT6D1WY6J4O4ARRN" change="1198197326" id="P0030" name="None" type="None">
+    <placeobj handle="_BAOT6D1WY6J4O4ARRN" change="1198197326" id="P0030" name="San Ramon" type="None">
       <ptitle>San Ramon, Conta Costa Co., CA</ptitle>
     </placeobj>
-    <placeobj handle="_DYLT6DF4DX2MNZICJ8" change="1198197326" id="P0014" name="None" type="None">
+    <placeobj handle="_DYLT6DF4DX2MNZICJ8" change="1198197326" id="P0014" name="Hoya/Jona/Hoia" type="None">
       <ptitle>Hoya/Jona/Hoia, Sweden</ptitle>
     </placeobj>
-    <placeobj handle="_ELNT6DS8GN8WI7Z4SO" change="1198197326" id="P0008" name="None" type="None">
+    <placeobj handle="_ELNT6DS8GN8WI7Z4SO" change="1198197326" id="P0008" name="Hayward" type="None">
       <ptitle>Hayward, Alameda Co., CA</ptitle>
     </placeobj>
-    <placeobj handle="_FBNT6DL92NDY0Z5SGP" change="1198197326" id="P0021" name="None" type="None">
+    <placeobj handle="_FBNT6DL92NDY0Z5SGP" change="1198197326" id="P0021" name="Santa Rosa" type="None">
       <ptitle>Santa Rosa, Sonoma Co., CA</ptitle>
     </placeobj>
-    <placeobj handle="_GWNT6D12ZV06PK969X" change="1198197326" id="P0020" name="None" type="None">
+    <placeobj handle="_GWNT6D12ZV06PK969X" change="1198197326" id="P0020" name="Sacramento" type="None">
       <ptitle>Sacramento, Sacramento Co., CA</ptitle>
     </placeobj>
-    <placeobj handle="_HFNT6D12ZC0KOWY69T" change="1198197326" id="P0016" name="None" type="None">
+    <placeobj handle="_HFNT6D12ZC0KOWY69T" change="1198197326" id="P0016" name="Fremont" type="None">
       <ptitle>Fremont, Alameda Co., CA</ptitle>
     </placeobj>
-    <placeobj handle="_HINT6DP8JGGL0KKB8J" change="1198197326" id="P0000" name="None" type="None">
+    <placeobj handle="_HINT6DP8JGGL0KKB8J" change="1198197326" id="P0000" name="Loderup" type="None">
       <ptitle>Loderup, Malmous Lan, Sweden</ptitle>
     </placeobj>
-    <placeobj handle="_IEOT6DOW3RE8AQ94HH" change="1198197326" id="P0025" name="None" type="None">
+    <placeobj handle="_IEOT6DOW3RE8AQ94HH" change="1198197326" id="P0025" name="Bí" type="None">
       <ptitle>Bí</ptitle>
     </placeobj>
-    <placeobj handle="_LTNT6DKZ5CR8PZSVUS" change="1198197326" id="P0022" name="None" type="None">
+    <placeobj handle="_LTNT6DKZ5CR8PZSVUS" change="1198197326" id="P0022" name="San Jose" type="None">
       <ptitle>San Jose, Santa Clara Co., CA</ptitle>
     </placeobj>
-    <placeobj handle="_PUNT6D1XHS0DJW9QP6" change="1198197326" id="P0024" name="None" type="None">
+    <placeobj handle="_PUNT6D1XHS0DJW9QP6" change="1198197326" id="P0024" name="UC Berkeley" type="None">
       <ptitle>UC Berkeley</ptitle>
     </placeobj>
-    <placeobj handle="_PXMT6DBL0WSBL76WD7" change="1198197326" id="P0026" name="None" type="None">
+    <placeobj handle="_PXMT6DBL0WSBL76WD7" change="1198197326" id="P0026" name="Smestorp" type="None">
       <ptitle>Smestorp, Kristianstad Lan, Sweden</ptitle>
     </placeobj>
-    <placeobj handle="_QBOT6DN7UCCTZQ055" change="1198197326" id="P0029" name="None" type="None">
+    <placeobj handle="_QBOT6DN7UCCTZQ055" change="1198197326" id="P0029" name="Woodland" type="None">
       <ptitle>Woodland, Yolo Co., CA</ptitle>
     </placeobj>
-    <placeobj handle="_QJMT6DGII29FWCPX2E" change="1198197326" id="P0028" name="None" type="None">
+    <placeobj handle="_QJMT6DGII29FWCPX2E" change="1198197326" id="P0028" name="Ronne Bornholm" type="None">
       <ptitle>Ronne Bornholm, Denmark</ptitle>
     </placeobj>
-    <placeobj handle="_R8MT6DRIZVNRYDK0VN" change="1198197326" id="P0027" name="None" type="None">
+    <placeobj handle="_R8MT6DRIZVNRYDK0VN" change="1198197326" id="P0027" name="Tommarp" type="None">
       <ptitle>Tommarp, Kristianstad Lan, Sweden</ptitle>
     </placeobj>
-    <placeobj handle="_RPMT6DTQR8J7LK98HJ" change="1198197326" id="P0019" name="None" type="None">
+    <placeobj handle="_RPMT6DTQR8J7LK98HJ" change="1198197326" id="P0019" name="Denver" type="None">
       <ptitle>Denver, Denver Co., CO</ptitle>
     </placeobj>
-    <placeobj handle="_S1NT6DPOBYC1JGMR1P" change="1198197326" id="P0001" name="None" type="None">
+    <placeobj handle="_S1NT6DPOBYC1JGMR1P" change="1198197326" id="P0001" name="Sparks" type="None">
       <ptitle>Sparks, Washoe Co., NV</ptitle>
     </placeobj>
-    <placeobj handle="_XLNT6DUONITFPPEGVH" change="1198197326" id="P0009" name="None" type="None">
+    <placeobj handle="_XLNT6DUONITFPPEGVH" change="1198197326" id="P0009" name="Community Presbyterian Church" type="None">
       <ptitle>Community Presbyterian Church, Danville, CA</ptitle>
     </placeobj>
-    <placeobj handle="_XSMT6DNISHYRCR1E78" change="1198197326" id="P0004" name="None" type="None">
+    <placeobj handle="_XSMT6DNISHYRCR1E78" change="1198197326" id="P0004" name="Gladsax" type="None">
       <ptitle>Gladsax, Kristianstad Lan, Sweden</ptitle>
     </placeobj>
   </places>
