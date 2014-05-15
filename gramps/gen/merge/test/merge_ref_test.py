@@ -260,13 +260,11 @@ class PersonCheck(BaseMergeCheck):
           </source>
         </sources>
         <places>
-          <placeobj handle="_p0000" id="P0000">
+          <placeobj handle="_p0000" id="P0000" name="Place 0" type="Country">
             <ptitle>Place 0</ptitle>
-            <type>Country</type>
           </placeobj>
-          <placeobj handle="_p0001" id="P0001">
+          <placeobj handle="_p0001" id="P0001" name="Place 1" type="Country">
             <ptitle>Place 1</ptitle>
-            <type>Country</type>
           </placeobj>
         </places>
         <objects>
@@ -311,6 +309,8 @@ class PersonCheck(BaseMergeCheck):
                 placeobj = ctxt.xpathEval("//g:placeobj[@handle='_p0001']")[0]
                 placeobj.unlinkNode()
                 placeobj.freeNode()
+                placeobj = ctxt.xpathEval("//g:placeobj[@handle='_p0000']")[0]
+                placeobj.newChild(None, 'alt_name', 'Place 1')
                 self.do_test('P0000', 'P0001', self.basedoc, expect)
 
     def test_citation_merge(self):
@@ -413,13 +413,11 @@ class FamilyCheck(BaseMergeCheck):
           </source>
         </sources>
         <places>
-          <placeobj handle="_p0000" id="P0000">
+          <placeobj handle="_p0000" id="P0000" name="Place 0" type="Country">
             <ptitle>Place 0</ptitle>
-            <type>Country</type>
           </placeobj>
-          <placeobj handle="_p0001" id="P0001">
+          <placeobj handle="_p0001" id="P0001" name="Place 1" type="Country">
             <ptitle>Place 1</ptitle>
-            <type>Country</type>
           </placeobj>
         </places>
         <objects>
@@ -464,6 +462,8 @@ class FamilyCheck(BaseMergeCheck):
                 placeobj = ctxt.xpathEval("//g:placeobj[@handle='_p0001']")[0]
                 placeobj.unlinkNode()
                 placeobj.freeNode()
+                placeobj = ctxt.xpathEval("//g:placeobj[@handle='_p0000']")[0]
+                placeobj.newChild(None, 'alt_name', 'Place 1')
                 self.do_test('P0000', 'P0001', self.basedoc, expect)
 
     def test_citation_merge(self):
@@ -552,13 +552,11 @@ class EventCheck(BaseMergeCheck):
           </source>
         </sources>
         <places>
-          <placeobj handle="_p0000" id="P0000">
+          <placeobj handle="_p0000" id="P0000" name="Place 0" type = "Country">
             <ptitle>Place 0</ptitle>
-            <type>Country</type>
           </placeobj>
-          <placeobj handle="_p0001" id="P0001">
+          <placeobj handle="_p0001" id="P0001" name="Place 1" type = "Country">
             <ptitle>Place 1</ptitle>
-            <type>Country</type>
           </placeobj>
         </places>
         <objects>
@@ -591,6 +589,8 @@ class EventCheck(BaseMergeCheck):
                 placeobj = ctxt.xpathEval("//g:placeobj[@handle='_p0001']")[0]
                 placeobj.unlinkNode()
                 placeobj.freeNode()
+                placeobj = ctxt.xpathEval("//g:placeobj[@handle='_p0000']")[0]
+                placeobj.newChild(None, 'alt_name', 'Place 1')
                 self.do_test('P0000', 'P0001', self.basedoc, expect)
 
     def test_citation_merge(self):
@@ -661,16 +661,14 @@ class PlaceCheck(BaseMergeCheck):
           </source>
         </sources>
         <places>
-          <placeobj handle="_p0000" id="P0000">
+          <placeobj handle="_p0000" id="P0000" name="Place 0" type = "Country">
             <ptitle>Place 0</ptitle>
-            <type>Country</type>
             <objref hlink="_o0000"/>
             <noteref hlink="_n0000"/>
             <citationref hlink="_c0000"/>
           </placeobj>
-          <placeobj handle="_p0001" id="P0001">
+          <placeobj handle="_p0001" id="P0001" name="Place 1" type = "Country">
             <ptitle>Place 1</ptitle>
-            <type>Country</type>
             <objref hlink="_o0001"/>
             <noteref hlink="_n0001"/>
             <citationref hlink="_c0001"/>
