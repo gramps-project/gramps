@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.16.1 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <!-- interface-requires grampswidgets 0.0 -->
   <object class="GtkDialog" id="filter_list">
     <property name="can_focus">False</property>
     <property name="default_width">400</property>
@@ -27,7 +29,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_close_clicked" swapped="no"/>
               </object>
@@ -45,7 +46,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_help_filters_clicked" swapped="no"/>
               </object>
@@ -120,7 +120,6 @@
                         <property name="can_default">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Add a new filter</property>
-                        <property name="use_action_appearance">False</property>
                         <signal name="clicked" handler="on_add_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="image5">
@@ -145,7 +144,6 @@
                         <property name="can_default">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Edit the selected filter</property>
-                        <property name="use_action_appearance">False</property>
                         <signal name="clicked" handler="on_edit_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="image6">
@@ -170,7 +168,6 @@
                         <property name="can_default">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Clone the selected filter</property>
-                        <property name="use_action_appearance">False</property>
                         <signal name="clicked" handler="on_clone_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="image9">
@@ -193,7 +190,6 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Test the selected filter</property>
-                        <property name="use_action_appearance">False</property>
                         <signal name="clicked" handler="on_test_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="image8">
@@ -218,7 +214,6 @@
                         <property name="can_default">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Delete the selected filter</property>
-                        <property name="use_action_appearance">False</property>
                         <signal name="clicked" handler="on_delete_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="image7">
@@ -268,7 +263,7 @@
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
@@ -322,7 +317,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_cancel_clicked" swapped="no"/>
               </object>
@@ -341,7 +335,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_ok_clicked" swapped="no"/>
               </object>
@@ -359,7 +352,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_help_filtdef_clicked" swapped="no"/>
               </object>
@@ -440,12 +432,6 @@
                         <property name="can_default">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Add another rule to the filter</property>
-                        <property name="use_action_appearance">False</property>
-                        <child internal-child="accessible">
-                          <object class="AtkObject" id="definition_add-atkobject">
-                            <property name="AtkObject::accessible-name" translatable="yes">Add</property>
-                          </object>
-                        </child>
                         <signal name="clicked" handler="on_add_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="image2">
@@ -457,6 +443,11 @@
                                 <property name="AtkObject::accessible-description" translatable="yes">Add</property>
                               </object>
                             </child>
+                          </object>
+                        </child>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="definition_add-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Add</property>
                           </object>
                         </child>
                       </object>
@@ -475,12 +466,6 @@
                         <property name="can_default">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Edit the selected rule</property>
-                        <property name="use_action_appearance">False</property>
-                        <child internal-child="accessible">
-                          <object class="AtkObject" id="definition_edit-atkobject">
-                            <property name="AtkObject::accessible-name" translatable="yes">Edit</property>
-                          </object>
-                        </child>
                         <signal name="clicked" handler="on_edit_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="image3">
@@ -492,6 +477,11 @@
                                 <property name="AtkObject::accessible-description" translatable="yes">Edition</property>
                               </object>
                             </child>
+                          </object>
+                        </child>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="definition_edit-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Edit</property>
                           </object>
                         </child>
                       </object>
@@ -510,12 +500,6 @@
                         <property name="can_default">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Delete the selected rule</property>
-                        <property name="use_action_appearance">False</property>
-                        <child internal-child="accessible">
-                          <object class="AtkObject" id="definition_delete-atkobject">
-                            <property name="AtkObject::accessible-name" translatable="yes">Remove</property>
-                          </object>
-                        </child>
                         <signal name="clicked" handler="on_delete_clicked" swapped="no"/>
                         <child>
                           <object class="GtkImage" id="image4">
@@ -527,6 +511,11 @@
                                 <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
                               </object>
                             </child>
+                          </object>
+                        </child>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="definition_delete-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Remove</property>
                           </object>
                         </child>
                       </object>
@@ -562,7 +551,7 @@
                     <property name="top_attach">5</property>
                     <property name="bottom_attach">6</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -578,7 +567,7 @@
                     <property name="top_attach">3</property>
                     <property name="bottom_attach">4</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -592,7 +581,7 @@
                   <packing>
                     <property name="right_attach">4</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -610,7 +599,7 @@
                     <property name="top_attach">2</property>
                     <property name="bottom_attach">3</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -650,7 +639,7 @@
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -660,7 +649,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="use_underline">True</property>
                     <property name="xalign">0.5</property>
                     <property name="draw_indicator">True</property>
@@ -671,7 +659,7 @@
                     <property name="top_attach">7</property>
                     <property name="bottom_attach">8</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -692,14 +680,14 @@
                     <property name="top_attach">6</property>
                     <property name="bottom_attach">7</property>
                     <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
                   <object class="UndoableEntry" id="filter_name">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <signal name="changed" handler="on_filter_name_changed"/>
+                    <signal name="changed" handler="on_filter_name_changed" swapped="no"/>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
@@ -707,7 +695,7 @@
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
                     <property name="x_options">GTK_EXPAND | GTK_SHRINK | GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -720,7 +708,7 @@
                     <property name="right_attach">3</property>
                     <property name="top_attach">2</property>
                     <property name="bottom_attach">3</property>
-                    <property name="y_options"></property>
+                    <property name="y_options"/>
                   </packing>
                 </child>
               </object>
@@ -769,7 +757,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="rule_cancel_clicked" swapped="no"/>
               </object>
@@ -787,7 +774,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="rule_ok_clicked" swapped="no"/>
               </object>
@@ -805,7 +791,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_help_rule_clicked" swapped="no"/>
               </object>
@@ -964,7 +949,7 @@
             </child>
           </object>
           <packing>
-            <property name="expand">False</property>
+            <property name="expand">True</property>
             <property name="fill">True</property>
             <property name="position">1</property>
           </packing>
@@ -1003,7 +988,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_close_clicked" swapped="no"/>
               </object>
