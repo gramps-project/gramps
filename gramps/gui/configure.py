@@ -182,7 +182,7 @@ class ConfigureDialog(ManagedWindow):
                        None, dialogtitle, None)
         self.panel = Gtk.Notebook()
         self.panel.set_scrollable(True)
-        self.window.vbox.add(self.panel)
+        self.window.vbox.pack_start(self.panel, True, True, 0)
         self.__on_close = on_close
         self.window.connect('response', self.done)
         
