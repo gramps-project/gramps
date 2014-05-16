@@ -106,7 +106,7 @@ tool_modes = [TOOL_MODE_GUI, TOOL_MODE_CLI]
 register(TOOL, 
 id    = 'populatesources',
 name  = "Populate Sources and Citations",
-description =  ("This tool generates sources and citations ofr each source in "
+description =  ("This tool generates sources and citations for each source in "
                 "order to populate the database for testing with significant "
                 "numbers of sources and citations"),
 version = '1.0',

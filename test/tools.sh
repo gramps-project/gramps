@@ -11,41 +11,38 @@
 
 TOP_DIR=`dirname $PWD`
 TEST_DIR=$TOP_DIR/test
-SRC_DIR=$TOP_DIR/src
-PRG="python gramps.py"
+SRC_DIR=$TOP_DIR/gramps
+PRG="python ../Gramps.py"
 EXAMPLE_XML=$TOP_DIR/example/gramps/example.gramps
+MINIMAL_XML=$TOP_DIR/example/gramps/minimal.gramps
 
 TOOL_DIR=$TEST_DIR/tools
 mkdir -p $TOOL_DIR
 
 OPTS="-i $EXAMPLE_XML"
 
-TOOLS1="reorder_ids verify chkpoint rebuild dgenstats check"
-TOOLS2="chtype cmdref testcasegenerator"
+TOOLS1="reorder_ids verify rebuild dgenstats rebuild_genstats rebuild_refmap test_for_date_parser_and_displayer check"
 
 # Run all tools on the example data, check at the end
 echo ""
 echo "+--------------------------------------------------------------"
-echo "| Tools: chtype cmdref $TOOLS1"
+echo "| Tools: chtype $TOOLS1"
 echo "+--------------------------------------------------------------"
 action=
 action="$action -a tool -p name=chtype,fromtype=Burial,totype=WeirdType"
-action="$action -a tool -p name=cmdref,include=1,target=$TOOL_DIR/junk.xml"
 for tool in $TOOLS1; do
     action="$action -a tool -p name=$tool"
 done
-(cd $SRC_DIR; $PRG $OPTS $action)
+/bin/rm -f $TOOL_DIR/tools1.gramps
+(cd $SRC_DIR; $PRG $OPTS $action -e $TOOL_DIR/tools1.gramps)
 
 # Run random test generator on an empty db, preserve the result.
 echo ""
 echo "+--------------------------------------------------------------"
 echo "| Tool: testcasegenerator"
 echo "+--------------------------------------------------------------"
-TEST_DATA=$TOOL_DIR/junk.grdb
-if [ -f $TEST_DATA ]; then
-    rm $TEST_DATA
-fi
-touch $TEST_DATA
-OPTS="-O $TEST_DATA"
+TEST_DATA=$MINIMAL_XML
+/bin/rm -f $TOOL_DIR/testcases.gramps
+OPTS="-i $TEST_DATA -e $TOOL_DIR/testcases.gramps"
 action="-a tool -p name=testcasegenerator"
 (cd $SRC_DIR; $PRG $OPTS $action)
