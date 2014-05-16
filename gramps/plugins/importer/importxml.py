@@ -1149,8 +1149,9 @@ class GrampsParser(UpdateCallback):
             self.inaugurate_id(attrs.get('id'), PLACE_KEY, self.placeobj)
         self.placeobj.private = bool(attrs.get("priv"))
         self.placeobj.change = int(attrs.get('change', self.change))
-        self.placeobj.name = attrs.get("name")
-        self.placeobj.place_type.set_from_xml_str(attrs.get("type"))
+        if self.__xml_version >= (1, 6, 0):
+            self.placeobj.name = attrs.get("name")
+            self.placeobj.place_type.set_from_xml_str(attrs.get("type"))
         self.info.add('new-object', PLACE_KEY, self.placeobj)
         
         # GRAMPS LEGACY: title in the placeobj tag
