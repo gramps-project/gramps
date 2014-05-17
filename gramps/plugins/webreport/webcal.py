@@ -1715,7 +1715,7 @@ def get_day_list(event_date, holiday_list, bday_anniv_list):
                 txt_str = _('%(couple)s, <em>wedding</em>') % {
                             'couple' : text}
             else: 
-                years_str = '<em>' + nyears + '</em>'
+                years_str = '<em>%s</em>' % nyears
                 # translators: leave all/any {...} untranslated
                 txt_str = ngettext("{couple}, {years} year anniversary",
                                    "{couple}, {years} year anniversary",
