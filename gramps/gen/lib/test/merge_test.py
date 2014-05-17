@@ -28,7 +28,8 @@ from  .. import (Person, Surname, Name, NameType, Family, FamilyRelType,
                  StyledText, StyledTextTag, StyledTextTagType, Tag,
                  ChildRef, ChildRefType, Attribute, MediaRef, AttributeType,
                  Url, UrlType, Address, EventRef, EventRoleType, RepoRef,
-                 FamilyRelType, LdsOrd, MediaRef, PersonRef, PlaceType)
+                 FamilyRelType, LdsOrd, MediaRef, PersonRef, PlaceType,
+                 SrcAttribute, SrcAttributeType)
 from ..privacybase import PrivacyBase
 from ..urlbase import UrlBase
 from ..addressbase import AddressBase
@@ -1552,15 +1553,22 @@ class SourceCheck(unittest.TestCase, PrivacyBaseTest, NoteBaseTest,
     def todo_test_replace(self):
         pass
 
-    @unittest.skip("Blocked by BUG# 7027")
     def test_merge_datamap(self):
-        self.phoenix.set_data_item('A', 'a')
-        self.phoenix.set_data_item('B', 'b')
-        self.titanic.set_data_item('B', 'bb')
-        self.titanic.set_data_item('C', 'c')
-        self.ref_obj.set_data_item('A', 'a')
-        self.ref_obj.set_data_item('B', 'b')
-        self.ref_obj.set_data_item('C', 'c')
+        attr1 = SrcAttribute()
+        attr1.set_type('A')
+        attr1.set_value('a')
+        attr2 = SrcAttribute()
+        attr2.set_type('B')
+        attr2.set_value('b')
+        attr3 = SrcAttribute()
+        attr3.set_type('B')
+        attr3.set_value('bb')
+        attr4 = SrcAttribute()
+        attr4.set_type('C')
+        attr4.set_value('c')
+        self.phoenix.set_attribute_list([attr1, attr2])
+        self.titanic.set_attribute_list([attr3, attr4])
+        self.ref_obj.set_attribute_list([attr1, attr2, attr3, attr4])
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
@@ -1743,15 +1751,22 @@ class CitationCheck(unittest.TestCase, PrivacyBaseTest, MediaBaseTest,
             self.phoenix.merge(self.titanic)
             self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
-    @unittest.skip("Blocked by BUG# 7027")
     def test_merge_datamap(self):
-        self.phoenix.set_data_item('A', 'a')
-        self.phoenix.set_data_item('B', 'b')
-        self.titanic.set_data_item('B', 'bb')
-        self.titanic.set_data_item('C', 'c')
-        self.ref_obj.set_data_item('A', 'a')
-        self.ref_obj.set_data_item('B', 'b')
-        self.ref_obj.set_data_item('C', 'c')
+        attr1 = SrcAttribute()
+        attr1.set_type('A')
+        attr1.set_value('a')
+        attr2 = SrcAttribute()
+        attr2.set_type('B')
+        attr2.set_value('b')
+        attr3 = SrcAttribute()
+        attr3.set_type('B')
+        attr3.set_value('bb')
+        attr4 = SrcAttribute()
+        attr4.set_type('C')
+        attr4.set_value('c')
+        self.phoenix.set_attribute_list([attr1, attr2])
+        self.titanic.set_attribute_list([attr3, attr4])
+        self.ref_obj.set_attribute_list([attr1, attr2, attr3, attr4])
         self.phoenix.merge(self.titanic)
         self.assertEqual(self.phoenix.serialize(), self.ref_obj.serialize())
 
