@@ -1356,7 +1356,7 @@ class ViewManager(CLIManager):
         if status == Gtk.ResponseType.OK:
             filename = f.get_filename()
             if filename:
-                path_entry.set_text(val)
+                path_entry.set_text(filename)
         f.destroy()
         return True
 
