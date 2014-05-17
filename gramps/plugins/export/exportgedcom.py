@@ -1314,13 +1314,13 @@ class GedcomWriter(UpdateCallback):
         
         even = None
         for srcattr in citation.get_attribute_list():
-            if srcattr.type == SrcAttributeType.EVEN_CITED:
+            if str(srcattr.type) == "EVEN":
                 even = srcattr.value
                 self._writeln(level+1, "EVEN", even)
                 break
         if even:
             for srcattr in citation.get_attribute_list():
-                if srcattr.type == SrcAttributeType.EVEN_ROLE:
+                if str(srcattr.type) == "EVEN:ROLE":
                     self._writeln(level+2, "ROLE", srcattr.value)
                     break
 
