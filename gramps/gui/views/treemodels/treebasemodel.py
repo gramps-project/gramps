@@ -90,10 +90,10 @@ class Node(object):
             #sortkey must be localized sort, so 
             self.sortkey = glocale.sort_key(sortkey)
             if not self.sortkey:
-                self.sortkey = ''
+                self.sortkey = b''
         else:
             self.name = ''
-            self.sortkey = ''
+            self.sortkey = b''
         self.ref = ref
         self.handle = handle
         self.secondary = secondary
