@@ -7080,7 +7080,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:560
 msgid "Gender Male Death"
-msgstr ""
+msgstr "Død mannsperson"
 
 #: ../gramps/gui/configure.py:562
 msgid "Border Male Death"
@@ -7088,7 +7088,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:564
 msgid "Gender Female Alive"
-msgstr ""
+msgstr "Levende Kvinneperson"
 
 #: ../gramps/gui/configure.py:566
 msgid "Border Female Alive"
@@ -7096,7 +7096,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:568
 msgid "Gender Female Death"
-msgstr ""
+msgstr "Død kvinneperson"
 
 #: ../gramps/gui/configure.py:570
 msgid "Border Female Death"
@@ -7112,7 +7112,7 @@ msgstr ""
 #. #                        'preferences.bordercolor-gender-other-death')
 #: ../gramps/gui/configure.py:580
 msgid "Gender Unknown Alive"
-msgstr ""
+msgstr "Levende person med ukjent kjønn"
 
 #: ../gramps/gui/configure.py:582
 msgid "Border Unknown Alive"
@@ -7120,7 +7120,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:584
 msgid "Gender Unknown Death"
-msgstr ""
+msgstr "Død person med ukjent kjønn"
 
 #: ../gramps/gui/configure.py:586
 msgid "Border Unknown Death"
@@ -18864,7 +18864,7 @@ msgstr "Import av VCards versjon %s er ikke støttet av Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:480
 msgid "Invalid date {date} in BDAY {vcard_snippet}, preserving date as text."
-msgstr ""
+msgstr "Ugyldig date {date} i BDAY {vcard_snippet}, håndterer dato som tekst."
 
 #: ../gramps/plugins/importer/importvcard.py:488
 msgid "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date as text."
@@ -19164,7 +19164,7 @@ msgstr "Alle referanser til notater må ha en 'hlink'-egenskap."
 #. but you may re-order them if needed.
 #: ../gramps/plugins/importer/importxml.py:2406
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
-msgstr ""
+msgstr "Ugyldig dato {date} i XML {xml}, håndterer XML som tekst"
 
 #: ../gramps/plugins/importer/importxml.py:2451
 #, python-format
@@ -19370,7 +19370,8 @@ msgstr "ukrainsk"
 msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
 " Writing to %(filename)s in format %(impliedext)s."
-msgstr ""
+msgstr "Ikke samsvar mellom valgt endelse %(ext)s og filformat.\n"
+" Skriver til %(filename)s på format %(impliedext)s."
 
 #: ../gramps/plugins/lib/libgedcom.py:1787
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
