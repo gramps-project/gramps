@@ -35,6 +35,7 @@
 # python modules
 #
 #------------------------------------------------------------------------
+from __future__ import unicode_literals
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from bisect import bisect
@@ -59,7 +60,7 @@ except:
                    "in LaTex documents will not be available. "
                    "Use your package manager to install python-imaging"))
         
-_CLICKABLE = r'''\url{\1}'''
+_CLICKABLE = '\\url{\\1}'
 
 #------------------------------------------------------------------------
 #
