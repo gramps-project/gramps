@@ -662,6 +662,9 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         PangoCairo.layout_path(cr, layout)
         #le = layout.get_line(0).get_pixel_extents()[0]
         pe = cr.path_extents()
+        if pe == (0.0, 0.0, 0.0, 0.0):
+            # 7710: When scrolling the path extents are zero on Ubuntu 14.04
+            return
         arc_used_ratio = w / (radius * rad_spread)
         rad_mid = math.radians(pos) + rad_spread/2
 
