@@ -41,6 +41,13 @@ test_ged = """0 HEAD
 0 TRLR
 """
 
+# see gramps.grampsapp.py
+## hack to avoid mentioning 'utf8' encoding everywhere unicode or str is is used
+if sys.version_info[0] < 3:
+    reload(sys)
+    sys.setdefaultencoding('utf8')
+##
+
 ddir = os.path.dirname(__file__)
 min1r = os.path.join(ddir,"min1r.ged")
 out_ged = os.path.join(ddir,"test_out.ged")
