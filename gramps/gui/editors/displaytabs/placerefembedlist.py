@@ -101,4 +101,5 @@ class PlaceRefEmbedList(EmbeddedList):
         self.rebuild()
 
     def post_rebuild(self, prebuildpath):
-        self.callback()
+        if prebuildpath is not None:
+            self.callback()
