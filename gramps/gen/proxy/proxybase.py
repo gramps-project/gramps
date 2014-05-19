@@ -472,6 +472,10 @@ class ProxyDbBase(DbReadBase):
             setattr(self, name, attr)
             return attr
 
+        if sname[0] == 'remove':
+            # Default behaviour: lookup attribute in parent object
+            return getattr(self.db, name)
+
         # if a write-method:
         if (name in DbWriteBase.__dict__ and
             not name.startswith("__") and 
