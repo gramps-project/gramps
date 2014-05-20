@@ -10615,7 +10615,7 @@ msgstr "Parrain"
 # trunk
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:66
 msgid "Enclosed By"
-msgstr "Entre"
+msgstr "Lié à"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:55
 msgid "Create and add a new repository"
