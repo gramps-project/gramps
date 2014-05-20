@@ -6543,12 +6543,12 @@ msgstr "Quartier"
 # trunk
 #: ../gramps/gen/lib/placetype.py:80
 msgid "District"
-msgstr "Arrondissement municipal"
+msgstr "Arrondissement départemental"
 
 # trunk
 #: ../gramps/gen/lib/placetype.py:81
 msgid "Borough"
-msgstr "Arrondissement départemental"
+msgstr "Arrondissement municipal"
 
 # trunk
 #: ../gramps/gen/lib/placetype.py:82
