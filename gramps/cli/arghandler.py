@@ -552,12 +552,6 @@ class ArgHandler(object):
             if family_tree_format == plugin.get_extension():
                 import_function = plugin.get_import_function()
                 import_function(self.dbstate.db, filename, self.user)
-        
-        if not self.cl:
-            if self.imp_db_path:
-                return self.sm.open_activate(self.imp_db_path)
-            else:
-                return self.sm.open_activate(self.open)
 
     #-------------------------------------------------------------------------
     #
