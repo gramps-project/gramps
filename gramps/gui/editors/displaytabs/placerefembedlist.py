@@ -47,7 +47,7 @@ from .embeddedlist import EmbeddedList, TEXT_COL
 class PlaceRefEmbedList(EmbeddedList):
 
     _HANDLE_COL = 4
-    #_DND_TYPE = DdTargets.PLACEREF
+    _DND_TYPE = DdTargets.PLACEREF
     
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
