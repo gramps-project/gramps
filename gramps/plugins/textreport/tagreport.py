@@ -46,10 +46,11 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     TableStyle, TableCellStyle,
                                     FONT_SANS_SERIF, INDEX_TYPE_TOC,
                                     PARA_ALIGN_CENTER)
-from gramps.gen.lib import NoteType
+from gramps.gen.lib import NoteType, UrlType
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.errors import ReportError
 from gramps.gen.datehandler import get_date
+from gramps.gen.utils.db import get_participant_from_event
 
 #------------------------------------------------------------------------
 #
@@ -97,10 +98,14 @@ class TagReport(Report):
         
         self.write_people()
         self.write_families()
-        #self.write_events()
+        self.write_events()
+        self.write_places()
         self.write_notes()
         self.write_media()
-            
+        self.write_repositories()
+        self.write_sources()
+        self.write_citations()
+
     def write_people(self):
         plist = self.database.iter_person_handles()
         FilterClass = GenericFilterFactory('Person')
@@ -277,8 +282,6 @@ class TagReport(Report):
         self.doc.end_table()
 
     def write_events(self):
-        # At the time of this writing, the GRAMPS UI does not allow the setting
-        # of tags for events.
         elist = self.database.get_event_handles()
         FilterClass = GenericFilterFactory('Event')
         filter = FilterClass()
@@ -306,19 +309,19 @@ class TagReport(Report):
 
         self.doc.start_cell('TR-TableCell')
         self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Type"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Participants"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+        
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
         self.doc.write_text(self._("Date"))
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        
-        self.doc.start_cell('TR-TableCell')
-        self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(self._("Place"))
-        self.doc.end_paragraph()
-        self.doc.end_cell()
-        
-        self.doc.start_cell('TR-TableCell')
-        self.doc.start_paragraph('TR-Normal-Bold')
-        self.doc.write_text(self._("Description"))
         self.doc.end_paragraph()
         self.doc.end_cell()
         
@@ -337,33 +340,108 @@ class TagReport(Report):
             
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(str(event.get_type()))
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(get_participant_from_event(self.database,
+                                                           event_handle))
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
             date = get_date(event)
             if date:
                 self.doc.write_text(date)
             self.doc.end_paragraph()
             self.doc.end_cell()
-            
-            self.doc.start_cell('TR-TableCell')
-            self.doc.start_paragraph('TR-Normal')
-            place_handle = event.get_place_handle()
-            place = ReportUtils.place_name(self.database, place_handle)
-            if place:
-                self.doc.write_text(place)
-            self.doc.end_paragraph()
-            self.doc.end_cell()
-            
-            self.doc.start_cell('TR-TableCell')
-            self.doc.start_paragraph('TR-Normal')
-            descr = event.get_description()
-            if descr:
-                self.doc.write_text( descr )
-            self.doc.end_paragraph()
-            self.doc.end_cell()
-            
+
             self.doc.end_row()
-            
+
         self.doc.end_table()
-        
+
+    def write_places(self):
+        plist = self.database.get_place_handles()
+        FilterClass = GenericFilterFactory('Place')
+        filter = FilterClass()
+        filter.add_rule(rules.place.HasTag([self.tag]))
+        place_list = filter.apply(self.database, plist)
+
+        if not place_list:
+            return
+
+        self.doc.start_paragraph("TR-Heading")
+        header = self._("Places")
+        mark = IndexMark(header, INDEX_TYPE_TOC, 2)
+        self.doc.write_text(header, mark)
+        self.doc.end_paragraph()
+
+        self.doc.start_table('PlaceTable','TR-Table')
+
+        self.doc.start_row()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Id"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Title"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Name"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Type"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.end_row()
+
+        for place_handle in place_list:
+            place = self.database.get_place_from_handle(place_handle)
+
+            self.doc.start_row()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(place.get_gramps_id())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(place.get_title())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(place.get_name())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(str(place.get_type()))
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.end_row()
+
+        self.doc.end_table()
+
     def write_notes(self):
         nlist = self.database.get_note_handles()
         FilterClass = GenericFilterFactory('Note')
@@ -515,6 +593,252 @@ class TagReport(Report):
 
             self.doc.end_row()
             
+        self.doc.end_table()
+
+    def write_repositories(self):
+        rlist = self.database.get_repository_handles()
+        FilterClass = GenericFilterFactory('Repository')
+        filter = FilterClass()
+        filter.add_rule(rules.repository.HasTag([self.tag]))
+        repo_list = filter.apply(self.database, rlist)
+
+        if not repo_list:
+            return
+
+        self.doc.start_paragraph("TR-Heading")
+        header = self._("Repositories")
+        mark = IndexMark(header, INDEX_TYPE_TOC, 2)
+        self.doc.write_text(header ,mark)
+        self.doc.end_paragraph()
+
+        self.doc.start_table('ReopTable','TR-Table')
+
+        self.doc.start_row()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Id"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Name"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Type"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Email Address"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.end_row()
+
+        for repo_handle in repo_list:
+            repo = self.database.get_repository_from_handle(repo_handle)
+
+            self.doc.start_row()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(repo.get_gramps_id())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(repo.get_name())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(str(repo.get_type()))
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            home_page = ''
+            for url in repo.get_url_list():
+                if url.get_type() == UrlType.EMAIL:
+                    home_page = url.get_path()
+                    break
+            self.doc.write_text(home_page)
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.end_row()
+
+        self.doc.end_table()
+
+    def write_sources(self):
+        slist = self.database.get_source_handles(sort_handles=True)
+        FilterClass = GenericFilterFactory('Source')
+        filter = FilterClass()
+        filter.add_rule(rules.source.HasTag([self.tag]))
+        source_list = filter.apply(self.database, slist)
+
+        if not source_list:
+            return
+
+        self.doc.start_paragraph("TR-Heading")
+        header = self._("Source")
+        mark = IndexMark(header, INDEX_TYPE_TOC, 2)
+        self.doc.write_text(header ,mark)
+        self.doc.end_paragraph()
+
+        self.doc.start_table('SourceTable','TR-Table')
+
+        self.doc.start_row()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Id"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Title"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Author"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Publication Information"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.end_row()
+
+        for source_handle in source_list:
+            source = self.database.get_source_from_handle(source_handle)
+
+            self.doc.start_row()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(source.get_gramps_id())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(source.get_title())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(source.get_author())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(source.get_publication_info())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.end_row()
+
+        self.doc.end_table()
+
+    def write_citations(self):
+        clist = self.database.get_citation_handles(sort_handles=True)
+        FilterClass = GenericFilterFactory('Citation')
+        filter = FilterClass()
+        filter.add_rule(rules.citation.HasTag([self.tag]))
+        citation_list = filter.apply(self.database, clist)
+
+        if not citation_list:
+            return
+
+        self.doc.start_paragraph("TR-Heading")
+        header = self._("Citations")
+        mark = IndexMark(header, INDEX_TYPE_TOC, 2)
+        self.doc.write_text(header ,mark)
+        self.doc.end_paragraph()
+
+        self.doc.start_table('CitationTable','TR-Table')
+
+        self.doc.start_row()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Id"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Volume/Page"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Date"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.start_cell('TR-TableCell')
+        self.doc.start_paragraph('TR-Normal-Bold')
+        self.doc.write_text(self._("Source"))
+        self.doc.end_paragraph()
+        self.doc.end_cell()
+
+        self.doc.end_row()
+
+        for citation_handle in citation_list:
+            citation = self.database.get_citation_from_handle(citation_handle)
+
+            self.doc.start_row()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(citation.get_gramps_id())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            self.doc.write_text(citation.get_page())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            date = get_date(citation)
+            if date:
+                self.doc.write_text(date)
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.start_cell('TR-TableCell')
+            self.doc.start_paragraph('TR-Normal')
+            source_handle = citation.get_reference_handle()
+            source = self.database.get_source_from_handle(source_handle)
+            self.doc.write_text(source.get_title())
+            self.doc.end_paragraph()
+            self.doc.end_cell()
+
+            self.doc.end_row()
+
         self.doc.end_table()
 
 #------------------------------------------------------------------------
