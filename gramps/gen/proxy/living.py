@@ -96,7 +96,6 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Person,
                 "cursor_func": self.get_person_cursor,
                 "handles_func": self.get_person_handles,
-                "remove_func": self.remove_person,
             })
         self._tables['Family'].update(
             {
@@ -105,7 +104,6 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Family,
                 "cursor_func": self.get_family_cursor,
                 "handles_func": self.get_family_handles,
-                "remove_func": self.remove_family,
             })
         self._tables['Source'].update(
             {
@@ -114,7 +112,6 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Source,
                 "cursor_func": self.get_source_cursor,
                 "handles_func": self.get_source_handles,
-                "remove_func": self.remove_source,
                 })
         self._tables['Citation'].update(
             {
@@ -123,7 +120,6 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Citation,
                 "cursor_func": self.get_citation_cursor,
                 "handles_func": self.get_citation_handles,
-                "remove_func": self.remove_citation,
             })
         self._tables['Event'].update(
             {
@@ -132,7 +128,6 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Event,
                 "cursor_func": self.get_event_cursor,
                 "handles_func": self.get_event_handles,
-                "remove_func": self.remove_event,
             })
         self._tables['Media'].update(
             {
@@ -141,7 +136,6 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": MediaObject,
                 "cursor_func": self.get_media_cursor,
                 "handles_func": self.get_media_object_handles,
-                "remove_func": self.remove_object,
             })
         self._tables['Place'].update(
             {
@@ -150,7 +144,6 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Place,
                 "cursor_func": self.get_place_cursor,
                 "handles_func": self.get_place_handles,
-                "remove_func": self.remove_place,
             })
         self._tables['Repository'].update(
             {
@@ -159,7 +152,6 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Repository,
                 "cursor_func": self.get_repository_cursor,
                 "handles_func": self.get_repository_handles,
-                "remove_func": self.remove_repository,
             })
         self._tables['Note'].update(
             {
@@ -168,7 +160,6 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Note,
                 "cursor_func": self.get_note_cursor,
                 "handles_func": self.get_note_handles,
-                "remove_func": self.remove_note,
             })
         self._tables['Tag'].update(
             {
@@ -177,7 +168,6 @@ class LivingProxyDb(ProxyDbBase):
                 "class_func": Tag,
                 "cursor_func": self.get_tag_cursor,
                 "handles_func": self.get_tag_handles,
-                "remove_func": self.remove_tag,
             })
 
     def get_person_from_handle(self, handle):
