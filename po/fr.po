@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: trunk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-20 17:37+0200\n"
-"PO-Revision-Date: 2014-05-20 17:39+0100\n"
+"PO-Revision-Date: 2014-05-21 17:44+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -10769,10 +10769,9 @@ msgstr "Éditer une citation"
 msgid "No source selected"
 msgstr "Aucune source sélectionnée"
 
-# trunk
 #: ../gramps/gui/editors/editcitation.py:276
 msgid "A source is anything (personal testimony, video recording, photograph, newspaper column, gravestone...) from which information can be derived. To create a citation, first select the required source, and then record the location of the information referenced within the source in the 'Volume/Page' field."
-msgstr ""
+msgstr "Une source est tout (témoignage personnel, enregistrement vidéo, photographie, journal, tombe ...) qui fournit une information. Pour créer une citation, sélectionnez d'abord une source requise, puis l'enregistrement de cette information référencée dans la source par le champ 'Volume / Page'."
 
 # trunk
 #: ../gramps/gui/editors/editcitation.py:290
@@ -11999,15 +11998,13 @@ msgstr "Ajouter un nouveau lieu"
 msgid "Remove place"
 msgstr "Enlever le lieu"
 
-# trunk
 #: ../gramps/gui/editors/objectentries.py:316
 msgid "First add a source using the buttons"
-msgstr ""
+msgstr "Ajoutez d'abord une source avec les boutons"
 
-# trunk
 #: ../gramps/gui/editors/objectentries.py:317
 msgid "First add a source using the button"
-msgstr ""
+msgstr "Ajoutez d'abord une source avec le bouton"
 
 # trunk
 #: ../gramps/gui/editors/objectentries.py:318
@@ -15940,16 +15937,14 @@ msgstr "Désactivé"
 msgid "On"
 msgstr "Activé"
 
-# trunk
 #: ../gramps/gui/spell.py:145
 msgid "You have no installed dictionaries. Either install one or disable spell checking"
-msgstr ""
+msgstr "Vous n'avez pas de dictionnaires. Soit installez en un ou désactivez la vérification orthographique."
 
-# trunk
 #: ../gramps/gui/spell.py:147
 #, python-format
 msgid "Spelling checker initialization failed: %s"
-msgstr ""
+msgstr "L'initialisation du vérificateur orthographique a échoué : %s"
 
 #: ../gramps/gui/tipofday.py:68
 #: ../gramps/gui/tipofday.py:69
@@ -17121,7 +17116,7 @@ msgstr "jaune"
 # trunk
 #: ../gramps/plugins/docgen/svgdrawdoc.py:352
 msgid "The color, if any, of the SVG background"
-msgstr ""
+msgstr "La couleur, si aucune, pour l'arrière-plan SVG"
 
 # trunk
 #. we want no text, but need a text for the TOC in a book!
@@ -18949,7 +18944,7 @@ msgstr "<Pas de citation>"
 # trunk
 #: ../gramps/plugins/gramplet/eval.py:76
 msgid "Evaluation"
-msgstr ""
+msgstr "Évaluation"
 
 #: ../gramps/plugins/gramplet/eval.py:77
 msgid "Output"
@@ -25415,7 +25410,7 @@ msgstr "Impossible de supprimer le lieu."
 # trunk
 #: ../gramps/plugins/lib/libplaceview.py:369
 msgid "This place is currently referenced by another place. First remove the places it contains."
-msgstr ""
+msgstr "Ce lieu est actuellement référencé par un autre lieu. Enlevez d'abord les lieux qu'il contient."
 
 #: ../gramps/plugins/lib/libplaceview.py:410
 msgid "Cannot merge places."
@@ -25436,7 +25431,7 @@ msgstr "Fournit les fonctionnalités dans le traitement GEDCOM"
 # trunk
 #: ../gramps/plugins/lib/libplugins.gpr.py:66
 msgid "Provides recursive routines for reports"
-msgstr ""
+msgstr "Fournit des fonctions récursives pour les rapports "
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:83
 msgid "Provides common functionality for Gramps XML import/export."
@@ -25625,7 +25620,7 @@ msgstr "Remplacer « %(map)s » par =>"
 #: ../gramps/plugins/lib/maps/geography.py:361
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr ""
+msgstr "Nettoyer le cache des tuiles '%(map)s'."
 
 #: ../gramps/plugins/lib/maps/geography.py:817
 #: ../gramps/plugins/view/geoclose.py:530
@@ -26639,12 +26634,12 @@ msgstr "Catégorie"
 # trunk
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:45
 msgid "Drop-down Sidebar"
-msgstr ""
+msgstr "Barre latérale liste déroulante"
 
 # trunk
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:46
 msgid "Selection of categories and views from drop-down lists"
-msgstr ""
+msgstr "Sélection de catégories et vues depuis les listes déroulantes"
 
 # trunk
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:54
@@ -26654,17 +26649,18 @@ msgstr "Liste déroulante"
 # trunk
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:60
 msgid "Expander Sidebar"
-msgstr ""
+msgstr "Barre latérale étendue"
 
 # trunk
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:61
 msgid "Selection of views from lists with expanders"
-msgstr ""
+msgstr "Sélection de vues depuis les listes avec extensions"
 
+# Gtk+ disclosure widget
 # trunk
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:69
 msgid "Expander"
-msgstr ""
+msgstr "Extension"
 
 # trunk
 #: ../gramps/plugins/textreport/alphabeticalindex.py:64
@@ -26978,6 +26974,7 @@ msgstr "%(name_kind)s : %(name)s%(endnotes)s"
 msgid "Address: "
 msgstr "Adresse : "
 
+# trunk
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:370
 #: ../gramps/plugins/textreport/detdescendantreport.py:825
@@ -27018,6 +27015,7 @@ msgstr "%(place)s"
 msgid "%(event_name)s: %(event_text)s"
 msgstr "%(event_name)s : %(event_text)s"
 
+# trunk
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:444
 #: ../gramps/plugins/textreport/detdescendantreport.py:343
@@ -27530,7 +27528,7 @@ msgstr "%(str1)s à %(str2)s. "
 #: ../gramps/plugins/textreport/indivcomplete.py:205
 #, python-format
 msgid "%(parent-name)s, relationship: %(rel-type)s"
-msgstr ""
+msgstr "%(parent-name)s, relation : %(rel-type)s"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:251
 msgid "Alternate Parents"
@@ -30689,7 +30687,7 @@ msgstr "Module Webkit non-chargé."
 
 #: ../gramps/plugins/view/htmlrenderer.gpr.py:68
 msgid "Webkit module not loaded. Embedded web page viewing will not be available. Use your package manager to install gir1.2-webkit-3.0"
-msgstr ""
+msgstr "Le module Webkit n'est pas chargé. Le navigateur de page internet n'est pas disponible. Utilisez votre gestionnaire de paquets pour installer gir1.2-webkit-3.0."
 
 #: ../gramps/plugins/view/htmlrenderer.gpr.py:77
 msgid "Html View"
