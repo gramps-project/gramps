@@ -5,7 +5,7 @@
 # Copyright (C) 2009      Gary Burton
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2010      Nick Hall
-# Copyright (C) 2013      Paul Franklin
+# Copyright (C) 2013-2014 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -48,7 +48,6 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     PARA_ALIGN_CENTER)
 from gramps.gen.lib import NoteType
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.errors import ReportError
 from gramps.gen.datehandler import get_date
 
@@ -73,6 +72,7 @@ class TagReport(Report):
         that come in the options class.
         
         tag             - The tag each object must match to be included.
+        name_format     - Preferred format to display names of people
         """
         Report.__init__(self, database, options, user)
         menu = options.menu
@@ -82,6 +82,10 @@ class TagReport(Report):
                 _('You must first create a tag before running this report.'))
        
         self.set_locale(menu.get_option_by_name('trans').get_value())
+
+        name_format = menu.get_option_by_name("name_format").get_value()
+        if name_format != 0:
+            self._name_display.set_default_format(name_format)
 
     def write_report(self):
         self.doc.start_paragraph("TR-Title")
@@ -154,7 +158,7 @@ class TagReport(Report):
             self.doc.end_paragraph()
             self.doc.end_cell()
 
-            name = name_displayer.display(person)
+            name = self._name_display.display(person)
             mark = ReportUtils.get_person_mark(self.database, person)
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
@@ -247,7 +251,7 @@ class TagReport(Report):
             if father_handle:
                 father = self.database.get_person_from_handle(father_handle)
                 mark = ReportUtils.get_person_mark(self.database, father)
-                self.doc.write_text(name_displayer.display(father), mark)
+                self.doc.write_text(self._name_display.display(father), mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
             
@@ -257,7 +261,7 @@ class TagReport(Report):
             if mother_handle:
                 mother = self.database.get_person_from_handle(mother_handle)
                 mark = ReportUtils.get_person_mark(self.database, mother)
-                self.doc.write_text(name_displayer.display(mother), mark)
+                self.doc.write_text(self._name_display.display(mother), mark)
             self.doc.end_paragraph()
             self.doc.end_cell()
             
@@ -546,6 +550,7 @@ class TagOptions(MenuReportOptions):
         tag_option.set_help( _("The tag to use for the report"))
         menu.add_option(category_name, "tag", tag_option)
 
+        stdoptions.add_name_format_option(menu, category_name)
         stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self,default_style):
