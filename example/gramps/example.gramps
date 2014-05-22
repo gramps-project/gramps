@@ -13943,7 +13943,7 @@
     <event handle="_a5af0ed3f64432fb742" change="1284030595" id="E2618">
       <type>Burial</type>
       <dateval val="1818" type="about"/>
-      <place hlink="_4ECKQCWCLO5YIHXEXC"/>
+      <place hlink="_4ECKQCWCLO5YIHXEXZ"/>
       <description>Burial of Schultz, Rev.Isaac</description>
     </event>
     <event handle="_a5af0ed3f9b07f938fb" change="1284030602" id="E2619">
@@ -58386,7 +58386,7 @@
       <placeref hlink="_c965872634337a6478283d68bc4"/>
     </placeobj>
     <placeobj handle="_4ECKQCWCLO5YIHXEXC" change="1234373374" id="P0957" name="USA" type="Country">
-      <ptitle>Puerto Rico,</ptitle>
+      <ptitle>USA</ptitle>
     </placeobj>
     <placeobj handle="_4FUJQCDFTJJJNKKJMH" change="1234390522" id="P0958" name="Boone" type="City">
       <ptitle>Boone, IA</ptitle>
@@ -63445,6 +63445,9 @@
     <placeobj handle="_c9658727234128dda7bd2082338" change="1383986852" id="P0434" name="St. Lawrence" type="County">
       <ptitle>St. Lawrence, NY, USA</ptitle>
       <placeref hlink="_c96587263cc11e217c35cc9003f"/>
+    </placeobj>
+    <placeobj handle="_4ECKQCWCLO5YIHXEXZ" change="1234373374" id="P1704" name="Puerto Rico" type="Country">
+      <ptitle>Puerto Rico</ptitle>
     </placeobj>
   </places>
   <objects>
