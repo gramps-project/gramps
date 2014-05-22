@@ -1,11 +1,11 @@
-2014-05-xx
+2014-05-22
 Version 4.0.4, "Not the comfy chair", a maintenance release.
 * Upgrade to db version 17 fails in Python 3 due to use of iteritems
 * Database corrupted - TypeError: unhashable type: 'list'
 * Fix bug in abandon changes and quit
-* Paths, unicode and bsddb module
 * Consistency on create_id method
 * Better handling for non-ASCII characters on database-path
+* Better support for ANSEL characters
 * 'Display as' field in Name Editor reverts to Preferences default
 * Fix vcard date converter
 * View does not communicate over proxy server with autorisation
@@ -13,11 +13,11 @@ Version 4.0.4, "Not the comfy chair", a maintenance release.
 * Event gramplet filter does not have field for primary role,
 * New HasDayOfWeek filter rule
 * Error when leaving a Gramps type field blank in an editor
+* Fix creation of events with same Gramps-ID
 * Crash when opening details of a person
-* List in Unused Objects interface has limited space
-* Edit window will be too small when editing notes
-* Selection lists in Attribute Editor have limited space
+* Fix spacing on dialogs for some recent linux distribution
 * date editor and Date class allow e.g. Hebrew dates with newyear (Mar25)
+* Fix crash in fan chart view when scrolling
 * Poor contrast mouse on mouse over
 * Drag and drop only one data into Editors tabs
 * NotRelated and Verify data dialogs appear either too small or too big
@@ -40,9 +40,7 @@ Version 4.0.4, "Not the comfy chair", a maintenance release.
 * Missing closing bracket in Web_Basic-Spruce.css
 * Reorder tool: global name 'gen' is not defined
 * the scroll windows for patchname tools didn't expand
-* Some fixes and enhancements
-* Ver 4.0.2 starts in East Asian language
-* Can not start in Chinese, force UTF-8 locale on Mac
+* Fix start in East Asian language, force UTF-8 locale on Mac
 * Fix apple_collation
 * Spelling messages at random cause hang for a few seconds.
 * Media viewer list crashes during start if one try to select an entry where the media isn't available
@@ -53,7 +51,8 @@ Version 4.0.4, "Not the comfy chair", a maintenance release.
 * Improve support for collation variants
 * Translate some punctuation marks
 * Fix unit tests and python3 issues
-* Updated translations: ar, cs, de, fi, fr, he, it, lt, nb, pl, pt_BR, ru, sv, uk
+* Fix Relationships handler for Portuguese
+* Updated translations: ar, cs, de, fi, fr, he, it, lt, nb, nl, pl, pt_BR, ru, sv, uk
 
 2014-01-27
 Version 4.0.3, "It's tomorrow, ask me now", a maintenance release.
