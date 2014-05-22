@@ -4896,7 +4896,7 @@ msgstr "Ville :"
 # comté (Canada)
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "County:"
-msgstr "Comté (départ.) :"
+msgstr "Comté (Départ.) :"
 
 # province (Belgique, Canada)
 #: ../gramps/gen/filters/rules/place/_hasplace.py:53
@@ -6468,7 +6468,7 @@ msgstr "Pays "
 #: ../gramps/plugins/tool/extractcity.py:390
 #: ../gramps/plugins/webreport/narrativeweb.py:3366
 msgid "State"
-msgstr "Région/Province"
+msgstr "Province (Région)"
 
 # comté (Canada)
 #: ../gramps/gen/lib/placetype.py:71
@@ -6553,7 +6553,7 @@ msgstr "Borough (Arrondissement)"
 # trunk
 #: ../gramps/gen/lib/placetype.py:82
 msgid "Municipality"
-msgstr "Lieu-dit (municipalité)"
+msgstr "Municipalité"
 
 # trunk
 #: ../gramps/gen/lib/placetype.py:83
@@ -6575,7 +6575,6 @@ msgstr "Hameau"
 msgid "Farm"
 msgstr "Ferme"
 
-# Substantif (GNOME fr)
 # trunk
 #: ../gramps/gen/lib/placetype.py:87
 msgid "Building"
@@ -12983,7 +12982,7 @@ msgstr "La plus petite division religieuse du lieu. Typiquement utilisé pour le
 # comté (Canada)
 #: ../gramps/gui/glade/editlocation.glade:176
 msgid "Co_unty:"
-msgstr "Co_mté (départ.):"
+msgstr "Co_mté (Départ.):"
 
 #: ../gramps/gui/glade/editlocation.glade:192
 msgid "Third level of place division. Eg., in the USA a county."
@@ -12992,7 +12991,7 @@ msgstr "Le troisième niveau de division du lieu. Par exemple aux USA le comté.
 # province (Canada, Belgique)
 #: ../gramps/gui/glade/editlocation.glade:208
 msgid "_State:"
-msgstr "_Province (Région):"
+msgstr "_Province (Région) :"
 
 #: ../gramps/gui/glade/editlocation.glade:226
 msgid "Second level of place division, eg., in the USA a state, in Germany a Bundesland."
