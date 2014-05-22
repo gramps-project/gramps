@@ -20,9 +20,6 @@ Version 4.0.4, "Not the comfy chair", a maintenance release.
 * Fix crash in fan chart view when scrolling
 * Poor contrast mouse on mouse over
 * Drag and drop only one data into Editors tabs
-* NotRelated and Verify data dialogs appear either too small or too big
-* Unable to edit citations on association
-* Relationship calculator not displaying data
 * Enhancements and consitency on events gramplet, selector and view
 * Sometimes says 'no data exists for note' when saving
 * Enhanced Citation Editor
@@ -39,7 +36,6 @@ Version 4.0.4, "Not the comfy chair", a maintenance release.
 * Filename Decoding Error in Graphical Reports
 * Missing closing bracket in Web_Basic-Spruce.css
 * Reorder tool: global name 'gen' is not defined
-* the scroll windows for patchname tools didn't expand
 * Fix start in East Asian language, force UTF-8 locale on Mac
 * Fix apple_collation
 * Spelling messages at random cause hang for a few seconds.
