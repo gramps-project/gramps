@@ -260,7 +260,7 @@ msgstr "<b>Gérer les sources</b><br/>La vue Sources affiche une liste de toutes
 # comté, province (Canada, Belgique)
 #: ../data/tips.xml.in.h:39
 msgid "<b>Managing Places</b><br/>The Places View shows a list of all places in the database. The list can be sorted by a number of different criteria, such as City, County or State."
-msgstr "<b>Gérer les lieux</b><br/>La vue Lieux affiche une liste de lieux. Cette liste peut être triée selon différents critères, comme la ville, le département (comté) ou la région (province)."
+msgstr "<b>Gérer les lieux</b><br/>La vue Lieux affiche une liste de lieux. Cette liste peut être triée selon différents critères, comme la ville, le comté (département) ou la province (région)."
 
 #: ../data/tips.xml.in.h:40
 msgid "<b>Media View</b><br/>The Media View shows a list of all media entered in the database. These can be graphic images, videos, sound clips, spreadsheets, documents, and more."
@@ -4896,12 +4896,12 @@ msgstr "Ville :"
 # comté (Canada)
 #: ../gramps/gen/filters/rules/place/_hasplace.py:52
 msgid "County:"
-msgstr "Départ./Comté :"
+msgstr "Comté (Départ.) :"
 
 # province (Belgique, Canada)
 #: ../gramps/gen/filters/rules/place/_hasplace.py:53
 msgid "State:"
-msgstr "Région/Province :"
+msgstr "Province (Région) :"
 
 #: ../gramps/gen/filters/rules/place/_hasplace.py:54
 msgid "Country:"
@@ -6468,7 +6468,7 @@ msgstr "Pays "
 #: ../gramps/plugins/tool/extractcity.py:390
 #: ../gramps/plugins/webreport/narrativeweb.py:3366
 msgid "State"
-msgstr "Région/Province"
+msgstr "Province (Région)"
 
 # comté (Canada)
 #: ../gramps/gen/lib/placetype.py:71
@@ -6478,7 +6478,7 @@ msgstr "Région/Province"
 #: ../gramps/plugins/lib/maps/placeselection.py:146
 #: ../gramps/plugins/webreport/narrativeweb.py:373
 msgid "County"
-msgstr "Départ./Comté"
+msgstr "Comté (Départ.)"
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
@@ -6543,17 +6543,17 @@ msgstr "Quartier"
 # trunk
 #: ../gramps/gen/lib/placetype.py:80
 msgid "District"
-msgstr "Arrondissement départemental"
+msgstr "District (Arrondissement)"
 
 # trunk
 #: ../gramps/gen/lib/placetype.py:81
 msgid "Borough"
-msgstr "Arrondissement municipal"
+msgstr "Borough (Arrondissement)"
 
 # trunk
 #: ../gramps/gen/lib/placetype.py:82
 msgid "Municipality"
-msgstr "Lieu-dit "
+msgstr "Municipalité"
 
 # trunk
 #: ../gramps/gen/lib/placetype.py:83
@@ -6575,7 +6575,6 @@ msgstr "Hameau"
 msgid "Farm"
 msgstr "Ferme"
 
-# Substantif (GNOME fr)
 # trunk
 #: ../gramps/gen/lib/placetype.py:87
 msgid "Building"
@@ -8958,7 +8957,7 @@ msgstr "Entrez une information pour permettre aux personnes de vous contacter qu
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:75
 #: ../gramps/plugins/view/repoview.py:92
 msgid "State/County"
-msgstr "Région/Départ./Comté "
+msgstr "Province/Comté "
 
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # Utilisation d'un terme général (Code lieu) car le code postal ne sert à rien en généalogie.
@@ -12476,7 +12475,7 @@ msgstr "La ville ou le village de l'adresse"
 #: ../gramps/gui/glade/editaddress.glade:166
 #: ../gramps/plugins/tool/ownereditor.glade:172
 msgid "_State/County:"
-msgstr "_Région/Départ./Comté :"
+msgstr "_Province/Comté :"
 
 # Utilisation d'un terme général (Code lieu) car le code postal ne sert à rien en généalogie.
 #: ../gramps/gui/glade/editaddress.glade:185
@@ -12504,7 +12503,7 @@ msgstr "Numéro de téléphone lié à l'adresse."
 
 #: ../gramps/gui/glade/editaddress.glade:268
 msgid "The state or county of the address in case a mail address must contain this."
-msgstr "La région ou le département de l'adresse au cas où une adresse postale en a besoin."
+msgstr "La province (région) ou le comté (département) de l'adresse au cas où une adresse postale en a besoin."
 
 #: ../gramps/gui/glade/editaddress.glade:283
 msgid "Country of the address"
@@ -12983,7 +12982,7 @@ msgstr "La plus petite division religieuse du lieu. Typiquement utilisé pour le
 # comté (Canada)
 #: ../gramps/gui/glade/editlocation.glade:176
 msgid "Co_unty:"
-msgstr "_Départ./Comté :"
+msgstr "Co_mté (Départ.):"
 
 #: ../gramps/gui/glade/editlocation.glade:192
 msgid "Third level of place division. Eg., in the USA a county."
@@ -12992,7 +12991,7 @@ msgstr "Le troisième niveau de division du lieu. Par exemple aux USA le comté.
 # province (Canada, Belgique)
 #: ../gramps/gui/glade/editlocation.glade:208
 msgid "_State:"
-msgstr "_Région/Province :"
+msgstr "_Province (Région) :"
 
 #: ../gramps/gui/glade/editlocation.glade:226
 msgid "Second level of place division, eg., in the USA a state, in Germany a Bundesland."
@@ -27706,7 +27705,7 @@ msgstr "Ville : %s "
 #: ../gramps/plugins/textreport/placereport.py:162
 #, python-format
 msgid "County: %s "
-msgstr "Départ./Comté : %s "
+msgstr "Comté (dép.) : %s "
 
 # province (Canada, Belgique)
 #: ../gramps/plugins/textreport/placereport.py:163
