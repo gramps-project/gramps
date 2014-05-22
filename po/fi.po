@@ -1,4 +1,3 @@
-# GRAMPS
 # Copyright (C) YEAR ORGANIZATION.
 #
 # Eero Tamminen <eerot@sf>, 2005, 2006, 2007, 2008.
@@ -6,10 +5,10 @@
 # Pekka Valta <pekka.valta@kolumbus.fi>, 2014.
 msgid ""
 msgstr ""
-"Project-Id-Version: Gramps_4.0.4_fi\n"
+"Project-Id-Version: Gramps_4.1.0_fi\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-17 16:43+0200\n"
-"PO-Revision-Date: 2014-03-19 16:22+0200\n"
+"PO-Revision-Date: 2014-05-22 21:34+0200\n"
 "Last-Translator: Pekka Valta <pekka.valta@kolumbus.fi>\n"
 "Language-Team: Pekka Valta <pekka.valta@kolumbus.fi>\n"
 "Language: fi\n"
@@ -26,6 +25,8 @@ msgid ""
 "Gramps is a genealogy program that is both intuitive for hobbyists and "
 "feature-complete for professional genealogists."
 msgstr ""
+"Grampson sukututkimusohjelma, joka on harrastelijalle helppo käyttää ja "
+"jossa on ammattitutkjan tarvitsemat ominaisuudet."
 
 #: ../data/gramps.appdata.xml.in.h:2
 #, fuzzy
@@ -45,6 +46,8 @@ msgid ""
 "All of your research is kept organized, searchable and as precise as you "
 "need it to be."
 msgstr ""
+"Kaikki tutkimuksesi pidetään juuri niin hallittuna, haettavissa ja tarkkana "
+"kuin sinulle on tarpeen."
 
 #: ../data/gramps.desktop.in.h:1 ../gramps/gui/glade/displaystate.glade:7
 msgid "Gramps"
@@ -1719,7 +1722,7 @@ msgstr "Päivämäärän näyttäjää '%s' ei käytettävissä, käytetään ol
 #. format 0 - must always be ISO
 #: ../gramps/gen/datehandler/_datedisplay.py:62
 msgid "YYYY-MM-DD (ISO)"
-msgstr ""
+msgstr "VVVV-MM-PP (ISO)"
 
 #. format # 1 - must always be locale-preferred numerical format
 #. such as YY.MM.DD, MM-DD-YY, or whatever your locale prefers.
@@ -1734,12 +1737,12 @@ msgstr "Päivämäärän muoto"
 #. Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:72
 msgid "Month Day, Year"
-msgstr ""
+msgstr "Kuukausi Päivä, Vuosi"
 
 #. Abbreviated month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:75
 msgid "MON DAY, YEAR"
-msgstr ""
+msgstr "KK PP, VVVV"
 
 #. Day, full month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:78
@@ -1750,7 +1753,7 @@ msgstr "Yksi päivä vuodessa"
 #. Day, abbreviated month name, year
 #: ../gramps/gen/datehandler/_datedisplay.py:81
 msgid "DAY MON YEAR"
-msgstr ""
+msgstr "PP KK VVVV"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1936,7 +1939,7 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_dateparser.py:402
 msgid "today"
-msgstr ""
+msgstr "tänään"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2353,15 +2356,15 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgid "date modifier|before "
-msgstr ""
+msgstr "ennen"
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgid "date modifier|after "
-msgstr ""
+msgstr "jälkeen"
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgid "date modifier|about "
-msgstr ""
+msgstr "noin"
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgid "date quality|estimated "
@@ -2373,7 +2376,7 @@ msgstr "laskettuna"
 
 #: ../gramps/gen/datehandler/_datestrings.py:222
 msgid "Sunday"
-msgstr ""
+msgstr "Sunnuntai"
 
 #: ../gramps/gen/datehandler/_datestrings.py:223
 #, fuzzy
@@ -2382,23 +2385,23 @@ msgstr "Toinen henkilö"
 
 #: ../gramps/gen/datehandler/_datestrings.py:224
 msgid "Tuesday"
-msgstr ""
+msgstr "Tiistai"
 
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgid "Wednesday"
-msgstr ""
+msgstr "Keskiviikko"
 
 #: ../gramps/gen/datehandler/_datestrings.py:226
 msgid "Thursday"
-msgstr ""
+msgstr "Torstai"
 
 #: ../gramps/gen/datehandler/_datestrings.py:227
 msgid "Friday"
-msgstr ""
+msgstr "Perjantai"
 
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgid "Saturday"
-msgstr ""
+msgstr "Lauantai"
 
 #: ../gramps/gen/db/base.py:1635
 msgid "Add child to family"
@@ -6877,15 +6880,15 @@ msgstr "Eläkkeelle jääminen"
 
 #: ../gramps/gen/lib/placetype.py:79
 msgid "Neighborhood"
-msgstr ""
+msgstr "Kulmakunta"
 
 #: ../gramps/gen/lib/placetype.py:80
 msgid "District"
-msgstr ""
+msgstr "Piirikunta"
 
 #: ../gramps/gen/lib/placetype.py:81
 msgid "Borough"
-msgstr ""
+msgstr "Kaupunginosa"
 
 #: ../gramps/gen/lib/placetype.py:82
 #, fuzzy
@@ -6894,19 +6897,19 @@ msgstr "Taajama"
 
 #: ../gramps/gen/lib/placetype.py:83
 msgid "Town"
-msgstr ""
+msgstr "Kaupunki"
 
 #: ../gramps/gen/lib/placetype.py:84
 msgid "Village"
-msgstr ""
+msgstr "Kylä"
 
 #: ../gramps/gen/lib/placetype.py:85
 msgid "Hamlet"
-msgstr ""
+msgstr "Taloryhmä"
 
 #: ../gramps/gen/lib/placetype.py:86
 msgid "Farm"
-msgstr ""
+msgstr "Tila"
 
 #: ../gramps/gen/lib/placetype.py:87
 #, fuzzy
@@ -10894,7 +10897,7 @@ msgstr "Kummisetä"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:66
 msgid "Enclosed By"
-msgstr ""
+msgstr "Ympärillä:"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:55
 msgid "Create and add a new repository"
@@ -11056,6 +11059,10 @@ msgid ""
 "location of the information referenced within the source in the 'Volume/"
 "Page' field."
 msgstr ""
+"Lähde voi olla mikä tahansa sellainen asia (todistajanlausunto, nauhoite, "
+"valokuva, lehtijuttu, hautakivi...) , josta on saatavissa tietoa. Lainauksen "
+"luomiseksi valitaan ensin ensin ao. lähde ja sen jälkeen tallennetaan "
+"viitatun tiedon lähteessä oleva  paikka  \"Osa/Sivu\" kenttään."
 
 #: ../gramps/gui/editors/editcitation.py:290
 msgid "Cannot save citation. ID already exists."
@@ -11882,14 +11889,12 @@ msgid "No data exists for this place. Please enter data or cancel the edit."
 msgstr "Paikan tiedot puuttuvat. Anna tiedot tai peru muokkaus."
 
 #: ../gramps/gui/editors/editplace.py:260
-#, fuzzy
 msgid "Cannot save location. Title not entered."
-msgstr "Lainauksen tallentaminen ei onnistu. Lähdettä ei ole valittuna."
+msgstr "Paikan tallentaminen ei onnistu. Paikan nimeä ei ole annettu."
 
 #: ../gramps/gui/editors/editplace.py:261
-#, fuzzy
 msgid "You must enter a title before saving."
-msgstr "Luo ensin tagi ennenkuin ajat tämän raportin"
+msgstr "Anna nimi ennen tallentamista."
 
 #: ../gramps/gui/editors/editplace.py:267
 #, fuzzy
@@ -12323,11 +12328,11 @@ msgstr "Poista paikka"
 
 #: ../gramps/gui/editors/objectentries.py:316
 msgid "First add a source using the buttons"
-msgstr ""
+msgstr "Lisää ensin painikkeilla lähde"
 
 #: ../gramps/gui/editors/objectentries.py:317
 msgid "First add a source using the button"
-msgstr ""
+msgstr "Lisää ensin painikkeilla lähde"
 
 #: ../gramps/gui/editors/objectentries.py:318
 msgid "Edit source"
@@ -13488,7 +13493,7 @@ msgstr "_Etunimi:"
 #: ../gramps/gui/glade/editname.glade:224
 #: ../gramps/gui/glade/editperson.glade:190
 msgid "T_itle:"
-msgstr "Titteli:"
+msgstr "T_itteli:"
 
 #: ../gramps/gui/glade/editname.glade:240
 msgid "Suffi_x:"
@@ -13813,11 +13818,11 @@ msgstr "Paikan ainutkertainen ID"
 #: ../gramps/gui/glade/mergeplace.glade:618
 #: ../gramps/gui/glade/mergeplace.glade:637
 msgid "Code:"
-msgstr ""
+msgstr "Koodi:"
 
 #: ../gramps/gui/glade/editplace.glade:238
 msgid "Code associated with this place. Eg Country Code or Postal Code."
-msgstr ""
+msgstr "Tähän paikkaan liityvä koodi. Esim. maakoodi tai postinumero."
 
 #: ../gramps/gui/glade/editplace.glade:341
 #, fuzzy
@@ -13892,7 +13897,7 @@ msgstr "_Tekijä:"
 
 #: ../gramps/gui/glade/editsource.glade:127
 msgid "Title of the source."
-msgstr "Lähteen nimike"
+msgstr "Lähteen nimike."
 
 #: ../gramps/gui/glade/editsource.glade:139
 msgid "Authors of the source."
@@ -14064,9 +14069,8 @@ msgstr ""
 "Valitse henkilö, jolta tulevat ensisijaiset tiedot sulautetulle henkilölle."
 
 #: ../gramps/gui/glade/mergedata.glade:604
-#, fuzzy
 msgid "Title selection"
-msgstr "Suotimen valinta"
+msgstr "Nimikkeen valinta"
 
 #: ../gramps/gui/glade/mergedata.glade:617
 #: ../gramps/gui/glade/mergeplace.glade:180
@@ -17541,7 +17545,7 @@ msgstr "Valitse taustaväri"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:343
 msgid "transparent background"
-msgstr ""
+msgstr "läpinäkyvä tausta"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:344
 #: ../gramps/plugins/drawreport/fanchart.py:666
@@ -17550,7 +17554,7 @@ msgstr "valkoinen"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:345
 msgid "black"
-msgstr ""
+msgstr "musta"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:346
 #, fuzzy
@@ -17564,11 +17568,11 @@ msgstr "Oppiarvo"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:348
 msgid "blue"
-msgstr ""
+msgstr "sininen"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:349
 msgid "cyan"
-msgstr ""
+msgstr "sinivihreä"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:350
 #, fuzzy
@@ -17577,11 +17581,11 @@ msgstr "Kuva"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:351
 msgid "yellow"
-msgstr ""
+msgstr "keltainen"
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:352
 msgid "The color, if any, of the SVG background"
-msgstr ""
+msgstr "Skaalautuvan vektorigrafiikan taustaväri, jos olemassa"
 
 #. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/ancestortree.py:133
@@ -19410,7 +19414,7 @@ msgstr "Tulostusmuoto"
 
 #: ../gramps/plugins/gramplet/eval.py:78
 msgid "Error"
-msgstr ""
+msgstr "Virhe"
 
 #: ../gramps/plugins/gramplet/eval.py:81
 #, fuzzy
@@ -26381,7 +26385,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libplaceview.py:94
 #: ../gramps/plugins/view/placetreeview.py:71
 msgid "Code"
-msgstr ""
+msgstr "Koodi"
 
 #: ../gramps/plugins/lib/libplaceview.py:109
 msgid "Edit the selected place"
@@ -26458,7 +26462,7 @@ msgstr "Paikkojen sulauttaminen ei onnistu."
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
-msgstr ""
+msgstr "Toinen paikka viittaa tähän paikkaan. Poista ne ensin."
 
 #: ../gramps/plugins/lib/libplaceview.py:410
 msgid "Cannot merge places."
@@ -26483,7 +26487,7 @@ msgstr "Tarjoaa GEDCOM-tiedoston käsittelyn"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:66
 msgid "Provides recursive routines for reports"
-msgstr ""
+msgstr "Tarjoaa itseään toistavia rutiineja raportteja varten"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:83
 msgid "Provides common functionality for Gramps XML import/export."
@@ -26675,7 +26679,7 @@ msgstr "Korvaa '%(map)s' tällä =>"
 #: ../gramps/plugins/lib/maps/geography.py:361
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr ""
+msgstr "Tyhjennä '%(map)s' tiilien välimuisti."
 
 #: ../gramps/plugins/lib/maps/geography.py:817
 #: ../gramps/plugins/view/geoclose.py:530
@@ -27674,11 +27678,11 @@ msgstr "Kategoria"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:45
 msgid "Drop-down Sidebar"
-msgstr ""
+msgstr "Sivupalkki joka on pudotuslista"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:46
 msgid "Selection of categories and views from drop-down lists"
-msgstr ""
+msgstr "Kategorioiden ja näkyminen valinta pudotuslistoista"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:54
 #, fuzzy
@@ -27692,7 +27696,7 @@ msgstr "Kategorioiden sivupalkki"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:61
 msgid "Selection of views from lists with expanders"
-msgstr ""
+msgstr "Näkyminen valinta listoista laajentajista"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:69
 #, fuzzy
@@ -28542,7 +28546,7 @@ msgstr "%(part1)s - %(part2)s"
 #: ../gramps/plugins/textreport/indivcomplete.py:210
 #, python-format
 msgid "%(parent-name)s, relationship: %(rel-type)s"
-msgstr ""
+msgstr "%(parent-name)s, suhde: %(rel-type)s"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:256
 msgid "Alternate Parents"
@@ -29417,7 +29421,7 @@ msgstr "Etsitään viallisia lisätietoviitteitä"
 
 #: ../gramps/plugins/tool/check.py:1811
 msgid "Updating checksums on media"
-msgstr ""
+msgstr "Päivitän madian tarkistussummia"
 
 #: ../gramps/plugins/tool/check.py:1838
 msgid "Looking for tag reference problems"
@@ -29677,7 +29681,7 @@ msgstr "Toissijaiset tietokantaindeksit luotu"
 
 #: ../gramps/plugins/tool/dumpgenderstats.py:68
 msgid "Guess"
-msgstr ""
+msgstr "Arvaus"
 
 #: ../gramps/plugins/tool/eventcmp.glade:239
 msgid "_Filter:"
@@ -33451,6 +33455,7 @@ msgid "My Family Calendar"
 msgstr "Sukukalenterini"
 
 #: ../gramps/plugins/webreport/webcal.py:1331
+#, fuzzy
 msgid "The title of the calendar"
 msgstr "Kalenterin otsikko"
 
@@ -35099,15 +35104,15 @@ msgstr "Vain yhden säännön toteuduttava"
 #~ "kuolinpaikka %(death_place)s."
 
 #~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d years."
+#~ "This person died on %(death_date)s in %(death_place)s at the age of "
+#~ "%(age)d years."
 #~ msgstr ""
 #~ "Hän kuoli %(death_date)s %(age)d vuoden ikäisenä, kuolinpaikka "
 #~ "%(death_place)s."
 
 #~ msgid ""
-#~ "This person died on %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d months."
+#~ "This person died on %(death_date)s in %(death_place)s at the age of "
+#~ "%(age)d months."
 #~ msgstr ""
 #~ "Hän kuoli %(death_date)s %(age)d kuukauden ikäisenä, kuolinpaikka "
 #~ "%(death_place)s."
@@ -35139,8 +35144,8 @@ msgstr "Vain yhden säännön toteuduttava"
 
 #~ msgid "Died %(death_date)s in %(death_place)s (age %(age)d years)."
 #~ msgstr ""
-#~ "Kuoli %(death_date)s %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)"
-#~ "s."
+#~ "Kuoli %(death_date)s %(age)d vuoden ikäisenä, kuolinpaikka "
+#~ "%(death_place)s."
 
 #~ msgid "Died %(death_date)s in %(death_place)s (age %(age)d months)."
 #~ msgstr ""
@@ -35162,15 +35167,15 @@ msgstr "Vain yhden säännön toteuduttava"
 #~ "kuolinpaikka %(death_place)s."
 
 #~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d years."
+#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of "
+#~ "%(age)d years."
 #~ msgstr ""
 #~ "%(male_name)s kuoli %(death_date)s %(age)d vuoden ikäisenä, kuolinpaikka "
 #~ "%(death_place)s."
 
 #~ msgid ""
-#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of %(age)"
-#~ "d months."
+#~ "%(male_name)s died %(death_date)s in %(death_place)s at the age of "
+#~ "%(age)d months."
 #~ msgstr ""
 #~ "%(male_name)s kuoli %(death_date)s %(age)d kuukauden ikäisenä, "
 #~ "kuolinpaikka %(death_place)s."
@@ -35358,15 +35363,15 @@ msgstr "Vain yhden säännön toteuduttava"
 #~ "kuolinpaikka %(death_place)s."
 
 #~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
-#~ "d years."
+#~ "This person died in %(month_year)s in %(death_place)s at the age of "
+#~ "%(age)d years."
 #~ msgstr ""
 #~ "Hän kuoli %(month_year)s %(age)d vuoden ikäisenä, kuolinpaikka "
 #~ "%(death_place)s."
 
 #~ msgid ""
-#~ "This person died in %(month_year)s in %(death_place)s at the age of %(age)"
-#~ "d months."
+#~ "This person died in %(month_year)s in %(death_place)s at the age of "
+#~ "%(age)d months."
 #~ msgstr ""
 #~ "Hän kuoli %(month_year)s %(age)d kuukauden ikäisenä, kuolinpaikka "
 #~ "%(death_place)s."
@@ -35479,8 +35484,8 @@ msgstr "Vain yhden säännön toteuduttava"
 
 #~ msgid "%(female_name)s died in %(death_place)s at the age of %(age)d years."
 #~ msgstr ""
-#~ "%(female_name)s kuoli %(age)d vuoden ikäisenä, kuolinpaikka %(death_place)"
-#~ "s."
+#~ "%(female_name)s kuoli %(age)d vuoden ikäisenä, kuolinpaikka "
+#~ "%(death_place)s."
 
 #~ msgid ""
 #~ "%(female_name)s died in %(death_place)s at the age of %(age)d months."
