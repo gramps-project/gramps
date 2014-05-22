@@ -568,14 +568,19 @@ class CitationTreeView(ListView):
             all_links = all_links.union(links)
         self.row_update(list(all_links))
 
-    def add_tag(self, transaction, citation_handle, tag_handle):
+    def add_tag(self, transaction, handle, tag_handle):
         """
-        Add the given tag to the given citation.
+        Add the given tag to the given source or citation.
         """
-        citation = self.dbstate.db.get_citation_from_handle(citation_handle)
-        citation.add_tag(tag_handle)
-        self.dbstate.db.commit_citation(citation, transaction)
-        
+        citation = self.dbstate.db.get_citation_from_handle(handle)
+        if citation:
+            citation.add_tag(tag_handle)
+            self.dbstate.db.commit_citation(citation, transaction)
+        else:
+            source = self.dbstate.db.get_source_from_handle(handle)
+            source.add_tag(tag_handle)
+            self.dbstate.db.commit_source(source, transaction)
+
     def get_default_gramplets(self):
         """
         Define the default gramplets for the sidebar and bottombar.
