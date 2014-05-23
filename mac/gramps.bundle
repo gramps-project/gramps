@@ -70,7 +70,7 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libenchant.dylib
+    ${prefix}/lib/libgtkspell3-3.0.dylib
   </binary>
 
   <binary>
