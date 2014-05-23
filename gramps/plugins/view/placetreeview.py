@@ -28,7 +28,7 @@ from __future__ import unicode_literals
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gui.views.listview import TEXT, ICON
+from gramps.gui.views.listview import ListView, TEXT, ICON
 from gramps.plugins.lib.libplaceview import PlaceBaseView
 from gramps.gui.views.treemodels.placemodel import PlaceTreeModel
 from gramps.gen.lib import Place, PlaceRef
@@ -192,3 +192,35 @@ class PlaceTreeView(PlaceBaseView):
             EditPlace(self.dbstate, self.uistate, [], place)
         except WindowActiveError:
             pass
+
+    def row_update(self, handle_list):
+        """
+        Called when a place is updated.
+        """
+        ListView.row_update(self, handle_list)
+
+        for handle in handle_list:
+            # Rebuild the model if the primary parent has changed.
+            if self._parent_changed(handle):
+                self.build_tree()
+                break
+
+    def _parent_changed(self, handle):
+        """
+        Return True if the primary parent is different from the parent
+        displayed in the tree, else return False.
+        """
+        new_handle = None
+        place = self.dbstate.db.get_place_from_handle(handle)
+        placeref_list = place.get_placeref_list()
+        if len(placeref_list) > 0:
+            new_handle = placeref_list[0].ref
+
+        old_handle = None
+        iter_ = self.model.get_iter_from_handle(handle)
+        if iter_:
+            parent_iter = self.model.iter_parent(iter_)
+            if parent_iter:
+                old_handle = self.model.get_handle_from_iter(parent_iter)
+
+        return True if new_handle != old_handle else False
