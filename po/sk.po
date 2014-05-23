@@ -24094,7 +24094,7 @@ msgstr "Zrakovo postihnutí"
 #: ../src/plugins/webreport/NarrativeWeb.py:1754
 #: ../src/plugins/webreport/NarrativeWeb.py:1904
 msgid "Html|Home"
-msgstr "Domovská Htnl"
+msgstr "Domovská Html"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:1755
 #: ../src/plugins/webreport/NarrativeWeb.py:1861
