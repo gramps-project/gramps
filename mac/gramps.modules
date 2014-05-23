@@ -161,7 +161,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <distutils id="pil">
-    <branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware"/>
+    <branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware">
+      <patch file="Imaging-Freetype2.patch" strip="1"/>
+    </branch>
   </distutils>
 
   <distutils id='pyicu'>
