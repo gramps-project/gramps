@@ -27790,7 +27790,7 @@ msgstr "Zrakovo postihnutí"
 #: ../gramps/plugins/webreport/narrativeweb.py:1758
 #: ../gramps/plugins/webreport/narrativeweb.py:1908
 msgid "Html|Home"
-msgstr "Domovská Htnl"
+msgstr "Domovská Html"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1761
 #: ../gramps/plugins/webreport/narrativeweb.py:1805
