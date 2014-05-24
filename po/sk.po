@@ -17305,11 +17305,11 @@ msgstr "Nebolo možné vytvoriť jpeg verziu obrázka %(name)s"
 #: ../gramps/plugins/docgen/latexdoc.py:57
 msgid ""
 "PIL (Python Imaging Library) not loaded. Production of jpg images from non-"
-"jpg images in LaTex documents will not be available. Use your package "
+"jpg images in LaTeX documents will not be available. Use your package "
 "manager to install python-imaging"
 msgstr ""
 "PIL (Python Imaging Library) nebola spustená. Nebude možné vytvárať jpg "
-"obrázky v LaTex dokumentoch. Pre nainštalovanie python-imaging použite "
+"obrázky v LaTeX dokumentoch. Pre nainštalovanie python-imaging použite "
 "správcu  balíkov."
 
 #: ../gramps/plugins/docgen/odfdoc.py:1230

@@ -17761,11 +17761,11 @@ msgstr "Konnte die jpeg Version des Bildes %(name)s nicht erstellen."
 #: ../gramps/plugins/docgen/latexdoc.py:58
 msgid ""
 "PIL (Python Imaging Library) not loaded. Production of jpg images from "
-"non-jpg images in LaTex documents will not be available. Use your package "
+"non-jpg images in LaTeX documents will not be available. Use your package "
 "manager to install python-imaging"
 msgstr ""
 "PIL (Python Imaging Library) wurde nicht geladen. Die Erstellung von jpg "
-"Bildern aus nicht-jpg Bilden in LaTex Dokumenten, wird nicht zur Verfügung "
+"Bildern aus nicht-jpg Bilden in LaTeX Dokumenten, wird nicht zur Verfügung "
 "stehen. Verwende deine Paketverwaltung um python-imaging nachzuinstallieren."
 
 #: ../gramps/plugins/docgen/odfdoc.py:1230

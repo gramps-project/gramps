@@ -17115,7 +17115,7 @@ msgstr ""
 #: ../gramps/plugins/docgen/latexdoc.py:57
 msgid ""
 "PIL (Python Imaging Library) not loaded. Production of jpg images from non-"
-"jpg images in LaTex documents will not be available. Use your package "
+"jpg images in LaTeX documents will not be available. Use your package "
 "manager to install python-imaging"
 msgstr ""
 

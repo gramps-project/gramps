@@ -17573,7 +17573,7 @@ msgstr "Не могу создать jpeg-версию изображения %(
 #: ../gramps/plugins/docgen/latexdoc.py:59
 msgid ""
 "PIL (Python Imaging Library) not loaded. Production of jpg images from "
-"non-jpg images in LaTex documents will not be available. Use your package "
+"non-jpg images in LaTeX documents will not be available. Use your package "
 "manager to install python-imaging"
 msgstr ""
 

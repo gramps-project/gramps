@@ -17950,7 +17950,7 @@ msgstr "LaTeX"
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:93
 msgid "Generates documents in LaTeX format."
-msgstr "Maakt documenten aan in LaTex-formaat."
+msgstr "Maakt documenten aan in LaTeX-formaat."
 
 #: ../gramps/plugins/docgen/docgen.gpr.py:113
 msgid "OpenDocument Text"
@@ -18064,11 +18064,11 @@ msgstr "Kon geen jpeg-versie van het beeld %(name)s aanmaken"
 #: ../gramps/plugins/docgen/latexdoc.py:57
 msgid ""
 "PIL (Python Imaging Library) not loaded. Production of jpg images from non-"
-"jpg images in LaTex documents will not be available. Use your package "
+"jpg images in LaTeX documents will not be available. Use your package "
 "manager to install python-imaging"
 msgstr ""
 "PIL (Python Imaging Library) niet geladen. Het maken van jpg afbeeldingen "
-"vanuit niet-jpg afbeeldingen in LaTex docuementen zal niet beschikbaar zijn. "
+"vanuit niet-jpg afbeeldingen in LaTeX docuementen zal niet beschikbaar zijn. "
 "Gebruik uw pakketbeheerder om python-imaging te installeren."
 
 #: ../gramps/plugins/docgen/odfdoc.py:1230
