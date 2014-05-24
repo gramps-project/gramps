@@ -202,10 +202,12 @@ class DbReadCursor(BsddbBaseCursor):
 #-------------------------------------------------------------------------
 class DbBsddbTreeCursor(BsddbBaseCursor):
 
-    def __init__(self, source, txn=None, **kwargs):
+    def __init__(self, source, primary, readonly, txn=None, **kwargs):
         BsddbBaseCursor.__init__(self, txn=txn, **kwargs)
         self.cursor = source.cursor(txn)
         self.source = source
+        self.primary = primary
+        self.readonly = readonly
 
     def __iter__(self):
         """
@@ -218,7 +220,14 @@ class DbBsddbTreeCursor(BsddbBaseCursor):
             key = key.encode('utf-8') if not isinstance(key, bytes) else key
             data = self.set(key)
             while data:
-                payload = pickle.loads(data[1])
+                ### FIXME: this is a dirty hack that works without no
+                ### sensible explanation. For some reason, for a readonly
+                ### database, secondary index returns a primary table key
+                ### corresponding to the data, not the data.
+                if self.readonly:
+                    payload = self.primary.get(data[1], txn=self.txn)
+                else:
+                    payload = pickle.loads(data[1])
                 yield (payload[0], payload)
                 to_do.append(payload[0])
                 data = _n()
@@ -512,7 +521,8 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.get_cursor(self.place_map, *args, **kwargs)
 
     def get_place_tree_cursor(self, *args, **kwargs):
-        return DbBsddbTreeCursor(self.parents, self.txn)
+        return DbBsddbTreeCursor(self.parents, self.place_map, self.readonly,
+                                 self.txn)
 
     def get_source_cursor(self, *args, **kwargs):
         return self.get_cursor(self.source_map, *args, **kwargs)
