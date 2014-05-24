@@ -57,7 +57,7 @@ try:
 except:
     _LOG.warning(_("PIL (Python Imaging Library) not loaded. "
                    "Production of jpg images from non-jpg images "
-                   "in LaTex documents will not be available. "
+                   "in LaTeX documents will not be available. "
                    "Use your package manager to install python-imaging"))
         
 _CLICKABLE = '\\url{\\1}'
