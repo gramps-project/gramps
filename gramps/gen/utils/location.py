@@ -64,14 +64,14 @@ def get_locations(db, place):
     containing dictionaries of place types and names.
     """
     locations = []
-    todo = [(place, [(int(place.get_type()), place.get_name())])]
+    todo = [(place, [(int(place.get_type()), place.get_all_names())])]
     while len(todo):
         place, tree = todo.pop()
         if len(place.get_placeref_list()):
             for parent in place.get_placeref_list():
                 parent_place = db.get_place_from_handle(parent.ref)
                 parent_tree = tree + [(int(parent_place.get_type()), 
-                                       parent_place.get_name())]
+                                       parent_place.get_all_names())]
                 todo.append((parent_place, parent_tree))
         else:
             locations.append(dict(tree))

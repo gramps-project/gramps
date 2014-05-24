@@ -90,7 +90,16 @@ class HasPlace(Rule):
         Check each location for a match.
         """
         for place_type, field in self.TYPE2FIELD.items():
-            name = location.get(place_type, '')
-            if not self.match_substring(field, name):
+            name_list = location.get(place_type, [''])
+            if not self.match_name(field, name_list):
                 return False
         return True
+
+    def match_name(self, field, name_list):
+        """
+        Match any name in a list of names.
+        """
+        for name in name_list:
+            if self.match_substring(field, name):
+                return True
+        return False

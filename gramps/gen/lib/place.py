@@ -321,6 +321,15 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return self.name
 
+    def get_all_names(self):
+        """
+        Return a list of all names of the Place object.
+
+        :returns: Returns a list of all names of the Place
+        :rtype: list
+        """
+        return [self.name] + self.alt_names
+
     def set_longitude(self, longitude):
         """
         Set the longitude of the Place object.
