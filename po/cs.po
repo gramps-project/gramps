@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-04 15:46+0200\n"
-"PO-Revision-Date: 2014-04-10 10:22+0100\n"
+"POT-Creation-Date: 2014-05-04 15:52+0200\n"
+"PO-Revision-Date: 2014-05-24 23:13+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -894,8 +894,8 @@ msgstr ""
 #: ../src/plugins/gramplet/PersonDetails.py:186
 #: ../src/plugins/import/ImportCsv.py:225
 #: ../src/plugins/quickview/all_relations.py:301
-#: ../src/plugins/textreport/FamilyGroup.py:208
-#: ../src/plugins/textreport/FamilyGroup.py:219
+#: ../src/plugins/textreport/FamilyGroup.py:209
+#: ../src/plugins/textreport/FamilyGroup.py:220
 #: ../src/plugins/textreport/IndivComplete.py:262
 #: ../src/plugins/textreport/IndivComplete.py:264
 #: ../src/plugins/textreport/IndivComplete.py:539
@@ -914,8 +914,8 @@ msgstr "Otec"
 #: ../src/plugins/gramplet/PersonDetails.py:187
 #: ../src/plugins/import/ImportCsv.py:222
 #: ../src/plugins/quickview/all_relations.py:298
-#: ../src/plugins/textreport/FamilyGroup.py:225
-#: ../src/plugins/textreport/FamilyGroup.py:236
+#: ../src/plugins/textreport/FamilyGroup.py:226
+#: ../src/plugins/textreport/FamilyGroup.py:237
 #: ../src/plugins/textreport/IndivComplete.py:271
 #: ../src/plugins/textreport/IndivComplete.py:273
 #: ../src/plugins/textreport/IndivComplete.py:540
@@ -930,7 +930,7 @@ msgstr "Matka"
 #: ../src/Reorder.py:41 ../src/gui/selectors/selectperson.py:81
 #: ../src/Merge/mergeperson.py:232 ../src/plugins/gramplet/Children.py:89
 #: ../src/plugins/lib/libpersonview.py:99
-#: ../src/plugins/textreport/FamilyGroup.py:524
+#: ../src/plugins/textreport/FamilyGroup.py:525
 #: ../src/plugins/view/relview.py:1343
 msgid "Spouse"
 msgstr "Partner"
@@ -963,7 +963,7 @@ msgstr "Nedostupné"
 #: ../src/ScratchPad.py:293 ../src/gui/configure.py:457
 #: ../src/gui/grampsgui.py:103 ../src/gui/editors/editaddress.py:156
 #: ../src/plugins/gramplet/RepositoryDetails.py:123
-#: ../src/plugins/textreport/FamilyGroup.py:324
+#: ../src/plugins/textreport/FamilyGroup.py:325
 #: ../src/plugins/webreport/NarrativeWeb.py:6736
 #: ../src/Filters/SideBar/_RepoSidebarFilter.py:94
 msgid "Address"
@@ -1039,7 +1039,7 @@ msgstr "Místo"
 #: ../src/plugins/quickview/FilterByName.py:251
 #: ../src/plugins/quickview/quickview.gpr.py:205
 #: ../src/plugins/quickview/References.py:94
-#: ../src/plugins/textreport/FamilyGroup.py:342
+#: ../src/plugins/textreport/FamilyGroup.py:343
 #: ../src/Filters/SideBar/_EventSidebarFilter.py:98
 #: ../src/Filters/SideBar/_PersonSidebarFilter.py:134
 #: ../src/Filters/SideBar/_SourceSidebarFilter.py:84
@@ -1208,7 +1208,7 @@ msgstr "Osoba"
 #: ../src/ScratchPad.py:721 ../src/ToolTips.py:230
 #: ../src/gen/lib/eventtype.py:141 ../src/gui/configure.py:477
 #: ../src/gui/filtereditor.py:293 ../src/gui/grampsgui.py:113
-#: ../src/gui/editors/editfamily.py:489 ../src/gui/editors/editlink.py:82
+#: ../src/gui/editors/editfamily.py:490 ../src/gui/editors/editlink.py:82
 #: ../src/gui/editors/displaytabs/eventembedlist.py:58
 #: ../src/gui/editors/displaytabs/personeventembedlist.py:52
 #: ../src/plugins/export/ExportCsv.py:522
@@ -1367,7 +1367,7 @@ msgid "On"
 msgstr "Zap"
 
 #: ../src/TipOfDay.py:68 ../src/TipOfDay.py:69 ../src/TipOfDay.py:120
-#: ../src/gui/viewmanager.py:532
+#: ../src/gui/viewmanager.py:537
 msgid "Tip of the Day"
 msgstr "Tip dne"
 
@@ -1398,8 +1398,8 @@ msgstr "Prameny v archivu"
 #: ../src/gen/lib/eventtype.py:167 ../src/Merge/mergeperson.py:180
 #: ../src/plugins/quickview/all_relations.py:271
 #: ../src/plugins/quickview/lineage.py:93
-#: ../src/plugins/textreport/FamilyGroup.py:482
-#: ../src/plugins/textreport/FamilyGroup.py:484
+#: ../src/plugins/textreport/FamilyGroup.py:483
+#: ../src/plugins/textreport/FamilyGroup.py:485
 #: ../src/plugins/textreport/TagReport.py:130
 #: ../src/plugins/view/relview.py:614
 #: ../src/plugins/webreport/NarrativeWeb.py:367
@@ -1549,12 +1549,12 @@ msgstr ""
 #: ../src/gui/editors/editperson.py:328
 #: ../src/gui/views/treemodels/peoplemodel.py:96
 #: ../src/Merge/mergeperson.py:62
-#: ../src/plugins/textreport/DetAncestralReport.py:546
-#: ../src/plugins/textreport/DetAncestralReport.py:553
-#: ../src/plugins/textreport/DetAncestralReport.py:596
-#: ../src/plugins/textreport/DetAncestralReport.py:603
-#: ../src/plugins/textreport/DetDescendantReport.py:589
-#: ../src/plugins/textreport/DetDescendantReport.py:596
+#: ../src/plugins/textreport/DetAncestralReport.py:547
+#: ../src/plugins/textreport/DetAncestralReport.py:554
+#: ../src/plugins/textreport/DetAncestralReport.py:597
+#: ../src/plugins/textreport/DetAncestralReport.py:604
+#: ../src/plugins/textreport/DetDescendantReport.py:592
+#: ../src/plugins/textreport/DetDescendantReport.py:599
 #: ../src/plugins/textreport/IndivComplete.py:365
 #: ../src/plugins/view/relview.py:652
 #: ../src/plugins/webreport/NarrativeWeb.py:5388
@@ -3349,8 +3349,8 @@ msgid "Other"
 msgstr "Jiný"
 
 #: ../src/gen/lib/eventtype.py:168 ../src/Merge/mergeperson.py:184
-#: ../src/plugins/textreport/FamilyGroup.py:488
-#: ../src/plugins/textreport/FamilyGroup.py:490
+#: ../src/plugins/textreport/FamilyGroup.py:489
+#: ../src/plugins/textreport/FamilyGroup.py:491
 #: ../src/plugins/textreport/TagReport.py:136
 #: ../src/plugins/view/relview.py:625 ../src/plugins/view/relview.py:650
 #: ../src/plugins/webreport/NarrativeWeb.py:371
@@ -3484,7 +3484,7 @@ msgstr "Závěť"
 #: ../src/gen/lib/eventtype.py:200 ../src/Merge/mergeperson.py:239
 #: ../src/plugins/export/ExportCsv.py:478
 #: ../src/plugins/import/ImportCsv.py:228
-#: ../src/plugins/textreport/FamilyGroup.py:382
+#: ../src/plugins/textreport/FamilyGroup.py:383
 #: ../src/plugins/webreport/NarrativeWeb.py:3111
 msgid "Marriage"
 msgstr "Manželství"
@@ -4290,12 +4290,12 @@ msgstr "Registrován '%s'"
 #: ../src/plugins/textreport/AncestorReport.py:297
 #: ../src/plugins/textreport/BirthdayReport.py:386
 #: ../src/plugins/textreport/DescendReport.py:401
-#: ../src/plugins/textreport/DetAncestralReport.py:737
-#: ../src/plugins/textreport/DetAncestralReport.py:759
-#: ../src/plugins/textreport/DetDescendantReport.py:901
-#: ../src/plugins/textreport/DetDescendantReport.py:934
+#: ../src/plugins/textreport/DetAncestralReport.py:738
+#: ../src/plugins/textreport/DetAncestralReport.py:760
+#: ../src/plugins/textreport/DetDescendantReport.py:904
+#: ../src/plugins/textreport/DetDescendantReport.py:937
 #: ../src/plugins/textreport/EndOfLineReport.py:261
-#: ../src/plugins/textreport/FamilyGroup.py:643
+#: ../src/plugins/textreport/FamilyGroup.py:644
 #: ../src/plugins/textreport/IndivComplete.py:624
 #: ../src/plugins/textreport/KinshipReport.py:348
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:202
@@ -4653,8 +4653,8 @@ msgstr "Grafika"
 
 #: ../src/gen/plug/report/endnotes.py:49
 #: ../src/plugins/textreport/AncestorReport.py:357
-#: ../src/plugins/textreport/DetAncestralReport.py:869
-#: ../src/plugins/textreport/DetDescendantReport.py:1064
+#: ../src/plugins/textreport/DetAncestralReport.py:870
+#: ../src/plugins/textreport/DetDescendantReport.py:1067
 msgid "The style used for the generation header."
 msgstr "Styl používaný pro hlavičku generací."
 
@@ -4995,10 +4995,10 @@ msgstr "Příklad"
 #: ../src/plugins/textreport/AncestorReport.py:275
 #: ../src/plugins/textreport/BirthdayReport.py:385
 #: ../src/plugins/textreport/DescendReport.py:400
-#: ../src/plugins/textreport/DetAncestralReport.py:736
-#: ../src/plugins/textreport/DetDescendantReport.py:900
+#: ../src/plugins/textreport/DetAncestralReport.py:737
+#: ../src/plugins/textreport/DetDescendantReport.py:903
 #: ../src/plugins/textreport/EndOfLineReport.py:260
-#: ../src/plugins/textreport/FamilyGroup.py:642
+#: ../src/plugins/textreport/FamilyGroup.py:643
 #: ../src/plugins/textreport/IndivComplete.py:623
 #: ../src/plugins/textreport/KinshipReport.py:347
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:201
@@ -5369,7 +5369,7 @@ msgstr ""
 
 #: ../src/gui/dbloader.py:318 ../src/gui/dbloader.py:332
 #: ../src/gui/dbloader.py:346 ../src/gui/dbloader.py:360
-#: ../src/gui/viewmanager.py:804 ../src/plugins/BookReport.py:679
+#: ../src/gui/viewmanager.py:809 ../src/plugins/BookReport.py:679
 #: ../src/plugins/BookReport.py:1078 ../src/plugins/view/familyview.py:259
 msgid "Cancel"
 msgstr "Storno"
@@ -6527,221 +6527,221 @@ msgstr "Nelze otevřít nový editor citací"
 msgid "Unsupported"
 msgstr "Nepodporované"
 
-#: ../src/gui/viewmanager.py:486
+#: ../src/gui/viewmanager.py:491
 msgid "Connect to a recent database"
 msgstr "Připojit poslední databázi"
 
-#: ../src/gui/viewmanager.py:504
+#: ../src/gui/viewmanager.py:509
 msgid "_Family Trees"
 msgstr "_Rodokmeny"
 
-#: ../src/gui/viewmanager.py:505
+#: ../src/gui/viewmanager.py:510
 msgid "_Manage Family Trees..."
 msgstr "Spravovat rodok_meny..."
 
-#: ../src/gui/viewmanager.py:506
+#: ../src/gui/viewmanager.py:511
 msgid "Manage databases"
 msgstr "Spravovat databáze"
 
-#: ../src/gui/viewmanager.py:507
+#: ../src/gui/viewmanager.py:512
 msgid "Open _Recent"
 msgstr "Otevřít _nedávné"
 
-#: ../src/gui/viewmanager.py:508
+#: ../src/gui/viewmanager.py:513
 msgid "Open an existing database"
 msgstr "Otevřít existující databázi"
 
-#: ../src/gui/viewmanager.py:509
+#: ../src/gui/viewmanager.py:514
 msgid "_Quit"
 msgstr "U_končit"
 
-#: ../src/gui/viewmanager.py:511
+#: ../src/gui/viewmanager.py:516
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ../src/gui/viewmanager.py:512
+#: ../src/gui/viewmanager.py:517
 msgid "_Edit"
 msgstr "Úpr_avy"
 
-#: ../src/gui/viewmanager.py:513
+#: ../src/gui/viewmanager.py:518
 msgid "_Preferences..."
 msgstr "_Předvolby..."
 
-#: ../src/gui/viewmanager.py:515
+#: ../src/gui/viewmanager.py:520
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../src/gui/viewmanager.py:516
+#: ../src/gui/viewmanager.py:521
 msgid "Gramps _Home Page"
 msgstr "Domovská _stránka Gramps"
 
-#: ../src/gui/viewmanager.py:518
+#: ../src/gui/viewmanager.py:523
 msgid "Gramps _Mailing Lists"
 msgstr "Diskuzní skupiny Gra_mps"
 
-#: ../src/gui/viewmanager.py:520
+#: ../src/gui/viewmanager.py:525
 msgid "_Report a Bug"
 msgstr "_Zaslat hlášení o chybě"
 
-#: ../src/gui/viewmanager.py:522
+#: ../src/gui/viewmanager.py:527
 msgid "_Extra Reports/Tools"
 msgstr "Další zprávy/Nástroj_e"
 
-#: ../src/gui/viewmanager.py:524
+#: ../src/gui/viewmanager.py:529
 msgid "_About"
 msgstr "_O programu"
 
-#: ../src/gui/viewmanager.py:526
+#: ../src/gui/viewmanager.py:531
 msgid "_Plugin Manager"
 msgstr "S_právce zásuvných modulů"
 
-#: ../src/gui/viewmanager.py:528
+#: ../src/gui/viewmanager.py:533
 msgid "_FAQ"
 msgstr "_FAQ"
 
-#: ../src/gui/viewmanager.py:529
+#: ../src/gui/viewmanager.py:534
 msgid "_Key Bindings"
 msgstr "_Klávesové zkratky"
 
-#: ../src/gui/viewmanager.py:530
+#: ../src/gui/viewmanager.py:535
 msgid "_User Manual"
 msgstr "_Uživatelská příručka"
 
-#: ../src/gui/viewmanager.py:537
+#: ../src/gui/viewmanager.py:542
 msgid "_Export..."
 msgstr "_Exportovat..."
 
-#: ../src/gui/viewmanager.py:539
+#: ../src/gui/viewmanager.py:544
 msgid "Make Backup..."
 msgstr "Vytvořit zálohu..."
 
-#: ../src/gui/viewmanager.py:540
+#: ../src/gui/viewmanager.py:545
 msgid "Make a Gramps XML backup of the database"
 msgstr "Vytvořit zálohu databáze Gramps v XML"
 
-#: ../src/gui/viewmanager.py:542
+#: ../src/gui/viewmanager.py:547
 msgid "_Abandon Changes and Quit"
 msgstr "_Zrušit změny a skončit"
 
-#: ../src/gui/viewmanager.py:543 ../src/gui/viewmanager.py:546
+#: ../src/gui/viewmanager.py:548 ../src/gui/viewmanager.py:551
 msgid "_Reports"
 msgstr "Z_právy"
 
-#: ../src/gui/viewmanager.py:544
+#: ../src/gui/viewmanager.py:549
 msgid "Open the reports dialog"
 msgstr "Otevřít dialog zpráv"
 
-#: ../src/gui/viewmanager.py:545
+#: ../src/gui/viewmanager.py:550
 msgid "_Go"
 msgstr "Pře_jít"
 
-#: ../src/gui/viewmanager.py:547
+#: ../src/gui/viewmanager.py:552
 msgid "_Windows"
 msgstr "_Okna"
 
-#: ../src/gui/viewmanager.py:584
+#: ../src/gui/viewmanager.py:589
 msgid "Clip_board"
 msgstr "Schránka"
 
-#: ../src/gui/viewmanager.py:585
+#: ../src/gui/viewmanager.py:590
 msgid "Open the Clipboard dialog"
 msgstr "Dialog pro otevření schránky"
 
-#: ../src/gui/viewmanager.py:586
+#: ../src/gui/viewmanager.py:591
 msgid "_Import..."
 msgstr "_Import..."
 
-#: ../src/gui/viewmanager.py:588 ../src/gui/viewmanager.py:591
+#: ../src/gui/viewmanager.py:593 ../src/gui/viewmanager.py:596
 msgid "_Tools"
 msgstr "_Nástroje"
 
-#: ../src/gui/viewmanager.py:589
+#: ../src/gui/viewmanager.py:594
 msgid "Open the tools dialog"
 msgstr "Otevřít dialog nástrojů"
 
-#: ../src/gui/viewmanager.py:590
+#: ../src/gui/viewmanager.py:595
 msgid "_Bookmarks"
 msgstr "_Záložky"
 
-#: ../src/gui/viewmanager.py:592
+#: ../src/gui/viewmanager.py:597
 msgid "_Configure View..."
 msgstr "_Nastavit pohled..."
 
-#: ../src/gui/viewmanager.py:593
+#: ../src/gui/viewmanager.py:598
 msgid "Configure the active view"
 msgstr "Nastavit aktivní pohled"
 
-#: ../src/gui/viewmanager.py:598
+#: ../src/gui/viewmanager.py:603
 msgid "_Navigator"
 msgstr "_Navigátor"
 
-#: ../src/gui/viewmanager.py:600
+#: ../src/gui/viewmanager.py:605
 msgid "_Toolbar"
 msgstr "_Lišta nástrojů"
 
-#: ../src/gui/viewmanager.py:602
+#: ../src/gui/viewmanager.py:607
 msgid "F_ull Screen"
 msgstr "Celá stránka"
 
-#: ../src/gui/viewmanager.py:607 ../src/gui/viewmanager.py:1189
+#: ../src/gui/viewmanager.py:612 ../src/gui/viewmanager.py:1194
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: ../src/gui/viewmanager.py:612 ../src/gui/viewmanager.py:1206
+#: ../src/gui/viewmanager.py:617 ../src/gui/viewmanager.py:1211
 msgid "_Redo"
 msgstr "Zn_ovu"
 
-#: ../src/gui/viewmanager.py:618
+#: ../src/gui/viewmanager.py:623
 msgid "Undo History..."
 msgstr "Historie změn..."
 
-#: ../src/gui/viewmanager.py:632
+#: ../src/gui/viewmanager.py:637
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Klávesa %s není přiřazena"
 
 #. load plugins
-#: ../src/gui/viewmanager.py:733
+#: ../src/gui/viewmanager.py:738
 msgid "Loading plugins..."
 msgstr "Nahrávám zásuvné moduly..."
 
-#: ../src/gui/viewmanager.py:740 ../src/gui/viewmanager.py:755
+#: ../src/gui/viewmanager.py:745 ../src/gui/viewmanager.py:760
 msgid "Ready"
 msgstr "Připraven"
 
 #. registering plugins
-#: ../src/gui/viewmanager.py:748
+#: ../src/gui/viewmanager.py:753
 msgid "Registering plugins..."
 msgstr "Registrují se zásuvné moduly..."
 
-#: ../src/gui/viewmanager.py:785
+#: ../src/gui/viewmanager.py:790
 msgid "Autobackup..."
 msgstr "Automatická záloha..."
 
-#: ../src/gui/viewmanager.py:789
+#: ../src/gui/viewmanager.py:794
 msgid "Error saving backup data"
 msgstr "Chyba při ukládání zálohy"
 
-#: ../src/gui/viewmanager.py:800
+#: ../src/gui/viewmanager.py:805
 msgid "Abort changes?"
 msgstr "Zahodit změny?"
 
-#: ../src/gui/viewmanager.py:801
+#: ../src/gui/viewmanager.py:806
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
 msgstr ""
 "Odvolání změn vrátí databázi do stavu v jakém jste začínali její modifikaci."
 
-#: ../src/gui/viewmanager.py:803
+#: ../src/gui/viewmanager.py:808
 msgid "Abort changes"
 msgstr "Zahodit změny"
 
-#: ../src/gui/viewmanager.py:813
+#: ../src/gui/viewmanager.py:818
 msgid "Cannot abandon session's changes"
 msgstr "Nelze odvolat změny v aktuální relaci"
 
-#: ../src/gui/viewmanager.py:814
+#: ../src/gui/viewmanager.py:819
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -6749,99 +6749,99 @@ msgstr ""
 "Změny nemohou být kompletně odvolány, protože jejich počet v této relaci "
 "překročil limit."
 
-#: ../src/gui/viewmanager.py:968
+#: ../src/gui/viewmanager.py:973
 msgid "View failed to load. Check error output."
 msgstr "Pohled se nepodařilo nahrát. Zkontrolujte chybový výstup."
 
-#: ../src/gui/viewmanager.py:1107
+#: ../src/gui/viewmanager.py:1112
 msgid "Import Statistics"
 msgstr "Statistiky importu"
 
-#: ../src/gui/viewmanager.py:1158
+#: ../src/gui/viewmanager.py:1163
 msgid "Read Only"
 msgstr "Jen pro čtení"
 
-#: ../src/gui/viewmanager.py:1241
+#: ../src/gui/viewmanager.py:1246
 msgid "Gramps XML Backup"
 msgstr "XML záloha Gramps"
 
-#: ../src/gui/viewmanager.py:1251
+#: ../src/gui/viewmanager.py:1256
 #: ../src/Filters/Rules/MediaObject/_HasMedia.py:49
 #: ../src/glade/mergemedia.glade.h:6
 msgid "Path:"
 msgstr "Cesta:"
 
-#: ../src/gui/viewmanager.py:1271 ../src/plugins/tool/phpgedview.glade.h:5
+#: ../src/gui/viewmanager.py:1276 ../src/plugins/tool/phpgedview.glade.h:5
 #: ../src/plugins/import/importgedcom.glade.h:7
 msgid "File:"
 msgstr "Soubor:"
 
-#: ../src/gui/viewmanager.py:1303
+#: ../src/gui/viewmanager.py:1308
 msgid "Media:"
 msgstr "Média:"
 
 #. #################
 #. What to include
 #. #########################
-#: ../src/gui/viewmanager.py:1308
+#: ../src/gui/viewmanager.py:1313
 #: ../src/plugins/drawreport/AncestorTree.py:989
 #: ../src/plugins/drawreport/DescendTree.py:1585
-#: ../src/plugins/textreport/DetAncestralReport.py:802
-#: ../src/plugins/textreport/DetDescendantReport.py:976
-#: ../src/plugins/textreport/DetDescendantReport.py:977
-#: ../src/plugins/textreport/FamilyGroup.py:656
+#: ../src/plugins/textreport/DetAncestralReport.py:803
+#: ../src/plugins/textreport/DetDescendantReport.py:979
+#: ../src/plugins/textreport/DetDescendantReport.py:980
+#: ../src/plugins/textreport/FamilyGroup.py:657
 #: ../src/plugins/webreport/NarrativeWeb.py:8201
 msgid "Include"
 msgstr "Zahrnout"
 
-#: ../src/gui/viewmanager.py:1309 ../src/plugins/gramplet/StatsGramplet.py:200
+#: ../src/gui/viewmanager.py:1314 ../src/plugins/gramplet/StatsGramplet.py:200
 msgid "Megabyte|MB"
 msgstr "Megabyte|MB"
 
-#: ../src/gui/viewmanager.py:1310
+#: ../src/gui/viewmanager.py:1315
 #: ../src/plugins/webreport/NarrativeWeb.py:8195
 msgid "Exclude"
 msgstr "Vyjmout"
 
-#: ../src/gui/viewmanager.py:1327
+#: ../src/gui/viewmanager.py:1332
 msgid "Backup file already exists! Overwrite?"
 msgstr "Soubor se zálohou již existuje! Přepsat?"
 
-#: ../src/gui/viewmanager.py:1328
+#: ../src/gui/viewmanager.py:1333
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Soubor '%s' existuje."
 
-#: ../src/gui/viewmanager.py:1329
+#: ../src/gui/viewmanager.py:1334
 msgid "Proceed and overwrite"
 msgstr "Pokračovat a přepsat"
 
-#: ../src/gui/viewmanager.py:1330
+#: ../src/gui/viewmanager.py:1335
 msgid "Cancel the backup"
 msgstr "Přerušit zálohu"
 
-#: ../src/gui/viewmanager.py:1337
+#: ../src/gui/viewmanager.py:1342
 msgid "Making backup..."
 msgstr "Provádí se záloha..."
 
-#: ../src/gui/viewmanager.py:1354
+#: ../src/gui/viewmanager.py:1359
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Záloha byla uložena do '%s'"
 
-#: ../src/gui/viewmanager.py:1357
+#: ../src/gui/viewmanager.py:1362
 msgid "Backup aborted"
 msgstr "Zálohování bylo přerušeno"
 
-#: ../src/gui/viewmanager.py:1375
+#: ../src/gui/viewmanager.py:1380
 msgid "Select backup directory"
 msgstr "Vybrat adresář záloh"
 
-#: ../src/gui/viewmanager.py:1641
+#: ../src/gui/viewmanager.py:1646
 msgid "Failed Loading Plugin"
 msgstr "Zásuvný moduly se nepodařilo nahrát"
 
-#: ../src/gui/viewmanager.py:1642
+#: ../src/gui/viewmanager.py:1647
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -6866,11 +6866,11 @@ msgstr ""
 "Pokud nechcete, aby se Gramps pokoušel znovu modul nahrát, můžete jej skrýt "
 "použitím Správce zásuvných modulů v nabídce Nápověda."
 
-#: ../src/gui/viewmanager.py:1690
+#: ../src/gui/viewmanager.py:1695
 msgid "Failed Loading View"
 msgstr "Nahrání pohledu selhalo"
 
-#: ../src/gui/viewmanager.py:1691
+#: ../src/gui/viewmanager.py:1696
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -7101,16 +7101,20 @@ msgstr ""
 msgid "Cannot save citation. ID already exists."
 msgstr "Citaci nelze uložit. ID již existuje."
 
-#: ../src/gui/editors/editcitation.py:278
+#: ../src/gui/editors/editcitation.py:278 ../src/gui/editors/editevent.py:241
+#: ../src/gui/editors/editmedia.py:280 ../src/gui/editors/editperson.py:808
+#: ../src/gui/editors/editplace.py:303
+#: ../src/gui/editors/editrepository.py:172
+#: ../src/gui/editors/editsource.py:192
 #, python-format
 msgid ""
-"You have attempted to use the existing Gramps ID with value %(gramps_id)s. "
-"This value is already used by '%(prim_object)s'. Please enter a different ID "
-"or leave blank to get the next available ID value."
+"You have attempted to use the existing Gramps ID with value %(id)s. This "
+"value is already used by '%(prim_object)s'. Please enter a different ID or "
+"leave blank to get the next available ID value."
 msgstr ""
-"Snažíte se použít existující Gramps ID s hodnotou %(gramps_id)s. Tuto "
-"hodnotu už používá '%(prim_object)s'. Zvolte prosím jiné ID. Ponecháte-li "
-"pole prázdné, bude zvolena nejbližší volná hodnota."
+"Snažíte se použít existující Gramps ID s hodnotou %(id)s. Tuto hodnotu už "
+"používá '%(prim_object)s'. Zvolte prosím jiné ID. Ponecháte-li pole prázdné, "
+"bude zvolena nejbližší volná hodnota."
 
 #: ../src/gui/editors/editcitation.py:290
 #, python-format
@@ -7160,20 +7164,6 @@ msgstr ""
 #: ../src/gui/editors/editevent.py:240
 msgid "Cannot save event. ID already exists."
 msgstr "Událost nelze uložit. ID již existuje."
-
-#: ../src/gui/editors/editevent.py:241 ../src/gui/editors/editmedia.py:280
-#: ../src/gui/editors/editperson.py:808 ../src/gui/editors/editplace.py:303
-#: ../src/gui/editors/editrepository.py:172
-#: ../src/gui/editors/editsource.py:192
-#, python-format
-msgid ""
-"You have attempted to use the existing Gramps ID with value %(id)s. This "
-"value is already used by '%(prim_object)s'. Please enter a different ID or "
-"leave blank to get the next available ID value."
-msgstr ""
-"Snažíte se použít existující Gramps ID s hodnotou %(id)s. Tuto hodnotu už "
-"používá '%(prim_object)s'. Zvolte prosím jiné ID. Ponecháte-li pole prázdné, "
-"bude zvolena nejbližší volná hodnota."
 
 #: ../src/gui/editors/editevent.py:254
 msgid "The event type cannot be empty"
@@ -7327,11 +7317,11 @@ msgstr "Upravit vztah"
 msgid "Select Child"
 msgstr "Vybrat dítě"
 
-#: ../src/gui/editors/editfamily.py:357
+#: ../src/gui/editors/editfamily.py:358
 msgid "Adding parents to a person"
 msgstr "Přidávají se rodiče k osobě"
 
-#: ../src/gui/editors/editfamily.py:358
+#: ../src/gui/editors/editfamily.py:359
 msgid ""
 "It is possible to accidentally create multiple families with the same "
 "parents. To help avoid this problem, only the buttons to select parents are "
@@ -7343,11 +7333,11 @@ msgstr ""
 "pro výběr rodičů, kteří připadají v úvahu. Ostatní pole budou zpřístupněna "
 "poté co vyberete rodiče."
 
-#: ../src/gui/editors/editfamily.py:452
+#: ../src/gui/editors/editfamily.py:453
 msgid "Family has changed"
 msgstr "Rodina byla změněna"
 
-#: ../src/gui/editors/editfamily.py:453
+#: ../src/gui/editors/editfamily.py:454
 #, python-format
 msgid ""
 "The %(object)s you are editing has changed outside this editor. This can be "
@@ -7362,57 +7352,57 @@ msgstr ""
 "Ujistěte se, že informace je stále platná, zobrazená data byla "
 "aktualizována. Některé změny, které jste provedli mohly být ztraceny."
 
-#: ../src/gui/editors/editfamily.py:458 ../src/plugins/import/ImportCsv.py:220
+#: ../src/gui/editors/editfamily.py:459 ../src/plugins/import/ImportCsv.py:220
 #: ../src/plugins/view/familyview.py:258
 msgid "family"
 msgstr "rodina"
 
-#: ../src/gui/editors/editfamily.py:488 ../src/gui/editors/editfamily.py:491
+#: ../src/gui/editors/editfamily.py:489 ../src/gui/editors/editfamily.py:492
 msgid "New Family"
 msgstr "Nová rodina"
 
-#: ../src/gui/editors/editfamily.py:495 ../src/gui/editors/editfamily.py:1052
+#: ../src/gui/editors/editfamily.py:496 ../src/gui/editors/editfamily.py:1053
 #: ../src/plugins/view/geofamily.py:376
 msgid "Edit Family"
 msgstr "Změnit rodinu"
 
-#: ../src/gui/editors/editfamily.py:528
+#: ../src/gui/editors/editfamily.py:529
 msgid "Select a person as the mother"
 msgstr "Vybrat osobu jako matku"
 
-#: ../src/gui/editors/editfamily.py:529
+#: ../src/gui/editors/editfamily.py:530
 msgid "Add a new person as the mother"
 msgstr "Přidat novou osobu jako matku"
 
-#: ../src/gui/editors/editfamily.py:530
+#: ../src/gui/editors/editfamily.py:531
 msgid "Remove the person as the mother"
 msgstr "Ostranit osobu jako matku"
 
-#: ../src/gui/editors/editfamily.py:543
+#: ../src/gui/editors/editfamily.py:544
 msgid "Select a person as the father"
 msgstr "Vybrat osobu jako otce"
 
-#: ../src/gui/editors/editfamily.py:544
+#: ../src/gui/editors/editfamily.py:545
 msgid "Add a new person as the father"
 msgstr "Přidat novou osobu jako otce"
 
-#: ../src/gui/editors/editfamily.py:545
+#: ../src/gui/editors/editfamily.py:546
 msgid "Remove the person as the father"
 msgstr "Odstranit osobu jako otce"
 
-#: ../src/gui/editors/editfamily.py:758
+#: ../src/gui/editors/editfamily.py:759
 msgid "Select Mother"
 msgstr "Vybrat matku"
 
-#: ../src/gui/editors/editfamily.py:803
+#: ../src/gui/editors/editfamily.py:804
 msgid "Select Father"
 msgstr "Vybrat otce"
 
-#: ../src/gui/editors/editfamily.py:827
+#: ../src/gui/editors/editfamily.py:828
 msgid "Duplicate Family"
 msgstr "Duplikovat rodinu"
 
-#: ../src/gui/editors/editfamily.py:828
+#: ../src/gui/editors/editfamily.py:829
 msgid ""
 "A family with these parents already exists in the database. If you save, you "
 "will create a duplicate family. It is recommended that you cancel the "
@@ -7422,46 +7412,46 @@ msgstr ""
 "vytvoříte duplicitní rodinu. Doporučuji zrušit editaci v tomto okně a vybrat "
 "existující rodinu"
 
-#: ../src/gui/editors/editfamily.py:876 ../src/plugins/view/relview.py:586
+#: ../src/gui/editors/editfamily.py:877 ../src/plugins/view/relview.py:586
 #: ../src/plugins/view/relview.py:989 ../src/plugins/view/relview.py:1037
 #: ../src/plugins/view/relview.py:1118 ../src/plugins/view/relview.py:1224
 #, python-format
 msgid "Edit %s"
 msgstr "Upravit %s"
 
-#: ../src/gui/editors/editfamily.py:984
+#: ../src/gui/editors/editfamily.py:985
 msgid "A father cannot be his own child"
 msgstr "Otec nemůže být svým vlastním dítětem"
 
-#: ../src/gui/editors/editfamily.py:985
+#: ../src/gui/editors/editfamily.py:986
 #, python-format
 msgid "%s is listed as both the father and child of the family."
 msgstr "%s je vypsán zároveň jako otec i syn rodiny."
 
-#: ../src/gui/editors/editfamily.py:994
+#: ../src/gui/editors/editfamily.py:995
 msgid "A mother cannot be her own child"
 msgstr "Matka nemůže být svým vlastním dítětem"
 
-#: ../src/gui/editors/editfamily.py:995
+#: ../src/gui/editors/editfamily.py:996
 #, python-format
 msgid "%s is listed as both the mother and child of the family."
 msgstr "%s je vypsána zároveň jako matka i dcera rodiny."
 
-#: ../src/gui/editors/editfamily.py:1002
+#: ../src/gui/editors/editfamily.py:1003
 msgid "Cannot save family"
 msgstr "Nelze uložit rodinu"
 
-#: ../src/gui/editors/editfamily.py:1003
+#: ../src/gui/editors/editfamily.py:1004
 msgid "No data exists for this family. Please enter data or cancel the edit."
 msgstr ""
 "O této rodině neexistují žádné informace. Vložte informace, nebo operaci "
 "zrušte."
 
-#: ../src/gui/editors/editfamily.py:1010
+#: ../src/gui/editors/editfamily.py:1011
 msgid "Cannot save family. ID already exists."
 msgstr "Rodinu nelze uložit. ID již existuje."
 
-#: ../src/gui/editors/editfamily.py:1011 ../src/gui/editors/editnote.py:314
+#: ../src/gui/editors/editfamily.py:1012 ../src/gui/editors/editnote.py:314
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -7472,7 +7462,7 @@ msgstr ""
 "hodnota je již použita. Vložte prosím jiné ID, nebo ponechte pole prázdné - "
 "automaticky bude použito další volná hodnota."
 
-#: ../src/gui/editors/editfamily.py:1026
+#: ../src/gui/editors/editfamily.py:1027
 msgid "Add Family"
 msgstr "Vytvořit rodinu"
 
@@ -8966,10 +8956,10 @@ msgstr "Styl"
 #: ../src/plugins/textreport/AncestorReport.py:266
 #: ../src/plugins/textreport/BirthdayReport.py:365
 #: ../src/plugins/textreport/DescendReport.py:391
-#: ../src/plugins/textreport/DetAncestralReport.py:727
-#: ../src/plugins/textreport/DetDescendantReport.py:891
+#: ../src/plugins/textreport/DetAncestralReport.py:728
+#: ../src/plugins/textreport/DetDescendantReport.py:894
 #: ../src/plugins/textreport/EndOfLineReport.py:251
-#: ../src/plugins/textreport/FamilyGroup.py:632
+#: ../src/plugins/textreport/FamilyGroup.py:633
 #: ../src/plugins/textreport/IndivComplete.py:606
 #: ../src/plugins/textreport/KinshipReport.py:338
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:192
@@ -9726,7 +9716,7 @@ msgstr "Sloučit_citace"
 msgid "Merge Citations"
 msgstr "Sloučit citace"
 
-#: ../src/Merge/mergecitation.py:194
+#: ../src/Merge/mergecitation.py:193
 msgid "Merge Citation"
 msgstr "Sloučit citaci"
 
@@ -9738,7 +9728,7 @@ msgstr "Sloučit_místa"
 msgid "Merge Events"
 msgstr "Sloučit události"
 
-#: ../src/Merge/mergeevent.py:216
+#: ../src/Merge/mergeevent.py:215
 msgid "Merge Event Objects"
 msgstr "Sloučit objekty událostí"
 
@@ -9750,17 +9740,17 @@ msgstr "Sloučit_rodiny"
 msgid "Merge Families"
 msgstr "Sloučit rodiny"
 
-#: ../src/Merge/mergefamily.py:225 ../src/Merge/mergeperson.py:334
+#: ../src/Merge/mergefamily.py:224 ../src/Merge/mergeperson.py:333
 #: ../src/plugins/lib/libpersonview.py:417
 msgid "Cannot merge people"
 msgstr "Osoby nelze sloučit"
 
-#: ../src/Merge/mergefamily.py:278
+#: ../src/Merge/mergefamily.py:277
 msgid "A parent should be a father or mother."
 msgstr "Rodičem může být otec nebo matka."
 
-#: ../src/Merge/mergefamily.py:291 ../src/Merge/mergefamily.py:302
-#: ../src/Merge/mergeperson.py:352
+#: ../src/Merge/mergefamily.py:290 ../src/Merge/mergefamily.py:301
+#: ../src/Merge/mergeperson.py:351
 msgid ""
 "A parent and child cannot be merged. To merge these people, you must first "
 "break the relationship between them."
@@ -9768,7 +9758,7 @@ msgstr ""
 "Rodič a potomek nemohou být sloučeni. Chcete-li tyto osoby sloučit, musíte "
 "nejdříve zrušit vztah mezi nimi."
 
-#: ../src/Merge/mergefamily.py:323
+#: ../src/Merge/mergefamily.py:322
 msgid "Merge Family"
 msgstr "Sloučit rodinu"
 
@@ -9776,7 +9766,7 @@ msgstr "Sloučit rodinu"
 msgid "manual|Merge_Media_Objects"
 msgstr "Sloučit_objekty_médií"
 
-#: ../src/Merge/mergemedia.py:70 ../src/Merge/mergemedia.py:190
+#: ../src/Merge/mergemedia.py:70 ../src/Merge/mergemedia.py:189
 msgid "Merge Media Objects"
 msgstr "Sloučit objekty médií"
 
@@ -9784,7 +9774,7 @@ msgstr "Sloučit objekty médií"
 msgid "manual|Merge_Notes"
 msgstr "Sloučit_poznámky"
 
-#: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:205
+#: ../src/Merge/mergenote.py:71 ../src/Merge/mergenote.py:204
 msgid "Merge Notes"
 msgstr "Sloučit poznámky"
 
@@ -9836,7 +9826,7 @@ msgstr "Nebyli nalezeni žádní partneři nebo potomci"
 msgid "Addresses"
 msgstr "Adresy"
 
-#: ../src/Merge/mergeperson.py:349
+#: ../src/Merge/mergeperson.py:348
 msgid ""
 "Spouses cannot be merged. To merge these people, you must first break the "
 "relationship between them."
@@ -9844,11 +9834,11 @@ msgstr ""
 "Manželé nemohou být sloučeni. Chcete-li tyto osoby sloučit, musíte nejdříve "
 "zrušit vztah mezi nimi."
 
-#: ../src/Merge/mergeperson.py:415
+#: ../src/Merge/mergeperson.py:414
 msgid "Merge Person"
 msgstr "Sloučit osobu"
 
-#: ../src/Merge/mergeperson.py:454
+#: ../src/Merge/mergeperson.py:453
 msgid ""
 "A person with multiple relations with the same spouse is about to be merged. "
 "This is beyond the capabilities of the merge routine. The merge is aborted."
@@ -9856,7 +9846,7 @@ msgstr ""
 "Osoba s více vztahy ke stejnému partnerovi má být sloučena. Toto je nad "
 "možnosti funkce slučování. Sloučení je zrušeno."
 
-#: ../src/Merge/mergeperson.py:465
+#: ../src/Merge/mergeperson.py:464
 msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr "Má být sloučeno více rodin. To je neobvyklé, sloučení je zrušeno."
 
@@ -9864,7 +9854,7 @@ msgstr "Má být sloučeno více rodin. To je neobvyklé, sloučení je zrušeno
 msgid "manual|Merge_Places"
 msgstr "Sloučit místa"
 
-#: ../src/Merge/mergeplace.py:77 ../src/Merge/mergeplace.py:217
+#: ../src/Merge/mergeplace.py:77 ../src/Merge/mergeplace.py:215
 msgid "Merge Places"
 msgstr "Sloučit místa"
 
@@ -9872,7 +9862,7 @@ msgstr "Sloučit místa"
 msgid "manual|Merge_Repositories"
 msgstr "Sloučit_archivy"
 
-#: ../src/Merge/mergerepository.py:69 ../src/Merge/mergerepository.py:177
+#: ../src/Merge/mergerepository.py:69 ../src/Merge/mergerepository.py:176
 msgid "Merge Repositories"
 msgstr "Sloučit archivy"
 
@@ -9884,7 +9874,7 @@ msgstr "Sloučit prameny"
 msgid "Merge Sources"
 msgstr "Sloučit prameny"
 
-#: ../src/Merge/mergesource.py:205
+#: ../src/Merge/mergesource.py:204
 msgid "Merge Source"
 msgstr "Sloučit pramen"
 
@@ -10359,11 +10349,11 @@ msgstr "Styl používaný pro nadpisy."
 #: ../src/plugins/drawreport/DescendTree.py:1674
 #: ../src/plugins/drawreport/FanChart.py:456
 #: ../src/plugins/textreport/AncestorReport.py:367
-#: ../src/plugins/textreport/DetAncestralReport.py:905
-#: ../src/plugins/textreport/DetDescendantReport.py:1100
+#: ../src/plugins/textreport/DetAncestralReport.py:906
+#: ../src/plugins/textreport/DetDescendantReport.py:1103
 #: ../src/plugins/textreport/EndOfLineReport.py:299
 #: ../src/plugins/textreport/EndOfLineReport.py:317
-#: ../src/plugins/textreport/FamilyGroup.py:737
+#: ../src/plugins/textreport/FamilyGroup.py:738
 #: ../src/plugins/textreport/IndivComplete.py:732
 #: ../src/plugins/textreport/KinshipReport.py:404
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:227
@@ -10616,8 +10606,8 @@ msgstr "Nastavení stromu"
 #: ../src/plugins/textreport/AncestorReport.py:268
 #: ../src/plugins/textreport/BirthdayReport.py:377
 #: ../src/plugins/textreport/DescendReport.py:393
-#: ../src/plugins/textreport/DetAncestralReport.py:729
-#: ../src/plugins/textreport/DetDescendantReport.py:893
+#: ../src/plugins/textreport/DetAncestralReport.py:730
+#: ../src/plugins/textreport/DetDescendantReport.py:896
 #: ../src/plugins/textreport/EndOfLineReport.py:253
 #: ../src/plugins/textreport/KinshipReport.py:340
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:194
@@ -10633,8 +10623,8 @@ msgstr "Ústřední osoba stromu"
 #: ../src/plugins/drawreport/FanChart.py:400
 #: ../src/plugins/textreport/AncestorReport.py:282
 #: ../src/plugins/textreport/DescendReport.py:415
-#: ../src/plugins/textreport/DetAncestralReport.py:743
-#: ../src/plugins/textreport/DetDescendantReport.py:916
+#: ../src/plugins/textreport/DetAncestralReport.py:744
+#: ../src/plugins/textreport/DetDescendantReport.py:919
 msgid "Generations"
 msgstr "Generace"
 
@@ -11028,8 +11018,8 @@ msgstr "Vyberte filtr pro omezení osob, které se objeví v kalendáři"
 #: ../src/plugins/textreport/AncestorReport.py:269
 #: ../src/plugins/textreport/BirthdayReport.py:378
 #: ../src/plugins/textreport/DescendReport.py:394
-#: ../src/plugins/textreport/DetAncestralReport.py:730
-#: ../src/plugins/textreport/DetDescendantReport.py:894
+#: ../src/plugins/textreport/DetAncestralReport.py:731
+#: ../src/plugins/textreport/DetDescendantReport.py:897
 #: ../src/plugins/textreport/EndOfLineReport.py:254
 #: ../src/plugins/textreport/KinshipReport.py:341
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:195
@@ -11040,10 +11030,10 @@ msgstr "Výchozí osoba pro zprávu"
 #: ../src/plugins/textreport/AncestorReport.py:279
 #: ../src/plugins/textreport/BirthdayReport.py:389
 #: ../src/plugins/textreport/DescendReport.py:404
-#: ../src/plugins/textreport/DetAncestralReport.py:740
-#: ../src/plugins/textreport/DetDescendantReport.py:904
+#: ../src/plugins/textreport/DetAncestralReport.py:741
+#: ../src/plugins/textreport/DetDescendantReport.py:907
 #: ../src/plugins/textreport/EndOfLineReport.py:264
-#: ../src/plugins/textreport/FamilyGroup.py:646
+#: ../src/plugins/textreport/FamilyGroup.py:647
 #: ../src/plugins/textreport/IndivComplete.py:627
 #: ../src/plugins/textreport/KinshipReport.py:351
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:205
@@ -11487,8 +11477,8 @@ msgstr "%(generations)d generační vějířový graf pro osobu %(person)s"
 #: ../src/plugins/drawreport/FanChart.py:401
 #: ../src/plugins/textreport/AncestorReport.py:283
 #: ../src/plugins/textreport/DescendReport.py:416
-#: ../src/plugins/textreport/DetAncestralReport.py:744
-#: ../src/plugins/textreport/DetDescendantReport.py:918
+#: ../src/plugins/textreport/DetAncestralReport.py:745
+#: ../src/plugins/textreport/DetDescendantReport.py:921
 msgid "The number of generations to include in the report"
 msgstr "Počet generací zahrnutý v sestavě"
 
@@ -11802,10 +11792,10 @@ msgstr "Styl používaný pro položky a hodnoty."
 #: ../src/plugins/drawreport/TimeLine.py:438
 #: ../src/plugins/textreport/AncestorReport.py:344
 #: ../src/plugins/textreport/DescendReport.py:444
-#: ../src/plugins/textreport/DetAncestralReport.py:859
-#: ../src/plugins/textreport/DetDescendantReport.py:1054
+#: ../src/plugins/textreport/DetAncestralReport.py:860
+#: ../src/plugins/textreport/DetDescendantReport.py:1057
 #: ../src/plugins/textreport/EndOfLineReport.py:281
-#: ../src/plugins/textreport/FamilyGroup.py:728
+#: ../src/plugins/textreport/FamilyGroup.py:729
 #: ../src/plugins/textreport/IndivComplete.py:700
 #: ../src/plugins/textreport/KinshipReport.py:386
 #: ../src/plugins/textreport/NumberOfAncestorsReport.py:220
@@ -12096,14 +12086,14 @@ msgstr "Pramen pohřbu"
 
 #: ../src/plugins/export/ExportCsv.py:478
 #: ../src/plugins/import/ImportCsv.py:225
-#: ../src/plugins/textreport/FamilyGroup.py:570
+#: ../src/plugins/textreport/FamilyGroup.py:571
 #: ../src/plugins/webreport/NarrativeWeb.py:2460
 msgid "Husband"
 msgstr "Manžel"
 
 #: ../src/plugins/export/ExportCsv.py:478
 #: ../src/plugins/import/ImportCsv.py:222
-#: ../src/plugins/textreport/FamilyGroup.py:579
+#: ../src/plugins/textreport/FamilyGroup.py:580
 #: ../src/plugins/webreport/NarrativeWeb.py:2458
 msgid "Wife"
 msgstr "Manželka"
@@ -12591,7 +12581,7 @@ msgstr "Gramplet zobrazující děti dané osoby"
 #: ../src/plugins/gramplet/bottombar.gpr.py:483
 #: ../src/plugins/gramplet/bottombar.gpr.py:497
 #: ../src/plugins/gramplet/FanChartGramplet.py:801
-#: ../src/plugins/textreport/FamilyGroup.py:589
+#: ../src/plugins/textreport/FamilyGroup.py:590
 #: ../src/plugins/textreport/IndivComplete.py:379
 #: ../src/plugins/view/fanchartview.py:873
 #: ../src/plugins/view/pedigreeview.py:1919
@@ -20657,14 +20647,14 @@ msgid "Ahnentafel Report for %s"
 msgstr "%s - rodokmen předků"
 
 #: ../src/plugins/textreport/AncestorReport.py:286
-#: ../src/plugins/textreport/DetAncestralReport.py:747
-#: ../src/plugins/textreport/DetDescendantReport.py:922
+#: ../src/plugins/textreport/DetAncestralReport.py:748
+#: ../src/plugins/textreport/DetDescendantReport.py:925
 msgid "Page break between generations"
 msgstr "Stránkový zlom mezi generacemi"
 
 #: ../src/plugins/textreport/AncestorReport.py:288
-#: ../src/plugins/textreport/DetAncestralReport.py:749
-#: ../src/plugins/textreport/DetDescendantReport.py:924
+#: ../src/plugins/textreport/DetAncestralReport.py:750
+#: ../src/plugins/textreport/DetDescendantReport.py:927
 msgid "Whether to start a new page after each generation."
 msgstr "Zda po každé generaci začít na nové stránce."
 
@@ -20677,14 +20667,14 @@ msgid "Indicates if a line break should follow the name."
 msgstr "Indikuje zda za jménem následuje řádkový zlom."
 
 #: ../src/plugins/textreport/AncestorReport.py:295
-#: ../src/plugins/textreport/DetAncestralReport.py:757
-#: ../src/plugins/textreport/DetDescendantReport.py:932
+#: ../src/plugins/textreport/DetAncestralReport.py:758
+#: ../src/plugins/textreport/DetDescendantReport.py:935
 msgid "Translation"
 msgstr "Překlad"
 
 #: ../src/plugins/textreport/AncestorReport.py:300
-#: ../src/plugins/textreport/DetAncestralReport.py:762
-#: ../src/plugins/textreport/DetDescendantReport.py:937
+#: ../src/plugins/textreport/DetAncestralReport.py:763
+#: ../src/plugins/textreport/DetDescendantReport.py:940
 msgid "The translation to be used for the report."
 msgstr "Překlad použitý pro tuto zprávu."
 
@@ -20787,7 +20777,7 @@ msgid "%s sp."
 msgstr " %s  sp."
 
 #: ../src/plugins/textreport/DescendReport.py:407
-#: ../src/plugins/textreport/DetDescendantReport.py:907
+#: ../src/plugins/textreport/DetDescendantReport.py:910
 msgid "Numbering system"
 msgstr "Systém číslování:"
 
@@ -20804,7 +20794,7 @@ msgid "Meurgey de Tupigny numbering"
 msgstr "číslování Meurgey de Tupigny"
 
 #: ../src/plugins/textreport/DescendReport.py:412
-#: ../src/plugins/textreport/DetDescendantReport.py:913
+#: ../src/plugins/textreport/DetDescendantReport.py:916
 msgid "The numbering system to be used"
 msgstr "Systém číslování, který bude použit"
 
@@ -20849,14 +20839,14 @@ msgid "Ancestral Report for %s"
 msgstr "%s - rodokmen předků"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:276
-#: ../src/plugins/textreport/DetDescendantReport.py:395
+#: ../src/plugins/textreport/DetDescendantReport.py:396
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
 msgstr "%(name)s je stejná osoba jako [%(id_str)s]."
 
 #. feature request 2356: avoid genitive form
 #: ../src/plugins/textreport/DetAncestralReport.py:318
-#: ../src/plugins/textreport/DetDescendantReport.py:779
+#: ../src/plugins/textreport/DetDescendantReport.py:782
 #, python-format
 msgid "Notes for %s"
 msgstr "%s - poznámky"
@@ -20865,260 +20855,268 @@ msgstr "%s - poznámky"
 #: ../src/plugins/textreport/DetAncestralReport.py:357
 #: ../src/plugins/textreport/DetAncestralReport.py:368
 #: ../src/plugins/textreport/DetAncestralReport.py:393
-#: ../src/plugins/textreport/DetDescendantReport.py:792
-#: ../src/plugins/textreport/DetDescendantReport.py:810
-#: ../src/plugins/textreport/DetDescendantReport.py:821
-#: ../src/plugins/textreport/DetDescendantReport.py:846
+#: ../src/plugins/textreport/DetDescendantReport.py:795
+#: ../src/plugins/textreport/DetDescendantReport.py:813
+#: ../src/plugins/textreport/DetDescendantReport.py:824
+#: ../src/plugins/textreport/DetDescendantReport.py:849
 #, python-format
 msgid "More about %(person_name)s:"
 msgstr "Více o osobě %(person_name)s:"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:340
-#: ../src/plugins/textreport/DetDescendantReport.py:799
+#: ../src/plugins/textreport/DetDescendantReport.py:802
 #, python-format
 msgid "%(name_kind)s: %(name)s%(endnotes)s"
 msgstr "%(name_kind)s: %(name)s%(endnotes)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:375
-#: ../src/plugins/textreport/DetDescendantReport.py:834
+#: ../src/plugins/textreport/DetDescendantReport.py:837
 msgid "Address: "
 msgstr "Adresa: "
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../src/plugins/textreport/DetAncestralReport.py:384
-#: ../src/plugins/textreport/DetDescendantReport.py:837
+#: ../src/plugins/textreport/DetDescendantReport.py:840
 #, python-format
 msgid "%s, "
 msgstr "%s, "
 
 #: ../src/plugins/textreport/DetAncestralReport.py:401
-#: ../src/plugins/textreport/DetAncestralReport.py:459
-#: ../src/plugins/textreport/DetDescendantReport.py:472
-#: ../src/plugins/textreport/DetDescendantReport.py:719
-#: ../src/plugins/textreport/DetDescendantReport.py:854
+#: ../src/plugins/textreport/DetAncestralReport.py:460
+#: ../src/plugins/textreport/DetDescendantReport.py:475
+#: ../src/plugins/textreport/DetDescendantReport.py:722
+#: ../src/plugins/textreport/DetDescendantReport.py:857
 #, python-format
 msgid "%(type)s: %(value)s%(endnotes)s"
 msgstr "%(type)s: %(value)s%(endnotes)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:428
-#: ../src/plugins/textreport/DetDescendantReport.py:441
+#: ../src/plugins/textreport/DetDescendantReport.py:442
 #, python-format
 msgid "%(date)s, %(place)s"
 msgstr "%(date)s,  v/na %(place)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:431
-#: ../src/plugins/textreport/DetDescendantReport.py:444
+#: ../src/plugins/textreport/DetDescendantReport.py:445
 #, python-format
 msgid "%(date)s"
 msgstr "%(date)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:433
-#: ../src/plugins/textreport/DetDescendantReport.py:446
+#: ../src/plugins/textreport/DetDescendantReport.py:447
 #, python-format
 msgid "%(place)s"
 msgstr "%(place)s"
 
 #: ../src/plugins/textreport/DetAncestralReport.py:445
-#: ../src/plugins/textreport/DetDescendantReport.py:458
+#: ../src/plugins/textreport/DetDescendantReport.py:459
 #, python-format
 msgid "%(event_name)s: %(event_text)s"
 msgstr "%(event_name)s: %(event_text)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:557
-#: ../src/plugins/textreport/DetDescendantReport.py:611
+#. translators: needed for Arabic, ignore otherwise
+#: ../src/plugins/textreport/DetAncestralReport.py:458
+#: ../src/plugins/textreport/DetDescendantReport.py:357
+#: ../src/plugins/textreport/DetDescendantReport.py:473
+#: ../src/plugins/textreport/FamilyGroup.py:123
+msgid "; "
+msgstr "; "
+
+#: ../src/plugins/textreport/DetAncestralReport.py:558
+#: ../src/plugins/textreport/DetDescendantReport.py:614
 #, python-format
 msgid "Children of %(mother_name)s and %(father_name)s"
 msgstr "Potomci osob %(mother_name)s a %(father_name)s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:610
-#: ../src/plugins/textreport/DetDescendantReport.py:692
-#: ../src/plugins/textreport/DetDescendantReport.py:711
+#: ../src/plugins/textreport/DetAncestralReport.py:611
+#: ../src/plugins/textreport/DetDescendantReport.py:695
+#: ../src/plugins/textreport/DetDescendantReport.py:714
 #, python-format
 msgid "More about %(mother_name)s and %(father_name)s:"
 msgstr "Více o %(mother_name)s a %(father_name)s:"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:663
-#: ../src/plugins/textreport/DetDescendantReport.py:560
+#: ../src/plugins/textreport/DetAncestralReport.py:664
+#: ../src/plugins/textreport/DetDescendantReport.py:563
 #, python-format
 msgid "Spouse: %s"
 msgstr "Partner: %s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:665
-#: ../src/plugins/textreport/DetDescendantReport.py:562
+#: ../src/plugins/textreport/DetAncestralReport.py:666
+#: ../src/plugins/textreport/DetDescendantReport.py:565
 #, python-format
 msgid "Relationship with: %s"
 msgstr "Vztah k osobě: %s"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:752
-#: ../src/plugins/textreport/DetDescendantReport.py:927
+#: ../src/plugins/textreport/DetAncestralReport.py:753
+#: ../src/plugins/textreport/DetDescendantReport.py:930
 #: ../src/plugins/textreport/IndivComplete.py:637
 msgid "Page break before end notes"
 msgstr "Stránkový zlom před koncovými poznámkami"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:754
-#: ../src/plugins/textreport/DetDescendantReport.py:929
+#: ../src/plugins/textreport/DetAncestralReport.py:755
+#: ../src/plugins/textreport/DetDescendantReport.py:932
 #: ../src/plugins/textreport/IndivComplete.py:639
 msgid "Whether to start a new page before the end notes."
 msgstr "Zda začít koncové poznámky na nové stránce."
 
 #. Content options
 #. Content
-#: ../src/plugins/textreport/DetAncestralReport.py:767
-#: ../src/plugins/textreport/DetDescendantReport.py:942
+#: ../src/plugins/textreport/DetAncestralReport.py:768
+#: ../src/plugins/textreport/DetDescendantReport.py:945
 #: ../src/plugins/view/relview.py:1669
 msgid "Content"
 msgstr "Obsah"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:769
-#: ../src/plugins/textreport/DetDescendantReport.py:944
+#: ../src/plugins/textreport/DetAncestralReport.py:770
+#: ../src/plugins/textreport/DetDescendantReport.py:947
 msgid "Use callname for common name"
 msgstr "Použít přezdívku místo jména"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:770
-#: ../src/plugins/textreport/DetDescendantReport.py:945
+#: ../src/plugins/textreport/DetAncestralReport.py:771
+#: ../src/plugins/textreport/DetDescendantReport.py:948
 msgid "Whether to use the call name as the first name."
 msgstr "Zda použít běžné jméno jako křestní jméno."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:774
-#: ../src/plugins/textreport/DetDescendantReport.py:948
+#: ../src/plugins/textreport/DetAncestralReport.py:775
+#: ../src/plugins/textreport/DetDescendantReport.py:951
 msgid "Use full dates instead of only the year"
 msgstr "Používat plná data místo pouze roků"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:775
-#: ../src/plugins/textreport/DetDescendantReport.py:950
+#: ../src/plugins/textreport/DetAncestralReport.py:776
+#: ../src/plugins/textreport/DetDescendantReport.py:953
 msgid "Whether to use full dates instead of just year."
 msgstr "Zda používat plná data místo pouze roků."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:778
-#: ../src/plugins/textreport/DetDescendantReport.py:953
+#: ../src/plugins/textreport/DetAncestralReport.py:779
+#: ../src/plugins/textreport/DetDescendantReport.py:956
 msgid "List children"
 msgstr "Zobrazit děti"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:779
-#: ../src/plugins/textreport/DetDescendantReport.py:954
+#: ../src/plugins/textreport/DetAncestralReport.py:780
+#: ../src/plugins/textreport/DetDescendantReport.py:957
 msgid "Whether to list children."
 msgstr "Zda zahrnout seznam dětí."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:782
-#: ../src/plugins/textreport/DetDescendantReport.py:957
+#: ../src/plugins/textreport/DetAncestralReport.py:783
+#: ../src/plugins/textreport/DetDescendantReport.py:960
 msgid "Compute death age"
 msgstr "Vypočítat věk při úmrtí"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:783
-#: ../src/plugins/textreport/DetDescendantReport.py:958
+#: ../src/plugins/textreport/DetAncestralReport.py:784
+#: ../src/plugins/textreport/DetDescendantReport.py:961
 msgid "Whether to compute a person's age at death."
 msgstr "Zda počítat věk osoby v době úmrtí."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:786
-#: ../src/plugins/textreport/DetDescendantReport.py:961
+#: ../src/plugins/textreport/DetAncestralReport.py:787
+#: ../src/plugins/textreport/DetDescendantReport.py:964
 msgid "Omit duplicate ancestors"
 msgstr "Vynechat duplicitní předky"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:787
-#: ../src/plugins/textreport/DetDescendantReport.py:962
+#: ../src/plugins/textreport/DetAncestralReport.py:788
+#: ../src/plugins/textreport/DetDescendantReport.py:965
 msgid "Whether to omit duplicate ancestors."
 msgstr "Zda vynechat duplicitní předky."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:790
+#: ../src/plugins/textreport/DetAncestralReport.py:791
 msgid "Use Complete Sentences"
 msgstr "Použít rozvité věty"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:792
-#: ../src/plugins/textreport/DetDescendantReport.py:967
+#: ../src/plugins/textreport/DetAncestralReport.py:793
+#: ../src/plugins/textreport/DetDescendantReport.py:970
 msgid "Whether to use complete sentences or succinct language."
 msgstr "Zda použít rozvité, nebo holé věty."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:795
-#: ../src/plugins/textreport/DetDescendantReport.py:970
+#: ../src/plugins/textreport/DetAncestralReport.py:796
+#: ../src/plugins/textreport/DetDescendantReport.py:973
 msgid "Add descendant reference in child list"
 msgstr "Přidat odkaz na potomky do seznamu dětí"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:797
-#: ../src/plugins/textreport/DetDescendantReport.py:973
+#: ../src/plugins/textreport/DetAncestralReport.py:798
+#: ../src/plugins/textreport/DetDescendantReport.py:976
 msgid "Whether to add descendant references in child list."
 msgstr "Zda přidat odkaz na potomky do seznamu dětí."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:804
-#: ../src/plugins/textreport/DetDescendantReport.py:979
+#: ../src/plugins/textreport/DetAncestralReport.py:805
+#: ../src/plugins/textreport/DetDescendantReport.py:982
 msgid "Include notes"
 msgstr "Zahrnout poznámky"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:805
-#: ../src/plugins/textreport/DetDescendantReport.py:980
+#: ../src/plugins/textreport/DetAncestralReport.py:806
+#: ../src/plugins/textreport/DetDescendantReport.py:983
 msgid "Whether to include notes."
 msgstr "Zda zahrnout poznámky."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:808
-#: ../src/plugins/textreport/DetDescendantReport.py:983
+#: ../src/plugins/textreport/DetAncestralReport.py:809
+#: ../src/plugins/textreport/DetDescendantReport.py:986
 msgid "Include attributes"
 msgstr "Zahrnout atributy"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:809
-#: ../src/plugins/textreport/DetDescendantReport.py:984
-#: ../src/plugins/textreport/FamilyGroup.py:678
+#: ../src/plugins/textreport/DetAncestralReport.py:810
+#: ../src/plugins/textreport/DetDescendantReport.py:987
+#: ../src/plugins/textreport/FamilyGroup.py:679
 msgid "Whether to include attributes."
 msgstr "Zda zahrnout atributy."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:812
-#: ../src/plugins/textreport/DetDescendantReport.py:987
+#: ../src/plugins/textreport/DetAncestralReport.py:813
+#: ../src/plugins/textreport/DetDescendantReport.py:990
 #: ../src/plugins/textreport/IndivComplete.py:651
 msgid "Include Photo/Images from Gallery"
 msgstr "Zahrnout fotografie/obrázky z galerie"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:813
-#: ../src/plugins/textreport/DetDescendantReport.py:988
+#: ../src/plugins/textreport/DetAncestralReport.py:814
+#: ../src/plugins/textreport/DetDescendantReport.py:991
 #: ../src/plugins/textreport/IndivComplete.py:652
 msgid "Whether to include images."
 msgstr "Zda zahrnout obrázky."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:816
-#: ../src/plugins/textreport/DetDescendantReport.py:991
+#: ../src/plugins/textreport/DetAncestralReport.py:817
+#: ../src/plugins/textreport/DetDescendantReport.py:994
 msgid "Include alternative names"
 msgstr "Zahrnout alternativní jména"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:817
-#: ../src/plugins/textreport/DetDescendantReport.py:992
+#: ../src/plugins/textreport/DetAncestralReport.py:818
+#: ../src/plugins/textreport/DetDescendantReport.py:995
 msgid "Whether to include other names."
 msgstr "Zda zahrnout další jména."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:820
-#: ../src/plugins/textreport/DetDescendantReport.py:995
+#: ../src/plugins/textreport/DetAncestralReport.py:821
+#: ../src/plugins/textreport/DetDescendantReport.py:998
 msgid "Include events"
 msgstr "Zahrnout události"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:821
-#: ../src/plugins/textreport/DetDescendantReport.py:996
+#: ../src/plugins/textreport/DetAncestralReport.py:822
+#: ../src/plugins/textreport/DetDescendantReport.py:999
 msgid "Whether to include events."
 msgstr "Zda zahrnout události."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:824
-#: ../src/plugins/textreport/DetDescendantReport.py:999
+#: ../src/plugins/textreport/DetAncestralReport.py:825
+#: ../src/plugins/textreport/DetDescendantReport.py:1002
 msgid "Include addresses"
 msgstr "Zahrnout adresy"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:825
-#: ../src/plugins/textreport/DetDescendantReport.py:1000
+#: ../src/plugins/textreport/DetAncestralReport.py:826
+#: ../src/plugins/textreport/DetDescendantReport.py:1003
 msgid "Whether to include addresses."
 msgstr "Zda zahrnout adresy."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:828
-#: ../src/plugins/textreport/DetDescendantReport.py:1003
+#: ../src/plugins/textreport/DetAncestralReport.py:829
+#: ../src/plugins/textreport/DetDescendantReport.py:1006
 msgid "Include sources"
 msgstr "Zahrnout archivy"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:829
-#: ../src/plugins/textreport/DetDescendantReport.py:1004
+#: ../src/plugins/textreport/DetAncestralReport.py:830
+#: ../src/plugins/textreport/DetDescendantReport.py:1007
 msgid "Whether to include source references."
 msgstr "Zda zahrnout odkazy na prameny."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:832
-#: ../src/plugins/textreport/DetDescendantReport.py:1007
+#: ../src/plugins/textreport/DetAncestralReport.py:833
+#: ../src/plugins/textreport/DetDescendantReport.py:1010
 #: ../src/plugins/textreport/IndivComplete.py:646
 msgid "Include sources notes"
 msgstr "Začlenit poznámky pramenů"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:833
-#: ../src/plugins/textreport/DetDescendantReport.py:1008
+#: ../src/plugins/textreport/DetAncestralReport.py:834
+#: ../src/plugins/textreport/DetDescendantReport.py:1011
 #: ../src/plugins/textreport/IndivComplete.py:647
 msgid ""
 "Whether to include source notes in the Endnotes section. Only works if "
@@ -21129,52 +21127,52 @@ msgstr ""
 
 #. How to handle missing information
 #. Missing information
-#: ../src/plugins/textreport/DetAncestralReport.py:839
-#: ../src/plugins/textreport/DetDescendantReport.py:1034
+#: ../src/plugins/textreport/DetAncestralReport.py:840
+#: ../src/plugins/textreport/DetDescendantReport.py:1037
 msgid "Missing information"
 msgstr "Chybějící informace"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:841
-#: ../src/plugins/textreport/DetDescendantReport.py:1036
+#: ../src/plugins/textreport/DetAncestralReport.py:842
+#: ../src/plugins/textreport/DetDescendantReport.py:1039
 msgid "Replace missing places with ______"
 msgstr "Nahradit chybějící místa s ______"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:842
-#: ../src/plugins/textreport/DetDescendantReport.py:1037
+#: ../src/plugins/textreport/DetAncestralReport.py:843
+#: ../src/plugins/textreport/DetDescendantReport.py:1040
 msgid "Whether to replace missing Places with blanks."
 msgstr "Zda nahradit chybějící místa mezerami."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:845
-#: ../src/plugins/textreport/DetDescendantReport.py:1040
+#: ../src/plugins/textreport/DetAncestralReport.py:846
+#: ../src/plugins/textreport/DetDescendantReport.py:1043
 msgid "Replace missing dates with ______"
 msgstr "Nahradit chybějící data s ______"
 
-#: ../src/plugins/textreport/DetAncestralReport.py:846
-#: ../src/plugins/textreport/DetDescendantReport.py:1041
+#: ../src/plugins/textreport/DetAncestralReport.py:847
+#: ../src/plugins/textreport/DetDescendantReport.py:1044
 msgid "Whether to replace missing Dates with blanks."
 msgstr "Zda nahradit chybějící data mezerami."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:879
-#: ../src/plugins/textreport/DetDescendantReport.py:1074
+#: ../src/plugins/textreport/DetAncestralReport.py:880
+#: ../src/plugins/textreport/DetDescendantReport.py:1077
 msgid "The style used for the children list title."
 msgstr "Styl používaný pro název seznamu dětí."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:889
-#: ../src/plugins/textreport/DetDescendantReport.py:1084
+#: ../src/plugins/textreport/DetAncestralReport.py:890
+#: ../src/plugins/textreport/DetDescendantReport.py:1087
 msgid "The style used for the children list."
 msgstr "Styl používaný pro seznam dětí."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:912
-#: ../src/plugins/textreport/DetDescendantReport.py:1107
+#: ../src/plugins/textreport/DetAncestralReport.py:913
+#: ../src/plugins/textreport/DetDescendantReport.py:1110
 msgid "The style used for the first personal entry."
 msgstr "Styl používaný pro první osobní záznam."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:922
+#: ../src/plugins/textreport/DetAncestralReport.py:923
 msgid "The style used for the More About header."
 msgstr "Styl použitý pro hlavičku Více o."
 
-#: ../src/plugins/textreport/DetAncestralReport.py:932
-#: ../src/plugins/textreport/DetDescendantReport.py:1128
+#: ../src/plugins/textreport/DetAncestralReport.py:933
+#: ../src/plugins/textreport/DetDescendantReport.py:1131
 msgid "The style used for additional detail data."
 msgstr "Styl použitý pro další podrobné informace."
 
@@ -21184,54 +21182,54 @@ msgstr "Styl použitý pro další podrobné informace."
 msgid "Descendant Report for %(person_name)s"
 msgstr "%(person_name)s - podrobný seznam potomků"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:576
+#: ../src/plugins/textreport/DetDescendantReport.py:579
 #, python-format
 msgid "Ref: %s. %s"
 msgstr "Ref: %s. %s"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:669
+#: ../src/plugins/textreport/DetDescendantReport.py:672
 #, python-format
 msgid "Notes for %(mother_name)s and %(father_name)s:"
 msgstr "Poznámky pro osoby %(mother_name)s a %(father_name)s:"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:909
+#: ../src/plugins/textreport/DetDescendantReport.py:912
 msgid "Henry numbering"
 msgstr "Henryho číslování"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:910
+#: ../src/plugins/textreport/DetDescendantReport.py:913
 msgid "d'Aboville numbering"
 msgstr "Číslování d'Aboville"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:912
+#: ../src/plugins/textreport/DetDescendantReport.py:915
 msgid "Record (Modified Register) numbering"
 msgstr "Syl číslování  záznam (modifikovaný registr)"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:965
+#: ../src/plugins/textreport/DetDescendantReport.py:968
 msgid "Use complete sentences"
 msgstr "Použít rozvité věty"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1012
+#: ../src/plugins/textreport/DetDescendantReport.py:1015
 #: ../src/plugins/textreport/KinshipReport.py:362
 msgid "Include spouses"
 msgstr "Včetně manželů(ek)"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1013
+#: ../src/plugins/textreport/DetDescendantReport.py:1016
 msgid "Whether to include detailed spouse information."
 msgstr "Zda zahrnout podrobné informace o manželech."
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1016
+#: ../src/plugins/textreport/DetDescendantReport.py:1019
 msgid "Include spouse reference"
 msgstr "Zahrnout odkaz na partnera(ku)"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1017
+#: ../src/plugins/textreport/DetDescendantReport.py:1020
 msgid "Whether to include reference to spouse."
 msgstr "Zda zahrnout odkaz na partnera(ku)."
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1020
+#: ../src/plugins/textreport/DetDescendantReport.py:1023
 msgid "Include sign of succession ('+') in child-list"
 msgstr "Zahrnout znaménko následnictví  ('+') v seznamu dětí"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1022
+#: ../src/plugins/textreport/DetDescendantReport.py:1025
 msgid ""
 "Whether to include a sign ('+') before the descendant number in the child-"
 "list to indicate a child has succession."
@@ -21239,17 +21237,17 @@ msgstr ""
 "Zda zahrnout znaménko ('+') před číslem potomka v seznamu dětí indikující, "
 "že dítě má následníka."
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1027
+#: ../src/plugins/textreport/DetDescendantReport.py:1030
 msgid "Include path to start-person"
 msgstr "Zahrnout cestu k výchozí osobě"
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1028
+#: ../src/plugins/textreport/DetDescendantReport.py:1031
 msgid ""
 "Whether to include the path of descendancy from the start-person to each "
 "descendant."
 msgstr "Zda zahrnout cestu k předkům od výchozí osoby pro každého předka."
 
-#: ../src/plugins/textreport/DetDescendantReport.py:1117
+#: ../src/plugins/textreport/DetDescendantReport.py:1120
 msgid "The style used for the More About header and for headers of mates."
 msgstr "Styl použitý pro záhlaví Více o a pro záhlaví druhů/družek."
 
@@ -21280,150 +21278,150 @@ msgstr "Styl použitý pro hlavičky sekcí."
 msgid "The basic style used for generation headings."
 msgstr "Základní styl používaný pro hlavičku generací."
 
-#: ../src/plugins/textreport/FamilyGroup.py:123
+#: ../src/plugins/textreport/FamilyGroup.py:124
 #: ../src/plugins/webreport/NarrativeWeb.py:1038
 #, python-format
 msgid "%(type)s: %(value)s"
 msgstr "%(type)s: %(value)s"
 
-#: ../src/plugins/textreport/FamilyGroup.py:377
+#: ../src/plugins/textreport/FamilyGroup.py:378
 msgid "Marriage:"
 msgstr "Sňatek:"
 
-#: ../src/plugins/textreport/FamilyGroup.py:463
+#: ../src/plugins/textreport/FamilyGroup.py:464
 msgid "acronym for male|M"
 msgstr "♂"
 
-#: ../src/plugins/textreport/FamilyGroup.py:465
+#: ../src/plugins/textreport/FamilyGroup.py:466
 msgid "acronym for female|F"
 msgstr "♀"
 
-#: ../src/plugins/textreport/FamilyGroup.py:467
+#: ../src/plugins/textreport/FamilyGroup.py:468
 #, python-format
 msgid "acronym for unknown|%dU"
 msgstr "%dN"
 
-#: ../src/plugins/textreport/FamilyGroup.py:561
+#: ../src/plugins/textreport/FamilyGroup.py:562
 #, python-format
 msgid "Family Group Report - Generation %d"
 msgstr "Souhrnná zpráva o rodině - generace %d"
 
-#: ../src/plugins/textreport/FamilyGroup.py:563
-#: ../src/plugins/textreport/FamilyGroup.py:612
+#: ../src/plugins/textreport/FamilyGroup.py:564
+#: ../src/plugins/textreport/FamilyGroup.py:613
 #: ../src/plugins/textreport/textplugins.gpr.py:185
 msgid "Family Group Report"
 msgstr "Zpráva o rodině"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:635
+#: ../src/plugins/textreport/FamilyGroup.py:636
 msgid "Center Family"
 msgstr "Ústřední rodina"
 
-#: ../src/plugins/textreport/FamilyGroup.py:636
+#: ../src/plugins/textreport/FamilyGroup.py:637
 msgid "The center family for the report"
 msgstr "Ústřední rodina pro zprávu"
 
-#: ../src/plugins/textreport/FamilyGroup.py:650
+#: ../src/plugins/textreport/FamilyGroup.py:651
 msgid "Recursive"
 msgstr "Rekurzivní"
 
-#: ../src/plugins/textreport/FamilyGroup.py:651
+#: ../src/plugins/textreport/FamilyGroup.py:652
 msgid "Create reports for all descendants of this family."
 msgstr "Vytvořit zprávy pro všechny potomky této rodiny."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:659
+#: ../src/plugins/textreport/FamilyGroup.py:660
 msgid "Generation numbers (recursive only)"
 msgstr "Čísla generací (pouze rekurzivně)"
 
-#: ../src/plugins/textreport/FamilyGroup.py:661
+#: ../src/plugins/textreport/FamilyGroup.py:662
 msgid "Whether to include the generation on each report (recursive only)."
 msgstr "Zda do každé zprávy zahrnout generaci (pouze rekurzivně)."
 
-#: ../src/plugins/textreport/FamilyGroup.py:665
+#: ../src/plugins/textreport/FamilyGroup.py:666
 msgid "Parent Events"
 msgstr "Události rodičů"
 
-#: ../src/plugins/textreport/FamilyGroup.py:666
+#: ../src/plugins/textreport/FamilyGroup.py:667
 msgid "Whether to include events for parents."
 msgstr "Zda u rodičů zahrnout události."
 
-#: ../src/plugins/textreport/FamilyGroup.py:669
+#: ../src/plugins/textreport/FamilyGroup.py:670
 msgid "Parent Addresses"
 msgstr "Adresy rodičů"
 
-#: ../src/plugins/textreport/FamilyGroup.py:670
+#: ../src/plugins/textreport/FamilyGroup.py:671
 msgid "Whether to include addresses for parents."
 msgstr "Zda u rodičů zahrnout adresy."
 
-#: ../src/plugins/textreport/FamilyGroup.py:673
+#: ../src/plugins/textreport/FamilyGroup.py:674
 msgid "Parent Notes"
 msgstr "Záznamy rodičů"
 
-#: ../src/plugins/textreport/FamilyGroup.py:674
+#: ../src/plugins/textreport/FamilyGroup.py:675
 msgid "Whether to include notes for parents."
 msgstr "Zda u rodičů zahrnout poznámky."
 
-#: ../src/plugins/textreport/FamilyGroup.py:677
+#: ../src/plugins/textreport/FamilyGroup.py:678
 msgid "Parent Attributes"
 msgstr "Atributy rodičů"
 
-#: ../src/plugins/textreport/FamilyGroup.py:681
+#: ../src/plugins/textreport/FamilyGroup.py:682
 msgid "Alternate Parent Names"
 msgstr "Alternativní jména rodičů"
 
-#: ../src/plugins/textreport/FamilyGroup.py:682
+#: ../src/plugins/textreport/FamilyGroup.py:683
 msgid "Whether to include alternate names for parents."
 msgstr "Zda u rodičů zahrnout alternativní jména."
 
-#: ../src/plugins/textreport/FamilyGroup.py:686
+#: ../src/plugins/textreport/FamilyGroup.py:687
 msgid "Parent Marriage"
 msgstr "Sňatek rodičů"
 
-#: ../src/plugins/textreport/FamilyGroup.py:687
+#: ../src/plugins/textreport/FamilyGroup.py:688
 msgid "Whether to include marriage information for parents."
 msgstr "Zda u rodičů zahrnout informace o sňatcích."
 
-#: ../src/plugins/textreport/FamilyGroup.py:691
+#: ../src/plugins/textreport/FamilyGroup.py:692
 msgid "Dates of Relatives"
 msgstr "Data příbuzných"
 
-#: ../src/plugins/textreport/FamilyGroup.py:692
+#: ../src/plugins/textreport/FamilyGroup.py:693
 msgid "Whether to include dates for relatives (father, mother, spouse)."
 msgstr "Zda zahrnout data příbuzných (otec, matka, druh/družka)."
 
-#: ../src/plugins/textreport/FamilyGroup.py:696
+#: ../src/plugins/textreport/FamilyGroup.py:697
 msgid "Children Marriages"
 msgstr "Sňatky dětí"
 
-#: ../src/plugins/textreport/FamilyGroup.py:697
+#: ../src/plugins/textreport/FamilyGroup.py:698
 msgid "Whether to include marriage information for children."
 msgstr "Zda zahrnout informace o sňatku dětí."
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:702
+#: ../src/plugins/textreport/FamilyGroup.py:703
 msgid "Missing Information"
 msgstr "Chybějící informace"
 
 #. #########################
-#: ../src/plugins/textreport/FamilyGroup.py:705
+#: ../src/plugins/textreport/FamilyGroup.py:706
 msgid "Print fields for missing information"
 msgstr "Vypisovat pole s chybějící informací"
 
-#: ../src/plugins/textreport/FamilyGroup.py:707
+#: ../src/plugins/textreport/FamilyGroup.py:708
 msgid "Whether to include fields for missing information."
 msgstr "Zda zahrnoutpole s chybějící informací."
 
-#: ../src/plugins/textreport/FamilyGroup.py:749
+#: ../src/plugins/textreport/FamilyGroup.py:750
 #: ../src/plugins/textreport/TagReport.py:597
 msgid "The basic style used for the note display."
 msgstr "Základní styl používaný pro zobrazení poznámky."
 
-#: ../src/plugins/textreport/FamilyGroup.py:758
+#: ../src/plugins/textreport/FamilyGroup.py:759
 msgid "The style used for the text related to the children."
 msgstr "Styl používaný pro text týkající se dětí."
 
-#: ../src/plugins/textreport/FamilyGroup.py:768
+#: ../src/plugins/textreport/FamilyGroup.py:769
 msgid "The style used for the parent's name"
 msgstr "Styl používaný pro jména rodičů"
 
@@ -31541,6 +31539,15 @@ msgstr ""
 "prostředí jaké vám vyhovuje. Pokud jsou ve vašem prostředí instalovány "
 "požadované GTK knihovny, bude Gramps fungovat dobře."
 
+#~ msgid ""
+#~ "You have attempted to use the existing Gramps ID with value %(gramps_id)"
+#~ "s. This value is already used by '%(prim_object)s'. Please enter a "
+#~ "different ID or leave blank to get the next available ID value."
+#~ msgstr ""
+#~ "Snažíte se použít existující Gramps ID s hodnotou %(gramps_id)s. Tuto "
+#~ "hodnotu už používá '%(prim_object)s'. Zvolte prosím jiné ID. Ponecháte-li "
+#~ "pole prázdné, bude zvolena nejbližší volná hodnota."
+
 #~ msgid "To select a source, use drag-and-drop or use the buttons"
 #~ msgstr "Pro výběr pramene použijte drag-and-drop nebo tlačítka"
 
@@ -31881,9 +31888,6 @@ msgstr ""
 
 #~ msgid "Import database"
 #~ msgstr "Importovat databázi"
-
-#~ msgid " "
-#~ msgstr " "
 
 #~ msgid "\n"
 #~ msgstr "\n"
