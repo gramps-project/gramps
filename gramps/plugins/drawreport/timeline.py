@@ -304,7 +304,7 @@ class TimeLine(Report):
         delta = (stop_pos - start_pos)/ 5
         for val in range(0,6):
             xpos = start_pos+(val*delta)
-            year_str = str(year_low + (incr*val))
+            year_str = str(int(year_low + (incr*val)))
             self.doc.center_text('TLG-label', year_str, xpos, label_y)
             
     def draw_no_date_heading(self):
