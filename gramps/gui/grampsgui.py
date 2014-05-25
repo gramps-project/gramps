@@ -83,13 +83,14 @@ try:
     gi.require_version('Gtk', '3.0')
     #It is important to import Pango before Gtk, or some things start to go
     #wrong in GTK3 !
-    from gi.repository import Pango
+    from gi.repository import Pango, PangoCairo
     from gi.repository import Gtk, Gdk
 except (ImportError, ValueError):
-    print((_("Gdk, Gtk or Pango typelib not installed.\n"
+    print((_("Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
              "Install Gnome Introspection, and "
              "pygobject version 3.3.2 or later.\n"
-             "Install then instrospection data for Gdk, Gtk and Pango\n\n"
+             "Install then instrospection data for Gdk, Gtk, Pango and "
+             "PangoCairo\n\n"
              "Gramps will terminate now.")))
     sys.exit(0)
 
