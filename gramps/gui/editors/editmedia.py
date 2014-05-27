@@ -290,11 +290,8 @@ class EditMedia(EditPrimary):
             return
 
         path = conv_to_unicode(self.file_path.get_text())
-        ref_obj = self.dbstate.db.get_object_from_handle(self.obj.handle)
-        if ref_obj:
-            media_path = media_path_full(self.dbstate.db,
-                                               ref_obj.get_path())
-        if os.path.exists(os.path.join(os.path.dirname(media_path), path)):
+        full_path = media_path_full(self.db, path)
+        if os.path.isfile(full_path):
             self.determine_mime()
         else:
             msg1 = _("There is no media matching the current path value!")
@@ -306,7 +303,7 @@ class EditMedia(EditPrimary):
             self.ok_button.set_sensitive(True)
             return
 
-        self.obj.set_path(conv_to_unicode(path))
+        self.obj.set_path(path)
 
         with DbTxn('', self.db) as trans:
             if not self.obj.get_handle():
