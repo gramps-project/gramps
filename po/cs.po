@@ -31535,7 +31535,7 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
-"<b>Gramps pro Gnome or KDE?</b><br/>V Linuxu můžete s Gramps pracovat v "
+"<b>Gramps pro Gnome nebo KDE?</b><br/>V Linuxu můžete s Gramps pracovat v "
 "prostředí jaké vám vyhovuje. Pokud jsou ve vašem prostředí instalovány "
 "požadované GTK knihovny, bude Gramps fungovat dobře."
 
