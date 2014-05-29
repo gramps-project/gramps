@@ -11,10 +11,10 @@ AM_INIT_AUTOMAKE([1.6.3 foreign])
 
 AC_CONFIG_MACRO_DIR([m4])
 
-RELEASE=$(git log -1 --format=%h .)
+dnl RELEASE=$(git log -1 --format=%h .)
 dnl RELEASE=0beta
 dnl RELEASE=0rc1
-dnl RELEASE=1
+RELEASE=1
 
 VERSIONSTRING=$VERSION
 if test x"$RELEASE" != "x"

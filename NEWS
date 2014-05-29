@@ -1,3 +1,30 @@
+2014-05-29
+Version 3.4.8 of Gramps! "Forget about your sin, give the audience a grin", a maintenance release.
+* Database corrupted - TypeError: unhashable type: 'list'
+* Fix bug in abandon changes and quit
+* Fix error when importing database from the CLI
+* 'Display as' field in Name Editor reverts to Preferences default
+* Geography does not communicate over proxy server with autorisation
+* Event gramplet filter does not have field for primary role
+* New HasDayOfWeek filter rule
+* Error when leaving a Gramps type field blank in an editor
+* Fix creation of events with same Gramps-ID
+* Enhancements and consitency on events gramplet, selector and view
+* Enhanced Citation Editor
+* Fix update of active object after merge
+* Do not drag and drop more than one data into editor tabs
+* Media Editor error if Path value was changed to a non existing file
+* Register history objects at startup
+* Users should not be allowed to edit and delete 'default' style into Style Editor
+* Missing closing bracket in Web_Basic-Spruce.css
+* Some temporary files remains in /tmp with NarrativeWeb report
+* Some fixes and enhancements
+* No narrative.css File After Running Narrated Website Report
+* Paper names and Styles values are now translated
+* Translate some punctuation marks
+* Fix Relationships handler for Portuguese
+* Updated translations: ar, cs, de, es, fr, he, it, ru, sk, sv
+
 2014-01-27
 Version 3.4.7 of Gramps! "Ask me tomorrow, but not today", a maintenance release.
 * Gramps project web hosting now has an HTTPS interface; the old HTTP URLs redirect to it.
