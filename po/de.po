@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-27 18:29+0200\n"
-"PO-Revision-Date: 2014-05-27 18:35+0200\n"
+"POT-Creation-Date: 2014-05-29 15:56+0200\n"
+"PO-Revision-Date: 2014-05-30 00:39+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -629,7 +629,7 @@ msgid ""
 msgstr ""
 "<b>Orte verwalten</b><br/>Die Orteansicht zeigt dir eine Liste aller in der "
 "Datenbank vorkommenden Orte. Die Liste kann durch viele verschiedene "
-"Kriterien, wie Stadt, Gemeinde oder Land geordnet werden."
+"Kriterien, wie Stadt, Kreis oder Land geordnet werden."
 
 #: ../data/tips.xml.in.h:40
 msgid ""
@@ -6802,7 +6802,7 @@ msgstr "Matrilineal"
 #: ../gramps/gui/plug/_windows.py:620
 #: ../gramps/plugins/gramplet/placedetails.py:125
 msgid "Location"
-msgstr "Ort"
+msgstr "Standort"
 
 #: ../gramps/gen/lib/nametype.py:54
 msgid "Also Known As"
@@ -6985,7 +6985,7 @@ msgstr "Stadt"
 
 #: ../gramps/gen/lib/placetype.py:73
 msgid "Parish"
-msgstr "Gemeinde"
+msgstr "Kirchengemeinde"
 
 #: ../gramps/gen/lib/placetype.py:74 ../gramps/gui/configure.py:510
 #: ../gramps/gui/editors/displaytabs/addrembedlist.py:73
@@ -7028,7 +7028,7 @@ msgstr "Bezirk"
 
 #: ../gramps/gen/lib/placetype.py:81
 msgid "Borough"
-msgstr "Bezirk"
+msgstr "Borough"
 
 #: ../gramps/gen/lib/placetype.py:82
 msgid "Municipality"
@@ -11247,7 +11247,7 @@ msgstr ""
 "Eine Quelle ist alles (persönliche Aussagen, Videoaufzeichnungen, Fotos, "
 "Zeitungsausschnitte, Grabsteine,....) von dem Informationen abgeleitet werden "
 "können. Um eine Fundstelle zu erstellen, wähle zuerst die benötigte Quelle "
-"und gib dann den Ort ein, an dem sich die Informationen in dieser Quelle "
+"und gib dann die Stelle ein, an der sich die Informationen in dieser Quelle "
 "befinden, im 'Band/Seite' Feld ein."
 
 #: ../gramps/gui/editors/editcitation.py:290
@@ -12075,7 +12075,7 @@ msgstr "Ort bearbeiten"
 
 #: ../gramps/gui/editors/editplace.py:253
 msgid "Cannot save place"
-msgstr "Der Ort kann nicht gespeichert werdenn."
+msgstr "Der Ort kann nicht gespeichert werden."
 
 #: ../gramps/gui/editors/editplace.py:254
 msgid "No data exists for this place. Please enter data or cancel the edit."
@@ -13506,7 +13506,7 @@ msgstr "Neu"
 
 #: ../gramps/gui/glade/editlocation.glade:111
 msgid "The town or city where the place is."
-msgstr "Der Ort oder Stadt wo die Lokation ist."
+msgstr "Die Kleinstadt oder Stadt in der sich der Ort befindet."
 
 #: ../gramps/gui/glade/editlocation.glade:127
 msgid "S_treet:"
@@ -13557,7 +13557,8 @@ msgstr "Niedrigste Stufe einer Lokationsaufteilung: z.B. der Straßenname."
 #: ../gramps/gui/glade/editlocation.glade:366
 msgid "A district within, or a settlement near to, a town or city."
 msgstr ""
-"Ein Bereich in, oder eine Siedlung in der Nähe von einem Ort oder einer Stadt."
+"Ein Bereich in, oder eine Siedlung in der Nähe von einer Kleinstadt oder "
+"einer Stadt."
 
 #: ../gramps/gui/glade/editmedia.glade:150
 #: ../gramps/gui/glade/editmediaref.glade:425
@@ -14131,7 +14132,7 @@ msgid ""
 "Publication Information, such as city and year of publication, name of "
 "publisher, ..."
 msgstr ""
-"Veröffentlichungsinformationen wie Ort und Jahr der Veröffentlichung, Name "
+"Veröffentlichungsinformationen wie Stadt und Jahr der Veröffentlichung, Name "
 "des Herausgebers,..."
 
 #: ../gramps/gui/glade/editsource.glade:184
@@ -21662,7 +21663,7 @@ msgstr ""
 
 #: ../gramps/plugins/graph/gvrelgraph.py:554
 msgid "Use place when no date"
-msgstr "Benutze Ort, wenn kein Datum vorhanden ist."
+msgstr "Verwende Ort, wenn kein Datum vorhanden ist."
 
 #: ../gramps/plugins/graph/gvrelgraph.py:555
 msgid ""
@@ -26974,7 +26975,7 @@ msgstr "Dänemark"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:79
 msgid " parish"
-msgstr " Gemeinde"
+msgstr " Kirchengemeinde"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:83
 msgid " state"
