@@ -25,7 +25,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-17 19:01+0100\n"
-"PO-Revision-Date: 2014-03-17 20:01+0100\n"
+"PO-Revision-Date: 2014-05-29 17:37+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -20951,7 +20951,7 @@ msgstr "Adress: "
 #: ../src/plugins/textreport/DetDescendantReport.py:837
 #, python-format
 msgid "%s, "
-msgstr ""
+msgstr "%s, "
 
 #: ../src/plugins/textreport/DetAncestralReport.py:401
 #: ../src/plugins/textreport/DetAncestralReport.py:459
