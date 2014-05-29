@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-29 15:56+0200\n"
-"PO-Revision-Date: 2014-05-30 00:39+0200\n"
+"PO-Revision-Date: 2014-05-30 00:47+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -12972,7 +12972,7 @@ msgstr "St_raße:"
 #: ../gramps/gui/glade/editaddress.glade:134
 #: ../gramps/gui/glade/editlocation.glade:95
 msgid "C_ity:"
-msgstr "_Ort:"
+msgstr "_Stadt:"
 
 #: ../gramps/gui/glade/editaddress.glade:150
 msgid "The town or city of the address"
