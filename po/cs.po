@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-26 17:53+0200\n"
-"PO-Revision-Date: 2014-05-28 21:29+0100\n"
+"PO-Revision-Date: 2014-05-30 11:39+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -3868,7 +3868,7 @@ msgstr "Hlavní aktéři"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:52
 msgid "Families with the <event>"
-msgstr "Osoby s <event>"
+msgstr "Osoby s <událostí>"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:53
 msgid "Matches families with an event of a particular value"
@@ -4571,7 +4571,7 @@ msgstr "Vyhovují osoby s rodinnou události určité hodnoty"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:42
 msgid "People with <count> media"
-msgstr "Osoby s <count> médii"
+msgstr "Osoby s <počtem> médii"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:43
 msgid "Matches people with a certain number of items in the gallery"
@@ -4589,7 +4589,7 @@ msgstr "Vyhovují osoby s konkrétním Gramps ID"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
-msgstr "Osoby s <count> událostmi SPD"
+msgstr "Osoby s <počtem> událostmi SPD"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "Matches people with a certain number of LDS events"
@@ -4657,7 +4657,7 @@ msgstr "Typ původu příjmení:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:47
 msgid "People with the <Surname origin type>"
-msgstr "Osoby s <Surname origin type>"
+msgstr "Osoby s <typem původy příjmení>"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:48
 msgid "Matches people with a surname origin"
@@ -4671,7 +4671,7 @@ msgstr "Typ jména:"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:47
 msgid "People with the <Name type>"
-msgstr "Osoby s  <Name type>"
+msgstr "Osoby s  <typem jména>"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:48
 msgid "Matches people with a type of name"
@@ -4687,7 +4687,7 @@ msgstr "Vyhovují osoby s přezdívkou"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:45
 msgid "People having <count> notes"
-msgstr "Osoby mající <count> poznámek"
+msgstr "Osoby mající <počet> poznámek"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:46
 msgid "Matches people having a certain number of notes"
@@ -4740,7 +4740,7 @@ msgstr "Rodinné filtry"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:45
 msgid "People with <count> sources"
-msgstr "Osoby s <count> prameny"
+msgstr "Osoby s <počtem> pramenů"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:46
 msgid "Matches people with a certain number of sources connected to it"
@@ -4748,7 +4748,7 @@ msgstr "Vyhovují osoby s určitým počtem připojených pramenů"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:46
 msgid "People with the <source>"
-msgstr "Osoby se <source>"
+msgstr "Osoby s <pramenem>"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:48
 msgid "Matches people who have a particular source"
@@ -4756,7 +4756,7 @@ msgstr "Vyhovují osoby s konkrétním pramenem"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:49
 msgid "People with the <tag>"
-msgstr "Osoby s <tag>"
+msgstr "Osoby mající <štítek>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:50
 msgid "Matches people with the particular tag"
@@ -4876,7 +4876,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:47
 msgid "Descendant family members of <filter> match"
-msgstr "Potomci členů rodiny odpovídají <filter>"
+msgstr "Potomci členů rodiny odpovídají <fitru>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:49
 msgid ""
@@ -4904,7 +4904,7 @@ msgstr "Vyhovují osoby, které jsou potomci kohokoli, kdo vyhovuje filtru"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:47
 msgid "Duplicated ancestors of <person>"
-msgstr "Duplikovaní předci osoby <person>"
+msgstr "Duplikovaní předci osoby <osoba>"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:49
 msgid "Matches people that are ancestors twice or more of a specified person"
@@ -5018,7 +5018,7 @@ msgstr "Vyhovují osoby, které jsou rodiči všech, kdo vyhovují filtru"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:45
 msgid "People related to <Person>"
-msgstr "Osoby ve vztahu k osobě <Person>"
+msgstr "Osoby ve vztahu k osobě <Osoba>"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:47
 msgid "Matches people related to a specified person"
@@ -5056,7 +5056,7 @@ msgstr "Název filtru událostí:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:52
 msgid "Persons with events matching the <event filter>"
-msgstr "Osoby s událostmi vyhovujícími <event filter>"
+msgstr "Osoby s událostmi vyhovujícími <filtru událostí>"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
@@ -5072,7 +5072,7 @@ msgstr "Vyhovují osoby odpovídající uvedenému filtru"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:44
 msgid "Persons with at least one direct source >= <confidence level>"
-msgstr "Osoby s alespoň jedním >= <confidence level> přímým pramenem"
+msgstr "Osoby s alespoň jedním >= <stupeň důvěryhodnosti> přímého pramene"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:45
 msgid ""
@@ -5180,7 +5180,7 @@ msgstr "Vyhovují osoby jejichž jména obsahují text nebo vyhovují reg. výra
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:46
 msgid "Relationship path between <persons>"
-msgstr "Vztah mezi <persons>"
+msgstr "Vztah mezi <osobami>"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:48
 msgid ""
@@ -5216,7 +5216,7 @@ msgstr "Vyhovují všechna místa v databázi"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:47
 msgid "Places changed after <date time>"
-msgstr "Místa změněná po <date time>"
+msgstr "Místa změněná po <datum čas>"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:48
 msgid ""
@@ -5228,7 +5228,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
-msgstr "Místo s <citation>"
+msgstr "Místo s <citací>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 msgid "Matches places with a citation of a particular value"
@@ -5236,7 +5236,7 @@ msgstr "Vyhovují místa s citací konkrétní hodnoty"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:45
 msgid "Places with <count> media"
-msgstr "Místa s <count> médií"
+msgstr "Místa s <počtem> médií"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:46
 msgid "Matches places with a certain number of items in the gallery"
@@ -5265,7 +5265,7 @@ msgstr "Filtry polohy"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:45
 msgid "Places having <count> notes"
-msgstr "Místa mající <count> poznámek"
+msgstr "Místa mající <počet> poznámek"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:46
 msgid "Matches places having a certain number of notes"
@@ -5273,7 +5273,7 @@ msgstr "Vyhovují místa mající určitý počet poznámek"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:42
 msgid "Places having notes containing <substring>"
-msgstr "Místa mající poznámky obsahující <substring>"
+msgstr "Místa mající poznámky obsahující <podřetězec>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:43
 msgid "Matches places whose notes contain text matching a substring"
@@ -5338,7 +5338,7 @@ msgstr "Vyhovují místa konkrétních parametrů"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:42
 msgid "Places with a reference count of <count>"
-msgstr "Místa s počtem odkazů rovným <count>"
+msgstr "Místa s počtem odkazů rovným <počtu>"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:43
 msgid "Matches places with a certain reference count"
@@ -5346,7 +5346,7 @@ msgstr "Vyhovují místa s určitým počtem odkazů"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:45
 msgid "Place with <count> sources"
-msgstr "Místo s <count> prameny"
+msgstr "Místo s <počtem> pramenů"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:46
 msgid "Matches places with a certain number of sources connected to it"
@@ -5354,7 +5354,7 @@ msgstr "Vyhovují místa s určitým počtem připojených pramenů"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:46
 msgid "Places with the <source>"
-msgstr "Místo s <source>"
+msgstr "Místo s <pramenem>"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
 msgid "Matches places who have a particular source"
@@ -5362,11 +5362,11 @@ msgstr "Vyhovují místa s konkrétním pramenem"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:49
 msgid "Places with the <tag>"
-msgstr "Místa s <tag>"
+msgstr "Místa se <štítkem>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
 msgid "Matches places with the particular tag"
-msgstr "Vyhovují místa  s určitým štítkem"
+msgstr "Vyhovují místa s určitým štítkem"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:49
 #: ../gramps/gui/glade/mergeplace.glade:245
@@ -5403,7 +5403,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:50
 msgid "Places of events matching the <event filter>"
-msgstr "Places of events matching the <event filter>"
+msgstr "Místa událostí odpovídající <filtru událostí>"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:51
 msgid ""
@@ -5422,7 +5422,7 @@ msgstr "Vyhovují místa odpovídající uvedenému filtru"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:44
 msgid "Place with a direct source >= <confidence level>"
-msgstr "Místo s přímým pramenem >= <confidence level> "
+msgstr "Místo s přímým pramenem >= <úrovenň důvěryhodnosti> "
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
 msgid "Matches places with at least one direct source with confidence level(s)"
@@ -5455,7 +5455,7 @@ msgstr "Vyhovuje každý archiv v databázi"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:47
 msgid "Repositories changed after <date time>"
-msgstr "Archivy změněné po <date time>"
+msgstr "Archivy změněné po <datu a čase>"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:48
 msgid ""
@@ -5492,7 +5492,7 @@ msgstr "Vyhovují archivy jejichž záznamy obsahují text vyhovující podřet�
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:42
 msgid "Repositories with a reference count of <count>"
-msgstr "Archivy s počtem odkazů rovným <count>"
+msgstr "Archivy s počtem odkazů rovným <počet>"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Matches repositories with a certain reference count"
@@ -5523,7 +5523,7 @@ msgstr "Vyhovují archivy konkrétních parametrů"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:49
 msgid "Repositories with the <tag>"
-msgstr "Archivy s  <tag>"
+msgstr "Archivy se <štítkem>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:50
 msgid "Matches repositories with the particular tag"
@@ -5571,7 +5571,7 @@ msgstr "Vyhovují všechny prameny v databázi"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:47
 msgid "Sources changed after <date time>"
-msgstr "Prameny změněné před <date time>"
+msgstr "Prameny změněné před <datem a časem>"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:48
 msgid ""
@@ -5599,7 +5599,7 @@ msgstr "Vyhovuje pramen se zadaným Gramps ID"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:45
 msgid "Sources having <count> notes"
-msgstr "Prameny mající <count> poznámek"
+msgstr "Prameny mající <počet> poznámek"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:46
 msgid "Matches sources having a certain number of notes"
@@ -5625,7 +5625,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:42
 msgid "Sources with a reference count of <count>"
-msgstr "Prameny s počtem odkazů rovným <count>"
+msgstr "Prameny s počtem odkazů rovným <počtu>"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:43
 msgid "Matches sources with a certain reference count"
@@ -5653,7 +5653,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:49
 msgid "Sources with the <tag>"
-msgstr "Prameny s  <tag>"
+msgstr "Prameny se <štítkem>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 msgid "Matches sources with the particular tag"
@@ -5661,7 +5661,7 @@ msgstr "Vyhovují prameny s konkrétním štítkem"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:44
 msgid "Sources matching the <filter>"
-msgstr "Prameny vyhovující <filter>"
+msgstr "Prameny vyhovující <filtru>"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:45
 msgid "Matches sources matched by the specified filter name"
@@ -5669,7 +5669,7 @@ msgstr "Vyhovují prameny odpovídající uvedenému filtru"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:44
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "Prameny s odkazem na archiv odpovídající filtru <repository filter>"
+msgstr "Prameny s odkazem na archiv odpovídající filtru <filtr archivů>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
 msgid ""
