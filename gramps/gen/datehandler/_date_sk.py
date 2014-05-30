@@ -19,8 +19,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-# $Id$
-
 """
 Slovak-specific classes for parsing and displaying dates.
 """
@@ -61,7 +59,7 @@ class DateParserSK(DateParser):
     calendar_to_int = {
         'gregoriánsky'  : Date.CAL_GREGORIAN, 
         'g'             : Date.CAL_GREGORIAN, 
-        'juliánský'     : Date.CAL_JULIAN, 
+        'juliánsky'     : Date.CAL_JULIAN, 
         'j'             : Date.CAL_JULIAN, 
         'hebrejský'     : Date.CAL_HEBREW, 
         'h'             : Date.CAL_HEBREW, 
@@ -71,7 +69,7 @@ class DateParserSK(DateParser):
         'r'             : Date.CAL_FRENCH, 
         'perzský'       : Date.CAL_PERSIAN, 
         'p'             : Date.CAL_PERSIAN, 
-        'swedish'      : Date.CAL_SWEDISH, 
+        'švédsky'      : Date.CAL_SWEDISH, 
         's'            : Date.CAL_SWEDISH, 
         }
 
@@ -112,9 +110,9 @@ class DateDisplaySK(DateDisplay):
                      "júl", "aug", "sep", "okt", "nov", "dec" )
     
     calendar = (
-        "", "juliánský", "hebrejský", 
+        "", "juliánsky", "hebrejský", 
         "republikánsky", "perzský", "islamský", 
-        "swedish" 
+        "švédsky" 
         )
 
     _mod_str = ("", "pred ", "po ", "okolo ", "", "", "")
