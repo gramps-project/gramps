@@ -145,7 +145,7 @@ msgid ""
 msgstr ""
 "<b>Porozprávajte sa s príbuznými skôr, než bude príliš neskoro</b><br/>Vaši "
 "najstarší príbuzní môžu byť Vaším najdôležitejším zdrojom informácií. "
-"Obvykle vedia o rodine veci, ktoré sa nikde nezapisovali. Môžno vám povedia "
+"Obvykle vedia o rodine veci, ktoré sa nikde nezapisovali. Môžno Vám povedia "
 "tie vzácne čriepky o ľuďoch, ktoré niekedy môžu otvoriť dvere k novým cestám "
 "vo Vašom výskume. Prinajmenšom si vypočujete niektoré pozoruhodné historky. "
 "Nezabudnite si rozhovory zaznamenávať!"
@@ -167,7 +167,7 @@ msgstr ""
 "pomenovať a pridávať a kombinovať pravidlá pomocou mnohých prednastavených "
 " pravidiel. Je možné filtrovať aj osoby, ktoré nemajú uvedený dátum "
 "narodenia. K výsledku sa dostanete uložením filtra a jeho zvolením v dolnej "
-"časti bočného panela filtra. Potom kliknite na Vykonať. Ak bočný panel "
+"časti bočného panela filtra. Potom kliknite na Použiť. Ak bočný panel "
 "filtra nie je viditeľný, zobrazíte ho voľbou Zobrazenie &gt; Filter."
 
 #: ../data/tips.xml.in.h:7
@@ -297,7 +297,7 @@ msgid ""
 "a website for your family tree then there's a report for that as well."
 msgstr ""
 "<b>Zostavy Grampsu</b><br/>Gramps ponúka široký výber výstupných zostáv. "
-"Grafické zobrazenia a Grafy zobrazia komplexné vzťahy jednoduchou formou. "
+"Grafické zostavy a Grafy zobrazia komplexné vzťahy jednoduchou formou. "
 "Textové zostavy sú obzvlášť vhodné v prípade, ak chcete poslať výstupy "
 "Vášho rodinného stromu členom rodiny e-mailom. Ak ste pripravení vytvoriť "
 "webovú stránku Vašej rodiny, existuje príslušná zostava aj pre tento účel."
@@ -333,7 +333,7 @@ msgid ""
 "see the Gramps Manual to learn more."
 msgstr ""
 "<b>Nie ste si istí dátumom?</b><br/>Ak si nie ste istí dátumom kedy udalosť "
-"nastala, Gramps vám umožňuje zadať dátum vo viacerých formátoch ktoré sú "
+"nastala, Gramps Vám umožňuje zadať dátum vo viacerých formátoch ktoré sú "
 "založené na odhade. Napr. &quot;okolo 1908&quot; je v Gramps platný zápis "
 "pre dátum narodenia. Kliknite na tlačítko Dátum hneď vedľa políčka pre dátum "
 " a zobrazte príručku Grampsu, kde sa dozviete viac."
@@ -394,7 +394,7 @@ msgid ""
 "keyboard to use the mouse? Many functions in Gramps have keyboard shortcuts. "
 "If one exists for a function it is displayed on the right side of the menu."
 msgstr ""
-"<b>Klávesové skratky</b><br/>Unavuje vás striedať klávesnicu a myš? Mnoho "
+"<b>Klávesové skratky</b><br/>Unavuje Vás striedať klávesnicu a myš? Mnoho "
 "funkcií v Grampse má priradené klávesové skratky. V prípade že sú pre "
 "funkciu dostupné, zobrazia sa v pravej časti menu."
 
@@ -616,7 +616,7 @@ msgid ""
 "limited only by your imagination. Custom filters are created from &quot;Edit "
 "&gt; Person Filter Editor&quot;."
 msgstr ""
-"<b>Filters</b><br/>Filtre vám umožnia obmedziť počet osôb zobrazených v "
+"<b>Filters</b><br/>Filtre Vám umožnia obmedziť počet osôb zobrazených v "
 "pohľade Osoby. Okrem mnohých prednastavených filtrov je možné vytvárať "
 "vlastné filtre, pri tvorbe ktorých ste obmedzení len vlastnou fantáziou. "
 "Vlastné filtre sa dajú vytvoriť cez &quot;Editovať &gt; Editor filtrov "
@@ -877,7 +877,7 @@ msgid ""
 "whichever desktop environment you prefer. As long as the required GTK "
 "libraries are installed it will run fine."
 msgstr ""
-"<b>Gramps pre Gnome alebo KDE?</b> Linuxoví používatelia môžu používať "
+"<b>Gramps pre Gnome alebo KDE?</b><br/>Linuxoví používatelia môžu používať "
 "Gramps v ľubovoľnom preferovanom prostredí. Ak sú v systéme "
 "nainštalované potrebné GTK knižnice, bude bežať bez problémov."
 
@@ -1998,64 +1998,52 @@ msgstr "dec"
 #. to learn how to add proper alternatives to be recognized in your localized
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:102
-#, fuzzy
 msgid "alternative month names for January||"
-msgstr "Poznámka pre január"
+msgstr "január"
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
-#, fuzzy
 msgid "alternative month names for February||"
-msgstr "Poznámka pre február"
+msgstr "február"
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
-#, fuzzy
 msgid "alternative month names for March||"
-msgstr "Alternatívne mená"
+msgstr "marec"
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
-#, fuzzy
 msgid "alternative month names for April||"
-msgstr "Alternatívne mená"
+msgstr "apríl"
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
-#, fuzzy
 msgid "alternative month names for May||"
-msgstr "Alternatívne mená"
+msgstr "máj"
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
-#, fuzzy
 msgid "alternative month names for June||"
-msgstr "Alternatívne mená"
+msgstr "jún"
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
-#, fuzzy
 msgid "alternative month names for July||"
-msgstr "Alternatívne mená"
+msgstr "júl"
 
 #: ../gramps/gen/datehandler/_datestrings.py:109
-#, fuzzy
 msgid "alternative month names for August||"
-msgstr "Alternatívne mená"
+msgstr "august"
 
 #: ../gramps/gen/datehandler/_datestrings.py:110
-#, fuzzy
 msgid "alternative month names for September||"
-msgstr "Poznámka pre mesiac september"
+msgstr "september"
 
 #: ../gramps/gen/datehandler/_datestrings.py:111
-#, fuzzy
 msgid "alternative month names for October||"
-msgstr "Poznámka pre mesiac október"
+msgstr "október"
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
-#, fuzzy
 msgid "alternative month names for November||"
-msgstr "Poznámka pre mesiac november"
+msgstr "november"
 
 #: ../gramps/gen/datehandler/_datestrings.py:113
-#, fuzzy
 msgid "alternative month names for December||"
-msgstr "Poznámka pre mesiac december"
+msgstr "december"
 
 #. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:117 ../gramps/gen/lib/date.py:590
@@ -2092,55 +2080,55 @@ msgstr "švédsky"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:132
 msgid "Hebrew month lexeme|Tishri"
-msgstr ""
+msgstr "tišri"
 
 #: ../gramps/gen/datehandler/_datestrings.py:133
 msgid "Hebrew month lexeme|Heshvan"
-msgstr ""
+msgstr "chešvan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:134
 msgid "Hebrew month lexeme|Kislev"
-msgstr ""
+msgstr "kislev"
 
 #: ../gramps/gen/datehandler/_datestrings.py:135
 msgid "Hebrew month lexeme|Tevet"
-msgstr ""
+msgstr "tevet"
 
 #: ../gramps/gen/datehandler/_datestrings.py:136
 msgid "Hebrew month lexeme|Shevat"
-msgstr ""
+msgstr "švat"
 
 #: ../gramps/gen/datehandler/_datestrings.py:137
 msgid "Hebrew month lexeme|AdarI"
-msgstr ""
+msgstr "adarI"
 
 #: ../gramps/gen/datehandler/_datestrings.py:138
 msgid "Hebrew month lexeme|AdarII"
-msgstr ""
+msgstr "adarII"
 
 #: ../gramps/gen/datehandler/_datestrings.py:139
 msgid "Hebrew month lexeme|Nisan"
-msgstr ""
+msgstr "nisan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:140
 msgid "Hebrew month lexeme|Iyyar"
-msgstr ""
+msgstr "ijar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:141
 msgid "Hebrew month lexeme|Sivan"
-msgstr ""
+msgstr "sivan"
 
 #: ../gramps/gen/datehandler/_datestrings.py:142
 msgid "Hebrew month lexeme|Tammuz"
-msgstr ""
+msgstr "tamuz"
 
 #: ../gramps/gen/datehandler/_datestrings.py:143
 msgid "Hebrew month lexeme|Av"
-msgstr ""
+msgstr "av"
 
 #: ../gramps/gen/datehandler/_datestrings.py:144
 msgid "Hebrew month lexeme|Elul"
-msgstr ""
+msgstr "elul"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2148,55 +2136,55 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:153
 msgid "French month lexeme|Vendémiaire"
-msgstr ""
+msgstr "vendémiaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:154
 msgid "French month lexeme|Brumaire"
-msgstr ""
+msgstr "brumaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:155
 msgid "French month lexeme|Frimaire"
-msgstr ""
+msgstr "frimaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:156
 msgid "French month lexeme|Nivôse"
-msgstr ""
+msgstr "nivôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:157
 msgid "French month lexeme|Pluviôse"
-msgstr ""
+msgstr "pluviôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:158
 msgid "French month lexeme|Ventôse"
-msgstr ""
+msgstr "ventôse"
 
 #: ../gramps/gen/datehandler/_datestrings.py:159
 msgid "French month lexeme|Germinal"
-msgstr ""
+msgstr "germinal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:160
 msgid "French month lexeme|Floréal"
-msgstr ""
+msgstr "floréal"
 
 #: ../gramps/gen/datehandler/_datestrings.py:161
 msgid "French month lexeme|Prairial"
-msgstr ""
+msgstr "prairial"
 
 #: ../gramps/gen/datehandler/_datestrings.py:162
 msgid "French month lexeme|Messidor"
-msgstr ""
+msgstr "messidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgid "French month lexeme|Thermidor"
-msgstr ""
+msgstr "thermidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgid "French month lexeme|Fructidor"
-msgstr ""
+msgstr "fructidor"
 
 #: ../gramps/gen/datehandler/_datestrings.py:165
 msgid "French month lexeme|Extra"
-msgstr ""
+msgstr "extra"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2204,51 +2192,51 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:174
 msgid "Islamic month lexeme|Muharram"
-msgstr ""
+msgstr "muharram"
 
 #: ../gramps/gen/datehandler/_datestrings.py:175
 msgid "Islamic month lexeme|Safar"
-msgstr ""
+msgstr "safar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:176
 msgid "Islamic month lexeme|Rabi`al-Awwal"
-msgstr ""
+msgstr "rabí´al-avval"
 
 #: ../gramps/gen/datehandler/_datestrings.py:177
 msgid "Islamic month lexeme|Rabi`ath-Thani"
-msgstr ""
+msgstr "rabí´ath-thání"
 
 #: ../gramps/gen/datehandler/_datestrings.py:178
 msgid "Islamic month lexeme|Jumada l-Ula"
-msgstr ""
+msgstr "džumádá l-úlá"
 
 #: ../gramps/gen/datehandler/_datestrings.py:179
 msgid "Islamic month lexeme|Jumada t-Tania"
-msgstr ""
+msgstr "džumádá l-áchira"
 
 #: ../gramps/gen/datehandler/_datestrings.py:180
 msgid "Islamic month lexeme|Rajab"
-msgstr ""
+msgstr "radžab"
 
 #: ../gramps/gen/datehandler/_datestrings.py:181
 msgid "Islamic month lexeme|Sha`ban"
-msgstr ""
+msgstr "ša´bán"
 
 #: ../gramps/gen/datehandler/_datestrings.py:182
 msgid "Islamic month lexeme|Ramadan"
-msgstr ""
+msgstr "ramadán"
 
 #: ../gramps/gen/datehandler/_datestrings.py:183
 msgid "Islamic month lexeme|Shawwal"
-msgstr ""
+msgstr "šauvál"
 
 #: ../gramps/gen/datehandler/_datestrings.py:184
 msgid "Islamic month lexeme|Dhu l-Qa`da"
-msgstr ""
+msgstr "dhú l-ka´da"
 
 #: ../gramps/gen/datehandler/_datestrings.py:185
 msgid "Islamic month lexeme|Dhu l-Hijja"
-msgstr ""
+msgstr "dhú l-hidždža"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2256,51 +2244,51 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgid "Persian month lexeme|Farvardin"
-msgstr ""
+msgstr "farvardin"
 
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgid "Persian month lexeme|Ordibehesht"
-msgstr ""
+msgstr "ordibehešt"
 
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgid "Persian month lexeme|Khordad"
-msgstr ""
+msgstr "chordád"
 
 #: ../gramps/gen/datehandler/_datestrings.py:197
 msgid "Persian month lexeme|Tir"
-msgstr ""
+msgstr "tír"
 
 #: ../gramps/gen/datehandler/_datestrings.py:198
 msgid "Persian month lexeme|Mordad"
-msgstr ""
+msgstr "mordád"
 
 #: ../gramps/gen/datehandler/_datestrings.py:199
 msgid "Persian month lexeme|Shahrivar"
-msgstr ""
+msgstr "šahrí var"
 
 #: ../gramps/gen/datehandler/_datestrings.py:200
 msgid "Persian month lexeme|Mehr"
-msgstr ""
+msgstr "mehr"
 
 #: ../gramps/gen/datehandler/_datestrings.py:201
 msgid "Persian month lexeme|Aban"
-msgstr ""
+msgstr "ábán"
 
 #: ../gramps/gen/datehandler/_datestrings.py:202
 msgid "Persian month lexeme|Azar"
-msgstr ""
+msgstr "ázar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:203
 msgid "Persian month lexeme|Dey"
-msgstr ""
+msgstr "dei"
 
 #: ../gramps/gen/datehandler/_datestrings.py:204
 msgid "Persian month lexeme|Bahman"
-msgstr ""
+msgstr "bahman"
 
 #: ../gramps/gen/datehandler/_datestrings.py:205
 msgid "Persian month lexeme|Esfand"
-msgstr ""
+msgstr "esfand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgid "date modifier|before "
@@ -2456,7 +2444,7 @@ msgstr ""
 "Pri otvorení rodinného stromu v tejto verzii programu by sa mohli Vaše dáta "
 "nenávratne poškodiť.\n"
 "\n"
-"Odporúčame vám dáta zálohovať pomocou starej verzie programu."
+"Odporúčame Vám dáta zálohovať pomocou starej verzie programu."
 
 #: ../gramps/gen/db/exceptions.py:176
 msgid ""
@@ -3140,7 +3128,7 @@ msgstr "ale pred:"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:46
 msgid "Citations changed after <date time>"
-msgstr "Citácie zmenené po  <date time>"
+msgstr "Citácie zmenené po <dátum čas>"
 
 #: ../gramps/gen/filters/rules/citation/_changedsince.py:47
 msgid ""
@@ -3171,11 +3159,11 @@ msgstr "Vyhovujú citácie označené ako dôverné"
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:43
 #: ../gramps/gui/editors/filtereditor.py:578
 msgid "Confidence level:"
-msgstr "Stupeň dôvernosti:"
+msgstr "Stupeň dôveryhodnosti:"
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:45
 msgid "Citations with <count> media"
-msgstr "Citácie s počtom médií <count>"
+msgstr "Citácie s počtom médií <počet>"
 
 #: ../gramps/gen/filters/rules/citation/_hasgallery.py:46
 msgid "Matches citations with a certain number of items in the gallery"
@@ -3191,7 +3179,7 @@ msgstr "Vyhľadá citáciu so špecifikovaným Gramps ID"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:46
 msgid "Citations having <count> notes"
-msgstr "Citácie s počtom poznámok <count>"
+msgstr "Citácie s počtom poznámok <počet>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:47
 msgid "Matches citations having a certain number of notes"
@@ -3199,7 +3187,7 @@ msgstr "Vyhľadá citácie s konkrétnym počtom poznámok"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:43
 msgid "Citations having notes containing <substring>"
-msgstr "Citácie s poznámkami obsahujúcimi <substring>"
+msgstr "Citácie s poznámkami obsahujúcimi <podreťazec>"
 
 #: ../gramps/gen/filters/rules/citation/_hasnotematchingsubstringof.py:44
 msgid "Matches citations whose notes contain text matching a substring"
@@ -3217,7 +3205,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:43
 msgid "Citations with a reference count of <count>"
-msgstr "Poznámky-citácie s  počtom odkazov  <count>"
+msgstr "Citácie s počtom odkazov <počet>"
 
 #: ../gramps/gen/filters/rules/citation/_hasreferencecountof.py:44
 msgid "Matches citations with a certain reference count"
@@ -3312,7 +3300,7 @@ msgstr "Značka:"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:49
 msgid "Citations with the <tag>"
-msgstr "Citácie so značkou <tag>"
+msgstr "Citácie so značkou <značka>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:50
 msgid "Matches citations with the particular tag"
@@ -3345,7 +3333,7 @@ msgid ""
 "Citations with a source with a repository reference matching the <repository "
 "filter>"
 msgstr ""
-"Citácie so zdrojom s odkazom na archív vyhovujúcim filtru <repository filter>"
+"Citácie so zdrojom s odkazom na archív vyhovujúcim filtru <filter achrívov>"
 
 #: ../gramps/gen/filters/rules/citation/_matchesrepositoryfilter.py:48
 msgid ""
@@ -3356,7 +3344,7 @@ msgstr "Vyhľadá citácie so zdrojmi s odkazom na archív ktorý vyhovuje "
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:49
 msgid "Citations with source matching the <source filter>"
-msgstr "Citácie so zdrojom vyhovujúcim filtru <source filter>"
+msgstr "Citácie so zdrojom vyhovujúcim filtru <filter zdrojov>"
 
 #: ../gramps/gen/filters/rules/citation/_matchessourcefilter.py:50
 msgid ""
@@ -3393,7 +3381,7 @@ msgstr "Vyhľadá všetky udalosti v databáze"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:47
 msgid "Events changed after <date time>"
-msgstr "Udalosti zmenené po <date time>"
+msgstr "Udalosti zmenené po <dátum čas>"
 
 #: ../gramps/gen/filters/rules/event/_changedsince.py:48
 msgid ""
@@ -3427,7 +3415,7 @@ msgstr "Hodnota:"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:45
 msgid "Events with the attribute <attribute>"
-msgstr "Udalosti s atribútom <attribute>"
+msgstr "Udalosti s atribútom <atribút>"
 
 #: ../gramps/gen/filters/rules/event/_hasattribute.py:46
 msgid "Matches events with the event attribute of a particular value"
@@ -3435,7 +3423,7 @@ msgstr "Vyhovujú udalosti s atribútom konkrétnej hodnoty"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:51
 msgid "Events with the <citation>"
-msgstr "Udalosti s citáciou <citation>"
+msgstr "Udalosti s citáciou <citácia>"
 
 #: ../gramps/gen/filters/rules/event/_hascitation.py:52
 msgid "Matches events with a citation of a particular value"
@@ -3475,7 +3463,7 @@ msgstr "Popis:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:48
 msgid "Events with <data>"
-msgstr "Udalosti s <data>"
+msgstr "Udalosti s dátami <dáta>"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:49
 msgid "Matches events with data of a particular value"
@@ -3496,7 +3484,7 @@ msgstr "Vyhovujú udalosti ktoré nastali v konkrétny deň v týždni"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:45
 msgid "Events with <count> media"
-msgstr "Udalosti s počtom <count> médií"
+msgstr "Udalosti s počtom médií <počet>"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:46
 msgid "Matches events with a certain number of items in the gallery"
@@ -3512,7 +3500,7 @@ msgstr "Vyhľadá udalosť s konkrétnym Gramps ID"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:45
 msgid "Events having <count> notes"
-msgstr "Udalosti ktoré majú <count> poznámky/(-ok)"
+msgstr "Udalosti ktoré majú <počet> poznámky/(-ok)"
 
 #: ../gramps/gen/filters/rules/event/_hasnote.py:46
 msgid "Matches events having a certain number of notes"
@@ -3520,7 +3508,7 @@ msgstr "Vyhľadá udalosti s konkrétnym počtom poznámok"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:42
 msgid "Events having notes containing <substring>"
-msgstr "Udalosti s poznámkami obsahujúcimi <substring>"
+msgstr "Udalosti s poznámkami obsahujúcimi <podreťazec>"
 
 #: ../gramps/gen/filters/rules/event/_hasnotematchingsubstringof.py:43
 msgid "Matches events whose notes contain text matching a substring"
@@ -3536,7 +3524,7 @@ msgstr "Vyhľadá udalosti poznámky u ktorých vyhovujú regulárnemu výrazu"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:42
 msgid "Events with a reference count of <count>"
-msgstr "Udalosti s počtom odkazov <count>"
+msgstr "Udalosti s počtom odkazov <počet>"
 
 #: ../gramps/gen/filters/rules/event/_hasreferencecountof.py:43
 msgid "Matches events with a certain reference count"
@@ -3544,7 +3532,7 @@ msgstr "Vyhovuje osobám s konkrétnym počtom odkazov"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:44
 msgid "Events with <count> sources"
-msgstr "Udalosti s počtom <count> zdrojov"
+msgstr "Udalosti s počtom zdrojov <počet>"
 
 #: ../gramps/gen/filters/rules/event/_hassourcecount.py:45
 msgid "Matches events with a certain number of sources connected to it"
@@ -3552,7 +3540,7 @@ msgstr "Vyhľadá udalosti s konkrétnym počtom položiek v zdroji"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:49
 msgid "Events with the <tag>"
-msgstr "Udalosti so značkou <tag>"
+msgstr "Udalosti so značkou <značka>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:50
 msgid "Matches events with the particular tag"
@@ -3587,7 +3575,7 @@ msgstr "Názov filtra:"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:51
 msgid "Events of persons matching the <person filter>"
-msgstr "Udalosti osôb vyhovujúce filtru <person filter>"
+msgstr "Udalosti osôb vyhovujúce filtru <filter osôb>"
 
 #: ../gramps/gen/filters/rules/event/_matchespersonfilter.py:52
 msgid "Matches events of persons matched by the specified person filter name"
@@ -3600,7 +3588,7 @@ msgstr "Názov filtra lokalít:"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:50
 msgid "Events of places matching the <place filter>"
-msgstr "Udalosti lokalít vyhovujúce filtru <place filter>"
+msgstr "Udalosti lokalít vyhovujúce filtru <filter lokalít>"
 
 #: ../gramps/gen/filters/rules/event/_matchesplacefilter.py:51
 msgid ""
@@ -3612,15 +3600,15 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:45
 msgid "Events with at least one direct source >= <confidence level>"
-msgstr "Udalosti s aspoň jedným priamym zdrojom >= <confidence level>"
+msgstr "Udalosti s aspoň jedným priamym zdrojom >= <stupeň dôveryhodnosti>"
 
 #: ../gramps/gen/filters/rules/event/_matchessourceconfidence.py:46
 msgid "Matches events with at least one direct source with confidence level(s)"
-msgstr "Vyhľadá udalosti s aspoň jedným priamym zdrojom"
+msgstr "Vyhľadá udalosti s aspoň jedným priamym zdrojom so stupňom/-ami dôveryhodnosti"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:49
 msgid "Events with source matching the <source filter>"
-msgstr "Udalosti so zdrojom vyhovujúcim filtru <source filter>"
+msgstr "Udalosti so zdrojom vyhovujúcim filtru <filter zdrojov>"
 
 #: ../gramps/gen/filters/rules/event/_matchessourcefilter.py:50
 msgid "Matches events with sources that match the specified source filter name"
@@ -3645,7 +3633,7 @@ msgstr "Vyhovuje každej rodine v databáze"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:47
 msgid "Families changed after <date time>"
-msgstr "Rodiny zmenené po <date time>"
+msgstr "Rodiny zmenené po <dátum čas>"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:48
 msgid ""
@@ -3679,7 +3667,7 @@ msgstr "Filtre detí"
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:45
 msgid "Families with child with the <name>"
-msgstr "Rodiny s dieťaťom menom <name>"
+msgstr "Rodiny s dieťaťom menom <meno>"
 
 #: ../gramps/gen/filters/rules/family/_childhasnameof.py:46
 msgid "Matches families where child has a specified (partial) name"
@@ -3710,7 +3698,7 @@ msgstr "Filtre otcov"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:45
 msgid "Families with father with the <name>"
-msgstr "Rodiny s otcom menom <name>"
+msgstr "Rodiny s otcom menom <meno>"
 
 #: ../gramps/gen/filters/rules/family/_fatherhasnameof.py:46
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:46
@@ -3726,7 +3714,7 @@ msgstr "Rodinný atribút:"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:45
 msgid "Families with the family <attribute>"
-msgstr "Osoby s rodinným atribútom <attribute>"
+msgstr "Osoby s rodinným atribútom <atribút>"
 
 #: ../gramps/gen/filters/rules/family/_hasattribute.py:46
 msgid "Matches families with the family attribute of a particular value"
@@ -3734,7 +3722,7 @@ msgstr "Vyhovujú rodiny s rodinným atribútom istej hodnoty"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:51
 msgid "Families with the <citation>"
-msgstr "Rodiny s citáciou <citation>"
+msgstr "Rodiny s citáciou <citácia>"
 
 #: ../gramps/gen/filters/rules/family/_hascitation.py:52
 msgid "Matches families with a citation of a particular value"
@@ -3757,7 +3745,7 @@ msgstr "Hlavní zúčastnení"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:52
 msgid "Families with the <event>"
-msgstr "Rodiny s udalosťou <event>"
+msgstr "Rodiny s udalosťou <udalosť>"
 
 #: ../gramps/gen/filters/rules/family/_hasevent.py:53
 msgid "Matches families with an event of a particular value"
@@ -3765,7 +3753,7 @@ msgstr "Vyhovuje rodinám s udalosťou určitej hodnoty"
 
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:45
 msgid "Families with <count> media"
-msgstr "Rodiny s počtom médií <count>"
+msgstr "Rodiny s počtom médií <počet>"
 
 #: ../gramps/gen/filters/rules/family/_hasgallery.py:46
 msgid "Matches families with a certain number of items in the gallery"
@@ -3781,7 +3769,7 @@ msgstr "Vyhľadá rodinu so špecifikovaným Gramps ID"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:48
 msgid "Families with <count> LDS events"
-msgstr "Rodiny s <count> udalostami LDS"
+msgstr "Rodiny s <počet> udalosťami LDS"
 
 #: ../gramps/gen/filters/rules/family/_haslds.py:49
 msgid "Matches families with a certain number of LDS events"
@@ -3789,7 +3777,7 @@ msgstr "Vyhľadá rodiny konkrétnym počtom udalostí LDS"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:45
 msgid "Families having <count> notes"
-msgstr "Rodiny s počtom poznámok <count>"
+msgstr "Rodiny s počtom poznámok <počet>"
 
 #: ../gramps/gen/filters/rules/family/_hasnote.py:46
 msgid "Matches families having a certain number notes"
@@ -3797,7 +3785,7 @@ msgstr "Vyhľadá rodiny s konkrétnym počtom poznámok"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:42
 msgid "Families having notes containing <substring>"
-msgstr "Rodiny s poznámkami obsahujúcimi <substring>"
+msgstr "Rodiny s poznámkami obsahujúcimi <podreťazec>"
 
 #: ../gramps/gen/filters/rules/family/_hasnotematchingsubstringof.py:43
 msgid "Matches families whose notes contain text matching a substring"
@@ -3814,7 +3802,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:42
 msgid "Families with a reference count of <count>"
-msgstr "Rodiny s počtom odkazov <count>"
+msgstr "Rodiny s počtom odkazov <počet>"
 
 #: ../gramps/gen/filters/rules/family/_hasreferencecountof.py:43
 msgid "Matches family objects with a certain reference count"
@@ -3837,7 +3825,7 @@ msgstr "Vyhovujú rodiny s konkrétnym typom vzťahu"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:45
 msgid "Families with <count> sources"
-msgstr "Rodiny s počtom zdrojov <count>"
+msgstr "Rodiny s počtom zdrojov <počet>"
 
 #: ../gramps/gen/filters/rules/family/_hassourcecount.py:46
 msgid "Matches families with a certain number of sources connected to it"
@@ -3845,7 +3833,7 @@ msgstr "Vyhľadá rodiny s konkrétnym počtom položiek v zdrojoch"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:46
 msgid "Families with the <source>"
-msgstr "Rodiny so zdrojom <source>"
+msgstr "Rodiny so zdrojom <zdroj>"
 
 #: ../gramps/gen/filters/rules/family/_hassourceof.py:48
 msgid "Matches families who have a particular source"
@@ -3853,7 +3841,7 @@ msgstr "Vyhovujú rodiny ktoré majú konkrétny zdroj"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:49
 msgid "Families with the <tag>"
-msgstr "Rodiny so značkou <tag>"
+msgstr "Rodiny so značkou <značka>"
 
 #: ../gramps/gen/filters/rules/family/_hastag.py:50
 msgid "Matches families with the particular tag"
@@ -3885,12 +3873,12 @@ msgstr "Vyhovujú rodiny vyhovujúce zadanému filtru s názvom"
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:44
 msgid "Families with at least one direct source >= <confidence level>"
-msgstr "Rodiny ktoré majú aspoň jeden priamy zdroj >= <confidence level>"
+msgstr "Rodiny ktoré majú aspoň jeden priamy zdroj >= <stupeň dôveryhodnosti>"
 
 #: ../gramps/gen/filters/rules/family/_matchessourceconfidence.py:45
 msgid ""
 "Matches families with at least one direct source with confidence level(s)"
-msgstr "Vyhľadá rodiny s aspoň jedným priamym zdrojom"
+msgstr "Vyhľadá rodiny s aspoň jedným priamym zdrojom so stupňom/-ami dôveryhodnosti"
 
 #: ../gramps/gen/filters/rules/family/_motherhasidof.py:46
 msgid "Families having mother with Id containing <text>"
@@ -3909,7 +3897,7 @@ msgstr "Filtre matiek"
 
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:45
 msgid "Families with mother with the <name>"
-msgstr "Rodiny s matkou menom <name>"
+msgstr "Rodiny s matkou menom <meno>"
 
 #: ../gramps/gen/filters/rules/family/_motherhasnameof.py:46
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:46
@@ -3918,7 +3906,7 @@ msgstr "Vyhovujú rodiny s matkou so zadaným menom (časťou mena)"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:45
 msgid "Families with child matching the <regex_name>"
-msgstr "Rodiny s dieťaťom ktoré vyhovuje <regex_name>"
+msgstr "Rodiny s dieťaťom ktoré vyhovuje <meno_regulárneho_výrazu>"
 
 #: ../gramps/gen/filters/rules/family/_regexpchildname.py:46
 msgid ""
@@ -3929,7 +3917,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:45
 msgid "Families with father matching the <regex_name>"
-msgstr "Rodiny s otcom ktorý vyhovuje <regex_name>"
+msgstr "Rodiny s otcom ktorý vyhovuje <meno_regulárneho_výrazu>"
 
 #: ../gramps/gen/filters/rules/family/_regexpfathername.py:46
 msgid ""
@@ -3947,7 +3935,7 @@ msgstr "Vyhovujú rodiny ktorých Gramps ID vyhovuje regulárnemu výrazu"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:45
 msgid "Families with mother matching the <regex_name>"
-msgstr "Rodiny s matkou ktorá vyhovuje <regex_name>"
+msgstr "Rodiny s matkou ktorá vyhovuje <meno_regulárneho_výrazu>"
 
 #: ../gramps/gen/filters/rules/family/_regexpmothername.py:46
 msgid ""
@@ -3958,7 +3946,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:45
 msgid "Families with any child matching the <name>"
-msgstr "Rodiny s dieťaťom ktoré sa volá <name>"
+msgstr "Rodiny s nejakým dieťaťom menom <meno>"
 
 #: ../gramps/gen/filters/rules/family/_searchchildname.py:46
 msgid "Matches families where any child has a specified (partial) name"
@@ -3966,11 +3954,11 @@ msgstr "Rodiny s aspoň jedným dieťaťom ktoré má meno (alebo jeho časť)"
 
 #: ../gramps/gen/filters/rules/family/_searchfathername.py:45
 msgid "Families with father matching the <name>"
-msgstr "Rodiny s otcom ktorý sa volá <name>"
+msgstr "Rodiny s otcom menom <meno>"
 
 #: ../gramps/gen/filters/rules/family/_searchmothername.py:45
 msgid "Families with mother matching the <name>"
-msgstr "Rodiny s matkou s menom <name>"
+msgstr "Rodiny s matkou menom <meno>"
 
 #: ../gramps/gen/filters/rules/media/_allmedia.py:44
 msgid "Every media object"
@@ -3982,15 +3970,15 @@ msgstr "Vyhovuje všetkým mediálnym objektom v databáze"
 
 #: ../gramps/gen/filters/rules/media/_changedsince.py:45
 msgid "Media objects changed after <date time>"
-msgstr "Mediálne objekty zmenené po <date time>"
+msgstr "Mediálne objekty zmenené po <dátum čas>"
 
 #: ../gramps/gen/filters/rules/media/_changedsince.py:46
 msgid ""
 "Matches media objects changed after a specified date:time (yyyy-mm-dd hh:mm:"
 "ss) or in the range, if a second date:time is given."
 msgstr ""
-"Vyhľadá mediálne objekty zmenené po dátume v tvare date:time (yyyy-mm-dd hh:"
-"mm:ss) alebo v rozsahu, ak je zadaný aj druhý dátum."
+"Vyhovujú mediálne objekty zmenené po dátume v tvare dátum:čas (rrrr-mm-dd hh:"
+"mm:ss) alebo v rozsahu, ak je zadaný aj druhý dátum:čas."
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:44
 #: ../gramps/gui/editors/filtereditor.py:104
@@ -4000,7 +3988,7 @@ msgstr "Atribút média:"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:45
 msgid "Media objects with the attribute <attribute>"
-msgstr "Mediálne objekty s atribútom <attribute>"
+msgstr "Mediálne objekty s atribútom <atribút>"
 
 #: ../gramps/gen/filters/rules/media/_hasattribute.py:46
 msgid "Matches media objects with the attribute of a particular value"
@@ -4008,7 +3996,7 @@ msgstr "Vyhovujú mediálne objekty s atribútom konkrétnej hodnoty"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:50
 msgid "Media with the <citation>"
-msgstr "Udalosti s citáciou <citation>"
+msgstr "Médiá s citáciou <citácia>"
 
 #: ../gramps/gen/filters/rules/media/_hascitation.py:51
 msgid "Matches media with a citation of a particular value"
@@ -4053,7 +4041,7 @@ msgstr "Vyhovuje mediálnym objektom s konkrétnymi parametrami"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:42
 msgid "Media objects having notes containing <substring>"
-msgstr "Mediálne objekty s poznámkami obsahujúcimi <substring>"
+msgstr "Mediálne objekty s poznámkami obsahujúcimi <podreťazec>"
 
 #: ../gramps/gen/filters/rules/media/_hasnotematchingsubstringof.py:43
 msgid "Matches media objects whose notes contain text matching a substring"
@@ -4073,7 +4061,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:42
 msgid "Media objects with a reference count of <count>"
-msgstr "Mediálne objekty s počtom odkazov <count>"
+msgstr "Mediálne objekty s počtom odkazov <počet>"
 
 #: ../gramps/gen/filters/rules/media/_hasreferencecountof.py:43
 msgid "Matches media objects with a certain reference count"
@@ -4081,7 +4069,7 @@ msgstr "Vyhovuje mediálnym objektom s konkrétnymi počtom odkazov"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:45
 msgid "Media with <count> sources"
-msgstr "Médiá so zdrojom: <count>"
+msgstr "Médiá s počtom zdrojov <počet>"
 
 #: ../gramps/gen/filters/rules/media/_hassourcecount.py:46
 msgid "Matches media with a certain number of sources connected to it"
@@ -4090,7 +4078,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:46
 msgid "Media with the <source>"
-msgstr "Osoby so zdrojom <source>"
+msgstr "Médiá so zdrojom <zdroj>"
 
 #: ../gramps/gen/filters/rules/media/_hassourceof.py:48
 msgid "Matches media who have a particular source"
@@ -4098,7 +4086,7 @@ msgstr "Vyhovujú osoby ktoré majú konkrétny zdroj"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:49
 msgid "Media objects with the <tag>"
-msgstr "Mediálny objekt so značkou <tag>"
+msgstr "Mediálne objekty so značkou <značka>"
 
 #: ../gramps/gen/filters/rules/media/_hastag.py:50
 msgid "Matches media objects with the particular tag"
@@ -4114,7 +4102,7 @@ msgstr "Vyhovujú mediálne objekty vyhovujúce zadanému filtru"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:44
 msgid "Media with a direct source >= <confidence level>"
-msgstr "Udalosti s aspoň jedným priamym zdrojom >= <confidence level>"
+msgstr "Médiá s aspoň jedným priamym zdrojom >= <stupeň dôveryhodnosti>"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:45
 msgid "Matches media with at least one direct source with confidence level(s)"
@@ -4147,7 +4135,7 @@ msgstr "Vyhovuje každej pozn.v databáze"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:47
 msgid "Notes changed after <date time>"
-msgstr "Poznámky zmenené po<date time>"
+msgstr "Poznámky zmenené po <dátum čas>"
 
 #: ../gramps/gen/filters/rules/note/_changedsince.py:48
 msgid ""
@@ -4159,11 +4147,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:44
 msgid "Note with <Id>"
-msgstr "Poznámka  s <Id>"
+msgstr "Poznámka s <Id>"
 
 #: ../gramps/gen/filters/rules/note/_hasidof.py:45
 msgid "Matches a note with a specified Gramps ID"
-msgstr "Vyhovuje pozn. s určitým Gramps ID"
+msgstr "Vyhovuje poznámka so zadaným Gramps ID"
 
 #: ../gramps/gen/filters/rules/note/_hasnote.py:47
 #: ../gramps/gen/filters/rules/note/_hastype.py:45
@@ -4182,7 +4170,7 @@ msgstr "Vyhovuje poznámkam s konkrétnymi parametrami"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:42
 msgid "Notes with a reference count of <count>"
-msgstr "Poznámky s  počtom odkazov  <count>"
+msgstr "Poznámky s počtom odkazov <počet>"
 
 #: ../gramps/gen/filters/rules/note/_hasreferencecountof.py:43
 msgid "Matches notes with a certain reference count"
@@ -4190,7 +4178,7 @@ msgstr "Vyhľadá poznámky s konkrétnym počtom odkazov"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:49
 msgid "Notes with the <tag>"
-msgstr "Poznámky so značkou <tag>"
+msgstr "Poznámky so značkou <značka>"
 
 #: ../gramps/gen/filters/rules/note/_hastag.py:50
 msgid "Matches notes with the particular tag"
@@ -4223,7 +4211,7 @@ msgstr "Vyhovujú poznámky ktoré obsahujú podreťazec alebo vyhovujú "
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:44
 msgid "Notes containing <substring>"
-msgstr "Záznamy v poznámkach obsahujúce <substring>"
+msgstr "Poznámky obsahujúce <podreťazec>"
 
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:45
 msgid "Matches notes that contain text which matches a substring"
@@ -4247,7 +4235,7 @@ msgstr "Vyhovujú poznámky ktorých Gramps ID vyhovuje regulárnemu výrazu"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:47
 msgid "Persons changed after <date time>"
-msgstr "Osoby zmenené po  <date time>"
+msgstr "Osoby zmenené po <dátum čas>"
 
 #: ../gramps/gen/filters/rules/person/_changedsince.py:48
 msgid ""
@@ -4267,7 +4255,7 @@ msgstr "Získavanie výsledkov pred-filtra"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:122
 msgid "Relationship path between <person> and people matching <filter>"
-msgstr "Línia vzťahu medzi <persons> a osobami ktoré vyhovujú filtru<filter>"
+msgstr "Línia vzťahu medzi <osoba> a osobami ktoré vyhovujú filtru <filter>"
 
 #: ../gramps/gen/filters/rules/person/_deeprelationshippathbetween.py:123
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:46
@@ -4324,7 +4312,7 @@ msgstr "Vyhovujú osoby s chýbajúcim dátumom alebo lokalitou v údaji o udalo
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:49
 msgid "People with <count> addresses"
-msgstr "Osoby s adresami <count>"
+msgstr "Osoby s počtom adries <počet>"
 
 #: ../gramps/gen/filters/rules/person/_hasaddress.py:50
 msgid "Matches people with a certain number of personal addresses"
@@ -4340,7 +4328,7 @@ msgstr "Vyhľadá osoby s alternatívnym menom"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:49
 msgid "People with <count> associations"
-msgstr "Osoby s asociáciami <count>"
+msgstr "Osoby s počtom asociácií <počet>"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 msgid "Matches people with a certain number of associations"
@@ -4354,7 +4342,7 @@ msgstr "Osobný atribút:"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:45
 msgid "People with the personal <attribute>"
-msgstr "Osoby s osobným atribútom <attribute>"
+msgstr "Osoby s osobným atribútom <atribút>"
 
 #: ../gramps/gen/filters/rules/person/_hasattribute.py:46
 msgid "Matches people with the personal attribute of a particular value"
@@ -4362,15 +4350,15 @@ msgstr "Vyhovujú osoby s osobným atribútom konkrétnej hodnoty"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:48
 msgid "People with the <birth data>"
-msgstr "Osoby s dátumom narodenia <birth data>"
+msgstr "Osoby s rodnými údajmi <rodné údaje>"
 
 #: ../gramps/gen/filters/rules/person/_hasbirth.py:49
 msgid "Matches people with birth data of a particular value"
-msgstr "Vyhovujú osoby s dátumom narodenia určitej hodnoty"
+msgstr "Vyhovujú osoby s rodnými údajmi určitej hodnoty"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:50
 msgid "People with the <citation>"
-msgstr "Osoby so citáciou <citation>"
+msgstr "Osoby s citáciou <citácia>"
 
 #: ../gramps/gen/filters/rules/person/_hascitation.py:51
 msgid "Matches people with a citation of a particular value"
@@ -4378,7 +4366,7 @@ msgstr "Vyhovujú osoby s citáciou určitej hodnoty"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:46
 msgid "People with a common ancestor with <person>"
-msgstr "Osoby ktoré majú spoločného predka s osobou: <person>"
+msgstr "Osoby so spoločným predkom s osobou <osoba>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:47
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:51
@@ -4395,11 +4383,11 @@ msgstr "Filtre predkov"
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwith.py:48
 msgid "Matches people that have a common ancestor with a specified person"
 msgstr ""
-"Vyhovuje osobám ktoré majú spoločného predka s učitou špecifikovanou osobou"
+"Vyhovujú osoby ktoré majú spoločného predka so zadanou osobou"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:48
 msgid "People with a common ancestor with <filter> match"
-msgstr "Osoby so spoločným predkom s osobou: <filter> vyhovujú"
+msgstr "Osoby so spoločným predkom s osobou vyhovujúcou filtru <filter>"
 
 #: ../gramps/gen/filters/rules/person/_hascommonancestorwithfiltermatch.py:49
 msgid ""
@@ -4409,11 +4397,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:48
 msgid "People with the <death data>"
-msgstr "Osoby s dátumom úmrtia <death data>"
+msgstr "Osoby s údajmi o úmrtí <údaje o úmrtí>"
 
 #: ../gramps/gen/filters/rules/person/_hasdeath.py:49
 msgid "Matches people with death data of a particular value"
-msgstr "Vyhovujú osoby s dátumom úmrtia konkrétnej hodnoty"
+msgstr "Vyhovujú osoby s údajmi o úmrtí konkrétnej hodnoty"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:48
 #: ../gramps/gui/editors/filtereditor.py:98
@@ -4432,7 +4420,7 @@ msgstr "Primárna úloha:"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:54
 msgid "People with the personal <event>"
-msgstr "Osoby s osobnou udalosťou <event>"
+msgstr "Osoby s osobnou udalosťou <udalosť>"
 
 #: ../gramps/gen/filters/rules/person/_hasevent.py:55
 msgid "Matches people with a personal event of a particular value"
@@ -4440,7 +4428,7 @@ msgstr "Vyhovuje osobám s osobnou udalosťou určitého typu alebo hodnoty"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:45
 msgid "People with the family <attribute>"
-msgstr "Osoby s rodinným atribútom <attribute>"
+msgstr "Osoby s rodinným atribútom <atribút>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyattribute.py:46
 msgid "Matches people with the family attribute of a particular value"
@@ -4448,7 +4436,7 @@ msgstr "Vyhovujú osoby s rodinným atribútom istej hodnoty"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:51
 msgid "People with the family <event>"
-msgstr "Osoby s rodinnou udalosťou <event>"
+msgstr "Osoby s rodinnou udalosťou <udalosť>"
 
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:52
 msgid "Matches people with a family event of a particular value"
@@ -4456,7 +4444,7 @@ msgstr "Vyhovuje osobám s rodinnou udalosťou určitého typu alebo hodnoty"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:42
 msgid "People with <count> media"
-msgstr "osoby s médiom <count>"
+msgstr "Osoby s počtom médií <počet>"
 
 #: ../gramps/gen/filters/rules/person/_hasgallery.py:43
 msgid "Matches people with a certain number of items in the gallery"
@@ -4474,7 +4462,7 @@ msgstr "Nájde osobu so špecifikovaným Gramps ID"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:48
 msgid "People with <count> LDS events"
-msgstr "Osoby s počtom LDS udalostí <count>"
+msgstr "Osoby s počtom LDS udalostí <počet>"
 
 #: ../gramps/gen/filters/rules/person/_haslds.py:49
 msgid "Matches people with a certain number of LDS events"
@@ -4527,7 +4515,7 @@ msgstr "rodinná prezývka:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:57
 msgid "People with the <name>"
-msgstr "Osoby s menom <name>"
+msgstr "Osoby menom <meno>"
 
 #: ../gramps/gen/filters/rules/person/_hasnameof.py:58
 #: ../gramps/gen/filters/rules/person/_searchname.py:47
@@ -4538,15 +4526,15 @@ msgstr "Vyhovujú osoby so zadaným menom (časťou mena)"
 #: ../gramps/gui/editors/filtereditor.py:108
 #: ../gramps/gui/editors/filtereditor.py:560
 msgid "Surname origin type:"
-msgstr "Typ priezviska"
+msgstr "Typ pôvodu priezviska:"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:47
 msgid "People with the <Surname origin type>"
-msgstr "Osoby s menom <Surname origin type>"
+msgstr "Osoby s typom pôvodu priezviska <Typ pôvodu priezviska>"
 
 #: ../gramps/gen/filters/rules/person/_hasnameorigintype.py:48
 msgid "Matches people with a surname origin"
-msgstr "Vyhľadá osoby s priezviskom"
+msgstr "Vyhľadá osoby s pôvodom priezviska"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:46
 #: ../gramps/gui/editors/filtereditor.py:107
@@ -4556,7 +4544,7 @@ msgstr "Typ mena:"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:47
 msgid "People with the <Name type>"
-msgstr "Osoby s menom <Name type>"
+msgstr "Osoby s typom mena <Typ mena>"
 
 #: ../gramps/gen/filters/rules/person/_hasnametype.py:48
 msgid "Matches people with a type of name"
@@ -4572,7 +4560,7 @@ msgstr "Nájde osoby s prezývkou"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:45
 msgid "People having <count> notes"
-msgstr "Osoby s poznámkami <count>"
+msgstr "Osoby s počtom poznámok <počet>"
 
 #: ../gramps/gen/filters/rules/person/_hasnote.py:46
 msgid "Matches people having a certain number of notes"
@@ -4580,7 +4568,7 @@ msgstr "Vyhľadá osoby s konkrétnym počtom poznámok"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:42
 msgid "People having notes containing <substring>"
-msgstr "Osoby s poznámkami obsahujúcimi <substring>"
+msgstr "Osoby s poznámkami obsahujúcimi <podreťazec>"
 
 #: ../gramps/gen/filters/rules/person/_hasnotematchingsubstringof.py:43
 msgid "Matches people whose notes contain text matching a substring"
@@ -4605,7 +4593,7 @@ msgstr "Počet detí:"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:48
 msgid "People with the <relationships>"
-msgstr "Osoby so vzťahmi <relationships>"
+msgstr "Osoby so vzťahmi <vzťahy>"
 
 #: ../gramps/gen/filters/rules/person/_hasrelationship.py:49
 msgid "Matches people with a particular relationship"
@@ -4626,7 +4614,7 @@ msgstr "Filtre rodiny"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:45
 msgid "People with <count> sources"
-msgstr "Osoby so zdrojom: <count>"
+msgstr "Osoby s počtom zdrojov <počet>"
 
 #: ../gramps/gen/filters/rules/person/_hassourcecount.py:46
 msgid "Matches people with a certain number of sources connected to it"
@@ -4634,7 +4622,7 @@ msgstr "Vyhľadá osoby s konkrétnym počtom položiek v zdroji"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:46
 msgid "People with the <source>"
-msgstr "Osoby so zdrojom <source>"
+msgstr "Osoby so zdrojom <zdroj>"
 
 #: ../gramps/gen/filters/rules/person/_hassourceof.py:48
 msgid "Matches people who have a particular source"
@@ -4642,7 +4630,7 @@ msgstr "Vyhovujú osoby ktoré majú konkrétny zdroj"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:49
 msgid "People with the <tag>"
-msgstr "Osoby so značkou <tag>"
+msgstr "Osoby so značkou <značka>"
 
 #: ../gramps/gen/filters/rules/person/_hastag.py:50
 msgid "Matches people with the particular tag"
@@ -4655,7 +4643,7 @@ msgstr "Rozlišovať veľkosť písmen:"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:48
 msgid "People with records containing <substring>"
-msgstr "Osoby ktorých záznamy obsahujú <substring>"
+msgstr "Osoby ktorých záznamy obsahujú <podreťazec>"
 
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:49
 msgid "Matches people whose records contain text matching a substring"
@@ -4702,7 +4690,7 @@ msgstr "Včítane:"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:45
 msgid "Ancestors of <person>"
-msgstr "Predkovia osoby: <person>"
+msgstr "Predkovia osoby <osoba>"
 
 #: ../gramps/gen/filters/rules/person/_isancestorof.py:47
 msgid "Matches people that are ancestors of a specified person"
@@ -4726,7 +4714,7 @@ msgstr "Vyhovuje osobám na zozname záložiek"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:47
 msgid "Children of <filter> match"
-msgstr "ako Deti osoby: <filter> vyhovujú"
+msgstr "Deti osoby <filter> vyhovujú"
 
 #: ../gramps/gen/filters/rules/person/_ischildoffiltermatch.py:49
 msgid "Matches children of anybody matched by a filter"
@@ -4742,7 +4730,7 @@ msgstr "Vyhovuje východzej osobe"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:50
 msgid "Descendant family members of <person>"
-msgstr "Členovia rodiny potomka osoby <person>"
+msgstr "Členovia rodiny potomka osoby <osoba>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyof.py:51
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:48
@@ -4762,7 +4750,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:47
 msgid "Descendant family members of <filter> match"
-msgstr "Členovia rodiny vyhovujúci filtru <filter>"
+msgstr "Členovia rodiny potomka vyhovujúci filtru <filter>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantfamilyoffiltermatch.py:49
 msgid ""
@@ -4773,7 +4761,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:46
 msgid "Descendants of <person>"
-msgstr "Potomkovia osoby <person>"
+msgstr "Potomkovia osoby <osoba>"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantof.py:48
 msgid "Matches all descendants for the specified person"
@@ -4781,7 +4769,7 @@ msgstr "Vyhovuje všetkým potomkom špecifikovanej osoby"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:47
 msgid "Descendants of <filter> match"
-msgstr "/ako/Potomkovia /koho: <filter> vyhovujú"
+msgstr "Potomkovia osoby <filter> vyhovujú"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:49
 msgid "Matches people that are descendants of anybody matched by a filter"
@@ -4789,7 +4777,7 @@ msgstr "Vyhľadá osoby ktoré sú potomkami niekoho kto vyhovuje filtru"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:47
 msgid "Duplicated ancestors of <person>"
-msgstr "Duplikátni predkovia osoby: <person>"
+msgstr "Duplikátni predkovia osoby <osoba>"
 
 #: ../gramps/gen/filters/rules/person/_isduplicatedancestorof.py:49
 msgid "Matches people that are ancestors twice or more of a specified person"
@@ -4819,7 +4807,7 @@ msgstr "Počet generácií:"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:46
 msgid "Ancestors of <person> not more than <N> generations away"
-msgstr "Predkovia osoby: <person> vzdialení nie viac ako <N> generácií"
+msgstr "Predkovia osoby <osoba> vzdialení nie viac ako <N> generácií"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorof.py:48
 msgid ""
@@ -4854,7 +4842,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
 msgid "Descendants of <person> not more than <N> generations away"
-msgstr "Potomkovia osoby <person> vzdialení nie viac ako <N> generácií"
+msgstr "Potomkovia osoby <osoba> vzdialení nie viac ako <N> generácií"
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:49
 msgid ""
@@ -4878,7 +4866,7 @@ msgstr "Vyhovuje kritériu všetci muži"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:46
 msgid "Ancestors of <person> at least <N> generations away"
-msgstr "Predkovia osoby <person> vzdialení najmenej <N> generácií"
+msgstr "Predkovia osoby <osoba> vzdialení najmenej o <N> generácií"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationancestorof.py:48
 msgid ""
@@ -4890,7 +4878,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:46
 msgid "Descendants of <person> at least <N> generations away"
-msgstr "Potomkovia osoby <person> vzdialení najmenej o <N> generácií"
+msgstr "Potomkovia osoby <osoba> vzdialení najmenej o <N> generácií"
 
 #: ../gramps/gen/filters/rules/person/_ismorethannthgenerationdescendantof.py:48
 msgid ""
@@ -4902,7 +4890,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:47
 msgid "Parents of <filter> match"
-msgstr "Rodičia osoby vyhľadanej filtrom <filter>"
+msgstr "Rodičia osoby <filter> vyhovujú"
 
 #: ../gramps/gen/filters/rules/person/_isparentoffiltermatch.py:49
 msgid "Matches parents of anybody matched by a filter"
@@ -4910,7 +4898,7 @@ msgstr "Vyhľadá rodičov každého kto vyhovuje filtru"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:45
 msgid "People related to <Person>"
-msgstr "Osoby vo vzťahu k <Person>"
+msgstr "Osoby vo vzťahu k osobe <Osoba>"
 
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:47
 msgid "Matches people related to a specified person"
@@ -4918,7 +4906,7 @@ msgstr "Vyhovuje osobám ktoré sú vo vzťahu k špecifikovanej osobe"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:46
 msgid "Siblings of <filter> match"
-msgstr "Súrodenci osôb vyhovujúcich filtru <filter>"
+msgstr "Súrodenci osoby <filter> vyhovujú"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:48
 msgid "Matches siblings of anybody matched by a filter"
@@ -4926,7 +4914,7 @@ msgstr "Vyhovujú súrodenci každého kto vyhovuje filtru"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:47
 msgid "Spouses of <filter> match"
-msgstr "Manželia/(ky) vyhovujúci filtru <filter>"
+msgstr "Manželia/(ky) osoby <filter> vyhovujú"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:48
 msgid "Matches people married to anybody matching a filter"
@@ -4948,7 +4936,7 @@ msgstr "Názov filtra udalostí:"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:52
 msgid "Persons with events matching the <event filter>"
-msgstr "Osoby ktorých udalosti vyhovujú <filter>"
+msgstr "Osoby ktorých udalosti vyhovujú filtru <filter udalostí>"
 
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
 msgid "Matches persons who have events that match a certain event filter"
@@ -4964,14 +4952,13 @@ msgstr "Vyhľadá osoby vyhovujúce zadanému filtru s názvom"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:44
 msgid "Persons with at least one direct source >= <confidence level>"
-msgstr "Osoby ktoré majú aspoň jeden priamy zdroj >= <confidence level>"
+msgstr "Osoby ktoré majú aspoň jeden priamy zdroj >= <stupeň dôveryhodnosti>"
 
 #: ../gramps/gen/filters/rules/person/_matchessourceconfidence.py:45
 msgid ""
 "Matches persons with at least one direct source with confidence level(s)"
 msgstr ""
-"Vyhľadá osoby ktoré majú aspoň jeden priamy zdroj s danou úrovňou "
-"dôveryhodnosti"
+"Vyhľadá osoby ktoré majú aspoň jeden priamy zdroj so stupňom/-ami dôveryhodnosti"
 
 #: ../gramps/gen/filters/rules/person/_missingparent.py:43
 msgid "People missing parents"
@@ -5076,7 +5063,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:46
 msgid "Relationship path between <persons>"
-msgstr "Línia vzťahu medzi <persons>"
+msgstr "Línia vzťahu medzi osobami <osoby>"
 
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:48
 msgid ""
@@ -5100,7 +5087,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/person/_searchname.py:46
 msgid "People matching the <name>"
-msgstr "Osoby vyhovujúce menu <name>"
+msgstr "Osoby vyhovujúce menu <meno>"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:44
 msgid "Every place"
@@ -5112,7 +5099,7 @@ msgstr "Vyhovuje všetkým lokalitám v databáze"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:47
 msgid "Places changed after <date time>"
-msgstr "Lokality zmenené po <date time>"
+msgstr "Lokality zmenené po <dátum čas>"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:48
 msgid ""
@@ -5124,7 +5111,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:51
 msgid "Place with the <citation>"
-msgstr "Lokalita s citáciou <citation>"
+msgstr "Lokalita s citáciou <citácia>"
 
 #: ../gramps/gen/filters/rules/place/_hascitation.py:52
 msgid "Matches places with a citation of a particular value"
@@ -5132,7 +5119,7 @@ msgstr "Vyhovujú lokality s citáciou určitej hodnoty"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:45
 msgid "Places with <count> media"
-msgstr "Lokality s počtom médií <count>"
+msgstr "Lokality s počtom médií <počet>"
 
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:46
 msgid "Matches places with a certain number of items in the gallery"
@@ -5161,7 +5148,7 @@ msgstr "Filtre polohy"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:45
 msgid "Places having <count> notes"
-msgstr "Lokality s <count> poznámkami"
+msgstr "Lokality s počtom poznámok <počet>"
 
 #: ../gramps/gen/filters/rules/place/_hasnote.py:46
 msgid "Matches places having a certain number of notes"
@@ -5169,7 +5156,7 @@ msgstr "Vyhľadá lokality s určitým počtom poznámok"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:42
 msgid "Places having notes containing <substring>"
-msgstr "Lokality s poznámkami obsahujúcimi <substring>"
+msgstr "Lokality s poznámkami obsahujúcimi <podreťazec>"
 
 #: ../gramps/gen/filters/rules/place/_hasnotematchingsubstringof.py:43
 msgid "Matches places whose notes contain text matching a substring"
@@ -5235,7 +5222,7 @@ msgstr "Vyhovujú lokality s konkrétnymi parametrami"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:42
 msgid "Places with a reference count of <count>"
-msgstr "Lokality s počtom referencií <count>"
+msgstr "Lokality s počtom referencií <počet>"
 
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:43
 msgid "Matches places with a certain reference count"
@@ -5243,7 +5230,7 @@ msgstr "Vyhľadá lokality s určitým počtom referencií"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:45
 msgid "Place with <count> sources"
-msgstr "Lokalita s počtom zdrojov <count>"
+msgstr "Lokalita s počtom zdrojov <počet>"
 
 #: ../gramps/gen/filters/rules/place/_hassourcecount.py:46
 msgid "Matches places with a certain number of sources connected to it"
@@ -5251,7 +5238,7 @@ msgstr "Vyhľadá lokality s konkrétnym počtom pripojených zdrojov"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:46
 msgid "Places with the <source>"
-msgstr "Lokality so zdrojom <source>"
+msgstr "Lokality so zdrojom <zdroj>"
 
 #: ../gramps/gen/filters/rules/place/_hassourceof.py:48
 msgid "Matches places who have a particular source"
@@ -5259,7 +5246,7 @@ msgstr "Vyhovujú lokality ktoré majú konkrétny zdroj"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:49
 msgid "Places with the <tag>"
-msgstr "Lokality so značkou <tag>"
+msgstr "Lokality so značkou <značka>"
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
 msgid "Matches places with the particular tag"
@@ -5300,7 +5287,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:50
 msgid "Places of events matching the <event filter>"
-msgstr "Lokality udalostí vyhovujúce filtru <event filter>"
+msgstr "Lokality udalostí vyhovujúce filtru <filter udalostí>"
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:51
 msgid ""
@@ -5319,13 +5306,12 @@ msgstr "Vyhovujú lokality vyhovujúce zadanému filtru s názvom"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:44
 msgid "Place with a direct source >= <confidence level>"
-msgstr "Lokalita s priamym zdrojom >= <confidence level>"
+msgstr "Lokalita s priamym zdrojom >= <stupeň dôveryhodnosti>"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
 msgid "Matches places with at least one direct source with confidence level(s)"
 msgstr ""
-"Vyhľadá lokality ktoré majú aspoň jeden priamy zdroj s danou úrovňou "
-"dôveryhodnosti"
+"Vyhľadá lokality ktoré majú aspoň jeden priamy zdroj so stupňom/-ami dôveryhodnosti"
 
 #: ../gramps/gen/filters/rules/place/_placeprivate.py:42
 msgid "Places marked private"
@@ -5353,7 +5339,7 @@ msgstr "Vyhľadá všetky archívy v databáze"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:47
 msgid "Repositories changed after <date time>"
-msgstr "Archívy zmenené po <date time>"
+msgstr "Archívy zmenené po <dátum čas>"
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:48
 msgid ""
@@ -5373,7 +5359,7 @@ msgstr "Vyhovuje archívom so špecifikovaným Gramps ID"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:42
 msgid "Repositories having notes containing <substring>"
-msgstr "Archívy s poznámkami obsahujúcimi <substring>"
+msgstr "Archívy s poznámkami obsahujúcimi <podreťazec>"
 
 #: ../gramps/gen/filters/rules/repository/_hasnotematchingsubstringof.py:43
 msgid "Matches repositories whose notes contain text matching a substring"
@@ -5391,7 +5377,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:42
 msgid "Repositories with a reference count of <count>"
-msgstr "Archívy s počtom odkazov v počte <count>"
+msgstr "Archívy s počtom odkazov <počet>"
 
 #: ../gramps/gen/filters/rules/repository/_hasreferencecountof.py:43
 msgid "Matches repositories with a certain reference count"
@@ -5422,7 +5408,7 @@ msgstr "Vyhľadá archívy s konkrétnymi parametrami"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:49
 msgid "Repositories with the <tag>"
-msgstr "Archívy s <tag>"
+msgstr "Archívy so značkou <značka>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:50
 msgid "Matches repositories with the particular tag"
@@ -5470,7 +5456,7 @@ msgstr "Vyhľadá všetky zdroje v databáze"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:47
 msgid "Sources changed after <date time>"
-msgstr "Zdroje zmenené po <date time>"
+msgstr "Zdroje zmenené po <dátum čas>"
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:48
 msgid ""
@@ -5482,7 +5468,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:45
 msgid "Sources with <count> media"
-msgstr "Zdroje s médiami v počte <count>"
+msgstr "Zdroje s počtom médií <počet>"
 
 #: ../gramps/gen/filters/rules/source/_hasgallery.py:46
 msgid "Matches sources with a certain number of items in the gallery"
@@ -5490,7 +5476,7 @@ msgstr "Vyhľadá zdroje s určitým počtom položiek v galérii"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:44
 msgid "Source with <Id>"
-msgstr "Zdroje s <Id>"
+msgstr "Zdroj s <Id>"
 
 #: ../gramps/gen/filters/rules/source/_hasidof.py:45
 msgid "Matches a source with a specified Gramps ID"
@@ -5498,7 +5484,7 @@ msgstr "Vyhovuje zdrojom so špecifikovaným Gramps ID"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:45
 msgid "Sources having <count> notes"
-msgstr "Zdroje s počtom poznámok <count>"
+msgstr "Zdroje s počtom poznámok <počet>"
 
 #: ../gramps/gen/filters/rules/source/_hasnote.py:46
 msgid "Matches sources having a certain number of notes"
@@ -5506,7 +5492,7 @@ msgstr "Vyhľadá zdoje s konkrétnym počtom poznámok"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:42
 msgid "Sources having notes containing <substring>"
-msgstr "Zdroje s poznámkami obsahujúcimi <substring>"
+msgstr "Zdroje s poznámkami obsahujúcimi <podreťazec>"
 
 #: ../gramps/gen/filters/rules/source/_hasnotematchingsubstringof.py:43
 msgid "Matches sources whose notes contain text matching a substring"
@@ -5523,7 +5509,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:42
 msgid "Sources with a reference count of <count>"
-msgstr "Zdroje s  počtom odkazov  <count>"
+msgstr "Zdroje s počtom odkazov <počet>"
 
 #: ../gramps/gen/filters/rules/source/_hasreferencecountof.py:43
 msgid "Matches sources with a certain reference count"
@@ -5531,7 +5517,7 @@ msgstr "Vyhľadá zdroje s konkrétnym počtom odkazov"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:47
 msgid "Sources with <count> Repository references"
-msgstr "Zdroje s médiami v počte <count>"
+msgstr "Zdroje s <počet> odkazmi na archív"
 
 #: ../gramps/gen/filters/rules/source/_hasrepository.py:48
 msgid "Matches sources with a certain number of repository references"
@@ -5550,7 +5536,7 @@ msgstr "Vyhovujú zdroje s odkazom na archív\n"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:49
 msgid "Sources with the <tag>"
-msgstr "Zdroje so značkou <tag>"
+msgstr "Zdroje so značkou <značka>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
 msgid "Matches sources with the particular tag"
@@ -5566,13 +5552,14 @@ msgstr "Vyhľadá zdroje vyhovujúce zadanému filtru s názvom"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:44
 msgid "Sources with repository reference matching the <repository filter>"
-msgstr "Udalosti vyhovujúce filtru <repository filter>"
+msgstr "Zdroje s odkazom na archív vyhovujúcim filtru <filter achrívov>"
 
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:45
 msgid ""
 "Matches sources with a repository reference that match a certain\n"
 "repository filter"
-msgstr "Vyhľadá zdroje, ktoré vyhovujú konkrétnemu filtru"
+msgstr "Vyhľadá zdroje s odkazom na archív ktorý vyhovuje konkrétnemu\n"
+"filtru archívov"
 
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:43
 msgid "Sources with title containing <text>"
@@ -7655,7 +7642,7 @@ msgstr "Súbor neexistuje"
 #. Do this in case of command line options query (show=filter)
 #: ../gramps/gen/plug/report/utils.py:259
 msgid "PERSON"
-msgstr "PERSON"
+msgstr "OSOBA"
 
 #: ../gramps/gen/plug/report/utils.py:268
 #: ../gramps/gui/plug/report/_bookdialog.py:152
@@ -8982,13 +8969,13 @@ msgstr "Schránka"
 #: ../gramps/gui/clipboard.py:1502 ../gramps/gui/plug/quick/_quicktable.py:130
 #, python-format
 msgid "the object|See %s details"
-msgstr "zobraziť podrobnosti %s"
+msgstr "Zobraziť podrobnosti %s"
 
 #. ---------------------------
 #: ../gramps/gui/clipboard.py:1508 ../gramps/gui/plug/quick/_quicktable.py:140
 #, python-format
 msgid "the object|Make %s active"
-msgstr "nastaviť %s ako aktívne"
+msgstr "Nastaviť %s ako aktívne"
 
 #: ../gramps/gui/clipboard.py:1524
 #, python-format
@@ -9087,7 +9074,7 @@ msgid ""
 "Enter your information so people can contact you when you distribute your "
 "Family Tree"
 msgstr ""
-"Vložte informáciu o vás, aby bolo možné sa s vami spojiť pri rozosielaní "
+"Vložte informáciu o Vás, aby bolo možné sa s Vami spojiť pri rozosielaní "
 "rodinného stromu"
 
 #: ../gramps/gui/configure.py:512
@@ -9706,7 +9693,7 @@ msgstr "Stav"
 #: ../gramps/gui/dbman.py:387
 #, python-format
 msgid "Break the lock on the '%s' database?"
-msgstr "Odomknúť databázu '%s' ?"
+msgstr "Prelomiť zámok na databázu '%s'?"
 
 #: ../gramps/gui/dbman.py:388
 msgid ""
@@ -10303,11 +10290,11 @@ msgstr "Autor"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:83
 #: ../gramps/plugins/webreport/narrativeweb.py:2367
 msgid "Page"
-msgstr "stránka"
+msgstr "Stránka"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:92
 msgid "_Source Citations"
-msgstr "Citácie ku zdroju"
+msgstr "Citácie zdroja"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:172
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:182
@@ -10456,7 +10443,7 @@ msgstr "%(groupname)s - %(groupnumber)d"
 #: ../gramps/plugins/webreport/narrativeweb.py:396
 #: ../gramps/plugins/webreport/narrativeweb.py:1252
 msgid "Temple"
-msgstr "Temple"
+msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:93
 msgid "_Gallery"
@@ -10781,7 +10768,7 @@ msgstr "Pôvod"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:82
 msgid "<b>Multiple Surnames</b>"
-msgstr "Viac priezvisk"
+msgstr "<b>Viac priezvisk</b>"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:89
 msgid "Family Surnames"
@@ -11084,11 +11071,11 @@ msgstr "Pohlavie"
 
 #: ../gramps/gui/editors/editfamily.py:125
 msgid "Paternal"
-msgstr "zo str. otca"
+msgstr "Zo str. otca"
 
 #: ../gramps/gui/editors/editfamily.py:126
 msgid "Maternal"
-msgstr "zo str. matky"
+msgstr "Zo str. matky"
 
 #: ../gramps/gui/editors/editfamily.py:127
 #: ../gramps/gui/selectors/selectperson.py:77
@@ -11986,7 +11973,7 @@ msgstr "Ako aj rodinné udalosti kde osoba je manželom/-kou"
 
 #: ../gramps/gui/editors/filtereditor.py:573
 msgid "Only include primary participants"
-msgstr "Zahnúť len priamych účastníkov"
+msgstr "Zahrnúť len priamych účastníkov"
 
 #: ../gramps/gui/editors/filtereditor.py:596
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:79
@@ -12229,7 +12216,7 @@ msgstr "Obnovujem zobrazenie..."
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
 #: ../gramps/plugins/view/citationlistview.py:106
 msgid "Source: ID"
-msgstr "Zdroj ID:"
+msgstr "Zdroj: ID"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
 #: ../gramps/plugins/view/citationlistview.py:105
@@ -12269,9 +12256,8 @@ msgid "Citation: Date"
 msgstr "Citácia: Dátum"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
-#, fuzzy
 msgid "Citation: Minimum Confidence|Min. Conf."
-msgstr "Min. dôveryhodnosť"
+msgstr "Min. dôveryh."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116
 msgid "Citation: Note"
@@ -13159,7 +13145,7 @@ msgstr ""
 "Cesta k mediálnemu objetku vo Vašom počítači.\n"
 "Gramps neukladá samotné mediálne objekty, ale len cestu k nim. V "
 "Preferenciách nastavte relatívnu cestu, aby ste si neprepísali celý adresár "
-"kde máte média uložené. Správu ciest k súboru mediálnych objektov vám uľahčí "
+"kde máte média uložené. Správu ciest k súboru mediálnych objektov Vám uľahčí "
 "nástroj Správca mediálnych objektov. "
 
 #: ../gramps/gui/glade/editmedia.glade:238
@@ -13378,7 +13364,7 @@ msgid ""
 msgstr ""
 "Osoby budú usporiadané podľa toho, aký formát pre meno bol zadaný v menu "
 "Preferencie.\n"
-"Môžete nastavíť aj iný, používateľský formát (tieto extra formáty nastavíte "
+"Môžete nastaviť aj iný, používateľský formát (tieto extra formáty nastavíte "
 "v menu Preferencie)."
 
 #: ../gramps/gui/glade/editname.glade:677
@@ -13390,7 +13376,7 @@ msgid ""
 msgstr ""
 "Rodinný strom danej osoby zoraďuje osoby podľa primárneho priezviska. Toto "
 "môžete zmeniť nastavením hodnoty pre skupinu.\n"
-"Systém sa vás opýta či zoskupenie platí len pre jednu osobu, alebo pre "
+"Systém sa Vás opýta či zoskupenie platí len pre jednu osobu, alebo pre "
 "všetky osoby s týmto priezviskom."
 
 #: ../gramps/gui/glade/editname.glade:690
@@ -13433,7 +13419,7 @@ msgstr ""
 "zachované. Dá sa použiť pre formátovanie s využitím medzier, napr. v "
 "tabuľke.\n"
 "Ak nie je označené, poznámky zo zostáv sa vyčistia automaticky, čím sa "
-"rozloženie výstupu sprehľadní."
+"rozloženie zostavy sprehľadní."
 
 #: ../gramps/gui/glade/editperson.glade:152
 msgid "C_all:"
@@ -13984,13 +13970,14 @@ msgstr "Zvoliť lokalitu ktorá poskytne primárne dáta pre lokalitu po zlúče
 msgid ""
 "Alternate locations, sources, urls, media objects and notes of both places "
 "will be combined."
-msgstr "Spoja sa lokality, zdroje, url a mediálne objekty z oboch zdrojov."
+msgstr "Spoja sa alternatívne miesta, zdroje, url a mediálne objekty z oboch zdrojov."
 
 #: ../gramps/gui/glade/mergerepository.glade:99
 msgid ""
 "Select the repository that will provide the\n"
 "primary data for the merged repository."
-msgstr "Zvoliť archív ktorý poskytne primárne dáta pre archív po zlúčení."
+msgstr "Zvoliť archív ktorý poskytne primárne\n"
+"dáta pre archív po zlúčení."
 
 #: ../gramps/gui/glade/mergerepository.glade:190
 msgid "Repository 1"
@@ -14211,7 +14198,7 @@ msgstr "Názov štýlu:"
 #: ../gramps/gui/glade/styleeditor.glade:290
 #, fuzzy
 msgid "Type face"
-msgstr "<b>Typ fontu</b>"
+msgstr "Typ fontu"
 
 #: ../gramps/gui/glade/styleeditor.glade:304
 msgid "_Roman (Times, serif)"
@@ -14373,7 +14360,7 @@ msgid ""
 msgstr ""
 "Gramps je vybavený základnou sadou pluginov - zásuvných modulov ktoré "
 "poskytujú všetko potrebné. Tieto funkcie je možné doplniť Doplnkami- "
-"pridanými funkciami pre výstupy, správy, pohľady, gramplety a iné. Tu si "
+"pridanými funkciami pre zostavy, správy, pohľady, gramplety a iné. Tu si "
 "vyberiete spomedzi dostupných tie ktoré chcete nainštalovať zo siete na Váš "
 "počítač. Ak sa rozhodnete zavrieť tento dialóg a inštalovať ich neskôr, "
 "dialóg nájdete v menu Editovať -> Preferencie."
@@ -14611,7 +14598,7 @@ msgstr "Miesta"
 
 #: ../gramps/gui/grampsgui.py:178
 msgid "Reports"
-msgstr "Správy"
+msgstr "Zostavy"
 
 #: ../gramps/gui/grampsgui.py:179
 #: ../gramps/plugins/quickview/filterbyname.py:106
@@ -14793,11 +14780,11 @@ msgid ""
 "so that you can paste it into the form on the bug tracking website and "
 "review exactly what information you want to include."
 msgstr ""
-"Pomocník pre hlásenie chyby vám pomôže v tom, aby hlásenie o chybe pre "
+"Pomocník pre hlásenie chyby Vám pomôže v tom, aby hlásenie o chybe pre "
 "vývojárov Grampsu bolo čo najpodrobnejšie.\n"
 "\n"
-"Pomocník vám položi niekoľko otázok a zhromaždí informácie o chybe ktorá sa "
-"vyskytla, ako aj o operačnom systéme. Na konci vás požiada, aby ste poslali "
+"Pomocník Vám položi niekoľko otázok a zhromaždí informácie o chybe ktorá sa "
+"vyskytla, ako aj o operačnom systéme. Na konci Vás požiada, aby ste poslali "
 "správu do systému pre sledovanie chýb Grampsu. Pomocník Vašu správu o chybe "
 "zobrazí aby ste videli aké informácie sa zašlú, a mohli ich skopírovať do "
 "formulára na web stránke systému."
@@ -14867,7 +14854,7 @@ msgid ""
 "understand the detail of the error information. Just make sure that it does "
 "not contain anything that you do not want to be sent to the developers."
 msgstr ""
-"Skontrolujte prosím správnosť informácie, neznepokojujte sa ak vám "
+"Skontrolujte prosím správnosť informácie, neznepokojujte sa ak Vám "
 "podrobnosti chybového hlásenia nie sú jasné. Preverte si len to, že správa "
 "neobsahuje nič, čo by ste nechceli zaslať vývojárom."
 
@@ -14881,7 +14868,7 @@ msgid ""
 "This is the completed bug report. The next page of the assistant will help "
 "you to file a bug on the Gramps bug tracking system website."
 msgstr ""
-"Toto je kompletná správa o chybe. Nasledujúca stránka pomocníka vám pomôže "
+"Toto je kompletná správa o chybe. Nasledujúca stránka pomocníka Vám pomôže "
 "odoslať správu do systému sledovania chýb Grampsu."
 
 #: ../gramps/gui/logger/_errorreportassistant.py:557
@@ -14952,7 +14939,7 @@ msgid ""
 msgstr ""
 "Vaše dáta sú v bezpečí, ale odporúčame bezodkladne reštartovať Gramps. Ak "
 "chcete oznámiť problém vývojárom Grampsu, kliknite na tlačitko Výstup a "
-"pomocník vám ukáže ako zostaviť správu o chybe."
+"pomocník Vám ukáže ako zostaviť správu o chybe."
 
 #: ../gramps/gui/logger/_errorview.py:111
 #: ../gramps/gui/logger/_errorview.py:125
@@ -15416,7 +15403,7 @@ msgstr ""
 "\n"
 "Formát:\t%s\n"
 "\n"
-"Stlačte Ďalej ak chcete pokračovať, Zrušiť ak zrušiť, alebo Späť ak chcete "
+"Stlačte Použiť ak chcete pokračovať, Zrušiť ak zrušiť, alebo Späť ak chcete "
 "zmeniť voľbu"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:457
@@ -15436,7 +15423,7 @@ msgstr ""
 "Názov:\t%(name)s\n"
 "Zložka:\t%(folder)s\n"
 "\n"
-"Stlačte Ďalej ak chcete pokračovať, Zrušiť ak zrušiť, alebo Späť ak chcete "
+"Stlačte Použiť ak chcete pokračovať, Zrušiť ak zrušiť, alebo Späť ak chcete "
 "zmeniť voľbu"
 
 #: ../gramps/gui/plug/export/_exportassistant.py:467
@@ -15508,7 +15495,7 @@ msgstr ""
 "Gramps bežne nevyžaduje aby ste zmeny ukladali. Všetky vykonané zmeny sa "
 "ukladajú do databázy automaticky po ich vykonaní.\n"
 "\n"
-"Tento proces vám umožní uložiť kópiu Vašich dát do niektorého z formátov "
+"Tento proces Vám umožní uložiť kópiu Vašich dát do niektorého z formátov "
 "podporovaných Gramps-om. Môže sa použiť na vytvorenie kópie dát, zálohovanie "
 "alebo prevod do formátu ktorý umožní ich použitie v inom programe.\n"
 "\n"
@@ -15660,7 +15647,7 @@ msgstr "Nevkladať záznamy viazané na zvolenú osobu"
 
 #: ../gramps/gui/plug/quick/_quickreports.py:101
 msgid "Web Connect"
-msgstr "pripojenie na web"
+msgstr "Pripojenie na web"
 
 #: ../gramps/gui/plug/quick/_quickreports.py:146
 #: ../gramps/gui/plug/quick/_textbufdoc.py:75
@@ -15709,7 +15696,7 @@ msgstr "Vykonať"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:350
 msgid "Name of the book. MANDATORY"
-msgstr "Názov knihy, POVINNÉ"
+msgstr "Názov knihy. POVINNÉ"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:410
 msgid "New Book"
@@ -15844,11 +15831,11 @@ msgstr "Na šírku"
 
 #: ../gramps/gui/plug/report/_papermenu.py:215
 msgid "inch|in."
-msgstr "in."
+msgstr "pal."
 
 #: ../gramps/gui/plug/report/_reportdialog.py:141
 msgid "Configuration"
-msgstr "Konfigurácía"
+msgstr "Konfigurácia"
 
 #. Styles Frame
 #: ../gramps/gui/plug/report/_reportdialog.py:320
@@ -16246,7 +16233,7 @@ msgstr "Poslať hlásenie o chybe"
 
 #: ../gramps/gui/viewmanager.py:498
 msgid "_Extra Reports/Tools"
-msgstr "Ďalšie zostavy/nástroje"
+msgstr "Ďalšie Zostavy/Nástroje"
 
 #: ../gramps/gui/viewmanager.py:500
 msgid "_About"
@@ -16286,11 +16273,11 @@ msgstr "Zrušiť zmeny a zavrieť okno"
 
 #: ../gramps/gui/viewmanager.py:519 ../gramps/gui/viewmanager.py:522
 msgid "_Reports"
-msgstr "Správy-zostavy"
+msgstr "Zostavy"
 
 #: ../gramps/gui/viewmanager.py:520
 msgid "Open the reports dialog"
-msgstr "Otvoriť dialóg pre správy"
+msgstr "Otvoriť dialóg pre zostavy"
 
 #: ../gramps/gui/viewmanager.py:521
 msgid "_Go"
@@ -16456,7 +16443,7 @@ msgstr "Zahrnúť"
 #: ../gramps/gui/viewmanager.py:1293
 #: ../gramps/plugins/gramplet/statsgramplet.py:199
 msgid "Megabyte|MB"
-msgstr "Megabajt"
+msgstr "MB"
 
 #: ../gramps/gui/viewmanager.py:1294
 #: ../gramps/plugins/webreport/narrativeweb.py:8178
@@ -16519,7 +16506,7 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"ak sa vám nepodarí opraviť chybu, zašlite chybové hlásnenie nat http://bugs."
+"ak sa Vám nepodarí opraviť chybu, zašlite chybové hlásnenie na http://bugs."
 "gramps-project.org , prípadne sa spojte s autorom modulu "
 "(%(firstauthoremail)s).\n"
 "\n"
@@ -16548,7 +16535,7 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"ak sa vám nepodarí opraviť chybu, zašlite chybové hlásnenie nat http://bugs."
+"ak sa Vám nepodarí opraviť chybu, zašlite chybové hlásnenie nat http://bugs."
 "gramps-project.org, prípadne sa spojte s autorom modulu "
 "(%(firstauthoremail)s).\n"
 "\n"
@@ -16871,11 +16858,11 @@ msgstr "Zostavuje sa stĺpec dát"
 
 #: ../gramps/gui/widgets/buttons.py:174
 msgid "Record is private"
-msgstr "Informácie sú dôverné"
+msgstr "Záznam je dôverný"
 
 #: ../gramps/gui/widgets/buttons.py:179
 msgid "Record is public"
-msgstr "Informácie nie sú dôverné"
+msgstr "Záznam je verejný"
 
 #: ../gramps/gui/widgets/expandcollapsearrow.py:86
 msgid "Expand this section"
@@ -17550,12 +17537,12 @@ msgstr "faktor tieňovania políčka"
 #: ../gramps/plugins/drawreport/ancestortree.py:1017
 #: ../gramps/plugins/drawreport/descendtree.py:1623
 msgid "Make the box shadow bigger or smaller"
-msgstr "Zväčšiť-zmenšiť tieňovanie"
+msgstr "Zväčšiť alebo zmenšiť tieňovanie"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1024
 #: ../gramps/plugins/drawreport/descendtree.py:1630
 msgid "Report Title"
-msgstr "Názov výstupu"
+msgstr "Názov zostavy"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1025
 #: ../gramps/plugins/drawreport/descendtree.py:1631
@@ -17565,12 +17552,12 @@ msgstr "Nevkladať titulok"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1026
 msgid "Include Report Title"
-msgstr "Vložiť titulok"
+msgstr "Vložiť titulok zostavy"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1027
 #: ../gramps/plugins/drawreport/descendtree.py:1639
 msgid "Choose a title for the report"
-msgstr "Zvoliť nadpis výstupu"
+msgstr "Zvoliť nadpis zostavy"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1030
 #: ../gramps/plugins/drawreport/descendtree.py:1643
@@ -17580,7 +17567,7 @@ msgstr "Vložiť okraj"
 #: ../gramps/plugins/drawreport/ancestortree.py:1031
 #: ../gramps/plugins/drawreport/descendtree.py:1644
 msgid "Whether to make a border around the report."
-msgstr "Či použiť ohraničenie."
+msgstr "Či použiť ohraničenie okolo zostavy."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1034
 #: ../gramps/plugins/drawreport/descendtree.py:1647
@@ -17610,7 +17597,7 @@ msgstr "Zahrnúť poznámku"
 #: ../gramps/plugins/drawreport/ancestortree.py:1047
 #: ../gramps/plugins/drawreport/descendtree.py:1659
 msgid "Whether to include a note on the report."
-msgstr "Či vložiť poznámku."
+msgstr "Či vložiť poznámku do zostavy."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1052
 #: ../gramps/plugins/drawreport/descendtree.py:1664
@@ -18016,7 +18003,7 @@ msgstr "Rodina %s nie je v databáze"
 #: ../gramps/plugins/drawreport/descendtree.py:1490
 #: ../gramps/plugins/drawreport/descendtree.py:1494
 msgid "Report for"
-msgstr "Správa vypracovaná pre"
+msgstr "Zostava vypracovaná pre"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1491
 msgid "The main person for the report"
@@ -18024,7 +18011,7 @@ msgstr "Ústredná postava zostavy"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1495
 msgid "The main family for the report"
-msgstr "Ústredná rodina pre výstup"
+msgstr "Ústredná rodina pre zostavy"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1499
 msgid "Start with the parent(s) of the selected first"
@@ -19098,7 +19085,7 @@ msgstr "Vydavateľ"
 
 #: ../gramps/plugins/gramplet/citations.py:140
 msgid "<No Citation>"
-msgstr "<No Citation>"
+msgstr "<Žiadna citácia>"
 
 #: ../gramps/plugins/gramplet/eval.py:76
 msgid "Evaluation"
@@ -19976,7 +19963,7 @@ msgstr "Gramplet s filtrom poznámok"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1065
 msgid "Records Gramplet"
-msgstr "Gramplet Zostavy"
+msgstr "Gramplet Záznamy"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1066
 #: ../gramps/plugins/textreport/textplugins.gpr.py:409
@@ -20737,11 +20724,11 @@ msgstr "Generuje grafy rodinnej línie pomocou Grapviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:52
 msgid "Hourglass Graph"
-msgstr "Presýpacie hodiny-graf"
+msgstr "Graf presýpacie hodiny"
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:53
 msgid "Produces an hourglass graph using Graphviz."
-msgstr "Vytvorí graf-presýpacie hodiny pomocou Graphviz."
+msgstr "Vytvorí graf presýpacie hodiny pomocou Graphviz."
 
 #: ../gramps/plugins/graph/graphplugins.gpr.py:74
 msgid "Relationship Graph"
@@ -21011,7 +20998,7 @@ msgstr "Či vložiť mená, dátumy a záznamy o rodine označené ako dôverné
 
 #: ../gramps/plugins/graph/gvfamilylines.py:346
 msgid "Empty report"
-msgstr "Prázdny výstup"
+msgstr "Prázdna zostava"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:347
 msgid "You did not specify anybody"
@@ -22320,7 +22307,7 @@ msgstr "INDI (individual) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:3622
 msgid "Empty Alias <NAME PERSONAL> ignored"
-msgstr "Ignorovaný alias <NAME PERSONAL>"
+msgstr "Ignorovaný prázdny alias <OSOBNÉ MENO>"
 
 #: ../gramps/plugins/lib/libgedcom.py:3702
 #: ../gramps/plugins/lib/libgedcom.py:5011
@@ -26061,8 +26048,7 @@ msgstr "Poskytuje náhradu premenných pre zobrazenie."
 msgid ""
 "Provides the base needed for the ancestor and descendant graphical reports."
 msgstr ""
-"Základ potrebný pre grafické výstupy predkov a potomkov pohľady Zoznam "
-"Lokalít."
+"Poskytuje základ potrebný pre grafické zostavy predkov a potomkov."
 
 #: ../gramps/plugins/lib/librecords.py:54
 msgid "Youngest living person"
@@ -27018,7 +27004,7 @@ msgstr "Vyhľadá osoby s chýbajúcim priezviskom"
 
 #: ../gramps/plugins/quickview/samesurnames.py:51
 msgid "People matching the <surname>"
-msgstr "Osoby vyhovujúce priezvisku <surname>"
+msgstr "Vyhovujú osoby s priezviskom <priezvisko>"
 
 #: ../gramps/plugins/quickview/samesurnames.py:52
 msgid "Matches people with same lastname"
@@ -27026,19 +27012,19 @@ msgstr "Vyhovujú osoby s rovnakým priezviskom"
 
 #: ../gramps/plugins/quickview/samesurnames.py:64
 msgid "People matching the <given>"
-msgstr "Osoby vyhovujúce menu <given>"
+msgstr "Vyhovujú osoby s krstným menom <krstné meno>"
 
 #: ../gramps/plugins/quickview/samesurnames.py:65
 msgid "Matches people with same given name"
-msgstr "Nájde osoby s rovnakým menom"
+msgstr "Vyhovujú osoby s rovnakým krstným menom"
 
 #: ../gramps/plugins/quickview/samesurnames.py:88
 msgid "People with incomplete given names"
-msgstr "Osoby s neúplným menom"
+msgstr "Osoby s neúplným krstným menom"
 
 #: ../gramps/plugins/quickview/samesurnames.py:89
 msgid "Matches people with firstname missing"
-msgstr "Vyhľadá osoby s chýbajúcim menom"
+msgstr "Vyhovujú osoby s chýbajúcim menom"
 
 #. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:113
@@ -27060,7 +27046,7 @@ msgstr[2] "Našlo sa {number_of} osôb s rovnakým alebo alternatívnym menom.\n
 #: ../gramps/plugins/quickview/samesurnames.py:158
 #, python-format
 msgid "People with the given name '%s'"
-msgstr "Osoby s menom '%s'"
+msgstr "Osoby s krstným menom '%s'"
 
 #. display the title
 #. feature request 2356: avoid genitive form
@@ -27231,7 +27217,7 @@ msgstr "Štýl použitý pre záznamy indexu."
 #: ../gramps/plugins/textreport/ancestorreport.py:184
 #, python-format
 msgid "Ahnentafel Report for %s"
-msgstr "Graf predkov typu Ahnentafel pre %s"
+msgstr "Zostava predkov typu Ahnentafel pre %s"
 
 #: ../gramps/plugins/textreport/ancestorreport.py:274
 #: ../gramps/plugins/textreport/detancestralreport.py:726
@@ -27261,11 +27247,11 @@ msgstr "Uvádza či za menom má byť koniec riadka."
 #: ../gramps/plugins/textreport/birthdayreport.py:264
 #: ../gramps/plugins/textreport/textplugins.gpr.py:52
 msgid "Birthday and Anniversary Report"
-msgstr "Narodeniny a výročia"
+msgstr "Zostava Narodeniny a výročia"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:66
 msgid "My Birthday Report"
-msgstr "Narodeniny a výročia"
+msgstr "Zostava Moje narodeniny a výročia"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/birthdayreport.py:212
@@ -27290,7 +27276,7 @@ msgstr[2] "{person}, {age}{relation}"
 #: ../gramps/plugins/textreport/birthdayreport.py:409
 #: ../gramps/plugins/textreport/birthdayreport.py:411
 msgid "Year of report"
-msgstr "Zostava rok"
+msgstr "Rok zostavy"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:416
 msgid "Select filter to restrict people that appear on report"
@@ -27298,7 +27284,7 @@ msgstr "Na vymedzenie počtu osôb v kalendári použite filter"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:447
 msgid "Select the first day of the week for the report"
-msgstr "Zvoľte prvý deň ktorým začína týždeň"
+msgstr "Zvoľte prvý deň týždňa pre zostavu"
 
 #: ../gramps/plugins/textreport/birthdayreport.py:458
 msgid "Include only living people in the report"
@@ -27362,7 +27348,7 @@ msgstr "Štýl textu pre ozn. mesiaca"
 #: ../gramps/plugins/textreport/custombooktext.py:89
 #: ../gramps/plugins/textreport/textplugins.gpr.py:74
 msgid "Custom Text"
-msgstr "Vlastný upravený text"
+msgstr "Vlastný text"
 
 #: ../gramps/plugins/textreport/custombooktext.py:127
 msgid "Initial Text"
@@ -27409,12 +27395,12 @@ msgstr "manž. %(spouse)s"
 #: ../gramps/plugins/textreport/descendreport.py:238
 #, python-format
 msgid "sp. see  %(reference)s : %(spouse)s"
-msgstr "sp. see  %(reference)s : %(spouse)s"
+msgstr "manž. viď  %(reference)s : %(spouse)s"
 
 #: ../gramps/plugins/textreport/descendreport.py:294
 #, python-format
 msgid "%s sp."
-msgstr "%s sp."
+msgstr "%s manž."
 
 #: ../gramps/plugins/textreport/descendreport.py:403
 #: ../gramps/plugins/textreport/detdescendantreport.py:887
@@ -27476,13 +27462,13 @@ msgstr "Štýl použitý pre zobrazenie zaradenia manžela %d."
 #: ../gramps/plugins/textreport/detancestralreport.py:182
 #, python-format
 msgid "Ancestral Report for %s"
-msgstr "Graf predkov pre: %s"
+msgstr "Zostava predkov pre %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:262
 #: ../gramps/plugins/textreport/detdescendantreport.py:382
 #, python-format
 msgid "%(name)s is the same person as [%(id_str)s]."
-msgstr "%(name)s je tá istá osoba, ako [%(id_str)s]."
+msgstr "%(name)s je tá istá osoba ako [%(id_str)s]."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/detancestralreport.py:304
@@ -27820,7 +27806,7 @@ msgstr "Štýl použitý pre doplňujúce podrobnosti."
 #: ../gramps/plugins/textreport/detdescendantreport.py:275
 #, python-format
 msgid "Descendant Report for %(person_name)s"
-msgstr "Podrobná výstupná zostava potomkov osoby: %(person_name)s"
+msgstr "%(person_name)s - Podrobná zostava potomkov"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:564
 #, python-format
@@ -27863,7 +27849,7 @@ msgstr "Zahrnúť odkazy na manžela"
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:991
 msgid "Whether to include reference to spouse."
-msgstr "Či zahrnúť odkazy na manžela."
+msgstr "Či zahrnúť odkazy na manžela/-ku."
 
 #: ../gramps/plugins/textreport/detdescendantreport.py:994
 msgid "Include sign of succession ('+') in child-list"
@@ -27924,11 +27910,11 @@ msgstr "Manželstvo:"
 
 #: ../gramps/plugins/textreport/familygroup.py:465
 msgid "acronym for male|M"
-msgstr "M"
+msgstr "♂"
 
 #: ../gramps/plugins/textreport/familygroup.py:467
 msgid "acronym for female|F"
-msgstr "Z"
+msgstr "♀"
 
 #: ../gramps/plugins/textreport/familygroup.py:469
 #, python-format
@@ -27938,7 +27924,7 @@ msgstr "%dN"
 #: ../gramps/plugins/textreport/familygroup.py:563
 #, python-format
 msgid "Family Group Report - Generation %d"
-msgstr "Výstupná zostava o rodine -generácia %d"
+msgstr "Výstupná zostava o rodine - generácia %d"
 
 #: ../gramps/plugins/textreport/familygroup.py:565
 #: ../gramps/plugins/textreport/familygroup.py:614
@@ -28083,13 +28069,13 @@ msgstr "%(name)s [%(gid)s]"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:373
 msgid "Marriages/Children"
-msgstr "Manželstvá/deti"
+msgstr "Manželstvá/Deti"
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/indivcomplete.py:518
 #, python-format
 msgid "Summary of %s"
-msgstr "Zhrnutie pre: %s"
+msgstr "Zhrnutie pre %s"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:574
 #: ../gramps/plugins/tool/dumpgenderstats.py:65
@@ -28215,11 +28201,11 @@ msgstr ""
 #: ../gramps/plugins/textreport/placereport.py:132
 #: ../gramps/plugins/textreport/textplugins.gpr.py:296
 msgid "Place Report"
-msgstr "Pozn. o lokalite"
+msgstr "Zostava o lokalite"
 
 #: ../gramps/plugins/textreport/placereport.py:133
 msgid "Generating report"
-msgstr "Vytvára sa výstup"
+msgstr "Vytvára sa zostava"
 
 #: ../gramps/plugins/textreport/placereport.py:157
 #, python-format
@@ -28306,7 +28292,7 @@ msgstr "Zamerané na"
 
 #: ../gramps/plugins/textreport/placereport.py:401
 msgid "If report is event or person centered"
-msgstr "ak je správa zameraná na udalosť či osobu"
+msgstr "Ak je zostava zameraná na udalosť či osobu"
 
 #: ../gramps/plugins/textreport/placereport.py:404
 msgid "Include private data"
@@ -28459,7 +28445,7 @@ msgstr "Štýl použitý pre podtitul."
 #: ../gramps/plugins/textreport/summary.py:84
 #: ../gramps/plugins/textreport/textplugins.gpr.py:341
 msgid "Database Summary Report"
-msgstr "Databáza - Súhrn"
+msgstr "Databáza - Súhrnná zostava"
 
 #: ../gramps/plugins/textreport/summary.py:160
 #, python-format
@@ -28541,17 +28527,17 @@ msgstr "Štýl pre zobrazenie nadpisov tretej úrovne."
 #: ../gramps/plugins/textreport/tagreport.py:81
 #: ../gramps/plugins/textreport/textplugins.gpr.py:251
 msgid "Tag Report"
-msgstr "Správa so značkou"
+msgstr "Zostava o značkách"
 
 #: ../gramps/plugins/textreport/tagreport.py:82
 msgid "You must first create a tag before running this report."
-msgstr "Pred spustením tohto výstupu musíte najprv vytvoriť záložku."
+msgstr "Pred spustením tejto zostavy musíte najprv vytvoriť záložku."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/tagreport.py:89
 #, python-format
 msgid "Tag Report for %s Items"
-msgstr "Správa so značkou pre %s položiek"
+msgstr "Zostava o značkách pre %s položiek"
 
 #: ../gramps/plugins/textreport/tagreport.py:122
 #: ../gramps/plugins/textreport/tagreport.py:209
@@ -28579,11 +28565,11 @@ msgstr "Poskytuje textovú zostavu predkov"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:53
 msgid "Produces a report of birthdays and anniversaries"
-msgstr "Vytvorí prehľad o narodeninách a výročiach"
+msgstr "Vytvorí zostavu o narodeninách a výročiach"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:75
 msgid "Add custom text to the book report"
-msgstr "Pridať do knihy vlastný text"
+msgstr "Pridať do knžnej zostavy vlastný text"
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:96
 msgid "Descendant Report"
@@ -28679,7 +28665,7 @@ msgstr "Vytvorí abecedný index knižnej zostavy."
 
 #: ../gramps/plugins/textreport/textplugins.gpr.py:408
 msgid "Records Report"
-msgstr "Správa o záznamoch"
+msgstr "Zostava o záznamoch"
 
 #: ../gramps/plugins/tool/changenames.glade:32
 msgid ""
@@ -29466,7 +29452,7 @@ msgstr ""
 "Gramps ich nespravuje a nie sú začlenené v databáze Grampsu. V Grampse je "
 "uložené len cesta a názvy súborov.\n"
 "\n"
-"Tento nástroj vám umožňuje upravovať len záznamy v databáze Grampsu. Ak "
+"Tento nástroj Vám umožňuje upravovať len záznamy v databáze Grampsu. Ak "
 "chcete súbory presúvať alebo premenovať, musíte to vykonať mimo Grampsu, a "
 "potom upraviť cesty použitím tohto nástroja, aby mediálne objekty obsahovali "
 "správne údaje o umiestnení súborov."
@@ -29479,7 +29465,7 @@ msgstr "Použitá cesta"
 msgid ""
 "Press Apply to proceed, Cancel to abort, or Back to revisit your options."
 msgstr ""
-"Stlačte Ďalej ak chcete pokračovať, Zrušiť ak zrušiť, alebo Späť ak chcete "
+"Stlačte Použiť ak chcete pokračovať, Zrušiť ak zrušiť, alebo Späť ak chcete "
 "zmeniť voľbu."
 
 #: ../gramps/plugins/tool/mediamanager.py:375
@@ -30219,7 +30205,7 @@ msgid ""
 "Volume/Page, Date and Confidence."
 msgstr ""
 "Prehľadáva celú databázu a hľadá jednotlivé citácie, ktoré by prípadne mali "
-"rovnaký oddiel/stranu, dátum a stupeň dôvernosti."
+"rovnaký oddiel/stranu, dátum a dôveryhodnosť."
 
 #: ../gramps/plugins/tool/verify.glade:218
 msgid "Maximum _age"
@@ -30751,7 +30737,7 @@ msgstr "biela"
 #: ../gramps/plugins/view/fanchartdescview.py:289
 #: ../gramps/plugins/view/fanchartview.py:287
 msgid "Color scheme classic report"
-msgstr "Fareb. schéma klasický výstup"
+msgstr "Fareb. schéma klasická zostava"
 
 #: ../gramps/plugins/view/fanchartdescview.py:290
 #: ../gramps/plugins/view/fanchartview.py:288
@@ -31837,11 +31823,11 @@ msgstr "Štát/ Kraj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:398
 msgid "Alternate Locations"
-msgstr "Alernat. lokality"
+msgstr "Alernatívne miesta"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:400
 msgid "<absent>"
-msgstr "<absent>"
+msgstr "<chýba>"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1035
 #, python-format
@@ -31879,7 +31865,7 @@ msgstr "Zrakovo postihnutí"
 #: ../gramps/plugins/webreport/narrativeweb.py:1751
 #: ../gramps/plugins/webreport/narrativeweb.py:1901
 msgid "Html|Home"
-msgstr "Domovská Html"
+msgstr "Domov"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1754
 #: ../gramps/plugins/webreport/narrativeweb.py:1798
@@ -31901,7 +31887,7 @@ msgstr "Náhľady"
 #: ../gramps/plugins/webreport/narrativeweb.py:4966
 #: ../gramps/plugins/webreport/narrativeweb.py:8203
 msgid "Download"
-msgstr "Download"
+msgstr "Stiahnuť"
 
 #. Add xml, doctype, meta and stylesheets
 #: ../gramps/plugins/webreport/narrativeweb.py:1763
@@ -31940,7 +31926,7 @@ msgstr "Obrad LDS"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2339
 msgid "Source References"
-msgstr "Odkaz na zdroj"
+msgstr "Odkazy na zdroj"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:2444
 #: ../gramps/plugins/webreport/narrativeweb.py:5548
@@ -32028,12 +32014,12 @@ msgstr "Meno lokality"
 #: ../gramps/plugins/webreport/narrativeweb.py:3404
 #, python-format
 msgid "Places beginning with letter %s"
-msgstr "Miesta na písmeno %s"
+msgstr "Miesta začínajúce písmenom %s"
 
 #. section title
 #: ../gramps/plugins/webreport/narrativeweb.py:3516
 msgid "Place Map"
-msgstr "Mapa miesta"
+msgstr "Mapa lokality"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3600
 msgid "Creating event pages"
@@ -32076,7 +32062,7 @@ msgstr "Počet osôb"
 #: ../gramps/plugins/webreport/narrativeweb.py:4001
 #, python-format
 msgid "Surnames beginning with letter %s"
-msgstr "Typy udalostí začínajúce písmenom %s"
+msgstr "Priezviská začínajúce písmenom %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4144
 msgid "Creating source pages"
@@ -32093,7 +32079,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4200
 msgid "Source Name|Name"
-msgstr "Zdroj"
+msgstr "Názov zdroja"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4283
 msgid "Publication information"
@@ -32177,8 +32163,8 @@ msgstr ""
 "Stránka určená pre používateľa/ tvorcu tohto rodinného stromu/ popisnej web "
 "stránky a umožňuje zdieľať údaje o inej rodine. Ak sú nižšie zobrazené "
 "nejaké súbory, je možné ich stiahnuť po kliknutí. Stiahnuté súbory a stránky "
-"budú označenérovnakým označením týkajúcim sa autorských práv, ako je uvedené "
-"na web stránke."
+"budú označené rovnakým označením týkajúcim sa autorských práv, ako je "
+"uvedené na web stránke."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4993
 msgid "File Name"
@@ -32224,7 +32210,7 @@ msgid ""
 msgstr ""
 "Mapa zobrazuje osobu a jej potomkov a všetky udalosti/ lokality. Ak prejdete "
 "kurzorom nad značkou, zobrazi sa názov lokality. Markery a referenčný zoznam "
-"sú usporiadané podľa dátumu. Kliknutie na názov vás prepne na patričnú "
+"sú usporiadané podľa dátumu. Kliknutie na názov Vás prepne na patričnú "
 "stránku."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5743
@@ -32257,15 +32243,15 @@ msgstr "Vek pri úmrtí"
 #. Calculator
 #: ../gramps/plugins/webreport/narrativeweb.py:6316
 msgid "Stepfather"
-msgstr "nevlastný otec"
+msgstr "Nevlastný otec"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6326
 msgid "Stepmother"
-msgstr "nevlastná matka"
+msgstr "Nevlastná matka"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6350
 msgid "Not siblings"
-msgstr "nie sú súrodenci"
+msgstr "Nie sú súrodenci"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6411
 msgid "Relation to main person"
@@ -32310,7 +32296,7 @@ msgstr "Celé meno"
 #: ../gramps/plugins/webreport/narrativeweb.py:6956
 #, python-format
 msgid "Neither %(current)s nor %(parent)s are directories"
-msgstr "%(current)s  ani%(parent)s nie sú adresáre"
+msgstr "%(current)s ani %(parent)s nie sú adresáre"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6964
 #: ../gramps/plugins/webreport/narrativeweb.py:6969
@@ -32318,7 +32304,7 @@ msgstr "%(current)s  ani%(parent)s nie sú adresáre"
 #: ../gramps/plugins/webreport/narrativeweb.py:6987
 #, python-format
 msgid "Could not create the directory: %s"
-msgstr "Adresár: %s nebolo možné vytvoriť"
+msgstr "Nemožno vytvoriť adresár: %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6993
 msgid "Invalid file name"
@@ -32339,11 +32325,11 @@ msgstr "Chýbajúci mediálne objekty:"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7153
 msgid "Applying Person Filter..."
-msgstr "Použije sa filter..."
+msgstr "Použije sa filter osôb..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7159
 msgid "Constructing list of other objects..."
-msgstr "Vytvára sa zoznam ďalších objektov ..."
+msgstr "Vytvára sa zoznam ďalších objektov..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7366
 #, python-format
@@ -32356,7 +32342,7 @@ msgstr "Rodina %(husband)s a %(spouse)s"
 #: ../gramps/plugins/webreport/narrativeweb.py:7375
 #, python-format
 msgid "Family of %s"
-msgstr "Pozn. o rodine %s"
+msgstr "Rodina %s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7579
 msgid "Creating GENDEX file"
@@ -32376,11 +32362,11 @@ msgstr "Vytváranie stránok adresára ..."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7980
 msgid "Store web pages in .tar.gz archive"
-msgstr "Uložiť web stránku v archíve tar.gz"
+msgstr "Uložiť web stránku v archíve .tar.gz"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7982
 msgid "Whether to store the web pages in an archive file"
-msgstr "Či uložiť web stránku v archíve tar.gz"
+msgstr "Či uložiť web stránku v archíve"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:7989
 #: ../gramps/plugins/webreport/webcal.py:1323
@@ -32646,7 +32632,7 @@ msgstr "Vložiť len priezvisko"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8182
 msgid "Include Full Name Only"
-msgstr "Vložiť celé meno"
+msgstr "Vložiť len celé meno"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8185
 msgid "How to handle living people"
@@ -32668,26 +32654,26 @@ msgstr "Vložiť možnosť sťahovať stránku"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8207
 msgid "Whether to include a database download option"
-msgstr "Či vložiť možnosť downloadu databázy"
+msgstr "Či vložiť možnosť sťahovať databázy"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8211
 #: ../gramps/plugins/webreport/narrativeweb.py:8220
 msgid "Download Filename"
-msgstr "Download súbor s názvom"
+msgstr "Stiahnuť názov súboru"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8213
 #: ../gramps/plugins/webreport/narrativeweb.py:8222
 msgid "File to be used for downloading of database"
-msgstr "Súbor pre download databázy"
+msgstr "Súbor pre stiahnutie databázy"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8216
 #: ../gramps/plugins/webreport/narrativeweb.py:8225
 msgid "Description for download"
-msgstr "Popis"
+msgstr "Popis pre stiahnutie"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8216
 msgid "Smith Family Tree"
-msgstr "Strom  rodiny Smith"
+msgstr "Strom rodiny Smith"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8217
 #: ../gramps/plugins/webreport/narrativeweb.py:8226
@@ -32816,7 +32802,7 @@ msgstr ""
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8303
 msgid "Place Map Options"
-msgstr "Voľby pre Mapy miest"
+msgstr "Voľby pre Mapu lokality"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8307
 msgid "Google"
@@ -32828,19 +32814,19 @@ msgstr "Mapová služba"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8312
 msgid "Choose your choice of map service for creating the Place Map Pages."
-msgstr "Vyberte si mapovú službu pre vytvorenie stránok s mapami."
+msgstr "Vyberte si mapovú službu pre vytvorenie stránok s Mapami lokality."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8317
 msgid "Include Place map on Place Pages"
-msgstr "Vložiť mapy na stránky s lokalitami"
+msgstr "Vložiť Mapy lokality na Stránky lokalít"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8318
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
 msgstr ""
-"Voľba toho či sa mapa má zobraziť na stránkach lokalít s uvedením zemepis. "
-"šírky / dĺžky."
+"Voľba toho či sa mapa lokality má zobraziť na Stránkach lokalít uvedením "
+"zemepis. šírky/ dĺžky."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8323
 msgid "Include Family Map Pages with all places shown on the map"
@@ -32852,7 +32838,7 @@ msgid ""
 "page. This will allow you to see how your family traveled around the country."
 msgstr ""
 "Či vložiť samostatnú stránku zobrazujúcu všetky tu uvedené "
-"miesta alebo nie. Umožní vám to zobraziť putovanie Vašej rodiny."
+"miesta alebo nie. Umožní Vám to zobraziť putovanie Vašej rodiny."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8333
 msgid "Family Links"
@@ -32875,7 +32861,7 @@ msgid ""
 "Select which option that you would like to have for the Google Maps Family "
 "Map pages..."
 msgstr ""
-"Vyberte voľbu ktorá vám vyhovuje pri Google Maps Family Mapové stránky..."
+"Vyberte voľbu ktorá Vám vyhovuje pri Google Maps Family Mapové stránky..."
 
 #. adding title to hyperlink menu for screen readers and braille writers
 #: ../gramps/plugins/webreport/narrativeweb.py:8799
@@ -32909,7 +32895,7 @@ msgstr ""
 #. Add a link for year_glance() if requested
 #: ../gramps/plugins/webreport/webcal.py:543
 msgid "Year Glance"
-msgstr "Rok -prehľad"
+msgstr "Rok - prehľad"
 
 #: ../gramps/plugins/webreport/webcal.py:577
 msgid "NarrativeWeb Home"
@@ -32917,7 +32903,7 @@ msgstr "Podrobná web stránka"
 
 #: ../gramps/plugins/webreport/webcal.py:579
 msgid "Full year at a Glance"
-msgstr "Celý rok, prehľad"
+msgstr "Celý rok - prehľad"
 
 #: ../gramps/plugins/webreport/webcal.py:843
 msgid "Formatting months ..."
@@ -32931,7 +32917,7 @@ msgstr "Vytváranie kalendára typu zbežný pohľad"
 #: ../gramps/plugins/webreport/webcal.py:910
 #, python-format
 msgid "%(year)d, At A Glance"
-msgstr "%(year)d, prehľad"
+msgstr "%(year)d - prehľad"
 
 #: ../gramps/plugins/webreport/webcal.py:924
 msgid ""
@@ -32940,7 +32926,7 @@ msgid ""
 "shows all the events for that date, if there are any.\n"
 msgstr ""
 "Účelom tohto kalendára je zobraziť všetky Vaše dáta sústredené na jednu "
-"stránku. Kliknutie na niektorý dátum vás prevedie k stránke zobrazujúcej "
+"stránku. Kliknutie na niektorý dátum Vás prevedie k stránke zobrazujúcej "
 "všetky udalosti k tomuto dátumu, ak nejaké existujú.\n"
 
 #. page title
@@ -33016,63 +33002,63 @@ msgstr "Link pre presmerovanie používateľa na hlavnú stránku"
 
 #: ../gramps/plugins/webreport/webcal.py:1466
 msgid "Jan - Jun Notes"
-msgstr "Jan -Jun"
+msgstr "Poznámky - jan - jún"
 
 #: ../gramps/plugins/webreport/webcal.py:1468
 msgid "January Note"
-msgstr "Jan"
+msgstr "Poznámka - január"
 
 #: ../gramps/plugins/webreport/webcal.py:1469
 msgid "The note for the month of January"
-msgstr "Poznámka pre január"
+msgstr "Poznámka pre mesiac január"
 
 #: ../gramps/plugins/webreport/webcal.py:1472
 msgid "February Note"
-msgstr "Feb"
+msgstr "Poznámka - február"
 
 #: ../gramps/plugins/webreport/webcal.py:1473
 msgid "The note for the month of February"
-msgstr "Poznámka pre február"
+msgstr "Poznámka pre mesiac február"
 
 #: ../gramps/plugins/webreport/webcal.py:1476
 msgid "March Note"
-msgstr "Mar"
+msgstr "Poznámka - marec"
 
 #: ../gramps/plugins/webreport/webcal.py:1477
 msgid "The note for the month of March"
-msgstr "Poznámka pre marec"
+msgstr "Poznámka pre mesiac marec"
 
 #: ../gramps/plugins/webreport/webcal.py:1480
 msgid "April Note"
-msgstr "Apr"
+msgstr "Poznámka - Apr"
 
 #: ../gramps/plugins/webreport/webcal.py:1481
 msgid "The note for the month of April"
-msgstr "Poznámka pre apríl"
+msgstr "Poznámka pre mesiac apríl"
 
 #: ../gramps/plugins/webreport/webcal.py:1484
 msgid "May Note"
-msgstr "Máj"
+msgstr "Poznámka - máj"
 
 #: ../gramps/plugins/webreport/webcal.py:1485
 msgid "The note for the month of May"
-msgstr "Poznámka pre máj"
+msgstr "Poznámka pre mesiac máj"
 
 #: ../gramps/plugins/webreport/webcal.py:1488
 msgid "June Note"
-msgstr "Jún"
+msgstr "Poznámka - jún"
 
 #: ../gramps/plugins/webreport/webcal.py:1489
 msgid "The note for the month of June"
-msgstr "Poznámka pre jún"
+msgstr "Poznámka pre mesiac jún"
 
 #: ../gramps/plugins/webreport/webcal.py:1492
 msgid "Jul - Dec Notes"
-msgstr "Júl -Dec"
+msgstr "Poznámka - júl - dec"
 
 #: ../gramps/plugins/webreport/webcal.py:1494
 msgid "July Note"
-msgstr "Júl"
+msgstr "Poznámka - júl"
 
 #: ../gramps/plugins/webreport/webcal.py:1495
 msgid "The note for the month of July"
@@ -33080,7 +33066,7 @@ msgstr "Poznámka pre mesiac júl"
 
 #: ../gramps/plugins/webreport/webcal.py:1498
 msgid "August Note"
-msgstr "Aug"
+msgstr "Poznámka - august"
 
 #: ../gramps/plugins/webreport/webcal.py:1499
 msgid "The note for the month of August"
@@ -33088,7 +33074,7 @@ msgstr "Poznámka pre mesiac august"
 
 #: ../gramps/plugins/webreport/webcal.py:1502
 msgid "September Note"
-msgstr "Sep"
+msgstr "Poznámka - september"
 
 #: ../gramps/plugins/webreport/webcal.py:1503
 msgid "The note for the month of September"
@@ -33096,7 +33082,7 @@ msgstr "Poznámka pre mesiac september"
 
 #: ../gramps/plugins/webreport/webcal.py:1506
 msgid "October Note"
-msgstr "Okt"
+msgstr "Poznámka - október"
 
 #: ../gramps/plugins/webreport/webcal.py:1507
 msgid "The note for the month of October"
@@ -33104,7 +33090,7 @@ msgstr "Poznámka pre mesiac október"
 
 #: ../gramps/plugins/webreport/webcal.py:1510
 msgid "November Note"
-msgstr "Nov"
+msgstr "Poznámka - november"
 
 #: ../gramps/plugins/webreport/webcal.py:1511
 msgid "The note for the month of November"
@@ -33112,7 +33098,7 @@ msgstr "Poznámka pre mesiac november"
 
 #: ../gramps/plugins/webreport/webcal.py:1514
 msgid "December Note"
-msgstr "Dec"
+msgstr "Poznámka - december"
 
 #: ../gramps/plugins/webreport/webcal.py:1515
 msgid "The note for the month of December"
@@ -33140,7 +33126,7 @@ msgstr "Link na Podrobná web stránka"
 
 #: ../gramps/plugins/webreport/webcal.py:1542
 msgid "Whether to link data to web report or not"
-msgstr "Či pripojiť link na web výstup alebo nie"
+msgstr "Či pripojiť link na webovú stránku alebo nie"
 
 #: ../gramps/plugins/webreport/webcal.py:1548
 msgid "Link prefix"
@@ -33148,7 +33134,7 @@ msgstr "pripojiť prefix"
 
 #: ../gramps/plugins/webreport/webcal.py:1549
 msgid "A Prefix on the links to take you to Narrated Web Report"
-msgstr "Označenie linkov pre spojenie s podrobným web výstupom"
+msgstr "Označenie linkov pre spojenie s podrobnou webovou stránkou"
 
 #. TRANSLATORS: expands to smth like "12 years old",
 #. where "12 years" is already localized to your language
@@ -33181,7 +33167,7 @@ msgstr "Podrobná web stránka"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:30
 msgid "Produces web (HTML) pages for individuals, or a set of individuals"
-msgstr "Vytvára web (html) stránky pre jednotlivcov alebo súbor jednotlivcov"
+msgstr "Vytvára web (HTML) stránky pre jednotlivcov alebo súbor jednotlivcov"
 
 #: ../gramps/plugins/webreport/webplugins.gpr.py:53
 msgid "Web Calendar"
@@ -33262,7 +33248,7 @@ msgstr "UTF8"
 
 #: gtklist.h:6
 msgid "All rules must apply"
-msgstr "Uplatniť všetky pravidlá"
+msgstr "Použiť všetky pravidlá"
 
 #: gtklist.h:7
 msgid "At least one rule must apply"
