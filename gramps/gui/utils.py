@@ -74,8 +74,6 @@ class CLIVbox():
         pass
     def set_spacing(self, spacing):
         pass
-    def set_border_width(self, width):
-        pass
 
 class CLIDialog:
     """
