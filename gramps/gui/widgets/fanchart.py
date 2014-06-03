@@ -444,8 +444,11 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             if period is None:
                 color = (255, 255, 255)  # white
             else:
-                periodfrac = ((period - self.minperiod) 
-                              / (self.maxperiod - self.minperiod))
+                if self.maxperiod != self.minperiod:
+                    periodfrac = ((period - self.minperiod)
+                                  / (self.maxperiod - self.minperiod))
+                else:
+                    periodfrac = 0.5
                 periodcol = colorsys.hsv_to_rgb(
             (1-periodfrac) * self.cstart_hsv[0] + periodfrac * self.cend_hsv[0], 
             (1-periodfrac) * self.cstart_hsv[1] + periodfrac * self.cend_hsv[1],
