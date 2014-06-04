@@ -58388,6 +58388,9 @@
     <placeobj handle="_4ECKQCWCLO5YIHXEXC" change="1234373374" id="P0957" name="USA" type="Country">
       <ptitle>USA</ptitle>
     </placeobj>
+    <placeobj handle="_4ECKQCWCLO5YIHXEXZ" change="1234373374" id="P1704" name="Puerto Rico" type="Country">
+      <ptitle>Puerto Rico</ptitle>
+    </placeobj>
     <placeobj handle="_4FUJQCDFTJJJNKKJMH" change="1234390522" id="P0958" name="Boone" type="City">
       <ptitle>Boone, IA</ptitle>
       <coord long="-93.8802273" lat="42.0597047"/>
@@ -63446,13 +63449,11 @@
       <ptitle>St. Lawrence, NY, USA</ptitle>
       <placeref hlink="_c96587263cc11e217c35cc9003f"/>
     </placeobj>
-    <placeobj handle="_4ECKQCWCLO5YIHXEXZ" change="1234373374" id="P1704" name="Puerto Rico" type="Country">
-      <ptitle>Puerto Rico</ptitle>
-    </placeobj>
   </places>
   <objects>
     <object handle="_238CGQ939HG18SS5MG" change="1328027353" id="O0010">
       <file src="1897_expeditionsmannschaft_rio_a.jpg" mime="image/jpeg" checksum="352c7ae13b8b642471ecae6fa78ce206" description="1897_expeditionsmannschaft_rio_a"/>
+      <dateval val="1897"/>
       <tagref hlink="_bb80c2b235b0a1b3f49"/>
     </object>
     <object handle="_78V2GQX2FKNSYQ3OHE" change="1185438865" id="O0009">
