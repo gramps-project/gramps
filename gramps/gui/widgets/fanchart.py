@@ -802,7 +802,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
         """
         return TYPE_BOX_NORMAL
 
-    def personpos_at_angle(generation, angledeg, btype):
+    def personpos_at_angle(self, generation, angledeg, btype):
         """
         returns the person in generation generation at angle of type btype.
         """
