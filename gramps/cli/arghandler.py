@@ -417,6 +417,8 @@ class ArgHandler(object):
         if self.list_table:
             print(_('Gramps Family Trees:'))
             summary_list = self.dbman.family_tree_summary()
+            if not summary_list:
+                sys.exit(0)
             print(_("Family Tree"), end="")
             for key in sorted(summary_list[0]):
                 if key !=  "Family Tree":
