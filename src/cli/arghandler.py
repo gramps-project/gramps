@@ -421,6 +421,8 @@ class ArgHandler(object):
         if self.list_table:
             print _('Gramps Family Trees:').encode(sys.getfilesystemencoding())
             summary_list = self.dbman.family_tree_summary()
+            if not summary_list:
+                sys.exit(0)
             print _("Family Tree").encode(sys.getfilesystemencoding()),
             for key in sorted(summary_list[0]):
                 if key !=  _("Family tree"):
