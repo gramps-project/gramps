@@ -27,9 +27,7 @@ Provide the basic functionality for a list view
 # GTK 
 #
 #-------------------------------------------------------------------------
-from gi.repository import Pango
-from gi.repository import Gdk
-from gi.repository import Gtk
+from gi.repository import Pango, Gdk, Gtk, GdkPixbuf
 from gramps.gen.const import THUMBSCALE
 
 #-------------------------------------------------------------------------
