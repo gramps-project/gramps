@@ -46,6 +46,8 @@ import tempfile
 #
 #-------------------------------------------------------------------------
 from ..constfunc import conv_to_unicode
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 def crop_percentage_to_subpixel(width, height, crop):
     """
