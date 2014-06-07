@@ -29,7 +29,7 @@ Package providing filtering framework for GRAMPS.
 # GTK
 #
 #-------------------------------------------------------------------------
-from gi.repository import Gtk
+from gi.repository import Gtk, GObject
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 

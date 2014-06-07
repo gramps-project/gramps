@@ -35,8 +35,7 @@ importers, exporters, quick reports, and document generators.
 #
 #-------------------------------------------------------------------------
 import os
-from gi.repository import Gtk
-from gi.repository import GdkPixbuf
+from gi.repository import Gtk, GdkPixbuf, Gdk
 
 #-------------------------------------------------------------------------
 #
