@@ -494,6 +494,7 @@ gramps/plugins/rel/rel_sv.py
 # plugins/sidebar directory
 #
 gramps/plugins/sidebar/categorysidebar.py
+gramps/plugins/sidebar/expandersidebar.py
 gramps/plugins/sidebar/__init__.py
 #
 # Development tools

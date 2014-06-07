@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-26 17:53+0200\n"
+"POT-Creation-Date: 2014-06-07 12:49+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -678,8 +678,8 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/cli/arghandler.py:413 ../gramps/cli/arghandler.py:414
-#: ../gramps/cli/arghandler.py:423 ../gramps/cli/arghandler.py:430
-#: ../gramps/cli/arghandler.py:431 ../gramps/cli/arghandler.py:433
+#: ../gramps/cli/arghandler.py:425 ../gramps/cli/arghandler.py:432
+#: ../gramps/cli/arghandler.py:433 ../gramps/cli/arghandler.py:435
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:220
 #: ../gramps/gui/clipboard.py:953 ../gramps/gui/configure.py:1364
 msgid "Family Tree"
@@ -690,105 +690,105 @@ msgstr ""
 msgid "Family Tree \"%s\":"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:443
+#: ../gramps/cli/arghandler.py:445
 #, python-format
 msgid "Performing action: %s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:445
+#: ../gramps/cli/arghandler.py:447
 #, python-format
 msgid "Using options string: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:450
+#: ../gramps/cli/arghandler.py:452
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:457
+#: ../gramps/cli/arghandler.py:459
 msgid "Exiting."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:461
+#: ../gramps/cli/arghandler.py:463
 msgid "Cleaning up."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:492
+#: ../gramps/cli/arghandler.py:494
 msgid "Created empty Family Tree successfully"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:495 ../gramps/cli/arghandler.py:520
+#: ../gramps/cli/arghandler.py:497 ../gramps/cli/arghandler.py:522
 msgid "Error opening the file."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:496 ../gramps/cli/arghandler.py:521
+#: ../gramps/cli/arghandler.py:498 ../gramps/cli/arghandler.py:523
 msgid "Exiting..."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:500
+#: ../gramps/cli/arghandler.py:502
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:518
+#: ../gramps/cli/arghandler.py:520
 msgid "Opened successfully!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:532
+#: ../gramps/cli/arghandler.py:534
 msgid "Database is locked, cannot open it!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:533
+#: ../gramps/cli/arghandler.py:535
 #, python-format
 msgid "  Info: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:536
+#: ../gramps/cli/arghandler.py:538
 msgid "Database needs recovery, cannot open it!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:587 ../gramps/cli/arghandler.py:635
-#: ../gramps/cli/arghandler.py:682
+#: ../gramps/cli/arghandler.py:589 ../gramps/cli/arghandler.py:637
+#: ../gramps/cli/arghandler.py:684
 msgid "Ignoring invalid options string."
 msgstr ""
 
 #. name exists, but is not in the list of valid report names
-#: ../gramps/cli/arghandler.py:611
+#: ../gramps/cli/arghandler.py:613
 msgid "Unknown report name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:613
+#: ../gramps/cli/arghandler.py:615
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:617 ../gramps/cli/arghandler.py:665
-#: ../gramps/cli/arghandler.py:698
+#: ../gramps/cli/arghandler.py:619 ../gramps/cli/arghandler.py:667
+#: ../gramps/cli/arghandler.py:700
 #, python-format
 msgid ""
 "%s\n"
 " Available names are:"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:659
+#: ../gramps/cli/arghandler.py:661
 msgid "Unknown tool name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:661
+#: ../gramps/cli/arghandler.py:663
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:692
+#: ../gramps/cli/arghandler.py:694
 msgid "Unknown book name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:694
+#: ../gramps/cli/arghandler.py:696
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:703
+#: ../gramps/cli/arghandler.py:705
 #, python-format
 msgid "Unknown action: %s."
 msgstr ""
@@ -6642,10 +6642,10 @@ msgstr ""
 #: ../gramps/plugins/export/exportvcalendar.py:104
 #: ../gramps/plugins/export/exportvcard.py:71
 #: ../gramps/plugins/export/exportvcard.py:75
-#: ../gramps/plugins/lib/libhtmlbackend.py:246
-#: ../gramps/plugins/lib/libhtmlbackend.py:250
-#: ../gramps/plugins/lib/libhtmlbackend.py:256
-#: ../gramps/plugins/lib/libhtmlbackend.py:260
+#: ../gramps/plugins/lib/libhtmlbackend.py:249
+#: ../gramps/plugins/lib/libhtmlbackend.py:253
+#: ../gramps/plugins/lib/libhtmlbackend.py:259
+#: ../gramps/plugins/lib/libhtmlbackend.py:263
 #: ../gramps/plugins/webreport/narrativeweb.py:6999
 #, python-format
 msgid "Could not create %s"
@@ -7092,7 +7092,7 @@ msgstr ""
 msgid "Could not add photo to page"
 msgstr ""
 
-#: ../gramps/gen/plug/report/utils.py:143 ../gramps/gui/utils.py:417
+#: ../gramps/gen/plug/report/utils.py:143 ../gramps/gui/utils.py:415
 #: ../gramps/plugins/textreport/indivcomplete.py:596
 msgid "File does not exist"
 msgstr ""
@@ -7683,7 +7683,7 @@ msgstr ""
 msgid "See details"
 msgstr ""
 
-#: ../gramps/gen/utils/image.py:123
+#: ../gramps/gen/utils/image.py:125
 msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
@@ -9286,7 +9286,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/gui/dialog.py:336 ../gramps/gui/utils.py:303
+#: ../gramps/gui/dialog.py:336 ../gramps/gui/utils.py:301
 msgid "Attempt to force closing the dialog"
 msgstr ""
 
@@ -10672,30 +10672,30 @@ msgstr ""
 msgid "Cannot save media object. ID already exists."
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:301
+#: ../gramps/gui/editors/editmedia.py:302
 msgid "There is no media matching the current path value!"
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:302
+#: ../gramps/gui/editors/editmedia.py:303
 #, python-format
 msgid ""
 "You have attempted to use the path with value '%(path)s'. This path does not "
 "exist! Please enter a different path"
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:315
+#: ../gramps/gui/editors/editmedia.py:316
 #: ../gramps/gui/editors/editmediaref.py:511
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:320
+#: ../gramps/gui/editors/editmedia.py:321
 #: ../gramps/gui/editors/editmediaref.py:505
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:357
+#: ../gramps/gui/editors/editmedia.py:358
 msgid "Remove Media Object"
 msgstr ""
 
@@ -15153,23 +15153,23 @@ msgstr ""
 msgid "History cleared"
 msgstr ""
 
-#: ../gramps/gui/utils.py:224
+#: ../gramps/gui/utils.py:222
 msgid "Canceling..."
 msgstr ""
 
-#: ../gramps/gui/utils.py:304
+#: ../gramps/gui/utils.py:302
 msgid "Please do not force closing this important dialog."
 msgstr ""
 
-#: ../gramps/gui/utils.py:367
+#: ../gramps/gui/utils.py:365
 msgid "The external program failed to launch or experienced an error"
 msgstr ""
 
-#: ../gramps/gui/utils.py:377
+#: ../gramps/gui/utils.py:375
 msgid "Error from external program"
 msgstr ""
 
-#: ../gramps/gui/utils.py:594
+#: ../gramps/gui/utils.py:592
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -15180,7 +15180,7 @@ msgid ""
 "citation alone"
 msgstr ""
 
-#: ../gramps/gui/utils.py:607
+#: ../gramps/gui/utils.py:605
 msgid "Cannot open new citation editor"
 msgstr ""
 
