@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
@@ -8,10 +9,10 @@
 # Copyright (C) 2008-2009 James Friedmann <jfriedmannj@gmail.com>
 # Copyright (C) 2009      Benny Malengier <benny.malengier@gramps-project.org>
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2010      Vlada Peri\u0107
+# Copyright (C) 2010      Vlada Perić <vlada.peric@gmail.com>
 # Copyright (C) 2011      Matt Keenan <matt.keenan@gmail.com>
 # Copyright (C) 2011      Tim G L Lyons
-# Copyright (C) 2013      Paul Franklin
+# Copyright (C) 2013-2014 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -96,7 +97,8 @@ class DetDescendantReport(Report):
         repplace      - Whether to replace missing Places with ___________.
         repdate       - Whether to replace missing Dates with ___________.
         computeage    - Whether to compute age.
-        omitda        - Whether to omit duplicate ancestors (e.g. when distant cousins marry).
+        omitda        - Whether to omit duplicate ancestors
+                            (e.g. when distant cousins marry).
         verbose       - Whether to use complete sentences.
         numbering     - The descendancy numbering system to be utilized.
         desref        - Whether to add descendant references in child list.
@@ -104,17 +106,22 @@ class DetDescendantReport(Report):
         incnames      - Whether to include other names.
         incevents     - Whether to include events.
         incaddresses  - Whether to include addresses.
-        incsrcnotes   - Whether to include source notes in the Endnotes section. Only works if Include sources is selected.
+        incsrcnotes   - Whether to include source notes in the Endnotes
+                            section. Only works if Include sources is selected.
         incmates      - Whether to include information about spouses
         incattrs      - Whether to include attributes
-        incpaths      - Whether to include the path of descendancy from the start-person to each descendant.
-        incssign      - Whether to include a sign ('+') before the descendant number in the child-list to indicate a child has succession.
+        incpaths      - Whether to include the path of descendancy 
+                            from the start-person to each descendant.
+        incssign      - Whether to include a sign ('+') before the
+                            descendant number in the child-list
+                            to indicate a child has succession.
         pid           - The Gramps ID of the center person for the report.
         name_format   - Preferred format to display names
         incmateref    - Whether to print mate information or reference
         """
         Report.__init__(self, database, options, user)
 
+        self.db = database
         self.map = {}
         self._user = user
 
@@ -174,7 +181,7 @@ class DetDescendantReport(Report):
         if name_format != 0:
             self._name_display.set_default_format(name_format)
 
-        self.__narrator = Narrator(self.database, self.verbose,
+        self.__narrator = Narrator(self.db, self.verbose,
                                    use_call, use_fulldate, 
                                    empty_date, empty_place,
                                    nlocale=self._locale,
@@ -193,10 +200,10 @@ class DetDescendantReport(Report):
         else: 
             self.gen_keys[cur_gen-1].append(index)
 
-        person = self.database.get_person_from_handle(person_handle)
+        person = self.db.get_person_from_handle(person_handle)
         index = 0
         for family_handle in person.get_family_handle_list():
-            family = self.database.get_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
                 ix = max(self.map)
                 self.apply_henry_filter(child_ref.ref, ix+1,
@@ -215,14 +222,14 @@ class DetDescendantReport(Report):
         else: 
             self.gen_keys[cur_gen-1].append(index)
 
-        person = self.database.get_person_from_handle(person_handle)
+        person = self.db.get_person_from_handle(person_handle)
         index = 1
         for family_handle in person.get_family_handle_list():
-            family = self.database.get_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
                 ix = max(self.map)
                 self.apply_daboville_filter(child_ref.ref, ix+1,
-                                  pid+"."+str(index), cur_gen+1)
+                                            pid+"."+str(index), cur_gen+1)
                 index += 1
 
     # Filter for Record-style (Modified Register) numbering
@@ -236,10 +243,10 @@ class DetDescendantReport(Report):
         else: 
             self.gen_keys[cur_gen-1].append(index)
 
-        person = self.database.get_person_from_handle(person_handle)
+        person = self.db.get_person_from_handle(person_handle)
 
         for family_handle in person.get_family_handle_list():
-            family = self.database.get_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             for child_ref in family.get_child_ref_list():
                 ix = max(self.map)
                 self.apply_mod_reg_filter_aux(child_ref.ref, ix+1, cur_gen+1)
@@ -267,13 +274,16 @@ class DetDescendantReport(Report):
         else:
             raise AttributeError("no such numbering: '%s'" % self.numbering)
 
-        name = self._name_display.display_name(self.center_person.get_primary_name())
+        name = self._name_display.display_name(
+                                      self.center_person.get_primary_name())
+        if not name:
+            name = self._("Unknown")
 
         self.doc.start_paragraph("DDR-Title")
 
         # feature request 2356: avoid genitive form
         title = self._("Descendant Report for %(person_name)s") % {
-                    'person_name' : name }
+                           'person_name' : name }
         mark = IndexMark(title, INDEX_TYPE_TOC, 1)
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
@@ -302,7 +312,7 @@ class DetDescendantReport(Report):
             if self.pgbrkenotes:
                 self.doc.page_break()
             # it ignores language set for Note type (use locale)
-            endnotes.write_endnotes(self.bibli, self.database, self.doc,
+            endnotes.write_endnotes(self.bibli, self.db, self.doc,
                                     printnotes=self.inc_srcnotes,
                                     elocale=self._locale)
 
@@ -312,18 +322,18 @@ class DetDescendantReport(Report):
             #person changes in the loop
             family_handle = person.get_main_parents_family_handle()
             if family_handle:
-                family = self.database.get_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 mother_handle = family.get_mother_handle()
                 father_handle = family.get_father_handle()
                 if mother_handle and mother_handle in self.dnumber:
-                    person = self.database.get_person_from_handle(mother_handle)
-                    person_name = \
-                        self._name_display.display_name(person.get_primary_name())
+                    person = self.db.get_person_from_handle(mother_handle)
+                    person_name = self._name_display.display_name(
+                                                person.get_primary_name())
                     path.append(person_name)
                 elif father_handle and father_handle in self.dnumber:
-                    person = self.database.get_person_from_handle(father_handle)
-                    person_name = \
-                        self._name_display.display_name(person.get_primary_name())
+                    person = self.db.get_person_from_handle(father_handle)
+                    person_name = self._name_display.display_name(
+                                                person.get_primary_name())
                     path.append(person_name)
                 else:
                     break
@@ -347,7 +357,7 @@ class DetDescendantReport(Report):
         """Output birth, death, parentage, marriage and notes information """
 
         person_handle = self.map[key]
-        person = self.database.get_person_from_handle(person_handle)
+        person = self.db.get_person_from_handle(person_handle)
 
         val = self.dnumber[person_handle]
 
@@ -358,14 +368,16 @@ class DetDescendantReport(Report):
 
         self.doc.start_paragraph("DDR-First-Entry","%s." % val)
 
-        name = self._name_display.display_formal(person)
-        mark = ReportUtils.get_person_mark(self.database, person)
+        name = self._name_display.display(person)
+        if not name:
+            name = self._("Unknown")
+        mark = ReportUtils.get_person_mark(self.db, person)
 
         self.doc.start_bold()
         self.doc.write_text(name, mark)
         if name[-1:] == '.':
             self.doc.write_text_citation("%s " % self.endnotes(person))
-        else:
+        elif name:
             self.doc.write_text_citation("%s. " % self.endnotes(person))
         self.doc.end_bold()
 
@@ -394,7 +406,7 @@ class DetDescendantReport(Report):
         if (self.inc_mates or self.listchildren or self.inc_notes or
             self.inc_events or self.inc_attrs):
             for family_handle in person.get_family_handle_list():
-                family = self.database.get_family_from_handle(family_handle)
+                family = self.db.get_family_from_handle(family_handle)
                 if self.inc_mates:
                     self.__write_mate(person, family)
                 if self.listchildren:
@@ -409,7 +421,7 @@ class DetDescendantReport(Report):
 
     def write_event(self, event_ref):
         text = ""
-        event = self.database.get_event_from_handle(event_ref.ref)
+        event = self.db.get_event_from_handle(event_ref.ref)
 
         if self.fulldate:
             date = self._get_date(event.get_date_object())
@@ -418,7 +430,7 @@ class DetDescendantReport(Report):
 
         ph = event.get_place_handle()
         if ph:
-            place = self.database.get_place_from_handle(ph).get_title()
+            place = self.db.get_place_from_handle(ph).get_title()
         else:
             place = ''
 
@@ -443,8 +455,8 @@ class DetDescendantReport(Report):
             text += ". "
             
         text = self._('%(event_name)s: %(event_text)s') % {
-                 'event_name' : self._(event_name),
-                 'event_text' : text }
+                             'event_name' : self._(event_name),
+                             'event_text' : text }
         
         self.doc.write_text_citation(text)
         
@@ -458,9 +470,9 @@ class DetDescendantReport(Report):
                     text += self._("; ")
                 attrName = self._get_type(attr.get_type())
                 text += self._("%(type)s: %(value)s%(endnotes)s") % {
-                    'type'     : self._(attrName),
-                    'value'    : attr.get_value(),
-                    'endnotes' : self.endnotes(attr) }
+                                    'type'     : self._(attrName),
+                                    'value'    : attr.get_value(),
+                                    'endnotes' : self.endnotes(attr) }
             text = " " + text
             self.doc.write_text_citation(text)
 
@@ -472,7 +484,7 @@ class DetDescendantReport(Report):
             notelist = event.get_note_list()
             notelist.extend(event_ref.get_note_list())
             for notehandle in notelist:
-                note = self.database.get_note_from_handle(notehandle)
+                note = self.db.get_note_from_handle(notehandle)
                 self.doc.write_styled_note(note.get_styledtext(), 
                         note.get_format(),"DDR-MoreDetails",
                         contains_html= note.get_type() == NoteType.HTML_CODE)
@@ -480,22 +492,22 @@ class DetDescendantReport(Report):
     def __write_parents(self, person):
         family_handle = person.get_main_parents_family_handle()
         if family_handle:
-            family = self.database.get_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             mother_handle = family.get_mother_handle()
             father_handle = family.get_father_handle()
             if mother_handle:
-                mother = self.database.get_person_from_handle(mother_handle)
-                mother_name = \
-                    self._name_display.display_name(mother.get_primary_name())
-                mother_mark = ReportUtils.get_person_mark(self.database, mother)
+                mother = self.db.get_person_from_handle(mother_handle)
+                mother_name = self._name_display.display_name(
+                                                    mother.get_primary_name())
+                mother_mark = ReportUtils.get_person_mark(self.db, mother)
             else:
                 mother_name = ""
                 mother_mark = ""
             if father_handle:
-                father = self.database.get_person_from_handle(father_handle)
-                father_name = \
-                    self._name_display.display_name(father.get_primary_name())
-                father_mark = ReportUtils.get_person_mark(self.database, father)
+                father = self.db.get_person_from_handle(father_handle)
+                father_name = self._name_display.display_name(
+                                                    father.get_primary_name())
+                father_mark = ReportUtils.get_person_mark(self.db, father)
             else:
                 father_name = ""
                 father_mark = ""
@@ -513,17 +525,16 @@ class DetDescendantReport(Report):
         """
         is_first = True
         for family_handle in person.get_family_handle_list():
-            family = self.database.get_family_from_handle(family_handle)
+            family = self.db.get_family_from_handle(family_handle)
             spouse_handle = ReportUtils.find_spouse(person, family)
-            spouse = self.database.get_person_from_handle(spouse_handle)
-            if spouse:
-                name = self._name_display.display_formal(spouse)
-            else:
-                name = ""
-            text = ""
-            spouse_mark = ReportUtils.get_person_mark(self.database, spouse)
+            spouse = self.db.get_person_from_handle(spouse_handle)
             
-            text = self.__narrator.get_married_string(family, is_first, self._name_display)
+            text = ""
+            spouse_mark = ReportUtils.get_person_mark(self.db, spouse)
+            
+            text = self.__narrator.get_married_string(family,
+                                                      is_first,
+                                                      self._name_display)
             
             if text:
                 self.doc.write_text_citation(text, spouse_mark)
@@ -539,15 +550,18 @@ class DetDescendantReport(Report):
             mate_handle = family.get_father_handle()
             
         if mate_handle:
-            mate = self.database.get_person_from_handle(mate_handle)
+            mate = self.db.get_person_from_handle(mate_handle)
 
             self.doc.start_paragraph("DDR-MoreHeader")
-            name = self._name_display.display_formal(mate)
-            mark = ReportUtils.get_person_mark(self.database, mate)
+            name = self._name_display.display(mate)
+            if not name:
+                name = self._("Unknown")
+            mark = ReportUtils.get_person_mark(self.db, mate)
             if family.get_relationship() == FamilyRelType.MARRIED:
                 self.doc.write_text(self._("Spouse: %s") % name, mark)
             else:
-                self.doc.write_text(self._("Relationship with: %s") % name, mark)
+                self.doc.write_text(self._("Relationship with: %s")
+                                               % name, mark)
             if name[-1:] != '.':
                 self.doc.write_text(".")
             self.doc.write_text_citation(self.endnotes(mate))
@@ -562,7 +576,8 @@ class DetDescendantReport(Report):
                     self.doc.start_paragraph('DDR-MoreDetails')
                     self.doc.write_text_citation(
                         self._("Ref: %(number)s. %(name)s") %
-                        {'number': self.dnumber[mate_handle], 'name': name})
+                                    {'number': self.dnumber[mate_handle],
+                                     'name': name})
                     self.doc.end_paragraph()
                 else:
                     self.dmates[mate_handle] = person.get_handle()
@@ -571,17 +586,21 @@ class DetDescendantReport(Report):
     def __get_mate_names(self, family):
         mother_handle = family.get_mother_handle()
         if mother_handle:
-            mother = self.database.get_person_from_handle(mother_handle)
+            mother = self.db.get_person_from_handle(mother_handle)
             mother_name = self._name_display.display(mother)
+            if not mother_name:
+                mother_name = self._("Unknown")
         else:
-            mother_name = self._("unknown")
+            mother_name = self._("Unknown")
 
         father_handle = family.get_father_handle()
         if father_handle:
-            father = self.database.get_person_from_handle(father_handle)
+            father = self.db.get_person_from_handle(father_handle)
             father_name = self._name_display.display(father)
+            if not father_name:
+                father_name = self._("Unknown")
         else:
-            father_name = self._("unknown")
+            father_name = self._("Unknown")
 
         return mother_name, father_name
 
@@ -596,18 +615,19 @@ class DetDescendantReport(Report):
 
         self.doc.start_paragraph("DDR-ChildTitle")
         self.doc.write_text(
-                        self._("Children of %(mother_name)s and %(father_name)s") % 
+            self._("Children of %(mother_name)s and %(father_name)s") % 
                             {'father_name': father_name,
-                             'mother_name': mother_name
-                             } )
+                             'mother_name': mother_name } )
         self.doc.end_paragraph()
 
         cnt = 1
         for child_ref in family.get_child_ref_list():
             child_handle = child_ref.ref
-            child = self.database.get_person_from_handle(child_handle)
+            child = self.db.get_person_from_handle(child_handle)
             child_name = self._name_display.display(child)
-            child_mark = ReportUtils.get_person_mark(self.database, child)
+            if not child_name:
+                child_name = self._("Unknown")
+            child_mark = ReportUtils.get_person_mark(self.db, child)
 
             if self.childref and self.prev_gen_handles.get(child_handle):
                 value = str(self.prev_gen_handles.get(child_handle))
@@ -616,7 +636,7 @@ class DetDescendantReport(Report):
             if self.inc_ssign:
                 prefix = " "
                 for family_handle in child.get_family_handle_list():
-                    family = self.database.get_family_from_handle(family_handle)
+                    family = self.db.get_family_from_handle(family_handle)
                     if family.get_child_ref_list():
                         prefix = "+ "
                         break
@@ -637,11 +657,13 @@ class DetDescendantReport(Report):
 
             self.doc.write_text("%s. " % child_name, child_mark)
             self.__narrator.set_subject(child)
-            self.doc.write_text_citation(self.__narrator.get_born_string() or
-                                         self.__narrator.get_christened_string() or
-                                         self.__narrator.get_baptised_string())
-            self.doc.write_text_citation(self.__narrator.get_died_string() or 
-                                         self.__narrator.get_buried_string())
+            self.doc.write_text_citation(
+                                self.__narrator.get_born_string() or
+                                self.__narrator.get_christened_string() or
+                                self.__narrator.get_baptised_string())
+            self.doc.write_text_citation(
+                                self.__narrator.get_died_string() or
+                                self.__narrator.get_buried_string())
             self.doc.end_paragraph()
 
     def __write_family_notes(self, family):
@@ -655,11 +677,11 @@ class DetDescendantReport(Report):
             self.doc.start_paragraph("DDR-NoteHeader")
             self.doc.write_text(
                 self._('Notes for %(mother_name)s and %(father_name)s:') % { 
-                'mother_name' : mother_name,
-                'father_name' : father_name })
+                            'mother_name' : mother_name,
+                            'father_name' : father_name })
             self.doc.end_paragraph()
             for notehandle in notelist:
-                note = self.database.get_note_from_handle(notehandle)
+                note = self.db.get_note_from_handle(notehandle)
                 self.doc.write_styled_note(note.get_styledtext(), 
                                            note.get_format(),"DDR-Entry")
 
@@ -677,9 +699,9 @@ class DetDescendantReport(Report):
             if first:
                 self.doc.start_paragraph('DDR-MoreHeader')
                 self.doc.write_text(
-                    self._('More about %(mother_name)s and %(father_name)s:') % { 
-                    'mother_name' : mother_name,
-                    'father_name' : father_name })
+                    self._('More about %(mother_name)s and %(father_name)s:')
+                                % {'mother_name' : mother_name,
+                                   'father_name' : father_name })
                 self.doc.end_paragraph()
                 first = 0
             self.write_event(event_ref)
@@ -696,18 +718,18 @@ class DetDescendantReport(Report):
 
             self.doc.start_paragraph('DDR-MoreHeader')
             self.doc.write_text(
-                self._('More about %(mother_name)s and %(father_name)s:') % { 
-                'mother_name' : mother_name,
-                'father_name' : father_name })
+                self._('More about %(mother_name)s and %(father_name)s:')
+                            % {'mother_name' : mother_name,
+                               'father_name' : father_name })
             self.doc.end_paragraph()
 
         for attr in attrs:
             self.doc.start_paragraph('DDR-MoreDetails')
             attrName = self._get_type(attr.get_type())
             text = self._("%(type)s: %(value)s%(endnotes)s") % {
-                'type'     : self._(attrName),
-                'value'    : attr.get_value(),
-                'endnotes' : self.endnotes(attr) }
+                                'type'     : self._(attrName),
+                                'value'    : attr.get_value(),
+                                'endnotes' : self.endnotes(attr) }
             self.doc.write_text_citation( text )
             self.doc.end_paragraph()
 
@@ -716,19 +738,22 @@ class DetDescendantReport(Report):
                 # get the text and format it correctly
                 notelist = attr.get_note_list()
                 for notehandle in notelist:
-                    note = self.database.get_note_from_handle(notehandle)
+                    note = self.db.get_note_from_handle(notehandle)
                     self.doc.write_styled_note(note.get_styledtext(), 
-                                               note.get_format(),"DDR-MoreDetails")
+                                               note.get_format(),
+                                               "DDR-MoreDetails")
 
 
     def write_person_info(self, person):
-        name = self._name_display.display_formal(person)
+        name = self._name_display.display(person)
+        if not name:
+            name = self._("Unknown")
         self.__narrator.set_subject(person)
         
         plist = person.get_media_list()
         if self.addimages and len(plist) > 0:
             photo = plist[0]
-            ReportUtils.insert_image(self.database, self.doc, photo, self._user)
+            ReportUtils.insert_image(self.db, self.doc, photo, self._user)
         
         self.doc.start_paragraph("DDR-Entry")
         
@@ -767,7 +792,7 @@ class DetDescendantReport(Report):
             self.doc.write_text(self._("Notes for %s") % name)
             self.doc.end_paragraph()
             for notehandle in notelist:
-                note = self.database.get_note_from_handle(notehandle)
+                note = self.db.get_note_from_handle(notehandle)
                 self.doc.write_styled_note(note.get_styledtext(), 
                         note.get_format(),"DDR-Entry",
                         contains_html= note.get_type() == NoteType.HTML_CODE)
@@ -777,26 +802,27 @@ class DetDescendantReport(Report):
             for alt_name in person.get_alternate_names():
                 if first:
                     self.doc.start_paragraph('DDR-MoreHeader')
-                    self.doc.write_text(self._('More about %(person_name)s:') % { 
-                        'person_name' : name })
+                    self.doc.write_text(self._('More about %(person_name)s:')
+                                                    % {'person_name' : name })
                     self.doc.end_paragraph()
                     first = False
                 self.doc.start_paragraph('DDR-MoreDetails')
                 atype = self._get_type(alt_name.get_type())
                 aname = alt_name.get_regular_name()
-                self.doc.write_text_citation(self._('%(name_kind)s: %(name)s%(endnotes)s') % {
-                    'name_kind' : self._(atype),
-                    'name' : aname,
-                    'endnotes' : self.endnotes(alt_name),
-                    })
+                self.doc.write_text_citation(
+                    self._('%(name_kind)s: %(name)s%(endnotes)s')
+                                % {'name_kind' : self._(atype),
+                                   'name' : aname,
+                                   'endnotes' : self.endnotes(alt_name),
+                                  })
                 self.doc.end_paragraph()
 
         if self.inc_events:
             for event_ref in person.get_primary_event_ref_list():
                 if first:
                     self.doc.start_paragraph('DDR-MoreHeader')
-                    self.doc.write_text(self._('More about %(person_name)s:') % { 
-                        'person_name' : self._name_display.display(person) })
+                    self.doc.write_text(self._('More about %(person_name)s:')
+                                                    % {'person_name' : name })
                     self.doc.end_paragraph()
                     first = 0
 
@@ -806,8 +832,8 @@ class DetDescendantReport(Report):
             for addr in person.get_address_list():
                 if first:
                     self.doc.start_paragraph('DDR-MoreHeader')
-                    self.doc.write_text(self._('More about %(person_name)s:') % { 
-                        'person_name' : name })
+                    self.doc.write_text(self._('More about %(person_name)s:')
+                                                    % {'person_name' : name })
                     self.doc.end_paragraph()
                     first = False
                 self.doc.start_paragraph('DDR-MoreDetails')
@@ -840,9 +866,9 @@ class DetDescendantReport(Report):
                 self.doc.start_paragraph('DDR-MoreDetails')
                 attrName = self._get_type(attr.get_type())
                 text = self._("%(type)s: %(value)s%(endnotes)s") % {
-                    'type'     : self._(attrName),
-                    'value'    : attr.get_value(),
-                    'endnotes' : self.endnotes(attr) }
+                                    'type'     : self._(attrName),
+                                    'value'    : attr.get_value(),
+                                    'endnotes' : self.endnotes(attr) }
                 self.doc.write_text_citation( text )
                 self.doc.end_paragraph()
 
@@ -850,7 +876,7 @@ class DetDescendantReport(Report):
         if not obj or not self.inc_sources:
             return ""
         
-        txt = endnotes.cite_source(self.bibli, self.database, obj)
+        txt = endnotes.cite_source(self.bibli, self.db, obj)
         if txt:
             txt = '<super>' + txt + '</super>'
         return txt

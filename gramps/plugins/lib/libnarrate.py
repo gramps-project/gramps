@@ -7,7 +7,7 @@
 # Copyright (C) 2011       Vlada Perić <vlada.peric@gmail.com>
 # Copyright (C) 2011       Matt Keenan <matt.keenan@gmail.com>
 # Copyright (C) 2011       Tim G L Lyons
-# Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2013-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -1377,8 +1377,8 @@ class Narrator(object):
             would represent a reference to an endnote in a document.
         :type get_endnote_numbers: 
             callable( :class:`~gen.lib.CitationBase` )
-        @param nlocale: allow deferred translation of dates and strings
-        @type nlocale: a GrampsLocale instance
+        :param nlocale: allow deferred translation of dates and strings
+        :type nlocale: a GrampsLocale instance
         """ 
         self.__db = dbase
         self.__verbose = verbose
@@ -1401,7 +1401,7 @@ class Narrator(object):
         used in the first sentence. A pronoun will be used as the subject for 
         each subsequent sentence.
         :param person: The person to be the subject of the story.
-        :type dbase: :class:`~gen.lib.person,Person`
+        :type person: :class:`~gen.lib.person,Person`
         """ 
         self.__person = person
         
@@ -1410,7 +1410,10 @@ class Narrator(object):
         else:
             self.__first_name = person.get_primary_name().get_first_name()
 
-        self.__first_name_used = False
+        if self.__first_name:
+            self.__first_name_used = False # use their name the first time
+        else:
+            self.__first_name_used = True # but use a pronoun if no name
 
     def get_born_string(self):
         """ 
@@ -1665,7 +1668,7 @@ class Narrator(object):
         for event_ref in self.__person.get_event_ref_list():
             event = self.__db.get_event_from_handle(event_ref.ref)
             if event and event.type.value == EventType.BURIAL \
-                and event_ref.role.value == EventRoleType.PRIMARY:
+                     and event_ref.role.value == EventRoleType.PRIMARY:
                 burial = event
                 break
     
@@ -1994,6 +1997,8 @@ class Narrator(object):
                 spouse_name = _nd.display(spouse)
             else:
                 spouse_name = name_display.display(spouse)
+            if not spouse_name:
+                spouse_name = _("Unknown")
         else:
             # not all families have a spouse.
             spouse_name = _("Unknown")
@@ -2059,7 +2064,7 @@ class Narrator(object):
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_date_place['succinct'][date_full]
                 else:
-                    text = relationship_first_date_place['succinct'][date_full]           
+                    text = relationship_first_date_place['succinct'][date_full]
             elif date and self.__verbose:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_date[gender][date_full]
@@ -2094,7 +2099,7 @@ class Narrator(object):
                 elif relationship == FamilyRelType.UNMARRIED:
                     text = unmarried_first_only[gender]
                 else:
-                    text = relationship_first_only[gender]                           
+                    text = relationship_first_only[gender]
             else:
                 if relationship == FamilyRelType.MARRIED:
                     text = marriage_first_only['succinct']
@@ -2242,7 +2247,7 @@ class Narrator(object):
         else:
             death_year_valid = False
     
-        # wihtout at least a year for each event no age can be calculated
+        # without at least a year for each event no age can be calculated
         if birth_year_valid and death_year_valid:
             span = death - birth
             if span and span.is_valid():
