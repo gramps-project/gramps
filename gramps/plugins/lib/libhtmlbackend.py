@@ -46,7 +46,7 @@ from gramps.gen.plug.docbackend import DocBackend
 from gramps.plugins.lib.libhtml import Html, xml_lang
 from gramps.gen.errors import ReportError
 
-from gramps.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 
