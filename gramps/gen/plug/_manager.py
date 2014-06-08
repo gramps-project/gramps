@@ -271,9 +271,11 @@ class BasePluginManager(object):
                                 os.chdir(oldwd)
                                 sys.path.pop(0)
                             except ValueError as err:
-                                LOG.warning('Plugin error: %s', err)
+                                LOG.warning("Plugin error (from '%s'): %s"
+                                                % (pdata.mod_name, err))
                     else:
-                        LOG.warning('Plugin error: %s', err)
+                        LOG.warning("Plugin error (from '%s'): %s"
+                                        % (pdata.mod_name, err))
                 except ImportError as err:
                     # Python2 on Windows not work with unicode in sys.path
                     # but module can be loaded from current directory
@@ -284,9 +286,11 @@ class BasePluginManager(object):
                             module = __import__(pdata.mod_name)
                             os.chdir(oldwd)
                         except ImportError as err:
-                            LOG.warning('Plugin error: %s', err)
+                            LOG.warning("Plugin error (from '%s'): %s"
+                                            % (pdata.mod_name, err))
                     else:
-                        LOG.warning('Plugin error: %s', err)
+                        LOG.warning("Plugin error (from '%s'): %s"
+                                        % (pdata.mod_name, err))
                 sys.path.pop(0)
             else:
                 print("WARNING: module cannot be loaded")
