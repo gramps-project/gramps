@@ -1117,7 +1117,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             #create a byte string key, first validity check in python 3!
             for val in key:
                 if sys.version_info[0] >= 3 and isinstance(val, bytes):
-                    raise DbError(_('An attempt is made to safe a reference key '
+                    raise DbError(_('An attempt is made to save a reference key '
                         'which is partly bytecode, this is not allowed.\n'
                         'Key is %s') % str(key))
             if sys.version_info[0] >= 3:
