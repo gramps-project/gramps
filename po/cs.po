@@ -36,8 +36,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-24 23:11+0200\n"
-"PO-Revision-Date: 2014-05-24 23:11+0100\n"
+"POT-Creation-Date: 2014-06-10 11:55+0200\n"
+"PO-Revision-Date: 2014-06-11 08:44+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -132,8 +132,8 @@ msgstr "Rodokmeny Gramps:"
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/cli/arghandler.py:410 ../gramps/cli/arghandler.py:411
-#: ../gramps/cli/arghandler.py:420 ../gramps/cli/arghandler.py:427
-#: ../gramps/cli/arghandler.py:428 ../gramps/cli/arghandler.py:430
+#: ../gramps/cli/arghandler.py:422 ../gramps/cli/arghandler.py:429
+#: ../gramps/cli/arghandler.py:430 ../gramps/cli/arghandler.py:432
 #: ../gramps/cli/clidbman.py:75 ../gramps/cli/clidbman.py:221
 #: ../gramps/gui/clipboard.py:936 ../gramps/gui/configure.py:1366
 msgid "Family Tree"
@@ -144,82 +144,82 @@ msgstr "Rodokmen"
 msgid "Family Tree \"%s\":"
 msgstr "Rodokmen \"%s\":"
 
-#: ../gramps/cli/arghandler.py:440
+#: ../gramps/cli/arghandler.py:442
 #, python-format
 msgid "Performing action: %s."
 msgstr "Prováděná akce: %s."
 
-#: ../gramps/cli/arghandler.py:442
+#: ../gramps/cli/arghandler.py:444
 #, python-format
 msgid "Using options string: %s"
 msgstr "Použitý řetězec voleb: %s"
 
-#: ../gramps/cli/arghandler.py:447
+#: ../gramps/cli/arghandler.py:449
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr "Exportuje se: soubor %(filename)s, formát %(format)s."
 
-#: ../gramps/cli/arghandler.py:454
+#: ../gramps/cli/arghandler.py:456
 msgid "Exiting."
 msgstr "Ukončuje se."
 
-#: ../gramps/cli/arghandler.py:458
+#: ../gramps/cli/arghandler.py:460
 msgid "Cleaning up."
 msgstr "Probíhá vyčištění."
 
-#: ../gramps/cli/arghandler.py:487
+#: ../gramps/cli/arghandler.py:489
 msgid "Created empty Family Tree successfully"
 msgstr "Prázdný rodokmen byl úspěšně vytvořen"
 
-#: ../gramps/cli/arghandler.py:490 ../gramps/cli/arghandler.py:515
+#: ../gramps/cli/arghandler.py:492 ../gramps/cli/arghandler.py:517
 msgid "Error opening the file."
 msgstr "Chyba při otevírání souboru."
 
-#: ../gramps/cli/arghandler.py:491 ../gramps/cli/arghandler.py:516
+#: ../gramps/cli/arghandler.py:493 ../gramps/cli/arghandler.py:518
 msgid "Exiting..."
 msgstr "Ukončuje se..."
 
-#: ../gramps/cli/arghandler.py:495
+#: ../gramps/cli/arghandler.py:497
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Importuje se: soubor %(filename)s, formát %(format)s."
 
-#: ../gramps/cli/arghandler.py:513
+#: ../gramps/cli/arghandler.py:515
 msgid "Opened successfully!"
 msgstr "Úspěšně otevřeno!"
 
-#: ../gramps/cli/arghandler.py:527
+#: ../gramps/cli/arghandler.py:529
 msgid "Database is locked, cannot open it!"
 msgstr "Databázi nelze otevřít, protože je uzamčená!"
 
-#: ../gramps/cli/arghandler.py:528
+#: ../gramps/cli/arghandler.py:530
 #, python-format
 msgid "  Info: %s"
 msgstr "  Info: %s"
 
-#: ../gramps/cli/arghandler.py:531
+#: ../gramps/cli/arghandler.py:533
 msgid "Database needs recovery, cannot open it!"
 msgstr "Databázi nelze otevřít, je nutná obnova!"
 
-#: ../gramps/cli/arghandler.py:582 ../gramps/cli/arghandler.py:630
-#: ../gramps/cli/arghandler.py:671
+#: ../gramps/cli/arghandler.py:584 ../gramps/cli/arghandler.py:632
+#: ../gramps/cli/arghandler.py:673
 msgid "Ignoring invalid options string."
 msgstr "Ignoruji neplatný řetězec voleb."
 
 #. name exists, but is not in the list of valid report names
-#: ../gramps/cli/arghandler.py:606
+#: ../gramps/cli/arghandler.py:608
 msgid "Unknown report name."
 msgstr "Neznámý název sestavy."
 
-#: ../gramps/cli/arghandler.py:608
+#: ../gramps/cli/arghandler.py:610
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 "Nebyl zadán název sestavy. Použijte prosím jeden z "
 "%(donottranslate)s=reportname"
 
-#: ../gramps/cli/arghandler.py:612 ../gramps/cli/arghandler.py:654
-#: ../gramps/cli/arghandler.py:687
+#: ../gramps/cli/arghandler.py:614 ../gramps/cli/arghandler.py:656
+#: ../gramps/cli/arghandler.py:689
 #, python-format
 msgid ""
 "%s\n"
@@ -228,28 +228,28 @@ msgstr ""
 "%s\n"
 " Dostupné hodnoty jsou:"
 
-#: ../gramps/cli/arghandler.py:648
+#: ../gramps/cli/arghandler.py:650
 msgid "Unknown tool name."
 msgstr "Neznámé jméno nástroje."
 
-#: ../gramps/cli/arghandler.py:650
+#: ../gramps/cli/arghandler.py:652
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 "Nebyl zadán název nástroje. Použijte prosím jeden z "
 "%(donottranslate)s=toolname."
 
-#: ../gramps/cli/arghandler.py:681
+#: ../gramps/cli/arghandler.py:683
 msgid "Unknown book name."
 msgstr "Neznámý název knihy."
 
-#: ../gramps/cli/arghandler.py:683
+#: ../gramps/cli/arghandler.py:685
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
 "Nebyl zadán název knihy. Použijte prosím jeden z %(donottranslate)s=bookname."
 
-#: ../gramps/cli/arghandler.py:692
+#: ../gramps/cli/arghandler.py:694
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Neznámá akce: %s."
@@ -887,7 +887,7 @@ msgstr "Analyzátor data pro '%s' není k dispozici, použije se výchozí"
 msgid "Date displayer for '%s' not available, using default"
 msgstr "Zobrazovač data pro '%s' není k dispozici, použije se výchozí"
 
-#: ../gramps/gen/db/base.py:1611 ../gramps/gui/widgets/fanchart.py:1845
+#: ../gramps/gen/db/base.py:1611 ../gramps/gui/widgets/fanchart.py:1848
 msgid "Add child to family"
 msgstr "Přidat dítě do rodiny"
 
@@ -1205,11 +1205,11 @@ msgstr "Statistiky aktualizace"
 #: ../gramps/gen/db/write.py:1120
 #, python-format
 msgid ""
-"An attempt is made to safe a reference key which is partly bytecode, this is "
+"An attempt is made to save a reference key which is partly bytecode, this is "
 "not allowed.\n"
 "Key is %s"
 msgstr ""
-"Pokus o zabezpečení referenčního klíče, který je částečně v bytecode není "
+"Pokus o uložení referenčního klíče, který je částečně v bytecode není "
 "povolen.\n"
 "Klíč je %s"
 
@@ -5541,10 +5541,10 @@ msgstr "Soubor %s je již otevřený, nejprve jej zavřete."
 #: ../gramps/plugins/export/exportvcalendar.py:105
 #: ../gramps/plugins/export/exportvcard.py:72
 #: ../gramps/plugins/export/exportvcard.py:76
-#: ../gramps/plugins/lib/libhtmlbackend.py:248
-#: ../gramps/plugins/lib/libhtmlbackend.py:252
-#: ../gramps/plugins/lib/libhtmlbackend.py:258
-#: ../gramps/plugins/lib/libhtmlbackend.py:262
+#: ../gramps/plugins/lib/libhtmlbackend.py:251
+#: ../gramps/plugins/lib/libhtmlbackend.py:255
+#: ../gramps/plugins/lib/libhtmlbackend.py:261
+#: ../gramps/plugins/lib/libhtmlbackend.py:265
 #: ../gramps/plugins/webreport/narrativeweb.py:7015
 #, python-format
 msgid "Could not create %s"
@@ -6021,7 +6021,7 @@ msgstr "Vyberte formát zobrazení jmen"
 msgid "Could not add photo to page"
 msgstr "Nelze přidat fotografii na stránku"
 
-#: ../gramps/gen/plug/report/utils.py:145 ../gramps/gui/utils.py:415
+#: ../gramps/gen/plug/report/utils.py:145 ../gramps/gui/utils.py:413
 #: ../gramps/plugins/textreport/indivcomplete.py:596
 msgid "File does not exist"
 msgstr "Soubor neexistuje"
@@ -6413,7 +6413,7 @@ msgstr "%s, ..."
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s a %(mother)s"
 
-#: ../gramps/gen/utils/image.py:125
+#: ../gramps/gen/utils/image.py:127
 msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
@@ -8354,7 +8354,7 @@ msgstr ""
 "hlášení o chybě na http://bugs.gramps-project.org\n"
 "\n"
 
-#: ../gramps/gui/dialog.py:338 ../gramps/gui/utils.py:305
+#: ../gramps/gui/dialog.py:338 ../gramps/gui/utils.py:303
 msgid "Attempt to force closing the dialog"
 msgstr "Pokus o vynucené uzavření dialogu"
 
@@ -8619,7 +8619,7 @@ msgstr "%(part1)s - %(part2)s"
 #: ../gramps/gui/glade/editperson.glade.h:20
 #: ../gramps/gui/glade/rule.glade.h:11
 #: ../gramps/gui/glade/styleeditor.glade.h:37
-#: ../gramps/gui/widgets/fanchart.py:1838
+#: ../gramps/gui/widgets/fanchart.py:1841
 #: ../gramps/plugins/view/relview.py:421
 msgid "Add"
 msgstr "Přidat"
@@ -9812,11 +9812,11 @@ msgstr ""
 msgid "Cannot save media object. ID already exists."
 msgstr "Mediální objekt nelze uložit. ID již existuje."
 
-#: ../gramps/gui/editors/editmedia.py:300
+#: ../gramps/gui/editors/editmedia.py:297
 msgid "There is no media matching the current path value!"
 msgstr "Této hodnotě cesty neodpovídá žádné médium!"
 
-#: ../gramps/gui/editors/editmedia.py:301
+#: ../gramps/gui/editors/editmedia.py:298
 #, python-format
 msgid ""
 "You have attempted to use the path with value '%(path)s'. This path does not "
@@ -9825,19 +9825,19 @@ msgstr ""
 "Pokusili jste se použít cestu s hodnotou '%(path)s'. Tato cesta neexistuje! "
 "Vložte prosím jinou cestu"
 
-#: ../gramps/gui/editors/editmedia.py:314
+#: ../gramps/gui/editors/editmedia.py:311
 #: ../gramps/gui/editors/editmediaref.py:644
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Přidat mediální objekt (%s)"
 
-#: ../gramps/gui/editors/editmedia.py:319
+#: ../gramps/gui/editors/editmedia.py:316
 #: ../gramps/gui/editors/editmediaref.py:638
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Upravit mediální objekt (%s)"
 
-#: ../gramps/gui/editors/editmedia.py:356
+#: ../gramps/gui/editors/editmedia.py:353
 msgid "Remove Media Object"
 msgstr "Odstranit objekt"
 
@@ -13043,7 +13043,7 @@ msgstr "Poznámky"
 #. Go over parents and build their menu
 #. don't show rest
 #: ../gramps/gui/grampsgui.py:173 ../gramps/gui/merge/mergeperson.py:217
-#: ../gramps/gui/widgets/fanchart.py:1761
+#: ../gramps/gui/widgets/fanchart.py:1764
 #: ../gramps/plugins/quickview/all_relations.py:307
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/view/pedigreeview.py:1780
@@ -13523,7 +13523,7 @@ msgstr "Nenalezeni žádní rodiče"
 
 #. Go over spouses and build their menu
 #: ../gramps/gui/merge/mergeperson.py:228
-#: ../gramps/gui/widgets/fanchart.py:1647
+#: ../gramps/gui/widgets/fanchart.py:1650
 #: ../gramps/plugins/textreport/kinshipreport.py:130
 #: ../gramps/plugins/view/pedigreeview.py:1660
 msgid "Spouses"
@@ -14650,23 +14650,23 @@ msgstr "Databáze byla otevřena"
 msgid "History cleared"
 msgstr "Historie byla smazána"
 
-#: ../gramps/gui/utils.py:226
+#: ../gramps/gui/utils.py:224
 msgid "Canceling..."
 msgstr "Přerušuje se..."
 
-#: ../gramps/gui/utils.py:306
+#: ../gramps/gui/utils.py:304
 msgid "Please do not force closing this important dialog."
 msgstr "Nezavírejte vynuceně tento důležitý dialog."
 
-#: ../gramps/gui/utils.py:367
+#: ../gramps/gui/utils.py:365
 msgid "The external program failed to launch or experienced an error"
 msgstr "Spuštění externího programu selhalo nebo skončilo chybou"
 
-#: ../gramps/gui/utils.py:377
+#: ../gramps/gui/utils.py:375
 msgid "Error from external program"
 msgstr "Chyba externího programu"
 
-#: ../gramps/gui/utils.py:592
+#: ../gramps/gui/utils.py:590
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -14683,7 +14683,7 @@ msgstr ""
 "\n"
 "Před úpravou citace zavřete editor pramene a otevřete editor citace samotný"
 
-#: ../gramps/gui/utils.py:605
+#: ../gramps/gui/utils.py:603
 msgid "Cannot open new citation editor"
 msgstr "Nelze otevřít nový editor citací"
 
@@ -15404,24 +15404,24 @@ msgstr "Rozbalit tuto skupinu"
 msgid "Collapse this section"
 msgstr "Sbalit tuto skupinu"
 
-#: ../gramps/gui/widgets/fanchart.py:1591
+#: ../gramps/gui/widgets/fanchart.py:1594
 #: ../gramps/plugins/view/pedigreeview.py:1604
 #: ../gramps/plugins/view/pedigreeview.py:1630
 msgid "People Menu"
 msgstr "Menu osob"
 
-#: ../gramps/gui/widgets/fanchart.py:1614
+#: ../gramps/gui/widgets/fanchart.py:1617
 #: ../gramps/plugins/view/relview.py:827
 msgid "Edit family"
 msgstr "Změnit rodinu"
 
-#: ../gramps/gui/widgets/fanchart.py:1631
+#: ../gramps/gui/widgets/fanchart.py:1634
 #: ../gramps/plugins/view/relview.py:828
 msgid "Reorder families"
 msgstr "Přeskupit rodiny"
 
 #. Go over siblings and build their menu
-#: ../gramps/gui/widgets/fanchart.py:1681
+#: ../gramps/gui/widgets/fanchart.py:1684
 #: ../gramps/plugins/quickview/quickview.gpr.py:316
 #: ../gramps/plugins/view/pedigreeview.py:1695
 #: ../gramps/plugins/view/relview.py:922
@@ -15429,7 +15429,7 @@ msgid "Siblings"
 msgstr "Sourozenci"
 
 #. Go over children and build their menu
-#: ../gramps/gui/widgets/fanchart.py:1724
+#: ../gramps/gui/widgets/fanchart.py:1727
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:778
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:792
 #: ../gramps/plugins/textreport/familygroup.py:598
@@ -15441,20 +15441,20 @@ msgid "Children"
 msgstr "Děti"
 
 #. Go over parents and build their menu
-#: ../gramps/gui/widgets/fanchart.py:1803
+#: ../gramps/gui/widgets/fanchart.py:1806
 #: ../gramps/plugins/view/pedigreeview.py:1828
 msgid "Related"
 msgstr "Související"
 
-#: ../gramps/gui/widgets/fanchart.py:1854
+#: ../gramps/gui/widgets/fanchart.py:1857
 msgid "Add partner to person"
 msgstr "Přidat patnera k osobě"
 
-#: ../gramps/gui/widgets/fanchart.py:1862
+#: ../gramps/gui/widgets/fanchart.py:1865
 msgid "Add a person"
 msgstr "Přidat osobu"
 
-#: ../gramps/gui/widgets/fanchart.py:1937
+#: ../gramps/gui/widgets/fanchart.py:1940
 #: ../gramps/plugins/view/relview.py:1526
 msgid "Add Child to Family"
 msgstr "Přidat dítě do rodiny"
