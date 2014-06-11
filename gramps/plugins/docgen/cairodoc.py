@@ -127,11 +127,11 @@ class CairoDocgen(libcairodoc.CairoDoc):
                         toc_page = page_nr
                     if page.has_index():
                         index_page = page_nr
-                for mark in page.get_marks():
-                    if mark.type == INDEX_TYPE_ALP:
-                        if mark.key in index:
-                            if page_nr + 1 not in index[mark.key]:
-                                index[mark.key].append(page_nr + 1)
+                    for mark in page.get_marks():
+                        if mark.type == INDEX_TYPE_ALP:
+                            if mark.key in index:
+                                if page_nr + 1 not in index[mark.key]:
+                                    index[mark.key].append(page_nr + 1)
                             else:
                                 index[mark.key] = [page_nr + 1]
                         elif mark.type == INDEX_TYPE_TOC:
