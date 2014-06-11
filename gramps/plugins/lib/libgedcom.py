@@ -757,9 +757,9 @@ class Lexer(object):
                     line = line.split('@', 2)
                     # line is now [None, alphanum+pointer_string, rest]
                     tag = '@' + line[1] + '@'
-                    line_value = line[2]
+                    line_value = line[2].lstrip()
                     ## Ignore meaningless @IDENT@ on CONT or CONC line
-                    ## as detailed at http://www.tamurajones.net/IdentCONT.xhtml
+                    ## as noted at http://www.tamurajones.net/IdentCONT.xhtml
                     if (line_value.lstrip().startswith("CONT ") or 
                         line_value.lstrip().startswith("CONC ")):
                         line = line_value.lstrip().partition(' ')
