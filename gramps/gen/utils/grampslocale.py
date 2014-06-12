@@ -862,12 +862,12 @@ class GrampsLocale(object):
             #ICU can digest strings and unicode
             return self.collator.getCollationKey(string).getByteArray()
         else:
+            if sys.version_info[0] < 3 and isinstance(string, unicode):
+                string = string.encode("utf-8", "replace")
+            if sys.version_info[0] >= 3 and isinstance(string, bytes):
+                string = string.decode("utf-8", "replace")
             try:
-                if sys.version_info[0] < 3 and isinstance(string, unicode):
-                    key = locale.strxfrm(string.encode("utf-8", "replace"))
-                else:
-                    key = locale.strxfrm(string)
-
+                key = locale.strxfrm(string)
             except Exception as err:
                 LOG.warn("Failed to obtain key for %s because %s",
                          self.collation, str(err))
