@@ -144,8 +144,8 @@ class CairoDocgen(libcairodoc.CairoDoc):
                     if offset > 0:
                         self.__increment_pages(toc, index, toc_page, offset)
                         rebuild_required = True
-                    else:
-                        toc_pages = []
+                else:
+                    toc_pages = []
         
                 # paginate the index
                 if index_page is not None:
