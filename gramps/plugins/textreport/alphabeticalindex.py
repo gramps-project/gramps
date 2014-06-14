@@ -1,7 +1,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2012       Nick Hall
-# Copyright (C) 2012       Paul Franklin
+# Copyright (C) 2012-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -24,19 +24,20 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 
 #------------------------------------------------------------------------
 #
 # Gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, TableStyle, 
-                             TableCellStyle, FONT_SANS_SERIF,
-                             IndexMark, INDEX_TYPE_TOC)
+                                    TableCellStyle, FONT_SANS_SERIF,
+                                    IndexMark, INDEX_TYPE_TOC)
 
 #------------------------------------------------------------------------
 #
@@ -57,15 +58,15 @@ class AlphabeticalIndex(Report):
         """
         Report.__init__(self, database, options, user)
         self._user = user
+        self.set_locale(options.menu.get_option_by_name('trans').get_value())
 
-        menu = options.menu
-        
     def write_report(self):
         """ Generate the contents of the report """
-        mark = IndexMark(_("Alphabetical Index"), INDEX_TYPE_TOC, 1)
+        mark = IndexMark(self._("Alphabetical Index"), INDEX_TYPE_TOC, 1)
         self.doc.start_paragraph("IDX-Title")
         self.doc.write_text('', mark)
         self.doc.end_paragraph()
+        self.doc.index_title = self._('Index')
         self.doc.insert_index()
 
 #------------------------------------------------------------------------
@@ -85,7 +86,8 @@ class AlphabeticalIndexOptions(MenuReportOptions):
         
     def add_menu_options(self, menu):
         """ Add the options for this report """
-        pass
+        category_name = _("Report Options")
+        stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
         """Make the default output style for the AlphabeticalIndex report."""

@@ -237,7 +237,7 @@ def write_toc(toc, doc):
         return
 
     doc.start_paragraph('TOC-Title')
-    doc.write_text(_('Contents'))
+    doc.write_text(doc.toc_title)
     doc.end_paragraph()
     
     doc.start_table('toc', 'TOC-Table')
@@ -270,7 +270,7 @@ def write_index(index, doc):
         return
 
     doc.start_paragraph('IDX-Title')
-    doc.write_text(_('Index'))
+    doc.write_text(doc.index_title)
     doc.end_paragraph()
     
     doc.start_table('index', 'IDX-Table')
