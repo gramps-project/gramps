@@ -1631,7 +1631,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         Insert a Table of Contents at this point in the document.
         """
-        title = _('Contents')
+        title = self.toc_title
         self.cntnt.write('<text:table-of-content>')
 
         self.cntnt.write('<text:table-of-content-source ' +
@@ -1670,7 +1670,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         Insert an Alphabetical Index at this point in the document.
         """
-        title = _('Index')
+        title = self.index_title
         self.cntnt.write('<text:alphabetical-index>')
         self.cntnt.write('<text:alphabetical-index-source ' +
                          'text:ignore-case="true"  ' +
