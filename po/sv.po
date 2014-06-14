@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-18 20:44+0200\n"
-"PO-Revision-Date: 2014-05-28 10:05+0200\n"
+"PO-Revision-Date: 2014-06-14 15:06+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -6868,11 +6868,11 @@ msgstr "Gatuadress"
 
 #: ../gramps/gen/lib/placetype.py:76
 msgid "Province"
-msgstr "Län/delstat"
+msgstr "Provins"
 
 #: ../gramps/gen/lib/placetype.py:77
 msgid "Region"
-msgstr "Område"
+msgstr "Region"
 
 #: ../gramps/gen/lib/placetype.py:78
 msgid "Department"
