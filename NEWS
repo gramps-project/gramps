@@ -1,3 +1,22 @@
+2014-06-
+Version 4.1.0, the "Name go in book", new major release.
+* GEP 006: Better Place handling
+* GEP 032: DB backend API
+* GEP 033: Abstract DB API
+* New Tags support on Event, Place, Repository, Source, and Citation
+* Source/Citation Data becomes Attributes
+* Add optional support for checksum on Media object
+* New place hierarchies model
+* By default, you can choose navigator modes with a drop down.
+* New Place editor
+* Enhanced MediaReference Editor
+* Some debug tools move to new gramplets
+* Better Python 3 support
+* New functions and widgets related to Place and Media selections
+* Enhancements on to_struct()
+* New methods on Date handlers
+* Better support on translation for inflection rules
+
 2014-05-22
 Version 4.0.4, "Not the comfy chair", a maintenance release.
 * Upgrade to db version 17 fails in Python 3 due to use of iteritems
