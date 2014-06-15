@@ -11312,7 +11312,7 @@ msgstr "Éditeur de nom"
 
 #: ../gramps/gui/editors/editname.py:158
 msgid "Gramps_4.1_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_3"
-msgstr "Gramps_3.4_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_3/fr"
+msgstr "Gramps_4.1_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_3"
 
 #: ../gramps/gui/editors/editname.py:159
 msgid "manpage section id|Name_Editor"
@@ -11429,7 +11429,7 @@ msgstr "Nouvel individu"
 
 #: ../gramps/gui/editors/editperson.py:236
 msgid "Gramps_4.1_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1"
-msgstr "Gramps_3.4_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_1/fr"
+msgstr "Gramps_4.1_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_1"
 
 # manuel wiki
 #: ../gramps/gui/editors/editperson.py:237
@@ -20336,7 +20336,7 @@ msgstr "Manuel en ligne de Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:113
 msgid "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual"
-msgstr "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual/fr"
+msgstr "http://www.gramps-project.org/wiki/index.php?title=Gramps_4.1_Wiki_Manual/fr"
 
 # "/fr" non-ajouté automatiquement (voir GrampsDisplay.py)
 #: ../gramps/plugins/gramplet/welcomegramplet.py:114
@@ -21294,7 +21294,7 @@ msgstr "%s ouverture impossible"
 
 #: ../gramps/plugins/importer/importgrdb.py:57
 msgid "The Database version is not supported by this version of Gramps.You should use an old copy of Gramps at version 3.0.x and import your database into that version. You should then export a copy of your data to Gramps XML (Family Tree). Then you should upgrade to the latest version of Gramps (for example this version), create a new empty database and import the Gramps XML into that version. Please refer to:http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
-msgstr "Cette version de la base de données n'est pas supportée par cette version de Gramps. Vous devriez utiliser une ancienne copie de Gramps 3.0.x et importer votre base de données dans cette version. Vous devrez alors exporter une copie de vos données au format Gramps XML (arbre familial). Enfin vous devrez mettre à niveau vers la dernière version de Gramps (par exemple cette version), créer une nouvelle base de données vide et importer le fichier Gramps XML dans cette version. Voir : http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees/fr#Migrer_des_bases_de_données_2.2_vers_Gramps_3.x"
+msgstr "Cette version de la base de données n'est pas supportée par cette version de Gramps. Vous devriez utiliser une ancienne copie de Gramps 3.0.x et importer votre base de données dans cette version. Vous devrez alors exporter une copie de vos données au format Gramps XML (arbre familial). Enfin vous devrez mettre à niveau vers la dernière version de Gramps (par exemple cette version), créer une nouvelle base de données vide et importer le fichier Gramps XML dans cette version. Voir : http://www.gramps-project.org/wiki/index.php?title=Gramps_4.1_Wiki_Manual_-_Manage_Family_Trees/fr#Migrer_des_bases_de_données_2.2_vers_Gramps_3.x"
 
 #: ../gramps/plugins/importer/importprogen.py:80
 msgid "Pro-Gen data error"
