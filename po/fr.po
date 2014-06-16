@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-16 16:10+0200\n"
-"PO-Revision-Date: 2014-06-16 16:18+0100\n"
+"POT-Creation-Date: 2014-06-16 17:17+0200\n"
+"PO-Revision-Date: 2014-06-16 17:20+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -2077,7 +2077,7 @@ msgstr "Enlever le père de cette famille"
 msgid "Remove mother from family"
 msgstr "Enlever la mère de cette famille"
 
-#: ../gramps/gen/db/exceptions.py:80
+#: ../gramps/gen/db/exceptions.py:81
 #, python-format
 msgid ""
 "The schema version is not supported by this version of Gramps.\n"
@@ -2092,7 +2092,7 @@ msgstr ""
 "\n"
 "Veuillez mettre à jour à la version correspondante, ou utilisez le format Gramps XML pour transférer les données d'une version à l'autre."
 
-#: ../gramps/gen/db/exceptions.py:102
+#: ../gramps/gen/db/exceptions.py:103
 #, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version %(env_version)s format. This version of Gramps uses Bsddb version %(bdb_version)s. So you are trying to load data created in a newer format into an older program, and this is bound to fail.\n"
@@ -2103,7 +2103,7 @@ msgstr ""
 "\n"
 "Vous devrez utiliser votre <b>plus récente</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
 
-#: ../gramps/gen/db/exceptions.py:127
+#: ../gramps/gen/db/exceptions.py:128
 #, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version %(env_version)s format. This version of Gramps uses Bsddb version %(bdb_version)s. So you are trying to load data created in a newer format into an older program. In this particular case, the difference is very small, so it may work.\n"
@@ -2114,7 +2114,7 @@ msgstr ""
 "\n"
 "Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devriez utiliser votre <b>plus récente</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
 
-#: ../gramps/gen/db/exceptions.py:151
+#: ../gramps/gen/db/exceptions.py:152
 #, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version %(env_version)s format. This version of Gramps uses Bsddb version %(bdb_version)s. Therefore you cannot load this Family Tree without upgrading the Bsddb version of the Family Tree.\n"
@@ -2129,7 +2129,7 @@ msgstr ""
 "\n"
 "Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devrez utiliser votre <b>ancienne</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
 
-#: ../gramps/gen/db/exceptions.py:176
+#: ../gramps/gen/db/exceptions.py:177
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying Berkeley database used to store this Family Tree. The most likely cause is that the database was created with an old version of the Berkeley database program, and you are now using a new version. It is quite likely that your database has not been changed by Gramps.\n"
 "If possible, you should revert to your old version of Gramps and its support software; export your database to XML; close the database; then upgrade again to this version of Gramps and import the XML file in an empty Family Tree. Alternatively, it may be possible to use the Berkeley database recovery tools."
@@ -2137,26 +2137,26 @@ msgstr ""
 "Gramps a détecté un problème en ouvrant l'environnement de la base de données Berkeley utilisé pour stocker cet arbre familial. Ceci est le plus souvent causé par le fait que la base de données a été créée avec une ancienne version de la BDD Berkeley, et que vous êtes en train d'utiliser une nouvelle version. Il est probable que votre base de données n'a pas été modifiée par Gramps.\n"
 "Si possible, retournez à votre ancienne version de Gramps et de ses utilitaires ; exportez votre base de données vers le format XML ; fermez la base de données ; puis re-mettez à niveau vers cette version de Gramps et importez le fichier XML dans un arbre familial vide. Autrement, il doit être possible d'utiliser les outils Berkeley de récupération de base de données."
 
-#: ../gramps/gen/db/exceptions.py:201
+#: ../gramps/gen/db/exceptions.py:202
 #, python-format
 msgid ""
 "The Family Tree you are trying to load is in the schema version %(oldschema)s format. This version of Gramps uses schema version %(newschema)s. Therefore you cannot load this Family Tree without upgrading the schema version of the Family Tree.\n"
 "\n"
-"If you upgrade then you won't be able to use the previous version of Gramps, even if you subsequently <a href=\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Backing_up_a_Family_Tree\">backup</a> or <a href=\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Export_into_Gramps_formats\">export</a> your upgraded Family Tree.\n"
+"If you upgrade then you won't be able to use the previous version of Gramps, even if you subsequently <a href=\"%(gramps_wiki)s%(gramps_manual)s_-_Manage_Family_Trees#Backing_up_a_Family_Tree\">backup</a> or <a href=\"%(gramps_wiki)s%(gramps_manual)s_-_Manage_Family_Trees#Export_into_Gramps_formats\">export</a> your upgraded Family Tree.\n"
 "\n"
 "Upgrading is a difficult task which could irretrievably corrupt your Family Tree if it is interrupted or fails.\n"
 "\n"
-"If you have not already made a backup of your Family Tree, then you should start your <b>old</b> version of Gramps and <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup\">make a backup</a> of your Family Tree."
+"If you have not already made a backup of your Family Tree, then you should start your <b>old</b> version of Gramps and <a href=\"%(gramps_wiki)sHow_to_make_a_backup\">make a backup</a> of your Family Tree."
 msgstr ""
 "L'arbre familial que vous êtes en train d'ouvrir utilise la version du schéma %(oldschema)s. Cette version de Gramps utilise la version du schéma %(newschema)s. C'est pourquoi vous ne pouvez pas charger cet arbre familial sans une mise à jour de votre version du schéma liée à votre arbre familial.\n"
 "\n"
-"Si vous mettez à jour alors il ne sera plus possible d'utiliser une version précédente de Gramps, même via une <a href=\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees/fr#Sauvegarder_un_arbre_familial\">sauvegarde</a> ou une <a href=\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees/fr#Exportation_aux_formats_Gramps\">exportation</a> de votre arbre familial.\n"
+"Si vous mettez à jour alors il ne sera plus possible d'utiliser une version précédente de Gramps, même via une <a href=\"%(gramps_wiki)s%(gramps_manual)s_-_Manage_Family_Trees/fr#Sauvegarder_un_arbre_familial\">sauvegarde</a> ou une <a href=\"%(gramps_wiki)s%(gramps_manual)s_-_Manage_Family_Trees/fr#Exportation_aux_formats_Gramps\">exportation</a> de votre arbre familial.\n"
 "\n"
 "Mettre à jour est une tâche qui peut corrompre irrémédiablement l'arbre familial si l'action est interrompue ou si elle échoue.\n"
 "\n"
-"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devrez utiliser votre <b>ancienne</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
+"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devrez utiliser votre <b>ancienne</b> version de Gramps et <a href=\"%(gramps_wiki)sHow_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
 
-#: ../gramps/gen/db/exceptions.py:232
+#: ../gramps/gen/db/exceptions.py:235
 #, python-format
 msgid ""
 "The Family Tree you are trying to load was created with Python version %(db_python_version)s. This version of Gramps uses Python version %(current_python_version)s.  So you are trying to load data created in a newer format into an older program, and this is bound to fail.\n"
@@ -2167,7 +2167,7 @@ msgstr ""
 "\n"
 "Vous devrez utiliser votre <b>plus récente</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial. Vous pourrez alors importer cette sauvegarde dans cette version de Gramps."
 
-#: ../gramps/gen/db/exceptions.py:257
+#: ../gramps/gen/db/exceptions.py:260
 #, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Python version %(db_python_version)s format. This version of Gramps uses Python version %(current_python_version)s. Therefore you cannot load this Family Tree without upgrading the Python version of the Family Tree.\n"
@@ -14638,7 +14638,7 @@ msgstr "Danger : ce code est instable !"
 
 #: ../gramps/gui/grampsgui.py:217
 msgid ""
-"This Gramps 4.1-trunk is a development release. This version is not meant for normal usage. Use at your own risk.\n"
+"This Gramps master is a development release. This version is not meant for normal usage. Use at your own risk.\n"
 "\n"
 "This version may:\n"
 "1) Work differently than you expect.\n"
@@ -14649,7 +14649,7 @@ msgid ""
 "\n"
 "<b>BACKUP</b> your existing databases before opening them with this version, and make sure to export your data to XML every now and then."
 msgstr ""
-"Gramps 4.1.x-trunk est une version de développement. Cette version n'est pas prévue pour un usage normal. Utilisez-là à vos risques.\n"
+"Gramps master est une version de développement. Cette version n'est pas prévue pour un usage normal. Utilisez-là à vos risques.\n"
 "\n"
 "Cette version peut :\n"
 "1) Fonctionner différemment de vos attentes.\n"

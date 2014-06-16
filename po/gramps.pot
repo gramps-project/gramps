@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-16 16:10+0200\n"
+"POT-Creation-Date: 2014-06-16 17:17+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2026,7 +2026,7 @@ msgstr ""
 msgid "Remove mother from family"
 msgstr ""
 
-#: ../gramps/gen/db/exceptions.py:80
+#: ../gramps/gen/db/exceptions.py:81
 #, python-format
 msgid ""
 "The schema version is not supported by this version of Gramps.\n"
@@ -2038,7 +2038,7 @@ msgid ""
 "between different schema versions."
 msgstr ""
 
-#: ../gramps/gen/db/exceptions.py:102
+#: ../gramps/gen/db/exceptions.py:103
 #, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version "
@@ -2052,7 +2052,7 @@ msgid ""
 "version of Gramps."
 msgstr ""
 
-#: ../gramps/gen/db/exceptions.py:127
+#: ../gramps/gen/db/exceptions.py:128
 #, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version "
@@ -2067,7 +2067,7 @@ msgid ""
 "your Family Tree."
 msgstr ""
 
-#: ../gramps/gen/db/exceptions.py:151
+#: ../gramps/gen/db/exceptions.py:152
 #, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version "
@@ -2085,7 +2085,7 @@ msgid ""
 "your Family Tree."
 msgstr ""
 
-#: ../gramps/gen/db/exceptions.py:176
+#: ../gramps/gen/db/exceptions.py:177
 msgid ""
 "Gramps has detected a problem in opening the 'environment' of the underlying "
 "Berkeley database used to store this Family Tree. The most likely cause is "
@@ -2099,7 +2099,7 @@ msgid ""
 "recovery tools."
 msgstr ""
 
-#: ../gramps/gen/db/exceptions.py:201
+#: ../gramps/gen/db/exceptions.py:202
 #, python-format
 msgid ""
 "The Family Tree you are trying to load is in the schema version "
@@ -2108,10 +2108,9 @@ msgid ""
 "the schema version of the Family Tree.\n"
 "\n"
 "If you upgrade then you won't be able to use the previous version of Gramps, "
-"even if you subsequently <a href=\"http://www.gramps-project.org/wiki/index."
-"php?title=Gramps_4.0_Wiki_Manual_-"
+"even if you subsequently <a href=\"%(gramps_wiki)s%(gramps_manual)s_-"
 "_Manage_Family_Trees#Backing_up_a_Family_Tree\">backup</a> or <a href="
-"\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-"
+"\"%(gramps_wiki)s%(gramps_manual)s_-"
 "_Manage_Family_Trees#Export_into_Gramps_formats\">export</a> your upgraded "
 "Family Tree.\n"
 "\n"
@@ -2119,12 +2118,12 @@ msgid ""
 "Tree if it is interrupted or fails.\n"
 "\n"
 "If you have not already made a backup of your Family Tree, then you should "
-"start your <b>old</b> version of Gramps and <a href=\"http://www.gramps-"
-"project.org/wiki/index.php?title=How_to_make_a_backup\">make a backup</a> of "
-"your Family Tree."
+"start your <b>old</b> version of Gramps and <a href="
+"\"%(gramps_wiki)sHow_to_make_a_backup\">make a backup</a> of your Family "
+"Tree."
 msgstr ""
 
-#: ../gramps/gen/db/exceptions.py:232
+#: ../gramps/gen/db/exceptions.py:235
 #, python-format
 msgid ""
 "The Family Tree you are trying to load was created with Python version "
@@ -2138,7 +2137,7 @@ msgid ""
 "version of Gramps."
 msgstr ""
 
-#: ../gramps/gen/db/exceptions.py:257
+#: ../gramps/gen/db/exceptions.py:260
 #, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Python version "
@@ -13853,8 +13852,8 @@ msgstr ""
 
 #: ../gramps/gui/grampsgui.py:217
 msgid ""
-"This Gramps 4.1-trunk is a development release. This version is not meant "
-"for normal usage. Use at your own risk.\n"
+"This Gramps master is a development release. This version is not meant for "
+"normal usage. Use at your own risk.\n"
 "\n"
 "This version may:\n"
 "1) Work differently than you expect.\n"

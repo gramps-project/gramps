@@ -25,6 +25,7 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
+from ..const import URL_WIKISTRING, URL_MANUAL_PAGE
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -205,16 +206,18 @@ class DbUpgradeRequiredError(Exception):
                  'Family Tree.\n\n'
                  'If you upgrade then you won\'t be able to use the previous '
                  'version of Gramps, even if you subsequently '
-                 '<a href="http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Backing_up_a_Family_Tree">backup</a> '
-                 'or <a href="http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Export_into_Gramps_formats">export</a> '
+                 '<a href="%(gramps_wiki)s%(gramps_manual)s_-_Manage_Family_Trees#Backing_up_a_Family_Tree">backup</a> '
+                 'or <a href="%(gramps_wiki)s%(gramps_manual)s_-_Manage_Family_Trees#Export_into_Gramps_formats">export</a> '
                  'your upgraded Family Tree.\n\n'
                  'Upgrading is a difficult task which could irretrievably '
                  'corrupt your Family Tree if it is interrupted or fails.\n\n'
                  'If you have not already made a backup of your Family Tree, '
                  'then you should start your <b>old</b> version of Gramps and '
-                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">make a backup</a> '
+                 '<a href="%(gramps_wiki)sHow_to_make_a_backup">make a backup</a> '
                  'of your Family Tree.') % \
-                 {'oldschema': self.oldschema,
+                 {'gramps_wiki': URL_WIKISTRING,
+                  'gramps_manual': URL_MANUAL_PAGE,
+                  'oldschema': self.oldschema,
                   'newschema': self.newschema}
                  
 class PythonDowngradeError(Exception):
