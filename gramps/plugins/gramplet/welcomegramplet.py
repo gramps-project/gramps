@@ -111,7 +111,7 @@ class WelcomeGramplet(Gramplet):
         welcome += linkst(_('Start with Genealogy and Gramps'), 
             _('http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy')) + '\n'
         welcome += linkst(_('Gramps online manual'), 
-            join.(URL_WIKISTRING, URL_MANUAL_PAGE, _('locale_code|'))) + '\n'
+            URL_WIKISTRING + URL_MANUAL_PAGE + _('locale_suffix|')) + '\n'
         welcome += linkst(_('Ask questions on gramps-users mailing list'),
              _('http://gramps-project.org/contact/')) + '\n\n'
         
