@@ -73,6 +73,7 @@ from .displaytabs import (PersonEventEmbedList, NameEmbedList, CitationEmbedList
                          WebEmbedList, PersonRefEmbedList, LdsEmbedList,
                          PersonBackRefList, SurnameTab)
 from gramps.gen.plug import CATEGORY_QR_PERSON
+from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
@@ -80,6 +81,8 @@ from gramps.gen.constfunc import cuni
 # Constants
 #
 #-------------------------------------------------------------------------
+
+WIKI_HELP_PAGE = _('%s_-_Entering_and_editing_data:_detailed_-_part_1') % URL_MANUAL_PAGE
 
 _select_gender = ((True, False, False),
                   (False, True, False),
@@ -233,7 +236,7 @@ class EditPerson(EditPrimary):
         self.define_cancel_button(self.top.get_object("button15"))
         self.define_ok_button(self.top.get_object("ok"), self.save)
         self.define_help_button(self.top.get_object("button134"),
-                _('Gramps_4.1_Wiki_Manual_-_Entering_and_editing_data:_detailed_-_part_1'),
+                WIKI_HELP_PAGE,
                 _('manpage section id|Editing_information_about_people'))
 
         self.given.connect("focus_out_event", self._given_focus_out_event)

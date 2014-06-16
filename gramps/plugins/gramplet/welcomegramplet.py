@@ -29,6 +29,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets.styledtexteditor import StyledTextEditor
 from gramps.gui.widgets import SimpleButton
@@ -110,7 +111,7 @@ class WelcomeGramplet(Gramplet):
         welcome += linkst(_('Start with Genealogy and Gramps'), 
             _('http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy')) + '\n'
         welcome += linkst(_('Gramps online manual'), 
-            _('http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual')) + '\n'
+            join.(URL_WIKISTRING, URL_MANUAL_PAGE, _('locale_code|'))) + '\n'
         welcome += linkst(_('Ask questions on gramps-users mailing list'),
              _('http://gramps-project.org/contact/')) + '\n\n'
         
