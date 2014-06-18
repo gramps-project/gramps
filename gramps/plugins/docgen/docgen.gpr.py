@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+MODULE_VERSION="4.2" 
+
 #------------------------------------------------------------------------
 #
 # Ascii docgen
@@ -29,7 +31,7 @@ plg.id    = 'asciidoc'
 plg.name  = _("Plain Text")
 plg.description =  _("Generates documents in plain text format (.txt).")
 plg.version = '1.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'asciidoc.py'
 plg.ptype = DOCGEN
@@ -50,7 +52,7 @@ plg.id    = 'gtkprint'
 plg.name  = _('Print...')
 plg.description =  _("Generates documents and prints them directly.")
 plg.version = '1.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'gtkprint.py'
 plg.ptype = DOCGEN
@@ -71,7 +73,7 @@ plg.id    = 'htmldoc'
 plg.name  = _('HTML')
 plg.description =  _("Generates documents in HTML format.")
 plg.version = '1.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'htmldoc.py'
 plg.ptype = DOCGEN
@@ -92,7 +94,7 @@ plg.id    = 'latexdoc'
 plg.name  = _('LaTeX')
 plg.description =  _("Generates documents in LaTeX format.")
 plg.version = '1.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'latexdoc.py'
 plg.ptype = DOCGEN
@@ -114,7 +116,7 @@ plg.name  = _('OpenDocument Text')
 plg.description =  _("Generates documents in OpenDocument "
                      "Text format (.odt).")
 plg.version = '1.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'odfdoc.py'
 plg.ptype = DOCGEN
@@ -135,7 +137,7 @@ plg.id    = 'pdfdoc'
 plg.name  = _('PDF document')
 plg.description =  _("Generates documents in PDF format (.pdf).")
 plg.version = '1.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'cairodoc.py'
 plg.ptype = DOCGEN
@@ -156,7 +158,7 @@ plg.id    = 'psdrawdoc'
 plg.name  = _('PostScript')
 plg.description =  _("Generates documents in PostScript format (.ps).")
 plg.version = '2.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'cairodoc.py'
 plg.ptype = DOCGEN
@@ -177,7 +179,7 @@ plg.id    = 'rftdoc'
 plg.name  = _('RTF document')
 plg.description =  _("Generates documents in Rich Text format (.rtf).")
 plg.version = '1.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'rtfdoc.py'
 plg.ptype = DOCGEN
@@ -199,7 +201,7 @@ plg.name  = _('SVG document')
 plg.description =  _("Generates documents in Scalable "
                      "Vector Graphics format (.svg).")
 plg.version = '1.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'svgdrawdoc.py'
 plg.ptype = DOCGEN

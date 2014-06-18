@@ -19,6 +19,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+MODULE_VERSION="4.2" 
+
 #------------------------------------------------------------------------
 #
 # Geoview and HtmlView
@@ -77,7 +79,7 @@ if not (TOOLKIT == NOWEB):
     name  = _("Html View"),
     description =  _("A view showing html pages embedded in Gramps"),
     version = '1.0',
-    gramps_target_version = '4.1',
+    gramps_target_version = MODULE_VERSION,
     status = STABLE,
     fname = 'htmlrenderer.py',
     authors = ["The Gramps project"],

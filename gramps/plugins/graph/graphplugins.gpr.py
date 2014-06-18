@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+MODULE_VERSION="4.2" 
+
 #------------------------------------------------------------------------
 #
 # Family Lines Graph
@@ -29,7 +31,7 @@ plg.id    = 'familylines_graph'
 plg.name  = _("Family Lines Graph")
 plg.description =  _("Produces family line graphs using GraphViz.")
 plg.version = '1.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'gvfamilylines.py'
 plg.ptype = REPORT
@@ -52,7 +54,7 @@ plg.id    = 'hourglass_graph'
 plg.name  = _("Hourglass Graph")
 plg.description =  _("Produces an hourglass graph using Graphviz.")
 plg.version = '1.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'gvhourglass.py'
 plg.ptype = REPORT
@@ -74,7 +76,7 @@ plg.id    = 'rel_graph'
 plg.name  = _("Relationship Graph")
 plg.description =  _("Produces relationship graphs using Graphviz.")
 plg.version = '1.0'
-plg.gramps_target_version = '4.1'
+plg.gramps_target_version = MODULE_VERSION
 plg.status = STABLE
 plg.fname = 'gvrelgraph.py'
 plg.ptype = REPORT

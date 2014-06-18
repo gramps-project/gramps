@@ -21,6 +21,8 @@
 
 # plugins/webstuff/webstuff.gpr.py
 
+MODULE_VERSION="4.2" 
+
 #------------------------------------------------------------------------
 #
 # Stylesheets
@@ -32,7 +34,7 @@ category = "WEBSTUFF",
 name  = _("Webstuff"),
 description =  _("Provides a collection of resources for the web"),
 version = '1.0',
-gramps_target_version = '4.1',
+gramps_target_version = MODULE_VERSION,
 fname = "webstuff.py",
 load_on_reg = True,
 process = "process_list",

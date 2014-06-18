@@ -19,6 +19,8 @@
 #
 # $Id: sidebar.gpr.py 20634 2012-11-07 17:53:14Z bmcage $
 
+MODULE_VERSION="4.2" 
+
 #------------------------------------------------------------------------
 #
 # Register default sidebars
@@ -30,7 +32,7 @@ id    = 'categorysidebar',
 name  = _("Category Sidebar"),
 description =  _("A sidebar to allow the selection of view categories"),
 version = '1.0',
-gramps_target_version = '4.1',
+gramps_target_version = MODULE_VERSION,
 status = STABLE,
 fname = 'categorysidebar.py',
 authors = ["Nick Hall"],
@@ -45,7 +47,7 @@ id    = 'dropdownsidebar',
 name  = _("Drop-down Sidebar"),
 description =  _("Selection of categories and views from drop-down lists"),
 version = '1.0',
-gramps_target_version = '4.1',
+gramps_target_version = MODULE_VERSION,
 status = STABLE,
 fname = 'dropdownsidebar.py',
 authors = ["Nick Hall"],
@@ -60,7 +62,7 @@ id    = 'expandersidebar',
 name  = _("Expander Sidebar"),
 description =  _("Selection of views from lists with expanders"),
 version = '1.0',
-gramps_target_version = '4.1',
+gramps_target_version = MODULE_VERSION,
 status = STABLE,
 fname = 'expandersidebar.py',
 authors = ["Nick Hall"],

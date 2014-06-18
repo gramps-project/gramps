@@ -22,6 +22,8 @@
 GRAMPS registration file
 """
 
+MODULE_VERSION="4.2" 
+
 #------------------------------------------------------------------------
 #
 # Check Localized Date Displayer and Parser
@@ -37,7 +39,7 @@ description =  ("This test tool will create many people showing all"
                         " the birth date. This way you can ensure that dates"
                         " printed can be parsed back in correctly."),
 version = '1.0',
-gramps_target_version = '4.1',
+gramps_target_version = MODULE_VERSION,
 status = UNSTABLE,
 fname = 'dateparserdisplaytest.py',
 authors = ["Martin Hawlisch"],
@@ -60,7 +62,7 @@ name  = "Dump Gender Statistics",
 description =  ("Will dump the statistics for the gender guessing "
                         "from the first name."),
 version = '1.0',
-gramps_target_version = '4.1',
+gramps_target_version = MODULE_VERSION,
 status = STABLE,
 fname = 'dumpgenderstats.py',
 authors = ["Donald N. Allingham", "Martin Hawlisch"],
@@ -84,7 +86,7 @@ description =  ("The testcase generator will generate some persons "
                         "and families that have broken links in the database "
                         "or data that is in conflict to a relation."),
 version = '1.0',
-gramps_target_version = '4.1',
+gramps_target_version = MODULE_VERSION,
 status = UNSTABLE,
 fname = 'testcasegenerator.py',
 authors = ["Martin Hawlisch"],
@@ -108,7 +110,7 @@ description =  ("This tool generates sources and citations for each source in "
                 "order to populate the database for testing with significant "
                 "numbers of sources and citations"),
 version = '1.0',
-gramps_target_version = '4.1',
+gramps_target_version = MODULE_VERSION,
 status = UNSTABLE,
 fname = 'populatesources.py',
 authors = ["Tim Lyons"],

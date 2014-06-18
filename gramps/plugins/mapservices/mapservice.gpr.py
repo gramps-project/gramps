@@ -18,6 +18,8 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+MODULE_VERSION="4.2" 
+
 #------------------------------------------------------------------------
 #
 # EniroMaps
@@ -29,7 +31,7 @@ id    = 'EniroMaps',
 name  = _("EniroMaps"),
 description =  _("Opens on kartor.eniro.se"),
 version = '1.0',
-gramps_target_version = '4.1',
+gramps_target_version = MODULE_VERSION,
 status = STABLE,
 fname = 'eniroswedenmap.py',
 authors = ["Peter Landgren"],
@@ -48,7 +50,7 @@ id    = 'GoogleMaps',
 name  = _("GoogleMaps"),
 description =  _("Open on maps.google.com"),
 version = '1.0',
-gramps_target_version = '4.1',
+gramps_target_version = MODULE_VERSION,
 status = STABLE,
 fname = 'googlemap.py',
 authors = ["Benny Malengier"],
@@ -67,7 +69,7 @@ id    = 'OpenStreetMap',
 name  = _("OpenStreetMap"),
 description =  _("Open on openstreetmap.org"),
 version = '1.0',
-gramps_target_version = '4.1',
+gramps_target_version = MODULE_VERSION,
 status = STABLE,
 fname = 'openstreetmap.py',
 authors = ["Benny Malengier"],
