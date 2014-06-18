@@ -717,12 +717,17 @@ class CheckIntegrity(object):
                                         'found' %
                                          {'desc' : photo_desc, 
                                           'name' : photo_name})
-                        mmd = MissingMediaDialog(_("Media object could not be found"),
-                        _("The file:\n %(file_name)s \nis referenced in the database, but no longer exists. " 
-                        "The file may have been deleted or moved to a different location. " 
-                        "You may choose to either remove the reference from the database, " 
-                        "keep the reference to the missing file, or select a new file." 
-                        ) % {'file_name' : '<b>%s</b>' % photo_name},
+                        mmd = MissingMediaDialog(
+                            _("Media object could not be found"),
+                            _("The file:\n%(file_name)s\nis referenced in "
+                              "the database, but no longer exists.\n" 
+                              "The file may have been deleted or moved to "
+                              "a different location.\n" 
+                              "You may choose to either remove the "
+                              "reference from the database,\n" 
+                              "keep the reference to the missing file, "
+                              "or select a new file." 
+                                  ) % {'file_name' : '<b>%s</b>' % photo_name},
                             remove_clicked, leave_clicked, select_clicked)
                         missmedia_action = mmd.default_action
                     elif missmedia_action == 1:

@@ -253,6 +253,7 @@
   </object>
   <object class="GtkDialog" id="missmediadialog">
     <property name="can_focus">False</property>
+    <property name="default_width">600</property>
     <property name="type_hint">dialog</property>
     <child internal-child="vbox">
       <object class="GtkBox" id="vbox5">
