@@ -31,6 +31,8 @@ a person.
 #
 #-------------------------------------------------------------------------
 from .proxybase import ProxyDbBase
+from ..lib import (Person, Family, Source, Citation, Event, MediaObject, 
+                   Place, Repository, Note, Tag)
 
 class ReferencedBySelectionProxyDb(ProxyDbBase):
     """
