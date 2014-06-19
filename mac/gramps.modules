@@ -27,8 +27,6 @@
 	      href="git://github.com/"/>
   <repository type="tarball" name="graphviz"
 	      href="http://www.graphviz.org/pub/graphviz/stable/SOURCES/"/>
-  <repository type="tarball" name="yorba"
-	      href="http://yorba.org/download/"/>
   <repository type="tarball" name="exiv2.org"
 	      href="http://exiv2.org/"/>
   <repository type="tarball" name="pythonware"
@@ -107,9 +105,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
             md5sum="a086de99cc536095684d87f15594e4db" size="37372"/>
   </distutils>
 
- <autotools id="xdg-utils">
-   <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
- </autotools>
+  <autotools id="xdg-utils">
+    <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
+  </autotools>
 
   <autotools id="osmgpsmap" skip-autogen="never"
 	     supports-non-srcdir-builds="no">
@@ -135,11 +133,10 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <autotools id="gexiv2" autogen-sh="configure" supports-non-srcdir-builds="no"
-	     autogenargs="--enable-introspection"
+	     autogenargs="--enable-introspection --with-libtool=libtool"
 	     autogen-template="%(srcdir)s/%(autogen-sh)s --prefix=%(prefix)s %(autogenargs)s">
-    <branch module="gexiv2/0.5/libgexiv2-0.5.0.tar.xz"
-	    repo="yorba" version="0.5.0">
-      <patch file='gexiv2-libtool.patch' strip="1"/>
+    <branch module="gexiv2/0.7/gexiv2-0.7.0.tar.xz"
+	    repo="ftp.gnome.org" version="0.7.0">
     </branch>
     <dependencies>
       <dep package="exiv2"/>
