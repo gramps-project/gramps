@@ -420,6 +420,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.source_media_types = set()
         self.url_types = set()
         self.media_attributes = set()
+        self.place_types = set()
 
         self.open = 0
         self.genderStats = GenderStats()
@@ -1632,6 +1633,13 @@ class DbBsddbRead(DbReadBase, Callback):
         in the database.
         """
         return list(self.url_types)
+
+    def get_place_types(self):
+        """
+        Return a list of all custom place types assocated with Place instances
+        in the database.
+        """
+        return list(self.place_types)
 
     def __log_error(self):
         pass            

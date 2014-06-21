@@ -970,6 +970,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.url_types = set(meta(b'url_types'))
         self.media_attributes = set(meta(b'mattr_names'))
         self.event_attributes = set(meta(b'eattr_names'))
+        self.place_types = set(meta(b'place_types'))
 
         # surname list
         self.surname_list = meta(b'surname_list')
@@ -1442,6 +1443,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 txn.put(b'url_types', list(self.url_types))
                 txn.put(b'mattr_names', list(self.media_attributes))
                 txn.put(b'eattr_names', list(self.event_attributes))
+                txn.put(b'place_types', list(self.place_types))
 
                 # name display formats
                 txn.put(b'surname_list', self.surname_list)
@@ -2016,6 +2018,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         self.commit_base(place, self.place_map, PLACE_KEY, 
                           transaction, change_time)
+
+        if place.get_type().is_custom():
+            self.place_types.add(str(place.get_type()))
 
         self.url_types.update([str(url.type) for url in place.urls
                                if url.type.is_custom()])
