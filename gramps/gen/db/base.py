@@ -864,6 +864,13 @@ class DbReadBase(object):
         """
         raise NotImplementedError
 
+    def get_place_types(self):
+        """
+        Return a list of all custom place types assocated with Place instances
+        in the database.
+        """
+        raise NotImplementedError
+
     def gramps_upgrade(self):
         """
         Return True if database is upgraded
