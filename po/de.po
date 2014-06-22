@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-12 19:25+0200\n"
-"PO-Revision-Date: 2014-06-12 19:30+0200\n"
+"POT-Creation-Date: 2014-06-22 17:53+0200\n"
+"PO-Revision-Date: 2014-06-22 17:55+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -5693,7 +5693,7 @@ msgstr "†"
 
 #: ../gramps/gen/lib/eventtype.py:222
 msgid "marriage abbreviation|m."
-msgstr "⚭"
+msgstr "oo"
 
 #: ../gramps/gen/lib/eventtype.py:223
 msgid "Unknown abbreviation|unkn."
@@ -5797,7 +5797,7 @@ msgstr "Adel."
 
 #: ../gramps/gen/lib/eventtype.py:248
 msgid "Number of Marriages abbreviation|n.o.mar."
-msgstr "Anz.⚭"
+msgstr "Anz. oo"
 
 #: ../gramps/gen/lib/eventtype.py:249
 msgid "Occupation abbreviation|occ."
@@ -15587,6 +15587,7 @@ msgstr "Stil"
 #: ../gramps/plugins/drawreport/statisticschart.py:938
 #: ../gramps/plugins/drawreport/timeline.py:409
 #: ../gramps/plugins/graph/gvrelgraph.py:529
+#: ../gramps/plugins/textreport/alphabeticalindex.py:89
 #: ../gramps/plugins/textreport/ancestorreport.py:269
 #: ../gramps/plugins/textreport/birthdayreport.py:412
 #: ../gramps/plugins/textreport/descendreport.py:401
@@ -15601,6 +15602,7 @@ msgstr "Stil"
 #: ../gramps/plugins/textreport/recordsreport.py:170
 #: ../gramps/plugins/textreport/simplebooktitle.py:130
 #: ../gramps/plugins/textreport/summary.py:277
+#: ../gramps/plugins/textreport/tableofcontents.py:89
 #: ../gramps/plugins/textreport/tagreport.py:533
 #: ../gramps/plugins/webreport/narrativeweb.py:7992
 #: ../gramps/plugins/webreport/webcal.py:1320
@@ -16894,16 +16896,6 @@ msgstr "Zeichen pro Zeile"
 msgid "The number of characters per line"
 msgstr "Die Anzahl der Zeichen pro Zeile"
 
-#: ../gramps/plugins/docgen/cairodoc.py:240
-#: ../gramps/plugins/docgen/odfdoc.py:1634
-msgid "Contents"
-msgstr "Inhalt"
-
-#: ../gramps/plugins/docgen/cairodoc.py:273
-#: ../gramps/plugins/docgen/odfdoc.py:1673
-msgid "Index"
-msgstr "Index"
-
 #: ../gramps/plugins/docgen/docgen.gpr.py:31
 msgid "Plain Text"
 msgstr "Einfacher Text"
@@ -17082,7 +17074,7 @@ msgstr "†"
 #: ../gramps/plugins/drawreport/ancestortree.py:76
 #: ../gramps/plugins/drawreport/descendtree.py:63
 msgid "short for married|m."
-msgstr "⚭"
+msgstr "oo"
 
 #. we want no text, but need a text for the TOC in a book!
 #: ../gramps/plugins/drawreport/ancestortree.py:141
@@ -18109,8 +18101,8 @@ msgstr ""
 "Du kannst die Schrift und Farbe für jede Generation im Stileditor einstellen"
 
 #: ../gramps/plugins/drawreport/fanchart.py:717
-#: ../gramps/plugins/textreport/alphabeticalindex.py:97
-#: ../gramps/plugins/textreport/tableofcontents.py:97
+#: ../gramps/plugins/textreport/alphabeticalindex.py:99
+#: ../gramps/plugins/textreport/tableofcontents.py:99
 msgid "The style used for the title."
 msgstr "Der Stil, der für den Titel verwendet wird."
 
@@ -27017,7 +27009,11 @@ msgstr "Kategorie"
 msgid "Alphabetical Index"
 msgstr "Alphabetischer Index"
 
-#: ../gramps/plugins/textreport/alphabeticalindex.py:114
+#: ../gramps/plugins/textreport/alphabeticalindex.py:69
+msgid "Index"
+msgstr "Index"
+
+#: ../gramps/plugins/textreport/alphabeticalindex.py:116
 msgid "The style used for index entries."
 msgstr "Der Stil, der für Indexeinträge verwendet wird."
 
@@ -28309,15 +28305,19 @@ msgstr "Gesamtgröße der Medienobjekte: %s MB"
 msgid "Table Of Contents"
 msgstr "Inhaltsverzeichnis"
 
-#: ../gramps/plugins/textreport/tableofcontents.py:112
+#: ../gramps/plugins/textreport/tableofcontents.py:69
+msgid "Contents"
+msgstr "Inhalt"
+
+#: ../gramps/plugins/textreport/tableofcontents.py:114
 msgid "The style used for first level headings."
 msgstr "Der Stil für Ebene eins Überschriften."
 
-#: ../gramps/plugins/textreport/tableofcontents.py:118
+#: ../gramps/plugins/textreport/tableofcontents.py:120
 msgid "The style used for second level headings."
 msgstr "Der Stil für Ebene zwei Überschriften."
 
-#: ../gramps/plugins/textreport/tableofcontents.py:124
+#: ../gramps/plugins/textreport/tableofcontents.py:126
 msgid "The style used for third level headings."
 msgstr "Der Stil für Ebene drei Überschriften."
 
