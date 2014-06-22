@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-23 18:30+0200\n"
-"PO-Revision-Date: 2014-04-23 18:33+0200\n"
+"POT-Creation-Date: 2014-06-22 18:05+0200\n"
+"PO-Revision-Date: 2014-06-22 18:07+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1314,7 +1314,7 @@ msgstr "Wert"
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../src/ScratchPad.py:917 ../src/cli/arghandler.py:424
+#: ../src/ScratchPad.py:917 ../src/cli/arghandler.py:426
 #: ../src/cli/clidbman.py:67 ../src/gui/configure.py:1206
 msgid "Family Tree"
 msgstr "Stammbaum"
@@ -2007,9 +2007,9 @@ msgid "Gramps Family Trees:"
 msgstr "Gramps Stammbäume:"
 
 #: ../src/cli/arghandler.py:410 ../src/cli/arghandler.py:412
-#: ../src/cli/arghandler.py:416 ../src/cli/arghandler.py:426
-#: ../src/cli/arghandler.py:431 ../src/cli/arghandler.py:433
-#: ../src/cli/arghandler.py:435 ../src/cli/clidbman.py:211
+#: ../src/cli/arghandler.py:416 ../src/cli/arghandler.py:428
+#: ../src/cli/arghandler.py:433 ../src/cli/arghandler.py:435
+#: ../src/cli/arghandler.py:437 ../src/cli/clidbman.py:211
 msgid "Family tree"
 msgstr "Stammbaum"
 
@@ -2026,82 +2026,82 @@ msgstr "Stammbaum \"%s\":"
 msgid "Path"
 msgstr "Pfad"
 
-#: ../src/cli/arghandler.py:446
+#: ../src/cli/arghandler.py:448
 #, python-format
 msgid "Performing action: %s."
 msgstr "Ausführen von Aktion: %s."
 
-#: ../src/cli/arghandler.py:448
+#: ../src/cli/arghandler.py:450
 #, python-format
 msgid "Using options string: %s"
 msgstr "Verwende Optionstext: %s"
 
-#: ../src/cli/arghandler.py:456
+#: ../src/cli/arghandler.py:458
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr "Exportiere: Datei %(filename)s, Format %(format)s."
 
-#: ../src/cli/arghandler.py:464
+#: ../src/cli/arghandler.py:466
 msgid "Exiting."
 msgstr "Beenden."
 
-#: ../src/cli/arghandler.py:468
+#: ../src/cli/arghandler.py:470
 msgid "Cleaning up."
 msgstr "Räume auf."
 
-#: ../src/cli/arghandler.py:498
+#: ../src/cli/arghandler.py:500
 msgid "Created empty family tree successfully"
 msgstr "Leerer Stammbaum erfolgreich erstellt."
 
-#: ../src/cli/arghandler.py:501 ../src/cli/arghandler.py:528
+#: ../src/cli/arghandler.py:503 ../src/cli/arghandler.py:530
 msgid "Error opening the file."
 msgstr "Fehler beim Öffnen der Datei."
 
-#: ../src/cli/arghandler.py:502 ../src/cli/arghandler.py:529
+#: ../src/cli/arghandler.py:504 ../src/cli/arghandler.py:531
 msgid "Exiting..."
 msgstr "Beenden..."
 
-#: ../src/cli/arghandler.py:508
+#: ../src/cli/arghandler.py:510
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Importiere: Datei %(filename)s, Format %(format)s."
 
-#: ../src/cli/arghandler.py:526
+#: ../src/cli/arghandler.py:528
 msgid "Opened successfully!"
 msgstr "Erfolgreich geöffnet!"
 
-#: ../src/cli/arghandler.py:540
+#: ../src/cli/arghandler.py:542
 msgid "Database is locked, cannot open it!"
 msgstr "Die Datenbank kann nicht geöffnet werden, sie ist gesperrt!"
 
-#: ../src/cli/arghandler.py:541
+#: ../src/cli/arghandler.py:543
 #, python-format
 msgid "  Info: %s"
 msgstr " Info: %s"
 
-#: ../src/cli/arghandler.py:544
+#: ../src/cli/arghandler.py:546
 msgid "Database needs recovery, cannot open it!"
 msgstr ""
 "Die Datenbank kann nicht geöffnet werden, sie benötigt eine "
 "Wiederherstellung!"
 
-#: ../src/cli/arghandler.py:601 ../src/cli/arghandler.py:648
+#: ../src/cli/arghandler.py:597 ../src/cli/arghandler.py:644
 msgid "Ignoring invalid options string."
 msgstr "Ignoriere ungültigen Optionstext."
 
 #. name exists, but is not in the list of valid report names
-#: ../src/cli/arghandler.py:624
+#: ../src/cli/arghandler.py:620
 msgid "Unknown report name."
 msgstr "Unbekannter Berichtname."
 
-#: ../src/cli/arghandler.py:626
+#: ../src/cli/arghandler.py:622
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 "Der Berichtname ist nicht angegeben. Bitte verwende einen von "
 "%(donottranslate)s=reportname."
 
-#: ../src/cli/arghandler.py:630 ../src/cli/arghandler.py:671
+#: ../src/cli/arghandler.py:626 ../src/cli/arghandler.py:667
 #, python-format
 msgid ""
 "%s\n"
@@ -2110,18 +2110,18 @@ msgstr ""
 "%s\n"
 " Verfügbare Namen sind:"
 
-#: ../src/cli/arghandler.py:665
+#: ../src/cli/arghandler.py:661
 msgid "Unknown tool name."
 msgstr "Unbekannter Werkzeugname."
 
-#: ../src/cli/arghandler.py:667
+#: ../src/cli/arghandler.py:663
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 "Der Werkzeugname ist nicht angegeben. Bitte verwende einen von "
 "%(donottranslate)s=toolname."
 
-#: ../src/cli/arghandler.py:683
+#: ../src/cli/arghandler.py:679
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Unbekannte Aktion: %s."
@@ -3547,7 +3547,7 @@ msgstr "†"
 
 #: ../src/gen/lib/eventtype.py:215
 msgid "marriage abbreviation|m."
-msgstr "⚭"
+msgstr "oo"
 
 #: ../src/gen/lib/eventtype.py:216
 msgid "Unknown abbreviation|unkn."
@@ -3651,7 +3651,7 @@ msgstr "Adel."
 
 #: ../src/gen/lib/eventtype.py:241
 msgid "Number of Marriages abbreviation|n.o.mar."
-msgstr "Anz.⚭"
+msgstr "Anz. oo"
 
 #: ../src/gen/lib/eventtype.py:242
 msgid "Occupation abbreviation|occ."
@@ -7170,17 +7170,21 @@ msgstr ""
 msgid "Cannot save citation. ID already exists."
 msgstr "Die Fundstelle kann nicht gespeichert werden. ID existiert bereits."
 
-#: ../src/gui/editors/editcitation.py:278
+#: ../src/gui/editors/editcitation.py:278 ../src/gui/editors/editevent.py:241
+#: ../src/gui/editors/editmedia.py:280 ../src/gui/editors/editperson.py:808
+#: ../src/gui/editors/editplace.py:303 ../src/gui/editors/editreference.py:285
+#: ../src/gui/editors/editrepository.py:172
+#: ../src/gui/editors/editsource.py:192
 #, python-format
 msgid ""
-"You have attempted to use the existing Gramps ID with value %(gramps_id)s. "
-"This value is already used by '%(prim_object)s'. Please enter a different ID "
-"or leave blank to get the next available ID value."
+"You have attempted to use the existing Gramps ID with value %(id)s. This "
+"value is already used by '%(prim_object)s'. Please enter a different ID or "
+"leave blank to get the next available ID value."
 msgstr ""
-"Du hast versucht eine existierende Gramps ID mit dem Wert %(gramps_id)s zu "
-"verwenden. Dieser Wert wird bereits von '%(prim_object)s' verwendet. Bitte "
-"gib eine andere ID ein oder lasse sie leer, um den nächsten verfügbaren ID "
-"Wert zu erhalten."
+"Du hast versucht eine existierende Gramps ID mit dem Wert %(id)s zu "
+"verwenden. Dieser Wert wird bereits von '%(prim_object)s' benutzt. Bitte gib "
+"eine andere ID ein oder lasse sie leer um den nächsten verfügbaren ID Wert "
+"zu erhalten."
 
 #: ../src/gui/editors/editcitation.py:290
 #, python-format
@@ -7227,24 +7231,9 @@ msgstr ""
 "Es existieren keine Daten für dieses Ereignis. Bitte gib Daten ein oder "
 "brich das Bearbeiten ab."
 
-#: ../src/gui/editors/editevent.py:240
+#: ../src/gui/editors/editevent.py:240 ../src/gui/editors/editreference.py:276
 msgid "Cannot save event. ID already exists."
 msgstr "Das Ereignis kann gespeichert werden. ID besteht bereits."
-
-#: ../src/gui/editors/editevent.py:241 ../src/gui/editors/editmedia.py:280
-#: ../src/gui/editors/editperson.py:808 ../src/gui/editors/editplace.py:303
-#: ../src/gui/editors/editrepository.py:172
-#: ../src/gui/editors/editsource.py:192
-#, python-format
-msgid ""
-"You have attempted to use the existing Gramps ID with value %(id)s. This "
-"value is already used by '%(prim_object)s'. Please enter a different ID or "
-"leave blank to get the next available ID value."
-msgstr ""
-"Du hast versucht eine existierende Gramps ID mit dem Wert %(id)s zu "
-"verwenden. Dieser Wert wird bereits von '%(prim_object)s' benutzt. Bitte gib "
-"eine andere ID ein oder lasse sie leer um den nächsten verfügbaren ID Wert "
-"zu erhalten."
 
 #: ../src/gui/editors/editevent.py:254
 msgid "The event type cannot be empty"
@@ -7280,7 +7269,7 @@ msgstr "_Allgemeines"
 msgid "Modify Event"
 msgstr "Ereignis ändern"
 
-#: ../src/gui/editors/editeventref.py:251
+#: ../src/gui/editors/editeventref.py:253
 msgid "Add Event"
 msgstr "Ereignis hinzufügen"
 
@@ -7535,6 +7524,7 @@ msgid "Cannot save family. ID already exists."
 msgstr "Die Familie kann nicht gespeichert werden. ID existiert bereits."
 
 #: ../src/gui/editors/editfamily.py:1012 ../src/gui/editors/editnote.py:314
+#: ../src/gui/editors/editreference.py:292
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -7610,16 +7600,16 @@ msgstr ""
 "Es existieren keine Daten für dieses Medienobjekt. Bitte gib Daten ein oder "
 "brich die Bearbeitung ab."
 
-#: ../src/gui/editors/editmedia.py:279
+#: ../src/gui/editors/editmedia.py:279 ../src/gui/editors/editreference.py:279
 msgid "Cannot save media object. ID already exists."
 msgstr "Das Medienobjekt kann nicht gespeichert werden. ID existiert bereits."
 
-#: ../src/gui/editors/editmedia.py:297 ../src/gui/editors/editmediaref.py:664
+#: ../src/gui/editors/editmedia.py:297 ../src/gui/editors/editmediaref.py:667
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr "Medienobjekt (%s) hinzufügen"
 
-#: ../src/gui/editors/editmedia.py:302 ../src/gui/editors/editmediaref.py:660
+#: ../src/gui/editors/editmedia.py:302 ../src/gui/editors/editmediaref.py:661
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr "Medienobjekt (%s) bearbeiten"
@@ -7947,6 +7937,12 @@ msgstr "Änderungen speichern?"
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr "Wenn du ohne zu speichern schließt, gehen deine Änderungen verloren."
 
+#: ../src/gui/editors/editreference.py:282
+#: ../src/gui/editors/editrepository.py:171
+msgid "Cannot save repository. ID already exists."
+msgstr ""
+"Der Aufbewahrungsort kann nicht gespeichert werden. ID besteht bereits."
+
 #: ../src/gui/editors/editreporef.py:63
 msgid "Repository Reference Editor"
 msgstr "Referenzierungseditor für Aufbewahrungsort"
@@ -7969,7 +7965,7 @@ msgstr "Referenzierungseditor für Aufbewahrungsort"
 msgid "Modify Repository"
 msgstr "Aufbewahrungsort ändern"
 
-#: ../src/gui/editors/editreporef.py:197
+#: ../src/gui/editors/editreporef.py:199
 msgid "Add Repository"
 msgstr "Aufbewahrungsort hinzufügen"
 
@@ -7987,11 +7983,6 @@ msgid ""
 msgstr ""
 "Es existieren keine Daten für diesen Aufbewahrungsort. Bitte gib Daten ein "
 "oder brich die Bearbeitung ab."
-
-#: ../src/gui/editors/editrepository.py:171
-msgid "Cannot save repository. ID already exists."
-msgstr ""
-"Der Aufbewahrungsort kann nicht gespeichert werden. ID besteht bereits."
 
 #: ../src/gui/editors/editrepository.py:184
 #, python-format
@@ -32095,6 +32086,16 @@ msgstr ""
 "<b>Gramps für Gnome oder KDE?</b><br/>Für Linuxanwender läuft Gramps "
 "hervorragend auf jeder Desktopumgebung, die du bevorzugst. Hauptsache, die "
 "benötigten GTK Bibliotheken sind installiert."
+
+#~ msgid ""
+#~ "You have attempted to use the existing Gramps ID with value "
+#~ "%(gramps_id)s. This value is already used by '%(prim_object)s'. Please "
+#~ "enter a different ID or leave blank to get the next available ID value."
+#~ msgstr ""
+#~ "Du hast versucht eine existierende Gramps ID mit dem Wert %(gramps_id)s "
+#~ "zu verwenden. Dieser Wert wird bereits von '%(prim_object)s' verwendet. "
+#~ "Bitte gib eine andere ID ein oder lasse sie leer, um den nächsten "
+#~ "verfügbaren ID Wert zu erhalten."
 
 #~ msgid "To select a source, use drag-and-drop or use the buttons"
 #~ msgstr ""
