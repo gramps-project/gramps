@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-18 18:57+0200\n"
-"PO-Revision-Date: 2014-05-18 19:47+0200\n"
+"PO-Revision-Date: 2014-06-22 18:01+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -6468,7 +6468,7 @@ msgstr "†"
 #: ../gramps/plugins/drawreport/ancestortree.py:69
 #: ../gramps/plugins/drawreport/descendtree.py:57
 msgid "marriage abbreviation|m."
-msgstr "⚭"
+msgstr "oo"
 
 #: ../gramps/gen/lib/eventtype.py:221
 msgid "Unknown abbreviation|unkn."
@@ -6572,7 +6572,7 @@ msgstr "Adel."
 
 #: ../gramps/gen/lib/eventtype.py:246
 msgid "Number of Marriages abbreviation|n.o.mar."
-msgstr "Anz.⚭"
+msgstr "Anz. oo"
 
 #: ../gramps/gen/lib/eventtype.py:247
 msgid "Occupation abbreviation|occ."
