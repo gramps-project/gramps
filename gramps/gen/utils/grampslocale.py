@@ -474,7 +474,8 @@ class GrampsLocale(object):
             if not sys.platform == 'win32':
                 locale.bindtextdomain(self.localedomain, self.localedir)
             else:
-                self._win_bindtextdomain(self.localedomain, self.localedir)
+                self._win_bindtextdomain(self.localedomain,
+                                         self.localedir.encode('utf-8'))
 
     def _init_secondary_locale(self):
         """
