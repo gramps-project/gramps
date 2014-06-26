@@ -31389,6 +31389,7 @@ msgstr "星期五"
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgid "Saturday"
 msgstr "星期六"
+
 #~ msgid "State/Province:"
 #~ msgstr "州／省:"
 
