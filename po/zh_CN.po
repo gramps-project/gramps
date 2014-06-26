@@ -1,5 +1,4 @@
-# Chinese (PRC) translation for Gramps
-# $Id$
+# Chinese (simplified) translation for Gramps
 # This file is distributed under the same license as the Gramps package.
 # Copyright (C) YEAR ORGANIZATION
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
@@ -1140,41 +1139,6 @@ msgstr ""
 msgid "Date displayer for '%s' not available, using default"
 msgstr ""
 
-#. format 0 - must always be ISO
-#: ../gramps/gen/datehandler/_datedisplay.py:62
-msgid "YYYY-MM-DD (ISO)"
-msgstr ""
-
-#. format # 1 - must always be locale-preferred numerical format
-#. such as YY.MM.DD, MM-DD-YY, or whatever your locale prefers.
-#. This should be the format that is used under the locale by
-#. strftime() for '%x'.
-#. You may translate this string as "Numerical", "System preferred", or similar.
-#: ../gramps/gen/datehandler/_datedisplay.py:69
-#, fuzzy
-msgid "date format|Numerical"
-msgstr "日期格式"
-
-#. Full month name, day, year
-#: ../gramps/gen/datehandler/_datedisplay.py:72
-msgid "Month Day, Year"
-msgstr ""
-
-#. Abbreviated month name, day, year
-#: ../gramps/gen/datehandler/_datedisplay.py:75
-msgid "MON DAY, YEAR"
-msgstr ""
-
-#. Day, full month name, year
-#: ../gramps/gen/datehandler/_datedisplay.py:78
-#, fuzzy
-msgid "Day Month Year"
-msgstr "一年中的一天"
-
-#. Day, abbreviated month name, year
-#: ../gramps/gen/datehandler/_datedisplay.py:81
-msgid "DAY MON YEAR"
-msgstr ""
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1285,9 +1249,6 @@ msgstr ""
 msgid "to-date|"
 msgstr "日期"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:348
-msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
 
 #. If there is no special inflection for "between <Month>" in your
 #. language, don't translate this string.
@@ -1309,9 +1270,6 @@ msgstr "在...之间"
 msgid "and-date|"
 msgstr "日期"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:370
-msgid "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
 
 #. If there is no special inflection for "before/after/around <Month>" in your
 #. language, don't translate this string.
@@ -1360,146 +1318,6 @@ msgstr ""
 #: ../gramps/gen/datehandler/_dateparser.py:402
 msgid "today"
 msgstr ""
-
-# zhēngyuè, 一
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection to be used in your localized
-#. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:65
-msgid "localized lexeme inflections||January"
-msgstr "正"
-
-# èryuè
-#: ../gramps/gen/datehandler/_datestrings.py:66
-msgid "localized lexeme inflections||February"
-msgstr "二"
-
-# sānyuè
-#: ../gramps/gen/datehandler/_datestrings.py:67
-msgid "localized lexeme inflections||March"
-msgstr "三"
-
-# sìyuè
-#: ../gramps/gen/datehandler/_datestrings.py:68
-msgid "localized lexeme inflections||April"
-msgstr "四"
-
-# wǔyuè
-#: ../gramps/gen/datehandler/_datestrings.py:69
-msgid "localized lexeme inflections||May"
-msgstr "五"
-
-# liùyuè
-#: ../gramps/gen/datehandler/_datestrings.py:70
-msgid "localized lexeme inflections||June"
-msgstr "六"
-
-# qīyuè
-#: ../gramps/gen/datehandler/_datestrings.py:71
-msgid "localized lexeme inflections||July"
-msgstr "七"
-
-# bāyuè
-#: ../gramps/gen/datehandler/_datestrings.py:72
-msgid "localized lexeme inflections||August"
-msgstr "八"
-
-# jiǔyuè
-#: ../gramps/gen/datehandler/_datestrings.py:73
-msgid "localized lexeme inflections||September"
-msgstr "九"
-
-# shíyuè
-#: ../gramps/gen/datehandler/_datestrings.py:74
-msgid "localized lexeme inflections||October"
-msgstr "十"
-
-# shíyīyuè
-#: ../gramps/gen/datehandler/_datestrings.py:75
-msgid "localized lexeme inflections||November"
-msgstr "十一"
-
-# shí'èryuè
-#: ../gramps/gen/datehandler/_datestrings.py:76
-msgid "localized lexeme inflections||December"
-msgstr "十二"
-
-# liùyuè
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection to be used in your localized
-#. DateDisplayer code!
-#: ../gramps/gen/datehandler/_datestrings.py:83
-#, fuzzy
-msgid "localized lexeme inflections - short month form||Jan"
-msgstr "六"
-
-# èryuè
-#: ../gramps/gen/datehandler/_datestrings.py:84
-#, fuzzy
-msgid "localized lexeme inflections - short month form||Feb"
-msgstr "二"
-
-# sānyuè
-#: ../gramps/gen/datehandler/_datestrings.py:85
-#, fuzzy
-msgid "localized lexeme inflections - short month form||Mar"
-msgstr "三"
-
-# sìyuè
-#: ../gramps/gen/datehandler/_datestrings.py:86
-#, fuzzy
-msgid "localized lexeme inflections - short month form||Apr"
-msgstr "四"
-
-# wǔyuè
-#: ../gramps/gen/datehandler/_datestrings.py:87
-#, fuzzy
-msgid "localized lexeme inflections - short month form||May"
-msgstr "五"
-
-# liùyuè
-#: ../gramps/gen/datehandler/_datestrings.py:88
-#, fuzzy
-msgid "localized lexeme inflections - short month form||Jun"
-msgstr "六"
-
-# qīyuè
-#: ../gramps/gen/datehandler/_datestrings.py:89
-#, fuzzy
-msgid "localized lexeme inflections - short month form||Jul"
-msgstr "七"
-
-# bāyuè
-#: ../gramps/gen/datehandler/_datestrings.py:90
-#, fuzzy
-msgid "localized lexeme inflections - short month form||Aug"
-msgstr "八"
-
-# jiǔyuè
-#: ../gramps/gen/datehandler/_datestrings.py:91
-#, fuzzy
-msgid "localized lexeme inflections - short month form||Sep"
-msgstr "九"
-
-# shíyuè
-#: ../gramps/gen/datehandler/_datestrings.py:92
-#, fuzzy
-msgid "localized lexeme inflections - short month form||Oct"
-msgstr "十"
-
-# shíyīyuè
-#: ../gramps/gen/datehandler/_datestrings.py:93
-#, fuzzy
-msgid "localized lexeme inflections - short month form||Nov"
-msgstr "十一"
-
-# shí'èryuè
-#: ../gramps/gen/datehandler/_datestrings.py:94
-#, fuzzy
-msgid "localized lexeme inflections - short month form||Dec"
-msgstr "十二"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1564,35 +1382,6 @@ msgstr "用于十一月的笔记"
 #, fuzzy
 msgid "alternative month names for December||"
 msgstr "用于十二月的笔记"
-
-#. Must appear in the order indexed by Date.CAL_... numeric constants
-#: ../gramps/gen/datehandler/_datestrings.py:117 ../gramps/gen/lib/date.py:590
-msgid "calendar|Gregorian"
-msgstr "阳历"
-
-#: ../gramps/gen/datehandler/_datestrings.py:118 ../gramps/gen/lib/date.py:591
-msgid "calendar|Julian"
-msgstr "儒略历"
-
-#: ../gramps/gen/datehandler/_datestrings.py:119 ../gramps/gen/lib/date.py:592
-msgid "calendar|Hebrew"
-msgstr "希伯来日历"
-
-#: ../gramps/gen/datehandler/_datestrings.py:120 ../gramps/gen/lib/date.py:593
-msgid "calendar|French Republican"
-msgstr "法属圭亚那日历"
-
-#: ../gramps/gen/datehandler/_datestrings.py:121 ../gramps/gen/lib/date.py:594
-msgid "calendar|Persian"
-msgstr "波斯日历"
-
-#: ../gramps/gen/datehandler/_datestrings.py:122 ../gramps/gen/lib/date.py:595
-msgid "calendar|Islamic"
-msgstr "伊斯兰历"
-
-#: ../gramps/gen/datehandler/_datestrings.py:123 ../gramps/gen/lib/date.py:596
-msgid "calendar|Swedish"
-msgstr "瑞典日历"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1808,58 +1597,6 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:205
 msgid "Persian month lexeme|Esfand"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:209
-msgid "date modifier|before "
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:210
-#, fuzzy
-msgid "date modifier|after "
-msgstr "上次修订"
-
-#: ../gramps/gen/datehandler/_datestrings.py:211
-#, fuzzy
-msgid "date modifier|about "
-msgstr "上次修订"
-
-#: ../gramps/gen/datehandler/_datestrings.py:215
-#, fuzzy
-msgid "date quality|estimated "
-msgstr "添加估算日期"
-
-#: ../gramps/gen/datehandler/_datestrings.py:216
-msgid "date quality|calculated "
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:222
-msgid "Sunday"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:223
-#, fuzzy
-msgid "Monday"
-msgstr "次要的"
-
-#: ../gramps/gen/datehandler/_datestrings.py:224
-msgid "Tuesday"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:225
-msgid "Wednesday"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:226
-msgid "Thursday"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:227
-msgid "Friday"
-msgstr ""
-
-#: ../gramps/gen/datehandler/_datestrings.py:228
-msgid "Saturday"
 msgstr ""
 
 #: ../gramps/gen/db/base.py:1635
@@ -31404,6 +31141,254 @@ msgstr "至少一条规则必须满足"
 msgid "Exactly one rule must apply"
 msgstr "至少一条规则必须满足"
 
+#. format 0 - must always be ISO
+#: ../gramps/gen/datehandler/_datedisplay.py:62
+msgid "YYYY-MM-DD (ISO)"
+msgstr "年年年年-月月-日日 (ISO)"
+
+#. format # 1 - must always be locale-preferred numerical format
+#. such as YY.MM.DD, MM-DD-YY, or whatever your locale prefers.
+#. This should be the format that is used under the locale by
+#. strftime() for '%x'.
+#. You may translate this string as "Numerical", "System preferred", or similar.
+#: ../gramps/gen/datehandler/_datedisplay.py:69
+msgid "date format|Numerical"
+msgstr "数字格式"
+
+#. Full month name, day, year
+#: ../gramps/gen/datehandler/_datedisplay.py:72
+msgid "Month Day, Year"
+msgstr "月 日，年"
+
+#. Abbreviated month name, day, year
+#: ../gramps/gen/datehandler/_datedisplay.py:75
+msgid "MON DAY, YEAR"
+msgstr "月 日，年"
+
+#. Day, full month name, year
+#: ../gramps/gen/datehandler/_datedisplay.py:78
+msgid "Day Month Year"
+msgstr "日 月 年"
+
+#. Day, abbreviated month name, year
+#: ../gramps/gen/datehandler/_datedisplay.py:81
+msgid "DAY MON YEAR"
+msgstr "日 月 年 "
+
+#: ../gramps/gen/datehandler/_datedisplay.py:348
+msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}自{date_start} 至{date_stop}{nonstd_calendar_and_ny}"
+
+#: ../gramps/gen/datehandler/_datedisplay.py:370
+msgid ""
+"{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
+msgstr ""
+"{date_quality}介于{date_start}与{date_stop}{nonstd_calendar_and_ny}之间"
+
+# zhēngyuè, 一
+#. TRANSLATORS: see
+#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+#. to learn how to select proper inflection to be used in your localized
+#. DateDisplayer code!
+#: ../gramps/gen/datehandler/_datestrings.py:65
+msgid "localized lexeme inflections||January"
+msgstr "正月"
+
+# èryuè
+#: ../gramps/gen/datehandler/_datestrings.py:66
+msgid "localized lexeme inflections||February"
+msgstr "二月"
+
+# sānyuè
+#: ../gramps/gen/datehandler/_datestrings.py:67
+msgid "localized lexeme inflections||March"
+msgstr "三月"
+
+# sìyuè
+#: ../gramps/gen/datehandler/_datestrings.py:68
+msgid "localized lexeme inflections||April"
+msgstr "四月"
+
+# wǔyuè
+#: ../gramps/gen/datehandler/_datestrings.py:69
+msgid "localized lexeme inflections||May"
+msgstr "五月"
+
+# liùyuè
+#: ../gramps/gen/datehandler/_datestrings.py:70
+msgid "localized lexeme inflections||June"
+msgstr "六月"
+
+# qīyuè
+#: ../gramps/gen/datehandler/_datestrings.py:71
+msgid "localized lexeme inflections||July"
+msgstr "七月"
+
+# bāyuè
+#: ../gramps/gen/datehandler/_datestrings.py:72
+msgid "localized lexeme inflections||August"
+msgstr "八月"
+
+# jiǔyuè
+#: ../gramps/gen/datehandler/_datestrings.py:73
+msgid "localized lexeme inflections||September"
+msgstr "九月"
+
+# shíyuè
+#: ../gramps/gen/datehandler/_datestrings.py:74
+msgid "localized lexeme inflections||October"
+msgstr "十月"
+
+# shíyīyuè
+#: ../gramps/gen/datehandler/_datestrings.py:75
+msgid "localized lexeme inflections||November"
+msgstr "十一月"
+
+# shí'èryuè
+#: ../gramps/gen/datehandler/_datestrings.py:76
+msgid "localized lexeme inflections||December"
+msgstr "十二月"
+
+# liùyuè
+#. TRANSLATORS: see
+#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
+#. to learn how to select proper inflection to be used in your localized
+#. DateDisplayer code!
+#: ../gramps/gen/datehandler/_datestrings.py:83
+msgid "localized lexeme inflections - short month form||Jan"
+msgstr "一月"
+
+# èryuè
+#: ../gramps/gen/datehandler/_datestrings.py:84
+msgid "localized lexeme inflections - short month form||Feb"
+msgstr "二月"
+
+# sānyuè
+#: ../gramps/gen/datehandler/_datestrings.py:85
+msgid "localized lexeme inflections - short month form||Mar"
+msgstr "三月"
+
+# sìyuè
+#: ../gramps/gen/datehandler/_datestrings.py:86
+msgid "localized lexeme inflections - short month form||Apr"
+msgstr "四月"
+
+# wǔyuè
+#: ../gramps/gen/datehandler/_datestrings.py:87
+msgid "localized lexeme inflections - short month form||May"
+msgstr "五月"
+
+# liùyuè
+#: ../gramps/gen/datehandler/_datestrings.py:88
+msgid "localized lexeme inflections - short month form||Jun"
+msgstr "六月"
+
+# qīyuè
+#: ../gramps/gen/datehandler/_datestrings.py:89
+msgid "localized lexeme inflections - short month form||Jul"
+msgstr "七月"
+
+# bāyuè
+#: ../gramps/gen/datehandler/_datestrings.py:90
+msgid "localized lexeme inflections - short month form||Aug"
+msgstr "八月"
+
+# jiǔyuè
+#: ../gramps/gen/datehandler/_datestrings.py:91
+msgid "localized lexeme inflections - short month form||Sep"
+msgstr "九月"
+
+# shíyuè
+#: ../gramps/gen/datehandler/_datestrings.py:92
+msgid "localized lexeme inflections - short month form||Oct"
+msgstr "十月"
+
+# shíyīyuè
+#: ../gramps/gen/datehandler/_datestrings.py:93
+msgid "localized lexeme inflections - short month form||Nov"
+msgstr "十一月"
+
+# shí'èryuè
+#: ../gramps/gen/datehandler/_datestrings.py:94
+msgid "localized lexeme inflections - short month form||Dec"
+msgstr "十二月"
+
+#. Must appear in the order indexed by Date.CAL_... numeric constants
+#: ../gramps/gen/datehandler/_datestrings.py:117 ../gramps/gen/lib/date.py:590
+msgid "calendar|Gregorian"
+msgstr "阳历"
+
+#: ../gramps/gen/datehandler/_datestrings.py:118 ../gramps/gen/lib/date.py:591
+msgid "calendar|Julian"
+msgstr "儒略历"
+
+#: ../gramps/gen/datehandler/_datestrings.py:119 ../gramps/gen/lib/date.py:592
+msgid "calendar|Hebrew"
+msgstr "希伯来历"
+
+#: ../gramps/gen/datehandler/_datestrings.py:120 ../gramps/gen/lib/date.py:593
+msgid "calendar|French Republican"
+msgstr "法国共和历"
+
+#: ../gramps/gen/datehandler/_datestrings.py:121 ../gramps/gen/lib/date.py:594
+msgid "calendar|Persian"
+msgstr "伊郎历"
+
+#: ../gramps/gen/datehandler/_datestrings.py:122 ../gramps/gen/lib/date.py:595
+msgid "calendar|Islamic"
+msgstr "伊斯兰历"
+
+#: ../gramps/gen/datehandler/_datestrings.py:123 ../gramps/gen/lib/date.py:596
+msgid "calendar|Swedish"
+msgstr "瑞典历"
+
+#: ../gramps/gen/datehandler/_datestrings.py:209
+msgid "date modifier|before "
+msgstr "以前 "
+
+#: ../gramps/gen/datehandler/_datestrings.py:210
+msgid "date modifier|after "
+msgstr "以后 "
+
+#: ../gramps/gen/datehandler/_datestrings.py:211
+msgid "date modifier|about "
+msgstr "大约 "
+
+#: ../gramps/gen/datehandler/_datestrings.py:215
+msgid "date quality|estimated "
+msgstr "据估计 "
+
+#: ../gramps/gen/datehandler/_datestrings.py:216
+msgid "date quality|calculated "
+msgstr "据计算 "
+
+#: ../gramps/gen/datehandler/_datestrings.py:222
+msgid "Sunday"
+msgstr "星期天"
+
+#: ../gramps/gen/datehandler/_datestrings.py:223
+msgid "Monday"
+msgstr "星期一"
+
+#: ../gramps/gen/datehandler/_datestrings.py:224
+msgid "Tuesday"
+msgstr "星期二"
+
+#: ../gramps/gen/datehandler/_datestrings.py:225
+msgid "Wednesday"
+msgstr "星期三"
+
+#: ../gramps/gen/datehandler/_datestrings.py:226
+msgid "Thursday"
+msgstr "星期四"
+
+#: ../gramps/gen/datehandler/_datestrings.py:227
+msgid "Friday"
+msgstr "星期五"
+
+#: ../gramps/gen/datehandler/_datestrings.py:228
+msgid "Saturday"
+msgstr "星期六"
 #~ msgid "State/Province:"
 #~ msgstr "州／省:"
 

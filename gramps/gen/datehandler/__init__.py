@@ -62,6 +62,8 @@ from . import _date_sl
 from . import _date_sr
 from . import _date_sv
 from . import _date_uk
+from . import _date_zh_CN
+from . import _date_zh_TW
 
 # Initialize global parser
 try:
