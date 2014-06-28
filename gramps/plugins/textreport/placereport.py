@@ -182,7 +182,7 @@ class PlaceReport(Report):
         This procedure writes out each of the events related to the place
         """
         event_handles = [event_handle for (object_type, event_handle) in
-                         self.database.find_backlink_handles(handle)]
+                         self.database.find_backlink_handles(handle,['Event'])]
         event_handles.sort(key=self.sort.by_date_key)
 
         if event_handles:
