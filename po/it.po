@@ -63,14 +63,14 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-26 17:49+0200\n"
-"PO-Revision-Date: 2014-05-27 01:22+0200\n"
-"Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
+"PO-Revision-Date: 2014-06-28 12:07+0100\n"
+"Last-Translator: josip <josip@pisoj.com>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Poedit 1.6.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -1982,7 +1982,7 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_dateparser.py:402
 msgid "today"
-msgstr ""
+msgstr "oggi"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1990,51 +1990,51 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:65
 msgid "localized lexeme inflections||January"
-msgstr ""
+msgstr "gennaio"
 
 #: ../gramps/gen/datehandler/_datestrings.py:66
 msgid "localized lexeme inflections||February"
-msgstr ""
+msgstr "febbraio"
 
 #: ../gramps/gen/datehandler/_datestrings.py:67
 msgid "localized lexeme inflections||March"
-msgstr ""
+msgstr "marzo"
 
 #: ../gramps/gen/datehandler/_datestrings.py:68
 msgid "localized lexeme inflections||April"
-msgstr ""
+msgstr "aprile"
 
 #: ../gramps/gen/datehandler/_datestrings.py:69
 msgid "localized lexeme inflections||May"
-msgstr ""
+msgstr "maggio"
 
 #: ../gramps/gen/datehandler/_datestrings.py:70
 msgid "localized lexeme inflections||June"
-msgstr ""
+msgstr "giugno"
 
 #: ../gramps/gen/datehandler/_datestrings.py:71
 msgid "localized lexeme inflections||July"
-msgstr ""
+msgstr "luglio"
 
 #: ../gramps/gen/datehandler/_datestrings.py:72
 msgid "localized lexeme inflections||August"
-msgstr ""
+msgstr "agosto"
 
 #: ../gramps/gen/datehandler/_datestrings.py:73
 msgid "localized lexeme inflections||September"
-msgstr ""
+msgstr "settembre"
 
 #: ../gramps/gen/datehandler/_datestrings.py:74
 msgid "localized lexeme inflections||October"
-msgstr ""
+msgstr "ottobre"
 
 #: ../gramps/gen/datehandler/_datestrings.py:75
 msgid "localized lexeme inflections||November"
-msgstr ""
+msgstr "novembre"
 
 #: ../gramps/gen/datehandler/_datestrings.py:76
 msgid "localized lexeme inflections||December"
-msgstr ""
+msgstr "dicembre"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2042,51 +2042,51 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:83
 msgid "localized lexeme inflections - short month form||Jan"
-msgstr ""
+msgstr "gen"
 
 #: ../gramps/gen/datehandler/_datestrings.py:84
 msgid "localized lexeme inflections - short month form||Feb"
-msgstr ""
+msgstr "feb"
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
 msgid "localized lexeme inflections - short month form||Mar"
-msgstr ""
+msgstr "mar"
 
 #: ../gramps/gen/datehandler/_datestrings.py:86
 msgid "localized lexeme inflections - short month form||Apr"
-msgstr ""
+msgstr "apr"
 
 #: ../gramps/gen/datehandler/_datestrings.py:87
 msgid "localized lexeme inflections - short month form||May"
-msgstr ""
+msgstr "mag"
 
 #: ../gramps/gen/datehandler/_datestrings.py:88
 msgid "localized lexeme inflections - short month form||Jun"
-msgstr ""
+msgstr "giu"
 
 #: ../gramps/gen/datehandler/_datestrings.py:89
 msgid "localized lexeme inflections - short month form||Jul"
-msgstr ""
+msgstr "lug"
 
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgid "localized lexeme inflections - short month form||Aug"
-msgstr ""
+msgstr "ago"
 
 #: ../gramps/gen/datehandler/_datestrings.py:91
 msgid "localized lexeme inflections - short month form||Sep"
-msgstr ""
+msgstr "set"
 
 #: ../gramps/gen/datehandler/_datestrings.py:92
 msgid "localized lexeme inflections - short month form||Oct"
-msgstr ""
+msgstr "ott"
 
 #: ../gramps/gen/datehandler/_datestrings.py:93
 msgid "localized lexeme inflections - short month form||Nov"
-msgstr ""
+msgstr "nov"
 
 #: ../gramps/gen/datehandler/_datestrings.py:94
 msgid "localized lexeme inflections - short month form||Dec"
-msgstr ""
+msgstr "dic"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2243,55 +2243,55 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:153
 msgid "French month lexeme|Vendémiaire"
-msgstr ""
+msgstr "vendemmiaio"
 
 #: ../gramps/gen/datehandler/_datestrings.py:154
 msgid "French month lexeme|Brumaire"
-msgstr ""
+msgstr "brumaio"
 
 #: ../gramps/gen/datehandler/_datestrings.py:155
 msgid "French month lexeme|Frimaire"
-msgstr ""
+msgstr "frimaio"
 
 #: ../gramps/gen/datehandler/_datestrings.py:156
 msgid "French month lexeme|Nivôse"
-msgstr ""
+msgstr "nevoso"
 
 #: ../gramps/gen/datehandler/_datestrings.py:157
 msgid "French month lexeme|Pluviôse"
-msgstr ""
+msgstr "piovoso"
 
 #: ../gramps/gen/datehandler/_datestrings.py:158
 msgid "French month lexeme|Ventôse"
-msgstr ""
+msgstr "ventoso"
 
 #: ../gramps/gen/datehandler/_datestrings.py:159
 msgid "French month lexeme|Germinal"
-msgstr ""
+msgstr "germile"
 
 #: ../gramps/gen/datehandler/_datestrings.py:160
 msgid "French month lexeme|Floréal"
-msgstr ""
+msgstr "fiorile"
 
 #: ../gramps/gen/datehandler/_datestrings.py:161
 msgid "French month lexeme|Prairial"
-msgstr ""
+msgstr "pratile"
 
 #: ../gramps/gen/datehandler/_datestrings.py:162
 msgid "French month lexeme|Messidor"
-msgstr ""
+msgstr "messidoro"
 
 #: ../gramps/gen/datehandler/_datestrings.py:163
 msgid "French month lexeme|Thermidor"
-msgstr ""
+msgstr "termidoro"
 
 #: ../gramps/gen/datehandler/_datestrings.py:164
 msgid "French month lexeme|Fructidor"
-msgstr ""
+msgstr "fruttidoro"
 
 #: ../gramps/gen/datehandler/_datestrings.py:165
 msgid "French month lexeme|Extra"
-msgstr ""
+msgstr "extra"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2399,55 +2399,51 @@ msgstr ""
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgid "date modifier|before "
-msgstr ""
+msgstr "prima del "
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
-#, fuzzy
 msgid "date modifier|after "
-msgstr "Ultima modifica"
+msgstr "dopo del "
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
-#, fuzzy
 msgid "date modifier|about "
-msgstr "Ultima modifica"
+msgstr "circa il "
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
-#, fuzzy
 msgid "date quality|estimated "
-msgstr "Aggiunge data stimate"
+msgstr "stimata "
 
 #: ../gramps/gen/datehandler/_datestrings.py:216
 msgid "date quality|calculated "
-msgstr ""
+msgstr "calcolata "
 
 #: ../gramps/gen/datehandler/_datestrings.py:222
 msgid "Sunday"
-msgstr ""
+msgstr "domenica"
 
 #: ../gramps/gen/datehandler/_datestrings.py:223
-#, fuzzy
 msgid "Monday"
-msgstr "Seconda persona"
+msgstr "lunedi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:224
 msgid "Tuesday"
-msgstr ""
+msgstr "martedi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:225
 msgid "Wednesday"
-msgstr ""
+msgstr "mercoledi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:226
 msgid "Thursday"
-msgstr ""
+msgstr "giovedi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:227
 msgid "Friday"
-msgstr ""
+msgstr "venerdi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:228
 msgid "Saturday"
-msgstr ""
+msgstr "sabato"
 
 #: ../gramps/gen/db/base.py:1636
 msgid "Add child to family"
