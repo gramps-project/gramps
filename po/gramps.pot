@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-26 17:49+0200\n"
+"POT-Creation-Date: 2014-07-02 13:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -678,8 +678,8 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/cli/arghandler.py:413 ../gramps/cli/arghandler.py:414
-#: ../gramps/cli/arghandler.py:423 ../gramps/cli/arghandler.py:430
-#: ../gramps/cli/arghandler.py:431 ../gramps/cli/arghandler.py:433
+#: ../gramps/cli/arghandler.py:425 ../gramps/cli/arghandler.py:432
+#: ../gramps/cli/arghandler.py:433 ../gramps/cli/arghandler.py:435
 #: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:220
 #: ../gramps/gui/clipboard.py:953 ../gramps/gui/configure.py:1364
 msgid "Family Tree"
@@ -690,105 +690,105 @@ msgstr ""
 msgid "Family Tree \"%s\":"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:443
+#: ../gramps/cli/arghandler.py:445
 #, python-format
 msgid "Performing action: %s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:445
+#: ../gramps/cli/arghandler.py:447
 #, python-format
 msgid "Using options string: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:450
+#: ../gramps/cli/arghandler.py:452
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:457
+#: ../gramps/cli/arghandler.py:459
 msgid "Exiting."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:461
+#: ../gramps/cli/arghandler.py:463
 msgid "Cleaning up."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:492
+#: ../gramps/cli/arghandler.py:494
 msgid "Created empty Family Tree successfully"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:495 ../gramps/cli/arghandler.py:520
+#: ../gramps/cli/arghandler.py:497 ../gramps/cli/arghandler.py:522
 msgid "Error opening the file."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:496 ../gramps/cli/arghandler.py:521
+#: ../gramps/cli/arghandler.py:498 ../gramps/cli/arghandler.py:523
 msgid "Exiting..."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:500
+#: ../gramps/cli/arghandler.py:502
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:518
+#: ../gramps/cli/arghandler.py:520
 msgid "Opened successfully!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:532
+#: ../gramps/cli/arghandler.py:534
 msgid "Database is locked, cannot open it!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:533
+#: ../gramps/cli/arghandler.py:535
 #, python-format
 msgid "  Info: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:536
+#: ../gramps/cli/arghandler.py:538
 msgid "Database needs recovery, cannot open it!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:587 ../gramps/cli/arghandler.py:635
-#: ../gramps/cli/arghandler.py:682
+#: ../gramps/cli/arghandler.py:589 ../gramps/cli/arghandler.py:637
+#: ../gramps/cli/arghandler.py:684
 msgid "Ignoring invalid options string."
 msgstr ""
 
 #. name exists, but is not in the list of valid report names
-#: ../gramps/cli/arghandler.py:611
+#: ../gramps/cli/arghandler.py:613
 msgid "Unknown report name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:613
+#: ../gramps/cli/arghandler.py:615
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:617 ../gramps/cli/arghandler.py:665
-#: ../gramps/cli/arghandler.py:698
+#: ../gramps/cli/arghandler.py:619 ../gramps/cli/arghandler.py:667
+#: ../gramps/cli/arghandler.py:700
 #, python-format
 msgid ""
 "%s\n"
 " Available names are:"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:659
+#: ../gramps/cli/arghandler.py:661
 msgid "Unknown tool name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:661
+#: ../gramps/cli/arghandler.py:663
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:692
+#: ../gramps/cli/arghandler.py:694
 msgid "Unknown book name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:694
+#: ../gramps/cli/arghandler.py:696
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:703
+#: ../gramps/cli/arghandler.py:705
 #, python-format
 msgid "Unknown action: %s."
 msgstr ""
@@ -1293,18 +1293,18 @@ msgstr ""
 msgid "Private Record"
 msgstr ""
 
-#: ../gramps/gen/const.py:195
+#: ../gramps/gen/const.py:196
 msgid ""
 "Gramps\n"
 " (Genealogical Research and Analysis Management Programming System)\n"
 "is a personal genealogy program."
 msgstr ""
 
-#: ../gramps/gen/const.py:217
+#: ../gramps/gen/const.py:218
 msgid "TRANSLATORS: Translate this to your name in your native language"
 msgstr ""
 
-#: ../gramps/gen/const.py:228 ../gramps/gen/const.py:229
+#: ../gramps/gen/const.py:229 ../gramps/gen/const.py:230
 #: ../gramps/gen/lib/date.py:1827 ../gramps/gen/lib/date.py:1841
 msgid "none"
 msgstr ""
@@ -1358,6 +1358,7 @@ msgstr ""
 #. to learn how to select proper inflection for your language.
 #: ../gramps/gen/datehandler/_datedisplay.py:158
 #: ../gramps/plugins/drawreport/calendarreport.py:228
+#, python-brace-format
 msgid "{long_month} {year}"
 msgstr ""
 
@@ -1365,6 +1366,7 @@ msgstr ""
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "from"
 #: ../gramps/gen/datehandler/_datedisplay.py:164
+#, python-brace-format
 msgid "from|{long_month} {year}"
 msgstr ""
 
@@ -1372,6 +1374,7 @@ msgstr ""
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "to"
 #: ../gramps/gen/datehandler/_datedisplay.py:170
+#, python-brace-format
 msgid "to|{long_month} {year}"
 msgstr ""
 
@@ -1379,6 +1382,7 @@ msgstr ""
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "between"
 #: ../gramps/gen/datehandler/_datedisplay.py:176
+#, python-brace-format
 msgid "between|{long_month} {year}"
 msgstr ""
 
@@ -1386,60 +1390,72 @@ msgstr ""
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "and"
 #: ../gramps/gen/datehandler/_datedisplay.py:182
+#, python-brace-format
 msgid "and|{long_month} {year}"
 msgstr ""
 
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "before"
 #: ../gramps/gen/datehandler/_datedisplay.py:187
+#, python-brace-format
 msgid "before|{long_month} {year}"
 msgstr ""
 
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "after"
 #: ../gramps/gen/datehandler/_datedisplay.py:192
+#, python-brace-format
 msgid "after|{long_month} {year}"
 msgstr ""
 
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "about"
 #: ../gramps/gen/datehandler/_datedisplay.py:197
+#, python-brace-format
 msgid "about|{long_month} {year}"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:204
+#, python-brace-format
 msgid "{short_month} {year}"
 msgstr ""
 
 #. first date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:208
+#, python-brace-format
 msgid "from|{short_month} {year}"
 msgstr ""
 
 #. second date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:212
+#, python-brace-format
 msgid "to|{short_month} {year}"
 msgstr ""
 
 #. first date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:216
+#, python-brace-format
 msgid "between|{short_month} {year}"
 msgstr ""
 
 #. second date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:220
+#, python-brace-format
 msgid "and|{short_month} {year}"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:223
+#, python-brace-format
 msgid "before|{short_month} {year}"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:226
+#, python-brace-format
 msgid "after|{short_month} {year}"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:229
+#, python-brace-format
 msgid "about|{short_month} {year}"
 msgstr ""
 
@@ -1462,6 +1478,7 @@ msgid "to-date|"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:348
+#, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
 
@@ -1484,6 +1501,7 @@ msgid "and-date|"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:370
+#, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
@@ -1500,6 +1518,7 @@ msgid "before-date|"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:387
+#, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr ""
 
@@ -1507,6 +1526,7 @@ msgstr ""
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
 #: ../gramps/gen/datehandler/_datedisplay.py:449
+#, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr ""
 
@@ -1514,6 +1534,7 @@ msgstr ""
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
 #: ../gramps/gen/datehandler/_datedisplay.py:464
+#, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr ""
 
@@ -1521,6 +1542,7 @@ msgstr ""
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
 #: ../gramps/gen/datehandler/_datedisplay.py:479
+#, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr ""
 
@@ -1528,6 +1550,7 @@ msgstr ""
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
 #: ../gramps/gen/datehandler/_datedisplay.py:495
+#, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr ""
 
@@ -1984,23 +2007,23 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1636
+#: ../gramps/gen/db/base.py:1643
 msgid "Add child to family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1649 ../gramps/gen/db/base.py:1654
+#: ../gramps/gen/db/base.py:1656 ../gramps/gen/db/base.py:1661
 msgid "Remove child from family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1729 ../gramps/gen/db/base.py:1733
+#: ../gramps/gen/db/base.py:1736 ../gramps/gen/db/base.py:1740
 msgid "Remove Family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1774
+#: ../gramps/gen/db/base.py:1781
 msgid "Remove father from family"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1776
+#: ../gramps/gen/db/base.py:1783
 msgid "Remove mother from family"
 msgstr ""
 
@@ -2142,7 +2165,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/db/undoredo.py:256 ../gramps/gen/db/undoredo.py:293
-#: ../gramps/gen/db/write.py:2310
+#: ../gramps/gen/db/write.py:2315
 #, python-format
 msgid "_Undo %s"
 msgstr ""
@@ -2205,7 +2228,7 @@ msgstr ""
 msgid "Upgrade Statistics"
 msgstr ""
 
-#: ../gramps/gen/db/write.py:1290
+#: ../gramps/gen/db/write.py:1291
 #, python-format
 msgid ""
 "An attempt is made to save a reference key which is partly bytecode, this is "
@@ -2215,11 +2238,11 @@ msgstr ""
 
 #. Make a tuple of the functions and classes that we need for
 #. each of the primary object tables.
-#: ../gramps/gen/db/write.py:1362
+#: ../gramps/gen/db/write.py:1363
 msgid "Rebuild reference map"
 msgstr ""
 
-#: ../gramps/gen/db/write.py:2163
+#: ../gramps/gen/db/write.py:2168
 #, python-format
 msgid ""
 "A second transaction is started while there is still a transaction, \"%s\", "
@@ -5195,7 +5218,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/lib/eventtype.py:168
 #: ../gramps/gui/merge/mergeperson.py:184
-#: ../gramps/plugins/gramplet/ancestor.py:66
+#: ../gramps/plugins/gramplet/ancestor.py:62
 #: ../gramps/plugins/gramplet/descendant.py:66
 #: ../gramps/plugins/quickview/all_relations.py:270
 #: ../gramps/plugins/quickview/lineage.py:93
@@ -5301,6 +5324,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:413
+#, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
 msgstr[0] ""
@@ -5322,6 +5346,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:424
+#, python-brace-format
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
 msgstr[0] ""
@@ -5329,6 +5354,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:435
+#, python-brace-format
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
 msgstr[0] ""
@@ -6642,10 +6668,10 @@ msgstr ""
 #: ../gramps/plugins/export/exportvcalendar.py:104
 #: ../gramps/plugins/export/exportvcard.py:71
 #: ../gramps/plugins/export/exportvcard.py:75
-#: ../gramps/plugins/lib/libhtmlbackend.py:246
-#: ../gramps/plugins/lib/libhtmlbackend.py:250
-#: ../gramps/plugins/lib/libhtmlbackend.py:256
-#: ../gramps/plugins/lib/libhtmlbackend.py:260
+#: ../gramps/plugins/lib/libhtmlbackend.py:249
+#: ../gramps/plugins/lib/libhtmlbackend.py:253
+#: ../gramps/plugins/lib/libhtmlbackend.py:259
+#: ../gramps/plugins/lib/libhtmlbackend.py:263
 #: ../gramps/plugins/webreport/narrativeweb.py:6999
 #, python-format
 msgid "Could not create %s"
@@ -7092,7 +7118,7 @@ msgstr ""
 msgid "Could not add photo to page"
 msgstr ""
 
-#: ../gramps/gen/plug/report/utils.py:143 ../gramps/gui/utils.py:417
+#: ../gramps/gen/plug/report/utils.py:143 ../gramps/gui/utils.py:415
 #: ../gramps/plugins/textreport/indivcomplete.py:596
 msgid "File does not exist"
 msgstr ""
@@ -7643,47 +7669,47 @@ msgstr ""
 msgid "Chinese Simplified"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:836
+#: ../gramps/gen/utils/grampslocale.py:837
 msgid "the person"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:838
+#: ../gramps/gen/utils/grampslocale.py:839
 msgid "the family"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:840
+#: ../gramps/gen/utils/grampslocale.py:841
 msgid "the place"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:842
+#: ../gramps/gen/utils/grampslocale.py:843
 msgid "the event"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:844
+#: ../gramps/gen/utils/grampslocale.py:845
 msgid "the repository"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:846
+#: ../gramps/gen/utils/grampslocale.py:847
 msgid "the note"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:848
+#: ../gramps/gen/utils/grampslocale.py:849
 msgid "the media"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:850
+#: ../gramps/gen/utils/grampslocale.py:851
 msgid "the source"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:852
+#: ../gramps/gen/utils/grampslocale.py:853
 msgid "the filter"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:854
+#: ../gramps/gen/utils/grampslocale.py:855
 msgid "See details"
 msgstr ""
 
-#: ../gramps/gen/utils/image.py:123
+#: ../gramps/gen/utils/image.py:125
 msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
@@ -8173,7 +8199,7 @@ msgstr ""
 #: ../gramps/gui/selectors/selectplace.py:61
 #: ../gramps/gui/views/bookmarks.py:222 ../gramps/gui/views/tags.py:387
 #: ../gramps/gui/views/treemodels/peoplemodel.py:591
-#: ../gramps/plugins/gramplet/ancestor.py:65
+#: ../gramps/plugins/gramplet/ancestor.py:61
 #: ../gramps/plugins/gramplet/backlinks.py:45
 #: ../gramps/plugins/gramplet/descendant.py:65
 #: ../gramps/plugins/lib/libpersonview.py:97
@@ -9286,7 +9312,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/gui/dialog.py:336 ../gramps/gui/utils.py:303
+#: ../gramps/gui/dialog.py:336 ../gramps/gui/utils.py:301
 msgid "Attempt to force closing the dialog"
 msgstr ""
 
@@ -9819,7 +9845,7 @@ msgid ""
 "To edit this media reference, you need to close the media object."
 msgstr ""
 
-#: ../gramps/gui/editors/displaytabs/gallerytab.py:541
+#: ../gramps/gui/editors/displaytabs/gallerytab.py:542
 #: ../gramps/plugins/view/mediaview.py:208
 msgid "Drag Media Object"
 msgstr ""
@@ -10194,7 +10220,7 @@ msgstr ""
 #: ../gramps/gui/editors/editevent.py:246
 #: ../gramps/gui/editors/editmedia.py:288
 #: ../gramps/gui/editors/editperson.py:821
-#: ../gramps/gui/editors/editplace.py:278
+#: ../gramps/gui/editors/editplace.py:280
 #: ../gramps/gui/editors/editreference.py:284
 #: ../gramps/gui/editors/editrepository.py:179
 #: ../gramps/gui/editors/editsource.py:199
@@ -10265,6 +10291,7 @@ msgid "Date selection"
 msgstr ""
 
 #: ../gramps/gui/editors/editdate.py:270
+#, python-brace-format
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr ""
 
@@ -10672,30 +10699,30 @@ msgstr ""
 msgid "Cannot save media object. ID already exists."
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:301
+#: ../gramps/gui/editors/editmedia.py:302
 msgid "There is no media matching the current path value!"
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:302
+#: ../gramps/gui/editors/editmedia.py:303
 #, python-format
 msgid ""
 "You have attempted to use the path with value '%(path)s'. This path does not "
 "exist! Please enter a different path"
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:315
+#: ../gramps/gui/editors/editmedia.py:316
 #: ../gramps/gui/editors/editmediaref.py:511
 #, python-format
 msgid "Add Media Object (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:320
+#: ../gramps/gui/editors/editmedia.py:321
 #: ../gramps/gui/editors/editmediaref.py:505
 #, python-format
 msgid "Edit Media Object (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editmedia.py:357
+#: ../gramps/gui/editors/editmedia.py:358
 msgid "Remove Media Object"
 msgstr ""
 
@@ -10938,68 +10965,68 @@ msgstr ""
 msgid "New Place"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:160
+#: ../gramps/gui/editors/editplace.py:162
 msgid "Invalid latitude (syntax: 18\\u00b09'"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:161
+#: ../gramps/gui/editors/editplace.py:163
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:163
+#: ../gramps/gui/editors/editplace.py:165
 msgid "Invalid longitude (syntax: 18\\u00b09'"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:164
+#: ../gramps/gui/editors/editplace.py:166
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:175
+#: ../gramps/gui/editors/editplace.py:177
 #: ../gramps/plugins/lib/maps/geography.py:819
 #: ../gramps/plugins/view/geoplaces.py:321
 #: ../gramps/plugins/view/geoplaces.py:347
 msgid "Edit Place"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:253
+#: ../gramps/gui/editors/editplace.py:255
 msgid "Cannot save place"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:254
+#: ../gramps/gui/editors/editplace.py:256
 msgid "No data exists for this place. Please enter data or cancel the edit."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:260
+#: ../gramps/gui/editors/editplace.py:262
 msgid "Cannot save location. Title not entered."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:261
+#: ../gramps/gui/editors/editplace.py:263
 msgid "You must enter a title before saving."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:267
+#: ../gramps/gui/editors/editplace.py:269
 msgid "Cannot save location. Name not entered."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:268
+#: ../gramps/gui/editors/editplace.py:270
 msgid "You must enter a name before saving."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:277
+#: ../gramps/gui/editors/editplace.py:279
 msgid "Cannot save place. ID already exists."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:290
+#: ../gramps/gui/editors/editplace.py:292
 #, python-format
 msgid "Add Place (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:295
+#: ../gramps/gui/editors/editplace.py:297
 #, python-format
 msgid "Edit Place (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:319
+#: ../gramps/gui/editors/editplace.py:321
 #, python-format
 msgid "Delete Place (%s)"
 msgstr ""
@@ -12035,7 +12062,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editcitation.glade:383
 #: ../gramps/gui/glade/editevent.glade:404
-#: ../gramps/gui/glade/editplace.glade:379
+#: ../gramps/gui/glade/editplace.glade:380
 #: ../gramps/gui/glade/editrepository.glade:236
 #: ../gramps/gui/glade/editsource.glade:236
 msgid "Tags:"
@@ -13297,6 +13324,18 @@ msgstr ""
 msgid "Note: changes take effect only after this window is closed"
 msgstr ""
 
+#: ../gramps/gui/glade/rule.glade:287 gtklist.h:6
+msgid "All rules must apply"
+msgstr ""
+
+#: ../gramps/gui/glade/rule.glade:290 gtklist.h:7
+msgid "At least one rule must apply"
+msgstr ""
+
+#: ../gramps/gui/glade/rule.glade:293 gtklist.h:8
+msgid "Exactly one rule must apply"
+msgstr ""
+
 #: ../gramps/gui/glade/rule.glade:436
 msgid "Add another rule to the filter"
 msgstr ""
@@ -14418,6 +14457,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gui/plug/_windows.py:1205
+#, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] ""
@@ -14562,6 +14602,7 @@ msgstr ""
 #: ../gramps/gui/plug/export/_exportoptions.py:149
 #: ../gramps/gui/plug/export/_exportoptions.py:255
 #: ../gramps/gui/plug/export/_exportoptions.py:554
+#, python-brace-format
 msgid "{number_of} Person"
 msgid_plural "{number_of} People"
 msgstr[0] ""
@@ -14883,6 +14924,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/statisticschart.py:937
 #: ../gramps/plugins/drawreport/timeline.py:402
 #: ../gramps/plugins/graph/gvrelgraph.py:522
+#: ../gramps/plugins/textreport/alphabeticalindex.py:88
 #: ../gramps/plugins/textreport/ancestorreport.py:262
 #: ../gramps/plugins/textreport/birthdayreport.py:407
 #: ../gramps/plugins/textreport/descendreport.py:395
@@ -14897,6 +14939,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/recordsreport.py:168
 #: ../gramps/plugins/textreport/simplebooktitle.py:128
 #: ../gramps/plugins/textreport/summary.py:275
+#: ../gramps/plugins/textreport/tableofcontents.py:88
 #: ../gramps/plugins/textreport/tagreport.py:855
 #: ../gramps/plugins/webreport/narrativeweb.py:7977
 #: ../gramps/plugins/webreport/webcal.py:1319
@@ -14964,7 +15007,8 @@ msgstr ""
 #: ../gramps/gui/plug/report/_stylecombobox.py:87
 #: ../gramps/gui/plug/report/_styleeditor.py:114
 #: ../gramps/gui/plug/report/_styleeditor.py:156
-#: ../gramps/gui/plug/report/_styleeditor.py:167 gtklist.h:1
+#: ../gramps/gui/plug/report/_styleeditor.py:167
+#: ../gramps/plugins/importer/importgedcom.glade:11 gtklist.h:1
 msgid "default"
 msgstr ""
 
@@ -15153,23 +15197,23 @@ msgstr ""
 msgid "History cleared"
 msgstr ""
 
-#: ../gramps/gui/utils.py:224
+#: ../gramps/gui/utils.py:222
 msgid "Canceling..."
 msgstr ""
 
-#: ../gramps/gui/utils.py:304
+#: ../gramps/gui/utils.py:302
 msgid "Please do not force closing this important dialog."
 msgstr ""
 
-#: ../gramps/gui/utils.py:367
+#: ../gramps/gui/utils.py:365
 msgid "The external program failed to launch or experienced an error"
 msgstr ""
 
-#: ../gramps/gui/utils.py:377
+#: ../gramps/gui/utils.py:375
 msgid "Error from external program"
 msgstr ""
 
-#: ../gramps/gui/utils.py:594
+#: ../gramps/gui/utils.py:592
 msgid ""
 "Cannot open new citation editor at this time. Either the citation is already "
 "being edited, or the associated source is already being edited, and opening "
@@ -15180,7 +15224,7 @@ msgid ""
 "citation alone"
 msgstr ""
 
-#: ../gramps/gui/utils.py:607
+#: ../gramps/gui/utils.py:605
 msgid "Cannot open new citation editor"
 msgstr ""
 
@@ -16037,16 +16081,6 @@ msgstr ""
 msgid "The number of characters per line"
 msgstr ""
 
-#: ../gramps/plugins/docgen/cairodoc.py:238
-#: ../gramps/plugins/docgen/odfdoc.py:1634
-msgid "Contents"
-msgstr ""
-
-#: ../gramps/plugins/docgen/cairodoc.py:271
-#: ../gramps/plugins/docgen/odfdoc.py:1673
-msgid "Index"
-msgstr ""
-
 #: ../gramps/plugins/docgen/docgen.gpr.py:29
 msgid "Plain Text"
 msgstr ""
@@ -16657,6 +16691,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:367
+#, python-brace-format
 msgid "{person}, {age}"
 msgid_plural "{person}, {age}"
 msgstr[0] ""
@@ -16673,6 +16708,7 @@ msgstr ""
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:429
 #: ../gramps/plugins/textreport/birthdayreport.py:380
+#, python-brace-format
 msgid ""
 "{spouse} and\n"
 " {person}, {nyears}"
@@ -17196,8 +17232,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/drawreport/fanchart.py:715
-#: ../gramps/plugins/textreport/alphabeticalindex.py:96
-#: ../gramps/plugins/textreport/tableofcontents.py:96
+#: ../gramps/plugins/textreport/alphabeticalindex.py:98
+#: ../gramps/plugins/textreport/tableofcontents.py:98
 msgid "The style used for the title."
 msgstr ""
 
@@ -17206,7 +17242,8 @@ msgid "The basic style used for the default text display."
 msgstr ""
 
 #: ../gramps/plugins/drawreport/fanchart.py:734
-msgid "The style used for the text display of generation "
+#, python-format
+msgid "The style used for the text display of generation %d"
 msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:300
@@ -17719,6 +17756,7 @@ msgid "Translate headers"
 msgstr ""
 
 #: ../gramps/plugins/export/exportcsv.py:350
+#, python-brace-format
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
 msgstr ""
 
@@ -17934,12 +17972,17 @@ msgstr ""
 msgid "Double-click to see %d people"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/ancestor.py:134
-#: ../gramps/plugins/gramplet/ancestor.py:142
+#: ../gramps/plugins/gramplet/ancestor.py:133
+#: ../gramps/plugins/gramplet/ancestor.py:141
 #: ../gramps/plugins/gramplet/descendant.py:134
 #: ../gramps/plugins/gramplet/descendant.py:142
 #, python-format
 msgid "%(abbr)s %(date)s"
+msgstr ""
+
+#: ../gramps/plugins/gramplet/ancestor.py:147
+#, python-format
+msgid "%(depth)s. %(name)s"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/attributes.py:41
@@ -19030,6 +19073,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:271
+#, python-brace-format
 msgid ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgid_plural ""
@@ -19047,6 +19091,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:282
+#, python-brace-format
 msgid " have {number_of} individual\n"
 msgid_plural " have {number_of} individuals\n"
 msgstr[0] ""
@@ -19821,6 +19866,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/graph/gvfamilylines.py:934
+#, python-brace-format
 msgid "{number_of} child"
 msgid_plural "{number_of} children"
 msgstr[0] ""
@@ -20197,10 +20243,27 @@ msgstr ""
 #: ../gramps/plugins/importer/importcsv.py:344
 #: ../gramps/plugins/importer/importgeneweb.py:195
 #: ../gramps/plugins/importer/importvcard.py:232
+#, python-brace-format
 msgid "Import Complete: {number_of} second"
 msgid_plural "Import Complete: {number_of} seconds"
 msgstr[0] ""
 msgstr[1] ""
+
+#: ../gramps/plugins/importer/importgedcom.glade:14 gtklist.h:2
+msgid "ANSEL"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgedcom.glade:17 gtklist.h:3
+msgid "ANSI (iso-8859-1)"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgedcom.glade:20 gtklist.h:4
+msgid "ASCII"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgedcom.glade:23 gtklist.h:5
+msgid "UTF8"
+msgstr ""
 
 #: ../gramps/plugins/importer/importgedcom.glade:31
 msgid "Gramps - GEDCOM Encoding"
@@ -20264,6 +20327,7 @@ msgid "GeneWeb import"
 msgstr ""
 
 #: ../gramps/plugins/importer/importgeneweb.py:832
+#, python-brace-format
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
 
@@ -20407,10 +20471,12 @@ msgid "Import of VCards version %s is not supported by Gramps."
 msgstr ""
 
 #: ../gramps/plugins/importer/importvcard.py:483
+#, python-brace-format
 msgid "Invalid date {date} in BDAY {vcard_snippet}, preserving date as text."
 msgstr ""
 
 #: ../gramps/plugins/importer/importvcard.py:491
+#, python-brace-format
 msgid ""
 "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date "
 "as text."
@@ -20693,6 +20759,7 @@ msgstr ""
 #. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
 #: ../gramps/plugins/importer/importxml.py:2498
+#, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr ""
 
@@ -25190,6 +25257,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/filterbyname.py:395
+#, python-brace-format
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
 msgstr[0] ""
@@ -25504,6 +25572,7 @@ msgstr ""
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/samesurnames.py:135
 #: ../gramps/plugins/quickview/samesurnames.py:180
+#, python-brace-format
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
@@ -25674,7 +25743,11 @@ msgstr ""
 msgid "Alphabetical Index"
 msgstr ""
 
-#: ../gramps/plugins/textreport/alphabeticalindex.py:113
+#: ../gramps/plugins/textreport/alphabeticalindex.py:68
+msgid "Index"
+msgstr ""
+
+#: ../gramps/plugins/textreport/alphabeticalindex.py:115
 msgid "The style used for index entries."
 msgstr ""
 
@@ -25731,6 +25804,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:327
+#, python-brace-format
 msgid "{person}, {age}{relation}"
 msgid_plural "{person}, {age}{relation}"
 msgstr[0] ""
@@ -26637,6 +26711,7 @@ msgid "Number of Ancestors for %s"
 msgstr ""
 
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:123
+#, python-brace-format
 msgid "Generation {number} has {count} individual. {percent}"
 msgid_plural "Generation {number} has {count} individuals. {percent}"
 msgstr[0] ""
@@ -26967,15 +27042,19 @@ msgstr ""
 msgid "Table Of Contents"
 msgstr ""
 
-#: ../gramps/plugins/textreport/tableofcontents.py:111
+#: ../gramps/plugins/textreport/tableofcontents.py:68
+msgid "Contents"
+msgstr ""
+
+#: ../gramps/plugins/textreport/tableofcontents.py:113
 msgid "The style used for first level headings."
 msgstr ""
 
-#: ../gramps/plugins/textreport/tableofcontents.py:117
+#: ../gramps/plugins/textreport/tableofcontents.py:119
 msgid "The style used for second level headings."
 msgstr ""
 
-#: ../gramps/plugins/textreport/tableofcontents.py:123
+#: ../gramps/plugins/textreport/tableofcontents.py:125
 msgid "The style used for third level headings."
 msgstr ""
 
@@ -27225,6 +27304,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/changetypes.py:133
+#, python-brace-format
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
 msgstr[0] ""
@@ -27407,6 +27487,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2101
+#, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] ""
@@ -27423,6 +27504,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2125
+#, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] ""
@@ -27439,6 +27521,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2149
+#, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] ""
@@ -27455,12 +27538,14 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2186
+#, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
 msgstr[0] ""
 msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2195
+#, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
 msgstr[0] ""
@@ -27468,6 +27553,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2203
+#, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] ""
@@ -27475,12 +27561,14 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2213
+#, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] ""
 msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2222
+#, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
 msgstr[0] ""
@@ -27488,12 +27576,14 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2232 ../gramps/plugins/tool/check.py:2320
+#, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
 msgstr[0] ""
 msgstr[1] ""
 
 #: ../gramps/plugins/tool/check.py:2243
+#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} media objects were kept\n"
 msgstr[0] ""
@@ -27501,6 +27591,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2251
+#, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
 msgstr[0] ""
@@ -27508,6 +27599,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2259
+#, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
 msgstr[0] ""
@@ -27515,6 +27607,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2267
+#, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
 msgstr[0] ""
@@ -27522,6 +27615,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2275
+#, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
 msgstr[0] ""
@@ -27529,6 +27623,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2283
+#, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
 msgstr[0] ""
@@ -27536,6 +27631,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2291
+#, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
 msgstr[0] ""
@@ -27543,6 +27639,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2299
+#, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
 msgstr[0] ""
@@ -27550,6 +27647,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2310
+#, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
 msgstr[0] ""
@@ -27557,6 +27655,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2330
+#, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
 msgstr[0] ""
@@ -27564,6 +27663,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2340 ../gramps/plugins/tool/check.py:2350
+#, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
 msgstr[0] ""
@@ -27571,6 +27671,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2360
+#, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
 msgstr[0] ""
@@ -27578,6 +27679,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2370
+#, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] ""
@@ -27694,6 +27796,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/eventnames.py:116
+#, python-brace-format
 msgid "{quantity} event description has been added"
 msgid_plural "{quantity} event descriptions have been added"
 msgstr[0] ""
@@ -28012,6 +28115,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/mergecitations.py:231
+#, python-brace-format
 msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
 msgstr[0] ""
@@ -28049,6 +28153,7 @@ msgstr ""
 #. translators: leave all/any {...} untranslated
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../gramps/plugins/tool/notrelated.py:259
+#, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
 msgstr[0] ""
@@ -28057,6 +28162,7 @@ msgstr[1] ""
 #. translators: leave all/any {...} untranslated
 #. TRANS: No singular form is needed.
 #: ../gramps/plugins/tool/notrelated.py:302
+#, python-brace-format
 msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
 msgstr[0] ""
@@ -28064,6 +28170,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:382
+#, python-brace-format
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
 msgstr[0] ""
@@ -28071,6 +28178,7 @@ msgstr[1] ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:410
+#, python-brace-format
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
 msgstr[0] ""
@@ -29825,6 +29933,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:882 ../gramps/plugins/view/relview.py:941
+#, python-brace-format
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
 msgstr[0] ""
@@ -29898,6 +30007,7 @@ msgstr ""
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:1356
 #: ../gramps/plugins/view/relview.py:1406
+#, python-brace-format
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
 msgstr[0] ""
@@ -31364,6 +31474,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/webreport/webcal.py:1720
+#, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
 msgstr[0] ""
@@ -31436,32 +31547,4 @@ msgstr ""
 #. no style sheet option
 #: ../gramps/plugins/webstuff/webstuff.py:156
 msgid "No style sheet"
-msgstr ""
-
-#: gtklist.h:2
-msgid "ANSEL"
-msgstr ""
-
-#: gtklist.h:3
-msgid "ANSI (iso-8859-1)"
-msgstr ""
-
-#: gtklist.h:4
-msgid "ASCII"
-msgstr ""
-
-#: gtklist.h:5
-msgid "UTF8"
-msgstr ""
-
-#: gtklist.h:6
-msgid "All rules must apply"
-msgstr ""
-
-#: gtklist.h:7
-msgid "At least one rule must apply"
-msgstr ""
-
-#: gtklist.h:8
-msgid "Exactly one rule must apply"
 msgstr ""
