@@ -26,7 +26,7 @@ msgstr ""
 "Project-Id-Version: sv\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-18 20:44+0200\n"
-"PO-Revision-Date: 2014-06-14 15:06+0200\n"
+"PO-Revision-Date: 2014-07-02 14:04+0200\n"
 "Last-Translator: Peter Landgren <peter.talken@telia.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -6194,7 +6194,7 @@ msgstr "Vald"
 
 #: ../gramps/gen/lib/eventtype.py:184
 msgid "Emigration"
-msgstr "Emigration"
+msgstr "Utflyttning"
 
 #: ../gramps/gen/lib/eventtype.py:185
 msgid "First Communion"
@@ -6202,7 +6202,7 @@ msgstr "Första nattvarden"
 
 #: ../gramps/gen/lib/eventtype.py:186
 msgid "Immigration"
-msgstr "Immigration"
+msgstr "Inflyttning"
 
 #: ../gramps/gen/lib/eventtype.py:187
 msgid "Graduation"
@@ -6399,7 +6399,7 @@ msgstr "vald"
 
 #: ../gramps/gen/lib/eventtype.py:238
 msgid "Emigration abbreviation|em."
-msgstr "emi."
+msgstr "utfl."
 
 #: ../gramps/gen/lib/eventtype.py:239
 msgid "First Communion abbreviation|f.comm."
@@ -6407,7 +6407,7 @@ msgstr "1.nattv."
 
 #: ../gramps/gen/lib/eventtype.py:240
 msgid "Immigration abbreviation|im."
-msgstr "immi."
+msgstr "infl."
 
 #: ../gramps/gen/lib/eventtype.py:241
 msgid "Graduation abbreviation|grad."
@@ -21388,12 +21388,13 @@ msgstr "Huruvida visa varje persons släktskap för den centralpersonen"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:586
 msgid "Include relationship debugging numbers also"
-msgstr ""
+msgstr "Tag även med släktskapsavlusningsnummer"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:589
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr ""
+"Huruvida även ta med 'Ga' och 'Gb', för att avlusa släktskapsberäknaren"
 
 #: ../gramps/plugins/graph/gvrelgraph.py:596
 msgid "Whether to include thumbnails of people."
