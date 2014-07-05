@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-22 17:39+0200\n"
-"PO-Revision-Date: 2014-06-22 17:46+0200\n"
+"POT-Creation-Date: 2014-07-05 22:53+0200\n"
+"PO-Revision-Date: 2014-07-05 23:06+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -8510,43 +8510,43 @@ msgstr "Vietnamesisch"
 msgid "Chinese Simplified"
 msgstr "vereinfachtes Chinesisch"
 
-#: ../gramps/gen/utils/grampslocale.py:836
+#: ../gramps/gen/utils/grampslocale.py:837
 msgid "the person"
 msgstr "die Person"
 
-#: ../gramps/gen/utils/grampslocale.py:838
+#: ../gramps/gen/utils/grampslocale.py:839
 msgid "the family"
 msgstr "die Familie"
 
-#: ../gramps/gen/utils/grampslocale.py:840
+#: ../gramps/gen/utils/grampslocale.py:841
 msgid "the place"
 msgstr "der Ort"
 
-#: ../gramps/gen/utils/grampslocale.py:842
+#: ../gramps/gen/utils/grampslocale.py:843
 msgid "the event"
 msgstr "das Ereignis"
 
-#: ../gramps/gen/utils/grampslocale.py:844
+#: ../gramps/gen/utils/grampslocale.py:845
 msgid "the repository"
 msgstr "der Aufbewahrungsort"
 
-#: ../gramps/gen/utils/grampslocale.py:846
+#: ../gramps/gen/utils/grampslocale.py:847
 msgid "the note"
 msgstr "die Notiz"
 
-#: ../gramps/gen/utils/grampslocale.py:848
+#: ../gramps/gen/utils/grampslocale.py:849
 msgid "the media"
 msgstr "das Medium"
 
-#: ../gramps/gen/utils/grampslocale.py:850
+#: ../gramps/gen/utils/grampslocale.py:851
 msgid "the source"
 msgstr "die Quelle"
 
-#: ../gramps/gen/utils/grampslocale.py:852
+#: ../gramps/gen/utils/grampslocale.py:853
 msgid "the filter"
 msgstr "der Filter"
 
-#: ../gramps/gen/utils/grampslocale.py:854
+#: ../gramps/gen/utils/grampslocale.py:855
 msgid "See details"
 msgstr "Siehe Details"
 
@@ -30346,7 +30346,7 @@ msgid "Ignore Date and Confidence"
 msgstr "Datum und Verlässlichkeit ignorieren"
 
 #: ../gramps/plugins/tool/mergecitations.py:85
-msgid "manual|Merge citations..."
+msgid "manual|Merge_citations..."
 msgstr "Fundstellen zusammenfassen..."
 
 #: ../gramps/plugins/tool/mergecitations.py:133
