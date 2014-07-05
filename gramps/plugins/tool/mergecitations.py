@@ -82,7 +82,7 @@ _val2label = {
     }
 
 WIKI_HELP_PAGE = '%s_-_Tools' % URL_MANUAL_PAGE
-WIKI_HELP_SEC = _('manual|Merge citations...')
+WIKI_HELP_SEC = _('manual|Merge_citations...')
 
 #-------------------------------------------------------------------------
 #
