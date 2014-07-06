@@ -34,6 +34,7 @@ import sys
 import time
 from xml.parsers.expat import ExpatError, ParserCreate
 from xml.sax.saxutils import escape
+from gramps.gen.const import URL_WIKISTRING
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import re
@@ -1045,12 +1046,11 @@ class GrampsParser(UpdateCallback):
                     "recent version %(newgramps)s.\n\n"
                     "The file will not be imported. Please use an older version"
                     " of Gramps that supports version %(xmlversion)s of the "
-                    "xml.\nSee\n  "
-                    "http://gramps-project.org/wiki/index.php?title=GRAMPS_XML"
-                    "\n for more info."
+                    "xml.\nSee\n  %(gramps_wiki_xml_url)s\n for more info."
                     ) % {'oldgramps': self.__gramps_version, 
                         'newgramps': VERSION,
                         'xmlversion': xmlversion_str,
+                        'gramps_wiki_xml_url': URL_WIKISTRING + "GRAMPS_XML" ,
                         }
             raise GrampsImportError(_('The file will not be imported'), msg)
         elif self.__xml_version < (1, 1, 0):
@@ -1061,11 +1061,11 @@ class GrampsParser(UpdateCallback):
                     "the event of problems, please submit a bug and use an "
                     "older version of Gramps in the meantime to import this "
                     "file, which is version %(xmlversion)s of the xml.\nSee\n  "
-                    "http://gramps-project.org/wiki/index.php?title=GRAMPS_XML"
-                    "\nfor more info."
+                    "%(gramps_wiki_xml_url)s\nfor more info."
                     ) % {'oldgramps': self.__gramps_version, 
                         'newgramps': VERSION,
                         'xmlversion': xmlversion_str,
+                        'gramps_wiki_xml_url': URL_WIKISTRING + "GRAMPS_XML" ,
                         }
             self.user.warn(_('Old xml file'), msg)
 

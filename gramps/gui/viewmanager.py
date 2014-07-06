@@ -81,8 +81,8 @@ from .pluginmanager import GuiPluginManager
 from gramps.gen.relationship import get_relationship_calculator
 from .displaystate import DisplayState, RecentDocsMenu
 from gramps.gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE, 
-                       URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING, 
-                       WIKI_EXTRAPLUGINS)
+                              URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING, 
+                              WIKI_EXTRAPLUGINS, URL_BUGHOME)
 from gramps.gen.constfunc import is_quartz, conv_to_unicode, uni_to_gui
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
@@ -1603,12 +1603,13 @@ def run_plugin(pdata, dbstate, uistate):
             _('The plugin %(name)s did not load and reported an error.\n\n'
               '%(error_msg)s\n\n'
               'If you are unable to fix the fault yourself then you can '
-              'submit a bug at http://bugs.gramps-project.org or contact '
+              'submit a bug at %(gramps_bugtracker_url)s or contact '
               'the plugin author (%(firstauthoremail)s).\n\n'
               'If you do not want Gramps to try and load this plugin again, '
               'you can hide it by using the Plugin Manager on the '
               'Help menu.') % {
                 'name': pdata.name,
+                'gramps_bugtracker_url' : URL_BUGHOME,
                 'firstauthoremail': pdata.authors_email[0] if
                         pdata.authors_email else '...',
                 'error_msg': pmgr.get_fail_list()[-1][1][1]})
@@ -1658,12 +1659,13 @@ def get_available_views():
                 _('The view %(name)s did not load and reported an error.\n\n'
                   '%(error_msg)s\n\n'
                   'If you are unable to fix the fault yourself then you can '
-                  'submit a bug at http://bugs.gramps-project.org or contact '
+                  'submit a bug at %(gramps_bugtracker_url)s or contact '
                   'the view author (%(firstauthoremail)s).\n\n'
                   'If you do not want Gramps to try and load this view again, '
                   'you can hide it by using the Plugin Manager on the '
                   'Help menu.') % {
                     'name': pdata.name,
+                    'gramps_bugtracker_url' : URL_BUGHOME,
                     'firstauthoremail': pdata.authors_email[0] if
                             pdata.authors_email else '...',
                     'error_msg': lasterror})

@@ -62,7 +62,7 @@ from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gen.utils.file import get_empty_tempdir
 from gramps.gen.constfunc import lin, mac, win
 from gramps.gen.config import config
-from gramps.gen.const import TEMP_DIR
+from gramps.gen.const import TEMP_DIR, URL_HOMEPAGE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -543,16 +543,16 @@ class HtmlView(NavigationView):
           <title>%(title)s</title>
          </head>
          <body >
-           <H4>%(content)s</H4>
+           <H4>%(content)s%(gramps_home_url)s</H4>
          </body>
         </html>
         """ % { 'height' : 600,
                 'title'  : _('Start page for the Html View'),
                 'content': _('Type a webpage address at the top, and hit'
                              ' the execute button to load a webpage in this'
-                             ' page\n<br>\n'
-                             'For example: <b>http://gramps-project.org</p>')
-        }
+                             ' page\n<br>\nFor example: '),
+                'gramps_home_url' : "<b>%s</b>" % URL_HOMEPAGE
+              }
         filename = os.path.join(tmpdir, 'startpage.html')
         # Now we have two views : Web and Geography, we need to create the
         # startpage only once.

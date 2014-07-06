@@ -19,15 +19,26 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
 from __future__ import print_function
 
 import sys
 import types
-from ..const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 import logging
 LOG = logging.getLogger(".Gramplets")
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 
 class Gramplet(object):
     """

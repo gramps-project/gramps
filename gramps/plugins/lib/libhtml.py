@@ -20,20 +20,6 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
-#------------------------------------------------------------------------
-#
-# Html
-#
-#------------------------------------------------------------------------
-
-from __future__ import print_function
-
-#------------------------------------------------------------------------
-# Python modules
-#------------------------------------------------------------------------
-import re
-
-from gramps.gen.constfunc import STRTYPE, cuni
 """
 HTML operations.
 
@@ -43,12 +29,20 @@ This module exports the Html class
 
 __all__ = ['Html']
 
+from __future__ import print_function
+#------------------------------------------------------------------------
+# Python modules
+#------------------------------------------------------------------------
+import re
+
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.constfunc import STRTYPE, cuni
+
 #------------------------------------------------------------------------
 #
 # Constants

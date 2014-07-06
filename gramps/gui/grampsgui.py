@@ -226,9 +226,12 @@ def _display_welcome_message():
               "5) Save data in a format that is incompatible with the "
               "official release.\n"
               "\n"
-              "<b>BACKUP</b> your existing databases before opening "
+              "%(bold_start)sBACKUP%(bold_end)s "
+              "your existing databases before opening "
               "them with this version, and make sure to export your "
-              "data to XML every now and then."))
+              "data to XML every now and then.")
+                  % { 'bold_start' : '<b>',
+                      'bold_end'   : '</b>' } )
         config.set('behavior.autoload', False)
         config.set('behavior.betawarn', True)
         config.set('behavior.betawarn', config.get('behavior.betawarn'))
@@ -264,12 +267,16 @@ class Gramps(object):
             # Translators: the current language will be the one you translate into.
             WarningDialog(
                _("Gramps detected an incomplete GTK installation"),
-               _("""GTK translations for the current language (%s) are missing.
-<b>Gramps</b> will proceed nevertheless.
-The GUI will likely be broken as a result, especially for RTL languages!
-
-See the Gramps README documentation for installation prerequisites,
-typically located in /usr/share/doc/gramps.""") % glocale.lang)
+               _("GTK translations for the current language (%(language)s) "
+                 "are missing.\n%(bold_start)sGramps%(bold_end)s will "
+                 "proceed nevertheless.\nThe GUI will likely be broken "
+                 "as a result, especially for RTL languages!\n\n"
+                 "See the Gramps README documentation for installation "
+                 "prerequisites,\ntypically located in "
+                 "/usr/share/doc/gramps.\n") % {
+                     'language'   : glocale.lang ,
+                     'bold_start' : '<b>' ,
+                     'bold_end'   : '</b>' } )
 
         dbstate = DbState()
         self.vm = ViewManager(dbstate, 

@@ -57,7 +57,8 @@ from ..version import VERSION, VERSION_TUPLE, major_version
 #-------------------------------------------------------------------------
 URL_HOMEPAGE    = "http://gramps-project.org/"
 URL_MAILINGLIST = "http://sourceforge.net/mail/?group_id=25770"
-URL_BUGTRACKER  = "http://bugs.gramps-project.org/bug_report_advanced_page.php"
+URL_BUGHOME     = "http://bugs.gramps-project.org"
+URL_BUGTRACKER  = "http://bugs.gramps-project.org/bug_report_page.php"
 URL_WIKISTRING  = "http://gramps-project.org/wiki/index.php?title="
 URL_MANUAL_PAGE = "Gramps_%s_Wiki_Manual" % major_version
 WIKI_FAQ = "FAQ"

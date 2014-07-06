@@ -18,13 +18,24 @@
 # Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
 
+#-------------------------------------------------------------------------
+#
+# Python modules
+#
+#-------------------------------------------------------------------------
+import os
+import webbrowser
+
+#------------------------------------------------------------------------
+#
+# GRAMPS modules
+#
+#------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gen.const import URL_MANUAL_PAGE, URL_WIKISTRING
 from gramps.gen.constfunc import is_quartz
 from gramps.gen.config import config
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 from gramps.gui.utils import open_file_with_default_application as run_file
-import os
-import webbrowser
 
 #list of manuals on wiki, map locale code to wiki extension, add language codes
 #completely, or first part, so pt_BR if Brazilian portugeze wiki manual, and 

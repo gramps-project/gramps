@@ -35,6 +35,7 @@ LOG = logging.getLogger(".Db")
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.const import URL_WIKISTRING
 
 #-------------------------------------------------------------------------
 #
@@ -53,19 +54,22 @@ _DBVERSION = 14
 #
 #-------------------------------------------------------------------------
 def importData(database, filename, user):
+    migrate_dict = { 'gramps_wiki_migrate_two_to_three_url' :
+                         URL_WIKISTRING + 
+                             "Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees#"
+                             "Moving_a_Gramps_2.2_databases_to_Gramps_3.x" }
     user.notify_error(_("%s could not be opened") % filename, 
-                    _("The Database version is not supported "
-                      "by this version of Gramps."
-                      "You should use an old copy of Gramps at "
-                      "version 3.0.x and import your database into "
-                      "that version. You should then export a copy "
-                      "of your data to Gramps XML (Family Tree). "
-                      "Then you should upgrade to the latest "
-                      "version of Gramps (for example this version), "
-                      "create a new empty database and import the "
-                      "Gramps XML into that version. "
-                      "Please refer to:"
-                      "http://www.gramps-project.org/wiki/index.php?"
-                      "title=Gramps_3.4_Wiki_Manual_-_Manage_Family_Trees#"
-                      "Moving_a_Gramps_2.2_databases_to_Gramps_3.x"))
+                      _("The Database version is not supported "
+                        "by this version of Gramps."
+                        "You should use an old copy of Gramps at "
+                        "version 3.0.x and import your database into "
+                        "that version. You should then export a copy "
+                        "of your data to Gramps XML (Family Tree). "
+                        "Then you should upgrade to the latest "
+                        "version of Gramps (for example this version), "
+                        "create a new empty database and import the "
+                        "Gramps XML into that version. "
+                        "Please refer to:"
+                        "%(gramps_wiki_migrate_two_to_three_url)s" ) %
+                                migrate_dict )
     return

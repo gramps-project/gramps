@@ -74,6 +74,7 @@ from gi.repository import Pango
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.const import URL_WIKISTRING
 from .user import User
 from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2
 from gramps.gen.db import DbBsddb
@@ -677,25 +678,36 @@ class DbManager(CLIDbManager):
         yes_no = QuestionDialog2(
             _("Repair Family Tree?"),
             _(
-"If you click <b>Proceed</b>, Gramps will attempt to recover your Family Tree"
-" from the last good backup. There are several ways this can cause unwanted"
-" effects, so <b>backup</b> the Family Tree first.\n"
-"The Family Tree you have selected is stored in %s.\n\n"
-"Before doing a repair, verify that the Family Tree can really no longer be "
-" opened, as the database back-end can recover from some errors automatically.\n\n"
-"<b>Details:</b> Repairing a Family Tree actually uses the last backup of"
-" the Family Tree, which Gramps stored on last use. If you have worked for"
-" several hours/days without closing Gramps, then all this information will"
-" be lost! If the repair fails, then the original Family Tree will be lost"
-" forever, hence a backup is needed. If the repair fails, or too much"
-" information is lost, you can fix the original Family Tree manually."
-" For details, see the webpage\n"
-"http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree\n"
-"Before doing a repair, try to open the Family Tree in the normal manner."
-" Several errors that trigger the repair button can be fixed automatically."
-" If this is the case, you can disable the repair button by removing the"
-" file <i>need_recover</i> in the Family Tree directory."
-) % dirname,
+              "If you click %(bold_start)sProceed%(bold_end)s, Gramps will "
+              "attempt to recover your Family Tree from the last good "
+              "backup. There are several ways this can cause unwanted "
+              "effects, so %(bold_start)sbackup%(bold_end)s the "
+              "Family Tree first.\nThe Family Tree you have selected "
+              "is stored in %(dirname)s.\n\n"
+              "Before doing a repair, verify that the Family Tree can "
+              "really no longer be opened, as the database back-end can "
+              "recover from some errors automatically.\n\n"
+              "%(bold_start)sDetails:%(bold_end)s Repairing a Family Tree "
+              "actually uses the last backup of the Family Tree, which "
+              "Gramps stored on last use. If you have worked for "
+              "several hours/days without closing Gramps, then all "
+              "this information will be lost! If the repair fails, then "
+              "the original Family Tree will be lost forever, hence "
+              "a backup is needed. If the repair fails, or too much "
+              "information is lost, you can fix the original "
+              "Family Tree manually. For details, see the webpage\n"
+              "%(gramps_wiki_url)sRecover_corrupted_family_tree\n"
+              "Before doing a repair, try to open the Family Tree "
+              "in the normal manner. Several errors that trigger the "
+              "repair button can be fixed automatically. "
+              "If this is the case, you can disable the repair button "
+              "by removing the file %(recover_file)s in the "
+              "Family Tree directory."
+             ) % { 'bold_start'      : '<b>' ,
+                   'bold_end'        : '</b>' ,
+                   'recover_file'    : '<i>need_recover</i>' ,
+                   'gramps_wiki_url' : URL_WIKISTRING ,
+                   'dirname'         : dirname },
             _("Proceed, I have taken a backup"),
             _("Stop"))
         prompt = yes_no.run()

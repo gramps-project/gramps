@@ -44,8 +44,9 @@ else:
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import ICON, SPLASH, GRAMPS_LOCALE as glocale
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.const import ICON, SPLASH, URL_BUGTRACKER
 from gramps.gen.constfunc import get_env_var
 from gramps.version import VERSION
 from ..display import display_help, display_url
@@ -141,7 +142,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         """
         Start a web browser to report the bug.
         """
-        display_url('http://bugs.gramps-project.org/bug_report_page.php')
+        display_url(URL_BUGTRACKER)
 
     def _get_sys_information(self):
         """
@@ -556,7 +557,7 @@ class ErrorReportAssistant(Gtk.Assistant):
             "%s <i>%s</i>" %
             (_("Use the two buttons below to first copy the bug report to the "
                "clipboard and then open a webbrowser to file a bug report at "),
-               "http://bugs.gramps-project.org/bug_report_page.php."))
+               URL_BUGTRACKER))
         label.set_alignment(0.01, 0.5)
         label.set_padding(0, 4)
         label.set_line_wrap(True)

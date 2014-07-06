@@ -49,7 +49,8 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
-from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import HOME_DIR, URL_WIKISTRING
 from gramps.gen.datehandler import get_date_formats
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.name import NameDisplayError
@@ -1235,11 +1236,15 @@ class GrampsPreferences(ConfigureDialog):
                 current_line, 'behavior.spellcheck')
         if not HAVE_GTKSPELL:
             obj.set_sensitive(False)
-            obj.set_tooltip_text(_("GtkSpell not loaded. "
+            spell_dict = { 'gramps_wiki_build_spell_url' :
+                               URL_WIKISTRING + 
+                                   "GEPS_029:_GTK3-GObject_introspection"
+                                   "_Conversion#Spell_Check_Install" }
+            obj.set_tooltip_text(
+                _("GtkSpell not loaded. "
                   "Spell checking will not be available.\n"
-                  "To build it for Gramps see http://www.gramps-project.org/"
-                  "wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_"
-                  "Conversion#Spell_Check_Install"))
+                  "To build it for Gramps see "
+                  "%(gramps_wiki_build_spell_url)s") % spell_dict )
 
         current_line += 1
         self.add_checkbox(table, 

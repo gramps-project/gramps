@@ -41,11 +41,11 @@ from gi.repository import GdkPixbuf
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.const import ICON
-from gramps.gen.config import config
-from gramps.gui.glade import Glade
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.const import ICON, URL_BUGHOME
+from gramps.gen.config import config
+from gramps.gui.glade import Glade
 from gramps.gen.constfunc import cuni
 
 try:
@@ -205,7 +205,8 @@ class RunDatabaseRepair(ErrorDialog):
               'usually be resolved by running the "Check and Repair Database" '
               'tool.\n\nIf this problem continues to exist after running this '
               'tool, please file a bug report at '
-              'http://bugs.gramps-project.org\n\n') + msg, parent)
+              '%(gramps_bugtracker_url)s\n\n')
+                      % {'gramps_bugtracker_url' : URL_BUGHOME} + msg, parent)
 
 class DBErrorDialog(ErrorDialog):
     def __init__(self, msg, parent=None):

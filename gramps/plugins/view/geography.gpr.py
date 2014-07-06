@@ -61,12 +61,15 @@ if not OSMGPSMAP:
         from gramps.gen.constfunc import has_display
         if has_display():
             from gramps.gui.dialog import MessageHideDialog
+            from gramps.gen.const import URL_WIKISTRING
+            osmgps_dict = { 'gramps_wiki_build_osmgps_url' :
+                                URL_WIKISTRING + 
+                                    "GEPS_029:_GTK3-GObject_introspection"
+                                    "_Conversion#OsmGpsMap_for_Geography" }
             title = _("OsmGpsMap module not loaded.")
             message = _("Geography functionality will not be available.\n"
                        "To build it for Gramps see "
-                       "http://www.gramps-project.org/wiki/index.php?"
-                       "title=GEPS_029:_GTK3-GObject_introspection_Conversion"
-                       "#OsmGpsMap_for_Geography")
+                       "%(gramps_wiki_build_osmgps_url)s") % osmgps_dict
             MessageHideDialog(title, message, 'interface.ignore-osmgpsmap')
 else:
     # Load the view only if osmgpsmap library is present.

@@ -29,7 +29,7 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
+from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE, URL_HOMEPAGE
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets.styledtexteditor import StyledTextEditor
 from gramps.gui.widgets import SimpleButton
@@ -107,13 +107,15 @@ class WelcomeGramplet(Gramplet):
         ' Although similar to other genealogical programs, Gramps offers '
         'some unique and powerful features.\n\n')
         welcome += boldst(_('Links')) + '\n\n'
-        welcome += linkst(_('Home Page'), _('http://gramps-project.org/')) + '\n'
+        welcome += linkst(_('Home Page'), URL_HOMEPAGE) + '\n'
         welcome += linkst(_('Start with Genealogy and Gramps'), 
-            _('http://www.gramps-project.org/wiki/index.php?title=Start_with_Genealogy')) + '\n'
+                          '%(gramps_wiki_url)sStart_with_Genealogy' %
+                              {'gramps_wiki_url': URL_WIKISTRING} ) + '\n'
         welcome += linkst(_('Gramps online manual'), 
             URL_WIKISTRING + URL_MANUAL_PAGE + _('locale_suffix|')) + '\n'
         welcome += linkst(_('Ask questions on gramps-users mailing list'),
-             _('http://gramps-project.org/contact/')) + '\n\n'
+                          '%(gramps_home_url)scontact/' %
+                              {'gramps_home_url': URL_HOMEPAGE} ) + '\n\n'
         
         welcome += boldst(_('Who makes Gramps?')) + '\n\n' + _(
         'Gramps is created by genealogists for genealogists, organized in the'

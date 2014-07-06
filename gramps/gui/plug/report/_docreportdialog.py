@@ -125,7 +125,7 @@ class DocReportDialog(ReportDialog):
         if self.firstpage_added:
             self.notebook.remove_page(0)
         if docgen_plugin.get_paper_used():
-            self.paper_label = Gtk.Label(label='<b>%s</b>'%_("Paper Options"))
+            self.paper_label = Gtk.Label(label='<b>%s</b>' % _("Paper Options"))
             self.paper_label.set_use_markup(True)
             self.notebook.insert_page(self.paper_frame, self.paper_label, 0)
             self.paper_frame.show_all()

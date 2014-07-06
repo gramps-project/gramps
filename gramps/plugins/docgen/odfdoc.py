@@ -88,7 +88,7 @@ from gramps.gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, graphicstyle,
                     LOCAL_HYPERLINK, LOCAL_TARGET)
 from gramps.gen.plug.docgen.fontscale import string_width
 from gramps.plugins.lib.libodfbackend import OdfBackend
-from gramps.gen.const import PROGRAM_NAME
+from gramps.gen.const import PROGRAM_NAME, URL_HOMEPAGE
 from gramps.version import VERSION
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.utils.image import (image_size, image_dpi, image_actual_size,
@@ -204,7 +204,7 @@ _META_XML = '''\
 <meta:editing-duration>PT0S</meta:editing-duration>
 <meta:user-defined
     meta:name="Genealogical Research and Analysis Management Programming System">
-    http://gramps-project.org
+    %(gramps_home_url)s
 </meta:user-defined>
 <meta:user-defined meta:name="Info 1"/>
 <meta:user-defined meta:name="Info 2"/>
@@ -1776,6 +1776,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         creator = self.get_creator()
         date = self.time
         lang = self.lang
+        gramps_home_url = URL_HOMEPAGE
 
         self.meta.write(
             _META_XML % locals()

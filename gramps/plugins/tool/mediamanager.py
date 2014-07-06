@@ -228,7 +228,8 @@ class IntroductionPage(Gtk.VBox):
                  "The Gramps media object is a collection of data about "
                  "the media object file: its filename and/or path, its "
                  "description, its ID, notes, source references, etc. "
-                 "These data <b>do not include the file itself</b>.\n\n"
+                 "These data "
+                 "%(bold_start)do not include the file itself%(bold_end)s.\n\n"
                  "The files containing image, sound, video, etc, exist "
                  "separately on your hard drive. These files are "
                  "not managed by Gramps and are not included in the Gramps "
@@ -238,7 +239,9 @@ class IntroductionPage(Gtk.VBox):
                  "your Gramps database. If you want to move or rename "
                  "the files then you need to do it on your own, outside of "
                  "Gramps. Then you can adjust the paths using this tool so "
-                 "that the media objects store the correct file locations.")
+                 "that the media objects store the correct file locations."
+                ) % { 'bold_start' : '<b>' ,
+                      'bold_end'   : '</b>' }
 
 class SelectionPage(Gtk.VBox):
     """

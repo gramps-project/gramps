@@ -25,8 +25,15 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from ..const import URL_WIKISTRING, URL_MANUAL_PAGE
-from ..const import GRAMPS_LOCALE as glocale
+from __future__ import print_function
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
+from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 
@@ -105,12 +112,19 @@ class BsddbDowngradeError(Exception):
                  'Bsddb version %(bdb_version)s. So you are trying to load '
                  'data created in a newer format into an older program, and '
                  'this is bound to fail.\n\n'
-                 'You should start your <b>newer</b> version of Gramps and '
-                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">'
-                 'make a backup</a> of your Family Tree. You can then import '
-                 'this backup into this version of Gramps.') % \
-                 {'env_version': self.env_version,
-                 'bdb_version': self.bdb_version}
+                 'You should start your '
+                 '%(bold_start)snewer%(bold_end)s version of Gramps and '
+                 '%(wiki_html_start)s'
+                 'How_to_make_a_backup%(html_middle)smake a backup'
+                 '%(html_end)s of your Family Tree. You can then import '
+                 'this backup into this version of Gramps.') % {
+                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
+                     'html_middle' : '">' ,
+                     'html_end'    : '</a>' ,
+                     'bold_start'  : '<b>' ,
+                     'bold_end'    : '</b>' ,
+                     'env_version' : self.env_version,
+                     'bdb_version' : self.bdb_version }
 
 class BsddbDowngradeRequiredError(Exception):
     """
@@ -132,11 +146,18 @@ class BsddbDowngradeRequiredError(Exception):
                  'this particular case, the difference is very small, so it '
                  'may work.\n\n'
                  'If you have not already made a backup of your Family Tree, '
-                 'then you should start your <b>newer</b> version of Gramps and '
-                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">'
-                 'make a backup</a> of your Family Tree.') % \
-                 {'env_version': self.env_version,
-                 'bdb_version': self.bdb_version}
+                 'then you should start your '
+                 '%(bold_start)snewer%(bold_end)s version of Gramps and '
+                 '%(wiki_html_start)s'
+                 'How_to_make_a_backup%(html_middle)smake a backup'
+                 '%(html_end)s of your Family Tree.') % {
+                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
+                     'html_middle' : '">' ,
+                     'html_end'    : '</a>' ,
+                     'bold_start'  : '<b>' ,
+                     'bold_end'    : '</b>' ,
+                     'env_version' : self.env_version,
+                     'bdb_version' : self.bdb_version }
 
 class BsddbUpgradeRequiredError(Exception):
     """
@@ -158,11 +179,18 @@ class BsddbUpgradeRequiredError(Exception):
                  'irretrievably corrupt your Family Tree. You are strongly '
                  'advised to backup your Family Tree.\n\n'
                  'If you have not already made a backup of your Family Tree, '
-                 'then you should start your <b>old</b> version of Gramps and '
-                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">'
-                 'make a backup</a> of your Family Tree.') % \
-                 {'env_version': self.env_version,
-                  'bdb_version': self.bsddb_version}
+                 'then you should start your %(bold_start)sold%(bold_end)s '
+                 'version of Gramps and '
+                 '%(wiki_html_start)s'
+                 'How_to_make_a_backup%(html_middle)smake a backup'
+                 '%(html_end)s of your Family Tree.') % {
+                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
+                     'html_middle' : '">' ,
+                     'html_end'    : '</a>' ,
+                     'bold_start'  : '<b>' ,
+                     'bold_end'    : '</b>' ,
+                     'env_version' : self.env_version,
+                     'bdb_version' : self.bsddb_version }
 
 class DbEnvironmentError(Exception):
     """
@@ -175,14 +203,16 @@ class DbEnvironmentError(Exception):
 
     def __str__(self):
         return (_("Gramps has detected a problem in opening the 'environment' "
-                  "of the underlying Berkeley database used to store this Family Tree. "
-                  "The most likely cause "
+                  "of the underlying Berkeley database used to store this "
+                  "Family Tree. The most likely cause "
                   "is that the database was created with an old version "
-                  "of the Berkeley database program, and you are now using a new version. "
+                  "of the Berkeley database program, "
+                  "and you are now using a new version. "
                   "It is quite likely that your database has not been "
                   "changed by Gramps.\nIf possible, you should revert to your "
                   "old version of Gramps and its support software; export "
-                  "your database to XML; close the database; then upgrade again "
+                  "your database to XML; close the database; "
+                  "then upgrade again "
                   "to this version of Gramps and import the XML file "
                   "in an empty Family Tree. Alternatively, it may be possible "
                   "to use the Berkeley database recovery tools.")
@@ -206,25 +236,35 @@ class DbUpgradeRequiredError(Exception):
                  'Family Tree.\n\n'
                  'If you upgrade then you won\'t be able to use the previous '
                  'version of Gramps, even if you subsequently '
-                 '<a href="%(gramps_wiki)s%(gramps_manual)s_-_Manage_Family_Trees#Backing_up_a_Family_Tree">backup</a> '
-                 'or <a href="%(gramps_wiki)s%(gramps_manual)s_-_Manage_Family_Trees#Export_into_Gramps_formats">export</a> '
-                 'your upgraded Family Tree.\n\n'
+                 '%(wiki_html_start)s%(gramps_manual)s'
+                 '_-_Manage_Family_Trees#Backing_up_a_Family_Tree'
+                 '%(html_middle)sbackup%(html_end)s or '
+                 '%(wiki_html_start)s%(gramps_manual)s'
+                 '_-_Manage_Family_Trees#Export_into_Gramps_formats'
+                 '%(html_middle)sexport'
+                 '%(html_end)s your upgraded Family Tree.\n\n'
                  'Upgrading is a difficult task which could irretrievably '
                  'corrupt your Family Tree if it is interrupted or fails.\n\n'
                  'If you have not already made a backup of your Family Tree, '
-                 'then you should start your <b>old</b> version of Gramps and '
-                 '<a href="%(gramps_wiki)sHow_to_make_a_backup">make a backup</a> '
-                 'of your Family Tree.') % \
-                 {'gramps_wiki': URL_WIKISTRING,
-                  'gramps_manual': URL_MANUAL_PAGE,
-                  'oldschema': self.oldschema,
-                  'newschema': self.newschema}
+                 'then you should start your %(bold_start)sold%(bold_end)s '
+                 'version of Gramps and '
+                 '%(wiki_html_start)s'
+                 'How_to_make_a_backup%(html_middle)smake a backup'
+                 '%(html_end)s of your Family Tree.') % {
+                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
+                     'html_middle' : '">' ,
+                     'html_end'    : '</a>' ,
+                     'gramps_manual'    : URL_MANUAL_PAGE,
+                     'bold_start'  : '<b>' ,
+                     'bold_end'    : '</b>' ,
+                     'oldschema'   : self.oldschema,
+                     'newschema'   : self.newschema }
                  
 class PythonDowngradeError(Exception):
     """
     Error used to report that the Python version used to create the family tree
-    (i.e. Python3) is of a version that is newer than the current version
-    (i.e.Python2), so the Family Tree cannot be opened
+    (i.e. Python3) is a version that is newer than the current version
+    (i.e. Python2), so the Family Tree cannot be opened
     """
     def __init__(self, db_python_version, current_python_version):
         Exception.__init__(self)
@@ -238,18 +278,25 @@ class PythonDowngradeError(Exception):
                  'trying to load '
                  'data created in a newer format into an older program, and '
                  'this is bound to fail.\n\n'
-                 'You should start your <b>newer</b> version of Gramps and '
-                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">'
-                 'make a backup</a> of your Family Tree. You can then import '
-                 'this backup into this version of Gramps.') % \
-                 {'db_python_version': self.db_python_version,
-                 'current_python_version': self.current_python_version}
+                 'You should start your '
+                 '%(bold_start)snewer%(bold_end)s version of Gramps and '
+                 '%(wiki_html_start)s'
+                 'How_to_make_a_backup%(html_middle)smake a backup'
+                 '%(html_end)s of your Family Tree. You can then import '
+                 'this backup into this version of Gramps.') % {
+                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
+                     'html_middle' : '">' ,
+                     'html_end'    : '</a>' ,
+                     'bold_start'  : '<b>' ,
+                     'bold_end'    : '</b>' ,
+                     'db_python_version': self.db_python_version,
+                     'current_python_version': self.current_python_version }
 
 class PythonUpgradeRequiredError(Exception):
     """
     Error used to report that the Python version used to create the family tree
     (i.e. Python2) is earlier than the current Python version (i.e. Python3), so
-    the Family Tree needs to be upgraded..
+    the Family Tree needs to be upgraded.
     """
     def __init__(self, db_python_version, current_python_version):
         Exception.__init__(self)
@@ -264,14 +311,55 @@ class PythonUpgradeRequiredError(Exception):
                  'Python version of the Family Tree.\n\n'
                  'If you upgrade then you won\'t be able to use the previous '
                  'version of Gramps, even if you subsequently '
-                 '<a href="http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Backing_up_a_Family_Tree">backup</a> '
-                 'or <a href="http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Export_into_Gramps_formats">export</a> '
-                 'your upgraded Family Tree.\n\n'
+                 '%(wiki_html_start)s%(gramps_manual)s'
+                 '_-_Manage_Family_Trees#Backing_up_a_Family_Tree'
+                 '%(html_middle)sbackup%(html_end)s or '
+                 '%(wiki_html_start)s%(gramps_manual)s'
+                 '_-_Manage_Family_Trees#Export_into_Gramps_formats'
+                 '%(html_middle)sexport'
+                 '%(html_end)s your upgraded Family Tree.\n\n'
                  'Upgrading is a difficult task which could irretrievably '
                  'corrupt your Family Tree if it is interrupted or fails.\n\n'
                  'If you have not already made a backup of your Family Tree, '
-                 'then you should start your <b>old</b> version of Gramps and '
-                 '<a href="http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup">make a backup</a> '
-                 'of your Family Tree.') % \
-                 {'db_python_version': self.db_python_version,
-                 'current_python_version': self.current_python_version}
+                 'then you should start your %(bold_start)sold%(bold_end)s '
+                 'version of Gramps and '
+                 '%(wiki_html_start)s'
+                 'How_to_make_a_backup%(html_middle)smake a backup'
+                 '%(html_end)s of your Family Tree.') % {
+                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
+                     'html_middle' : '">' ,
+                     'html_end'    : '</a>' ,
+                     'gramps_manual'    : URL_MANUAL_PAGE,
+                     'bold_start'  : '<b>' ,
+                     'bold_end'    : '</b>' ,
+                     'db_python_version': self.db_python_version,
+                     'current_python_version': self.current_python_version }
+
+if __name__ == "__main__":
+    """
+    Call this from the CLI (in order to find the imported modules):
+        cd /path/to/gramps; GRAMPS_RESOURCES=. ; PYTHONPATH=. 
+        python gramps/gen/db/exceptions.py
+    """
+    import sys
+
+    print("\nDbVersionError:\n",
+             DbVersionError('1.6.0', '1.5.0', '1.5.1'))
+    print("\nBsddbDowngradeError:\n",
+             BsddbDowngradeError('4.8.30', '4.8.29'))
+    print("\nBsddbDowngradeRequiredError:\n",
+             BsddbDowngradeRequiredError('4.8.30', '4.8.29'))
+    print("\nBsddbUpgradeRequiredError:\n",
+             BsddbUpgradeRequiredError('4.8.29', '4.8.30'))
+    print("\nDbEnvironmentError:\n",
+             DbEnvironmentError('test message'))
+    print("\nDbUpgradeRequiredError:\n",
+             DbUpgradeRequiredError('1.5.1', '1.6.0'))
+    print("\nPythonDowngradeError:\n",
+             PythonDowngradeError('3', '2'))
+    print("\nPythonUpgradeRequiredError:\n",
+             PythonUpgradeRequiredError('2', '3'))
+    sys.exit(0)
+
+    print("\nxxx:\n",
+             xxx('4.8.30', '4.8.29'))

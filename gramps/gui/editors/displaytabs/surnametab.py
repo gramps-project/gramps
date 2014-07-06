@@ -79,7 +79,7 @@ class SurnameTab(EmbeddedList):
     _column_toggle = (_('Name|Primary'), -1, 80, 4)
     
     def __init__(self, dbstate, uistate, track, name, on_change=None,
-                 top_label=_('<b>Multiple Surnames</b>')):
+                 top_label='<b>%s</b>' % _("Multiple Surnames") ):
         self.obj = name
         self.on_change = on_change
         self.curr_col = -1

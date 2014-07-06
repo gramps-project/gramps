@@ -41,7 +41,7 @@ import logging
 #---------------------------------------------------------------
 from .const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from .const import HOME_DIR, USER_HOME, VERSION_DIR
+from .const import HOME_DIR, USER_HOME, VERSION_DIR, URL_HOMEPAGE
 from .utils.configmanager import ConfigManager
 
 #---------------------------------------------------------------
@@ -170,7 +170,7 @@ register('geography.zoom_when_center', 12)
 register('geography.show_cross', False)
 register('geography.path', "")
 
-register('htmlview.start-url', "http://gramps-project.org")
+register('htmlview.start-url', URL_HOMEPAGE)
 register('htmlview.url-handler', False)
 
 register('interface.address-height', 450)

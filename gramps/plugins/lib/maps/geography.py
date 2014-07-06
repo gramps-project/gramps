@@ -918,13 +918,16 @@ class GeoGraphyView(OsmGps, NavigationView):
                 from gramps.gui.dialog import WarningDialog
                 WarningDialog(
                       _('You have at least two places with the same title.'),
-                      _("The title of the places is :\n"
-                        "<b>%(title)s</b>\n"
-                        "The following places are similar : %(gid)s\n"
-                        "Eiher you rename the places either you merge them."
-                        "\n\n<b>I can't proceed your request</b>.\n") % {
-                                              'title': place.get_title(),
-                                              'gid': gids}
+                      _("The title of the places is:\n%(title)s\n"
+                        "The following places are similar: %(gid)s\n"
+                        "You should eiher rename the places or merge them.\n\n"
+                        "%(bold_start)s"
+                        "I can't proceed with your request"
+                        "%(bold_end)s.\n") % {
+                            'bold_start' : '<b>',
+                            'bold_end'   : '</b>',
+                            'title': '<b>' + place.get_title() + '</b>',
+                            'gid': gids}
                       )
             else:
                 self.mark = [None, None, None, None, None, None, None,

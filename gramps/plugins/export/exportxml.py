@@ -32,7 +32,7 @@ Gramps' XML file format.
 
 #-------------------------------------------------------------------------
 #
-# load standard python libraries
+# Standard python modules
 #
 #-------------------------------------------------------------------------
 import time
@@ -40,9 +40,6 @@ import shutil
 import os
 import codecs
 from xml.sax.saxutils import escape
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
-
 
 #------------------------------------------------------------------------
 #
@@ -54,17 +51,19 @@ LOG = logging.getLogger(".WriteXML")
 
 #-------------------------------------------------------------------------
 #
-# load Gramps libraries
+# Gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from gramps.gen.const import URL_HOMEPAGE
 from gramps.gen.lib import Date, Person
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.version import VERSION
-from gramps.gen.constfunc import win
+from gramps.gen.constfunc import win, cuni, conv_to_unicode
 from gramps.gui.plug.export import WriterOptionBox
 import gramps.plugins.lib.libgrampsxml as libgrampsxml
-from gramps.gen.constfunc import cuni, conv_to_unicode
 
 #-------------------------------------------------------------------------
 #
@@ -218,11 +217,11 @@ class GrampsXmlWriter(UpdateCallback):
         self.g.write('<?xml version="1.0" encoding="UTF-8"?>\n')
         self.g.write('<!DOCTYPE database '
                      'PUBLIC "-//Gramps//DTD Gramps XML %s//EN"\n'
-                     '"http://gramps-project.org/xml/%s/grampsxml.dtd">\n'
-                     % (libgrampsxml.GRAMPS_XML_VERSION, 
+                     '"%sxml/%s/grampsxml.dtd">\n'
+                     % (libgrampsxml.GRAMPS_XML_VERSION, URL_HOMEPAGE,
                         libgrampsxml.GRAMPS_XML_VERSION))
-        self.g.write('<database xmlns="http://gramps-project.org/xml/%s/">\n'
-                     % libgrampsxml.GRAMPS_XML_VERSION)
+        self.g.write('<database xmlns="%sxml/%s/">\n'
+                     % (URL_HOMEPAGE, libgrampsxml.GRAMPS_XML_VERSION))
         self.g.write("  <header>\n")
         self.g.write('    <created date="%04d-%02d-%02d\"' % date[:3])
         self.g.write(" version=\"" + self.version + "\"")

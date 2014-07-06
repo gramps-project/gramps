@@ -175,7 +175,7 @@ class GraphvizReportDialog(ReportDialog):
             self.target_fileentry.set_filename(spath)
                 
     def setup_report_options_frame(self):
-        self.paper_label = Gtk.Label(label='<b>%s</b>'%_("Paper Options"))
+        self.paper_label = Gtk.Label(label='<b>%s</b>' % _("Paper Options"))
         self.paper_label.set_use_markup(True)
         handler = self.options.handler
         self.paper_frame = PaperFrame(
