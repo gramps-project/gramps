@@ -1613,13 +1613,11 @@ class BasePage(object):
                         center_person.handle, "ppl", self.up)
 
                     person_name = self.get_name(center_person)
-                    msg += _('%(http_break)sCreated for %(url_start)s'
-                             '%(name)s%(url_end)s') % {
-                                 'http_break' : '<br />' ,
-                                 'url_start' : 
-                                     '<a href="' + center_person_url + '">' ,
-                                 'url_end' : '</a>' ,
-                                 'name' : person_name }
+                    subject_url = '<a href="' + center_person_url + '">'
+                    subject_url += person_name + '</a>'
+                    msg += _('%(http_break)sCreated for %(subject_url)s') % {
+                                 'http_break'  : '<br />' ,
+                                 'subject_url' : subject_url }
 
             # creation author
             footer += Html("p", msg, id = 'createdate')

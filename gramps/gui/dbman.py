@@ -696,18 +696,19 @@ class DbManager(CLIDbManager):
               "a backup is needed. If the repair fails, or too much "
               "information is lost, you can fix the original "
               "Family Tree manually. For details, see the webpage\n"
-              "%(gramps_wiki_url)sRecover_corrupted_family_tree\n"
+              "%(gramps_wiki_recover_url)s\n"
               "Before doing a repair, try to open the Family Tree "
               "in the normal manner. Several errors that trigger the "
               "repair button can be fixed automatically. "
               "If this is the case, you can disable the repair button "
               "by removing the file %(recover_file)s in the "
               "Family Tree directory."
-             ) % { 'bold_start'      : '<b>' ,
-                   'bold_end'        : '</b>' ,
-                   'recover_file'    : '<i>need_recover</i>' ,
-                   'gramps_wiki_url' : URL_WIKISTRING ,
-                   'dirname'         : dirname },
+             ) % { 'bold_start'   : '<b>' ,
+                   'bold_end'     : '</b>' ,
+                   'recover_file' : '<i>need_recover</i>' ,
+                   'gramps_wiki_recover_url' :
+                       URL_WIKISTRING + 'Recover_corrupted_family_tree',
+                   'dirname'      : dirname },
             _("Proceed, I have taken a backup"),
             _("Stop"))
         prompt = yes_no.run()

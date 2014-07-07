@@ -36,6 +36,16 @@ from gramps.gen.const import URL_WIKISTRING, URL_MANUAL_PAGE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
+#-------------------------------------------------------------------------
+#
+# Constants
+#
+#-------------------------------------------------------------------------
+URL_WIKI_START = '<a href="' + URL_WIKISTRING
+URL_MANUAL_START = URL_WIKI_START + URL_MANUAL_PAGE + '_-_Manage_Family_Trees'
+URL_BACKUP1_START = URL_WIKI_START + 'How_to_make_a_backup">'
+URL_BACKUP2_START = URL_MANUAL_START + '#Backing_up_a_Family_Tree">'
+URL_EXPORT_START = URL_MANUAL_START + '#Export_into_Gramps_formats">'
 
 class DbException(Exception):
     
@@ -114,12 +124,10 @@ class BsddbDowngradeError(Exception):
                  'this is bound to fail.\n\n'
                  'You should start your '
                  '%(bold_start)snewer%(bold_end)s version of Gramps and '
-                 '%(wiki_html_start)s'
-                 'How_to_make_a_backup%(html_middle)smake a backup'
-                 '%(html_end)s of your Family Tree. You can then import '
+                 '%(wiki_backup_html_start)smake a backup%(html_end)s '
+                 'of your Family Tree. You can then import '
                  'this backup into this version of Gramps.') % {
-                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
-                     'html_middle' : '">' ,
+                     'wiki_backup_html_start' : URL_BACKUP1_START ,
                      'html_end'    : '</a>' ,
                      'bold_start'  : '<b>' ,
                      'bold_end'    : '</b>' ,
@@ -148,11 +156,9 @@ class BsddbDowngradeRequiredError(Exception):
                  'If you have not already made a backup of your Family Tree, '
                  'then you should start your '
                  '%(bold_start)snewer%(bold_end)s version of Gramps and '
-                 '%(wiki_html_start)s'
-                 'How_to_make_a_backup%(html_middle)smake a backup'
-                 '%(html_end)s of your Family Tree.') % {
-                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
-                     'html_middle' : '">' ,
+                 '%(wiki_backup_html_start)smake a backup%(html_end)s '
+                 'of your Family Tree.') % {
+                     'wiki_backup_html_start' : URL_BACKUP1_START ,
                      'html_end'    : '</a>' ,
                      'bold_start'  : '<b>' ,
                      'bold_end'    : '</b>' ,
@@ -181,11 +187,9 @@ class BsddbUpgradeRequiredError(Exception):
                  'If you have not already made a backup of your Family Tree, '
                  'then you should start your %(bold_start)sold%(bold_end)s '
                  'version of Gramps and '
-                 '%(wiki_html_start)s'
-                 'How_to_make_a_backup%(html_middle)smake a backup'
-                 '%(html_end)s of your Family Tree.') % {
-                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
-                     'html_middle' : '">' ,
+                 '%(wiki_backup_html_start)smake a backup%(html_end)s '
+                 'of your Family Tree.') % {
+                     'wiki_backup_html_start' : URL_BACKUP1_START ,
                      'html_end'    : '</a>' ,
                      'bold_start'  : '<b>' ,
                      'bold_end'    : '</b>' ,
@@ -236,29 +240,24 @@ class DbUpgradeRequiredError(Exception):
                  'Family Tree.\n\n'
                  'If you upgrade then you won\'t be able to use the previous '
                  'version of Gramps, even if you subsequently '
-                 '%(wiki_html_start)s%(gramps_manual)s'
-                 '_-_Manage_Family_Trees#Backing_up_a_Family_Tree'
-                 '%(html_middle)sbackup%(html_end)s or '
-                 '%(wiki_html_start)s%(gramps_manual)s'
-                 '_-_Manage_Family_Trees#Export_into_Gramps_formats'
-                 '%(html_middle)sexport'
-                 '%(html_end)s your upgraded Family Tree.\n\n'
+                 '%(wiki_manual_backup_html_start)sbackup%(html_end)s or '
+                 '%(wiki_manual_export_html_start)sexport%(html_end)s '
+                 'your upgraded Family Tree.\n\n'
                  'Upgrading is a difficult task which could irretrievably '
                  'corrupt your Family Tree if it is interrupted or fails.\n\n'
                  'If you have not already made a backup of your Family Tree, '
                  'then you should start your %(bold_start)sold%(bold_end)s '
                  'version of Gramps and '
-                 '%(wiki_html_start)s'
-                 'How_to_make_a_backup%(html_middle)smake a backup'
-                 '%(html_end)s of your Family Tree.') % {
-                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
-                     'html_middle' : '">' ,
-                     'html_end'    : '</a>' ,
-                     'gramps_manual'    : URL_MANUAL_PAGE,
-                     'bold_start'  : '<b>' ,
-                     'bold_end'    : '</b>' ,
-                     'oldschema'   : self.oldschema,
-                     'newschema'   : self.newschema }
+                 '%(wiki_backup_html_start)smake a backup%(html_end)s '
+                 'of your Family Tree.') % {
+                     'wiki_backup_html_start'        : URL_BACKUP1_START ,
+                     'wiki_manual_backup_html_start' : URL_BACKUP2_START ,
+                     'wiki_manual_export_html_start' : URL_EXPORT_START ,
+                     'html_end'   : '</a>' ,
+                     'bold_start' : '<b>' ,
+                     'bold_end'   : '</b>' ,
+                     'oldschema'  : self.oldschema,
+                     'newschema'  : self.newschema }
                  
 class PythonDowngradeError(Exception):
     """
@@ -280,12 +279,10 @@ class PythonDowngradeError(Exception):
                  'this is bound to fail.\n\n'
                  'You should start your '
                  '%(bold_start)snewer%(bold_end)s version of Gramps and '
-                 '%(wiki_html_start)s'
-                 'How_to_make_a_backup%(html_middle)smake a backup'
-                 '%(html_end)s of your Family Tree. You can then import '
+                 '%(wiki_backup_html_start)smake a backup%(html_end)s '
+                 'of your Family Tree. You can then import '
                  'this backup into this version of Gramps.') % {
-                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
-                     'html_middle' : '">' ,
+                     'wiki_backup_html_start' : URL_BACKUP1_START ,
                      'html_end'    : '</a>' ,
                      'bold_start'  : '<b>' ,
                      'bold_end'    : '</b>' ,
@@ -311,25 +308,20 @@ class PythonUpgradeRequiredError(Exception):
                  'Python version of the Family Tree.\n\n'
                  'If you upgrade then you won\'t be able to use the previous '
                  'version of Gramps, even if you subsequently '
-                 '%(wiki_html_start)s%(gramps_manual)s'
-                 '_-_Manage_Family_Trees#Backing_up_a_Family_Tree'
-                 '%(html_middle)sbackup%(html_end)s or '
-                 '%(wiki_html_start)s%(gramps_manual)s'
-                 '_-_Manage_Family_Trees#Export_into_Gramps_formats'
-                 '%(html_middle)sexport'
-                 '%(html_end)s your upgraded Family Tree.\n\n'
+                 '%(wiki_manual_backup_html_start)sbackup%(html_end)s or '
+                 '%(wiki_manual_export_html_start)sexport%(html_end)s '
+                 'your upgraded Family Tree.\n\n'
                  'Upgrading is a difficult task which could irretrievably '
                  'corrupt your Family Tree if it is interrupted or fails.\n\n'
                  'If you have not already made a backup of your Family Tree, '
                  'then you should start your %(bold_start)sold%(bold_end)s '
                  'version of Gramps and '
-                 '%(wiki_html_start)s'
-                 'How_to_make_a_backup%(html_middle)smake a backup'
-                 '%(html_end)s of your Family Tree.') % {
-                     'wiki_html_start'  : '<a href="' + URL_WIKISTRING ,
-                     'html_middle' : '">' ,
+                 '%(wiki_backup_html_start)smake a backup%(html_end)s '
+                 'of your Family Tree.') % {
+                     'wiki_backup_html_start'        : URL_BACKUP1_START ,
+                     'wiki_manual_backup_html_start' : URL_BACKUP2_START ,
+                     'wiki_manual_export_html_start' : URL_EXPORT_START ,
                      'html_end'    : '</a>' ,
-                     'gramps_manual'    : URL_MANUAL_PAGE,
                      'bold_start'  : '<b>' ,
                      'bold_end'    : '</b>' ,
                      'db_python_version': self.db_python_version,
