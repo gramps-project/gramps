@@ -2588,7 +2588,7 @@ class BasePage(object):
         @param: uplink - whether to add "../../.." or not
         @param: usedescr - add description to hyperlink
         """
-        url = self.report.build_url_fname(handle, "img", uplink)
+        url = self.report.build_url_fname_html(handle, "img", uplink)
         name = html_escape(name)
 
         # begin thumbnail division
