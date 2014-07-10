@@ -58,7 +58,7 @@ try:
     import gi
     giversion = gi.require_version
 except:
-    print(_("Your version of gi (gnome-instrospection) seems to be too old. "
+    print(_("Your version of gi (gnome-introspection) seems to be too old. "
             "You need a version which has the function 'require_version' "
             "to start Gramps"))
     sys.exit(0)
@@ -91,7 +91,7 @@ except (ImportError, ValueError):
     print((_("Gdk, Gtk or Pango typelib not installed.\n"
              "Install Gnome Introspection, and "
              "pygobject version 3.3.2 or later.\n"
-             "Install then instrospection data for Gdk, Gtk and Pango\n\n"
+             "Then install introspection data for Gdk, Gtk and Pango\n\n"
              "Gramps will terminate now.")))
     sys.exit(0)
 
