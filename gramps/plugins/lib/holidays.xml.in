@@ -394,7 +394,7 @@
     <date name="天皇(明仁)即位記念" value="1990/11/12" />
     <date name="皇太子徳仁親王の結婚" value="1993/6/9" />
   </country>
-  <country _name="Sweden - Holidays">
+  <country _name="Sweden">
     <date name="Nyårsdagen" value="*/1/1" type="religious" />
     <date name="Trettondagen" value="*/1/6" type="religious" />
     <date name="Långfredagen" type="religious" value="> easter(y)" offset="-2" />
