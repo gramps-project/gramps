@@ -1,6 +1,7 @@
 include AUTHORS
 include COPYING
 include FAQ
+include Gramps.py
 include INSTALL
 include LICENSE
 include MANIFEST.in
