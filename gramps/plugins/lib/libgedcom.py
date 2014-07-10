@@ -6746,7 +6746,7 @@ class GedcomParser(UpdateCallback):
         """
         state = CurrentState(level=1)
         self.__parse_level(state, self.head_parse_tbl, self.__undefined)
-        self.__check_msgs(_("Head (header)"), state, None)
+        self.__check_msgs(_("HEAD (header)"), state, None)
 
     def __header_sour(self, line, state):
         """
