@@ -1,6 +1,7 @@
 include AUTHORS
 include COPYING
 include FAQ
+include Gramps.py
 include INSTALL
 include LICENSE
 include MANIFEST.in
@@ -21,7 +22,6 @@ recursive-include windows *
 
 # Remove files created in the build
 exclude data/tips.xml
-#exclude gramps/gen/const.py
 exclude gramps/plugins/lib/holidays.xml
 exclude po/.intltool-merge-cache
 global-exclude *.pyc
