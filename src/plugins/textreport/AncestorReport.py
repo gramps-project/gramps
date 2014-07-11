@@ -240,6 +240,7 @@ class AncestorReport(Report):
             self.__narrator.set_subject(person)
             self.doc.write_text(self.__narrator.get_born_string())
             self.doc.write_text(self.__narrator.get_baptised_string())
+            self.doc.write_text(self.__narrator.get_christened_string())
             self.doc.write_text(self.__narrator.get_died_string())
             self.doc.write_text(self.__narrator.get_buried_string())
                         
