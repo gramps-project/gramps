@@ -161,7 +161,7 @@ def gramps_upgrade_17(self):
         else:
             placeref_list = []
 
-        type_num = 7 - level if name else 8
+        type_num = 7 - level if name else PlaceType.UNKNOWN
         new_place = new_place[:5] + [placeref_list, name, [],
                     PlaceType(type_num).serialize(), zip_code] + \
                     new_place[6:12] + [[]] + new_place[12:]
