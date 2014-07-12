@@ -1698,7 +1698,7 @@ class PlaceParser(object):
                 break
 
         place.set_name(name)
-        type_num = 7 - level if name else 8
+        type_num = 7 - level if name else PlaceType.UNKNOWN
         place.set_type(PlaceType(type_num))
         code = loc.get_postal_code()
         place.set_code(code)

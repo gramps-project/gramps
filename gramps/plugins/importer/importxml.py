@@ -1193,7 +1193,7 @@ class GrampsParser(UpdateCallback):
                         break
 
                 self.placeobj.set_name(name)
-                type_num = 7 - level if name else 8
+                type_num = 7 - level if name else PlaceType.UNKNOWN
                 self.placeobj.set_type(PlaceType(type_num))
                 codes = [attrs.get('postal'), attrs.get('phone')]
                 self.placeobj.set_code(' '.join(code for code in codes if code))

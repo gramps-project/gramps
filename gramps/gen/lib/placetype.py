@@ -61,7 +61,7 @@ class PlaceType(GrampsType):
     BUILDING     = 19
 
     _CUSTOM = CUSTOM
-    _DEFAULT = COUNTRY
+    _DEFAULT = UNKNOWN
 
     _DATAMAP = [
         (UNKNOWN,      _("Unknown"),      "Unknown"),
