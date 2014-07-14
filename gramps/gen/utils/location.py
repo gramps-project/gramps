@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2013       Nick Hall
+# Copyright (C) 2013-2014  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,9 +31,15 @@ def get_location_list(db, place):
     """
     Return a list of place names for display.
     """
+    visited = [place.handle]
     lines = [place.name]
     while len(place.get_placeref_list()) > 0:
-        place = db.get_place_from_handle(place.get_placeref_list()[0].ref)
+        handle = place.get_placeref_list()[0].ref
+        if handle in visited:
+            break
+        else:
+            visited.append(handle)
+        place = db.get_place_from_handle(handle)
         lines.append(place.name)
     return lines
 
@@ -47,9 +53,15 @@ def get_main_location(db, place):
     Find all places in the hierarchy above the given place, and return the
     result as a dictionary of place types and names.
     """
+    visited = [place.handle]
     items = {int(place.get_type()): place.name}
     while len(place.get_placeref_list()) > 0:
-        place = db.get_place_from_handle(place.get_placeref_list()[0].ref)
+        handle = place.get_placeref_list()[0].ref
+        if handle in visited:
+            break
+        else:
+            visited.append(handle)
+        place = db.get_place_from_handle(handle)
         items[int(place.get_type())] = place.name
     return items
     
@@ -64,15 +76,17 @@ def get_locations(db, place):
     containing dictionaries of place types and names.
     """
     locations = []
-    todo = [(place, [(int(place.get_type()), place.get_all_names())])]
+    todo = [(place, [(int(place.get_type()), place.get_all_names())],
+            [place.handle])]
     while len(todo):
-        place, tree = todo.pop()
-        if len(place.get_placeref_list()):
-            for parent in place.get_placeref_list():
+        place, tree, visited = todo.pop()
+        for parent in place.get_placeref_list():
+            if parent.ref not in visited:
                 parent_place = db.get_place_from_handle(parent.ref)
                 parent_tree = tree + [(int(parent_place.get_type()), 
                                        parent_place.get_all_names())]
-                todo.append((parent_place, parent_tree))
-        else:
+                parent_visited = visited + [parent.ref]
+                todo.append((parent_place, parent_tree, parent_visited))
+        if len(place.get_placeref_list()) == 0:
             locations.append(dict(tree))
     return locations
