@@ -175,8 +175,7 @@ class PlaceTreeView(PlaceBaseView):
 
     def add(self, obj):
         """
-        Add a new place.  Attempt to get the top three levels of hierarchy from
-        the currently selected row.
+        Add a new place.  Use the currently selected rows as parent places.
         """
         parent_list = []
         for handle in self.selected_handles():
@@ -186,7 +185,7 @@ class PlaceTreeView(PlaceBaseView):
 
         place = Place()
         if len(parent_list) > 0:
-            place.parent = parent_list
+            place.placeref_list = parent_list
         
         try:
             EditPlace(self.dbstate, self.uistate, [], place)
