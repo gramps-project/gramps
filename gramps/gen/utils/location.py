@@ -90,3 +90,26 @@ def get_locations(db, place):
         if len(place.get_placeref_list()) == 0:
             locations.append(dict(tree))
     return locations
+
+#-------------------------------------------------------------------------
+#
+# located_in
+#
+#-------------------------------------------------------------------------
+def located_in(db, handle1, handle2):
+    """
+    Determine if the place identified by handle1 is located within the place
+    identified by handle2.
+    """
+    place = db.get_place_from_handle(handle1)
+    todo = [(place, [handle1])]
+    while len(todo):
+        place, visited = todo.pop()
+        for parent in place.get_placeref_list():
+            if parent.ref == handle2:
+                return True
+            if parent.ref not in visited:
+                parent_place = db.get_place_from_handle(parent.ref)
+                parent_visited = visited + [parent.ref]
+                todo.append((parent_place, parent_visited))
+    return False

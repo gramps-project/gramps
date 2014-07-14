@@ -57,6 +57,7 @@ from gramps.gui.editors import EditPlace, DeletePlaceQuery
 from gramps.gui.filters.sidebar import PlaceSidebarFilter
 from gramps.gui.merge import MergePlace
 from gramps.gen.plug import CATEGORY_QR_PLACE
+from gramps.gen.utils.location import located_in
 
 #-------------------------------------------------------------------------
 #
@@ -413,8 +414,15 @@ class PlaceBaseView(ListView):
                      "control key while clicking on the desired place.")
             ErrorDialog(msg, msg2)
         else:
-            MergePlace(self.dbstate, self.uistate, mlist[0], mlist[1],
-                       self.merged)
+            if (located_in(self.dbstate.db, mlist[0], mlist[1]) or
+                located_in(self.dbstate.db, mlist[1], mlist[0])):
+                msg = _("Cannot merge places.")
+                msg2 = _("Merging these places would create a cycle in the "
+                         "place hierarchy.")
+                ErrorDialog(msg, msg2)
+            else:
+                MergePlace(self.dbstate, self.uistate, mlist[0], mlist[1],
+                           self.merged)
 
     def merged(self):
         """
