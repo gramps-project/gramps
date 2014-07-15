@@ -27,12 +27,10 @@
 from .editsecondary import EditSecondary
 from ..glade import Glade
 from ..widgets import MonitoredDate
-from ..selectors import SelectorFactory
+from .objectentries import PlaceEntry
 from ..dialog import ErrorDialog
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-
-SelectPlace = SelectorFactory('Place')
 
 #-------------------------------------------------------------------------
 #
@@ -52,6 +50,9 @@ class EditPlaceRef(EditSecondary):
         self.top = Glade()
         self.set_window(self.top.toplevel, None, _('Place Reference Editor'))
 
+        self.share_btn = self.top.get_object('select_place')
+        self.add_del_btn = self.top.get_object('add_del_place')
+
     def _setup_fields(self):
 
         self.date_field = MonitoredDate(self.top.get_object("date_entry"),
@@ -60,14 +61,12 @@ class EditPlaceRef(EditSecondary):
                                         self.uistate, self.track, 
                                         self.db.readonly)
 
-        self.parent = self.top.get_object('place_label')
-        if self.obj.ref is not None:
-            place = self.db.get_place_from_handle(self.obj.ref)
-            self.parent.set_text(place.get_name())
-        else:
-            self.parent.set_text(_('Top level place'))
-        button = self.top.get_object('place_button')
-        button.connect('clicked', self.select_parent)
+        self.place_field = PlaceEntry(self.dbstate, self.uistate, self.track,
+                                      self.top.get_object("place"),
+                                      self.obj.set_reference_handle,
+                                      self.obj.get_reference_handle,
+                                      self.add_del_btn, self.share_btn,
+                                      skip=self.get_skip_list(self.handle))
 
     def get_skip_list(self, handle):
         todo = [handle]
@@ -80,23 +79,21 @@ class EditPlaceRef(EditSecondary):
                     skip.append(child[1])
         return skip
 
-    def select_parent(self, button):
-        if self.handle:
-            skip = self.get_skip_list(self.handle)
-        else:
-            skip = []
-        sel = SelectPlace(self.dbstate, self.uistate, self.track, skip=skip)
-        parent = sel.run()
-        if parent:
-            self.parent.set_text(parent.get_name())
-            self.obj.ref = parent.get_handle()
-
     def _connect_signals(self):
         self.define_cancel_button(self.top.get_object('cancel_button'))
-        self.define_ok_button(self.top.get_object('ok_button'), self.save)
+        self.ok_button = self.top.get_object('ok_button')
+        self.define_ok_button(self.ok_button, self.save)
         self.define_help_button(self.top.get_object('help_button'))
 
     def save(self, *obj):
+        self.ok_button.set_sensitive(False)
+        if not self.obj.ref:
+            ErrorDialog(_("Cannot save place reference"),
+                        _("No place selected. Please select a place "
+                          " or cancel the edit."))
+            self.ok_button.set_sensitive(True)
+            return
+
         if self.callback:
             self.callback(self.obj)
         self.close()
