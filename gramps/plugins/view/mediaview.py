@@ -191,7 +191,7 @@ class MediaView(ListView):
                 None)
             protocol, site, mfile, j, k, l = urlparse(clean_string)
             if protocol == "file":
-                name = mfile
+                name = url2pathname(mfile)
                 mime = get_type(name)
                 if not is_valid_type(mime):
                     return
