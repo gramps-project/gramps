@@ -74,9 +74,10 @@ class EditPlaceRef(EditSecondary):
         skip = [handle]
         while todo:
             handle = todo.pop()
-            for child in self.dbstate.db.find_place_child_handles(handle):
-                todo.append(child)
-                skip.append(child)
+            for child in self.db.find_backlink_handles(handle, ['Place']):
+                if child[1] not in skip:
+                    todo.append(child[1])
+                    skip.append(child[1])
         return skip
 
     def select_parent(self, button):
