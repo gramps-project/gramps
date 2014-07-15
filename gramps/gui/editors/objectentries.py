@@ -269,9 +269,10 @@ class PlaceEntry(ObjEntry):
     DEL_STR = _('Remove place')
     
     def __init__(self, dbstate, uistate, track, label, set_val, 
-                 get_val, add_edt, share):
+                 get_val, add_edt, share, skip=[]):
         ObjEntry.__init__(self, dbstate, uistate, track, label, set_val, 
                  get_val, add_edt, share)
+        self.skip = skip
 
     def _init_dnd(self):
         """connect drag and drop of places
@@ -282,6 +283,13 @@ class PlaceEntry(ObjEntry):
                    DdTargets.PLACE_LINK.app_id)
         self.label.drag_dest_set_target_list(tglist)
         self.label.connect('drag_data_received', self.drag_data_received)
+
+    def drag_data_received(self, widget, context, x, y, selection, info, time):
+        (drag_type, idval, obj, val) = pickle.loads(selection.get_data())
+
+        if obj not in self.skip:
+            data = self.get_from_handle(obj)
+            self.obj_added(data)
 
     def get_from_handle(self, handle):
         """ return the object given the hande
@@ -306,7 +314,7 @@ class PlaceEntry(ObjEntry):
 
     def call_selector(self):
         cls = SelectorFactory('Place')
-        return cls(self.dbstate, self.uistate, self.track)
+        return cls(self.dbstate, self.uistate, self.track, skip=self.skip)
 
 class SourceEntry(ObjEntry):
     """

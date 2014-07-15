@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.16.1 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <!-- interface-requires grampswidgets 0.0 -->
   <object class="GtkDialog" id="editplaceref">
     <property name="can_focus">False</property>
     <property name="default_width">550</property>
@@ -78,7 +80,7 @@
                 <property name="can_focus">False</property>
                 <property name="border_width">12</property>
                 <property name="n_rows">2</property>
-                <property name="n_columns">3</property>
+                <property name="n_columns">4</property>
                 <property name="column_spacing">12</property>
                 <property name="row_spacing">6</property>
                 <child>
@@ -111,11 +113,11 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkButton" id="place_button">
-                    <property name="label" translatable="yes">...</property>
+                  <object class="GtkButton" id="select_place">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="receives_default">True</property>
+                    <property name="relief">none</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
@@ -132,12 +134,6 @@
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_text" translatable="yes">Invoke date editor</property>
                     <property name="relief">none</property>
-                    <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="date_stat-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Date</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="date_stat_child">
                         <property name="visible">True</property>
@@ -152,10 +148,16 @@
                         </child>
                       </object>
                     </child>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="date_stat-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Date</property>
+                      </object>
+                    </child>
+                    <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
-                    <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
+                    <property name="left_attach">3</property>
+                    <property name="right_attach">4</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
                     <property name="x_options">GTK_FILL</property>
@@ -163,7 +165,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkLabel" id="place_label">
+                  <object class="GtkLabel" id="place">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="xalign">0</property>
@@ -184,9 +186,23 @@
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
+                    <property name="right_attach">3</property>
                     <property name="top_attach">1</property>
                     <property name="bottom_attach">2</property>
+                    <property name="y_options"/>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="add_del_place">
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">True</property>
+                    <property name="relief">none</property>
+                  </object>
+                  <packing>
+                    <property name="left_attach">3</property>
+                    <property name="right_attach">4</property>
+                    <property name="x_options">GTK_FILL</property>
                     <property name="y_options"/>
                   </packing>
                 </child>
