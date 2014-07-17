@@ -520,7 +520,10 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 else:
                     files =  sel_data.get_uris()
                 for file in files:
-                    d = conv_to_unicode((file.replace('\0',' ').strip()), None)
+                    if win():
+                        d = conv_to_unicode((file.replace('\0',' ').strip()), None)
+                    else:
+                        d = file
                     protocol, site, mfile, j, k, l = urlparse(d)
                     if protocol == "file":
                         name = url2pathname(mfile)
