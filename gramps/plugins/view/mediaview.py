@@ -184,9 +184,12 @@ class MediaView(ListView):
         #modern file managers provide URI_LIST. For Windows split sel_data.data
         files = sel_data.get_uris()
         for file in files:
-            clean_string = conv_to_unicode(
-                file.replace('\0',' ').replace("\r", " ").strip(),
-                None)
+            if win():
+                clean_string = conv_to_unicode(
+                    file.replace('\0',' ').replace("\r", " ").strip(),
+                    None)
+            else:
+                clean_string = file
             protocol, site, mfile, j, k, l = urlparse(clean_string)
             if protocol == "file":
                 name = url2pathname(mfile)
