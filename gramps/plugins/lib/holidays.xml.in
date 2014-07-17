@@ -373,6 +373,23 @@
     <date name="天皇(明仁)即位記念" value="1990/11/12" />
     <date name="皇太子徳仁親王の結婚" value="1993/6/9" />
   </country>
+  <country _name="Slovakia">
+    <date name="Deň vzniku Slovenskej republiky" value="*/1/1" type="national" />
+    <date name="Zjavenie Pána (Traja králi)" value="*/1/6" type="religious" />
+    <date name="Veľký piatok" value="> easter(y)" offset="-2" type="religious" />
+    <date name="Veľkonočný pondelok" value="> easter(y)" offset="+1" type="religious" />
+    <date name="Sviatok práce" value="*/5/1" type="national" />
+    <date name="Deň víťazstva nad fašizmom" value="*/5/8" type="national" />
+    <date name="Sviatok svätého Cyrila a Metoda" value="*/7/5" type="national" />
+    <date name="Výročie SNP" value="*/8/29" type="national" />
+    <date name="Deň Ústavy Slovenskej republiky" value="*/9/1" type="national" />
+    <date name="Sedembolestná Panna Mária" value="*/9/15" type="religious" />
+    <date name="Sviatok všetkých svätých" value="*/11/1" type="religious" />
+    <date name="Deň boja za slobodu a demokraciu" value="*/11/17" type="national" />
+    <date name="Štedrý deň" value="*/12/24" type="religious" />
+    <date name="Prvý sviatok vianočný" value="*/12/25" type="national" />
+    <date name="Druhý sviatok vianočný" value="*/12/26" type="national" />
+  </country>
   <country _name="Sweden">
     <date name="Nyårsdagen" value="*/1/1" type="religious" />
     <date name="Trettondagen" value="*/1/6" type="religious" />

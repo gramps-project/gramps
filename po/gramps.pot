@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-17 15:30+0200\n"
+"POT-Creation-Date: 2014-07-17 16:07+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20776,139 +20776,143 @@ msgstr ""
 msgid "Japan"
 msgstr ""
 
-#. Make upper case of translaed country so string search works later
 #: ../gramps/plugins/lib/holidays.xml.in.h:12
+msgid "Slovakia"
+msgstr ""
+
+#. Make upper case of translaed country so string search works later
+#: ../gramps/plugins/lib/holidays.xml.in.h:13
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:46
 #: ../gramps/plugins/tool/extractcity.py:65
 msgid "Sweden"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:13
+#: ../gramps/plugins/lib/holidays.xml.in.h:14
 #: ../gramps/plugins/tool/extractcity.py:65
 msgid "United States of America"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:14
+#: ../gramps/plugins/lib/holidays.xml.in.h:15
 msgid "Jewish Holidays"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:15
+#: ../gramps/plugins/lib/holidays.xml.in.h:16
 msgid "Purim"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:16
+#: ../gramps/plugins/lib/holidays.xml.in.h:17
 msgid "Passover"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:17
+#: ../gramps/plugins/lib/holidays.xml.in.h:18
 msgid "2 of Passover"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:18
+#: ../gramps/plugins/lib/holidays.xml.in.h:19
 msgid "3 of Passover"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:19
+#: ../gramps/plugins/lib/holidays.xml.in.h:20
 msgid "4 of Passover"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:20
+#: ../gramps/plugins/lib/holidays.xml.in.h:21
 msgid "5 of Passover"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:21
+#: ../gramps/plugins/lib/holidays.xml.in.h:22
 msgid "6 of Passover"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:22
+#: ../gramps/plugins/lib/holidays.xml.in.h:23
 msgid "7 of Passover"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:23
+#: ../gramps/plugins/lib/holidays.xml.in.h:24
 msgid "Shavuot"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:24
+#: ../gramps/plugins/lib/holidays.xml.in.h:25
 msgid "Rosh Ha'Shana"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:25
+#: ../gramps/plugins/lib/holidays.xml.in.h:26
 msgid "Rosh Ha'Shana 2"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:26
+#: ../gramps/plugins/lib/holidays.xml.in.h:27
 msgid "Yom Kippur"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:27
+#: ../gramps/plugins/lib/holidays.xml.in.h:28
 msgid "Sukot"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:28
+#: ../gramps/plugins/lib/holidays.xml.in.h:29
 msgid "2 of Sukot"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:29
+#: ../gramps/plugins/lib/holidays.xml.in.h:30
 msgid "3 of Sukot"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:30
+#: ../gramps/plugins/lib/holidays.xml.in.h:31
 msgid "4 of Sukot"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:31
+#: ../gramps/plugins/lib/holidays.xml.in.h:32
 msgid "5 of Sukot"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:32
+#: ../gramps/plugins/lib/holidays.xml.in.h:33
 msgid "6 of Sukot"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:33
+#: ../gramps/plugins/lib/holidays.xml.in.h:34
 msgid "7 of Sukot"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:34
+#: ../gramps/plugins/lib/holidays.xml.in.h:35
 msgid "Simhat Tora"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:35
+#: ../gramps/plugins/lib/holidays.xml.in.h:36
 msgid "Hanuka"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:36
+#: ../gramps/plugins/lib/holidays.xml.in.h:37
 msgid "2 of Hanuka"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:37
+#: ../gramps/plugins/lib/holidays.xml.in.h:38
 msgid "3 of Hanuka"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:38
+#: ../gramps/plugins/lib/holidays.xml.in.h:39
 msgid "4 of Hanuka"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:39
+#: ../gramps/plugins/lib/holidays.xml.in.h:40
 msgid "5 of Hanuka"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:40
+#: ../gramps/plugins/lib/holidays.xml.in.h:41
 msgid "6 of Hanuka"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:41
+#: ../gramps/plugins/lib/holidays.xml.in.h:42
 msgid "7 of Hanuka"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:42
+#: ../gramps/plugins/lib/holidays.xml.in.h:43
 msgid "8 of Hanuka"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:43
+#: ../gramps/plugins/lib/holidays.xml.in.h:44
 msgid "New Zealand"
 msgstr ""
 
-#: ../gramps/plugins/lib/holidays.xml.in.h:44
+#: ../gramps/plugins/lib/holidays.xml.in.h:45
 msgid "Ukraine"
 msgstr ""
 
