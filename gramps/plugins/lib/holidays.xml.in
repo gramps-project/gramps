@@ -509,4 +509,34 @@
     <date value="*/12/19" type="religious" name="Миколая"/>
     <date value="*/12/21" type="secular" name="Осіннє Сонцестояння"/>
   </country>
+  <country _name="Serbia">
+    <date value="*/1/1" type="national" name="Нова Година" />
+    <date value="*/1/7" type="religious" name="Божић" />
+    <date value="*/2/15" type="national" name="Дан државности Србије" />
+    <date value="> julian_easter(y)" type="religious" offset="-2" name="Велики петак" />
+    <date value="> julian_easter(y)" type="religious" name="Васкрс" />
+    <date value="> julian_easter(y)" type="religious" offset="1" name="Васкрсни понедељак" />
+    <date value="*/5/1" type="national" name="Празник рада" />
+    <date value="*/11/11" type="national" name="Дан примирја" />
+    <date value="*/1/27" type="religious" name="Свети Сава" />
+    <date value="*/4/22" type="national" name="Дан сећања на жртве холокауста" />
+    <date value="*/5/9" type="national" name="Дан победе" />
+    <date value="*/6/28" type="religious" name="Видовдан" />
+    <date value="*/10/21" type="national" name="Дан сећања на српске жртве у Другом светском рату" />
+  </country>
+  <country _name="Serbia (Latin)">
+    <date value="*/1/1" type="national" name="Nova godina" />
+    <date value="*/1/7" type="religious" name="Božić" />
+    <date value="*/2/15" type="national" name="Dan državnosti Srbije" />
+    <date value="> julian_easter(y)" type="religious" offset="-2" name="Veliki petak" />
+    <date value="> julian_easter(y)" type="religious" name="Vaskrs" />
+    <date value="> julian_easter(y)" type="religious" offset="1" name="Vaskrsni ponedeljak" />
+    <date value="*/5/1" type="national" name="Praznik rada" />
+    <date value="*/11/11" type="national" name="Dan primirja" />
+    <date value="*/1/27" type="religious" name="Sveti Sava" />
+    <date value="*/4/22" type="national" name="Dan sećanja na žrtve holokausta" />
+    <date value="*/5/9" type="national" name="Dan pobede" />
+    <date value="*/6/28" type="religious" name="Vidovdan" />
+    <date value="*/10/21" type="national" name="Dan sećanja na srpske žrtve u Drugom svetskom ratu" />
+  </country>
 </calendar>
