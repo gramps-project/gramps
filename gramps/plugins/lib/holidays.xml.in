@@ -43,28 +43,8 @@
     <date name="Никулден" value="*/12/6" type="religious" />
     <date name="Игнажден" value="*/12/20" type="religious" />
     <date name="Стефановден" value="*/12/27" type="religious" />
-    <date name="Великден" value="2010/4/4" type="religious" />
-    <date name="Великден" value="2011/4/24" type="religious" />
-    <date name="Великден" value="2012/4/15" type="religious" />
-    <date name="Великден" value="2013/5/5" type="religious" />
-    <date name="Великден" value="2014/4/20" type="religious" />
-    <date name="Великден" value="2015/4/12" type="religious" />
-    <date name="Великден" value="2016/5/1" type="religious" />
-    <date name="Великден" value="2017/4/16" type="religious" />
-    <date name="Великден" value="2018/4/8" type="religious" />
-    <date name="Великден" value="2019/4/28" type="religious" />
-    <date name="Великден" value="2020/4/19" type="religious" />
-    <date name="Цветница" value="2010/4/4" offset="-7" type="religious" />
-    <date name="Цветница" value="2011/4/24" offset="-7" type="religious" />
-    <date name="Цветница" value="2012/4/15" offset="-7" type="religious" />
-    <date name="Цветница" value="2013/5/5" offset="-7" type="religious" />
-    <date name="Цветница" value="2014/4/20" offset="-7" type="religious" />
-    <date name="Цветница" value="2015/4/12" offset="-7" type="religious" />
-    <date name="Цветница" value="2016/5/1" offset="-7" type="religious" />
-    <date name="Цветница" value="2017/4/16" offset="-7" type="religious" />
-    <date name="Цветница" value="2018/4/8" offset="-7" type="religious" />
-    <date name="Цветница" value="2019/4/28" offset="-7" type="religious" />
-    <date name="Цветница" value="2020/4/19" offset="-7" type="religious" />
+    <date name="Великден" value="> julian_easter(y)" type="religious" />
+    <date name="Цветница" value="> julian_easter(y)" offset="-7" type="religious" />
     <date name="Възнесение господне" value="2010/5/13" type="religious" />
     <date name="Възнесение господне" value="2011/6/2" type="religious" />
     <date name="Възнесение господне" value="2012/5/24" type="religious" />
@@ -516,17 +496,7 @@
     <date value="*/3/20" type="secular" name="Весняне Рівнодення"/>
     <date value="*/4/1" type="secular" name="День сміху"/>
     <date value="*/4/7" type="religious" name="Благовіщення"/>
-    <date value="2010/4/4" type="religious" name="Великдень"/>
-    <date value="2011/4/24" type="religious" name="Великдень"/>
-    <date value="2012/4/15" type="religious" name="Великдень"/>
-    <date value="2013/5/5" type="religious" name="Великдень"/>
-    <date value="2014/4/20" type="religious" name="Великдень"/>
-    <date value="2015/4/12" type="religious" name="Великдень"/>
-    <date value="2016/5/1" type="religious" name="Великдень"/>
-    <date value="2017/4/16" type="religious" name="Великдень"/>
-    <date value="2018/4/8" type="religious" name="Великдень"/>
-    <date value="2019/4/28" type="religious" name="Великдень"/>
-    <date value="2020/4/19" type="religious" name="Великдень"/>
+    <date value="> julian_easter(y)" type="religious" name="Великдень"/>
     <date value="*/5/1" type="national" name="День Праці"/>
     <date value="*/6/21" type="secular" name="Весняне Сонцестояння"/>
     <date value="*/6/28" type="national" name="День Конституції України"/>
