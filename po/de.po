@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-05 22:53+0200\n"
-"PO-Revision-Date: 2014-07-05 23:06+0200\n"
+"POT-Creation-Date: 2014-07-18 21:39+0200\n"
+"PO-Revision-Date: 2014-07-18 22:03+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -3106,7 +3106,7 @@ msgstr "Band/Seite:"
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:48
 #: ../gramps/gen/filters/rules/place/_hascitation.py:49
 #: ../gramps/gui/editors/filtereditor.py:581
-#: ../gramps/gui/glade/editplaceref.glade:103
+#: ../gramps/gui/glade/editplaceref.glade:105
 #: ../gramps/gui/glade/mergecitation.glade:271
 #: ../gramps/gui/glade/mergecitation.glade:290
 #: ../gramps/gui/glade/mergeevent.glade:259
@@ -3640,7 +3640,7 @@ msgstr "Ereignisart:"
 #: ../gramps/gen/filters/rules/person/_hasevent.py:50
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:49
 #: ../gramps/gui/editors/filtereditor.py:510
-#: ../gramps/gui/glade/editplaceref.glade:89
+#: ../gramps/gui/glade/editplaceref.glade:91
 #: ../gramps/gui/glade/mergeevent.glade:300
 #: ../gramps/gui/glade/mergeevent.glade:319
 msgid "Place:"
@@ -7892,7 +7892,7 @@ msgid "Graphics"
 msgstr "Grafiken"
 
 #: ../gramps/gen/plug/report/endnotes.py:49
-#: ../gramps/plugins/textreport/ancestorreport.py:339
+#: ../gramps/plugins/textreport/ancestorreport.py:340
 #: ../gramps/plugins/textreport/detancestralreport.py:842
 #: ../gramps/plugins/textreport/detdescendantreport.py:1038
 msgid "The style used for the generation header."
@@ -8102,7 +8102,7 @@ msgstr "Registriert '%s'"
 #: ../gramps/gui/glade/editsource.glade:295
 #: ../gramps/gui/glade/editurl.glade:152 ../gramps/gui/grampsgui.py:189
 #: ../gramps/plugins/lib/libpersonview.py:109
-#: ../gramps/plugins/lib/libplaceview.py:97
+#: ../gramps/plugins/lib/libplaceview.py:98
 #: ../gramps/plugins/view/citationlistview.py:102
 #: ../gramps/plugins/view/citationtreeview.py:97
 #: ../gramps/plugins/view/eventview.py:87
@@ -9074,7 +9074,7 @@ msgstr "Orts ref"
 #: ../gramps/plugins/gramplet/backlinks.py:45
 #: ../gramps/plugins/gramplet/descendant.py:65
 #: ../gramps/plugins/lib/libpersonview.py:97
-#: ../gramps/plugins/lib/libplaceview.py:90
+#: ../gramps/plugins/lib/libplaceview.py:91
 #: ../gramps/plugins/quickview/filterbyname.py:281
 #: ../gramps/plugins/textreport/indivcomplete.py:565
 #: ../gramps/plugins/textreport/tagreport.py:133
@@ -9231,7 +9231,7 @@ msgstr "Aufbewahrungsort"
 #: ../gramps/gui/selectors/selectplace.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:44
 #: ../gramps/plugins/gramplet/events.py:74
-#: ../gramps/plugins/lib/libplaceview.py:93
+#: ../gramps/plugins/lib/libplaceview.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:301
 #: ../gramps/plugins/quickview/linkreferences.py:45
 #: ../gramps/plugins/quickview/onthisday.py:80
@@ -9272,7 +9272,7 @@ msgstr "Art"
 #: ../gramps/gui/selectors/selectsource.py:60
 #: ../gramps/gui/widgets/grampletpane.py:1550
 #: ../gramps/plugins/gramplet/persondetails.py:124
-#: ../gramps/plugins/lib/libplaceview.py:92
+#: ../gramps/plugins/lib/libplaceview.py:93
 #: ../gramps/plugins/textreport/tagreport.py:390
 #: ../gramps/plugins/textreport/tagreport.py:539
 #: ../gramps/plugins/textreport/tagreport.py:706
@@ -10447,8 +10447,8 @@ msgstr "Gewählte Adresse nach unten verschieben"
 #: ../gramps/gui/glade/editmediaref.glade:663
 #: ../gramps/gui/glade/editname.glade:642
 #: ../gramps/gui/glade/editname.glade:652
-#: ../gramps/gui/glade/editplaceref.glade:138
-#: ../gramps/gui/glade/editplaceref.glade:150 ../gramps/gui/grampsgui.py:151
+#: ../gramps/gui/glade/editplaceref.glade:146
+#: ../gramps/gui/glade/editplaceref.glade:153 ../gramps/gui/grampsgui.py:151
 #: ../gramps/gui/selectors/selectevent.py:62
 #: ../gramps/plugins/export/exportcsv.py:488
 #: ../gramps/plugins/gramplet/ageondategramplet.py:72
@@ -10555,7 +10555,7 @@ msgstr "_Attribute"
 #: ../gramps/gui/views/bookmarks.py:222
 #: ../gramps/gui/views/navigationview.py:354
 #: ../gramps/plugins/lib/libpersonview.py:98
-#: ../gramps/plugins/lib/libplaceview.py:91
+#: ../gramps/plugins/lib/libplaceview.py:92
 #: ../gramps/plugins/tool/eventcmp.py:251
 #: ../gramps/plugins/tool/notrelated.py:125
 #: ../gramps/plugins/tool/patchnames.py:395
@@ -10833,12 +10833,12 @@ msgstr "_Galerie"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
 #: ../gramps/gui/editors/editperson.py:628 ../gramps/gui/grampsgui.py:190
-#: ../gramps/gui/grampsgui.py:191 ../gramps/plugins/view/mediaview.py:222
+#: ../gramps/gui/grampsgui.py:191 ../gramps/plugins/view/mediaview.py:225
 msgid "View"
 msgstr "Ansicht"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:155
-#: ../gramps/plugins/view/mediaview.py:226
+#: ../gramps/plugins/view/mediaview.py:229
 msgid "Open Containing _Folder"
 msgstr "Enthaltenen _Ordner öffnen"
 
@@ -10867,8 +10867,8 @@ msgstr ""
 "\n"
 "Um die Medienreferenz zu bearbeiten, muss das Medienobjekt geschlossen werden."
 
-#: ../gramps/gui/editors/displaytabs/gallerytab.py:542
-#: ../gramps/plugins/view/mediaview.py:208
+#: ../gramps/gui/editors/displaytabs/gallerytab.py:545
+#: ../gramps/plugins/view/mediaview.py:211
 msgid "Drag Media Object"
 msgstr "Medienobjekt ziehen"
 
@@ -11896,7 +11896,7 @@ msgid "_Note"
 msgstr "_Notiz"
 
 #: ../gramps/gui/editors/editnote.py:283 ../gramps/gui/editors/editnote.py:328
-#: ../gramps/gui/editors/objectentries.py:427
+#: ../gramps/gui/editors/objectentries.py:435
 msgid "Edit Note"
 msgstr "Notiz bearbeiten"
 
@@ -12134,13 +12134,17 @@ msgstr "Kann Ortsnamen nicht speichern"
 msgid "The place name cannot be empty"
 msgstr "Der Ortsname darf nicht leer sein"
 
-#: ../gramps/gui/editors/editplaceref.py:53
+#: ../gramps/gui/editors/editplaceref.py:51
 msgid "Place Reference Editor"
 msgstr "Ortsreferenzeditor"
 
-#: ../gramps/gui/editors/editplaceref.py:68
-msgid "Top level place"
-msgstr "Ort der obersten Ebene"
+#: ../gramps/gui/editors/editplaceref.py:91
+msgid "Cannot save place reference"
+msgstr "Kann Ortereferenz nicht speichern"
+
+#: ../gramps/gui/editors/editplaceref.py:92
+msgid "No place selected. Please select a place  or cancel the edit."
+msgstr "Kein Ort gewählt. Wähle bitte einen Ort oder brich die Bearbeitung ab."
 
 #: ../gramps/gui/editors/editprimary.py:233
 msgid "Save Changes?"
@@ -12515,7 +12519,7 @@ msgid "Select an existing place"
 msgstr "Einen existierenden Ort auswählen"
 
 #: ../gramps/gui/editors/objectentries.py:268
-#: ../gramps/plugins/lib/libplaceview.py:108
+#: ../gramps/plugins/lib/libplaceview.py:109
 msgid "Add a new place"
 msgstr "Neuen Ort hinzufügen"
 
@@ -12523,84 +12527,84 @@ msgstr "Neuen Ort hinzufügen"
 msgid "Remove place"
 msgstr "Ort löschen"
 
-#: ../gramps/gui/editors/objectentries.py:316
+#: ../gramps/gui/editors/objectentries.py:324
 msgid "First add a source using the buttons"
 msgstr "Füge erst mit den Schaltflächen eine Quelle hinzu"
 
-#: ../gramps/gui/editors/objectentries.py:317
+#: ../gramps/gui/editors/objectentries.py:325
 msgid "First add a source using the button"
 msgstr "Füge erst mit der Schaltfläche eine Quelle hinzu"
 
-#: ../gramps/gui/editors/objectentries.py:318
+#: ../gramps/gui/editors/objectentries.py:326
 msgid "Edit source"
 msgstr "Quelle bearbeiten"
 
-#: ../gramps/gui/editors/objectentries.py:319
+#: ../gramps/gui/editors/objectentries.py:327
 msgid "Select an existing source"
 msgstr "Wähle eine existierende Quelle aus."
 
-#: ../gramps/gui/editors/objectentries.py:320
+#: ../gramps/gui/editors/objectentries.py:328
 #: ../gramps/plugins/view/citationlistview.py:125
 #: ../gramps/plugins/view/citationtreeview.py:122
 #: ../gramps/plugins/view/sourceview.py:98
 msgid "Add a new source"
 msgstr "Neue Quelle hinzufügen"
 
-#: ../gramps/gui/editors/objectentries.py:321
+#: ../gramps/gui/editors/objectentries.py:329
 msgid "Remove source"
 msgstr "Quelle entfernen"
 
-#: ../gramps/gui/editors/objectentries.py:370
+#: ../gramps/gui/editors/objectentries.py:378
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr ""
 "Um ein Medienobjekt auszuwählen, verwende ziehen und ablegen oder die "
 "Schaltflächen."
 
-#: ../gramps/gui/editors/objectentries.py:372
+#: ../gramps/gui/editors/objectentries.py:380
 #: ../gramps/gui/plug/_guioptions.py:1069
 msgid "No image given, click button to select one"
 msgstr "Kein Bild angegeben, auf Schaltfläche klicken um eines zu wählen"
 
-#: ../gramps/gui/editors/objectentries.py:373
+#: ../gramps/gui/editors/objectentries.py:381
 msgid "Edit media object"
 msgstr "Medienobjekt bearbeiten"
 
-#: ../gramps/gui/editors/objectentries.py:374
+#: ../gramps/gui/editors/objectentries.py:382
 #: ../gramps/gui/plug/_guioptions.py:1047
 msgid "Select an existing media object"
 msgstr "Ein bestehendes Medienobjekt auswählen"
 
-#: ../gramps/gui/editors/objectentries.py:375
+#: ../gramps/gui/editors/objectentries.py:383
 #: ../gramps/plugins/view/mediaview.py:120
 msgid "Add a new media object"
 msgstr "Neues Medienobjekt hinzufügen"
 
-#: ../gramps/gui/editors/objectentries.py:376
+#: ../gramps/gui/editors/objectentries.py:384
 msgid "Remove media object"
 msgstr "Medienobjekt entfernen"
 
-#: ../gramps/gui/editors/objectentries.py:424
+#: ../gramps/gui/editors/objectentries.py:432
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr ""
 "Um eine Notiz zu wählen, verwende ziehen und ablegen oder die Schaltflächen"
 
-#: ../gramps/gui/editors/objectentries.py:426
+#: ../gramps/gui/editors/objectentries.py:434
 #: ../gramps/gui/plug/_guioptions.py:968
 msgid "No note given, click button to select one"
 msgstr ""
 "Die Notiz wurde nicht angegeben. Zum Auswählen klicke auf die Schaltfläche."
 
-#: ../gramps/gui/editors/objectentries.py:428
+#: ../gramps/gui/editors/objectentries.py:436
 #: ../gramps/gui/plug/_guioptions.py:943
 msgid "Select an existing note"
 msgstr "Wähle eine existierende Notiz aus."
 
-#: ../gramps/gui/editors/objectentries.py:429
+#: ../gramps/gui/editors/objectentries.py:437
 #: ../gramps/plugins/view/noteview.py:93
 msgid "Add a new note"
 msgstr "Neue Notiz hinzufügen"
 
-#: ../gramps/gui/editors/objectentries.py:430
+#: ../gramps/gui/editors/objectentries.py:438
 msgid "Remove note"
 msgstr "Notiz entfernen"
 
@@ -13061,7 +13065,7 @@ msgstr "Privatsphäre"
 #: ../gramps/gui/glade/editmedia.glade:254
 #: ../gramps/gui/glade/editmediaref.glade:645
 #: ../gramps/gui/glade/editname.glade:633
-#: ../gramps/gui/glade/editplaceref.glade:133
+#: ../gramps/gui/glade/editplaceref.glade:135
 msgid "Invoke date editor"
 msgstr "Datumseditor aufrufen"
 
@@ -13296,7 +13300,7 @@ msgid "_Event type:"
 msgstr "_Ereignisart:"
 
 #: ../gramps/gui/glade/editevent.glade:144
-#: ../gramps/gui/glade/editplaceref.glade:146
+#: ../gramps/gui/glade/editplaceref.glade:142
 msgid "Show Date Editor"
 msgstr "Zeige Datumseditor"
 
@@ -13458,7 +13462,7 @@ msgstr "Die Markierungenliste bearbeiten"
 #: ../gramps/gui/glade/editperson.glade:790
 #: ../gramps/gui/selectors/selectnote.py:68
 #: ../gramps/plugins/lib/libpersonview.py:110
-#: ../gramps/plugins/lib/libplaceview.py:98
+#: ../gramps/plugins/lib/libplaceview.py:99
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/view/citationlistview.py:103
 #: ../gramps/plugins/view/citationtreeview.py:98
@@ -14054,11 +14058,7 @@ msgstr "Der Name dieses Ortes."
 msgid "What type of place this is. Eg 'Country', 'City', ... ."
 msgstr "Was für eine Art Ort ist es. Z.B. \"Land\", \"Stadt\", ... ."
 
-#: ../gramps/gui/glade/editplaceref.glade:115
-msgid "..."
-msgstr "..."
-
-#: ../gramps/gui/glade/editplaceref.glade:182
+#: ../gramps/gui/glade/editplaceref.glade:184
 msgid "Date range for which the link is valid."
 msgstr "Zeitraum indem dieser Link gültig ist."
 
@@ -14881,7 +14881,7 @@ msgstr "_Nichts wählen"
 
 #: ../gramps/gui/grampsgui.py:59
 msgid ""
-"Your version of gi (gnome-instrospection) seems to be too old. You need a "
+"Your version of gi (gnome-introspection) seems to be too old. You need a "
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
 "Deine Version von gi (gnome-instrospection) scheint veraltet zu sein. Du "
@@ -14906,7 +14906,7 @@ msgstr ""
 msgid ""
 "Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
 "Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
-"Install then instrospection data for Gdk, Gtk, Pango and PangoCairo\n"
+"Then install introspection data for Gdk, Gtk, Pango and PangoCairo\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
@@ -16190,12 +16190,12 @@ msgstr "Webverbindung"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:194
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:201
 #: ../gramps/plugins/lib/libpersonview.py:347
-#: ../gramps/plugins/lib/libplaceview.py:158
+#: ../gramps/plugins/lib/libplaceview.py:159
 #: ../gramps/plugins/view/citationlistview.py:182
 #: ../gramps/plugins/view/citationtreeview.py:290
 #: ../gramps/plugins/view/eventview.py:214
 #: ../gramps/plugins/view/familyview.py:209
-#: ../gramps/plugins/view/mediaview.py:230
+#: ../gramps/plugins/view/mediaview.py:233
 #: ../gramps/plugins/view/noteview.py:201
 #: ../gramps/plugins/view/repoview.py:153
 #: ../gramps/plugins/view/sourceview.py:138
@@ -16392,7 +16392,7 @@ msgstr "Stil"
 #: ../gramps/plugins/drawreport/timeline.py:402
 #: ../gramps/plugins/graph/gvrelgraph.py:522
 #: ../gramps/plugins/textreport/alphabeticalindex.py:88
-#: ../gramps/plugins/textreport/ancestorreport.py:262
+#: ../gramps/plugins/textreport/ancestorreport.py:263
 #: ../gramps/plugins/textreport/birthdayreport.py:407
 #: ../gramps/plugins/textreport/descendreport.py:395
 #: ../gramps/plugins/textreport/detancestralreport.py:713
@@ -17861,7 +17861,7 @@ msgstr "Baumoptionen"
 #: ../gramps/plugins/drawreport/fanchart.py:648
 #: ../gramps/plugins/graph/gvhourglass.py:267
 #: ../gramps/plugins/graph/gvrelgraph.py:532
-#: ../gramps/plugins/textreport/ancestorreport.py:264
+#: ../gramps/plugins/textreport/ancestorreport.py:265
 #: ../gramps/plugins/textreport/birthdayreport.py:419
 #: ../gramps/plugins/textreport/descendreport.py:397
 #: ../gramps/plugins/textreport/detancestralreport.py:716
@@ -17879,7 +17879,7 @@ msgstr "Die Hauptperson für den Baum"
 #: ../gramps/plugins/drawreport/ancestortree.py:894
 #: ../gramps/plugins/drawreport/descendtree.py:1507
 #: ../gramps/plugins/drawreport/fanchart.py:652
-#: ../gramps/plugins/textreport/ancestorreport.py:270
+#: ../gramps/plugins/textreport/ancestorreport.py:271
 #: ../gramps/plugins/textreport/descendreport.py:411
 #: ../gramps/plugins/textreport/detancestralreport.py:722
 #: ../gramps/plugins/textreport/detdescendantreport.py:896
@@ -18183,7 +18183,7 @@ msgstr "Leere Boxen für unbekannte Vorfahren erzeugen."
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1100
 #: ../gramps/plugins/drawreport/descendtree.py:1720
-#: ../gramps/plugins/textreport/ancestorreport.py:349
+#: ../gramps/plugins/textreport/ancestorreport.py:350
 #: ../gramps/plugins/textreport/detancestralreport.py:878
 #: ../gramps/plugins/textreport/detdescendantreport.py:1074
 #: ../gramps/plugins/textreport/endoflinereport.py:292
@@ -18317,7 +18317,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/calendarreport.py:475
 #: ../gramps/plugins/drawreport/fanchart.py:649
 #: ../gramps/plugins/graph/gvrelgraph.py:533
-#: ../gramps/plugins/textreport/ancestorreport.py:265
+#: ../gramps/plugins/textreport/ancestorreport.py:266
 #: ../gramps/plugins/textreport/birthdayreport.py:420
 #: ../gramps/plugins/textreport/descendreport.py:398
 #: ../gramps/plugins/textreport/detancestralreport.py:717
@@ -18767,7 +18767,7 @@ msgstr ""
 "%(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:653
-#: ../gramps/plugins/textreport/ancestorreport.py:271
+#: ../gramps/plugins/textreport/ancestorreport.py:272
 #: ../gramps/plugins/textreport/descendreport.py:412
 #: ../gramps/plugins/textreport/detancestralreport.py:723
 #: ../gramps/plugins/textreport/detdescendantreport.py:898
@@ -19123,7 +19123,7 @@ msgstr "Der Stil, der für Artikel und Werte verwendet wird."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1062
 #: ../gramps/plugins/drawreport/timeline.py:477
-#: ../gramps/plugins/textreport/ancestorreport.py:326
+#: ../gramps/plugins/textreport/ancestorreport.py:327
 #: ../gramps/plugins/textreport/descendreport.py:442
 #: ../gramps/plugins/textreport/detancestralreport.py:832
 #: ../gramps/plugins/textreport/detdescendantreport.py:1028
@@ -20780,7 +20780,7 @@ msgid "%(date)s."
 msgstr "%(date)s."
 
 #: ../gramps/plugins/gramplet/placedetails.py:116
-#: ../gramps/plugins/lib/libplaceview.py:95
+#: ../gramps/plugins/lib/libplaceview.py:96
 #: ../gramps/plugins/view/placetreeview.py:72
 #: ../gramps/plugins/webreport/narrativeweb.py:380
 #: ../gramps/plugins/webreport/narrativeweb.py:3368
@@ -20788,7 +20788,7 @@ msgid "Latitude"
 msgstr "Breitengrad"
 
 #: ../gramps/plugins/gramplet/placedetails.py:118
-#: ../gramps/plugins/lib/libplaceview.py:96
+#: ../gramps/plugins/lib/libplaceview.py:97
 #: ../gramps/plugins/view/placetreeview.py:73
 #: ../gramps/plugins/webreport/narrativeweb.py:382
 #: ../gramps/plugins/webreport/narrativeweb.py:3369
@@ -22652,9 +22652,12 @@ msgstr "Deutschland"
 msgid "Japan"
 msgstr "Japan"
 
+#. Make upper case of translaed country so string search works later
 #: ../gramps/plugins/lib/holidays.xml.in.h:12
-msgid "Sweden - Holidays"
-msgstr "Feiertage Schweden"
+#: ../gramps/plugins/mapservices/eniroswedenmap.py:46
+#: ../gramps/plugins/tool/extractcity.py:65
+msgid "Sweden"
+msgstr "Schweden"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:13
 #: ../gramps/plugins/tool/extractcity.py:65
@@ -23002,7 +23005,7 @@ msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (Aufbewahrungsort) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6749
-msgid "Head (header)"
+msgid "HEAD (header)"
 msgstr "Kopf (Dateikopf)"
 
 #: ../gramps/plugins/lib/libgedcom.py:6766
@@ -26497,7 +26500,7 @@ msgid "Number of To Do Notes"
 msgstr "Anzahl 'noch zu erledigen' Notizen"
 
 #: ../gramps/plugins/lib/libpersonview.py:111
-#: ../gramps/plugins/lib/libplaceview.py:99
+#: ../gramps/plugins/lib/libplaceview.py:100
 #: ../gramps/plugins/view/citationlistview.py:104
 #: ../gramps/plugins/view/citationtreeview.py:99
 #: ../gramps/plugins/view/eventview.py:89
@@ -26559,29 +26562,29 @@ msgstr ""
 "durchzuführen. Eine zweite Person kann durch Anklicken bei gehaltener "
 "Strg-Taste gewählt werden."
 
-#: ../gramps/plugins/lib/libplaceview.py:94
+#: ../gramps/plugins/lib/libplaceview.py:95
 #: ../gramps/plugins/view/placetreeview.py:71
 msgid "Code"
 msgstr "Kennung"
 
-#: ../gramps/plugins/lib/libplaceview.py:109
+#: ../gramps/plugins/lib/libplaceview.py:110
 msgid "Edit the selected place"
 msgstr "Gewählten Ort bearbeiten"
 
-#: ../gramps/plugins/lib/libplaceview.py:110
+#: ../gramps/plugins/lib/libplaceview.py:111
 msgid "Delete the selected place"
 msgstr "Den ausgewählten Ort löschen"
 
-#: ../gramps/plugins/lib/libplaceview.py:111
+#: ../gramps/plugins/lib/libplaceview.py:112
 msgid "Merge the selected places"
 msgstr "Die ausgewählten Orte zusammenfassen"
 
-#: ../gramps/plugins/lib/libplaceview.py:146
+#: ../gramps/plugins/lib/libplaceview.py:147
 msgid "Loading..."
 msgstr "Lade..."
 
-#: ../gramps/plugins/lib/libplaceview.py:147
-#: ../gramps/plugins/lib/libplaceview.py:204
+#: ../gramps/plugins/lib/libplaceview.py:148
+#: ../gramps/plugins/lib/libplaceview.py:205
 msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
@@ -26589,16 +26592,16 @@ msgstr ""
 "Versuche, ausgewählte Orte mit einem Kartenservice zu zeigen (OpenstreetMap, "
 "Google Maps, ...)."
 
-#: ../gramps/plugins/lib/libplaceview.py:150
-#: ../gramps/plugins/lib/libplaceview.py:202
+#: ../gramps/plugins/lib/libplaceview.py:151
+#: ../gramps/plugins/lib/libplaceview.py:203
 msgid "Select a Map Service"
 msgstr "Einen Kartenservice wählen"
 
-#: ../gramps/plugins/lib/libplaceview.py:152
+#: ../gramps/plugins/lib/libplaceview.py:153
 msgid "_Look up with Map Service"
 msgstr "_Nachschlagen mit Kartenservice"
 
-#: ../gramps/plugins/lib/libplaceview.py:154
+#: ../gramps/plugins/lib/libplaceview.py:155
 msgid ""
 "Attempt to see this location with a Map Service (OpenstreetMap, Google Maps, "
 "...)"
@@ -26606,23 +26609,23 @@ msgstr ""
 "Versuche diesen Ort mit einem Kartenservice zu zeigen (OpenstreetMap, Google "
 "Maps, ...)"
 
-#: ../gramps/plugins/lib/libplaceview.py:156
+#: ../gramps/plugins/lib/libplaceview.py:157
 msgid "Place Filter Editor"
 msgstr "Ortsfiltereditor"
 
-#: ../gramps/plugins/lib/libplaceview.py:264
+#: ../gramps/plugins/lib/libplaceview.py:265
 msgid "No map service is available."
 msgstr "Kein Kartenservice verfügbar."
 
-#: ../gramps/plugins/lib/libplaceview.py:265
+#: ../gramps/plugins/lib/libplaceview.py:266
 msgid "Check your installation."
 msgstr "Überprüfe deine Installation."
 
-#: ../gramps/plugins/lib/libplaceview.py:273
+#: ../gramps/plugins/lib/libplaceview.py:274
 msgid "No place selected."
 msgstr "Kein Ort ausgewählt."
 
-#: ../gramps/plugins/lib/libplaceview.py:274
+#: ../gramps/plugins/lib/libplaceview.py:275
 msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
@@ -26630,11 +26633,11 @@ msgstr ""
 "Du musst einen Ort auswählen, um ihn auf der Karte darstellen zu können. "
 "Einige Karten Services unterstützen auch eine mehrfache Ortsauswahl."
 
-#: ../gramps/plugins/lib/libplaceview.py:368
+#: ../gramps/plugins/lib/libplaceview.py:369
 msgid "Cannot delete place."
 msgstr "Kann Orte nicht löschen."
 
-#: ../gramps/plugins/lib/libplaceview.py:369
+#: ../gramps/plugins/lib/libplaceview.py:370
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
@@ -26642,11 +26645,12 @@ msgstr ""
 "Dieser Ort wird momentan von einem anderen referenziert. Entferne zuerst den "
 "Ort, den er enthält."
 
-#: ../gramps/plugins/lib/libplaceview.py:410
+#: ../gramps/plugins/lib/libplaceview.py:411
+#: ../gramps/plugins/lib/libplaceview.py:419
 msgid "Cannot merge places."
 msgstr "Kann Orte nicht zusammenfassen."
 
-#: ../gramps/plugins/lib/libplaceview.py:411
+#: ../gramps/plugins/lib/libplaceview.py:412
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can be "
 "selected by holding down the control key while clicking on the desired place."
@@ -26654,6 +26658,12 @@ msgstr ""
 "Genau zwei Orte müssen ausgewählt sein, um eine Zusammenfassung "
 "durchzuführen. Ein zweiter Ort kann durch Anklicken bei gehaltener Strg-Taste "
 "gewählt werden."
+
+#: ../gramps/plugins/lib/libplaceview.py:420
+msgid "Merging these places would create a cycle in the place hierarchy."
+msgstr ""
+"Das Zusammenfassen dieser Orte würde eine Schleife in der Orteherachie "
+"erzeugen."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:30
 msgid "Provides a library for using Cairo to generate documents."
@@ -26959,12 +26969,6 @@ msgstr ""
 #: ../gramps/plugins/lib/maps/placeselection.py:202
 msgid "New place with empty fields"
 msgstr "Neue Orte mit leeren Feldern"
-
-#. Make upper case of translaed country so string search works later
-#: ../gramps/plugins/mapservices/eniroswedenmap.py:46
-#: ../gramps/plugins/tool/extractcity.py:65
-msgid "Sweden"
-msgstr "Schweden"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:52
 msgid "Denmark"
@@ -27902,23 +27906,23 @@ msgstr "Der Stil, der für Indexeinträge verwendet wird."
 msgid "Ahnentafel Report for %s"
 msgstr "Ahnentafel für %s"
 
-#: ../gramps/plugins/textreport/ancestorreport.py:274
+#: ../gramps/plugins/textreport/ancestorreport.py:275
 #: ../gramps/plugins/textreport/detancestralreport.py:726
 #: ../gramps/plugins/textreport/detdescendantreport.py:902
 msgid "Page break between generations"
 msgstr "Seitenumbruch zwischen Generationen"
 
-#: ../gramps/plugins/textreport/ancestorreport.py:276
+#: ../gramps/plugins/textreport/ancestorreport.py:277
 #: ../gramps/plugins/textreport/detancestralreport.py:728
 #: ../gramps/plugins/textreport/detdescendantreport.py:904
 msgid "Whether to start a new page after each generation."
 msgstr "Legt fest, ob nach jeder Generation eine neue Seite begonnen wird."
 
-#: ../gramps/plugins/textreport/ancestorreport.py:279
+#: ../gramps/plugins/textreport/ancestorreport.py:280
 msgid "Add linebreak after each name"
 msgstr "Zeilenumbruch nach jedem Namen"
 
-#: ../gramps/plugins/textreport/ancestorreport.py:280
+#: ../gramps/plugins/textreport/ancestorreport.py:281
 msgid "Indicates if a line break should follow the name."
 msgstr "Zeigt, ob nach dem Namen ein Zeilenumbruch folgt."
 
@@ -32035,23 +32039,23 @@ msgstr "Das ausgewählte Medienobjekt löschen"
 msgid "Merge the selected media objects"
 msgstr "Die ausgewählten Medienobjekte zusammenfassen"
 
-#: ../gramps/plugins/view/mediaview.py:220
+#: ../gramps/plugins/view/mediaview.py:223
 msgid "Media Filter Editor"
 msgstr "Filtereditor für Medienobjekte"
 
-#: ../gramps/plugins/view/mediaview.py:223
+#: ../gramps/plugins/view/mediaview.py:226
 msgid "View in the default viewer"
 msgstr "In voreingestellten Programm anzeigen"
 
-#: ../gramps/plugins/view/mediaview.py:227
+#: ../gramps/plugins/view/mediaview.py:230
 msgid "Open the folder containing the media file"
 msgstr "Öffne den Ordner der die Mediendateien enthält"
 
-#: ../gramps/plugins/view/mediaview.py:361
+#: ../gramps/plugins/view/mediaview.py:364
 msgid "Cannot merge media objects."
 msgstr "Kann Medienobjekt nicht zusammenfassen."
 
-#: ../gramps/plugins/view/mediaview.py:362
+#: ../gramps/plugins/view/mediaview.py:365
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -34008,6 +34012,15 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Kein Stylesheet"
 
+#~ msgid "Top level place"
+#~ msgstr "Ort der obersten Ebene"
+
+#~ msgid "..."
+#~ msgstr "..."
+
+#~ msgid "Sweden - Holidays"
+#~ msgstr "Feiertage Schweden"
+
 #~ msgid "You have attempted to use the existing Gramps ID with value %(gramps_id)s. This value is already used by '%(prim_object)s'. Please enter a different ID or leave blank to get the next available ID value."
 #~ msgstr "Du hast versucht eine existierende Gramps ID mit dem Wert %(gramps_id)s zu verwenden. Dieser Wert wird bereits von '%(prim_object)s' verwendet. Bitte gib eine andere ID ein oder lasse sie leer, um den nächsten verfügbaren ID Wert zu erhalten."
 
@@ -34565,9 +34578,6 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Cannot save citation. No source selected."
 #~ msgstr "Kann Fundstelle nicht speichern. Keine Quelle ausgewählt."
-
-#~ msgid "Please select a source or cancel the edit."
-#~ msgstr "Wähle bitte eine Quelle oder brich die Bearbeitung ab."
 
 #~ msgid "To select a source, use drag-and-drop or use the buttons"
 #~ msgstr "Um eine Quelle zu wählen, verwende ziehen und ablegen oder die Schaltflächen"
