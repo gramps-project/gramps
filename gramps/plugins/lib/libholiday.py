@@ -74,6 +74,31 @@ def easter(year):
     day = l + 28 - 31 * (month / 4)
     return "%d/%d/%d" % (year, month, day)
 
+def julian_easter(year):
+    """
+    Computes the year/month/day of Eastern Orthodox Easter, given in the
+    Gregorian calendar. Implements the Jean Meeus algorithm. Valid: 1900-2099.
+    """
+    a = year % 4
+    b = year % 7
+    c = year % 19
+    d = (19*c + 15) % 30
+    e = (2*a + 4*b - d + 34) % 7
+    month = int(math.floor((d + e + 114) / 31))
+    day = ((d + e + 114) % 31) + 1
+
+    # produced date was in the Julian calendar, add 13 days to it
+    day = day + 13
+
+    if month == 3 and day > 31:
+        day = day - 31
+        month = 4
+    elif month == 4 and day > 30:
+        day = day - 30
+        month = 5
+
+    return "%d/%d/%d" % (year, month, day)
+
 def passover(year):
     """
     Returns the date of Passover in a given Gregorian year.
