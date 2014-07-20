@@ -165,6 +165,9 @@ class PersonEvents(Events):
         Display the events for the active person.
         """
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
+        if not active_person:
+            self.set_has_data(self.model.count > 0)
+            return
         for event_ref in active_person.get_event_ref_list():
             self.add_event_ref(event_ref)
         for family_handle in active_person.get_family_handle_list():
