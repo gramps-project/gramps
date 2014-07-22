@@ -32,6 +32,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.plug.menu import EnumeratedListOption, BooleanOption
+from gramps.gen.proxy import PrivateProxyDb
 
 #-------------------------------------------------------------------------
 #
@@ -83,3 +84,12 @@ def add_private_data_option(menu, category, default=True):
     incl_private = BooleanOption(_("Include data marked private"), default)
     incl_private.set_help(_("Whether to include private data"))
     menu.add_option(category, "incl_private", incl_private)
+
+def run_private_data_option(report, menu):
+    """
+    Run the option for deciding whether the information in the
+    database marked "private" shall be included in the report
+    """
+    include_private_data = menu.get_option_by_name('incl_private').get_value()
+    if not include_private_data:
+        report.database = PrivateProxyDb(report.database)
