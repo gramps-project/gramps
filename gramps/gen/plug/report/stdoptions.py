@@ -82,4 +82,4 @@ def add_private_data_option(menu, category, default=True):
     """
     incl_private = BooleanOption(_("Include data marked private"), default)
     incl_private.set_help(_("Whether to include private data"))
-    menu.add_option(category_name, "incl_private", incl_private)
+    menu.add_option(category, "incl_private", incl_private)

@@ -119,6 +119,7 @@ from gramps.gen.plug.menu import PersonOption, NumberOption, StringOption, \
 from gramps.gen.plug.report import ( Report, Bibliography)
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
+from gramps.gen.plug.report import stdoptions
 
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.string import conf_strings
@@ -6867,6 +6868,7 @@ class NavWebReport(Report):
         database        - the GRAMPS database instance
         options         - instance of the Options class for this report
         user            - instance of a gen.user.User()
+        incl_private    - Whether to include private data
         """
         Report.__init__(self, database, options, user)
         self.user = user
@@ -6878,7 +6880,7 @@ class NavWebReport(Report):
             menuopt = menu.get_option_by_name(optname)
             self.options[optname] = menuopt.get_value()
 
-        if not self.options['incpriv']:
+        if not self.options['incl_private']:
             self.database = PrivateProxyDb(database)
         else:
             self.database = database
@@ -8215,9 +8217,7 @@ class NavWebOptions(MenuReportOptions):
         category_name = _("Privacy")
         addopt = partial(menu.add_option, category_name)
 
-        incpriv = BooleanOption(_("Include records marked private"), False)
-        incpriv.set_help(_('Whether to include private objects'))
-        addopt( "incpriv", incpriv )
+        stdoptions.add_private_data_option(menu, category_name, default=False)
 
         self.__living = EnumeratedListOption(_("Living People"),
                                              LivingProxyDb.MODE_EXCLUDE_ALL)

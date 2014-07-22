@@ -69,7 +69,7 @@ class PlaceReport(Report):
         
         places          - List of places to report on.
         center          - Center of report, person or event
-        incpriv         - Whether to include private data
+        incl_private    - Whether to include private data
         name_format     - Preferred format to display names
 
         """
@@ -80,14 +80,14 @@ class PlaceReport(Report):
         menu = options.menu
         places = menu.get_option_by_name('places').get_value()
         self.center  = menu.get_option_by_name('center').get_value()
-        self.incpriv = menu.get_option_by_name('incpriv').get_value()
+        incl_private = menu.get_option_by_name('incl_private').get_value()
 
         self.set_locale(menu.get_option_by_name('trans').get_value())
 
         stdoptions.run_name_format_option(self, menu)
         self._nd = self._name_display
 
-        if self.incpriv:
+        if incl_private:
             self.database = database
         else:
             self.database = PrivateProxyDb(database)
@@ -400,9 +400,7 @@ class PlaceOptions(MenuReportOptions):
         center.set_help(_("If report is event or person centered"))
         menu.add_option(category_name, "center", center)
 
-        incpriv = BooleanOption(_("Include private data"), True)
-        incpriv.set_help(_("Whether to include private data"))
-        menu.add_option(category_name, "incpriv", incpriv)
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
