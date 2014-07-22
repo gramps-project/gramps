@@ -45,7 +45,6 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     TableStyle, TableCellStyle,
                                     FONT_SANS_SERIF, FONT_SERIF, 
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gramps.gen.proxy import PrivateProxyDb
 from gramps.gen.sort import Sort
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.lib import PlaceType
@@ -87,10 +86,7 @@ class PlaceReport(Report):
         stdoptions.run_name_format_option(self, menu)
         self._nd = self._name_display
 
-        if incl_private:
-            self.database = database
-        else:
-            self.database = PrivateProxyDb(database)
+        stdoptions.run_private_data_option(self, menu)
 
         filter_option = menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
@@ -387,11 +383,11 @@ class PlaceOptions(MenuReportOptions):
         opt.set_filters(filter_list)
         menu.add_option(category_name, "filter", opt)
 
-        stdoptions.add_name_format_option(menu, category_name)
-
         places = PlaceListOption(_("Select places individually"))
         places.set_help(_("List of places to report on"))
         menu.add_option(category_name, "places", places)
+
+        stdoptions.add_name_format_option(menu, category_name)
 
         center = EnumeratedListOption(_("Center on"), "Event")
         center.set_items([

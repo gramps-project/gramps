@@ -133,7 +133,7 @@ from gramps.gen.utils.image import image_size, resize_to_jpeg_buffer
 from gramps.gen.mime import get_description
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.datehandler import displayer as _dd
-from gramps.gen.proxy import PrivateProxyDb, LivingProxyDb
+from gramps.gen.proxy import LivingProxyDb
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
 
 # import HTML Class from src/plugins/lib/libhtml.py
@@ -6880,10 +6880,7 @@ class NavWebReport(Report):
             menuopt = menu.get_option_by_name(optname)
             self.options[optname] = menuopt.get_value()
 
-        if not self.options['incl_private']:
-            self.database = PrivateProxyDb(database)
-        else:
-            self.database = database
+        stdoptions.run_private_data_option(self, menu)
 
         livinginfo = self.options['living']
         yearsafterdeath = self.options['yearsafterdeath']
