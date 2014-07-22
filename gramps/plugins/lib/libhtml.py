@@ -27,8 +27,6 @@ This module exports the Html class
 
 """
 
-__all__ = ['Html']
-
 from __future__ import print_function
 #------------------------------------------------------------------------
 # Python modules
@@ -48,6 +46,7 @@ from gramps.gen.constfunc import STRTYPE, cuni
 # Constants
 #
 #------------------------------------------------------------------------
+__all__ = ['Html']
 
 #------------------------------------------------------------------------
 #
