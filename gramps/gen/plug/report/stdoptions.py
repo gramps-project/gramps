@@ -65,3 +65,12 @@ def add_name_format_option(menu, category):
         name_format.add_item(number, name)
     name_format.set_help(_("Select the format to display names"))
     menu.add_option(category, "name_format", name_format)
+
+def run_name_format_option(self, menu):
+    """
+    Run the option for changing the report's name format to a
+    report-specific format instead of the user's Edit=>Preferences choice
+    """
+    name_format = menu.get_option_by_name("name_format").get_value()
+    if name_format != 0:
+        self._name_display.set_default_format(name_format)
