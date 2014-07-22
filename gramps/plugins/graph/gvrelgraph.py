@@ -115,6 +115,7 @@ class RelGraphReport(Report):
         color_families - Colour to apply to families
         dashed         - Whether to use dashed lines for non-birth relationships
         use_roundedcorners - Whether to use rounded corners for females
+        name_format    - Preferred format to display names
         """
         Report.__init__(self, database, options, user)
         
@@ -163,9 +164,7 @@ class RelGraphReport(Report):
         lang = menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
 
-        name_format = menu.get_option_by_name("name_format").get_value()
-        if name_format != 0:
-            self._name_display.set_default_format(name_format)
+        stdoptions.run_name_format_option(self, menu)
 
         self.center_person = database.get_person_from_gramps_id(
                                                             get_value('pid'))

@@ -357,9 +357,7 @@ class DescendantReport(Report):
         marrs = menu.get_option_by_name('marrs').get_value()
         divs = menu.get_option_by_name('divs').get_value()
 
-        name_format = menu.get_option_by_name("name_format").get_value()
-        if name_format != 0:
-            self._name_display.set_default_format(name_format)
+        stdoptions.run_name_format_option(self, menu)
 
         self.objPrint = Printinfo(self.doc, database, obj, marrs, divs,
                                   self._name_display, self._locale)

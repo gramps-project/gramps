@@ -101,9 +101,7 @@ class FamilyGroup(Report):
         rlocale = self.set_locale(get_value('trans'))
         self._ = rlocale.translation.sgettext # needed for English
 
-        name_format = menu.get_option_by_name("name_format").get_value()
-        if name_format != 0:
-            self._name_display.set_default_format(name_format)
+        stdoptions.run_name_format_option(self, menu)
 
     def dump_parent_event(self, name,event):
         place = ""

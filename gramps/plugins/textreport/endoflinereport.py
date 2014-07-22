@@ -78,9 +78,7 @@ class EndOfLineReport(Report):
 
         self.set_locale(menu.get_option_by_name('trans').get_value())
 
-        name_format = menu.get_option_by_name("name_format").get_value()
-        if name_format != 0:
-            self._name_display.set_default_format(name_format)
+        stdoptions.run_name_format_option(self, menu)
 
         # eol_map is a map whose:
         #   keys are the generations of the people

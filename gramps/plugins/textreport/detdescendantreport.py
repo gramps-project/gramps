@@ -177,9 +177,7 @@ class DetDescendantReport(Report):
 
         self._locale = self.set_locale(get_value('trans'))
 
-        name_format = menu.get_option_by_name("name_format").get_value()
-        if name_format != 0:
-            self._name_display.set_default_format(name_format)
+        stdoptions.run_name_format_option(self, menu)
 
         self.__narrator = Narrator(self.db, self.verbose,
                                    use_call, use_fulldate, 

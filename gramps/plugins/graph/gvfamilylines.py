@@ -301,6 +301,7 @@ class FamilyLinesReport(Report):
         database    - the GRAMPS database instance
         options     - instance of the FamilyLinesOptions class for this report
         user        - a gen.user.User() instance
+        name_format - Preferred format to display names
         """
         Report.__init__(self, database, options, user)
 
@@ -354,9 +355,7 @@ class FamilyLinesReport(Report):
         lang = menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
 
-        name_format = menu.get_option_by_name("name_format").get_value()
-        if name_format != 0:
-            self._name_display.set_default_format(name_format)
+        stdoptions.run_name_format_option(self, menu)
 
         # convert the 'surnamecolors' string to a dictionary of names and colors
         self._surnamecolors = {}

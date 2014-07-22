@@ -95,6 +95,7 @@ class TimeLine(Report):
                     The option class carries its number, and the function
                     returning the list of filters.
         sortby -    Sorting method to be used.
+        name_format - Preferred format to display names
         """
         Report.__init__(self, database, options, user)
         self._user = user
@@ -104,9 +105,7 @@ class TimeLine(Report):
         self._lang = options.menu.get_option_by_name('trans').get_value()
         self.set_locale(self._lang)
 
-        name_format = menu.get_option_by_name("name_format").get_value()
-        if name_format != 0:
-            self._name_display.set_default_format(name_format)
+        stdoptions.run_name_format_option(self, menu)
 
         sort_func_num = menu.get_option_by_name('sortby').get_value()
         sort_functions = _get_sort_functions(Sort(database))

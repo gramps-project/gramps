@@ -74,6 +74,8 @@ _TITLE2 = _T_("Produced with Gramps")
 class BirthdayReport(Report):
     """
     Create the BirthdayReport object that produces the report.
+
+    name_format   - Preferred format to display names
     """
     def __init__(self, database, options, user):
         Report.__init__(self, database, options, user)
@@ -100,9 +102,7 @@ class BirthdayReport(Report):
         lang = menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
 
-        name_format = menu.get_option_by_name("name_format").get_value()
-        if name_format != 0:
-            self._name_display.set_default_format(name_format)
+        stdoptions.run_name_format_option(self, menu)
         
         self.center_person = database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :

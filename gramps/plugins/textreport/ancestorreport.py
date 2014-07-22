@@ -103,9 +103,7 @@ class AncestorReport(Report):
         lang = menu.get_option_by_name('trans').get_value()
         rlocale = self.set_locale(lang)
 
-        name_format = menu.get_option_by_name("name_format").get_value()
-        if name_format != 0:
-            self._name_display.set_default_format(name_format)
+        stdoptions.run_name_format_option(self, menu)
 
         self.__narrator = Narrator(self.database,  use_fulldate=True,
                                    nlocale=rlocale)
