@@ -31,7 +31,7 @@ Commonly used report options. Call the function, don't copy the code!
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as global_name_display
-from gramps.gen.plug.menu import EnumeratedListOption
+from gramps.gen.plug.menu import EnumeratedListOption, BooleanOption
 
 #-------------------------------------------------------------------------
 #
@@ -74,3 +74,12 @@ def run_name_format_option(report, menu):
     name_format = menu.get_option_by_name("name_format").get_value()
     if name_format != 0:
         report._name_display.set_default_format(name_format)
+
+def add_private_data_option(menu, category, default=True):
+    """
+    Insert an option for deciding whether the information in the
+    database marked "private" shall be included in the report
+    """
+    incl_private = BooleanOption(_("Include data marked private"), default)
+    incl_private.set_help(_("Whether to include private data"))
+    menu.add_option(category_name, "incl_private", incl_private)
