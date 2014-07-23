@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2013       John Ralls <jralls@ceridwen.us>
-# Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2013-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -80,6 +80,10 @@ def add_private_data_option(menu, category, default=True):
     """
     Insert an option for deciding whether the information in the
     database marked "private" shall be included in the report
+
+    Since historically, before this option, the entire database was
+    used, including private information, the default for this option
+    has been set to be True, to include such private information.
     """
     incl_private = BooleanOption(_("Include data marked private"), default)
     incl_private.set_help(_("Whether to include private data"))

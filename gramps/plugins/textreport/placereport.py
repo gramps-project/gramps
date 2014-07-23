@@ -79,7 +79,6 @@ class PlaceReport(Report):
         menu = options.menu
         places = menu.get_option_by_name('places').get_value()
         self.center  = menu.get_option_by_name('center').get_value()
-        incl_private = menu.get_option_by_name('incl_private').get_value()
 
         self.set_locale(menu.get_option_by_name('trans').get_value())
 
