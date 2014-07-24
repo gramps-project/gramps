@@ -100,16 +100,19 @@ class DetAncestorReport(Report):
         addimages     - Whether to include images.
         pid           - The Gramps ID of the center person for the report.
         name_format   - Preferred format to display names
+        incl_private  - Whether to include private data
         """
         Report.__init__(self, database, options, user)
 
-        self.db = database
         self.map = {}
         self._user = user
 
         menu = options.menu
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
+
+        stdoptions.run_private_data_option(self, menu)
+        self.db = self.database
 
         self.max_generations = get_value('gen')
         self.pgbrk         = get_value('pagebbg')
@@ -754,6 +757,8 @@ class DetAncestorOptions(MenuReportOptions):
         pageben.set_help(
                      _("Whether to start a new page before the end notes."))
         addopt("pageben", pageben)
+
+        stdoptions.add_private_data_option(menu, category)
 
         stdoptions.add_localization_option(menu, category)
 
