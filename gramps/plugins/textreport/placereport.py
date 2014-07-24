@@ -194,7 +194,7 @@ class PlaceReport(Report):
 
         for evt_handle in event_handles:
             event = self.database.get_event_from_handle(evt_handle)
-            if event:
+            if event: # will be None if marked private
                 date = self._get_date(event.get_date_object())
                 descr = event.get_description()
                 event_type = self._(self._get_type(event.get_type()))
@@ -202,6 +202,8 @@ class PlaceReport(Report):
                 person_list = []
                 ref_handles = [x for x in
                                self.database.find_backlink_handles(evt_handle)]
+                if not ref_handles: # since the backlink may point to private
+                    continue        # data, ignore an event with no backlinks
                 for (ref_type, ref_handle) in ref_handles:
                     if ref_type == 'Person':
                         person_list.append(ref_handle)
