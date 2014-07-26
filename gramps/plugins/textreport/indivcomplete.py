@@ -107,12 +107,15 @@ class IndivCompleteReport(Report):
         images    - Whether or not to include images.
         sections  - Which event groups should be given separate sections.
         name_format   - Preferred format to display names
+        incl_private  - Whether to include private data
         """
 
         Report.__init__(self, database, options, user)
         self._user = user
-
         menu = options.menu
+
+        stdoptions.run_private_data_option(self, menu)
+
         self.use_pagebreak = menu.get_option_by_name('pageben').get_value()
         self.use_srcs = menu.get_option_by_name('cites').get_value()
         self.use_srcs_notes = menu.get_option_by_name('incsrcnotes').get_value()
@@ -684,6 +687,8 @@ class IndivCompleteOptions(MenuReportOptions):
         grampsid = BooleanOption(_("Include Gramps ID"), False)
         grampsid.set_help(_("Whether to include Gramps ID next to names."))
         menu.add_option(category_name, "grampsid", grampsid)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
