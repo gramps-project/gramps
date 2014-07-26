@@ -7,7 +7,7 @@
 # Copyright (C) 2010       Craig J. Anderson
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Matt Keenan (matt.keenan@gmail.com)
-# Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2013-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -53,7 +53,8 @@ from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.sort import Sort
 from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback,
-                       get_marriage_or_fallback, get_divorce_or_fallback)
+                                 get_marriage_or_fallback,
+                                 get_divorce_or_fallback)
 
 #------------------------------------------------------------------------
 #
@@ -323,17 +324,21 @@ class DescendantReport(Report):
         This report needs the following parameters (class variables)
         that come in the options class.
         
-        gen       - Maximum number of generations to include.
+        gen           - Maximum number of generations to include.
         name_format   - Preferred format to display names
-        dups    - Whether to include duplicate descendant trees
+        dups          - Whether to include duplicate descendant trees
+        incl_private  - Whether to include private data
         """
 
         Report.__init__(self, database, options, user)
 
         menu = options.menu
+
+        stdoptions.run_private_data_option(self, menu)
+
         self.max_generations = menu.get_option_by_name('gen').get_value()
         pid = menu.get_option_by_name('pid').get_value()
-        self.center_person = database.get_person_from_gramps_id(pid)
+        self.center_person = self.database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
         
@@ -359,7 +364,7 @@ class DescendantReport(Report):
 
         stdoptions.run_name_format_option(self, menu)
 
-        self.objPrint = Printinfo(self.doc, database, obj, marrs, divs,
+        self.objPrint = Printinfo(self.doc, self.database, obj, marrs, divs,
                                   self._name_display, self._locale)
     
     def write_report(self):
@@ -419,8 +424,11 @@ class DescendantOptions(MenuReportOptions):
         menu.add_option(category_name, "divs", divs)
 
         dups = BooleanOption(_('Show duplicate trees'), True)
-        dups.set_help(_("Whether to show duplicate Family Trees in the report."))
+        dups.set_help(
+            _("Whether to show duplicate Family Trees in the report."))
         menu.add_option(category_name, "dups", dups)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
