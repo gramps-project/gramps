@@ -1271,12 +1271,15 @@ class DescendTree(Report):
         database        - the GRAMPS database instance
         options         - instance of the Options class for this report
         user            - a gen.user.User() instance
+
+        incl_private    - Whether to include private data
         """
         Report.__init__(self, database, options, user)
 
         self.options = options
-        self.database = database
         
+        stdoptions.run_private_data_option(self, options.menu)
+
         lang = options.menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
 
@@ -1517,6 +1520,8 @@ class DescendTreeOptions(MenuReportOptions):
         compresst.set_help(_("Whether to move people up, where possible, "
         "resulting in a smaller tree"))
         menu.add_option(category_name, "compress_tree", compresst)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
