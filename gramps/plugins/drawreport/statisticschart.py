@@ -6,7 +6,7 @@
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2008      Peter Landgren
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2012-2013 Paul Franklin
+# Copyright (C) 2012-2014 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -721,6 +721,9 @@ class StatisticsChart(Report):
         Report.__init__(self, database, options, user)
         menu = options.menu
         self._user = user
+
+        stdoptions.run_private_data_option(self, menu)
+
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
 
@@ -755,10 +758,11 @@ class StatisticsChart(Report):
         # extract requested items from the database and count them
         self._user.begin_progress(_('Statistics Charts'), 
                                   _('Collecting data...'), 0)
-        tables = _Extract.collect_data(database, self.filter, menu,
-                        gender, year_from, year_to, 
-                        get_value('no_years'), self._user.step_progress,
-                        rlocale)
+        tables = _Extract.collect_data(self.database, self.filter, menu,
+                                       gender, year_from, year_to, 
+                                       get_value('no_years'),
+                                       self._user.step_progress,
+                                       rlocale)
         self._user.end_progress()
 
         self._user.begin_progress(_('Statistics Charts'), 
@@ -993,6 +997,8 @@ class StatisticsChartOptions(MenuReportOptions):
         bar_items.set_help(_("With fewer items pie chart and legend will be "
                              "used instead of a bar chart."))
         add_option("bar_items", bar_items)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
