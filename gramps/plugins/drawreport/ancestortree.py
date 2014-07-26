@@ -660,13 +660,13 @@ class AncestorTree(Report):
         database        - the GRAMPS database instance
         options         - instance of the Options class for this report
         user            - a gen.user.User() instance
-
         """
         Report.__init__(self, database, options, user)
 
         self.options = options
-        self.database = database
         self._user = user
+
+        stdoptions.run_private_data_option(self, options.menu)
 
         lang = options.menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
@@ -682,6 +682,8 @@ class AncestorTree(Report):
         scale_report - Whether to scale the report to fit the width or all.
         indblank     - Whether to include blank pages.
         compress     - Whether to compress chart.
+
+        incl_private    - Whether to include private data
 
         We will
         1. a canvas in its full one-page size
@@ -926,6 +928,8 @@ class AncestorTreeOptions(MenuReportOptions):
         centerDisp.add_item( 1, _("Use Mothers display format"))
         centerDisp.set_help(_("Which Display format to use the center person"))
         menu.add_option(category_name, "center_uses", centerDisp)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
