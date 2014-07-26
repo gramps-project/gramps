@@ -74,9 +74,13 @@ class TagReport(Report):
         
         tag             - The tag each object must match to be included.
         name_format     - Preferred format to display names of people
+        incl_private    - Whether to include private data
         """
         Report.__init__(self, database, options, user)
         menu = options.menu
+
+        stdoptions.run_private_data_option(self, menu)
+
         self.tag = menu.get_option_by_name('tag').get_value()
         if not self.tag:
             raise ReportError(_('Tag Report'),
@@ -873,6 +877,9 @@ class TagOptions(MenuReportOptions):
         menu.add_option(category_name, "tag", tag_option)
 
         stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_private_data_option(menu, category_name)
+
         stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self,default_style):
