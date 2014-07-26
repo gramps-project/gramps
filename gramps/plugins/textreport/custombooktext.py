@@ -28,8 +28,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
@@ -42,11 +40,14 @@ _ = glocale.translation.gettext
 # gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.plug.menu import TextOption
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
-from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, FONT_SANS_SERIF, 
-                             PARA_ALIGN_CENTER, IndexMark, INDEX_TYPE_TOC)
+from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle,
+                                    FONT_SANS_SERIF, PARA_ALIGN_CENTER,
+                                    IndexMark, INDEX_TYPE_TOC)
 
 #------------------------------------------------------------------------
 #
