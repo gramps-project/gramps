@@ -56,9 +56,10 @@ from gramps.gen.config import config
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
-from gramps.gen.plug.menu import BooleanOption, NumberOption, StringOption, \
-                          EnumeratedListOption, FilterOption, PersonOption, \
-                          DestinationOption, NoteOption
+from gramps.gen.plug.report import stdoptions
+from gramps.gen.plug.menu import (BooleanOption, NumberOption, StringOption,
+                                  EnumeratedListOption, FilterOption,
+                                  PersonOption, DestinationOption, NoteOption)
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.datehandler import displayer as _dd
@@ -102,14 +103,16 @@ class WebCalReport(Report):
     """
     def __init__(self, database, options, user):
         Report.__init__(self, database, options, user)
-        mgobn = lambda name:options.menu.get_option_by_name(name).get_value()
         self._user = user
+
+        stdoptions.run_private_data_option(self, options.menu)
 
         # class to do conversion of styled notes to html markup
         self._backend = HtmlBackend()
 
-        self.database = database
         self.options = options
+
+        mgobn = lambda name:options.menu.get_option_by_name(name).get_value()
 
         self.html_dir = mgobn('target')
         self.title_text  = mgobn('title')
@@ -1454,6 +1457,8 @@ class WebCalOptions(MenuReportOptions):
         home_link.set_help(_("The link to be included to direct the user to "
                          "the main page of the web site"))
         menu.add_option(category_name, "home_link", home_link)
+
+        stdoptions.add_private_data_option(menu, category_name, default=False)
 
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the calendar"))
