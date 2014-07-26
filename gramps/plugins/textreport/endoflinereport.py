@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2013-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -67,12 +67,17 @@ class EndOfLineReport(Report):
         This report needs the following parameters (class variables)
         that come in the options class.
         name_format   - Preferred format to display names
+        incl_private  - Whether to include private data
 
         """
         Report.__init__(self, database, options, user)
+
         menu = options.menu
+
+        stdoptions.run_private_data_option(self, menu)
+
         pid = menu.get_option_by_name('pid').get_value()
-        self.center_person = database.get_person_from_gramps_id(pid)
+        self.center_person = self.database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
@@ -253,6 +258,8 @@ class EndOfLineOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", pid)
 
         stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
