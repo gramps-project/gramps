@@ -48,11 +48,11 @@ _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import FamilyRelType, Person, NoteType
 from gramps.gen.plug.menu import (BooleanOption, NumberOption, PersonOption, 
-                           EnumeratedListOption)
+                                  EnumeratedListOption)
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle, 
-                             FONT_SANS_SERIF, FONT_SERIF, 
-                             INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
-from gramps.gen.plug.report import (Report, Bibliography)
+                                    FONT_SANS_SERIF, FONT_SERIF, 
+                                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gramps.gen.plug.report import Report, Bibliography
 from gramps.gen.plug.report import endnotes
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
@@ -118,16 +118,20 @@ class DetDescendantReport(Report):
         pid           - The Gramps ID of the center person for the report.
         name_format   - Preferred format to display names
         incmateref    - Whether to print mate information or reference
+        incl_private  - Whether to include private data
         """
         Report.__init__(self, database, options, user)
 
-        self.db = database
         self.map = {}
         self._user = user
 
         menu = options.menu
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
+
+        stdoptions.run_private_data_option(self, menu)
+        self.db = self.database
+
         self.max_generations = get_value('gen')
         self.pgbrk         = get_value('pagebbg')
         self.pgbrkenotes   = get_value('pageben')
@@ -155,7 +159,7 @@ class DetDescendantReport(Report):
         self.inc_ssign     = get_value('incssign')
         self.inc_materef   = get_value('incmateref')
         pid                = get_value('pid')
-        self.center_person = database.get_person_from_gramps_id(pid)
+        self.center_person = self.db.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
@@ -932,6 +936,8 @@ class DetDescendantOptions(MenuReportOptions):
         pageben.set_help(
                      _("Whether to start a new page before the end notes."))
         add_option("pageben", pageben)
+
+        stdoptions.add_private_data_option(menu, category)
 
         stdoptions.add_localization_option(menu, category)
 
