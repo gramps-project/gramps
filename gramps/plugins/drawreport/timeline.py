@@ -4,7 +4,7 @@
 # Copyright (C) 2003-2007 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2012-2013 Paul Franklin
+# Copyright (C) 2012-2014 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -94,12 +94,16 @@ class TimeLine(Report):
         filter    - Filter to be applied to the people of the database.
                     The option class carries its number, and the function
                     returning the list of filters.
-        sortby -    Sorting method to be used.
-        name_format - Preferred format to display names
+        sortby        - Sorting method to be used.
+        name_format   - Preferred format to display names
+        incl_private  - Whether to include private data
         """
         Report.__init__(self, database, options, user)
         self._user = user
         menu = options.menu
+
+        stdoptions.run_private_data_option(self, menu)
+
         self.filter = menu.get_option_by_name('filter').get_filter()
 
         self._lang = options.menu.get_option_by_name('trans').get_value()
@@ -108,7 +112,7 @@ class TimeLine(Report):
         stdoptions.run_name_format_option(self, menu)
 
         sort_func_num = menu.get_option_by_name('sortby').get_value()
-        sort_functions = _get_sort_functions(Sort(database))
+        sort_functions = _get_sort_functions(Sort(self.database))
         self.sort_name = sort_functions[sort_func_num][0]
         self.sort_func = sort_functions[sort_func_num][1]
         self.calendar = config.get('preferences.calendar-format-report')
@@ -423,6 +427,8 @@ class TimeLineOptions(MenuReportOptions):
         sortby.set_help( _("Sorting method to use"))
         menu.add_option(category_name,"sortby",sortby)
                 
+        stdoptions.add_private_data_option(menu, category_name)
+
         stdoptions.add_localization_option(menu, category_name)
 
     def __update_filters(self):
