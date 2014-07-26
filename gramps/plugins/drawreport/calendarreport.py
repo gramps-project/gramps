@@ -3,7 +3,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2008-2009  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2012-2013  Paul Franklin
+# Copyright (C) 2012-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -83,11 +83,16 @@ _TITLE2 = _T_("Produced with Gramps")
 class Calendar(Report):
     """
     Create the Calendar object that produces the report.
+
+        incl_private    - Whether to include private data
     """
     def __init__(self, database, options, user):
         Report.__init__(self, database, options, user)
         menu = options.menu
         self._user = user
+
+        stdoptions.run_private_data_option(self, menu)
+
         get_value = lambda name: menu.get_option_by_name(name).get_value()
         
         self.year = get_value('year')
@@ -104,7 +109,7 @@ class Calendar(Report):
         self.filter_option = menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
         pid = get_value('pid')
-        self.center_person = database.get_person_from_gramps_id(pid)
+        self.center_person = self.database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
@@ -508,6 +513,8 @@ class CalendarOptions(MenuReportOptions):
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
         add_option("maiden_name", maiden_name)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the calendar"))
