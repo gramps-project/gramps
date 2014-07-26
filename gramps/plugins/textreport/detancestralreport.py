@@ -45,10 +45,10 @@ _ = glocale.translation.gettext
 from gramps.gen.errors import ReportError
 from gramps.gen.lib import EventType, FamilyRelType, Person, NoteType
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
-                            FONT_SANS_SERIF, FONT_SERIF, 
-                            INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+                                    FONT_SANS_SERIF, FONT_SERIF, 
+                                    INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
 from gramps.gen.plug.menu import BooleanOption, NumberOption, PersonOption
-from gramps.gen.plug.report import ( Report, Bibliography )
+from gramps.gen.plug.report import Report, Bibliography
 from gramps.gen.plug.report import endnotes
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
@@ -136,7 +136,7 @@ class DetAncestorReport(Report):
         self.inc_srcnotes  = get_value('incsrcnotes')
         self.inc_attrs     = get_value('incattrs')
         pid                = get_value('pid')
-        self.center_person = database.get_person_from_gramps_id(pid)
+        self.center_person = self.db.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
