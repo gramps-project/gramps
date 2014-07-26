@@ -4,7 +4,7 @@
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2013-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -69,9 +69,12 @@ class SummaryReport(Report):
         options         - instance of the Options class for this report
         user            - a gen.user.User() instance
 
+        incl_private    - Whether to count private data
         """
         Report.__init__(self, database, options, user)
-        self.__db = database
+
+        stdoptions.run_private_data_option(self, menu)
+        self.__db = self.database
         
         lang = options.menu.get_option_by_name('trans').get_value()
         self.set_locale(lang)
@@ -273,6 +276,11 @@ class SummaryOptions(MenuReportOptions):
         Add options to the menu for the summary report.
         """
         category_name = _("Report Options")
+
+        stdoptions.add_private_data_option(menu, category_name)
+        include_private_data = menu.get_option_by_name('incl_private')
+        include_private_data.set_help(_("Whether to count private data"))
+
         stdoptions.add_localization_option(menu, category_name)
 
     def make_default_style(self, default_style):
