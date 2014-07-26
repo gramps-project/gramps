@@ -56,7 +56,6 @@ class TableOfContents(Report):
         user            - a gen.user.User() instance
         """
         Report.__init__(self, database, options, user)
-        self._user = user
         self.set_locale(options.menu.get_option_by_name('trans').get_value())
 
     def write_report(self):
