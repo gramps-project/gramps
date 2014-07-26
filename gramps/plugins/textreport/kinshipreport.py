@@ -5,7 +5,7 @@
 # Copyright (C) 2009      Gary Burton
 # Contribution  2009 by   Reinhard Mueller <reinhard.mueller@bytewise.at> 
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2013      Paul Franklin
+# Copyright (C) 2013-2014 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     FONT_SANS_SERIF, INDEX_TYPE_TOC,
                                     PARA_ALIGN_CENTER)
-from gramps.gen.plug.menu import (NumberOption, BooleanOption, PersonOption)
+from gramps.gen.plug.menu import NumberOption, BooleanOption, PersonOption
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
@@ -76,17 +76,21 @@ class KinshipReport(Report):
         incaunts      - Whether to include aunts/uncles/nephews/nieces.
         pid           - The Gramps ID of the center person for the report.
         name_format   - Preferred format to display names
+        incl_private  - Whether to include private data
         """
         Report.__init__(self, database, options, user)
-
         menu = options.menu
+
+        stdoptions.run_private_data_option(self, menu)
+        self.__db = self.database
+
         self.max_descend = menu.get_option_by_name('maxdescend').get_value()
         self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
         self.inc_spouses = menu.get_option_by_name('incspouses').get_value()
         self.inc_cousins = menu.get_option_by_name('inccousins').get_value()
         self.inc_aunts   = menu.get_option_by_name('incaunts').get_value()
         pid              = menu.get_option_by_name('pid').get_value()
-        self.person = database.get_person_from_gramps_id(pid)
+        self.person = self.database.get_person_from_gramps_id(pid)
         if (self.person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
@@ -94,7 +98,6 @@ class KinshipReport(Report):
 
         stdoptions.run_name_format_option(self, menu)
 
-        self.__db = database
         self.rel_calc = get_relationship_calculator(reinit=True,
                                                     clocale=rlocale)
 
@@ -358,6 +361,8 @@ class KinshipOptions(MenuReportOptions):
         incaunts = BooleanOption(_("Include aunts/uncles/nephews/nieces"), True)
         incaunts.set_help(_("Whether to include aunts/uncles/nephews/nieces"))
         menu.add_option(category_name, "incaunts", incaunts)        
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
