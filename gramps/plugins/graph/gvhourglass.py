@@ -5,7 +5,7 @@
 # Copyright (C) 2008      Stephane Charette <stephanecharette@gmail.com>
 # Contribution 2009 by    Bob Ham <rah@bash.sh>
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2013      Paul Franklin
+# Copyright (C) 2013-2014 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -72,13 +72,27 @@ class HourGlassReport(Report):
         Create HourGlass object that produces the report.
 
         name_format   - Preferred format to display names
+        incl_private  - Whether to include private data
         """
         Report.__init__(self, database, options, user)
+        menu = options.menu
         
+        stdoptions.run_private_data_option(self, menu)
+        self.__db = self.database
+
+        self.__used_people = []
+        
+        self.max_descend = menu.get_option_by_name('maxdescend').get_value()
+        self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
+        pid = menu.get_option_by_name('pid').get_value()
+        self.center_person = self.__db.get_person_from_gramps_id(pid)
+        if (self.center_person == None) :
+            raise ReportError(_("Person %s is not in the Database") % pid )
+
         # Would be nice to get rid of these 2 hard-coded arrays of colours
         # and instead allow the user to pick-and-choose whatever colour they
         # want.  When/if this is done, take a look at the colour-selection
-        # widget and code used in the FamilyLines graph.
+        # widget and code used in the FamilyLines graph.  FIXME
         colored = {
             'male': 'dodgerblue4',
             'female': 'deeppink',
@@ -92,16 +106,6 @@ class HourGlassReport(Report):
             'family': 'lightyellow'
         }
 
-        self.__db = database
-        self.__used_people = []
-        
-        menu = options.menu
-        self.max_descend = menu.get_option_by_name('maxdescend').get_value()
-        self.max_ascend  = menu.get_option_by_name('maxascend').get_value()
-        pid = menu.get_option_by_name('pid').get_value()
-        self.center_person = database.get_person_from_gramps_id(pid)
-        if (self.center_person == None) :
-            raise ReportError(_("Person %s is not in the Database") % pid )
         self.colorize = menu.get_option_by_name('color').get_value()
         if self.colorize == 'colored':
             self.colors = colored
@@ -262,7 +266,7 @@ class HourGlassOptions(MenuReportOptions):
         """
         Create all the menu options for this report.
         """
-        category_name = _("Options")
+        category_name = _("Report Options")
         
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The Center person for the graph"))
@@ -279,6 +283,8 @@ class HourGlassOptions(MenuReportOptions):
         max_gen.set_help(_("The number of generations of ancestors to "
                            "include in the graph"))
         menu.add_option(category_name, "maxascend", max_gen)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
