@@ -11,7 +11,7 @@
 #    Copyright (C) 2009       Gary Burton
 #    Contribution 2009 by     Bob Ham <rah@bash.sh>
 #    Copyright (C) 2010       Jakim Friant
-#    Copyright (C) 2013       Paul Franklin
+#    Copyright (C) 2013-2014  Paul Franklin
 #    Copyright (C) 2013       Fedir Zinchuk <fedikw@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
@@ -116,14 +116,15 @@ class RelGraphReport(Report):
         dashed         - Whether to use dashed lines for non-birth relationships
         use_roundedcorners - Whether to use rounded corners for females
         name_format    - Preferred format to display names
+        incl_private   - Whether to include private data
         """
         Report.__init__(self, database, options, user)
-        
-        self.database = database
 
         menu = options.menu
         get_option_by_name = options.menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
+
+        stdoptions.run_private_data_option(self, menu)
 
         self.includeid = get_value('incid')
         self.includedates = get_value('incdate')
@@ -166,8 +167,9 @@ class RelGraphReport(Report):
 
         stdoptions.run_name_format_option(self, menu)
 
-        self.center_person = database.get_person_from_gramps_id(
-                                                            get_value('pid'))
+        pid = get_value('pid')
+        self.center_person = self.database.get_person_from_gramps_id(pid)
+
         self.increlname = get_value('increlname')
         if self.increlname :
             self.rel_calc = get_relationship_calculator(reinit=True,
@@ -532,18 +534,10 @@ class RelGraphOptions(MenuReportOptions):
         self.__pid.set_help(_("The center person for the report"))
         add_option("pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
+        self.__update_filters()
         
         stdoptions.add_name_format_option(menu, category_name)
 
-        self.__update_filters()
-        
-        self.incdate = BooleanOption(
-                            _("Include Birth, Marriage and Death dates"), True)
-        self.incdate.set_help(_("Include the dates that the individual was "
-                          "born, got married and/or died in the graph labels."))
-        add_option("incdate", self.incdate)
-        self.incdate.connect('value-changed', self.__include_dates_changed)
-        
         self.justyears = BooleanOption(_("Limit dates to years only"), False)
         self.justyears.set_help(_("Prints just dates' year, neither "
                                   "month or day nor date approximation "
@@ -555,6 +549,21 @@ class RelGraphOptions(MenuReportOptions):
                               "available, the correspondent place field "
                               "will be used."))
         add_option("use_place", use_place)
+        
+        stdoptions.add_private_data_option(menu, category_name)
+
+        stdoptions.add_localization_option(menu, category_name)
+
+        ################################
+        add_option = partial(menu.add_option, _("Include"))
+        ################################
+
+        self.incdate = BooleanOption(
+                            _("Include Birth, Marriage and Death dates"), True)
+        self.incdate.set_help(_("Include the dates that the individual was "
+                          "born, got married and/or died in the graph labels."))
+        add_option("incdate", self.incdate)
+        self.incdate.connect('value-changed', self.__include_dates_changed)
         
         url = BooleanOption(_("Include URLs"), False)
         url.set_help(_("Include a URL in each graph node so "
@@ -576,14 +585,6 @@ class RelGraphOptions(MenuReportOptions):
         self.__show_relships.connect('value-changed',
                                      self.__show_relships_changed)
 
-        if __debug__:
-            self.__show_GaGb = BooleanOption(_("Include relationship "
-                                               "debugging numbers also"),
-                                             False)
-            self.__show_GaGb.set_help(_("Whether to include 'Ga' and 'Gb' "
-                            "also, to debug the relationship calculator"))
-            add_option("advrelinfo", self.__show_GaGb)
-
         self.__include_images = BooleanOption(
                                  _('Include thumbnail images of people'), False)
         self.__include_images.set_help(
@@ -599,7 +600,13 @@ class RelGraphOptions(MenuReportOptions):
                                 "relative to the name"))
         add_option("imageOnTheSide", self.__image_on_side)
         
-        stdoptions.add_localization_option(menu, category_name)
+        if __debug__:
+            self.__show_GaGb = BooleanOption(_("Include relationship "
+                                               "debugging numbers also"),
+                                             False)
+            self.__show_GaGb.set_help(_("Whether to include 'Ga' and 'Gb' "
+                            "also, to debug the relationship calculator"))
+            add_option("advrelinfo", self.__show_GaGb)
 
         ################################
         add_option = partial(menu.add_option, _("Graph Style"))
