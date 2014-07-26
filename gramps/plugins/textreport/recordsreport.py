@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2008-2011 Reinhard Müller
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2013      Paul Franklin
+# Copyright (C) 2013-2014 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -58,9 +58,17 @@ from gramps.gen.constfunc import cuni
 class RecordsReport(Report):
 
     def __init__(self, database, options, user):
+        """
+        This report needs the following parameters (class variables)
+        that come in the options class.
+
+        incl_private    - Whether to include private data
+        """
 
         Report.__init__(self, database, options, user)
         menu = options.menu
+
+        stdoptions.run_private_data_option(self, menu)
 
         self.filter_option =  menu.get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
@@ -192,6 +200,8 @@ class RecordsReportOptions(MenuReportOptions):
 
         footer = StringOption(_("Footer text"), "")
         menu.add_option(category_name, "footer", footer)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
