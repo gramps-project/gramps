@@ -6,7 +6,7 @@
 # Copyright (C) 2007       Johan Gonqvist <johan.gronqvist@gmail.com>
 # Copyright (C) 2008       Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2013-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -70,11 +70,15 @@ class NumberOfAncestorsReport(Report):
         
         Menu options:
         name_format   - Preferred format to display names
+        incl_private  - Whether to include private data
         """
         Report.__init__(self, database, options, user)
-        self.__db = database
+
+        stdoptions.run_private_data_option(self, options.menu)
+        self.__db = self.database
+
         pid = options.menu.get_option_by_name('pid').get_value()
-        self.__person = database.get_person_from_gramps_id(pid)
+        self.__person = self.__db.get_person_from_gramps_id(pid)
         if (self.__person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
@@ -195,6 +199,8 @@ class NumberOfAncestorsOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", pid)    
 
         stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
