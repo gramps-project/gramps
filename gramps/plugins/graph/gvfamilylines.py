@@ -6,7 +6,7 @@
 # Copyright (C) 2009-2010  Gary Burton 
 # Contribution 2009 by     Bob Ham <rah@bash.sh>
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2011-2013  Paul Franklin
+# Copyright (C) 2011-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -79,22 +79,17 @@ _COLORS = [ { 'name' : _("B&W outline"),     'value' : "outline" },
 #   class FamilyLinesOptions(MenuReportOptions)
 #       - this class is created when the report dialog comes up
 #       - all configuration controls for the report are created here
-#       - see src/ReportBase/_ReportOptions.py for more information
 #
 #   class FamilyLinesReport(Report)
 #       - this class is created only after the user clicks on "OK"
 #       - the actual report generation is done by this class
-#       - see src/ReportBase/_Report.py for more information
-#
-# Likely to be of additional interest is register_report() at the
-# very bottom of this file.
 #
 #------------------------------------------------------------------------
 
 class FamilyLinesOptions(MenuReportOptions):
     """
     Defines all of the controls necessary
-    to configure the FamilyLines reports.
+    to configure the FamilyLines report.
     """
     def __init__(self, name, dbase):
         self.limit_parents = None
@@ -107,20 +102,29 @@ class FamilyLinesOptions(MenuReportOptions):
 
     def add_menu_options(self, menu):
 
-        # --------------------------------
-        category_name = _('People of Interest')
+        # ---------------------
+        category_name = _('Report Options')
         add_option = partial(menu.add_option, category_name)
-        # --------------------------------
-
-        person_list = PersonListOption(_('People of interest'))
-        person_list.set_help(_('People of interest are used as a starting '
-                               'point when determining "family lines".'))
-        add_option('gidlist', person_list)
+        # ---------------------
 
         stdoptions.add_name_format_option(menu, category_name)
 
-        followpar = BooleanOption(
-                           _('Follow parents to determine family lines'), True)
+        color = EnumeratedListOption(_("Graph coloring"), "filled")
+        for i in range(len(_COLORS)):
+            color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
+        color.set_help(_("Males will be shown with blue, females "
+                         "with red, unless otherwise set above for filled. "
+                         "If the sex of an individual "
+                         "is unknown it will be shown with gray."))
+        add_option("color", color)
+
+        use_roundedcorners = BooleanOption(_('Use rounded corners'), False)
+        use_roundedcorners.set_help(_('Use rounded corners to differentiate '
+                                      'between women and men.'))
+        add_option("useroundedcorners", use_roundedcorners)
+
+        followpar = BooleanOption(_('Follow parents to determine '
+                                    '"family lines"'), True)
         followpar.set_help(_('Parents and their ancestors will be '
                              'considered when determining "family lines".'))
         add_option('followpar', followpar)
@@ -131,15 +135,94 @@ class FamilyLinesOptions(MenuReportOptions):
                                'determining "family lines".'))
         add_option('followchild', followchild)
 
-        remove_extra_people = BooleanOption(
-                             _('Try to remove extra people and families'), True)
+        remove_extra_people = BooleanOption(_('Try to remove extra '
+                                              'people and families'), True)
         remove_extra_people.set_help(_('People and families not directly '
                                        'related to people of interest will '
                                        'be removed when determining '
                                        '"family lines".'))
         add_option('removeextra', remove_extra_people)
 
+        stdoptions.add_private_data_option(menu, category_name, default=False)
+        
         stdoptions.add_localization_option(menu, category_name)
+
+        # --------------------------------
+        add_option = partial(menu.add_option, _('People of Interest'))
+        # --------------------------------
+
+        person_list = PersonListOption(_('People of interest'))
+        person_list.set_help(_('People of interest are used as a starting '
+                               'point when determining "family lines".'))
+        add_option('gidlist', person_list)
+
+        self.limit_parents = BooleanOption(_('Limit the number of ancestors'), 
+                                           False)
+        self.limit_parents.set_help(_('Whether to '
+                                      'limit the number of ancestors.'))
+        add_option('limitparents', self.limit_parents)
+        self.limit_parents.connect('value-changed', self.limit_changed)
+
+        self.max_parents = NumberOption('', 50, 10, 9999)
+        self.max_parents.set_help(_('The maximum number '
+                                    'of ancestors to include.'))
+        add_option('maxparents', self.max_parents)
+
+        self.limit_children = BooleanOption(_('Limit the number '
+                                              'of descendants'), 
+                                            False)
+        self.limit_children.set_help(_('Whether to '
+                                       'limit the number of descendants.'))
+        add_option('limitchildren', self.limit_children)
+        self.limit_children.connect('value-changed', self.limit_changed)
+
+        self.max_children = NumberOption('', 50, 10, 9999)
+        self.max_children.set_help(_('The maximum number '
+                                     'of descendants to include.'))
+        add_option('maxchildren', self.max_children)
+
+        # --------------------
+        add_option = partial(menu.add_option, _('Include'))
+        # --------------------
+
+        self.include_dates = BooleanOption(_('Include dates'), True)
+        self.include_dates.set_help(_('Whether to include dates for people '
+                                      'and families.'))
+        add_option('incdates', self.include_dates)
+        self.include_dates.connect('value-changed', self.include_dates_changed)
+
+        self.justyears = BooleanOption(_("Limit dates to years only"), False)
+        self.justyears.set_help(_("Prints just dates' year, neither "
+                                  "month or day nor date approximation "
+                                  "or interval are shown."))
+        add_option("justyears", self.justyears)
+
+        include_places = BooleanOption(_('Include places'), True)
+        include_places.set_help(_('Whether to include placenames for people '
+                                  'and families.'))
+        add_option('incplaces', include_places)
+
+        include_num_children = BooleanOption(_('Include the number of '
+                                               'children'), True)
+        include_num_children.set_help(_('Whether to include the number of '
+                                        'children for families with more '
+                                        'than 1 child.'))
+        add_option('incchildcnt', include_num_children)
+
+        self.include_images = BooleanOption(_('Include '
+                                              'thumbnail images of people'),
+                                            True)
+        self.include_images.set_help(_('Whether to '
+                                       'include thumbnail images of people.'))
+        add_option('incimages', self.include_images)
+        self.include_images.connect('value-changed', self.images_changed)
+
+        self.image_location = EnumeratedListOption(_('Thumbnail location'), 0)
+        self.image_location.add_item(0, _('Above the name'))
+        self.image_location.add_item(1, _('Beside the name'))
+        self.image_location.set_help(_('Where the thumbnail image '
+                                       'should appear relative to the name'))
+        add_option('imageonside', self.image_location)
 
         # ----------------------------
         add_option = partial(menu.add_option, _('Family Colors'))
@@ -170,97 +253,6 @@ class FamilyLinesOptions(MenuReportOptions):
         color_family.set_help(_('The color to use to display families.'))
         add_option('colorfamilies', color_family)
 
-        self.limit_parents = BooleanOption(_('Limit the number of ancestors'), 
-                                           False)
-        self.limit_parents.set_help(_('Whether to '
-                                      'limit the number of ancestors.'))
-        add_option('limitparents', self.limit_parents)
-        self.limit_parents.connect('value-changed', self.limit_changed)
-
-        self.max_parents = NumberOption('', 50, 10, 9999)
-        self.max_parents.set_help(_('The maximum number '
-                                    'of ancestors to include.'))
-        add_option('maxparents', self.max_parents)
-
-        self.limit_children = BooleanOption(_('Limit the number '
-                                              'of descendants'), 
-                                            False)
-        self.limit_children.set_help(_('Whether to '
-                                       'limit the number of descendants.'))
-        add_option('limitchildren', self.limit_children)
-        self.limit_children.connect('value-changed', self.limit_changed)
-
-        self.max_children = NumberOption('', 50, 10, 9999)
-        self.max_children.set_help(_('The maximum number '
-                                     'of descendants to include.'))
-        add_option('maxchildren', self.max_children)
-
-        # --------------------
-        add_option = partial(menu.add_option, _('Images'))
-        # --------------------
-
-        self.include_images = BooleanOption(_('Include '
-                                              'thumbnail images of people'),
-                                            True)
-        self.include_images.set_help(_('Whether to '
-                                       'include thumbnail images of people.'))
-        add_option('incimages', self.include_images)
-        self.include_images.connect('value-changed', self.images_changed)
-
-        self.image_location = EnumeratedListOption(_('Thumbnail location'), 0)
-        self.image_location.add_item(0, _('Above the name'))
-        self.image_location.add_item(1, _('Beside the name'))
-        self.image_location.set_help(_('Where the thumbnail image '
-                                       'should appear relative to the name'))
-        add_option('imageonside', self.image_location)
-
-        # ---------------------
-        add_option = partial(menu.add_option, _('Options'))
-        # ---------------------
-
-        color = EnumeratedListOption(_("Graph coloring"), "filled")
-        for i in range(len(_COLORS)):
-            color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
-        color.set_help(_("Males will be shown with blue, females "
-                         "with red, unless otherwise set above for filled. "
-                         "If the sex of an individual "
-                         "is unknown it will be shown with gray."))
-        add_option("color", color)
-
-        use_roundedcorners = BooleanOption(_('Use rounded corners'), False)
-        use_roundedcorners.set_help(_('Use rounded corners to differentiate '
-                                      'between women and men.'))
-        add_option("useroundedcorners", use_roundedcorners)
-
-        self.include_dates = BooleanOption(_('Include dates'), True)
-        self.include_dates.set_help(_('Whether to include dates for people '
-                                      'and families.'))
-        add_option('incdates', self.include_dates)
-        self.include_dates.connect('value-changed', self.include_dates_changed)
-
-        self.justyears = BooleanOption(_("Limit dates to years only"), False)
-        self.justyears.set_help(_("Prints just dates' year, neither "
-                                  "month or day nor date approximation "
-                                  "or interval are shown."))
-        add_option("justyears", self.justyears)
-
-        include_places = BooleanOption(_('Include places'), True)
-        include_places.set_help(_('Whether to include placenames for people '
-                                  'and families.'))
-        add_option('incplaces', include_places)
-
-        include_num_children = BooleanOption(
-                                      _('Include the number of children'), True)
-        include_num_children.set_help(_('Whether to include the number of '
-                                        'children for families with more '
-                                        'than 1 child.'))
-        add_option('incchildcnt', include_num_children)
-
-        include_private = BooleanOption(_('Include private records'), False)
-        include_private.set_help(_('Whether to include names, dates, and '
-                                   'families that are marked as private.'))
-        add_option('incprivate', include_private)
-        
         self.limit_changed()
         self.images_changed()
 
@@ -298,24 +290,27 @@ class FamilyLinesReport(Report):
         
         The arguments are:
 
-        database    - the GRAMPS database instance
-        options     - instance of the FamilyLinesOptions class for this report
-        user        - a gen.user.User() instance
-        name_format - Preferred format to display names
+        database     - the GRAMPS database instance
+        options      - instance of the FamilyLinesOptions class for this report
+        user         - a gen.user.User() instance
+        name_format  - Preferred format to display names
+        incl_private - Whether to include private data
         """
         Report.__init__(self, database, options, user)
 
+        menu = options.menu
+        get_option_by_name = menu.get_option_by_name
+        get_value = lambda name: get_option_by_name(name).get_value()
+        
+        stdoptions.run_private_data_option(self, menu)
+        self._db = self.database
+
         # initialize several convenient variables
-        self._db = database
         self._people = set() # handle of people we need in the report
         self._families = set() # handle of families we need in the report
         self._deleted_people = 0
         self._deleted_families = 0
         self._user = user
-        
-        menu = options.menu
-        get_option_by_name = menu.get_option_by_name
-        get_value = lambda name: get_option_by_name(name).get_value()
         
         self._followpar = get_value('followpar')
         self._followchild = get_value('followchild')
@@ -337,7 +332,6 @@ class FamilyLinesReport(Report):
         self._just_years = get_value('justyears')
         self._incplaces = get_value('incplaces')
         self._incchildcount = get_value('incchildcnt')
-        self._incprivate = get_value('incprivate')
 
         # the gidlist is annoying for us to use since we always have to convert
         # the GIDs to either Person or to handles, so we may as well convert the
@@ -438,7 +432,7 @@ class FamilyLinesReport(Report):
             handle = ancestorsNotYetProcessed.pop()
 
             # One of 2 things can happen here:
-            #   1) we've already know about this person and he/she is already 
+            #   1) we already know about this person and he/she is already 
             #      in our list
             #   2) this is someone new, and we need to remember him/her
             #
@@ -453,12 +447,6 @@ class FamilyLinesReport(Report):
 
                 person = self._db.get_person_from_handle(handle)
 
-                # if this is a private record, and we're not
-                # including private records, then go back to the
-                # top of the while loop to get the next person
-                if person.private and not self._incprivate:
-                    continue
-
                 # remember this person!
                 self._people.add(handle)
 
@@ -468,6 +456,8 @@ class FamilyLinesReport(Report):
                 # to link spouses together
                 for family_handle in person.get_family_handle_list():
                     family = self._db.get_family_from_handle(family_handle)
+                    if not family:
+                        continue
                     spouse_handle = ReportUtils.find_spouse(person, family)
                     if spouse_handle:
                         if (spouse_handle in self._people or
@@ -488,21 +478,18 @@ class FamilyLinesReport(Report):
                 for family_handle in person.get_parent_family_handle_list():
                     family = self._db.get_family_from_handle(family_handle)
 
-                    if not family.private or self._incprivate:
-                        father = self._db.get_person_from_handle(
-                                                 family.get_father_handle())
-                        mother = self._db.get_person_from_handle(
-                                                 family.get_mother_handle())
-                        if father:
-                            if not father.private or self._incprivate:
-                                ancestorsNotYetProcessed.add(
-                                                 family.get_father_handle())
-                                self._families.add(family_handle)
-                        if mother:
-                            if not mother.private or self._incprivate:
-                                ancestorsNotYetProcessed.add(
-                                                 family.get_mother_handle())
-                                self._families.add(family_handle)
+                    father = self._db.get_person_from_handle(
+                                             family.get_father_handle())
+                    mother = self._db.get_person_from_handle(
+                                             family.get_mother_handle())
+                    if father:
+                        ancestorsNotYetProcessed.add(
+                                         family.get_father_handle())
+                        self._families.add(family_handle)
+                    if mother:
+                        ancestorsNotYetProcessed.add(
+                                         family.get_mother_handle())
+                        self._families.add(family_handle)
 
     def removeUninterestingParents(self):
         # start with all the people we've already identified
@@ -511,6 +498,8 @@ class FamilyLinesReport(Report):
         while len(unprocessed_parents) > 0:
             handle = unprocessed_parents.pop()
             person = self._db.get_person_from_handle(handle)
+            if not person:
+                continue
 
             # There are a few things we're going to need,
             # so look it all up right now; such as:
@@ -669,12 +658,6 @@ class FamilyLinesReport(Report):
 
                 person = self._db.get_person_from_handle(handle)
 
-                # if this is a private record, and we're not
-                # including private records, then go back to the
-                # top of the while loop to get the next person
-                if person.private and not self._incprivate:
-                    continue
-
                 # remember this person!
                 childrenToInclude.add(handle)
 
@@ -693,26 +676,22 @@ class FamilyLinesReport(Report):
                 # iterate through this person's families
                 for family_handle in person.get_family_handle_list():
                     family = self._db.get_family_from_handle(family_handle)
-                    if (family.private and self._incprivate) or not family.private:
 
-                        # queue up any children from this person's family
-                        for childRef in family.get_child_ref_list():
-                            child = self._db.get_person_from_handle(childRef.ref)
-                            if (child.private and self._incprivate) or not child.private:
-                                childrenNotYetProcessed.add(child.get_handle())
-                                self._families.add(family_handle)
+                    # queue up any children from this person's family
+                    for childRef in family.get_child_ref_list():
+                        child = self._db.get_person_from_handle(childRef.ref)
+                        childrenNotYetProcessed.add(child.get_handle())
+                        self._families.add(family_handle)
 
-                        # include the spouse from this person's family
-                        spouse_handle = ReportUtils.find_spouse(person, family)
-                        if spouse_handle:
-                            spouse = self._db.get_person_from_handle(spouse_handle)
-                            if (spouse.private and self._incprivate) or not spouse.private:
-                                childrenToInclude.add(spouse_handle)
-                                self._families.add(family_handle)
+                    # include the spouse from this person's family
+                    spouse_handle = ReportUtils.find_spouse(person, family)
+                    if spouse_handle:
+                        spouse = self._db.get_person_from_handle(spouse_handle)
+                        childrenToInclude.add(spouse_handle)
+                        self._families.add(family_handle)
 
         # we now merge our temp set "childrenToInclude" into our master set
         self._people.update(childrenToInclude)
-
 
     def writePeople(self):
 
@@ -753,50 +732,48 @@ class FamilyLinesReport(Report):
             # output the birth or fallback event
             birthStr = None
             if bth_event and self._incdates:
-                if not bth_event.private or self._incprivate:
-                    date = bth_event.get_date_object()
-                    if self._just_years and date.get_year_valid():
-                        birthStr = '%i' % date.get_year()
-                    else:
-                        birthStr = self._get_date(date)
+                date = bth_event.get_date_object()
+                if self._just_years and date.get_year_valid():
+                    birthStr = '%i' % date.get_year()
+                else:
+                    birthStr = self._get_date(date)
 
             # get birth place (one of:  city, state, or country) we can use
             birthplace = None
             if bth_event and self._incplaces:
-                if not bth_event.private or self._incprivate:
-                    place = self._db.get_place_from_handle(bth_event.get_place_handle())
-                    if place:
-                        location = get_main_location(self._db, place)
-                        if location.get(PlaceType.CITY):
-                            birthplace = location.get(PlaceType.CITY)
-                        elif location.get(PlaceType.STATE):
-                            birthplace = location.get(PlaceType.STATE)
-                        elif location.get(PlaceType.COUNTRY):
-                            birthplace = location.get(PlaceType.COUNTRY)
+                place = self._db.get_place_from_handle(
+                                             bth_event.get_place_handle())
+                if place:
+                    location = get_main_location(self._db, place)
+                    if location.get(PlaceType.CITY):
+                        birthplace = location.get(PlaceType.CITY)
+                    elif location.get(PlaceType.STATE):
+                        birthplace = location.get(PlaceType.STATE)
+                    elif location.get(PlaceType.COUNTRY):
+                        birthplace = location.get(PlaceType.COUNTRY)
 
             # see if we have a deceased date we can use
             deathStr = None
             if dth_event and self._incdates:
-                if not dth_event.private or self._incprivate:
-                    date = dth_event.get_date_object()
-                    if self._just_years and date.get_year_valid():
-                        deathStr = '%i' % date.get_year()
-                    else:
-                        deathStr = self._get_date(date)
+                date = dth_event.get_date_object()
+                if self._just_years and date.get_year_valid():
+                    deathStr = '%i' % date.get_year()
+                else:
+                    deathStr = self._get_date(date)
 
             # get death place (one of:  city, state, or country) we can use
             deathplace = None
             if dth_event and self._incplaces:
-                if not dth_event.private or self._incprivate:
-                    place = self._db.get_place_from_handle(dth_event.get_place_handle())
-                    if place:
-                        location = get_main_location(self._db, place)
-                        if location.get(PlaceType.CITY):
-                            deathplace = location.get(PlaceType.CITY)
-                        elif location.get(PlaceType.STATE):
-                            deathplace = location.get(PlaceType.STATE)
-                        elif location.get(PlaceType.COUNTRY):
-                            deathplace = location.get(PlaceType.COUNTRY)
+                place = self._db.get_place_from_handle(
+                                             dth_event.get_place_handle())
+                if place:
+                    location = get_main_location(self._db, place)
+                    if location.get(PlaceType.CITY):
+                        deathplace = location.get(PlaceType.CITY)
+                    elif location.get(PlaceType.STATE):
+                        deathplace = location.get(PlaceType.STATE)
+                    elif location.get(PlaceType.COUNTRY):
+                        deathplace = location.get(PlaceType.COUNTRY)
 
             # see if we have an image to use for this person
             imagePath = None
@@ -904,24 +881,24 @@ class FamilyLinesReport(Report):
                     (event_ref.get_role() == EventRoleType.FAMILY or 
                     event_ref.get_role() == EventRoleType.PRIMARY ):
                         # get the wedding date
-                        if (event.private and self._incprivate) or not event.private:
-                            if self._incdates:
-                                date = event.get_date_object()
-                                if self._just_years and date.get_year_valid():
-                                    weddingDate = '%i' % date.get_year()
-                                else:
-                                    weddingDate = self._get_date(date)
-                            # get the wedding location
-                            if self._incplaces:
-                                place = self._db.get_place_from_handle(event.get_place_handle())
-                                if place:
-                                    location = get_main_location(self._db, place)
-                                    if location.get(PlaceType.CITY):
-                                        weddingPlace = location.get(PlaceType.CITY)
-                                    elif location.get(PlaceType.STATE):
-                                        weddingPlace = location.get(PlaceType.STATE)
-                                    elif location.get(PlaceType.COUNTRY):
-                                        weddingPlace = location.get(PlaceType.COUNTRY)
+                        if self._incdates:
+                            date = event.get_date_object()
+                            if self._just_years and date.get_year_valid():
+                                weddingDate = '%i' % date.get_year()
+                            else:
+                                weddingDate = self._get_date(date)
+                        # get the wedding location
+                        if self._incplaces:
+                            place = self._db.get_place_from_handle(
+                                                   event.get_place_handle())
+                            if place:
+                                location = get_main_location(self._db, place)
+                                if location.get(PlaceType.CITY):
+                                    weddingPlace = location.get(PlaceType.CITY)
+                                elif location.get(PlaceType.STATE):
+                                    weddingPlace = location.get(PlaceType.STATE)
+                                elif location.get(PlaceType.COUNTRY):
+                                    weddingPlace = location.get(PlaceType.COUNTRY)
                         break
 
             # figure out the number of children (if any)
