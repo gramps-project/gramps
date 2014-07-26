@@ -48,6 +48,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from gramps.gen.sort import Sort
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.lib import PlaceType
+from gramps.gen.errors import ReportError
 
 class PlaceReport(Report):
     """
@@ -77,6 +78,9 @@ class PlaceReport(Report):
 
         self._user = user
         menu = options.menu
+
+        stdoptions.run_private_data_option(self, menu)
+
         places = menu.get_option_by_name('places').get_value()
         self.center  = menu.get_option_by_name('center').get_value()
 
@@ -85,10 +89,9 @@ class PlaceReport(Report):
         stdoptions.run_name_format_option(self, menu)
         self._nd = self._name_display
 
-        stdoptions.run_private_data_option(self, menu)
-
         filter_option = menu.get_option_by_name('filter')
         self.filter = filter_option.get_filter()
+
         self.sort = Sort(self.database)
 
         if self.filter.get_name() != '':
@@ -98,6 +101,10 @@ class PlaceReport(Report):
         else:
             # Use the place handles selected without a filter
             self.place_handles = self.__get_place_handles(places)
+
+        if not self.place_handles:
+            raise ReportError(_('Place Report'),
+                _('Please select at least one place before running this.'))
 
         self.place_handles.sort(key=self.sort.by_place_title_key)
 
