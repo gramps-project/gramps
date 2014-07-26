@@ -26,8 +26,6 @@
 #
 #------------------------------------------------------------------------
 import time
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.sgettext
 import os
 
 #------------------------------------------------------------------------
@@ -35,12 +33,14 @@ import os
 # gramps modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
 from gramps.gen.plug.menu import StringOption, MediaOption, NumberOption
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle,
-                             FONT_SANS_SERIF, PARA_ALIGN_CENTER)
+                                    FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 
 #------------------------------------------------------------------------
 #
