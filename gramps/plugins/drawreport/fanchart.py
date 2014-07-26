@@ -4,7 +4,7 @@
 # Copyright (C) 2003-2006 Donald N. Allingham
 # Copyright (C) 2007-2008 Brian G. Matherly
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2012-2013 Paul Franklin
+# Copyright (C) 2012-2014 Paul Franklin
 # Copyright (C) 2012      Nicolas Adenis-Lamarre
 # Copyright (C) 2012      Benny Malengier
 #
@@ -153,22 +153,28 @@ class FanChart(Report):
         
         The arguments are:
 
-        database        - the GRAMPS database instance
-        options         - instance of the Options class for this report
-        user            - a gen.user.User instance
+        database     - the GRAMPS database instance
+        options      - instance of the Options class for this report
+        user         - a gen.user.User instance
 
         This report needs the following parameters (class variables)
         that come in the options class.
         
-        maxgen          - Maximum number of generations to include.
-        circle          - Draw a full circle, half circle, or quarter circle.
-        background      - Background color is generation dependent or white.
-        radial          - Print radial texts roundabout or as upright as possible.
-        draw_empty      - draw background when there is no information
-        same_style      - use the same style for all generation
+        maxgen       - Maximum number of generations to include.
+        circle       - Draw a full circle, half circle, or quarter circle.
+        background   - Background color is generation dependent or white.
+        radial       - Print radial texts roundabout or as upright as possible.
+        draw_empty   - draw background when there is no information
+        same_style   - use the same style for all generation
+        incl_private - Whether to include private data
         """
 
+        Report.__init__(self, database, options, user)
+
         menu = options.menu
+
+        stdoptions.run_private_data_option(self, menu)
+
         self.max_generations = menu.get_option_by_name('maxgen').get_value()
         self.circle          = menu.get_option_by_name('circle').get_value()
         self.background      = menu.get_option_by_name('background').get_value()
@@ -176,7 +182,7 @@ class FanChart(Report):
         pid                  = menu.get_option_by_name('pid').get_value()
         self.draw_empty      = menu.get_option_by_name('draw_empty').get_value()
         self.same_style      = menu.get_option_by_name('same_style').get_value()
-        self.center_person = database.get_person_from_gramps_id(pid)
+        self.center_person = self.database.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
             raise ReportError(_("Person %s is not in the Database") % pid )
 
@@ -187,8 +193,6 @@ class FanChart(Report):
             self.text_style.append('FC-Text' + '%02d' % i)
         
         self.calendar = 0
-
-        Report.__init__(self, database, options, user)
 
         self.height = 0
         self.map = [None] * 2**self.max_generations
@@ -685,6 +689,8 @@ class FanChartOptions(MenuReportOptions):
         same_style.set_help(_("You can customize font and color "
                               "for each generation in the style editor"))
         menu.add_option(category_name, "same_style", same_style)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
