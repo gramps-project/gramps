@@ -4,7 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2012-2013  Paul Franklin
+# Copyright (C) 2012-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -85,13 +85,16 @@ class AncestorReport(Report):
         gen       - Maximum number of generations to include.
         pagebbg   - Whether to include page breaks between generations.
         name_format   - Preferred format to display names
+        incl_private  - Whether to include private data
 
         """
         Report.__init__(self, database, options, user)
 
         self.map = {}
-        
         menu = options.menu
+
+        stdoptions.run_private_data_option(self, menu)
+
         self.max_generations = menu.get_option_by_name('maxgen').get_value()
         self.pgbrk = menu.get_option_by_name('pagebbg').get_value()
         self.opt_namebrk = menu.get_option_by_name('namebrk').get_value()
@@ -278,6 +281,8 @@ class AncestorOptions(MenuReportOptions):
         namebrk = BooleanOption(_("Add linebreak after each name"), False)
         namebrk.set_help(_("Indicates if a line break should follow the name."))
         menu.add_option(category_name, "namebrk", namebrk)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
