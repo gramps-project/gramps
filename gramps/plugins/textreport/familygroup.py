@@ -4,7 +4,7 @@
 # Copyright (C) 2000-2007  Donald N. Allingham
 # Copyright (C) 2007-2008  Brian G. Matherly
 # Copyright (C) 2010       Jakim Friant
-# Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2013-2014  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -38,7 +38,7 @@ from functools import partial
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.lib import EventRoleType, EventType, NoteType, Person
-from gramps.gen.plug.menu import (BooleanOption, FamilyOption)
+from gramps.gen.plug.menu import BooleanOption, FamilyOption
 from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
@@ -71,14 +71,17 @@ class FamilyGroup(Report):
         family_handle - Handle of the family to write report on.
         includeAttrs  - Whether to include attributes
         name_format   - Preferred format to display names
+        incl_private  - Whether to include private data
         """
         Report.__init__(self, database, options, user)
         menu = options.menu
 
+        stdoptions.run_private_data_option(self, menu)
+
         self.family_handle = None
 
         family_id = menu.get_option_by_name('family_id').get_value()
-        family = database.get_family_from_gramps_id(family_id)
+        family = self.database.get_family_from_gramps_id(family_id)
         if family:
             self.family_handle = family.get_handle()
         else:
@@ -644,6 +647,8 @@ class FamilyGroupOptions(MenuReportOptions):
                              "of this family."))
         add_option("recursive", recursive)
         
+        stdoptions.add_private_data_option(menu, category_name)
+
         stdoptions.add_localization_option(menu, category_name)
 
         ##########################
