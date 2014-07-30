@@ -65,6 +65,7 @@ if HAVE_ICU:
 # when a new translation is added.  Note the dummy _(): That's just to
 # get xgettext to include the string in gramps.pot; actual translation
 # is done in _get_language_string() below.
+# (The gramps officially-supported language list is ALL_LINGUAS in setup.py)
 _ = lambda x: x
 _LOCALE_NAMES = {
     'ar': ('Arabic_Saudi Arabia', '1256', _("Arabic")),
@@ -105,7 +106,8 @@ _LOCALE_NAMES = {
     'tr': ('Turkish_Turkey', '1254', _("Turkish")),
     'uk': ('Ukrainian_Ukraine', '1251', _("Ukrainian")),
     'vi': ('Vietnamese_Viet Nam', '1258', _("Vietnamese")),
-    'zh_CN': ('Chinese_China', '936', _("Chinese Simplified")),
+    'zh_CN': ('Chinese_China', '936', _("Chinese (Simplified)")),
+    'zh_TW': ('Chinese_Taiwan', '950', _("Chinese (Traditional)")),
     }
 
 def _check_mswin_locale(locale):
