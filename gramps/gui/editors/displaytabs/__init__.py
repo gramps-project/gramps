@@ -46,6 +46,7 @@ from .familyldsembedlist import FamilyLdsEmbedList
 from .gallerytab import GalleryTab
 from .ldsembedlist import LdsEmbedList
 from .locationembedlist import LocationEmbedList
+from .mediaattrembedlist import MediaAttrEmbedList
 from .mediabackreflist import MediaBackRefList
 from .nameembedlist import NameEmbedList
 from .notebackreflist import NoteBackRefList
