@@ -27,7 +27,7 @@ from .attrembedlist import AttrEmbedList
 
 #-------------------------------------------------------------------------
 #
-# EventAttrEmbedList
+# MediaAttrEmbedList
 #
 #-------------------------------------------------------------------------
 class MediaAttrEmbedList(AttrEmbedList):
