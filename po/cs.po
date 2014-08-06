@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-07-02 13:52+0200\n"
-"PO-Revision-Date: 2014-07-14 12:44+0100\n"
+"POT-Creation-Date: 2014-07-17 15:36+0200\n"
+"PO-Revision-Date: 2014-08-06 14:33+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -3039,7 +3039,7 @@ msgstr "Svazek/Stránka:"
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:48
 #: ../gramps/gen/filters/rules/place/_hascitation.py:49
 #: ../gramps/gui/editors/filtereditor.py:581
-#: ../gramps/gui/glade/editplaceref.glade:103
+#: ../gramps/gui/glade/editplaceref.glade:105
 #: ../gramps/gui/glade/mergecitation.glade:271
 #: ../gramps/gui/glade/mergecitation.glade:290
 #: ../gramps/gui/glade/mergeevent.glade:259
@@ -3561,7 +3561,7 @@ msgstr "Typ události:"
 #: ../gramps/gen/filters/rules/person/_hasevent.py:50
 #: ../gramps/gen/filters/rules/person/_hasfamilyevent.py:49
 #: ../gramps/gui/editors/filtereditor.py:510
-#: ../gramps/gui/glade/editplaceref.glade:89
+#: ../gramps/gui/glade/editplaceref.glade:91
 #: ../gramps/gui/glade/mergeevent.glade:300
 #: ../gramps/gui/glade/mergeevent.glade:319
 msgid "Place:"
@@ -7702,7 +7702,7 @@ msgid "Graphics"
 msgstr "Grafika"
 
 #: ../gramps/gen/plug/report/endnotes.py:49
-#: ../gramps/plugins/textreport/ancestorreport.py:339
+#: ../gramps/plugins/textreport/ancestorreport.py:340
 #: ../gramps/plugins/textreport/detancestralreport.py:842
 #: ../gramps/plugins/textreport/detdescendantreport.py:1038
 msgid "The style used for the generation header."
@@ -7907,7 +7907,7 @@ msgstr "Registrován '%s'"
 #: ../gramps/gui/glade/editsource.glade:295
 #: ../gramps/gui/glade/editurl.glade:152 ../gramps/gui/grampsgui.py:189
 #: ../gramps/plugins/lib/libpersonview.py:109
-#: ../gramps/plugins/lib/libplaceview.py:97
+#: ../gramps/plugins/lib/libplaceview.py:98
 #: ../gramps/plugins/view/citationlistview.py:102
 #: ../gramps/plugins/view/citationtreeview.py:97
 #: ../gramps/plugins/view/eventview.py:87
@@ -8869,7 +8869,7 @@ msgstr "Místo odk"
 #: ../gramps/plugins/gramplet/backlinks.py:45
 #: ../gramps/plugins/gramplet/descendant.py:65
 #: ../gramps/plugins/lib/libpersonview.py:97
-#: ../gramps/plugins/lib/libplaceview.py:90
+#: ../gramps/plugins/lib/libplaceview.py:91
 #: ../gramps/plugins/quickview/filterbyname.py:281
 #: ../gramps/plugins/textreport/indivcomplete.py:565
 #: ../gramps/plugins/textreport/tagreport.py:133
@@ -9026,7 +9026,7 @@ msgstr "Archiv"
 #: ../gramps/gui/selectors/selectplace.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:44
 #: ../gramps/plugins/gramplet/events.py:74
-#: ../gramps/plugins/lib/libplaceview.py:93
+#: ../gramps/plugins/lib/libplaceview.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:301
 #: ../gramps/plugins/quickview/linkreferences.py:45
 #: ../gramps/plugins/quickview/onthisday.py:80
@@ -9067,7 +9067,7 @@ msgstr "Typ"
 #: ../gramps/gui/selectors/selectsource.py:60
 #: ../gramps/gui/widgets/grampletpane.py:1550
 #: ../gramps/plugins/gramplet/persondetails.py:124
-#: ../gramps/plugins/lib/libplaceview.py:92
+#: ../gramps/plugins/lib/libplaceview.py:93
 #: ../gramps/plugins/textreport/tagreport.py:390
 #: ../gramps/plugins/textreport/tagreport.py:539
 #: ../gramps/plugins/textreport/tagreport.py:706
@@ -10226,8 +10226,8 @@ msgstr "Posunout vybranou adresu níže"
 #: ../gramps/gui/glade/editmediaref.glade:663
 #: ../gramps/gui/glade/editname.glade:642
 #: ../gramps/gui/glade/editname.glade:652
-#: ../gramps/gui/glade/editplaceref.glade:138
-#: ../gramps/gui/glade/editplaceref.glade:150 ../gramps/gui/grampsgui.py:151
+#: ../gramps/gui/glade/editplaceref.glade:146
+#: ../gramps/gui/glade/editplaceref.glade:153 ../gramps/gui/grampsgui.py:151
 #: ../gramps/gui/selectors/selectevent.py:62
 #: ../gramps/plugins/export/exportcsv.py:488
 #: ../gramps/plugins/gramplet/ageondategramplet.py:72
@@ -10334,7 +10334,7 @@ msgstr "_Atributy"
 #: ../gramps/gui/views/bookmarks.py:222
 #: ../gramps/gui/views/navigationview.py:354
 #: ../gramps/plugins/lib/libpersonview.py:98
-#: ../gramps/plugins/lib/libplaceview.py:91
+#: ../gramps/plugins/lib/libplaceview.py:92
 #: ../gramps/plugins/tool/eventcmp.py:251
 #: ../gramps/plugins/tool/notrelated.py:125
 #: ../gramps/plugins/tool/patchnames.py:395
@@ -10609,12 +10609,12 @@ msgstr "_Galerie"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
 #: ../gramps/gui/editors/editperson.py:628 ../gramps/gui/grampsgui.py:190
-#: ../gramps/gui/grampsgui.py:191 ../gramps/plugins/view/mediaview.py:222
+#: ../gramps/gui/grampsgui.py:191 ../gramps/plugins/view/mediaview.py:225
 msgid "View"
 msgstr "Zobrazení"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:155
-#: ../gramps/plugins/view/mediaview.py:226
+#: ../gramps/plugins/view/mediaview.py:229
 msgid "Open Containing _Folder"
 msgstr "_Otevřít obsahující složku"
 
@@ -10642,8 +10642,8 @@ msgstr ""
 "\n"
 "Chcete-li měnit tento odkaz, musíte objekt médií nejprve uzavřít."
 
-#: ../gramps/gui/editors/displaytabs/gallerytab.py:542
-#: ../gramps/plugins/view/mediaview.py:208
+#: ../gramps/gui/editors/displaytabs/gallerytab.py:545
+#: ../gramps/plugins/view/mediaview.py:211
 msgid "Drag Media Object"
 msgstr "Táhnout objekt"
 
@@ -11656,7 +11656,7 @@ msgid "_Note"
 msgstr "Poz_námka"
 
 #: ../gramps/gui/editors/editnote.py:283 ../gramps/gui/editors/editnote.py:328
-#: ../gramps/gui/editors/objectentries.py:427
+#: ../gramps/gui/editors/objectentries.py:435
 msgid "Edit Note"
 msgstr "Upravit poznámku"
 
@@ -11890,13 +11890,17 @@ msgstr "Nelze uložit název místa"
 msgid "The place name cannot be empty"
 msgstr "Název místa nemůže být prázdný"
 
-#: ../gramps/gui/editors/editplaceref.py:53
+#: ../gramps/gui/editors/editplaceref.py:51
 msgid "Place Reference Editor"
 msgstr "Editor odkazů míst"
 
-#: ../gramps/gui/editors/editplaceref.py:68
-msgid "Top level place"
-msgstr "Kořenové místo"
+#: ../gramps/gui/editors/editplaceref.py:91
+msgid "Cannot save place reference"
+msgstr "Nelze uložit referenci místa"
+
+#: ../gramps/gui/editors/editplaceref.py:92
+msgid "No place selected. Please select a place  or cancel the edit."
+msgstr "Nebylo vybráno žádné místo. Zvolte prosím místo, nebo zrušte operaci"
 
 #: ../gramps/gui/editors/editprimary.py:233
 msgid "Save Changes?"
@@ -12267,7 +12271,7 @@ msgid "Select an existing place"
 msgstr "Vybrat existující místo"
 
 #: ../gramps/gui/editors/objectentries.py:268
-#: ../gramps/plugins/lib/libplaceview.py:108
+#: ../gramps/plugins/lib/libplaceview.py:109
 msgid "Add a new place"
 msgstr "Přidat nové místo"
 
@@ -12275,80 +12279,80 @@ msgstr "Přidat nové místo"
 msgid "Remove place"
 msgstr "Odstranit místo"
 
-#: ../gramps/gui/editors/objectentries.py:316
+#: ../gramps/gui/editors/objectentries.py:324
 msgid "First add a source using the buttons"
 msgstr "Nejprve pomocí tlačítek přidejte pramen"
 
-#: ../gramps/gui/editors/objectentries.py:317
+#: ../gramps/gui/editors/objectentries.py:325
 msgid "First add a source using the button"
 msgstr "Nejprve pomocí tlačítka přidejte pramen"
 
-#: ../gramps/gui/editors/objectentries.py:318
+#: ../gramps/gui/editors/objectentries.py:326
 msgid "Edit source"
 msgstr "Upravit pramen"
 
-#: ../gramps/gui/editors/objectentries.py:319
+#: ../gramps/gui/editors/objectentries.py:327
 msgid "Select an existing source"
 msgstr "Vybrat existující pramen"
 
-#: ../gramps/gui/editors/objectentries.py:320
+#: ../gramps/gui/editors/objectentries.py:328
 #: ../gramps/plugins/view/citationlistview.py:125
 #: ../gramps/plugins/view/citationtreeview.py:122
 #: ../gramps/plugins/view/sourceview.py:98
 msgid "Add a new source"
 msgstr "Vytvořit nový pramen"
 
-#: ../gramps/gui/editors/objectentries.py:321
+#: ../gramps/gui/editors/objectentries.py:329
 msgid "Remove source"
 msgstr "Odstranit pramen"
 
-#: ../gramps/gui/editors/objectentries.py:370
+#: ../gramps/gui/editors/objectentries.py:378
 msgid "To select a media object, use drag-and-drop or use the buttons"
 msgstr "Pro výběr média použijte drag-and-drop nebo tlačítka"
 
-#: ../gramps/gui/editors/objectentries.py:372
+#: ../gramps/gui/editors/objectentries.py:380
 #: ../gramps/gui/plug/_guioptions.py:1069
 msgid "No image given, click button to select one"
 msgstr "Nebyl zvolen žádný obrázek. Pro volbu klikněte na tlačítko"
 
-#: ../gramps/gui/editors/objectentries.py:373
+#: ../gramps/gui/editors/objectentries.py:381
 msgid "Edit media object"
 msgstr "Upravit mediální objekt"
 
-#: ../gramps/gui/editors/objectentries.py:374
+#: ../gramps/gui/editors/objectentries.py:382
 #: ../gramps/gui/plug/_guioptions.py:1047
 msgid "Select an existing media object"
 msgstr "Vybrat existující mediální objekt"
 
-#: ../gramps/gui/editors/objectentries.py:375
+#: ../gramps/gui/editors/objectentries.py:383
 #: ../gramps/plugins/view/mediaview.py:120
 msgid "Add a new media object"
 msgstr "Přidat nový mediální objekt"
 
-#: ../gramps/gui/editors/objectentries.py:376
+#: ../gramps/gui/editors/objectentries.py:384
 msgid "Remove media object"
 msgstr "Odstranit mediální objekt"
 
-#: ../gramps/gui/editors/objectentries.py:424
+#: ../gramps/gui/editors/objectentries.py:432
 msgid "To select a note, use drag-and-drop or use the buttons"
 msgstr "Pro výběr poznámky použijte drag-and-drop nebo tlačítka"
 
-#: ../gramps/gui/editors/objectentries.py:426
+#: ../gramps/gui/editors/objectentries.py:434
 #: ../gramps/gui/plug/_guioptions.py:968
 msgid "No note given, click button to select one"
 msgstr "Nebylo zvolena žádná poznámka. Pro volbu klikněte na tlačítko"
 
-#: ../gramps/gui/editors/objectentries.py:428
+#: ../gramps/gui/editors/objectentries.py:436
 #: ../gramps/gui/plug/_guioptions.py:943
 msgid "Select an existing note"
 msgstr "Vybrat existující poznámku"
 
-#: ../gramps/gui/editors/objectentries.py:429
+#: ../gramps/gui/editors/objectentries.py:437
 #: ../gramps/plugins/view/noteview.py:93
 msgid "Add a new note"
 msgstr "Přidat novou poznámku"
 
-#: ../gramps/gui/editors/objectentries.py:430
+#: ../gramps/gui/editors/objectentries.py:438
 msgid "Remove note"
 msgstr "Odstranit poznámku"
 
@@ -12807,7 +12811,7 @@ msgstr "Soukromí"
 #: ../gramps/gui/glade/editmedia.glade:254
 #: ../gramps/gui/glade/editmediaref.glade:645
 #: ../gramps/gui/glade/editname.glade:633
-#: ../gramps/gui/glade/editplaceref.glade:133
+#: ../gramps/gui/glade/editplaceref.glade:135
 msgid "Invoke date editor"
 msgstr "Spustit editor data"
 
@@ -13035,7 +13039,7 @@ msgid "_Event type:"
 msgstr "Typ události:"
 
 #: ../gramps/gui/glade/editevent.glade:144
-#: ../gramps/gui/glade/editplaceref.glade:146
+#: ../gramps/gui/glade/editplaceref.glade:142
 msgid "Show Date Editor"
 msgstr "Zobrazit editor data"
 
@@ -13197,7 +13201,7 @@ msgstr "Upravit seznam štítků"
 #: ../gramps/gui/glade/editperson.glade:790
 #: ../gramps/gui/selectors/selectnote.py:68
 #: ../gramps/plugins/lib/libpersonview.py:110
-#: ../gramps/plugins/lib/libplaceview.py:98
+#: ../gramps/plugins/lib/libplaceview.py:99
 #: ../gramps/plugins/tool/notrelated.py:127
 #: ../gramps/plugins/view/citationlistview.py:103
 #: ../gramps/plugins/view/citationtreeview.py:98
@@ -13761,11 +13765,7 @@ msgstr "Název tohoto místa."
 msgid "What type of place this is. Eg 'Country', 'City', ... ."
 msgstr "O jaký druh místa se jedná. Např. 'stát'. 'město', ... ."
 
-#: ../gramps/gui/glade/editplaceref.glade:115
-msgid "..."
-msgstr "..."
-
-#: ../gramps/gui/glade/editplaceref.glade:182
+#: ../gramps/gui/glade/editplaceref.glade:184
 msgid "Date range for which the link is valid."
 msgstr "Rozsah data pro který je odlaz platný."
 
@@ -14333,18 +14333,6 @@ msgstr "Odstranit vybraný filtr"
 msgid "Note: changes take effect only after this window is closed"
 msgstr "Upozornění: ke změnám dojde až po zavření tohoto okna"
 
-#: ../gramps/gui/glade/rule.glade:287 gtklist.h:6
-msgid "All rules must apply"
-msgstr "Musí platit všechna pravidla"
-
-#: ../gramps/gui/glade/rule.glade:290 gtklist.h:7
-msgid "At least one rule must apply"
-msgstr "Musí platit alespoň jedno pravidlo"
-
-#: ../gramps/gui/glade/rule.glade:293 gtklist.h:8
-msgid "Exactly one rule must apply"
-msgstr "Musí platit právě jedno pravidlo"
-
 #: ../gramps/gui/glade/rule.glade:436
 msgid "Add another rule to the filter"
 msgstr "Přidat další pravidlo k filtru"
@@ -14576,7 +14564,7 @@ msgstr "_Zrušit výběr"
 
 #: ../gramps/gui/grampsgui.py:59
 msgid ""
-"Your version of gi (gnome-instrospection) seems to be too old. You need a "
+"Your version of gi (gnome-introspection) seems to be too old. You need a "
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
 "Vaše verze gi (gnome-instrospection) je zřejmě příliš zastaralá. Pro "
@@ -14601,13 +14589,13 @@ msgstr ""
 msgid ""
 "Gdk, Gtk, Pango or PangoCairo typelib not installed.\n"
 "Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
-"Install then instrospection data for Gdk, Gtk, Pango and PangoCairo\n"
+"Then install introspection data for Gdk, Gtk, Pango and PangoCairo\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
 "Knihovna Gdk, Gtk nebo PangoCairo typelib není  nainstalována.\n"
 "Instalujte prosím Gnome Introspection a pygobject verze 3.3.2 nebo novější.\n"
-"Instalujte data pro Introspection pro Gdk,Gtk a Pango\n"
+"Instalujte data pro Introspection pro Gdk, Gtk, Pango a PangoCairo\n"
 "\n"
 "Gramps bude nyní ukončeno."
 
@@ -15867,12 +15855,12 @@ msgstr "Webový obsah"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:194
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:201
 #: ../gramps/plugins/lib/libpersonview.py:347
-#: ../gramps/plugins/lib/libplaceview.py:158
+#: ../gramps/plugins/lib/libplaceview.py:159
 #: ../gramps/plugins/view/citationlistview.py:182
 #: ../gramps/plugins/view/citationtreeview.py:290
 #: ../gramps/plugins/view/eventview.py:214
 #: ../gramps/plugins/view/familyview.py:209
-#: ../gramps/plugins/view/mediaview.py:230
+#: ../gramps/plugins/view/mediaview.py:233
 #: ../gramps/plugins/view/noteview.py:201
 #: ../gramps/plugins/view/repoview.py:153
 #: ../gramps/plugins/view/sourceview.py:138
@@ -16066,7 +16054,7 @@ msgstr "Styl"
 #: ../gramps/plugins/drawreport/timeline.py:402
 #: ../gramps/plugins/graph/gvrelgraph.py:522
 #: ../gramps/plugins/textreport/alphabeticalindex.py:88
-#: ../gramps/plugins/textreport/ancestorreport.py:262
+#: ../gramps/plugins/textreport/ancestorreport.py:263
 #: ../gramps/plugins/textreport/birthdayreport.py:407
 #: ../gramps/plugins/textreport/descendreport.py:395
 #: ../gramps/plugins/textreport/detancestralreport.py:713
@@ -16154,8 +16142,7 @@ msgstr "Sestavu nelze vytvořit"
 #: ../gramps/gui/plug/report/_stylecombobox.py:87
 #: ../gramps/gui/plug/report/_styleeditor.py:114
 #: ../gramps/gui/plug/report/_styleeditor.py:156
-#: ../gramps/gui/plug/report/_styleeditor.py:167
-#: ../gramps/plugins/importer/importgedcom.glade:11 gtklist.h:1
+#: ../gramps/gui/plug/report/_styleeditor.py:167 gtklist.h:1
 msgid "default"
 msgstr "výchozí"
 
@@ -17522,7 +17509,7 @@ msgstr "Nastavení stromu"
 #: ../gramps/plugins/drawreport/fanchart.py:648
 #: ../gramps/plugins/graph/gvhourglass.py:267
 #: ../gramps/plugins/graph/gvrelgraph.py:532
-#: ../gramps/plugins/textreport/ancestorreport.py:264
+#: ../gramps/plugins/textreport/ancestorreport.py:265
 #: ../gramps/plugins/textreport/birthdayreport.py:419
 #: ../gramps/plugins/textreport/descendreport.py:397
 #: ../gramps/plugins/textreport/detancestralreport.py:716
@@ -17540,7 +17527,7 @@ msgstr "Ústřední osoba stromu"
 #: ../gramps/plugins/drawreport/ancestortree.py:894
 #: ../gramps/plugins/drawreport/descendtree.py:1507
 #: ../gramps/plugins/drawreport/fanchart.py:652
-#: ../gramps/plugins/textreport/ancestorreport.py:270
+#: ../gramps/plugins/textreport/ancestorreport.py:271
 #: ../gramps/plugins/textreport/descendreport.py:411
 #: ../gramps/plugins/textreport/detancestralreport.py:722
 #: ../gramps/plugins/textreport/detdescendantreport.py:896
@@ -17846,7 +17833,7 @@ msgstr " generací prázdných rámečků neznámých předků"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1100
 #: ../gramps/plugins/drawreport/descendtree.py:1720
-#: ../gramps/plugins/textreport/ancestorreport.py:349
+#: ../gramps/plugins/textreport/ancestorreport.py:350
 #: ../gramps/plugins/textreport/detancestralreport.py:878
 #: ../gramps/plugins/textreport/detdescendantreport.py:1074
 #: ../gramps/plugins/textreport/endoflinereport.py:292
@@ -17981,7 +17968,7 @@ msgstr "Vyberte filtr pro omezení osob, které se objeví v kalendáři"
 #: ../gramps/plugins/drawreport/calendarreport.py:475
 #: ../gramps/plugins/drawreport/fanchart.py:649
 #: ../gramps/plugins/graph/gvrelgraph.py:533
-#: ../gramps/plugins/textreport/ancestorreport.py:265
+#: ../gramps/plugins/textreport/ancestorreport.py:266
 #: ../gramps/plugins/textreport/birthdayreport.py:420
 #: ../gramps/plugins/textreport/descendreport.py:398
 #: ../gramps/plugins/textreport/detancestralreport.py:717
@@ -18425,7 +18412,7 @@ msgstr ""
 "osobu %(person)s"
 
 #: ../gramps/plugins/drawreport/fanchart.py:653
-#: ../gramps/plugins/textreport/ancestorreport.py:271
+#: ../gramps/plugins/textreport/ancestorreport.py:272
 #: ../gramps/plugins/textreport/descendreport.py:412
 #: ../gramps/plugins/textreport/detancestralreport.py:723
 #: ../gramps/plugins/textreport/detdescendantreport.py:898
@@ -18504,9 +18491,8 @@ msgid "The basic style used for the default text display."
 msgstr "Základní styl používaný pro výchozí zobrazení textu."
 
 #: ../gramps/plugins/drawreport/fanchart.py:734
-#, python-format
-msgid "The style used for the text display of generation %d"
-msgstr "Styl používaný pro textové zobrazení generace %d"
+msgid "The style used for the text display of generation "
+msgstr "Styl používaný pro textové zobrazení generace"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:300
 msgid "Item count"
@@ -18775,7 +18761,7 @@ msgstr "Styl používaný pro položky a hodnoty."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1062
 #: ../gramps/plugins/drawreport/timeline.py:477
-#: ../gramps/plugins/textreport/ancestorreport.py:326
+#: ../gramps/plugins/textreport/ancestorreport.py:327
 #: ../gramps/plugins/textreport/descendreport.py:442
 #: ../gramps/plugins/textreport/detancestralreport.py:832
 #: ../gramps/plugins/textreport/detdescendantreport.py:1028
@@ -20427,7 +20413,7 @@ msgid "%(date)s."
 msgstr "%(date)s."
 
 #: ../gramps/plugins/gramplet/placedetails.py:116
-#: ../gramps/plugins/lib/libplaceview.py:95
+#: ../gramps/plugins/lib/libplaceview.py:96
 #: ../gramps/plugins/view/placetreeview.py:72
 #: ../gramps/plugins/webreport/narrativeweb.py:380
 #: ../gramps/plugins/webreport/narrativeweb.py:3368
@@ -20435,7 +20421,7 @@ msgid "Latitude"
 msgstr "Zeměpisná šířka"
 
 #: ../gramps/plugins/gramplet/placedetails.py:118
-#: ../gramps/plugins/lib/libplaceview.py:96
+#: ../gramps/plugins/lib/libplaceview.py:97
 #: ../gramps/plugins/view/placetreeview.py:73
 #: ../gramps/plugins/webreport/narrativeweb.py:382
 #: ../gramps/plugins/webreport/narrativeweb.py:3369
@@ -21613,22 +21599,6 @@ msgstr[0] "Import dokončen: {number_of} sekunda"
 msgstr[1] "Import dokončen: {number_of} sekundy"
 msgstr[2] "Import dokončen: {number_of} sekund"
 
-#: ../gramps/plugins/importer/importgedcom.glade:14 gtklist.h:2
-msgid "ANSEL"
-msgstr "ANSEL"
-
-#: ../gramps/plugins/importer/importgedcom.glade:17 gtklist.h:3
-msgid "ANSI (iso-8859-1)"
-msgstr "ANSI (iso-8859-1)"
-
-#: ../gramps/plugins/importer/importgedcom.glade:20 gtklist.h:4
-msgid "ASCII"
-msgstr "ASCII"
-
-#: ../gramps/plugins/importer/importgedcom.glade:23 gtklist.h:5
-msgid "UTF8"
-msgstr "UTF8"
-
 #: ../gramps/plugins/importer/importgedcom.glade:31
 msgid "Gramps - GEDCOM Encoding"
 msgstr "Gramps - kódování GEDCOM"
@@ -22272,9 +22242,12 @@ msgstr "Německo"
 msgid "Japan"
 msgstr "Japonsko"
 
+#. Make upper case of translaed country so string search works later
 #: ../gramps/plugins/lib/holidays.xml.in.h:12
-msgid "Sweden - Holidays"
-msgstr "Švédsko - svátky"
+#: ../gramps/plugins/mapservices/eniroswedenmap.py:46
+#: ../gramps/plugins/tool/extractcity.py:65
+msgid "Sweden"
+msgstr "Švédsko"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:13
 #: ../gramps/plugins/tool/extractcity.py:65
@@ -22620,7 +22593,7 @@ msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (archiv) Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:6749
-msgid "Head (header)"
+msgid "HEAD (header)"
 msgstr "Hlavička"
 
 #: ../gramps/plugins/lib/libgedcom.py:6766
@@ -26035,7 +26008,7 @@ msgid "Number of To Do Notes"
 msgstr "Počet úkolů"
 
 #: ../gramps/plugins/lib/libpersonview.py:111
-#: ../gramps/plugins/lib/libplaceview.py:99
+#: ../gramps/plugins/lib/libplaceview.py:100
 #: ../gramps/plugins/view/citationlistview.py:104
 #: ../gramps/plugins/view/citationtreeview.py:99
 #: ../gramps/plugins/view/eventview.py:89
@@ -26097,29 +26070,29 @@ msgstr ""
 "osobu lze vybrat stiskem klávesy Ctrl a současným kliknutím myší na "
 "požadovanou osobu."
 
-#: ../gramps/plugins/lib/libplaceview.py:94
+#: ../gramps/plugins/lib/libplaceview.py:95
 #: ../gramps/plugins/view/placetreeview.py:71
 msgid "Code"
 msgstr "Kód"
 
-#: ../gramps/plugins/lib/libplaceview.py:109
+#: ../gramps/plugins/lib/libplaceview.py:110
 msgid "Edit the selected place"
 msgstr "Upravit zvolené místo"
 
-#: ../gramps/plugins/lib/libplaceview.py:110
+#: ../gramps/plugins/lib/libplaceview.py:111
 msgid "Delete the selected place"
 msgstr "Odstranit zvolené místo"
 
-#: ../gramps/plugins/lib/libplaceview.py:111
+#: ../gramps/plugins/lib/libplaceview.py:112
 msgid "Merge the selected places"
 msgstr "Odstranit zvolená místa"
 
-#: ../gramps/plugins/lib/libplaceview.py:146
+#: ../gramps/plugins/lib/libplaceview.py:147
 msgid "Loading..."
 msgstr "Nahrává se..."
 
-#: ../gramps/plugins/lib/libplaceview.py:147
-#: ../gramps/plugins/lib/libplaceview.py:204
+#: ../gramps/plugins/lib/libplaceview.py:148
+#: ../gramps/plugins/lib/libplaceview.py:205
 msgid ""
 "Attempt to see selected locations with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
@@ -26127,16 +26100,16 @@ msgstr ""
 "Zobrazení vybraných lokací prostřednictvím mapové služby (OpenStreetMap, "
 "Mapy Goole, ...)"
 
-#: ../gramps/plugins/lib/libplaceview.py:150
-#: ../gramps/plugins/lib/libplaceview.py:202
+#: ../gramps/plugins/lib/libplaceview.py:151
+#: ../gramps/plugins/lib/libplaceview.py:203
 msgid "Select a Map Service"
 msgstr "Vybrat mapovou službu"
 
-#: ../gramps/plugins/lib/libplaceview.py:152
+#: ../gramps/plugins/lib/libplaceview.py:153
 msgid "_Look up with Map Service"
 msgstr "H_ledat pomocí mapové služby"
 
-#: ../gramps/plugins/lib/libplaceview.py:154
+#: ../gramps/plugins/lib/libplaceview.py:155
 msgid ""
 "Attempt to see this location with a Map Service (OpenstreetMap, Google "
 "Maps, ...)"
@@ -26144,23 +26117,23 @@ msgstr ""
 "Zobrazení této lokace prostřednictvím mapové služby (OpenStreetMap, Mapy "
 "Goole, ...)"
 
-#: ../gramps/plugins/lib/libplaceview.py:156
+#: ../gramps/plugins/lib/libplaceview.py:157
 msgid "Place Filter Editor"
 msgstr "Editor filtrů míst"
 
-#: ../gramps/plugins/lib/libplaceview.py:264
+#: ../gramps/plugins/lib/libplaceview.py:265
 msgid "No map service is available."
 msgstr "Žádná mapová služba není k dispozici."
 
-#: ../gramps/plugins/lib/libplaceview.py:265
+#: ../gramps/plugins/lib/libplaceview.py:266
 msgid "Check your installation."
 msgstr "Zkontrolujte svoji instalaci."
 
-#: ../gramps/plugins/lib/libplaceview.py:273
+#: ../gramps/plugins/lib/libplaceview.py:274
 msgid "No place selected."
 msgstr "Nebylo vybráno žádné místo."
 
-#: ../gramps/plugins/lib/libplaceview.py:274
+#: ../gramps/plugins/lib/libplaceview.py:275
 msgid ""
 "You need to select a place to be able to view it on a map. Some Map Services "
 "might support multiple selections."
@@ -26168,11 +26141,11 @@ msgstr ""
 "Musíte vybrat místo, které chcete vidět na mapě. Některé mapové služby mohou "
 "podporovat výběr více míst současně."
 
-#: ../gramps/plugins/lib/libplaceview.py:368
+#: ../gramps/plugins/lib/libplaceview.py:369
 msgid "Cannot delete place."
 msgstr "Místo nelze odstranit."
 
-#: ../gramps/plugins/lib/libplaceview.py:369
+#: ../gramps/plugins/lib/libplaceview.py:370
 msgid ""
 "This place is currently referenced by another place. First remove the places "
 "it contains."
@@ -26180,11 +26153,12 @@ msgstr ""
 "Toto místo je v aktuálně odkazované z jiného místa. Neprve musíte odstranit "
 "místa, která obsahuje."
 
-#: ../gramps/plugins/lib/libplaceview.py:410
+#: ../gramps/plugins/lib/libplaceview.py:411
+#: ../gramps/plugins/lib/libplaceview.py:419
 msgid "Cannot merge places."
 msgstr "Místa nelze sloučit."
 
-#: ../gramps/plugins/lib/libplaceview.py:411
+#: ../gramps/plugins/lib/libplaceview.py:412
 msgid ""
 "Exactly two places must be selected to perform a merge. A second place can "
 "be selected by holding down the control key while clicking on the desired "
@@ -26193,6 +26167,10 @@ msgstr ""
 "Aby mohlo být provedeno sloučení, musí být vybrána právě dvě místa. Druhé "
 "místo lze vybrat současným držením klávesy Ctrl a kliknutím myší na "
 "požadované místo."
+
+#: ../gramps/plugins/lib/libplaceview.py:420
+msgid "Merging these places would create a cycle in the place hierarchy."
+msgstr "Sloučení těchto míst vytvoří zacyklení v hierarchii míst."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:30
 msgid "Provides a library for using Cairo to generate documents."
@@ -26493,12 +26471,6 @@ msgstr "Zelené hodnoty v řádku odpovídají hodnotám aktuálního místa."
 #: ../gramps/plugins/lib/maps/placeselection.py:202
 msgid "New place with empty fields"
 msgstr "Nové místo s prázdnými poli"
-
-#. Make upper case of translaed country so string search works later
-#: ../gramps/plugins/mapservices/eniroswedenmap.py:46
-#: ../gramps/plugins/tool/extractcity.py:65
-msgid "Sweden"
-msgstr "Švédsko"
 
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:52
 msgid "Denmark"
@@ -27427,23 +27399,23 @@ msgstr "Styl používaný pro položky rejstříku."
 msgid "Ahnentafel Report for %s"
 msgstr "%s - rodokmen předků"
 
-#: ../gramps/plugins/textreport/ancestorreport.py:274
+#: ../gramps/plugins/textreport/ancestorreport.py:275
 #: ../gramps/plugins/textreport/detancestralreport.py:726
 #: ../gramps/plugins/textreport/detdescendantreport.py:902
 msgid "Page break between generations"
 msgstr "Stránkový zlom mezi generacemi"
 
-#: ../gramps/plugins/textreport/ancestorreport.py:276
+#: ../gramps/plugins/textreport/ancestorreport.py:277
 #: ../gramps/plugins/textreport/detancestralreport.py:728
 #: ../gramps/plugins/textreport/detdescendantreport.py:904
 msgid "Whether to start a new page after each generation."
 msgstr "Zda po každé generaci začít na nové stránce."
 
-#: ../gramps/plugins/textreport/ancestorreport.py:279
+#: ../gramps/plugins/textreport/ancestorreport.py:280
 msgid "Add linebreak after each name"
 msgstr "Vložit ukončení řádku za každé jméno"
 
-#: ../gramps/plugins/textreport/ancestorreport.py:280
+#: ../gramps/plugins/textreport/ancestorreport.py:281
 msgid "Indicates if a line break should follow the name."
 msgstr "Indikuje zda za jménem následuje řádkový zlom."
 
@@ -29841,8 +29813,8 @@ msgid "Ignore Date and Confidence"
 msgstr "Ignorovat datum a důvěrnost"
 
 #: ../gramps/plugins/tool/mergecitations.py:85
-msgid "manual|Merge citations..."
-msgstr "Sloučit citace..."
+msgid "manual|Merge_citations..."
+msgstr "Sloučit_citace..."
 
 #: ../gramps/plugins/tool/mergecitations.py:133
 msgid ""
@@ -31506,23 +31478,23 @@ msgstr "Odstranit vybraný mediální objekt"
 msgid "Merge the selected media objects"
 msgstr "Odstranit zvolené objekty médií"
 
-#: ../gramps/plugins/view/mediaview.py:220
+#: ../gramps/plugins/view/mediaview.py:223
 msgid "Media Filter Editor"
 msgstr "Editor filtrů médií"
 
-#: ../gramps/plugins/view/mediaview.py:223
+#: ../gramps/plugins/view/mediaview.py:226
 msgid "View in the default viewer"
 msgstr "Zobrazit výchozím prohlížečem"
 
-#: ../gramps/plugins/view/mediaview.py:227
+#: ../gramps/plugins/view/mediaview.py:230
 msgid "Open the folder containing the media file"
 msgstr "Otevřít složku obsahující soubor média"
 
-#: ../gramps/plugins/view/mediaview.py:361
+#: ../gramps/plugins/view/mediaview.py:364
 msgid "Cannot merge media objects."
 msgstr "Objekty médií nelze uložit."
 
-#: ../gramps/plugins/view/mediaview.py:362
+#: ../gramps/plugins/view/mediaview.py:365
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -33458,6 +33430,43 @@ msgstr "Nebraska"
 msgid "No style sheet"
 msgstr "Žádná šablona"
 
+#: gtklist.h:2
+msgid "ANSEL"
+msgstr "ANSEL"
+
+#: gtklist.h:3
+msgid "ANSI (iso-8859-1)"
+msgstr "ANSI (iso-8859-1)"
+
+#: gtklist.h:4
+msgid "ASCII"
+msgstr "ASCII"
+
+#: gtklist.h:5
+msgid "UTF8"
+msgstr "UTF8"
+
+#: gtklist.h:6
+msgid "All rules must apply"
+msgstr "Musí platit všechna pravidla"
+
+#: gtklist.h:7
+msgid "At least one rule must apply"
+msgstr "Musí platit alespoň jedno pravidlo"
+
+#: gtklist.h:8
+msgid "Exactly one rule must apply"
+msgstr "Musí platit právě jedno pravidlo"
+
+#~ msgid "Top level place"
+#~ msgstr "Kořenové místo"
+
+#~ msgid "..."
+#~ msgstr "..."
+
+#~ msgid "Sweden - Holidays"
+#~ msgstr "Švédsko - svátky"
+
 #~ msgid "%d year"
 #~ msgid_plural "%d years"
 #~ msgstr[0] "%d rok"
@@ -34330,9 +34339,6 @@ msgstr "Žádná šablona"
 
 #~ msgid "Cannot save citation. No source selected."
 #~ msgstr "Citaci nelze uložit. Nebyl vybrán pramen."
-
-#~ msgid "Please select a source or cancel the edit."
-#~ msgstr "Musíte vybrat pramen, nebo zrušit operaci"
 
 #~ msgid "To select a source, use drag-and-drop or use the buttons"
 #~ msgstr "Pro výběr pramene použijte drag-and-drop nebo tlačítka"
