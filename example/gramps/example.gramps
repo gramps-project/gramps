@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.6.0/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.6.0/">
   <header>
-    <created date="2014-07-14" version="4.1.0"/>
+    <created date="2014-08-06" version="4.1.0"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
@@ -17892,6 +17892,10 @@
       <type>Birth</type>
       <dateval val="0203" cformat="Islamic"/>
     </event>
+    <event handle="_cccc047c40841a5993c" change="1407353879" id="E3414">
+      <type>Death</type>
+      <dateval val="1850" type="about" quality="estimated"/>
+    </event>
   </events>
   <people home="_GNUJQCL9MD64AM56OH">
     <person handle="_004KQCGYT27EEPQHK" change="1185438865" id="I0552">
@@ -20494,11 +20498,15 @@
       <parentin hlink="_HCDKQCO86IZDWE7E7C"/>
       <citationref hlink="_c140d24bbb52d0cb605"/>
     </person>
-    <person handle="_46WJQCIOLQ0KOX2XCC" change="1185438865" id="I0107">
+    <person handle="_46WJQCIOLQ0KOX2XCC" change="1407352752" id="I0107">
       <gender>F</gender>
       <name type="Birth Name">
         <first>Phoebe Emily</first>
         <surname>Zieliński</surname>
+      </name>
+      <name alt="1" type="Married Name">
+        <first>Phoebe Emily</first>
+        <surname>Garner</surname>
       </name>
       <eventref hlink="_a5af0eb76bf19f7e28b" role="Primary"/>
       <eventref hlink="_a5af0eb76ce7f2b0e95" role="Primary"/>
@@ -40209,6 +40217,14 @@
       </name>
       <eventref hlink="_cc82060500222649d98" role="Primary"/>
       <childof hlink="_cc82060505948b9e57f"/>
+    </person>
+    <person handle="_cccbffffd3e69819cd8" change="1407353883" id="I2116">
+      <gender>M</gender>
+      <name type="Birth Name">
+        <first>Foon</first>
+        <surname>บุญ</surname>
+      </name>
+      <eventref hlink="_cccc047c40841a5993c" role="Primary"/>
     </person>
   </people>
   <families>
