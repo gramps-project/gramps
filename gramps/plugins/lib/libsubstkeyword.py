@@ -149,11 +149,18 @@ class NameFormat(GenericFormat):
     otherwise, parse through a format string and put the name parts in
     """
 
-    def get_name(self, person):
+    def get_name(self, person, aka):
         """ A helper method for retrieving the person's name """
+        name = None
         if person:
-            return person.get_primary_name()
-        return None
+            if aka is None:
+                name = person.get_primary_name()
+            else:
+                for names in person.get_alternate_names():
+                    if names.get_type() == aka:
+                        name = names
+                        break
+        return name
 
     def _default_format(self, name):
         """ display the name as set in preferences """
@@ -162,7 +169,7 @@ class NameFormat(GenericFormat):
     def parse_format(self, name):
         """ Parse the name """
         if self.is_blank(name):
-            return 
+            return
 
         def common():
             """ return the common name of the person """
@@ -324,7 +331,7 @@ class PlaceFormat(GenericFormat):
 
         code = "elcuspn" + "oitxy"
         upper = code.upper()
-        
+
         main_loc = get_main_location(database, place)
         location = Location()
         location.set_street(main_loc.get(PlaceType.STREET, ''))
@@ -860,9 +867,9 @@ class VariableParse(object):
             return
         return place_f.parse_format(self.database, place)
 
-    def __parse_name(self, person):
+    def __parse_name(self, person, attrib_parse):
         name_format = NameFormat(self._in, self._locale)
-        name = name_format.get_name(person)
+        name = name_format.get_name(person, attrib_parse.get_name())
         return name_format.parse_format(name)
 
     def __parse_id(self, first_class_object):
@@ -912,10 +919,10 @@ class VariableParse(object):
 
         if next_char == "n":
             #Person's name
-            return self.__parse_name(self.friend.person)
+            return self.__parse_name(self.friend.person, attrib_parse)
         elif next_char == "s":
             #Souses name
-            return self.__parse_name(self.friend.spouse)
+            return self.__parse_name(self.friend.spouse, attrib_parse)
 
         elif next_char == "i":
             #Person's Id
