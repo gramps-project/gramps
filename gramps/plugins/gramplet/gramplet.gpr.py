@@ -277,6 +277,7 @@ register(GRAMPLET,
          gramplet_title=_("gramplet|To Do"),
          version="1.0.0",
          gramps_target_version=MODULE_VERSION,
+         navtypes=["Dashboard"],
          )
 
 register(GRAMPLET, 

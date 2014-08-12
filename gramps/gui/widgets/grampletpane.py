@@ -1429,7 +1429,8 @@ class GrampletPane(Gtk.ScrolledWindow):
                 qr_menu = ag_menu.get_submenu()
                 qr_menu = Gtk.Menu()
                 names = [gplug.name for gplug in PLUGMAN.get_reg_gramplets()
-                         if gplug.navtypes == []]
+                         if gplug.navtypes == []
+                            or 'Dashboard' in gplug.navtypes]
                 names.sort()
                 for name in names:
                     add_menuitem(qr_menu, name, None,
