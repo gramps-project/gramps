@@ -229,7 +229,7 @@ class IntroductionPage(Gtk.VBox):
                  "the media object file: its filename and/or path, its "
                  "description, its ID, notes, source references, etc. "
                  "These data "
-                 "%(bold_start)do not include the file itself%(bold_end)s.\n\n"
+                 "%(bold_start)sdo not include the file itself%(bold_end)s.\n\n"
                  "The files containing image, sound, video, etc, exist "
                  "separately on your hard drive. These files are "
                  "not managed by Gramps and are not included in the Gramps "
