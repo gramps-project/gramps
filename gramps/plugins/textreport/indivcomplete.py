@@ -563,10 +563,12 @@ class IndivCompleteReport(Report):
         self.doc.start_row()
 
         self.doc.start_cell('IDS-NormalCell')
-        self.normal_paragraph("%s:" % self._("Name"))
-        self.normal_paragraph("%s:" % self._("Gender"))
-        self.normal_paragraph("%s:" % self._("Father"))
-        self.normal_paragraph("%s:" % self._("Mother"))
+        # translators: needed for French, ignore otherwise
+        ignore4 = self._("%s:")
+        self.normal_paragraph(self._("%s:") % self._("Name"))
+        self.normal_paragraph(self._("%s:") % self._("Gender"))
+        self.normal_paragraph(self._("%s:") % self._("Father"))
+        self.normal_paragraph(self._("%s:") % self._("Mother"))
         self.doc.end_cell()
 
         self.doc.start_cell('IDS-NormalCell')
@@ -594,7 +596,10 @@ class IndivCompleteReport(Report):
                                               crop=media0.get_rectangle())
                 else:
                     self._user.warn(_("Could not add photo to page"),
-                          "%s: %s" % (filename, _('File does not exist')))
+                                    # translators: for French, else ignore
+                                    _("%(str1)s: %(str2)s") %
+                                         {'str1' : filename,
+                                          'str2' : _('File does not exist') } )
         self.doc.end_cell()
 
         self.doc.end_row()
