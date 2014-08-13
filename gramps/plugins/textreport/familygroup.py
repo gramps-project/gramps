@@ -121,10 +121,10 @@ class FamilyGroup(Report):
                         # translators: needed for Arabic, ignore otherwise
                         descr += self._("; ")
                     attr_type = self._get_type(attr.get_type())
-                    descr += "%(type)s: %(value)s" % {
-                                    'type'  : self._(attr_type),
-                                    'value' : attr.get_value()
-                                    }            
+                    # translators: needed for French, ignore otherwise
+                    descr += self._("%(str1)s: %(str2)s") % {
+                                          'str1' : self._(attr_type),
+                                          'str2' : attr.get_value() }
 
         self.doc.start_row()
         self.doc.start_cell("FGR-TextContents")

@@ -414,7 +414,8 @@ class ArgHandler(object):
                 print(_("Family Tree \"%s\":") % summary[_("Family Tree")])
                 for item in sorted(summary):
                     if item != "Family Tree":
-                        print("   %s: %s" % (item, summary[item]))
+                        # translators: needed for French, ignore otherwise
+                        print(_("   %s: %s") % (item, summary[item]))
             sys.exit(0)
            
         if self.list_table:
