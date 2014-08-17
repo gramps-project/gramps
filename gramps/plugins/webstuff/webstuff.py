@@ -112,7 +112,7 @@ def load_on_reg(dbstate, uistate, plugin):
          path_css("narrative-maps.css"),      None, [], [] ],
 
         # default style sheet in the options
-        ["default",       0, _("Basic-Ash"),
+        ["default",       1, _("Basic-Ash"),
          path_css('Web_Basic-Ash.css'),     None, [], [] ],
 
         # default printer style sheet
