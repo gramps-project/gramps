@@ -54,7 +54,7 @@ from gramps.gen.utils.file import (media_path_full, find_file, create_checksum)
 from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 from ..glade import Glade
-from .displaytabs import (CitationEmbedList, AttrEmbedList, MediaBackRefList, 
+from .displaytabs import (CitationEmbedList, MediaAttrEmbedList, MediaBackRefList,
                          NoteTab)
 from ..widgets import (MonitoredSpinButton, MonitoredEntry, PrivacyButton,
                        MonitoredDate, MonitoredTagList, SelectionWidget, Region)
@@ -459,7 +459,7 @@ class EditMediaRef(EditReference):
         self._add_tab(notebook_ref, self.srcref_list)
         self.track_ref_for_deletion("srcref_list")
 
-        self.attr_list = AttrEmbedList(self.dbstate,self.uistate,self.track,
+        self.attr_list = MediaAttrEmbedList(self.dbstate,self.uistate,self.track,
                                        self.source_ref.get_attribute_list())
         self._add_tab(notebook_ref, self.attr_list)
         self.track_ref_for_deletion("attr_list")
@@ -484,7 +484,7 @@ class EditMediaRef(EditReference):
         self._add_tab(notebook_src, self.src_srcref_list)
         self.track_ref_for_deletion("src_srcref_list")
 
-        self.src_attr_list = AttrEmbedList(self.dbstate,self.uistate,self.track,
+        self.src_attr_list = MediaAttrEmbedList(self.dbstate,self.uistate,self.track,
                                            self.source.get_attribute_list())
         self._add_tab(notebook_src, self.src_attr_list)
         self.track_ref_for_deletion("src_attr_list")
