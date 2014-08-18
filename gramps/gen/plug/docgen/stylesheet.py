@@ -6,6 +6,7 @@
 # Copyright (C) 2007       Brian G. Matherly
 # Copyright (C) 2009       Benny Malengier
 # Copyright (C) 2009       Gary Burton
+# Copyright (C) 2014       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -155,52 +156,78 @@ class StyleSheetList(object):
                 continue
             sheet = self.map[name]
             xml_file.write('<sheet name="%s">\n' % escxml(name))
-            for p_name in sheet.get_paragraph_style_names():
-                # Get variables for substitutions
-                para = sheet.get_paragraph_style(p_name)
-                font = para.get_font()
-                rmargin = float(para.get_right_margin())
-                lmargin = float(para.get_left_margin())
-                findent = float(para.get_first_indent())
-                tmargin = float(para.get_top_margin())
-                bmargin = float(para.get_bottom_margin())
-                padding = float(para.get_padding())
-                bg_color = para.get_background_color()
 
-                # Write out style definition
-                xml_file.write(
-                    '<style name="%s">\n' % escxml(p_name) +
-                        '<font face="%d" ' % font.get_type_face() +
-                            'size="%d" ' % font.get_size() +
-                            'italic="%d" ' % font.get_italic() +
-                            'bold="%d" ' % font.get_bold() +
-                            'underline="%d" ' % font.get_underline() +
-                            'color="#%02x%02x%02x" ' % font.get_color() +
-                            '/>\n' +
-                        '<para ' +
-                            'description="%s" ' % 
-                                           escxml(para.get_description()) +
-                            'rmargin="%.3f" ' % rmargin +
-                            'lmargin="%.3f" ' % lmargin +
-                            'first="%.3f" ' % findent +
-                            'tmargin="%.3f" ' % tmargin +
-                            'bmargin="%.3f" ' % bmargin +
-                            'pad="%.3f" ' % padding +
-            
-                            'bgcolor="#%02x%02x%02x" ' % bg_color +
-                            'level="%d" ' % para.get_header_level() +
-                            'align="%d" ' % para.get_alignment() +
-                            'tborder="%d" ' % para.get_top_border() +
-                            'lborder="%d" ' % para.get_left_border() +
-                            'rborder="%d" ' % para.get_right_border() +
-                            'bborder="%d" ' % para.get_bottom_border() +
-                            '/>\n' +
-                    '</style>\n'
-                )
+            for p_name in sheet.get_paragraph_style_names():
+                self.write_paragraph_style(xml_file, sheet, p_name)
+
+            for t_name in sheet.get_table_style_names():
+                self.write_table_style(xml_file, sheet, t_name)
+
             xml_file.write('</sheet>\n')
         xml_file.write('</stylelist>\n')
         xml_file.close()
+
+    def write_paragraph_style(self, xml_file, sheet, p_name):
+
+        para = sheet.get_paragraph_style(p_name)
+
+        # Get variables for substitutions
+        font = para.get_font()
+        rmargin = float(para.get_right_margin())
+        lmargin = float(para.get_left_margin())
+        findent = float(para.get_first_indent())
+        tmargin = float(para.get_top_margin())
+        bmargin = float(para.get_bottom_margin())
+        padding = float(para.get_padding())
+        bg_color = para.get_background_color()
+
+        # Write out style definition
+        xml_file.write(
+            '<style name="%s">\n' % escxml(p_name) +
+                '<font face="%d" ' % font.get_type_face() +
+                    'size="%d" ' % font.get_size() +
+                    'italic="%d" ' % font.get_italic() +
+                    'bold="%d" ' % font.get_bold() +
+                    'underline="%d" ' % font.get_underline() +
+                    'color="#%02x%02x%02x" ' % font.get_color() +
+                    '/>\n' +
+                '<para ' +
+                    'description="%s" ' % escxml(para.get_description()) +
+                    'rmargin="%.3f" ' % rmargin +
+                    'lmargin="%.3f" ' % lmargin +
+                    'first="%.3f" ' % findent +
+                    'tmargin="%.3f" ' % tmargin +
+                    'bmargin="%.3f" ' % bmargin +
+                    'pad="%.3f" ' % padding +
+                    'bgcolor="#%02x%02x%02x" ' % bg_color +
+                    'level="%d" ' % para.get_header_level() +
+                    'align="%d" ' % para.get_alignment() +
+                    'tborder="%d" ' % para.get_top_border() +
+                    'lborder="%d" ' % para.get_left_border() +
+                    'rborder="%d" ' % para.get_right_border() +
+                    'bborder="%d" ' % para.get_bottom_border() +
+                    '/>\n' +
+            '</style>\n'
+        )
             
+    def write_table_style(self, xml_file, sheet, t_name):
+
+        t_style = sheet.get_table_style(t_name)
+
+        # Write out style definition
+        xml_file.write(
+            '<style name="%s">\n' % escxml(t_name) +
+                '<table width="%d" ' % t_style.get_width() +
+                    'columns="%d"' % t_style.get_columns() +
+                    '>\n')
+
+        for col in range(t_style.get_columns()):
+            column_width = t_style.get_column_width(col)
+            xml_file.write('<column width="%d" />\n' % column_width)
+
+        xml_file.write('</table>\n')
+        xml_file.write('</style>\n')
+
     def parse(self):
         """
         Loads the StyleSheets from the associated file, if it exists.
@@ -385,8 +412,10 @@ class SheetParser(handler.ContentHandler):
         self.f = None
         self.p = None
         self.s = None
-        self.sname = None
-        self.pname = None
+        self.t = None
+        self.columns_widths = []
+        self.sheet_name = None
+        self.style_name = None
         
     def startElement(self, tag, attrs):
         """
@@ -394,7 +423,7 @@ class SheetParser(handler.ContentHandler):
         """
         if tag == "sheet":
             self.s = StyleSheet(self.sheetlist.map["default"])
-            self.sname = attrs['name']
+            self.sheet_name = attrs['name']
         elif tag == "font":
             self.f = FontStyle()
             self.f.set_type_face(int(attrs['face']))
@@ -404,6 +433,7 @@ class SheetParser(handler.ContentHandler):
             self.f.set_underline(int(attrs['underline']))
             self.f.set_color(cnv2color(attrs['color']))
         elif tag == "para":
+            self.p = ParagraphStyle()
             if 'description' in attrs:
                 self.p.set_description(attrs['description'])
             self.p.set_right_margin(glocale.float(attrs['rmargin']))
@@ -424,14 +454,23 @@ class SheetParser(handler.ContentHandler):
             self.p.set_top_border(int(attrs['tborder']))
             self.p.set_bottom_border(int(attrs['bborder']))
             self.p.set_background_color(cnv2color(attrs['bgcolor']))
+            self.p.set_font(self.f)
         elif tag == "style":
-            self.p = ParagraphStyle()
-            self.pname = attrs['name']
+            self.style_name = attrs['name']
+        elif tag == "table":
+            self.t = TableStyle()
+            self.t.set_width(int(attrs['width']))
+            self.t.set_columns(int(attrs['columns']))
+            self.column_widths = []
+        elif tag == "column":
+            self.column_widths.append(int(attrs['width']))
 
     def endElement(self, tag):
-        "Overridden class that handles the start of a XML element"
-        if tag == "style":
-            self.p.set_font(self.f)
-            self.s.add_paragraph_style(self.pname, self.p)
-        elif tag == "sheet":
-            self.sheetlist.set_style_sheet(self.sname, self.s)
+        "Overridden class that handles the end of a XML element"
+        if tag == "sheet":
+            self.sheetlist.set_style_sheet(self.sheet_name, self.s)
+        elif tag == "para":
+            self.s.add_paragraph_style(self.style_name, self.p)
+        elif tag == "table":
+            self.t.set_column_widths(self.column_widths)
+            self.s.add_table_style(self.style_name, self.t)

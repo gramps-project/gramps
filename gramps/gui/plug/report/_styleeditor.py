@@ -6,6 +6,7 @@
 # Copyright (C) 2008       Peter Landgren
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Paul Franklin
+# Copyright (C) 2014       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -42,7 +43,7 @@ import re
 # GNOME/GTK modules
 #
 #------------------------------------------------------------------------
-from gi.repository import Gdk
+from gi.repository import Gtk, Gdk
 
 #------------------------------------------------------------------------
 #
@@ -51,7 +52,7 @@ from gi.repository import Gdk
 #------------------------------------------------------------------------
 from gramps.gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
-            PARA_ALIGN_JUSTIFY) 
+            PARA_ALIGN_JUSTIFY, ParagraphStyle, TableStyle)
 from gramps.gen.constfunc import cuni
 from ...listmodel import ListModel
 from ...managedwindow import set_titles
@@ -188,7 +189,7 @@ class StyleEditor(object):
         style - style object that is to be edited
         parent - StyleListDisplay object that called the editor
         """
-        self.current_p = None
+        self.current_style = None
         self.current_name = None
         
         self.style = StyleSheet(style)
@@ -209,11 +210,14 @@ class StyleEditor(object):
         self.pname = self.top.get_object('pname')
         self.pdescription = self.top.get_object('pdescription')
 
+        self.notebook = self.top.get_object('notebook1')
+        self.vbox = self.top.get_object('column_widths')
+
         set_titles(self.window, self.top.get_object('title'), 
                    _('Style editor'))
         self.top.get_object("label6").set_text(_("point size|pt"))
         
-        titles = [(_('Paragraph'), 0, 130)]
+        titles = [(_('Style'), 0, 130)]
         self.plist = ListModel(self.top.get_object("ptree"), titles, 
                                          self.change_display)
 
@@ -230,6 +234,9 @@ class StyleEditor(object):
         names = _alphanumeric_sort(self.style.get_paragraph_style_names())
         for p_name in names:
             self.plist.add([p_name], self.style.get_paragraph_style(p_name))
+        names = _alphanumeric_sort(self.style.get_table_style_names())
+        for t_name in names:
+            self.plist.add([t_name], self.style.get_table_style(t_name))
         self.plist.select_row(0)
         
         if self.parent:
@@ -240,10 +247,64 @@ class StyleEditor(object):
     def __close(self, obj):
         self.window.destroy()
 
-    def draw(self):
-        """Updates the display with the selected paragraph."""
+    def show_pages(self, show_pages):
+        """
+        Make the given pages visible.
+        """
+        for page_num in range(self.notebook.get_n_pages()):
+            page = self.notebook.get_nth_page(page_num)
+            if page_num in show_pages:
+                page.show()
+            else:
+                page.hide()
 
-        p = self.current_p
+    def draw(self):
+        """
+        Updates the display with the selected style.
+        """
+        if isinstance(self.current_style, ParagraphStyle):
+            self.show_pages([0, 1, 2])
+            self.draw_paragraph()
+        elif isinstance(self.current_style, TableStyle):
+            self.show_pages([0, 3])
+            self.draw_table()
+
+    def draw_table(self):
+        """
+        Updates the display with the selected table style.
+        """
+        t = self.current_style
+        self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
+                             self.current_name)
+        self.pname.set_use_markup(True)
+        self.pdescription.set_text(_("No description available") )
+
+        self.top.get_object("table_width").set_value(t.get_width())
+
+        self.column = []
+        for widget in self.vbox.get_children():
+            self.vbox.remove(widget)
+
+        for i in range(t.get_columns()):
+            hbox = Gtk.HBox()
+            label = Gtk.Label(_('Column %d:') % (i + 1))
+            hbox.pack_start(label, False, False, 6)
+            spin = Gtk.SpinButton()
+            spin.set_range(0, 100)
+            spin.set_increments(1, 10)
+            spin.set_numeric(True)
+            spin.set_value(t.get_column_width(i))
+            self.column.append(spin)
+            hbox.pack_start(spin, False, False, 6)
+            hbox.pack_start(Gtk.Label('%'), False, False, 6)
+            hbox.show_all()
+            self.vbox.pack_start(hbox, False, False, 3)
+
+    def draw_paragraph(self):
+        """
+        Updates the display with the selected paragraph style.
+        """
+        p = self.current_style
         self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
                              self.current_name)
         self.pname.set_use_markup(True)
@@ -307,9 +368,31 @@ class StyleEditor(object):
         self.top.get_object('color_code').set_text(
                                                 "#%02X%02X%02X" % self.fg_color)
         
+    def save(self):
+        """
+        Saves the current style displayed on the dialog.
+        """
+        if isinstance(self.current_style, ParagraphStyle):
+            self.save_paragraph()
+        elif isinstance(self.current_style, TableStyle):
+            self.save_table()
+
+    def save_table(self):
+        """
+        Saves the current table style displayed on the dialog.
+        """
+        t = self.current_style
+        t.set_width(self.top.get_object("table_width").get_value_as_int())
+        for i in range(t.get_columns()):
+            t.set_column_width(i, self.column[i].get_value_as_int())
+
+        self.style.add_table_style(self.current_name, self.current_style)
+
     def save_paragraph(self):
-        """Saves the current paragraph displayed on the dialog"""
-        p = self.current_p
+        """
+        Saves the current paragraph style displayed on the dialog.
+        """
+        p = self.current_style
         font = p.get_font()
         font.set_size(self.top.get_object("size").get_value_as_int())
     
@@ -344,7 +427,7 @@ class StyleEditor(object):
         font.set_color(self.fg_color)
         p.set_background_color(self.bg_color)
         
-        self.style.add_paragraph_style(self.current_name, self.current_p)
+        self.style.add_paragraph_style(self.current_name, self.current_style)
 
     def on_save_style_clicked(self, obj):
         """
@@ -353,24 +436,26 @@ class StyleEditor(object):
         """
         name = cuni(self.top.get_object("style_name").get_text())
 
-        self.save_paragraph()
+        self.save()
         self.style.set_name(name)
         self.parent.sheetlist.set_style_sheet(name, self.style)
         self.parent.redraw()
         self.window.destroy()
 
     def change_display(self, obj):
-        """Called when the paragraph selection has been changed. Saves the
-        old paragraph, then draws the newly selected paragraph"""
+        """
+        Called when the paragraph selection has been changed. Saves the
+        old paragraph, then draws the newly selected paragraph.
+        """
         # Don't save until current_name is defined
         # If it's defined, save under the current paragraph name
         if self.current_name:
-            self.save_paragraph()
+            self.save()
         # Then change to new paragraph
         objs = self.plist.get_selected_objects()
         store, node = self.plist.get_selected()
         self.current_name =  store.get_value(node, 0)
-        self.current_p = objs[0]
+        self.current_style = objs[0]
         self.draw()
 
 def dummy_callback(obj):
