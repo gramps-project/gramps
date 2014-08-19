@@ -163,6 +163,9 @@ class StyleSheetList(object):
             for t_name in sheet.get_table_style_names():
                 self.write_table_style(xml_file, sheet, t_name)
 
+            for c_name in sheet.get_cell_style_names():
+                self.write_cell_style(xml_file, sheet, c_name)
+
             xml_file.write('</sheet>\n')
         xml_file.write('</stylelist>\n')
         xml_file.close()
@@ -227,6 +230,22 @@ class StyleSheetList(object):
 
         xml_file.write('</table>\n')
         xml_file.write('</style>\n')
+
+    def write_cell_style(self, xml_file, sheet, c_name):
+
+        cell = sheet.get_cell_style(c_name)
+
+        # Write out style definition
+        xml_file.write(
+            '<style name="%s">\n' % escxml(c_name) +
+                '<cell lborder="%d" ' % cell.get_left_border() +
+                    'rborder="%d" ' % cell.get_right_border() +
+                    'tborder="%d" ' % cell.get_top_border() +
+                    'bborder="%d" ' % cell.get_bottom_border() +
+                    'pad="%.3f" ' % cell.get_padding() +
+                    '/>\n' +
+            '</style>\n'
+        )
 
     def parse(self):
         """
@@ -464,6 +483,13 @@ class SheetParser(handler.ContentHandler):
             self.column_widths = []
         elif tag == "column":
             self.column_widths.append(int(attrs['width']))
+        elif tag == "cell":
+            self.c = TableCellStyle()
+            self.c.set_left_border(int(attrs['lborder']))
+            self.c.set_right_border(int(attrs['rborder']))
+            self.c.set_top_border(int(attrs['tborder']))
+            self.c.set_bottom_border(int(attrs['bborder']))
+            self.c.set_padding(glocale.float(attrs['pad']))
 
     def endElement(self, tag):
         "Overridden class that handles the end of a XML element"
@@ -474,3 +500,5 @@ class SheetParser(handler.ContentHandler):
         elif tag == "table":
             self.t.set_column_widths(self.column_widths)
             self.s.add_table_style(self.style_name, self.t)
+        elif tag == "cell":
+            self.s.add_cell_style(self.style_name, self.c)

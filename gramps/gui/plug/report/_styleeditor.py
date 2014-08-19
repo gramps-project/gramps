@@ -52,7 +52,7 @@ from gi.repository import Gtk, Gdk
 #------------------------------------------------------------------------
 from gramps.gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
-            PARA_ALIGN_JUSTIFY, ParagraphStyle, TableStyle)
+            PARA_ALIGN_JUSTIFY, ParagraphStyle, TableStyle, TableCellStyle)
 from gramps.gen.constfunc import cuni
 from ...listmodel import ListModel
 from ...managedwindow import set_titles
@@ -237,6 +237,9 @@ class StyleEditor(object):
         names = _alphanumeric_sort(self.style.get_table_style_names())
         for t_name in names:
             self.plist.add([t_name], self.style.get_table_style(t_name))
+        names = _alphanumeric_sort(self.style.get_cell_style_names())
+        for c_name in names:
+            self.plist.add([c_name], self.style.get_cell_style(c_name))
         self.plist.select_row(0)
         
         if self.parent:
@@ -268,6 +271,25 @@ class StyleEditor(object):
         elif isinstance(self.current_style, TableStyle):
             self.show_pages([0, 3])
             self.draw_table()
+        elif isinstance(self.current_style, TableCellStyle):
+            self.show_pages([0, 4])
+            self.draw_cell()
+
+    def draw_cell(self):
+        """
+        Updates the display with the selected cell style.
+        """
+        c = self.current_style
+        self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
+                             self.current_name)
+        self.pname.set_use_markup(True)
+        self.pdescription.set_text(_("No description available") )
+
+        self.top.get_object("cell_lborder").set_active(c.get_left_border())
+        self.top.get_object("cell_rborder").set_active(c.get_right_border())
+        self.top.get_object("cell_tborder").set_active(c.get_top_border())
+        self.top.get_object("cell_bborder").set_active(c.get_bottom_border())
+        self.top.get_object("cell_padding").set_value(c.get_padding())
 
     def draw_table(self):
         """
@@ -376,6 +398,21 @@ class StyleEditor(object):
             self.save_paragraph()
         elif isinstance(self.current_style, TableStyle):
             self.save_table()
+        elif isinstance(self.current_style, TableCellStyle):
+            self.save_cell()
+
+    def save_cell(self):
+        """
+        Saves the current cell style displayed on the dialog.
+        """
+        c = self.current_style
+        c.set_left_border(self.top.get_object("cell_lborder").get_active())
+        c.set_right_border(self.top.get_object("cell_rborder").get_active())
+        c.set_top_border(self.top.get_object("cell_tborder").get_active())
+        c.set_bottom_border(self.top.get_object("cell_bborder").get_active())
+        c.set_padding(self.top.get_object("cell_padding").get_value())
+
+        self.style.add_cell_style(self.current_name, self.current_style)
 
     def save_table(self):
         """
