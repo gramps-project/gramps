@@ -57,8 +57,9 @@ def load_on_reg(dbstate, uistate, plugin):
         # navigation target name, images, javascript
         # "default" is used as default
 
+        # default style sheet in the options
         # Basic Ash style sheet
-        ["Basic-Ash",     1, _("Basic-Ash"),
+        ["default",       1, _("Basic-Ash"),
          path_css('Web_Basic-Ash.css'),     None, [], [] ],
 
         # Basic Blue style sheet with navigation menus
@@ -110,10 +111,6 @@ def load_on_reg(dbstate, uistate, plugin):
         # NarrativeMap stylesheet/ image for NarrativeWeb place maps
         ["NarrativeMaps",  0, "",
          path_css("narrative-maps.css"),      None, [], [] ],
-
-        # default style sheet in the options
-        ["default",       1, _("Basic-Ash"),
-         path_css('Web_Basic-Ash.css'),     None, [], [] ],
 
         # default printer style sheet
         ["Print-Default", 0, "Print-Default",
