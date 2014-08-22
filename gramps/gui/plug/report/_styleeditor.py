@@ -52,7 +52,8 @@ from gi.repository import Gtk, Gdk
 #------------------------------------------------------------------------
 from gramps.gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
-            PARA_ALIGN_JUSTIFY, ParagraphStyle, TableStyle, TableCellStyle)
+            PARA_ALIGN_JUSTIFY, ParagraphStyle, TableStyle, TableCellStyle,
+            GraphicsStyle)
 from gramps.gen.constfunc import cuni
 from ...listmodel import ListModel
 from ...managedwindow import set_titles
@@ -213,6 +214,16 @@ class StyleEditor(object):
         self.notebook = self.top.get_object('notebook1')
         self.vbox = self.top.get_object('column_widths')
 
+        self.line_style = self.top.get_object('line_style')
+        line_styles = Gtk.ListStore(int, str)
+        line_styles.append([0, "Solid"])
+        line_styles.append([1, "Dashed"])
+        line_styles.append([2, "Dotted"])
+        self.line_style.set_model(line_styles)
+        renderer_text = Gtk.CellRendererText()
+        self.line_style.pack_start(renderer_text, True)
+        self.line_style.add_attribute(renderer_text, "text", 1)
+
         set_titles(self.window, self.top.get_object('title'), 
                    _('Style editor'))
         self.top.get_object("label6").set_text(_("point size|pt"))
@@ -221,8 +232,11 @@ class StyleEditor(object):
         self.plist = ListModel(self.top.get_object("ptree"), titles, 
                                          self.change_display)
 
-        self.top.get_object('color').connect('color-set', self.fg_color_set)
-        self.top.get_object('bgcolor').connect('color-set', self.bg_color_set)
+        for name in ('color', 'bgcolor', 'line_color', 'fill_color'):
+            color = self.top.get_object(name)
+            label = self.top.get_object(name + '_code')
+            color.connect('notify::color', self.color_changed, label)
+
         self.top.get_object("style_name").set_text(name)
 
         def _alphanumeric_sort(iterable):
@@ -240,6 +254,9 @@ class StyleEditor(object):
         names = _alphanumeric_sort(self.style.get_cell_style_names())
         for c_name in names:
             self.plist.add([c_name], self.style.get_cell_style(c_name))
+        names = _alphanumeric_sort(self.style.get_draw_style_names())
+        for d_name in names:
+            self.plist.add([d_name], self.style.get_draw_style(d_name))
         self.plist.select_row(0)
         
         if self.parent:
@@ -274,6 +291,30 @@ class StyleEditor(object):
         elif isinstance(self.current_style, TableCellStyle):
             self.show_pages([0, 4])
             self.draw_cell()
+        elif isinstance(self.current_style, GraphicsStyle):
+            self.show_pages([0, 5])
+            self.draw_graphics()
+
+    def draw_graphics(self):
+        """
+        Updates the display with the selected graphics style.
+        """
+        g = self.current_style
+        self.pname.set_text( '<span size="larger" weight="bold">%s</span>' %
+                             self.current_name)
+        self.pname.set_use_markup(True)
+        self.pdescription.set_text(_("No description available") )
+
+        self.top.get_object("line_style").set_active(g.get_line_style())
+        self.top.get_object("line_width").set_value(g.get_line_width())
+
+        self.line_color = rgb2color(g.get_color())
+        self.top.get_object("line_color").set_color(self.line_color)
+        self.fill_color = rgb2color(g.get_fill_color())
+        self.top.get_object("fill_color").set_color(self.fill_color)
+
+        self.top.get_object("shadow").set_active(g.get_shadow())
+        self.top.get_object("shadow_space").set_value(g.get_shadow_space())
 
     def draw_cell(self):
         """
@@ -362,34 +403,18 @@ class StyleEditor(object):
         self.top.get_object("rborder").set_active(p.get_right_border())
         self.top.get_object("bborder").set_active(p.get_bottom_border())
 
-        self.fg_color = font.get_color()
-        c = Gdk.Color(self.fg_color[0] << 8, 
-                  self.fg_color[1] << 8, 
-                  self.fg_color[2] << 8)
-        self.top.get_object("color").set_color(c)
-        self.top.get_object('color_code').set_text(
-                                               "#%02X%02X%02X" % self.fg_color)
+        color = rgb2color(font.get_color())
+        self.top.get_object("color").set_color(color)
+        bg_color = rgb2color(p.get_background_color())
+        self.top.get_object("bgcolor").set_color(bg_color)
 
-        self.bg_color = p.get_background_color()
-        c = Gdk.Color(self.bg_color[0] << 8, 
-                  self.bg_color[1] << 8, 
-                  self.bg_color[2] << 8)
-        self.top.get_object("bgcolor").set_color(c)
-        self.top.get_object('bgcolor_code').set_text(
-                                                "#%02X%02X%02X" % self.bg_color)
+    def color_changed(self, color, name, label):
+        """
+        Called to set the color code when a color is changed.
+        """
+        rgb = color2rgb(color.get_color())
+        label.set_text("#%02X%02X%02X" % color2rgb(color.get_color()))
 
-    def bg_color_set(self, x):
-        c = x.get_color()
-        self.bg_color = (c.red >> 8, c.green >> 8, c.blue >> 8)
-        self.top.get_object('bgcolor_code').set_text(
-                                                "#%02X%02X%02X" % self.bg_color)
-
-    def fg_color_set(self, x):
-        c = x.get_color()
-        self.fg_color = (c.red >> 8, c.green >> 8, c.blue >> 8)
-        self.top.get_object('color_code').set_text(
-                                                "#%02X%02X%02X" % self.fg_color)
-        
     def save(self):
         """
         Saves the current style displayed on the dialog.
@@ -400,6 +425,25 @@ class StyleEditor(object):
             self.save_table()
         elif isinstance(self.current_style, TableCellStyle):
             self.save_cell()
+        elif isinstance(self.current_style, GraphicsStyle):
+            self.save_graphics()
+
+    def save_graphics(self):
+        """
+        Saves the current graphics style displayed on the dialog.
+        """
+        g = self.current_style
+        g.set_line_style(self.top.get_object("line_style").get_active())
+        g.set_line_width(self.top.get_object("line_width").get_value())
+        line_color = self.top.get_object("line_color").get_color()
+        g.set_color(color2rgb(line_color))
+        fill_color = self.top.get_object("fill_color").get_color()
+        g.set_fill_color(color2rgb(fill_color))
+        shadow = self.top.get_object("shadow").get_active()
+        shadow_space = self.top.get_object("shadow_space").get_value()
+        g.set_shadow(shadow, shadow_space)
+
+        self.style.add_draw_style(self.current_name, self.current_style)
 
     def save_cell(self):
         """
@@ -461,8 +505,10 @@ class StyleEditor(object):
         p.set_right_border(self.top.get_object("rborder").get_active())
         p.set_bottom_border(self.top.get_object("bborder").get_active())
 
-        font.set_color(self.fg_color)
-        p.set_background_color(self.bg_color)
+        color = self.top.get_object("color").get_color()
+        font.set_color(color2rgb(color))
+        bg_color = self.top.get_object("bgcolor").get_color()
+        p.set_background_color(color2rgb(bg_color))
         
         self.style.add_paragraph_style(self.current_name, self.current_style)
 
@@ -494,6 +540,19 @@ class StyleEditor(object):
         self.current_name =  store.get_value(node, 0)
         self.current_style = objs[0]
         self.draw()
+
+
+def rgb2color(rgb):
+    """
+    Convert a tuple containing RGB values into a Gdk Color.
+    """
+    return Gdk.Color(rgb[0] << 8, rgb[1] << 8, rgb[2] << 8)
+
+def color2rgb(color):
+    """
+    Convert a Gdk Color into a tuple containing RGB values.
+    """
+    return (color.red >> 8, color.green >> 8, color.blue >> 8)
 
 def dummy_callback(obj):
     """Dummy callback to satisfy gtkbuilder on connect of signals. 

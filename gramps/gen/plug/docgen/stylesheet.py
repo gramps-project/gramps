@@ -166,6 +166,9 @@ class StyleSheetList(object):
             for c_name in sheet.get_cell_style_names():
                 self.write_cell_style(xml_file, sheet, c_name)
 
+            for g_name in sheet.get_draw_style_names():
+                self.write_graphics_style(xml_file, sheet, g_name)
+
             xml_file.write('</sheet>\n')
         xml_file.write('</stylelist>\n')
         xml_file.close()
@@ -243,6 +246,24 @@ class StyleSheetList(object):
                     'tborder="%d" ' % cell.get_top_border() +
                     'bborder="%d" ' % cell.get_bottom_border() +
                     'pad="%.3f" ' % cell.get_padding() +
+                    '/>\n' +
+            '</style>\n'
+        )
+
+    def write_graphics_style(self, xml_file, sheet, g_name):
+
+        draw = sheet.get_draw_style(g_name)
+
+        # Write out style definition
+        xml_file.write(
+            '<style name="%s">\n' % escxml(g_name) +
+                '<draw para="%s" ' % draw.get_paragraph_style() +
+                    'width="%.3f" ' % draw.get_line_width() +
+                    'style="%d" ' % draw.get_line_style() +
+                    'color="#%02x%02x%02x" ' % draw.get_color() +
+                    'fillcolor="#%02x%02x%02x" ' % draw.get_fill_color() +
+                    'shadow="%d" ' % draw.get_shadow() +
+                    'space="%.3f" ' % draw.get_shadow_space() +
                     '/>\n' +
             '</style>\n'
         )
@@ -490,6 +511,15 @@ class SheetParser(handler.ContentHandler):
             self.c.set_top_border(int(attrs['tborder']))
             self.c.set_bottom_border(int(attrs['bborder']))
             self.c.set_padding(glocale.float(attrs['pad']))
+        elif tag == "draw":
+            self.g = GraphicsStyle()
+            self.g.set_paragraph_style(attrs['para'])
+            self.g.set_line_width(glocale.float(attrs['width']))
+            self.g.set_line_style(int(attrs['style']))
+            self.g.set_color(cnv2color(attrs['color']))
+            self.g.set_fill_color(cnv2color(attrs['fillcolor']))
+            self.g.set_shadow(int(attrs['shadow']),
+                              glocale.float(attrs['space']))
 
     def endElement(self, tag):
         "Overridden class that handles the end of a XML element"
@@ -502,3 +532,5 @@ class SheetParser(handler.ContentHandler):
             self.s.add_table_style(self.style_name, self.t)
         elif tag == "cell":
             self.s.add_cell_style(self.style_name, self.c)
+        elif tag == "draw":
+            self.s.add_draw_style(self.style_name, self.g)
