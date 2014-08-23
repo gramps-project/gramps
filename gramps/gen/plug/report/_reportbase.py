@@ -28,6 +28,7 @@
 #-------------------------------------------------------------------------
 from gramps.gen.utils.grampslocale import GrampsLocale
 from gramps.gen.display.name import NameDisplay
+from gramps.gen.config import config
 
 #-------------------------------------------------------------------------
 #
@@ -73,6 +74,9 @@ class Report(object):
         self._get_type = locale.get_type
         self._dd = locale.date_displayer
         self._name_display = NameDisplay(locale) # a legacy/historical name
+        self._name_display.set_name_format(self.database.name_formats)
+        fmt_default = config.get('preferences.name-format')
+        self._name_display.set_default_format(fmt_default)
         return locale
 
     def write_report(self):
