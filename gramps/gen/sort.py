@@ -150,7 +150,7 @@ class Sort(object):
             date1 = Date()
 
         dsv1 = date1.get_sort_value()
-        return "%08d" % dsv1 + self.by_last_name_key(first_id)
+        return "%08d" % dsv1 + str(self.by_last_name_key(first_id))
 
 ##    def by_date(self, a_id, b_id):
 ##        """Sort routine for comparing two events by their dates. """
