@@ -83,12 +83,16 @@ def importData(database, filename, user):
 
     ansel = False
     gramps = False
+    code_set = ''
     for index in range(50):
         line = ifile.readline().split()
         if len(line) == 0:
             break
-        if len(line) > 2 and line[1][0:4] == 'CHAR' and line[2] == "ANSEL":
-            ansel = True
+        if len(line) > 2 and line[1][0:4] == 'CHAR':
+            if line[2] in ('UTF-8', 'ANSI', 'ASCII'):
+                code_set = line[2]
+            elif line[2] == 'ANSEL':
+                ansel = True
         if len(line) > 2 and line[1][0:4] == 'SOUR' and line[2] == "GRAMPS":
             gramps = True
     ifile.close()
@@ -102,8 +106,6 @@ def importData(database, filename, user):
         enc = ['ANSEL', 'ANSEL', 'ANSI', 'ASCII', 'UTF-8']
         code_set = enc[ code.get_active()]
         dialog.destroy()
-    else:
-        code_set = ""
 
     assert(isinstance(code_set, STRTYPE))
 
