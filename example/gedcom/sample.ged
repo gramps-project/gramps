@@ -25,7 +25,7 @@
 1 BIRT
 2 TYPE Birth of Anna Hansdotter
 2 DATE 2 OCT 1864
-2 PLAC Loderup, Malmous Lan, Sweden
+2 PLAC Löderup, Malmöhus Län, Sweden
 1 DEAT
 2 TYPE Death of Anna Hansdotter
 2 DATE 29 SEP 1945
@@ -55,7 +55,7 @@
 1 BIRT
 2 TYPE Birth of Hans Peter Smith
 2 DATE 17 APR 1904
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 DEAT
 2 TYPE Death of Hans Peter Smith
 2 DATE 29 JAN 1977
@@ -74,7 +74,7 @@
 1 BIRT
 2 TYPE Birth of Hanna Smith
 2 DATE 29 JAN 1821
-2 PLAC Gladsax, Kristianstad Lan, Sweden
+2 PLAC Gladsax, Kristianstad Län, Sweden
 1 FAMC @F0@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -87,7 +87,7 @@
 1 BIRT
 2 TYPE Birth of Herman Julius Nielsen
 2 DATE 31 AUG 1889
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 DEAT
 2 TYPE Death of Herman Julius Nielsen
 2 DATE 1945
@@ -128,7 +128,7 @@
 1 BIRT
 2 TYPE Birth of Gus Smith
 2 DATE 11 SEP 1897
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 DEAT
 2 TYPE Death of Gus Smith
 2 DATE 21 OCT 1963
@@ -146,7 +146,7 @@
 1 BIRT
 2 TYPE Birth of Jennifer Anderson
 2 DATE 5 NOV 1907
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 DEAT
 2 TYPE Death of Jennifer Anderson
 2 DATE 29 MAY 1985
@@ -163,7 +163,7 @@
 1 BIRT
 2 TYPE Birth of Lillie Harriet Jones
 2 DATE 2 MAY 1910
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 DEAT
 2 TYPE Death of Lillie Harriet Jones
 2 DATE 26 JUN 1990
@@ -227,7 +227,7 @@
 1 BIRT
 2 TYPE Birth of Carl Emil Smith
 2 DATE 20 DEC 1899
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 DEAT
 2 TYPE Death of Carl Emil Smith
 2 DATE 28 JAN 1959
@@ -245,11 +245,11 @@
 1 BIRT
 2 TYPE Birth of Hjalmar Smith
 2 DATE 31 JAN 1893
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 DEAT
 2 TYPE Death of Hjalmar Smith
 2 DATE 25 SEP 1894
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 FAMC @F3@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -262,7 +262,7 @@
 1 BIRT
 2 TYPE Birth of Martin Smith
 2 DATE 19 NOV 1830
-2 PLAC Gladsax, Kristianstad Lan, Sweden
+2 PLAC Gladsax, Kristianstad Län, Sweden
 1 DEAT
 2 TYPE Death of Martin Smith
 2 DATE BET 1899 AND 1905
@@ -270,7 +270,7 @@
 1 BAPM
 2 TYPE Baptism of Martin Smith
 2 DATE 23 NOV 1830
-2 PLAC Gladsax, Kristianstad Lan, Sweden
+2 PLAC Gladsax, Kristianstad Län, Sweden
 1 FAMC @F0@
 1 FAMS @F2@
 1 NOTE @N0002@
@@ -285,7 +285,7 @@
 1 BIRT
 2 TYPE Birth of Astrid Shermanna Augusta Smith
 2 DATE 31 JAN 1889
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 DEAT
 2 TYPE Death of Astrid Shermanna Augusta Smith
 2 DATE 21 DEC 1963
@@ -304,7 +304,7 @@
 1 BIRT
 2 TYPE Birth of Gustaf Smith, Sr.
 2 DATE 28 NOV 1862
-2 PLAC Grostorp, Kristianstad Lan, Sweden
+2 PLAC Grostorp, Kristianstad Län, Sweden
 1 DEAT
 2 TYPE Death of Gustaf Smith, Sr.
 2 DATE BEF 23 JUL 1930
@@ -316,7 +316,7 @@
 1 CHR
 2 TYPE Christening of Gustaf Smith, Sr.
 2 DATE 7 DEC 1862
-2 PLAC Gladsax, Kristianstad Lan, Sweden
+2 PLAC Gladsax, Kristianstad Län, Sweden
 1 FAMC @F2@
 1 FAMS @F3@
 1 CHAN
@@ -343,7 +343,7 @@
 1 BIRT
 2 TYPE Birth of Kirsti Marie Smith
 2 DATE 15 DEC 1886
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 DEAT
 2 TYPE Death of Kirsti Marie Smith
 2 DATE 18 JUL 1966
@@ -378,7 +378,7 @@
 1 DEAT
 2 TYPE Death of Anna Streiffert
 2 DATE 2 FEB 1927
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 FAMS @F11@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -407,11 +407,11 @@
 1 BIRT
 2 TYPE Birth of Magnes Smith
 2 DATE 6 OCT 1858
-2 PLAC Simrishamn, Kristianstad Lan, Sweden
+2 PLAC Simrishamn, Kristianstad Län, Sweden
 1 DEAT
 2 TYPE Death of Magnes Smith
 2 DATE 20 FEB 1910
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 FAMC @F2@
 1 FAMS @F11@
 1 CHAN
@@ -515,14 +515,14 @@
 1 BIRT
 2 TYPE Birth of Elna Jefferson
 2 DATE 14 SEP 1800
-2 PLAC Gladsax, Kristianstad Lan, Sweden
+2 PLAC Gladsax, Kristianstad Län, Sweden
 1 DEAT
 2 TYPE Death of Elna Jefferson
 2 PLAC Sweden
 1 CHR
 2 TYPE Christening of Elna Jefferson
 2 DATE 16 SEP 1800
-2 PLAC Gladsax, Kristianstad Lan, Sweden
+2 PLAC Gladsax, Kristianstad Län, Sweden
 1 FAMS @F0@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -560,7 +560,7 @@
 1 BIRT
 2 TYPE Birth of Kerstina Hansdotter
 2 DATE 29 NOV 1832
-2 PLAC Smestorp, Kristianstad Lan, Sweden
+2 PLAC Smestorp, Kristianstad Län, Sweden
 1 DEAT
 2 TYPE Death of Kerstina Hansdotter
 2 DATE BEF 1908
@@ -577,7 +577,7 @@
 1 BIRT
 2 TYPE Birth of Martin Smith
 2 DATE BET 1794 AND 1796
-2 PLAC Tommarp, Kristianstad Lan, Sweden
+2 PLAC Tommarp, Kristianstad Län, Sweden
 1 DEAT
 2 TYPE Death of Martin Smith
 2 PLAC Sweden
@@ -594,7 +594,7 @@
 1 BIRT
 2 TYPE Birth of Ingeman Smith
 2 DATE 29 JAN 1826
-2 PLAC Gladsax, Kristianstad Lan, Sweden
+2 PLAC Gladsax, Kristianstad Län, Sweden
 1 FAMC @F0@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -661,7 +661,7 @@
 1 BIRT
 2 TYPE Birth of Ingar Smith
 2 DATE AFT 1823
-2 PLAC Gladsax, Kristianstad Lan, Sweden
+2 PLAC Gladsax, Kristianstad Län, Sweden
 1 FAMC @F0@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -674,7 +674,7 @@
 1 BIRT
 2 TYPE Birth of Hjalmar Smith
 2 DATE 7 APR 1895
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 DEAT
 2 TYPE Death of Hjalmar Smith
 2 DATE 26 JUN 1975
@@ -682,7 +682,7 @@
 1 BAPM
 2 TYPE Baptism of Hjalmar Smith
 2 DATE 3 JUN 1895
-2 PLAC Ronne Bornholm, Denmark
+2 PLAC Rønne Bornholm, Denmark
 1 EVEN
 2 TYPE Immi
 2 DATE 14 NOV 1912
@@ -701,7 +701,7 @@
 1 BIRT
 2 TYPE Birth of Emil Smith
 2 DATE 27 SEP 1860
-2 PLAC Simrishamn, Kristianstad Lan, Sweden
+2 PLAC Simrishamn, Kristianstad Län, Sweden
 1 FAMC @F2@
 1 CHAN
 2 DATE 21 DEC 2007
@@ -712,7 +712,7 @@
 1 MARR
 2 TYPE Marriage of Martin Smith and Elna Jefferson
 2 DATE ABT 1816
-2 PLAC Gladsax, Kristianstad Lan, Sweden
+2 PLAC Gladsax, Kristianstad Län, Sweden
 1 CHIL @I11@
 1 CHIL @I7@
 1 CHIL @I4@
@@ -748,7 +748,7 @@
 1 MARR
 2 TYPE Marriage of Magnes Smith and Anna Streiffert
 2 DATE 24 AUG 1884
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
@@ -805,7 +805,7 @@
 1 MARR
 2 TYPE Marriage of Gustaf Smith, Sr. and Anna Hansdotter
 2 DATE 27 NOV 1885
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 CHIL @I26@
 1 CHIL @I23@
 1 CHIL @I21@
@@ -831,7 +831,7 @@
 1 MARR
 2 TYPE Marriage of Herman Julius Nielsen and Astrid Shermanna Augusta Smith
 2 DATE 30 NOV 1912
-2 PLAC Ronne, Bornholm, Denmark
+2 PLAC Rønne, Bornholm, Denmark
 1 CHAN
 2 DATE 21 DEC 2007
 3 TIME 01:35:26
