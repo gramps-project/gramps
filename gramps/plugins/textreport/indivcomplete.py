@@ -44,7 +44,7 @@ from gramps.gen.lib import EventRoleType, EventType, Person, NoteType
 from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     TableStyle, TableCellStyle,
                                     FONT_SANS_SERIF, INDEX_TYPE_TOC,
-                                    PARA_ALIGN_CENTER)
+                                    PARA_ALIGN_CENTER, PARA_ALIGN_RIGHT)
 from gramps.gen.datehandler import get_date
 from gramps.gen.plug.menu import (BooleanOption, FilterOption, PersonOption,
                                   BooleanListOption)
@@ -55,6 +55,7 @@ from gramps.gen.plug.report import Bibliography
 from gramps.gen.plug.report import endnotes as Endnotes
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.file import media_path_full
+from gramps.gen.utils.lds import TEMPLES
 
 #------------------------------------------------------------------------
 #
@@ -115,6 +116,7 @@ class IndivCompleteReport(Report):
         menu = options.menu
 
         stdoptions.run_private_data_option(self, menu)
+        self._db = self.database
 
         self.use_pagebreak = menu.get_option_by_name('pageben').get_value()
         self.use_srcs = menu.get_option_by_name('cites').get_value()
@@ -144,15 +146,17 @@ class IndivCompleteReport(Report):
         description = event.get_description()
         
         date = self._get_date(event.get_date_object())
-        place = ''
+        place_name = ''
+        place_endnote = ''
         place_handle = event.get_place_handle()
         if place_handle:
-            place = self.database.get_place_from_handle(
-                                            place_handle).get_title()
+            place = self._db.get_place_from_handle(place_handle)
+            place_name = place.get_title()
+            place_endnote = self._cite_endnote(place)
         # make sure it's translated, so it can be used below, in "combine"
         ignore1 = _('%(str1)s in %(str2)s. ') % {'str1':'', 'str2':''}
         date_place = self.combine('%(str1)s in %(str2)s. ', '%s. ',
-                                  date, place)
+                                  date, place_name)
 
         if show_type:
             # Groups with more than one type
@@ -171,14 +175,12 @@ class IndivCompleteReport(Report):
             # make sure it's translated, so it can be used below, in "combine"
             ignore3 = _('%(str1)s, %(str2)s') % {'str1':'', 'str2':''}
             column_2 = self.combine('%(str1)s, %(str2)s', '%s',
-                                    description, place)
+                                    description, place_name)
 
-        endnotes = ""
-        if self.use_srcs:
-            endnotes = Endnotes.cite_source(self.bibli, self.database, event)
+        endnotes = self._cite_endnote(event, prior=place_endnote)
 
         self.doc.start_row()
-        self.normal_cell(column_1)
+        self.write_cell(column_1)
         self.doc.start_cell('IDS-NormalCell')
         self.doc.start_paragraph('IDS-Normal')
         self.doc.write_text(column_2)
@@ -188,8 +190,29 @@ class IndivCompleteReport(Report):
             self.doc.end_superscript()
         self.doc.end_paragraph()
         
+        attr_list = event.get_attribute_list()
+        if len(attr_list):
+            for attr in attr_list:
+                attr_type = self._get_type(attr.get_type())
+                # translators: needed for French, ignore otherwise
+                text = self._("%(type)s: %(value)s") % {
+                                    'type'  : self._(attr_type),
+                                    'value' : attr.get_value() }
+                endnotes = self._cite_endnote(attr)
+                self.write_paragraph(text, endnotes)
+
+        attr_list = event_ref.get_attribute_list()
+        if len(attr_list):
+            for attr in attr_list:
+                # translators: needed for French, ignore otherwise
+                text = self._("%(type)s: %(value)s") % {
+                                    'type'  : self._(str(attr.get_type())),
+                                    'value' : attr.get_value() }
+                endnotes = self._cite_endnote(attr)
+                self.write_paragraph(text, endnotes)
+
         for notehandle in event.get_note_list():
-            note = self.database.get_note_from_handle(notehandle)
+            note = self._db.get_note_from_handle(notehandle)
             text = note.get_styledtext()
             note_format = note.get_format()
             self.doc.write_styled_note(text, note_format, 'IDS-Normal',
@@ -200,15 +223,15 @@ class IndivCompleteReport(Report):
 
     def write_p_entry(self, label, parent_name, rel_type, pmark=None):
         self.doc.start_row()
-        self.normal_cell(label)
+        self.write_cell(label)
         if parent_name:
             # for example (a stepfather): John Smith, relationship: Step
             text = self._('%(parent-name)s, relationship: %(rel-type)s') % {
                                       'parent-name' : parent_name,
                                       'rel-type' : self._(rel_type)}
-            self.normal_cell(text, mark=pmark)
+            self.write_cell(text, mark=pmark)
         else:
-            self.normal_cell('')
+            self.write_cell('')
         self.doc.end_row()
 
     def write_note(self):
@@ -218,14 +241,12 @@ class IndivCompleteReport(Report):
         self.doc.start_table('note','IDS-IndTable')
         self.doc.start_row()
         self.doc.start_cell('IDS-TableHead', 2)
-        self.doc.start_paragraph('IDS-TableTitle')
-        self.doc.write_text(self._('Notes'))
-        self.doc.end_paragraph()
+        self.write_paragraph(self._('Notes'), style='IDS-TableTitle')
         self.doc.end_cell()
         self.doc.end_row()
 
         for notehandle in notelist:
-            note = self.database.get_note_from_handle(notehandle)
+            note = self._db.get_note_from_handle(notehandle)
             text = note.get_styledtext()
             note_format = note.get_format()
             self.doc.start_row()
@@ -248,9 +269,8 @@ class IndivCompleteReport(Report):
         self.doc.start_table("altparents","IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.doc.start_paragraph("IDS-TableTitle")
-        self.doc.write_text(self._("Alternate Parents"))
-        self.doc.end_paragraph()
+        self.write_paragraph(self._('Alternate Parents'),
+                             style='IDS-TableTitle')
         self.doc.end_cell()
         self.doc.end_row()
         
@@ -260,7 +280,7 @@ class IndivCompleteReport(Report):
                    self.person.get_main_parents_family_handle()):
                 continue
             
-            family = self.database.get_family_from_handle(family_handle)
+            family = self._db.get_family_from_handle(family_handle)
             
             # Get the mother and father relationships
             frel = ""
@@ -274,18 +294,18 @@ class IndivCompleteReport(Report):
             
             father_handle = family.get_father_handle()
             if father_handle:
-                father = self.database.get_person_from_handle(father_handle)
+                father = self._db.get_person_from_handle(father_handle)
                 fname = self._name_display.display(father)
-                mark = ReportUtils.get_person_mark(self.database, father)
+                mark = ReportUtils.get_person_mark(self._db, father)
                 self.write_p_entry(self._('Father'), fname, frel, mark)
             else:
                 self.write_p_entry(self._('Father'), '', '')
 
             mother_handle = family.get_mother_handle()
             if mother_handle:
-                mother = self.database.get_person_from_handle(mother_handle)
+                mother = self._db.get_person_from_handle(mother_handle)
                 mname = self._name_display.display(mother)
-                mark = ReportUtils.get_person_mark(self.database, mother)
+                mark = ReportUtils.get_person_mark(self._db, mother)
                 self.write_p_entry(self._('Mother'), mname, mrel, mark)
             else:
                 self.write_p_entry(self._('Mother'), '', '')
@@ -312,21 +332,18 @@ class IndivCompleteReport(Report):
         self.doc.start_table("altnames","IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.doc.start_paragraph("IDS-TableTitle")
-        self.doc.write_text(self._("Alternate Names"))
-        self.doc.end_paragraph()
+        self.write_paragraph(self._('Alternate Names'),
+                             style='IDS-TableTitle')
         self.doc.end_cell()
         self.doc.end_row()
         
         for name in self.person.get_alternate_names():
             name_type = self._(self._get_type(name.get_type()))
             self.doc.start_row()
-            self.normal_cell(name_type)
+            self.write_cell(name_type)
             text = self._name_display.display_name(name)
-            endnotes = ""
-            if self.use_srcs:
-                endnotes = Endnotes.cite_source(self.bibli, self.database, name)
-            self.normal_cell(text, endnotes)
+            endnotes = self._cite_endnote(name)
+            self.write_cell(text, endnotes)
             self.doc.end_row()
         self.doc.end_table()
         self.doc.start_paragraph('IDS-Normal')
@@ -342,21 +359,115 @@ class IndivCompleteReport(Report):
         self.doc.start_table("addresses","IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.doc.start_paragraph("IDS-TableTitle")
-        self.doc.write_text(self._("Addresses"))
-        self.doc.end_paragraph()
+        self.write_paragraph(self._('Addresses'), style='IDS-TableTitle')
         self.doc.end_cell()
         self.doc.end_row()
         
         for addr in alist:
             text = ReportUtils.get_address_str(addr)
             date = self._get_date(addr.get_date_object())
-            endnotes = ""
-            if self.use_srcs:
-                endnotes = Endnotes.cite_source(self.bibli, self.database, addr)
+            endnotes = self._cite_endnote(addr)
             self.doc.start_row()
-            self.normal_cell(date)
-            self.normal_cell(text, endnotes)
+            self.write_cell(date)
+            self.write_cell(text, endnotes)
+            self.doc.end_row()
+        self.doc.end_table()
+        self.doc.start_paragraph('IDS-Normal')
+        self.doc.end_paragraph()
+        
+    def write_associations(self):
+
+        if len(self.person.get_person_ref_list()) < 1:
+            return
+        
+        self.doc.start_table("associations","IDS-IndTable")
+        self.doc.start_row()
+        self.doc.start_cell("IDS-TableHead", 2)
+        self.write_paragraph(self._('Associations'), style='IDS-TableTitle')
+        self.doc.end_cell()
+        self.doc.end_row()
+        for person_ref in self.person.get_person_ref_list():
+            endnotes = self._cite_endnote(person_ref)
+            relationship = person_ref.get_relation()
+            associate = self._db.get_person_from_handle(person_ref.ref)
+            associate_name = self._name_display.display(associate)
+            self.doc.start_row()
+            self.write_cell(self._(relationship))
+            self.write_cell(associate_name, endnotes)
+            self.doc.end_row()
+        self.doc.end_table()
+        self.doc.start_paragraph('IDS-Normal')
+        self.doc.end_paragraph()
+        
+    def write_attributes(self):
+        
+        attr_list = self.person.get_attribute_list()
+
+        if len(attr_list) == 0:
+            return
+        
+        self.doc.start_table("attributes","IDS-IndTable")
+        self.doc.start_row()
+        self.doc.start_cell("IDS-TableHead", 2)
+        self.write_paragraph(self._('Attributes'), style='IDS-TableTitle')
+        self.doc.end_cell()
+        self.doc.end_row()
+        
+        for attr in attr_list:
+            attr_type = self._get_type(attr.get_type())
+            self.doc.start_row()
+            self.write_cell(self._(attr_type))
+            text = attr.get_value()
+            endnotes = self._cite_endnote(attr)
+            self.write_cell(text, endnotes)
+            self.doc.end_row()
+        self.doc.end_table()
+        self.doc.start_paragraph('IDS-Normal')
+        self.doc.end_paragraph()
+        
+    def write_LDS_ordinances(self):
+        
+        ord_list = self.person.get_lds_ord_list()
+
+        if len(ord_list) == 0:
+            return
+        
+        self.doc.start_table("ordinances","IDS-IndTable")
+        self.doc.start_row()
+        self.doc.start_cell("IDS-TableHead", 2)
+        self.write_paragraph(self._('LDS Ordinance'), style='IDS-TableTitle')
+        self.doc.end_cell()
+        self.doc.end_row()
+        self.doc.end_table()
+        
+        self.doc.start_table("ordinances3","IDS-OrdinanceTable")
+        self.doc.start_row()
+        self.write_cell(self._('Type'), style='IDS-Section')
+        self.write_cell(self._('Date'), style='IDS-Section')
+        self.write_cell(self._('Status'), style='IDS-Section')
+        self.write_cell(self._('Temple'), style='IDS-Section')
+        self.write_cell(self._('Place'), style='IDS-Section')
+        self.doc.end_row()
+        
+        for lds_ord in ord_list:
+            type = self._(lds_ord.type2str())
+            date = self._get_date(lds_ord.get_date_object())
+            status = self._(lds_ord.status2str())
+            temple = TEMPLES.name(lds_ord.get_temple())
+            place_name = ''
+            place_endnote = ''
+            place_handle = lds_ord.get_place_handle()
+            if place_handle:
+                place = self._db.get_place_from_handle(place_handle)
+                place_name = place.get_title()
+                place_endnote = self._cite_endnote(place)
+            endnotes = self._cite_endnote(lds_ord, prior=place_endnote)
+            self.doc.start_row()
+            self.write_cell(type, endnotes)
+            self.write_cell(date)
+            self.write_cell(status)
+            self.write_cell(temple)
+            self.write_cell(place_name)
             self.doc.end_row()
         self.doc.end_table()
         self.doc.start_paragraph('IDS-Normal')
@@ -370,30 +481,32 @@ class IndivCompleteReport(Report):
         self.doc.start_table("three","IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.doc.start_paragraph("IDS-TableTitle")
-        self.doc.write_text(self._("Marriages/Children"))
-        self.doc.end_paragraph()
+        self.write_paragraph(self._('Marriages/Children'),
+                             style='IDS-TableTitle')
         self.doc.end_cell()
         self.doc.end_row()
+        self.doc.end_table()
         
         for family_handle in self.person.get_family_handle_list():
-            family = self.database.get_family_from_handle(family_handle)
+            self.doc.start_table("three","IDS-IndTable")
+            family = self._db.get_family_from_handle(family_handle)
             if self.person.get_handle() == family.get_father_handle():
                 spouse_id = family.get_mother_handle()
             else:
                 spouse_id = family.get_father_handle()
             self.doc.start_row()
             self.doc.start_cell("IDS-NormalCell", 2)
-            self.doc.start_paragraph("IDS-Spouse")
             if spouse_id:
-                spouse = self.database.get_person_from_handle(spouse_id)
+                spouse = self._db.get_person_from_handle(spouse_id)
                 text = self.get_name(spouse)
-                mark = ReportUtils.get_person_mark(self.database, spouse)
+                mark = ReportUtils.get_person_mark(self._db, spouse)
             else:
+                spouse = None
                 text = self._("unknown")
                 mark = None
-            self.doc.write_text(text, mark)
-            self.doc.end_paragraph()
+            endnotes = self._cite_endnote(family)
+            self.write_paragraph(text, endnotes=endnotes, mark=mark,
+                                 style='IDS-Spouse')
             self.doc.end_cell()
             self.doc.end_row()
             
@@ -404,20 +517,70 @@ class IndivCompleteReport(Report):
             child_ref_list = family.get_child_ref_list()
             if len(child_ref_list):
                 self.doc.start_row()
-                self.normal_cell(self._("Children"))
-
+                self.write_cell(self._("Children"))
                 self.doc.start_cell("IDS-ListCell")
-
                 for child_ref in child_ref_list:
-                    self.doc.start_paragraph("IDS-Normal")
-                    child = self.database.get_person_from_handle(child_ref.ref)
+                    child = self._db.get_person_from_handle(child_ref.ref)
                     name = self.get_name(child)
-                    mark = ReportUtils.get_person_mark(self.database, child)
-                    self.doc.write_text(name, mark)
-                    self.doc.end_paragraph()
+                    mark = ReportUtils.get_person_mark(self._db, child)
+                    endnotes = self._cite_endnote(child_ref)
+                    self.write_paragraph(name, endnotes=endnotes, mark=mark)
                 self.doc.end_cell()
                 self.doc.end_row()
-        self.doc.end_table()
+
+            attr_list = family.get_attribute_list()
+            if len(attr_list):
+                self.doc.start_row()
+                self.write_cell(self._("Attributes"))
+                self.doc.start_cell("IDS-ListCell")
+                for attr in attr_list:
+                    attr_type = self._get_type(attr.get_type())
+                    # translators: needed for French, ignore otherwise
+                    text = self._("%(type)s: %(value)s") % {
+                                        'type'  : self._(attr_type),
+                                        'value' : attr.get_value() }
+                    endnotes = self._cite_endnote(attr)
+                    self.write_paragraph(text, endnotes)
+                self.doc.end_cell()
+                self.doc.end_row()
+
+            self.doc.end_table()
+
+            ord_list = family.get_lds_ord_list()
+            if len(ord_list):
+                self.doc.start_table("ordinances2","IDS-OrdinanceTable2")
+                self.doc.start_row()
+                self.write_cell(self._('LDS Ordinance'))
+                self.write_cell(self._('Type'), style='IDS-Section')
+                self.write_cell(self._('Date'), style='IDS-Section')
+                self.write_cell(self._('Status'), style='IDS-Section')
+                self.write_cell(self._('Temple'), style='IDS-Section')
+                self.write_cell(self._('Place'), style='IDS-Section')
+                self.doc.end_row()
+
+                for lds_ord in ord_list:
+                    type = self._(lds_ord.type2str())
+                    date = self._get_date(lds_ord.get_date_object())
+                    status = self._(lds_ord.status2str())
+                    temple = TEMPLES.name(lds_ord.get_temple())
+                    place_name = ''
+                    place_endnote = ''
+                    place_handle = lds_ord.get_place_handle()
+                    if place_handle:
+                        place = self._db.get_place_from_handle(place_handle)
+                        place_name = place.get_title()
+                        place_endnote = self._cite_endnote(place)
+                    endnotes = self._cite_endnote(lds_ord, prior=place_endnote)
+                    self.doc.start_row()
+                    self.write_cell('')
+                    self.write_cell(type, endnotes)
+                    self.write_cell(date)
+                    self.write_cell(status)
+                    self.write_cell(temple)
+                    self.write_cell(place_name)
+                    self.doc.end_row()
+                self.doc.end_table()
+
         self.doc.start_paragraph('IDS-Normal')
         self.doc.end_paragraph()
 
@@ -429,11 +592,12 @@ class IndivCompleteReport(Report):
         event_list = []
         for ind, event_ref in enumerate(event_ref_list):
             if event_ref:
-                event = self.database.get_event_from_handle(event_ref.ref)
+                event = self._db.get_event_from_handle(event_ref.ref)
                 if event:
                     sort_value = event.get_date_object().get_sort_value()
                     #first sort on date, equal dates, then sort as in GUI.
-                    event_list.append((str(sort_value) + "%04i"%ind, event_ref, event))
+                    event_list.append((str(sort_value) + "%04i" % ind,
+                                       event_ref, event))
 
         if self.sort:
             event_list.sort()
@@ -447,9 +611,7 @@ class IndivCompleteReport(Report):
         self.doc.start_table(event_group,"IDS-IndTable")
         self.doc.start_row()
         self.doc.start_cell("IDS-TableHead", 2)
-        self.doc.start_paragraph("IDS-TableTitle")
-        self.doc.write_text(self._(event_group))
-        self.doc.end_paragraph()
+        self.write_paragraph(self._(event_group), style='IDS-TableTitle')
         self.doc.end_cell()
         self.doc.end_row()
 
@@ -471,7 +633,7 @@ class IndivCompleteReport(Report):
         event_ref_list = self.person.get_event_ref_list()
         for event_ref in event_ref_list:
             if event_ref:
-                event = self.database.get_event_from_handle(event_ref.ref)
+                event = self._db.get_event_from_handle(event_ref.ref)
                 group = TYPE2GROUP[event.get_type().value]
                 if _(group) not in self.section_list:
                     group = SECTION_LIST[0]
@@ -482,13 +644,14 @@ class IndivCompleteReport(Report):
             if group in event_dict:
                 self.write_section(event_dict[group], group)
 
-    def normal_cell(self, text, endnotes=None, mark=None):
+    def write_cell(self, text, endnotes=None, mark=None, style='IDS-Normal'):
         self.doc.start_cell('IDS-NormalCell')
-        self.normal_paragraph(text, endnotes, mark)
+        self.write_paragraph(text, endnotes=endnotes, mark=mark, style=style)
         self.doc.end_cell()
 
-    def normal_paragraph(self, text, endnotes=None, mark=None):
-        self.doc.start_paragraph('IDS-Normal')
+    def write_paragraph(self, text,
+                        endnotes=None, mark=None, style='IDS-Normal'):
+        self.doc.start_paragraph(style)
         self.doc.write_text(text, mark)
         if endnotes:
             self.doc.start_superscript()
@@ -497,15 +660,14 @@ class IndivCompleteReport(Report):
         self.doc.end_paragraph()
 
     def write_report(self):
-        plist = self.database.get_person_handles(sort_handles=True)
+        plist = self._db.get_person_handles(sort_handles=True)
         if self.filter:
-            ind_list = self.filter.apply(self.database, plist)
+            ind_list = self.filter.apply(self._db, plist)
         else:
             ind_list = plist
 
         for count, person_handle in enumerate(ind_list):
-            self.person = self.database.get_person_from_handle(
-                person_handle)
+            self.person = self._db.get_person_from_handle(person_handle)
             self.write_person(count)
 
     def write_person(self, count):
@@ -513,7 +675,6 @@ class IndivCompleteReport(Report):
             self.doc.page_break()
         self.bibli = Bibliography(Bibliography.MODE_DATE|Bibliography.MODE_PAGE)
         
-        media_list = self.person.get_media_list()
         text = self._name_display.display(self.person)
         # feature request 2356: avoid genitive form
         title = self._("Summary of %s") % text
@@ -527,29 +688,27 @@ class IndivCompleteReport(Report):
 
         name = self.person.get_primary_name()
         text = self.get_name(self.person)
-        mark = ReportUtils.get_person_mark(self.database, self.person)
-        endnotes = ""
-        if self.use_srcs:
-            endnotes = Endnotes.cite_source(self.bibli, self.database, name)
+        mark = ReportUtils.get_person_mark(self._db, self.person)
+        endnotes = self._cite_endnote(self.person)
+        endnotes = self._cite_endnote(name, prior=endnotes)
 
         family_handle = self.person.get_main_parents_family_handle()
         if family_handle:
-            family = self.database.get_family_from_handle(family_handle)
+            family = self._db.get_family_from_handle(family_handle)
             father_inst_id = family.get_father_handle()
             if father_inst_id:
-                father_inst = self.database.get_person_from_handle(
+                father_inst = self._db.get_person_from_handle(
                     father_inst_id)
                 father = self.get_name(father_inst)
-                fmark = ReportUtils.get_person_mark(self.database, father_inst)
+                fmark = ReportUtils.get_person_mark(self._db, father_inst)
             else:
                 father = ""
                 fmark = None
             mother_inst_id = family.get_mother_handle()
             if mother_inst_id:
-                mother_inst = self.database.get_person_from_handle(
-                    mother_inst_id) 
+                mother_inst = self._db.get_person_from_handle(mother_inst_id) 
                 mother = self.get_name(mother_inst)
-                mmark = ReportUtils.get_person_mark(self.database, mother_inst)
+                mmark = ReportUtils.get_person_mark(self._db, mother_inst)
             else:
                 mother = ""
                 mmark = None
@@ -559,48 +718,72 @@ class IndivCompleteReport(Report):
             mother = ""
             mmark = None
 
-        self.doc.start_table('person','IDS-PersonTable')
+        media_list = self.person.get_media_list()
+        p_style = 'IDS-PersonTable2'
+        if self.use_images and len(media_list) > 0:
+            media0 = media_list[0]
+            media_handle = media0.get_reference_handle()
+            media = self._db.get_object_from_handle(media_handle)
+            mime_type = media.get_mime_type()
+            if mime_type and mime_type.startswith("image"):
+                image_filename = media_path_full(self._db, media.get_path())
+                if os.path.exists(image_filename):
+                    p_style = 'IDS-PersonTable' # this is tested for, also
+                else:
+                    self._user.warn(_("Could not add photo to page"),
+                                    # translators: for French, else ignore
+                                    _("%(str1)s: %(str2)s") %
+                                         {'str1' : image_filename,
+                                          'str2' : _('File does not exist') } )
+
+        self.doc.start_table('person', p_style)
         self.doc.start_row()
 
         self.doc.start_cell('IDS-NormalCell')
         # translators: needed for French, ignore otherwise
         ignore4 = self._("%s:")
-        self.normal_paragraph(self._("%s:") % self._("Name"))
-        self.normal_paragraph(self._("%s:") % self._("Gender"))
-        self.normal_paragraph(self._("%s:") % self._("Father"))
-        self.normal_paragraph(self._("%s:") % self._("Mother"))
+        self.write_paragraph(self._("%s:") % self._("Name"))
+        self.write_paragraph(self._("%s:") % self._("Gender"))
+        self.write_paragraph(self._("%s:") % self._("Father"))
+        self.write_paragraph(self._("%s:") % self._("Mother"))
         self.doc.end_cell()
 
         self.doc.start_cell('IDS-NormalCell')
-        self.normal_paragraph(text, endnotes, mark)
+        self.write_paragraph(text, endnotes, mark)
         if self.person.get_gender() == Person.MALE:
-            self.normal_paragraph(self._("Male"))
+            self.write_paragraph(self._("Male"))
         elif self.person.get_gender() == Person.FEMALE:
-            self.normal_paragraph(self._("Female"))
+            self.write_paragraph(self._("Female"))
         else:
-            self.normal_paragraph(self._("Unknown"))
-        self.normal_paragraph(father, mark=fmark)
-        self.normal_paragraph(mother, mark=mmark)
+            self.write_paragraph(self._("Unknown"))
+        self.write_paragraph(father, mark=fmark)
+        self.write_paragraph(mother, mark=mmark)
         self.doc.end_cell()
 
-        self.doc.start_cell('IDS-NormalCell')
-        if self.use_images and len(media_list) > 0:
-            media0 = media_list[0]
-            media_handle = media0.get_reference_handle()
-            media = self.database.get_object_from_handle(media_handle)
-            mime_type = media.get_mime_type()
-            if mime_type and mime_type.startswith("image"):
-                filename = media_path_full(self.database, media.get_path())
-                if os.path.exists(filename):
-                    self.doc.add_media_object(filename, "right", 4.0, 4.0,
-                                              crop=media0.get_rectangle())
-                else:
-                    self._user.warn(_("Could not add photo to page"),
-                                    # translators: for French, else ignore
-                                    _("%(str1)s: %(str2)s") %
-                                         {'str1' : filename,
-                                          'str2' : _('File does not exist') } )
-        self.doc.end_cell()
+        if p_style == 'IDS-PersonTable':
+            self.doc.start_cell('IDS-NormalCell')
+            self.doc.add_media_object(image_filename, "right", 4.0, 4.0,
+                                      crop=media0.get_rectangle())
+            endnotes = self._cite_endnote(media0)
+            attr_list = media0.get_attribute_list()
+            if len(attr_list) == 0:
+                text = _('(image)')
+            else:
+                for attr in attr_list:
+                    attr_type = self._get_type(attr.get_type())
+                    # translators: needed for French, ignore otherwise
+                    text = self._("%(str1)s: %(str2)s") % {
+                                        'str1' : self._(attr_type),
+                                        'str2' : attr.get_value() }
+                    endnotes = self._cite_endnote(attr, prior=endnotes)
+                    self.write_paragraph("(%s)" % text,
+                                         endnotes=endnotes,
+                                         style='IDS-ImageNote')
+                    endnotes = ''
+            if endnotes and len(attr_list) == 0:
+                self.write_paragraph(text, endnotes=endnotes,
+                                     style='IDS-ImageNote')
+            self.doc.end_cell()
 
         self.doc.end_row()
         self.doc.end_table()
@@ -613,11 +796,14 @@ class IndivCompleteReport(Report):
         self.write_alt_parents()
         self.write_families()
         self.write_addresses()
+        self.write_associations()
+        self.write_attributes()
+        self.write_LDS_ordinances()
         self.write_note()
         if self.use_srcs:
             if self.use_pagebreak and self.bibli.get_citation_count():
                 self.doc.page_break()
-            Endnotes.write_endnotes(self.bibli, self.database, self.doc,
+            Endnotes.write_endnotes(self.bibli, self._db, self.doc,
                                     printnotes=self.use_srcs_notes,
                                     elocale=self._locale)
             
@@ -631,6 +817,18 @@ class IndivCompleteReport(Report):
         elif str2 and not str1:
             text = format_single % str2
         return text
+
+    def _cite_endnote(self, obj, prior=''):
+        if not self.use_srcs:
+            return ""
+        if not obj:
+            return prior
+        
+        txt = Endnotes.cite_source(self.bibli, self._db, obj)
+        if prior:
+            # translators: needed for Arabic, ignore otherwise
+            txt = self._('%(str1)s, %(str2)s') % {'str1':prior, 'str2':txt}
+        return txt
 
 #------------------------------------------------------------------------
 #
@@ -675,7 +873,15 @@ class IndivCompleteOptions(MenuReportOptions):
         pageben.set_help(
                      _("Whether to start a new page before the end notes."))
         menu.add_option(category_name, "pageben", pageben)
-        
+
+        stdoptions.add_localization_option(menu, category_name)
+
+        ################################
+        category_name = _("Include")
+        ################################
+
+        stdoptions.add_private_data_option(menu, category_name)
+
         cites = BooleanOption(_("Include Source Information"), True)
         cites.set_help(_("Whether to cite sources."))
         menu.add_option(category_name, "cites", cites)
@@ -693,13 +899,10 @@ class IndivCompleteOptions(MenuReportOptions):
         grampsid.set_help(_("Whether to include Gramps ID next to names."))
         menu.add_option(category_name, "grampsid", grampsid)
 
-        stdoptions.add_private_data_option(menu, category_name)
-
-        stdoptions.add_localization_option(menu, category_name)
-
         ################################
         category_name = SECTION_CATEGORY
         ################################
+
         opt = BooleanListOption(_("Event groups"))
         opt.set_help(_("Check if a separate section is required."))
         for section in SECTION_LIST:
@@ -777,6 +980,26 @@ class IndivCompleteOptions(MenuReportOptions):
         para.set_description(_('The basic style used for the text display.'))
         default_style.add_paragraph_style("IDS-Normal", para)
         
+        font = FontStyle()
+        font.set_size(12)
+        font.set_italic(1)
+        para = ParagraphStyle()
+        para.set_font(font)
+        para.set_top_margin(ReportUtils.pt2cm(3))
+        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_description(_('The style used for the section headers.'))
+        default_style.add_paragraph_style("IDS-Section", para)
+        
+        font = FontStyle()
+        font.set_size(8)
+        para = ParagraphStyle()
+        para.set_alignment(PARA_ALIGN_RIGHT)
+        para.set_font(font)
+        para.set_top_margin(ReportUtils.pt2cm(3))
+        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_description(_('A style used for image facts.'))
+        default_style.add_paragraph_style("IDS-ImageNote", para)
+        
         # Table Styles
         tbl = TableStyle()
         tbl.set_width(100)
@@ -808,8 +1031,36 @@ class IndivCompleteOptions(MenuReportOptions):
         tbl.set_width(100)
         tbl.set_columns(3)
         tbl.set_column_width(0,20)
-        tbl.set_column_width(1,40)
-        tbl.set_column_width(2,40)
+        tbl.set_column_width(1,50)
+        tbl.set_column_width(2,30)
         default_style.add_table_style('IDS-PersonTable', tbl)
+
+        tbl = TableStyle()
+        tbl.set_width(100)
+        tbl.set_columns(2)
+        tbl.set_column_width(0,20)
+        tbl.set_column_width(1,80)
+        default_style.add_table_style('IDS-PersonTable2', tbl)
+
+        tbl = TableStyle()
+        tbl.set_width(100)
+        tbl.set_columns(5)
+        tbl.set_column_width(0,22) # Type
+        tbl.set_column_width(1,22) # Date
+        tbl.set_column_width(2,16) # Status
+        tbl.set_column_width(3,22) # Temple
+        tbl.set_column_width(4,18) # Place
+        default_style.add_table_style('IDS-OrdinanceTable', tbl)
+
+        tbl = TableStyle()
+        tbl.set_width(100)
+        tbl.set_columns(6)
+        tbl.set_column_width(0,20) # empty
+        tbl.set_column_width(1,18) # Type
+        tbl.set_column_width(2,18) # Date
+        tbl.set_column_width(3,14) # Status
+        tbl.set_column_width(4,18) # Temple
+        tbl.set_column_width(5,12) # Place
+        default_style.add_table_style('IDS-OrdinanceTable2', tbl)
 
         Endnotes.add_endnote_styles(default_style)
