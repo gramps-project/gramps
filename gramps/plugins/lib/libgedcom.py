@@ -7550,9 +7550,9 @@ class GedcomStageOne(object):
             data = line.split(None, 2) + ['']
             try:
                 (level, key, value) = data[:3]
-                value = value.strip()
                 level = int(level)
-                key = key.strip()
+                key = conv_to_unicode(key.strip())
+                value = conv_to_unicode(value.strip())
             except:
                 LOG.warn(_("Invalid line %d in GEDCOM file.") % self.lcnt)
                 continue
