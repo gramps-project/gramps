@@ -670,6 +670,7 @@ class AncestorTree(Report):
 
         lang = options.menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
+        stdoptions.run_name_format_option(self, options.menu)
         self._nd = self._name_display
 
     def begin_report(self):
@@ -895,6 +896,8 @@ class AncestorTreeOptions(MenuReportOptions):
         pid.set_help(_("The center person for the tree"))
         menu.add_option(category_name, "pid", pid)
         
+        stdoptions.add_name_format_option(menu, category_name)
+
         self.max_gen = NumberOption(_("Generations"), 10, 1, 50)
         self.max_gen.set_help(_("The number of generations to include "
                                 "in the tree"))

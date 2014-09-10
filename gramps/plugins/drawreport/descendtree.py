@@ -1290,6 +1290,7 @@ class DescendTree(Report):
 
         lang = options.menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
+        stdoptions.run_name_format_option(self, options.menu)
         self._nd = self._name_display
 
     def begin_report(self):
@@ -1507,6 +1508,8 @@ class DescendTreeOptions(MenuReportOptions):
             self.__pid = FamilyOption(_("Report for"))
             self.__pid.set_help(_("The main family for the report"))
             menu.add_option(category_name, "pid", self.__pid)
+
+        stdoptions.add_name_format_option(menu, category_name)
 
         self.showparents = BooleanOption(
             _('Start with the parent(s) of the selected first'),
