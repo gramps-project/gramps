@@ -21,8 +21,8 @@
 	      href="http://download.oracle.com/"/>
   <repository type="tarball" name="pymodules"
 	      href="http://pypi.python.org/packages/source/"/>
-  <repository type="tarball" name="stowers"
-	     href="http://www.johnstowers.co.nz/files/"/>
+  <repository type="git" name="github"
+	      href="git://github.com/"/>
   <repository type="tarball" name="graphviz"
 	      href="http://www.graphviz.org/pub/graphviz/stable/SOURCES/"/>
   <repository type="tarball" name="launchpad"
@@ -74,7 +74,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
       <dep package="pygtk-extras"/>
-      <dep package="osmgpsmap-py"/>
+      <dep package="osmgpsmap"/>
       <dep package="graphviz"/>
       <dep package="pyicu"/>
     </dependencies>
@@ -93,7 +93,7 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package="shared-mime-info"/>
       <dep package="hunspell"/>
       <dep package="pygtk-extras"/>
-      <dep package="osmgpsmap-py"/>
+      <dep package="osmgpsmap"/>
       <dep package="graphviz"/>
    </dependencies>
    <after>
@@ -138,26 +138,14 @@ ige-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
    <branch module="xdg-utils-1.0.2.tgz" version="1.0.2" repo="xdg-utils"/>
  </autotools>
 
-  <autotools id="osmgpsmap" autogenargs="--disable-introspection"
-	     autogen-sh="configure">
-    <branch module="osm-gps-map/osm-gps-map-0.7.3.tar.gz" repo="stowers"
-	    version="0.7.3"/>
+  <autotools id="osmgpsmap" skip-autogen="never"
+	     supports-non-srcdir-builds="no">
+    <branch module="nzjrs/osm-gps-map" revision="gtk2" repo="github"/>
     <dependencies>
       <dep package="gtk+"/>
       <dep package="libsoup"/>
     </dependencies>
   </autotools>
-
-  <distutils id="osmgpsmap-py" autogen-sh="gnome-autogen.sh">
-    <branch module="osm-gps-map/python-osmgpsmap-0.7.3.tar.gz" repo="stowers"
-	    version="0.7.3"/>
-    <dependencies>
-      <dep package="osmgpsmap"/>
-       <dep package="pygtk"/>
-       <dep package="pycairo-python2.6"/>
-      <dep package="pygobject"/>
-  </dependencies>
-  </distutils>
 
   <autotools id="graphviz" autogen-sh="configure"
 	     autogenargs="--disable-sharp --disable-guile --disable-java --disable-lua --disable-ocaml --disable-perl --disable-php --disable-r --disable-ruby --disable-tcl --without-x  --with-pangocairo --with-included-ltdl=yes">
