@@ -23,12 +23,12 @@
 
 """Reports/Graphical Reports/Ancestor Tree"""
 
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 from __future__ import division
-#------------------------------------------------------------------------
-#
-# python modules
-#
-#------------------------------------------------------------------------
 import math
 def log2(val):
     """
@@ -51,7 +51,6 @@ from gramps.gen.plug.menu import (TextOption, NumberOption, BooleanOption,
                                   PersonOption)
 from gramps.gen.plug.report import Report, MenuReportOptions, stdoptions
 from gramps.gen.plug.report import utils as ReportUtils
-from gramps.gen.display.name import NameDisplay
 from gramps.gen.plug.docgen import (FontStyle, ParagraphStyle, GraphicsStyle,
                                     FONT_SANS_SERIF, PARA_ALIGN_CENTER)
 from gramps.plugins.lib.libtreebase import *
@@ -135,8 +134,8 @@ class TitleN(TitleNoDisplay):
 
 class TitleA(TitleBox):
     """Title class for the report """
-    def __init__(self, doc, locale):
-        self._locale = locale
+    def __init__(self, doc, locale, name_displayer):
+        self._nd = name_displayer
         TitleBox.__init__(self, doc, "AC2-Title")
         self._ = locale.translation.sgettext
 
@@ -144,7 +143,7 @@ class TitleA(TitleBox):
         """Calculate the title of the report"""
         name = ""
         if center is not None:
-            name = NameDisplay(self._locale).display(center)
+            name = self._nd.display(center)
         
         # feature request 2356: avoid genitive form
         self.text = self._("Ancestor Graph for %s") % name
@@ -166,7 +165,7 @@ class CalcItems(object):
         #str = ""
         #if self.get_val('miss_val'):
         #    str = "_____"
-        self.__calc_l =  CalcLines(dbase, [], __gui._locale)
+        self.__calc_l =  CalcLines(dbase, [], __gui._locale, __gui._nd)
         
         self.__blank_father = None
         self.__blank_mother = None
@@ -622,10 +621,11 @@ class GUIConnect():
     def __init__(self):  #We are BORG!
         self.__dict__ = self.__shared_state
     
-    def set__opts(self, options, locale):
+    def set__opts(self, options, locale, name_displayer):
         """ Set only once as we are BORG.  """
         self.__opts = options
         self._locale = locale
+        self._nd = name_displayer
         
     def get_val(self, val):
         """ Get a GUI value. """
@@ -640,7 +640,7 @@ class GUIConnect():
         GUI options """
         title_type = self.get_val('report_title')
         if title_type:
-            return TitleA(doc, self._locale)
+            return TitleA(doc, self._locale, self._nd)
         else:
             return TitleN(doc, self._locale)
 
@@ -670,6 +670,7 @@ class AncestorTree(Report):
 
         lang = options.menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
+        self._nd = self._name_display
 
     def begin_report(self):
         """
@@ -695,7 +696,7 @@ class AncestorTree(Report):
         database = self.database
 
         self.connect = GUIConnect()
-        self.connect.set__opts(self.options.menu, self._locale)
+        self.connect.set__opts(self.options.menu, self._locale, self._nd)
 
         #Set up the canvas that we will print on.
         style_sheet = self.doc.get_style_sheet()
@@ -746,7 +747,8 @@ class AncestorTree(Report):
             if self.connect.get_val("inc_note"):
                 note_box = NoteBox(self.doc, "AC2-note-box", 
                                    self.connect.get_val("note_place"))
-                subst = SubstKeywords(self.database, self._locale, None, None)
+                subst = SubstKeywords(self.database, self._locale, self._nd,
+                                      None, None)
                 note_box.text = subst.replace_and_clean(
                     self.connect.get_val('note_disp'))
                 self.canvas.add_note(note_box)

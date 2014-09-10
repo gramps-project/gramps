@@ -26,6 +26,12 @@
 Reports/Graphical Reports/Familial Tree
 Reports/Graphical Reports/Personal Tree
 """
+
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 from __future__ import division
 
 #------------------------------------------------------------------------
@@ -129,8 +135,9 @@ class PlaceHolderBox(BoxBase):
 #
 #------------------------------------------------------------------------
 class DescendantTitleBase(TitleBox):
-    def __init__(self, dbase, doc, locale, boxstr = "CG2-Title"):
-        self._locale = locale
+    def __init__(self, dbase, doc, locale, name_displayer,
+                 boxstr = "CG2-Title"):
+        self._nd = name_displayer
         TitleBox.__init__(self, doc, boxstr)
         self.database = dbase
         self._ = locale.translation.sgettext
@@ -146,10 +153,10 @@ class DescendantTitleBase(TitleBox):
             person_list = person_list + person_list2
             person_list2 = []
 
-        names = self._get_names(person_list)
+        names = self._get_names(person_list, self._nd)
 
         if person_list2:
-            names2 = self._get_names(person_list2)
+            names2 = self._get_names(person_list2, self._nd)
             if len(names) + len(names2) == 3:
                 if len(names) == 1:
                     title = self._("Descendant Chart for %(person)s and "
@@ -214,8 +221,8 @@ class TitleDPY(DescendantTitleBase):
     """Descendant (Person yes start with parents) Chart 
     Title class for the report """
     
-    def __init__(self, dbase, doc, locale):
-        DescendantTitleBase.__init__(self, dbase, doc, locale)
+    def __init__(self, dbase, doc, locale, name_displayer):
+        DescendantTitleBase.__init__(self, dbase, doc, locale, name_displayer)
         
     def calc_title(self, person_id):
         """Calculate the title of the report"""
@@ -241,8 +248,8 @@ class TitleDPN(DescendantTitleBase):
     """Descendant (Person no start with parents) Chart 
     Title class for the report """
     
-    def __init__(self, dbase, doc, locale):
-        DescendantTitleBase.__init__(self, dbase, doc, locale)
+    def __init__(self, dbase, doc, locale, name_displayer):
+        DescendantTitleBase.__init__(self, dbase, doc, locale, name_displayer)
         
     def calc_title(self, person_id):
         """Calculate the title of the report"""
@@ -257,8 +264,8 @@ class TitleDFY(DescendantTitleBase):
     """Descendant (Family yes start with parents) Chart 
     Title class for the report """
     
-    def __init__(self, dbase, doc, locale):
-        DescendantTitleBase.__init__(self, dbase, doc, locale)
+    def __init__(self, dbase, doc, locale, name_displayer):
+        DescendantTitleBase.__init__(self, dbase, doc, locale, name_displayer)
     
     def get_parent_list(self, person):
         """ return a list of my parents.  If none, return me """
@@ -297,8 +304,8 @@ class TitleDFN(DescendantTitleBase):
     """Descendant (Family no start with parents) Chart
     Title class for the report """
     
-    def __init__(self, dbase, doc, locale):
-        DescendantTitleBase.__init__(self, dbase, doc, locale)
+    def __init__(self, dbase, doc, locale, name_displayer):
+        DescendantTitleBase.__init__(self, dbase, doc, locale, name_displayer)
         
     def calc_title(self, family_id):
         """Calculate the title of the report"""
@@ -310,14 +317,14 @@ class TitleDFN(DescendantTitleBase):
 class TitleF(DescendantTitleBase):
     """Family Chart Title class for the report """
 
-    def __init__(self, dbase, doc, locale):
-        DescendantTitleBase.__init__(self, dbase, doc, locale)
+    def __init__(self, dbase, doc, locale, name_displayer):
+        DescendantTitleBase.__init__(self, dbase, doc, locale, name_displayer)
         
     def calc_title(self, family_id):
         """Calculate the title of the report"""
         parents = self.get_parents(family_id)
 
-        names = self._get_names(parents)
+        names = self._get_names(parents, self._nd)
 
         if len(parents) == 1:
             title = self._("Family Chart for %(person)s") % {
@@ -333,8 +340,8 @@ class TitleF(DescendantTitleBase):
 class TitleC(DescendantTitleBase):
     """Cousin Chart Title class for the report """
 
-    def __init__(self, dbase, doc, locale):
-        DescendantTitleBase.__init__(self, dbase, doc, locale)
+    def __init__(self, dbase, doc, locale, name_displayer):
+        DescendantTitleBase.__init__(self, dbase, doc, locale, name_displayer)
         
     def calc_title(self, family_id):
         """Calculate the title of the report"""
@@ -346,7 +353,7 @@ class TitleC(DescendantTitleBase):
 
         #ok we have the children.  Make a title off of them
         # translators: needed for Arabic, ignore otherwise
-        cousin_names = self._(', ').join(self._get_names(kids))
+        cousin_names = self._(', ').join(self._get_names(kids, self._nd))
         
         self.text = self._("Cousin Chart for %(names)s") % {
                                    'names' : cousin_names}
@@ -1190,10 +1197,11 @@ class GuiConnect():
     def __init__(self):  #We are BORG!
         self.__dict__ = self.__shared_state
 
-    def set__opts(self, options, which, locale):
+    def set__opts(self, options, which, locale, name_displayer):
         self._opts = options
         self._which_report = which.split(",")[0]
         self._locale = locale
+        self._nd = name_displayer
         
     def get_val(self, val):
         """ Get a GUI value. """
@@ -1211,19 +1219,19 @@ class GuiConnect():
         if Title_type == 1:  #Descendant Chart
             if self._which_report == _RPT_NAME:
                 if self.get_val('show_parents'):
-                    return TitleDPY(database, doc, self._locale)
+                    return TitleDPY(database, doc, self._locale, self._nd)
                 else:
-                    return TitleDPN(database, doc, self._locale)
+                    return TitleDPN(database, doc, self._locale, self._nd)
             else:
                 if self.get_val('show_parents'):
-                    return TitleDFY(database, doc, self._locale)
+                    return TitleDFY(database, doc, self._locale, self._nd)
                 else:
-                    return TitleDFN(database, doc, self._locale)
+                    return TitleDFN(database, doc, self._locale, self._nd)
         
         if Title_type == 2:
-            return TitleF(database, doc, self._locale)
+            return TitleF(database, doc, self._locale, self._nd)
         else: #Title_type == 3
-            return TitleC(database, doc, self._locale)
+            return TitleC(database, doc, self._locale, self._nd)
     
     def Make_Tree(self, database, canvas):
         if self._which_report == _RPT_NAME:
@@ -1237,7 +1245,7 @@ class GuiConnect():
         #str = ""
         #if self.get_val('miss_val'):
         #    str = "_____"
-        return CalcLines(database, display_repl, self._locale)
+        return CalcLines(database, display_repl, self._locale, self._nd)
     
     def working_lines(self, box):
         display = self.get_val("descend_disp")
@@ -1282,6 +1290,7 @@ class DescendTree(Report):
 
         lang = options.menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(lang)
+        self._nd = self._name_display
 
     def begin_report(self):
         """ make the report in its full size and pages to print on
@@ -1292,7 +1301,7 @@ class DescendTree(Report):
 
         self.Connect = GuiConnect()
         self.Connect.set__opts(self.options.menu, self.options.name,
-                               self._locale)
+                               self._locale, self._nd)
         
         style_sheet = self.doc.get_style_sheet()
         font_normal = style_sheet.get_paragraph_style("CG2-Normal").get_font()
@@ -1329,7 +1338,8 @@ class DescendTree(Report):
         if self.Connect.get_val("inc_note"):
             note_box = NoteBox(self.doc, "CG2-note-box",
                                self.Connect.get_val("note_place"))
-            subst = SubstKeywords(self.database, self._locale, None, None)
+            subst = SubstKeywords(self.database, self._locale, self._nd,
+                                  None, None)
             note_box.text = subst.replace_and_clean(
                 self.Connect.get_val('note_disp'))
             self.canvas.add_note(note_box)

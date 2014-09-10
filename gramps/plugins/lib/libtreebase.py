@@ -30,13 +30,12 @@ from __future__ import division
 
 #------------------------------------------------------------------------
 #
-# gramps modules
+# Gramps modules
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.plug.report import utils as ReportUtils
-from gramps.gen.display.name import NameDisplay
 from gramps.plugins.lib.libsubstkeyword import SubstKeywords
 from gramps.gen.plug.docgen import (IndexMark, INDEX_TYPE_TOC)
 
@@ -54,11 +53,12 @@ class CalcLines(object):
     Receive:  Individual and family handle, and display format [string]
     return: [Text] ready for a box.
     """
-    def __init__(self, dbase, repl, locale):
+    def __init__(self, dbase, repl, locale, name_displayer):
         self.database = dbase
         self.display_repl = repl
         #self.default_string = default_str
         self._locale = locale
+        self._nd = name_displayer
 
     def calc_lines(self, _indi_handle, _fams_handle, workinglines):
         """
@@ -69,7 +69,7 @@ class CalcLines(object):
 
         ####################
         #1.1  Get our line information here
-        subst = SubstKeywords(self.database, self._locale,
+        subst = SubstKeywords(self.database, self._locale, self._nd,
                               _indi_handle, _fams_handle)
         lines = subst.replace_and_clean(workinglines)
 
@@ -678,11 +678,10 @@ class TitleBox(BoxBase):
         self.width = PT2CM(self.doc.string_width(self.font, self.text))
         self.height = PT2CM(self.font.get_size() * 1.2)
 
-    def _get_names(self, persons):
+    def _get_names(self, persons, name_displayer):
         """  A helper function that receives a list of persons and
         returns their names in a list """
-        return [NameDisplay(self._locale).display(person)
-                    for person in persons]
+        return [name_displayer.display(person) for person in persons]
 
     def display(self):
         """ display the title box.  """

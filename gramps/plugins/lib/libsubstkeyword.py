@@ -33,6 +33,11 @@ Will return a value such as:
 Mary Smith was born on 3/28/1923.
 """
 
+#------------------------------------------------------------------------
+#
+# Python modules
+#
+#------------------------------------------------------------------------
 from __future__ import print_function
 
 #------------------------------------------------------------------------
@@ -40,7 +45,6 @@ from __future__ import print_function
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.display.name import NameDisplay
 from gramps.gen.lib import EventType, PlaceType, Location
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.constfunc import STRTYPE, cuni
@@ -149,6 +153,10 @@ class NameFormat(GenericFormat):
     otherwise, parse through a format string and put the name parts in
     """
 
+    def __init__(self, _in, locale, name_displayer):
+        GenericFormat.__init__(self, _in, locale)
+        self._nd = name_displayer
+
     def get_name(self, person, aka):
         """ A helper method for retrieving the person's name """
         name = None
@@ -164,7 +172,7 @@ class NameFormat(GenericFormat):
 
     def _default_format(self, name):
         """ display the name as set in preferences """
-        return NameDisplay(self._locale).sorted_name(name)
+        return self._nd.sorted_name(name)
 
     def parse_format(self, name):
         """ Parse the name """
@@ -788,11 +796,12 @@ class AttributeParse(object):
 class VariableParse(object):
     """ Parse the individual variables """
 
-    def __init__(self, friend, database, consumer_in, locale):
+    def __init__(self, friend, database, consumer_in, locale, name_displayer):
         self.friend = friend
         self.database = database
         self._in = consumer_in
         self._locale = locale
+        self._nd = name_displayer
 
     def is_a(self):
         """ check """
@@ -868,7 +877,7 @@ class VariableParse(object):
         return place_f.parse_format(self.database, place)
 
     def __parse_name(self, person, attrib_parse):
-        name_format = NameFormat(self._in, self._locale)
+        name_format = NameFormat(self._in, self._locale, self._nd)
         name = name_format.get_name(person, attrib_parse.get_name())
         return name_format.parse_format(name)
 
@@ -1044,7 +1053,8 @@ class SubstKeywords(object):
             this will specify the specific family/spouse to work with.
             If none given, then the first/preferred family/spouse is used
     """
-    def __init__(self, database, locale, person_handle, family_handle=None):
+    def __init__(self, database, locale, name_displayer,
+                 person_handle, family_handle=None):
         """get the person and find the family/spouse to use for this display"""
 
         self.database = database
@@ -1053,6 +1063,7 @@ class SubstKeywords(object):
         self.spouse = None
         self.line = None   # Consumable_string - set below
         self._locale = locale
+        self._nd = name_displayer
 
         if self.person is None:
             return
@@ -1096,7 +1107,8 @@ class SubstKeywords(object):
         #First we are going take care of all variables/groups
         #break down all {} (groups) and $ (vars) into either
         #(TXT.text, resulting_string) or (TXT.remove, '')
-        variable = VariableParse(self, self.database, self.line, self._locale)  # $
+        variable = VariableParse(self, self.database, self.line,
+                                 self._locale, self._nd)
 
         while self.line.this:
             if self.line.this == "{":
