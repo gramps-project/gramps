@@ -166,8 +166,10 @@ class DateParserCZ(DateParser):
         }
 
     quality_to_int = {
+        u'přibližně'  : Date.QUAL_ESTIMATED,
         u'odhadované' : Date.QUAL_ESTIMATED, 
         u'odh.'       : Date.QUAL_ESTIMATED, 
+        u'vypočteno'  : Date.QUAL_CALCULATED,
         u'vypočtené'  : Date.QUAL_CALCULATED, 
         u'vyp.'       : Date.QUAL_CALCULATED, 
         }
@@ -238,14 +240,14 @@ class DateDisplayCZ(DateDisplay):
             return date.get_text()
         elif start == Date.EMPTY:
             return ""
-        elif mod == Date.MOD_NONE:
-            date_decl_string = self.display_cal[cal](start)
-            date_decl_string = date_decl_string.replace(u"den ", u"dna ")
-            date_decl_string = date_decl_string.replace(u"or ", u"ora ")
-            date_decl_string = date_decl_string.replace(u"en ", u"na ")
-            date_decl_string = date_decl_string.replace(u"ad ", u"adu ")
-            date_decl_string = date_decl_string.replace(u"ec ", u"ce ")
-            return date_decl_string
+#        elif mod == Date.MOD_NONE:
+#            date_decl_string = self.display_cal[cal](start)
+#            date_decl_string = date_decl_string.replace(u"den ", u"dna ")
+#            date_decl_string = date_decl_string.replace(u"or ", u"ora ")
+#            date_decl_string = date_decl_string.replace(u"en ", u"na ")
+#            date_decl_string = date_decl_string.replace(u"ad ", u"adu ")
+#            date_decl_string = date_decl_string.replace(u"ec ", u"ce ")
+#            return date_decl_string
         elif mod == Date.MOD_SPAN:
             dat1 = self.display_cal[cal](start)
             dat2 = self.display_cal[cal](date.get_stop_date())
