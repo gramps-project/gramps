@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-10 11:55+0200\n"
+"POT-Creation-Date: 2014-09-11 17:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -5575,7 +5575,7 @@ msgid "Graphics"
 msgstr ""
 
 #: ../gramps/gen/plug/report/endnotes.py:50
-#: ../gramps/plugins/textreport/ancestorreport.py:346
+#: ../gramps/plugins/textreport/ancestorreport.py:347
 #: ../gramps/plugins/textreport/detancestralreport.py:850
 #: ../gramps/plugins/textreport/detdescendantreport.py:1045
 msgid "The style used for the generation header."
@@ -6183,43 +6183,43 @@ msgstr ""
 msgid "Chinese Simplified"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:826
+#: ../gramps/gen/utils/grampslocale.py:827
 msgid "the person"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:828
+#: ../gramps/gen/utils/grampslocale.py:829
 msgid "the family"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:830
+#: ../gramps/gen/utils/grampslocale.py:831
 msgid "the place"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:832
+#: ../gramps/gen/utils/grampslocale.py:833
 msgid "the event"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:834
+#: ../gramps/gen/utils/grampslocale.py:835
 msgid "the repository"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:836
+#: ../gramps/gen/utils/grampslocale.py:837
 msgid "the note"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:838
+#: ../gramps/gen/utils/grampslocale.py:839
 msgid "the media"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:840
+#: ../gramps/gen/utils/grampslocale.py:841
 msgid "the source"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:842
+#: ../gramps/gen/utils/grampslocale.py:843
 msgid "the filter"
 msgstr ""
 
-#: ../gramps/gen/utils/grampslocale.py:844
+#: ../gramps/gen/utils/grampslocale.py:845
 msgid "See details"
 msgstr ""
 
@@ -8338,12 +8338,12 @@ msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:147
 #: ../gramps/gui/editors/editperson.py:630 ../gramps/gui/grampsgui.py:191
-#: ../gramps/gui/grampsgui.py:192 ../gramps/plugins/view/mediaview.py:221
+#: ../gramps/gui/grampsgui.py:192 ../gramps/plugins/view/mediaview.py:224
 msgid "View"
 msgstr ""
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:155
-#: ../gramps/plugins/view/mediaview.py:225
+#: ../gramps/plugins/view/mediaview.py:228
 msgid "Open Containing _Folder"
 msgstr ""
 
@@ -8365,8 +8365,8 @@ msgid ""
 "To edit this media reference, you need to close the media object."
 msgstr ""
 
-#: ../gramps/gui/editors/displaytabs/gallerytab.py:538
-#: ../gramps/plugins/view/mediaview.py:207
+#: ../gramps/gui/editors/displaytabs/gallerytab.py:542
+#: ../gramps/plugins/view/mediaview.py:210
 msgid "Drag Media Object"
 msgstr ""
 
@@ -12090,7 +12090,7 @@ msgstr ""
 
 #: ../gramps/gui/grampsgui.py:61
 msgid ""
-"Your version of gi (gnome-instrospection) seems to be too old. You need a "
+"Your version of gi (gnome-introspection) seems to be too old. You need a "
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
 
@@ -12108,7 +12108,7 @@ msgstr ""
 msgid ""
 "Gdk, Gtk or Pango typelib not installed.\n"
 "Install Gnome Introspection, and pygobject version 3.3.2 or later.\n"
-"Install then instrospection data for Gdk, Gtk and Pango\n"
+"Then install introspection data for Gdk, Gtk and Pango\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
@@ -13275,7 +13275,7 @@ msgstr ""
 #: ../gramps/plugins/view/citationtreeview.py:290
 #: ../gramps/plugins/view/eventview.py:214
 #: ../gramps/plugins/view/familyview.py:212
-#: ../gramps/plugins/view/mediaview.py:229
+#: ../gramps/plugins/view/mediaview.py:232
 #: ../gramps/plugins/view/noteview.py:204
 #: ../gramps/plugins/view/repoview.py:152
 #: ../gramps/plugins/view/sourceview.py:138
@@ -13459,7 +13459,8 @@ msgstr ""
 #: ../gramps/plugins/drawreport/statisticschart.py:938
 #: ../gramps/plugins/drawreport/timeline.py:409
 #: ../gramps/plugins/graph/gvrelgraph.py:529
-#: ../gramps/plugins/textreport/ancestorreport.py:269
+#: ../gramps/plugins/textreport/alphabeticalindex.py:89
+#: ../gramps/plugins/textreport/ancestorreport.py:270
 #: ../gramps/plugins/textreport/birthdayreport.py:412
 #: ../gramps/plugins/textreport/descendreport.py:401
 #: ../gramps/plugins/textreport/detancestralreport.py:721
@@ -13473,6 +13474,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/recordsreport.py:170
 #: ../gramps/plugins/textreport/simplebooktitle.py:130
 #: ../gramps/plugins/textreport/summary.py:277
+#: ../gramps/plugins/textreport/tableofcontents.py:89
 #: ../gramps/plugins/textreport/tagreport.py:533
 #: ../gramps/plugins/webreport/narrativeweb.py:7992
 #: ../gramps/plugins/webreport/webcal.py:1320
@@ -14842,16 +14844,6 @@ msgstr ""
 msgid "Could not open %s"
 msgstr ""
 
-#: ../gramps/plugins/docgen/odfdoc.py:1634
-#: ../gramps/plugins/docgen/cairodoc.py:240
-msgid "Contents"
-msgstr ""
-
-#: ../gramps/plugins/docgen/odfdoc.py:1673
-#: ../gramps/plugins/docgen/cairodoc.py:273
-msgid "Index"
-msgstr ""
-
 #. cm2pt = ReportUtils.cm2pt
 #. ------------------------------------------------------------------------
 #.
@@ -14911,7 +14903,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/fanchart.py:650
 #: ../gramps/plugins/graph/gvhourglass.py:273
 #: ../gramps/plugins/graph/gvrelgraph.py:539
-#: ../gramps/plugins/textreport/ancestorreport.py:271
+#: ../gramps/plugins/textreport/ancestorreport.py:272
 #: ../gramps/plugins/textreport/birthdayreport.py:424
 #: ../gramps/plugins/textreport/descendreport.py:403
 #: ../gramps/plugins/textreport/detancestralreport.py:724
@@ -14929,7 +14921,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:895
 #: ../gramps/plugins/drawreport/descendtree.py:1501
 #: ../gramps/plugins/drawreport/fanchart.py:654
-#: ../gramps/plugins/textreport/ancestorreport.py:277
+#: ../gramps/plugins/textreport/ancestorreport.py:278
 #: ../gramps/plugins/textreport/descendreport.py:417
 #: ../gramps/plugins/textreport/detancestralreport.py:730
 #: ../gramps/plugins/textreport/detdescendantreport.py:903
@@ -15210,7 +15202,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1102
 #: ../gramps/plugins/drawreport/descendtree.py:1709
-#: ../gramps/plugins/textreport/ancestorreport.py:356
+#: ../gramps/plugins/textreport/ancestorreport.py:357
 #: ../gramps/plugins/textreport/detancestralreport.py:886
 #: ../gramps/plugins/textreport/detdescendantreport.py:1081
 #: ../gramps/plugins/textreport/endoflinereport.py:299
@@ -15326,7 +15318,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/calendarreport.py:430
 #: ../gramps/plugins/drawreport/fanchart.py:651
 #: ../gramps/plugins/graph/gvrelgraph.py:540
-#: ../gramps/plugins/textreport/ancestorreport.py:272
+#: ../gramps/plugins/textreport/ancestorreport.py:273
 #: ../gramps/plugins/textreport/birthdayreport.py:425
 #: ../gramps/plugins/textreport/descendreport.py:404
 #: ../gramps/plugins/textreport/detancestralreport.py:725
@@ -15767,7 +15759,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/drawreport/fanchart.py:655
-#: ../gramps/plugins/textreport/ancestorreport.py:278
+#: ../gramps/plugins/textreport/ancestorreport.py:279
 #: ../gramps/plugins/textreport/descendreport.py:418
 #: ../gramps/plugins/textreport/detancestralreport.py:731
 #: ../gramps/plugins/textreport/detdescendantreport.py:905
@@ -15844,8 +15836,8 @@ msgid ""
 msgstr ""
 
 #: ../gramps/plugins/drawreport/fanchart.py:717
-#: ../gramps/plugins/textreport/alphabeticalindex.py:97
-#: ../gramps/plugins/textreport/tableofcontents.py:97
+#: ../gramps/plugins/textreport/alphabeticalindex.py:99
+#: ../gramps/plugins/textreport/tableofcontents.py:99
 msgid "The style used for the title."
 msgstr ""
 
@@ -16122,7 +16114,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:1063
 #: ../gramps/plugins/drawreport/timeline.py:484
-#: ../gramps/plugins/textreport/ancestorreport.py:333
+#: ../gramps/plugins/textreport/ancestorreport.py:334
 #: ../gramps/plugins/textreport/descendreport.py:448
 #: ../gramps/plugins/textreport/detancestralreport.py:840
 #: ../gramps/plugins/textreport/detdescendantreport.py:1035
@@ -19362,8 +19354,11 @@ msgstr ""
 msgid "Japan"
 msgstr ""
 
+#. Make upper case of translaed country so string search works later
 #: ../gramps/plugins/lib/holidays.xml.in.h:12
-msgid "Sweden - Holidays"
+#: ../gramps/plugins/mapservices/eniroswedenmap.py:46
+#: ../gramps/plugins/tool/extractcity.py:64
+msgid "Sweden"
 msgstr ""
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:13
@@ -19695,7 +19690,7 @@ msgid "REPO (repository) Gramps ID %s"
 msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:6733
-msgid "Head (header)"
+msgid "HEAD (header)"
 msgstr ""
 
 #: ../gramps/plugins/lib/libgedcom.py:6749
@@ -23349,12 +23344,6 @@ msgstr ""
 msgid "New place with empty fields"
 msgstr ""
 
-#. Make upper case of translaed country so string search works later
-#: ../gramps/plugins/mapservices/eniroswedenmap.py:46
-#: ../gramps/plugins/tool/extractcity.py:64
-msgid "Sweden"
-msgstr ""
-
 #: ../gramps/plugins/mapservices/eniroswedenmap.py:52
 msgid "Denmark"
 msgstr ""
@@ -24217,7 +24206,11 @@ msgstr ""
 msgid "Alphabetical Index"
 msgstr ""
 
-#: ../gramps/plugins/textreport/alphabeticalindex.py:114
+#: ../gramps/plugins/textreport/alphabeticalindex.py:69
+msgid "Index"
+msgstr ""
+
+#: ../gramps/plugins/textreport/alphabeticalindex.py:116
 msgid "The style used for index entries."
 msgstr ""
 
@@ -24227,23 +24220,23 @@ msgstr ""
 msgid "Ahnentafel Report for %s"
 msgstr ""
 
-#: ../gramps/plugins/textreport/ancestorreport.py:281
+#: ../gramps/plugins/textreport/ancestorreport.py:282
 #: ../gramps/plugins/textreport/detancestralreport.py:734
 #: ../gramps/plugins/textreport/detdescendantreport.py:909
 msgid "Page break between generations"
 msgstr ""
 
-#: ../gramps/plugins/textreport/ancestorreport.py:283
+#: ../gramps/plugins/textreport/ancestorreport.py:284
 #: ../gramps/plugins/textreport/detancestralreport.py:736
 #: ../gramps/plugins/textreport/detdescendantreport.py:911
 msgid "Whether to start a new page after each generation."
 msgstr ""
 
-#: ../gramps/plugins/textreport/ancestorreport.py:286
+#: ../gramps/plugins/textreport/ancestorreport.py:287
 msgid "Add linebreak after each name"
 msgstr ""
 
-#: ../gramps/plugins/textreport/ancestorreport.py:287
+#: ../gramps/plugins/textreport/ancestorreport.py:288
 msgid "Indicates if a line break should follow the name."
 msgstr ""
 
@@ -25489,15 +25482,19 @@ msgstr ""
 msgid "Table Of Contents"
 msgstr ""
 
-#: ../gramps/plugins/textreport/tableofcontents.py:112
+#: ../gramps/plugins/textreport/tableofcontents.py:69
+msgid "Contents"
+msgstr ""
+
+#: ../gramps/plugins/textreport/tableofcontents.py:114
 msgid "The style used for first level headings."
 msgstr ""
 
-#: ../gramps/plugins/textreport/tableofcontents.py:118
+#: ../gramps/plugins/textreport/tableofcontents.py:120
 msgid "The style used for second level headings."
 msgstr ""
 
-#: ../gramps/plugins/textreport/tableofcontents.py:124
+#: ../gramps/plugins/textreport/tableofcontents.py:126
 msgid "The style used for third level headings."
 msgstr ""
 
@@ -28186,23 +28183,23 @@ msgstr ""
 msgid "Merge the selected media objects"
 msgstr ""
 
-#: ../gramps/plugins/view/mediaview.py:219
+#: ../gramps/plugins/view/mediaview.py:222
 msgid "Media Filter Editor"
 msgstr ""
 
-#: ../gramps/plugins/view/mediaview.py:222
+#: ../gramps/plugins/view/mediaview.py:225
 msgid "View in the default viewer"
 msgstr ""
 
-#: ../gramps/plugins/view/mediaview.py:226
+#: ../gramps/plugins/view/mediaview.py:229
 msgid "Open the folder containing the media file"
 msgstr ""
 
-#: ../gramps/plugins/view/mediaview.py:374
+#: ../gramps/plugins/view/mediaview.py:377
 msgid "Cannot merge media objects."
 msgstr ""
 
-#: ../gramps/plugins/view/mediaview.py:375
+#: ../gramps/plugins/view/mediaview.py:378
 msgid ""
 "Exactly two media objects must be selected to perform a merge. A second "
 "object can be selected by holding down the control key while clicking on the "
@@ -28718,13 +28715,13 @@ msgstr ""
 #. and menu layout is Drop Down?
 #. Basic Blue style sheet with navigation menus
 #: ../gramps/plugins/webreport/narrativeweb.py:1731
-#: ../gramps/plugins/webstuff/webstuff.py:65
+#: ../gramps/plugins/webstuff/webstuff.py:66
 msgid "Basic-Blue"
 msgstr ""
 
 #. Visually Impaired style sheet with its navigation menus
 #: ../gramps/plugins/webreport/narrativeweb.py:1732
-#: ../gramps/plugins/webstuff/webstuff.py:97
+#: ../gramps/plugins/webstuff/webstuff.py:98
 msgid "Visually Impaired"
 msgstr ""
 
@@ -29995,45 +29992,44 @@ msgstr ""
 #. id, user selectable?, translated_name, option name, fullpath,
 #. navigation target name, images, javascript
 #. "default" is used as default
-#. Basic Ash style sheet
 #. default style sheet in the options
-#: ../gramps/plugins/webstuff/webstuff.py:61
-#: ../gramps/plugins/webstuff/webstuff.py:115
+#. Basic Ash style sheet
+#: ../gramps/plugins/webstuff/webstuff.py:62
 msgid "Basic-Ash"
 msgstr ""
 
 #. Basic Cypress style sheet
-#: ../gramps/plugins/webstuff/webstuff.py:69
+#: ../gramps/plugins/webstuff/webstuff.py:70
 msgid "Basic-Cypress"
 msgstr ""
 
 #. basic Lilac style sheet
-#: ../gramps/plugins/webstuff/webstuff.py:73
+#: ../gramps/plugins/webstuff/webstuff.py:74
 msgid "Basic-Lilac"
 msgstr ""
 
 #. basic Peach style sheet
-#: ../gramps/plugins/webstuff/webstuff.py:77
+#: ../gramps/plugins/webstuff/webstuff.py:78
 msgid "Basic-Peach"
 msgstr ""
 
 #. basic Spruce style sheet
-#: ../gramps/plugins/webstuff/webstuff.py:81
+#: ../gramps/plugins/webstuff/webstuff.py:82
 msgid "Basic-Spruce"
 msgstr ""
 
 #. Mainz style sheet with its images
-#: ../gramps/plugins/webstuff/webstuff.py:85
+#: ../gramps/plugins/webstuff/webstuff.py:86
 msgid "Mainz"
 msgstr ""
 
 #. Nebraska style sheet
-#: ../gramps/plugins/webstuff/webstuff.py:93
+#: ../gramps/plugins/webstuff/webstuff.py:94
 msgid "Nebraska"
 msgstr ""
 
 #. no style sheet option
-#: ../gramps/plugins/webstuff/webstuff.py:158
+#: ../gramps/plugins/webstuff/webstuff.py:155
 msgid "No style sheet"
 msgstr ""
 
