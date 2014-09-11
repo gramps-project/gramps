@@ -298,6 +298,7 @@ gramps/gui/editors/displaytabs/grampstab.py
 gramps/gui/editors/displaytabs/groupembeddedlist.py
 gramps/gui/editors/displaytabs/ldsmodel.py
 gramps/gui/editors/displaytabs/locationmodel.py
+gramps/gui/editors/displaytabs/mediaattrembedlist.py
 gramps/gui/editors/displaytabs/mediabackreflist.py
 gramps/gui/editors/displaytabs/notebackreflist.py
 gramps/gui/editors/displaytabs/notemodel.py
