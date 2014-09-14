@@ -25592,7 +25592,7 @@ msgstr "Padat"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8352
 msgid "Markers"
-msgstr "Značkay"
+msgstr "Značky"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:8353
 msgid "Google/ FamilyMap Option"
