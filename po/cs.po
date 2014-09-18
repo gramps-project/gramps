@@ -1656,13 +1656,13 @@ msgstr "Neznámá volba: %s"
 
 #: ../gramps/cli/plug/__init__.py:424 ../gramps/cli/plug/__init__.py:506
 msgid "   Valid options are:"
-msgstr " Platné volby jsou:"
+msgstr "   Platné volby jsou:"
 
 #: ../gramps/cli/plug/__init__.py:427 ../gramps/cli/plug/__init__.py:509
 #: ../gramps/cli/plug/__init__.py:586
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
-msgstr " Popis platných hodnot získáte použitím '%(donottranslate)s'"
+msgstr "   Popis platných hodnot získáte použitím '%(donottranslate)s'"
 
 #: ../gramps/cli/plug/__init__.py:480
 #, python-format
@@ -1676,7 +1676,7 @@ msgstr ""
 #: ../gramps/cli/plug/__init__.py:486
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr " Popis platných hodnot získáte použitím '%(notranslate)s'"
+msgstr "Popis platných hodnot získáte použitím '%(notranslate)s'."
 
 #: ../gramps/cli/plug/__init__.py:505
 #, python-format
@@ -1685,7 +1685,7 @@ msgstr "Ignorovaná neplatná volba: %s"
 
 #: ../gramps/cli/plug/__init__.py:575
 msgid "   Available options:"
-msgstr " Dostupné volby:"
+msgstr "   Dostupné volby:"
 
 #: ../gramps/cli/plug/__init__.py:584
 msgid "(no help available)"
@@ -1693,7 +1693,7 @@ msgstr "(nápověda není k dispozici)"
 
 #: ../gramps/cli/plug/__init__.py:593
 msgid "   Available values are:"
-msgstr " Dostupné hodnoty jsou:"
+msgstr "   Dostupné hodnoty jsou:"
 
 #. there was a show option given, but the option is invalid
 #: ../gramps/cli/plug/__init__.py:603
@@ -1702,7 +1702,7 @@ msgid ""
 "option '%(optionname)s' not valid. Use '%(donottranslate)s' to see all valid "
 "options."
 msgstr ""
-"volba  '%(optionname)s' není platná. Všechny platné volby zjistíte použitím "
+"volba '%(optionname)s' není platná. Všechny platné volby zjistíte použitím "
 "'%(donottranslate)s'."
 
 #: ../gramps/cli/plug/__init__.py:617
@@ -2773,7 +2773,7 @@ msgstr ""
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:350 ../gramps/plugins/lib/libtreebase.py:714
 msgid ","
-msgstr ", "
+msgstr ","
 
 #: ../gramps/gen/display/name.py:353
 msgid "Default format (defined by Gramps preferences)"
@@ -4239,7 +4239,7 @@ msgstr "Vyhovují mediální objekty odpovídající uvedenému filtru"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:44
 msgid "Media with a direct source >= <confidence level>"
-msgstr "Média  s přímým pramenem >= <confidence level> "
+msgstr "Média  s přímým pramenem >= <confidence level>"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:45
 msgid "Matches media with at least one direct source with confidence level(s)"
@@ -5432,7 +5432,7 @@ msgstr "Vyhovují místa odpovídající uvedenému filtru"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:44
 msgid "Place with a direct source >= <confidence level>"
-msgstr "Místo s přímým pramenem >= <confidence level> "
+msgstr "Místo s přímým pramenem >= <confidence level>"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:45
 msgid "Matches places with at least one direct source with confidence level(s)"
@@ -7499,7 +7499,7 @@ msgstr ""
 "Pokud je graf větší než oblast tisku:\n"
 " Komprimovat zmenší graf tak, aby se vešel na úkor symetrie.\n"
 " Vyplnit zmenší graf tak aby se vešel, nejdříve ale zvětší rozteč uzlů.\n"
-" Rozšířit stejnoměrně zmenší graf tak aby se vešel do oblasti tisku. "
+" Rozšířit stejnoměrně zmenší graf tak aby se vešel do oblasti tisku."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:217
 msgid "DPI"
@@ -8092,11 +8092,11 @@ msgstr "datum týkající se narození sourozence"
 
 #: ../gramps/gen/utils/alive.py:236 ../gramps/gen/utils/alive.py:247
 msgid "a spouse's birth-related date, "
-msgstr "datum týkající se narození partnera(ky),"
+msgstr "datum týkající se narození partnera(ky), "
 
 #: ../gramps/gen/utils/alive.py:240 ../gramps/gen/utils/alive.py:251
 msgid "a spouse's death-related date, "
-msgstr "datum týkající se úmrtí partnera(ky),"
+msgstr "datum týkající se úmrtí partnera(ky), "
 
 #: ../gramps/gen/utils/alive.py:269
 msgid "event with spouse"
@@ -11910,7 +11910,7 @@ msgstr "Nelze uložit referenci místa"
 
 #: ../gramps/gui/editors/editplaceref.py:92
 msgid "No place selected. Please select a place  or cancel the edit."
-msgstr "Nebylo vybráno žádné místo. Zvolte prosím místo, nebo zrušte operaci"
+msgstr "Nebylo vybráno žádné místo. Zvolte prosím místo, nebo zrušte operaci."
 
 #: ../gramps/gui/editors/editprimary.py:233
 msgid "Save Changes?"
@@ -14578,7 +14578,7 @@ msgid ""
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
 "Vaše verze gi (gnome-instrospection) je zřejmě příliš zastaralá. Pro "
-"spuštění Gramps potřebujte verzi obsahující funkci 'require_version'."
+"spuštění Gramps potřebujte verzi obsahující funkci 'require_version'"
 
 #: ../gramps/gui/grampsgui.py:73
 #, python-format
@@ -15979,7 +15979,7 @@ msgstr "Žádné položky"
 
 #: ../gramps/gui/plug/report/_bookdialog.py:711
 msgid "This book has no items."
-msgstr "Kniha neobsahuje žádné položky"
+msgstr "Kniha neobsahuje žádné položky."
 
 #: ../gramps/gui/plug/report/_bookdialog.py:722
 msgid "No book name"
@@ -16290,7 +16290,7 @@ msgid ""
 "checking"
 msgstr ""
 "Nemáte instalované žádné slovníky. Buď nějaké nainstalujte nebo vypněte "
-"kontrolu pravopisu."
+"kontrolu pravopisu"
 
 #: ../gramps/gui/spell.py:147
 #, python-format
@@ -22452,7 +22452,7 @@ msgid ""
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
 "Chyba: %(msg)s '%(gramps_id)s' (vloženo jako @%(xref)s@) není v GEDCOM "
-"vstupu. Byl vytvořen záznam s typizačním atributem 'Neznámý'."
+"vstupu. Byl vytvořen záznam s typizačním atributem 'Neznámý'"
 
 #: ../gramps/plugins/lib/libgedcom.py:3134
 #, python-format
@@ -22710,7 +22710,7 @@ msgstr "NOTE Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7232
 msgid "Submission: Submitter"
-msgstr "Zařazení: Vkladatel "
+msgstr "Zařazení: Vkladatel"
 
 #: ../gramps/plugins/lib/libgedcom.py:7234
 msgid "Submission: Family file"
@@ -28320,7 +28320,7 @@ msgstr "Zahrnout Gramps ID"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:692
 msgid "Whether to include Gramps ID next to names."
-msgstr "Zda připojit Gramps ID ke jménu"
+msgstr "Zda připojit Gramps ID ke jménu."
 
 #. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:700
@@ -29700,7 +29700,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:377
 msgid "Operation successfully finished"
-msgstr "Operace byla dokončena úspěšně."
+msgstr "Operace byla dokončena úspěšně"
 
 #: ../gramps/plugins/tool/mediamanager.py:379
 msgid ""
@@ -31071,7 +31071,7 @@ msgstr "JIná osoba je neznámá"
 
 #: ../gramps/plugins/view/geoclose.py:235
 msgid "You must choose one reference person."
-msgstr "Musíte zvolit referenční osobu"
+msgstr "Musíte zvolit referenční osobu."
 
 #: ../gramps/plugins/view/geoclose.py:236
 msgid ""
@@ -31087,7 +31087,7 @@ msgstr "refe_renční osoba"
 
 #: ../gramps/plugins/view/geoclose.py:286
 msgid "Select the person which is the reference for life ways"
-msgstr "Zvolte osobu, která bude referenční pro "
+msgstr "Zvolte osobu, která bude referenční pro"
 
 #: ../gramps/plugins/view/geoclose.py:301
 msgid "Select the person which will be our reference."
@@ -31335,7 +31335,7 @@ msgstr "Pohled ukazující všechna místa událostí v databázi."
 
 #: ../gramps/plugins/view/geomoves.py:140
 msgid "Descendance of the active person."
-msgstr "Potomci aktivní osoby"
+msgstr "Potomci aktivní osoby."
 
 #: ../gramps/plugins/view/geomoves.py:170
 msgid "GeoMoves"
@@ -31411,7 +31411,7 @@ msgstr "Bylo dosaženo maximálního počtu míst (%d)."
 
 #: ../gramps/plugins/view/geoplaces.py:295
 msgid "Some information are missing."
-msgstr "Část informací chybí"
+msgstr "Část informací chybí."
 
 #: ../gramps/plugins/view/geoplaces.py:297
 msgid "Please, use filtering to reduce this number."
@@ -32217,7 +32217,7 @@ msgstr "Písmeno"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3141
 msgid "Families beginning with letter "
-msgstr "Rodiny začínající písmenem"
+msgstr "Rodiny začínající písmenem "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3316
 msgid "Creating place pages"
@@ -32461,7 +32461,7 @@ msgstr "Přezdívka"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6225
 msgid "Age at Death"
-msgstr "Age at Death"
+msgstr "Věk při úmrtí"
 
 #. Stepfather may not always be quite right (for example, it may
 #. actually be StepFather-in-law), but it is too expensive to
