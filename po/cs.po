@@ -780,13 +780,13 @@ msgstr "Neznámá volba: %s"
 
 #: ../gramps/cli/plug/__init__.py:425 ../gramps/cli/plug/__init__.py:507
 msgid "   Valid options are:"
-msgstr " Platné volby jsou:"
+msgstr "   Platné volby jsou:"
 
 #: ../gramps/cli/plug/__init__.py:428 ../gramps/cli/plug/__init__.py:510
 #: ../gramps/cli/plug/__init__.py:587
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
-msgstr " Popis platných hodnot získáte použitím '%(donottranslate)s'"
+msgstr "   Popis platných hodnot získáte použitím '%(donottranslate)s'"
 
 #: ../gramps/cli/plug/__init__.py:481
 #, python-format
@@ -800,7 +800,7 @@ msgstr ""
 #: ../gramps/cli/plug/__init__.py:487
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr " Popis platných hodnot získáte použitím '%(notranslate)s'"
+msgstr "Popis platných hodnot získáte použitím '%(notranslate)s'."
 
 #: ../gramps/cli/plug/__init__.py:506
 #, python-format
@@ -809,7 +809,7 @@ msgstr "Ignorovaná neplatná volba: %s"
 
 #: ../gramps/cli/plug/__init__.py:576
 msgid "   Available options:"
-msgstr " Dostupné volby:"
+msgstr "   Dostupné volby:"
 
 #: ../gramps/cli/plug/__init__.py:585
 msgid "(no help available)"
@@ -2642,7 +2642,7 @@ msgstr "Vyhovují mediální objekty odpovídající uvedenému filtru"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:46
 msgid "Media with a direct source >= <confidence level>"
-msgstr "Média  s přímým pramenem >= <confidence level> "
+msgstr "Média  s přímým pramenem >= <confidence level>"
 
 #: ../gramps/gen/filters/rules/media/_matchessourceconfidence.py:47
 msgid "Matches media with at least one direct source with confidence level(s)"
@@ -3825,7 +3825,7 @@ msgstr "Vyhovují místa odpovídající uvedenému filtru"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:46
 msgid "Place with a direct source >= <confidence level>"
-msgstr "Místo s přímým pramenem >= <confidence level> "
+msgstr "Místo s přímým pramenem >= <confidence level>"
 
 #: ../gramps/gen/filters/rules/place/_matchessourceconfidence.py:47
 msgid "Matches places with at least one direct source with confidence level(s)"
@@ -5752,7 +5752,7 @@ msgstr ""
 "Pokud je graf větší než oblast tisku:\n"
 " Komprimovat zmenší graf tak, aby se vešel na úkor symetrie.\n"
 " Vyplnit zmenší graf tak aby se vešel, nejdříve ale zvětší rozteč uzlů.\n"
-" Rozšířit stejnoměrně zmenší graf tak aby se vešel do oblasti tisku. "
+" Rozšířit stejnoměrně zmenší graf tak aby se vešel do oblasti tisku."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:219
 msgid "DPI"
@@ -6338,11 +6338,11 @@ msgstr "datum týkající se narození sourozence"
 
 #: ../gramps/gen/utils/alive.py:240 ../gramps/gen/utils/alive.py:251
 msgid "a spouse's birth-related date, "
-msgstr "datum týkající se narození partnera(ky),"
+msgstr "datum týkající se narození partnera(ky), "
 
 #: ../gramps/gen/utils/alive.py:244 ../gramps/gen/utils/alive.py:255
 msgid "a spouse's death-related date, "
-msgstr "datum týkající se úmrtí partnera(ky),"
+msgstr "datum týkající se úmrtí partnera(ky), "
 
 #: ../gramps/gen/utils/alive.py:273
 msgid "event with spouse"
@@ -12867,7 +12867,7 @@ msgid ""
 "version which has the function 'require_version' to start Gramps"
 msgstr ""
 "Vaše verze gi (gnome-instrospection) je zřejmě příliš zastaralá. Pro "
-"spuštění Gramps potřebujte verzi obsahující funkci 'require_version'."
+"spuštění Gramps potřebujte verzi obsahující funkci 'require_version'"
 
 #: ../gramps/gui/grampsgui.py:75
 #, python-format
@@ -14591,7 +14591,7 @@ msgid ""
 "checking"
 msgstr ""
 "Nemáte instalované žádné slovníky. Buď nějaké nainstalujte nebo vypněte "
-"kontrolu pravopisu."
+"kontrolu pravopisu"
 
 #: ../gramps/gui/spell.py:149
 #, python-format
@@ -16869,7 +16869,7 @@ msgstr "Základní styl používaný pro výchozí zobrazení textu."
 
 #: ../gramps/plugins/drawreport/fanchart.py:736
 msgid "The style used for the text display of generation "
-msgstr "Styl používaný pro zobrazení textu generace"
+msgstr "Styl používaný pro zobrazení textu generace "
 
 #: ../gramps/plugins/drawreport/statisticschart.py:301
 msgid "Item count"
@@ -20763,7 +20763,7 @@ msgid ""
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
 "Chyba: %(msg)s '%(gramps_id)s' (vloženo jako @%(xref)s@) není v GEDCOM "
-"vstupu. Byl vytvořen záznam s typizačním atributem 'Neznámý'."
+"vstupu. Byl vytvořen záznam s typizačním atributem 'Neznámý'"
 
 #: ../gramps/plugins/lib/libgedcom.py:3110
 #, python-format
@@ -21022,7 +21022,7 @@ msgstr "NOTE Gramps ID %s"
 
 #: ../gramps/plugins/lib/libgedcom.py:7181
 msgid "Submission: Submitter"
-msgstr "Zařazení: Vkladatel "
+msgstr "Zařazení: Vkladatel"
 
 #: ../gramps/plugins/lib/libgedcom.py:7183
 msgid "Submission: Family file"
@@ -26532,7 +26532,7 @@ msgstr "Zahrnout Gramps ID"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:676
 msgid "Whether to include Gramps ID next to names."
-msgstr "Zda připojit Gramps ID ke jménu"
+msgstr "Zda připojit Gramps ID ke jménu."
 
 #. ###############################
 #: ../gramps/plugins/textreport/indivcomplete.py:684
@@ -27956,7 +27956,7 @@ msgstr ""
 
 #: ../gramps/plugins/tool/mediamanager.py:376
 msgid "Operation successfully finished"
-msgstr "Operace byla dokončena úspěšně."
+msgstr "Operace byla dokončena úspěšně"
 
 #: ../gramps/plugins/tool/mediamanager.py:378
 msgid ""
@@ -29383,7 +29383,7 @@ msgstr "JIná osoba je neznámá"
 
 #: ../gramps/plugins/view/geoclose.py:237
 msgid "You must choose one reference person."
-msgstr "Musíte zvolit referenční osobu"
+msgstr "Musíte zvolit referenční osobu."
 
 #: ../gramps/plugins/view/geoclose.py:238
 msgid ""
@@ -29399,7 +29399,7 @@ msgstr "refe_renční osoba"
 
 #: ../gramps/plugins/view/geoclose.py:288
 msgid "Select the person which is the reference for life ways"
-msgstr "Zvolte osobu, která bude referenční pro "
+msgstr "Zvolte osobu, která bude referenční pro"
 
 #: ../gramps/plugins/view/geoclose.py:303
 msgid "Select the person which will be our reference."
@@ -29647,7 +29647,7 @@ msgstr "Pohled ukazující všechna místa událostí v databázi."
 
 #: ../gramps/plugins/view/geomoves.py:142
 msgid "Descendance of the active person."
-msgstr "Potomci aktivní osoby"
+msgstr "Potomci aktivní osoby."
 
 #: ../gramps/plugins/view/geomoves.py:172
 msgid "GeoMoves"
@@ -29723,7 +29723,7 @@ msgstr "Bylo dosaženo maximálního počtu míst (%d)."
 
 #: ../gramps/plugins/view/geoplaces.py:297
 msgid "Some information are missing."
-msgstr "Část informací chybí"
+msgstr "Část informací chybí."
 
 #: ../gramps/plugins/view/geoplaces.py:299
 msgid "Please, use filtering to reduce this number."
@@ -30507,7 +30507,7 @@ msgstr "Písmeno"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3157
 msgid "Families beginning with letter "
-msgstr "Rodiny začínající písmenem"
+msgstr "Rodiny začínající písmenem "
 
 #: ../gramps/plugins/webreport/narrativeweb.py:3332
 msgid "Creating place pages"
