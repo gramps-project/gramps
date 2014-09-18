@@ -2489,13 +2489,13 @@ msgstr "Neznámá volba: %s"
 
 #: ../src/cli/plug/__init__.py:404 ../src/cli/plug/__init__.py:434
 msgid "   Valid options are:"
-msgstr " Platné volby jsou:"
+msgstr "   Platné volby jsou:"
 
 #: ../src/cli/plug/__init__.py:406 ../src/cli/plug/__init__.py:436
 #: ../src/cli/plug/__init__.py:532
 #, python-format
 msgid "   Use '%(donottranslate)s' to see description and acceptable values"
-msgstr " Popis platných hodnot získáte použitím '%(donottranslate)s'"
+msgstr "   Popis platných hodnot získáte použitím '%(donottranslate)s'"
 
 #: ../src/cli/plug/__init__.py:433
 #, python-format
@@ -2514,15 +2514,15 @@ msgstr ""
 #: ../src/cli/plug/__init__.py:486
 #, python-format
 msgid "Use '%(notranslate)s' to see valid values."
-msgstr " Popis platných hodnot získáte použitím '%(notranslate)s'"
+msgstr "Popis platných hodnot získáte použitím '%(notranslate)s'."
 
 #: ../src/cli/plug/__init__.py:521
 msgid "   Available options:"
-msgstr " Dostupné volby:"
+msgstr "   Dostupné volby:"
 
 #: ../src/cli/plug/__init__.py:539
 msgid "   Available values are:"
-msgstr " Dostupné hodnoty jsou:"
+msgstr "   Dostupné hodnoty jsou:"
 
 #. there was a show option given, but the option is invalid
 #: ../src/cli/plug/__init__.py:551
@@ -4493,7 +4493,7 @@ msgstr ""
 "Pokud je graf větší než oblast tisku:\n"
 " Komprimovat zmenší graf tak, aby se vešel na úkor symetrie.\n"
 " Vyplnit zmenší graf tak aby se vešel, nejdříve ale zvětší rozteč uzlů.\n"
-" Rozšířit stejnoměrně zmenší graf tak aby se vešel do oblasti tisku. "
+" Rozšířit stejnoměrně zmenší graf tak aby se vešel do oblasti tisku."
 
 #: ../src/gen/plug/docgen/graphdoc.py:211
 msgid "DPI"
@@ -9337,7 +9337,7 @@ msgstr "Žádná výchozí osoba"
 
 #: ../src/gui/views/navigationview.py:336
 msgid "You need to set a 'default person' to go to."
-msgstr "Musíte zvolit výchozí osobu"
+msgstr "Musíte zvolit výchozí osobu."
 
 #: ../src/gui/views/navigationview.py:342
 #: ../src/gui/views/navigationview.py:346
@@ -10191,7 +10191,7 @@ msgstr "Žádné položky"
 
 #: ../src/plugins/BookReport.py:1054
 msgid "This book has no items."
-msgstr "Kniha neobsahuje žádné položky"
+msgstr "Kniha neobsahuje žádné položky."
 
 #: ../src/plugins/BookReport.py:1065
 msgid "No book name"
@@ -15433,7 +15433,7 @@ msgid ""
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
 "Chyba: %(msg)s '%(gramps_id)s' (vloženo jako @%(xref)s@) není v GEDCOM "
-"vstupu. Byl vytvořen záznam s typizačním atributem 'Neznámý'."
+"vstupu. Byl vytvořen záznam s typizačním atributem 'Neznámý'"
 
 #: ../src/plugins/lib/libgedcom.py:3054
 #, python-format
@@ -15678,7 +15678,7 @@ msgstr "NOTE Gramps ID %s"
 
 #: ../src/plugins/lib/libgedcom.py:7123
 msgid "Submission: Submitter"
-msgstr "Zařazení: Vkladatel "
+msgstr "Zařazení: Vkladatel"
 
 #: ../src/plugins/lib/libgedcom.py:7125
 msgid "Submission: Family file"
@@ -24712,7 +24712,7 @@ msgstr "Písmeno"
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3147
 msgid "Families beginning with letter "
-msgstr "Rodiny začínající písmenem"
+msgstr "Rodiny začínající písmenem "
 
 #: ../src/plugins/webreport/NarrativeWeb.py:3322
 msgid "Creating place pages"
@@ -27605,7 +27605,7 @@ msgstr "Vyhovují místa s konkrétním pramenem"
 
 #: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:45
 msgid "Place with direct source >= <confidence level>"
-msgstr "Místo s přímým pramenem >= <confidence level> "
+msgstr "Místo s přímým pramenem >= <confidence level>"
 
 #: ../src/Filters/Rules/Place/_MatchesSourceConfidence.py:46
 msgid "Matches places with at least one direct source with confidence level(s)"
