@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-09-11 17:24+0200\n"
-"PO-Revision-Date: 2014-09-18 12:57+0100\n"
+"PO-Revision-Date: 2014-09-19 11:17+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -2492,7 +2492,7 @@ msgstr ""
 "různými verzemi schématu použijte XML."
 
 #: ../gramps/gen/db/exceptions.py:120
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version "
 "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -2508,12 +2508,12 @@ msgstr ""
 "Pokoušíte se tedy nahrát data vytvořená v novějším formátu programem starší "
 "verze. To ale skončí chybou.\n"
 "\n"
-"Měli byste spustit <b>novější</b> verzi Gramps a <a href=\"http://www.gramps-"
-"project.org/wiki/index.php?title=How_to_make_a_backup\">provést zálohu</a> "
-"svého rodokmenu. Tu můžete poté importovat do této verze Gramps."
+"Měli byste spustit %(bold_start)snovější%(bold_end)s verzi Gramps a "
+"%(wiki_backup_html_start)sprovést zálohu%(html_end)s svého rodokmenu. Tu "
+"můžete poté importovat do této verze Gramps."
 
 #: ../gramps/gen/db/exceptions.py:150
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version "
 "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -2531,12 +2531,12 @@ msgstr ""
 "verze. V tomto konkrétním případě jsou rozdíly velmi malé a může se to "
 "povést.\n"
 "\n"
-"Pokud jste tak již neučinili, měli byste spustit <b>novější</b> verzi Gramps "
-"a <a href=\"http://www.gramps-project.org/wiki/index.php?"
-"title=How_to_make_a_backup\">provést zálohu</a> svého rodokmenu."
+"Pokud jste tak již neučinili, měli byste spustit %(bold_start)snovější"
+"%(bold_end)s verzi Gramps a %(wiki_backup_html_start)sprovést zálohu"
+"%(html_end)s svého rodokmenu."
 
 #: ../gramps/gen/db/exceptions.py:179
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version "
 "%(env_version)s format. This version of Gramps uses Bsddb version "
@@ -2558,9 +2558,9 @@ msgstr ""
 "Otevření rodokmenu touto verzí Gramps jej může nenávratně poškodit. "
 "Provedení zálohy je důrazně doporučeno.\n"
 "\n"
-"Pokud jste tak již neučinili, měli byste spustit <b>starou</b> verzi Gramps "
-"a <a href=\"http://www.gramps-project.org/wiki/index.php?"
-"title=How_to_make_a_backup\">provést zálohu</a> svého rodokmenu."
+"Pokud jste tak již neučinili, měli byste spustit %(bold_start)sstarou"
+"%(bold_end)s verzi Gramps a %(wiki_backup_html_start)sprovést zálohu"
+"%(html_end)s svého rodokmenu."
 
 #: ../gramps/gen/db/exceptions.py:209
 msgid ""
@@ -2586,7 +2586,7 @@ msgstr ""
 "databázi."
 
 #: ../gramps/gen/db/exceptions.py:236
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the schema version "
 "%(oldschema)s format. This version of Gramps uses schema version "
@@ -2610,22 +2610,20 @@ msgstr ""
 "aktualizace schéma verze vašeho rodokmenu.\n"
 "\n"
 "Pokud provedete aktualizaci, nebude možné rodokmen používat s předchozí "
-"verzí Gramp, dokonce ani v v případě že že následně provedete <a href="
-"\"%(gramps_wiki)s%(gramps_manual)s_-"
-"_Manage_Family_Trees#Backing_up_a_Family_Tree\">zálohu</a> nebo <a href="
-"\"%(gramps_wiki)s%(gramps_manual)s_-"
-"_Manage_Family_Trees#Export_into_Gramps_formats\">export</a> aktualizovaného "
+"verzí Gramp, dokonce ani v v případě že že následně provedete "
+"%(wiki_manual_backup_html_start)szálohu%(html_end)s nebo "
+"%(wiki_manual_export_html_start)sexport%(html_end)s aktualizovaného "
 "rodokmenu.\n"
 "\n"
 "Aktualizace je náročná operace. Pokud selže nebo je přerušena, může nevratně "
 "poškodit váš rodokmen.\n"
 "\n"
-"Pokud jste tak již neučinili, měli byste spustit <b>starou</b> verzi Gramps "
-"a <a href=\"%(gramps_wiki)sHow_to_make_a_backup\">provést zálohu</a> svého "
-"rodokmenu."
+"Pokud jste tak již neučinili, měli byste spustit %(bold_start)sstarou"
+"%(bold_end)s verzi Gramps a %(wiki_backup_html_start)sprovést zálohu"
+"%(html_end)s svého rodokmenu."
 
 #: ../gramps/gen/db/exceptions.py:274
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load was created with Python version "
 "%(db_python_version)s. This version of Gramps uses Python version "
@@ -2641,12 +2639,12 @@ msgstr ""
 "%(current_python_version)s. Pokoušíte se tedy nahrát data vytvořená v "
 "novějším formátu programem starší verze. To ale skončí chybou.\n"
 "\n"
-"Měli byste spustit <b>novější</b> verzi Gramps a <a href=\"http://www.gramps-"
-"project.org/wiki/index.php?title=How_to_make_a_backup\">provést zálohu</a> "
-"svého rodokmenu. Tu můžete poté importovat do této verze Gramps."
+"Měli byste spustit  %(bold_start)snovější%(bold_end)s verzi Gramps a "
+"%(wiki_backup_html_start)sprovést zálohu%(html_end)s svého rodokmenu. Tu "
+"můžete poté importovat do této verze Gramps."
 
 #: ../gramps/gen/db/exceptions.py:304
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Python version "
 "%(db_python_version)s format. This version of Gramps uses Python version "
@@ -2665,24 +2663,23 @@ msgid ""
 "start your %(bold_start)sold%(bold_end)s version of Gramps and "
 "%(wiki_backup_html_start)smake a backup%(html_end)s of your Family Tree."
 msgstr ""
-"Rodokmen, který se pokoušíte nahrát je ve schématu verze %(oldschema)s. Tato "
-"verze Gramps používá schéma verze %(newschema)s. Data není možné nahrát bez "
-"aktualizace schéma verze vašeho rodokmenu.\n"
+"Rodokmen, který se pokoušíte nahrát je ve Python verze "
+"%(db_python_version)s. Tato verze Gramps používá Python ve verzi "
+"%(current_python_version)s. Data není možné nahrát bez aktualizace verze "
+"Python vašeho rodokmenu.\n"
 "\n"
 "Pokud provedete aktualizaci, nebude možné rodokmen používat s předchozí "
-"verzí Gramp, dokonce ani v v případě že že následně provedete <a href="
-"\"%(gramps_wiki)s%(gramps_manual)s_-"
-"_Manage_Family_Trees#Backing_up_a_Family_Tree\">zálohu</a> nebo <a href="
-"\"%(gramps_wiki)s%(gramps_manual)s_-"
-"_Manage_Family_Trees#Export_into_Gramps_formats\">export</a> aktualizovaného "
+"verzí Gramp, dokonce ani v v případě že že následně provedete "
+"%(wiki_manual_backup_html_start)szálohu%(html_end)s nebo "
+"%(wiki_manual_export_html_start)sexport%(html_end)s aktualizovaného "
 "rodokmenu.\n"
 "\n"
 "Aktualizace je náročná operace. Pokud selže nebo je přerušena, může nevratně "
 "poškodit váš rodokmen.\n"
 "\n"
-"Pokud jste tak již neučinili, měli byste spustit <b>starou</b> verzi Gramps "
-"a <a href=\"%(gramps_wiki)sHow_to_make_a_backup\">provést zálohu</a> svého "
-"rodokmenu."
+"Pokud jste tak již neučinili, měli byste spustit %(bold_start)sstarou"
+"%(bold_end)s verzi Gramps a %(wiki_backup_html_start)sprovést zálohu"
+"%(html_end)ssvého rodokmenu."
 
 #: ../gramps/gen/db/undoredo.py:256 ../gramps/gen/db/undoredo.py:293
 #: ../gramps/gen/db/write.py:2315
@@ -2782,7 +2779,7 @@ msgstr ""
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:350 ../gramps/plugins/lib/libtreebase.py:714
 msgid ","
-msgstr ", "
+msgstr ","
 
 #: ../gramps/gen/display/name.py:353
 msgid "Default format (defined by Gramps preferences)"
@@ -9603,15 +9600,13 @@ msgid "Enable spelling checker"
 msgstr "Povolit kontrolu pravopisu"
 
 #: ../gramps/gui/configure.py:1244
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
 "GtkSpell nebyl nahrán. Kontrola pravopisu nebude k dispozici.\n"
-"Překladem modulu pro Gramps vás provede http://www.gramps-project.org/wiki/"
-"index.php?title=GEPS_029:_GTK3-"
-"GObject_introspection_Conversion#Spell_Check_Install"
+"Překladem modulu pro Gramps vás provede %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1251
 msgid "Display Tip of the Day"
@@ -9990,7 +9985,7 @@ msgid "Repair Family Tree?"
 msgstr "Opravit rodokmen?"
 
 #: ../gramps/gui/dbman.py:681
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you click %(bold_start)sProceed%(bold_end)s, Gramps will attempt to "
 "recover your Family Tree from the last good backup. There are several ways "
@@ -10015,26 +10010,26 @@ msgid ""
 "this is the case, you can disable the repair button by removing the file "
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
-"Pokud kliknete na  <b>Pokračovat</b>, Gramps se pokusí obnovit váš rodokmen "
-"z poslední platné zálohy. Je několik situací, kdy dojít k neočekávané "
-"situaci, proto nejprve <b>zálohujte</b> rodokmen.\n"
-"Vámi zvolený rodokmen je uložen v %s.\n"
+"Pokud kliknete na %(bold_start)sPokračovat%(bold_end)s, Gramps se pokusí "
+"obnovit váš rodokmen z poslední platné zálohy. Je několik situací, kdy dojít "
+"k neočekávané situaci, proto nejprve %(bold_start)szálohujte%(bold_end)s "
+"rodokmen.\n"
+"Vámi zvolený rodokmen je uložen v %(dirname)s.\\nPřed opravou se ujistěte, "
+"že rodokmen skutečně nelze otevřít. Z některých chyb je databázový backend "
+"schopen se zotavit sám.\n"
 "\n"
-"Před opravou se ujistěte, že rodokmen skutečně nelze otevřít. Z některých "
-"chyb je databázový backend schopen se zotavit sám.\n"
-"\n"
-"<b>Podrobnosti:</b> Oprava rodokmenu použije poslední zálohu, kterou Gramps "
-"uložil při posledním použití. Pokud jste pracovali několik hodin/dní bez "
-"ukončení Gramps, budou všechny informace bohužel ztraceny! Pokud oprava "
-"úplně selže, bude původní rodokmen navždy ztracen. Proto je nutné zálohovat. "
-"Pokud oprava selže nebo dojde ke ztrátě většího množství informací, můžete "
-"původní rodokmen opravit ručně. Podrobnosti zjistíte na webových stránkách\n"
-"http://gramps-project.org/wiki/index.php?"
-"title=Recover_corrupted_family_tree\n"
+"%(bold_start)sPodrobnosti:%(bold_end)s Oprava rodokmenu použije poslední "
+"zálohu, kterou Gramps uložil při posledním použití. Pokud jste pracovali "
+"několik hodin/dní bez ukončení Gramps, budou všechny informace bohužel "
+"ztraceny! Pokud oprava úplně selže, bude původní rodokmen navždy ztracen. "
+"Proto je nutné zálohovat. Pokud oprava selže nebo dojde ke ztrátě většího "
+"množství informací, můžete původní rodokmen opravit ručně. Podrobnosti "
+"zjistíte na webových stránkách\n"
+"%(gramps_wiki_recover_url)s\n"
 "Před započetím opravy se pokuste otevřít rodokmen normálně. Mnoho chyb "
 "aktivujících tlačítko oprav může být opraveno automaticky. Pokud je to tento "
-"případ, můžete tlačítko oprav deaktivovat odstraněním souboru  "
-"<i>need_recover</i> ve složce s rodokmenem."
+"případ, můžete tlačítko oprav deaktivovat odstraněním souboru "
+"%(recover_file)s ve složce s rodokmenem."
 
 #: ../gramps/gui/dbman.py:712
 msgid "Proceed, I have taken a backup"
@@ -10110,7 +10105,7 @@ msgid "Error detected in database"
 msgstr "V databázi byla detekována chyba"
 
 #: ../gramps/gui/dialog.py:204
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved "
 "by running the \"Check and Repair Database\" tool.\n"
@@ -15011,7 +15006,7 @@ msgid "Danger: This is unstable code!"
 msgstr "POZOR: Toto je nestabilní vývojové vydání!"
 
 #: ../gramps/gui/grampsgui.py:217
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This Gramps ('master') is a development release. This version is not meant "
 "for normal usage. Use at your own risk.\n"
@@ -15045,7 +15040,7 @@ msgid "Gramps detected an incomplete GTK installation"
 msgstr "Gramps zjistil nekompletní instalaci GTK"
 
 #: ../gramps/gui/grampsgui.py:270
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "GTK translations for the current language (%(language)s) are missing.\n"
 "%(bold_start)sGramps%(bold_end)s will proceed nevertheless.\n"
@@ -15054,13 +15049,13 @@ msgid ""
 "See the Gramps README documentation for installation prerequisites,\n"
 "typically located in /usr/share/doc/gramps.\n"
 msgstr ""
-"Překlad GTK pro jazyk (%s) chybí.\n"
-"<b>Gramps</b> bude přesto pokračovat.\n"
+"Překlad GTK pro jazyk (%(language)s) chybí.\n"
+"%(bold_start)sGramps%(bold_end)s bude přesto pokračovat.\n"
 "To pravděpodobně povede k rozbití GUI, zejména pro jazyky píšící zprava "
 "doleva!\n"
 "\n"
-"Více podrobností k požadavkům na instalaci nalezenete v souboru README,\n"
-"běžně přístupném v adresáři /usr/share/doc/gramps."
+"Více podrobností k požadavkům na instalaci naleznete v souboru README,\n"
+"běžně přístupném v adresáři /usr/share/doc/gramps.\n"
 
 #: ../gramps/gui/grampsgui.py:313
 msgid "Error parsing arguments"
@@ -16836,7 +16831,7 @@ msgid "Failed Loading Plugin"
 msgstr "Zásuvný moduly se nepodařilo nahrát"
 
 #: ../gramps/gui/viewmanager.py:1603
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
 "\n"
@@ -16865,7 +16860,7 @@ msgid "Failed Loading View"
 msgstr "Nahrání pohledu selhalo"
 
 #: ../gramps/gui/viewmanager.py:1659
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
 "\n"
@@ -16878,7 +16873,7 @@ msgid ""
 "If you do not want Gramps to try and load this view again, you can hide it "
 "by using the Plugin Manager on the Help menu."
 msgstr ""
-"Pohled %(name)s reportoval chybu a nebyl nahrán.\n"
+"Pohled %(name)s ohlásil chybu a nebyl nahrán.\n"
 "\n"
 "%(error_msg)s\n"
 "\n"
@@ -19460,7 +19455,7 @@ msgstr ""
 "Kliknutím a tažením na volné ploše budete otáčet"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:61
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sFrequently Asked "
 "Questions%(html_end)s%(bold_end)s\n"
@@ -19480,6 +19475,8 @@ msgid ""
 "  1. %(gramps_FAQ_html_start)s%(faq_section)sHow do I change the order of "
 "spouses?%(html_end)s\n"
 msgstr ""
+"  1. %(gramps_FAQ_html_start)s%(faq_section)sJak změním pořadí  manželek/"
+"manželů?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:77
 #, python-format
@@ -19487,6 +19484,8 @@ msgid ""
 "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional "
 "spouse?%(html_end)s\n"
 msgstr ""
+"  2. %(gramps_FAQ_html_start)s%(faq_section)sJak přidám další manželku/"
+"manžela?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:83
 #, python-format
@@ -19494,6 +19493,8 @@ msgid ""
 "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?"
 "%(html_end)s\n"
 msgstr ""
+"  3. %(gramps_FAQ_html_start)s%(faq_section)sJak odeberu manželku/manžela?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:87
 msgid "Backups and Updates"
@@ -19505,15 +19506,17 @@ msgid ""
 "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?"
 "%(html_end)s\n"
 msgstr ""
+"  4. %(gramps_FAQ_html_start)s%(faq_section)sJak bezpečně vytvořím zálohu?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:98
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update "
 "Gramps every time an update is released?%(html_end)s\n"
 msgstr ""
-"  5. <a wiki='%s_-_FAQ#How_do_I_upgrade_GRAMPS.3F'>Je nutné aktualizovat "
-"Gramps pokaždé když je aktualizace vydána?</a>\n"
+"  5. %(gramps_FAQ_html_start)s%(faq_section)sJe nutné aktualizovat Gramps "
+"pokaždé, když je vydána aktualizace?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:103
 msgid "Data Entry"
@@ -19525,29 +19528,30 @@ msgid ""
 "  6. %(gramps_manual_html_start)s%(section)sHow should information about "
 "marriages be entered?%(html_end)s\n"
 msgstr ""
+"  6. %(gramps_manual_html_start)s%(section)sJak by měla být vložena "
+"informace o sňatcích?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  7. %(gramps_FAQ_html_start)s%(faq_section)sWhat's the difference between a "
 "residence and an address?%(html_end)s\n"
 msgstr ""
-"  7. <a wiki='%s_-"
-"_FAQ#What_is_the_difference_between_a_residence_and_an_address.3F'>Jaký je "
-"rozdíl mezi bydlištěm a adresou?</a>\n"
+"  7. %(gramps_FAQ_html_start)s%(faq_section)sJaký je rozdíl mezi bydlištěm a "
+"adresou?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:120
 msgid "Media Files"
 msgstr "Soubory médií"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:125
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "  8. %(gramps_FAQ_html_start)s%(faq_section)sHow do you add a photo of a "
 "person/source/event?%(html_end)s\n"
 msgstr ""
-"  8. <a wiki='%s_-_FAQ#How_do_you_add_photos_to_an_item.3F'>Jak přidám "
-"fotografii k osobě/prameni/události?</a>\n"
+"  8. %(gramps_FAQ_html_start)s%(faq_section)sJak přidám fotografii osoby/"
+"pramene/události?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:131
 #, python-format
@@ -19555,6 +19559,8 @@ msgid ""
 "  9. %(gramps_FAQ_html_start)s%(faq_section)sHow do you find unused media "
 "objects?%(html_end)s\n"
 msgstr ""
+"  9. %(gramps_FAQ_html_start)s%(faq_section)sJak najdu nepoužité objekty "
+"médií?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:141
 #, python-format
@@ -19562,11 +19568,13 @@ msgid ""
 " 10. %(gramps_FAQ_html_start)s%(faq_section)sHow can I make a website with "
 "Gramps and my tree?%(html_end)s\n"
 msgstr ""
+" 10. %(gramps_FAQ_html_start)s%(faq_section)sJak s Gramps a rodokmenen "
+"vytvořím webovou stránku?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:148
 #, python-format
 msgid " 11. %(web_html_start)sHow do I record one's occupation?%(html_end)s\n"
-msgstr ""
+msgstr " 11. %(web_html_start)sJak zaznamenám zaměstnání osoby?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:154
 #, python-format
@@ -19574,6 +19582,8 @@ msgid ""
 " 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a "
 "bug?%(html_end)s\n"
 msgstr ""
+" 12. %(gramps_FAQ_html_start)s%(faq_section)sCo udělat, pokud jsem nalezl "
+"chybu?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:159
 #, python-format
@@ -19581,6 +19591,8 @@ msgid ""
 " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?"
 "%(html_end)s\n"
 msgstr ""
+" 13. %(gramps_wiki_html_start)s%(section)sExistuje pro Gramps příručka?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
 #, python-format
@@ -19595,6 +19607,7 @@ msgstr ""
 #, python-format
 msgid " 15. %(gramps_wiki_html_start)s%(section)sHow do I ...?%(html_end)s\n"
 msgstr ""
+" 15. %(gramps_wiki_html_start)s%(section)sJak udělám ...?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:174
 #, python-format
@@ -19602,6 +19615,8 @@ msgid ""
 " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?"
 "%(html_end)s\n"
 msgstr ""
+" 16. %(gramps_wiki_html_start)s%(section)sJak mohu pomoci s Gramps?"
+"%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/givennamegramplet.py:42
 msgid "Double-click given name for details"
@@ -20823,9 +20838,8 @@ msgid "Gramps online manual"
 msgstr "Online příručka Gramps"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:115
-#, fuzzy
 msgid "locale_suffix|"
-msgstr "Nastavuji locale : '%s'"
+msgstr ""
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:116
 msgid "Ask questions on gramps-users mailing list"
@@ -21109,9 +21123,8 @@ msgid "Use rounded corners to differentiate between women and men."
 msgstr "Použít zaoblené rohy pro odlišení mužů a žen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:126
-#, fuzzy
 msgid "Follow parents to determine \"family lines\""
-msgstr "Pro stanovení rodové linie následovat rodiče"
+msgstr "Pro stanovení \"rodové linie\" následovat rodiče"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:128
 msgid ""
@@ -21846,7 +21859,7 @@ msgid "%s could not be opened"
 msgstr "%s nemůže být otevřen"
 
 #: ../gramps/plugins/importer/importgrdb.py:62
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Database version is not supported by this version of Gramps.You should "
 "use an old copy of Gramps at version 3.0.x and import your database into "
@@ -21857,11 +21870,10 @@ msgid ""
 msgstr ""
 "Verze databáze není podporována touto verzí Gramps. Měli byste použít starší "
 "kopii Gramps ve verzi 3.0.x a importovat do ní svoji databázi. Poté "
-"exportujte kopii vašich dat do Gramps XML fromátu. Aktualizujte Gramps na "
-"poslední verzi (např. tuto), vytvořte novou prázdnou databázi a importujte "
-"do ní data z Gramps XML exportu. Další podrobnosti hledejte na stránce "
-"http://www.gramps-project.org/wiki/index.php?title=Gramps_3.4_Wiki_Manual_-"
-"_Manage_Family_Trees#Moving_a_Gramps_2.2_databases_to_Gramps_3.x"
+"exportujte kopii vašich dat do Gramps XML formátu (Rodokmen). Poté "
+"aktualizujte Gramps na poslední verzi (např. tuto), vytvořte novou prázdnou "
+"databázi a importujte do ní data z Gramps XML. Další podrobnosti hledejte na "
+"stránce %(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.py:80
 msgid "Pro-Gen data error"
@@ -22176,7 +22188,7 @@ msgstr ""
 "operaci znovu."
 
 #: ../gramps/plugins/importer/importxml.py:1044
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
 "Gramps, while you are running a more recent version %(newgramps)s.\n"
@@ -22193,15 +22205,14 @@ msgstr ""
 "Soubor proto nemůže být importován. Použijte prosím starší verzi  Gramps "
 "která podporuje xml verze %(xmlversion)s.\n"
 "Pro více informací přejděte na stránku\n"
-"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
-"Gramps wiki."
+"  %(gramps_wiki_xml_url)s."
 
 #: ../gramps/plugins/importer/importxml.py:1055
 msgid "The file will not be imported"
 msgstr "Soubor nemůže být importován"
 
 #: ../gramps/plugins/importer/importxml.py:1057
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of "
 "Gramps, while you are running a much more recent version %(newgramps)s.\n"
@@ -22220,7 +22231,7 @@ msgstr ""
 "na chybu, nahlaste ji prosím a pro import toto souboru, mezitím použijte "
 "starší verzi Gramps. Váš soubor je xml verze %(xmlversion)s.\n"
 "Více informací najdete na stránce\n"
-"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+"  %(gramps_wiki_xml_url)s\n"
 "."
 
 #: ../gramps/plugins/importer/importxml.py:1070
@@ -26505,7 +26516,7 @@ msgid "You have at least two places with the same title."
 msgstr "Máte nejméně dvě místa stejného názvu."
 
 #: ../gramps/plugins/lib/maps/geography.py:921
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The title of the places is:\n"
 "%(title)s\n"
@@ -26514,7 +26525,7 @@ msgid ""
 "\n"
 "%(bold_start)sI can't proceed with your request%(bold_end)s.\n"
 msgstr ""
-"Název míst je: \n"
+"Název míst je:\n"
 "%(title)s\n"
 "Tato místa mohou být podobná: %(gid)s\n"
 "Proveďte buď sloučení míst, nebo je přejmenujte.\n"
@@ -28418,9 +28429,8 @@ msgid "Female"
 msgstr "Žena"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:770
-#, fuzzy
 msgid "(image)"
-msgstr "Obrázek"
+msgstr "(obrázek)"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:855
 msgid "Select the filter to be applied to the report."
@@ -28468,9 +28478,8 @@ msgid "The style used for the spouse's name."
 msgstr "Styl používaný pro jméno partnera."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1000
-#, fuzzy
 msgid "A style used for image facts."
-msgstr "Styl používaný pro hlavičku generací."
+msgstr "Styl používaný pro fakta obrázků."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/kinshipreport.py:116
@@ -28545,9 +28554,8 @@ msgid "Place Report"
 msgstr "Sestava o místech"
 
 #: ../gramps/plugins/textreport/placereport.py:107
-#, fuzzy
 msgid "Please select at least one place before running this."
-msgstr "Musíte vybrat pramen, nebo zrušit operaci"
+msgstr "Před spuštěním prosím vyberte alespoň jedno místo."
 
 #: ../gramps/plugins/textreport/placereport.py:134
 msgid "Generating report"
@@ -29197,7 +29205,7 @@ msgid "Media object could not be found"
 msgstr "Mediální objekt nebyl nalezen"
 
 #: ../gramps/plugins/tool/check.py:722
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The file:\n"
 "%(file_name)s\n"
@@ -29208,8 +29216,9 @@ msgid ""
 msgstr ""
 "Soubor:\n"
 " %(file_name)s \n"
-"je odkazován v databázi, ale již neexistuje. Soubor mohl být smazán nebo "
-"přesunut na jiné místo. Můžete buď odstranit odkaz na soubor z databáze, "
+"je odkazován v databázi, ale již neexistuje.\n"
+"Soubor mohl být smazán nebo přesunut na jiné místo.\n"
+"Můžete buď odstranit odkaz na soubor z databáze,\n"
 "ponechat odkaz na chybějící soubor nebo vybrat soubor nový."
 
 #: ../gramps/plugins/tool/check.py:803
@@ -29788,7 +29797,7 @@ msgid "Selection"
 msgstr "Výběr"
 
 #: ../gramps/plugins/tool/mediamanager.py:224
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This tool allows batch operations on media objects stored in Gramps. An "
 "important distinction must be made between a Gramps media object and its "
@@ -29812,7 +29821,8 @@ msgstr ""
 "\n"
 "Objekt média v Gramps reprezentuje množinu informací popisující soubor "
 "objektu média: jeho název a/nebo cestu, popis, ID, poznámky, archivy a "
-"prameny ... a další. Tato data <b>nejsou obsažena v souboru samotném</b>.\n"
+"prameny ... a další. Tato data %(bold_start)snejsou obsažena v souboru "
+"samotném%(bold_end)s.\n"
 "\n"
 "Soubory obsahující obrázek, zvuk, video, apod. existují na vašem disku "
 "odděleně. Tyto soubory nejsou spravovány Gramps a nejsou vkládány do "
@@ -31396,15 +31406,13 @@ msgid "OsmGpsMap module not loaded."
 msgstr "Modul OsmGpsMap nebyl nahrán."
 
 #: ../gramps/plugins/view/geography.gpr.py:70
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Geography functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_osmgps_url)s"
 msgstr ""
 "Geografické funkce nebudou k dispozici.\n"
-"Překladem modulu pro Gramps vás provede http://www.gramps-project.org/wiki/"
-"index.php?title=GEPS_029:_GTK3-"
-"GObject_introspection_Conversion#OsmGpsMap_for_Geography"
+"Překladem modulu pro Gramps vás provede %(gramps_wiki_build_osmgps_url)s"
 
 #: ../gramps/plugins/view/geography.gpr.py:78
 msgid "All known places for one Person"
@@ -31620,7 +31628,6 @@ msgid "Start page for the Html View"
 msgstr "Počáteční strana pro HTMLView"
 
 #: ../gramps/plugins/view/htmlrenderer.py:551
-#, fuzzy
 msgid ""
 "Type a webpage address at the top, and hit the execute button to load a "
 "webpage in this page\n"
@@ -31629,7 +31636,8 @@ msgid ""
 msgstr ""
 "Pro načtení webové stránky do této strany vyplňte její adresu nahoře a "
 "stiskněte tlačítko Spustit<br>\n"
-"Například: <b>http://gramps-project.org?</p>"
+"<br>\n"
+"Například: "
 
 #: ../gramps/plugins/view/mediaview.py:121
 msgid "Edit the selected media object"
@@ -32195,7 +32203,7 @@ msgid "<absent>"
 msgstr "<chybí>"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:1601
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s on "
 "%(date)s"
@@ -32474,13 +32482,13 @@ msgid "Previous"
 msgstr "Předchozí"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4544
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
 "%(total_pages)d%(strong_end)s"
 msgstr ""
-"<strong id=\"GalleryCurrent\">%(page_number)d</strong> z <strong id="
-"\"GalleryTotal\">%(total_pages)d</strong>"
+"%(strong1_start)s%(page_number)d%(strong_end)s z %(strong2_start)s"
+"%(total_pages)d%(strong_end)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4555
 msgid "Next"
@@ -33245,8 +33253,7 @@ msgid ""
 "the \"WebCal\" will be the potential-email Subject|Created for "
 "%(html_email_author_start)sWebCal%(html_email_author_end)s"
 msgstr ""
-"Vytvořeno pro "
-"%(html_email_author_start)sWebCal%(html_email_author_end)s"
+"Vytvořeno pro %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #. Add a link for year_glance() if requested
 #: ../gramps/plugins/webreport/webcal.py:550
