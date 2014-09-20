@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-19 23:11+0200\n"
-"PO-Revision-Date: 2014-08-19 23:16+0200\n"
+"POT-Creation-Date: 2014-09-20 16:58+0200\n"
+"PO-Revision-Date: 2014-09-20 17:08+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -68,6 +68,10 @@ msgid ""
 msgstr ""
 "Verwaltet genealogische Informationen, organisiert genealogische Forschung "
 "und Analyse"
+
+#: ../data/gramps.desktop.in.h:5
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM"
+msgstr "Genealogie;Familiengeschichte;Forschung;Stammbaum;GEDCOM"
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
 msgid "Gramps database"
@@ -2833,7 +2837,7 @@ msgstr ""
 "Transaktion \"%s\" in der Datenbank aktiv ist."
 
 #. translators: needed for Arabic, ignore otherwise
-#: ../gramps/gen/display/name.py:350 ../gramps/plugins/lib/libtreebase.py:715
+#: ../gramps/gen/display/name.py:350 ../gramps/plugins/lib/libtreebase.py:714
 msgid ","
 msgstr ","
 
@@ -6112,7 +6116,7 @@ msgstr[1] "{number_of} Jahre"
 #. ok we have the children.  Make a title off of them
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/date.py:422 ../gramps/gen/lib/date.py:433
-#: ../gramps/plugins/drawreport/descendtree.py:349
+#: ../gramps/plugins/drawreport/descendtree.py:356
 #: ../gramps/plugins/gramplet/persondetails.py:198
 #: ../gramps/plugins/gramplet/whatsnext.py:370
 #: ../gramps/plugins/gramplet/whatsnext.py:392
@@ -6150,15 +6154,15 @@ msgstr "berechnet"
 msgid "estimated"
 msgstr "geschätzt"
 
-#: ../gramps/gen/lib/date.py:1841 ../gramps/plugins/lib/libsubstkeyword.py:288
+#: ../gramps/gen/lib/date.py:1841 ../gramps/plugins/lib/libsubstkeyword.py:296
 msgid "about"
 msgstr "um"
 
-#: ../gramps/gen/lib/date.py:1841 ../gramps/plugins/lib/libsubstkeyword.py:287
+#: ../gramps/gen/lib/date.py:1841 ../gramps/plugins/lib/libsubstkeyword.py:295
 msgid "after"
 msgstr "nach"
 
-#: ../gramps/gen/lib/date.py:1841 ../gramps/plugins/lib/libsubstkeyword.py:287
+#: ../gramps/gen/lib/date.py:1841 ../gramps/plugins/lib/libsubstkeyword.py:295
 msgid "before"
 msgstr "vor"
 
@@ -6458,20 +6462,20 @@ msgstr "Alternative Hochzeit"
 #.
 #. ------------------------------------------------------------------------
 #: ../gramps/gen/lib/eventtype.py:218
-#: ../gramps/plugins/drawreport/ancestortree.py:67
-#: ../gramps/plugins/drawreport/descendtree.py:55
+#: ../gramps/plugins/drawreport/ancestortree.py:66
+#: ../gramps/plugins/drawreport/descendtree.py:61
 msgid "birth abbreviation|b."
 msgstr "*"
 
 #: ../gramps/gen/lib/eventtype.py:219
-#: ../gramps/plugins/drawreport/ancestortree.py:68
-#: ../gramps/plugins/drawreport/descendtree.py:56
+#: ../gramps/plugins/drawreport/ancestortree.py:67
+#: ../gramps/plugins/drawreport/descendtree.py:62
 msgid "death abbreviation|d."
 msgstr "†"
 
 #: ../gramps/gen/lib/eventtype.py:220
-#: ../gramps/plugins/drawreport/ancestortree.py:69
-#: ../gramps/plugins/drawreport/descendtree.py:57
+#: ../gramps/plugins/drawreport/ancestortree.py:68
+#: ../gramps/plugins/drawreport/descendtree.py:63
 msgid "marriage abbreviation|m."
 msgstr "oo"
 
@@ -7757,8 +7761,8 @@ msgstr ""
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:92
 #: ../gramps/gui/glade/editnote.glade:370
 #: ../gramps/gui/views/treemodels/mediamodel.py:133
-#: ../gramps/plugins/drawreport/ancestortree.py:1051
-#: ../gramps/plugins/drawreport/descendtree.py:1663
+#: ../gramps/plugins/drawreport/ancestortree.py:1053
+#: ../gramps/plugins/drawreport/descendtree.py:1673
 #: ../gramps/plugins/export/exportcsv.py:371
 #: ../gramps/plugins/export/exportcsv.py:488
 #: ../gramps/plugins/gramplet/quickviewgramplet.py:110
@@ -9334,8 +9338,8 @@ msgstr "Für eine andere Reihenfolge ziehe die Spalte an eine neue Position."
 
 #. #################
 #: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1098
-#: ../gramps/plugins/drawreport/ancestortree.py:933
-#: ../gramps/plugins/drawreport/descendtree.py:1524
+#: ../gramps/plugins/drawreport/ancestortree.py:935
+#: ../gramps/plugins/drawreport/descendtree.py:1534
 msgid "Display"
 msgstr "Anzeige"
 
@@ -14721,8 +14725,8 @@ msgstr "_Swiss (Arial, Helvetica, sans-serif)"
 
 #. #################
 #: ../gramps/gui/glade/styleeditor.glade:349
-#: ../gramps/plugins/drawreport/ancestortree.py:971
-#: ../gramps/plugins/drawreport/descendtree.py:1577
+#: ../gramps/plugins/drawreport/ancestortree.py:973
+#: ../gramps/plugins/drawreport/descendtree.py:1587
 msgid "Size"
 msgstr "Größe"
 
@@ -16986,8 +16990,8 @@ msgstr "Medium:"
 #. What to include
 #. #########################
 #: ../gramps/gui/viewmanager.py:1292
-#: ../gramps/plugins/drawreport/ancestortree.py:1022
-#: ../gramps/plugins/drawreport/descendtree.py:1628
+#: ../gramps/plugins/drawreport/ancestortree.py:1024
+#: ../gramps/plugins/drawreport/descendtree.py:1638
 #: ../gramps/plugins/textreport/detancestralreport.py:775
 #: ../gramps/plugins/textreport/detdescendantreport.py:950
 #: ../gramps/plugins/textreport/detdescendantreport.py:951
@@ -17832,37 +17836,37 @@ msgid "The color, if any, of the SVG background"
 msgstr "Die Farbe, wenn vorhanden des SVG Hintergrund"
 
 #. we want no text, but need a text for the TOC in a book!
-#: ../gramps/plugins/drawreport/ancestortree.py:133
+#: ../gramps/plugins/drawreport/ancestortree.py:132
 msgid "Ancestor Graph"
 msgstr "Ahnendiagramm"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/drawreport/ancestortree.py:150
+#: ../gramps/plugins/drawreport/ancestortree.py:149
 #, python-format
 msgid "Ancestor Graph for %s"
 msgstr "Ahnendiagramm für %s"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:711
-#: ../gramps/plugins/drawreport/ancestortree.py:798
+#: ../gramps/plugins/drawreport/ancestortree.py:712
+#: ../gramps/plugins/drawreport/ancestortree.py:800
 #: ../gramps/plugins/drawreport/drawplugins.gpr.py:46
 msgid "Ancestor Tree"
 msgstr "Ahnenbaum"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:712
+#: ../gramps/plugins/drawreport/ancestortree.py:713
 msgid "Making the Tree..."
 msgstr "Erstelle den Baum..."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:799
+#: ../gramps/plugins/drawreport/ancestortree.py:801
 msgid "Printing the Tree..."
 msgstr "Drucke den Baum..."
 
 #. #################
-#: ../gramps/plugins/drawreport/ancestortree.py:888
-#: ../gramps/plugins/drawreport/descendtree.py:1487
+#: ../gramps/plugins/drawreport/ancestortree.py:890
+#: ../gramps/plugins/drawreport/descendtree.py:1497
 msgid "Tree Options"
 msgstr "Baumoptionen"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:890
+#: ../gramps/plugins/drawreport/ancestortree.py:892
 #: ../gramps/plugins/drawreport/calendarreport.py:474
 #: ../gramps/plugins/drawreport/fanchart.py:648
 #: ../gramps/plugins/graph/gvhourglass.py:267
@@ -17878,12 +17882,12 @@ msgstr "Baumoptionen"
 msgid "Center Person"
 msgstr "Hauptperson"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:891
+#: ../gramps/plugins/drawreport/ancestortree.py:893
 msgid "The center person for the tree"
 msgstr "Die Hauptperson für den Baum"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:894
-#: ../gramps/plugins/drawreport/descendtree.py:1507
+#: ../gramps/plugins/drawreport/ancestortree.py:896
+#: ../gramps/plugins/drawreport/descendtree.py:1517
 #: ../gramps/plugins/drawreport/fanchart.py:652
 #: ../gramps/plugins/textreport/ancestorreport.py:271
 #: ../gramps/plugins/textreport/descendreport.py:411
@@ -17892,12 +17896,12 @@ msgstr "Die Hauptperson für den Baum"
 msgid "Generations"
 msgstr "Generationen"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:895
-#: ../gramps/plugins/drawreport/descendtree.py:1508
+#: ../gramps/plugins/drawreport/ancestortree.py:897
+#: ../gramps/plugins/drawreport/descendtree.py:1518
 msgid "The number of generations to include in the tree"
 msgstr "Anzahl der im Baum berücksichtigten Generationen"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:899
+#: ../gramps/plugins/drawreport/ancestortree.py:901
 msgid ""
 "Display unknown\n"
 "generations"
@@ -17905,16 +17909,16 @@ msgstr ""
 "Zeige unbekannte\n"
 "Generationen"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:901
+#: ../gramps/plugins/drawreport/ancestortree.py:903
 msgid "The number of generations of empty boxes that will be displayed"
 msgstr "Die Anzahl der Generationen mit leeren Boxen, die angezeigt werden."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:908
-#: ../gramps/plugins/drawreport/descendtree.py:1516
+#: ../gramps/plugins/drawreport/ancestortree.py:910
+#: ../gramps/plugins/drawreport/descendtree.py:1526
 msgid "Compress tree"
 msgstr "Baum komprimieren"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:909
+#: ../gramps/plugins/drawreport/ancestortree.py:911
 msgid ""
 "Whether to remove any extra blank spaces set aside for people that are unknown"
 msgstr ""
@@ -17930,7 +17934,7 @@ msgstr ""
 #. "Display Format"))
 #. Spouse_disp.set_help(_("Show spouses of the center person?"))
 #. menu.add_option(category_name, "Spouse_disp", Spouse_disp)
-#: ../gramps/plugins/drawreport/ancestortree.py:923
+#: ../gramps/plugins/drawreport/ancestortree.py:925
 msgid ""
 "Center person uses\n"
 "which format"
@@ -17938,19 +17942,19 @@ msgstr ""
 "Zentrale Person verwendet\n"
 "welches Format"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:925
+#: ../gramps/plugins/drawreport/ancestortree.py:927
 msgid "Use Fathers Display format"
 msgstr "Verwende Anzeigeformat des Vaters"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:926
+#: ../gramps/plugins/drawreport/ancestortree.py:928
 msgid "Use Mothers display format"
 msgstr "Verwende Anzeigeformat der Mutter"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:927
+#: ../gramps/plugins/drawreport/ancestortree.py:929
 msgid "Which Display format to use the center person"
 msgstr "Welches Anzeigeformat für die zentrale Person verwendet wird"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:935
+#: ../gramps/plugins/drawreport/ancestortree.py:937
 msgid ""
 "Father\n"
 "Display Format"
@@ -17958,7 +17962,7 @@ msgstr ""
 "Vater\n"
 "Anzeigeformat"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:939
+#: ../gramps/plugins/drawreport/ancestortree.py:941
 msgid "Display format for the fathers box."
 msgstr "Anzeigeformat für die Vaterbox."
 
@@ -17969,7 +17973,7 @@ msgstr "Anzeigeformat für die Vaterbox."
 #. missing.set_help(_("What will print when information is not known"))
 #. menu.add_option(category_name, "miss_val", missing)
 #. category_name = _("Secondary")
-#: ../gramps/plugins/drawreport/ancestortree.py:952
+#: ../gramps/plugins/drawreport/ancestortree.py:954
 msgid ""
 "Mother\n"
 "Display Format"
@@ -17977,22 +17981,22 @@ msgstr ""
 "Mutter\n"
 "Anzeigeformat"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:958
+#: ../gramps/plugins/drawreport/ancestortree.py:960
 msgid "Display format for the mothers box."
 msgstr "Anzeigeformat für die Mutterbox."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:961
-#: ../gramps/plugins/drawreport/descendtree.py:1558
+#: ../gramps/plugins/drawreport/ancestortree.py:963
+#: ../gramps/plugins/drawreport/descendtree.py:1568
 msgid "Include Marriage box"
 msgstr "Heiratsboxen aufnehmen"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:963
-#: ../gramps/plugins/drawreport/descendtree.py:1560
+#: ../gramps/plugins/drawreport/ancestortree.py:965
+#: ../gramps/plugins/drawreport/descendtree.py:1570
 msgid "Whether to include a separate marital box in the report"
 msgstr "Ob eine extra Ehebox in dem Bericht enthalten ist"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:966
-#: ../gramps/plugins/drawreport/descendtree.py:1563
+#: ../gramps/plugins/drawreport/ancestortree.py:968
+#: ../gramps/plugins/drawreport/descendtree.py:1573
 msgid ""
 "Marriage\n"
 "Display Format"
@@ -18000,38 +18004,38 @@ msgstr ""
 "Heirat\n"
 "Anzeigeformat"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:967
-#: ../gramps/plugins/drawreport/descendtree.py:1564
+#: ../gramps/plugins/drawreport/ancestortree.py:969
+#: ../gramps/plugins/drawreport/descendtree.py:1574
 msgid "Display format for the marital box."
 msgstr "Anzeigeformat für die Ehebox."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:973
-#: ../gramps/plugins/drawreport/descendtree.py:1579
+#: ../gramps/plugins/drawreport/ancestortree.py:975
+#: ../gramps/plugins/drawreport/descendtree.py:1589
 msgid "Scale tree to fit"
 msgstr "Baum passend skalieren"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:974
-#: ../gramps/plugins/drawreport/descendtree.py:1580
+#: ../gramps/plugins/drawreport/ancestortree.py:976
+#: ../gramps/plugins/drawreport/descendtree.py:1590
 msgid "Do not scale tree"
 msgstr "Baum nicht skalieren"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:975
-#: ../gramps/plugins/drawreport/descendtree.py:1581
+#: ../gramps/plugins/drawreport/ancestortree.py:977
+#: ../gramps/plugins/drawreport/descendtree.py:1591
 msgid "Scale tree to fit page width only"
 msgstr "Baum nur auf Seitenbreite skalieren"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:976
-#: ../gramps/plugins/drawreport/descendtree.py:1582
+#: ../gramps/plugins/drawreport/ancestortree.py:978
+#: ../gramps/plugins/drawreport/descendtree.py:1592
 msgid "Scale tree to fit the size of the page"
 msgstr "Baum auf Seitengröße skalieren"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:978
-#: ../gramps/plugins/drawreport/descendtree.py:1584
+#: ../gramps/plugins/drawreport/ancestortree.py:980
+#: ../gramps/plugins/drawreport/descendtree.py:1594
 msgid "Whether to scale the tree to fit a specific paper size"
 msgstr "Ob der Baum auf eine bestimmte Papiergröße skaliert wird"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:984
-#: ../gramps/plugins/drawreport/descendtree.py:1590
+#: ../gramps/plugins/drawreport/ancestortree.py:986
+#: ../gramps/plugins/drawreport/descendtree.py:1600
 msgid ""
 "Resize Page to Fit Tree size\n"
 "\n"
@@ -18041,8 +18045,8 @@ msgstr ""
 "\n"
 "Beachte: dies überschreibt die Optionen im Reiter 'Papieroptionen'."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:990
-#: ../gramps/plugins/drawreport/descendtree.py:1596
+#: ../gramps/plugins/drawreport/ancestortree.py:992
+#: ../gramps/plugins/drawreport/descendtree.py:1606
 msgid ""
 "Whether to resize the page to fit the size \n"
 "of the tree.  Note:  the page will have a \n"
@@ -18073,89 +18077,89 @@ msgstr ""
 "'Baum auf Seitengröße skalieren' paßt die Seite so an,\n"
 " dass jeder Abstand/Zwischenraum in der Höhe und Breite entfernt wird."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1010
-#: ../gramps/plugins/drawreport/descendtree.py:1616
+#: ../gramps/plugins/drawreport/ancestortree.py:1012
+#: ../gramps/plugins/drawreport/descendtree.py:1626
 msgid "inter-box Y scale factor"
 msgstr "Faktor für den Y-Kästchenabstand"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1012
-#: ../gramps/plugins/drawreport/descendtree.py:1618
+#: ../gramps/plugins/drawreport/ancestortree.py:1014
+#: ../gramps/plugins/drawreport/descendtree.py:1628
 msgid "Make the inter-box Y bigger or smaller"
 msgstr "Vergrößere oder verkleinere den Y-Abstand zwischen Kästchen"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1015
-#: ../gramps/plugins/drawreport/descendtree.py:1621
+#: ../gramps/plugins/drawreport/ancestortree.py:1017
+#: ../gramps/plugins/drawreport/descendtree.py:1631
 msgid "box shadow scale factor"
 msgstr "Skalierungsfaktor für die Kästchenschatten"
 
 #. down to 0
-#: ../gramps/plugins/drawreport/ancestortree.py:1017
-#: ../gramps/plugins/drawreport/descendtree.py:1623
+#: ../gramps/plugins/drawreport/ancestortree.py:1019
+#: ../gramps/plugins/drawreport/descendtree.py:1633
 msgid "Make the box shadow bigger or smaller"
 msgstr "Macht den Schatten der Kästchen größer oder kleiner"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1024
-#: ../gramps/plugins/drawreport/descendtree.py:1630
+#: ../gramps/plugins/drawreport/ancestortree.py:1026
+#: ../gramps/plugins/drawreport/descendtree.py:1640
 msgid "Report Title"
 msgstr "Berichttitel"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1025
-#: ../gramps/plugins/drawreport/descendtree.py:1631
-#: ../gramps/plugins/drawreport/descendtree.py:1686
+#: ../gramps/plugins/drawreport/ancestortree.py:1027
+#: ../gramps/plugins/drawreport/descendtree.py:1641
+#: ../gramps/plugins/drawreport/descendtree.py:1696
 msgid "Do not include a title"
 msgstr "Ohne Titel"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1026
+#: ../gramps/plugins/drawreport/ancestortree.py:1028
 msgid "Include Report Title"
 msgstr "Berichttitel aufnehmen"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1027
-#: ../gramps/plugins/drawreport/descendtree.py:1639
+#: ../gramps/plugins/drawreport/ancestortree.py:1029
+#: ../gramps/plugins/drawreport/descendtree.py:1649
 msgid "Choose a title for the report"
 msgstr "Wähle einen Titel für den Bericht"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1030
-#: ../gramps/plugins/drawreport/descendtree.py:1643
+#: ../gramps/plugins/drawreport/ancestortree.py:1032
+#: ../gramps/plugins/drawreport/descendtree.py:1653
 msgid "Include a border"
 msgstr "Mit Rand"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1031
-#: ../gramps/plugins/drawreport/descendtree.py:1644
+#: ../gramps/plugins/drawreport/ancestortree.py:1033
+#: ../gramps/plugins/drawreport/descendtree.py:1654
 msgid "Whether to make a border around the report."
 msgstr "Ob ein Rand um den Bericht gelegt wird."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1034
-#: ../gramps/plugins/drawreport/descendtree.py:1647
+#: ../gramps/plugins/drawreport/ancestortree.py:1036
+#: ../gramps/plugins/drawreport/descendtree.py:1657
 msgid "Include Page Numbers"
 msgstr "Mit Seitennummern"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1035
+#: ../gramps/plugins/drawreport/ancestortree.py:1037
 msgid "Whether to print page numbers on each page."
 msgstr "Ob Seitennummern auf jeder Seite des Berichts gedruckt werden."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1038
-#: ../gramps/plugins/drawreport/descendtree.py:1651
+#: ../gramps/plugins/drawreport/ancestortree.py:1040
+#: ../gramps/plugins/drawreport/descendtree.py:1661
 msgid "Include Blank Pages"
 msgstr "Enthält leere Seiten"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1039
-#: ../gramps/plugins/drawreport/descendtree.py:1652
+#: ../gramps/plugins/drawreport/ancestortree.py:1041
+#: ../gramps/plugins/drawreport/descendtree.py:1662
 msgid "Whether to include pages that are blank."
 msgstr "Ob leere Seiten enthalten sind."
 
 #. category_name = _("Notes")
-#: ../gramps/plugins/drawreport/ancestortree.py:1046
-#: ../gramps/plugins/drawreport/descendtree.py:1657
+#: ../gramps/plugins/drawreport/ancestortree.py:1048
+#: ../gramps/plugins/drawreport/descendtree.py:1667
 msgid "Include a note"
 msgstr "Eine Notiz aufnehmen"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1047
-#: ../gramps/plugins/drawreport/descendtree.py:1659
+#: ../gramps/plugins/drawreport/ancestortree.py:1049
+#: ../gramps/plugins/drawreport/descendtree.py:1669
 msgid "Whether to include a note on the report."
 msgstr "Ob eine Notiz auf dem Bericht enthalten ist."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1052
-#: ../gramps/plugins/drawreport/descendtree.py:1664
+#: ../gramps/plugins/drawreport/ancestortree.py:1054
+#: ../gramps/plugins/drawreport/descendtree.py:1674
 msgid ""
 "Add a note\n"
 "\n"
@@ -18165,30 +18169,30 @@ msgstr ""
 "\n"
 "$T heutiges Datum einfügen"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1057
-#: ../gramps/plugins/drawreport/descendtree.py:1669
+#: ../gramps/plugins/drawreport/ancestortree.py:1059
+#: ../gramps/plugins/drawreport/descendtree.py:1679
 msgid "Note Location"
 msgstr "Position der Notiz"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1060
-#: ../gramps/plugins/drawreport/descendtree.py:1672
+#: ../gramps/plugins/drawreport/ancestortree.py:1062
+#: ../gramps/plugins/drawreport/descendtree.py:1682
 msgid "Where to place the note."
 msgstr "Wo die Notiz platziert wird."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1075
+#: ../gramps/plugins/drawreport/ancestortree.py:1077
 msgid "No generations of empty boxes for unknown ancestors"
 msgstr "Keine leeren Boxen für unbekannte Vorfahren erzeugen"
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1078
+#: ../gramps/plugins/drawreport/ancestortree.py:1080
 msgid "One Generation of empty boxes for unknown ancestors"
 msgstr "Eine Generation leerer Boxen für unbekannte Vorfahren erzeugen."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1082
+#: ../gramps/plugins/drawreport/ancestortree.py:1084
 msgid " Generations of empty boxes for unknown ancestors"
 msgstr "Leere Boxen für unbekannte Vorfahren erzeugen."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1100
-#: ../gramps/plugins/drawreport/descendtree.py:1720
+#: ../gramps/plugins/drawreport/ancestortree.py:1102
+#: ../gramps/plugins/drawreport/descendtree.py:1730
 #: ../gramps/plugins/textreport/ancestorreport.py:350
 #: ../gramps/plugins/textreport/detancestralreport.py:878
 #: ../gramps/plugins/textreport/detdescendantreport.py:1074
@@ -18204,15 +18208,15 @@ msgstr "Leere Boxen für unbekannte Vorfahren erzeugen."
 msgid "The basic style used for the text display."
 msgstr "Der Basisstil, der für die Textanzeige verwendet wird."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1110
-#: ../gramps/plugins/drawreport/descendtree.py:1742
+#: ../gramps/plugins/drawreport/ancestortree.py:1112
+#: ../gramps/plugins/drawreport/descendtree.py:1752
 #: ../gramps/plugins/textreport/familygroup.py:745
 #: ../gramps/plugins/textreport/tagreport.py:927
 msgid "The basic style used for the note display."
 msgstr "Der Basisstil, der für die Notizenanzeige verwendet wird."
 
-#: ../gramps/plugins/drawreport/ancestortree.py:1120
-#: ../gramps/plugins/drawreport/descendtree.py:1710
+#: ../gramps/plugins/drawreport/ancestortree.py:1122
+#: ../gramps/plugins/drawreport/descendtree.py:1720
 msgid "The basic style used for the title display."
 msgstr "Der Basisstil, der für die Titelanzeige verwendet wird."
 
@@ -18227,7 +18231,7 @@ msgid "Produced with Gramps"
 msgstr "Erstellt mit Gramps"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:109
-#: ../gramps/plugins/drawreport/descendtree.py:679
+#: ../gramps/plugins/drawreport/descendtree.py:686
 #: ../gramps/plugins/drawreport/fanchart.py:181
 #: ../gramps/plugins/graph/gvhourglass.py:102
 #: ../gramps/plugins/textreport/ancestorreport.py:101
@@ -18490,98 +18494,98 @@ msgstr "Text unten, Zeile 2"
 msgid "Text at bottom, line 3"
 msgstr "Text unten, Zeile 3"
 
-#: ../gramps/plugins/drawreport/descendtree.py:155
+#: ../gramps/plugins/drawreport/descendtree.py:162
 #, python-format
 msgid "Descendant Chart for %(person)s and %(father1)s, %(mother1)s"
 msgstr "Nachkommenschaubild für %(person)s und %(father1)s, %(mother1)s"
 
 #. Should be 2 items in names list
-#: ../gramps/plugins/drawreport/descendtree.py:162
+#: ../gramps/plugins/drawreport/descendtree.py:169
 #, python-format
 msgid "Descendant Chart for %(person)s, %(father1)s and %(mother1)s"
 msgstr "Nachkommenschaubild für %(person)s, %(father1)s und %(mother1)s"
 
 #. Should be 2 items in both names and names2 lists
-#: ../gramps/plugins/drawreport/descendtree.py:169
+#: ../gramps/plugins/drawreport/descendtree.py:176
 #, python-format
 msgid ""
 "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
 msgstr ""
 "Nachkommenschaubild für %(father1)s, %(father2)s und %(mother1)s, %(mother2)s"
 
-#: ../gramps/plugins/drawreport/descendtree.py:178
+#: ../gramps/plugins/drawreport/descendtree.py:185
 #, python-format
 msgid "Descendant Chart for %(person)s"
 msgstr "Nachkommenschaubild für %(person)s"
 
 #. Should be two items in names list
-#: ../gramps/plugins/drawreport/descendtree.py:181
+#: ../gramps/plugins/drawreport/descendtree.py:188
 #, python-format
 msgid "Descendant Chart for %(father)s and %(mother)s"
 msgstr "Nachkommenschaubild von %(father)s und %(mother)s"
 
 #. we want no text, but need a text for the TOC in a book!
-#: ../gramps/plugins/drawreport/descendtree.py:210
+#: ../gramps/plugins/drawreport/descendtree.py:217
 msgid "Descendant Graph"
 msgstr "Nachkommen Grafik"
 
-#: ../gramps/plugins/drawreport/descendtree.py:323
+#: ../gramps/plugins/drawreport/descendtree.py:330
 #, python-format
 msgid "Family Chart for %(person)s"
 msgstr "Familienschaubild für %(person)s"
 
-#: ../gramps/plugins/drawreport/descendtree.py:326
+#: ../gramps/plugins/drawreport/descendtree.py:333
 #, python-format
 msgid "Family Chart for %(father1)s and %(mother1)s"
 msgstr "Familienschaubild für %(father1)s und %(mother1)s"
 
-#: ../gramps/plugins/drawreport/descendtree.py:351
+#: ../gramps/plugins/drawreport/descendtree.py:358
 #, python-format
 msgid "Cousin Chart for %(names)s"
 msgstr "Cousinenschaubild für %(names)s"
 
-#: ../gramps/plugins/drawreport/descendtree.py:747
+#: ../gramps/plugins/drawreport/descendtree.py:754
 #, python-format
 msgid "Family %s is not in the Database"
 msgstr "Familie %s ist nicht in der Datenbank"
 
 #. if self.name == "familial_descend_tree":
-#: ../gramps/plugins/drawreport/descendtree.py:1490
-#: ../gramps/plugins/drawreport/descendtree.py:1494
+#: ../gramps/plugins/drawreport/descendtree.py:1500
+#: ../gramps/plugins/drawreport/descendtree.py:1504
 msgid "Report for"
 msgstr "Bericht für"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1491
+#: ../gramps/plugins/drawreport/descendtree.py:1501
 msgid "The main person for the report"
 msgstr "Die Hauptperson für den Bericht"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1495
+#: ../gramps/plugins/drawreport/descendtree.py:1505
 msgid "The main family for the report"
 msgstr "Die zentrale Familie für den Bericht"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1499
+#: ../gramps/plugins/drawreport/descendtree.py:1509
 msgid "Start with the parent(s) of the selected first"
 msgstr "Starte mit den Eltern des zuerst gewählten"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1502
+#: ../gramps/plugins/drawreport/descendtree.py:1512
 msgid "Will show the parents, brother and sisters of the selected person."
 msgstr "Zeigt die Eltern, Brüder und Schwestern der gewählten Person."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1511
+#: ../gramps/plugins/drawreport/descendtree.py:1521
 msgid "Level of Spouses"
 msgstr "Ebene der Partner"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1512
+#: ../gramps/plugins/drawreport/descendtree.py:1522
 msgid "0=no Spouses, 1=include Spouses, 2=include Spouses of the spouse, etc"
 msgstr "0=keine Partner, 1=mit Partnern, 2=mit Partnern der Partner, usw"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1517
+#: ../gramps/plugins/drawreport/descendtree.py:1527
 msgid "Whether to move people up, where possible, resulting in a smaller tree"
 msgstr ""
 "Legt fest, ob Personen, wo immer möglich nach oben verschoben werden können, "
 "um einen schmaleren Baum zu erhalten."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1526
+#: ../gramps/plugins/drawreport/descendtree.py:1536
 msgid ""
 "Descendant\n"
 "Display Format"
@@ -18589,15 +18593,15 @@ msgstr ""
 "Nachkommen\n"
 "Anzeigeformat"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1530
+#: ../gramps/plugins/drawreport/descendtree.py:1540
 msgid "Display format for a descendant."
 msgstr "Anzeigeformat für einen Nachkommen."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1533
+#: ../gramps/plugins/drawreport/descendtree.py:1543
 msgid "Bold direct descendants"
 msgstr "Direkte Nachkommen fett gedruckt"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1535
+#: ../gramps/plugins/drawreport/descendtree.py:1545
 msgid ""
 "Whether to bold those people that are direct (not step or half) descendants."
 msgstr ""
@@ -18610,15 +18614,15 @@ msgstr ""
 #. True)
 #. diffspouse.set_help(_("Whether spouses can have a different format."))
 #. menu.add_option(category_name, "diffspouse", diffspouse)
-#: ../gramps/plugins/drawreport/descendtree.py:1547
+#: ../gramps/plugins/drawreport/descendtree.py:1557
 msgid "Indent Spouses"
 msgstr "Partner einrücken"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1548
+#: ../gramps/plugins/drawreport/descendtree.py:1558
 msgid "Whether to indent the spouses in the tree."
 msgstr "Legt fest, ob Partner im Baum eingerückt werden."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1551
+#: ../gramps/plugins/drawreport/descendtree.py:1561
 msgid ""
 "Spousal\n"
 "Display Format"
@@ -18626,16 +18630,16 @@ msgstr ""
 "Ehegatten\n"
 "Anzeigeformat"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1555
+#: ../gramps/plugins/drawreport/descendtree.py:1565
 msgid "Display format for a spouse."
 msgstr "Anzeigeformat für eine(n) Partner(in)."
 
 #. #################
-#: ../gramps/plugins/drawreport/descendtree.py:1568
+#: ../gramps/plugins/drawreport/descendtree.py:1578
 msgid "Replace"
 msgstr "Ersetze"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1571
+#: ../gramps/plugins/drawreport/descendtree.py:1581
 msgid ""
 "Replace Display Format:\n"
 "'Replace this'/' with this'"
@@ -18643,7 +18647,7 @@ msgstr ""
 "Anzeigeformat austauschen:\n"
 "'Ersetze dieses'/'Durch dieses'"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1573
+#: ../gramps/plugins/drawreport/descendtree.py:1583
 msgid ""
 "i.e.\n"
 "United States of America/U.S.A"
@@ -18651,26 +18655,26 @@ msgstr ""
 "z.B.\n"
 "Vereinigte Staaten von Amerika/U.S.A"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1632
-#: ../gramps/plugins/drawreport/descendtree.py:1687
+#: ../gramps/plugins/drawreport/descendtree.py:1642
+#: ../gramps/plugins/drawreport/descendtree.py:1697
 msgid "Descendant Chart for [selected person(s)]"
 msgstr "Nachkommenschaubild für [gewählte Person(en)]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1635
-#: ../gramps/plugins/drawreport/descendtree.py:1691
+#: ../gramps/plugins/drawreport/descendtree.py:1645
+#: ../gramps/plugins/drawreport/descendtree.py:1701
 msgid "Family Chart for [names of chosen family]"
 msgstr "Familienschaubild für [Namen der gewählten Familie]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1638
-#: ../gramps/plugins/drawreport/descendtree.py:1695
+#: ../gramps/plugins/drawreport/descendtree.py:1648
+#: ../gramps/plugins/drawreport/descendtree.py:1705
 msgid "Cousin Chart for [names of children]"
 msgstr "Cousinenschaubild für [Namen der Kinder]"
 
-#: ../gramps/plugins/drawreport/descendtree.py:1648
+#: ../gramps/plugins/drawreport/descendtree.py:1658
 msgid "Whether to include page numbers on each page."
 msgstr "Legt fest, ob Seitennummern auf jeder Seite enthalten sind."
 
-#: ../gramps/plugins/drawreport/descendtree.py:1732
+#: ../gramps/plugins/drawreport/descendtree.py:1742
 msgid "The bold style used for the text display."
 msgstr "Der Fettdruckstil, der für die Textanzeige verwendet wird."
 
@@ -26803,19 +26807,19 @@ msgstr "Kürzeste beendete Ehe"
 msgid "Longest past marriage"
 msgstr "Längste beendete Ehe"
 
-#: ../gramps/plugins/lib/libtreebase.py:764
+#: ../gramps/plugins/lib/libtreebase.py:763
 msgid "Top Left"
 msgstr "Oben Links"
 
-#: ../gramps/plugins/lib/libtreebase.py:765
+#: ../gramps/plugins/lib/libtreebase.py:764
 msgid "Top Right"
 msgstr "Oben rechts"
 
-#: ../gramps/plugins/lib/libtreebase.py:766
+#: ../gramps/plugins/lib/libtreebase.py:765
 msgid "Bottom Left"
 msgstr "Unten links"
 
-#: ../gramps/plugins/lib/libtreebase.py:767
+#: ../gramps/plugins/lib/libtreebase.py:766
 msgid "Bottom Right"
 msgstr "Unten rechts"
 
@@ -32636,13 +32640,13 @@ msgstr "<br />Erstellt für <a href = \"%(url)s\">%(name)s</a>"
 #. and menu layout is Drop Down?
 #. Basic Blue style sheet with navigation menus
 #: ../gramps/plugins/webreport/narrativeweb.py:1719
-#: ../gramps/plugins/webstuff/webstuff.py:63
+#: ../gramps/plugins/webstuff/webstuff.py:64
 msgid "Basic-Blue"
 msgstr "Einfach - Blau"
 
 #. Visually Impaired style sheet with its navigation menus
 #: ../gramps/plugins/webreport/narrativeweb.py:1720
-#: ../gramps/plugins/webstuff/webstuff.py:95
+#: ../gramps/plugins/webstuff/webstuff.py:96
 msgid "Visually Impaired"
 msgstr "Sehbehindert"
 
@@ -33994,45 +33998,44 @@ msgstr "Liefert eine Sammlung von Hilfsmitteln für das Web"
 #. id, user selectable?, translated_name, option name, fullpath,
 #. navigation target name, images, javascript
 #. "default" is used as default
-#. Basic Ash style sheet
 #. default style sheet in the options
-#: ../gramps/plugins/webstuff/webstuff.py:59
-#: ../gramps/plugins/webstuff/webstuff.py:113
+#. Basic Ash style sheet
+#: ../gramps/plugins/webstuff/webstuff.py:60
 msgid "Basic-Ash"
 msgstr "Einfach - Asche"
 
 #. Basic Cypress style sheet
-#: ../gramps/plugins/webstuff/webstuff.py:67
+#: ../gramps/plugins/webstuff/webstuff.py:68
 msgid "Basic-Cypress"
 msgstr "Einfach - Zypresse"
 
 #. basic Lilac style sheet
-#: ../gramps/plugins/webstuff/webstuff.py:71
+#: ../gramps/plugins/webstuff/webstuff.py:72
 msgid "Basic-Lilac"
 msgstr "Einfach - Lila"
 
 #. basic Peach style sheet
-#: ../gramps/plugins/webstuff/webstuff.py:75
+#: ../gramps/plugins/webstuff/webstuff.py:76
 msgid "Basic-Peach"
 msgstr "Einfach - Pfirsich"
 
 #. basic Spruce style sheet
-#: ../gramps/plugins/webstuff/webstuff.py:79
+#: ../gramps/plugins/webstuff/webstuff.py:80
 msgid "Basic-Spruce"
 msgstr "Einfach - Tannengrün"
 
 #. Mainz style sheet with its images
-#: ../gramps/plugins/webstuff/webstuff.py:83
+#: ../gramps/plugins/webstuff/webstuff.py:84
 msgid "Mainz"
 msgstr "Mainz"
 
 #. Nebraska style sheet
-#: ../gramps/plugins/webstuff/webstuff.py:91
+#: ../gramps/plugins/webstuff/webstuff.py:92
 msgid "Nebraska"
 msgstr "Nebraska"
 
 #. no style sheet option
-#: ../gramps/plugins/webstuff/webstuff.py:156
+#: ../gramps/plugins/webstuff/webstuff.py:153
 msgid "No style sheet"
 msgstr "Kein Stylesheet"
 
