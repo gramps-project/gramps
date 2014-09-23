@@ -507,11 +507,7 @@ def get_gendex_data(database, event_ref):
                 if place_handle:
                     place = database.get_place_from_handle(place_handle)
                     if place:
-                        location = get_main_location(self.dbase_, place)
-                        poe = ", ".join(l for l in [
-                            location.get(PlaceType.CITY, '').strip(),
-                            location.get(PlaceType.STATE, '').strip(),
-                            location.get(PlaceType.COUNTRY, '').strip()] if l)
+                        poe = place.get_title()
     return doe, poe
 
 def format_date(date):
