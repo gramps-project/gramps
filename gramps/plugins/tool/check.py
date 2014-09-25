@@ -1241,8 +1241,14 @@ class CheckIntegrity(object):
         for bkey in llist:
             key = handle2internal(bkey)
             self.progress.step()
+            none_handle = False
+            newlist = []
             place = self.db.get_place_from_handle(key)
             for placeref in place.get_placeref_list():
+                newlist.append(placeref)
+                if placeref.ref is None:
+                    none_handle = True
+                    placeref.ref = create_id()
                 parent_place = self.db.get_place_from_handle(placeref.ref)
                 if not parent_place:
                     # The referenced place does not exist in the database
@@ -1255,6 +1261,9 @@ class CheckIntegrity(object):
                                     {'gid' : place.gramps_id,
                                         'hand' : placeref.ref})
                     self.invalid_place_references.add(key)
+            if none_handle:
+                place.set_placeref_list(newlist);
+                self.db.commit_place(place, self.trans)
 
         # check persons -> the LdsOrd references a place
         for bkey in plist:
