@@ -40,6 +40,8 @@ def get_location_list(db, place):
         else:
             visited.append(handle)
         place = db.get_place_from_handle(handle)
+        if place is None:
+            break
         lines.append(place.name)
     return lines
 
@@ -62,6 +64,8 @@ def get_main_location(db, place):
         else:
             visited.append(handle)
         place = db.get_place_from_handle(handle)
+        if place is None:
+            break
         items[int(place.get_type())] = place.name
     return items
     
@@ -83,10 +87,11 @@ def get_locations(db, place):
         for parent in place.get_placeref_list():
             if parent.ref not in visited:
                 parent_place = db.get_place_from_handle(parent.ref)
-                parent_tree = tree + [(int(parent_place.get_type()), 
-                                       parent_place.get_all_names())]
-                parent_visited = visited + [parent.ref]
-                todo.append((parent_place, parent_tree, parent_visited))
+                if parent_place is not None:
+                    parent_tree = tree + [(int(parent_place.get_type()),
+                                           parent_place.get_all_names())]
+                    parent_visited = visited + [parent.ref]
+                    todo.append((parent_place, parent_tree, parent_visited))
         if len(place.get_placeref_list()) == 0:
             locations.append(dict(tree))
     return locations
@@ -110,6 +115,7 @@ def located_in(db, handle1, handle2):
                 return True
             if parent.ref not in visited:
                 parent_place = db.get_place_from_handle(parent.ref)
-                parent_visited = visited + [parent.ref]
-                todo.append((parent_place, parent_visited))
+                if parent_place is not None:
+                    parent_visited = visited + [parent.ref]
+                    todo.append((parent_place, parent_visited))
     return False
