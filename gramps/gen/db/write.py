@@ -2344,6 +2344,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.reset()
             self.set_total(6)
             self.__connect_secondary()
+            self.rebuild_secondary()
             # Open undo database
             self.__open_undodb()
             self.db_is_open = True
