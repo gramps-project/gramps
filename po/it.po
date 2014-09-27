@@ -62,7 +62,7 @@ msgstr ""
 "Project-Id-Version: gramps 3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-03-19 09:09+0100\n"
-"PO-Revision-Date: 2014-03-23 02:42+0100\n"
+"PO-Revision-Date: 2014-09-27 23:38+0200\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <tp@lists.linux.it>\n"
 "Language: it\n"
@@ -197,9 +197,8 @@ msgid "ID"
 msgstr "ID"
 
 #: ../src/Bookmarks.py:393
-#, fuzzy
 msgid "Cannot bookmark this reference"
-msgstr "Impossibile condividere questo riferimento"
+msgstr "Impossibile creare un segnalibro per questo riferimento"
 
 #: ../src/const.py:203
 msgid ""
@@ -2141,9 +2140,8 @@ msgid "Database needs recovery, cannot open it!"
 msgstr "Il database deve essere ripristinato, non è possibile aprirlo!"
 
 #: ../src/cli/arghandler.py:601 ../src/cli/arghandler.py:648
-#, fuzzy
 msgid "Ignoring invalid options string."
-msgstr "Stringa di opzioni non valida ignorata."
+msgstr "Ignorata stringa di opzioni non valida."
 
 #. name exists, but is not in the list of valid report names
 #: ../src/cli/arghandler.py:624
@@ -3216,7 +3214,6 @@ msgid "Informant"
 msgstr "Informatore/trice"
 
 #: ../src/gen/lib/eventtype.py:139
-#, fuzzy
 msgid "Life Events"
 msgstr "Eventi della vita"
 
@@ -3864,7 +3861,7 @@ msgstr "Nota rifermento figlio"
 
 #: ../src/gen/lib/person.py:458
 msgid "Merged Gramps ID"
-msgstr "Riordina ID Gramps"
+msgstr "ID Gramps fuso"
 
 #: ../src/gen/lib/repotype.py:61
 msgid "Library"
@@ -4273,9 +4270,8 @@ msgid "Left, top"
 msgstr "Da sinistra, dall'alto"
 
 #: ../src/gen/plug/docgen/graphdoc.py:81
-#, fuzzy
 msgid "Compress to minimal size"
-msgstr "Compresso a dimensioni minimali"
+msgstr "Comprimi a dimensioni minimali"
 
 #: ../src/gen/plug/docgen/graphdoc.py:82
 msgid "Fill the given area"
@@ -6372,7 +6368,6 @@ msgid ""
 msgstr ""
 
 #: ../src/gui/utils.py:488
-#, fuzzy
 msgid "Cannot open new citation editor"
 msgstr "Impossibile aprire un nuovo editor delle citazioni"
 
@@ -19023,7 +19018,7 @@ msgstr "Rimuove la persona selezionata"
 
 #: ../src/plugins/lib/libpersonview.py:116
 msgid "Merge the selected persons"
-msgstr "Elimina la persona selezionata"
+msgstr "Fonde la persona selezionata"
 
 #: ../src/plugins/lib/libpersonview.py:295
 msgid "Deleting the person will remove the person from the database."
