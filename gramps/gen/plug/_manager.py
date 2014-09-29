@@ -385,14 +385,14 @@ class BasePluginManager(object):
     def get_reg_reports(self, gui=True):
         """ Return list of registered reports
         :param gui: bool indicating if GUI reports or CLI reports must be
-                    returned
+        returned
         """
         return self.__pgr.report_plugins(gui)
     
     def get_reg_tools(self, gui=True):
         """ Return list of registered tools
         :aram gui: bool indicating if GUI reports or CLI reports must be
-                   returned
+        returned
         """
         return self.__pgr.tool_plugins(gui)
     

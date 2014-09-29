@@ -247,7 +247,7 @@ class GuiPluginManager(Callback):
     def get_reg_reports(self, gui=True):
         """ Return list of non hidden registered reports
         :Param gui: bool indicating if GUI reports or CLI reports must be
-            returned
+        returned
         """
         return [plg for plg in self.basemgr.get_reg_reports(gui)
                                 if plg.id not in self.__hidden_plugins]
@@ -255,7 +255,7 @@ class GuiPluginManager(Callback):
     def get_reg_tools(self, gui=True):
         """ Return list of non hidden  registered tools
         :Param gui: bool indicating if GUI reports or CLI reports must be
-            returned
+        returned
         """
         return [plg for plg in self.basemgr.get_reg_tools(gui)
                                 if plg.id not in self.__hidden_plugins]

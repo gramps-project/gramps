@@ -3,7 +3,9 @@ Installation and building the docs
 
 You need to install sphinx. Assuming you have installed the python setuptools, just do:
 
-  sudo easy_install sphinx 
+  sudo easy_install sphinx
+or
+  sudo pip install sphinx
 
 Once installed, go to the docs directory, and do:
 
@@ -17,7 +19,7 @@ Documentation Guidelines
 
 Doc strings in python files should be written in reStructured text: http://docutils.sourceforge.net/docs/user/rst/quickref.html
 
-The typical docstring for GRAMPS should look like this: 
+The typical docstring for Gramps should look like this:
 
 """Brief synopsis
 
