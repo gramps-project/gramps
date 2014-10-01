@@ -214,8 +214,9 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
 
         event = None
         for event_ref in self.get_data()[0]:
-            event = self.dbstate.db.get_event_from_handle(event_ref.ref)
-            type_list.append(event.get_type())
+            if event_ref.get_role() == self.default_role():
+                event = self.dbstate.db.get_event_from_handle(event_ref.ref)
+                type_list.append(event.get_type())
 
         _std_types = self.default_types()
         for etype in _std_types:
