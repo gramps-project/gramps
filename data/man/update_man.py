@@ -43,7 +43,7 @@ except:
     DOCUTILS = False
 
 LANGUAGES = ['sv', 'nl', 'pl', 'cs', 'pt_BR', 'fr']
-VERSION = '4.0.0'
+VERSION = '4.2.0'
 DATE = ''
 
 # You can set these variables from the command line.
