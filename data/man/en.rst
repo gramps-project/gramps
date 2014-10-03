@@ -83,7 +83,7 @@ gramps(1)                @VERSION@               gramps(1)
 
        **-i** , **--import=** *FILE*
           Import data from *FILE* . If you haven't specified a database then
-          a  temporary database is used; this is deleted when you exit
+          a temporary database is used; this is deleted when you exit
           gramps.
 
           When more than one input file is given, each has to be preceded
