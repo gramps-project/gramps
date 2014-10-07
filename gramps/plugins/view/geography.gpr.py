@@ -106,10 +106,10 @@ else:
     
     register(VIEW, 
              id    = 'geo3',
-             name  = _("All displacements for one person and their descendants"),
+             name  = _("Every residence or move for a person and any descendants"),
              description =  _("A view showing all the places visited by "
                               "all persons during their life."
-                              "\nThis is for one person and their descendant."
+                              "\nThis is for a person and any descendant."
                               "\nYou can see the dates corresponding to the period."),
              version = '1.0',
              gramps_target_version = MODULE_VERSION,
