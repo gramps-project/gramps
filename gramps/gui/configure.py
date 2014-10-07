@@ -1155,7 +1155,7 @@ class GrampsPreferences(ConfigureDialog):
     def date_format_changed(self, obj):
         config.set('preferences.date-format', obj.get_active())
         OkDialog(_('Change is not immediate'), 
-                 _('Changing the data format will not take '
+                 _('Changing the date format will not take '
                    'effect until the next time Gramps is started.'))
 
     def date_calendar_changed(self, obj): 
