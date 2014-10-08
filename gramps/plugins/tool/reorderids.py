@@ -69,7 +69,7 @@ class ReorderIds(tool.BatchTool):
         if uistate:
             self.progress = ProgressMeter(_('Reordering Gramps IDs'),'')
         else:
-            print("Reordering Gramps IDs...")
+            print(_("Reordering Gramps IDs..."))
 
         with DbTxn(_("Reorder Gramps IDs"), db, batch=True) as self.trans:
             db.disable_signals()
@@ -169,7 +169,7 @@ class ReorderIds(tool.BatchTool):
             if uistate:
                 self.progress.close()
             else:
-                print("Done.")
+                print(_("Done."))
     
         db.enable_signals()
         db.request_rebuild()
