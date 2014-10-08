@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-07 15:01+0200\n"
-"PO-Revision-Date: 2014-10-07 15:04+0100\n"
+"POT-Creation-Date: 2014-10-08 11:34+0200\n"
+"PO-Revision-Date: 2014-10-08 11:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -9268,8 +9268,8 @@ msgstr "Le changement n'est pas immédiat"
 
 # Substantif (GNOME fr)
 #: ../gramps/gui/configure.py:1158
-msgid "Changing the data format will not take effect until the next time Gramps is started."
-msgstr "Le changement du format des données ne prendra effet que la prochaine fois que Gramps sera démarré."
+msgid "Changing the date format will not take effect until the next time Gramps is started."
+msgstr "Le changement du format de date ne prendra effet que la prochaine fois que Gramps sera démarré."
 
 # L'espace finale est pour précéder le « : » codé en dur.
 #: ../gramps/gui/configure.py:1171
@@ -29420,6 +29420,7 @@ msgstr "Les statistiques du prénom d'après le genre ont été reconstruites."
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/rebuildrefmap.py:80
+#: ../gramps/plugins/tool/rebuildrefmap.py:83
 msgid "Rebuilding reference maps..."
 msgstr "Reconstruction des tables de références..."
 
@@ -29428,6 +29429,7 @@ msgid "Reference maps rebuilt"
 msgstr "Tables de références reconstruites"
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:94
+#: ../gramps/plugins/tool/rebuildrefmap.py:97
 msgid "All reference maps have been rebuilt."
 msgstr "Toutes les tables de références ont été reconstruites."
 
@@ -29535,6 +29537,11 @@ msgstr "Supprimer les objets non-référencés"
 msgid "Reordering Gramps IDs"
 msgstr "Réorganisation des identifiants Gramps"
 
+# Substantif (GNOME fr)
+#: ../gramps/plugins/tool/reorderids.py:72
+msgid "Reordering Gramps IDs..."
+msgstr "Réorganisation des identifiants Gramps..."
+
 #: ../gramps/plugins/tool/reorderids.py:74
 #: ../gramps/plugins/tool/tools.gpr.py:393
 msgid "Reorder Gramps IDs"
@@ -29584,6 +29591,10 @@ msgstr "Réorganisation des identifiants des dépôts"
 #: ../gramps/plugins/tool/reorderids.py:160
 msgid "Reordering Note IDs"
 msgstr "Réorganisation des identifiants des notes"
+
+#: ../gramps/plugins/tool/reorderids.py:172
+msgid "Done."
+msgstr "Fait."
 
 # Substantif (GNOME fr)
 # utiliser plutôt que référencer

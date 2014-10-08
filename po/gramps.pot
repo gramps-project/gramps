@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-07 15:01+0200\n"
+"POT-Creation-Date: 2014-10-08 11:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -8772,7 +8772,7 @@ msgstr ""
 
 #: ../gramps/gui/configure.py:1158
 msgid ""
-"Changing the data format will not take effect until the next time Gramps is "
+"Changing the date format will not take effect until the next time Gramps is "
 "started."
 msgstr ""
 
@@ -28244,6 +28244,7 @@ msgid "Gender statistics for name gender guessing have been rebuilt."
 msgstr ""
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:80
+#: ../gramps/plugins/tool/rebuildrefmap.py:83
 msgid "Rebuilding reference maps..."
 msgstr ""
 
@@ -28252,6 +28253,7 @@ msgid "Reference maps rebuilt"
 msgstr ""
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:94
+#: ../gramps/plugins/tool/rebuildrefmap.py:97
 msgid "All reference maps have been rebuilt."
 msgstr ""
 
@@ -28355,6 +28357,10 @@ msgstr ""
 msgid "Reordering Gramps IDs"
 msgstr ""
 
+#: ../gramps/plugins/tool/reorderids.py:72
+msgid "Reordering Gramps IDs..."
+msgstr ""
+
 #: ../gramps/plugins/tool/reorderids.py:74
 #: ../gramps/plugins/tool/tools.gpr.py:393
 msgid "Reorder Gramps IDs"
@@ -28394,6 +28400,10 @@ msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.py:160
 msgid "Reordering Note IDs"
+msgstr ""
+
+#: ../gramps/plugins/tool/reorderids.py:172
+msgid "Done."
 msgstr ""
 
 #: ../gramps/plugins/tool/reorderids.py:234
