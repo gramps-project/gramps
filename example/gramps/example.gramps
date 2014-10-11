@@ -10042,6 +10042,7 @@
     </event>
     <event handle="_a5af0ecd2e07c2f2bdc" change="1284030618" id="E1897">
       <type>Death</type>
+      <datespan start="1800" stop="1805" quality="estimated"/>
       <place hlink="_WIVJQCUZOWUMT7VS2Q"/>
       <description>Death of Adams, Jane</description>
     </event>
