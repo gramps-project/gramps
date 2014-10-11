@@ -1998,10 +1998,10 @@ class Narrator(object):
             else:
                 spouse_name = name_display.display(spouse)
             if not spouse_name:
-                spouse_name = _("Unknown")
+                spouse_name = self.__translate_text("Unknown")
         else:
             # not all families have a spouse.
-            spouse_name = _("Unknown")
+            spouse_name = self.__translate_text("Unknown") # not: _("Unknown")
 
         if event:
             if self.__use_fulldate :
