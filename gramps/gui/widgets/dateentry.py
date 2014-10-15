@@ -56,6 +56,7 @@ class DateEntry(Gtk.HBox):
     def __init__(self, uistate, track):
         Gtk.HBox.__init__(self)
         self.entry = ValidatableMaskedEntry()
+        self.entry.set_width_chars(13)
         self.pack_start(self.entry, True, True, 0)
         image = Gtk.Image()
         image.set_from_stock('gramps-date-edit', Gtk.IconSize.BUTTON)
