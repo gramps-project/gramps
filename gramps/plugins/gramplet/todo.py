@@ -193,16 +193,22 @@ class PersonToDo(ToDo):
 
     def update_has_data(self):
         active_handle = self.get_active('Person')
-        active = self.dbstate.db.get_person_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
-    def main(self):
-        active_handle = self.get_active('Person')
-        active = self.dbstate.db.get_person_from_handle(active_handle)
-        if active:
-            self.get_notes(active)
+        if active_handle:
+            active = self.dbstate.db.get_person_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
         else:
-            self.clear_text()
+            self.set_has_data(False)
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active('Person')
+        if active_handle:
+            active = self.dbstate.db.get_person_from_handle(active_handle)
+            if active:
+                self.get_notes(active)
+            else:
+                self.set_has_data(False)
+        else:
             self.set_has_data(False)
 
     def created(self, handle):
@@ -220,16 +226,22 @@ class EventToDo(ToDo):
 
     def update_has_data(self):
         active_handle = self.get_active('Event')
-        active = self.dbstate.db.get_event_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
-    def main(self):
-        active_handle = self.get_active('Event')
-        active = self.dbstate.db.get_event_from_handle(active_handle)
-        if active:
-            self.get_notes(active)
+        if active_handle:
+            active = self.dbstate.db.get_event_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
         else:
-            self.clear_text()
+            self.set_has_data(False)
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active('Event')
+        if active_handle:
+            active = self.dbstate.db.get_event_from_handle(active_handle)
+            if active:
+                self.get_notes(active)
+            else:
+                self.set_has_data(False)
+        else:
             self.set_has_data(False)
 
     def created(self, handle):
@@ -247,16 +259,22 @@ class FamilyToDo(ToDo):
 
     def update_has_data(self):
         active_handle = self.get_active('Family')
-        active = self.dbstate.db.get_family_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
-    def main(self):
-        active_handle = self.get_active('Family')
-        active = self.dbstate.db.get_family_from_handle(active_handle)
-        if active:
-            self.get_notes(active)
+        if active_handle:
+            active = self.dbstate.db.get_family_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
         else:
-            self.clear_text()
+            self.set_has_data(False)
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active('Family')
+        if active_handle:
+            active = self.dbstate.db.get_family_from_handle(active_handle)
+            if active:
+                self.get_notes(active)
+            else:
+                self.set_has_data(False)
+        else:
             self.set_has_data(False)
 
     def created(self, handle):
@@ -274,16 +292,22 @@ class PlaceToDo(ToDo):
 
     def update_has_data(self):
         active_handle = self.get_active('Place')
-        active = self.dbstate.db.get_place_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
-    def main(self):
-        active_handle = self.get_active('Place')
-        active = self.dbstate.db.get_place_from_handle(active_handle)
-        if active:
-            self.get_notes(active)
+        if active_handle:
+            active = self.dbstate.db.get_place_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
         else:
-            self.clear_text()
+            self.set_has_data(False)
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active('Place')
+        if active_handle:
+            active = self.dbstate.db.get_place_from_handle(active_handle)
+            if active:
+                self.get_notes(active)
+            else:
+                self.set_has_data(False)
+        else:
             self.set_has_data(False)
 
     def created(self, handle):
@@ -301,16 +325,22 @@ class SourceToDo(ToDo):
 
     def update_has_data(self):
         active_handle = self.get_active('Source')
-        active = self.dbstate.db.get_source_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
-    def main(self):
-        active_handle = self.get_active('Source')
-        active = self.dbstate.db.get_source_from_handle(active_handle)
-        if active:
-            self.get_notes(active)
+        if active_handle:
+            active = self.dbstate.db.get_source_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
         else:
-            self.clear_text()
+            self.set_has_data(False)
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active('Source')
+        if active_handle:
+            active = self.dbstate.db.get_source_from_handle(active_handle)
+            if active:
+                self.get_notes(active)
+            else:
+                self.set_has_data(False)
+        else:
             self.set_has_data(False)
 
     def created(self, handle):
@@ -328,16 +358,22 @@ class CitationToDo(ToDo):
 
     def update_has_data(self):
         active_handle = self.get_active('Citation')
-        active = self.dbstate.db.get_citation_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
-    def main(self):
-        active_handle = self.get_active('Citation')
-        active = self.dbstate.db.get_citation_from_handle(active_handle)
-        if active:
-            self.get_notes(active)
+        if active_handle:
+            active = self.dbstate.db.get_citation_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
         else:
-            self.clear_text()
+            self.set_has_data(False)
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active('Citation')
+        if active_handle:
+            active = self.dbstate.db.get_citation_from_handle(active_handle)
+            if active:
+                self.get_notes(active)
+            else:
+                self.set_has_data(False)
+        else:
             self.set_has_data(False)
 
     def created(self, handle):
@@ -355,16 +391,22 @@ class RepositoryToDo(ToDo):
 
     def update_has_data(self):
         active_handle = self.get_active('Repository')
-        active = self.dbstate.db.get_repository_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
-    def main(self):
-        active_handle = self.get_active('Repository')
-        active = self.dbstate.db.get_repository_from_handle(active_handle)
-        if active:
-            self.get_notes(active)
+        if active_handle:
+            active = self.dbstate.db.get_repository_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
         else:
-            self.clear_text()
+            self.set_has_data(False)
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active('Repository')
+        if active_handle:
+            active = self.dbstate.db.get_repository_from_handle(active_handle)
+            if active:
+                self.get_notes(active)
+            else:
+                self.set_has_data(False)
+        else:
             self.set_has_data(False)
 
     def created(self, handle):
@@ -382,16 +424,22 @@ class MediaToDo(ToDo):
 
     def update_has_data(self):
         active_handle = self.get_active('Media')
-        active = self.dbstate.db.get_object_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
-    def main(self):
-        active_handle = self.get_active('Media')
-        active = self.dbstate.db.get_object_from_handle(active_handle)
-        if active:
-            self.get_notes(active)
+        if active_handle:
+            active = self.dbstate.db.get_object_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
         else:
-            self.clear_text()
+            self.set_has_data(False)
+
+    def main(self):
+        self.clear_text()
+        active_handle = self.get_active('Media')
+        if active_handle:
+            active = self.dbstate.db.get_object_from_handle(active_handle)
+            if active:
+                self.get_notes(active)
+            else:
+                self.set_has_data(False)
+        else:
             self.set_has_data(False)
 
     def created(self, handle):

@@ -47,20 +47,26 @@ class MediaPreview(Gramplet):
 
     def update_has_data(self): 
         active_handle = self.get_active('Media')
-        active_media = self.dbstate.db.get_object_from_handle(active_handle)
-        self.set_has_data(active_media is not None)
+        if active_handle:
+            active_media = self.dbstate.db.get_object_from_handle(active_handle)
+            self.set_has_data(active_media is not None)
+        else:
+            self.set_has_data(False)
 
     def main(self):
         active_handle = self.get_active('Media')
-        media = self.dbstate.db.get_object_from_handle(active_handle)
-        self.top.hide()
-        if media:
-            self.load_image(media)
-            self.set_has_data(True)
+        if active_handle:
+            media = self.dbstate.db.get_object_from_handle(active_handle)
+            self.top.hide()
+            if media:
+                self.load_image(media)
+                self.set_has_data(True)
+            else:
+                self.photo.set_image(None)
+                self.set_has_data(False)
+            self.top.show()
         else:
-            self.photo.set_image(None)
             self.set_has_data(False)
-        self.top.show()
 
     def load_image(self, media):
         """

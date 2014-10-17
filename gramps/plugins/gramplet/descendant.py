@@ -108,7 +108,10 @@ class Descendant(Gramplet):
 
     def update_has_data(self):
         active_handle = self.get_active('Person')
-        self.set_has_data(self.get_has_data(active_handle))
+        if active_handle:
+            self.set_has_data(self.get_has_data(active_handle))
+        else:
+            self.set_has_data(False)
     
     def main(self):
         active_handle = self.get_active('Person')
