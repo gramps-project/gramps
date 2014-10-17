@@ -84,20 +84,26 @@ class PlaceDetails(Gramplet):
 
     def update_has_data(self): 
         active_handle = self.get_active('Person')
-        active_person = self.dbstate.db.get_person_from_handle(active_handle)
-        self.set_has_data(active_person is not None)
+        if active_handle:
+            active_person = self.dbstate.db.get_person_from_handle(active_handle)
+            self.set_has_data(active_person is not None)
+        else:
+            self.set_has_data(False)
 
     def main(self):
+        self.display_empty()
         active_handle = self.get_active('Place')
-        place = self.dbstate.db.get_place_from_handle(active_handle)
-        self.top.hide()
-        if place:
-            self.display_place(place)
-            self.set_has_data(True)
+        if active_handle:
+            place = self.dbstate.db.get_place_from_handle(active_handle)
+            self.top.hide()
+            if place:
+                self.display_place(place)
+                self.set_has_data(True)
+            else:
+                self.set_has_data(False)
+            self.top.show()
         else:
-            self.display_empty()
             self.set_has_data(False)
-        self.top.show()
 
     def display_place(self, place):
         """

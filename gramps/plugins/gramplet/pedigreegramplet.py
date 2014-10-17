@@ -239,6 +239,8 @@ class PedigreeGramplet(Gramplet):
         self._generations = {}
         self.gui.buffer.set_text("")
         active_handle = self.get_active('Person')
+        if active_handle is None:
+            return
         active_person = self.dbstate.db.get_person_from_handle(active_handle)
         #no wrap in Gramplet
         self.no_wrap()

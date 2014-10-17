@@ -89,16 +89,21 @@ class PersonAttributes(Attributes):
 
     def update_has_data(self):
         active_handle = self.get_active('Person')
-        active = self.dbstate.db.get_person_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
+        if active_handle:
+            active = self.dbstate.db.get_person_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
     
     def main(self):
-        active_handle = self.get_active('Person')
-        active = self.dbstate.db.get_person_from_handle(active_handle)
-
         self.model.clear()
-        if active:
-            self.display_attributes(active)
+        active_handle = self.get_active('Person')
+        if active_handle:
+            active = self.dbstate.db.get_person_from_handle(active_handle)
+            if active:
+                self.display_attributes(active)
+            else:
+                self.set_has_data(False)
         else:
             self.set_has_data(False)
 
@@ -112,16 +117,21 @@ class EventAttributes(Attributes):
 
     def update_has_data(self):
         active_handle = self.get_active('Event')
-        active = self.dbstate.db.get_event_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
+        if active_handle:
+            active = self.dbstate.db.get_event_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
     
     def main(self):
-        active_handle = self.get_active('Event')
-        active = self.dbstate.db.get_event_from_handle(active_handle)
-
         self.model.clear()
-        if active:
-            self.display_attributes(active)
+        active_handle = self.get_active('Event')
+        if active_handle:
+            active = self.dbstate.db.get_event_from_handle(active_handle)
+            if active:
+                self.display_attributes(active)
+            else:
+                self.set_has_data(False)
         else:
             self.set_has_data(False)
 
@@ -135,16 +145,21 @@ class FamilyAttributes(Attributes):
 
     def update_has_data(self):
         active_handle = self.get_active('Family')
-        active = self.dbstate.db.get_family_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
+        if active_handle:
+            active = self.dbstate.db.get_family_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
     
     def main(self):
-        active_handle = self.get_active('Family')
-        active = self.dbstate.db.get_family_from_handle(active_handle)
-
         self.model.clear()
-        if active:
-            self.display_attributes(active)
+        active_handle = self.get_active('Family')
+        if active_handle:
+            active = self.dbstate.db.get_family_from_handle(active_handle)
+            if active:
+                self.display_attributes(active)
+            else:
+                self.set_has_data(False)
         else:
             self.set_has_data(False)
 
@@ -158,16 +173,20 @@ class MediaAttributes(Attributes):
 
     def update_has_data(self):
         active_handle = self.get_active('Media')
-        active = self.dbstate.db.get_object_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
-    def main(self):
-        active_handle = self.get_active('Media')
-        active = self.dbstate.db.get_object_from_handle(active_handle)
-
-        self.model.clear()
-        if active:
-            self.display_attributes(active)
+        if active_handle:
+            active = self.dbstate.db.get_object_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
         else:
             self.set_has_data(False)
-
+    
+    def main(self):
+        self.model.clear()
+        active_handle = self.get_active('Media')
+        if active_handle:
+            active = self.dbstate.db.get_object_from_handle(active_handle)
+            if active:
+                self.display_attributes(active)
+            else:
+                self.set_has_data(False)
+        else:
+            self.set_has_data(False)

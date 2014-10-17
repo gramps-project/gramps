@@ -279,18 +279,23 @@ class PersonCitations(Citations):
 
     def update_has_data(self):
         active_handle = self.get_active('Person')
-        active = self.dbstate.db.get_person_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
+        if active_handle:
+            active = self.dbstate.db.get_person_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
+
     def main(self):
-        active_handle = self.get_active('Person')
-        active = self.dbstate.db.get_person_from_handle(active_handle)
-            
         self.model.clear()
         self.callman.unregister_all()
-        if active:
-            self.callman.register_obj(active)
-            self.display_citations(active)
+        active_handle = self.get_active('Person')
+        if active_handle:
+            active = self.dbstate.db.get_person_from_handle(active_handle)
+            if active:
+                self.callman.register_obj(active)
+                self.display_citations(active)
+            else:
+                self.set_has_data(False)
         else:
             self.set_has_data(False)
 
@@ -351,18 +356,23 @@ class EventCitations(Citations):
 
     def update_has_data(self):
         active_handle = self.get_active('Event')
-        active = self.dbstate.db.get_event_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
+        if active_handle:
+            active = self.dbstate.db.get_event_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
+
     def main(self):
-        active_handle = self.get_active('Event')
-        active = self.dbstate.db.get_event_from_handle(active_handle)
-            
         self.model.clear()
         self.callman.unregister_all()
-        if active:
-            self.callman.register_obj(active)
-            self.display_citations(active)
+        active_handle = self.get_active('Event')
+        if active_handle:
+            active = self.dbstate.db.get_event_from_handle(active_handle)
+            if active:
+                self.callman.register_obj(active)
+                self.display_citations(active)
+            else:
+                self.set_has_data(False)
         else:
             self.set_has_data(False)
 
@@ -394,18 +404,23 @@ class FamilyCitations(Citations):
 
     def update_has_data(self):
         active_handle = self.get_active('Family')
-        active = self.dbstate.db.get_family_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
+        if active_handle:
+            active = self.dbstate.db.get_family_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
+
     def main(self):
-        active_handle = self.get_active('Family')
-        active = self.dbstate.db.get_family_from_handle(active_handle)
-            
         self.model.clear()
         self.callman.unregister_all()
-        if active:
-            self.callman.register_obj(active)
-            self.display_citations(active)
+        active_handle = self.get_active('Family')
+        if active_handle:
+            active = self.dbstate.db.get_family_from_handle(active_handle)
+            if active:
+                self.callman.register_obj(active)
+                self.display_citations(active)
+            else:
+                self.set_has_data(False)
         else:
             self.set_has_data(False)
 
@@ -450,18 +465,23 @@ class PlaceCitations(Citations):
 
     def update_has_data(self):
         active_handle = self.get_active('Place')
-        active = self.dbstate.db.get_place_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
+        if active_handle:
+            active = self.dbstate.db.get_place_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
+
     def main(self):
-        active_handle = self.get_active('Place')
-        active = self.dbstate.db.get_place_from_handle(active_handle)
-            
         self.model.clear()
         self.callman.unregister_all()
-        if active:
-            self.callman.register_obj(active)
-            self.display_citations(active)
+        active_handle = self.get_active('Place')
+        if active_handle:
+            active = self.dbstate.db.get_place_from_handle(active_handle)
+            if active:
+                self.callman.register_obj(active)
+                self.display_citations(active)
+            else:
+                self.set_has_data(False)
         else:
             self.set_has_data(False)
 
@@ -493,18 +513,23 @@ class MediaCitations(Citations):
 
     def update_has_data(self):
         active_handle = self.get_active('Media')
-        active = self.dbstate.db.get_object_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
-    
+        if active_handle:
+            active = self.dbstate.db.get_object_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
+
     def main(self):
-        active_handle = self.get_active('Media')
-        active = self.dbstate.db.get_object_from_handle(active_handle)
-            
         self.model.clear()
         self.callman.unregister_all()
-        if active:
-            self.callman.register_obj(active)
-            self.display_citations(active)
+        active_handle = self.get_active('Media')
+        if active_handle:
+            active = self.dbstate.db.get_object_from_handle(active_handle)
+            if active:
+                self.callman.register_obj(active)
+                self.display_citations(active)
+            else:
+                self.set_has_data(False)
         else:
             self.set_has_data(False)
 

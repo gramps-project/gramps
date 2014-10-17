@@ -58,8 +58,11 @@ class PersonResidence(Gramplet):
 
     def update_has_data(self):
         active_handle = self.get_active('Person')
-        active = self.dbstate.db.get_person_from_handle(active_handle)
-        self.set_has_data(self.get_has_data(active))
+        if active_handle:
+            active = self.dbstate.db.get_person_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
 
     def get_has_data(self, active_person):
         """
@@ -74,12 +77,14 @@ class PersonResidence(Gramplet):
         return False
 
     def main(self): # return false finishes
-        active_handle = self.get_active('Person')
-        active_person = self.dbstate.db.get_person_from_handle(active_handle)
-            
         self.model.clear()
-        if active_person:
-            self.display_person(active_person)
+        active_handle = self.get_active('Person')
+        if active_handle:
+            active_person = self.dbstate.db.get_person_from_handle(active_handle)
+            if active_person:
+                self.display_person(active_person)
+            else:
+                self.set_has_data(False)
         else:
             self.set_has_data(False)
 
