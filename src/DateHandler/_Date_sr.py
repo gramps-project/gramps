@@ -230,46 +230,15 @@ class DateParserSR(DateParser):
 # Serbian display
 #
 #-------------------------------------------------------------------------
-class DateDisplaySR_latin(DateDisplay):
+class DateDisplaySR_Base(DateDisplay):
     """
-    Serbian (latin) date display class
+    Serbian (base) date display class
     """
-    long_months = ("",
-        "januara", "februara", "marta", "aprila",
-        "maja", "juna", "jula", "avgusta",
-        "septembra", "oktobra", "novembra", "decembra"
-        )
-
-    short_months = ("",
-        "jan", "feb", "mar", "apr", "maj", "jun",
-        "jul", "avg", "sep", "okt", "nov", "dec"
-        ) 
 
     roman_months = (
         "", "I", "II", "III", "IV", "V", "VI",
         "VII", "VIII", "IX", "X", "XI", "XII"
         )
-    
-    calendar = (
-        "", "julijanski", "hebrejski", 
-        "francuski republikanski", "persijski", "islamski",
-        "švedski" 
-        )
-
-    _mod_str = ("", "pre ", "posle ", "oko ", "", "", "")
-
-    _qual_str = ("", "procenjeno ", "izračunato ")
-    
-    _bce_str = "%s p.n.e."
-
-    formats = (
-        "GGGG-MM-DD (ISO-8601)", 
-        "Numerički (DD.MM.GGGG.)", 
-        "D. MMM GGGG.",
-        "D. Mesec GGGG.",
-        "D. Rb GGGG."
-        )
-        # this definition must agree with its "_display_gregorian" method
 
     def _display_gregorian(self, date_val):
         """
@@ -338,6 +307,10 @@ class DateDisplaySR_latin(DateDisplay):
         newyear = date.get_new_year()
 
         qual_str = self._qual_str[qual]
+        span1 = self._span1
+        span2 = self._span2
+        range1 = self._range1
+        range2 = self._range2
         
         if mod == Date.MOD_TEXTONLY:
             return date.get_text()
@@ -347,13 +320,13 @@ class DateDisplaySR_latin(DateDisplay):
             d_1 = self.display_cal[cal](start)
             d_2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'od', d_1, 'do', d_2,
+            return "%s%s %s %s %s%s" % (qual_str, span1, d_1, span2, d_2,
                                                             scal)
         elif mod == Date.MOD_RANGE:
             d_1 = self.display_cal[cal](start)
             d_2 = self.display_cal[cal](date.get_stop_date())
             scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, 'između', d_1, 'i', d_2, 
+            return "%s%s %s %s %s%s" % (qual_str, range1, d_1, range2, d_2,
                                                             scal)
         else:
             text = self.display_cal[date.get_calendar()](start)
@@ -361,11 +334,98 @@ class DateDisplaySR_latin(DateDisplay):
             return "%s%s%s%s" % (qual_str, self._mod_str[mod], text, 
                                                 scal)
 
+class DateDisplaySR_Latin(DateDisplaySR_Base):
+    """
+    Serbian (Latin) date display class
+    """
+
+    long_months = ("",
+        "januara", "februara", "marta", "aprila",
+        "maja", "juna", "jula", "avgusta",
+        "septembra", "oktobra", "novembra", "decembra"
+        )
+
+    short_months = ("",
+        "jan", "feb", "mar", "apr", "maj", "jun",
+        "jul", "avg", "sep", "okt", "nov", "dec"
+        ) 
+
+    calendar = (
+        "", "julijanski", "hebrejski", 
+        "francuski republikanski", "persijski", "islamski",
+        "švedski" 
+        )
+
+    _mod_str = ("", "pre ", "posle ", "oko ", "", "", "")
+
+    _qual_str = ("", "procenjeno ", "izračunato ")
+    
+    _bce_str = "%s p.n.e."
+
+    formats = (
+        "GGGG-MM-DD (ISO-8601)", 
+        "Numerički (DD.MM.GGGG.)", 
+        "D. MMM GGGG.",
+        "D. Mesec GGGG.",
+        "D. Rb GGGG."
+        )
+        # this definition must agree with its "_display_gregorian" method
+
+    _span1 = 'od'
+    _span2 = 'do'
+    _range1 = 'između'
+    _range2 = 'i'
+
+class DateDisplaySR_Cyrillic(DateDisplaySR_Base):
+    """
+    Serbian (Cyrillic) date display class
+    """
+
+    long_months = ("",
+        "Јануар", "Фебруар", "Март", "Април",
+        "Мај", "Јуне", "Јули", "Аугуст",
+        "Септембар", "Оцтобер", "Новембер", "Децембар"
+        )
+
+    short_months = ("",
+        "Јан", "Феб", "Мар", "Апр", "Мај", "Јун",
+        "Јул", "Авг", "Сеп", "Окт", "Нов", "Дец"
+        ) 
+
+    calendar = (
+        "", "Јулиан", "хебрејски", 
+        "француски републиканац", "Персиан", "исламски",
+        "шведски" 
+        )
+
+    _mod_str = ("", "пре ", "после ", "око ", "", "", "")
+
+    _qual_str = ("", "процењено ", "израчунато ")
+    
+    _bce_str = "%s п.н.е."
+
+    formats = (
+        "ГГГГ-ММ-ДД (ISO-8601)", 
+        "Нумеричка (ДД.ММ.ГГГГ.)", 
+        "Д. МММ ГГГГ.",
+        "Д. Месец ГГГГ.",
+        "Д. Rb ГГГГ."
+        )
+        # this definition must agree with its "_display_gregorian" method
+
+    _span1 = 'из'
+    _span2 = 'до'
+    _range1 = 'између'
+    _range2 = 'и'
 
 #-------------------------------------------------------------------------
 #
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('sr', 'serbian', 'srpski', 'sr_RS'),
-                                    DateParserSR, DateDisplaySR_latin)
+register_datehandler(('srpski', 'Srpski',
+                      'sr_Latn', 'sr_Latn_RS', 'sr_RS@latin'),
+                     DateParserSR, DateDisplaySR_Latin)
+register_datehandler(('sr', 'српски', 'Српски', 'serbian',
+                      'sr_RS', 'sr_Cyrl', 'sr_Cyrl_RS'),
+                     DateParserSR, DateDisplaySR_Cyrillic)
