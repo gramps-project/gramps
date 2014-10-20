@@ -32558,3 +32558,6 @@ msgstr "Csak egy szabály alkalmazható"
 
 #~ msgid "State/County:"
 #~ msgstr "Állam/Megye:"
+
+msgid "Citation:"
+msgstr "Idézet:"

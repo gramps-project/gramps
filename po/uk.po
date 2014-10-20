@@ -36267,3 +36267,6 @@ msgstr "Лише одне правило повинне виконуватися
 
 #~ msgid "<b>Uncollected Objects</b>"
 #~ msgstr "<b>Незібрані об'єкти</b>"
+
+msgid "Citation:"
+msgstr "Цитата:"

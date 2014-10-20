@@ -34460,3 +34460,6 @@ msgstr "Exact o regulă trebuie aplicată"
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "Ţara"
+
+msgid "Citation:"
+msgstr "Orientare:"

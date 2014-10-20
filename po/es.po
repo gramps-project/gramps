@@ -37424,3 +37424,6 @@ msgstr "Exactamente una regla debe cumplirse"
 
 #~ msgid "State/County:"
 #~ msgstr "Estado/Condado:"
+
+msgid "Citation:"
+msgstr "Cita:"

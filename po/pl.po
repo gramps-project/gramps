@@ -39860,3 +39860,6 @@ msgstr "Dokładnie jeden warunek zachodzi"
 
 #~ msgid "To Do"
 #~ msgstr "Do zrobienia"
+
+msgid "Citation:"
+msgstr "Cytat:"

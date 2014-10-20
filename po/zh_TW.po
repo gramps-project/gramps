@@ -31017,3 +31017,6 @@ msgstr "星期六"
 
 #~ msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
 #~ msgstr "免費/自由和開源軟件(FLOSS)開發模型意味着GRAMPS可以被任何程序員擴展，因為所有原始碼都開源的."
+
+msgid "Citation:"
+msgstr "引用:"

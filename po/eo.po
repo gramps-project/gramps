@@ -34743,3 +34743,6 @@ msgstr "Apliku e_kzakte unu regulon"
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "Urbo/Distrikto:"
+
+msgid "Citation:"
+msgstr "Rotacio:"

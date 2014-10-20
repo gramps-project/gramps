@@ -26651,7 +26651,7 @@ msgid ""
 "Living matches: %(alive)d, Deceased matches: %(dead)d\n"
 msgstr ""
 "\n"
-"Levandes matchningar: %d, avlidnas matchningar: %d\n"
+"Levandes matchningar: %(alive)d, avlidnas matchningar: %(dead)d\n"
 
 #. display the results
 #. feature request 2356: avoid genitive form
@@ -36650,3 +36650,6 @@ msgstr "Endast en regel måste uppfyllas"
 
 #~ msgid "Their common ancestors are %s and %s."
 #~ msgstr "Deras gemensamma ana är %s och %s."
+
+msgid "Citation:"
+msgstr "Citat:"

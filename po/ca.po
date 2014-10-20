@@ -38042,3 +38042,6 @@ msgstr "Exactament una regla s'ha de complir"
 #, fuzzy
 #~ msgid "Need to upgrade BSDDB database!"
 #~ msgstr "Cal actualitzar la base de dades!"
+
+msgid "Citation:"
+msgstr "Cita:"

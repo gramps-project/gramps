@@ -32557,3 +32557,6 @@ msgstr ""
 
 #~ msgid "State/County:"
 #~ msgstr "מחוז:"
+
+msgid "Citation:"
+msgstr "ציטוט"

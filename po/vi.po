@@ -32910,3 +32910,6 @@ msgstr "Chính xác 1 luật phải áp dụng "
 #~ "\n"
 #~ "\n"
 #~ "Đối tượng hòa chép đè khi nhập:\n"
+
+msgid "Citation:"
+msgstr "Trích:"

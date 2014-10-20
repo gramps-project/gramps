@@ -35332,3 +35332,6 @@ msgstr "Exatamente uma regra deve se aplicar"
 #, fuzzy
 #~ msgid "window1"
 #~ msgstr "Janela principal"
+
+msgid "Citation:"
+msgstr "Citação:"

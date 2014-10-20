@@ -132,6 +132,15 @@ class SidebarFilter(DbGUIElement):
                 self.clicked(obj)
         return False
 
+    def add_heading(self, heading):
+        label = Gtk.Label()
+        label.set_text('<b>%s</b>' % heading)
+        label.set_use_markup(True)
+        label.set_alignment(0, 0.5)
+        self.table.attach(label, 1, 2, self.position, self.position+1,
+                          xoptions=Gtk.AttachOptions.FILL, yoptions=0)
+        self.position += 1
+
     def add_entry(self, name, widget):
         if name:
             self.table.attach(widgets.BasicLabel(name),

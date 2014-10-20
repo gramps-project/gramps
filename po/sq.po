@@ -33997,3 +33997,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "Qarku:"
+
+msgid "Citation:"
+msgstr "Citat:"

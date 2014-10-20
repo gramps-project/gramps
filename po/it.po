@@ -39903,3 +39903,6 @@ msgstr "Esattamente una regola deve essere valida"
 #~ msgid "Matches notes who contain text "
 #~ msgstr ""
 #~ "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
+
+msgid "Citation:"
+msgstr "Citazione:"
