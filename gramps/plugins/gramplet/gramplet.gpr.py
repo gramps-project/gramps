@@ -1232,3 +1232,17 @@ register(GRAMPLET,
          gramplet = 'SoundGen',
          gramplet_title=_("SoundEx"),
          )
+
+register(GRAMPLET,
+         id="Place Locations",
+         name=_("Place Locations"),
+         description = _("Gramplet showing the locations of a place over time"),
+         version="1.0.0",
+         gramps_target_version=MODULE_VERSION,
+         status = STABLE,
+         fname="locations.py",
+         height=200,
+         gramplet = 'Locations',
+         gramplet_title=_("Locations"),
+         navtypes=["Place"],
+         )
