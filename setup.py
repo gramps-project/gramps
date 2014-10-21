@@ -49,7 +49,7 @@ import io
 from gramps.version import VERSION
 import unittest
 
-ALL_LINGUAS = ('ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'es', 'fi', 'fr',
+ALL_LINGUAS = ('ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'eo', 'es', 'fi', 'fr',
                'he', 'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR',
                'pt_PT', 'ru', 'sk', 'sl', 'sq', 'sv', 'uk', 'vi', 'zh_CN')
 INTLTOOL_FILES = ('data/tips.xml', 'gramps/plugins/lib/holidays.xml')
