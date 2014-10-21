@@ -113,7 +113,10 @@ class PlaceDetails(Gramplet):
         self.title.set_text(place.get_title())
 
         self.clear_table()
-        self.display_location(place)
+        self.add_row(_('Name'), place.get_name())
+        self.add_row(_('Type'), place.get_type())
+        self.display_separator()
+        self.display_alt_names(place)
         self.display_separator()
         lat, lon = conv_lat_lon(place.get_latitude(),
                                 place.get_longitude(),
@@ -123,12 +126,13 @@ class PlaceDetails(Gramplet):
         if lon:
             self.add_row(_('Longitude'), lon)
 
-    def display_location(self, place):
+    def display_alt_names(self, place):
         """
-        Display a location.
+        Display alternative names for the place.
         """
-        lines = get_location_list(self.dbstate.db, place)
-        self.add_row(_('Location'), '\n'.join(lines))
+        alt_names = place .get_alternative_names()
+        if len(alt_names) > 0:
+            self.add_row(_('Alternative Names'), '\n'.join(alt_names))
 
     def display_empty(self):
         """
