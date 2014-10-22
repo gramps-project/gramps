@@ -565,6 +565,7 @@ gramps/plugins/gramplet/faqgramplet.py
 gramps/plugins/gramplet/givennamegramplet.py
 gramps/plugins/gramplet/gramplet.gpr.py
 gramps/plugins/gramplet/leak.py
+gramps/plugins/gramplet/locations.py
 gramps/plugins/gramplet/notes.py
 gramps/plugins/gramplet/pedigreegramplet.py
 gramps/plugins/gramplet/persondetails.py
