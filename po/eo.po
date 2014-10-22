@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-21 15:14+0200\n"
+"POT-Creation-Date: 2014-10-22 08:23+0200\n"
 "PO-Revision-Date: 2014-10-20 20:13+0200\n"
 "Last-Translator: Pier Luigi Cinquantini <plcinquantini@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-it@kde.org>\n"
@@ -5709,7 +5709,6 @@ msgstr "Patrinlinia"
 
 #: ../gramps/gen/lib/nameorigintype.py:92 ../gramps/gui/clipboard.py:330
 #: ../gramps/gui/plug/_windows.py:620
-#: ../gramps/plugins/gramplet/placedetails.py:131
 msgid "Location"
 msgstr "Loko"
 
@@ -7857,6 +7856,8 @@ msgstr "Lok-ref."
 #: ../gramps/plugins/gramplet/ancestor.py:61
 #: ../gramps/plugins/gramplet/backlinks.py:45
 #: ../gramps/plugins/gramplet/descendant.py:65
+#: ../gramps/plugins/gramplet/locations.py:85
+#: ../gramps/plugins/gramplet/placedetails.py:116
 #: ../gramps/plugins/lib/libpersonview.py:97
 #: ../gramps/plugins/lib/libplaceview.py:91
 #: ../gramps/plugins/quickview/filterbyname.py:281
@@ -8015,6 +8016,8 @@ msgstr "Deponejo"
 #: ../gramps/gui/selectors/selectplace.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:44
 #: ../gramps/plugins/gramplet/events.py:74
+#: ../gramps/plugins/gramplet/locations.py:86
+#: ../gramps/plugins/gramplet/placedetails.py:117
 #: ../gramps/plugins/lib/libplaceview.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:301
 #: ../gramps/plugins/quickview/linkreferences.py:45
@@ -9128,6 +9131,7 @@ msgstr "Movu malsupren la elektitan adreson"
 #: ../gramps/plugins/export/exportcsv.py:488
 #: ../gramps/plugins/gramplet/ageondategramplet.py:72
 #: ../gramps/plugins/gramplet/events.py:76
+#: ../gramps/plugins/gramplet/locations.py:87
 #: ../gramps/plugins/gramplet/personresidence.py:48
 #: ../gramps/plugins/importer/importcsv.py:238
 #: ../gramps/plugins/quickview/onthisday.py:80
@@ -9164,6 +9168,7 @@ msgid "Place Name"
 msgstr "Loknomo"
 
 #: ../gramps/gui/editors/displaytabs/altnameembedlist.py:57
+#: ../gramps/plugins/gramplet/placedetails.py:135
 msgid "Alternative Names"
 msgstr "Alternativaj nomoj"
 
@@ -18543,6 +18548,21 @@ msgstr "Gramplet por generi SoundEx-kodojn"
 msgid "SoundEx"
 msgstr "SoundEx"
 
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1233
+#, fuzzy
+msgid "Place Locations"
+msgstr "Lokcitaĵoj"
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1234
+#, fuzzy
+msgid "Gramplet showing the locations of a place over time"
+msgstr "Gramplet por montri la citaĵojn por loko"
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1241
+#, fuzzy
+msgid "Locations"
+msgstr "Loko"
+
 #: ../gramps/plugins/gramplet/leak.py:102
 #: ../gramps/plugins/webreport/narrativeweb.py:2721
 #: ../gramps/plugins/webreport/narrativeweb.py:4195
@@ -18571,6 +18591,11 @@ msgstr "%d referenciĝas al"
 #, python-format
 msgid "Uncollected Objects: %s"
 msgstr "Nekolektitaj objektoj: %s"
+
+#: ../gramps/plugins/gramplet/locations.py:81
+#, fuzzy
+msgid "Double-click on a row to edit the selected place."
+msgstr "Duoble alklaku linion por redakti elektitan filon."
 
 #: ../gramps/plugins/gramplet/notes.py:99
 #: ../gramps/plugins/gramplet/todo.py:124
@@ -18698,7 +18723,7 @@ msgstr "%(date)s - %(place)s."
 msgid "%(date)s."
 msgstr "%(date)s."
 
-#: ../gramps/plugins/gramplet/placedetails.py:122
+#: ../gramps/plugins/gramplet/placedetails.py:125
 #: ../gramps/plugins/lib/libplaceview.py:96
 #: ../gramps/plugins/view/placetreeview.py:72
 #: ../gramps/plugins/webreport/narrativeweb.py:380
@@ -18706,7 +18731,7 @@ msgstr "%(date)s."
 msgid "Latitude"
 msgstr "Latitudo"
 
-#: ../gramps/plugins/gramplet/placedetails.py:124
+#: ../gramps/plugins/gramplet/placedetails.py:127
 #: ../gramps/plugins/lib/libplaceview.py:97
 #: ../gramps/plugins/view/placetreeview.py:73
 #: ../gramps/plugins/webreport/narrativeweb.py:382
