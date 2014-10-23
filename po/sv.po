@@ -26652,7 +26652,7 @@ msgid ""
 "Living matches: %(alive)d, Deceased matches: %(dead)d\n"
 msgstr ""
 "\n"
-"Levandes matchningar: %d, avlidnas matchningar: %d\n"
+"Levandes matchningar: %(alive)d, avlidnas matchningar: %(dead)d\n"
 
 #. display the results
 #. feature request 2356: avoid genitive form
