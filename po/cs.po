@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-08 11:34+0200\n"
-"PO-Revision-Date: 2014-10-13 22:31+0100\n"
+"POT-Creation-Date: 2014-10-22 08:23+0200\n"
+"PO-Revision-Date: 2014-10-23 20:57+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1453,7 +1453,6 @@ msgstr "Nikdy"
 msgid "Locked by %s"
 msgstr "Zamkl %s"
 
-#. not all families have a spouse.
 #: ../gramps/cli/clidbman.py:521 ../gramps/gen/lib/attrtype.py:62
 #: ../gramps/gen/lib/childreftype.py:78 ../gramps/gen/lib/eventroletype.py:58
 #: ../gramps/gen/lib/eventtype.py:165 ../gramps/gen/lib/familyreltype.py:52
@@ -1469,15 +1468,14 @@ msgstr "Zamkl %s"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:124
 #: ../gramps/gui/editors/editmedia.py:169
 #: ../gramps/gui/editors/editmediaref.py:133
-#: ../gramps/plugins/gramplet/persondetails.py:175
 #: ../gramps/plugins/gramplet/persondetails.py:181
-#: ../gramps/plugins/gramplet/persondetails.py:183
-#: ../gramps/plugins/gramplet/persondetails.py:184
-#: ../gramps/plugins/gramplet/relativegramplet.py:122
-#: ../gramps/plugins/gramplet/relativegramplet.py:133
+#: ../gramps/plugins/gramplet/persondetails.py:187
+#: ../gramps/plugins/gramplet/persondetails.py:189
+#: ../gramps/plugins/gramplet/persondetails.py:190
+#: ../gramps/plugins/gramplet/relativegramplet.py:124
+#: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:164
 #: ../gramps/plugins/graph/gvrelgraph.py:625
-#: ../gramps/plugins/lib/libnarrate.py:1999
 #: ../gramps/plugins/lib/maps/geography.py:766
 #: ../gramps/plugins/lib/maps/geography.py:773
 #: ../gramps/plugins/lib/maps/geography.py:774
@@ -5941,7 +5939,7 @@ msgstr[2] "{number_of} roků"
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/date.py:422 ../gramps/gen/lib/date.py:433
 #: ../gramps/plugins/drawreport/descendtree.py:356
-#: ../gramps/plugins/gramplet/persondetails.py:198
+#: ../gramps/plugins/gramplet/persondetails.py:204
 #: ../gramps/plugins/gramplet/whatsnext.py:370
 #: ../gramps/plugins/gramplet/whatsnext.py:392
 #: ../gramps/plugins/gramplet/whatsnext.py:442
@@ -6204,7 +6202,7 @@ msgid "Number of Marriages"
 msgstr "Počet sňatků"
 
 #: ../gramps/gen/lib/eventtype.py:193 ../gramps/gen/lib/nameorigintype.py:91
-#: ../gramps/plugins/gramplet/persondetails.py:123
+#: ../gramps/plugins/gramplet/persondetails.py:129
 msgid "Occupation"
 msgstr "Zaměstnání"
 
@@ -6221,7 +6219,7 @@ msgid "Property"
 msgstr "Majetek"
 
 #: ../gramps/gen/lib/eventtype.py:197
-#: ../gramps/plugins/gramplet/persondetails.py:125
+#: ../gramps/plugins/gramplet/persondetails.py:131
 msgid "Religion"
 msgstr "Náboženství"
 
@@ -6518,7 +6516,7 @@ msgstr "Zrušeno"
 #: ../gramps/gui/merge/mergeperson.py:247
 #: ../gramps/plugins/export/exportcsv.py:531
 #: ../gramps/plugins/gramplet/children.py:83
-#: ../gramps/plugins/gramplet/children.py:180
+#: ../gramps/plugins/gramplet/children.py:183
 #: ../gramps/plugins/importer/importcsv.py:228
 msgid "Child"
 msgstr "Potomek"
@@ -6634,7 +6632,6 @@ msgstr "Linie matek"
 
 #: ../gramps/gen/lib/nameorigintype.py:92 ../gramps/gui/clipboard.py:330
 #: ../gramps/gui/plug/_windows.py:620
-#: ../gramps/plugins/gramplet/placedetails.py:125
 msgid "Location"
 msgstr "Místo"
 
@@ -8759,7 +8756,7 @@ msgstr "Nedostupné"
 #: ../gramps/gui/editors/editaddress.py:155
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:101
 #: ../gramps/gui/grampsgui.py:144
-#: ../gramps/plugins/gramplet/repositorydetails.py:122
+#: ../gramps/plugins/gramplet/repositorydetails.py:128
 #: ../gramps/plugins/textreport/familygroup.py:324
 #: ../gramps/plugins/webreport/narrativeweb.py:6720
 msgid "Address"
@@ -8878,6 +8875,8 @@ msgstr "Místo odk"
 #: ../gramps/plugins/gramplet/ancestor.py:61
 #: ../gramps/plugins/gramplet/backlinks.py:45
 #: ../gramps/plugins/gramplet/descendant.py:65
+#: ../gramps/plugins/gramplet/locations.py:85
+#: ../gramps/plugins/gramplet/placedetails.py:116
 #: ../gramps/plugins/lib/libpersonview.py:97
 #: ../gramps/plugins/lib/libplaceview.py:91
 #: ../gramps/plugins/quickview/filterbyname.py:281
@@ -9036,6 +9035,8 @@ msgstr "Archiv"
 #: ../gramps/gui/selectors/selectplace.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:44
 #: ../gramps/plugins/gramplet/events.py:74
+#: ../gramps/plugins/gramplet/locations.py:86
+#: ../gramps/plugins/gramplet/placedetails.py:117
 #: ../gramps/plugins/lib/libplaceview.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:301
 #: ../gramps/plugins/quickview/linkreferences.py:45
@@ -9076,7 +9077,7 @@ msgstr "Typ"
 #: ../gramps/gui/selectors/selectrepository.py:60
 #: ../gramps/gui/selectors/selectsource.py:60
 #: ../gramps/gui/widgets/grampletpane.py:1551
-#: ../gramps/plugins/gramplet/persondetails.py:124
+#: ../gramps/plugins/gramplet/persondetails.py:130
 #: ../gramps/plugins/lib/libplaceview.py:93
 #: ../gramps/plugins/textreport/tagreport.py:390
 #: ../gramps/plugins/textreport/tagreport.py:539
@@ -9257,7 +9258,7 @@ msgid "ZIP/Postal Code"
 msgstr "PSČ"
 
 #: ../gramps/gui/configure.py:515
-#: ../gramps/plugins/gramplet/repositorydetails.py:110
+#: ../gramps/plugins/gramplet/repositorydetails.py:116
 #: ../gramps/plugins/webreport/narrativeweb.py:389
 msgid "Phone"
 msgstr "Telefon"
@@ -10113,7 +10114,7 @@ msgstr ""
 "Vyberte si jednu z nabízených možností"
 
 #: ../gramps/gui/displaystate.py:384
-#: ../gramps/plugins/gramplet/persondetails.py:133
+#: ../gramps/plugins/gramplet/persondetails.py:139
 msgid "No active person"
 msgstr "Žádná osoba není aktivní"
 
@@ -10242,6 +10243,7 @@ msgstr "Posunout vybranou adresu níže"
 #: ../gramps/plugins/export/exportcsv.py:488
 #: ../gramps/plugins/gramplet/ageondategramplet.py:72
 #: ../gramps/plugins/gramplet/events.py:76
+#: ../gramps/plugins/gramplet/locations.py:87
 #: ../gramps/plugins/gramplet/personresidence.py:48
 #: ../gramps/plugins/importer/importcsv.py:238
 #: ../gramps/plugins/quickview/onthisday.py:80
@@ -10278,6 +10280,7 @@ msgid "Place Name"
 msgstr "Název místa"
 
 #: ../gramps/gui/editors/displaytabs/altnameembedlist.py:57
+#: ../gramps/plugins/gramplet/placedetails.py:135
 msgid "Alternative Names"
 msgstr "Další jména"
 
@@ -10500,7 +10503,7 @@ msgstr ""
 #: ../gramps/gui/merge/mergeperson.py:220
 #: ../gramps/gui/selectors/selectfamily.py:61
 #: ../gramps/gui/widgets/reorderfam.py:83
-#: ../gramps/plugins/gramplet/persondetails.py:186
+#: ../gramps/plugins/gramplet/persondetails.py:192
 #: ../gramps/plugins/importer/importcsv.py:234
 #: ../gramps/plugins/quickview/all_relations.py:300
 #: ../gramps/plugins/textreport/familygroup.py:209
@@ -10522,7 +10525,7 @@ msgstr "Otec"
 #: ../gramps/gui/merge/mergeperson.py:222
 #: ../gramps/gui/selectors/selectfamily.py:62
 #: ../gramps/gui/widgets/reorderfam.py:84
-#: ../gramps/plugins/gramplet/persondetails.py:187
+#: ../gramps/plugins/gramplet/persondetails.py:193
 #: ../gramps/plugins/importer/importcsv.py:231
 #: ../gramps/plugins/quickview/all_relations.py:297
 #: ../gramps/plugins/textreport/familygroup.py:226
@@ -11249,7 +11252,7 @@ msgstr "Vztah k matce"
 #: ../gramps/gui/editors/editfamily.py:127
 #: ../gramps/gui/selectors/selectperson.py:77
 #: ../gramps/plugins/gramplet/children.py:84
-#: ../gramps/plugins/gramplet/children.py:181
+#: ../gramps/plugins/gramplet/children.py:184
 #: ../gramps/plugins/lib/libpersonview.py:100
 #: ../gramps/plugins/quickview/filterbyname.py:129
 #: ../gramps/plugins/quickview/filterbyname.py:209
@@ -11269,7 +11272,7 @@ msgstr "Datum narození"
 #: ../gramps/gui/editors/editfamily.py:128
 #: ../gramps/gui/selectors/selectperson.py:79
 #: ../gramps/plugins/gramplet/children.py:86
-#: ../gramps/plugins/gramplet/children.py:183
+#: ../gramps/plugins/gramplet/children.py:186
 #: ../gramps/plugins/lib/libpersonview.py:102
 #: ../gramps/plugins/quickview/lineage.py:61
 #: ../gramps/plugins/quickview/lineage.py:93
@@ -19241,15 +19244,15 @@ msgstr "Maximum"
 msgid "Double-click to see %d people"
 msgstr "Dvojklikem zobrazit %d osob"
 
-#: ../gramps/plugins/gramplet/ancestor.py:133
-#: ../gramps/plugins/gramplet/ancestor.py:141
-#: ../gramps/plugins/gramplet/descendant.py:134
-#: ../gramps/plugins/gramplet/descendant.py:142
+#: ../gramps/plugins/gramplet/ancestor.py:136
+#: ../gramps/plugins/gramplet/ancestor.py:144
+#: ../gramps/plugins/gramplet/descendant.py:137
+#: ../gramps/plugins/gramplet/descendant.py:145
 #, python-format
 msgid "%(abbr)s %(date)s"
 msgstr "%(abbr)s %(date)s"
 
-#: ../gramps/plugins/gramplet/ancestor.py:147
+#: ../gramps/plugins/gramplet/ancestor.py:150
 #, python-format
 msgid "%(depth)s. %(name)s"
 msgstr "%(depth)s. %(name)s"
@@ -19273,7 +19276,7 @@ msgid "Double-click a day for details"
 msgstr "Dvojklikem na den zobrazit podrobnosti"
 
 #: ../gramps/plugins/gramplet/children.py:79
-#: ../gramps/plugins/gramplet/children.py:176
+#: ../gramps/plugins/gramplet/children.py:179
 msgid "Double-click on a row to edit the selected child."
 msgstr "Dvojklik na řádek upraví zvoleného potomka."
 
@@ -20260,6 +20263,18 @@ msgstr "Gramplet pro generování kódů SoundEx"
 msgid "SoundEx"
 msgstr "SoundEx"
 
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1233
+msgid "Place Locations"
+msgstr "Polohy místa"
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1234
+msgid "Gramplet showing the locations of a place over time"
+msgstr "Gramplet zobrazující polohy místa v čase"
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1241
+msgid "Locations"
+msgstr "Polohy"
+
 #: ../gramps/plugins/gramplet/leak.py:102
 #: ../gramps/plugins/webreport/narrativeweb.py:2721
 #: ../gramps/plugins/webreport/narrativeweb.py:4195
@@ -20288,6 +20303,10 @@ msgstr "%d odkazuje na"
 #, python-format
 msgid "Uncollected Objects: %s"
 msgstr "Nevybrané objekty: %s"
+
+#: ../gramps/plugins/gramplet/locations.py:81
+msgid "Double-click on a row to edit the selected place."
+msgstr "Dvojklik na řádek upraví zvolené místo."
 
 #: ../gramps/plugins/gramplet/notes.py:99
 #: ../gramps/plugins/gramplet/todo.py:124
@@ -20343,7 +20362,7 @@ msgstr "(* %s)"
 msgid "(d. %s)"
 msgstr "(† %s)"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:251
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:253
 msgid ""
 "\n"
 "Breakdown by generation:\n"
@@ -20351,25 +20370,25 @@ msgstr ""
 "\n"
 "Dělení po generacích:\n"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:253
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:255
 msgid "percent sign or text string|%"
 msgstr "%"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:260
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:262
 msgid "Generation 1"
 msgstr "První generace"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:261
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:263
 msgid "Double-click to see people in generation"
 msgstr "Dvojklikem zobrazit osoby v generacích"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:263
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:265
 #, python-format
 msgid " has 1 of 1 individual (%(percent)s complete)\n"
 msgstr "zahrnuje pouze jednoho jednotlivce (dokončeno z %(percent)s)\n"
 
 #. Create the Generation title, set an index marker
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:266
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:268
 #: ../gramps/plugins/textreport/ancestorreport.py:205
 #: ../gramps/plugins/textreport/detancestralreport.py:194
 #: ../gramps/plugins/textreport/detdescendantreport.py:288
@@ -20378,13 +20397,13 @@ msgstr "zahrnuje pouze jednoho jednotlivce (dokončeno z %(percent)s)\n"
 msgid "Generation %d"
 msgstr "Generace %d"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:267
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:269
 #, python-format
 msgid "Double-click to see people in generation %d"
 msgstr "Dvojklikem zobrazit osoby %d generace"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:271
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:273
 msgid ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgid_plural ""
@@ -20396,33 +20415,33 @@ msgstr[1] ""
 msgstr[2] ""
 " zahrnuje {count_person} z {max_count_person} osob (dokončeno z {percent})\n"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:278
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:280
 msgid "All generations"
 msgstr "Všechny generace"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:279
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:281
 msgid "Double-click to see all generations"
 msgstr "Dvojklikem zobrazit všechny generace"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:282
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:284
 msgid " have {number_of} individual\n"
 msgid_plural " have {number_of} individuals\n"
 msgstr[0] " zahrnuje {number_of} osobu\n"
 msgstr[1] " zahrnuje {number_of} osoby\n"
 msgstr[2] " zahrnuje {number_of} osob\n"
 
-#: ../gramps/plugins/gramplet/persondetails.py:227
+#: ../gramps/plugins/gramplet/persondetails.py:233
 #, python-format
 msgid "%(date)s - %(place)s."
 msgstr "%(date)s - %(place)s."
 
-#: ../gramps/plugins/gramplet/persondetails.py:230
+#: ../gramps/plugins/gramplet/persondetails.py:236
 #, python-format
 msgid "%(date)s."
 msgstr "%(date)s."
 
-#: ../gramps/plugins/gramplet/placedetails.py:116
+#: ../gramps/plugins/gramplet/placedetails.py:125
 #: ../gramps/plugins/lib/libplaceview.py:96
 #: ../gramps/plugins/view/placetreeview.py:72
 #: ../gramps/plugins/webreport/narrativeweb.py:380
@@ -20430,7 +20449,7 @@ msgstr "%(date)s."
 msgid "Latitude"
 msgstr "Zeměpisná šířka"
 
-#: ../gramps/plugins/gramplet/placedetails.py:118
+#: ../gramps/plugins/gramplet/placedetails.py:127
 #: ../gramps/plugins/lib/libplaceview.py:97
 #: ../gramps/plugins/view/placetreeview.py:73
 #: ../gramps/plugins/webreport/narrativeweb.py:382
@@ -20466,33 +20485,33 @@ msgstr "Klikněte na jméno pro aktivaci osoby\n"
 msgid "Right-click name to edit person"
 msgstr "Pro úpravu osoby klikněte pravým tlačítkem myši"
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:70
+#: ../gramps/plugins/gramplet/relativegramplet.py:72
 #, python-format
 msgid "Active person: %s"
 msgstr "Aktivní osoba: %s"
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:86
+#: ../gramps/plugins/gramplet/relativegramplet.py:88
 #, python-format
 msgid "%d. Partner: "
 msgstr "%d. partner: "
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:90
+#: ../gramps/plugins/gramplet/relativegramplet.py:92
 #, python-format
 msgid "%d. Partner: Not known"
 msgstr "%d. Partner: neznámý"
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:105
+#: ../gramps/plugins/gramplet/relativegramplet.py:107
 msgid "Parents:"
 msgstr "Rodiče:"
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:117
-#: ../gramps/plugins/gramplet/relativegramplet.py:121
+#: ../gramps/plugins/gramplet/relativegramplet.py:119
+#: ../gramps/plugins/gramplet/relativegramplet.py:123
 #, python-format
 msgid "   %d.a Mother: "
 msgstr "   %d.Matka: "
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:128
-#: ../gramps/plugins/gramplet/relativegramplet.py:132
+#: ../gramps/plugins/gramplet/relativegramplet.py:130
+#: ../gramps/plugins/gramplet/relativegramplet.py:134
 #, python-format
 msgid "   %d.b Father: "
 msgstr "   %d.b Otec: "
