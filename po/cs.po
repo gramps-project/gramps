@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-09-11 17:24+0200\n"
-"PO-Revision-Date: 2014-09-19 11:17+0100\n"
+"POT-Creation-Date: 2014-10-20 10:24+0200\n"
+"PO-Revision-Date: 2014-10-23 20:55+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1453,7 +1453,6 @@ msgstr "Nikdy"
 msgid "Locked by %s"
 msgstr "Zamkl %s"
 
-#. not all families have a spouse.
 #: ../gramps/cli/clidbman.py:521 ../gramps/gen/lib/attrtype.py:62
 #: ../gramps/gen/lib/childreftype.py:78 ../gramps/gen/lib/eventroletype.py:58
 #: ../gramps/gen/lib/eventtype.py:165 ../gramps/gen/lib/familyreltype.py:52
@@ -1469,16 +1468,14 @@ msgstr "Zamkl %s"
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:124
 #: ../gramps/gui/editors/editmedia.py:169
 #: ../gramps/gui/editors/editmediaref.py:133
-#: ../gramps/plugins/gramplet/persondetails.py:175
 #: ../gramps/plugins/gramplet/persondetails.py:181
-#: ../gramps/plugins/gramplet/persondetails.py:183
-#: ../gramps/plugins/gramplet/persondetails.py:184
-#: ../gramps/plugins/gramplet/relativegramplet.py:122
-#: ../gramps/plugins/gramplet/relativegramplet.py:133
+#: ../gramps/plugins/gramplet/persondetails.py:187
+#: ../gramps/plugins/gramplet/persondetails.py:189
+#: ../gramps/plugins/gramplet/persondetails.py:190
+#: ../gramps/plugins/gramplet/relativegramplet.py:124
+#: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:247
 #: ../gramps/plugins/graph/gvrelgraph.py:631
-#: ../gramps/plugins/lib/libnarrate.py:2001
-#: ../gramps/plugins/lib/libnarrate.py:2004
 #: ../gramps/plugins/lib/maps/geography.py:766
 #: ../gramps/plugins/lib/maps/geography.py:773
 #: ../gramps/plugins/lib/maps/geography.py:774
@@ -1506,7 +1503,7 @@ msgstr "Zamkl %s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:631
 #: ../gramps/plugins/textreport/detdescendantreport.py:752
 #: ../gramps/plugins/textreport/indivcomplete.py:758
-#: ../gramps/plugins/tool/check.py:2120
+#: ../gramps/plugins/tool/check.py:2129
 #: ../gramps/plugins/tool/dumpgenderstats.py:67
 #: ../gramps/plugins/view/geoclose.py:502
 #: ../gramps/plugins/view/geofamclose.py:253
@@ -1518,8 +1515,8 @@ msgstr "Zamkl %s"
 #: ../gramps/plugins/view/relview.py:1024
 #: ../gramps/plugins/view/relview.py:1071
 #: ../gramps/plugins/webreport/narrativeweb.py:400
-#: ../gramps/plugins/webreport/narrativeweb.py:2366
-#: ../gramps/plugins/webreport/narrativeweb.py:2522
+#: ../gramps/plugins/webreport/narrativeweb.py:2362
+#: ../gramps/plugins/webreport/narrativeweb.py:2518
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -5752,9 +5749,9 @@ msgstr "Kasta"
 #: ../gramps/plugins/tool/sortevents.py:57
 #: ../gramps/plugins/view/eventview.py:82
 #: ../gramps/plugins/webreport/narrativeweb.py:378
-#: ../gramps/plugins/webreport/narrativeweb.py:977
-#: ../gramps/plugins/webreport/narrativeweb.py:1225
-#: ../gramps/plugins/webreport/narrativeweb.py:2263
+#: ../gramps/plugins/webreport/narrativeweb.py:973
+#: ../gramps/plugins/webreport/narrativeweb.py:1221
+#: ../gramps/plugins/webreport/narrativeweb.py:2259
 msgid "Description"
 msgstr "Popis"
 
@@ -5815,7 +5812,7 @@ msgid "Time"
 msgstr "Čas"
 
 #: ../gramps/gen/lib/childreftype.py:72 ../gramps/gui/configure.py:81
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:210
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:212
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:171
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:200
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:156
@@ -5824,7 +5821,7 @@ msgstr "Čas"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:179
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:166
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:155
-#: ../gramps/plugins/tool/check.py:2170
+#: ../gramps/plugins/tool/check.py:2179
 msgid "None"
 msgstr "Žádný"
 
@@ -5840,8 +5837,8 @@ msgstr "Žádný"
 #: ../gramps/plugins/textreport/tagreport.py:145
 #: ../gramps/plugins/view/relview.py:636
 #: ../gramps/plugins/webreport/narrativeweb.py:372
-#: ../gramps/plugins/webreport/narrativeweb.py:2906
-#: ../gramps/plugins/webreport/narrativeweb.py:5244
+#: ../gramps/plugins/webreport/narrativeweb.py:2902
+#: ../gramps/plugins/webreport/narrativeweb.py:5240
 msgid "Birth"
 msgstr "Narození"
 
@@ -5880,7 +5877,7 @@ msgstr "Pěstoun"
 #: ../gramps/plugins/textreport/indivcomplete.py:505
 #: ../gramps/plugins/tool/dumpgenderstats.py:37
 #: ../gramps/plugins/view/relview.py:674
-#: ../gramps/plugins/webreport/narrativeweb.py:5409
+#: ../gramps/plugins/webreport/narrativeweb.py:5405
 msgid "unknown"
 msgstr "neznámý"
 
@@ -5916,7 +5913,7 @@ msgstr "mezi"
 #: ../gramps/gen/lib/date.py:357
 #: ../gramps/plugins/quickview/all_relations.py:282
 #: ../gramps/plugins/view/relview.py:1005
-#: ../gramps/plugins/webreport/narrativeweb.py:1150
+#: ../gramps/plugins/webreport/narrativeweb.py:1146
 msgid "and"
 msgstr "a"
 
@@ -5941,7 +5938,7 @@ msgstr[2] "{number_of} roků"
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/date.py:422 ../gramps/gen/lib/date.py:433
 #: ../gramps/plugins/drawreport/descendtree.py:356
-#: ../gramps/plugins/gramplet/persondetails.py:198
+#: ../gramps/plugins/gramplet/persondetails.py:204
 #: ../gramps/plugins/gramplet/whatsnext.py:370
 #: ../gramps/plugins/gramplet/whatsnext.py:392
 #: ../gramps/plugins/gramplet/whatsnext.py:442
@@ -6062,7 +6059,7 @@ msgstr "Životní události"
 #: ../gramps/plugins/quickview/references.py:86
 #: ../gramps/plugins/view/relview.py:1347
 #: ../gramps/plugins/view/relview.py:1372
-#: ../gramps/plugins/webreport/narrativeweb.py:3115
+#: ../gramps/plugins/webreport/narrativeweb.py:3111
 msgid "Family"
 msgstr "Rodina"
 
@@ -6088,8 +6085,8 @@ msgstr "Právní"
 
 #: ../gramps/gen/lib/eventtype.py:156 ../gramps/gen/lib/eventtype.py:198
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:435
-#: ../gramps/plugins/webreport/narrativeweb.py:2765
-#: ../gramps/plugins/webreport/narrativeweb.py:6763
+#: ../gramps/plugins/webreport/narrativeweb.py:2761
+#: ../gramps/plugins/webreport/narrativeweb.py:6759
 msgid "Residence"
 msgstr "Bydliště"
 
@@ -6105,8 +6102,8 @@ msgstr "Jiný"
 #: ../gramps/plugins/textreport/tagreport.py:151
 #: ../gramps/plugins/view/relview.py:647 ../gramps/plugins/view/relview.py:672
 #: ../gramps/plugins/webreport/narrativeweb.py:376
-#: ../gramps/plugins/webreport/narrativeweb.py:2909
-#: ../gramps/plugins/webreport/narrativeweb.py:5247
+#: ../gramps/plugins/webreport/narrativeweb.py:2905
+#: ../gramps/plugins/webreport/narrativeweb.py:5243
 msgid "Death"
 msgstr "Úmrtí"
 
@@ -6204,7 +6201,7 @@ msgid "Number of Marriages"
 msgstr "Počet sňatků"
 
 #: ../gramps/gen/lib/eventtype.py:193 ../gramps/gen/lib/nameorigintype.py:91
-#: ../gramps/plugins/gramplet/persondetails.py:123
+#: ../gramps/plugins/gramplet/persondetails.py:129
 msgid "Occupation"
 msgstr "Zaměstnání"
 
@@ -6221,7 +6218,7 @@ msgid "Property"
 msgstr "Majetek"
 
 #: ../gramps/gen/lib/eventtype.py:197
-#: ../gramps/plugins/gramplet/persondetails.py:125
+#: ../gramps/plugins/gramplet/persondetails.py:131
 msgid "Religion"
 msgstr "Náboženství"
 
@@ -6238,7 +6235,7 @@ msgstr "Závěť"
 #: ../gramps/plugins/importer/importcsv.py:237
 #: ../gramps/plugins/textreport/familygroup.py:384
 #: ../gramps/plugins/textreport/familygroup.py:555
-#: ../gramps/plugins/webreport/narrativeweb.py:3116
+#: ../gramps/plugins/webreport/narrativeweb.py:3112
 msgid "Marriage"
 msgstr "Manželství"
 
@@ -6263,7 +6260,7 @@ msgid "Engagement"
 msgstr "Zasnoubení"
 
 #: ../gramps/gen/lib/eventtype.py:207
-#: ../gramps/plugins/webreport/narrativeweb.py:3117
+#: ../gramps/plugins/webreport/narrativeweb.py:3113
 msgid "Divorce"
 msgstr "Rozvod"
 
@@ -6518,7 +6515,7 @@ msgstr "Zrušeno"
 #: ../gramps/gui/merge/mergeperson.py:247
 #: ../gramps/plugins/export/exportcsv.py:531
 #: ../gramps/plugins/gramplet/children.py:83
-#: ../gramps/plugins/gramplet/children.py:180
+#: ../gramps/plugins/gramplet/children.py:183
 #: ../gramps/plugins/importer/importcsv.py:228
 msgid "Child"
 msgstr "Potomek"
@@ -6636,7 +6633,7 @@ msgstr "Linie matek"
 
 #: ../gramps/gen/lib/nameorigintype.py:92 ../gramps/gui/clipboard.py:330
 #: ../gramps/gui/plug/_windows.py:620
-#: ../gramps/plugins/gramplet/placedetails.py:125
+#: ../gramps/plugins/gramplet/placedetails.py:131
 msgid "Location"
 msgstr "Místo"
 
@@ -6786,7 +6783,7 @@ msgstr "Sloučená Gramps ID"
 #: ../gramps/plugins/tool/extractcity.py:392
 #: ../gramps/plugins/view/repoview.py:93
 #: ../gramps/plugins/webreport/narrativeweb.py:375
-#: ../gramps/plugins/webreport/narrativeweb.py:3379
+#: ../gramps/plugins/webreport/narrativeweb.py:3375
 msgid "Country"
 msgstr "Země"
 
@@ -6796,7 +6793,7 @@ msgstr "Země"
 #: ../gramps/gui/views/treemodels/placemodel.py:266
 #: ../gramps/plugins/lib/maps/placeselection.py:145
 #: ../gramps/plugins/tool/extractcity.py:390
-#: ../gramps/plugins/webreport/narrativeweb.py:3378
+#: ../gramps/plugins/webreport/narrativeweb.py:3374
 msgid "State"
 msgstr "Kraj"
 
@@ -6829,7 +6826,7 @@ msgstr "Farnost"
 #: ../gramps/gui/filters/sidebar/_placesidebarfilter.py:97
 #: ../gramps/plugins/view/repoview.py:90
 #: ../gramps/plugins/webreport/narrativeweb.py:382
-#: ../gramps/plugins/webreport/narrativeweb.py:1411
+#: ../gramps/plugins/webreport/narrativeweb.py:1407
 msgid "Locality"
 msgstr "Lokalita"
 
@@ -7205,7 +7202,7 @@ msgstr "Postranní lišta"
 #. add miscellaneous column
 #: ../gramps/gen/plug/_pluginreg.py:503
 #: ../gramps/plugins/gramplet/faqgramplet.py:135
-#: ../gramps/plugins/webreport/narrativeweb.py:1923
+#: ../gramps/plugins/webreport/narrativeweb.py:1919
 msgid "Miscellaneous"
 msgstr "Různé"
 
@@ -7294,7 +7291,7 @@ msgstr "Soubor %s je již otevřený, nejprve jej zavřete."
 #: ../gramps/plugins/lib/libhtmlbackend.py:253
 #: ../gramps/plugins/lib/libhtmlbackend.py:259
 #: ../gramps/plugins/lib/libhtmlbackend.py:263
-#: ../gramps/plugins/webreport/narrativeweb.py:7036
+#: ../gramps/plugins/webreport/narrativeweb.py:7032
 #, python-format
 msgid "Could not create %s"
 msgstr "Nemohu vytvořit %s"
@@ -7567,6 +7564,8 @@ msgstr ""
 #: ../gramps/gui/editors/editmedia.py:172
 #: ../gramps/gui/editors/editmediaref.py:136
 #: ../gramps/gui/editors/filtereditor.py:295
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:105
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:93
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:135
@@ -7752,13 +7751,13 @@ msgstr "Překlad použitý pro tuto sestavu."
 
 #. label for the combo
 #: ../gramps/gen/plug/report/stdoptions.py:62 ../gramps/gui/configure.py:969
-#: ../gramps/plugins/webreport/narrativeweb.py:8061
+#: ../gramps/plugins/webreport/narrativeweb.py:8057
 #: ../gramps/plugins/webreport/webcal.py:1367
 msgid "Name format"
 msgstr "Formát jména"
 
 #: ../gramps/gen/plug/report/stdoptions.py:67
-#: ../gramps/plugins/webreport/narrativeweb.py:8065
+#: ../gramps/plugins/webreport/narrativeweb.py:8061
 #: ../gramps/plugins/webreport/webcal.py:1371
 msgid "Select the format to display names"
 msgstr "Vyberte formát zobrazení jmen"
@@ -7774,10 +7773,10 @@ msgstr "Zda zahrnout soukromé informace"
 #: ../gramps/gen/plug/report/utils.py:142
 #: ../gramps/plugins/textreport/indivcomplete.py:733
 #: ../gramps/plugins/textreport/simplebooktitle.py:104
-#: ../gramps/plugins/webreport/narrativeweb.py:1964
-#: ../gramps/plugins/webreport/narrativeweb.py:2149
-#: ../gramps/plugins/webreport/narrativeweb.py:2203
-#: ../gramps/plugins/webreport/narrativeweb.py:2209
+#: ../gramps/plugins/webreport/narrativeweb.py:1960
+#: ../gramps/plugins/webreport/narrativeweb.py:2145
+#: ../gramps/plugins/webreport/narrativeweb.py:2199
+#: ../gramps/plugins/webreport/narrativeweb.py:2205
 msgid "Could not add photo to page"
 msgstr "Nelze přidat fotografii na stránku"
 
@@ -8421,9 +8420,9 @@ msgstr "PŘÍJMENÍ"
 #: ../gramps/plugins/export/exportcsv.py:364
 #: ../gramps/plugins/importer/importcsv.py:179
 #: ../gramps/plugins/quickview/filterbyname.py:329
-#: ../gramps/plugins/webreport/narrativeweb.py:2876
-#: ../gramps/plugins/webreport/narrativeweb.py:3961
-#: ../gramps/plugins/webreport/narrativeweb.py:5240
+#: ../gramps/plugins/webreport/narrativeweb.py:2872
+#: ../gramps/plugins/webreport/narrativeweb.py:3957
+#: ../gramps/plugins/webreport/narrativeweb.py:5236
 msgid "Surname"
 msgstr "Příjmení"
 
@@ -8595,7 +8594,7 @@ msgstr "%(west_longitude)s Z"
 #: ../gramps/gui/merge/mergeperson.py:61
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:37
-#: ../gramps/plugins/webreport/narrativeweb.py:5407
+#: ../gramps/plugins/webreport/narrativeweb.py:5403
 msgid "male"
 msgstr "muž"
 
@@ -8604,7 +8603,7 @@ msgstr "muž"
 #: ../gramps/gui/merge/mergeperson.py:61
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
 #: ../gramps/plugins/tool/dumpgenderstats.py:37
-#: ../gramps/plugins/webreport/narrativeweb.py:5408
+#: ../gramps/plugins/webreport/narrativeweb.py:5404
 msgid "female"
 msgstr "žena"
 
@@ -8775,9 +8774,9 @@ msgstr "Nedostupné"
 #: ../gramps/gui/editors/editaddress.py:155
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:101
 #: ../gramps/gui/grampsgui.py:144
-#: ../gramps/plugins/gramplet/repositorydetails.py:122
+#: ../gramps/plugins/gramplet/repositorydetails.py:128
 #: ../gramps/plugins/textreport/familygroup.py:325
-#: ../gramps/plugins/webreport/narrativeweb.py:6762
+#: ../gramps/plugins/webreport/narrativeweb.py:6758
 msgid "Address"
 msgstr "Adresa"
 
@@ -8793,7 +8792,7 @@ msgstr "Adresa"
 #: ../gramps/plugins/quickview/references.py:87
 #: ../gramps/plugins/textreport/placereport.py:402
 #: ../gramps/plugins/webreport/narrativeweb.py:379
-#: ../gramps/plugins/webreport/narrativeweb.py:974
+#: ../gramps/plugins/webreport/narrativeweb.py:970
 msgid "Event"
 msgstr "Událost"
 
@@ -8826,9 +8825,9 @@ msgstr "Událost"
 #: ../gramps/plugins/tool/sortevents.py:58
 #: ../gramps/plugins/view/eventview.py:86
 #: ../gramps/plugins/webreport/narrativeweb.py:388
-#: ../gramps/plugins/webreport/narrativeweb.py:976
-#: ../gramps/plugins/webreport/narrativeweb.py:1224
-#: ../gramps/plugins/webreport/narrativeweb.py:1254
+#: ../gramps/plugins/webreport/narrativeweb.py:972
+#: ../gramps/plugins/webreport/narrativeweb.py:1220
+#: ../gramps/plugins/webreport/narrativeweb.py:1250
 msgid "Place"
 msgstr "Místo"
 
@@ -8909,7 +8908,7 @@ msgstr "Místo odk"
 #: ../gramps/plugins/tool/verify.py:536
 #: ../gramps/plugins/view/placetreeview.py:67
 #: ../gramps/plugins/view/repoview.py:85
-#: ../gramps/plugins/webreport/narrativeweb.py:6448
+#: ../gramps/plugins/webreport/narrativeweb.py:6444
 msgid "Name"
 msgstr "Jméno"
 
@@ -8927,13 +8926,13 @@ msgstr "Jméno"
 #: ../gramps/plugins/textreport/tagreport.py:528
 #: ../gramps/plugins/view/mediaview.py:137
 #: ../gramps/plugins/view/view.gpr.py:80 ../gramps/plugins/view/view.gpr.py:88
-#: ../gramps/plugins/webreport/narrativeweb.py:1766
-#: ../gramps/plugins/webreport/narrativeweb.py:1824
-#: ../gramps/plugins/webreport/narrativeweb.py:1882
-#: ../gramps/plugins/webreport/narrativeweb.py:1920
-#: ../gramps/plugins/webreport/narrativeweb.py:2180
-#: ../gramps/plugins/webreport/narrativeweb.py:4402
-#: ../gramps/plugins/webreport/narrativeweb.py:4526
+#: ../gramps/plugins/webreport/narrativeweb.py:1762
+#: ../gramps/plugins/webreport/narrativeweb.py:1820
+#: ../gramps/plugins/webreport/narrativeweb.py:1878
+#: ../gramps/plugins/webreport/narrativeweb.py:1916
+#: ../gramps/plugins/webreport/narrativeweb.py:2176
+#: ../gramps/plugins/webreport/narrativeweb.py:4398
+#: ../gramps/plugins/webreport/narrativeweb.py:4522
 msgid "Media"
 msgstr "Média"
 
@@ -8989,9 +8988,9 @@ msgstr "%(frel)s %(mrel)s"
 #: ../gramps/plugins/textreport/placereport.py:403
 #: ../gramps/plugins/tool/eventcmp.py:251
 #: ../gramps/plugins/webreport/narrativeweb.py:389
-#: ../gramps/plugins/webreport/narrativeweb.py:3114
-#: ../gramps/plugins/webreport/narrativeweb.py:3667
-#: ../gramps/plugins/webreport/narrativeweb.py:6029
+#: ../gramps/plugins/webreport/narrativeweb.py:3110
+#: ../gramps/plugins/webreport/narrativeweb.py:3663
+#: ../gramps/plugins/webreport/narrativeweb.py:6025
 msgid "Person"
 msgstr "Osoba"
 
@@ -9077,18 +9076,19 @@ msgstr "Archiv"
 #: ../gramps/plugins/view/placetreeview.py:70
 #: ../gramps/plugins/view/repoview.py:87
 #: ../gramps/plugins/webreport/narrativeweb.py:396
-#: ../gramps/plugins/webreport/narrativeweb.py:1251
-#: ../gramps/plugins/webreport/narrativeweb.py:1558
-#: ../gramps/plugins/webreport/narrativeweb.py:2262
-#: ../gramps/plugins/webreport/narrativeweb.py:2733
-#: ../gramps/plugins/webreport/narrativeweb.py:3664
-#: ../gramps/plugins/webreport/narrativeweb.py:6690
+#: ../gramps/plugins/webreport/narrativeweb.py:1247
+#: ../gramps/plugins/webreport/narrativeweb.py:1554
+#: ../gramps/plugins/webreport/narrativeweb.py:2258
+#: ../gramps/plugins/webreport/narrativeweb.py:2729
+#: ../gramps/plugins/webreport/narrativeweb.py:3660
+#: ../gramps/plugins/webreport/narrativeweb.py:6686
 msgid "Type"
 msgstr "Typ"
 
 #: ../gramps/gui/clipboard.py:947
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:89
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
 #: ../gramps/gui/selectors/selectobject.py:70
@@ -9096,7 +9096,7 @@ msgstr "Typ"
 #: ../gramps/gui/selectors/selectrepository.py:60
 #: ../gramps/gui/selectors/selectsource.py:60
 #: ../gramps/gui/widgets/grampletpane.py:1551
-#: ../gramps/plugins/gramplet/persondetails.py:124
+#: ../gramps/plugins/gramplet/persondetails.py:130
 #: ../gramps/plugins/lib/libplaceview.py:93
 #: ../gramps/plugins/textreport/tagreport.py:396
 #: ../gramps/plugins/textreport/tagreport.py:545
@@ -9104,7 +9104,7 @@ msgstr "Typ"
 #: ../gramps/plugins/view/mediaview.py:102
 #: ../gramps/plugins/view/placetreeview.py:69
 #: ../gramps/plugins/view/sourceview.py:82
-#: ../gramps/plugins/webreport/narrativeweb.py:2732
+#: ../gramps/plugins/webreport/narrativeweb.py:2728
 msgid "Title"
 msgstr "Název"
 
@@ -9115,8 +9115,8 @@ msgstr "Název"
 #: ../gramps/plugins/lib/libmetadata.py:171
 #: ../gramps/plugins/tool/patchnames.py:401
 #: ../gramps/plugins/webreport/narrativeweb.py:398
-#: ../gramps/plugins/webreport/narrativeweb.py:1310
-#: ../gramps/plugins/webreport/narrativeweb.py:1559
+#: ../gramps/plugins/webreport/narrativeweb.py:1306
+#: ../gramps/plugins/webreport/narrativeweb.py:1555
 msgid "Value"
 msgstr "Hodnota"
 
@@ -9277,7 +9277,7 @@ msgid "ZIP/Postal Code"
 msgstr "PSČ"
 
 #: ../gramps/gui/configure.py:516
-#: ../gramps/plugins/gramplet/repositorydetails.py:110
+#: ../gramps/plugins/gramplet/repositorydetails.py:116
 #: ../gramps/plugins/webreport/narrativeweb.py:390
 msgid "Phone"
 msgstr "Telefon"
@@ -9516,9 +9516,9 @@ msgstr "Změna není okamžitá"
 
 #: ../gramps/gui/configure.py:1159
 msgid ""
-"Changing the data format will not take effect until the next time Gramps is "
+"Changing the date format will not take effect until the next time Gramps is "
 "started."
-msgstr "Změna formátu data se projeví až po restartu Gramps."
+msgstr "Změna formátu data se neprojeví dokud nebude Gramps znovu nastartován."
 
 #: ../gramps/gui/configure.py:1172
 msgid "Date about range"
@@ -9873,7 +9873,7 @@ msgstr "Název rodokmenu"
 #: ../gramps/plugins/textreport/indivcomplete.py:447
 #: ../gramps/plugins/textreport/indivcomplete.py:556
 #: ../gramps/plugins/webreport/narrativeweb.py:393
-#: ../gramps/plugins/webreport/narrativeweb.py:1255
+#: ../gramps/plugins/webreport/narrativeweb.py:1251
 msgid "Status"
 msgstr "Stav"
 
@@ -10134,7 +10134,7 @@ msgstr ""
 "Vyberte si jednu z nabízených možností"
 
 #: ../gramps/gui/displaystate.py:384
-#: ../gramps/plugins/gramplet/persondetails.py:133
+#: ../gramps/plugins/gramplet/persondetails.py:139
 msgid "No active person"
 msgstr "Žádná osoba není aktivní"
 
@@ -10238,6 +10238,7 @@ msgstr "Posunout vybranou adresu níže"
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:52
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:62
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:58
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:103
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:92
 #: ../gramps/gui/glade/editaddress.glade:370
@@ -10281,13 +10282,13 @@ msgstr "Posunout vybranou adresu níže"
 #: ../gramps/plugins/view/eventview.py:85
 #: ../gramps/plugins/view/mediaview.py:106
 #: ../gramps/plugins/webreport/narrativeweb.py:377
-#: ../gramps/plugins/webreport/narrativeweb.py:975
-#: ../gramps/plugins/webreport/narrativeweb.py:1223
-#: ../gramps/plugins/webreport/narrativeweb.py:1252
-#: ../gramps/plugins/webreport/narrativeweb.py:2372
-#: ../gramps/plugins/webreport/narrativeweb.py:3665
-#: ../gramps/plugins/webreport/narrativeweb.py:4433
-#: ../gramps/plugins/webreport/narrativeweb.py:5798
+#: ../gramps/plugins/webreport/narrativeweb.py:971
+#: ../gramps/plugins/webreport/narrativeweb.py:1219
+#: ../gramps/plugins/webreport/narrativeweb.py:1248
+#: ../gramps/plugins/webreport/narrativeweb.py:2368
+#: ../gramps/plugins/webreport/narrativeweb.py:3661
+#: ../gramps/plugins/webreport/narrativeweb.py:4429
+#: ../gramps/plugins/webreport/narrativeweb.py:5794
 msgid "Date"
 msgstr "Datum"
 
@@ -10344,6 +10345,8 @@ msgstr "_Atributy"
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:66
 #: ../gramps/gui/editors/editfamily.py:122
 #: ../gramps/gui/editors/filtereditor.py:956
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:99
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:112
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:88
@@ -10471,17 +10474,18 @@ msgid "Move the selected citation downwards"
 msgstr "Posunout vybranou citaci níže"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:82
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:89
 #: ../gramps/gui/selectors/selectsource.py:61
 #: ../gramps/plugins/gramplet/citations.py:67
 #: ../gramps/plugins/textreport/tagreport.py:718
 #: ../gramps/plugins/view/sourceview.py:84
-#: ../gramps/plugins/webreport/narrativeweb.py:4294
+#: ../gramps/plugins/webreport/narrativeweb.py:4290
 msgid "Author"
 msgstr "Autor"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:83
-#: ../gramps/plugins/webreport/narrativeweb.py:2373
+#: ../gramps/plugins/webreport/narrativeweb.py:2369
 msgid "Page"
 msgstr "Strana"
 
@@ -10493,7 +10497,7 @@ msgstr "?Citace  pramene"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:182
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:255
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:275
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:265
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:266
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:344
 #: ../gramps/plugins/view/citationtreeview.py:429
 #: ../gramps/plugins/view/citationtreeview.py:484
@@ -10523,7 +10527,7 @@ msgstr ""
 #: ../gramps/gui/merge/mergeperson.py:220
 #: ../gramps/gui/selectors/selectfamily.py:61
 #: ../gramps/gui/widgets/reorderfam.py:83
-#: ../gramps/plugins/gramplet/persondetails.py:186
+#: ../gramps/plugins/gramplet/persondetails.py:192
 #: ../gramps/plugins/importer/importcsv.py:234
 #: ../gramps/plugins/quickview/all_relations.py:300
 #: ../gramps/plugins/textreport/familygroup.py:210
@@ -10534,7 +10538,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/tagreport.py:226
 #: ../gramps/plugins/view/familyview.py:80
 #: ../gramps/plugins/view/relview.py:909
-#: ../gramps/plugins/webreport/narrativeweb.py:6346
+#: ../gramps/plugins/webreport/narrativeweb.py:6342
 msgid "Father"
 msgstr "Otec"
 
@@ -10545,7 +10549,7 @@ msgstr "Otec"
 #: ../gramps/gui/merge/mergeperson.py:222
 #: ../gramps/gui/selectors/selectfamily.py:62
 #: ../gramps/gui/widgets/reorderfam.py:84
-#: ../gramps/plugins/gramplet/persondetails.py:187
+#: ../gramps/plugins/gramplet/persondetails.py:193
 #: ../gramps/plugins/importer/importcsv.py:231
 #: ../gramps/plugins/quickview/all_relations.py:297
 #: ../gramps/plugins/textreport/familygroup.py:227
@@ -10556,7 +10560,7 @@ msgstr "Otec"
 #: ../gramps/plugins/textreport/tagreport.py:232
 #: ../gramps/plugins/view/familyview.py:81
 #: ../gramps/plugins/view/relview.py:910
-#: ../gramps/plugins/webreport/narrativeweb.py:6360
+#: ../gramps/plugins/webreport/narrativeweb.py:6356
 msgid "Mother"
 msgstr "Matka"
 
@@ -10594,8 +10598,8 @@ msgstr "Role"
 msgid "_Events"
 msgstr "Udá_losti"
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:245
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:344
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:246
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:345
 msgid ""
 "This event reference cannot be edited at this time. Either the associated "
 "event is already being edited or another event reference that is associated "
@@ -10608,18 +10612,18 @@ msgstr ""
 "\n"
 "Chcete-li měnit tento odkaz, musíte nejprve uzavřít událost."
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:278
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:343
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:279
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:344
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:364
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:168
 msgid "Cannot edit this reference"
 msgstr "Tento archiv není možné měnit"
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:320
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:321
 msgid "Cannot change Person"
 msgstr "Nelze změnit osobu"
 
-#: ../gramps/gui/editors/displaytabs/eventembedlist.py:321
+#: ../gramps/gui/editors/displaytabs/eventembedlist.py:322
 msgid "You cannot change Person events in the Family Editor"
 msgstr "V editoru rodin nemůžete měnit události osoby"
 
@@ -10634,7 +10638,7 @@ msgstr "%(groupname)s - %(groupnumber)d"
 #: ../gramps/plugins/textreport/indivcomplete.py:448
 #: ../gramps/plugins/textreport/indivcomplete.py:557
 #: ../gramps/plugins/webreport/narrativeweb.py:397
-#: ../gramps/plugins/webreport/narrativeweb.py:1253
+#: ../gramps/plugins/webreport/narrativeweb.py:1249
 msgid "Temple"
 msgstr "Chrám"
 
@@ -10816,7 +10820,7 @@ msgstr "Poz_námky"
 
 #. add personal column
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:50
-#: ../gramps/plugins/webreport/narrativeweb.py:1911
+#: ../gramps/plugins/webreport/narrativeweb.py:1907
 msgid "Personal"
 msgstr "Osobní"
 
@@ -11259,7 +11263,7 @@ msgstr "#"
 #: ../gramps/plugins/lib/libpersonview.py:99
 #: ../gramps/plugins/quickview/siblings.py:48
 #: ../gramps/plugins/textreport/indivcomplete.py:746
-#: ../gramps/plugins/webreport/narrativeweb.py:6240
+#: ../gramps/plugins/webreport/narrativeweb.py:6236
 msgid "Gender"
 msgstr "Pohlaví"
 
@@ -11274,7 +11278,7 @@ msgstr "Vztah k matce"
 #: ../gramps/gui/editors/editfamily.py:127
 #: ../gramps/gui/selectors/selectperson.py:77
 #: ../gramps/plugins/gramplet/children.py:84
-#: ../gramps/plugins/gramplet/children.py:181
+#: ../gramps/plugins/gramplet/children.py:184
 #: ../gramps/plugins/lib/libpersonview.py:100
 #: ../gramps/plugins/quickview/filterbyname.py:129
 #: ../gramps/plugins/quickview/filterbyname.py:209
@@ -11294,7 +11298,7 @@ msgstr "Datum narození"
 #: ../gramps/gui/editors/editfamily.py:128
 #: ../gramps/gui/selectors/selectperson.py:79
 #: ../gramps/plugins/gramplet/children.py:86
-#: ../gramps/plugins/gramplet/children.py:183
+#: ../gramps/plugins/gramplet/children.py:186
 #: ../gramps/plugins/lib/libpersonview.py:102
 #: ../gramps/plugins/quickview/lineage.py:61
 #: ../gramps/plugins/quickview/lineage.py:93
@@ -11518,7 +11522,7 @@ msgstr "%(mother)s [%(gramps_id)s]"
 #: ../gramps/gui/editors/editldsord.py:425
 #: ../gramps/plugins/textreport/indivcomplete.py:438
 #: ../gramps/plugins/textreport/indivcomplete.py:553
-#: ../gramps/plugins/webreport/narrativeweb.py:782
+#: ../gramps/plugins/webreport/narrativeweb.py:778
 msgid "LDS Ordinance"
 msgstr "Vysvěcení"
 
@@ -12079,7 +12083,7 @@ msgid "Edit Tags"
 msgstr "Upravit štítky"
 
 #: ../gramps/gui/editors/edittaglist.py:108
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:119
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:106
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:119
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:94
@@ -12275,7 +12279,7 @@ msgstr "Komentář"
 #: ../gramps/plugins/textreport/indivcomplete.py:853
 #: ../gramps/plugins/textreport/recordsreport.py:178
 #: ../gramps/plugins/tool/sortevents.py:166
-#: ../gramps/plugins/webreport/narrativeweb.py:8039
+#: ../gramps/plugins/webreport/narrativeweb.py:8035
 #: ../gramps/plugins/webreport/webcal.py:1345
 msgid "Filter"
 msgstr "Filtr"
@@ -12431,56 +12435,37 @@ msgid "Updating display..."
 msgstr "Aktualizace zobrazení..."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
-#: ../gramps/plugins/view/citationlistview.py:106
-msgid "Source: ID"
-msgstr "Pramen: ID"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
-#: ../gramps/plugins/view/citationlistview.py:105
-msgid "Source: Title"
-msgstr "Pramen: Titulek"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
-#: ../gramps/plugins/view/citationlistview.py:107
-#: ../gramps/plugins/view/citationtreeview.py:100
-msgid "Source: Author"
-msgstr "Pramen: Autor"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
-#: ../gramps/plugins/view/citationlistview.py:108
-#: ../gramps/plugins/view/citationtreeview.py:101
-msgid "Source: Abbreviation"
-msgstr "Pramen: Zkratka"
+#: ../gramps/gui/glade/editcitation.glade:286
+msgid "Source:"
+msgstr "Pramen:"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:110
-msgid "Source: Publication"
-msgstr "Pramen: Publikace"
+#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:90
+#: ../gramps/plugins/view/sourceview.py:85
+#: ../gramps/plugins/webreport/narrativeweb.py:4291
+msgid "Abbreviation"
+msgstr "Zkratka"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
-msgid "Source: Note"
-msgstr "Pramen: Poznámka"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
-msgid "Citation: ID"
-msgstr "Citace: ID"
+#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
+msgid "Publication"
+msgstr "Publikace"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:113
-msgid "Citation: Volume/Page"
-msgstr "Citace: Svazek/Strana"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
-msgid "Citation: Date"
-msgstr "Citace: Datum"
+msgid "Citation:"
+msgstr "Citace:"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
+#: ../gramps/plugins/textreport/tagreport.py:791
+#: ../gramps/plugins/view/citationlistview.py:98
+msgid "Volume/Page"
+msgstr "Ročník/Stránka"
+
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
 msgid "Citation: Minimum Confidence|Min. Conf."
 msgstr "Citace: Min. důvěrnost"
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116
-msgid "Citation: Note"
-msgstr "Citace: Poznámka"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:118
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:107
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:95
@@ -12501,7 +12486,7 @@ msgstr "Účastníci"
 #: ../gramps/gui/widgets/reorderfam.py:90
 #: ../gramps/plugins/textreport/tagreport.py:238
 #: ../gramps/plugins/view/familyview.py:82
-#: ../gramps/plugins/webreport/narrativeweb.py:6030
+#: ../gramps/plugins/webreport/narrativeweb.py:6026
 msgid "Relationship"
 msgstr "Vztah"
 
@@ -12543,16 +12528,6 @@ msgstr "URL"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:79
 msgid "Reset"
 msgstr "Reset"
-
-#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:90
-#: ../gramps/plugins/view/sourceview.py:85
-#: ../gramps/plugins/webreport/narrativeweb.py:4295
-msgid "Abbreviation"
-msgstr "Zkratka"
-
-#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
-msgid "Publication"
-msgstr "Publikace"
 
 #: ../gramps/gui/glade/addmedia.glade:126
 #: ../gramps/gui/glade/editperson.glade:290
@@ -12848,7 +12823,7 @@ msgstr ""
 #: ../gramps/gui/glade/editrepository.glade:209
 #: ../gramps/gui/glade/editsource.glade:305
 #: ../gramps/gui/glade/editurl.glade:162
-#: ../gramps/plugins/webreport/narrativeweb.py:8214
+#: ../gramps/plugins/webreport/narrativeweb.py:8210
 msgid "Privacy"
 msgstr "Soukromí"
 
@@ -13005,10 +12980,6 @@ msgstr "_ID:"
 #: ../gramps/gui/glade/editcitation.glade:260
 msgid "A unique ID to identify the citation"
 msgstr "Unikátní ID identifikující citaci"
-
-#: ../gramps/gui/glade/editcitation.glade:286
-msgid "Source:"
-msgstr "Pramen:"
 
 #: ../gramps/gui/glade/editcitation.glade:383
 #: ../gramps/gui/glade/editevent.glade:404
@@ -14766,12 +14737,12 @@ msgstr "Upravit datum"
 #: ../gramps/plugins/textreport/tagreport.py:297
 #: ../gramps/plugins/view/eventview.py:119
 #: ../gramps/plugins/view/view.gpr.py:35 ../gramps/plugins/view/view.gpr.py:43
-#: ../gramps/plugins/webreport/narrativeweb.py:1762
-#: ../gramps/plugins/webreport/narrativeweb.py:1821
-#: ../gramps/plugins/webreport/narrativeweb.py:1873
-#: ../gramps/plugins/webreport/narrativeweb.py:3632
-#: ../gramps/plugins/webreport/narrativeweb.py:3820
-#: ../gramps/plugins/webreport/narrativeweb.py:6283
+#: ../gramps/plugins/webreport/narrativeweb.py:1758
+#: ../gramps/plugins/webreport/narrativeweb.py:1817
+#: ../gramps/plugins/webreport/narrativeweb.py:1869
+#: ../gramps/plugins/webreport/narrativeweb.py:3628
+#: ../gramps/plugins/webreport/narrativeweb.py:3816
+#: ../gramps/plugins/webreport/narrativeweb.py:6279
 msgid "Events"
 msgstr "Události"
 
@@ -14858,8 +14829,8 @@ msgstr "Sloučit"
 #: ../gramps/plugins/view/view.gpr.py:95
 #: ../gramps/plugins/view/view.gpr.py:103
 #: ../gramps/plugins/webreport/narrativeweb.py:384
-#: ../gramps/plugins/webreport/narrativeweb.py:978
-#: ../gramps/plugins/webreport/narrativeweb.py:1560
+#: ../gramps/plugins/webreport/narrativeweb.py:974
+#: ../gramps/plugins/webreport/narrativeweb.py:1556
 msgid "Notes"
 msgstr "Poznámky"
 
@@ -14872,9 +14843,9 @@ msgstr "Poznámky"
 #: ../gramps/plugins/view/relview.py:533 ../gramps/plugins/view/relview.py:871
 #: ../gramps/plugins/view/relview.py:908
 #: ../gramps/plugins/webreport/narrativeweb.py:385
-#: ../gramps/plugins/webreport/narrativeweb.py:2915
-#: ../gramps/plugins/webreport/narrativeweb.py:5253
-#: ../gramps/plugins/webreport/narrativeweb.py:6432
+#: ../gramps/plugins/webreport/narrativeweb.py:2911
+#: ../gramps/plugins/webreport/narrativeweb.py:5249
+#: ../gramps/plugins/webreport/narrativeweb.py:6428
 msgid "Parents"
 msgstr "Rodiče"
 
@@ -14891,7 +14862,7 @@ msgstr "Vybrat rodiče"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:185
 #: ../gramps/plugins/view/pedigreeview.py:519
 #: ../gramps/plugins/view/view.gpr.py:125
-#: ../gramps/plugins/webreport/narrativeweb.py:6116
+#: ../gramps/plugins/webreport/narrativeweb.py:6112
 msgid "Pedigree"
 msgstr "Rodokmen"
 
@@ -14901,11 +14872,11 @@ msgstr "Rodokmen"
 #: ../gramps/plugins/view/view.gpr.py:205
 #: ../gramps/plugins/view/view.gpr.py:213
 #: ../gramps/plugins/view/view.gpr.py:229
-#: ../gramps/plugins/webreport/narrativeweb.py:1763
-#: ../gramps/plugins/webreport/narrativeweb.py:1818
-#: ../gramps/plugins/webreport/narrativeweb.py:1874
-#: ../gramps/plugins/webreport/narrativeweb.py:3343
-#: ../gramps/plugins/webreport/narrativeweb.py:3464
+#: ../gramps/plugins/webreport/narrativeweb.py:1759
+#: ../gramps/plugins/webreport/narrativeweb.py:1814
+#: ../gramps/plugins/webreport/narrativeweb.py:1870
+#: ../gramps/plugins/webreport/narrativeweb.py:3339
+#: ../gramps/plugins/webreport/narrativeweb.py:3460
 msgid "Places"
 msgstr "Místa"
 
@@ -14919,11 +14890,11 @@ msgstr "Sestavy"
 #: ../gramps/plugins/view/repoview.py:129
 #: ../gramps/plugins/view/view.gpr.py:236
 #: ../gramps/plugins/view/view.gpr.py:244
-#: ../gramps/plugins/webreport/narrativeweb.py:1765
-#: ../gramps/plugins/webreport/narrativeweb.py:1876
-#: ../gramps/plugins/webreport/narrativeweb.py:2722
-#: ../gramps/plugins/webreport/narrativeweb.py:6599
-#: ../gramps/plugins/webreport/narrativeweb.py:6666
+#: ../gramps/plugins/webreport/narrativeweb.py:1761
+#: ../gramps/plugins/webreport/narrativeweb.py:1872
+#: ../gramps/plugins/webreport/narrativeweb.py:2718
+#: ../gramps/plugins/webreport/narrativeweb.py:6595
+#: ../gramps/plugins/webreport/narrativeweb.py:6662
 msgid "Repositories"
 msgstr "Archivy"
 
@@ -14934,14 +14905,14 @@ msgstr "Archivy"
 #: ../gramps/plugins/view/view.gpr.py:259
 #: ../gramps/plugins/view/view.gpr.py:290
 #: ../gramps/plugins/webreport/narrativeweb.py:392
-#: ../gramps/plugins/webreport/narrativeweb.py:979
-#: ../gramps/plugins/webreport/narrativeweb.py:1256
-#: ../gramps/plugins/webreport/narrativeweb.py:1561
-#: ../gramps/plugins/webreport/narrativeweb.py:1764
-#: ../gramps/plugins/webreport/narrativeweb.py:1815
-#: ../gramps/plugins/webreport/narrativeweb.py:1875
-#: ../gramps/plugins/webreport/narrativeweb.py:4181
-#: ../gramps/plugins/webreport/narrativeweb.py:4265
+#: ../gramps/plugins/webreport/narrativeweb.py:975
+#: ../gramps/plugins/webreport/narrativeweb.py:1252
+#: ../gramps/plugins/webreport/narrativeweb.py:1557
+#: ../gramps/plugins/webreport/narrativeweb.py:1760
+#: ../gramps/plugins/webreport/narrativeweb.py:1811
+#: ../gramps/plugins/webreport/narrativeweb.py:1871
+#: ../gramps/plugins/webreport/narrativeweb.py:4177
+#: ../gramps/plugins/webreport/narrativeweb.py:4261
 msgid "Sources"
 msgstr "Prameny"
 
@@ -15371,7 +15342,7 @@ msgstr "Nebyli nalezeni žádní partneři nebo potomci"
 
 #: ../gramps/gui/merge/mergeperson.py:254
 #: ../gramps/plugins/textreport/indivcomplete.py:362
-#: ../gramps/plugins/webreport/narrativeweb.py:1365
+#: ../gramps/plugins/webreport/narrativeweb.py:1361
 msgid "Addresses"
 msgstr "Adresy"
 
@@ -16199,7 +16170,7 @@ msgstr "Styl"
 #: ../gramps/plugins/textreport/summary.py:278
 #: ../gramps/plugins/textreport/tableofcontents.py:87
 #: ../gramps/plugins/textreport/tagreport.py:861
-#: ../gramps/plugins/webreport/narrativeweb.py:8014
+#: ../gramps/plugins/webreport/narrativeweb.py:8010
 #: ../gramps/plugins/webreport/webcal.py:1330
 msgid "Report Options"
 msgstr "Nastavení sestavy"
@@ -16778,7 +16749,7 @@ msgstr "Média:"
 #: ../gramps/plugins/textreport/detdescendantreport.py:981
 #: ../gramps/plugins/textreport/familygroup.py:655
 #: ../gramps/plugins/textreport/indivcomplete.py:880
-#: ../gramps/plugins/webreport/narrativeweb.py:8228
+#: ../gramps/plugins/webreport/narrativeweb.py:8224
 msgid "Include"
 msgstr "Zahrnout"
 
@@ -16788,7 +16759,7 @@ msgid "Megabyte|MB"
 msgstr "Megabyte|MB"
 
 #: ../gramps/gui/viewmanager.py:1294
-#: ../gramps/plugins/webreport/narrativeweb.py:8222
+#: ../gramps/plugins/webreport/narrativeweb.py:8218
 msgid "Exclude"
 msgstr "Vyjmout"
 
@@ -17528,13 +17499,13 @@ msgid "of %d"
 msgstr "z %d"
 
 #: ../gramps/plugins/docgen/htmldoc.py:274
-#: ../gramps/plugins/webreport/narrativeweb.py:7967
+#: ../gramps/plugins/webreport/narrativeweb.py:7963
 #: ../gramps/plugins/webreport/webcal.py:250
 msgid "Possible destination error"
 msgstr "Možná chyba cíle"
 
 #: ../gramps/plugins/docgen/htmldoc.py:275
-#: ../gramps/plugins/webreport/narrativeweb.py:7968
+#: ../gramps/plugins/webreport/narrativeweb.py:7964
 #: ../gramps/plugins/webreport/webcal.py:251
 msgid ""
 "You appear to have set your target directory to a directory used for data "
@@ -18815,7 +18786,7 @@ msgstr "Určí které osoby budou zahrnuty do sestavy."
 #: ../gramps/plugins/textreport/indivcomplete.py:859
 #: ../gramps/plugins/textreport/recordsreport.py:184
 #: ../gramps/plugins/tool/sortevents.py:171
-#: ../gramps/plugins/webreport/narrativeweb.py:8045
+#: ../gramps/plugins/webreport/narrativeweb.py:8041
 #: ../gramps/plugins/webreport/webcal.py:1351
 msgid "Filter Person"
 msgstr "Filtrovat osobu"
@@ -18974,7 +18945,7 @@ msgstr "Určí které osoby budou zahrnuty do sestavy"
 #: ../gramps/plugins/drawreport/timeline.py:414
 #: ../gramps/plugins/textreport/recordsreport.py:185
 #: ../gramps/plugins/tool/sortevents.py:172
-#: ../gramps/plugins/webreport/narrativeweb.py:8046
+#: ../gramps/plugins/webreport/narrativeweb.py:8042
 #: ../gramps/plugins/webreport/webcal.py:1352
 msgid "The center person for the filter"
 msgstr "Výchozí osoba filtru"
@@ -19193,14 +19164,14 @@ msgstr "Pramen pohřbu"
 #: ../gramps/plugins/export/exportcsv.py:487
 #: ../gramps/plugins/importer/importcsv.py:234
 #: ../gramps/plugins/textreport/familygroup.py:573
-#: ../gramps/plugins/webreport/narrativeweb.py:2465
+#: ../gramps/plugins/webreport/narrativeweb.py:2461
 msgid "Husband"
 msgstr "Manžel"
 
 #: ../gramps/plugins/export/exportcsv.py:487
 #: ../gramps/plugins/importer/importcsv.py:231
 #: ../gramps/plugins/textreport/familygroup.py:582
-#: ../gramps/plugins/webreport/narrativeweb.py:2463
+#: ../gramps/plugins/webreport/narrativeweb.py:2459
 msgid "Wife"
 msgstr "Manželka"
 
@@ -19370,15 +19341,15 @@ msgstr "Maximum"
 msgid "Double-click to see %d people"
 msgstr "Dvojklikem zobrazit %d osob"
 
-#: ../gramps/plugins/gramplet/ancestor.py:133
-#: ../gramps/plugins/gramplet/ancestor.py:141
-#: ../gramps/plugins/gramplet/descendant.py:134
-#: ../gramps/plugins/gramplet/descendant.py:142
+#: ../gramps/plugins/gramplet/ancestor.py:136
+#: ../gramps/plugins/gramplet/ancestor.py:144
+#: ../gramps/plugins/gramplet/descendant.py:137
+#: ../gramps/plugins/gramplet/descendant.py:145
 #, python-format
 msgid "%(abbr)s %(date)s"
 msgstr "%(abbr)s %(date)s"
 
-#: ../gramps/plugins/gramplet/ancestor.py:147
+#: ../gramps/plugins/gramplet/ancestor.py:150
 #, python-format
 msgid "%(depth)s. %(name)s"
 msgstr "%(depth)s. %(name)s"
@@ -19393,7 +19364,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/attributes.py:45
 #: ../gramps/plugins/lib/libmetadata.py:170
-#: ../gramps/plugins/webreport/narrativeweb.py:1309
+#: ../gramps/plugins/webreport/narrativeweb.py:1305
 msgid "Key"
 msgstr "Klíč"
 
@@ -19402,7 +19373,7 @@ msgid "Double-click a day for details"
 msgstr "Dvojklikem na den zobrazit podrobnosti"
 
 #: ../gramps/plugins/gramplet/children.py:79
-#: ../gramps/plugins/gramplet/children.py:176
+#: ../gramps/plugins/gramplet/children.py:179
 msgid "Double-click on a row to edit the selected child."
 msgstr "Dvojklik na řádek upraví zvoleného potomka."
 
@@ -19702,7 +19673,7 @@ msgid "Gramplet showing active person's ancestors"
 msgstr "Gramplet zobrazující předky aktivní osoby"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:108
-#: ../gramps/plugins/webreport/narrativeweb.py:5961
+#: ../gramps/plugins/webreport/narrativeweb.py:5957
 msgid "Ancestors"
 msgstr "Předci"
 
@@ -19987,9 +19958,9 @@ msgstr "Gramplet zobrazující atributy osoby"
 #: ../gramps/plugins/textreport/indivcomplete.py:412
 #: ../gramps/plugins/textreport/indivcomplete.py:534
 #: ../gramps/plugins/webreport/narrativeweb.py:371
-#: ../gramps/plugins/webreport/narrativeweb.py:792
-#: ../gramps/plugins/webreport/narrativeweb.py:1300
-#: ../gramps/plugins/webreport/narrativeweb.py:1543
+#: ../gramps/plugins/webreport/narrativeweb.py:788
+#: ../gramps/plugins/webreport/narrativeweb.py:1296
+#: ../gramps/plugins/webreport/narrativeweb.py:1539
 msgid "Attributes"
 msgstr "Atributy"
 
@@ -20136,7 +20107,7 @@ msgstr "Gramplet zobrazující děti dané osoby"
 #: ../gramps/plugins/textreport/indivcomplete.py:520
 #: ../gramps/plugins/view/pedigreeview.py:1740
 #: ../gramps/plugins/view/relview.py:1390
-#: ../gramps/plugins/webreport/narrativeweb.py:749
+#: ../gramps/plugins/webreport/narrativeweb.py:745
 msgid "Children"
 msgstr "Děti"
 
@@ -20165,10 +20136,10 @@ msgstr "Gramplet zobrazující zpětné linky k osobě"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:911
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:925
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:939
-#: ../gramps/plugins/webreport/narrativeweb.py:2420
-#: ../gramps/plugins/webreport/narrativeweb.py:2828
-#: ../gramps/plugins/webreport/narrativeweb.py:4903
-#: ../gramps/plugins/webreport/narrativeweb.py:5784
+#: ../gramps/plugins/webreport/narrativeweb.py:2416
+#: ../gramps/plugins/webreport/narrativeweb.py:2824
+#: ../gramps/plugins/webreport/narrativeweb.py:4899
+#: ../gramps/plugins/webreport/narrativeweb.py:5780
 msgid "References"
 msgstr "Odkazy"
 
@@ -20399,8 +20370,8 @@ msgid "SoundEx"
 msgstr "SoundEx"
 
 #: ../gramps/plugins/gramplet/leak.py:102
-#: ../gramps/plugins/webreport/narrativeweb.py:2731
-#: ../gramps/plugins/webreport/narrativeweb.py:4212
+#: ../gramps/plugins/webreport/narrativeweb.py:2727
+#: ../gramps/plugins/webreport/narrativeweb.py:4208
 msgid "Number"
 msgstr "Číslo"
 
@@ -20481,7 +20452,7 @@ msgstr "(* %s)"
 msgid "(d. %s)"
 msgstr "(† %s)"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:251
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:253
 msgid ""
 "\n"
 "Breakdown by generation:\n"
@@ -20489,25 +20460,25 @@ msgstr ""
 "\n"
 "Dělení po generacích:\n"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:253
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:255
 msgid "percent sign or text string|%"
 msgstr "%"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:260
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:262
 msgid "Generation 1"
 msgstr "První generace"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:261
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:263
 msgid "Double-click to see people in generation"
 msgstr "Dvojklikem zobrazit osoby v generacích"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:263
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:265
 #, python-format
 msgid " has 1 of 1 individual (%(percent)s complete)\n"
 msgstr "zahrnuje pouze jednoho jednotlivce (dokončeno z %(percent)s)\n"
 
 #. Create the Generation title, set an index marker
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:266
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:268
 #: ../gramps/plugins/textreport/ancestorreport.py:206
 #: ../gramps/plugins/textreport/detancestralreport.py:201
 #: ../gramps/plugins/textreport/detdescendantreport.py:300
@@ -20516,13 +20487,13 @@ msgstr "zahrnuje pouze jednoho jednotlivce (dokončeno z %(percent)s)\n"
 msgid "Generation %d"
 msgstr "Generace %d"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:267
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:269
 #, python-format
 msgid "Double-click to see people in generation %d"
 msgstr "Dvojklikem zobrazit osoby %d generace"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:271
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:273
 msgid ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgid_plural ""
@@ -20534,45 +20505,45 @@ msgstr[1] ""
 msgstr[2] ""
 " zahrnuje {count_person} z {max_count_person} osob (dokončeno z {percent})\n"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:278
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:280
 msgid "All generations"
 msgstr "Všechny generace"
 
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:279
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:281
 msgid "Double-click to see all generations"
 msgstr "Dvojklikem zobrazit všechny generace"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/gramplet/pedigreegramplet.py:282
+#: ../gramps/plugins/gramplet/pedigreegramplet.py:284
 msgid " have {number_of} individual\n"
 msgid_plural " have {number_of} individuals\n"
 msgstr[0] " zahrnuje {number_of} osobu\n"
 msgstr[1] " zahrnuje {number_of} osoby\n"
 msgstr[2] " zahrnuje {number_of} osob\n"
 
-#: ../gramps/plugins/gramplet/persondetails.py:227
+#: ../gramps/plugins/gramplet/persondetails.py:233
 #, python-format
 msgid "%(date)s - %(place)s."
 msgstr "%(date)s - %(place)s."
 
-#: ../gramps/plugins/gramplet/persondetails.py:230
+#: ../gramps/plugins/gramplet/persondetails.py:236
 #, python-format
 msgid "%(date)s."
 msgstr "%(date)s."
 
-#: ../gramps/plugins/gramplet/placedetails.py:116
+#: ../gramps/plugins/gramplet/placedetails.py:122
 #: ../gramps/plugins/lib/libplaceview.py:96
 #: ../gramps/plugins/view/placetreeview.py:72
 #: ../gramps/plugins/webreport/narrativeweb.py:381
-#: ../gramps/plugins/webreport/narrativeweb.py:3380
+#: ../gramps/plugins/webreport/narrativeweb.py:3376
 msgid "Latitude"
 msgstr "Zeměpisná šířka"
 
-#: ../gramps/plugins/gramplet/placedetails.py:118
+#: ../gramps/plugins/gramplet/placedetails.py:124
 #: ../gramps/plugins/lib/libplaceview.py:97
 #: ../gramps/plugins/view/placetreeview.py:73
 #: ../gramps/plugins/webreport/narrativeweb.py:383
-#: ../gramps/plugins/webreport/narrativeweb.py:3381
+#: ../gramps/plugins/webreport/narrativeweb.py:3377
 msgid "Longitude"
 msgstr "Zeměpisná délka"
 
@@ -20604,33 +20575,33 @@ msgstr "Klikněte na jméno pro aktivaci osoby\n"
 msgid "Right-click name to edit person"
 msgstr "Pro úpravu osoby klikněte pravým tlačítkem myši"
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:70
+#: ../gramps/plugins/gramplet/relativegramplet.py:72
 #, python-format
 msgid "Active person: %s"
 msgstr "Aktivní osoba: %s"
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:86
+#: ../gramps/plugins/gramplet/relativegramplet.py:88
 #, python-format
 msgid "%d. Partner: "
 msgstr "%d. partner: "
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:90
+#: ../gramps/plugins/gramplet/relativegramplet.py:92
 #, python-format
 msgid "%d. Partner: Not known"
 msgstr "%d. Partner: neznámý"
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:105
+#: ../gramps/plugins/gramplet/relativegramplet.py:107
 msgid "Parents:"
 msgstr "Rodiče:"
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:117
-#: ../gramps/plugins/gramplet/relativegramplet.py:121
+#: ../gramps/plugins/gramplet/relativegramplet.py:119
+#: ../gramps/plugins/gramplet/relativegramplet.py:123
 #, python-format
 msgid "   %d.a Mother: "
 msgstr "   %d.Matka: "
 
-#: ../gramps/plugins/gramplet/relativegramplet.py:128
-#: ../gramps/plugins/gramplet/relativegramplet.py:132
+#: ../gramps/plugins/gramplet/relativegramplet.py:130
+#: ../gramps/plugins/gramplet/relativegramplet.py:134
 #, python-format
 msgid "   %d.b Father: "
 msgstr "   %d.b Otec: "
@@ -20683,10 +20654,10 @@ msgstr "méně než 1"
 #: ../gramps/plugins/gramplet/statsgramplet.py:144
 #: ../gramps/plugins/graph/gvfamilylines.py:236
 #: ../gramps/plugins/textreport/summary.py:110
-#: ../gramps/plugins/webreport/narrativeweb.py:1759
-#: ../gramps/plugins/webreport/narrativeweb.py:1809
-#: ../gramps/plugins/webreport/narrativeweb.py:1865
-#: ../gramps/plugins/webreport/narrativeweb.py:5210
+#: ../gramps/plugins/webreport/narrativeweb.py:1755
+#: ../gramps/plugins/webreport/narrativeweb.py:1805
+#: ../gramps/plugins/webreport/narrativeweb.py:1861
+#: ../gramps/plugins/webreport/narrativeweb.py:5206
 msgid "Individuals"
 msgstr "Jednotlivci"
 
@@ -21299,12 +21270,12 @@ msgstr "Barva, která indikuje neznámé pohlaví."
 #: ../gramps/plugins/tool/verify.glade:792
 #: ../gramps/plugins/view/familyview.py:114
 #: ../gramps/plugins/view/view.gpr.py:50 ../gramps/plugins/view/view.gpr.py:58
-#: ../gramps/plugins/webreport/narrativeweb.py:656
-#: ../gramps/plugins/webreport/narrativeweb.py:700
-#: ../gramps/plugins/webreport/narrativeweb.py:1761
-#: ../gramps/plugins/webreport/narrativeweb.py:1812
-#: ../gramps/plugins/webreport/narrativeweb.py:1867
-#: ../gramps/plugins/webreport/narrativeweb.py:3062
+#: ../gramps/plugins/webreport/narrativeweb.py:652
+#: ../gramps/plugins/webreport/narrativeweb.py:696
+#: ../gramps/plugins/webreport/narrativeweb.py:1757
+#: ../gramps/plugins/webreport/narrativeweb.py:1808
+#: ../gramps/plugins/webreport/narrativeweb.py:1863
+#: ../gramps/plugins/webreport/narrativeweb.py:3058
 msgid "Families"
 msgstr "Rodiny"
 
@@ -21635,10 +21606,10 @@ msgstr "důvod úmrtí"
 #: ../gramps/plugins/quickview/filterbyname.py:239
 #: ../gramps/plugins/quickview/filterbyname.py:245
 #: ../gramps/plugins/quickview/filterbyname.py:251
-#: ../gramps/plugins/webreport/narrativeweb.py:3666
-#: ../gramps/plugins/webreport/narrativeweb.py:3843
-#: ../gramps/plugins/webreport/narrativeweb.py:4293
-#: ../gramps/plugins/webreport/narrativeweb.py:6684
+#: ../gramps/plugins/webreport/narrativeweb.py:3662
+#: ../gramps/plugins/webreport/narrativeweb.py:3839
+#: ../gramps/plugins/webreport/narrativeweb.py:4289
+#: ../gramps/plugins/webreport/narrativeweb.py:6680
 msgid "Gramps ID"
 msgstr "Gramps ID"
 
@@ -26654,7 +26625,7 @@ msgid "Open on maps.google.com"
 msgstr "Otevřít maps.google.com"
 
 #: ../gramps/plugins/mapservices/mapservice.gpr.py:69
-#: ../gramps/plugins/webreport/narrativeweb.py:8355
+#: ../gramps/plugins/webreport/narrativeweb.py:8351
 msgid "OpenStreetMap"
 msgstr "OpenStreetMap"
 
@@ -26715,7 +26686,7 @@ msgstr "Místo události"
 #: ../gramps/plugins/quickview/all_events.py:60
 #: ../gramps/plugins/quickview/all_events.py:105
 #: ../gramps/plugins/quickview/all_events.py:117
-#: ../gramps/plugins/webreport/narrativeweb.py:5800
+#: ../gramps/plugins/webreport/narrativeweb.py:5796
 msgid "Event Type"
 msgstr "Typ události"
 
@@ -26785,10 +26756,10 @@ msgstr "Rodič"
 #: ../gramps/plugins/quickview/all_relations.py:286
 #: ../gramps/plugins/view/relview.py:415
 #: ../gramps/plugins/webreport/narrativeweb.py:387
-#: ../gramps/plugins/webreport/narrativeweb.py:2467
-#: ../gramps/plugins/webreport/narrativeweb.py:2469
-#: ../gramps/plugins/webreport/narrativeweb.py:2912
-#: ../gramps/plugins/webreport/narrativeweb.py:5250
+#: ../gramps/plugins/webreport/narrativeweb.py:2463
+#: ../gramps/plugins/webreport/narrativeweb.py:2465
+#: ../gramps/plugins/webreport/narrativeweb.py:2908
+#: ../gramps/plugins/webreport/narrativeweb.py:5246
 msgid "Partner"
 msgstr "Partner"
 
@@ -27292,7 +27263,7 @@ msgid "No references for this %s"
 msgstr "Pro tento %s není žádný odkaz"
 
 #: ../gramps/plugins/quickview/reporef.py:62
-#: ../gramps/plugins/webreport/narrativeweb.py:2734
+#: ../gramps/plugins/webreport/narrativeweb.py:2730
 msgid "Call number"
 msgstr "Signatura"
 
@@ -28372,7 +28343,7 @@ msgstr "%(str1)s v %(str2)s. "
 #: ../gramps/plugins/textreport/indivcomplete.py:198
 #: ../gramps/plugins/textreport/indivcomplete.py:208
 #: ../gramps/plugins/textreport/indivcomplete.py:539
-#: ../gramps/plugins/webreport/narrativeweb.py:1036
+#: ../gramps/plugins/webreport/narrativeweb.py:1032
 #, python-format
 msgid "%(type)s: %(value)s"
 msgstr "%(type)s: %(value)s"
@@ -28394,7 +28365,7 @@ msgid "%(name)s [%(gid)s]"
 msgstr "%(name)s [%(gid)s]"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:386
-#: ../gramps/plugins/webreport/narrativeweb.py:6017
+#: ../gramps/plugins/webreport/narrativeweb.py:6013
 msgid "Associations"
 msgstr "Asociace"
 
@@ -28915,11 +28886,6 @@ msgstr "E-mailová adresa"
 msgid "Publication Information"
 msgstr "Publikované informace"
 
-#: ../gramps/plugins/textreport/tagreport.py:791
-#: ../gramps/plugins/view/citationlistview.py:98
-msgid "Volume/Page"
-msgstr "Ročník/Stránka"
-
 #: ../gramps/plugins/textreport/tagreport.py:876
 msgid "The tag to use for the report"
 msgstr "Štítek použitý pro zprávu"
@@ -29285,83 +29251,83 @@ msgstr "Hledají se problémové odkazy na archivy"
 msgid "Looking for place reference problems"
 msgstr "Hledají se problémy s odkazy na místa"
 
-#: ../gramps/plugins/tool/check.py:1344
+#: ../gramps/plugins/tool/check.py:1353
 msgid "Looking for citation reference problems"
 msgstr "Hledají se problémové odkazy citací"
 
-#: ../gramps/plugins/tool/check.py:1480
+#: ../gramps/plugins/tool/check.py:1489
 msgid "Looking for source reference problems"
 msgstr "Hledají se problémové odkazy na prameny"
 
-#: ../gramps/plugins/tool/check.py:1521
+#: ../gramps/plugins/tool/check.py:1530
 msgid "Looking for media object reference problems"
 msgstr "Hledají se problémové odkazy na média"
 
-#: ../gramps/plugins/tool/check.py:1664
+#: ../gramps/plugins/tool/check.py:1673
 msgid "Looking for note reference problems"
 msgstr "Hledají se problémové odkazy na poznámky"
 
-#: ../gramps/plugins/tool/check.py:1815
+#: ../gramps/plugins/tool/check.py:1824
 msgid "Updating checksums on media"
 msgstr "Aktualizují se kontrolní součty médií"
 
-#: ../gramps/plugins/tool/check.py:1839
+#: ../gramps/plugins/tool/check.py:1848
 msgid "Looking for tag reference problems"
 msgstr "Hledají se problémové odkazy štítků"
 
-#: ../gramps/plugins/tool/check.py:1928
+#: ../gramps/plugins/tool/check.py:1937
 msgid "Looking for media source reference problems"
 msgstr "Hledají se problémové odkazy na média"
 
-#: ../gramps/plugins/tool/check.py:2095
+#: ../gramps/plugins/tool/check.py:2104
 msgid "No errors were found"
 msgstr "Nebyly nalezeny žádné chyby"
 
-#: ../gramps/plugins/tool/check.py:2096
+#: ../gramps/plugins/tool/check.py:2105
 msgid "The database has passed internal checks"
 msgstr "Všechny vnitřní testy databáze proběhly úspěšně"
 
-#: ../gramps/plugins/tool/check.py:2099
+#: ../gramps/plugins/tool/check.py:2108
 msgid "No errors were found: the database has passed internal checks."
 msgstr ""
 "Všechny vnitřní testy databáze proběhly úspěšně, žádné chyby nebyly namezeny."
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2106
+#: ../gramps/plugins/tool/check.py:2115
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "{quantity} chybný odkaz dítě/rodina byl opraven\n"
 msgstr[1] "{quantity} chybné odkazy dítě-rodina byly opraveny\n"
 msgstr[2] "{quantity} chybných odkazů dítě-rodina bylo opraveno\n"
 
-#: ../gramps/plugins/tool/check.py:2115
+#: ../gramps/plugins/tool/check.py:2124
 msgid "Non existing child"
 msgstr "Neexistující dítě"
 
-#: ../gramps/plugins/tool/check.py:2123
+#: ../gramps/plugins/tool/check.py:2132
 #, python-format
 msgid "%(person)s was removed from the family of %(family)s\n"
 msgstr "osoba %(person)s byla odstraněn z rodiny  %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2130
+#: ../gramps/plugins/tool/check.py:2139
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] "{quantity} chybný odkaz na rodinu/manžela(ku) byl opraven\n"
 msgstr[1] "{quantity} chybné odkazy na rodinu/manžela(ku) byly opraveny\n"
 msgstr[2] "{quantity} chybných odkazů na rodinu/manžela(ku) bylo opraveno\n"
 
-#: ../gramps/plugins/tool/check.py:2139 ../gramps/plugins/tool/check.py:2165
+#: ../gramps/plugins/tool/check.py:2148 ../gramps/plugins/tool/check.py:2174
 msgid "Non existing person"
 msgstr "Neexistující osoba"
 
-#: ../gramps/plugins/tool/check.py:2147 ../gramps/plugins/tool/check.py:2173
+#: ../gramps/plugins/tool/check.py:2156 ../gramps/plugins/tool/check.py:2182
 #, python-format
 msgid "%(person)s was restored to the family of %(family)s\n"
 msgstr "%(person)s byl(a) vrácen(a) do rodiny %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2154
+#: ../gramps/plugins/tool/check.py:2163
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] "Byl nalezen {quantity} duplicitní odkaz na rodinu/manžela(ku)\n"
@@ -29369,24 +29335,24 @@ msgstr[1] "Byly nalezeny {quantity} duplicitní odkazy na rodinu/manžela(ku)\n"
 msgstr[2] ""
 "Bylo nalezeno {quantity} duplicitních odkazů na rodinu/manžela(ku)\n"
 
-#: ../gramps/plugins/tool/check.py:2179
+#: ../gramps/plugins/tool/check.py:2188
 msgid "1 family with no parents or children found, removed.\n"
 msgstr "1 rodina bez rodičů nebo dětí bylo nalezena a odstraněna.\n"
 
-#: ../gramps/plugins/tool/check.py:2184
+#: ../gramps/plugins/tool/check.py:2193
 #, python-format
 msgid "%(quantity)d families with no parents or children, removed.\n"
 msgstr "%(quantity)d rodin bez rodičů a dětí bylo odstraněno.\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2191
+#: ../gramps/plugins/tool/check.py:2200
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
 msgstr[0] "{quantity} poškozený rodinný vztah byl opraven\n"
 msgstr[1] "{quantity} poškozené rodinné vztahy byly opraveny\n"
 msgstr[2] "{quantity} poškozených rodinných vztahů bylo opraveno\n"
 
-#: ../gramps/plugins/tool/check.py:2200
+#: ../gramps/plugins/tool/check.py:2209
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaná událost nebyla nalezena\n"
@@ -29394,7 +29360,7 @@ msgstr[1] "{quantity} odkazované události nebyly nalezeny\n"
 msgstr[2] "{quantity} odkazovaných událostí nebylo nalezeno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2208
+#: ../gramps/plugins/tool/check.py:2217
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaná rodina nebyla nenalezena\n"
@@ -29402,14 +29368,14 @@ msgstr[1] "{quantity} odkazované rodiny nebyly nenalezeny\n"
 msgstr[2] "{quantity} odkazovaných rodin nebylo nenalezeno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2218
+#: ../gramps/plugins/tool/check.py:2227
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] "{quantity} datum byl opraven\n"
 msgstr[1] "{quantity} data byla opravena\n"
 msgstr[2] "{quantity} datumů bylo opraveno\n"
 
-#: ../gramps/plugins/tool/check.py:2227
+#: ../gramps/plugins/tool/check.py:2236
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaný archiv nebyl nalezen\n"
@@ -29417,14 +29383,14 @@ msgstr[1] "{quantity} odkazované archivy nebyly nalezeny\n"
 msgstr[2] "{quantity} odkazovaných archivů nebylo nalezeno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2237 ../gramps/plugins/tool/check.py:2325
+#: ../gramps/plugins/tool/check.py:2246 ../gramps/plugins/tool/check.py:2334
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaný objekt médií nebyl nalezen\n"
 msgstr[1] "{quantity} odkazované objekty médií nebyly nalezeny\n"
 msgstr[2] "{quantity} odkazovaných objektů médií nebylo nalezeno\n"
 
-#: ../gramps/plugins/tool/check.py:2248
+#: ../gramps/plugins/tool/check.py:2257
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} media objects were kept\n"
 msgstr[0] "Odkaz na {quantity} chybějící objekt médií byl ponechán\n"
@@ -29432,7 +29398,7 @@ msgstr[1] "Odkaz na {quantity} chybějící objekty médií byly ponechány\n"
 msgstr[2] "Odkaz na {quantity} chybějících objektů médií byl ponecháno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2256
+#: ../gramps/plugins/tool/check.py:2265
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
 msgstr[0] "{quantity} chybějící objekt médií byl nahrazen\n"
@@ -29440,7 +29406,7 @@ msgstr[1] "{quantity} chybějící objekty médií byl nahrazeny\n"
 msgstr[2] "{quantity} chybějících objekt médií bylo nahrazeno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2264
+#: ../gramps/plugins/tool/check.py:2273
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
 msgstr[0] "{quantity} chybějící objekt médií byl odstraněn\n"
@@ -29448,7 +29414,7 @@ msgstr[1] "{quantity} chybějícíc objekty médií byly odstraněny\n"
 msgstr[2] "{quantity} chybějících objektů médií bylo odstraněno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2272
+#: ../gramps/plugins/tool/check.py:2281
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaná událost nebyla nalezena\n"
@@ -29456,7 +29422,7 @@ msgstr[1] "{quantity} odkazované události nebyly nalezeny\n"
 msgstr[2] "{quantity} odkazovaných událostí nebylo nalezeno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2280
+#: ../gramps/plugins/tool/check.py:2289
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
 msgstr[0] "{quantity} neplatný název události narození byl opraven\n"
@@ -29464,7 +29430,7 @@ msgstr[1] "{quantity} neplatné názvy událostí narození byly opraveny\n"
 msgstr[2] "{quantity} neplatných názvů událostí narození bylo opraveno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2288
+#: ../gramps/plugins/tool/check.py:2297
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
 msgstr[0] "{quantity} neplatný název události úmrtí byl opraven\n"
@@ -29472,7 +29438,7 @@ msgstr[1] "{quantity} neplatné názvy událostí úmrtí byly opraveny\n"
 msgstr[2] "{quantity} neplatných názvůudálostí úmrtí bylo opraveno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2296
+#: ../gramps/plugins/tool/check.py:2305
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
 msgstr[0] "{quantity} odkazované místo nebylo nalezeno\n"
@@ -29480,7 +29446,7 @@ msgstr[1] "{quantity} odkazovaná místa nebyla nenalezena\n"
 msgstr[2] "{quantity} odkazovaných míst nebylo nenalezeno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2304
+#: ../gramps/plugins/tool/check.py:2313
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaná citace nebyla nalezena\n"
@@ -29488,7 +29454,7 @@ msgstr[1] "{quantity} odkazované citace nebyly nenalezeny\n"
 msgstr[2] "{quantity} odkazovaných citací nebylo nenalezeno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2315
+#: ../gramps/plugins/tool/check.py:2324
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaný pramen nebyl nalezen\n"
@@ -29496,7 +29462,7 @@ msgstr[1] "{quantity} odkazované prameny nebyly nenalezeny\n"
 msgstr[2] "{quantity} odkazovaných pramenů nebylo nenalezeno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2335
+#: ../gramps/plugins/tool/check.py:2344
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaný objekt poznámek nebyl nalezen\n"
@@ -29504,7 +29470,7 @@ msgstr[1] "{quantity} odkazované objekty poznámek nebyly nalezeny\n"
 msgstr[2] "{quantity} odkazovaných objektů poznámek nebylo nalezeno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2345 ../gramps/plugins/tool/check.py:2355
+#: ../gramps/plugins/tool/check.py:2354 ../gramps/plugins/tool/check.py:2364
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaný štítek nebyl nalezen\n"
@@ -29512,7 +29478,7 @@ msgstr[1] "{quantity} odkazované štítky nebyly nalezeny\n"
 msgstr[2] "{quantity} odkazovaných štítků nebylo nalezeno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2365
+#: ../gramps/plugins/tool/check.py:2374
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
 msgstr[0] "{quantity} neplatný odkaz formátu jmen byl odstraněn\n"
@@ -29520,14 +29486,14 @@ msgstr[1] "{quantity} neplatné odkazy formátu jmen byly odstraněny\n"
 msgstr[2] "{quantity} neplatných odkazů formátu jmen bylo odstraněno\n"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/tool/check.py:2375
+#: ../gramps/plugins/tool/check.py:2384
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "{quantity} neplatná citace pramene byla opravena\n"
 msgstr[1] "{quantity} neplatné citace pramene byly opraveny\n"
 msgstr[2] "{quantity} neplatných citací pramene bylo opraveno\n"
 
-#: ../gramps/plugins/tool/check.py:2382
+#: ../gramps/plugins/tool/check.py:2391
 #, python-format
 msgid ""
 "%(empty_obj)d empty objects removed:\n"
@@ -29550,11 +29516,11 @@ msgstr ""
 "   %(repo)d objektů archivů\n"
 "   %(note)d objektů poznámek\n"
 
-#: ../gramps/plugins/tool/check.py:2428
+#: ../gramps/plugins/tool/check.py:2437
 msgid "Integrity Check Results"
 msgstr "Výsledky ověření integrity"
 
-#: ../gramps/plugins/tool/check.py:2433
+#: ../gramps/plugins/tool/check.py:2442
 msgid "Check and Repair"
 msgstr "Ověření integrity databáze a oprava"
 
@@ -29786,9 +29752,9 @@ msgid "Gramps Media Manager"
 msgstr "Správce médií Gramps"
 
 #: ../gramps/plugins/tool/mediamanager.py:98
-#: ../gramps/plugins/webreport/narrativeweb.py:1758
-#: ../gramps/plugins/webreport/narrativeweb.py:1864
-#: ../gramps/plugins/webreport/narrativeweb.py:4049
+#: ../gramps/plugins/webreport/narrativeweb.py:1754
+#: ../gramps/plugins/webreport/narrativeweb.py:1860
+#: ../gramps/plugins/webreport/narrativeweb.py:4045
 msgid "Introduction"
 msgstr "Úvod"
 
@@ -30230,6 +30196,7 @@ msgstr ""
 "Statistiky pohlaví pro hádání jmen založeném na pohlaví byly přegenerovány."
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:80
+#: ../gramps/plugins/tool/rebuildrefmap.py:83
 msgid "Rebuilding reference maps..."
 msgstr "Regeneruji mapy odkazů..."
 
@@ -30238,6 +30205,7 @@ msgid "Reference maps rebuilt"
 msgstr "Mapy odkazů byly přegenerovány"
 
 #: ../gramps/plugins/tool/rebuildrefmap.py:94
+#: ../gramps/plugins/tool/rebuildrefmap.py:97
 msgid "All reference maps have been rebuilt."
 msgstr "Všechny mapy odkazů byly přegenerovány."
 
@@ -30341,6 +30309,10 @@ msgstr "Odstraní nepoužívané objekty"
 msgid "Reordering Gramps IDs"
 msgstr "Přeskupují se Gramps ID"
 
+#: ../gramps/plugins/tool/reorderids.py:72
+msgid "Reordering Gramps IDs..."
+msgstr "Přeskupují se Gramps IDs...."
+
 #: ../gramps/plugins/tool/reorderids.py:74
 #: ../gramps/plugins/tool/tools.gpr.py:395
 msgid "Reorder Gramps IDs"
@@ -30381,6 +30353,10 @@ msgstr "Přeskupují se ID archivů"
 #: ../gramps/plugins/tool/reorderids.py:160
 msgid "Reordering Note IDs"
 msgstr "Přeskupují se ID poznámek"
+
+#: ../gramps/plugins/tool/reorderids.py:172
+msgid "Done."
+msgstr "Hotovo."
 
 #: ../gramps/plugins/tool/reorderids.py:234
 msgid "Finding and assigning unused IDs"
@@ -30824,9 +30800,27 @@ msgstr "Starý ale živý"
 
 #: ../gramps/plugins/view/citationlistview.py:101
 #: ../gramps/plugins/view/citationtreeview.py:96
-#: ../gramps/plugins/webreport/narrativeweb.py:2374
+#: ../gramps/plugins/webreport/narrativeweb.py:2370
 msgid "Confidence"
 msgstr "Důvěryhodnost"
+
+#: ../gramps/plugins/view/citationlistview.py:105
+msgid "Source: Title"
+msgstr "Pramen: Titulek"
+
+#: ../gramps/plugins/view/citationlistview.py:106
+msgid "Source: ID"
+msgstr "Pramen: ID"
+
+#: ../gramps/plugins/view/citationlistview.py:107
+#: ../gramps/plugins/view/citationtreeview.py:100
+msgid "Source: Author"
+msgstr "Pramen: Autor"
+
+#: ../gramps/plugins/view/citationlistview.py:108
+#: ../gramps/plugins/view/citationtreeview.py:101
+msgid "Source: Abbreviation"
+msgstr "Pramen: Zkratka"
 
 #: ../gramps/plugins/view/citationlistview.py:109
 #: ../gramps/plugins/view/citationtreeview.py:102
@@ -31431,18 +31425,18 @@ msgid "A view showing the places visited by one family during all their life."
 msgstr "Pohled ukazující  místa navštívená rodinou během života jejích členů."
 
 #: ../gramps/plugins/view/geography.gpr.py:112
-msgid "All displacements for one person and their descendants"
-msgstr "Všechna stěhování konkrétní osoby a jejích potomků"
+msgid "Every residence or move for a person and any descendants"
+msgstr "Všechna bydliště nebo stěhování konkrétní osoby a jejích potomků"
 
 #: ../gramps/plugins/view/geography.gpr.py:113
 msgid ""
 "A view showing all the places visited by all persons during their life.\n"
-"This is for one person and their descendant.\n"
+"This is for a person and any descendant.\n"
 "You can see the dates corresponding to the period."
 msgstr ""
 "Pohled ukazující všechna místa navštívená všemi osobami během jejich "
 "života.\n"
-"Je určen pro jednu osobu a jejího potomka.\n"
+"Je určen pro jednu osobu a kteréhokoli potomka.\n"
 "Umožňuje též vidět  všechna data odpovídající danému období."
 
 #: ../gramps/plugins/view/geography.gpr.py:132
@@ -31744,7 +31738,7 @@ msgstr "Osoba nemůže být svým vlastním rodičem."
 
 #: ../gramps/plugins/view/pedigreeview.py:1548
 #: ../gramps/plugins/view/pedigreeview.py:1554
-#: ../gramps/plugins/webreport/narrativeweb.py:4082
+#: ../gramps/plugins/webreport/narrativeweb.py:4078
 #: ../gramps/plugins/webreport/webcal.py:545
 msgid "Home"
 msgstr "Domů"
@@ -32202,7 +32196,7 @@ msgstr "Alternativní lokace"
 msgid "<absent>"
 msgstr "<chybí>"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1601
+#: ../gramps/plugins/webreport/narrativeweb.py:1597
 #, python-format
 msgid ""
 "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s on "
@@ -32211,7 +32205,7 @@ msgstr ""
 "Vytvořeno v %(gramps_home_html_start)sGramps%(html_end)s %(version)s , "
 "%(date)s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1619
+#: ../gramps/plugins/webreport/narrativeweb.py:1615
 #, python-format
 msgid "%(http_break)sCreated for %(subject_url)s"
 msgstr "%(http_break)sVytvořeno pro %(subject_url)s"
@@ -32220,91 +32214,91 @@ msgstr "%(http_break)sVytvořeno pro %(subject_url)s"
 #. is the style sheet either Basic-Blue or Visually Impaired,
 #. and menu layout is Drop Down?
 #. Basic Blue style sheet with navigation menus
-#: ../gramps/plugins/webreport/narrativeweb.py:1725
+#: ../gramps/plugins/webreport/narrativeweb.py:1721
 #: ../gramps/plugins/webstuff/webstuff.py:64
 msgid "Basic-Blue"
 msgstr "Basic-Blue"
 
 #. Visually Impaired style sheet with its navigation menus
-#: ../gramps/plugins/webreport/narrativeweb.py:1726
+#: ../gramps/plugins/webreport/narrativeweb.py:1722
 #: ../gramps/plugins/webstuff/webstuff.py:96
 msgid "Visually Impaired"
 msgstr "Visually Impaired"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1757
-#: ../gramps/plugins/webreport/narrativeweb.py:1907
+#: ../gramps/plugins/webreport/narrativeweb.py:1753
+#: ../gramps/plugins/webreport/narrativeweb.py:1903
 msgid "Html|Home"
 msgstr "Domů"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1760
-#: ../gramps/plugins/webreport/narrativeweb.py:1804
-#: ../gramps/plugins/webreport/narrativeweb.py:1807
-#: ../gramps/plugins/webreport/narrativeweb.py:1866
-#: ../gramps/plugins/webreport/narrativeweb.py:3916
-#: ../gramps/plugins/webreport/narrativeweb.py:3961
+#: ../gramps/plugins/webreport/narrativeweb.py:1756
+#: ../gramps/plugins/webreport/narrativeweb.py:1800
+#: ../gramps/plugins/webreport/narrativeweb.py:1803
+#: ../gramps/plugins/webreport/narrativeweb.py:1862
+#: ../gramps/plugins/webreport/narrativeweb.py:3912
+#: ../gramps/plugins/webreport/narrativeweb.py:3957
 msgid "Surnames"
 msgstr "Příjmení"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1767
-#: ../gramps/plugins/webreport/narrativeweb.py:1883
-#: ../gramps/plugins/webreport/narrativeweb.py:4813
+#: ../gramps/plugins/webreport/narrativeweb.py:1763
+#: ../gramps/plugins/webreport/narrativeweb.py:1879
+#: ../gramps/plugins/webreport/narrativeweb.py:4809
 msgid "Thumbnails"
 msgstr "Náhledy"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:1768
-#: ../gramps/plugins/webreport/narrativeweb.py:1889
-#: ../gramps/plugins/webreport/narrativeweb.py:4990
-#: ../gramps/plugins/webreport/narrativeweb.py:8247
+#: ../gramps/plugins/webreport/narrativeweb.py:1764
+#: ../gramps/plugins/webreport/narrativeweb.py:1885
+#: ../gramps/plugins/webreport/narrativeweb.py:4986
+#: ../gramps/plugins/webreport/narrativeweb.py:8243
 msgid "Download"
 msgstr "Stáhnout"
 
 #. Add xml, doctype, meta and stylesheets
-#: ../gramps/plugins/webreport/narrativeweb.py:1769
-#: ../gramps/plugins/webreport/narrativeweb.py:1827
-#: ../gramps/plugins/webreport/narrativeweb.py:1890
-#: ../gramps/plugins/webreport/narrativeweb.py:6733
-#: ../gramps/plugins/webreport/narrativeweb.py:6827
+#: ../gramps/plugins/webreport/narrativeweb.py:1765
+#: ../gramps/plugins/webreport/narrativeweb.py:1823
+#: ../gramps/plugins/webreport/narrativeweb.py:1886
+#: ../gramps/plugins/webreport/narrativeweb.py:6729
+#: ../gramps/plugins/webreport/narrativeweb.py:6823
 msgid "Address Book"
 msgstr "Adresář"
 
 #. add contact column
-#: ../gramps/plugins/webreport/narrativeweb.py:1770
-#: ../gramps/plugins/webreport/narrativeweb.py:1896
-#: ../gramps/plugins/webreport/narrativeweb.py:1926
-#: ../gramps/plugins/webreport/narrativeweb.py:5094
+#: ../gramps/plugins/webreport/narrativeweb.py:1766
+#: ../gramps/plugins/webreport/narrativeweb.py:1892
+#: ../gramps/plugins/webreport/narrativeweb.py:1922
+#: ../gramps/plugins/webreport/narrativeweb.py:5090
 msgid "Contact"
 msgstr "Kontakt"
 
 #. add section title
-#: ../gramps/plugins/webreport/narrativeweb.py:2233
+#: ../gramps/plugins/webreport/narrativeweb.py:2229
 msgid "Narrative"
 msgstr "Vyprávění"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2248
-#: ../gramps/plugins/webreport/narrativeweb.py:6764
+#: ../gramps/plugins/webreport/narrativeweb.py:2244
+#: ../gramps/plugins/webreport/narrativeweb.py:6760
 msgid "Web Links"
 msgstr "Webové odkazy"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2295
+#: ../gramps/plugins/webreport/narrativeweb.py:2291
 msgid " [Click to Go]"
 msgstr "[Kliknout pro pokračování]"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2318
+#: ../gramps/plugins/webreport/narrativeweb.py:2314
 msgid "Latter-Day Saints/ LDS Ordinance"
 msgstr "Církev Ježíše Krista Svatých posledních dnů/Obřad SPD"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2345
+#: ../gramps/plugins/webreport/narrativeweb.py:2341
 msgid "Source References"
 msgstr "Odkaz na pramen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:2450
-#: ../gramps/plugins/webreport/narrativeweb.py:5580
-#: ../gramps/plugins/webreport/narrativeweb.py:5841
+#: ../gramps/plugins/webreport/narrativeweb.py:2446
+#: ../gramps/plugins/webreport/narrativeweb.py:5576
+#: ../gramps/plugins/webreport/narrativeweb.py:5837
 msgid "Family Map"
 msgstr "Rodinná mapa"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/webreport/narrativeweb.py:2886
+#: ../gramps/plugins/webreport/narrativeweb.py:2882
 #, python-format
 msgid ""
 "This page contains an index of all the individuals in the database with the "
@@ -32315,34 +32309,34 @@ msgstr ""
 "Kliknutím na jméno osoby se zobrazí detailní stránka této osoby."
 
 #. Name Column
-#: ../gramps/plugins/webreport/narrativeweb.py:2903
-#: ../gramps/plugins/webreport/narrativeweb.py:5241
+#: ../gramps/plugins/webreport/narrativeweb.py:2899
+#: ../gramps/plugins/webreport/narrativeweb.py:5237
 msgid "Given Name"
 msgstr "Křestní jméno"
 
 #. set progress bar pass for Repositories
-#: ../gramps/plugins/webreport/narrativeweb.py:3047
-#: ../gramps/plugins/webreport/narrativeweb.py:3326
-#: ../gramps/plugins/webreport/narrativeweb.py:3611
-#: ../gramps/plugins/webreport/narrativeweb.py:4155
-#: ../gramps/plugins/webreport/narrativeweb.py:4370
-#: ../gramps/plugins/webreport/narrativeweb.py:5184
-#: ../gramps/plugins/webreport/narrativeweb.py:6572
-#: ../gramps/plugins/webreport/narrativeweb.py:7189
-#: ../gramps/plugins/webreport/narrativeweb.py:7195
-#: ../gramps/plugins/webreport/narrativeweb.py:7615
-#: ../gramps/plugins/webreport/narrativeweb.py:7658
-#: ../gramps/plugins/webreport/narrativeweb.py:7675
-#: ../gramps/plugins/webreport/narrativeweb.py:7716
+#: ../gramps/plugins/webreport/narrativeweb.py:3043
+#: ../gramps/plugins/webreport/narrativeweb.py:3322
+#: ../gramps/plugins/webreport/narrativeweb.py:3607
+#: ../gramps/plugins/webreport/narrativeweb.py:4151
+#: ../gramps/plugins/webreport/narrativeweb.py:4366
+#: ../gramps/plugins/webreport/narrativeweb.py:5180
+#: ../gramps/plugins/webreport/narrativeweb.py:6568
+#: ../gramps/plugins/webreport/narrativeweb.py:7185
+#: ../gramps/plugins/webreport/narrativeweb.py:7191
+#: ../gramps/plugins/webreport/narrativeweb.py:7611
+#: ../gramps/plugins/webreport/narrativeweb.py:7654
+#: ../gramps/plugins/webreport/narrativeweb.py:7671
+#: ../gramps/plugins/webreport/narrativeweb.py:7712
 msgid "Narrated Web Site Report"
 msgstr "Sestava Vyprávěné WWW stránky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3048
+#: ../gramps/plugins/webreport/narrativeweb.py:3044
 msgid "Creating family pages..."
 msgstr "Vytvářejí se stránky rodin..."
 
 #. Families list page message
-#: ../gramps/plugins/webreport/narrativeweb.py:3069
+#: ../gramps/plugins/webreport/narrativeweb.py:3065
 msgid ""
 "This page contains an index of all the families/ relationships in the "
 "database, sorted by their family name/ surname. Clicking on a person&#8217;s "
@@ -32351,23 +32345,23 @@ msgstr ""
 "Tato stránka obsahuje seznam všech rodin/vztahů v databázi, řazený podle "
 "jména/příjmení. Kliknutí na jméno osoby vás přenese na stránku rodiny/vztahů."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3113
-#: ../gramps/plugins/webreport/narrativeweb.py:3376
-#: ../gramps/plugins/webreport/narrativeweb.py:3663
-#: ../gramps/plugins/webreport/narrativeweb.py:3955
+#: ../gramps/plugins/webreport/narrativeweb.py:3109
+#: ../gramps/plugins/webreport/narrativeweb.py:3372
+#: ../gramps/plugins/webreport/narrativeweb.py:3659
+#: ../gramps/plugins/webreport/narrativeweb.py:3951
 msgid "Letter"
 msgstr "Písmeno"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3152
+#: ../gramps/plugins/webreport/narrativeweb.py:3148
 msgid "Families beginning with letter "
 msgstr "Rodiny začínající písmenem "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3327
+#: ../gramps/plugins/webreport/narrativeweb.py:3323
 msgid "Creating place pages"
 msgstr "Vytvářejí se stránky míst"
 
 #. place list page message
-#: ../gramps/plugins/webreport/narrativeweb.py:3350
+#: ../gramps/plugins/webreport/narrativeweb.py:3346
 msgid ""
 "This page contains an index of all the places in the database, sorted by "
 "their title. Clicking on a place&#8217;s title will take you to that "
@@ -32376,25 +32370,25 @@ msgstr ""
 "Tato stránka obsahuje seznam všech míst v databázi, řazený podle názvu. "
 "Kliknutím na název se zobrazí stránka tohoto místa."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3377
+#: ../gramps/plugins/webreport/narrativeweb.py:3373
 msgid "Place Name | Name"
 msgstr "Název"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3416
+#: ../gramps/plugins/webreport/narrativeweb.py:3412
 #, python-format
 msgid "Places beginning with letter %s"
 msgstr "Místa začínající písmenem %s"
 
 #. section title
-#: ../gramps/plugins/webreport/narrativeweb.py:3528
+#: ../gramps/plugins/webreport/narrativeweb.py:3524
 msgid "Place Map"
 msgstr "Mapa míst"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3612
+#: ../gramps/plugins/webreport/narrativeweb.py:3608
 msgid "Creating event pages"
 msgstr "Vytvářejí se stránky událostí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3638
+#: ../gramps/plugins/webreport/narrativeweb.py:3634
 msgid ""
 "This page contains an index of all the events in the database, sorted by "
 "their type and date (if one is present). Clicking on an event&#8217;s Gramps "
@@ -32404,17 +32398,17 @@ msgstr ""
 "data (pokud je k dispozici). Kliknutím na Gramps ID události  se zobrazí "
 "stránka této události."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3720
+#: ../gramps/plugins/webreport/narrativeweb.py:3716
 #, python-format
 msgid "Event types beginning with letter %s"
 msgstr "Události začínající písmenem %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3919
+#: ../gramps/plugins/webreport/narrativeweb.py:3915
 msgid "Surnames by person count"
 msgstr "Příjmení dle počtu osob"
 
 #. page message
-#: ../gramps/plugins/webreport/narrativeweb.py:3926
+#: ../gramps/plugins/webreport/narrativeweb.py:3922
 msgid ""
 "This page contains an index of all the surnames in the database. Selecting a "
 "link will lead to a list of individuals in the database with this same "
@@ -32423,20 +32417,20 @@ msgstr ""
 "Tato stránka obsahuje seznam všech příjmen v databázi. Kliknutím na odkaz se "
 "zobrazí seznam osob s tímto příjmením."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:3968
+#: ../gramps/plugins/webreport/narrativeweb.py:3964
 msgid "Number of People"
 msgstr "Počet osob"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4013
+#: ../gramps/plugins/webreport/narrativeweb.py:4009
 #, python-format
 msgid "Surnames beginning with letter %s"
 msgstr "Příjmení začínající písmenem %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4156
+#: ../gramps/plugins/webreport/narrativeweb.py:4152
 msgid "Creating source pages"
 msgstr "Vytvářejí se stránky pramenů"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4196
+#: ../gramps/plugins/webreport/narrativeweb.py:4192
 msgid ""
 "This page contains an index of all the sources in the database, sorted by "
 "their title. Clicking on a source&#8217;s title will take you to that "
@@ -32445,19 +32439,19 @@ msgstr ""
 "Tato stránka obsahuje seznam všech pramenů v databázi, řazený podle názvu. "
 "Kliknutím na název se otevře detailní stránka pramenu."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4213
+#: ../gramps/plugins/webreport/narrativeweb.py:4209
 msgid "Source Name|Name"
 msgstr "Název pramene"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4296
+#: ../gramps/plugins/webreport/narrativeweb.py:4292
 msgid "Publication information"
 msgstr "Informace o publikaci"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4371
+#: ../gramps/plugins/webreport/narrativeweb.py:4367
 msgid "Creating media pages"
 msgstr "Vytvářejí se stránky médií"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4408
+#: ../gramps/plugins/webreport/narrativeweb.py:4404
 msgid ""
 "This page contains an index of all the media objects in the database, sorted "
 "by their title. Clicking on the title will take you to that media "
@@ -32469,19 +32463,19 @@ msgstr ""
 "zobrazena informace o rozměrech, klikněte na obrázek a ten zobrazí se v plné "
 "velikosti. "
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4432
+#: ../gramps/plugins/webreport/narrativeweb.py:4428
 msgid "Media | Name"
 msgstr "Název"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4434
+#: ../gramps/plugins/webreport/narrativeweb.py:4430
 msgid "Mime Type"
 msgstr "Mime typ"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4543
+#: ../gramps/plugins/webreport/narrativeweb.py:4539
 msgid "Previous"
 msgstr "Předchozí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4544
+#: ../gramps/plugins/webreport/narrativeweb.py:4540
 #, python-format
 msgid ""
 "%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s"
@@ -32490,24 +32484,24 @@ msgstr ""
 "%(strong1_start)s%(page_number)d%(strong_end)s z %(strong2_start)s"
 "%(total_pages)d%(strong_end)s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4555
+#: ../gramps/plugins/webreport/narrativeweb.py:4551
 msgid "Next"
 msgstr "Další"
 
 #. missing media error message
-#: ../gramps/plugins/webreport/narrativeweb.py:4558
+#: ../gramps/plugins/webreport/narrativeweb.py:4554
 msgid "The file has been moved or deleted."
 msgstr "Soubor byl přesunut nebo smazán."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4698
+#: ../gramps/plugins/webreport/narrativeweb.py:4694
 msgid "File Type"
 msgstr "Typ souboru"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4781
+#: ../gramps/plugins/webreport/narrativeweb.py:4777
 msgid "Missing media object:"
 msgstr "Chybějící mediální objekt:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4818
+#: ../gramps/plugins/webreport/narrativeweb.py:4814
 msgid ""
 "This page displays a indexed list of all the media objects in this "
 "database.  It is sorted by media title.  There is an index of all the media "
@@ -32517,11 +32511,11 @@ msgstr ""
 "Tato stránka obsahuje seznam všech objektů médií v databázi. Je řazený podle "
 "titulu média. Kliknutí na náhled vás přenese na stránku s obrázkem."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4837
+#: ../gramps/plugins/webreport/narrativeweb.py:4833
 msgid "Thumbnail Preview"
 msgstr "Pohled náhledů"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:4996
+#: ../gramps/plugins/webreport/narrativeweb.py:4992
 msgid ""
 "This page is for the user/ creator of this Family Tree/ Narrative website to "
 "share a couple of files with you regarding their family.  If there are any "
@@ -32535,20 +32529,20 @@ msgstr ""
 "soubory ke stažení i soubory samotné jsou chráněny stejnými autorskými právy "
 "jako zbytek těchto webových stránek."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5021
+#: ../gramps/plugins/webreport/narrativeweb.py:5017
 msgid "File Name"
 msgstr "Název souboru"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5023
+#: ../gramps/plugins/webreport/narrativeweb.py:5019
 msgid "Last Modified"
 msgstr "Poslední změna"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5185
+#: ../gramps/plugins/webreport/narrativeweb.py:5181
 msgid "Creating individual pages"
 msgstr "Vytvářejí se individuální stránky"
 
 #. Individual List page message
-#: ../gramps/plugins/webreport/narrativeweb.py:5217
+#: ../gramps/plugins/webreport/narrativeweb.py:5213
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their last names. Selecting the person&#8217;s name will take you to that "
@@ -32557,19 +32551,19 @@ msgstr ""
 "Tato stránka obsahuje seznam všech osob v databázi tříděný podle příjmení. "
 "Kliknutím na jméno osoby se zobrazí detailní stránka této osoby."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5286
+#: ../gramps/plugins/webreport/narrativeweb.py:5282
 #, python-format
 msgid "Surnames %(surname)s beginning with letter %(letter)s"
 msgstr "Příjmení %(surname)s začínající písmenem %(letter)s"
 
 #. add page title
-#: ../gramps/plugins/webreport/narrativeweb.py:5705
+#: ../gramps/plugins/webreport/narrativeweb.py:5701
 #, python-format
 msgid "Tracking %s"
 msgstr "Sledování %s"
 
 #. page description
-#: ../gramps/plugins/webreport/narrativeweb.py:5709
+#: ../gramps/plugins/webreport/narrativeweb.py:5705
 msgid ""
 "This map page represents that person and any descendants with all of their "
 "event/ places. If you place your mouse over the marker it will display the "
@@ -32582,23 +32576,23 @@ msgstr ""
 "Značky a seznam odkazů jsou chronologicky setříděny. Kliknutí na název místa "
 "v sekci Odkazy vás přenese na stránku místa."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5779
+#: ../gramps/plugins/webreport/narrativeweb.py:5775
 msgid "Drop Markers"
 msgstr "Odstranit značky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:5799
+#: ../gramps/plugins/webreport/narrativeweb.py:5795
 msgid "Place Title"
 msgstr "Název místa"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6207
+#: ../gramps/plugins/webreport/narrativeweb.py:6203
 msgid "Call Name"
 msgstr "Běžné jméno"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6223
+#: ../gramps/plugins/webreport/narrativeweb.py:6219
 msgid "Nick Name"
 msgstr "Přezdívka"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6261
+#: ../gramps/plugins/webreport/narrativeweb.py:6257
 msgid "Age at Death"
 msgstr "Age at Death"
 
@@ -32606,31 +32600,31 @@ msgstr "Age at Death"
 #. actually be StepFather-in-law), but it is too expensive to
 #. calculate out the correct relationship using the Relationship
 #. Calculator
-#: ../gramps/plugins/webreport/narrativeweb.py:6352
+#: ../gramps/plugins/webreport/narrativeweb.py:6348
 msgid "Stepfather"
 msgstr "Nevlastní otec"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6362
+#: ../gramps/plugins/webreport/narrativeweb.py:6358
 msgid "Stepmother"
 msgstr "Nevlastní matka"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6386
+#: ../gramps/plugins/webreport/narrativeweb.py:6382
 msgid "Not siblings"
 msgstr "Nejsou sourozenci"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6447
+#: ../gramps/plugins/webreport/narrativeweb.py:6443
 msgid "Relation to main person"
 msgstr "Vztah k výchozí osobě"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6449
+#: ../gramps/plugins/webreport/narrativeweb.py:6445
 msgid "Relation within this family (if not by birth)"
 msgstr "Vztah k této rodině (pokud není pokrevní)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6573
+#: ../gramps/plugins/webreport/narrativeweb.py:6569
 msgid "Creating repository pages"
 msgstr "Vytvářejí se stránky archivů"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6605
+#: ../gramps/plugins/webreport/narrativeweb.py:6601
 msgid ""
 "This page contains an index of all the repositories in the database, sorted "
 "by their title. Clicking on a repositories&#8217;s title will take you to "
@@ -32639,12 +32633,12 @@ msgstr ""
 "Tato stránka obsahuje seznam všech archivů v databázi, řazený podle názvu. "
 "Kliknutím na název archivu se zobrazí stránka tohoto archivu."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6622
+#: ../gramps/plugins/webreport/narrativeweb.py:6618
 msgid "Repository |Name"
 msgstr "Název"
 
 #. Address Book Page message
-#: ../gramps/plugins/webreport/narrativeweb.py:6740
+#: ../gramps/plugins/webreport/narrativeweb.py:6736
 msgid ""
 "This page contains an index of all the individuals in the database, sorted "
 "by their surname, with one of the following: Address, Residence, or Web "
@@ -32655,237 +32649,237 @@ msgstr ""
 "jedním z: Adresa, Bydliště nebo webové odkazy. Kliknutím na jméno osoby se "
 "zobrazí stránka Adresář této osoby."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6761
+#: ../gramps/plugins/webreport/narrativeweb.py:6757
 msgid "Full Name"
 msgstr "Běžné jméno"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:6992
+#: ../gramps/plugins/webreport/narrativeweb.py:6988
 #, python-format
 msgid "Neither %(current)s nor %(parent)s are directories"
 msgstr "%(current)s ani %(parent)s nejsou adresářem"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7001
-#: ../gramps/plugins/webreport/narrativeweb.py:7006
-#: ../gramps/plugins/webreport/narrativeweb.py:7019
-#: ../gramps/plugins/webreport/narrativeweb.py:7024
+#: ../gramps/plugins/webreport/narrativeweb.py:6997
+#: ../gramps/plugins/webreport/narrativeweb.py:7002
+#: ../gramps/plugins/webreport/narrativeweb.py:7015
+#: ../gramps/plugins/webreport/narrativeweb.py:7020
 #, python-format
 msgid "Could not create the directory: %s"
 msgstr "Nemohu vytvořit adresář: %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7030
+#: ../gramps/plugins/webreport/narrativeweb.py:7026
 msgid "Invalid file name"
 msgstr "Neplatný název souboru"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7031
+#: ../gramps/plugins/webreport/narrativeweb.py:7027
 msgid "The archive file must be a file, not a directory"
 msgstr "Archiv musí být soubor, ne adresář"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7153
+#: ../gramps/plugins/webreport/narrativeweb.py:7149
 #, python-format
 msgid "ID=%(grampsid)s, path=%(dir)s"
 msgstr "ID=%(grampsid)s, cesta=%(dir)s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7158
+#: ../gramps/plugins/webreport/narrativeweb.py:7154
 msgid "Missing media objects:"
 msgstr "Chybějící objekty médií:"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7190
+#: ../gramps/plugins/webreport/narrativeweb.py:7186
 msgid "Applying Person Filter..."
 msgstr "Aplikuje se filtr osob..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7196
+#: ../gramps/plugins/webreport/narrativeweb.py:7192
 msgid "Constructing list of other objects..."
 msgstr "Vytváří se seznam ostatních objektů..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7403
+#: ../gramps/plugins/webreport/narrativeweb.py:7399
 #, python-format
 msgid "Family of %(husband)s and %(spouse)s"
 msgstr "Rodina %(husband)s a %(spouse)s"
 
 #. Only the name of the husband is known
 #. Only the name of the wife is known
+#: ../gramps/plugins/webreport/narrativeweb.py:7404
 #: ../gramps/plugins/webreport/narrativeweb.py:7408
-#: ../gramps/plugins/webreport/narrativeweb.py:7412
 #, python-format
 msgid "Family of %s"
 msgstr "Rodina osoby %s"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7616
+#: ../gramps/plugins/webreport/narrativeweb.py:7612
 msgid "Creating GENDEX file"
 msgstr "Vytváří se GENDEX soubor"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7659
+#: ../gramps/plugins/webreport/narrativeweb.py:7655
 msgid "Creating surname pages"
 msgstr "Vytvářejí se stránky příjmení"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7676
+#: ../gramps/plugins/webreport/narrativeweb.py:7672
 msgid "Creating thumbnail preview page..."
 msgstr "Vytvářejí se stránky náhledů..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:7717
+#: ../gramps/plugins/webreport/narrativeweb.py:7713
 msgid "Creating address book pages ..."
 msgstr "Vytvářejí se stránky adresáře ..."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8017
+#: ../gramps/plugins/webreport/narrativeweb.py:8013
 msgid "Store web pages in .tar.gz archive"
 msgstr "Uložit webové stránky jako .tar.gz archiv"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8019
+#: ../gramps/plugins/webreport/narrativeweb.py:8015
 msgid "Whether to store the web pages in an archive file"
 msgstr "Zda uložit webové stránky v souboru archivu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8026
+#: ../gramps/plugins/webreport/narrativeweb.py:8022
 #: ../gramps/plugins/webreport/webcal.py:1334
 msgid "Destination"
 msgstr "Cíl"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8029
+#: ../gramps/plugins/webreport/narrativeweb.py:8025
 #: ../gramps/plugins/webreport/webcal.py:1337
 msgid "The destination directory for the web files"
 msgstr "Cílový adresář pro soubory webových stránek"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8035
+#: ../gramps/plugins/webreport/narrativeweb.py:8031
 msgid "My Family Tree"
 msgstr "Můj rodokmen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8035
+#: ../gramps/plugins/webreport/narrativeweb.py:8031
 msgid "Web site title"
 msgstr "Hlavička nadpisu na WWW"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8036
+#: ../gramps/plugins/webreport/narrativeweb.py:8032
 msgid "The title of the web site"
 msgstr "Název webové stránky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8041
+#: ../gramps/plugins/webreport/narrativeweb.py:8037
 msgid "Select filter to restrict people that appear on web site"
 msgstr ""
 "Vyberte filtr pro omezení osob, které se objeví v na webových stránkách"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8068
+#: ../gramps/plugins/webreport/narrativeweb.py:8064
 #: ../gramps/plugins/webreport/webcal.py:1374
 msgid "File extension"
 msgstr "přípona souboru"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8071
+#: ../gramps/plugins/webreport/narrativeweb.py:8067
 #: ../gramps/plugins/webreport/webcal.py:1377
 msgid "The extension to be used for the web files"
 msgstr "Koncovka použitá pro soubory webu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8074
+#: ../gramps/plugins/webreport/narrativeweb.py:8070
 #: ../gramps/plugins/webreport/webcal.py:1380
 msgid "Copyright"
 msgstr "Copyright"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8077
+#: ../gramps/plugins/webreport/narrativeweb.py:8073
 #: ../gramps/plugins/webreport/webcal.py:1383
 msgid "The copyright to be used for the web files"
 msgstr "Autorská práva použitá pro webové stránky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8080
+#: ../gramps/plugins/webreport/narrativeweb.py:8076
 #: ../gramps/plugins/webreport/webcal.py:1389
 msgid "StyleSheet"
 msgstr "Katalog stylů"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8085
+#: ../gramps/plugins/webreport/narrativeweb.py:8081
 #: ../gramps/plugins/webreport/webcal.py:1392
 msgid "The stylesheet to be used for the web pages"
 msgstr "Katalog stylů, který bude použit pro webové stránky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8090
+#: ../gramps/plugins/webreport/narrativeweb.py:8086
 msgid "Horizontal -- Default"
 msgstr "Horizontální -- výchozí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8091
+#: ../gramps/plugins/webreport/narrativeweb.py:8087
 msgid "Vertical   -- Left Side"
 msgstr "Vertikální   -- levá strana"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8092
+#: ../gramps/plugins/webreport/narrativeweb.py:8088
 msgid "Fade       -- WebKit Browsers Only"
 msgstr "Pohasínající  -- pouze prohlížeče založené na WebKit"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8093
-#: ../gramps/plugins/webreport/narrativeweb.py:8106
+#: ../gramps/plugins/webreport/narrativeweb.py:8089
+#: ../gramps/plugins/webreport/narrativeweb.py:8102
 msgid "Drop-Down  -- WebKit Browsers Only"
 msgstr "Vyskakovací -- pouze prohlížeče založené na WebKit"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8095
+#: ../gramps/plugins/webreport/narrativeweb.py:8091
 msgid "Navigation Menu Layout"
 msgstr "Rozložení navigační nabídky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8098
+#: ../gramps/plugins/webreport/narrativeweb.py:8094
 msgid "Choose which layout for the Navigation Menus."
 msgstr "Vyberte rozložení pro Navigační nabídky."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8105
+#: ../gramps/plugins/webreport/narrativeweb.py:8101
 msgid "Normal Outline Style"
 msgstr "Styl normální osnovy"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8109
+#: ../gramps/plugins/webreport/narrativeweb.py:8105
 msgid "Citation Referents Layout"
 msgstr "Rozložení náhražek citací"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8113
+#: ../gramps/plugins/webreport/narrativeweb.py:8109
 msgid ""
 "Determine the default layout for the Source Page's Citation Referents section"
 msgstr "Určete výchozí rozložení části Odkazovatelé citací stránky pramenů"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8117
+#: ../gramps/plugins/webreport/narrativeweb.py:8113
 msgid "Include ancestor's tree"
 msgstr "Zahrnout strom předků"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8118
+#: ../gramps/plugins/webreport/narrativeweb.py:8114
 msgid "Whether to include an ancestor graph on each individual page"
 msgstr "Zda na každé stránce zahrnout graf předků"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8123
+#: ../gramps/plugins/webreport/narrativeweb.py:8119
 msgid "Graph generations"
 msgstr "Generační graf"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8124
+#: ../gramps/plugins/webreport/narrativeweb.py:8120
 msgid "The number of generations to include in the ancestor graph"
 msgstr "Počet generací zahrnutý v sestavě o předcích"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8134
+#: ../gramps/plugins/webreport/narrativeweb.py:8130
 msgid "Page Generation"
 msgstr "Vytváření stránky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8137
+#: ../gramps/plugins/webreport/narrativeweb.py:8133
 msgid "Home page note"
 msgstr "Poznámka domovské stránky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8138
+#: ../gramps/plugins/webreport/narrativeweb.py:8134
 msgid "A note to be used on the home page"
 msgstr "Záznam použitý na domovské stránce"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8141
+#: ../gramps/plugins/webreport/narrativeweb.py:8137
 msgid "Home page image"
 msgstr "Obrázek domovské stránky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8142
+#: ../gramps/plugins/webreport/narrativeweb.py:8138
 msgid "An image to be used on the home page"
 msgstr "Obrázek, který bude použit na domovské stránce"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8145
+#: ../gramps/plugins/webreport/narrativeweb.py:8141
 msgid "Introduction note"
 msgstr "Úvodní text"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8146
+#: ../gramps/plugins/webreport/narrativeweb.py:8142
 msgid "A note to be used as the introduction"
 msgstr "Záznam použitý jako úvod"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8149
+#: ../gramps/plugins/webreport/narrativeweb.py:8145
 msgid "Introduction image"
 msgstr "Úvodní obrázek"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8150
+#: ../gramps/plugins/webreport/narrativeweb.py:8146
 msgid "An image to be used as the introduction"
 msgstr "Obrázek, který bude použít jako úvod"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8153
+#: ../gramps/plugins/webreport/narrativeweb.py:8149
 msgid "Publisher contact note"
 msgstr "Záznam kontaktu na vydavatele"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8154
+#: ../gramps/plugins/webreport/narrativeweb.py:8150
 msgid ""
 "A note to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -32895,11 +32889,11 @@ msgstr ""
 "Pokud není dána žádná informace o vydavateli,\n"
 "nebude vytvořena stránka s kontaktem"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8160
+#: ../gramps/plugins/webreport/narrativeweb.py:8156
 msgid "Publisher contact image"
 msgstr "Obrázek kontaktu na vydavatele"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8161
+#: ../gramps/plugins/webreport/narrativeweb.py:8157
 msgid ""
 "An image to be used as the publisher contact.\n"
 "If no publisher information is given,\n"
@@ -32909,35 +32903,35 @@ msgstr ""
 "Pokud není dána žádná informace o vydavateli,\n"
 "nebude vytvořena stránka s kontaktem"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8167
+#: ../gramps/plugins/webreport/narrativeweb.py:8163
 msgid "HTML user header"
 msgstr "Uživatelská HTML hlavička"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8168
+#: ../gramps/plugins/webreport/narrativeweb.py:8164
 msgid "A note to be used as the page header"
 msgstr "Záznam použitý jako hlavička stránky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8171
+#: ../gramps/plugins/webreport/narrativeweb.py:8167
 msgid "HTML user footer"
 msgstr "Uživatelská HTML patička"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8172
+#: ../gramps/plugins/webreport/narrativeweb.py:8168
 msgid "A note to be used as the page footer"
 msgstr "Záznam použitý jako patička stránky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8175
+#: ../gramps/plugins/webreport/narrativeweb.py:8171
 msgid "Include images and media objects"
 msgstr "Zahrnout obrázky a mediální objekty"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8177
+#: ../gramps/plugins/webreport/narrativeweb.py:8173
 msgid "Whether to include a gallery of media objects"
 msgstr "Zda zahrnout galerii mediálních objektů"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8183
+#: ../gramps/plugins/webreport/narrativeweb.py:8179
 msgid "Create and only use thumbnail- sized images"
 msgstr "Vytvořit a používat obrázky pouze náhledové velikosti"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8185
+#: ../gramps/plugins/webreport/narrativeweb.py:8181
 msgid ""
 "This option allows you to create only thumbnail images instead of the full-"
 "sized images on the Media Page. This will allow you to have a much smaller "
@@ -32947,11 +32941,11 @@ msgstr ""
 "plné velikosti. To vám umožní mít daleko menší výsledný balíček pro nahrání "
 "na webový hosting."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8192
+#: ../gramps/plugins/webreport/narrativeweb.py:8188
 msgid "Max width of initial image"
 msgstr "Maximální šířka výchozího obrázku"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8194
+#: ../gramps/plugins/webreport/narrativeweb.py:8190
 msgid ""
 "This allows you to set the maximum width of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -32959,11 +32953,11 @@ msgstr ""
 "Umožní vám nastavit maximální šířku obrázku zobrazeného na stránce média. "
 "Nastavení na 0 ruší limit."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8198
+#: ../gramps/plugins/webreport/narrativeweb.py:8194
 msgid "Max height of initial image"
 msgstr "Maximální výška výchozího obrázku"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8200
+#: ../gramps/plugins/webreport/narrativeweb.py:8196
 msgid ""
 "This allows you to set the maximum height of the image shown on the media "
 "page. Set to 0 for no limit."
@@ -32971,188 +32965,188 @@ msgstr ""
 "Umožní vám nastavit maximální výšku obrázku zobrazeného na stránce média. "
 "Nastavení na 0 ruší limit."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8206
+#: ../gramps/plugins/webreport/narrativeweb.py:8202
 msgid "Suppress Gramps ID"
 msgstr "Potlačit Gramps ID"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8207
+#: ../gramps/plugins/webreport/narrativeweb.py:8203
 msgid "Whether to include the Gramps ID of objects"
 msgstr "Zda zahrnout Gramps ID objektů"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8219
+#: ../gramps/plugins/webreport/narrativeweb.py:8215
 msgid "Living People"
 msgstr "Žijící osoby"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8224
+#: ../gramps/plugins/webreport/narrativeweb.py:8220
 msgid "Include Last Name Only"
 msgstr "Zahrnout pouze příjmení"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8226
+#: ../gramps/plugins/webreport/narrativeweb.py:8222
 msgid "Include Full Name Only"
 msgstr "Zahrnout pouze celá jména"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8229
+#: ../gramps/plugins/webreport/narrativeweb.py:8225
 msgid "How to handle living people"
 msgstr "Jak jednat s živými osobami"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8233
+#: ../gramps/plugins/webreport/narrativeweb.py:8229
 msgid "Years from death to consider living"
 msgstr "Počet let od úmrtí v kterých jsou osoby považovány za živé"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8235
+#: ../gramps/plugins/webreport/narrativeweb.py:8231
 msgid ""
 "This allows you to restrict information on people who have not been dead for "
 "very long"
 msgstr "Umožní omezit informace na osoby, které nezemřely dávno"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8250
+#: ../gramps/plugins/webreport/narrativeweb.py:8246
 msgid "Include download page"
 msgstr "Zahrnout možnost stažení"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8251
+#: ../gramps/plugins/webreport/narrativeweb.py:8247
 msgid "Whether to include a database download option"
 msgstr "Zda zahrnout možnost stažení databáze"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8255
-#: ../gramps/plugins/webreport/narrativeweb.py:8265
+#: ../gramps/plugins/webreport/narrativeweb.py:8251
+#: ../gramps/plugins/webreport/narrativeweb.py:8261
 msgid "Download Filename"
 msgstr "Název staženého souboru"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8257
-#: ../gramps/plugins/webreport/narrativeweb.py:8267
+#: ../gramps/plugins/webreport/narrativeweb.py:8253
+#: ../gramps/plugins/webreport/narrativeweb.py:8263
 msgid "File to be used for downloading of database"
 msgstr "Soubor, který bude použit pro stažení databáze"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8260
-#: ../gramps/plugins/webreport/narrativeweb.py:8270
+#: ../gramps/plugins/webreport/narrativeweb.py:8256
+#: ../gramps/plugins/webreport/narrativeweb.py:8266
 msgid "Description for download"
 msgstr "Popis tohoto stažení"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8261
+#: ../gramps/plugins/webreport/narrativeweb.py:8257
 msgid "Smith Family Tree"
 msgstr "Smithův rodokmen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8262
-#: ../gramps/plugins/webreport/narrativeweb.py:8272
+#: ../gramps/plugins/webreport/narrativeweb.py:8258
+#: ../gramps/plugins/webreport/narrativeweb.py:8268
 msgid "Give a description for this file."
 msgstr "Vložit popis souboru."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8271
+#: ../gramps/plugins/webreport/narrativeweb.py:8267
 msgid "Johnson Family Tree"
 msgstr "Johnsonův rodokmen"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8281
+#: ../gramps/plugins/webreport/narrativeweb.py:8277
 #: ../gramps/plugins/webreport/webcal.py:1536
 msgid "Advanced Options"
 msgstr "Pokročilé volby"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8284
+#: ../gramps/plugins/webreport/narrativeweb.py:8280
 #: ../gramps/plugins/webreport/webcal.py:1538
 msgid "Character set encoding"
 msgstr "Znaková sada"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8288
+#: ../gramps/plugins/webreport/narrativeweb.py:8284
 #: ../gramps/plugins/webreport/webcal.py:1541
 msgid "The encoding to be used for the web files"
 msgstr "Kódování webových stránek"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8291
+#: ../gramps/plugins/webreport/narrativeweb.py:8287
 msgid "Include link to active person on every page"
 msgstr "Na každou stránku vložit odkaz na výchozí osobu"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8292
+#: ../gramps/plugins/webreport/narrativeweb.py:8288
 msgid "Include a link to the active person (if they have a webpage)"
 msgstr ""
 "Na každou stránku vložit odkaz na výchozí osobu (pokud má webové stránky)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8295
+#: ../gramps/plugins/webreport/narrativeweb.py:8291
 msgid "Include a column for birth dates on the index pages"
 msgstr "Zahrnout sloupec s daty narození na indexových stránkách"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8296
+#: ../gramps/plugins/webreport/narrativeweb.py:8292
 msgid "Whether to include a birth column"
 msgstr "Zda zahrnout sloupec narození"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8299
+#: ../gramps/plugins/webreport/narrativeweb.py:8295
 msgid "Include a column for death dates on the index pages"
 msgstr "Zahrnout sloupec s daty úmrtí na indexových stránkách"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8300
+#: ../gramps/plugins/webreport/narrativeweb.py:8296
 msgid "Whether to include a death column"
 msgstr "Zda zahrnout sloupec úmrtí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8303
+#: ../gramps/plugins/webreport/narrativeweb.py:8299
 msgid "Include a column for partners on the index pages"
 msgstr "Zahrnout sloupec s rodiči na indexových stránkách"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8305
+#: ../gramps/plugins/webreport/narrativeweb.py:8301
 msgid "Whether to include a partners column"
 msgstr "Zda zahrnout sloupec rodičů"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8308
+#: ../gramps/plugins/webreport/narrativeweb.py:8304
 msgid "Include a column for parents on the index pages"
 msgstr "Zahrnout sloupec s daty úmrtí na indexových stránkách"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8310
+#: ../gramps/plugins/webreport/narrativeweb.py:8306
 msgid "Whether to include a parents column"
 msgstr "Zda zahrnout sloupec rodičů"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8313
+#: ../gramps/plugins/webreport/narrativeweb.py:8309
 msgid "Include half and/ or step-siblings on the individual pages"
 msgstr ""
 "Zahrnout nevlastní a/nebo nemanželské sourozence na jednotlivých stránkách"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8315
+#: ../gramps/plugins/webreport/narrativeweb.py:8311
 msgid ""
 "Whether to include half and/ or step-siblings with the parents and siblings"
 msgstr ""
 "Zda zahrnovat nevlastní a/nebo nemanželské sourozence s rodiči a sourozenci"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8319
+#: ../gramps/plugins/webreport/narrativeweb.py:8315
 msgid "Sort all children in birth order"
 msgstr "Řadit potomky podle narození"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8320
+#: ../gramps/plugins/webreport/narrativeweb.py:8316
 msgid "Whether to display children in birth order or in entry order?"
 msgstr "Zda zobrazit potomky seřazené podle narození nebo pořadí záznamů?"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8323
+#: ../gramps/plugins/webreport/narrativeweb.py:8319
 msgid "Include family pages"
 msgstr "Zahrnout stránky rodin"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8324
+#: ../gramps/plugins/webreport/narrativeweb.py:8320
 msgid "Whether or not to include family pages."
 msgstr "Zda zahrnovat stránky rodin či nikoli."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8327
+#: ../gramps/plugins/webreport/narrativeweb.py:8323
 msgid "Include event pages"
 msgstr "Zahrnout stránky událostí"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8328
+#: ../gramps/plugins/webreport/narrativeweb.py:8324
 msgid "Add a complete events list and relevant pages or not"
 msgstr "Přidat či nepřidat seznam událostí a relevantní stránky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8331
+#: ../gramps/plugins/webreport/narrativeweb.py:8327
 msgid "Include repository pages"
 msgstr "Zahrnout stránky archivů"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8332
+#: ../gramps/plugins/webreport/narrativeweb.py:8328
 msgid "Whether or not to include the Repository Pages."
 msgstr "Zda zahrnovat stránky archivů či nikoli."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8335
+#: ../gramps/plugins/webreport/narrativeweb.py:8331
 msgid "Include GENDEX file (/gendex.txt)"
 msgstr "Zahrnout soubor GENDEX (/gendex.txt)"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8336
+#: ../gramps/plugins/webreport/narrativeweb.py:8332
 msgid "Whether to include a GENDEX file or not"
 msgstr "Zda zahrnovat soubor GENDEX či nikoli"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8339
+#: ../gramps/plugins/webreport/narrativeweb.py:8335
 msgid "Include address book pages"
 msgstr "Zahrnout stránky adresáře"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8340
+#: ../gramps/plugins/webreport/narrativeweb.py:8336
 msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and "
 "website addresses and personal address/ residence events."
@@ -33160,27 +33154,27 @@ msgstr ""
 "Zda přidat stránky adresáře který obsahuje e-mailové, webové adresy a adresy "
 "osob/události bydliště."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8350
+#: ../gramps/plugins/webreport/narrativeweb.py:8346
 msgid "Place Map Options"
 msgstr "Možnosti mapy míst"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8354
+#: ../gramps/plugins/webreport/narrativeweb.py:8350
 msgid "Google"
 msgstr "Google"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8356
+#: ../gramps/plugins/webreport/narrativeweb.py:8352
 msgid "Map Service"
 msgstr "Mapová služba"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8359
+#: ../gramps/plugins/webreport/narrativeweb.py:8355
 msgid "Choose your choice of map service for creating the Place Map Pages."
 msgstr "Zvolte mapovou službu pro vytváření stránek map míst."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8364
+#: ../gramps/plugins/webreport/narrativeweb.py:8360
 msgid "Include Place map on Place Pages"
 msgstr "Zahrnout mapu místa na stránce míst"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8365
+#: ../gramps/plugins/webreport/narrativeweb.py:8361
 msgid ""
 "Whether to include a place map on the Place Pages, where Latitude/ Longitude "
 "are available."
@@ -33188,11 +33182,11 @@ msgstr ""
 "Zda zahrnout mapu míst na stránkách míst pokud jsou dostupné zeměpisné "
 "souřadnice."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8370
+#: ../gramps/plugins/webreport/narrativeweb.py:8366
 msgid "Include Family Map Pages with all places shown on the map"
 msgstr "Zahrnout stránky Family Map se všemi místy zobrazenými na mapě"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8373
+#: ../gramps/plugins/webreport/narrativeweb.py:8369
 msgid ""
 "Whether or not to add an individual page map showing all the places on this "
 "page. This will allow you to see how your family traveled around the country."
@@ -33200,23 +33194,23 @@ msgstr ""
 "Zda přidat zvláštní mapovou stránku ukazující všechna místa. To vám umožní "
 "sledovat jak vaše rodina cestovala po celé zemi(státě)."
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8381
+#: ../gramps/plugins/webreport/narrativeweb.py:8377
 msgid "Family Links"
 msgstr "Linky rodiny"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8382
+#: ../gramps/plugins/webreport/narrativeweb.py:8378
 msgid "Drop"
 msgstr "Padat"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8383
+#: ../gramps/plugins/webreport/narrativeweb.py:8379
 msgid "Markers"
 msgstr "Značky"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8384
+#: ../gramps/plugins/webreport/narrativeweb.py:8380
 msgid "Google/ FamilyMap Option"
 msgstr "Volba Google/ FamilyMap"
 
-#: ../gramps/plugins/webreport/narrativeweb.py:8387
+#: ../gramps/plugins/webreport/narrativeweb.py:8383
 msgid ""
 "Select which option that you would like to have for the Google Maps Family "
 "Map pages..."
@@ -33225,7 +33219,7 @@ msgstr ""
 "Google..."
 
 #. adding title to hyperlink menu for screen readers and braille writers
-#: ../gramps/plugins/webreport/narrativeweb.py:8847
+#: ../gramps/plugins/webreport/narrativeweb.py:8843
 #, python-format
 msgid "Alphabet Menu: %s"
 msgstr "Abecední nabídka: %s"
@@ -33617,6 +33611,24 @@ msgstr "Musí platit alespoň jedno pravidlo"
 #: gtklist.h:8
 msgid "Exactly one rule must apply"
 msgstr "Musí platit právě jedno pravidlo"
+
+#~ msgid "Source: Publication"
+#~ msgstr "Pramen: Publikace"
+
+#~ msgid "Source: Note"
+#~ msgstr "Pramen: Poznámka"
+
+#~ msgid "Citation: ID"
+#~ msgstr "Citace: ID"
+
+#~ msgid "Citation: Volume/Page"
+#~ msgstr "Citace: Svazek/Strana"
+
+#~ msgid "Citation: Date"
+#~ msgstr "Citace: Datum"
+
+#~ msgid "Citation: Note"
+#~ msgstr "Citace: Poznámka"
 
 #~ msgid ""
 #~ "The Family Tree you are trying to load is in the Python version "
@@ -35889,6 +35901,3 @@ msgstr "Musí platit právě jedno pravidlo"
 #~ msgstr ""
 #~ "POZOR: modul pyexiv2 nebyl nahrán. Funkčnost metadat obrázků nebude "
 #~ "dostupná."
-
-msgid "Citation:"
-msgstr "Citace:"
