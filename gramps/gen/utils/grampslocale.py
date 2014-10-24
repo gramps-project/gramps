@@ -100,7 +100,7 @@ _LOCALE_NAMES = {
     'sk': ('Slovak_Slovakia', '1250', _("Slovak"),),
     'sl': ('Slovenian_Slovenia', '1250', _("Slovenian")),
     'sq': ('Albanian_Albania', '1250', _("Albanian")),
-    'sr': ('Serbian(Cyrillic)_Serbia and Montenegro', '1251', None), #Gramps's Serbian translation is not yet ready
+    'sr': ('Serbian(Cyrillic)_Serbia and Montenegro', '1251', _("Serbian")),
     'sv': ('Swedish_Sweden', '1252', _("Swedish")),
     'tr': ('Turkish_Turkey', '1254', _("Turkish")),
     'uk': ('Ukrainian_Ukraine', '1251', _("Ukrainian")),
