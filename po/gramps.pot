@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-22 08:23+0200\n"
+"POT-Creation-Date: 2014-10-24 09:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1130,18 +1130,28 @@ msgstr ""
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr ""
 
+#: ../gramps/cli/grampscli.py:254
+msgid "The database is locked."
+msgstr ""
+
+#: ../gramps/cli/grampscli.py:255
+msgid ""
+"Use the --force-unlock option if you are sure that the database is not in "
+"use."
+msgstr ""
+
 #. already errors encountered. Show first one on terminal and exit
-#: ../gramps/cli/grampscli.py:324
+#: ../gramps/cli/grampscli.py:331
 #, python-format
 msgid "Error encountered: %s"
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:326 ../gramps/cli/grampscli.py:334
+#: ../gramps/cli/grampscli.py:333 ../gramps/cli/grampscli.py:341
 #, python-format
 msgid "  Details: %s"
 msgstr ""
 
-#: ../gramps/cli/grampscli.py:331
+#: ../gramps/cli/grampscli.py:338
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr ""
