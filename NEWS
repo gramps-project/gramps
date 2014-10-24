@@ -1,3 +1,60 @@
+2014-10-24
+Version 4.1.1, "MachineThatGoes...Ping!", a maintenance release.
+* Fix custom place types in the place editor
+* Allow place type combobox to receive focus.
+* Store custom place types in the metadata table
+* Fix place type for places without a main location
+* Fix bug adding parent places to a new place
+* Prevent user creating a cycle in the place hierarchy
+* Avoid infinite loop when place cycle encountered
+* Prevent creation of a place cycle when merging
+* Fix error when no place is selected
+* Check that a place has been selected when saving.
+* Use the standard place selection widget to be consistent.
+* Add a new Top Level place through the Place Reference Editor
+* Fix backlinks code in place report
+* Backlinks for places can now also be places as well as events.
+* Fix check and repair tool for empty placerefs
+* Update location utilities to work with proxies
+* Place report does not run
+* Update place details gramplet
+* Locations are now displayed in a new separate gramplet.
+* Add check for empty handle in gramplets
+* Sidebarfilter gramplet does not fit well into People, Events or Media views
+* Fix new event default type considering existing events with *default* role
+* Rebuild secondary indexes after database upgrade
+* Importing gedcom files containing multibyte UTF-8 characters fails
+* Ahnentafel Report did not use Christening Date if no Birth Date
+* [Narweb:] Missing webpage for media under some circumstances
+* Fix narrated web report with gendex option enabled
+* Tweak to "default" CSS choice for the narrated web report
+* Invalid link for Merge citation Help button
+* Fix 'todo' gramplet
+* Fix path when using drag & drop to add media
+* Limit the number of generations displayed in the ancestor gramplet
+* Export of a subset of the tree failed
+* Fix issues in python3, and bytes-string mismatch with ICU
+* Fix url/uri handling with non-ascii characters under linux and mac
+* Fix name format on graphical reports
+* Fix name format on textual reports
+* Better GUI support for embeded custom attributes list on media object
+* Better keys for search under linux shells (.desktop file)
+* 'Unknown' person in detailed ancestor report can not be translated
+* Translations don't show in many labels
+* Ensure python text domain gets the right encoding.
+* Translate some punctuation marks
+* Various fixes around Geography and osmgpsmap
+* Allow gramplets to be displayed in the dashboard only
+* Update FSF address
+* Add Arabic-script, Islamic-date, Thai script, Married Name and more dates examples
+* Fix on czech date handler for calculated and estimated dates
+* Enhance Serbian date handler to handle Cyrillic dates
+* Simplify Canadian Ash Wednesday holiday
+* Re-enable Esperanto support (for non-Windows OS only) after a large review
+* New translation: Serbian
+* Various fixes in German and Czech
+* Updated translations: ar, cs, de, fi, fr, it, sv
+
 2014-06-15
 Version 4.1.0, the "Name go in book", new major release.
 * GEP 006: Better Place handling
