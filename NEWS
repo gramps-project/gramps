@@ -20,6 +20,7 @@ Version 4.1.1, "MachineThatGoes...Ping!", a maintenance release.
 * Update place details gramplet
 * Locations are now displayed in a new separate gramplet.
 * Add check for empty handle in gramplets
+* Check DB lock on the recent opened trees list
 * Sidebarfilter gramplet does not fit well into People, Events or Media views
 * Fix new event default type considering existing events with *default* role
 * Rebuild secondary indexes after database upgrade
