@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-22 08:23+0200\n"
-"PO-Revision-Date: 2014-10-22 08:28+0100\n"
+"POT-Creation-Date: 2014-10-24 09:11+0200\n"
+"PO-Revision-Date: 2014-10-24 09:21+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -1005,19 +1005,28 @@ msgstr "Impossible de charger l'arbre familial récent."
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Cet arbre familial n'existe pas, puisqu'il a été supprimé."
 
+# trunk
+#: ../gramps/cli/grampscli.py:254
+msgid "The database is locked."
+msgstr "La base de données est verrouillée."
+
+#: ../gramps/cli/grampscli.py:255
+msgid "Use the --force-unlock option if you are sure that the database is not in use."
+msgstr "Utilisez l'option --force-unlock si vous êtes certain(e) que votre base de donnée n'est pas utilisée."
+
 #. already errors encountered. Show first one on terminal and exit
-#: ../gramps/cli/grampscli.py:324
+#: ../gramps/cli/grampscli.py:331
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Erreur rencontrée : %s"
 
-#: ../gramps/cli/grampscli.py:326
-#: ../gramps/cli/grampscli.py:334
+#: ../gramps/cli/grampscli.py:333
+#: ../gramps/cli/grampscli.py:341
 #, python-format
 msgid "  Details: %s"
 msgstr "  Détails : %s"
 
-#: ../gramps/cli/grampscli.py:331
+#: ../gramps/cli/grampscli.py:338
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "Erreur rencontrée dans l'analyse de l'argument : %s"
