@@ -51,10 +51,11 @@ import unittest
 
 # this list MUST be a subset of _LOCALE_NAMES in gen/utils/grampslocale.py
 # (that is, if you add a new language here, be sure it's in _LOCALE_NAMES too)
-ALL_LINGUAS = ('ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB', 'eo', 'es',
-               'fi', 'fr', 'he', 'hr', 'hu', 'it', 'ja', 'lt', 'nb', 'nl',
-               'nn', 'pl', 'pt_BR', 'pt_PT', 'ru', 'sk', 'sl', 'sq', 'sr', 'sv',
-               'uk', 'vi', 'zh_CN', 'zh_TW')
+ALL_LINGUAS = ('ar', 'bg', 'ca', 'cs', 'da', 'de', 'el', 'en_GB',
+               'eo', 'es', 'fi', 'fr', 'he', 'hr', 'hu', 'it',
+               'ja', 'lt', 'nb', 'nl', 'nn', 'pl', 'pt_BR', 'pt_PT',
+               'ru', 'sk', 'sl', 'sq', 'sr', 'sv', 'uk', 'vi',
+               'zh_CN', 'zh_TW')
 INTLTOOL_FILES = ('data/tips.xml', 'gramps/plugins/lib/holidays.xml')
 
 server = False
