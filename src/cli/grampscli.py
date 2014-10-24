@@ -238,6 +238,13 @@ class CLIManager(object):
                     _("Family Tree does not exist, as it has been deleted."))
             return
 
+        if os.path.isfile(os.path.join(filename, "lock")):
+            self._errordialog(
+                    _("The database is locked."),
+                    _("Use the --force-unlock option if you are sure "
+                      "that the database is not in use."))
+            return
+
         if self.db_loader.read_file(filename):
             # Attempt to figure out the database title
             path = os.path.join(filename, "name.txt")
