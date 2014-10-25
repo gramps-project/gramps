@@ -31984,3 +31984,6 @@ msgstr "Nøyaktig en regel må oppfylles"
 
 #~ msgid "Error Opening File"
 #~ msgstr "Feil ved åpning av fil"
+
+msgid"Citation:"
+msgstr "Sitering:"

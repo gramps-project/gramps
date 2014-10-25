@@ -32010,3 +32010,6 @@ msgstr "少なくとも1つのルールを適用しなくてはなりません"
 #, fuzzy
 #~ msgid "Writing family lines"
 #~ msgstr "ガイドラインを追加する"
+
+msgid"Citation:"
+msgstr "引用:"

@@ -35944,3 +35944,6 @@ msgstr "Vain yhden säännön toteuduttava"
 
 #~ msgid "State/Province:"
 #~ msgstr "Lääni:"
+
+msgid"Citation:"
+msgstr "Lainaus:"

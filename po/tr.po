@@ -33451,3 +33451,7 @@ msgstr ""
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "城市/郡县:"
+
+#, fuzzy
+msgid "Citation:"
+msgstr "移民"

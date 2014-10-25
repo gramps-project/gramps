@@ -32692,5 +32692,5 @@ msgstr "Apliku ekzakte unu regulon"
 #~ msgid "State/County:"
 #~ msgstr "Urbo/Distrikto:"
 
-#~ msgid "Citation:"
-#~ msgstr "Rotacio:"
+msgid "Citation:"
+msgstr "Rotacio:"

@@ -34420,3 +34420,6 @@ msgstr ""
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "Земја:"
+
+msgid"Citation:"
+msgstr "Ориентација:"

@@ -37501,3 +37501,6 @@ msgstr "Kein Stylesheet"
 
 #~ msgid "Creating event page %02d of %02d"
 #~ msgstr "Erstelle Ereignisseite %02d von %02d"
+
+msgid"Citation:"
+msgstr "Fundstelle:"

@@ -37984,3 +37984,6 @@ msgstr "Exact een regel moet gelden"
 
 #~ msgid "Suppress warning when GExiv2 not installed."
 #~ msgstr "Onderdruk waarschuwing als 'GExiv2' niet is geïnstalleerd."
+
+msgid"Citation:"
+msgstr "Citaat:"

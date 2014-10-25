@@ -33502,3 +33502,6 @@ msgstr "Да се приложи само едно единствено прав
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "Окръг:"
+
+msgid"Citation:"
+msgstr "Цитат:"

@@ -36651,3 +36651,6 @@ msgstr "Endast en regel måste uppfyllas"
 
 #~ msgid "Their common ancestors are %s and %s."
 #~ msgstr "Deras gemensamma ana är %s och %s."
+
+msgid"Citation:"
+msgstr "Citat:"

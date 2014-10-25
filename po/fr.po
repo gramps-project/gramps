@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-24 09:11+0200\n"
-"PO-Revision-Date: 2014-10-24 09:21+0100\n"
+"POT-Creation-Date: 2014-10-25 16:43+0200\n"
+"PO-Revision-Date: 2014-10-25 16:45+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -5430,7 +5430,7 @@ msgstr "Heure"
 
 #: ../gramps/gen/lib/childreftype.py:72
 #: ../gramps/gui/configure.py:80
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:210
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:212
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:171
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:200
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:156
@@ -7217,6 +7217,8 @@ msgstr "Les sous-graphiques peuvent aider GraphViz à positionner les conjoints 
 #: ../gramps/gui/editors/editmedia.py:172
 #: ../gramps/gui/editors/editmediaref.py:136
 #: ../gramps/gui/editors/filtereditor.py:295
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:105
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:93
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:135
@@ -7976,7 +7978,10 @@ msgstr "Slovène"
 msgid "Albanian"
 msgstr "Albanais"
 
-#. Gramps's Serbian translation is not yet ready
+#: ../gramps/gen/utils/grampslocale.py:103
+msgid "Serbian"
+msgstr "Serbe"
+
 #: ../gramps/gen/utils/grampslocale.py:104
 msgid "Swedish"
 msgstr "Suédois"
@@ -8812,6 +8817,7 @@ msgstr "Type"
 #: ../gramps/gui/clipboard.py:947
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:89
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
 #: ../gramps/gui/selectors/selectobject.py:70
@@ -9979,6 +9985,7 @@ msgstr "Déplacer l'adresse sélectionnée vers le bas"
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:52
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:62
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:58
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:103
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:92
 #: ../gramps/gui/glade/editaddress.glade:370
@@ -10088,6 +10095,8 @@ msgstr "_Attributs"
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:66
 #: ../gramps/gui/editors/editfamily.py:122
 #: ../gramps/gui/editors/filtereditor.py:956
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:99
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:112
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:88
@@ -10226,6 +10235,7 @@ msgid "Move the selected citation downwards"
 msgstr "Déplacer la citation vers le bas"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:82
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:89
 #: ../gramps/gui/selectors/selectsource.py:61
 #: ../gramps/plugins/gramplet/citations.py:67
@@ -11789,7 +11799,7 @@ msgid "Edit Tags"
 msgstr "Éditer les étiquettes"
 
 #: ../gramps/gui/editors/edittaglist.py:108
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:119
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:106
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:119
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:94
@@ -12142,66 +12152,40 @@ msgid "Updating display..."
 msgstr "Chargement en cours..."
 
 # trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
-#: ../gramps/plugins/view/citationlistview.py:106
-msgid "Source: ID"
-msgstr "Source : ID"
-
-# trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
-#: ../gramps/plugins/view/citationlistview.py:105
-msgid "Source: Title"
-msgstr "Source : titre"
-
-# trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
-#: ../gramps/plugins/view/citationlistview.py:107
-#: ../gramps/plugins/view/citationtreeview.py:100
-msgid "Source: Author"
-msgstr "Source : Auteur"
-
-# trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
-#: ../gramps/plugins/view/citationlistview.py:108
-#: ../gramps/plugins/view/citationtreeview.py:101
-msgid "Source: Abbreviation"
-msgstr "Source : Abréviation"
-
-# trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:110
-msgid "Source: Publication"
-msgstr "Source : Publication"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
-msgid "Source: Note"
-msgstr "Source : Note"
-
 # L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
 # /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
-msgid "Citation: ID"
-msgstr "Citation : Id"
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
+#: ../gramps/gui/glade/editcitation.glade:286
+msgid "Source:"
+msgstr "Source :"
 
-# trunk
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:110
+#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:90
+#: ../gramps/plugins/view/sourceview.py:85
+#: ../gramps/plugins/webreport/narrativeweb.py:4278
+msgid "Abbreviation"
+msgstr "Abréviation"
+
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
+#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
+msgid "Publication"
+msgstr "Publication"
+
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:113
-msgid "Citation: Volume/Page"
-msgstr "Citation : Volume/Page"
-
-# trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
-msgid "Citation: Date"
-msgstr "Citation : Date"
+msgid "Citation:"
+msgstr "Citation :"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
+#: ../gramps/plugins/textreport/tagreport.py:785
+#: ../gramps/plugins/view/citationlistview.py:98
+msgid "Volume/Page"
+msgstr "Volume/Page"
+
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
 msgid "Citation: Minimum Confidence|Min. Conf."
-msgstr "Citation : Conf. min."
+msgstr "Conf. min."
 
-# trunk
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116
-msgid "Citation: Note"
-msgstr "Citation : Note"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:118
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:107
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:95
@@ -12268,16 +12252,6 @@ msgstr "URL"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:79
 msgid "Reset"
 msgstr "Effacer"
-
-#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:90
-#: ../gramps/plugins/view/sourceview.py:85
-#: ../gramps/plugins/webreport/narrativeweb.py:4278
-msgid "Abbreviation"
-msgstr "Abréviation"
-
-#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
-msgid "Publication"
-msgstr "Publication"
 
 #: ../gramps/gui/glade/addmedia.glade:126
 #: ../gramps/gui/glade/editperson.glade:290
@@ -12706,13 +12680,6 @@ msgstr "_ID :"
 #: ../gramps/gui/glade/editcitation.glade:260
 msgid "A unique ID to identify the citation"
 msgstr "Un enregistrement unique pour identifier la citation, laissez Gramps le désigner. "
-
-# trunk
-# L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
-# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
-#: ../gramps/gui/glade/editcitation.glade:286
-msgid "Source:"
-msgstr "Source :"
 
 #: ../gramps/gui/glade/editcitation.glade:383
 #: ../gramps/gui/glade/editevent.glade:404
@@ -28119,11 +28086,6 @@ msgstr "Adresse de messagerie"
 msgid "Publication Information"
 msgstr "Information de publication"
 
-#: ../gramps/plugins/textreport/tagreport.py:785
-#: ../gramps/plugins/view/citationlistview.py:98
-msgid "Volume/Page"
-msgstr "Volume/Page"
-
 #: ../gramps/plugins/textreport/tagreport.py:870
 msgid "The tag to use for the report"
 msgstr "L'étiquette à utiliser pour ce rapport"
@@ -30076,6 +30038,28 @@ msgstr "Âge avancé mais pas de décès"
 #: ../gramps/plugins/webreport/narrativeweb.py:2364
 msgid "Confidence"
 msgstr "Niveau de confiance"
+
+# trunk
+#: ../gramps/plugins/view/citationlistview.py:105
+msgid "Source: Title"
+msgstr "Source : titre"
+
+# trunk
+#: ../gramps/plugins/view/citationlistview.py:106
+msgid "Source: ID"
+msgstr "Source : ID"
+
+# trunk
+#: ../gramps/plugins/view/citationlistview.py:107
+#: ../gramps/plugins/view/citationtreeview.py:100
+msgid "Source: Author"
+msgstr "Source : Auteur"
+
+# trunk
+#: ../gramps/plugins/view/citationlistview.py:108
+#: ../gramps/plugins/view/citationtreeview.py:101
+msgid "Source: Abbreviation"
+msgstr "Source : Abréviation"
 
 #: ../gramps/plugins/view/citationlistview.py:109
 #: ../gramps/plugins/view/citationtreeview.py:102
@@ -32740,6 +32724,24 @@ msgstr "Au moins une règle doit correspondre"
 msgid "Exactly one rule must apply"
 msgstr "Une seule règle doit correspondre"
 
+# trunk
+#~ msgid "Source: Publication"
+#~ msgstr "Source : Publication"
+#~ msgid "Source: Note"
+#~ msgstr "Source : Note"
+# L'espace finale est pour précéder le « : » codé en dur dans certains contextes.
+# /!\ vérifier double espace avec search bar "%(titre colonne)s contient"
+#~ msgid "Citation: ID"
+#~ msgstr "Citation : Id"
+# trunk
+#~ msgid "Citation: Volume/Page"
+#~ msgstr "Citation : Volume/Page"
+# trunk
+#~ msgid "Citation: Date"
+#~ msgstr "Citation : Date"
+# trunk
+#~ msgid "Citation: Note"
+#~ msgstr "Citation : Note"
 # trunk
 #~ msgid "Top level place"
 #~ msgstr "Niveau supérieur du lieu"

@@ -36723,3 +36723,6 @@ msgstr "Primjeni samo jedno pravilo"
 #~ msgstr ""
 #~ "Možete povezati bilo koji elektronički medij (uključujući ne-tekstualne "
 #~ "informacije) i druge vrste datoteka sa vašim GRAMPS obiteljskim stablom."
+
+msgid"Citation:"
+msgstr "Navod:"

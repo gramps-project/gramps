@@ -36653,3 +36653,6 @@ msgstr ""
 
 #~ msgid "Marker type:"
 #~ msgstr "Тип пометки:"
+
+msgid"Citation:"
+msgstr "Цитата:"
