@@ -36654,5 +36654,5 @@ msgstr ""
 #~ msgid "Marker type:"
 #~ msgstr "Тип пометки:"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Цитата:"

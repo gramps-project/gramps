@@ -33884,5 +33884,5 @@ msgstr "Natanko eno pravilo mora biti izpolnjeno"
 #~ msgid "<b><i>Gramplet</i></b>"
 #~ msgstr "<b><i>Pripomoček</i></b>"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Citat:"

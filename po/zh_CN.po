@@ -34981,5 +34981,5 @@ msgstr "至少一条规则必须满足"
 #~ msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
 #~ msgstr "免费/自由和开源软件(FLOSS)开发模型意味着GRAMPS可以被任何程序员扩展，因为所有源代码都开源的."
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "引用:"

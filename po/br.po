@@ -32996,5 +32996,5 @@ msgstr ""
 #~ msgid "State/County:"
 #~ msgstr "Bro:"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Belegiñ:"

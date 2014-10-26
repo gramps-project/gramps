@@ -33037,5 +33037,5 @@ msgstr "Exatamente uma regra deve coincidir"
 #~ msgid "State/County:"
 #~ msgstr "Condado:"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Citação:"

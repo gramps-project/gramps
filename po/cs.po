@@ -35623,5 +35623,5 @@ msgstr "Musí platit právě jedno pravidlo"
 #~ "POZOR: modul pyexiv2 nebyl nahrán. Funkčnost metadat obrázků nebude "
 #~ "dostupná."
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Citace:"

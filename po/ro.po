@@ -34461,5 +34461,5 @@ msgstr "Exact o regulă trebuie aplicată"
 #~ msgid "State/County:"
 #~ msgstr "Ţara"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Orientare:"

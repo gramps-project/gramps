@@ -33857,5 +33857,5 @@ msgstr ""
 #~ msgid "S: %s, %s: %s, %s"
 #~ msgstr "S: %s، %s: %s، %s"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "استشهاد"

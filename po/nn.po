@@ -32032,5 +32032,5 @@ msgstr "Nøyaktig ein regel må vera oppfylt"
 #~ msgid "Password:"
 #~ msgstr "Passord:"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Kjeldereferanse:"

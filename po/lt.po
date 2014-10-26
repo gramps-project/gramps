@@ -36361,5 +36361,5 @@ msgstr "Turi būti pritaikyta viena taisyklė"
 #~ msgid "Import file contains unacceptable XML namespace version"
 #~ msgstr "Įkeliamą rinkmeną sudaro nepriimtina XML versija"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Citata:"

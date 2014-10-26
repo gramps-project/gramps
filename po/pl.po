@@ -39695,5 +39695,5 @@ msgstr "Dokładnie jeden warunek zachodzi"
 #~ msgid "To Do"
 #~ msgstr "Do zrobienia"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Cytat:"

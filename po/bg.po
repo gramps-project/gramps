@@ -33503,5 +33503,5 @@ msgstr "Да се приложи само едно единствено прав
 #~ msgid "State/County:"
 #~ msgstr "Окръг:"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Цитат:"

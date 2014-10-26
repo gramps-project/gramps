@@ -39659,5 +39659,5 @@ msgstr "Esattamente una regola deve essere valida"
 #~ msgstr ""
 #~ "Estrae le persone che sono ascendenti di qualcuno estratto con un filtro"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Citazione:"

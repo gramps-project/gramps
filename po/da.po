@@ -35680,5 +35680,5 @@ msgstr "Præcis en regel skal anvendes"
 #~ msgid "Need to upgrade BSDDB database!"
 #~ msgstr "Opgradering af BSDDB-databasen er nødvendig!"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Citering:"

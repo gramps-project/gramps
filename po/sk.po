@@ -35177,5 +35177,5 @@ msgstr "Použiť iba jedno pravidlo"
 #~ msgid "Step Siblings"
 #~ msgstr "Nevlastní súrodenci"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Citácia:"

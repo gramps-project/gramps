@@ -34421,5 +34421,5 @@ msgstr ""
 #~ msgid "State/County:"
 #~ msgstr "Земја:"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Ориентација:"

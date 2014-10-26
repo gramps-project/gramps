@@ -33998,5 +33998,5 @@ msgstr ""
 #~ msgid "State/County:"
 #~ msgstr "Qarku:"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Citat:"

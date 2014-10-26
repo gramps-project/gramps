@@ -35761,5 +35761,5 @@ msgstr "Πρέπει να ισχύει ακριβώς ένας κανόνας"
 #~ msgid "State/Province:"
 #~ msgstr "Περιφέρεια/Επαρχία:"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Παραπομπή:"

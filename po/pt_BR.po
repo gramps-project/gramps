@@ -35333,5 +35333,5 @@ msgstr "Exatamente uma regra deve se aplicar"
 #~ msgid "window1"
 #~ msgstr "Janela principal"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Citação:"

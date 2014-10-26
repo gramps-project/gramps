@@ -32911,5 +32911,5 @@ msgstr "Chính xác 1 luật phải áp dụng "
 #~ "\n"
 #~ "Đối tượng hòa chép đè khi nhập:\n"
 
-msgid"Citation:"
+msgid "Citation:"
 msgstr "Trích:"
