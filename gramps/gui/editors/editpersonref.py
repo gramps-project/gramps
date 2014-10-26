@@ -33,6 +33,12 @@ mechanism for the user to edit address information.
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules
@@ -52,6 +58,8 @@ from ..widgets import MonitoredEntry, PrivacyButton
 from ..selectors import SelectorFactory
 from .displaytabs import CitationEmbedList, NoteTab
 from ..glade import Glade
+from ..ddtargets import DdTargets
+from gi.repository import Gdk
 
 #-------------------------------------------------------------------------
 #
@@ -82,6 +90,18 @@ class EditPersonRef(EditSecondary):
                         self.top.get_object("title"),
                         _('Person Reference Editor'))
         self.person_label = self.top.get_object('person')
+
+        #allow for drop:
+        self.person_label.drag_dest_set(Gtk.DestDefaults.MOTION |
+                            Gtk.DestDefaults.DROP,
+                            [],
+                            Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
+                   DdTargets.PERSON_LINK.target_flags,
+                   DdTargets.PERSON_LINK.app_id)
+        self.person_label.drag_dest_set_target_list(tglist)
+        self.person_label.connect('drag_data_received', self.on_drag_persondata_received)
 
     def _setup_fields(self):
 
@@ -128,11 +148,23 @@ class EditPersonRef(EditSecondary):
 
         sel = SelectPerson(self.dbstate, self.uistate, self.track)
         person = sel.run()
+        self.update_person(person)
 
+    def update_person(self, person):
         if person:
             self.obj.ref = person.get_handle()
             self.person_label.set_text(name_displayer.display(person))
 
+    def on_drag_persondata_received(self, widget, context, x, y, sel_data,
+                                    info, time):
+        """
+        Handle the standard gtk interface for drag_data_received.
+        """
+        if sel_data and sel_data.get_data():
+            (drag_type, idval, handle, val) = pickle.loads(sel_data.get_data())
+            person = self.db.get_person_from_handle(handle)
+            self.update_person(person)
+        
     def _create_tabbed_pages(self):
         """
         Create the notebook tabs and inserts them into the main
