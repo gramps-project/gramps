@@ -32,6 +32,11 @@ mechanism for the user to edit address information.
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
 
 #-------------------------------------------------------------------------
 #
@@ -50,6 +55,8 @@ from .editsecondary import EditSecondary
 from gramps.gen.lib import NoteType
 from gramps.gen.errors import WindowActiveError
 from ..glade import Glade
+from ..ddtargets import DdTargets
+from gi.repository import Gdk
 from .displaytabs import CitationEmbedList, NoteTab
 from ..widgets import MonitoredDataType, PrivacyButton
 from gramps.gen.display.name import displayer as name_displayer
@@ -100,6 +107,19 @@ class EditChildRef(EditSecondary):
         self.name_label = self.top.get_object('name')
         self.name_label.set_text(self.name)
 
+        # Set the drag action from the label
+        self.label_event_box = self.top.get_object('name_event_box')
+        self.label_event_box.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
+                                   [], 
+                                   Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
+                   DdTargets.PERSON_LINK.target_flags,
+                   DdTargets.PERSON_LINK.app_id)
+        self.label_event_box.drag_source_set_target_list(tglist)
+        self.label_event_box.drag_source_set_icon_stock('gramps-person')
+        self.label_event_box.connect('drag_data_get', self.drag_data_get)
+
     def _setup_fields(self):
         self.frel = MonitoredDataType(
             self.top.get_object('frel'),
@@ -137,6 +157,14 @@ class EditChildRef(EditSecondary):
         self._add_db_signal('person-update', self.person_change)
         self._add_db_signal('person-rebuild', self.close)
         self._add_db_signal('person-delete', self.check_for_close)
+
+    def drag_data_get(self, widget, context, sel_data, info, time):
+        # get the selected object, returning if not is defined
+        if not self.obj.ref:
+            return
+        if info == DdTargets.PERSON_LINK.app_id:
+            data = (DdTargets.PERSON_LINK.drag_type, id(self), self.obj.ref, 0)
+            sel_data.set(DdTargets.PERSON_LINK.atom_drag_type, 8, pickle.dumps(data))
 
     def _create_tabbed_pages(self):
         """
