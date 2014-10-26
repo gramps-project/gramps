@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-26 09:20+0100\n"
-"PO-Revision-Date: 2014-10-26 09:36+0100\n"
+"PO-Revision-Date: 2014-10-26 19:15+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -10879,7 +10879,7 @@ msgstr "Enthaltenen _Ordner öffnen"
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:163
 #: ../gramps/gui/widgets/photo.py:88
 msgid "Make Active Media"
-msgstr "Erstelle aktive Medien"
+msgstr "zum aktiven Medium machen"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:270
 #: ../gramps/gui/editors/editperson.py:935
