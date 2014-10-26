@@ -132,6 +132,7 @@ class EditEventRef(EditReference):
             self.uistate,
             self.track,
             self.top.get_object("eer_place"),
+            self.top.get_object("eer_place_event_box"),
             self.source.set_place_handle,
             self.source.get_place_handle,
             self.share_btn,

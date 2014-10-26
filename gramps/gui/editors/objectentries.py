@@ -74,11 +74,14 @@ class ObjEntry(object):
     SHARE_STR = ""
     ADD_STR = ""
     DEL_STR = ""
+    _DND_TYPE = None
+    _DND_ICON = None
 
-    def __init__(self, dbstate, uistate, track, label, set_val, 
+    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
                  get_val, add_edt, share, callback=None):
         """Pass the dbstate and uistate and present track.
             label is a Gtk.Label that shows the persent value
+            label_event_box is a Gtk.EventBox used for allowing drag from the label
             set_val is function that is called when handle changes, use it
                 to update the calling module
             get_val is function that is called to obtain handle from calling
@@ -88,6 +91,7 @@ class ObjEntry(object):
                 this button should not be present.
         """
         self.label = label
+        self.label_event_box = label_event_box
         self.add_edt = add_edt
         self.share = share
         self.dbstate = dbstate
@@ -98,8 +102,6 @@ class ObjEntry(object):
         self.track = track
         self.callback = callback
         
-        #connect drag and drop
-        self._init_dnd()
         #set the object specific code
         self._init_object()
 
@@ -143,10 +145,36 @@ class ObjEntry(object):
         if self.callback:
             self.callback()
 
-    def _init_dnd(self):
-        """inheriting objects must set this
+    def _update_dnd_capability(self):
         """
-        pass
+        Connect drag and drop of object entry
+            Drop is always allowed
+            Drag only allowed when object is set
+        """
+        if self._DND_TYPE:
+            if not self.label.drag_dest_get_target_list():
+                self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
+                tglist = Gtk.TargetList.new([])
+                tglist.add(self._DND_TYPE.atom_drag_type, self._DND_TYPE.target_flags,
+                           self._DND_TYPE.app_id)
+                self.label.drag_dest_set_target_list(tglist)
+                self.label.connect('drag_data_received', self.drag_data_received)
+        # Set the drag action from this box
+        if self._DND_TYPE:
+            if self.get_val():
+                if not self.label.drag_source_get_target_list():
+                    self.label_event_box.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
+                                               [], Gdk.DragAction.COPY)
+                    tglist = Gtk.TargetList.new([])
+                    tglist.add(self._DND_TYPE.atom_drag_type, self._DND_TYPE.target_flags,
+                               self._DND_TYPE.app_id)
+                    self.label_event_box.drag_source_set_target_list(tglist)
+                    if self._DND_ICON:
+                        self.label_event_box.drag_source_set_icon_stock(self._DND_ICON)
+                    self.label_event_box.connect('drag_data_get', self.drag_data_get)
+            else:
+                if self.label.drag_source_get_target_list():
+                    self.label_event_box.drag_source_unset()
 
     def _init_object(self):
         """inheriting objects can use this to set extra variables
@@ -192,10 +220,15 @@ class ObjEntry(object):
 
     def drag_data_received(self, widget, context, x, y, selection, info, time):
         (drag_type, idval, obj, val) = pickle.loads(selection.get_data())
-        
         data = self.get_from_handle(obj)
         self.obj_added(data)
-        
+
+    def drag_data_get(self, widget, context, sel_data, info, time):
+        # get the selected object, returning if not is defined
+        if info == self._DND_TYPE.app_id:
+            data = (self._DND_TYPE.drag_type, id(self), self.get_val(), 0)
+            sel_data.set(self._DND_TYPE.atom_drag_type, 8, pickle.dumps(data))
+
     def obj_added(self, data):
         """ callback from adding an object to the entry"""
         self.set_val(data.handle)
@@ -254,6 +287,7 @@ class ObjEntry(object):
                 image.show()
                 self.add_edt.add(image)
                 self.add_edt.set_tooltip_text(self.ADD_STR)
+        self._update_dnd_capability()
 
 class PlaceEntry(ObjEntry):
     """
@@ -267,29 +301,14 @@ class PlaceEntry(ObjEntry):
     SHARE_STR = _('Select an existing place')
     ADD_STR = _('Add a new place')
     DEL_STR = _('Remove place')
+    _DND_TYPE = DdTargets.PLACE_LINK
+    _DND_ICON = 'gramps-place'
     
-    def __init__(self, dbstate, uistate, track, label, set_val, 
+    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
                  get_val, add_edt, share, skip=[]):
-        ObjEntry.__init__(self, dbstate, uistate, track, label, set_val, 
+        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
                  get_val, add_edt, share)
         self.skip = skip
-
-    def _init_dnd(self):
-        """connect drag and drop of places
-        """
-        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.PLACE_LINK.atom_drag_type, DdTargets.PLACE_LINK.target_flags,
-                   DdTargets.PLACE_LINK.app_id)
-        self.label.drag_dest_set_target_list(tglist)
-        self.label.connect('drag_data_received', self.drag_data_received)
-
-    def drag_data_received(self, widget, context, x, y, selection, info, time):
-        (drag_type, idval, obj, val) = pickle.loads(selection.get_data())
-
-        if obj not in self.skip:
-            data = self.get_from_handle(obj)
-            self.obj_added(data)
 
     def get_from_handle(self, handle):
         """ return the object given the hande
@@ -321,28 +340,20 @@ class SourceEntry(ObjEntry):
     Handles the selection of a existing or new Source. Supports Drag and Drop
     to select a source.
     """
-    EMPTY_TEXT = "<i>%s</i>" % _('First add a source using the buttons')
+    EMPTY_TEXT = "<i>%s</i>" % _('To select a source, use drag-and-drop '
+                                 'or use the buttons')
     EMPTY_TEXT_RED = "<i>%s</i>" % _('First add a source using the button')
     EDIT_STR = _('Edit source')
     SHARE_STR = _('Select an existing source')
     ADD_STR = _('Add a new source')
     DEL_STR = _('Remove source')
+    _DND_TYPE = DdTargets.SOURCE_LINK
+    _DND_ICON = 'gramps-source'
     
-    def __init__(self, dbstate, uistate, track, label, set_val, 
+    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
                  get_val, add_edt, share, callback):
-        ObjEntry.__init__(self, dbstate, uistate, track, label, set_val, 
+        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
                  get_val, add_edt, share, callback)
-
-    def _init_dnd(self):
-        """connect drag and drop of sources
-        """
-        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.SOURCE_LINK.atom_drag_type,
-                   DdTargets.SOURCE_LINK.target_flags,
-                   DdTargets.SOURCE_LINK.app_id)
-        self.label.drag_dest_set_target_list(tglist)
-        self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):
         """ return the object given the handle
@@ -382,21 +393,13 @@ class MediaEntry(ObjEntry):
     SHARE_STR = _('Select an existing media object')
     ADD_STR = _('Add a new media object')
     DEL_STR = _('Remove media object')
+    _DND_TYPE = DdTargets.MEDIAOBJ
+    _DND_ICON = 'gramps-media'
     
-    def __init__(self, dbstate, uistate, track, label, set_val, 
+    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
                  get_val, add_edt, share):
-        ObjEntry.__init__(self, dbstate, uistate, track, label, set_val, 
+        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
                  get_val, add_edt, share)
-
-    def _init_dnd(self):
-        """connect drag and drop of places
-        """
-        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.MEDIAOBJ.atom_drag_type, DdTargets.MEDIAOBJ.target_flags,
-                   DdTargets.MEDIAOBJ.app_id)
-        self.label.drag_dest_set_target_list(tglist)
-        self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):
         """ return the object given the hande
@@ -436,10 +439,12 @@ class NoteEntry(ObjEntry):
     SHARE_STR = _('Select an existing note')
     ADD_STR = _('Add a new note')
     DEL_STR = _('Remove note')
+    _DND_TYPE = DdTargets.NOTE_LINK
+    _DND_ICON = 'gramps-notes'
     
-    def __init__(self, dbstate, uistate, track, label, set_val, 
+    def __init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
                  get_val, add_edt, share):
-        ObjEntry.__init__(self, dbstate, uistate, track, label, set_val, 
+        ObjEntry.__init__(self, dbstate, uistate, track, label, label_event_box, set_val, 
                  get_val, add_edt, share)
         self.notetype = None
 
@@ -452,16 +457,6 @@ class NoteEntry(ObjEntry):
         """ return the set notetype
         """
         return self.notetype
-
-    def _init_dnd(self):
-        """connect drag and drop of places
-        """
-        self.label.drag_dest_set(Gtk.DestDefaults.ALL, [], Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.NOTE_LINK.atom_drag_type, DdTargets.NOTE_LINK.target_flags,
-                   DdTargets.NOTE_LINK.app_id)
-        self.label.drag_dest_set_target_list(tglist)
-        self.label.connect('drag_data_received', self.drag_data_received)
 
     def get_from_handle(self, handle):
         """ return the object given the hande
