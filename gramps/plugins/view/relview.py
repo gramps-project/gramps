@@ -33,6 +33,12 @@ _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 import cgi
 
+import sys
+if sys.version_info[0] < 3:
+    import cPickle as pickle
+else:
+    import pickle
+
 #-------------------------------------------------------------------------
 #
 # Set up logging
@@ -77,6 +83,7 @@ from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.utils.db import (get_birth_or_fallback, get_death_or_fallback, 
                           preset_name)
+from gramps.gui.ddtargets import DdTargets
 
 _GenderCode = {
     Person.MALE    : '\u2642', 
@@ -608,9 +615,13 @@ class RelationshipView(NavigationView):
             button.set_tooltip_text(_('Edit %s') % name)
         else:
             button = None
+        eventbox = Gtk.EventBox()
+        eventbox.set_visible_window(False)
+        self._set_draggable_person(eventbox, person.get_handle())
         hbox = widgets.LinkBox(label, button)
+        eventbox.add(hbox)
 
-        table.attach(hbox, 0, 2, 0, 1)
+        table.attach(eventbox, 0, 2, 0, 1)
 
         eventbox = Gtk.EventBox()
         if self.use_shade:
@@ -620,7 +631,7 @@ class RelationshipView(NavigationView):
         subtbl.set_col_spacings(12)
         subtbl.set_row_spacings(0)
         eventbox.add(subtbl)
-                
+        self._set_draggable_person(eventbox, person.get_handle())
         # GRAMPS ID
 
         subtbl.attach(widgets.BasicLabel("%s:" % _('ID')),
@@ -776,6 +787,11 @@ class RelationshipView(NavigationView):
         self.row += 1
 
     def write_label(self, title, family, is_parent, person = None):
+        """
+        Write a Family header row
+        Shows following elements:
+        (collapse/expand arrow, Parents/Family title label, Family gramps_id, and add-choose-edit-delete buttons)
+        """
         msg = '<span style="italic" weight="heavy">%s</span>' % cgi.escape(title)
         hbox = Gtk.HBox()
         label = widgets.MarkupLabel(msg, x_align=1)
@@ -1031,6 +1047,11 @@ class RelationshipView(NavigationView):
         return vbox
 
     def write_person(self, title, handle):
+        """
+        Create and show a person cell in the GUI at the current row
+        @param title: left column label
+        @param handle: person handle
+        """
         if title:
             format = '<span weight="bold">%s: </span>'
         else:
@@ -1045,7 +1066,7 @@ class RelationshipView(NavigationView):
                            yoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.SHRINK)
 
         vbox = Gtk.VBox()
-        
+        eventbox = Gtk.EventBox()
         if handle:
             name = self.get_name(handle, True)
             person = self.dbstate.db.get_person_from_handle(handle)
@@ -1067,6 +1088,7 @@ class RelationshipView(NavigationView):
             else:
                 button = None
             vbox.pack_start(widgets.LinkBox(link_label, button), True, True, 0)
+            self._set_draggable_person(eventbox, handle)
         else:
             link_label = Gtk.Label(label=_('Unknown'))
             link_label.set_alignment(0, 1)
@@ -1078,7 +1100,6 @@ class RelationshipView(NavigationView):
             if value:
                 vbox.pack_start(widgets.MarkupLabel(value), True, True, 0)
 
-        eventbox = Gtk.EventBox()
         if self.use_shade:
             eventbox.override_background_color(Gtk.StateType.NORMAL, self.color)
         eventbox.add(vbox)
@@ -1087,6 +1108,31 @@ class RelationshipView(NavigationView):
                            self.row, self.row+1)
         self.row += 1
         return vbox
+
+    def _set_draggable_person(self, eventbox, person_handle):
+        """
+        Register the given eventbox as a drag_source with given person_handle
+        """
+        eventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
+                                 [], Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
+                   DdTargets.PERSON_LINK.target_flags,
+                   DdTargets.PERSON_LINK.app_id)
+        eventbox.drag_source_set_target_list(tglist)
+        eventbox.drag_source_set_icon_stock('gramps-person')
+        eventbox.connect('drag_data_get',
+                         self._make_person_drag_data_get_func(person_handle))
+
+    def _make_person_drag_data_get_func(self, person_h):
+        """
+        Generate at runtime a drag_data_get function returning the given person_h
+        """
+        def drag_data_get(widget, context, sel_data, info, time):
+            if info == DdTargets.PERSON_LINK.app_id:
+                data = (DdTargets.PERSON_LINK.drag_type, id(self), person_h, 0)
+                sel_data.set(DdTargets.PERSON_LINK.atom_drag_type, 8, pickle.dumps(data))
+        return drag_data_get
 
     def build_label_cell(self, title):
         if title:
@@ -1101,19 +1147,25 @@ class RelationshipView(NavigationView):
         return lbl
 
     def write_child(self, vbox, handle, index, child_should_be_linked):
+        """
+        Write a child cell (used for children and siblings of active person)
+        """
+        original_vbox = vbox
+        # Always create a transparent eventbox to allow dnd drag
+        ev = Gtk.EventBox()
+        ev.set_visible_window(False)
+        if handle:
+            self._set_draggable_person(ev, handle)
+        vbox = Gtk.VBox()
+        ev.add(vbox)
+
         if not child_should_be_linked:
-            original_vbox = vbox
-            vbox = Gtk.VBox()
             frame = Gtk.Frame()
             frame.set_shadow_type(Gtk.ShadowType.ETCHED_IN)
-            if self.use_shade:
-                ev = Gtk.EventBox()
-                ev.override_background_color(Gtk.StateType.NORMAL, self.color)
-                ev.add(vbox)
-                frame.add(ev)
-            else:
-                frame.add(vbox)
-            original_vbox.add(frame)
+            frame.add(ev)
+            original_vbox.pack_start(frame, True, True, 0)
+        else:
+            original_vbox.pack_start(ev, True, True, 0)
         
         parent = has_children(self.dbstate.db,
                               self.dbstate.db.get_person_from_handle(handle))
