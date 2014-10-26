@@ -48,6 +48,7 @@ class PersonRefEmbedList(EmbeddedList):
 
     _HANDLE_COL = 4
     _DND_TYPE   = DdTargets.PERSONREF
+    _DND_EXTRA = DdTargets.PERSON_LINK
 
     _MSG = {
         'add'   : _('Create and add a new association'),
@@ -122,6 +123,26 @@ class PersonRefEmbedList(EmbeddedList):
         try:
             ref = PersonRef(obj)
             ref.rel = _('Unknown')
+            EditPersonRef(
+                self.dbstate, self.uistate, self.track,
+                ref, self.add_callback)
+        except WindowActiveError:
+            pass
+
+
+    def handle_extra_type(self, objtype, obj):
+        """
+        Called when a person is dropped onto the list.  objtype will be
+        'person-link' and obj will contain a person handle.
+        """
+        person = self.dbstate.db.get_person_from_handle(obj)
+
+        from .. import EditPersonRef
+        try:
+            ref = PersonRef()
+            ref.rel = _('Unknown')
+            if person:
+                ref.ref = person.get_handle()
             EditPersonRef(
                 self.dbstate, self.uistate, self.track,
                 ref, self.add_callback)
