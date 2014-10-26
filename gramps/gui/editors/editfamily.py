@@ -563,30 +563,53 @@ class EditFamily(EditPrimary):
 
         #allow for a context menu
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
-        
-        #allow for drop:
-        ftable = self.top.get_object('ftable')
-        ftable.drag_dest_set(Gtk.DestDefaults.MOTION |
-                            Gtk.DestDefaults.DROP,
-                            [],
-                            Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                   DdTargets.PERSON_LINK.target_flags,
-                   DdTargets.PERSON_LINK.app_id)
-        ftable.drag_dest_set_target_list(tglist)
-        ftable.connect('drag_data_received', self.on_drag_fatherdata_received)
-        mtable = self.top.get_object('mtable')
-        mtable.drag_dest_set(Gtk.DestDefaults.MOTION |
-                            Gtk.DestDefaults.DROP,
-                            [],
-                            Gdk.DragAction.COPY)
-        tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                   DdTargets.PERSON_LINK.target_flags,
-                   DdTargets.PERSON_LINK.app_id)
-        mtable.drag_dest_set_target_list(tglist)
-        mtable.connect('drag_data_received', self.on_drag_motherdata_received)
+
+    def _update_parent_dnd_handler(self, event_box, parent_handle, on_drag_data_get, on_drag_data_received):
+        """
+        Set the drag action from the label of father when he exists
+        """
+        if parent_handle:
+            # Allow drag
+            if not event_box.drag_source_get_target_list():
+                event_box.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
+                                           [], 
+                                           Gdk.DragAction.COPY)
+                tglist = Gtk.TargetList.new([])
+                tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
+                           DdTargets.PERSON_LINK.target_flags,
+                           DdTargets.PERSON_LINK.app_id)
+                event_box.drag_source_set_target_list(tglist)
+                event_box.drag_source_set_icon_stock('gramps-person')
+                event_box.connect('drag_data_get', on_drag_data_get)
+            #Disallow drop:
+            if event_box.drag_dest_get_target_list():
+                event_box.drag_dest_unset()
+        else:
+            # Disallow drag
+            if event_box.drag_source_get_target_list():
+                event_box.drag_source_unset()
+            #allow for drop:
+            if not event_box.drag_dest_get_target_list():
+                event_box.drag_dest_set(Gtk.DestDefaults.MOTION |
+                                    Gtk.DestDefaults.DROP,
+                                    [],
+                                    Gdk.DragAction.COPY)
+                tglist = Gtk.TargetList.new([])
+                tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
+                           DdTargets.PERSON_LINK.target_flags,
+                           DdTargets.PERSON_LINK.app_id)
+                event_box.drag_dest_set_target_list(tglist)
+                event_box.connect('drag_data_received', on_drag_data_received)
+
+    def on_drag_fatherdata_get(self, widget, context, sel_data, info, time):
+        if info == DdTargets.PERSON_LINK.app_id:
+            data = (DdTargets.PERSON_LINK.drag_type, id(self), self.obj.get_father_handle(), 0)
+            sel_data.set(DdTargets.PERSON_LINK.atom_drag_type, 8, pickle.dumps(data))
+
+    def on_drag_motherdata_get(self, widget, context, sel_data, info, time):
+        if info == DdTargets.PERSON_LINK.app_id:
+            data = (DdTargets.PERSON_LINK.drag_type, id(self), self.obj.get_mother_handle(), 0)
+            sel_data.set(DdTargets.PERSON_LINK.atom_drag_type, 8, pickle.dumps(data))
 
     def _connect_signals(self):
         self.define_ok_button(self.top.get_object('ok'), self.save)
@@ -720,12 +743,20 @@ class EditFamily(EditPrimary):
                          self.fdeath, self.fdeath_label, 
                          self.fbutton_index, self.fbutton_add,
                          self.fbutton_del, self.fbutton_edit)
+        self._update_parent_dnd_handler(self.top.get_object('ftable_event_box'),
+                                        self.obj.get_father_handle(),
+                                        self.on_drag_fatherdata_get,
+                                        self.on_drag_fatherdata_received)
 
     def update_mother(self, handle):
         self.load_parent(handle, self.mname, self.mbirth, self.mbirth_label,
                          self.mdeath, self.mdeath_label, 
                          self.mbutton_index, self.mbutton_add,
                          self.mbutton_del, self.mbutton_edit)
+        self._update_parent_dnd_handler(self.top.get_object('mtable_event_box'),
+                                        self.obj.get_mother_handle(),
+                                        self.on_drag_motherdata_get,
+                                        self.on_drag_motherdata_received)
 
     def add_mother_clicked(self, obj):
         person = Person()
