@@ -239,6 +239,9 @@ def mac_setup_localization(glocale):
         coll_parts = glocale.collation.split('@')
         glocale.lang = glocale.check_available_translations(coll_parts[0])
 
+    if not glocale.lang:
+        glocale.lang = "en_US.UTF-8"
+
     glocale.lang = locale.normalize(glocale.lang)
     if not glocale.lang.split('.')[1].lower() in ['utf8', 'utf-8']:
         LOG.debug('Forcing locale encoding to UTF-8')
