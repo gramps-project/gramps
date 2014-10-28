@@ -37,6 +37,7 @@ LOG = logging.getLogger(".gui.utils.db")
 from ..lib.nameorigintype import NameOriginType
 from ..lib.surname import Surname
 from ..display.name import displayer as name_displayer
+from ..display.place import displayer as place_displayer
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..constfunc import cuni
@@ -345,7 +346,7 @@ def navigation_label(db, nav_type, handle):
     elif nav_type == 'Place':
         obj = db.get_place_from_handle(handle)
         if obj:
-            label = obj.get_title()
+            label = place_displayer.display(db, obj)
     elif nav_type == 'Source':
         obj = db.get_source_from_handle(handle)
         if obj:

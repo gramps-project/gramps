@@ -46,6 +46,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     FONT_SANS_SERIF, INDEX_TYPE_TOC,
                                     PARA_ALIGN_CENTER)
 from gramps.gen.datehandler import get_date
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.plug.menu import (BooleanOption, FilterOption, PersonOption,
                                   BooleanListOption)
 from gramps.gen.plug.report import Report
@@ -146,8 +147,7 @@ class IndivCompleteReport(Report):
         place = ''
         place_handle = event.get_place_handle()
         if place_handle:
-            place = self.database.get_place_from_handle(
-                                            place_handle).get_title()
+            place = place_displayer.display_event(self.database, event)
         # make sure it's translated, so it can be used below, in "combine"
         ignore1 = _('%(str1)s in %(str2)s. ') % {'str1':'', 'str2':''}
         date_place = self.combine('%(str1)s in %(str2)s. ', '%s. ',

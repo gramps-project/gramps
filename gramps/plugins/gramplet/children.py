@@ -25,6 +25,7 @@ _ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.datehandler import get_date
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.errors import WindowActiveError
 from gi.repository import Gtk
 
@@ -49,10 +50,7 @@ class Children(Gramplet):
         if event:
             event_date = get_date(event)
             event_sort = '%012d' % event.get_date_object().get_sort_value()
-            handle = event.get_place_handle()
-            if handle:
-                place = self.dbstate.db.get_place_from_handle(handle)
-                event_place = place.get_title()
+            event_place = place_displayer.display_event(self.dbstate.db, event)
         return (event_date, event_sort, event_place)
 
     def edit_person(self, treeview):

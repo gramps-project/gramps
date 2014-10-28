@@ -52,6 +52,7 @@ from gramps.gen.lib import EventRoleType, EventType
 from gramps.gen.config import config
 from gramps.gen.datehandler import displayer, get_date
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.views.bookmarks import PersonBookmarks
@@ -390,7 +391,7 @@ class GeoClose(GeoGraphyView):
                         latitude = place.get_latitude()
                         latitude, longitude = conv_lat_lon(latitude,
                                                            longitude, "D.D8")
-                        descr = place.get_title()
+                        descr = _pd.display(dbstate.db, place)
                         evt = EventType(event.get_type())
                         descr1 = _("%(eventtype)s : %(name)s") % {
                                         'eventtype': evt,
@@ -442,7 +443,7 @@ class GeoClose(GeoGraphyView):
                                         latitude = place.get_latitude()
                                         latitude, longitude = conv_lat_lon(
                                                   latitude, longitude, "D.D8")
-                                        descr = place.get_title()
+                                        descr = _pd.display(dbstate.db, place)
                                         evt = EventType(
                                                   event.get_type())
                                         eyear = str("%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \

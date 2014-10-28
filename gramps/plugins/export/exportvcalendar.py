@@ -52,6 +52,7 @@ from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.utils.db import family_name
 from gramps.gen.lib import Date, EventType
 from gramps.gui.glade import Glade
+from gramps.gen.display.place import displayer as _pd
 
 class CalendarWriter(object):
     def __init__(self, database, filename, user, option_box=None):
@@ -135,8 +136,8 @@ class CalendarWriter(object):
                     # feature requests 2356, 1657: avoid genitive form
                     text = _("Marriage of %s") % family_name(family, self.db)
                     if place_handle:
-                        place = self.db.get_place_from_handle(place_handle)
-                        self.write_vevent( text, m_date, place.get_title())
+                        place_title = _pd.display_event(self.db, event)
+                        self.write_vevent( text, m_date, place_title)
                     else:
                         self.write_vevent( text, m_date)
                     
@@ -150,11 +151,11 @@ class CalendarWriter(object):
                     b_date = birth.get_date_object()
                     place_handle = birth.get_place_handle()
                     if place_handle:
-                        place = self.db.get_place_from_handle(place_handle)
                         # feature requests 2356, 1657: avoid genitive form
+                        place_title = _pd.display_event(self.db, birth)
                         self.write_vevent(_("Birth of %s") % 
                             person.get_primary_name().get_name(), 
-                            b_date, place.get_title())
+                            b_date, place_title)
                     else:
                         # feature requests 2356, 1657: avoid genitive form
                         self.write_vevent(_("Birth of %s") %
@@ -168,12 +169,12 @@ class CalendarWriter(object):
                     d_date = death.get_date_object()
                     place_handle = death.get_place_handle()
                     if place_handle:
-                        place = self.db.get_place_from_handle(place_handle)
                         # feature requests 2356, 1657: avoid genitive form
+                        place_title = _pd.display_event(self.db, death)
                         self.write_vevent(_("Death of %s") % 
                             person.get_primary_name().get_name(), 
                             d_date, 
-                            place.get_title())
+                            place_title)
                     else:
                         # feature requests 2356, 1657: avoid genitive form
                         self.write_vevent(_("Death of %s") % 

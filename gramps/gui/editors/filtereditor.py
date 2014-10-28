@@ -68,6 +68,7 @@ from gramps.gen.filters import rules
 from ..autocomp import StandardCustomSelector, fill_entry
 from ..selectors import SelectorFactory
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.db import family_name
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.constfunc import cuni
@@ -345,7 +346,7 @@ class MyID(Gtk.Box):
             name = str(event.get_type)
         elif self.namespace == 'Place':
             place = self.db.get_place_from_gramps_id(gramps_id)
-            name = place.get_title()
+            name = _pd.display(self.db, place)
         elif self.namespace == 'Source':
             source = self.db.get_source_from_gramps_id(gramps_id)
             name = source.get_title()
@@ -992,7 +993,7 @@ class ShowResults(ManagedWindow):
             gid = citation.get_gramps_id()
         elif self.namespace == 'Place':
             place = self.db.get_place_from_handle(handle)
-            name = place.get_title()
+            name = _pd.display(self.db, place)
             gid = place.get_gramps_id()
         elif self.namespace == 'Media':
             obj = self.db.get_object_from_handle(handle)
@@ -1024,7 +1025,8 @@ class ShowResults(ManagedWindow):
         elif self.namespace == 'Citation':
             sortname = self.db.get_citation_from_handle(handle).get_page()
         elif self.namespace == 'Place':
-            sortname = self.db.get_place_from_handle(handle).get_title()
+            place = self.db.get_place_from_handle(handle)
+            sortname = _pd.display(self.db, place)
         elif self.namespace == 'Media':
             sortname = self.db.get_object_from_handle(handle).get_description()
         elif self.namespace == 'Repository':

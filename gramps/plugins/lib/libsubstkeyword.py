@@ -49,6 +49,7 @@ from gramps.gen.lib import EventType, PlaceType, Location
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.constfunc import STRTYPE, cuni
 from gramps.gen.utils.location import get_main_location
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 
@@ -313,6 +314,10 @@ class PlaceFormat(GenericFormat):
     otherwise, parse through a format string and put the place parts in
     """
 
+    def __init__(self, database, _in):
+        self.database = database
+        GenericFormat.__init__(self, _in)
+
     def get_place(self, database, event):
         """ A helper method for retrieving a place from an event """
         if event:
@@ -322,7 +327,7 @@ class PlaceFormat(GenericFormat):
         return None
 
     def _default_format(self, place):
-        return place.get_title()
+        return place_displayer.display(self.database, place)
 
     def parse_format(self, database, place):
         """ Parse the place """
@@ -406,7 +411,7 @@ class EventFormat(GenericFormat):
 
         def format_place():
             """ start formatting a place in this event """
-            place_format = PlaceFormat(self.string_in)
+            place_format = PlaceFormat(self.database, self.string_in)
             place = place_format.get_place(self.database, event)
             return place_format.parse_format(self.database, place)
 
@@ -863,7 +868,7 @@ class VariableParse(object):
         """ sub to process a date
         Given an event, get the place object, process the format,
         return the result """
-        place_f = PlaceFormat(self._in)
+        place_f = PlaceFormat(self.database, self._in)
         place = place_f.get_place(self.database, event)
         if self.empty_item(place):
             return

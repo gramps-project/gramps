@@ -21,28 +21,34 @@
 """
 Location utility functions
 """
+from ..lib.date import Today
 
 #-------------------------------------------------------------------------
 #
 # get_location_list
 #
 #-------------------------------------------------------------------------
-def get_location_list(db, place):
+def get_location_list(db, place, date=None):
     """
     Return a list of place names for display.
     """
+    if date is None:
+        date = Today()
     visited = [place.handle]
-    lines = [place.name]
-    while len(place.get_placeref_list()) > 0:
-        handle = place.get_placeref_list()[0].ref
-        if handle in visited:
+    lines = [(place.name, place.get_type())]
+    while True:
+        handle = None
+        for placeref in place.get_placeref_list():
+            ref_date = placeref.get_date_object()
+            if ref_date.is_empty() or date.match(ref_date):
+                handle = placeref.ref
+        if handle is None or handle in visited:
             break
-        else:
-            visited.append(handle)
         place = db.get_place_from_handle(handle)
         if place is None:
             break
-        lines.append(place.name)
+        visited.append(handle)
+        lines.append((place.name, place.get_type()))
     return lines
 
 #-------------------------------------------------------------------------
@@ -50,25 +56,16 @@ def get_location_list(db, place):
 # get_main_location
 #
 #-------------------------------------------------------------------------
-def get_main_location(db, place):
+def get_main_location(db, place, date=None):
     """
     Find all places in the hierarchy above the given place, and return the
     result as a dictionary of place types and names.
     """
-    visited = [place.handle]
-    items = {int(place.get_type()): place.name}
-    while len(place.get_placeref_list()) > 0:
-        handle = place.get_placeref_list()[0].ref
-        if handle in visited:
-            break
-        else:
-            visited.append(handle)
-        place = db.get_place_from_handle(handle)
-        if place is None:
-            break
-        items[int(place.get_type())] = place.name
-    return items
-    
+    return dict([(int(place_type), name)
+                    for name, place_type
+                    in get_location_list(db, place, date)
+                    if not place_type.is_custom()])
+
 #-------------------------------------------------------------------------
 #
 # get_locations

@@ -39,6 +39,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.db import family_name, get_participant_from_event
 
 #-------------------------------------------------------------------------
@@ -127,7 +128,7 @@ class BackRefModel(Gtk.ListStore):
                 p = self.db.get_place_from_handle(ref[1])
                 if not p:
                     continue
-                name = p.get_title()
+                name = place_displayer.display(self.db, p)
                 gid = p.gramps_id
                 handle = p.handle
             elif dtype == 'Repository':

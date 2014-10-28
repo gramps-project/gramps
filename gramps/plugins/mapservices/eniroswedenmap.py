@@ -40,6 +40,7 @@ _ = glocale.translation.gettext
 from gramps.plugins.lib.libmapservice import MapService
 from gramps.gui.dialog import WarningDialog
 from gramps.gen.utils.location import get_main_location
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.lib import PlaceType
 
 # Make upper case of translaed country so string search works later
@@ -67,7 +68,7 @@ def _strip_leading_comma(descr):
 
 def _build_title(db, place):
     """ Builds descrition string for title parameter in url """
-    descr = place.get_title()
+    descr = place_displayer.display(db, place)
     location = get_main_location(db, place)
     parish = location.get(PlaceType.PARISH)
     city = location.get(PlaceType.CITY)

@@ -55,6 +55,7 @@ from gramps.gen.lib import EventType
 from gramps.gen.config import config
 from gramps.gen.datehandler import displayer
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.views.pageview import PageView
 from gramps.gui.editors import EditPlace
@@ -208,7 +209,7 @@ class GeoEvents(GeoGraphyView):
         if place_handle:
             place = dbstate.db.get_place_from_handle(place_handle)
             if place:
-                descr1 = place.get_title()
+                descr1 = _pd.display(dbstate.db, place)
                 longitude = place.get_longitude()
                 latitude = place.get_latitude()
                 latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")
@@ -261,7 +262,7 @@ class GeoEvents(GeoGraphyView):
                                                 None
                                                 )
                 else:
-                    descr = place.get_title()
+                    descr = _pd.display(dbstate.db, place)
                     self._append_to_places_without_coord(
                          place.gramps_id, descr)
 

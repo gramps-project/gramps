@@ -998,6 +998,20 @@ class GrampsPreferences(ConfigureDialog):
         table.attach(obox, 1, 3, row, row+1, yoptions=0)
         row += 1
         
+        # Place format:
+        obox = Gtk.ComboBoxText()
+        formats = [_('Title'), _('Automatic')]
+        list(map(obox.append_text, formats))
+        active = config.get('preferences.place-format')
+        if active >= len(formats):
+            active = 0
+        obox.set_active(active)
+        obox.connect('changed', self.place_format_changed)
+        lwidget = BasicLabel("%s: " % _('Place format'))
+        table.attach(lwidget, 0, 1, row, row+1, yoptions=0)
+        table.attach(obox, 1, 3, row, row+1, yoptions=0)
+        row += 1
+        
         # Age precision:
         # precision=1 for "year", 2: "year, month" or 3: "year, month, days"
         obox = Gtk.ComboBoxText()
@@ -1156,6 +1170,12 @@ class GrampsPreferences(ConfigureDialog):
         config.set('preferences.date-format', obj.get_active())
         OkDialog(_('Change is not immediate'), 
                  _('Changing the date format will not take '
+                   'effect until the next time Gramps is started.'))
+
+    def place_format_changed(self, obj):
+        config.set('preferences.place-format', obj.get_active())
+        OkDialog(_('Change is not immediate'), 
+                 _('Changing the place format will not take '
                    'effect until the next time Gramps is started.'))
 
     def date_calendar_changed(self, obj): 

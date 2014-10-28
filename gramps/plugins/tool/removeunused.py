@@ -59,6 +59,7 @@ from gramps.gen.db import DbTxn
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.datehandler import displayer as _dd
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gui.plug import tool
 from gramps.gui.glade import Glade
@@ -398,10 +399,8 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                 text += '; %s' % date
 
             # see if there is a place
-            place_handle = event.get_place_handle()
-            if place_handle:
-                place = self.db.get_place_from_handle(place_handle)
-                text += '; %s' % place.get_title()
+            if event.get_place_handle():
+                text += '; %s' % _pd.display_event(self.db, event)
 
         return text
         

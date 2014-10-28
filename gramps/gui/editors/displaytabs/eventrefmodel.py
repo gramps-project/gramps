@@ -50,6 +50,7 @@ from gramps.gen.lib import EventRoleType
 from gramps.gen.datehandler import get_date, get_date_valid
 from gramps.gen.config import config
 from gramps.gen.utils.db import get_participant_from_event
+from gramps.gen.display.place import displayer as place_displayer
 
 #-------------------------------------------------------------------------
 #
@@ -160,9 +161,7 @@ class EventRefModel(Gtk.TreeStore):
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
             if event:
-                place_handle = event.get_place_handle()
-                if place_handle:
-                    return self.db.get_place_from_handle(place_handle).get_title()
+                return place_displayer.display_event(self.db, event)
         return ""
 
     def column_participant(self, event_ref):

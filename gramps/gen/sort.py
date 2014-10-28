@@ -39,6 +39,7 @@ to make sure these remain in sync with the rest of the design.
 from .lib import Date
 from .utils.db import get_birth_or_fallback
 from .display.name import displayer as _nd
+from .display.place import displayer as _pd
 from .const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
@@ -184,7 +185,8 @@ class Sort(object):
         if not a_id:
             return 0
         a_obj = self.database.get_place_from_handle(a_id)
-        return glocale.sort_key(a_obj.title)
+        title = _pd.display(self.database, a_obj)
+        return glocale.sort_key(title)
 
 ##    def by_event_place(self, a_id, b_id):
 ##        """Sort routine for comparing two events by their places. """
@@ -207,9 +209,8 @@ class Sort(object):
         if not a_id:
             return 0
         evt_a = self.database.get_event_from_handle(a_id)
-        plc_a = self.database.get_place_from_handle(evt_a.get_place_handle())
-        plc_a_title = plc_a.title if plc_a else ""
-        return glocale.sort_key(plc_a_title)
+        title = _pd.display_event(self.database, evt_a)
+        return glocale.sort_key(title)
 
 ##    def by_event_description(self, a_id, b_id):
 ##        """Sort routine for comparing two events by their descriptions. """

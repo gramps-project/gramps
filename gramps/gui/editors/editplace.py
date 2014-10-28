@@ -56,6 +56,7 @@ from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredTagList,
                        MonitoredDataType)
 from gramps.gen.errors import ValidationError
 from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.display.place import displayer as place_displayer
 from ..dialog import ErrorDialog
 from ..glade import Glade
 
@@ -85,7 +86,7 @@ class EditPlace(EditPrimary):
 
     def get_menu_title(self):
         if self.obj and self.obj.get_handle():
-            title = self.obj.get_title()
+            title = place_displayer.display(self.db, self.obj)
             dialog_title = _('Place: %s')  % title
         else:
             dialog_title = _('New Place')
@@ -275,7 +276,7 @@ class EditPlace(EditPrimary):
         (uses_dupe_id, id) = self._uses_duplicate_id()
         if uses_dupe_id:
             prim_object = self.get_from_gramps_id(id)
-            name = prim_object.get_title()
+            name = place_displayer.display(self.db, prim_object)
             msg1 = _("Cannot save place. ID already exists.")
             msg2 = _("You have attempted to use the existing Gramps ID with "
                          "value %(id)s. This value is already used by '" 
@@ -287,14 +288,15 @@ class EditPlace(EditPrimary):
             return
 
         with DbTxn('', self.db) as trans:
+            place_title = place_displayer.display(self.db, self.obj)
             if not self.obj.get_handle():
                 self.db.add_place(self.obj, trans)
-                msg = _("Add Place (%s)") % self.obj.get_title()
+                msg = _("Add Place (%s)") % place_title
             else:
                 if not self.obj.get_gramps_id():
                     self.obj.set_gramps_id(self.db.find_next_place_gramps_id())
                 self.db.commit_place(self.obj, trans)
-                msg = _("Edit Place (%s)") % self.obj.get_title()
+                msg = _("Edit Place (%s)") % place_title
             trans.set_description(msg)
         
         self.close()
@@ -318,8 +320,8 @@ class DeletePlaceQuery(object):
         self.event_list  = event_list
         
     def query_response(self):
-        with DbTxn(_("Delete Place (%s)") % self.obj.get_title(),
-                   self.db) as trans:
+        place_title = place_displayer.display(self.db, self.obj)
+        with DbTxn(_("Delete Place (%s)") % place_title, self.db) as trans:
             self.db.disable_signals()
         
             place_handle = self.obj.get_handle()

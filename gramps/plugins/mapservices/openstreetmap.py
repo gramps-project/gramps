@@ -36,6 +36,7 @@ _ = glocale.translation.gettext
 #------------------------------------------------------------------------
 from gramps.plugins.lib.libmapservice import MapService
 from gramps.gen.utils.location import get_main_location
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.lib import PlaceType
 
 class OpensStreetMapService(MapService):
@@ -67,6 +68,6 @@ class OpensStreetMapService(MapService):
                         "search.php?q=%s%%2C%s" % (city, country)
             return
         
-        titledescr = place.get_title()
+        titledescr = place_displayer.display(self.database, place)
         self.url = "http://open.mapquestapi.com/nominatim/v1/"\
                         "search.php?q=%s" % '+'.join(titledescr.split())

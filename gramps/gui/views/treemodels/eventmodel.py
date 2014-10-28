@@ -42,6 +42,7 @@ from gi.repository import Gtk
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Event, EventType
 from gramps.gen.utils.db import get_participant_from_event
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
 from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
@@ -131,7 +132,9 @@ class EventModel(FlatBaseModel):
         
     def column_place(self,data):
         if data[COLUMN_PLACE]:
-            return self.db.get_place_from_handle(data[COLUMN_PLACE]).get_title()
+            event = Event()
+            event.unserialize(data)
+            return place_displayer.display_event(self.db, event)
         else:
             return ''
 

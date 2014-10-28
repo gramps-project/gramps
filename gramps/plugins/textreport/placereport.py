@@ -48,6 +48,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
 from gramps.gen.proxy import PrivateProxyDb
 from gramps.gen.sort import Sort
 from gramps.gen.utils.location import get_main_location
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.lib import PlaceType
 
 class PlaceReport(Report):
@@ -163,9 +164,10 @@ class PlaceReport(Report):
             self._("State: %s") % location.get(PlaceType.STATE, ''),
             self._("Country: %s ") % location.get(PlaceType.COUNTRY, '')]
         self.doc.start_paragraph("PLC-PlaceTitle")
+        place_title = place_displayer.display(self.database, place)
         self.doc.write_text(("%(nbr)s. %(place)s") % 
                                 {'nbr' : place_nbr,
-                                 'place' : place.get_title()})
+                                 'place' : place_title})
         self.doc.end_paragraph()
 
         for item in place_details:

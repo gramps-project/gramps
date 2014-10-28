@@ -37,6 +37,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import get_date
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.lds import TEMPLES
 
 #-------------------------------------------------------------------------
@@ -51,21 +52,13 @@ class LdsModel(Gtk.ListStore):
     def __init__(self, lds_list, db):
         Gtk.ListStore.__init__(self, str, str, str, str, str, bool, object)
 
-        self.db = db
         for lds_ord in lds_list:
             self.append(row=[
                 lds_ord.type2str(), 
                 get_date(lds_ord), 
                 lds_ord.status2str(), 
                 TEMPLES.name(lds_ord.get_temple()),
-                self.column_place(lds_ord),
+                place_displayer.display_event(db, lds_ord),
                 lds_ord.get_privacy(),
                 lds_ord, 
                 ])
-
-    def column_place(self, lds_ord):
-        if lds_ord:
-            place_handle = lds_ord.get_place_handle()
-            if place_handle:
-                return self.db.get_place_from_handle(place_handle).get_title()
-        return ""

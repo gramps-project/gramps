@@ -57,6 +57,7 @@ from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.plugins.lib.libnarrate import Narrator
+from gramps.gen.display.place import displayer as place_displayer
 
 #------------------------------------------------------------------------
 #
@@ -416,11 +417,7 @@ class DetDescendantReport(Report):
         else:
             date = event.get_date_object().get_year()
 
-        ph = event.get_place_handle()
-        if ph:
-            place = self.database.get_place_from_handle(ph).get_title()
-        else:
-            place = ''
+        place = place_displayer.display_event(self.database, event)
 
         self.doc.start_paragraph('DDR-MoreDetails')
         event_name = self._get_type(event.get_type())

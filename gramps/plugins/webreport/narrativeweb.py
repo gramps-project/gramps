@@ -131,6 +131,7 @@ from gramps.gui.thumbnails import get_thumbnail_path, run_thumbnailer
 from gramps.gen.utils.image import image_size, resize_to_jpeg_buffer
 from gramps.gen.mime import get_description
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.datehandler import displayer as _dd
 from gramps.gen.proxy import PrivateProxyDb, LivingProxyDb
 from gramps.plugins.lib.libhtmlconst import _CHARACTER_SETS, _CC, _COPY_OPTIONS
@@ -507,7 +508,7 @@ def get_gendex_data(database, event_ref):
                 if place_handle:
                     place = database.get_place_from_handle(place_handle)
                     if place:
-                        poe = place.get_title()
+                        poe = _pd.display(database, place)
     return doe, poe
 
 def format_date(date):
@@ -1061,7 +1062,7 @@ class BasePage(object):
         # 3 = place handle, 4 = event date, 5 = event type
         found = any(data[3] == place_handle for data in place_lat_long)
         if not found:
-            placetitle = place.get_title()
+            placetitle = _pd.display(self.dbase_, place)
             latitude  =  place.get_latitude()
             longitude = place.get_longitude()
             if (latitude and longitude):
@@ -1262,7 +1263,8 @@ class BasePage(object):
                 if place_handle:
                     place = self.dbase_.get_place_from_handle(place_handle)
                     if place:
-                        place_hyper = self.place_link(place_handle, place.get_title(),
+                        place_title = _pd.display(self.dbase_, place)
+                        place_hyper = self.place_link(place_handle, place_title,
                             place.get_gramps_id(), uplink = True)
 
                 # begin ordinance rows
@@ -3376,7 +3378,7 @@ class PlacePages(BasePage):
                 for place_handle in handle_list:
                     place = self.dbase_.get_place_from_handle(place_handle)
                     if place: 
-                        place_title = place.get_title()
+                        place_title = _pd.display(self.dbase_, place)
                         ml = get_main_location(self.dbase_, place)
 
                         if place_title and not place_title.isspace():  
@@ -3444,7 +3446,7 @@ class PlacePages(BasePage):
 
         of, sio = self.report.create_file(place_handle, "plc")
         self.up = True
-        self.page_title = place.get_title()
+        self.page_title = _pd.display(self.dbase_, place)
         placepage, head, body = self.write_header(_("Places"))
 
         self.placemappages = self.report.options['placemappages']
@@ -3493,7 +3495,7 @@ class PlacePages(BasePage):
             if self.placemappages:
                 if (place and (place.lat and place.long)):
                     latitude, longitude = conv_lat_lon(place.get_latitude(), place.get_longitude(), "D.D8")
-                    placetitle = place.get_title()
+                    placetitle = _pd.display(self.dbase_, place)
 
                     # add narrative-maps CSS...
                     fname = "/".join(["css", "narrative-maps.css"])
@@ -7411,7 +7413,7 @@ class NavWebReport(Report):
 
     def _add_place(self, place_handle, bkref_class, bkref_handle):
         place = self.database.get_place_from_handle(place_handle)
-        place_name = place.get_title()
+        place_name = _pd.display(self.database, place)
         place_fname = self.build_url_fname(place_handle, "plc",
                                                    False) + self.ext
         self.obj_dict[Place][place_handle] = (place_fname, place_name,

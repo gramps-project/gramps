@@ -62,6 +62,7 @@ from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.datehandler import get_date
+from gramps.gen.display.place import displayer as _pd
 from gramps.gui.glade import Glade
 
 #-------------------------------------------------------------------------
@@ -413,8 +414,7 @@ class CSVWriter(object):
                             birthdate = self.format_date( birth)
                             place_handle = birth.get_place_handle()
                             if place_handle:
-                                place = self.db.get_place_from_handle(place_handle)
-                                birthplace = place.get_title()
+                                birthplace = _pd.display_event(self.db, birth)
                             birthsource = get_primary_source_title(self.db, birth)
                     # Baptism:
                     baptismdate = ""
@@ -428,8 +428,7 @@ class CSVWriter(object):
                             baptismdate = self.format_date( baptism)
                             place_handle = baptism.get_place_handle()
                             if place_handle:
-                                place = self.db.get_place_from_handle(place_handle)
-                                baptismplace = place.get_title()
+                                baptismplace = _pd.display_event(self.db, baptism)
                             baptismsource = get_primary_source_title(self.db, baptism)
                     # Death:
                     deathdate = ""
@@ -442,8 +441,7 @@ class CSVWriter(object):
                             deathdate = self.format_date( death)
                             place_handle = death.get_place_handle()
                             if place_handle:
-                                place = self.db.get_place_from_handle(place_handle)
-                                deathplace = place.get_title()
+                                deathplace = _pd.display_event(self.db, death)
                             deathsource = get_primary_source_title(self.db, death)
                     # Burial:
                     burialdate = ""
@@ -457,8 +455,7 @@ class CSVWriter(object):
                             burialdate = self.format_date( burial)
                             place_handle = burial.get_place_handle()
                             if place_handle:
-                                place = self.db.get_place_from_handle(place_handle)
-                                burialplace = place.get_title()
+                                burialplace = _pd.display_event(self.db, burial)
                             burialsource = get_primary_source_title(self.db, burial)
                     # Write it out:
                     self.write_csv(grampsid_ref, surname, first_name, callname,
@@ -518,8 +515,7 @@ class CSVWriter(object):
                             mdate = self.format_date( event)
                             place_handle = event.get_place_handle()
                             if place_handle:
-                                place = self.db.get_place_from_handle(place_handle)
-                                mplace = place.get_title()
+                                mplace = _pd.display_event(self.db, event)
                                 source = get_primary_source_title(self.db, event)
                     note = ''
                     self.write_csv(marriage_id, father_id, mother_id, mdate,

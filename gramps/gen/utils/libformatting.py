@@ -38,6 +38,7 @@ from cgi import escape
 from ..lib import EventType
 from ..datehandler import get_date
 from ..display.name import displayer as name_displayer
+from ..display.place import displayer as place_displayer
 from .db import (get_birth_or_fallback, get_death_or_fallback, 
                  get_marriage_or_fallback)
 
@@ -121,7 +122,7 @@ class FormattingHelper(object):
         text = ""
         place = self.dbstate.db.get_place_from_handle(place_handle)
         if place:
-            place_title = place.get_title()
+            place_title = place_displayer.display(self.dbstate.db, place)
             if place_title != "":
                 if len(place_title) > 25:
                     text = place_title[:24]+"..."
