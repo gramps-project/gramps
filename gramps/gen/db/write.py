@@ -1311,7 +1311,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if isinstance(key, tuple):
             #create a string key
-            key = str(key)
+            if sys.version_info[0] >= 3:
+                key= str(key)
+            else:
+                key = str(tuple(k.encode('utf-8') for k in key))
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         if self.readonly or not key:
