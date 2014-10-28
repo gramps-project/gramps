@@ -58,6 +58,7 @@ from ..managedwindow import ManagedWindow
 from ..dialog import OptionDialog
 from ..selectors import SelectorFactory
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.filters import GenericFilterFactory, GenericFilter, rules
 from gramps.gen.constfunc import (conv_to_unicode, uni_to_gui, get_curr_dir,
                                   STRTYPE, cuni)
@@ -1358,7 +1359,7 @@ class GuiPlaceListOption(Gtk.HBox):
                            self.__track, skip=skip_list)
         place = sel.run()
         if place:
-            place_name = place.get_title()
+            place_name = _pd.display(self.__db, place)
             gid = place.get_gramps_id()
             self.__model.append([place_name, gid])
             self.__update_value()
@@ -1410,7 +1411,7 @@ class GuiPlaceListOption(Gtk.HBox):
         for gid in value.split():
             place = self.__db.get_place_from_gramps_id(gid)
             if place:
-                place_name = place.get_title()
+                place_name = _pd.display(self.__db, place)
                 self.__model.append([place_name, gid])
 
     def clean_up(self):

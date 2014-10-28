@@ -24,6 +24,7 @@ from gramps.gen.plug import Gramplet
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.datehandler import get_date
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.errors import WindowActiveError
 from gi.repository import Gtk
 
@@ -109,7 +110,7 @@ class PersonResidence(Gramplet):
         place = ''
         handle = event.get_place_handle()
         if handle:
-            place = self.dbstate.db.get_place_from_handle(handle).get_title()
+            place = place_displayer.display_event(self.dbstate.db, event)
         self.model.add((event.get_handle(), date, place))
 
     def edit_event(self, treeview):

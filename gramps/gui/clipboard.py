@@ -52,6 +52,7 @@ from gramps.gen.const import IMAGE_DIR, URL_MANUAL_PAGE, GRAMPS_LOCALE as glocal
 from gramps.gen.config import config
 from gramps.gen.lib import NoteType
 from gramps.gen.datehandler import get_date
+from gramps.gen.display.place import displayer as place_displayer
 from .display import display_help
 from .managedwindow import ManagedWindow
 from gramps.gen.errors import WindowActiveError
@@ -381,7 +382,7 @@ class ClipPlace(ClipHandleWrapper):
             value = self._db.get_place_from_handle(self._handle)
             if value:
                 self._title = value.gramps_id
-                self._value = value.get_title() 
+                self._value = place_displayer.display(self._db, value)
 
     def is_valid(self):
         data = pickle.loads(self._obj)
@@ -1636,12 +1637,8 @@ def short(val,size=60):
     else:
         return val
 
-def place_title(db,event):
-    pid = event.get_place_handle()
-    if pid:
-        return db.get_place_from_handle(pid).get_title()
-    else:
-        return ''
+def place_title(db, event):
+    return place_displayer.display_event(db, event)
 
 def gen_del_obj(func, t):
     return lambda l : func(l, t)

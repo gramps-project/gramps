@@ -39,6 +39,7 @@ from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gen.lib.eventtype import EventType
 from gramps.gen.lib.familyreltype import FamilyRelType
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -1452,7 +1453,7 @@ class Narrator(object):
                 bplace_handle = birth_event.get_place_handle()
                 if bplace_handle:
                     place = self.__db.get_place_from_handle(bplace_handle)
-                    bplace = place.get_title()
+                    bplace = _pd.display_event(self.__db, birth_event)
                 bdate_obj = birth_event.get_date_object()
                 bdate_full = bdate_obj and bdate_obj.get_day_valid()
                 bdate_mod = bdate_obj and \
@@ -1561,7 +1562,7 @@ class Narrator(object):
                 dplace_handle = death_event.get_place_handle()
                 if dplace_handle:
                     place = self.__db.get_place_from_handle(dplace_handle)
-                    dplace = place.get_title()
+                    dplace = _pd.display_event(self.__db, death_event)
                 ddate_obj = death_event.get_date_object()
                 ddate_full = ddate_obj and ddate_obj.get_day_valid()
                 ddate_mod = ddate_obj and \
@@ -1680,7 +1681,7 @@ class Narrator(object):
             bplace_handle = burial.get_place_handle()
             if bplace_handle:
                 place = self.__db.get_place_from_handle(bplace_handle)
-                bplace = place.get_title()
+                bplace = _pd.display_event(self.__db, burial)
             bdate_obj = burial.get_date_object()
             bdate_full = bdate_obj and bdate_obj.get_day_valid()
             bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
@@ -1790,7 +1791,7 @@ class Narrator(object):
             bplace_handle = baptism.get_place_handle()
             if bplace_handle:
                 place = self.__db.get_place_from_handle(bplace_handle)
-                bplace = place.get_title()
+                bplace = _pd.display_event(self.__db, baptism)
             bdate_obj = baptism.get_date_object()
             bdate_full = bdate_obj and bdate_obj.get_day_valid()
             bdate_mod = bdate_obj and bdate_obj.get_modifier() != Date.MOD_NONE
@@ -1900,7 +1901,7 @@ class Narrator(object):
              cplace_handle = christening.get_place_handle()
              if cplace_handle:
                 place = self.__db.get_place_from_handle(cplace_handle)
-                cplace = place.get_title()
+                cplace = _pd.display_event(self.__db, christening)
              cdate_obj = christening.get_date_object()
              cdate_full = cdate_obj and cdate_obj.get_day_valid()
              cdate_mod = cdate_obj and cdate_obj.get_modifier() != Date.MOD_NONE
@@ -2013,7 +2014,7 @@ class Narrator(object):
             place_handle = event.get_place_handle()
             if place_handle:
                 place_obj = self.__db.get_place_from_handle(place_handle)
-                place = place_obj.get_title()
+                place = _pd.display_event(self.__db, event)
         relationship = family.get_relationship()
     
         value_map = {

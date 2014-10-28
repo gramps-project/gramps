@@ -35,6 +35,7 @@ from ...datehandler import parser
 from ...lib.eventtype import EventType
 from . import Rule
 from ...utils.db import get_participant_from_event
+from ...display.place import displayer as place_displayer
 
 #-------------------------------------------------------------------------
 #
@@ -87,8 +88,8 @@ class HasEventBase(Rule):
             place_id = event.get_place_handle()
             if place_id:
                 place = db.get_place_from_handle(place_id)
-                place_name = place.get_title()
-                if not self.match_substring(2, place_name):
+                place_title = place_displayer.display(db, place)
+                if not self.match_substring(2, place_title):
                     return False
             else:
                 return False

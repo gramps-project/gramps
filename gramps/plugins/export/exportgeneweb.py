@@ -52,6 +52,7 @@ from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.utils.alive import probably_alive
 from gramps.gui.glade import Glade
 from gramps.gen.config import config
+from gramps.gen.display.place import displayer as _pd
 
 class GeneWebWriter(object):
     def __init__(self, database, filename, user, option_box=None):
@@ -273,8 +274,7 @@ class GeneWebWriter(object):
                 b_date = self.format_date( birth.get_date_object())
                 place_handle = birth.get_place_handle()
                 if place_handle:
-                    place = self.db.get_place_from_handle(place_handle)
-                    b_place = place.get_title()
+                    b_place = _pd.display_event(self.db, birth)
         
         if probably_alive(person,self.db):
             d_date = ""
@@ -288,8 +288,7 @@ class GeneWebWriter(object):
                 d_date = self.format_date( death.get_date_object())
                 place_handle = death.get_place_handle()
                 if place_handle:
-                    place = self.db.get_place_from_handle(place_handle)
-                    d_place = place.get_title()
+                    d_place = _pd.display_event(self.db, death)
             
         retval = retval + "%s " % b_date
         if b_place != "":
@@ -375,16 +374,14 @@ class GeneWebWriter(object):
                 m_date = self.format_date( event.get_date_object())
                 place_handle = event.get_place_handle()
                 if place_handle:
-                    place = self.db.get_place_from_handle(place_handle)
-                    m_place = place.get_title()
+                    m_place = _pd.display_event(self.db, event)
                 m_source = self.get_primary_source( event.get_citation_list())
             if event.get_type() == EventType.ENGAGEMENT:
                 engaged = 1
                 eng_date = self.format_date( event.get_date_object())
                 place_handle = event.get_place_handle()
                 if place_handle:
-                    place = self.db.get_place_from_handle(place_handle)
-                    eng_place = place.get_title()
+                    eng_place = _pd.display_event(self.db, event)
                 eng_source = self.get_primary_source( event.get_citation_list())
             if event.get_type() == EventType.DIVORCE:
                 divorced = 1

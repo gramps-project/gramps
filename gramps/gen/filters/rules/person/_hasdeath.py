@@ -32,6 +32,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from ....datehandler import parser
+from ....display.place import displayer as place_displayer
 from ....lib.eventroletype import EventRoleType
 from ....lib.eventtype import EventType
 from .. import Rule
@@ -78,7 +79,8 @@ class HasDeath(Rule):
                 place_id = event.get_place_handle()
                 if place_id:
                     place = db.get_place_from_handle(place_id)
-                    if not self.match_substring(1, place.get_title()):
+                    place_title = place_displayer.display(db, place)
+                    if not self.match_substring(1, place_title):
                         # No match: wrong place
                         continue
                 else:

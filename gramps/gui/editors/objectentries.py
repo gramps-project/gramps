@@ -56,6 +56,7 @@ from .editnote import EditNote
 from ..selectors import SelectorFactory
 from ..ddtargets import DdTargets
 from gramps.gen.errors import WindowActiveError
+from gramps.gen.display.place import displayer as place_displayer
 
 #-------------------------------------------------------------------------
 #
@@ -316,7 +317,8 @@ class PlaceEntry(ObjEntry):
         return self.db.get_place_from_handle(handle)
 
     def get_label(self, place):
-        return "%s [%s]" % (place.get_title(), place.gramps_id)
+        place_title = place_displayer.display(self.db, place)
+        return "%s [%s]" % (place_title, place.gramps_id)
 
     def call_editor(self, obj=None):
         if obj is None:

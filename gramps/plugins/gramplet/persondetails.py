@@ -22,6 +22,7 @@ from gramps.gen.lib import EventType, EventRoleType
 from gramps.gen.plug import Gramplet
 from gramps.gui.widgets import Photo
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.datehandler import get_date
@@ -229,7 +230,7 @@ class PersonDetails(Gramplet):
         date = get_date(event)
         handle = event.get_place_handle()
         if handle:
-            place = self.dbstate.db.get_place_from_handle(handle).get_title()
+            place = place_displayer.display_event(self.dbstate.db, event)
             retval = _('%(date)s - %(place)s.') % {'date' : date,
                                                    'place' : place}
         else:

@@ -60,6 +60,7 @@ from gramps.gen.utils.file import media_path_full, find_file
 from gramps.gui.thumbnails import get_thumbnail_path
 from gramps.gen.relationship import get_relationship_calculator
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gen.display.place import displayer as place_displayer
 
 #------------------------------------------------------------------------
 #
@@ -505,10 +506,7 @@ class RelGraphReport(Report):
                 elif self.includedates:
                     return self._get_date(event.get_date_object())
             elif self.use_place:
-                place_handle = event.get_place_handle()
-                place = self.database.get_place_from_handle(place_handle)
-                if place and place.get_title():
-                    return place.get_title()
+                return place_displayer.display_event(self.database, event)
         return ''
 
 #------------------------------------------------------------------------

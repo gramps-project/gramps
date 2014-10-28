@@ -59,6 +59,7 @@ from gramps.gen.utils.id import create_id
 from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE
 from gramps.gen.config import config
+from gramps.gen.display.place import displayer as place_displayer
 
 #-------------------------------------------------------------------------
 #
@@ -817,7 +818,8 @@ class CSVParser(object):
         LOG.debug("get_or_create_place: looking for: %s", place_name)
         for place_handle in self.db.iter_place_handles():
             place = self.db.get_place_from_handle(place_handle)
-            if place.get_title() == place_name:
+            place_title = place_displayer.display(self.db, place)
+            if place_title == place_name:
                 return (0, place)
         place = Place()
         place.set_title(place_name)

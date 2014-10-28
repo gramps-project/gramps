@@ -69,6 +69,7 @@ from gramps.gui.views.navigationview import NavigationView
 from gramps.gui.editors import EditPerson, EditFamily
 from gramps.gui.editors import FilterEditor
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.alive import probably_alive
 from gramps.gui.utils import open_file_with_default_application
@@ -755,7 +756,7 @@ class RelationshipView(NavigationView):
             dobj = event.get_date_object()
             phandle = event.get_place_handle()
             if phandle:
-                pname = self.place_name(phandle)
+                pname = place_displayer.display_event(self.dbstate.db, event)
             else:
                 pname = None
 

@@ -57,6 +57,7 @@ _ = glocale.translation.gettext
 from gramps.gen.lib import (Name, EventRef, EventType, EventRoleType,
                             FamilyRelType, ChildRefType, NoteType)
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from .lru import LRU
 from .flatbasemodel import FlatBaseModel
@@ -383,12 +384,9 @@ class PeopleBaseModel(object):
                 br.unserialize(local)
                 event = self.db.get_event_from_handle(br.ref)
                 if event:
-                    place_handle = event.get_place_handle()
-                    if place_handle:
-                        place = self.db.get_place_from_handle(place_handle)
-                        place_title = place.get_title()
-                        if place_title:
-                            return cgi.escape(place_title)
+                    place_title = place_displayer.display_event(self.db, event)
+                    if place_title:
+                        return cgi.escape(place_title)
             except:
                 return ''
         
@@ -400,13 +398,9 @@ class PeopleBaseModel(object):
             if (etype in [EventType.BAPTISM, EventType.CHRISTEN] and
                 er.get_role() == EventRoleType.PRIMARY):
 
-                place_handle = event.get_place_handle()
-                if place_handle:
-                    place = self.db.get_place_from_handle(place_handle)
-                    place_title = place.get_title()
+                    place_title = place_displayer.display_event(self.db, event)
                     if place_title:
                         return "<i>%s</i>" % cgi.escape(place_title)
-        
         return ""
 
     def column_death_place(self, data):
@@ -418,12 +412,9 @@ class PeopleBaseModel(object):
                 dr.unserialize(local)
                 event = self.db.get_event_from_handle(dr.ref)
                 if event:
-                    place_handle = event.get_place_handle()
-                    if place_handle:
-                        place = self.db.get_place_from_handle(place_handle)
-                        place_title = place.get_title()
-                        if place_title:
-                            return cgi.escape(place_title)
+                    place_title = place_displayer.display_event(self.db, event)
+                    if place_title:
+                        return cgi.escape(place_title)
             except:
                 return ''
         
@@ -436,12 +427,9 @@ class PeopleBaseModel(object):
                           EventType.CAUSE_DEATH]
                 and er.get_role() == EventRoleType.PRIMARY):
 
-                place_handle = event.get_place_handle()
-                if place_handle:
-                    place = self.db.get_place_from_handle(place_handle)
-                    place_title = place.get_title()
-                    if place_title != "":
-                        return "<i>" + cgi.escape(place_title) + "</i>"
+                    place_title = place_displayer.display_event(self.db, event)
+                    if place_title:
+                        return "<i>%s</i>" % cgi.escape(place_title)
         return ""
 
     def _get_parents_data(self, data):

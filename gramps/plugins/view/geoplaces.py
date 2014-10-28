@@ -55,6 +55,7 @@ _ = glocale.translation.gettext
 from gramps.gen.lib import EventType
 from gramps.gen.config import config
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.views.pageview import PageView
 from gramps.gui.editors import EditPlace
@@ -199,7 +200,7 @@ class GeoPlaces(GeoGraphyView):
             return
         if self.nbplaces >= self._config.get("geography.max_places"):
             return
-        descr = place.get_title()
+        descr = _pd.display(self.dbstate.db, place)
         longitude = place.get_longitude()
         latitude = place.get_latitude()
         latitude, longitude = conv_lat_lon(latitude, longitude, "D.D8")

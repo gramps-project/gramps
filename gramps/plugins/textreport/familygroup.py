@@ -47,6 +47,7 @@ from gramps.gen.plug.docgen import (IndexMark, FontStyle, ParagraphStyle,
                                     TableStyle, TableCellStyle,
                                     FONT_SANS_SERIF, FONT_SERIF, 
                                     INDEX_TYPE_TOC, PARA_ALIGN_CENTER)
+from gramps.gen.display.place import displayer as place_displayer
 
 #------------------------------------------------------------------------
 #
@@ -112,8 +113,7 @@ class FamilyGroup(Report):
         descr = ""
         if event:
             date = self._get_date(event.get_date_object())
-            place_handle = event.get_place_handle()
-            place = ReportUtils.place_name(self.database,place_handle)
+            place = place_displayer.display_event(self.database, event)
             descr = event.get_description()
             
             if self.includeAttrs:
@@ -404,7 +404,7 @@ class FamilyGroup(Report):
             date = self._get_date(event.get_date_object())
             place_handle = event.get_place_handle()
             if place_handle:
-                place = self.database.get_place_from_handle(place_handle).get_title()
+                place = place_displayer.display_event(self.database, event)
 
         self.doc.start_row()
         self.doc.start_cell(text)

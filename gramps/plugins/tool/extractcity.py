@@ -51,6 +51,7 @@ from gramps.gui.managedwindow import ManagedWindow
 from gramps.gui.display import display_help
 from gramps.plugins.lib.libplaceimport import PlaceImport
 from gramps.gen.utils.location import get_main_location
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.lib import PlaceType
 
 from gramps.gui.plug import tool
@@ -441,7 +442,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
         self.place_import = PlaceImport(db)
 
         for place in db.iter_places():
-            descr = place.get_title()
+            descr = place_displayer.display(db, place)
             self.progress.step()
 
             loc = get_main_location(db, place)
@@ -568,7 +569,7 @@ class ExtractCity(tool.BatchTool, ManagedWindow):
         for (id, data) in self.name_list:
 
             place = self.db.get_place_from_handle(id)
-            descr = place.get_title()
+            descr = place_displayer.display(self.db, place)
 
             handle = self.model.append()
             self.model.set_value(handle, 0, True)

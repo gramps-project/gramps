@@ -31,9 +31,9 @@ from ..lib.handle import Handle
 from ..datehandler import displayer
 from ..utils.string import gender as gender_map
 from ..utils.db import get_birth_or_fallback, get_death_or_fallback
-from ..plug.report.utils import place_name
 
 from ..display.name import displayer as name_displayer
+from ..display.place import displayer as place_displayer
 from ..lib import EventType
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
@@ -309,8 +309,7 @@ class SimpleAccess(object):
                 event_handle = ref.get_reference_handle()
                 if event_handle:
                     event = self.dbase.get_event_from_handle(event_handle)
-                    place_handle = event.get_place_handle()
-                    return place_name(self.dbase, place_handle)
+                    return place_displayer.display_event(self.dbase, event)
         return ''
 
     def spouse(self, person):
@@ -391,8 +390,7 @@ class SimpleAccess(object):
                         events = [ evnt for evnt in elist 
                                    if event.type == EventType.MARRIAGE ]
                         if events:
-                            place_handle = events[0].get_place_handle()
-                            return place_name(self.dbase, place_handle)
+                            return place_displayer.display_event(self.dbase, events[0])
         return ''
 
     def marriage_date(self, person):
@@ -618,8 +616,7 @@ class SimpleAccess(object):
         assert(event is None or isinstance(event, Event))
 
         if event:
-            place_handle = event.get_place_handle()
-            return place_name(self.dbase, place_handle)
+            return place_displayer.display_event(self.dbase, event)
         else:
             return ''
 
@@ -994,9 +991,9 @@ class SimpleAccess(object):
                     return "%s: [%s]" % (_(object_class), 
                                             self.gid(obj))
                 elif isinstance(obj, Place):
+                    place_title = place_displayer.display(self.dbase, obj)
                     return "%s: %s [%s]" % (_(object_class), 
-                                            place_name(self.dbase, 
-                                                       obj.handle), 
+                                            place_title,
                                             self.gid(obj))
                 elif isinstance(obj, Repository):
                     return "%s: %s [%s]" % (_(object_class), 
@@ -1044,8 +1041,8 @@ class SimpleAccess(object):
         elif isinstance(obj, Citation):
             return "[%s]" % (self.gid(obj))
         elif isinstance(obj, Place):
-            return "%s [%s]" % (place_name(self.dbase, 
-                                           obj.handle), 
+            place_title = place_displayer.display(self.dbase, obj)
+            return "%s [%s]" % (place_title,
                                 self.gid(obj))
         elif isinstance(obj, Repository):
             return "%s [%s]" % (obj.type, 

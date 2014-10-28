@@ -33,6 +33,7 @@ import cgi
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import get_date
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.lib import EventType
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
@@ -120,9 +121,7 @@ class ChildModel(Gtk.ListStore):
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
             if event:
-                place_handle = event.get_place_handle()
-                if place_handle:
-                    return self.db.get_place_from_handle(place_handle).get_title()
+                return place_displayer.display_event(self.db, event)
         return ""
 
     def column_death_place(self, data):
@@ -130,7 +129,5 @@ class ChildModel(Gtk.ListStore):
         if event_ref and event_ref.ref:
             event = self.db.get_event_from_handle(event_ref.ref)
             if event:
-                place_handle = event.get_place_handle()
-                if place_handle:
-                    return self.db.get_place_from_handle(place_handle).get_title()
+                return place_displayer.display_event(self.db, event)
         return ""

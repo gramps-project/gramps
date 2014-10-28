@@ -23,7 +23,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.utils.file import media_path_full
-from gramps.gen.utils.location import get_location_list
+from gramps.gen.display.place import displayer as place_displayer
 from gi.repository import Gtk
 from gi.repository import Pango
 
@@ -110,7 +110,8 @@ class PlaceDetails(Gramplet):
         Display details of the active place.
         """
         self.load_place_image(place)
-        self.title.set_text(place.get_title())
+        title = place_displayer.display(self.dbstate.db, place)
+        self.title.set_text(title)
 
         self.clear_table()
         self.add_row(_('Name'), place.get_name())

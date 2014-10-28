@@ -143,6 +143,7 @@ from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE, UNITYPE, win
 from gramps.plugins.lib.libplaceimport import PlaceImport
+from gramps.gen.display.place import displayer as place_displayer
 
 # string.whitespace in some configuration is changed if it is imported
 # after setting locale (adding '0xa0')
@@ -4400,9 +4401,10 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         if sub_state.place:
+            place_title = place_displayer.display(self.dbase, sub_state.place)
             sub_state.place_fields.load_place(self.place_import,
                                               sub_state.place, 
-                                              sub_state.place.get_title())
+                                              place_title)
 
     def __lds_temple(self, line, state):
         """
@@ -4960,9 +4962,10 @@ class GedcomParser(UpdateCallback):
         state.msg += sub_state.msg
 
         if sub_state.place:
+            place_title = place_displayer.display(self.dbase, sub_state.place)
             sub_state.place_fields.load_place(self.place_import,
                                               sub_state.place, 
-                                              sub_state.place.get_title())
+                                              place_title)
 
     def __family_source(self, line, state):
         """
@@ -5292,7 +5295,8 @@ class GedcomParser(UpdateCallback):
                              self.__undefined)
             state.msg += sub_state.msg
 
-            sub_state.pf.load_place(self.place_import, place, place.get_title())
+            place_title = place_displayer.display(self.dbase, place)
+            sub_state.pf.load_place(self.place_import, place, place_title)
 
             self.dbase.commit_place(place, self.trans)
 

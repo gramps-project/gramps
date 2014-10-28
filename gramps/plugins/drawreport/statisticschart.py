@@ -59,6 +59,7 @@ from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.datehandler import parser
+from gramps.gen.display.place import displayer as place_displayer
 
 #------------------------------------------------------------------------
 #
@@ -424,7 +425,7 @@ class Extract(object):
         "return place for given event"
         place_handle = event.get_place_handle()
         if place_handle:
-            place = self.db.get_place_from_handle(place_handle).get_title()
+            place = place_displayer.display_event(self.db, event)
             if place:
                 return [place]
         return [_T_("Place missing")]
@@ -437,7 +438,7 @@ class Extract(object):
             event = self.db.get_event_from_handle(event_handle)
             place_handle = event.get_place_handle()
             if place_handle:
-                place = self.db.get_place_from_handle(place_handle).get_title()
+                place = place_displayer.display_event(self.db, event)
                 if place:
                     places.append(place)
             else:

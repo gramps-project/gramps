@@ -25,6 +25,7 @@ from gramps.gui.dbguielement import DbGUIElement
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import (get_participant_from_event,
                                  get_birth_or_fallback,
@@ -93,10 +94,7 @@ class Events(Gramplet, DbGUIElement):
         event_sort = '%012d' % event.get_date_object().get_sort_value()
         person_age      = self.column_age(event)
         person_age_sort = self.column_sort_age(event)
-        place = ''
-        handle = event.get_place_handle()
-        if handle:
-            place = self.dbstate.db.get_place_from_handle(handle).get_title()
+        place = place_displayer.display_event(self.dbstate.db, event)
 
         participants = get_participant_from_event(self.dbstate.db,
                                                   event_ref.ref)

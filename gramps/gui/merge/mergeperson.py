@@ -40,6 +40,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.display.name import displayer as name_displayer
+from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help
 from gramps.gen.datehandler import get_date
@@ -282,20 +283,11 @@ class MergePerson(ManagedWindow):
         if handle:
             event = self.database.get_event_from_handle(handle)
             date = get_date(event)
-            place = self.place_name(event)
+            place = place_displayer.display_event(self.database, event)
             if date:
                 return ("%s, %s" % (date, place)) if place else date
             else:
                 return place or ""
-        else:
-            return ""
-
-    def place_name(self, event):
-        """Return place name of an event as string."""
-        place_id = event.get_place_handle()
-        if place_id:
-            place = self.database.get_place_from_handle(place_id)
-            return place.get_title()
         else:
             return ""
 

@@ -51,6 +51,7 @@ from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.errors import ReportError
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_participant_from_event
+from gramps.gen.display.place import displayer as place_displayer
 
 #------------------------------------------------------------------------
 #
@@ -413,6 +414,7 @@ class TagReport(Report):
 
         for place_handle in place_list:
             place = self.database.get_place_from_handle(place_handle)
+            place_title = place_displayer.display(self.database, place)
 
             self.doc.start_row()
 
@@ -424,7 +426,7 @@ class TagReport(Report):
 
             self.doc.start_cell('TR-TableCell')
             self.doc.start_paragraph('TR-Normal')
-            self.doc.write_text(place.get_title())
+            self.doc.write_text(place_title)
             self.doc.end_paragraph()
             self.doc.end_cell()
 

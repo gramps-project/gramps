@@ -51,6 +51,7 @@ import cairo
 #-------------------------------------------------------------------------
 from gramps.gen.lib import EventType, Place, PlaceType, PlaceRef
 from gramps.gen.display.name import displayer as _nd
+from gramps.gen.display.place import displayer as _pd
 from gramps.gui.views.navigationview import NavigationView
 from gramps.gen.utils.libformatting import FormattingHelper
 from gramps.gen.errors import WindowActiveError
@@ -59,7 +60,6 @@ from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.config import config
 from gramps.gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gramps.gui.selectors.selectplace import SelectPlace
-from gramps.gen.utils.location import get_main_location
 
 from gi.repository import OsmGpsMap as osmgpsmap
 from . import constants
@@ -906,9 +906,11 @@ class GeoGraphyView(OsmGps, NavigationView):
             places_handle = self.dbstate.db.iter_place_handles()
             nb_places = 0
             gids = ""
+            place_title = _pd.display(self.dbstate.db, place)
             for place_hdl in places_handle:
                 plce = self.dbstate.db.get_place_from_handle(place_hdl)
-                if plce.get_title() == place.get_title():
+                plce_title = _pd.display(self.dbstate.db, plce)
+                if plce_title == place_title:
                     nb_places += 1
                     if gids == "":
                         gids = plce.gramps_id
@@ -926,7 +928,7 @@ class GeoGraphyView(OsmGps, NavigationView):
                         "%(bold_end)s.\n") % {
                             'bold_start' : '<b>',
                             'bold_end'   : '</b>',
-                            'title': '<b>' + place.get_title() + '</b>',
+                            'title': '<b>' + place_title + '</b>',
                             'gid': gids}
                       )
             else:

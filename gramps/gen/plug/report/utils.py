@@ -41,6 +41,7 @@ _ = glocale.translation.gettext
 #
 #------------------------------------------------------------------------
 from ...datehandler import get_date
+from ...display.place import displayer as place_displayer
 from ...utils.file import media_path_full
 from ..docgen import IndexMark, INDEX_TYPE_ALP
 from ...constfunc import cuni
@@ -115,10 +116,11 @@ def roman(num):
 #-------------------------------------------------------------------------
 def place_name(db, place_handle):
     if place_handle:
-        place = db.get_place_from_handle(place_handle).get_title()
+        place = db.get_place_from_handle(place_handle)
+        name = place_displayer.display(db, place)
     else:
-        place = ""
-    return cuni(place)
+        name = ""
+    return cuni(name)
     
 #-------------------------------------------------------------------------
 #
