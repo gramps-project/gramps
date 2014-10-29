@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-22 08:23+0200\n"
-"PO-Revision-Date: 2014-10-23 20:57+0100\n"
+"POT-Creation-Date: 2014-10-25 16:43+0200\n"
+"PO-Revision-Date: 2014-10-29 09:56+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1556,18 +1556,30 @@ msgstr "Nelze nahrát poslední rodokmen."
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Rodokmen neexistuje, byl vymazán."
 
+#: ../gramps/cli/grampscli.py:254
+msgid "The database is locked."
+msgstr "Databáze je zamknuta."
+
+#: ../gramps/cli/grampscli.py:255
+msgid ""
+"Use the --force-unlock option if you are sure that the database is not in "
+"use."
+msgstr ""
+"Použijte --force-unlock volbu pokud jste si jistí, že databáze není právě "
+"používána."
+
 #. already errors encountered. Show first one on terminal and exit
-#: ../gramps/cli/grampscli.py:324
+#: ../gramps/cli/grampscli.py:331
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Došlo k chybě: %s"
 
-#: ../gramps/cli/grampscli.py:326 ../gramps/cli/grampscli.py:334
+#: ../gramps/cli/grampscli.py:333 ../gramps/cli/grampscli.py:341
 #, python-format
 msgid "  Details: %s"
 msgstr "Detaily: %s"
 
-#: ../gramps/cli/grampscli.py:331
+#: ../gramps/cli/grampscli.py:338
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "Při zpracovávání argumentu došlo k chybě: %s"
@@ -5807,7 +5819,7 @@ msgid "Time"
 msgstr "Čas"
 
 #: ../gramps/gen/lib/childreftype.py:72 ../gramps/gui/configure.py:80
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:210
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:212
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:171
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:200
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:156
@@ -7560,6 +7572,8 @@ msgstr ""
 #: ../gramps/gui/editors/editmedia.py:172
 #: ../gramps/gui/editors/editmediaref.py:136
 #: ../gramps/gui/editors/filtereditor.py:295
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:118
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:105
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:93
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:135
@@ -8300,7 +8314,10 @@ msgstr "Slovinština"
 msgid "Albanian"
 msgstr "Albánština"
 
-#. Gramps's Serbian translation is not yet ready
+#: ../gramps/gen/utils/grampslocale.py:103
+msgid "Serbian"
+msgstr "srbština"
+
 #: ../gramps/gen/utils/grampslocale.py:104
 msgid "Swedish"
 msgstr "Švédština"
@@ -9070,6 +9087,7 @@ msgstr "Typ"
 #: ../gramps/gui/clipboard.py:947
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:89
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
 #: ../gramps/gui/selectors/selectobject.py:70
@@ -10218,6 +10236,7 @@ msgstr "Posunout vybranou adresu níže"
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:52
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:62
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:58
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:103
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:92
 #: ../gramps/gui/glade/editaddress.glade:370
@@ -10324,6 +10343,8 @@ msgstr "_Atributy"
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:66
 #: ../gramps/gui/editors/editfamily.py:122
 #: ../gramps/gui/editors/filtereditor.py:956
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:99
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:112
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:88
@@ -10451,6 +10472,7 @@ msgid "Move the selected citation downwards"
 msgstr "Posunout vybranou citaci níže"
 
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:82
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:89
 #: ../gramps/gui/selectors/selectsource.py:61
 #: ../gramps/plugins/gramplet/citations.py:67
@@ -12043,7 +12065,7 @@ msgid "Edit Tags"
 msgstr "Upravit štítky"
 
 #: ../gramps/gui/editors/edittaglist.py:108
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:119
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:106
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:119
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:94
@@ -12395,56 +12417,37 @@ msgid "Updating display..."
 msgstr "Aktualizace zobrazení..."
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:106
-#: ../gramps/plugins/view/citationlistview.py:106
-msgid "Source: ID"
-msgstr "Pramen: ID"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:107
-#: ../gramps/plugins/view/citationlistview.py:105
-msgid "Source: Title"
-msgstr "Pramen: Titulek"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:108
-#: ../gramps/plugins/view/citationlistview.py:107
-#: ../gramps/plugins/view/citationtreeview.py:100
-msgid "Source: Author"
-msgstr "Pramen: Autor"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:109
-#: ../gramps/plugins/view/citationlistview.py:108
-#: ../gramps/plugins/view/citationtreeview.py:101
-msgid "Source: Abbreviation"
-msgstr "Pramen: Zkratka"
+#: ../gramps/gui/glade/editcitation.glade:286
+msgid "Source:"
+msgstr "Pramen:"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:110
-msgid "Source: Publication"
-msgstr "Pramen: Publikace"
+#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:90
+#: ../gramps/plugins/view/sourceview.py:85
+#: ../gramps/plugins/webreport/narrativeweb.py:4278
+msgid "Abbreviation"
+msgstr "Zkratka"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:111
-msgid "Source: Note"
-msgstr "Pramen: Poznámka"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:112
-msgid "Citation: ID"
-msgstr "Citace: ID"
+#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
+msgid "Publication"
+msgstr "Publikace"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:113
-msgid "Citation: Volume/Page"
-msgstr "Citace: Svazek/Strana"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:114
-msgid "Citation: Date"
-msgstr "Citace: Datum"
+msgid "Citation:"
+msgstr "Citace:"
 
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:115
+#: ../gramps/plugins/textreport/tagreport.py:785
+#: ../gramps/plugins/view/citationlistview.py:98
+msgid "Volume/Page"
+msgstr "Ročník/Stránka"
+
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:117
 msgid "Citation: Minimum Confidence|Min. Conf."
 msgstr "Citace: Min. důvěrnost"
 
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116
-msgid "Citation: Note"
-msgstr "Citace: Poznámka"
-
-#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:118
+#: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:107
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:95
@@ -12507,16 +12510,6 @@ msgstr "URL"
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:79
 msgid "Reset"
 msgstr "Reset"
-
-#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:90
-#: ../gramps/plugins/view/sourceview.py:85
-#: ../gramps/plugins/webreport/narrativeweb.py:4278
-msgid "Abbreviation"
-msgstr "Zkratka"
-
-#: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:91
-msgid "Publication"
-msgstr "Publikace"
 
 #: ../gramps/gui/glade/addmedia.glade:126
 #: ../gramps/gui/glade/editperson.glade:290
@@ -12969,10 +12962,6 @@ msgstr "_ID:"
 #: ../gramps/gui/glade/editcitation.glade:260
 msgid "A unique ID to identify the citation"
 msgstr "Unikátní ID identifikující citaci"
-
-#: ../gramps/gui/glade/editcitation.glade:286
-msgid "Source:"
-msgstr "Pramen:"
 
 #: ../gramps/gui/glade/editcitation.glade:383
 #: ../gramps/gui/glade/editevent.glade:404
@@ -28791,11 +28780,6 @@ msgstr "E-mailová adresa"
 msgid "Publication Information"
 msgstr "Publikované informace"
 
-#: ../gramps/plugins/textreport/tagreport.py:785
-#: ../gramps/plugins/view/citationlistview.py:98
-msgid "Volume/Page"
-msgstr "Ročník/Stránka"
-
 #: ../gramps/plugins/textreport/tagreport.py:870
 msgid "The tag to use for the report"
 msgstr "Štítek použitý pro zprávu"
@@ -30710,6 +30694,24 @@ msgstr "Starý ale živý"
 #: ../gramps/plugins/webreport/narrativeweb.py:2364
 msgid "Confidence"
 msgstr "Důvěryhodnost"
+
+#: ../gramps/plugins/view/citationlistview.py:105
+msgid "Source: Title"
+msgstr "Pramen: Titulek"
+
+#: ../gramps/plugins/view/citationlistview.py:106
+msgid "Source: ID"
+msgstr "Pramen: ID"
+
+#: ../gramps/plugins/view/citationlistview.py:107
+#: ../gramps/plugins/view/citationtreeview.py:100
+msgid "Source: Author"
+msgstr "Pramen: Autor"
+
+#: ../gramps/plugins/view/citationlistview.py:108
+#: ../gramps/plugins/view/citationtreeview.py:101
+msgid "Source: Abbreviation"
+msgstr "Pramen: Zkratka"
 
 #: ../gramps/plugins/view/citationlistview.py:109
 #: ../gramps/plugins/view/citationtreeview.py:102
@@ -33514,6 +33516,24 @@ msgstr "Musí platit alespoň jedno pravidlo"
 msgid "Exactly one rule must apply"
 msgstr "Musí platit právě jedno pravidlo"
 
+#~ msgid "Source: Publication"
+#~ msgstr "Pramen: Publikace"
+
+#~ msgid "Source: Note"
+#~ msgstr "Pramen: Poznámka"
+
+#~ msgid "Citation: ID"
+#~ msgstr "Citace: ID"
+
+#~ msgid "Citation: Volume/Page"
+#~ msgstr "Citace: Svazek/Strana"
+
+#~ msgid "Citation: Date"
+#~ msgstr "Citace: Datum"
+
+#~ msgid "Citation: Note"
+#~ msgstr "Citace: Poznámka"
+
 #~ msgid "Top level place"
 #~ msgstr "Kořenové místo"
 
@@ -33551,9 +33571,9 @@ msgstr "Musí platit právě jedno pravidlo"
 #~ msgstr "%s %s, %s"
 
 #~ msgid ""
-#~ "You have attempted to use the existing Gramps ID with value %(gramps_id)"
-#~ "s. This value is already used by '%(prim_object)s'. Please enter a "
-#~ "different ID or leave blank to get the next available ID value."
+#~ "You have attempted to use the existing Gramps ID with value "
+#~ "%(gramps_id)s. This value is already used by '%(prim_object)s'. Please "
+#~ "enter a different ID or leave blank to get the next available ID value."
 #~ msgstr ""
 #~ "Snažíte se použít existující Gramps ID s hodnotou %(gramps_id)s. Tuto "
 #~ "hodnotu už používá '%(prim_object)s'. Zvolte prosím jiné ID. Ponecháte-li "
@@ -35622,6 +35642,3 @@ msgstr "Musí platit právě jedno pravidlo"
 #~ msgstr ""
 #~ "POZOR: modul pyexiv2 nebyl nahrán. Funkčnost metadat obrázků nebude "
 #~ "dostupná."
-
-msgid "Citation:"
-msgstr "Citace:"
