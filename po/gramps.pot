@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-25 16:43+0200\n"
+"POT-Creation-Date: 2014-10-29 09:15-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2002,7 +2002,7 @@ msgstr ""
 msgid "Saturday"
 msgstr ""
 
-#: ../gramps/gen/db/base.py:1643
+#: ../gramps/gen/db/base.py:1643 ../gramps/gui/widgets/fanchart.py:1851
 msgid "Add child to family"
 msgstr ""
 
@@ -2160,7 +2160,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/db/undoredo.py:256 ../gramps/gen/db/undoredo.py:293
-#: ../gramps/gen/db/write.py:2315
+#: ../gramps/gen/db/write.py:2318
 #, python-format
 msgid "_Undo %s"
 msgstr ""
@@ -2205,11 +2205,11 @@ msgstr ""
 msgid "%6d  Sources       upgraded with %6d citations in %6d secs\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:743
+#: ../gramps/gen/db/upgrade.py:745
 msgid "Number of new objects upgraded:\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:749
+#: ../gramps/gen/db/upgrade.py:751
 msgid ""
 "\n"
 "\n"
@@ -2219,7 +2219,7 @@ msgid ""
 "information"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:753
+#: ../gramps/gen/db/upgrade.py:755
 msgid "Upgrade Statistics"
 msgstr ""
 
@@ -2233,11 +2233,11 @@ msgstr ""
 
 #. Make a tuple of the functions and classes that we need for
 #. each of the primary object tables.
-#: ../gramps/gen/db/write.py:1363
+#: ../gramps/gen/db/write.py:1366
 msgid "Rebuild reference map"
 msgstr ""
 
-#: ../gramps/gen/db/write.py:2168
+#: ../gramps/gen/db/write.py:2171
 #, python-format
 msgid ""
 "A second transaction is started while there is still a transaction, \"%s\", "
@@ -9588,6 +9588,7 @@ msgstr ""
 msgid "%(part1)s - %(part2)s"
 msgstr ""
 
+#. we now construct an add menu
 #: ../gramps/gui/editors/displaytabs/buttontab.py:70
 #: ../gramps/gui/glade/editfamily.glade:216
 #: ../gramps/gui/glade/editfamily.glade:226
@@ -9598,6 +9599,7 @@ msgstr ""
 #: ../gramps/gui/glade/rule.glade:452
 #: ../gramps/gui/glade/styleeditor.glade:1373
 #: ../gramps/gui/glade/styleeditor.glade:1380
+#: ../gramps/gui/widgets/fanchart.py:1844
 #: ../gramps/plugins/view/relview.py:419
 msgid "Add"
 msgstr ""
@@ -13684,6 +13686,7 @@ msgstr ""
 #. Go over parents and build their menu
 #. don't show rest
 #: ../gramps/gui/grampsgui.py:172 ../gramps/gui/merge/mergeperson.py:215
+#: ../gramps/gui/widgets/fanchart.py:1767
 #: ../gramps/plugins/quickview/all_relations.py:305
 #: ../gramps/plugins/tool/notrelated.py:126
 #: ../gramps/plugins/view/pedigreeview.py:1780
@@ -14103,6 +14106,7 @@ msgstr ""
 
 #. Go over spouses and build their menu
 #: ../gramps/gui/merge/mergeperson.py:226
+#: ../gramps/gui/widgets/fanchart.py:1653
 #: ../gramps/plugins/textreport/kinshipreport.py:123
 #: ../gramps/plugins/view/pedigreeview.py:1660
 msgid "Spouses"
@@ -15849,6 +15853,61 @@ msgstr ""
 
 #: ../gramps/gui/widgets/expandcollapsearrow.py:90
 msgid "Collapse this section"
+msgstr ""
+
+#: ../gramps/gui/widgets/fanchart.py:1597
+#: ../gramps/plugins/view/pedigreeview.py:1604
+#: ../gramps/plugins/view/pedigreeview.py:1630
+msgid "People Menu"
+msgstr ""
+
+#: ../gramps/gui/widgets/fanchart.py:1620
+#: ../gramps/plugins/view/relview.py:826
+msgid "Edit family"
+msgstr ""
+
+#: ../gramps/gui/widgets/fanchart.py:1637
+#: ../gramps/plugins/view/relview.py:827
+msgid "Reorder families"
+msgstr ""
+
+#. Go over siblings and build their menu
+#: ../gramps/gui/widgets/fanchart.py:1687
+#: ../gramps/plugins/quickview/quickview.gpr.py:314
+#: ../gramps/plugins/view/pedigreeview.py:1695
+#: ../gramps/plugins/view/relview.py:924
+msgid "Siblings"
+msgstr ""
+
+#. Go over children and build their menu
+#: ../gramps/gui/widgets/fanchart.py:1730
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:794
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:808
+#: ../gramps/plugins/textreport/familygroup.py:591
+#: ../gramps/plugins/textreport/indivcomplete.py:406
+#: ../gramps/plugins/view/pedigreeview.py:1740
+#: ../gramps/plugins/view/relview.py:1390
+#: ../gramps/plugins/webreport/narrativeweb.py:744
+msgid "Children"
+msgstr ""
+
+#. Go over parents and build their menu
+#: ../gramps/gui/widgets/fanchart.py:1809
+#: ../gramps/plugins/view/pedigreeview.py:1828
+msgid "Related"
+msgstr ""
+
+#: ../gramps/gui/widgets/fanchart.py:1860
+msgid "Add partner to person"
+msgstr ""
+
+#: ../gramps/gui/widgets/fanchart.py:1868
+msgid "Add a person"
+msgstr ""
+
+#: ../gramps/gui/widgets/fanchart.py:1943
+#: ../gramps/plugins/view/relview.py:1537
+msgid "Add Child to Family"
 msgstr ""
 
 #: ../gramps/gui/widgets/grampletbar.py:191
@@ -18633,17 +18692,6 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:787
 msgid "Gramplet showing the children of a person"
-msgstr ""
-
-#. Go over children and build their menu
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:794
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:808
-#: ../gramps/plugins/textreport/familygroup.py:591
-#: ../gramps/plugins/textreport/indivcomplete.py:406
-#: ../gramps/plugins/view/pedigreeview.py:1740
-#: ../gramps/plugins/view/relview.py:1390
-#: ../gramps/plugins/webreport/narrativeweb.py:744
-msgid "Children"
 msgstr ""
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:800
@@ -25447,13 +25495,6 @@ msgstr ""
 msgid "Same Given Names - stand-alone"
 msgstr ""
 
-#. Go over siblings and build their menu
-#: ../gramps/plugins/quickview/quickview.gpr.py:314
-#: ../gramps/plugins/view/pedigreeview.py:1695
-#: ../gramps/plugins/view/relview.py:924
-msgid "Siblings"
-msgstr ""
-
 #: ../gramps/plugins/quickview/quickview.gpr.py:315
 msgid "Display a person's siblings."
 msgstr ""
@@ -29736,19 +29777,9 @@ msgstr ""
 msgid "Left <-> Right"
 msgstr ""
 
-#: ../gramps/plugins/view/pedigreeview.py:1604
-#: ../gramps/plugins/view/pedigreeview.py:1630
-msgid "People Menu"
-msgstr ""
-
 #: ../gramps/plugins/view/pedigreeview.py:1817
 #: ../gramps/plugins/view/relview.py:421
 msgid "Add New Parents..."
-msgstr ""
-
-#. Go over parents and build their menu
-#: ../gramps/plugins/view/pedigreeview.py:1828
-msgid "Related"
 msgstr ""
 
 #: ../gramps/plugins/view/pedigreeview.py:1877
@@ -29875,14 +29906,6 @@ msgstr ""
 msgid "Remove person as child of these parents"
 msgstr ""
 
-#: ../gramps/plugins/view/relview.py:826
-msgid "Edit family"
-msgstr ""
-
-#: ../gramps/plugins/view/relview.py:827
-msgid "Reorder families"
-msgstr ""
-
 #: ../gramps/plugins/view/relview.py:828
 msgid "Remove person as parent in this family"
 msgstr ""
@@ -29970,10 +29993,6 @@ msgstr[1] ""
 #: ../gramps/plugins/view/relview.py:1360
 #: ../gramps/plugins/view/relview.py:1410
 msgid " (no children)"
-msgstr ""
-
-#: ../gramps/plugins/view/relview.py:1537
-msgid "Add Child to Family"
 msgstr ""
 
 #: ../gramps/plugins/view/relview.py:1674
