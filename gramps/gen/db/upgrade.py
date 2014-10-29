@@ -656,7 +656,9 @@ def gramps_upgrade_16(self):
                       private)
         LOG.debug("      upgrade new_source %s" % [new_source])
         with BSDDBTxn(self.env, self.source_map) as txn:
-            txn.put(str(handle), new_source)
+            if isinstance(handle, UNITYPE):
+                handle = handle.encode('utf-8')
+            txn.put(handle, new_source)
         self.update()
 
     LOG.debug("%d sources upgraded with %d citations in %d seconds" % 
