@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-20 10:24+0200\n"
-"PO-Revision-Date: 2014-10-23 20:55+0100\n"
+"POT-Creation-Date: 2014-10-29 09:15-0700\n"
+"PO-Revision-Date: 2014-10-30 14:15+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1577,18 +1577,30 @@ msgstr "Nelze nahrát poslední rodokmen."
 msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Rodokmen neexistuje, byl vymazán."
 
+#: ../gramps/cli/grampscli.py:254
+msgid "The database is locked."
+msgstr "Databáze je zamknuta."
+
+#: ../gramps/cli/grampscli.py:255
+msgid ""
+"Use the --force-unlock option if you are sure that the database is not in "
+"use."
+msgstr ""
+"Použijte --force-unlock volbu pokud jste si jistí, že databáze není právě "
+"používána."
+
 #. already errors encountered. Show first one on terminal and exit
-#: ../gramps/cli/grampscli.py:324
+#: ../gramps/cli/grampscli.py:331
 #, python-format
 msgid "Error encountered: %s"
 msgstr "Došlo k chybě: %s"
 
-#: ../gramps/cli/grampscli.py:326 ../gramps/cli/grampscli.py:334
+#: ../gramps/cli/grampscli.py:333 ../gramps/cli/grampscli.py:341
 #, python-format
 msgid "  Details: %s"
 msgstr "Detaily: %s"
 
-#: ../gramps/cli/grampscli.py:331
+#: ../gramps/cli/grampscli.py:338
 #, python-format
 msgid "Error encountered in argument parsing: %s"
 msgstr "Při zpracovávání argumentu došlo k chybě: %s"
@@ -2449,7 +2461,7 @@ msgstr "pátek"
 msgid "Saturday"
 msgstr "sobota"
 
-#: ../gramps/gen/db/base.py:1643
+#: ../gramps/gen/db/base.py:1643 ../gramps/gui/widgets/fanchart.py:1851
 msgid "Add child to family"
 msgstr "Přidat dítě do rodiny"
 
@@ -2679,7 +2691,7 @@ msgstr ""
 "%(html_end)ssvého rodokmenu."
 
 #: ../gramps/gen/db/undoredo.py:256 ../gramps/gen/db/undoredo.py:293
-#: ../gramps/gen/db/write.py:2315
+#: ../gramps/gen/db/write.py:2318
 #, python-format
 msgid "_Undo %s"
 msgstr "_Vrátit %s"
@@ -2724,11 +2736,11 @@ msgstr "%6d  Archivů      aktualizováno %6d citací  během %6d sec\n"
 msgid "%6d  Sources       upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  Pramenů            aktualizováno %6d citací  během %6d sec\n"
 
-#: ../gramps/gen/db/upgrade.py:743
+#: ../gramps/gen/db/upgrade.py:745
 msgid "Number of new objects upgraded:\n"
 msgstr "Počet nově aktualizovaných objektů:\n"
 
-#: ../gramps/gen/db/upgrade.py:749
+#: ../gramps/gen/db/upgrade.py:751
 msgid ""
 "\n"
 "\n"
@@ -2744,7 +2756,7 @@ msgstr ""
 "kvůli sloučení citaci obsahujících podobné\n"
 "informace"
 
-#: ../gramps/gen/db/upgrade.py:753
+#: ../gramps/gen/db/upgrade.py:755
 msgid "Upgrade Statistics"
 msgstr "Statistiky aktualizace"
 
@@ -2761,11 +2773,11 @@ msgstr ""
 
 #. Make a tuple of the functions and classes that we need for
 #. each of the primary object tables.
-#: ../gramps/gen/db/write.py:1363
+#: ../gramps/gen/db/write.py:1366
 msgid "Rebuild reference map"
 msgstr "Přegenerovat mapu odkazů"
 
-#: ../gramps/gen/db/write.py:2168
+#: ../gramps/gen/db/write.py:2171
 #, python-format
 msgid ""
 "A second transaction is started while there is still a transaction, \"%s\", "
@@ -6633,7 +6645,6 @@ msgstr "Linie matek"
 
 #: ../gramps/gen/lib/nameorigintype.py:92 ../gramps/gui/clipboard.py:330
 #: ../gramps/gui/plug/_windows.py:620
-#: ../gramps/plugins/gramplet/placedetails.py:131
 msgid "Location"
 msgstr "Místo"
 
@@ -8314,7 +8325,10 @@ msgstr "Slovinština"
 msgid "Albanian"
 msgstr "Albánština"
 
-#. Gramps's Serbian translation is not yet ready
+#: ../gramps/gen/utils/grampslocale.py:104
+msgid "Serbian"
+msgstr "srbština"
+
 #: ../gramps/gen/utils/grampslocale.py:105
 msgid "Swedish"
 msgstr "Švédština"
@@ -8895,6 +8909,8 @@ msgstr "Místo odk"
 #: ../gramps/plugins/gramplet/ancestor.py:61
 #: ../gramps/plugins/gramplet/backlinks.py:45
 #: ../gramps/plugins/gramplet/descendant.py:65
+#: ../gramps/plugins/gramplet/locations.py:85
+#: ../gramps/plugins/gramplet/placedetails.py:116
 #: ../gramps/plugins/lib/libpersonview.py:97
 #: ../gramps/plugins/lib/libplaceview.py:91
 #: ../gramps/plugins/quickview/filterbyname.py:281
@@ -9053,6 +9069,8 @@ msgstr "Archiv"
 #: ../gramps/gui/selectors/selectplace.py:63
 #: ../gramps/plugins/gramplet/backlinks.py:44
 #: ../gramps/plugins/gramplet/events.py:74
+#: ../gramps/plugins/gramplet/locations.py:86
+#: ../gramps/plugins/gramplet/placedetails.py:117
 #: ../gramps/plugins/lib/libplaceview.py:94
 #: ../gramps/plugins/quickview/filterbyname.py:301
 #: ../gramps/plugins/quickview/linkreferences.py:45
@@ -10264,6 +10282,7 @@ msgstr "Posunout vybranou adresu níže"
 #: ../gramps/plugins/export/exportcsv.py:488
 #: ../gramps/plugins/gramplet/ageondategramplet.py:72
 #: ../gramps/plugins/gramplet/events.py:76
+#: ../gramps/plugins/gramplet/locations.py:87
 #: ../gramps/plugins/gramplet/personresidence.py:48
 #: ../gramps/plugins/importer/importcsv.py:238
 #: ../gramps/plugins/quickview/onthisday.py:80
@@ -10302,6 +10321,7 @@ msgid "Place Name"
 msgstr "Název místa"
 
 #: ../gramps/gui/editors/displaytabs/altnameembedlist.py:57
+#: ../gramps/plugins/gramplet/placedetails.py:135
 msgid "Alternative Names"
 msgstr "Další jména"
 
@@ -10402,6 +10422,7 @@ msgstr "Upravit odkaz"
 msgid "%(part1)s - %(part2)s"
 msgstr "%(part1)s - %(part2)s"
 
+#. we now construct an add menu
 #: ../gramps/gui/editors/displaytabs/buttontab.py:70
 #: ../gramps/gui/glade/editfamily.glade:216
 #: ../gramps/gui/glade/editfamily.glade:226
@@ -10412,6 +10433,7 @@ msgstr "%(part1)s - %(part2)s"
 #: ../gramps/gui/glade/rule.glade:452
 #: ../gramps/gui/glade/styleeditor.glade:2035
 #: ../gramps/gui/glade/styleeditor.glade:2042
+#: ../gramps/gui/widgets/fanchart.py:1844
 #: ../gramps/plugins/view/relview.py:419
 msgid "Add"
 msgstr "Přidat"
@@ -14837,6 +14859,7 @@ msgstr "Poznámky"
 #. Go over parents and build their menu
 #. don't show rest
 #: ../gramps/gui/grampsgui.py:172 ../gramps/gui/merge/mergeperson.py:215
+#: ../gramps/gui/widgets/fanchart.py:1767
 #: ../gramps/plugins/quickview/all_relations.py:305
 #: ../gramps/plugins/tool/notrelated.py:126
 #: ../gramps/plugins/view/pedigreeview.py:1780
@@ -15321,6 +15344,7 @@ msgstr "Nenalezeni žádní rodiče"
 
 #. Go over spouses and build their menu
 #: ../gramps/gui/merge/mergeperson.py:226
+#: ../gramps/gui/widgets/fanchart.py:1653
 #: ../gramps/plugins/textreport/kinshipreport.py:124
 #: ../gramps/plugins/view/pedigreeview.py:1660
 msgid "Spouses"
@@ -17184,6 +17208,61 @@ msgstr "Rozbalit tuto skupinu"
 #: ../gramps/gui/widgets/expandcollapsearrow.py:90
 msgid "Collapse this section"
 msgstr "Sbalit tuto skupinu"
+
+#: ../gramps/gui/widgets/fanchart.py:1597
+#: ../gramps/plugins/view/pedigreeview.py:1604
+#: ../gramps/plugins/view/pedigreeview.py:1630
+msgid "People Menu"
+msgstr "Menu osob"
+
+#: ../gramps/gui/widgets/fanchart.py:1620
+#: ../gramps/plugins/view/relview.py:826
+msgid "Edit family"
+msgstr "Změnit rodinu"
+
+#: ../gramps/gui/widgets/fanchart.py:1637
+#: ../gramps/plugins/view/relview.py:827
+msgid "Reorder families"
+msgstr "Přeskupit rodiny"
+
+#. Go over siblings and build their menu
+#: ../gramps/gui/widgets/fanchart.py:1687
+#: ../gramps/plugins/quickview/quickview.gpr.py:316
+#: ../gramps/plugins/view/pedigreeview.py:1695
+#: ../gramps/plugins/view/relview.py:924
+msgid "Siblings"
+msgstr "Sourozenci"
+
+#. Go over children and build their menu
+#: ../gramps/gui/widgets/fanchart.py:1730
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:799
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:813
+#: ../gramps/plugins/textreport/familygroup.py:592
+#: ../gramps/plugins/textreport/indivcomplete.py:520
+#: ../gramps/plugins/view/pedigreeview.py:1740
+#: ../gramps/plugins/view/relview.py:1390
+#: ../gramps/plugins/webreport/narrativeweb.py:745
+msgid "Children"
+msgstr "Děti"
+
+#. Go over parents and build their menu
+#: ../gramps/gui/widgets/fanchart.py:1809
+#: ../gramps/plugins/view/pedigreeview.py:1828
+msgid "Related"
+msgstr "Související"
+
+#: ../gramps/gui/widgets/fanchart.py:1860
+msgid "Add partner to person"
+msgstr "Přidat patnera k osobě"
+
+#: ../gramps/gui/widgets/fanchart.py:1868
+msgid "Add a person"
+msgstr "Přidat osobu"
+
+#: ../gramps/gui/widgets/fanchart.py:1943
+#: ../gramps/plugins/view/relview.py:1537
+msgid "Add Child to Family"
+msgstr "Přidat dítě do rodiny"
 
 #: ../gramps/gui/widgets/grampletbar.py:191
 #: ../gramps/gui/widgets/grampletpane.py:1169
@@ -20100,17 +20179,6 @@ msgstr "Potomci  osoby"
 msgid "Gramplet showing the children of a person"
 msgstr "Gramplet zobrazující děti dané osoby"
 
-#. Go over children and build their menu
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:799
-#: ../gramps/plugins/gramplet/gramplet.gpr.py:813
-#: ../gramps/plugins/textreport/familygroup.py:592
-#: ../gramps/plugins/textreport/indivcomplete.py:520
-#: ../gramps/plugins/view/pedigreeview.py:1740
-#: ../gramps/plugins/view/relview.py:1390
-#: ../gramps/plugins/webreport/narrativeweb.py:745
-msgid "Children"
-msgstr "Děti"
-
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:805
 msgid "Family Children"
 msgstr "Potomci rodiny"
@@ -20369,6 +20437,18 @@ msgstr "Gramplet pro generování kódů SoundEx"
 msgid "SoundEx"
 msgstr "SoundEx"
 
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1238
+msgid "Place Locations"
+msgstr "Polohy místa"
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1239
+msgid "Gramplet showing the locations of a place over time"
+msgstr "Gramplet zobrazující polohy místa v čase"
+
+#: ../gramps/plugins/gramplet/gramplet.gpr.py:1246
+msgid "Locations"
+msgstr "Polohy"
+
 #: ../gramps/plugins/gramplet/leak.py:102
 #: ../gramps/plugins/webreport/narrativeweb.py:2727
 #: ../gramps/plugins/webreport/narrativeweb.py:4208
@@ -20397,6 +20477,10 @@ msgstr "%d odkazuje na"
 #, python-format
 msgid "Uncollected Objects: %s"
 msgstr "Nevybrané objekty: %s"
+
+#: ../gramps/plugins/gramplet/locations.py:81
+msgid "Double-click on a row to edit the selected place."
+msgstr "Dvojklik na řádek upraví zvolené místo."
 
 #: ../gramps/plugins/gramplet/notes.py:99
 #: ../gramps/plugins/gramplet/todo.py:124
@@ -20531,7 +20615,7 @@ msgstr "%(date)s - %(place)s."
 msgid "%(date)s."
 msgstr "%(date)s."
 
-#: ../gramps/plugins/gramplet/placedetails.py:122
+#: ../gramps/plugins/gramplet/placedetails.py:125
 #: ../gramps/plugins/lib/libplaceview.py:96
 #: ../gramps/plugins/view/placetreeview.py:72
 #: ../gramps/plugins/webreport/narrativeweb.py:381
@@ -20539,7 +20623,7 @@ msgstr "%(date)s."
 msgid "Latitude"
 msgstr "Zeměpisná šířka"
 
-#: ../gramps/plugins/gramplet/placedetails.py:124
+#: ../gramps/plugins/gramplet/placedetails.py:127
 #: ../gramps/plugins/lib/libplaceview.py:97
 #: ../gramps/plugins/view/placetreeview.py:73
 #: ../gramps/plugins/webreport/narrativeweb.py:383
@@ -27240,13 +27324,6 @@ msgstr "Zobrazit osoby se stejným křestním jménem jako vybraná osoba."
 msgid "Same Given Names - stand-alone"
 msgstr "Stejná křestní jména - samostatně"
 
-#. Go over siblings and build their menu
-#: ../gramps/plugins/quickview/quickview.gpr.py:316
-#: ../gramps/plugins/view/pedigreeview.py:1695
-#: ../gramps/plugins/view/relview.py:924
-msgid "Siblings"
-msgstr "Sourozenci"
-
 #: ../gramps/plugins/quickview/quickview.gpr.py:317
 msgid "Display a person's siblings."
 msgstr "Zobrazit sourozence osoby."
@@ -31756,20 +31833,10 @@ msgstr "nahoru <-> dolů"
 msgid "Left <-> Right"
 msgstr "vlevo <-> vpravo"
 
-#: ../gramps/plugins/view/pedigreeview.py:1604
-#: ../gramps/plugins/view/pedigreeview.py:1630
-msgid "People Menu"
-msgstr "Menu osob"
-
 #: ../gramps/plugins/view/pedigreeview.py:1817
 #: ../gramps/plugins/view/relview.py:421
 msgid "Add New Parents..."
 msgstr "Přidat nové rodiče..."
-
-#. Go over parents and build their menu
-#: ../gramps/plugins/view/pedigreeview.py:1828
-msgid "Related"
-msgstr "Související"
 
 #: ../gramps/plugins/view/pedigreeview.py:1877
 msgid "Family Menu"
@@ -31895,14 +31962,6 @@ msgstr "Přeskupit rodiče"
 msgid "Remove person as child of these parents"
 msgstr "Odstranit osobu jako potomka těchto rodičů"
 
-#: ../gramps/plugins/view/relview.py:826
-msgid "Edit family"
-msgstr "Změnit rodinu"
-
-#: ../gramps/plugins/view/relview.py:827
-msgid "Reorder families"
-msgstr "Přeskupit rodiny"
-
 #: ../gramps/plugins/view/relview.py:828
 msgid "Remove person as parent in this family"
 msgstr "Odstranit osobu jako otce v této rodině"
@@ -31993,10 +32052,6 @@ msgstr[2] "({number_of} potomků)"
 #: ../gramps/plugins/view/relview.py:1410
 msgid " (no children)"
 msgstr "(bez dětí)"
-
-#: ../gramps/plugins/view/relview.py:1537
-msgid "Add Child to Family"
-msgstr "Přidat dítě do rodiny"
 
 #: ../gramps/plugins/view/relview.py:1674
 msgid "Use shading"
@@ -33839,9 +33894,9 @@ msgstr "Musí platit právě jedno pravidlo"
 #~ msgstr "%s %s, %s"
 
 #~ msgid ""
-#~ "You have attempted to use the existing Gramps ID with value %(gramps_id)"
-#~ "s. This value is already used by '%(prim_object)s'. Please enter a "
-#~ "different ID or leave blank to get the next available ID value."
+#~ "You have attempted to use the existing Gramps ID with value "
+#~ "%(gramps_id)s. This value is already used by '%(prim_object)s'. Please "
+#~ "enter a different ID or leave blank to get the next available ID value."
 #~ msgstr ""
 #~ "Snažíte se použít existující Gramps ID s hodnotou %(gramps_id)s. Tuto "
 #~ "hodnotu už používá '%(prim_object)s'. Zvolte prosím jiné ID. Ponecháte-li "
@@ -35435,12 +35490,6 @@ msgstr "Musí platit právě jedno pravidlo"
 
 #~ msgid "You need to set a 'default person' to go to."
 #~ msgstr "Musíte zvolit výchozí osobu"
-
-#~ msgid "Add partner to person"
-#~ msgstr "Přidat patnera k osobě"
-
-#~ msgid "Add a person"
-#~ msgstr "Přidat osobu"
 
 #~ msgid "Please specify a book name"
 #~ msgstr "Zadejte prosím název knihy"
