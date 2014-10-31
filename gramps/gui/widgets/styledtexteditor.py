@@ -203,12 +203,14 @@ class StyledTextEditor(Gtk.TextView):
 
         # we want to disable the unicode menu in the popup
         settings = Gtk.Settings.get_default()
-        try:
-            self.show_unicode = settings.get_property('gtk-show-unicode-menu')
-            settings.set_property('gtk-show-unicode-menu', False)
-        except:
-            #GTK wants to deprecate show-unicode-menu, this prepares for this
-            self.show_unicode = False
+        # 'gtk-show-unicode-menu' is deprecated since Gtk-3.10
+        if Gtk.get_minor_version() < 10:
+            try:
+                self.show_unicode = settings.get_property('gtk-show-unicode-menu')
+                settings.set_property('gtk-show-unicode-menu', False)
+            except:
+                #GTK wants to deprecate show-unicode-menu, this prepares for this
+                self.show_unicode = False
         
         # variable to not copy to clipboard on double/triple click
         self.selclick = False
@@ -252,12 +254,14 @@ class StyledTextEditor(Gtk.TextView):
         
         Set the default Gtk settings back before leaving.
         """
-        try:
-            settings = Gtk.Settings.get_default()
-            settings.set_property('gtk-show-unicode-menu', self.show_unicode)
-        except:
-            #GTK wants to deprecate show-unicode-menu, this prepares for this
-            pass
+        # 'gtk-show-unicode-menu' is deprecated since Gtk-3.10
+        if Gtk.get_minor_version() < 10:
+            try:
+                settings = Gtk.Settings.get_default()
+                settings.set_property('gtk-show-unicode-menu', self.show_unicode)
+            except:
+                #GTK wants to deprecate show-unicode-menu, this prepares for this
+                pass
         
     def on_key_press_event(self, widget, event):
         """Signal handler.
