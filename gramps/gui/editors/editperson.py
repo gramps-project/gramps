@@ -81,6 +81,7 @@ from .displaytabs import (PersonEventEmbedList, NameEmbedList, CitationEmbedList
 from gramps.gen.plug import CATEGORY_QR_PERSON
 from gramps.gen.const import URL_MANUAL_PAGE
 from gramps.gen.constfunc import cuni
+from gramps.gen.utils.id import create_id
 
 #-------------------------------------------------------------------------
 #
@@ -187,6 +188,10 @@ class EditPerson(EditPrimary):
                                     self.obj.get_gender () ==
                                     Person.UNKNOWN)
 
+        self.added = self.obj.handle is None
+        if self.added:
+            self.obj.handle = create_id()
+
         self.top = Glade()
 
         self.set_window(self.top.toplevel, None,
@@ -254,18 +259,17 @@ class EditPerson(EditPrimary):
         self.eventbox.connect('button-press-event',
                                 self._image_button_press)
         # allow to initiate a drag-and-drop with this person if it has a handle
-        if self.obj.get_handle():
-            tglist = Gtk.TargetList.new([])
-            tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                       DdTargets.PERSON_LINK.target_flags,
-                       DdTargets.PERSON_LINK.app_id)
-            self.contexteventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
-                                       [], 
-                                       Gdk.DragAction.COPY)
-            self.contexteventbox.drag_source_set_target_list(tglist)
-            self.contexteventbox.drag_source_set_icon_stock('gramps-person')
-            self.contexteventbox.connect('drag_data_get',
-                                    self._top_drag_data_get)
+        #if self.obj.get_handle():
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
+                   DdTargets.PERSON_LINK.target_flags,
+                   DdTargets.PERSON_LINK.app_id)
+        self.contexteventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
+                                   [], 
+                                   Gdk.DragAction.COPY)
+        self.contexteventbox.drag_source_set_target_list(tglist)
+        self.contexteventbox.drag_source_set_icon_stock('gramps-person')
+        self.contexteventbox.connect('drag_data_get', self._top_drag_data_get)
 
     def _connect_db_signals(self):
         """
