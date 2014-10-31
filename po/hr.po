@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Gramps 4.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-05-26 17:49+0200\n"
-"PO-Revision-Date: 2014-06-01 12:20+0100\n"
+"PO-Revision-Date: 2014-10-31 02:49+0100\n"
 "Last-Translator: josip <josip@pisoj.com>\n"
 "Language-Team: \n"
 "Language: hr\n"
@@ -1794,7 +1794,7 @@ msgstr "to"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:348
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}od {date_start} do {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "between <Month>" in your
 #. language, don't translate this string.
@@ -1818,6 +1818,7 @@ msgstr "and"
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
+"{date_quality}između {date_start} i {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "before/after/around <Month>" in your
 #. language, don't translate this string.
@@ -1832,14 +1833,14 @@ msgstr "before"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:387
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
 #: ../gramps/gen/datehandler/_datedisplay.py:449
 msgid "{long_month} {day:d}, {year}"
-msgstr "{long_month.f[G]} {year}"
+msgstr "{long_month.f[G]} {day:d}, {year}"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1853,7 +1854,7 @@ msgstr "{short_month} {day:d}, {year}"
 #. to learn how to select proper inflection for your language.
 #: ../gramps/gen/datehandler/_datedisplay.py:479
 msgid "{day:d} {long_month} {year}"
-msgstr "{long_month.f[G]} {year}"
+msgstr "{day:d} {long_month.f[G]} {year}"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2269,23 +2270,23 @@ msgstr "Esfand"
 
 #: ../gramps/gen/datehandler/_datestrings.py:209
 msgid "date modifier|before "
-msgstr "prije"
+msgstr "prije "
 
 #: ../gramps/gen/datehandler/_datestrings.py:210
 msgid "date modifier|after "
-msgstr "poslije"
+msgstr "poslije "
 
 #: ../gramps/gen/datehandler/_datestrings.py:211
 msgid "date modifier|about "
-msgstr "okolo"
+msgstr "okolo "
 
 #: ../gramps/gen/datehandler/_datestrings.py:215
 msgid "date quality|estimated "
-msgstr "procijenjeno"
+msgstr "procijenjeno "
 
 #: ../gramps/gen/datehandler/_datestrings.py:216
 msgid "date quality|calculated "
-msgstr "izračunato"
+msgstr "izračunato "
 
 #: ../gramps/gen/datehandler/_datestrings.py:222
 msgid "Sunday"
