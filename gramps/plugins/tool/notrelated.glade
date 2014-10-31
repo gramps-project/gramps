@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="notrelated">
     <property name="can_focus">False</property>
     <property name="default_width">450</property>
@@ -19,14 +20,13 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="close">
-                <property name="label">gtk-close</property>
+                <property name="label">_Close</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="notrelated" swapped="yes"/>
               </object>
               <packing>
@@ -37,14 +37,13 @@
             </child>
             <child>
               <object class="GtkButton" id="help">
-                <property name="label">gtk-help</property>
+                <property name="label">_Help</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
               <packing>
@@ -131,13 +130,13 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="has_entry">True</property>
-                        <accelerator key="T" signal="grab_focus" modifiers="GDK_MOD1_MASK"/>
                         <child internal-child="entry">
                           <object class="GtkEntry" id="tagcombo-entry">
                             <property name="can_focus">True</property>
                             <property name="overwrite_mode">True</property>
                           </object>
                         </child>
+                        <accelerator key="T" signal="grab_focus" modifiers="GDK_MOD1_MASK"/>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -147,13 +146,12 @@
                     </child>
                     <child>
                       <object class="GtkButton" id="tagapply">
-                        <property name="label">gtk-apply</property>
+                        <property name="label">_Apply</property>
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
-                        <property name="use_action_appearance">False</property>
-                        <property name="use_stock">True</property>
+                        <property name="use_underline">True</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
