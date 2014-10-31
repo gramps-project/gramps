@@ -116,7 +116,7 @@ primary data for the merged citation.</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="use_action_appearance">False</property>
-                    <property name="xalign">0.5</property>
+                    <property name="halign">3</property>
                     <property name="draw_indicator">True</property>
                     <child>
                       <object class="GtkLabel" id="label_handle_btn1">
@@ -140,7 +140,7 @@ primary data for the merged citation.</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
                     <property name="use_action_appearance">False</property>
-                    <property name="xalign">0.5</property>
+                    <property name="halign">3</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">handle_btn1</property>
                     <child>
@@ -234,7 +234,7 @@ primary data for the merged citation.</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">3</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -253,7 +253,7 @@ primary data for the merged citation.</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">3</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">page_btn1</property>
                           </object>
@@ -275,7 +275,7 @@ primary data for the merged citation.</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">3</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -294,7 +294,7 @@ primary data for the merged citation.</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">3</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">date_btn1</property>
                           </object>
@@ -316,7 +316,7 @@ primary data for the merged citation.</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">3</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -335,7 +335,7 @@ primary data for the merged citation.</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">3</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">confidence_btn1</property>
                           </object>
@@ -357,7 +357,7 @@ primary data for the merged citation.</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">3</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -376,7 +376,7 @@ primary data for the merged citation.</property>
                             <property name="receives_default">False</property>
                             <property name="use_action_appearance">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">3</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">gramps_btn1</property>
                           </object>

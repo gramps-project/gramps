@@ -91,7 +91,7 @@
                   <object class="GtkLabel" id="label448">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_Name:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -106,7 +106,7 @@
                   <object class="GtkLabel" id="label449">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_Type:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -160,7 +160,7 @@
                       <object class="GtkLabel" id="label633">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">1</property>
+                        <property name="halign">2</property>
                         <property name="label" translatable="yes">_ID:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">gid</property>
@@ -232,7 +232,7 @@
                   <object class="GtkLabel" id="label1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">Tags:</property>
                     <property name="justify">right</property>
                   </object>
@@ -251,7 +251,7 @@
                       <object class="GtkLabel" id="tag_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>

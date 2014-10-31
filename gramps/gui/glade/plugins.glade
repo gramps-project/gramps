@@ -105,7 +105,7 @@
                       <object class="GtkLabel" id="title">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="xpad">10</property>
                         <property name="ypad">10</property>
                         <property name="use_markup">True</property>
@@ -129,8 +129,8 @@
                   <object class="GtkLabel" id="description">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
-                    <property name="yalign">0</property>
+                    <property name="halign">1</property>
+                    <property name="valign">1</property>
                     <property name="xpad">10</property>
                     <property name="ypad">20</property>
                     <property name="label" translatable="yes">Select a report from those available on the left.</property>
@@ -151,7 +151,7 @@
                       <object class="GtkLabel" id="report_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">1</property>
+                        <property name="halign">2</property>
                         <property name="xpad">3</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">Status:</property>
@@ -166,7 +166,7 @@
                       <object class="GtkLabel" id="report_status">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="xpad">5</property>
                       </object>
                       <packing>
@@ -179,7 +179,7 @@
                       <object class="GtkLabel" id="label70">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">1</property>
+                        <property name="halign">2</property>
                         <property name="xpad">3</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">Author:</property>
@@ -195,7 +195,7 @@
                       <object class="GtkLabel" id="label71">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">1</property>
+                        <property name="halign">2</property>
                         <property name="xpad">3</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">Author's email:</property>
@@ -211,7 +211,7 @@
                       <object class="GtkLabel" id="author_name">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="xpad">5</property>
                       </object>
                       <packing>
@@ -227,7 +227,7 @@
                       <object class="GtkLabel" id="author_email">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="xpad">5</property>
                       </object>
                       <packing>

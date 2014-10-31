@@ -89,7 +89,7 @@
                   <object class="GtkLabel" id="label244">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_Title:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -104,7 +104,7 @@
                   <object class="GtkLabel" id="label249">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">L_atitude:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -121,7 +121,7 @@
                   <object class="GtkLabel" id="label250">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_Longitude:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -153,7 +153,7 @@
                   <object class="GtkLabel" id="label655">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_ID:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">gid</property>
@@ -223,7 +223,7 @@ You can set these values via the Geography View by searching the place, or via a
                       <object class="GtkLabel" id="label5">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="label" translatable="yes">Code:</property>
                         <property name="use_underline">True</property>
                       </object>
@@ -310,7 +310,7 @@ You can set these values via the Geography View by searching the place, or via a
                   <object class="GtkLabel" id="place_name_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">place|Name:</property>
                   </object>
                   <packing>
@@ -324,7 +324,7 @@ You can set these values via the Geography View by searching the place, or via a
                   <object class="GtkLabel" id="label4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">Type:</property>
                   </object>
                   <packing>
@@ -376,7 +376,7 @@ You can set these values via the Geography View by searching the place, or via a
                   <object class="GtkLabel" id="label2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">Tags:</property>
                   </object>
                   <packing>
@@ -392,7 +392,7 @@ You can set these values via the Geography View by searching the place, or via a
                   <object class="GtkLabel" id="tag_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                   </object>
                   <packing>
                     <property name="left_attach">3</property>

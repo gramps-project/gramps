@@ -105,7 +105,7 @@
                       <object class="GtkLabel" id="label21">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="xpad">3</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">_Given:</property>
@@ -148,7 +148,7 @@
                       <object class="GtkLabel" id="label444">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="label" translatable="yes">C_all:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">call</property>
@@ -184,7 +184,7 @@
                       <object class="GtkLabel" id="titlelabel">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="xpad">3</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">T_itle:</property>
@@ -246,7 +246,7 @@
                       <object class="GtkLabel" id="label6">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="xpad">3</property>
                         <property name="label" translatable="yes">_Nick:</property>
                         <property name="use_underline">True</property>
@@ -298,7 +298,7 @@
                               <object class="GtkImage" id="personPix">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="yalign">0</property>
+                                <property name="valign">1</property>
                               </object>
                             </child>
                           </object>
@@ -325,7 +325,7 @@
                       <object class="GtkLabel" id="label269">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="xpad">3</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">_Type:</property>
@@ -424,7 +424,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                           <object class="GtkLabel" id="label3">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">1</property>
                             <property name="ypad">3</property>
                             <property name="label" translatable="yes">General</property>
                             <attributes>
@@ -446,7 +446,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="tooltip_text" translatable="yes">Set person as private data</property>
                             <property name="use_action_appearance">False</property>
                             <property name="relief">none</property>
-                            <property name="xalign">1</property>
+                            <property name="halign">2</property>
                             <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                             <child internal-child="accessible">
                               <object class="AtkObject" id="private-atkobject">
@@ -492,7 +492,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                           <object class="GtkLabel" id="label2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">1</property>
                             <property name="ypad">3</property>
                             <property name="label" translatable="yes">Preferred Name</property>
                             <attributes>
@@ -525,7 +525,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                           <object class="GtkLabel" id="surnamelabel">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">1</property>
                             <property name="label" translatable="yes">_Surname:</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">surname</property>
@@ -587,7 +587,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                       <object class="GtkLabel" id="full_name">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="xpad">3</property>
                         <property name="ypad">3</property>
                         <property name="use_markup">True</property>
@@ -637,7 +637,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                           <object class="GtkLabel" id="originlabel">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">1</property>
                             <property name="label" translatable="yes">O_rigin:</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">cmborigin</property>
@@ -687,7 +687,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                           <object class="GtkLabel" id="label436">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">1</property>
                             <property name="xpad">6</property>
                             <property name="label" translatable="yes">G_ender:</property>
                             <property name="use_underline">True</property>
@@ -720,7 +720,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                           <object class="GtkLabel" id="label437">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">1</property>
                             <property name="label" translatable="yes">_ID:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">right</property>
@@ -751,7 +751,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                           <object class="GtkLabel" id="label1">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">1</property>
                             <property name="xpad">6</property>
                             <property name="label" translatable="yes">_Tags:</property>
                             <property name="use_underline">True</property>
@@ -781,7 +781,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="use_action_appearance">False</property>
-                            <property name="xalign">1</property>
+                            <property name="halign">2</property>
                             <accessibility>
                               <relation type="labelled-by" target="label1"/>
                             </accessibility>

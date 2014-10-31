@@ -75,7 +75,7 @@
                   <object class="GtkLabel" id="name_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">Format _name:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -90,7 +90,7 @@
                   <object class="GtkLabel" id="format_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">Format _definition:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -137,7 +137,7 @@
                       <object class="GtkLabel" id="label706">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">1</property>
                         <property name="xpad">12</property>
                         <property name="ypad">6</property>
                         <property name="label" translatable="yes">The following conventions are used:
@@ -170,7 +170,7 @@
                   <object class="GtkLabel" id="example_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">Example:</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">example_label</property>
@@ -186,7 +186,7 @@
                   <object class="GtkLabel" id="example_label1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="use_markup">True</property>
                     <property name="justify">center</property>
                     <property name="angle">360</property>

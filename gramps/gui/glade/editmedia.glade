@@ -93,7 +93,7 @@
                   <object class="GtkLabel" id="label181">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_ID:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -112,7 +112,7 @@
                   <object class="GtkLabel" id="label148">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_Title:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">description</property>
@@ -128,7 +128,7 @@
                   <object class="GtkLabel" id="label422">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_Date:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">date_entry</property>
@@ -146,7 +146,7 @@
                   <object class="GtkLabel" id="path_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_Path:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -394,7 +394,7 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                   <object class="GtkLabel" id="label1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_Tags:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">tag_button</property>

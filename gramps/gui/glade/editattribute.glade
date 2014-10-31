@@ -90,7 +90,7 @@
                   <object class="GtkLabel" id="label171">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_Attribute:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -105,7 +105,7 @@
                   <object class="GtkLabel" id="label172">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">1</property>
                     <property name="label" translatable="yes">_Value:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
