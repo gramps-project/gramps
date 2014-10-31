@@ -882,7 +882,12 @@ class RelationshipView(NavigationView):
                                                 Gtk.STOCK_REMOVE)
                     delete.set_tooltip_text(del_msg)
                     hbox.pack_start(delete, False, True, 0)
-            self.attach.attach(hbox, _BTN_START, _BTN_STOP, self.row, self.row+1)
+
+            eventbox = Gtk.EventBox()
+            if family is not None:
+                self._set_draggable_family(eventbox, family.handle)
+            eventbox.add(hbox)
+            self.attach.attach(eventbox, _BTN_START, _BTN_STOP, self.row, self.row+1)
         self.row += 1
         
 ######################################################################
@@ -1070,7 +1075,12 @@ class RelationshipView(NavigationView):
                                     x_align=1, y_align=0)
         if self._config.get('preferences.releditbtn'):
             label.set_padding(0, 5)
-        self.attach.attach(label, _PLABEL_START, _PLABEL_STOP, self.row, 
+
+        eventbox = Gtk.EventBox()
+        if handle is not None:
+            self._set_draggable_person(eventbox, handle)
+        eventbox.add(label)
+        self.attach.attach(eventbox, _PLABEL_START, _PLABEL_STOP, self.row, 
                            self.row+1, xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.SHRINK,
                            yoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.SHRINK)
 
