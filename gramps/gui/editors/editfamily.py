@@ -563,6 +563,21 @@ class EditFamily(EditPrimary):
 
         #allow for a context menu
         self.set_contexteventbox(self.top.get_object("eventboxtop"))
+        #allow for drag of the family object from eventboxtop
+        self.contexteventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK, 
+                                   [], Gdk.DragAction.COPY)
+        tglist = Gtk.TargetList.new([])
+        tglist.add(DdTargets.FAMILY_LINK.atom_drag_type,
+                   DdTargets.FAMILY_LINK.target_flags,
+                   DdTargets.FAMILY_LINK.app_id)
+        self.contexteventbox.drag_source_set_target_list(tglist)
+        self.contexteventbox.drag_source_set_icon_stock('gramps-family')
+        self.contexteventbox.connect('drag_data_get', self.on_drag_data_get_family)
+
+    def on_drag_data_get_family(self,widget, context, sel_data, info, time):
+        if info == DdTargets.FAMILY_LINK.app_id:
+            data = (DdTargets.FAMILY_LINK.drag_type, id(self), self.obj.get_handle(), 0)
+            sel_data.set(DdTargets.FAMILY_LINK.atom_drag_type, 8, pickle.dumps(data))
 
     def _update_parent_dnd_handler(self, event_box, parent_handle, on_drag_data_get, on_drag_data_received):
         """
