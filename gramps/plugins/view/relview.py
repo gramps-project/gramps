@@ -810,7 +810,12 @@ class RelationshipView(NavigationView):
                                         shadow_type=Gtk.ShadowType.OUT)
         hbox.pack_start(arrow, False, True, 0)
         hbox.pack_start(label, True, True, 0)
-        self.attach.attach(hbox,
+        # Allow to drag this family
+        eventbox = Gtk.EventBox()
+        if family is not None:
+            self._set_draggable_family(eventbox, family.handle)
+        eventbox.add(hbox)
+        self.attach.attach(eventbox,
                            _LABEL_START, _LABEL_STOP, 
                            self.row, self.row+1, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL)
 
@@ -818,7 +823,11 @@ class RelationshipView(NavigationView):
             value = family.gramps_id
         else:
             value = ""
-        self.attach.attach(widgets.BasicLabel(value), 
+        eventbox = Gtk.EventBox()
+        if family is not None:
+            self._set_draggable_family(eventbox, family.handle)
+        eventbox.add(widgets.BasicLabel(value))
+        self.attach.attach(eventbox, 
                            _DATA_START, _DATA_STOP, 
                            self.row, self.row+1, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL)
 
@@ -1048,8 +1057,8 @@ class RelationshipView(NavigationView):
 
     def write_person(self, title, handle):
         """
-        Create and show a person cell in the GUI at the current row
-        @param title: left column label
+        Create and show a person cell with a "Father/Mother/Spouse" label in the GUI at the current row
+        @param title: left column label ("Father/Mother/Spouse")
         @param handle: person handle
         """
         if title:
@@ -1113,25 +1122,37 @@ class RelationshipView(NavigationView):
         """
         Register the given eventbox as a drag_source with given person_handle
         """
+        self._set_draggable(eventbox, person_handle, DdTargets.PERSON_LINK, 'gramps-person')
+
+    def _set_draggable_family(self, eventbox, family_handle):
+        """
+        Register the given eventbox as a drag_source with given person_handle
+        """
+        self._set_draggable(eventbox, family_handle, DdTargets.FAMILY_LINK, 'gramps-family')
+
+    def _set_draggable(self, eventbox, object_h, dnd_type, stock_icon):
+        """
+        Register the given eventbox as a drag_source with given object_h
+        """
         eventbox.drag_source_set(Gdk.ModifierType.BUTTON1_MASK,
                                  [], Gdk.DragAction.COPY)
         tglist = Gtk.TargetList.new([])
-        tglist.add(DdTargets.PERSON_LINK.atom_drag_type,
-                   DdTargets.PERSON_LINK.target_flags,
-                   DdTargets.PERSON_LINK.app_id)
+        tglist.add(dnd_type.atom_drag_type,
+                   dnd_type.target_flags,
+                   dnd_type.app_id)
         eventbox.drag_source_set_target_list(tglist)
-        eventbox.drag_source_set_icon_stock('gramps-person')
+        eventbox.drag_source_set_icon_stock(stock_icon)
         eventbox.connect('drag_data_get',
-                         self._make_person_drag_data_get_func(person_handle))
+                         self._make_drag_data_get_func(object_h, dnd_type))
 
-    def _make_person_drag_data_get_func(self, person_h):
+    def _make_drag_data_get_func(self, object_h, dnd_type):
         """
-        Generate at runtime a drag_data_get function returning the given person_h
+        Generate at runtime a drag_data_get function returning the given dnd_type and object_h
         """
         def drag_data_get(widget, context, sel_data, info, time):
-            if info == DdTargets.PERSON_LINK.app_id:
-                data = (DdTargets.PERSON_LINK.drag_type, id(self), person_h, 0)
-                sel_data.set(DdTargets.PERSON_LINK.atom_drag_type, 8, pickle.dumps(data))
+            if info == dnd_type.app_id:
+                data = (dnd_type.drag_type, id(self), object_h, 0)
+                sel_data.set(dnd_type.atom_drag_type, 8, pickle.dumps(data))
         return drag_data_get
 
     def build_label_cell(self, title):
