@@ -241,6 +241,7 @@
                         <property name="orientation">vertical</property>
                         <child>
                           <object class="GtkScrolledWindow" id="scrolledwindow88">
+                            <property name="hscrollbar_policy">never</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="shadow_type">in</property>
@@ -302,7 +303,6 @@
                                 <property name="can_focus">True</property>
                                 <property name="can_default">True</property>
                                 <property name="receives_default">False</property>
-                                <property name="halign">3</property>
                                 <child>
                                   <object class="GtkBox" id="box1">
                                     <property name="visible">True</property>
