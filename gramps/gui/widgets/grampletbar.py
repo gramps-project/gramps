@@ -360,7 +360,8 @@ class GrampletBar(Gtk.Notebook):
         height = min(int(self.uistate.screen_height() * 0.20), 400)
         gramplet.set_size_request(width, height)
 
-        page_num = self.append_page(gramplet, Gtk.Label(label=''))
+        label = self.__create_tab_label(gramplet)
+        page_num = self.append_page(gramplet, label)
         return page_num
 
     def __create_tab_label(self, gramplet):
