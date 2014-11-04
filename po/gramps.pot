@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-29 09:15-0700\n"
+"POT-Creation-Date: 2014-11-03 20:20-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -6365,17 +6365,17 @@ msgid "Video"
 msgstr ""
 
 #: ../gramps/gen/lib/styledtexttagtype.py:64
-#: ../gramps/gui/widgets/styledtexteditor.py:473
+#: ../gramps/gui/widgets/styledtexteditor.py:477
 msgid "Bold"
 msgstr ""
 
 #: ../gramps/gen/lib/styledtexttagtype.py:65
-#: ../gramps/gui/widgets/styledtexteditor.py:471
+#: ../gramps/gui/widgets/styledtexteditor.py:475
 msgid "Italic"
 msgstr ""
 
 #: ../gramps/gen/lib/styledtexttagtype.py:66
-#: ../gramps/gui/widgets/styledtexteditor.py:475
+#: ../gramps/gui/widgets/styledtexteditor.py:479
 msgid "Underline"
 msgstr ""
 
@@ -6403,7 +6403,7 @@ msgstr ""
 #: ../gramps/gui/glade/editlink.glade:169
 #: ../gramps/gui/widgets/styledtextbuffer.py:566
 #: ../gramps/gui/widgets/styledtextbuffer.py:603
-#: ../gramps/gui/widgets/styledtexteditor.py:487
+#: ../gramps/gui/widgets/styledtexteditor.py:491
 msgid "Link"
 msgstr ""
 
@@ -6567,7 +6567,7 @@ msgstr ""
 
 #: ../gramps/gen/plug/_pluginreg.py:89 ../gramps/gen/plug/_pluginreg.py:415
 #: ../gramps/gui/glade/grampletpane.glade:156
-#: ../gramps/gui/widgets/grampletbar.py:610
+#: ../gramps/gui/widgets/grampletbar.py:611
 #: ../gramps/gui/widgets/grampletpane.py:233
 #: ../gramps/gui/widgets/grampletpane.py:959
 msgid "Gramplet"
@@ -6766,7 +6766,7 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/gen/plug/docgen/graphdoc.py:138
-#: ../gramps/gui/widgets/styledtexteditor.py:496
+#: ../gramps/gui/widgets/styledtexteditor.py:500
 msgid "Font family"
 msgstr ""
 
@@ -6777,7 +6777,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:147
-#: ../gramps/gui/widgets/styledtexteditor.py:508
+#: ../gramps/gui/widgets/styledtexteditor.py:512
 msgid "Font size"
 msgstr ""
 
@@ -9090,7 +9090,7 @@ msgstr ""
 msgid "Select file _type:"
 msgstr ""
 
-#: ../gramps/gui/dbman.py:110 ../gramps/gui/glade/dbman.glade:386
+#: ../gramps/gui/dbman.py:110 ../gramps/gui/glade/dbman.glade:471
 msgid "_Archive"
 msgstr ""
 
@@ -11669,23 +11669,23 @@ msgstr ""
 msgid "Manage previously created books"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:438
+#: ../gramps/gui/glade/book.glade:435
 msgid "Add an item to the book"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:461
+#: ../gramps/gui/glade/book.glade:458
 msgid "Remove currently selected item from the book"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:483
+#: ../gramps/gui/glade/book.glade:480
 msgid "Move current selection one step up in the book"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:505
+#: ../gramps/gui/glade/book.glade:502
 msgid "Move current selection one step down in the book"
 msgstr ""
 
-#: ../gramps/gui/glade/book.glade:527
+#: ../gramps/gui/glade/book.glade:524
 msgid "Configure currently selected item"
 msgstr ""
 
@@ -11733,19 +11733,32 @@ msgstr ""
 msgid "Family Trees - Gramps"
 msgstr ""
 
-#: ../gramps/gui/glade/dbman.glade:154
+#: ../gramps/gui/glade/dbman.glade:149
 msgid "_Close Window"
 msgstr ""
 
-#: ../gramps/gui/glade/dbman.glade:208
+#: ../gramps/gui/glade/dbman.glade:197
 msgid "_Load Family Tree"
 msgstr ""
 
-#: ../gramps/gui/glade/dbman.glade:354
+#: ../gramps/gui/glade/dbman.glade:327 ../gramps/gui/glade/editlink.glade:227
+msgid "New"
+msgstr ""
+
+#: ../gramps/gui/glade/dbman.glade:372
+msgid "_Copy"
+msgstr ""
+
+#: ../gramps/gui/glade/dbman.glade:419
+#: ../gramps/gui/glade/grampletpane.glade:132
+msgid "Delete"
+msgstr ""
+
+#: ../gramps/gui/glade/dbman.glade:439
 msgid "_Rename"
 msgstr ""
 
-#: ../gramps/gui/glade/dbman.glade:370
+#: ../gramps/gui/glade/dbman.glade:455
 msgid "Re_pair"
 msgstr ""
 
@@ -12310,10 +12323,6 @@ msgstr ""
 
 #: ../gramps/gui/glade/editlink.glade:132
 msgid "_Link Type:"
-msgstr ""
-
-#: ../gramps/gui/glade/editlink.glade:227
-msgid "New"
 msgstr ""
 
 #: ../gramps/gui/glade/editlocation.glade:111
@@ -12891,10 +12900,6 @@ msgstr ""
 
 #: ../gramps/gui/glade/grampletpane.glade:128
 msgid "Click to delete gramplet from view"
-msgstr ""
-
-#: ../gramps/gui/glade/grampletpane.glade:132
-msgid "Delete"
 msgstr ""
 
 #: ../gramps/gui/glade/grampletpane.glade:142
@@ -13615,7 +13620,7 @@ msgid "Font"
 msgstr ""
 
 #: ../gramps/gui/grampsgui.py:158
-#: ../gramps/gui/widgets/styledtexteditor.py:483
+#: ../gramps/gui/widgets/styledtexteditor.py:487
 msgid "Font Color"
 msgstr ""
 
@@ -14372,7 +14377,7 @@ msgstr ""
 msgid "Fail"
 msgstr ""
 
-#: ../gramps/gui/plug/_windows.py:510 ../gramps/gui/widgets/grampletbar.py:532
+#: ../gramps/gui/plug/_windows.py:510 ../gramps/gui/widgets/grampletbar.py:533
 msgid "OK"
 msgstr ""
 
@@ -15925,24 +15930,24 @@ msgid ""
 "gramplets."
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletbar.py:471
+#: ../gramps/gui/widgets/grampletbar.py:472
 #: ../gramps/plugins/view/dashboardview.py:94
 msgid "Add a gramplet"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletbar.py:481
+#: ../gramps/gui/widgets/grampletbar.py:482
 msgid "Remove a gramplet"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletbar.py:491
+#: ../gramps/gui/widgets/grampletbar.py:492
 msgid "Restore default gramplets"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletbar.py:529
+#: ../gramps/gui/widgets/grampletbar.py:530
 msgid "Restore to defaults?"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletbar.py:530
+#: ../gramps/gui/widgets/grampletbar.py:531
 msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
@@ -16021,56 +16026,56 @@ msgid "Reorder Relationships: %s"
 msgstr ""
 
 #. spell checker submenu
-#: ../gramps/gui/widgets/styledtexteditor.py:388
+#: ../gramps/gui/widgets/styledtexteditor.py:392
 msgid "Spellcheck"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:393
+#: ../gramps/gui/widgets/styledtexteditor.py:397
 msgid "Search selection on web"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:404
+#: ../gramps/gui/widgets/styledtexteditor.py:408
 msgid "_Send Mail To..."
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:405
+#: ../gramps/gui/widgets/styledtexteditor.py:409
 msgid "Copy _E-mail Address"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:407
+#: ../gramps/gui/widgets/styledtexteditor.py:411
 msgid "_Open Link"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:408
+#: ../gramps/gui/widgets/styledtexteditor.py:412
 msgid "Copy _Link Address"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:411
+#: ../gramps/gui/widgets/styledtexteditor.py:415
 msgid "_Edit Link"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:485
+#: ../gramps/gui/widgets/styledtexteditor.py:489
 msgid "Background Color"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:489
+#: ../gramps/gui/widgets/styledtexteditor.py:493
 msgid "Clear Markup"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:529
-#: ../gramps/gui/widgets/styledtexteditor.py:530
+#: ../gramps/gui/widgets/styledtexteditor.py:533
+#: ../gramps/gui/widgets/styledtexteditor.py:534
 msgid "Undo"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:533
+#: ../gramps/gui/widgets/styledtexteditor.py:537
 msgid "Redo"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:656
+#: ../gramps/gui/widgets/styledtexteditor.py:660
 msgid "Select font color"
 msgstr ""
 
-#: ../gramps/gui/widgets/styledtexteditor.py:658
+#: ../gramps/gui/widgets/styledtexteditor.py:662
 msgid "Select background color"
 msgstr ""
 
@@ -27690,17 +27695,17 @@ msgstr ""
 msgid "Guess"
 msgstr ""
 
-#: ../gramps/plugins/tool/eventcmp.glade:239
+#: ../gramps/plugins/tool/eventcmp.glade:233
 msgid "_Filter:"
 msgstr ""
 
-#: ../gramps/plugins/tool/eventcmp.glade:254
+#: ../gramps/plugins/tool/eventcmp.glade:248
 msgid ""
 "The event comparison utility uses the filters defined in the Custom Filter "
 "Editor."
 msgstr ""
 
-#: ../gramps/plugins/tool/eventcmp.glade:268
+#: ../gramps/plugins/tool/eventcmp.glade:262
 msgid "Custom filter _editor"
 msgstr ""
 
@@ -28094,7 +28099,7 @@ msgid_plural "{number_of} citations merged"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/plugins/tool/notrelated.glade:172
+#: ../gramps/plugins/tool/notrelated.glade:170
 msgid "_Tag"
 msgstr ""
 
