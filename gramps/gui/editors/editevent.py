@@ -100,7 +100,8 @@ class EditEvent(EditPrimary):
         return dialog_title
 
     def get_custom_events(self):
-        return self.dbstate.db.get_event_types()
+        return sorted(self.dbstate.db.get_event_types(),
+                      key=lambda s: s.lower())
 
     def _local_init(self):
         self.width_key = 'interface.event-width'
