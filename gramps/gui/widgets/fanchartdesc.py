@@ -158,10 +158,10 @@ class FanChartDescWidget(FanChartBaseWidget):
         self.gen2fam[0] = [] #no families
         self.angle = {}
         self.angle[-2] = []
-        for i in range(1, self.generations-1):
+        for i in range(1, self.generations+1):
             self.gen2fam[i] = []
             self.gen2people[i] = []
-        self.gen2people[self.generations-1] = [] #indication of more children
+        self.gen2people[self.generations] = [] #indication of more children
         self.rotfactor = 1
         self.rotstartangle = 0
         if self.form == FORM_HALFCIRCLE:

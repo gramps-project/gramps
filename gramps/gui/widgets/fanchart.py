@@ -350,7 +350,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
             self.maincolor = cstart
         elif self.background == BACKGROUND_GRAD_GEN:
             #compute the colors, -1, 0, ..., maxgen
-            divs = [x/(maxgen-1) for x in range(maxgen)]
+            divs = [x/(maxgen-1) for x in range(maxgen)] if maxgen>1 else [0]
             rgb_colors = [colorsys.hsv_to_rgb(
                             (1-x) * self.cstart_hsv[0] + x * self.cend_hsv[0], 
                             (1-x) * self.cstart_hsv[1] + x * self.cend_hsv[1],
