@@ -231,10 +231,9 @@ class DateFormat(GenericFormat):
         if self.is_blank(date):
             return
 
-        def year():
+        def year(year, count):
             """  The year part only """
-            year = cuni(date.get_year())
-            count = self.__count_chars("y", 4)
+            year = cuni(year)
             if year == "0":
                 return
 
@@ -254,15 +253,13 @@ class DateFormat(GenericFormat):
                 else:
                     tmp = "00" + year
                     return tmp[-3:]
-            else:  #count == 4  # found 'yyyy'
+            else:  # count == 4  # found 'yyyy'
                 tmp = "000" + year
                 return tmp[-4:]
 
-
-        def month(char_found = "m"):
+        def month(month, count):
             """  The month part only """
-            month = cuni(date.get_month())
-            count = self.__count_chars(char_found, 4)
+            month = cuni(month)
             if month == "0":
                 return
 
@@ -273,40 +270,64 @@ class DateFormat(GenericFormat):
                 return tmp[-2:]
             elif count == 3:   # found 'mmm'
                 return self._locale.date_displayer.short_months[int(month)]
-            else: # found 'mmmm'
+            else:  # found 'mmmm'
                 return self._locale.date_displayer.long_months[int(month)]
 
-        def month_up():
-            tmp = month("M") # only call it ONCE, then use the value
-            if tmp:
-                return tmp.upper()
-
-        def day():
+        def day(day, count):
             """  The day part only """
-            day = cuni(date.get_day())
-            count = self.__count_chars("d", 2)
+            day = cuni(day)
             if day == "0":  # 0 means not defined!
                 return
 
-            if count == 1: # found 'd'
+            if count == 1:  # found 'd'
                 return day
             else:  # found 'dd'
                 tmp = "0" + day
                 return tmp[-2:]
 
+        def text():
+            return date.get_text()
+
+        def s_year():
+            return year(date.get_year(), self.__count_chars("y", 4))
+
+        def s_month():
+            return month(date.get_month(), self.__count_chars("m", 4))
+
+        def su_month():
+            return month(date.get_month(), self.__count_chars("M", 4)).upper()
+
+        def s_day():
+            return day(date.get_day(), self.__count_chars("d", 2))
+
+        def e_year():
+            return year(date.get_stop_year(), self.__count_chars("z", 4))
+
+        def e_month():
+            return month(date.get_stop_month(), self.__count_chars("n", 4)) 
+
+        def eu_month():
+            return month(date.get_stop_month(), 
+                    self.__count_chars("N", 4)).upper()
+
+        def e_day():
+            return day(date.get_stop_day(), self.__count_chars("e", 2))
 
         def modifier():
             #ui_mods taken from date.py def lookup_modifier(self, modifier):
             # trans_text is a defined keyword (in po/update_po.py, po/genpot.sh)
+            # (in po/update_po.py, po/genpot.sh)
             trans_text = self._locale.translation.gettext
             ui_mods = ["", trans_text("before"), trans_text("after"),
                        trans_text("about"), "", "", ""]
             return ui_mods[date.get_modifier()]
 
 
-        code  = "ymdMo"
-        upper = "O"
-        function = [year, month, day, month_up, modifier]
+        code  = "ymMd" + "znNe" + "ot"
+        upper = "OT"
+        function = [s_year, s_month, su_month, s_day,
+                    e_year, e_month, eu_month, e_day,
+                    modifier, text]
 
         return self.generic_format(date, code, upper, function)
 
