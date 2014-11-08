@@ -12,15 +12,15 @@ msgstr ""
 "Project-Id-Version: nova\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-03 20:20-0800\n"
-"PO-Revision-Date: 2014-10-23 16:58+0200\n"
-"Last-Translator: Pier Luigi Cinquantini\n"
+"PO-Revision-Date: 2014-11-08 13:21+0100\n"
+"Last-Translator: josip <josip@pisoj.com>\n"
 "Language-Team: Esperanto <kde-i18n-it@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.4\n"
-"X-Generator: Lokalize 1.5\n"
+"X-Generator: Poedit 1.6.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ../data/gramps.appdata.xml.in.h:1
@@ -30905,6 +30905,7 @@ msgstr "Apliku ekzakte unu regulon"
 
 #, fuzzy
 #~ msgid "%d month"
+
 #~ msgid_plural "%d months"
 #~ msgstr[0] "Alia"
 #~ msgstr[1] "Alia"
@@ -31130,6 +31131,7 @@ msgstr "Apliku ekzakte unu regulon"
 
 #, fuzzy
 #~ msgid "%d Person"
+
 #~ msgid_plural "%d People"
 #~ msgstr[0] "Aldonu personon"
 #~ msgstr[1] "Aldonu personon"
@@ -31196,18 +31198,21 @@ msgstr "Apliku ekzakte unu regulon"
 
 #, fuzzy
 #~ msgid "%d event record was modified."
+
 #~ msgid_plural "%d event records were modified."
 #~ msgstr[0] "Estis modifita 1 eventoregistro"
 #~ msgstr[1] "Estis modifita 1 eventoregistro"
 
 #, fuzzy
 #~ msgid "%d person was referenced but not found\n"
+
 #~ msgid_plural "%d persons were referenced, but not found\n"
 #~ msgstr[0] "Oni referencis al 1 plurmedia objekto, sed ĝi ne estis trovita\n"
 #~ msgstr[1] "Oni referencis al 1 plurmedia objekto, sed ĝi ne estis trovita\n"
 
 #, fuzzy
 #~ msgid "%(quantity)d media object was referenced, but not found\n"
+
 #~ msgid_plural "%(quantity)d media objects were referenced, but not found\n"
 #~ msgstr[0] "Oni referencis al 1 plurmedia objekto, sed ĝi ne estis trovita\n"
 #~ msgstr[1] "Oni referencis al 1 plurmedia objekto, sed ĝi ne estis trovita\n"
@@ -31273,12 +31278,14 @@ msgstr "Apliku ekzakte unu regulon"
 
 #, fuzzy
 #~ msgid " (%d sibling)"
+
 #~ msgid_plural " (%d siblings)"
 #~ msgstr[0] "Montru familinodojn"
 #~ msgstr[1] "Montru familinodojn"
 
 #, fuzzy
 #~ msgid " (%d child)"
+
 #~ msgid_plural " (%d children)"
 #~ msgstr[0] "Aldonu gefilojn"
 #~ msgstr[1] "Aldonu gefilojn"
@@ -31485,6 +31492,7 @@ msgstr "Apliku ekzakte unu regulon"
 
 #, fuzzy
 #~ msgid "%(quantity)d invalid event reference was removed\n"
+
 #~ msgid_plural "%(quantity)d invalid event references were removed\n"
 #~ msgstr[0] "Estis modifita 1 eventoregistro"
 #~ msgstr[1] "Estis modifita 1 eventoregistro"
@@ -32399,6 +32407,3 @@ msgstr "Apliku ekzakte unu regulon"
 #, fuzzy
 #~ msgid "State/County:"
 #~ msgstr "Urbo/Distrikto:"
-
-msgid "Citation:"
-msgstr "Rotacio:"
