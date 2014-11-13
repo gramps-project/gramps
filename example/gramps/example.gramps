@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.6.0/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.6.0/">
   <header>
-    <created date="2014-08-06" version="4.1.0"/>
+    <created date="2014-11-13" version="4.1.0"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
@@ -88,7 +88,7 @@
     </event>
     <event handle="_a5af0eb6abd74c3d7fb" change="1284030605" id="E0013">
       <type>Birth</type>
-      <dateval val="1592"/>
+      <dateval val="1592" type="about"/>
       <description>Birth of Abbott, Frances</description>
     </event>
     <event handle="_a5af0eb6add73de72aa" change="1284030598" id="E0014">
@@ -10024,7 +10024,7 @@
     </event>
     <event handle="_a5af0ecd27c36369bba" change="1284030606" id="E1894">
       <type>Birth</type>
-      <dateval val="1737-10-01"/>
+      <dateval val="1737-10-01" type="after"/>
       <place hlink="_N04KQC5Z5IGGUBSE9X"/>
       <description>Birth of Adkins, John</description>
     </event>
@@ -10091,7 +10091,7 @@
     </event>
     <event handle="_a5af0ecd429521b5d6b" change="1284030611" id="E1906">
       <type>Birth</type>
-      <dateval val="1763-06-20"/>
+      <dateval val="1763-06-20" type="before"/>
       <place hlink="_TGVJQCRFKHZESR6WNB"/>
       <description>Birth of Adkins, Martha</description>
     </event>
@@ -11459,7 +11459,7 @@
     </event>
     <event handle="_a5af0ecfc7f527e0191" change="1284030617" id="E2158">
       <type>Birth</type>
-      <dateval val="1700-10-26"/>
+      <dateval val="1700-10-26" type="about"/>
       <place hlink="_NR6KQCSNMPJHAJEWNV"/>
       <description>Birth of Adams, William</description>
     </event>
@@ -11477,13 +11477,13 @@
     </event>
     <event handle="_a5af0ecfcf201952525" change="1284030604" id="E2161">
       <type>Birth</type>
-      <dateval val="1717"/>
+      <dateval val="1717" type="after"/>
       <place hlink="_YS6KQCLHBN4N6TE5JL"/>
       <description>Birth of Aguilar, Eleanor</description>
     </event>
     <event handle="_a5af0ecfd0a47d2ae44" change="1284030604" id="E2162">
       <type>Death</type>
-      <dateval val="1760"/>
+      <dateval val="1760-02" type="after"/>
       <place hlink="_HMVJQCAKOUGYE0JNVI"/>
       <description>Death of Aguilar, Eleanor</description>
     </event>
@@ -13977,13 +13977,13 @@
     </event>
     <event handle="_a5af0ed405d190cc4f9" change="1284030611" id="E2624">
       <type>Birth</type>
-      <dateval val="1665"/>
+      <dateval val="1665" type="before"/>
       <place hlink="_LP3KQCM533F3TRBKRT"/>
       <description>Birth of Aguilar, John</description>
     </event>
     <event handle="_a5af0ed4070703f2665" change="1284030611" id="E2625">
       <type>Death</type>
-      <dateval val="1745"/>
+      <dateval val="1745-02" type="before"/>
       <place hlink="_W04KQCN0SLXWA1Z46O"/>
       <description>Death of Aguilar, John</description>
     </event>
@@ -17896,6 +17896,11 @@
     <event handle="_cccc047c40841a5993c" change="1407353879" id="E3414">
       <type>Death</type>
       <dateval val="1850" type="about" quality="estimated"/>
+    </event>
+    <event handle="_a5af0eb6abd74c3d7fc" change="1284030605" id="E3415">
+      <type>Death</type>
+      <dateval val="1642-01" type="about"/>
+      <description>Death of Abbott, Frances</description>
     </event>
   </events>
   <people home="_GNUJQCL9MD64AM56OH">
@@ -22690,6 +22695,7 @@
         <surname>Abbott</surname>
       </name>
       <eventref hlink="_a5af0eb6abd74c3d7fb" role="Primary"/>
+      <eventref hlink="_a5af0eb6abd74c3d7fc" role="Primary"/>
       <parentin hlink="_CI3KQCZZE11QOAP8G9"/>
       <citationref hlink="_c140d250e5d1110c14d"/>
     </person>
