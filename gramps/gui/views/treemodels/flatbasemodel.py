@@ -234,7 +234,7 @@ class FlatNodeMap(object):
         
         :param handle: the key of the object for which the path in the treeview
                         is needed
-        :param type: an object handle
+        :type handle: an object handle
         :Returns: the path, or None if handle does not link to a path
         """
         index = iter.user_data
@@ -252,7 +252,7 @@ class FlatNodeMap(object):
         
         :param handle: the key of the object for which the path in the treeview
                         is needed
-        :param type: an object handle
+        :type handle: an object handle
         :Returns: the path, or None if handle does not link to a path
         """
         index = self._hndl2index.get(handle)
@@ -267,7 +267,7 @@ class FlatNodeMap(object):
         
         :param handle: the key of the object for which the sortkey
                         is needed
-        :param type: an object handle
+        :type handle: an object handle
         :Returns: the sortkey, or None if handle is not present
         """
         index = self._hndl2index.get(handle)
@@ -381,6 +381,7 @@ class FlatNodeMap(object):
         Returns the path of the inserted row
         
         :param srtkey_hndl: the (sortkey, handle) tuple that must be inserted
+        :type srtkey_hndl: sortkey key already transformed by self.sort_func, object handle
         
         :Returns: path of the row inserted in the treeview
         :Returns type: Gtk.TreePath or None
@@ -722,15 +723,15 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         Get the gramps handle for an iter.
         """
-        ud = iter.user_data
-        if ud is None:
+        index = iter.user_data
+        if index is None:
             ##GTK3: user data may only be an integer, we store the index
             ##PROBLEM: pygobject 3.8 stores 0 as None, we need to correct
             ##        when using user_data for that!
             ##upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=698366
-            ud = 0
-        index = self.node_map.real_index(ud)
-        return self.node_map.get_handle(index)
+            index = 0
+        path = self.node_map.real_path(index)
+        return self.node_map.get_handle(path)
 
     # The following implement the public interface of Gtk.TreeModel
 
