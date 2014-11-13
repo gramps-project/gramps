@@ -317,19 +317,15 @@ class FlatNodeMap(object):
         if not isinstance(handle, UNITYPE):
             handle = handle.decode('utf-8')
         return handle
-    
-    def find_next_handle(self, iter):
+
+    def iter_next(self, iter):
         """
-        Finds the next handle based off the passed handle. This is accomplished
-        by finding the index associated with the iter, adding or substracting
-        one to find the next index, then finding the handle associated with 
-        that.
+        Increments the iter y finding the index associated with the iter,
+        adding or substracting one.
         False is returned if no next handle
-        True, handle tuple otherwise
         
-        :param handle: the key of the object for which the next handle shown
-                        in the treeview is needed
-        :param type: an object handle
+        :param iter: Gtk.TreeModel iterator
+        :param type: Gtk.TreeIter
         """
         index = iter.user_data
         if index is None:
@@ -346,11 +342,10 @@ class FlatNodeMap(object):
                 return False
         else:
             index += 1
-
-        try:
-            return True, self._index2hndl[index][1]
-        except IndexError:
-            return False
+            if index >= len(self._index2hndl):
+                return False
+        iter.user_data = index
+        return True
     
     def get_first_iter(self):
         """
@@ -795,14 +790,14 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         col is the model column that is needed, not the visible column!
         """
         #print ('do_get_val', iter, iter.user_data, col)
-        ud = iter.user_data
-        if ud is None:
+        index = iter.user_data
+        if index is None:
             ##GTK3: user data may only be an integer, we store the index
             ##PROBLEM: pygobject 3.8 stores 0 as None, we need to correct
             ##        when using user_data for that!
             ##upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=698366
-            ud = 0
-        handle = self.node_map._index2hndl[ud][1]
+            index = 0
+        handle = self.node_map._index2hndl[index][1]
         val = self._get_value(handle, col)
         #print 'val is', val, type(val)
 
@@ -822,13 +817,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         Sets iter to the next node at this level of the tree
         See Gtk.TreeModel
         """
-        #print 'do_iter_next', iter, iter.user_data
-        handle = self.node_map.find_next_handle(iter)
-        if handle:
-            iter.user_data = self.node_map._hndl2index[handle[1]]
-            return True
-        else:
-            return False
+        return self.node_map.iter_next(iter)
 
     def do_iter_children(self, iterparent):
         """
