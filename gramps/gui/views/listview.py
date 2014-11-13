@@ -875,10 +875,10 @@ class ListView(NavigationView):
             return False
         if self.model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY:
             # Flat list
-            self._key_press_flat(obj, event)
+            return self._key_press_flat(obj, event)
         else:
             # Tree
-            self._key_press_tree(obj, event)
+            return self._key_press_tree(obj, event)
     
     def _key_press_flat(self, obj, event):
         """
