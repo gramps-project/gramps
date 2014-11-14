@@ -73,7 +73,7 @@ class SummaryReport(Report):
         """
         Report.__init__(self, database, options, user)
 
-        stdoptions.run_private_data_option(self, menu)
+        stdoptions.run_private_data_option(self, options.menu)
         self.__db = self.database
         
         lang = options.menu.get_option_by_name('trans').get_value()
