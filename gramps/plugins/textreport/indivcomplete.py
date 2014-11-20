@@ -73,7 +73,7 @@ CUSTOM = _T_("Custom")
 # Construct section list and type to group map
 SECTION_LIST = []
 TYPE2GROUP = {}
-for event_group, type_list in EventType().get_menu():
+for event_group, type_list in EventType().get_menu_standard_xml():
     SECTION_LIST.append(event_group)
     for event_type in type_list:
         TYPE2GROUP[event_type] = event_group

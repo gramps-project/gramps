@@ -289,6 +289,13 @@ class GrampsType(GrampsTypeC):
         return self._CUSTOM
     
     def get_menu(self):
+        """Return the list of localized names for the menu."""
+        if self._MENU:
+            return [[_(i),s] for (i, s) in self._MENU]
+        return self._MENU
+
+    def get_menu_standard_xml(self):
+        """Return the list of XML (english) names for the menu."""
         return self._MENU
 
     def __eq__(self, value):

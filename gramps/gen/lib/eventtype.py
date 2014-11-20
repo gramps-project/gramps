@@ -137,25 +137,29 @@ class EventType(GrampsType):
     RETIREMENT     = 43
     WILL           = 44
 
-    _MENU = [[_('Life Events'),
+    def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+        return value
+    # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+
+    _MENU = [[_T_('Life Events'),
               [BIRTH, BAPTISM, DEATH, BURIAL, CREMATION, ADOPT]],
-            [_('Family'),
+            [_T_('Family'),
               [ENGAGEMENT, MARRIAGE, DIVORCE, ANNULMENT, MARR_SETTL, MARR_LIC,
                MARR_CONTR, MARR_BANNS, DIV_FILING, MARR_ALT]],
-            [_('Religious'),
+            [_T_('Religious'),
               [CHRISTEN, ADULT_CHRISTEN, CONFIRMATION, FIRST_COMMUN, BLESS,
                BAR_MITZVAH, BAS_MITZVAH, RELIGION]],
-            [_('Vocational'),
+            [_T_('Vocational'),
               [OCCUPATION, RETIREMENT, ELECTED, MILITARY_SERV, ORDINATION]],
-            [_('Academic'),
+            [_T_('Academic'),
               [EDUCATION, DEGREE, GRADUATION]],
-            [_('Travel'),
+            [_T_('Travel'),
               [EMIGRATION, IMMIGRATION, NATURALIZATION]],
-            [_('Legal'),
+            [_T_('Legal'),
               [PROBATE, WILL]],
-            [_('Residence'),
+            [_T_('Residence'),
               [RESIDENCE, CENSUS, PROPERTY]],
-            [_('Other'),
+            [_T_('Other'),
               [CAUSE_DEATH, MED_INFO, NOB_TITLE, NUM_MARRIAGES]]]
 
     _CUSTOM = CUSTOM
@@ -209,10 +213,6 @@ class EventType(GrampsType):
         (ANNULMENT       , _("Annulment"),            "Annulment"),
         (MARR_ALT        , _("Alternate Marriage"),   "Alternate Marriage"),
         ]
-
-    def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
-        return value
-    # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
     _ABBREVIATIONS = {
         BIRTH: _T_("birth abbreviation|b."),
