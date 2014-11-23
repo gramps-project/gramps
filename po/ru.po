@@ -958,20 +958,23 @@ msgstr "{long_month.f[Т]} {year}"
 msgid "and|{long_month} {year}"
 msgstr ""
 
-#. You only need to translate this string if you translate one of the
-#. inflect=_("...") with "before"
+#. If "before <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:188
 msgid "before|{long_month} {year}"
 msgstr "{long_month.f[Р]} {year}"
 
-#. You only need to translate this string if you translate one of the
-#. inflect=_("...") with "after"
+#. If "after <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:193
 msgid "after|{long_month} {year}"
 msgstr "{long_month.f[Р]} {year}"
 
-#. You only need to translate this string if you translate one of the
-#. inflect=_("...") with "about"
+#. If "about <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:198
 msgid "about|{long_month} {year}"
 msgstr "{long_month.f[Р]} {year}"
@@ -1057,16 +1060,26 @@ msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}между {date_start} и {date_stop}{nonstd_calendar_and_ny}"
 
-#. If there is no special inflection for "before/after/around <Month>" in your
-#. language, don't translate this string.
-#. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
-#. key appearing above in the FORMATS_... dict
-#. that maps to the special inflected format string that you need to localize.
-#. TODO are there languages for which the inflections for the different
-#. modifiers are different?!
+#. If there is no special inflection for "before <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:386
 msgid "before-date|"
 msgstr "before"
+
+#. If there is no special inflection for "after <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:394
+msgid "after-date|"
+msgstr "after"
+
+#. If there is no special inflection for "about <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:403
+msgid "about-date|"
+msgstr "about"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:388
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
@@ -1086,19 +1099,15 @@ msgstr "{long_month} {day:d}, {year}"
 msgid "{short_month} {day:d}, {year}"
 msgstr "{short_month} {day:d}, {year}"
 
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection for your language.
+#. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:480
 msgid "{day:d} {long_month} {year}"
-msgstr "{day:d} {long_month.f[Р]} {year}"
+msgstr "{day:d} {long_month} {year}"
 
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection for your language.
+#. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:496
 msgid "{day:d} {short_month} {year}"
-msgstr "{day:d} {short_month.f[Р]} {year}"
+msgstr "{day:d} {short_month} {year}"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
