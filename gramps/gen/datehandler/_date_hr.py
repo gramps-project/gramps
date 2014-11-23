@@ -75,20 +75,18 @@ class DateParserHR(DateParser):
         compiles regular expression strings for matching dates
         """
         DateParser.init_strings(self)
-        #~ DateParser.calendar_to_int.update({
-            #~ 'персидский'    : Date.CAL_PERSIAN, 
-            #~ 'п'             : Date.CAL_PERSIAN, 
-        #~ })
-        _span_1 = ['od']
-        _span_2 = ['do']
-        _range_1 = ['između']
-        _range_2 = ['i']
-        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_span_1), '|'.join(_span_2)),
-                                 re.IGNORECASE)
-        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_range_1), '|'.join(_range_2)),
-                                 re.IGNORECASE)
+        # match 'Day. MONTH year.' format with or without dots
+        self._text2 = re.compile('(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$'
+                                            % self._mon_str, re.IGNORECASE)
+        # match Day.Month.Year.
+        self._numeric = re.compile(
+                                 "((\d+)[/\. ])?\s*((\d+)[/\.])?\s*(\d+)\.?$")
+        self._span = re.compile(
+                            "(od)\s+(?P<start>.+)\s+(do)\s+(?P<stop>.+)",
+                            re.IGNORECASE)
+        self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'\
+                                % self._jmon_str, re.IGNORECASE) 
+        
 
 #-------------------------------------------------------------------------
 #
@@ -104,6 +102,39 @@ class DateDisplayHR(DateDisplay):
     _bce_str = "%s p.n.e."
 
     display = DateDisplay.display_formatted
+    
+    def dd_dformat01(self, date_val):
+        """
+        numerical
+        """
+        if date_val[3]:
+            return self.display_iso(date_val)
+        else:
+            if date_val[0] == date_val[1] == 0:
+                return str(date_val[2]) + '.'
+            else:
+                value = self._tformat.replace('%m', str(date_val[1]))
+                value = value.replace('%d', str(date_val[0]))
+                value = value.replace('%Y', str(abs(date_val[2])))
+                return value
+
+    def dd_dformat04(self, date_val, inflect, long_months):
+        """
+        day month_name year
+        """
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return year + '.'
+            else:
+                return self.format_long_month_year(date_val[1], year,
+                                                   inflect, long_months)
+        else:
+            return "{day:d}. {long_month.f[G]} {year}.".format(
+                     day = date_val[0],
+                     long_month = long_months[date_val[1]],
+                     year = year)
+
 
 #-------------------------------------------------------------------------
 #
