@@ -3,6 +3,8 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2006  Donald N. Allingham
+# Copyright (C) 2013       Vassilii Khachaturov
+# Copyright (C) 2014       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -65,7 +67,7 @@ class DateDisplay(object):
         # such as YY.MM.DD, MM-DD-YY, or whatever your locale prefers.
         # This should be the format that is used under the locale by 
         # strftime() for '%x'.
-        # You may translate this string as "Numerical", "System preferred", or similar.
+        # You may translate this as "Numerical", "System preferred", or similar.
         _("date format|Numerical"), 
 
         # Full month name, day, year
@@ -83,10 +85,11 @@ class DateDisplay(object):
     """
     .. note:: Will be overridden if a locale-specific date displayer exists.
 
-    If your localized :meth:`~_display_calendar`/:meth:`~_display_gregorian` are 
-    overridden,you should override the whole formats list according to your own
-    formats, and you need not localize the format names here. This ``formats``
-    must agree with :meth:`~_display_calendar`/:meth:`~_display_gregorian`.
+    If your localized :meth:`~_display_calendar`/:meth:`~_display_gregorian` 
+    are overridden, you should override the whole formats list according
+    to your own formats, and you need not localize the format names here.
+    This ``formats`` must agree with
+    :meth:`~_display_calendar`/:meth:`~_display_gregorian`.
     """
     del _
 
@@ -182,18 +185,21 @@ class DateDisplay(object):
                 : _("and|{long_month} {year}"),
 
                 "before"
-                # You only need to translate this string if you translate one of the
-                # inflect=_("...") with "before"
+                # If "before <Month>" needs a special inflection in your
+                # language, translate this to "{long_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
                 : _("before|{long_month} {year}"),
 
                 "after"
-                # You only need to translate this string if you translate one of the
-                # inflect=_("...") with "after"
+                # If "after <Month>" needs a special inflection in your
+                # language, translate this to "{long_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
                 : _("after|{long_month} {year}"),
 
                 "about"
-                # You only need to translate this string if you translate one of the
-                # inflect=_("...") with "about"
+                # If "about <Month>" needs a special inflection in your
+                # language, translate this to "{long_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
                 : _("about|{long_month} {year}"),
 
             # TODO if no modifier, but with qual, might need to inflect in some lang.
@@ -220,12 +226,21 @@ class DateDisplay(object):
                 : _("and|{short_month} {year}"),
 
                 "before" 
+                # If "before <Month>" needs a special inflection in your
+                # language, translate this to "{short_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
                 : _("before|{short_month} {year}"),
 
                 "after" 
+                # If "after <Month>" needs a special inflection in your
+                # language, translate this to "{short_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
                 : _("after|{short_month} {year}"),
 
                 "about" 
+                # If "about <Month>" needs a special inflection in your
+                # language, translate this to "{short_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
                 : _("about|{short_month} {year}"),
         }
 
@@ -257,8 +272,9 @@ class DateDisplay(object):
         """
         Return a text string representing the date.
 
-        (Will be overridden if a locale-specific date displayer exists.)
         Disregard any format settings and use display_iso for each date.
+
+        (Will be overridden if a locale-specific date displayer exists.)
         """
         mod = date.get_modifier()
         cal = date.get_calendar()
@@ -374,15 +390,24 @@ class DateDisplay(object):
                     date_stop=d2, 
                     nonstd_calendar_and_ny=scal)
         else:
-            text = self.display_cal[date.get_calendar()](start,
-                    # If there is no special inflection for "before/after/around <Month>" in your
-                    # language, don't translate this string.
-                    # Otherwise, translate it to the ENGLISH!!! ENGLISH!!! 
-                    # key appearing above in the FORMATS_... dict
-                    # that maps to the special inflected format string that you need to localize.
-                    # TODO are there languages for which the inflections for the different
-                    # modifiers are different?!
-                    inflect=_("before-date|") if mod != Date.MOD_NONE else "")
+            if mod == Date.MOD_BEFORE:
+                # If there is no special inflection for "before <Month>"
+                # in your language, DON'T translate this string.  Otherwise,
+                # "translate" this to "before" in ENGLISH!!! ENGLISH!!!
+                date_type = _("before-date|")
+            elif mod == Date.MOD_AFTER:
+                # If there is no special inflection for "after <Month>"
+                # in your language, DON'T translate this string.  Otherwise,
+                # "translate" this to "after" in ENGLISH!!! ENGLISH!!!
+                date_type = _("after-date|")
+            elif mod == Date.MOD_ABOUT:
+                # If there is no special inflection for "about <Month>"
+                # in your language, DON'T translate this string.  Otherwise,
+                # "translate" this to "about" in ENGLISH!!! ENGLISH!!!
+                date_type = _("about-date|")
+            else:
+                date_type = ""
+            text = self.display_cal[cal](start, inflect=date_type)
             scal = self.format_extras(cal, newyear)
             return _("{date_quality}{noncompound_modifier}{date}"
                     "{nonstd_calendar_and_ny}").format(
@@ -398,104 +423,167 @@ class DateDisplay(object):
     # Julian and Swedish date display is the same as Gregorian
     _display_julian = _display_swedish = _display_gregorian
 
+    def format_long_month_year(self, month, year, inflect, long_months):
+        return self.FORMATS_long_month_year[inflect].format(
+                long_month = long_months[month], 
+                year = year)
+
+    def format_short_month_year(self, month, year, inflect, short_months):
+        return self.FORMATS_short_month_year[inflect].format(
+                short_month = short_months[month], 
+                year = year)
+
+    def format_long_month(self, month, inflect, long_months):
+        return self.FORMATS_long_month_year[inflect].format(
+              long_month = long_months[month], year = '').rstrip()
+
+    def format_short_month(self, month, inflect, short_months):
+        return self.FORMATS_short_month_year[inflect].format(
+              short_month = short_months[month], year = '').rstrip()
+
+    def dd_dformat01(self, date_val):
+        """
+        numerical
+
+        this must agree with DateDisplayEn's "formats" definition
+        (it may be overridden if a locale-specific date displayer exists)
+        """
+        if date_val[3]:
+            return self.display_iso(date_val)
+        else:
+            if date_val[0] == date_val[1] == 0:
+                return str(date_val[2])
+            else:
+                value = self._tformat.replace('%m', str(date_val[1]))
+                value = value.replace('%d', str(date_val[0]))
+                value = value.replace('%Y', str(abs(date_val[2])))
+                return value.replace('-', '/')
+
+    def dd_dformat02(self, date_val, inflect, long_months):
+        """
+        month_name day, year
+
+        this must agree with DateDisplayEn's "formats" definition
+        (it may be overridden if a locale-specific date displayer exists)
+        """
+        _ = self._locale.translation.sgettext
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return year
+            else:
+                return self.format_long_month_year(date_val[1], year,
+                                                   inflect, long_months)
+        else:
+            # TRANSLATORS: this month is ALREADY inflected: ignore it
+            return _("{long_month} {day:d}, {year}").format(
+                       long_month = self.format_long_month(date_val[1],
+                                                           inflect,
+                                                           long_months),
+                       day = date_val[0],
+                       year = year)
+
+    def dd_dformat03(self, date_val, inflect, short_months):
+        """
+        month_abbreviation day, year
+
+        this must agree with DateDisplayEn's "formats" definition
+        (it may be overridden if a locale-specific date displayer exists)
+        """
+        _ = self._locale.translation.sgettext
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return year
+            else:
+                return self.format_short_month_year(date_val[1], year,
+                                                    inflect, short_months)
+        else:
+            # TRANSLATORS: this month is ALREADY inflected: ignore it
+            return _("{short_month} {day:d}, {year}").format(
+                       short_month = self.format_short_month(date_val[1],
+                                                             inflect,
+                                                             short_months),
+                       day = date_val[0],
+                       year = year)
+
+    def dd_dformat04(self, date_val, inflect, long_months):
+        """
+        day month_name year
+
+        this must agree with DateDisplayEn's "formats" definition
+        (it may be overridden if a locale-specific date displayer exists)
+        """
+        _ = self._locale.translation.sgettext
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return year
+            else:
+                return self.format_long_month_year(date_val[1], year,
+                                                   inflect, long_months)
+        else:
+            # TRANSLATORS: this month is ALREADY inflected: ignore it
+            return _("{day:d} {long_month} {year}").format(
+                       day = date_val[0],
+                       long_month = self.format_long_month(date_val[1],
+                                                           inflect,
+                                                           long_months),
+                       year = year)
+
+    def dd_dformat05(self, date_val, inflect, short_months):
+        """
+        day month_abbreviation year
+
+        this must agree with DateDisplayEn's "formats" definition
+        (it may be overridden if a locale-specific date displayer exists)
+        """
+        _ = self._locale.translation.sgettext
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return year
+            else:
+                return self.format_short_month_year(date_val[1], year,
+                                                    inflect, short_months)
+        else:
+            # TRANSLATORS: this month is ALREADY inflected: ignore it
+            return _("{day:d} {short_month} {year}").format(
+                       day = date_val[0],
+                       short_month = self.format_short_month(date_val[1],
+                                                             inflect,
+                                                             short_months),
+                       year = year)
+
     def _display_calendar(self, date_val, long_months, short_months = None,
-            inflect=""):
+                          inflect=""):
+        """
+        this must agree with DateDisplayEn's "formats" definition
+        (it may be overridden if a locale-specific date displayer exists)
+        """
 
         if short_months is None:
             # Let the short formats work the same as long formats
             short_months = long_months
 
-        _ = self._locale.translation.sgettext
-        # this one must agree with DateDisplayEn's "formats" definition
-        # (it may be overridden if a locale-specific date displayer exists)
-        year = self._slash_year(date_val[2], date_val[3])
-
-        # For partial dates, several formats reduce to just month + year.
-        def format_long_month_year():
-            return self.FORMATS_long_month_year[inflect].format(
-                    long_month = long_months[date_val[1]], 
-                    year = year)
-
-        def format_short_month_year():
-            return self.FORMATS_short_month_year[inflect].format(
-                    short_month = short_months[date_val[1]], 
-                    year = year)
-
         if self.format == 0:
             return self.display_iso(date_val)
         elif self.format == 1:
             # numerical
-            if date_val[3]:
-                return self.display_iso(date_val)
-            else:
-                if date_val[0] == date_val[1] == 0:
-                    value = str(date_val[2])
-                else:
-                    value = self._tformat.replace('%m', str(date_val[1]))
-                    value = value.replace('%d', str(date_val[0]))
-                    value = value.replace('%Y', str(abs(date_val[2])))
-                    value = value.replace('-', '/')
+            value = self.dd_dformat01(date_val)
         elif self.format == 2:
             # month_name day, year
-            if date_val[0] == 0:
-                if date_val[1] == 0:
-                    value = year
-                else:
-                    value = format_long_month_year()
-            else:
-                # TRANSLATORS: see 
-                # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-                # to learn how to select proper inflection for your language.
-                value = _("{long_month} {day:d}, {year}").format(
-                            long_month = long_months[date_val[1]], 
-                            day = date_val[0],
-                            year = year)
+            value = self.dd_dformat02(date_val, inflect, long_months)
         elif self.format == 3:
             # month_abbreviation day, year
-            if date_val[0] == 0:
-                if date_val[1] == 0:
-                    value = year
-                else:
-                    value = format_short_month_year()
-            else:
-                # TRANSLATORS: see 
-                # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-                # to learn how to select proper inflection for your language.
-                value = _("{short_month} {day:d}, {year}").format(
-                            short_month = short_months[date_val[1]], 
-                            day = date_val[0],
-                            year = year)
+            value = self.dd_dformat03(date_val, inflect, short_months)
         elif self.format == 4:
             # day month_name year
-            if date_val[0] == 0:
-                if date_val[1] == 0:
-                    value = year
-                else:
-                    value = format_long_month_year()
-            else:
-                # TRANSLATORS: see 
-                # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-                # to learn how to select proper inflection for your language.
-                value = _("{day:d} {long_month} {year}").format(
-                            day = date_val[0],
-                            long_month = long_months[date_val[1]], 
-                            year = year)
+            value = self.dd_dformat04(date_val, inflect, long_months)
         # elif self.format == 5:
         else:
             # day month_abbreviation year
-            if date_val[0] == 0:
-                if date_val[1] == 0:
-                    value = year
-                else:
-                    value = format_short_month_year()
-            else:
-                # TRANSLATORS: see 
-                # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-                # to learn how to select proper inflection for your language.
-                value = _("{day:d} {short_month} {year}").format(
-                            short_month = short_months[date_val[1]], 
-                            day = date_val[0],
-                            year = year)
+            value = self.dd_dformat05(date_val, inflect, short_months)
         if date_val[2] < 0:
             # TODO fix BUG 7064: non-Gregorian calendars wrongly use BCE notation for negative dates
             return self._bce_str % value

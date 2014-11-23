@@ -119,6 +119,23 @@ class DateDisplayRU(DateDisplay):
 
     display = DateDisplay.display_formatted
 
+    def dd_dformat04(self, date_val, inflect, long_months):
+        """
+        day month_name year -- for Russian locale
+        """
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return year
+            else:
+                return self.format_long_month_year(date_val[1], year,
+                                                   inflect, long_months)
+        else:
+            return "{day:d} {long_month.f[Р]} {year}".format(
+                     day = date_val[0],
+                     long_month = long_months[date_val[1]],
+                     year = year)
+
 #-------------------------------------------------------------------------
 #
 # Register classes
