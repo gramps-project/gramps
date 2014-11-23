@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-31 14:03+0100\n"
-"PO-Revision-Date: 2014-10-31 14:06+0100\n"
+"POT-Creation-Date: 2014-11-23 15:18+0100\n"
+"PO-Revision-Date: 2014-11-23 15:25+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1480,7 +1480,7 @@ msgstr "Gesperrt durch %s"
 
 #: ../gramps/cli/clidbman.py:521 ../gramps/gen/lib/attrtype.py:62
 #: ../gramps/gen/lib/childreftype.py:78 ../gramps/gen/lib/eventroletype.py:58
-#: ../gramps/gen/lib/eventtype.py:165 ../gramps/gen/lib/familyreltype.py:52
+#: ../gramps/gen/lib/eventtype.py:169 ../gramps/gen/lib/familyreltype.py:52
 #: ../gramps/gen/lib/grampstype.py:42 ../gramps/gen/lib/nameorigintype.py:79
 #: ../gramps/gen/lib/nametype.py:52 ../gramps/gen/lib/notetype.py:78
 #: ../gramps/gen/lib/placetype.py:67 ../gramps/gen/lib/repotype.py:58
@@ -1804,7 +1804,7 @@ msgstr ""
 "gesetzt."
 
 #. format 0 - must always be ISO
-#: ../gramps/gen/datehandler/_datedisplay.py:62
+#: ../gramps/gen/datehandler/_datedisplay.py:64
 msgid "YYYY-MM-DD (ISO)"
 msgstr "JJJJ-MM-TT (ISO)"
 
@@ -1812,35 +1812,35 @@ msgstr "JJJJ-MM-TT (ISO)"
 #. such as YY.MM.DD, MM-DD-YY, or whatever your locale prefers.
 #. This should be the format that is used under the locale by
 #. strftime() for '%x'.
-#. You may translate this string as "Numerical", "System preferred", or similar.
-#: ../gramps/gen/datehandler/_datedisplay.py:69
+#. You may translate this as "Numerical", "System preferred", or similar.
+#: ../gramps/gen/datehandler/_datedisplay.py:71
 msgid "date format|Numerical"
 msgstr "Numerisch"
 
 #. Full month name, day, year
-#: ../gramps/gen/datehandler/_datedisplay.py:72
+#: ../gramps/gen/datehandler/_datedisplay.py:74
 msgid "Month Day, Year"
 msgstr "Monat Tag, Jahr"
 
 #. Abbreviated month name, day, year
-#: ../gramps/gen/datehandler/_datedisplay.py:75
+#: ../gramps/gen/datehandler/_datedisplay.py:77
 msgid "MON DAY, YEAR"
 msgstr "Mon Tag, Jahr"
 
 #. Day, full month name, year
-#: ../gramps/gen/datehandler/_datedisplay.py:78
+#: ../gramps/gen/datehandler/_datedisplay.py:80
 msgid "Day Month Year"
 msgstr "Tag Monat Jahr"
 
 #. Day, abbreviated month name, year
-#: ../gramps/gen/datehandler/_datedisplay.py:81
+#: ../gramps/gen/datehandler/_datedisplay.py:83
 msgid "DAY MON YEAR"
 msgstr "Tag Mon Jahr"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:158
+#: ../gramps/gen/datehandler/_datedisplay.py:161
 #: ../gramps/plugins/drawreport/calendarreport.py:228
 #, python-brace-format
 msgid "{long_month} {year}"
@@ -1849,7 +1849,7 @@ msgstr "{long_month} {year}"
 #. first date in a span
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "from"
-#: ../gramps/gen/datehandler/_datedisplay.py:164
+#: ../gramps/gen/datehandler/_datedisplay.py:167
 #, python-brace-format
 msgid "from|{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -1857,7 +1857,7 @@ msgstr "{long_month} {year}"
 #. second date in a span
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "to"
-#: ../gramps/gen/datehandler/_datedisplay.py:170
+#: ../gramps/gen/datehandler/_datedisplay.py:173
 #, python-brace-format
 msgid "to|{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -1865,7 +1865,7 @@ msgstr "{long_month} {year}"
 #. first date in a range
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "between"
-#: ../gramps/gen/datehandler/_datedisplay.py:176
+#: ../gramps/gen/datehandler/_datedisplay.py:179
 #, python-brace-format
 msgid "between|{long_month} {year}"
 msgstr "{long_month} {year}"
@@ -1873,72 +1873,84 @@ msgstr "{long_month} {year}"
 #. second date in a range
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "and"
-#: ../gramps/gen/datehandler/_datedisplay.py:182
+#: ../gramps/gen/datehandler/_datedisplay.py:185
 #, python-brace-format
 msgid "and|{long_month} {year}"
 msgstr "{long_month} {year}"
 
-#. You only need to translate this string if you translate one of the
-#. inflect=_("...") with "before"
-#: ../gramps/gen/datehandler/_datedisplay.py:187
+#. If "before <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#: ../gramps/gen/datehandler/_datedisplay.py:191
 #, python-brace-format
 msgid "before|{long_month} {year}"
 msgstr "{long_month} {year}"
 
-#. You only need to translate this string if you translate one of the
-#. inflect=_("...") with "after"
-#: ../gramps/gen/datehandler/_datedisplay.py:192
+#. If "after <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#: ../gramps/gen/datehandler/_datedisplay.py:197
 #, python-brace-format
 msgid "after|{long_month} {year}"
 msgstr "{long_month} {year}"
 
-#. You only need to translate this string if you translate one of the
-#. inflect=_("...") with "about"
-#: ../gramps/gen/datehandler/_datedisplay.py:197
+#. If "about <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#: ../gramps/gen/datehandler/_datedisplay.py:203
 #, python-brace-format
 msgid "about|{long_month} {year}"
 msgstr "{long_month} {year}"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:204
+#: ../gramps/gen/datehandler/_datedisplay.py:210
 #, python-brace-format
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. first date in a span
-#: ../gramps/gen/datehandler/_datedisplay.py:208
+#: ../gramps/gen/datehandler/_datedisplay.py:214
 #, python-brace-format
 msgid "from|{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. second date in a span
-#: ../gramps/gen/datehandler/_datedisplay.py:212
+#: ../gramps/gen/datehandler/_datedisplay.py:218
 #, python-brace-format
 msgid "to|{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. first date in a range
-#: ../gramps/gen/datehandler/_datedisplay.py:216
+#: ../gramps/gen/datehandler/_datedisplay.py:222
 #, python-brace-format
 msgid "between|{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. second date in a range
-#: ../gramps/gen/datehandler/_datedisplay.py:220
+#: ../gramps/gen/datehandler/_datedisplay.py:226
 #, python-brace-format
 msgid "and|{short_month} {year}"
 msgstr "{short_month} {year}"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:223
+#. If "before <Month>" needs a special inflection in your
+#. language, translate this to "{short_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#: ../gramps/gen/datehandler/_datedisplay.py:232
 #, python-brace-format
 msgid "before|{short_month} {year}"
 msgstr "{short_month} {year}"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:226
+#. If "after <Month>" needs a special inflection in your
+#. language, translate this to "{short_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#: ../gramps/gen/datehandler/_datedisplay.py:238
 #, python-brace-format
 msgid "after|{short_month} {year}"
 msgstr "{short_month} {year}"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:229
+#. If "about <Month>" needs a special inflection in your
+#. language, translate this to "{short_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#: ../gramps/gen/datehandler/_datedisplay.py:244
 #, python-brace-format
 msgid "about|{short_month} {year}"
 msgstr "{short_month} {year}"
@@ -1948,7 +1960,7 @@ msgstr "{short_month} {year}"
 #. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
 #. key appearing above in the FORMATS_... dict
 #. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:339
+#: ../gramps/gen/datehandler/_datedisplay.py:355
 msgid "from-date|"
 msgstr "von"
 
@@ -1957,11 +1969,11 @@ msgstr "von"
 #. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
 #. key appearing above in the FORMATS_... dict
 #. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:346
+#: ../gramps/gen/datehandler/_datedisplay.py:362
 msgid "to-date|"
 msgstr "bis"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:348
+#: ../gramps/gen/datehandler/_datedisplay.py:364
 #, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}von {date_start} bis {date_stop}{nonstd_calendar_and_ny}"
@@ -1971,7 +1983,7 @@ msgstr "{date_quality}von {date_start} bis {date_stop}{nonstd_calendar_and_ny}"
 #. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
 #. key appearing above in the FORMATS_... dict
 #. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:361
+#: ../gramps/gen/datehandler/_datedisplay.py:377
 msgid "between-date|"
 msgstr "zwischen"
 
@@ -1980,61 +1992,63 @@ msgstr "zwischen"
 #. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
 #. key appearing above in the FORMATS_... dict
 #. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:368
+#: ../gramps/gen/datehandler/_datedisplay.py:384
 msgid "and-date|"
 msgstr "und"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:370
+#: ../gramps/gen/datehandler/_datedisplay.py:386
 #, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr ""
 "{date_quality}zwischen {date_start} und {date_stop}{nonstd_calendar_and_ny}"
 
-#. If there is no special inflection for "before/after/around <Month>" in your
-#. language, don't translate this string.
-#. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
-#. key appearing above in the FORMATS_... dict
-#. that maps to the special inflected format string that you need to localize.
-#. TODO are there languages for which the inflections for the different
-#. modifiers are different?!
-#: ../gramps/gen/datehandler/_datedisplay.py:385
+#. If there is no special inflection for "before <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:397
 msgid "before-date|"
 msgstr "vor"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:387
+#. If there is no special inflection for "after <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:402
+msgid "after-date|"
+msgstr "nach"
+
+#. If there is no special inflection for "about <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:407
+msgid "about-date|"
+msgstr "etwa"
+
+#: ../gramps/gen/datehandler/_datedisplay.py:412
 #, python-brace-format
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:449
+#. TRANSLATORS: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:479
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr "{long_month} {day:d}, {year}"
 
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:464
+#. TRANSLATORS: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:503
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr "{short_month} {day:d}, {year}"
 
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:479
+#. TRANSLATORS: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:527
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr "{day:d} {long_month} {year}"
 
-#. TRANSLATORS: see
-#. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
-#. to learn how to select proper inflection for your language.
-#: ../gramps/gen/datehandler/_datedisplay.py:495
+#. TRANSLATORS: this month is ALREADY inflected: ignore it
+#: ../gramps/gen/datehandler/_datedisplay.py:551
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr "{day:d} {short_month} {year}"
@@ -5900,7 +5914,7 @@ msgstr "Entspricht Quellen, die als vertraulich markiert sind."
 
 #. only used in add_menu_options (so no _T_)
 #: ../gramps/gen/lib/attrtype.py:63 ../gramps/gen/lib/childreftype.py:79
-#: ../gramps/gen/lib/eventroletype.py:59 ../gramps/gen/lib/eventtype.py:166
+#: ../gramps/gen/lib/eventroletype.py:59 ../gramps/gen/lib/eventtype.py:170
 #: ../gramps/gen/lib/familyreltype.py:53 ../gramps/gen/lib/markertype.py:58
 #: ../gramps/gen/lib/nameorigintype.py:80 ../gramps/gen/lib/nametype.py:53
 #: ../gramps/gen/lib/notetype.py:79 ../gramps/gen/lib/placetype.py:68
@@ -6007,7 +6021,7 @@ msgstr "Zeit"
 msgid "None"
 msgstr "Ohne"
 
-#: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/lib/eventtype.py:168
+#: ../gramps/gen/lib/childreftype.py:73 ../gramps/gen/lib/eventtype.py:172
 #: ../gramps/gui/merge/mergeperson.py:184
 #: ../gramps/plugins/gramplet/ancestor.py:62
 #: ../gramps/plugins/gramplet/descendant.py:66
@@ -6024,7 +6038,7 @@ msgstr "Ohne"
 msgid "Birth"
 msgstr "Geburt"
 
-#: ../gramps/gen/lib/childreftype.py:74 ../gramps/gen/lib/eventtype.py:167
+#: ../gramps/gen/lib/childreftype.py:74 ../gramps/gen/lib/eventtype.py:171
 msgid "Adopted"
 msgstr "Adoptiert"
 
@@ -6219,7 +6233,8 @@ msgstr "Familie"
 msgid "Informant"
 msgstr "Informant"
 
-#: ../gramps/gen/lib/eventtype.py:140
+#. _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+#: ../gramps/gen/lib/eventtype.py:144
 msgid "Life Events"
 msgstr "Lebensereignisse"
 
@@ -6228,7 +6243,7 @@ msgstr "Lebensereignisse"
 #. get the family events
 #. show "> Family: ..." and nothing else
 #. show "V Family: ..." and the rest
-#: ../gramps/gen/lib/eventtype.py:142 ../gramps/gui/clipboard.py:756
+#: ../gramps/gen/lib/eventtype.py:146 ../gramps/gui/clipboard.py:756
 #: ../gramps/gui/configure.py:529
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/personeventembedlist.py:52
@@ -6251,39 +6266,39 @@ msgstr "Lebensereignisse"
 msgid "Family"
 msgstr "Familie"
 
-#: ../gramps/gen/lib/eventtype.py:145
+#: ../gramps/gen/lib/eventtype.py:149
 msgid "Religious"
 msgstr "Religiös"
 
-#: ../gramps/gen/lib/eventtype.py:148
+#: ../gramps/gen/lib/eventtype.py:152
 msgid "Vocational"
 msgstr "Beruflich"
 
-#: ../gramps/gen/lib/eventtype.py:150
+#: ../gramps/gen/lib/eventtype.py:154
 msgid "Academic"
 msgstr "Wissenschaftlich"
 
-#: ../gramps/gen/lib/eventtype.py:152
+#: ../gramps/gen/lib/eventtype.py:156
 msgid "Travel"
 msgstr "Reisen"
 
-#: ../gramps/gen/lib/eventtype.py:154
+#: ../gramps/gen/lib/eventtype.py:158
 msgid "Legal"
 msgstr "Juristisch"
 
-#: ../gramps/gen/lib/eventtype.py:156 ../gramps/gen/lib/eventtype.py:198
+#: ../gramps/gen/lib/eventtype.py:160 ../gramps/gen/lib/eventtype.py:202
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:430
 #: ../gramps/plugins/webreport/narrativeweb.py:2755
 #: ../gramps/plugins/webreport/narrativeweb.py:6721
 msgid "Residence"
 msgstr "Wohnort"
 
-#: ../gramps/gen/lib/eventtype.py:158 ../gramps/gui/glade/mergedata.glade:555
+#: ../gramps/gen/lib/eventtype.py:162 ../gramps/gui/glade/mergedata.glade:555
 #: ../gramps/gui/glade/mergedata.glade:661
 msgid "Other"
 msgstr "Andere"
 
-#: ../gramps/gen/lib/eventtype.py:169 ../gramps/gui/merge/mergeperson.py:188
+#: ../gramps/gen/lib/eventtype.py:173 ../gramps/gui/merge/mergeperson.py:188
 #: ../gramps/plugins/textreport/familygroup.py:300
 #: ../gramps/plugins/textreport/familygroup.py:490
 #: ../gramps/plugins/textreport/familygroup.py:492
@@ -6295,130 +6310,130 @@ msgstr "Andere"
 msgid "Death"
 msgstr "Tod"
 
-#: ../gramps/gen/lib/eventtype.py:170
+#: ../gramps/gen/lib/eventtype.py:174
 msgid "Adult Christening"
 msgstr "Erwachsenentaufe"
 
-#: ../gramps/gen/lib/eventtype.py:171 ../gramps/gen/lib/ldsord.py:94
+#: ../gramps/gen/lib/eventtype.py:175 ../gramps/gen/lib/ldsord.py:94
 msgid "Baptism"
 msgstr "Taufe"
 
-#: ../gramps/gen/lib/eventtype.py:172
+#: ../gramps/gen/lib/eventtype.py:176
 msgid "Bar Mitzvah"
 msgstr "Bar-Mizwa"
 
-#: ../gramps/gen/lib/eventtype.py:173
+#: ../gramps/gen/lib/eventtype.py:177
 msgid "Bat Mitzvah"
 msgstr "Bat-Mizwa"
 
-#: ../gramps/gen/lib/eventtype.py:174
+#: ../gramps/gen/lib/eventtype.py:178
 msgid "Blessing"
 msgstr "Segnung"
 
-#: ../gramps/gen/lib/eventtype.py:175
+#: ../gramps/gen/lib/eventtype.py:179
 msgid "Burial"
 msgstr "Beerdigung"
 
-#: ../gramps/gen/lib/eventtype.py:176
+#: ../gramps/gen/lib/eventtype.py:180
 msgid "Cause Of Death"
 msgstr "Todesursache"
 
-#: ../gramps/gen/lib/eventtype.py:177
+#: ../gramps/gen/lib/eventtype.py:181
 msgid "Census"
 msgstr "Volkszählung"
 
-#: ../gramps/gen/lib/eventtype.py:178
+#: ../gramps/gen/lib/eventtype.py:182
 msgid "Christening"
 msgstr "Kleinkindtaufe"
 
-#: ../gramps/gen/lib/eventtype.py:179 ../gramps/gen/lib/ldsord.py:96
+#: ../gramps/gen/lib/eventtype.py:183 ../gramps/gen/lib/ldsord.py:96
 msgid "Confirmation"
 msgstr "Konfirmation/Firmung"
 
-#: ../gramps/gen/lib/eventtype.py:180
+#: ../gramps/gen/lib/eventtype.py:184
 msgid "Cremation"
 msgstr "Einäscherung"
 
-#: ../gramps/gen/lib/eventtype.py:181
+#: ../gramps/gen/lib/eventtype.py:185
 msgid "Degree"
 msgstr "Akademischer Grad"
 
-#: ../gramps/gen/lib/eventtype.py:182
+#: ../gramps/gen/lib/eventtype.py:186
 msgid "Education"
 msgstr "Ausbildung"
 
-#: ../gramps/gen/lib/eventtype.py:183
+#: ../gramps/gen/lib/eventtype.py:187
 msgid "Elected"
 msgstr "Wahl"
 
-#: ../gramps/gen/lib/eventtype.py:184
+#: ../gramps/gen/lib/eventtype.py:188
 msgid "Emigration"
 msgstr "Auswanderung"
 
-#: ../gramps/gen/lib/eventtype.py:185
+#: ../gramps/gen/lib/eventtype.py:189
 msgid "First Communion"
 msgstr "Erstkommunion"
 
-#: ../gramps/gen/lib/eventtype.py:186
+#: ../gramps/gen/lib/eventtype.py:190
 msgid "Immigration"
 msgstr "Einwanderung"
 
-#: ../gramps/gen/lib/eventtype.py:187
+#: ../gramps/gen/lib/eventtype.py:191
 msgid "Graduation"
 msgstr "Bildungsabschluss"
 
-#: ../gramps/gen/lib/eventtype.py:188
+#: ../gramps/gen/lib/eventtype.py:192
 msgid "Medical Information"
 msgstr "Medizinische Informationen"
 
-#: ../gramps/gen/lib/eventtype.py:189
+#: ../gramps/gen/lib/eventtype.py:193
 msgid "Military Service"
 msgstr "Militärdienst"
 
-#: ../gramps/gen/lib/eventtype.py:190
+#: ../gramps/gen/lib/eventtype.py:194
 msgid "Naturalization"
 msgstr "Einbürgerung"
 
-#: ../gramps/gen/lib/eventtype.py:191
+#: ../gramps/gen/lib/eventtype.py:195
 msgid "Nobility Title"
 msgstr "Adelstitel"
 
-#: ../gramps/gen/lib/eventtype.py:192
+#: ../gramps/gen/lib/eventtype.py:196
 #: ../gramps/plugins/lib/libpersonview.py:106
 msgid "Number of Marriages"
 msgstr "Anzahl der Ehen"
 
-#: ../gramps/gen/lib/eventtype.py:193 ../gramps/gen/lib/nameorigintype.py:91
+#: ../gramps/gen/lib/eventtype.py:197 ../gramps/gen/lib/nameorigintype.py:91
 #: ../gramps/plugins/gramplet/persondetails.py:129
 msgid "Occupation"
 msgstr "Beruf"
 
-#: ../gramps/gen/lib/eventtype.py:194
+#: ../gramps/gen/lib/eventtype.py:198
 msgid "Ordination"
 msgstr "Ordination"
 
-#: ../gramps/gen/lib/eventtype.py:195
+#: ../gramps/gen/lib/eventtype.py:199
 msgid "Probate"
 msgstr "Testamentseröffnung"
 
-#: ../gramps/gen/lib/eventtype.py:196
+#: ../gramps/gen/lib/eventtype.py:200
 msgid "Property"
 msgstr "Besitz"
 
-#: ../gramps/gen/lib/eventtype.py:197
+#: ../gramps/gen/lib/eventtype.py:201
 #: ../gramps/plugins/gramplet/persondetails.py:131
 msgid "Religion"
 msgstr "Religion"
 
-#: ../gramps/gen/lib/eventtype.py:199
+#: ../gramps/gen/lib/eventtype.py:203
 msgid "Retirement"
 msgstr "Pensionierung"
 
-#: ../gramps/gen/lib/eventtype.py:200
+#: ../gramps/gen/lib/eventtype.py:204
 msgid "Will"
 msgstr "Testament"
 
-#: ../gramps/gen/lib/eventtype.py:201 ../gramps/gui/merge/mergeperson.py:243
+#: ../gramps/gen/lib/eventtype.py:205 ../gramps/gui/merge/mergeperson.py:243
 #: ../gramps/plugins/export/exportcsv.py:487
 #: ../gramps/plugins/importer/importcsv.py:237
 #: ../gramps/plugins/textreport/familygroup.py:383
@@ -6427,40 +6442,40 @@ msgstr "Testament"
 msgid "Marriage"
 msgstr "Hochzeit"
 
-#: ../gramps/gen/lib/eventtype.py:202
+#: ../gramps/gen/lib/eventtype.py:206
 msgid "Marriage Settlement"
 msgstr "Ehevereinbarung"
 
-#: ../gramps/gen/lib/eventtype.py:203
+#: ../gramps/gen/lib/eventtype.py:207
 msgid "Marriage License"
 msgstr "Eheerlaubnis"
 
-#: ../gramps/gen/lib/eventtype.py:204
+#: ../gramps/gen/lib/eventtype.py:208
 msgid "Marriage Contract"
 msgstr "Ehevertrag"
 
-#: ../gramps/gen/lib/eventtype.py:205
+#: ../gramps/gen/lib/eventtype.py:209
 msgid "Marriage Banns"
 msgstr "Hochzeitsaufgebot"
 
-#: ../gramps/gen/lib/eventtype.py:206
+#: ../gramps/gen/lib/eventtype.py:210
 msgid "Engagement"
 msgstr "Verlobung"
 
-#: ../gramps/gen/lib/eventtype.py:207
+#: ../gramps/gen/lib/eventtype.py:211
 #: ../gramps/plugins/webreport/narrativeweb.py:3102
 msgid "Divorce"
 msgstr "Scheidung"
 
-#: ../gramps/gen/lib/eventtype.py:208
+#: ../gramps/gen/lib/eventtype.py:212
 msgid "Divorce Filing"
 msgstr "Einreichung der Scheidung"
 
-#: ../gramps/gen/lib/eventtype.py:209
+#: ../gramps/gen/lib/eventtype.py:213
 msgid "Annulment"
 msgstr "Annullierung"
 
-#: ../gramps/gen/lib/eventtype.py:210
+#: ../gramps/gen/lib/eventtype.py:214
 msgid "Alternate Marriage"
 msgstr "Alternative Hochzeit"
 
@@ -7378,7 +7393,7 @@ msgstr "Beziehungen"
 
 #: ../gramps/gen/plug/_pluginreg.py:89 ../gramps/gen/plug/_pluginreg.py:415
 #: ../gramps/gui/glade/grampletpane.glade:156
-#: ../gramps/gui/widgets/grampletbar.py:610
+#: ../gramps/gui/widgets/grampletbar.py:611
 #: ../gramps/gui/widgets/grampletpane.py:233
 #: ../gramps/gui/widgets/grampletpane.py:959
 msgid "Gramplet"
@@ -11291,7 +11306,7 @@ msgid "Cannot save citation. ID already exists."
 msgstr "Die Fundstelle kann nicht gespeichert werden. ID existiert bereits."
 
 #: ../gramps/gui/editors/editcitation.py:291
-#: ../gramps/gui/editors/editevent.py:246
+#: ../gramps/gui/editors/editevent.py:247
 #: ../gramps/gui/editors/editmedia.py:288
 #: ../gramps/gui/editors/editperson.py:821
 #: ../gramps/gui/editors/editplace.py:280
@@ -11388,7 +11403,7 @@ msgstr "Ereignis: %s"
 msgid "New Event"
 msgstr "Neues Ereignis"
 
-#: ../gramps/gui/editors/editevent.py:227
+#: ../gramps/gui/editors/editevent.py:228
 #: ../gramps/plugins/view/geoclose.py:525
 #: ../gramps/plugins/view/geoevents.py:323
 #: ../gramps/plugins/view/geoevents.py:357
@@ -11401,37 +11416,37 @@ msgstr "Neues Ereignis"
 msgid "Edit Event"
 msgstr "Ereignis bearbeiten"
 
-#: ../gramps/gui/editors/editevent.py:235
-#: ../gramps/gui/editors/editevent.py:258
+#: ../gramps/gui/editors/editevent.py:236
+#: ../gramps/gui/editors/editevent.py:259
 msgid "Cannot save event"
 msgstr "Das Ereignis kann nicht gespeichert werden."
 
-#: ../gramps/gui/editors/editevent.py:236
+#: ../gramps/gui/editors/editevent.py:237
 msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr ""
 "Es existieren keine Daten für dieses Ereignis. Bitte gib Daten ein oder brich "
 "das Bearbeiten ab."
 
-#: ../gramps/gui/editors/editevent.py:245
+#: ../gramps/gui/editors/editevent.py:246
 #: ../gramps/gui/editors/editreference.py:275
 msgid "Cannot save event. ID already exists."
 msgstr "Das Ereignis kann gespeichert werden. ID besteht bereits."
 
-#: ../gramps/gui/editors/editevent.py:259
+#: ../gramps/gui/editors/editevent.py:260
 msgid "The event type cannot be empty"
 msgstr "Ereignisart darf nicht leer sein"
 
-#: ../gramps/gui/editors/editevent.py:264
+#: ../gramps/gui/editors/editevent.py:265
 #, python-format
 msgid "Add Event (%s)"
 msgstr "Ereignis hinzufügen (%s)"
 
-#: ../gramps/gui/editors/editevent.py:270
+#: ../gramps/gui/editors/editevent.py:271
 #, python-format
 msgid "Edit Event (%s)"
 msgstr "Ereignis bearbeiten (%s)"
 
-#: ../gramps/gui/editors/editevent.py:315
+#: ../gramps/gui/editors/editevent.py:316
 #, python-format
 msgid "Delete Event (%s)"
 msgstr "Ereignis (%s) löschen"
@@ -15829,7 +15844,7 @@ msgstr "Erweiterung laden"
 msgid "Fail"
 msgstr "Fehler"
 
-#: ../gramps/gui/plug/_windows.py:510 ../gramps/gui/widgets/grampletbar.py:532
+#: ../gramps/gui/plug/_windows.py:510 ../gramps/gui/widgets/grampletbar.py:533
 msgid "OK"
 msgstr "OK"
 
@@ -17504,24 +17519,24 @@ msgstr ""
 "Wähle den nach unten zeigenden Pfeil in der rechten Ecke zum Hinzufügen, "
 "Entfernen oder Wiederherstellen von Gramplets."
 
-#: ../gramps/gui/widgets/grampletbar.py:471
+#: ../gramps/gui/widgets/grampletbar.py:472
 #: ../gramps/plugins/view/dashboardview.py:94
 msgid "Add a gramplet"
 msgstr "Ein Gramplet hinzufügen"
 
-#: ../gramps/gui/widgets/grampletbar.py:481
+#: ../gramps/gui/widgets/grampletbar.py:482
 msgid "Remove a gramplet"
 msgstr "Ein Gramplet entfernen"
 
-#: ../gramps/gui/widgets/grampletbar.py:491
+#: ../gramps/gui/widgets/grampletbar.py:492
 msgid "Restore default gramplets"
 msgstr "Standardgramplets wiederherstellen"
 
-#: ../gramps/gui/widgets/grampletbar.py:529
+#: ../gramps/gui/widgets/grampletbar.py:530
 msgid "Restore to defaults?"
 msgstr "Auf Standardwerte zurücksetzen?"
 
-#: ../gramps/gui/widgets/grampletbar.py:530
+#: ../gramps/gui/widgets/grampletbar.py:531
 msgid ""
 "The gramplet bar will be restored to contain its default gramplets.  This "
 "action cannot be undone."
