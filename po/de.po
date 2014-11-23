@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-23 15:18+0100\n"
-"PO-Revision-Date: 2014-11-23 15:25+0100\n"
+"PO-Revision-Date: 2014-11-23 23:39+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1028,7 +1028,7 @@ msgstr "Stammbaum \"%s\":"
 #: ../gramps/cli/arghandler.py:418
 #, python-format
 msgid "   %s: %s"
-msgstr "   %s: %s"
+msgstr ""
 
 #: ../gramps/cli/arghandler.py:446
 #, python-format
@@ -1815,7 +1815,7 @@ msgstr "JJJJ-MM-TT (ISO)"
 #. You may translate this as "Numerical", "System preferred", or similar.
 #: ../gramps/gen/datehandler/_datedisplay.py:71
 msgid "date format|Numerical"
-msgstr "Numerisch"
+msgstr "Numerisch TT.MM.JJJJ"
 
 #. Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:74
@@ -1962,7 +1962,7 @@ msgstr "{short_month} {year}"
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:355
 msgid "from-date|"
-msgstr "von"
+msgstr ""
 
 #. If there is no special inflection for "to <Month>" in your
 #. language, don't translate this string.
@@ -1971,7 +1971,7 @@ msgstr "von"
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:362
 msgid "to-date|"
-msgstr "bis"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:364
 #, python-brace-format
@@ -1985,7 +1985,7 @@ msgstr "{date_quality}von {date_start} bis {date_stop}{nonstd_calendar_and_ny}"
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:377
 msgid "between-date|"
-msgstr "zwischen"
+msgstr ""
 
 #. If there is no special inflection for "and <Month>" in your
 #. language, don't translate this string.
@@ -1994,7 +1994,7 @@ msgstr "zwischen"
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:384
 msgid "and-date|"
-msgstr "und"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:386
 #, python-brace-format
@@ -2008,21 +2008,21 @@ msgstr ""
 #. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:397
 msgid "before-date|"
-msgstr "vor"
+msgstr ""
 
 #. If there is no special inflection for "after <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:402
 msgid "after-date|"
-msgstr "nach"
+msgstr ""
 
 #. If there is no special inflection for "about <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:407
 msgid "about-date|"
-msgstr "etwa"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:412
 #, python-brace-format
@@ -2033,25 +2033,25 @@ msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 #: ../gramps/gen/datehandler/_datedisplay.py:479
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
-msgstr "{long_month} {day:d}, {year}"
+msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:503
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
-msgstr "{short_month} {day:d}, {year}"
+msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:527
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
-msgstr "{day:d} {long_month} {year}"
+msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:551
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
-msgstr "{day:d} {short_month} {year}"
+msgstr ""
 
 #: ../gramps/gen/datehandler/_dateparser.py:402
 msgid "today"
@@ -2862,7 +2862,7 @@ msgstr ""
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:350 ../gramps/plugins/lib/libtreebase.py:714
 msgid ","
-msgstr ","
+msgstr ""
 
 #: ../gramps/gen/display/name.py:353
 msgid "Default format (defined by Gramps preferences)"
@@ -2887,7 +2887,7 @@ msgstr "Vorname"
 
 #: ../gramps/gen/display/name.py:359
 msgid "Given Surname Suffix"
-msgstr "Vorname Nachname Suffix"
+msgstr "orname Nachname Suffix"
 
 #. primary name primconnector other, given pa/matronynic suffix, primprefix
 #. translators: long string, have a look at Preferences dialog
@@ -6081,7 +6081,7 @@ msgstr "Pflegekind"
 #: ../gramps/plugins/view/relview.py:674
 #: ../gramps/plugins/webreport/narrativeweb.py:5373
 msgid "unknown"
-msgstr "unbekannt"
+msgstr "Unbekannt"
 
 #: ../gramps/gen/lib/date.py:287
 #, python-format
@@ -6147,7 +6147,7 @@ msgstr[1] "{number_of} Jahre"
 #: ../gramps/plugins/gramplet/whatsnext.py:477
 #: ../gramps/plugins/gramplet/whatsnext.py:498
 msgid ", "
-msgstr ", "
+msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:424
@@ -6776,7 +6776,7 @@ msgstr "Zu erledigen"
 #: ../gramps/gen/lib/name.py:467 ../gramps/gen/lib/name.py:482
 #, python-format
 msgid "%(surname)s, %(first)s %(suffix)s"
-msgstr "%(surname)s, %(first)s %(suffix)s"
+msgstr ""
 
 #. translators: needed for Arabic, ignore otherwise
 #. translators: needed for Arabic, ignore otherwise
@@ -6787,13 +6787,13 @@ msgstr "%(surname)s, %(first)s %(suffix)s"
 #: ../gramps/plugins/textreport/indivcomplete.py:171
 #, python-format
 msgid "%(str1)s, %(str2)s"
-msgstr "%(str1)s, %(str2)s"
+msgstr ""
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/lib/name.py:499
 #, python-format
 msgid "%(first)s %(surname)s, %(suffix)s"
-msgstr "%(first)s %(surname)s, %(suffix)s"
+msgstr ""
 
 #: ../gramps/gen/lib/nameorigintype.py:82
 msgid "Surname|Inherited"
@@ -10628,7 +10628,7 @@ msgstr "_Referenzen"
 
 #: ../gramps/gui/editors/displaytabs/backreflist.py:99
 msgid "Edit reference"
-msgstr "Referenz bearbeiten"
+msgstr "eferenz bearbeiten"
 
 #: ../gramps/gui/editors/displaytabs/backrefmodel.py:51
 #, python-format
@@ -17862,7 +17862,7 @@ msgstr "Konnte %s nicht öffnen"
 #. internal name: don't translate
 #: ../gramps/plugins/docgen/svgdrawdoc.py:341
 msgid "SVG background color"
-msgstr "SVG Hintergrundfarbe"
+msgstr ""
 
 #: ../gramps/plugins/docgen/svgdrawdoc.py:343
 msgid "transparent background"
@@ -18581,7 +18581,7 @@ msgstr "Nachkommenschaubild für %(person)s, %(father1)s und %(mother1)s"
 msgid ""
 "Descendant Chart for %(father1)s, %(father2)s and %(mother1)s, %(mother2)s"
 msgstr ""
-"Nachkommenschaubild für %(father1)s, %(father2)s und %(mother1)s, %(mother2)s"
+"achkommenschaubild für %(father1)s, %(father2)s und %(mother1)s, %(mother2)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:185
 #, python-format
@@ -28314,7 +28314,7 @@ msgstr "%(event_name)s: %(event_text)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:458
 #: ../gramps/plugins/textreport/familygroup.py:122
 msgid "; "
-msgstr "; "
+msgstr ""
 
 #: ../gramps/plugins/textreport/detancestralreport.py:544
 #: ../gramps/plugins/textreport/detdescendantreport.py:599
@@ -28527,7 +28527,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/detancestralreport.py:812
 #: ../gramps/plugins/textreport/detdescendantreport.py:1008
 msgid "Missing information"
-msgstr "Fehlende Informationen"
+msgstr "Fehlende Information"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:814
 #: ../gramps/plugins/textreport/detdescendantreport.py:1010
@@ -28686,7 +28686,7 @@ msgstr "Der Stil, der für die Generationenüberschriften verwendet wird."
 #: ../gramps/plugins/textreport/indivcomplete.py:599
 #, python-format
 msgid "%(str1)s: %(str2)s"
-msgstr "%(str1)s: %(str2)s"
+msgstr ""
 
 #: ../gramps/plugins/textreport/familygroup.py:378
 msgid "Marriage:"
@@ -28871,7 +28871,7 @@ msgstr "Übersicht für %s"
 #: ../gramps/plugins/textreport/indivcomplete.py:570
 #, python-format
 msgid "%s:"
-msgstr "%s:"
+msgstr ""
 
 #: ../gramps/plugins/textreport/indivcomplete.py:576
 #: ../gramps/plugins/tool/dumpgenderstats.py:65
