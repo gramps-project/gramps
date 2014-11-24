@@ -365,7 +365,7 @@ class ArgHandler(object):
                 # Apparently it is not a database. See if it is a file that
                 # can be imported.
                 db_path, title = self.dbman.import_new_db(self.open_gui, self.user)
-        # Handle the "-l" List Family Trees option.  
+
             if db_path:
                 # Test if not locked or problematic
                 if not self.check_db(db_path, self.force_unlock):
@@ -376,7 +376,6 @@ class ArgHandler(object):
                     title = db_path
                 recent_files(db_path, title)
                 self.open = db_path
-        # Handle the "-L" List Family Trees in detail option.  
                 self.__open_action()
             else:
                 sys.exit(0)
