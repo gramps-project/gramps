@@ -395,7 +395,7 @@ class ArgHandler(object):
         :param: climan: the manager of a CLI session
         :type: :class:`.CLIManager` object
         """
-
+        # Handle the "-l" List Family Trees option.  
         if self.list:
             print(_('List of known Family Trees in your database path\n'))
 
@@ -406,6 +406,7 @@ class ArgHandler(object):
                               % {'full_DB_path' : dirname, 'f_t_name' : name})
             sys.exit(0)
 
+        # Handle the "-L" List Family Trees in detail option.  
         if self.list_more:
             print(_('Gramps Family Trees:'))
             summary_list = self.dbman.family_tree_summary()
@@ -418,25 +419,26 @@ class ArgHandler(object):
                         print(_("   %s: %s") % (item, summary[item]))
             sys.exit(0)
            
+        # Handle the "-t" List Family Trees, tab delimited option.  
         if self.list_table:
             print(_('Gramps Family Trees:'))
             summary_list = self.dbman.family_tree_summary()
             if not summary_list:
                 sys.exit(0)
-            print(_("Family Tree"), end="")
+            # We have to construct the line elements together, to avoid
+            # insertion of blank spaces when print on the same line is used
+            line_list = [_("Family Tree")]
             for key in sorted(summary_list[0]):
-                if key !=  "Family Tree":
-                    print("\t ", end="")
-                    print(key, end="")
-            print()
+                if key !=  _("Family Tree"):
+                    line_list += [key]
+            print("\t".join(line_list))
             for summary in sorted(summary_list,
                                   key=lambda sum: sum[_("Family Tree")].lower()):
-                print('"%s"' % summary[_("Family Tree")], end="")
+                line_list = [('"%s"' % summary[_("Family Tree")])]
                 for item in sorted(summary):
                     if item != _("Family Tree"):
-                        print("\t ", end="")
-                        print('"%s"' % summary[item], end="")
-                print()
+                        line_list += [('"%s"' % summary[item])]
+                print("\t".join(line_list))
             sys.exit(0)
 
         self.__open_action()
