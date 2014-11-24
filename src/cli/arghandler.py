@@ -392,7 +392,7 @@ class ArgHandler(object):
         @param: climan: the manager of a CLI session
         @type: CLIManager object
         """
-
+        # Handle the "-l" List Family Trees option.  
         if self.list:
             print _('List of known family trees in your database path\n').\
                     encode(sys.getfilesystemencoding())
@@ -403,6 +403,7 @@ class ArgHandler(object):
                          'f_t_name' : name}).encode(sys.getfilesystemencoding())
             sys.exit(0)
             
+        # Handle the "-L" List Family Trees in detail option.  
         if self.list_more:
             print _('Gramps Family Trees:').encode(sys.getfilesystemencoding())
             summary_list = self.dbman.family_tree_summary()
@@ -418,27 +419,28 @@ class ArgHandler(object):
                                encode(sys.getfilesystemencoding())
             sys.exit(0)
            
+        # Handle the "-t" List Family Trees, tab delimited option.  
         if self.list_table:
             print _('Gramps Family Trees:').encode(sys.getfilesystemencoding())
             summary_list = self.dbman.family_tree_summary()
             if not summary_list:
                 sys.exit(0)
-            print _("Family Tree").encode(sys.getfilesystemencoding()),
+            # We have to construct the line elements together, to avoid
+            # insertion of blank spaces when print on the same line is used
+            line_list = [_("Family Tree").encode(sys.getfilesystemencoding())]
             for key in sorted(summary_list[0]):
                 if key !=  _("Family tree"):
-                    print "\t ",
-                    print key.encode(sys.getfilesystemencoding()),
-            print
+                    line_list += [key.encode(sys.getfilesystemencoding())]
+            print "\t".join(line_list)
             for summary in sorted(summary_list,
                                   key=lambda sum: sum[_("Family tree")].lower()):
-                print '"%s"'.\
-                        encode(sys.getfilesystemencoding()) % summary[_("Family tree")],
+                line_list = [('"%s"' % summary[_("Family tree")]).\
+                        encode(sys.getfilesystemencoding())]
                 for item in sorted(summary):
                     if item != _("Family tree"):
-                        print "\t ",
-                        print ('"%s"' % summary[item]).\
-                               encode(sys.getfilesystemencoding()),
-                print
+                        line_list += [('"%s"' % summary[item]).\
+                               encode(sys.getfilesystemencoding())]
+                print "\t".join(line_list)
             sys.exit(0)
 
         self.__open_action()
