@@ -63,6 +63,7 @@ class EditPlaceRef(EditSecondary):
 
         self.place_field = PlaceEntry(self.dbstate, self.uistate, self.track,
                                       self.top.get_object("place"),
+                                      self.top.get_object("place_event_box"),
                                       self.obj.set_reference_handle,
                                       self.obj.get_reference_handle,
                                       self.add_del_btn, self.share_btn,
