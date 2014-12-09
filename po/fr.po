@@ -7047,7 +7047,7 @@ msgstr "Horizontal (→)"
 #: ../gramps/gen/plug/docgen/graphdoc.py:76
 #: ../gramps/plugins/view/pedigreeview.py:2024
 msgid "Horizontal (←)"
-msgstr "Horizontal (→)"
+msgstr "Horizontal (←)"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:78
 msgid "Bottom, left"
