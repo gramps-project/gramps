@@ -30,8 +30,6 @@
 #
 #-------------------------------------------------------------------------
 import os
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
@@ -47,6 +45,8 @@ log = logging.getLogger(".WriteGeneWeb")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import Date, Event, EventType, FamilyRelType, Person
 from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.utils.alive import probably_alive
@@ -100,7 +100,7 @@ class GeneWebWriter(object):
 
         self.flist = [x for x in self.db.iter_family_handles()]
         if len(self.flist) < 1:
-            self.notify_error(_("No families matched by selected filter"))
+            self.user.notify_error(_("No families matched by selected filter"))
             return False
         
         self.count = 0
