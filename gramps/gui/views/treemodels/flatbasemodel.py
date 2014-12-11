@@ -861,7 +861,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         #print 'do_iter_nth_child', iter, nth
         if iter == None:
             return True, self.node_map.get_iter(nth)
-        return False
+        return False, None
 
     def do_iter_parent(self, iter):
         """
@@ -869,4 +869,4 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         See Gtk.TreeModel
         """
         #print 'do_iter_parent'
-        return False
+        return False, None
