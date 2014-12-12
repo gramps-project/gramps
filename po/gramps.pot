@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-22 16:16-0800\n"
+"POT-Creation-Date: 2014-12-11 19:40-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -672,133 +672,136 @@ msgstr ""
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:410 ../gramps/cli/arghandler.py:422
+#: ../gramps/cli/arghandler.py:411 ../gramps/cli/arghandler.py:424
 msgid "Gramps Family Trees:"
 msgstr ""
 
+#. We have to construct the line elements together, to avoid
+#. insertion of blank spaces when print on the same line is used
 #. -------------------------------------------------------------------------
 #.
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:413 ../gramps/cli/arghandler.py:414
-#: ../gramps/cli/arghandler.py:426 ../gramps/cli/arghandler.py:433
-#: ../gramps/cli/arghandler.py:434 ../gramps/cli/arghandler.py:436
-#: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:220
-#: ../gramps/gui/clipboard.py:953 ../gramps/gui/configure.py:1364
+#: ../gramps/cli/arghandler.py:414 ../gramps/cli/arghandler.py:415
+#: ../gramps/cli/arghandler.py:430 ../gramps/cli/arghandler.py:432
+#: ../gramps/cli/arghandler.py:436 ../gramps/cli/arghandler.py:437
+#: ../gramps/cli/arghandler.py:439 ../gramps/cli/clidbman.py:73
+#: ../gramps/cli/clidbman.py:220 ../gramps/gui/clipboard.py:953
+#: ../gramps/gui/configure.py:1364
 msgid "Family Tree"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:414
+#: ../gramps/cli/arghandler.py:415
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr ""
 
 #. translators: needed for French, ignore otherwise
-#: ../gramps/cli/arghandler.py:418
+#: ../gramps/cli/arghandler.py:419
 #, python-format
 msgid "   %s: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:446
+#: ../gramps/cli/arghandler.py:448
 #, python-format
 msgid "Performing action: %s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:448
+#: ../gramps/cli/arghandler.py:450
 #, python-format
 msgid "Using options string: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:453
+#: ../gramps/cli/arghandler.py:455
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:460
+#: ../gramps/cli/arghandler.py:462
 msgid "Exiting."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:464
+#: ../gramps/cli/arghandler.py:466
 msgid "Cleaning up."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:495
+#: ../gramps/cli/arghandler.py:497
 msgid "Created empty Family Tree successfully"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:498 ../gramps/cli/arghandler.py:523
+#: ../gramps/cli/arghandler.py:500 ../gramps/cli/arghandler.py:525
 msgid "Error opening the file."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:499 ../gramps/cli/arghandler.py:524
+#: ../gramps/cli/arghandler.py:501 ../gramps/cli/arghandler.py:526
 msgid "Exiting..."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:503
+#: ../gramps/cli/arghandler.py:505
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:521
+#: ../gramps/cli/arghandler.py:523
 msgid "Opened successfully!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:535
+#: ../gramps/cli/arghandler.py:537
 msgid "Database is locked, cannot open it!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:536
+#: ../gramps/cli/arghandler.py:538
 #, python-format
 msgid "  Info: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:539
+#: ../gramps/cli/arghandler.py:541
 msgid "Database needs recovery, cannot open it!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:590 ../gramps/cli/arghandler.py:638
-#: ../gramps/cli/arghandler.py:685
+#: ../gramps/cli/arghandler.py:592 ../gramps/cli/arghandler.py:640
+#: ../gramps/cli/arghandler.py:687
 msgid "Ignoring invalid options string."
 msgstr ""
 
 #. name exists, but is not in the list of valid report names
-#: ../gramps/cli/arghandler.py:614
+#: ../gramps/cli/arghandler.py:616
 msgid "Unknown report name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:616
+#: ../gramps/cli/arghandler.py:618
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:620 ../gramps/cli/arghandler.py:668
-#: ../gramps/cli/arghandler.py:701
+#: ../gramps/cli/arghandler.py:622 ../gramps/cli/arghandler.py:670
+#: ../gramps/cli/arghandler.py:703
 #, python-format
 msgid ""
 "%s\n"
 " Available names are:"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:662
+#: ../gramps/cli/arghandler.py:664
 msgid "Unknown tool name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:664
+#: ../gramps/cli/arghandler.py:666
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:695
+#: ../gramps/cli/arghandler.py:697
 msgid "Unknown book name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:697
+#: ../gramps/cli/arghandler.py:699
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:706
+#: ../gramps/cli/arghandler.py:708
 #, python-format
 msgid "Unknown action: %s."
 msgstr ""
@@ -1544,22 +1547,22 @@ msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:479
+#: ../gramps/gen/datehandler/_datedisplay.py:482
 msgid "{long_month} {day:d}, {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:503
+#: ../gramps/gen/datehandler/_datedisplay.py:506
 msgid "{short_month} {day:d}, {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:527
+#: ../gramps/gen/datehandler/_datedisplay.py:530
 msgid "{day:d} {long_month} {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:551
+#: ../gramps/gen/datehandler/_datedisplay.py:554
 msgid "{day:d} {short_month} {year}"
 msgstr ""
 
@@ -6584,7 +6587,7 @@ msgstr ""
 #: ../gramps/gui/glade/grampletpane.glade:156
 #: ../gramps/gui/widgets/grampletbar.py:611
 #: ../gramps/gui/widgets/grampletpane.py:233
-#: ../gramps/gui/widgets/grampletpane.py:959
+#: ../gramps/gui/widgets/grampletpane.py:967
 msgid "Gramplet"
 msgstr ""
 
@@ -8415,7 +8418,7 @@ msgstr ""
 #: ../gramps/gui/selectors/selectplace.py:64
 #: ../gramps/gui/selectors/selectrepository.py:60
 #: ../gramps/gui/selectors/selectsource.py:60
-#: ../gramps/gui/widgets/grampletpane.py:1551
+#: ../gramps/gui/widgets/grampletpane.py:1559
 #: ../gramps/plugins/gramplet/persondetails.py:130
 #: ../gramps/plugins/lib/libplaceview.py:93
 #: ../gramps/plugins/textreport/tagreport.py:390
@@ -15931,7 +15934,7 @@ msgid "Add Child to Family"
 msgstr ""
 
 #: ../gramps/gui/widgets/grampletbar.py:191
-#: ../gramps/gui/widgets/grampletpane.py:1169
+#: ../gramps/gui/widgets/grampletpane.py:1177
 msgid "Unnamed Gramplet"
 msgstr ""
 
@@ -15969,40 +15972,40 @@ msgid ""
 msgstr ""
 
 #. default tooltip
-#: ../gramps/gui/widgets/grampletpane.py:791
+#: ../gramps/gui/widgets/grampletpane.py:799
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
 
 #. build the GUI:
-#: ../gramps/gui/widgets/grampletpane.py:987
+#: ../gramps/gui/widgets/grampletpane.py:995
 msgid "Right click to add gramplets"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1034
+#: ../gramps/gui/widgets/grampletpane.py:1042
 msgid "Untitled Gramplet"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1523
+#: ../gramps/gui/widgets/grampletpane.py:1531
 msgid "Number of Columns"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1528
+#: ../gramps/gui/widgets/grampletpane.py:1536
 msgid "Gramplet Layout"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1558
+#: ../gramps/gui/widgets/grampletpane.py:1566
 msgid "Use maximum height available"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1564
+#: ../gramps/gui/widgets/grampletpane.py:1572
 msgid "Height if not maximized"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1571
+#: ../gramps/gui/widgets/grampletpane.py:1579
 msgid "Detached width"
 msgstr ""
 
-#: ../gramps/gui/widgets/grampletpane.py:1578
+#: ../gramps/gui/widgets/grampletpane.py:1586
 msgid "Detached height"
 msgstr ""
 
