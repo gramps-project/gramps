@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-11-23 15:18+0100\n"
-"PO-Revision-Date: 2014-11-23 23:39+0100\n"
+"PO-Revision-Date: 2014-12-12 15:31+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -20934,7 +20934,7 @@ msgstr "Eltern:"
 #: ../gramps/plugins/gramplet/relativegramplet.py:123
 #, python-format
 msgid "   %d.a Mother: "
-msgstr "   %d.a Muter: "
+msgstr "   %d.a Mutter: "
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:130
 #: ../gramps/plugins/gramplet/relativegramplet.py:134
