@@ -291,6 +291,8 @@ class RelGraphReport(Report):
     def __add_family(self, fam_handle):
         """Add a node for a family and optionally link the spouses to it"""
         fam = self.database.get_family_from_handle(fam_handle)
+        if fam is None: # perhaps from privacy proxy
+            return
         fam_id = fam.get_gramps_id()
 
         label = ""
