@@ -190,3 +190,59 @@ class MediaAttributes(Attributes):
                 self.set_has_data(False)
         else:
             self.set_has_data(False)
+
+class SourceAttributes(Attributes):
+    """
+    Displays the attributes of a source object.
+    """
+    def db_changed(self):
+        self.dbstate.db.connect('source-update', self.update)
+        self.connect_signal('Source', self.update)
+
+    def update_has_data(self):
+        active_handle = self.get_active('Source')
+        if active_handle:
+            active = self.dbstate.db.get_source_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
+
+    def main(self):
+        self.model.clear()
+        active_handle = self.get_active('Source')
+        if active_handle:
+            active = self.dbstate.db.get_source_from_handle(active_handle)
+            if active:
+                self.display_attributes(active)
+            else:
+                self.set_has_data(False)
+        else:
+            self.set_has_data(False)
+
+class CitationAttributes(Attributes):
+    """
+    Displays the attributes of a citation object.
+    """
+    def db_changed(self):
+        self.dbstate.db.connect('citation-update', self.update)
+        self.connect_signal('Citation', self.update)
+
+    def update_has_data(self):
+        active_handle = self.get_active('Citation')
+        if active_handle:
+            active = self.dbstate.db.get_citation_from_handle(active_handle)
+            self.set_has_data(self.get_has_data(active))
+        else:
+            self.set_has_data(False)
+
+    def main(self):
+        self.model.clear()
+        active_handle = self.get_active('Citation')
+        if active_handle:
+            active = self.dbstate.db.get_citation_from_handle(active_handle)
+            if active:
+                self.display_attributes(active)
+            else:
+                self.set_has_data(False)
+        else:
+            self.set_has_data(False)
