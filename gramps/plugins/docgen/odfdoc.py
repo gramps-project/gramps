@@ -964,6 +964,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
                     '<style:style ' +
                         'style:name="Single_%s" ' % str(style[1]) +
                         'style:family="graphic" ' +
+                        'style:parent-style-name="photo">' +
                         '<style:graphic-properties ' +
                             'style:vertical-pos="from-top" ' +
                             'style:mirror="none" ' +
