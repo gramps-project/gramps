@@ -234,6 +234,7 @@ src/gui/editors/displaytabs/grampstab.py
 src/gui/editors/displaytabs/groupembeddedlist.py
 src/gui/editors/displaytabs/ldsmodel.py
 src/gui/editors/displaytabs/locationmodel.py
+src/gui/editors/displaytabs/mediaattrembedlist.py
 src/gui/editors/displaytabs/mediabackreflist.py
 src/gui/editors/displaytabs/notebackreflist.py
 src/gui/editors/displaytabs/personrefmodel.py

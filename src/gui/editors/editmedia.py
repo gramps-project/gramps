@@ -51,7 +51,7 @@ import Utils
 from editprimary import EditPrimary
 from gui.widgets import (MonitoredDate, MonitoredEntry, PrivacyButton,
                          MonitoredTagList)
-from displaytabs import (CitationEmbedList, AttrEmbedList, NoteTab, 
+from displaytabs import (CitationEmbedList, MediaAttrEmbedList, NoteTab,
                          MediaBackRefList)
 from addmedia import AddMediaObject
 from QuestionDialog import ErrorDialog
@@ -200,7 +200,7 @@ class EditMedia(EditPrimary):
         self._add_tab(notebook, self.citation_tab)
         self.track_ref_for_deletion("citation_tab")
 
-        self.attr_tab = AttrEmbedList(self.dbstate,
+        self.attr_tab = MediaAttrEmbedList(self.dbstate,
                                       self.uistate,
                                       self.track,
                                       self.obj.get_attribute_list())
