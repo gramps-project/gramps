@@ -30,6 +30,7 @@ __all__ = ["UndoableEntry"]
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
+import warnings
 import logging
 _LOG = logging.getLogger(".widgets.undoableentry")
 
@@ -110,7 +111,11 @@ class UndoableEntry(Gtk.Entry):
         self.connect('key-press-event', self._on_key_press_event)
 
     def set_text(self, text):
-        Gtk.Entry.set_text(self, text)
+        with warnings.catch_warnings():
+            # Suppress warnings.  See bug #8029.
+            # https://bugzilla.gnome.org/show_bug.cgi?id=644927
+            warnings.simplefilter('ignore')
+            Gtk.Entry.set_text(self, text)
         self.reset()
 
     def _on_key_press_event(self, widget, event):

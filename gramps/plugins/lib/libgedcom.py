@@ -6807,7 +6807,7 @@ class GedcomParser(UpdateCallback):
             sattr = SrcAttribute()
             sattr.set_type(_("Version number of software product"))
             sattr.set_value(self.genvers)
-            self.source.add_attribute(sattr)
+            self.def_src.add_attribute(sattr)
         
     def __header_sour_corp(self, line, state):
         """

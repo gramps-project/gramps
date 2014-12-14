@@ -325,6 +325,14 @@ class GrampletWindow(ManagedWindow):
             expand, fill, padding, pack = column.query_child_packing(gramplet.mainframe)
             expand = gramplet.gstate == "maximized" and gramplet.expand
             column.set_child_packing(gramplet.mainframe, expand, fill, padding, pack)
+        # set_image on buttons as get_image is None in first run
+        # or point to invalid adress in every other run
+        self.gramplet.gvstate.set_image(self.gramplet.xml.get_object(
+                                        'gvstateimage'))
+        self.gramplet.gvclose.set_image(self.gramplet.xml.get_object(
+                                        'gvcloseimage'))
+        self.gramplet.gvproperties.set_image(self.gramplet.xml.get_object(
+                                             'gvpropertiesimage'))
         self.gramplet.gvclose.show()
         self.gramplet.gvstate.show()
         self.gramplet.gvproperties.show()

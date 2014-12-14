@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-11-23 15:18+0100\n"
-"PO-Revision-Date: 2014-11-23 23:39+0100\n"
+"POT-Creation-Date: 2014-12-13 22:04+0100\n"
+"PO-Revision-Date: 2014-12-13 22:15+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1002,111 +1002,114 @@ msgstr "Liste bekannter Stammbäume in deinem Datenbankpfad\n"
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr "%(full_DB_path)s mit Name \"%(f_t_name)s\""
 
-#: ../gramps/cli/arghandler.py:410 ../gramps/cli/arghandler.py:422
+#: ../gramps/cli/arghandler.py:411 ../gramps/cli/arghandler.py:424
 msgid "Gramps Family Trees:"
 msgstr "Gramps Stammbäume:"
 
+#. We have to construct the line elements together, to avoid
+#. insertion of blank spaces when print on the same line is used
 #. -------------------------------------------------------------------------
 #.
 #. constants
 #.
 #. -------------------------------------------------------------------------
-#: ../gramps/cli/arghandler.py:413 ../gramps/cli/arghandler.py:414
-#: ../gramps/cli/arghandler.py:426 ../gramps/cli/arghandler.py:433
-#: ../gramps/cli/arghandler.py:434 ../gramps/cli/arghandler.py:436
-#: ../gramps/cli/clidbman.py:73 ../gramps/cli/clidbman.py:220
-#: ../gramps/gui/clipboard.py:953 ../gramps/gui/configure.py:1364
+#: ../gramps/cli/arghandler.py:414 ../gramps/cli/arghandler.py:415
+#: ../gramps/cli/arghandler.py:430 ../gramps/cli/arghandler.py:432
+#: ../gramps/cli/arghandler.py:436 ../gramps/cli/arghandler.py:437
+#: ../gramps/cli/arghandler.py:439 ../gramps/cli/clidbman.py:73
+#: ../gramps/cli/clidbman.py:220 ../gramps/gui/clipboard.py:953
+#: ../gramps/gui/configure.py:1364
 msgid "Family Tree"
 msgstr "Stammbaum"
 
-#: ../gramps/cli/arghandler.py:414
+#: ../gramps/cli/arghandler.py:415
 #, python-format
 msgid "Family Tree \"%s\":"
 msgstr "Stammbaum \"%s\":"
 
 #. translators: needed for French, ignore otherwise
-#: ../gramps/cli/arghandler.py:418
+#: ../gramps/cli/arghandler.py:419
 #, python-format
 msgid "   %s: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:446
+#: ../gramps/cli/arghandler.py:448
 #, python-format
 msgid "Performing action: %s."
 msgstr "Ausführen von Aktion: %s."
 
-#: ../gramps/cli/arghandler.py:448
+#: ../gramps/cli/arghandler.py:450
 #, python-format
 msgid "Using options string: %s"
 msgstr "Verwende Optionstext: %s"
 
-#: ../gramps/cli/arghandler.py:453
+#: ../gramps/cli/arghandler.py:455
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr "Exportiere: Datei %(filename)s, Format %(format)s."
 
-#: ../gramps/cli/arghandler.py:460
+#: ../gramps/cli/arghandler.py:462
 msgid "Exiting."
 msgstr "Beenden."
 
-#: ../gramps/cli/arghandler.py:464
+#: ../gramps/cli/arghandler.py:466
 msgid "Cleaning up."
 msgstr "Räume auf."
 
-#: ../gramps/cli/arghandler.py:495
+#: ../gramps/cli/arghandler.py:497
 msgid "Created empty Family Tree successfully"
 msgstr "Leerer Stammbaum erfolgreich erstellt."
 
-#: ../gramps/cli/arghandler.py:498 ../gramps/cli/arghandler.py:523
+#: ../gramps/cli/arghandler.py:500 ../gramps/cli/arghandler.py:525
 msgid "Error opening the file."
 msgstr "Fehler beim Öffnen der Datei."
 
-#: ../gramps/cli/arghandler.py:499 ../gramps/cli/arghandler.py:524
+#: ../gramps/cli/arghandler.py:501 ../gramps/cli/arghandler.py:526
 msgid "Exiting..."
 msgstr "Beenden..."
 
-#: ../gramps/cli/arghandler.py:503
+#: ../gramps/cli/arghandler.py:505
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr "Importiere: Datei %(filename)s, Format %(format)s."
 
-#: ../gramps/cli/arghandler.py:521
+#: ../gramps/cli/arghandler.py:523
 msgid "Opened successfully!"
 msgstr "Erfolgreich geöffnet!"
 
-#: ../gramps/cli/arghandler.py:535
+#: ../gramps/cli/arghandler.py:537
 msgid "Database is locked, cannot open it!"
 msgstr "Die Datenbank kann nicht geöffnet werden, sie ist gesperrt!"
 
-#: ../gramps/cli/arghandler.py:536
+#: ../gramps/cli/arghandler.py:538
 #, python-format
 msgid "  Info: %s"
 msgstr " Info: %s"
 
-#: ../gramps/cli/arghandler.py:539
+#: ../gramps/cli/arghandler.py:541
 msgid "Database needs recovery, cannot open it!"
 msgstr ""
 "Die Datenbank kann nicht geöffnet werden, sie benötigt eine Wiederherstellung!"
 
-#: ../gramps/cli/arghandler.py:590 ../gramps/cli/arghandler.py:638
-#: ../gramps/cli/arghandler.py:685
+#: ../gramps/cli/arghandler.py:592 ../gramps/cli/arghandler.py:640
+#: ../gramps/cli/arghandler.py:687
 msgid "Ignoring invalid options string."
 msgstr "Ignoriere ungültigen Optionstext."
 
 #. name exists, but is not in the list of valid report names
-#: ../gramps/cli/arghandler.py:614
+#: ../gramps/cli/arghandler.py:616
 msgid "Unknown report name."
 msgstr "Unbekannter Berichtname."
 
-#: ../gramps/cli/arghandler.py:616
+#: ../gramps/cli/arghandler.py:618
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 "Der Berichtname ist nicht angegeben. Bitte verwende einen von %"
 "(donottranslate)s=reportname."
 
-#: ../gramps/cli/arghandler.py:620 ../gramps/cli/arghandler.py:668
-#: ../gramps/cli/arghandler.py:701
+#: ../gramps/cli/arghandler.py:622 ../gramps/cli/arghandler.py:670
+#: ../gramps/cli/arghandler.py:703
 #, python-format
 msgid ""
 "%s\n"
@@ -1115,29 +1118,29 @@ msgstr ""
 "%s\n"
 " Verfügbare Namen sind:"
 
-#: ../gramps/cli/arghandler.py:662
+#: ../gramps/cli/arghandler.py:664
 msgid "Unknown tool name."
 msgstr "Unbekannter Werkzeugname."
 
-#: ../gramps/cli/arghandler.py:664
+#: ../gramps/cli/arghandler.py:666
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 "Der Werkzeugname ist nicht angegeben. Bitte verwende einen von %"
 "(donottranslate)s=toolname."
 
-#: ../gramps/cli/arghandler.py:695
+#: ../gramps/cli/arghandler.py:697
 msgid "Unknown book name."
 msgstr "Unbekannter Buchname."
 
-#: ../gramps/cli/arghandler.py:697
+#: ../gramps/cli/arghandler.py:699
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
 "Der Buchname ist nicht angegeben. Bitte verwende einen von %"
 "(donottranslate)s=bookname."
 
-#: ../gramps/cli/arghandler.py:706
+#: ../gramps/cli/arghandler.py:708
 #, python-format
 msgid "Unknown action: %s."
 msgstr "Unbekannte Aktion: %s."
@@ -1500,7 +1503,7 @@ msgstr "Gesperrt durch %s"
 #: ../gramps/plugins/gramplet/relativegramplet.py:124
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:164
-#: ../gramps/plugins/graph/gvrelgraph.py:625
+#: ../gramps/plugins/graph/gvrelgraph.py:627
 #: ../gramps/plugins/lib/maps/geography.py:766
 #: ../gramps/plugins/lib/maps/geography.py:773
 #: ../gramps/plugins/lib/maps/geography.py:774
@@ -2030,25 +2033,25 @@ msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:479
+#: ../gramps/gen/datehandler/_datedisplay.py:482
 #, python-brace-format
 msgid "{long_month} {day:d}, {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:503
+#: ../gramps/gen/datehandler/_datedisplay.py:506
 #, python-brace-format
 msgid "{short_month} {day:d}, {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:527
+#: ../gramps/gen/datehandler/_datedisplay.py:530
 #, python-brace-format
 msgid "{day:d} {long_month} {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:551
+#: ../gramps/gen/datehandler/_datedisplay.py:554
 #, python-brace-format
 msgid "{day:d} {short_month} {year}"
 msgstr ""
@@ -5071,7 +5074,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_isfemale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:153
 #: ../gramps/plugins/graph/gvfamilylines.py:160
-#: ../gramps/plugins/graph/gvrelgraph.py:621
+#: ../gramps/plugins/graph/gvrelgraph.py:623
 msgid "Females"
 msgstr "Frauen"
 
@@ -5143,7 +5146,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_ismale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:150
 #: ../gramps/plugins/graph/gvfamilylines.py:156
-#: ../gramps/plugins/graph/gvrelgraph.py:617
+#: ../gramps/plugins/graph/gvrelgraph.py:619
 msgid "Males"
 msgstr "Männer"
 
@@ -7395,7 +7398,7 @@ msgstr "Beziehungen"
 #: ../gramps/gui/glade/grampletpane.glade:156
 #: ../gramps/gui/widgets/grampletbar.py:611
 #: ../gramps/gui/widgets/grampletpane.py:233
-#: ../gramps/gui/widgets/grampletpane.py:959
+#: ../gramps/gui/widgets/grampletpane.py:967
 msgid "Gramplet"
 msgstr "Gramplet"
 
@@ -9313,7 +9316,7 @@ msgstr "Art"
 #: ../gramps/gui/selectors/selectplace.py:64
 #: ../gramps/gui/selectors/selectrepository.py:60
 #: ../gramps/gui/selectors/selectsource.py:60
-#: ../gramps/gui/widgets/grampletpane.py:1551
+#: ../gramps/gui/widgets/grampletpane.py:1559
 #: ../gramps/plugins/gramplet/persondetails.py:130
 #: ../gramps/plugins/lib/libplaceview.py:93
 #: ../gramps/plugins/textreport/tagreport.py:390
@@ -12518,7 +12521,7 @@ msgstr "Kommentar"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1032
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1046
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1060
-#: ../gramps/plugins/graph/gvrelgraph.py:526
+#: ../gramps/plugins/graph/gvrelgraph.py:528
 #: ../gramps/plugins/quickview/quickview.gpr.py:125
 #: ../gramps/plugins/textreport/birthdayreport.py:414
 #: ../gramps/plugins/textreport/indivcomplete.py:654
@@ -16415,7 +16418,7 @@ msgstr "Stil"
 #: ../gramps/plugins/drawreport/fanchart.py:646
 #: ../gramps/plugins/drawreport/statisticschart.py:937
 #: ../gramps/plugins/drawreport/timeline.py:402
-#: ../gramps/plugins/graph/gvrelgraph.py:522
+#: ../gramps/plugins/graph/gvrelgraph.py:524
 #: ../gramps/plugins/textreport/alphabeticalindex.py:88
 #: ../gramps/plugins/textreport/ancestorreport.py:263
 #: ../gramps/plugins/textreport/birthdayreport.py:407
@@ -17503,7 +17506,7 @@ msgid "Add Child to Family"
 msgstr "Kind zur Familie hinzufügen"
 
 #: ../gramps/gui/widgets/grampletbar.py:191
-#: ../gramps/gui/widgets/grampletpane.py:1169
+#: ../gramps/gui/widgets/grampletpane.py:1177
 msgid "Unnamed Gramplet"
 msgstr "Unbenanntes Gramplet"
 
@@ -17545,42 +17548,42 @@ msgstr ""
 "enthält. Dieser Vorgang kann nicht rückgängig gemacht werden."
 
 #. default tooltip
-#: ../gramps/gui/widgets/grampletpane.py:791
+#: ../gramps/gui/widgets/grampletpane.py:799
 msgid "Drag Properties Button to move and click it for setup"
 msgstr ""
 "Ziehe die Eigenschaftenschaltfläche, um sie zu verschieben. Zum Einrichten "
 "klicke darauf."
 
 #. build the GUI:
-#: ../gramps/gui/widgets/grampletpane.py:987
+#: ../gramps/gui/widgets/grampletpane.py:995
 msgid "Right click to add gramplets"
 msgstr "Rechts-klick zum hinzufügen von Gramplets."
 
-#: ../gramps/gui/widgets/grampletpane.py:1034
+#: ../gramps/gui/widgets/grampletpane.py:1042
 msgid "Untitled Gramplet"
 msgstr "Unbenanntes Gramplet"
 
-#: ../gramps/gui/widgets/grampletpane.py:1523
+#: ../gramps/gui/widgets/grampletpane.py:1531
 msgid "Number of Columns"
 msgstr "Spaltenanzahl"
 
-#: ../gramps/gui/widgets/grampletpane.py:1528
+#: ../gramps/gui/widgets/grampletpane.py:1536
 msgid "Gramplet Layout"
 msgstr "Gramplet Layout"
 
-#: ../gramps/gui/widgets/grampletpane.py:1558
+#: ../gramps/gui/widgets/grampletpane.py:1566
 msgid "Use maximum height available"
 msgstr "Verwende maximale verfügbare Höhe"
 
-#: ../gramps/gui/widgets/grampletpane.py:1564
+#: ../gramps/gui/widgets/grampletpane.py:1572
 msgid "Height if not maximized"
 msgstr "Höhe, wenn nicht maximiert"
 
-#: ../gramps/gui/widgets/grampletpane.py:1571
+#: ../gramps/gui/widgets/grampletpane.py:1579
 msgid "Detached width"
 msgstr "Freistehende Breite"
 
-#: ../gramps/gui/widgets/grampletpane.py:1578
+#: ../gramps/gui/widgets/grampletpane.py:1586
 msgid "Detached height"
 msgstr "Freistehende Höhe"
 
@@ -17940,7 +17943,7 @@ msgstr "Baumoptionen"
 #: ../gramps/plugins/drawreport/calendarreport.py:474
 #: ../gramps/plugins/drawreport/fanchart.py:648
 #: ../gramps/plugins/graph/gvhourglass.py:267
-#: ../gramps/plugins/graph/gvrelgraph.py:532
+#: ../gramps/plugins/graph/gvrelgraph.py:534
 #: ../gramps/plugins/textreport/ancestorreport.py:265
 #: ../gramps/plugins/textreport/birthdayreport.py:419
 #: ../gramps/plugins/textreport/descendreport.py:397
@@ -18396,7 +18399,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:475
 #: ../gramps/plugins/drawreport/fanchart.py:649
-#: ../gramps/plugins/graph/gvrelgraph.py:533
+#: ../gramps/plugins/graph/gvrelgraph.py:535
 #: ../gramps/plugins/textreport/ancestorreport.py:266
 #: ../gramps/plugins/textreport/birthdayreport.py:420
 #: ../gramps/plugins/textreport/descendreport.py:398
@@ -20934,7 +20937,7 @@ msgstr "Eltern:"
 #: ../gramps/plugins/gramplet/relativegramplet.py:123
 #, python-format
 msgid "   %d.a Mother: "
-msgstr "   %d.a Muter: "
+msgstr "   %d.a Mutter: "
 
 #: ../gramps/plugins/gramplet/relativegramplet.py:130
 #: ../gramps/plugins/gramplet/relativegramplet.py:134
@@ -21485,22 +21488,22 @@ msgid "Colors to use for various family lines."
 msgstr "Farben, die für verschiedene Familienlinien verwendet werden."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:157
-#: ../gramps/plugins/graph/gvrelgraph.py:618
+#: ../gramps/plugins/graph/gvrelgraph.py:620
 msgid "The color to use to display men."
 msgstr "Die Farbe, die für die Anzeige von Männern verwendet wird."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:161
-#: ../gramps/plugins/graph/gvrelgraph.py:622
+#: ../gramps/plugins/graph/gvrelgraph.py:624
 msgid "The color to use to display women."
 msgstr "Die Farbe, die für die Anzeige von Frauen verwendet wird."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:165
-#: ../gramps/plugins/graph/gvrelgraph.py:627
+#: ../gramps/plugins/graph/gvrelgraph.py:629
 msgid "The color to use when the gender is unknown."
 msgstr "Die Farbe die verwendet wird, wenn das Geschlecht unbekannt ist."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:169
-#: ../gramps/plugins/graph/gvrelgraph.py:631
+#: ../gramps/plugins/graph/gvrelgraph.py:633
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/textreport/tagreport.py:203
 #: ../gramps/plugins/tool/verify.glade:792
@@ -21516,7 +21519,7 @@ msgid "Families"
 msgstr "Familien"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:170
-#: ../gramps/plugins/graph/gvrelgraph.py:632
+#: ../gramps/plugins/graph/gvrelgraph.py:634
 msgid "The color to use to display families."
 msgstr "Die Farbe, die für die Anzeige von Familien verwendet wird."
 
@@ -21551,7 +21554,7 @@ msgstr "Bilder"
 
 #. --------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:202
-#: ../gramps/plugins/graph/gvrelgraph.py:589
+#: ../gramps/plugins/graph/gvrelgraph.py:591
 msgid "Include thumbnail images of people"
 msgstr "Mit Miniaturbildern der Personen"
 
@@ -21564,17 +21567,17 @@ msgid "Thumbnail location"
 msgstr "Miniaturbild Position"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:211
-#: ../gramps/plugins/graph/gvrelgraph.py:596
+#: ../gramps/plugins/graph/gvrelgraph.py:598
 msgid "Above the name"
 msgstr "Über dem Namen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:212
-#: ../gramps/plugins/graph/gvrelgraph.py:597
+#: ../gramps/plugins/graph/gvrelgraph.py:599
 msgid "Beside the name"
 msgstr "Neben dem Namen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:213
-#: ../gramps/plugins/graph/gvrelgraph.py:599
+#: ../gramps/plugins/graph/gvrelgraph.py:601
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr ""
 "Legt fest, wo das Miniaturbild im Verhältnis zum Namen erscheinen soll."
@@ -21583,7 +21586,7 @@ msgstr ""
 #. ###############################
 #: ../gramps/plugins/graph/gvfamilylines.py:221
 #: ../gramps/plugins/graph/gvhourglass.py:289
-#: ../gramps/plugins/graph/gvrelgraph.py:609
+#: ../gramps/plugins/graph/gvrelgraph.py:611
 msgid "Graph coloring"
 msgstr "Diagrammfärbung"
 
@@ -21598,13 +21601,13 @@ msgstr ""
 #. see bug report #2180
 #: ../gramps/plugins/graph/gvfamilylines.py:230
 #: ../gramps/plugins/graph/gvhourglass.py:298
-#: ../gramps/plugins/graph/gvrelgraph.py:642
+#: ../gramps/plugins/graph/gvrelgraph.py:644
 msgid "Use rounded corners"
 msgstr "Abgerundete Ecken verwenden"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:231
 #: ../gramps/plugins/graph/gvhourglass.py:300
-#: ../gramps/plugins/graph/gvrelgraph.py:644
+#: ../gramps/plugins/graph/gvrelgraph.py:646
 msgid "Use rounded corners to differentiate between women and men."
 msgstr ""
 "Benutze abgerundete Ecken, um zwischen Frauen und Männern zu unterscheiden."
@@ -21618,12 +21621,12 @@ msgid "Whether to include dates for people and families."
 msgstr "Legt fest, ob Daten für Personen und Familien enthalten sind."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:241
-#: ../gramps/plugins/graph/gvrelgraph.py:548
+#: ../gramps/plugins/graph/gvrelgraph.py:550
 msgid "Limit dates to years only"
 msgstr "Daten auf Jahre begrenzen"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:242
-#: ../gramps/plugins/graph/gvrelgraph.py:549
+#: ../gramps/plugins/graph/gvrelgraph.py:551
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -21701,12 +21704,12 @@ msgstr "Die Anzahl der Vorfahrengenerationen in der Grafik"
 
 #. ###############################
 #: ../gramps/plugins/graph/gvhourglass.py:286
-#: ../gramps/plugins/graph/gvrelgraph.py:606
+#: ../gramps/plugins/graph/gvrelgraph.py:608
 msgid "Graph Style"
 msgstr "Diagrammstil"
 
 #: ../gramps/plugins/graph/gvhourglass.py:292
-#: ../gramps/plugins/graph/gvrelgraph.py:612
+#: ../gramps/plugins/graph/gvrelgraph.py:614
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an individual "
 "is unknown it will be shown with gray."
@@ -21730,15 +21733,15 @@ msgstr "Nachkommen <-> Vorfahren"
 msgid "Descendants - Ancestors"
 msgstr "Nachkommen - Vorfahren"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:528
+#: ../gramps/plugins/graph/gvrelgraph.py:530
 msgid "Determines what people are included in the graph"
 msgstr "Legt fest, welche Personen in der Grafik enthalten sind."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:542
+#: ../gramps/plugins/graph/gvrelgraph.py:544
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Geburts-, Hochzeits- und Sterbedaten einschließen"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:543
+#: ../gramps/plugins/graph/gvrelgraph.py:545
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
@@ -21746,11 +21749,11 @@ msgstr ""
 "Fügt die Daten, wann der Einzelne geboren wurde, heiratete, und/oder "
 "gestorben ist, den Grafbeschriftungen hinzu."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:554
+#: ../gramps/plugins/graph/gvrelgraph.py:556
 msgid "Use place when no date"
 msgstr "Verwende Ort, wenn kein Datum vorhanden ist."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:555
+#: ../gramps/plugins/graph/gvrelgraph.py:557
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
@@ -21758,11 +21761,11 @@ msgstr ""
 "Wenn kein Geburts-, Hochzeits- oder Todesdatum verfügbar ist, wird der "
 "entsprechende Ort verwendet."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:560
+#: ../gramps/plugins/graph/gvrelgraph.py:562
 msgid "Include URLs"
 msgstr "URLs aufnehmen"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:561
+#: ../gramps/plugins/graph/gvrelgraph.py:563
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -21772,63 +21775,63 @@ msgstr ""
 "erzeugt werden können, die Links zu den mit \"Erzählende Website generieren\" "
 "erstellten Dateien enthalten."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:568
+#: ../gramps/plugins/graph/gvrelgraph.py:570
 msgid "Include IDs"
 msgstr "IDs aufnehmen"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:569
+#: ../gramps/plugins/graph/gvrelgraph.py:571
 msgid "Include individual and family IDs."
 msgstr "Personen und Familie IDs aufnehmen."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:573
+#: ../gramps/plugins/graph/gvrelgraph.py:575
 msgid "Include relationship to center person"
 msgstr "Mit Beziehungen zur Hauptperson"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:574
+#: ../gramps/plugins/graph/gvrelgraph.py:576
 msgid "Whether to show every person's relationship to the center person"
 msgstr "Legt fest, ob die Beziehung jeder Person zur Hauptperson gezeigt wird."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:581
+#: ../gramps/plugins/graph/gvrelgraph.py:583
 msgid "Include relationship debugging numbers also"
 msgstr "Mit Beziehungen Fehlerprüfungnummern"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:584
+#: ../gramps/plugins/graph/gvrelgraph.py:586
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr ""
 "Legt fest, ob zur Fehlerbehebung beim Beziehungsrechner auch 'Ga' und 'Gb' "
 "berücksichtigt werden."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:591
+#: ../gramps/plugins/graph/gvrelgraph.py:593
 msgid "Whether to include thumbnails of people."
 msgstr "Legt fest, ob Miniaturbildern von Personen enthalten sein werden."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:595
+#: ../gramps/plugins/graph/gvrelgraph.py:597
 msgid "Thumbnail Location"
 msgstr "Miniaturbilder Position"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:635
+#: ../gramps/plugins/graph/gvrelgraph.py:637
 msgid "Arrowhead direction"
 msgstr "Pfeilrichtungen"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:638
+#: ../gramps/plugins/graph/gvrelgraph.py:640
 msgid "Choose the direction that the arrows point."
 msgstr "Richtung der Pfeile auswählen."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:649
+#: ../gramps/plugins/graph/gvrelgraph.py:651
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Nicht-leibliche Verwandtschaft durch gestrichelte Linie andeuten."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:650
+#: ../gramps/plugins/graph/gvrelgraph.py:652
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
 "Nicht-leibliche Verwandtschaft erscheint im Graph als gestrichelte Linie."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:654
+#: ../gramps/plugins/graph/gvrelgraph.py:656
 msgid "Show family nodes"
 msgstr "Familienknoten anzeigen"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:655
+#: ../gramps/plugins/graph/gvrelgraph.py:657
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr ""
 "Familien werden als Ellipsen, verbunden mit den Eltern und Kindern, gezeigt."
@@ -33579,7 +33582,7 @@ msgstr "Link zur aktiven Person auf jeder Seite"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8241
 msgid "Include a link to the active person (if they have a webpage)"
-msgstr "Link zur aktiven Person auf jeder Seite (wenn sie eine Website habt)"
+msgstr "Link zur aktiven Person auf jeder Seite (wenn sie eine Website hat)"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8244
 msgid "Include a column for birth dates on the index pages"
