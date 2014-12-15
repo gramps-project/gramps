@@ -102,7 +102,7 @@ def resize_to_jpeg(source, destination, width, height, crop=None):
     (width, height) = image_actual_size(width, height, img.get_width(), img.get_height())
 
     scaled = img.scale_simple(int(width), int(height), GdkPixbuf.InterpType.BILINEAR)
-    scaled.savev(destination, "jpeg" "", "")
+    scaled.savev(destination, "jpeg", "", "")
 
 #-------------------------------------------------------------------------
 #
