@@ -298,13 +298,21 @@ class RelGraphReport(Report):
         label = ""
         for event_ref in fam.get_event_ref_list():
             event = self.database.get_event_from_handle(event_ref.ref)
+            if event is None: # perhaps from privacy proxy
+                continue
             if event.type == EventType.MARRIAGE and \
               (event_ref.get_role() == EventRoleType.FAMILY or 
                event_ref.get_role() == EventRoleType.PRIMARY):
                 label = self.get_event_string(event)
                 break
-        if self.includeid:
+        if self.includeid == 1 and label: # same line
             label = "%s (%s)" % (label, fam_id)
+        elif self.includeid == 1 and not label:
+            label = "(%s)" % fam_id
+        elif self.includeid == 2 and label: # own line
+            label = "%s\\n(%s)" % (label, fam_id)
+        elif self.includeid == 2 and not label:
+            label = "(%s)" % fam_id
         color = ""
         fill = ""
         style = "solid"
@@ -424,8 +432,10 @@ class RelGraphReport(Report):
         else :
             label += nm
         p_id = person.get_gramps_id()
-        if self.includeid:
+        if self.includeid == 1: # same line
             label += " (%s)" % p_id
+        elif self.includeid == 2: # own line
+            label = "%s%s(%s)" % (label, lineDelimiter, p_id)
         if self.includedates:
             birth, death = self.get_date_strings(person)
             if birth or death:
@@ -492,7 +502,7 @@ class RelGraphReport(Report):
             if event.get_date_object().get_year_valid():
                 if self.just_years:
                     return '%i' % event.get_date_object().get_year()
-                else:
+                elif self.includedates:
                     return self._get_date(event.get_date_object())
             elif self.use_place:
                 place_handle = event.get_place_handle()
@@ -540,18 +550,6 @@ class RelGraphOptions(MenuReportOptions):
         
         stdoptions.add_name_format_option(menu, category_name)
 
-        self.justyears = BooleanOption(_("Limit dates to years only"), False)
-        self.justyears.set_help(_("Prints just dates' year, neither "
-                                  "month or day nor date approximation "
-                                  "or interval are shown."))
-        add_option("justyears", self.justyears)
-        
-        use_place = BooleanOption(_("Use place when no date"), True)
-        use_place.set_help(_("When no birth, marriage, or death date is "
-                              "available, the correspondent place field "
-                              "will be used."))
-        add_option("use_place", use_place)
-        
         stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
@@ -567,6 +565,18 @@ class RelGraphOptions(MenuReportOptions):
         add_option("incdate", self.incdate)
         self.incdate.connect('value-changed', self.__include_dates_changed)
         
+        self.justyears = BooleanOption(_("Limit dates to years only"), False)
+        self.justyears.set_help(_("Prints just dates' year, neither "
+                                  "month or day nor date approximation "
+                                  "or interval are shown."))
+        add_option("justyears", self.justyears)
+        
+        use_place = BooleanOption(_("Use place when no date"), True)
+        use_place.set_help(_("When no birth, marriage, or death date is "
+                              "available, the correspondent place field "
+                              "will be used."))
+        add_option("use_place", use_place)
+        
         url = BooleanOption(_("Include URLs"), False)
         url.set_help(_("Include a URL in each graph node so "
                        "that PDF and imagemap files can be "
@@ -575,9 +585,12 @@ class RelGraphOptions(MenuReportOptions):
                        "Web Site' report."))
         add_option("url", url)
         
-        incid = BooleanOption(_("Include IDs"), False)
-        incid.set_help(_("Include individual and family IDs."))
-        add_option("incid", incid)
+        include_id = EnumeratedListOption(_('Include Gramps ID'), 0)
+        include_id.add_item(0, _('Do not include'))
+        include_id.add_item(1, _('Share an existing line'))
+        include_id.add_item(2, _('On a line of its own'))
+        include_id.set_help(_("Whether (and where) to include Gramps IDs"))
+        add_option("incid", include_id)
         
         self.__show_relships = BooleanOption(
                             _("Include relationship to center person"), False)
