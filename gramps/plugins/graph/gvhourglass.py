@@ -73,6 +73,7 @@ class HourGlassReport(Report):
 
         name_format   - Preferred format to display names
         incl_private  - Whether to include private data
+        incid         - Whether to include IDs.
         """
         Report.__init__(self, database, options, user)
         menu = options.menu
@@ -112,6 +113,8 @@ class HourGlassReport(Report):
         elif self.colorize == 'filled':
             self.colors = filled
         self.roundcorners = menu.get_option_by_name('roundcorners').get_value()
+
+        self.includeid = menu.get_option_by_name('incid').get_value()
 
         self.set_locale(menu.get_option_by_name('trans').get_value())
 
@@ -195,7 +198,12 @@ class HourGlassReport(Report):
         else:
             death = ""
 
-        label = "%s \\n(%s - %s)" % (name, birth, death)
+        if self.includeid == 0: # no ID
+            label = "%s \\n(%s - %s)" % (name, birth, death)
+        elif self.includeid == 1: # same line
+            label = "%s (%s)\\n(%s - %s)" % (name, p_id, birth, death)
+        elif self.includeid == 2: # own line
+            label = "%s \\n(%s - %s)\\n(%s)" % (name, birth, death, p_id)
             
         (shape, style, color, fill) = self.get_gender_style(person)
         self.doc.add_node(p_id, label, shape, color, style, fill)
@@ -209,6 +217,14 @@ class HourGlassReport(Report):
         marriage = ReportUtils.find_marriage(self.__db, family)
         if marriage:
             label = self._get_date(marriage.get_date_object())
+        if self.includeid == 1 and label: # same line
+            label = "%s (%s)" % (label, family_id)
+        elif self.includeid == 1 and not label:
+            label = "(%s)" % family_id
+        elif self.includeid == 2 and label: # own line
+            label = "%s\\n(%s)" % (label, family_id)
+        elif self.includeid == 2 and not label:
+            label = "(%s)" % family_id
         color = ""
         fill = ""
         style = "solid"
@@ -274,6 +290,8 @@ class HourGlassOptions(MenuReportOptions):
         
         stdoptions.add_name_format_option(menu, category_name)
 
+        stdoptions.add_private_data_option(menu, category_name)
+
         max_gen = NumberOption(_('Max Descendant Generations'), 10, 1, 15)
         max_gen.set_help(_("The number of generations of descendants to "
                            "include in the graph"))
@@ -284,7 +302,12 @@ class HourGlassOptions(MenuReportOptions):
                            "include in the graph"))
         menu.add_option(category_name, "maxascend", max_gen)
 
-        stdoptions.add_private_data_option(menu, category_name)
+        include_id = EnumeratedListOption(_('Include Gramps ID'), 0)
+        include_id.add_item(0, _('Do not include'))
+        include_id.add_item(1, _('Share an existing line'))
+        include_id.add_item(2, _('On a line of its own'))
+        include_id.set_help(_("Whether (and where) to include Gramps IDs"))
+        menu.add_option(category_name, "incid", include_id)
 
         stdoptions.add_localization_option(menu, category_name)
 
