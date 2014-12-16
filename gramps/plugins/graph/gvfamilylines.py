@@ -109,20 +109,8 @@ class FamilyLinesOptions(MenuReportOptions):
 
         stdoptions.add_name_format_option(menu, category_name)
 
-        color = EnumeratedListOption(_("Graph coloring"), "filled")
-        for i in range(len(_COLORS)):
-            color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
-        color.set_help(_("Males will be shown with blue, females "
-                         "with red, unless otherwise set above for filled. "
-                         "If the sex of an individual "
-                         "is unknown it will be shown with gray."))
-        add_option("color", color)
-
-        use_roundedcorners = BooleanOption(_('Use rounded corners'), False)
-        use_roundedcorners.set_help(_('Use rounded corners to differentiate '
-                                      'between women and men.'))
-        add_option("useroundedcorners", use_roundedcorners)
-
+        stdoptions.add_private_data_option(menu, category_name, default=False)
+        
         followpar = BooleanOption(_('Follow parents to determine '
                                     '"family lines"'), True)
         followpar.set_help(_('Parents and their ancestors will be '
@@ -143,8 +131,20 @@ class FamilyLinesOptions(MenuReportOptions):
                                        '"family lines".'))
         add_option('removeextra', remove_extra_people)
 
-        stdoptions.add_private_data_option(menu, category_name, default=False)
-        
+        use_roundedcorners = BooleanOption(_('Use rounded corners'), False)
+        use_roundedcorners.set_help(_('Use rounded corners to differentiate '
+                                      'between women and men.'))
+        add_option("useroundedcorners", use_roundedcorners)
+
+        color = EnumeratedListOption(_("Graph coloring"), "filled")
+        for i in range(len(_COLORS)):
+            color.add_item(_COLORS[i]["value"], _COLORS[i]["name"])
+        color.set_help(_("Males will be shown with blue, females "
+                         "with red, unless otherwise set above for filled. "
+                         "If the sex of an individual "
+                         "is unknown it will be shown with gray."))
+        add_option("color", color)
+
         stdoptions.add_localization_option(menu, category_name)
 
         # --------------------------------
@@ -184,6 +184,13 @@ class FamilyLinesOptions(MenuReportOptions):
         # --------------------
         add_option = partial(menu.add_option, _('Include'))
         # --------------------
+
+        include_id = EnumeratedListOption(_('Include Gramps ID'), 0)
+        include_id.add_item(0, _('Do not include'))
+        include_id.add_item(1, _('Share an existing line'))
+        include_id.add_item(2, _('On a line of its own'))
+        include_id.set_help(_("Whether (and where) to include Gramps IDs"))
+        add_option("incid", include_id)
 
         self.include_dates = BooleanOption(_('Include dates'), True)
         self.include_dates.set_help(_('Whether to include dates for people '
@@ -295,6 +302,7 @@ class FamilyLinesReport(Report):
         user         - a gen.user.User() instance
         name_format  - Preferred format to display names
         incl_private - Whether to include private data
+        incid        - Whether to include IDs.
         """
         Report.__init__(self, database, options, user)
 
@@ -332,6 +340,7 @@ class FamilyLinesReport(Report):
         self._just_years = get_value('justyears')
         self._incplaces = get_value('incplaces')
         self._incchildcount = get_value('incchildcnt')
+        self.includeid = get_value('incid')
 
         # the gidlist is annoying for us to use since we always have to convert
         # the GIDs to either Person or to handles, so we may as well convert the
@@ -704,9 +713,10 @@ class FamilyLinesReport(Report):
             bUseHtmlOutput = True
 
         # loop through all the people we need to output
-        for handle in self._people:
+        for handle in sorted(self._people): # enable a diff
             person = self._db.get_person_from_handle(handle)
             name = self._name_display.display(person)
+            p_id = person.get_gramps_id()
 
             # figure out what colour to use
             gender = person.get_gender()
@@ -808,6 +818,10 @@ class FamilyLinesReport(Report):
 
             # at the very least, the label must have the person's name
             label += name
+            if self.includeid == 1: # same line
+                label += " (%s)" % p_id
+            elif self.includeid == 2: # own line
+                label += "%s(%s)" % (lineDelimiter, p_id)
 
             if birthStr or deathStr:
                 label += '%s(' % lineDelimiter
@@ -853,7 +867,7 @@ class FamilyLinesReport(Report):
                 border = ""
 
             # we're done -- add the node
-            self.doc.add_node(person.get_gramps_id(),
+            self.doc.add_node(p_id,
                  label=label,
                  shape=shape,
                  color=border,
@@ -867,7 +881,7 @@ class FamilyLinesReport(Report):
         ngettext = self._locale.translation.ngettext # to see "nearby" comments
 
         # loop through all the families we need to output
-        for family_handle in self._families:
+        for family_handle in sorted(self._families): # enable a diff
             family = self._db.get_family_from_handle(family_handle)
             fgid = family.get_gramps_id()
 
@@ -912,18 +926,37 @@ class FamilyLinesReport(Report):
                                           ).format(number_of=child_count)
 
             label = ''
+            fgid_already = False
             if weddingDate:
                 if label != '':
                     label += '\\n'
                 label += '%s' % weddingDate
+                if self.includeid == 1 and not fgid_already: # same line
+                    label += " (%s)" % fgid
+                    fgid_already = True
             if weddingPlace:
                 if label != '':
                     label += '\\n'
                 label += '%s' % weddingPlace
+                if self.includeid == 1 and not fgid_already: # same line
+                    label += " (%s)" % fgid
+                    fgid_already = True
+            if self.includeid == 1 and not label:
+                label = "(%s)" % fgid
+                fgid_already = True
+            elif self.includeid == 2 and not label: # own line
+                label = "(%s)" % fgid
+                fgid_already = True
+            elif self.includeid == 2 and label and not fgid_already:
+                label += "\\n(%s)" % fgid
+                fgid_already = True
             if childrenStr:
                 if label != '':
                     label += '\\n'
                 label += '%s' % childrenStr
+                if self.includeid == 1 and not fgid_already: # same line
+                    label += " (%s)" % fgid
+                    fgid_already = True
 
             shape   = "ellipse"
             style   = "solid"
