@@ -45,7 +45,6 @@ from .paragraphstyle import ParagraphStyle
 from .fontstyle import FontStyle
 from .tablestyle import TableStyle, TableCellStyle
 from .graphicstyle import GraphicsStyle
-from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
 #
@@ -406,17 +405,17 @@ class SheetParser(handler.ContentHandler):
         elif tag == "para":
             if 'description' in attrs:
                 self.p.set_description(attrs['description'])
-            self.p.set_right_margin(glocale.float(attrs['rmargin']))
-            self.p.set_left_margin(glocale.float(attrs['lmargin']))
-            self.p.set_first_indent(glocale.float(attrs['first']))
+            self.p.set_right_margin(float(attrs['rmargin']))
+            self.p.set_left_margin(float(attrs['lmargin']))
+            self.p.set_first_indent(float(attrs['first']))
             try:
                 # This is needed to read older style files
                 # lacking tmargin and bmargin
-                self.p.set_top_margin(glocale.float(attrs['tmargin']))
-                self.p.set_bottom_margin(glocale.float(attrs['bmargin']))
+                self.p.set_top_margin(float(attrs['tmargin']))
+                self.p.set_bottom_margin(float(attrs['bmargin']))
             except KeyError:
                 pass
-            self.p.set_padding(glocale.float(attrs['pad']))
+            self.p.set_padding(float(attrs['pad']))
             self.p.set_alignment(int(attrs['align']))
             self.p.set_right_border(int(attrs['rborder']))
             self.p.set_header_level(int(attrs['level']))
