@@ -86,7 +86,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' +
             '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" ' +
             '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n' +
-            '<svg width="%5.2fcm" height="%5.2fcm" '
+            '<svg width="%4.2fcm" height="%4.2fcm" '
                 % (self.paper.get_size().get_width(),
                         self.paper.get_size().get_height()) +
             'xmlns="http://www.w3.org/2000/svg">\n'
