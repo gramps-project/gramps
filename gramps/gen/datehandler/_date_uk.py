@@ -100,6 +100,13 @@ class DateParserUK(DateParser):
         """
         DateParser.init_strings(self)
 
+        DateParser.hebrew_to_int.update({
+            'мархешван': 2,
+            'ве адар'  : 7,
+            'адар бет' : 7,
+            'авів'     : 8,
+        })
+
         _span_1 = ['з', 'від']
         # b.c.e. pattern also have "до" so skip "до н."
         _span_2 = ['по', 'до(?!\s+н)']

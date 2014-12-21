@@ -2210,7 +2210,7 @@ msgstr "адар"
 
 #: ../gramps/gen/datehandler/_datestrings.py:138
 msgid "Hebrew month lexeme|AdarII"
-msgstr "адара"
+msgstr "aдар-шені"
 
 #: ../gramps/gen/datehandler/_datestrings.py:139
 msgid "Hebrew month lexeme|Nisan"
