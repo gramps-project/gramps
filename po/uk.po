@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-11 19:40-0800\n"
-"PO-Revision-Date: 2014-12-21 14:36+0300\n"
+"PO-Revision-Date: 2014-12-21 15:24+0300\n"
 "Last-Translator: Fedir Zinchuk <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <fedikw@gmail.com>\n"
 "Language: uk\n"
@@ -2105,7 +2105,7 @@ msgstr "груд."
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:102
 msgid "alternative month names for January||"
-msgstr "січ|січ.|січень|січню|i"
+msgstr "січ|січ.|січень|січню|січні|i"
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
 msgid "alternative month names for February||"
@@ -2113,43 +2113,43 @@ msgstr "лют|лют.|лютий|лютому|ii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
 msgid "alternative month names for March||"
-msgstr "бер|бер.|березень|березню|iii"
+msgstr "бер|бер.|березень|березню|березні|iii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
 msgid "alternative month names for April||"
-msgstr "квіт|квіт.|квітень|квітню|iv"
+msgstr "квіт|квіт.|квітень|квітню|квітні|iv"
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
 msgid "alternative month names for May||"
-msgstr "трав|трав.|травень|травню|v"
+msgstr "трав|трав.|травень|травню|травні|v"
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
 msgid "alternative month names for June||"
-msgstr "черв|черв.|червень|червню|vi"
+msgstr "черв|черв.|червень|червню|червні|vi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
 msgid "alternative month names for July||"
-msgstr "лип|лип.|липень|липню|vii"
+msgstr "лип|лип.|липень|липню|липні|vii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:109
 msgid "alternative month names for August||"
-msgstr "серп|серп.|серпень|серпню|viii"
+msgstr "серп|серп.|серпень|серпню|серпні|viii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:110
 msgid "alternative month names for September||"
-msgstr "вер|вер.|вересень|вересню|ix"
+msgstr "вер|вер.|вересень|вересню|вересні|ix"
 
 #: ../gramps/gen/datehandler/_datestrings.py:111
 msgid "alternative month names for October||"
-msgstr "жовт|жовт.|жовтень|жовтню|x"
+msgstr "жовт|жовт.|жовтень|жовтню|жовтні|x"
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
 msgid "alternative month names for November||"
-msgstr "лист|листю|листопад|листопаду|xi"
+msgstr "лист|листю|листопад|листопаду|листопаді|xi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:113
 msgid "alternative month names for December||"
-msgstr "груд|груд.|грудень|грудню|xii"
+msgstr "груд|груд.|грудень|грудню|грудні|xii"
 
 #. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:117 ../gramps/gen/lib/date.py:590
