@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-12-11 19:40-0800\n"
-"PO-Revision-Date: 2014-12-19 15:05+0300\n"
+"PO-Revision-Date: 2014-12-21 14:36+0300\n"
 "Last-Translator: Fedir Zinchuk <fedikw@gmail.com>\n"
 "Language-Team: Ukrainian <fedikw@gmail.com>\n"
 "Language: uk\n"
@@ -1805,56 +1805,56 @@ msgstr "День Міс. Рік"
 #: ../gramps/gen/datehandler/_datedisplay.py:161
 #: ../gramps/plugins/drawreport/calendarreport.py:228
 msgid "{long_month} {year}"
-msgstr "{long_month} {year}"
+msgstr "{long_month.f[G]} {year}"
 
 #. first date in a span
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "from"
 #: ../gramps/gen/datehandler/_datedisplay.py:167
 msgid "from|{long_month} {year}"
-msgstr ""
+msgstr "{long_month.f[G]} {year}"
 
 #. second date in a span
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "to"
 #: ../gramps/gen/datehandler/_datedisplay.py:173
 msgid "to|{long_month} {year}"
-msgstr ""
+msgstr "{long_month.f[G]} {year}"
 
 #. first date in a range
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "between"
 #: ../gramps/gen/datehandler/_datedisplay.py:179
 msgid "between|{long_month} {year}"
-msgstr ""
+msgstr "{long_month.f[G]} {year}"
 
 #. second date in a range
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "and"
 #: ../gramps/gen/datehandler/_datedisplay.py:185
 msgid "and|{long_month} {year}"
-msgstr ""
+msgstr "{long_month.f[G]} {year}"
 
 #. If "before <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:191
 msgid "before|{long_month} {year}"
-msgstr ""
+msgstr "{long_month.f[G]} {year}"
 
 #. If "after <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:197
 msgid "after|{long_month} {year}"
-msgstr ""
+msgstr "{long_month.f[G]} {year}"
 
 #. If "about <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:203
 msgid "about|{long_month} {year}"
-msgstr ""
+msgstr "{long_month.f[G]} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:210
 msgid "{short_month} {year}"
@@ -1863,22 +1863,22 @@ msgstr "{short_month} {year}"
 #. first date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:214
 msgid "from|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. second date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:218
 msgid "to|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. first date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:222
 msgid "between|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. second date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:226
 msgid "and|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. If "before <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
@@ -1892,14 +1892,14 @@ msgstr "{short_month} {year}"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:238
 msgid "after|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. If "about <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:244
 msgid "about|{short_month} {year}"
-msgstr ""
+msgstr "{short_month} {year}"
 
 #. If there is no special inflection for "from <Month>" in your
 #. language, don't translate this string.
@@ -1908,7 +1908,7 @@ msgstr ""
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:355
 msgid "from-date|"
-msgstr ""
+msgstr "from"
 
 #. If there is no special inflection for "to <Month>" in your
 #. language, don't translate this string.
@@ -1917,11 +1917,11 @@ msgstr ""
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:362
 msgid "to-date|"
-msgstr ""
+msgstr "to"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:364
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr "{date_quality}від {date_start} до {date_stop}{nonstd_calendar_and_ny}"
+msgstr "{date_quality}з {date_start} до {date_stop}{nonstd_calendar_and_ny}"
 
 #. If there is no special inflection for "between <Month>" in your
 #. language, don't translate this string.
@@ -1930,7 +1930,7 @@ msgstr "{date_quality}від {date_start} до {date_stop}{nonstd_calendar_and_n
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:377
 msgid "between-date|"
-msgstr ""
+msgstr "between"
 
 #. If there is no special inflection for "and <Month>" in your
 #. language, don't translate this string.
@@ -1939,7 +1939,7 @@ msgstr ""
 #. that maps to the special inflected format string that you need to localize.
 #: ../gramps/gen/datehandler/_datedisplay.py:384
 msgid "and-date|"
-msgstr ""
+msgstr "and"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:386
 msgid ""
@@ -1951,21 +1951,21 @@ msgstr "{date_quality}між {date_start} та {date_stop}{nonstd_calendar_and_n
 #. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:397
 msgid "before-date|"
-msgstr ""
+msgstr "before"
 
 #. If there is no special inflection for "after <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:402
 msgid "after-date|"
-msgstr ""
+msgstr "after"
 
 #. If there is no special inflection for "about <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
 #: ../gramps/gen/datehandler/_datedisplay.py:407
 msgid "about-date|"
-msgstr ""
+msgstr "about"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:412
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
@@ -1974,22 +1974,22 @@ msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:482
 msgid "{long_month} {day:d}, {year}"
-msgstr ""
+msgstr "{long_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:506
 msgid "{short_month} {day:d}, {year}"
-msgstr ""
+msgstr "{short_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:530
 msgid "{day:d} {long_month} {year}"
-msgstr ""
+msgstr "{day:d} {long_month} {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
 #: ../gramps/gen/datehandler/_datedisplay.py:554
 msgid "{day:d} {short_month} {year}"
-msgstr ""
+msgstr "{day:d} {short_month} {year}"
 
 #: ../gramps/gen/datehandler/_dateparser.py:402
 msgid "today"
@@ -2001,51 +2001,51 @@ msgstr "сьогодні"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:65
 msgid "localized lexeme inflections||January"
-msgstr "січня"
+msgstr "N=січень|G=січня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:66
 msgid "localized lexeme inflections||February"
-msgstr "лютого"
+msgstr "N=лютий|G=лютого"
 
 #: ../gramps/gen/datehandler/_datestrings.py:67
 msgid "localized lexeme inflections||March"
-msgstr "березня"
+msgstr "N=березень|G=березня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:68
 msgid "localized lexeme inflections||April"
-msgstr "квітня"
+msgstr "N=квітень|G=квітня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:69
 msgid "localized lexeme inflections||May"
-msgstr "травня"
+msgstr "N=травень|G=травня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:70
 msgid "localized lexeme inflections||June"
-msgstr "червня"
+msgstr "N=червень|G=червня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:71
 msgid "localized lexeme inflections||July"
-msgstr "липня"
+msgstr "N=липень|G=липня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:72
 msgid "localized lexeme inflections||August"
-msgstr "серпня"
+msgstr "N=серпень|G=серпня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:73
 msgid "localized lexeme inflections||September"
-msgstr "вересня"
+msgstr "N=вересень|G=вересня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:74
 msgid "localized lexeme inflections||October"
-msgstr "жовтня"
+msgstr "N=жовтень|G=жовтня"
 
 #: ../gramps/gen/datehandler/_datestrings.py:75
 msgid "localized lexeme inflections||November"
-msgstr "листопада"
+msgstr "N=листопад|G=листопада"
 
 #: ../gramps/gen/datehandler/_datestrings.py:76
 msgid "localized lexeme inflections||December"
-msgstr "грудня"
+msgstr "N=грудень|G=грудня"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -2105,51 +2105,51 @@ msgstr "груд."
 #. DateParser code!
 #: ../gramps/gen/datehandler/_datestrings.py:102
 msgid "alternative month names for January||"
-msgstr "Січень"
+msgstr "січ|січ.|січень|січню|i"
 
 #: ../gramps/gen/datehandler/_datestrings.py:103
 msgid "alternative month names for February||"
-msgstr "Лютий"
+msgstr "лют|лют.|лютий|лютому|ii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:104
 msgid "alternative month names for March||"
-msgstr "Березень"
+msgstr "бер|бер.|березень|березню|iii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:105
 msgid "alternative month names for April||"
-msgstr "Квітень"
+msgstr "квіт|квіт.|квітень|квітню|iv"
 
 #: ../gramps/gen/datehandler/_datestrings.py:106
 msgid "alternative month names for May||"
-msgstr "Травень"
+msgstr "трав|трав.|травень|травню|v"
 
 #: ../gramps/gen/datehandler/_datestrings.py:107
 msgid "alternative month names for June||"
-msgstr "Червнеь"
+msgstr "черв|черв.|червень|червню|vi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:108
 msgid "alternative month names for July||"
-msgstr "Лиень"
+msgstr "лип|лип.|липень|липню|vii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:109
 msgid "alternative month names for August||"
-msgstr "Серпень"
+msgstr "серп|серп.|серпень|серпню|viii"
 
 #: ../gramps/gen/datehandler/_datestrings.py:110
 msgid "alternative month names for September||"
-msgstr "Вересень"
+msgstr "вер|вер.|вересень|вересню|ix"
 
 #: ../gramps/gen/datehandler/_datestrings.py:111
 msgid "alternative month names for October||"
-msgstr "Жовтень"
+msgstr "жовт|жовт.|жовтень|жовтню|x"
 
 #: ../gramps/gen/datehandler/_datestrings.py:112
 msgid "alternative month names for November||"
-msgstr "Листопад"
+msgstr "лист|листю|листопад|листопаду|xi"
 
 #: ../gramps/gen/datehandler/_datestrings.py:113
 msgid "alternative month names for December||"
-msgstr "Грудень"
+msgstr "груд|груд.|грудень|грудню|xii"
 
 #. Must appear in the order indexed by Date.CAL_... numeric constants
 #: ../gramps/gen/datehandler/_datestrings.py:117 ../gramps/gen/lib/date.py:590
@@ -6091,7 +6091,7 @@ msgstr "Інформатор"
 #. _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 #: ../gramps/gen/lib/eventtype.py:144
 msgid "Life Events"
-msgstr "Події життя"
+msgstr "Життєва подія"
 
 #. _FAMNAME = _("With %(namepartner)s (%(famid)s)")
 #. 1
@@ -6119,20 +6119,19 @@ msgstr "Події життя"
 #: ../gramps/plugins/view/relview.py:1372
 #: ../gramps/plugins/webreport/narrativeweb.py:3100
 msgid "Family"
-msgstr "Сім'я"
+msgstr "Сім’я"
 
 #: ../gramps/gen/lib/eventtype.py:149
 msgid "Religious"
-msgstr "Релігії"
+msgstr "Релігія"
 
 #: ../gramps/gen/lib/eventtype.py:152
-#, fuzzy
 msgid "Vocational"
-msgstr "Розташування"
+msgstr "Кар’єра"
 
 #: ../gramps/gen/lib/eventtype.py:154
 msgid "Academic"
-msgstr ""
+msgstr "Навчання"
 
 #: ../gramps/gen/lib/eventtype.py:156
 msgid "Travel"
@@ -6140,14 +6139,14 @@ msgstr "Подорож"
 
 #: ../gramps/gen/lib/eventtype.py:158
 msgid "Legal"
-msgstr ""
+msgstr "Право"
 
 #: ../gramps/gen/lib/eventtype.py:160 ../gramps/gen/lib/eventtype.py:202
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:430
 #: ../gramps/plugins/webreport/narrativeweb.py:2755
 #: ../gramps/plugins/webreport/narrativeweb.py:6721
 msgid "Residence"
-msgstr "Місце проживання"
+msgstr "Проживання"
 
 #: ../gramps/gen/lib/eventtype.py:162 ../gramps/gui/glade/mergedata.glade:555
 #: ../gramps/gui/glade/mergedata.glade:661
@@ -6220,7 +6219,7 @@ msgstr "Освіта"
 
 #: ../gramps/gen/lib/eventtype.py:187
 msgid "Elected"
-msgstr "Обраний/на"
+msgstr "Обрання"
 
 #: ../gramps/gen/lib/eventtype.py:188
 msgid "Emigration"
@@ -9948,11 +9947,10 @@ msgid ""
 "database you may safely break the lock. However, if someone else is editing "
 "the database and you break the lock, you may corrupt the database."
 msgstr ""
-"Gramps вважає, що, в даний час, ще хтось інший редагує цю базу, в даний час. "
-"Ви не можете редагувати заблоковану базу даних. Якщо Ви впевнені, що більше "
-"ніхто її не редагує, Ви можете безпечно зняти блокування. Однак, Ви можете "
-"пошкодити базу даних, якщо знімете блокування під час паралельного "
-"редагування."
+"Gramps вважає, що  хтось інший редагує цю базу, в даний час. Ви не можете "
+"редагувати заблоковану базу даних. Ви можете безпечно зняти блокування, якщо "
+"впевнені, що більше ніхто її не редагує. Однак, Ви можете пошкодити базу "
+"даних, якщо знімете блокування під час паралельного редагування."
 
 #: ../gramps/gui/dbman.py:394
 msgid "Break lock"
@@ -12574,7 +12572,7 @@ msgstr "URL"
 
 #: ../gramps/gui/filters/sidebar/_sidebarfilter.py:79
 msgid "Reset"
-msgstr "Обнулити"
+msgstr "Скинути"
 
 #: ../gramps/gui/glade/addmedia.glade:126
 #: ../gramps/gui/glade/editperson.glade:290
@@ -13182,8 +13180,8 @@ msgid ""
 "<b>Note:</b> Any changes in the shared event information will be reflected "
 "in the event itself, for all participants in the event."
 msgstr ""
-"<b>Примітка:</b> Всі зміни в спільній події буде показано у всіх учасників "
-"події."
+"<b>Примітка:</b> Всі зміни в спільній події буде застосовано до всіх "
+"учасників події."
 
 #: ../gramps/gui/glade/editeventref.glade:618
 #: ../gramps/gui/glade/editreporef.glade:476
@@ -29838,7 +29836,7 @@ msgstr "Прохід 1: Побудова попередніх списків"
 
 #: ../gramps/plugins/tool/finddupes.py:216
 msgid "Pass 2: Calculating potential matches"
-msgstr "Прохід 2: Обраховування можливих співпадань"
+msgstr "Прохід 2: Обраховування можливих співпадінь"
 
 #: ../gramps/plugins/tool/finddupes.py:555
 msgid "Potential Merges"
