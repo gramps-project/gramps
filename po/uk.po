@@ -16692,7 +16692,7 @@ msgstr "Не вдалось завантажити вигляд. Перевір�
 
 #: ../gramps/gui/viewmanager.py:1093
 msgid "Import Statistics"
-msgstr "Імпортувати статистику"
+msgstr "Cтатистика імпорту"
 
 #: ../gramps/gui/viewmanager.py:1142
 msgid "Read Only"
@@ -17219,14 +17219,14 @@ msgstr "Ґрамплет без імені"
 
 #: ../gramps/gui/widgets/grampletbar.py:344
 msgid "Gramplet Bar"
-msgstr "Панель Ґрамплетів"
+msgstr "Ґрамплети"
 
 #: ../gramps/gui/widgets/grampletbar.py:346
 msgid ""
 "Select the down arrow on the right corner for adding, removing or restoring "
 "gramplets."
 msgstr ""
-"Натисніть стрілочку в правому кутку, щоб додати, забрати, чи відновити "
+"Натисніть стрілочку в правому кутку, щоб додати, вилучити, чи відновити "
 "ґрамплети."
 
 #: ../gramps/gui/widgets/grampletbar.py:472
