@@ -424,22 +424,30 @@ class DateDisplay(object):
     _display_julian = _display_swedish = _display_gregorian
 
     def format_long_month_year(self, month, year, inflect, long_months):
+        if not hasattr(long_months[1], 'f'): # not a Lexeme: no inflection
+            return "{long_month} {year}".format(
+                     long_month = long_months[month], year = year)
         return self.FORMATS_long_month_year[inflect].format(
-                long_month = long_months[month], 
-                year = year)
+                     long_month = long_months[month], year = year)
 
     def format_short_month_year(self, month, year, inflect, short_months):
+        if not hasattr(short_months[1], 'f'): # not a Lexeme: no inflection
+            return "{short_month} {year}".format(
+                     short_month = short_months[month], year = year)
         return self.FORMATS_short_month_year[inflect].format(
-                short_month = short_months[month], 
-                year = year)
+                     short_month = short_months[month], year = year)
 
     def format_long_month(self, month, inflect, long_months):
+        if not hasattr(long_months[1], 'f'): # not a Lexeme: no inflection
+            return "{long_month}".format(long_month = long_months[month])
         return self.FORMATS_long_month_year[inflect].format(
-              long_month = long_months[month], year = '').rstrip()
+                     long_month = long_months[month], year = '').rstrip()
 
     def format_short_month(self, month, inflect, short_months):
+        if not hasattr(short_months[1], 'f'): # not a Lexeme: no inflection
+            return "{short_month}".format(short_month = short_months[month])
         return self.FORMATS_short_month_year[inflect].format(
-              short_month = short_months[month], year = '').rstrip()
+                     short_month = short_months[month], year = '').rstrip()
 
     def dd_dformat01(self, date_val):
         """
@@ -623,3 +631,4 @@ class DateDisplayEn(DateDisplay):
 
     display = DateDisplay.display_formatted
 
+    _locale = _grampslocale.glocale # normally set in register_datehandler
