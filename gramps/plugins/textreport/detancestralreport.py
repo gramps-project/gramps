@@ -11,6 +11,7 @@
 # Copyright (C) 2010      Vlada Perić <vlada.peric@gmail.com>
 # Copyright (C) 2011      Tim G L Lyons
 # Copyright (C) 2013-2014 Paul Franklin
+# Copyright (C) 2014      Gerald Kunzmann <g.kunzmann@arcor.de>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -34,6 +35,7 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
+import math
 
 #------------------------------------------------------------------------
 #
@@ -135,6 +137,7 @@ class DetAncestorReport(Report):
         self.inc_sources   = get_value('incsources')
         self.inc_srcnotes  = get_value('incsrcnotes')
         self.inc_attrs     = get_value('incattrs')
+        self.initial_sosa  = get_value('initial_sosa')
         pid                = get_value('pid')
         self.center_person = self.db.get_person_from_gramps_id(pid)
         if (self.center_person == None) :
@@ -234,6 +237,13 @@ class DetAncestorReport(Report):
                                     printnotes=self.inc_srcnotes,
                                     elocale=self._locale)
 
+    def _get_s_s(self, key):
+        """returns Sosa-Stradonitz (a.k.a. Kekule or Ahnentafel) number"""
+        generation = int(math.floor(math.log(key,2)))   # 0
+        gen_start = pow(2, generation)                  # 1
+        new_gen_start = self.initial_sosa * gen_start   # 3
+        return new_gen_start + (key - gen_start)        # 3+0
+
     def write_person(self, key):
         """Output birth, death, parentage, marriage and notes information """
 
@@ -246,7 +256,7 @@ class DetAncestorReport(Report):
             photo = plist[0]
             ReportUtils.insert_image(self.db, self.doc, photo, self._user)
 
-        self.doc.start_paragraph("DAR-First-Entry","%s." % str(key))
+        self.doc.start_paragraph("DAR-First-Entry", "%d." % self._get_s_s(key))
 
         name = self._name_display.display(person)
         if not name:
@@ -569,8 +579,8 @@ class DetAncestorReport(Report):
             child_mark = ReportUtils.get_person_mark(self.db, child)
 
             if self.childref and self.prev_gen_handles.get(child_handle):
-                value = str(self.prev_gen_handles.get(child_handle))
-                child_name += " [%s]" % value
+                value = int(self.prev_gen_handles.get(child_handle))
+                child_name += " [%d]" % self._get_s_s(value)
 
             self.doc.start_paragraph("DAR-ChildList",
                                      ReportUtils.roman(cnt).lower() + ".")
@@ -741,6 +751,11 @@ class DetAncestorOptions(MenuReportOptions):
         pid = PersonOption(_("Center Person"))
         pid.set_help(_("The center person for the report"))
         addopt("pid", pid)
+
+        start_number = NumberOption(_("Sosa-Stradonitz number"), 1, 1, 16384)
+        start_number.set_help(
+                    _('The Sosa-Stradonitz number of the central person.'))
+        addopt("initial_sosa", start_number)
 
         stdoptions.add_name_format_option(menu, category)
         
