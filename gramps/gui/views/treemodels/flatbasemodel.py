@@ -475,6 +475,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
             col = self.sort_map[scol][1]
         else:
             col = scol
+        # get the function that maps data to sort_keys
         self.sort_func = lambda x: glocale.sort_key(self.smap[col](x))
         self.sort_col = scol
         self.skip = skip

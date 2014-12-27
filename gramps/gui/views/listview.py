@@ -71,6 +71,7 @@ _ = glocale.translation.sgettext
 from ..ddtargets import DdTargets
 from ..plug.quick import create_quickreport_menu, create_web_connect_menu
 from ..utils import is_right_click
+from ..widgets.interactivesearchbox import InteractiveSearchBox
 
 #----------------------------------------------------------------
 #
@@ -157,6 +158,7 @@ class ListView(NavigationView):
         self.list.set_fixed_height_mode(True)
         self.list.connect('button-press-event', self._button_press)
         self.list.connect('key-press-event', self._key_press)
+        self.searchbox = InteractiveSearchBox(self.list)
         
         if self.drag_info():
             self.list.connect('drag_data_get', self.drag_data_get)
@@ -888,6 +890,9 @@ class ListView(NavigationView):
         if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
             self.edit(obj)
             return True
+        # Custom interactive search
+        if event.string:
+            return self.searchbox.treeview_keypress(obj, event)
         return False
 
     def _key_press_tree(self, obj, event):
@@ -896,16 +901,15 @@ class ListView(NavigationView):
         ENTER --> edit selection or open group node
         SHIFT+ENTER --> open group node and all children nodes
         """
-        if event.get_state() & Gdk.ModifierType.SHIFT_MASK:
-            if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
-                store, paths = self.selection.get_selected_rows()
-                if paths:
-                    iter_ = self.model.get_iter(paths[0])
-                    handle = self.model.get_handle_from_iter(iter_)
-                    if len(paths) == 1 and handle is None:
-                        return self.expand_collapse_tree_branch()
-        else:
-            if event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
+        if (event.get_state() & Gdk.ModifierType.SHIFT_MASK and
+            event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter)):
+            store, paths = self.selection.get_selected_rows()
+            if paths:
+                iter_ = self.model.get_iter(paths[0])
+                handle = self.model.get_handle_from_iter(iter_)
+                if len(paths) == 1 and handle is None:
+                    return self.expand_collapse_tree_branch()
+        elif event.keyval in (Gdk.KEY_Return, Gdk.KEY_KP_Enter):
                 store, paths = self.selection.get_selected_rows()
                 if paths:
                     iter_ = self.model.get_iter(paths[0])
@@ -915,6 +919,9 @@ class ListView(NavigationView):
                     else:
                         self.edit(obj)
                         return True
+        elif event.string:
+            # Custom interactive search
+            return self.searchbox.treeview_keypress(obj, event)
         return False
 
     def expand_collapse_tree(self):
