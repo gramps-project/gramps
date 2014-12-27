@@ -229,6 +229,7 @@ class DetAncestorReport(Report):
                                 self.write_children(family)
                             if self.inc_events:
                                 self.write_family_events(family)
+
         if self.inc_sources:
             if self.pgbrkenotes:
                 self.doc.page_break()
@@ -763,6 +764,8 @@ class DetAncestorOptions(MenuReportOptions):
         gen.set_help(_("The number of generations to include in the report"))
         addopt("gen", gen)
         
+        stdoptions.add_private_data_option(menu, category)
+
         pagebbg = BooleanOption(_("Page break between generations"),False)
         pagebbg.set_help(
                      _("Whether to start a new page after each generation."))
@@ -772,8 +775,6 @@ class DetAncestorOptions(MenuReportOptions):
         pageben.set_help(
                      _("Whether to start a new page before the end notes."))
         addopt("pageben", pageben)
-
-        stdoptions.add_private_data_option(menu, category)
 
         stdoptions.add_localization_option(menu, category)
 
