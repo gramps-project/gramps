@@ -212,12 +212,13 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
 
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
+        shadow_width = box_style.get_shadow_space()
 
-        if box_style.get_shadow():
+        if box_style.get_shadow() and shadow_width > 0:
             self.f.write(
                 '<rect ' +
-                'x="%4.2fcm" ' % (x+0.15) +
-                'y="%4.2fcm" ' % (y+0.15) +
+                'x="%4.2fcm" ' % (x + shadow_width) +
+                'y="%4.2fcm" ' % (y + shadow_width) +
                 'width="%4.2fcm" ' % w +
                 'height="%4.2fcm" ' % h +
                 'style="fill:#808080; stroke:#808080; stroke-width:1;"/>\n'
