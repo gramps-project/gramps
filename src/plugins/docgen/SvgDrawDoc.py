@@ -120,7 +120,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             self.t.write('font-weight:bold;')
         if font.get_italic():
             self.t.write('font-style:italic;')
-        self.t.write('font-size:%d; ' % size)
+        self.t.write('font-size:%dpt; ' % size)
         if font.get_type_face() == FONT_SANS_SERIF:
             self.t.write('font-family:sans-serif;')
         else:
@@ -242,7 +242,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                     self.t.write(' font-weight:bold;')
                 if font.get_italic():
                     self.t.write(' font-style:italic;')
-                self.t.write(' font-size:%d;' % font_size)
+                self.t.write(' font-size:%dpt;' % font_size)
                 if font.get_type_face() == FONT_SANS_SERIF:
                     self.t.write(' font-family:sans-serif;')
                 else:
@@ -275,7 +275,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             self.t.write('font-weight:bold;')
         if font.get_italic():
             self.t.write('font-style:italic;')
-        self.t.write('font-size:%d; ' % font_size)
+        self.t.write('font-size:%dpt; ' % font_size)
         if font.get_type_face() == FONT_SANS_SERIF:
             self.t.write('font-family:sans-serif;')
         else:
