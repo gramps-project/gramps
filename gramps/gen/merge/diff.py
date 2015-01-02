@@ -384,6 +384,9 @@ class Struct(object):
         else:
             self.transaction = None
 
+    def __setitem__(self, item, value):
+        self.struct[item] = value
+
     def __eq__(self, other):
         if isinstance(other, Struct):
             return self.struct == other.struct

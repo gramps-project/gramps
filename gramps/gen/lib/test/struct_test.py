@@ -91,7 +91,7 @@ class TagCheck(unittest.TestCase, BaseCheck):
 class DatabaseCheck(unittest.TestCase):
     maxDiff = None
 
-def generate_test(obj):
+def generate_case(obj):
     """
     Dynamically generate tests and attach to DatabaseCheck.
     """
@@ -111,7 +111,7 @@ db = import_as_dict("example/gramps/example.gramps", User())
 for table in db._tables.keys():
     for handle in db._tables[table]["handles_func"]():
         obj = db._tables[table]["handle_func"](handle)
-        generate_test(obj)
+        generate_case(obj)
 
 class StructTest(unittest.TestCase):
     def test(self):
@@ -120,7 +120,7 @@ class StructTest(unittest.TestCase):
         self.assertEqual(s["gramps_id"], "F0001")
         s["gramps_id"] = "TEST"
         self.assertEqual(s["gramps_id"], "TEST")
-        self.assertEqual(s["father_handle.primary_name.first_name"], 
+        self.assertEqual(s.father_handle.primary_name.first_name, 
                          "Allen Carl")
         s["father_handle.primary_name.first_name"] = "Edward"
         self.assertEqual(s["father_handle.primary_name.first_name"], 
