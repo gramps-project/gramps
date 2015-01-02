@@ -821,7 +821,7 @@ class VariableParse(object):
             if not e_ref:
                 continue
             event = self.friend.database.get_event_from_handle(e_ref.ref)
-            if event.get_type().is_type(event_name):
+            if str(event.get_type()) == event_name:
                 return event
         return None
 
