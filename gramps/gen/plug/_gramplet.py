@@ -359,7 +359,7 @@ class Gramplet(object):
         """
         Resume the :meth:`main` method that has previously paused.
         """
-        from gi.repository import GObject, Glib
+        from gi.repository import GObject, GLib
         self._pause = False
         self._idle_id = GLib.idle_add(self._updater, 
                                          priority=GObject.PRIORITY_LOW - 10)
