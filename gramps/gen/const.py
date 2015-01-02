@@ -193,7 +193,7 @@ GTK_GETTEXT_DOMAIN = 'gtk30'
 #
 #-------------------------------------------------------------------------
 COPYRIGHT_MSG  = "© 2001-2006 Donald N. Allingham\n" \
-                 "© 2007-2014 The Gramps Developers"
+                 "© 2007-2015 The Gramps Developers"
 COMMENTS       = _("Gramps\n (Genealogical Research and Analysis "
                    "Management Programming System)\n"
                    "is a personal genealogy program.")
