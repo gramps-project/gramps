@@ -1330,7 +1330,8 @@ class GrampsPreferences(ConfigureDialog):
 
         if len(addon_update_list) > 0:
             try:
-                PluginWindows.UpdateAddons(self.uistate, [], addon_update_list)
+                PluginWindows.UpdateAddons(self.uistate, [], addon_update_list,
+                                                            parent=self.window)
             except WindowActiveError:
                 pass
         else:
