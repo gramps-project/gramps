@@ -344,7 +344,8 @@ class ViewManager(CLIManager):
         Called when add-on updates are available.
         """
         try:
-            PluginWindows.UpdateAddons(self.uistate, [], addon_update_list)
+            PluginWindows.UpdateAddons(self.uistate, [], addon_update_list, 
+                                                        parent=self.window)
         except WindowActiveError:
             pass
 

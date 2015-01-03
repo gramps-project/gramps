@@ -1070,7 +1070,7 @@ class ToolManagedWindow(tool.Tool, ToolManagedWindowBase):
 #-------------------------------------------------------------------------
 class UpdateAddons(ManagedWindow):
 
-    def __init__(self, uistate, track, addon_update_list):
+    def __init__(self, uistate, track, addon_update_list, parent=None):
         self.title = _('Available Gramps Updates for Addons')
         ManagedWindow.__init__(self, uistate, track, self.__class__)
 
@@ -1079,9 +1079,9 @@ class UpdateAddons(ManagedWindow):
         self.set_window(self.update_dialog, glade.get_object('title'), 
                         self.title)
         self.window.set_size_request(750, 400)
-
-        if win() and Gtk.get_minor_version() < 11:
-            self.window.set_transient_for(self.window.get_toplevel())
+        
+        if win():
+            self.window.set_transient_for(parent)
 
         apply_button = glade.get_object('apply')
         cancel_button = glade.get_object('cancel')
