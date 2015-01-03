@@ -68,16 +68,17 @@ class Cursor(object):
     def __enter__(self):
         return self
     def __iter__(self):
-        return self.__next__()
+        return self
     def __next__(self):
         for handle in self.model.keys():
-            yield (handle, self.func(handle))
+            return (handle, self.func(handle))
+    def next(self):
+        for handle in self.model.keys():
+            return (handle, self.func(handle))
     def __exit__(self, *args, **kwargs):
         pass
-    def iter(self):
-        for handle in self.model.keys():
-            yield (handle, self.func(handle))
-        yield None
+    def close(self):
+        pass
 
 class Bookmarks:
     def get(self):
