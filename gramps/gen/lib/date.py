@@ -284,7 +284,7 @@ class Span(object):
             fdate12p1 = self._format(self._diff(self.date1, self.date2),
                                      dlocale).format(precision=1)
             if as_age and self._diff(self.date1, self.date2)[0] > Span.ALIVE:
-                _repr = trans_text("less than %s years") % Span.ALIVE
+                _repr = trans_text("greater than %s years") % Span.ALIVE
             elif self.date1.get_modifier() == Date.MOD_NONE:
                 if self.date2.get_modifier() == Date.MOD_NONE:
                     _repr = fdate12
