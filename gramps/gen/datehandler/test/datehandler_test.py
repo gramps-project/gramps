@@ -57,7 +57,7 @@ from .. import displayer as _dd
 #
 #-------------------------------------------------------------------------
 class DateHandlerTest(unittest.TestCase):
-    def base_test(self, test_date):
+    def base_case(self, test_date):
         datestr = _dd.display(test_date)
         new_date = _dp.parse(datestr)
 
@@ -86,7 +86,7 @@ class DateHandlerTest(unittest.TestCase):
                                     dates.append(d)
 
         for test_date in dates:
-            self.base_test(test_date)
+            self.base_case(test_date)
 
     def test_span(self):
 
@@ -125,7 +125,7 @@ class DateHandlerTest(unittest.TestCase):
                                 dates.append(d)
 
         for test_date in dates:
-            self.base_test(test_date)
+            self.base_case(test_date)
 
     def test_textual(self):
         calendar = Date.CAL_GREGORIAN
@@ -135,7 +135,7 @@ class DateHandlerTest(unittest.TestCase):
             test_date = Date()
             test_date.set(quality, modifier, calendar, Date.EMPTY,
                           "This is a textual date")
-            self.base_test(test_date)
+            self.base_case(test_date)
 
     def test_too_few_arguments(self):
         dateval = (4, 7, 1789, False)
