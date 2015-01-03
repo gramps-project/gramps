@@ -234,7 +234,7 @@ class ParserDateTest(BaseDateTest):
     """
     Date displayer and parser tests.
     """
-    def do_test(self, testset):
+    def do_case(self, testset):
         for date_format in range(len(get_date_formats())):
             set_format(date_format)
 
@@ -248,19 +248,19 @@ class ParserDateTest(BaseDateTest):
                                 (date_format, dateval, ndate, dateval.to_struct(), ndate.to_struct()))
 
     def test_basic(self):
-        self.do_test("basic test")
+        self.do_case("basic test")
 
     def test_partial(self):
-        self.do_test("partial date")
+        self.do_case("partial date")
 
     def test_slash(self):
-        self.do_test("slash-dates")
+        self.do_case("slash-dates")
 
     def test_bce(self):
-        self.do_test("B. C. E.")
+        self.do_case("B. C. E.")
 
     def test_non_gregorian(self):
-        self.do_test("Non-gregorian")
+        self.do_case("Non-gregorian")
 
 
 #-------------------------------------------------------------------------
@@ -358,7 +358,7 @@ class MatchDateTest(BaseDateTest):
     def convert_to_date(self, d):
         return d if isinstance(d,Date) else _dp.parse(d)
 
-    def do_test(self, d1, d2, expected1, expected2=None):
+    def do_case(self, d1, d2, expected1, expected2=None):
         """
         Tests two Gramps dates to see if they match.
         """
@@ -381,7 +381,7 @@ class MatchDateTest(BaseDateTest):
 
     def test_match(self):
         for testdata in self.tests:
-            self.do_test(*testdata)
+            self.do_case(*testdata)
 
 
 #-------------------------------------------------------------------------
