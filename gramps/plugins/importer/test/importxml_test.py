@@ -89,7 +89,6 @@ class BaseImportTest(unittest.TestCase):
                 date[0], date[1], date[2], VERSION)
 
     def tearDown(self):
-        self.style.freeStylesheet()
         self.basedoc.freeDoc()
 
     def canonicalize(self, doctxt):
@@ -116,7 +115,7 @@ class BaseImportTest(unittest.TestCase):
             doc.freeDoc()
         return result
 
-    def do_test(self, input_doc, expect_doc,
+    def do_case(self, input_doc, expect_doc,
                 test_error_str='', debug=False):
         """Do the import and "assert" the result."""
         process = subprocess.Popen('python Gramps.py -d .Date -d .ImportXML '
@@ -164,7 +163,7 @@ class DateTest(BaseImportTest):
                 self.base_str + self.events_str.format(datexml=self.datexml_trg),
                 '', None, libxml2.XML_PARSE_NONET)
         try:
-            self.do_test(self.basedoc, expect)
+            self.do_case(self.basedoc, expect)
         except:
             raise
         finally:

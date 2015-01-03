@@ -94,7 +94,6 @@ class BaseMergeCheck(unittest.TestCase):
                 date[0], date[1], date[2], VERSION)
 
     def tearDown(self):
-        self.style.freeStylesheet()
         self.basedoc.freeDoc()
 
     def canonicalize(self, doctxt):
@@ -121,7 +120,7 @@ class BaseMergeCheck(unittest.TestCase):
             doc.freeDoc()
         return result
 
-    def do_test(self, phoenix_id, titanic_id, input_doc, expect_doc,
+    def do_case(self, phoenix_id, titanic_id, input_doc, expect_doc,
                 test_error_str='', debug=False):
         """Do the merge and "assert" the result."""
         process = subprocess.Popen('python Gramps.py -d .ImportXML '
@@ -147,7 +146,7 @@ class BaseMergeCheck(unittest.TestCase):
         self.assertEqual(self.canonicalize(result_str),
                          self.canonicalize(expect_doc))
 
-    def do_family_test(self, phoenix_id, titanic_id, father_h, mother_h,
+    def do_family_case(self, phoenix_id, titanic_id, father_h, mother_h,
                        input_doc, expect_doc, test_error_str='', debug=False):
         process = subprocess.Popen('python Gramps.py -d .ImportXML '
                                    '--config=preferences.eprefix:DEFAULT '
@@ -297,7 +296,7 @@ class PersonCheck(BaseMergeCheck):
                 event = ctxt.xpathEval("//g:event[@handle='_e0001']")[0]
                 event.unlinkNode()
                 event.freeNode()
-                self.do_test('E0000', 'E0001', self.basedoc, expect)
+                self.do_case('E0000', 'E0001', self.basedoc, expect)
 
     def test_place_merge(self):
         """Merge two places"""
@@ -311,7 +310,7 @@ class PersonCheck(BaseMergeCheck):
                 placeobj.freeNode()
                 placeobj = ctxt.xpathEval("//g:placeobj[@handle='_p0000']")[0]
                 placeobj.newChild(None, 'alt_name', 'Place 1')
-                self.do_test('P0000', 'P0001', self.basedoc, expect)
+                self.do_case('P0000', 'P0001', self.basedoc, expect)
 
     def test_citation_merge(self):
         """Merge two citations"""
@@ -323,7 +322,7 @@ class PersonCheck(BaseMergeCheck):
                 citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
                 citation.unlinkNode()
                 citation.freeNode()
-                self.do_test('C0000', 'C0001', self.basedoc, expect)
+                self.do_case('C0000', 'C0001', self.basedoc, expect)
 
     def test_media_merge(self):
         """Merge two media objects"""
@@ -335,7 +334,7 @@ class PersonCheck(BaseMergeCheck):
                 object_ = ctxt.xpathEval("//g:object[@handle='_o0001']")[0]
                 object_.unlinkNode()
                 object_.freeNode()
-                self.do_test('O0000', 'O0001', self.basedoc, expect)
+                self.do_case('O0000', 'O0001', self.basedoc, expect)
 
     def test_note_merge(self):
         """Merge two notes"""
@@ -347,7 +346,7 @@ class PersonCheck(BaseMergeCheck):
                 note = ctxt.xpathEval("//g:note[@handle='_n0001']")[0]
                 note.unlinkNode()
                 note.freeNode()
-                self.do_test('N0000', 'N0001', self.basedoc, expect)
+                self.do_case('N0000', 'N0001', self.basedoc, expect)
 
 #-------------------------------------------------------------------------
 #
@@ -450,7 +449,7 @@ class FamilyCheck(BaseMergeCheck):
                 event = ctxt.xpathEval("//g:event[@handle='_e0001']")[0]
                 event.unlinkNode()
                 event.freeNode()
-                self.do_test('E0000', 'E0001', self.basedoc, expect)
+                self.do_case('E0000', 'E0001', self.basedoc, expect)
 
     def test_place_merge(self):
         """Merge two places"""
@@ -464,7 +463,7 @@ class FamilyCheck(BaseMergeCheck):
                 placeobj.freeNode()
                 placeobj = ctxt.xpathEval("//g:placeobj[@handle='_p0000']")[0]
                 placeobj.newChild(None, 'alt_name', 'Place 1')
-                self.do_test('P0000', 'P0001', self.basedoc, expect)
+                self.do_case('P0000', 'P0001', self.basedoc, expect)
 
     def test_citation_merge(self):
         """Merge two citations"""
@@ -476,7 +475,7 @@ class FamilyCheck(BaseMergeCheck):
                 citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
                 citation.unlinkNode()
                 citation.freeNode()
-                self.do_test('C0000', 'C0001', self.basedoc, expect)
+                self.do_case('C0000', 'C0001', self.basedoc, expect)
 
     def test_media_merge(self):
         """Merge two media objects"""
@@ -488,7 +487,7 @@ class FamilyCheck(BaseMergeCheck):
                 object_ = ctxt.xpathEval("//g:object[@handle='_o0001']")[0]
                 object_.unlinkNode()
                 object_.freeNode()
-                self.do_test('O0000', 'O0001', self.basedoc, expect)
+                self.do_case('O0000', 'O0001', self.basedoc, expect)
 
     def test_note_merge(self):
         """Merge two notes"""
@@ -500,7 +499,7 @@ class FamilyCheck(BaseMergeCheck):
                 note = ctxt.xpathEval("//g:note[@handle='_n0001']")[0]
                 note.unlinkNode()
                 note.freeNode()
-                self.do_test('N0000', 'N0001', self.basedoc, expect)
+                self.do_case('N0000', 'N0001', self.basedoc, expect)
 
 #-------------------------------------------------------------------------
 #
@@ -591,7 +590,7 @@ class EventCheck(BaseMergeCheck):
                 placeobj.freeNode()
                 placeobj = ctxt.xpathEval("//g:placeobj[@handle='_p0000']")[0]
                 placeobj.newChild(None, 'alt_name', 'Place 1')
-                self.do_test('P0000', 'P0001', self.basedoc, expect)
+                self.do_case('P0000', 'P0001', self.basedoc, expect)
 
     def test_citation_merge(self):
         """Merge two citations"""
@@ -603,7 +602,7 @@ class EventCheck(BaseMergeCheck):
                 citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
                 citation.unlinkNode()
                 citation.freeNode()
-                self.do_test('C0000', 'C0001', self.basedoc, expect)
+                self.do_case('C0000', 'C0001', self.basedoc, expect)
 
     def test_media_merge(self):
         """Merge two media objects"""
@@ -615,7 +614,7 @@ class EventCheck(BaseMergeCheck):
                 object_ = ctxt.xpathEval("//g:object[@handle='_o0001']")[0]
                 object_.unlinkNode()
                 object_.freeNode()
-                self.do_test('O0000', 'O0001', self.basedoc, expect)
+                self.do_case('O0000', 'O0001', self.basedoc, expect)
 
     def test_note_merge(self):
         """Merge two notes"""
@@ -627,7 +626,7 @@ class EventCheck(BaseMergeCheck):
                 note = ctxt.xpathEval("//g:note[@handle='_n0001']")[0]
                 note.unlinkNode()
                 note.freeNode()
-                self.do_test('N0000', 'N0001', self.basedoc, expect)
+                self.do_case('N0000', 'N0001', self.basedoc, expect)
 
 #-------------------------------------------------------------------------
 #
@@ -704,7 +703,7 @@ class PlaceCheck(BaseMergeCheck):
                 citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
                 citation.unlinkNode()
                 citation.freeNode()
-                self.do_test('C0000', 'C0001', self.basedoc, expect)
+                self.do_case('C0000', 'C0001', self.basedoc, expect)
 
     def test_media_merge(self):
         """Merge two media objects"""
@@ -716,7 +715,7 @@ class PlaceCheck(BaseMergeCheck):
                 object_ = ctxt.xpathEval("//g:object[@handle='_o0001']")[0]
                 object_.unlinkNode()
                 object_.freeNode()
-                self.do_test('O0000', 'O0001', self.basedoc, expect)
+                self.do_case('O0000', 'O0001', self.basedoc, expect)
 
     def test_note_merge(self):
         """Merge two notes"""
@@ -728,7 +727,7 @@ class PlaceCheck(BaseMergeCheck):
                 note = ctxt.xpathEval("//g:note[@handle='_n0001']")[0]
                 note.unlinkNode()
                 note.freeNode()
-                self.do_test('N0000', 'N0001', self.basedoc, expect)
+                self.do_case('N0000', 'N0001', self.basedoc, expect)
 
 #-------------------------------------------------------------------------
 #
@@ -812,7 +811,7 @@ class SourceCheck(BaseMergeCheck):
                 repo.unlinkNode()
                 repo.freeNode()
                 # Do the actual merger and comparison.
-                self.do_test('R0000', 'R0001', self.basedoc, expect)
+                self.do_case('R0000', 'R0001', self.basedoc, expect)
 
     def test_media_merge(self):
         """Merge two media objects"""
@@ -824,7 +823,7 @@ class SourceCheck(BaseMergeCheck):
                 object_ = ctxt.xpathEval("//g:object[@handle='_o0001']")[0]
                 object_.unlinkNode()
                 object_.freeNode()
-                self.do_test('O0000', 'O0001', self.basedoc, expect)
+                self.do_case('O0000', 'O0001', self.basedoc, expect)
 
     def test_note_merge(self):
         """Merge two notes"""
@@ -836,7 +835,7 @@ class SourceCheck(BaseMergeCheck):
                 note = ctxt.xpathEval("//g:note[@handle='_n0001']")[0]
                 note.unlinkNode()
                 note.freeNode()
-                self.do_test('N0000', 'N0001', self.basedoc, expect)
+                self.do_case('N0000', 'N0001', self.basedoc, expect)
 
 #-------------------------------------------------------------------------
 #
@@ -911,7 +910,7 @@ class RepoCheck(BaseMergeCheck):
                 citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
                 citation.unlinkNode()
                 citation.freeNode()
-                self.do_test('C0000', 'C0001', self.basedoc, expect)
+                self.do_case('C0000', 'C0001', self.basedoc, expect)
 
     def test_note_merge(self):
         """Merge two notes"""
@@ -923,7 +922,7 @@ class RepoCheck(BaseMergeCheck):
                 note = ctxt.xpathEval("//g:note[@handle='_n0001']")[0]
                 note.unlinkNode()
                 note.freeNode()
-                self.do_test('N0000', 'N0001', self.basedoc, expect)
+                self.do_case('N0000', 'N0001', self.basedoc, expect)
 
 #-------------------------------------------------------------------------
 #
@@ -990,7 +989,7 @@ class MediaCheck(BaseMergeCheck):
                 citation = ctxt.xpathEval("//g:citation[@handle='_c0001']")[0]
                 citation.unlinkNode()
                 citation.freeNode()
-                self.do_test('C0000', 'C0001', self.basedoc, expect)
+                self.do_case('C0000', 'C0001', self.basedoc, expect)
 
     def test_note_merge(self):
         """Merge two notes"""
@@ -1002,7 +1001,7 @@ class MediaCheck(BaseMergeCheck):
                 note = ctxt.xpathEval("//g:note[@handle='_n0001']")[0]
                 note.unlinkNode()
                 note.freeNode()
-                self.do_test('N0000', 'N0001', self.basedoc, expect)
+                self.do_case('N0000', 'N0001', self.basedoc, expect)
 
 #=========================================================================
 #
@@ -1076,7 +1075,7 @@ class SourceSourceCheck(BaseMergeCheck):
                 citations = ctxt.xpathEval("//g:citation[@handle='_c0003']")
                 citations[0].unlinkNode()
                 citations[0].freeNode()
-                self.do_test('C0002', 'C0003', self.basedoc, expect)
+                self.do_case('C0002', 'C0003', self.basedoc, expect)
 
     def test_citation_cross_merge(self):
         with XpathContext(self.basedoc) as input_ctxt:
@@ -1106,7 +1105,7 @@ class SourceSourceCheck(BaseMergeCheck):
                     citations = ctxt.xpathEval("//g:citation[@handle='_c0001']")
                     citations[0].unlinkNode()
                     citations[0].freeNode()
-                    self.do_test('C0000', 'C0001', self.basedoc, expect)
+                    self.do_case('C0000', 'C0001', self.basedoc, expect)
 
 #-------------------------------------------------------------------------
 #
@@ -1252,7 +1251,7 @@ class PersonPersonCheck(BaseMergeCheck):
                     person = ctxt.xpathEval("//g:person[@handle='_i0001']")[0]
                     person.unlinkNode()
                     person.freeNode()
-                    self.do_test('I0000', 'I0001', self.basedoc, expect)
+                    self.do_case('I0000', 'I0001', self.basedoc, expect)
 
     def test_person_cross(self):
         """Phoenix has ref to Titanic and vice versa"""
@@ -1284,7 +1283,7 @@ class PersonPersonCheck(BaseMergeCheck):
                     person = ctxt.xpathEval("//g:person[@handle='_i0001']")[0]
                     person.unlinkNode()
                     person.freeNode()
-                    self.do_test('I0000', 'I0001', self.basedoc, expect)
+                    self.do_case('I0000', 'I0001', self.basedoc, expect)
 
     def test_person_self(self):
         """Titanic references itself"""
@@ -1309,7 +1308,7 @@ class PersonPersonCheck(BaseMergeCheck):
                     person = ctxt.xpathEval("//g:person[@handle='_i0001']")[0]
                     person.unlinkNode()
                     person.freeNode()
-                    self.do_test('I0000', 'I0001', self.basedoc, expect)
+                    self.do_case('I0000', 'I0001', self.basedoc, expect)
 
 #-------------------------------------------------------------------------
 #
@@ -1371,7 +1370,7 @@ class ParentFamilyPersonCheck(BaseMergeCheck):
                 childof.newProp('hlink', '_f0001')
                 persons[1].unlinkNode()
                 persons[1].freeNode()
-                self.do_test('I0000', 'I0001', self.basedoc, expect)
+                self.do_case('I0000', 'I0001', self.basedoc, expect)
 
 #-------------------------------------------------------------------------
 #
@@ -1441,7 +1440,7 @@ class FamilyPersonCheck(BaseMergeCheck):
                 attr.addNextSibling(parentref) # restore order of elements
                 persons[2].unlinkNode()
                 persons[2].freeNode()
-                self.do_test('I0000', 'I0002', self.basedoc, expect)
+                self.do_case('I0000', 'I0002', self.basedoc, expect)
 
     def test_no_fam_merge(self):
         """Test merge of two persons, both parents in a family, but such that
@@ -1471,7 +1470,7 @@ class FamilyPersonCheck(BaseMergeCheck):
                     father.setProp('hlink', '_i0000')
                     persons[2].unlinkNode()
                     persons[2].freeNode()
-                    self.do_test('I0000', 'I0002', self.basedoc, expect)
+                    self.do_case('I0000', 'I0002', self.basedoc, expect)
 
     def test_multi_rel(self):
         """Merge two persons where titanic has multiple family relationships
@@ -1502,7 +1501,7 @@ class FamilyPersonCheck(BaseMergeCheck):
             mother = family.newChild(None, 'mother', None)
             mother.newProp('hlink', '_i0003')
             with CopiedDoc(self.basedoc) as expect:
-                self.do_test('I0000', 'I0002', self.basedoc, expect,
+                self.do_case('I0000', 'I0002', self.basedoc, expect,
                         test_error_str=_("A person with multiple relations "
                         "with the same spouse is about to be merged. This is "
                         "beyond the capabilities of the merge routine. The "
@@ -1542,7 +1541,7 @@ class FamilyPersonCheck(BaseMergeCheck):
                     parentin = ctxt.xpathEval("//g:person[@handle='_i0001']/g:parentin")[1]
                     parentin.unlinkNode()
                     parentin.freeNode()
-                    self.do_test('I0000', 'I0002', self.basedoc, expect)
+                    self.do_case('I0000', 'I0002', self.basedoc, expect)
 
     def test_fam_none_merge(self):
         """Merge two persons, both father in families without mothers."""
@@ -1576,7 +1575,7 @@ class FamilyPersonCheck(BaseMergeCheck):
                     family = ctxt.xpathEval("//g:family[@handle='_f0001']")[0]
                     family.unlinkNode()
                     family.freeNode()
-                    self.do_test('I0000', 'I0002', self.basedoc, expect)
+                    self.do_case('I0000', 'I0002', self.basedoc, expect)
 
     # Can't think of a testcase that would merge multiple families.
 
@@ -1613,7 +1612,7 @@ class FamilyPersonCheck(BaseMergeCheck):
                     parentin = ctxt.xpathEval("//g:person[@handle='_i0000']/g:parentin")[1]
                     parentin.unlinkNode()
                     parentin.freeNode()
-                    self.do_test('I0001', 'I0003', self.basedoc, expect)
+                    self.do_case('I0001', 'I0003', self.basedoc, expect)
 
     def test_childref_notyet(self):
         """Merge two people leading to merger of families that have children."""
@@ -1659,7 +1658,7 @@ class FamilyPersonCheck(BaseMergeCheck):
                     childof.setProp('hlink', '_f0000')
                     childref = families[0].newChild(None, 'childref', None)
                     childref.newProp('hlink', '_i0003')
-                    self.do_test('I0000', 'I0002', self.basedoc, expect)
+                    self.do_case('I0000', 'I0002', self.basedoc, expect)
 
     def test_childref_already(self):
         with XpathContext(self.basedoc) as input_ctxt:
@@ -1703,7 +1702,7 @@ class FamilyPersonCheck(BaseMergeCheck):
                     childof = ctxt.xpathEval("//g:person[@handle='_i0001']/g:childof")
                     childof[1].unlinkNode()
                     childof[1].freeNode()
-                    self.do_test('I0000', 'I0002', self.basedoc, expect)
+                    self.do_case('I0000', 'I0002', self.basedoc, expect)
 
     def test_ldsord(self):
         with XpathContext(self.basedoc) as input_ctxt:
@@ -1742,7 +1741,7 @@ class FamilyPersonCheck(BaseMergeCheck):
                     families[1].freeNode()
                     sealedto = ctxt.xpathEval("//g:sealed_to")[0]
                     sealedto.setProp('hlink', '_f0000')
-                    self.do_test('I0000', 'I0002', self.basedoc, expect)
+                    self.do_case('I0000', 'I0002', self.basedoc, expect)
 
     # This test fails because the assigment of family ids shifts F0000 to F0001
     # and F0001 to F0002!
@@ -1785,7 +1784,7 @@ class FamilyPersonCheck(BaseMergeCheck):
     #                families[1].freeNode()
     #                sealedto = ctxt.xpathEval("//g:sealed_to")[0]
     #                sealedto.setProp('hlink', '_f0000')
-    #                self.do_test('I0000', 'I0002', self.basedoc, expect)
+    #                self.do_case('I0000', 'I0002', self.basedoc, expect)
 
     def test_ldsord_self(self):
         with XpathContext(self.basedoc) as input_ctxt:
@@ -1826,7 +1825,7 @@ class FamilyPersonCheck(BaseMergeCheck):
                     families[1].freeNode()
                     sealedto = ctxt.xpathEval("//g:sealed_to")[0]
                     sealedto.setProp('hlink', '_f0000')
-                    self.do_test('I0000', 'I0002', self.basedoc, expect)
+                    self.do_case('I0000', 'I0002', self.basedoc, expect)
 
 #-------------------------------------------------------------------------
 #
@@ -1894,7 +1893,7 @@ class FamilyMergeCheck(BaseMergeCheck):
             childref = family.newChild(None, 'childref', None)
             childref.newProp('hlink', '_i0002')
             with CopiedDoc(self.basedoc) as expect:
-                self.do_family_test('F0000', 'F0001', 'i0000', 'i0001',
+                self.do_family_case('F0000', 'F0001', 'i0000', 'i0001',
                         self.basedoc, expect, test_error_str=_("A parent and "
                         "child cannot be merged. To merge these people, you "
                         "must first break the relationship between them."))
@@ -1916,7 +1915,7 @@ class FamilyMergeCheck(BaseMergeCheck):
             childref = family.newChild(None, 'childref', None)
             childref.newProp('hlink', '_i0000')
             with CopiedDoc(self.basedoc) as expect:
-                self.do_family_test('F0000', 'F0001', 'i0000', 'i0001',
+                self.do_family_case('F0000', 'F0001', 'i0000', 'i0001',
                         self.basedoc, expect, test_error_str=_("A parent and "
                         "child cannot be merged. To merge these people, you "
                         "must first break the relationship between them."))
@@ -1939,7 +1938,7 @@ class FamilyMergeCheck(BaseMergeCheck):
             childref = family.newChild(None, 'childref', None)
             childref.newProp('hlink', '_i0002')
             with CopiedDoc(self.basedoc) as expect:
-                self.do_family_test('F0000', 'F0001', 'i0002', 'i0001',
+                self.do_family_case('F0000', 'F0001', 'i0002', 'i0001',
                         self.basedoc, expect, test_error_str=_("A parent and "
                         "child cannot be merged. To merge these people, you "
                         "must first break the relationship between them."))
@@ -1974,7 +1973,7 @@ class FamilyMergeCheck(BaseMergeCheck):
                 family = ctxt.xpathEval("//g:family[@handle='_f0001']")[0]
                 family.unlinkNode()
                 family.freeNode()
-                self.do_family_test('F0000', 'F0001', 'i0000', 'i0001', self.basedoc, expect)
+                self.do_family_case('F0000', 'F0001', 'i0000', 'i0001', self.basedoc, expect)
 
     def test_father_swapped(self):
         "Merge two families where the phoenix-father is of the titanic family."
@@ -2009,7 +2008,7 @@ class FamilyMergeCheck(BaseMergeCheck):
                 family.freeNode()
                 father = ctxt.xpathEval("//g:family[@handle='_f0000']/g:father")[0]
                 father.setProp('hlink', '_i0002')
-                self.do_family_test('F0000', 'F0001', 'i0002', 'i0001', self.basedoc, expect)
+                self.do_family_case('F0000', 'F0001', 'i0002', 'i0001', self.basedoc, expect)
 
     #def test_mother_swapped(self):
 
@@ -2039,7 +2038,7 @@ class FamilyMergeCheck(BaseMergeCheck):
                     family = ctxt.xpathEval("//g:family[@handle='_f0001']")[0]
                     family.unlinkNode()
                     family.freeNode()
-                    self.do_family_test('F0000', 'F0001', 'i0000', 'i0001',
+                    self.do_family_case('F0000', 'F0001', 'i0000', 'i0001',
                                         self.basedoc, expect)
 
     def test_no_mother_swapped(self):
@@ -2074,7 +2073,7 @@ class FamilyMergeCheck(BaseMergeCheck):
                     family = ctxt.xpathEval("//g:family[@handle='_f0000']")[0]
                     mother = family.newChild(None, 'mother', None)
                     mother.newProp('hlink', '_i0003')
-                    self.do_family_test('F0000', 'F0001', 'i0000', 'i0003',
+                    self.do_family_case('F0000', 'F0001', 'i0000', 'i0003',
                                         self.basedoc, expect)
 
     #def test_no_parents(self):
@@ -2128,7 +2127,7 @@ class FamilyMergeCheck(BaseMergeCheck):
                     family = ctxt.xpathEval("//g:family[@handle='_f0000']")[0]
                     childref = family.newChild(None, 'childref', None)
                     childref.newProp('hlink', '_i0004')
-                    self.do_family_test('F0000', 'F0001', 'i0000', 'i0001',
+                    self.do_family_case('F0000', 'F0001', 'i0000', 'i0001',
                                         self.basedoc, expect)
 
     def test_childref_already(self):
@@ -2183,7 +2182,7 @@ class FamilyMergeCheck(BaseMergeCheck):
                     childof = ctxt.xpathEval("//g:person[@handle='_i0004']/g:childof")[1]
                     childof.unlinkNode()
                     childof.freeNode()
-                    self.do_family_test('F0000', 'F0001', 'i0000', 'i0001',
+                    self.do_family_case('F0000', 'F0001', 'i0000', 'i0001',
                                         self.basedoc, expect)
 
     # this test fails because the families get IDs F0001 and F0002!
@@ -2230,7 +2229,7 @@ class FamilyMergeCheck(BaseMergeCheck):
     #                family.freeNode()
     #                sealedto = ctxt.xpathEval("//g:sealed_to")[0]
     #                sealedto.setProp('hlink', '_f0000')
-    #                self.do_family_test('F0000', 'F0001', 'i0000', 'i0001',
+    #                self.do_family_case('F0000', 'F0001', 'i0000', 'i0001',
     #                                    self.basedoc, expect)
 
 
