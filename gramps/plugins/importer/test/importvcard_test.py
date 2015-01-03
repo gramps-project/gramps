@@ -22,7 +22,7 @@
 Unittest of import of VCard
 """
 
-# in case of a failing test, add True as last parameter to do_test to see the output.
+# in case of a failing test, add True as last parameter to do_case to see the output.
 
 from __future__ import print_function
 
@@ -74,7 +74,7 @@ class VCardCheck(unittest.TestCase):
 
         return ET.tostring(doc, encoding='utf-8')
 
-    def do_test(self, input_str, expect_doc, debug=False):
+    def do_case(self, input_str, expect_doc, debug=False):
         if debug:
             print(input_str)
 
@@ -97,7 +97,7 @@ class VCardCheck(unittest.TestCase):
                          self.canonicalize(expect_doc))
 
     def test_base(self):
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_splitof_nameprefix_noprefix(self):
         self.assertEqual(splitof_nameprefix("Noprefix"), ('',"Noprefix"))
@@ -123,18 +123,18 @@ class VCardCheck(unittest.TestCase):
 
     def test_name_value_split_begin_colon(self):
         self.vcard.insert(4, ":email@example.com")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_name_value_split_quoted_colon(self):
         self.vcard.insert(4, 'TEL;TYPE="FANCY:TYPE":01234-56789')
         address = ET.SubElement(self.person, "address")
         ET.SubElement(address, 'phone').text = '01234-56789'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_name_value_split_grouped(self):
         self.vcard[1] = "group." + self.vcard[1]
         self.vcard[3] = "group." + self.vcard[3]
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_unesc_string(self):
         self.assertEqual(VCardParser.unesc("TEL:012\\\\345\\,67\\;89"),
@@ -176,38 +176,38 @@ class VCardCheck(unittest.TestCase):
         self.vcard.insert(4, "TEL:01234-\r\n 56789")
         address = ET.SubElement(self.person, "address")
         ET.SubElement(address, 'phone').text = '01234-56789'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_get_next_line_cr(self):
         self.vcard.insert(4, "TEL:01234-56789\r")
         address = ET.SubElement(self.person, "address")
         ET.SubElement(address, 'phone').text = '01234-56789'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_get_next_line_strip(self):
         self.vcard.insert(4, "TEL:01234-56789  ")
         address = ET.SubElement(self.person, "address")
         ET.SubElement(address, 'phone').text = '01234-56789'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_get_next_line_none(self):
         self.vcard.insert(4, "")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_parse_vCard_file_no_colon(self):
         self.vcard.insert(4, "TEL;01234-56789")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_parse_vCard_file_lowercase(self):
         self.vcard.insert(4, "tel:01234-56789")
         address = ET.SubElement(self.person, "address")
         ET.SubElement(address, 'phone').text = '01234-56789'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_parse_vCard_unknown_property(self):
         self.vcard.insert(4, "TELEPHONE:01234-56789")
         self.gramps = self.gramps
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_next_person_no_end(self):
         self.vcard[4] = "BEGIN:VCARD"
@@ -217,12 +217,12 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(person, 'gender').text = 'U'
         name = ET.SubElement(person, 'name', {'type': 'Birth Name'})
         ET.SubElement(name, 'surname').text = 'Another'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_check_version(self):
         self.vcard.extend(["BEGIN:VCARD", "VERSION:3.7", "FN:Another",
                              "N:Another;;;;", "END:VCARD"])
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_formatted_name_twice(self):
         self.vcard[2] = "FN:Lastname B A"
@@ -235,11 +235,11 @@ class VCardCheck(unittest.TestCase):
         call = ET.Element("call")
         call.text = "A"
         name.insert(1, call)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_name_parts_twice(self):
         self.vcard.insert(4, "N:Another;;;;")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_name_regular(self):
         self.vcard[2] = "FN:Mr. Firstname Middlename Lastname Jr."
@@ -249,13 +249,13 @@ class VCardCheck(unittest.TestCase):
         self.name.insert(0, first)
         ET.SubElement(self.name, 'suffix').text = 'Jr.'
         ET.SubElement(self.name, 'title').text = 'Mr.'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
         
     def test_add_name_multisurname(self):
         self.vcard[2] = "FN:Lastname Lastname2"
         self.vcard[3] = "N:Lastname,Lastname2;;;;"
         ET.SubElement(self.name, 'surname').text = 'Lastname2'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_name_prefixsurname(self):
         self.vcard[2] = "FN:van d'Alembert"
@@ -263,11 +263,11 @@ class VCardCheck(unittest.TestCase):
         surname = self.name[0]
         surname.text = 'Alembert'
         surname.set('prefix', "van d'")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_name_only_surname(self):
         self.vcard[3] = "N:Lastname"
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_name_upto_firstname(self):
         self.vcard[2] = "FN:Firstname Lastname"
@@ -275,13 +275,13 @@ class VCardCheck(unittest.TestCase):
         first = ET.Element('first')
         first.text = 'Firstname'
         self.name.insert(0, first)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_name_empty(self):
         self.vcard[2] = "FN:Lastname"
         self.vcard[3] = "N: "
         self.gramps.remove(self.gramps[1])
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_firstname_regular(self):
         self.vcard[2] = "FN:A B Lastname"
@@ -289,7 +289,7 @@ class VCardCheck(unittest.TestCase):
         first = ET.Element('first')
         first.text = 'A B'
         self.name.insert(0, first)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_firstname_callname(self):
         self.vcard[2] = "FN:A B Lastname"
@@ -300,7 +300,7 @@ class VCardCheck(unittest.TestCase):
         call = ET.Element('call')
         call.text = 'B'
         self.name.insert(1, call)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_firstname_incomplete_fn(self):
         self.vcard[2] = "FN:A Lastname"
@@ -308,7 +308,7 @@ class VCardCheck(unittest.TestCase):
         first = ET.Element('first')
         first.text = 'A B'
         self.name.insert(0, first)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_firstname_middle(self):
         self.vcard[2] = "FN:A B C Lastname"
@@ -319,7 +319,7 @@ class VCardCheck(unittest.TestCase):
         call = ET.Element('call')
         call.text = 'B'
         self.name.insert(1, call)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_firstname_fn_not_given(self):
         self.vcard[2] = "FN:B Lastname"
@@ -327,7 +327,7 @@ class VCardCheck(unittest.TestCase):
         first = ET.Element('first')
         first.text = 'A B'
         self.name.insert(0, first)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_firstname_no_addnames(self):
         self.vcard[2] = "FN:A Lastname"
@@ -335,7 +335,7 @@ class VCardCheck(unittest.TestCase):
         first = ET.Element('first')
         first.text = 'A'
         self.name.insert(0, first)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_firstname_no_givenname(self):
         self.vcard[2] = "FN:A Lastname"
@@ -343,7 +343,7 @@ class VCardCheck(unittest.TestCase):
         first = ET.Element('first')
         first.text = 'A'
         self.name.insert(0, first)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_firstname_no_fn(self):
         self.vcard[2] = "FN:"
@@ -351,18 +351,18 @@ class VCardCheck(unittest.TestCase):
         first = ET.Element('first')
         first.text = 'A'
         self.name.insert(0, first)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_nicknames_single(self):
         self.vcard.insert(4, "NICKNAME:Ton")
         attribs = {"alt": "1", "type": "Birth Name"}
         name = ET.SubElement(self.person, 'name', attribs)
         ET.SubElement(name, 'nick').text = "Ton"
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_nicknames_empty(self):
         self.vcard.insert(4, "NICKNAME:")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_nicknames_multiple(self):
         self.vcard.insert(4, "NICKNAME:A,B\,C")
@@ -372,7 +372,7 @@ class VCardCheck(unittest.TestCase):
         attribs = {"alt": "1", "type": "Birth Name"}
         name = ET.SubElement(self.person, 'name', attribs)
         ET.SubElement(name, 'nick').text = "B,C"
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_address_all(self):
         self.vcard.insert(4, "ADR:box 1;bis;Broadway 11; New York; New York; NY1234; USA")
@@ -382,7 +382,7 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(address, 'state').text = 'New York'
         ET.SubElement(address, 'country').text = 'USA'
         ET.SubElement(address, 'postal').text = 'NY1234'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_address_too_many(self):
         self.vcard.insert(4, "ADR:;;Broadway 11; New\,York; ;; USA; Earth")
@@ -390,28 +390,28 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(address, 'street').text = 'Broadway 11'
         ET.SubElement(address, 'city').text = 'New,York'
         ET.SubElement(address, 'country').text = 'USA'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_address_too_few(self):
         self.vcard.insert(4, "ADR:;;Broadway 11; New York")
         address = ET.SubElement(self.person, 'address')
         ET.SubElement(address, 'street').text = 'Broadway 11'
         ET.SubElement(address, 'city').text = 'New York'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_address_empty(self):
         self.vcard.insert(4, "ADR: ")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_phone_regular(self):
         self.vcard.insert(4, "TEL:01234-56789")
         address = ET.SubElement(self.person, 'address')
         ET.SubElement(address, 'phone').text = '01234-56789'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_phone_empty(self):
         self.vcard.insert(4, "TEL: ")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_birthday_regular(self):
         self.vcard.insert(4, 'BDAY:2001-09-28')
@@ -423,7 +423,7 @@ class VCardCheck(unittest.TestCase):
         event = ET.SubElement(events, 'event', attribs)
         ET.SubElement(event, 'type').text = 'Birth'
         ET.SubElement(event, 'dateval', {'val': '2001-09-28'})
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_birthday_datetime(self):
         self.vcard.insert(4, 'BDAY:2001-09-28T09:23:47Z')
@@ -435,7 +435,7 @@ class VCardCheck(unittest.TestCase):
         event = ET.SubElement(events, 'event', attribs)
         ET.SubElement(event, 'type').text = 'Birth'
         ET.SubElement(event, 'dateval', {'val': '2001-09-28'})
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_birthday_no_dash(self):
         self.vcard.insert(4, 'BDAY:20010928')
@@ -447,7 +447,7 @@ class VCardCheck(unittest.TestCase):
         event = ET.SubElement(events, 'event', attribs)
         ET.SubElement(event, 'type').text = 'Birth'
         ET.SubElement(event, 'dateval', {'val': '2001-09-28'})
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_birthday_long_Feb_converted_to_datestr(self):
         self.vcard.insert(4, 'BDAY:20010229')
@@ -459,7 +459,7 @@ class VCardCheck(unittest.TestCase):
         event = ET.SubElement(events, 'event', attribs)
         ET.SubElement(event, 'type').text = 'Birth'
         ET.SubElement(event, 'datestr', {'val': '20010229'})
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_birthday_invalid_format_converted_to_datestr(self):
         self.vcard.insert(4, 'BDAY:unforgettable')
@@ -471,7 +471,7 @@ class VCardCheck(unittest.TestCase):
         event = ET.SubElement(events, 'event', attribs)
         ET.SubElement(event, 'type').text = 'Birth'
         ET.SubElement(event, 'datestr', {'val': 'unforgettable'})
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_birthday_one_dash(self):
         self.vcard.insert(4, 'BDAY:2001-0928')
@@ -483,11 +483,11 @@ class VCardCheck(unittest.TestCase):
         event = ET.SubElement(events, 'event', attribs)
         ET.SubElement(event, 'type').text = 'Birth'
         ET.SubElement(event, 'dateval', {'val': '2001-09-28'})
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_birthday_empty(self):
         self.vcard.insert(4, "BDAY: ")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_occupation_regular(self):
         self.vcard.insert(4, "ROLE:scarecrow")
@@ -499,27 +499,27 @@ class VCardCheck(unittest.TestCase):
         event = ET.SubElement(events, 'event', attribs)
         ET.SubElement(event, 'type').text = 'Occupation'
         ET.SubElement(event, 'description').text = 'scarecrow'
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_occupation_empty(self):
         self.vcard.insert(4, "ROLE: ")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_url_regular(self):
         self.vcard.insert(4, "URL:http://www.example.com")
         attribs = {'href': 'http://www.example.com', 'type': 'Unknown'}
         ET.SubElement(self.person, 'url', attribs)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_url_empty(self):
         self.vcard.insert(4, "URL: ")
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
     def test_add_email(self):
         self.vcard.insert(4, "EMAIL:me@example.org")
         attribs = {'href': 'me@example.org', 'type': 'E-mail'}
         ET.SubElement(self.person, 'url', attribs)
-        self.do_test("\r\n".join(self.vcard), self.gramps)
+        self.do_case("\r\n".join(self.vcard), self.gramps)
 
 
 if __name__ == "__main__":

@@ -27,29 +27,29 @@ from ..keyword import (KEYWORDS, get_translation_from_keyword,
 
 class TestCase(unittest.TestCase):
 
-    def keyword_test(self, item1, item2):
+    def keyword_case(self, item1, item2):
         result = get_translation_from_keyword(item1)
         self.assertEqual(result, item2)
 
-    def translation_test(self, item1, item2):
+    def translation_case(self, item1, item2):
         result = get_keyword_from_translation(item1)
         self.assertEqual(result, item2)
 
     def test_from_keyword(self):
         for keyword, code, standard, upper in KEYWORDS:
-            self.keyword_test(keyword, standard)
+            self.keyword_case(keyword, standard)
 
     def test_from_translation(self):
         for keyword, code, standard, upper in KEYWORDS:
-            self.translation_test(standard, keyword)
+            self.translation_case(standard, keyword)
 
     def test_from_lower(self):
         for keyword, code, standard, upper in KEYWORDS:
-            self.translation_test(standard.lower(), keyword)
+            self.translation_case(standard.lower(), keyword)
 
     def test_from_upper(self):
         for keyword, code, standard, upper in KEYWORDS:
-            self.translation_test(upper, keyword.upper())
+            self.translation_case(upper, keyword.upper())
 
 
 if __name__ == "__main__":

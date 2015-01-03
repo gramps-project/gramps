@@ -68,7 +68,7 @@ class VCardCheck(unittest.TestCase):
         self.name = self.person[0]
         self.lastname = self.name[0]
 
-    def do_test(self, input_doc, expect_str, debug=False):
+    def do_case(self, input_doc, expect_str, debug=False):
         if debug:
             print(ET.tostring(input_doc))
 
@@ -92,7 +92,7 @@ class VCardCheck(unittest.TestCase):
         self.assertEqual(result_str, expect_str.encode('utf-8'))
 
     def test_base(self):
-        self.do_test(self.database,
+        self.do_case(self.database,
                      self.expect)
 
     def test_esc_string_none(self):
@@ -118,7 +118,7 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(self.name, "title").text = 'Sir.'
         self.expect[3] = "FN:Sir. Lastname"
         self.expect[4] = "N:Lastname;;;Sir.;"
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_name_multiple_surname(self):
         self.lastname.text = "Oranje"
@@ -127,7 +127,7 @@ class VCardCheck(unittest.TestCase):
         self.expect[3] = "FN:van Oranje Nassau"
         self.expect[4] = "N:van Oranje,Nassau;;;;"
         self.expect[5] = "SORT-STRING:" + "Oranje".ljust(55)
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_name_callname(self):
         # callname not in first names!
@@ -136,7 +136,7 @@ class VCardCheck(unittest.TestCase):
         self.expect[3] = "FN:B C Lastname"
         self.expect[4] = "N:Lastname;A;B,C;;"
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(25) + "B C".ljust(30)
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_name_callname_in_addnames(self):
         ET.SubElement(self.name, "first").text = "A B C"
@@ -144,35 +144,35 @@ class VCardCheck(unittest.TestCase):
         self.expect[3] = "FN:A B C Lastname"
         self.expect[4] = "N:Lastname;B;A,C;;"
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(25) + "A B C".ljust(30)
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_name_no_callname(self):
         ET.SubElement(self.name, "first").text = "A B C"
         self.expect[3] = "FN:A B C Lastname"
         self.expect[4] = "N:Lastname;A;B,C;;"
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(25) + "A B C".ljust(30)
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_name_no_additional_names(self):
         ET.SubElement(self.name, "first").text = "A"
         self.expect[3] = "FN:A Lastname"
         self.expect[4] = "N:Lastname;A;;;"
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(25) + "A".ljust(30)
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_name_honprefix(self):
         ET.SubElement(self.name, "title").text = "Sir"
         self.expect[3] = "FN:Sir Lastname"
         self.expect[4] = "N:Lastname;;;Sir;"
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(55)
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_name_honsuffix(self):
         ET.SubElement(self.name, "suffix").text = "Jr."
         self.expect[3] = "FN:Lastname\, Jr."
         self.expect[4] = "N:Lastname;;;;Jr."
         self.expect[5] = "SORT-STRING:" + "Lastname".ljust(55)+ "Jr."
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
 
     def test_nicknames_regular(self):
@@ -182,7 +182,7 @@ class VCardCheck(unittest.TestCase):
         name = ET.SubElement(self.person, "name", attrib=attribs)
         ET.SubElement(name, 'nick').text = 'N.'
         self.expect.insert(6, "NICKNAME:Nick,N.")
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_nicknames_primary_nick(self):
         ET.SubElement(self.name, 'nick').text = 'Nick'
@@ -190,7 +190,7 @@ class VCardCheck(unittest.TestCase):
         name = ET.SubElement(self.person, "name", attrib=attribs)
         ET.SubElement(name, 'nick').text = 'N.'
         self.expect.insert(6, "NICKNAME:Nick,N.")
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
     
     def test_write_birthdate_regular(self):
         events = ET.Element('events')
@@ -202,7 +202,7 @@ class VCardCheck(unittest.TestCase):
         attribs = {'hlink': '_e0000', 'role': 'Primary'}
         ET.SubElement(self.person, 'eventref', attrib=attribs)
         self.expect.insert(6, "BDAY:2001-02-28")
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_birthdate_empty(self):
         events = ET.Element('events')
@@ -212,7 +212,7 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(event, 'type').text = 'Birth'
         attribs = {'hlink': '_e0000', 'role': 'Primary'}
         ET.SubElement(self.person, 'eventref', attrib=attribs)
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_birhtdate_textonly(self):
         events = ET.Element('events')
@@ -223,7 +223,7 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(event, 'dateval', val='Christmas 2001')
         attribs = {'hlink': '_e0000', 'role': 'Primary'}
         ET.SubElement(self.person, 'eventref', attrib=attribs)
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_birthdate_span(self):
         events = ET.Element('events')
@@ -235,7 +235,7 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(event, 'datespan', attrib=attribs)
         attribs = {'hlink': '_e0000', 'role': 'Primary'}
         ET.SubElement(self.person, 'eventref', attrib=attribs)
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_birthdate_range(self):
         events = ET.Element('events')
@@ -247,7 +247,7 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(event, 'daterange', attrib=attribs)
         attribs = {'hlink': '_e0000', 'role': 'Primary'}
         ET.SubElement(self.person, 'eventref', attrib=attribs)
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_addresses_regular(self):
         address = ET.SubElement(self.person, 'address')
@@ -257,31 +257,31 @@ class VCardCheck(unittest.TestCase):
         ET.SubElement(address, 'state').text = 'province'
         ET.SubElement(address, 'postal').text = 'zip'
         self.expect.insert(6, "ADR:;;pobox bis street;place;province;zip;country")
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_addresses_phone(self):
         address = ET.SubElement(self.person, 'address')
         ET.SubElement(address, 'phone').text = '01234-56789'
         self.expect.insert(6, "TEL:01234-56789")
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_urls_email(self):
         attribs = {'type': 'E-mail', 'href': 'me@example.com'}
         ET.SubElement(self.person, 'url', attrib=attribs)
         self.expect.insert(6, "EMAIL:me@example.com")
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_urls_emial_mailto(self):
         attribs = {'type': 'E-mail', 'href': 'mailto:me@example.com'}
         ET.SubElement(self.person, 'url', attrib=attribs)
         self.expect.insert(6, "EMAIL:me@example.com")
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_urls_url(self):
         attribs = {'type': 'Web Home', 'href': 'http://www.example.org'}
         ET.SubElement(self.person, 'url', attrib=attribs)
         self.expect.insert(6, "URL:http://www.example.org")
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_occupation_regular(self):
         events = ET.Element('events')
@@ -293,7 +293,7 @@ class VCardCheck(unittest.TestCase):
         attribs = {'hlink': '_e0000', 'role': 'Primary'}
         ET.SubElement(self.person, 'eventref', attrib=attribs)
         self.expect.insert(6, "ROLE:carpenter")
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
     def test_write_occupation_lastdate(self):
         events = ET.Element('events')
@@ -313,7 +313,7 @@ class VCardCheck(unittest.TestCase):
         attribs = {'hlink': '_e0001', 'role': 'Primary'}
         ET.SubElement(self.person, 'eventref', attrib=attribs)
         self.expect.insert(6, "ROLE:foreman")
-        self.do_test(self.database, self.expect)
+        self.do_case(self.database, self.expect)
 
 if __name__ == "__main__":
     unittest.main()
