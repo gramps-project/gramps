@@ -1061,20 +1061,16 @@ class ToolManagedWindow(tool.Tool, ToolManagedWindowBase):
 # UpdateAddons
 #
 #-------------------------------------------------------------------------
-class UpdateAddons(ManagedWindow):
+class UpdateAddons():
 
-    def __init__(self, uistate, track, addon_update_list, parent=None):
+    def __init__(self, addon_update_list, parent_window):
         self.title = _('Available Gramps Updates for Addons')
-        ManagedWindow.__init__(self, uistate, track, self.__class__)
 
         glade = Glade("updateaddons.glade")
-        self.update_dialog = glade.toplevel
-        self.set_window(self.update_dialog, glade.get_object('title'), 
-                        self.title)
+        self.window = glade.toplevel
+        self.window.set_title(self.title)
         self.window.set_size_request(750, 400)
-
-        if win():
-            self.window.set_transient_for(parent)
+        self.window.set_transient_for(parent_window)
 
         apply_button = glade.get_object('apply')
         cancel_button = glade.get_object('cancel')
@@ -1128,11 +1124,14 @@ class UpdateAddons(ManagedWindow):
                 pos = iter
         if pos:
             self.list.selection.select_iter(pos)
-        self.update_dialog.run()
+        self.window.run()
 
-    def build_menu_names(self, obj):
-        return (self.title, "")
-    
+    def close(self, widget):
+        """
+        Close the dialog.
+        """
+        self.window.destroy()
+
     def select_all_clicked(self, widget):
         """
         Select all of the addons for download.
@@ -1151,7 +1150,7 @@ class UpdateAddons(ManagedWindow):
         """
         Process all of the selected addons.
         """
-        self.update_dialog.hide()
+        self.window.hide()
         model = self.list.model
 
         iter = model.get_iter_first()
@@ -1212,7 +1211,7 @@ class UpdateAddons(ManagedWindow):
             OkDialog(_("Done downloading and installing addons"),
                      _("No addons were installed."),
                      self.window)
-        self.close()
+        self.window.destroy()
 
 #-------------------------------------------------------------------------
 #

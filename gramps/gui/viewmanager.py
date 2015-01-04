@@ -343,12 +343,7 @@ class ViewManager(CLIManager):
         """
         Called when add-on updates are available.
         """
-        try:
-            PluginWindows.UpdateAddons(self.uistate, [], addon_update_list,
-                                                        parent=self.window)
-        except WindowActiveError:
-            pass
-
+        PluginWindows.UpdateAddons(addon_update_list, self.window)
         self.do_reg_plugins(self.dbstate, self.uistate)
 
     def _errordialog(self, title, errormessage):
