@@ -133,23 +133,25 @@ class UnicodeTest(unittest.TestCase):
 
     def setUp(self):
         from gramps.cli.clidbman import CLIDbManager
-        from gramps.gen.config import set as setconfig
+        from gramps.gen.config import set as setconfig, get as getconfig
         from gramps.gen.dbstate import DbState
         self.newpath = os.path.join(os.path.dirname(__file__),
                                     cuni('\u0393\u03c1\u03b1\u03bc\u03c3\u03c0'))
         self.newtitle = cuni('Gr\u00e4mps T\u00e9st')
         os.makedirs(self.newpath)
+        self.old_path = getconfig('behavior.database-path')
         setconfig('behavior.database-path', self.newpath)
         self.cli = CLIDbManager(DbState())
 
     def tearDown(self):
+        from gramps.gen.config import set as setconfig
         for (dirpath, dirnames, filenames) in os.walk(self.newpath, False):
             for afile in filenames:
                 os.remove(os.path.join(dirpath, afile))
             for adir in dirnames:
                 os.rmdir(os.path.join(dirpath, adir))
         os.rmdir(self.newpath)
-        pass
+        setconfig('behavior.database-path', self.old_path)
 
     # Test that clidbman will open files in a path containing
     # arbitrary Unicode characters.
