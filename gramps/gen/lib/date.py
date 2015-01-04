@@ -53,7 +53,7 @@ log = logging.getLogger(".Date")
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
-from .calendar import (gregorian_sdn, julian_sdn, hebrew_sdn, 
+from .gcalendar import (gregorian_sdn, julian_sdn, hebrew_sdn, 
                       french_sdn, persian_sdn, islamic_sdn, swedish_sdn,
                       gregorian_ymd, julian_ymd, hebrew_ymd, 
                       french_ymd, persian_ymd, islamic_ymd,

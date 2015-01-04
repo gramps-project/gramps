@@ -128,7 +128,7 @@ gramps/gen/lib/addressbase.py
 gramps/gen/lib/attrbase.py
 gramps/gen/lib/attribute.py
 gramps/gen/lib/baseobj.py
-gramps/gen/lib/calendar.py
+gramps/gen/lib/gcalendar.py
 gramps/gen/lib/childref.py
 gramps/gen/lib/citationbase.py
 gramps/gen/lib/citation.py

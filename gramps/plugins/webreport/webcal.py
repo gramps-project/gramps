@@ -33,7 +33,8 @@ Web Calendar generator.
 #------------------------------------------------------------------------
 from functools import partial
 import os, codecs, shutil, re, sys
-import datetime, calendar
+import datetime
+import calendar # Python module
 
 #------------------------------------------------------------------------
 # Set up logging

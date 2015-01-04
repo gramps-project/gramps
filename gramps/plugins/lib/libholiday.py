@@ -28,7 +28,7 @@ from __future__ import print_function
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from xml.parsers import expat
-from gramps.gen.lib.calendar import (gregorian_ymd, hebrew_sdn)
+from gramps.gen.lib.gcalendar import (gregorian_ymd, hebrew_sdn)
 import datetime
 import math
 from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
