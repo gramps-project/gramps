@@ -1344,11 +1344,7 @@ class GrampsPreferences(ConfigureDialog):
             return
 
         if len(addon_update_list) > 0:
-            try:
-                PluginWindows.UpdateAddons(self.uistate, [], addon_update_list, 
-                                                            parent=self.window)
-            except WindowActiveError:
-                pass
+            PluginWindows.UpdateAddons(addon_update_list, self.window)
         else:
             check_types = config.get('behavior.check-for-update-types')
             OkDialog(_("There are no available addons of this type"),
