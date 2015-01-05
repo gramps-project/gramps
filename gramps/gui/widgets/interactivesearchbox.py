@@ -432,7 +432,7 @@ class InteractiveSearchBox():
 
         self._search_window.move(x, y)
 
-    def search_iter(self, selection, cur_iter, text, count, n):
+    def search_iter_slow(self, selection, cur_iter, text, count, n):
         """
         Standard row-by-row search through all rows
         Should work for both List/Tree models
@@ -477,3 +477,52 @@ class InteractiveSearchBox():
         key1 = value.lower()
         key2 = text.lower()
         return key1.startswith(key2)
+
+    def search_iter(self, selection, cur_iter, text, count, n):
+        model = self._treeview.get_model()
+        is_listonly = (model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY)
+        if is_listonly and hasattr(model, "node_map"):
+            return self.search_iter_sorted_column_flat(selection, cur_iter,
+                                                       text, count, n)
+        else:
+            return self.search_iter_slow(selection, cur_iter, text, count, n)
+
+    def search_iter_sorted_column_flat(self, selection, cur_iter, text,
+                                       count, n):
+        """
+        Search among the currently set search-column for a cell starting with
+        text
+        It assumes that this column is currently sorted, and as 
+        a LIST_ONLY view it therefore contains index2hndl = model.node_map._index2hndl
+        which is a _sorted_ list of (sortkey, handle) tuples
+        """
+        model = self._treeview.get_model()
+        search_column = self._treeview.get_search_column()
+        is_tree = not (model.get_flags() & Gtk.TreeModelFlags.LIST_ONLY)
+
+        # If there is a sort_key index, let's use it
+        if not is_tree and hasattr(model, "node_map"):
+            import bisect
+            index2hndl = model.node_map._index2hndl
+
+            # create lookup key from the appropriate sort_func
+            # TODO: explicitely announce the data->sortkey func in models
+            # sort_key = model.sort_func(text)
+            sort_key = glocale.sort_key(text.lower())
+            srtkey_hndl = (sort_key, None)
+            lo_bound = 0  # model.get_path(cur_iter)
+            found_index = bisect.bisect_left(index2hndl, srtkey_hndl, lo=lo_bound)
+            # if insert position is at tail, no match
+            if found_index == len(index2hndl):
+                return False
+            srt_key, hndl = index2hndl[found_index]
+            # Check if insert position match for real
+            # (as insert position might not start with the text)
+            if not model[found_index][search_column].lower().startswith(text.lower()):
+                return False
+            found_path = Gtk.TreePath((model.node_map.real_path(found_index),))
+            self._treeview.scroll_to_cell(found_path, None, 1, 0.5, 0)
+            selection.select_path(found_path)
+            self._treeview.set_cursor(found_path)
+            return True
+        return False
