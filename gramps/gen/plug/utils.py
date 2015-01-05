@@ -279,14 +279,14 @@ def load_addon_file(path, callback=None):
         except:
             if callback:
                 callback(_("Unable to open '%s'") % path)
-            return
+            return False
     else:
         try:
             fp = open(path)
         except:
             if callback:
                 callback(_("Unable to open '%s'") % path)
-            return
+            return False
     try:
         content = fp.read()
         if sys.version_info[0] < 3:
@@ -296,7 +296,7 @@ def load_addon_file(path, callback=None):
     except:
         if callback:
             callback(_("Error in reading '%s'") % path)
-        return
+        return False
     fp.close()
     # file_obj is either Zipfile or TarFile
     if path.endswith(".zip") or path.endswith(".ZIP"):
@@ -307,11 +307,11 @@ def load_addon_file(path, callback=None):
         except:
             if callback:
                 callback(_("Error: cannot open '%s'") % path)
-            return 
+            return False
     else:
         if callback:
             callback(_("Error: unknown file type: '%s'") % path)
-        return 
+        return False
     # First, see what versions we have/are getting:
     good_gpr = set()
     for gpr_file in [name for name in file_obj.getnames() if name.endswith(".gpr.py")]:
@@ -359,9 +359,16 @@ def load_addon_file(path, callback=None):
                     s.remove(gpr_file)
                 if callback:
                     callback("   " + (_("Error: missing gramps_target_version in '%s'...") % gpr_file)  + "\n")
+    registered_count = 0
     if len(good_gpr) > 0:
         # Now, install the ok ones
-        file_obj.extractall(USER_PLUGINS)
+        try:
+            file_obj.extractall(USER_PLUGINS)
+        except OSError:
+            if callback:
+                callback("OSError installing '%s', skipped!" % path)
+            file_obj.close()
+            return False
         if callback:
             callback((_("Installing '%s'...") % path) + "\n")
         gpr_files = set([os.path.split(os.path.join(USER_PLUGINS, name))[0]
@@ -370,7 +377,12 @@ def load_addon_file(path, callback=None):
             u_gpr_file = conv_to_unicode(gpr_file)
             if callback:
                 callback("   " + (_("Registered '%s'") % u_gpr_file) + "\n")
+            registered_count += 1
     file_obj.close()
+    if registered_count:
+        return True
+    else:
+        return False
 
 #-------------------------------------------------------------------------
 #

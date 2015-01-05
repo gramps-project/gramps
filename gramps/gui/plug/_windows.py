@@ -395,6 +395,7 @@ class PluginStatus(ManagedWindow):
         from ..utils import ProgressMeter
         pm = ProgressMeter(_("Install all Addons"), _("Installing..."), message_area=True)
         pm.set_pass(total=len(self.addon_model))
+        errors = []
         for row in self.addon_model:
             pm.step()
             (help_name, name, ptype, image, desc, use, rating, contact, 
@@ -1181,6 +1182,7 @@ class UpdateAddons(ManagedWindow):
             config.get('behavior.previously-seen-updates')[:] = []
 
         iter = model.get_iter_first()
+        errors = []
         while iter:
             for rowcnt in range(model.iter_n_children(iter)):
                 child = model.iter_nth_child(iter, rowcnt)
@@ -1188,8 +1190,11 @@ class UpdateAddons(ManagedWindow):
                 if longop.should_cancel():
                     break
                 elif row[0]: # toggle on
-                    load_addon_file(row[4], callback=LOG.debug)
-                    count += 1
+                    ok = load_addon_file(row[4], callback=LOG.debug)
+                    if ok:
+                        count += 1
+                    else:
+                        errors.append(row[2])
                 else: # add to list of previously seen, but not installed
                     if row[5] not in config.get('behavior.previously-seen-updates'):
                         config.get('behavior.previously-seen-updates').append(row[5])
@@ -1199,6 +1204,10 @@ class UpdateAddons(ManagedWindow):
 
         if not longop.was_cancelled():
             longop.end()
+        if errors:
+            OkDialog(_("Installation Errors"),
+                     _("The following addons had errors: ") +
+                     ", ".join(errors))
         if count:
             OkDialog(_("Done downloading and installing addons"),
                      # translators: leave all/any {...} untranslated
