@@ -35,6 +35,7 @@ from gi.repository import Pango
 from ..managedwindow import ManagedWindow
 from ..filters import SearchBar
 from ..glade import Glade
+from ..widgets.interactivesearchbox import InteractiveSearchBox
 
 #-------------------------------------------------------------------------
 #
@@ -85,6 +86,10 @@ class BaseSelector(ManagedWindow):
         self.tree.set_headers_clickable(True)
         self.tree.connect('row-activated', self._on_row_activated)
         self.tree.grab_focus()
+
+        # connect to signal for custom interactive-search
+        self.searchbox = InteractiveSearchBox(self.tree)
+        self.tree.connect('key-press-event', self.searchbox.treeview_keypress)
 
         #add the search bar
         self.search_bar = SearchBar(dbstate, uistate, self.build_tree)

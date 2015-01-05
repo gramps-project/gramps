@@ -200,7 +200,7 @@ class FlatNodeMap(object):
         else:
             self.__corr = (0, 1)
         if not self._hndl2index:
-            self._hndl2index = dict([key[1], index]
+            self._hndl2index = dict((key[1], index)
                 for index, key in enumerate(self._index2hndl))
     
     def real_path(self, index):
@@ -234,7 +234,7 @@ class FlatNodeMap(object):
         
         :param handle: the key of the object for which the path in the treeview
                         is needed
-        :param type: an object handle
+        :type handle: an object handle
         :Returns: the path, or None if handle does not link to a path
         """
         index = iter.user_data
@@ -252,7 +252,7 @@ class FlatNodeMap(object):
         
         :param handle: the key of the object for which the path in the treeview
                         is needed
-        :param type: an object handle
+        :type handle: an object handle
         :Returns: the path, or None if handle does not link to a path
         """
         index = self._hndl2index.get(handle)
@@ -267,7 +267,7 @@ class FlatNodeMap(object):
         
         :param handle: the key of the object for which the sortkey
                         is needed
-        :param type: an object handle
+        :type handle: an object handle
         :Returns: the sortkey, or None if handle is not present
         """
         index = self._hndl2index.get(handle)
@@ -317,19 +317,15 @@ class FlatNodeMap(object):
         if not isinstance(handle, UNITYPE):
             handle = handle.decode('utf-8')
         return handle
-    
-    def find_next_handle(self, iter):
+
+    def iter_next(self, iter):
         """
-        Finds the next handle based off the passed handle. This is accomplished
-        by finding the index associated with the iter, adding or substracting
-        one to find the next index, then finding the handle associated with 
-        that.
+        Increments the iter y finding the index associated with the iter,
+        adding or substracting one.
         False is returned if no next handle
-        True, handle tuple otherwise
         
-        :param handle: the key of the object for which the next handle shown
-                        in the treeview is needed
-        :param type: an object handle
+        :param iter: Gtk.TreeModel iterator
+        :param type: Gtk.TreeIter
         """
         index = iter.user_data
         if index is None:
@@ -346,11 +342,10 @@ class FlatNodeMap(object):
                 return False
         else:
             index += 1
-
-        try:
-            return True, self._index2hndl[index][1]
-        except IndexError:
-            return False
+            if index >= len(self._index2hndl):
+                return False
+        iter.user_data = index
+        return True
     
     def get_first_iter(self):
         """
@@ -381,6 +376,7 @@ class FlatNodeMap(object):
         Returns the path of the inserted row
         
         :param srtkey_hndl: the (sortkey, handle) tuple that must be inserted
+        :type srtkey_hndl: sortkey key already transformed by self.sort_func, object handle
         
         :Returns: path of the row inserted in the treeview
         :Returns type: Gtk.TreePath or None
@@ -397,14 +393,8 @@ class FlatNodeMap(object):
         insert_pos = bisect.bisect_left(self._index2hndl, srtkey_hndl)
         self._index2hndl.insert(insert_pos, srtkey_hndl)
         #make sure the index map is updated
-        if sys.version_info[0] < 3: # keep this, for speed in Python2
-            for hndl, index in self._hndl2index.iteritems(): # in Python2 "if"
-                if index >= insert_pos:
-                    self._hndl2index[hndl] += 1
-        else:
-            for hndl, index in self._hndl2index.items():
-                if index >= insert_pos:
-                    self._hndl2index[hndl] += 1
+        for srt_key,hndl in self._index2hndl[insert_pos+1:]:
+            self._hndl2index[hndl] += 1
         self._hndl2index[srtkey_hndl[1]] = insert_pos
         #update self.__corr so it remains correct
         if self._reverse:
@@ -446,14 +436,8 @@ class FlatNodeMap(object):
         if self._reverse:
             self.__corr = (len(self._index2hndl) - 1, -1)
         #update the handle2path map so it remains correct
-        if sys.version_info[0] < 3: # keep this, for speed in Python2
-            for key, val in self._hndl2index.iteritems(): # in Python2 "if"
-                if val > index:
-                    self._hndl2index[key] -= 1
-        else:
-            for key, val in self._hndl2index.items():
-                if val > index:
-                    self._hndl2index[key] -= 1
+        for srt_key,hndl in self._index2hndl[index:]:
+            self._hndl2index[hndl] -= 1
         return Gtk.TreePath((delpath,))
 
 #-------------------------------------------------------------------------
@@ -491,6 +475,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
             col = self.sort_map[scol][1]
         else:
             col = scol
+        # get the function that maps data to sort_keys
         self.sort_func = lambda x: glocale.sort_key(self.smap[col](x))
         self.sort_col = scol
         self.skip = skip
@@ -592,7 +577,9 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
             #loop over database and store the sort field, and the handle
-            return sorted((self.sort_func(data), key) for key, data in cursor)
+            srt_keys=[(self.sort_func(data), key) for key, data in cursor]
+            srt_keys.sort()
+            return srt_keys
 
     def _rebuild_search(self, ignore=None):
         """ function called when view must be build, given a search text
@@ -722,15 +709,15 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         Get the gramps handle for an iter.
         """
-        ud = iter.user_data
-        if ud is None:
+        index = iter.user_data
+        if index is None:
             ##GTK3: user data may only be an integer, we store the index
             ##PROBLEM: pygobject 3.8 stores 0 as None, we need to correct
             ##        when using user_data for that!
             ##upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=698366
-            ud = 0
-        index = self.node_map.real_index(ud)
-        return self.node_map.get_handle(index)
+            index = 0
+        path = self.node_map.real_path(index)
+        return self.node_map.get_handle(path)
 
     # The following implement the public interface of Gtk.TreeModel
 
@@ -806,14 +793,14 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         col is the model column that is needed, not the visible column!
         """
         #print ('do_get_val', iter, iter.user_data, col)
-        ud = iter.user_data
-        if ud is None:
+        index = iter.user_data
+        if index is None:
             ##GTK3: user data may only be an integer, we store the index
             ##PROBLEM: pygobject 3.8 stores 0 as None, we need to correct
             ##        when using user_data for that!
             ##upstream bug: https://bugzilla.gnome.org/show_bug.cgi?id=698366
-            ud = 0
-        handle = self.node_map._index2hndl[ud][1]
+            index = 0
+        handle = self.node_map._index2hndl[index][1]
         val = self._get_value(handle, col)
         #print 'val is', val, type(val)
 
@@ -833,13 +820,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         Sets iter to the next node at this level of the tree
         See Gtk.TreeModel
         """
-        #print 'do_iter_next', iter, iter.user_data
-        handle = self.node_map.find_next_handle(iter)
-        if handle:
-            iter.user_data = self.node_map._hndl2index[handle[1]]
-            return True
-        else:
-            return False
+        return self.node_map.iter_next(iter)
 
     def do_iter_children(self, iterparent):
         """
@@ -883,7 +864,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         #print 'do_iter_nth_child', iter, nth
         if iter == None:
             return True, self.node_map.get_iter(nth)
-        return False
+        return False, None
 
     def do_iter_parent(self, iter):
         """
@@ -891,4 +872,4 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         See Gtk.TreeModel
         """
         #print 'do_iter_parent'
-        return False
+        return False, None
