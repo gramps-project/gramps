@@ -1310,7 +1310,8 @@ class GedcomWriter(UpdateCallback):
             note_list = [ n.handle for n in note_list 
                           if n and n.get_type() != NoteType.SOURCE_TEXT]
             self._note_references(note_list, level+1)
-            self._photos(citation.get_media_list(), level+1)
+            
+        self._photos(citation.get_media_list(), level+1)
         
         even = None
         for srcattr in citation.get_attribute_list():
