@@ -1305,7 +1305,8 @@ class GedcomWriter(UpdateCallback):
             note_list = [ n.handle for n in note_list 
                           if n and n.get_type() != gen.lib.NoteType.SOURCE_TEXT]
             self.__note_references(note_list, level+1)
-            self.__photos(citation.get_media_list(), level+1)
+
+        self.__photos(citation.get_media_list(), level+1)
             
         if "EVEN" in citation.get_data_map().keys():
             self.__writeln(level+1, "EVEN", citation.get_data_map()["EVEN"])
