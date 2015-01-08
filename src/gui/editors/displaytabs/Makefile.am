@@ -31,6 +31,7 @@ pkgpython_PYTHON = \
 	locationembedlist.py \
 	locationmodel.py \
 	mediabackreflist.py \
+	mediaattrembedlist.py \
 	nameembedlist.py \
 	namemodel.py \
 	notebackreflist.py \

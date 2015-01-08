@@ -86,7 +86,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n' +
             '<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" ' +
             '"http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">\n' +
-            '<svg width="%5.2fcm" height="%5.2fcm" '
+            '<svg width="%4.2fcm" height="%4.2fcm" '
                 % (self.paper.get_size().get_width(),
                         self.paper.get_size().get_height()) +
             'xmlns="http://www.w3.org/2000/svg">\n'
@@ -120,7 +120,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             self.t.write('font-weight:bold;')
         if font.get_italic():
             self.t.write('font-style:italic;')
-        self.t.write('font-size:%d; ' % size)
+        self.t.write('font-size:%dpt; ' % size)
         if font.get_type_face() == FONT_SANS_SERIF:
             self.t.write('font-family:sans-serif;')
         else:
@@ -193,12 +193,13 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
 
         style_sheet = self.get_style_sheet()
         box_style = style_sheet.get_draw_style(style)
+        shadow_width = box_style.get_shadow_space()
 
-        if box_style.get_shadow():
+        if box_style.get_shadow() and shadow_width > 0:
             self.f.write(
                 '<rect ' +
-                'x="%4.2fcm" ' % (x+0.15) +
-                'y="%4.2fcm" ' % (y+0.15) +
+                'x="%4.2fcm" ' % (x + shadow_width) +
+                'y="%4.2fcm" ' % (y + shadow_width) +
                 'width="%4.2fcm" ' % w +
                 'height="%4.2fcm" ' % h +
                 'style="fill:#808080; stroke:#808080; stroke-width:1;"/>\n'
@@ -241,7 +242,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
                     self.t.write(' font-weight:bold;')
                 if font.get_italic():
                     self.t.write(' font-style:italic;')
-                self.t.write(' font-size:%d;' % font_size)
+                self.t.write(' font-size:%dpt;' % font_size)
                 if font.get_type_face() == FONT_SANS_SERIF:
                     self.t.write(' font-family:sans-serif;')
                 else:
@@ -274,7 +275,7 @@ class SvgDrawDoc(BaseDoc, DrawDoc):
             self.t.write('font-weight:bold;')
         if font.get_italic():
             self.t.write('font-style:italic;')
-        self.t.write('font-size:%d; ' % font_size)
+        self.t.write('font-size:%dpt; ' % font_size)
         if font.get_type_face() == FONT_SANS_SERIF:
             self.t.write('font-family:sans-serif;')
         else:
