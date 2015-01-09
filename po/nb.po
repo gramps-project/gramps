@@ -9387,7 +9387,7 @@ msgstr "Mannlig kjønn levende"
 
 #: ../gramps/gui/configure.py:556
 msgid "Border Male Alive"
-msgstr ""
+msgstr "Kant mann levende"
 
 #: ../gramps/gui/configure.py:558
 msgid "Gender Male Death"
@@ -9395,7 +9395,7 @@ msgstr "Død mannsperson"
 
 #: ../gramps/gui/configure.py:560
 msgid "Border Male Death"
-msgstr ""
+msgstr "Kant mann død"
 
 #: ../gramps/gui/configure.py:562
 msgid "Gender Female Alive"
@@ -9403,7 +9403,7 @@ msgstr "Levende kvinneperson"
 
 #: ../gramps/gui/configure.py:564
 msgid "Border Female Alive"
-msgstr ""
+msgstr "Kant kvinne levende"
 
 #: ../gramps/gui/configure.py:566
 msgid "Gender Female Death"
@@ -9411,7 +9411,7 @@ msgstr "Død kvinneperson"
 
 #: ../gramps/gui/configure.py:568
 msgid "Border Female Death"
-msgstr ""
+msgstr "Kant kvinne død"
 
 #. #        self.add_color(table, _('Gender Other Alive'), 5,
 #. #                        'preferences.color-gender-other-alive')
@@ -9427,7 +9427,7 @@ msgstr "Levende ukjent kjønn"
 
 #: ../gramps/gui/configure.py:580
 msgid "Border Unknown Alive"
-msgstr ""
+msgstr "Kant ukjent levende"
 
 #: ../gramps/gui/configure.py:582
 msgid "Gender Unknown Death"
@@ -9435,7 +9435,7 @@ msgstr "Død ukjent kjønn"
 
 #: ../gramps/gui/configure.py:584
 msgid "Border Unknown Death"
-msgstr ""
+msgstr "Kant ukjent død"
 
 #: ../gramps/gui/configure.py:586
 msgid "Colors"
@@ -12283,7 +12283,14 @@ msgid ""
 "parentheses to group expressions. Specify alternatives using a vertical bar. "
 "A caret will match the start of a line. A dollar sign will match the end of a "
 "line."
-msgstr ""
+msgstr "Tolk innholdet i tekstfelt som regulære uttrykk.\n"
+"Et desimalpunktum vil samsvare med ethvert tegn. Et spørsmålstegn "
+"vil samsvare med null eller ett av de foregående tegn eller gruppe. "
+"Asterisk (stjerne) vil samsvare med null eller flere forekomster. "
+"Et plusstegn vil samsvare med en eller flere forekomster. Bruk "
+"paranteser for å gruppere uttrykk. Spesifiser alternativer ved å bruke "
+"en vertikal strek (stolpe). Innsettingstegn (hatt) vil samsvare med "
+"starten på ei linje. Dollartegn vil samsvare med slutten av ei linje."
 
 #: ../gramps/gui/editors/filtereditor.py:625
 msgid "Rule Name"
@@ -12393,11 +12400,11 @@ msgstr "Fjern sted"
 
 #: ../gramps/gui/editors/objectentries.py:324
 msgid "First add a source using the buttons"
-msgstr ""
+msgstr "Legg først til en kilde ved å bruke knappene"
 
 #: ../gramps/gui/editors/objectentries.py:325
 msgid "First add a source using the button"
-msgstr ""
+msgstr "Legg først til en kilde ved å bruke knappen"
 
 #: ../gramps/gui/editors/objectentries.py:326
 msgid "Edit source"
@@ -12718,7 +12725,7 @@ msgstr "Ny"
 
 #: ../gramps/gui/glade/dbman.glade:372
 msgid "_Copy"
-msgstr ""
+msgstr "_Kopier"
 
 #: ../gramps/gui/glade/dbman.glade:419
 #: ../gramps/gui/glade/grampletpane.glade:132
@@ -13853,11 +13860,11 @@ msgstr "En unik ID for å identifisere stedet"
 #: ../gramps/gui/glade/mergeplace.glade:618
 #: ../gramps/gui/glade/mergeplace.glade:637
 msgid "Code:"
-msgstr ""
+msgstr "Kode"
 
 #: ../gramps/gui/glade/editplace.glade:240
 msgid "Code associated with this place. Eg Country Code or Postal Code."
-msgstr ""
+msgstr "Kode som henger sammen med dette steder, f.eks. postnummer."
 
 #: ../gramps/gui/glade/editplace.glade:343
 msgid "The name of this place."
@@ -16395,12 +16402,13 @@ msgstr "På"
 msgid ""
 "You have no installed dictionaries. Either install one or disable spell "
 "checking"
-msgstr ""
+msgstr "Du har ikke installert noen ordbøker. Du må enten installere en eller "
+"skru av stavekontrollen"
 
 #: ../gramps/gui/spell.py:147
 #, python-format
 msgid "Spelling checker initialization failed: %s"
-msgstr ""
+msgstr "Initialisering av stavekontroll feilet: %s"
 
 #: ../gramps/gui/tipofday.py:68 ../gramps/gui/tipofday.py:69
 #: ../gramps/gui/tipofday.py:120 ../gramps/gui/viewmanager.py:508
@@ -17887,12 +17895,12 @@ msgstr ""
 #: ../gramps/plugins/drawreport/ancestortree.py:1012
 #: ../gramps/plugins/drawreport/descendtree.py:1626
 msgid "inter-box Y scale factor"
-msgstr ""
+msgstr "Y-skaleringsfaktor for den indre boksen"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1014
 #: ../gramps/plugins/drawreport/descendtree.py:1628
 msgid "Make the inter-box Y bigger or smaller"
-msgstr ""
+msgstr "Gjør den indre boksen Y større eller mindre"
 
 #: ../gramps/plugins/drawreport/ancestortree.py:1017
 #: ../gramps/plugins/drawreport/descendtree.py:1631
@@ -22005,7 +22013,7 @@ msgstr "Import av VCards versjon %s er ikke støttet av Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:483
 msgid "Invalid date {date} in BDAY {vcard_snippet}, preserving date as text."
-msgstr ""
+msgstr "Ugyldig dato {date} i BDAY {vcard_snippet}, håndterer dato som tekst."
 
 #: ../gramps/plugins/importer/importvcard.py:491
 msgid ""
@@ -22339,7 +22347,7 @@ msgstr "Alle referanser til notater må ha en 'hlink'-egenskap."
 #. but you may re-order them if needed.
 #: ../gramps/plugins/importer/importxml.py:2498
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
-msgstr ""
+msgstr "Ugyldig dato {date} i XML {xml}, håndterer dato som tekst"
 
 #: ../gramps/plugins/importer/importxml.py:2548
 #, python-format
@@ -22560,7 +22568,8 @@ msgstr "ukrainsk"
 msgid ""
 "Mismatch between selected extension %(ext)s and actual format.\n"
 " Writing to %(filename)s in format %(impliedext)s."
-msgstr ""
+msgstr "Ikke samsvar mellom valgt filendelse %(ext)s og faktisk format.\n"
+" Skriver til %(filename)s i format %(impliedext)s."
 
 #: ../gramps/plugins/lib/libgedcom.py:1807
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
@@ -26272,7 +26281,7 @@ msgstr ""
 #: ../gramps/plugins/lib/libplaceview.py:95
 #: ../gramps/plugins/view/placetreeview.py:71
 msgid "Code"
-msgstr ""
+msgstr "Kode"
 
 #: ../gramps/plugins/lib/libplaceview.py:110
 msgid "Edit the selected place"
@@ -26367,7 +26376,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:420
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr ""
+msgstr "Sammensmelting av disse stedene ville laget en sirkelkobling i stedshierarkiet."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:30
 msgid "Provides a library for using Cairo to generate documents."
@@ -26375,11 +26384,11 @@ msgstr "Tilbyr et bibliotek for å bruke Cairo for å lage dokumenter."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:49
 msgid "Provides GEDCOM processing functionality"
-msgstr "Tilbyt funksjonalitet for å lese GEDCOM-filer"
+msgstr "Tilbyr funksjonalitet for å lese GEDCOM-filer"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:66
 msgid "Provides recursive routines for reports"
-msgstr ""
+msgstr "Tilbyr rekursive rutiner for rapporter"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:83
 msgid "Provides common functionality for Gramps XML import/export."
@@ -26565,7 +26574,7 @@ msgstr "Erstatte '%(map)s' med =>"
 #: ../gramps/plugins/lib/maps/geography.py:367
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr ""
+msgstr "Tøm mellomlager for '%(map)s' fliser."
 
 #: ../gramps/plugins/lib/maps/geography.py:823
 #: ../gramps/plugins/view/geoclose.py:530
@@ -27565,7 +27574,7 @@ msgstr "Utvid sidestolpe"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:61
 msgid "Selection of views from lists with expanders"
-msgstr ""
+msgstr "Utvalg av visninger fra lister med ekspandering"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:69
 msgid "Expander"
@@ -27915,7 +27924,7 @@ msgstr "%(event_name)s: %(event_text)s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:458
 #: ../gramps/plugins/textreport/familygroup.py:122
 msgid "; "
-msgstr ""
+msgstr "; "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:544
 #: ../gramps/plugins/textreport/detdescendantreport.py:599
@@ -28464,7 +28473,7 @@ msgstr "Sammendrag av %s"
 #: ../gramps/plugins/textreport/indivcomplete.py:570
 #, python-format
 msgid "%s:"
-msgstr ""
+msgstr "%s:"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:576
 #: ../gramps/plugins/tool/dumpgenderstats.py:65
@@ -30393,7 +30402,7 @@ msgstr "Reorganiserer Notat-IDer"
 
 #: ../gramps/plugins/tool/reorderids.py:172
 msgid "Done."
-msgstr ""
+msgstr "Utført."
 
 #: ../gramps/plugins/tool/reorderids.py:234
 msgid "Finding and assigning unused IDs"
@@ -30681,7 +30690,7 @@ msgstr "Verktøy for å verifisere data"
 #: ../gramps/plugins/tool/verify.py:286
 #, python-format
 msgid "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
-msgstr ""
+msgstr "%(severity)s: %(msg)s, %(type)s: %(gid)s, %(name)s"
 
 #: ../gramps/plugins/tool/verify.py:459
 msgid "Data Verification Results"
@@ -31127,7 +31136,7 @@ msgstr "Aldersbasert gradient (0-100)"
 #: ../gramps/plugins/view/fanchartdescview.py:286
 #: ../gramps/plugins/view/fanchartview.py:284
 msgid "Single main (filter) color"
-msgstr ""
+msgstr "Enkelt hovedfarge (filter)"
 
 #: ../gramps/plugins/view/fanchartdescview.py:287
 #: ../gramps/plugins/view/fanchartview.py:285
@@ -31264,7 +31273,7 @@ msgstr "referanse_person"
 
 #: ../gramps/plugins/view/geoclose.py:286
 msgid "Select the person which is the reference for life ways"
-msgstr ""
+msgstr "Velg personen som er referansen for leveveier"
 
 #: ../gramps/plugins/view/geoclose.py:301
 msgid "Select the person which will be our reference."
@@ -31372,7 +31381,7 @@ msgstr "Referanse_familie"
 
 #: ../gramps/plugins/view/geofamclose.py:276
 msgid "Select the family which is the reference for life ways"
-msgstr ""
+msgstr "Velg den familien som er referansen for leveveier"
 
 #: ../gramps/plugins/view/geofamclose.py:554
 #: ../gramps/plugins/view/geofamily.py:324
@@ -31544,7 +31553,7 @@ msgstr "Tid i millisekunder mellom opptegning av to generasjoner.\n"
 
 #: ../gramps/plugins/view/geomoves.py:653
 msgid "The parameters for moves"
-msgstr ""
+msgstr "Parametrene for flyttinger"
 
 #: ../gramps/plugins/view/geoperson.py:148
 msgid "Person places map"
@@ -32598,7 +32607,11 @@ msgid ""
 "place name. The markers and the Reference list are sorted in date order (if "
 "any?). Clicking on a place&#8217;s name in the Reference section will take "
 "you to that place&#8217;s page."
-msgstr ""
+msgstr "Denne kartsiden representerer den personen og alle etterkommere med "
+"alle sine hendelser/ steder. Hvis du holder musepekeren over markøren vil "
+"stedsnavnet vises. Markeringene og referanselista er sortert etter dato "
+"(hvis dato er registrert). Ved å klikke på stedsnavnet i referansedelen vil "
+"du bli tatt til stedets side"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:5739
 msgid "Drop Markers"
@@ -32966,7 +32979,9 @@ msgid ""
 "This option allows you to create only thumbnail images instead of the "
 "full-sized images on the Media Page. This will allow you to have a much "
 "smaller total upload size to your web hosting site."
-msgstr ""
+msgstr "Denne opsjonen gir deg mulighet til å bare lage småbilder istedet "
+"for bilder i full størrelse på Mediasidene. Dette gjør at det tar mye "
+"mindre plass på nettsiden din og opplastingen går mye fortere."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8142
 msgid "Max width of initial image"
