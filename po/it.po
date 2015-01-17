@@ -111,8 +111,8 @@ msgstr ""
 "Gestisce informazioni genealogiche, effettua ricerche ed analisi genealogiche"
 
 #: ../data/gramps.desktop.in.h:5
-msgid "Genealogy;Family History;Research;Family Tree;GEDCOM"
-msgstr "Genealogia;Storia della famiglia;Ricerca;Albero genealogico;GEDCOM"
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
+msgstr "Genealogia;Storia della famiglia;Ricerca;Albero genealogico;GEDCOM;"
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
 msgid "Gramps database"

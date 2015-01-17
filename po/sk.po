@@ -48,8 +48,8 @@ msgid "Manage genealogical information, perform genealogical research and analys
 msgstr "Spravuje genealogické informácie, vykonáva genealogické skúmania a analýzy"
 
 #: ../data/gramps.desktop.in.h:5
-msgid "Genealogy;Family History;Research;Family Tree;GEDCOM"
-msgstr "Genealógia;Rodinná história;Výskum;Rodinný strom;GEDCOM"
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
+msgstr "Genealógia;Rodinná história;Výskum;Rodinný strom;GEDCOM;"
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
 msgid "Gramps database"
