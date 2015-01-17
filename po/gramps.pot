@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-11 19:40-0800\n"
+"POT-Creation-Date: 2015-01-17 16:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,7 +55,7 @@ msgid ""
 msgstr ""
 
 #: ../data/gramps.desktop.in.h:5
-msgid "Genealogy;Family History;Research;Family Tree;GEDCOM"
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr ""
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
@@ -688,7 +688,7 @@ msgstr ""
 #: ../gramps/cli/arghandler.py:436 ../gramps/cli/arghandler.py:437
 #: ../gramps/cli/arghandler.py:439 ../gramps/cli/clidbman.py:73
 #: ../gramps/cli/clidbman.py:220 ../gramps/gui/clipboard.py:953
-#: ../gramps/gui/configure.py:1364
+#: ../gramps/gui/configure.py:1365
 msgid "Family Tree"
 msgstr ""
 
@@ -1054,7 +1054,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/relativegramplet.py:124
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:164
-#: ../gramps/plugins/graph/gvrelgraph.py:625
+#: ../gramps/plugins/graph/gvrelgraph.py:627
 #: ../gramps/plugins/lib/maps/geography.py:766
 #: ../gramps/plugins/lib/maps/geography.py:773
 #: ../gramps/plugins/lib/maps/geography.py:774
@@ -1547,22 +1547,22 @@ msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:482
+#: ../gramps/gen/datehandler/_datedisplay.py:490
 msgid "{long_month} {day:d}, {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:506
+#: ../gramps/gen/datehandler/_datedisplay.py:514
 msgid "{short_month} {day:d}, {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:530
+#: ../gramps/gen/datehandler/_datedisplay.py:538
 msgid "{day:d} {long_month} {year}"
 msgstr ""
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:554
+#: ../gramps/gen/datehandler/_datedisplay.py:562
 msgid "{day:d} {short_month} {year}"
 msgstr ""
 
@@ -3617,7 +3617,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:259
-#: ../gramps/gui/glade/mergemedia.glade:278 ../gramps/gui/viewmanager.py:1235
+#: ../gramps/gui/glade/mergemedia.glade:278 ../gramps/gui/viewmanager.py:1236
 msgid "Path:"
 msgstr ""
 
@@ -4358,7 +4358,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_isfemale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:153
 #: ../gramps/plugins/graph/gvfamilylines.py:160
-#: ../gramps/plugins/graph/gvrelgraph.py:621
+#: ../gramps/plugins/graph/gvrelgraph.py:623
 msgid "Females"
 msgstr ""
 
@@ -4419,7 +4419,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_ismale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:150
 #: ../gramps/plugins/graph/gvfamilylines.py:156
-#: ../gramps/plugins/graph/gvrelgraph.py:617
+#: ../gramps/plugins/graph/gvrelgraph.py:619
 msgid "Males"
 msgstr ""
 
@@ -5292,7 +5292,7 @@ msgstr ""
 
 #: ../gramps/gen/lib/date.py:287
 #, python-format
-msgid "less than %s years"
+msgid "greater than %s years"
 msgstr ""
 
 #: ../gramps/gen/lib/date.py:292 ../gramps/gen/lib/date.py:316
@@ -6663,14 +6663,14 @@ msgstr ""
 #: ../gramps/plugins/docgen/asciidoc.py:162
 #: ../gramps/plugins/docgen/cairodoc.py:191
 #: ../gramps/plugins/docgen/cairodoc.py:194
-#: ../gramps/plugins/docgen/odfdoc.py:1203
-#: ../gramps/plugins/docgen/odfdoc.py:1206
+#: ../gramps/plugins/docgen/odfdoc.py:1204
+#: ../gramps/plugins/docgen/odfdoc.py:1207
 #: ../gramps/plugins/docgen/rtfdoc.py:94 ../gramps/plugins/docgen/rtfdoc.py:97
 #: ../gramps/plugins/docgen/svgdrawdoc.py:92
 #: ../gramps/plugins/docgen/svgdrawdoc.py:94
 #: ../gramps/plugins/export/exportcsv.py:312
 #: ../gramps/plugins/export/exportcsv.py:316
-#: ../gramps/plugins/export/exportgedcom.py:1471
+#: ../gramps/plugins/export/exportgedcom.py:1472
 #: ../gramps/plugins/export/exportgeneweb.py:94
 #: ../gramps/plugins/export/exportgeneweb.py:98
 #: ../gramps/plugins/export/exportvcalendar.py:100
@@ -8541,7 +8541,7 @@ msgid " Name Editor"
 msgstr ""
 
 #: ../gramps/gui/configure.py:139 ../gramps/gui/configure.py:157
-#: ../gramps/gui/configure.py:1456 ../gramps/gui/views/pageview.py:610
+#: ../gramps/gui/configure.py:1457 ../gramps/gui/views/pageview.py:610
 msgid "Preferences"
 msgstr ""
 
@@ -8956,42 +8956,42 @@ msgstr ""
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1333
+#: ../gramps/gui/configure.py:1334
 msgid "There are no available addons of this type"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1334
+#: ../gramps/gui/configure.py:1335
 #, python-format
 msgid "Checked for '%s'"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1335
+#: ../gramps/gui/configure.py:1336
 msgid "' and '"
 msgstr ""
 
 #. List of translated strings used here
 #. Dead code for l10n
-#: ../gramps/gui/configure.py:1340
+#: ../gramps/gui/configure.py:1341
 msgid "new"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1340
+#: ../gramps/gui/configure.py:1341
 msgid "update"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1353
+#: ../gramps/gui/configure.py:1354
 msgid "Family Tree Database path"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1361
+#: ../gramps/gui/configure.py:1362
 msgid "Automatically load last Family Tree"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1374
+#: ../gramps/gui/configure.py:1375
 msgid "Select media directory"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1398
+#: ../gramps/gui/configure.py:1399
 msgid "Select database directory"
 msgstr ""
 
@@ -9076,7 +9076,7 @@ msgstr ""
 #: ../gramps/gui/dbloader.py:358 ../gramps/gui/dbloader.py:372
 #: ../gramps/gui/plug/report/_bookdialog.py:294
 #: ../gramps/gui/plug/report/_bookdialog.py:735
-#: ../gramps/gui/viewmanager.py:790 ../gramps/plugins/view/familyview.py:237
+#: ../gramps/gui/viewmanager.py:791 ../gramps/plugins/view/familyview.py:237
 msgid "Cancel"
 msgstr ""
 
@@ -11391,7 +11391,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1032
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1046
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1060
-#: ../gramps/plugins/graph/gvrelgraph.py:526
+#: ../gramps/plugins/graph/gvrelgraph.py:528
 #: ../gramps/plugins/quickview/quickview.gpr.py:125
 #: ../gramps/plugins/textreport/birthdayreport.py:414
 #: ../gramps/plugins/textreport/indivcomplete.py:654
@@ -14909,7 +14909,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/fanchart.py:646
 #: ../gramps/plugins/drawreport/statisticschart.py:937
 #: ../gramps/plugins/drawreport/timeline.py:402
-#: ../gramps/plugins/graph/gvrelgraph.py:522
+#: ../gramps/plugins/graph/gvrelgraph.py:524
 #: ../gramps/plugins/textreport/alphabeticalindex.py:88
 #: ../gramps/plugins/textreport/ancestorreport.py:263
 #: ../gramps/plugins/textreport/birthdayreport.py:407
@@ -15132,7 +15132,7 @@ msgid "Spelling checker initialization failed: %s"
 msgstr ""
 
 #: ../gramps/gui/tipofday.py:68 ../gramps/gui/tipofday.py:69
-#: ../gramps/gui/tipofday.py:120 ../gramps/gui/viewmanager.py:508
+#: ../gramps/gui/tipofday.py:120 ../gramps/gui/viewmanager.py:509
 msgid "Tip of the Day"
 msgstr ""
 
@@ -15213,258 +15213,258 @@ msgstr ""
 msgid "Cannot open new citation editor"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:462
+#: ../gramps/gui/viewmanager.py:463
 msgid "Connect to a recent database"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:480
+#: ../gramps/gui/viewmanager.py:481
 msgid "_Family Trees"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:481
+#: ../gramps/gui/viewmanager.py:482
 msgid "_Manage Family Trees..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:482
+#: ../gramps/gui/viewmanager.py:483
 msgid "Manage databases"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:483
+#: ../gramps/gui/viewmanager.py:484
 msgid "Open _Recent"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:484
+#: ../gramps/gui/viewmanager.py:485
 msgid "Open an existing database"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:485
+#: ../gramps/gui/viewmanager.py:486
 msgid "_Quit"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:487
+#: ../gramps/gui/viewmanager.py:488
 msgid "_View"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:488
+#: ../gramps/gui/viewmanager.py:489
 msgid "_Edit"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:489
+#: ../gramps/gui/viewmanager.py:490
 msgid "_Preferences..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:491
+#: ../gramps/gui/viewmanager.py:492
 msgid "_Help"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:492
+#: ../gramps/gui/viewmanager.py:493
 msgid "Gramps _Home Page"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:494
+#: ../gramps/gui/viewmanager.py:495
 msgid "Gramps _Mailing Lists"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:496
+#: ../gramps/gui/viewmanager.py:497
 msgid "_Report a Bug"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:498
+#: ../gramps/gui/viewmanager.py:499
 msgid "_Extra Reports/Tools"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:500
+#: ../gramps/gui/viewmanager.py:501
 msgid "_About"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:502
+#: ../gramps/gui/viewmanager.py:503
 msgid "_Plugin Manager"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:504
+#: ../gramps/gui/viewmanager.py:505
 msgid "_FAQ"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:505
+#: ../gramps/gui/viewmanager.py:506
 msgid "_Key Bindings"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:506
+#: ../gramps/gui/viewmanager.py:507
 msgid "_User Manual"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:513
+#: ../gramps/gui/viewmanager.py:514
 msgid "_Export..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:515
+#: ../gramps/gui/viewmanager.py:516
 msgid "Make Backup..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:516
+#: ../gramps/gui/viewmanager.py:517
 msgid "Make a Gramps XML backup of the database"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:518
+#: ../gramps/gui/viewmanager.py:519
 msgid "_Abandon Changes and Quit"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:519 ../gramps/gui/viewmanager.py:522
+#: ../gramps/gui/viewmanager.py:520 ../gramps/gui/viewmanager.py:523
 msgid "_Reports"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:520
+#: ../gramps/gui/viewmanager.py:521
 msgid "Open the reports dialog"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:521
+#: ../gramps/gui/viewmanager.py:522
 msgid "_Go"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:523
+#: ../gramps/gui/viewmanager.py:524
 msgid "Books..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:524
+#: ../gramps/gui/viewmanager.py:525
 msgid "_Windows"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:561
+#: ../gramps/gui/viewmanager.py:562
 msgid "Clip_board"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:562
+#: ../gramps/gui/viewmanager.py:563
 msgid "Open the Clipboard dialog"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:563
+#: ../gramps/gui/viewmanager.py:564
 msgid "_Import..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:565 ../gramps/gui/viewmanager.py:568
+#: ../gramps/gui/viewmanager.py:566 ../gramps/gui/viewmanager.py:569
 msgid "_Tools"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:566
+#: ../gramps/gui/viewmanager.py:567
 msgid "Open the tools dialog"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:567
+#: ../gramps/gui/viewmanager.py:568
 msgid "_Bookmarks"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:569
+#: ../gramps/gui/viewmanager.py:570
 msgid "_Configure..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:570
+#: ../gramps/gui/viewmanager.py:571
 msgid "Configure the active view"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:575
+#: ../gramps/gui/viewmanager.py:576
 msgid "_Navigator"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:577
+#: ../gramps/gui/viewmanager.py:578
 msgid "_Toolbar"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:579
+#: ../gramps/gui/viewmanager.py:580
 msgid "F_ull Screen"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:584 ../gramps/gui/viewmanager.py:1173
+#: ../gramps/gui/viewmanager.py:585 ../gramps/gui/viewmanager.py:1174
 msgid "_Undo"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:589 ../gramps/gui/viewmanager.py:1190
+#: ../gramps/gui/viewmanager.py:590 ../gramps/gui/viewmanager.py:1191
 msgid "_Redo"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:595
+#: ../gramps/gui/viewmanager.py:596
 msgid "Undo History..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:618
+#: ../gramps/gui/viewmanager.py:619
 #, python-format
 msgid "Key %s is not bound"
 msgstr ""
 
 #. load plugins
-#: ../gramps/gui/viewmanager.py:719
+#: ../gramps/gui/viewmanager.py:720
 msgid "Loading plugins..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:726 ../gramps/gui/viewmanager.py:741
+#: ../gramps/gui/viewmanager.py:727 ../gramps/gui/viewmanager.py:742
 msgid "Ready"
 msgstr ""
 
 #. registering plugins
-#: ../gramps/gui/viewmanager.py:734
+#: ../gramps/gui/viewmanager.py:735
 msgid "Registering plugins..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:771
+#: ../gramps/gui/viewmanager.py:772
 msgid "Autobackup..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:775
+#: ../gramps/gui/viewmanager.py:776
 msgid "Error saving backup data"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:786
+#: ../gramps/gui/viewmanager.py:787
 msgid "Abort changes?"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:787
+#: ../gramps/gui/viewmanager.py:788
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:789
+#: ../gramps/gui/viewmanager.py:790
 msgid "Abort changes"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:799
+#: ../gramps/gui/viewmanager.py:800
 msgid "Cannot abandon session's changes"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:800
+#: ../gramps/gui/viewmanager.py:801
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:954
+#: ../gramps/gui/viewmanager.py:955
 msgid "View failed to load. Check error output."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1093
+#: ../gramps/gui/viewmanager.py:1094
 msgid "Import Statistics"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1142
+#: ../gramps/gui/viewmanager.py:1143
 msgid "Read Only"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1225
+#: ../gramps/gui/viewmanager.py:1226
 msgid "Gramps XML Backup"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1255
+#: ../gramps/gui/viewmanager.py:1256
 #: ../gramps/plugins/importer/importgedcom.glade:286
 msgid "File:"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1287
+#: ../gramps/gui/viewmanager.py:1288
 msgid "Media:"
 msgstr ""
 
 #. #################
 #. What to include
 #. #########################
-#: ../gramps/gui/viewmanager.py:1292
+#: ../gramps/gui/viewmanager.py:1293
 #: ../gramps/plugins/drawreport/ancestortree.py:1024
 #: ../gramps/plugins/drawreport/descendtree.py:1638
 #: ../gramps/plugins/textreport/detancestralreport.py:775
@@ -15475,55 +15475,55 @@ msgstr ""
 msgid "Include"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1293
+#: ../gramps/gui/viewmanager.py:1294
 #: ../gramps/plugins/gramplet/statsgramplet.py:199
 msgid "Megabyte|MB"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1294
+#: ../gramps/gui/viewmanager.py:1295
 #: ../gramps/plugins/webreport/narrativeweb.py:8174
 msgid "Exclude"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1310
+#: ../gramps/gui/viewmanager.py:1311
 msgid "Backup file already exists! Overwrite?"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1311
+#: ../gramps/gui/viewmanager.py:1312
 #, python-format
 msgid "The file '%s' exists."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1312
+#: ../gramps/gui/viewmanager.py:1313
 msgid "Proceed and overwrite"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1313
+#: ../gramps/gui/viewmanager.py:1314
 msgid "Cancel the backup"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1320
+#: ../gramps/gui/viewmanager.py:1321
 msgid "Making backup..."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1332
+#: ../gramps/gui/viewmanager.py:1333
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1335
+#: ../gramps/gui/viewmanager.py:1336
 msgid "Backup aborted"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1344
+#: ../gramps/gui/viewmanager.py:1345
 msgid "Select backup directory"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1602
+#: ../gramps/gui/viewmanager.py:1603
 msgid "Failed Loading Plugin"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1603
+#: ../gramps/gui/viewmanager.py:1604
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -15538,11 +15538,11 @@ msgid ""
 "by using the Plugin Manager on the Help menu."
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1657
+#: ../gramps/gui/viewmanager.py:1658
 msgid "Failed Loading View"
 msgstr ""
 
-#: ../gramps/gui/viewmanager.py:1658
+#: ../gramps/gui/viewmanager.py:1659
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -16266,54 +16266,54 @@ msgid ""
 "manager to install python-imaging"
 msgstr ""
 
-#: ../gramps/plugins/docgen/odfdoc.py:1230
+#: ../gramps/plugins/docgen/odfdoc.py:1231
 #, python-format
 msgid "Could not open %s"
 msgstr ""
 
 #. internal name: don't translate
-#: ../gramps/plugins/docgen/svgdrawdoc.py:341
+#: ../gramps/plugins/docgen/svgdrawdoc.py:342
 msgid "SVG background color"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:343
+#: ../gramps/plugins/docgen/svgdrawdoc.py:344
 msgid "transparent background"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:344
+#: ../gramps/plugins/docgen/svgdrawdoc.py:345
 #: ../gramps/plugins/drawreport/fanchart.py:666
 msgid "white"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:345
+#: ../gramps/plugins/docgen/svgdrawdoc.py:346
 msgid "black"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:346
+#: ../gramps/plugins/docgen/svgdrawdoc.py:347
 msgid "red"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:347
+#: ../gramps/plugins/docgen/svgdrawdoc.py:348
 msgid "green"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:348
+#: ../gramps/plugins/docgen/svgdrawdoc.py:349
 msgid "blue"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:349
+#: ../gramps/plugins/docgen/svgdrawdoc.py:350
 msgid "cyan"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:350
+#: ../gramps/plugins/docgen/svgdrawdoc.py:351
 msgid "magenta"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:351
+#: ../gramps/plugins/docgen/svgdrawdoc.py:352
 msgid "yellow"
 msgstr ""
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:352
+#: ../gramps/plugins/docgen/svgdrawdoc.py:353
 msgid "The color, if any, of the SVG background"
 msgstr ""
 
@@ -16352,7 +16352,7 @@ msgstr ""
 #: ../gramps/plugins/drawreport/calendarreport.py:474
 #: ../gramps/plugins/drawreport/fanchart.py:648
 #: ../gramps/plugins/graph/gvhourglass.py:267
-#: ../gramps/plugins/graph/gvrelgraph.py:532
+#: ../gramps/plugins/graph/gvrelgraph.py:534
 #: ../gramps/plugins/textreport/ancestorreport.py:265
 #: ../gramps/plugins/textreport/birthdayreport.py:419
 #: ../gramps/plugins/textreport/descendreport.py:397
@@ -16769,7 +16769,7 @@ msgstr ""
 
 #: ../gramps/plugins/drawreport/calendarreport.py:475
 #: ../gramps/plugins/drawreport/fanchart.py:649
-#: ../gramps/plugins/graph/gvrelgraph.py:533
+#: ../gramps/plugins/graph/gvrelgraph.py:535
 #: ../gramps/plugins/textreport/ancestorreport.py:266
 #: ../gramps/plugins/textreport/birthdayreport.py:420
 #: ../gramps/plugins/textreport/descendreport.py:398
@@ -17870,7 +17870,7 @@ msgstr ""
 msgid "Writing repositories"
 msgstr ""
 
-#: ../gramps/plugins/export/exportgedcom.py:1474
+#: ../gramps/plugins/export/exportgedcom.py:1475
 msgid "GEDCOM Export failed"
 msgstr ""
 
@@ -19727,22 +19727,22 @@ msgid "Colors to use for various family lines."
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:157
-#: ../gramps/plugins/graph/gvrelgraph.py:618
+#: ../gramps/plugins/graph/gvrelgraph.py:620
 msgid "The color to use to display men."
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:161
-#: ../gramps/plugins/graph/gvrelgraph.py:622
+#: ../gramps/plugins/graph/gvrelgraph.py:624
 msgid "The color to use to display women."
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:165
-#: ../gramps/plugins/graph/gvrelgraph.py:627
+#: ../gramps/plugins/graph/gvrelgraph.py:629
 msgid "The color to use when the gender is unknown."
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:169
-#: ../gramps/plugins/graph/gvrelgraph.py:631
+#: ../gramps/plugins/graph/gvrelgraph.py:633
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/textreport/tagreport.py:203
 #: ../gramps/plugins/tool/verify.glade:792
@@ -19758,7 +19758,7 @@ msgid "Families"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:170
-#: ../gramps/plugins/graph/gvrelgraph.py:632
+#: ../gramps/plugins/graph/gvrelgraph.py:634
 msgid "The color to use to display families."
 msgstr ""
 
@@ -19793,7 +19793,7 @@ msgstr ""
 
 #. --------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:202
-#: ../gramps/plugins/graph/gvrelgraph.py:589
+#: ../gramps/plugins/graph/gvrelgraph.py:591
 msgid "Include thumbnail images of people"
 msgstr ""
 
@@ -19806,17 +19806,17 @@ msgid "Thumbnail location"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:211
-#: ../gramps/plugins/graph/gvrelgraph.py:596
+#: ../gramps/plugins/graph/gvrelgraph.py:598
 msgid "Above the name"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:212
-#: ../gramps/plugins/graph/gvrelgraph.py:597
+#: ../gramps/plugins/graph/gvrelgraph.py:599
 msgid "Beside the name"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:213
-#: ../gramps/plugins/graph/gvrelgraph.py:599
+#: ../gramps/plugins/graph/gvrelgraph.py:601
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr ""
 
@@ -19824,7 +19824,7 @@ msgstr ""
 #. ###############################
 #: ../gramps/plugins/graph/gvfamilylines.py:221
 #: ../gramps/plugins/graph/gvhourglass.py:289
-#: ../gramps/plugins/graph/gvrelgraph.py:609
+#: ../gramps/plugins/graph/gvrelgraph.py:611
 msgid "Graph coloring"
 msgstr ""
 
@@ -19838,13 +19838,13 @@ msgstr ""
 #. see bug report #2180
 #: ../gramps/plugins/graph/gvfamilylines.py:230
 #: ../gramps/plugins/graph/gvhourglass.py:298
-#: ../gramps/plugins/graph/gvrelgraph.py:642
+#: ../gramps/plugins/graph/gvrelgraph.py:644
 msgid "Use rounded corners"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:231
 #: ../gramps/plugins/graph/gvhourglass.py:300
-#: ../gramps/plugins/graph/gvrelgraph.py:644
+#: ../gramps/plugins/graph/gvrelgraph.py:646
 msgid "Use rounded corners to differentiate between women and men."
 msgstr ""
 
@@ -19857,12 +19857,12 @@ msgid "Whether to include dates for people and families."
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:241
-#: ../gramps/plugins/graph/gvrelgraph.py:548
+#: ../gramps/plugins/graph/gvrelgraph.py:550
 msgid "Limit dates to years only"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:242
-#: ../gramps/plugins/graph/gvrelgraph.py:549
+#: ../gramps/plugins/graph/gvrelgraph.py:551
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -19934,12 +19934,12 @@ msgstr ""
 
 #. ###############################
 #: ../gramps/plugins/graph/gvhourglass.py:286
-#: ../gramps/plugins/graph/gvrelgraph.py:606
+#: ../gramps/plugins/graph/gvrelgraph.py:608
 msgid "Graph Style"
 msgstr ""
 
 #: ../gramps/plugins/graph/gvhourglass.py:292
-#: ../gramps/plugins/graph/gvrelgraph.py:612
+#: ../gramps/plugins/graph/gvrelgraph.py:614
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -19961,95 +19961,95 @@ msgstr ""
 msgid "Descendants - Ancestors"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:528
+#: ../gramps/plugins/graph/gvrelgraph.py:530
 msgid "Determines what people are included in the graph"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:542
+#: ../gramps/plugins/graph/gvrelgraph.py:544
 msgid "Include Birth, Marriage and Death dates"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:543
+#: ../gramps/plugins/graph/gvrelgraph.py:545
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:554
+#: ../gramps/plugins/graph/gvrelgraph.py:556
 msgid "Use place when no date"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:555
+#: ../gramps/plugins/graph/gvrelgraph.py:557
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:560
+#: ../gramps/plugins/graph/gvrelgraph.py:562
 msgid "Include URLs"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:561
+#: ../gramps/plugins/graph/gvrelgraph.py:563
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
 "Web Site' report."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:568
+#: ../gramps/plugins/graph/gvrelgraph.py:570
 msgid "Include IDs"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:569
+#: ../gramps/plugins/graph/gvrelgraph.py:571
 msgid "Include individual and family IDs."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:573
+#: ../gramps/plugins/graph/gvrelgraph.py:575
 msgid "Include relationship to center person"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:574
+#: ../gramps/plugins/graph/gvrelgraph.py:576
 msgid "Whether to show every person's relationship to the center person"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:581
+#: ../gramps/plugins/graph/gvrelgraph.py:583
 msgid "Include relationship debugging numbers also"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:584
+#: ../gramps/plugins/graph/gvrelgraph.py:586
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:591
+#: ../gramps/plugins/graph/gvrelgraph.py:593
 msgid "Whether to include thumbnails of people."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:595
+#: ../gramps/plugins/graph/gvrelgraph.py:597
 msgid "Thumbnail Location"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:635
+#: ../gramps/plugins/graph/gvrelgraph.py:637
 msgid "Arrowhead direction"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:638
+#: ../gramps/plugins/graph/gvrelgraph.py:640
 msgid "Choose the direction that the arrows point."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:649
+#: ../gramps/plugins/graph/gvrelgraph.py:651
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:650
+#: ../gramps/plugins/graph/gvrelgraph.py:652
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:654
+#: ../gramps/plugins/graph/gvrelgraph.py:656
 msgid "Show family nodes"
 msgstr ""
 
-#: ../gramps/plugins/graph/gvrelgraph.py:655
+#: ../gramps/plugins/graph/gvrelgraph.py:657
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr ""
 

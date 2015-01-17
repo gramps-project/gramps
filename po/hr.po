@@ -63,7 +63,7 @@ msgstr ""
 "analiza"
 
 #: ../data/gramps.desktop.in.h:5
-msgid "Genealogy;Family History;Research;Family Tree;GEDCOM"
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
 msgstr ""
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1

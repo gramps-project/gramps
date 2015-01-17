@@ -56,8 +56,8 @@ msgid "Manage genealogical information, perform genealogical research and analys
 msgstr "Hallinnoi sukutietoja, tee sukututkimusta ja analysoi sukutietoja"
 
 #: ../data/gramps.desktop.in.h:5
-msgid "Genealogy;Family History;Research;Family Tree;GEDCOM"
-msgstr "Sukututkimus;Suvun tarina;Tutkimus;Sukupuu;GEDCOM"
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
+msgstr "Sukututkimus;Suvun tarina;Tutkimus;Sukupuu;GEDCOM;"
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
 msgid "Gramps database"

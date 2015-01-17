@@ -70,8 +70,8 @@ msgstr ""
 "und Analyse"
 
 #: ../data/gramps.desktop.in.h:5
-msgid "Genealogy;Family History;Research;Family Tree;GEDCOM"
-msgstr "Genealogie;Familiengeschichte;Forschung;Stammbaum;GEDCOM"
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
+msgstr "Genealogie;Familiengeschichte;Forschung;Stammbaum;GEDCOM;"
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
 msgid "Gramps database"

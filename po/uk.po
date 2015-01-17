@@ -66,8 +66,8 @@ msgstr ""
 "аналізів"
 
 #: ../data/gramps.desktop.in.h:5
-msgid "Genealogy;Family History;Research;Family Tree;GEDCOM"
-msgstr "Генеалогія;Історія сім’ї;Дослідження;Сімейне дерево;GEDCOM"
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
+msgstr "Генеалогія;Історія сім’ї;Дослідження;Сімейне дерево;GEDCOM;"
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
 msgid "Gramps database"

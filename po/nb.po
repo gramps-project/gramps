@@ -68,8 +68,8 @@ msgid ""
 msgstr "Håndtere slektsforskerinformasjon, utføre slektsforskning og analyse"
 
 #: ../data/gramps.desktop.in.h:5
-msgid "Genealogy;Family History;Research;Family Tree;GEDCOM"
-msgstr "slektsforskning;Familiehistorie;Forskning;Slektstre;GEDCOM"
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
+msgstr "slektsforskning;Familiehistorie;Forskning;Slektstre;GEDCOM;"
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
 msgid "Gramps database"

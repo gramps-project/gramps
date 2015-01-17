@@ -52,8 +52,8 @@ msgid "Manage genealogical information, perform genealogical research and analys
 msgstr "Administras genealogiajn informoj, plenumas genealogiajn serĉadon kaj analizon"
 
 #: ../data/gramps.desktop.in.h:5
-msgid "Genealogy;Family History;Research;Family Tree;GEDCOM"
-msgstr "Geneakogio;Familia historio;Esplorado;Genealogia Arbo;GEDCOM"
+msgid "Genealogy;Family History;Research;Family Tree;GEDCOM;"
+msgstr "Geneakogio;Familia historio;Esplorado;Genealogia Arbo;GEDCOM;"
 
 #: ../data/gramps.keys.in.h:1 ../data/gramps.xml.in.h:1
 msgid "Gramps database"
