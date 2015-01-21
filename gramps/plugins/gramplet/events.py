@@ -98,15 +98,8 @@ class Events(Gramplet, DbGUIElement):
         if handle:
             place = self.dbstate.db.get_place_from_handle(handle).get_title()
 
-        participants = ''
-        if int(event_ref.get_role()) == EventRoleType.FAMILY:
-            if spouse:
-                participants = name_displayer.display(spouse)
-
-        if int(event_ref.get_role()) not in (EventRoleType.PRIMARY,
-                                             EventRoleType.FAMILY):
-            participants = get_participant_from_event(self.dbstate.db,
-                                                      event_ref.ref)
+        participants = get_participant_from_event(self.dbstate.db,
+                                                  event_ref.ref)
 
         self.model.add((event.get_handle(),
                         str(event.get_type()),
