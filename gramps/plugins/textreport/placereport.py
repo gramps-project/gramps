@@ -285,11 +285,6 @@ class PlaceReport(Report):
                     person = self.database.get_person_from_handle(ref_handle)
                     nameEntry = "%s (%s)" % (self._nd.display(person),
                                              person.get_gramps_id())
-                    if nameEntry in person_dict:
-                        person_dict[nameEntry].append(evt_handle)
-                    else:
-                        person_dict[nameEntry] = []
-                        person_dict[nameEntry].append(evt_handle)
                 else:
                     family = self.database.get_family_from_handle(ref_handle)
                     f_handle = family.get_father_handle()
@@ -303,7 +298,7 @@ class PlaceReport(Report):
                                           'father_id' : father.get_gramps_id(),
                                           'mother' : self._nd.display(mother),
                                           'mother_id' : mother.get_gramps_id()}
-                    else:
+                    elif f_handle or m_handle:
                         if f_handle:
                             p_handle = f_handle
                         else:
@@ -313,12 +308,15 @@ class PlaceReport(Report):
                         nameEntry = "%s (%s)" % \
                                      (self._nd.display(person),
                                       person.get_gramps_id())
-
-                    if nameEntry in person_dict:
-                        person_dict[nameEntry].append(evt_handle)
                     else:
-                        person_dict[nameEntry] = []
-                        person_dict[nameEntry].append(evt_handle)
+                        # No parents - bug #7299
+                        continue
+
+                if nameEntry in person_dict:
+                    person_dict[nameEntry].append(evt_handle)
+                else:
+                    person_dict[nameEntry] = []
+                    person_dict[nameEntry].append(evt_handle)
 
         keys = list(person_dict.keys())
         keys.sort()
@@ -332,6 +330,10 @@ class PlaceReport(Report):
                     date = self._get_date(event.get_date_object())
                     descr = event.get_description()
                     event_type = self._(self._get_type(event.get_type()))
+                else:
+                    date = ''
+                    descr = ''
+                    event_type = ''
                 event_details = [people, event_type, descr, date]
                 self.doc.start_row()
                 for detail in event_details:
