@@ -66,7 +66,8 @@ class LogGramplet(Gramplet):
                                 lambda handles: self.log('Family', 'Edited', handles))
     
     def active_changed(self, handle):
-        self.log('Person', 'Selected', [handle])
+        if handle:
+            self.log('Person', 'Selected', [handle])
 
     def log(self, ltype, action, handles):
         for handle in set(handles):
