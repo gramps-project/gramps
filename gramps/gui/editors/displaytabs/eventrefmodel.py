@@ -166,11 +166,7 @@ class EventRefModel(Gtk.TreeStore):
         return ""
 
     def column_participant(self, event_ref):
-        if int(event_ref.get_role()) not in (EventRoleType.PRIMARY,
-                                             EventRoleType.FAMILY):
-            return get_participant_from_event(self.db, event_ref.ref)
-        else:
-            return ""
+        return get_participant_from_event(self.db, event_ref.ref)
 
     def column_age(self, event):
         """
