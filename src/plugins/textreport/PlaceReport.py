@@ -170,7 +170,7 @@ class PlaceReport(Report):
         This procedure writes out each of the events related to the place
         """
         event_handles = [event_handle for (object_type, event_handle) in
-                         self.database.find_backlink_handles(handle)]
+                         self.database.find_backlink_handles(handle, ['Event'])]
         event_handles.sort(self.sort.by_date)
 
         if event_handles:
@@ -244,7 +244,7 @@ class PlaceReport(Report):
         This procedure writes out each of the people related to the place
         """
         event_handles = [event_handle for (object_type, event_handle) in
-                         self.database.find_backlink_handles(handle)]
+                         self.database.find_backlink_handles(handle, ['Event'])]
 
         if event_handles:
             self.doc.start_paragraph("PLC-Section")
@@ -272,11 +272,6 @@ class PlaceReport(Report):
                     person = self.database.get_person_from_handle(ref_handle)
                     nameEntry = "%s (%s)" % (_nd.display(person),
                                              person.get_gramps_id())
-                    if person_dict.has_key(nameEntry):
-                        person_dict[nameEntry].append(evt_handle)
-                    else:
-                        person_dict[nameEntry] = []
-                        person_dict[nameEntry].append(evt_handle)
                 else:
                     family = self.database.get_family_from_handle(ref_handle)
                     f_handle = family.get_father_handle()
@@ -289,7 +284,7 @@ class PlaceReport(Report):
                                      father.get_gramps_id(),
                                      _nd.display(mother),
                                      mother.get_gramps_id())
-                    else:
+                    elif f_handle or m_handle:
                         if f_handle:
                             p_handle = f_handle
                         else:
@@ -299,12 +294,15 @@ class PlaceReport(Report):
                         nameEntry = "%s (%s)" % \
                                      (_nd.display(person),
                                       person.get_gramps_id())
-
-                    if person_dict.has_key(nameEntry):
-                        person_dict[nameEntry].append(evt_handle)
                     else:
-                        person_dict[nameEntry] = []
-                        person_dict[nameEntry].append(evt_handle)
+                        # No parents - bug #7299
+                        continue
+
+                if person_dict.has_key(nameEntry):
+                    person_dict[nameEntry].append(evt_handle)
+                else:
+                    person_dict[nameEntry] = []
+                    person_dict[nameEntry].append(evt_handle)
 
         keys = person_dict.keys()
         keys.sort()
@@ -318,6 +316,10 @@ class PlaceReport(Report):
                     date = DateHandler.get_date(event)
                     descr = event.get_description()
                     event_type = str(event.get_type())
+                else:
+                    date = ''
+                    descr = ''
+                    event_type = ''
                 event_details = [people, event_type, descr, date]
                 self.doc.start_row()
                 for detail in event_details:
