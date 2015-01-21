@@ -252,7 +252,10 @@ def gramps_upgrade_17(self):
     # Modify Media
     # ---------------------------------
     # Add new checksum field.
-    base_path = self.metadata.get(b'mediapath', '')
+    base_path = self.metadata.get(b'mediapath')
+    if base_path is None:
+        # Check that the mediapath is not set to None (bug #7844).
+        base_path = ''
     for handle in self.media_map.keys():
         media = self.media_map[handle]
         new_media = list(media)
