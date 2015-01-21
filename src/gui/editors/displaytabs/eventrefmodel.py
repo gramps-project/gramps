@@ -152,8 +152,4 @@ class EventRefModel(gtk.TreeStore):
         return u""
 
     def column_participant(self, event_ref):
-        if int(event_ref.get_role()) not in (EventRoleType.PRIMARY,
-                                             EventRoleType.FAMILY):
-            return Utils.get_participant_from_event(self.db, event_ref.ref)
-        else:
-            return ""
+        return Utils.get_participant_from_event(self.db, event_ref.ref)
