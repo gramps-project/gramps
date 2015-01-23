@@ -45,7 +45,7 @@ from ....utils.location import get_locations
 class HasPlace(Rule):
     """Rule that checks for a place with a particular value"""
 
-    labels      = [ _('place|Name:'), 
+    labels      = [ _('Title:'),
                     _('Street:'), 
                     _('Locality:'), 
                     _('City:'), 
