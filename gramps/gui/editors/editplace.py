@@ -113,8 +113,7 @@ class EditPlace(EditPrimary):
         
         self.name = MonitoredEntry(self.top.get_object("name_entry"),
                                     self.obj.set_name, self.obj.get_name,
-                                    self.db.readonly,
-                                    changed=self.name_changed)
+                                    self.db.readonly)
         
         self.gid = MonitoredEntry(self.top.get_object("gid"),
                                   self.obj.set_gramps_id, 
@@ -166,14 +165,6 @@ class EditPlace(EditPrimary):
             return ValidationError(_("Invalid longitude (syntax: 18\u00b09'") +
                                    _('48.21"E, -18.2412 or -18:9:48.21)'))
 
-    def update_title(self):
-        new_name = ', '.join(get_location_list(self.db, self.obj))
-        self.top.get_object("place_title").set_text(new_name)
-        self.obj.set_title(new_name)
-
-    def name_changed(self, obj):
-        self.update_title()
-
     def build_menu_names(self, place):
         return (_('Edit Place'), self.get_menu_title())
 
@@ -189,8 +180,7 @@ class EditPlace(EditPrimary):
                                                self.uistate,
                                                self.track,
                                                self.obj.get_placeref_list(),
-                                               self.obj.handle,
-                                               self.update_title)
+                                               self.obj.handle)
         self._add_tab(notebook, self.placeref_list)
         self.track_ref_for_deletion("placeref_list")
         
