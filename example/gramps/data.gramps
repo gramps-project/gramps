@@ -3,7 +3,7 @@
 "http://gramps-project.org/xml/1.6.0/grampsxml.dtd">
 <database xmlns="http://gramps-project.org/xml/1.6.0/">
   <header>
-    <created date="2014-05-15" version="4.1.0"/>
+    <created date="2015-01-24" version="4.1.2"/>
     <researcher>
       <resname>Alex Roitman,,,</resname>
     </researcher>
@@ -1523,80 +1523,175 @@
     </source>
   </sources>
   <places>
-    <placeobj handle="_4ZLT6DVCWT9LTZRDCS" change="1198197326" id="P0003" name="Ronne" type="None">
+    <placeobj handle="_4ZLT6DVCWT9LTZRDCS" change="1422124381" id="P0003" name="Ronne" type="City">
       <ptitle>Ronne, Bornholm, Denmark</ptitle>
+      <placeref hlink="_cef2428d9dd233688ea3ed3cc24"/>
     </placeobj>
-    <placeobj handle="_61NT6D3G1JMOTO6Z7Y" change="1198197326" id="P0012" name="Grostorp" type="None">
+    <placeobj handle="_61NT6D3G1JMOTO6Z7Y" change="1422123855" id="P0012" name="Grostorp" type="Municipality">
       <ptitle>Grostorp, Kristianstad Lan, Sweden</ptitle>
+      <placeref hlink="_cef23a81ba8c837cc364895d88"/>
     </placeobj>
-    <placeobj handle="_67MT6DB6KWOVMBAXSY" change="1198197326" id="P0002" name="San Francisco" type="None">
-      <ptitle>San Francisco, San Francisco Co., CA</ptitle>
+    <placeobj handle="_67MT6DB6KWOVMBAXSY" change="1422125128" id="P0002" name="San Francisco" type="City">
+      <ptitle>San Francisco, San Francisco Co., CA, USA</ptitle>
+      <placeref hlink="_cef24668db23c27d421f51c667d"/>
     </placeobj>
-    <placeobj handle="_7JMT6DN2LOF54KXHTU" change="1198197326" id="P0010" name="Reno" type="None">
-      <ptitle>Reno, Washoe Co., NV</ptitle>
+    <placeobj handle="_7JMT6DN2LOF54KXHTU" change="1422125958" id="P0010" name="Reno" type="City">
+      <ptitle>Reno, Washoe Co., NV, USA</ptitle>
+      <placeref hlink="_cef2513e057732c3f27780750d"/>
     </placeobj>
-    <placeobj handle="_A9MT6DHVWGWRP59DEV" change="1198197326" id="P0011" name="Sweden" type="None">
+    <placeobj handle="_A9MT6DHVWGWRP59DEV" change="1422123595" id="P0011" name="Sweden" type="Country">
       <ptitle>Sweden</ptitle>
     </placeobj>
-    <placeobj handle="_AANT6D026O5SHNUCDH" change="1198197326" id="P0015" name="Simrishamn" type="None">
+    <placeobj handle="_AANT6D026O5SHNUCDH" change="1422123942" id="P0015" name="Simrishamn" type="Municipality">
       <ptitle>Simrishamn, Kristianstad Lan, Sweden</ptitle>
+      <placeref hlink="_cef23a81ba8c837cc364895d88"/>
     </placeobj>
-    <placeobj handle="_AKMT6DMEYZDTG9J6DS" change="1198197326" id="P0013" name="Copenhagen" type="None">
+    <placeobj handle="_AKMT6DMEYZDTG9J6DS" change="1422124249" id="P0013" name="Copenhagen" type="City">
       <ptitle>Copenhagen, Denmark</ptitle>
+      <placeref hlink="_cef2418f9333e16e00f6ce2eb14"/>
     </placeobj>
-    <placeobj handle="_BAOT6D1WY6J4O4ARRN" change="1198197326" id="P0030" name="San Ramon" type="None">
-      <ptitle>San Ramon, Conta Costa Co., CA</ptitle>
+    <placeobj handle="_BAOT6D1WY6J4O4ARRN" change="1422125198" id="P0030" name="San Ramon" type="City">
+      <ptitle>San Ramon, Conta Costa Co., CA, USA</ptitle>
+      <placeref hlink="_cef2478a94b48a58d3be6a10493"/>
     </placeobj>
-    <placeobj handle="_DYLT6DF4DX2MNZICJ8" change="1198197326" id="P0014" name="Hoya/Jona/Hoia" type="None">
-      <ptitle>Hoya/Jona/Hoia, Sweden</ptitle>
+    <placeobj handle="_DYLT6DF4DX2MNZICJ8" change="1422126222" id="P0014" name="Hoya" type="City">
+      <ptitle>Hoya, Sweden</ptitle>
+      <alt_name>Jona</alt_name>
+      <alt_name>Hoia</alt_name>
+      <placeref hlink="_A9MT6DHVWGWRP59DEV"/>
     </placeobj>
-    <placeobj handle="_ELNT6DS8GN8WI7Z4SO" change="1198197326" id="P0008" name="Hayward" type="None">
-      <ptitle>Hayward, Alameda Co., CA</ptitle>
+    <placeobj handle="_ELNT6DS8GN8WI7Z4SO" change="1422125073" id="P0008" name="Hayward" type="City">
+      <ptitle>Hayward, Alameda Co., CA, USA</ptitle>
+      <placeref hlink="_cef245b044820b7405a1180f298"/>
     </placeobj>
-    <placeobj handle="_FBNT6DL92NDY0Z5SGP" change="1198197326" id="P0021" name="Santa Rosa" type="None">
-      <ptitle>Santa Rosa, Sonoma Co., CA</ptitle>
+    <placeobj handle="_FBNT6DL92NDY0Z5SGP" change="1422125294" id="P0021" name="Santa Rosa" type="City">
+      <ptitle>Santa Rosa, Sonoma Co., CA, USA</ptitle>
+      <placeref hlink="_cef24b7a76efa8b9d98d67ea5a"/>
     </placeobj>
-    <placeobj handle="_GWNT6D12ZV06PK969X" change="1198197326" id="P0020" name="Sacramento" type="None">
-      <ptitle>Sacramento, Sacramento Co., CA</ptitle>
+    <placeobj handle="_GWNT6D12ZV06PK969X" change="1422125101" id="P0020" name="Sacramento" type="City">
+      <ptitle>Sacramento, Sacramento Co., CA, USA</ptitle>
+      <placeref hlink="_cef246117947f75e54c09680419"/>
     </placeobj>
-    <placeobj handle="_HFNT6D12ZC0KOWY69T" change="1198197326" id="P0016" name="Fremont" type="None">
-      <ptitle>Fremont, Alameda Co., CA</ptitle>
+    <placeobj handle="_HFNT6D12ZC0KOWY69T" change="1422125018" id="P0016" name="Fremont" type="City">
+      <ptitle>Fremont, Alameda Co., CA, USA</ptitle>
+      <placeref hlink="_cef245b044820b7405a1180f298"/>
     </placeobj>
-    <placeobj handle="_HINT6DP8JGGL0KKB8J" change="1198197326" id="P0000" name="Loderup" type="None">
+    <placeobj handle="_HINT6DP8JGGL0KKB8J" change="1422123879" id="P0000" name="Loderup" type="Municipality">
       <ptitle>Loderup, Malmous Lan, Sweden</ptitle>
+      <placeref hlink="_cef23c1ee8b7da58c764e88c637"/>
     </placeobj>
-    <placeobj handle="_IEOT6DOW3RE8AQ94HH" change="1198197326" id="P0025" name="Bí" type="None">
+    <placeobj handle="_IEOT6DOW3RE8AQ94HH" change="1422126043" id="P0025" name="Bí" type="Unknown">
       <ptitle>Bí</ptitle>
     </placeobj>
-    <placeobj handle="_LTNT6DKZ5CR8PZSVUS" change="1198197326" id="P0022" name="San Jose" type="None">
-      <ptitle>San Jose, Santa Clara Co., CA</ptitle>
+    <placeobj handle="_LTNT6DKZ5CR8PZSVUS" change="1422125169" id="P0022" name="San Jose" type="City">
+      <ptitle>San Jose, Santa Clara Co., CA, USA</ptitle>
+      <placeref hlink="_cef246c95c132bcf6a0255d4d17"/>
     </placeobj>
-    <placeobj handle="_PUNT6D1XHS0DJW9QP6" change="1198197326" id="P0024" name="UC Berkeley" type="None">
-      <ptitle>UC Berkeley</ptitle>
+    <placeobj handle="_PUNT6D1XHS0DJW9QP6" change="1422125605" id="P0024" name="UC Berkeley" type="University">
+      <ptitle>UC Berkeley, CA, USA</ptitle>
+      <placeref hlink="_cef243fb5634559442323368f63"/>
     </placeobj>
-    <placeobj handle="_PXMT6DBL0WSBL76WD7" change="1198197326" id="P0026" name="Smestorp" type="None">
+    <placeobj handle="_PXMT6DBL0WSBL76WD7" change="1422123936" id="P0026" name="Smestorp" type="Municipality">
       <ptitle>Smestorp, Kristianstad Lan, Sweden</ptitle>
+      <placeref hlink="_cef23a81ba8c837cc364895d88"/>
     </placeobj>
-    <placeobj handle="_QBOT6DN7UCCTZQ055" change="1198197326" id="P0029" name="Woodland" type="None">
-      <ptitle>Woodland, Yolo Co., CA</ptitle>
+    <placeobj handle="_QBOT6DN7UCCTZQ055" change="1422125399" id="P0029" name="Woodland" type="City">
+      <ptitle>Woodland, Yolo Co., CA, USA</ptitle>
+      <placeref hlink="_cef24c2e3592e759b7797f95465"/>
     </placeobj>
-    <placeobj handle="_QJMT6DGII29FWCPX2E" change="1198197326" id="P0028" name="Ronne Bornholm" type="None">
+    <placeobj handle="_QJMT6DGII29FWCPX2E" change="1422124361" id="P0028" name="Ronne Bornholm" type="City">
       <ptitle>Ronne Bornholm, Denmark</ptitle>
+      <placeref hlink="_cef2418f9333e16e00f6ce2eb14"/>
     </placeobj>
-    <placeobj handle="_R8MT6DRIZVNRYDK0VN" change="1198197326" id="P0027" name="Tommarp" type="None">
+    <placeobj handle="_R8MT6DRIZVNRYDK0VN" change="1422123930" id="P0027" name="Tommarp" type="Municipality">
       <ptitle>Tommarp, Kristianstad Lan, Sweden</ptitle>
+      <placeref hlink="_cef23a81ba8c837cc364895d88"/>
     </placeobj>
-    <placeobj handle="_RPMT6DTQR8J7LK98HJ" change="1198197326" id="P0019" name="Denver" type="None">
-      <ptitle>Denver, Denver Co., CO</ptitle>
+    <placeobj handle="_RPMT6DTQR8J7LK98HJ" change="1422125771" id="P0019" name="Denver" type="City">
+      <ptitle>Denver, Denver Co., CO, USA</ptitle>
+      <placeref hlink="_cef24ffc57f28a50ea65f0af645"/>
     </placeobj>
-    <placeobj handle="_S1NT6DPOBYC1JGMR1P" change="1198197326" id="P0001" name="Sparks" type="None">
-      <ptitle>Sparks, Washoe Co., NV</ptitle>
+    <placeobj handle="_S1NT6DPOBYC1JGMR1P" change="1422125992" id="P0001" name="Sparks" type="City">
+      <ptitle>Sparks, Washoe Co., NV, USA</ptitle>
+      <placeref hlink="_cef2513e057732c3f27780750d"/>
     </placeobj>
-    <placeobj handle="_XLNT6DUONITFPPEGVH" change="1198197326" id="P0009" name="Community Presbyterian Church" type="None">
-      <ptitle>Community Presbyterian Church, Danville, CA</ptitle>
+    <placeobj handle="_XLNT6DUONITFPPEGVH" change="1422125508" id="P0009" name="Community Presbyterian Church" type="Church">
+      <ptitle>Community Presbyterian Church, Danville, CA, USA</ptitle>
+      <placeref hlink="_cef24d930653dc59ec3a36510e4"/>
     </placeobj>
-    <placeobj handle="_XSMT6DNISHYRCR1E78" change="1198197326" id="P0004" name="Gladsax" type="None">
+    <placeobj handle="_XSMT6DNISHYRCR1E78" change="1422123836" id="P0004" name="Gladsax" type="Municipality">
       <ptitle>Gladsax, Kristianstad Lan, Sweden</ptitle>
+      <placeref hlink="_cef23a81ba8c837cc364895d88"/>
+    </placeobj>
+    <placeobj handle="_cef23a81ba8c837cc364895d88" change="1422123677" id="P0005" name="Kristianstad Lan" type="County">
+      <ptitle>Kristianstad Lan, Sweden</ptitle>
+      <placeref hlink="_A9MT6DHVWGWRP59DEV"/>
+    </placeobj>
+    <placeobj handle="_cef23c1ee8b7da58c764e88c637" change="1422123662" id="P0006" name="Malmous Lan" type="County">
+      <ptitle>Malmous Lan, Sweden</ptitle>
+      <placeref hlink="_A9MT6DHVWGWRP59DEV"/>
+    </placeobj>
+    <placeobj handle="_cef2418f9333e16e00f6ce2eb14" change="1422124233" id="P0007" name="Denmark" type="Country">
+      <ptitle>Denmark</ptitle>
+    </placeobj>
+    <placeobj handle="_cef2428d9dd233688ea3ed3cc24" change="1422124337" id="P0017" name="Bornholm" type="Region">
+      <ptitle>Bornholm, Denmark</ptitle>
+      <placeref hlink="_cef2418f9333e16e00f6ce2eb14"/>
+    </placeobj>
+    <placeobj handle="_cef2438892244290ca7fb5750" change="1422124440" id="P0018" name="USA" type="Country">
+      <ptitle>USA</ptitle>
+    </placeobj>
+    <placeobj handle="_cef243fb5634559442323368f63" change="1422124487" id="P0023" name="CA" type="State">
+      <ptitle>CA, USA</ptitle>
+      <placeref hlink="_cef2438892244290ca7fb5750"/>
+    </placeobj>
+    <placeobj handle="_cef244224d14af0273799b281e" change="1422124514" id="P0031" name="CO" type="State">
+      <ptitle>CO, USA</ptitle>
+      <placeref hlink="_cef2438892244290ca7fb5750"/>
+    </placeobj>
+    <placeobj handle="_cef24468f6e3a984bf57967e95d" change="1422124542" id="P0032" name="NV" type="State">
+      <ptitle>NV, USA</ptitle>
+      <placeref hlink="_cef2438892244290ca7fb5750"/>
+    </placeobj>
+    <placeobj handle="_cef245b044820b7405a1180f298" change="1422124666" id="P0033" name="Alameda Co." type="County">
+      <ptitle>Alameda Co., CA, USA</ptitle>
+      <placeref hlink="_cef243fb5634559442323368f63"/>
+    </placeobj>
+    <placeobj handle="_cef246117947f75e54c09680419" change="1422124908" id="P0034" name="Sacramento Co." type="County">
+      <ptitle>Sacramento Co., CA, USA</ptitle>
+      <placeref hlink="_cef243fb5634559442323368f63"/>
+    </placeobj>
+    <placeobj handle="_cef24668db23c27d421f51c667d" change="1422124741" id="P0035" name="San Francisco Co." type="County">
+      <ptitle>San Francisco Co., CA, USA</ptitle>
+      <placeref hlink="_cef243fb5634559442323368f63"/>
+    </placeobj>
+    <placeobj handle="_cef246c95c132bcf6a0255d4d17" change="1422124781" id="P0036" name="Santa Clara Co." type="County">
+      <ptitle>Santa Clara Co., CA, USA</ptitle>
+      <placeref hlink="_cef243fb5634559442323368f63"/>
+    </placeobj>
+    <placeobj handle="_cef2478a94b48a58d3be6a10493" change="1422124860" id="P0037" name="Conta Costa Co." type="County">
+      <ptitle>Conta Costa Co., CA, USA</ptitle>
+      <placeref hlink="_cef243fb5634559442323368f63"/>
+    </placeobj>
+    <placeobj handle="_cef24b7a76efa8b9d98d67ea5a" change="1422125273" id="P0038" name="Sonoma Co." type="County">
+      <ptitle>Sonoma Co., CA, USA</ptitle>
+      <placeref hlink="_cef243fb5634559442323368f63"/>
+    </placeobj>
+    <placeobj handle="_cef24c2e3592e759b7797f95465" change="1422125420" id="P0039" name="Yolo Co." type="County">
+      <ptitle>Yolo Co., CA, USA</ptitle>
+      <placeref hlink="_cef243fb5634559442323368f63"/>
+    </placeobj>
+    <placeobj handle="_cef24d930653dc59ec3a36510e4" change="1422125493" id="P0040" name="Danville" type="City">
+      <ptitle>Danville, CA, USA</ptitle>
+      <placeref hlink="_cef243fb5634559442323368f63"/>
+    </placeobj>
+    <placeobj handle="_cef24ffc57f28a50ea65f0af645" change="1422125745" id="P0041" name="Denver Co." type="County">
+      <ptitle>Denver Co., CO, USA</ptitle>
+      <placeref hlink="_cef244224d14af0273799b281e"/>
+    </placeobj>
+    <placeobj handle="_cef2513e057732c3f27780750d" change="1422125877" id="P0042" name="Washoe Co." type="County">
+      <ptitle>Washoe Co., NV, USA</ptitle>
+      <placeref hlink="_cef24468f6e3a984bf57967e95d"/>
     </placeobj>
   </places>
   <objects>
