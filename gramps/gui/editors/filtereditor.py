@@ -63,7 +63,7 @@ from gramps.gen.const import RULE_GLADE, URL_MANUAL_PAGE
 from ..display import display_help
 from gramps.gen.errors import WindowActiveError
 from gramps.gen.lib import (AttributeType, EventType, FamilyRelType,
-                            NameOriginType, NameType, NoteType)
+                            NameOriginType, NameType, NoteType, PlaceType)
 from gramps.gen.filters import rules
 from ..autocomp import StandardCustomSelector, fill_entry
 from ..selectors import SelectorFactory
@@ -107,6 +107,7 @@ _name2typeclass = {
     _('Note type:')          : NoteType,
     _('Name type:')          : NameType,
     _('Surname origin type:'): NameOriginType,
+    _('Place type:')         : PlaceType,
 }
 
 #-------------------------------------------------------------------------
@@ -560,6 +561,8 @@ class EditRule(ManagedWindow):
                         additional = self.db.get_name_types()
                     elif v == _('Surname origin type:'):
                         additional = self.db.get_origin_types()
+                    elif v == _('Place type:'):
+                        additional = self.db.get_place_types()
                     t = MySelect(_name2typeclass[v], additional)
                 elif v == _('Inclusive:'):
                     t = MyBoolean(_('Include original person'))
