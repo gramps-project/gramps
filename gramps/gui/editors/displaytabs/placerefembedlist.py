@@ -35,6 +35,7 @@ from gi.repository import GLib
 #-------------------------------------------------------------------------
 from gramps.gen.lib import PlaceRef
 from gramps.gen.errors import WindowActiveError
+from ...dialog import ErrorDialog
 from ...ddtargets import DdTargets
 from .placerefmodel import PlaceRefModel
 from .embeddedlist import EmbeddedList, TEXT_COL
@@ -48,6 +49,7 @@ class PlaceRefEmbedList(EmbeddedList):
 
     _HANDLE_COL = 4
     _DND_TYPE = DdTargets.PLACEREF
+    _DND_EXTRA  = DdTargets.PLACE_LINK
     
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
@@ -70,6 +72,18 @@ class PlaceRefEmbedList(EmbeddedList):
 
     def column_order(self):
         return ((1, 0), (1, 1), (1, 2), (1, 3))
+
+    def get_skip_list(self, handle):
+        todo = [handle]
+        skip = [handle]
+        while todo:
+            handle = todo.pop()
+            for child in self.dbstate.db.find_backlink_handles(handle,
+                                                               ['Place']):
+                if child[1] not in skip:
+                    todo.append(child[1])
+                    skip.append(child[1])
+        return skip
 
     def add_button_clicked(self, obj):
         placeref = PlaceRef()
@@ -98,3 +112,18 @@ class PlaceRefEmbedList(EmbeddedList):
 
     def edit_callback(self, name):
         self.rebuild()
+
+    def handle_extra_type(self, objtype, obj):
+        if obj in self.get_skip_list(self.handle):
+            ErrorDialog(_("Place cycle detected"),
+                        _("The place you are adding is already enclosed by "
+                          "this place"))
+            return
+        placeref = PlaceRef()
+        placeref.ref = obj
+        try:
+            from .. import EditPlaceRef
+            EditPlaceRef(self.dbstate, self.uistate, self.track,
+                         placeref, self.handle, self.add_callback)
+        except WindowActiveError:
+            pass
