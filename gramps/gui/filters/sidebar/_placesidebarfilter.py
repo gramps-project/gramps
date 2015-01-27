@@ -41,12 +41,14 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from ... import widgets
+from gramps.gen.lib import Place, PlaceType
 from .. import build_filter_model
 from . import SidebarFilter
 from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
-from gramps.gen.filters.rules.place import (RegExpIdOf, HasPlace, HasTag,
-                                            HasNoteRegexp, MatchesFilter)
+from gramps.gen.filters.rules.place import (RegExpIdOf, HasData, HasTitle,
+                                            HasTag, HasNoteRegexp,
+                                            MatchesFilter)
 
 GenericPlaceFilter = GenericFilterFactory('Place')
 #-------------------------------------------------------------------------
@@ -61,14 +63,16 @@ class PlaceSidebarFilter(SidebarFilter):
 
         self.filter_id = widgets.BasicEntry()
         self.filter_title = widgets.BasicEntry()
-        self.filter_street = widgets.BasicEntry()
-        self.filter_locality = widgets.BasicEntry()
-        self.filter_city = widgets.BasicEntry()
-        self.filter_county = widgets.BasicEntry()
-        self.filter_state = widgets.BasicEntry()
-        self.filter_country = widgets.BasicEntry()
-        self.filter_zip = widgets.BasicEntry()
-        self.filter_parish = widgets.BasicEntry()
+        self.filter_name = widgets.BasicEntry()
+        self.filter_place = Place()
+        self.filter_place.set_type((PlaceType.CUSTOM, ''))
+        self.ptype = Gtk.ComboBox(has_entry=True)
+       
+        self.place_menu = widgets.MonitoredDataType(
+            self.ptype,
+            self.filter_place.set_type,
+            self.filter_place.get_type)
+        self.filter_code = widgets.BasicEntry()
         self.filter_note = widgets.BasicEntry()
         
         self.filter_regex = Gtk.CheckButton(label=_('Use regular expressions'))
@@ -92,15 +96,10 @@ class PlaceSidebarFilter(SidebarFilter):
         self.tag.add_attribute(cell, 'text', 0)
 
         self.add_text_entry(_('ID'), self.filter_id)
-        self.add_text_entry(_('Place Name'), self.filter_title)
-        self.add_text_entry(_('Street'), self.filter_street)
-        self.add_text_entry(_('Locality'), self.filter_locality)
-        self.add_text_entry(_('City'), self.filter_city)
-        self.add_text_entry(_('County'), self.filter_county)
-        self.add_text_entry(_('State'), self.filter_state)
-        self.add_text_entry(_('Country'), self.filter_country)
-        self.add_text_entry(_('ZIP/Postal code'), self.filter_zip)
-        self.add_text_entry(_('Church parish'), self.filter_parish)
+        self.add_text_entry(_('Title'), self.filter_title)
+        self.add_text_entry(_('Name'), self.filter_name)
+        self.add_entry(_('Type'), self.ptype)
+        self.add_text_entry(_('Code'), self.filter_code)
         self.add_text_entry(_('Note'), self.filter_note)
         self.add_entry(_('Tag'), self.tag)
         self.add_filter_entry(_('Custom filter'), self.generic)
@@ -109,37 +108,26 @@ class PlaceSidebarFilter(SidebarFilter):
     def clear(self, obj):
         self.filter_id.set_text('')
         self.filter_title.set_text('')
-        self.filter_street.set_text('')
-        self.filter_locality.set_text('')
-        self.filter_city.set_text('')
-        self.filter_county.set_text('')
-        self.filter_state.set_text('')
-        self.filter_country.set_text('')
-        self.filter_zip.set_text('')
-        self.filter_parish.set_text('')
+        self.filter_name.set_text('')
+        self.filter_code.set_text('')
         self.filter_note.set_text('')
+        self.ptype.get_child().set_text('')
         self.tag.set_active(0)
         self.generic.set_active(0)
 
     def get_filter(self):
         gid = cuni(self.filter_id.get_text()).strip()
         title = cuni(self.filter_title.get_text()).strip()
-        street = cuni(self.filter_street.get_text()).strip()
-        locality = cuni(self.filter_locality.get_text()).strip()
-        city = cuni(self.filter_city.get_text()).strip()
-        county = cuni(self.filter_county.get_text()).strip()
-        state = cuni(self.filter_state.get_text()).strip()
-        country = cuni(self.filter_country.get_text()).strip()
-        zipc = cuni(self.filter_zip.get_text()).strip()
-        parish = cuni(self.filter_parish.get_text()).strip()
+        name = cuni(self.filter_name.get_text()).strip()
+        ptype = self.filter_place.get_type().xml_str()
+        code = cuni(self.filter_code.get_text()).strip()
         note = cuni(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
 
-        empty = not (gid or title or street or locality or city or county or
-                     state or country or zipc or parish or note or regex or tag
-                     or gen)
+        empty = not (gid or title or name or ptype or code or note or regex
+                     or tag or gen)
         if empty:
             generic_filter = None
         else:
@@ -148,8 +136,11 @@ class PlaceSidebarFilter(SidebarFilter):
                 rule = RegExpIdOf([gid], use_regex=regex)
                 generic_filter.add_rule(rule)
 
-            rule = HasPlace([title, street, locality, city, county, state,
-                             country, zipc, parish], use_regex=regex)
+            if title:
+                rule = HasTitle([title], use_regex=regex)
+                generic_filter.add_rule(rule)
+
+            rule = HasData([name, ptype, code], use_regex=regex)
             generic_filter.add_rule(rule)
                 
             if note:
