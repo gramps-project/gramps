@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-24 14:53+0100\n"
-"PO-Revision-Date: 2015-01-24 15:04+0100\n"
+"POT-Creation-Date: 2015-01-27 14:46+0100\n"
+"PO-Revision-Date: 2015-01-27 14:59+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -9089,7 +9089,7 @@ msgstr "Orts ref"
 #: ../gramps/gui/editors/displaytabs/backreflist.py:61
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:73
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:63
-#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:56
+#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:58
 #: ../gramps/gui/editors/editfamily.py:123
 #: ../gramps/gui/editors/editname.py:307
 #: ../gramps/gui/editors/filtereditor.py:801
@@ -9248,7 +9248,7 @@ msgstr "Aufbewahrungsort"
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:61
 #: ../gramps/gui/editors/displaytabs/nameembedlist.py:74
 #: ../gramps/gui/editors/displaytabs/notetab.py:77
-#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:57
+#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:59
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:69
 #: ../gramps/gui/editors/displaytabs/srcattrembedlist.py:63
 #: ../gramps/gui/editors/displaytabs/webembedlist.py:65
@@ -10480,7 +10480,7 @@ msgstr "Gewählte Adresse nach unten verschieben"
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:79
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:52
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:62
-#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:58
+#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:60
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:116
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:103
 #: ../gramps/gui/filters/sidebar/_mediasidebarfilter.py:92
@@ -10584,7 +10584,7 @@ msgstr "_Attribute"
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:84
 #: ../gramps/gui/editors/displaytabs/eventembedlist.py:78
 #: ../gramps/gui/editors/displaytabs/personrefembedlist.py:64
-#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:55
+#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:57
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:66
 #: ../gramps/gui/editors/editfamily.py:122
 #: ../gramps/gui/editors/filtereditor.py:957
@@ -11139,9 +11139,17 @@ msgstr "_Verknüpfungen"
 msgid "Godfather"
 msgstr "Taufpate"
 
-#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:65
+#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:67
 msgid "Enclosed By"
 msgstr "Teil von"
+
+#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:118
+msgid "Place cycle detected"
+msgstr "Ort Schleife gefunden"
+
+#: ../gramps/gui/editors/displaytabs/placerefembedlist.py:119
+msgid "The place you are adding is already enclosed by this place"
+msgstr "Der Ort, den du hinzufügst, ist bereits in diesem Ort enthalten"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:55
 msgid "Create and add a new repository"
@@ -34380,9 +34388,6 @@ msgstr "Kein Stylesheet"
 #, fuzzy
 #~ msgid "Part"
 #~ msgstr "Partner"
-
-#~ msgid "Place created"
-#~ msgstr "Ort erstellt"
 
 #~ msgid "Position"
 #~ msgstr "Position"
