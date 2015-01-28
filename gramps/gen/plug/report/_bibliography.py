@@ -94,7 +94,7 @@ class Citation(object):
         for n in range(1, number_of_letters):
             x_ref_count -= pow(letter_count, n) 
         for letter in range(1, number_of_letters):
-            index = x_ref_count  / pow(letter_count, letter)  % letter_count
+            index = x_ref_count // pow(letter_count, letter)  % letter_count
             key += string.ascii_lowercase[ index ]
         key = key + last_letter
         self.__ref_list.append((key, source_ref))
