@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-01-28 16:44+0100\n"
-"PO-Revision-Date: 2015-01-28 17:35+0100\n"
+"POT-Creation-Date: 2015-01-31 17:25+0100\n"
+"PO-Revision-Date: 2015-01-31 17:32+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -11328,7 +11328,7 @@ msgstr "Die Fundstelle kann nicht gespeichert werden. ID existiert bereits."
 #: ../gramps/gui/editors/editevent.py:247
 #: ../gramps/gui/editors/editmedia.py:288
 #: ../gramps/gui/editors/editperson.py:821
-#: ../gramps/gui/editors/editplace.py:271
+#: ../gramps/gui/editors/editplace.py:264
 #: ../gramps/gui/editors/editreference.py:284
 #: ../gramps/gui/editors/editrepository.py:179
 #: ../gramps/gui/editors/editsource.py:199
@@ -12169,36 +12169,28 @@ msgstr ""
 "Bearbeitung ab."
 
 #: ../gramps/gui/editors/editplace.py:253
-msgid "Cannot save location. Title not entered."
-msgstr "Kann Ort nicht speichern. Kein Titel eingegeben."
-
-#: ../gramps/gui/editors/editplace.py:254
-msgid "You must enter a title before saving."
-msgstr "Du musst einen Titel eingeben bevor du speicherst."
-
-#: ../gramps/gui/editors/editplace.py:260
 msgid "Cannot save location. Name not entered."
 msgstr "Kann Ort nicht speichern. Kein Name eingegeben."
 
-#: ../gramps/gui/editors/editplace.py:261
+#: ../gramps/gui/editors/editplace.py:254
 msgid "You must enter a name before saving."
 msgstr "Du musst einen Namen eingeben bevor du speicherst."
 
-#: ../gramps/gui/editors/editplace.py:270
+#: ../gramps/gui/editors/editplace.py:263
 msgid "Cannot save place. ID already exists."
 msgstr "Der Ort kann nicht gespeichert werden. ID besteht bereits."
 
-#: ../gramps/gui/editors/editplace.py:284
+#: ../gramps/gui/editors/editplace.py:277
 #, python-format
 msgid "Add Place (%s)"
 msgstr "Ort (%s) hinzufügen"
 
-#: ../gramps/gui/editors/editplace.py:289
+#: ../gramps/gui/editors/editplace.py:282
 #, python-format
 msgid "Edit Place (%s)"
 msgstr "Ort (%s) bearbeiten"
 
-#: ../gramps/gui/editors/editplace.py:314
+#: ../gramps/gui/editors/editplace.py:307
 #, python-format
 msgid "Delete Place (%s)"
 msgstr "Ort (%s) löschen"
@@ -14135,13 +14127,12 @@ msgid "What type of place this is. Eg 'Country', 'City', ... ."
 msgstr "Was für eine Art Ort ist es. Z.B. \"Land\", \"Stadt\", ... ."
 
 #: ../gramps/gui/glade/editplaceref.glade:295
-#, fuzzy
 msgid ""
 "<b>Note:</b> Any changes in the enclosing place information will be reflected "
 "in the place itself, for places that it encloses."
 msgstr ""
-"<b>Anmerkung:</b> Alle Änderungen an gemeinsam genutzten Quelleninformationen "
-"werden sich auf die Quellen auswirken, und für alles, das mit der Quelle "
+"<b>Anmerkung:</b> Alle Änderungen an gemeinsam genutzten Orteinformationen "
+"werden sich auf die Orte auswirken, und für alles, das mit dem Ort "
 "zusammenhängt."
 
 #: ../gramps/gui/glade/editreporef.glade:126
@@ -34160,6 +34151,12 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:153
 msgid "No style sheet"
 msgstr "Kein Stylesheet"
+
+#~ msgid "Cannot save location. Title not entered."
+#~ msgstr "Kann Ort nicht speichern. Kein Titel eingegeben."
+
+#~ msgid "You must enter a title before saving."
+#~ msgstr "Du musst einen Titel eingeben bevor du speicherst."
 
 #~ msgid "Cannot save place reference"
 #~ msgstr "Kann Ortereferenz nicht speichern"
