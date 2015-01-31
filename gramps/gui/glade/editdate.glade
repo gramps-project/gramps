@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <requires lib="grampswidgets" version="0.0"/>
   <object class="GtkAdjustment" id="adjustment1">
     <property name="upper">31</property>
     <property name="step_increment">1</property>
@@ -36,20 +38,11 @@
       <object class="GtkBox" id="vbox86">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="margin_left">12</property>
+        <property name="margin_right">12</property>
+        <property name="vexpand">True</property>
         <property name="orientation">vertical</property>
-        <child>
-          <object class="GtkStatusbar" id="statusbar">
-            <property name="visible">True</property>
-            <property name="can_focus">False</property>
-            <property name="spacing">2</property>
-          </object>
-          <packing>
-            <property name="expand">False</property>
-            <property name="fill">True</property>
-            <property name="pack_type">end</property>
-            <property name="position">0</property>
-          </packing>
-        </child>
+        <property name="spacing">6</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="hbuttonbox36">
             <property name="visible">True</property>
@@ -63,7 +56,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -80,7 +72,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -97,7 +88,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -115,21 +105,37 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox87">
+          <object class="GtkStatusbar" id="statusbar">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="spacing">2</property>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkBox" id="vbox87">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkVBox" id="vbox88">
+              <object class="GtkBox" id="vbox88">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkHBox" id="hbox95">
+                  <object class="GtkBox" id="hbox95">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkLabel" id="label404">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_left">6</property>
                         <property name="xalign">0</property>
                         <property name="label" translatable="yes">Calenda_r:</property>
                         <property name="use_underline">True</property>
@@ -157,7 +163,6 @@
                       <packing>
                         <property name="expand">True</property>
                         <property name="fill">True</property>
-                        <property name="padding">6</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -170,7 +175,7 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkHBox" id="hbox145">
+                  <object class="GtkBox" id="hbox145">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
@@ -193,7 +198,6 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Old Style/New Style</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="xalign">0.5</property>
                         <property name="draw_indicator">True</property>
@@ -223,6 +227,7 @@
                     <child>
                       <object class="UndoableEntry" id="newyear">
                         <property name="visible">True</property>
+                        <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Month-Day of first day of new year (e.g., "1-1", "3-1", "3-25")</property>
                         <accelerator key="w" signal="grab_focus" modifiers="GDK_MOD1_MASK"/>
                       </object>
@@ -241,31 +246,11 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkTable" id="table48">
+                  <object class="GtkGrid" id="table48">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="n_rows">5</property>
-                    <property name="n_columns">8</property>
-                    <property name="column_spacing">6</property>
                     <property name="row_spacing">6</property>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
+                    <property name="column_spacing">6</property>
                     <child>
                       <object class="GtkLabel" id="label413">
                         <property name="visible">True</property>
@@ -280,26 +265,21 @@
                         </attributes>
                       </object>
                       <packing>
-                        <property name="right_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
+                        <property name="left_attach">3</property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkComboBoxText" id="quality_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="events"></property>
+                        <property name="events"/>
+                        <property name="margin_left">12</property>
+                        <property name="hexpand">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">4</property>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options">GTK_FILL</property>
-                        <property name="x_padding">6</property>
-                        <property name="y_padding">6</property>
                       </packing>
                     </child>
                     <child>
@@ -316,26 +296,20 @@
                         </attributes>
                       </object>
                       <packing>
-                        <property name="left_attach">4</property>
-                        <property name="right_attach">8</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkComboBoxText" id="type_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_left">12</property>
+                        <property name="hexpand">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">5</property>
-                        <property name="right_attach">8</property>
+                        <property name="left_attach">3</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options">GTK_FILL</property>
-                        <property name="x_padding">6</property>
-                        <property name="y_padding">6</property>
                       </packing>
                     </child>
                     <child>
@@ -350,11 +324,8 @@
                         </attributes>
                       </object>
                       <packing>
-                        <property name="right_attach">4</property>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -366,12 +337,8 @@
                         <property name="mnemonic_widget">start_day</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -383,12 +350,8 @@
                         <property name="mnemonic_widget">start_month_box</property>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="right_attach">3</property>
+                        <property name="left_attach">1</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -400,60 +363,48 @@
                         <property name="mnemonic_widget">start_year</property>
                       </object>
                       <packing>
-                        <property name="left_attach">3</property>
-                        <property name="right_attach">4</property>
+                        <property name="left_attach">2</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="start_day">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="margin_left">12</property>
+                        <property name="hexpand">True</property>
                         <property name="adjustment">adjustment1</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">6</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkComboBoxText" id="start_month_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="right_attach">3</property>
+                        <property name="left_attach">1</property>
                         <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
-                        <property name="y_options">GTK_FILL</property>
-                        <property name="x_padding">6</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="start_year">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="hexpand">True</property>
                         <property name="adjustment">adjustment2</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">3</property>
-                        <property name="right_attach">4</property>
+                        <property name="left_attach">2</property>
                         <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">6</property>
                       </packing>
                     </child>
                     <child>
@@ -468,12 +419,8 @@
                         </attributes>
                       </object>
                       <packing>
-                        <property name="left_attach">4</property>
-                        <property name="right_attach">8</property>
+                        <property name="left_attach">3</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -485,12 +432,8 @@
                         <property name="mnemonic_widget">stop_day</property>
                       </object>
                       <packing>
-                        <property name="left_attach">5</property>
-                        <property name="right_attach">6</property>
+                        <property name="left_attach">3</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -502,12 +445,8 @@
                         <property name="mnemonic_widget">stop_month_box</property>
                       </object>
                       <packing>
-                        <property name="left_attach">6</property>
-                        <property name="right_attach">7</property>
+                        <property name="left_attach">4</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -519,61 +458,85 @@
                         <property name="mnemonic_widget">stop_year</property>
                       </object>
                       <packing>
-                        <property name="left_attach">7</property>
-                        <property name="right_attach">8</property>
+                        <property name="left_attach">5</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="stop_day">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="margin_left">12</property>
+                        <property name="hexpand">True</property>
                         <property name="adjustment">adjustment3</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">5</property>
-                        <property name="right_attach">6</property>
+                        <property name="left_attach">3</property>
                         <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">6</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkComboBoxText" id="stop_month_box">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">6</property>
-                        <property name="right_attach">7</property>
+                        <property name="left_attach">4</property>
                         <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
-                        <property name="y_options">GTK_FILL</property>
-                        <property name="x_padding">6</property>
                       </packing>
                     </child>
                     <child>
                       <object class="GtkSpinButton" id="stop_year">
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="hexpand">True</property>
                         <property name="adjustment">adjustment4</property>
                         <property name="climb_rate">1</property>
                         <property name="numeric">True</property>
                       </object>
                       <packing>
-                        <property name="left_attach">7</property>
-                        <property name="right_attach">8</property>
+                        <property name="left_attach">5</property>
                         <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">6</property>
                       </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                   </object>
                   <packing>
@@ -584,13 +547,14 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkHBox" id="hbox96">
+                  <object class="GtkBox" id="hbox96">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkLabel" id="label415">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="margin_left">6</property>
                         <property name="label" translatable="yes">Te_xt comment:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">date_text_entry</property>
@@ -610,7 +574,6 @@
                       <packing>
                         <property name="expand">True</property>
                         <property name="fill">True</property>
-                        <property name="padding">6</property>
                         <property name="position">1</property>
                       </packing>
                     </child>
@@ -634,6 +597,9 @@
             <property name="fill">False</property>
             <property name="position">1</property>
           </packing>
+        </child>
+        <child>
+          <placeholder/>
         </child>
       </object>
     </child>

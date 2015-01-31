@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkWindow" id="grampletview">
     <property name="can_focus">False</property>
     <property name="events">GDK_BUTTON_PRESS_MASK | GDK_STRUCTURE_MASK</property>
-    <property name="title" translatable="no">window2</property>
+    <property name="title">window2</property>
     <child>
-      <object class="GtkVBox" id="gvgramplet">
+      <object class="GtkBox" id="gvgramplet">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <child>
           <object class="GtkFrame" id="gvframe">
             <property name="visible">True</property>
@@ -18,9 +20,10 @@
             <property name="label_xalign">0</property>
             <property name="shadow_type">in</property>
             <child>
-              <object class="GtkVBox" id="vbox143">
+              <object class="GtkBox" id="vbox143">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <placeholder/>
                 </child>
@@ -46,7 +49,7 @@
               </object>
             </child>
             <child type="label">
-              <object class="GtkHBox" id="hbox144">
+              <object class="GtkBox" id="hbox144">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
@@ -58,12 +61,6 @@
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_markup">Drag to move; click to detach</property>
                     <property name="tooltip_text" translatable="yes">Drag to move; click to detach</property>
-                    <property name="use_action_appearance">False</property>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="gvproperties-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Detach</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="gvpropertiesimage">
                         <property name="visible">True</property>
@@ -74,6 +71,11 @@
                             <property name="AtkObject::accessible-description" translatable="yes">Config</property>
                           </object>
                         </child>
+                      </object>
+                    </child>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="gvproperties-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Detach</property>
                       </object>
                     </child>
                   </object>
@@ -92,12 +94,6 @@
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_markup">Click to expand/collapse</property>
                     <property name="tooltip_text" translatable="yes">Click to expand/collapse</property>
-                    <property name="use_action_appearance">False</property>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="gvstate-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Remove</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="gvstateimage">
                         <property name="visible">True</property>
@@ -108,6 +104,11 @@
                             <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
                           </object>
                         </child>
+                      </object>
+                    </child>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="gvstate-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Remove</property>
                       </object>
                     </child>
                   </object>
@@ -126,12 +127,6 @@
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_markup">Click to delete gramplet from view</property>
                     <property name="tooltip_text" translatable="yes">Click to delete gramplet from view</property>
-                    <property name="use_action_appearance">False</property>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="gvclose-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Delete</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="gvcloseimage">
                         <property name="visible">True</property>
@@ -142,6 +137,11 @@
                             <property name="AtkObject::accessible-description" translatable="yes">Close</property>
                           </object>
                         </child>
+                      </object>
+                    </child>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="gvclose-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Delete</property>
                       </object>
                     </child>
                   </object>
@@ -158,7 +158,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="relief">none</property>
                   </object>
                   <packing>

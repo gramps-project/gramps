@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkWindow" id="report">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -8,11 +9,12 @@
     <property name="default_height">400</property>
     <signal name="delete-event" handler="on_delete_event" swapped="no"/>
     <child>
-      <object class="GtkVBox" id="vbox38">
+      <object class="GtkBox" id="vbox38">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <child>
-          <object class="GtkHButtonBox" id="hbuttonbox23">
+          <object class="GtkButtonBox" id="hbuttonbox23">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="spacing">6</property>
@@ -25,7 +27,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="report" swapped="yes"/>
               </object>
@@ -43,14 +44,13 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Perform selected action</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
+                <signal name="clicked" handler="on_report_apply_clicked" object="report" swapped="yes"/>
                 <child internal-child="accessible">
                   <object class="AtkObject" id="apply-atkobject">
                     <property name="AtkObject::accessible-name" translatable="yes">Run</property>
                   </object>
                 </child>
-                <signal name="clicked" handler="on_report_apply_clicked" object="report" swapped="yes"/>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -68,7 +68,7 @@
           </packing>
         </child>
         <child>
-          <object class="GtkHPaned" id="hpaned3">
+          <object class="GtkPaned" id="hpaned3">
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <child>
@@ -94,11 +94,12 @@
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="vbox39">
+              <object class="GtkBox" id="vbox39">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkHBox" id="hbox3">
+                  <object class="GtkBox" id="hbox3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
@@ -143,23 +144,21 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkTable" id="statbox">
+                  <object class="GtkGrid" id="statbox">
                     <property name="can_focus">False</property>
-                    <property name="n_rows">3</property>
-                    <property name="n_columns">2</property>
                     <child>
                       <object class="GtkLabel" id="report_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="xalign">1</property>
-                        <property name="xpad">3</property>
+                        <property name="xpad">6</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">Status:</property>
                         <property name="justify">center</property>
                       </object>
                       <packing>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                     <child>
@@ -171,8 +170,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="y_options"/>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                     <child>
@@ -180,15 +178,13 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="xalign">1</property>
-                        <property name="xpad">3</property>
+                        <property name="xpad">6</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">Author:</property>
                       </object>
                       <packing>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
                       </packing>
                     </child>
                     <child>
@@ -196,15 +192,13 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="xalign">1</property>
-                        <property name="xpad">3</property>
+                        <property name="xpad">6</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">Author's email:</property>
                       </object>
                       <packing>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
                       </packing>
                     </child>
                     <child>
@@ -216,11 +210,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
                       </packing>
                     </child>
                     <child>
@@ -232,11 +222,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"/>
                       </packing>
                     </child>
                   </object>

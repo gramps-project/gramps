@@ -74,8 +74,7 @@ class EditLink(ManagedWindow):
         self.set_window(self.top.toplevel,
                         self.top.get_object("title"),
                         _('Link Editor'))
-        self.table = self.top.get_object('table27')
-        self.uri_list = Gtk.ComboBoxText()
+        self.uri_list = self.top.get_object('link_type')
         for text in [_("Internet Address"),       # 0 this order range above
                      _("Event"),      # 1 
                      _("Family"),     # 2 
@@ -87,7 +86,6 @@ class EditLink(ManagedWindow):
                      _("Source"),     # 8
                      ]:
             self.uri_list.append_text(text)
-        self.table.attach(self.uri_list, 1, 2, 0, 1)
         self.pick_item = self.top.get_object('button1')
         self.new_button = self.top.get_object('new')
         self.edit_button = self.top.get_object('edit')

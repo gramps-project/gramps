@@ -138,7 +138,7 @@ class PaperFrame(Gtk.HBox):
         GObject.GObject.__init__(self)
         glade_xml = Glade()
 
-        self.paper_table = glade_xml.get_object('paper_table')
+        self.paper_grid = glade_xml.get_object('paper_grid')
 
         
         # get all the widgets
@@ -155,11 +155,9 @@ class PaperFrame(Gtk.HBox):
         self.metric.set_active(default_metric)
         
         # connect all widgets
-        format_table = glade_xml.get_object('format_table')
-        format_table.attach(self.papersize_menu, 1, 3, 0, 1,
-                            yoptions=Gtk.AttachOptions.SHRINK)
-        format_table.attach(self.orientation_menu, 1, 3, 3, 4,
-                            yoptions=Gtk.AttachOptions.SHRINK)
+        format_grid = glade_xml.get_object('format_grid')
+        format_grid.attach(self.papersize_menu, 1, 0, 1, 1)
+        format_grid.attach(self.orientation_menu, 1, 3, 1, 1)
 
         # connect signals
         self.papersize_menu.connect('changed',self.size_changed)
@@ -176,8 +174,8 @@ class PaperFrame(Gtk.HBox):
         self.tmargin.set_text("%.2f" % margins[2])
         self.bmargin.set_text("%.2f" % margins[3])
         
-        self.paper_table.show_all()
-        self.paper_table.reparent(self)
+        self.paper_grid.show_all()
+        self.paper_grid.reparent(self)
 
         self.units_changed(self.metric)
         self.size_changed(None)

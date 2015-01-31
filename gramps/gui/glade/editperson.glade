@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <requires lib="grampswidgets" version="0.0"/>
+  <object class="GtkImage" id="image1">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-edit</property>
+    <child internal-child="accessible">
+      <object class="AtkObject" id="image1-atkobject">
+        <property name="AtkObject::accessible-description" translatable="yes">Edit</property>
+      </object>
+    </child>
+  </object>
+  <object class="GtkImage" id="image2">
+    <property name="visible">True</property>
+    <property name="can_focus">False</property>
+    <property name="stock">gtk-add</property>
+    <child internal-child="accessible">
+      <object class="AtkObject" id="image2-atkobject">
+        <property name="AtkObject::accessible-description" translatable="yes">Add</property>
+      </object>
+    </child>
+  </object>
   <object class="GtkDialog" id="editperson">
     <property name="can_focus">False</property>
     <property name="has_focus">True</property>
@@ -28,7 +50,6 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Abandon changes and close window</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="editperson" swapped="yes"/>
               </object>
@@ -47,7 +68,6 @@
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_apply_person_clicked" object="editperson" swapped="yes"/>
               </object>
@@ -65,7 +85,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_help_person_clicked" swapped="no"/>
               </object>
@@ -89,18 +108,19 @@
             <property name="can_focus">False</property>
             <property name="valign">start</property>
             <child>
-              <object class="GtkVBox" id="vbox1">
+              <object class="GtkBox" id="vbox1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="valign">start</property>
                 <property name="border_width">3</property>
+                <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkTable" id="table3">
+                  <object class="GtkGrid" id="table3">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="valign">start</property>
-                    <property name="n_rows">8</property>
-                    <property name="n_columns">9</property>
+                    <property name="row_spacing">4</property>
+                    <property name="column_spacing">3</property>
                     <child>
                       <object class="GtkLabel" id="label21">
                         <property name="visible">True</property>
@@ -114,13 +134,8 @@
                         <property name="mnemonic_widget">given_name</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
+                        <property name="left_attach">2</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
                       </packing>
                     </child>
                     <child>
@@ -131,17 +146,12 @@
                         <property name="has_default">True</property>
                         <property name="tooltip_text" translatable="yes">The person's given names</property>
                         <property name="invisible_char">●</property>
-                        <signal name="focus_out_event" handler="on_given_focus_out"/>
+                        <signal name="focus-out-event" handler="on_given_focus_out" swapped="no"/>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="right_attach">7</property>
+                        <property name="left_attach">3</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_EXPAND | GTK_SHRINK | GTK_FILL</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
-                        <property name="y_padding">3</property>
+                        <property name="width">4</property>
                       </packing>
                     </child>
                     <child>
@@ -155,12 +165,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">6</property>
-                        <property name="right_attach">7</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
                       </packing>
                     </child>
                     <child>
@@ -173,11 +178,8 @@
                       </object>
                       <packing>
                         <property name="left_attach">7</property>
-                        <property name="right_attach">9</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
+                        <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
@@ -192,13 +194,8 @@
                         <property name="mnemonic_widget">title</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
+                        <property name="left_attach">2</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
                       </packing>
                     </child>
                     <child>
@@ -207,17 +204,12 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
+                        <property name="hexpand">True</property>
                         <property name="invisible_char">●</property>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="right_attach">3</property>
+                        <property name="left_attach">3</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_EXPAND | GTK_SHRINK | GTK_FILL</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
-                        <property name="y_padding">3</property>
                       </packing>
                     </child>
                     <child>
@@ -235,11 +227,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">7</property>
-                        <property name="right_attach">8</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
                       </packing>
                     </child>
                     <child>
@@ -253,12 +241,8 @@
                         <property name="mnemonic_widget">nickname</property>
                       </object>
                       <packing>
-                        <property name="left_attach">3</property>
-                        <property name="right_attach">4</property>
+                        <property name="left_attach">4</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -267,15 +251,12 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">A descriptive name given in place of or in addition to the official given name.</property>
+                        <property name="hexpand">True</property>
                         <property name="invisible_char">●</property>
                       </object>
                       <packing>
-                        <property name="left_attach">4</property>
-                        <property name="right_attach">6</property>
+                        <property name="left_attach">5</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
                       </packing>
                     </child>
                     <child>
@@ -285,11 +266,6 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label_xalign">2.2351741291171123e-10</property>
-                        <child internal-child="accessible">
-                          <object class="AtkObject" id="frame5-atkobject">
-                            <property name="AtkObject::accessible-description" translatable="yes">Image</property>
-                          </object>
-                        </child>
                         <child>
                           <object class="GtkEventBox" id="eventbox1">
                             <property name="visible">True</property>
@@ -313,34 +289,17 @@
                             </attributes>
                           </object>
                         </child>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="frame5-atkobject">
+                            <property name="AtkObject::accessible-description" translatable="yes">Image</property>
+                          </object>
+                        </child>
                       </object>
                       <packing>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options"></property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="label269">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="xpad">3</property>
-                        <property name="ypad">3</property>
-                        <property name="label" translatable="yes">_Type:</property>
-                        <property name="use_underline">True</property>
-                        <property name="justify">center</property>
-                        <property name="mnemonic_widget">ntype</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">6</property>
-                        <property name="right_attach">7</property>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
+                        <property name="width">2</property>
+                        <property name="height">4</property>
                       </packing>
                     </child>
                     <child>
@@ -359,16 +318,12 @@
                       </object>
                       <packing>
                         <property name="left_attach">7</property>
-                        <property name="right_attach">9</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_EXPAND | GTK_SHRINK | GTK_FILL</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
+                        <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHBox" id="hboxmultsurnames">
+                      <object class="GtkBox" id="hboxmultsurnames">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Click on a table cell to edit.</property>
@@ -380,13 +335,9 @@
                         </child>
                       </object>
                       <packing>
-                        <property name="right_attach">9</property>
+                        <property name="left_attach">2</property>
                         <property name="top_attach">5</property>
-                        <property name="bottom_attach">6</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
-                        <property name="y_padding">3</property>
+                        <property name="width">6</property>
                       </packing>
                     </child>
                     <child>
@@ -397,27 +348,22 @@
                         <property name="receives_default">True</property>
                         <property name="tooltip_text" translatable="yes">Use Multiple Surnames
 Indicate that the surname consists of different parts. Every surname has its own prefix and a possible connector to the next surname. Eg., the surname Ramón y Cajal can be stored as Ramón, which is inherited from the father, the connector y, and Cajal, which is inherited from the mother.</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="image">image2</property>
                         <property name="use_underline">True</property>
-                        <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="multsurnamebtn-atkobject">
                             <property name="AtkObject::accessible-name" translatable="yes">Add</property>
                           </object>
                         </child>
+                        <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
                         <property name="left_attach">8</property>
-                        <property name="right_attach">9</property>
                         <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
-                        <property name="x_options">GTK_SHRINK</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHBox" id="hbox1">
+                      <object class="GtkBox" id="hbox1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
@@ -444,15 +390,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="tooltip_text" translatable="yes">Set person as private data</property>
-                            <property name="use_action_appearance">False</property>
                             <property name="relief">none</property>
                             <property name="xalign">1</property>
-                            <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                            <child internal-child="accessible">
-                              <object class="AtkObject" id="private-atkobject">
-                                <property name="AtkObject::accessible-name" translatable="yes">Private</property>
-                              </object>
-                            </child>
                             <child>
                               <object class="GtkImage" id="image3">
                                 <property name="visible">True</property>
@@ -466,6 +405,12 @@ Indicate that the surname consists of different parts. Every surname has its own
                                 </child>
                               </object>
                             </child>
+                            <child internal-child="accessible">
+                              <object class="AtkObject" id="private-atkobject">
+                                <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                              </object>
+                            </child>
+                            <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -476,48 +421,13 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                       </object>
                       <packing>
-                        <property name="right_attach">9</property>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">6</property>
-                        <property name="bottom_attach">7</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
-                        <property name="y_padding">3</property>
+                        <property name="width">9</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHBox" id="hbox3">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <child>
-                          <object class="GtkLabel" id="label2">
-                            <property name="visible">True</property>
-                            <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
-                            <property name="ypad">3</property>
-                            <property name="label" translatable="yes">Preferred Name</property>
-                            <attributes>
-                              <attribute name="weight" value="bold"/>
-                            </attributes>
-                          </object>
-                          <packing>
-                            <property name="expand">True</property>
-                            <property name="fill">True</property>
-                            <property name="position">0</property>
-                          </packing>
-                        </child>
-                        <child>
-                          <placeholder/>
-                        </child>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">5</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkHBox" id="hbox4">
+                      <object class="GtkBox" id="hbox4">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="spacing">6</property>
@@ -526,6 +436,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="xalign">0</property>
+                            <property name="xpad">6</property>
+                            <property name="ypad">3</property>
                             <property name="label" translatable="yes">_Surname:</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">surname</property>
@@ -562,6 +474,7 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">Part of a person's name indicating the family to which the person belongs</property>
+                            <property name="hexpand">True</property>
                             <property name="invisible_char">●</property>
                             <accessibility>
                               <relation type="labelled-by" target="surnamelabel"/>
@@ -575,31 +488,9 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                       </object>
                       <packing>
-                        <property name="right_attach">6</property>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
-                        <property name="y_padding">3</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="full_name">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="xpad">3</property>
-                        <property name="ypad">3</property>
-                        <property name="use_markup">True</property>
-                        <property name="ellipsize">end</property>
-                      </object>
-                      <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">6</property>
-                        <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
+                        <property name="width">6</property>
                       </packing>
                     </child>
                     <child>
@@ -609,27 +500,22 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="tooltip_text" translatable="yes">Go to Name Editor to add more information about this name</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="image">image1</property>
-                        <accelerator key="e" signal="activate" modifiers="GDK_CONTROL_MASK"/>
+                        <signal name="clicked" handler="on_edit_name_clicked" swapped="no"/>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="editnamebtn-atkobject">
                             <property name="AtkObject::accessible-name" translatable="yes">Edit</property>
                           </object>
                         </child>
-                        <signal name="clicked" handler="on_edit_name_clicked" swapped="no"/>
+                        <accelerator key="e" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
                         <property name="left_attach">8</property>
-                        <property name="right_attach">9</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_SHRINK</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHBox" id="hbox5">
+                      <object class="GtkBox" id="hbox5">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="spacing">6</property>
@@ -671,15 +557,12 @@ Indicate that the surname consists of different parts. Every surname has its own
                       </object>
                       <packing>
                         <property name="left_attach">6</property>
-                        <property name="right_attach">8</property>
                         <property name="top_attach">4</property>
-                        <property name="bottom_attach">5</property>
-                        <property name="y_options"></property>
-                        <property name="x_padding">3</property>
+                        <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHBox" id="hbox6">
+                      <object class="GtkBox" id="hbox6">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="spacing">6</property>
@@ -780,7 +663,6 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
-                            <property name="use_action_appearance">False</property>
                             <property name="xalign">1</property>
                             <accessibility>
                               <relation type="labelled-by" target="label1"/>
@@ -800,11 +682,75 @@ Indicate that the surname consists of different parts. Every surname has its own
                         </child>
                       </object>
                       <packing>
-                        <property name="right_attach">9</property>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">7</property>
-                        <property name="bottom_attach">8</property>
-                        <property name="y_options"></property>
+                        <property name="width">9</property>
                       </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label2">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0</property>
+                        <property name="ypad">3</property>
+                        <property name="label" translatable="yes">Preferred Name</property>
+                        <attributes>
+                          <attribute name="weight" value="bold"/>
+                        </attributes>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="top_attach">0</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="label269">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">3</property>
+                        <property name="ypad">3</property>
+                        <property name="label" translatable="yes">_Type:</property>
+                        <property name="use_underline">True</property>
+                        <property name="justify">center</property>
+                        <property name="mnemonic_widget">ntype</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">6</property>
+                        <property name="top_attach">1</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <object class="GtkLabel" id="full_name">
+                        <property name="visible">True</property>
+                        <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
+                        <property name="xalign">0</property>
+                        <property name="xpad">3</property>
+                        <property name="ypad">3</property>
+                        <property name="use_markup">True</property>
+                        <property name="ellipsize">end</property>
+                      </object>
+                      <packing>
+                        <property name="left_attach">2</property>
+                        <property name="top_attach">1</property>
+                        <property name="width">4</property>
+                      </packing>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
+                    </child>
+                    <child>
+                      <placeholder/>
                     </child>
                     <child>
                       <placeholder/>
@@ -842,25 +788,5 @@ Indicate that the surname consists of different parts. Every surname has its own
       <action-widget response="0">ok</action-widget>
       <action-widget response="-11">button134</action-widget>
     </action-widgets>
-  </object>
-  <object class="GtkImage" id="image1">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-edit</property>
-    <child internal-child="accessible">
-      <object class="AtkObject" id="image1-atkobject">
-        <property name="AtkObject::accessible-description" translatable="yes">Edit</property>
-      </object>
-    </child>
-  </object>
-  <object class="GtkImage" id="image2">
-    <property name="visible">True</property>
-    <property name="can_focus">False</property>
-    <property name="stock">gtk-add</property>
-    <child internal-child="accessible">
-      <object class="AtkObject" id="image2-atkobject">
-        <property name="AtkObject::accessible-description" translatable="yes">Add</property>
-      </object>
-    </child>
   </object>
 </interface>

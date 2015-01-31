@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <requires lib="grampswidgets" version="0.0"/>
   <object class="GtkDialog" id="editmedia">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
@@ -8,6 +10,7 @@
       <object class="GtkBox" id="dialog-vbox7">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">8</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area7">
@@ -22,7 +25,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -40,7 +42,6 @@
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -57,7 +58,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -75,20 +75,19 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox">
+          <object class="GtkBox" id="vbox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="border_width">12</property>
+            <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
-              <object class="GtkTable" id="table8">
+              <object class="GtkGrid" id="table8">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="border_width">12</property>
-                <property name="n_rows">5</property>
-                <property name="n_columns">4</property>
-                <property name="column_spacing">5</property>
                 <property name="row_spacing">4</property>
+                <property name="column_spacing">5</property>
                 <child>
                   <object class="GtkLabel" id="label181">
                     <property name="visible">True</property>
@@ -101,11 +100,7 @@
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
                     <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -119,9 +114,7 @@
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
+                    <property name="top_attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -135,11 +128,7 @@
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
                     <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -154,11 +143,7 @@
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
                     <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -168,10 +153,8 @@
                     <property name="justify">center</property>
                   </object>
                   <packing>
+                    <property name="left_attach">0</property>
                     <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -210,9 +193,9 @@
                     </child>
                   </object>
                   <packing>
-                    <property name="bottom_attach">4</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
+                    <property name="height">4</property>
                   </packing>
                 </child>
                 <child>
@@ -221,14 +204,12 @@
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Path of the media object on your computer.
 Gramps does not store the media internally, it only stores the path! Set the 'Relative Path' in the Preferences to avoid retyping the common base directory where all your media is stored. The 'Media Manager' tool can help managing paths of a collection of media objects. </property>
+                    <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
                     <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -236,12 +217,12 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Descriptive title for this media object.</property>
+                    <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
-                    <property name="right_attach">4</property>
-                    <property name="y_options"></property>
+                    <property name="top_attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -252,17 +233,7 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     <property name="receives_default">True</property>
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_text" translatable="yes">Invoke date editor</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="relief">none</property>
-                    <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                    <accessibility>
-                      <relation type="labelled-by" target="label422"/>
-                    </accessibility>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="date_edit-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Date</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="image2264">
                         <property name="visible">True</property>
@@ -275,14 +246,19 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                         </child>
                       </object>
                     </child>
+                    <accessibility>
+                      <relation type="labelled-by" target="label422"/>
+                    </accessibility>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="date_edit-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Date</property>
+                      </object>
+                    </child>
+                    <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
                     <property name="left_attach">3</property>
-                    <property name="right_attach">4</property>
                     <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -292,16 +268,7 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="tooltip_text" translatable="yes">Open File Browser to select a media file on your computer.</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="relief">none</property>
-                    <accessibility>
-                      <relation type="labelled-by" target="path_label"/>
-                    </accessibility>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="file_select-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Path</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="image2673">
                         <property name="visible">True</property>
@@ -314,14 +281,18 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                         </child>
                       </object>
                     </child>
+                    <accessibility>
+                      <relation type="labelled-by" target="path_label"/>
+                    </accessibility>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="file_select-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Path</property>
+                      </object>
+                    </child>
                   </object>
                   <packing>
                     <property name="left_attach">3</property>
-                    <property name="right_attach">4</property>
                     <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -329,14 +300,12 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">A unique ID to identify the Media object.</property>
+                    <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
                     <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -345,14 +314,7 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
                     <property name="relief">none</property>
-                    <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="private-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Private</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="image2708">
                         <property name="visible">True</property>
@@ -365,14 +327,16 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                         </child>
                       </object>
                     </child>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="private-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                      </object>
+                    </child>
+                    <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
                     <property name="left_attach">3</property>
-                    <property name="right_attach">4</property>
                     <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -380,14 +344,12 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">A date associated with the media, eg., for a picture the date it is taken.</property>
+                    <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
                     <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
@@ -401,21 +363,18 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
                     <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"></property>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkHBox" id="hbox1">
+                  <object class="GtkBox" id="hbox1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkLabel" id="tag_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -429,7 +388,6 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="use_action_appearance">False</property>
                         <accessibility>
                           <relation type="labelled-by" target="label1"/>
                         </accessibility>
@@ -448,11 +406,12 @@ Gramps does not store the media internally, it only stores the path! Set the 'Re
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
-                    <property name="right_attach">4</property>
                     <property name="top_attach">4</property>
-                    <property name="bottom_attach">5</property>
-                    <property name="y_options"></property>
+                    <property name="width">2</property>
                   </packing>
+                </child>
+                <child>
+                  <placeholder/>
                 </child>
               </object>
               <packing>

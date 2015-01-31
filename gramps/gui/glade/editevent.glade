@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <requires lib="grampswidgets" version="0.0"/>
   <object class="GtkDialog" id="editevent">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
@@ -75,18 +77,17 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox">
+          <object class="GtkBox" id="vbox">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkTable" id="table21">
+              <object class="GtkGrid" id="table21">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="border_width">12</property>
-                <property name="n_rows">4</property>
-                <property name="n_columns">5</property>
-                <property name="column_spacing">12</property>
                 <property name="row_spacing">4</property>
+                <property name="column_spacing">12</property>
                 <child>
                   <object class="GtkLabel" id="label154">
                     <property name="visible">True</property>
@@ -98,8 +99,8 @@
                     <property name="mnemonic_widget">personal_events</property>
                   </object>
                   <packing>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="left_attach">0</property>
+                    <property name="top_attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -114,9 +115,7 @@
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
-                    <property name="right_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="top_attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -127,15 +126,6 @@
                     <property name="has_tooltip">True</property>
                     <property name="tooltip_text" translatable="yes">Invoke date editor</property>
                     <property name="relief">none</property>
-                    <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                    <accessibility>
-                      <relation type="labelled-by" target="label155"/>
-                    </accessibility>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="date_stat-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Date</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="date_stat_child">
                         <property name="visible">True</property>
@@ -150,12 +140,19 @@
                         </child>
                       </object>
                     </child>
+                    <accessibility>
+                      <relation type="labelled-by" target="label155"/>
+                    </accessibility>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="date_stat-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Date</property>
+                      </object>
+                    </child>
+                    <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
                     <property name="left_attach">4</property>
-                    <property name="right_attach">5</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="top_attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -169,10 +166,8 @@
                     <property name="mnemonic_widget">event_description</property>
                   </object>
                   <packing>
+                    <property name="left_attach">0</property>
                     <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -180,14 +175,13 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Description of the event. Leave empty if you want to autogenerate this with the tool 'Extract Event Description'.</property>
+                    <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="right_attach">4</property>
                     <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="y_options"/>
+                    <property name="width">3</property>
                   </packing>
                 </child>
                 <child>
@@ -202,10 +196,8 @@
                     <property name="mnemonic_widget">select_place</property>
                   </object>
                   <packing>
+                    <property name="left_attach">0</property>
                     <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -214,34 +206,32 @@
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="relief">none</property>
-                    <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                     <child>
                       <object class="GtkImage" id="image2699">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                       </object>
                     </child>
+                    <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
                     <property name="left_attach">4</property>
-                    <property name="right_attach">5</property>
                     <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkHBox" id="hbox130">
+                  <object class="GtkBox" id="hbox130">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
                       <object class="GtkEventBox" id="place_event_box">
-                        <property name="visible-window">False</property>
+                        <property name="can_focus">False</property>
+                        <property name="visible_window">False</property>
                         <child>
                           <object class="GtkLabel" id="place">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
                             <property name="xalign">0</property>
                             <property name="ellipsize">end</property>
                           </object>
@@ -259,15 +249,6 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="relief">none</property>
-                        <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <accessibility>
-                          <relation type="labelled-by" target="place"/>
-                        </accessibility>
-                        <child internal-child="accessible">
-                          <object class="AtkObject" id="select_place-atkobject">
-                            <property name="AtkObject::accessible-name" translatable="yes">Place</property>
-                          </object>
-                        </child>
                         <child>
                           <object class="GtkImage" id="image2700">
                             <property name="visible">True</property>
@@ -280,6 +261,15 @@
                             </child>
                           </object>
                         </child>
+                        <accessibility>
+                          <relation type="labelled-by" target="place"/>
+                        </accessibility>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="select_place-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Place</property>
+                          </object>
+                        </child>
+                        <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -290,11 +280,8 @@
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="right_attach">4</property>
                     <property name="top_attach">2</property>
-                    <property name="bottom_attach">3</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="width">3</property>
                   </packing>
                 </child>
                 <child>
@@ -306,15 +293,14 @@
                     <child internal-child="entry">
                       <object class="GtkEntry" id="personal_events-entry">
                         <property name="can_focus">True</property>
+                        <property name="hexpand">True</property>
                         <property name="overwrite_mode">True</property>
                       </object>
                     </child>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="right_attach">2</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
+                    <property name="top_attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -327,10 +313,8 @@
                     <property name="mnemonic_widget">gid</property>
                   </object>
                   <packing>
+                    <property name="left_attach">0</property>
                     <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="x_options">GTK_FILL</property>
-                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -339,12 +323,12 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">Date of the event. This can be an exact date, a range (from ... to, between, ...), or an inexact date (about, ...).</property>
+                    <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>
                   <packing>
                     <property name="left_attach">3</property>
-                    <property name="right_attach">4</property>
-                    <property name="y_options"/>
+                    <property name="top_attach">0</property>
                   </packing>
                 </child>
                 <child>
@@ -353,12 +337,6 @@
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="relief">none</property>
-                    <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="private-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Private</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="image2674">
                         <property name="visible">True</property>
@@ -371,14 +349,16 @@
                         </child>
                       </object>
                     </child>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="private-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                      </object>
+                    </child>
+                    <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                   </object>
                   <packing>
                     <property name="left_attach">4</property>
-                    <property name="right_attach">5</property>
                     <property name="top_attach">1</property>
-                    <property name="bottom_attach">2</property>
-                    <property name="x_options"/>
-                    <property name="y_options"/>
                   </packing>
                 </child>
                 <child>
@@ -418,6 +398,7 @@
                       <object class="GtkLabel" id="tag_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
                         <property name="xalign">0</property>
                         <property name="yalign">0.4699999988079071</property>
                       </object>
@@ -445,16 +426,14 @@
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
-                    <property name="right_attach">5</property>
                     <property name="top_attach">3</property>
-                    <property name="bottom_attach">4</property>
-                    <property name="y_options">GTK_FILL</property>
+                    <property name="width">4</property>
                   </packing>
                 </child>
               </object>
               <packing>
                 <property name="expand">False</property>
-                <property name="fill">False</property>
+                <property name="fill">True</property>
                 <property name="position">0</property>
               </packing>
             </child>

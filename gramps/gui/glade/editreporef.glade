@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <requires lib="grampswidgets" version="0.0"/>
   <object class="GtkDialog" id="editreporef">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>
@@ -8,6 +10,7 @@
       <object class="GtkBox" id="dialog-vbox25">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <property name="spacing">8</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area25">
@@ -25,7 +28,6 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Abandon changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Abandon changes and close window</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -46,7 +48,6 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Accept changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -63,7 +64,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -81,9 +81,10 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox121">
+          <object class="GtkBox" id="vbox121">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
               <object class="GtkLabel" id="label631">
                 <property name="visible">True</property>
@@ -110,14 +111,12 @@
                 <property name="can_focus">True</property>
                 <property name="border_width">6</property>
                 <child>
-                  <object class="GtkTable" id="table70">
+                  <object class="GtkGrid" id="table70">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="border_width">12</property>
-                    <property name="n_rows">2</property>
-                    <property name="n_columns">3</property>
-                    <property name="column_spacing">12</property>
                     <property name="row_spacing">6</property>
+                    <property name="column_spacing">12</property>
                     <child>
                       <object class="GtkLabel" id="label623">
                         <property name="visible">True</property>
@@ -129,8 +128,8 @@
                         <property name="mnemonic_widget">media_type</property>
                       </object>
                       <packing>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                     <child>
@@ -144,10 +143,8 @@
                         <property name="mnemonic_widget">call_number</property>
                       </object>
                       <packing>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -155,6 +152,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">On what type of media this source is available in the repository.</property>
+                        <property name="hexpand">True</property>
                         <property name="has_entry">True</property>
                         <child internal-child="entry">
                           <object class="GtkEntry" id="media_type-entry">
@@ -165,8 +163,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="y_options"></property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                     <child>
@@ -178,14 +175,7 @@
                         <property name="has_tooltip">True</property>
                         <property name="tooltip_markup">Indicates if the record is private</property>
                         <property name="tooltip_text" translatable="yes">Indicates if the record is private</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="relief">none</property>
-                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <child internal-child="accessible">
-                          <object class="AtkObject" id="private_ref-atkobject">
-                            <property name="AtkObject::accessible-name" translatable="yes">Private</property>
-                          </object>
-                        </child>
                         <child>
                           <object class="GtkImage" id="image2720">
                             <property name="visible">True</property>
@@ -198,12 +188,16 @@
                             </child>
                           </object>
                         </child>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="private_ref-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                          </object>
+                        </child>
+                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
-                        <property name="right_attach">3</property>
-                        <property name="x_options">GTK_SHRINK</property>
-                        <property name="y_options">GTK_SHRINK</property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                     <child>
@@ -211,14 +205,13 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">Id number of the source in the repository.</property>
+                        <property name="hexpand">True</property>
                         <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="right_attach">3</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="y_options"></property>
+                        <property name="width">2</property>
                       </packing>
                     </child>
                   </object>
@@ -252,16 +245,15 @@
                   <object class="GtkNotebook" id="notebook_src">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
+                    <property name="vexpand">True</property>
                     <property name="border_width">6</property>
                     <child>
-                      <object class="GtkTable" id="table69">
+                      <object class="GtkGrid" id="table69">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="border_width">12</property>
-                        <property name="n_rows">4</property>
-                        <property name="n_columns">2</property>
-                        <property name="column_spacing">12</property>
                         <property name="row_spacing">6</property>
+                        <property name="column_spacing">12</property>
                         <child>
                           <object class="GtkLabel" id="label620">
                             <property name="visible">True</property>
@@ -273,8 +265,8 @@
                             <property name="mnemonic_widget">repo_name</property>
                           </object>
                           <packing>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
+                            <property name="left_attach">0</property>
+                            <property name="top_attach">0</property>
                           </packing>
                         </child>
                         <child>
@@ -288,10 +280,8 @@
                             <property name="mnemonic_widget">repo_type</property>
                           </object>
                           <packing>
+                            <property name="left_attach">0</property>
                             <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
@@ -299,16 +289,16 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">Name of the repository (where sources are stored).</property>
+                            <property name="hexpand">True</property>
                             <property name="invisible_char">●</property>
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
-                            <property name="y_options"></property>
+                            <property name="top_attach">0</property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkHBox" id="warn_box">
+                          <object class="GtkBox" id="warn_box">
                             <property name="can_focus">False</property>
                             <property name="border_width">6</property>
                             <property name="spacing">12</property>
@@ -317,7 +307,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="stock">gtk-dialog-warning</property>
-                                <property name="icon-size">6</property>
+                                <property name="icon_size">6</property>
                               </object>
                               <packing>
                                 <property name="expand">True</property>
@@ -345,10 +335,9 @@
                             </child>
                           </object>
                           <packing>
-                            <property name="right_attach">2</property>
+                            <property name="left_attach">0</property>
                             <property name="top_attach">3</property>
-                            <property name="bottom_attach">4</property>
-                            <property name="x_options">GTK_FILL</property>
+                            <property name="width">2</property>
                           </packing>
                         </child>
                         <child>
@@ -361,14 +350,12 @@
                             <property name="mnemonic_widget">gid</property>
                           </object>
                           <packing>
+                            <property name="left_attach">0</property>
                             <property name="top_attach">2</property>
-                            <property name="bottom_attach">3</property>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options"></property>
                           </packing>
                         </child>
                         <child>
-                          <object class="GtkHBox" id="hbox137">
+                          <object class="GtkBox" id="hbox137">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="spacing">12</property>
@@ -377,6 +364,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">A unique ID to identify the repository.</property>
+                                <property name="hexpand">True</property>
                                 <property name="invisible_char">●</property>
                               </object>
                               <packing>
@@ -394,13 +382,7 @@
                                 <property name="has_tooltip">True</property>
                                 <property name="tooltip_markup">Indicates if the record is private</property>
                                 <property name="tooltip_text" translatable="yes">Indicates if the record is private</property>
-                                <property name="use_action_appearance">False</property>
                                 <property name="relief">none</property>
-                                <child internal-child="accessible">
-                                  <object class="AtkObject" id="private-atkobject">
-                                    <property name="AtkObject::accessible-name" translatable="yes">Private</property>
-                                  </object>
-                                </child>
                                 <child>
                                   <object class="GtkImage" id="image2712">
                                     <property name="visible">True</property>
@@ -413,6 +395,11 @@
                                     </child>
                                   </object>
                                 </child>
+                                <child internal-child="accessible">
+                                  <object class="AtkObject" id="private-atkobject">
+                                    <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                                  </object>
+                                </child>
                               </object>
                               <packing>
                                 <property name="expand">False</property>
@@ -423,11 +410,7 @@
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
                             <property name="top_attach">2</property>
-                            <property name="bottom_attach">3</property>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options">GTK_FILL</property>
                           </packing>
                         </child>
                         <child>
@@ -435,6 +418,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="tooltip_text" translatable="yes">Type of repository, eg., 'Library', 'Album', ...</property>
+                            <property name="hexpand">True</property>
                             <property name="has_entry">True</property>
                             <child internal-child="entry">
                               <object class="GtkEntry" id="repo_type-entry">
@@ -445,11 +429,7 @@
                           </object>
                           <packing>
                             <property name="left_attach">1</property>
-                            <property name="right_attach">2</property>
                             <property name="top_attach">1</property>
-                            <property name="bottom_attach">2</property>
-                            <property name="x_options">GTK_FILL</property>
-                            <property name="y_options">GTK_FILL</property>
                           </packing>
                         </child>
                       </object>

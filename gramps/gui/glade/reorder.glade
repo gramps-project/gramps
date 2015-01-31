@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="reorder">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
@@ -12,6 +13,7 @@
       <object class="GtkBox" id="dialog-vbox21">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area21">
             <property name="visible">True</property>
@@ -25,7 +27,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -42,7 +43,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -60,28 +60,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkTable" id="table78">
+          <object class="GtkGrid" id="table78">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="n_rows">5</property>
-            <property name="n_columns">3</property>
-            <property name="column_spacing">6</property>
             <property name="row_spacing">6</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
+            <property name="column_spacing">6</property>
             <child>
               <object class="GtkLabel" id="label665">
                 <property name="visible">True</property>
@@ -93,26 +76,21 @@
                 </attributes>
               </object>
               <packing>
-                <property name="right_attach">3</property>
-                <property name="y_options"></property>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="vbox129">
+              <object class="GtkBox" id="vbox129">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkButton" id="pup">
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="pup-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Move parent up</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="image2714">
                         <property name="visible">True</property>
@@ -123,6 +101,11 @@
                             <property name="AtkObject::accessible-description" translatable="yes">Arrow top</property>
                           </object>
                         </child>
+                      </object>
+                    </child>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="pup-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Move parent up</property>
                       </object>
                     </child>
                   </object>
@@ -138,12 +121,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="pdown-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Move parent down</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="image2715">
                         <property name="visible">True</property>
@@ -154,6 +131,11 @@
                             <property name="AtkObject::accessible-description" translatable="yes">Arrow bottom</property>
                           </object>
                         </child>
+                      </object>
+                    </child>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="pdown-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Move parent down</property>
                       </object>
                     </child>
                   </object>
@@ -168,18 +150,17 @@
                 </child>
               </object>
               <packing>
-                <property name="left_attach">2</property>
-                <property name="right_attach">3</property>
+                <property name="left_attach">1</property>
                 <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options">GTK_FILL</property>
               </packing>
             </child>
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow86">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="margin_left">6</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
                 <property name="shadow_type">in</property>
                 <child>
                   <object class="GtkTreeView" id="ptree">
@@ -192,10 +173,8 @@
                 </child>
               </object>
               <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
+                <property name="left_attach">0</property>
                 <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
               </packing>
             </child>
             <child>
@@ -209,17 +188,17 @@
                 </attributes>
               </object>
               <packing>
-                <property name="right_attach">3</property>
-                <property name="top_attach">3</property>
-                <property name="bottom_attach">4</property>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options"></property>
+                <property name="left_attach">0</property>
+                <property name="top_attach">2</property>
               </packing>
             </child>
             <child>
               <object class="GtkScrolledWindow" id="scrolledwindow87">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="margin_left">6</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
                 <property name="shadow_type">in</property>
                 <child>
                   <object class="GtkTreeView" id="ftree">
@@ -232,29 +211,21 @@
                 </child>
               </object>
               <packing>
-                <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
-                <property name="top_attach">4</property>
-                <property name="bottom_attach">5</property>
-                <property name="x_options">GTK_FILL</property>
+                <property name="left_attach">0</property>
+                <property name="top_attach">3</property>
               </packing>
             </child>
             <child>
-              <object class="GtkVBox" id="vbox130">
+              <object class="GtkBox" id="vbox130">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
                 <child>
                   <object class="GtkButton" id="fup">
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="fup-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Move family up</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="image2716">
                         <property name="visible">True</property>
@@ -265,6 +236,11 @@
                             <property name="AtkObject::accessible-description" translatable="yes">Arrow top</property>
                           </object>
                         </child>
+                      </object>
+                    </child>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="fup-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Move family up</property>
                       </object>
                     </child>
                   </object>
@@ -280,12 +256,6 @@
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="use_action_appearance">False</property>
-                    <child internal-child="accessible">
-                      <object class="AtkObject" id="fdown-atkobject">
-                        <property name="AtkObject::accessible-name" translatable="yes">Move family down</property>
-                      </object>
-                    </child>
                     <child>
                       <object class="GtkImage" id="image2717">
                         <property name="visible">True</property>
@@ -296,6 +266,11 @@
                             <property name="AtkObject::accessible-description" translatable="yes">Arrow bottom</property>
                           </object>
                         </child>
+                      </object>
+                    </child>
+                    <child internal-child="accessible">
+                      <object class="AtkObject" id="fdown-atkobject">
+                        <property name="AtkObject::accessible-name" translatable="yes">Move family down</property>
                       </object>
                     </child>
                   </object>
@@ -310,13 +285,15 @@
                 </child>
               </object>
               <packing>
-                <property name="left_attach">2</property>
-                <property name="right_attach">3</property>
-                <property name="top_attach">4</property>
-                <property name="bottom_attach">5</property>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options">GTK_FILL</property>
+                <property name="left_attach">1</property>
+                <property name="top_attach">3</property>
               </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
           <packing>

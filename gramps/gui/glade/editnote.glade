@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <requires lib="grampswidgets" version="0.0"/>
   <object class="GtkDialog" id="editnote">
     <property name="can_focus">False</property>
     <property name="default_width">500</property>
@@ -24,7 +26,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -41,7 +42,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -58,7 +58,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -80,14 +79,16 @@
             <property name="visible">True</property>
             <property name="can_focus">True</property>
             <child>
-              <object class="GtkVBox" id="vbox131">
+              <object class="GtkBox" id="vbox131">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkVBox" id="container">
+                  <object class="GtkBox" id="container">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="border_width">6</property>
+                    <property name="orientation">vertical</property>
                     <property name="spacing">6</property>
                     <child>
                       <object class="GtkScrolledWindow" id="scrolledwindow90">
@@ -120,17 +121,12 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkTable" id="table79">
+                  <object class="GtkGrid" id="table79">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="border_width">6</property>
-                    <property name="n_rows">3</property>
-                    <property name="n_columns">5</property>
-                    <property name="column_spacing">6</property>
                     <property name="row_spacing">6</property>
-                    <child>
-                      <placeholder/>
-                    </child>
+                    <property name="column_spacing">6</property>
                     <child>
                       <object class="GtkLabel" id="label707">
                         <property name="visible">True</property>
@@ -142,11 +138,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
-                        <property name="right_attach">3</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -154,6 +146,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">A type to classify the note.</property>
+                        <property name="hexpand">True</property>
                         <property name="has_entry">True</property>
                         <child internal-child="entry">
                           <object class="GtkEntry" id="type-entry">
@@ -164,10 +157,7 @@
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
-                        <property name="right_attach">4</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -180,10 +170,8 @@
                         <property name="mnemonic_widget">id</property>
                       </object>
                       <packing>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -191,14 +179,12 @@
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">A unique ID to identify the note.</property>
+                        <property name="hexpand">True</property>
                         <property name="invisible_char">●</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -215,16 +201,13 @@ When not checked, notes are automatically cleaned in the reports, which will imp
 When not checked, notes are automatically cleaned in the reports, which will improve the report layout.
 Use monospace font to keep preformatting.</property>
                         <property name="halign">end</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="use_underline">True</property>
                         <property name="xalign">0.5</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
-                        <property name="right_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                     <child>
@@ -233,33 +216,30 @@ Use monospace font to keep preformatting.</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="relief">none</property>
-                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <child internal-child="accessible">
-                          <object class="AtkObject" id="private-atkobject">
-                            <property name="AtkObject::accessible-name" translatable="yes">Private</property>
-                          </object>
-                        </child>
                         <child>
                           <object class="GtkImage" id="image2721">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="icon_name">gtk-dialog-authentication</property>
+                            <property name="icon_size">1</property>
                             <child internal-child="accessible">
                               <object class="AtkObject" id="image2721-atkobject">
                                 <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
                               </object>
                             </child>
-                            <property name="icon-size">1</property>
                           </object>
                         </child>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="private-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                          </object>
+                        </child>
+                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
                         <property name="left_attach">4</property>
-                        <property name="right_attach">5</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                     <child>
@@ -272,20 +252,19 @@ Use monospace font to keep preformatting.</property>
                         <property name="mnemonic_widget">tag_button</property>
                       </object>
                       <packing>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHBox" id="hbox1">
+                      <object class="GtkBox" id="hbox1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <child>
                           <object class="GtkLabel" id="tag_label">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="hexpand">True</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -299,7 +278,6 @@ Use monospace font to keep preformatting.</property>
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
-                            <property name="use_action_appearance">False</property>
                             <accessibility>
                               <relation type="labelled-by" target="label1"/>
                             </accessibility>
@@ -318,29 +296,9 @@ Use monospace font to keep preformatting.</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
-                        <property name="right_attach">5</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="y_options"></property>
+                        <property name="width">4</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                     <child>
                       <placeholder/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Generated with glade 3.16.1 -->
+<!-- Generated with glade 3.18.3 -->
 <interface>
   <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="comment">
@@ -13,6 +13,7 @@
       <object class="GtkBox" id="dialog-vbox27">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area26">
             <property name="visible">True</property>
@@ -43,17 +44,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkTable" id="table80">
+          <object class="GtkGrid" id="table80">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="border_width">6</property>
-            <property name="n_rows">2</property>
-            <property name="n_columns">3</property>
-            <property name="column_spacing">6</property>
             <property name="row_spacing">6</property>
-            <child>
-              <placeholder/>
-            </child>
+            <property name="column_spacing">6</property>
             <child>
               <object class="GtkLabel" id="label714">
                 <property name="visible">True</property>
@@ -65,25 +61,28 @@
                 </attributes>
               </object>
               <packing>
-                <property name="right_attach">3</property>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options"/>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
               </packing>
             </child>
             <child>
               <object class="GtkEntry" id="description">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="hexpand">True</property>
                 <property name="invisible_char">●</property>
                 <property name="activates_default">True</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
-                <property name="right_attach">3</property>
                 <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-                <property name="y_options"/>
               </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
           <packing>
@@ -131,7 +130,7 @@
                     <property name="yscale">0</property>
                     <property name="right_padding">2</property>
                     <child>
-                      <object class="GtkHBox" id="hbox139">
+                      <object class="GtkBox" id="hbox139">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="spacing">2</property>
@@ -185,7 +184,7 @@
                     <property name="xscale">0</property>
                     <property name="yscale">0</property>
                     <child>
-                      <object class="GtkHBox" id="hbox140">
+                      <object class="GtkBox" id="hbox140">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="spacing">2</property>
@@ -234,18 +233,20 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox132">
+          <object class="GtkBox" id="vbox132">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <property name="spacing">6</property>
             <child>
-              <object class="GtkHBox" id="hbox138">
+              <object class="GtkBox" id="hbox138">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
-                  <object class="GtkVBox" id="vbox133">
+                  <object class="GtkBox" id="vbox133">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkScrolledWindow" id="scrolledwindow88">
                         <property name="visible">True</property>
@@ -288,18 +289,20 @@
                   </packing>
                 </child>
                 <child>
-                  <object class="GtkVBox" id="vbox134">
+                  <object class="GtkBox" id="vbox134">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="orientation">vertical</property>
                     <child>
                       <object class="GtkAlignment" id="alignment7">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkVButtonBox" id="vbuttonbox2">
+                          <object class="GtkButtonBox" id="vbuttonbox2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="orientation">vertical</property>
                             <property name="spacing">6</property>
                             <property name="layout_style">start</property>
                             <child>

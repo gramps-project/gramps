@@ -459,7 +459,7 @@ class EditRule(ManagedWindow):
         self.notebook.set_show_tabs(0)
         self.notebook.set_show_border(0)
         self.notebook.show()
-        self.valuebox.add(self.notebook)
+        self.valuebox.pack_start(self.notebook, True, True, 0)
         self.page_num = 0
         self.page = []
         self.class2page = {}
@@ -496,15 +496,11 @@ class EditRule(ManagedWindow):
             #c.set_data('d', pos)
             c.show()
             the_map[class_obj] = c
-            # Only add a table with parameters if there are any parameters
-            if arglist:
-                table = Gtk.Table(n_rows=3, n_columns=len(arglist))
-            else:
-                table = Gtk.Table(n_rows=1, n_columns=1)
-            table.set_border_width(6)
-            table.set_col_spacings(6)
-            table.set_row_spacings(6)
-            table.show()
+            grid = Gtk.Grid()
+            grid.set_border_width(12)
+            grid.set_column_spacing(6)
+            grid.set_row_spacing(6)
+            grid.show()
             for v in arglist:
                 l = Gtk.Label(label=v)
                 l.set_alignment(1, 0.5)
@@ -590,9 +586,10 @@ class EditRule(ManagedWindow):
                     t = MyList(map(str, range(7)), days_of_week)
                 else:                    
                     t = MyEntry()
+                t.set_hexpand(True)
                 tlist.append(t)
-                table.attach(l, 1, 2, pos, pos+1, Gtk.AttachOptions.FILL, 0, 5, 5)
-                table.attach(t, 2, 3, pos, pos+1, Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL, 0, 5, 5)
+                grid.attach(l, 0, pos, 1, 1)
+                grid.attach(t, 1, pos, 1, 1)
                 pos += 1
 
             use_regex = None
@@ -610,14 +607,13 @@ class EditRule(ManagedWindow):
                         'A caret will match the start of a line. '
                         'A dollar sign will match the end of a line.')
                 use_regex.set_tooltip_text(tip)
-                table.attach(use_regex, 2, 3, pos, pos+1,
-                             Gtk.AttachOptions.FILL, 0, 5, 5)
+                grid.attach(use_regex, 1, pos, 1, 1)
 
             self.page.append((class_obj, vallist, tlist, use_regex))
 
-            # put the table into a scrollable area:
+            # put the grid into a scrollable area:
             scrolled_win = Gtk.ScrolledWindow()
-            scrolled_win.add_with_viewport(table)
+            scrolled_win.add_with_viewport(grid)
             scrolled_win.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             scrolled_win.show()
             self.notebook.append_page(scrolled_win, Gtk.Label(label=class_obj.name))

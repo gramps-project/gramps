@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
+  <requires lib="grampswidgets" version="0.0"/>
   <object class="GtkDialog" id="editname">
     <property name="can_focus">False</property>
     <property name="default_width">600</property>
@@ -9,6 +11,7 @@
       <object class="GtkBox" id="dialog-vbox14">
         <property name="visible">True</property>
         <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
         <child internal-child="action_area">
           <object class="GtkButtonBox" id="dialog-action_area14">
             <property name="visible">True</property>
@@ -25,7 +28,6 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Abandon changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Abandon changes and close window</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -45,7 +47,6 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Accept changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -62,7 +63,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
               </object>
               <packing>
@@ -80,15 +80,17 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox33">
+          <object class="GtkBox" id="vbox33">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
+            <property name="orientation">vertical</property>
             <child>
-              <object class="GtkVBox" id="vbox2">
+              <object class="GtkBox" id="vbox2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="orientation">vertical</property>
                 <child>
-                  <object class="GtkHBox" id="hbox110">
+                  <object class="GtkBox" id="hbox110">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
@@ -129,50 +131,37 @@
                       </packing>
                     </child>
                     <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
                       <object class="GtkToggleButton" id="priv">
                         <property name="use_action_appearance">False</property>
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="relief">none</property>
-                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <child internal-child="accessible">
-                          <object class="AtkObject" id="priv-atkobject">
-                            <property name="AtkObject::accessible-name" translatable="yes">Private</property>
-                          </object>
-                        </child>
                         <child>
                           <object class="GtkImage" id="image2683">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="icon_name">gtk-dialog-authentication</property>
+                            <property name="icon_size">1</property>
                             <child internal-child="accessible">
                               <object class="AtkObject" id="image2683-atkobject">
                                 <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
                               </object>
                             </child>
-                            <property name="icon-size">1</property>
                           </object>
                         </child>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="priv-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Private</property>
+                          </object>
+                        </child>
+                        <accelerator key="p" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
                         <property name="expand">False</property>
                         <property name="fill">False</property>
                         <property name="pack_type">end</property>
-                        <property name="position">6</property>
+                        <property name="position">2</property>
                       </packing>
                     </child>
                   </object>
@@ -194,13 +183,11 @@
                         <property name="can_focus">False</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkTable" id="table2">
+                          <object class="GtkGrid" id="table2">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="n_rows">2</property>
-                            <property name="n_columns">6</property>
-                            <property name="column_spacing">6</property>
                             <property name="row_spacing">6</property>
+                            <property name="column_spacing">6</property>
                             <child>
                               <object class="GtkLabel" id="label21">
                                 <property name="visible">True</property>
@@ -212,8 +199,8 @@
                                 <property name="mnemonic_widget">given_name</property>
                               </object>
                               <packing>
-                                <property name="x_options">GTK_FILL</property>
-                                <property name="y_options"></property>
+                                <property name="left_attach">0</property>
+                                <property name="top_attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -226,10 +213,8 @@
                                 <property name="mnemonic_widget">title_field</property>
                               </object>
                               <packing>
+                                <property name="left_attach">0</property>
                                 <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
-                                <property name="x_options">GTK_FILL</property>
-                                <property name="y_options"></property>
                               </packing>
                             </child>
                             <child>
@@ -243,11 +228,7 @@
                               </object>
                               <packing>
                                 <property name="left_attach">2</property>
-                                <property name="right_attach">3</property>
                                 <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
-                                <property name="x_options">GTK_FILL</property>
-                                <property name="y_options"></property>
                               </packing>
                             </child>
                             <child>
@@ -261,9 +242,7 @@
                               </object>
                               <packing>
                                 <property name="left_attach">4</property>
-                                <property name="right_attach">5</property>
-                                <property name="x_options">GTK_FILL</property>
-                                <property name="y_options"></property>
+                                <property name="top_attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -273,12 +252,13 @@
                                 <property name="can_default">True</property>
                                 <property name="has_default">True</property>
                                 <property name="tooltip_text" translatable="yes">The person's given names</property>
+                                <property name="hexpand">True</property>
                                 <property name="invisible_char">●</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
-                                <property name="right_attach">4</property>
-                                <property name="y_options"></property>
+                                <property name="top_attach">0</property>
+                                <property name="width">3</property>
                               </packing>
                             </child>
                             <child>
@@ -292,11 +272,7 @@
                               </object>
                               <packing>
                                 <property name="left_attach">4</property>
-                                <property name="right_attach">5</property>
                                 <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
-                                <property name="x_options">GTK_FILL</property>
-                                <property name="y_options"></property>
                               </packing>
                             </child>
                             <child>
@@ -304,11 +280,12 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">Part of the Given name that is the normally used name. If background is red, call name is not part of Given name and will not be printed underlined in some reports.</property>
+                                <property name="hexpand">True</property>
                                 <property name="invisible_char">●</property>
                               </object>
                               <packing>
                                 <property name="left_attach">5</property>
-                                <property name="right_attach">6</property>
+                                <property name="top_attach">0</property>
                               </packing>
                             </child>
                             <child>
@@ -316,13 +293,12 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">A title used to refer to the person, such as 'Dr.' or 'Rev.'</property>
+                                <property name="hexpand">True</property>
                                 <property name="invisible_char">●</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
-                                <property name="right_attach">2</property>
                                 <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
                               </packing>
                             </child>
                             <child>
@@ -330,13 +306,12 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">An optional suffix to the name, such as "Jr." or "III"</property>
+                                <property name="hexpand">True</property>
                                 <property name="invisible_char">●</property>
                               </object>
                               <packing>
                                 <property name="left_attach">3</property>
-                                <property name="right_attach">4</property>
                                 <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
                               </packing>
                             </child>
                             <child>
@@ -344,13 +319,12 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="tooltip_text" translatable="yes">A descriptive name given in place of or in addition to the official given name.</property>
+                                <property name="hexpand">True</property>
                                 <property name="invisible_char">●</property>
                               </object>
                               <packing>
                                 <property name="left_attach">5</property>
-                                <property name="right_attach">6</property>
                                 <property name="top_attach">1</property>
-                                <property name="bottom_attach">2</property>
                               </packing>
                             </child>
                           </object>
@@ -388,16 +362,16 @@
                         <property name="can_focus">False</property>
                         <property name="left_padding">12</property>
                         <child>
-                          <object class="GtkVBox" id="vbox1">
+                          <object class="GtkBox" id="vbox1">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
+                            <property name="orientation">vertical</property>
                             <child>
-                              <object class="GtkHBox" id="hboxmultsurnames">
+                              <object class="GtkBox" id="hboxmultsurnames">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <child>
-                                  <placeholder/>
-                                </child>
+                                <property name="vexpand">True</property>
+                                <property name="orientation">vertical</property>
                                 <child>
                                   <placeholder/>
                                 </child>
@@ -409,7 +383,7 @@
                               </packing>
                             </child>
                             <child>
-                              <object class="GtkHBox" id="hbox1">
+                              <object class="GtkBox" id="hbox1">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <child>
@@ -484,30 +458,14 @@
               <object class="GtkNotebook" id="notebook">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
+                <property name="vexpand">True</property>
                 <child>
-                  <object class="GtkTable" id="table23">
+                  <object class="GtkGrid" id="table23">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="border_width">12</property>
-                    <property name="n_rows">4</property>
-                    <property name="n_columns">4</property>
-                    <property name="column_spacing">12</property>
                     <property name="row_spacing">6</property>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
+                    <property name="column_spacing">12</property>
                     <child>
                       <object class="GtkLabel" id="label417">
                         <property name="visible">True</property>
@@ -518,10 +476,8 @@
                         <property name="mnemonic_widget">group_as</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
+                        <property name="left_attach">0</property>
+                        <property name="top_attach">0</property>
                       </packing>
                     </child>
                     <child>
@@ -534,12 +490,8 @@
                         <property name="mnemonic_widget">sort_as</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -552,12 +504,8 @@
                         <property name="mnemonic_widget">display_as</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -566,6 +514,7 @@
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">People are displayed according to the name format given in the Preferences (the default).
 Here you can make sure this person is displayed according to a custom name format (extra formats can be set in the Preferences).</property>
+                        <property name="hexpand">True</property>
                         <child>
                           <object class="GtkCellRendererText" id="cellrenderertext2"/>
                           <attributes>
@@ -574,12 +523,9 @@ Here you can make sure this person is displayed according to a custom name forma
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="right_attach">3</property>
+                        <property name="left_attach">1</property>
                         <property name="top_attach">2</property>
-                        <property name="bottom_attach">3</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
+                        <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
@@ -593,12 +539,8 @@ Here you can make sure this person is displayed according to a custom name forma
                         <property name="mnemonic_widget">date_entry</property>
                       </object>
                       <packing>
-                        <property name="left_attach">1</property>
-                        <property name="right_attach">2</property>
+                        <property name="left_attach">0</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
@@ -607,6 +549,7 @@ Here you can make sure this person is displayed according to a custom name forma
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">People are sorted according to the name format given in the Preferences (the default).
 Here you can make sure this person is sorted according to a custom name format (extra formats can be set in the Preferences).</property>
+                        <property name="hexpand">True</property>
                         <child>
                           <object class="GtkCellRendererText" id="cellrenderertext1"/>
                           <attributes>
@@ -615,11 +558,9 @@ Here you can make sure this person is sorted according to a custom name format (
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="right_attach">3</property>
+                        <property name="left_attach">1</property>
                         <property name="top_attach">1</property>
-                        <property name="bottom_attach">2</property>
-                        <property name="y_options"></property>
+                        <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
@@ -631,17 +572,7 @@ Here you can make sure this person is sorted according to a custom name format (
                         <property name="has_tooltip">True</property>
                         <property name="tooltip_markup">Invoke date editor</property>
                         <property name="tooltip_text" translatable="yes">Invoke date editor</property>
-                        <property name="use_action_appearance">False</property>
                         <property name="relief">none</property>
-                        <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
-                        <accessibility>
-                          <relation type="labelled-by" target="label435"/>
-                        </accessibility>
-                        <child internal-child="accessible">
-                          <object class="AtkObject" id="date_stat-atkobject">
-                            <property name="AtkObject::accessible-name" translatable="yes">Date</property>
-                          </object>
-                        </child>
                         <child>
                           <object class="GtkImage" id="date_stat_child">
                             <property name="visible">True</property>
@@ -654,18 +585,23 @@ Here you can make sure this person is sorted according to a custom name format (
                             </child>
                           </object>
                         </child>
+                        <accessibility>
+                          <relation type="labelled-by" target="label435"/>
+                        </accessibility>
+                        <child internal-child="accessible">
+                          <object class="AtkObject" id="date_stat-atkobject">
+                            <property name="AtkObject::accessible-name" translatable="yes">Date</property>
+                          </object>
+                        </child>
+                        <accelerator key="d" signal="activate" modifiers="GDK_CONTROL_MASK"/>
                       </object>
                       <packing>
-                        <property name="left_attach">3</property>
-                        <property name="right_attach">4</property>
+                        <property name="left_attach">2</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
                       </packing>
                     </child>
                     <child>
-                      <object class="GtkHBox" id="hbox106">
+                      <object class="GtkBox" id="hbox106">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="spacing">6</property>
@@ -676,6 +612,7 @@ Here you can make sure this person is sorted according to a custom name format (
                             <property name="can_focus">True</property>
                             <property name="tooltip_text" translatable="yes">The Person Tree view groups people under the primary surname. You can override this by setting here a group value. 
 You will be asked if you want to group this person only, or all people with this specific primary surname.</property>
+                            <property name="hexpand">True</property>
                             <property name="editable">False</property>
                             <property name="invisible_char">●</property>
                           </object>
@@ -692,7 +629,6 @@ You will be asked if you want to group this person only, or all people with this
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="use_action_appearance">False</property>
                             <property name="use_underline">True</property>
                             <property name="xalign">0.5</property>
                             <property name="draw_indicator">True</property>
@@ -705,10 +641,9 @@ You will be asked if you want to group this person only, or all people with this
                         </child>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="right_attach">4</property>
-                        <property name="x_options">GTK_FILL</property>
-                        <property name="y_options"></property>
+                        <property name="left_attach">1</property>
+                        <property name="top_attach">0</property>
+                        <property name="width">2</property>
                       </packing>
                     </child>
                     <child>
@@ -716,44 +651,18 @@ You will be asked if you want to group this person only, or all people with this
                         <property name="visible">True</property>
                         <property name="can_focus">True</property>
                         <property name="tooltip_text" translatable="yes">A Date associated with this name. Eg. for a Married Name, date the name is first used or marriage date.</property>
+                        <property name="hexpand">True</property>
                         <property name="invisible_char">●</property>
                       </object>
                       <packing>
-                        <property name="left_attach">2</property>
-                        <property name="right_attach">3</property>
+                        <property name="left_attach">1</property>
                         <property name="top_attach">3</property>
-                        <property name="bottom_attach">4</property>
-                        <property name="y_options"></property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                   </object>
                 </child>
                 <child type="tab">
-                  <object class="GtkHBox" id="general_tab">
+                  <object class="GtkBox" id="general_tab">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <child>
