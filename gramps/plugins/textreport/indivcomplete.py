@@ -825,7 +825,7 @@ class IndivCompleteReport(Report):
         if not obj:
             return prior
         
-        txt = Endnotes.cite_source(self.bibli, self._db, obj)
+        txt = Endnotes.cite_source(self.bibli, self._db, obj, self._locale)
         if not txt:
             return prior
         if prior:

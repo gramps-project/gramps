@@ -875,7 +875,7 @@ class DetDescendantReport(Report):
         if not obj or not self.inc_sources:
             return ""
         
-        txt = endnotes.cite_source(self.bibli, self.db, obj)
+        txt = endnotes.cite_source(self.bibli, self.db, obj, self._locale)
         if txt:
             txt = '<super>' + txt + '</super>'
         return txt

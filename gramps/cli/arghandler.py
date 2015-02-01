@@ -434,10 +434,11 @@ class ArgHandler(object):
             print("\t".join(line_list))
             for summary in sorted(summary_list,
                                   key=lambda sum: sum[_("Family Tree")].lower()):
-                line_list = [('"%s"' % summary[_("Family Tree")])]
+                line_list = [(_('"%s"') % summary[_("Family Tree")])]
                 for item in sorted(summary):
                     if item != _("Family Tree"):
-                        line_list += [('"%s"' % summary[item])]
+                        # translators: ignore unless your quotation marks differ
+                        line_list += [(_('"%s"') % summary[item])]
                 print("\t".join(line_list))
             sys.exit(0)
 

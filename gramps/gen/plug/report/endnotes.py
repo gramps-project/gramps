@@ -6,7 +6,7 @@
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2011       Adam Stein <adam@csh.rit.edu>
 # Copyright (C) 2011       Tim G L Lyons
-# Copyright (C) 2013       Paul Franklin
+# Copyright (C) 2013,2015  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -65,31 +65,35 @@ def add_endnote_styles(style_sheet):
     para.set(first_indent=-0.75, lmargin=.75)
     para.set_top_margin(0.2)
     para.set_bottom_margin(0.0)
-    para.set_description(_('The basic style used for the endnotes source display.'))
+    para.set_description(_('The basic style used for '
+                           'the endnotes source display.'))
     style_sheet.add_paragraph_style("Endnotes-Source", para)
     
     para = ParagraphStyle()
     para.set(lmargin=.75)
     para.set_top_margin(0.2)
     para.set_bottom_margin(0.0)
-    para.set_description(_('The basic style used for the endnotes notes display.'))
+    para.set_description(_('The basic style used for '
+                           'the endnotes notes display.'))
     style_sheet.add_paragraph_style("Endnotes-Source-Notes", para)
 
     para = ParagraphStyle()
     para.set(first_indent=-0.9, lmargin=1.9)
     para.set_top_margin(0.2)
     para.set_bottom_margin(0.0)
-    para.set_description(_('The basic style used for the endnotes reference display.'))
+    para.set_description(_('The basic style used for '
+                           'the endnotes reference display.'))
     style_sheet.add_paragraph_style("Endnotes-Ref", para)
     
     para = ParagraphStyle()
     para.set(lmargin=1.9)
     para.set_top_margin(0.2)
     para.set_bottom_margin(0.0)
-    para.set_description(_('The basic style used for the endnotes reference notes display.'))
+    para.set_description(_('The basic style used for '
+                           'the endnotes reference notes display.'))
     style_sheet.add_paragraph_style("Endnotes-Ref-Notes", para)
 
-def cite_source(bibliography, database, obj):
+def cite_source(bibliography, database, obj, elocale=glocale):
     """
     Cite any sources for the object and add them to the bibliography.
     
@@ -97,15 +101,22 @@ def cite_source(bibliography, database, obj):
     :type bibliography: :class:`.Bibliography`
     :param obj: An object with source references.
     :type obj: :class:`~.citationbase.CitationBase`
+    :param elocale: allow deferred translation of dates and strings
+    :type elocale: a :class:`.GrampsLocale` instance
     """
+
+    trans_text = elocale.translation.gettext
+    # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
+
     txt = ""
     slist = obj.get_citation_list()
     if slist:
-        first = 1
+        first = True
         for ref in slist:
             if not first:
-                txt += ', '
-            first = 0
+                # translators: needed for Arabic, ignore otherwise
+                txt += trans_text(', ')
+            first = False
             citation = database.get_citation_from_handle(ref)
             (cindex, key) = bibliography.add_reference(citation)
             txt += "%d" % (cindex + 1)
@@ -152,22 +163,28 @@ def write_endnotes(bibliography, database, doc, printnotes=False, links=False,
         first = True
         
         doc.start_paragraph('Endnotes-Source', "%d." % cindex)
-        doc.write_text(_format_source_text(source), links=links)
+        doc.write_text(_format_source_text(source, elocale), links=links)
         doc.end_paragraph()
         
         if printnotes:
-            _print_notes(source, database, doc, 'Endnotes-Source-Notes', links)
+            _print_notes(source, database, doc,
+                         'Endnotes-Source-Notes', links)
 
         for key, ref in citation.get_ref_list():
-            doc.start_paragraph('Endnotes-Ref', "%s:" % key)
+            # translators: needed for French, ignore otherwise
+            doc.start_paragraph('Endnotes-Ref', trans_text('%s:') % key)
             doc.write_text(_format_ref_text(ref, key, elocale), links=links)
             doc.end_paragraph()
 
             if printnotes:
-                _print_notes(ref, database, doc, 'Endnotes-Ref-Notes', links)
+                _print_notes(ref, database, doc,
+                             'Endnotes-Ref-Notes', links)
 
-def _format_source_text(source):
+def _format_source_text(source, elocale):
     if not source: return ""
+
+    trans_text = elocale.translation.gettext
+    # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
 
     src_txt = ""
     
@@ -176,17 +193,21 @@ def _format_source_text(source):
     
     if source.get_title():
         if src_txt:
-            src_txt += ", "
-        src_txt += '"%s"' % source.get_title()
+            # translators: needed for Arabic, ignore otherwise
+            src_txt += trans_text(', ')
+        # translators: ignore unless your quotation marks differ
+        src_txt += trans_text('"%s"') % source.get_title()
         
     if source.get_publication_info():
         if src_txt:
-            src_txt += ", "
+            # translators: needed for Arabic, ignore otherwise
+            src_txt += trans_text(', ')
         src_txt += source.get_publication_info()
         
     if source.get_abbreviation():
         if src_txt:
-            src_txt += ", "
+            # translators: needed for Arabic, ignore otherwise
+            src_txt += trans_text(', ')
         src_txt += "(%s)" % source.get_abbreviation()
         
     return src_txt
