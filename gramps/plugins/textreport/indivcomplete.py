@@ -826,6 +826,8 @@ class IndivCompleteReport(Report):
             return prior
         
         txt = Endnotes.cite_source(self.bibli, self._db, obj)
+        if not txt:
+            return prior
         if prior:
             # translators: needed for Arabic, ignore otherwise
             txt = self._('%(str1)s, %(str2)s') % {'str1':prior, 'str2':txt}
