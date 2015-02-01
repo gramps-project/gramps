@@ -26,10 +26,22 @@
 """
 Provide utilities for printing endnotes in text reports.
 """
-from ..docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
-from ...lib import NoteType, Citation
+
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from ..docgen import FontStyle, ParagraphStyle, FONT_SANS_SERIF
+from ...lib import NoteType, Citation
 from ...utils.string import conf_strings
 
 def add_endnote_styles(style_sheet):

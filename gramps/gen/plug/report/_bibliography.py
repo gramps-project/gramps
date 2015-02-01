@@ -23,8 +23,20 @@
 """
 Contain and organize bibliographic information.
 """
+
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import string
 import math
+
+#-------------------------------------------------------------------------
+#
+# Gramps modules
+#
+#-------------------------------------------------------------------------
 from ...lib.citation import Citation as lib_Citation
 
 class Citation(object):
