@@ -87,27 +87,30 @@ class Citation(object):
         :return: The key of the added reference among all the references.
         :rtype: char
         """
-        letter_count = len(string.ascii_lowercase)
+        letters = string.ascii_lowercase # or (e.g.) "abcdef" for testing
+        letter_count = len(letters)
         ref_count = len(self.__ref_list)
         x_ref_count = ref_count
         # Return "a" for ref_count = 0, otherwise log(0) does not work
         if ref_count == 0:
-            self.__ref_list.append(("a", source_ref))
-            return "a"
-        last_letter = string.ascii_lowercase[ ref_count % letter_count ]
+            self.__ref_list.append((letters[0], source_ref))
+            return letters[0]
+        last_letter = letters[ ref_count % letter_count ]
         key = ""
         # Calculate prek number of digits.
-        number_of_letters = int(math.log(float(ref_count), float(letter_count)))+1
+        number_of_letters = 1 + int(math.log(float(ref_count),
+                                             float(letter_count)))
         # Exclude index for number_of_letters-1
         for n in range(1, number_of_letters-1):
             ref_count -= pow(letter_count, n) 
         # Adjust number_of_letters for new index
-        number_of_letters = int(math.log(float(ref_count), float(letter_count))) +1
+        number_of_letters = 1 + int(math.log(float(ref_count),
+                                             float(letter_count)))
         for n in range(1, number_of_letters):
             x_ref_count -= pow(letter_count, n) 
         for letter in range(1, number_of_letters):
-            index = x_ref_count // pow(letter_count, letter)  % letter_count
-            key += string.ascii_lowercase[ index ]
+            index = x_ref_count // pow(letter_count, letter) % letter_count
+            key += letters[index]
         key = key + last_letter
         self.__ref_list.append((key, source_ref))
         return key
