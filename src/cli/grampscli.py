@@ -286,7 +286,10 @@ class CLIManager(object):
         # apply preferred researcher if loaded file has none
         res = self.dbstate.db.get_researcher()
         owner = get_researcher()
-        if res.get_name() == "" and owner.get_name() != "":
+        # If the DB Owner Info is empty and
+        # [default] Researcher is not empty and
+        # database is empty, then copy default researcher to DB owner
+        if res.is_empty() and not owner.is_empty() and self.dbstate.db.is_empty():
             self.dbstate.db.set_researcher(owner)
         
         name_displayer.set_name_format(self.dbstate.db.name_formats)

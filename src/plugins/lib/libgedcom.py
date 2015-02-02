@@ -1805,6 +1805,7 @@ class GedcomParser(UpdateCallback):
         self.number_of_errors = 0
         self.maxpeople = stage_one.get_person_count()
         self.dbase = dbase
+        self.import_researcher = self.dbase.is_empty()
         self.emapper = IdFinder(dbase.get_gramps_ids(EVENT_KEY),
                                 dbase.event_prefix)
         self.famc_map = stage_one.get_famc_map()
@@ -3236,7 +3237,7 @@ class GedcomParser(UpdateCallback):
         self.__parse_level(state, self.subm_parse_tbl, self.__undefined)
         # If this is the submitter that we were told about in the HEADer, then 
         # we will need to update the researcher
-        if line.token_text == self.subm:
+        if line.token_text == self.subm and self.import_researcher:
             self.dbase.set_researcher(state.res)
         
         submitter_name = _("SUBM (Submitter): @%s@") % line.token_text

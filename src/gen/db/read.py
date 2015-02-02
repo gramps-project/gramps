@@ -908,6 +908,18 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         return self.get_number_of_records(self.tag_map)
 
+    def is_empty(self):
+        """
+        Return true if there are no [primary] records in the database
+        """
+        for obj_map in [self.person_map, self.family_map, self.event_map,
+                        self.place_map, self.source_map, self.citation_map,
+                        self.media_map, self.repository_map, self.note_map,
+                        self.tag_map]:
+            if self.get_number_of_records(obj_map) > 0:
+                return False
+            return True
+
     def all_handles(self, table):
         return table.keys(txn=self.txn)
         
