@@ -517,6 +517,10 @@ class GrampsParser(UpdateCallback):
         self.replace_import_handle = (self.db.get_number_of_people() > 0 and
                                       not LOG.isEnabledFor(logging.DEBUG))
         
+        # Similarly, if the data is imported into an empty family tree, we also
+        # import the Researcher; if the tree was not empty, the existing
+        # Researcher is retained
+        self.import_researcher = self.db.is_empty()
         self.ord = None
         self.objref = None
         self.object = None
@@ -955,7 +959,10 @@ class GrampsParser(UpdateCallback):
                 # Register new formats
                 name_displayer.set_name_format(self.db.name_formats)
     
-            self.db.set_researcher(self.owner)
+            # If the database was originally empty we update the researcher from
+            # the XML (or initialised to no researcher)
+            if self.import_researcher:
+                self.db.set_researcher(self.owner)
             if self.home is not None:
                 person = self.db.get_person_from_handle(self.home)
                 self.db.set_default_person_handle(person.handle)
