@@ -146,3 +146,10 @@ class Researcher(LocationBase):
             ['name', 'addr', 'locality', 'city', 'state', 
              'country', 'postal', 'phone', 'email']
             ]
+
+    def is_empty(self):
+        for attr in ['name', 'addr', 'locality', 'city', 'state',
+             'country', 'postal', 'phone', 'email']:
+            if getattr(self, attr) != "":
+                return False
+        return True
