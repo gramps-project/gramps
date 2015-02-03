@@ -1,5 +1,3 @@
-$Id$
-
 Please read the COPYING file first.
 
 If building from source, also read the INSTALL file (at least through the
@@ -69,7 +67,8 @@ The following packages are optional
    PIL              Python Image Library is needed to crop
                     images and also to convert non-JPG images to
                     JPG so as to include them in LaTeX output.
-                    (For Python3 a different source may be needed.)
+                    (For Python3 a different source may be needed,
+                    python-imaging or python-pillow or python3-pillow)
 
    GExiv2           Enables Gramps to manage Exif metadata embedded in your
                     media. Gramps needs version 0.5 or greater.
