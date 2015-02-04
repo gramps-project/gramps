@@ -111,7 +111,7 @@ class PluginStatus(ManagedWindow):
         notebook = Gtk.Notebook()
         
         #first page with all registered plugins
-        vbox_reg = Gtk.VBox()
+        vbox_reg = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         scrolled_window_reg =  Gtk.ScrolledWindow()
         self.list_reg =  Gtk.TreeView()
         #  model: plugintype, hidden, pluginname, plugindescr, pluginid
@@ -162,7 +162,7 @@ class PluginStatus(ManagedWindow):
                              tab_label=Gtk.Label(label=_('Registered Plugins')))
         
         #second page with loaded plugins
-        vbox_loaded = Gtk.VBox()
+        vbox_loaded = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         scrolled_window = Gtk.ScrolledWindow()
         self.list = Gtk.TreeView()
         self.model = Gtk.ListStore(GObject.TYPE_STRING, GObject.TYPE_STRING, 
@@ -218,7 +218,7 @@ class PluginStatus(ManagedWindow):
                              tab_label=Gtk.Label(label=_('Loaded Plugins')))
 
         #third page with method to install plugin
-        install_page = Gtk.VBox()
+        install_page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         scrolled_window = Gtk.ScrolledWindow()
         self.addon_list = Gtk.TreeView()
         # model: help_name, name, ptype, image, desc, use, rating, contact, download, url
@@ -249,7 +249,7 @@ class PluginStatus(ManagedWindow):
         self.addon_list.append_column(col)
         self.addon_list.connect('cursor-changed', self.button_press_addon)
 
-        install_row = Gtk.HBox()
+        install_row = Gtk.Box()
         install_row.pack_start(Gtk.Label(label=_("Path to Addon:")), False, True, 0)
         self.install_addon_path = Gtk.Entry()
 
@@ -753,12 +753,6 @@ class ToolManagedWindowBase(ManagedWindow):
 
         self.setup_title()
         self.setup_header()
-        #self.tbl = Gtk.Table(4, 4, False)
-        #self.tbl.set_col_spacings(12)
-        #self.tbl.set_row_spacings(6)
-        #self.tbl.set_border_width(6)
-        #self.col = 0
-        #self.window.vbox.add(self.tbl)
 
         # Build the list of widgets that are used to extend the Options
         # frame and to create other frames
@@ -1006,25 +1000,23 @@ class ToolManagedWindowBase(ManagedWindow):
         the add_user_options task."""
         for key in self.frame_names:
             flist = self.frames[key]
-            table = Gtk.Table(n_rows=3, n_columns=len(flist))
-            table.set_col_spacings(12)
-            table.set_row_spacings(6)
-            table.set_border_width(6)
+            grid = Gtk.Grid()
+            grid.set_column_spacing(12)
+            grid.set_row_spacing(6)
+            grid.set_border_width(6)
             l = Gtk.Label(label="<b>%s</b>" % key)
             l.set_use_markup(True)
-            self.notebook.append_page(table, l)
+            self.notebook.append_page(grid, l)
             row = 0
             for (text, widget) in flist:
+                widget.set_hexpand(True)
                 if text:
                     text_widget = Gtk.Label(label='%s:' % text)
                     text_widget.set_alignment(0.0, 0.5)
-                    table.attach(text_widget, 1, 2, row, row+1,
-                                 Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL, Gtk.AttachOptions.SHRINK)
-                    table.attach(widget, 2, 3, row, row+1,
-                                 yoptions=Gtk.AttachOptions.SHRINK)
+                    grid.attach(text_widget, 1, row, 1, 1)
+                    grid.attach(widget, 2, row, 1, 1)
                 else:
-                    table.attach(widget, 2, 3, row, row+1,
-                                 yoptions=Gtk.AttachOptions.SHRINK)
+                    grid.attach(widget, 2, row, 1, 1)
                 row += 1
         self.notebook.show_all()
 

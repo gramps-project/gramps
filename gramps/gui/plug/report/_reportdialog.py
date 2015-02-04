@@ -173,10 +173,10 @@ class ReportDialog(ManagedWindow):
 
         self.setup_title()
         self.setup_header()
-        self.tbl = Gtk.Table(n_rows=4, n_columns=4, homogeneous=False)
-        self.tbl.set_col_spacings(12)
-        self.tbl.set_row_spacings(6)
-        self.tbl.set_border_width(6)
+        self.grid = Gtk.Grid()
+        self.grid.set_column_spacing(12)
+        self.grid.set_row_spacing(6)
+        self.grid.set_border_width(6)
         self.row = 0
 
         # Build the list of widgets that are used to extend the Options
@@ -204,10 +204,10 @@ class ReportDialog(ManagedWindow):
 
         try:
             #assume a vbox or hbox
-            self.window.vbox.pack_start(self.tbl, expand=True, fill=True, padding=0)
+            self.window.vbox.pack_start(self.grid, expand=True, fill=True, padding=0)
         except:
             #general container instead:
-            self.window.vbox.add(self.tbl)
+            self.window.vbox.add(self.grid)
         self.show()
 
     def get_title(self):
@@ -321,14 +321,13 @@ class ReportDialog(ManagedWindow):
         label.set_alignment(0.0, 0.5)
 
         self.style_menu = StyleComboBox()
+        self.style_menu.set_hexpand(True)
         self.style_button = Gtk.Button("%s..." % _("Style Editor"))
         self.style_button.connect('clicked', self.on_style_edit_clicked)
 
-        self.tbl.attach(label, 1, 2, self.row, self.row+1, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL)
-        self.tbl.attach(self.style_menu, 2, 3, self.row, self.row+1,
-                        yoptions=Gtk.AttachOptions.SHRINK)
-        self.tbl.attach(self.style_button, 3, 4, self.row, self.row+1,
-                        xoptions=Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL, yoptions=Gtk.AttachOptions.SHRINK)
+        self.grid.attach(label, 1, self.row, 1, 1)
+        self.grid.attach(self.style_menu, 2, self.row, 1, 1)
+        self.grid.attach(self.style_button, 3, self.row, 1, 1)
         self.row += 1
         
         # Build the initial list of available styles sets.  This
@@ -356,60 +355,54 @@ class ReportDialog(ManagedWindow):
         if max_rows == 0:
             return
 
-        table = Gtk.Table(n_rows=3, n_columns=max_rows+1)
-        table.set_col_spacings(12)
-        table.set_row_spacings(6)
+        grid = Gtk.Grid()
+        grid.set_border_width(6)
+        grid.set_column_spacing(12)
+        grid.set_row_spacing(6)
         
         label = Gtk.Label(label="<b>%s</b>" % _("Report Options"))
         label.set_alignment(0.0, 0.5)
         label.set_use_markup(True)
         
-        table.set_border_width(6)
-        self.notebook.append_page(table, label)
-        row += 1
+        self.notebook.append_page(grid, label)
 
         # Setup requested widgets
         for (text, widget) in self.widgets:
+            widget.set_hexpand(True)
             if text:
                 text_widget = Gtk.Label(label="%s:" % text)
                 text_widget.set_alignment(0.0, 0.0)
-                table.attach(text_widget, 1, 2, row, row+1,
-                             Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL, Gtk.AttachOptions.SHRINK)
-                table.attach(widget, 2, 3, row, row+1,
-                             yoptions=Gtk.AttachOptions.SHRINK)
+                grid.attach(text_widget, 1, row, 1, 1)
+                grid.attach(widget, 2, row, 1, 1)
             else:
-                table.attach(widget, 2, 3, row, row+1,
-                             yoptions=Gtk.AttachOptions.SHRINK)
+                grid.attach(widget, 2, row, 1, 1)
             row += 1
 
     def setup_other_frames(self):
         from gramps.gui.plug._guioptions import GuiTextOption
         for key in self.frame_names:
             flist = self.frames[key]
-            table = Gtk.Table(n_rows=3, n_columns=len(flist))
-            table.set_col_spacings(12)
-            table.set_row_spacings(6)
-            table.set_border_width(6)
+            grid = Gtk.Grid()
+            grid.set_column_spacing(12)
+            grid.set_row_spacing(6)
+            grid.set_border_width(6)
             l = Gtk.Label(label="<b>%s</b>" % _(key))
             l.set_use_markup(True)
-            self.notebook.append_page(table, l)
+            self.notebook.append_page(grid, l)
 
             row = 0
             for (text, widget) in flist:
+                widget.set_hexpand(True)
                 if text:
                     text_widget = Gtk.Label(label='%s:' % text)
                     text_widget.set_alignment(0.0, 0.5)
-                    table.attach(text_widget, 1, 2, row, row+1,
-                                 Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL, Gtk.AttachOptions.SHRINK)
+                    grid.attach(text_widget, 1, row, 1, 1)
                     if isinstance(widget, GuiTextOption):
-                        table.attach(widget, 2, 3, row, row+1,
-                                 yoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL)
+                        grid.attach(widget, 2, row, 1, 1)
                     else:
-                        table.attach(widget, 2, 3, row, row+1,
-                                 yoptions=Gtk.AttachOptions.SHRINK)
+                        grid.attach(widget, 2, row, 1, 1)
                 else:
-                    table.attach(widget, 2, 3, row, row+1,
-                                 yoptions=Gtk.AttachOptions.SHRINK)
+                    grid.attach(widget, 2, row, 1, 1)
                 row += 1
                 
     #------------------------------------------------------------------------
@@ -459,8 +452,8 @@ class ReportDialog(ManagedWindow):
         label = Gtk.Label(label="<b>%s</b>" % _('Document Options'))
         label.set_use_markup(1)
         label.set_alignment(0.0, 0.5)
-        self.tbl.set_border_width(12)
-        self.tbl.attach(label, 0, 4, self.row, self.row+1, Gtk.AttachOptions.FILL)
+        self.grid.set_border_width(12)
+        self.grid.attach(label, 0, self.row, 4, 1)
         self.row += 1
         
     def setup_target_frame(self):
@@ -474,10 +467,9 @@ class ReportDialog(ManagedWindow):
         self.doc_label = Gtk.Label(label="%s:" % _("Filename"))
         self.doc_label.set_alignment(0.0, 0.5)
 
-        self.tbl.attach(self.doc_label, 1, 2, self.row, self.row+1,
-                        xoptions=Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL,yoptions=Gtk.AttachOptions.SHRINK)
-        self.tbl.attach(self.target_fileentry, 2, 4, self.row, self.row+1,
-                        xoptions=Gtk.AttachOptions.EXPAND|Gtk.AttachOptions.FILL,yoptions=Gtk.AttachOptions.SHRINK)
+        self.grid.attach(self.doc_label, 1, self.row, 1, 1)
+        self.target_fileentry.set_hexpand(True)
+        self.grid.attach(self.target_fileentry, 2, self.row, 2, 1)
         self.row += 1
         
     #------------------------------------------------------------------------
@@ -594,7 +586,7 @@ class ReportDialog(ManagedWindow):
     def setup_doc_options_frame(self):
         if self.doc_widgets:
             for option_widget in self.doc_widgets:
-                self.tbl.remove(option_widget)
+                self.grid.remove(option_widget)
             self.doc_widgets = []
         self.doc_options = None
 
@@ -613,11 +605,9 @@ class ReportDialog(ManagedWindow):
             if has_label:
                 widget_text = Gtk.Label('%s:' % option.get_label())
                 widget_text.set_alignment(0.0, 0.0)
-                self.tbl.attach(widget_text, 1, 2, self.row, self.row+1,
-                                Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL, Gtk.AttachOptions.SHRINK)
+                self.grid.attach(widget_text, 1, self.row, 1, 1)
                 self.doc_widgets.append(widget_text)
-            self.tbl.attach(widget, 2, 4, self.row, self.row+1,
-                            yoptions=Gtk.AttachOptions.SHRINK)
+            self.grid.attach(widget, 2, self.row, 2, 1)
             self.doc_widgets.append(widget)
             self.row += 1
 

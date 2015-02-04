@@ -47,13 +47,12 @@ class SidebarFilter(DbGUIElement):
         DbGUIElement.__init__(self, dbstate.db)
 
         self.position = 1
-        self.vbox = Gtk.VBox()
-        self.table = Gtk.Table(n_rows=4, n_columns=11)
-        self.vbox.pack_start(self.table, False, False, 0)
-        self.table.set_border_width(6)
-        self.table.set_row_spacings(6)
-        self.table.set_col_spacing(0, 6)
-        self.table.set_col_spacing(1, 6)
+        self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        self.grid = Gtk.Grid()
+        self.vbox.pack_start(self.grid, False, False, 0)
+        self.grid.set_border_width(6)
+        self.grid.set_row_spacing(6)
+        self.grid.set_column_spacing(6)
         self.apply_btn = Gtk.Button(stock=Gtk.STOCK_FIND)
         self.clear_btn = Gtk.Button()
         
@@ -71,7 +70,7 @@ class SidebarFilter(DbGUIElement):
 
         self.apply_btn.connect('clicked', self.clicked)
 
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.show()
         image = Gtk.Image()
         image.set_from_stock(Gtk.STOCK_UNDO, Gtk.IconSize.BUTTON)
@@ -116,7 +115,7 @@ class SidebarFilter(DbGUIElement):
         pass
 
     def add_regex_entry(self, widget):
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.pack_start(widget, False, False, 12)
         self.vbox.pack_start(hbox, False, False, 0)
 
@@ -137,17 +136,14 @@ class SidebarFilter(DbGUIElement):
         label.set_text('<b>%s</b>' % heading)
         label.set_use_markup(True)
         label.set_alignment(0, 0.5)
-        self.table.attach(label, 1, 2, self.position, self.position+1,
-                          xoptions=Gtk.AttachOptions.FILL, yoptions=0)
+        self.grid.attach(label, 1, self.position, 1, 1)
         self.position += 1
 
     def add_entry(self, name, widget):
         if name:
-            self.table.attach(widgets.BasicLabel(name),
-                              1, 2, self.position, self.position+1,
-                              xoptions=Gtk.AttachOptions.FILL, yoptions=0)
-        self.table.attach(widget, 2, 4, self.position, self.position+1,
-                          xoptions=Gtk.AttachOptions.FILL|Gtk.AttachOptions.EXPAND, yoptions=0)
+            self.grid.attach(widgets.BasicLabel(name), 1, self.position, 1, 1)
+        widget.set_hexpand(True)
+        self.grid.attach(widget, 2, self.position, 2, 1)
         self.position += 1
 
     def on_filters_changed(self, namespace):
@@ -225,7 +221,7 @@ class SidebarFilter(DbGUIElement):
         """
         Adds the text and widget to GUI, with an Edit button.
         """
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.pack_start(widget, True, True, 0)
         hbox.pack_start(widgets.SimpleButton(Gtk.STOCK_EDIT, self.edit_filter),
                         False, False, 0)

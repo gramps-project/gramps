@@ -514,30 +514,30 @@ class GeoPerson(GeoGraphyView):
         Add specific entry to the preference menu.
         Must be done in the associated view.
         """
-        table = Gtk.Table(n_rows=2, n_columns=2)
-        table.set_border_width(12)
-        table.set_col_spacings(6)
-        table.set_row_spacings(6)
-        configdialog.add_text(table,
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
+        configdialog.add_text(grid,
                 _('Animation speed in milliseconds (big value means slower)'),
                 1, line_wrap=False)
-        configdialog.add_slider(table, 
+        configdialog.add_slider(grid,
                 "", 
                 2, 'geography.speed',
                 (100, 1000))
-        configdialog.add_text(table,
+        configdialog.add_text(grid,
                 _('How many steps between two markers when we are on large move ?'),
                 3, line_wrap=False)
-        configdialog.add_slider(table, 
+        configdialog.add_slider(grid,
                 "", 
                 4, 'geography.steps',
                 (10, 100))
-        configdialog.add_text(table,
+        configdialog.add_text(grid,
                 _('The minimum latitude/longitude to select large move.\n'
                   'The value is in tenth of degree.'),
                 5, line_wrap=False)
-        configdialog.add_slider(table, 
+        configdialog.add_slider(grid,
                 "", 
                 6, 'geography.maximum_lon_lat',
                 (5, 50))
-        return _('The animation parameters'), table
+        return _('The animation parameters'), grid

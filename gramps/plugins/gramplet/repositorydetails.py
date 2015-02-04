@@ -37,14 +37,15 @@ class RepositoryDetails(Gramplet):
         """
         Build the GUI interface.
         """
-        self.top = Gtk.HBox()
-        vbox = Gtk.VBox()
+        self.top = Gtk.Box()
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.name = Gtk.Label()
         self.name.set_alignment(0, 0)
         self.name.modify_font(Pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.name, fill=True, expand=False, padding=7)
-        self.table = Gtk.Table(n_rows=1, n_columns=2)
-        vbox.pack_start(self.table, fill=True, expand=False, padding=0)
+        self.grid = Gtk.Grid(orientation=Gtk.Orientation.VERTICAL)
+        self.grid.set_column_spacing(10)
+        vbox.pack_start(self.grid, fill=True, expand=False, padding=0)
         self.top.pack_start(vbox, fill=True, expand=False, padding=10)
         self.top.show_all()
         return self.top
@@ -59,19 +60,14 @@ class RepositoryDetails(Gramplet):
         value = Gtk.Label(label=value)
         value.set_alignment(0, 0)
         value.show()
-        rows = self.table.get_property('n-rows')
-        rows += 1
-        self.table.resize(rows, 2)
-        self.table.attach(label, 0, 1, rows, rows + 1, 
-	                  xoptions=Gtk.AttachOptions.FILL, xpadding=10)
-        self.table.attach(value, 1, 2, rows, rows + 1)
+        self.grid.add(label)
+        self.grid.attach_next_to(value, label, Gtk.PositionType.RIGHT, 1, 1)
         
-    def clear_table(self):
+    def clear_grid(self):
         """
-        Remove all the rows from the table.
+        Remove all the rows from the grid.
         """
-        list(map(self.table.remove, self.table.get_children()))
-        self.table.resize(1, 2)
+        list(map(self.grid.remove, self.grid.get_children()))
 
     def db_changed(self):
         self.dbstate.db.connect('repository-update', self.update)
@@ -106,7 +102,7 @@ class RepositoryDetails(Gramplet):
         """
         self.name.set_text(repo.get_name())
 
-        self.clear_table()
+        self.clear_grid()
         address_list = repo.get_address_list()
         if len(address_list) > 0:
             self.display_address(address_list[0])
@@ -140,7 +136,7 @@ class RepositoryDetails(Gramplet):
         Display empty details when no repository is selected.
         """
         self.name.set_text('')
-        self.clear_table()
+        self.clear_grid()
 
     def display_separator(self):
         """
@@ -149,8 +145,4 @@ class RepositoryDetails(Gramplet):
         label = Gtk.Label(label='')
         label.modify_font(Pango.FontDescription('sans 4'))
         label.show()
-        rows = self.table.get_property('n-rows')
-        rows += 1
-        self.table.resize(rows, 2)
-        self.table.attach(label, 0, 1, rows, rows + 1, 
-	                  xoptions=Gtk.AttachOptions.FILL)
+        self.grid.add(label)

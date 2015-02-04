@@ -137,12 +137,12 @@ class WriterOptionBox(object):
         self.parse_options()
 
     def get_option_box(self):
-        """Build up a Gtk.Table that contains the standard options."""
+        """Build up a Gtk.Box that contains the standard options."""
         from gi.repository import Gtk
         from gi.repository import Pango
-        widget = Gtk.VBox()
+        widget = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         
-        full_database_row = Gtk.HBox()
+        full_database_row = Gtk.Box()
         full_database_row.pack_start(Gtk.Label(_("Unfiltered Family Tree:")), True, True, 0)
         people_count = len(self.dbstate.db.get_person_handles())
         # translators: leave all/any {...} untranslated
@@ -154,7 +154,7 @@ class WriterOptionBox(object):
         button.connect("clicked", self.show_preview_data)
         button.proxy_name = "unfiltered"
         self.preview_proxy_button["unfiltered"] = button
-        self.spacer = Gtk.HBox()
+        self.spacer = Gtk.Box()
         full_database_row.pack_end(self.spacer, False, True, 0)
         full_database_row.pack_end(button, False, True, 0)
 
@@ -175,7 +175,7 @@ class WriterOptionBox(object):
             widget.pack_start(frame, False, True, 0)
             row += 1
 
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         self.advanced_button = Gtk.Button(_("Change order"))
         self.advanced_button.set_size_request(150, -1)
         self.proxy_options_showing = False
@@ -266,7 +266,7 @@ class WriterOptionBox(object):
             label.set_size_request(150, -1)
             label.set_use_underline(True)
             label.set_mnemonic_widget(self.filter_obj)
-            box = Gtk.HBox()
+            box = Gtk.Box()
             box.pack_start(label, False, True, 0)
             box.pack_start(self.filter_obj, True, True, 0)
             box.pack_start(
@@ -283,7 +283,7 @@ class WriterOptionBox(object):
             label_note.set_size_request(150, -1)
             label_note.set_use_underline(True)
             label_note.set_mnemonic_widget(self.filter_note)
-            box = Gtk.HBox()
+            box = Gtk.Box()
             box.pack_start(label_note, False, True, 0)
             box.pack_start(self.filter_note, True, True, 0)
             box.pack_start(
@@ -296,7 +296,7 @@ class WriterOptionBox(object):
             label = Gtk.Label(label=_("Privacy Filter") + ":")
             label.set_alignment(0, 0.5)
             label.set_size_request(150, -1)
-            box = Gtk.HBox()
+            box = Gtk.Box()
             box.pack_start(label, False, True, 0)
             box.add(self.private_check)
             button.set_tooltip_text(_("Click to see preview after privacy filter"))
@@ -305,7 +305,7 @@ class WriterOptionBox(object):
             label = Gtk.Label(label=_("Living Filter") + ":")
             label.set_alignment(0, 0.5)
             label.set_size_request(150, -1)
-            box = Gtk.HBox()
+            box = Gtk.Box()
             box.pack_start(label, False, True, 0)
             self.restrict_option = Gtk.ComboBox()
             box.add(self.restrict_option)
@@ -316,7 +316,7 @@ class WriterOptionBox(object):
             label = Gtk.Label(label=_('Reference Filter') + ": ")
             label.set_alignment(0, 0.5)
             label.set_size_request(150, -1)
-            box = Gtk.HBox()
+            box = Gtk.Box()
             box.pack_start(label, False, True, 0)
             box.pack_start(self.reference_filter, True, True, 0)
             button.set_tooltip_text(_("Click to see preview after reference filter"))
@@ -324,9 +324,9 @@ class WriterOptionBox(object):
             raise AttributeError("Unknown proxy '%s'" % proxy_name)
 
         frame = Gtk.Frame()
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         frame.add(hbox)
-        vbox = Gtk.HBox()
+        vbox = Gtk.Box()
         self.vbox_n.append(vbox)
         up = Gtk.Button()
         up.connect("clicked", self.swap)

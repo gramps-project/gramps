@@ -196,12 +196,12 @@ class MediaMan(tool.Tool):
 # Assistant pages
 #
 #------------------------------------------------------------------------
-class IntroductionPage(Gtk.VBox):
+class IntroductionPage(Gtk.Box):
     """
     A page containing introductory text.
     """
     def __init__(self):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
 
         # Using set_page_side_image causes window sizing problems, so put the 
         # image in the main page instead.
@@ -243,20 +243,20 @@ class IntroductionPage(Gtk.VBox):
                 ) % { 'bold_start' : '<b>' ,
                       'bold_end'   : '</b>' }
 
-class SelectionPage(Gtk.VBox):
+class SelectionPage(Gtk.Box):
     """
     A page with the radio buttons for every available batch op.
     """
     def __init__(self, batch_ops):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
         
         self.batch_op_buttons = []
 
         self.set_spacing(12)
 
-        table = Gtk.Table(n_rows=2 * len(batch_ops), n_columns=2)
-        table.set_row_spacings(6)
-        table.set_col_spacings(6)
+        grid = Gtk.Grid()
+        grid.set_row_spacing(6)
+        grid.set_column_spacing(6)
         
         button = None
         for index in range(len(batch_ops)):
@@ -266,9 +266,9 @@ class SelectionPage(Gtk.VBox):
             button = Gtk.RadioButton.new_with_mnemonic_from_widget(button, title)
             button.set_tooltip_text(description)
             self.batch_op_buttons.append(button)
-            table.attach(button, 0, 2, 2 * index, 2 * index + 1, yoptions=0)
+            grid.attach(button, 0, 2 * index, 2, 1)
         
-        self.add(table)
+        self.add(grid)
 
     def get_index(self):
         """
@@ -282,12 +282,12 @@ class SelectionPage(Gtk.VBox):
         else:
             return 0
 
-class SettingsPage(Gtk.VBox):
+class SettingsPage(Gtk.Box):
     """
     An extra page with the settings specific for the chosen batch-op.
     """
     def __init__(self, batch_ops, assistant):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
         self.assistant = assistant
         self.batch_ops = batch_ops
 
@@ -307,13 +307,13 @@ class SettingsPage(Gtk.VBox):
             self.assistant.set_page_title(self, '')
             return False
 
-class ConfirmationPage(Gtk.VBox):
+class ConfirmationPage(Gtk.Box):
     """
     A page to display the summary of the proposed action, as well as the 
     list of affected paths.
     """
     def __init__(self, batch_ops):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
 
         self.batch_ops = batch_ops
 
@@ -356,13 +356,13 @@ class ConfirmationPage(Gtk.VBox):
         for path in path_list:
             self.path_model.append(row=[path])
 
-class ConclusionPage(Gtk.VBox):
+class ConclusionPage(Gtk.Box):
     """
     A page to display the summary of the proposed action, as well as the 
     list of affected paths.
     """
     def __init__(self, assistant):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
 
         self.assistant = assistant
 
@@ -485,32 +485,34 @@ class PathChange(BatchOp):
     def build_config(self):
         title = _("Replace substring settings")
 
-        box = Gtk.VBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_spacing(12)
 
-        table = Gtk.Table(n_rows=2, n_columns=2)
-        table.set_row_spacings(6)
-        table.set_col_spacings(6)
+        grid = Gtk.Grid()
+        grid.set_row_spacing(6)
+        grid.set_column_spacing(6)
 
         self.from_entry = Gtk.Entry()
-        table.attach(self.from_entry, 1, 2, 0, 1, yoptions=0)
+        self.from_entry.set_hexpand(True)
+        grid.attach(self.from_entry, 1, 0, 1, 1)
         
         from_label = Gtk.Label(label=_('_Replace:'))
         from_label.set_use_underline(True)
         from_label.set_alignment(0, 0.5)
         from_label.set_mnemonic_widget(self.from_entry)
-        table.attach(from_label, 0, 1, 0, 1, xoptions=0, yoptions=0)
+        grid.attach(from_label, 0, 0, 1, 1)
 
         self.to_entry = Gtk.Entry()
-        table.attach(self.to_entry, 1, 2, 1, 2, yoptions=0)
+        self.to_entry.set_hexpand(True)
+        grid.attach(self.to_entry, 1, 1, 1, 1)
 
         to_label = Gtk.Label(label=_('_With:'))
         to_label.set_use_underline(True)
         to_label.set_alignment(0, 0.5)
         to_label.set_mnemonic_widget(self.to_entry)
-        table.attach(to_label, 0, 1, 1, 2, xoptions=0, yoptions=0)
+        grid.attach(to_label, 0, 1, 1, 1)
 
-        box.add(table)
+        box.add(grid)
 
         return (title, box)
 

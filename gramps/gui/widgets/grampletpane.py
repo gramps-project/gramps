@@ -563,10 +563,12 @@ class GuiGramplet(object):
         # END WORKAROUND
         if len(self.pui.option_order) == 0: return
         frame = Gtk.Frame()
-        topbox = Gtk.VBox(homogeneous=False)
-        hbox = Gtk.HBox(homogeneous=False, spacing=5)
-        labels = Gtk.VBox(homogeneous=True)
-        options = Gtk.VBox(homogeneous=True)
+        topbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        hbox = Gtk.Box(spacing=5)
+        labels = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,
+                         homogeneous=True)
+        options = Gtk.Box(orientation=Gtk.Orientation.VERTICAL,
+                          homogeneous=True)
         hbox.pack_start(labels, False, True, 0)
         hbox.pack_start(options, True, True, 0)
         topbox.pack_start(hbox, False, False, 0)
@@ -996,7 +998,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         self.set_tooltip_text(msg)
         self.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         self.eventb = Gtk.EventBox()
-        self.hbox = Gtk.HBox(homogeneous=True)
+        self.hbox = Gtk.Box(homogeneous=True)
         self.eventb.add(self.hbox)
         self.add_with_viewport(self.eventb)
         self.set_kinetic_scrolling(True)
@@ -1017,7 +1019,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         # Create the columns:
         self.columns = []
         for i in range(self.column_count):
-            self.columns.append(Gtk.VBox())
+            self.columns.append(Gtk.Box(orientation=Gtk.Orientation.VERTICAL))
             self.hbox.pack_start(self.columns[-1], True, True, 0)
         # Load the gramplets
         self.gramplet_map = {} # title->gramplet
@@ -1334,7 +1336,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         self.column_count = num
         self.columns = []
         for i in range(self.column_count):
-            self.columns.append(Gtk.VBox())
+            self.columns.append(Gtk.Box(orientation=Gtk.Orientation.VERTICAL))
             self.columns[-1].show()
             self.hbox.pack_start(self.columns[-1], True, True, 0)
         # place the gramplets back in the new columns
@@ -1517,23 +1519,23 @@ class GrampletPane(Gtk.ScrolledWindow):
         """
         Function that builds the widget in the configuration dialog
         """
-        table = Gtk.Table(n_rows=3, n_columns=2)
-        table.set_border_width(12)
-        table.set_col_spacings(6)
-        table.set_row_spacings(6)
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
 
         self._config.register('Gramplet View Options.column_count',
                               int,
                               self.get_columns, # pane
                               self.set_columns) # pane
 
-        configdialog.add_pos_int_entry(table, 
+        configdialog.add_pos_int_entry(grid, 
                  _('Number of Columns'), 
                  0, 
                 'Gramplet View Options.column_count',
                 self._config.set,
                 config=self._config)
-        return _('Gramplet Layout'), table
+        return _('Gramplet Layout'), grid
  
     def build_panel(self, gramplet):
         self._config.register("%s.title" % gramplet.title, 
@@ -1550,39 +1552,39 @@ class GrampletPane(Gtk.ScrolledWindow):
                               bool, gramplet.get_expand, gramplet.set_expand)
         def gramplet_panel(configdialog):
             configdialog.window.set_size_request(600, -1)
-            table = Gtk.Table(n_rows=3, n_columns=2)
-            table.set_border_width(12)
-            table.set_col_spacings(6)
-            table.set_row_spacings(6)
+            grid = Gtk.Grid()
+            grid.set_border_width(12)
+            grid.set_column_spacing(6)
+            grid.set_row_spacing(6)
             # Title:
-            configdialog.add_entry(table, 
+            configdialog.add_entry(grid, 
                 _('Title'), 
                 0, 
                 "%s.title" % gramplet.title,
                 self._config.set,
                 config=self._config)
             # Expand to max height
-            configdialog.add_checkbox(table, 
+            configdialog.add_checkbox(grid, 
                 _("Use maximum height available"), 
                 1, 
                 "%s.expand" % gramplet.title, 
                 config=self._config)
             # Height
-            configdialog.add_pos_int_entry(table, 
+            configdialog.add_pos_int_entry(grid, 
                 _('Height if not maximized'), 
                 2, 
                 "%s.height" % gramplet.title,
                 self._config.set,
                 config=self._config)
             # Detached height
-            configdialog.add_pos_int_entry(table, 
+            configdialog.add_pos_int_entry(grid, 
                 _('Detached width'), 
                 3, 
                 "%s.detached_width" % gramplet.title,
                 self._config.set,
                 config=self._config)
             # Detached width
-            configdialog.add_pos_int_entry(table, 
+            configdialog.add_pos_int_entry(grid, 
                 _('Detached height'), 
                 4, 
                 "%s.detached_height" % gramplet.title,
@@ -1591,8 +1593,8 @@ class GrampletPane(Gtk.ScrolledWindow):
             # Options:
             options = gramplet.make_gui_options()
             if options:
-                table.attach(options, 1, 4, 5, 6, yoptions=0)
-            return gramplet.title, table
+                grid.attach(options, 1, 5, 3, 1)
+            return gramplet.title, grid
         return gramplet_panel
 
 class Configuration(object):

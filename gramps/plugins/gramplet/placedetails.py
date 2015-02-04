@@ -40,15 +40,16 @@ class PlaceDetails(Gramplet):
         """
         Build the GUI interface.
         """
-        self.top = Gtk.HBox()
-        vbox = Gtk.VBox()
+        self.top = Gtk.Box()
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.photo = Photo(self.uistate.screen_height() < 1000)
         self.title = Gtk.Label()
         self.title.set_alignment(0, 0)
         self.title.modify_font(Pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.title, False, True, 7)
-        self.table = Gtk.Table(n_rows=1, n_columns=2)
-        vbox.pack_start(self.table, False, True, 0)
+        self.grid = Gtk.Grid(orientation=Gtk.Orientation.VERTICAL)
+        self.grid.set_column_spacing(10)
+        vbox.pack_start(self.grid, False, True, 0)
         self.top.pack_start(self.photo, False, True, 5)
         self.top.pack_start(vbox, False, True, 10)
         self.top.show_all()
@@ -64,19 +65,14 @@ class PlaceDetails(Gramplet):
         value = Gtk.Label(label=value)
         value.set_alignment(0, 0)
         value.show()
-        rows = self.table.get_property('n-rows')
-        rows += 1
-        self.table.resize(rows, 2)
-        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=Gtk.AttachOptions.FILL,
-                                                       xpadding=10)
-        self.table.attach(value, 1, 2, rows, rows + 1)
+        self.grid.add(label)
+        self.grid.attach_next_to(value, label, Gtk.PositionType.RIGHT, 1, 1)
         
-    def clear_table(self):
+    def clear_grid(self):
         """
-        Remove all the rows from the table.
+        Remove all the rows from the grid.
         """
-        list(map(self.table.remove, self.table.get_children()))
-        self.table.resize(1, 2)
+        list(map(self.grid.remove, self.grid.get_children()))
 
     def db_changed(self):
         self.dbstate.db.connect('place-update', self.update)
@@ -113,7 +109,7 @@ class PlaceDetails(Gramplet):
         title = place_displayer.display(self.dbstate.db, place)
         self.title.set_text(title)
 
-        self.clear_table()
+        self.clear_grid()
         self.add_row(_('Name'), place.get_name())
         self.add_row(_('Type'), place.get_type())
         self.display_separator()
@@ -142,7 +138,7 @@ class PlaceDetails(Gramplet):
         self.photo.set_image(None)
         self.photo.set_uistate(None, None)
         self.title.set_text('')
-        self.clear_table()
+        self.clear_grid()
 
     def display_separator(self):
         """
@@ -151,10 +147,7 @@ class PlaceDetails(Gramplet):
         label = Gtk.Label(label='')
         label.modify_font(Pango.FontDescription('sans 4'))
         label.show()
-        rows = self.table.get_property('n-rows')
-        rows += 1
-        self.table.resize(rows, 2)
-        self.table.attach(label, 0, 1, rows, rows + 1, xoptions=Gtk.AttachOptions.FILL)
+        self.grid.add(label)
 
     def load_place_image(self, place):
         """

@@ -264,15 +264,15 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         Function that builds the widget in the configuration dialog
         """
         nrentry = 7
-        table = Gtk.Table(n_rows=6, n_columns=3)
-        table.set_border_width(12)
-        table.set_col_spacings(6)
-        table.set_row_spacings(6)
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
 
-        configdialog.add_spinner(table, _("Max generations"), 0,
+        configdialog.add_spinner(grid, _("Max generations"), 0,
                 'interface.fanview-maxgen', (1, 11), 
                 callback=self.cb_update_maxgen)
-        configdialog.add_combo(table, 
+        configdialog.add_combo(grid, 
                 _('Text Font'), 
                 1, 'interface.fanview-font',
                 self.allfonts, callback=self.cb_update_font, valueactive=True)
@@ -293,26 +293,26 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
             if curval == nr:
                 break
             nrval += 1
-        configdialog.add_combo(table, 
+        configdialog.add_combo(grid, 
                 _('Background'), 
                 2, 'interface.fanview-background',
                 backgrvals,
                 callback=self.cb_update_background, valueactive=False, setactive=nrval
                 )
         #colors, stored as hex values
-        configdialog.add_color(table, _('Start gradient/Main color'), 3, 
+        configdialog.add_color(grid, _('Start gradient/Main color'), 3, 
                         'interface.color-start-grad', col=1)
-        configdialog.add_color(table, _('End gradient/2nd color'), 4, 
+        configdialog.add_color(grid, _('End gradient/2nd color'), 4, 
                         'interface.color-end-grad',  col=1)
         # form of the fan
-        configdialog.add_combo(table, _('Fan chart type'), 5,
+        configdialog.add_combo(grid, _('Fan chart type'), 5,
                         'interface.fanview-form',
                         ((0, _('Full Circle')), (1,_('Half Circle')), 
                          (2, _('Quadrant'))),
                         callback=self.cb_update_form)
 
         # options users should not change:
-        configdialog.add_checkbox(table, 
+        configdialog.add_checkbox(grid, 
                 _('Show children ring'), 
                 nrentry-1, 'interface.fanview-childrenring')
         # options we don't show on the dialog
@@ -320,7 +320,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         ##        _('Allow radial text'), 
         ##        ??, 'interface.fanview-radialtext')
 
-        return _('Layout'), table
+        return _('Layout'), grid
 
     def config_connect(self):
         """

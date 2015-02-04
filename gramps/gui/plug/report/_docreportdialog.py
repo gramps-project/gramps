@@ -132,8 +132,8 @@ class DocReportDialog(ReportDialog):
         else:
             self.html_label = Gtk.Label(label='<b>%s</b>' % _("HTML Options"))
             self.html_label.set_use_markup(True)
-            self.notebook.insert_page(self.html_table, self.html_label, 0)
-            self.html_table.show_all()
+            self.notebook.insert_page(self.html_grid, self.html_label, 0)
+            self.html_grid.show_all()
         if preserve_tab:
             self.notebook.set_current_page(old_page)
         self.firstpage_added = True
@@ -169,16 +169,15 @@ class DocReportDialog(ReportDialog):
         self.format_menu.connect('changed', self.doc_type_changed)
         label = Gtk.Label(label="%s:" % _("Output Format"))
         label.set_alignment(0.0, 0.5)
-        self.tbl.attach(label, 1, 2, self.row, self.row+1, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL)
-        self.tbl.attach(self.format_menu, 2, 4, self.row, self.row+1,
-                        yoptions=Gtk.AttachOptions.SHRINK)
+        self.grid.attach(label, 1, self.row, 1, 1)
+        self.format_menu.set_hexpand(True)
+        self.grid.attach(self.format_menu, 2, self.row, 2, 1)
         self.row += 1
 
         self.open_with_app = Gtk.CheckButton(label=_("Open with default viewer"))
         self.open_with_app.set_active(
             config.get('interface.open-with-default-viewer'))
-        self.tbl.attach(self.open_with_app, 2, 4, self.row, self.row+1,
-                        yoptions=Gtk.AttachOptions.SHRINK)
+        self.grid.attach(self.open_with_app, 2, self.row, 2, 1)
         self.row += 1
 
         ext = self.format_menu.get_active_plugin().get_extension()
@@ -209,17 +208,17 @@ class DocReportDialog(ReportDialog):
         this function is to grab a pointer for later use in the parse
         html frame function."""
 
-        self.html_table = Gtk.Table(n_rows=3, n_columns=3)
-        self.html_table.set_col_spacings(12)
-        self.html_table.set_row_spacings(6)
-        self.html_table.set_border_width(0)
+        self.html_grid = Gtk.Grid()
+        self.html_grid.set_column_spacing(12)
+        self.html_grid.set_row_spacing(6)
+        self.html_grid.set_border_width(6)
 
         label = Gtk.Label(label="%s:" % _("CSS file"))
         label.set_alignment(0.0,0.5)
-        self.html_table.attach(label, 1, 2, 1, 2, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL,
-                               yoptions=Gtk.AttachOptions.SHRINK)
+        self.html_grid.attach(label, 1, 1, 1, 1)
 
         self.css_combo = Gtk.ComboBoxText()
+        self.css_combo.set_hexpand(True)
 
         css_filename = self.options.handler.get_css_filename()
         active_index = 0
@@ -234,7 +233,7 @@ class DocReportDialog(ReportDialog):
                     active_index = index
                 index += 1
 
-        self.html_table.attach(self.css_combo,2,3,1,2, yoptions=Gtk.AttachOptions.SHRINK)
+        self.html_grid.attach(self.css_combo, 2, 1, 1, 1)
         self.css_combo.set_active(active_index)
 
     def parse_format_frame(self):

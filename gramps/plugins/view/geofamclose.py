@@ -708,11 +708,11 @@ class GeoFamClose(GeoGraphyView):
         Add specific entry to the preference menu.
         Must be done in the associated view.
         """
-        table = Gtk.Table(n_rows=2, n_columns=2)
-        table.set_border_width(12)
-        table.set_col_spacings(6)
-        table.set_row_spacings(6)
-        configdialog.add_text(table,
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
+        configdialog.add_text(grid,
                 _('The meeting zone probability radius.\n'
                   'The colored zone is approximative.\n'
                   'The meeting zone is only shown for the reference family.\n'
@@ -720,11 +720,11 @@ class GeoFamClose(GeoGraphyView):
                   'The value 1 means about 4.6 miles or 7.5 kms.\n'
                   'The value is in tenth of degree.'),
                 1, line_wrap=False)
-        self.config_meeting_slider = configdialog.add_slider(table, 
+        self.config_meeting_slider = configdialog.add_slider(grid,
                 "", 
                 2, 'geography.maximum_meeting_zone',
                 (1, 9))
-        return _('The selection parameters'), table
+        return _('The selection parameters'), grid
 
     def config_connect(self):
         """

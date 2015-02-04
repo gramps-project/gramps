@@ -1994,37 +1994,37 @@ class PedigreeView(NavigationView):
         """
         Function that builds the widget in the configuration dialog
         """
-        table = Gtk.Table(n_rows=7, n_columns=2)
-        table.set_border_width(12)
-        table.set_col_spacings(6)
-        table.set_row_spacings(6)
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
 
-        configdialog.add_checkbox(table, 
+        configdialog.add_checkbox(grid, 
                 _('Show images'), 
                 0, 'interface.pedview-show-images')
-        configdialog.add_checkbox(table, 
+        configdialog.add_checkbox(grid, 
                 _('Show marriage data'), 
                 1, 'interface.pedview-show-marriage')
-        configdialog.add_checkbox(table, 
+        configdialog.add_checkbox(grid, 
                 _('Show unknown people'), 
                 2, 'interface.pedview-show-unknown-people')
-        configdialog.add_combo(table, 
+        configdialog.add_combo(grid, 
                 _('Tree style'), 
                 4, 'interface.pedview-layout',
                 ((0, _('Standard')),
                 (1, _('Compact')),
                 (2, _('Expanded'))),
                 callback=self.cb_update_layout)
-        configdialog.add_combo(table, 
+        configdialog.add_combo(grid, 
                 _('Tree direction'), 
                 5, 'interface.pedview-tree-direction',
                 ((0, _('Vertical (↓)')),
                 (1, _('Vertical (↑)')),
                 (2, _('Horizontal (→)')),
                 (3, _('Horizontal (←)'))))
-        self.config_size_slider = configdialog.add_slider(table, 
+        self.config_size_slider = configdialog.add_slider(grid, 
                 _('Tree size'), 
                 6, 'interface.pedview-tree-size',
                 (2, 9))
 
-        return _('Layout'), table
+        return _('Layout'), grid

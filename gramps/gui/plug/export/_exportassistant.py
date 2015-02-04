@@ -166,7 +166,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         image = Gtk.Image()
         image.set_from_file(SPLASH)
 
-        box = Gtk.VBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_size_request(600, -1) # wide enough it won't have to expand
         box.pack_start(image, False, False, 5)
         box.pack_start(label, False, False, 5)
@@ -183,18 +183,18 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         """Create the export type page.
         
             A Title label.
-            A table of format radio buttons and their descriptions.
+            A grid of format radio buttons and their descriptions.
             
         """
         self.format_buttons = []
 
-        box = Gtk.VBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_border_width(12)
         box.set_spacing(12)
 
-        table = Gtk.Table(n_rows=2*len(self.__exporters), n_columns=2)
-        table.set_row_spacings(6)
-        table.set_col_spacings(6)
+        grid = Gtk.Grid()
+        grid.set_row_spacings(6)
+        grid.set_col_spacings(6)
         
         button = None
         recent_type = config.get('behavior.recent-export-type')
@@ -209,12 +209,12 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             button = Gtk.RadioButton.new_with_mnemonic_from_widget(button, title)
             button.set_tooltip_text(description)
             self.format_buttons.append(button)
-            table.attach(button, 0, 2, 2*ix, 2*ix+1)
+            grid.attach(button, 0, 2*ix, 2, 1)
             if ix == recent_type:
                 button.set_active(True)
             ix += 1
         
-        box.pack_start(table, False, False, 0)
+        box.pack_start(grid, False, False, 0)
         
         page = box
         
@@ -228,7 +228,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
             
     def create_page_options(self):
         # as we do not know yet what to show, we create an empty page
-        page = Gtk.VBox()
+        page = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         page.set_border_width(12)
         page.set_spacing(12)
         
@@ -340,7 +340,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         image = Gtk.Image()
         image.set_from_file(SPLASH)
 
-        box = Gtk.VBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.set_border_width(12)
         box.set_spacing(6)
         box.pack_start(image, False, False, 5)
@@ -356,7 +356,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         # Construct summary page
         # As this is the last page needs to be of page_type
         # Gtk.AssistantPageType.CONFIRM or Gtk.AssistantPageType.SUMMARY
-        vbox = Gtk.VBox()
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         vbox.set_border_width(12)
         vbox.set_spacing(6)
 

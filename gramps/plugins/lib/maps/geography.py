@@ -1040,12 +1040,12 @@ class GeoGraphyView(OsmGps, NavigationView):
         Add specific entry to the preference menu.
         Must be done in the associated view.
         """
-        table = Gtk.Table(n_rows=2, n_columns=2)
-        table.set_border_width(12)
-        table.set_col_spacings(6)
-        table.set_row_spacings(6)
-        configdialog.add_text(table, _('Nothing for this view.'), 0)
-        return _('Specific parameters'), table
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
+        configdialog.add_text(grid, _('Nothing for this view.'), 0)
+        return _('Specific parameters'), grid
 
     def map_options(self, configdialog):
         """
@@ -1057,26 +1057,26 @@ class GeoGraphyView(OsmGps, NavigationView):
                          config.get('geography.zoom_when_center'))
         self._config.set('geography.max_places',
                          self._config.get('geography.max_places'))
-        table = Gtk.Table(n_rows=1, n_columns=1)
-        table.set_border_width(12)
-        table.set_col_spacings(6)
-        table.set_row_spacings(6)
-        configdialog.add_text(table,
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
+        configdialog.add_text(grid,
                 _('Where to save the tiles for offline mode.'),
                 0, line_wrap=False)
-        configdialog.add_entry(table, '',
+        configdialog.add_entry(grid, '',
                 1, 'geography.path')
-        configdialog.add_text(table,
+        configdialog.add_text(grid,
                 _('If you have no more space in your file system. '
                   'You can remove all tiles placed in the above path.\n'
                   'Be careful! If you have no internet, you\'ll get no map.'),
                 2, line_wrap=False)
-        configdialog.add_slider(table,
+        configdialog.add_slider(grid,
                 _('Zoom used when centering'),
                 3, 'geography.zoom_when_center',
                 (2, 16))
-        configdialog.add_slider(table,
+        configdialog.add_slider(grid,
                 _('The maximum number of places to show'),
                 4, 'geography.max_places',
                 (1000, 10000))
-        return _('The map'), table
+        return _('The map'), grid

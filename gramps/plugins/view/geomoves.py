@@ -633,25 +633,25 @@ class GeoMoves(GeoGraphyView):
         Add specific entry to the preference menu.
         Must be done in the associated view.
         """
-        table = Gtk.Table(n_rows=2, n_columns=2)
-        table.set_border_width(12)
-        table.set_col_spacings(6)
-        table.set_row_spacings(6)
-        configdialog.add_text(table,
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
+        configdialog.add_text(grid,
                 _('The maximum number of generations.\n'),
                 1, line_wrap=False)
-        configdialog.add_slider(table, 
+        configdialog.add_slider(grid,
                 "", 
                 2, 'geography.maximum_generations',
                 (1, 20))
-        configdialog.add_text(table,
+        configdialog.add_text(grid,
                 _('Time in milliseconds between drawing two generations.\n'),
                 3, line_wrap=False)
-        configdialog.add_slider(table, 
+        configdialog.add_slider(grid,
                 "", 
                 4, 'geography.generation_interval',
                 (500, 3000))
-        return _('The parameters for moves'), table
+        return _('The parameters for moves'), grid
 
     def config_connect(self):
         """
