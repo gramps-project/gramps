@@ -17,21 +17,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#
+
 #------------------------------------------------------------------------
 #
 # python modules
 #
 #------------------------------------------------------------------------
 from __future__ import print_function
-
-from gramps.gen.const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 from xml.parsers import expat
-from gramps.gen.lib.gcalendar import (gregorian_ymd, hebrew_sdn)
 import datetime
 import math
-from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
 import os
 import sys
 
@@ -40,7 +35,11 @@ import sys
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
 from gramps.gen.constfunc import STRTYPE
+from gramps.gen.lib.gcalendar import (gregorian_ymd, hebrew_sdn)
 
 #------------------------------------------------------------------------
 #
