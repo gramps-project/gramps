@@ -81,7 +81,7 @@ class OwnerEditor(tool.Tool, ManagedWindow):
     """
     Allow editing database owner information.
 
-    Provides a possibility to direcly verify and edit the owner data of the
+    Provides a possibility to directly verify and edit the owner data of the
     current database. It also allows copying data from/to the preferences.
     """
     def __init__(self, dbstate, user, options_class, name, callback=None):
