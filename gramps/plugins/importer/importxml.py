@@ -754,7 +754,7 @@ class GrampsParser(UpdateCallback):
                        directly from the XML attributes.
         :type handle: str
         :param target: Indicates the primary object type this handle relates to.
-        :type targe": str, identical to target attr of bookmarks.
+        :type target: str, identical to target attr of bookmarks.
         :param prim_obj: template of the primary object that is to be created.
         :type prim_obj: Either an empty instance of a primary object or the
                          class object of a primary object.
