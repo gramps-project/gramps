@@ -1,5 +1,3 @@
-$Id$
-
 This file contains some useful details on the installation from source code
 for GRAMPS. It does not cover installation of a pre-built binary package.
 For that use your package manager, the rest is already done by the packager.
