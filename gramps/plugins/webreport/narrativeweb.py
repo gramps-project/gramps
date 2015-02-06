@@ -37,7 +37,7 @@ Narrative Web Page generator.
 Classes:
     NavWebReport - main class that produces the report. Entry point to produce
     the report is write_report
-    NavWebptions - class that defines the options and provides the handling
+    NavWebOptions - class that defines the options and provides the handling
     interface
     
     BasePage - super class for producing a web page. This class is instantiated
