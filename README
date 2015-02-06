@@ -30,14 +30,6 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
                     but the Python bindings for this must also be present.
                     Without this the GeoView will not be active, see
                     http://gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Main_Window#Geography_Category
-                    !! PACKAGERS: unfortunately, at the moment (March 2013),
-                    the patches which gramps 4.0 needs osm-gps-map to have
-                    are not yet released (as a new osm-gps-map version). The
-                    osm-gps-map sources must be dated 6 February 2013 (or
-                    later) to have the necessary patches.  You may obtain
-                    it from: http://nzjrs.github.com/osm-gps-map/ or else
-                    http://sourceforge.net/projects/gramps/files/Dependencies
-                    (The necessary version seems to be 0.8 -- or later.)
 
    GraphViz         Enable creation of graphs using GraphViz engine.
                     Without this, three reports cannot be run.
