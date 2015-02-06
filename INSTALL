@@ -39,9 +39,14 @@ To build and install, whether from a tarball or git repo:
 You can avoid using sudo for the install step by specifying a prefix to which you have write priviledge. The default is /usr/local, which is usually owned by root. You can learn of more options with
    python setup.py --help
 
-You can work with Gramps if you only build it by pointing the
-PYTHONPATH to the build directory, but things like MIME type and
-desktop entries will not be created then.
+One can use gramps from the command line without installing it by
+setting the following environment variables, but that won't provide
+things like MIME type and desktop entries.
+
+   export PYTHONPATH="/top/grampsdir/gramps:$PYTHONPATH"
+   export GRAMPS_RESOURCES="/top/grampsdir"
+
+See below for ways to invoke Gramps.
 
 Typical install directories in linux (ubuntu) are:
   * /usr/local/lib/python2.7/dist-packages/gramps/  : the gramps python module
@@ -76,7 +81,7 @@ from the source directory.
 
      python Gramps.py
 
-    See gramps/gen/const.py how Gramps finds his resource directories in case
+    See gramps/gen/const.py how Gramps finds its resource directories in case
     you encounter problems.
 
 Custom directory installation
