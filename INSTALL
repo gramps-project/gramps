@@ -28,12 +28,12 @@ unstable!
 
 distutils install
 -----------------
-We do not check all dependencies of Gramps, see README for a 
+We do not check all dependencies of Gramps, see README for a
 list of all required and optional dependencies. On running Gramps, errors will
 be returned if dependencies are missing.
 
 If you are building from released tarball, you should be able to just
-run 
+run
 
    python setup.py build
    python setup.py install
@@ -56,18 +56,18 @@ Typical install directories in linux (ubuntu) are:
 Running Gramps
 --------------
 Gramps is python only, so no compilation is needed, you can even run gramps
-from the source directory. 
+from the source directory.
 
  a) You installed Gramps, then you can run it with the command
 
-     gramps 
+     gramps
 
  b) You installed Gramps, and want to start it from the PYTHONPATH. In this
     case use the command:
 
      python -c 'from gramps.grampsapp import main; main()'
 
-   The executable 'gramps' in /usr/local/bin or /usr/bin from a) does 
+   The executable 'gramps' in /usr/local/bin or /usr/bin from a) does
    this for you.
 
  b) You downloaded the Gramps source code to a directory, and want to run it.
@@ -80,7 +80,7 @@ from the source directory.
 
 Custom directory installation
 -------------------------------------
-If you would like to install GRAMPS without being root, or in an 
+If you would like to install GRAMPS without being root, or in an
 alternative location on windows, supply the --root argument to setup.py
 
 For example:
@@ -89,7 +89,7 @@ For example:
    python setup.py install --root ~/test --enable-packager-mode
 
 The last option, --enable-packager-mode, is needed if you want to disable
-execution of post-install mime processing. If you don't have root/admin 
+execution of post-install mime processing. If you don't have root/admin
 access, this will be needed
 
 Packager's issues
@@ -98,4 +98,3 @@ There is a MANIFEST.in file to indicate the work needed.
 To create a source distribution run:
 
    python setup.py sdist
-

@@ -16,7 +16,7 @@ The following packages *MUST* be installed in order for Gramps to work:
 
 The following package is needed for full translation of the interface
 to your language:
-   language-pack-gnome-xx 
+   language-pack-gnome-xx
                     Translation of GTK elements to your language, with
                     xx your language code; e.g. for Dutch you need
                     language-pack-gnome-nl. The translation of the
@@ -25,7 +25,7 @@ to your language:
 
 The following packages are *STRONGLY RECOMMENDED* to be installed:
 
-   osmgpsmap        Used to show maps in the geography view. 
+   osmgpsmap        Used to show maps in the geography view.
                     It may be osmgpsmap, osm-gps-map, or python-osmgpsmap,
                     but the Python bindings for this must also be present.
                     Without this the GeoView will not be active, see
@@ -47,7 +47,7 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
 
 The following packages are optional
 
-   gtkspell         Enable spell checking in the notes. Gtkspell depends on 
+   gtkspell         Enable spell checking in the notes. Gtkspell depends on
                     enchant. A version of gtkspell with gobject introspection
                     is needed, so minimally version 3.0.0
 
@@ -74,7 +74,7 @@ The following packages are optional
                     plugin manager.  A html renderer must be installed to
                     use the view.
                     !! PACKAGERS, Test if on your distribution
-                    webkit and Gramps is stable. If you obtain crashes, patch 
+                    webkit and Gramps is stable. If you obtain crashes, patch
                     src/plugins/view/htmlrenderer.py and
                     src/plugins/view/geoview.gpr.py, so as to remove:
                        from gi.repository import WebKit as webkit
