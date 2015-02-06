@@ -37,7 +37,7 @@ class Gallery(Gramplet):
         Build the GUI interface.
         """
         self.image_list = []
-        self.top = Gtk.HBox(homogeneous=False, spacing=3)
+        self.top = Gtk.Box(spacing=3)
         return self.top
         
     def clear_images(self):

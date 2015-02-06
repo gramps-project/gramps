@@ -350,7 +350,7 @@ class NavigationView(PageView):
         dialog.vbox.add(label)
         dialog.vbox.set_spacing(10)
         dialog.vbox.set_border_width(12)
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.pack_start(Gtk.Label("%s: " % _('ID', True, True, 0)), False)
         text = Gtk.Entry()
         text.set_activates_default(True)

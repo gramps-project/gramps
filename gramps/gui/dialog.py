@@ -380,7 +380,7 @@ def main(args):
     def test_info(obj):
         InfoDialog('The title', 'This is a lot of info\n to show to all!', parent=win)
 
-    vbox = Gtk.VBox()
+    vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
     win.add(vbox)
     
     btn1 = Gtk.Button('Info dialog')

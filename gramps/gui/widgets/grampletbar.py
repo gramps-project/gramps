@@ -112,7 +112,8 @@ class GrampletBar(Gtk.Notebook):
         self.set_scrollable(True)
 
         book_button = Gtk.Button()
-        box = Gtk.VBox() # Arrow is too small unless in a Vbox
+        # Arrow is too small unless in a box
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN, 
                                     shadow_type=Gtk.ShadowType.NONE)
         arrow.show()
@@ -691,12 +692,12 @@ class DetachedWindow(ManagedWindow):
 # TabLabel class
 #
 #-------------------------------------------------------------------------
-class TabLabel(Gtk.HBox):
+class TabLabel(Gtk.Box):
     """
     Create a tab label consisting of a label and a close button.
     """
     def __init__(self, gramplet, callback):
-        Gtk.HBox.__init__(self)
+        Gtk.Box.__init__(self)
         
         self.text = gramplet.title
         self.set_spacing(4)

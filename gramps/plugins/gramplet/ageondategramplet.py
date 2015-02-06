@@ -56,8 +56,8 @@ class AgeOnDateGramplet(Gramplet):
         from gi.repository import Gtk
         # GUI setup:
         self.set_tooltip(_("Enter a date, click Run"))
-        vbox = Gtk.VBox()
-        hbox = Gtk.HBox()
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
+        hbox = Gtk.Box()
         # label, entry
         description = Gtk.TextView()
         description.set_wrap_mode(Gtk.WrapMode.WORD)

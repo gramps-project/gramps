@@ -224,7 +224,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         image = Gtk.Image()
         image.set_from_file(SPLASH)
 
-        box = Gtk.VBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.pack_start(image, False, False, 5)
         box.pack_start(label, False, False, 5)
 
@@ -289,7 +289,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         button_box.pack_end(reset, False, False, 0)
         button_box.pack_end(clear, False, False, 0)
 
-        error_details_box = Gtk.VBox()
+        error_details_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         error_details_box.pack_start(label, False, False, 0)
         error_details_box.pack_start(sw_frame, True, True, 0)
         error_details_box.pack_start(button_box, False, False, 0)
@@ -316,11 +316,11 @@ class ErrorReportAssistant(Gtk.Assistant):
         image = Gtk.Image()
         image.set_from_file(ICON)
 
-        heading = Gtk.HBox()
+        heading = Gtk.Box()
         heading.pack_start(side_label, True, True, 5)
         heading.pack_start(image, False, False, 5)
 
-        box = Gtk.VBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.pack_start(heading, False, False, 5)
         box.pack_start(error_details_frame, True, True, 0)
 
@@ -370,7 +370,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         button_box.pack_end(reset, False, False, 0)
         button_box.pack_end(clear, False, False, 0)
 
-        sys_information_box = Gtk.VBox()
+        sys_information_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         sys_information_box.pack_start(label, False, False, 0)
         sys_information_box.pack_start(sw_frame, True, True, 0)
         sys_information_box.pack_start(button_box, False, False, 0)
@@ -395,11 +395,11 @@ class ErrorReportAssistant(Gtk.Assistant):
         image = Gtk.Image()
         image.set_from_file(ICON)
 
-        heading = Gtk.HBox()
+        heading = Gtk.Box()
         heading.pack_start(side_label, True, True, 5)
         heading.pack_start(image, False, False, 5)
 
-        box = Gtk.VBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.pack_start(heading, False, False, 5)
         box.pack_start(sys_information_frame, True, True, 0)
 
@@ -443,7 +443,7 @@ class ErrorReportAssistant(Gtk.Assistant):
 
         button_box.pack_end(clear, False, False, 0)
 
-        user_information_box = Gtk.VBox()
+        user_information_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         user_information_box.pack_start(label, False, False, 0)
         user_information_box.pack_start(sw_frame, True, True, 0)
         user_information_box.pack_start(button_box, False, False, 0)
@@ -467,11 +467,11 @@ class ErrorReportAssistant(Gtk.Assistant):
         image = Gtk.Image()
         image.set_from_file(ICON)
 
-        heading = Gtk.HBox()
+        heading = Gtk.Box()
         heading.pack_start(side_label, True, True, 5)
         heading.pack_start(image, False, False, 5)
 
-        box = Gtk.VBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.pack_start(heading, False, False, 5)
         box.pack_start(user_information_frame, True, True, 0)
 
@@ -509,7 +509,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         sw_frame = Gtk.Frame()
         sw_frame.add(swin)
         
-        summary_box = Gtk.VBox()
+        summary_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         summary_box.pack_start(label, False, False, 0)
         summary_box.pack_start(sw_frame, True, True, 0)
 
@@ -534,11 +534,11 @@ class ErrorReportAssistant(Gtk.Assistant):
         image = Gtk.Image()
         image.set_from_file(ICON)
 
-        heading = Gtk.HBox()
+        heading = Gtk.Box()
         heading.pack_start(side_label, True, True, 5)
         heading.pack_start(image, False, False, 5)
 
-        box = Gtk.VBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.pack_start(heading, False, False, 5)
         box.pack_start(summary_frame, True, True, 0)
 
@@ -574,10 +574,10 @@ class ErrorReportAssistant(Gtk.Assistant):
 
         url_button = Gtk.Button("File bug report")
         url_button.connect('clicked', self._start_gramps_bts_in_browser)
-        url_button_vbox = Gtk.VBox()
+        url_button_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         url_button_vbox.pack_start(url_button, True, False, 0)
         
-        url_box = Gtk.HBox()
+        url_box = Gtk.Box()
         url_box.pack_start(url_label, True, True, 0)
         url_box.pack_start(url_button_vbox, False, False, 0)
 
@@ -601,10 +601,10 @@ class ErrorReportAssistant(Gtk.Assistant):
 
         clip_button = Gtk.Button("Copy to clipboard")
         clip_button.connect('clicked', self._copy_to_clipboard)
-        clip_button_vbox = Gtk.VBox()
+        clip_button_vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         clip_button_vbox.pack_start(clip_button, True, False, 0)
         
-        clip_box = Gtk.HBox()
+        clip_box = Gtk.Box()
         clip_box.pack_start(clip_label, True, True, 0)
         clip_box.pack_start(clip_button_vbox, False, False, 0)
 
@@ -617,7 +617,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         clip_frame.add(clip_align)
         
 
-        inner_box = Gtk.VBox()
+        inner_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         inner_box.pack_start(label, False, False, 0)
         inner_box.pack_start(clip_frame, False, False, 0)
         inner_box.pack_start(url_frame, False, False, 0)
@@ -643,11 +643,11 @@ class ErrorReportAssistant(Gtk.Assistant):
         image = Gtk.Image()
         image.set_from_file(ICON)
 
-        heading = Gtk.HBox()
+        heading = Gtk.Box()
         heading.pack_start(side_label, True, True, 5)
         heading.pack_start(image, False, False, 5)
 
-        box = Gtk.VBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.pack_start(heading, False, False, 5)
         box.pack_start(outer_frame, True, True, 0)
 
@@ -671,7 +671,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         image = Gtk.Image()
         image.set_from_file(SPLASH)
 
-        box = Gtk.VBox()
+        box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         box.pack_start(image, False, False, 5)
         box.pack_start(label, False, False, 5)
 

@@ -85,7 +85,7 @@ class ErrorView(object):
         vbox = self.top.get_content_area()
         vbox.set_spacing(5)
         self.top.set_border_width(12)
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.set_spacing(12)
         image = Gtk.Image()
         image.set_from_stock(Gtk.STOCK_DIALOG_ERROR, Gtk.IconSize.DIALOG)

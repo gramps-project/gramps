@@ -58,7 +58,7 @@ from .glade import Glade
 #-------------------------------------------------------------------------
 __LOG = logging.getLogger(".ColumnOrder")
 
-class ColumnOrder(Gtk.VBox):
+class ColumnOrder(Gtk.Box):
     """
     Column ordering selection widget
     """
@@ -74,7 +74,7 @@ class ColumnOrder(Gtk.VBox):
         tree: are the columns for a treeview, if so, the first columns is not
             changable
         """
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
 
         self.treeview = tree
         self.colnames = column_names
@@ -95,7 +95,7 @@ class ColumnOrder(Gtk.VBox):
         self.pack_start(Gtk.Label(label=_('Drag and drop the columns to change'
                                     ' the order')), False, False, 0)
         self.pack_start(Gtk.Label(label=' '), False, False,0)
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.set_spacing(10)
         hbox.pack_start(Gtk.Label(label=' '), True, True, 0)
         scroll = Gtk.ScrolledWindow()
@@ -105,7 +105,7 @@ class ColumnOrder(Gtk.VBox):
         self.tree.set_reorderable(True)
         scroll.add(self.tree)
         self.apply_button = Gtk.Button(stock='gtk-apply')
-        btns = Gtk.HButtonBox()
+        btns = Gtk.ButtonBox()
         btns.set_layout(Gtk.ButtonBoxStyle.END)
         btns.pack_start(self.apply_button, True, True, 0)
         hbox.pack_start(btns, False, True, 0)

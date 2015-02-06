@@ -41,7 +41,7 @@ class CalendarGramplet(Gramplet):
         self.gui.calendar.set_display_options(
                                     Gtk.CalendarDisplayOptions.SHOW_HEADING)
         self.gui.get_container_widget().remove(self.gui.textview)
-        vbox = Gtk.VBox(homogeneous=False, spacing=0)
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         vbox.pack_start(self.gui.calendar, False, False, 0)
         self.gui.get_container_widget().add_with_viewport(vbox)
         vbox.show_all()

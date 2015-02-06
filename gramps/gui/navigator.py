@@ -91,17 +91,17 @@ class Navigator(object):
         self.cat_view_group = None
         self.merge_ids = []
 
-        self.top = Gtk.VBox()
+        self.top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         
         frame = Gtk.Frame()
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.show()
         frame.add(hbox)
         frame.show()
         
         self.select_button = Gtk.ToggleButton()
         self.select_button.set_relief(Gtk.ReliefStyle.NONE)
-        select_hbox = Gtk.HBox()
+        select_hbox = Gtk.Box()
         self.title_label = Gtk.Label(label='')
         arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN, 
                                     shadow_type=Gtk.ShadowType.NONE)

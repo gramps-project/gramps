@@ -171,7 +171,7 @@ class DropdownSidebar(BaseSidebar):
 
         # add the image. If we are using text, use the BUTTON (larger) size. 
         # otherwise, use the smaller size
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.show()
         image = Gtk.Image()
         if use_text:

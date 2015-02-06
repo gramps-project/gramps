@@ -216,7 +216,7 @@ class Bookmarks :
                           % _("Organize Bookmarks"))
         label.set_use_markup(True)
         self.top.vbox.pack_start(label, 0, 0, 5)
-        box = Gtk.HBox()
+        box = Gtk.Box()
         self.top.vbox.pack_start(box, 1, 1, 5)
         
         name_titles = [(_('Name'), -1, 200), (_('ID'), -1, 50), ('', -1, 0)]

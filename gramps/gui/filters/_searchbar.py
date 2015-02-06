@@ -52,7 +52,7 @@ class SearchBar(object):
         self.apply_text = ''
         self.visible = False
 
-        self.filterbar = Gtk.HBox()
+        self.filterbar = Gtk.Box()
         self.filter_text = Gtk.Entry()
         self.filter_button = Gtk.Button(stock=Gtk.STOCK_FIND)
         self.clear_button = Gtk.Button(stock=Gtk.STOCK_CLEAR)

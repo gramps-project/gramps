@@ -161,7 +161,7 @@ class ButtonTab(GrampsTab):
         else:
             self.jump_btn = None
 
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.set_spacing(6)
         if top_label:
             hbox.pack_start(self.top_label, False, True, 0)

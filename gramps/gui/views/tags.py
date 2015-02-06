@@ -379,7 +379,7 @@ class OrganizeTagsDialog(object):
                           % _("Organize Tags"))
         label.set_use_markup(True)
         top.vbox.pack_start(label, 0, 0, 5)
-        box = Gtk.HBox()
+        box = Gtk.Box()
         top.vbox.pack_start(box, 1, 1, 5)
         
         name_titles = [('', NOSORT, 20, INTEGER), # Priority
@@ -587,7 +587,7 @@ class EditTag(object):
         top.set_transient_for(self.parent_window)
         top.vbox.set_spacing(5)
 
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         top.vbox.pack_start(hbox, False, False, 10)
 
         label = Gtk.Label(label=_('Tag Name:'))

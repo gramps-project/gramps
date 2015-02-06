@@ -157,7 +157,7 @@ class InteractiveSearchBox():
         frame.show()
         self._search_window.add(frame)
 
-        vbox = Gtk.VBox()
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         vbox.show()
         frame.add(vbox)
         vbox.set_border_width(3)

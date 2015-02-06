@@ -41,10 +41,10 @@ from gi.repository import Gtk
 # LinkBox class
 #
 #-------------------------------------------------------------------------
-class LinkBox(Gtk.HBox):
+class LinkBox(Gtk.Box):
 
     def __init__(self, link, button):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         self.set_spacing(6)
         self.pack_start(link, False, True, 0)
         if button:

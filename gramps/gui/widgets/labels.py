@@ -128,7 +128,7 @@ class LinkLabel(Gtk.EventBox):
         self.label.set_use_markup(True)
         self.label.set_alignment(0, 0.5)
 
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.pack_start(self.label, False, False, 0)
         if label[1]:
             hbox.pack_start(GenderLabel(label[1]), False, False, 0)
@@ -186,9 +186,9 @@ class LinkLabel(Gtk.EventBox):
 # EditLabel class
 #
 #-------------------------------------------------------------------------
-class EditLabel(Gtk.HBox):
+class EditLabel(Gtk.Box):
     def __init__(self, text):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         label = BasicLabel(text)
         self.pack_start(label, False, True, 0)
         self.pack_start(Gtk.Image.new_from_stock(Gtk.STOCK_EDIT, 
@@ -242,10 +242,10 @@ class MarkupLabel(Gtk.Label):
 # DualMarkupLabel class
 #
 #-------------------------------------------------------------------------
-class DualMarkupLabel(Gtk.HBox):
+class DualMarkupLabel(Gtk.Box):
 
     def __init__(self, text, alt, x_align=0, y_align=0.5):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         label = Gtk.Label(label=text)
         label.set_alignment(x_align, y_align)
         label.set_use_markup(True)

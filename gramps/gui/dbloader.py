@@ -483,7 +483,7 @@ def format_maker():
     type_selector = GrampsFormatWidget()
     type_selector.set(format_list)
 
-    box = Gtk.HBox()
+    box = Gtk.Box()
     label = Gtk.Label(label=_('Select file _type:'))
     label.set_use_underline(True)
     label.set_mnemonic_widget(type_selector)

@@ -40,9 +40,9 @@ class ToDo(Gramplet):
         """
         Build the GUI interface.
         """
-        top = Gtk.VBox(homogeneous=False)
+        top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         self.left = SimpleButton(Gtk.STOCK_GO_BACK, self.left_clicked)
         self.left.set_tooltip_text(_('Previous To Do note'))
         self.left.set_sensitive(False)

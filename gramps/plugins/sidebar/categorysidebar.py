@@ -72,7 +72,7 @@ class CategorySidebar(BaseSidebar):
         self.merge_ids = []
 
         self.window = Gtk.ScrolledWindow()
-        vbox = Gtk.VBox()
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add_with_viewport(vbox)
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
@@ -176,7 +176,7 @@ class CategorySidebar(BaseSidebar):
 
         # add the image. If we are using text, use the BUTTON (larger) size. 
         # otherwise, use the smaller size
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.show()
         image = Gtk.Image()
         if use_text:

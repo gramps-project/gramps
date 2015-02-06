@@ -45,12 +45,12 @@ from . import WarnButton
 # Statusbar class
 #
 #-------------------------------------------------------------------------
-class Statusbar(Gtk.HBox):
+class Statusbar(Gtk.Box):
     """
     A status bar 
     """
     def __init__(self):
-        Gtk.HBox.__init__(self)
+        Gtk.Box.__init__(self)
         self.set_spacing(4)
         self.set_border_width(2)
 

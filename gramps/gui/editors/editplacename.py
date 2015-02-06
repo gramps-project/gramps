@@ -67,7 +67,7 @@ class EditPlaceName(ManagedWindow):
         window.connect('response', self.response)
         self.set_window(window, None, _('Place Name Editor'))
 
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         label = Gtk.Label(_('Place Name:'))
         self.entry = Gtk.Entry()
         if index >= 0:

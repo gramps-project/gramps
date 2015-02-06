@@ -79,7 +79,7 @@ class Leak(Gramplet):
         """
         Build the GUI interface.
         """
-        self.top = Gtk.VBox()
+        self.top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.top.set_border_width(6)
 
         self.label = Gtk.Label()        

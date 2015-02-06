@@ -329,7 +329,7 @@ class ConfigureDialog(ManagedWindow):
         if not config:
             config = self.__config
         lwidget = BasicLabel("%s: " %label)
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         if path:
             entry.set_text(path)
         entry.connect('changed', callback_label)
@@ -972,7 +972,7 @@ class GrampsPreferences(ConfigureDialog):
         lwidget = BasicLabel("%s: " % _('Name format'))
         lwidget.set_use_underline(True)
         lwidget.set_mnemonic_widget(self.fmt_obox)
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         btn = Gtk.Button("%s..." % _('Edit') )
         btn.connect('clicked', self.cb_name_dialog)
         hbox.pack_start(self.fmt_obox, True, True, 0)

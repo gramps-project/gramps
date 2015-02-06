@@ -410,7 +410,7 @@ class ProgressMonitor(object):
 # _GtkProgressBar
 #
 #-------------------------------------------------------------------------
-class _GtkProgressBar(Gtk.VBox):
+class _GtkProgressBar(Gtk.Box):
     """
     This widget displays the progress bar and labels for a progress
     indicator. It provides an interface to updating the progress bar.
@@ -421,7 +421,7 @@ class _GtkProgressBar(Gtk.VBox):
         :param long_op_status: the status of the operation.
         :type long_op_status: :class:`.LongOpStatus`
         """
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
         
         msg = long_op_status.get_msg()
         self._old_val = -1
@@ -430,7 +430,7 @@ class _GtkProgressBar(Gtk.VBox):
         #self.set_border_width(24)
         
         self._pbar = Gtk.ProgressBar()
-        self._hbox = Gtk.HBox()
+        self._hbox = Gtk.Box()
         
         # Only display the cancel button is the operation
         # can be canceled.

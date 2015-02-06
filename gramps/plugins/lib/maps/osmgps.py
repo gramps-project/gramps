@@ -100,7 +100,7 @@ class OsmGps():
         """
         create the vbox 
         """
-        self.vbox = Gtk.VBox(homogeneous=False, spacing=0)
+        self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         cache_path = config.get('geography.path')
         if not os.path.isdir(cache_path):
             try:

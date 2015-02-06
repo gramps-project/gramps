@@ -490,13 +490,13 @@ class GuiBooleanOption(Gtk.CheckButton):
 # GuiEnumeratedListOption class
 #
 #-------------------------------------------------------------------------
-class GuiEnumeratedListOption(Gtk.HBox):
+class GuiEnumeratedListOption(Gtk.Box):
     """
     This class displays an option that provides a finite number of values.
     Each possible value is assigned a value and a description.
     """
     def __init__(self, option, dbstate, uistate, track, override):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         evtBox = Gtk.EventBox()
         self.__option = option
         self.__combo = Gtk.ComboBoxText()
@@ -587,7 +587,7 @@ class GuiEnumeratedListOption(Gtk.HBox):
 # GuiPersonOption class
 #
 #-------------------------------------------------------------------------
-class GuiPersonOption(Gtk.HBox):
+class GuiPersonOption(Gtk.Box):
     """
     This class displays an option that allows a person from the 
     database to be selected.
@@ -598,7 +598,7 @@ class GuiPersonOption(Gtk.HBox):
         @type option: gen.plug.menu.PersonOption
         @return: nothing
         """
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
@@ -712,7 +712,7 @@ class GuiPersonOption(Gtk.HBox):
 # GuiFamilyOption class
 #
 #-------------------------------------------------------------------------
-class GuiFamilyOption(Gtk.HBox):
+class GuiFamilyOption(Gtk.Box):
     """
     This class displays an option that allows a family from the 
     database to be selected.
@@ -723,7 +723,7 @@ class GuiFamilyOption(Gtk.HBox):
         @type option: gen.plug.menu.FamilyOption
         @return: nothing
         """
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
@@ -901,7 +901,7 @@ class GuiFamilyOption(Gtk.HBox):
 # GuiNoteOption class
 #
 #-------------------------------------------------------------------------
-class GuiNoteOption(Gtk.HBox):
+class GuiNoteOption(Gtk.Box):
     """
     This class displays an option that allows a note from the 
     database to be selected.
@@ -912,7 +912,7 @@ class GuiNoteOption(Gtk.HBox):
         @type option: gen.plug.menu.NoteOption
         @return: nothing
         """
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
@@ -1005,7 +1005,7 @@ class GuiNoteOption(Gtk.HBox):
 # GuiMediaOption class
 #
 #-------------------------------------------------------------------------
-class GuiMediaOption(Gtk.HBox):
+class GuiMediaOption(Gtk.Box):
     """
     This class displays an option that allows a media object from the 
     database to be selected.
@@ -1016,7 +1016,7 @@ class GuiMediaOption(Gtk.HBox):
         @type option: gen.plug.menu.MediaOption
         @return: nothing
         """
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
@@ -1106,7 +1106,7 @@ class GuiMediaOption(Gtk.HBox):
 # GuiPersonListOption class
 #
 #-------------------------------------------------------------------------
-class GuiPersonListOption(Gtk.HBox):
+class GuiPersonListOption(Gtk.Box):
     """
     This class displays a widget that allows multiple people from the 
     database to be selected.
@@ -1117,7 +1117,7 @@ class GuiPersonListOption(Gtk.HBox):
         @type option: gen.plug.menu.PersonListOption
         @return: nothing
         """
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
@@ -1283,7 +1283,7 @@ class GuiPersonListOption(Gtk.HBox):
 # GuiPlaceListOption class
 #
 #-------------------------------------------------------------------------
-class GuiPlaceListOption(Gtk.HBox):
+class GuiPlaceListOption(Gtk.Box):
     """
     This class displays a widget that allows multiple places from the 
     database to be selected.
@@ -1294,7 +1294,7 @@ class GuiPlaceListOption(Gtk.HBox):
         @type option: gen.plug.menu.PlaceListOption
         @return: nothing
         """
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
@@ -1426,7 +1426,7 @@ class GuiPlaceListOption(Gtk.HBox):
 # GuiSurnameColorOption class
 #
 #-------------------------------------------------------------------------
-class GuiSurnameColorOption(Gtk.HBox):
+class GuiSurnameColorOption(Gtk.Box):
     """
     This class displays a widget that allows multiple surnames to be
     selected from the database, and to assign a colour (not necessarily
@@ -1438,7 +1438,7 @@ class GuiSurnameColorOption(Gtk.HBox):
         @type option: gen.plug.menu.SurnameColorOption
         @return: nothing
         """
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         self.__option = option
         self.__dbstate = dbstate
         self.__db = dbstate.get_database()
@@ -1618,7 +1618,7 @@ class GuiSurnameColorOption(Gtk.HBox):
 # GuiDestinationOption class
 #
 #-------------------------------------------------------------------------
-class GuiDestinationOption(Gtk.HBox):
+class GuiDestinationOption(Gtk.Box):
     """
     This class displays an option that allows the user to select a 
     DestinationOption.
@@ -1629,7 +1629,7 @@ class GuiDestinationOption(Gtk.HBox):
         @type option: gen.plug.menu.DestinationOption
         @return: nothing
         """
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         self.__option = option
         self.__entry = Gtk.Entry()
         self.__entry.set_text( self.__option.get_value() )
@@ -1787,13 +1787,13 @@ class GuiStyleOption(GuiEnumeratedListOption):
 # GuiBooleanListOption class
 #
 #-------------------------------------------------------------------------
-class GuiBooleanListOption(Gtk.HBox):
+class GuiBooleanListOption(Gtk.Box):
     """
     This class displays an option that provides a list of check boxes.
     Each possible value is assigned a value and a description.
     """
     def __init__(self, option, dbstate, uistate, track, override):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         self.__option = option
         self.__cbutton = []
 
@@ -1804,7 +1804,7 @@ class GuiBooleanListOption(Gtk.HBox):
             COLUMNS = 3
         column = []
         for i in range(COLUMNS):
-            vbox = Gtk.VBox()
+            vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             self.pack_start(vbox, True, True, 0)
             column.append(vbox)
             vbox.show()

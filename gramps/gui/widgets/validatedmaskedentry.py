@@ -1423,7 +1423,7 @@ def main(args):
         Gtk.main_quit()
     win.connect('delete-event', cb)
 
-    vbox = Gtk.VBox()
+    vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
     win.add(vbox)
     
     label = Gtk.Label(label='Pre-filled entry validated against the given list:')

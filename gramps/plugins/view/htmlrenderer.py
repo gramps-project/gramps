@@ -344,7 +344,7 @@ class HtmlView(NavigationView):
         contains the interface. This containter will be inserted into
         a Gtk.Notebook page.
         """
-        self.box = Gtk.VBox(spacing=4)
+        self.box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL, spacing=4)
         #top widget at the top
         self.box.pack_start(self.top_widget(), False, False, 0 )
         #web page under it in a scrolled window

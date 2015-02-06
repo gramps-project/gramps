@@ -60,7 +60,7 @@ class ExpanderSidebar(BaseSidebar):
         self.lookup = {}
 
         self.window = Gtk.ScrolledWindow()
-        vbox = Gtk.VBox()
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add_with_viewport(vbox)
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
@@ -71,7 +71,7 @@ class ExpanderSidebar(BaseSidebar):
             expander = Gtk.Expander()
             self.expanders.append(expander)
 
-            catbox = Gtk.HBox()
+            catbox = Gtk.Box()
             image = Gtk.Image()
             image.set_from_stock(cat_icon, Gtk.IconSize.BUTTON)
             catbox.pack_start(image, False, False, 4)
@@ -81,7 +81,7 @@ class ExpanderSidebar(BaseSidebar):
             catbox.set_tooltip_text(cat_name)
             expander.set_label_widget(catbox)
 
-            viewbox = Gtk.VBox()
+            viewbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
             for view_num, view_name, view_icon in views[cat_num]:
                 # create the button and add it to the sidebar
                 button = self.__make_sidebar_button(use_text, cat_num, view_num,
@@ -167,7 +167,7 @@ class ExpanderSidebar(BaseSidebar):
         Create the sidebar button. The page_title is the text associated with
         the button.
         """
-        top = Gtk.HBox()
+        top = Gtk.Box()
         
         # create the button
         button = Gtk.ToggleButton()
@@ -186,7 +186,7 @@ class ExpanderSidebar(BaseSidebar):
 
         # add the image. If we are using text, use the BUTTON (larger) size. 
         # otherwise, use the smaller size
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.show()
         image = Gtk.Image()
         if use_text:

@@ -349,7 +349,7 @@ class StyleEditor(object):
             self.vbox.remove(widget)
 
         for i in range(t.get_columns()):
-            hbox = Gtk.HBox()
+            hbox = Gtk.Box()
             label = Gtk.Label(_('Column %d:') % (i + 1))
             hbox.pack_start(label, False, False, 6)
             spin = Gtk.SpinButton()

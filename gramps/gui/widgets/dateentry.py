@@ -49,10 +49,10 @@ from gramps.gen.lib.date import Date
 # DateEntry class
 #
 #-------------------------------------------------------------------------
-class DateEntry(Gtk.HBox):
+class DateEntry(Gtk.Box):
     
     def __init__(self, uistate, track):
-        Gtk.HBox.__init__(self)
+        Gtk.Box.__init__(self)
         self.entry = ValidatableMaskedEntry()
         self.entry.set_width_chars(13)
         self.pack_start(self.entry, True, True, 0)

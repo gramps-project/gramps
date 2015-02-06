@@ -98,7 +98,7 @@ class BackRefList(EmbeddedList):
         self.edit_btn = SimpleButton(Gtk.STOCK_EDIT, self.edit_button_clicked)
         self.edit_btn.set_tooltip_text(_('Edit reference'))
 
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         hbox.set_spacing(6)
         hbox.pack_start(self.edit_btn, False, True, 0)
         hbox.show_all()

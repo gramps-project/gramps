@@ -35,7 +35,7 @@ class MediaPreview(Gramplet):
         """
         Build the GUI interface.
         """
-        self.top = Gtk.HBox()
+        self.top = Gtk.Box()
         self.photo = Photo(self.uistate.screen_height() < 1000)
         self.top.pack_start(self.photo, fill=True, expand=False, padding=5)
         self.top.show_all()

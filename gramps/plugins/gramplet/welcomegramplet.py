@@ -82,7 +82,7 @@ class WelcomeGramplet(Gramplet):
         """
         Build the GUI interface.
         """
-        top = Gtk.VBox(homogeneous=False)
+        top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         
         scrolledwindow = Gtk.ScrolledWindow()
         scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)

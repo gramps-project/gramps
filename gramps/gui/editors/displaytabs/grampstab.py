@@ -37,7 +37,7 @@ _RIGHT = Gdk.keyval_from_name("Right")
 #
 #-------------------------------------------------------------------------
 
-class GrampsTab(Gtk.VBox):
+class GrampsTab(Gtk.Box):
     """
     This class provides the base level class for 'tabs', which are used to
     fill in notebook tabs for GRAMPS edit dialogs. 
@@ -64,7 +64,7 @@ class GrampsTab(Gtk.VBox):
         @param name: Notebook label name
         @type name: str/unicode
         """
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self, orientation=Gtk.Orientation.VERTICAL)
 
         # store information to pass to child windows
         self.dbstate = dbstate
@@ -102,9 +102,9 @@ class GrampsTab(Gtk.VBox):
         by the derived class. Creates an container that has the label and
         the icon in it.
         @returns: widget to be used for the notebook label.
-        @rtype: Gtk.HBox
+        @rtype: Gtk.Box
         """
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         icon = self.get_icon_name()
 
         if isinstance(icon, tuple):
@@ -143,7 +143,7 @@ class GrampsTab(Gtk.VBox):
         container class is provided, and the object may manipulate the
         child widgets contained in the container.
         @returns: gtk widget
-        @rtype: Gtk.HBox
+        @rtype: Gtk.Box
         """
         return self.label_container
 
@@ -187,7 +187,7 @@ class GrampsTab(Gtk.VBox):
         """
         Builds the interface for the derived class. This function should be
         overridden in the derived class. Since the classes are derived from
-        Gtk.HBox, the self.pack_start, self.pack_end, and self.add functions
+        Gtk.Box, the self.pack_start, self.pack_end, and self.add functions
         can be used to add widgets to the interface.
         """
         pass

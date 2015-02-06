@@ -143,7 +143,7 @@ class ListView(NavigationView):
         contains the interface. This containter will be inserted into
         a Gtk.Notebook page.
         """
-        self.vbox = Gtk.VBox()
+        self.vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.vbox.set_border_width(4)
         self.vbox.set_spacing(4)
         
@@ -1010,7 +1010,7 @@ class ListView(NavigationView):
         combobox = Gtk.ComboBoxText()
         label = Gtk.Label(label=_("Format:"))
         label.set_alignment(1.0, 0.5)
-        box = Gtk.HBox()
+        box = Gtk.Box()
         box.pack_start(label, True, True, padding=12)
         box.pack_start(combobox, False, False, 0)
         combobox.append_text(_('CSV'))

@@ -371,9 +371,9 @@ class ViewManager(CLIManager):
         self.window.set_has_resize_grip(True)
         self.window.set_default_size(width, height)
 
-        vbox = Gtk.VBox()
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add(vbox)
-        hpane = Gtk.HPaned()
+        hpane = Gtk.Paned()
         self.ebox = Gtk.EventBox()
 
         self.navigator = Navigator(self)
@@ -393,7 +393,7 @@ class ViewManager(CLIManager):
         self.toolbar = self.uimanager.get_widget('/ToolBar')
         vbox.pack_start(self.menubar, False, True, 0)
         vbox.pack_start(self.toolbar, False, True, 0)
-        vbox.add(hpane)
+        vbox.pack_start(hpane, True, True, 0)
         self.statusbar = Statusbar()
         self.statusbar.show()
         vbox.pack_end(self.statusbar, False, True, 0)
@@ -981,7 +981,7 @@ class ViewManager(CLIManager):
         self.pages.append(page)
 
         # create icon/label for notebook tab (useful for debugging)
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         image = Gtk.Image()
         image.set_from_stock(page.get_stock(), Gtk.IconSize.MENU)
         hbox.pack_start(image, False, True, 0)
@@ -1232,7 +1232,7 @@ class ViewManager(CLIManager):
         close_button = window.add_button(Gtk.STOCK_CLOSE,
                                          Gtk.ResponseType.CLOSE)
         vbox = window.get_content_area()
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         label = Gtk.Label(label=_("Path:"))
         label.set_justify(Gtk.Justification.LEFT)
         label.set_size_request(90, -1)
@@ -1252,7 +1252,7 @@ class ViewManager(CLIManager):
         button.add(image)
         hbox.pack_end(button, False, True, 0)
         vbox.pack_start(hbox, False, True, 0)
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         label = Gtk.Label(label=_("File:"))
         label.set_justify(Gtk.Justification.LEFT)
         label.set_size_request(90, -1)
@@ -1271,7 +1271,7 @@ class ViewManager(CLIManager):
                              })
         hbox.pack_end(file_entry, True, True, 0)
         vbox.pack_start(hbox, False, True, 0)
-        hbox = Gtk.HBox()
+        hbox = Gtk.Box()
         bytes = 0
         mbytes = "0"
         for media in self.dbstate.db.iter_media_objects():

@@ -131,11 +131,11 @@ class OrientationComboBox(Gtk.ComboBox):
 # PaperFrame
 #
 #-------------------------------------------------------------------------  
-class PaperFrame(Gtk.HBox):
+class PaperFrame(Gtk.Box):
     """PaperFrame provides all the entry necessary to specify a paper style. """
     def __init__(self,default_metric,default_name,default_orientation,
                  margins=[2.54,2.54,2.54,2.54], custom=[29.7,21.0]):
-        GObject.GObject.__init__(self)
+        Gtk.Box.__init__(self)
         glade_xml = Glade()
 
         self.paper_grid = glade_xml.get_object('paper_grid')
