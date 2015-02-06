@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-11 19:40-0800\n"
-"PO-Revision-Date: 2014-12-14 12:51+0100\n"
+"POT-Creation-Date: 2015-01-17 16:23+0100\n"
+"PO-Revision-Date: 2015-02-06 14:24+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1005,7 +1005,7 @@ msgstr "Rodokmeny Gramps:"
 #: ../gramps/cli/arghandler.py:436 ../gramps/cli/arghandler.py:437
 #: ../gramps/cli/arghandler.py:439 ../gramps/cli/clidbman.py:73
 #: ../gramps/cli/clidbman.py:220 ../gramps/gui/clipboard.py:953
-#: ../gramps/gui/configure.py:1364
+#: ../gramps/gui/configure.py:1365
 msgid "Family Tree"
 msgstr "Rodokmen"
 
@@ -1478,7 +1478,7 @@ msgstr "Zamkl %s"
 #: ../gramps/plugins/gramplet/relativegramplet.py:124
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:164
-#: ../gramps/plugins/graph/gvrelgraph.py:625
+#: ../gramps/plugins/graph/gvrelgraph.py:627
 #: ../gramps/plugins/lib/maps/geography.py:766
 #: ../gramps/plugins/lib/maps/geography.py:773
 #: ../gramps/plugins/lib/maps/geography.py:774
@@ -1985,22 +1985,22 @@ msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:482
+#: ../gramps/gen/datehandler/_datedisplay.py:490
 msgid "{long_month} {day:d}, {year}"
 msgstr "{long_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:506
+#: ../gramps/gen/datehandler/_datedisplay.py:514
 msgid "{short_month} {day:d}, {year}"
 msgstr "{short_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:530
+#: ../gramps/gen/datehandler/_datedisplay.py:538
 msgid "{day:d} {long_month} {year}"
 msgstr "{day:d}. {long_month} {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:554
+#: ../gramps/gen/datehandler/_datedisplay.py:562
 msgid "{day:d} {short_month} {year}"
 msgstr "{day:d}. {short_month} {year}"
 
@@ -4191,7 +4191,7 @@ msgstr "Typ:"
 
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:48
 #: ../gramps/gui/glade/mergemedia.glade:259
-#: ../gramps/gui/glade/mergemedia.glade:278 ../gramps/gui/viewmanager.py:1235
+#: ../gramps/gui/glade/mergemedia.glade:278 ../gramps/gui/viewmanager.py:1236
 msgid "Path:"
 msgstr "Cesta:"
 
@@ -4951,7 +4951,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_isfemale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:153
 #: ../gramps/plugins/graph/gvfamilylines.py:160
-#: ../gramps/plugins/graph/gvrelgraph.py:621
+#: ../gramps/plugins/graph/gvrelgraph.py:623
 msgid "Females"
 msgstr "Ženy"
 
@@ -5016,7 +5016,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_ismale.py:45
 #: ../gramps/plugins/gramplet/statsgramplet.py:150
 #: ../gramps/plugins/graph/gvfamilylines.py:156
-#: ../gramps/plugins/graph/gvrelgraph.py:617
+#: ../gramps/plugins/graph/gvrelgraph.py:619
 msgid "Males"
 msgstr "Muži"
 
@@ -5913,8 +5913,8 @@ msgstr "neznámý"
 
 #: ../gramps/gen/lib/date.py:287
 #, python-format
-msgid "less than %s years"
-msgstr "méně než %s let"
+msgid "greater than %s years"
+msgstr "více než %s let"
 
 #: ../gramps/gen/lib/date.py:292 ../gramps/gen/lib/date.py:316
 #: ../gramps/gen/lib/date.py:318 ../gramps/gen/lib/date.py:324
@@ -7301,14 +7301,14 @@ msgstr "Soubor %s je již otevřený, nejprve jej zavřete."
 #: ../gramps/plugins/docgen/asciidoc.py:162
 #: ../gramps/plugins/docgen/cairodoc.py:191
 #: ../gramps/plugins/docgen/cairodoc.py:194
-#: ../gramps/plugins/docgen/odfdoc.py:1203
-#: ../gramps/plugins/docgen/odfdoc.py:1206
+#: ../gramps/plugins/docgen/odfdoc.py:1204
+#: ../gramps/plugins/docgen/odfdoc.py:1207
 #: ../gramps/plugins/docgen/rtfdoc.py:94 ../gramps/plugins/docgen/rtfdoc.py:97
 #: ../gramps/plugins/docgen/svgdrawdoc.py:92
 #: ../gramps/plugins/docgen/svgdrawdoc.py:94
 #: ../gramps/plugins/export/exportcsv.py:312
 #: ../gramps/plugins/export/exportcsv.py:316
-#: ../gramps/plugins/export/exportgedcom.py:1471
+#: ../gramps/plugins/export/exportgedcom.py:1472
 #: ../gramps/plugins/export/exportgeneweb.py:94
 #: ../gramps/plugins/export/exportgeneweb.py:98
 #: ../gramps/plugins/export/exportvcalendar.py:100
@@ -9265,7 +9265,7 @@ msgid " Name Editor"
 msgstr " Editor jmen"
 
 #: ../gramps/gui/configure.py:139 ../gramps/gui/configure.py:157
-#: ../gramps/gui/configure.py:1456 ../gramps/gui/views/pageview.py:610
+#: ../gramps/gui/configure.py:1457 ../gramps/gui/views/pageview.py:610
 msgid "Preferences"
 msgstr "Předvolby"
 
@@ -9699,42 +9699,42 @@ msgstr "Kontrola rozšíření selhala"
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr "Zdroj rozšíření je nejspíš nedostupný. Zkuste to prosím později."
 
-#: ../gramps/gui/configure.py:1333
+#: ../gramps/gui/configure.py:1334
 msgid "There are no available addons of this type"
 msgstr "Žádná rozšíření tohoto typu nejsou k dispozici"
 
-#: ../gramps/gui/configure.py:1334
+#: ../gramps/gui/configure.py:1335
 #, python-format
 msgid "Checked for '%s'"
 msgstr "Kontrolováno '%s'"
 
-#: ../gramps/gui/configure.py:1335
+#: ../gramps/gui/configure.py:1336
 msgid "' and '"
 msgstr "' a '"
 
 #. List of translated strings used here
 #. Dead code for l10n
-#: ../gramps/gui/configure.py:1340
+#: ../gramps/gui/configure.py:1341
 msgid "new"
 msgstr "new"
 
-#: ../gramps/gui/configure.py:1340
+#: ../gramps/gui/configure.py:1341
 msgid "update"
 msgstr "aktualizovat"
 
-#: ../gramps/gui/configure.py:1353
+#: ../gramps/gui/configure.py:1354
 msgid "Family Tree Database path"
 msgstr "Cesta k databázi rodokmenu"
 
-#: ../gramps/gui/configure.py:1361
+#: ../gramps/gui/configure.py:1362
 msgid "Automatically load last Family Tree"
 msgstr "Automaticky načíst poslední rodokmen"
 
-#: ../gramps/gui/configure.py:1374
+#: ../gramps/gui/configure.py:1375
 msgid "Select media directory"
 msgstr "Vybrat adresář pro média"
 
-#: ../gramps/gui/configure.py:1398
+#: ../gramps/gui/configure.py:1399
 msgid "Select database directory"
 msgstr "Vybrat adresář databáze"
 
@@ -9833,7 +9833,7 @@ msgstr ""
 #: ../gramps/gui/dbloader.py:358 ../gramps/gui/dbloader.py:372
 #: ../gramps/gui/plug/report/_bookdialog.py:294
 #: ../gramps/gui/plug/report/_bookdialog.py:735
-#: ../gramps/gui/viewmanager.py:790 ../gramps/plugins/view/familyview.py:237
+#: ../gramps/gui/viewmanager.py:791 ../gramps/plugins/view/familyview.py:237
 msgid "Cancel"
 msgstr "Storno"
 
@@ -12275,7 +12275,7 @@ msgstr "Komentář"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1032
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1046
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:1060
-#: ../gramps/plugins/graph/gvrelgraph.py:526
+#: ../gramps/plugins/graph/gvrelgraph.py:528
 #: ../gramps/plugins/quickview/quickview.gpr.py:125
 #: ../gramps/plugins/textreport/birthdayreport.py:414
 #: ../gramps/plugins/textreport/indivcomplete.py:654
@@ -16081,7 +16081,7 @@ msgstr "Styl"
 #: ../gramps/plugins/drawreport/fanchart.py:646
 #: ../gramps/plugins/drawreport/statisticschart.py:937
 #: ../gramps/plugins/drawreport/timeline.py:402
-#: ../gramps/plugins/graph/gvrelgraph.py:522
+#: ../gramps/plugins/graph/gvrelgraph.py:524
 #: ../gramps/plugins/textreport/alphabeticalindex.py:88
 #: ../gramps/plugins/textreport/ancestorreport.py:263
 #: ../gramps/plugins/textreport/birthdayreport.py:407
@@ -16317,7 +16317,7 @@ msgid "Spelling checker initialization failed: %s"
 msgstr "Inicializace kontroly pravopisu selhlala: %s"
 
 #: ../gramps/gui/tipofday.py:68 ../gramps/gui/tipofday.py:69
-#: ../gramps/gui/tipofday.py:120 ../gramps/gui/viewmanager.py:508
+#: ../gramps/gui/tipofday.py:120 ../gramps/gui/viewmanager.py:509
 msgid "Tip of the Day"
 msgstr "Tip dne"
 
@@ -16407,225 +16407,225 @@ msgstr ""
 msgid "Cannot open new citation editor"
 msgstr "Nelze otevřít nový editor citací"
 
-#: ../gramps/gui/viewmanager.py:462
+#: ../gramps/gui/viewmanager.py:463
 msgid "Connect to a recent database"
 msgstr "Připojit poslední databázi"
 
-#: ../gramps/gui/viewmanager.py:480
+#: ../gramps/gui/viewmanager.py:481
 msgid "_Family Trees"
 msgstr "_Rodokmeny"
 
-#: ../gramps/gui/viewmanager.py:481
+#: ../gramps/gui/viewmanager.py:482
 msgid "_Manage Family Trees..."
 msgstr "Spravovat rodok_meny..."
 
-#: ../gramps/gui/viewmanager.py:482
+#: ../gramps/gui/viewmanager.py:483
 msgid "Manage databases"
 msgstr "Spravovat databáze"
 
-#: ../gramps/gui/viewmanager.py:483
+#: ../gramps/gui/viewmanager.py:484
 msgid "Open _Recent"
 msgstr "Otevřít _nedávné"
 
-#: ../gramps/gui/viewmanager.py:484
+#: ../gramps/gui/viewmanager.py:485
 msgid "Open an existing database"
 msgstr "Otevřít existující databázi"
 
-#: ../gramps/gui/viewmanager.py:485
+#: ../gramps/gui/viewmanager.py:486
 msgid "_Quit"
 msgstr "U_končit"
 
-#: ../gramps/gui/viewmanager.py:487
+#: ../gramps/gui/viewmanager.py:488
 msgid "_View"
 msgstr "_Zobrazit"
 
-#: ../gramps/gui/viewmanager.py:488
+#: ../gramps/gui/viewmanager.py:489
 msgid "_Edit"
 msgstr "Úpr_avy"
 
-#: ../gramps/gui/viewmanager.py:489
+#: ../gramps/gui/viewmanager.py:490
 msgid "_Preferences..."
 msgstr "_Předvolby..."
 
-#: ../gramps/gui/viewmanager.py:491
+#: ../gramps/gui/viewmanager.py:492
 msgid "_Help"
 msgstr "_Nápověda"
 
-#: ../gramps/gui/viewmanager.py:492
+#: ../gramps/gui/viewmanager.py:493
 msgid "Gramps _Home Page"
 msgstr "Domovská _stránka Gramps"
 
-#: ../gramps/gui/viewmanager.py:494
+#: ../gramps/gui/viewmanager.py:495
 msgid "Gramps _Mailing Lists"
 msgstr "Diskuzní skupiny Gra_mps"
 
-#: ../gramps/gui/viewmanager.py:496
+#: ../gramps/gui/viewmanager.py:497
 msgid "_Report a Bug"
 msgstr "_Zaslat hlášení o chybě"
 
-#: ../gramps/gui/viewmanager.py:498
+#: ../gramps/gui/viewmanager.py:499
 msgid "_Extra Reports/Tools"
 msgstr "Další zprávy/nástroj_e"
 
-#: ../gramps/gui/viewmanager.py:500
+#: ../gramps/gui/viewmanager.py:501
 msgid "_About"
 msgstr "_O programu"
 
-#: ../gramps/gui/viewmanager.py:502
+#: ../gramps/gui/viewmanager.py:503
 msgid "_Plugin Manager"
 msgstr "S_právce zásuvných modulů"
 
-#: ../gramps/gui/viewmanager.py:504
+#: ../gramps/gui/viewmanager.py:505
 msgid "_FAQ"
 msgstr "_FAQ"
 
-#: ../gramps/gui/viewmanager.py:505
+#: ../gramps/gui/viewmanager.py:506
 msgid "_Key Bindings"
 msgstr "_Klávesové zkratky"
 
-#: ../gramps/gui/viewmanager.py:506
+#: ../gramps/gui/viewmanager.py:507
 msgid "_User Manual"
 msgstr "_Uživatelská příručka"
 
-#: ../gramps/gui/viewmanager.py:513
+#: ../gramps/gui/viewmanager.py:514
 msgid "_Export..."
 msgstr "_Exportovat..."
 
-#: ../gramps/gui/viewmanager.py:515
+#: ../gramps/gui/viewmanager.py:516
 msgid "Make Backup..."
 msgstr "Vytvořit zálohu..."
 
-#: ../gramps/gui/viewmanager.py:516
+#: ../gramps/gui/viewmanager.py:517
 msgid "Make a Gramps XML backup of the database"
 msgstr "Vytvořit zálohu databáze Gramps v XML"
 
-#: ../gramps/gui/viewmanager.py:518
+#: ../gramps/gui/viewmanager.py:519
 msgid "_Abandon Changes and Quit"
 msgstr "_Zrušit změny a skončit"
 
-#: ../gramps/gui/viewmanager.py:519 ../gramps/gui/viewmanager.py:522
+#: ../gramps/gui/viewmanager.py:520 ../gramps/gui/viewmanager.py:523
 msgid "_Reports"
 msgstr "Z_právy"
 
-#: ../gramps/gui/viewmanager.py:520
+#: ../gramps/gui/viewmanager.py:521
 msgid "Open the reports dialog"
 msgstr "Otevřít dialog sestav"
 
-#: ../gramps/gui/viewmanager.py:521
+#: ../gramps/gui/viewmanager.py:522
 msgid "_Go"
 msgstr "Pře_jít"
 
-#: ../gramps/gui/viewmanager.py:523
+#: ../gramps/gui/viewmanager.py:524
 msgid "Books..."
 msgstr "Knihy..."
 
-#: ../gramps/gui/viewmanager.py:524
+#: ../gramps/gui/viewmanager.py:525
 msgid "_Windows"
 msgstr "_Okna"
 
-#: ../gramps/gui/viewmanager.py:561
+#: ../gramps/gui/viewmanager.py:562
 msgid "Clip_board"
 msgstr "Schránka"
 
-#: ../gramps/gui/viewmanager.py:562
+#: ../gramps/gui/viewmanager.py:563
 msgid "Open the Clipboard dialog"
 msgstr "Dialog pro otevření schránky"
 
-#: ../gramps/gui/viewmanager.py:563
+#: ../gramps/gui/viewmanager.py:564
 msgid "_Import..."
 msgstr "_Import..."
 
-#: ../gramps/gui/viewmanager.py:565 ../gramps/gui/viewmanager.py:568
+#: ../gramps/gui/viewmanager.py:566 ../gramps/gui/viewmanager.py:569
 msgid "_Tools"
 msgstr "_Nástroje"
 
-#: ../gramps/gui/viewmanager.py:566
+#: ../gramps/gui/viewmanager.py:567
 msgid "Open the tools dialog"
 msgstr "Otevřít dialog nástrojů"
 
-#: ../gramps/gui/viewmanager.py:567
+#: ../gramps/gui/viewmanager.py:568
 msgid "_Bookmarks"
 msgstr "_Záložky"
 
-#: ../gramps/gui/viewmanager.py:569
+#: ../gramps/gui/viewmanager.py:570
 msgid "_Configure..."
 msgstr "_Nastavit..."
 
-#: ../gramps/gui/viewmanager.py:570
+#: ../gramps/gui/viewmanager.py:571
 msgid "Configure the active view"
 msgstr "Nastavit aktivní pohled"
 
-#: ../gramps/gui/viewmanager.py:575
+#: ../gramps/gui/viewmanager.py:576
 msgid "_Navigator"
 msgstr "_Navigátor"
 
-#: ../gramps/gui/viewmanager.py:577
+#: ../gramps/gui/viewmanager.py:578
 msgid "_Toolbar"
 msgstr "_Lišta nástrojů"
 
-#: ../gramps/gui/viewmanager.py:579
+#: ../gramps/gui/viewmanager.py:580
 msgid "F_ull Screen"
 msgstr "Celá stránka"
 
-#: ../gramps/gui/viewmanager.py:584 ../gramps/gui/viewmanager.py:1173
+#: ../gramps/gui/viewmanager.py:585 ../gramps/gui/viewmanager.py:1174
 msgid "_Undo"
 msgstr "_Zpět"
 
-#: ../gramps/gui/viewmanager.py:589 ../gramps/gui/viewmanager.py:1190
+#: ../gramps/gui/viewmanager.py:590 ../gramps/gui/viewmanager.py:1191
 msgid "_Redo"
 msgstr "Zn_ovu"
 
-#: ../gramps/gui/viewmanager.py:595
+#: ../gramps/gui/viewmanager.py:596
 msgid "Undo History..."
 msgstr "Historie změn..."
 
-#: ../gramps/gui/viewmanager.py:618
+#: ../gramps/gui/viewmanager.py:619
 #, python-format
 msgid "Key %s is not bound"
 msgstr "Klávesa %s není přiřazena"
 
 #. load plugins
-#: ../gramps/gui/viewmanager.py:719
+#: ../gramps/gui/viewmanager.py:720
 msgid "Loading plugins..."
 msgstr "Nahrávám zásuvné moduly..."
 
-#: ../gramps/gui/viewmanager.py:726 ../gramps/gui/viewmanager.py:741
+#: ../gramps/gui/viewmanager.py:727 ../gramps/gui/viewmanager.py:742
 msgid "Ready"
 msgstr "Připraven"
 
 #. registering plugins
-#: ../gramps/gui/viewmanager.py:734
+#: ../gramps/gui/viewmanager.py:735
 msgid "Registering plugins..."
 msgstr "Registrují se zásuvné moduly..."
 
-#: ../gramps/gui/viewmanager.py:771
+#: ../gramps/gui/viewmanager.py:772
 msgid "Autobackup..."
 msgstr "Automatická záloha..."
 
-#: ../gramps/gui/viewmanager.py:775
+#: ../gramps/gui/viewmanager.py:776
 msgid "Error saving backup data"
 msgstr "Chyba při ukládání zálohy"
 
-#: ../gramps/gui/viewmanager.py:786
+#: ../gramps/gui/viewmanager.py:787
 msgid "Abort changes?"
 msgstr "Zahodit změny?"
 
-#: ../gramps/gui/viewmanager.py:787
+#: ../gramps/gui/viewmanager.py:788
 msgid ""
 "Aborting changes will return the database to the state it was before you "
 "started this editing session."
 msgstr ""
 "Odvolání změn vrátí databázi do stavu v jakém jste začínali její modifikaci."
 
-#: ../gramps/gui/viewmanager.py:789
+#: ../gramps/gui/viewmanager.py:790
 msgid "Abort changes"
 msgstr "Zahodit změny"
 
-#: ../gramps/gui/viewmanager.py:799
+#: ../gramps/gui/viewmanager.py:800
 msgid "Cannot abandon session's changes"
 msgstr "Nelze odvolat změny v aktuální relaci"
 
-#: ../gramps/gui/viewmanager.py:800
+#: ../gramps/gui/viewmanager.py:801
 msgid ""
 "Changes cannot be completely abandoned because the number of changes made in "
 "the session exceeded the limit."
@@ -16633,35 +16633,35 @@ msgstr ""
 "Změny nemohou být kompletně odvolány, protože jejich počet v této relaci "
 "překročil limit."
 
-#: ../gramps/gui/viewmanager.py:954
+#: ../gramps/gui/viewmanager.py:955
 msgid "View failed to load. Check error output."
 msgstr "Pohled se nepodařilo nahrát. Zkontrolujte chybový výstup."
 
-#: ../gramps/gui/viewmanager.py:1093
+#: ../gramps/gui/viewmanager.py:1094
 msgid "Import Statistics"
 msgstr "Statistiky importu"
 
-#: ../gramps/gui/viewmanager.py:1142
+#: ../gramps/gui/viewmanager.py:1143
 msgid "Read Only"
 msgstr "Jen pro čtení"
 
-#: ../gramps/gui/viewmanager.py:1225
+#: ../gramps/gui/viewmanager.py:1226
 msgid "Gramps XML Backup"
 msgstr "XML záloha Gramps"
 
-#: ../gramps/gui/viewmanager.py:1255
+#: ../gramps/gui/viewmanager.py:1256
 #: ../gramps/plugins/importer/importgedcom.glade:286
 msgid "File:"
 msgstr "Soubor:"
 
-#: ../gramps/gui/viewmanager.py:1287
+#: ../gramps/gui/viewmanager.py:1288
 msgid "Media:"
 msgstr "Média:"
 
 #. #################
 #. What to include
 #. #########################
-#: ../gramps/gui/viewmanager.py:1292
+#: ../gramps/gui/viewmanager.py:1293
 #: ../gramps/plugins/drawreport/ancestortree.py:1024
 #: ../gramps/plugins/drawreport/descendtree.py:1638
 #: ../gramps/plugins/textreport/detancestralreport.py:775
@@ -16672,55 +16672,55 @@ msgstr "Média:"
 msgid "Include"
 msgstr "Zahrnout"
 
-#: ../gramps/gui/viewmanager.py:1293
+#: ../gramps/gui/viewmanager.py:1294
 #: ../gramps/plugins/gramplet/statsgramplet.py:199
 msgid "Megabyte|MB"
 msgstr "Megabyte|MB"
 
-#: ../gramps/gui/viewmanager.py:1294
+#: ../gramps/gui/viewmanager.py:1295
 #: ../gramps/plugins/webreport/narrativeweb.py:8174
 msgid "Exclude"
 msgstr "Vyjmout"
 
-#: ../gramps/gui/viewmanager.py:1310
+#: ../gramps/gui/viewmanager.py:1311
 msgid "Backup file already exists! Overwrite?"
 msgstr "Soubor se zálohou již existuje! Přepsat?"
 
-#: ../gramps/gui/viewmanager.py:1311
+#: ../gramps/gui/viewmanager.py:1312
 #, python-format
 msgid "The file '%s' exists."
 msgstr "Soubor '%s' existuje."
 
-#: ../gramps/gui/viewmanager.py:1312
+#: ../gramps/gui/viewmanager.py:1313
 msgid "Proceed and overwrite"
 msgstr "Pokračovat a přepsat"
 
-#: ../gramps/gui/viewmanager.py:1313
+#: ../gramps/gui/viewmanager.py:1314
 msgid "Cancel the backup"
 msgstr "Přerušit zálohu"
 
-#: ../gramps/gui/viewmanager.py:1320
+#: ../gramps/gui/viewmanager.py:1321
 msgid "Making backup..."
 msgstr "Provádí se záloha..."
 
-#: ../gramps/gui/viewmanager.py:1332
+#: ../gramps/gui/viewmanager.py:1333
 #, python-format
 msgid "Backup saved to '%s'"
 msgstr "Záloha byla uložena do '%s'"
 
-#: ../gramps/gui/viewmanager.py:1335
+#: ../gramps/gui/viewmanager.py:1336
 msgid "Backup aborted"
 msgstr "Zálohování bylo přerušeno"
 
-#: ../gramps/gui/viewmanager.py:1344
+#: ../gramps/gui/viewmanager.py:1345
 msgid "Select backup directory"
 msgstr "Vybrat adresář záloh"
 
-#: ../gramps/gui/viewmanager.py:1602
+#: ../gramps/gui/viewmanager.py:1603
 msgid "Failed Loading Plugin"
 msgstr "Zásuvný moduly se nepodařilo nahrát"
 
-#: ../gramps/gui/viewmanager.py:1603
+#: ../gramps/gui/viewmanager.py:1604
 #, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
@@ -16745,11 +16745,11 @@ msgstr ""
 "Pokud nechcete, aby se Gramps pokoušel znovu modul nahrát, můžete jej skrýt "
 "použitím Správce zásuvných modulů v nabídce Nápověda."
 
-#: ../gramps/gui/viewmanager.py:1657
+#: ../gramps/gui/viewmanager.py:1658
 msgid "Failed Loading View"
 msgstr "Nahrání pohledu selhalo"
 
-#: ../gramps/gui/viewmanager.py:1658
+#: ../gramps/gui/viewmanager.py:1659
 #, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
@@ -17506,54 +17506,54 @@ msgstr ""
 "zdrojů v LaTeX dokumentech nebude k dispozici. Použijte správce balíčků a "
 "nainstalujte python-imaging"
 
-#: ../gramps/plugins/docgen/odfdoc.py:1230
+#: ../gramps/plugins/docgen/odfdoc.py:1231
 #, python-format
 msgid "Could not open %s"
 msgstr "Nelze otevřít %s"
 
 #. internal name: don't translate
-#: ../gramps/plugins/docgen/svgdrawdoc.py:341
+#: ../gramps/plugins/docgen/svgdrawdoc.py:342
 msgid "SVG background color"
 msgstr "Barva pozadí SVG"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:343
+#: ../gramps/plugins/docgen/svgdrawdoc.py:344
 msgid "transparent background"
 msgstr "transparentní pozadí"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:344
+#: ../gramps/plugins/docgen/svgdrawdoc.py:345
 #: ../gramps/plugins/drawreport/fanchart.py:666
 msgid "white"
 msgstr "bílá"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:345
+#: ../gramps/plugins/docgen/svgdrawdoc.py:346
 msgid "black"
 msgstr "černá"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:346
+#: ../gramps/plugins/docgen/svgdrawdoc.py:347
 msgid "red"
 msgstr "červená"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:347
+#: ../gramps/plugins/docgen/svgdrawdoc.py:348
 msgid "green"
 msgstr "zelená"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:348
+#: ../gramps/plugins/docgen/svgdrawdoc.py:349
 msgid "blue"
 msgstr "modrá"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:349
+#: ../gramps/plugins/docgen/svgdrawdoc.py:350
 msgid "cyan"
 msgstr "azurová"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:350
+#: ../gramps/plugins/docgen/svgdrawdoc.py:351
 msgid "magenta"
 msgstr "purpurová"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:351
+#: ../gramps/plugins/docgen/svgdrawdoc.py:352
 msgid "yellow"
 msgstr "žlutá"
 
-#: ../gramps/plugins/docgen/svgdrawdoc.py:352
+#: ../gramps/plugins/docgen/svgdrawdoc.py:353
 msgid "The color, if any, of the SVG background"
 msgstr "Barva, pokud je nějaká, pro pozadí SVG"
 
@@ -17592,7 +17592,7 @@ msgstr "Nastavení stromu"
 #: ../gramps/plugins/drawreport/calendarreport.py:474
 #: ../gramps/plugins/drawreport/fanchart.py:648
 #: ../gramps/plugins/graph/gvhourglass.py:267
-#: ../gramps/plugins/graph/gvrelgraph.py:532
+#: ../gramps/plugins/graph/gvrelgraph.py:534
 #: ../gramps/plugins/textreport/ancestorreport.py:265
 #: ../gramps/plugins/textreport/birthdayreport.py:419
 #: ../gramps/plugins/textreport/descendreport.py:397
@@ -18051,7 +18051,7 @@ msgstr "Vyberte filtr pro omezení osob, které se objeví v kalendáři"
 
 #: ../gramps/plugins/drawreport/calendarreport.py:475
 #: ../gramps/plugins/drawreport/fanchart.py:649
-#: ../gramps/plugins/graph/gvrelgraph.py:533
+#: ../gramps/plugins/graph/gvrelgraph.py:535
 #: ../gramps/plugins/textreport/ancestorreport.py:266
 #: ../gramps/plugins/textreport/birthdayreport.py:420
 #: ../gramps/plugins/textreport/descendreport.py:398
@@ -19169,7 +19169,7 @@ msgstr "Zapisují se poznámky"
 msgid "Writing repositories"
 msgstr "Zapisují se archivy"
 
-#: ../gramps/plugins/export/exportgedcom.py:1474
+#: ../gramps/plugins/export/exportgedcom.py:1475
 msgid "GEDCOM Export failed"
 msgstr "Export GEDCOM selhal"
 
@@ -21113,22 +21113,22 @@ msgid "Colors to use for various family lines."
 msgstr "Barvy použité pro různé rodové linie."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:157
-#: ../gramps/plugins/graph/gvrelgraph.py:618
+#: ../gramps/plugins/graph/gvrelgraph.py:620
 msgid "The color to use to display men."
 msgstr "Barva použitá pro zobrazení mužů."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:161
-#: ../gramps/plugins/graph/gvrelgraph.py:622
+#: ../gramps/plugins/graph/gvrelgraph.py:624
 msgid "The color to use to display women."
 msgstr "Barva použitá pro zobrazení žen."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:165
-#: ../gramps/plugins/graph/gvrelgraph.py:627
+#: ../gramps/plugins/graph/gvrelgraph.py:629
 msgid "The color to use when the gender is unknown."
 msgstr "Barva, která indikuje neznámé pohlaví."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:169
-#: ../gramps/plugins/graph/gvrelgraph.py:631
+#: ../gramps/plugins/graph/gvrelgraph.py:633
 #: ../gramps/plugins/quickview/filterbyname.py:94
 #: ../gramps/plugins/textreport/tagreport.py:203
 #: ../gramps/plugins/tool/verify.glade:792
@@ -21144,7 +21144,7 @@ msgid "Families"
 msgstr "Rodiny"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:170
-#: ../gramps/plugins/graph/gvrelgraph.py:632
+#: ../gramps/plugins/graph/gvrelgraph.py:634
 msgid "The color to use to display families."
 msgstr "Barva použitá pro zobrazení rodin."
 
@@ -21179,7 +21179,7 @@ msgstr "Obrázky"
 
 #. --------------------
 #: ../gramps/plugins/graph/gvfamilylines.py:202
-#: ../gramps/plugins/graph/gvrelgraph.py:589
+#: ../gramps/plugins/graph/gvrelgraph.py:591
 msgid "Include thumbnail images of people"
 msgstr "Zahrnout náhledy obrázků osob"
 
@@ -21192,17 +21192,17 @@ msgid "Thumbnail location"
 msgstr "Umístění náhledů"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:211
-#: ../gramps/plugins/graph/gvrelgraph.py:596
+#: ../gramps/plugins/graph/gvrelgraph.py:598
 msgid "Above the name"
 msgstr "Nad jménem"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:212
-#: ../gramps/plugins/graph/gvrelgraph.py:597
+#: ../gramps/plugins/graph/gvrelgraph.py:599
 msgid "Beside the name"
 msgstr "U jména"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:213
-#: ../gramps/plugins/graph/gvrelgraph.py:599
+#: ../gramps/plugins/graph/gvrelgraph.py:601
 msgid "Where the thumbnail image should appear relative to the name"
 msgstr "Kde vzhledem k názvu bude umístěn náhled obrázku"
 
@@ -21210,7 +21210,7 @@ msgstr "Kde vzhledem k názvu bude umístěn náhled obrázku"
 #. ###############################
 #: ../gramps/plugins/graph/gvfamilylines.py:221
 #: ../gramps/plugins/graph/gvhourglass.py:289
-#: ../gramps/plugins/graph/gvrelgraph.py:609
+#: ../gramps/plugins/graph/gvrelgraph.py:611
 msgid "Graph coloring"
 msgstr "Obarvení grafu"
 
@@ -21226,13 +21226,13 @@ msgstr ""
 #. see bug report #2180
 #: ../gramps/plugins/graph/gvfamilylines.py:230
 #: ../gramps/plugins/graph/gvhourglass.py:298
-#: ../gramps/plugins/graph/gvrelgraph.py:642
+#: ../gramps/plugins/graph/gvrelgraph.py:644
 msgid "Use rounded corners"
 msgstr "Použít zaoblené rohy"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:231
 #: ../gramps/plugins/graph/gvhourglass.py:300
-#: ../gramps/plugins/graph/gvrelgraph.py:644
+#: ../gramps/plugins/graph/gvrelgraph.py:646
 msgid "Use rounded corners to differentiate between women and men."
 msgstr "Použít zaoblené rohy pro odlišení mužů a žen."
 
@@ -21245,12 +21245,12 @@ msgid "Whether to include dates for people and families."
 msgstr "Zda zahrnout datum pro osoby a rodiny."
 
 #: ../gramps/plugins/graph/gvfamilylines.py:241
-#: ../gramps/plugins/graph/gvrelgraph.py:548
+#: ../gramps/plugins/graph/gvrelgraph.py:550
 msgid "Limit dates to years only"
 msgstr "Omezit data pouze na roky"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:242
-#: ../gramps/plugins/graph/gvrelgraph.py:549
+#: ../gramps/plugins/graph/gvrelgraph.py:551
 msgid ""
 "Prints just dates' year, neither month or day nor date approximation or "
 "interval are shown."
@@ -21324,12 +21324,12 @@ msgstr "Počet generací předků zahrnutý v grafu"
 
 #. ###############################
 #: ../gramps/plugins/graph/gvhourglass.py:286
-#: ../gramps/plugins/graph/gvrelgraph.py:606
+#: ../gramps/plugins/graph/gvrelgraph.py:608
 msgid "Graph Style"
 msgstr "Styl grafu"
 
 #: ../gramps/plugins/graph/gvhourglass.py:292
-#: ../gramps/plugins/graph/gvrelgraph.py:612
+#: ../gramps/plugins/graph/gvrelgraph.py:614
 msgid ""
 "Males will be shown with blue, females with red.  If the sex of an "
 "individual is unknown it will be shown with gray."
@@ -21353,25 +21353,25 @@ msgstr "Potomci <-> Předci"
 msgid "Descendants - Ancestors"
 msgstr "Potomci - Předci"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:528
+#: ../gramps/plugins/graph/gvrelgraph.py:530
 msgid "Determines what people are included in the graph"
 msgstr "Určuje, které osoby budou zahrnuty v grafu"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:542
+#: ../gramps/plugins/graph/gvrelgraph.py:544
 msgid "Include Birth, Marriage and Death dates"
 msgstr "Včetně data narození, svatby a úmrtí"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:543
+#: ../gramps/plugins/graph/gvrelgraph.py:545
 msgid ""
 "Include the dates that the individual was born, got married and/or died in "
 "the graph labels."
 msgstr "Zahrnout data narození, sňatků a/nebo smrti osob do návěstích grafu."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:554
+#: ../gramps/plugins/graph/gvrelgraph.py:556
 msgid "Use place when no date"
 msgstr "Není-li datum, použít místo"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:555
+#: ../gramps/plugins/graph/gvrelgraph.py:557
 msgid ""
 "When no birth, marriage, or death date is available, the correspondent place "
 "field will be used."
@@ -21379,11 +21379,11 @@ msgstr ""
 "Pokud není k dispozici datum narození, sňatku nebo úmrtí, uvede se "
 "odpovídající místo (příčina)."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:560
+#: ../gramps/plugins/graph/gvrelgraph.py:562
 msgid "Include URLs"
 msgstr "Zahrnout URL"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:561
+#: ../gramps/plugins/graph/gvrelgraph.py:563
 msgid ""
 "Include a URL in each graph node so that PDF and imagemap files can be "
 "generated that contain active links to the files generated by the 'Narrated "
@@ -21393,60 +21393,60 @@ msgstr ""
 "obrázkových map obsahující aktivní odkazy na soubory vytvořené sestavou "
 "'Vyprávěná WWW stránka'."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:568
+#: ../gramps/plugins/graph/gvrelgraph.py:570
 msgid "Include IDs"
 msgstr "Zahrnout ID"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:569
+#: ../gramps/plugins/graph/gvrelgraph.py:571
 msgid "Include individual and family IDs."
 msgstr "Zahrnout ID osob a rodin."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:573
+#: ../gramps/plugins/graph/gvrelgraph.py:575
 msgid "Include relationship to center person"
 msgstr "Zahrnout vztahy k ústřední osobě"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:574
+#: ../gramps/plugins/graph/gvrelgraph.py:576
 msgid "Whether to show every person's relationship to the center person"
 msgstr "Zda zobrazit všechny vztahy osoby k ústřední osobě"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:581
+#: ../gramps/plugins/graph/gvrelgraph.py:583
 msgid "Include relationship debugging numbers also"
 msgstr "Zahrnout také ladicí čísla vztahů"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:584
+#: ../gramps/plugins/graph/gvrelgraph.py:586
 msgid ""
 "Whether to include 'Ga' and 'Gb' also, to debug the relationship calculator"
 msgstr "Zda do ladění kalkulátoru vztahů zahrnout také 'Ga' a 'Gb'"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:591
+#: ../gramps/plugins/graph/gvrelgraph.py:593
 msgid "Whether to include thumbnails of people."
 msgstr "Zda zahrnout náhledy osob."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:595
+#: ../gramps/plugins/graph/gvrelgraph.py:597
 msgid "Thumbnail Location"
 msgstr "Umístění náhledu"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:635
+#: ../gramps/plugins/graph/gvrelgraph.py:637
 msgid "Arrowhead direction"
 msgstr "Směr šipky"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:638
+#: ../gramps/plugins/graph/gvrelgraph.py:640
 msgid "Choose the direction that the arrows point."
 msgstr "Vybere směr, kterým ukazuje šipka."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:649
+#: ../gramps/plugins/graph/gvrelgraph.py:651
 msgid "Indicate non-birth relationships with dotted lines"
 msgstr "Označit vztahy různé od narození tečkovanými čarami"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:650
+#: ../gramps/plugins/graph/gvrelgraph.py:652
 msgid "Non-birth relationships will show up as dotted lines in the graph."
 msgstr "Vztahy různé od narození budou v grafu vyznačeny tečkovanými čarami."
 
-#: ../gramps/plugins/graph/gvrelgraph.py:654
+#: ../gramps/plugins/graph/gvrelgraph.py:656
 msgid "Show family nodes"
 msgstr "Ukázat uzly rodin"
 
-#: ../gramps/plugins/graph/gvrelgraph.py:655
+#: ../gramps/plugins/graph/gvrelgraph.py:657
 msgid "Families will show up as ellipses, linked to parents and children."
 msgstr "Rodiny budou zobrazeny jako elipsy spojené s rodiči a dětmi."
 
