@@ -28,19 +28,20 @@ unstable!
 
 distutils install
 -----------------
-We do not check all dependencies of Gramps, see README for a
-list of all required and optional dependencies. On running Gramps, errors will
-be returned if dependencies are missing.
+We do not check all dependencies of Gramps, see README for a list of
+all required and optional dependencies. Missing dependencies will
+result in runtime errors.
 
-If you are building from released tarball, you should be able to just
-run
-
+To build and install, whether from a tarball or git repo:
    python setup.py build
-   python setup.py install
+   sudo python setup.py install
 
-where the last must be done as root. You can work with Gramps if you only build
-it by pointing the PYTHONPATH to the build directory, but things like MIME type
-and desktop entries will not be created then.
+You can avoid using sudo for the install step by specifying a prefix to which you have write priviledge. The default is /usr/local, which is usually owned by root. You can learn of more options with
+   python setup.py --help
+
+You can work with Gramps if you only build it by pointing the
+PYTHONPATH to the build directory, but things like MIME type and
+desktop entries will not be created then.
 
 Typical install directories in linux (ubuntu) are:
   * /usr/local/lib/python2.7/dist-packages/gramps/  : the gramps python module
