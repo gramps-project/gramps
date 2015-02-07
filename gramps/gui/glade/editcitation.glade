@@ -135,6 +135,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="tooltip_text" translatable="yes">Specific location within the information referenced. For a published work, this could include the volume of a multi-volume work and the page number(s). For a periodical, it could include volume, issue, and page numbers. For a newspaper, it could include a column number and page number. For an unpublished source, this could be a sheet number, page number, frame number, etc. A census record might have a line number or dwelling and family numbers in addition to the page number. </property>
+                <property name="hexpand">True</property>
                 <property name="invisible_char">•</property>
                 <property name="primary_icon_activatable">False</property>
                 <property name="secondary_icon_activatable">False</property>
@@ -179,6 +180,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="tooltip_text" translatable="yes">The date of the entry in the source you are referencing, e.g. the date a house was visited during a census, or the date an entry was made in a birth log/registry. </property>
+                <property name="hexpand">True</property>
                 <property name="invisible_char">•</property>
                 <property name="primary_icon_activatable">False</property>
                 <property name="secondary_icon_activatable">False</property>
@@ -202,6 +204,7 @@ Very Low =Unreliable evidence or estimated data
 Low =Questionable reliability of evidence (interviews, census, oral genealogies, or potential for bias for example, an autobiography)
 High =Secondary evidence, data officially recorded sometime after event
 Very High =Direct and primary evidence used, or by dominance of the evidence </property>
+                    <property name="hexpand">True</property>
                     <property name="model">confidence_model</property>
                     <child>
                       <object class="GtkCellRendererText" id="cellrenderertext1"/>
@@ -236,6 +239,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="tooltip_text" translatable="yes">A unique ID to identify the citation</property>
+                    <property name="hexpand">True</property>
                     <property name="invisible_char">•</property>
                     <property name="primary_icon_activatable">False</property>
                     <property name="secondary_icon_activatable">False</property>
@@ -288,6 +292,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                       <object class="GtkLabel" id="source">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="hexpand">True</property>
                         <property name="xalign">0</property>
                         <property name="ellipsize">end</property>
                       </object>
@@ -364,6 +369,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
               <object class="GtkLabel" id="tag_label">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
                 <property name="xalign">0</property>
               </object>
               <packing>
@@ -398,6 +404,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
               <object class="GtkLabel" id="author">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
                 <property name="xalign">0</property>
               </object>
               <packing>
