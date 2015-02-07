@@ -634,6 +634,7 @@ class RelationshipView(NavigationView):
                                       1, 2, 1, 1)
                         subgrid.attach(widgets.BasicLabel("(%s)" % age, Pango.EllipsizeMode.END),
                                       2, 2, 1, 1)
+                    else:
                         subgrid.attach(widgets.BasicLabel("%s:" % _("Death")),
                                       1, 2, 1, 1)
                         subgrid.attach(widgets.BasicLabel("%s (%s)" % (_("unknown"), age), 
