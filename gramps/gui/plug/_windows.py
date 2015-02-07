@@ -140,7 +140,7 @@ class PluginStatus(ManagedWindow):
 
         scrolled_window_reg.add(self.list_reg)
         vbox_reg.pack_start(scrolled_window_reg, True, True, 0)
-        hbutbox = Gtk.HButtonBox()
+        hbutbox = Gtk.ButtonBox()
         hbutbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
         self.__info_btn = Gtk.Button(_("Info"))
         hbutbox.add(self.__info_btn)
@@ -195,7 +195,7 @@ class PluginStatus(ManagedWindow):
 
         scrolled_window.add(self.list)
         vbox_loaded.pack_start(scrolled_window, True, True, 0)
-        hbutbox = Gtk.HButtonBox()
+        hbutbox = Gtk.ButtonBox()
         hbutbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
         self.__info_btn = Gtk.Button(_("Info"))
         hbutbox.add(self.__info_btn)
@@ -268,7 +268,7 @@ class PluginStatus(ManagedWindow):
         #path to addon path line
         install_page.pack_start(install_row, False, False, 0)
 
-        hbutbox = Gtk.HButtonBox()
+        hbutbox = Gtk.ButtonBox()
         hbutbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
         self.__add_btn = Gtk.Button(_("Install Addon"))
         hbutbox.add(self.__add_btn)

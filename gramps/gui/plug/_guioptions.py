@@ -1153,7 +1153,7 @@ class GuiPersonListOption(Gtk.Box):
                                                  self.__add_person_clicked)
         self.__del_person = widgets.SimpleButton(Gtk.STOCK_REMOVE, 
                                                  self.__del_person_clicked)
-        self.__vbbox = Gtk.VButtonBox()
+        self.__vbbox = Gtk.ButtonBox(orientation=Gtk.Orientation.VERTICAL)
         self.__vbbox.add(self.__add_person)
         self.__vbbox.add(self.__del_person)
         self.__vbbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
@@ -1330,7 +1330,7 @@ class GuiPlaceListOption(Gtk.Box):
                                                 self.__add_place_clicked)
         self.__del_place = widgets.SimpleButton(Gtk.STOCK_REMOVE, 
                                                 self.__del_place_clicked)
-        self.__vbbox = Gtk.VButtonBox()
+        self.__vbbox = Gtk.ButtonBox(orientation=Gtk.Orientation.VERTICAL)
         self.__vbbox.add(self.__add_place)
         self.__vbbox.add(self.__del_place)
         self.__vbbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)
@@ -1473,7 +1473,7 @@ class GuiSurnameColorOption(Gtk.Box):
                                                 self.__add_clicked)
         self.del_surname = widgets.SimpleButton(Gtk.STOCK_REMOVE, 
                                                 self.__del_clicked)
-        self.vbbox = Gtk.VButtonBox()
+        self.vbbox = Gtk.ButtonBox(orientation=Gtk.Orientation.VERTICAL)
         self.vbbox.add(self.add_surname)
         self.vbbox.add(self.del_surname)
         self.vbbox.set_layout(Gtk.ButtonBoxStyle.SPREAD)

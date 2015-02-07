@@ -281,7 +281,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         clear = Gtk.Button("Clear")
         clear.connect('clicked', self._clear_error_details)
 
-        button_box = Gtk.HButtonBox()
+        button_box = Gtk.ButtonBox()
         button_box.set_border_width(6)
         button_box.set_spacing(6)
         button_box.set_layout(Gtk.ButtonBoxStyle.END)
@@ -362,7 +362,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         clear.connect('clicked', self._clear_sys_information)
 
 
-        button_box = Gtk.HButtonBox()
+        button_box = Gtk.ButtonBox()
         button_box.set_border_width(6)
         button_box.set_spacing(6)
         button_box.set_layout(Gtk.ButtonBoxStyle.END)
@@ -436,7 +436,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         clear = Gtk.Button("Clear")
         clear.connect('clicked', self._clear_user_information)
 
-        button_box = Gtk.HButtonBox()
+        button_box = Gtk.ButtonBox()
         button_box.set_border_width(6)
         button_box.set_spacing(6)
         button_box.set_layout(Gtk.ButtonBoxStyle.END)

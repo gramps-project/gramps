@@ -228,7 +228,7 @@ class Bookmarks :
         slist.add_with_viewport(self.namelist)
         slist.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         box.pack_start(slist, 1, 1, 5)
-        bbox = Gtk.VButtonBox()
+        bbox = Gtk.ButtonBox(orientation=Gtk.Orientation.VERTICAL)
         bbox.set_layout(Gtk.ButtonBoxStyle.START)
         bbox.set_spacing(6)
         up = Gtk.Button(stock=Gtk.STOCK_GO_UP)

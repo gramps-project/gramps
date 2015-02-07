@@ -84,7 +84,7 @@ class SidebarFilter(DbGUIElement):
         self.clear_btn.add(hbox)
         self.clear_btn.connect('clicked', self.clear)
 
-        hbox = Gtk.HButtonBox()
+        hbox = Gtk.ButtonBox()
         hbox.set_layout(Gtk.ButtonBoxStyle.START)
         hbox.set_spacing(6)
         hbox.set_border_width(12)

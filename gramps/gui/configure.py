@@ -447,7 +447,7 @@ class ConfigureDialog(ManagedWindow):
             callback = self.update_slider
         lwidget = BasicLabel("%s: " % label)
         adj = Gtk.Adjustment(config.get(constant), range[0], range[1], 1, 0, 0)
-        slider = Gtk.HScale(adjustment=adj)
+        slider = Gtk.Scale(adjustment=adj)
         slider.set_digits(0)
         slider.set_value_pos(Gtk.PositionType.BOTTOM)
         slider.connect('value-changed', callback, constant)

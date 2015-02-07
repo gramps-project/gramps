@@ -152,8 +152,8 @@ class PageView(DbGUIElement):
         self.bottombar = GrampletBar(self.dbstate, self.uistate, self,
                                      self.ident + "_bottombar",
                                      defaults[1])
-        hpane = Gtk.HPaned()
-        vpane = Gtk.VPaned()
+        hpane = Gtk.Paned()
+        vpane = Gtk.Paned(orientation=Gtk.Orientation.VERTICAL)
         hpane.pack1(vpane, resize=True, shrink=False)
         hpane.pack2(self.sidebar, resize=False, shrink=True)
         hpane.show()
