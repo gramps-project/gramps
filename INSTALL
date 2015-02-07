@@ -7,7 +7,6 @@ Uninstall old version
 If you do a source install in the same place as an existing install,
 you need to remove the old version first. You can delete the old
 version by deleting the installed directories. For example, if your installation prefix is /usr/local, remove the following:
-	/usr/local/bin
         /usr/local/share/gramps
         /usr/local/lib/pythonx.x/site-packages/gramps
 If you installed with a package manager you might instead need to remove
@@ -15,7 +14,8 @@ If you installed with a package manager you might instead need to remove
 
 replacing pythonx.x with the python version you used, e.g. python2.7.
 Also remove any gramps .egg files that are installed along with the gramps
-directory.
+directory and the file /usr/local/bin/gramps.
+
 
 If you don't know the list of all files that Gramps installed, you can
 reinstall it with the --record option, and take a look at the list this
