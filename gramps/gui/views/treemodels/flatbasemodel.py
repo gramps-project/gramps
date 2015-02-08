@@ -577,7 +577,11 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
             #loop over database and store the sort field, and the handle
-            srt_keys=[(self.sort_func(data), key) for key, data in cursor]
+            if sys.version_info[0] >= 3:
+                srt_keys=[(self.sort_func(data), key.decode('utf8'))
+                          for key, data in cursor]
+            else:
+                srt_keys=[(self.sort_func(data), key) for key, data in cursor]
             srt_keys.sort()
             return srt_keys
 
