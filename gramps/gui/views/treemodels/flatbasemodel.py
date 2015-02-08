@@ -592,7 +592,12 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
             #loop over database and store the sort field, and the handle
-            return sorted((self.sort_func(data), key) for key, data in cursor)
+            if sys.version_info[0] >= 3:
+                return sorted((self.sort_func(data), key.decode('utf8'))
+                              for key, data in cursor)
+            else:
+                return sorted((self.sort_func(data), key)
+                              for key, data in cursor)
 
     def _rebuild_search(self, ignore=None):
         """ function called when view must be build, given a search text
