@@ -1235,7 +1235,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         existing_references = set()
         primary_cur = self.get_reference_map_primary_cursor()
         try:
-            ret = primary_cur.set(handle)
+            if isinstance(handle, UNITYPE):
+                key = handle.encode('utf-8')
+            else:
+                key = handle
+            ret = primary_cur.set(key)
         except:
             ret = None
 
