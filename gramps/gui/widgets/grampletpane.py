@@ -232,6 +232,7 @@ class GrampletWindow(ManagedWindow):
         """
         self.title = gramplet.title + " " + _("Gramplet")
         self.gramplet = gramplet
+        self.gramplet.scrolledwindow.set_vexpand(True)
         self.gramplet.detached_window = self
         # Keep track of what state it was in:
         self.docked_state = gramplet.gstate
@@ -295,6 +296,7 @@ class GrampletWindow(ManagedWindow):
         """
         Dock the detached GrampletWindow back in the column from where it came.
         """
+        self.gramplet.scrolledwindow.set_vexpand(False)
         self.gramplet.detached_window = None
         self.gramplet.pane.detached_gramplets.remove(self.gramplet)
         if self.docked_state == "minimized":
