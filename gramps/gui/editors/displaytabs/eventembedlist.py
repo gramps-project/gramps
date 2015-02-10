@@ -72,7 +72,8 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
     #index = column in model. Value =
     #  (name, sortcol in model, width, markup/text, weigth_col
     _column_names = [
-        (_('Description'), EventRefModel.COL_DESCR[0], 150, TEXT_COL, -1, None),
+        (_('Description'), EventRefModel.COL_DESCR[0], 240, TEXT_COL,
+                            EventRefModel.COL_FONTWEIGHT[0], None),
         (_('Type'), EventRefModel.COL_TYPE[0], 120, TEXT_COL,
                             EventRefModel.COL_FONTWEIGHT[0], None),
         (_('ID'), EventRefModel.COL_GID[0], 60, TEXT_COL, -1, None),
@@ -80,7 +81,7 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         (_('Place'), EventRefModel.COL_PLACE[0], 240, 0, -1, None),
         (_('Role'), EventRefModel.COL_ROLE[0], 80, TEXT_COL, -1, None),
         (_('Main Participants'), EventRefModel.COL_PARTIC[0], 240, TEXT_COL,
-                            EventRefModel.COL_FONTWEIGHT[0], None),
+                            -1, None),
         None,
         None,
         None,
@@ -191,10 +192,10 @@ class EventEmbedList(DbGUIElement, GroupEmbeddedList):
         tuples (show/noshow, model column)
         """
         return ((1, 1),  # type
-                (1, 6),  # main participants
+                (1, 0),  # description
                 (1, 3),  # date
                 (1, 4),  # place
-                (1, 0),  # description
+                (1, 6),  # main participants
                 (1, 12), # private
                 (1, 5),  # role
                 (1, 2),  # gramps id

@@ -73,13 +73,13 @@ class Events(Gramplet, DbGUIElement):
         top = Gtk.TreeView()
         titles = [('', NOSORT, 50,),
                   (_('Type'), 1, 100),
-                  (_('Main Participants'), 2, 200),
+                  (_('Description'), 2, 150),
                   (_('Date'), 3, 100),
                   ('', NOSORT, 50),
                   (_('Age'), 4, 100),
                   ('', NOSORT, 50),
                   (_('Place'), 5, 400),
-                  (_('Description'), 6, 150),
+                  (_('Main Participants'), 6, 200),
                   (_('Role'), 7, 100)]
         self.model = ListModel(top, titles, event_func=self.edit_event)
         return top
@@ -101,13 +101,13 @@ class Events(Gramplet, DbGUIElement):
 
         self.model.add((event.get_handle(),
                         str(event.get_type()),
-                        participants,
+                        event.get_description(),
                         event_date,
                         event_sort,
                         person_age,
                         person_age_sort,
                         place,
-                        event.get_description(),
+                        participants,
                         str(event_ref.get_role())))
 
     def column_age(self, event):

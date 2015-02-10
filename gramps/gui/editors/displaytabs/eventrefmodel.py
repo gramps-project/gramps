@@ -112,7 +112,7 @@ class EventRefModel(Gtk.TreeStore):
     def row_group(self, index, group):
         name = self.namegroup(index, len(group))
         spouse = self.groups[index][2]
-        return ['', name, '', '', '', '', spouse, '', (index, None),
+        return [spouse, name, '', '', '', '', '', '', (index, None),
                 WEIGHT_BOLD, '', '', None]
 
     def namegroup(self, groupindex, length):
