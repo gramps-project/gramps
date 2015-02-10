@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Generated with glade 3.18.3 -->
 <interface>
-  <!-- interface-requires gtk+ 3.0 -->
+  <requires lib="gtk+" version="3.0"/>
   <object class="GtkDialog" id="eventcmp">
     <property name="can_focus">False</property>
     <property name="default_width">500</property>
@@ -25,7 +26,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="eventcmp" swapped="yes"/>
               </object>
@@ -43,7 +43,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_write_table" object="eventcmp" swapped="yes"/>
               </object>
@@ -61,7 +60,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
@@ -80,10 +78,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkTable" id="mytable">
+          <object class="GtkGrid" id="mytable">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="n_rows">2</property>
+            <property name="border_width">6</property>
+            <property name="row_spacing">6</property>
             <child>
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
@@ -91,15 +90,16 @@
                 <property name="justify">center</property>
               </object>
               <packing>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options"/>
-                <property name="y_padding">10</property>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
               </packing>
             </child>
             <child>
               <object class="GtkScrolledWindow" id="addarea">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
+                <property name="vexpand">True</property>
                 <property name="shadow_type">in</property>
                 <child>
                   <object class="GtkTreeView" id="treeview">
@@ -113,8 +113,8 @@
                 </child>
               </object>
               <packing>
+                <property name="left_attach">0</property>
                 <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
               </packing>
             </child>
           </object>
@@ -161,7 +161,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="filters" swapped="yes"/>
               </object>
@@ -179,7 +178,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_apply_clicked" object="filters" swapped="yes"/>
               </object>
@@ -197,7 +195,6 @@
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_stock">True</property>
                 <signal name="clicked" handler="on_help_clicked" swapped="no"/>
               </object>
@@ -216,20 +213,12 @@
           </packing>
         </child>
         <child>
-          <object class="GtkTable" id="table1">
+          <object class="GtkGrid" id="table1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="border_width">12</property>
-            <property name="n_rows">3</property>
-            <property name="n_columns">3</property>
-            <property name="column_spacing">12</property>
             <property name="row_spacing">12</property>
-            <child>
-              <placeholder/>
-            </child>
-            <child>
-              <placeholder/>
-            </child>
+            <property name="column_spacing">12</property>
             <child>
               <object class="GtkLabel" id="label8">
                 <property name="visible">True</property>
@@ -241,26 +230,21 @@
                 <property name="justify">center</property>
               </object>
               <packing>
+                <property name="left_attach">0</property>
                 <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options"/>
               </packing>
             </child>
             <child>
               <object class="GtkLabel" id="label12">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
                 <property name="label" translatable="yes">The event comparison utility uses the filters defined in the Custom Filter Editor.</property>
                 <property name="wrap">True</property>
               </object>
               <packing>
                 <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
                 <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options"/>
               </packing>
             </child>
             <child>
@@ -270,17 +254,12 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_action_appearance">False</property>
                 <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_editor_clicked" swapped="no"/>
               </object>
               <packing>
                 <property name="left_attach">2</property>
-                <property name="right_attach">3</property>
                 <property name="top_attach">2</property>
-                <property name="bottom_attach">3</property>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options"/>
               </packing>
             </child>
             <child>
@@ -290,15 +269,16 @@
                 <property name="justify">center</property>
               </object>
               <packing>
-                <property name="right_attach">3</property>
-                <property name="x_options">GTK_FILL</property>
-                <property name="y_options"/>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+                <property name="width">3</property>
               </packing>
             </child>
             <child>
               <object class="GtkComboBox" id="filter_list">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
+                <property name="hexpand">True</property>
                 <property name="model">liststore1</property>
                 <child>
                   <object class="GtkCellRendererText" id="cellrenderertext1"/>
@@ -309,10 +289,14 @@
               </object>
               <packing>
                 <property name="left_attach">1</property>
-                <property name="right_attach">2</property>
                 <property name="top_attach">1</property>
-                <property name="bottom_attach">2</property>
               </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
             </child>
           </object>
           <packing>
