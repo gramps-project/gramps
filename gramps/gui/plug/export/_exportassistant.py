@@ -193,8 +193,8 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         box.set_spacing(12)
 
         grid = Gtk.Grid()
-        grid.set_row_spacings(6)
-        grid.set_col_spacings(6)
+        grid.set_row_spacing(6)
+        grid.set_column_spacing(6)
         
         button = None
         recent_type = config.get('behavior.recent-export-type')
