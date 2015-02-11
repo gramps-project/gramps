@@ -127,6 +127,7 @@ class MessageLayer(GObject.GObject, osmgpsmap.MapLayer):
                             0.9) # transparency
         d_width = gpsmap.get_allocation().width
         d_width -= 100
+        ctx.restore()
         ctx.save()
         ctx.move_to(100, 5)
         layout = PangoCairo.create_layout(ctx)
