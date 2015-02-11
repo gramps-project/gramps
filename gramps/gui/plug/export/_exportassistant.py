@@ -282,6 +282,7 @@ class ExportAssistant(Gtk.Assistant, ManagedWindow) :
         
     def create_page_fileselect(self):
         self.chooser = Gtk.FileChooserWidget(Gtk.FileChooserAction.SAVE)
+        self.chooser.set_homogeneous(False) # Fix for bug #8350.
         #add border
         self.chooser.set_border_width(12)
         #global files, ask before overwrite
