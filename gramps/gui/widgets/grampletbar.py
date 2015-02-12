@@ -620,7 +620,7 @@ class DetachedWindow(ManagedWindow):
                         None,
                         self.title)
         self.window.move(x_pos, y_pos)
-        self.window.set_size_request(gramplet.detached_width,
+        self.window.set_default_size(gramplet.detached_width,
                                      gramplet.detached_height)
         self.window.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
         self.window.connect('response', self.handle_response)
