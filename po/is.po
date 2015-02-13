@@ -19514,7 +19514,7 @@ msgstr ""
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:197
 msgid "Total size of media objects"
-msgstr "Heildarstærð gagnahluta: %s MB"
+msgstr "Heildarstærð gagnahluta"
 
 #: ../gramps/plugins/gramplet/statsgramplet.py:201
 #: ../gramps/plugins/textreport/summary.py:254
