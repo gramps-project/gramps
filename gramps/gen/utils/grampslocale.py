@@ -86,6 +86,7 @@ _LOCALE_NAMES = {
     'he': ('Hebrew_Israel', '1255', _("Hebrew")),
     'hr': ('Croatian_Croatia', '1250', _("Croatian")),
     'hu': ('Hungarian_Hungary', '1250', _("Hungarian")),
+    'is': ('Icelandic', '1252', _("Icelandic")),
     'it': ('Italian_Italy', '1252', _("Italian")),
     'ja': ('Japanese_Japan', '932', _("Japanese")),
     'lt': ('Lithuanian_Lithuania', '1252', _("Lithuanian")),
