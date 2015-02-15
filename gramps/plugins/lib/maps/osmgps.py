@@ -176,11 +176,9 @@ class OsmGps():
         config.set('geography.use-keypad',
                          self._config.get('geography.use-keypad'))
         if config.get('geography.use-keypad'):
-            print "use keypad", config.get('geography.use-keypad')
             self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMIN, Gdk.keyval_from_name("KP_Add"))
             self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMOUT, Gdk.keyval_from_name("KP_Subtract"))
         else:
-            print "use keyboard", config.get('geography.use-keypad')
             self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMIN, Gdk.keyval_from_name("plus"))
             self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMOUT, Gdk.keyval_from_name("minus"))
 

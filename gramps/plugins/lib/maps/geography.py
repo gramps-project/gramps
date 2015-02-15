@@ -1082,4 +1082,10 @@ class GeoGraphyView(OsmGps, NavigationView):
                 _('The maximum number of places to show'),
                 4, 'geography.max_places',
                 (1000, 10000))
+        configdialog.add_checkbox(grid, 
+                _('Use keypad for shortcuts :\n' 
+                  'Either we choose the + and - from the keypad if we select this,\n'
+                  'or we use the characters from the keyboard.'),
+                5, 'geography.use-keypad',
+                extra_callback=self.update_shortcuts)
         return _('The map'), grid
