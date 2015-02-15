@@ -123,6 +123,7 @@ class GeoGraphyView(OsmGps, NavigationView):
 
         ('geography.map_service', constants.OPENSTREETMAP),
         ('geography.max_places', 5000),
+        ('geography.use-keypad', True),
         )
 
     def __init__(self, title, pdata, dbstate, uistate,
@@ -198,6 +199,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         NavigationView.change_page(self)
         self.uistate.clear_filter_results()
         self.end_selection = None
+        self.osm.grab_focus()
 
     def do_size_request(self, requisition):
         """
@@ -240,6 +242,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         if self.active:
             self.bookmarks.redraw()
         self.build_tree()
+        self.osm.grab_focus()
 
     def can_configure(self):
         """

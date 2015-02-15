@@ -169,6 +169,7 @@ register('geography.zoom', 0)
 register('geography.zoom_when_center', 12)
 register('geography.show_cross', False)
 register('geography.path', "")
+register('geography.use-keypad', True)
 
 register('htmlview.start-url', URL_HOMEPAGE)
 register('htmlview.url-handler', False)

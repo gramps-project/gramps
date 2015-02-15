@@ -163,9 +163,34 @@ class OsmGps():
         self.osm.connect('button_press_event', self.map_clicked)
         self.osm.connect("motion-notify-event", self.motion_event)
         self.osm.connect('changed', self.zoom_changed)
+        self.update_shortcuts(True)
         self.osm.show()
         self.vbox.pack_start(self.osm, True, True, 0)
         self.goto_handle(handle=None)
+
+    def update_shortcuts(self, arg):
+        """
+        connect the keyboard or the keypad for shortcuts
+        arg is mandatory because this function is also called by the checkbox button
+        """
+        config.set('geography.use-keypad',
+                         self._config.get('geography.use-keypad'))
+        if config.get('geography.use-keypad'):
+            print "use keypad", config.get('geography.use-keypad')
+            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMIN, Gdk.keyval_from_name("KP_Add"))
+            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMOUT, Gdk.keyval_from_name("KP_Subtract"))
+        else:
+            print "use keyboard", config.get('geography.use-keypad')
+            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMIN, Gdk.keyval_from_name("plus"))
+            self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.ZOOMOUT, Gdk.keyval_from_name("minus"))
+
+        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.UP, Gdk.keyval_from_name("Up"))
+        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.DOWN, Gdk.keyval_from_name("Down"))
+        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.LEFT, Gdk.keyval_from_name("Left"))
+        self.osm.set_keyboard_shortcut(osmgpsmap.MapKey_t.RIGHT, Gdk.keyval_from_name("Right"))
+
+        # For shortcuts work, we must grab the focus
+        self.osm.grab_focus()
 
     def add_selection_layer(self):
         """
@@ -309,6 +334,7 @@ class OsmGps():
         mouse button 2 : begin zone selection
         mouse button 3 : call the menu
         """
+        self.osm.grab_focus()
         lat, lon = self.osm.get_event_location(event).get_degrees()
         current = osm.convert_screen_to_geographic(int(event.x), int(event.y))
         lat, lon = current.get_degrees()
