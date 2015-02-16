@@ -149,16 +149,15 @@ class GraphvizReportDialog(ReportDialog):
         self.format_menu.connect('changed', self.doc_type_changed)
         label = Gtk.Label(label="%s:" % _("Output Format"))
         label.set_alignment(0.0, 0.5)
-        self.tbl.attach(label, 1, 2, self.row, self.row+1, Gtk.AttachOptions.SHRINK|Gtk.AttachOptions.FILL)
-        self.tbl.attach(self.format_menu, 2, 4, self.row, self.row+1,
-                        yoptions=Gtk.AttachOptions.SHRINK)
+        self.grid.attach(label, 1, self.row, 1, 1)
+        self.format_menu.set_hexpand(True)
+        self.grid.attach(self.format_menu, 2, self.row, 2, 1)
         self.row += 1
 
         self.open_with_app = Gtk.CheckButton(_("Open with default viewer"))
         self.open_with_app.set_active(
             config.get('interface.open-with-default-viewer'))
-        self.tbl.attach(self.open_with_app, 2, 4, self.row, self.row+1,
-                        yoptions=Gtk.AttachOptions.SHRINK)
+        self.grid.attach(self.open_with_app, 2, self.row, 2, 1)
         self.row += 1
 
         ext = self.format_menu.get_ext()
