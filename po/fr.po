@@ -3141,7 +3141,7 @@ msgstr "Correspond à l'événement avec un type précis "
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:44
 msgid "Events matching the <filter>"
-msgstr "Événements correspondants au <filtre>"
+msgstr "Événements correspondant au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/event/_matchesfilter.py:45
@@ -3638,7 +3638,7 @@ msgstr "Chemin :"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:51
 msgid "Media objects matching parameters"
-msgstr "Objets media correspondants aux paramètres"
+msgstr "Objets media correspondant aux paramètres"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:52
@@ -3702,7 +3702,7 @@ msgstr "Correspond aux objets media avec une étiquette précise."
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:44
 msgid "Media objects matching the <filter>"
-msgstr "Objets media correspondants au <filtre>"
+msgstr "Objets media correspondant au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/media/_matchesfilter.py:45
@@ -4408,7 +4408,7 @@ msgstr "Correspond aux descendants de l'individu spécifié"
 
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:47
 msgid "Descendants of <filter> match"
-msgstr "Descendants correspondants au <filtre>"
+msgstr "Descendants correspondant au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_isdescendantoffiltermatch.py:49
@@ -4569,7 +4569,7 @@ msgstr "Nom du filtre d'événement :"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:52
 msgid "Persons with events matching the <event filter>"
-msgstr "Événements correspondants au <filtre>"
+msgstr "Événements correspondant au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_matcheseventfilter.py:53
@@ -4579,7 +4579,7 @@ msgstr "Correspond aux individus dont les événements sont issus d'un filtrage"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:44
 msgid "People matching the <filter>"
-msgstr "Individus correspondants au <filtre>"
+msgstr "Individus correspondant au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/person/_matchesfilter.py:45
@@ -4850,7 +4850,7 @@ msgstr "Paroisse :"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/place/_hasplace.py:58
 msgid "Places matching parameters"
-msgstr "Lieux correspondants aux paramètres"
+msgstr "Lieux correspondant aux paramètres"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/place/_hasplace.py:59
@@ -4924,7 +4924,7 @@ msgstr "Correspond aux lieux avec latitude ou longitude positionnées dans un re
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:50
 msgid "Places of events matching the <event filter>"
-msgstr "Lieux avec des événements correspondants au <filtre événement>"
+msgstr "Lieux avec des événements correspondant au <filtre événement>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:51
@@ -4934,7 +4934,7 @@ msgstr "Correspond aux lieux dont les événements correspondent au filtre évé
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:44
 msgid "Places matching the <filter>"
-msgstr "Lieux correspondants au <filtre>"
+msgstr "Lieux correspondant au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/place/_matchesfilter.py:45
@@ -5036,7 +5036,7 @@ msgstr "URL :"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:51
 msgid "Repositories matching parameters"
-msgstr "Dépôts correspondants aux paramètres"
+msgstr "Dépôts correspondant aux paramètres"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:52
@@ -5055,7 +5055,7 @@ msgstr "Correspond aux dépôts avec une étiquette particulière ."
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:44
 msgid "Repositories matching the <filter>"
-msgstr "Dépôts correspondants au <filtre>"
+msgstr "Dépôts correspondant au <filtre>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:45
@@ -25436,7 +25436,7 @@ msgstr "Ajouter la cible"
 
 #: ../gramps/plugins/lib/maps/geography.py:316
 msgid "Unlock zoom and position"
-msgstr "Dévérouiller le zoom et la position"
+msgstr "Déverrouiller le zoom et la position"
 
 #: ../gramps/plugins/lib/maps/geography.py:318
 msgid "Lock zoom and position"
@@ -26047,7 +26047,7 @@ msgstr "Lignée maternelle de %s"
 
 #: ../gramps/plugins/quickview/lineage.py:85
 msgid "This report shows the mother lineage, also called matronymic lineage mtDNA lineage. People in this lineage all share the same Mitochondrial DNA (mtDNA)."
-msgstr "Ce rapport fournit la lignée maternelle, également appelée lignée matronymique ou lignée mtDNA. Les individus de cette lignée partagent la même mitocondrie DNA (mtDNA)."
+msgstr "Ce rapport fournit la lignée maternelle, également appelée lignée matronymique ou lignée mtDNA. Les individus de cette lignée partagent le même ADN mitochondrial (mtDNA)."
 
 #: ../gramps/plugins/quickview/lineage.py:93
 msgid "Name Mother"
@@ -26291,7 +26291,7 @@ msgstr "Correspond aux individus sans prénom"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/plugins/quickview/samesurnames.py:51
 msgid "People matching the <surname>"
-msgstr "Individus correspondants au <nom de famille>"
+msgstr "Individus correspondant au <nom de famille>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/plugins/quickview/samesurnames.py:52
@@ -26301,7 +26301,7 @@ msgstr "Correspond aux individus avec le même prénom"
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/plugins/quickview/samesurnames.py:64
 msgid "People matching the <given>"
-msgstr "Individus correspondants au <prénom>"
+msgstr "Individus correspondant au <prénom>"
 
 # utilise correspondre pour to match, plus facile que être compatible ou concorder dans ce contexte
 #: ../gramps/plugins/quickview/samesurnames.py:65
