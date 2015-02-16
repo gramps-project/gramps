@@ -5041,14 +5041,44 @@ class GedcomParser(UpdateCallback):
         """
           +1 <<NOTE_STRUCTURE>> {0:M} 
 
-          TODO: Fix this for full reference
-
         @param line: The current line in GedLine format
         @type line: GedLine
         @param state: The current state
         @type state: CurrentState
         """
-        state.note = line.data
+        # This code pretty much duplicates the code in __parse_note. In
+        # __parse_note, we already know the object to which the note is to be
+        # attached, so we can directly add the note to the object. however, in
+        # the case of a media object, the media object is not constructed till
+        # the end of processing, so we just remember the handle of the note.
+        if line.token == TOKEN_RNOTE:
+            # reference to a named note defined elsewhere
+            #NOTE_STRUCTURE: =
+            #  n  NOTE @<XREF:NOTE>@  {1:1}
+            #    +1 SOUR @<XREF:SOUR>@  {0:M}
+            state.note = self.__find_note_handle(self.nid_map[line.data])
+        else:
+            # Embedded note
+            #NOTE_STRUCTURE: =
+            #  n  NOTE [<SUBMITTER_TEXT> | <NULL>]  {1:1}
+            #    +1 [ CONC | CONT ] <SUBMITTER_TEXT>  {0:M}
+            #    +1 SOUR @<XREF:SOUR>@  {0:M}
+            if not line.data:
+                self.__add_msg(_("Empty note ignored"), line, state)
+                self.__skip_subordinate_levels(level+1, state)
+            else:
+                new_note = gen.lib.Note(line.data)
+                new_note.set_gramps_id(self.nid_map[""])
+                new_note.set_handle(Utils.create_id())
+
+                sub_state = CurrentState(level=state.level+1)
+                sub_state.note = new_note
+                self.__parse_level(sub_state, self.note_parse_tbl, 
+                                   self.__undefined)
+                state.msg += sub_state.msg
+
+                self.dbase.commit_note(new_note, self.trans, new_note.change)
+                state.note = new_note.get_handle()
 
     def __family_adopt(self, line, state):
         """
@@ -7262,8 +7292,7 @@ class GedcomParser(UpdateCallback):
             oref = gen.lib.MediaRef()
             oref.set_reference_handle(photo.handle)
             if note:
-                gramps_id = self.nid_map[note]
-                oref.add_note(self.__find_note_handle(gramps_id))
+                oref.add_note(note)
             obj.add_media_reference(oref)
 
     def __build_event_pair(self, state, event_type, event_map, description):
