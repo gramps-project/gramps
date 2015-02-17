@@ -434,6 +434,25 @@ def run():
             startgtkloop(error, argpars)
     else:
         #CLI use of GRAMPS
+
+        #Ensure that output is encoded correctly to stdout and
+        #stderr. This is much less cumbersome and error-prone than
+        #encoding individual outputs and better handles the
+        #differences between Python 2 and Python 3:
+        try:
+            _encoding = sys.stdout.encoding or sys.getdefaultencoding()
+        except:
+            _encoding = "UTF-8"
+        if sys.version_info[0] < 3:
+            sys.stdout = codecs.getwriter(_encoding)(sys.stdout,
+                                                     'backslashreplace')
+            sys.stderr = codecs.getwriter(_encoding)(sys.stderr,
+                                                     'backslashreplace')
+        else:
+            sys.stdout = codecs.getwriter(_encoding)(sys.stdout.detach(),
+                                                     'backslashreplace')
+            sys.stderr = codecs.getwriter(_encoding)(sys.stderr.detach(),
+                                                     'backslashreplace')
         argpars.print_help()
         argpars.print_usage()
         from .cli.grampscli import startcli
