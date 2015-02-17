@@ -49,7 +49,6 @@ class ResourcePath(object):
     def __init__(self):
         if self.initialized:
             return
-
         resource_file = os.path.join(os.path.abspath(os.path.dirname(
             conv_to_unicode(__file__))), 'resource-path')
         installed = os.path.exists(resource_file)
@@ -76,8 +75,13 @@ class ResourcePath(object):
                 LOG.error("Resource Path %s is invalid", resource_path)
                 sys.exit(1)
         else:
-            LOG.error("Unable to determine resource path")
-            sys.exit(1)
+            # Let's try to run from source without env['GRAMPS_RESOURCES']:
+            resource_path = os.path.join(os.path.abspath(os.path.dirname(
+                conv_to_unicode(__file__))), '..', "..", "..")
+            test_path = os.path.join("data", "authors.xml")
+            if (not os.path.exists(os.path.join(resource_path, test_path))):
+                LOG.error("Unable to determine resource path")
+                sys.exit(1)
 
         if installed:
             self.locale_dir = os.path.join(resource_path, 'locale')
