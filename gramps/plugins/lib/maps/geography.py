@@ -60,6 +60,7 @@ from gramps.gui.managedwindow import ManagedWindow
 from gramps.gen.config import config
 from gramps.gui.editors import EditPlace, EditEvent, EditFamily, EditPerson
 from gramps.gui.selectors.selectplace import SelectPlace
+from gramps.gen.constfunc import conv_to_unicode
 
 from gi.repository import OsmGpsMap as osmgpsmap
 from . import constants
@@ -1064,11 +1065,11 @@ class GeoGraphyView(OsmGps, NavigationView):
         grid.set_border_width(12)
         grid.set_column_spacing(6)
         grid.set_row_spacing(6)
-        configdialog.add_text(grid,
+        self.path_entry = Gtk.Entry()
+        configdialog.add_path_box(grid,
                 _('Where to save the tiles for offline mode.'),
-                0, line_wrap=False)
-        configdialog.add_entry(grid, '',
-                1, 'geography.path')
+                0, self.path_entry, config.get('geography.path'),
+                self.set_tilepath, self.select_tilepath)
         configdialog.add_text(grid,
                 _('If you have no more space in your file system. '
                   'You can remove all tiles placed in the above path.\n'
@@ -1089,3 +1090,30 @@ class GeoGraphyView(OsmGps, NavigationView):
                 5, 'geography.use-keypad',
                 extra_callback=self.update_shortcuts)
         return _('The map'), grid
+
+    def set_tilepath(self, *obj):
+        if self.path_entry.get_text().strip():
+            config.set('geography.path', self.path_entry.get_text())
+        else:
+            config.set('geography.path', GEOGRAPHY_PATH )
+
+    def select_tilepath(self, *obj):
+        f = Gtk.FileChooserDialog(
+            _("Select tile cache directory for offline mode"),
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            buttons=(Gtk.STOCK_CANCEL,
+                     Gtk.ResponseType.CANCEL,
+                     Gtk.STOCK_APPLY,
+                     Gtk.ResponseType.OK))
+        mpath = config.get('geography.path')
+        if not mpath:
+            mpath = HOME_DIR
+        f.set_current_folder(os.path.dirname(mpath))
+
+        status = f.run()
+        if status == Gtk.ResponseType.OK:
+            val = conv_to_unicode(f.get_filename())
+            if val:
+                self.path_entry.set_text(val)
+        f.destroy()
+
