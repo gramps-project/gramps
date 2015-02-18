@@ -12881,7 +12881,7 @@ msgstr "_Rôle :"
 
 #: ../gramps/gui/glade/editeventref.glade:532
 msgid "<b>Note:</b> Any changes in the shared event information will be reflected in the event itself, for all participants in the event."
-msgstr "<b>Remarque :</b> tout changement effectué dans les informations partagées de cet événement seront répercutées dans l'événement lui-même, et ce pour tous ses acteurs."
+msgstr "<b>Remarque :</b> tout changement effectué dans les informations partagées de cet événement sera répercuté dans l'événement lui-même, et ce pour tous ses acteurs."
 
 #: ../gramps/gui/glade/editeventref.glade:618
 #: ../gramps/gui/glade/editplaceref.glade:624
@@ -13151,7 +13151,7 @@ msgstr ""
 
 #: ../gramps/gui/glade/editmediaref.glade:515
 msgid "<b>Note:</b> Any changes in the shared media object information will be reflected in the media object itself."
-msgstr "<b>Remarque :</b> tout changement effectué dans les informations partagées de cet objet medium seront répercutées dans l'objet medium lui-même."
+msgstr "<b>Remarque :</b> tout changement effectué dans les informations partagées de cet objet medium sera répercuté dans l'objet medium lui-même."
 
 #: ../gramps/gui/glade/editmediaref.glade:546
 msgid "Double click image to view in an external viewer"
@@ -13517,7 +13517,7 @@ msgstr "Le nom du dépôt (là où la source est stockée)."
 
 #: ../gramps/gui/glade/editreporef.glade:335
 msgid "<b>Note:</b> Any changes in the shared repository information will be reflected in the repository itself, for all items that reference the repository."
-msgstr "<b>Remarque :</b> tout changement effectué dans les informations partagées de ce dépôt seront répercutées dans le dépôt lui-même, et ce pour toutes les sources qui le référencent."
+msgstr "<b>Remarque :</b> tout changement effectué dans les informations partagées de ce dépôt sera répercuté dans le dépôt lui-même, et ce pour toutes les sources qui le référencent."
 
 #: ../gramps/gui/glade/editreporef.glade:379
 #: ../gramps/gui/glade/editrepository.glade:178
