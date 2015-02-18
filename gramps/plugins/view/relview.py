@@ -682,7 +682,7 @@ class RelationshipView(NavigationView):
             dobj = event.get_date_object()
             phandle = event.get_place_handle()
             if phandle:
-                pname = self.place_name(phandle)
+                pname = place_displayer.display_event(self.dbstate.db, event)
             else:
                 pname = None
 
@@ -1300,10 +1300,6 @@ class RelationshipView(NavigationView):
         msg = _('Relationship type: %s') % cgi.escape(str(family.get_relationship()))
         box.add(widgets.MarkupLabel(msg))
 
-    def place_name(self, handle):
-        p = self.dbstate.db.get_place_from_handle(handle)
-        return p.get_title()
-
     def write_relationship_events(self, vbox, family):
         value = False
         for event_ref in family.get_event_ref_list():
@@ -1322,7 +1318,7 @@ class RelationshipView(NavigationView):
             dobj = event.get_date_object()
             phandle = event.get_place_handle()
             if phandle:
-                pname = self.place_name(phandle)
+                pname = place_displayer.display_event(self.dbstate.db, event)
             else:
                 pname = None
 
