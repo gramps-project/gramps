@@ -421,10 +421,10 @@ class OsmGps():
         Show or hide the crosshair ?
         """
         if active:
+            self.osm.layer_remove(self.cross_map)
             self.cross_map = osmgpsmap.MapOsd( show_crosshair=True)
             self.osm.layer_add( self.cross_map )
-            # The two following are to force the map to update
-            self.osm.zoom_in()
-            self.osm.zoom_out()
         else:
             self.osm.layer_remove(self.cross_map)
+            self.cross_map = osmgpsmap.MapOsd( show_crosshair=False)
+            self.osm.layer_add( self.cross_map )
