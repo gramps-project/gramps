@@ -201,6 +201,7 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.uistate.clear_filter_results()
         self.end_selection = None
         self.osm.grab_focus()
+        self.set_crosshair(config.get("geography.show_cross"))
 
     def do_size_request(self, requisition):
         """
@@ -244,6 +245,7 @@ class GeoGraphyView(OsmGps, NavigationView):
             self.bookmarks.redraw()
         self.build_tree()
         self.osm.grab_focus()
+        self.set_crosshair(config.get("geography.show_cross"))
 
     def can_configure(self):
         """
