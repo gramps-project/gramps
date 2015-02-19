@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-16 00:17+0100\n"
-"PO-Revision-Date: 2015-02-16 02:23+0100\n"
+"POT-Creation-Date: 2015-02-19 01:11+0100\n"
+"PO-Revision-Date: 2015-02-19 01:33+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1504,9 +1504,9 @@ msgstr "Gesperrt durch %s"
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:164
 #: ../gramps/plugins/graph/gvrelgraph.py:625
-#: ../gramps/plugins/lib/maps/geography.py:769
-#: ../gramps/plugins/lib/maps/geography.py:776
-#: ../gramps/plugins/lib/maps/geography.py:777
+#: ../gramps/plugins/lib/maps/geography.py:772
+#: ../gramps/plugins/lib/maps/geography.py:779
+#: ../gramps/plugins/lib/maps/geography.py:780
 #: ../gramps/plugins/quickview/all_relations.py:277
 #: ../gramps/plugins/quickview/all_relations.py:294
 #: ../gramps/plugins/textreport/indivcomplete.py:580
@@ -6258,8 +6258,8 @@ msgstr "Lebensereignisse"
 #: ../gramps/plugins/quickview/filterbyname.py:215
 #: ../gramps/plugins/quickview/quickview.gpr.py:198
 #: ../gramps/plugins/quickview/references.py:86
-#: ../gramps/plugins/view/relview.py:1348
-#: ../gramps/plugins/view/relview.py:1373
+#: ../gramps/plugins/view/relview.py:1344
+#: ../gramps/plugins/view/relview.py:1369
 #: ../gramps/plugins/webreport/narrativeweb.py:3102
 msgid "Family"
 msgstr "Familie"
@@ -11601,7 +11601,7 @@ msgstr "Beziehung bearbeiten"
 
 #: ../gramps/gui/editors/editfamily.py:220
 #: ../gramps/gui/editors/editfamily.py:235
-#: ../gramps/plugins/view/relview.py:1556
+#: ../gramps/plugins/view/relview.py:1552
 msgid "Select Child"
 msgstr "Wähle ein Kind"
 
@@ -12152,7 +12152,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"O, -18.2412 oder -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:169
-#: ../gramps/plugins/lib/maps/geography.py:822
+#: ../gramps/plugins/lib/maps/geography.py:825
 #: ../gramps/plugins/view/geoplaces.py:322
 #: ../gramps/plugins/view/geoplaces.py:348
 msgid "Edit Place"
@@ -15636,7 +15636,7 @@ msgstr "(Ehe-)Partner"
 #: ../gramps/plugins/gramplet/children.py:86
 #: ../gramps/plugins/lib/libpersonview.py:104
 #: ../gramps/plugins/textreport/familygroup.py:526
-#: ../gramps/plugins/view/relview.py:1376
+#: ../gramps/plugins/view/relview.py:1372
 msgid "Spouse"
 msgstr "Partner(in)"
 
@@ -17202,7 +17202,7 @@ msgstr "Aktives Objekt ist nicht sichtbar"
 
 #: ../gramps/gui/views/listview.py:450
 #: ../gramps/gui/views/navigationview.py:254
-#: ../gramps/plugins/lib/maps/geography.py:191
+#: ../gramps/plugins/lib/maps/geography.py:192
 #: ../gramps/plugins/view/familyview.py:220
 msgid "Could Not Set a Bookmark"
 msgstr "Das Lesezeichen konnte nicht gesetzt werden"
@@ -17273,7 +17273,7 @@ msgid "%s has been bookmarked"
 msgstr "Lesezeichen für %s gesetzt"
 
 #: ../gramps/gui/views/navigationview.py:255
-#: ../gramps/plugins/lib/maps/geography.py:192
+#: ../gramps/plugins/lib/maps/geography.py:193
 #: ../gramps/plugins/view/familyview.py:221
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
@@ -17524,7 +17524,7 @@ msgstr "Geschwister"
 #: ../gramps/plugins/textreport/familygroup.py:591
 #: ../gramps/plugins/textreport/indivcomplete.py:406
 #: ../gramps/plugins/view/pedigreeview.py:1740
-#: ../gramps/plugins/view/relview.py:1391
+#: ../gramps/plugins/view/relview.py:1387
 #: ../gramps/plugins/webreport/narrativeweb.py:745
 msgid "Children"
 msgstr "Kinder"
@@ -17544,7 +17544,7 @@ msgid "Add a person"
 msgstr "Eine Person hinzufügen"
 
 #: ../gramps/gui/widgets/fanchart.py:1943
-#: ../gramps/plugins/view/relview.py:1538
+#: ../gramps/plugins/view/relview.py:1534
 msgid "Add Child to Family"
 msgstr "Kind zur Familie hinzufügen"
 
@@ -23033,7 +23033,7 @@ msgid "SUBM (Submitter): @%s@"
 msgstr "SUBM (Ersteller): @%s@"
 
 #: ../gramps/plugins/lib/libgedcom.py:3348
-#: ../gramps/plugins/lib/libgedcom.py:6834
+#: ../gramps/plugins/lib/libgedcom.py:6864
 msgid "GEDCOM data"
 msgstr "GEDCOM Daten"
 
@@ -23059,19 +23059,19 @@ msgstr "Leerer Alias <PERSÖNLICHER NAME> ignoriert"
 
 #: ../gramps/plugins/lib/libgedcom.py:3704
 #: ../gramps/plugins/lib/libgedcom.py:5015
-#: ../gramps/plugins/lib/libgedcom.py:5213
-#: ../gramps/plugins/lib/libgedcom.py:5341
-#: ../gramps/plugins/lib/libgedcom.py:5967
-#: ../gramps/plugins/lib/libgedcom.py:6120
+#: ../gramps/plugins/lib/libgedcom.py:5243
+#: ../gramps/plugins/lib/libgedcom.py:5371
+#: ../gramps/plugins/lib/libgedcom.py:5997
+#: ../gramps/plugins/lib/libgedcom.py:6150
 msgid "Filename omitted"
 msgstr "Dateiname ausgelassen"
 
 #: ../gramps/plugins/lib/libgedcom.py:3706
 #: ../gramps/plugins/lib/libgedcom.py:5017
-#: ../gramps/plugins/lib/libgedcom.py:5215
-#: ../gramps/plugins/lib/libgedcom.py:5343
-#: ../gramps/plugins/lib/libgedcom.py:5969
-#: ../gramps/plugins/lib/libgedcom.py:6122
+#: ../gramps/plugins/lib/libgedcom.py:5245
+#: ../gramps/plugins/lib/libgedcom.py:5373
+#: ../gramps/plugins/lib/libgedcom.py:5999
+#: ../gramps/plugins/lib/libgedcom.py:6152
 msgid "Form omitted"
 msgstr "Formular ausgelassen"
 
@@ -23080,113 +23080,119 @@ msgstr "Formular ausgelassen"
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (Familie) Gramps ID: %s"
 
+#: ../gramps/plugins/lib/libgedcom.py:5159
+#: ../gramps/plugins/lib/libgedcom.py:7162
+#: ../gramps/plugins/lib/libgedcom.py:7202
+msgid "Empty note ignored"
+msgstr "Leere Notiz ignoriert"
+
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../gramps/plugins/lib/libgedcom.py:5486
+#: ../gramps/plugins/lib/libgedcom.py:5516
 msgid "Empty event note ignored"
 msgstr "Leere Ereignisnotiz ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:5804
-#: ../gramps/plugins/lib/libgedcom.py:6629
+#: ../gramps/plugins/lib/libgedcom.py:5834
+#: ../gramps/plugins/lib/libgedcom.py:6659
 msgid "Warn: ADDR overwritten"
 msgstr "Warn: ADDR überschrieben"
 
-#: ../gramps/plugins/lib/libgedcom.py:5981
-#: ../gramps/plugins/lib/libgedcom.py:6415
+#: ../gramps/plugins/lib/libgedcom.py:6011
+#: ../gramps/plugins/lib/libgedcom.py:6445
 msgid "REFN ignored"
 msgstr "REFN ignoriert"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6080
+#: ../gramps/plugins/lib/libgedcom.py:6110
 #, python-format
 msgid "No title - ID %s"
 msgstr "Kein Titel - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6085
+#: ../gramps/plugins/lib/libgedcom.py:6115
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (Quelle) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6341
+#: ../gramps/plugins/lib/libgedcom.py:6371
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (Multimediaobjekt) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6369
-#: ../gramps/plugins/lib/libgedcom.py:7360
+#: ../gramps/plugins/lib/libgedcom.py:6399
+#: ../gramps/plugins/lib/libgedcom.py:7390
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../gramps/plugins/lib/libgedcom.py:6405
+#: ../gramps/plugins/lib/libgedcom.py:6435
 msgid "BLOB ignored"
 msgstr "BLOB ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:6425
+#: ../gramps/plugins/lib/libgedcom.py:6455
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "Multimedia REFN:TYPE ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:6435
+#: ../gramps/plugins/lib/libgedcom.py:6465
 msgid "Mutimedia RIN ignored"
 msgstr "Mutimedia RIN ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:6522
+#: ../gramps/plugins/lib/libgedcom.py:6552
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (Aufbewahrungsort) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6754
+#: ../gramps/plugins/lib/libgedcom.py:6784
 msgid "HEAD (header)"
 msgstr "Kopf (Dateikopf)"
 
-#: ../gramps/plugins/lib/libgedcom.py:6771
+#: ../gramps/plugins/lib/libgedcom.py:6801
 msgid "Approved system identification"
 msgstr "Anerkannte Systemidentifikation"
 
-#: ../gramps/plugins/lib/libgedcom.py:6783
+#: ../gramps/plugins/lib/libgedcom.py:6813
 msgid "Generated By"
 msgstr "Erstellt von"
 
-#: ../gramps/plugins/lib/libgedcom.py:6799
+#: ../gramps/plugins/lib/libgedcom.py:6829
 msgid "Name of software product"
 msgstr "Name der Software"
 
-#: ../gramps/plugins/lib/libgedcom.py:6813
+#: ../gramps/plugins/lib/libgedcom.py:6843
 msgid "Version number of software product"
 msgstr "Versionsnummer des Programms"
 
-#: ../gramps/plugins/lib/libgedcom.py:6831
+#: ../gramps/plugins/lib/libgedcom.py:6861
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Firma die das Produkt herstellt: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6853
+#: ../gramps/plugins/lib/libgedcom.py:6883
 msgid "Name of source data"
 msgstr "Name der Quelldaten"
 
-#: ../gramps/plugins/lib/libgedcom.py:6870
+#: ../gramps/plugins/lib/libgedcom.py:6900
 msgid "Copyright of source data"
 msgstr "Copyright der Quelldaten"
 
-#: ../gramps/plugins/lib/libgedcom.py:6887
+#: ../gramps/plugins/lib/libgedcom.py:6917
 msgid "Publication date of source data"
 msgstr "Publikationsdatum der Quelldaten"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:6901
+#: ../gramps/plugins/lib/libgedcom.py:6931
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../gramps/plugins/lib/libgedcom.py:6940
+#: ../gramps/plugins/lib/libgedcom.py:6970
 msgid "Submission record identifier"
 msgstr "Einreichung Datensatz Bezeichnung"
 
-#: ../gramps/plugins/lib/libgedcom.py:6953
+#: ../gramps/plugins/lib/libgedcom.py:6983
 msgid "Language of GEDCOM text"
 msgstr "Sprache des GEDCOM Text"
 
-#: ../gramps/plugins/lib/libgedcom.py:6979
+#: ../gramps/plugins/lib/libgedcom.py:7009
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -23195,83 +23201,78 @@ msgstr ""
 "Import der GEDCOM Datei %(filename)s mit dem ZIEL=%(by)s kann Fehler in der "
 "resultierenden Datenbank verursachen!"
 
-#: ../gramps/plugins/lib/libgedcom.py:6982
+#: ../gramps/plugins/lib/libgedcom.py:7012
 msgid "Look for nameless events."
 msgstr "Suche nach namenlosen Ereignissen."
 
-#: ../gramps/plugins/lib/libgedcom.py:7006
+#: ../gramps/plugins/lib/libgedcom.py:7036
 msgid "Character set"
 msgstr "Zeichensatz"
 
-#: ../gramps/plugins/lib/libgedcom.py:7011
+#: ../gramps/plugins/lib/libgedcom.py:7041
 msgid "Character set and version"
 msgstr "Zeichensatz und Version"
 
-#: ../gramps/plugins/lib/libgedcom.py:7028
+#: ../gramps/plugins/lib/libgedcom.py:7058
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM Version nicht unterstützt"
 
-#: ../gramps/plugins/lib/libgedcom.py:7032
+#: ../gramps/plugins/lib/libgedcom.py:7062
 msgid "GEDCOM version"
 msgstr "GEDCOM Version"
 
-#: ../gramps/plugins/lib/libgedcom.py:7037
+#: ../gramps/plugins/lib/libgedcom.py:7067
 msgid "GEDCOM form not supported"
 msgstr "GEDCOM Formular nicht unterstützt"
 
-#: ../gramps/plugins/lib/libgedcom.py:7040
+#: ../gramps/plugins/lib/libgedcom.py:7070
 msgid "GEDCOM form"
 msgstr "GEDCOM Formular"
 
-#: ../gramps/plugins/lib/libgedcom.py:7089
+#: ../gramps/plugins/lib/libgedcom.py:7119
 msgid "Creation date of GEDCOM"
 msgstr "Erstellungsdatum von GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7094
+#: ../gramps/plugins/lib/libgedcom.py:7124
 msgid "Creation date and time of GEDCOM"
 msgstr "Erstellungsdatum und Zeit des GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7132
-#: ../gramps/plugins/lib/libgedcom.py:7172
-msgid "Empty note ignored"
-msgstr "Leere Notiz ignoriert"
-
-#: ../gramps/plugins/lib/libgedcom.py:7187
+#: ../gramps/plugins/lib/libgedcom.py:7217
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "Notiz Gramps ID: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7237
+#: ../gramps/plugins/lib/libgedcom.py:7267
 msgid "Submission: Submitter"
 msgstr "Einreichung: Antragsteller"
 
-#: ../gramps/plugins/lib/libgedcom.py:7239
+#: ../gramps/plugins/lib/libgedcom.py:7269
 msgid "Submission: Family file"
 msgstr "Einreichung: Familiendatei"
 
-#: ../gramps/plugins/lib/libgedcom.py:7241
+#: ../gramps/plugins/lib/libgedcom.py:7271
 msgid "Submission: Temple code"
 msgstr "Einreichung: Tempelkode"
 
-#: ../gramps/plugins/lib/libgedcom.py:7243
+#: ../gramps/plugins/lib/libgedcom.py:7273
 msgid "Submission: Generations of ancestors"
 msgstr "Einreichung: Generationen der Vorfahren"
 
-#: ../gramps/plugins/lib/libgedcom.py:7245
+#: ../gramps/plugins/lib/libgedcom.py:7275
 msgid "Submission: Generations of descendants"
 msgstr "Einreichung: Generationen der Nachkommen"
 
-#: ../gramps/plugins/lib/libgedcom.py:7247
+#: ../gramps/plugins/lib/libgedcom.py:7277
 msgid "Submission: Ordinance process flag"
 msgstr "Einreichung: Ordinance process flag"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7462
+#: ../gramps/plugins/lib/libgedcom.py:7491
 msgid "Invalid temple code"
 msgstr "Ungültiger Tempelkode"
 
-#: ../gramps/plugins/lib/libgedcom.py:7550
+#: ../gramps/plugins/lib/libgedcom.py:7579
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 "
 "character set, but is missing the BOM marker."
@@ -23279,11 +23280,11 @@ msgstr ""
 "Deine GEDCOM Datei ist beschädigt. Die Datei scheint UTF16 kodiert zu sein, "
 "aber die BOM Markierung fehlt."
 
-#: ../gramps/plugins/lib/libgedcom.py:7553
+#: ../gramps/plugins/lib/libgedcom.py:7582
 msgid "Your GEDCOM file is empty."
 msgstr "Deine GEDCOM-Datei ist leer."
 
-#: ../gramps/plugins/lib/libgedcom.py:7616
+#: ../gramps/plugins/lib/libgedcom.py:7645
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
@@ -26939,59 +26940,59 @@ msgstr "Unten links"
 msgid "Bottom Right"
 msgstr "Unten rechts"
 
-#: ../gramps/plugins/lib/maps/geography.py:268
+#: ../gramps/plugins/lib/maps/geography.py:271
 #: ../gramps/plugins/view/fanchartdescview.py:166
 #: ../gramps/plugins/view/fanchartview.py:164
 msgid "_Print..."
 msgstr "_Drucken..."
 
-#: ../gramps/plugins/lib/maps/geography.py:270
+#: ../gramps/plugins/lib/maps/geography.py:273
 msgid "Print or save the Map"
 msgstr "Die Karte drucken oder speichern"
 
-#: ../gramps/plugins/lib/maps/geography.py:307
+#: ../gramps/plugins/lib/maps/geography.py:310
 msgid "Map Menu"
 msgstr "Kartenmenü"
 
-#: ../gramps/plugins/lib/maps/geography.py:310
+#: ../gramps/plugins/lib/maps/geography.py:313
 msgid "Remove cross hair"
 msgstr "Fadenkreuz entfernen"
 
-#: ../gramps/plugins/lib/maps/geography.py:312
+#: ../gramps/plugins/lib/maps/geography.py:315
 msgid "Add cross hair"
 msgstr "Fadenkreuz hinzufügen"
 
-#: ../gramps/plugins/lib/maps/geography.py:319
+#: ../gramps/plugins/lib/maps/geography.py:322
 msgid "Unlock zoom and position"
 msgstr "Zoom und Position entsperren"
 
-#: ../gramps/plugins/lib/maps/geography.py:321
+#: ../gramps/plugins/lib/maps/geography.py:324
 msgid "Lock zoom and position"
 msgstr "Zoom und Position sperren"
 
-#: ../gramps/plugins/lib/maps/geography.py:328
+#: ../gramps/plugins/lib/maps/geography.py:331
 msgid "Add place"
 msgstr "Ort hinzufügen"
 
-#: ../gramps/plugins/lib/maps/geography.py:333
+#: ../gramps/plugins/lib/maps/geography.py:336
 msgid "Link place"
 msgstr "Ort verknüpfen"
 
-#: ../gramps/plugins/lib/maps/geography.py:338
+#: ../gramps/plugins/lib/maps/geography.py:341
 msgid "Center here"
 msgstr "Hier zentrieren"
 
-#: ../gramps/plugins/lib/maps/geography.py:351
+#: ../gramps/plugins/lib/maps/geography.py:354
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr "Ersetze '%(map)s' durch =>"
 
-#: ../gramps/plugins/lib/maps/geography.py:370
+#: ../gramps/plugins/lib/maps/geography.py:373
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
 msgstr "Leert den  '%(map)s' Kacheln Cache."
 
-#: ../gramps/plugins/lib/maps/geography.py:826
+#: ../gramps/plugins/lib/maps/geography.py:829
 #: ../gramps/plugins/view/geoclose.py:532
 #: ../gramps/plugins/view/geoevents.py:329
 #: ../gramps/plugins/view/geoevents.py:362
@@ -27006,11 +27007,11 @@ msgstr "Leert den  '%(map)s' Kacheln Cache."
 msgid "Center on this place"
 msgstr "Auf diesen Ort zentrieren"
 
-#: ../gramps/plugins/lib/maps/geography.py:925
+#: ../gramps/plugins/lib/maps/geography.py:928
 msgid "You have at least two places with the same title."
 msgstr "Du hast mindestens zwei Orte mit dem selben Titel."
 
-#: ../gramps/plugins/lib/maps/geography.py:926
+#: ../gramps/plugins/lib/maps/geography.py:929
 #, python-format
 msgid ""
 "The title of the places is :\n"
@@ -27027,19 +27028,19 @@ msgstr ""
 "\n"
 "<b>Ich kann deine Anfrage nicht durchführen</b>.\n"
 
-#: ../gramps/plugins/lib/maps/geography.py:1047
+#: ../gramps/plugins/lib/maps/geography.py:1050
 msgid "Nothing for this view."
 msgstr "Nichts für diese Ansicht."
 
-#: ../gramps/plugins/lib/maps/geography.py:1048
+#: ../gramps/plugins/lib/maps/geography.py:1051
 msgid "Specific parameters"
 msgstr "Bestimmte Parameter"
 
-#: ../gramps/plugins/lib/maps/geography.py:1065
+#: ../gramps/plugins/lib/maps/geography.py:1069
 msgid "Where to save the tiles for offline mode."
 msgstr "Wo die Kacheln für den offline Modus gespeichert werden."
 
-#: ../gramps/plugins/lib/maps/geography.py:1070
+#: ../gramps/plugins/lib/maps/geography.py:1073
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
@@ -27049,15 +27050,15 @@ msgstr ""
 "die im obigen Pfad liegen entfernen.\n"
 "Sei vorsichtig! Wenn du kein Internet hast, erhältst du keine Karte."
 
-#: ../gramps/plugins/lib/maps/geography.py:1075
+#: ../gramps/plugins/lib/maps/geography.py:1078
 msgid "Zoom used when centering"
 msgstr "Zoom der beim Zentrieren verwendet wird"
 
-#: ../gramps/plugins/lib/maps/geography.py:1079
+#: ../gramps/plugins/lib/maps/geography.py:1082
 msgid "The maximum number of places to show"
 msgstr "Maximale Anzahl der angezeigten Orte"
 
-#: ../gramps/plugins/lib/maps/geography.py:1083
+#: ../gramps/plugins/lib/maps/geography.py:1086
 msgid ""
 "Use keypad for shortcuts :\n"
 "Either we choose the + and - from the keypad if we select this,\n"
@@ -27067,9 +27068,13 @@ msgstr ""
 "Entweder verwenden wir + und - vom Nummernblock wenn wir es wählen, \n"
 "oder wir verwenden die Zeichen von der Tastatur."
 
-#: ../gramps/plugins/lib/maps/geography.py:1089
+#: ../gramps/plugins/lib/maps/geography.py:1092
 msgid "The map"
 msgstr "Die Karte"
+
+#: ../gramps/plugins/lib/maps/geography.py:1102
+msgid "Select tile cache directory for offline mode"
+msgstr "Wähle das Verzeichnis für die Kacheln für de offline Modus"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:109
 #, python-format
@@ -28405,7 +28410,7 @@ msgstr "Legt fest, ob vor der Endnotiz eine neue Seite begonnen wird."
 #. Content
 #: ../gramps/plugins/textreport/detancestralreport.py:737
 #: ../gramps/plugins/textreport/detdescendantreport.py:913
-#: ../gramps/plugins/view/relview.py:1703
+#: ../gramps/plugins/view/relview.py:1699
 msgid "Content"
 msgstr "Inhalt"
 
@@ -31723,7 +31728,7 @@ msgstr "Größe proportional zur Anzahl der Nachkommen"
 #: ../gramps/plugins/view/fanchartdescview.py:329
 #: ../gramps/plugins/view/fanchartview.py:323
 #: ../gramps/plugins/view/pedigreeview.py:2030
-#: ../gramps/plugins/view/relview.py:1686
+#: ../gramps/plugins/view/relview.py:1682
 msgid "Layout"
 msgstr "Layout"
 
@@ -32478,12 +32483,12 @@ msgid " (only child)"
 msgstr "(Einzelkind)"
 
 #: ../gramps/plugins/view/relview.py:970
-#: ../gramps/plugins/view/relview.py:1426
+#: ../gramps/plugins/view/relview.py:1422
 msgid "Add new child to family"
 msgstr "Neues Kind zur Familie hinzufügen"
 
 #: ../gramps/plugins/view/relview.py:974
-#: ../gramps/plugins/view/relview.py:1430
+#: ../gramps/plugins/view/relview.py:1426
 msgid "Add existing child to family"
 msgstr "Bestehendes Kind zur Familie hinzufügen"
 
@@ -32503,60 +32508,60 @@ msgstr "%(event)s %(date)s"
 msgid "Relationship type: %s"
 msgstr "Beziehungsart: %s"
 
-#: ../gramps/plugins/view/relview.py:1315
+#: ../gramps/plugins/view/relview.py:1311
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr "%(event_type)s: %(date)s, in %(place)s"
 
-#: ../gramps/plugins/view/relview.py:1319
+#: ../gramps/plugins/view/relview.py:1315
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr "%(event_type)s: %(date)s"
 
-#: ../gramps/plugins/view/relview.py:1323
+#: ../gramps/plugins/view/relview.py:1319
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr "%(event_type)s: %(place)s"
 
-#: ../gramps/plugins/view/relview.py:1334
+#: ../gramps/plugins/view/relview.py:1330
 msgid "Broken family detected"
 msgstr "Fehler in Familie entdeckt"
 
-#: ../gramps/plugins/view/relview.py:1335
+#: ../gramps/plugins/view/relview.py:1331
 msgid "Please run the Check and Repair Database tool"
 msgstr "Bitte benutze das Werkzeug \"Datenbank prüfen und reparieren\""
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/view/relview.py:1357
-#: ../gramps/plugins/view/relview.py:1407
+#: ../gramps/plugins/view/relview.py:1353
+#: ../gramps/plugins/view/relview.py:1403
 #, python-brace-format
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
 msgstr[0] "({number_of} Kind)"
 msgstr[1] "({number_of} Kinder)"
 
-#: ../gramps/plugins/view/relview.py:1361
-#: ../gramps/plugins/view/relview.py:1411
+#: ../gramps/plugins/view/relview.py:1357
+#: ../gramps/plugins/view/relview.py:1407
 msgid " (no children)"
 msgstr " (keine Kinder)"
 
-#: ../gramps/plugins/view/relview.py:1675
+#: ../gramps/plugins/view/relview.py:1671
 msgid "Use shading"
 msgstr "Verwende Schattierung"
 
-#: ../gramps/plugins/view/relview.py:1678
+#: ../gramps/plugins/view/relview.py:1674
 msgid "Display edit buttons"
 msgstr "Bearbeitenschaltflächen anzeigen"
 
-#: ../gramps/plugins/view/relview.py:1680
+#: ../gramps/plugins/view/relview.py:1676
 msgid "View links as website links"
 msgstr "Zeige Verknüpfungen als Weblinks"
 
-#: ../gramps/plugins/view/relview.py:1697
+#: ../gramps/plugins/view/relview.py:1693
 msgid "Show Details"
 msgstr "Details zeigen"
 
-#: ../gramps/plugins/view/relview.py:1700
+#: ../gramps/plugins/view/relview.py:1696
 msgid "Show Siblings"
 msgstr "Geschwister zeigen"
 
