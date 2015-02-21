@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-18 10:48+0100\n"
+"POT-Creation-Date: 2015-02-21 15:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2497,7 +2497,9 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:48
 #: ../gramps/gen/filters/rules/person/_regexpname.py:49
 #: ../gramps/gen/filters/rules/person/_searchname.py:48
+#: ../gramps/gen/filters/rules/place/_hasdata.py:54
 #: ../gramps/gen/filters/rules/place/_hasplace.py:60
+#: ../gramps/gen/filters/rules/place/_hastitle.py:51
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:53
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:53
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:45
@@ -2839,6 +2841,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/citation/_hassource.py:48
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:46
 #: ../gramps/gen/filters/rules/place/_hasplace.py:48
+#: ../gramps/gen/filters/rules/place/_hastitle.py:48
 #: ../gramps/gui/glade/editplaceref.glade:197
 #: ../gramps/gui/glade/mergedata.glade:759
 #: ../gramps/gui/glade/mergedata.glade:775
@@ -4683,6 +4686,40 @@ msgstr ""
 msgid "Matches places with a citation of a particular value"
 msgstr ""
 
+#: ../gramps/gen/filters/rules/place/_hasdata.py:48
+#: ../gramps/gui/glade/editfamily.glade:118
+#: ../gramps/gui/glade/editfamily.glade:372
+#: ../gramps/gui/glade/editplaceref.glade:211
+#: ../gramps/gui/glade/mergeperson.glade:224
+#: ../gramps/gui/glade/mergeperson.glade:240
+#: ../gramps/plugins/gramplet/soundgen.py:66
+msgid "Name:"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/place/_hasdata.py:49
+#: ../gramps/gui/editors/filtereditor.py:110
+#: ../gramps/gui/editors/filtereditor.py:560
+msgid "Place type:"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/place/_hasdata.py:50
+#: ../gramps/gui/glade/editplace.glade:213
+#: ../gramps/gui/glade/editplaceref.glade:449
+#: ../gramps/gui/glade/mergeplace.glade:548
+#: ../gramps/gui/glade/mergeplace.glade:565
+msgid "Code:"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/place/_hasdata.py:52
+#: ../gramps/gen/filters/rules/place/_hasplace.py:58
+msgid "Places matching parameters"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/place/_hasdata.py:53
+#: ../gramps/gen/filters/rules/place/_hasplace.py:59
+msgid "Matches places with particular parameters"
+msgstr ""
+
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:45
 msgid "Places with <count> media"
 msgstr ""
@@ -4768,14 +4805,6 @@ msgstr ""
 msgid "Church Parish:"
 msgstr ""
 
-#: ../gramps/gen/filters/rules/place/_hasplace.py:58
-msgid "Places matching parameters"
-msgstr ""
-
-#: ../gramps/gen/filters/rules/place/_hasplace.py:59
-msgid "Matches places with particular parameters"
-msgstr ""
-
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:42
 msgid "Places with a reference count of <count>"
 msgstr ""
@@ -4806,6 +4835,14 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
 msgid "Matches places with the particular tag"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/place/_hastitle.py:49
+msgid "Places matching a title"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/place/_hastitle.py:50
+msgid "Matches places with a particular title"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:49
@@ -5474,8 +5511,8 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:215
 #: ../gramps/plugins/quickview/quickview.gpr.py:200
 #: ../gramps/plugins/quickview/references.py:86
-#: ../gramps/plugins/view/relview.py:1375
-#: ../gramps/plugins/view/relview.py:1399
+#: ../gramps/plugins/view/relview.py:1371
+#: ../gramps/plugins/view/relview.py:1395
 #: ../gramps/plugins/webreport/narrativeweb.py:3113
 msgid "Family"
 msgstr ""
@@ -10585,7 +10622,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:220
 #: ../gramps/gui/editors/editfamily.py:235
-#: ../gramps/plugins/view/relview.py:1576
+#: ../gramps/plugins/view/relview.py:1572
 msgid "Select Child"
 msgstr ""
 
@@ -11356,11 +11393,6 @@ msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:95
 msgid "Citation Filters"
-msgstr ""
-
-#: ../gramps/gui/editors/filtereditor.py:110
-#: ../gramps/gui/editors/filtereditor.py:560
-msgid "Place type:"
 msgstr ""
 
 #: ../gramps/gui/editors/filtereditor.py:248
@@ -12308,15 +12340,6 @@ msgstr ""
 msgid "Abandon changes and close window"
 msgstr ""
 
-#: ../gramps/gui/glade/editfamily.glade:118
-#: ../gramps/gui/glade/editfamily.glade:372
-#: ../gramps/gui/glade/editplaceref.glade:211
-#: ../gramps/gui/glade/mergeperson.glade:224
-#: ../gramps/gui/glade/mergeperson.glade:240
-#: ../gramps/plugins/gramplet/soundgen.py:66
-msgid "Name:"
-msgstr ""
-
 #: ../gramps/gui/glade/editfamily.glade:131
 #: ../gramps/gui/glade/editfamily.glade:385
 msgid "Birth:"
@@ -12864,13 +12887,6 @@ msgstr ""
 #: ../gramps/gui/glade/editplace.glade:198
 #: ../gramps/gui/glade/editplaceref.glade:434
 msgid "A unique ID to identify the place"
-msgstr ""
-
-#: ../gramps/gui/glade/editplace.glade:213
-#: ../gramps/gui/glade/editplaceref.glade:449
-#: ../gramps/gui/glade/mergeplace.glade:548
-#: ../gramps/gui/glade/mergeplace.glade:565
-msgid "Code:"
 msgstr ""
 
 #: ../gramps/gui/glade/editplace.glade:226
@@ -14320,7 +14336,7 @@ msgstr ""
 #: ../gramps/plugins/gramplet/children.py:86
 #: ../gramps/plugins/lib/libpersonview.py:104
 #: ../gramps/plugins/textreport/familygroup.py:527
-#: ../gramps/plugins/view/relview.py:1402
+#: ../gramps/plugins/view/relview.py:1398
 msgid "Spouse"
 msgstr ""
 
@@ -16111,7 +16127,7 @@ msgstr ""
 #: ../gramps/plugins/textreport/familygroup.py:592
 #: ../gramps/plugins/textreport/indivcomplete.py:521
 #: ../gramps/plugins/view/pedigreeview.py:1740
-#: ../gramps/plugins/view/relview.py:1417
+#: ../gramps/plugins/view/relview.py:1413
 #: ../gramps/plugins/webreport/narrativeweb.py:746
 msgid "Children"
 msgstr ""
@@ -16131,7 +16147,7 @@ msgid "Add a person"
 msgstr ""
 
 #: ../gramps/gui/widgets/fanchart.py:1943
-#: ../gramps/plugins/view/relview.py:1558
+#: ../gramps/plugins/view/relview.py:1554
 msgid "Add Child to Family"
 msgstr ""
 
@@ -26384,7 +26400,7 @@ msgstr ""
 #. Content
 #: ../gramps/plugins/textreport/detancestralreport.py:780
 #: ../gramps/plugins/textreport/detdescendantreport.py:943
-#: ../gramps/plugins/view/relview.py:1723
+#: ../gramps/plugins/view/relview.py:1719
 msgid "Content"
 msgstr ""
 
@@ -29519,7 +29535,7 @@ msgstr ""
 #: ../gramps/plugins/view/fanchartdescview.py:329
 #: ../gramps/plugins/view/fanchartview.py:323
 #: ../gramps/plugins/view/pedigreeview.py:2030
-#: ../gramps/plugins/view/relview.py:1706
+#: ../gramps/plugins/view/relview.py:1702
 msgid "Layout"
 msgstr ""
 
@@ -30219,12 +30235,12 @@ msgid " (only child)"
 msgstr ""
 
 #: ../gramps/plugins/view/relview.py:948
-#: ../gramps/plugins/view/relview.py:1449
+#: ../gramps/plugins/view/relview.py:1445
 msgid "Add new child to family"
 msgstr ""
 
 #: ../gramps/plugins/view/relview.py:952
-#: ../gramps/plugins/view/relview.py:1453
+#: ../gramps/plugins/view/relview.py:1449
 msgid "Add existing child to family"
 msgstr ""
 
@@ -30244,59 +30260,59 @@ msgstr ""
 msgid "Relationship type: %s"
 msgstr ""
 
-#: ../gramps/plugins/view/relview.py:1342
+#: ../gramps/plugins/view/relview.py:1338
 #, python-format
 msgid "%(event_type)s: %(date)s in %(place)s"
 msgstr ""
 
-#: ../gramps/plugins/view/relview.py:1346
+#: ../gramps/plugins/view/relview.py:1342
 #, python-format
 msgid "%(event_type)s: %(date)s"
 msgstr ""
 
-#: ../gramps/plugins/view/relview.py:1350
+#: ../gramps/plugins/view/relview.py:1346
 #, python-format
 msgid "%(event_type)s: %(place)s"
 msgstr ""
 
-#: ../gramps/plugins/view/relview.py:1361
+#: ../gramps/plugins/view/relview.py:1357
 msgid "Broken family detected"
 msgstr ""
 
-#: ../gramps/plugins/view/relview.py:1362
+#: ../gramps/plugins/view/relview.py:1358
 msgid "Please run the Check and Repair Database tool"
 msgstr ""
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/view/relview.py:1384
-#: ../gramps/plugins/view/relview.py:1431
+#: ../gramps/plugins/view/relview.py:1380
+#: ../gramps/plugins/view/relview.py:1427
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../gramps/plugins/view/relview.py:1388
-#: ../gramps/plugins/view/relview.py:1435
+#: ../gramps/plugins/view/relview.py:1384
+#: ../gramps/plugins/view/relview.py:1431
 msgid " (no children)"
 msgstr ""
 
-#: ../gramps/plugins/view/relview.py:1695
+#: ../gramps/plugins/view/relview.py:1691
 msgid "Use shading"
 msgstr ""
 
-#: ../gramps/plugins/view/relview.py:1698
+#: ../gramps/plugins/view/relview.py:1694
 msgid "Display edit buttons"
 msgstr ""
 
-#: ../gramps/plugins/view/relview.py:1700
+#: ../gramps/plugins/view/relview.py:1696
 msgid "View links as website links"
 msgstr ""
 
-#: ../gramps/plugins/view/relview.py:1717
+#: ../gramps/plugins/view/relview.py:1713
 msgid "Show Details"
 msgstr ""
 
-#: ../gramps/plugins/view/relview.py:1720
+#: ../gramps/plugins/view/relview.py:1716
 msgid "Show Siblings"
 msgstr ""
 
