@@ -228,6 +228,7 @@ gramps/gen/filters/rules/person/_searchname.py
 gramps/gen/filters/rules/place/_allplaces.py
 gramps/gen/filters/rules/place/_changedsince.py
 gramps/gen/filters/rules/place/_hascitation.py
+gramps/gen/filters/rules/place/_hasdata.py
 gramps/gen/filters/rules/place/_hasgallery.py
 gramps/gen/filters/rules/place/_hasidof.py
 gramps/gen/filters/rules/place/_hasnolatorlon.py
@@ -239,6 +240,7 @@ gramps/gen/filters/rules/place/_hasreferencecountof.py
 gramps/gen/filters/rules/place/_hassourcecount.py
 gramps/gen/filters/rules/place/_hassourceof.py
 gramps/gen/filters/rules/place/_hastag.py
+gramps/gen/filters/rules/place/_hastitle.py
 gramps/gen/filters/rules/place/_inlatlonneighborhood.py
 gramps/gen/filters/rules/place/_matcheseventfilter.py
 gramps/gen/filters/rules/place/_matchesfilter.py
