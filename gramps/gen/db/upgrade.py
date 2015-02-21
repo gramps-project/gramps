@@ -66,6 +66,27 @@ from gramps.gui.dialog import (InfoDialog)
 
 LOG = logging.getLogger(".upgrade")
 
+def gramps_upgrade_pickle(self):
+    """
+    Upgrade to python3 pickle protocol.
+    """
+    import pickle
+    tables = (self.person_map, self.event_map, self.family_map, self.place_map,
+              self.repository_map, self.source_map, self.citation_map,
+              self.media_map, self.note_map, self.tag_map, self.metadata,
+              self.reference_map)
+    self.set_total(sum(map(len, tables)))
+    for data_map in tables:
+        for handle in data_map.keys():
+            raw = data_map.db.get(handle)
+            data = pickle.loads(raw, encoding='utf-8')
+            with BSDDBTxn(self.env, data_map) as txn:
+                txn.put(handle, data)
+            self.update()
+
+    with BSDDBTxn(self.env, self.metadata) as txn:
+        txn.put(b'upgraded', 'Yes')
+
 def gramps_upgrade_17(self):
     """
     Upgrade database from version 16 to 17. 

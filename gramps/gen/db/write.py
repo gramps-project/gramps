@@ -799,6 +799,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     # New database. Set up the current version.
                     #self.metadata.put(b'version', _DBVERSION, txn=the_txn)
                     txn.put(b'version', _DBVERSION)
+                    txn.put(b'upgraded', 'Yes')
                 elif b'version' not in self.metadata:
                     # Not new database, but the version is missing.
                     # Use 0, but it is likely to fail anyway.
@@ -936,12 +937,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         
         # bookmarks
         def meta(key):
-            try:
-                return self.metadata.get(key, default=[])
-            except UnicodeDecodeError:
-                #we need to assume we opened data in python3 saved in python2
-                raw = self.metadata.db.get(key, default=[])
-                return pickle.loads(raw, encoding='utf-8') if raw else raw
+            return self.metadata.get(key, default=[])
         
         self.bookmarks.set(meta(b'bookmarks'))
         self.family_bookmarks.set(meta(b'family_bookmarks'))
@@ -2142,10 +2138,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             handle = handle.encode('utf-8')
         try:
             data = data_map.get(handle, txn=self.txn)
-        except UnicodeDecodeError:
-            #we need to assume we opened data in python3 saved in python2
-            raw = data_map.db.get(handle, txn=self.txn)
-            data = pickle.loads(raw, encoding='utf-8')
         except:
             data = None
             # under certain circumstances during a database reload,
@@ -2339,6 +2331,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         t = time.time()
 
         from . import upgrade
+        upgraded = self.metadata.get(b'upgraded')
+        if sys.version_info[0] >= 3 and upgraded is None:
+            _LOG.debug("Pickle protocol upgrade required")
+            upgrade.gramps_upgrade_pickle(self)
+
         if version < 14:
             upgrade.gramps_upgrade_14(self)
         if version < 15:
