@@ -170,8 +170,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </distutils>
 
  <distutils id='pyicu'>
-    <branch version='1.5' repo='pymodules'
-	    module='P/PyICU/PyICU-1.5.tar.gz'/>
+    <branch version='1.8' repo='pymodules'
+	    module='P/PyICU/PyICU-1.8.tar.gz'/>
     <dependencies>
       <dep package='icu'/>
     </dependencies>
