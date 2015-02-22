@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-19 01:11+0100\n"
-"PO-Revision-Date: 2015-02-19 01:33+0100\n"
+"POT-Creation-Date: 2015-02-22 02:02+0100\n"
+"PO-Revision-Date: 2015-02-22 02:07+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -3087,7 +3087,9 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_probablyalive.py:48
 #: ../gramps/gen/filters/rules/person/_regexpname.py:49
 #: ../gramps/gen/filters/rules/person/_searchname.py:48
+#: ../gramps/gen/filters/rules/place/_hasdata.py:54
 #: ../gramps/gen/filters/rules/place/_hasplace.py:60
+#: ../gramps/gen/filters/rules/place/_hastitle.py:51
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:53
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:53
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:45
@@ -3439,6 +3441,7 @@ msgstr "Passt auf Fundstellen mit einer bestimmten Anzahl von Referenzen"
 #: ../gramps/gen/filters/rules/citation/_hassource.py:48
 #: ../gramps/gen/filters/rules/media/_hasmedia.py:46
 #: ../gramps/gen/filters/rules/place/_hasplace.py:48
+#: ../gramps/gen/filters/rules/place/_hastitle.py:48
 #: ../gramps/gui/glade/editplaceref.glade:212
 #: ../gramps/gui/glade/mergedata.glade:872
 #: ../gramps/gui/glade/mergedata.glade:893
@@ -5417,6 +5420,40 @@ msgstr "Orte mit der <Fundstelle>"
 msgid "Matches places with a citation of a particular value"
 msgstr "Entspricht Orten mit einer Fundstelle mit dem vorgebenen Wert."
 
+#: ../gramps/gen/filters/rules/place/_hasdata.py:48
+#: ../gramps/gui/glade/editfamily.glade:113
+#: ../gramps/gui/glade/editfamily.glade:380
+#: ../gramps/gui/glade/editplaceref.glade:226
+#: ../gramps/gui/glade/mergeperson.glade:229
+#: ../gramps/gui/glade/mergeperson.glade:248
+#: ../gramps/plugins/gramplet/soundgen.py:66
+msgid "Name:"
+msgstr "Name:"
+
+#: ../gramps/gen/filters/rules/place/_hasdata.py:49
+#: ../gramps/gui/editors/filtereditor.py:110
+#: ../gramps/gui/editors/filtereditor.py:564
+msgid "Place type:"
+msgstr "Ortstyp:"
+
+#: ../gramps/gen/filters/rules/place/_hasdata.py:50
+#: ../gramps/gui/glade/editplace.glade:227
+#: ../gramps/gui/glade/editplaceref.glade:490
+#: ../gramps/gui/glade/mergeplace.glade:618
+#: ../gramps/gui/glade/mergeplace.glade:637
+msgid "Code:"
+msgstr "Kennung:"
+
+#: ../gramps/gen/filters/rules/place/_hasdata.py:52
+#: ../gramps/gen/filters/rules/place/_hasplace.py:58
+msgid "Places matching parameters"
+msgstr "Orte mit gegebenen Parametern"
+
+#: ../gramps/gen/filters/rules/place/_hasdata.py:53
+#: ../gramps/gen/filters/rules/place/_hasplace.py:59
+msgid "Matches places with particular parameters"
+msgstr "Entspricht Orten mit den vorgegebenen Parametern."
+
 #: ../gramps/gen/filters/rules/place/_hasgallery.py:45
 msgid "Places with <count> media"
 msgstr "Orte mit <Anzahl> Medien"
@@ -5507,14 +5544,6 @@ msgstr "PLZ:"
 msgid "Church Parish:"
 msgstr "Kirchengemeinde:"
 
-#: ../gramps/gen/filters/rules/place/_hasplace.py:58
-msgid "Places matching parameters"
-msgstr "Orte mit gegebenen Parametern"
-
-#: ../gramps/gen/filters/rules/place/_hasplace.py:59
-msgid "Matches places with particular parameters"
-msgstr "Entspricht Orten mit den vorgegebenen Parametern."
-
 #: ../gramps/gen/filters/rules/place/_hasreferencecountof.py:42
 msgid "Places with a reference count of <count>"
 msgstr "Orte mit gegebener Anzahl Referenzen von <Anzahl>"
@@ -5548,6 +5577,14 @@ msgstr "Orte mit der <Markierung>"
 #: ../gramps/gen/filters/rules/place/_hastag.py:50
 msgid "Matches places with the particular tag"
 msgstr "Liefert Orte mit der vorgegebenen Markierung."
+
+#: ../gramps/gen/filters/rules/place/_hastitle.py:49
+msgid "Places matching a title"
+msgstr "Orte mit Titel"
+
+#: ../gramps/gen/filters/rules/place/_hastitle.py:50
+msgid "Matches places with a particular title"
+msgstr "Liefert Orte mit einem bestimmten Titel"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:49
 #: ../gramps/gui/glade/editplaceref.glade:259
@@ -12409,11 +12446,6 @@ msgstr "Notizfilter"
 msgid "Citation Filters"
 msgstr "Fundstellenfilter"
 
-#: ../gramps/gui/editors/filtereditor.py:110
-#: ../gramps/gui/editors/filtereditor.py:564
-msgid "Place type:"
-msgstr "Ortstyp:"
-
 #: ../gramps/gui/editors/filtereditor.py:248
 msgid "equal to"
 msgstr "identisch mit"
@@ -13445,15 +13477,6 @@ msgstr "Gemeinsam genutzte Informationen"
 msgid "Abandon changes and close window"
 msgstr "Änderungen verwerfen und Fenster schließen"
 
-#: ../gramps/gui/glade/editfamily.glade:113
-#: ../gramps/gui/glade/editfamily.glade:380
-#: ../gramps/gui/glade/editplaceref.glade:226
-#: ../gramps/gui/glade/mergeperson.glade:229
-#: ../gramps/gui/glade/mergeperson.glade:248
-#: ../gramps/plugins/gramplet/soundgen.py:66
-msgid "Name:"
-msgstr "Name:"
-
 #: ../gramps/gui/glade/editfamily.glade:128
 #: ../gramps/gui/glade/editfamily.glade:395
 msgid "Birth:"
@@ -14102,13 +14125,6 @@ msgstr ""
 #: ../gramps/gui/glade/editplaceref.glade:475
 msgid "A unique ID to identify the place"
 msgstr "Eine eindeutige ID zum identifizieren des Ortes"
-
-#: ../gramps/gui/glade/editplace.glade:227
-#: ../gramps/gui/glade/editplaceref.glade:490
-#: ../gramps/gui/glade/mergeplace.glade:618
-#: ../gramps/gui/glade/mergeplace.glade:637
-msgid "Code:"
-msgstr "Kennung:"
 
 #: ../gramps/gui/glade/editplace.glade:240
 #: ../gramps/gui/glade/editplaceref.glade:503
