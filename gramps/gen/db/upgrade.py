@@ -885,12 +885,12 @@ def convert_source_list_to_citation_list_16(self, source_list):
         new_citation = (new_handle, new_gramps_id,
                         date, page, confidence, ref, note_list, new_media_list,
                         new_data_map, new_change, private)
+        citation_list.append((new_handle))
         with BSDDBTxn(self.env, self.citation_map) as txn:
             if isinstance(new_handle, UNITYPE):
                 new_handle = new_handle.encode('utf-8')
             txn.put(new_handle, new_citation)
         self.cmap_index += 1
-        citation_list.append((new_handle))
     return citation_list
 
 def gramps_upgrade_15(self):
