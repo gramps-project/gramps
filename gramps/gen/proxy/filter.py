@@ -80,6 +80,7 @@ class FilterProxyDb(ProxyDbBase):
             person = self.db.get_person_from_handle(handle)
             if person:
                 self.flist.update(person.get_family_handle_list())
+                self.flist.update(person.get_parent_family_handle_list())
 
     def get_person_from_handle(self, handle):
         """
