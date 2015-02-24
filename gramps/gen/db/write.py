@@ -396,6 +396,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.brief_name = None
         self.update_env_version = False
         self.update_python_version = False
+        self.update_pickle_version = False
 
     def catch_db_error(func):
         """
@@ -734,6 +735,26 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         
         self.__check_python_version(name, force_python_upgrade)
 
+        # Check for pickle upgrade
+        versionpath = os.path.join(self.path, cuni(PCKVERSFN))
+        if sys.version_info[0] >= 3 and not os.path.isfile(versionpath) and \
+           not self.readonly and not self.update_pickle_version:
+            _LOG.debug("Make backup in case there is a pickle upgrade")
+            self.__make_zip_backup(name)
+            self.update_pickle_version = True
+        
+        # Check for schema upgrade
+        versionpath = os.path.join(self.path, cuni(SCHVERSFN))
+        if os.path.isfile(versionpath):
+            with open(versionpath, "r") as version_file:
+                schema_version = int(version_file.read().strip())
+        else:
+            schema_version = 0
+        if not self.readonly and schema_version < _DBVERSION and \
+                                 force_schema_upgrade:
+            _LOG.debug("Make backup in case there is a schema upgrade")
+            self.__make_zip_backup(name)
+        
         # Set up database environment
         self.env = db.DBEnv()
         self.env.set_cachesize(0, DBCACHE)
@@ -788,7 +809,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.__close_early()
             raise DbVersionError(tree_vers, _MINVERSION, _DBVERSION)
         
-        self.__load_metadata()
         gstats = self.metadata.get(b'gender_stats', default=None)
 
         # Ensure version info in metadata
@@ -845,7 +865,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     if isinstance(version, UNITYPE):
                         version = version.encode('utf-8')
                 version_file.write(version)
-            _LOG.debug("Updated BDBVERSFN file to %s" % str(db.version()))
+            _LOG.debug("Updated bsddb version file to %s" % str(db.version()))
 
         if self.update_python_version:
             versionpath = os.path.join(name, "pythonversion.txt")
@@ -861,6 +881,21 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         # If secondary indices change, then they should removed
         # or rebuilt by upgrade as well. In any case, the
         # self.secondary_connected flag should be set accordingly.
+        if self.update_pickle_version:
+            from . import upgrade
+            UpdateCallback.__init__(self, callback)
+            upgrade.gramps_upgrade_pickle(self)
+            versionpath = os.path.join(name, cuni(PCKVERSFN))
+            with open(versionpath, "w") as version_file:
+                version = "Yes"
+                if sys.version_info[0] <3:
+                    if isinstance(version, UNITYPE):
+                        version = version.encode('utf-8')
+                version_file.write(version)
+            _LOG.debug("Updated pickle version file to %s" % str(version))
+    
+        self.__load_metadata()
+        
         if self.need_schema_upgrade():
             oldschema = self.metadata.get(b'version', default=0)
             newschema = _DBVERSION
@@ -868,6 +903,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                        (oldschema, newschema))
             if force_schema_upgrade == True:
                 self.gramps_upgrade(callback)
+                versionpath = os.path.join(name, cuni(SCHVERSFN))
+                with open(versionpath, "w") as version_file:
+                    version = str(_DBVERSION)
+                    if sys.version_info[0] <3:
+                        if isinstance(version, UNITYPE):
+                            version = version.encode('utf-8')
+                    version_file.write(version)
+                _LOG.debug("Updated schema version file to %s" % str(version))
             else:
                 self.__close_early()
                 clear_lock_file(name)
@@ -2330,12 +2373,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         t = time.time()
 
-        from . import upgrade
-        upgraded = self.metadata.get(b'upgraded')
-        if sys.version_info[0] >= 3 and upgraded is None:
-            _LOG.debug("Pickle protocol upgrade required")
-            upgrade.gramps_upgrade_pickle(self)
-
         if version < 14:
             upgrade.gramps_upgrade_14(self)
         if version < 15:
@@ -2430,6 +2467,24 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 version = version.encode('utf-8')
         _LOG.debug("Write python version file to %s" % version)
         with open(versionpath, "w") as version_file:
+            version_file.write(version)
+
+        versionpath = os.path.join(name, cuni(PCKVERSFN))
+        _LOG.debug("Write pickle version file to %s" % "Yes")
+        with open(versionpath, "w") as version_file:
+            version = "Yes"
+            if sys.version_info[0] <3:
+                if isinstance(version, UNITYPE):
+                    version = version.encode('utf-8')
+            version_file.write(version)
+
+        versionpath = os.path.join(name, cuni(SCHVERSFN))
+        _LOG.debug("Write schema version file to %s" % str(_DBVERSION))
+        with open(versionpath, "w") as version_file:
+            version = str(_DBVERSION)
+            if sys.version_info[0] <3:
+                if isinstance(version, UNITYPE):
+                    version = version.encode('utf-8')
             version_file.write(version)
 
         self.metadata.close()
