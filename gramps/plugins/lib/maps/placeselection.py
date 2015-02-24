@@ -115,7 +115,6 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.function = function
         self.selection_layer = layer
         self.layer = layer
-        alignment = Gtk.Alignment.new(0, 1, 0, 0)
         self.set_window(
             Gtk.Dialog(_('Place Selection in a region'),
                        buttons=(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
@@ -123,8 +122,8 @@ class PlaceSelection(ManagedWindow, OsmGps):
         label = Gtk.Label(label=_('Choose the radius of the selection.\n'
                             'On the map you should see a circle or an'
                             ' oval depending on the latitude.'))
-        alignment.add(label)
-        self.window.vbox.pack_start(alignment, False, True, 0)
+        label.set_valign(Gtk.Align.END)
+        self.window.vbox.pack_start(label, False, True, 0)
         adj = Gtk.Adjustment(1.0, 0.1, 3.0, 0.1, 0, 0)
         # default value is 1.0, minimum is 0.1 and max is 3.0
         slider = Gtk.Scale(orientation=Gtk.Orientation.HORIZONTAL,
@@ -156,9 +155,8 @@ class PlaceSelection(ManagedWindow, OsmGps):
                                '>%s</span>' % 
              _('The green values in the row correspond '
                'to the current place values.'))
-        alignment = Gtk.Alignment.new(0, 1, 0, 0)
-        alignment.add(self.label2)
-        self.window.vbox.pack_start(alignment, False, True, 0)
+        self.label2.set_valign(Gtk.Align.END)
+        self.window.vbox.pack_start(self.label2, False, True, 0)
         self.window.set_default_size(400, 300)
         self.choices.connect('row-activated', self.selection, function)
         self.window.connect('response', self.close)

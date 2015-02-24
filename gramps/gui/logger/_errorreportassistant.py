@@ -293,17 +293,16 @@ class ErrorReportAssistant(Gtk.Assistant):
         error_details_box.pack_start(label, False, False, 0)
         error_details_box.pack_start(sw_frame, True, True, 0)
         error_details_box.pack_start(button_box, False, False, 0)
-
-        error_details_align = Gtk.Alignment.new(0, 0, 1, 1)
-        error_details_align.set_padding(0, 0, 11, 0)
-        error_details_align.add(error_details_box)
+        error_details_box.set_hexpand(True)
+        error_details_box.set_vexpand(True)
+        error_details_box.set_margin_start(12)
         
         error_details_frame = Gtk.Frame()
         error_details_frame.set_border_width(3)
         error_details_frame.set_label("<b>%s</b>" % _("Error Details"))
         error_details_frame.get_label_widget().set_use_markup(True)
 
-        error_details_frame.add(error_details_align)
+        error_details_frame.add(error_details_box)
 
         side_label = Gtk.Label(_("This is the detailed Gramps error "
                                  "information, don't worry if you do not "
@@ -374,17 +373,16 @@ class ErrorReportAssistant(Gtk.Assistant):
         sys_information_box.pack_start(label, False, False, 0)
         sys_information_box.pack_start(sw_frame, True, True, 0)
         sys_information_box.pack_start(button_box, False, False, 0)
+        sys_information_box.set_hexpand(True)
+        sys_information_box.set_vexpand(True)
+        sys_information_box.set_margin_start(12)
 
-        sys_information_align = Gtk.Alignment.new(0, 0, 1, 1)
-        sys_information_align.set_padding(0, 0, 11, 0)
-        sys_information_align.add(sys_information_box)
-        
         sys_information_frame = Gtk.Frame()
         sys_information_frame.set_border_width(3)
         sys_information_frame.set_label("<b>%s</b>" % _("System Information"))
         sys_information_frame.get_label_widget().set_use_markup(True)
 
-        sys_information_frame.add(sys_information_align)
+        sys_information_frame.add(sys_information_box)
 
         side_label = Gtk.Label(label=_("This is the information about your system "
                                  "that will help the developers to fix the "
@@ -447,17 +445,16 @@ class ErrorReportAssistant(Gtk.Assistant):
         user_information_box.pack_start(label, False, False, 0)
         user_information_box.pack_start(sw_frame, True, True, 0)
         user_information_box.pack_start(button_box, False, False, 0)
+        user_information_box.set_hexpand(True)
+        user_information_box.set_vexpand(True)
+        user_information_box.set_margin_start(12)
 
-        user_information_align = Gtk.Alignment.new(0, 0, 1, 1)
-        user_information_align.set_padding(0, 0, 11, 0)
-        user_information_align.add(user_information_box)
-        
         user_information_frame = Gtk.Frame()
         user_information_frame.set_border_width(3)
         user_information_frame.set_label("<b>%s</b>" % _("Further Information"))
         user_information_frame.get_label_widget().set_use_markup(True)
 
-        user_information_frame.add(user_information_align)
+        user_information_frame.add(user_information_box)
 
         side_label = Gtk.Label(label=_("This is your opportunity to describe what "
                                  "you were doing when the error occured."))
@@ -512,17 +509,16 @@ class ErrorReportAssistant(Gtk.Assistant):
         summary_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         summary_box.pack_start(label, False, False, 0)
         summary_box.pack_start(sw_frame, True, True, 0)
+        summary_box.set_hexpand(True)
+        summary_box.set_vexpand(True)
+        summary_box.set_margin_start(12)
 
-        summary_align = Gtk.Alignment.new(0, 0, 1, 1)
-        summary_align.set_padding(0, 0, 11, 0)
-        summary_align.add(summary_box)
-        
         summary_frame = Gtk.Frame()
         summary_frame.set_border_width(3)
         summary_frame.set_label("<b>%s</b>" % _("Bug Report Summary"))
         summary_frame.get_label_widget().set_use_markup(True)
 
-        summary_frame.add(summary_align)
+        summary_frame.add(summary_box)
 
         side_label = Gtk.Label(label=_("This is the completed bug report. The next "
                                  "page of the assistant will help you to file "
@@ -580,14 +576,11 @@ class ErrorReportAssistant(Gtk.Assistant):
         url_box = Gtk.Box()
         url_box.pack_start(url_label, True, True, 0)
         url_box.pack_start(url_button_vbox, False, False, 0)
-
-
-        url_align = Gtk.Alignment.new(0, 0, 1, 1)
-        url_align.set_padding(0, 0, 11, 0)
-        url_align.add(url_box)
+        url_box.set_hexpand(True)
+        url_box.set_margin_start(12)
 
         url_frame = Gtk.Frame()
-        url_frame.add(url_align)
+        url_frame.add(url_box)
         
         clip_label = Gtk.Label(_("Use this button "
                                  "to copy the bug report onto the clipboard. "
@@ -607,31 +600,24 @@ class ErrorReportAssistant(Gtk.Assistant):
         clip_box = Gtk.Box()
         clip_box.pack_start(clip_label, True, True, 0)
         clip_box.pack_start(clip_button_vbox, False, False, 0)
-
-
-        clip_align = Gtk.Alignment.new(0, 0, 1, 1)
-        clip_align.set_padding(0, 0, 11, 0)
-        clip_align.add(clip_box)
+        clip_box.set_hexpand(True)
+        clip_box.set_margin_start(12)
 
         clip_frame = Gtk.Frame()
-        clip_frame.add(clip_align)
-        
+        clip_frame.add(clip_box)
 
         inner_box = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         inner_box.pack_start(label, False, False, 0)
         inner_box.pack_start(clip_frame, False, False, 0)
         inner_box.pack_start(url_frame, False, False, 0)
+        inner_box.set_margin_start(12)
 
-        inner_align = Gtk.Alignment.new(0, 0, 1, 1)
-        inner_align.set_padding(0, 0, 11, 0)
-        inner_align.add(inner_box)
-        
         outer_frame = Gtk.Frame()
         outer_frame.set_border_width(3)
         outer_frame.set_label("<b>%s</b>" % _("Send Bug Report"))
         outer_frame.get_label_widget().set_use_markup(True)
 
-        outer_frame.add(inner_align)
+        outer_frame.add(inner_box)
 
         side_label = Gtk.Label(label=_("This is the final step. Use the buttons on "
                                  "this page to start a web browser and file a "

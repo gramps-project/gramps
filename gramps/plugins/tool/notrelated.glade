@@ -116,51 +116,44 @@
             <property name="label_xalign">0</property>
             <property name="shadow_type">in</property>
             <child>
-              <object class="GtkAlignment" id="alignment">
+              <object class="GtkBox" id="hbox1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="border_width">6</property>
-                <property name="left_padding">12</property>
+                <property name="border_width">12</property>
+                <property name="spacing">3</property>
                 <child>
-                  <object class="GtkBox" id="hbox1">
+                  <object class="GtkComboBoxText" id="tagcombo">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="spacing">3</property>
-                    <child>
-                      <object class="GtkComboBoxText" id="tagcombo">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="has_entry">True</property>
-                        <child internal-child="entry">
-                          <object class="GtkEntry" id="tagcombo-entry">
-                            <property name="can_focus">True</property>
-                            <property name="overwrite_mode">True</property>
-                          </object>
-                        </child>
-                        <accelerator key="T" signal="grab_focus" modifiers="GDK_MOD1_MASK"/>
-                      </object>
-                      <packing>
-                        <property name="expand">True</property>
-                        <property name="fill">True</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkButton" id="tagapply">
-                        <property name="label">gtk-apply</property>
-                        <property name="use_action_appearance">False</property>
-                        <property name="visible">True</property>
+                    <property name="has_entry">True</property>
+                    <child internal-child="entry">
+                      <object class="GtkEntry" id="tagcombo-entry">
                         <property name="can_focus">True</property>
-                        <property name="receives_default">False</property>
-                        <property name="use_stock">True</property>
+                        <property name="overwrite_mode">True</property>
                       </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
                     </child>
+                    <accelerator key="T" signal="grab_focus" modifiers="GDK_MOD1_MASK"/>
                   </object>
+                  <packing>
+                    <property name="expand">True</property>
+                    <property name="fill">True</property>
+                    <property name="position">0</property>
+                  </packing>
+                </child>
+                <child>
+                  <object class="GtkButton" id="tagapply">
+                    <property name="label">gtk-apply</property>
+                    <property name="use_action_appearance">False</property>
+                    <property name="visible">True</property>
+                    <property name="can_focus">True</property>
+                    <property name="receives_default">False</property>
+                    <property name="use_stock">True</property>
+                  </object>
+                  <packing>
+                    <property name="expand">False</property>
+                    <property name="fill">False</property>
+                    <property name="position">1</property>
+                  </packing>
                 </child>
               </object>
             </child>
