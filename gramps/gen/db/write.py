@@ -2372,6 +2372,8 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         version = self.metadata.get(b'version', default=_MINVERSION)
 
         t = time.time()
+        
+        from . import upgrade
 
         if version < 14:
             upgrade.gramps_upgrade_14(self)
