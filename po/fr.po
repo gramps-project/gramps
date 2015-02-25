@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-21 15:23+0100\n"
-"PO-Revision-Date: 2015-02-21 15:27+0100\n"
+"POT-Creation-Date: 2015-02-25 08:51+0100\n"
+"PO-Revision-Date: 2015-02-25 08:53+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -2201,7 +2201,7 @@ msgstr ""
 
 #: ../gramps/gen/db/undoredo.py:256
 #: ../gramps/gen/db/undoredo.py:293
-#: ../gramps/gen/db/write.py:2322
+#: ../gramps/gen/db/write.py:2357
 #, python-format
 msgid "_Undo %s"
 msgstr "_Défaire %s"
@@ -2212,46 +2212,46 @@ msgstr "_Défaire %s"
 msgid "_Redo %s"
 msgstr "_Rétablir %s"
 
-#: ../gramps/gen/db/upgrade.py:357
+#: ../gramps/gen/db/upgrade.py:378
 #, python-format
 msgid "%6d  People        upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  individus        mis à niveau avec %6d citations en %6d secs\n"
 
-#: ../gramps/gen/db/upgrade.py:358
+#: ../gramps/gen/db/upgrade.py:379
 #, python-format
 msgid "%6d  Families      upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  familles        mises à niveau avec %6d citations en %6d secs\n"
 
-#: ../gramps/gen/db/upgrade.py:359
+#: ../gramps/gen/db/upgrade.py:380
 #, python-format
 msgid "%6d  Events        upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  événements        mis à niveau avec %6d citations en %6d secs\n"
 
-#: ../gramps/gen/db/upgrade.py:360
+#: ../gramps/gen/db/upgrade.py:381
 #, python-format
 msgid "%6d  Media Objects upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  objets media        mis à niveau avec %6d citations en %6d secs\n"
 
-#: ../gramps/gen/db/upgrade.py:361
+#: ../gramps/gen/db/upgrade.py:382
 #, python-format
 msgid "%6d  Places        upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  lieux        mis à niveau avec %6d citations en %6d secs\n"
 
-#: ../gramps/gen/db/upgrade.py:362
+#: ../gramps/gen/db/upgrade.py:383
 #, python-format
 msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  dépôts        mis à niveau avec %6d citations en %6d secs\n"
 
-#: ../gramps/gen/db/upgrade.py:363
+#: ../gramps/gen/db/upgrade.py:384
 #, python-format
 msgid "%6d  Sources       upgraded with %6d citations in %6d secs\n"
 msgstr "%6d  sources        mises à niveau avec %6d citations en %6d secs\n"
 
-#: ../gramps/gen/db/upgrade.py:748
+#: ../gramps/gen/db/upgrade.py:769
 msgid "Number of new objects upgraded:\n"
 msgstr "Nombre de nouveaux objets migrés :\n"
 
-#: ../gramps/gen/db/upgrade.py:754
+#: ../gramps/gen/db/upgrade.py:775
 msgid ""
 "\n"
 "\n"
@@ -2267,11 +2267,11 @@ msgstr ""
 "pour fusionner les citations qui contiennent une\n"
 "information similaire"
 
-#: ../gramps/gen/db/upgrade.py:758
+#: ../gramps/gen/db/upgrade.py:779
 msgid "Upgrade Statistics"
 msgstr "Statistiques de migration"
 
-#: ../gramps/gen/db/write.py:1295
+#: ../gramps/gen/db/write.py:1334
 #, python-format
 msgid ""
 "An attempt is made to save a reference key which is partly bytecode, this is not allowed.\n"
@@ -2282,11 +2282,11 @@ msgstr ""
 
 #. Make a tuple of the functions and classes that we need for
 #. each of the primary object tables.
-#: ../gramps/gen/db/write.py:1370
+#: ../gramps/gen/db/write.py:1409
 msgid "Rebuild reference map"
 msgstr "Reconstruire la table de référence"
 
-#: ../gramps/gen/db/write.py:2175
+#: ../gramps/gen/db/write.py:2210
 #, python-format
 msgid "A second transaction is started while there is still a transaction, \"%s\", active in the database."
 msgstr "Une seconde transaction a été débutée alors qu'il y avait déjà une transaction active dans la base de données : \"%s\". "
@@ -7970,127 +7970,131 @@ msgid "Hungarian"
 msgstr "Hongrois"
 
 #: ../gramps/gen/utils/grampslocale.py:88
+msgid "Icelandic"
+msgstr "Islandais"
+
+#: ../gramps/gen/utils/grampslocale.py:89
 msgid "Italian"
 msgstr "Italien"
 
-#: ../gramps/gen/utils/grampslocale.py:89
+#: ../gramps/gen/utils/grampslocale.py:90
 msgid "Japanese"
 msgstr "Japonais"
 
-#: ../gramps/gen/utils/grampslocale.py:90
+#: ../gramps/gen/utils/grampslocale.py:91
 msgid "Lithuanian"
 msgstr "Lituanien"
 
-#: ../gramps/gen/utils/grampslocale.py:91
+#: ../gramps/gen/utils/grampslocale.py:92
 msgid "Macedonian"
 msgstr "Macédonien"
 
 #. Windows has no translation for Macedonian
-#: ../gramps/gen/utils/grampslocale.py:92
+#: ../gramps/gen/utils/grampslocale.py:93
 msgid "Norwegian Bokmal"
 msgstr "Norvégien Bokmal"
 
-#: ../gramps/gen/utils/grampslocale.py:93
+#: ../gramps/gen/utils/grampslocale.py:94
 msgid "Dutch"
 msgstr "Néerlandais"
 
-#: ../gramps/gen/utils/grampslocale.py:94
+#: ../gramps/gen/utils/grampslocale.py:95
 msgid "Norwegian Nynorsk"
 msgstr "Norvégien Nynorsk"
 
-#: ../gramps/gen/utils/grampslocale.py:95
+#: ../gramps/gen/utils/grampslocale.py:96
 msgid "Polish"
 msgstr "Polonais"
 
-#: ../gramps/gen/utils/grampslocale.py:96
+#: ../gramps/gen/utils/grampslocale.py:97
 msgid "Portuguese (Brazil)"
 msgstr "Portugais (Brésil)"
 
-#: ../gramps/gen/utils/grampslocale.py:97
+#: ../gramps/gen/utils/grampslocale.py:98
 msgid "Portuguese (Portugal)"
 msgstr "Portugais (Portugal)"
 
-#: ../gramps/gen/utils/grampslocale.py:98
+#: ../gramps/gen/utils/grampslocale.py:99
 msgid "Romanian"
 msgstr "Roumain"
 
-#: ../gramps/gen/utils/grampslocale.py:99
+#: ../gramps/gen/utils/grampslocale.py:100
 msgid "Russian"
 msgstr "Russe"
 
-#: ../gramps/gen/utils/grampslocale.py:100
+#: ../gramps/gen/utils/grampslocale.py:101
 msgid "Slovak"
 msgstr "Slovaque"
 
-#: ../gramps/gen/utils/grampslocale.py:101
+#: ../gramps/gen/utils/grampslocale.py:102
 msgid "Slovenian"
 msgstr "Slovène"
 
-#: ../gramps/gen/utils/grampslocale.py:102
+#: ../gramps/gen/utils/grampslocale.py:103
 msgid "Albanian"
 msgstr "Albanais"
 
-#: ../gramps/gen/utils/grampslocale.py:103
+#: ../gramps/gen/utils/grampslocale.py:104
 msgid "Serbian"
 msgstr "Serbe"
 
-#: ../gramps/gen/utils/grampslocale.py:104
+#: ../gramps/gen/utils/grampslocale.py:105
 msgid "Swedish"
 msgstr "Suédois"
 
-#: ../gramps/gen/utils/grampslocale.py:105
+#: ../gramps/gen/utils/grampslocale.py:106
 msgid "Turkish"
 msgstr "Turque"
 
-#: ../gramps/gen/utils/grampslocale.py:106
+#: ../gramps/gen/utils/grampslocale.py:107
 msgid "Ukrainian"
 msgstr "Ukrainien"
 
-#: ../gramps/gen/utils/grampslocale.py:107
+#: ../gramps/gen/utils/grampslocale.py:108
 msgid "Vietnamese"
 msgstr "Vietnamien"
 
-#: ../gramps/gen/utils/grampslocale.py:108
+#: ../gramps/gen/utils/grampslocale.py:109
 msgid "Chinese Simplified"
 msgstr "Chinois simplifié"
 
-#: ../gramps/gen/utils/grampslocale.py:837
+#: ../gramps/gen/utils/grampslocale.py:838
 msgid "the person"
 msgstr "l'individu"
 
-#: ../gramps/gen/utils/grampslocale.py:839
+#: ../gramps/gen/utils/grampslocale.py:840
 msgid "the family"
 msgstr "la famille"
 
-#: ../gramps/gen/utils/grampslocale.py:841
+#: ../gramps/gen/utils/grampslocale.py:842
 msgid "the place"
 msgstr "le lieu"
 
-#: ../gramps/gen/utils/grampslocale.py:843
+#: ../gramps/gen/utils/grampslocale.py:844
 msgid "the event"
 msgstr "l'événement"
 
-#: ../gramps/gen/utils/grampslocale.py:845
+#: ../gramps/gen/utils/grampslocale.py:846
 msgid "the repository"
 msgstr "le dépôt"
 
-#: ../gramps/gen/utils/grampslocale.py:847
+#: ../gramps/gen/utils/grampslocale.py:848
 msgid "the note"
 msgstr "la note"
 
-#: ../gramps/gen/utils/grampslocale.py:849
+#: ../gramps/gen/utils/grampslocale.py:850
 msgid "the media"
 msgstr "le medium"
 
-#: ../gramps/gen/utils/grampslocale.py:851
+#: ../gramps/gen/utils/grampslocale.py:852
 msgid "the source"
 msgstr "la source"
 
-#: ../gramps/gen/utils/grampslocale.py:853
+#: ../gramps/gen/utils/grampslocale.py:854
 msgid "the filter"
 msgstr "le filtre"
 
-#: ../gramps/gen/utils/grampslocale.py:855
+#: ../gramps/gen/utils/grampslocale.py:856
 msgid "See details"
 msgstr "Voir les détails"
 
