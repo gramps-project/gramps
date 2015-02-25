@@ -52,37 +52,6 @@ class PlaceTreeView(PlaceBaseView):
     """
     A hierarchical view of the top three levels of places.
     """
-    COL_NAME = 0
-    COL_ID = 1
-    COL_TITLE = 2
-    COL_TYPE = 3
-    COL_CODE = 4
-    COL_LAT = 5
-    COL_LON = 6
-    COL_PRIV = 7
-    COL_TAGS = 8
-    COL_CHAN = 9
-    # column definitions
-    COLUMNS = [
-        (_('Name'), TEXT, None),
-        (_('ID'), TEXT, None),
-        (_('Title'), TEXT, None),
-        (_('Type'), TEXT, None),
-        (_('Code'), TEXT, None),
-        (_('Latitude'), TEXT, None),
-        (_('Longitude'), TEXT, None),
-        (_('Private'), ICON, 'gramps-lock'),
-        (_('Tags'), TEXT, None),
-        (_('Last Changed'), TEXT, None),
-        ]
-    # default setting with visible columns, order of the col, and their size
-    CONFIGSETTINGS = (
-        ('columns.visible', [COL_NAME, COL_ID, COL_TYPE, COL_CODE]),
-        ('columns.rank', [COL_NAME, COL_ID, COL_TITLE, COL_TYPE, COL_CODE,
-                          COL_LAT, COL_LON, COL_PRIV, COL_TAGS, COL_CHAN]),
-        ('columns.size', [250, 75, 150, 100, 100, 150, 150, 40, 100, 100])
-        )    
-
     def __init__(self, pdata, dbstate, uistate):
         PlaceBaseView.__init__(self, pdata, dbstate, uistate,
                                _('Place Tree View'), PlaceTreeModel,

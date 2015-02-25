@@ -101,7 +101,7 @@ class PlaceBaseView(ListView):
         ]
     # default setting with visible columns, order of the col, and their size
     CONFIGSETTINGS = (
-        ('columns.visible', [COL_TITLE, COL_ID, COL_TYPE, COL_CODE]),
+        ('columns.visible', [COL_NAME, COL_ID, COL_TYPE, COL_CODE]),
         ('columns.rank', [COL_NAME, COL_TITLE, COL_ID, COL_TYPE, COL_CODE,
                           COL_LAT, COL_LON, COL_PRIV, COL_TAGS, COL_CHAN]),
         ('columns.size', [250, 250, 75, 100, 100, 150, 150, 40, 100, 100])
