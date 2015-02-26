@@ -1,4 +1,4 @@
-# Chinese (traditional) translation for Gramps
+# Chinese (Hong Kong) translation for Gramps
 # Copyright (C) 2009, 2010, 2011, 2012, 2014, 2015
 # This file is distributed under the same license as the Gramps package.
 #
@@ -16,8 +16,8 @@ msgstr ""
 "POT-Creation-Date: 2015-02-21 15:30+0100\n"
 "PO-Revision-Date: 2015-02-25 13:10-0700\n"
 "Last-Translator: Anthony Fok <foka@debian.org>\n"
-"Language-Team: Chinese (traditional) <zh-l10n@linux.org.tw>\n"
-"Language: zh_TW\n"
+"Language-Team: Chinese (Hong Kong) <(nothing)>\n"
+"Language: zh_HK\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -25,7 +25,7 @@ msgstr ""
 
 #: ../data/gramps.appdata.xml.in.h:1
 msgid "Gramps is a genealogy program that is both intuitive for hobbyists and feature-complete for professional genealogists."
-msgstr "Gramps 家譜軟體，既簡單易用，又功能全面，適合入門愛好者以至專業族譜研究人員使用。"
+msgstr "Gramps 家譜軟件，既簡單易用，又功能全面，適合入門愛好者以至專業族譜研究人員使用。"
 
 #: ../data/gramps.appdata.xml.in.h:2
 msgid "It gives you the ability to record the many details of the life of an individual as well as the complex relationships between various people, places and events."
@@ -121,7 +121,7 @@ msgstr "<b>家庭檢視</b><br/>家庭檢視用於顯示典型的家庭單位，
 
 #: ../data/tips.xml.in.h:10
 msgid "<b>Changing the Active Person</b><br/>Changing the Active Person in views is easy. In the Relationship view just click on anyone. In the Ancestry View doubleclick on the person or right click to select any of their spouses, siblings, children or parents."
-msgstr "<b>變更啟用的成員</b><br/> 在檢視中變更啟用的成員非常容易。在關係檢視中僅僅需要點選任何人。在先輩檢視中雙擊成員或者右鍵點選選擇他們的配偶，兄弟姐妹，子女或者父母就可以啟用。"
+msgstr "<b>變更啟用的成員</b><br/> 在檢視中變更啟用的成員非常容易。在關係檢視中僅僅需要點選任何人。在先輩檢視中雙擊成員或者右鍵點選選擇他們的配偶，兄弟姊妹，子女或者父母就可以啟用。"
 
 #: ../data/tips.xml.in.h:11
 msgid "<b>Who Was Born When?</b><br/>Under &quot;Tools &gt; Analysis and exploration &gt; Compare Individual Events...&quot; you can compare the data of individuals in your database. This is useful, say, if you wish to list the birth dates of everyone in your database. You can use a custom filter to narrow the results."
@@ -149,7 +149,7 @@ msgstr "<b>Gramps 報告</b><br/>Gramps 可以提供非常豐富的報告。圖�
 
 #: ../data/tips.xml.in.h:17
 msgid "<b>Starting a New Family Tree</b><br/>A good way to start a new family tree is to enter all the members of the family into the database using the Person View (use &quot;Edit &gt; Add...&quot; or click on the Add a new person button from the People View). Then go to the Relationship View and create relationships between people."
-msgstr "<b>開始一個新的家族樹</b><br/>開始一個新的家族樹的一個好方法是，先使用「成員檢視」把所有成員輸入資料庫（使用 &quot;編輯 &gt;新增...&quot; 或者在「成員檢視」裡點選「新增」按鈕）。然後，進入「關係檢視」並為成員建立關係。"
+msgstr "<b>開始一個新的家族樹</b><br/>開始一個新的家族樹的一個好方法是，先使用「成員檢視」把所有成員輸入資料庫（使用 &quot;編輯 &gt;新增...&quot; 或者在「成員檢視」裏點選「新增」按鈕）。然後，進入「關係檢視」並為成員建立關係。"
 
 #: ../data/tips.xml.in.h:18
 msgid "<b>What's That For?</b><br/>Unsure what a button does? Simply hold the mouse over a button and a tooltip will appear."
@@ -185,7 +185,7 @@ msgstr "<b>閱讀手冊</b><br/>不要忘記閱讀 Gramps 手冊，&quot;Help &g
 
 #: ../data/tips.xml.in.h:26
 msgid "<b>Adding Children</b><br/>To add children in Gramps there are two options. You can find one of their parents in the Families View and open the family. Then choose to create a new person or add an existing person. You can also add children (or siblings) from inside the Family Editor."
-msgstr "<b>新增子女</b><br/>在 Gramps 中有兩種方式新增子女。您可以在家庭檢視中找到他們中的一個父母並開啟家庭。然後選擇為已存在的成員新增一個新成員。您也可以從家庭編輯器中新增子女（或者兄弟姐妹）。"
+msgstr "<b>新增子女</b><br/>在 Gramps 中有兩種方式新增子女。您可以在家庭檢視中找到他們中的一個父母並開啟家庭。然後選擇為已存在的成員新增一個新成員。您也可以從家庭編輯器中新增子女（或者兄弟姊妹）。"
 
 #: ../data/tips.xml.in.h:27
 msgid "<b>Editing the Parent-Child Relationship</b><br/> You can edit the relationship of a child to its parents by double clicking the child in the Family Editor. Relationships can be any of Adopted, Birth, Foster, None, Sponsored, Stepchild and Unknown."
@@ -209,7 +209,7 @@ msgstr "<b>對 Gramps 作出貢獻</b><br/>您是否期望幫助 Gramps 但是�
 
 #: ../data/tips.xml.in.h:32
 msgid "<b>So What's in a Name?</b><br/>The name Gramps was suggested to the original developer, Don Allingham, by his father. It stands for <i>Genealogical Research and Analysis Management Program System</i>. It is a full-featured genealogy program letting you store, edit, and research genealogical data. The Gramps database back end is so robust that some users are managing genealogies containing hundreds of thousands of people."
-msgstr "<b>命名的內裡乾坤</b><br/>Gramps 這個名字是由原始開發者 Don Allingham 根據其父親建議而起的。Gramps 一詞在英語除了是「祖父」的簡稱外，它也可以語帶雙關地當作一個縮寫，解讀為 <i>Genealogical Research and Analysis Management Program System</i>，意即「家譜研考分析管理程式設計系統」。它是一套功能全面的族譜程式，允許您儲存、編輯和研究族譜資料。Gramps 資料庫後端非常穩健強大，一些使用者甚至使用它來管理含有幾十萬成員的族譜呢！"
+msgstr "<b>命名的內裏乾坤</b><br/>Gramps 這個名字是由原始開發者 Don Allingham 根據其父親建議而起的。Gramps 一詞在英語除了是「祖父」的簡稱外，它也可以語帶雙關地當作一個縮寫，解讀為 <i>Genealogical Research and Analysis Management Program System</i>，意即「家譜研考分析管理程式設計系統」。它是一套功能全面的族譜程式，允許您儲存、編輯和研究族譜資料。Gramps 資料庫後端非常穩健強大，一些使用者甚至使用它來管理含有幾十萬成員的族譜呢！"
 
 #: ../data/tips.xml.in.h:33
 msgid "<b>Bookmarking Individuals</b><br/>The Bookmarks menu is a convenient place to store the names of frequently used individuals. Selecting a bookmark will make that person the Active Person. To bookmark someone make them the Active Person then go to &quot;Bookmarks &gt; Add Bookmark&quot; or press Ctrl+D. You can also bookmark most of the other objects."
@@ -289,7 +289,7 @@ msgstr "<b>書冊報告</b><br/>書冊報告在 &quot;報告 &gt; 書冊 &gt; �
 
 #: ../data/tips.xml.in.h:52
 msgid "<b>Gramps Announcements</b><br/>Interested in getting notified when a new version of Gramps is released? Join the Gramps-announce mailing list at &quot;Help &gt; Gramps Mailing Lists&quot;"
-msgstr "<b>Gramps 聲明</b><br/>當有新版本 Gramps 軟體時，是否希望被通知到？請看 &quot;說明 &gt; Gramps 郵件例表&quot; 加入 gramps-announce 郵件列表。"
+msgstr "<b>Gramps 聲明</b><br/>當有新版本 Gramps 軟件時，是否希望被通知到？請看 &quot;說明 &gt; Gramps 郵件例表&quot; 加入 gramps-announce 郵件列表。"
 
 #: ../data/tips.xml.in.h:53
 msgid "<b>Record Your Sources</b><br/>Information collected about your family is only as good as the source it came from. Take the time and trouble to record all the details of where the information came from. Whenever possible get a copy of original documents."
@@ -325,11 +325,11 @@ msgstr "<b>Gramps 程式碼</b><br/>Gramps 以 Python 計算機語言寫成，�
 
 #: ../data/tips.xml.in.h:61
 msgid "<b>Open Source Software</b><br/>The Free/Libre and Open Source Software (FLOSS) development model means Gramps can be extended by any programmer since all of the source code is freely available under its license. So it's not just about free beer, it's also about freedom to study and change the tool. For more about Open Source software lookup the Free Software Foundation and the Open Source Initiative."
-msgstr "<b>開源軟體</b><br/>免費/自由和開源軟體 (FLOSS) 開發模型意味著 Gramps 可以被任何程式設計師擴展，因為所有原始碼都開源的。因此它不僅僅像一杯免費的啤酒，它是關於自由的研究和變更的工具。瞭解更多關於開源軟體，請查詢自由軟體基金會 (Free Software Foundation) 及開放原始碼促進會 (Open Source Initiative)。"
+msgstr "<b>開源軟件</b><br/>免費/自由和開源軟件 (FLOSS) 開發模型意味著 Gramps 可以被任何程式設計師擴展，因為所有原始碼都開源的。因此它不僅僅像一杯免費的啤酒，它是關於自由的研究和變更的工具。瞭解更多關於開源軟件，請查詢自由軟件基金會 (Free Software Foundation) 及開放原始碼促進會 (Open Source Initiative)。"
 
 #: ../data/tips.xml.in.h:62
 msgid "<b>The Gramps Software License</b><br/>You are free to use and share Gramps with others. Gramps is freely distributable under the GNU General Public License, see http://www.gnu.org/licenses/licenses.html#GPL to read about the rights and restrictions of this license."
-msgstr "<b>Gramps 軟體許可</b><br/>您有權自由地使用並與其他人分享 Gramps。Gramps 基於 GNU 通用公共許可證 (GNU General Public License) 自由釋出，請參見 http://www.gnu.org/licenses/licenses.html#GPL 閱讀此許可證的權利和約束。"
+msgstr "<b>Gramps 軟件許可</b><br/>您有權自由地使用並與其他人分享 Gramps。Gramps 基於 GNU 通用公共許可證 (GNU General Public License) 自由釋出，請參見 http://www.gnu.org/licenses/licenses.html#GPL 閱讀此許可證的權利和約束。"
 
 #: ../data/tips.xml.in.h:63
 msgid "<b>Gramps for Gnome or KDE?</b><br/>For Linux users Gramps works with whichever desktop environment you prefer. As long as the required GTK libraries are installed it will run fine."
@@ -1914,7 +1914,7 @@ msgid ""
 "If possible, you should revert to your old version of Gramps and its support software; export your database to XML; close the database; then upgrade again to this version of Gramps and import the XML file in an empty Family Tree. Alternatively, it may be possible to use the Berkeley database recovery tools."
 msgstr ""
 "Gramps 開啟 Berkeley 資料庫的「環境」時檢測到問題。可能的原因是資料庫由舊版本的 Berkeley 資料庫生成的，您現在使用的是新版本的。也可能您的資料庫還不是由 Gramps 改變的。\n"
-"如果可能，您可以通過支援的軟體轉換您的舊版本的 Gramps；輸出您的資料庫成 XML；關閉資料庫；然後升級此版本並匯入 XML 檔案。由此，也可以使用 Berkeley 資料庫恢復工具。"
+"如果可能，您可以通過支援的軟件轉換您的舊版本的 Gramps；輸出您的資料庫成 XML；關閉資料庫；然後升級此版本並匯入 XML 檔案。由此，也可以使用 Berkeley 資料庫恢復工具。"
 
 #: ../gramps/gen/db/exceptions.py:236
 #, python-format
@@ -4286,11 +4286,11 @@ msgstr "符合時某人祖先的成員"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:46
 msgid "Siblings of <filter> match"
-msgstr "<filter>的兄弟姐妹匹配"
+msgstr "<filter>的兄弟姊妹匹配"
 
 #: ../gramps/gen/filters/rules/person/_issiblingoffiltermatch.py:48
 msgid "Matches siblings of anybody matched by a filter"
-msgstr "匹配某人的兄弟姐妹符合篩查器的成員"
+msgstr "匹配某人的兄弟姊妹符合篩查器的成員"
 
 #: ../gramps/gen/filters/rules/person/_isspouseoffiltermatch.py:47
 msgid "Spouses of <filter> match"
@@ -6127,7 +6127,7 @@ msgstr "省 (Department)"
 
 #: ../gramps/gen/lib/placetype.py:79
 msgid "Neighborhood"
-msgstr "近鄰社區 (Neighborhood)"
+msgstr "近鄰社區 (Neighbourhood)"
 
 #: ../gramps/gen/lib/placetype.py:80
 msgid "District"
@@ -7298,19 +7298,19 @@ msgstr "出生日期"
 
 #: ../gramps/gen/utils/alive.py:184
 msgid "sibling birth date"
-msgstr "兄弟姐妹出生日期"
+msgstr "兄弟姊妹出生日期"
 
 #: ../gramps/gen/utils/alive.py:196
 msgid "sibling death date"
-msgstr "兄弟姐妹死亡日期"
+msgstr "兄弟姊妹死亡日期"
 
 #: ../gramps/gen/utils/alive.py:210
 msgid "sibling birth-related date"
-msgstr "兄弟姐妹出生相關日期"
+msgstr "兄弟姊妹出生相關日期"
 
 #: ../gramps/gen/utils/alive.py:221
 msgid "sibling death-related date"
-msgstr "兄弟姐妹死亡相關日期"
+msgstr "兄弟姊妹死亡相關日期"
 
 #: ../gramps/gen/utils/alive.py:236 ../gramps/gen/utils/alive.py:247
 msgid "a spouse's birth-related date, "
@@ -7985,7 +7985,7 @@ msgstr ""
 "Tango 項目或者從 Tango 項目衍伸\n"
 "而來。這些美術插圖是基於\n"
 "Creative Commons Attribution-ShareAlike 2.5\n"
-"（創用CC「姓名標示-相同方式分享」2.5）\n"
+"（共享創意「署名-相同方式共享」2.5）\n"
 "許可協議釋出的。"
 
 #: ../gramps/gui/aboutdialog.py:111
@@ -8758,7 +8758,7 @@ msgstr "最長壽命"
 
 #: ../gramps/gui/configure.py:1207
 msgid "Maximum sibling age difference"
-msgstr "兄弟姐妹年歲最大差距"
+msgstr "兄弟姊妹年歲最大差距"
 
 #: ../gramps/gui/configure.py:1210
 msgid "Minimum years between generations"
@@ -8880,7 +8880,7 @@ msgstr "檢查什麼"
 
 #: ../gramps/gui/configure.py:1329
 msgid "Where to check"
-msgstr "從哪裡檢查"
+msgstr "從哪裏檢查"
 
 #: ../gramps/gui/configure.py:1333
 msgid "Do not ask about previously notified addons"
@@ -12386,7 +12386,7 @@ msgstr "媒體物件的描述標題。"
 
 #: ../gramps/gui/glade/editmedia.glade:270
 msgid "Open File Browser to select a media file on your computer."
-msgstr "開啟檔案瀏覽器選擇一個您電腦裡的媒體文件。"
+msgstr "開啟檔案瀏覽器選擇一個您電腦裏的媒體文件。"
 
 #: ../gramps/gui/glade/editmedia.glade:279
 #: ../gramps/gui/glade/editmediaref.glade:659
@@ -12829,11 +12829,11 @@ msgstr "描述(_D)："
 
 #: ../gramps/gui/glade/editurl.glade:171
 msgid "Type of internet address, eg. E-mail, Web Page, ..."
-msgstr "網路地址的類型，比如電子郵件、網頁、..."
+msgstr "網絡地址的類型，比如電子郵件、網頁、..."
 
 #: ../gramps/gui/glade/editurl.glade:190
 msgid "The internet address as needed to navigate to it, eg. http://gramps-project.org"
-msgstr "網路地址用於導航用途，比如  http://gramps-project.org"
+msgstr "網絡地址用於導航用途，比如  http://gramps-project.org"
 
 #: ../gramps/gui/glade/editurl.glade:206
 msgid "Open the web address in the default browser."
@@ -12841,7 +12841,7 @@ msgstr "在預設瀏覽器中開啟網址。"
 
 #: ../gramps/gui/glade/editurl.glade:218
 msgid "A descriptive caption of the Internet location you are storing."
-msgstr "您儲存的網路地址的描述性標題。"
+msgstr "您儲存的網絡地址的描述性標題。"
 
 #: ../gramps/gui/glade/grampletpane.glade:63
 msgid "Drag to move; click to detach"
@@ -14055,7 +14055,7 @@ msgstr "Gramps 遇到一個未知錯誤"
 
 #: ../gramps/gui/logger/_errorview.py:102
 msgid "Your data will be safe but it would be advisable to restart Gramps immediately. If you would like to report the problem to the Gramps team please click Report and the Error Reporting Wizard will help you to make a bug report."
-msgstr "您的資料仍然安全，但是強烈建議立刻重啟 Gramps 軟體。如果您希望向 Gramps 團隊彙報問題，請點選「彙報」，然後「錯誤報告嚮導」將會幫助您提交錯誤報告。"
+msgstr "您的資料仍然安全，但是強烈建議立刻重啟 Gramps 軟件。如果您希望向 Gramps 團隊彙報問題，請點選「彙報」，然後「錯誤報告嚮導」將會幫助您提交錯誤報告。"
 
 #: ../gramps/gui/logger/_errorview.py:111
 #: ../gramps/gui/logger/_errorview.py:125
@@ -15202,11 +15202,11 @@ msgstr "未安裝拼寫檢查器"
 #: ../gramps/gui/tipofday.py:68 ../gramps/gui/tipofday.py:69
 #: ../gramps/gui/tipofday.py:120 ../gramps/gui/viewmanager.py:509
 msgid "Tip of the Day"
-msgstr "今日提示"
+msgstr "每日貼士"
 
 #: ../gramps/gui/tipofday.py:87
 msgid "Failed to display tip of the day"
-msgstr "無法顯示今日提示"
+msgstr "無法顯示每日貼士"
 
 #: ../gramps/gui/tipofday.py:88
 #, python-format
@@ -15962,7 +15962,7 @@ msgstr "記錄家庭"
 #: ../gramps/plugins/view/pedigreeview.py:1695
 #: ../gramps/plugins/view/relview.py:906
 msgid "Siblings"
-msgstr "兄弟姐妹"
+msgstr "兄弟姊妹"
 
 #. Go over children and build their menu
 #: ../gramps/gui/widgets/fanchart.py:1730
@@ -17108,7 +17108,7 @@ msgstr "從選擇的第一對父母開始"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1518
 msgid "Will show the parents, brother and sisters of the selected person."
-msgstr "檢視將顯示所選成員的父母，兄弟和姐妹"
+msgstr "檢視將顯示所選成員的父母，兄弟和姊妹"
 
 #: ../gramps/plugins/drawreport/descendtree.py:1527
 msgid "Level of Spouses"
@@ -17804,7 +17804,7 @@ msgstr "GE_DCOM"
 #: ../gramps/plugins/export/export.gpr.py:75
 #: ../gramps/plugins/importer/import.gpr.py:52
 msgid "GEDCOM is used to transfer data between genealogy programs. Most genealogy software will accept a GEDCOM file as input."
-msgstr "GEDCOM 用於在genealogy 程式間傳送資料.大多的族譜軟體接受GEDCOM檔案作為輸入."
+msgstr "GEDCOM 用於在genealogy 程式間傳送資料.大多的族譜軟件接受GEDCOM檔案作為輸入."
 
 #: ../gramps/plugins/export/export.gpr.py:84
 msgid "GEDCOM export options"
@@ -17816,7 +17816,7 @@ msgstr "_GeneWeb"
 
 #: ../gramps/plugins/export/export.gpr.py:97
 msgid "GeneWeb is a web based genealogy program."
-msgstr "GeneWeb 是一個基於網頁的家譜軟體。"
+msgstr "GeneWeb 是一個基於網頁的家譜軟件。"
 
 #: ../gramps/plugins/export/export.gpr.py:105
 msgid "GeneWeb export options"
@@ -18203,7 +18203,7 @@ msgid ""
 "(needs a connection to the internet)\n"
 msgstr ""
 "%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)s常見問題解答%(html_end)s%(bold_end)s\n"
-"（需要網路連線）\n"
+"（需要網絡連線）\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:66
 msgid "Editing Spouses"
@@ -19614,7 +19614,7 @@ msgid ""
 "Gramps is a software package designed for genealogical research. Although similar to other genealogical programs, Gramps offers some unique and powerful features.\n"
 "\n"
 msgstr ""
-"Gramps 是一套為研究家譜而設計的軟體。雖然跟其他家譜軟體相似，Gramps 也同時提供一些獨一無二的強大功能。\n"
+"Gramps 是一套為研究家譜而設計的軟件。雖然跟其他家譜軟件相似，Gramps 也同時提供一些獨一無二的強大功能。\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:109
@@ -19623,7 +19623,7 @@ msgstr "相關連結"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:110
 msgid "Home Page"
-msgstr "「Gramps 計畫」主頁"
+msgstr "「Gramps 計劃」主頁"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:111
 msgid "Start with Genealogy and Gramps"
@@ -19651,7 +19651,7 @@ msgid ""
 "Gramps is created by genealogists for genealogists, organized in the Gramps Project. Gramps is an Open Source Software package, which means you are free to make copies and distribute it to anyone you like. It's developed and maintained by a worldwide team of volunteers whose goal is to make Gramps powerful, yet easy to use.\n"
 "\n"
 msgstr ""
-"Gramps 是由家譜學者為家譜學者所創建的，在「Gramps 計畫」裡組織協作。Gramps 為開放原始碼軟體，也就是說您可以自由地複製和分發給任何您喜歡的人。它是由世界各地的義務工作者共同開發和維護的，致力把 Gramps 打造成一個既功能強大，又簡單易用的家譜軟體。\n"
+"Gramps 是由家譜學者為家譜學者所創建的，在「Gramps 計劃」裏組織協作。Gramps 為開放原始碼軟件，也就是說您可以自由地複製和分發給任何您喜歡的人。它是由世界各地的義務工作者共同開發和維護的，致力把 Gramps 打造成一個既功能強大，又簡單易用的家譜軟件。\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:127
@@ -19663,7 +19663,7 @@ msgid ""
 "The first thing you must do is to create a new Family Tree. To create a new Family Tree (sometimes called 'database') select \"Family Trees\" from the menu, pick \"Manage Family Trees\", press \"New\" and name your Family Tree. For more details, please read the information at the links above\n"
 "\n"
 msgstr ""
-"您首先要做的事情是創建一個「家族樹」（或稱「資料庫」），方法是從主選單選擇「家族樹(F)」，挑選「管理家族樹(M)...」，然後在彈出的對話方塊裡點選「新建(N)」按鈕，並為您的家族樹命名。更多細節，請參考上面的相關連結的詳細說明。\n"
+"您首先要做的事情是創建一個「家族樹」（或稱「資料庫」），方法是從主選單選擇「家族樹(F)」，挑選「管理家族樹(M)...」，然後在彈出的對話方塊裏點選「新建(N)」按鈕，並為您的家族樹命名。更多細節，請參考上面的相關連結的詳細說明。\n"
 "\n"
 
 #: ../gramps/plugins/gramplet/welcomegramplet.py:133
@@ -21544,27 +21544,27 @@ msgstr "標準版權"
 #. translators, long strings, have a look at Web report dialogs
 #: ../gramps/plugins/lib/libhtmlconst.py:111
 msgid "Creative Commons - By attribution"
-msgstr "Creative Commons 創用CC「姓名標示」"
+msgstr "Creative Commons 共享創意「署名」"
 
 #: ../gramps/plugins/lib/libhtmlconst.py:112
 msgid "Creative Commons - By attribution, No derivations"
-msgstr "Creative Commons 創用CC「姓名標示-禁止改作」"
+msgstr "Creative Commons 共享創意「署名-禁止衍生」"
 
 #: ../gramps/plugins/lib/libhtmlconst.py:113
 msgid "Creative Commons - By attribution, Share-alike"
-msgstr "Creative Commons 創用CC「姓名標示-相同方式分享」"
+msgstr "Creative Commons 共享創意「署名-相同方式共享」"
 
 #: ../gramps/plugins/lib/libhtmlconst.py:114
 msgid "Creative Commons - By attribution, Non-commercial"
-msgstr "Creative Commons 創用CC「姓名標示-非商業性」"
+msgstr "Creative Commons 共享創意「署名-非商業性」"
 
 #: ../gramps/plugins/lib/libhtmlconst.py:115
 msgid "Creative Commons - By attribution, Non-commercial, No derivations"
-msgstr "Creative Commons 創用CC「姓名標示-非商業性-禁止改作」"
+msgstr "Creative Commons 共享創意「署名-非商業性-禁止衍生」"
 
 #: ../gramps/plugins/lib/libhtmlconst.py:116
 msgid "Creative Commons - By attribution, Non-commercial, Share-alike"
-msgstr "Creative Commons 創用CC「姓名標示-非商業性-禁止改作」"
+msgstr "Creative Commons 共享創意「署名-非商業性-禁止衍生」"
 
 #: ../gramps/plugins/lib/libhtmlconst.py:118
 msgid "No copyright notice"
@@ -25483,7 +25483,7 @@ msgstr "相同的名 - 獨立的"
 
 #: ../gramps/plugins/quickview/quickview.gpr.py:317
 msgid "Display a person's siblings."
-msgstr "顯示成員的兄弟姐妹。"
+msgstr "顯示成員的兄弟姊妹。"
 
 # FIXME
 #. display the title
@@ -25565,11 +25565,11 @@ msgstr "名為「%s」的人"
 #: ../gramps/plugins/quickview/siblings.py:46
 #, python-format
 msgid "Siblings of %s"
-msgstr "%s 的兄弟姐妹"
+msgstr "%s 的兄弟姊妹"
 
 #: ../gramps/plugins/quickview/siblings.py:48
 msgid "Sibling"
-msgstr "兄弟姐妹"
+msgstr "兄弟姊妹"
 
 #: ../gramps/plugins/quickview/siblings.py:62
 msgid "self"
@@ -28059,7 +28059,7 @@ msgstr "將相對路徑轉化為絕對路徑(_A)"
 
 #: ../gramps/plugins/tool/mediamanager.py:565
 msgid "This tool allows converting relative media paths to the absolute ones. It does this by prepending the base path as given in the Preferences, or if that is not set, it prepends user's directory."
-msgstr "本工具允許將相對媒體路徑轉換為絕對路徑。它會在路徑前面加上首選項裡設定的「基路徑」(base path)，但如果未設定，將在前面加上使用者主目錄路徑。"
+msgstr "本工具允許將相對媒體路徑轉換為絕對路徑。它會在路徑前面加上首選項裏設定的「基路徑」(base path)，但如果未設定，將在前面加上使用者主目錄路徑。"
 
 #: ../gramps/plugins/tool/mediamanager.py:598
 msgid "Convert paths from absolute to r_elative"
@@ -30016,7 +30016,7 @@ msgstr "移除此人相對這個家庭作為父母的關係"
 #: ../gramps/plugins/view/relview.py:865 ../gramps/plugins/view/relview.py:921
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
-msgstr[0] "（兄弟姐妹 {number_of} 人）"
+msgstr[0] "（兄弟姊妹 {number_of} 人）"
 
 #: ../gramps/plugins/view/relview.py:872 ../gramps/plugins/view/relview.py:928
 msgid " (1 brother)"
@@ -30024,11 +30024,11 @@ msgstr "（兄弟 1 人）"
 
 #: ../gramps/plugins/view/relview.py:874 ../gramps/plugins/view/relview.py:930
 msgid " (1 sister)"
-msgstr "（姐妹 1 人）"
+msgstr "（姊妹 1 人）"
 
 #: ../gramps/plugins/view/relview.py:876 ../gramps/plugins/view/relview.py:932
 msgid " (1 sibling)"
-msgstr "（兄弟姐妹 1 人）"
+msgstr "（兄弟姊妹 1 人）"
 
 #: ../gramps/plugins/view/relview.py:878 ../gramps/plugins/view/relview.py:934
 msgid " (only child)"
@@ -30114,7 +30114,7 @@ msgstr "顯示細節"
 
 #: ../gramps/plugins/view/relview.py:1716
 msgid "Show Siblings"
-msgstr "顯示所有兄弟姐妹"
+msgstr "顯示所有兄弟姊妹"
 
 #: ../gramps/plugins/view/repoview.py:88
 msgid "Home URL"
@@ -30636,7 +30636,7 @@ msgstr "繼母"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6384
 msgid "Not siblings"
-msgstr "並非兄弟姐妹"
+msgstr "並非兄弟姊妹"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:6445
 msgid "Relation to main person"
@@ -30957,7 +30957,7 @@ msgstr "原始影象的最大高度"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8198
 msgid "This allows you to set the maximum height of the image shown on the media page. Set to 0 for no limit."
-msgstr "這裡將允許您設定影象在媒體頁面上的最大高度。設定為0代表沒有限制。"
+msgstr "這裏將允許您設定影象在媒體頁面上的最大高度。設定為0代表沒有限制。"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8204
 msgid "Suppress Gramps ID"
@@ -31624,7 +31624,7 @@ msgstr "恰好一條規則必須滿足"
 #~ "If you upgrade then you won't be able to use previous versions of Gramps.\n"
 #~ "You might want to make a backup copy first."
 #~ msgstr ""
-#~ "您不升級軟體將無法開啟資料庫.\n"
+#~ "您不升級軟件將無法開啟資料庫.\n"
 #~ "如果升級，您將無法使用之前版本的 Gramps.\n"
 #~ "您可能希望先作備份. "
 
@@ -32072,7 +32072,7 @@ msgstr "恰好一條規則必須滿足"
 
 #~ msgid " (%d sibling)"
 #~ msgid_plural " (%d siblings)"
-#~ msgstr[0] "(%d 表親兄弟姐妹）"
+#~ msgstr[0] "(%d 表親兄弟姊妹）"
 
 #~ msgid "%s %s"
 #~ msgstr "%s %s"
@@ -33325,15 +33325,15 @@ msgstr "恰好一條規則必須滿足"
 #~ msgstr ""
 #~ "歡迎來到GRAMPS!\n"
 #~ "\n"
-#~ "GRAMPS是一個設計用於族譜管理的軟體。她和其他族譜程式很類似功能，同時GRAMPS提供了一些其他獨特而強大的功能。\n"
+#~ "GRAMPS是一個設計用於族譜管理的軟件。她和其他族譜程式很類似功能，同時GRAMPS提供了一些其他獨特而強大的功能。\n"
 #~ "\n"
-#~ "GRAMPS是一個開源的軟體包，意味著您可以免費的拷貝和分發給任何您喜歡的人。它由全球志願者共同開發和維護，大家的目標是使得GRAMPS更加強大，且容易使用。\n"
+#~ "GRAMPS是一個開源的軟件包，意味著您可以免費的拷貝和分發給任何您喜歡的人。它由全球志願者共同開發和維護，大家的目標是使得GRAMPS更加強大，且容易使用。\n"
 #~ "\n"
 #~ "開始吧\n"
 #~ "\n"
 #~ "首先您需要做的是創建一個新的家族樹。創建一個家族樹（有時稱為一個數據庫）請從選單中選擇\"家族樹\" ，選擇 \"管理家族樹\"，按下\"新建\"並命名您的資料庫名。瞭解更多的細節，請閱讀使用者手冊，或者訪問線上手冊http://gramps-project.org.\n"
 #~ "\n"
-#~ "您正在閱讀 \"Gramplets\"頁面，在這裡您也可以新增您自己的grampslets.\n"
+#~ "您正在閱讀 \"Gramplets\"頁面，在這裏您也可以新增您自己的grampslets.\n"
 #~ "\n"
 #~ "您可以在狀態列背景上右鍵點選本頁新增額外的grampslets頁，並改變欄目的數量。您也可以拖動屬性視窗在本頁上重新定位gramplet,並分離gramplet視窗使其懸浮在GRAMPS上。如果您在gramplet分離時關閉GRAMPS，當下次啟動GRAMPS時視窗將會繼續保持分離狀態。"
 
@@ -33406,23 +33406,23 @@ msgstr "恰好一條規則必須滿足"
 #~ "我們需要重啟Gramps。"
 
 #~ msgid "Test the network "
-#~ msgstr "測試網路"
+#~ msgstr "測試網絡"
 
 #~ msgid "Time out for the network connection test"
-#~ msgstr "網路連線測試超時"
+#~ msgstr "網絡連線測試超時"
 
 #~ msgid ""
 #~ "Time in seconds between two network tests.\n"
 #~ "Must be greater or equal to 10 seconds"
 #~ msgstr ""
-#~ "兩個網路測試以秒計算. \n"
+#~ "兩個網絡測試以秒計算. \n"
 #~ "必須大於等於10秒"
 
 #~ msgid "Host to test for http. Please, change this and select one of your choice."
 #~ msgstr "主機測試http。請，改變它並選擇其一。"
 
 #~ msgid "The network"
-#~ msgstr "網路"
+#~ msgstr "網絡"
 
 #~ msgid "Select the place for which you want to see the info bubble."
 #~ msgstr "選擇您希望能夠看到資訊提示的地點"
@@ -33527,7 +33527,7 @@ msgstr "恰好一條規則必須滿足"
 #~ msgstr "地理檢視"
 
 #~ msgid "The view showing events on an interactive internet map (internet connection needed)"
-#~ msgstr "檢視顯示在互動式的網路地圖的事件 （需要內部連線）"
+#~ msgstr "檢視顯示在互動式的網絡地圖的事件 （需要內部連線）"
 
 #~ msgid "Fixed Zoom"
 #~ msgstr "固定焦距"
@@ -34055,7 +34055,7 @@ msgstr "恰好一條規則必須滿足"
 #~ msgstr "半表親"
 
 #~ msgid "Step Siblings"
-#~ msgstr "繼兄弟姐妹"
+#~ msgstr "繼兄弟姊妹"
 
 #~ msgid "Column Editor"
 #~ msgstr "條目編輯器"
@@ -34271,10 +34271,10 @@ msgstr "恰好一條規則必須滿足"
 #~ msgstr "因特網地圖"
 
 #~ msgid "You need a broadband internet connection to use Internet mapping applications from within GRAMPS"
-#~ msgstr "您需要寬頻連線到因特網，您才能使用在GRAMPS內的的網路地圖應用程式"
+#~ msgstr "您需要寬頻連線到因特網，您才能使用在GRAMPS內的的網絡地圖應用程式"
 
 #~ msgid "Add GeoView to GRAMPS showing internet maps based on your data."
-#~ msgstr "基於您的資料新增GeoView 到Gramps顯示網路地圖."
+#~ msgstr "基於您的資料新增GeoView 到Gramps顯示網絡地圖."
 
 #~ msgid ""
 #~ "GeoView uses OpenStreetMap and one other map provider.\n"
@@ -35206,5 +35206,5 @@ msgstr "恰好一條規則必須滿足"
 #~ msgstr "Gramps 可基於 GNU 通用公共許可證 (GNU General Public License) 的授權免費自由釋出，請參看 http://www.gnu.org/licenses/licenses.html#GPL"
 
 #~ msgid "The Free/Libre and Open Source Software (FLOSS) development model means GRAMPS can be extended by any programmer since all of the source code is freely available under its license."
-#~ msgstr "免費/自由和開源軟體 (FLOSS) 開發模型意味著 Gramps 可以被任何程式設計師擴展，因為所有原始碼都開源的。"
+#~ msgstr "免費/自由和開源軟件 (FLOSS) 開發模型意味著 Gramps 可以被任何程式設計師擴展，因為所有原始碼都開源的。"
 
