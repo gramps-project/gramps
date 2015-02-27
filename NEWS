@@ -62,9 +62,9 @@ Fix: Error loading theme icon 'gtk-apply'
 * Fix for Unit test
 * date inflections in _datehandler.py, update for Ukrainian, Russian, Croatian
 * Better support for Serbian and Turkish locales
-* New translations: Icelandic, simplified Chinese
+* New translation: Icelandic
 * Re-enable Turkish support after a major review. Thank you Uğur.
-* Updated translations: cs, de, eo, fi, fr, hr, hu, it, nb, nn, ru, sk, sr, sv, uk
+* Updated translations: cs, de, eo, fi, fr, hr, hu, it, nb, nn, ru, sk, sr, sv, uk, zh_CN
 
 2014-10-24
 Version 4.1.1, "MachineThatGoes...Ping!", a maintenance release.
