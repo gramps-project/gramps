@@ -1124,7 +1124,7 @@ class CheckIntegrity(object):
                                         'exist in the database' % 
                                         {'gid' : family.gramps_id,
                                          'hand' : event_handle})
-                        make_unknown(event_handle, self.explanation,
+                        make_unknown(event_handle, self.explanation.handle,
                                 self.class_event, self.commit_event, self.trans)
                         self.invalid_events.add(key)
                 if none_handle:
