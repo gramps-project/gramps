@@ -1,3 +1,71 @@
+2015-02-28
+Version 4.1.2, "That's no ordinary rabbit", a maintenance release.
+* Error converting python2 utf-8 strings to python3 str when loading data from database
+* Removing a parent place from a place leaves a dangling reference
+* Error during checking the database
+* Stubborn blank space in database won't be removed, fix removing rows in flat list views
+* Database upgrade fails if default media path is not set
+* Error converting database after upgrade to Gramps 4.1.1
+* Error in a single place within the places section
+* Entries from the add-or-choose selector of Place/Source/Media/Note cannot be dragged
+* Enclosing places tab should work like other similar tabs, new place reference editor
+* Association editor refuses dropped persons
+* Error on opening twice an object from clipboard
+* Incorrect spacing in export assistant file chooser
+* New Event types are saved as a disordered list
+* Always display main participants
+* Place titles can now be generated on-the-fly by a place displayer, default is still to use the place title field
+* GEDCOM import of embedded notes attached to media does not work
+* Crash on Ancestry.com .ged import; consistent.
+* Errors handling owner/submitter information in GEDCOM files.
+Only import researcher from GEDCOM or XML if the family tree was originally empty.
+* GEDCOM export does not export media attached to citations.
+* The fanchart view crashes if max generation is set to 1 away.
+* Sidebar Filters do not match placetypes in new placeview, two new filter rules (HasTitle, HasData)
+* Fix bug when family has no parents
+* Fix bad handle in explanation note for unknown event
+* Some labels now fit better on citations sidebar filter
+* Views in Geography should not always use the last option set by the user
+* Request for keyboard-controlled zoom on Geography view
+* Error geography view - Displaying main menu
+* Configure screen needs a file selector to select directory for "offline mode" files
+* Filter panel on geography view displays improperly
+* Detailed descendant report crashes, bibliography (citations)
+* Can't disable box shadow in SVG descendant tree
+* Descendant tree graphical report, syntax error in svg output
+* Regression: Complete Individual report has partially-untranslated output
+* Events Page in Narrative Report not working
+* Gramps freeze after defining a report style with German cm values
+* Various problems with docgen.TextDoc.add_media_object
+* Report event attribute name is not translated
+* Records Gramplet uses wrong text
+* Closing detached gramplet causes python to crash
+* Cannot reduce size of gramplets detached from a gramplet bar
+* Gramplets don't fill window when detached from dashboard
+* ImageMetadata doesn't show metadata
+* typo on GLib call, used by an addon only
+* Fix error setting gramplet tab label
+* Check for active person in session log gramplet
+* Spurious spaces in CLI List Family Trees, tab delimited output.
+Print statements changed to assemble the whole line before output.
+* Gtk3 warning and custom undoableentry widget, see bugzilla_id 644927
+* Warnings: deprecated Gtk properties and errors loading theme icon.
+Fix: database manager dialog is inconsistent for older gtk+3 versions.
+Warnings: deprecated Gtk properties and errors loading theme icon.
+Fix: Error loading theme icon 'gtk-apply'
+* gramps fails to start with gtk+-3.13.3
+* Places in data.gramps are not in the new Place hierarchy
+* Upgrade the version of some dependencies for Mac OS and Windows OS.
+* Keywords entry in gramps.desktop does not work
+* 'Available Gramps Updates for Addons' window not on top
+* Some text not translatable in context menu fancharts
+* Fix for Unit test
+* date inflections in _datehandler.py, update for Ukrainian, Russian, Croatian
+* Better support for Serbian and Turkish locales
+* New translations: Icelandic, simplified Chinese
+* Re-enable Turkish support after a major review. Thank you Uğur.
+* Updated translations: cs, de, eo, fi, fr, hr, hu, it, nb, nn, ru, sk, sr, sv, uk
+
 2014-10-24
 Version 4.1.1, "MachineThatGoes...Ping!", a maintenance release.
 * Fix custom place types in the place editor
