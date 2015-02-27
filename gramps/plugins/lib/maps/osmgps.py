@@ -58,6 +58,7 @@ from .lifewaylayer import LifeWayLayer
 from .markerlayer import MarkerLayer
 from .datelayer import DateLayer
 from .messagelayer import MessageLayer
+from .kmllayer import KmlLayer
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.config import config
@@ -90,6 +91,7 @@ class OsmGps():
         self.marker_layer = None
         self.date_layer = None
         self.message_layer = None
+        self.kml_layer = None
         self.context_id = 0
         self.begin_selection = None
         self.end_selection = None
@@ -149,6 +151,7 @@ class OsmGps():
         self.osm.layer_add(current_map)
         self.osm.layer_add(DummyLayer())
         self.selection_layer = self.add_selection_layer()
+        self.kml_layer = self.add_kml_layer()
         self.lifeway_layer = self.add_lifeway_layer()
         self.marker_layer = self.add_marker_layer()
         self.date_layer = self.add_date_layer()
@@ -203,6 +206,20 @@ class OsmGps():
         get the selection layer
         """
         return self.selection_layer
+
+    def add_kml_layer(self):
+        """
+        add the kml layer to the map
+        """
+        kml_layer = KmlLayer()
+        self.osm.layer_add(kml_layer)
+        return kml_layer
+
+    def get_kml_layer(self):
+        """
+        get the kml layer
+        """
+        return self.kml_layer
 
     def add_message_layer(self):
         """

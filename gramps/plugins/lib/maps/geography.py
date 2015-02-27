@@ -782,6 +782,25 @@ class GeoGraphyView(OsmGps, NavigationView):
 
     #-------------------------------------------------------------------------
     #
+    # KML functionalities
+    #
+    #-------------------------------------------------------------------------
+    def load_kml_files(self, obj):
+        """
+        obj can be an event, a person or a place
+        """
+        media_list = obj.get_media_list()
+        if media_list:
+            for media_ref in media_list:
+                object_handle = media_ref.get_reference_handle()
+                media_obj = self.dbstate.db.get_object_from_handle(object_handle)
+                path = media_obj.get_path()
+                name, extension = os.path.splitext(path)
+                if extension == ".kml":
+                    self.kml_layer.add_kml(path)
+
+    #-------------------------------------------------------------------------
+    #
     # Printing functionalities
     #
     #-------------------------------------------------------------------------

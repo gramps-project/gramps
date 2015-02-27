@@ -302,15 +302,18 @@ class GeoPerson(GeoGraphyView):
         latitude = ""
         longitude = ""
         self.message_layer.clear_messages()
+        self.kml_layer.clear()
         person_handle = self.uistate.get_active('Person')
         person = dbstate.db.get_person_from_handle(person_handle)
         if person is not None:
             # For each event, if we have a place, set a marker.
+            self.load_kml_files(person)
             self.message_layer.add_message(_("Person places for %s") % _nd.display(person))
             for event_ref in person.get_event_ref_list():
                 if not event_ref:
                     continue
                 event = dbstate.db.get_event_from_handle(event_ref.ref)
+                self.load_kml_files(event)
                 role = event_ref.get_role()
                 eyear = str("%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
                           str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
@@ -328,6 +331,7 @@ class GeoPerson(GeoGraphyView):
                         descr1 = _("%(eventtype)s : %(name)s") % {
                                         'eventtype': evt,
                                         'name': _nd.display(person)}
+                        self.load_kml_files(place)
                         # place.get_longitude and place.get_latitude return
                         # one string. We have coordinates when the two values
                         # contains non null string.
@@ -363,6 +367,7 @@ class GeoPerson(GeoGraphyView):
                     for event_ref in family.get_event_ref_list():
                         if event_ref:
                             event = dbstate.db.get_event_from_handle(event_ref.ref)
+                            self.load_kml_files(event)
                             role = event_ref.get_role()
                             if event.get_place_handle():
                                 place_handle = event.get_place_handle()
@@ -378,6 +383,7 @@ class GeoPerson(GeoGraphyView):
                                         eyear = str("%04d" % event.get_date_object().to_calendar(self.cal).get_year()) + \
                                                   str("%02d" % event.get_date_object().to_calendar(self.cal).get_month()) + \
                                                   str("%02d" % event.get_date_object().to_calendar(self.cal).get_day())
+                                        self.load_kml_files(place)
                                         if ( longitude and latitude ):
                                             self._append_to_places_list(descr,
                                                  evt, _nd.display(person),
