@@ -216,9 +216,6 @@ DOCUMENTERS    = [
     'Alexander Roitman', 
     ]
 
-TRANSLATORS = _('TRANSLATORS: Translate this to your '
-                'name in your native language')
-
 #-------------------------------------------------------------------------
 #
 # Constants

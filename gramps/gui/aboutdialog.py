@@ -56,7 +56,7 @@ from gi.repository import GdkPixbuf
 #-------------------------------------------------------------------------
 from gramps.gen.const import (AUTHORS, AUTHORS_FILE, COMMENTS, COPYRIGHT_MSG, 
                        DOCUMENTERS, LICENSE_FILE, PROGRAM_NAME, SPLASH, 
-                       TRANSLATORS, URL_HOMEPAGE, VERSION)
+                       URL_HOMEPAGE, VERSION)
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.constfunc import get_env_var
@@ -70,14 +70,6 @@ else:
 
 #-------------------------------------------------------------------------
 #
-# Constants
-#
-#-------------------------------------------------------------------------
-AUTHORS_HEADER = _('==== Authors ====\n')
-CONTRIB_HEADER = _('\n==== Contributors ====\n')
-
-#-------------------------------------------------------------------------
-#
 # GrampsAboutDialog
 #
 #-------------------------------------------------------------------------
@@ -85,20 +77,19 @@ class GrampsAboutDialog(Gtk.AboutDialog):
     """Create an About dialog with all fields set."""
     def __init__(self, parent):
         """Setup all the fields shown in the About dialog."""
-        GObject.GObject.__init__(self)
+        Gtk.AboutDialog.__init__(self)
         self.set_transient_for(parent)
         self.set_modal(True)
         
         self.set_name(PROGRAM_NAME)
         self.set_version(VERSION)
         self.set_copyright(COPYRIGHT_MSG)
-        self.set_artists([
-            _("Much of Gramps' artwork is either from\n"
-              "the Tango Project or derived from the Tango\n"
-              "Project. This artwork is released under the\n"
-              "Creative Commons Attribution-ShareAlike 2.5\n"
-              "license.")
-          ])
+        artists = _("Much of Gramps' artwork is either from\n"
+                    "the Tango Project or derived from the Tango\n"
+                    "Project. This artwork is released under the\n"
+                    "Creative Commons Attribution-ShareAlike 2.5\n"
+                    "license.")
+        self.set_artists(artists.split('\n'))
         
         try:
             ifile = open(LICENSE_FILE, "r")
@@ -111,12 +102,12 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         self.set_website_label(_('Gramps Homepage'))
         self.set_website(URL_HOMEPAGE)
         
-        self.set_authors(_get_authors())
+        authors, contributors = _get_authors()
+        self.set_authors(authors)
+        if len(contributors) > 0:
+            self.add_credit_section(_('Contributions by'), contributors)
         
-        # Only set translation credits if they are translated
-        trans_credits = _(TRANSLATORS)
-        if trans_credits != TRANSLATORS:
-            self.set_translator_credits(trans_credits)
+        self.set_translator_credits(_("translator-credits"))
 
         self.set_documenters(DOCUMENTERS)
         self.set_logo(GdkPixbuf.Pixbuf.new_from_file(SPLASH))
@@ -232,25 +223,9 @@ def _get_authors():
         parser.parse(authors_file)
         authors_file.close()
         
-        authors_text = ([AUTHORS_HEADER] + authors +
-                        [CONTRIB_HEADER] + contributors)
+        authors_text = [authors, contributors]
         
     except (IOError, OSError, SAXParseException):
-        authors_text = AUTHORS
+        authors_text = [AUTHORS, []]
 
     return authors_text
-
-#-------------------------------------------------------------------------
-#
-# _show_url
-#
-#-------------------------------------------------------------------------
-def _show_url(dialog, link, prefix):
-    """Show links in About dialog."""
-    if prefix is not None:
-        link = prefix + link
-    display_url(link)
-
-#TODO GTK3: is there an alternative for these:
-#Gtk.about_dialog_set_url_hook(_show_url, None)
-#Gtk.about_dialog_set_email_hook(_show_url, 'mailto:')
