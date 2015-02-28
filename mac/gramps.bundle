@@ -35,11 +35,6 @@
     ${prefix}/lib/${gtkdir}/${pkg:${gtk}:gtk_binary_version}/immodules/im-quartz.so
   </binary>
 
-<!-- Copy in the theme engines, -->
-  <binary>
-    ${prefix}/lib/gtk-3.0/${pkg:${gtk}:gtk_binary_version}/theming-engines/*.so
-  </binary>
-
 <!-- And the print backends -->
   <binary>
     ${prefix}/lib/${gtkdir}/${pkg:${gtk}:gtk_binary_version}/printbackends/*.so
@@ -62,7 +57,7 @@
   </binary-->
 
   <binary>
-    ${prefix}/lib/libgtkmacintegration.2.dylib
+    ${prefix}/lib/libgtkmacintegration-gtk3.2.dylib
   </binary>
 
   <binary>
@@ -90,7 +85,7 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libtiff.3.dylib
+    ${prefix}/lib/libtiff.5.dylib
   </binary>
 
   <binary dest="${bundle}/Contents/MacOS/">
