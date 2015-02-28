@@ -5,13 +5,13 @@ Please read the INSTALL file if you intend to build from source.
 Requirements
 --------------------------------
 The following packages *MUST* be installed in order for Gramps to work:
-   Python 2.7 or greater, Python 3.2 or greater (or both python versions)
+   Python 3.2 or greater
    GTK 3.0 or greater
    pygobject 3.3.2 or greater
    cairo, pango, pangocairo with introspection bindings (the gi packages)
    librsvg2 (svg icon view)
    xdg-utils
-   bsddb3 is required for Python 3.2 (not python 2.7)
+   bsddb3
 
 The following package is needed for full translation of the interface
 to your language:

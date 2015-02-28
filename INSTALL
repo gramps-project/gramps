@@ -12,7 +12,7 @@ version by deleting the installed directories. For example, if your installation
 If you installed with a package manager you might instead need to remove
         /usr/local/lib/pythonx.x/dist-packages/gramps
 
-replacing pythonx.x with the python version you used, e.g. python2.7.
+replacing pythonx.x with the python version you used, e.g. python3.4.
 Also remove any gramps .egg files that are installed along with the gramps
 directory and the file /usr/local/bin/gramps.
 
@@ -49,7 +49,7 @@ things like MIME type and desktop entries.
 See below for ways to invoke Gramps.
 
 Typical install directories in linux (ubuntu) are:
-  * /usr/local/lib/python2.7/dist-packages/gramps/  : the gramps python module
+  * /usr/local/lib/python3.4/dist-packages/gramps/  : the gramps python module
   * /usr/local/share/mime-info    : mime info so gramps opens files automatically
   * /usr/local/share/icons/gnome  : our icons
   * /usr/local/share/doc/gramps   : documentation, also example .gramps and .gedcom

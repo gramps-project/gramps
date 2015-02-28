@@ -27,14 +27,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, unicode_literals
-
 import sys
-## hack to avoid mentioning 'utf8' encoding everywhere unicode or str is is used
-if sys.version_info[0] < 3:
-    reload(sys)
-    sys.setdefaultencoding('utf8')
-##
 import os
 import signal
 
@@ -46,7 +39,7 @@ from subprocess import Popen, PIPE
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS modules
+# Gramps modules
 #
 #-------------------------------------------------------------------------
 from .gen.const import APP_GRAMPS, USER_DIRLIST, HOME_DIR
@@ -132,7 +125,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 
-MIN_PYTHON_VERSION = (2, 7, 0, '', 0)
+MIN_PYTHON_VERSION = (3, 2, 0, '', 0)
 if not sys.version_info >= MIN_PYTHON_VERSION :
     logging.warning(_("Your Python version does not meet the "
              "requirements. At least python %(v1)d.%(v2)d.%(v3)d is needed to"
@@ -143,19 +136,17 @@ if not sys.version_info >= MIN_PYTHON_VERSION :
              'v3': MIN_PYTHON_VERSION[2]})
     sys.exit(1)
 
-if sys.version_info[0] >= 3:
-    #check if bsddb3 is installed
-    try:
-        import bsddb3
-    except ImportError:
-        logging.warning(_("\nYou don't have the python bsddb3 package installed."
-            " This package is needed to start Gramps.\n\n"
-             "Gramps will terminate now."))
-        sys.exit(1)
+try:
+    import bsddb3
+except ImportError:
+    logging.warning(_("\nYou don't have the python bsddb3 package installed."
+        " This package is needed to start Gramps.\n\n"
+         "Gramps will terminate now."))
+    sys.exit(1)
     
 #-------------------------------------------------------------------------
 #
-# gramps libraries
+# Gramps libraries
 #
 #-------------------------------------------------------------------------
 try:
@@ -268,13 +259,8 @@ def show_settings():
         pyicu_str = 'not found'
         icu_str = 'not found'
 
-    from .gen.config import config
-    usebsddb3 = config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3
     try:
-        if usebsddb3:
-            import bsddb3 as bsddb
-        else:
-            import bsddb
+        import bsddb3 as bsddb
         bsddb_str = bsddb.__version__
         bsddb_db_str = str(bsddb.db.version()).replace(', ', '.')\
                                         .replace('(', '').replace(')', '')
@@ -330,10 +316,6 @@ def show_settings():
     print (' gtk++     : %s' % gtkver_str)
     print (' pygobject : %s' % pygobjectver_str)
     print (' pango     : %s' % pangover_str)
-    if usebsddb3:
-        print (' Using bsddb3')
-    else:
-        print (' Not using bsddb3')
     print (' bsddb     : %s' % bsddb_str)
     print (' bsddb.db  : %s' % bsddb_db_str)
     print (' cairo     : %s' % cairover_str)
@@ -433,26 +415,19 @@ def run():
                 return error
             startgtkloop(error, argpars)
     else:
-        #CLI use of GRAMPS
+        #CLI use of Gramps
 
         #Ensure that output is encoded correctly to stdout and
         #stderr. This is much less cumbersome and error-prone than
-        #encoding individual outputs and better handles the
-        #differences between Python 2 and Python 3:
+        #encoding individual outputs:
         try:
             _encoding = sys.stdout.encoding or sys.getdefaultencoding()
         except:
             _encoding = "UTF-8"
-        if sys.version_info[0] < 3:
-            sys.stdout = codecs.getwriter(_encoding)(sys.stdout,
-                                                     'backslashreplace')
-            sys.stderr = codecs.getwriter(_encoding)(sys.stderr,
-                                                     'backslashreplace')
-        else:
-            sys.stdout = codecs.getwriter(_encoding)(sys.stdout.detach(),
-                                                     'backslashreplace')
-            sys.stderr = codecs.getwriter(_encoding)(sys.stderr.detach(),
-                                                     'backslashreplace')
+        sys.stdout = codecs.getwriter(_encoding)(sys.stdout.detach(),
+                                                 'backslashreplace')
+        sys.stderr = codecs.getwriter(_encoding)(sys.stderr.detach(),
+                                                 'backslashreplace')
         argpars.print_help()
         argpars.print_usage()
         from .cli.grampscli import startcli
