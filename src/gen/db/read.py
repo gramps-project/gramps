@@ -355,6 +355,7 @@ class DbBsddbRead(DbReadBase, Callback):
         self.citation_map = {}
         self.repository_map  = {}
         self.note_map = {}
+        self.tag_map = {}
         self.media_map  = {}
         self.event_map  = {}
         self.metadata   = {}
