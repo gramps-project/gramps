@@ -424,6 +424,7 @@ def run():
             _encoding = sys.stdout.encoding or sys.getdefaultencoding()
         except:
             _encoding = "UTF-8"
+        import codecs
         sys.stdout = codecs.getwriter(_encoding)(sys.stdout.detach(),
                                                  'backslashreplace')
         sys.stderr = codecs.getwriter(_encoding)(sys.stderr.detach(),
