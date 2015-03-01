@@ -29,9 +29,8 @@ Gramps distutils module.
 #check python version first
 import sys
 
-
-if (sys.version_info < (2, 7) or ( (3,0) <= sys.version_info < (3, 2))):
-    raise SystemExit("""Gramps requires Python 2.7 or later, or Python 3.2 or later.""")
+if sys.version_info < (3, 2):
+    raise SystemExit("Gramps requires Python 3.2 or later.")
 
 from distutils import log
 from distutils.core import setup, Command
@@ -42,8 +41,6 @@ import os
 import glob
 import codecs
 import subprocess
-if sys.version_info[0] < 3:
-    import commands
 from stat import ST_MODE
 import io
 from gramps.version import VERSION
@@ -72,8 +69,7 @@ def intltool_version():
         try: 
             ver, ret = subprocess.Popen(cmd ,stdout=subprocess.PIPE, 
                 stderr=subprocess.PIPE, shell=True).communicate()
-            if sys.version_info[0] > 2:
-                ver = ver.decode("utf-8")
+            ver = ver.decode("utf-8")
             if ver > "":
                 version_str = ver
             else:
@@ -82,10 +78,7 @@ def intltool_version():
             return (0,0,0)
     else:
         cmd = 'intltool-update --version | head -1 | cut -d" " -f3'
-        if sys.version_info[0] < 3:
-            retcode, version_str = commands.getstatusoutput(cmd)
-        else:
-            retcode, version_str = subprocess.getstatusoutput(cmd)
+        retcode, version_str = subprocess.getstatusoutput(cmd)
         if retcode != 0:
             return None
     return tuple([int(num) for num in version_str.split('.')])
@@ -124,10 +117,7 @@ def build_trans(build_cmd):
                 os.remove(mo_file)
                 msg = 'ERROR: Building language translation files failed.'
                 ask = msg + '\n Continue building y/n [n] '
-                if sys.version_info[0] < 3:
-                    reply = raw_input(ask)
-                else:
-                    reply = input(ask)
+                reply = input(ask)
                 if reply in ['n', 'N']:
                     raise SystemExit(msg)
 
@@ -252,8 +242,6 @@ class install(_install):
         with io.open(resource_file, 'w', encoding='utf-8',
                      errors='strict') as fp:
             path = os.path.abspath(os.path.join(self.install_data, 'share'))
-            if sys.version_info[0] < 3:
-                path = unicode(path)
             fp.write(path)
 
         _install.run(self)
