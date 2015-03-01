@@ -89,7 +89,7 @@
 
 <_tip number="48"><b>Web Family Tree Format</b><br/>Gramps can export data to the Web Family Tree (WFT) format. This format allows a family tree to be displayed online using a single file, instead of many html files.</_tip>
 
-<_tip number="49"><b>Making a Genealogy Website</b><br/>You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web. The Gramps project provides free hosting of websites made with Gramps.</_tip>
+<_tip number="49"><b>Making a Genealogy Website</b><br/>You can easily export your family tree to a web page. Select the entire database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide Web.</_tip>
 
 <_tip number="50"><b>Reporting Bugs in Gramps</b><br/>The best way to report a bug in Gramps is to use the Gramps bug tracking system at http://bugs.gramps-project.org</_tip>
 
