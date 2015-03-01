@@ -107,6 +107,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
         if len(contributors) > 0:
             self.add_credit_section(_('Contributions by'), contributors)
         
+        # TRANSLATORS: Translate this to your name in your native language
         self.set_translator_credits(_("translator-credits"))
 
         self.set_documenters(DOCUMENTERS)
