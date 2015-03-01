@@ -2161,7 +2161,9 @@ def write_lock_file(name):
         try:
             user = os.getlogin()
         except:
-            user = os.environ.get('USER')
+            # not win, so don't need get_env_var.
+            # under cron getlogin() throws and there is no USER.
+            user = os.environ.get('USER', 'noUSER')
     if host:
         text = "%s@%s" % (user, host)
     else:
