@@ -375,13 +375,13 @@ def gramps_upgrade_16(self):
             SOURCE_KEY : 6, 
             }
     key2string = {
-        PERSON_KEY      : _('%6d  People        upgraded with %6d citations in %6d secs\n'),
-        FAMILY_KEY      : _('%6d  Families      upgraded with %6d citations in %6d secs\n'),
-        EVENT_KEY       : _('%6d  Events        upgraded with %6d citations in %6d secs\n'),
-        MEDIA_KEY       : _('%6d  Media Objects upgraded with %6d citations in %6d secs\n'),
-        PLACE_KEY       : _('%6d  Places        upgraded with %6d citations in %6d secs\n'),
-        REPOSITORY_KEY  : _('%6d  Repositories  upgraded with %6d citations in %6d secs\n'),
-        SOURCE_KEY      : _('%6d  Sources       upgraded with %6d citations in %6d secs\n'),
+        PERSON_KEY      : _('%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n'),
+        FAMILY_KEY      : _('%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n'),
+        EVENT_KEY       : _('%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n'),
+        MEDIA_KEY       : _('%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n'),
+        PLACE_KEY       : _('%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n'),
+        REPOSITORY_KEY  : _('%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n'),
+        SOURCE_KEY      : _('%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n'),
         }
     data_upgradeobject = [0] * 7
 
@@ -769,7 +769,10 @@ def gramps_upgrade_16(self):
     txt = _("Number of new objects upgraded:\n")
     for key in keyorder:
         try:
-            txt += key2string[key] % data_upgradeobject[key2data[key]]
+            txt += key2string[key] % {
+                       'n1' : data_upgradeobject[key2data[key]][0],
+                       'n2' : data_upgradeobject[key2data[key]][1],
+                       'n3' : data_upgradeobject[key2data[key]][2] }
         except:
             txt += key2string[key]
     txt += _("\n\nYou may want to run\n"

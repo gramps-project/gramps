@@ -416,7 +416,9 @@ class ArgHandler(object):
                 for item in sorted(summary):
                     if item != "Family Tree":
                         # translators: needed for French, ignore otherwise
-                        print(_("   %s: %s") % (item, summary[item]))
+                        print(_("   %(item)s: %(summary)s") % {
+                                        'item' : item,
+                                        'summary' : summary[item] } )
             sys.exit(0)
            
         # Handle the "-t" List Family Trees, tab delimited option.  

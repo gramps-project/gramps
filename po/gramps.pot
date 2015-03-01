@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-28 18:58-0800\n"
+"POT-Creation-Date: 2015-03-01 15:00-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -672,7 +672,7 @@ msgstr ""
 msgid "%(full_DB_path)s with name \"%(f_t_name)s\""
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:411 ../gramps/cli/arghandler.py:424
+#: ../gramps/cli/arghandler.py:411 ../gramps/cli/arghandler.py:426
 msgid "Gramps Family Trees:"
 msgstr ""
 
@@ -684,9 +684,9 @@ msgstr ""
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/cli/arghandler.py:414 ../gramps/cli/arghandler.py:415
-#: ../gramps/cli/arghandler.py:430 ../gramps/cli/arghandler.py:432
-#: ../gramps/cli/arghandler.py:436 ../gramps/cli/arghandler.py:437
-#: ../gramps/cli/arghandler.py:439 ../gramps/cli/clidbman.py:73
+#: ../gramps/cli/arghandler.py:432 ../gramps/cli/arghandler.py:434
+#: ../gramps/cli/arghandler.py:438 ../gramps/cli/arghandler.py:439
+#: ../gramps/cli/arghandler.py:441 ../gramps/cli/clidbman.py:73
 #: ../gramps/cli/clidbman.py:220 ../gramps/gui/clipboard.py:955
 #: ../gramps/gui/configure.py:1389
 msgid "Family Tree"
@@ -700,115 +700,115 @@ msgstr ""
 #. translators: needed for French, ignore otherwise
 #: ../gramps/cli/arghandler.py:419
 #, python-format
-msgid "   %s: %s"
+msgid "   %(item)s: %(summary)s"
 msgstr ""
 
 #. translators: ignore unless your quotation marks differ
-#: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:441
+#: ../gramps/cli/arghandler.py:439 ../gramps/cli/arghandler.py:443
 #: ../gramps/gen/plug/report/endnotes.py:199
 #, python-format
 msgid "\"%s\""
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:449
+#: ../gramps/cli/arghandler.py:451
 #, python-format
 msgid "Performing action: %s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:451
+#: ../gramps/cli/arghandler.py:453
 #, python-format
 msgid "Using options string: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:456
+#: ../gramps/cli/arghandler.py:458
 #, python-format
 msgid "Exporting: file %(filename)s, format %(format)s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:463
+#: ../gramps/cli/arghandler.py:465
 msgid "Exiting."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:467
+#: ../gramps/cli/arghandler.py:469
 msgid "Cleaning up."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:498
+#: ../gramps/cli/arghandler.py:500
 msgid "Created empty Family Tree successfully"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:501 ../gramps/cli/arghandler.py:526
+#: ../gramps/cli/arghandler.py:503 ../gramps/cli/arghandler.py:528
 msgid "Error opening the file."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:502 ../gramps/cli/arghandler.py:527
+#: ../gramps/cli/arghandler.py:504 ../gramps/cli/arghandler.py:529
 msgid "Exiting..."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:506
+#: ../gramps/cli/arghandler.py:508
 #, python-format
 msgid "Importing: file %(filename)s, format %(format)s."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:524
+#: ../gramps/cli/arghandler.py:526
 msgid "Opened successfully!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:538
+#: ../gramps/cli/arghandler.py:540
 msgid "Database is locked, cannot open it!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:539
+#: ../gramps/cli/arghandler.py:541
 #, python-format
 msgid "  Info: %s"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:542
+#: ../gramps/cli/arghandler.py:544
 msgid "Database needs recovery, cannot open it!"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:593 ../gramps/cli/arghandler.py:641
-#: ../gramps/cli/arghandler.py:688
+#: ../gramps/cli/arghandler.py:595 ../gramps/cli/arghandler.py:643
+#: ../gramps/cli/arghandler.py:690
 msgid "Ignoring invalid options string."
 msgstr ""
 
 #. name exists, but is not in the list of valid report names
-#: ../gramps/cli/arghandler.py:617
+#: ../gramps/cli/arghandler.py:619
 msgid "Unknown report name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:619
+#: ../gramps/cli/arghandler.py:621
 #, python-format
 msgid "Report name not given. Please use one of %(donottranslate)s=reportname"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:623 ../gramps/cli/arghandler.py:671
-#: ../gramps/cli/arghandler.py:704
+#: ../gramps/cli/arghandler.py:625 ../gramps/cli/arghandler.py:673
+#: ../gramps/cli/arghandler.py:706
 #, python-format
 msgid ""
 "%s\n"
 " Available names are:"
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:665
+#: ../gramps/cli/arghandler.py:667
 msgid "Unknown tool name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:667
+#: ../gramps/cli/arghandler.py:669
 #, python-format
 msgid "Tool name not given. Please use one of %(donottranslate)s=toolname."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:698
+#: ../gramps/cli/arghandler.py:700
 msgid "Unknown book name."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:700
+#: ../gramps/cli/arghandler.py:702
 #, python-format
 msgid "Book name not given. Please use one of %(donottranslate)s=bookname."
 msgstr ""
 
-#: ../gramps/cli/arghandler.py:709
+#: ../gramps/cli/arghandler.py:711
 #, python-format
 msgid "Unknown action: %s."
 msgstr ""
@@ -2200,44 +2200,51 @@ msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:378
 #, python-format
-msgid "%6d  People        upgraded with %6d citations in %6d secs\n"
+msgid ""
+"%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:379
 #, python-format
-msgid "%6d  Families      upgraded with %6d citations in %6d secs\n"
+msgid ""
+"%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:380
 #, python-format
-msgid "%6d  Events        upgraded with %6d citations in %6d secs\n"
+msgid ""
+"%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:381
 #, python-format
-msgid "%6d  Media Objects upgraded with %6d citations in %6d secs\n"
+msgid ""
+"%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:382
 #, python-format
-msgid "%6d  Places        upgraded with %6d citations in %6d secs\n"
+msgid ""
+"%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:383
 #, python-format
-msgid "%6d  Repositories  upgraded with %6d citations in %6d secs\n"
+msgid ""
+"%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:384
 #, python-format
-msgid "%6d  Sources       upgraded with %6d citations in %6d secs\n"
+msgid ""
+"%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
 msgstr ""
 
 #: ../gramps/gen/db/upgrade.py:769
 msgid "Number of new objects upgraded:\n"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:775
+#: ../gramps/gen/db/upgrade.py:778
 msgid ""
 "\n"
 "\n"
@@ -2247,7 +2254,7 @@ msgid ""
 "information"
 msgstr ""
 
-#: ../gramps/gen/db/upgrade.py:779
+#: ../gramps/gen/db/upgrade.py:782
 msgid "Upgrade Statistics"
 msgstr ""
 
@@ -9183,14 +9190,14 @@ msgstr ""
 
 #: ../gramps/gui/dbman.py:657
 #, python-format
-msgid "%s (copy, %s)"
-msgstr ""
-
-#: ../gramps/gui/dbman.py:679
-msgid "Repair Family Tree?"
+msgid "%(new_DB_name)s (copied %(date_string)s)"
 msgstr ""
 
 #: ../gramps/gui/dbman.py:681
+msgid "Repair Family Tree?"
+msgstr ""
+
+#: ../gramps/gui/dbman.py:683
 #, python-format
 msgid ""
 "If you click %(bold_start)sProceed%(bold_end)s, Gramps will attempt to "
@@ -9217,31 +9224,31 @@ msgid ""
 "%(recover_file)s in the Family Tree directory."
 msgstr ""
 
-#: ../gramps/gui/dbman.py:712
+#: ../gramps/gui/dbman.py:714
 msgid "Proceed, I have taken a backup"
 msgstr ""
 
-#: ../gramps/gui/dbman.py:713
+#: ../gramps/gui/dbman.py:715
 msgid "Stop"
 msgstr ""
 
-#: ../gramps/gui/dbman.py:736
+#: ../gramps/gui/dbman.py:738
 msgid "Rebuilding database from backup files"
 msgstr ""
 
-#: ../gramps/gui/dbman.py:741
+#: ../gramps/gui/dbman.py:743
 msgid "Error restoring backup data"
 msgstr ""
 
-#: ../gramps/gui/dbman.py:776
+#: ../gramps/gui/dbman.py:778
 msgid "Could not create Family Tree"
 msgstr ""
 
-#: ../gramps/gui/dbman.py:893
+#: ../gramps/gui/dbman.py:895
 msgid "Retrieve failed"
 msgstr ""
 
-#: ../gramps/gui/dbman.py:894
+#: ../gramps/gui/dbman.py:896
 #, python-format
 msgid ""
 "An attempt to retrieve the data failed with the following message:\n"
@@ -9249,11 +9256,11 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../gramps/gui/dbman.py:934 ../gramps/gui/dbman.py:962
+#: ../gramps/gui/dbman.py:936 ../gramps/gui/dbman.py:964
 msgid "Archiving failed"
 msgstr ""
 
-#: ../gramps/gui/dbman.py:935
+#: ../gramps/gui/dbman.py:937
 #, python-format
 msgid ""
 "An attempt to create the archive failed with the following message:\n"
@@ -9261,15 +9268,15 @@ msgid ""
 "%s"
 msgstr ""
 
-#: ../gramps/gui/dbman.py:940
+#: ../gramps/gui/dbman.py:942
 msgid "Creating data to be archived..."
 msgstr ""
 
-#: ../gramps/gui/dbman.py:949
+#: ../gramps/gui/dbman.py:951
 msgid "Saving archive..."
 msgstr ""
 
-#: ../gramps/gui/dbman.py:963
+#: ../gramps/gui/dbman.py:965
 #, python-format
 msgid ""
 "An attempt to archive the data failed with the following message:\n"

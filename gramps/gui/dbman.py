@@ -654,7 +654,9 @@ class DbManager(CLIDbManager):
         store, node = self.selection.get_selected()
         # New title:
         date_string = time.strftime("%d %b %Y %H:%M:%S", time.gmtime())
-        title = _("%s (copy, %s)") % (store[node][NAME_COL], date_string)
+        title = _("%(new_DB_name)s (copied %(date_string)s)") % {
+                      'new_DB_name' : store[node][NAME_COL],
+                      'date_string' : date_string }
         # Create the row and directory, awaits user edit of title:
         (new_dir, title) = self._create_new_db(title, create_db=False)
         # Copy the files:
