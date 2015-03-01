@@ -66,7 +66,7 @@ if sys.platform == 'win32':
 
 # Others OS
 
-elif sys.platform in ['linux2', 'darwin', 'cygwin']:
+elif sys.platform in ['linux', 'linux2', 'darwin', 'cygwin']:
     msgmergeCmd = 'msgmerge'
     msgfmtCmd = 'msgfmt'
     msgattribCmd = 'msgattrib'
