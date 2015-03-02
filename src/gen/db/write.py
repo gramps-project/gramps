@@ -558,6 +558,18 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         
         self.__check_python_version(name, force_python_upgrade)
 
+        # Check for schema upgrade
+        versionpath = os.path.join(self.path, SCHVERSFN)
+        if os.path.isfile(versionpath):
+            with open(versionpath, "r") as version_file:
+                schema_version = int(version_file.read().strip())
+        else:
+            schema_version = 0
+        if not self.readonly and schema_version < _DBVERSION and \
+                                 force_schema_upgrade:
+            _LOG.debug("Make backup in case there is a schema upgrade")
+            self.__make_zip_backup(name)
+
         # Set up database environment
         self.env = db.DBEnv()
         self.env.set_cachesize(0, DBCACHE)
@@ -664,7 +676,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             versionpath = os.path.join(name, BDBVERSFN)
             with open(versionpath, "w") as version_file:
                 version_file.write(str(db.version()))
-            _LOG.debug("Updated BDBVERSFN file to %s" % str(db.version()))
+            _LOG.debug("Updated bsddb version file to %s" % str(db.version()))
 
         if self.update_python_version:
             versionpath = os.path.join(name, "pythonversion.txt")
@@ -683,6 +695,10 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                        (oldschema, newschema))
             if force_schema_upgrade == True:
                 self.gramps_upgrade(callback)
+                versionpath = os.path.join(name, SCHVERSFN)
+                with open(versionpath, "w") as version_file:
+                    version_file.write(str(_DBVERSION))
+                _LOG.debug("Updated schema version file to %s" % str(_DBVERSION))
             else:
                 self.__close_early()
                 clear_lock_file(name)
@@ -2125,6 +2141,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         with open(versionpath, "w") as version_file:
             version_file.write(str(version_info[0]))
 
+        versionpath = os.path.join(name, SCHVERSFN)
+        _LOG.debug("Write schema version file to %s" % str(_DBVERSION))
+        with open(versionpath, "w") as version_file:
+            version_file.write(str(_DBVERSION))
+
         self.metadata.close()
         self.env.close()
   
@@ -2161,9 +2182,7 @@ def write_lock_file(name):
         try:
             user = os.getlogin()
         except:
-            # not win, so don't need get_env_var.
-            # under cron getlogin() throws and there is no USER.
-            user = os.environ.get('USER', 'noUSER')
+            user = os.environ.get('USER')
     if host:
         text = "%s@%s" % (user, host)
     else:
