@@ -41,7 +41,7 @@ __all__ = (
             ('DBPAGE', 'DBMODE', 'DBCACHE', 'DBLOCKS', 'DBOBJECTS', 'DBUNDO',
              'DBEXT', 'DBMODE_R', 'DBMODE_W', 'DBUNDOFN', 'DBLOCKFN',
              'DBRECOVFN','BDBVERSFN', 'DBLOGNAME', 'DBFLAGS_O',  'DBFLAGS_R',
-             'DBFLAGS_D',
+             'DBFLAGS_D', 'SCHVERSFN'
             ) +
             
             ('PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'CITATION_KEY',
@@ -57,6 +57,7 @@ DBUNDOFN  = "undo.db"       # File name of 'undo' database
 DBLOCKFN  = "lock"          # File name of lock file
 DBRECOVFN = "need_recover"  # File name of recovery file
 BDBVERSFN = "bdbversion.txt"# File name of Berkeley DB version file
+SCHVERSFN = "schemaversion.txt"# File name of schema version file
 DBLOGNAME = ".Db"           # Name of logger
 DBMODE_R  = "r"             # Read-only access
 DBMODE_W  = "w"             # Full Read/Write access

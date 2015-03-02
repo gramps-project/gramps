@@ -600,6 +600,18 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         
         self.__check_python_version(name, force_python_upgrade)
 
+        # Check for schema upgrade
+        versionpath = os.path.join(self.path, SCHVERSFN)
+        if os.path.isfile(versionpath):
+            with open(versionpath, "r") as version_file:
+                schema_version = int(version_file.read().strip())
+        else:
+            schema_version = 0
+        if not self.readonly and schema_version < _DBVERSION and \
+                                 force_schema_upgrade:
+            _LOG.debug("Make backup in case there is a schema upgrade")
+            self.__make_zip_backup(name)
+
         # Set up database environment
         self.env = db.DBEnv()
         self.env.set_cachesize(0, DBCACHE)
@@ -710,7 +722,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                     if isinstance(version, UNITYPE):
                         version = version.encode('utf-8')
                 version_file.write(version)
-            _LOG.debug("Updated BDBVERSFN file to %s" % str(db.version()))
+            _LOG.debug("Updated bsddb version file to %s" % str(db.version()))
 
         if self.update_python_version:
             versionpath = os.path.join(name, "pythonversion.txt")
@@ -718,9 +730,9 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             if sys.version_info[0] < 3:
                 if isinstance(version, UNITYPE):
                     version = version.encode('utf-8')
-            _LOG.debug("Updated python version file to %s" % version)
             with open(versionpath, "w") as version_file:
                 version_file.write(version)
+            _LOG.debug("Updated python version file to %s" % version)
             
         # Here we take care of any changes in the tables related to new code.
         # If secondary indices change, then they should removed
@@ -733,6 +745,14 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                        (oldschema, newschema))
             if force_schema_upgrade == True:
                 self.gramps_upgrade(callback)
+                versionpath = os.path.join(name, SCHVERSFN)
+                version = str(_DBVERSION)
+                if sys.version_info[0] <3:
+                    if isinstance(version, UNITYPE):
+                        version = version.encode('utf-8')
+                with open(versionpath, "w") as version_file:
+                    version_file.write(version)
+                _LOG.debug("Updated schema version file to %s" % version)
             else:
                 self.__close_early()
                 clear_lock_file(name)
@@ -2228,6 +2248,15 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             if isinstance(version, UNITYPE):
                 version = version.encode('utf-8')
         _LOG.debug("Write python version file to %s" % version)
+        with open(versionpath, "w") as version_file:
+            version_file.write(version)
+
+        versionpath = os.path.join(name, SCHVERSFN)
+        version = str(_DBVERSION)
+        if sys.version_info[0] <3:
+            if isinstance(version, UNITYPE):
+                version = version.encode('utf-8')
+        _LOG.debug("Write schema version file to %s" % version)
         with open(versionpath, "w") as version_file:
             version_file.write(version)
 
