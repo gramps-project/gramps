@@ -474,6 +474,30 @@ class IndivCompleteReport(Report):
         self.doc.start_paragraph('IDS-Normal')
         self.doc.end_paragraph()
         
+    def write_tags(self):
+
+        thlist = self.person.get_tag_list()
+        if len(thlist) == 0:
+            return
+        tags = []
+        
+        self.doc.start_table("tags","IDS-IndTable")
+        self.doc.start_row()
+        self.doc.start_cell("IDS-TableHead", 2)
+        self.write_paragraph(self._('Tags'), style='IDS-TableTitle')
+        self.doc.end_cell()
+        self.doc.end_row()
+        for tag_handle in thlist:
+            tag = self._db.get_tag_from_handle(tag_handle)
+            tags.append(tag.get_name())
+        for text in sorted(tags):
+            self.doc.start_row()
+            self.write_cell(text)
+            self.doc.end_row()
+        self.doc.end_table()
+        self.doc.start_paragraph('IDS-Normal')
+        self.doc.end_paragraph()
+        
     def write_families(self):
 
         if not len(self.person.get_family_handle_list()):
@@ -800,6 +824,7 @@ class IndivCompleteReport(Report):
         self.write_associations()
         self.write_attributes()
         self.write_LDS_ordinances()
+        self.write_tags()
         self.write_note()
         if self.use_srcs:
             if self.use_pagebreak and self.bibli.get_citation_count():
