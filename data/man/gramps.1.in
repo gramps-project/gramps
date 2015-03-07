@@ -104,7 +104,7 @@ If no action, import or export options are given on the command line then an int
 
 .TP 
 .BI \-i,\-\^\-import= " FILE"
-Import data from \fIFILE\fR. If you haven't specified a database then a temporary database is used; this is deleted when you exit gramps.
+Import data from \fIFILE\fR. If you haven't specified a database, then an empty database is created for you called Family Tree x (where x is an incrementing number).
 .br
 
 When more than one input file is given, each has to be preceded by \fB\-i\fR 

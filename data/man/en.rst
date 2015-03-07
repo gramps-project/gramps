@@ -82,9 +82,9 @@ gramps(1)                @VERSION@               gramps(1)
 
 
        **-i** , **--import=** *FILE*
-          Import data from *FILE* . If you haven't specified a database then
-          a temporary database is used; this is deleted when you exit
-          gramps.
+          Import data from *FILE* . If you haven't specified a database, then
+          an empty database is created for you called Family Tree x
+          (where x is an incrementing number).
 
           When more than one input file is given, each has to be preceded
           by **-i** flag. The files are imported in the specified order, i.e.
