@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-02 16:09+0100\n"
-"PO-Revision-Date: 2015-03-05 20:11+0100\n"
+"POT-Creation-Date: 2015-03-08 12:54+0100\n"
+"PO-Revision-Date: 2015-03-08 13:01+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -700,7 +700,6 @@ msgstr ""
 "vieler HTML Dateien in einer Datei online zu stellen."
 
 #: ../data/tips.xml.in.h:45
-#, fuzzy
 msgid ""
 "<b>Making a Genealogy Website</b><br/>You can easily export your family tree "
 "to a web page. Select the entire database, family lines or selected "
@@ -710,9 +709,7 @@ msgstr ""
 "<b>Genealogische Website erstellen</b><br/>Du kannst ganz einfach deinen "
 "Stammbaum auf eine Web-Seite exportieren. Wähle eine ganze Datenbank, eine "
 "Gruppe von Vorfahren oder Nachkommen oder Personen um eine Sammlung von "
-"Webseiten fertig zum Hochladen ins World Wide Web zu erstellen. Das "
-"Gramps-Projekt bietet freien Platz auf Webservern für mit Gramps erstellte "
-"Webseiten."
+"Webseiten fertig zum Hochladen ins World Wide Web zu erstellen. "
 
 #: ../data/tips.xml.in.h:46
 msgid ""
@@ -8995,14 +8992,13 @@ msgid "Gramps Homepage"
 msgstr "Gramps Homepage"
 
 #: ../gramps/gui/aboutdialog.py:108
-#, fuzzy
 msgid "Contributions by"
-msgstr "Konfiguration"
+msgstr "Mitwirkung von"
 
 #. TRANSLATORS: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:111
 msgid "translator-credits"
-msgstr ""
+msgstr "Mirko Leonhäuser"
 
 #: ../gramps/gui/clipboard.py:73
 msgid "manual|Using_the_Clipboard"
