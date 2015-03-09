@@ -82,8 +82,8 @@ gramps(1)                @VERSION@               gramps(1)
 
        **-i** , **--import=** *FICHIER*
           Importer des données depuis un *FICHIER* . Si vous n'avez pas
-          spécifié de base de données alors une base de données temporaire
-          est utilisée; elle sera effacée quand vous quitterez gramps.
+          spécifié de base de données, alors une base de données vide
+          est utilisée.
 
           Quand plus d'un fichier doit être importé, chacun doit être
           précédé par la commande **-i** . Ces fichiers sont importés dans le
