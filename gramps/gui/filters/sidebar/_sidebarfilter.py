@@ -29,6 +29,7 @@ from gi.repository import Pango
 from ... import widgets
 from ...dbguielement import DbGUIElement
 from gramps.gen.config import config
+from gramps.gen.constfunc import UNITYPE
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
@@ -208,6 +209,9 @@ class SidebarFilter(DbGUIElement):
         self.__tag_list = []
         for handle in self.dbstate.db.get_tag_handles(sort_handles=True):
             tag = self.dbstate.db.get_tag_from_handle(handle)
+            # for python3 this returns a byte object, so conversion needed
+            if not isinstance(handle, UNITYPE):
+                handle = handle.decode('utf-8')
             self.__tag_list.append((tag.get_name(), handle))
         self.on_tags_changed([item[0] for item in self.__tag_list])
         
