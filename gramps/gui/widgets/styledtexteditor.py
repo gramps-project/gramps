@@ -60,7 +60,7 @@ from .toolcomboentry import ToolComboEntry
 from .springseparator import SpringSeparatorAction
 from ..spell import Spell
 from ..display import display_url
-from ..utils import SystemFonts, rgb_to_hex, hex_to_color, color_to_hex
+from ..utils import SystemFonts, rgb_to_hex
 from gramps.gen.config import config
 from gramps.gen.constfunc import has_display
 
@@ -653,21 +653,23 @@ class StyledTextEditor(Gtk.TextView):
         current_value = self.textbuffer.get_style_at_cursor(style)
 
         if style == StyledTextTagType.FONTCOLOR:
-            color_dialog = Gtk.ColorSelectionDialog(_("Select font color"))
+            color_dialog = Gtk.ColorChooserDialog(_("Select font color"))
         elif style == StyledTextTagType.HIGHLIGHT:
-            color_dialog = Gtk.ColorSelectionDialog(_("Select "
-                                                         "background color"))
+            color_dialog = Gtk.ColorChooserDialog(_("Select background color"))
         else:
             _LOG.debug("unknown style: '%d'" % style)
             return
 
-        color_selection = color_dialog.get_color_selection()
         if current_value:
-            color_selection.set_current_color(hex_to_color(current_value))
+            rgba = Gdk.RGBA()
+            rgba.parse(current_value)
+            color_dialog.set_rgba(rgba)
 
         response = color_dialog.run()
-        color = color_selection.get_current_color()
-        value = color_to_hex(color)
+        rgba = color_dialog.get_rgba()
+        value = '#%02x%02x%02x' % (int(rgba.red * 255),
+                                   int(rgba.green * 255),
+                                   int(rgba.blue * 255))
         color_dialog.destroy()
         
         if response == Gtk.ResponseType.OK:

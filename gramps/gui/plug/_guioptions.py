@@ -231,8 +231,10 @@ class GuiColorOption(Gtk.ColorButton):
     def __init__(self, option, dbstate, uistate, track, override):
         self.__option = option
         value = self.__option.get_value()
-        GObject.GObject.__init__(self)
-        self.set_color(Gdk.color_parse(self.__option.get_value()))
+        Gtk.ColorButton.__init__(self)
+        rgba = Gdk.RGBA()
+        rgba.parse(self.__option.get_value())
+        self.set_rgba(rgba)
 
         # Set up signal handlers when the widget value is changed
         # from user interaction or programmatically.  When handling
@@ -247,11 +249,10 @@ class GuiColorOption(Gtk.ColorButton):
         """
         Handle the change of color made by the user.
         """
-        colour = self.get_color()
-        value = '#%02x%02x%02x' % (
-            int(colour.red      * 256 / 65536),
-            int(colour.green    * 256 / 65536),
-            int(colour.blue     * 256 / 65536))
+        rgba = self.get_rgba()
+        value = '#%02x%02x%02x' % (int(rgba.red * 255),
+                                   int(rgba.green * 255),
+                                   int(rgba.blue * 255))
 
         self.__option.disable_signals()
         self.__option.set_value(value)
@@ -262,7 +263,9 @@ class GuiColorOption(Gtk.ColorButton):
         Handle the change made programmatically
         """
         self.handler_block(self.changekey)
-        self.set_color(Gdk.color_parse(self.__option.get_value()))
+        rgba = Gdk.RGBA()
+        rgba.parse(self.__option.get_value())
+        self.set_rgba(rgba)
         self.handler_unblock(self.changekey)
 
     def clean_up(self):
@@ -1520,20 +1523,19 @@ class GuiSurnameColorOption(Gtk.Box):
         # get the surname and colour value for this family
         i = self.__model.get_iter(path)
         surname = self.__model.get_value(i, 0)
-        colour = Gdk.color_parse(self.__model.get_value(i, 1))
+        rgba = Gdk.RGBA()
+        rgba.parse(self.__model.get_value(i, 1))
 
         title = _('Select color for %s') % surname
-        colour_dialog = Gtk.ColorSelectionDialog(title)
-        colorsel = colour_dialog.get_color_selection()
-        colorsel.set_current_color(colour)
+        colour_dialog = Gtk.ColorChooserDialog(title)
+        colour_dialog.set_rgba(rgba)
         response = colour_dialog.run()
 
         if response == Gtk.ResponseType.OK:
-            colour = colorsel.get_current_color()
-            colour_name = '#%02x%02x%02x' % (
-                int(colour.red  *256/65536),
-                int(colour.green*256/65536),
-                int(colour.blue *256/65536))
+            rgba = colour_dialog.get_rgba()
+            colour_name = '#%02x%02x%02x' % (int(rgba.red * 255),
+                                             int(rgba.green * 255),
+                                             int(rgba.blue * 255))
             self.__model.set_value(i, 1, colour_name)
 
         colour_dialog.destroy()

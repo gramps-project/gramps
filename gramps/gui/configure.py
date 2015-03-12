@@ -251,10 +251,10 @@ class ConfigureDialog(ManagedWindow):
         self.__config.set(constant, conv_to_unicode(obj.get_text()))
 
     def update_color(self, obj, constant, color_hex_label):
-        color = obj.get_color()
-        hexval = "#%02x%02x%02x" % (color.red/256, 
-                                    color.green/256, 
-                                    color.blue/256)
+        rgba = obj.get_rgba()
+        hexval = "#%02x%02x%02x" % (int(rgba.red * 255),
+                                    int(rgba.green * 255),
+                                    int(rgba.blue * 255))
         color_hex_label.set_text(hexval)
         self.__config.set(constant, hexval)
 

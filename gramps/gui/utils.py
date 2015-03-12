@@ -540,22 +540,6 @@ def rgb_to_hex(rgb):
         rgbint = (int(rgb[0] * 255), int(rgb[1] * 255), int(rgb[2] * 255))
         return '#%02x%02x%02x' % rgbint
 
-def color_to_hex(color):
-    """Convert Gdk.Color to hex string."""
-    hexstring = ""
-    for col in 'red', 'green', 'blue':
-        hexfrag = hex(getattr(color, col) // (16 * 16)).split("x")[1]
-        if len(hexfrag) < 2:
-            hexfrag = "0" + hexfrag
-        hexstring += hexfrag
-    return '#' + hexstring
-    
-def hex_to_color(hex):
-    """Convert hex string to Gdk.Color."""
-    from gi.repository import Gdk
-    color = Gdk.color_parse(hex)
-    return color
-
 def edit_object(dbstate, uistate, reftype, ref):
     """
     Invokes the appropriate editor for an object type and given handle.

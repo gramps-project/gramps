@@ -553,7 +553,11 @@ class EditTag(object):
         Save the changes made to the tag.
         """
         self.tag.set_name(cuni(self.entry.get_text()))
-        self.tag.set_color(self.color.get_color().to_string())
+        rgba = self.color.get_rgba()
+        hexval = "#%02x%02x%02x" % (int(rgba.red * 255),
+                                    int(rgba.green * 255),
+                                    int(rgba.blue * 255))
+        self.tag.set_color(hexval)
 
         if not self.tag.get_name():
             ErrorDialog(
@@ -594,7 +598,9 @@ class EditTag(object):
         self.entry = Gtk.Entry()
         self.entry.set_text(self.tag.get_name())
         self.color = Gtk.ColorButton()
-        self.color.set_color(Gdk.color_parse(self.tag.get_color()))
+        rgba = Gdk.RGBA()
+        rgba.parse(self.tag.get_color())
+        self.color.set_rgba(rgba)
         title = _("%(title)s - Gramps") % {'title': _("Pick a Color")}
         self.color.set_title(title)
         hbox.pack_start(label, False, False, 5)
