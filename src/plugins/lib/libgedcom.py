@@ -1744,6 +1744,7 @@ class GedcomParser(UpdateCallback):
 
     __TRUNC_MSG = _("Your GEDCOM file is corrupted. "
                     "It appears to have been truncated.")
+    _EMPTY_LOC = gen.lib.Location().serialize()
 
     SyntaxError = "Syntax Error"
     BadFile = "Not a GEDCOM file"
@@ -2223,12 +2224,12 @@ class GedcomParser(UpdateCallback):
             TOKEN_CTRY   : self.__location_ctry, 
             # Not legal GEDCOM - not clear why these are included at this level 
             TOKEN_ADDR   : self.__ignore, 
-            TOKEN_DATE   : self.__location_date, 
+            TOKEN_DATE   : self.__ignore, # there is nowhere to put a date
             TOKEN_NOTE   : self.__location_note, 
             TOKEN_RNOTE  : self.__location_note, 
             TOKEN__LOC   : self.__ignore, 
             TOKEN__NAME  : self.__ignore, 
-            TOKEN_PHON   : self.__ignore, 
+            TOKEN_PHON   : self.__location_phone, 
             TOKEN_IGNORE : self.__ignore, 
             }
         self.func_list.append(self.parse_loc_tbl)
@@ -2563,12 +2564,12 @@ class GedcomParser(UpdateCallback):
         self.func_list.append(self.note_parse_tbl)
 
         # look for existing place titles, build a map 
-        self.place_names = {}
+        self.place_names = defaultdict(list)
         cursor = dbase.get_place_cursor()
         data = cursor.next()
         while data:
             (handle, val) = data
-            self.place_names[val[2]] = handle
+            self.place_names[val[2]].append(handle)
             data = cursor.next()
         cursor.close()
 
@@ -2789,40 +2790,59 @@ class GedcomParser(UpdateCallback):
             self.dbase.add_note(note, self.trans)
         return note
 
-    def __find_or_create_place(self, title):
+    def __loc_is_empty(self, location):
         """
-        Finds or creates a place based on the GRAMPS ID. If the ID is
-        already used (is in the db), we return the item in the db. Otherwise, 
-        we create a new place, assign the handle and GRAMPS ID.
+        Determines whether a location is empty.
+        
+        @param location: The current location
+        @type location: gen.lib.Location
+        @return True of False
+        """
+        if location is None:
+            return True
+        elif location.serialize() == self._EMPTY_LOC:
+            return True
+        elif location.is_empty():
+            return True
+        return False
+    
+    def __find_place(self, title, location):
+        """
+        Finds an existing place based on the title and primary location.
+        
+        @param title: The place title
+        @type title: string
+        @param location: The current location
+        @type location: gen.lib.Location
+        @return gen.lib.Place
+        """
+        for place_handle in self.place_names[title]:
+            place = self.dbase.get_place_from_handle(place_handle)
+            if place.get_title() == title:
+                if self.__loc_is_empty(location) and \
+                   self.__loc_is_empty(place.get_main_location()):
+                    return place
+                elif (not self.__loc_is_empty(location) and \
+                      not self.__loc_is_empty(place.get_main_location()) and
+                      place.get_main_location().is_equivalent(location) == IDENTICAL):
+                    return place
+        return None
+
+    def __create_place(self, title, location):
+        """
+        Create a new place based on the title and primary location.
+        
+        @param title: The place title
+        @type title: string
+        @param location: The current location
+        @type location: gen.lib.Location
+        @return gen.lib.Place
         """
         place = gen.lib.Place()
-
-        # check to see if we've encountered this name before
-        # if we haven't we need to get a new GRAMPS ID
-        
-        intid = self.place_names.get(title)
-        if intid is None:
-            intid = self.lid2id.get(title)
-            if intid is None:
-                new_id = self.dbase.find_next_place_gramps_id()
-            else:
-                new_id = None
-        else:
-            new_id = None
-
-        # check to see if the name already existed in the database
-        # if it does, create a new name by appending the GRAMPS ID.
-        # generate a GRAMPS ID if needed
-        
-        if self.dbase.has_place_handle(intid):
-            place.unserialize(self.dbase.get_raw_place_data(intid))
-        else:
-            intid = Utils.create_id()
-            place.set_handle(intid)
-            place.set_title(title)
-            place.set_gramps_id(new_id)
-            self.dbase.add_place(place, self.trans)
-            self.lid2id[title] = intid
+        place.set_title(title)
+        place.set_main_location(location)
+        self.dbase.add_place(place, self.trans)
+        self.place_names[title].append(place.get_handle())
         return place
 
     def __find_file(self, fullname, altpath):
@@ -4379,8 +4399,12 @@ class GedcomParser(UpdateCallback):
         @type state: CurrentState
         """
         try:
-            state.place = self.__find_or_create_place(line.data)
-            state.place.set_title(line.data)
+            title = line.data
+            place = self.__find_place(title, None)
+            if place:
+                state.place = place
+            else:
+                state.place = self.__create_place(title, None)
             state.lds_ord.set_place_handle(state.place.handle)
         except NameError:
             return
@@ -5214,20 +5238,50 @@ class GedcomParser(UpdateCallback):
         if self.is_ftw and state.event.type in FTW_BAD_PLACE:
             state.event.set_description(line.data)
         else:
-            # It is possible that we have already got an address structure
-            # associated with this event. In that case, we will remember the
-            # location to re-insert later, and set the place as the place name
-            # and primary location
+            title = line.data
             place_handle = state.event.get_place_handle()
             if place_handle:
-                place = self.dbase.get_place_from_handle(place_handle)
-                location = place.get_main_location()
-                empty_loc = gen.lib.Location()
-                place.set_main_location(empty_loc)
+                # We encounter a PLAC, having previously encountered an ADDR
+                old_place = self.dbase.get_place_from_handle(place_handle)
+                old_title = old_place.get_title()
+                location = old_place.get_main_location()
+                if old_title != "":
+                    # We have previously found a PLAC 
+                    self.__add_msg(_("A second PLAC ignored"), line, state)
+                    # ignore this second PLAC, and use the old one
+                    title = old_title
+                    place = old_place
+                else:
+                    # This is the first PLAC
+                    refs = list(self.dbase.find_backlink_handles(place_handle))
+                    # We haven't commited the event yet, so the place will not
+                    # be linked to it. If there are any refs they will be from
+                    # other events (etc)
+                    if len(refs) == 0:
+                        place = self.__find_place(title, location)
+                        if place is None:
+                            place = old_place
+                            place.set_title(title)
+                            self.place_names[old_title].remove(place_handle)
+                            self.place_names[title].append(place_handle)
+                        else:
+                            place.merge(old_place)
+                            self.dbase.remove_place(place_handle, self.trans)
+                            self.place_names[old_title].remove(place_handle)
+                    else:
+                        place = self.__find_place(title, location)
+                        if place is None:
+                            place = self.__create_place(title, location)
+                        else:
+                            pass
             else:
-                place = self.__find_or_create_place(line.data)
-            place.set_title(line.data)
-            state.event.set_place_handle(place.handle)
+                # The first thing we encounter is PLAC
+                location = None
+                place = self.__find_place(title, location)
+                if place is None:
+                    place = self.__create_place(title, location)
+
+            state.event.set_place_handle(place.handle)            
 
             sub_state = CurrentState()
             sub_state.place = place
@@ -5358,8 +5412,8 @@ class GedcomParser(UpdateCallback):
         
         sub_state = CurrentState(level=state.level+1)
         sub_state.location = gen.lib.Location()
-        sub_state.note = []
         sub_state.event = state.event
+        sub_state.place = gen.lib.Place() # temp stash for notes, citations etc
 
         self.__parse_level(sub_state, self.parse_loc_tbl, self.__undefined)
         state.msg += sub_state.msg
@@ -5367,22 +5421,51 @@ class GedcomParser(UpdateCallback):
         self.__merge_address(free_form, sub_state.location, line, state)
 
         location = sub_state.location
-        note_list = sub_state.note
-
         place_handle = state.event.get_place_handle()
         if place_handle:
-            place = self.dbase.get_place_from_handle(place_handle)
+            # We encounter an ADDR having previously encountered a PLAC
+            old_place = self.dbase.get_place_from_handle(place_handle)
+            title = old_place.get_title()
+            if not old_place.get_main_location().is_empty():
+                # We have perviously found an ADDR, or have populated location
+                # from PLAC title
+                self.__add_msg(_("Location already populated; ADDR ignored"),
+                               line, state)
+                # ignore this second ADDR, and use the old one
+                location = old_place.get_main_location()
+                place = old_place
+            else:
+                # This is the first ADDR
+                refs = list(self.dbase.find_backlink_handles(place_handle))
+                # We haven't commited the event yet, so the place will not be
+                # linked to it. If there are any refs they will be from other
+                # events (etc)
+                if len(refs) == 0:
+                    place = self.__find_place(title, location)
+                    if place is None:
+                        place = old_place
+                        place.set_main_location(location)
+                    else:
+                        place.merge(old_place)
+                        self.dbase.remove_place(place_handle, self.trans)
+                        self.place_names[title].remove(place_handle)
+                else:
+                    place = self.__find_place(title, location)
+                    if place is None:
+                        place = self.__create_place(title, location)
+                    else:
+                        pass
         else:
-            place = self.__find_or_create_place(line.data)
-            place.set_title(line.data)
-            place_handle = place.handle
+            # The first thing we encounter is ADDR
+            title = ""
+            place = self.__find_place(title, location)
+            if place is None:
+                place = self.__create_place(title, location)
 
-        self.__add_location(place, location)
-        # place.set_main_location(location)
+        # merge notes etc into place
+        place.merge(sub_state.place)
 
-        map(place.add_note, note_list)
-
-        state.event.set_place_handle(place_handle)
+        state.event.set_place_handle(place.get_handle())
         self.dbase.commit_place(place, self.trans)
 
     def __add_location(self, place, location):
@@ -6560,17 +6643,6 @@ class GedcomParser(UpdateCallback):
         url.set_type(gen.lib.UrlType(gen.lib.UrlType.EMAIL))
         state.repo.add_url(url)
 
-    def __location_date(self, line, state):
-        """
-        @param line: The current line in GedLine format
-        @type line: GedLine
-        @param state: The current state
-        @type state: CurrentState
-        """
-        if not state.location:
-            state.location = gen.lib.Location()
-        state.location.set_date_object(line.data)
-
     def __location_adr1(self, line, state):
         """
         @param line: The current line in GedLine format
@@ -6639,7 +6711,7 @@ class GedcomParser(UpdateCallback):
             state.location = gen.lib.Location()
         state.location.set_country(line.data)
 
-    def __location_note(self, line, state):
+    def __location_phone(self, line, state):
         """
         @param line: The current line in GedLine format
         @type line: GedLine
@@ -6648,9 +6720,19 @@ class GedcomParser(UpdateCallback):
         """
         if not state.location:
             state.location = gen.lib.Location()
+        state.location.set_phone(line.data)
+
+    def __location_note(self, line, state):
+        """
+        @param line: The current line in GedLine format
+        @type line: GedLine
+        @param state: The current state
+        @type state: CurrentState
+        """
         if state.event:
-            self.__parse_note(line, state.event, state.level+1, state)
+            self.__parse_note(line, state.place, state.level, state)
         else:
+            # This causes notes below SUBMitter to be ignored
             self.__not_recognized(line, state.level, state)
 
     def __optional_note(self, line, state):
