@@ -77,7 +77,7 @@ class DbReadBase(object):
         Databases can implement certain features or not. The default is
         None, unless otherwise explicitly stated.
         """
-        return self.__feature.get(feature, None) # can also be explitily None
+        return self.__feature.get(feature, None) # can also be explicitly None
 
     def set_feature(self, feature, value):
         """
