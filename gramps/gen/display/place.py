@@ -55,6 +55,8 @@ class PlaceDisplay(object):
         if place_handle:
             place = db.get_place_from_handle(place_handle)
             return self.display(db, place, event.get_date_object())
+        else:
+            return ""
 
     def display(self, db, place, date=None):
         if not place:
