@@ -5089,7 +5089,7 @@ class GedcomParser(UpdateCallback):
             #    +1 SOUR @<XREF:SOUR>@  {0:M}
             if not line.data:
                 self.__add_msg(_("Empty note ignored"), line, state)
-                self.__skip_subordinate_levels(level+1, state)
+                self.__skip_subordinate_levels(state.level+1, state)
             else:
                 new_note = gen.lib.Note(line.data)
                 new_note.set_gramps_id(self.nid_map[""])
