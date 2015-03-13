@@ -8,7 +8,7 @@
 # Copyright (C) 2010      Jakim Friant
 # Copyright (C) 2011      Tim G L Lyons
 # Copyright (C) 2012      Mathieu MD
-# Copyright (C) 2013-2014 Paul Franklin
+# Copyright (C) 2013-2015 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -498,6 +498,49 @@ class IndivCompleteReport(Report):
         self.doc.start_paragraph('IDS-Normal')
         self.doc.end_paragraph()
         
+    def write_images(self):
+
+        media_list = self.person.get_media_list()
+        if (not self.use_images) or (len(media_list) < 2): # only show if > one
+            return
+        
+        self.doc.start_table("images","IDS-GalleryTable")
+        cells = 3 # the GalleryTable has 3 cells
+        self.doc.start_row()
+        self.doc.start_cell("IDS-TableHead", cells)
+        self.write_paragraph(self._('Images'), style='IDS-TableTitle')
+        self.doc.end_cell()
+        self.doc.end_row()
+        count = 0
+        while ( count < len(media_list) ):
+            media_ref = media_list[count]
+            media_handle = media_ref.get_reference_handle()
+            media = self._db.get_object_from_handle(media_handle)
+            if media is None:
+                from gramps.gui.dialog import RunDatabaseRepair
+                RunDatabaseRepair(_('Non existing media found in the Gallery'))
+                return
+            mime_type = media.get_mime_type()
+            if not mime_type or not mime_type.startswith("image"):
+                count += 1
+                continue
+            description = media.get_description()
+            if count % cells == 0:
+                self.doc.start_row()
+            self.doc.start_cell('IDS-NormalCell')
+            self.write_paragraph(description, style='IDS-ImageCaptionCenter')
+            ReportUtils.insert_image(self._db, self.doc, media_ref, self._user,
+                                     align='center', w_cm=5.0, h_cm=5.0)
+            self.doc.end_cell()
+            if count % cells == cells - 1:
+                self.doc.end_row()
+            count += 1
+        if count % cells != 0:
+            self.doc.end_row()
+        self.doc.end_table()
+        self.doc.start_paragraph('IDS-Normal')
+        self.doc.end_paragraph()
+        
     def write_families(self):
 
         if not len(self.person.get_family_handle_list()):
@@ -825,6 +868,7 @@ class IndivCompleteReport(Report):
         self.write_attributes()
         self.write_LDS_ordinances()
         self.write_tags()
+        self.write_images()
         self.write_note()
         if self.use_srcs:
             if self.use_pagebreak and self.bibli.get_citation_count():
@@ -1028,6 +1072,16 @@ class IndivCompleteOptions(MenuReportOptions):
         para.set_description(_('A style used for image facts.'))
         default_style.add_paragraph_style("IDS-ImageNote", para)
         
+        font = FontStyle()
+        font.set_size(8)
+        para = ParagraphStyle()
+        para.set_alignment(PARA_ALIGN_CENTER)
+        para.set_font(font)
+        para.set_top_margin(ReportUtils.pt2cm(3))
+        para.set_bottom_margin(ReportUtils.pt2cm(3))
+        para.set_description(_('A style used for image captions.'))
+        default_style.add_paragraph_style("IDS-ImageCaptionCenter", para)
+        
         # Table Styles
         tbl = TableStyle()
         tbl.set_width(100)
@@ -1090,5 +1144,13 @@ class IndivCompleteOptions(MenuReportOptions):
         tbl.set_column_width(4,18) # Temple
         tbl.set_column_width(5,12) # Place
         default_style.add_table_style('IDS-OrdinanceTable2', tbl)
+
+        tbl = TableStyle()
+        tbl.set_width(100)
+        tbl.set_columns(3)
+        tbl.set_column_width(0, 33)
+        tbl.set_column_width(1, 33)
+        tbl.set_column_width(2, 34)
+        default_style.add_table_style("IDS-GalleryTable", tbl)
 
         Endnotes.add_endnote_styles(default_style)

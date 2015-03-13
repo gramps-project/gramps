@@ -5,7 +5,7 @@
 # Copyright (C) 2007-2009  Brian G. Matherly
 # Copyright (C) 2008       James Friedmann <jfriedmannj@gmail.com>
 # Copyright (C) 2010       Jakim Friant
-#
+# Copyright (C) 2015       Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -127,9 +127,16 @@ def place_name(db, place_handle):
 # Functions commonly used in reports
 #
 #-------------------------------------------------------------------------
-def insert_image(database, doc, photo, user, w_cm=4.0, h_cm=4.0, alt=""):
+def insert_image(database, doc, photo, user,
+                 w_cm=4.0, h_cm=4.0, alt="", style_name=None, align='right'):
     """
     Insert pictures of a person into the document.
+
+    :type photo: :class:`~.mediaref.MediaRef`
+    :type user:  :class:`.gen.user.User`
+    :param alt: an alternative text to use. Useful for eg html reports
+    :param style_name: style to use for the "alternative text" or captions
+    :param align: image alignment: 'left', 'right', 'center', or 'single'
     """
 
     object_handle = photo.get_reference_handle()
@@ -138,8 +145,9 @@ def insert_image(database, doc, photo, user, w_cm=4.0, h_cm=4.0, alt=""):
     if mime_type and mime_type.startswith("image"):
         filename = media_path_full(database, media_object.get_path())
         if os.path.exists(filename):
-            doc.add_media_object(filename, "right", w_cm, h_cm, alt=alt,
-                                 style_name="DDR-Caption", crop=photo.get_rectangle())
+            doc.add_media_object(filename, align, w_cm, h_cm,
+                                 alt=alt, style_name=style_name,
+                                 crop=photo.get_rectangle())
         else:
             user.warn(_("Could not add photo to page"), 
                       "%s: %s" % (filename, _('File does not exist')))
