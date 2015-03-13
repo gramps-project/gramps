@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the GRAMPS package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2014.
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2015.
 #
 # Common terms and translations:
 #  ancestor        předek
