@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-08 12:54+0100\n"
-"PO-Revision-Date: 2015-03-08 13:01+0100\n"
+"POT-Creation-Date: 2015-03-13 17:34+0100\n"
+"PO-Revision-Date: 2015-03-13 17:40+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -8617,7 +8617,7 @@ msgstr "der Filter"
 msgid "See details"
 msgstr "Siehe Details"
 
-#: ../gramps/gen/utils/image.py:125
+#: ../gramps/gen/utils/image.py:122
 msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
@@ -12818,7 +12818,7 @@ msgstr "Kennung"
 msgid "URL"
 msgstr "URL"
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:79
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:80
 msgid "Reset"
 msgstr "Zurücksetzen"
 
@@ -22926,42 +22926,42 @@ msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr ""
 "Deine GEDCOM-Datei ist beschädigt. Vermutlich ist die Datei unvollständig."
 
-#: ../gramps/plugins/lib/libgedcom.py:1890
+#: ../gramps/plugins/lib/libgedcom.py:1891
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importieren von GEDCOM (%s)"
 
-#: ../gramps/plugins/lib/libgedcom.py:2687
-#: ../gramps/plugins/lib/libgedcom.py:3061
+#: ../gramps/plugins/lib/libgedcom.py:2688
+#: ../gramps/plugins/lib/libgedcom.py:3082
 msgid "GEDCOM import"
 msgstr "GEDCOM-Import"
 
-#: ../gramps/plugins/lib/libgedcom.py:2715
+#: ../gramps/plugins/lib/libgedcom.py:2716
 msgid "GEDCOM import report: No errors detected"
 msgstr "GEDCOM Importbericht: keine Fehler gefunden"
 
-#: ../gramps/plugins/lib/libgedcom.py:2717
+#: ../gramps/plugins/lib/libgedcom.py:2718
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "GEDCOM Importbericht: %s Fehler gefunden"
 
-#: ../gramps/plugins/lib/libgedcom.py:2982
+#: ../gramps/plugins/lib/libgedcom.py:3003
 msgid "Tag recognized but not supported"
 msgstr "Die Markierung wurde zwar erkannt, wird aber nicht unterstützt."
 
-#: ../gramps/plugins/lib/libgedcom.py:2993
+#: ../gramps/plugins/lib/libgedcom.py:3014
 msgid "Line ignored as not understood"
 msgstr "Die Zeile wurde ignoriert, da sie nicht verstanden wurde."
 
-#: ../gramps/plugins/lib/libgedcom.py:3018
+#: ../gramps/plugins/lib/libgedcom.py:3039
 msgid "Skipped subordinate line"
 msgstr "Untergeordnete Zeile übersprungen"
 
-#: ../gramps/plugins/lib/libgedcom.py:3052
+#: ../gramps/plugins/lib/libgedcom.py:3073
 msgid "Records not imported into "
 msgstr "Datensätze nicht importiert nach "
 
-#: ../gramps/plugins/lib/libgedcom.py:3088
+#: ../gramps/plugins/lib/libgedcom.py:3109
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -22970,7 +22970,7 @@ msgstr ""
 "FEHLER: %(msg)s  '%(gramps_id)s' (eingelesen als @%(xref)s@) ist nicht im "
 "eingelesenen GEDCOM. Der Datensatz wird synthetisiert."
 
-#: ../gramps/plugins/lib/libgedcom.py:3097
+#: ../gramps/plugins/lib/libgedcom.py:3118
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
@@ -22980,7 +22980,7 @@ msgstr ""
 "eingelesenen GEDCOM. Der Datensatz wird mit dem versinnbildlichenden Attribut "
 "'Unbekannt' erstellt."
 
-#: ../gramps/plugins/lib/libgedcom.py:3136
+#: ../gramps/plugins/lib/libgedcom.py:3157
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -22991,7 +22991,7 @@ msgstr ""
 "(person)s (eingelesen als %(orig_person)s) ist kein referenziertes Mitglied "
 "der Familie. Die Familienreferenz wurde von der Person entfernt."
 
-#: ../gramps/plugins/lib/libgedcom.py:3214
+#: ../gramps/plugins/lib/libgedcom.py:3235
 #, python-format
 msgid ""
 "\n"
@@ -23011,181 +23011,192 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3282
+#: ../gramps/plugins/lib/libgedcom.py:3303
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "ADDR Element ignoriert '%s'"
 
-#: ../gramps/plugins/lib/libgedcom.py:3295
+#: ../gramps/plugins/lib/libgedcom.py:3316
 msgid "TRLR (trailer)"
 msgstr "TRLR (Anhang)"
 
-#: ../gramps/plugins/lib/libgedcom.py:3324
+#: ../gramps/plugins/lib/libgedcom.py:3345
 #, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr "SUBM (Ersteller): @%s@"
 
-#: ../gramps/plugins/lib/libgedcom.py:3348
-#: ../gramps/plugins/lib/libgedcom.py:6864
+#: ../gramps/plugins/lib/libgedcom.py:3369
+#: ../gramps/plugins/lib/libgedcom.py:6964
 msgid "GEDCOM data"
 msgstr "GEDCOM Daten"
 
-#: ../gramps/plugins/lib/libgedcom.py:3394
+#: ../gramps/plugins/lib/libgedcom.py:3415
 msgid "Unknown tag"
 msgstr "Unbekannte Markierung"
 
-#: ../gramps/plugins/lib/libgedcom.py:3396
-#: ../gramps/plugins/lib/libgedcom.py:3410
-#: ../gramps/plugins/lib/libgedcom.py:3414
+#: ../gramps/plugins/lib/libgedcom.py:3417
+#: ../gramps/plugins/lib/libgedcom.py:3431
 #: ../gramps/plugins/lib/libgedcom.py:3435
+#: ../gramps/plugins/lib/libgedcom.py:3456
 msgid "Top Level"
 msgstr "Oberste Ebene"
 
-#: ../gramps/plugins/lib/libgedcom.py:3507
+#: ../gramps/plugins/lib/libgedcom.py:3528
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (Individium) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3624
+#: ../gramps/plugins/lib/libgedcom.py:3645
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Leerer Alias <PERSÖNLICHER NAME> ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:3704
-#: ../gramps/plugins/lib/libgedcom.py:5015
-#: ../gramps/plugins/lib/libgedcom.py:5243
-#: ../gramps/plugins/lib/libgedcom.py:5371
-#: ../gramps/plugins/lib/libgedcom.py:5997
-#: ../gramps/plugins/lib/libgedcom.py:6150
+#: ../gramps/plugins/lib/libgedcom.py:3725
+#: ../gramps/plugins/lib/libgedcom.py:5040
+#: ../gramps/plugins/lib/libgedcom.py:5268
+#: ../gramps/plugins/lib/libgedcom.py:5429
+#: ../gramps/plugins/lib/libgedcom.py:6098
+#: ../gramps/plugins/lib/libgedcom.py:6251
 msgid "Filename omitted"
 msgstr "Dateiname ausgelassen"
 
-#: ../gramps/plugins/lib/libgedcom.py:3706
-#: ../gramps/plugins/lib/libgedcom.py:5017
-#: ../gramps/plugins/lib/libgedcom.py:5245
-#: ../gramps/plugins/lib/libgedcom.py:5373
-#: ../gramps/plugins/lib/libgedcom.py:5999
-#: ../gramps/plugins/lib/libgedcom.py:6152
+#: ../gramps/plugins/lib/libgedcom.py:3727
+#: ../gramps/plugins/lib/libgedcom.py:5042
+#: ../gramps/plugins/lib/libgedcom.py:5270
+#: ../gramps/plugins/lib/libgedcom.py:5431
+#: ../gramps/plugins/lib/libgedcom.py:6100
+#: ../gramps/plugins/lib/libgedcom.py:6253
 msgid "Form omitted"
 msgstr "Formular ausgelassen"
 
-#: ../gramps/plugins/lib/libgedcom.py:4779
+#: ../gramps/plugins/lib/libgedcom.py:4804
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (Familie) Gramps ID: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:5159
-#: ../gramps/plugins/lib/libgedcom.py:7162
-#: ../gramps/plugins/lib/libgedcom.py:7202
+#: ../gramps/plugins/lib/libgedcom.py:5184
+#: ../gramps/plugins/lib/libgedcom.py:7262
+#: ../gramps/plugins/lib/libgedcom.py:7302
 msgid "Empty note ignored"
 msgstr "Leere Notiz ignoriert"
 
+#. We have previously found a PLAC
+#: ../gramps/plugins/lib/libgedcom.py:5342
+msgid "A second PLAC ignored"
+msgstr "Ein zweites PLAC ignoriert"
+
+#. We have perviously found an ADDR, or have populated location
+#. from PLAC title
+#: ../gramps/plugins/lib/libgedcom.py:5509
+msgid "Location already populated; ADDR ignored"
+msgstr "Örtlichkeit schon bekannt ADDR ignoriert"
+
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../gramps/plugins/lib/libgedcom.py:5516
+#: ../gramps/plugins/lib/libgedcom.py:5617
 msgid "Empty event note ignored"
 msgstr "Leere Ereignisnotiz ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:5834
-#: ../gramps/plugins/lib/libgedcom.py:6659
+#: ../gramps/plugins/lib/libgedcom.py:5935
+#: ../gramps/plugins/lib/libgedcom.py:6749
 msgid "Warn: ADDR overwritten"
 msgstr "Warn: ADDR überschrieben"
 
-#: ../gramps/plugins/lib/libgedcom.py:6011
-#: ../gramps/plugins/lib/libgedcom.py:6445
+#: ../gramps/plugins/lib/libgedcom.py:6112
+#: ../gramps/plugins/lib/libgedcom.py:6546
 msgid "REFN ignored"
 msgstr "REFN ignoriert"
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6110
+#: ../gramps/plugins/lib/libgedcom.py:6211
 #, python-format
 msgid "No title - ID %s"
 msgstr "Kein Titel - ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6115
+#: ../gramps/plugins/lib/libgedcom.py:6216
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (Quelle) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6371
+#: ../gramps/plugins/lib/libgedcom.py:6472
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (Multimediaobjekt) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6399
-#: ../gramps/plugins/lib/libgedcom.py:7390
+#: ../gramps/plugins/lib/libgedcom.py:6500
+#: ../gramps/plugins/lib/libgedcom.py:7490
 #, python-format
 msgid "Could not import %s"
 msgstr "Kann Datei %s nicht importieren"
 
-#: ../gramps/plugins/lib/libgedcom.py:6435
+#: ../gramps/plugins/lib/libgedcom.py:6536
 msgid "BLOB ignored"
 msgstr "BLOB ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:6455
+#: ../gramps/plugins/lib/libgedcom.py:6556
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "Multimedia REFN:TYPE ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:6465
+#: ../gramps/plugins/lib/libgedcom.py:6566
 msgid "Mutimedia RIN ignored"
 msgstr "Mutimedia RIN ignoriert"
 
-#: ../gramps/plugins/lib/libgedcom.py:6552
+#: ../gramps/plugins/lib/libgedcom.py:6653
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (Aufbewahrungsort) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6784
+#: ../gramps/plugins/lib/libgedcom.py:6884
 msgid "HEAD (header)"
 msgstr "Kopf (Dateikopf)"
 
-#: ../gramps/plugins/lib/libgedcom.py:6801
+#: ../gramps/plugins/lib/libgedcom.py:6901
 msgid "Approved system identification"
 msgstr "Anerkannte Systemidentifikation"
 
-#: ../gramps/plugins/lib/libgedcom.py:6813
+#: ../gramps/plugins/lib/libgedcom.py:6913
 msgid "Generated By"
 msgstr "Erstellt von"
 
-#: ../gramps/plugins/lib/libgedcom.py:6829
+#: ../gramps/plugins/lib/libgedcom.py:6929
 msgid "Name of software product"
 msgstr "Name der Software"
 
-#: ../gramps/plugins/lib/libgedcom.py:6843
+#: ../gramps/plugins/lib/libgedcom.py:6943
 msgid "Version number of software product"
 msgstr "Versionsnummer des Programms"
 
-#: ../gramps/plugins/lib/libgedcom.py:6861
+#: ../gramps/plugins/lib/libgedcom.py:6961
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Firma die das Produkt herstellt: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6883
+#: ../gramps/plugins/lib/libgedcom.py:6983
 msgid "Name of source data"
 msgstr "Name der Quelldaten"
 
-#: ../gramps/plugins/lib/libgedcom.py:6900
+#: ../gramps/plugins/lib/libgedcom.py:7000
 msgid "Copyright of source data"
 msgstr "Copyright der Quelldaten"
 
-#: ../gramps/plugins/lib/libgedcom.py:6917
+#: ../gramps/plugins/lib/libgedcom.py:7017
 msgid "Publication date of source data"
 msgstr "Publikationsdatum der Quelldaten"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:6931
+#: ../gramps/plugins/lib/libgedcom.py:7031
 #, python-format
 msgid "Import from %s"
 msgstr "Aus %s importieren"
 
-#: ../gramps/plugins/lib/libgedcom.py:6970
+#: ../gramps/plugins/lib/libgedcom.py:7070
 msgid "Submission record identifier"
 msgstr "Einreichung Datensatz Bezeichnung"
 
-#: ../gramps/plugins/lib/libgedcom.py:6983
+#: ../gramps/plugins/lib/libgedcom.py:7083
 msgid "Language of GEDCOM text"
 msgstr "Sprache des GEDCOM Text"
 
-#: ../gramps/plugins/lib/libgedcom.py:7009
+#: ../gramps/plugins/lib/libgedcom.py:7109
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
@@ -23194,78 +23205,78 @@ msgstr ""
 "Import der GEDCOM Datei %(filename)s mit dem ZIEL=%(by)s kann Fehler in der "
 "resultierenden Datenbank verursachen!"
 
-#: ../gramps/plugins/lib/libgedcom.py:7012
+#: ../gramps/plugins/lib/libgedcom.py:7112
 msgid "Look for nameless events."
 msgstr "Suche nach namenlosen Ereignissen."
 
-#: ../gramps/plugins/lib/libgedcom.py:7036
+#: ../gramps/plugins/lib/libgedcom.py:7136
 msgid "Character set"
 msgstr "Zeichensatz"
 
-#: ../gramps/plugins/lib/libgedcom.py:7041
+#: ../gramps/plugins/lib/libgedcom.py:7141
 msgid "Character set and version"
 msgstr "Zeichensatz und Version"
 
-#: ../gramps/plugins/lib/libgedcom.py:7058
+#: ../gramps/plugins/lib/libgedcom.py:7158
 msgid "GEDCOM version not supported"
 msgstr "GEDCOM Version nicht unterstützt"
 
-#: ../gramps/plugins/lib/libgedcom.py:7062
+#: ../gramps/plugins/lib/libgedcom.py:7162
 msgid "GEDCOM version"
 msgstr "GEDCOM Version"
 
-#: ../gramps/plugins/lib/libgedcom.py:7067
+#: ../gramps/plugins/lib/libgedcom.py:7167
 msgid "GEDCOM form not supported"
 msgstr "GEDCOM Formular nicht unterstützt"
 
-#: ../gramps/plugins/lib/libgedcom.py:7070
+#: ../gramps/plugins/lib/libgedcom.py:7170
 msgid "GEDCOM form"
 msgstr "GEDCOM Formular"
 
-#: ../gramps/plugins/lib/libgedcom.py:7119
+#: ../gramps/plugins/lib/libgedcom.py:7219
 msgid "Creation date of GEDCOM"
 msgstr "Erstellungsdatum von GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7124
+#: ../gramps/plugins/lib/libgedcom.py:7224
 msgid "Creation date and time of GEDCOM"
 msgstr "Erstellungsdatum und Zeit des GEDCOM"
 
-#: ../gramps/plugins/lib/libgedcom.py:7217
+#: ../gramps/plugins/lib/libgedcom.py:7317
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "Notiz Gramps ID: %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:7267
+#: ../gramps/plugins/lib/libgedcom.py:7367
 msgid "Submission: Submitter"
 msgstr "Einreichung: Antragsteller"
 
-#: ../gramps/plugins/lib/libgedcom.py:7269
+#: ../gramps/plugins/lib/libgedcom.py:7369
 msgid "Submission: Family file"
 msgstr "Einreichung: Familiendatei"
 
-#: ../gramps/plugins/lib/libgedcom.py:7271
+#: ../gramps/plugins/lib/libgedcom.py:7371
 msgid "Submission: Temple code"
 msgstr "Einreichung: Tempelkode"
 
-#: ../gramps/plugins/lib/libgedcom.py:7273
+#: ../gramps/plugins/lib/libgedcom.py:7373
 msgid "Submission: Generations of ancestors"
 msgstr "Einreichung: Generationen der Vorfahren"
 
-#: ../gramps/plugins/lib/libgedcom.py:7275
+#: ../gramps/plugins/lib/libgedcom.py:7375
 msgid "Submission: Generations of descendants"
 msgstr "Einreichung: Generationen der Nachkommen"
 
-#: ../gramps/plugins/lib/libgedcom.py:7277
+#: ../gramps/plugins/lib/libgedcom.py:7377
 msgid "Submission: Ordinance process flag"
 msgstr "Einreichung: Ordinance process flag"
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7491
+#: ../gramps/plugins/lib/libgedcom.py:7591
 msgid "Invalid temple code"
 msgstr "Ungültiger Tempelkode"
 
-#: ../gramps/plugins/lib/libgedcom.py:7579
+#: ../gramps/plugins/lib/libgedcom.py:7679
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 "
 "character set, but is missing the BOM marker."
@@ -23273,11 +23284,11 @@ msgstr ""
 "Deine GEDCOM Datei ist beschädigt. Die Datei scheint UTF16 kodiert zu sein, "
 "aber die BOM Markierung fehlt."
 
-#: ../gramps/plugins/lib/libgedcom.py:7582
+#: ../gramps/plugins/lib/libgedcom.py:7682
 msgid "Your GEDCOM file is empty."
 msgstr "Deine GEDCOM-Datei ist leer."
 
-#: ../gramps/plugins/lib/libgedcom.py:7645
+#: ../gramps/plugins/lib/libgedcom.py:7745
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr "Ungültige Zeile %d in der GEDCOM-Datei."
