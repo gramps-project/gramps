@@ -5,15 +5,20 @@
 language: python
 python:
     - 3.3
+    - 3.4
 
 install:
     - time sudo apt-get update
-    - travis_retry sudo apt-get install python3-gobject python3-gi python3-cairo python3-gi-cairo gir1.2-pango gir1.2-gtk python3-bsddb3 xdg-utils librsvg2-common python3-dev libglib2.0-dev intltool python3-nose 
-    - travis_retry sudo pip3 install django
-    - travis_retry sudo pip3 install pyicu
+    - travis_retry sudo apt-get install gir1.2-pango gir1.2-gtk xdg-utils librsvg2-common libglib2.0-dev intltool 
+#    - travis_retry sudo apt-get install python3-gobject python3-gi python3-cairo python3-gi-cairo python3-bsddb3 python3-dev 
+    - travis_retry pip install pygobject
+    - travis_retry pip install pycairo
+    - travis_retry pip install bsddb3
+    - travis_retry pip install django
+    - travis_retry pip install pyicu
     - python setup.py build
 
 script:
     -  mkdir -p /home/travis/.gramps/grampsdb/
-    -  DJANGO_SETTINGS_MODULE=gramps.webapp.settings nosetests3 --exclude=TestcaseGenerator --exclude=exportvcard_test --exclude=plugins --exclude=vcard --exclude=merge_ref_test --exclude=test_util_test --exclude=gramps.webapp --exclude=test2_exec_CLI --exclude=widgets --exclude=gui --exclude=test3_files_in_import_dir --exclude=test_manual_run gramps
+    -  DJANGO_SETTINGS_MODULE=gramps.webapp.settings nosetests --exclude=TestcaseGenerator --exclude=exportvcard_test --exclude=plugins --exclude=vcard --exclude=merge_ref_test --exclude=test_util_test --exclude=gramps.webapp --exclude=test2_exec_CLI --exclude=widgets --exclude=gui --exclude=test3_files_in_import_dir --exclude=test_manual_run gramps
 
