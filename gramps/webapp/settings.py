@@ -165,3 +165,6 @@ AUTH_USER_MODEL = 'auth.User'
 LOGIN_URL = "/login/"
 LOGOUT_URL = "/logout"
 LOGIN_REDIRECT_URL = "/"
+
+## Changes for Django 1.7.1:
+ABSOLUTE_URL_OVERRIDES = {}
