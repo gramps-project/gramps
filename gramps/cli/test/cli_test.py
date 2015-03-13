@@ -105,7 +105,10 @@ class Test(unittest.TestCase):
     # (eg cleanout stale files from prior crash-runs)
     def test3_files_in_import_dir(self):
         ddir = os.path.join(TEMP_DIR, "import_dbdir")
-        os.makedirs(ddir)
+        try:
+            os.makedirs(ddir)
+        except:
+            pass
         bogofiles = [os.path.join(ddir, fn) for fn in ("family.db", "lock")]
         for fn in bogofiles:
             with io.open(fn, "w") as f:
