@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the Gramps package.
 # Radek Malcic <malcic@atlas.cz>, 2004
 # Jiří Pejchal <jiri.pejchal@gmail.com>, 2005
-# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2014
+# Zdeněk Hataš <zdenek.hatas@gmail.com>, 2006 - 2015
 #
 # Common terms and translations:
 #  ancestor        předek
@@ -36,7 +36,7 @@ msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-01-17 16:03+0100\n"
-"PO-Revision-Date: 2015-02-06 14:22+0100\n"
+"PO-Revision-Date: 2015-03-12 13:56+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -21319,7 +21319,7 @@ msgstr "Sdílet existující linii"
 #: ../gramps/plugins/graph/gvhourglass.py:308
 #: ../gramps/plugins/graph/gvrelgraph.py:591
 msgid "On a line of its own"
-msgstr ""
+msgstr "Na vlastní řádce"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:192
 #: ../gramps/plugins/graph/gvhourglass.py:309
@@ -27997,11 +27997,11 @@ msgstr "Vztah k osobě: %s"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:756
 msgid "Sosa-Stradonitz number"
-msgstr ""
+msgstr "Sosa-Stradonitz číslo"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:758
 msgid "The Sosa-Stradonitz number of the central person."
-msgstr ""
+msgstr "Sosa-Stradonitz číslo ústřední osoby."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:774
 #: ../gramps/plugins/textreport/detdescendantreport.py:935
