@@ -1118,6 +1118,15 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         self.__do_remove(handle, transaction, self.tag_map, 
                               TAG_KEY)
 
+    def is_empty(self):
+        """
+        Return true if there are no [primary] records in the database
+        """
+        for table in self._tables:
+            if len(self._tables[table]["handles_func"]()) > 0:
+                return False
+        return True
+
     def __do_remove(self, handle, transaction, data_map, key):
         if self.readonly or not handle:
             return

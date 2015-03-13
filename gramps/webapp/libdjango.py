@@ -51,7 +51,7 @@ from django.db import transaction
 import gramps.webapp.grampsdb.models as models
 from gramps.gen.lib import Name
 from gramps.gen.utils.id import create_id
-from gramps.gen.utils.constfunc import conv_to_unicode
+from gramps.gen.constfunc import conv_to_unicode
 
 # To get a django person from a django database:
 #    djperson = dji.Person.get(handle='djhgsdh324hjg234hj24')
