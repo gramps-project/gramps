@@ -15,5 +15,5 @@ install:
     - python setup.py build
 
 script:
-    -  DJANGO_SETTINGS_MODULE=gramps.webapp.settings  nosetests3 --exclude=TestcaseGenerator --exclude=exportvcard_test --exclude=plugins --exclude=vcard --exclude=merge_ref_test --exclude=test_util_test --exclude=cli_test --exclude=gramps.webapp --exclude=gen.test --exclude=widgets --exclude=gui gramps
+    -  DJANGO_SETTINGS_MODULE=gramps.webapp.settings  nosetests3 -v --exclude=TestcaseGenerator --exclude=exportvcard_test --exclude=plugins --exclude=vcard --exclude=merge_ref_test --exclude=test_util_test --exclude=cli_test --exclude=gramps.webapp --exclude=gramps.gen.test.user_test --exclude=widgets --exclude=gui gramps
 
