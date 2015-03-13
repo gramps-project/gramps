@@ -291,7 +291,7 @@ class CalendarType(mGrampsType):
                 (CAL_ISLAMIC, "Islamic"),
                 (CAL_SWEDISH, "Swedish")] 
 
-    _DEFAULT = [x for x in _DATAMAP if x[0] == CAL_GREGORIAN][0]
+    _DEFAULT = _DATAMAP[0]
     val = models.IntegerField('Calendar', choices=_DATAMAP, blank=False)
 
 class DateModifierType(mGrampsType):
@@ -311,7 +311,7 @@ class DateModifierType(mGrampsType):
                 (MOD_SPAN, "Span"),
                 (MOD_TEXTONLY, "Text only")]
 
-    _DEFAULT = [x for x in _DATAMAP if x[0] == MOD_NONE][0]
+    _DEFAULT = _DATAMAP[0]
     val = models.IntegerField('Date modifier', choices=_DATAMAP, blank=False)
 
 class DateNewYearType(mGrampsType):
@@ -325,7 +325,7 @@ class DateNewYearType(mGrampsType):
                 (NEWYEAR_MAR25, "March 25"),
                 (NEWYEAR_SEP1, "September 1")]
 
-    _DEFAULT = [x for x in _DATAMAP if x[0] == NEWYEAR_JAN1][0]
+    _DEFAULT = _DATAMAP[0]
     val = models.IntegerField('New Year start date', choices=_DATAMAP, blank=False)
 
 class ThemeType(mGrampsType):
@@ -580,7 +580,7 @@ class Person(PrimaryObject):
                                              blank=True, null=True, 
                                              through='MyParentFamilies')
     #addresses = models.ManyToManyField('Address', null=True, blank=True)
-    references = generic.GenericRelation('PersonRef', related_name="refs",
+    references = generic.GenericRelation('PersonRef', #related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
     birth = models.ForeignKey("Event", related_name="birth", blank=True, null=True)
@@ -654,7 +654,7 @@ class Citation(DateObject, PrimaryObject):
     confidence = models.IntegerField(blank=True, null=True)
     page = models.CharField("Volume/Page", max_length=50, blank=True, null=True)
     source = models.ForeignKey('Source', null=True, blank=True)
-    references = generic.GenericRelation('CitationRef', related_name="refs",
+    references = generic.GenericRelation('CitationRef', #related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
 
@@ -684,7 +684,7 @@ class Event(DateObject, PrimaryObject):
     event_type = models.ForeignKey('EventType', verbose_name="Type")
     description = models.CharField('description', max_length=50, blank=True)
     place = models.ForeignKey('Place', null=True, blank=True)
-    references = generic.GenericRelation('EventRef', related_name="refs",
+    references = generic.GenericRelation('EventRef', #related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
 
@@ -697,7 +697,7 @@ class Repository(PrimaryObject):
     repository_type = models.ForeignKey('RepositoryType', verbose_name="Type")
     name = models.TextField(blank=True)
     #addresses = models.ManyToManyField('Address', null=True, blank=True)
-    references = generic.GenericRelation('RepositoryRef', related_name="refs",
+    references = generic.GenericRelation('RepositoryRef', #related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
     #url_list = models.ManyToManyField('Url', null=True, blank=True)
@@ -735,7 +735,7 @@ class Media(DateObject, PrimaryObject):
     mime = models.TextField(blank=True, null=True)
     desc = models.TextField("Title", blank=True)
     checksum = models.TextField(blank=True)
-    references = generic.GenericRelation('MediaRef', related_name="refs",
+    references = generic.GenericRelation('MediaRef', #related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
 
@@ -746,7 +746,7 @@ class Note(PrimaryObject):
     note_type = models.ForeignKey('NoteType', verbose_name="Type")
     text  = models.TextField(blank=True)
     preformatted = models.BooleanField('preformatted')
-    references = generic.GenericRelation('NoteRef', related_name="refs",
+    references = generic.GenericRelation('NoteRef', #related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
 

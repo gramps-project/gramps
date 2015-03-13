@@ -1,0 +1,22 @@
+# After changing this file, check it on:
+#   http://lint.travis-ci.org/
+
+
+language: python
+python:
+    - 2.7
+    - 3.3
+    - 3.4
+
+
+install:
+    - time sudo apt-get update
+    - travis_retry sudo apt-get install python-gobject python-gi python-cairo python-gi-cairo gir1.2-pango gir1.2-gtk python-bsddb3 xdg-utils librsvg2-common python-dev libglib2.0-dev intltool python-pyicu
+    - travis_retry pip install django
+    - travis_retry git clone https://github.com/gramps-project/gramps
+    - cd gramps
+    - python setup.py build
+
+script:
+    -  DJANGO_SETTINGS_MODULE=gramps.webapp.settings  nosetests --exclude=TestcaseGenerator --exclude=exportvcard_test --exclude=plugins --exclude=vcard --exclude=merge_ref_test --exclude=test_util_test --exclude=cli_test --exclude=gramps.webapp gramps
+
