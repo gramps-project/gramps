@@ -17,7 +17,7 @@ install:
     - travis_retry curl https://bootstrap.pypa.io/get-pip.py | sudo python3
     - travis_retry sudo pip3 install django
     - travis_retry sudo pip3 install pyicu
-    - python setup.py build
+    - python3 setup.py build
 
 script:
     -  mkdir -p /home/travis/.gramps/grampsdb/
