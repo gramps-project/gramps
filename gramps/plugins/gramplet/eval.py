@@ -29,10 +29,7 @@ Provide a python evaluation window
 #
 #------------------------------------------------------------------------
 import sys
-if sys.version_info[0] < 3:
-    from cStringIO import StringIO
-else:
-    from io import StringIO
+from io import StringIO
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import traceback

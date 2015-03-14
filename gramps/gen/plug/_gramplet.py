@@ -24,9 +24,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-import sys
 import types
-
 import logging
 LOG = logging.getLogger(".Gramplets")
 
@@ -324,11 +322,7 @@ class Gramplet(object):
             LOG.debug("gramplet updater: %s : One time, done!" % self.gui.title)
             return False
         # FIXME: find out why Data Entry has this error, or just ignore it
-        from ..config import config
-        if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-            import bsddb3 as bsddb
-        else:
-            import bsddb
+        import bsddb3 as bsddb
         try:
             retval = next(self._generator)
             if not retval:

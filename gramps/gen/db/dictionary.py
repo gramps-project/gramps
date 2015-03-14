@@ -24,11 +24,7 @@
 # Gramps Modules
 #
 #------------------------------------------------------------------------
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 import base64
 import time
 import re
@@ -1167,12 +1163,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
             
             # so we need the second tuple give us a reference that we can
             # combine with the primary_handle to get the main key.
-            if sys.version_info[0] < 3:
-                #handle should be in python 2 str
-                main_key = (handle, pickle.loads(data)[1][1])
-            else:
-                #python 3 work internally with unicode
-                main_key = (handle.decode('utf-8'), pickle.loads(data)[1][1])
+            main_key = (handle.decode('utf-8'), pickle.loads(data)[1][1])
             
             # The trick is not to remove while inside the cursor,
             # but collect them all and remove after the cursor is closed
@@ -1194,7 +1185,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         if isinstance(key, tuple):
             #create a byte string key, first validity check in python 3!
             for val in key:
-                if sys.version_info[0] >= 3 and isinstance(val, bytes):
+                if isinstance(val, bytes):
                     raise DbError(_('An attempt is made to save a reference key '
                         'which is partly bytecode, this is not allowed.\n'
                         'Key is %s') % str(key))

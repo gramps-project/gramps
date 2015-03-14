@@ -19,8 +19,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-import sys
-
 #-------------------------------------------------------------------------
 #
 # GTK libraries
@@ -57,10 +55,7 @@ class BackRefModel(Gtk.ListStore):
         self.sref_list = sref_list
         self.count = 0
         self.loading = False
-        if sys.version_info[0] < 3:
-            self.idle = GLib.idle_add(self.load_model().next)
-        else:
-            self.idle = GLib.idle_add(self.load_model().__next__)
+        self.idle = GLib.idle_add(self.load_model().__next__)
 
     def destroy(self):
         if self.loading:

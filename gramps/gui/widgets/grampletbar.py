@@ -41,11 +41,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import time
 import os
-import sys
-if sys.version_info[0] < 3:
-    import ConfigParser as configparser
-else:
-    import configparser
+import configparser
 import io
 
 #-------------------------------------------------------------------------

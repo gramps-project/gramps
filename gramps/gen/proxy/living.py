@@ -24,17 +24,6 @@ Proxy class for the Gramps databases. Filter out all living people.
 
 #-------------------------------------------------------------------------
 #
-# Python libraries
-#
-#-------------------------------------------------------------------------
-import sys
-if sys.version_info[0] < 3:
-    from itertools import ifilter as filter
-else:
-    pass #python 3 has filter
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------

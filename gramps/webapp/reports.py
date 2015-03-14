@@ -28,7 +28,6 @@ from gramps.gen.plug import BasePluginManager
 from gramps.cli.user import User as GUser # gramps user
 
 import os
-import sys
 
 # Example for running a report:
 # ------------------------------
@@ -93,12 +92,8 @@ def import_file(db, filename, user):
     return False
 
 def download(url, filename=None):
-    if sys.version_info[0] < 3:
-        from urllib2 import urlopen, Request
-        from urlparse import urlsplit
-    else:
-        from urllib.request import Request, urlopen
-        from urllib.parse import urlsplit
+    from urllib.request import Request, urlopen
+    from urllib.parse import urlsplit
     import shutil
     def getFilename(url,openUrl):
         if 'Content-Disposition' in openUrl.info():

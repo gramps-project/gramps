@@ -32,17 +32,10 @@ Media View.
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import os
-import sys
-if sys.version_info[0] < 3:
-    from urlparse import urlparse
-    from urllib2 import url2pathname
-else:
-    from urllib.parse import urlparse
-    from urllib.request import url2pathname
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+from urllib.parse import urlparse
+from urllib.request import url2pathname
+import pickle
+
 #-------------------------------------------------------------------------
 #
 # GTK/Gnome modules

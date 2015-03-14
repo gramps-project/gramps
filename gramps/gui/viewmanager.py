@@ -35,13 +35,9 @@ Manages the main window and the pluggable views
 #-------------------------------------------------------------------------
 from collections import defaultdict
 import os
-import sys
 import time
 import datetime
-if sys.version_info[0] < 3:
-    from cStringIO import StringIO
-else:
-    from io import StringIO
+from io import StringIO
 import posixpath
 
 #-------------------------------------------------------------------------

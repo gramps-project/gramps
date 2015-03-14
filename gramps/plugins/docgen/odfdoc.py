@@ -68,11 +68,7 @@ except ImportError:
     from md5 import md5
 import zipfile
 import time
-import sys
-if sys.version_info[0] < 3:
-    from cStringIO import StringIO
-else:
-    from io import StringIO
+from io import StringIO
 from math import pi, cos, sin, degrees, radians
 from xml.sax.saxutils import escape
 
@@ -1018,8 +1014,7 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         
         not_extension, extension = os.path.splitext(file_name)
         file_name_hash = file_name
-        if sys.version_info[0] >= 3:
-            file_name_hash = file_name_hash.encode('utf-8')
+        file_name_hash = file_name_hash.encode('utf-8')
         odf_name = md5(file_name_hash).hexdigest() + extension
 
         media_list_item = (file_name, odf_name)
@@ -1186,8 +1181,6 @@ class ODFDoc(BaseDoc, TextDoc, DrawDoc):
         """
         Add a zip file to an archive
         """
-        if sys.version_info[0] < 3:
-            name = name.encode('utf-8')
         zipinfo = zipfile.ZipInfo(name)
         zipinfo.date_time = t
         zipinfo.compress_type = zipfile.ZIP_DEFLATED

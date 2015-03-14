@@ -847,9 +847,7 @@ class GrampsLocale(object):
             #ICU can digest strings and unicode
             return self.collator.getCollationKey(string).getByteArray()
         else:
-            if sys.version_info[0] < 3 and isinstance(string, unicode):
-                string = string.encode("utf-8", "replace")
-            if sys.version_info[0] >= 3 and isinstance(string, bytes):
+            if isinstance(string, bytes):
                 string = string.decode("utf-8", "replace")
             try:
                 key = locale.strxfrm(string)
@@ -936,13 +934,7 @@ class GrampsLocale(object):
 # Translations Classes
 #
 #-------------------------------------------------------------------------
-if sys.version_info < (3,0):
-    _LexemeBaseStr = unicode 
-    _isstring = lambda s: isinstance(s, basestring)
-else:
-    _LexemeBaseStr = str
-    _isstring = lambda s: isinstance(s, str)
-class Lexeme(_LexemeBaseStr):
+class Lexeme(str):
     r"""
     Created with :meth:`~GrampsTranslations.lexgettext`
 
@@ -1039,12 +1031,12 @@ class Lexeme(_LexemeBaseStr):
     """
 
     def __new__(cls, iterable, *args, **kwargs):
-        if _isstring(iterable):
-            newobj = _LexemeBaseStr.__new__(cls, iterable, *args, **kwargs)
+        if isinstance(iterable, str):
+            newobj = str.__new__(cls, iterable, *args, **kwargs)
         else:
             od = collections.OrderedDict(iterable)
             l = list(od.values()) or [""]
-            newobj = _LexemeBaseStr.__new__(cls, l[0], *args, **kwargs) 
+            newobj = str.__new__(cls, l[0], *args, **kwargs) 
             newobj._forms = od
         return newobj
 
@@ -1085,10 +1077,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         # and that's not what we want.
         if len(msgid.strip()) == 0:
             return msgid
-        if sys.version_info[0] < 3:
-            return gettext.GNUTranslations.ugettext(self, msgid)
-        else:
-            return gettext.GNUTranslations.gettext(self, msgid)
+        return gettext.GNUTranslations.gettext(self, msgid)
 
     def ngettext(self, singular, plural, num):
         """
@@ -1106,12 +1095,7 @@ class GrampsTranslations(gettext.GNUTranslations):
         :returns: Translation or the original.
         :rtype: unicode
         """
-        if sys.version_info[0] < 3:
-            return gettext.GNUTranslations.ungettext(self, singular,
-                                                     plural, num)
-        else:
-            return gettext.GNUTranslations.ngettext(self, singular,
-                                                    plural, num)
+        return gettext.GNUTranslations.ngettext(self, singular, plural, num)
 
     def sgettext(self, msgid, sep='|'):
         """

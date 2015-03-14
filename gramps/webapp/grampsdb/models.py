@@ -34,11 +34,7 @@ from gramps.gen.utils.id import create_id, create_uid
 from gramps.webapp.grampsdb.profile import Profile
 from gramps.gen.constfunc import cuni
 
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 import base64
 
 #---------------------------------------------------------------------------

@@ -28,12 +28,7 @@ Mime utility functions for the MS Windows platform
 #
 #-------------------------------------------------------------------------
 import os
-import sys
-
-if sys.version_info[0] < 3:
-    from _winreg import *
-else:
-    from winreg import *
+from winreg import *
 
 #-------------------------------------------------------------------------
 #

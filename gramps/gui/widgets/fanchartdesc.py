@@ -41,11 +41,7 @@ from gi.repository import PangoCairo
 import cairo
 import math
 import colorsys
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 from cgi import escape
 
 #-------------------------------------------------------------------------

@@ -257,7 +257,7 @@ class BasePluginManager(object):
                 except ValueError as err:
                     # Python3 on Windows  work with unicode in sys.path
                     # but they are mbcs encode for checking validity
-                    if (sys.version_info[0] >= 3) and win():
+                    if win():
                         # we don't want to load Gramps core plugin like this
                         # only 3rd party plugins
                         if "gramps"  in pdata.fpath:
@@ -275,20 +275,8 @@ class BasePluginManager(object):
                         LOG.warning("Plugin error (from '%s'): %s"
                                         % (pdata.mod_name, err))
                 except ImportError as err:
-                    # Python2 on Windows not work with unicode in sys.path
-                    # but module can be loaded from current directory
-                    if (sys.version_info[0] < 3) and win():
-                        try:
-                            oldwd = os.getcwd()
-                            os.chdir(pdata.fpath)
-                            module = __import__(pdata.mod_name)
-                            os.chdir(oldwd)
-                        except ImportError as err:
-                            LOG.warning("Plugin error (from '%s'): %s"
-                                            % (pdata.mod_name, err))
-                    else:
-                        LOG.warning("Plugin error (from '%s'): %s"
-                                        % (pdata.mod_name, err))
+                    LOG.warning("Plugin error (from '%s'): %s"
+                                    % (pdata.mod_name, err))
                 sys.path.pop(0)
             else:
                 print("WARNING: module cannot be loaded")

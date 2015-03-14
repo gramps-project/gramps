@@ -88,21 +88,14 @@ all lines until the next level 2 token is found (in this case, skipping the
 #
 #-------------------------------------------------------------------------
 import os
-import sys
 import re
 import time
 import codecs
 from xml.parsers.expat import ParserCreate
 from collections import defaultdict
 import string
-if sys.version_info[0] < 3:
-    from cStringIO import StringIO
-else:
-    from io import StringIO
-if sys.version_info[0] < 3:
-    from urlparse import urlparse
-else:
-    from urllib.parse import urlparse
+from io import StringIO
+from urllib.parse import urlparse
 
 #------------------------------------------------------------------------
 #
@@ -142,11 +135,6 @@ from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
 from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE, UNITYPE, win
 from gramps.plugins.lib.libplaceimport import PlaceImport
 from gramps.gen.display.place import displayer as place_displayer
-
-# string.whitespace in some configuration is changed if it is imported
-# after setting locale (adding '0xa0')
-if win() and sys.version_info[0] < 3:
-    string.whitespace = ' \t\n\r\v\f'
 
 #-------------------------------------------------------------------------
 #
@@ -1123,18 +1111,11 @@ class GedcomInfoDB(object):
         self.standard = GedcomDescription("GEDCOM 5.5 standard")
         self.standard.set_dest("GEDCOM 5.5")
 
-        if sys.version_info[0] < 3:
-            try:
-                filepath = os.path.join(DATA_DIR, "gedcom.xml")
-                ged_file = open(filepath.encode('iso8859-1'), "r")
-            except:
-                return
-        else:
-            try:
-                filepath = os.path.join(DATA_DIR, "gedcom.xml")
-                ged_file = open(filepath, "rb")
-            except:
-                return
+        try:
+            filepath = os.path.join(DATA_DIR, "gedcom.xml")
+            ged_file = open(filepath, "rb")
+        except:
+            return
 
         parser = GedInfoParser(self)
         parser.parse(ged_file)
@@ -1240,13 +1221,8 @@ class BaseReader(object):
         self.ifile.seek(0)
 
     def readline(self):
-        if sys.version_info[0] < 3:
-            line = unicode(self.ifile.readline(), 
-                           encoding=self.enc,
-                           errors='replace')
-        else:
-            line = self.ifile.readline()
-            line = line.decode(self.enc, errors='replace')
+        line = self.ifile.readline()
+        line = line.decode(self.enc, errors='replace')
         return line.translate(STRIP_DICT)
 
 class UTF8Reader(BaseReader):
@@ -1263,12 +1239,7 @@ class UTF8Reader(BaseReader):
 
     def readline(self):
         line = self.ifile.readline()
-        if sys.version_info[0] < 3:
-            line = unicode(line,
-                           encoding=self.enc,
-                           errors='replace')
-        else:
-            line = line.decode(self.enc, errors='replace')
+        line = line.decode(self.enc, errors='replace')
         return line.translate(STRIP_DICT)
 
 class UTF16Reader(BaseReader):
@@ -1539,10 +1510,7 @@ class AnselReader(BaseReader):
                     head = '\ufffd' # "Replacement Char"
                     s = s[1:]
             buff.write(head.encode("utf-8"))
-        if sys.version_info[0] < 3:
-            ans = unicode(buff.getvalue(), "utf-8")
-        else:
-            ans = buff.getvalue().decode("utf-8")
+        ans = buff.getvalue().decode("utf-8")
         buff.close()
         return ans
 

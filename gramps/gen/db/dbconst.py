@@ -25,13 +25,6 @@ Declare constants used by database modules
 
 #-------------------------------------------------------------------------
 #
-# standard python modules
-#
-#-------------------------------------------------------------------------
-import sys
-
-#-------------------------------------------------------------------------
-#
 # constants
 #
 #-------------------------------------------------------------------------
@@ -67,12 +60,8 @@ DBLOCKS   = 100000          # Maximum number of locks supported
 DBOBJECTS = 100000          # Maximum number of simultaneously locked objects
 DBUNDO    = 1000            # Maximum size of undo buffer
 
-from ..config import config
 try:
-    if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-        from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
-    else:
-        from bsddb.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
+    from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
     DBFLAGS_O = DB_CREATE | DB_AUTO_COMMIT  # Default flags for database open
     DBFLAGS_R = DB_RDONLY                   # Flags to open a database read-only
     DBFLAGS_D = DB_DUP | DB_DUPSORT         # Default flags for duplicate keys

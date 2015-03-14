@@ -24,7 +24,6 @@ import os
 import unittest
 import re
 import io
-import sys
 import subprocess
 
 from gramps.gen.constfunc import cuni
@@ -40,13 +39,6 @@ test_ged = """0 HEAD
 0 @I1@ INDI
 0 TRLR
 """
-
-# see gramps.grampsapp.py
-## hack to avoid mentioning 'utf8' encoding everywhere unicode or str is is used
-if sys.version_info[0] < 3:
-    reload(sys)
-    sys.setdefaultencoding('utf8')
-##
 
 ddir = os.path.dirname(__file__)
 min1r = os.path.join(ddir, "min1r.ged")
@@ -128,9 +120,6 @@ class Test(unittest.TestCase):
             self.assertFalse(os.path.exists(fn))
 
 class UnicodeTest(unittest.TestCase):
-
-    @unittest.skipIf(sys.version_info[0] < 3 and sys.platform == 'win32',
-                     "Python2 bsddb doesn't handle unicode paths")
 
     def setUp(self):
         from gramps.cli.clidbman import CLIDbManager

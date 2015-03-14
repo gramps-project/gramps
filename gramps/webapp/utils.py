@@ -27,10 +27,7 @@
 import sys
 import re
 import datetime
-if sys.version_info[0] < 3:
-    from HTMLParser import HTMLParser
-else:
-    from html.parser import HTMLParser
+from html.parser import HTMLParser
 
 #------------------------------------------------------------------------
 #

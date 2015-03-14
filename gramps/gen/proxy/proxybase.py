@@ -28,11 +28,6 @@ Proxy class for the Gramps databases. Filter out all data marked private.
 # Python modules
 #
 #-------------------------------------------------------------------------
-import sys
-if sys.version_info[0] < 3:
-    from itertools import ifilter as filter
-else:
-    pass #python 3 has filter
 import types
 
 #-------------------------------------------------------------------------

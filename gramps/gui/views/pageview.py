@@ -27,7 +27,6 @@ Provide the base class for GRAMPS' DataView classes
 # python modules
 #
 #----------------------------------------------------------------
-import sys
 import logging
 _LOG = logging.getLogger('.pageview')
 
@@ -223,10 +222,7 @@ class PageView(DbGUIElement):
         creates it. The copy is handled through the drag and drop
         system.
         """
-        if sys.version_info[0] < 3:
-            import cPickle as pickle
-        else:
-            import pickle
+        import pickle
         from ..clipboard import ClipboardWindow, obj2target
         handled = False
         for handle in handles:

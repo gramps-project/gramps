@@ -30,11 +30,7 @@ SVG document generator.
 # python modules
 #
 #-------------------------------------------------------------------------
-import sys
-if sys.version_info[0] < 3:
-    from StringIO import StringIO
-else:
-    from io import StringIO
+from io import StringIO
 
 #-------------------------------------------------------------------------
 #

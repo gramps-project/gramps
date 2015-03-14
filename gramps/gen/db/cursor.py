@@ -24,18 +24,10 @@
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import sys
-if sys.version_info[0] < 3:
-    from cPickle import dumps, loads
-else:
-    from pickle import dumps, loads
+from pickle import dumps, loads
 
-from ..config import config
 try:
-    if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-        from bsddb3 import db
-    else:
-        from bsddb import db
+    from bsddb3 import db
 except:
     # FIXME: make this more abstract to deal with other backends
     class db:

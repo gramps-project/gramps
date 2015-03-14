@@ -27,7 +27,6 @@ from xml.parsers import expat
 import datetime
 import math
 import os
-import sys
 
 #------------------------------------------------------------------------
 #
@@ -325,10 +324,7 @@ class _Xml2Obj:
         parser.StartElementHandler = self.start_element
         parser.EndElementHandler = self.end_element
         # Parse the XML File
-        if sys.version_info[0] < 3:
-            parser.Parse(open(filename, 'r').read(), 1)
-        else:
-            parser.Parse(open(filename, 'rb').read(), 1)
+        parser.Parse(open(filename, 'rb').read(), 1)
         return self.root
 
 #------------------------------------------------------------------------

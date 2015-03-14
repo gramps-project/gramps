@@ -17,15 +17,9 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-import sys
-if sys.version_info[0] < 3:
-    from urllib2 import (urlopen, Request, HTTPCookieProcessor,
-                build_opener, install_opener)
-    from urllib import urlencode
-else:
-    from urllib.request import (Request, urlopen, HTTPCookieProcessor,
-                build_opener, install_opener)
-    from urllib.parse import urlencode
+from urllib.request import (Request, urlopen, HTTPCookieProcessor,
+                            build_opener, install_opener)
+from urllib.parse import urlencode
 
 class Connection(object):
     """

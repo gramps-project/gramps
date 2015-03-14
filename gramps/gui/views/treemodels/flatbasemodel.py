@@ -53,7 +53,6 @@ It keeps a FlatNodeMap, and obtains data from database as needed
 #-------------------------------------------------------------------------
 import logging
 import bisect
-import sys
 import time
 
 _LOG = logging.getLogger(".gui.basetreemodel")
@@ -575,11 +574,8 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         # use cursor as a context manager
         with self.gen_cursor() as cursor:   
             #loop over database and store the sort field, and the handle
-            if sys.version_info[0] >= 3:
-                srt_keys=[(self.sort_func(data), key.decode('utf8'))
-                          for key, data in cursor]
-            else:
-                srt_keys=[(self.sort_func(data), key) for key, data in cursor]
+            srt_keys=[(self.sort_func(data), key.decode('utf8'))
+                      for key, data in cursor]
             srt_keys.sort()
             return srt_keys
 
@@ -647,8 +643,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         Add a row. This is called after object with handle is created.
         Row is only added if search/filter data is such that it must be shown
         """
-        if sys.version_info[0] >= 3:
-            assert isinstance(handle, str)
+        assert isinstance(handle, str)
         if self.node_map.get_path_from_handle(handle) is not None:
             return # row is already displayed
         data = self.map(handle)
@@ -668,8 +663,7 @@ class FlatBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         Delete a row, called after the object with handle is deleted
         """
-        if sys.version_info[0] >= 3:
-            assert isinstance(handle, str)
+        assert isinstance(handle, str)
         if self.node_map.get_path_from_handle(handle) is None:
             return # row is not currently displayed
         self.clear_cache(handle)

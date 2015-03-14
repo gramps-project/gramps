@@ -24,7 +24,6 @@ Parses the lds.xml file to build the temple/code maps
 
 from ..const import DATA_DIR
 import os
-import sys
 import logging
 
 from  xml.parsers.expat import ParserCreate
@@ -51,10 +50,7 @@ class LdsTemples(object):
         lds_filename = os.path.join(DATA_DIR, "lds.xml")
 
         try:
-            if sys.version_info[0] < 3:
-                xml_file = open(os.path.expanduser(lds_filename))
-            else:
-                xml_file = open(os.path.expanduser(lds_filename), 'rb')
+            xml_file = open(os.path.expanduser(lds_filename), 'rb')
             parser = ParserCreate()
             parser.StartElementHandler = self.__start_element
             parser.EndElementHandler = self.__end_element

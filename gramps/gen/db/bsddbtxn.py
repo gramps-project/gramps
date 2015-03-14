@@ -185,12 +185,7 @@ class BSDDBTxn(object):
 # test code
 if __name__ == "__main__": 
     print("1")
-    from ..config import config
-    import sys
-    if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-        from bsddb3 import db, dbshelve
-    else:
-        from bsddb import db, dbshelve
+    from bsddb3 import db, dbshelve
     print("2")
     x = db.DBEnv()
     print("3")

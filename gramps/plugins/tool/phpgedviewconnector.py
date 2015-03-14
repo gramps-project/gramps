@@ -20,16 +20,9 @@
 
 "Download a GEDCOM file from a phpGedView server"
 
-import sys
-if sys.version_info[0] < 3:
-    import httplib as hcl
-else:
-    import http.client as hcl
-if sys.version_info[0] < 3:
-    from urllib2 import URLError, urlopen, Request
-else:
-    from urllib.request import Request, urlopen
-    from urllib.error import URLError
+import http.client as hcl
+from urllib.request import Request, urlopen
+from urllib.error import URLError
 from gi.repository import Gtk
 import os
 from tempfile import mkstemp

@@ -34,12 +34,8 @@ import os
 import sys
 import time
 import io
-if sys.version_info[0] < 3:
-    from urlparse import urlparse
-    from urllib2 import urlopen, url2pathname
-else:
-    from urllib.parse import urlparse
-    from urllib.request import urlopen, url2pathname
+from urllib.parse import urlparse
+from urllib.request import urlopen, url2pathname
 import tempfile
 #-------------------------------------------------------------------------
 #
@@ -142,10 +138,7 @@ class CLIDbManager(object):
         current DB.
         Returns ("Unknown", "Unknown", "Unknown") if invalid DB or other error.
         """
-        if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-            from bsddb3 import dbshelve, db
-        else:
-            from bsddb import dbshelve, db
+        from bsddb3 import dbshelve, db
 
         from gramps.gen.db import META, PERSON_TBL
         from  gramps.gen.db.dbconst import BDBVERSFN

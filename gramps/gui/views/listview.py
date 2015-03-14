@@ -29,11 +29,7 @@ Provide the base classes for GRAMPS' DataView classes
 # python modules
 #
 #----------------------------------------------------------------
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 import time
 import logging
 

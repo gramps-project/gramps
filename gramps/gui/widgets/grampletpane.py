@@ -35,11 +35,7 @@ from gi.repository import Pango
 import time
 import os
 import io
-import sys
-if sys.version_info[0] < 3:
-    import ConfigParser as configparser
-else:
-    import configparser
+import configparser
 
 import logging
 

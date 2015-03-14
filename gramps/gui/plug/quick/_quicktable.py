@@ -29,11 +29,7 @@ Provide a simplified table creation interface
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 
 #-------------------------------------------------------------------------
 #
