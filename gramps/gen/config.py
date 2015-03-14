@@ -315,7 +315,6 @@ register('preferences.sprefix', 'S%04d')
 register('preferences.use-last-view', False)
 register('preferences.last-view', '')
 register('preferences.last-views', [])
-register('preferences.use-bsddb3', False)
 register('preferences.family-relation-type', 3) # UNKNOWN
 register('preferences.age-display-precision', 1)
 register('preferences.color-gender-male-alive', '#b8cee6')
