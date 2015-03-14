@@ -555,7 +555,7 @@ class HtmlView(NavigationView):
         # Now we have two views : Web and Geography, we need to create the
         # startpage only once.
         if not os.path.exists(filename):
-            ufd = file(filename, "w+")
+            ufd = open(filename, "w+")
             ufd.write(data)
             ufd.close()
         return urlunsplit(('file', '',
