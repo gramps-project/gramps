@@ -52,7 +52,6 @@ from ..lib.place import Place
 from ..lib.repo import Repository
 from ..lib.note import Note
 from ..lib.tag import Tag
-from ..constfunc import STRTYPE
 
 class Cursor(object):
     """
@@ -298,7 +297,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
 
     @staticmethod
     def _validated_id_prefix(val, default):
-        if isinstance(val, STRTYPE) and val:
+        if isinstance(val, str) and val:
             try:
                 str_ = val % 1
             except TypeError:           # missing conversion specifier

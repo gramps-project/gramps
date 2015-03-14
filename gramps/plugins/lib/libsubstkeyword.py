@@ -40,7 +40,7 @@ Mary Smith was born on 3/28/1923.
 #------------------------------------------------------------------------
 from gramps.gen.lib import EventType, PlaceType, Location
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
-from gramps.gen.constfunc import STRTYPE, cuni
+from gramps.gen.constfunc import cuni
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.const import GRAMPS_LOCALE as glocale

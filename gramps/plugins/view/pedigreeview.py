@@ -67,7 +67,7 @@ from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.constfunc import is_quartz, win
 from gramps.gui.dialog import RunDatabaseRepair, ErrorDialog
 from gramps.gui.utils import color_graph_box, hex_to_rgb_float, is_right_click
-from gramps.gen.constfunc import STRTYPE, lin
+from gramps.gen.constfunc import lin
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 

@@ -44,7 +44,6 @@ from ...version import VERSION as GRAMPSVERSION, VERSION_TUPLE
 from ..const import IMAGE_DIR
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -162,7 +161,7 @@ def valid_plugin_version(plugin_version_string):
     Checks to see if string is a valid version string for this version
     of Gramps.
     """
-    if not isinstance(plugin_version_string, STRTYPE): return False
+    if not isinstance(plugin_version_string, str): return False
     dots = plugin_version_string.count(".")
     if dots == 1:
         plugin_version  = tuple(map(int, plugin_version_string.split(".", 1)))

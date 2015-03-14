@@ -51,7 +51,6 @@ WINDOWS = ["Windows", "win32"]
 #
 #-------------------------------------------------------------------------
 
-STRTYPE = str
 UNITYPE = str
 cuni = str
 def conv_to_unicode(x, y='utf8'):

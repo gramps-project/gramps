@@ -30,7 +30,6 @@ Provide autocompletion functionality.
 from gi.repository import Gtk
 from gi.repository import GObject
 
-from gramps.gen.constfunc import STRTYPE
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
@@ -266,7 +265,7 @@ class StandardCustomSelector(object):
         a string representing a custom type, an (int, str) tuple or an EventType
         instance.
         """
-        if isinstance(event_type, STRTYPE):
+        if isinstance(event_type, str):
             return (self.custom_key, event_type)
         elif isinstance(event_type, tuple):
             if event_type[1]:

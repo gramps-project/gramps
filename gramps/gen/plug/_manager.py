@@ -51,7 +51,7 @@ _ = glocale.translation.gettext
 #-------------------------------------------------------------------------
 from ..config import config
 from . import PluginRegister, ImportPlugin, ExportPlugin, DocGenPlugin
-from ..constfunc import STRTYPE, win
+from ..constfunc import win
 
 #-------------------------------------------------------------------------
 #
@@ -245,7 +245,7 @@ class BasePluginManager(object):
         to sys.path first (if needed), import, and then reset path.
         """
         module = None
-        if isinstance(pdata, STRTYPE):
+        if isinstance(pdata, str):
             pdata = self.get_plugin(pdata)
         if not pdata:
             return None

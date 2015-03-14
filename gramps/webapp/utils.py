@@ -64,7 +64,6 @@ from gramps.gen.lib import Person
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 from gramps.gen.plug import BasePluginManager
 from gramps.cli.grampscli import CLIManager
-from gramps.gen.constfunc import STRTYPE
 from gramps.gen.utils.grampslocale import GrampsLocale
 
 #FIXME: A locale should be obtained from the user and used to
@@ -277,9 +276,9 @@ def make_button(text, url, *args):
     kwargs = cuni("")
     last = cuni("")
     for arg in args:
-        if isinstance(arg, STRTYPE) and arg.startswith("?"):
+        if isinstance(arg, str) and arg.startswith("?"):
             kwargs = arg
-        elif isinstance(arg, STRTYPE) and arg.startswith("#"):
+        elif isinstance(arg, str) and arg.startswith("#"):
             last = arg
         elif arg == "":
             pass

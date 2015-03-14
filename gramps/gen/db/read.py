@@ -73,7 +73,7 @@ from ..utils.cast import conv_dbstr_to_unicode
 from . import (BsddbBaseCursor, DbReadBase)
 from ..utils.id import create_id
 from ..errors import DbError
-from ..constfunc import UNITYPE, STRTYPE, cuni, handle2internal, get_env_var
+from ..constfunc import UNITYPE, cuni, handle2internal, get_env_var
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -1278,7 +1278,7 @@ class DbBsddbRead(DbReadBase, Callback):
 
     @staticmethod
     def _validated_id_prefix(val, default):
-        if isinstance(val, STRTYPE) and val:
+        if isinstance(val, str) and val:
             try:
                 str_ = val % 1
             except TypeError:           # missing conversion specifier

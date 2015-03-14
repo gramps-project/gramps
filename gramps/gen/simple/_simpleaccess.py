@@ -36,7 +36,6 @@ from ..lib import EventType
 from ..config import config
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -123,7 +122,7 @@ class SimpleAccess(object):
         :return: Returns the name of the person based of the program preferences
         :rtype: unicode
         """
-        if isinstance(person, STRTYPE):
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))     
         if person:
@@ -140,7 +139,7 @@ class SimpleAccess(object):
         :return: Returns the name of the person based of the program preferences
         :rtype: unicode
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))     
         if person:
@@ -160,7 +159,7 @@ class SimpleAccess(object):
                  preferences
         :rtype: unicode
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
         if person:
@@ -191,7 +190,7 @@ class SimpleAccess(object):
         :return: Returns a string indentifying the person's gender
         :rtype: unicode
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
         if person:
@@ -319,7 +318,7 @@ class SimpleAccess(object):
         :return: The spouse identified as the person's primary spouse
         :rtype: :py:class:`.Person`
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
 
@@ -347,7 +346,7 @@ class SimpleAccess(object):
                  person and his/per primary spouse.
         :rtype: unicode
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
 
@@ -371,7 +370,7 @@ class SimpleAccess(object):
                  his/her spouse where married.
         :rtype: unicode
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
 
@@ -402,7 +401,7 @@ class SimpleAccess(object):
                  his/her spouse where married.
         :rtype: unicode
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
 
@@ -494,7 +493,7 @@ class SimpleAccess(object):
         :return: Returns a string indicating the date when the person's birth.
         :rtype: unicode
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date(person, Person.get_birth_ref)
 
@@ -507,7 +506,7 @@ class SimpleAccess(object):
         :return: Returns the date when the person's birth.
         :rtype: :py:class:`.Date`
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date_obj(person, Person.get_birth_ref)
 
@@ -521,7 +520,7 @@ class SimpleAccess(object):
         :return: Returns the date when the person's birth or fallback.
         :rtype: :py:class:`.Date`
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         event = get_birth_or_fallback(self.dbase, person, "<i>%s</i>")
         if get_event:
@@ -540,7 +539,7 @@ class SimpleAccess(object):
         :return: Returns a string indicating the place of the person's birth.
         :rtype: unicode
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         return self.__event_place(person, Person.get_birth_ref)
 
@@ -553,7 +552,7 @@ class SimpleAccess(object):
         :return: Returns a string indicating the date when the person's death.
         :rtype: unicode
         """
-        if isinstance(person, STRTYPE):
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date(person, Person.get_death_ref)
 
@@ -566,7 +565,7 @@ class SimpleAccess(object):
         :return: Returns the date when the person's death.
         :rtype: :py:class:`.Date`
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         return self.__event_date_obj(person, Person.get_death_ref)
 
@@ -579,7 +578,7 @@ class SimpleAccess(object):
         :return: Returns the date of the person's death or fallback.
         :rtype: :py:class:`.Date`
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         event = get_death_or_fallback(self.dbase, person, "<i>%s</i>")
         if get_event:
@@ -598,7 +597,7 @@ class SimpleAccess(object):
         :return: Returns a string indicating the place of the person's death.
         :rtype: unicode
         """
-        if isinstance(person, STRTYPE): 
+        if isinstance(person, str): 
             person = self.dbase.get_person_from_handle(person)
         return self.__event_place(person, Person.get_death_ref)
 
@@ -732,7 +731,7 @@ class SimpleAccess(object):
                  listed as a parent.
         :rtype: list
         """
-        if isinstance(person, STRTYPE):
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))     
         
@@ -751,7 +750,7 @@ class SimpleAccess(object):
                  listed as a child.
         :rtype: list
         """
-        if isinstance(person, STRTYPE):
+        if isinstance(person, str):
             person = self.dbase.get_person_from_handle(person)
         assert(person is None or isinstance(person, Person))
         
@@ -940,15 +939,15 @@ class SimpleAccess(object):
         return ''
 
     def person(self, handle):
-        assert(isinstance(handle, STRTYPE))
+        assert(isinstance(handle, str))
         return self.dbase.get_person_from_handle(handle)
 
     def event(self, handle):
-        assert(isinstance(handle, STRTYPE))
+        assert(isinstance(handle, str))
         return self.dbase.get_event_from_handle(handle)
 
     def family(self, handle):
-        assert(isinstance(handle, STRTYPE))
+        assert(isinstance(handle, str))
         return self.dbase.get_family_from_handle(handle)
 
     def display(self, object_class, prop, value):

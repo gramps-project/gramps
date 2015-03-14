@@ -59,7 +59,7 @@ from ..selectors import SelectorFactory
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.filters import GenericFilterFactory, GenericFilter, rules
-from gramps.gen.constfunc import (conv_to_unicode, get_curr_dir, STRTYPE, cuni)
+from gramps.gen.constfunc import (conv_to_unicode, get_curr_dir, cuni)
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -407,7 +407,7 @@ class GuiTextOption(Gtk.ScrolledWindow):
         # we'll use that.  If not, we'll assume a list and convert
         # it into a single string by assuming each list element
         # is separated by a newline.
-        if isinstance(value, STRTYPE):
+        if isinstance(value, str):
             self.__buff.set_text(value)
 
             # Need to manually call the other handler so that the option
@@ -1250,7 +1250,7 @@ class GuiPersonListOption(Gtk.Box):
         """
         value = self.__option.get_value()
 
-        if not isinstance(value, STRTYPE):
+        if not isinstance(value, str):
             # Convert array into a string
             # (convienence so that programmers can
             # set value using a list)
@@ -1393,7 +1393,7 @@ class GuiPlaceListOption(Gtk.Box):
         """
         value = self.__option.get_value()
 
-        if not isinstance(value, STRTYPE):
+        if not isinstance(value, str):
             # Convert array into a string
             # (convienence so that programmers can
             # set value using a list)
@@ -1568,7 +1568,7 @@ class GuiSurnameColorOption(Gtk.Box):
         """
         value = self.__option.get_value()
 
-        if not isinstance(value, STRTYPE):
+        if not isinstance(value, str):
             # Convert dictionary into a string
             # (convienence so that programmers can
             # set value using a dictionary)

@@ -132,7 +132,7 @@ from gramps.gen.db.dbconst import EVENT_KEY
 from gramps.gui.dialog import WarningDialog
 from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
-from gramps.gen.constfunc import cuni, conv_to_unicode, STRTYPE, UNITYPE, win
+from gramps.gen.constfunc import cuni, conv_to_unicode, UNITYPE, win
 from gramps.plugins.lib.libplaceimport import PlaceImport
 from gramps.gen.display.place import displayer as place_displayer
 
@@ -7440,7 +7440,7 @@ class GedcomParser(UpdateCallback):
                 pass
         
     def build_media_object(self, obj, form, filename, title, note):
-        if isinstance(form, STRTYPE) and form.lower() == "url":
+        if isinstance(form, str) and form.lower() == "url":
             url = Url()
             url.set_path(filename)
             url.set_description(title)
@@ -7722,7 +7722,7 @@ class GedcomStageOne(object):
             elif key in ("CHIL", "CHILD") and self.__is_xref_value(value):
                 self.famc[value[1:-1]].append(current_family_id)
             elif key == 'CHAR' and not self.enc:
-                assert(isinstance(value, STRTYPE))
+                assert(isinstance(value, str))
                 self.enc = value
 
     def get_famc_map(self):
@@ -7747,7 +7747,7 @@ class GedcomStageOne(object):
         """
         Forces the encoding
         """
-        assert(isinstance(enc, STRTYPE))
+        assert(isinstance(enc, str))
         self.enc = enc
 
     def get_person_count(self):

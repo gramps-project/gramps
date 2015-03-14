@@ -55,7 +55,6 @@ from gramps.gen.lib.urltype import UrlType
 from gramps.gen.lib.eventtype import EventType
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.plug.utils import OpenFileOrStdout
-from gramps.gen.constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -91,7 +90,7 @@ class VCardWriter(object):
     @staticmethod
     def esc(data):
         """Escape the special chars of the VCard protocol."""
-        if isinstance(data, STRTYPE):
+        if isinstance(data, str):
             for char in VCardWriter.TOBE_ESCAPED:
                 data = data.replace(char, VCardWriter.ESCAPE_CHAR + char)
             return data

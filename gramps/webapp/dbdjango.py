@@ -42,7 +42,6 @@ from gramps.gen.db import (PERSON_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
 from gramps.gen.utils.id import create_id
-from gramps.gen.constfunc import STRTYPE
 from gramps.webapp.libdjango import DjangoInterface
 from django.db import transaction
 
@@ -341,7 +340,7 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     @staticmethod
     def _validated_id_prefix(val, default):
-        if isinstance(val, STRTYPE) and val:
+        if isinstance(val, str) and val:
             try:
                 str_ = val % 1
             except TypeError:           # missing conversion specifier

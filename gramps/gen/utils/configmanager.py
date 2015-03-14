@@ -38,7 +38,6 @@ import copy
 import logging
 import io
 
-from ..constfunc import STRTYPE
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -153,7 +152,7 @@ class ConfigManager(object):
                                       use_plugins_path=False)
           # will use /tmp/Other.ini
         """
-        if isinstance(override, STRTYPE): # directory or filename
+        if isinstance(override, str): # directory or filename
             if override:
                 path, ininame = os.path.split(os.path.abspath(override))
             else:
@@ -544,8 +543,8 @@ class ConfigManager(object):
         type2 = type(value2)
         if type1 == type2:
             return True
-        elif (isinstance(value1, STRTYPE) and
-              isinstance(value2, STRTYPE)):
+        elif (isinstance(value1, str) and
+              isinstance(value2, str)):
             return True
         elif (type1 in [int, float] and 
               type2 in [int, float]):

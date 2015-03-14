@@ -48,7 +48,6 @@ from .attribute import Attribute
 from .const import IDENTICAL, EQUAL, DIFFERENT
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import STRTYPE
 from .handle import Handle
 
 #-------------------------------------------------------------------------
@@ -997,7 +996,7 @@ class Person(CitationBase, NoteBase, AttributeBase, MediaBase,
                               to the Person's :class:`~.family.Family` list.
         :type family_handle: str
         """
-        if not isinstance(family_handle, STRTYPE):
+        if not isinstance(family_handle, str):
             raise ValueError("Expecting handle, obtained %s" % str(family_handle))
         if family_handle not in self.parent_family_list:
             self.parent_family_list.append(family_handle)
