@@ -23,7 +23,6 @@
 """
 Package providing filtering framework for GRAMPS.
 """
-from __future__ import with_statement
 
 #------------------------------------------------------------------------
 #

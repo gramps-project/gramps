@@ -30,8 +30,6 @@ scheme specified in the database's prefix ids
 # standard python modules
 #
 #------------------------------------------------------------------------
-from __future__ import print_function
-
 import re
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext

@@ -23,7 +23,7 @@
 """
 Croatian-specific classes for calculating relationships and kinship names.
 """
-from __future__ import unicode_literals
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules

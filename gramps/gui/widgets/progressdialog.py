@@ -21,7 +21,7 @@
 This module provides a progress dialog for displaying the status of 
 long running operations.
 """
-from __future__ import print_function
+
 #-------------------------------------------------------------------------
 #
 # Standard python modules

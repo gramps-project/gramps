@@ -30,8 +30,6 @@ creating, and deleting of databases.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 import os
 import sys
 import time

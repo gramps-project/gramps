@@ -28,8 +28,6 @@ database.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, with_statement
-
 import sys
 if sys.version_info[0] < 3:
     import cPickle as pickle

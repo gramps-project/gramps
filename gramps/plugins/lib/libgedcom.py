@@ -87,8 +87,6 @@ all lines until the next level 2 token is found (in this case, skipping the
 # standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, unicode_literals
-
 import os
 import sys
 import re

@@ -20,8 +20,6 @@
 
 "Download a GEDCOM file from a phpGedView server"
 
-from __future__ import print_function
-
 import sys
 if sys.version_info[0] < 3:
     import httplib as hcl

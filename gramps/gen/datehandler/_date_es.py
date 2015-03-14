@@ -22,7 +22,7 @@
 """
 Spanish-specific classes for parsing and displaying dates.
 """
-from __future__ import unicode_literals
+
 #-------------------------------------------------------------------------
 #
 # Python modules

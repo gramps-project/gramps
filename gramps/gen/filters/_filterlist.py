@@ -23,8 +23,6 @@
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import unicode_literals
-
 from xml.sax import make_parser, SAXParseException
 import os
 import sys

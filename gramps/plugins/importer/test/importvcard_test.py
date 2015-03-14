@@ -24,8 +24,6 @@ Unittest of import of VCard
 
 # in case of a failing test, add True as last parameter to do_case to see the output.
 
-from __future__ import print_function
-
 import unittest
 import time
 import subprocess

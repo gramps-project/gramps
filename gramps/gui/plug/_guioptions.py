@@ -27,7 +27,6 @@
 """
 Specific option handling for a GUI.
 """
-from __future__ import unicode_literals
 
 #------------------------------------------------------------------------
 #

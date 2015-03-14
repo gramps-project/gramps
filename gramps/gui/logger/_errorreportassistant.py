@@ -24,8 +24,6 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import unicode_literals
-
 from gi.repository import Gdk
 from gi.repository import Gtk
 from gi.repository import GdkPixbuf

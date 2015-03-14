@@ -23,7 +23,6 @@
 """
 Module that implements the gramplet bar fuctionality.
 """
-from __future__ import unicode_literals
 
 #-------------------------------------------------------------------------
 #

@@ -24,14 +24,11 @@
 
 """Tools/Debug/Generate Testcases for Persons and Families"""
 
-from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 from random import randint,choice,random
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext

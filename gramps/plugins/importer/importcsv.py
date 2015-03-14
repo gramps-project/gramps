@@ -24,7 +24,6 @@
 
 "Import from CSV Spreadsheet"
 
-from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # Standard Python Modules

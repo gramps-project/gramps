@@ -51,8 +51,6 @@ It keeps a FlatNodeMap, and obtains data from database as needed
 # python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 import logging
 import bisect
 import sys

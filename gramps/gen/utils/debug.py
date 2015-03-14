@@ -24,8 +24,6 @@
 Debugging utilities
 """
 
-from __future__ import print_function
-
 #-------------------------------------------------------------------------
 #
 # Debugging utilities

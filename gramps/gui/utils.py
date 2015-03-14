@@ -22,8 +22,6 @@
 Utility functions that depend on GUI components or for GUI components
 """
 
-from __future__ import print_function, division
-
 #-------------------------------------------------------------------------
 #
 # Standard python modules

@@ -22,8 +22,6 @@
 The main view from where other views are started
 """
 
-from __future__ import print_function
-
 #-------------------------------------------------------------------------
 #
 # Constants

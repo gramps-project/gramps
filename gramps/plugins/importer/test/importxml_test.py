@@ -21,8 +21,6 @@
 """
 Test XML import.
 """
-from __future__ import print_function, unicode_literals
-
 import unittest
 import time
 import os

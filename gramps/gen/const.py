@@ -25,8 +25,6 @@
 Provides constants for other modules
 """
 
-from __future__ import unicode_literals
-
 #-------------------------------------------------------------------------
 #
 # Standard python modules

@@ -20,8 +20,6 @@
 
 """ CLI tests for gramps """
 
-from __future__ import unicode_literals
-
 import os
 import unittest
 import re

@@ -29,7 +29,6 @@ This package implements access to Gramps configuration.
 # System imports
 #
 #---------------------------------------------------------------
-from __future__ import print_function, unicode_literals
 import os
 import sys
 import time

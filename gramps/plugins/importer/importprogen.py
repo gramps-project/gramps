@@ -22,7 +22,6 @@
 
 "Import from Pro-Gen"
 
-from __future__ import print_function, unicode_literals
 #-------------------------------------------------------------------------
 #
 # standard python modules

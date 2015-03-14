@@ -29,8 +29,6 @@
 ## Found by redwood:
 ## http://www.gramps-project.org/bugs/view.php?id=2611
 
-from __future__ import division
-
 #-------------------------------------------------------------------------
 #
 # Python modules

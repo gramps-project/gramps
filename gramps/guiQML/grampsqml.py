@@ -26,8 +26,6 @@ main file to start the QML application
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 import sys, os
 
 #-------------------------------------------------------------------------

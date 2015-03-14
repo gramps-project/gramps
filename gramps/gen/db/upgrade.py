@@ -28,7 +28,6 @@ methods to upgrade a database from version 13 to current version
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import with_statement, unicode_literals
 import sys
 import os
 import re

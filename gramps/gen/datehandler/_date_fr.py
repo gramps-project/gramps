@@ -21,16 +21,15 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
+"""
+French-specific classes for parsing and displaying dates.
+"""
+
 #-------------------------------------------------------------------------
 #
 # Python modules
 #
 #-------------------------------------------------------------------------
-
-"""
-French-specific classes for parsing and displaying dates.
-"""
-from __future__ import unicode_literals
 import re
 
 #-------------------------------------------------------------------------

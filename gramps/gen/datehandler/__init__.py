@@ -22,8 +22,6 @@
 Class handling language-specific selection for date parser and displayer.
 """
 
-from __future__ import print_function, unicode_literals
-
 #-------------------------------------------------------------------------
 #
 # set up logging

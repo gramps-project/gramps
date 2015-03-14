@@ -23,8 +23,6 @@
 """ 
 gtk textbuffer with undo functionality 
 """
-from __future__ import print_function
-
 __all__ = ["UndoableBuffer"]
 
 # Originally LGLP from:

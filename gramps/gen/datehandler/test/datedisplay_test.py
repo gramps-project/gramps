@@ -23,7 +23,6 @@
 Deeper testing of some DateParser internals.
 """
 
-from __future__ import print_function, unicode_literals
 import unittest
 
 from ...utils.grampslocale import GrampsLocale

@@ -25,7 +25,6 @@
 U.S English date display class. Should serve as the base class for all
 localized tasks.
 """
-from __future__ import unicode_literals
 
 #-------------------------------------------------------------------------
 #

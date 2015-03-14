@@ -29,8 +29,6 @@ Provide a simplified table creation interface
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 import sys
 if sys.version_info[0] < 3:
     import cPickle as pickle

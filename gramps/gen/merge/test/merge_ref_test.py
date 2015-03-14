@@ -22,8 +22,6 @@
 Unittest that tests that part of the merge process that influences other
 objects than the objects merging.
 """
-from __future__ import print_function, unicode_literals
-
 import unittest
 import time
 import os

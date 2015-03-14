@@ -21,7 +21,7 @@
 
 """Printing interface based on Gtk.Print* classes.
 """
-from __future__ import division
+
 #------------------------------------------------------------------------
 #
 # Python modules

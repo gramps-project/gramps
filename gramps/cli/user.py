@@ -27,7 +27,6 @@ The User class provides basic interaction with the user.
 # Python Modules
 #
 #------------------------------------------------------------------------
-from __future__ import print_function, unicode_literals
 import sys
 
 #------------------------------------------------------------------------

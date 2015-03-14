@@ -22,8 +22,6 @@
 
 # imports for import/export:
 
-from __future__ import print_function
-
 from gramps.gen.dbstate import DbState
 from gramps.cli.grampscli import CLIManager
 from gramps.gen.plug import BasePluginManager

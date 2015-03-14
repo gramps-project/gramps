@@ -28,7 +28,6 @@ Table Object class for Gramps.
 # standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import unicode_literals
 import time
 
 #-------------------------------------------------------------------------

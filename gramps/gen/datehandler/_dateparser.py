@@ -29,8 +29,6 @@ date parsing class. The default base class provides parsing for English.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, unicode_literals
-
 import re
 import calendar
 

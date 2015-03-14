@@ -28,8 +28,6 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from __future__ import print_function
-
 import logging
 LOG = logging.getLogger(".citation")
 

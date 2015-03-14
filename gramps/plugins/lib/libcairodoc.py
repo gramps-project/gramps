@@ -28,7 +28,6 @@
 """Report output generator based on Cairo.
 """
 
-from __future__ import division, print_function
 #------------------------------------------------------------------------
 #
 # Python modules

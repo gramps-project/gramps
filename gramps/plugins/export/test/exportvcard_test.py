@@ -21,8 +21,6 @@
 """
 Unittest for export to VCard
 """
-from __future__ import print_function
-
 import unittest
 import time
 import subprocess

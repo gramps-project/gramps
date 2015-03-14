@@ -21,8 +21,6 @@
 # test/test/test_util_test.py
 
 """unittest (test_util_test.py) for test_util.py"""
-from __future__ import print_function
-
 import sys
 import os
 import tempfile

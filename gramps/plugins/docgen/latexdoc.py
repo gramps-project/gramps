@@ -35,7 +35,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from __future__ import unicode_literals
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from bisect import bisect

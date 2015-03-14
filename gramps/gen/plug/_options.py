@@ -31,7 +31,6 @@ General option handling, including saving and parsing.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, unicode_literals
 import os, io
 import sys
 

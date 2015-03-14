@@ -30,7 +30,6 @@ http://www.scgenealogia.org/pdf/Denominacions%20dels%20Parentius.pdf
 The only invented name is "cosinastre". Also, "besnetastre" and the like are
 not explicitly in the dictionary, but "netastre" is.
 """
-from __future__ import unicode_literals
 
 #-------------------------------------------------------------------------
 #

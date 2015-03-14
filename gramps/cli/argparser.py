@@ -34,7 +34,6 @@ Module responsible for handling the command line arguments for Gramps.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, unicode_literals
 import sys
 import getopt
 import logging

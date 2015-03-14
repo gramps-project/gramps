@@ -27,8 +27,6 @@ The listview with all people in the database
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 import sys, os
 
 #-------------------------------------------------------------------------

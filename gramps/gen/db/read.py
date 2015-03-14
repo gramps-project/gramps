@@ -29,8 +29,6 @@ Read classes for the Gramps databases.
 # libraries
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, with_statement
-
 import sys
 if sys.version_info[0] < 3:
     import cPickle as pickle

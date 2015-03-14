@@ -25,7 +25,7 @@ The goal is to have this module not depend on any other gramps module.
 That way, e.g. database classes can safely depend on that without
 other Gramps baggage.
 """
-from __future__ import division
+
 #-------------------------------------------------------------------------
 #
 # Python modules
