@@ -23,8 +23,6 @@ architecture. We could have done this in Python, or SQL,
 but this makes it useful for all Django-based backends
 but still puts it into their syncdb API.
 """
-from __future__ import print_function
-
 import time
 import os
 os.environ["DJANGO_SETTINGS_MODULE"] = "settings"

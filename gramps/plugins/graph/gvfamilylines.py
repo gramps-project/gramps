@@ -32,7 +32,6 @@ Family Lines, a GraphViz-based plugin for Gramps.
 # python modules
 #
 #------------------------------------------------------------------------
-from __future__ import unicode_literals
 from functools import partial
 
 #------------------------------------------------------------------------

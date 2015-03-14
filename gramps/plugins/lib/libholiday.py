@@ -23,7 +23,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from __future__ import print_function
 from xml.parsers import expat
 import datetime
 import math

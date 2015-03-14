@@ -22,7 +22,6 @@
 """
 Date strings to translate per each language for display and parsing.
 """
-from __future__ import print_function, unicode_literals
 
 #-------------------------------------------------------------------------
 #

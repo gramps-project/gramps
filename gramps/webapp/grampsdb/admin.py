@@ -20,8 +20,6 @@
 
 # webapp/grampsdb/admin.py
 
-from __future__ import print_function
-
 from gramps.webapp.grampsdb.models import *
 from django.contrib import admin
 

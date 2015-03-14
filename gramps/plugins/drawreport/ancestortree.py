@@ -28,7 +28,6 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-from __future__ import division
 import math
 def log2(val):
     """

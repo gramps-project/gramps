@@ -23,8 +23,6 @@
 """
 Provide a simplified database access interface to the Gramps database.
 """
-from __future__ import with_statement, unicode_literals
-
 from ..lib import (Person, Family, Event, Source, Place, Citation, 
                    MediaObject, Repository, Note, Date, Tag)
 from ..lib.handle import Handle

@@ -32,7 +32,6 @@ Based on the Check Localized Date Displayer and Parser tool.
 # standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import unicode_literals, division
 import unittest
 
 import sys

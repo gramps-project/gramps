@@ -29,8 +29,6 @@ and a register for the data of all plugins .
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 import os
 import sys
 import re

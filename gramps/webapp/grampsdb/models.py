@@ -24,8 +24,6 @@ This requires initial data for all of the Types, which
 is loaded by the fixtures/initial_data.json, which is
 created by init.py.
 """
-from __future__ import print_function
-
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic

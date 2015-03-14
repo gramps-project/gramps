@@ -28,8 +28,6 @@ GrampletView interface.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, unicode_literals
-
 from gi.repository import GObject
 from gi.repository import Gdk
 from gi.repository import Gtk

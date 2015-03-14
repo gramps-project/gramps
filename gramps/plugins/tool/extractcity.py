@@ -23,7 +23,6 @@
 
 """Tools/Database Processing/Extract Place Data from a Place Title"""
 
-from __future__ import unicode_literals
 #-------------------------------------------------------------------------
 #
 # python modules

@@ -25,8 +25,6 @@ Classes for relationships.
 # python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 import os
 import logging
 LOG = logging.getLogger("gen.relationship")

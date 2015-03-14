@@ -21,8 +21,6 @@
 
 """ Unittest for user.py """
 
-from __future__ import print_function
-
 import unittest
 from .. import user
 from ...gen.test.user_test import TestUser

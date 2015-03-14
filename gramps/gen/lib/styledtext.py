@@ -21,8 +21,6 @@
 
 "Handling formatted ('rich text') strings"
 
-from __future__ import print_function
-
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules

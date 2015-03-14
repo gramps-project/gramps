@@ -21,8 +21,6 @@
 Place Tree View
 """
 
-from __future__ import unicode_literals
-
 #-------------------------------------------------------------------------
 #
 # Gramps modules

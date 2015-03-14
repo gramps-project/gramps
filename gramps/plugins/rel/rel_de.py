@@ -30,7 +30,7 @@
 """
 German-specific classes for relationships.
 """
-from __future__ import unicode_literals
+
 #-------------------------------------------------------------------------
 #
 # standard python modules

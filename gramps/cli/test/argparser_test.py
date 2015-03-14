@@ -21,8 +21,6 @@
 
 """ Unittest for argparser.py """
 
-from __future__ import print_function
-
 import unittest
 from ..argparser import ArgParser
 import sys

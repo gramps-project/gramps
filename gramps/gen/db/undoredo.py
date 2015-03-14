@@ -29,8 +29,6 @@ undos and redos.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, with_statement
-
 import time, os
 import sys
 if sys.version_info[0] < 3:

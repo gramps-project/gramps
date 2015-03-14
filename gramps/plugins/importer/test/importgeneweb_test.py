@@ -21,7 +21,6 @@
 """
 Unit test of the GeneWebParser
 """
-from __future__ import print_function
 import unittest
 from ..importgeneweb import GeneWebParser
 from ....gen.lib.date import Date

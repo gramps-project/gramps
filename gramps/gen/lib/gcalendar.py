@@ -21,7 +21,7 @@
 """
 Provide calendar to sdn (serial date number) conversion.
 """
-from __future__ import division, print_function
+
 #-------------------------------------------------------------------------
 #
 # Python modules

@@ -35,8 +35,6 @@ importers, exporters, quick reports, and document generators.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 import os
 import sys
 import re

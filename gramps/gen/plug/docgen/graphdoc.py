@@ -29,7 +29,6 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from __future__ import unicode_literals
 import os
 import sys
 if sys.version_info[0] < 3:

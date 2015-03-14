@@ -29,7 +29,6 @@ Ukrainian-specific classes for parsing and displaying dates.
 # Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import unicode_literals
 import re
 
 #-------------------------------------------------------------------------

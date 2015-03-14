@@ -24,7 +24,6 @@
 """
 Person object for Gramps.
 """
-from __future__ import unicode_literals
 
 #-------------------------------------------------------------------------
 #

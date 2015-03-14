@@ -29,8 +29,6 @@ the create/deletion of dialog windows.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
-
 import os
 import sys
 if sys.version_info[0] < 3:

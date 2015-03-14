@@ -33,8 +33,6 @@ Manages the main window and the pluggable views
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, unicode_literals
-
 from collections import defaultdict
 import os
 import sys

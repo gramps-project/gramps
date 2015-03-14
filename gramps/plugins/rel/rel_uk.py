@@ -28,7 +28,7 @@
 """
 Ukrainian-specific definitions of relationships
 """
-from __future__ import unicode_literals
+
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules

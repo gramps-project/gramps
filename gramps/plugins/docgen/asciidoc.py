@@ -28,9 +28,9 @@
 # python modules
 #
 #------------------------------------------------------------------------
-from __future__ import unicode_literals
 import io
 import sys
+
 #------------------------------------------------------------------------
 #
 # Gramps modules

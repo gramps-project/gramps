@@ -30,7 +30,6 @@ This is used since Gramps version 3.0
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function, with_statement, unicode_literals
 import sys
 if sys.version_info[0] < 3:
     import cPickle as pickle

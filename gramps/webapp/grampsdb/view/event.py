@@ -19,8 +19,6 @@
 
 """ Views for Person, Name, and Surname """
 
-from __future__ import print_function
-
 ## Gramps Modules
 from gramps.webapp.utils import _, boolean, update_last_changed, build_search
 from gramps.webapp.grampsdb.models import Event, EventType, EventRef, EventRoleType, Person

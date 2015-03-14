@@ -32,7 +32,6 @@ Report option handling, including saving and parsing.
 # Standard Python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import unicode_literals
 import os, io
 import copy
 from xml.sax.saxutils import escape

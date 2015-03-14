@@ -26,7 +26,6 @@ A plugin to verify the data against user-adjusted tests.
 This is the research tool, not the low-level data ingerity check.
 """
 
-from __future__ import division, print_function
 #------------------------------------------------------------------------
 #
 # standard python modules
