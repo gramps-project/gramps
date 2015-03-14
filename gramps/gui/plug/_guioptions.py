@@ -59,8 +59,7 @@ from ..selectors import SelectorFactory
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.filters import GenericFilterFactory, GenericFilter, rules
-from gramps.gen.constfunc import (conv_to_unicode, uni_to_gui, get_curr_dir,
-                                  STRTYPE, cuni)
+from gramps.gen.constfunc import (conv_to_unicode, get_curr_dir, STRTYPE, cuni)
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -1708,7 +1707,7 @@ class GuiDestinationOption(Gtk.Box):
                 if not self.__option.get_directory_entry() and \
                    not path.endswith(self.__option.get_extension()):
                     path = path + self.__option.get_extension()
-                self.__entry.set_text(uni_to_gui(path))
+                self.__entry.set_text(path)
                 self.__option.set_value(path)
         fcd.destroy()
         

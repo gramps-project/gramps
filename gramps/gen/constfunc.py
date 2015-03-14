@@ -58,13 +58,6 @@ cuni = conv_to_unicode_direct
 def conv_to_unicode(x, y='utf8'):
     return x if x is None or isinstance(x, UNITYPE) else cuni(x, y) if y else cuni(x)
 
-def uni_to_gui(x):
-    '''
-    In Py2 we need to convert strings to utf8 before passing them to
-    Gtk functions.
-    '''
-    return x
-
 # handle in database is bytes, while internally Gramps wants unicode for py3
 handle2internal = lambda x: conv_to_unicode(x, 'utf-8')
 
