@@ -36,7 +36,6 @@ from gi.repository import GObject
 #
 #-------------------------------------------------------------------------
 from gramps.gen.filters import CustomFilters
-from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -58,7 +57,7 @@ class FilterComboBox(Gtk.ComboBox):
         cnt = 0
         for filt in local_filters:
             self.store.append(row=[filt.get_name()])
-            self.map[cuni(filt.get_name())] = filt
+            self.map[str(filt.get_name())] = filt
             if default != "" and default == filt.get_name():
                 active = cnt
             cnt += 1
@@ -72,7 +71,7 @@ class FilterComboBox(Gtk.ComboBox):
 
         for filt in CustomFilters.get_filters():
             self.store.append(row=[filt.get_name()])
-            self.map[cuni(filt.get_name())] = filt
+            self.map[str(filt.get_name())] = filt
             if default != "" and default == filt.get_name():
                 active = cnt
             cnt += 1
@@ -92,5 +91,5 @@ class FilterComboBox(Gtk.ComboBox):
         active = self.get_active()
         if active < 0:
             return None
-        key = cuni(self.store[active][0])
+        key = str(self.store[active][0])
         return self.map[key]

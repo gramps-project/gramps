@@ -44,7 +44,6 @@ from gramps.gen.datehandler import format_time, get_date, get_date_valid
 from gramps.gen.lib import Citation
 from gramps.gen.utils.string import conf_strings
 from gramps.gen.config import config
-from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -110,13 +109,13 @@ class CitationBaseModel(object):
         return ''    
     
     def citation_id(self, data):
-        return cuni(data[COLUMN_ID])
+        return str(data[COLUMN_ID])
 
     def citation_page(self, data):
-        return cuni(data[COLUMN_PAGE])
+        return str(data[COLUMN_PAGE])
 
     def citation_confidence(self, data):
-        return cuni(_(conf_strings[data[COLUMN_CONFIDENCE]]))
+        return str(_(conf_strings[data[COLUMN_CONFIDENCE]]))
 
     def citation_private(self, data):
         if data[COLUMN_PRIV]:
@@ -160,7 +159,7 @@ class CitationBaseModel(object):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return cuni(source.get_title())
+            return str(source.get_title())
         except:
             return ''
 
@@ -168,7 +167,7 @@ class CitationBaseModel(object):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return cuni(source.gramps_id)
+            return str(source.gramps_id)
         except:
             return ''
 
@@ -176,7 +175,7 @@ class CitationBaseModel(object):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return cuni(source.get_author())
+            return str(source.get_author())
         except:
             return ''
 
@@ -184,7 +183,7 @@ class CitationBaseModel(object):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return cuni(source.get_abbreviation())
+            return str(source.get_abbreviation())
         except:
             return ''
 
@@ -192,7 +191,7 @@ class CitationBaseModel(object):
         source_handle = data[COLUMN_SOURCE]
         try:
             source = self.db.get_source_from_handle(source_handle)
-            return cuni(source.get_publication_info())
+            return str(source.get_publication_info())
         except:
             return ''
 
@@ -228,19 +227,19 @@ class CitationBaseModel(object):
 # Fields access when 'data' is a Source
 
     def source_src_title(self, data):
-        return cuni(data[COLUMN2_TITLE])
+        return str(data[COLUMN2_TITLE])
 
     def source_src_id(self, data):
-        return cuni(data[COLUMN2_ID])
+        return str(data[COLUMN2_ID])
 
     def source_src_auth(self, data):
-        return cuni(data[COLUMN2_AUTHOR])
+        return str(data[COLUMN2_AUTHOR])
 
     def source_src_abbr(self, data):
-        return cuni(data[COLUMN2_ABBREV])
+        return str(data[COLUMN2_ABBREV])
 
     def source_src_pinfo(self, data):
-        return cuni(data[COLUMN2_PUBINFO])
+        return str(data[COLUMN2_PUBINFO])
 
     def source_src_private(self, data):
         if data[COLUMN2_PRIV]:

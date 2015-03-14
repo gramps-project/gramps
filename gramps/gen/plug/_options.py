@@ -51,7 +51,6 @@ except:
 # gramps modules
 #
 #-------------------------------------------------------------------------
-from ..constfunc import cuni
 from ..utils.cast import get_type_converter
 from .menu import Menu
 from ..plug import BasePluginManager

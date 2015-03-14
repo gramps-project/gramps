@@ -80,7 +80,7 @@ from ..utils.cast import conv_dbstr_to_unicode
 from ..utils.id import create_id
 from ..updatecallback import UpdateCallback
 from ..errors import DbError
-from ..constfunc import (win, conv_to_unicode, cuni, handle2internal,
+from ..constfunc import (win, conv_to_unicode, handle2internal,
                          get_env_var)
 from ..const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -551,7 +551,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """Older version of Berkeley DB can't read data created by a newer
         version."""
         bdb_version = db.version()
-        versionpath = os.path.join(self.path, cuni(BDBVERSFN))
+        versionpath = os.path.join(self.path, str(BDBVERSFN))
         # Compare the current version of the database (bsddb_version) with the
         # version of the database code (env_version). If it is a downgrade,
         # raise an exception because we can't do anything. If they are the same,
@@ -721,7 +721,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         self.__check_python_version(name, force_python_upgrade)
 
         # Check for pickle upgrade
-        versionpath = os.path.join(self.path, cuni(PCKVERSFN))
+        versionpath = os.path.join(self.path, str(PCKVERSFN))
         if not os.path.isfile(versionpath) and \
            not self.readonly and not self.update_pickle_version:
             _LOG.debug("Make backup in case there is a pickle upgrade")
@@ -729,7 +729,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             self.update_pickle_version = True
         
         # Check for schema upgrade
-        versionpath = os.path.join(self.path, cuni(SCHVERSFN))
+        versionpath = os.path.join(self.path, str(SCHVERSFN))
         if os.path.isfile(versionpath):
             with open(versionpath, "r") as version_file:
                 schema_version = int(version_file.read().strip())
@@ -864,7 +864,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             from . import upgrade
             UpdateCallback.__init__(self, callback)
             upgrade.gramps_upgrade_pickle(self)
-            versionpath = os.path.join(name, cuni(PCKVERSFN))
+            versionpath = os.path.join(name, str(PCKVERSFN))
             with open(versionpath, "w") as version_file:
                 version = "Yes"
                 version_file.write(version)
@@ -879,7 +879,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                        (oldschema, newschema))
             if force_schema_upgrade == True:
                 self.gramps_upgrade(callback)
-                versionpath = os.path.join(name, cuni(SCHVERSFN))
+                versionpath = os.path.join(name, str(SCHVERSFN))
                 with open(versionpath, "w") as version_file:
                     version = str(_DBVERSION)
                     version_file.write(version)
@@ -2419,13 +2419,13 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         with open(versionpath, "w") as version_file:
             version_file.write(version)
 
-        versionpath = os.path.join(name, cuni(PCKVERSFN))
+        versionpath = os.path.join(name, str(PCKVERSFN))
         _LOG.debug("Write pickle version file to %s" % "Yes")
         with open(versionpath, "w") as version_file:
             version = "Yes"
             version_file.write(version)
 
-        versionpath = os.path.join(name, cuni(SCHVERSFN))
+        versionpath = os.path.join(name, str(SCHVERSFN))
         _LOG.debug("Write schema version file to %s" % str(_DBVERSION))
         with open(versionpath, "w") as version_file:
             version = str(_DBVERSION)

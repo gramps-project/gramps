@@ -57,7 +57,6 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from ...listmodel import ListModel
 from gramps.gen.errors import FilterError, ReportError
-from gramps.gen.constfunc import cuni
 from ...pluginmanager import GuiPluginManager
 from ...dialog import WarningDialog, ErrorDialog
 from gramps.gen.plug.menu import PersonOption, FilterOption, FamilyOption
@@ -263,7 +262,7 @@ class BookListDisplay(object):
         store, the_iter = self.blist.get_selected()
         if the_iter:
             data = self.blist.get_data(the_iter, [0])
-            self.selection = self.booklist.get_book(cuni(data[0]))
+            self.selection = self.booklist.get_book(str(data[0]))
         if self.dosave:
             self.booklist.save()
 
@@ -277,7 +276,7 @@ class BookListDisplay(object):
         if not the_iter:
             return
         data = self.blist.get_data(the_iter, [0])
-        self.booklist.delete_book(cuni(data[0]))
+        self.booklist.delete_book(str(data[0]))
         self.blist.remove(the_iter)
         self.unsaved_changes = True
         self.top.run()
@@ -715,7 +714,7 @@ class BookSelector(ManagedWindow):
         Save the current book in the xml booklist file. 
         """
         self.book_list = BookList(self.file, self.db)
-        name = cuni(self.name_entry.get_text())
+        name = str(self.name_entry.get_text())
         if not name:
             WarningDialog(_('No book name'), _(
                 'You are about to save away a book with no name.\n\n'

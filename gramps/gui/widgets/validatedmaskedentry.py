@@ -52,7 +52,6 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.errors import MaskError, ValidationError, WindowActiveError
-from gramps.gen.constfunc import cuni
 from .undoableentry import UndoableEntry
 
 #-------------------------------------------------------------------------
@@ -318,7 +317,7 @@ class MaskedEntry(UndoableEntry):
         self._mask_fields = []
         self._current_field = -1
 
-        mask = cuni(mask)
+        mask = str(mask)
         input_length = len(mask)
         lenght = 0
         pos = 0
@@ -377,7 +376,7 @@ class MaskedEntry(UndoableEntry):
 
         fields = []
 
-        text = cuni(self.get_text())
+        text = str(self.get_text())
         for start, end in self._mask_fields:
             fields.append(text[start:end].strip())
 
@@ -798,7 +797,7 @@ class MaskedEntry(UndoableEntry):
         if not self._mask:
             UndoableEntry._on_insert_text(self, editable, new, length, position)
             return
-        new = cuni(new)
+        new = str(new)
         pos = self.get_position()
 
         self.stop_emission('insert-text')

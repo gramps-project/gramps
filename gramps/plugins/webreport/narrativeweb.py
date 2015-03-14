@@ -122,7 +122,7 @@ from gramps.gen.utils.string import conf_strings
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.alive import probably_alive
 from gramps.gen.utils.db import get_source_and_citation_referents
-from gramps.gen.constfunc import win, cuni, conv_to_unicode, get_curr_dir
+from gramps.gen.constfunc import win, conv_to_unicode, get_curr_dir
 from gramps.gen.config import config
 from gramps.gui.thumbnails import get_thumbnail_path, run_thumbnailer
 from gramps.gen.utils.image import image_size, resize_to_jpeg_buffer
@@ -3700,7 +3700,7 @@ class EventPages(BasePage):
 
                                 if evt_type and not evt_type.isspace():
                                     letter = get_index_letter(
-                                            cuni(evt_type)[0].capitalize(),
+                                            str(evt_type)[0].capitalize(),
                                             index_list)
                                 else:
                                     letter = "&nbsp;"
@@ -8598,11 +8598,11 @@ def __get_place_keyname(dbase, handle):
 contractions_dict = {
     # bg Bulgarian validSubLocales="bg_BG" no contractions
     # ca Catalan validSubLocales="ca_AD ca_ES"
-    "ca" : [((cuni("l·"), cuni("L·")), cuni("L"))],
+    "ca" : [(("l·", "L·"), "L")],
     # Czech, validSubLocales="cs_CZ" Czech_Czech Republic
-    "cs" : [((cuni("ch"), cuni("cH"), cuni("Ch"), cuni("CH")), cuni("Ch"))],
+    "cs" : [(("ch", "cH", "Ch", "CH"), "Ch")],
     # Danish validSubLocales="da_DK" Danish_Denmark
-    "da" : [((cuni("aa"), cuni("Aa"), cuni("AA")), cuni("Å"))],
+    "da" : [(("aa", "Aa", "AA"), "Å")],
     # de German validSubLocales="de_AT de_BE de_CH de_DE de_LI de_LU" no
     # contractions in standard collation.
     # el Greek validSubLocales="el_CY el_GR" no contractions.
@@ -8615,27 +8615,27 @@ contractions_dict = {
     # fr French no collation data.
     # he Hebrew validSubLocales="he_IL" no contractions
     # hr Croation validSubLocales="hr_BA hr_HR"
-    "hr" : [((cuni("dž"), cuni("Dž")), cuni("dž")),
-            ((cuni("lj"), cuni("Lj"), cuni('LJ')), cuni("Ǉ")),
-            ((cuni("Nj"), cuni("NJ"), cuni("nj")), cuni("Ǌ"))],
+    "hr" : [(("dž", "Dž"), "dž"),
+            (("lj", "Lj", 'LJ'), "Ǉ"),
+            (("Nj", "NJ", "nj"), "Ǌ")],
     # Hungarian hu_HU for two and three character contractions.
-    "hu" : [((cuni("cs"), cuni("Cs"), cuni("CS")), cuni("CS")),
-            ((cuni("dzs"), cuni("Dzs"), cuni("DZS")), cuni("DZS")), # order is important
-            ((cuni("dz"), cuni("Dz"), cuni("DZ")), cuni("DZ")),
-            ((cuni("gy"), cuni("Gy"), cuni("GY")), cuni("GY")),
-            ((cuni("ly"), cuni("Ly"), cuni("LY")), cuni("LY")),
-            ((cuni("ny"), cuni("Ny"), cuni("NY")), cuni("NY")),
-            ((cuni("sz"), cuni("Sz"), cuni("SZ")), cuni("SZ")),
-            ((cuni("ty"), cuni("Ty"), cuni("TY")), cuni("TY")),
-            ((cuni("zs"), cuni("Zs"), cuni("ZS")), cuni("ZS"))
+    "hu" : [(("cs", "Cs", "CS"), "CS"),
+            (("dzs", "Dzs", "DZS"), "DZS"), # order is important
+            (("dz", "Dz", "DZ"), "DZ"),
+            (("gy", "Gy", "GY"), "GY"),
+            (("ly", "Ly", "LY"), "LY"),
+            (("ny", "Ny", "NY"), "NY"),
+            (("sz", "Sz", "SZ"), "SZ"),
+            (("ty", "Ty", "TY"), "TY"),
+            (("zs", "Zs", "ZS"), "ZS")
            ],
     # it Italian no collation data.
     # ja Japanese unable to process the data as it is too complex.
     # lt Lithuanian no contractions.
     # Norwegian Bokmål
-    "nb" : [((cuni("aa"), cuni("Aa"), cuni("AA")), cuni("Å"))],
+    "nb" : [(("aa", "Aa", "AA"), "Å")],
     # nn Norwegian Nynorsk validSubLocales="nn_NO"
-    "nn" : [((cuni("aa"), cuni("Aa"), cuni("AA")), cuni("Å"))],
+    "nn" : [(("aa", "Aa", "AA"), "Å")],
     # nl Dutch no collation data.
     # pl Polish validSubLocales="pl_PL" no contractions
     # pt Portuguese no collation data.
@@ -8644,7 +8644,7 @@ contractions_dict = {
     # Slovak,  validSubLocales="sk_SK" Slovak_Slovakia
     # having DZ in Slovak as a contraction was rejected in
     # http://unicode.org/cldr/trac/ticket/2968
-    "sk" : [((cuni("ch"), cuni("cH"), cuni("Ch"), cuni("CH")), cuni("Ch"))],
+    "sk" : [(("ch", "cH", "Ch", "CH"), "Ch")],
     # sl Slovenian validSubLocales="sl_SI" no contractions
     # sv Swedish validSubLocales="sv_AX sv_FI sv_SE" default collation is
     # "reformed" no contractions.
@@ -8680,9 +8680,9 @@ def first_letter(string):
     recieves a string and returns the first letter
     """
     if string is None or len(string) < 1:
-        return cuni(' ')
+        return ' '
     
-    norm_unicode = normalize('NFKC', cuni(string))
+    norm_unicode = normalize('NFKC', str(string))
     contractions = contractions_dict.get(COLLATE_LANG)
     if contractions == None:
         contractions = contractions_dict.get(COLLATE_LANG.split("_")[0])
@@ -8714,8 +8714,8 @@ except:
         
         # The test characters here must not be any that are used in contractions.
         
-        return SORT_KEY(prev_key + cuni("e")) >= SORT_KEY(new_key + cuni("f")) or\
-            SORT_KEY(new_key + cuni("e")) >= SORT_KEY(prev_key + cuni("f"))
+        return SORT_KEY(prev_key + "e") >= SORT_KEY(new_key + "f") or\
+            SORT_KEY(new_key + "e") >= SORT_KEY(prev_key + "f")
 
 def get_first_letters(dbase, handle_list, key):
     """

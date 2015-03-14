@@ -50,10 +50,8 @@ WINDOWS = ["Windows", "win32"]
 # Public Functions
 #
 #-------------------------------------------------------------------------
-
-cuni = str
 def conv_to_unicode(x, y='utf8'):
-    return x if x is None or isinstance(x, str) else cuni(x, y) if y else cuni(x)
+    return x if x is None or isinstance(x, str) else str(x, y) if y else str(x)
 
 # handle in database is bytes, while internally Gramps wants unicode for py3
 handle2internal = lambda x: conv_to_unicode(x, 'utf-8')

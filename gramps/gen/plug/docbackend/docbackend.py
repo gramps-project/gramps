@@ -30,19 +30,6 @@ from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import io
 
-#-------------------------------------------------------------------------
-#
-# GTK modules
-#
-#-------------------------------------------------------------------------
-
-#------------------------------------------------------------------------
-#
-# Gramps modules
-#
-#------------------------------------------------------------------------
-from ...constfunc import cuni
-
 #------------------------------------------------------------------------
 #
 # Set up logging
@@ -290,7 +277,7 @@ class DocBackend(object):
             escape_func = self.ESCAPE_FUNC
             self.ESCAPE_FUNC = lambda: (lambda text: text)
         #unicode text must be sliced correctly
-        text = cuni(text)
+        text = str(text)
         FIRST = 0
         LAST = 1
         tagspos = {}
@@ -312,7 +299,7 @@ class DocBackend(object):
         keylist.sort()
         keylist = [x for x in keylist if x <= len(text)]
         opentags = []
-        otext = cuni("")  #the output, text with markup
+        otext = ""  #the output, text with markup
         lensplit = len(split)
         for pos in keylist:
             #write text up to tag

@@ -37,7 +37,6 @@ from .tagbase import TagBase
 from .attrbase import SrcAttributeBase
 from .reporef import RepoRef
 from .const import DIFFERENT, EQUAL, IDENTICAL
-from ..constfunc import cuni
 from .handle import Handle
 from .citationbase import IndirectCitationBase
 
@@ -68,12 +67,12 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         """
         return (self.handle,                                       # 0
                 self.gramps_id,                                    # 1
-                cuni(self.title),                                  # 2
-                cuni(self.author),                                 # 3
-                cuni(self.pubinfo),                                # 4
+                str(self.title),                                  # 2
+                str(self.author),                                 # 3
+                str(self.pubinfo),                                # 4
                 NoteBase.serialize(self),                          # 5
                 MediaBase.serialize(self),                         # 6
-                cuni(self.abbrev),                                 # 7
+                str(self.abbrev),                                 # 7
                 self.change,                                       # 8
                 SrcAttributeBase.serialize(self),                  # 9
                 [rr.serialize() for rr in self.reporef_list],      # 10
@@ -103,12 +102,12 @@ class Source(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         return {"_class": "Source",
                 "handle": Handle("Source", self.handle), 
                 "gramps_id": self.gramps_id, 
-                "title": cuni(self.title),
-                "author": cuni(self.author), 
-                "pubinfo": cuni(self.pubinfo),
+                "title": str(self.title),
+                "author": str(self.author), 
+                "pubinfo": str(self.pubinfo),
                 "note_list": NoteBase.to_struct(self),
                 "media_list": MediaBase.to_struct(self), 
-                "abbrev": cuni(self.abbrev),
+                "abbrev": str(self.abbrev),
                 "change": self.change,
                 "srcattr_list": SrcAttributeBase.to_struct(self),
                 "reporef_list": [rr.to_struct() for rr in self.reporef_list],

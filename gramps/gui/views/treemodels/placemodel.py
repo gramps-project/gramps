@@ -47,7 +47,6 @@ from gi.repository import Gtk
 from gramps.gen.lib.placetype import PlaceType
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon
-from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 
@@ -116,10 +115,10 @@ class PlaceBaseModel(object):
         return len(self.fmap)+1
 
     def column_title(self, data):
-        return cuni(data[2])
+        return str(data[2])
 
     def column_name(self, data):
-        return cuni(data[6])
+        return str(data[6])
 
     def column_longitude(self, data):
         if not data[3]:
@@ -154,13 +153,13 @@ class PlaceBaseModel(object):
         return value 
 
     def column_id(self, data):
-        return cuni(data[1])
+        return str(data[1])
 
     def column_type(self, data):
         return str(PlaceType(data[8]))
 
     def column_code(self, data):
-        return cuni(data[9])
+        return str(data[9])
 
     def column_private(self, data):
         if data[17]:

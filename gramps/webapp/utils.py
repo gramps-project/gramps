@@ -47,7 +47,6 @@ import gramps.webapp.grampsdb.models as models
 import gramps.webapp.grampsdb.forms as forms
 from gramps.webapp import libdjango
 from gramps.webapp.dbdjango import DbDjango
-from gramps.gen.constfunc import cuni
 from gramps.cli.user import User as GUser # gramps user
 
 #------------------------------------------------------------------------
@@ -139,7 +138,7 @@ def get_person_from_handle(db, handle):
         print("error in get_person_from_handle:", file=sys.stderr)
         import sys, traceback
         cla, exc, trbk = sys.exc_info()
-        print(_("Error") + (cuni(" : %s %s") %(cla, exc)), file=sys.stderr)
+        print(_("Error") + (" : %s %s" %(cla, exc)), file=sys.stderr)
         traceback.print_exc()
         return None
 
@@ -243,18 +242,18 @@ class Table(object):
         self.table.set_link_col(links)
 
     def get_html(self):
-        retval = cuni("")
+        retval = ""
         # The HTML writer escapes data:
         self.table.write(self.doc, self.column_widths) # forces to htmllist
         # FIXME: do once, or once per table?
         self.doc.doc.build_style_declaration(self.id) # can pass id, for whole
         # FIXME: don't want to repeat this, unless diff for each table:
-        retval += cuni("<style>%s</style>") % self.doc.doc.style_declaration
+        retval += "<style>%s</style>" % self.doc.doc.style_declaration
         # We have a couple of HTML bits that we want to unescape:
-        return retval + cuni(self.doc.doc.htmllist[0]).replace("&amp;nbsp;", "&nbsp;")
+        return retval + str(self.doc.doc.htmllist[0]).replace("&amp;nbsp;", "&nbsp;")
 
 def build_args(**kwargs):
-    retval = cuni("")
+    retval = ""
     first = True
     for key in kwargs:
         if kwargs[key] is not "":
@@ -263,7 +262,7 @@ def build_args(**kwargs):
                 first = False
             else:
                 retval += "&"
-            retval += cuni("%s=%s") % (key, kwargs[key])
+            retval += "%s=%s" % (key, kwargs[key])
     return retval
 
 def build_search(request):
@@ -273,8 +272,8 @@ def build_search(request):
 
 def make_button(text, url, *args):
     newargs = []
-    kwargs = cuni("")
-    last = cuni("")
+    kwargs = ""
+    last = ""
     for arg in args:
         if isinstance(arg, str) and arg.startswith("?"):
             kwargs = arg
@@ -289,7 +288,7 @@ def make_button(text, url, *args):
     if text[0] in "+$-?x" or text in ["x", "^", "v", "<", "<<", ">", ">>"]:
         return mark_safe(make_image_button(text, url, kwargs, last))
     else:
-        return mark_safe(cuni("""<input type="button" value="%s" onclick="document.location.href='%s%s%s'"/>""") % 
+        return mark_safe("""<input type="button" value="%s" onclick="document.location.href='%s%s%s'"/>""" % 
                          (text, url, kwargs, last))
 
 def make_image_button(text, url, kwargs, last):
@@ -362,10 +361,10 @@ def make_image_button2(button, text, url, kwargs="", last=""):
         filename = "/images/add-parent-existing-family.png"
     elif button == "add spouse to new family":
         filename = "/images/gramps-parents.png"
-    return cuni("""<img height="22" width="22" alt="%s" title="%s" src="%s" onmouseover="buttonOver(this)" onmouseout="buttonOut(this)" onclick="document.location.href='%s%s%s'" style="background-color: lightgray; border: 1px solid lightgray; border-radius:5px; margin: 0px 1px; padding: 1px;" />""") % (text, text, filename, url, kwargs, last)
+    return """<img height="22" width="22" alt="%s" title="%s" src="%s" onmouseover="buttonOver(this)" onmouseout="buttonOut(this)" onclick="document.location.href='%s%s%s'" style="background-color: lightgray; border: 1px solid lightgray; border-radius:5px; margin: 0px 1px; padding: 1px;" />""" % (text, text, filename, url, kwargs, last)
 
 def event_table(obj, user, act, url, args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-events"
     table = Table("event_table")
@@ -393,18 +392,18 @@ def event_table(obj, user, act, url, args):
                 djevent.gramps_id, 
                 display_date(djevent),
                 get_title(djevent.place),
-                cuni(event_ref.role_type))
+                str(event_ref.role_type))
             links.append(('URL', event_ref.get_url()))
             has_data = True
             count += 1
         table.links(links)
-    retval += cuni("""<div style="background-color: lightgray; padding: 2px 0px 0px 2px">""")
+    retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and act == "view":
         retval += make_button(_("+Add New Event"), (url % args).replace("$act", "add"))
         retval += make_button(_("$Add Existing Event"), (url % args).replace("$act", "share"))
     else:
-        retval += cuni("""<div style="height: 26px;"></div>""") # to keep tabs same height
-    retval += cuni("""</div>""")
+        retval += """<div style="height: 26px;"></div>""" # to keep tabs same height
+    retval += """</div>"""
     retval += table.get_html()
     if user.is_superuser and act == "view":
         count = 1
@@ -412,16 +411,16 @@ def event_table(obj, user, act, url, args):
         retval = retval.replace("}}", """</div>""")
         for (djevent, event_ref) in event_list:
             item = obj.__class__.__name__.lower()
-            retval = retval.replace("[[x%d]]" % count, make_button("x", cuni("/%s/%s/remove/eventref/%d") % (item, obj.handle, count)))
-            retval = retval.replace("[[^%d]]" % count, make_button("^", cuni("/%s/%s/up/eventref/%d") % (item, obj.handle, count)))
-            retval = retval.replace("[[v%d]]" % count, make_button("v", cuni("/%s/%s/down/eventref/%d") % (item, obj.handle, count)))
+            retval = retval.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/eventref/%d" % (item, obj.handle, count)))
+            retval = retval.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/eventref/%d" % (item, obj.handle, count)))
+            retval = retval.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/eventref/%d" % (item, obj.handle, count)))
             count += 1
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def history_table(obj, user, act):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-history"
     table = Table("history_table")
@@ -435,23 +434,23 @@ def history_table(obj, user, act):
             object_id=obj.id, 
             object_type=obj_type):
             table.row(
-                cuni("%s on %s by %s") % (entry.log_type, 
+                "%s on %s by %s" % (entry.log_type, 
                                     entry.last_changed,
                                     entry.last_changed_by),
                 entry.reason)
             has_data = True
         table.row(
-            cuni("Latest on %s by %s") % (obj.last_changed,
+             "Latest on %s by %s" % (obj.last_changed,
                                      obj.last_changed_by),
             "Current status")
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def name_table(obj, user, act, url=None, *args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-names"
     table = Table("name_table")
@@ -468,20 +467,20 @@ def name_table(obj, user, act, url=None, *args):
                                                object_id=name.id).count() > 0
             note_refs = dji.NoteRef.filter(object_type=obj_type,
                                            object_id=name.id)
-            note = cuni("")
+            note = ""
             if note_refs.count() > 0:
                 try:
                     note = dji.Note.get(id=note_refs[0].object_id).text[:50]
                 except:
                     note = None
             table.row(make_name(name, user),
-                      cuni(name.name_type) + ["", " (preferred)"][int(name.preferred)],
+                      str(name.name_type) + ["", " (preferred)"][int(name.preferred)],
                       name.group_as,
                       ["No", "Yes"][citationq],
                       note)
             links.append(('URL', 
                           # url is "/person/%s/name"
-                          (url % name.person.handle) + (cuni("/%s") % name.order)))
+                          (url % name.person.handle) + ("/%s" % name.order)))
             has_data = True
         table.links(links)
     retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
@@ -492,13 +491,13 @@ def name_table(obj, user, act, url=None, *args):
     retval += """</div>"""
     retval += table.get_html()
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def surname_table(obj, user, act, url=None, *args):
     person_handle = args[0]
     order = args[1]
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-surnames"
     table = Table("surname_table")
@@ -516,19 +515,19 @@ def surname_table(obj, user, act, url=None, *args):
             name = None
         if name:
             for surname in name.surname_set.all().order_by("order"):
-                table.row(cuni(surname.order), surname)
+                table.row(str(surname.order), surname)
                 has_data = True
             retval += table.get_html()
         else:
-            retval += cuni("<p id='error'>No such name order = %s</p>") % order
+            retval += "<p id='error'>No such name order = %s</p>" % order
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def citation_table(obj, user, act, url=None, *args):
     # FIXME: how can citation_table and source_table both be on same
     # page? This causes problems with form names, tab names, etc.
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-sources"
     table = Table("citation_table")
@@ -549,8 +548,8 @@ def citation_table(obj, user, act, url=None, *args):
                     citation_ref.citation.handle)
                 table.row(Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
                           citation.gramps_id,
-                          cuni(citation.confidence),
-                          cuni(citation.page),
+                          str(citation.confidence),
+                          str(citation.page),
                           )
                 links.append(('URL', citation_ref.get_url()))
                 has_data = True
@@ -570,16 +569,16 @@ def citation_table(obj, user, act, url=None, *args):
         count = 1
         for citation_ref in citation_refs:
             item = obj.__class__.__name__.lower()
-            retval = retval.replace("[[x%d]]" % count, make_button("x", cuni("/%s/%s/remove/citationref/%d") % (item, obj.handle, count)))
-            retval = retval.replace("[[^%d]]" % count, make_button("^", cuni("/%s/%s/up/citationref/%d") % (item, obj.handle, count)))
-            retval = retval.replace("[[v%d]]" % count, make_button("v", cuni("/%s/%s/down/citationref/%d") % (item, obj.handle, count)))
+            retval = retval.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/citationref/%d" % (item, obj.handle, count)))
+            retval = retval.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/citationref/%d" % (item, obj.handle, count)))
+            retval = retval.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/citationref/%d" % (item, obj.handle, count)))
             count += 1
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def repository_table(obj, user, act, url=None, *args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-repositories"
     table = Table("repository_table")
@@ -610,7 +609,7 @@ def repository_table(obj, user, act, url=None, *args):
                 repository.gramps_id,
                 repository.name,
                 repo_ref.call_number, 
-                cuni(repository.repository_type),
+                str(repository.repository_type),
                 )
             has_data = True
             count += 1
@@ -620,17 +619,17 @@ def repository_table(obj, user, act, url=None, *args):
         count = 1
         for repo_ref in refs:
             item = obj.__class__.__name__.lower()
-            text = text.replace("[[x%d]]" % count, make_button("x", cuni("/%s/%s/remove/repositoryref/%d") % (item, obj.handle, count)))
-            text = text.replace("[[^%d]]" % count, make_button("^", cuni("/%s/%s/up/repositoryref/%d") % (item, obj.handle, count)))
-            text = text.replace("[[v%d]]" % count, make_button("v", cuni("/%s/%s/down/repositoryref/%d") % (item, obj.handle, count)))
+            text = text.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/repositoryref/%d" % (item, obj.handle, count)))
+            text = text.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/repositoryref/%d" % (item, obj.handle, count)))
+            text = text.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/repositoryref/%d" % (item, obj.handle, count)))
             count += 1
         retval += text
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def note_table(obj, user, act, url=None, *args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-notes"
     table = Table("note_table")
@@ -650,7 +649,7 @@ def note_table(obj, user, act, url=None, *args):
             note = note_ref.ref_object
             table.row(Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser else "",
                       note.gramps_id,
-                      cuni(note.note_type),
+                      str(note.note_type),
                       note.text[:50]
                       )
             links.append(('URL', note_ref.get_url()))
@@ -671,17 +670,17 @@ def note_table(obj, user, act, url=None, *args):
         count = 1
         for note_ref in note_refs:
             item = obj.__class__.__name__.lower()
-            text = text.replace("[[x%d]]" % count, make_button("x", cuni("/%s/%s/remove/noteref/%d") % (item, obj.handle, count)))
-            text = text.replace("[[^%d]]" % count, make_button("^", cuni("/%s/%s/up/noteref/%d") % (item, obj.handle, count)))
-            text = text.replace("[[v%d]]" % count, make_button("v", cuni("/%s/%s/down/noteref/%d") % (item, obj.handle, count)))
+            text = text.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/noteref/%d" % (item, obj.handle, count)))
+            text = text.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/noteref/%d" % (item, obj.handle, count)))
+            text = text.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/noteref/%d" % (item, obj.handle, count)))
             count += 1
     retval += text
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 def data_table(obj, user, act, url=None, *args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-data"
     table = Table("data_table")
@@ -722,9 +721,9 @@ def data_table(obj, user, act, url=None, *args):
         text = text.replace("}}", """</div>""")
         count = 1
         for repo_ref in refs:
-            text = text.replace("[[x%d]]" % count, make_button("x", cuni("/%s/%s/remove/attribute/%d") % (item_class, obj.handle, count)))
-            text = text.replace("[[^%d]]" % count, make_button("^", cuni("/%s/%s/up/attribute/%d") % (item_class, obj.handle, count)))
-            text = text.replace("[[v%d]]" % count, make_button("v", cuni("/%s/%s/down/attribute/%d") % (item_class, obj.handle, count)))
+            text = text.replace("[[x%d]]" % count, make_button("x", "/%s/%s/remove/attribute/%d" % (item_class, obj.handle, count)))
+            text = text.replace("[[^%d]]" % count, make_button("^", "/%s/%s/up/attribute/%d" % (item_class, obj.handle, count)))
+            text = text.replace("[[v%d]]" % count, make_button("v", "/%s/%s/down/attribute/%d" % (item_class, obj.handle, count)))
             count += 1
         retval += text
     if has_data:
@@ -732,7 +731,7 @@ def data_table(obj, user, act, url=None, *args):
     return retval
 
 def attribute_table(obj, user, act, url=None, *args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-attributes"
     table = Table("attribute_table")
@@ -759,7 +758,7 @@ def attribute_table(obj, user, act, url=None, *args):
     return retval
 
 def address_table(obj, user, act, url=None, *args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-addresses"
     table = Table("address_table")
@@ -790,7 +789,7 @@ def address_table(obj, user, act, url=None, *args):
     return retval
 
 def media_table(obj, user, act, url=None, *args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-media"
     table = Table("media_table")
@@ -806,7 +805,7 @@ def media_table(obj, user, act, url=None, *args):
             media = table.db.get_object_from_handle(
                 media_ref.ref_object.handle)
             table.row(table.db.get_object_from_handle(media.handle),
-                      cuni(media_ref.ref_object.desc),
+                      str(media_ref.ref_object.desc),
                       media_ref.ref_object.path)
             has_data = True
     retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
@@ -822,7 +821,7 @@ def media_table(obj, user, act, url=None, *args):
     return retval
 
 def internet_table(obj, user, act, url=None, *args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-internet"
     table = Table("internet_table")
@@ -832,13 +831,13 @@ def internet_table(obj, user, act, url=None, *args):
     if user.is_authenticated() or obj.public:
         urls = dji.Url.filter(person=obj)
         for url_obj in urls:
-            table.row(cuni(url_obj.url_type),
+            table.row(str(url_obj.url_type),
                       url_obj.path,
                       url_obj.desc)
             has_data = True
     retval += """<div style="background-color: lightgray; padding: 2px 0px 0px 2px">"""
     if user.is_superuser and url and act == "view":
-        retval += make_button(_("+Add Internet"), (cuni(url) % args))
+        retval += make_button(_("+Add Internet"), (str(url) % args))
     else:
         retval += nbsp("") # to keep tabs same height
     retval += """</div>"""
@@ -848,7 +847,7 @@ def internet_table(obj, user, act, url=None, *args):
     return retval
 
 def association_table(obj, user, act, url=None, *args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-associations"
     table = Table("association_table")
@@ -892,7 +891,7 @@ def association_table(obj, user, act, url=None, *args):
 
 def location_table(obj, user, act, url=None, *args):	 
     # obj is Place or Address
-    retval = cuni("")
+    retval = ""
     has_data = False	 
     cssid = "tab-alternatelocations"	 
     table = Table("location_table")	 
@@ -926,7 +925,7 @@ def location_table(obj, user, act, url=None, *args):
     return retval	 
 
 def lds_table(obj, user, act, url=None, *args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-lds"
     table = Table("lds_table")
@@ -939,9 +938,9 @@ def lds_table(obj, user, act, url=None, *args):
         obj_type = ContentType.objects.get_for_model(obj)
         ldss = obj.lds_set.all().order_by("order")
         for lds in ldss:
-            table.row(cuni(lds.lds_type),
+            table.row(str(lds.lds_type),
                       display_date(lds),
-                      cuni(lds.status),
+                      str(lds.status),
                       lds.temple,
                       get_title(lds.place))
             has_data = True
@@ -957,11 +956,11 @@ def lds_table(obj, user, act, url=None, *args):
     return retval
 
 def person_reference_table(obj, user, act):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-references"
-    text1 = cuni("")
-    text2 = cuni("")
+    text1 = ""
+    text2 = ""
     table1 = Table("person_reference_table", style="background-color: #f4f0ec;")
     table1.columns(
         "As Spouse",
@@ -1037,11 +1036,11 @@ def person_reference_table(obj, user, act):
     retval += """<div style="overflow: auto; height:%spx;">""" % TAB_HEIGHT
     retval += text1 + text2 + "</div>"
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def note_reference_table(obj, user, act):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-references"
     table = Table("note_reference_table")
@@ -1065,7 +1064,7 @@ def note_reference_table(obj, user, act):
     return retval 
 
 def event_reference_table(obj, user, act):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-references"
     table = Table("event_reference_table")
@@ -1089,11 +1088,11 @@ def event_reference_table(obj, user, act):
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def repository_reference_table(obj, user, act):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-references"
     table = Table("repository_reference_table")
@@ -1113,11 +1112,11 @@ def repository_reference_table(obj, user, act):
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def citation_reference_table(obj, user, act):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-references"
     table = Table("citation_reference_table")
@@ -1137,11 +1136,11 @@ def citation_reference_table(obj, user, act):
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def source_reference_table(obj, user, act):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-references"
     table = Table("source_reference_table")
@@ -1159,11 +1158,11 @@ def source_reference_table(obj, user, act):
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def media_reference_table(obj, user, act):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-references"
     table = Table("media_reference_table")
@@ -1183,11 +1182,11 @@ def media_reference_table(obj, user, act):
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def place_reference_table(obj, user, act):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-references"
     table = Table("place_reference_table")
@@ -1206,11 +1205,11 @@ def place_reference_table(obj, user, act):
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 def tag_reference_table(obj, user, act):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-references"
     table = Table("tag_reference_table")
@@ -1230,7 +1229,7 @@ def tag_reference_table(obj, user, act):
     retval += table.get_html()
     retval += nbsp("") # to keep tabs same height
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval 
 
 class Link(object):
@@ -1243,7 +1242,7 @@ class Link(object):
         return self.string
 
 def children_table(obj, user, act, url=None, *args):
-    retval = cuni("")
+    retval = ""
     has_data = False
     cssid = "tab-children"
     table = Table("children_table")
@@ -1269,8 +1268,8 @@ def children_table(obj, user, act, url=None, *args):
         child = childref.ref_object
         if user.is_authenticated() or obj.public:
             table.row(Link("{{[[x%d]][[^%d]][[v%d]]}}" % (count, count, count)) if user.is_superuser and url and act == "view" else "",
-                      cuni(count), 
-                      cuni("[%s]") % child.gramps_id,
+                      str(count), 
+                      "[%s]" % child.gramps_id,
                       render_name(child, user),
                       child.gender_type,
                       childref.father_rel_type,
@@ -1282,8 +1281,8 @@ def children_table(obj, user, act, url=None, *args):
             count += 1
         else:
             table.row("",
-                      cuni(count), 
-                      cuni("[%s]") % child.gramps_id,
+                      str(count), 
+                      "[%s]" % child.gramps_id,
                       render_name(child, user) if not child.private else "[Private]",
                       child.gender_type if not child.private else "[Private]",
                       "[Private]",
@@ -1304,9 +1303,9 @@ def children_table(obj, user, act, url=None, *args):
         text = text.replace("}}", """</div>""")
         count = 1
         for childref in childrefs:
-            text = text.replace("[[x%d]]" % count, make_button("x", cuni("/family/%s/remove/child/%d") % (family.handle, count)))
-            text = text.replace("[[^%d]]" % count, make_button("^", cuni("/family/%s/up/child/%d") % (family.handle, count)))
-            text = text.replace("[[v%d]]" % count, make_button("v", cuni("/family/%s/down/child/%d") % (family.handle, count)))
+            text = text.replace("[[x%d]]" % count, make_button("x", "/family/%s/remove/child/%d" % (family.handle, count)))
+            text = text.replace("[[^%d]]" % count, make_button("^", "/family/%s/up/child/%d" % (family.handle, count)))
+            text = text.replace("[[v%d]]" % count, make_button("v", "/family/%s/down/child/%d" % (family.handle, count)))
             count += 1
         retval += make_button(_("+Add New Person as Child"), (url.replace("$act", "add") % args))
         retval += make_button(_("$Add Existing Person as Child"), (url.replace("$act", "share") % args))
@@ -1315,7 +1314,7 @@ def children_table(obj, user, act, url=None, *args):
     retval += """</div>"""
     retval += text
     if has_data:
-        retval += cuni(""" <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""") % cssid
+        retval += """ <SCRIPT LANGUAGE="JavaScript">setHasData("%s", 1)</SCRIPT>\n""" % cssid
     return retval
 
 ## FIXME: these dji function wrappers just use the functions
@@ -1337,9 +1336,9 @@ def display_date(obj):
         return ""
 
 def media_link(handle, user, act):
-    retval = cuni("""<a href="%s"><img src="%s" /></a>""") % (
-        cuni("/media/%s/full") % handle, 
-        cuni("/media/%s/thumbnail") % handle)
+    retval = """<a href="%s"><img src="%s" /></a>""" % (
+        "/media/%s/full" % handle, 
+        "/media/%s/thumbnail" % handle)
     return retval
 
 def render(formfield, user, act, id=None, url=None, *args):
@@ -1350,14 +1349,14 @@ def render(formfield, user, act, id=None, url=None, *args):
         try:
             item = getattr(formfield.form.model, fieldname)
             if (item.__class__.__name__ == 'ManyRelatedManager'):
-                retval = cuni(", ").join([i.get_link() for i in item.all()])
+                retval = ", ".join([i.get_link() for i in item.all()])
             else:
                 if url:
-                    retval = cuni("""<a href="%s">%s</a>""") % (url % args, item)
+                    retval = """<a href="%s">%s</a>""" % (url % args, item)
                 elif hasattr(item, "get_link"):
                     retval = item.get_link()
                 else:
-                    retval = cuni(item)
+                    retval = str(item)
                 #### Some cleanup:
                 if fieldname == "private": # obj.private
                     if retval == "True":
@@ -1372,7 +1371,7 @@ def render(formfield, user, act, id=None, url=None, *args):
         except:
             # name, "prefix"
             try:
-                retval = cuni(formfield.form.data[fieldname]) 
+                retval = str(formfield.form.data[fieldname]) 
             except:
                 retval = "[None]"
     else: # show as widget
@@ -1398,7 +1397,7 @@ def render_name(name, user, act=None):
             surname = name.surname_set.get(primary=True)
         except:
             surname = "[No primary surname]"
-        return cuni("%s, %s") % (surname, name.first_name)
+        return "%s, %s" % (surname, name.first_name)
     elif isinstance(name, forms.NameForm):
         if not user.is_authenticated():
             name.model.sanitize()
@@ -1406,7 +1405,7 @@ def render_name(name, user, act=None):
             surname = name.model.surname_set.get(primary=True)
         except:
             surname = "[No primary surname]"
-        return cuni("%s, %s") % (surname, 
+        return "%s, %s" % (surname, 
                            name.model.first_name)
     elif isinstance(name, Person): # name is a Person
         person = name
@@ -1422,7 +1421,7 @@ def render_name(name, user, act=None):
             surname = name.surname_set.get(primary=True)
         except:
             surname = "[No primary surname]"
-        return cuni("%s, %s") % (surname, name.first_name)
+        return "%s, %s" % (surname, name.first_name)
     elif isinstance(name, models.Person): # django person
         person = name
         try:
@@ -1457,7 +1456,7 @@ def person_get_event(person, event_type=None):
         index = libdjango.lookup_role_index(event_type, event_ref_list)
         if index >= 0:
             event_handle = event_ref_list[index][3]
-            # (False, [], [], cuni('b2cfa6cdec87392cf3b'), (1, cuni('Primary')))
+            # (False, [], [], 'b2cfa6cdec87392cf3b', (1, 'Primary'))
             # WARNING: the same object can be referred to more than once
             objs = models.EventRef.objects.filter(ref_object__handle=event_handle)
             if objs.count() > 0:
@@ -1517,7 +1516,7 @@ class StyledNoteFormatter(object):
         return self.styled_note(note.get_styledtext())
 
     def styled_note(self, styledtext):
-        text = cuni(styledtext)
+        text = str(styledtext)
         if not text:
             return ''
         s_tags = styledtext.get_tags()
@@ -1534,13 +1533,13 @@ class StyledNoteFormatter(object):
                 if obj:
                     handle = obj.handle
                 else:
-                    raise AttributeError(cuni("gramps_id '%s' not found in '%s'") % 
+                    raise AttributeError("gramps_id '%s' not found in '%s'" % 
                                          (handle, obj_class))
             else:
-                raise AttributeError(cuni("invalid gramps_id lookup ") + 
-                                     cuni("in table name '%s'") % obj_class)
+                raise AttributeError("invalid gramps_id lookup " + 
+                                     "in table name '%s'" % obj_class)
         # handle, ppl
-        return cuni("/%s/%s") % (obj_class.lower(), handle)
+        return "/%s/%s" % (obj_class.lower(), handle)
 
 class WebAppParser(HTMLParser):
     BOLD = 0
@@ -1650,7 +1649,7 @@ class WebAppParser(HTMLParser):
                 href = attrs["href"]
                 if href.startswith("/"):
                     parts = href.split("/")
-                    arg = cuni("gramps://%s/handle/%s") % (parts[-2].title(), parts[-1])
+                    arg = "gramps://%s/handle/%s" % (parts[-2].title(), parts[-1])
                 else:
                     arg = href
             else:
@@ -1666,7 +1665,7 @@ class WebAppParser(HTMLParser):
         self.__tags[key].append((start_pos, len(self.__text)))
 
     def tags(self):
-        # [((code, cuni('')), string/num, [(start, stop), ...]), ...]
+        # [((code, ''), string/num, [(start, stop), ...]), ...]
         return [(key[0], key[1], self.__tags[key]) for key in self.__tags]
 
     def text(self):

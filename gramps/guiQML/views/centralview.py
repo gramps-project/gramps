@@ -63,8 +63,6 @@ from gramps.gen.const import ROOT_DIR
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-from gramps.gen.constfunc import cuni
-
 #-------------------------------------------------------------------------
 #
 # Classes

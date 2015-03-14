@@ -43,7 +43,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, MediaObject
-from gramps.gen.constfunc import cuni, conv_to_unicode
+from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .flatbasemodel import FlatBaseModel
 
@@ -110,7 +110,7 @@ class MediaModel(FlatBaseModel):
         if isinstance(descr, str):
             return descr
         try:
-            return cuni(descr)
+            return str(descr)
         except:
             return conv_to_unicode(descr, 'latin1')
 
@@ -119,27 +119,27 @@ class MediaModel(FlatBaseModel):
         if isinstance(path, str):
             return path
         try:
-            return cuni(path)
+            return str(path)
         except:
-            return cuni(path.encode('iso-8859-1'))
+            return str(path.encode('iso-8859-1'))
 
     def column_mime(self, data):
         mime = data[3]
         if mime and isinstance(mime, str):
             return mime
         if mime:
-            return cuni(mime)
+            return str(mime)
         else:
             return _('Note')
 
     def column_id(self,data):
-        return cuni(data[1])
+        return str(data[1])
 
     def column_date(self,data):
         if data[10]:
             date = Date()
             date.unserialize(data[10])
-            return cuni(displayer.display(date))
+            return str(displayer.display(date))
         return ''
 
     def sort_date(self,data):
@@ -152,7 +152,7 @@ class MediaModel(FlatBaseModel):
             return ''
 
     def column_handle(self,data):
-        return cuni(data[0])
+        return str(data[0])
 
     def column_private(self, data):
         if data[12]:
@@ -168,7 +168,7 @@ class MediaModel(FlatBaseModel):
         return format_time(data[9])
 
     def column_tooltip(self,data):
-        return cuni('Media tooltip')
+        return 'Media tooltip'
 
     def get_tag_name(self, tag_handle):
         """

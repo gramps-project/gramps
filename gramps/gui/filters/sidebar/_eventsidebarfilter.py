@@ -42,7 +42,6 @@ from ... import widgets
 from gramps.gen.lib import Event, EventType
 from .. import build_filter_model
 from . import SidebarFilter
-from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.event import (RegExpIdOf, HasNoteRegexp, 
                                             MatchesFilter, HasEvent, HasTag)
@@ -119,12 +118,12 @@ class EventSidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
-        gid = cuni(self.filter_id.get_text()).strip()
-        desc = cuni(self.filter_desc.get_text()).strip()
-        mainparts = cuni(self.filter_mainparts.get_text()).strip()
-        date = cuni(self.filter_date.get_text()).strip()
-        place = cuni(self.filter_place.get_text()).strip()
-        note = cuni(self.filter_note.get_text()).strip()
+        gid = str(self.filter_id.get_text()).strip()
+        desc = str(self.filter_desc.get_text()).strip()
+        mainparts = str(self.filter_mainparts.get_text()).strip()
+        date = str(self.filter_date.get_text()).strip()
+        place = str(self.filter_place.get_text()).strip()
+        note = str(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
         generic = self.generic.get_active() > 0
@@ -159,7 +158,7 @@ class EventSidebarFilter(SidebarFilter):
             if self.generic.get_active() != 0:
                 model = self.generic.get_model()
                 node = self.generic.get_active_iter()
-                obj = cuni(model.get_value(node, 0))
+                obj = str(model.get_value(node, 0))
                 rule = MatchesFilter([obj])
                 generic_filter.add_rule(rule)
 

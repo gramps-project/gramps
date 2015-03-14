@@ -71,7 +71,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
-from gramps.gen.constfunc import cuni, conv_to_unicode, handle2internal
+from gramps.gen.constfunc import conv_to_unicode, handle2internal
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
@@ -80,7 +80,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 #
 #-------------------------------------------------------------------------
 
-UEMPTY = cuni("")
+UEMPTY = ""
 
 class FlatNodeMap(object):
     """

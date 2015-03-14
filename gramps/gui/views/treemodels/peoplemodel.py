@@ -63,7 +63,6 @@ from .lru import LRU
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 from gramps.gen.config import config
-from gramps.gen.constfunc import cuni
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
@@ -469,25 +468,25 @@ class PeopleBaseModel(object):
         return todo
 
     def column_parents(self, data):
-        return cuni(self._get_parents_data(data))
+        return str(self._get_parents_data(data))
 
     def sort_parents(self, data):
         return '%06d' % self._get_parents_data(data)
 
     def column_marriages(self, data):
-        return cuni(self._get_marriages_data(data))
+        return str(self._get_marriages_data(data))
 
     def sort_marriages(self, data):
         return '%06d' % self._get_marriages_data(data)
 
     def column_children(self, data):
-        return cuni(self._get_children_data(data))
+        return str(self._get_children_data(data))
 
     def sort_children(self, data):
         return '%06d' % self._get_children_data(data)
 
     def column_todo(self, data):
-        return cuni(self._get_todo_data(data))
+        return str(self._get_todo_data(data))
 
     def sort_todo(self, data):
         return '%06d' % self._get_todo_data(data)

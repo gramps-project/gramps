@@ -25,8 +25,6 @@ _ = glocale.translation.gettext
 from gi.repository import Gtk
 from gi.repository import GObject
 
-from gramps.gen.constfunc import cuni
-
 #-------------------------------------------------------------------------
 #
 # StyleComboBox
@@ -83,7 +81,7 @@ class StyleComboBox(Gtk.ComboBox):
         active = self.get_active()
         if active < 0:
             return None
-        key = cuni(self.store[active][0])
+        key = str(self.store[active][0])
         if key == _('default'):
             key = "default"
         return (key,self.style_map[key])

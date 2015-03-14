@@ -71,7 +71,6 @@ from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.utils.db import family_name
 from gramps.gen.utils.string import conf_strings
-from gramps.gen.constfunc import cuni
 from ..widgets import DateEntry
 from gramps.gen.datehandler import displayer
 
@@ -333,7 +332,7 @@ class MyID(Gtk.Box):
             self.set_text(val.get_gramps_id())
         
     def get_text(self):
-        return cuni(self.entry.get_text())
+        return str(self.entry.get_text())
 
     def name_from_gramps_id(self, gramps_id):
         if self.namespace == 'Person':
@@ -756,7 +755,7 @@ class EditRule(ManagedWindow):
         try:
             page = self.notebook.get_current_page()
             (class_obj, vallist, tlist, use_regex) = self.page[page]
-            value_list = [cuni(sclass.get_text()) for sclass in tlist]
+            value_list = [str(sclass.get_text()) for sclass in tlist]
             if class_obj.allow_regex:
                 new_rule = class_obj(value_list, use_regex.get_active())
             else:
@@ -841,7 +840,7 @@ class EditFilter(ManagedWindow):
         self.close()
 
     def filter_name_changed(self, obj):
-        name = cuni(self.fname.get_text())
+        name = str(self.fname.get_text())
         # Make sure that the name is not empty
         # and not in the list of existing filters (excluding this one)
         names = [filt.get_name()
@@ -864,14 +863,14 @@ class EditFilter(ManagedWindow):
             self.rlist.add([r.name,r.display_values()],r)
             
     def on_ok_clicked(self, obj):
-        n = cuni(self.fname.get_text()).strip()
+        n = str(self.fname.get_text()).strip()
         if n == '':
             return
         if n != self.filter.get_name():
             self.uistate.emit('filter-name-changed',
-                        (self.namespace, cuni(self.filter.get_name()), n))
+                        (self.namespace, str(self.filter.get_name()), n))
         self.filter.set_name(n)
-        self.filter.set_comment(cuni(self.comment.get_text()).strip())
+        self.filter.set_comment(str(self.comment.get_text()).strip())
         for f in self.filterdb.get_filters(self.namespace)[:]:
             if n == f.get_name():
                 self.filterdb.get_filters(self.namespace).remove(f)

@@ -26,7 +26,6 @@ import re
 import io
 import subprocess
 
-from gramps.gen.constfunc import cuni
 from gramps.gen.const import TEMP_DIR
 
 test_ged = """0 HEAD
@@ -126,8 +125,8 @@ class UnicodeTest(unittest.TestCase):
         from gramps.gen.config import set as setconfig, get as getconfig
         from gramps.gen.dbstate import DbState
         self.newpath = os.path.join(os.path.dirname(__file__),
-                                    cuni('\u0393\u03c1\u03b1\u03bc\u03c3\u03c0'))
-        self.newtitle = cuni('Gr\u00e4mps T\u00e9st')
+                                    '\u0393\u03c1\u03b1\u03bc\u03c3\u03c0')
+        self.newtitle = 'Gr\u00e4mps T\u00e9st'
         os.makedirs(self.newpath)
         self.old_path = getconfig('behavior.database-path')
         setconfig('behavior.database-path', self.newpath)

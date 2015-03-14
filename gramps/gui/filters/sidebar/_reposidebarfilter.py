@@ -42,7 +42,6 @@ from ... import widgets
 from gramps.gen.lib import Repository, RepositoryType
 from .. import build_filter_model
 from . import SidebarFilter
-from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.repository import (RegExpIdOf, HasRepo, HasTag,
                                                  HasNoteRegexp, MatchesFilter) 
@@ -116,12 +115,12 @@ class RepoSidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
-        gid = cuni(self.filter_id.get_text()).strip()
-        title = cuni(self.filter_title.get_text()).strip()
-        address = cuni(self.filter_address.get_text()).strip()
-        url = cuni(self.filter_url.get_text()).strip()
+        gid = str(self.filter_id.get_text()).strip()
+        title = str(self.filter_title.get_text()).strip()
+        address = str(self.filter_address.get_text()).strip()
+        url = str(self.filter_url.get_text()).strip()
         rtype = self.repo.get_type().xml_str()
-        note = cuni(self.filter_note.get_text()).strip()
+        note = str(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
@@ -154,7 +153,7 @@ class RepoSidebarFilter(SidebarFilter):
             if self.generic.get_active() != 0:
                 model = self.generic.get_model()
                 node = self.generic.get_active_iter()
-                obj = cuni(model.get_value(node, 0))
+                obj = str(model.get_value(node, 0))
                 rule = MatchesFilter([obj])
                 generic_filter.add_rule(rule)
 

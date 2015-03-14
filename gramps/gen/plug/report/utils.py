@@ -44,7 +44,6 @@ from ...datehandler import get_date
 from ...display.place import displayer as place_displayer
 from ...utils.file import media_path_full
 from ..docgen import IndexMark, INDEX_TYPE_ALP
-from ...constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -120,7 +119,7 @@ def place_name(db, place_handle):
         name = place_displayer.display(db, place)
     else:
         name = ""
-    return cuni(name)
+    return str(name)
     
 #-------------------------------------------------------------------------
 #

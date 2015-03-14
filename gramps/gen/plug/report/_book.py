@@ -64,7 +64,6 @@ from ...utils.cast import get_type_converter_by_name, type_name
 from ..docgen import StyleSheet, StyleSheetList
 from .. import BasePluginManager
 from . import book_categories
-from ...constfunc import cuni
 
 #------------------------------------------------------------------------
 #
@@ -478,7 +477,7 @@ class BookList(object):
                                     len(options[option_name]) ) )
                         for list_index in range(len(option_value)):
                             option_type = type_name(option_value[list_index])
-                            value = escape(cuni(option_value[list_index]))
+                            value = escape(str(option_value[list_index]))
                             value = value.replace('"', '&quot;')
                             f.write('      <listitem number="%d" type="%s" '
                                     'value="%s"/>\n' % (
@@ -488,7 +487,7 @@ class BookList(object):
                         f.write('    </option>\n')
                     else:
                         option_type = type_name(option_value)
-                        value = escape(cuni(option_value))
+                        value = escape(str(option_value))
                         value = value.replace('"', '&quot;')
                         f.write('    <option name="%s" type="%s" '
                                 'value="%s"/>\n' % (

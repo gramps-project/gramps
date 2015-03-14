@@ -63,7 +63,6 @@ from .managedwindow import GrampsWindowManager
 from gramps.gen.relationship import get_relationship_calculator
 from .glade import Glade
 from gramps.gen.utils.db import navigation_label
-from gramps.gen.constfunc import cuni
 from .widgets.progressdialog import ProgressMonitor, GtkProgressDialog
 
 DISABLED = -1
@@ -137,7 +136,7 @@ class History(Callback):
         if self.history:
             newact = self.history[self.index]
             if not isinstance(newact, str):
-                newact = cuni(newact)
+                newact = str(newact)
             self.emit('active-changed', (newact,))
 
     def push(self, handle):
@@ -155,7 +154,7 @@ class History(Callback):
         if self.history:
             newact = self.history[self.index]
             if not isinstance(newact, str):
-                newact = cuni(newact)
+                newact = str(newact)
             self.emit('active-changed', (newact,))
  
     def forward(self, step=1):
@@ -170,7 +169,7 @@ class History(Callback):
         self.emit('mru-changed', (self.mru, ))
         newact = self.history[self.index]
         if not isinstance(newact, str):
-            newact = cuni(newact)
+            newact = str(newact)
         self.emit('active-changed', (newact,))
         return newact
 
@@ -187,7 +186,7 @@ class History(Callback):
             self.emit('mru-changed', (self.mru, ))
             newact = self.history[self.index]
             if not isinstance(newact, str):
-                newact = cuni(newact)
+                newact = str(newact)
             self.emit('active-changed', (newact,))
             return newact
         except IndexError:

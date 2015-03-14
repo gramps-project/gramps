@@ -42,7 +42,7 @@ LOG = logging.getLogger(".gen.utils.file")
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..constfunc import win, mac, cuni, conv_to_unicode, get_env_var
+from ..constfunc import win, mac, conv_to_unicode, get_env_var
 from ..const import TEMP_DIR, USER_HOME, GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
@@ -95,7 +95,7 @@ def get_empty_tempdir(dirname):
     or for inadequate permissions to delete dir/files or create dir(s)
 
     """
-    dirpath = os.path.join(TEMP_DIR,cuni(dirname))
+    dirpath = os.path.join(TEMP_DIR, str(dirname))
     if os.path.isdir(dirpath):
         shutil.rmtree(dirpath)
     os.makedirs(dirpath)

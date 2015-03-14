@@ -44,7 +44,6 @@ from .datebase import DateBase
 from .tagbase import TagBase
 from .attrbase import SrcAttributeBase
 from .citationbase import IndirectCitationBase
-from ..constfunc import cuni
 from .handle import Handle
 
 #-------------------------------------------------------------------------
@@ -86,7 +85,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
         return (self.handle,                           #  0
                 self.gramps_id,                        #  1
                 DateBase.serialize(self, no_text_date),#  2
-                cuni(self.page),                       #  3
+                str(self.page),                       #  3
                 self.confidence,                       #  4
                 self.source_handle,                    #  5
                 NoteBase.serialize(self),              #  6
@@ -120,7 +119,7 @@ class Citation(MediaBase, NoteBase, SrcAttributeBase, IndirectCitationBase,
                 "handle": Handle("Citation", self.handle),       #  0
                 "gramps_id": self.gramps_id,                     #  1
                 "date": DateBase.to_struct(self),                #  2
-                "page": cuni(self.page),                         #  3
+                "page": str(self.page),                         #  3
                 "confidence": self.confidence,                   #  4
                 "source_handle": Handle("Source", self.source_handle), #  5
                 "note_list": NoteBase.to_struct(self),           #  6

@@ -40,7 +40,6 @@ Mary Smith was born on 3/28/1923.
 #------------------------------------------------------------------------
 from gramps.gen.lib import EventType, PlaceType, Location
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
-from gramps.gen.constfunc import cuni
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -227,7 +226,7 @@ class DateFormat(GenericFormat):
 
         def year(year, count):
             """  The year part only """
-            year = cuni(year)
+            year = str(year)
             if year == "0":
                 return
 
@@ -253,7 +252,7 @@ class DateFormat(GenericFormat):
 
         def month(month, count):
             """  The month part only """
-            month = cuni(month)
+            month = str(month)
             if month == "0":
                 return
 
@@ -269,7 +268,7 @@ class DateFormat(GenericFormat):
 
         def day(day, count):
             """  The day part only """
-            day = cuni(day)
+            day = str(day)
             if day == "0":  # 0 means not defined!
                 return
 

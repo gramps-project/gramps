@@ -38,7 +38,6 @@ import re
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.constfunc import cuni
 
 #------------------------------------------------------------------------
 #
@@ -406,14 +405,14 @@ class Html(list):
         elif self.indent: 
             tabs += indent
         if self.inline:                         # if inline, write all list and
-            method(cuni('%s%s' % (tabs, self)))       # nested list elements
+            method(str('%s%s' % (tabs, self)))       # nested list elements
 #
         else:
             for item in self[:]:                # else write one at a time
                 if isinstance(item, Html):      # recurse if nested Html class
                     item.write(method=method, indent=indent, tabs=tabs)
                 else:
-                    method(cuni('%s%s' % (tabs, item)))  # else write the line
+                    method(str('%s%s' % (tabs, item)))  # else write the line
 #
     def addXML(self, version=1.0, encoding="UTF-8", standalone="no"):
         """

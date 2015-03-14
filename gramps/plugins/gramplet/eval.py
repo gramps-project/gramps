@@ -47,7 +47,6 @@ from gi.repository import Gtk
 #
 #------------------------------------------------------------------------
 from gramps.gen.plug import Gramplet
-from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -103,7 +102,7 @@ class PythonEvaluation(Gramplet):
         return tview.get_buffer()
 
     def apply_clicked(self, obj):
-        text = cuni(self.ebuf.get_text(self.ebuf.get_start_iter(),
+        text = str(self.ebuf.get_text(self.ebuf.get_start_iter(),
                                           self.ebuf.get_end_iter(),False))
 
         outtext = StringIO()

@@ -71,7 +71,7 @@ from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog, MissingMediaDialog
 from gramps.gen.display.name import displayer as _nd
 from gramps.gui.glade import Glade
-from gramps.gen.constfunc import cuni, handle2internal, conv_to_unicode
+from gramps.gen.constfunc import handle2internal, conv_to_unicode
 
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.
@@ -386,7 +386,7 @@ class CheckIntegrity(object):
             handle = handle2internal(bhandle)
             note = self.db.get_note_from_handle(handle)
             stext = note.get_styledtext()
-            old_text = cuni(stext)
+            old_text = str(stext)
             new_text = old_text.translate(strip_dict)
             if old_text != new_text:
                 logging.warning('    FAIL: control characters found in note "%s"' %

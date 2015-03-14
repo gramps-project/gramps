@@ -44,7 +44,6 @@ from ... import widgets
 from gramps.gen.lib import Place, PlaceType
 from .. import build_filter_model
 from . import SidebarFilter
-from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.place import (RegExpIdOf, HasData, HasTitle,
                                             HasTag, HasNoteRegexp,
@@ -116,12 +115,12 @@ class PlaceSidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
-        gid = cuni(self.filter_id.get_text()).strip()
-        title = cuni(self.filter_title.get_text()).strip()
-        name = cuni(self.filter_name.get_text()).strip()
+        gid = str(self.filter_id.get_text()).strip()
+        title = str(self.filter_title.get_text()).strip()
+        name = str(self.filter_name.get_text()).strip()
         ptype = self.filter_place.get_type().xml_str()
-        code = cuni(self.filter_code.get_text()).strip()
-        note = cuni(self.filter_note.get_text()).strip()
+        code = str(self.filter_code.get_text()).strip()
+        note = str(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
@@ -158,7 +157,7 @@ class PlaceSidebarFilter(SidebarFilter):
             if self.generic.get_active() != 0:
                 model = self.generic.get_model()
                 node = self.generic.get_active_iter()
-                obj = cuni(model.get_value(node, 0))
+                obj = str(model.get_value(node, 0))
                 rule = MatchesFilter([obj])
                 generic_filter.add_rule(rule)
 

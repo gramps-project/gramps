@@ -37,7 +37,6 @@ _ = glocale.translation.sgettext
 #
 #-------------------------------------------------------------------------
 from .grampstype import GrampsType
-from ..constfunc import cuni
 
 class EventType(GrampsType):
     """
@@ -366,7 +365,7 @@ class EventType(GrampsType):
         if self.value in self._ABBREVIATIONS:
             return trans_text(self._ABBREVIATIONS[self.value])
         else:
-            abbrev = cuni(self)
+            abbrev = str(self)
             if " " in abbrev:
                 return ".".join([letter[0].lower() for letter in abbrev.split()]) + "."
             else:

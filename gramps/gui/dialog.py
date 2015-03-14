@@ -46,7 +46,6 @@ _ = glocale.translation.gettext
 from gramps.gen.const import ICON, URL_BUGHOME
 from gramps.gen.config import config
 from gramps.gui.glade import Glade
-from gramps.gen.constfunc import cuni
 
 try:
     ICON = GdkPixbuf.Pixbuf.new_from_file(ICON)
