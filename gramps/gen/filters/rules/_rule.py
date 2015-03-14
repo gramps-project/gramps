@@ -40,8 +40,6 @@ import re
 import logging
 LOG = logging.getLogger(".")
 
-from ...constfunc import conv_to_unicode_direct
-
 #-------------------------------------------------------------------------
 #
 # Rule
@@ -85,7 +83,7 @@ class Rule(object):
                     if self.list[i]:
                         try:
                             self.regex[i] = re.compile(
-                                conv_to_unicode_direct(self.list[i]),
+                                str(self.list[i]),
                                 re.I|re.U|re.L)
                         except re.error:
                             self.regex[i] = re.compile('')
@@ -152,7 +150,7 @@ class Rule(object):
         """
         # make str_var unicode so that search for ü works
         # see issue 3188
-        str_var = conv_to_unicode_direct(str_var)
+        str_var = str(str_var)
         if self.list[param_index] and \
                (str_var.upper().find(self.list[param_index].upper()) == -1):
             return False
@@ -165,7 +163,7 @@ class Rule(object):
         matches filter element indicated by param_index using a regular
         expression search.
         """
-        str_var = conv_to_unicode_direct(str_var)
+        str_var = str(str_var)
         if (self.list[param_index] and  self.regex[param_index].search(str_var)
                 is None):
             return False

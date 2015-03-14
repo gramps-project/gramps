@@ -31,7 +31,7 @@ from ..lib import (Person, Family, Event, Source, Place, Citation,
                    Repository, MediaObject, Note, Date, Span)
 from ..config import config
 from ..datehandler import displayer
-from ..constfunc import STRTYPE, conv_to_unicode_direct
+from ..constfunc import STRTYPE
 
 class SimpleTable(object):
     """
@@ -70,7 +70,7 @@ class SimpleTable(object):
         """
         Set the columns
         """
-        self._columns = [conv_to_unicode_direct(col) for col in cols]
+        self._columns = [str(col) for col in cols]
         self._sort_vals = [[] for i in range(len(self._columns))]
 
     def row_sort_val(self, col, val):
@@ -107,7 +107,7 @@ class SimpleTable(object):
                 else:
                     retval.append(item)
             elif isinstance(item, (int, float)):
-                retval.append(conv_to_unicode_direct(item))
+                retval.append(str(item))
                 self.row_sort_val(col, item)
             elif isinstance(item, bool):
                 retval.append(repr(item))
@@ -166,7 +166,7 @@ class SimpleTable(object):
                 if (self._link_col == col or link is None):
                     link = ('Date', item)
             elif isinstance(item, Span):
-                text = conv_to_unicode_direct(item)
+                text = str(item)
                 retval.append(text)
                 self.row_sort_val(col, item)
             elif isinstance(item, list): # [text, "PersonList", handle, ...]
@@ -239,7 +239,7 @@ class SimpleTable(object):
                     else:
                         doc.start_link("/%s/%s" % 
                                        (obj_type.lower(), handle))
-                doc.write_text(conv_to_unicode_direct(col), 'Normal')
+                doc.write_text(str(col), 'Normal')
                 if obj_type and handle:
                     doc.stop_link()
                 doc.end_cell()

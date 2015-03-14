@@ -51,10 +51,9 @@ WINDOWS = ["Windows", "win32"]
 #
 #-------------------------------------------------------------------------
 
-conv_to_unicode_direct = str
 STRTYPE = str
 UNITYPE = str
-cuni = conv_to_unicode_direct
+cuni = str
 def conv_to_unicode(x, y='utf8'):
     return x if x is None or isinstance(x, UNITYPE) else cuni(x, y) if y else cuni(x)
 
