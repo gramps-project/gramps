@@ -59,7 +59,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gui.glade import Glade
 from gramps.gui.editors import FilterEditor
-from gramps.gen.constfunc import conv_to_unicode, uni_to_gui, get_curr_dir
+from gramps.gen.constfunc import conv_to_unicode, get_curr_dir
 
 #-------------------------------------------------------------------------
 #

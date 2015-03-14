@@ -77,7 +77,7 @@ from .displaystate import DisplayState, RecentDocsMenu
 from gramps.gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE, 
                               URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING, 
                               WIKI_EXTRAPLUGINS, URL_BUGHOME)
-from gramps.gen.constfunc import is_quartz, conv_to_unicode, uni_to_gui
+from gramps.gen.constfunc import is_quartz, conv_to_unicode
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
 from .dialog import ErrorDialog, WarningDialog, QuestionDialog2, InfoDialog
@@ -1341,7 +1341,7 @@ class ViewManager(CLIManager):
         if not mpath:
             mpath = HOME_DIR
         f.set_current_folder(os.path.dirname(mpath))
-        f.set_filename(uni_to_gui(os.path.join(mpath, ".")))
+        f.set_filename(os.path.join(mpath, "."))
         status = f.run()
         if status == Gtk.ResponseType.OK:
             filename = f.get_filename()
