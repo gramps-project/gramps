@@ -23,7 +23,6 @@ import os
 import tempfile
 import shutil
 
-from ...constfunc import UNITYPE
 from bsddb3 import dbshelve, db
 
 from ..read import DbBsddbTreeCursor
@@ -91,7 +90,7 @@ class CursorTest(unittest.TestCase):
         
         def find_surname(key,data):
             val = data.surname
-            if isinstance(val, UNITYPE):
+            if isinstance(val, str):
                 val = val.encode('utf-8')
             return val
         
@@ -115,7 +114,7 @@ class CursorTest(unittest.TestCase):
 
         def find_placeref(key,data):
             val = data[2]
-            if isinstance(val, UNITYPE):
+            if isinstance(val, str):
                 val = val.encode('utf-8')
             return val
 

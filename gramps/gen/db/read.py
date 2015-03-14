@@ -73,7 +73,7 @@ from ..utils.cast import conv_dbstr_to_unicode
 from . import (BsddbBaseCursor, DbReadBase)
 from ..utils.id import create_id
 from ..errors import DbError
-from ..constfunc import UNITYPE, cuni, handle2internal, get_env_var
+from ..constfunc import cuni, handle2internal, get_env_var
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -105,7 +105,7 @@ def find_byte_surname(key, data):
     """
     surn = __index_surname(data[3][5])
     # in python 3 we work with unicode internally, but need byte function sometimes
-    if isinstance(surn, UNITYPE):
+    if isinstance(surn, str):
         return surn.encode('utf-8')
     return surn
 
@@ -676,7 +676,7 @@ class DbBsddbRead(DbReadBase, Callback):
         return gid
 
     def get_from_handle(self, handle, class_type, data_map):
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         data = data_map.get(handle)
         if data:
@@ -797,7 +797,7 @@ class DbBsddbRead(DbReadBase, Callback):
     def __get_obj_from_gramps_id(self, val, tbl, class_, prim_tbl):
         if isinstance(tbl, dict): 
             return None ## trying to get object too early        
-        if isinstance(val, UNITYPE):
+        if isinstance(val, str):
             val = val.encode('utf-8')
         try:
             data = tbl.get(val, txn=self.txn)
@@ -914,7 +914,7 @@ class DbBsddbRead(DbReadBase, Callback):
         Return the default grouping name for a surname.
         Return type is a unicode object
         """
-        if isinstance(surname, UNITYPE):
+        if isinstance(surname, str):
             surname = surname.encode('utf-8')
         return conv_dbstr_to_unicode(self.name_group.get(surname, surname))
 
@@ -930,7 +930,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         # The use of has_key seems allright because there is no write lock
         # on the name_group table when this is called.
-        if isinstance(name, UNITYPE):
+        if isinstance(name, str):
             name = name.encode('utf-8')
         return name in self.name_group
 
@@ -1264,7 +1264,7 @@ class DbBsddbRead(DbReadBase, Callback):
             }
 
         table = key2table[obj_key]
-        if isinstance(gramps_id, UNITYPE):
+        if isinstance(gramps_id, str):
             gramps_id = gramps_id.encode('utf-8')
         return table.get(gramps_id, txn=self.txn) is not None
 
@@ -1650,7 +1650,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         if table is None:
             return None ## trying to get object too early
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         try:
             return table.get(handle, txn=self.txn)
@@ -1692,7 +1692,7 @@ class DbBsddbRead(DbReadBase, Callback):
         """
         Helper function for has_<object>_handle methods
         """
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         try:
             return table.get(handle, txn=self.txn) is not None
@@ -1761,80 +1761,80 @@ class DbBsddbRead(DbReadBase, Callback):
         return self.__has_handle(self.tag_map, handle)
 
     def __sortbyperson_key(self, handle):
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         return glocale.sort_key(find_surname(handle, 
                                            self.person_map.get(handle)))
 
     def __sortbyplace(self, first, second):
-        if isinstance(first, UNITYPE):
+        if isinstance(first, str):
             first = first.encode('utf-8')
-        if isinstance(second, UNITYPE):
+        if isinstance(second, str):
             second = second.encode('utf-8')
         return glocale.strcoll(self.place_map.get(first)[2], 
                               self.place_map.get(second)[2])
 
     def __sortbyplace_key(self, place):
-        if isinstance(place, UNITYPE):
+        if isinstance(place, str):
             place = place.encode('utf-8')
         return glocale.sort_key(self.place_map.get(place)[2])
 
     def __sortbysource(self, first, second):
-        if isinstance(first, UNITYPE):
+        if isinstance(first, str):
             first = first.encode('utf-8')
-        if isinstance(second, UNITYPE):
+        if isinstance(second, str):
             second = second.encode('utf-8')
         source1 = cuni(self.source_map[first][2])
         source2 = cuni(self.source_map[second][2])
         return glocale.strcoll(source1, source2)
         
     def __sortbysource_key(self, key):
-        if isinstance(key, UNITYPE):
+        if isinstance(key, str):
             key = key.encode('utf-8')
         source = cuni(self.source_map[key][2])
         return glocale.sort_key(source)
 
     def __sortbycitation(self, first, second):
-        if isinstance(first, UNITYPE):
+        if isinstance(first, str):
             first = first.encode('utf-8')
-        if isinstance(second, UNITYPE):
+        if isinstance(second, str):
             second = second.encode('utf-8')
         citation1 = cuni(self.citation_map[first][3])
         citation2 = cuni(self.citation_map[second][3])
         return glocale.strcoll(citation1, citation2)
         
     def __sortbycitation_key(self, key):
-        if isinstance(key, UNITYPE):
+        if isinstance(key, str):
             key = key.encode('utf-8')
         citation = cuni(self.citation_map[key][3])
         return glocale.sort_key(citation)
 
     def __sortbymedia(self, first, second):
-        if isinstance(first, UNITYPE):
+        if isinstance(first, str):
             first = first.encode('utf-8')
-        if isinstance(second, UNITYPE):
+        if isinstance(second, str):
             second = second.encode('utf-8')
         media1 = self.media_map[first][4]
         media2 = self.media_map[second][4]
         return glocale.strcoll(media1, media2)
 
     def __sortbymedia_key(self, key):
-        if isinstance(key, UNITYPE):
+        if isinstance(key, str):
             key = key.encode('utf-8')
         media = self.media_map[key][4]
         return glocale.sort_key(media)
 
     def __sortbytag(self, first, second):
-        if isinstance(first, UNITYPE):
+        if isinstance(first, str):
             first = first.encode('utf-8')
-        if isinstance(second, UNITYPE):
+        if isinstance(second, str):
             second = second.encode('utf-8')
         tag1 = self.tag_map[first][1]
         tag2 = self.tag_map[second][1]
         return glocale.strcoll(tag1, tag2)
 
     def __sortbytag_key(self, key):
-        if isinstance(key, UNITYPE):
+        if isinstance(key, str):
             key = key.encode('utf-8')
         tag = self.tag_map[key][1]
         return glocale.sort_key(tag)

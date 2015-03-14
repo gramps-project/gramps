@@ -63,7 +63,7 @@ from .lru import LRU
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 from gramps.gen.config import config
-from gramps.gen.constfunc import cuni, UNITYPE
+from gramps.gen.constfunc import cuni
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
@@ -202,7 +202,7 @@ class PeopleBaseModel(object):
     def sort_name(self, data):
         name = name_displayer.raw_sorted_name(data[COLUMN_NAME])
         # internally we work with utf-8
-        if not isinstance(name, UNITYPE):
+        if not isinstance(name, str):
             name = name.decode('utf-8')
         return name
 
@@ -592,7 +592,7 @@ class PersonTreeModel(PeopleBaseModel, TreeBaseModel):
         
         name_data = data[COLUMN_NAME]
         group_name = ngn(self.db, name_data)
-        #if isinstance(group_name, UNITYPE):
+        #if isinstance(group_name, str):
         #    group_name = group_name.encode('utf-8')
         sort_key = self.sort_func(data)
 

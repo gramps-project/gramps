@@ -43,7 +43,7 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import displayer, format_time
 from gramps.gen.lib import Date, MediaObject
-from gramps.gen.constfunc import cuni, conv_to_unicode, UNITYPE
+from gramps.gen.constfunc import cuni, conv_to_unicode
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 from .flatbasemodel import FlatBaseModel
 
@@ -107,7 +107,7 @@ class MediaModel(FlatBaseModel):
 
     def column_description(self, data):
         descr = data[4]
-        if isinstance(descr, UNITYPE):
+        if isinstance(descr, str):
             return descr
         try:
             return cuni(descr)
@@ -116,7 +116,7 @@ class MediaModel(FlatBaseModel):
 
     def column_path(self, data):
         path = data[2]
-        if isinstance(path, UNITYPE):
+        if isinstance(path, str):
             return path
         try:
             return cuni(path)
@@ -125,7 +125,7 @@ class MediaModel(FlatBaseModel):
 
     def column_mime(self, data):
         mime = data[3]
-        if mime and isinstance(mime, UNITYPE):
+        if mime and isinstance(mime, str):
             return mime
         if mime:
             return cuni(mime)

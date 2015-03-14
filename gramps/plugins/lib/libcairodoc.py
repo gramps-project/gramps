@@ -44,7 +44,7 @@ import re
 # Gramps modules
 #
 #------------------------------------------------------------------------
-from gramps.gen.constfunc import conv_to_unicode, UNITYPE
+from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.plug.docgen import (BaseDoc, TextDoc, DrawDoc, ParagraphStyle,
                         TableCellStyle, SOLID, FONT_SANS_SERIF, FONT_SERIF,
                         FONT_MONOSPACE, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT)
@@ -500,7 +500,7 @@ class GtkDocParagraph(GtkDocBaseElement):
         """
         Internal method to allow for splitting of paragraphs
         """
-        if not isinstance(plaintext, UNITYPE):
+        if not isinstance(plaintext, str):
             self._plaintext = conv_to_unicode(plaintext, 'utf-8')
         else:
             self._plaintext = plaintext

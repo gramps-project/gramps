@@ -55,7 +55,6 @@ from gi.repository import GObject
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import URL_MANUAL_PAGE, VERSION_DIR
-from gramps.gen.constfunc import UNITYPE
 from gramps.gen.lib import (ChildRefType, EventRoleType, EventType,
                             FamilyRelType, NameType, Person)
 from gramps.gen.lib.date import Today
@@ -544,7 +543,7 @@ class VerifyResults(ManagedWindow):
         pass
 
     def load_ignored(self, db_filename):
-        if isinstance(db_filename, UNITYPE):
+        if isinstance(db_filename, str):
             db_filename = db_filename.encode('utf-8')
         md5sum = md5(db_filename)
         ## a new Gramps major version means recreating the .vfm file. 

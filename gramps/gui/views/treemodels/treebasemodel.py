@@ -53,7 +53,7 @@ from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import gramps.gui.widgets.progressdialog as progressdlg
-from gramps.gen.constfunc import cuni, UNITYPE
+from gramps.gen.constfunc import cuni
 from .lru import LRU
 from bisect import bisect_right
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
@@ -554,7 +554,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         with gen_cursor() as cursor:
             for handle, data in cursor:
                 # for python3 this returns a byte object, so conversion needed
-                if not isinstance(handle, UNITYPE):
+                if not isinstance(handle, str):
                     handle = handle.decode('utf-8')
                 status.heartbeat()
                 if status.should_cancel():
@@ -610,7 +610,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         def beat(key):
             status_ppl.heartbeat()
             # for python3 this returns a byte object, so conversion needed
-            if not isinstance(key, UNITYPE):
+            if not isinstance(key, str):
                 key = key.decode('utf-8')
             return key
         
@@ -897,7 +897,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         node = self.get_node_from_iter(iter)
         handle = node.handle
-        if handle and not isinstance(handle, UNITYPE):
+        if handle and not isinstance(handle, str):
             handle = handle.decode('utf-8')
         return handle
 

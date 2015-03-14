@@ -1028,7 +1028,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         person = self.get_person_from_handle(handle)
         #self.genderStats.uncount_person (person)
         #self.remove_from_surname_list(person)
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         if transaction.batch:
             with BSDDBTxn(self.env, self.person_map) as txn:            
@@ -1126,7 +1126,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         if self.readonly or not handle:
             return
 
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         if transaction.batch:
             with BSDDBTxn(self.env, data_map) as txn:
@@ -1189,7 +1189,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                         'which is partly bytecode, this is not allowed.\n'
                         'Key is %s') % str(key))
             key = str(key)
-        if isinstance(key, UNITYPE):
+        if isinstance(key, str):
             key = key.encode('utf-8')
         if not self.readonly:
             if not transaction.batch:

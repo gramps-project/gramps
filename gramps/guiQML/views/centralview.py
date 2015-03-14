@@ -63,7 +63,7 @@ from gramps.gen.const import ROOT_DIR
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-from gramps.gen.constfunc import cuni, UNITYPE
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -85,7 +85,7 @@ class DetailView(QtCore.QObject):
     changed = QtCore.Signal()
 
     #make Model.Column.property available in QML 
-    name = QtCore.Property(UNITYPE, _name, notify=changed)
+    name = QtCore.Property(str, _name, notify=changed)
     
 class DetViewSumModel(QtCore.QAbstractListModel):
     """

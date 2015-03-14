@@ -41,7 +41,7 @@ from bsddb3 import db
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import cuni, UNITYPE, handle2internal
+from ..constfunc import cuni, handle2internal
 from ..lib.markertype import MarkerType
 from ..lib.nameorigintype import NameOriginType
 from ..lib.place import Place
@@ -111,7 +111,7 @@ def gramps_upgrade_17(self):
         new_event = new_event[:11] + [[]] + new_event[11:]
         new_event = tuple(new_event)
         with BSDDBTxn(self.env, self.event_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_event)
         self.update()
@@ -181,7 +181,7 @@ def gramps_upgrade_17(self):
                     new_place[6:12] + [[]] + new_place[12:]
         new_place = tuple(new_place)
         with BSDDBTxn(self.env, self.place_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_place)
         self.update()
@@ -196,7 +196,7 @@ def gramps_upgrade_17(self):
         new_repository = new_repository[:8] + [[]] + new_repository[8:]
         new_repository = tuple(new_repository)
         with BSDDBTxn(self.env, self.repository_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_repository)
         self.update()
@@ -211,7 +211,7 @@ def gramps_upgrade_17(self):
         new_source = new_source[:11] + [[]] + new_source[11:]
         new_source = tuple(new_source)
         with BSDDBTxn(self.env, self.source_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_source)
         self.update()
@@ -226,7 +226,7 @@ def gramps_upgrade_17(self):
         new_citation = new_citation[:10] + [[]] + new_citation[10:]
         new_citation = tuple(new_citation)
         with BSDDBTxn(self.env, self.citation_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_citation)
         self.update()
@@ -244,7 +244,7 @@ def gramps_upgrade_17(self):
             notelist, medialist, abbrev, change, srcattributelist, reporef_list,
             taglist, private)
         with BSDDBTxn(self.env, self.source_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_source)
         self.update()
@@ -257,7 +257,7 @@ def gramps_upgrade_17(self):
         new_citation = (handle, gramps_id, datelist, page, confidence, source_handle, 
             notelist, medialist, srcattributelist, change, taglist, private)
         with BSDDBTxn(self.env, self.citation_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_citation)
         self.update()
@@ -281,7 +281,7 @@ def gramps_upgrade_17(self):
         new_media = new_media[:5] + [checksum] + new_media[5:]
         new_media = tuple(new_media)
         with BSDDBTxn(self.env, self.media_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_media)
         self.update()
@@ -312,7 +312,7 @@ def add_place(self, name, level, parent, title):
         placeref.ref = handle2internal(parent)
         place.set_placeref_list([placeref])
     with BSDDBTxn(self.env, self.place_map) as txn:
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         txn.put(handle, place.serialize())
     return handle
@@ -441,7 +441,7 @@ def gramps_upgrade_16(self):
                           private, person_ref_list)
             LOG.debug("      upgrade new_person %s" % [new_person])
             with BSDDBTxn(self.env, self.person_map) as txn:
-                if isinstance(handle, UNITYPE):
+                if isinstance(handle, str):
                     handle = handle.encode('utf-8')
                 txn.put(handle, new_person)
         self.update()
@@ -475,7 +475,7 @@ def gramps_upgrade_16(self):
                      change, date, tag_list, private)
         LOG.debug("      upgrade new_media %s" % [new_media])
         with BSDDBTxn(self.env, self.media_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_media)
         self.update()
@@ -514,7 +514,7 @@ def gramps_upgrade_16(self):
                          change, private)
             LOG.debug("      upgrade new_place %s" % [new_place])
             with BSDDBTxn(self.env, self.place_map) as txn:
-                if isinstance(handle, UNITYPE):
+                if isinstance(handle, str):
                     handle = handle.encode('utf-8')
                 txn.put(handle, new_place)
         self.update()
@@ -566,7 +566,7 @@ def gramps_upgrade_16(self):
                           note_list, change, tag_list, private)
             LOG.debug("      upgrade new_family %s" % [new_family])
             with BSDDBTxn(self.env, self.family_map) as txn:
-                if isinstance(handle, UNITYPE):
+                if isinstance(handle, str):
                     handle = handle.encode('utf-8')
                 txn.put(handle, new_family)
         self.update()
@@ -607,7 +607,7 @@ def gramps_upgrade_16(self):
                          change, private)
             LOG.debug("      upgrade new_event %s" % [new_event])
             with BSDDBTxn(self.env, self.event_map) as txn:
-                if isinstance(handle, UNITYPE):
+                if isinstance(handle, str):
                     handle = handle.encode('utf-8')
                 txn.put(handle, new_event)
         self.update()
@@ -638,7 +638,7 @@ def gramps_upgrade_16(self):
                               address_list, urls, change, private)
             LOG.debug("      upgrade new_repository %s" % [new_repository])
             with BSDDBTxn(self.env, self.repository_map) as txn:
-                if isinstance(handle, UNITYPE):
+                if isinstance(handle, str):
                     handle = handle.encode('utf-8')
                 txn.put(handle, new_repository)
         self.update()
@@ -673,7 +673,7 @@ def gramps_upgrade_16(self):
                       private)
         LOG.debug("      upgrade new_source %s" % [new_source])
         with BSDDBTxn(self.env, self.source_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_source)
         self.update()
@@ -883,7 +883,7 @@ def convert_source_list_to_citation_list_16(self, source_list):
                         new_data_map, new_change, private)
         citation_list.append((new_handle))
         with BSDDBTxn(self.env, self.citation_map) as txn:
-            if isinstance(new_handle, UNITYPE):
+            if isinstance(new_handle, str):
                 new_handle = new_handle.encode('utf-8')
             txn.put(new_handle, new_citation)
         self.cmap_index += 1
@@ -966,7 +966,7 @@ def gramps_upgrade_15(self):
                       )
 
         with BSDDBTxn(self.env, self.person_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_person)
         self.update()
@@ -991,7 +991,7 @@ def gramps_upgrade_15(self):
             new_family[13] = []
         new_family = tuple(new_family)
         with BSDDBTxn(self.env, self.family_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_family)
         self.update()
@@ -1010,7 +1010,7 @@ def gramps_upgrade_15(self):
             new_note[6] = []
         new_note = tuple(new_note)
         with BSDDBTxn(self.env, self.note_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_note)
         self.update()
@@ -1025,7 +1025,7 @@ def gramps_upgrade_15(self):
         new_media[10] = []
         new_media = tuple(new_media)
         with BSDDBTxn(self.env, self.media_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_media)
         self.update()
@@ -1041,7 +1041,7 @@ def gramps_upgrade_15(self):
         #new_event[11] = []
         new_event = tuple(new_event)
         with BSDDBTxn(self.env, self.event_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_event)
         self.update()
@@ -1059,7 +1059,7 @@ def gramps_upgrade_15(self):
         new_place = new_place[:12] + new_place[13:]
         new_place = tuple(new_place)
         with BSDDBTxn(self.env, self.place_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_place)
         self.update()
@@ -1074,7 +1074,7 @@ def gramps_upgrade_15(self):
         new_source = new_source[:11] + new_source[12:]
         new_source = tuple(new_source)
         with BSDDBTxn(self.env, self.source_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_source)
         self.update()
@@ -1090,7 +1090,7 @@ def gramps_upgrade_15(self):
         new_repository[5] = list(map(convert_address, new_repository[5]))
         new_repository = tuple(new_repository)
         with BSDDBTxn(self.env, self.repository_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_repository)
         self.update()
@@ -1114,7 +1114,7 @@ def convert_marker(self, marker_field):
             tag.set_name(tag_name)
             tag.set_priority(len(self.tags))
             with BSDDBTxn(self.env, self.tag_map) as txn:
-                if isinstance(handle, UNITYPE):
+                if isinstance(handle, str):
                     handle = handle.encode('utf-8')
                 txn.put(handle, tag.serialize())
             self.tags[tag_name] = handle
@@ -1182,7 +1182,7 @@ def gramps_upgrade_14(self):
         new_note = (handle, gramps_id, styled_text, format, note_type,
                     change, marker, private)
         with BSDDBTxn(self.env, self.note_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_note)
         self.update()
@@ -1204,7 +1204,7 @@ def gramps_upgrade_14(self):
                      description, place, new_source_list, note_list, 
                      new_media_list, new_attribute_list, change,marker,private)
         with BSDDBTxn(self.env, self.event_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_event)
         self.update()
@@ -1288,7 +1288,7 @@ def gramps_upgrade_14(self):
                       )
 
         with BSDDBTxn(self.env, self.person_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_person)
         self.update()
@@ -1322,7 +1322,7 @@ def gramps_upgrade_14(self):
                       change, marker, private)
 
         with BSDDBTxn(self.env, self.family_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_family)
         self.update()
@@ -1349,7 +1349,7 @@ def gramps_upgrade_14(self):
                           new_address_list, urls, change, marker, private)
 
         with BSDDBTxn(self.env, self.repository_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_repository)
         self.update()
@@ -1369,7 +1369,7 @@ def gramps_upgrade_14(self):
                      new_date, marker, private)
 
         with BSDDBTxn(self.env, self.media_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_media)
         self.update()
@@ -1389,7 +1389,7 @@ def gramps_upgrade_14(self):
                      new_source_list, note_list, change, marker, private) 
 
         with BSDDBTxn(self.env, self.place_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_place)
         self.update()
@@ -1410,7 +1410,7 @@ def gramps_upgrade_14(self):
                       marker, private)
 
         with BSDDBTxn(self.env, self.source_map) as txn:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 handle = handle.encode('utf-8')
             txn.put(handle, new_source)
         self.update()

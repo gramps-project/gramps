@@ -55,7 +55,7 @@ from gramps.gen.const import IMAGE_DIR, ROOT_DIR
 from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.constfunc import cuni, UNITYPE
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -101,11 +101,11 @@ class FamTreeWrapper(QtCore.QObject):
         self.__dbman.rename_database(self.__path_namefile, name)
         self.changed_name.emit()
 
-    name = QtCore.Property(UNITYPE, _name, _set_name, notify=changed_name)
-    path = QtCore.Property(UNITYPE, _path, notify=changed)
-    last_access = QtCore.Property(UNITYPE, _last_access, notify=changed)
+    name = QtCore.Property(str, _name, _set_name, notify=changed_name)
+    path = QtCore.Property(str, _path, notify=changed)
+    last_access = QtCore.Property(str, _last_access, notify=changed)
     use_icon = QtCore.Property(bool, _use_icon, notify=changed)
-    icon = QtCore.Property(UNITYPE, _icon, notify=changed)
+    icon = QtCore.Property(str, _icon, notify=changed)
 
 class FamTreeListModel(QtCore.QAbstractListModel):
     """

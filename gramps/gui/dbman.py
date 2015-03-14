@@ -45,7 +45,7 @@ from urllib.parse import urlparse
 import logging
 LOG = logging.getLogger(".DbManager")
 
-from gramps.gen.constfunc import win, UNITYPE, conv_to_unicode
+from gramps.gen.constfunc import win, conv_to_unicode
 if win():
     _RCS_FOUND = os.system("rcs -V >nul 2>nul") == 0
     if _RCS_FOUND and "TZ" not in os.environ:
@@ -848,7 +848,7 @@ def find_revisions(name):
     get_next = False
     if os.path.isfile(name):
         for line in proc.stdout:
-            if not isinstance(line, UNITYPE):
+            if not isinstance(line, str):
                 # we assume utf-8 ...
                 line = line.decode('utf-8')
             match = rev.match(line)

@@ -56,7 +56,7 @@ from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
 from ..filters import SearchBar
 from ..widgets.menuitem import add_menuitem
-from gramps.gen.constfunc import UNITYPE, conv_to_unicode
+from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.const import CUSTOM_FILTERS
 from gramps.gen.utils.debug import profile
 from gramps.gen.utils.string import data_recover_msg
