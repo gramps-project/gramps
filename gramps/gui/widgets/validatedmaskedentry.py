@@ -139,12 +139,8 @@ class FadeOut(GObject.GObject):
         ##_LOG.debug('_start_merging: Starting')
         generator = self._merge_colors(self._start_color, 
                                   Gdk.color_parse(self.ERROR_COLOR))
-        if sys.version_info[0] < 3:
-            func = generator.next
-        else:
-            func = generator.__next__
         self._background_timeout_id = (
-            GLib.timeout_add(FadeOut.MERGE_COLORS_DELAY, func))
+            GLib.timeout_add(FadeOut.MERGE_COLORS_DELAY, generator.__next__))
         self._countdown_timeout_id = -1
 
     def start(self, color):
@@ -204,20 +200,12 @@ INPUT_FORMATS = {
 #  ? - Ascii letter, optional
 #  C - Alpha, optional
 
-if sys.version_info[0] < 3:
-    INPUT_CHAR_MAP = {
-        INPUT_ASCII_LETTER:     lambda text: text in string.ascii_letters, 
-        INPUT_ALPHA:            unicode.isalpha, 
-        INPUT_ALPHANUMERIC:     unicode.isalnum, 
-        INPUT_DIGIT:            unicode.isdigit, 
-        }
-else:
-    INPUT_CHAR_MAP = {
-        INPUT_ASCII_LETTER:     lambda text: text in string.ascii_letters, 
-        INPUT_ALPHA:            str.isalpha, 
-        INPUT_ALPHANUMERIC:     str.isalnum, 
-        INPUT_DIGIT:            str.isdigit, 
-        }
+INPUT_CHAR_MAP = {
+    INPUT_ASCII_LETTER:     lambda text: text in string.ascii_letters, 
+    INPUT_ALPHA:            str.isalpha, 
+    INPUT_ALPHANUMERIC:     str.isalnum, 
+    INPUT_DIGIT:            str.isdigit, 
+    }
 
 (COL_TEXT, 
  COL_OBJECT) = list(range(2))

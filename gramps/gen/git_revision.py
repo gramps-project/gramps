@@ -19,15 +19,7 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-import sys
 import subprocess
-
-if sys.version_info[0] < 3:
-    cuni = unicode
-else:
-    def to_utf8(s):
-        return s.decode("utf-8", errors = 'replace')
-    cuni = to_utf8
 
 def get_git_revision(path=""):
     stdout = ""
@@ -43,7 +35,7 @@ def get_git_revision(path=""):
     # subprocess worked
     if stdout and len(stdout) > 0: # has output
         try:
-            stdout = cuni(stdout) # get a proper string
+            stdout = stdout.decode("utf-8", errors = 'replace')
         except UnicodeDecodeError:
             pass
         return "-" + stdout if stdout else ""

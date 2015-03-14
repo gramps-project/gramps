@@ -29,7 +29,6 @@
 #-------------------------------------------------------------------------
 import re
 import time
-import sys
 
 #------------------------------------------------------------------------
 #
@@ -54,14 +53,7 @@ from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation,
         Place, Source)
 from gramps.gen.db import DbTxn
 from gramps.gen.constfunc import STRTYPE, cuni, conv_to_unicode
-if sys.version_info[0] < 3:
-    from htmlentitydefs import name2codepoint
-else:
-    from html.entities import name2codepoint
-if sys.version_info[0] < 3:
-    unich = lambda x: unichr(x)
-else:
-    unich = lambda x: chr(x)
+from html.entities import name2codepoint
 
 _date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
 _text_parse = re.compile('0\((.*)\)')
@@ -906,9 +898,9 @@ class GeneWebParser(object):
         for match in charref_re.finditer(s):
             try:
                 if match.group(2):  # HEX
-                    nchar = unich(int(match.group(3),16))
+                    nchar = chr(int(match.group(3),16))
                 else:   # Decimal
-                    nchar = unich(int(match.group(3)))
+                    nchar = chr(int(match.group(3)))
                 s = s.replace(match.group(0), nchar)
             except UnicodeDecodeError:
                 pass
@@ -918,7 +910,7 @@ class GeneWebParser(object):
         for match in entref_re.finditer(s):
             try:
                 if match.group(2) in name2codepoint:
-                    nchar = unich(name2codepoint[match.group(2)])
+                    nchar = chr(name2codepoint[match.group(2)])
                 s = s.replace(match.group(0), nchar)
             except UnicodeDecodeError:
                 pass

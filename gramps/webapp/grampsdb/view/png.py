@@ -1897,12 +1897,8 @@ class Reader:
             arraycode = 'BH'[self.bitdepth>8]
             # Like :meth:`group` but producing an array.array object for
             # each row.
-            if sys.version_info[0] < 3:
-                pixels = itertools.imap(lambda *row: array(arraycode, row),
-                        *[iter(self.deinterlace(raw))]*self.width*self.planes)
-            else:
-                pixels = map(lambda *row: array(arraycode, row),
-                       *[iter(self.deinterlace(raw))]*self.width*self.planes)
+            pixels = map(lambda *row: array(arraycode, row),
+                   *[iter(self.deinterlace(raw))]*self.width*self.planes)
         else:
             pixels = self.iterboxed(self.iterstraight(raw))
         meta = dict()

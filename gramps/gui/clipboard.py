@@ -24,11 +24,7 @@
 # standard python modules
 #
 #------------------------------------------------------------------------
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 import os
 from xml.sax.saxutils import escape
 from time import strftime as strftime
@@ -229,15 +225,12 @@ class ClipWrapper(object):
                 }
             return pickle.dumps(data)
         else:
-            if sys.version_info[0] < 3:
-                return str(self._obj)
+            if isinstance(self._obj, bytes):
+                return self._obj
             else:
-                if isinstance(self._obj, bytes):
-                    return self._obj
-                else:
-                    ## don't know if this happens in Gramps, theoretically possible
-                    asuni = str(self._obj)
-                    return asuni.encode('utf-8')
+                ## don't know if this happens in Gramps, theoretically possible
+                asuni = str(self._obj)
+                return asuni.encode('utf-8')
 
     def is_valid(self):
         return True

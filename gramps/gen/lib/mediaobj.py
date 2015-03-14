@@ -31,11 +31,7 @@ Media object for Gramps.
 #
 #-------------------------------------------------------------------------
 import os
-import sys
-if sys.version_info[0] < 3:
-    from urlparse import urlparse
-else:
-    from urllib.parse import urlparse
+from urllib.parse import urlparse
 import logging
 LOG = logging.getLogger(".citation")
 

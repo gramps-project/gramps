@@ -31,10 +31,7 @@ This is used since Gramps version 3.0
 #
 #-------------------------------------------------------------------------
 import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 import os
 import time
 import bisect
@@ -43,12 +40,8 @@ from functools import wraps
 import logging
 from sys import maxsize, getfilesystemencoding, version_info
 
-from ..config import config
 try:
-    if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-        from bsddb3 import dbshelve, db
-    else:
-        from bsddb import dbshelve, db
+    from bsddb3 import dbshelve, db
 except:
     # FIXME: make this more abstract to deal with other backends
     class db:
@@ -277,10 +270,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     __signals__['home-person-changed'] = None
     
     # 4. Signal for change in person group name, parameters are
-    if sys.version_info[0] < 3:
-        __signals__['person-groupname-rebuild'] = (unicode, unicode)
-    else:
-        __signals__['person-groupname-rebuild'] = (str, str)
+    __signals__['person-groupname-rebuild'] = (str, str)
 
     def __init__(self):
         """Create a new GrampsDB."""
@@ -537,11 +527,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         reserved_char = r':,<>"/\|?* '
         replace_char = "-__________"
         title = self.get_dbname()
-        if sys.version_info[0] < 3:
-            from string import maketrans
-            trans = maketrans(reserved_char, replace_char)
-        else:
-            trans = title.maketrans(reserved_char, replace_char)
+        trans = title.maketrans(reserved_char, replace_char)
         title = title.translate(trans)
         
         if not os.access(dirname, os.W_OK):
@@ -736,7 +722,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         # Check for pickle upgrade
         versionpath = os.path.join(self.path, cuni(PCKVERSFN))
-        if sys.version_info[0] >= 3 and not os.path.isfile(versionpath) and \
+        if not os.path.isfile(versionpath) and \
            not self.readonly and not self.update_pickle_version:
             _LOG.debug("Make backup in case there is a pickle upgrade")
             self.__make_zip_backup(name)
@@ -860,18 +846,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             versionpath = os.path.join(name, BDBVERSFN)
             with open(versionpath, "w") as version_file:
                 version = str(db.version())
-                if sys.version_info[0] < 3:
-                    if isinstance(version, UNITYPE):
-                        version = version.encode('utf-8')
                 version_file.write(version)
             _LOG.debug("Updated bsddb version file to %s" % str(db.version()))
 
         if self.update_python_version:
             versionpath = os.path.join(name, "pythonversion.txt")
             version = str(version_info[0])
-            if sys.version_info[0] < 3:
-                if isinstance(version, UNITYPE):
-                    version = version.encode('utf-8')
             _LOG.debug("Updated python version file to %s" % version)
             with open(versionpath, "w") as version_file:
                 version_file.write(version)
@@ -887,9 +867,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             versionpath = os.path.join(name, cuni(PCKVERSFN))
             with open(versionpath, "w") as version_file:
                 version = "Yes"
-                if sys.version_info[0] <3:
-                    if isinstance(version, UNITYPE):
-                        version = version.encode('utf-8')
                 version_file.write(version)
             _LOG.debug("Updated pickle version file to %s" % str(version))
     
@@ -905,9 +882,6 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                 versionpath = os.path.join(name, cuni(SCHVERSFN))
                 with open(versionpath, "w") as version_file:
                     version = str(_DBVERSION)
-                    if sys.version_info[0] <3:
-                        if isinstance(version, UNITYPE):
-                            version = version.encode('utf-8')
                     version_file.write(version)
                 _LOG.debug("Updated schema version file to %s" % str(version))
             else:
@@ -1243,12 +1217,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             
             # so we need the second tuple give us a reference that we can
             # combine with the primary_handle to get the main key.
-            if sys.version_info[0] < 3:
-                #handle should be in python 2 str
-                main_key = (handle, pickle.loads(data)[1][1])
-            else:
-                #python 3 work internally with unicode
-                main_key = (handle.decode('utf-8'), pickle.loads(data)[1][1])
+            main_key = (handle.decode('utf-8'), pickle.loads(data)[1][1])
             
             # The trick is not to remove while inside the cursor,
             # but collect them all and remove after the cursor is closed
@@ -1327,16 +1296,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if isinstance(key, tuple):
             #create a byte string key, first validity check in python 3!
-            if sys.version_info[0] >= 3:
-                for val in key:
-                    if isinstance(val, bytes):
-                        raise DbError(_('An attempt is made to save a reference key '
-                                        'which is partly bytecode, this is not allowed.\n'
-                                        'Key is %s') % str(key))
-            if sys.version_info[0] >= 3:
-                key= str(key)
-            else:
-                key = str(tuple(k.encode('utf-8') for k in key))
+            for val in key:
+                if isinstance(val, bytes):
+                    raise DbError(_('An attempt is made to save a reference key '
+                                    'which is partly bytecode, this is not allowed.\n'
+                                    'Key is %s') % str(key))
+            key = str(key)
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         if not self.readonly:
@@ -1353,10 +1318,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         if isinstance(key, tuple):
             #create a string key
-            if sys.version_info[0] >= 3:
-                key= str(key)
-            else:
-                key = str(tuple(k.encode('utf-8') for k in key))
+            key = str(key)
         if isinstance(key, UNITYPE):
             key = key.encode('utf-8')
         if self.readonly or not key:
@@ -1892,18 +1854,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         name = find_surname_name(person.handle, 
                                      person.get_primary_name().serialize())
-        if sys.version_info[0] < 3:
-            if isinstance(name, unicode):
-                uname = name
-                name = str(name)
-            else:
-                uname = unicode(name, 'utf-8')
+        if isinstance(name, str):
+            uname = name
+            name = name.encode('utf-8')
         else:
-            if isinstance(name, str):
-                uname = name
-                name = name.encode('utf-8')
-            else:
-                uname = str(name)
+            uname = str(name)
         try:
             cursor = self.surnames.cursor(txn=self.txn)
             cursor_position = cursor.set(name)
@@ -2454,18 +2409,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         
         versionpath = os.path.join(name, BDBVERSFN)
         version = str(db.version())
-        if sys.version_info[0] < 3:
-            if isinstance(version, UNITYPE):
-                version = version.encode('utf-8')
         _LOG.debug("Write bsddb version %s" % version)
         with open(versionpath, "w") as version_file:
             version_file.write(version)
 
         versionpath = os.path.join(name, "pythonversion.txt")
         version = str(version_info[0])
-        if sys.version_info[0] < 3:
-            if isinstance(version, UNITYPE):
-                version = version.encode('utf-8')
         _LOG.debug("Write python version file to %s" % version)
         with open(versionpath, "w") as version_file:
             version_file.write(version)
@@ -2474,18 +2423,12 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         _LOG.debug("Write pickle version file to %s" % "Yes")
         with open(versionpath, "w") as version_file:
             version = "Yes"
-            if sys.version_info[0] <3:
-                if isinstance(version, UNITYPE):
-                    version = version.encode('utf-8')
             version_file.write(version)
 
         versionpath = os.path.join(name, cuni(SCHVERSFN))
         _LOG.debug("Write schema version file to %s" % str(_DBVERSION))
         with open(versionpath, "w") as version_file:
             version = str(_DBVERSION)
-            if sys.version_info[0] <3:
-                if isinstance(version, UNITYPE):
-                    version = version.encode('utf-8')
             version_file.write(version)
 
         self.metadata.close()

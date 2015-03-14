@@ -26,10 +26,7 @@
 #------------------------------------------------------------------------
 import time
 import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 import base64
 import collections
 

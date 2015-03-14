@@ -31,14 +31,10 @@
 #
 #-------------------------------------------------------------------------
 import os
-import sys
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 import csv
-if sys.version_info[0] < 3:
-    from cStringIO import StringIO
-else:
-    from io import StringIO
+from io import StringIO
 import codecs
 
 #------------------------------------------------------------------------
@@ -155,15 +151,8 @@ class UnicodeWriter(object):
         self.encoder = codecs.getencoder(encoding)
 
     def writerow(self, row):
-        if sys.version_info[0] < 3:
-            self.writer.writerow([s.encode('utf-8') for s in row])
-            # Fetch UTF-8 output from the queue ...
-            data = self.queue.getvalue()
-            data = data.decode('utf-8')
-        else:
-            self.writer.writerow(row)
-            data = self.queue.getvalue()
-            #in python3, StringIO self.queue returns unicode!
+        self.writer.writerow(row)
+        data = self.queue.getvalue()
         #data now contains the csv data in unicode
         # ... and reencode it into the target encoding
         data, length = self.encoder(data)

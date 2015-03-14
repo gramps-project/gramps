@@ -28,6 +28,7 @@
 import os
 import sys
 import io
+import bsddb3 as bsddb
 
 ##import logging
 ##_LOG = logging.getLogger(".GrampsAboutDialog")
@@ -58,12 +59,6 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.constfunc import get_env_var
 from .display import display_url
-from gramps.gen.config import config
-
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-    import bsddb3 as bsddb
-else:
-    import bsddb
 
 #-------------------------------------------------------------------------
 #

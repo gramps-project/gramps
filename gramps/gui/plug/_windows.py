@@ -28,7 +28,6 @@
 #-------------------------------------------------------------------------
 import traceback
 import os
-import sys
 
 #-------------------------------------------------------------------------
 #
@@ -302,10 +301,7 @@ class PluginStatus(ManagedWindow):
         """
         Reloads the addons from the wiki into the list.
         """
-        if sys.version_info[0] < 3:
-            from urllib2 import urlopen
-        else:
-            from urllib.request import urlopen
+        from urllib.request import urlopen
         from ..utils import ProgressMeter
         URL = "%s%s" % (URL_WIKISTRING, WIKI_EXTRAPLUGINS_RAWDATA)
         try:

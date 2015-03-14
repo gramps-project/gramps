@@ -30,11 +30,7 @@
 #
 #------------------------------------------------------------------------
 import os
-import sys
-if sys.version_info[0] < 3:
-    from StringIO import StringIO
-else:
-    from io import BytesIO
+from io import BytesIO
 import tempfile
 from subprocess import Popen, PIPE
 import sys
@@ -381,10 +377,7 @@ class GVDocBase(BaseDoc, GVDoc):
         BaseDoc.__init__(self, None, paper_style)
 
         self._filename      = None
-        if sys.version_info[0] < 3:
-            self._dot = StringIO()
-        else:
-            self._dot = BytesIO()
+        self._dot = BytesIO()
         self._paper         = paper_style
         
         get_option_by_name = options.menu.get_option_by_name
@@ -610,10 +603,7 @@ class GVDotDoc(GVDocBase):
         if self._filename[-3:] != ".gv":
             self._filename += ".gv"
 
-        if sys.version_info[0] < 3:
-            dotfile = open(self._filename, "w")
-        else:
-            dotfile = open(self._filename, "wb")
+        dotfile = open(self._filename, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
 
@@ -648,10 +638,7 @@ class GVPsDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        if sys.version_info[0] < 3:
-            dotfile = os.fdopen(handle, "w")
-        else:
-            dotfile = os.fdopen(handle, "wb")
+        dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         
@@ -704,10 +691,7 @@ class GVSvgDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        if sys.version_info[0] < 3:
-            dotfile = os.fdopen(handle, "w")
-        else:
-            dotfile = os.fdopen(handle, "wb")
+        dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Generate the SVG file.
@@ -741,10 +725,7 @@ class GVSvgzDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        if sys.version_info[0] < 3:
-            dotfile = os.fdopen(handle, "w")
-        else:
-            dotfile = os.fdopen(handle, "wb")
+        dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Generate the SVGZ file.
@@ -778,10 +759,7 @@ class GVPngDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        if sys.version_info[0] < 3:
-            dotfile = os.fdopen(handle, "w")
-        else:
-            dotfile = os.fdopen(handle, "wb")
+        dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Generate the PNG file.
@@ -815,10 +793,7 @@ class GVJpegDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        if sys.version_info[0] < 3:
-            dotfile = os.fdopen(handle, "w")
-        else:
-            dotfile = os.fdopen(handle, "wb")
+        dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Generate the JPEG file.
@@ -852,10 +827,7 @@ class GVGifDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        if sys.version_info[0] < 3:
-            dotfile = os.fdopen(handle, "w")
-        else:
-            dotfile = os.fdopen(handle, "wb")
+        dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         # Generate the GIF file.
@@ -892,10 +864,7 @@ class GVPdfGvDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        if sys.version_info[0] < 3:
-            dotfile = os.fdopen(handle, "w")
-        else:
-            dotfile = os.fdopen(handle, "wb")
+        dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         fname = self._filename
@@ -929,10 +898,7 @@ class GVPdfGsDoc(GVDocBase):
 
         # Create a temporary dot file
         (handle, tmp_dot) = tempfile.mkstemp(".gv" )
-        if sys.version_info[0] < 3:
-            dotfile = os.fdopen(handle, "w")
-        else:
-            dotfile = os.fdopen(handle, "wb")
+        dotfile = os.fdopen(handle, "wb")
         dotfile.write(self._dot.getvalue())
         dotfile.close()
         

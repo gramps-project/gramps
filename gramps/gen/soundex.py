@@ -27,10 +27,7 @@ Provide soundex calculation
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import sys
 import unicodedata
-if sys.version_info[0] < 3:
-    import string
 
 #-------------------------------------------------------------------------
 #
@@ -38,12 +35,8 @@ if sys.version_info[0] < 3:
 #
 #-------------------------------------------------------------------------
 IGNORE = "HW~!@#$%^&*()_+=-`[]\|;:'/?.,<>\" \t\f\v"
-if sys.version_info[0] < 3:
-    TABLE  = string.maketrans('ABCDEFGIJKLMNOPQRSTUVXYZ',
-                              '012301202245501262301202')
-else:
-    TABLE  = bytes.maketrans(b'ABCDEFGIJKLMNOPQRSTUVXYZ',
-                             b'012301202245501262301202')
+TABLE  = bytes.maketrans(b'ABCDEFGIJKLMNOPQRSTUVXYZ',
+                         b'012301202245501262301202')
 
 from .constfunc import conv_to_unicode_direct
 
@@ -59,14 +52,9 @@ def soundex(strval):
         conv_to_unicode_direct(strval.upper().strip())).encode('ASCII', 'ignore')
     if not strval:
         return "Z000"
-    if sys.version_info[0] < 3:
-        strval = strval.encode('iso-8859-1') # Really?
-        str2 = strval[0]
-        strval = strval.translate(TABLE, IGNORE)
-    else:
-        strval = strval.decode('ASCII', 'ignore')
-        str2 = strval[0]
-        strval = strval.translate(TABLE)
+    strval = strval.decode('ASCII', 'ignore')
+    str2 = strval[0]
+    strval = strval.translate(TABLE)
     if not strval:
         return "Z000"
     prev = strval[0]

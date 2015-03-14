@@ -32,12 +32,8 @@
 import time
 import shutil
 import os
-import sys
 import tarfile
-if sys.version_info[0] < 3:
-    from cStringIO import StringIO
-else:
-    from io import StringIO, BytesIO
+from io import StringIO, BytesIO
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -213,10 +209,7 @@ class PackageWriter(object):
 #                     select_clicked()
         
         # Write XML now
-        if sys.version_info[0] < 3:
-            g = StringIO()
-        else:
-            g = BytesIO()
+        g = BytesIO()
         gfile = XmlWriter(self.db, self.user, 2)
         gfile.write_handle(g)
         tarinfo = tarfile.TarInfo('data.gramps')

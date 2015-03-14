@@ -26,17 +26,8 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.config import config
-import sys
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-    from bsddb3 import db as bsddb_db
-else:
-    from bsddb import db as bsddb_db
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+from bsddb3 import db as bsddb_db
+import pickle
 
 #-------------------------------------------------------------------------
 #

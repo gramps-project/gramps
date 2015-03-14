@@ -31,15 +31,11 @@ creating, and deleting of databases.
 #
 #-------------------------------------------------------------------------
 import os
-import sys
 import time
 import copy
 import shutil
 import subprocess
-if sys.version_info[0] < 3:
-    from urlparse import urlparse
-else:
-    from urllib.parse import urlparse
+from urllib.parse import urlparse
 
 #-------------------------------------------------------------------------
 #
@@ -852,7 +848,7 @@ def find_revisions(name):
     get_next = False
     if os.path.isfile(name):
         for line in proc.stdout:
-            if sys.version_info[0] >= 3 and not isinstance(line, UNITYPE):
+            if not isinstance(line, UNITYPE):
                 # we assume utf-8 ...
                 line = line.decode('utf-8')
             match = rev.match(line)

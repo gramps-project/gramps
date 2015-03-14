@@ -27,17 +27,6 @@ Proxy class for the Gramps databases. Apply filter
 
 #-------------------------------------------------------------------------
 #
-# Python libraries
-#
-#-------------------------------------------------------------------------
-import sys
-if sys.version_info[0] < 3:
-    from itertools import imap as map
-else:
-    pass #python 3 has map behaving as imap
-
-#-------------------------------------------------------------------------
-#
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------

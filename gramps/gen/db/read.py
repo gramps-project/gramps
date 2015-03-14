@@ -29,22 +29,14 @@ Read classes for the Gramps databases.
 # libraries
 #
 #-------------------------------------------------------------------------
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 import time
 import random
 import os
 from sys import maxsize
 
-from ..config import config
 try:
-    if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-        from bsddb3 import db
-    else:
-        from bsddb import db
+    from bsddb3 import db
 except:
     # FIXME: make this more abstract to deal with other backends
     class db:
@@ -142,10 +134,7 @@ def __index_surname(surn_list):
                     NameOriginType.PATRONYMIC, NameOriginType.MATRONYMIC]) ])
     else:
         surn = ""
-    if sys.version_info[0] < 3:
-        return surn.encode('utf-8')
-    else:
-        return surn
+    return surn
     
 
 #-------------------------------------------------------------------------

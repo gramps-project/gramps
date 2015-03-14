@@ -31,11 +31,7 @@ Can use the Webkit or Gecko ( Mozilla ) library
 #
 #-------------------------------------------------------------------------
 import os
-import sys
-if sys.version_info[0] < 3:
-    from urlparse import urlunsplit
-else:
-    from urllib.parse import urlunsplit
+from urllib.parse import urlunsplit
 
 #-------------------------------------------------------------------------
 #

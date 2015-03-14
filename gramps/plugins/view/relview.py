@@ -31,12 +31,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 import cgi
-
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 
 #-------------------------------------------------------------------------
 #

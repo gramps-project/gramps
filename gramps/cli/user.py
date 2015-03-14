@@ -24,13 +24,6 @@ The User class provides basic interaction with the user.
 
 #------------------------------------------------------------------------
 #
-# Python Modules
-#
-#------------------------------------------------------------------------
-import sys
-
-#------------------------------------------------------------------------
-#
 # Gramps Modules
 #
 #------------------------------------------------------------------------
@@ -65,7 +58,6 @@ class User(user.User):
         user.User.__init__(self, callback, error)
         self.steps = 0;
         self.current_step = 0;
-        self._input = raw_input if sys.version_info[0] < 3 else input
 
         def yes(*args): 
             return True
@@ -143,7 +135,7 @@ class User(user.User):
                 n = reject_label)
         print (text, file = self._fileout) # TODO python3 add flush=True
         try:
-            reply = self._input()
+            reply = input()
             return reply == "" or reply == accept_label
         except EOFError:
             return False

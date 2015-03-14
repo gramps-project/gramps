@@ -841,8 +841,7 @@ class PluginData(object):
     def _set_gramplet_title(self, gramplet_title):
         if not self._ptype == GRAMPLET:
             raise ValueError('gramplet_title may only be set for GRAMPLET plugins')
-        if not (sys.version_info[0] < 3 and isinstance(gramplet_title, unicode)
-                or isinstance(gramplet_title, str)):
+        if not isinstance(gramplet_title, str):
             raise ValueError('gramplet_title is type %s, string or unicode required' % type(gramplet_title))
         self._gramplet_title = gramplet_title
     
@@ -1098,10 +1097,7 @@ class PluginRegister(object):
                 continue
             lenpd = len(self.__plugindata)
             full_filename = os.path.join(dir, filename)
-            if sys.version_info[0] < 3:
-                fd = open(full_filename, "r")
-            else:
-                fd = io.open(full_filename, "r", encoding='utf-8')
+            fd = io.open(full_filename, "r", encoding='utf-8')
             stream = fd.read()
             fd.close()
             if os.path.exists(os.path.join(os.path.dirname(full_filename),

@@ -20,16 +20,11 @@
 
 import unittest
 import os
-import sys
 import tempfile
 import shutil
 
 from ...constfunc import UNITYPE
-from ...config import config
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-    from bsddb3 import dbshelve, db
-else:
-    from bsddb import dbshelve, db
+from bsddb3 import dbshelve, db
 
 from ..read import DbBsddbTreeCursor
 

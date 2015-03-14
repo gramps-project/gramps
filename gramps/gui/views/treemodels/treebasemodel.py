@@ -33,7 +33,6 @@ This module provides the model that is used for all hierarchical treeviews.
 #
 #-------------------------------------------------------------------------
 import time
-import sys
 import logging
 
 _LOG = logging.getLogger(".gui.treebasemodel")
@@ -784,8 +783,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         Add a row to the model.
         """
-        if sys.version_info[0] >= 3:
-            assert isinstance(handle, str)
+        assert isinstance(handle, str)
         if self._get_node(handle) is not None:
             return # row already exists
         cput = time.clock()
@@ -808,8 +806,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         Delete a row from the model.
         """
-        if sys.version_info[0] >= 3:
-            assert isinstance(handle, str)
+        assert isinstance(handle, str)
         cput = time.clock()
         node = self._get_node(handle)
         if node is None:
@@ -840,8 +837,7 @@ class TreeBaseModel(GObject.GObject, Gtk.TreeModel):
         """
         Update a row in the model.
         """
-        if sys.version_info[0] >= 3:
-            assert isinstance(handle, str)
+        assert isinstance(handle, str)
         if self._get_node(handle) is None:
             return # row not currently displayed
 

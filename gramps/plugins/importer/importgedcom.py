@@ -23,13 +23,6 @@
 
 #------------------------------------------------------------------------
 #
-# python modules
-#
-#------------------------------------------------------------------------
-import sys
-
-#------------------------------------------------------------------------
-#
 # Set up logging
 #
 #------------------------------------------------------------------------
@@ -53,11 +46,8 @@ from gramps.plugins.lib import libgedcom
 # a quick turnround, without having to restart Gramps.
 module = __import__("gramps.plugins.lib.libgedcom",
                     fromlist=["gramps.plugins.lib"])   # why o why ?? as above!
-if sys.version_info[0] < 3:
-    reload (module)
-else:
-    import imp
-    imp.reload(module)
+import imp
+imp.reload(module)
 
 from gramps.gen.config import config
 from gramps.gen.constfunc import STRTYPE
@@ -108,10 +98,7 @@ def importData(database, filename, user):
     assert(isinstance(code_set, STRTYPE))
 
     try:
-        if sys.version_info[0] < 3:
-            ifile = open(filename, "rU")
-        else:
-            ifile = open(filename, "rb")
+        ifile = open(filename, "rb")
         stage_one = libgedcom.GedcomStageOne(ifile)
         stage_one.parse()
 

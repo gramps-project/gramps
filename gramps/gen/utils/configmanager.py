@@ -32,10 +32,7 @@ This package implements access to Gramps configuration.
 import os
 import sys
 import time
-if sys.version_info[0] < 3:
-    import ConfigParser as configparser
-else:
-    import configparser
+import configparser
 import errno
 import copy
 import logging
@@ -259,10 +256,7 @@ class ConfigManager(object):
         if filename and os.path.exists(filename):
             parser = configparser.RawConfigParser()
             try: # see bugs 5356, 5490, 5591, 5651, 5718, etc.
-                if sys.version_info[0] >= 3 :
-                    parser.read(filename, encoding='utf8')
-                else:
-                    parser.readfp(io.open(filename, encoding="utf-8"))
+                parser.read(filename, encoding='utf8')
             except Exception as err:
                 msg1 = _("WARNING: could not parse file %s because %s, recreating it:\n")
                 logging.warn(msg1 % (filename, str(err)))
@@ -275,12 +269,11 @@ class ConfigManager(object):
                     self.data[name] = {}
                 for opt in parser.options(sec):
                     raw_value = parser.get(sec, opt).strip()
-                    if sys.version_info[0] >= 3:
-                        if raw_value[:2] == "u'":
-                            raw_value = raw_value[1:]
-                        elif raw_value.startswith('['):
-                            raw_value = raw_value.replace(", u'", ", '")
-                            raw_value = raw_value.replace("[u'", "['")
+                    if raw_value[:2] == "u'":
+                        raw_value = raw_value[1:]
+                    elif raw_value.startswith('['):
+                        raw_value = raw_value.replace(", u'", ", '")
+                        raw_value = raw_value.replace("[u'", "['")
                     setting = opt.lower()
                     if oldstyle:
                     ####################### Upgrade from oldstyle < 3.2

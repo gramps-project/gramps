@@ -28,17 +28,11 @@ methods to upgrade a database from version 13 to current version
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import sys
 import os
 import re
 import time
 import logging
-
-from ..config import config
-if config.get('preferences.use-bsddb3') or sys.version_info[0] >= 3:
-    from bsddb3 import db
-else:
-    from bsddb import db
+from bsddb3 import db
 
 #-------------------------------------------------------------------------
 #

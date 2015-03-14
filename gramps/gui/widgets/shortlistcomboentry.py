@@ -27,7 +27,6 @@ __all__ = ["ShortlistComboEntry"]
 # Python modules
 #
 #-------------------------------------------------------------------------
-import sys
 import logging
 _LOG = logging.getLogger(".widgets.shortlistcomboentry")
 
@@ -52,20 +51,11 @@ from .validatedcomboentry import ValidatedComboEntry
 #
 #-------------------------------------------------------------------------
 
-if sys.version_info[0] < 3:
-    _GTYPE = {
-        str: GObject.TYPE_STRING,
-        unicode: GObject.TYPE_STRING,
-        int: GObject.TYPE_INT,
-        long: GObject.TYPE_INT64,
-        float: GObject.TYPE_FLOAT,
-        }
-else:
-    _GTYPE = {
-        str: GObject.TYPE_STRING,
-        int: GObject.TYPE_INT64,
-        float: GObject.TYPE_FLOAT,
-        }
+_GTYPE = {
+    str: GObject.TYPE_STRING,
+    int: GObject.TYPE_INT64,
+    float: GObject.TYPE_FLOAT,
+    }
 
 (COLUMN_ITEM,
  COLUMN_IS_SEP,) = list(range(2))

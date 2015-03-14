@@ -29,9 +29,8 @@
 import os
 import time
 import io
-import sys
 import logging
-from  xml.parsers.expat import ParserCreate
+from xml.parsers.expat import ParserCreate
 
 try:
     import fcntl
@@ -184,9 +183,7 @@ class RecentFiles(object):
         """
         Saves the current Gramps RecentFiles collection to the associated file.
         """
-        with (open(os.path.expanduser(GRAMPS_FILENAME), 'w')
-              if sys.version_info[0] < 3 else
-              open(os.path.expanduser(GRAMPS_FILENAME), 'w', encoding='utf8'))\
+        with open(os.path.expanduser(GRAMPS_FILENAME), 'w', encoding='utf8') \
             as xml_file:
             if use_lock:
                 fcntl.lockf(xml_file,fcntl.LOCK_EX)
@@ -224,9 +221,7 @@ class RecentParser(object):
             return # it's the first time gramps has ever been run
 
         try:
-            # Python3's expat wants bytes, Python2's wants a string.
-            fmode = "r" if sys.version_info[0] < 3 else "rb"
-            with open(fname, fmode) as xml_file:
+            with open(fname, "rb") as xml_file:
                 if use_lock:
                     fcntl.lockf(xml_file,fcntl.LOCK_SH)
 

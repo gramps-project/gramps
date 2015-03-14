@@ -29,12 +29,8 @@ Each object can be operated on with the following actions:
 """
 
 import os
-import sys
 import time
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 import base64
 
 #------------------------------------------------------------------------

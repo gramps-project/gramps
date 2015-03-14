@@ -121,13 +121,8 @@ USER_DIRLIST = (USER_HOME, HOME_DIR, VERSION_DIR, ENV_DIR, TEMP_DIR, THUMB_DIR,
 # above this one, and that the plugins directory is below the root directory.
 #
 #-------------------------------------------------------------------------
-# test for sys.frozen to detect a py2exe executable on Windows
-
-if sys.version_info[0] < 3 and hasattr(sys, "frozen"):
-    ROOT_DIR = os.path.abspath(os.path.dirname(unicode(sys.executable)))
-else:
-    ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
-        conv_to_unicode(__file__)), os.pardir))
+ROOT_DIR = os.path.abspath(os.path.join(os.path.dirname(
+    conv_to_unicode(__file__)), os.pardir))
 
 sys.path.insert(0, ROOT_DIR)
 git_revision = get_git_revision(ROOT_DIR)

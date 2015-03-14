@@ -51,15 +51,9 @@ WINDOWS = ["Windows", "win32"]
 #
 #-------------------------------------------------------------------------
 
-#python 2 and 3 support, use correct conversion to unicode
-if sys.version_info[0] < 3:
-    conv_to_unicode_direct = unicode
-    STRTYPE = basestring
-    UNITYPE = unicode
-else:
-    conv_to_unicode_direct = str
-    STRTYPE = str
-    UNITYPE = str
+conv_to_unicode_direct = str
+STRTYPE = str
+UNITYPE = str
 cuni = conv_to_unicode_direct
 def conv_to_unicode(x, y='utf8'):
     return x if x is None or isinstance(x, UNITYPE) else cuni(x, y) if y else cuni(x)
@@ -69,16 +63,10 @@ def uni_to_gui(x):
     In Py2 we need to convert strings to utf8 before passing them to
     Gtk functions.
     '''
-    if sys.version_info[0] < 3 and isinstance(x, UNITYPE):
-        return x.encode('utf8')
-    else:
-        return x
+    return x
 
 # handle in database is bytes, while internally Gramps wants unicode for py3
-if sys.version_info[0] < 3:
-    handle2internal = lambda x: x
-else:
-    handle2internal = lambda x: conv_to_unicode(x, 'utf-8')
+handle2internal = lambda x: conv_to_unicode(x, 'utf-8')
 
 #-------------------------------------------------------------------------
 #
@@ -184,16 +172,6 @@ def get_env_var(name, default=None):
     if not name or not name in os.environ:
         return default
 
-    if sys.version_info[0] < 3 and win():
-        name = unicode(name) # make sure string argument is unicode
-        n = ctypes.windll.kernel32.GetEnvironmentVariableW(name, None, 0)
-        if n==0:
-            return default
-        # n is number of codepoints
-        buf = ctypes.create_unicode_buffer(n+1)
-        ctypes.windll.kernel32.GetEnvironmentVariableW(name, buf, n)
-        return buf.value
-
     return os.environ[name]
 
 def get_curr_dir():
@@ -203,14 +181,4 @@ def get_curr_dir():
     an arbitrary unicode character in a path. This function uses the
     native GetCurrentDirectory function to return a unicode cwd.
     '''
-    if not (sys.version_info[0] < 3 and win()):
-        return os.getcwd()
-
-    n = ctypes.windll.kernel32.GetCurrentDirectoryW(0, None)
-    if n == 0:
-        return None
-    buf = ctypes.create_unicode_buffer(n+1)
-    ctypes.windll.kernel32.GetCurrentDirectoryW(n, buf)
-    return buf.value
-
-
+    return os.getcwd()

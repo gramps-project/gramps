@@ -30,10 +30,7 @@ General utility functions useful for the generic plugin system
 import sys
 import os
 import datetime
-if sys.version_info[0] < 3:
-    from StringIO import StringIO
-else:
-    from io import StringIO, BytesIO
+from io import StringIO, BytesIO
 
 #-------------------------------------------------------------------------
 #
@@ -178,10 +175,7 @@ class Zipfile(object):
 
 def available_updates():
     whattypes = config.get('behavior.check-for-update-types')
-    if sys.version_info[0] < 3:
-        from urllib2 import urlopen
-    else:
-        from urllib.request import urlopen
+    from urllib.request import urlopen
     LOG.debug("Checking for updated addons...")
     langs = glocale.get_language_list()
     langs.append("en")
@@ -265,10 +259,7 @@ def load_addon_file(path, callback=None):
     """
     Load an addon from a particular path (from URL or file system).
     """
-    if sys.version_info[0] < 3:
-        from urllib2 import urlopen
-    else:
-        from urllib.request import urlopen
+    from urllib.request import urlopen
     import tarfile
     import io
     if (path.startswith("http://") or
@@ -289,10 +280,7 @@ def load_addon_file(path, callback=None):
             return False
     try:
         content = fp.read()
-        if sys.version_info[0] < 3:
-            buffer = StringIO(content)
-        else:
-            buffer = BytesIO(content)
+        buffer = BytesIO(content)
     except:
         if callback:
             callback(_("Error in reading '%s'") % path)

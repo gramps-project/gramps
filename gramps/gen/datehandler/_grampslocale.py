@@ -21,9 +21,6 @@
 #
 
 import locale
-import sys
-from ..constfunc import mac, win, conv_to_unicode
-
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 """
@@ -36,11 +33,6 @@ strftime.
 Since these routines return values encoded into selected character
 set, we have to convert to unicode.
 """
-if sys.version_info[0] < 3:
-    to_uni = conv_to_unicode
-else:
-    #locale returns unicode in python 3
-    to_uni = lambda x, y: x
 codeset = glocale.encoding
 
 try:
@@ -48,34 +40,34 @@ try:
     # here only for the upgrade tool, see _datestrings.py __main__
     _deprecated_long_months = (
         "",
-        to_uni(locale.nl_langinfo(locale.MON_1), codeset),
-        to_uni(locale.nl_langinfo(locale.MON_2), codeset),
-        to_uni(locale.nl_langinfo(locale.MON_3), codeset),
-        to_uni(locale.nl_langinfo(locale.MON_4), codeset),
-        to_uni(locale.nl_langinfo(locale.MON_5), codeset),
-        to_uni(locale.nl_langinfo(locale.MON_6), codeset),
-        to_uni(locale.nl_langinfo(locale.MON_7), codeset),
-        to_uni(locale.nl_langinfo(locale.MON_8), codeset),
-        to_uni(locale.nl_langinfo(locale.MON_9), codeset),
-        to_uni(locale.nl_langinfo(locale.MON_10), codeset),
-        to_uni(locale.nl_langinfo(locale.MON_11), codeset),
-        to_uni(locale.nl_langinfo(locale.MON_12), codeset),
+        locale.nl_langinfo(locale.MON_1),
+        locale.nl_langinfo(locale.MON_2),
+        locale.nl_langinfo(locale.MON_3),
+        locale.nl_langinfo(locale.MON_4),
+        locale.nl_langinfo(locale.MON_5),
+        locale.nl_langinfo(locale.MON_6),
+        locale.nl_langinfo(locale.MON_7),
+        locale.nl_langinfo(locale.MON_8),
+        locale.nl_langinfo(locale.MON_9),
+        locale.nl_langinfo(locale.MON_10),
+        locale.nl_langinfo(locale.MON_11),
+        locale.nl_langinfo(locale.MON_12),
         )
 
     _deprecated_short_months = (
         "",
-        to_uni(locale.nl_langinfo(locale.ABMON_1), codeset),
-        to_uni(locale.nl_langinfo(locale.ABMON_2), codeset),
-        to_uni(locale.nl_langinfo(locale.ABMON_3), codeset),
-        to_uni(locale.nl_langinfo(locale.ABMON_4), codeset),
-        to_uni(locale.nl_langinfo(locale.ABMON_5), codeset),
-        to_uni(locale.nl_langinfo(locale.ABMON_6), codeset),
-        to_uni(locale.nl_langinfo(locale.ABMON_7), codeset),
-        to_uni(locale.nl_langinfo(locale.ABMON_8), codeset),
-        to_uni(locale.nl_langinfo(locale.ABMON_9), codeset),
-        to_uni(locale.nl_langinfo(locale.ABMON_10), codeset),
-        to_uni(locale.nl_langinfo(locale.ABMON_11), codeset),
-        to_uni(locale.nl_langinfo(locale.ABMON_12), codeset),
+        locale.nl_langinfo(locale.ABMON_1),
+        locale.nl_langinfo(locale.ABMON_2),
+        locale.nl_langinfo(locale.ABMON_3),
+        locale.nl_langinfo(locale.ABMON_4),
+        locale.nl_langinfo(locale.ABMON_5),
+        locale.nl_langinfo(locale.ABMON_6),
+        locale.nl_langinfo(locale.ABMON_7),
+        locale.nl_langinfo(locale.ABMON_8),
+        locale.nl_langinfo(locale.ABMON_9),
+        locale.nl_langinfo(locale.ABMON_10),
+        locale.nl_langinfo(locale.ABMON_11),
+        locale.nl_langinfo(locale.ABMON_12),
         )
 
     # Gramps day number: Sunday => 1, Monday => 2, etc
@@ -86,24 +78,24 @@ try:
     # see http://docs.python.org/library/locale.html
     _deprecated_long_days = (
         "",
-        to_uni(locale.nl_langinfo(locale.DAY_1), codeset), # Sunday
-        to_uni(locale.nl_langinfo(locale.DAY_2), codeset), # Monday
-        to_uni(locale.nl_langinfo(locale.DAY_3), codeset), # Tuesday
-        to_uni(locale.nl_langinfo(locale.DAY_4), codeset), # Wednesday
-        to_uni(locale.nl_langinfo(locale.DAY_5), codeset), # Thursday
-        to_uni(locale.nl_langinfo(locale.DAY_6), codeset), # Friday
-        to_uni(locale.nl_langinfo(locale.DAY_7), codeset), # Saturday
+        locale.nl_langinfo(locale.DAY_1), # Sunday
+        locale.nl_langinfo(locale.DAY_2), # Monday
+        locale.nl_langinfo(locale.DAY_3), # Tuesday
+        locale.nl_langinfo(locale.DAY_4), # Wednesday
+        locale.nl_langinfo(locale.DAY_5), # Thursday
+        locale.nl_langinfo(locale.DAY_6), # Friday
+        locale.nl_langinfo(locale.DAY_7), # Saturday
         )
 
     _deprecated_short_days = (
         "",
-        to_uni(locale.nl_langinfo(locale.ABDAY_1), codeset), # Sunday
-        to_uni(locale.nl_langinfo(locale.ABDAY_2), codeset), # Monday
-        to_uni(locale.nl_langinfo(locale.ABDAY_3), codeset), # Tuesday
-        to_uni(locale.nl_langinfo(locale.ABDAY_4), codeset), # Wednesday
-        to_uni(locale.nl_langinfo(locale.ABDAY_5), codeset), # Thursday
-        to_uni(locale.nl_langinfo(locale.ABDAY_6), codeset), # Friday
-        to_uni(locale.nl_langinfo(locale.ABDAY_7), codeset), # Saturday
+        locale.nl_langinfo(locale.ABDAY_1), # Sunday
+        locale.nl_langinfo(locale.ABDAY_2), # Monday
+        locale.nl_langinfo(locale.ABDAY_3), # Tuesday
+        locale.nl_langinfo(locale.ABDAY_4), # Wednesday
+        locale.nl_langinfo(locale.ABDAY_5), # Thursday
+        locale.nl_langinfo(locale.ABDAY_6), # Friday
+        locale.nl_langinfo(locale.ABDAY_7), # Saturday
         )
 
     tformat = locale.nl_langinfo(locale.D_FMT).replace('%y','%Y')
@@ -116,34 +108,34 @@ except:
 
     _deprecated_long_months = (
         "",
-        to_uni(time.strftime('%B',(1,1,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%B',(1,2,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%B',(1,3,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%B',(1,4,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%B',(1,5,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%B',(1,6,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%B',(1,7,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%B',(1,8,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%B',(1,9,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%B',(1,10,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%B',(1,11,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%B',(1,12,1,1,1,1,1,1,1)), codeset),
+        time.strftime('%B',(1,1,1,1,1,1,1,1,1)),
+        time.strftime('%B',(1,2,1,1,1,1,1,1,1)),
+        time.strftime('%B',(1,3,1,1,1,1,1,1,1)),
+        time.strftime('%B',(1,4,1,1,1,1,1,1,1)),
+        time.strftime('%B',(1,5,1,1,1,1,1,1,1)),
+        time.strftime('%B',(1,6,1,1,1,1,1,1,1)),
+        time.strftime('%B',(1,7,1,1,1,1,1,1,1)),
+        time.strftime('%B',(1,8,1,1,1,1,1,1,1)),
+        time.strftime('%B',(1,9,1,1,1,1,1,1,1)),
+        time.strftime('%B',(1,10,1,1,1,1,1,1,1)),
+        time.strftime('%B',(1,11,1,1,1,1,1,1,1)),
+        time.strftime('%B',(1,12,1,1,1,1,1,1,1)),
        )
 
     _deprecated_short_months = (
         "",
-        to_uni(time.strftime('%b',(1,1,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%b',(1,2,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%b',(1,3,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%b',(1,4,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%b',(1,5,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%b',(1,6,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%b',(1,7,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%b',(1,8,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%b',(1,9,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%b',(1,10,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%b',(1,11,1,1,1,1,1,1,1)), codeset),
-        to_uni(time.strftime('%b',(1,12,1,1,1,1,1,1,1)), codeset),
+        time.strftime('%b',(1,1,1,1,1,1,1,1,1)),
+        time.strftime('%b',(1,2,1,1,1,1,1,1,1)),
+        time.strftime('%b',(1,3,1,1,1,1,1,1,1)),
+        time.strftime('%b',(1,4,1,1,1,1,1,1,1)),
+        time.strftime('%b',(1,5,1,1,1,1,1,1,1)),
+        time.strftime('%b',(1,6,1,1,1,1,1,1,1)),
+        time.strftime('%b',(1,7,1,1,1,1,1,1,1)),
+        time.strftime('%b',(1,8,1,1,1,1,1,1,1)),
+        time.strftime('%b',(1,9,1,1,1,1,1,1,1)),
+        time.strftime('%b',(1,10,1,1,1,1,1,1,1)),
+        time.strftime('%b',(1,11,1,1,1,1,1,1,1)),
+        time.strftime('%b',(1,12,1,1,1,1,1,1,1)),
        )
 
     # Gramps day number: Sunday => 1, Monday => 2, etc
@@ -157,24 +149,24 @@ except:
     # just a dummy.
     _deprecated_long_days = (
         "",
-        to_uni(time.strftime('%A',(1,1,1,1,1,1,6,1,1)), codeset), # Sunday
-        to_uni(time.strftime('%A',(1,1,1,1,1,1,0,1,1)), codeset), # Monday
-        to_uni(time.strftime('%A',(1,1,1,1,1,1,1,1,1)), codeset), # Tuesday
-        to_uni(time.strftime('%A',(1,1,1,1,1,1,2,1,1)), codeset), # Wednesday
-        to_uni(time.strftime('%A',(1,1,1,1,1,1,3,1,1)), codeset), # Thursday
-        to_uni(time.strftime('%A',(1,1,1,1,1,1,4,1,1)), codeset), # Friday
-        to_uni(time.strftime('%A',(1,1,1,1,1,1,5,1,1)), codeset), # Saturday
+        time.strftime('%A',(1,1,1,1,1,1,6,1,1)), # Sunday
+        time.strftime('%A',(1,1,1,1,1,1,0,1,1)), # Monday
+        time.strftime('%A',(1,1,1,1,1,1,1,1,1)), # Tuesday
+        time.strftime('%A',(1,1,1,1,1,1,2,1,1)), # Wednesday
+        time.strftime('%A',(1,1,1,1,1,1,3,1,1)), # Thursday
+        time.strftime('%A',(1,1,1,1,1,1,4,1,1)), # Friday
+        time.strftime('%A',(1,1,1,1,1,1,5,1,1)), # Saturday
         )
 
     _deprecated_short_days = (
         "",
-        to_uni(time.strftime('%a',(1,1,1,1,1,1,6,1,1)), codeset), # Sunday
-        to_uni(time.strftime('%a',(1,1,1,1,1,1,0,1,1)), codeset), # Monday
-        to_uni(time.strftime('%a',(1,1,1,1,1,1,1,1,1)), codeset), # Tuesday
-        to_uni(time.strftime('%a',(1,1,1,1,1,1,2,1,1)), codeset), # Wednesday
-        to_uni(time.strftime('%a',(1,1,1,1,1,1,3,1,1)), codeset), # Thursday
-        to_uni(time.strftime('%a',(1,1,1,1,1,1,4,1,1)), codeset), # Friday
-        to_uni(time.strftime('%a',(1,1,1,1,1,1,5,1,1)), codeset), # Saturday
+        time.strftime('%a',(1,1,1,1,1,1,6,1,1)), # Sunday
+        time.strftime('%a',(1,1,1,1,1,1,0,1,1)), # Monday
+        time.strftime('%a',(1,1,1,1,1,1,1,1,1)), # Tuesday
+        time.strftime('%a',(1,1,1,1,1,1,2,1,1)), # Wednesday
+        time.strftime('%a',(1,1,1,1,1,1,3,1,1)), # Thursday
+        time.strftime('%a',(1,1,1,1,1,1,4,1,1)), # Friday
+        time.strftime('%a',(1,1,1,1,1,1,5,1,1)), # Saturday
         )
 
     # depending on the locale, the value returned for 20th Feb 2009 could be 

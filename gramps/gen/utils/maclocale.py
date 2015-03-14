@@ -75,7 +75,7 @@ locale, leaving $LANGUAGE unset (which is the same as setting it to
 #
 #------------------------------------------------------------------------
 
-import sys, os, subprocess, locale
+import os, subprocess, locale
 import logging
 LOG = logging.getLogger(".gramps.gen.utils.grampslocale.mac")
 LOG.propagate = True
@@ -100,8 +100,7 @@ def mac_setup_localization(glocale):
             if not answer:
                 LOG.debug("No prefs found for %s:%s", domain, key)
                 return None
-            if not sys.version_info[0] < 3:
-                answer = answer.decode("utf-8")
+            answer = answer.decode("utf-8")
             LOG.debug("Found %s for defaults %s:%s", answer.strip(), domain, key)
             return answer
         except OSError as err:

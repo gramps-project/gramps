@@ -33,11 +33,7 @@ This is the research tool, not the low-level data ingerity check.
 #------------------------------------------------------------------------
 
 import os
-import sys
-if sys.version_info[0] < 3:
-    import cPickle as pickle
-else:
-    import pickle
+import pickle
 try:
     from hashlib import md5
 except ImportError:
@@ -548,7 +544,7 @@ class VerifyResults(ManagedWindow):
         pass
 
     def load_ignored(self, db_filename):
-        if sys.version_info[0] >= 3 and isinstance(db_filename, UNITYPE):
+        if isinstance(db_filename, UNITYPE):
             db_filename = db_filename.encode('utf-8')
         md5sum = md5(db_filename)
         ## a new Gramps major version means recreating the .vfm file. 

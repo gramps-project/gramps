@@ -32,7 +32,6 @@ from random import Random
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import os
-import sys
 
 #-------------------------------------------------------------------------
 #
@@ -139,10 +138,7 @@ class TipParser(object):
 
         self.mylist = []
         self.skip = False
-        if sys.version_info[0] < 3:
-            xml_file = open(TIP_DATA)
-        else:
-            xml_file = open(TIP_DATA, 'rb')
+        xml_file = open(TIP_DATA, 'rb')
         self.tlist = []
         parser = ParserCreate()
         parser.StartElementHandler = self.startElement
