@@ -36,7 +36,6 @@ import os
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
-from gramps.gen.constfunc import STRTYPE
 from gramps.gen.lib.gcalendar import (gregorian_ymd, hebrew_sdn)
 
 #------------------------------------------------------------------------
@@ -458,7 +457,7 @@ class _Holidays:
             if isinstance(offset, int):
                 if offset != 0:
                     ndate = ndate.fromordinal(ndate.toordinal() + offset)
-            elif isinstance(offset, STRTYPE):
+            elif isinstance(offset, str):
                 direction = 1
                 if offset[0] == "-":
                     direction = -1

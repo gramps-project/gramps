@@ -60,7 +60,6 @@ from gramps.gen.plug import (CATEGORY_QR_PERSON, CATEGORY_QR_FAMILY, CATEGORY_QR
                       CATEGORY_QR_PLACE, CATEGORY_QR_REPOSITORY, 
                       CATEGORY_QR_NOTE,  CATEGORY_QR_CITATION, 
                       CATEGORY_QR_SOURCE_OR_CITATION)
-from gramps.gen.constfunc import STRTYPE
 from ._textbufdoc import TextBufDoc
 from gramps.gen.simple import make_basic_stylesheet
 
@@ -245,7 +244,7 @@ def run_report(dbstate, uistate, category, handle, pdata, container=None,
             d = TextBufDoc(make_basic_stylesheet(), None)
             d.dbstate = dbstate
             d.uistate = uistate
-            if isinstance(handle, STRTYPE): # a handle
+            if isinstance(handle, str): # a handle
                 if category == CATEGORY_QR_PERSON :
                     obj = dbstate.db.get_person_from_handle(handle)
                 elif category == CATEGORY_QR_FAMILY :

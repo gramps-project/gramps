@@ -36,7 +36,6 @@ import io
 #-------------------------------------------------------------------------
 from ._filterparser import FilterParser
 from ..plug import BasePluginManager
-from ..constfunc import STRTYPE
 from ..const import GRAMPS_LOCALE as glocale
 
 PLUGMAN = BasePluginManager.get_instance()
@@ -94,7 +93,7 @@ class FilterList(object):
         return filters
 
     def add(self, namespace, filt):
-        assert(isinstance(namespace, STRTYPE))
+        assert(isinstance(namespace, str))
         
         if namespace not in self.filter_namespaces:
             self.filter_namespaces[namespace] = []

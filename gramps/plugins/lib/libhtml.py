@@ -38,7 +38,7 @@ import re
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
-from gramps.gen.constfunc import STRTYPE, cuni
+from gramps.gen.constfunc import cuni
 
 #------------------------------------------------------------------------
 #
@@ -322,7 +322,7 @@ class Html(list):
         :returns: reference to object with new value added
         """
         if (isinstance(value, Html) or not hasattr(value, '__iter__') or
-                isinstance(value, STRTYPE)):
+                isinstance(value, str)):
             value = [value]
         index = len(self) - (1 if self.close else 0)
         self[index:index] = value
@@ -546,7 +546,7 @@ class Html(list):
         if len(self) < 2:
             raise AttributeError('No closing tag. Cannot set inside value')
         if (isinstance(value, Html) or not hasattr(value, '__iter__') or
-                isinstance(value, STRTYPE)):
+                isinstance(value, str)):
             value = [value]
         self[1:-1] = value
 #

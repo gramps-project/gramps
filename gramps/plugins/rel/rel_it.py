@@ -38,7 +38,6 @@ Italian-Specific classes for relationships.
 
 from gramps.gen.lib import Person
 import gramps.gen.relationship
-from gramps.gen.constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -337,7 +336,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         (secondRel, firstRel, common) = \
                      self.get_relationship_distance(db, orig_person, other_person)
 
-        if isinstance(common, STRTYPE):
+        if isinstance(common, str):
             return (common, [])
         elif common:
             person_handle = common[0]

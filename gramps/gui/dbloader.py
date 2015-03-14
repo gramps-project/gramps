@@ -64,7 +64,7 @@ from gramps.gen.db.exceptions import (DbUpgradeRequiredError,
                                       BsddbDowngradeRequiredError,
                                       PythonUpgradeRequiredError,
                                       PythonDowngradeError)
-from gramps.gen.constfunc import STRTYPE, UNITYPE, conv_to_unicode
+from gramps.gen.constfunc import conv_to_unicode
 from .pluginmanager import GuiPluginManager
 from .dialog import (DBErrorDialog, ErrorDialog, QuestionDialog2, 
                             WarningDialog)
@@ -210,7 +210,7 @@ class DbLoader(CLIDbLoader):
         In this process, a warning dialog can pop up.
         
         """
-        if not isinstance(filename, (STRTYPE, UNITYPE)):
+        if not isinstance(filename, str):
             return True
 
         filename = os.path.normpath(os.path.abspath(filename))

@@ -26,8 +26,6 @@
 from gi.repository import Gtk
 from gi.repository import GObject
 
-from gramps.gen.constfunc import STRTYPE
-
 #-------------------------------------------------------------------------
 #
 # This is used by plugins to create a menu of available filters
@@ -38,7 +36,7 @@ def build_filter_model(space, local = []):
 
     model = Gtk.ListStore(GObject.TYPE_STRING, object)
 
-    if isinstance(space, STRTYPE):
+    if isinstance(space, str):
         flist = local + CustomFilters.get_filters(space)
     elif isinstance(space, (list, tuple)):
         flist = space

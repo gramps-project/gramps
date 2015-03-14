@@ -59,7 +59,6 @@ from gramps.gen.plug.report import (CATEGORY_TEXT, CATEGORY_DRAW, CATEGORY_BOOK,
 from gramps.gen.plug.report._paper import paper_sizes
 from gramps.gen.const import USER_HOME
 from gramps.gen.dbstate import DbState
-from gramps.gen.constfunc import STRTYPE
 from ..grampscli import CLIManager
 from ..user import User
 from gramps.gen.const import GRAMPS_LOCALE as glocale
@@ -77,7 +76,7 @@ def _convert_str_to_match_type(str_val, type_val):
     str_val = str_val.strip()
     ret_type = type(type_val)
     
-    if isinstance(type_val, STRTYPE):
+    if isinstance(type_val, str):
         if ( str_val.startswith("'") and str_val.endswith("'") ) or \
            ( str_val.startswith('"') and str_val.endswith('"') ):
             # Remove enclosing quotes

@@ -31,7 +31,6 @@ AttributeRootBase class for Gramps.
 from .attribute import Attribute
 from .srcattribute import SrcAttribute
 from .const import IDENTICAL, EQUAL
-from ..constfunc import STRTYPE
 
 #-------------------------------------------------------------------------
 #
@@ -111,7 +110,7 @@ class AttributeRootBase(object):
         :param attribute: :class:`~.attribute.Attribute` instance to add.
         :type attribute: :class:`~.attribute.Attribute`
         """
-        assert not isinstance(attribute, STRTYPE)
+        assert not isinstance(attribute, str)
         self.attribute_list.append(attribute)
 
     def remove_attribute(self, attribute):

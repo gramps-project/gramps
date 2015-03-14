@@ -30,7 +30,7 @@ Base type for all gramps types.
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import STRTYPE, cuni
+from ..constfunc import cuni
 
 _UNKNOWN = _('Unknown')
 
@@ -168,7 +168,7 @@ class GrampsType(GrampsTypeC):
             self.__set_int(value)
         elif isinstance(value, self.__class__):
             self.__set_instance(value)
-        elif isinstance(value, STRTYPE):
+        elif isinstance(value, str):
             self.__set_str(value)
         else:
             self.__value = self._DEFAULT
@@ -294,7 +294,7 @@ class GrampsType(GrampsTypeC):
     def __eq__(self, value):
         if isinstance(value, int):
             return self.__value == value
-        elif isinstance(value, STRTYPE):
+        elif isinstance(value, str):
             if self.__value == self._CUSTOM:
                 return self.__string == value
             else:
@@ -315,10 +315,10 @@ class GrampsType(GrampsTypeC):
     
 ##    Python 3 does not have __cmp__
 ##    def __cmp__(self, value):
-##        print ('cmp', type(value), STRTYPE)
+##        print ('cmp', type(value), str)
 ##        if isinstance(value, int):
 ##            return cmp(self.__value, value)
-##        elif isinstance(value, STRTYPE):
+##        elif isinstance(value, str):
 ##            print('ok!')
 ##            if self.__value == self._CUSTOM:
 ##                return cmp(self.__string, value)

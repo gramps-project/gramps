@@ -50,7 +50,6 @@ import imp
 imp.reload(module)
 
 from gramps.gen.config import config
-from gramps.gen.constfunc import STRTYPE
     
 #-------------------------------------------------------------------------
 #
@@ -95,7 +94,7 @@ def importData(database, filename, user):
     else:
         code_set = ""
 
-    assert(isinstance(code_set, STRTYPE))
+    assert(isinstance(code_set, str))
 
     try:
         ifile = open(filename, "rb")

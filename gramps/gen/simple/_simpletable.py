@@ -31,7 +31,6 @@ from ..lib import (Person, Family, Event, Source, Place, Citation,
                    Repository, MediaObject, Note, Date, Span)
 from ..config import config
 from ..datehandler import displayer
-from ..constfunc import STRTYPE
 
 class SimpleTable(object):
     """
@@ -100,7 +99,7 @@ class SimpleTable(object):
             # FIXME: add better text representations of these objects
             if item is None:
                 retval.append("")
-            elif isinstance(item, STRTYPE):
+            elif isinstance(item, str):
                 if item == "checkbox": 
                     retval.append(False)
                     self.set_cell_type(col, "checkbox")

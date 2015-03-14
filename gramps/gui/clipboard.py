@@ -59,7 +59,7 @@ from .glade import Glade
 from .ddtargets import DdTargets
 from .makefilter import make_filter
 from .utils import is_right_click
-from gramps.gen.constfunc import cuni, STRTYPE
+from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -1125,7 +1125,7 @@ class ClipboardListView(object):
     def object_pixbuf(self, column, cell, model, node, user_data=None):
         o = model.get_value(node, 1)
         if o._dbid != self.dbstate.db.get_dbid():
-            if isinstance(o.__class__.UNAVAILABLE_ICON, STRTYPE):
+            if isinstance(o.__class__.UNAVAILABLE_ICON, str):
                 cell.set_property('stock-id', 
                                   o.__class__.UNAVAILABLE_ICON)
             else:
@@ -1237,7 +1237,7 @@ class ClipboardListView(object):
                 dragtype = pickle.loads(sel_data)[0]
             except pickle.UnpicklingError as msg :
                 # not a pickled object, probably text
-                if isinstance(sel_data, STRTYPE):
+                if isinstance(sel_data, str):
                     dragtype = DdTargets.TEXT.drag_type
             if dragtype in self._target_type_to_wrapper_class_map:
                 possible_wrappers = [dragtype]

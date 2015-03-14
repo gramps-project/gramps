@@ -52,7 +52,7 @@ from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation,
         Family, FamilyRelType, Name, NameType, Note, Person, PersonRef, 
         Place, Source)
 from gramps.gen.db import DbTxn
-from gramps.gen.constfunc import STRTYPE, cuni, conv_to_unicode
+from gramps.gen.constfunc import cuni, conv_to_unicode
 from html.entities import name2codepoint
 
 _date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')

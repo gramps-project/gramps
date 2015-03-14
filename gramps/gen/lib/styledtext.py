@@ -27,7 +27,7 @@
 #
 #-------------------------------------------------------------------------
 from .styledtexttag import StyledTextTag
-from ..constfunc import cuni, STRTYPE
+from ..constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -111,7 +111,7 @@ class StyledText(object):
             
             return self.__class__("".join([self._string, other._string]),
                                   self._tags + other._tags)
-        elif isinstance(other, STRTYPE):
+        elif isinstance(other, str):
             # tags remain the same, only text becomes longer
             return self.__class__("".join([self._string, other]), self._tags)
         else:

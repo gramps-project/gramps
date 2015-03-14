@@ -41,7 +41,7 @@ LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import conv_to_unicode, UNITYPE, STRTYPE
+from ..constfunc import conv_to_unicode, UNITYPE
 
 #strings in database are utf-8
 conv_dbstr_to_unicode = lambda x: conv_to_unicode(x, 'UTF-8')
@@ -54,7 +54,7 @@ def get_type_converter(val):
     Return function that converts strings into the type of val.
     """
     val_type = type(val)
-    if isinstance(val, STRTYPE):
+    if isinstance(val, str):
         return str
     elif val_type == int:
         return int
@@ -79,7 +79,7 @@ def type_name(val):
         return 'float'
     elif val_type == bool:
         return 'bool'
-    elif isinstance(val, STRTYPE):
+    elif isinstance(val, str):
         return 'unicode'
     return 'unicode'
 
