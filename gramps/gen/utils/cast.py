@@ -41,7 +41,7 @@ LOG = logging.getLogger(".")
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import conv_to_unicode, conv_to_unicode_direct, UNITYPE, STRTYPE
+from ..constfunc import conv_to_unicode, UNITYPE, STRTYPE
 
 #strings in database are utf-8
 conv_dbstr_to_unicode = lambda x: conv_to_unicode(x, 'UTF-8')
