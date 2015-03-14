@@ -41,7 +41,7 @@ from bsddb3 import db
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import cuni, handle2internal
+from ..constfunc import handle2internal
 from ..lib.markertype import MarkerType
 from ..lib.nameorigintype import NameOriginType
 from ..lib.place import Place
@@ -1103,7 +1103,7 @@ def convert_marker(self, marker_field):
     """Convert a marker into a tag."""
     marker = MarkerType()
     marker.unserialize(marker_field)
-    tag_name = cuni(marker)
+    tag_name = str(marker)
     
     if tag_name != '':
         if tag_name not in self.tags:

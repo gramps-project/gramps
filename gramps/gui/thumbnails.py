@@ -50,7 +50,7 @@ from gi.repository import GdkPixbuf
 #-------------------------------------------------------------------------
 from gramps.gen.const import (ICON, IMAGE_DIR, THUMB_LARGE, THUMB_NORMAL, 
                               THUMBSCALE, THUMBSCALE_LARGE, USE_THUMBNAILER)
-from gramps.gen.constfunc import cuni, win
+from gramps.gen.constfunc import win
 
 #-------------------------------------------------------------------------
 #
@@ -98,7 +98,7 @@ def __get_gconf_string(key):
         val =  CLIENT.get_string(key)
     except GObject.GError:
         val = None
-    return cuni(val)
+    return str(val)
 
 #-------------------------------------------------------------------------
 #

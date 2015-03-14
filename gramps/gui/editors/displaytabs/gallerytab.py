@@ -49,7 +49,7 @@ from gi.repository import GLib
 from ...utils import is_right_click, open_file_with_default_application
 from ...dbguielement import DbGUIElement
 from ...selectors import SelectorFactory
-from gramps.gen.constfunc import cuni, win, conv_to_unicode
+from gramps.gen.constfunc import win, conv_to_unicode
 from gramps.gen.lib import MediaObject, MediaRef
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.file import (media_path_full, media_path, relative_path,
@@ -526,7 +526,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
                         self.uistate.set_busy_cursor(True)
                         photo.set_checksum(create_checksum(name))
                         self.uistate.set_busy_cursor(False)
-                        base_dir = cuni(media_path(self.dbstate.db))
+                        base_dir = str(media_path(self.dbstate.db))
                         if os.path.exists(base_dir):
                             name = relative_path(name, base_dir)
                         photo.set_path(name)

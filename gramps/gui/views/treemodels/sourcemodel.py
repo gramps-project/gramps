@@ -39,7 +39,6 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.datehandler import format_time
-from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -100,19 +99,19 @@ class SourceModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_title(self,data):
-        return cuni(data[2])
+        return str(data[2])
 
     def column_author(self,data):
-        return cuni(data[3])
+        return str(data[3])
 
     def column_abbrev(self,data):
-        return cuni(data[7])
+        return str(data[7])
 
     def column_id(self,data):
-        return cuni(data[1])
+        return str(data[1])
 
     def column_pubinfo(self,data):
-        return cuni(data[4])
+        return str(data[4])
 
     def column_private(self, data):
         if data[12]:

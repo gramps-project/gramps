@@ -76,7 +76,6 @@ from .displaytabs import (PersonEventEmbedList, NameEmbedList, CitationEmbedList
                          PersonBackRefList, SurnameTab)
 from gramps.gen.plug import CATEGORY_QR_PERSON
 from gramps.gen.const import URL_MANUAL_PAGE
-from gramps.gen.constfunc import cuni
 from gramps.gen.utils.id import create_id
 
 #-------------------------------------------------------------------------
@@ -739,7 +738,7 @@ class EditPerson(EditPrimary):
             return False
         try:
             gender_type = self.db.genderStats.guess_gender(
-                                                    cuni(entry.get_text()))
+                                                    str(entry.get_text()))
             self.gender.force(gender_type)
         except:
             return False

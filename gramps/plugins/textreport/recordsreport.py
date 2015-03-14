@@ -48,7 +48,6 @@ from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.lib import Span
-from gramps.gen.constfunc import cuni
 
 #------------------------------------------------------------------------
 #
@@ -140,7 +139,7 @@ class RecordsReport(Report):
                 self.doc.start_paragraph('REC-Normal')
                 # FIXME this won't work for RTL languages:
                 self.doc.write_text(self._("%(number)s. ") % {'number': rank+1})
-                self.doc.write_markup(cuni(name), name.get_tags(), mark)
+                self.doc.write_markup(str(name), name.get_tags(), mark)
                 if isinstance(value, Span):
                     tvalue = value.get_repr(dlocale=self._locale)
                 else:

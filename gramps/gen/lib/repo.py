@@ -35,7 +35,6 @@ from .addressbase import AddressBase
 from .urlbase import UrlBase
 from .tagbase import TagBase
 from .repotype import RepositoryType
-from ..constfunc import cuni
 from .handle import Handle
 from .citationbase import IndirectCitationBase
 
@@ -64,7 +63,7 @@ class Repository(NoteBase, AddressBase, UrlBase,
         Convert the object to a serialized tuple of data.
         """
         return (self.handle, self.gramps_id, self.type.serialize(),
-                cuni(self.name),
+                str(self.name),
                 NoteBase.serialize(self),
                 AddressBase.serialize(self),
                 UrlBase.serialize(self),
@@ -94,7 +93,7 @@ class Repository(NoteBase, AddressBase, UrlBase,
                 "handle": Handle("Repository", self.handle), 
                 "gramps_id": self.gramps_id, 
                 "type": self.type.to_struct(),
-                "name": cuni(self.name),
+                "name": str(self.name),
                 "note_list": NoteBase.to_struct(self),
                 "address_list": AddressBase.to_struct(self),
                 "urls": UrlBase.to_struct(self),

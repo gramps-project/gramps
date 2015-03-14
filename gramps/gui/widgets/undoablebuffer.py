@@ -32,9 +32,6 @@ __all__ = ["UndoableBuffer"]
 from gi.repository import GObject
 from gi.repository import Gtk
 
-
-from gramps.gen.constfunc import cuni
-
 class Stack(list):
     """
     Very simple stack implementation that cannot grow beyond an at init 
@@ -56,7 +53,7 @@ class UndoableInsert(object):
         self.offset = text_iter.get_offset()
         self.text = str(text)
         #unicode char can have length > 1 as it points in the buffer
-        charlength = len(cuni(text))
+        charlength = len(str(text))
         self.length = charlength
         if charlength > 1 or self.text in ("\r", "\n", " "):
             self.mergeable = False

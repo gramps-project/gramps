@@ -61,7 +61,7 @@ from gramps.gen.lib import Date, Person
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.exceptions import DbWriteFailure
 from gramps.version import VERSION
-from gramps.gen.constfunc import win, cuni, conv_to_unicode
+from gramps.gen.constfunc import win, conv_to_unicode
 from gramps.gui.plug.export import WriterOptionBox
 import gramps.plugins.lib.libgrampsxml as libgrampsxml
 
@@ -434,7 +434,7 @@ class GrampsXmlWriter(UpdateCallback):
         
     def fix(self,line):
         try:
-            l = cuni(line)
+            l = str(line)
         except:
             l = conv_to_unicode(str(line), errors='replace')
         l = l.strip().translate(strip_dict)
@@ -454,7 +454,7 @@ class GrampsXmlWriter(UpdateCallback):
         format = note.get_format()
         text = note.get_styledtext()
         styles = text.get_tags()
-        text = cuni(text)
+        text = str(text)
 
         self.g.write(' type="%s"' % ntype)
         if format != note.FLOWED:

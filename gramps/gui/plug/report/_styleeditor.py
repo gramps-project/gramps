@@ -54,7 +54,6 @@ from gramps.gen.plug.docgen import (StyleSheet, FONT_SERIF, FONT_SANS_SERIF,
             PARA_ALIGN_RIGHT, PARA_ALIGN_CENTER, PARA_ALIGN_LEFT,  
             PARA_ALIGN_JUSTIFY, ParagraphStyle, TableStyle, TableCellStyle,
             GraphicsStyle)
-from gramps.gen.constfunc import cuni
 from ...listmodel import ListModel
 from ...managedwindow import set_titles
 from ...glade import Glade
@@ -154,7 +153,7 @@ class StyleListDisplay(object):
         if not node:
             return
         
-        name = cuni(self.list.model.get_value(node, 0))
+        name = str(self.list.model.get_value(node, 0))
         if name == _('default'): # the default style cannot be edited
             return
         style = self.sheetlist.get_style_sheet(name)
@@ -165,7 +164,7 @@ class StyleListDisplay(object):
         store, node = self.list.selection.get_selected()
         if not node:
             return
-        name = cuni(self.list.model.get_value(node, 0))
+        name = str(self.list.model.get_value(node, 0))
         if name == _('default'): # the default style cannot be removed
             return
         self.sheetlist.delete_style_sheet(name)
@@ -517,7 +516,7 @@ class StyleEditor(object):
         Saves the current style sheet and causes the parent to be updated with
         the changes.
         """
-        name = cuni(self.top.get_object("style_name").get_text())
+        name = str(self.top.get_object("style_name").get_text())
 
         self.save()
         self.style.set_name(name)

@@ -43,7 +43,6 @@ from ... import widgets
 from gramps.gen.lib import Event, EventType, Family, FamilyRelType
 from .. import build_filter_model
 from . import SidebarFilter
-from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.family import (RegExpIdOf, RegExpFatherName, 
                                              RegExpMotherName, RegExpChildName, 
@@ -132,11 +131,11 @@ class FamilySidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
-        gid = cuni(self.filter_id.get_text()).strip()
-        father = cuni(self.filter_father.get_text()).strip()
-        mother = cuni(self.filter_mother.get_text()).strip()
-        child = cuni(self.filter_child.get_text()).strip()
-        note = cuni(self.filter_note.get_text()).strip()
+        gid = str(self.filter_id.get_text()).strip()
+        father = str(self.filter_father.get_text()).strip()
+        mother = str(self.filter_mother.get_text()).strip()
+        child = str(self.filter_child.get_text()).strip()
+        note = str(self.filter_note.get_text()).strip()
         etype = self.filter_event.get_type().xml_str()
         rtype = self.family_stub.get_relationship().xml_str()
         regex = self.filter_regex.get_active()
@@ -188,7 +187,7 @@ class FamilySidebarFilter(SidebarFilter):
         if self.generic.get_active() != 0:
             model = self.generic.get_model()
             node = self.generic.get_active_iter()
-            obj = cuni(model.get_value(node, 0))
+            obj = str(model.get_value(node, 0))
             rule = MatchesFilter([obj])
             generic_filter.add_rule(rule)
 

@@ -54,7 +54,6 @@ UNDERLINE_SINGLE = Pango.Underline.SINGLE
 #
 #-------------------------------------------------------------------------
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
-from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -336,7 +335,7 @@ class StyledTextBuffer(UndoableBuffer):
     def do_changed(self, data=None):
         """Parse for patterns in the text."""
         self.matches = []
-        text = cuni(super(StyledTextBuffer, self).get_text(
+        text = str(super(StyledTextBuffer, self).get_text(
                                                self.get_start_iter(),
                                                self.get_end_iter(), True))
         for regex, flavor in self.patterns:
@@ -589,7 +588,7 @@ class StyledTextBuffer(UndoableBuffer):
 
         txt = super(StyledTextBuffer, self).get_text(start, end, 
                                                         include_hidden_chars)
-        txt = cuni(txt)
+        txt = str(txt)
         
         # extract tags out of the buffer
         g_tags = self._get_tag_from_range()

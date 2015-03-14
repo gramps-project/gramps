@@ -52,7 +52,7 @@ from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Citation,
         Family, FamilyRelType, Name, NameType, Note, Person, PersonRef, 
         Place, Source)
 from gramps.gen.db import DbTxn
-from gramps.gen.constfunc import cuni, conv_to_unicode
+from gramps.gen.constfunc import conv_to_unicode
 from html.entities import name2codepoint
 
 _date_parse = re.compile('([kmes~?<>]+)?([0-9/]+)([J|H|F])?(\.\.)?([0-9/]+)?([J|H|F])?')
@@ -109,7 +109,7 @@ class GeneWebParser(object):
         line = self.f.readline()
         if line:
             try:
-                line = cuni(line.strip())
+                line = str(line.strip())
             except UnicodeDecodeError:
                 line = conv_to_unicode(line.strip(), self.encoding)
         else:

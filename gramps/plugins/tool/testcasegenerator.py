@@ -75,7 +75,6 @@ from gramps.gui.utils import ProgressMeter
 from gramps.gen.utils.lds import TEMPLES
 from gramps.gen.db.dbconst import *
 from gramps.gen.const import ICON, LOGO, SPLASH
-from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -233,7 +232,7 @@ class TestcaseGenerator(tool.BatchTool):
         self.top.vbox.pack_start(self.label,0,0,5)
 
         self.entry_count = Gtk.Entry()
-        self.entry_count.set_text(cuni( self.options.handler.options_dict['person_count']))
+        self.entry_count.set_text(str( self.options.handler.options_dict['person_count']))
         self.on_dummy_data_clicked(self.check_persons)
         self.top.vbox.pack_start(self.entry_count,0,0,5)
 
@@ -924,7 +923,7 @@ class TestcaseGenerator(tool.BatchTool):
         #         Address
         m = MediaObject()
         m.set_description(message)
-        m.set_path(cuni(ICON))
+        m.set_path(str(ICON))
         m.set_mime_type(get_type(m.get_path()))
         m.add_citation(choice(c_h_list))
         # MediaObject : Attribute
@@ -1604,14 +1603,14 @@ class TestcaseGenerator(tool.BatchTool):
 
         if isinstance(o,MediaObject):
             if randint(0,3) == 1:
-                o.set_description(cuni(self.rand_text(self.LONG)))
+                o.set_description(str(self.rand_text(self.LONG)))
                 path = choice((ICON, LOGO, SPLASH))
-                o.set_path(cuni(path))
+                o.set_path(str(path))
                 mime = get_type(path)
                 o.set_mime_type(mime)
             else:
-                o.set_description(cuni(self.rand_text(self.SHORT)))
-                o.set_path(cuni(ICON))
+                o.set_description(str(self.rand_text(self.SHORT)))
+                o.set_path(str(ICON))
                 o.set_mime_type("image/png")
 
         if isinstance(o,MediaRef):

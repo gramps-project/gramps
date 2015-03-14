@@ -44,7 +44,7 @@ log = logging.getLogger(".gen.datehandler")
 #-------------------------------------------------------------------------
 from ._dateparser import DateParser
 from ._datedisplay import DateDisplay, DateDisplayEn
-from ..constfunc import win, cuni
+from ..constfunc import win
 from ..const import GRAMPS_LOCALE as glocale
 from gramps.gen.utils.grampslocale import GrampsLocale
 
@@ -69,8 +69,8 @@ if LANG:
 else:
     LANG_SHORT = "C"
 
-LANG = cuni(LANG)
-LANG_SHORT = cuni(LANG_SHORT)
+LANG = str(LANG)
+LANG_SHORT = str(LANG_SHORT)
 
 LANG_TO_PARSER = {
     'C'                     : DateParser,

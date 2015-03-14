@@ -37,7 +37,6 @@ from gi.repository import Gtk
 from gramps.gen.soundex import soundex
 from gramps.gui.autocomp import fill_combo
 from gramps.gen.plug import Gramplet
-from gramps.gen.constfunc import cuni
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
@@ -109,7 +108,7 @@ class SoundGen(Gramplet):
 
     def on_apply_clicked(self, obj):
         try:
-            se_text = soundex(cuni(obj.get_text()))
+            se_text = soundex(str(obj.get_text()))
         except UnicodeEncodeError:
             se_text = soundex('')
         self.value.set_text(se_text)

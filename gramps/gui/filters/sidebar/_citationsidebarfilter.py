@@ -34,13 +34,10 @@ from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 
-from gramps.gen.constfunc import cuni
-
 from ...widgets import MonitoredMenu, DateEntry, BasicEntry
 from gramps.gen.lib import Citation
 from .. import build_filter_model
 from . import SidebarFilter
-from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilterFactory, rules
 from gramps.gen.filters.rules.citation import (RegExpIdOf, HasCitation, HasTag,
                                                HasNoteRegexp, MatchesFilter,
@@ -136,15 +133,15 @@ class CitationSidebarFilter(SidebarFilter):
         self.generic.set_active(0)
 
     def get_filter(self):
-        src_id = cuni(self.filter_src_id.get_text()).strip()
-        src_title = cuni(self.filter_src_title.get_text()).strip()
-        src_author = cuni(self.filter_src_author.get_text()).strip()
-        src_abbr = cuni(self.filter_src_abbr.get_text()).strip()
-        src_pub = cuni(self.filter_src_pub.get_text()).strip()
-        src_note = cuni(self.filter_src_note.get_text()).strip()
-        gid = cuni(self.filter_id.get_text()).strip()
-        page = cuni(self.filter_page.get_text()).strip()
-        date = cuni(self.filter_date.get_text()).strip()
+        src_id = str(self.filter_src_id.get_text()).strip()
+        src_title = str(self.filter_src_title.get_text()).strip()
+        src_author = str(self.filter_src_author.get_text()).strip()
+        src_abbr = str(self.filter_src_abbr.get_text()).strip()
+        src_pub = str(self.filter_src_pub.get_text()).strip()
+        src_note = str(self.filter_src_note.get_text()).strip()
+        gid = str(self.filter_id.get_text()).strip()
+        page = str(self.filter_page.get_text()).strip()
+        date = str(self.filter_date.get_text()).strip()
         model = self.filter_conf.get_model()
         node = self.filter_conf.get_active_iter()
         conf_name = model.get_value(node, 0)  # The value is actually the text
@@ -154,7 +151,7 @@ class CitationSidebarFilter(SidebarFilter):
                 conf = i
                 break
 #        conf = self.citn.get_confidence_level()
-        note = cuni(self.filter_note.get_text()).strip()
+        note = str(self.filter_note.get_text()).strip()
         regex = self.filter_regex.get_active()
         tag = self.tag.get_active() > 0
         gen = self.generic.get_active() > 0
@@ -200,7 +197,7 @@ class CitationSidebarFilter(SidebarFilter):
             if self.generic.get_active() != 0:
                 model = self.generic.get_model()
                 node = self.generic.get_active_iter()
-                obj = cuni(model.get_value(node, 0))
+                obj = str(model.get_value(node, 0))
                 rule = MatchesFilter([obj])
                 generic_filter.add_rule(rule)
 

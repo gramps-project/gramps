@@ -59,7 +59,6 @@ from .glade import Glade
 from .ddtargets import DdTargets
 from .makefilter import make_filter
 from .utils import is_right_click
-from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -404,7 +403,7 @@ class ClipNote(ClipHandleWrapper):
             note = value.get().replace('\n', ' ')
             #String must be unicode for truncation to work for non
             #ascii characters
-            note = cuni(note)
+            note = str(note)
             if len(note) > 80:
                 self._value = note[:80]+"..."
             else:
@@ -510,7 +509,7 @@ class ClipCitation(ClipHandleWrapper):
                     text = " ".join(srctxtlist[0].get().split())
                 #String must be unicode for truncation to work for non
                 #ascii characters
-                    text = cuni(text)
+                    text = str(text)
                     if len(text) > 60:
                         text =  text[:60]+"..."
                 self._value = _("Volume/Page: %(pag)s -- %(sourcetext)s") % {

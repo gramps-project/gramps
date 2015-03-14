@@ -21,8 +21,6 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
-from gramps.gen.constfunc import cuni
-
 def save_profile(sender, instance, created, **kwargs):
     """
     Creates the profile when the user gets created.
@@ -40,6 +38,6 @@ class Profile(models.Model):
     theme_type = models.ForeignKey("ThemeType", default=1) # The default is a pk?
 
     def __unicode__(self):
-        return cuni(self.user)
+        return str(self.user)
 
 post_save.connect(save_profile, sender=User)

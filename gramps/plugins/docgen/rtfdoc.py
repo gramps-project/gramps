@@ -42,7 +42,6 @@ from gramps.gen.plug.docgen import (BaseDoc, TextDoc, FONT_SERIF, PARA_ALIGN_RIG
                              URL_PATTERN)
 from gramps.gen.utils.image import image_size, image_actual_size, resize_to_jpeg_buffer
 from gramps.gen.errors import ReportError
-from gramps.gen.constfunc import cuni
 
 #------------------------------------------------------------------------
 #
@@ -472,7 +471,7 @@ class RTFDoc(BaseDoc,TextDoc):
     #--------------------------------------------------------------------
     def write_text(self, text, mark=None, links=False):
     # Convert to unicode, just in case it's not. Fix of bug 2449.
-        text = cuni(text)
+        text = str(text)
         LOG.debug("write_text: opened: %d input text: %s" % 
                   (self.opened, 
                    text))

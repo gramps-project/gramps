@@ -57,7 +57,6 @@ from gramps.gen.utils.file import media_path_full, relative_path, media_path
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.mime import get_type, is_image_type
-from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -515,8 +514,8 @@ class PathChange(BatchOp):
         return (title, box)
 
     def build_confirm_text(self):
-        from_text = cuni(self.from_entry.get_text())
-        to_text = cuni(self.to_entry.get_text())
+        from_text = str(self.from_entry.get_text())
+        to_text = str(self.to_entry.get_text())
         text = _(
             'The following action is to be performed:\n\n'
             'Operation:\t%(title)s\n'
@@ -528,7 +527,7 @@ class PathChange(BatchOp):
         return text
         
     def _prepare(self):
-        from_text = cuni(self.from_entry.get_text())
+        from_text = str(self.from_entry.get_text())
         self.set_total(self.db.get_number_of_media_objects())
         with self.db.get_media_cursor() as cursor:
             for handle, data in cursor:
@@ -545,8 +544,8 @@ class PathChange(BatchOp):
         if not self.prepared:
             self.prepare()
         self.set_total(len(self.handle_list))
-        from_text = cuni(self.from_entry.get_text())
-        to_text = cuni(self.to_entry.get_text())
+        from_text = str(self.from_entry.get_text())
+        to_text = str(self.to_entry.get_text())
         for handle in self.handle_list:
             obj = self.db.get_object_from_handle(handle)
             new_path = obj.get_path().replace(from_text, to_text)

@@ -40,7 +40,6 @@ from ..display.name import displayer as name_displayer
 from ..display.place import displayer as place_displayer
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from ..constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -372,7 +371,7 @@ def navigation_label(db, nav_type, handle):
             label = obj.get()
             # When strings are cut, make sure they are unicode
             #otherwise you may end of with cutting within an utf-8 sequence
-            label = cuni(label)
+            label = str(label)
             label = " ".join(label.split())
             if len(label) > 40:
                 label = label[:40] + "..."

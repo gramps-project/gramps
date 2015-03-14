@@ -44,7 +44,6 @@ from gramps.gen.lib import Date, Event, EventType
 from gramps.gen.datehandler import displayer
 from .. import build_filter_model
 from . import SidebarFilter
-from gramps.gen.constfunc import cuni
 from gramps.gen.filters import GenericFilter, rules
 from gramps.gen.filters.rules.person import (RegExpName, RegExpIdOf, IsMale, 
                                              IsFemale, HasUnknownGender, 
@@ -61,7 +60,7 @@ def extract_text(entry_widget):
     of type unicode.
     
     """
-    return cuni(entry_widget.get_text().strip())
+    return str(entry_widget.get_text().strip())
 
 #-------------------------------------------------------------------------
 #
@@ -234,7 +233,7 @@ class PersonSidebarFilter(SidebarFilter):
         if self.generic.get_active() != 0:
             model = self.generic.get_model()
             node = self.generic.get_active_iter()
-            obj = cuni(model.get_value(node, 0))
+            obj = str(model.get_value(node, 0))
             rule = MatchesFilter([obj])
             generic_filter.add_rule(rule)
 

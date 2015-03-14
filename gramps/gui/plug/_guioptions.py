@@ -59,7 +59,7 @@ from ..selectors import SelectorFactory
 from gramps.gen.display.name import displayer as _nd
 from gramps.gen.display.place import displayer as _pd
 from gramps.gen.filters import GenericFilterFactory, GenericFilter, rules
-from gramps.gen.constfunc import (conv_to_unicode, get_curr_dir, cuni)
+from gramps.gen.constfunc import conv_to_unicode, get_curr_dir
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -387,9 +387,9 @@ class GuiTextOption(Gtk.ScrolledWindow):
         """
         Handle the change of the value made by the user.
         """
-        text_val = cuni( self.__buff.get_text( self.__buff.get_start_iter(),
-                                                  self.__buff.get_end_iter(),
-                                                  False)             )
+        text_val = str(self.__buff.get_text(self.__buff.get_start_iter(),
+                                            self.__buff.get_end_iter(),
+                                            False))
 
         self.__option.disable_signals()
         self.__option.set_value( text_val.split('\n') )

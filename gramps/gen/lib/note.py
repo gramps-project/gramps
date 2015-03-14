@@ -34,7 +34,6 @@ from .tagbase import TagBase
 from .notetype import NoteType
 from .styledtext import StyledText
 from .styledtexttagtype import StyledTextTagType
-from ..constfunc import cuni
 from .handle import Handle
 
 #-------------------------------------------------------------------------
@@ -203,7 +202,7 @@ class Note(BasicPrimaryObject):
         :returns: The *clear* text of the note contents.
         :rtype: unicode
         """
-        return cuni(self.text)
+        return str(self.text)
 
     def set_styledtext(self, text):
         """Set the text associated with the note to the passed string.

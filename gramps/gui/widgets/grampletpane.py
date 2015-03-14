@@ -57,7 +57,6 @@ from ..display import display_help, display_url
 from ..glade import Glade
 from ..pluginmanager import GuiPluginManager
 from .undoablebuffer import UndoableBuffer
-from gramps.gen.constfunc import cuni
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 

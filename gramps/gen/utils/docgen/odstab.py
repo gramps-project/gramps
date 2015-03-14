@@ -37,7 +37,6 @@ _ = glocale.translation.gettext
 from .tabbeddoc import *
 from ...const import PROGRAM_NAME, VERSION
 from ...errors import ReportError
-from ...constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -389,7 +388,7 @@ class ODSTab(TabbedDoc):
             text = text.replace('>','&gt;')
             text = text.replace('\t','<text:tab-stop/>')
             text = text.replace('\n','<text:line-break/>')
-            self.f.write(cuni(text))
+            self.f.write(str(text))
 
         self.f.write('</text:p>\n')
         self.f.write('</table:table-cell>\n')

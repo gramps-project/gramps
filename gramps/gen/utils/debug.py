@@ -55,7 +55,6 @@ def format_exception(tb_type=None, tb_value=None, tb=None):
     """
     import sys
     import traceback
-    from gramps.gen.constfunc import cuni
     if tb_type is None:
         tb_type = sys.exc_type
     if tb_value is None:
@@ -83,7 +82,7 @@ def format_exception(tb_type=None, tb_value=None, tb=None):
             #handler! Calling str() on an unknown object could cause an
             #error we don't want.
             try:                   
-                line = "  %s = %s\n" % (key, cuni(value))
+                line = "  %s = %s\n" % (key, str(value))
             except:
                 line = "  %s = %s\n" % (key, "<ERROR PRINTING VALUE>")
             retval.append(line)

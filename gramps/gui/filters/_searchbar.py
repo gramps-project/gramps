@@ -33,8 +33,6 @@ from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
-from gramps.gen.constfunc import cuni
-
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
 
@@ -155,14 +153,14 @@ class SearchBar(object):
         self.apply_filter()
 
     def get_value(self):
-        text = cuni(self.filter_text.get_text()).strip()
+        text = str(self.filter_text.get_text()).strip()
         node = self.filter_list.get_active_iter()
         index = self.filter_model.get_value(node, 1)
         inv = self.filter_model.get_value(node, 2)
         return (index, text, inv)
         
     def apply_filter(self, current_model=None):
-        self.apply_text = cuni(self.filter_text.get_text())
+        self.apply_text = str(self.filter_text.get_text())
         self.filter_button.set_sensitive(False)
         self.uistate.status_text(_('Updating display...'))
         self.on_apply_callback()

@@ -44,7 +44,6 @@ from gramps.gen.lib import Event, EventType
 from gramps.gen.utils.db import get_participant_from_event
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
-from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
@@ -139,10 +138,10 @@ class EventModel(FlatBaseModel):
             return ''
 
     def column_type(self,data):
-        return cuni(EventType(data[COLUMN_TYPE]))
+        return str(EventType(data[COLUMN_TYPE]))
 
     def column_id(self,data):
-        return cuni(data[COLUMN_ID])
+        return str(data[COLUMN_ID])
 
     def column_date(self,data):
         if data[COLUMN_DATE]:

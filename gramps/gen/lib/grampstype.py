@@ -30,7 +30,6 @@ Base type for all gramps types.
 #-------------------------------------------------------------------------
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import cuni
 
 _UNKNOWN = _('Unknown')
 
@@ -228,7 +227,7 @@ class GrampsType(GrampsTypeC):
         """
         return {"_class": self.__class__.__name__,
                 "value": self.__value, 
-                "string": cuni(self)}
+                "string": str(self)}
 
     @classmethod
     def from_struct(cls, struct):

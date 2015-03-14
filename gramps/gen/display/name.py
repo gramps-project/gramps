@@ -68,7 +68,7 @@ LOG = logging.getLogger(".gramps.gen")
 #-------------------------------------------------------------------------
 from ..const import ARABIC_COMMA, ARABIC_SEMICOLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from ..constfunc import cuni, conv_to_unicode
+from ..constfunc import conv_to_unicode
 from ..lib.name import Name
 from ..lib.nameorigintype import NameOriginType
 
@@ -816,7 +816,7 @@ class NameDisplay(object):
         return sur.get_surname()
 
     def sort_string(self, name):
-        return cuni("%-25s%-30s%s") % (self.primary_surname(name),
+        return "%-25s%-30s%s" % (self.primary_surname(name),
                                   name.first_name, name.suffix)
 
     def sorted(self, person):

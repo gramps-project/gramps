@@ -45,7 +45,6 @@ from gramps.gen.lib import EventRoleType, FamilyRelType
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.utils.db import get_marriage_or_fallback
 from gramps.gen.config import config
-from gramps.gen.constfunc import cuni
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 invalid_date_format = config.get('preferences.invalid-date-format')
@@ -135,7 +134,7 @@ class FamilyModel(FlatBaseModel):
             return ""
 
     def column_type(self, data):
-        return cuni(FamilyRelType(data[5]))
+        return str(FamilyRelType(data[5]))
 
     def column_marriage(self, data):
         family = self.db.get_family_from_handle(data[0])
@@ -159,7 +158,7 @@ class FamilyModel(FlatBaseModel):
             return ''
 
     def column_id(self, data):
-        return cuni(data[1])
+        return str(data[1])
 
     def column_private(self, data):
         if data[14]:

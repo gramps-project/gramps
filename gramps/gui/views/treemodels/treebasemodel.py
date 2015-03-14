@@ -53,7 +53,6 @@ from gi.repository import Gtk
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import gramps.gui.widgets.progressdialog as progressdlg
-from gramps.gen.constfunc import cuni
 from .lru import LRU
 from bisect import bisect_right
 from gramps.gen.filters import SearchFilter, ExactSearchFilter

@@ -54,7 +54,6 @@ from gramps.gui.plug.export import WriterOptionBox
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.utils.file import media_path_full
 from gramps.gen.utils.place import conv_lat_lon
-from gramps.gen.constfunc import cuni
 from gramps.gen.utils.location import get_main_location
 from gramps.gen.display.place import displayer as place_displayer
 
@@ -273,17 +272,17 @@ class GedcomWriter(UpdateCallback):
             token_level = level
             for text in textlist:
                 # make it unicode so that breakup below does the right thin.
-                text = cuni(text)
+                text = str(text)
                 if limit:
-                    prefix = cuni("\n%d CONC " % (level + 1))
+                    prefix = "\n%d CONC " % (level + 1)
                     txt = prefix.join(breakup(text, limit))
                 else:
                     txt = text
-                self.gedcom_file.write(cuni("%d %s %s\n" % (token_level, token, txt)))
+                self.gedcom_file.write("%d %s %s\n" % (token_level, token, txt))
                 token_level = level + 1
                 token = "CONT"
         else:
-            self.gedcom_file.write(cuni("%d %s\n" % (level, token)))
+            self.gedcom_file.write("%d %s\n" % (level, token))
     
     def _header(self, filename):
         """

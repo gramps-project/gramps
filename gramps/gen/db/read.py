@@ -73,7 +73,7 @@ from ..utils.cast import conv_dbstr_to_unicode
 from . import (BsddbBaseCursor, DbReadBase)
 from ..utils.id import create_id
 from ..errors import DbError
-from ..constfunc import cuni, handle2internal, get_env_var
+from ..constfunc import handle2internal, get_env_var
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -1307,7 +1307,7 @@ class DbBsddbRead(DbReadBase, Callback):
                     if id_number.isdigit():
                         id_value = int(id_number, 10)
                         ## this code never ran, as an int compared to str with > is False!
-##                        if len(cuni(id_value)) > nr_width:
+##                        if len(str(id_value)) > nr_width:
 ##                            # The ID to be imported is too large to fit in the
 ##                            # users format. For now just create a new ID,
 ##                            # because that is also what happens with IDs that
@@ -1784,14 +1784,14 @@ class DbBsddbRead(DbReadBase, Callback):
             first = first.encode('utf-8')
         if isinstance(second, str):
             second = second.encode('utf-8')
-        source1 = cuni(self.source_map[first][2])
-        source2 = cuni(self.source_map[second][2])
+        source1 = str(self.source_map[first][2])
+        source2 = str(self.source_map[second][2])
         return glocale.strcoll(source1, source2)
         
     def __sortbysource_key(self, key):
         if isinstance(key, str):
             key = key.encode('utf-8')
-        source = cuni(self.source_map[key][2])
+        source = str(self.source_map[key][2])
         return glocale.sort_key(source)
 
     def __sortbycitation(self, first, second):
@@ -1799,14 +1799,14 @@ class DbBsddbRead(DbReadBase, Callback):
             first = first.encode('utf-8')
         if isinstance(second, str):
             second = second.encode('utf-8')
-        citation1 = cuni(self.citation_map[first][3])
-        citation2 = cuni(self.citation_map[second][3])
+        citation1 = str(self.citation_map[first][3])
+        citation2 = str(self.citation_map[second][3])
         return glocale.strcoll(citation1, citation2)
         
     def __sortbycitation_key(self, key):
         if isinstance(key, str):
             key = key.encode('utf-8')
-        citation = cuni(self.citation_map[key][3])
+        citation = str(self.citation_map[key][3])
         return glocale.sort_key(citation)
 
     def __sortbymedia(self, first, second):

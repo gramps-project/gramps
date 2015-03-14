@@ -40,7 +40,6 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib import Address, RepositoryType, Url, UrlType
 from gramps.gen.datehandler import format_time
-from gramps.gen.constfunc import cuni
 from .flatbasemodel import FlatBaseModel
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 #-------------------------------------------------------------------------
@@ -118,13 +117,13 @@ class RepositoryModel(FlatBaseModel):
         return len(self.fmap)+1
 
     def column_id(self,data):
-        return cuni(data[1])
+        return str(data[1])
 
     def column_type(self,data):
-        return cuni(RepositoryType(data[2]))
+        return str(RepositoryType(data[2]))
 
     def column_name(self,data):
-        return cuni(data[3])
+        return str(data[3])
 
     def column_city(self,data):
         try:
@@ -134,7 +133,7 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_city()
         except:
             pass
-        return cuni('')
+        return ''
 
     def column_street(self,data):
         try:
@@ -144,7 +143,7 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_street()
         except:
             pass
-        return cuni('')
+        return ''
         
     def column_locality(self,data):
         try:
@@ -154,7 +153,7 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_locality()
         except:
             pass
-        return cuni('')
+        return ''
     
     def column_state(self,data):
         try:
@@ -164,7 +163,7 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_state()
         except:
             pass
-        return cuni('')
+        return ''
 
     def column_country(self,data):
         try:
@@ -174,7 +173,7 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_country()
         except:
             pass
-        return cuni('')
+        return ''
 
     def column_postal_code(self,data):
         try:
@@ -184,7 +183,7 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_postal_code()
         except:
             pass
-        return cuni('')
+        return ''
 
     def column_phone(self,data):
         try:
@@ -194,7 +193,7 @@ class RepositoryModel(FlatBaseModel):
                 return addr.get_phone()
         except:
             pass
-        return cuni('')
+        return ''
 
     def column_email(self,data):
         if data[6]:
@@ -202,8 +201,8 @@ class RepositoryModel(FlatBaseModel):
                 url = Url()
                 url.unserialize(i)
                 if url.get_type() == UrlType.EMAIL:
-                    return cuni(url.path)
-        return cuni('')
+                    return str(url.path)
+        return ''
 
     def column_search_url(self,data):
         if data[6]:
@@ -211,7 +210,7 @@ class RepositoryModel(FlatBaseModel):
                 url = Url()
                 url.unserialize(i)
                 if url.get_type() == UrlType.WEB_SEARCH:
-                    return cuni(url.path)
+                    return str(url.path)
         return ''
     
     def column_home_url(self,data):
@@ -220,7 +219,7 @@ class RepositoryModel(FlatBaseModel):
                 url = Url()
                 url.unserialize(i)
                 if url.get_type() == UrlType.WEB_HOME:
-                    return cuni(url.path)
+                    return str(url.path)
         return ""
 
     def column_private(self, data):

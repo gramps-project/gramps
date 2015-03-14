@@ -50,7 +50,6 @@ from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help
 from ..dialog import ErrorDialog, QuestionDialog2
 import gramps.gui.widgets.progressdialog as progressdlg
-from gramps.gen.constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -552,7 +551,7 @@ class EditTag(object):
         """
         Save the changes made to the tag.
         """
-        self.tag.set_name(cuni(self.entry.get_text()))
+        self.tag.set_name(str(self.entry.get_text()))
         rgba = self.color.get_rgba()
         hexval = "#%02x%02x%02x" % (int(rgba.red * 255),
                                     int(rgba.green * 255),

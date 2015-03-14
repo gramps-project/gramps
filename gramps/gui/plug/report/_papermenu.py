@@ -42,7 +42,6 @@ from gi.repository import GObject
 #-------------------------------------------------------------------------
 from gramps.gen.plug.docgen import PaperStyle, PAPER_PORTRAIT, PAPER_LANDSCAPE
 from gramps.gen.plug.report._paper import paper_sizes
-from gramps.gen.constfunc import cuni
 from ...glade import Glade
 
 #-------------------------------------------------------------------------
@@ -81,7 +80,7 @@ class PaperComboBox(Gtk.ComboBox):
         active = self.get_active()
         if active < 0:
             return None
-        key = cuni(self.store[active][0])
+        key = str(self.store[active][0])
         for paper in paper_sizes:
             if key == paper.trans_pname:
                 key = paper.get_name()
@@ -245,8 +244,8 @@ class PaperFrame(Gtk.Box):
         papersize, papername =  self.papersize_menu.get_value()
         if papername == 'Custom Size':
             try:
-                h = float(cuni(self.pheight.get_text().replace(",", ".")))
-                w = float(cuni(self.pwidth.get_text().replace(",", ".") ))
+                h = float(str(self.pheight.get_text().replace(",", ".")))
+                w = float(str(self.pwidth.get_text().replace(",", ".") ))
                 
                 if h <= 1.0 or w <= 1.0:
                     papersize.set_height(29.7)
@@ -266,7 +265,7 @@ class PaperFrame(Gtk.Box):
         Values returned in [cm].
         
         """
-        paper_margins = [cuni(margin.get_text()) for margin in
+        paper_margins = [str(margin.get_text()) for margin in
             (self.lmargin, self.rmargin, self.tmargin, self.bmargin)]
         
         for i, margin in enumerate(paper_margins):

@@ -36,7 +36,6 @@ import time
 #
 #-------------------------------------------------------------------------
 from .baseobj import BaseObject
-from ..constfunc import cuni
 
 #-------------------------------------------------------------------------
 #
@@ -112,7 +111,7 @@ class TableObject(BaseObject):
         
         """
         if self.change:
-            return cuni(time.strftime('%x %X', time.localtime(self.change)),
+            return str(time.strftime('%x %X', time.localtime(self.change)),
                            CODESET)
         else:
             return ''
