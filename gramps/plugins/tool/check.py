@@ -71,7 +71,7 @@ from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog, MissingMediaDialog
 from gramps.gen.display.name import displayer as _nd
 from gramps.gui.glade import Glade
-from gramps.gen.constfunc import UNITYPE, cuni, handle2internal, conv_to_unicode
+from gramps.gen.constfunc import cuni, handle2internal, conv_to_unicode
 
 # table for handling control chars in notes.
 # All except 09, 0A, 0D are replaced with space.
@@ -344,16 +344,16 @@ class CheckIntegrity(object):
         for bhandle in self.db.media_map.keys():
             handle = handle2internal(bhandle)
             data = self.db.media_map[bhandle]
-            if not isinstance(data[2], UNITYPE) or not isinstance(data[4], UNITYPE):
+            if not isinstance(data[2], str) or not isinstance(data[4], str):
                 obj = self.db.get_object_from_handle(handle)
                 obj.path = conv_to_unicode(obj.path, None)
                 obj.desc = conv_to_unicode(obj.desc, None)
                 self.db.commit_media_object(obj, self.trans)
-                if not isinstance(data[2], UNITYPE):
+                if not isinstance(data[2], str):
                     logging.warning('    FAIL: encoding error on media object '
                                     '"%(gid)s" path "%(path)s"' %
                                     {'gid' : obj.gramps_id, 'path' : obj.path})
-                if not isinstance(data[4], UNITYPE):
+                if not isinstance(data[4], str):
                     logging.warning('    FAIL: encoding error on media object ' 
                                     '"%(gid)s" description "%(desc)s"' %
                                     {'gid' : obj.gramps_id, 'desc' : obj.desc})

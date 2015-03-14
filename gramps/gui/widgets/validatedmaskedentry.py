@@ -52,7 +52,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.errors import MaskError, ValidationError, WindowActiveError
-from gramps.gen.constfunc import cuni, UNITYPE
+from gramps.gen.constfunc import cuni
 from .undoableentry import UndoableEntry
 
 #-------------------------------------------------------------------------
@@ -402,7 +402,7 @@ class MaskedEntry(UndoableEntry):
         for validator in self._mask_validators[start:end]:
             if isinstance(validator, int):
                 s += ' '
-            elif isinstance(validator, UNITYPE):
+            elif isinstance(validator, str):
                 s += validator
             else:
                 raise AssertionError
@@ -593,7 +593,7 @@ class MaskedEntry(UndoableEntry):
         if isinstance(validator, int):
             if not INPUT_CHAR_MAP[validator](text):
                 return False
-        if isinstance(validator, UNITYPE):
+        if isinstance(validator, str):
             if validator == text:
                 return True
             return False

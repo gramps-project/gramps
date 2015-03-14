@@ -132,7 +132,7 @@ from gramps.gen.db.dbconst import EVENT_KEY
 from gramps.gui.dialog import WarningDialog
 from gramps.gen.lib.const import IDENTICAL, DIFFERENT
 from gramps.gen.lib import (StyledText, StyledTextTag, StyledTextTagType)
-from gramps.gen.constfunc import cuni, conv_to_unicode, UNITYPE, win
+from gramps.gen.constfunc import cuni, conv_to_unicode, win
 from gramps.plugins.lib.libplaceimport import PlaceImport
 from gramps.gen.display.place import displayer as place_displayer
 
@@ -1737,7 +1737,7 @@ class IdMapper(object):
                 # now looking for I1, it wouldn't be in self.swap, and we now
                 # find that I0001 is in use, so we have to create a new id.
                 bformatted_gid = formatted_gid
-                if isinstance(bformatted_gid, UNITYPE):
+                if isinstance(bformatted_gid, str):
                     bformatted_gid = bformatted_gid.encode('utf-8')
                 if self.trans.get(bformatted_gid) or \
                         (formatted_gid in list(self.swap.values())):

@@ -71,7 +71,7 @@ from gi.repository import Gtk
 #
 #-------------------------------------------------------------------------
 from gramps.gen.filters import SearchFilter, ExactSearchFilter
-from gramps.gen.constfunc import cuni, UNITYPE, conv_to_unicode, handle2internal
+from gramps.gen.constfunc import cuni, conv_to_unicode, handle2internal
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 
 #-------------------------------------------------------------------------
@@ -311,7 +311,7 @@ class FlatNodeMap(object):
         :return handle: unicode form of the handle
         """
         handle = self._index2hndl[self.real_index(path)][1]
-        if not isinstance(handle, UNITYPE):
+        if not isinstance(handle, str):
             handle = handle.decode('utf-8')
         return handle
 

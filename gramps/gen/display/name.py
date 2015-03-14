@@ -68,7 +68,7 @@ LOG = logging.getLogger(".gramps.gen")
 #-------------------------------------------------------------------------
 from ..const import ARABIC_COMMA, ARABIC_SEMICOLON, GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
-from ..constfunc import cuni, conv_to_unicode, UNITYPE
+from ..constfunc import cuni, conv_to_unicode
 from ..lib.name import Name
 from ..lib.nameorigintype import NameOriginType
 
@@ -1022,7 +1022,7 @@ class NameDisplay(object):
             # if in double quotes, just use % codes
             for (code, keyword) in d_keys:
                 exp, keyword, ikeyword = d[code]
-                if not isinstance(keyword, UNITYPE):
+                if not isinstance(keyword, str):
                     keyword = conv_to_unicode(keyword, "utf-8")
                 format_str = format_str.replace(keyword, "%"+ code)
                 format_str = format_str.replace(keyword.title(), "%"+ code)

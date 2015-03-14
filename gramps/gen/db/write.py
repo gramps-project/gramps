@@ -80,7 +80,7 @@ from ..utils.cast import conv_dbstr_to_unicode
 from ..utils.id import create_id
 from ..updatecallback import UpdateCallback
 from ..errors import DbError
-from ..constfunc import (win, conv_to_unicode, cuni, UNITYPE, handle2internal,
+from ..constfunc import (win, conv_to_unicode, cuni, handle2internal,
                          get_env_var)
 from ..const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
@@ -177,7 +177,7 @@ def find_idmap(key, data):
     returns a byte string
     """
     val = data[1]
-    if isinstance(val, UNITYPE):
+    if isinstance(val, str):
         val = val.encode('utf-8')
     return val
 
@@ -186,7 +186,7 @@ def find_parent(key, data):
         val = data[5][0][0]
     else:
         val = ''
-    if isinstance(val, UNITYPE):
+    if isinstance(val, str):
         val = val.encode('utf-8')
     return val
 
@@ -200,7 +200,7 @@ def find_primary_handle(key, data):
     returns byte string
     """
     val = (data)[0][1]
-    if isinstance(val, UNITYPE):
+    if isinstance(val, str):
         val = val.encode('utf-8')
     return val
 
@@ -209,7 +209,7 @@ def find_referenced_handle(key, data):
     returns byte string
     """
     val = (data)[1][1]
-    if isinstance(val, UNITYPE):
+    if isinstance(val, str):
         val = val.encode('utf-8')
     return val
 
@@ -494,7 +494,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
     def set_default_person_handle(self, handle):
         """Set the default Person to the passed instance."""
         #we store a byte string!
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         if not self.readonly:
             # Start transaction
@@ -1111,7 +1111,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         """
         Find all child places having the given place as the primary parent.
         """
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         parent_cur = self.get_place_parent_cursor()
 
@@ -1155,7 +1155,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
             result_list = list(find_backlink_handles(handle))
         """
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         # Use the secondary index to locate all the reference_map entries
         # that include a reference to the object we are looking for.
@@ -1242,7 +1242,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         existing_references = set()
         primary_cur = self.get_reference_map_primary_cursor()
         try:
-            if isinstance(handle, UNITYPE):
+            if isinstance(handle, str):
                 key = handle.encode('utf-8')
             else:
                 key = handle
@@ -1302,7 +1302,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                                     'which is partly bytecode, this is not allowed.\n'
                                     'Key is %s') % str(key))
             key = str(key)
-        if isinstance(key, UNITYPE):
+        if isinstance(key, str):
             key = key.encode('utf-8')
         if not self.readonly:
             if not transaction.batch:
@@ -1319,7 +1319,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if isinstance(key, tuple):
             #create a string key
             key = str(key)
-        if isinstance(key, UNITYPE):
+        if isinstance(key, str):
             key = key.encode('utf-8')
         if self.readonly or not key:
             return
@@ -1686,7 +1686,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         if self.readonly or not handle:
             return
 
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         if transaction.batch:
             with BSDDBTxn(self.env, data_map) as txn:
@@ -1711,7 +1711,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         person = self.get_person_from_handle(handle)
         self.genderStats.uncount_person (person)
         self.remove_from_surname_list(person)
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         if transaction.batch:
             with BSDDBTxn(self.env, self.person_map) as txn:            
@@ -1886,7 +1886,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
 
         obj.change = int(change_time or time.time())
         handle = obj.handle
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
 
         self.update_reference_map(obj, transaction, self.txn)
@@ -2131,7 +2131,7 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
                           transaction, change_time)
 
     def get_from_handle(self, handle, class_type, data_map):
-        if isinstance(handle, UNITYPE):
+        if isinstance(handle, str):
             handle = handle.encode('utf-8')
         try:
             data = data_map.get(handle, txn=self.txn)

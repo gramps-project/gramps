@@ -63,7 +63,7 @@ from .managedwindow import GrampsWindowManager
 from gramps.gen.relationship import get_relationship_calculator
 from .glade import Glade
 from gramps.gen.utils.db import navigation_label
-from gramps.gen.constfunc import UNITYPE, cuni
+from gramps.gen.constfunc import cuni
 from .widgets.progressdialog import ProgressMonitor, GtkProgressDialog
 
 DISABLED = -1
@@ -80,7 +80,7 @@ class History(Callback):
     """
 
     __signals__ = {
-        'active-changed' : (UNITYPE, ), 
+        'active-changed' : (str, ), 
         'mru-changed' : (list, )
         }
 
@@ -136,7 +136,7 @@ class History(Callback):
         self.emit('mru-changed', (self.mru, ))
         if self.history:
             newact = self.history[self.index]
-            if not isinstance(newact, UNITYPE):
+            if not isinstance(newact, str):
                 newact = cuni(newact)
             self.emit('active-changed', (newact,))
 
@@ -154,7 +154,7 @@ class History(Callback):
             self.index += 1
         if self.history:
             newact = self.history[self.index]
-            if not isinstance(newact, UNITYPE):
+            if not isinstance(newact, str):
                 newact = cuni(newact)
             self.emit('active-changed', (newact,))
  
@@ -169,7 +169,7 @@ class History(Callback):
         self.mru.append(handle)
         self.emit('mru-changed', (self.mru, ))
         newact = self.history[self.index]
-        if not isinstance(newact, UNITYPE):
+        if not isinstance(newact, str):
             newact = cuni(newact)
         self.emit('active-changed', (newact,))
         return newact
@@ -186,7 +186,7 @@ class History(Callback):
             self.mru.append(handle)
             self.emit('mru-changed', (self.mru, ))
             newact = self.history[self.index]
-            if not isinstance(newact, UNITYPE):
+            if not isinstance(newact, str):
                 newact = cuni(newact)
             self.emit('active-changed', (newact,))
             return newact
@@ -369,7 +369,7 @@ class DisplayState(Callback):
 
     __signals__ = {
         'filters-changed' : (str, ), 
-        'filter-name-changed' : (str, UNITYPE, UNITYPE), 
+        'filter-name-changed' : (str, str, str), 
         'nameformat-changed' : None, 
         'grampletbar-close-changed' : None, 
         'update-available' : (list, ), 

@@ -18,8 +18,6 @@
 # Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
-from gramps.gen.constfunc import UNITYPE
-
 class HandleClass(str):
     def __init__(self, handle):
         super(HandleClass, self).__init__()
