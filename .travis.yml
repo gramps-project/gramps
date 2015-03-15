@@ -19,6 +19,10 @@ install:
     - travis_retry sudo pip3 install pyicu
     - python3 setup.py build
 
+before_script:
+    - sudo Xvfb :99 -ac &
+    - export DISPLAY=:99
+
 script:
     -  mkdir -p /home/travis/.gramps/grampsdb/
     -  DJANGO_SETTINGS_MODULE=gramps.webapp.settings nosetests3 --exclude=TestcaseGenerator --exclude=exportvcard_test --exclude=plugins --exclude=vcard --exclude=merge_ref_test --exclude=test_util_test --exclude=gramps.webapp --exclude=test2_exec_CLI --exclude=widgets --exclude=test3_files_in_import_dir --exclude=test_manual_run gramps
