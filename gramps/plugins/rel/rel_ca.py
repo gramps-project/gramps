@@ -827,9 +827,9 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
         """
 
         rel_str = "parents llunyans"
-        #atgen = u" de la %sena generació"
-        #bygen = u" per la %sena generació"
-        #cmt = u" (germans o germanes d'un avantpassat" + atgen % Ga + ")"
+        #atgen = " de la %sena generació"
+        #bygen = " per la %sena generació"
+        #cmt = " (germans o germanes d'un avantpassat" + atgen % Ga + ")"
 
         if in_law_a or in_law_b:
             inlaw = self.INLAW
@@ -919,7 +919,7 @@ class RelationshipCalculator(gramps.gen.relationship.RelationshipCalculator):
             inlaw = ""
 
         rel_str = "un parent llunyà%s" % inlaw
-        #bygen = u" per la %sena generació"
+        #bygen = " per la %sena generació"
         if Ga == 0:
 
             # b is descendant of a

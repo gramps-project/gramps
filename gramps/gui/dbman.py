@@ -245,7 +245,7 @@ class DbManager(CLIDbManager):
 
         if store.get_value(node, STOCK_COL) == Gtk.STOCK_DIALOG_ERROR:
             path = conv_to_unicode(store.get_value(node, PATH_COL), 'utf8')
-            backup = os.path.join(path, u"person.gbkp")
+            backup = os.path.join(path, "person.gbkp")
             self.repair.set_sensitive(os.path.isfile(backup))
         else:
             self.repair.set_sensitive(False)
