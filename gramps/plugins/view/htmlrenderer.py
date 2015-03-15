@@ -30,7 +30,7 @@ Can use the Webkit or Gecko ( Mozilla ) library
 # Python modules
 #
 #-------------------------------------------------------------------------
-import os
+import os, io
 import sys
 if sys.version_info[0] < 3:
     from urlparse import urlunsplit
@@ -557,7 +557,7 @@ class HtmlView(NavigationView):
         # Now we have two views : Web and Geography, we need to create the
         # startpage only once.
         if not os.path.exists(filename):
-            ufd = open(filename, "w+")
+            ufd = io.open(filename, "w+",  encoding="utf8")
             ufd.write(data)
             ufd.close()
         return urlunsplit(('file', '',
