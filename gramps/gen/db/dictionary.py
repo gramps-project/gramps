@@ -660,7 +660,13 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         for person in self.person_map.values():
             if person.gramps_id == gramps_id:
                 return person
-        return person
+        return None
+
+    def get_place_from_gramps_id(self, gramps_id):
+        for place in self.place_map.values():
+            if place.gramps_id == gramps_id:
+                return place
+        return None
 
     def get_number_of_people(self):
         return len(self.person_map)
