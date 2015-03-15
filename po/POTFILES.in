@@ -703,8 +703,6 @@ gramps/plugins/view/geography.gpr.py
 gramps/plugins/view/geomoves.py
 gramps/plugins/view/geoperson.py
 gramps/plugins/view/geoplaces.py
-gramps/plugins/view/htmlrenderer.gpr.py
-gramps/plugins/view/htmlrenderer.py
 gramps/plugins/view/mediaview.py
 gramps/plugins/view/noteview.py
 gramps/plugins/view/pedigreeview.py

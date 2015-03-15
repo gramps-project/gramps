@@ -41,7 +41,7 @@ import logging
 #---------------------------------------------------------------
 from .const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from .const import HOME_DIR, USER_HOME, VERSION_DIR, URL_HOMEPAGE
+from .const import HOME_DIR, USER_HOME, VERSION_DIR
 from .utils.configmanager import ConfigManager
 
 #---------------------------------------------------------------
@@ -171,9 +171,6 @@ register('geography.show_cross', False)
 register('geography.path', "")
 register('geography.use-keypad', True)
 
-register('htmlview.start-url', URL_HOMEPAGE)
-register('htmlview.url-handler', False)
-
 register('interface.address-height', 450)
 register('interface.address-width', 650)
 register('interface.attribute-height', 350)
@@ -213,7 +210,6 @@ register('interface.grampletbar-close', False)
 register('interface.height', 500)
 register('interface.ignore-gexiv2', False)
 register('interface.ignore-osmgpsmap', False)
-register('interface.ignore-webkit', False)
 register('interface.lds-height', 450)
 register('interface.lds-width', 600)
 register('interface.location-height', 250)
@@ -344,7 +340,7 @@ register('researcher.researcher-phone', '')
 register('researcher.researcher-postal', '')
 register('researcher.researcher-state', '')
 
-register('plugin.hiddenplugins', ['htmlview'])
+register('plugin.hiddenplugins', [])
 register('plugin.addonplugins', [])
 
 #---------------------------------------------------------------
