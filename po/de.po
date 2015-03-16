@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-13 17:34+0100\n"
-"PO-Revision-Date: 2015-03-13 17:40+0100\n"
+"POT-Creation-Date: 2015-03-16 21:54+0100\n"
+"PO-Revision-Date: 2015-03-16 22:02+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -3091,10 +3091,10 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:47
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:47
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:46
-#: ../gramps/plugins/quickview/samesurnames.py:41
-#: ../gramps/plugins/quickview/samesurnames.py:53
-#: ../gramps/plugins/quickview/samesurnames.py:66
-#: ../gramps/plugins/quickview/samesurnames.py:90
+#: ../gramps/plugins/quickview/samesurnames.py:43
+#: ../gramps/plugins/quickview/samesurnames.py:55
+#: ../gramps/plugins/quickview/samesurnames.py:68
+#: ../gramps/plugins/quickview/samesurnames.py:92
 msgid "General filters"
 msgstr "Allgemeine Filter"
 
@@ -3246,8 +3246,8 @@ msgstr "Text:"
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:43
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:46
 #: ../gramps/gen/filters/rules/person/_searchname.py:45
-#: ../gramps/plugins/quickview/samesurnames.py:50
-#: ../gramps/plugins/quickview/samesurnames.py:63
+#: ../gramps/plugins/quickview/samesurnames.py:52
+#: ../gramps/plugins/quickview/samesurnames.py:65
 msgid "Substring:"
 msgstr "Teilzeichenfolge:"
 
@@ -9219,8 +9219,8 @@ msgstr "%(frel)s %(mrel)s"
 #: ../gramps/plugins/quickview/filterbyname.py:384
 #: ../gramps/plugins/quickview/quickview.gpr.py:197
 #: ../gramps/plugins/quickview/references.py:85
-#: ../gramps/plugins/quickview/samesurnames.py:115
-#: ../gramps/plugins/quickview/samesurnames.py:160
+#: ../gramps/plugins/quickview/samesurnames.py:117
+#: ../gramps/plugins/quickview/samesurnames.py:162
 #: ../gramps/plugins/textreport/placereport.py:193
 #: ../gramps/plugins/textreport/placereport.py:267
 #: ../gramps/plugins/textreport/placereport.py:404
@@ -11348,7 +11348,7 @@ msgstr "Die Fundstelle kann nicht gespeichert werden. ID existiert bereits."
 #: ../gramps/gui/editors/editmedia.py:288
 #: ../gramps/gui/editors/editperson.py:821
 #: ../gramps/gui/editors/editplace.py:264
-#: ../gramps/gui/editors/editreference.py:284
+#: ../gramps/gui/editors/editreference.py:287
 #: ../gramps/gui/editors/editrepository.py:179
 #: ../gramps/gui/editors/editsource.py:199
 #, python-format
@@ -11466,7 +11466,7 @@ msgstr ""
 "das Bearbeiten ab."
 
 #: ../gramps/gui/editors/editevent.py:246
-#: ../gramps/gui/editors/editreference.py:275
+#: ../gramps/gui/editors/editreference.py:276
 msgid "Cannot save event. ID already exists."
 msgstr "Das Ereignis kann gespeichert werden. ID besteht bereits."
 
@@ -11574,8 +11574,8 @@ msgstr "Mütterlicherseits"
 #: ../gramps/plugins/quickview/filterbyname.py:314
 #: ../gramps/plugins/quickview/filterbyname.py:384
 #: ../gramps/plugins/quickview/lineage.py:61
-#: ../gramps/plugins/quickview/samesurnames.py:115
-#: ../gramps/plugins/quickview/samesurnames.py:160
+#: ../gramps/plugins/quickview/samesurnames.py:117
+#: ../gramps/plugins/quickview/samesurnames.py:162
 #: ../gramps/plugins/quickview/siblings.py:48
 msgid "Birth Date"
 msgstr "Geburtsdatum"
@@ -11769,7 +11769,7 @@ msgstr "Die Familie kann nicht gespeichert werden. ID existiert bereits."
 
 #: ../gramps/gui/editors/editfamily.py:1042
 #: ../gramps/gui/editors/editnote.py:311
-#: ../gramps/gui/editors/editreference.py:291
+#: ../gramps/gui/editors/editreference.py:294
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -11851,7 +11851,7 @@ msgstr ""
 "brich die Bearbeitung ab."
 
 #: ../gramps/gui/editors/editmedia.py:287
-#: ../gramps/gui/editors/editreference.py:278
+#: ../gramps/gui/editors/editreference.py:279
 msgid "Cannot save media object. ID already exists."
 msgstr "Das Medienobjekt kann nicht gespeichert werden. ID existiert bereits."
 
@@ -12251,11 +12251,15 @@ msgstr "Änderungen speichern?"
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr "Wenn du ohne zu speichern schließt, gehen deine Änderungen verloren."
 
-#: ../gramps/gui/editors/editreference.py:281
+#: ../gramps/gui/editors/editreference.py:282
 #: ../gramps/gui/editors/editrepository.py:178
 msgid "Cannot save repository. ID already exists."
 msgstr ""
 "Der Aufbewahrungsort kann nicht gespeichert werden. ID besteht bereits."
+
+#: ../gramps/gui/editors/editreference.py:285
+msgid "Cannot save item. ID already exists."
+msgstr "Kann nicht speichern. ID existiert bereits."
 
 #: ../gramps/gui/editors/editreporef.py:62
 msgid "Repository Reference Editor"
@@ -19958,12 +19962,12 @@ msgid " 16. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
 msgstr ""
 " 16. <a wiki='How_you_can_help'>Wie kann ich bei Gramps mithelfen?</a>\n"
 
-#: ../gramps/plugins/gramplet/givennamegramplet.py:42
+#: ../gramps/plugins/gramplet/givennamegramplet.py:44
 msgid "Double-click given name for details"
 msgstr "Details für Vornamen: doppelt-klicken."
 
 #. will be overwritten in load
-#: ../gramps/plugins/gramplet/givennamegramplet.py:44
+#: ../gramps/plugins/gramplet/givennamegramplet.py:46
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:50
 #: ../gramps/plugins/gramplet/recordsgramplet.py:50
 #: ../gramps/plugins/gramplet/relativegramplet.py:40
@@ -19974,7 +19978,7 @@ msgstr "Details für Vornamen: doppelt-klicken."
 msgid "No Family Tree loaded."
 msgstr "Kein Stammbaum geladen."
 
-#: ../gramps/plugins/gramplet/givennamegramplet.py:59
+#: ../gramps/plugins/gramplet/givennamegramplet.py:61
 #: ../gramps/plugins/gramplet/recordsgramplet.py:57
 #: ../gramps/plugins/gramplet/statsgramplet.py:69
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:88
@@ -19982,15 +19986,15 @@ msgstr "Kein Stammbaum geladen."
 msgid "Processing..."
 msgstr "Verarbeitung..."
 
-#: ../gramps/plugins/gramplet/givennamegramplet.py:138
+#: ../gramps/plugins/gramplet/givennamegramplet.py:140
 msgid "Total unique given names"
 msgstr "Eindeutige Vornamen gesamt"
 
-#: ../gramps/plugins/gramplet/givennamegramplet.py:140
+#: ../gramps/plugins/gramplet/givennamegramplet.py:142
 msgid "Total given names showing"
 msgstr "Vornamen gesamt zeigen"
 
-#: ../gramps/plugins/gramplet/givennamegramplet.py:141
+#: ../gramps/plugins/gramplet/givennamegramplet.py:143
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:172
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:108
 msgid "Total people"
@@ -27493,8 +27497,8 @@ msgstr "Filtern nach %s"
 #: ../gramps/plugins/quickview/filterbyname.py:281
 #: ../gramps/plugins/quickview/filterbyname.py:314
 #: ../gramps/plugins/quickview/filterbyname.py:384
-#: ../gramps/plugins/quickview/samesurnames.py:115
-#: ../gramps/plugins/quickview/samesurnames.py:160
+#: ../gramps/plugins/quickview/samesurnames.py:117
+#: ../gramps/plugins/quickview/samesurnames.py:162
 msgid "Name type"
 msgstr "Namenstyp"
 
@@ -27812,47 +27816,47 @@ msgstr "Standortnummer/Signatur:"
 msgid "Type of media"
 msgstr "Medienart"
 
-#: ../gramps/plugins/quickview/samesurnames.py:39
+#: ../gramps/plugins/quickview/samesurnames.py:41
 msgid "People with incomplete surnames"
 msgstr "Personen mit unvollständigen Nachnamen"
 
-#: ../gramps/plugins/quickview/samesurnames.py:40
+#: ../gramps/plugins/quickview/samesurnames.py:42
 msgid "Matches people with lastname missing"
 msgstr "Entspricht Personen, bei denen der Nachname fehlt"
 
-#: ../gramps/plugins/quickview/samesurnames.py:51
+#: ../gramps/plugins/quickview/samesurnames.py:53
 msgid "People matching the <surname>"
 msgstr "Personen mit dem <Nachname>"
 
-#: ../gramps/plugins/quickview/samesurnames.py:52
+#: ../gramps/plugins/quickview/samesurnames.py:54
 msgid "Matches people with same lastname"
 msgstr "Entspricht Personen, mit dem selben Nachnamen"
 
-#: ../gramps/plugins/quickview/samesurnames.py:64
+#: ../gramps/plugins/quickview/samesurnames.py:66
 msgid "People matching the <given>"
 msgstr "Personen, die den <Vorgaben> entsprechen"
 
-#: ../gramps/plugins/quickview/samesurnames.py:65
+#: ../gramps/plugins/quickview/samesurnames.py:67
 msgid "Matches people with same given name"
 msgstr "Entspricht Personen, mit dem selben Vornamen"
 
-#: ../gramps/plugins/quickview/samesurnames.py:88
+#: ../gramps/plugins/quickview/samesurnames.py:90
 msgid "People with incomplete given names"
 msgstr "Personen mit unvollständigem Vornamen"
 
-#: ../gramps/plugins/quickview/samesurnames.py:89
+#: ../gramps/plugins/quickview/samesurnames.py:91
 msgid "Matches people with firstname missing"
 msgstr "Entspricht Personen, bei denen der Vorname fehlt"
 
 #. display the title
-#: ../gramps/plugins/quickview/samesurnames.py:113
+#: ../gramps/plugins/quickview/samesurnames.py:115
 #, python-format
 msgid "People sharing the surname '%s'"
 msgstr "Personen mit dem Nachnamen '%s'"
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/quickview/samesurnames.py:135
-#: ../gramps/plugins/quickview/samesurnames.py:180
+#: ../gramps/plugins/quickview/samesurnames.py:137
+#: ../gramps/plugins/quickview/samesurnames.py:182
 #, python-brace-format
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
@@ -27864,7 +27868,7 @@ msgstr[1] ""
 "Namen.\n"
 
 #. display the title
-#: ../gramps/plugins/quickview/samesurnames.py:158
+#: ../gramps/plugins/quickview/samesurnames.py:160
 #, python-format
 msgid "People with the given name '%s'"
 msgstr "Personen mit dem Vornamen '%s'"
