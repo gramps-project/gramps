@@ -71,10 +71,7 @@ import os
 import sys
 import re
 import copy
-try:
-    from hashlib import md5
-except ImportError:
-    from md5 import md5
+from hashlib import md5
 import time, datetime
 import shutil
 import codecs
