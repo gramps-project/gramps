@@ -28,7 +28,7 @@ The following packages are *STRONGLY RECOMMENDED* to be installed:
                     It may be osmgpsmap, osm-gps-map, or python-osmgpsmap,
                     but the Python bindings for this must also be present.
                     Without this the GeoView will not be active, see
-                    http://gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Main_Window#Geography_Category
+                    http://gramps-project.org/wiki/index.php?title=Gramps_4.1_Wiki_Manual_-_Main_Window#Geography_Category
 
    GraphViz         Enable creation of graphs using GraphViz engine.
                     Without this, three reports cannot be run.
@@ -52,7 +52,7 @@ The following packages are optional
 
    rcs              The GNU Revision Control System (RCS) can be used to manage
                     multiple revisions of your family trees. See info at
-                    http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
+                    http://www.gramps-project.org/wiki/index.php?title=Gramps_4.1_Wiki_Manual_-_Manage_Family_Trees#Archiving_a_Family_Tree
                     Only rcs is needed, NO python bindings are required
 
    PIL              Python Image Library is needed to crop
@@ -71,6 +71,8 @@ The following packages are optional
 
    goocanvas2       Required for the (user-downloadable) GraphView plugin
 
+No longer needed in 4.1:
+   ?
 No longer needed in 4.0:
    pygoocanvas, pygtk, pyexiv2
 No longer needed in 3.3:
@@ -78,12 +80,12 @@ No longer needed in 3.3:
 No longer needed in 3.2:
    python glade bindings
 No longer needed in 3.1:
-   yelp             Gnome help browser. At the moment no help is shipped
+   yelp             Gnome help browser. No offline help is shipped see Gramps website for User manual
 
 
 Documentation
 ---------------------------------
-The User Manual is now maintained on the gramps website,
+The User Manual is maintained on the Gramps website,
 http://www.gramps-project.org/wiki/index.php?title=User_manual
 
 --------------------------------
