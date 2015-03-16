@@ -29,10 +29,7 @@ Handles generation and access to thumbnails used in GRAMPS.
 #-------------------------------------------------------------------------
 import os
 import logging
-try:
-    from hashlib import md5
-except ImportError:
-    from md5 import md5
+from hashlib import md5
 
 #-------------------------------------------------------------------------
 #

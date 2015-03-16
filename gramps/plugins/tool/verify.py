@@ -34,10 +34,7 @@ This is the research tool, not the low-level data ingerity check.
 
 import os
 import pickle
-try:
-    from hashlib import md5
-except ImportError:
-    from md5 import md5
+from hashlib import md5
 from gramps.gen.errors import WindowActiveError
 
 #------------------------------------------------------------------------

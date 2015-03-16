@@ -62,10 +62,7 @@ ODFDoc : used to generate Open Office Document
 #
 #-------------------------------------------------------------------------
 import os
-try:
-    from hashlib import md5
-except ImportError:
-    from md5 import md5
+from hashlib import md5
 import zipfile
 import time
 from io import StringIO
