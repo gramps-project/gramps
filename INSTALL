@@ -1,5 +1,5 @@
 This file contains some useful details on the installation from source code
-for GRAMPS. It does not cover installation of a pre-built binary package.
+for Gramps. It does not cover installation of a pre-built binary package.
 For that use your package manager, the rest is already done by the packager.
 
 Uninstall old version
@@ -21,7 +21,7 @@ If you don't know the list of all files that Gramps installed, you can
 reinstall it with the --record option, and take a look at the list this
 produces (so python setup.py install --record grampsfiles.txt
 
-GRAMPS is a python application, so loading happens on reading the
+Gramps is a python application, so loading happens on reading the
 files, meaning that files of a previous version that are no longer
 present in the new version can still be loaded, making the new install
 unstable!
@@ -86,7 +86,7 @@ from the source directory.
 
 Custom directory installation
 -------------------------------------
-If you would like to install GRAMPS without being root, or in an
+If you would like to install Gramps without being root, or in an
 alternative location on windows, supply the --root argument to setup.py
 
 For example:
