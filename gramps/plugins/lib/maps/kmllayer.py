@@ -54,6 +54,7 @@ from gi.repository import Pango, PangoCairo
 # Gramps Modules
 #
 #-------------------------------------------------------------------------
+from .libkml import Kml
 
 #-------------------------------------------------------------------------
 #
@@ -72,15 +73,14 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
     * Allowed : points, paths and polygons.
 
     * One point : name, (latitude, longitude)
-    * One path  : name, [ (latitude, longitude), (latitude, longitude), ...]
-    * One polygon : name, fill, [ (latitude, longitude), (latitude, longitude), ...]
+    * One path  : name, type, color, transparency, [ (latitude, longitude), (latitude, longitude), ...]
+    * One polygon : name, type, color, transparency, [ (latitude, longitude), (latitude, longitude), ...]
     """
     def __init__(self):
         """
         Initialize the layer
         """
         GObject.GObject.__init__(self)
-        self.dots = []
         self.paths = []
         self.polygons = []
         self.tag = ""
@@ -92,158 +92,86 @@ class KmlLayer(GObject.GObject, osmgpsmap.MapLayer):
         """
         reset the layer attributes.
         """
-        self.dots = []
         self.paths = []
         self.polygons = []
         self.name = ""
-
-    def polygon(self, attributes):
-        self.points = []
-        for subAttribute in attributes:
-            if subAttribute.tag == self.tag + 'outerBoundaryIs':
-                for subsubAttribute in subAttribute:
-                    if subsubAttribute.tag == self.tag + 'LinearRing':
-                        for subsubsubAttribute in subsubAttribute:
-                            if subsubsubAttribute.tag == self.tag + 'coordinates':
-                                for point in subsubsubAttribute.text.split():
-                                    try:
-                                        (longitude, latitude, altitude) = point.split(',')
-                                    except:
-                                        (longitude, latitude) = point.split(',')
-                                    self.points.append((float(latitude), float(longitude)))
-            if subAttribute.tag == self.tag + 'innerBoundaryIs':
-                for subsubAttribute in subAttribute:
-                    if subsubAttribute.tag == self.tag + 'LinearRing':
-                        for subsubsubAttribute in subsubAttribute:
-                            if subsubsubAttribute.tag == self.tag + 'coordinates':
-                                for point in subsubsubAttribute.text.split():
-                                    try:
-                                        (longitude, latitude, altitude) = point.split(',')
-                                    except:
-                                        (longitude, latitude) = point.split(',')
-                                    self.points.append((float(latitude), float(longitude)))
-            if subAttribute.tag == self.tag + 'LinearRing':
-                for subsubAttribute in subAttribute:
-                    if subsubAttribute.tag == self.tag + 'coordinates':
-                        for point in subsubAttribute.text.split():
-                            try:
-                                (longitude, latitude, altitude) = point.split(',')
-                            except:
-                                (longitude, latitude) = point.split(',')
-                            self.points.append((float(latitude), float(longitude)))
 
     def add_kml(self, kml_file):
         """
         Add a kml file.
         The access right and validity must be verified before this method.
         """
-        tree = ETree.parse(kml_file)
-        root = tree.getroot()
-        self.tag = root.tag.replace('}kml','}')
-        _LOG.debug("Tag version of kml file %s is %s" % (kml_file, self.tag))
-        fname, extension = os.path.splitext(kml_file)
-        fdir, kmlfile = os.path.split(fname)
-        self.index = -1
-        lineStrings = tree.findall('.//' + self.tag + 'Placemark')
-        for attributes in lineStrings:
-            for subAttribute in attributes:
-                if subAttribute.tag == self.tag + 'name':
-                    self.name = subAttribute.text
-                if subAttribute.tag == self.tag + 'Polygon':
-                    self.type = 'Polygon'
-                    self.points = []
-                    self.polygon(subAttribute)
-                    if self.name == "":
-                        self.polygons.append((kmlfile, self.points))
-                    else:
-                        self.polygons.append((self.name, self.points))
-                if subAttribute.tag == self.tag + 'Point':
-                    self.type = 'Point'
-                    self.points = []
-                    for subsubAttribute in subAttribute:
-                        if subsubAttribute.tag == self.tag + 'coordinates':
-                            for point in subsubAttribute.text.split():
-                                try:
-                                    (longitude, latitude, altitude) = point.split(',')
-                                except:
-                                    (longitude, latitude) = point.split(',')
-                                self.points.append((float(latitude), float(longitude)))
-                    if self.name == "":
-                        self.dots.append((kmlfile, self.points))
-                    else:
-                        self.dots.append((self.name, self.points))
-                if subAttribute.tag == self.tag + 'LineString':
-                    self.type = 'Path'
-                    self.points = [] 
-                    for subsubAttribute in subAttribute:
-                        if subsubAttribute.tag == self.tag + 'coordinates':
-                            for point in subsubAttribute.text.split():
-                                try:
-                                    (longitude, latitude, altitude) = point.split(',')
-                                except:
-                                    (longitude, latitude) = point.split(',')
-                                self.points.append((float(latitude), float(longitude)))
-                    if self.name == "":
-                        self.paths.append((kmlfile, self.points))
-                    else:
-                        self.paths.append((self.name, self.points))
+        self.kml = Kml(kml_file)
+        (paths, polygons) = self.kml.add_kml()
+        if paths != []:
+            self.paths.append(paths)
+        if polygons != []:
+            self.polygons.append(polygons)
 
     def do_draw(self, gpsmap, ctx):
         """
-        Draw all the messages
+        Draw all the surfaces and paths
         """
         color1 = Gdk.color_parse('red')
         color2 = Gdk.color_parse('blue')
-        # We don't display self.dots. use markers.
-        for polygon in self.polygons:
-            (name, points) = polygon
-            map_points = []
-            for point in points:
-                conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
-                coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
-                map_points.append((coord_x, coord_y))
-            first = True
-            ctx.save()
-            ctx.set_source_rgba(float(color2.red / 65535.0),
-                                float(color2.green / 65535.0),
-                                float(color2.blue / 65535.0),
-                                0.3) # transparency
-            ctx.set_line_cap(cairo.LINE_CAP_ROUND)
-            ctx.set_line_join(cairo.LINE_JOIN_ROUND)
-            ctx.set_line_width(3)
-            ctx.new_path()
-            for idx_pt in range(0, len(map_points)):
-                if first:
-                    first = False
-                    ctx.move_to(map_points[idx_pt][0], map_points[idx_pt][1])
-                else:
-                    ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
-            ctx.close_path()
-            ctx.fill()
-            ctx.restore()
-        for path in self.paths:
-            (name, points) = path
-            map_points = []
-            for point in points:
-                conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
-                coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
-                map_points.append((coord_x, coord_y))
-            first = True
-            ctx.save()
-            ctx.set_source_rgba(float(color1.red / 65535.0),
-                                float(color1.green / 65535.0),
-                                float(color1.blue / 65535.0),
-                                0.5) # transparency
-            ctx.set_line_width(5)
-            ctx.set_operator(cairo.OPERATOR_ATOP)
-            for idx_pt in range(0, len(map_points)):
-                if first:
-                    first = False
-                    ctx.move_to(map_points[idx_pt][0], map_points[idx_pt][1])
-                else:
-                    ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
-            ctx.stroke()
-            ctx.restore()
+        for polygons in self.polygons:
+            for polygon in polygons:
+                (name, ptype, color, transparency, points) = polygon
+                map_points = []
+                for point in points:
+                    conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
+                    coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
+                    map_points.append((coord_x, coord_y))
+                first = True
+                ctx.save()
+                ctx.set_source_rgba(float(color2.red / 65535.0),
+                                    float(color2.green / 65535.0),
+                                    float(color2.blue / 65535.0),
+                                    0.3) # transparency
+                ctx.set_line_cap(cairo.LINE_CAP_ROUND)
+                ctx.set_line_join(cairo.LINE_JOIN_ROUND)
+                ctx.set_line_width(3)
+                ctx.new_path()
+                for idx_pt in range(0, len(map_points)):
+                    if first:
+                        first = False
+                        ctx.move_to(map_points[idx_pt][0], map_points[idx_pt][1])
+                    else:
+                        ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
+                ctx.close_path()
+                if ptype == "Polygon":
+                    ctx.stroke()
+                if ptype == "OuterPolygon":
+                    ctx.fill()
+                if ptype == "InnerPolygon":
+                    ctx.set_source_rgba(1.0, 1.0, 1.0, 0.3)
+                    ctx.set_operator(cairo.OPERATOR_ADD)
+                    ctx.fill()
+                ctx.restore()
+        for paths in self.paths:
+            for path in paths:
+                (name, ptype, color, transparency, points) = path
+                map_points = []
+                for point in points:
+                    conv_pt = osmgpsmap.MapPoint.new_degrees(point[0], point[1])
+                    coord_x, coord_y = gpsmap.convert_geographic_to_screen(conv_pt)
+                    map_points.append((coord_x, coord_y))
+                first = True
+                ctx.save()
+                ctx.set_source_rgba(float(color1.red / 65535.0),
+                                    float(color1.green / 65535.0),
+                                    float(color1.blue / 65535.0),
+                                    0.5) # transparency
+                ctx.set_line_width(5)
+                ctx.set_operator(cairo.OPERATOR_ATOP)
+                for idx_pt in range(0, len(map_points)):
+                    if first:
+                        first = False
+                        ctx.move_to(map_points[idx_pt][0], map_points[idx_pt][1])
+                    else:
+                        ctx.line_to(map_points[idx_pt][0], map_points[idx_pt][1])
+                ctx.stroke()
+                ctx.restore()
 
     def do_render(self, gpsmap):
         """
