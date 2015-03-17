@@ -13,9 +13,6 @@
         <property name="border_width">6</property>
         <property name="spacing">6</property>
         <child>
-          <placeholder/>
-        </child>
-        <child>
           <object class="GtkBox" id="vbox4">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
@@ -168,7 +165,7 @@
           <packing>
             <property name="expand">True</property>
             <property name="fill">True</property>
-            <property name="position">1</property>
+            <property name="position">0</property>
           </packing>
         </child>
         <child>
@@ -298,7 +295,6 @@
                     <property name="can_focus">True</property>
                     <property name="hexpand">True</property>
                     <property name="invisible_char">•</property>
-                    <property name="text">2.54</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -311,7 +307,6 @@
                     <property name="can_focus">True</property>
                     <property name="hexpand">True</property>
                     <property name="invisible_char">•</property>
-                    <property name="text">2.54</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -324,7 +319,6 @@
                     <property name="can_focus">True</property>
                     <property name="hexpand">True</property>
                     <property name="invisible_char">•</property>
-                    <property name="text">2.54</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -337,7 +331,6 @@
                     <property name="can_focus">True</property>
                     <property name="hexpand">True</property>
                     <property name="invisible_char">•</property>
-                    <property name="text">2.54</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
