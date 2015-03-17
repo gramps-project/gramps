@@ -260,8 +260,15 @@ def get_participant_from_event(db, event_handle, all_=False):
     """
     participant = ""
     ellipses = False
-    result_list = list(db.find_backlink_handles(event_handle, 
-                             include_classes=['Person', 'Family']))
+    try:
+        result_list = list(db.find_backlink_handles(event_handle,
+                                 include_classes=['Person', 'Family']))
+    except:
+        # during a magic batch transaction find_backlink_handles tries to
+        # access the reference_map_referenced_map which is closed
+        # under those circumstances.
+        return ''
+
     #obtain handles without duplicates
     people = set([x[1] for x in result_list if x[0] == 'Person'])
     families = set([x[1] for x in result_list if x[0] == 'Family'])
@@ -327,15 +334,7 @@ def navigation_label(db, nav_type, handle):
     elif nav_type == 'Event':
         obj = db.get_event_from_handle(handle)
         if obj:
-            try:
-                who = get_participant_from_event(db, handle)
-            except:
-                # get_participants_from_event fails when called during a magic
-                # batch transaction because find_backlink_handles tries to
-                # access the reference_map_referenced_map which doesn't exist
-                # under those circumstances. Since setting the navigation_label
-                # is inessential, just accept this and go on.
-                who = ''
+            who = get_participant_from_event(db, handle)
             desc = obj.get_description()
             label = obj.get_type()
             if desc:
