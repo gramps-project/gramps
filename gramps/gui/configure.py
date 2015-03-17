@@ -187,7 +187,6 @@ class ConfigureDialog(ManagedWindow):
         
         self.__setup_pages(configure_page_funcs)
         
-        self.window.show_all()
         self.show()
     
     def __setup_pages(self, configure_page_funcs):
