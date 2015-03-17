@@ -493,8 +493,9 @@ class BookSelector(ManagedWindow):
                 '%s.\n\n This makes references to the central person '
                 'saved in the book invalid.\n\n' 
                 'Therefore, the central person for each item is being set ' 
-                'to the active person of the currently opened database.' )
-                % book.get_dbname() )
+                'to the active person of the currently opened database.')
+                % book.get_dbname(),
+                parent=self.window)
             
         self.book.clear()
         self.book_model.clear()
@@ -591,8 +592,8 @@ class BookSelector(ManagedWindow):
         store, the_iter = self.book_model.get_selected()
         if not the_iter:
             WarningDialog(_('No selected book item'),
-                          _('Please select a book item to configure.')
-                         )
+                          _('Please select a book item to configure.'),
+                          parent=self.window)
             return
         data = self.book_model.get_data(the_iter, list(range(self.book_nr_cols)))
         row = self.book_model.get_selected_row()
@@ -705,7 +706,8 @@ class BookSelector(ManagedWindow):
             BookDialog(self.dbstate, self.uistate,
                              self.book, BookOptions)
         else:
-            WarningDialog(_('No items'), _('This book has no items.'))
+            WarningDialog(_('No items'), _('This book has no items.'),
+                          parent=self.window)
             return
         self.close()
 
@@ -718,8 +720,8 @@ class BookSelector(ManagedWindow):
         if not name:
             WarningDialog(_('No book name'), _(
                 'You are about to save away a book with no name.\n\n'
-                'Please give it a name before saving it away.')
-                )
+                'Please give it a name before saving it away.'),
+                parent=self.window)
             return
         if name in self.book_list.get_book_names():
             from ...dialog import QuestionDialog2
@@ -729,7 +731,8 @@ class BookSelector(ManagedWindow):
                   'book with a name which already exists.'
                 ),
                 _('Proceed'),
-                _('Cancel'))
+                _('Cancel'),
+                parent=self.window)
             if q.run():
                 self.book.set_name(name)
             else:
@@ -925,7 +928,7 @@ class BookDialog(DocReportDialog):
             try:
                 self.make_book()
             except (IOError, OSError) as msg:
-                ErrorDialog(str(msg))
+                ErrorDialog(str(msg), parent=self.window)
         self.close()
 
     def setup_style_frame(self): pass
