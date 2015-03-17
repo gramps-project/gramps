@@ -1211,7 +1211,7 @@ msgstr "日付"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:348
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{nonstd_calendar_and_ny}{date_start}から{date_stop}まで{date_quality}"
 
 #. If there is no special inflection for "between <Month>" in your
 #. language, don't translate this string.
@@ -1235,7 +1235,7 @@ msgstr "日付"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:370
 msgid "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
-msgstr ""
+msgstr "{nonstd_calendar_and_ny}{date_start}と{date_stop}の間{date_quality}"
 
 #. If there is no special inflection for "before/after/around <Month>" in your
 #. language, don't translate this string.
@@ -1291,51 +1291,51 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:65
 msgid "localized lexeme inflections||January"
-msgstr ""
+msgstr "一月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:66
 msgid "localized lexeme inflections||February"
-msgstr ""
+msgstr "二月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:67
 msgid "localized lexeme inflections||March"
-msgstr ""
+msgstr "三月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:68
 msgid "localized lexeme inflections||April"
-msgstr ""
+msgstr "四月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:69
 msgid "localized lexeme inflections||May"
-msgstr ""
+msgstr "五月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:70
 msgid "localized lexeme inflections||June"
-msgstr ""
+msgstr "六月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:71
 msgid "localized lexeme inflections||July"
-msgstr ""
+msgstr "七月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:72
 msgid "localized lexeme inflections||August"
-msgstr ""
+msgstr "八月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:73
 msgid "localized lexeme inflections||September"
-msgstr ""
+msgstr "九月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:74
 msgid "localized lexeme inflections||October"
-msgstr ""
+msgstr "十月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:75
 msgid "localized lexeme inflections||November"
-msgstr ""
+msgstr "十一月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:76
 msgid "localized lexeme inflections||December"
-msgstr ""
+msgstr "十二月"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1343,51 +1343,51 @@ msgstr ""
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:83
 msgid "localized lexeme inflections - short month form||Jan"
-msgstr ""
+msgstr "1月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:84
 msgid "localized lexeme inflections - short month form||Feb"
-msgstr ""
+msgstr "2月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:85
 msgid "localized lexeme inflections - short month form||Mar"
-msgstr ""
+msgstr "3月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:86
 msgid "localized lexeme inflections - short month form||Apr"
-msgstr ""
+msgstr "4月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:87
 msgid "localized lexeme inflections - short month form||May"
-msgstr ""
+msgstr "5月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:88
 msgid "localized lexeme inflections - short month form||Jun"
-msgstr ""
+msgstr "6月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:89
 msgid "localized lexeme inflections - short month form||Jul"
-msgstr ""
+msgstr "7月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:90
 msgid "localized lexeme inflections - short month form||Aug"
-msgstr ""
+msgstr "8月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:91
 msgid "localized lexeme inflections - short month form||Sep"
-msgstr ""
+msgstr "9月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:92
 msgid "localized lexeme inflections - short month form||Oct"
-msgstr ""
+msgstr "10月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:93
 msgid "localized lexeme inflections - short month form||Nov"
-msgstr ""
+msgstr "11月"
 
 #: ../gramps/gen/datehandler/_datestrings.py:94
 msgid "localized lexeme inflections - short month form||Dec"
-msgstr ""
+msgstr "12月"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -1698,53 +1698,53 @@ msgstr ""
 msgid "Persian month lexeme|Esfand"
 msgstr ""
 
-#: ../gramps/gen/datehandler/_datestrings.py:209
+#: /gramps/gen/datehandler/_datestrings.py:10024
 msgid "date modifier|before "
-msgstr ""
+msgstr "以前 "
 
-#: ../gramps/gen/datehandler/_datestrings.py:210
+#: /gramps/gen/datehandler/_datestrings.py:10025
 msgid "date modifier|after "
-msgstr ""
+msgstr "以降 "
 
-#: ../gramps/gen/datehandler/_datestrings.py:211
+#: /gramps/gen/datehandler/_datestrings.py:10026
 msgid "date modifier|about "
-msgstr ""
+msgstr "頃 "
 
-#: ../gramps/gen/datehandler/_datestrings.py:215
+#: /gramps/gen/datehandler/_datestrings.py:10027
 msgid "date quality|estimated "
-msgstr ""
+msgstr "位 "
 
-#: ../gramps/gen/datehandler/_datestrings.py:216
+#: /gramps/gen/datehandler/_datestrings.py:10028
 msgid "date quality|calculated "
-msgstr ""
+msgstr "計算上 "
 
-#: ../gramps/gen/datehandler/_datestrings.py:222
+#: /gramps/gen/datehandler/_datestrings.py:10029
 msgid "Sunday"
-msgstr ""
+msgstr "日曜日"
 
-#: ../gramps/gen/datehandler/_datestrings.py:223
+#: /gramps/gen/datehandler/_datestrings.py:10030
 msgid "Monday"
-msgstr ""
+msgstr "月曜日"
 
-#: ../gramps/gen/datehandler/_datestrings.py:224
+#: /gramps/gen/datehandler/_datestrings.py:10031
 msgid "Tuesday"
-msgstr ""
+msgstr "火曜日"
 
-#: ../gramps/gen/datehandler/_datestrings.py:225
+#: /gramps/gen/datehandler/_datestrings.py:10032
 msgid "Wednesday"
-msgstr ""
+msgstr "水曜日"
 
-#: ../gramps/gen/datehandler/_datestrings.py:226
+#: /gramps/gen/datehandler/_datestrings.py:10033
 msgid "Thursday"
-msgstr ""
+msgstr "木曜日"
 
-#: ../gramps/gen/datehandler/_datestrings.py:227
+#: /gramps/gen/datehandler/_datestrings.py:10034
 msgid "Friday"
-msgstr ""
+msgstr "金曜日"
 
-#: ../gramps/gen/datehandler/_datestrings.py:228
+#: /gramps/gen/datehandler/_datestrings.py:10035
 msgid "Saturday"
-msgstr ""
+msgstr "土曜日"
 
 #: ../gramps/gen/db/base.py:1635
 msgid "Add child to family"

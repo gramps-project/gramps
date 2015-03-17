@@ -83,7 +83,6 @@ LANG_TO_DISPLAY = {
     'en'                    : DateDisplayEn,
     'en_GB'                 : DateDisplayEn,
     'English_United States' : DateDisplayEn,
-    'ja_JP'                 : DateDisplay,
     'ko_KR'                 : DateDisplay,
     'nb_NO'                 : DateDisplay,
     }
