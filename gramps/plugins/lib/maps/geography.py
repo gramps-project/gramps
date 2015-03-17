@@ -181,11 +181,10 @@ class GeoGraphyView(OsmGps, NavigationView):
                 self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(fh)
             #self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(path)
 
-    def add_bookmark(self, menu, handle):
-        if handle:
-            self.uistate.set_active(handle, self.navigation_type())
-            self.bookmarks.add(handle)
-            self.bookmarks.redraw()
+    def add_bookmark(self, menu):
+        mlist = self.selected_handles()
+        if mlist:
+            self.bookmarks.add(mlist[0])
         else:
             from gramps.gui.dialog import WarningDialog
             WarningDialog(
