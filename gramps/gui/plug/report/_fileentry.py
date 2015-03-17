@@ -26,10 +26,11 @@ from gi.repository import GObject
 from gramps.gen.constfunc import conv_to_unicode, get_curr_dir
 class FileEntry(Gtk.Box):
     """ A widget that allows the user to select a file from the file system """
-    def __init__(self, defname, title):
+    def __init__(self, defname, title, parent=None):
         Gtk.Box.__init__(self)
 
         self.title = title
+        self.parent = parent
         self.dir = False
         self.__base_path = ""
         self.__file_name = ""
@@ -54,6 +55,7 @@ class FileEntry(Gtk.Box):
             my_action = Gtk.FileChooserAction.SAVE
         
         dialog = Gtk.FileChooserDialog(self.title,
+                                       self.parent,
                                        action=my_action,
                                        buttons=(Gtk.STOCK_CANCEL,
                                                 Gtk.ResponseType.CANCEL,
