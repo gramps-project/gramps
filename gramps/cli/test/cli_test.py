@@ -75,7 +75,7 @@ class Test(unittest.TestCase):
         ifile = min1r
         ofile = out_ged
         gcmd = "Gramps.py -i %s -e %s" % (ifile, ofile)
-        process = subprocess.Popen("python %s" % gcmd,
+        process = subprocess.Popen("python3 %s" % gcmd,
                                    stdin=subprocess.PIPE,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE, shell=True)
@@ -107,7 +107,7 @@ class Test(unittest.TestCase):
         ifile = min1r
         ofile = out_ged
         gcmd = "Gramps.py -i %s -e %s" % (ifile, ofile)
-        process = subprocess.Popen("python %s" % gcmd,
+        process = subprocess.Popen("python3 %s" % gcmd,
                                    stdin=subprocess.PIPE,
                                    stdout=subprocess.PIPE,
                                    stderr=subprocess.PIPE, shell=True)
