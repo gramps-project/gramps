@@ -1192,7 +1192,8 @@ class UpdateAddons():
         if errors:
             OkDialog(_("Installation Errors"),
                      _("The following addons had errors: ") +
-                     ", ".join(errors))
+                     ", ".join(errors),
+                     self.window)
         if count:
             OkDialog(_("Done downloading and installing addons"),
                      # translators: leave all/any {...} untranslated
