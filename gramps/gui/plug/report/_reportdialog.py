@@ -527,13 +527,20 @@ class ReportDialog(ManagedWindow):
             # we will need to create the file/dir
             # need to make sure we can create in the parent dir
             parent_dir = os.path.dirname(os.path.normpath(self.target_path))
-            if not os.access(parent_dir, os.W_OK):
-                ErrorDialog(_('Permission problem'),
-                            _("You do not have permission to create "
-                              "%s\n\n"
-                              "Please select another path or correct "
-                              "the permissions.") % self.target_path 
-                            )
+            if os.path.isdir(parent_dir):
+                if not os.access(parent_dir, os.W_OK):
+                    ErrorDialog(_('Permission problem'),
+                                _("You do not have permission to create "
+                                  "%s\n\n"
+                                  "Please select another path or correct "
+                                  "the permissions.") % self.target_path 
+                                )
+                    return None
+            else:
+                ErrorDialog(_('No directory'),
+                            _('There is no directory %s.\n\n'
+                              'Please select another directory '
+                              'or create it.') % parent_dir )
                 return None
         
         self.set_default_directory(os.path.dirname(self.target_path) + os.sep)
