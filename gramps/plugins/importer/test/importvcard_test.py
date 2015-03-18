@@ -29,9 +29,9 @@ import time
 import subprocess
 import xml.etree.ElementTree as ET 
 
-from ...lib.libgrampsxml import GRAMPS_XML_VERSION
+from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 from gramps.version import VERSION
-from ..importvcard import VCardParser, fitin, splitof_nameprefix
+from gramps.plugins.importer.importvcard import VCardParser, fitin, splitof_nameprefix
 
 class VCardCheck(unittest.TestCase):
     def setUp(self):
@@ -72,18 +72,18 @@ class VCardCheck(unittest.TestCase):
 
         return ET.tostring(doc, encoding='utf-8')
 
-    def do_case(self, input_str, expect_doc, debug=False):
+    def do_case(self, input_str, expect_doc, debug=True):
         if debug:
             print(input_str)
 
-        process = subprocess.Popen('python Gramps.py -d .Date -d .ImportVCard '
+        process = subprocess.Popen('python3 Gramps.py -d .Date -d .ImportVCard '
                                    '--config=preferences.eprefix:DEFAULT '
                                    '-i - -f vcf -e - -f gramps',
                                    stdin=subprocess.PIPE, 
                                    stdout=subprocess.PIPE, 
                                    stderr=subprocess.PIPE, 
                                    shell=True)
-        result_str, err_str = process.communicate(input_str.encode('utf-8'))
+        result_str, err_str = process.communicate(input_str.encode("utf-8"))
         if debug:
             print(err_str)
         result_doc = ET.XML(result_str)

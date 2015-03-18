@@ -26,4 +26,4 @@ install:
 
 script:
     -  mkdir -p /home/travis/.gramps/grampsdb/
-    -  DJANGO_SETTINGS_MODULE=gramps.webapp.settings nosetests3 --exclude=TestcaseGenerator --exclude=exportvcard_test --exclude=vcard --exclude=merge_ref_test --exclude=test2_exec_CLI --exclude=test3_files_in_import_dir --exclude=test_manual_run gramps
+    -  DJANGO_SETTINGS_MODULE=gramps.webapp.settings nosetests3 --exclude=TestcaseGenerator --exclude=vcard --exclude=merge_ref_test  gramps
