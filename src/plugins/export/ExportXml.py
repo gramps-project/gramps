@@ -140,6 +140,12 @@ class GrampsXmlWriter(UpdateCallback):
                             "Please make sure you have write access to the "
                                 "directory and try again."))
                     return 0
+            else:
+                raise DbWriteFailure(_('No directory'),
+                                     _('There is no directory %s.\n\n'
+                                       'Please select another directory '
+                                       'or create it.') % base )
+                return 0
                 
             if os.path.exists(filename):
                 if not os.access(filename, os.W_OK):
