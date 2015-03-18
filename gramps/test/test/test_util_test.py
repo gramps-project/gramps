@@ -53,10 +53,10 @@ usage_note="""
 # **************************************************************
 
 try:
-    from test import test_util as tu
+    from gramps.test import test_util as tu
     ##here = tu.absdir()
 except ImportError:
-    print("Cannot import 'test_util'from package 'test'" + usage_note)
+    print("Cannot import 'test_util' from package 'test'" + usage_note)
     exit(1) 
 
 
@@ -202,9 +202,9 @@ class Test4(U.TestCase):
             logging.error(emsg)
             ll = tl.logfile_getlines()
             nl = len(ll)
-            self.assertEquals(nl,2, 
-                tu.msg(nl,2, "pass %d: expected line count" % i))
-            del tl
+            self.assertEquals(nl,3, 
+                tu.msg(nl,3, "pass %d: expected line count" % i))
+            #del tl
 
 
 if __name__ == "__main__":
