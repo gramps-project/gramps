@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-16 21:54+0100\n"
-"PO-Revision-Date: 2015-03-16 22:02+0100\n"
+"POT-Creation-Date: 2015-03-19 01:22+0100\n"
+"PO-Revision-Date: 2015-03-19 01:39+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1502,9 +1502,9 @@ msgstr "Gesperrt durch %s"
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:164
 #: ../gramps/plugins/graph/gvrelgraph.py:625
-#: ../gramps/plugins/lib/maps/geography.py:772
+#: ../gramps/plugins/lib/maps/geography.py:771
+#: ../gramps/plugins/lib/maps/geography.py:778
 #: ../gramps/plugins/lib/maps/geography.py:779
-#: ../gramps/plugins/lib/maps/geography.py:780
 #: ../gramps/plugins/quickview/all_relations.py:277
 #: ../gramps/plugins/quickview/all_relations.py:294
 #: ../gramps/plugins/textreport/indivcomplete.py:580
@@ -6094,7 +6094,7 @@ msgstr "Pflegekind"
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/lib/date.py:280 ../gramps/gen/lib/date.py:408
 #: ../gramps/gen/mime/_pythonmime.py:48 ../gramps/gen/mime/_pythonmime.py:56
-#: ../gramps/gen/mime/_winmime.py:62 ../gramps/gen/utils/db.py:523
+#: ../gramps/gen/mime/_winmime.py:62 ../gramps/gen/utils/db.py:522
 #: ../gramps/gui/editors/editperson.py:331
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:90
 #: ../gramps/gui/merge/mergeperson.py:62
@@ -7655,8 +7655,7 @@ msgstr "Ausrichtung der Grafik"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:154
 msgid "Whether graph goes from top to bottom or left to right."
-msgstr ""
-"Legt fest, ob der Graph von oben nach unten, oder von links nach rechts geht."
+msgstr "Ob der Graph von oben nach unten, oder von links nach rechts geht."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:158
 msgid "Number of Horizontal Pages"
@@ -7841,7 +7840,7 @@ msgstr "Position der Notiz"
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:260
 msgid "Whether note will appear on top or bottom of the page."
-msgstr "Legt fest, ob die Notiz oben oder unten auf der Seite erscheint."
+msgstr "Ob die Notiz oben oder unten auf der Seite erscheint."
 
 #: ../gramps/gen/plug/docgen/graphdoc.py:264
 msgid "Note size"
@@ -8403,12 +8402,12 @@ msgstr "Wahr"
 msgid "true"
 msgstr "wahr"
 
-#: ../gramps/gen/utils/db.py:287 ../gramps/gen/utils/db.py:306
+#: ../gramps/gen/utils/db.py:294 ../gramps/gen/utils/db.py:313
 #, python-format
 msgid "%s, ..."
 msgstr "%s, ..."
 
-#: ../gramps/gen/utils/db.py:533 ../gramps/plugins/lib/librecords.py:240
+#: ../gramps/gen/utils/db.py:532 ../gramps/plugins/lib/librecords.py:240
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr "%(father)s und %(mother)s"
@@ -12171,7 +12170,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"O, -18.2412 oder -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:169
-#: ../gramps/plugins/lib/maps/geography.py:825
+#: ../gramps/plugins/lib/maps/geography.py:824
 #: ../gramps/plugins/view/geoplaces.py:322
 #: ../gramps/plugins/view/geoplaces.py:348
 msgid "Edit Place"
@@ -16489,7 +16488,7 @@ msgid "Document Options"
 msgstr "Dokumentoptionen"
 
 #: ../gramps/gui/plug/report/_reportdialog.py:506
-#: ../gramps/gui/plug/report/_reportdialog.py:531
+#: ../gramps/gui/plug/report/_reportdialog.py:532
 msgid "Permission problem"
 msgstr "Berechtigungsproblem"
 
@@ -16523,7 +16522,7 @@ msgstr "_Überschreiben"
 msgid "_Change filename"
 msgstr "_Dateinamen ändern"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:532
+#: ../gramps/gui/plug/report/_reportdialog.py:533
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -16534,17 +16533,34 @@ msgstr ""
 "\n"
 "Bitte wähle ein anderes Verzeichnis oder korrigiere die Berechtigungen."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:662
+#: ../gramps/gui/plug/report/_reportdialog.py:540
+#: ../gramps/plugins/export/exportxml.py:144
+msgid "No directory"
+msgstr "Kein Verzeichnis"
+
+#: ../gramps/gui/plug/report/_reportdialog.py:541
+#: ../gramps/plugins/export/exportxml.py:145
+#, python-format
+msgid ""
+"There is no directory %s.\n"
+"\n"
+"Please select another directory or create it."
+msgstr ""
+"Dort gibt es kein Verzeichnis %s.\n"
+"\n"
+"Bitte wähle ein anderes Verzeichnis oder erstelle es."
+
+#: ../gramps/gui/plug/report/_reportdialog.py:669
 #: ../gramps/gui/plug/tool.py:136 ../gramps/plugins/tool/relcalc.py:149
 msgid "Active person has not been set"
 msgstr "Keine Person ausgewählt"
 
-#: ../gramps/gui/plug/report/_reportdialog.py:663
+#: ../gramps/gui/plug/report/_reportdialog.py:670
 msgid "You must select an active person for this report to work properly."
 msgstr "Du musst eine aktive Person wählen, um einen Bericht zu erstellen."
 
-#: ../gramps/gui/plug/report/_reportdialog.py:714
-#: ../gramps/gui/plug/report/_reportdialog.py:719
+#: ../gramps/gui/plug/report/_reportdialog.py:721
+#: ../gramps/gui/plug/report/_reportdialog.py:726
 msgid "Report could not be created"
 msgstr "Der Bericht konnte nicht erzeugt werden"
 
@@ -17201,7 +17217,7 @@ msgstr "Aktives Objekt ist nicht sichtbar"
 
 #: ../gramps/gui/views/listview.py:450
 #: ../gramps/gui/views/navigationview.py:254
-#: ../gramps/plugins/lib/maps/geography.py:192
+#: ../gramps/plugins/lib/maps/geography.py:191
 #: ../gramps/plugins/view/familyview.py:220
 msgid "Could Not Set a Bookmark"
 msgstr "Das Lesezeichen konnte nicht gesetzt werden"
@@ -17272,7 +17288,7 @@ msgid "%s has been bookmarked"
 msgstr "Lesezeichen für %s gesetzt"
 
 #: ../gramps/gui/views/navigationview.py:255
-#: ../gramps/plugins/lib/maps/geography.py:193
+#: ../gramps/plugins/lib/maps/geography.py:192
 #: ../gramps/plugins/view/familyview.py:221
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
@@ -19586,8 +19602,8 @@ msgstr "Keine Familien entsprechen dem ausgewählten Filter"
 
 #: ../gramps/plugins/export/exportpkg.py:183
 #: ../gramps/plugins/export/exportxml.py:137
-#: ../gramps/plugins/export/exportxml.py:147
-#: ../gramps/plugins/export/exportxml.py:165
+#: ../gramps/plugins/export/exportxml.py:153
+#: ../gramps/plugins/export/exportxml.py:171
 #, python-format
 msgid "Failure writing %s"
 msgstr "Fehler beim Schreiben von %s"
@@ -19627,7 +19643,7 @@ msgstr ""
 "in dieses Verzeichnis zu schreiben. Bitte stelle sicher, dass du "
 "Schreibzugriff auf dieses Verzeichnis hast, und versuche es erneut."
 
-#: ../gramps/plugins/export/exportxml.py:148
+#: ../gramps/plugins/export/exportxml.py:154
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
@@ -26946,59 +26962,59 @@ msgstr "Unten links"
 msgid "Bottom Right"
 msgstr "Unten rechts"
 
-#: ../gramps/plugins/lib/maps/geography.py:271
+#: ../gramps/plugins/lib/maps/geography.py:270
 #: ../gramps/plugins/view/fanchartdescview.py:166
 #: ../gramps/plugins/view/fanchartview.py:164
 msgid "_Print..."
 msgstr "_Drucken..."
 
-#: ../gramps/plugins/lib/maps/geography.py:273
+#: ../gramps/plugins/lib/maps/geography.py:272
 msgid "Print or save the Map"
 msgstr "Die Karte drucken oder speichern"
 
-#: ../gramps/plugins/lib/maps/geography.py:310
+#: ../gramps/plugins/lib/maps/geography.py:309
 msgid "Map Menu"
 msgstr "Kartenmenü"
 
-#: ../gramps/plugins/lib/maps/geography.py:313
+#: ../gramps/plugins/lib/maps/geography.py:312
 msgid "Remove cross hair"
 msgstr "Fadenkreuz entfernen"
 
-#: ../gramps/plugins/lib/maps/geography.py:315
+#: ../gramps/plugins/lib/maps/geography.py:314
 msgid "Add cross hair"
 msgstr "Fadenkreuz hinzufügen"
 
-#: ../gramps/plugins/lib/maps/geography.py:322
+#: ../gramps/plugins/lib/maps/geography.py:321
 msgid "Unlock zoom and position"
 msgstr "Zoom und Position entsperren"
 
-#: ../gramps/plugins/lib/maps/geography.py:324
+#: ../gramps/plugins/lib/maps/geography.py:323
 msgid "Lock zoom and position"
 msgstr "Zoom und Position sperren"
 
-#: ../gramps/plugins/lib/maps/geography.py:331
+#: ../gramps/plugins/lib/maps/geography.py:330
 msgid "Add place"
 msgstr "Ort hinzufügen"
 
-#: ../gramps/plugins/lib/maps/geography.py:336
+#: ../gramps/plugins/lib/maps/geography.py:335
 msgid "Link place"
 msgstr "Ort verknüpfen"
 
-#: ../gramps/plugins/lib/maps/geography.py:341
+#: ../gramps/plugins/lib/maps/geography.py:340
 msgid "Center here"
 msgstr "Hier zentrieren"
 
-#: ../gramps/plugins/lib/maps/geography.py:354
+#: ../gramps/plugins/lib/maps/geography.py:353
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr "Ersetze '%(map)s' durch =>"
 
-#: ../gramps/plugins/lib/maps/geography.py:373
+#: ../gramps/plugins/lib/maps/geography.py:372
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
 msgstr "Leert den  '%(map)s' Kacheln Cache."
 
-#: ../gramps/plugins/lib/maps/geography.py:829
+#: ../gramps/plugins/lib/maps/geography.py:828
 #: ../gramps/plugins/view/geoclose.py:532
 #: ../gramps/plugins/view/geoevents.py:329
 #: ../gramps/plugins/view/geoevents.py:362
@@ -27013,11 +27029,11 @@ msgstr "Leert den  '%(map)s' Kacheln Cache."
 msgid "Center on this place"
 msgstr "Auf diesen Ort zentrieren"
 
-#: ../gramps/plugins/lib/maps/geography.py:928
+#: ../gramps/plugins/lib/maps/geography.py:927
 msgid "You have at least two places with the same title."
 msgstr "Du hast mindestens zwei Orte mit dem selben Titel."
 
-#: ../gramps/plugins/lib/maps/geography.py:929
+#: ../gramps/plugins/lib/maps/geography.py:928
 #, python-format
 msgid ""
 "The title of the places is :\n"
@@ -27034,19 +27050,19 @@ msgstr ""
 "\n"
 "<b>Ich kann deine Anfrage nicht durchführen</b>.\n"
 
-#: ../gramps/plugins/lib/maps/geography.py:1050
+#: ../gramps/plugins/lib/maps/geography.py:1049
 msgid "Nothing for this view."
 msgstr "Nichts für diese Ansicht."
 
-#: ../gramps/plugins/lib/maps/geography.py:1051
+#: ../gramps/plugins/lib/maps/geography.py:1050
 msgid "Specific parameters"
 msgstr "Bestimmte Parameter"
 
-#: ../gramps/plugins/lib/maps/geography.py:1069
+#: ../gramps/plugins/lib/maps/geography.py:1068
 msgid "Where to save the tiles for offline mode."
 msgstr "Wo die Kacheln für den offline Modus gespeichert werden."
 
-#: ../gramps/plugins/lib/maps/geography.py:1073
+#: ../gramps/plugins/lib/maps/geography.py:1072
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
@@ -27056,15 +27072,15 @@ msgstr ""
 "die im obigen Pfad liegen entfernen.\n"
 "Sei vorsichtig! Wenn du kein Internet hast, erhältst du keine Karte."
 
-#: ../gramps/plugins/lib/maps/geography.py:1078
+#: ../gramps/plugins/lib/maps/geography.py:1077
 msgid "Zoom used when centering"
 msgstr "Zoom der beim Zentrieren verwendet wird"
 
-#: ../gramps/plugins/lib/maps/geography.py:1082
+#: ../gramps/plugins/lib/maps/geography.py:1081
 msgid "The maximum number of places to show"
 msgstr "Maximale Anzahl der angezeigten Orte"
 
-#: ../gramps/plugins/lib/maps/geography.py:1086
+#: ../gramps/plugins/lib/maps/geography.py:1085
 msgid ""
 "Use keypad for shortcuts :\n"
 "Either we choose the + and - from the keypad if we select this,\n"
@@ -27074,11 +27090,11 @@ msgstr ""
 "Entweder verwenden wir + und - vom Nummernblock wenn wir es wählen, \n"
 "oder wir verwenden die Zeichen von der Tastatur."
 
-#: ../gramps/plugins/lib/maps/geography.py:1092
+#: ../gramps/plugins/lib/maps/geography.py:1091
 msgid "The map"
 msgstr "Die Karte"
 
-#: ../gramps/plugins/lib/maps/geography.py:1102
+#: ../gramps/plugins/lib/maps/geography.py:1101
 msgid "Select tile cache directory for offline mode"
 msgstr "Wähle das Verzeichnis für die Kacheln für de offline Modus"
 
@@ -33551,11 +33567,11 @@ msgstr "Mit als vertraulich markierten Datensätzen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8170
 msgid "Whether to include private objects"
-msgstr "Legt fest, ob eine Spalte für Partner aufgenommen wird."
+msgstr "Ob vertrauliche Objekte aufgenommen werden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8173
 msgid "Living People"
-msgstr "Lebende Person"
+msgstr "Lebende Personen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8178
 msgid "Include Last Name Only"
@@ -33563,7 +33579,7 @@ msgstr "Nur Nachnamen aufnehmen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8180
 msgid "Include Full Name Only"
-msgstr "Legt fest, ob eine Spalte für Eltern aufgenommen wird."
+msgstr "Nur vollständigen Namen aufnehmen"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8183
 msgid "How to handle living people"
@@ -33571,7 +33587,7 @@ msgstr "Wie lebende Personen behandelt werden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8187
 msgid "Years from death to consider living"
-msgstr "Definiere 'lebende Person' über die Anzahl der Jahre seit Todesjahr."
+msgstr "Wie viele Jahre nach dem Tot annehmen, das die Person lebt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8189
 msgid ""
@@ -33646,7 +33662,7 @@ msgstr "Spalte für Geburtsdaten auf den Indexseiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8247
 msgid "Whether to include a birth column"
-msgstr "Legt fest, ob eine Spalte für Geburt aufgenommen wird."
+msgstr "Ob eine Spalte für Geburt aufgenommen wird."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8250
 msgid "Include a column for death dates on the index pages"
@@ -33654,7 +33670,7 @@ msgstr "Spalte für Todesdaten auf den Indexseiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8251
 msgid "Whether to include a death column"
-msgstr "Legt fest, ob eine Spalte für Tot aufgenommen wird."
+msgstr "Ob eine Spalte für Tot aufgenommen wird."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8254
 msgid "Include a column for partners on the index pages"
@@ -33733,8 +33749,8 @@ msgid ""
 "Whether or not to add Address Book pages,which can include e-mail and website "
 "addresses and personal address/ residence events."
 msgstr ""
-"Legt fest, ob Adressbuchseiten enthalten sind, die E-mail-, Webseiten-, und "
-"persönliche Adressen und Wohnortsereignisse enthalten können."
+"Ob Adressbuchseiten enthalten sind, die E-mail-, Webseiten-, und persönliche "
+"Adressen und Wohnortsereignisse enthalten können."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8301
 msgid "Place Map Options"
