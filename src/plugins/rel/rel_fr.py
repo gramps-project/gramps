@@ -334,7 +334,7 @@ def get_child_unknown(level, inlaw=""):
     else:
         return u"un descendant lointain%s" % inlaw
 
-def get_sibling_unknown(inlaw=""):
+def get_sibling_unknown(Ga, inlaw=""):
     """
     sibling of an ancestor, gender = unknown
     """
@@ -654,7 +654,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                 elif gender_b == gen.lib.Person.FEMALE:
                     rel_str = u"la tante lointaine" + bygen % (Ga + 1)
                 elif gender_b == gen.lib.Person.UNKNOWN:
-                    rel_str = get_sibling_unknown(inlaw)
+                    rel_str = get_sibling_unknown(Ga, inlaw)
                 else:
                     return rel_str
         elif Ga == 1:
@@ -673,7 +673,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
                     rel_str = u"la nièce lointaine%s (%dème génération)" % \
                         (inlaw, Gb)
                 elif gender_b == gen.lib.Person.UNKNOWN:
-                    rel_str = get_sibling_unknown(inlaw)
+                    rel_str = get_sibling_unknown(Ga, inlaw)
                 else:
                     return rel_str
         elif Ga == Gb:
@@ -685,7 +685,7 @@ class RelationshipCalculator(Relationship.RelationshipCalculator):
             elif gender_b == gen.lib.Person.FEMALE:
                 rel_str = get_cousine(Ga - 1, 0, inlaw=inlaw)
             elif gender_b == gen.lib.Person.UNKNOWN:
-                rel_str = get_sibling_unknown(inlaw)
+                rel_str = get_sibling_unknown(Ga, inlaw)
             else:
                 return rel_str
         elif Ga > 1 and Ga > Gb:
