@@ -66,9 +66,6 @@ class DateParserAR(DateParser):
         'حوالي.'     : Date.MOD_ABOUT, 
         'حوالي' : Date.MOD_ABOUT,
         }
-    # in some languages some of above listed modifiers are after the date,
-    # in that case the subclass should put them into this dictionary instead
-    modifier_after_to_int = {}
 
     islamic_to_int = {
         "محرّم"           : 1,  "محرّم الحرام"  : 1,
