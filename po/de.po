@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-19 01:22+0100\n"
-"PO-Revision-Date: 2015-03-19 01:39+0100\n"
+"POT-Creation-Date: 2015-03-19 19:03+0100\n"
+"PO-Revision-Date: 2015-03-19 19:05+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -33587,7 +33587,7 @@ msgstr "Wie lebende Personen behandelt werden"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8187
 msgid "Years from death to consider living"
-msgstr "Wie viele Jahre nach dem Tot annehmen, das die Person lebt"
+msgstr "Jahre nach dem Tod annehmen, das die Person lebt"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8189
 msgid ""
