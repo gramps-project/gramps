@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-02-28 18:55-0800\n"
+"POT-Creation-Date: 2015-03-19 15:43+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1055,9 +1055,9 @@ msgstr ""
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:164
 #: ../gramps/plugins/graph/gvrelgraph.py:625
-#: ../gramps/plugins/lib/maps/geography.py:772
+#: ../gramps/plugins/lib/maps/geography.py:771
+#: ../gramps/plugins/lib/maps/geography.py:778
 #: ../gramps/plugins/lib/maps/geography.py:779
-#: ../gramps/plugins/lib/maps/geography.py:780
 #: ../gramps/plugins/quickview/all_relations.py:277
 #: ../gramps/plugins/quickview/all_relations.py:294
 #: ../gramps/plugins/textreport/indivcomplete.py:580
@@ -2486,10 +2486,10 @@ msgstr ""
 #: ../gramps/gen/filters/rules/source/_hasrepositorycallnumberref.py:47
 #: ../gramps/gen/filters/rules/source/_matchesrepositoryfilter.py:47
 #: ../gramps/gen/filters/rules/source/_matchestitlesubstringof.py:46
-#: ../gramps/plugins/quickview/samesurnames.py:41
-#: ../gramps/plugins/quickview/samesurnames.py:53
-#: ../gramps/plugins/quickview/samesurnames.py:66
-#: ../gramps/plugins/quickview/samesurnames.py:90
+#: ../gramps/plugins/quickview/samesurnames.py:43
+#: ../gramps/plugins/quickview/samesurnames.py:55
+#: ../gramps/plugins/quickview/samesurnames.py:68
+#: ../gramps/plugins/quickview/samesurnames.py:92
 msgid "General filters"
 msgstr ""
 
@@ -2639,8 +2639,8 @@ msgstr ""
 #: ../gramps/gen/filters/rules/note/_matchessubstringof.py:43
 #: ../gramps/gen/filters/rules/person/_hastextmatchingsubstringof.py:46
 #: ../gramps/gen/filters/rules/person/_searchname.py:45
-#: ../gramps/plugins/quickview/samesurnames.py:50
-#: ../gramps/plugins/quickview/samesurnames.py:63
+#: ../gramps/plugins/quickview/samesurnames.py:52
+#: ../gramps/plugins/quickview/samesurnames.py:65
 msgid "Substring:"
 msgstr ""
 
@@ -5300,7 +5300,7 @@ msgstr ""
 #. -------------------------------------------------------------------------
 #: ../gramps/gen/lib/date.py:280 ../gramps/gen/lib/date.py:408
 #: ../gramps/gen/mime/_pythonmime.py:48 ../gramps/gen/mime/_pythonmime.py:56
-#: ../gramps/gen/mime/_winmime.py:62 ../gramps/gen/utils/db.py:523
+#: ../gramps/gen/mime/_winmime.py:62 ../gramps/gen/utils/db.py:522
 #: ../gramps/gui/editors/editperson.py:331
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:90
 #: ../gramps/gui/merge/mergeperson.py:62
@@ -7537,12 +7537,12 @@ msgstr ""
 msgid "true"
 msgstr ""
 
-#: ../gramps/gen/utils/db.py:287 ../gramps/gen/utils/db.py:306
+#: ../gramps/gen/utils/db.py:294 ../gramps/gen/utils/db.py:313
 #, python-format
 msgid "%s, ..."
 msgstr ""
 
-#: ../gramps/gen/utils/db.py:533 ../gramps/plugins/lib/librecords.py:240
+#: ../gramps/gen/utils/db.py:532 ../gramps/plugins/lib/librecords.py:240
 #, python-format
 msgid "%(father)s and %(mother)s"
 msgstr ""
@@ -7751,7 +7751,7 @@ msgstr ""
 msgid "See details"
 msgstr ""
 
-#: ../gramps/gen/utils/image.py:125
+#: ../gramps/gen/utils/image.py:122
 msgid ""
 "WARNING: PIL module not loaded.  Image cropping in report files will be "
 "impaired."
@@ -8325,8 +8325,8 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:384
 #: ../gramps/plugins/quickview/quickview.gpr.py:197
 #: ../gramps/plugins/quickview/references.py:85
-#: ../gramps/plugins/quickview/samesurnames.py:115
-#: ../gramps/plugins/quickview/samesurnames.py:160
+#: ../gramps/plugins/quickview/samesurnames.py:117
+#: ../gramps/plugins/quickview/samesurnames.py:162
 #: ../gramps/plugins/textreport/placereport.py:193
 #: ../gramps/plugins/textreport/placereport.py:267
 #: ../gramps/plugins/textreport/placereport.py:404
@@ -10286,7 +10286,7 @@ msgstr ""
 #: ../gramps/gui/editors/editmedia.py:288
 #: ../gramps/gui/editors/editperson.py:821
 #: ../gramps/gui/editors/editplace.py:264
-#: ../gramps/gui/editors/editreference.py:284
+#: ../gramps/gui/editors/editreference.py:287
 #: ../gramps/gui/editors/editrepository.py:179
 #: ../gramps/gui/editors/editsource.py:199
 #, python-format
@@ -10397,7 +10397,7 @@ msgid "No data exists for this event. Please enter data or cancel the edit."
 msgstr ""
 
 #: ../gramps/gui/editors/editevent.py:246
-#: ../gramps/gui/editors/editreference.py:275
+#: ../gramps/gui/editors/editreference.py:276
 msgid "Cannot save event. ID already exists."
 msgstr ""
 
@@ -10505,8 +10505,8 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:314
 #: ../gramps/plugins/quickview/filterbyname.py:384
 #: ../gramps/plugins/quickview/lineage.py:61
-#: ../gramps/plugins/quickview/samesurnames.py:115
-#: ../gramps/plugins/quickview/samesurnames.py:160
+#: ../gramps/plugins/quickview/samesurnames.py:117
+#: ../gramps/plugins/quickview/samesurnames.py:162
 #: ../gramps/plugins/quickview/siblings.py:48
 msgid "Birth Date"
 msgstr ""
@@ -10683,7 +10683,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editfamily.py:1042
 #: ../gramps/gui/editors/editnote.py:311
-#: ../gramps/gui/editors/editreference.py:291
+#: ../gramps/gui/editors/editreference.py:294
 #, python-format
 msgid ""
 "You have attempted to use the existing Gramps ID with value %(id)s. This "
@@ -10760,7 +10760,7 @@ msgid ""
 msgstr ""
 
 #: ../gramps/gui/editors/editmedia.py:287
-#: ../gramps/gui/editors/editreference.py:278
+#: ../gramps/gui/editors/editreference.py:279
 msgid "Cannot save media object. ID already exists."
 msgstr ""
 
@@ -11061,7 +11061,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:169
-#: ../gramps/plugins/lib/maps/geography.py:825
+#: ../gramps/plugins/lib/maps/geography.py:824
 #: ../gramps/plugins/view/geoplaces.py:322
 #: ../gramps/plugins/view/geoplaces.py:348
 msgid "Edit Place"
@@ -11139,9 +11139,13 @@ msgstr ""
 msgid "If you close without saving, the changes you have made will be lost"
 msgstr ""
 
-#: ../gramps/gui/editors/editreference.py:281
+#: ../gramps/gui/editors/editreference.py:282
 #: ../gramps/gui/editors/editrepository.py:178
 msgid "Cannot save repository. ID already exists."
+msgstr ""
+
+#: ../gramps/gui/editors/editreference.py:285
+msgid "Cannot save item. ID already exists."
 msgstr ""
 
 #: ../gramps/gui/editors/editreporef.py:62
@@ -11682,7 +11686,7 @@ msgstr ""
 msgid "URL"
 msgstr ""
 
-#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:79
+#: ../gramps/gui/filters/sidebar/_sidebarfilter.py:80
 msgid "Reset"
 msgstr ""
 
@@ -14976,7 +14980,7 @@ msgid "Document Options"
 msgstr ""
 
 #: ../gramps/gui/plug/report/_reportdialog.py:506
-#: ../gramps/gui/plug/report/_reportdialog.py:531
+#: ../gramps/gui/plug/report/_reportdialog.py:532
 msgid "Permission problem"
 msgstr ""
 
@@ -15005,7 +15009,7 @@ msgstr ""
 msgid "_Change filename"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_reportdialog.py:532
+#: ../gramps/gui/plug/report/_reportdialog.py:533
 #, python-format
 msgid ""
 "You do not have permission to create %s\n"
@@ -15013,17 +15017,31 @@ msgid ""
 "Please select another path or correct the permissions."
 msgstr ""
 
-#: ../gramps/gui/plug/report/_reportdialog.py:662
+#: ../gramps/gui/plug/report/_reportdialog.py:540
+#: ../gramps/plugins/export/exportxml.py:144
+msgid "No directory"
+msgstr ""
+
+#: ../gramps/gui/plug/report/_reportdialog.py:541
+#: ../gramps/plugins/export/exportxml.py:145
+#, python-format
+msgid ""
+"There is no directory %s.\n"
+"\n"
+"Please select another directory or create it."
+msgstr ""
+
+#: ../gramps/gui/plug/report/_reportdialog.py:669
 #: ../gramps/gui/plug/tool.py:136 ../gramps/plugins/tool/relcalc.py:149
 msgid "Active person has not been set"
 msgstr ""
 
-#: ../gramps/gui/plug/report/_reportdialog.py:663
+#: ../gramps/gui/plug/report/_reportdialog.py:670
 msgid "You must select an active person for this report to work properly."
 msgstr ""
 
-#: ../gramps/gui/plug/report/_reportdialog.py:714
-#: ../gramps/gui/plug/report/_reportdialog.py:719
+#: ../gramps/gui/plug/report/_reportdialog.py:721
+#: ../gramps/gui/plug/report/_reportdialog.py:726
 msgid "Report could not be created"
 msgstr ""
 
@@ -15634,7 +15652,7 @@ msgstr ""
 
 #: ../gramps/gui/views/listview.py:450
 #: ../gramps/gui/views/navigationview.py:254
-#: ../gramps/plugins/lib/maps/geography.py:192
+#: ../gramps/plugins/lib/maps/geography.py:191
 #: ../gramps/plugins/view/familyview.py:220
 msgid "Could Not Set a Bookmark"
 msgstr ""
@@ -15702,7 +15720,7 @@ msgid "%s has been bookmarked"
 msgstr ""
 
 #: ../gramps/gui/views/navigationview.py:255
-#: ../gramps/plugins/lib/maps/geography.py:193
+#: ../gramps/plugins/lib/maps/geography.py:192
 #: ../gramps/plugins/view/familyview.py:221
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
@@ -17918,8 +17936,8 @@ msgstr ""
 
 #: ../gramps/plugins/export/exportpkg.py:183
 #: ../gramps/plugins/export/exportxml.py:137
-#: ../gramps/plugins/export/exportxml.py:147
-#: ../gramps/plugins/export/exportxml.py:165
+#: ../gramps/plugins/export/exportxml.py:153
+#: ../gramps/plugins/export/exportxml.py:171
 #, python-format
 msgid "Failure writing %s"
 msgstr ""
@@ -17956,7 +17974,7 @@ msgid ""
 "try again."
 msgstr ""
 
-#: ../gramps/plugins/export/exportxml.py:148
+#: ../gramps/plugins/export/exportxml.py:154
 msgid ""
 "The database cannot be saved because you do not have permission to write to "
 "the file. Please make sure you have write access to the file and try again."
@@ -18250,12 +18268,12 @@ msgstr ""
 msgid " 16. <a wiki='How_you_can_help'>How can I help with Gramps?</a>\n"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/givennamegramplet.py:42
+#: ../gramps/plugins/gramplet/givennamegramplet.py:44
 msgid "Double-click given name for details"
 msgstr ""
 
 #. will be overwritten in load
-#: ../gramps/plugins/gramplet/givennamegramplet.py:44
+#: ../gramps/plugins/gramplet/givennamegramplet.py:46
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:50
 #: ../gramps/plugins/gramplet/recordsgramplet.py:50
 #: ../gramps/plugins/gramplet/relativegramplet.py:40
@@ -18266,7 +18284,7 @@ msgstr ""
 msgid "No Family Tree loaded."
 msgstr ""
 
-#: ../gramps/plugins/gramplet/givennamegramplet.py:59
+#: ../gramps/plugins/gramplet/givennamegramplet.py:61
 #: ../gramps/plugins/gramplet/recordsgramplet.py:57
 #: ../gramps/plugins/gramplet/statsgramplet.py:69
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:88
@@ -18274,15 +18292,15 @@ msgstr ""
 msgid "Processing..."
 msgstr ""
 
-#: ../gramps/plugins/gramplet/givennamegramplet.py:138
+#: ../gramps/plugins/gramplet/givennamegramplet.py:140
 msgid "Total unique given names"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/givennamegramplet.py:140
+#: ../gramps/plugins/gramplet/givennamegramplet.py:142
 msgid "Total given names showing"
 msgstr ""
 
-#: ../gramps/plugins/gramplet/givennamegramplet.py:141
+#: ../gramps/plugins/gramplet/givennamegramplet.py:143
 #: ../gramps/plugins/gramplet/surnamecloudgramplet.py:172
 #: ../gramps/plugins/gramplet/topsurnamesgramplet.py:108
 msgid "Total people"
@@ -21035,56 +21053,56 @@ msgstr ""
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:1890
+#: ../gramps/plugins/lib/libgedcom.py:1891
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:2687
-#: ../gramps/plugins/lib/libgedcom.py:3061
+#: ../gramps/plugins/lib/libgedcom.py:2688
+#: ../gramps/plugins/lib/libgedcom.py:3082
 msgid "GEDCOM import"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:2715
+#: ../gramps/plugins/lib/libgedcom.py:2716
 msgid "GEDCOM import report: No errors detected"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:2717
+#: ../gramps/plugins/lib/libgedcom.py:2718
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:2982
+#: ../gramps/plugins/lib/libgedcom.py:3003
 msgid "Tag recognized but not supported"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:2993
+#: ../gramps/plugins/lib/libgedcom.py:3014
 msgid "Line ignored as not understood"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3018
+#: ../gramps/plugins/lib/libgedcom.py:3039
 msgid "Skipped subordinate line"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3052
+#: ../gramps/plugins/lib/libgedcom.py:3073
 msgid "Records not imported into "
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3088
+#: ../gramps/plugins/lib/libgedcom.py:3109
 #, python-format
 msgid ""
 "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record synthesised"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3097
+#: ../gramps/plugins/lib/libgedcom.py:3118
 #, python-format
 msgid ""
 "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. "
 "Record with typifying attribute 'Unknown' created"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3136
+#: ../gramps/plugins/lib/libgedcom.py:3157
 #, python-format
 msgid ""
 "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s "
@@ -21092,7 +21110,7 @@ msgid ""
 "reference removed from person"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3214
+#: ../gramps/plugins/lib/libgedcom.py:3235
 #, python-format
 msgid ""
 "\n"
@@ -21106,269 +21124,280 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3282
+#: ../gramps/plugins/lib/libgedcom.py:3303
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3295
+#: ../gramps/plugins/lib/libgedcom.py:3316
 msgid "TRLR (trailer)"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3324
+#: ../gramps/plugins/lib/libgedcom.py:3345
 #, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3348
-#: ../gramps/plugins/lib/libgedcom.py:6864
+#: ../gramps/plugins/lib/libgedcom.py:3369
+#: ../gramps/plugins/lib/libgedcom.py:6964
 msgid "GEDCOM data"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3394
+#: ../gramps/plugins/lib/libgedcom.py:3415
 msgid "Unknown tag"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3396
-#: ../gramps/plugins/lib/libgedcom.py:3410
-#: ../gramps/plugins/lib/libgedcom.py:3414
+#: ../gramps/plugins/lib/libgedcom.py:3417
+#: ../gramps/plugins/lib/libgedcom.py:3431
 #: ../gramps/plugins/lib/libgedcom.py:3435
+#: ../gramps/plugins/lib/libgedcom.py:3456
 msgid "Top Level"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3507
+#: ../gramps/plugins/lib/libgedcom.py:3528
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3624
+#: ../gramps/plugins/lib/libgedcom.py:3645
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3704
-#: ../gramps/plugins/lib/libgedcom.py:5015
-#: ../gramps/plugins/lib/libgedcom.py:5243
-#: ../gramps/plugins/lib/libgedcom.py:5371
-#: ../gramps/plugins/lib/libgedcom.py:5997
-#: ../gramps/plugins/lib/libgedcom.py:6150
+#: ../gramps/plugins/lib/libgedcom.py:3725
+#: ../gramps/plugins/lib/libgedcom.py:5040
+#: ../gramps/plugins/lib/libgedcom.py:5268
+#: ../gramps/plugins/lib/libgedcom.py:5429
+#: ../gramps/plugins/lib/libgedcom.py:6098
+#: ../gramps/plugins/lib/libgedcom.py:6251
 msgid "Filename omitted"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:3706
-#: ../gramps/plugins/lib/libgedcom.py:5017
-#: ../gramps/plugins/lib/libgedcom.py:5245
-#: ../gramps/plugins/lib/libgedcom.py:5373
-#: ../gramps/plugins/lib/libgedcom.py:5999
-#: ../gramps/plugins/lib/libgedcom.py:6152
+#: ../gramps/plugins/lib/libgedcom.py:3727
+#: ../gramps/plugins/lib/libgedcom.py:5042
+#: ../gramps/plugins/lib/libgedcom.py:5270
+#: ../gramps/plugins/lib/libgedcom.py:5431
+#: ../gramps/plugins/lib/libgedcom.py:6100
+#: ../gramps/plugins/lib/libgedcom.py:6253
 msgid "Form omitted"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:4779
+#: ../gramps/plugins/lib/libgedcom.py:4804
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:5159
-#: ../gramps/plugins/lib/libgedcom.py:7162
-#: ../gramps/plugins/lib/libgedcom.py:7202
+#: ../gramps/plugins/lib/libgedcom.py:5184
+#: ../gramps/plugins/lib/libgedcom.py:7262
+#: ../gramps/plugins/lib/libgedcom.py:7302
 msgid "Empty note ignored"
+msgstr ""
+
+#. We have previously found a PLAC
+#: ../gramps/plugins/lib/libgedcom.py:5342
+msgid "A second PLAC ignored"
+msgstr ""
+
+#. We have perviously found an ADDR, or have populated location
+#. from PLAC title
+#: ../gramps/plugins/lib/libgedcom.py:5509
+msgid "Location already populated; ADDR ignored"
 msgstr ""
 
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../gramps/plugins/lib/libgedcom.py:5516
+#: ../gramps/plugins/lib/libgedcom.py:5617
 msgid "Empty event note ignored"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:5834
-#: ../gramps/plugins/lib/libgedcom.py:6659
+#: ../gramps/plugins/lib/libgedcom.py:5935
+#: ../gramps/plugins/lib/libgedcom.py:6749
 msgid "Warn: ADDR overwritten"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6011
-#: ../gramps/plugins/lib/libgedcom.py:6445
+#: ../gramps/plugins/lib/libgedcom.py:6112
+#: ../gramps/plugins/lib/libgedcom.py:6546
 msgid "REFN ignored"
 msgstr ""
 
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6110
+#: ../gramps/plugins/lib/libgedcom.py:6211
 #, python-format
 msgid "No title - ID %s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6115
+#: ../gramps/plugins/lib/libgedcom.py:6216
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6371
+#: ../gramps/plugins/lib/libgedcom.py:6472
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6399
-#: ../gramps/plugins/lib/libgedcom.py:7390
+#: ../gramps/plugins/lib/libgedcom.py:6500
+#: ../gramps/plugins/lib/libgedcom.py:7490
 #, python-format
 msgid "Could not import %s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6435
+#: ../gramps/plugins/lib/libgedcom.py:6536
 msgid "BLOB ignored"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6455
+#: ../gramps/plugins/lib/libgedcom.py:6556
 msgid "Multimedia REFN:TYPE ignored"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6465
+#: ../gramps/plugins/lib/libgedcom.py:6566
 msgid "Mutimedia RIN ignored"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6552
+#: ../gramps/plugins/lib/libgedcom.py:6653
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6784
+#: ../gramps/plugins/lib/libgedcom.py:6884
 msgid "HEAD (header)"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6801
+#: ../gramps/plugins/lib/libgedcom.py:6901
 msgid "Approved system identification"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6813
+#: ../gramps/plugins/lib/libgedcom.py:6913
 msgid "Generated By"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6829
+#: ../gramps/plugins/lib/libgedcom.py:6929
 msgid "Name of software product"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6843
+#: ../gramps/plugins/lib/libgedcom.py:6943
 msgid "Version number of software product"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6861
+#: ../gramps/plugins/lib/libgedcom.py:6961
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6883
+#: ../gramps/plugins/lib/libgedcom.py:6983
 msgid "Name of source data"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6900
+#: ../gramps/plugins/lib/libgedcom.py:7000
 msgid "Copyright of source data"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6917
+#: ../gramps/plugins/lib/libgedcom.py:7017
 msgid "Publication date of source data"
 msgstr ""
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:6931
+#: ../gramps/plugins/lib/libgedcom.py:7031
 #, python-format
 msgid "Import from %s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6970
+#: ../gramps/plugins/lib/libgedcom.py:7070
 msgid "Submission record identifier"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:6983
+#: ../gramps/plugins/lib/libgedcom.py:7083
 msgid "Language of GEDCOM text"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7009
+#: ../gramps/plugins/lib/libgedcom.py:7109
 #, python-format
 msgid ""
 "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in "
 "the resulting database!"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7012
+#: ../gramps/plugins/lib/libgedcom.py:7112
 msgid "Look for nameless events."
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7036
+#: ../gramps/plugins/lib/libgedcom.py:7136
 msgid "Character set"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7041
+#: ../gramps/plugins/lib/libgedcom.py:7141
 msgid "Character set and version"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7058
+#: ../gramps/plugins/lib/libgedcom.py:7158
 msgid "GEDCOM version not supported"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7062
+#: ../gramps/plugins/lib/libgedcom.py:7162
 msgid "GEDCOM version"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7067
+#: ../gramps/plugins/lib/libgedcom.py:7167
 msgid "GEDCOM form not supported"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7070
+#: ../gramps/plugins/lib/libgedcom.py:7170
 msgid "GEDCOM form"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7119
+#: ../gramps/plugins/lib/libgedcom.py:7219
 msgid "Creation date of GEDCOM"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7124
+#: ../gramps/plugins/lib/libgedcom.py:7224
 msgid "Creation date and time of GEDCOM"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7217
+#: ../gramps/plugins/lib/libgedcom.py:7317
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7267
+#: ../gramps/plugins/lib/libgedcom.py:7367
 msgid "Submission: Submitter"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7269
+#: ../gramps/plugins/lib/libgedcom.py:7369
 msgid "Submission: Family file"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7271
+#: ../gramps/plugins/lib/libgedcom.py:7371
 msgid "Submission: Temple code"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7273
+#: ../gramps/plugins/lib/libgedcom.py:7373
 msgid "Submission: Generations of ancestors"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7275
+#: ../gramps/plugins/lib/libgedcom.py:7375
 msgid "Submission: Generations of descendants"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7277
+#: ../gramps/plugins/lib/libgedcom.py:7377
 msgid "Submission: Ordinance process flag"
 msgstr ""
 
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7491
+#: ../gramps/plugins/lib/libgedcom.py:7591
 msgid "Invalid temple code"
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7579
+#: ../gramps/plugins/lib/libgedcom.py:7679
 msgid ""
 "Your GEDCOM file is corrupted. The file appears to be encoded using the "
 "UTF16 character set, but is missing the BOM marker."
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7582
+#: ../gramps/plugins/lib/libgedcom.py:7682
 msgid "Your GEDCOM file is empty."
 msgstr ""
 
-#: ../gramps/plugins/lib/libgedcom.py:7645
+#: ../gramps/plugins/lib/libgedcom.py:7745
 #, python-format
 msgid "Invalid line %d in GEDCOM file."
 msgstr ""
@@ -24747,59 +24776,59 @@ msgstr ""
 msgid "Bottom Right"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:271
+#: ../gramps/plugins/lib/maps/geography.py:270
 #: ../gramps/plugins/view/fanchartdescview.py:166
 #: ../gramps/plugins/view/fanchartview.py:164
 msgid "_Print..."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:273
+#: ../gramps/plugins/lib/maps/geography.py:272
 msgid "Print or save the Map"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:310
+#: ../gramps/plugins/lib/maps/geography.py:309
 msgid "Map Menu"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:313
+#: ../gramps/plugins/lib/maps/geography.py:312
 msgid "Remove cross hair"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:315
+#: ../gramps/plugins/lib/maps/geography.py:314
 msgid "Add cross hair"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:322
+#: ../gramps/plugins/lib/maps/geography.py:321
 msgid "Unlock zoom and position"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:324
+#: ../gramps/plugins/lib/maps/geography.py:323
 msgid "Lock zoom and position"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:331
+#: ../gramps/plugins/lib/maps/geography.py:330
 msgid "Add place"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:336
+#: ../gramps/plugins/lib/maps/geography.py:335
 msgid "Link place"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:341
+#: ../gramps/plugins/lib/maps/geography.py:340
 msgid "Center here"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:354
+#: ../gramps/plugins/lib/maps/geography.py:353
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:373
+#: ../gramps/plugins/lib/maps/geography.py:372
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:829
+#: ../gramps/plugins/lib/maps/geography.py:828
 #: ../gramps/plugins/view/geoclose.py:532
 #: ../gramps/plugins/view/geoevents.py:329
 #: ../gramps/plugins/view/geoevents.py:362
@@ -24814,11 +24843,11 @@ msgstr ""
 msgid "Center on this place"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:928
+#: ../gramps/plugins/lib/maps/geography.py:927
 msgid "You have at least two places with the same title."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:929
+#: ../gramps/plugins/lib/maps/geography.py:928
 #, python-format
 msgid ""
 "The title of the places is :\n"
@@ -24829,45 +24858,45 @@ msgid ""
 "<b>I can't proceed your request</b>.\n"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1050
+#: ../gramps/plugins/lib/maps/geography.py:1049
 msgid "Nothing for this view."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1051
+#: ../gramps/plugins/lib/maps/geography.py:1050
 msgid "Specific parameters"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1069
+#: ../gramps/plugins/lib/maps/geography.py:1068
 msgid "Where to save the tiles for offline mode."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1073
+#: ../gramps/plugins/lib/maps/geography.py:1072
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
 "Be careful! If you have no internet, you'll get no map."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1078
+#: ../gramps/plugins/lib/maps/geography.py:1077
 msgid "Zoom used when centering"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1082
+#: ../gramps/plugins/lib/maps/geography.py:1081
 msgid "The maximum number of places to show"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1086
+#: ../gramps/plugins/lib/maps/geography.py:1085
 msgid ""
 "Use keypad for shortcuts :\n"
 "Either we choose the + and - from the keypad if we select this,\n"
 "or we use the characters from the keyboard."
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1092
+#: ../gramps/plugins/lib/maps/geography.py:1091
 msgid "The map"
 msgstr ""
 
-#: ../gramps/plugins/lib/maps/geography.py:1102
+#: ../gramps/plugins/lib/maps/geography.py:1101
 msgid "Select tile cache directory for offline mode"
 msgstr ""
 
@@ -25273,8 +25302,8 @@ msgstr ""
 #: ../gramps/plugins/quickview/filterbyname.py:281
 #: ../gramps/plugins/quickview/filterbyname.py:314
 #: ../gramps/plugins/quickview/filterbyname.py:384
-#: ../gramps/plugins/quickview/samesurnames.py:115
-#: ../gramps/plugins/quickview/samesurnames.py:160
+#: ../gramps/plugins/quickview/samesurnames.py:117
+#: ../gramps/plugins/quickview/samesurnames.py:162
 msgid "Name type"
 msgstr ""
 
@@ -25583,47 +25612,47 @@ msgstr ""
 msgid "Type of media"
 msgstr ""
 
-#: ../gramps/plugins/quickview/samesurnames.py:39
+#: ../gramps/plugins/quickview/samesurnames.py:41
 msgid "People with incomplete surnames"
 msgstr ""
 
-#: ../gramps/plugins/quickview/samesurnames.py:40
+#: ../gramps/plugins/quickview/samesurnames.py:42
 msgid "Matches people with lastname missing"
 msgstr ""
 
-#: ../gramps/plugins/quickview/samesurnames.py:51
+#: ../gramps/plugins/quickview/samesurnames.py:53
 msgid "People matching the <surname>"
 msgstr ""
 
-#: ../gramps/plugins/quickview/samesurnames.py:52
+#: ../gramps/plugins/quickview/samesurnames.py:54
 msgid "Matches people with same lastname"
 msgstr ""
 
-#: ../gramps/plugins/quickview/samesurnames.py:64
+#: ../gramps/plugins/quickview/samesurnames.py:66
 msgid "People matching the <given>"
 msgstr ""
 
-#: ../gramps/plugins/quickview/samesurnames.py:65
+#: ../gramps/plugins/quickview/samesurnames.py:67
 msgid "Matches people with same given name"
 msgstr ""
 
-#: ../gramps/plugins/quickview/samesurnames.py:88
+#: ../gramps/plugins/quickview/samesurnames.py:90
 msgid "People with incomplete given names"
 msgstr ""
 
-#: ../gramps/plugins/quickview/samesurnames.py:89
+#: ../gramps/plugins/quickview/samesurnames.py:91
 msgid "Matches people with firstname missing"
 msgstr ""
 
 #. display the title
-#: ../gramps/plugins/quickview/samesurnames.py:113
+#: ../gramps/plugins/quickview/samesurnames.py:115
 #, python-format
 msgid "People sharing the surname '%s'"
 msgstr ""
 
 #. translators: leave all/any {...} untranslated
-#: ../gramps/plugins/quickview/samesurnames.py:135
-#: ../gramps/plugins/quickview/samesurnames.py:180
+#: ../gramps/plugins/quickview/samesurnames.py:137
+#: ../gramps/plugins/quickview/samesurnames.py:182
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
@@ -25631,7 +25660,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. display the title
-#: ../gramps/plugins/quickview/samesurnames.py:158
+#: ../gramps/plugins/quickview/samesurnames.py:160
 #, python-format
 msgid "People with the given name '%s'"
 msgstr ""
