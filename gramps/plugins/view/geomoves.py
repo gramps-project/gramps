@@ -607,7 +607,7 @@ class GeoMoves(GeoGraphyView):
             hdle = person.get_handle()
             bookm = Gtk.MenuItem(label=_("Bookmark this person"))
             bookm.show()
-            bookm.connect("activate", self.add_bookmark, hdle)
+            bookm.connect("activate", self.add_bookmark_from_popup, hdle)
             itemoption.append(bookm)
             menu.show()
             menu.popup(None, None,

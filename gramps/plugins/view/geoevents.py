@@ -335,7 +335,7 @@ class GeoEvents(GeoGraphyView):
                 hdle = evt.get_handle()
                 bookm = Gtk.MenuItem(label=_("Bookmark this event"))
                 bookm.show()
-                bookm.connect("activate", self.add_bookmark, hdle)
+                bookm.connect("activate", self.add_bookmark_from_popup, hdle)
                 itemoption.append(bookm)
             if mark[0] != oldplace:
                 message = "%s :" % mark[0]
@@ -367,7 +367,7 @@ class GeoEvents(GeoGraphyView):
         hdle = evt.get_handle()
         bookm = Gtk.MenuItem(label=_("Bookmark this event"))
         bookm.show()
-        bookm.connect("activate", self.add_bookmark, hdle)
+        bookm.connect("activate", self.add_bookmark_from_popup, hdle)
         itemoption.append(bookm)
         menu.popup(None, None,
                    lambda menu, data: (event.get_root_coords()[0],

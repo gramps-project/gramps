@@ -255,7 +255,7 @@ class GeoFamClose(GeoGraphyView):
                 self.message_layer.add_message(_("The other family : %s" % _("Unknown")))
             if self.reffamily_bookmark is None:
                 self.reffamily_bookmark = self.reffamily.get_handle()
-                self.add_bookmark(None, self.reffamily_bookmark)
+                self.add_bookmark_from_popup(None, self.reffamily_bookmark)
         else:
             self.message_layer.add_message(_("You must choose one reference family."))
             self.message_layer.add_message(_("Go to the family view and select "
