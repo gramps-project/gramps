@@ -10924,7 +10924,7 @@ msgstr "Citation : Note"
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:99
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:88
 msgid "Custom filter"
-msgstr "Filtre personnalisé"
+msgstr "Filtre"
 
 # trunk
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:97
