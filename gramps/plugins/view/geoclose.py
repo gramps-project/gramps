@@ -232,7 +232,7 @@ class GeoClose(GeoGraphyView):
             self._createmap(self.refperson, color, self.place_list_ref, True)
             if self.refperson_bookmark is None:
                 self.refperson_bookmark = self.refperson.get_handle()
-                self.add_bookmark(None, self.refperson_bookmark)
+                self.add_bookmark_from_popup(None, self.refperson_bookmark)
         else:
             self.message_layer.add_message(_("You must choose one reference person."))
             self.message_layer.add_message(_("Go to the person view and select "
