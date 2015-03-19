@@ -11962,6 +11962,7 @@ msgstr "Volume/Page"
 msgid "Citation: Minimum Confidence|Min. Conf."
 msgstr "Conf. min."
 
+# Traduction courte pour _eventsidebarfilter.py et _citationsidebarfilter
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:107
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:120
@@ -11972,7 +11973,7 @@ msgstr "Conf. min."
 #: ../gramps/gui/filters/sidebar/_reposidebarfilter.py:105
 #: ../gramps/gui/filters/sidebar/_sourcesidebarfilter.py:94
 msgid "Custom filter"
-msgstr "Filtre personnalisé"
+msgstr "Filtre"
 
 # trunk
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:102
