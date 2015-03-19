@@ -221,11 +221,9 @@ class Kml(GObject.GObject):
             for subAttribute in attributes:
                 if subAttribute.tag == self.tag + 'name':
                     self.name = subAttribute.text
-                    for subsubAttribute in subAttribute:
-                        if subsubAttribute.tag == self.tag + 'Point':
-                            self.get_point(subsubAttribute)
-                            self.markers.append((self.name,
-                                                 self.points))
+                if subsubAttribute.tag == self.tag + 'Point':
+                    self.get_point(subsubAttribute)
+                    self.markers.append((self.name, self.points))
         return self.markers
 
 GObject.type_register(Kml)
