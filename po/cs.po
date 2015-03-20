@@ -35,8 +35,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3.x\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-19 08:40+0100\n"
-"PO-Revision-Date: 2015-03-19 08:41+0100\n"
+"POT-Creation-Date: 2015-03-19 19:45-0700\n"
+"PO-Revision-Date: 2015-03-20 08:15+0100\n"
 "Last-Translator: Zdeněk Hataš <zdenek.hatas@gmail.com>\n"
 "Language-Team: Czech <Czech <gnome-cs-list@gnome.org>>\n"
 "Language: cs\n"
@@ -1485,9 +1485,9 @@ msgstr "Zamkl %s"
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:253
 #: ../gramps/plugins/graph/gvrelgraph.py:644
-#: ../gramps/plugins/lib/maps/geography.py:771
-#: ../gramps/plugins/lib/maps/geography.py:778
-#: ../gramps/plugins/lib/maps/geography.py:779
+#: ../gramps/plugins/lib/maps/geography.py:784
+#: ../gramps/plugins/lib/maps/geography.py:791
+#: ../gramps/plugins/lib/maps/geography.py:792
 #: ../gramps/plugins/quickview/all_relations.py:277
 #: ../gramps/plugins/quickview/all_relations.py:294
 #: ../gramps/plugins/textreport/detancestralreport.py:190
@@ -1836,7 +1836,6 @@ msgstr "DEN MĚS ROK"
 #. to learn how to select proper inflection for your language.
 #: ../gramps/gen/datehandler/_datedisplay.py:160
 #: ../gramps/plugins/drawreport/calendarreport.py:232
-#, python-brace-format
 msgid "{long_month} {year}"
 msgstr "{long_month} {year}"
 
@@ -1844,7 +1843,6 @@ msgstr "{long_month} {year}"
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "from"
 #: ../gramps/gen/datehandler/_datedisplay.py:166
-#, python-brace-format
 msgid "from|{long_month} {year}"
 msgstr "{long_month} {year}"
 
@@ -1852,7 +1850,6 @@ msgstr "{long_month} {year}"
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "to"
 #: ../gramps/gen/datehandler/_datedisplay.py:172
-#, python-brace-format
 msgid "to|{long_month} {year}"
 msgstr "{long_month} {year}"
 
@@ -1860,7 +1857,6 @@ msgstr "{long_month} {year}"
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "between"
 #: ../gramps/gen/datehandler/_datedisplay.py:178
-#, python-brace-format
 msgid "between|{long_month} {year}"
 msgstr "{long_month} {year}"
 
@@ -1868,7 +1864,6 @@ msgstr "{long_month} {year}"
 #. You only need to translate this string if you translate one of the
 #. inflect=_("...") with "and"
 #: ../gramps/gen/datehandler/_datedisplay.py:184
-#, python-brace-format
 msgid "and|{long_month} {year}"
 msgstr "{long_month} {year}"
 
@@ -1876,7 +1871,6 @@ msgstr "{long_month} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:190
-#, fuzzy, python-brace-format
 msgid "before|{long_month} {year}"
 msgstr "{long_month.f[S]} {year}"
 
@@ -1884,7 +1878,6 @@ msgstr "{long_month.f[S]} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:196
-#, fuzzy, python-brace-format
 msgid "after|{long_month} {year}"
 msgstr "{long_month.f[T]} {year}"
 
@@ -1892,36 +1885,30 @@ msgstr "{long_month.f[T]} {year}"
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:202
-#, fuzzy, python-brace-format
 msgid "about|{long_month} {year}"
 msgstr "{long_month.f[D]} {year}"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:209
-#, python-brace-format
 msgid "{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. first date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:213
-#, python-brace-format
 msgid "from|{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. second date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:217
-#, python-brace-format
 msgid "to|{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. first date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:221
-#, python-brace-format
 msgid "between|{short_month} {year}"
 msgstr "{short_month} {year}"
 
 #. second date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:225
-#, python-brace-format
 msgid "and|{short_month} {year}"
 msgstr "{short_month} {year}"
 
@@ -1929,7 +1916,6 @@ msgstr "{short_month} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:231
-#, python-brace-format
 msgid "before|{short_month} {year}"
 msgstr "{short_month} {year}"
 
@@ -1937,7 +1923,6 @@ msgstr "{short_month} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:237
-#, python-brace-format
 msgid "after|{short_month} {year}"
 msgstr "{short_month} {year}"
 
@@ -1945,7 +1930,6 @@ msgstr "{short_month} {year}"
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:243
-#, python-brace-format
 msgid "about|{short_month} {year}"
 msgstr "{short_month} {year}"
 
@@ -1968,7 +1952,6 @@ msgid "to-date|"
 msgstr ""
 
 #: ../gramps/gen/datehandler/_datedisplay.py:363
-#, python-brace-format
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}od {date_start} do {date_stop}{nonstd_calendar_and_ny}"
 
@@ -1991,7 +1974,6 @@ msgid "and-date|"
 msgstr "between"
 
 #: ../gramps/gen/datehandler/_datedisplay.py:385
-#, python-brace-format
 msgid ""
 "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}mezi {date_start} a {date_stop}{nonstd_calendar_and_ny}"
@@ -2017,32 +1999,27 @@ msgstr "after"
 msgid "about-date|"
 msgstr "about"
 
-#: ../gramps/gen/datehandler/_datedisplay.py:411
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:417
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:489
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:495
 msgid "{long_month} {day:d}, {year}"
 msgstr "{long_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:513
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:519
 msgid "{short_month} {day:d}, {year}"
 msgstr "{short_month} {day:d}, {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:537
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:543
 msgid "{day:d} {long_month} {year}"
 msgstr "{day:d}. {long_month} {year}"
 
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:561
-#, python-brace-format
+#: ../gramps/gen/datehandler/_datedisplay.py:567
 msgid "{day:d} {short_month} {year}"
 msgstr "{day:d}. {short_month} {year}"
 
@@ -2451,51 +2428,57 @@ msgstr "bahman"
 msgid "Persian month lexeme|Esfand"
 msgstr "esfand"
 
-#: ../gramps/gen/datehandler/_datestrings.py:208
+#. TRANSLATORS: if the modifier is after the date
+#. put the space ahead of the word instead of after it
+#: ../gramps/gen/datehandler/_datestrings.py:210
 msgid "date modifier|before "
 msgstr "před "
 
-#: ../gramps/gen/datehandler/_datestrings.py:209
+#. TRANSLATORS: if the modifier is after the date
+#. put the space ahead of the word instead of after it
+#: ../gramps/gen/datehandler/_datestrings.py:213
 msgid "date modifier|after "
 msgstr "po "
 
-#: ../gramps/gen/datehandler/_datestrings.py:210
+#. TRANSLATORS: if the modifier is after the date
+#. put the space ahead of the word instead of after it
+#: ../gramps/gen/datehandler/_datestrings.py:216
 msgid "date modifier|about "
 msgstr "kolem "
 
-#: ../gramps/gen/datehandler/_datestrings.py:214
+#: ../gramps/gen/datehandler/_datestrings.py:220
 msgid "date quality|estimated "
 msgstr "přibližně "
 
-#: ../gramps/gen/datehandler/_datestrings.py:215
+#: ../gramps/gen/datehandler/_datestrings.py:221
 msgid "date quality|calculated "
 msgstr "vypočteno "
 
-#: ../gramps/gen/datehandler/_datestrings.py:221
+#: ../gramps/gen/datehandler/_datestrings.py:227
 msgid "Sunday"
 msgstr "neděle"
 
-#: ../gramps/gen/datehandler/_datestrings.py:222
+#: ../gramps/gen/datehandler/_datestrings.py:228
 msgid "Monday"
 msgstr "pondělí"
 
-#: ../gramps/gen/datehandler/_datestrings.py:223
+#: ../gramps/gen/datehandler/_datestrings.py:229
 msgid "Tuesday"
 msgstr "úterý"
 
-#: ../gramps/gen/datehandler/_datestrings.py:224
+#: ../gramps/gen/datehandler/_datestrings.py:230
 msgid "Wednesday"
 msgstr "středa"
 
-#: ../gramps/gen/datehandler/_datestrings.py:225
+#: ../gramps/gen/datehandler/_datestrings.py:231
 msgid "Thursday"
 msgstr "čtvrtek"
 
-#: ../gramps/gen/datehandler/_datestrings.py:226
+#: ../gramps/gen/datehandler/_datestrings.py:232
 msgid "Friday"
 msgstr "pátek"
 
-#: ../gramps/gen/datehandler/_datestrings.py:227
+#: ../gramps/gen/datehandler/_datestrings.py:233
 msgid "Saturday"
 msgstr "sobota"
 
@@ -6021,7 +6004,6 @@ msgstr "více než přibližně"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:406
-#, python-brace-format
 msgid "{number_of} year"
 msgid_plural "{number_of} years"
 msgstr[0] "{number_of} rok"
@@ -6048,7 +6030,6 @@ msgstr ", "
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:417
-#, python-brace-format
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
 msgstr[0] "{number_of} měsíc"
@@ -6057,7 +6038,6 @@ msgstr[2] "{number_of} měsíců"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gen/lib/date.py:428
-#, python-brace-format
 msgid "{number_of} day"
 msgid_plural "{number_of} days"
 msgstr[0] "{number_of} den"
@@ -11274,7 +11254,6 @@ msgid "Date selection"
 msgstr "Výběr data"
 
 #: ../gramps/gui/editors/editdate.py:268
-#, python-brace-format
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
 msgstr "Opravte datum nebo přepněte z '{cur_mode}' do '{text_mode}'"
 
@@ -12028,7 +12007,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"E, -18.2412 nebo -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:167
-#: ../gramps/plugins/lib/maps/geography.py:843
+#: ../gramps/plugins/lib/maps/geography.py:856
 #: ../gramps/plugins/view/geoplaces.py:322
 #: ../gramps/plugins/view/geoplaces.py:348
 msgid "Edit Place"
@@ -14498,18 +14477,6 @@ msgstr "Odstranit vybraný filtr"
 msgid "Note: changes take effect only after this window is closed"
 msgstr "Upozornění: ke změnám dojde až po zavření tohoto okna"
 
-#: ../gramps/gui/glade/rule.glade:289 gtklist.h:6
-msgid "All rules must apply"
-msgstr "Musí platit všechna pravidla"
-
-#: ../gramps/gui/glade/rule.glade:292 gtklist.h:7
-msgid "At least one rule must apply"
-msgstr "Musí platit alespoň jedno pravidlo"
-
-#: ../gramps/gui/glade/rule.glade:295 gtklist.h:8
-msgid "Exactly one rule must apply"
-msgstr "Musí platit právě jedno pravidlo"
-
 #: ../gramps/gui/glade/rule.glade:414
 msgid "Add another rule to the filter"
 msgstr "Přidat další pravidlo k filtru"
@@ -15801,7 +15768,6 @@ msgstr "Stahování a instalace rozšíření byla dokončena"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/gui/plug/_windows.py:1200
-#, python-brace-format
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
 msgstr[0] "{number_of} rozšíření bylo instalováno."
@@ -15983,7 +15949,6 @@ msgstr "Nefiltrovaný strom rodiny:"
 #: ../gramps/gui/plug/export/_exportoptions.py:149
 #: ../gramps/gui/plug/export/_exportoptions.py:255
 #: ../gramps/gui/plug/export/_exportoptions.py:554
-#, python-brace-format
 msgid "{number_of} Person"
 msgid_plural "{number_of} People"
 msgstr[0] "{number_of} osoba"
@@ -16426,8 +16391,7 @@ msgstr "Sestavu nelze vytvořit"
 #: ../gramps/gui/plug/report/_stylecombobox.py:85
 #: ../gramps/gui/plug/report/_styleeditor.py:115
 #: ../gramps/gui/plug/report/_styleeditor.py:157
-#: ../gramps/gui/plug/report/_styleeditor.py:168
-#: ../gramps/plugins/importer/importgedcom.glade:11 gtklist.h:1
+#: ../gramps/gui/plug/report/_styleeditor.py:168 gtklist.h:1
 msgid "default"
 msgstr "výchozí"
 
@@ -17080,6 +17044,7 @@ msgstr "Aktivní objekt není viditelný"
 #: ../gramps/gui/views/listview.py:448
 #: ../gramps/gui/views/navigationview.py:254
 #: ../gramps/plugins/lib/maps/geography.py:191
+#: ../gramps/plugins/lib/maps/geography.py:204
 #: ../gramps/plugins/view/familyview.py:220
 msgid "Could Not Set a Bookmark"
 msgstr "Nelze přidat záložku"
@@ -17152,6 +17117,7 @@ msgstr "%s byl vložen do záložek"
 
 #: ../gramps/gui/views/navigationview.py:255
 #: ../gramps/plugins/lib/maps/geography.py:192
+#: ../gramps/plugins/lib/maps/geography.py:205
 #: ../gramps/plugins/view/familyview.py:221
 msgid "A bookmark could not be set because no one was selected."
 msgstr "Nelze přidat záložku, protože nikdo není vybrán."
@@ -18267,7 +18233,6 @@ msgstr "%(person)s, narození"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:371
-#, python-brace-format
 msgid "{person}, {age}"
 msgid_plural "{person}, {age}"
 msgstr[0] "{person}, {age}"
@@ -18287,7 +18252,6 @@ msgstr ""
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:433
 #: ../gramps/plugins/textreport/birthdayreport.py:383
-#, python-brace-format
 msgid ""
 "{spouse} and\n"
 " {person}, {nyears}"
@@ -18841,9 +18805,8 @@ msgid "The basic style used for the default text display."
 msgstr "Základní styl používaný pro výchozí zobrazení textu."
 
 #: ../gramps/plugins/drawreport/fanchart.py:740
-#, python-format
-msgid "The style used for the text display of generation %d"
-msgstr "Styl používaný pro textové zobrazení generace %d"
+msgid "The style used for the text display of generation "
+msgstr "Styl používaný pro textové zobrazení generace"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:300
 msgid "Item count"
@@ -19359,7 +19322,6 @@ msgid "Translate headers"
 msgstr "Přeložit záhlaví"
 
 #: ../gramps/plugins/export/exportcsv.py:338
-#, python-brace-format
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
 msgstr "CSV export nepodporuje jiné než primární příjmení, {count} zahozeno"
 
@@ -20759,7 +20721,6 @@ msgstr "Dvojklikem zobrazit osoby %d generace"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:271
-#, python-brace-format
 msgid ""
 " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgid_plural ""
@@ -20781,7 +20742,6 @@ msgstr "Dvojklikem zobrazit všechny generace"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:282
-#, python-brace-format
 msgid " have {number_of} individual\n"
 msgid_plural " have {number_of} individuals\n"
 msgstr[0] " zahrnuje {number_of} osobu\n"
@@ -21590,7 +21550,6 @@ msgstr "Nikdo nebyl vybrán"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/graph/gvfamilylines.py:923
-#, python-brace-format
 msgid "{number_of} child"
 msgid_plural "{number_of} children"
 msgstr[0] "{number_of}dítě"
@@ -21971,28 +21930,11 @@ msgstr "Importovat CSV"
 #: ../gramps/plugins/importer/importcsv.py:344
 #: ../gramps/plugins/importer/importgeneweb.py:185
 #: ../gramps/plugins/importer/importvcard.py:232
-#, python-brace-format
 msgid "Import Complete: {number_of} second"
 msgid_plural "Import Complete: {number_of} seconds"
 msgstr[0] "Import dokončen: {number_of} sekunda"
 msgstr[1] "Import dokončen: {number_of} sekundy"
 msgstr[2] "Import dokončen: {number_of} sekund"
-
-#: ../gramps/plugins/importer/importgedcom.glade:14 gtklist.h:2
-msgid "ANSEL"
-msgstr "ANSEL"
-
-#: ../gramps/plugins/importer/importgedcom.glade:17 gtklist.h:3
-msgid "ANSI (iso-8859-1)"
-msgstr "ANSI (iso-8859-1)"
-
-#: ../gramps/plugins/importer/importgedcom.glade:20 gtklist.h:4
-msgid "ASCII"
-msgstr "ASCII"
-
-#: ../gramps/plugins/importer/importgedcom.glade:23 gtklist.h:5
-msgid "UTF8"
-msgstr "UTF8"
 
 #: ../gramps/plugins/importer/importgedcom.glade:31
 msgid "Gramps - GEDCOM Encoding"
@@ -22059,7 +22001,6 @@ msgid "GeneWeb import"
 msgstr "importovat GeneWeb"
 
 #: ../gramps/plugins/importer/importgeneweb.py:822
-#, python-brace-format
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr "Neplatné datum {date} v {gw_snippet}, datum bude zachováno jako text."
 
@@ -22220,13 +22161,11 @@ msgid "Import of VCards version %s is not supported by Gramps."
 msgstr "Import VCard verze %s není  podporován Gramps."
 
 #: ../gramps/plugins/importer/importvcard.py:483
-#, python-brace-format
 msgid "Invalid date {date} in BDAY {vcard_snippet}, preserving date as text."
 msgstr ""
 "Neplatné datum {date} v BDAY {vcard_snippet}, datum bude zachováno jako text."
 
 #: ../gramps/plugins/importer/importvcard.py:491
-#, python-brace-format
 msgid ""
 "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date "
 "as text."
@@ -22556,7 +22495,6 @@ msgstr "Každý odkaz na poznámku musí mít 'hlink' atribut.."
 #. TRANSLATORS: leave the {date} and {xml} untranslated in the format string,
 #. but you may re-order them if needed.
 #: ../gramps/plugins/importer/importxml.py:2499
-#, python-brace-format
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
 msgstr "Neplatné daum {date} vXML {xml}, XML bude zachováno jako text"
 
@@ -26730,59 +26668,59 @@ msgstr "Vlevo dole"
 msgid "Bottom Right"
 msgstr "Vpravo dole"
 
-#: ../gramps/plugins/lib/maps/geography.py:270
+#: ../gramps/plugins/lib/maps/geography.py:283
 #: ../gramps/plugins/view/fanchartdescview.py:166
 #: ../gramps/plugins/view/fanchartview.py:164
 msgid "_Print..."
 msgstr "_Tisk..."
 
-#: ../gramps/plugins/lib/maps/geography.py:272
+#: ../gramps/plugins/lib/maps/geography.py:285
 msgid "Print or save the Map"
 msgstr "Tisknout nebo uložit mapu"
 
-#: ../gramps/plugins/lib/maps/geography.py:309
+#: ../gramps/plugins/lib/maps/geography.py:322
 msgid "Map Menu"
 msgstr "Nabídka map"
 
-#: ../gramps/plugins/lib/maps/geography.py:312
+#: ../gramps/plugins/lib/maps/geography.py:325
 msgid "Remove cross hair"
 msgstr "Odstranit nitkový kříž"
 
-#: ../gramps/plugins/lib/maps/geography.py:314
+#: ../gramps/plugins/lib/maps/geography.py:327
 msgid "Add cross hair"
 msgstr "Přidat nitkový kříž"
 
-#: ../gramps/plugins/lib/maps/geography.py:321
+#: ../gramps/plugins/lib/maps/geography.py:334
 msgid "Unlock zoom and position"
 msgstr "Odemknout pozici a přiblížení"
 
-#: ../gramps/plugins/lib/maps/geography.py:323
+#: ../gramps/plugins/lib/maps/geography.py:336
 msgid "Lock zoom and position"
 msgstr "Uzamknout pozici a přiblížení"
 
-#: ../gramps/plugins/lib/maps/geography.py:330
+#: ../gramps/plugins/lib/maps/geography.py:343
 msgid "Add place"
 msgstr "Přidat místo"
 
-#: ../gramps/plugins/lib/maps/geography.py:335
+#: ../gramps/plugins/lib/maps/geography.py:348
 msgid "Link place"
 msgstr "Linkovat místo"
 
-#: ../gramps/plugins/lib/maps/geography.py:340
+#: ../gramps/plugins/lib/maps/geography.py:353
 msgid "Center here"
 msgstr "Vystředit zde"
 
-#: ../gramps/plugins/lib/maps/geography.py:353
+#: ../gramps/plugins/lib/maps/geography.py:366
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr "Zaměnit '%(map)s' za =>"
 
-#: ../gramps/plugins/lib/maps/geography.py:372
+#: ../gramps/plugins/lib/maps/geography.py:385
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
 msgstr "Vyprázdnit mezipaměť čtverců '%(map)s'."
 
-#: ../gramps/plugins/lib/maps/geography.py:847
+#: ../gramps/plugins/lib/maps/geography.py:860
 #: ../gramps/plugins/view/geoclose.py:532
 #: ../gramps/plugins/view/geoevents.py:329
 #: ../gramps/plugins/view/geoevents.py:362
@@ -26797,11 +26735,11 @@ msgstr "Vyprázdnit mezipaměť čtverců '%(map)s'."
 msgid "Center on this place"
 msgstr "Vystředit na tomto místě"
 
-#: ../gramps/plugins/lib/maps/geography.py:946
+#: ../gramps/plugins/lib/maps/geography.py:959
 msgid "You have at least two places with the same title."
 msgstr "Máte nejméně dvě místa stejného názvu."
 
-#: ../gramps/plugins/lib/maps/geography.py:947
+#: ../gramps/plugins/lib/maps/geography.py:960
 #, python-format
 msgid ""
 "The title of the places is:\n"
@@ -26818,19 +26756,19 @@ msgstr ""
 "\n"
 "%(bold_start)sPožadavek nemůže být vykonán%(bold_end)s.\n"
 
-#: ../gramps/plugins/lib/maps/geography.py:1071
+#: ../gramps/plugins/lib/maps/geography.py:1084
 msgid "Nothing for this view."
 msgstr "Nic pro tento pohled."
 
-#: ../gramps/plugins/lib/maps/geography.py:1072
+#: ../gramps/plugins/lib/maps/geography.py:1085
 msgid "Specific parameters"
 msgstr "Specifické parametry"
 
-#: ../gramps/plugins/lib/maps/geography.py:1090
+#: ../gramps/plugins/lib/maps/geography.py:1103
 msgid "Where to save the tiles for offline mode."
 msgstr "Kde budou uloženy dlaždice pro offline režim."
 
-#: ../gramps/plugins/lib/maps/geography.py:1094
+#: ../gramps/plugins/lib/maps/geography.py:1107
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
@@ -26840,15 +26778,15 @@ msgstr ""
 "v cestě výše.\n"
 "Buďte opatrní! Pokud nemáte přístup k Internetu, nebudete mít žádnou mapu."
 
-#: ../gramps/plugins/lib/maps/geography.py:1099
+#: ../gramps/plugins/lib/maps/geography.py:1112
 msgid "Zoom used when centering"
 msgstr "Přiblížení použité pro vystředění"
 
-#: ../gramps/plugins/lib/maps/geography.py:1103
+#: ../gramps/plugins/lib/maps/geography.py:1116
 msgid "The maximum number of places to show"
 msgstr "Maximální počet zobrazených míst"
 
-#: ../gramps/plugins/lib/maps/geography.py:1107
+#: ../gramps/plugins/lib/maps/geography.py:1120
 msgid ""
 "Use keypad for shortcuts :\n"
 "Either we choose the + and - from the keypad if we select this,\n"
@@ -26858,11 +26796,11 @@ msgstr ""
 "Buď  pro volbu použijeme + a - z keypadu\n"
 "nebo znak z klávesnice."
 
-#: ../gramps/plugins/lib/maps/geography.py:1112
+#: ../gramps/plugins/lib/maps/geography.py:1125
 msgid "The map"
 msgstr "Mapa"
 
-#: ../gramps/plugins/lib/maps/geography.py:1122
+#: ../gramps/plugins/lib/maps/geography.py:1135
 msgid "Select tile cache directory for offline mode"
 msgstr "Zvolte adresář uložení dlaždic pro offline režim."
 
@@ -27322,7 +27260,6 @@ msgstr "Velikost v bajtech"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/filterbyname.py:395
-#, python-brace-format
 msgid "Filter matched {number_of} record."
 msgid_plural "Filter matched {number_of} records."
 msgstr[0] "Filtru odpovídá {number_of} záznam."
@@ -27635,7 +27572,6 @@ msgstr "Osoby sdílející příjmení '%s'"
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/samesurnames.py:135
 #: ../gramps/plugins/quickview/samesurnames.py:180
-#, python-brace-format
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural ""
 "There are {number_of} people with a matching name, or alternate name.\n"
@@ -27868,7 +27804,6 @@ msgstr "%(person)s, narozen(a)%(relation)s"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/textreport/birthdayreport.py:330
-#, python-brace-format
 msgid "{person}, {age}{relation}"
 msgid_plural "{person}, {age}{relation}"
 msgstr[0] "{person}, {age}{relation}"
@@ -28825,7 +28760,6 @@ msgid "Number of Ancestors for %s"
 msgstr "Počet předků osoby %s"
 
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:125
-#, python-brace-format
 msgid "Generation {number} has {count} individual. {percent}"
 msgid_plural "Generation {number} has {count} individuals. {percent}"
 msgstr[0] "Generace {number} zahrnuje {count} jednotlivce. {percent}"
@@ -29425,7 +29359,6 @@ msgstr "Žádná událost nebyla změněna."
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/changetypes.py:126
-#, python-brace-format
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
 msgstr[0] "{number_of} událost byla změněna."
@@ -29623,7 +29556,6 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2110
-#, python-brace-format
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
 msgstr[0] "{quantity} chybný odkaz dítě/rodina byl opraven\n"
@@ -29641,7 +29573,6 @@ msgstr "osoba %(person)s byla odstraněn z rodiny  %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2134
-#, python-brace-format
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
 msgstr[0] "{quantity} chybný odkaz na rodinu/manžela(ku) byl opraven\n"
@@ -29659,7 +29590,6 @@ msgstr "%(person)s byl(a) vrácen(a) do rodiny %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2158
-#, python-brace-format
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
 msgstr[0] "Byl nalezen {quantity} duplicitní odkaz na rodinu/manžela(ku)\n"
@@ -29678,7 +29608,6 @@ msgstr "%(quantity)d rodin bez rodičů a dětí bylo odstraněno.\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2195
-#, python-brace-format
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
 msgstr[0] "{quantity} poškozený rodinný vztah byl opraven\n"
@@ -29686,7 +29615,6 @@ msgstr[1] "{quantity} poškozené rodinné vztahy byly opraveny\n"
 msgstr[2] "{quantity} poškozených rodinných vztahů bylo opraveno\n"
 
 #: ../gramps/plugins/tool/check.py:2204
-#, python-brace-format
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaná událost nebyla nalezena\n"
@@ -29695,7 +29623,6 @@ msgstr[2] "{quantity} odkazovaných událostí nebylo nalezeno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2212
-#, python-brace-format
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaná rodina nebyla nenalezena\n"
@@ -29704,7 +29631,6 @@ msgstr[2] "{quantity} odkazovaných rodin nebylo nenalezeno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2222
-#, python-brace-format
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
 msgstr[0] "{quantity} datum byl opraven\n"
@@ -29712,7 +29638,6 @@ msgstr[1] "{quantity} data byla opravena\n"
 msgstr[2] "{quantity} datumů bylo opraveno\n"
 
 #: ../gramps/plugins/tool/check.py:2231
-#, python-brace-format
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaný archiv nebyl nalezen\n"
@@ -29721,7 +29646,6 @@ msgstr[2] "{quantity} odkazovaných archivů nebylo nalezeno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2241 ../gramps/plugins/tool/check.py:2329
-#, python-brace-format
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaný objekt médií nebyl nalezen\n"
@@ -29729,7 +29653,6 @@ msgstr[1] "{quantity} odkazované objekty médií nebyly nalezeny\n"
 msgstr[2] "{quantity} odkazovaných objektů médií nebylo nalezeno\n"
 
 #: ../gramps/plugins/tool/check.py:2252
-#, python-brace-format
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} media objects were kept\n"
 msgstr[0] "Odkaz na {quantity} chybějící objekt médií byl ponechán\n"
@@ -29738,7 +29661,6 @@ msgstr[2] "Odkaz na {quantity} chybějících objektů médií byl ponecháno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2260
-#, python-brace-format
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
 msgstr[0] "{quantity} chybějící objekt médií byl nahrazen\n"
@@ -29747,7 +29669,6 @@ msgstr[2] "{quantity} chybějících objekt médií bylo nahrazeno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2268
-#, python-brace-format
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
 msgstr[0] "{quantity} chybějící objekt médií byl odstraněn\n"
@@ -29756,7 +29677,6 @@ msgstr[2] "{quantity} chybějících objektů médií bylo odstraněno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2276
-#, python-brace-format
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaná událost nebyla nalezena\n"
@@ -29765,7 +29685,6 @@ msgstr[2] "{quantity} odkazovaných událostí nebylo nalezeno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2284
-#, python-brace-format
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
 msgstr[0] "{quantity} neplatný název události narození byl opraven\n"
@@ -29774,7 +29693,6 @@ msgstr[2] "{quantity} neplatných názvů událostí narození bylo opraveno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2292
-#, python-brace-format
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
 msgstr[0] "{quantity} neplatný název události úmrtí byl opraven\n"
@@ -29783,7 +29701,6 @@ msgstr[2] "{quantity} neplatných názvůudálostí úmrtí bylo opraveno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2300
-#, python-brace-format
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
 msgstr[0] "{quantity} odkazované místo nebylo nalezeno\n"
@@ -29792,7 +29709,6 @@ msgstr[2] "{quantity} odkazovaných míst nebylo nenalezeno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2308
-#, python-brace-format
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaná citace nebyla nalezena\n"
@@ -29801,7 +29717,6 @@ msgstr[2] "{quantity} odkazovaných citací nebylo nenalezeno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2319
-#, python-brace-format
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaný pramen nebyl nalezen\n"
@@ -29810,7 +29725,6 @@ msgstr[2] "{quantity} odkazovaných pramenů nebylo nenalezeno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2339
-#, python-brace-format
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaný objekt poznámek nebyl nalezen\n"
@@ -29819,7 +29733,6 @@ msgstr[2] "{quantity} odkazovaných objektů poznámek nebylo nalezeno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2349 ../gramps/plugins/tool/check.py:2359
-#, python-brace-format
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
 msgstr[0] "{quantity} odkazovaný štítek nebyl nalezen\n"
@@ -29828,7 +29741,6 @@ msgstr[2] "{quantity} odkazovaných štítků nebylo nalezeno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2369
-#, python-brace-format
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
 msgstr[0] "{quantity} neplatný odkaz formátu jmen byl odstraněn\n"
@@ -29837,7 +29749,6 @@ msgstr[2] "{quantity} neplatných odkazů formátu jmen bylo odstraněno\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2379
-#, python-brace-format
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
 msgstr[0] "{quantity} neplatná citace pramene byla opravena\n"
@@ -29966,7 +29877,6 @@ msgstr "Získat popis události"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/eventnames.py:116
-#, python-brace-format
 msgid "{quantity} event description has been added"
 msgid_plural "{quantity} event descriptions have been added"
 msgstr[0] "{quantity} popis události byl přidán"
@@ -30333,7 +30243,6 @@ msgstr "Počet uskutečněných sloučení"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/mergecitations.py:229
-#, python-brace-format
 msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
 msgstr[0] "{number_of} citace byla sloučena"
@@ -30372,7 +30281,6 @@ msgstr "Všichni v databázi mají vztah k osobě %s"
 #. translators: leave all/any {...} untranslated
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../gramps/plugins/tool/notrelated.py:258
-#, python-brace-format
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
 msgstr[0] "Nastavuje se štítek pro {number_of} osobu"
@@ -30382,7 +30290,6 @@ msgstr[2] "Nastavuje se štítek pro {number_of} osob"
 #. translators: leave all/any {...} untranslated
 #. TRANS: No singular form is needed.
 #: ../gramps/plugins/tool/notrelated.py:301
-#, python-brace-format
 msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
 msgstr[0] "Hedají se vztahy {number_of} osoby"
@@ -30391,7 +30298,6 @@ msgstr[2] "Hledají se vztahy mezi {number_of} osobami"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:381
-#, python-brace-format
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
 msgstr[0] "Hledá se {number_of} osoba"
@@ -30400,7 +30306,6 @@ msgstr[2] "Hledá se {number_of} osob"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:409
-#, python-brace-format
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
 msgstr[0] "Hledá se jméno pro {number_of} osobu"
@@ -32186,7 +32091,6 @@ msgstr "Odstranit osobu jako otce v této rodině"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:859 ../gramps/plugins/view/relview.py:915
-#, python-brace-format
 msgid " ({number_of} sibling)"
 msgid_plural " ({number_of} siblings)"
 msgstr[0] " ({number_of} sourozenec)"
@@ -32261,7 +32165,6 @@ msgstr "Spusťte prosím nástroj pro ověření integrity/opravy databáze"
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/view/relview.py:1374
 #: ../gramps/plugins/view/relview.py:1421
-#, python-brace-format
 msgid " ({number_of} child)"
 msgid_plural " ({number_of} children)"
 msgstr[0] "({number_of} potomek)"
@@ -33785,7 +33688,6 @@ msgstr "%(couple)s, <em>sňatek</em>"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/webreport/webcal.py:1720
-#, python-brace-format
 msgid "{couple}, {years} year anniversary"
 msgid_plural "{couple}, {years} year anniversary"
 msgstr[0] "{couple}, výročí {years} rok"
@@ -33859,6 +33761,34 @@ msgstr "Nebraska"
 #: ../gramps/plugins/webstuff/webstuff.py:153
 msgid "No style sheet"
 msgstr "Žádná šablona"
+
+#: gtklist.h:2
+msgid "ANSEL"
+msgstr "ANSEL"
+
+#: gtklist.h:3
+msgid "ANSI (iso-8859-1)"
+msgstr "ANSI (iso-8859-1)"
+
+#: gtklist.h:4
+msgid "ASCII"
+msgstr "ASCII"
+
+#: gtklist.h:5
+msgid "UTF8"
+msgstr "UTF8"
+
+#: gtklist.h:6
+msgid "All rules must apply"
+msgstr "Musí platit všechna pravidla"
+
+#: gtklist.h:7
+msgid "At least one rule must apply"
+msgstr "Musí platit alespoň jedno pravidlo"
+
+#: gtklist.h:8
+msgid "Exactly one rule must apply"
+msgstr "Musí platit právě jedno pravidlo"
 
 #~ msgid "Webkit module not loaded."
 #~ msgstr "Modul Webkit nebyl načten."
