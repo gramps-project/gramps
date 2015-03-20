@@ -407,11 +407,17 @@ class DateDisplay(object):
             else:
                 date_type = ""
             text = self.display_cal[cal](start, inflect=date_type)
+            modifier = self._mod_str[mod]
+            # some languages have a modifier after the date (e.g. Finnish)
+            # (if so, they are specified in DateParser.modifier_after_to_int)
+            if modifier.startswith(' '):
+                text += modifier
+                modifier = ''
             scal = self.format_extras(cal, newyear)
             return _("{date_quality}{noncompound_modifier}{date}"
                     "{nonstd_calendar_and_ny}").format(
                     date_quality=qual_str, 
-                    noncompound_modifier=self._mod_str[mod],
+                    noncompound_modifier=modifier,
                     date=text, 
                     nonstd_calendar_and_ny=scal)
 
