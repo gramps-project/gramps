@@ -44,7 +44,7 @@ msgstr ""
 "Project-Id-Version: gramps\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-13 10:41-0700\n"
-"PO-Revision-Date: 2015-03-17 21:30+0100\n"
+"PO-Revision-Date: 2015-03-20 11:04+0100\n"
 "Last-Translator: Frederik De Richter <frederik.de.richter@gmail.com>\n"
 "Language-Team: nederlands <frederik.de.richter@gmail.com>\n"
 "Language: nl\n"
@@ -63,19 +63,16 @@ msgstr ""
 "genealogen is."
 
 #: ../data/gramps.appdata.xml.in.h:2
-#, fuzzy
 msgid ""
 "It gives you the ability to record the many details of the life of an individual as well as the complex "
 "relationships between various people, places and events."
 msgstr ""
-"Gramps is een genealogisch programma dat zowel intuïtief voor hobbymatige- als compleet voor professionele "
-"genealogen is. Met het programma kunt u vele details van het leven van idividuen bijhouden en daarnaast de "
-"complexe relaties tussen verschillende personen, plaatsen en gebeurtenissen leggen. Al uw onderzoek wordt "
-"geordend en doorzoekbaar gemaakt, precies zoals u dat wilt."
+"Met het programma kunt u vele details van het leven van individuen bijhouden en daarnaast de complexe relaties "
+"tussen verschillende personen, plaatsen en gebeurtenissen leggen."
 
 #: ../data/gramps.appdata.xml.in.h:3
 msgid "All of your research is kept organized, searchable and as precise as you need it to be."
-msgstr "Al "
+msgstr "Al uw onderzoek wordt geordend en doorzoekbaar gemaakt, precies zoals u dat wilt."
 
 #: ../data/gramps.desktop.in.h:1 ../gramps/gui/glade/displaystate.glade:7
 msgid "Gramps"
@@ -602,7 +599,6 @@ msgstr ""
 "reeks html-bestanden."
 
 #: ../data/tips.xml.in.h:45
-#, fuzzy
 msgid ""
 "<b>Making a Genealogy Website</b><br/>You can easily export your family tree to a web page. Select the entire "
 "database, family lines or selected individuals to a collection of web pages ready for upload to the World Wide "
@@ -610,8 +606,7 @@ msgid ""
 msgstr ""
 "<b>Maak een website van uw stamboom</b><br/>U kunt zeer eenvoudig uw stamboom exporteren naar een webpagina. "
 "Selecteer daarvoor het volledige gegevensbestand, familielijnen of geselecteerde individuen en de aangemaakt "
-"webpagina's zijn klaar om geladen te worden naar het WWW. Het Gramps-project biedt tevens vrije hosting van de "
-"webpagina's indien aangemaakt met Gramps."
+"webpagina's zijn klaar om geladen te worden naar het WWW."
 
 #: ../data/tips.xml.in.h:46
 msgid ""
@@ -795,7 +790,7 @@ msgstr ""
 "De optie '-C' kan niet worden gebruikt."
 
 #: ../gramps/cli/arghandler.py:235
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Error: Input Family Tree \"%s\" does not exist.\n"
 "If GEDCOM, Gramps-xml or grdb, use the -i option to import into a Family Tree instead."
@@ -1382,9 +1377,8 @@ msgid "Family Tree does not exist, as it has been deleted."
 msgstr "Deze stamboom bestaat niet meer omdat dit bestand werd verwijderd."
 
 #: ../gramps/cli/grampscli.py:254
-#, fuzzy
 msgid "The database is locked."
-msgstr "Volledige locatienaam."
+msgstr "Het gegevensbestand is vergrendeld."
 
 #: ../gramps/cli/grampscli.py:255
 msgid "Use the --force-unlock option if you are sure that the database is not in use."
@@ -1559,13 +1553,13 @@ msgid "Private Record"
 msgstr "Gegevens privé"
 
 #: ../gramps/gen/const.py:197
-#, fuzzy
 msgid ""
 "Gramps\n"
 " (Genealogical Research and Analysis Management Programming System)\n"
 "is a personal genealogy program."
 msgstr ""
-"Gramps (Genealogical Research and Analysis Management Programming System)\n"
+"Gramps\n"
+" (Genealogical Research and Analysis Management Programming System)\n"
 "is een genealogisch programma."
 
 # niet/geen
@@ -1595,9 +1589,8 @@ msgstr "JJJJ-MM-DD (ISO)"
 #. strftime() for '%x'.
 #. You may translate this as "Numerical", "System preferred", or similar.
 #: ../gramps/gen/datehandler/_datedisplay.py:71
-#, fuzzy
 msgid "date format|Numerical"
-msgstr "Datumnotatie"
+msgstr "Nimerisch"
 
 #. Full month name, day, year
 #: ../gramps/gen/datehandler/_datedisplay.py:74
@@ -2083,11 +2076,11 @@ msgstr "Vendémiaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:154
 msgid "French month lexeme|Brumaire"
-msgstr ""
+msgstr "Brumaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:155
 msgid "French month lexeme|Frimaire"
-msgstr ""
+msgstr "Frimaire"
 
 #: ../gramps/gen/datehandler/_datestrings.py:156
 msgid "French month lexeme|Nivôse"
@@ -2320,7 +2313,7 @@ msgstr ""
 "verschillende versies van gegevensbestanden."
 
 #: ../gramps/gen/db/exceptions.py:120
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version %(env_version)s format. This version of Gramps "
 "uses Bsddb version %(bdb_version)s. So you are trying to load data created in a newer format into an older "
@@ -2333,9 +2326,8 @@ msgstr ""
 "maakt gebruik van Bsddb versie %(bdb_version)s. U probeert gegevens die gemaakt zijn in een nieuwer formaat in "
 "een ouder programma te laden, wat onvermijdelijk tot problemen leidt.\n"
 "\n"
-"Start uw <b>nieuwere</b> versie van Gramps en <a href=\"http://www.gramps-project.org/wiki/index.php?"
-"title=How_to_make_a_backup/nl\">maak een reservekopie</a> van uw stamboom. Deze kunt u vervolgens in deze "
-"versie van Gramps importeren."
+"Start uw %(bold_start)snewer%(bold_end)s versie van Gramps en %(wiki_backup_html_start)smake a backup"
+"%(html_end)s van uw stamboom. Deze kunt u vervolgens in deze versie van Gramps importeren."
 
 #: ../gramps/gen/db/exceptions.py:150
 #, fuzzy, python-format
@@ -2433,7 +2425,7 @@ msgstr ""
 "\">reservekopie</a> te maken."
 
 #: ../gramps/gen/db/exceptions.py:274
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load was created with Python version %(db_python_version)s. This version of "
 "Gramps uses Python version %(current_python_version)s.  So you are trying to load data created in a newer "
@@ -2446,9 +2438,8 @@ msgstr ""
 "Gramps gebruikt versie %(current_python_version)s. U probeert gegevens die gemaakt zijn in een nieuwer formaat "
 "in een ouder programma te laden, wat onvermijdelijk tot problemen leidt.\n"
 "\n"
-"Start uw <b>nieuwere</b> versie van Gramps en <a href=\"http://www.gramps-project.org/wiki/index.php?"
-"title=How_to_make_a_backup/nl\">maak een reservekopie</a> van uw stamboom. Deze kunt u vervolgens in deze "
-"versie van Gramps importeren."
+"Start uw %(bold_start)sniewere%(bold_end)s versie van Gramps en %(wiki_backup_html_start)smake a backup"
+"%(html_end)s van uw stamboom. Deze kunt u vervolgens in deze versie van Gramps importeren."
 
 #: ../gramps/gen/db/exceptions.py:304
 #, fuzzy, python-format
@@ -2495,39 +2486,39 @@ msgid "_Redo %s"
 msgstr "%s opnieuw doen"
 
 #: ../gramps/gen/db/upgrade.py:378
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  Personen        met %6d citaten in %6d seconden opgewaardeerd\n"
+msgstr "%(n1)6d  Personen        met %(n2)6d citaten in %(n3)6d seconden opgewaardeerd\n"
 
 #: ../gramps/gen/db/upgrade.py:379
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  Gezinnen        met %6d citaten in %6d seconden opgewaardeerd\n"
+msgstr "%(n1)6d Gezinnen        met %(n2)6d citaten in %(n3)6d seconden opgewaardeerd\n"
 
 #: ../gramps/gen/db/upgrade.py:380
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  Gebeurtenissen        met %6d citaten in %6d seconden opgewaardeerd\n"
+msgstr "%(n1)6d  Gebeurtenissen        met %(n2)6d citaten in %(n3)6d seconden opgewaardeerd\n"
 
 #: ../gramps/gen/db/upgrade.py:381
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  Media-objecten        met %6d citaten in %6d seconden opgewaardeerd\n"
+msgstr "%(n1)6d  Media-objecten        met %(n2)6d citaten in %(n3)6d seconden opgewaardeerd\n"
 
 #: ../gramps/gen/db/upgrade.py:382
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  Locaties        met %6d citaten in %6d seconden opgewaardeerd\n"
+msgstr "%(n1)6d  Locaties        met %(n2)6d citaten in %(n3)6d seconden opgewaardeerd\n"
 
 #: ../gramps/gen/db/upgrade.py:383
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  Bibliotheken  met %6d citaten in %6d seconden opgewaardeerd\n"
+msgstr "%(n1)6d  Bibliotheken  met %(n2)6d citaten in %(n3)6d seconden opgewaardeerd\n"
 
 #: ../gramps/gen/db/upgrade.py:384
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  Locaties        met %6d citaten in %6d seconden opgewaardeerd\n"
+msgstr "%(n1)6d  Locaties        met %(n2)6d citaten in %(n3)6d seconden opgewaardeerd\n"
 
 #: ../gramps/gen/db/upgrade.py:769
 msgid "Number of new objects upgraded:\n"
@@ -2554,7 +2545,7 @@ msgid "Upgrade Statistics"
 msgstr "Statistieken opwaarderen"
 
 #: ../gramps/gen/db/write.py:1334
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "An attempt is made to save a reference key which is partly bytecode, this is not allowed.\n"
 "Key is %s"
@@ -2577,9 +2568,8 @@ msgstr ""
 
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/gen/display/name.py:350 ../gramps/plugins/lib/libtreebase.py:714
-#, fuzzy
 msgid ","
-msgstr ", "
+msgstr ","
 
 #: ../gramps/gen/display/name.py:353
 msgid "Default format (defined by Gramps preferences)"
@@ -3126,14 +3116,12 @@ msgid "Matches a citation with a source with a specified Gramps ID"
 msgstr "Vindt een citaat met een bron met een opgegeven Gramps ID"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:52
-#, fuzzy
 msgid "Citations having source notes containing <text>"
-msgstr "Citaten waarvan de notities de <tekst> bevatten"
+msgstr "Citaten waarvan de bronnotities de <tekst> bevatten"
 
 #: ../gramps/gen/filters/rules/citation/_hassourcenoteregexp.py:53
-#, fuzzy
 msgid "Matches citations whose source notes contain a substring or match a regular expression"
-msgstr "Citaten waarvan de notities tekst bevatten die met een reguliere uitdrukking overeenkomen"
+msgstr "Citaten waarvan de bronnotities tekst bevatten die met een reguliere uitdrukking overeenkomen"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:48 ../gramps/gen/filters/rules/event/_hastag.py:48
 #: ../gramps/gen/filters/rules/family/_hastag.py:48 ../gramps/gen/filters/rules/media/_hastag.py:48
@@ -3148,9 +3136,8 @@ msgid "Citations with the <tag>"
 msgstr "Citaten met <tag>"
 
 #: ../gramps/gen/filters/rules/citation/_hastag.py:50
-#, fuzzy
 msgid "Matches citations with the particular tag"
-msgstr "Opmerkingen met een bepaalde tag zoeken"
+msgstr "Citaten met een bepaalde tag zoeken"
 
 #: ../gramps/gen/filters/rules/citation/_matchesfilter.py:45
 msgid "Citations matching the <filter>"
@@ -3299,14 +3286,12 @@ msgid "Day of Week:"
 msgstr "Weekdag:"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:45
-#, fuzzy
 msgid "Events occurring on a particular day of the week"
-msgstr "Toont gebeurtenissen op een bepaalde dag"
+msgstr "Gebeurtenissen op een bepaalde weekdag zoeken"
 
 #: ../gramps/gen/filters/rules/event/_hasdayofweek.py:46
-#, fuzzy
 msgid "Matches events occurring on a particular day of the week"
-msgstr "Gebeurtenissen met citaten die een bepaald waarde hebben"
+msgstr "Gebeurtenissen op een bepaalde weekdag zoeken"
 
 #: ../gramps/gen/filters/rules/event/_hasgallery.py:45
 msgid "Events with <count> media"
@@ -3371,9 +3356,8 @@ msgid "Events with the <tag>"
 msgstr "Gebeurtenissen met de <tag>"
 
 #: ../gramps/gen/filters/rules/event/_hastag.py:50
-#, fuzzy
 msgid "Matches events with the particular tag"
-msgstr "Opmerkingen met een bepaalde tag zoeken"
+msgstr "Gebeurtenissen met een bepaalde tag zoeken"
 
 #: ../gramps/gen/filters/rules/event/_hastype.py:46
 msgid "Events with the particular type"
@@ -4902,9 +4886,8 @@ msgstr "Naam:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:49 ../gramps/gui/editors/filtereditor.py:110
 #: ../gramps/gui/editors/filtereditor.py:560
-#, fuzzy
 msgid "Place type:"
-msgstr "Naamtype:"
+msgstr "Locatieype:"
 
 #: ../gramps/gen/filters/rules/place/_hasdata.py:50 ../gramps/gui/glade/editplace.glade:213
 #: ../gramps/gui/glade/editplaceref.glade:449 ../gramps/gui/glade/mergeplace.glade:548
@@ -5199,9 +5182,8 @@ msgid "Repositories with the <tag>"
 msgstr "Bibliotheken met <tag>"
 
 #: ../gramps/gen/filters/rules/repository/_hastag.py:50
-#, fuzzy
 msgid "Matches repositories with the particular tag"
-msgstr "Opmerkingen met een bepaalde tag zoeken"
+msgstr "Bibliotheken met een bepaalde tag zoeken"
 
 #: ../gramps/gen/filters/rules/repository/_matchesfilter.py:44
 msgid "Repositories matching the <filter>"
@@ -5330,9 +5312,8 @@ msgid "Sources with the <tag>"
 msgstr "Bronnen met <tag>"
 
 #: ../gramps/gen/filters/rules/source/_hastag.py:50
-#, fuzzy
 msgid "Matches sources with the particular tag"
-msgstr "Opmerkingen met een bepaalde tag zoeken"
+msgstr "Bronnen met een bepaalde tag zoeken"
 
 #: ../gramps/gen/filters/rules/source/_matchesfilter.py:44
 msgid "Sources matching the <filter>"
@@ -5692,9 +5673,8 @@ msgid "Religious"
 msgstr "Religie"
 
 #: ../gramps/gen/lib/eventtype.py:152
-#, fuzzy
 msgid "Vocational"
-msgstr "Locatie"
+msgstr "Roeping"
 
 #: ../gramps/gen/lib/eventtype.py:154
 msgid "Academic"
@@ -6475,9 +6455,8 @@ msgid "Borough"
 msgstr "Dorp"
 
 #: ../gramps/gen/lib/placetype.py:82
-#, fuzzy
 msgid "Municipality"
-msgstr "Plaats"
+msgstr "Gemeente"
 
 #: ../gramps/gen/lib/placetype.py:83
 msgid "Town"
@@ -8351,9 +8330,8 @@ msgstr "Gebeurtenisverwijzing"
 
 # Plaatsnaam
 #: ../gramps/gui/clipboard.py:580
-#, fuzzy
 msgid "Place ref"
-msgstr "Locatieboomstruktuur"
+msgstr "Locatieverwijzing"
 
 #. 1 new gramplet
 #. Priority
@@ -8995,14 +8973,13 @@ msgid "Enable spelling checker"
 msgstr "Spellingcontrole aanzetten"
 
 #: ../gramps/gui/configure.py:1267
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
 "GtkSpell niet geladen. Spellingcontrole zal niet beschikbaar zijn.\n"
-"Zie http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-"
-"GObject_introspection_Conversion#Spell_Check_Install om spellingcontrole voor Gramps in te bouwen."
+"Zie %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1274
 msgid "Display Tip of the Day"
@@ -9364,7 +9341,7 @@ msgid "Repair Family Tree?"
 msgstr "Stamboom herstellen?"
 
 #: ../gramps/gui/dbman.py:683
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you click %(bold_start)sProceed%(bold_end)s, Gramps will attempt to recover your Family Tree from the last "
 "good backup. There are several ways this can cause unwanted effects, so %(bold_start)sbackup%(bold_end)s the "
@@ -9384,25 +9361,24 @@ msgid ""
 "repair button can be fixed automatically. If this is the case, you can disable the repair button by removing "
 "the file %(recover_file)s in the Family Tree directory."
 msgstr ""
-"Indien u op <b>Verder gaan</b> klikt, zal Gramps uw stamboom proberen te herstellen vanuit de laatste goede "
-"reservekopie. Omdat er ongewenste effecten kunnen optreden, kunt u het best eerst een <b>reservekopie</b> van "
-"uw stamboom maken.\n"
-"De stamboom die u geselecteerd heeft is opgeslagen in %s.\n"
+"Indien u op %(bold_start)sVerder Gaan%(bold_end)s klikt, zal Gramps uw stamboom proberen te herstellen vanuit "
+"de laatste goede reservekopie. Omdat er ongewenste effecten kunnen optreden, kunt u het best eerst een "
+"%(bold_start)sreservekopie%(bold_end)s van uw stamboom maken.\n"
+"De stamboom die u geselecteerd heeft is opgeslagen in %(dirname)s.\n"
 "\n"
 "Voor u een herstelling uitvoert, dient u zeker te zijn dat de stamboom echt niet meer kan worden geopend. Het "
 "is mogelijk dat het niet-zichtbare programmadeel van het gegevensbestand van sommige fouten automatisch "
 "hersteld.\n"
 "\n"
-"<b>Details:</b> herstellen van een stamboom gebruikt de laatste reservekopie die Gramps opsloeg bij het "
-"laatste gebruik. Indien u gedurende uren/dagen gegevens ingevoerd hebt zonder Gramps te sluiten is al deze "
-"informatie dus verloren! Indien het herstel mislukt, is de oorspronkelijke stamboom voorgoed verloren. Daarom "
-"is dus een reservekopie nodig. Indien nu het herstel mislukt of er teveel informatie verloren is, kunt u de "
-"oorspronkelijke stamboom handmatig herstellen. Voor meer informatie zie de webpagina\n"
-"http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree/nl  --  Het herstellen van een "
-"corrupt gegevensbestand --\n"
+"%(bold_start)sDetails:%(bold_end)s herstellen van een stamboom gebruikt de laatste reservekopie die Gramps "
+"opsloeg bij het laatste gebruik. Indien u gedurende uren/dagen gegevens ingevoerd hebt zonder Gramps te "
+"sluiten is al deze informatie dus verloren! Indien het herstel mislukt, is de oorspronkelijke stamboom "
+"voorgoed verloren. Daarom is dus een reservekopie nodig. Indien nu het herstel mislukt of er teveel informatie "
+"verloren is, kunt u de oorspronkelijke stamboom handmatig herstellen. Voor meer informatie zie de webpagina\n"
+"%(gramps_wiki_recover_url)s\n"
 "Probeer voordat u een herstel uitvoert eerst de stamboom op de normale manier te openen. Diverse fouten die de "
 "herstelknop activeren kunnen automatisch hersteld worden. Wanneer dit het geval is, kunt u de herstelknop "
-"uitschakelen door het bestand <i>need_recover</i> uit de stamboommap te verwijderen."
+"uitschakelen door het bestand %(recover_file)s  uit de stamboommap te verwijderen."
 
 #: ../gramps/gui/dbman.py:714
 msgid "Proceed, I have taken a backup"
@@ -9478,7 +9454,7 @@ msgid "Error detected in database"
 msgstr "Fout gevonden in het gegevensbestand"
 
 #: ../gramps/gui/dialog.py:204
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved by running the \"Check and Repair "
 "Database\" tool.\n"
@@ -9491,7 +9467,7 @@ msgstr ""
 "van het hulpgereedschap \"Controle en herstel gegevensbestand\".\n"
 "\n"
 "Blijft dit probleem zich voordoen na het gebruik van het hulpgereedschap, stuur dan een foutrapport naar "
-"http://bugs.gramps-project.org\n"
+"%(gramps_bugtracker_url)s\n"
 "\n"
 
 #: ../gramps/gui/dialog.py:337 ../gramps/gui/utils.py:301
@@ -10168,15 +10144,15 @@ msgstr "Peetvader"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:68
 msgid "Enclosed By"
-msgstr ""
+msgstr "Besloten in"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:137
 msgid "Place cycle detected"
-msgstr ""
+msgstr "Locatielus vastgesteld"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:138
 msgid "The place you are adding is already enclosed by this place"
-msgstr ""
+msgstr "De locatie die u wilt toevoegen is reeds besloten in deze locatie"
 
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:55
 msgid "Create and add a new repository"
@@ -10326,6 +10302,10 @@ msgid ""
 "which information can be derived. To create a citation, first select the required source, and then record the "
 "location of the information referenced within the source in the 'Volume/Page' field."
 msgstr ""
+"Een bron kan alles zijn waaruit informatie kan afgeleid worden (een persoonlijke getuigenis, een video-opname, "
+"een foto, een bericht in de krant, een grafsteen...). Om een citaat aan te maken dient u eerst de juiste bron "
+"te selecteren. Dan kunt u de gegevens invullen over de plaats van de informatie waarnaar de bron verwijst in "
+"het veld \"Volume/pagina\"."
 
 #: ../gramps/gui/editors/editcitation.py:291
 msgid "Cannot save citation. ID already exists."
@@ -10409,7 +10389,7 @@ msgstr "Datumselectie"
 
 #: ../gramps/gui/editors/editdate.py:270
 msgid "Correct the date or switch from `{cur_mode}' to `{text_mode}'"
-msgstr ""
+msgstr "Datum van `{cur_mode}' naar `{text_mode}' verbeteren "
 
 #: ../gramps/gui/editors/editevent.py:63
 msgid "manual|Editing_Information_About_Events"
@@ -10790,18 +10770,15 @@ msgid "Cannot save media object. ID already exists."
 msgstr "Kan media-object niet opslaan. ID bestaat al."
 
 #: ../gramps/gui/editors/editmedia.py:302
-#, fuzzy
 msgid "There is no media matching the current path value!"
-msgstr "De groene waarden in de rij komen overeen met de huidige locatiewaarden."
+msgstr "Er werden geen media gevonden die overeen komen met de actuele padwaarde."
 
 #: ../gramps/gui/editors/editmedia.py:303
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "You have attempted to use the path with value '%(path)s'. This path does not exist! Please enter a different "
 "path"
-msgstr ""
-"U probeerde de waarde van een bestaande Gramps-ID met waarde in %(id)s te gebruiken. Deze waarde is al in "
-"gebruik. Geef een andere ID op of laat het invoerveld leeg zodat de volgende bruikbare ID kan gebruikt worden."
+msgstr "U probeerde het pad met de waarde '%(path)s' te gebruiken. Dit pad bestaat niet! Geef een andere pad op"
 
 #: ../gramps/gui/editors/editmedia.py:316 ../gramps/gui/editors/editmediaref.py:511
 #, python-format
@@ -10968,9 +10945,8 @@ msgid "New Person"
 msgstr "Nieuw persoon"
 
 #: ../gramps/gui/editors/editperson.py:251
-#, fuzzy
 msgid "manpage section id|Editing_information_about_people"
-msgstr "Informatie_aanpassen_van_gebeurtenissen"
+msgstr "Informatie_aanpassen_van_personen"
 
 #: ../gramps/gui/editors/editperson.py:611 ../gramps/plugins/view/geofamily.py:395
 msgid "Edit Person"
@@ -11111,9 +11087,8 @@ msgid "Cannot save location. Name not entered."
 msgstr "Kan locatie niet opslaan. Naam ontbreekt."
 
 #: ../gramps/gui/editors/editplace.py:254
-#, fuzzy
 msgid "You must enter a name before saving."
-msgstr "U dient eerst een tag aan te maken vooraleer u dit verslag kunt draaien."
+msgstr "U dient eerst een naam in te geven voor het opslaan."
 
 #: ../gramps/gui/editors/editplace.py:263
 msgid "Cannot save place. ID already exists."
@@ -11153,14 +11128,12 @@ msgstr "De locatinaam kan niet leeg zijn"
 
 # Bronnen, verwijzingen, literatuurverwijzingen
 #: ../gramps/gui/editors/editplaceref.py:56 ../gramps/gui/editors/editplaceref.py:95
-#, fuzzy
 msgid "Place Reference Editor"
-msgstr "Personenverwijzingen bewerken"
+msgstr "Locatieverwijzingen bewerken"
 
 #: ../gramps/gui/editors/editplaceref.py:242
-#, fuzzy
 msgid "Modify Place"
-msgstr "Locatie bewerken"
+msgstr "Locatie wijzigen"
 
 # Plaatsen
 #: ../gramps/gui/editors/editplaceref.py:247
@@ -12104,7 +12077,6 @@ msgstr "Een unieke ID voor het citaat"
 #: ../gramps/gui/glade/editcitation.glade:361 ../gramps/gui/glade/editevent.glade:389
 #: ../gramps/gui/glade/editplace.glade:345 ../gramps/gui/glade/editplaceref.glade:483
 #: ../gramps/gui/glade/editrepository.glade:234 ../gramps/gui/glade/editsource.glade:229
-#, fuzzy
 msgid "Tags:"
 msgstr "Tags:"
 
@@ -12133,9 +12105,8 @@ msgid "Q_uality"
 msgstr "K_waliteit"
 
 #: ../gramps/gui/glade/editdate.glade:291
-#, fuzzy
 msgid "_Type"
-msgstr "_Type:"
+msgstr "_Type"
 
 #: ../gramps/gui/glade/editdate.glade:335
 msgid "_Day"
@@ -12808,13 +12779,12 @@ msgid "What type of place this is. Eg 'Country', 'City', ... ."
 msgstr "De soort van de locatie is. Bijvoorbeeld 'Land', 'Stad' , ... ."
 
 #: ../gramps/gui/glade/editplaceref.glade:274
-#, fuzzy
 msgid ""
 "<b>Note:</b> Any changes in the enclosing place information will be reflected in the place itself, for places "
 "that it encloses."
 msgstr ""
-"<b>Opmerking:</b> Alle veranderingen in de informatie van een gedeelde bron zal gereflecteerd worden in de "
-"bron zelf, en voor alle items die naar deze bron verwijzen."
+"<b>Opmerking:</b> Alle veranderingen in de informatie van een locatie zal gereflecteerd worden in de locatie "
+"zelf, en voor alle items die naar deze locatie verwijzen."
 
 #: ../gramps/gui/glade/editreporef.glade:125
 msgid "_Media Type:"
@@ -13009,9 +12979,8 @@ msgid "Select the person that will provide the primary data for the merged perso
 msgstr "Selecteer de persoon die de primaire gegevens zal geven voor de samengevoegde persoon."
 
 #: ../gramps/gui/glade/mergedata.glade:564
-#, fuzzy
 msgid "Title selection"
-msgstr "Filterselectie"
+msgstr "Titelselectie"
 
 #: ../gramps/gui/glade/mergedata.glade:576 ../gramps/gui/glade/mergeplace.glade:182
 msgid "Place 1"
@@ -13283,9 +13252,8 @@ msgid "Author's email:"
 msgstr "E-mail van auteur:"
 
 #: ../gramps/gui/glade/reorder.glade:73
-#, fuzzy
 msgid "Parent relationships"
-msgstr "<b>Ouderrelaties</b>"
+msgstr "Ouderrelaties"
 
 #: ../gramps/gui/glade/reorder.glade:101 ../gramps/gui/glade/reorder.glade:236
 msgid "Arrow top"
@@ -13379,9 +13347,8 @@ msgid "Selected Rule"
 msgstr "Geselecteerde regel"
 
 #: ../gramps/gui/glade/styleeditor.glade:156
-#, fuzzy
 msgid "Style sheet n_ame:"
-msgstr "Stijl_naam:"
+msgstr "Stijlbladnaam:"
 
 #: ../gramps/gui/glade/styleeditor.glade:175
 msgid "Style name"
@@ -15106,9 +15073,8 @@ msgid "Document Styles"
 msgstr "Documentstijlen"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:129
-#, fuzzy
 msgid "New Style"
-msgstr "Stijl"
+msgstr "Nieuwe stijl"
 
 #: ../gramps/gui/plug/report/_styleeditor.py:140
 msgid "Error saving stylesheet"
@@ -15645,7 +15611,7 @@ msgid "Failed Loading Plugin"
 msgstr "Laden van de uitbreiding mislukte"
 
 #: ../gramps/gui/viewmanager.py:1599
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
 "\n"
@@ -15661,8 +15627,8 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Indien u de foutmelding niet zelf kunt oplossen, kunt u de foutmelding doorgeven op http://bugs.gramps-project."
-"org of contact opnemen met de pluginontwikkelaar (%(firstauthoremail)s).\n"
+"Indien u de foutmelding niet zelf kunt oplossen, kunt u de foutmelding doorgeven op %(gramps_bugtracker_url)s "
+"of contact opnemen met de pluginontwikkelaar (%(firstauthoremail)s).\n"
 "\n"
 "Wanneer u niet wilt dat Gramps deze plugin opnieuw probeert in te laden, kunt u deze in het "
 "uitbreidingenbeheer in het menu Help verbergen."
@@ -15672,7 +15638,7 @@ msgid "Failed Loading View"
 msgstr "Scherm kon niet geladen worden"
 
 #: ../gramps/gui/viewmanager.py:1655
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
 "\n"
@@ -15688,8 +15654,8 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Indien u niet zelf de fout kunt herstellen dan kunt u aan foutrapportage doen via http://bugs.gramps-project."
-"org of de auteur van de uitbreiding (%(firstauthoremail)s) contacteren.\n"
+"Indien u niet zelf de fout kunt herstellen dan kunt u aan foutrapportage doen via %(gramps_bugtracker_url)s  "
+"of de auteur van de uitbreiding (%(firstauthoremail)s) contacteren.\n"
 "\n"
 "Wenst u echter dat deze uitbreiding niet meer door Gramps wordt geladen, kunt u de uitbreiding verbergen via "
 "het uitbreidingsmenu in het hulpmenu."
@@ -15738,9 +15704,8 @@ msgstr "Er kon geen bladwijzer worden ingesteld omdat er geen is geselecteerd."
 # het heilig vormsel toedienen, Vormen
 # Bevestiging
 #: ../gramps/gui/views/listview.py:544
-#, fuzzy
 msgid "Confirm every deletion?"
-msgstr "Vorming"
+msgstr "Iedere verwijdering bevestigen?"
 
 #: ../gramps/gui/views/listview.py:545
 msgid "More than one item has been selected for deletion. Ask before deleting each one?"
@@ -16041,9 +16006,8 @@ msgid "Add partner to person"
 msgstr "Partner aan een persoon toevoegen"
 
 #: ../gramps/gui/widgets/fanchart.py:1868
-#, fuzzy
 msgid "Add a person"
-msgstr "Een nieuwe persoon toevoegen"
+msgstr "Een persoon toevoegen"
 
 #: ../gramps/gui/widgets/fanchart.py:1943 ../gramps/plugins/view/relview.py:1554
 msgid "Add Child to Family"
@@ -16827,7 +16791,6 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/drawreport/calendarreport.py:434 ../gramps/plugins/textreport/birthdayreport.py:383
-#, fuzzy
 msgid ""
 "{spouse} and\n"
 " {person}, {nyears}"
@@ -16835,11 +16798,11 @@ msgid_plural ""
 "{spouse} and\n"
 " {person}, {nyears}"
 msgstr[0] ""
-"%(spouse)s en\n"
-" %(person)s, %(nyears)d"
+"{spouse} en\n"
+" {person}, {nyears}"
 msgstr[1] ""
-"%(spouse)s en\n"
-" %(person)s, %(nyears)d"
+"{spouse} en\n"
+" {person}, {nyears}"
 
 #. #########################
 #: ../gramps/plugins/drawreport/calendarreport.py:469 ../gramps/plugins/drawreport/calendarreport.py:471
@@ -17037,9 +17000,9 @@ msgid "Family Chart for %(father1)s and %(mother1)s"
 msgstr "Gezinskaart voor %(father1)s en %(mother1)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:358
-#, fuzzy, python-format
+#, python-format
 msgid "Cousin Chart for %(names)s"
-msgstr "Neven en nichten grafiek voor "
+msgstr "Neven en nichten grafiek voor %(names)s"
 
 #: ../gramps/plugins/drawreport/descendtree.py:754
 #, python-format
@@ -17823,7 +17786,7 @@ msgstr "Hoofdingen vertalen"
 
 #: ../gramps/plugins/export/exportcsv.py:351
 msgid "CSV export doesn't support non-primary surnames, {count} dropped"
-msgstr ""
+msgstr "CSV-export heeft geen ondersteuning voor niet-primaire achternamen, {count} weggelaten"
 
 #: ../gramps/plugins/export/exportcsv.py:368 ../gramps/plugins/importer/importcsv.py:198
 msgid "Birth source"
@@ -18099,12 +18062,12 @@ msgstr ""
 "Klik en sleep naar open plaats om te draaien"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:61
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sFrequently Asked Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"<b><a wiki='%s_-_FAQ'>Frequently Asked Questions</a></b>\n"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sFrequently Asked Questions%(html_end)s%(bold_end)s\n"
 "(hiervoor is een internetverbinding nodig)\n"
 
 # Bronnen vermelden/citeren
@@ -18281,9 +18244,8 @@ msgid "Descendants"
 msgstr "Afstammelingen"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:101
-#, fuzzy
 msgid "Ancestor"
-msgstr "Voorouders"
+msgstr "Voorouder"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:102 ../gramps/plugins/gramplet/gramplet.gpr.py:180
 msgid "Gramplet showing active person's ancestors"
@@ -19101,11 +19063,10 @@ msgstr "Dubbelklik om de personen in generatie %d te zien"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:273
-#, fuzzy
 msgid " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
 msgid_plural " has {count_person} of {max_count_person} individuals ({percent} complete)\n"
-msgstr[0] " heeft %(count_person)d van %(max_count_person)d personen (%(percent)s compleet)\n"
-msgstr[1] " heeft %(count_person)d van %(max_count_person)d personen (%(percent)s compleet)\n"
+msgstr[0] " heeft {count_person} van {max_count_person} personen ({percent} voltooid)\n"
+msgstr[1] " heeft {count_person} van {max_count_person} personene ({percent} voltooid)\n"
 
 #: ../gramps/plugins/gramplet/pedigreegramplet.py:280
 msgid "All generations"
@@ -20212,9 +20173,8 @@ msgid "Gramps - GEDCOM Encoding"
 msgstr "Gramps - GEDCOM coderen"
 
 #: ../gramps/plugins/importer/importgedcom.glade:76
-#, fuzzy
 msgid "GEDCOM Encoding"
-msgstr "Gramps - GEDCOM coderen"
+msgstr "GEDCOM coderen"
 
 #: ../gramps/plugins/importer/importgedcom.glade:94
 msgid ""
@@ -20425,7 +20385,7 @@ msgstr "Het importeren van versie %s van 'VCards' wordt niet door gramps onderst
 
 #: ../gramps/plugins/importer/importvcard.py:483
 msgid "Invalid date {date} in BDAY {vcard_snippet}, preserving date as text."
-msgstr ""
+msgstr "Ongeldige datum {date} in BDAY {vcard_snippet}, datum wordt als tekst behouden."
 
 #: ../gramps/plugins/importer/importvcard.py:491
 msgid "Date {vcard_snippet} not in appropriate format yyyy-mm-dd, preserving date as text."
@@ -20662,7 +20622,7 @@ msgstr ""
 "versie opwaarderen en dan opnieuw proberen."
 
 #: ../gramps/plugins/importer/importxml.py:1051
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more "
 "recent version %(newgramps)s.\n"
@@ -20679,7 +20639,7 @@ msgstr ""
 "Het bestand kan niet worden geïmporteerd. Gebruik een oudere versie van Gramps, die versie %(xmlversion)s van "
 "xml ondersteunt.\n"
 "Zie ook\n"
-" http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+"%(gramps_wiki_xml_url)s\n"
 "voor meer informatie."
 
 #: ../gramps/plugins/importer/importxml.py:1062
@@ -20687,7 +20647,7 @@ msgid "The file will not be imported"
 msgstr "Het bestand kon niet worden geïmporteerd"
 
 #: ../gramps/plugins/importer/importxml.py:1064
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a much "
 "more recent version %(newgramps)s.\n"
@@ -20705,7 +20665,7 @@ msgstr ""
 "ondertussen een oudere versie van Gramps, die versie %(xmlversion)s van xml ondersteunt, gebruiken om dit "
 "bestand te importeren.\n"
 "Zie ook\n"
-"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+"  %(gramps_wiki_xml_url)s\n"
 "voor meer informatie."
 
 #: ../gramps/plugins/importer/importxml.py:1077
@@ -20958,9 +20918,8 @@ msgid "Serbia"
 msgstr "Servië"
 
 #: ../gramps/plugins/lib/holidays.xml.in.h:47
-#, fuzzy
 msgid "Serbia (Latin)"
-msgstr "Servisch"
+msgstr "Servië (Latijn)"
 
 #: ../gramps/plugins/lib/libcairodoc.py:1400
 #, python-format
@@ -21116,13 +21075,13 @@ msgstr "Lege opmerking werd genegeerd"
 #. We have previously found a PLAC
 #: ../gramps/plugins/lib/libgedcom.py:5342
 msgid "A second PLAC ignored"
-msgstr ""
+msgstr "Een tweede PLAC genegeerd"
 
 #. We have perviously found an ADDR, or have populated location
 #. from PLAC title
 #: ../gramps/plugins/lib/libgedcom.py:5509
 msgid "Location already populated; ADDR ignored"
-msgstr ""
+msgstr "Locatie is al bezet; ADDR genegeerd"
 
 # Let op, ipv waarschuwing
 #. empty: discard, with warning and skip subs
@@ -22234,7 +22193,7 @@ msgstr "Zij werd begraven in %(month_year)s te %(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:501
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(month_year)s in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven in %(month_year)s te %(burial_place)s.%(endnotes)s"
+msgstr "%(unknown_gender_name)s werd begraven in %(month_year)s te %(burial_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:502
 #, python-format
@@ -22254,12 +22213,12 @@ msgstr "%(male_name)s werd begraven in %(month_year)s.%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:510
 #, python-format
 msgid "He was buried in %(month_year)s%(endnotes)s."
-msgstr "Hij werd begraven in %(month_year)s.%(endnotes)s"
+msgstr "Hij werd begraven in %(month_year)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:513
 #, python-format
 msgid "%(female_name)s was buried in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s werd begraven in %(month_year)s.%(endnotes)s"
+msgstr "%(female_name)s werd begraven in %(month_year)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:514
 #, python-format
@@ -22284,12 +22243,12 @@ msgstr "Begraven %(month_year)s.%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:525
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven %(modified_date)s te %(burial_place)s.%(endnotes)s"
+msgstr "%(male_name)s werd begraven %(modified_date)s te %(burial_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:526
 #, python-format
 msgid "He was buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Hij werd begraven %(modified_date)s te %(burial_place)s.%(endnotes)s"
+msgstr "Hij werd begraven %(modified_date)s te %(burial_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:529
 #, python-format
@@ -22314,17 +22273,17 @@ msgstr "Deze persoon werd begraven %(modified_date)s te %(burial_place)s%(endnot
 #: ../gramps/plugins/lib/libnarrate.py:536
 #, python-format
 msgid "Buried %(modified_date)s in %(burial_place)s%(endnotes)s."
-msgstr "Begraven %(modified_date)s te %(burial_place)s.%(endnotes)s"
+msgstr "Begraven %(modified_date)s te %(burial_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:541
 #, python-format
 msgid "%(male_name)s was buried %(modified_date)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven %(modified_date)s.%(endnotes)s"
+msgstr "%(male_name)s werd begraven %(modified_date)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:542
 #, python-format
 msgid "He was buried %(modified_date)s%(endnotes)s."
-msgstr "Hij werd begraven %(modified_date)s.%(endnotes)s"
+msgstr "Hij werd begraven %(modified_date)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:545
 #, python-format
@@ -22354,7 +22313,7 @@ msgstr "Begraven %(modified_date)s.%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:557
 #, python-format
 msgid "%(male_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(male_name)s werd begraven in %(burial_place)s.%(endnotes)s"
+msgstr "%(male_name)s werd begraven in %(burial_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:558
 #, python-format
@@ -22374,7 +22333,7 @@ msgstr "Zij werd begraven te %(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:565
 #, python-format
 msgid "%(unknown_gender_name)s was buried in %(burial_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd begraven te %(burial_place)s.%(endnotes)s"
+msgstr "%(unknown_gender_name)s werd begraven te %(burial_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:566
 #, python-format
@@ -22384,7 +22343,7 @@ msgstr "Deze persoon werd begraven te %(burial_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:568
 #, python-format
 msgid "Buried in %(burial_place)s%(endnotes)s."
-msgstr "Begraven te %(burial_place)s.%(endnotes)s"
+msgstr "Begraven te %(burial_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:573
 #, python-format
@@ -22394,12 +22353,12 @@ msgstr "%(male_name)s werd begraven.%(endnotes)s"
 #: ../gramps/plugins/lib/libnarrate.py:574
 #, python-format
 msgid "He was buried%(endnotes)s."
-msgstr "Hij werd begraven.%(endnotes)s"
+msgstr "Hij werd begraven.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:577
 #, python-format
 msgid "%(female_name)s was buried%(endnotes)s."
-msgstr "%(female_name)s werd begraven.%(endnotes)s"
+msgstr "%(female_name)s werd begraven.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:578
 #, python-format
@@ -22419,22 +22378,22 @@ msgstr "Deze persoon werd begraven %(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:584
 #, python-format
 msgid "Buried%(endnotes)s."
-msgstr "Begraven.%(endnotes)s"
+msgstr "Begraven.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:594
 #, python-format
 msgid "%(male_name)s was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(male_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s.%(endnotes)s"
+msgstr "%(male_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:595
 #, python-format
 msgid "He was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Hij werd gedoopt op %(baptism_date)s te %(baptism_place)s.%(endnotes)s"
+msgstr "Hij werd gedoopt op %(baptism_date)s te %(baptism_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:598
 #, python-format
 msgid "%(female_name)s was baptized on %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(female_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s.%(endnotes)s"
+msgstr "%(female_name)s werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:599
 #, python-format
@@ -22454,7 +22413,7 @@ msgstr "Deze persoon werd gedoopt op %(baptism_date)s te %(baptism_place)s%(endn
 #: ../gramps/plugins/lib/libnarrate.py:605
 #, python-format
 msgid "Baptized %(baptism_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Gedoopt %(baptism_date)s te %(baptism_place)s.%(endnotes)s"
+msgstr "Gedoopt %(baptism_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:610
 #, python-format
@@ -22479,7 +22438,7 @@ msgstr "Zij werd gedoopt op %(baptism_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:618
 #, python-format
 msgid "%(unknown_gender_name)s was baptized on %(baptism_date)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd gedoopt op %(baptism_date)s.%(endnotes)s"
+msgstr "%(unknown_gender_name)s werd gedoopt op %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:619
 #, python-format
@@ -22489,7 +22448,7 @@ msgstr "Deze persoon werd gedoopt op %(baptism_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:621
 #, python-format
 msgid "Baptized %(baptism_date)s%(endnotes)s."
-msgstr "Gedoopt %(baptism_date)s.%(endnotes)s"
+msgstr "Gedoopt %(baptism_date)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:626
 #, python-format
@@ -22534,7 +22493,7 @@ msgstr "%(male_name)s werd gedoopt in %(month_year)s.%(endnotes)s"
 #: ../gramps/plugins/lib/libnarrate.py:643
 #, python-format
 msgid "He was baptized in %(month_year)s%(endnotes)s."
-msgstr "Hij werd gedoopt in %(month_year)s.%(endnotes)s"
+msgstr "Hij werd gedoopt in %(month_year)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:646
 #, python-format
@@ -22559,7 +22518,7 @@ msgstr "Deze persoon werd gedoopt in %(month_year)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:653
 #, python-format
 msgid "Baptized %(month_year)s%(endnotes)s."
-msgstr "Gedoopt %(month_year)s.%(endnotes)s"
+msgstr "Gedoopt %(month_year)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:658
 #, python-format
@@ -22584,7 +22543,7 @@ msgstr "Zij werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:666
 #, python-format
 msgid "%(unknown_gender_name)s was baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd gedoopt %(modified_date)s te %(baptism_place)s.%(endnotes)s"
+msgstr "%(unknown_gender_name)s werd gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:667
 #, python-format
@@ -22594,7 +22553,7 @@ msgstr "Deze persoon werd gedoopt %(modified_date)s te %(baptism_place)s%(endnot
 #: ../gramps/plugins/lib/libnarrate.py:669
 #, python-format
 msgid "Baptized %(modified_date)s in %(baptism_place)s%(endnotes)s."
-msgstr "Gedoopt %(modified_date)s te %(baptism_place)s.%(endnotes)s"
+msgstr "Gedoopt %(modified_date)s te %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:674
 #, python-format
@@ -22629,17 +22588,17 @@ msgstr "Deze persoon werd gedoopt %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:685
 #, python-format
 msgid "Baptized %(modified_date)s%(endnotes)s."
-msgstr "Gedoopt %(modified_date)s.%(endnotes)s"
+msgstr "Gedoopt %(modified_date)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:690
 #, python-format
 msgid "%(male_name)s was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "%(male_name)s werd gedoopt te %(baptism_place)s.%(endnotes)s"
+msgstr "%(male_name)s werd gedoopt te %(baptism_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:691
 #, python-format
 msgid "He was baptized in %(baptism_place)s%(endnotes)s."
-msgstr "Hij werd gedoopt te %(baptism_place)s.%(endnotes)s"
+msgstr "Hij werd gedoopt te %(baptism_place)s%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:694
 #, python-format
@@ -22679,7 +22638,7 @@ msgstr "Hij werd gedoopt.%(endnotes)s"
 #: ../gramps/plugins/lib/libnarrate.py:710
 #, python-format
 msgid "%(female_name)s was baptized%(endnotes)s."
-msgstr "%(female_name)s werd gedoopt.%(endnotes)s"
+msgstr "%(female_name)s werd gedoopt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:711
 #, python-format
@@ -22689,7 +22648,7 @@ msgstr "Zij werd gedoopt %(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:714
 #, python-format
 msgid "%(unknown_gender_name)s was baptized%(endnotes)s."
-msgstr "%(unknown_gender_name)s werd gedoopt.%(endnotes)s"
+msgstr "%(unknown_gender_name)s werd gedoopt%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:715
 #, python-format
@@ -22704,17 +22663,17 @@ msgstr "Gedoopt.%(endnotes)s"
 #: ../gramps/plugins/lib/libnarrate.py:727
 #, python-format
 msgid "%(male_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(male_name)s werd gedoopt op %(christening_date)s te %(christening_place)s.%(endnotes)s"
+msgstr "%(male_name)s werd gedoopt op %(christening_date)s te %(christening_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:728
 #, python-format
 msgid "He was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "Hij werd gedoopt op %(christening_date)s te %(christening_place)s.%(endnotes)s"
+msgstr "Hij werd gedoopt op %(christening_date)s te %(christening_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:731
 #, python-format
 msgid "%(female_name)s was christened on %(christening_date)s in %(christening_place)s%(endnotes)s."
-msgstr "%(female_name)s werd gedoopt %(christening_date)s te %(christening_place)s.%(endnotes)s"
+msgstr "%(female_name)s werd gedoopt %(christening_date)s te %(christening_place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:732
 #, python-format
@@ -22819,7 +22778,7 @@ msgstr "Hij werd gedoopt in %(month_year)s.%(endnotes)s"
 #: ../gramps/plugins/lib/libnarrate.py:779
 #, python-format
 msgid "%(female_name)s was christened in %(month_year)s%(endnotes)s."
-msgstr "%(female_name)s werd gedoopt in %(month_year)s.%(endnotes)s"
+msgstr "%(female_name)s werd gedoopt in %(month_year)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:780
 #, python-format
@@ -22909,7 +22868,7 @@ msgstr "Deze persoon werd gedoopt %(modified_date)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:818
 #, python-format
 msgid "Christened %(modified_date)s%(endnotes)s."
-msgstr "Gedoopt %(modified_date)s.%(endnotes)s"
+msgstr "Gedoopt %(modified_date)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:823
 #, python-format
@@ -22954,12 +22913,12 @@ msgstr "%(male_name)s werd gedoopt.%(endnotes)s"
 #: ../gramps/plugins/lib/libnarrate.py:840
 #, python-format
 msgid "He was christened%(endnotes)s."
-msgstr "Hij werd gedoopt.%(endnotes)s"
+msgstr "Hij werd gedoopt.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:843
 #, python-format
 msgid "%(female_name)s was christened%(endnotes)s."
-msgstr "%(female_name)s werd gedoopt.%(endnotes)s"
+msgstr "%(female_name)s werd gedoopt.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:844
 #, python-format
@@ -23284,12 +23243,12 @@ msgstr "Deze persoon trouwde tevens %(spouse)s %(modified_date)s in %(place)s%(e
 #: ../gramps/plugins/lib/libnarrate.py:1001
 #, python-format
 msgid "He also married %(spouse)s in %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Hij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s.%(endnotes)s"
+msgstr "Hij trouwde tevens %(spouse)s in %(partial_date)s in %(place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1002
 #, python-format
 msgid "He also married %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Hij trouwde tevens %(spouse)s op %(full_date)s in %(place)s.%(endnotes)s"
+msgstr "Hij trouwde tevens %(spouse)s op %(full_date)s in %(place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1003
 #, python-format
@@ -23384,7 +23343,7 @@ msgstr "Huwde %(spouse)s %(full_date)s.%(endnotes)s"
 #: ../gramps/plugins/lib/libnarrate.py:1036
 #, python-format
 msgid "Married %(spouse)s %(modified_date)s%(endnotes)s."
-msgstr "Huwde %(spouse)s %(modified_date)s.%(endnotes)s"
+msgstr "Huwde %(spouse)s %(modified_date)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1042
 #, python-format
@@ -23661,7 +23620,7 @@ msgstr "Hij had een relatie met %(spouse)s in %(partial_date)s.%(endnotes)s"
 #: ../gramps/plugins/lib/libnarrate.py:1150
 #, python-format
 msgid "He had an unmarried relationship with %(spouse)s on %(full_date)s%(endnotes)s."
-msgstr "Hij had een relatie (geen huwelijk) met %(spouse)s op %(full_date)s.%(endnotes)s"
+msgstr "Hij had een relatie (geen huwelijk) met %(spouse)s op %(full_date)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1151
 #, python-format
@@ -23861,7 +23820,7 @@ msgstr "Hij had een relatie met %(spouse)s in %(partial_date)s in %(place)s.%(en
 #: ../gramps/plugins/lib/libnarrate.py:1230
 #, python-format
 msgid "He had a relationship with %(spouse)s on %(full_date)s in %(place)s%(endnotes)s."
-msgstr "Hij had een relatie met %(spouse)s op %(full_date)s in %(place)s.%(endnotes)s"
+msgstr "Hij had een relatie met %(spouse)s op %(full_date)s in %(place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1231
 #, python-format
@@ -23886,7 +23845,7 @@ msgstr "Zij had een relatie met %(spouse)s %(modified_date)s in %(place)s%(endno
 #: ../gramps/plugins/lib/libnarrate.py:1239
 #, python-format
 msgid "Relationship with %(spouse)s %(partial_date)s in %(place)s%(endnotes)s."
-msgstr "Relatie met %(spouse)s %(partial_date)s in %(place)s.%(endnotes)s"
+msgstr "Relatie met %(spouse)s %(partial_date)s in %(place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1240
 #, python-format
@@ -24066,7 +24025,7 @@ msgstr "Zij had tevens een relatie met %(spouse)s %(modified_date)s.%(endnotes)s
 #: ../gramps/plugins/lib/libnarrate.py:1308
 #, python-format
 msgid "Also relationship with %(spouse)s %(partial_date)s%(endnotes)s."
-msgstr "Ook een relatie met %(spouse)s %(partial_date)s.%(endnotes)s"
+msgstr "Ook een relatie met %(spouse)s %(partial_date)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1309
 #, python-format
@@ -24086,7 +24045,7 @@ msgstr "Deze persoon had een relatie met %(spouse)s in %(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1316
 #, python-format
 msgid "He had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Hij had een relatie met %(spouse)s in %(place)s.%(endnotes)s"
+msgstr "Hij had een relatie met %(spouse)s in %(place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1317
 #, python-format
@@ -24096,7 +24055,7 @@ msgstr "Zij had een relatie met %(spouse)s te %(place)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1318
 #, python-format
 msgid "Relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Relatie met %(spouse)s te %(place)s.%(endnotes)s"
+msgstr "Relatie met %(spouse)s te %(place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1322
 #, python-format
@@ -24106,17 +24065,17 @@ msgstr "Deze persoon had tevens een relatie met %(spouse)s te %(place)s%(endnote
 #: ../gramps/plugins/lib/libnarrate.py:1323
 #, python-format
 msgid "He also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Hij had bovendien een relatie met %(spouse)s in %(place)s.%(endnotes)s"
+msgstr "Hij had bovendien een relatie met %(spouse)s in %(place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1324
 #, python-format
 msgid "She also had a relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Zij had tevens een relatie met %(spouse)s te %(place)s.%(endnotes)s"
+msgstr "Zij had tevens een relatie met %(spouse)s te %(place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1325
 #, python-format
 msgid "Also relationship with %(spouse)s in %(place)s%(endnotes)s."
-msgstr "Ook een relatie met %(spouse)s in %(place)s.%(endnotes)s"
+msgstr "Ook een relatie met %(spouse)s in %(place)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1329
 #, python-format
@@ -24128,7 +24087,7 @@ msgstr "Deze persoon had een relatie met %(spouse)s%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1330
 #, python-format
 msgid "He had a relationship with %(spouse)s%(endnotes)s."
-msgstr "Hij had een relatie met %(spouse)s.%(endnotes)s"
+msgstr "Hij had een relatie met %(spouse)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libnarrate.py:1331
 #, python-format
@@ -24160,7 +24119,7 @@ msgstr "Zij had tevens een relatie met %(spouse)s.%(endnotes)s."
 #: ../gramps/plugins/lib/libnarrate.py:1339
 #, python-format
 msgid "Also relationship with %(spouse)s%(endnotes)s."
-msgstr "Ook een relatie met %(spouse)s.%(endnotes)s"
+msgstr "Ook een relatie met %(spouse)s.%(endnotes)s."
 
 #: ../gramps/plugins/lib/libpersonview.py:105
 msgid "Number of Parents"
@@ -24287,6 +24246,7 @@ msgstr "Kan locatie niet verwijderen."
 #: ../gramps/plugins/lib/libplaceview.py:370
 msgid "This place is currently referenced by another place. First remove the places it contains."
 msgstr ""
+"Naar deze locatie wordt al verzezen door een andere  locatie. Eerst dient u deze plaatsen te verwijderen."
 
 #: ../gramps/plugins/lib/libplaceview.py:411 ../gramps/plugins/lib/libplaceview.py:419
 msgid "Cannot merge places."
@@ -24303,7 +24263,7 @@ msgstr ""
 
 #: ../gramps/plugins/lib/libplaceview.py:420
 msgid "Merging these places would create a cycle in the place hierarchy."
-msgstr ""
+msgstr "Door deze locaties samen te voegen onstaat een lus in de locatiehiërarchie."
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:32
 msgid "Provides a library for using Cairo to generate documents."
@@ -24315,7 +24275,7 @@ msgstr "GEDCOM bewerkingsfunctionaliteit"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:68
 msgid "Provides recursive routines for reports"
-msgstr ""
+msgstr "Herhaalbare routines voor verslagen"
 
 #: ../gramps/plugins/lib/libplugins.gpr.py:85
 msgid "Provides common functionality for Gramps XML import/export."
@@ -24502,7 +24462,7 @@ msgstr "'%(map)s' vervangen door =>"
 #: ../gramps/plugins/lib/maps/geography.py:373
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr ""
+msgstr "De '%(map) s' tegels cache wissen."
 
 #: ../gramps/plugins/lib/maps/geography.py:848 ../gramps/plugins/view/geoclose.py:532
 #: ../gramps/plugins/view/geoevents.py:329 ../gramps/plugins/view/geoevents.py:362
@@ -24518,7 +24478,7 @@ msgid "You have at least two places with the same title."
 msgstr "U hebt tenminste twee locaties met dezelfde titel."
 
 #: ../gramps/plugins/lib/maps/geography.py:948
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The title of the places is:\n"
 "%(title)s\n"
@@ -24527,12 +24487,12 @@ msgid ""
 "\n"
 "%(bold_start)sI can't proceed with your request%(bold_end)s.\n"
 msgstr ""
-"De locatietitel is:\n"
-"<b>%(title)s</b>\n"
+"De titel van de locaties is:\n"
+"%(title)s\n"
 "Volgende locaties zijn gelijkaardig: %(gid)s\n"
 "Ofwel dient u de locatie te hernoemen of u dient ze samen te voegen.\n"
 "\n"
-"<b>Aan de vraag kan niet worden voldaan</b>.\n"
+"%(bold_start)sAan de vraag kan niet worden voldaan%(bold_end)s.\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1072
 msgid "Nothing for this view."
@@ -24569,6 +24529,9 @@ msgid ""
 "Either we choose the + and - from the keypad if we select this,\n"
 "or we use the characters from the keyboard."
 msgstr ""
+"Toetsen gebruiken voor snelkoppelingen: \n"
+"Ofwel kiest u de + en - op het toetsenbord als u dit selecteert, \n"
+"of u gebruikt de tekens van het toetsenbord."
 
 # tempel
 #: ../gramps/plugins/lib/maps/geography.py:1113
@@ -24576,9 +24539,8 @@ msgid "The map"
 msgstr "De kaart"
 
 #: ../gramps/plugins/lib/maps/geography.py:1123
-#, fuzzy
 msgid "Select tile cache directory for offline mode"
-msgstr "Waar moeten de tegels voor 'offline' gebruik opgeslagen worden."
+msgstr "In welke map moeten de tegels voor 'offline' gebruik opgeslagen worden"
 
 #: ../gramps/plugins/lib/maps/osmgps.py:111
 #, python-format
@@ -25325,11 +25287,10 @@ msgstr "Personen met de achternaam '%s'"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/quickview/samesurnames.py:135 ../gramps/plugins/quickview/samesurnames.py:180
-#, fuzzy
 msgid "There is {number_of} person with a matching name, or alternate name.\n"
 msgid_plural "There are {number_of} people with a matching name, or alternate name.\n"
-msgstr[0] "Er is %d persoon met een overeenkomende naam of een alternatieve naam.\n"
-msgstr[1] "Er zijn %d personen met een overeenkomende naam of een alternatieve naam.\n"
+msgstr[0] "Er is {number_of} persoon met een overeenkomende naam of een alternatieve naam.\n"
+msgstr[1] "Er zijn {number_of} personen met een overeenkomende naam of een alternatieve naam.\n"
 
 #. display the title
 #: ../gramps/plugins/quickview/samesurnames.py:158
@@ -25463,7 +25424,7 @@ msgstr "Uitvalmenu  zijbalk"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:48
 msgid "Selection of categories and views from drop-down lists"
-msgstr ""
+msgstr "Selectie van categorieën en schermen via uitvalslijsten"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:56
 msgid "Drop-Down"
@@ -25475,7 +25436,7 @@ msgstr "Zijbalk uitvouwen"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:63
 msgid "Selection of views from lists with expanders"
-msgstr ""
+msgstr "Selectie vanschermen via lijsten met expanties"
 
 #: ../gramps/plugins/sidebar/sidebar.gpr.py:71
 msgid "Expander"
@@ -25809,9 +25770,8 @@ msgstr "%(event_name)s: %(event_text)s"
 #: ../gramps/plugins/textreport/detancestralreport.py:464
 #: ../gramps/plugins/textreport/detdescendantreport.py:356
 #: ../gramps/plugins/textreport/detdescendantreport.py:469 ../gramps/plugins/textreport/familygroup.py:123
-#, fuzzy
 msgid "; "
-msgstr ", "
+msgstr "; "
 
 #: ../gramps/plugins/textreport/detancestralreport.py:565
 #: ../gramps/plugins/textreport/detdescendantreport.py:617
@@ -26336,7 +26296,7 @@ msgstr "%(type)s: %(value)s"
 #: ../gramps/plugins/textreport/indivcomplete.py:230
 #, python-format
 msgid "%(parent-name)s, relationship: %(rel-type)s"
-msgstr ""
+msgstr "%(parent-name)s, verwantschap: %(rel-type)s"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:273
 msgid "Alternate Parents"
@@ -26421,9 +26381,8 @@ msgid "The style used for the spouse's name."
 msgstr "De gebruikte opmaak voor naam van de echtgenoot."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1072
-#, fuzzy
 msgid "A style used for image facts."
-msgstr "De gebruikte opmaak voor de voettekst."
+msgstr "De gebruikte opmaak voor de afbeeldingen."
 
 #: ../gramps/plugins/textreport/indivcomplete.py:1082
 msgid "A style used for image captions."
@@ -26475,11 +26434,10 @@ msgid "Number of Ancestors for %s"
 msgstr "Aantal voorouders van %s"
 
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:125
-#, fuzzy
 msgid "Generation {number} has {count} individual. {percent}"
 msgid_plural "Generation {number} has {count} individuals. {percent}"
-msgstr[0] "Generatie %(generation)d bevat %(count)d persoon. %(percent)s"
-msgstr[1] "Generatie %(generation)d bevat %(count)d personen. (%(percent)s"
+msgstr[0] "Generatie {number} bevat {count} persoon. {percent}"
+msgstr[1] "Generatie {number} bevat {count} personen. {percent}"
 
 #. TC # English return something like:
 #. Total ancestors in generations 2 to 3 is 4. (66.67%)
@@ -26499,9 +26457,8 @@ msgid "Place Report"
 msgstr "Locaties"
 
 #: ../gramps/plugins/textreport/placereport.py:108
-#, fuzzy
 msgid "Please select at least one place before running this."
-msgstr "U dient eerst een tag aan te maken vooraleer u dit verslag kunt draaien."
+msgstr "U dient eerst minstens één locatie op te geven vooraleer u dit verslag kunt draaien."
 
 #: ../gramps/plugins/textreport/placereport.py:135
 msgid "Generating report"
@@ -26799,9 +26756,8 @@ msgid "Total size of media objects: %s MB"
 msgstr "Totale grootte van media-objecten: %s MB"
 
 #: ../gramps/plugins/textreport/summary.py:282
-#, fuzzy
 msgid "Whether to count private data"
-msgstr "Al of niet privégegevens toevoegen"
+msgstr "Al of niet met privégegevens meetellen"
 
 #: ../gramps/plugins/textreport/tableofcontents.py:63 ../gramps/plugins/textreport/textplugins.gpr.py:366
 msgid "Table Of Contents"
@@ -27056,11 +27012,10 @@ msgstr "Er werd geen gebeurtenisgegeven aangepast."
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/changetypes.py:133
-#, fuzzy
 msgid "{number_of} event record was modified."
 msgid_plural "{number_of} event records were modified."
-msgstr[0] "Er werd geen gebeurtenisgegeven aangepast."
-msgstr[1] "Er werd geen gebeurtenisgegeven aangepast."
+msgstr[0] "Er werd {number_of} gebeurtenisgegeven aangepast."
+msgstr[1] "Er werd {number_of} gebeurtenisgegevens aangepast."
 
 #: ../gramps/plugins/tool/check.py:108 ../gramps/plugins/tool/check.py:246
 msgid "Checking Database"
@@ -27072,7 +27027,6 @@ msgid "Looking for cross table duplicates"
 msgstr "Mogelijke dubbele kruistabellen zoeken"
 
 #: ../gramps/plugins/tool/check.py:159
-#, fuzzy
 msgid ""
 "Your Family Tree contains cross table duplicate handles.\n"
 " This is bad and can be fixed by making a backup of your\n"
@@ -27134,7 +27088,7 @@ msgid "Media object could not be found"
 msgstr "Media-object kon niet worden gevonden"
 
 #: ../gramps/plugins/tool/check.py:722
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The file:\n"
 "%(file_name)s\n"
@@ -27143,9 +27097,12 @@ msgid ""
 "You may choose to either remove the reference from the database,\n"
 "keep the reference to the missing file, or select a new file."
 msgstr ""
-"Er wordt naar %(file_name)s verwezen in het gegevensbestand, maar deze bestaat niet meer. Het bestand is "
-"mogelijk verwijderd of verplaatst naar een ander plek. U kunt nu kiezen de verwijzing uit het gegevensbestand "
-"te verwijderen, de verwijzing naar het ontbrekende bestand te behouden, of een nieuw bestand te kiezen."
+"Naar het bestand:\n"
+"%(file_name)s\n"
+"wordt verwezen in het gegevensbestand, maar deze bestaat niet meer.\n"
+"Het bestand is mogelijk verwijderd of verplaatst naar een ander plek.\n"
+"U kunt nu kiezen de verwijzing uit het gegevensbestand te verwijderen,\n"
+"de verwijzing naar het ontbrekende bestand te behouden, of een nieuw bestand te kiezen."
 
 #: ../gramps/plugins/tool/check.py:803
 msgid "Looking for empty people records"
@@ -27236,9 +27193,8 @@ msgid "Looking for tag reference problems"
 msgstr "Naar problemen met tagverwijzingen zoeken"
 
 #: ../gramps/plugins/tool/check.py:1937
-#, fuzzy
 msgid "Looking for media source reference problems"
-msgstr "Naar problemen met bronverwijzingen zoeken"
+msgstr "Naar problemen met mediabronverwijzingen zoeken"
 
 #: ../gramps/plugins/tool/check.py:2104
 msgid "No errors were found"
@@ -27255,11 +27211,10 @@ msgstr "Geen fouten gevonden: Het gegevensbestand is goed door de interne contro
 # gebroken link, klinkt zo stom, verkeerd is duidelijker, komt op hetzelfde neer.
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2115
-#, fuzzy
 msgid "{quantity} broken child/family link was fixed\n"
 msgid_plural "{quantity} broken child/family links were fixed\n"
-msgstr[0] "Er is %(quantity)d gebroken kind-gezin verwijzing hersteld\n"
-msgstr[1] "Er zijn %(quantity)d gebroken kind-gezin verwijzingen hersteld\n"
+msgstr[0] "Er is {quantity} gebroken kind-gezin verwijzing hersteld\n"
+msgstr[1] "Er zijn {quantity} gebroken kind-gezin verwijzingen hersteld\n"
 
 #: ../gramps/plugins/tool/check.py:2124
 msgid "Non existing child"
@@ -27272,11 +27227,10 @@ msgstr "%(person)s is verwijderd uit het gezin %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2139
-#, fuzzy
 msgid "{quantity} broken spouse/family link was fixed\n"
 msgid_plural "{quantity} broken spouse/family links were fixed\n"
-msgstr[0] "Er is %(quantity)d gebroken echtgeno(o)t(e)-gezin verwijzing hersteld\n"
-msgstr[1] "Er werden %(quantity)d gebroken echtgeno(o)t(e)-gezin verwijzingen hersteld\n"
+msgstr[0] "Er is {quantity} gebroken echtgeno(o)t(e)-gezinsverwijzing hersteld\n"
+msgstr[1] "Er werden {quantity} gebroken echtgeno(o)t(e)-gezinsverwijzingen hersteld\n"
 
 #: ../gramps/plugins/tool/check.py:2148 ../gramps/plugins/tool/check.py:2174
 msgid "Non existing person"
@@ -27289,11 +27243,10 @@ msgstr "%(person)s werd terug geplaatst in het gezin %(family)s\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2163
-#, fuzzy
 msgid "{quantity} duplicate spouse/family link was found\n"
 msgid_plural "{quantity} duplicate spouse/family links were found\n"
-msgstr[0] "%(quantity)d dubbele echtgenoot-gezin verwijzing werd gevonden\n"
-msgstr[1] "%(quantity)d dubbele echtgenoten-gezin verwijzgingen werden gevonden\n"
+msgstr[0] "{quantity} dubbele echtgenoot/gezinsverwijzing werd gevonden\n"
+msgstr[1] "{quantity} dubbele echtgenoten/gezinsverwijzgingen werden gevonden\n"
 
 #: ../gramps/plugins/tool/check.py:2188
 msgid "1 family with no parents or children found, removed.\n"
@@ -27306,152 +27259,133 @@ msgstr "%(quantity)d gezinnen met ouders noch kinderen gevonden en verwijderd.\n
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2200
-#, fuzzy
 msgid "{quantity} corrupted family relationship fixed\n"
 msgid_plural "{quantity} corrupted family relationships fixed\n"
-msgstr[0] "%d gecorrumpeerde gezinsrelatie hersteld\n"
-msgstr[1] "%d gecorrumpeerde gezinsrelaties herstekd\n"
+msgstr[0] "{quantity}  gecorrumpeerde gezinsrelatie hersteld\n"
+msgstr[1] "{quantity} gecorrumpeerde gezinsrelaties herstekd\n"
 
 #: ../gramps/plugins/tool/check.py:2209
-#, fuzzy
 msgid "{quantity} person was referenced but not found\n"
 msgid_plural "{quantity} persons were referenced, but not found\n"
-msgstr[0] "naar %(quantity)d gebeurtenis werd verwezen maar die werd niet gevonden\n"
-msgstr[1] "naar %(quantity)d gebeurtenissen werd verwezen maar die werden niet gevonden\n"
+msgstr[0] "naar {quantity} gebeurtenis werd verwezen maar die werd niet gevonden\n"
+msgstr[1] "naar {quantity} gebeurtenissen werd verwezen maar die werden niet gevonden\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2217
-#, fuzzy
 msgid "{quantity} family was referenced but not found\n"
 msgid_plural "{quantity} families were referenced, but not found\n"
-msgstr[0] "Er werd naar %d gezin verwezen, dat niet kon worden gevonden\n"
-msgstr[1] "Er werd naar %d gezinnen verwezen, die niet konden worden gevonden\n"
+msgstr[0] "Er werd naar {quantity} gezin verwezen, dat niet kon worden gevonden\n"
+msgstr[1] "Er werd naar {quantity} gezinnen verwezen, die niet konden worden gevonden\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2227
-#, fuzzy
 msgid "{quantity} date was corrected\n"
 msgid_plural "{quantity} dates were corrected\n"
-msgstr[0] "%d datum werd verbeterd\n"
-msgstr[1] "%d datums werden verbeterd\n"
+msgstr[0] "{quantity} datum werd verbeterd\n"
+msgstr[1] "{quantity} datums werden verbeterd\n"
 
 #: ../gramps/plugins/tool/check.py:2236
-#, fuzzy
 msgid "{quantity} repository was referenced but not found\n"
 msgid_plural "{quantity} repositories were referenced, but not found\n"
-msgstr[0] "Er was een verwijzing naar %(quantity)d bibliotheek, die niet werd gevonden\n"
-msgstr[1] "Er waren verwijzingen naar %(quantity)d bibliotheken, die niet werden gevonden\n"
+msgstr[0] "Er was een verwijzing naar {quantity} bibliotheek, die niet werd gevonden\n"
+msgstr[1] "Er waren verwijzingen naar {quantity} bibliotheken, die niet werden gevonden\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2246 ../gramps/plugins/tool/check.py:2334
-#, fuzzy
 msgid "{quantity} media object was referenced but not found\n"
 msgid_plural "{quantity} media objects were referenced, but not found\n"
-msgstr[0] "Er was een verwijzing naar %(quantity)d media-object welke niet werd gevonden\n"
-msgstr[1] "Er waren verwijzingen naar %(quantity)d media-objecten welke niet werden gevonden\n"
+msgstr[0] "Er was een verwijzing naar {quantity} media-object welke niet werd gevonden\n"
+msgstr[1] "Er waren verwijzingen naar {quantity} media-objecten welke niet werden gevonden\n"
 
 #: ../gramps/plugins/tool/check.py:2257
-#, fuzzy
 msgid "Reference to {quantity} missing media object was kept\n"
 msgid_plural "References to {quantity} media objects were kept\n"
-msgstr[0] "Verwijzing naar %(quantity)d ontbrekend media-object werd behouden\n"
-msgstr[1] "Verwijzingen naar %(quantity)d ontbrekende media-objecten werden behouden\n"
+msgstr[0] "Verwijzing naar {quantity} ontbrekend media-object werd behouden\n"
+msgstr[1] "Verwijzingen naar {quantity} ontbrekende media-objecten werden behouden\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2265
-#, fuzzy
 msgid "{quantity} missing media object was replaced\n"
 msgid_plural "{quantity} missing media objects were replaced\n"
-msgstr[0] "%(quantity)d ontbrekend media-object werd vervangen\n"
-msgstr[1] "%(quantity)d ontbrekende media-objecten werden vervangen\n"
+msgstr[0] "{quantity} ontbrekend media-object werd vervangen\n"
+msgstr[1] "{quantity}  ontbrekende media-objecten werden vervangen\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2273
-#, fuzzy
 msgid "{quantity} missing media object was removed\n"
 msgid_plural "{quantity} missing media objects were removed\n"
-msgstr[0] "%(quantity)d ontbrekend media-object werd verwijderd\n"
-msgstr[1] "%(quantity)d ontbrekende media-objecten werden verwijderd\n"
+msgstr[0] "{quantity}  ontbrekend media-object werd verwijderd\n"
+msgstr[1] "{quantity}  ontbrekende media-objecten werden verwijderd\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2281
-#, fuzzy
 msgid "{quantity} event was referenced but not found\n"
 msgid_plural "{quantity} events were referenced, but not found\n"
-msgstr[0] "naar %(quantity)d gebeurtenis werd verwezen maar die werd niet gevonden\n"
-msgstr[1] "naar %(quantity)d gebeurtenissen werd verwezen maar die werden niet gevonden\n"
+msgstr[0] "naar {quantity} gebeurtenis werd verwezen maar die werd niet gevonden\n"
+msgstr[1] "naar {quantity} gebeurtenissen werd verwezen maar die werden niet gevonden\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2289
-#, fuzzy
 msgid "{quantity} invalid birth event name was fixed\n"
 msgid_plural "{quantity} invalid birth event names were fixed\n"
-msgstr[0] "%(quantity)d ongeldige geboorte verbeterd\n"
-msgstr[1] "%(quantity)d ongeldige geboortes werden verbeterd\n"
+msgstr[0] "{quantity} ongeldige geboorte verbeterd\n"
+msgstr[1] "{quantity} ongeldige geboortes werden verbeterd\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2297
-#, fuzzy
 msgid "{quantity} invalid death event name was fixed\n"
 msgid_plural "{quantity} invalid death event names were fixed\n"
-msgstr[0] "%(quantity)d ongeldige sterfgeval werd verbeterd\n"
-msgstr[1] "%(quantity)d ongeldige sterfgevallen werden verbeterd\n"
+msgstr[0] "{quantity}  ongeldige sterfgeval werd verbeterd\n"
+msgstr[1] "{quantity}  ongeldige sterfgevallen werden verbeterd\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2305
-#, fuzzy
 msgid "{quantity} place was referenced but not found\n"
 msgid_plural "{quantity} places were referenced, but not found\n"
-msgstr[0] "%(quantity)d verwijzing naar een locatie, die niet werd gevonden\n"
-msgstr[1] "%(quantity)d verwijzingen naar locaties, die niet werden gevonden\n"
+msgstr[0] "{quantity}  verwijzing naar een locatie, die niet werd gevonden\n"
+msgstr[1] "{quantity}  verwijzingen naar locaties, die niet werden gevonden\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2313
-#, fuzzy
 msgid "{quantity} citation was referenced but not found\n"
 msgid_plural "{quantity} citations were referenced, but not found\n"
-msgstr[0] "naar %(quantity)d citaat werd verwezen maar die werd niet gevonden\n"
-msgstr[1] "naar %(quantity)d citaten werd verwezen maar die werden niet gevonden\n"
+msgstr[0] "naar {quantity} citaat werd verwezen maar die werd niet gevonden\n"
+msgstr[1] "naar {quantity} citaten werd verwezen maar die werden niet gevonden\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2324
-#, fuzzy
 msgid "{quantity} source was referenced but not found\n"
 msgid_plural "{quantity} sources were referenced, but not found\n"
-msgstr[0] "Er wordt verwezen naar %(quantity)d bron maar die werd niet gevonden\n"
-msgstr[1] "Er wordt verwezen naar %(quantity)d bronnen, maar niet werden niet gevonden\n"
+msgstr[0] "Er wordt verwezen naar {quantity} bron maar die werd niet gevonden\n"
+msgstr[1] "Er wordt verwezen naar {quantity} bronnen, maar niet werden niet gevonden\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2344
-#, fuzzy
 msgid "{quantity} note object was referenced but not found\n"
 msgid_plural "{quantity} note objects were referenced, but not found\n"
-msgstr[0] "%(quantity)d verwijzing naar een opmerking welke niet werd gevonden\n"
-msgstr[1] "%(quantity)d verwijzingen naar opmerkingen welke niet werden gevonden\n"
+msgstr[0] "{quantity}  verwijzing naar een opmerking welke niet werd gevonden\n"
+msgstr[1] "{quantity}  verwijzingen naar opmerkingen welke niet werden gevonden\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2354 ../gramps/plugins/tool/check.py:2364
-#, fuzzy
 msgid "{quantity} tag object was referenced but not found\n"
 msgid_plural "{quantity} tag objects were referenced, but not found\n"
-msgstr[0] "naar %(quantity)d tag werd verwezen maar die werd niet gevonden\n"
-msgstr[1] "naar %(quantity)d tags werd verwezen maar die werden niet gevonden\n"
+msgstr[0] "naar {quantity} tag werd verwezen maar die werd niet gevonden\n"
+msgstr[1] "naar {quantity} tags werd verwezen maar die werden niet gevonden\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2374
-#, fuzzy
 msgid "{quantity} invalid name format reference was removed\n"
 msgid_plural "{quantity} invalid name format references were removed\n"
-msgstr[0] "%(quantity)d ongeldige verwijzing naar een naamformaat werd verwijderd\n"
-msgstr[1] "%(quantity)d ongeldige verwijzingen naar een naamformaat werden verwijderd\n"
+msgstr[0] "{quantity}  ongeldige verwijzing naar een naamformaat werd verwijderd\n"
+msgstr[1] "{quantity}  ongeldige verwijzingen naar een naamformaat werden verwijderd\n"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/check.py:2384
-#, fuzzy
 msgid "{quantity} invalid source citation was fixed\n"
 msgid_plural "{quantity} invalid source citations were fixed\n"
-msgstr[0] "%(quantity)d ongeldige geboorte verbeterd\n"
-msgstr[1] "%(quantity)d ongeldige geboortes werden verbeterd\n"
+msgstr[0] "{quantity}  ongeldige geboorte verbeterd\n"
+msgstr[1] "{quantity}  ongeldige geboortes werden verbeterd\n"
 
 #: ../gramps/plugins/tool/check.py:2391
 #, python-format
@@ -27619,9 +27553,8 @@ msgstr ""
 "die locaties waarvan u wilt dat Gramps ze omzet."
 
 #: ../gramps/plugins/tool/finddupes.glade:118 ../gramps/plugins/tool/mergecitations.glade:118
-#, fuzzy
 msgid "Match Threshold"
-msgstr "<b>Overeenkomst drempelwaarde</b>"
+msgstr "Overeenkomst drempelwaarde"
 
 #: ../gramps/plugins/tool/finddupes.glade:145
 msgid "Use soundex codes"
@@ -27723,7 +27656,7 @@ msgid "Selection"
 msgstr "Selectie"
 
 #: ../gramps/plugins/tool/mediamanager.py:224
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This tool allows batch operations on media objects stored in Gramps. An important distinction must be made "
 "between a Gramps media object and its file.\n"
@@ -27744,8 +27677,8 @@ msgstr ""
 "belangrijk onderscheid gemaakt te worden tussen een Gramps media-object en het mediabestand.\n"
 "\n"
 "Een Gramps media-object is een verzameling van gegevens van het media-objectbestand: de bestandsnaam en/of "
-"pad, de beschrijving, ID, opmerkingen, bronnenverwijzingen, enz. Deze gegevens <b>omvatten het eigenlijke "
-"bestand niet</b>.\n"
+"pad, de beschrijving, ID, opmerkingen, bronnenverwijzingen, enz. Deze gegevens  %(bold_start)somvatten het "
+"eigenlijke bestand niet%(bold_end)s.\n"
 "\n"
 "De bestanden die beelden, geluiden, video, enz. bevatten, staan apart op uw harde schijf. Deze bestanden "
 "worden niet beheerd door Gramps en maken geen deel uit van het Gramps-gegevensbestand. Het Gramps-"
@@ -27958,36 +27891,32 @@ msgstr "Iedereen in het gegevensbestand is verwant met %s"
 #. translators: leave all/any {...} untranslated
 #. TRANS: no singular form needed, as rows is always > 1
 #: ../gramps/plugins/tool/notrelated.py:259
-#, fuzzy
 msgid "Setting tag for {number_of} person"
 msgid_plural "Setting tag for {number_of} people"
-msgstr[0] "Tag voor %d persoon plaatsen"
-msgstr[1] "Tag voor %d personen plaatsen"
+msgstr[0] "Tag voor {number_of} persoon plaatsen"
+msgstr[1] "Tag voor {number_of} personen plaatsen"
 
 #. translators: leave all/any {...} untranslated
 #. TRANS: No singular form is needed.
 #: ../gramps/plugins/tool/notrelated.py:302
-#, fuzzy
 msgid "Finding relationships between {number_of} person"
 msgid_plural "Finding relationships between {number_of} people"
-msgstr[0] "Relaties zoeken tussen %d persoon"
-msgstr[1] "Relaties zoeken tussen %d personen"
+msgstr[0] "Relaties zoeken tussen {number_of} persoon"
+msgstr[1] "Relaties zoeken tussen {number_of} personen"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:382
-#, fuzzy
 msgid "Looking for {number_of} person"
 msgid_plural "Looking for {number_of} people"
-msgstr[0] "Naar %d persoon zoeken"
-msgstr[1] "Naar %d personen zoeken"
+msgstr[0] "Naar {number_of} persoon zoeken"
+msgstr[1] "Naar {number_of} personen zoeken"
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/tool/notrelated.py:410
-#, fuzzy
 msgid "Looking up the name of {number_of} person"
 msgid_plural "Looking up the names of {number_of} people"
-msgstr[0] "De naam opzoeken van %d persoon"
-msgstr[1] "De naam opzoeken van %d personen"
+msgstr[0] "De naam opzoeken van {number_of} persoon"
+msgstr[1] "De naam opzoeken van {number_of} personen"
 
 #: ../gramps/plugins/tool/ownereditor.glade:164
 msgid "_Street:"
@@ -28217,9 +28146,8 @@ msgid "In_vert marks"
 msgstr "Selectie omdraaien"
 
 #: ../gramps/plugins/tool/removeunused.glade:326 ../gramps/plugins/tool/verify.glade:895
-#, fuzzy
 msgid "Double-click on a row to view/edit data"
-msgstr "<b>Dubbelklik op een rij om de informatie te bekijken of te bewerken</b>"
+msgstr "Dubbelklik op een rij om de informatie te bekijken of te bewerken"
 
 #: ../gramps/plugins/tool/removeunused.py:81
 msgid "Unused Objects"
@@ -29121,9 +29049,8 @@ msgid "%(eventtype)s : %(name)s"
 msgstr "%(eventtype)s : %(name)s"
 
 #: ../gramps/plugins/view/geoclose.py:551
-#, fuzzy
 msgid "Choose and bookmark the new reference person"
-msgstr "De referentiepersoon kiezen"
+msgstr "Een nieuwe referentiepersoon kiezen en van een bladwijzer voorzien"
 
 #: ../gramps/plugins/view/geoclose.py:574
 msgid ""
@@ -29230,9 +29157,8 @@ msgid "Person : %(id)s %(name)s has no family."
 msgstr "Persoon : %(id)s %(name)s heeft geen gezin."
 
 #: ../gramps/plugins/view/geofamclose.py:694
-#, fuzzy
 msgid "Choose and bookmark the new reference family"
-msgstr "Een referentiegezin kiezen"
+msgstr "Een referentiegezin kiezen en een bladwijzer aanmaken"
 
 #: ../gramps/plugins/view/geofamclose.py:717
 msgid ""
@@ -29271,14 +29197,13 @@ msgid "OsmGpsMap module not loaded."
 msgstr "Module OsmGpsMap niet geladen."
 
 #: ../gramps/plugins/view/geography.gpr.py:70
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Geography functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_osmgps_url)s"
 msgstr ""
 "Geografische functionaliteit is niet beschikbaar.\n"
-"Kijk op http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-"
-"GObject_introspection_Conversion#OsmGpsMap_for_Geography om deze functionaliteit voor Gramps in te bouwen."
+"Kijk op %(gramps_wiki_build_osmgps_url)s om deze functionaliteit voor Gramps in te bouwen."
 
 #: ../gramps/plugins/view/geography.gpr.py:78
 msgid "All known places for one Person"
@@ -29301,7 +29226,6 @@ msgid "Every residence or move for a person and any descendants"
 msgstr "Alle adressen en verplaatsingen van een persoon en zijn afstammelingen"
 
 #: ../gramps/plugins/view/geography.gpr.py:113
-#, fuzzy
 msgid ""
 "A view showing all the places visited by all persons during their life.\n"
 "This is for a person and any descendant.\n"
@@ -29309,7 +29233,7 @@ msgid ""
 msgstr ""
 "Dit scherm toont alle locaties die door alle personen bezocht werden tijdens hun leven.\n"
 "Dit is voor een persoon en hun afstammelingen.\n"
-"U kunt de datums die met de periode overeenkomen zien."
+"U kunt de datums zien die met de periode overeenkomen."
 
 #: ../gramps/plugins/view/geography.gpr.py:132
 msgid ""
@@ -31009,7 +30933,7 @@ msgstr "Verlofdagen berekenen voor het jaar %04d"
 msgid ""
 "the \"WebCal\" will be the potential-email Subject|Created for %(html_email_author_start)sWebCal"
 "%(html_email_author_end)s"
-msgstr ""
+msgstr "Aangemaakt voor %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #. Add a link for year_glance() if requested
 #: ../gramps/plugins/webreport/webcal.py:551
