@@ -27,7 +27,7 @@ msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-19 19:45-0700\n"
-"PO-Revision-Date: 2015-03-20 09:33+0100\n"
+"PO-Revision-Date: 2015-03-20 10:48+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -466,11 +466,12 @@ msgstr "Arbre familial"
 msgid "Family Tree \"%s\":"
 msgstr "Arbre familial « %s » :"
 
+# master
 #. translators: needed for French, ignore otherwise
 #: ../gramps/cli/arghandler.py:418
-#, fuzzy, python-format
+#, python-format
 msgid "   %(item)s: %(summary)s"
-msgstr "%(str1)s : %(str2)s"
+msgstr "   %(item)s: %(summary)s"
 
 #. translators: ignore unless your quotation marks differ
 #: ../gramps/cli/arghandler.py:438
@@ -1958,7 +1959,7 @@ msgstr ""
 msgid "Islamic month lexeme|Dhu l-Hijja"
 msgstr ""
 
-# trunk
+# master
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
 #. to learn how to select proper inflection to be used in your localized
@@ -1967,57 +1968,57 @@ msgstr ""
 msgid "Persian month lexeme|Farvardin"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gen/datehandler/_datestrings.py:194
 msgid "Persian month lexeme|Ordibehesht"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gen/datehandler/_datestrings.py:195
 msgid "Persian month lexeme|Khordad"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gen/datehandler/_datestrings.py:196
 msgid "Persian month lexeme|Tir"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gen/datehandler/_datestrings.py:197
 msgid "Persian month lexeme|Mordad"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gen/datehandler/_datestrings.py:198
 msgid "Persian month lexeme|Shahrivar"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gen/datehandler/_datestrings.py:199
 msgid "Persian month lexeme|Mehr"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gen/datehandler/_datestrings.py:200
 msgid "Persian month lexeme|Aban"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gen/datehandler/_datestrings.py:201
 msgid "Persian month lexeme|Azar"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gen/datehandler/_datestrings.py:202
 msgid "Persian month lexeme|Dey"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gen/datehandler/_datestrings.py:203
 msgid "Persian month lexeme|Bahman"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gen/datehandler/_datestrings.py:204
 msgid "Persian month lexeme|Esfand"
 msgstr ""
@@ -2130,8 +2131,9 @@ msgstr ""
 "\n"
 "Veuillez mettre à jour à la version correspondante, ou utilisez le format Gramps XML pour transférer les données d'une version à l'autre."
 
+# master
 #: ../gramps/gen/db/exceptions.py:113
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version %(env_version)s format. This version of Gramps uses Bsddb version %(bdb_version)s. So you are trying to load data created in a newer format into an older program, and this is bound to fail.\n"
 "\n"
@@ -2139,10 +2141,11 @@ msgid ""
 msgstr ""
 "L'arbre familial que vous êtes en train d'ouvrir utilise la version Bsddb %(env_version)s. Cette version de Gramps utilise la version Bsddb %(bdb_version)s. Ainsi vous tentez de charger des données créées avec un format plus récent vers une ancienne version, ceci est voué à l'échec.\n"
 "\n"
-"Vous devrez utiliser votre <b>plus récente</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
+"Vous devrez utiliser votre %(bold_start)splus récente%(bold_end)s version de Gramps et %(wiki_backup_html_start)sfaire une sauvegarde%(html_end)s de votre arbre familial. Vous pourrez alors importer cette sauvegarde dans la nouvelle version de Gramps."
 
+# master
 #: ../gramps/gen/db/exceptions.py:143
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version %(env_version)s format. This version of Gramps uses Bsddb version %(bdb_version)s. So you are trying to load data created in a newer format into an older program. In this particular case, the difference is very small, so it may work.\n"
 "\n"
@@ -2150,10 +2153,11 @@ msgid ""
 msgstr ""
 "L'arbre familial que vous êtes en train d'ouvrir utilise la version Bsddb %(env_version)s. Cette version de Gramps utilise la version Bsddb %(bdb_version)s. Ainsi vous tentez de charger des données créées avec un format plus récent vers une ancienne version. Dans ce cas particulier, la différence est légère, ceci devrait fonctionner.\n"
 "\n"
-"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devriez utiliser votre <b>plus récente</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
+"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devriez utiliser votre %(bold_start)splus récente%(bold_end)s version de Gramps et %(wiki_backup_html_start)sfaire une sauvegarde%(html_end)s de votre arbre familial."
 
+# master
 #: ../gramps/gen/db/exceptions.py:172
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Bsddb version %(env_version)s format. This version of Gramps uses Bsddb version %(bdb_version)s. Therefore you cannot load this Family Tree without upgrading the Bsddb version of the Family Tree.\n"
 "\n"
@@ -2165,7 +2169,7 @@ msgstr ""
 "\n"
 "Ouvrir l'arbre familial avec cette version de Gramps peut corrompre votre base de données. Il est fortement conseillé de sauvegarder votre arbre avant de mettre à jour.\n"
 "\n"
-"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devrez utiliser votre <b>ancienne</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
+"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devrez utiliser votre %(bold_start)sancienne%(bold_end)s version de Gramps et %(wiki_backup_html_start)sfaire une sauvegarde%(html_end)s de votre arbre familial."
 
 #: ../gramps/gen/db/exceptions.py:202
 msgid ""
@@ -2175,8 +2179,9 @@ msgstr ""
 "Gramps a détecté un problème en ouvrant l'environnement de la base de données Berkeley utilisé pour stocker cet arbre familial. Ceci est le plus souvent causé par le fait que la base de données a été créée avec une ancienne version de la BDD Berkeley, et que vous êtes en train d'utiliser une nouvelle version. Il est probable que votre base de données n'a pas été modifiée par Gramps.\n"
 "Si possible, retournez à votre ancienne version de Gramps et de ses utilitaires ; exportez votre base de données vers le format XML ; fermez la base de données ; puis re-mettez à niveau vers cette version de Gramps et importez le fichier XML dans un arbre familial vide. Autrement, il doit être possible d'utiliser les outils Berkeley de récupération de base de données."
 
+# master
 #: ../gramps/gen/db/exceptions.py:229
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the schema version %(oldschema)s format. This version of Gramps uses schema version %(newschema)s. Therefore you cannot load this Family Tree without upgrading the schema version of the Family Tree.\n"
 "\n"
@@ -2188,14 +2193,15 @@ msgid ""
 msgstr ""
 "L'arbre familial que vous êtes en train d'ouvrir utilise la version du schéma %(oldschema)s. Cette version de Gramps utilise la version du schéma %(newschema)s. C'est pourquoi vous ne pouvez pas charger cet arbre familial sans une mise à jour de votre version du schéma liée à votre arbre familial.\n"
 "\n"
-"Si vous mettez à jour alors il ne sera plus possible d'utiliser une version précédente de Gramps, même via une <a href=\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees/fr#Sauvegarder_un_arbre_familial\">sauvegarde</a> ou une <a href=\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees/fr#Exportation_aux_formats_Gramps\">exportation</a> de votre arbre familial.\n"
+"Si vous mettez à jour alors il ne sera plus possible d'utiliser une version précédente de Gramps, même via une %(wiki_manual_backup_html_start)ssauvegarde%(html_end)s ou une %(wiki_manual_export_html_start)sexportation%(html_end)s de votre arbre familial.\n"
 "\n"
 "Mettre à jour est une tâche qui peut corrompre irrémédiablement l'arbre familial si l'action est interrompue ou si elle échoue.\n"
 "\n"
-"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devrez utiliser votre <b>ancienne</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
+"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devrez utiliser votre %(bold_start)sancienne%(bold_end)s version de Gramps et %(wiki_backup_html_start)sfaire une sauvegarde%(html_end)s de votre arbre familial."
 
+# master
 #: ../gramps/gen/db/exceptions.py:267
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load was created with Python version %(db_python_version)s. This version of Gramps uses Python version %(current_python_version)s.  So you are trying to load data created in a newer format into an older program, and this is bound to fail.\n"
 "\n"
@@ -2203,10 +2209,11 @@ msgid ""
 msgstr ""
 "L'arbre familial que vous êtes en train d'ouvrir a été créé avec Python  %(db_python_version)s. Cette version de Gramps utilise Python %(current_python_version)s. Ainsi vous tentez de charger des données créées avec un format plus récent vers une ancienne version, ceci est voué à l'échec.\n"
 "\n"
-"Vous devrez utiliser votre <b>plus récente</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial. Vous pourrez alors importer cette sauvegarde dans cette version de Gramps."
+"Vous devrez utiliser votre %(bold_start)splus récente%(bold_end)s version de Gramps et %(wiki_backup_html_start)sfaire une sauvegarde%(html_end)s de votre arbre familial. Vous pourrez alors importer cette sauvegarde dans cette version de Gramps."
 
+# master
 #: ../gramps/gen/db/exceptions.py:297
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The Family Tree you are trying to load is in the Python version %(db_python_version)s format. This version of Gramps uses Python version %(current_python_version)s. Therefore you cannot load this Family Tree without upgrading the Python version of the Family Tree.\n"
 "\n"
@@ -2218,11 +2225,11 @@ msgid ""
 msgstr ""
 "L'arbre familial que vous êtes en train d'ouvrir a été créé avec Python  %(db_python_version)s. Cette version de Gramps utilise Python %(current_python_version)s. C'est pourquoi vous ne pouvez pas charger cet arbre familial sans une mise à jour de votre version du schéma liée à votre arbre familial.\n"
 "\n"
-"Si vous mettez à jour alors il ne sera plus possible d'utiliser une version précédente de Gramps, même via une <a href=\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees/fr#Sauvegarder_un_arbre_familial\">sauvegarde</a> ou une <a href=\"http://www.gramps-project.org/wiki/index.php?title=Gramps_4.0_Wiki_Manual_-_Manage_Family_Trees/fr#Exportation_aux_formats_Gramps\">exportation</a> de votre arbre familial.\n"
+"Si vous mettez à jour alors il ne sera plus possible d'utiliser une version précédente de Gramps, même via une %(wiki_manual_backup_html_start)ssauvegarde%(html_end)s ou une %(wiki_manual_export_html_start)sexportation%(html_end)s de votre arbre familial.\n"
 "\n"
 "Mettre à jour est une tâche qui peut corrompre irrémédiablement l'arbre familial si l'action est interrompue ou si elle échoue.\n"
 "\n"
-"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devrez utiliser votre <b>ancienne</b> version de Gramps et <a href=\"http://www.gramps-project.org/wiki/index.php?title=How_to_make_a_backup/fr\">faire une sauvegarde</a> de votre arbre familial."
+"Si vous n'avez pas encore fait de sauvegarde de cet arbre familial, alors vous devrez utiliser votre %(bold_start)sancienne%(bold_end)s version de Gramps et %(wiki_backup_html_start)sfaire une sauvegarde%(html_end)s de votre arbre familial."
 
 #: ../gramps/gen/db/undoredo.py:246
 #: ../gramps/gen/db/undoredo.py:283
@@ -2237,40 +2244,47 @@ msgstr "_Défaire %s"
 msgid "_Redo %s"
 msgstr "_Rétablir %s"
 
+# master
 #: ../gramps/gen/db/upgrade.py:371
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  People        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  individus        mis à niveau avec %6d citations en %6d secs\n"
+msgstr "%(n1)6d  individus        mis à niveau avec %(n2)6d citations en %(n3)6d secs\n"
 
+# master
 #: ../gramps/gen/db/upgrade.py:372
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Families      upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  familles        mises à niveau avec %6d citations en %6d secs\n"
+msgstr "%(n1)6d  familles        mises à niveau avec %(n2)6d citations en %(n3)6d secs\n"
 
+# master
 #: ../gramps/gen/db/upgrade.py:373
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Events        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  événements        mis à niveau avec %6d citations en %6d secs\n"
+msgstr "%(n1)6d  événements        mis à niveau avec %(n2)6d citations en %(n3)6d secs\n"
 
+# master
 #: ../gramps/gen/db/upgrade.py:374
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Media Objects upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  objets media        mis à niveau avec %6d citations en %6d secs\n"
+msgstr "%(n1)6d  objets media        mis à niveau avec %(n2)6d citations en %(n3)6d secs\n"
 
+# master
 #: ../gramps/gen/db/upgrade.py:375
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Places        upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  lieux        mis à niveau avec %6d citations en %6d secs\n"
+msgstr "%(n1)6d  lieux        mis à niveau avec %(n2)6d citations en %(n3)6d secs\n"
 
+# master
 #: ../gramps/gen/db/upgrade.py:376
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Repositories  upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  dépôts        mis à niveau avec %6d citations en %6d secs\n"
+msgstr "%(n1)6d  dépôts        mis à niveau avec %(n2)6d citations en %(n3)6d secs\n"
 
+# master
 #: ../gramps/gen/db/upgrade.py:377
-#, fuzzy, python-format
+#, python-format
 msgid "%(n1)6d  Sources       upgraded with %(n2)6d citations in %(n3)6d secs\n"
-msgstr "%6d  sources        mises à niveau avec %6d citations en %6d secs\n"
+msgstr "%(n1)6d  sources        mises à niveau avec %(n2)6d citations en %(n3)6d secs\n"
 
 #: ../gramps/gen/db/upgrade.py:762
 msgid "Number of new objects upgraded:\n"
@@ -7511,8 +7525,8 @@ msgstr "Format des noms "
 msgid "Select the format to display names"
 msgstr "Sélection du format d'affichage pour le nom"
 
+# master
 #: ../gramps/gen/plug/report/stdoptions.py:88
-#, fuzzy
 msgid "Include data marked private"
 msgstr "Inclure les données privées"
 
@@ -8100,15 +8114,17 @@ msgstr "Ukrainien"
 msgid "Vietnamese"
 msgstr "Vietnamien"
 
+# master
 #: ../gramps/gen/utils/grampslocale.py:108
-#, fuzzy
 msgid "Chinese (Simplified)"
-msgstr "Chinois simplifié"
+msgstr "Chinois (simplifié)"
 
+# master
 #: ../gramps/gen/utils/grampslocale.py:109
 msgid "Chinese (Hong Kong)"
 msgstr ""
 
+# master
 #: ../gramps/gen/utils/grampslocale.py:110
 msgid "Chinese (Traditional)"
 msgstr ""
@@ -9503,14 +9519,15 @@ msgstr "Ajouter une étiquette à l'importation"
 msgid "Enable spelling checker"
 msgstr "Activer le vérificateur orthographique"
 
+# master
 #: ../gramps/gui/configure.py:1264
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
 "Module GtkSpell non-chargé. La fonction vérification orthographique n'est pas disponible.\n"
-"Pour construire ce module, voir http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#Spell_Check_Install"
+"Pour construire ce module, voir %(gramps_wiki_build_spell_url)s"
 
 #: ../gramps/gui/configure.py:1271
 msgid "Display Tip of the Day"
@@ -9883,18 +9900,19 @@ msgstr ""
 "\n"
 "%s"
 
+# master
 #: ../gramps/gui/dbman.py:653
-#, fuzzy, python-format
+#, python-format
 msgid "%(new_DB_name)s (copied %(date_string)s)"
-msgstr "%(male_name)s est décédé %(death_date)s."
+msgstr "%(new_DB_name)s (copié le %(date_string)s)"
 
 #: ../gramps/gui/dbman.py:677
 msgid "Repair Family Tree?"
 msgstr "Réparer l'arbre familial ?"
 
-# trunk
+# master
 #: ../gramps/gui/dbman.py:679
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "If you click %(bold_start)sProceed%(bold_end)s, Gramps will attempt to recover your Family Tree from the last good backup. There are several ways this can cause unwanted effects, so %(bold_start)sbackup%(bold_end)s the Family Tree first.\n"
 "The Family Tree you have selected is stored in %(dirname)s.\n"
@@ -9905,14 +9923,14 @@ msgid ""
 "%(gramps_wiki_recover_url)s\n"
 "Before doing a repair, try to open the Family Tree in the normal manner. Several errors that trigger the repair button can be fixed automatically. If this is the case, you can disable the repair button by removing the file %(recover_file)s in the Family Tree directory."
 msgstr ""
-"Si vous cliquez sur <b>Appliquer</b>, Gramps va essayer de retrouver votre arbre familial depuis la dernière archive valide. Il y a plusieurs risques pouvant générer des effets non-souhaités, alors <b>sauvegardez</b> d'abord votre arbre familial.\n"
-"L'arbre sélectionné est stocké dans %s.\n"
+"Si vous cliquez sur %(bold_start)sAppliquer%(bold_end)s, Gramps va essayer de retrouver votre arbre familial depuis la dernière archive valide. Il y a plusieurs risques pouvant générer des effets non-souhaités, alors %(bold_start)ssauvegardez%(bold_end)s d'abord votre arbre familial.\n"
+"L'arbre sélectionné est stocké dans %(dirname)s.\n"
 "\n"
 "Avant de lancer la réparation, vérifiez que votre arbre familial ne peut plus être ouvert, pour que le soutien de la base de données corrige automatiquement certaines erreurs.\n"
 "\n"
-"<b>Détails:</b> La réparation d'un arbre familial utilise actuellement la dernière sauvegarde de votre arbre familial, que Gramps a généré lors de la dernière utilisation. Si vous avez travaillé durant plusieurs heures/jours sans avoir fermé Gramps, alors toutes ces informations seront perdues ! Si la réparation échoue, l'arbre familial original sera également perdu, c'est pourquoi une sauvegarde est nécessaire. Si la réparation échoue ou que vous avez perdu trop de données, vous pourrez corriger l'arbre familial manuellement. Voir la page internet\n"
-"http://gramps-project.org/wiki/index.php?title=Recover_corrupted_family_tree/fr\n"
-"Avant de faire la réparation, essayez d'ouvrir votre arbre familial avec la méthode normale. Certaines erreurs qui peuvent être corrigées automatiquement activent parfois le bouton de réparation. Dans ce cas, vous pouvez désactiver cette action de réparation en supprimant le fichier <i>need_recover</i> dans le répertoire de votre arbre familial."
+"%%(bold_start)sDétails :%(bold_end)s La réparation d'un arbre familial utilise actuellement la dernière sauvegarde de votre arbre familial, que Gramps a généré lors de la dernière utilisation. Si vous avez travaillé durant plusieurs heures/jours sans avoir fermé Gramps, alors toutes ces informations seront perdues ! Si la réparation échoue, l'arbre familial original sera également perdu, c'est pourquoi une sauvegarde est nécessaire. Si la réparation échoue ou que vous avez perdu trop de données, vous pourrez corriger l'arbre familial manuellement. Voir la page internet\n"
+"%(gramps_wiki_recover_url)s\n"
+"Avant de faire la réparation, essayez d'ouvrir votre arbre familial avec la méthode normale. Certaines erreurs qui peuvent être corrigées automatiquement activent parfois le bouton de réparation. Dans ce cas, vous pouvez désactiver cette action de réparation en supprimant le fichier %(recover_file)s dans le répertoire de votre arbre familial."
 
 #: ../gramps/gui/dbman.py:710
 msgid "Proceed, I have taken a backup"
@@ -9992,8 +10010,9 @@ msgstr ""
 msgid "Error detected in database"
 msgstr "Erreur détectée dans la base de données"
 
+# master
 #: ../gramps/gui/dialog.py:203
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Gramps has detected an error in the database. This can usually be resolved by running the \"Check and Repair Database\" tool.\n"
 "\n"
@@ -10002,7 +10021,7 @@ msgid ""
 msgstr ""
 "Gramps a détecté une erreur dans la base de données. Généralement, elle peut être résolue en lançant l'outil « Vérifier et réparer la base de données ».\n"
 "\n"
-"Si ce problème persiste après avoir lancé cet outil, veuillez rédiger un rapport de bogue sur http://bugs.gramps-project.org\n"
+"Si ce problème persiste après avoir lancé cet outil, veuillez rédiger un rapport de bogue sur %(gramps_bugtracker_url)s\n"
 "\n"
 
 #: ../gramps/gui/dialog.py:336
@@ -10868,10 +10887,10 @@ msgstr "Déplacer le nom de famille sélectionné vers le bas"
 msgid "Origin"
 msgstr "Origine"
 
+# master
 #: ../gramps/gui/editors/displaytabs/surnametab.py:82
-#, fuzzy
 msgid "Multiple Surnames"
-msgstr "<b>Noms multiples</b>"
+msgstr "Noms multiples"
 
 #: ../gramps/gui/editors/displaytabs/surnametab.py:89
 msgid "Family Surnames"
@@ -11484,15 +11503,17 @@ msgstr "Éditeur de la référence à un objet medium"
 msgid "Y coordinate|Y"
 msgstr "Y"
 
+# /!\ à tester ...
+# master
 #. -------------------------------------------------------------------------
 #.
 #. Classes
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/editname.py:64
-#, fuzzy, python-format
+#, python-format
 msgid "%s_-_Entering_and_editing_data:_detailed_-_part_3"
-msgstr "%s_-_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_3"
+msgstr "%s_-_Wiki_Manual_-_Entering_and_Editing_Data"
 
 #: ../gramps/gui/editors/editname.py:121
 #: ../gramps/gui/editors/editname.py:313
@@ -11598,15 +11619,17 @@ msgstr "Ajouter une note"
 msgid "Delete Note (%s)"
 msgstr "Supprimer la note (%s)"
 
+# /!\ à tester ...
+# master
 #. -------------------------------------------------------------------------
 #.
 #. Constants
 #.
 #. -------------------------------------------------------------------------
 #: ../gramps/gui/editors/editperson.py:87
-#, fuzzy, python-format
+#, python-format
 msgid "%s_-_Entering_and_editing_data:_detailed_-_part_1"
-msgstr "%s_-_Wiki_Manual_-_Entering_and_Editing_Data:_Detailed_-_part_1"
+msgstr "%s_-_Wiki_Manual_-_Entering_and_Editing_Data"
 
 #: ../gramps/gui/editors/editperson.py:157
 #, python-format
@@ -12209,10 +12232,10 @@ msgstr "Ajouter un nouveau lieu"
 msgid "Remove place"
 msgstr "Enlever le lieu"
 
+# master
 #: ../gramps/gui/editors/objectentries.py:341
-#, fuzzy
 msgid "To select a source, use drag-and-drop or use the buttons"
-msgstr "Pour sélectionner une note, faites un glisser-déposer ou utilisez les boutons"
+msgstr "Pour sélectionner une source, faites un glisser-déposer ou utilisez les boutons"
 
 #: ../gramps/gui/editors/objectentries.py:343
 msgid "First add a source using the button"
@@ -14237,10 +14260,10 @@ msgstr "Affic_her les valeurs qui ne correspondent pas aux critères (inverser l
 msgid "Selected Rule"
 msgstr "Règle sélectionnée"
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:156
-#, fuzzy
 msgid "Style sheet n_ame:"
-msgstr "N_om du style :"
+msgstr "N_om de la feuille de style :"
 
 # trunk
 #: ../gramps/gui/glade/styleeditor.glade:175
@@ -14383,87 +14406,92 @@ msgstr "Indentation"
 msgid "Paragraph options"
 msgstr "Options de paragraphe"
 
-# trunk
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1140
-#, fuzzy
 msgid "Width"
-msgstr "_Largeur :"
+msgstr "Largeur"
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1155
-#, fuzzy
 msgid "Column widths"
-msgstr "Colonnes"
+msgstr "Largeurs des colonnes"
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1199
 msgid "%"
 msgstr ""
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1225
-#, fuzzy
 msgid "Table options"
-msgstr "Options de l'arbre"
+msgstr "Options de la table"
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1280
-#, fuzzy
 msgid "Padding:"
-msgstr "_Remplissage :"
+msgstr "Remplissage :"
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1305
-#, fuzzy
 msgid "Left"
-msgstr "À _gauche :"
+msgstr "Gauche"
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1321
-#, fuzzy
 msgid "Right"
-msgstr "À _droite :"
+msgstr "Droite"
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1380
 msgid "<b>Cell options</b>"
 msgstr ""
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1402
-#, fuzzy
 msgid "Line"
-msgstr "Type de ligne"
+msgstr "Ligne"
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1441
-#, fuzzy
 msgid "Style:"
-msgstr "Style "
+msgstr "Style :"
 
-# trunk
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1454
-#, fuzzy
 msgid "Width:"
-msgstr "Largeur :"
+msgstr "Largeur :"
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1467
 msgid "Line:"
 msgstr ""
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1480
 msgid "Fill:"
 msgstr ""
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1494
 msgid "Shadow"
 msgstr ""
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1570
 msgid "pt"
 msgstr ""
 
-# trunk
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1593
-#, fuzzy
 msgid "Spacing:"
-msgstr "Espace"
+msgstr "Espace :"
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1615
 msgid "Draw shadow"
 msgstr ""
 
+# master
 #: ../gramps/gui/glade/styleeditor.glade:1657
 msgid "<b>Draw options</b>"
 msgstr ""
@@ -14843,8 +14871,9 @@ msgstr "Historique d'annulation"
 msgid "Danger: This is unstable code!"
 msgstr "Danger : ce code est instable !"
 
+# master
 #: ../gramps/gui/grampsgui.py:215
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This Gramps ('master') is a development release. This version is not meant for normal usage. Use at your own risk.\n"
 "\n"
@@ -14857,7 +14886,7 @@ msgid ""
 "\n"
 "%(bold_start)sBACKUP%(bold_end)s your existing databases before opening them with this version, and make sure to export your data to XML every now and then."
 msgstr ""
-"Gramps 4.1.x-trunk est une version de développement. Cette version n'est pas prévue pour un usage normal. Utilisez-là à vos risques.\n"
+"Gramps ('master') est une version de développement. Cette version n'est pas prévue pour un usage normal. Utilisez-là à vos risques.\n"
 "\n"
 "Cette version peut :\n"
 "1) Fonctionner différemment de vos attentes.\n"
@@ -14866,14 +14895,15 @@ msgstr ""
 "4) Corrompre vos données.\n"
 "5) Sauver vos données dans un format incompatible avec la version stable.\n"
 "\n"
-"<b>SAUVEGARDEZ</b> vos bases de données existantes avant de les ouvrir avec cette version, et assurez-vous d'exporter régulièrement vos données au format XML."
+"%(bold_start)sSAUVEGARDEZ%(bold_end)s vos bases de données existantes avant de les ouvrir avec cette version, et assurez-vous d'exporter régulièrement vos données au format XML."
 
 #: ../gramps/gui/grampsgui.py:267
 msgid "Gramps detected an incomplete GTK installation"
 msgstr "Gramps a détecté une installation Gtk incomplète"
 
+# master
 #: ../gramps/gui/grampsgui.py:268
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "GTK translations for the current language (%(language)s) are missing.\n"
 "%(bold_start)sGramps%(bold_end)s will proceed nevertheless.\n"
@@ -14882,12 +14912,12 @@ msgid ""
 "See the Gramps README documentation for installation prerequisites,\n"
 "typically located in /usr/share/doc/gramps.\n"
 msgstr ""
-"Les traductions GTK pour la langue actuelle (%s) sont manquantes.\n"
-"<b>Gramps</b> fonctionnera tout de même.\n"
+"Les traductions GTK pour la langue actuelle (%(language)s) sont manquantes.\n"
+"%(bold_start)sGramps%(bold_end)s fonctionnera tout de même.\n"
 "L'interface (GUI) sera incomplète, surtout pour les languages de droite à gauche (RTL) !\n"
 "\n"
 "Voir le fichier README de Gramps pour une installation des pré-requis,\n"
-"généralement présent sous /usr/share/doc/gramps."
+"généralement présent sous /usr/share/doc/gramps.\n"
 
 #: ../gramps/gui/grampsgui.py:311
 msgid "Error parsing arguments"
@@ -15452,16 +15482,15 @@ msgstr "%(adjective)s : %(addon)s"
 msgid "Downloading and installing selected addons..."
 msgstr "Téléchargement et installation des greffons sélectionnés..."
 
-# bouton
+# master
 #: ../gramps/gui/plug/_windows.py:1193
-#, fuzzy
 msgid "Installation Errors"
-msgstr "Installation du greffon"
+msgstr "Erreur d'installation"
 
+# master
 #: ../gramps/gui/plug/_windows.py:1194
-#, fuzzy
 msgid "The following addons had errors: "
-msgstr "Les problèmes suivants ont été rencontrés :"
+msgstr "Les greffons (addons) suivants ont des erreurs :"
 
 #: ../gramps/gui/plug/_windows.py:1198
 #: ../gramps/gui/plug/_windows.py:1206
@@ -16118,10 +16147,11 @@ msgstr "Éditeur de style"
 msgid "No description available"
 msgstr "Aucune description disponible"
 
+# master
 #: ../gramps/gui/plug/report/_styleeditor.py:352
-#, fuzzy, python-format
+#, python-format
 msgid "Column %d:"
-msgstr "Colonnes"
+msgstr "Colonne %d :"
 
 #: ../gramps/gui/plug/tool.py:55
 msgid "Debug"
@@ -16647,9 +16677,9 @@ msgstr "Sélection du répertoire de sauvegarde"
 msgid "Failed Loading Plugin"
 msgstr "Échec du chargement du greffon"
 
-# trunk
+# master
 #: ../gramps/gui/viewmanager.py:1593
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The plugin %(name)s did not load and reported an error.\n"
 "\n"
@@ -16663,7 +16693,7 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Si vous n'arrivez pas à corriger ce problème par vous-même, alors vous pouvez soumettre un bogue à http://bugs.gramps-project.org ou contactez l'auteur (%(firstauthoremail)s).\n"
+"Si vous n'arrivez pas à corriger ce problème par vous-même, alors vous pouvez soumettre un bogue à %(gramps_bugtracker_url)s ou contactez l'auteur (%(firstauthoremail)s).\n"
 "\n"
 "Si vous ne souhaitez plus que Gramps essaye de charger ce greffon, alors vous pouvez le cacher en utilisant le gestionnaire de greffons dans le menu Aide."
 
@@ -16671,9 +16701,9 @@ msgstr ""
 msgid "Failed Loading View"
 msgstr "Échec du chargement de la vue"
 
-# trunk
+# master
 #: ../gramps/gui/viewmanager.py:1649
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The view %(name)s did not load and reported an error.\n"
 "\n"
@@ -16687,7 +16717,7 @@ msgstr ""
 "\n"
 "%(error_msg)s\n"
 "\n"
-"Si vous n'arrivez pas à corriger ce problème par vous-même, alors vous pouvez soumettre un bogue à http://bugs.gramps-project.org ou contactez l'auteur de cette vue (%(firstauthoremail)s).\n"
+"Si vous n'arrivez pas à corriger ce problème par vous-même, alors vous pouvez soumettre un bogue à %(gramps_bugtracker_url)s ou contactez l'auteur de cette vue (%(firstauthoremail)s).\n"
 "\n"
 "Si vous ne souhaitez plus que Gramps essaye de charger cette vue, alors vous pouvez la cacher en utilisant le gestionnaire de greffons dans le menu Aide."
 
@@ -17398,10 +17428,10 @@ msgstr "Il semble que le répertoire cible est le répertoire de stockage des do
 msgid "Could not create jpeg version of image %(name)s"
 msgstr "Impossible de créer une version jpeg de l'image %(name)s"
 
+# master
 #: ../gramps/plugins/docgen/latexdoc.py:57
-#, fuzzy
 msgid "PIL (Python Imaging Library) not loaded. Production of jpg images from non-jpg images in LaTeX documents will not be available. Use your package manager to install python-imaging or python-pillow or python3-pillow"
-msgstr "PIL (Python Imaging Library) non-chargée. La génération d'images jpg depuis d'autres images dans les documents LaTeX ne sera pas disponible. Utilisez votre gestionnaire de paquets pour installer python-imaging."
+msgstr "PIL (Python Imaging Library) non-chargée. La génération d'images jpg depuis d'autres images dans les documents LaTeX ne sera pas disponible. Utilisez votre gestionnaire de paquets pour installer python-imaging ou python-pillow ou python3-pillow"
 
 #: ../gramps/plugins/docgen/odfdoc.py:1221
 #, python-format
@@ -19322,29 +19352,33 @@ msgstr ""
 "Cliquez et glissez dans l'espace libre pour la rotation"
 
 # "/fr" ajouté automatiquement (voir GrampsDisplay.py)
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:61
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sFrequently Asked Questions%(html_end)s%(bold_end)s\n"
 "(needs a connection to the internet)\n"
 msgstr ""
-"<b><a wiki='%s_-_FAQ'>Foire aux questions</a></b>\n"
+"%(bold_start)s%(gramps_FAQ_html_start)s%(html_middle)sFoire aux questions%(html_end)s%(bold_end)s\n"
 "(nécessite une connexion internet)\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:66
 msgid "Editing Spouses"
 msgstr "Édition des conjoints"
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:71
 #, python-format
 msgid "  1. %(gramps_FAQ_html_start)s%(faq_section)sHow do I change the order of spouses?%(html_end)s\n"
 msgstr ""
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:77
 #, python-format
 msgid "  2. %(gramps_FAQ_html_start)s%(faq_section)sHow do I add an additional spouse?%(html_end)s\n"
 msgstr ""
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:83
 #, python-format
 msgid "  3. %(gramps_FAQ_html_start)s%(faq_section)sHow do I remove a spouse?%(html_end)s\n"
@@ -19354,74 +19388,89 @@ msgstr ""
 msgid "Backups and Updates"
 msgstr "Sauvegardes et mises à jour"
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:92
 #, python-format
 msgid "  4. %(gramps_FAQ_html_start)s%(faq_section)sHow do I make backups safely?%(html_end)s\n"
 msgstr ""
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:98
-#, fuzzy, python-format
+#, python-format
 msgid "  5. %(gramps_FAQ_html_start)s%(faq_section)sIs it necessary to update Gramps every time an update is released?%(html_end)s\n"
-msgstr "  5. <a wiki='%s_-_FAQ'>Est-il nécessaire de mettre à jour Gramps à chaque nouvelle version ?</a>\n"
+msgstr "  5. %(gramps_FAQ_html_start)s%(faq_section)sEst-il nécessaire de mettre à jour Gramps à chaque nouvelle version ?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:103
 msgid "Data Entry"
 msgstr "Saisie des données"
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:109
 #, python-format
 msgid "  6. %(gramps_manual_html_start)s%(section)sHow should information about marriages be entered?%(html_end)s\n"
 msgstr ""
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:116
-#, fuzzy, python-format
+#, python-format
 msgid "  7. %(gramps_FAQ_html_start)s%(faq_section)sWhat's the difference between a residence and an address?%(html_end)s\n"
-msgstr "  7. <a wiki='%s_-_FAQ'>Quelle est la différence entre une résidence et une adresse ?</a>\n"
+msgstr "  7. %(gramps_FAQ_html_start)s%(faq_section)sQuelle est la différence entre une résidence et une adresse ?%(html_end)s\n"
 
 #: ../gramps/plugins/gramplet/faqgramplet.py:120
 msgid "Media Files"
 msgstr "Fichiers media"
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:125
-#, fuzzy, python-format
+#, python-format
 msgid "  8. %(gramps_FAQ_html_start)s%(faq_section)sHow do you add a photo of a person/source/event?%(html_end)s\n"
-msgstr "  8. <a wiki='%s_-_FAQ'>Comment ajouter une photo à une personne/source/événement ?</a>\n"
+msgstr "  8. %(gramps_FAQ_html_start)s%(faq_section)sComment ajouter une photo à une personne/source/événement ?%(html_end)s\n"
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:131
 #, python-format
 msgid "  9. %(gramps_FAQ_html_start)s%(faq_section)sHow do you find unused media objects?%(html_end)s\n"
 msgstr ""
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:141
 #, python-format
 msgid " 10. %(gramps_FAQ_html_start)s%(faq_section)sHow can I make a website with Gramps and my tree?%(html_end)s\n"
 msgstr ""
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:148
 #, python-format
 msgid " 11. %(web_html_start)sHow do I record one's occupation?%(html_end)s\n"
 msgstr ""
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:154
 #, python-format
 msgid " 12. %(gramps_FAQ_html_start)s%(faq_section)sWhat do I do if I have found a bug?%(html_end)s\n"
 msgstr ""
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:159
 #, python-format
 msgid " 13. %(gramps_wiki_html_start)s%(section)sIs there a manual for Gramps?%(html_end)s\n"
 msgstr ""
 
+# /!\ à tester ...
+# 'Category:Fr:Tutorials'
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:164
-#, fuzzy, python-format
+#, python-format
 msgid " 14. %(gramps_wiki_html_start)s%(section)sAre there tutorials available?%(html_end)s\n"
-msgstr " 14. <a wiki='Category:Fr:Tutorials'>Existe-t-il des tutoriels ?</a>\n"
+msgstr " 14. %(gramps_wiki_html_start)s%(section)sExiste-t-il des tutoriels ?%(html_end)s\n"
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:169
 #, python-format
 msgid " 15. %(gramps_wiki_html_start)s%(section)sHow do I ...?%(html_end)s\n"
 msgstr ""
 
+# master
 #: ../gramps/plugins/gramplet/faqgramplet.py:174
 #, python-format
 msgid " 16. %(gramps_wiki_html_start)s%(section)sHow can I help with Gramps?%(html_end)s\n"
@@ -19686,14 +19735,15 @@ msgstr "Métadonnées image"
 msgid "GExiv2 module not loaded."
 msgstr "Module GExiv2 non-chargé."
 
+# master
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:420
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Image metadata functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_gexiv2_url)s"
 msgstr ""
 "La fonction métadonnées image n'est pas disponible.\n"
-"Pour construire ce module, voir http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#GExiv2_for_Image_metadata"
+"Pour construire ce module, voir %(gramps_wiki_build_gexiv2_url)s"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:427
 msgid "Person Residence"
@@ -19829,25 +19879,25 @@ msgstr "Attributs du medium"
 msgid "Gramplet showing the attributes of a media object"
 msgstr "Gramplet affichant les attributs d'un objet medium"
 
+# master
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:609
-#, fuzzy
 msgid "Source Attributes"
-msgstr "Attributs des parents"
+msgstr "Attributs de la source"
 
+# master
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:610
-#, fuzzy
 msgid "Gramplet showing the attributes of a source object"
-msgstr "Gramplet affichant les attributs d'un objet medium"
+msgstr "Gramplet affichant les attributs d'une source"
 
+# master
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:623
-#, fuzzy
 msgid "Citation Attributes"
-msgstr "Attributs du medium"
+msgstr "Attributs de la citation"
 
+# master
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:624
-#, fuzzy
 msgid "Gramplet showing the attributes of a citation object"
-msgstr "Gramplet affichant les attributs d'un objet medium"
+msgstr "Gramplet affichant les attributs d'une citation"
 
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:637
 msgid "Person Notes"
@@ -20694,8 +20744,8 @@ msgstr "Démarrer avec Gramps"
 msgid "Gramps online manual"
 msgstr "Manuel en ligne de Gramps"
 
+# master
 #: ../gramps/plugins/gramplet/welcomegramplet.py:115
-#, fuzzy
 msgid "locale_suffix|"
 msgstr "/fr"
 
@@ -20928,10 +20978,10 @@ msgstr "Bordures en couleur (intérieur vide)"
 msgid "Color fill"
 msgstr "Remplissage avec des couleurs"
 
+# master
 #: ../gramps/plugins/graph/gvfamilylines.py:113
-#, fuzzy
 msgid "Follow parents to determine \"family lines\""
-msgstr "Suivre les parents pour déterminer les lignées familiales"
+msgstr "Suivre les parents pour déterminer les \"lignées familiales\""
 
 #: ../gramps/plugins/graph/gvfamilylines.py:115
 msgid "Parents and their ancestors will be considered when determining \"family lines\"."
@@ -21028,32 +21078,33 @@ msgstr "Le nombre maximum descendants à inclure."
 msgid "Include Gramps ID"
 msgstr "Inclure les identifiants"
 
+# master
 #: ../gramps/plugins/graph/gvfamilylines.py:188
 #: ../gramps/plugins/graph/gvhourglass.py:306
 #: ../gramps/plugins/graph/gvrelgraph.py:587
-#, fuzzy
 msgid "Do not include"
-msgstr "Ne pas inclure de titre"
+msgstr "Ne pas inclure"
 
+# master
 #: ../gramps/plugins/graph/gvfamilylines.py:189
 #: ../gramps/plugins/graph/gvhourglass.py:307
 #: ../gramps/plugins/graph/gvrelgraph.py:588
-#, fuzzy
 msgid "Share an existing line"
-msgstr "Partager un événement existant"
+msgstr "Partager une ligne existante"
 
+# master
 #: ../gramps/plugins/graph/gvfamilylines.py:190
 #: ../gramps/plugins/graph/gvhourglass.py:308
 #: ../gramps/plugins/graph/gvrelgraph.py:589
 msgid "On a line of its own"
-msgstr ""
+msgstr "Ajouter sur la même ligne"
 
+# master
 #: ../gramps/plugins/graph/gvfamilylines.py:191
 #: ../gramps/plugins/graph/gvhourglass.py:309
 #: ../gramps/plugins/graph/gvrelgraph.py:590
-#, fuzzy
 msgid "Whether (and where) to include Gramps IDs"
-msgstr "Inclure ou non les identifiants Gramps après les noms."
+msgstr "Inclure ou non les identifiants Gramps"
 
 #: ../gramps/plugins/graph/gvfamilylines.py:194
 msgid "Include dates"
@@ -21662,10 +21713,11 @@ msgstr "L'arbre familial que vous venez d'importer a déjà un chemin de base me
 msgid "%s could not be opened"
 msgstr "%s ouverture impossible"
 
+# master
 #: ../gramps/plugins/importer/importgrdb.py:62
-#, fuzzy, python-format
+#, python-format
 msgid "The Database version is not supported by this version of Gramps.You should use an old copy of Gramps at version 3.0.x and import your database into that version. You should then export a copy of your data to Gramps XML (Family Tree). Then you should upgrade to the latest version of Gramps (for example this version), create a new empty database and import the Gramps XML into that version. Please refer to:%(gramps_wiki_migrate_two_to_three_url)s"
-msgstr "Cette version de la base de données n'est pas supportée par cette version de Gramps. Vous devriez utiliser une ancienne copie de Gramps 3.0.x et importer votre base de données dans cette version. Vous devrez alors exporter une copie de vos données au format Gramps XML (arbre familial). Enfin vous devrez mettre à niveau vers la dernière version de Gramps (par exemple cette version), créer une nouvelle base de données vide et importer le fichier Gramps XML dans cette version. Voir : http://www.gramps-project.org/wiki/index.php?title=Gramps_4.1_Wiki_Manual_-_Manage_Family_Trees/fr#Migrer_des_bases_de_données_2.2_vers_Gramps_3.x"
+msgstr "Cette version de la base de données n'est pas supportée par cette version de Gramps. Vous devriez utiliser une ancienne copie de Gramps 3.0.x et importer votre base de données dans cette version. Vous devrez alors exporter une copie de vos données au format Gramps XML (arbre familial). Enfin vous devrez mettre à niveau vers la dernière version de Gramps (par exemple cette version), créer une nouvelle base de données vide et importer le fichier Gramps XML dans cette version. Voir : %(gramps_wiki_migrate_two_to_three_url)s"
 
 #: ../gramps/plugins/importer/importprogen.py:79
 msgid "Pro-Gen data error"
@@ -21962,8 +22014,9 @@ msgstr "Le numéro de version Gramps est manquant sur le fichier importé"
 msgid "The .gramps file you are importing was made by version %(newer)s of Gramps, while you are running an older version %(older)s. The file will not be imported. Please upgrade to the latest version of Gramps and try again."
 msgstr "Le fichier .gramps que vous importez provient de la version %(newer)s de Gramps. alors que vous utilisez une ancienne version %(older)s. Ce fichier ne sera pas importé. Mettez à jour vers la dernière version de Gramps et essayez de nouveau."
 
+# master
 #: ../gramps/plugins/importer/importxml.py:1044
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a more recent version %(newgramps)s.\n"
 "\n"
@@ -21976,15 +22029,16 @@ msgstr ""
 "\n"
 "Ce fichier ne sera pas importé. Utilisez une ancienne version de Gramps qui supporte la version %(xmlversion)s du xml.\n"
 "Voir\n"
-"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+"  %(gramps_wiki_xml_url)s\n"
 "pour plus d'informations."
 
 #: ../gramps/plugins/importer/importxml.py:1055
 msgid "The file will not be imported"
 msgstr "Le fichier n'a pas pu être importé"
 
+# master
 #: ../gramps/plugins/importer/importxml.py:1057
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The .gramps file you are importing was made by version %(oldgramps)s of Gramps, while you are running a much more recent version %(newgramps)s.\n"
 "\n"
@@ -21997,7 +22051,7 @@ msgstr ""
 "\n"
 "Assurez vous que tout est importé correctement. En cas de problèmes, soumettez un bogue et utilisez une ancienne version de Gramps pour importer ce fichier, dont la version xml est %(xmlversion)s.\n"
 "Voir\n"
-"  http://gramps-project.org/wiki/index.php?title=GRAMPS_XML\n"
+"  %(gramps_wiki_xml_url)s\n"
 "pour plus d'informations."
 
 #: ../gramps/plugins/importer/importxml.py:1070
@@ -22110,10 +22164,10 @@ msgstr "Allemagne"
 msgid "Japan"
 msgstr "Japon"
 
+# master
 #: ../gramps/plugins/lib/holidays.xml.in.h:12
-#, fuzzy
 msgid "Slovakia"
-msgstr "Slovaque"
+msgstr "Slovaquie"
 
 #. Make upper case of translaed country so string search works later
 #: ../gramps/plugins/lib/holidays.xml.in.h:13
@@ -22257,15 +22311,15 @@ msgstr "Nouvelle-Zélande"
 msgid "Ukraine"
 msgstr "Ukraine"
 
+# master
 #: ../gramps/plugins/lib/holidays.xml.in.h:46
-#, fuzzy
 msgid "Serbia"
-msgstr "Serbe"
+msgstr "Serbie"
 
+# master
 #: ../gramps/plugins/lib/holidays.xml.in.h:47
-#, fuzzy
 msgid "Serbia (Latin)"
-msgstr "Serbe"
+msgstr "Serbie (Latin)"
 
 #: ../gramps/plugins/lib/libcairodoc.py:1399
 #, python-format
@@ -26054,9 +26108,9 @@ msgstr "Centrer sur ce lieu"
 msgid "You have at least two places with the same title."
 msgstr "Vous avez au moins deux lieux avec le même titre."
 
-# trunk
+# master
 #: ../gramps/plugins/lib/maps/geography.py:960
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The title of the places is:\n"
 "%(title)s\n"
@@ -26066,11 +26120,11 @@ msgid ""
 "%(bold_start)sI can't proceed with your request%(bold_end)s.\n"
 msgstr ""
 "Le titre des lieux est :\n"
-"<b>%(title)s</b>\n"
+"%(title)s\n"
 "Les lieux suivants sont similaires : %(gid)s.\n"
 "Soit vous les renommez soit vous les fusionnez.\n"
 "\n"
-"<b>On ne peut accéder à votre requête</b>.\n"
+"%(bold_start)sOn ne peut accéder à votre requête%(bold_end)s.\n"
 
 #: ../gramps/plugins/lib/maps/geography.py:1084
 msgid "Nothing for this view."
@@ -27392,7 +27446,7 @@ msgstr "%(name_kind)s : %(name)s%(endnotes)s"
 msgid "Address: "
 msgstr "Adresse : "
 
-# trunk
+# master
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:393
 #: ../gramps/plugins/textreport/detdescendantreport.py:850
@@ -27433,7 +27487,7 @@ msgstr "%(place)s"
 msgid "%(event_name)s: %(event_text)s"
 msgstr "%(event_name)s : %(event_text)s"
 
-# trunk
+# master
 #. translators: needed for Arabic, ignore otherwise
 #: ../gramps/plugins/textreport/detancestralreport.py:464
 #: ../gramps/plugins/textreport/detdescendantreport.py:356
@@ -27467,13 +27521,15 @@ msgstr "Conjoint : %s"
 msgid "Relationship with: %s"
 msgstr "Relation avec : %s"
 
+# master
 #: ../gramps/plugins/textreport/detancestralreport.py:753
 msgid "Sosa-Stradonitz number"
-msgstr ""
+msgstr "Numéro Sosa-Stradonitz"
 
+# master
 #: ../gramps/plugins/textreport/detancestralreport.py:755
 msgid "The Sosa-Stradonitz number of the central person."
-msgstr ""
+msgstr "Le numéro Sosa-Stradonitz de la personne centrale."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:771
 #: ../gramps/plugins/textreport/detdescendantreport.py:932
@@ -28015,10 +28071,10 @@ msgstr "Masculin"
 msgid "Female"
 msgstr "Féminin"
 
+# master
 #: ../gramps/plugins/textreport/indivcomplete.py:838
-#, fuzzy
 msgid "(image)"
-msgstr "Image"
+msgstr "(image)"
 
 #: ../gramps/plugins/textreport/indivcomplete.py:927
 msgid "Select the filter to be applied to the report."
@@ -28061,15 +28117,17 @@ msgstr "Style pour l'étiquette des catégories."
 msgid "The style used for the spouse's name."
 msgstr "Style pour le nom de jeune fille."
 
+# /!\ à tester ...
+# master
 #: ../gramps/plugins/textreport/indivcomplete.py:1072
-#, fuzzy
 msgid "A style used for image facts."
-msgstr "Le style utilisé pour le pied de page."
+msgstr "Le style utilisé pour les images des faits."
 
+# /!\ à tester ...
+# master
 #: ../gramps/plugins/textreport/indivcomplete.py:1082
-#, fuzzy
 msgid "A style used for image captions."
-msgstr "Le style utilisé pour chaque section."
+msgstr "Le style utilisé pour les images capturées."
 
 #. feature request 2356: avoid genitive form
 #: ../gramps/plugins/textreport/kinshipreport.py:116
@@ -28139,10 +28197,10 @@ msgstr "Total d'ascendants de la génération %(second_generation)d à %(last_ge
 msgid "Place Report"
 msgstr "Rapport de lieu"
 
+# master
 #: ../gramps/plugins/textreport/placereport.py:108
-#, fuzzy
 msgid "Please select at least one place before running this."
-msgstr "Vous devez d'abord créer une étiquette avant de lancer ce rapport."
+msgstr "Vous devez d'abord créer au moins un lieu avant de lancer ceci."
 
 # génération (confusion en généalogie)
 #: ../gramps/plugins/textreport/placereport.py:135
@@ -28451,10 +28509,10 @@ msgstr "Nombre de media présents : %d"
 msgid "Total size of media objects: %s MB"
 msgstr "Taille totale des media : %s MB"
 
+# master
 #: ../gramps/plugins/textreport/summary.py:282
-#, fuzzy
 msgid "Whether to count private data"
-msgstr "Inclure ou non les données privées"
+msgstr "Compter ou non les données privées"
 
 #: ../gramps/plugins/textreport/tableofcontents.py:63
 #: ../gramps/plugins/textreport/textplugins.gpr.py:366
@@ -28804,8 +28862,9 @@ msgstr "Sélectionner un fichier"
 msgid "Media object could not be found"
 msgstr "L'objet medium est introuvable"
 
+# master
 #: ../gramps/plugins/tool/check.py:717
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "The file:\n"
 "%(file_name)s\n"
@@ -28816,7 +28875,10 @@ msgid ""
 msgstr ""
 "Le fichier :\n"
 " %(file_name)s \n"
-"est référencé dans la base mais n'existe plus. Le fichier a sans doute été effacé ou déplacé. Vous pouvez choisir de retirer la référence de la base, de garder la référence à un fichier absent ou de sélectionner un nouveau fichier."
+"est référencé dans la base mais n'existe plus. \n"
+"Le fichier a sans doute été effacé ou déplacé. \n"
+"Vous pouvez choisir de retirer la référence de la base, \n"
+"de garder la référence à un fichier absent ou de sélectionner un nouveau fichier."
 
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/check.py:798
@@ -29433,8 +29495,9 @@ msgstr "Introduction"
 msgid "Selection"
 msgstr "Sélection"
 
+# master
 #: ../gramps/plugins/tool/mediamanager.py:221
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "This tool allows batch operations on media objects stored in Gramps. An important distinction must be made between a Gramps media object and its file.\n"
 "\n"
@@ -29446,7 +29509,7 @@ msgid ""
 msgstr ""
 "Cet outil permet des opérations groupées sur les objets media stockés dans Gramps. Une distinction importante doit être faite entre un objet medium de Gramps et son fichier.\n"
 "\n"
-"L'objet medium de Gramps est un ensemble de données sur un fichier medium : son nom de fichier et/ou son chemin, sa description, son identifiant, ses notes, ses références de source, etc. Ces données <b>ne sont pas comprises dans le fichier lui-même</b>.\n"
+"L'objet medium de Gramps est un ensemble de données sur un fichier medium : son nom de fichier et/ou son chemin, sa description, son identifiant, ses notes, ses références de source, etc. Ces données %(bold_start)sne sont pas comprises dans le fichier lui-même%(bold_end)s.\n"
 "\n"
 "Les fichiers contenant une image, du son, de la vidéo, etc. existent séparément sur votre disque dur. Ces fichiers ne sont pas gérés par Gramps et ne sont pas inclus dans la base de données Gramps. La base de données Gramps ne stocke que le chemin et les noms de fichiers.\n"
 "\n"
@@ -31038,14 +31101,15 @@ msgstr "Le module osmgpsmap n'est pas chargé. osmgpsmap doit être >= 0.8, votr
 msgid "OsmGpsMap module not loaded."
 msgstr "Module OsmGpsMap non-chargé. "
 
+# master
 #: ../gramps/plugins/view/geography.gpr.py:70
-#, fuzzy, python-format
+#, python-format
 msgid ""
 "Geography functionality will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_osmgps_url)s"
 msgstr ""
 "La fonction Géographie n'est pas disponible.\n"
-"Pour construire ce module, voir http://www.gramps-project.org/wiki/index.php?title=GEPS_029:_GTK3-GObject_introspection_Conversion#OsmGpsMap_for_Geography"
+"Pour construire ce module, voir %(gramps_wiki_build_osmgps_url)s"
 
 #: ../gramps/plugins/view/geography.gpr.py:78
 msgid "All known places for one Person"
@@ -31746,15 +31810,17 @@ msgstr "Noms alternatifs"
 msgid "<absent>"
 msgstr "<absent>"
 
+# master
 #: ../gramps/plugins/webreport/narrativeweb.py:1592
-#, fuzzy, python-format
+#, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s %(version)s on %(date)s"
-msgstr "Généré par <a href = \"%(homepage)s\">Gramps</a> %(version)s le %(date)s"
+msgstr "Généré par %(gramps_home_html_start)sGramps%(html_end)s %(version)s le %(date)s"
 
+# master
 #: ../gramps/plugins/webreport/narrativeweb.py:1610
-#, fuzzy, python-format
+#, python-format
 msgid "%(http_break)sCreated for %(subject_url)s"
-msgstr "Créé pour %(author)s"
+msgstr "%(http_break)sCréé pour %(subject_url)s"
 
 #. Begin Navigation Menu--
 #. is the style sheet either Basic-Blue or Visually Impaired,
@@ -31995,10 +32061,11 @@ msgstr "Type mime"
 msgid "Previous"
 msgstr "Précédent"
 
+# master
 #: ../gramps/plugins/webreport/narrativeweb.py:4535
-#, fuzzy, python-format
+#, python-format
 msgid "%(strong1_start)s%(page_number)d%(strong_end)s of %(strong2_start)s%(total_pages)d%(strong_end)s"
-msgstr "<strong id = \"GalleryCurrent\">%(page_number)d</strong> sur <strong id = \"GalleryTotal\">%(total_pages)d</strong>"
+msgstr "%(strong1_start)s%(page_number)d%(strong_end)s sur %(strong2_start)s%(total_pages)d%(strong_end)s"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:4546
 msgid "Next"
@@ -32697,10 +32764,12 @@ msgstr "Calendrier XHTML"
 msgid "Calculating Holidays for year %04d"
 msgstr "Calcul des jours fériés pour l'année %04d"
 
+# /!\ à tester ...
+# master
 #: ../gramps/plugins/webreport/webcal.py:456
 #, python-format
 msgid "the \"WebCal\" will be the potential-email Subject|Created for %(html_email_author_start)sWebCal%(html_email_author_end)s"
-msgstr ""
+msgstr "Créé pour %(html_email_author_start)sWebCal%(html_email_author_end)s"
 
 #. Add a link for year_glance() if requested
 #: ../gramps/plugins/webreport/webcal.py:537
@@ -32745,11 +32814,12 @@ msgstr "Un jour dans une année"
 msgid "%(spouse)s and %(person)s"
 msgstr "%(spouse)s et %(person)s"
 
+# trunk
 #. Display date as user set in preferences
 #: ../gramps/plugins/webreport/webcal.py:1198
-#, fuzzy, python-format
+#, python-format
 msgid "Generated by %(gramps_home_html_start)sGramps%(html_end)s on %(date)s"
-msgstr "Généré par <a href = \"%(homepage)s\">Gramps</a> %(version)s le %(date)s"
+msgstr "Généré par %(gramps_home_html_start)sGramps%(html_end)s le %(date)s"
 
 #: ../gramps/plugins/webreport/webcal.py:1328
 msgid "Calendar Title"
