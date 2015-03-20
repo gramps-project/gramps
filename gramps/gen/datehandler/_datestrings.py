@@ -205,8 +205,14 @@ class DateStrings(object):
             )
 
         self.modifiers = ("", 
+                # TRANSLATORS: if the modifier is after the date
+                # put the space ahead of the word instead of after it
                 _("date modifier|before "), 
+                # TRANSLATORS: if the modifier is after the date
+                # put the space ahead of the word instead of after it
                 _("date modifier|after "), 
+                # TRANSLATORS: if the modifier is after the date
+                # put the space ahead of the word instead of after it
                 _("date modifier|about "), 
                 "", "", "")
 
