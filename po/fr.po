@@ -8485,7 +8485,7 @@ msgstr "Site Officiel de Gramps"
 
 #: ../gramps/gui/aboutdialog.py:108
 msgid "Contributions by"
-msgstr "Contributions de"
+msgstr "Contributions par"
 
 #. TRANSLATORS: Translate this to your name in your native language
 #: ../gramps/gui/aboutdialog.py:111
@@ -12258,7 +12258,7 @@ msgstr "Volume/Page"
 msgid "Citation: Minimum Confidence|Min. Conf."
 msgstr "Conf. min."
 
-# Traduction courte pour _eventsidebarfilter.py et _citationsidebarfilter
+# Traduction courte pour _placesidebarfilter.py et _citationsidebarfilter
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:120
 #: ../gramps/gui/filters/sidebar/_eventsidebarfilter.py:107
 #: ../gramps/gui/filters/sidebar/_familysidebarfilter.py:120
