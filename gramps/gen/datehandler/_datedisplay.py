@@ -161,47 +161,70 @@ class DateDisplay(object):
 
                 "from"
                 # first date in a span
-                # You only need to translate this string if you translate one of the
-                # inflect=_("...") with "from"
+                # If "from <Month>" needs a special inflection in your
+                # language, translate this to "{long_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("from|{long_month} {year}"),
 
                 "to"
                 # second date in a span
-                # You only need to translate this string if you translate one of the
-                # inflect=_("...") with "to"
+                # If "to <Month>" needs a special inflection in your
+                # language, translate this to "{long_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("to|{long_month} {year}"),
 
                 "between"
                 # first date in a range
-                # You only need to translate this string if you translate one of the
-                # inflect=_("...") with "between"
+                # If "between <Month>" needs a special inflection in your
+                # language, translate this to "{long_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("between|{long_month} {year}"),
 
                 "and"
                 # second date in a range
-                # You only need to translate this string if you translate one of the
-                # inflect=_("...") with "and"
+                # If "and <Month>" needs a special inflection in your
+                # language, translate this to "{long_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("and|{long_month} {year}"),
 
                 "before"
                 # If "before <Month>" needs a special inflection in your
                 # language, translate this to "{long_month.f[X]} {year}"
                 # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("before|{long_month} {year}"),
 
                 "after"
                 # If "after <Month>" needs a special inflection in your
                 # language, translate this to "{long_month.f[X]} {year}"
                 # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("after|{long_month} {year}"),
 
                 "about"
                 # If "about <Month>" needs a special inflection in your
                 # language, translate this to "{long_month.f[X]} {year}"
                 # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("about|{long_month} {year}"),
 
-            # TODO if no modifier, but with qual, might need to inflect in some lang.
+                "estimated"
+                # If "estimated <Month>" needs a special inflection in your
+                # language, translate this to "{long_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
+                : _("estimated|{long_month} {year}"),
+
+                "calculated"
+                # If "calculated <Month>" needs a special inflection in your
+                # language, translate this to "{long_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
+                : _("calculated|{long_month} {year}"),
         }
 
         self.FORMATS_short_month_year = {
@@ -210,37 +233,70 @@ class DateDisplay(object):
 
                 "from" 
                 # first date in a span
+                # If "from <Month>" needs a special inflection in your
+                # language, translate this to "{short_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("from|{short_month} {year}"),
 
                 "to" 
                 # second date in a span
+                # If "to <Month>" needs a special inflection in your
+                # language, translate this to "{short_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("to|{short_month} {year}"),
 
                 "between" 
                 # first date in a range
+                # If "between <Month>" needs a special inflection in your
+                # language, translate this to "{short_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("between|{short_month} {year}"),
 
                 "and" 
                 # second date in a range
+                # If "and <Month>" needs a special inflection in your
+                # language, translate this to "{short_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("and|{short_month} {year}"),
 
                 "before" 
                 # If "before <Month>" needs a special inflection in your
                 # language, translate this to "{short_month.f[X]} {year}"
                 # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("before|{short_month} {year}"),
 
                 "after" 
                 # If "after <Month>" needs a special inflection in your
                 # language, translate this to "{short_month.f[X]} {year}"
                 # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("after|{short_month} {year}"),
 
                 "about" 
                 # If "about <Month>" needs a special inflection in your
                 # language, translate this to "{short_month.f[X]} {year}"
                 # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
                 : _("about|{short_month} {year}"),
+
+                "estimated"
+                # If "estimated <Month>" needs a special inflection in your
+                # language, translate this to "{short_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
+                : _("estimated|{short_month} {year}"),
+
+                "calculated"
+                # If "calculated <Month>" needs a special inflection in your
+                # language, translate this to "{short_month.f[X]} {year}"
+                # (where X is one of the month-name inflections you defined)
+                # else leave it untranslated
+                : _("calculated|{short_month} {year}"),
         }
 
     def set_format(self, format):
@@ -346,48 +402,40 @@ class DateDisplay(object):
             return ""
         elif mod == Date.MOD_SPAN:
             d1 = self.display_cal[cal](start, 
-                    # If there is no special inflection for "from <Month>" in your
-                    # language, don't translate this string.
-                    # Otherwise, translate it to the ENGLISH!!! ENGLISH!!! 
-                    # key appearing above in the FORMATS_... dict
-                    # that maps to the special inflected format string that you need to localize.
-                    inflect=_("from-date|"))
+                # If there is no special inflection for "from <Month>"
+                # in your language, DON'T translate this string.  Otherwise,
+                # "translate" this to "from" in ENGLISH!!! ENGLISH!!!
+                                       inflect=_("from-date|"))
             d2 = self.display_cal[cal](date.get_stop_date(), 
-                    # If there is no special inflection for "to <Month>" in your
-                    # language, don't translate this string.
-                    # Otherwise, translate it to the ENGLISH!!! ENGLISH!!! 
-                    # key appearing above in the FORMATS_... dict
-                    # that maps to the special inflected format string that you need to localize.
-                    inflect=_("to-date|"))
+                # If there is no special inflection for "to <Month>"
+                # in your language, DON'T translate this string.  Otherwise,
+                # "translate" this to "to" in ENGLISH!!! ENGLISH!!!
+                                       inflect=_("to-date|"))
             scal = self.format_extras(cal, newyear)
             return _("{date_quality}from {date_start} to {date_stop}"
-                    "{nonstd_calendar_and_ny}").format(
-                    date_quality=qual_str, 
-                    date_start=d1, 
-                    date_stop=d2, 
-                    nonstd_calendar_and_ny=scal)
+                     "{nonstd_calendar_and_ny}").format(
+                         date_quality=qual_str, 
+                         date_start=d1, 
+                         date_stop=d2, 
+                         nonstd_calendar_and_ny=scal)
         elif mod == Date.MOD_RANGE:
             d1 = self.display_cal[cal](start,
-                    # If there is no special inflection for "between <Month>" in your
-                    # language, don't translate this string.
-                    # Otherwise, translate it to the ENGLISH!!! ENGLISH!!! 
-                    # key appearing above in the FORMATS_... dict
-                    # that maps to the special inflected format string that you need to localize.
-                    inflect=_("between-date|"))
+                # If there is no special inflection for "between <Month>"
+                # in your language, DON'T translate this string.  Otherwise,
+                # "translate" this to "between" in ENGLISH!!! ENGLISH!!!
+                                       inflect=_("between-date|"))
             d2 = self.display_cal[cal](date.get_stop_date(),
-                    # If there is no special inflection for "and <Month>" in your
-                    # language, don't translate this string.
-                    # Otherwise, translate it to the ENGLISH!!! ENGLISH!!! 
-                    # key appearing above in the FORMATS_... dict
-                    # that maps to the special inflected format string that you need to localize.
-                    inflect=_("and-date|"))
+                # If there is no special inflection for "and <Month>"
+                # in your language, DON'T translate this string.  Otherwise,
+                # "translate" this to "and" in ENGLISH!!! ENGLISH!!!
+                                       inflect=_("and-date|"))
             scal = self.format_extras(cal, newyear)
             return _("{date_quality}between {date_start} and {date_stop}"
-                    "{nonstd_calendar_and_ny}").format(
-                    date_quality=qual_str, 
-                    date_start=d1, 
-                    date_stop=d2, 
-                    nonstd_calendar_and_ny=scal)
+                     "{nonstd_calendar_and_ny}").format(
+                         date_quality=qual_str, 
+                         date_start=d1, 
+                         date_stop=d2, 
+                         nonstd_calendar_and_ny=scal)
         else:
             if mod == Date.MOD_BEFORE:
                 # If there is no special inflection for "before <Month>"
@@ -404,8 +452,26 @@ class DateDisplay(object):
                 # in your language, DON'T translate this string.  Otherwise,
                 # "translate" this to "about" in ENGLISH!!! ENGLISH!!!
                 date_type = _("about-date|")
+            elif qual == Date.QUAL_ESTIMATED:
+                # If there is no special inflection for "estimated <Month>"
+                # in your language, DON'T translate this string.  Otherwise,
+                # "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
+                date_type = _("estimated-date|")
+            elif qual == Date.QUAL_CALCULATED:
+                # If there is no special inflection for "calculated <Month>"
+                # in your language, DON'T translate this string.  Otherwise,
+                # "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
+                date_type = _("calculated-date|")
             else:
                 date_type = ""
+            # TODO -- do "estimated" and "calculated" need their own "if"?
+            # i.e., what happens if a date is both "modified" and "qualified"?
+            # it won't matter if the month gets the same lexeme type, but
+            # what should be done if the types differ? there can only be one
+            # lexeme type for any month so which one should be last?  so we
+            # will wait and see if any language ever requires such fine tuning
+            # as maybe it will be as simple as putting the "elif" choices for
+            # "estimated" and "calculated" before the others, or something
             text = self.display_cal[cal](start, inflect=date_type)
             modifier = self._mod_str[mod]
             # some languages have a modifier after the date (e.g. Finnish)
@@ -415,11 +481,11 @@ class DateDisplay(object):
                 modifier = ''
             scal = self.format_extras(cal, newyear)
             return _("{date_quality}{noncompound_modifier}{date}"
-                    "{nonstd_calendar_and_ny}").format(
-                    date_quality=qual_str, 
-                    noncompound_modifier=modifier,
-                    date=text, 
-                    nonstd_calendar_and_ny=scal)
+                     "{nonstd_calendar_and_ny}").format(
+                         date_quality=qual_str, 
+                         noncompound_modifier=modifier,
+                         date=text, 
+                         nonstd_calendar_and_ny=scal)
 
     def _display_gregorian(self, date_val, **kwargs):
         return self._display_calendar(date_val, self.long_months, 
