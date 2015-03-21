@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-19 01:57+0100\n"
-"PO-Revision-Date: 2015-03-19 02:01+0100\n"
+"PO-Revision-Date: 2015-03-21 16:54+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -28673,7 +28673,7 @@ msgstr "Alter bei Tot berechnen"
 #: ../gramps/plugins/textreport/detancestralreport.py:796
 #: ../gramps/plugins/textreport/detdescendantreport.py:959
 msgid "Whether to compute a person's age at death."
-msgstr "Legt fest, ob das Alter einer Person beim Tot berechnet wird."
+msgstr "Legt fest, ob das Alter einer Person beim Tod berechnet wird."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:799
 #: ../gramps/plugins/textreport/detdescendantreport.py:962
@@ -30443,7 +30443,7 @@ msgstr ""
 #: ../gramps/plugins/tool/finddupes.glade:118
 #: ../gramps/plugins/tool/mergecitations.glade:118
 msgid "Match Threshold"
-msgstr "Passender Grenzwert"
+msgstr "Vergleichsschwellwert"
 
 #: ../gramps/plugins/tool/finddupes.glade:145
 msgid "Use soundex codes"
@@ -33811,7 +33811,7 @@ msgstr "Spalte für Todesdaten auf den Indexseiten"
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8271
 msgid "Whether to include a death column"
-msgstr "Ob eine Spalte für Tot aufgenommen wird."
+msgstr "Ob eine Spalte für Tod aufgenommen wird."
 
 #: ../gramps/plugins/webreport/narrativeweb.py:8274
 msgid "Include a column for partners on the index pages"
