@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-19 19:03+0100\n"
-"PO-Revision-Date: 2015-03-19 19:05+0100\n"
+"POT-Creation-Date: 2015-03-21 16:51+0100\n"
+"PO-Revision-Date: 2015-03-21 16:54+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -1502,9 +1502,9 @@ msgstr "Gesperrt durch %s"
 #: ../gramps/plugins/gramplet/relativegramplet.py:135
 #: ../gramps/plugins/graph/gvfamilylines.py:164
 #: ../gramps/plugins/graph/gvrelgraph.py:625
-#: ../gramps/plugins/lib/maps/geography.py:771
-#: ../gramps/plugins/lib/maps/geography.py:778
-#: ../gramps/plugins/lib/maps/geography.py:779
+#: ../gramps/plugins/lib/maps/geography.py:784
+#: ../gramps/plugins/lib/maps/geography.py:791
+#: ../gramps/plugins/lib/maps/geography.py:792
 #: ../gramps/plugins/quickview/all_relations.py:277
 #: ../gramps/plugins/quickview/all_relations.py:294
 #: ../gramps/plugins/textreport/indivcomplete.py:580
@@ -12170,7 +12170,7 @@ msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr "48.21\"O, -18.2412 oder -18:9:48.21)"
 
 #: ../gramps/gui/editors/editplace.py:169
-#: ../gramps/plugins/lib/maps/geography.py:824
+#: ../gramps/plugins/lib/maps/geography.py:837
 #: ../gramps/plugins/view/geoplaces.py:322
 #: ../gramps/plugins/view/geoplaces.py:348
 msgid "Edit Place"
@@ -17218,6 +17218,7 @@ msgstr "Aktives Objekt ist nicht sichtbar"
 #: ../gramps/gui/views/listview.py:450
 #: ../gramps/gui/views/navigationview.py:254
 #: ../gramps/plugins/lib/maps/geography.py:191
+#: ../gramps/plugins/lib/maps/geography.py:204
 #: ../gramps/plugins/view/familyview.py:220
 msgid "Could Not Set a Bookmark"
 msgstr "Das Lesezeichen konnte nicht gesetzt werden"
@@ -17289,6 +17290,7 @@ msgstr "Lesezeichen für %s gesetzt"
 
 #: ../gramps/gui/views/navigationview.py:255
 #: ../gramps/plugins/lib/maps/geography.py:192
+#: ../gramps/plugins/lib/maps/geography.py:205
 #: ../gramps/plugins/view/familyview.py:221
 msgid "A bookmark could not be set because no one was selected."
 msgstr ""
@@ -26962,59 +26964,59 @@ msgstr "Unten links"
 msgid "Bottom Right"
 msgstr "Unten rechts"
 
-#: ../gramps/plugins/lib/maps/geography.py:270
+#: ../gramps/plugins/lib/maps/geography.py:283
 #: ../gramps/plugins/view/fanchartdescview.py:166
 #: ../gramps/plugins/view/fanchartview.py:164
 msgid "_Print..."
 msgstr "_Drucken..."
 
-#: ../gramps/plugins/lib/maps/geography.py:272
+#: ../gramps/plugins/lib/maps/geography.py:285
 msgid "Print or save the Map"
 msgstr "Die Karte drucken oder speichern"
 
-#: ../gramps/plugins/lib/maps/geography.py:309
+#: ../gramps/plugins/lib/maps/geography.py:322
 msgid "Map Menu"
 msgstr "Kartenmenü"
 
-#: ../gramps/plugins/lib/maps/geography.py:312
+#: ../gramps/plugins/lib/maps/geography.py:325
 msgid "Remove cross hair"
 msgstr "Fadenkreuz entfernen"
 
-#: ../gramps/plugins/lib/maps/geography.py:314
+#: ../gramps/plugins/lib/maps/geography.py:327
 msgid "Add cross hair"
 msgstr "Fadenkreuz hinzufügen"
 
-#: ../gramps/plugins/lib/maps/geography.py:321
+#: ../gramps/plugins/lib/maps/geography.py:334
 msgid "Unlock zoom and position"
 msgstr "Zoom und Position entsperren"
 
-#: ../gramps/plugins/lib/maps/geography.py:323
+#: ../gramps/plugins/lib/maps/geography.py:336
 msgid "Lock zoom and position"
 msgstr "Zoom und Position sperren"
 
-#: ../gramps/plugins/lib/maps/geography.py:330
+#: ../gramps/plugins/lib/maps/geography.py:343
 msgid "Add place"
 msgstr "Ort hinzufügen"
 
-#: ../gramps/plugins/lib/maps/geography.py:335
+#: ../gramps/plugins/lib/maps/geography.py:348
 msgid "Link place"
 msgstr "Ort verknüpfen"
 
-#: ../gramps/plugins/lib/maps/geography.py:340
+#: ../gramps/plugins/lib/maps/geography.py:353
 msgid "Center here"
 msgstr "Hier zentrieren"
 
-#: ../gramps/plugins/lib/maps/geography.py:353
+#: ../gramps/plugins/lib/maps/geography.py:366
 #, python-format
 msgid "Replace '%(map)s' by =>"
 msgstr "Ersetze '%(map)s' durch =>"
 
-#: ../gramps/plugins/lib/maps/geography.py:372
+#: ../gramps/plugins/lib/maps/geography.py:385
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
 msgstr "Leert den  '%(map)s' Kacheln Cache."
 
-#: ../gramps/plugins/lib/maps/geography.py:828
+#: ../gramps/plugins/lib/maps/geography.py:841
 #: ../gramps/plugins/view/geoclose.py:532
 #: ../gramps/plugins/view/geoevents.py:329
 #: ../gramps/plugins/view/geoevents.py:362
@@ -27029,11 +27031,11 @@ msgstr "Leert den  '%(map)s' Kacheln Cache."
 msgid "Center on this place"
 msgstr "Auf diesen Ort zentrieren"
 
-#: ../gramps/plugins/lib/maps/geography.py:927
+#: ../gramps/plugins/lib/maps/geography.py:940
 msgid "You have at least two places with the same title."
 msgstr "Du hast mindestens zwei Orte mit dem selben Titel."
 
-#: ../gramps/plugins/lib/maps/geography.py:928
+#: ../gramps/plugins/lib/maps/geography.py:941
 #, python-format
 msgid ""
 "The title of the places is :\n"
@@ -27050,19 +27052,19 @@ msgstr ""
 "\n"
 "<b>Ich kann deine Anfrage nicht durchführen</b>.\n"
 
-#: ../gramps/plugins/lib/maps/geography.py:1049
+#: ../gramps/plugins/lib/maps/geography.py:1062
 msgid "Nothing for this view."
 msgstr "Nichts für diese Ansicht."
 
-#: ../gramps/plugins/lib/maps/geography.py:1050
+#: ../gramps/plugins/lib/maps/geography.py:1063
 msgid "Specific parameters"
 msgstr "Bestimmte Parameter"
 
-#: ../gramps/plugins/lib/maps/geography.py:1068
+#: ../gramps/plugins/lib/maps/geography.py:1081
 msgid "Where to save the tiles for offline mode."
 msgstr "Wo die Kacheln für den offline Modus gespeichert werden."
 
-#: ../gramps/plugins/lib/maps/geography.py:1072
+#: ../gramps/plugins/lib/maps/geography.py:1085
 msgid ""
 "If you have no more space in your file system. You can remove all tiles "
 "placed in the above path.\n"
@@ -27072,15 +27074,15 @@ msgstr ""
 "die im obigen Pfad liegen entfernen.\n"
 "Sei vorsichtig! Wenn du kein Internet hast, erhältst du keine Karte."
 
-#: ../gramps/plugins/lib/maps/geography.py:1077
+#: ../gramps/plugins/lib/maps/geography.py:1090
 msgid "Zoom used when centering"
 msgstr "Zoom der beim Zentrieren verwendet wird"
 
-#: ../gramps/plugins/lib/maps/geography.py:1081
+#: ../gramps/plugins/lib/maps/geography.py:1094
 msgid "The maximum number of places to show"
 msgstr "Maximale Anzahl der angezeigten Orte"
 
-#: ../gramps/plugins/lib/maps/geography.py:1085
+#: ../gramps/plugins/lib/maps/geography.py:1098
 msgid ""
 "Use keypad for shortcuts :\n"
 "Either we choose the + and - from the keypad if we select this,\n"
@@ -27090,11 +27092,11 @@ msgstr ""
 "Entweder verwenden wir + und - vom Nummernblock wenn wir es wählen, \n"
 "oder wir verwenden die Zeichen von der Tastatur."
 
-#: ../gramps/plugins/lib/maps/geography.py:1091
+#: ../gramps/plugins/lib/maps/geography.py:1104
 msgid "The map"
 msgstr "Die Karte"
 
-#: ../gramps/plugins/lib/maps/geography.py:1101
+#: ../gramps/plugins/lib/maps/geography.py:1114
 msgid "Select tile cache directory for offline mode"
 msgstr "Wähle das Verzeichnis für die Kacheln für de offline Modus"
 
@@ -30223,7 +30225,7 @@ msgstr ""
 #: ../gramps/plugins/tool/finddupes.glade:126
 #: ../gramps/plugins/tool/mergecitations.glade:132
 msgid "Match Threshold"
-msgstr "Passender Grenzwert"
+msgstr "Vergleichsschwellwert"
 
 #: ../gramps/plugins/tool/finddupes.glade:157
 msgid "Use soundex codes"
