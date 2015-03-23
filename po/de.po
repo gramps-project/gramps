@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-21 16:51+0100\n"
-"PO-Revision-Date: 2015-03-21 16:54+0100\n"
+"POT-Creation-Date: 2015-03-23 11:46+0100\n"
+"PO-Revision-Date: 2015-03-23 11:49+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -15665,6 +15665,7 @@ msgid "Merge Sources"
 msgstr "Quellen zusammenfassen"
 
 #: ../gramps/gui/plug/_dialogs.py:123
+#: ../gramps/plugins/tool/notrelated.glade:149
 msgid "_Apply"
 msgstr "_Anwenden"
 
@@ -16850,7 +16851,7 @@ msgstr "_Bearbeiten"
 msgid "_Preferences..."
 msgstr "_Einstellungen..."
 
-#: ../gramps/gui/viewmanager.py:487
+#: ../gramps/gui/viewmanager.py:487 ../gramps/plugins/tool/notrelated.glade:40
 msgid "_Help"
 msgstr "_Hilfe"
 
@@ -30554,6 +30555,10 @@ msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
 msgstr[0] "{number_of} Fundstelle zusammengefasst"
 msgstr[1] "{number_of} Fundstellen zusammengefasst"
+
+#: ../gramps/plugins/tool/notrelated.glade:23
+msgid "_Close"
+msgstr "_Schließen"
 
 #: ../gramps/plugins/tool/notrelated.glade:170
 msgid "_Tag"
