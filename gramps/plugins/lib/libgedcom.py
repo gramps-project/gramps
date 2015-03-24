@@ -564,6 +564,10 @@ LDS_STATUS = {
 # table for skipping illegal control chars in GEDCOM import
 # Only 09, 0A, 0D are allowed.
 STRIP_DICT = dict.fromkeys(list(range(9))+list(range(11, 13))+list(range(14, 32)))
+# The C1 Control characters are not treated in Latin-1 (ISO-8859-1) as
+# undefined, but if they have been used, the file is probably supposed to be
+# cp1252
+DEL_AND_C1 = dict.fromkeys(list(range(0x7F, 0x9F)))
 
 #-------------------------------------------------------------------------
 #
@@ -675,7 +679,7 @@ class GedcomDateParser(DateParser):
 #-------------------------------------------------------------------------
 class Lexer(object):
 
-    def __init__(self, ifile):
+    def __init__(self, ifile, __add_msg):
         self.ifile = ifile
         self.current_list = []
         self.eof = False
@@ -686,6 +690,7 @@ class Lexer(object):
             TOKEN_CONT : self.__fix_token_cont,
             TOKEN_CONC : self.__fix_token_conc,
             }
+        self.__add_msg = __add_msg
 
     def readline(self):
         if len(self.current_list) <= 1 and not self.eof:
@@ -724,6 +729,7 @@ class Lexer(object):
                 self.eof = True
                 return
 
+            original_line = line
             try:
                 # According to the GEDCOM 5.5 standard,
                 # Chapter 1 subsection Grammar
@@ -757,6 +763,13 @@ class Lexer(object):
                     tag = line[0]
                     line_value = line[2]
             except:
+                problem = _("Line ignored ")
+                text = original_line.rstrip('\n\r')
+                prob_width = 66
+                problem = problem.ljust(prob_width)[0:(prob_width-1)]
+                text = text.replace("\n", "\n".ljust(prob_width + 22))
+                message = "%s              %s" % (problem, text)
+                self.__add_msg(message)
                 continue
 
             token = TOKENS.get(tag, TOKEN_UNKNOWN)
@@ -1213,22 +1226,29 @@ class GedInfoParser(object):
 #
 #-------------------------------------------------------------------------
 class BaseReader(object):
-    def __init__(self, ifile, encoding):
+    def __init__(self, ifile, encoding, __add_msg):
         self.ifile = ifile
         self.enc = encoding
+        self.__add_msg = __add_msg
 
     def reset(self):
         self.ifile.seek(0)
 
     def readline(self):
-        line = self.ifile.readline()
-        line = line.decode(self.enc, errors='replace')
-        return line.translate(STRIP_DICT)
+        raise NotImplemented
+
+    def report_error(self, problem, line):
+        line = line.rstrip('\n\r')
+        prob_width = 66
+        problem = problem.ljust(prob_width)[0:(prob_width-1)]
+        text = line.replace("\n", "\n".ljust(prob_width + 22))
+        message = "%s               %s" % (problem, text)
+        self.__add_msg(message)
 
 class UTF8Reader(BaseReader):
 
-    def __init__(self, ifile):
-        BaseReader.__init__(self, ifile, 'utf8')
+    def __init__(self, ifile, __add_msg):
+        BaseReader.__init__(self, ifile, 'utf8', __add_msg)
         self.reset()
 
     def reset(self):
@@ -1244,23 +1264,38 @@ class UTF8Reader(BaseReader):
 
 class UTF16Reader(BaseReader):
 
-    def __init__(self, ifile):
+    def __init__(self, ifile, __add_msg):
         new_file = codecs.EncodedFile(ifile, 'utf8', 'utf16')
-        BaseReader.__init__(self, new_file, 'utf16')
+        BaseReader.__init__(self, new_file, '', __add_msg)
         self.reset()
 
     def readline(self):
-        l = self.ifile.readline()
-        if l.strip():
-            return l
-        else:
-            return self.ifile.readline()
+        line = self.ifile.readline()
+        line = line.decode('utf8', errors='replace')
+        return line.translate(STRIP_DICT)
 
 class AnsiReader(BaseReader):
 
-    def __init__(self, ifile):
-        BaseReader.__init__(self, ifile, 'latin1')
-    
+    def __init__(self, ifile, __add_msg):
+        BaseReader.__init__(self, ifile, 'latin1', __add_msg)
+   
+    def readline(self):
+        line = self.ifile.readline()
+        line = line.decode(self.enc, errors='replace')
+        if line.translate(DEL_AND_C1) != line:
+            self.report_error("DEL or C1 control chars in line did you mean CHAR cp1252??", line)
+        return line.translate(STRIP_DICT)
+
+class CP1252Reader(BaseReader):
+
+    def __init__(self, ifile, __add_msg):
+        BaseReader.__init__(self, ifile, 'cp1252', __add_msg)
+   
+    def readline(self):
+        line = self.ifile.readline()
+        line = line.decode(self.enc, errors='replace')
+        return line.translate(STRIP_DICT)
+
 class AnselReader(BaseReader):
     """
     ANSEL to Unicode Conversion
@@ -1280,7 +1315,8 @@ class AnselReader(BaseReader):
     TODO: should we allow TAB, as a Gramps extension?
     """
     __printable_ascii = list(map(chr, list(range(32, 127)))) # note: up thru 126
-    __use_ASCII = list(map(chr, [10, 27, 29 , 30, 31])) + __printable_ascii
+    #                            LF  CR  Esc GS   RS  US
+    __use_ASCII = list(map(chr, [10, 13, 27, 29 , 30, 31])) + __printable_ascii
     
     # mappings of single byte ANSEL codes to unicode
     __onebyte = {
@@ -1293,9 +1329,11 @@ class AnselReader(BaseReader):
          b'\xB4' : '\u00fe',   b'\xB5' : '\u00e6',   b'\xB6' : '\u0153',   
          b'\xB7' : '\u02ba',   b'\xB8' : '\u0131',   b'\xB9' : '\u00a3',   
          b'\xBA' : '\u00f0',   b'\xBC' : '\u01a1',   b'\xBD' : '\u01b0',   
+         b'\xBE' : '\u25a1',   b'\xBF' : '\u25a0',
          b'\xC0' : '\u00b0',   b'\xC1' : '\u2113',   b'\xC2' : '\u2117',   
          b'\xC3' : '\u00a9',   b'\xC4' : '\u266f',   b'\xC5' : '\u00bf',   
          b'\xC6' : '\u00a1',   b'\xC7' : '\u00df',   b'\xC8' : '\u20ac',  
+         b'\xCD' : '\u0065',   b'\xCE' : '\u006f',   b'\xCF' : '\u00df',
         }
     
     # combining forms (in ANSEL, they precede the modified ASCII character
@@ -1316,6 +1354,7 @@ class AnselReader(BaseReader):
          b'\xF3' : '\u0324',   b'\xF4' : '\u0325',   b'\xF5' : '\u0333',   
          b'\xF6' : '\u0332',   b'\xF7' : '\u0326',   b'\xF8' : '\u031c',   
          b'\xF9' : '\u032e',   b'\xFA' : '\ufe22',   b'\xFB' : '\ufe23',   
+         b'\xFC' : '\u0338',
          b'\xFE' : '\u0313',  
        }
     
@@ -1473,49 +1512,56 @@ class AnselReader(BaseReader):
          b'\xF9\x48' : '\u1e2a',   b'\xF9\x68' : '\u1e2b',  
        }
 
-    @staticmethod
-    def __ansel_to_unicode(s):
+    def __ansel_to_unicode(self, s):
         """ Convert an ANSEL encoded string to unicode """
     
         buff = StringIO()
+        error = ""
         while s:
-            if ord(s[0]) < 128:
-                if s[0] in AnselReader.__use_ASCII:
-                    head = s[0]
+            if s[0] < 128:
+                if chr(s[0]) in AnselReader.__use_ASCII:
+                    head = chr(s[0])
                 else:
                     # substitute space for disallowed (control) chars
+                    error += " (%#X)" % s[0]
                     head = ' '
                 s = s[1:]
             else:
                 if s[0:2] in AnselReader.__twobyte:
                     head = AnselReader.__twobyte[s[0:2]]
                     s = s[2:]
-                elif s[0] in AnselReader.__onebyte:
-                    head = AnselReader.__onebyte[s[0]]
+                elif bytes([s[0]]) in AnselReader.__onebyte:
+                    head = AnselReader.__onebyte[bytes([s[0]])]
                     s = s[1:]
-                elif s[0] in AnselReader.__acombiners:
-                    c =  AnselReader.__acombiners[s[0]]
+                elif bytes([s[0]]) in AnselReader.__acombiners:
+                    c =  AnselReader.__acombiners[bytes([s[0]])]
                     # always consume the combiner
                     s = s[1:]
-                    next = s[0]
-                    if next in AnselReader.__printable_ascii:
+                    next_byte = s[0]
+                    if next_byte < 128 and chr(next_byte) in AnselReader.__printable_ascii:
                         # consume next as well
                         s = s[1:]
                         # unicode: combiner follows base-char
-                        head = next + c
+                        head = chr(next_byte) + c
                     else:
                         # just drop the unexpected combiner
+                        error += " (%#X)" % s[0]
                         continue 
                 else:
+                    error += " (%#X)" % s[0]
                     head = '\ufffd' # "Replacement Char"
                     s = s[1:]
-            buff.write(head.encode("utf-8"))
-        ans = buff.getvalue().decode("utf-8")
+            buff.write(head)
+        ans = buff.getvalue()
+
+        if error:
+            # e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
+            self.report_error(_("Illegal character%s") % error, ans)
         buff.close()
         return ans
 
-    def __init__(self, ifile):
-        BaseReader.__init__(self, ifile, "")
+    def __init__(self, ifile, __add_msg):
+        BaseReader.__init__(self, ifile, "", __add_msg)
 
     def readline(self):
         return self.__ansel_to_unicode(self.ifile.readline())
@@ -2617,15 +2663,17 @@ class GedcomParser(UpdateCallback):
         enc = stage_one.get_encoding()
 
         if enc == "ANSEL":
-            rdr = AnselReader(ifile)
+            rdr = AnselReader(ifile, self.__add_msg)
         elif enc in ("UTF-8", "UTF8"):
-            rdr = UTF8Reader(ifile)
-        elif enc in ("UTF-16", "UTF16", "UNICODE"):
-            rdr = UTF16Reader(ifile)
+            rdr = UTF8Reader(ifile, self.__add_msg)
+        elif enc in ("UTF-16LE", "UTF-16BE",  "UTF16", "UNICODE"):
+            rdr = UTF16Reader(ifile, self.__add_msg)
+        elif enc in ("CP1252", "WINDOWS-1252"):
+            rdr = CP1252Reader(ifile, self.__add_msg)
         else:
-            rdr = AnsiReader(ifile)
+            rdr = AnsiReader(ifile, self.__add_msg)
 
-        self.lexer = Lexer(rdr)
+        self.lexer = Lexer(rdr, self.__add_msg)
         self.filename = filename
         self.backoff = False
 
@@ -7129,8 +7177,13 @@ class GedcomParser(UpdateCallback):
                     sattr.set_value(line.data)
                     self.def_src.add_attribute(sattr)
             elif line.token == TOKEN_FORM:
-                if line.data != "LINEAGE-LINKED":
-                    self.__add_msg(_("GEDCOM form not supported"), line, state)
+                if line.data == "LINEAGE-LINKED":
+                    pass
+                elif line.data.upper() == "LINEAGE-LINKED":
+                    # Allow Lineage-Linked etc. though it should be in uppercase
+                    self.__add_msg(_("GEDCOM FORM should be in uppercase"), line, state)
+                else:
+                    self.__add_msg(_("GEDCOM FORM not supported"), line, state)
                 if self.use_def_src:
                     sattr = SrcAttribute()
                     sattr.set_type(_('GEDCOM form'))
@@ -7675,7 +7728,7 @@ class GedcomStageOne(object):
             input_file.read(1)
             self.enc = "UTF8"
             return input_file
-        elif line == b"\xff\xfe":
+        elif line == b"\xff\xfe" or line == b"\xfe\xff":
             self.enc = "UTF16"
             input_file.seek(0)
             return codecs.EncodedFile(input_file, 'utf8', 'utf16')
@@ -7696,25 +7749,30 @@ class GedcomStageOne(object):
         reader = self.__detect_file_decoder(self.ifile)
 
         for line in reader:
+            # Treat the file as though it is UTF-8 since this will be right if a
+            # BOM was detected; it is the more modern option; and anyway it
+            # doesn't really matter as we are only trying to detect a CHAR line
+            # which is only 7-bit ASCII anyway,  and we ignore anything that
+            # can't be translated.
+            line = line.decode(encoding='utf-8', errors='replace')
             line = line.strip()
             if not line:
                 continue
             self.lcnt += 1
 
-            data = line.split(None, 2) + ['']
             try:
+                data = line.split(None, 2) + ['']
                 (level, key, value) = data[:3]
                 level = int(level)
-                key = conv_to_unicode(key.strip())
-                value = conv_to_unicode(value.strip())
+                key = key.strip()
+                value = value.strip()
             except:
-                LOG.warn(_("Invalid line %d in GEDCOM file.") % self.lcnt)
                 continue
 
             if level == 0 and key[0] == '@':
-                if value == ("FAM", "FAMILY") :
+                if value in ("FAM", "FAMILY") :
                     current_family_id = key.strip()[1:-1]
-                elif value == ("INDI", "INDIVIDUAL"):
+                elif value in ("INDI", "INDIVIDUAL"):
                     self.pcnt += 1
             elif key in ("HUSB", "HUSBAND", "WIFE") and \
                  self.__is_xref_value(value):
@@ -7724,6 +7782,9 @@ class GedcomStageOne(object):
             elif key == 'CHAR' and not self.enc:
                 assert(isinstance(value, str))
                 self.enc = value
+        LOG.debug("parse pcnt %d" % self.pcnt)
+        LOG.debug("parse famc %s" % dict(self.famc))
+        LOG.debug("parse fams %s" % dict(self.fams))
 
     def get_famc_map(self):
         """
