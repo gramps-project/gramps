@@ -64,11 +64,10 @@ from gramps.gen.utils.lds import TEMPLES
 #
 #------------------------------------------------------------------------
 
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
     return value
-# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
-SECTION_CATEGORY = _("Sections") # only used in add_menu_options (so no _T_)
 CUSTOM = _T_("Custom")
 
 # Construct section list and type to group map
@@ -972,7 +971,7 @@ class IndivCompleteOptions(MenuReportOptions):
         menu.add_option(category_name, "grampsid", grampsid)
 
         ################################
-        category_name = SECTION_CATEGORY
+        category_name = _("Sections")
         ################################
 
         opt = BooleanListOption(_("Event groups"))

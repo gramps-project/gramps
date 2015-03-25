@@ -58,9 +58,9 @@ import gramps.plugins.lib.libholiday as libholiday
 # localization for BirthdayOptions only!!
 from gramps.gen.datehandler import displayer as _dd
 
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
     return value
-# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
 _TITLE0 = _T_("Birthday and Anniversary Report")
 _TITLE1 = _T_("My Birthday Report")
@@ -260,9 +260,9 @@ class BirthdayReport(Report):
             people = self.filter.apply(self.database, people, 
                                        step)
         
+        ngettext = self._locale.translation.ngettext # to see "nearby" comments
         rel_calc = get_relationship_calculator(reinit=True,
                                                clocale=self._locale)
-        ngettext = self._locale.translation.ngettext # to see "nearby" comments
 
         with self._user.progress(_('Birthday and Anniversary Report'), 
                 _('Reading database...'), len(people)) as step:

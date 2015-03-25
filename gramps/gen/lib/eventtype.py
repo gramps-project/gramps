@@ -136,9 +136,9 @@ class EventType(GrampsType):
     RETIREMENT     = 43
     WILL           = 44
 
+    # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
     def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
         return value
-    # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 
     _MENU = [[_T_('Life Events'),
               [BIRTH, BAPTISM, DEATH, BURIAL, CREMATION, ADOPT]],

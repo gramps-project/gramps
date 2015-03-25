@@ -268,8 +268,8 @@ class Span(object):
         :param dlocale: allow deferred translation of strings
         :type dlocale: a :class:`.GrampsLocale` instance
         """
-        trans_text = dlocale.translation.sgettext
         # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
+        trans_text = dlocale.translation.sgettext
         _repr = trans_text("unknown")
         # FIXME all this concatenation will fail for RTL languages -- really??
         if self.valid:
@@ -395,9 +395,9 @@ class Span(object):
         :param dlocale: allow deferred translation of strings
         :type dlocale: a :class:`.GrampsLocale` instance
         """
-        trans_text = dlocale.translation.sgettext
-        # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
         ngettext = dlocale.translation.ngettext # to see "nearby" comments
+        # trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
+        trans_text = dlocale.translation.sgettext
         if diff_tuple == (-1, -1, -1): return trans_text("unknown")
         retval = ""
         detail = 0
