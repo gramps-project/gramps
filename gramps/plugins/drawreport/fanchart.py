@@ -737,7 +737,7 @@ class FanChartOptions(MenuReportOptions):
             p = ParagraphStyle()
             p.set_font(f)
             p.set_alignment(PARA_ALIGN_CENTER)
-            p.set_description(_('The style used for the text display of generation ' + "%d" % i))
+            p.set_description(_('The style used for the text display of generation "%d"') % i)
             default_style.add_paragraph_style("FC-Text" + "%02d" % i, p)
             
         # GraphicsStyles
