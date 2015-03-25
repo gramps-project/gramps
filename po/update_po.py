@@ -701,7 +701,7 @@ def merge(args):
         if arg == 'all':
             continue  
         print ('Merge %(lang)s with current template' % {'lang': arg})
-        os.system('''%(msgmerge)s --no-wrap %(lang)s gramps.pot -o updated_%(lang)s''' \
+        os.system('''%(msgmerge)s %(lang)s gramps.pot -o updated_%(lang)s''' \
                     % {'msgmerge': msgmergeCmd, 'lang': arg})
         print ("Updated file: 'updated_%(lang)s'." % {'lang': arg})
 
