@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-25 18:54+0100\n"
+"POT-Creation-Date: 2015-03-25 19:21+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -8856,7 +8856,7 @@ msgstr ""
 #: ../gramps/gui/glade/editlink.glade:222
 #: ../gramps/gui/glade/editperson.glade:12
 #: ../gramps/gui/glade/editperson.glade:507 ../gramps/gui/glade/rule.glade:464
-#: ../gramps/gui/glade/styleeditor.glade:1857
+#: ../gramps/gui/glade/styleeditor.glade:1861
 #: ../gramps/gui/plug/_windows.py:150 ../gramps/gui/plug/_windows.py:206
 #: ../gramps/gui/plug/report/_bookdialog.py:664
 msgid "Edit"
@@ -9775,8 +9775,8 @@ msgstr ""
 #: ../gramps/gui/glade/editperson.glade:22
 #: ../gramps/gui/glade/editperson.glade:355 ../gramps/gui/glade/rule.glade:423
 #: ../gramps/gui/glade/rule.glade:430
-#: ../gramps/gui/glade/styleeditor.glade:1818
-#: ../gramps/gui/glade/styleeditor.glade:1825
+#: ../gramps/gui/glade/styleeditor.glade:1822
+#: ../gramps/gui/glade/styleeditor.glade:1829
 #: ../gramps/gui/widgets/fanchart.py:1839
 #: ../gramps/plugins/view/relview.py:407
 msgid "Add"
@@ -9790,8 +9790,8 @@ msgstr ""
 #: ../gramps/gui/glade/grampletpane.glade:104
 #: ../gramps/gui/glade/grampletpane.glade:111
 #: ../gramps/gui/glade/rule.glade:491 ../gramps/gui/glade/rule.glade:498
-#: ../gramps/gui/glade/styleeditor.glade:1882
-#: ../gramps/gui/glade/styleeditor.glade:1889
+#: ../gramps/gui/glade/styleeditor.glade:1886
+#: ../gramps/gui/glade/styleeditor.glade:1893
 msgid "Remove"
 msgstr ""
 
@@ -12190,7 +12190,7 @@ msgstr ""
 #: ../gramps/gui/glade/editchildref.glade:240
 #: ../gramps/gui/glade/editfamily.glade:279
 #: ../gramps/gui/glade/editfamily.glade:587 ../gramps/gui/glade/rule.glade:457
-#: ../gramps/gui/glade/styleeditor.glade:1850
+#: ../gramps/gui/glade/styleeditor.glade:1854
 msgid "Edition"
 msgstr ""
 
@@ -13402,7 +13402,7 @@ msgstr ""
 #: ../gramps/gui/glade/styleeditor.glade:796
 #: ../gramps/gui/glade/styleeditor.glade:976
 #: ../gramps/gui/glade/styleeditor.glade:1291
-#: ../gramps/gui/glade/styleeditor.glade:1632
+#: ../gramps/gui/glade/styleeditor.glade:1634
 #: ../gramps/gui/plug/report/_papermenu.py:208
 msgid "cm"
 msgstr ""
@@ -13581,7 +13581,7 @@ msgid "point size|pt"
 msgstr ""
 
 #: ../gramps/gui/glade/styleeditor.glade:379
-#: ../gramps/gui/glade/styleeditor.glade:1422
+#: ../gramps/gui/glade/styleeditor.glade:1424
 #: ../gramps/gui/plug/_guioptions.py:1458 ../gramps/gui/views/tags.py:387
 msgid "Color"
 msgstr ""
@@ -13714,58 +13714,58 @@ msgid "Right"
 msgstr ""
 
 #: ../gramps/gui/glade/styleeditor.glade:1380
-msgid "<b>Cell options</b>"
+msgid "Cell options"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1402
+#: ../gramps/gui/glade/styleeditor.glade:1404
 msgid "Line"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1441
+#: ../gramps/gui/glade/styleeditor.glade:1443
 msgid "Style:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1454
+#: ../gramps/gui/glade/styleeditor.glade:1456
 msgid "Width:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1467
+#: ../gramps/gui/glade/styleeditor.glade:1469
 msgid "Line:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1480
+#: ../gramps/gui/glade/styleeditor.glade:1482
 msgid "Fill:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1494
+#: ../gramps/gui/glade/styleeditor.glade:1496
 msgid "Shadow"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1570
+#: ../gramps/gui/glade/styleeditor.glade:1572
 msgid "pt"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1593
+#: ../gramps/gui/glade/styleeditor.glade:1595
 msgid "Spacing:"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1615
+#: ../gramps/gui/glade/styleeditor.glade:1617
 msgid "Draw shadow"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1657
-msgid "<b>Draw options</b>"
+#: ../gramps/gui/glade/styleeditor.glade:1659
+msgid "Draw options"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1809
+#: ../gramps/gui/glade/styleeditor.glade:1813
 msgid "Add a new style"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1841
+#: ../gramps/gui/glade/styleeditor.glade:1845
 msgid "Edit the selected style"
 msgstr ""
 
-#: ../gramps/gui/glade/styleeditor.glade:1873
+#: ../gramps/gui/glade/styleeditor.glade:1877
 msgid "Delete the selected style"
 msgstr ""
 
