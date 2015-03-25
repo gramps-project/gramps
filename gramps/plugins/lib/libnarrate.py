@@ -1982,7 +1982,7 @@ class Narrator(object):
             include "also".
         :type is_first: bool
         :param name_display: An object to be used for displaying names
-        :type is_first: :class:`~gen.display.name,NameDisplay`
+        :type name_display: :class:`~gen.display.name,NameDisplay`
         :returns: A sentence about the subject's marriage.
         :rtype: unicode
         """
