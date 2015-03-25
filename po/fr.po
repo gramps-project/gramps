@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-19 19:45-0700\n"
-"PO-Revision-Date: 2015-03-20 10:48+0100\n"
+"POT-Creation-Date: 2015-03-25 18:54+0100\n"
+"PO-Revision-Date: 2015-03-25 19:04+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -957,7 +957,7 @@ msgstr "Verrouillé par %s"
 #: ../gramps/plugins/textreport/detdescendantreport.py:602
 #: ../gramps/plugins/textreport/detdescendantreport.py:628
 #: ../gramps/plugins/textreport/detdescendantreport.py:749
-#: ../gramps/plugins/textreport/indivcomplete.py:826
+#: ../gramps/plugins/textreport/indivcomplete.py:825
 #: ../gramps/plugins/tool/check.py:2124
 #: ../gramps/plugins/tool/dumpgenderstats.py:65
 #: ../gramps/plugins/view/geoclose.py:504
@@ -1309,33 +1309,41 @@ msgstr ""
 
 # trunk
 #. first date in a span
-#. You only need to translate this string if you translate one of the
-#. inflect=_("...") with "from"
-#: ../gramps/gen/datehandler/_datedisplay.py:166
+#. If "from <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:168
 msgid "from|{long_month} {year}"
 msgstr ""
 
 # trunk
 #. second date in a span
-#. You only need to translate this string if you translate one of the
-#. inflect=_("...") with "to"
-#: ../gramps/gen/datehandler/_datedisplay.py:172
+#. If "to <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:176
 msgid "to|{long_month} {year}"
 msgstr ""
 
 # trunk
 #. first date in a range
-#. You only need to translate this string if you translate one of the
-#. inflect=_("...") with "between"
-#: ../gramps/gen/datehandler/_datedisplay.py:178
+#. If "between <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:184
 msgid "between|{long_month} {year}"
 msgstr ""
 
 # trunk
 #. second date in a range
-#. You only need to translate this string if you translate one of the
-#. inflect=_("...") with "and"
-#: ../gramps/gen/datehandler/_datedisplay.py:184
+#. If "and <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:192
 msgid "and|{long_month} {year}"
 msgstr ""
 
@@ -1343,7 +1351,8 @@ msgstr ""
 #. If "before <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
-#: ../gramps/gen/datehandler/_datedisplay.py:190
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:199
 msgid "before|{long_month} {year}"
 msgstr ""
 
@@ -1351,7 +1360,8 @@ msgstr ""
 #. If "after <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
-#: ../gramps/gen/datehandler/_datedisplay.py:196
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:206
 msgid "after|{long_month} {year}"
 msgstr ""
 
@@ -1359,36 +1369,73 @@ msgstr ""
 #. If "about <Month>" needs a special inflection in your
 #. language, translate this to "{long_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
-#: ../gramps/gen/datehandler/_datedisplay.py:202
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:213
 msgid "about|{long_month} {year}"
 msgstr ""
 
 # trunk
-#: ../gramps/gen/datehandler/_datedisplay.py:209
+#. If "estimated <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:220
+#, fuzzy
+msgid "estimated|{long_month} {year}"
+msgstr "après"
+
+# trunk
+#. If "calculated <Month>" needs a special inflection in your
+#. language, translate this to "{long_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:227
+#, fuzzy
+msgid "calculated|{long_month} {year}"
+msgstr "après"
+
+# trunk
+#: ../gramps/gen/datehandler/_datedisplay.py:232
 msgid "{short_month} {year}"
 msgstr ""
 
 # trunk
 #. first date in a span
-#: ../gramps/gen/datehandler/_datedisplay.py:213
+#. If "from <Month>" needs a special inflection in your
+#. language, translate this to "{short_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:240
 msgid "from|{short_month} {year}"
 msgstr "de"
 
 # trunk
 #. second date in a span
-#: ../gramps/gen/datehandler/_datedisplay.py:217
+#. If "to <Month>" needs a special inflection in your
+#. language, translate this to "{short_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:248
 msgid "to|{short_month} {year}"
 msgstr "à"
 
 # trunk
 #. first date in a range
-#: ../gramps/gen/datehandler/_datedisplay.py:221
+#. If "between <Month>" needs a special inflection in your
+#. language, translate this to "{short_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:256
 msgid "between|{short_month} {year}"
 msgstr "entre"
 
 # trunk
 #. second date in a range
-#: ../gramps/gen/datehandler/_datedisplay.py:225
+#. If "and <Month>" needs a special inflection in your
+#. language, translate this to "{short_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:264
 msgid "and|{short_month} {year}"
 msgstr "et"
 
@@ -1396,7 +1443,8 @@ msgstr "et"
 #. If "before <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
-#: ../gramps/gen/datehandler/_datedisplay.py:231
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:271
 msgid "before|{short_month} {year}"
 msgstr ""
 
@@ -1404,7 +1452,8 @@ msgstr ""
 #. If "after <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
-#: ../gramps/gen/datehandler/_datedisplay.py:237
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:278
 msgid "after|{short_month} {year}"
 msgstr "après"
 
@@ -1412,57 +1461,70 @@ msgstr "après"
 #. If "about <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
 #. (where X is one of the month-name inflections you defined)
-#: ../gramps/gen/datehandler/_datedisplay.py:243
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:285
 msgid "about|{short_month} {year}"
 msgstr "vers"
 
 # trunk
-#. If there is no special inflection for "from <Month>" in your
-#. language, don't translate this string.
-#. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
-#. key appearing above in the FORMATS_... dict
-#. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:354
+#. If "estimated <Month>" needs a special inflection in your
+#. language, translate this to "{short_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:292
+#, fuzzy
+msgid "estimated|{short_month} {year}"
+msgstr "après"
+
+# trunk
+#. If "calculated <Month>" needs a special inflection in your
+#. language, translate this to "{short_month.f[X]} {year}"
+#. (where X is one of the month-name inflections you defined)
+#. else leave it untranslated
+#: ../gramps/gen/datehandler/_datedisplay.py:299
+#, fuzzy
+msgid "calculated|{short_month} {year}"
+msgstr "après"
+
+# trunk
+#. If there is no special inflection for "from <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "from" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:408
 msgid "from-date|"
 msgstr ""
 
 # trunk
-#. If there is no special inflection for "to <Month>" in your
-#. language, don't translate this string.
-#. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
-#. key appearing above in the FORMATS_... dict
-#. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:361
+#. If there is no special inflection for "to <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "to" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:413
 msgid "to-date|"
 msgstr ""
 
 # trunk
-#: ../gramps/gen/datehandler/_datedisplay.py:363
+#: ../gramps/gen/datehandler/_datedisplay.py:415
 msgid "{date_quality}from {date_start} to {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}de {date_start} à {date_stop}{nonstd_calendar_and_ny}"
 
 # trunk
-#. If there is no special inflection for "between <Month>" in your
-#. language, don't translate this string.
-#. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
-#. key appearing above in the FORMATS_... dict
-#. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:376
+#. If there is no special inflection for "between <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "between" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:426
 msgid "between-date|"
 msgstr ""
 
 # trunk
-#. If there is no special inflection for "and <Month>" in your
-#. language, don't translate this string.
-#. Otherwise, translate it to the ENGLISH!!! ENGLISH!!!
-#. key appearing above in the FORMATS_... dict
-#. that maps to the special inflected format string that you need to localize.
-#: ../gramps/gen/datehandler/_datedisplay.py:383
+#. If there is no special inflection for "and <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "and" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:431
 msgid "and-date|"
 msgstr ""
 
 # trunk
-#: ../gramps/gen/datehandler/_datedisplay.py:385
+#: ../gramps/gen/datehandler/_datedisplay.py:433
 msgid "{date_quality}between {date_start} and {date_stop}{nonstd_calendar_and_ny}"
 msgstr "{date_quality}entre {date_start} et {date_stop}{nonstd_calendar_and_ny}"
 
@@ -1470,50 +1532,66 @@ msgstr "{date_quality}entre {date_start} et {date_stop}{nonstd_calendar_and_ny}"
 #. If there is no special inflection for "before <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "before" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:396
+#: ../gramps/gen/datehandler/_datedisplay.py:444
 msgid "before-date|"
 msgstr ""
 
 #. If there is no special inflection for "after <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "after" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:401
+#: ../gramps/gen/datehandler/_datedisplay.py:449
 msgid "after-date|"
 msgstr ""
 
 #. If there is no special inflection for "about <Month>"
 #. in your language, DON'T translate this string.  Otherwise,
 #. "translate" this to "about" in ENGLISH!!! ENGLISH!!!
-#: ../gramps/gen/datehandler/_datedisplay.py:406
+#: ../gramps/gen/datehandler/_datedisplay.py:454
 msgid "about-date|"
 msgstr ""
 
+#. If there is no special inflection for "estimated <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "estimated" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:459
+#, fuzzy
+msgid "estimated-date|"
+msgstr "estimé(e)"
+
+#. If there is no special inflection for "calculated <Month>"
+#. in your language, DON'T translate this string.  Otherwise,
+#. "translate" this to "calculated" in ENGLISH!!! ENGLISH!!!
+#: ../gramps/gen/datehandler/_datedisplay.py:464
+#, fuzzy
+msgid "calculated-date|"
+msgstr "calculé(e)"
+
 # trunk
-#: ../gramps/gen/datehandler/_datedisplay.py:417
+#: ../gramps/gen/datehandler/_datedisplay.py:483
 msgid "{date_quality}{noncompound_modifier}{date}{nonstd_calendar_and_ny}"
 msgstr ""
 
 # trunk
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:495
+#: ../gramps/gen/datehandler/_datedisplay.py:561
 msgid "{long_month} {day:d}, {year}"
 msgstr ""
 
 # trunk
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:519
+#: ../gramps/gen/datehandler/_datedisplay.py:585
 msgid "{short_month} {day:d}, {year}"
 msgstr ""
 
 # trunk
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:543
+#: ../gramps/gen/datehandler/_datedisplay.py:609
 msgid "{day:d} {long_month} {year}"
 msgstr ""
 
 # trunk
 #. TRANSLATORS: this month is ALREADY inflected: ignore it
-#: ../gramps/gen/datehandler/_datedisplay.py:567
+#: ../gramps/gen/datehandler/_datedisplay.py:633
 msgid "{day:d} {short_month} {year}"
 msgstr ""
 
@@ -5411,7 +5489,6 @@ msgstr "Sources marquées comme privées"
 msgid "Matches sources that are indicated as private"
 msgstr "Correspond aux sources marquées comme privées"
 
-#. only used in add_menu_options (so no _T_)
 #: ../gramps/gen/lib/attrtype.py:63
 #: ../gramps/gen/lib/childreftype.py:79
 #: ../gramps/gen/lib/eventroletype.py:59
@@ -5426,7 +5503,7 @@ msgstr "Correspond aux sources marquées comme privées"
 #: ../gramps/gen/lib/srcattrtype.py:50
 #: ../gramps/gen/lib/srcmediatype.py:63
 #: ../gramps/gen/lib/urltype.py:54
-#: ../gramps/plugins/textreport/indivcomplete.py:72
+#: ../gramps/plugins/textreport/indivcomplete.py:71
 msgid "Custom"
 msgstr "Personnalisé"
 
@@ -5570,9 +5647,6 @@ msgstr "Parrainé"
 msgid "Foster"
 msgstr "En nourrice"
 
-#. trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
-#. trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
-#. to see "nearby" comments
 #. -------------------------------------------------------------------------
 #.
 #. Short hand function to return either the person's name, or an empty
@@ -5589,7 +5663,7 @@ msgstr "En nourrice"
 #: ../gramps/gui/filters/sidebar/_personsidebarfilter.py:89
 #: ../gramps/gui/merge/mergeperson.py:62
 #: ../gramps/gui/views/treemodels/peoplemodel.py:97
-#: ../gramps/plugins/textreport/indivcomplete.py:573
+#: ../gramps/plugins/textreport/indivcomplete.py:572
 #: ../gramps/plugins/tool/dumpgenderstats.py:35
 #: ../gramps/plugins/view/relview.py:634
 #: ../gramps/plugins/webreport/narrativeweb.py:5400
@@ -5772,7 +5846,6 @@ msgstr "Famille"
 msgid "Informant"
 msgstr "Déclarant"
 
-#. _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 #: ../gramps/gen/lib/eventtype.py:143
 msgid "Life Events"
 msgstr "Événements de vie"
@@ -6345,9 +6418,9 @@ msgstr "%(surname)s, %(first)s %(suffix)s"
 #: ../gramps/gen/lib/name.py:471
 #: ../gramps/gen/lib/name.py:486
 #: ../gramps/gen/plug/report/utils.py:243
-#: ../gramps/plugins/textreport/indivcomplete.py:169
-#: ../gramps/plugins/textreport/indivcomplete.py:177
-#: ../gramps/plugins/textreport/indivcomplete.py:902
+#: ../gramps/plugins/textreport/indivcomplete.py:168
+#: ../gramps/plugins/textreport/indivcomplete.py:176
+#: ../gramps/plugins/textreport/indivcomplete.py:901
 #, python-format
 msgid "%(str1)s, %(str2)s"
 msgstr "%(str1)s, %(str2)s"
@@ -7493,11 +7566,11 @@ msgstr "Références bibliographiques"
 
 #. translators: needed for French, ignore otherwise
 #: ../gramps/gen/plug/report/endnotes.py:175
+#: ../gramps/plugins/textreport/indivcomplete.py:811
 #: ../gramps/plugins/textreport/indivcomplete.py:812
 #: ../gramps/plugins/textreport/indivcomplete.py:813
 #: ../gramps/plugins/textreport/indivcomplete.py:814
 #: ../gramps/plugins/textreport/indivcomplete.py:815
-#: ../gramps/plugins/textreport/indivcomplete.py:816
 #, python-format
 msgid "%s:"
 msgstr "%s :"
@@ -7535,7 +7608,7 @@ msgid "Whether to include private data"
 msgstr "Inclure ou non les données privées"
 
 #: ../gramps/gen/plug/report/utils.py:151
-#: ../gramps/plugins/textreport/indivcomplete.py:801
+#: ../gramps/plugins/textreport/indivcomplete.py:800
 #: ../gramps/plugins/textreport/simplebooktitle.py:104
 #: ../gramps/plugins/webreport/narrativeweb.py:1955
 #: ../gramps/plugins/webreport/narrativeweb.py:2140
@@ -7546,7 +7619,7 @@ msgstr "Impossible d'ajouter une photo à cette page"
 
 #: ../gramps/gen/plug/report/utils.py:152
 #: ../gramps/gui/utils.py:413
-#: ../gramps/plugins/textreport/indivcomplete.py:805
+#: ../gramps/plugins/textreport/indivcomplete.py:804
 msgid "File does not exist"
 msgstr "Fichier inexistant"
 
@@ -8513,16 +8586,16 @@ msgstr ""
 "\n"
 "Gramps va maintenant s'arrêter."
 
-# trunk
+# master
 #: ../gramps/grampsapp.py:142
 msgid ""
 "\n"
-"You don't have the python bsddb3 package installed. This package is needed to start Gramps.\n"
+"You don't have the python3 bsddb3 package installed. This package is needed to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
 msgstr ""
 "\n"
-"Vous n'avez pas installé le paquet python bsddb3. Ce paquet est nécessaire à Gramps.\n"
+"Vous n'avez pas installé le paquet python3 bsddb3. Ce paquet est nécessaire à Gramps.\n"
 "\n"
 "Gramps va maintenant s'arrêter."
 
@@ -8651,8 +8724,8 @@ msgstr "Événement "
 #: ../gramps/plugins/quickview/onthisday.py:82
 #: ../gramps/plugins/quickview/quickview.gpr.py:203
 #: ../gramps/plugins/quickview/references.py:92
-#: ../gramps/plugins/textreport/indivcomplete.py:450
-#: ../gramps/plugins/textreport/indivcomplete.py:626
+#: ../gramps/plugins/textreport/indivcomplete.py:449
+#: ../gramps/plugins/textreport/indivcomplete.py:625
 #: ../gramps/plugins/tool/sortevents.py:58
 #: ../gramps/plugins/view/eventview.py:86
 #: ../gramps/plugins/webreport/narrativeweb.py:382
@@ -8738,7 +8811,7 @@ msgstr "Réf. Lieu"
 #: ../gramps/plugins/lib/libpersonview.py:97
 #: ../gramps/plugins/lib/libplaceview.py:84
 #: ../gramps/plugins/quickview/filterbyname.py:281
-#: ../gramps/plugins/textreport/indivcomplete.py:813
+#: ../gramps/plugins/textreport/indivcomplete.py:812
 #: ../gramps/plugins/textreport/tagreport.py:140
 #: ../gramps/plugins/textreport/tagreport.py:403
 #: ../gramps/plugins/textreport/tagreport.py:630
@@ -8921,8 +8994,8 @@ msgstr "Dépôt "
 #: ../gramps/plugins/quickview/onthisday.py:82
 #: ../gramps/plugins/quickview/references.py:70
 #: ../gramps/plugins/quickview/siblings.py:48
-#: ../gramps/plugins/textreport/indivcomplete.py:446
-#: ../gramps/plugins/textreport/indivcomplete.py:622
+#: ../gramps/plugins/textreport/indivcomplete.py:445
+#: ../gramps/plugins/textreport/indivcomplete.py:621
 #: ../gramps/plugins/textreport/tagreport.py:315
 #: ../gramps/plugins/textreport/tagreport.py:409
 #: ../gramps/plugins/textreport/tagreport.py:477
@@ -9794,8 +9867,8 @@ msgstr "Nom de l'arbre familial"
 #: ../gramps/gui/plug/_windows.py:183
 #: ../gramps/plugins/importer/importgedcom.glade:512
 #: ../gramps/plugins/quickview/ageondate.py:54
-#: ../gramps/plugins/textreport/indivcomplete.py:448
-#: ../gramps/plugins/textreport/indivcomplete.py:624
+#: ../gramps/plugins/textreport/indivcomplete.py:447
+#: ../gramps/plugins/textreport/indivcomplete.py:623
 #: ../gramps/plugins/webreport/narrativeweb.py:387
 #: ../gramps/plugins/webreport/narrativeweb.py:1245
 msgid "Status"
@@ -10167,8 +10240,8 @@ msgstr "Déplacer l'adresse sélectionnée vers le bas"
 #: ../gramps/plugins/quickview/onthisday.py:80
 #: ../gramps/plugins/quickview/onthisday.py:81
 #: ../gramps/plugins/quickview/onthisday.py:82
-#: ../gramps/plugins/textreport/indivcomplete.py:447
-#: ../gramps/plugins/textreport/indivcomplete.py:623
+#: ../gramps/plugins/textreport/indivcomplete.py:446
+#: ../gramps/plugins/textreport/indivcomplete.py:622
 #: ../gramps/plugins/textreport/placereport.py:193
 #: ../gramps/plugins/textreport/placereport.py:271
 #: ../gramps/plugins/textreport/tagreport.py:327
@@ -10443,9 +10516,9 @@ msgstr ""
 #: ../gramps/plugins/quickview/all_relations.py:300
 #: ../gramps/plugins/textreport/familygroup.py:210
 #: ../gramps/plugins/textreport/familygroup.py:221
-#: ../gramps/plugins/textreport/indivcomplete.py:301
-#: ../gramps/plugins/textreport/indivcomplete.py:303
-#: ../gramps/plugins/textreport/indivcomplete.py:815
+#: ../gramps/plugins/textreport/indivcomplete.py:300
+#: ../gramps/plugins/textreport/indivcomplete.py:302
+#: ../gramps/plugins/textreport/indivcomplete.py:814
 #: ../gramps/plugins/textreport/tagreport.py:227
 #: ../gramps/plugins/view/familyview.py:80
 #: ../gramps/plugins/view/relview.py:885
@@ -10465,9 +10538,9 @@ msgstr "Père "
 #: ../gramps/plugins/quickview/all_relations.py:297
 #: ../gramps/plugins/textreport/familygroup.py:227
 #: ../gramps/plugins/textreport/familygroup.py:238
-#: ../gramps/plugins/textreport/indivcomplete.py:310
-#: ../gramps/plugins/textreport/indivcomplete.py:312
-#: ../gramps/plugins/textreport/indivcomplete.py:816
+#: ../gramps/plugins/textreport/indivcomplete.py:309
+#: ../gramps/plugins/textreport/indivcomplete.py:311
+#: ../gramps/plugins/textreport/indivcomplete.py:815
 #: ../gramps/plugins/textreport/tagreport.py:233
 #: ../gramps/plugins/view/familyview.py:81
 #: ../gramps/plugins/view/relview.py:886
@@ -10544,8 +10617,8 @@ msgstr "%(groupname)s - %(groupnumber)d"
 
 #: ../gramps/gui/editors/displaytabs/familyldsembedlist.py:54
 #: ../gramps/gui/editors/displaytabs/ldsembedlist.py:64
-#: ../gramps/plugins/textreport/indivcomplete.py:449
-#: ../gramps/plugins/textreport/indivcomplete.py:625
+#: ../gramps/plugins/textreport/indivcomplete.py:448
+#: ../gramps/plugins/textreport/indivcomplete.py:624
 #: ../gramps/plugins/webreport/narrativeweb.py:391
 #: ../gramps/plugins/webreport/narrativeweb.py:1243
 msgid "Temple"
@@ -10575,7 +10648,7 @@ msgstr "Rendre l'objet medium actif"
 
 #: ../gramps/gui/editors/displaytabs/gallerytab.py:262
 #: ../gramps/gui/editors/editperson.py:961
-#: ../gramps/plugins/textreport/indivcomplete.py:521
+#: ../gramps/plugins/textreport/indivcomplete.py:520
 msgid "Non existing media found in the Gallery"
 msgstr "Objet medium inexistant trouvé dans la galerie"
 
@@ -11184,7 +11257,7 @@ msgstr "N°"
 #: ../gramps/plugins/importer/importcsv.py:190
 #: ../gramps/plugins/lib/libpersonview.py:99
 #: ../gramps/plugins/quickview/siblings.py:48
-#: ../gramps/plugins/textreport/indivcomplete.py:814
+#: ../gramps/plugins/textreport/indivcomplete.py:813
 #: ../gramps/plugins/webreport/narrativeweb.py:6231
 msgid "Gender"
 msgstr "Genre"
@@ -11418,8 +11491,8 @@ msgstr "%(mother)s [%(gramps_id)s]"
 
 #: ../gramps/gui/editors/editldsord.py:304
 #: ../gramps/gui/editors/editldsord.py:427
-#: ../gramps/plugins/textreport/indivcomplete.py:439
-#: ../gramps/plugins/textreport/indivcomplete.py:621
+#: ../gramps/plugins/textreport/indivcomplete.py:438
+#: ../gramps/plugins/textreport/indivcomplete.py:620
 #: ../gramps/plugins/webreport/narrativeweb.py:772
 msgid "LDS Ordinance"
 msgstr "Ordonnance Saints des Derniers Jours"
@@ -12180,7 +12253,7 @@ msgstr "Commentaire"
 #: ../gramps/plugins/graph/gvrelgraph.py:537
 #: ../gramps/plugins/quickview/quickview.gpr.py:127
 #: ../gramps/plugins/textreport/birthdayreport.py:417
-#: ../gramps/plugins/textreport/indivcomplete.py:925
+#: ../gramps/plugins/textreport/indivcomplete.py:924
 #: ../gramps/plugins/textreport/recordsreport.py:177
 #: ../gramps/plugins/tool/sortevents.py:166
 #: ../gramps/plugins/webreport/narrativeweb.py:8010
@@ -13102,7 +13175,7 @@ msgstr "Éditer la liste d'étiquette"
 #: ../gramps/gui/selectors/selectnote.py:68
 #: ../gramps/plugins/lib/libpersonview.py:110
 #: ../gramps/plugins/lib/libplaceview.py:92
-#: ../gramps/plugins/textreport/indivcomplete.py:487
+#: ../gramps/plugins/textreport/indivcomplete.py:486
 #: ../gramps/plugins/tool/notrelated.py:126
 #: ../gramps/plugins/view/citationlistview.py:103
 #: ../gramps/plugins/view/citationtreeview.py:98
@@ -14712,7 +14785,7 @@ msgstr "Fusion"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:729
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:743
 #: ../gramps/plugins/quickview/filterbyname.py:112
-#: ../gramps/plugins/textreport/indivcomplete.py:245
+#: ../gramps/plugins/textreport/indivcomplete.py:244
 #: ../gramps/plugins/textreport/tagreport.py:460
 #: ../gramps/plugins/view/noteview.py:110
 #: ../gramps/plugins/view/view.gpr.py:95
@@ -15134,7 +15207,7 @@ msgid "Merge People"
 msgstr "Fusionner les individus"
 
 #: ../gramps/gui/merge/mergeperson.py:194
-#: ../gramps/plugins/textreport/indivcomplete.py:336
+#: ../gramps/plugins/textreport/indivcomplete.py:335
 msgid "Alternate Names"
 msgstr "Autres noms"
 
@@ -15170,7 +15243,7 @@ msgid "No spouses or children found"
 msgstr "Aucun conjoint ni d'enfant trouvé"
 
 #: ../gramps/gui/merge/mergeperson.py:255
-#: ../gramps/plugins/textreport/indivcomplete.py:363
+#: ../gramps/plugins/textreport/indivcomplete.py:362
 #: ../gramps/plugins/webreport/narrativeweb.py:1356
 msgid "Addresses"
 msgstr "Adresses"
@@ -16020,7 +16093,7 @@ msgstr "Style "
 #: ../gramps/plugins/textreport/detdescendantreport.py:903
 #: ../gramps/plugins/textreport/endoflinereport.py:254
 #: ../gramps/plugins/textreport/familygroup.py:635
-#: ../gramps/plugins/textreport/indivcomplete.py:922
+#: ../gramps/plugins/textreport/indivcomplete.py:921
 #: ../gramps/plugins/textreport/kinshipreport.py:337
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:195
 #: ../gramps/plugins/textreport/placereport.py:384
@@ -16623,7 +16696,7 @@ msgstr "Media :"
 #: ../gramps/plugins/textreport/detdescendantreport.py:977
 #: ../gramps/plugins/textreport/detdescendantreport.py:978
 #: ../gramps/plugins/textreport/familygroup.py:655
-#: ../gramps/plugins/textreport/indivcomplete.py:952
+#: ../gramps/plugins/textreport/indivcomplete.py:951
 #: ../gramps/plugins/webreport/narrativeweb.py:8199
 msgid "Include"
 msgstr "Inclure"
@@ -17075,7 +17148,7 @@ msgstr "Frères et sœurs "
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:827
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:841
 #: ../gramps/plugins/textreport/familygroup.py:592
-#: ../gramps/plugins/textreport/indivcomplete.py:588
+#: ../gramps/plugins/textreport/indivcomplete.py:587
 #: ../gramps/plugins/view/pedigreeview.py:1734
 #: ../gramps/plugins/view/relview.py:1407
 #: ../gramps/plugins/webreport/narrativeweb.py:739
@@ -17869,7 +17942,7 @@ msgstr " générations de cases vides pour les ascendants non-connus"
 #: ../gramps/plugins/textreport/endoflinereport.py:297
 #: ../gramps/plugins/textreport/endoflinereport.py:315
 #: ../gramps/plugins/textreport/familygroup.py:736
-#: ../gramps/plugins/textreport/indivcomplete.py:1052
+#: ../gramps/plugins/textreport/indivcomplete.py:1051
 #: ../gramps/plugins/textreport/kinshipreport.py:399
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:226
 #: ../gramps/plugins/textreport/recordsreport.py:276
@@ -17890,7 +17963,6 @@ msgstr "Le style de base pour afficher la note."
 msgid "The basic style used for the title display."
 msgstr "Le style de base pour afficher le titre."
 
-#. _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 #: ../gramps/plugins/drawreport/calendarreport.py:74
 msgid "My Calendar"
 msgstr "Mon calendrier"
@@ -18527,10 +18599,11 @@ msgstr "Le style utilisé pour l'en-tête."
 msgid "The basic style used for the default text display."
 msgstr "Le style de base pour afficher le texte par défaut."
 
-# trunk
+# master
 #: ../gramps/plugins/drawreport/fanchart.py:740
-msgid "The style used for the text display of generation "
-msgstr "Le style utilisé pour l'affichage de la génération."
+#, python-format
+msgid "The style used for the text display of generation \"%d\""
+msgstr "Le style utilisé pour l'affichage de la génération \"%d\"."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:300
 msgid "Item count"
@@ -18714,7 +18787,7 @@ msgstr "Détermine quels individus seront inclus dans le rapport."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:951
 #: ../gramps/plugins/drawreport/timeline.py:406
-#: ../gramps/plugins/textreport/indivcomplete.py:931
+#: ../gramps/plugins/textreport/indivcomplete.py:930
 #: ../gramps/plugins/textreport/recordsreport.py:183
 #: ../gramps/plugins/tool/sortevents.py:171
 #: ../gramps/plugins/webreport/narrativeweb.py:8016
@@ -18723,7 +18796,7 @@ msgid "Filter Person"
 msgstr "Filtre sur l'individu"
 
 #: ../gramps/plugins/drawreport/statisticschart.py:952
-#: ../gramps/plugins/textreport/indivcomplete.py:932
+#: ../gramps/plugins/textreport/indivcomplete.py:931
 msgid "The center person for the filter."
 msgstr "L'individu central pour ce filtre."
 
@@ -18809,7 +18882,7 @@ msgstr "Le style utilisé pour l'en-tête et les valeurs."
 #: ../gramps/plugins/textreport/detdescendantreport.py:1055
 #: ../gramps/plugins/textreport/endoflinereport.py:279
 #: ../gramps/plugins/textreport/familygroup.py:727
-#: ../gramps/plugins/textreport/indivcomplete.py:1020
+#: ../gramps/plugins/textreport/indivcomplete.py:1019
 #: ../gramps/plugins/textreport/kinshipreport.py:381
 #: ../gramps/plugins/textreport/numberofancestorsreport.py:219
 #: ../gramps/plugins/textreport/simplebooktitle.py:164
@@ -19846,8 +19919,8 @@ msgstr "Gramplet affichant les attributs d'un individu"
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:603
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:617
 #: ../gramps/plugins/gramplet/gramplet.gpr.py:631
-#: ../gramps/plugins/textreport/indivcomplete.py:413
-#: ../gramps/plugins/textreport/indivcomplete.py:602
+#: ../gramps/plugins/textreport/indivcomplete.py:412
+#: ../gramps/plugins/textreport/indivcomplete.py:601
 #: ../gramps/plugins/webreport/narrativeweb.py:365
 #: ../gramps/plugins/webreport/narrativeweb.py:782
 #: ../gramps/plugins/webreport/narrativeweb.py:1291
@@ -21074,7 +21147,7 @@ msgstr "Le nombre maximum descendants à inclure."
 #: ../gramps/plugins/graph/gvfamilylines.py:187
 #: ../gramps/plugins/graph/gvhourglass.py:305
 #: ../gramps/plugins/graph/gvrelgraph.py:586
-#: ../gramps/plugins/textreport/indivcomplete.py:970
+#: ../gramps/plugins/textreport/indivcomplete.py:969
 msgid "Include Gramps ID"
 msgstr "Inclure les identifiants"
 
@@ -21415,8 +21488,8 @@ msgid "Import data from vCard files"
 msgstr "Importation des données depuis des fichiers vCard"
 
 #: ../gramps/plugins/importer/importcsv.py:157
-#: ../gramps/plugins/importer/importgedcom.py:117
-#: ../gramps/plugins/importer/importgedcom.py:131
+#: ../gramps/plugins/importer/importgedcom.py:123
+#: ../gramps/plugins/importer/importgedcom.py:137
 #: ../gramps/plugins/importer/importgeneweb.py:85
 #: ../gramps/plugins/importer/importgeneweb.py:91
 #: ../gramps/plugins/importer/importvcard.py:68
@@ -21643,16 +21716,16 @@ msgstr "Version :"
 msgid "Families:"
 msgstr "Familles :"
 
-#: ../gramps/plugins/importer/importgedcom.py:120
+#: ../gramps/plugins/importer/importgedcom.py:126
 msgid "Invalid GEDCOM file"
 msgstr "Fichier GEDCOM invalide"
 
-#: ../gramps/plugins/importer/importgedcom.py:121
+#: ../gramps/plugins/importer/importgedcom.py:127
 #, python-format
 msgid "%s could not be imported"
 msgstr "%s n'a pas pu être importé"
 
-#: ../gramps/plugins/importer/importgedcom.py:138
+#: ../gramps/plugins/importer/importgedcom.py:144
 msgid "Error reading GEDCOM file"
 msgstr "Erreur de lecture du fichier GEDCOM"
 
@@ -22330,69 +22403,81 @@ msgstr ""
 "Échec entre l'extension sélectionnée %(ext)s et le format actuel.\n"
 " Écriture de %(filename)s au format %(impliedext)s."
 
-#: ../gramps/plugins/lib/libgedcom.py:1774
+# master
+#: ../gramps/plugins/lib/libgedcom.py:766
+msgid "Line ignored "
+msgstr "Ligne ignorée"
+
+# master
+#. e.g. Illegal character (oxAB) (0xCB)... 1 NOTE xyz?pqr?lmn
+#: ../gramps/plugins/lib/libgedcom.py:1559
+#, python-format
+msgid "Illegal character%s"
+msgstr "Caractère %s illégal"
+
+#: ../gramps/plugins/lib/libgedcom.py:1820
 msgid "Your GEDCOM file is corrupted. It appears to have been truncated."
 msgstr "Votre fichier GEDCOM est corrompu. Il semble avoir été tronqué."
 
-#: ../gramps/plugins/lib/libgedcom.py:1857
+#: ../gramps/plugins/lib/libgedcom.py:1903
 #, python-format
 msgid "Import from GEDCOM (%s)"
 msgstr "Importé du GEDCOM (%s)"
 
-#: ../gramps/plugins/lib/libgedcom.py:2654
-#: ../gramps/plugins/lib/libgedcom.py:3048
+#: ../gramps/plugins/lib/libgedcom.py:2702
+#: ../gramps/plugins/lib/libgedcom.py:3096
 msgid "GEDCOM import"
 msgstr "Importation GEDCOM"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:2682
+#: ../gramps/plugins/lib/libgedcom.py:2730
 msgid "GEDCOM import report: No errors detected"
 msgstr "Rapport d'importation GEDCOM : aucune erreur détectée"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:2684
+#: ../gramps/plugins/lib/libgedcom.py:2732
 #, python-format
 msgid "GEDCOM import report: %s errors detected"
 msgstr "Rapport d'importation GEDCOM : %s erreurs détectées"
 
 # trunk
 # limite à 32 caractères !
-#: ../gramps/plugins/lib/libgedcom.py:2969
+#: ../gramps/plugins/lib/libgedcom.py:3017
 msgid "Tag recognized but not supported"
 msgstr "Reconnu mais non-supporté (TAG)"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:2980
+#: ../gramps/plugins/lib/libgedcom.py:3028
 msgid "Line ignored as not understood"
 msgstr "Ligne ignorée car non-comprise"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:3005
+#: ../gramps/plugins/lib/libgedcom.py:3053
 msgid "Skipped subordinate line"
 msgstr "Ligne suivante ignorée"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:3039
+#: ../gramps/plugins/lib/libgedcom.py:3087
 msgid "Records not imported into "
 msgstr "Enregistrements non-importés dans "
 
-#: ../gramps/plugins/lib/libgedcom.py:3075
+#: ../gramps/plugins/lib/libgedcom.py:3123
 #, python-format
 msgid "Error: %(msg)s  '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record synthesised"
 msgstr "Erreur : %(msg)s  '%(gramps_id)s' (saisi comme @%(xref)s@) absent du fichier Gedcom. Enregistrement synthétisé"
 
-#: ../gramps/plugins/lib/libgedcom.py:3084
+#: ../gramps/plugins/lib/libgedcom.py:3132
 #, python-format
 msgid "Error: %(msg)s '%(gramps_id)s' (input as @%(xref)s@) not in input GEDCOM. Record with typifying attribute 'Unknown' created"
 msgstr "Erreur : %(msg)s '%(gramps_id)s' (saisi comme @%(xref)s@) absent du fichier Gedcom. Enregistrement avec le type d'attribut 'Inconnu' créé"
 
-#: ../gramps/plugins/lib/libgedcom.py:3123
+#: ../gramps/plugins/lib/libgedcom.py:3171
 #, python-format
 msgid "Error: family '%(family)s' (input as @%(orig_family)s@) person %(person)s (input as %(orig_person)s) is not a member of the referenced family. Family reference removed from person"
 msgstr "Erreur: famille '%(family)s' (saisie comme @%(orig_family)s@) individu %(person)s (saisi comme %(orig_person)s) n'est pas un membre d'une famille référencée. La référence de la famille a été enlevée pour cet individu"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:3201
+#: ../gramps/plugins/lib/libgedcom.py:3249
 #, python-format
 msgid ""
 "\n"
@@ -22412,92 +22497,92 @@ msgstr ""
 #. message means that the element %s was ignored, but
 #. expressed the wrong way round because the message is
 #. truncated for output
-#: ../gramps/plugins/lib/libgedcom.py:3269
+#: ../gramps/plugins/lib/libgedcom.py:3317
 #, python-format
 msgid "ADDR element ignored '%s'"
 msgstr "'%s' ignoré par ADDR"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:3282
+#: ../gramps/plugins/lib/libgedcom.py:3330
 msgid "TRLR (trailer)"
 msgstr "TRLR (trailer-piste)"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:3311
+#: ../gramps/plugins/lib/libgedcom.py:3359
 #, python-format
 msgid "SUBM (Submitter): @%s@"
 msgstr "SUBM (Soumetteur) : @%s@"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:3335
-#: ../gramps/plugins/lib/libgedcom.py:6930
+#: ../gramps/plugins/lib/libgedcom.py:3383
+#: ../gramps/plugins/lib/libgedcom.py:6978
 msgid "GEDCOM data"
 msgstr "Donnée GEDCOM"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:3381
+#: ../gramps/plugins/lib/libgedcom.py:3429
 msgid "Unknown tag"
 msgstr "Balise inconnue"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:3383
-#: ../gramps/plugins/lib/libgedcom.py:3397
-#: ../gramps/plugins/lib/libgedcom.py:3401
-#: ../gramps/plugins/lib/libgedcom.py:3422
+#: ../gramps/plugins/lib/libgedcom.py:3431
+#: ../gramps/plugins/lib/libgedcom.py:3445
+#: ../gramps/plugins/lib/libgedcom.py:3449
+#: ../gramps/plugins/lib/libgedcom.py:3470
 msgid "Top Level"
 msgstr "Niveau supérieur"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:3494
+#: ../gramps/plugins/lib/libgedcom.py:3542
 #, python-format
 msgid "INDI (individual) Gramps ID %s"
 msgstr "INDI (individu) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:3611
+#: ../gramps/plugins/lib/libgedcom.py:3659
 msgid "Empty Alias <NAME PERSONAL> ignored"
 msgstr "Alias <NOM PERSONNEL> vide ignoré"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:3691
-#: ../gramps/plugins/lib/libgedcom.py:5006
-#: ../gramps/plugins/lib/libgedcom.py:5234
-#: ../gramps/plugins/lib/libgedcom.py:5395
-#: ../gramps/plugins/lib/libgedcom.py:6064
-#: ../gramps/plugins/lib/libgedcom.py:6217
+#: ../gramps/plugins/lib/libgedcom.py:3739
+#: ../gramps/plugins/lib/libgedcom.py:5054
+#: ../gramps/plugins/lib/libgedcom.py:5282
+#: ../gramps/plugins/lib/libgedcom.py:5443
+#: ../gramps/plugins/lib/libgedcom.py:6112
+#: ../gramps/plugins/lib/libgedcom.py:6265
 msgid "Filename omitted"
 msgstr "Nom de fichier ignoré"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:3693
-#: ../gramps/plugins/lib/libgedcom.py:5008
-#: ../gramps/plugins/lib/libgedcom.py:5236
-#: ../gramps/plugins/lib/libgedcom.py:5397
-#: ../gramps/plugins/lib/libgedcom.py:6066
-#: ../gramps/plugins/lib/libgedcom.py:6219
+#: ../gramps/plugins/lib/libgedcom.py:3741
+#: ../gramps/plugins/lib/libgedcom.py:5056
+#: ../gramps/plugins/lib/libgedcom.py:5284
+#: ../gramps/plugins/lib/libgedcom.py:5445
+#: ../gramps/plugins/lib/libgedcom.py:6114
+#: ../gramps/plugins/lib/libgedcom.py:6267
 msgid "Form omitted"
 msgstr "Forme ignorée"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:4770
+#: ../gramps/plugins/lib/libgedcom.py:4818
 #, python-format
 msgid "FAM (family) Gramps ID %s"
 msgstr "FAM (famille) Gramps ID %s"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:5150
-#: ../gramps/plugins/lib/libgedcom.py:7228
-#: ../gramps/plugins/lib/libgedcom.py:7268
+#: ../gramps/plugins/lib/libgedcom.py:5198
+#: ../gramps/plugins/lib/libgedcom.py:7281
+#: ../gramps/plugins/lib/libgedcom.py:7321
 msgid "Empty note ignored"
 msgstr "Note vide ignorée"
 
 #. We have previously found a PLAC
-#: ../gramps/plugins/lib/libgedcom.py:5308
+#: ../gramps/plugins/lib/libgedcom.py:5356
 msgid "A second PLAC ignored"
 msgstr "Un deuxième lieu (PLAC) est ignoré"
 
 #. We have perviously found an ADDR, or have populated location
 #. from PLAC title
-#: ../gramps/plugins/lib/libgedcom.py:5475
+#: ../gramps/plugins/lib/libgedcom.py:5523
 msgid "Location already populated; ADDR ignored"
 msgstr "L'emplacement existe déjà; ADDR est ignoré"
 
@@ -22505,237 +22590,238 @@ msgstr "L'emplacement existe déjà; ADDR est ignoré"
 # limite à 32 caractères !
 #. empty: discard, with warning and skip subs
 #. Note: level+2
-#: ../gramps/plugins/lib/libgedcom.py:5583
+#: ../gramps/plugins/lib/libgedcom.py:5631
 msgid "Empty event note ignored"
 msgstr "Note vide ignorée (événement)"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:5901
-#: ../gramps/plugins/lib/libgedcom.py:6715
+#: ../gramps/plugins/lib/libgedcom.py:5949
+#: ../gramps/plugins/lib/libgedcom.py:6763
 msgid "Warn: ADDR overwritten"
 msgstr "Attention : ADDR réécrite"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6078
-#: ../gramps/plugins/lib/libgedcom.py:6512
+#: ../gramps/plugins/lib/libgedcom.py:6126
+#: ../gramps/plugins/lib/libgedcom.py:6560
 msgid "REFN ignored"
 msgstr "REFN ignoré"
 
 # trunk
 #. SOURce with the given gramps_id had no title
-#: ../gramps/plugins/lib/libgedcom.py:6177
+#: ../gramps/plugins/lib/libgedcom.py:6225
 #, python-format
 msgid "No title - ID %s"
 msgstr "Aucun titre - ID %s"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6182
+#: ../gramps/plugins/lib/libgedcom.py:6230
 #, python-format
 msgid "SOUR (source) Gramps ID %s"
 msgstr "SOUR (source) Gramps ID %s"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6438
+#: ../gramps/plugins/lib/libgedcom.py:6486
 #, python-format
 msgid "OBJE (multi-media object) Gramps ID %s"
 msgstr "OBJE (objet multimédia) Gramps ID %s"
 
-#: ../gramps/plugins/lib/libgedcom.py:6466
-#: ../gramps/plugins/lib/libgedcom.py:7456
+#: ../gramps/plugins/lib/libgedcom.py:6514
+#: ../gramps/plugins/lib/libgedcom.py:7509
 #, python-format
 msgid "Could not import %s"
 msgstr "Impossible d'importer %s"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6502
+#: ../gramps/plugins/lib/libgedcom.py:6550
 msgid "BLOB ignored"
 msgstr "BLOB ignoré"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6522
+#: ../gramps/plugins/lib/libgedcom.py:6570
 msgid "Multimedia REFN:TYPE ignored"
 msgstr "REFN multimedia : TYPE ignoré"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6532
+#: ../gramps/plugins/lib/libgedcom.py:6580
 msgid "Mutimedia RIN ignored"
 msgstr "RIN multimedia ignoré"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6619
+#: ../gramps/plugins/lib/libgedcom.py:6667
 #, python-format
 msgid "REPO (repository) Gramps ID %s"
 msgstr "REPO (dépôt) Gramps ID %s"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6850
+#: ../gramps/plugins/lib/libgedcom.py:6898
 msgid "HEAD (header)"
 msgstr " HEAD (En-tête)"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6867
+#: ../gramps/plugins/lib/libgedcom.py:6915
 msgid "Approved system identification"
 msgstr "Système d'identification approuvé"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6879
+#: ../gramps/plugins/lib/libgedcom.py:6927
 msgid "Generated By"
 msgstr "Généré par"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6895
+#: ../gramps/plugins/lib/libgedcom.py:6943
 msgid "Name of software product"
 msgstr "Nom du logiciel source"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6909
+#: ../gramps/plugins/lib/libgedcom.py:6957
 msgid "Version number of software product"
 msgstr "Numéro de version du logiciel source"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6927
+#: ../gramps/plugins/lib/libgedcom.py:6975
 #, python-format
 msgid "Business that produced the product: %s"
 msgstr "Entreprise produisant : %s"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6949
+#: ../gramps/plugins/lib/libgedcom.py:6997
 msgid "Name of source data"
 msgstr "Nom de la source des données"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6966
+#: ../gramps/plugins/lib/libgedcom.py:7014
 msgid "Copyright of source data"
 msgstr "Droit à la copie des données"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:6983
+#: ../gramps/plugins/lib/libgedcom.py:7031
 msgid "Publication date of source data"
 msgstr "Date de publication des données"
 
 # trunk
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/lib/libgedcom.py:6997
+#: ../gramps/plugins/lib/libgedcom.py:7045
 #, python-format
 msgid "Import from %s"
 msgstr "Importé depuis %s"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7036
+#: ../gramps/plugins/lib/libgedcom.py:7084
 msgid "Submission record identifier"
 msgstr "Identifiant de soumission de l'enregistrement"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7049
+#: ../gramps/plugins/lib/libgedcom.py:7097
 msgid "Language of GEDCOM text"
 msgstr "Language du texte GEDCOM"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7075
+#: ../gramps/plugins/lib/libgedcom.py:7123
 #, python-format
 msgid "Import of GEDCOM file %(filename)s with DEST=%(by)s, could cause errors in the resulting database!"
 msgstr "Importation du fichier GEDCOM %(filename)s avec DEST=%(by)s, peut générer des erreurs dans la base de données !"
 
 # Substantif (GNOME fr)
-#: ../gramps/plugins/lib/libgedcom.py:7078
+#: ../gramps/plugins/lib/libgedcom.py:7126
 msgid "Look for nameless events."
 msgstr "Recherche des événements sans nom."
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7102
+#: ../gramps/plugins/lib/libgedcom.py:7150
 msgid "Character set"
 msgstr "Encodage du caractère"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7107
+#: ../gramps/plugins/lib/libgedcom.py:7155
 msgid "Character set and version"
 msgstr "Encodage du caractère et la version"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7124
+#: ../gramps/plugins/lib/libgedcom.py:7172
 msgid "GEDCOM version not supported"
 msgstr "Version du GEDCOM non-supportée"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7128
+#: ../gramps/plugins/lib/libgedcom.py:7176
 msgid "GEDCOM version"
 msgstr "Version du GEDCOM"
 
-# trunk
-#: ../gramps/plugins/lib/libgedcom.py:7133
-msgid "GEDCOM form not supported"
-msgstr "Forme de GEDCOM non-supportée"
+# master
+#. Allow Lineage-Linked etc. though it should be in uppercase
+#: ../gramps/plugins/lib/libgedcom.py:7184
+msgid "GEDCOM FORM should be in uppercase"
+msgstr "FORM du GEDCOM doit être en majuscule"
+
+# master
+#: ../gramps/plugins/lib/libgedcom.py:7186
+msgid "GEDCOM FORM not supported"
+msgstr "FORM du GEDCOM non-supporté"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7136
+#: ../gramps/plugins/lib/libgedcom.py:7189
 msgid "GEDCOM form"
 msgstr "Forme de GEDCOM"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7185
+#: ../gramps/plugins/lib/libgedcom.py:7238
 msgid "Creation date of GEDCOM"
 msgstr "Date de création du GEDCOM"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7190
+#: ../gramps/plugins/lib/libgedcom.py:7243
 msgid "Creation date and time of GEDCOM"
 msgstr "Date et heure de création du GEDCOM"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7283
+#: ../gramps/plugins/lib/libgedcom.py:7336
 #, python-format
 msgid "NOTE Gramps ID %s"
 msgstr "NOTE Gramps ID %s"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7333
+#: ../gramps/plugins/lib/libgedcom.py:7386
 msgid "Submission: Submitter"
 msgstr "Soumission : soumetteur"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7335
+#: ../gramps/plugins/lib/libgedcom.py:7388
 msgid "Submission: Family file"
 msgstr "Soumission : fichier de famille"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7337
+#: ../gramps/plugins/lib/libgedcom.py:7390
 msgid "Submission: Temple code"
 msgstr "Soumission : code du temple (LDS)"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7339
+#: ../gramps/plugins/lib/libgedcom.py:7392
 msgid "Submission: Generations of ancestors"
 msgstr "Soumission : générations d'ascendants"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7341
+#: ../gramps/plugins/lib/libgedcom.py:7394
 msgid "Submission: Generations of descendants"
 msgstr "Soumission : générations de descendants"
 
 # trunk
-#: ../gramps/plugins/lib/libgedcom.py:7343
+#: ../gramps/plugins/lib/libgedcom.py:7396
 msgid "Submission: Ordinance process flag"
 msgstr "Soumission : marque de l'ordinance (LDS)"
 
 # trunk
 #. # Okay we have no clue which temple this is.
 #. # We should tell the user and store it anyway.
-#: ../gramps/plugins/lib/libgedcom.py:7557
+#: ../gramps/plugins/lib/libgedcom.py:7610
 msgid "Invalid temple code"
 msgstr "Code de temple invalide"
 
-#: ../gramps/plugins/lib/libgedcom.py:7645
+#: ../gramps/plugins/lib/libgedcom.py:7698
 msgid "Your GEDCOM file is corrupted. The file appears to be encoded using the UTF16 character set, but is missing the BOM marker."
 msgstr "Votre fichier GEDCOM est corrompu. Ce fichier apparaît comme utilisant l'encodage de caractères UTF-16, mais il manque le marqueur BOM."
 
-#: ../gramps/plugins/lib/libgedcom.py:7648
+#: ../gramps/plugins/lib/libgedcom.py:7701
 msgid "Your GEDCOM file is empty."
 msgstr "Votre fichier GEDCOM est vide."
-
-#: ../gramps/plugins/lib/libgedcom.py:7711
-#, python-format
-msgid "Invalid line %d in GEDCOM file."
-msgstr "Ligne %d  invalide dans le fichier GEDCOM."
 
 #. First is used as default selection.
 #. As seen on the internet, ISO-xxx are listed as capital letters
@@ -27171,8 +27257,6 @@ msgstr "Ajouter un retrait après le nom"
 msgid "Indicates if a line break should follow the name."
 msgstr "Indique si un espace d'identation doit suivre le nom."
 
-#. _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-#. to see "nearby" comments
 #: ../gramps/plugins/textreport/birthdayreport.py:65
 #: ../gramps/plugins/textreport/birthdayreport.py:218
 #: ../gramps/plugins/textreport/birthdayreport.py:257
@@ -27533,13 +27617,13 @@ msgstr "Le numéro Sosa-Stradonitz de la personne centrale."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:771
 #: ../gramps/plugins/textreport/detdescendantreport.py:932
-#: ../gramps/plugins/textreport/indivcomplete.py:944
+#: ../gramps/plugins/textreport/indivcomplete.py:943
 msgid "Page break before end notes"
 msgstr "Saut de page avant les références bibliographiques"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:773
 #: ../gramps/plugins/textreport/detdescendantreport.py:934
-#: ../gramps/plugins/textreport/indivcomplete.py:946
+#: ../gramps/plugins/textreport/indivcomplete.py:945
 msgid "Whether to start a new page before the end notes."
 msgstr "Ajouter ou non une page avant les références bibliographiques."
 
@@ -27645,13 +27729,13 @@ msgstr "Inclure ou non les attributs."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:825
 #: ../gramps/plugins/textreport/detdescendantreport.py:988
-#: ../gramps/plugins/textreport/indivcomplete.py:966
+#: ../gramps/plugins/textreport/indivcomplete.py:965
 msgid "Include Photo/Images from Gallery"
 msgstr "Inclure les media de la galerie"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:826
 #: ../gramps/plugins/textreport/detdescendantreport.py:989
-#: ../gramps/plugins/textreport/indivcomplete.py:967
+#: ../gramps/plugins/textreport/indivcomplete.py:966
 msgid "Whether to include images."
 msgstr "Inclure ou non les images."
 
@@ -27697,13 +27781,13 @@ msgstr "Inclure ou non les références de la source."
 
 #: ../gramps/plugins/textreport/detancestralreport.py:845
 #: ../gramps/plugins/textreport/detdescendantreport.py:1008
-#: ../gramps/plugins/textreport/indivcomplete.py:961
+#: ../gramps/plugins/textreport/indivcomplete.py:960
 msgid "Include sources notes"
 msgstr "Inclure les notes des sources"
 
 #: ../gramps/plugins/textreport/detancestralreport.py:846
 #: ../gramps/plugins/textreport/detdescendantreport.py:1009
-#: ../gramps/plugins/textreport/indivcomplete.py:962
+#: ../gramps/plugins/textreport/indivcomplete.py:961
 msgid "Whether to include source notes in the Endnotes section. Only works if Include sources is selected."
 msgstr "Inclure ou non les notes de la source dans la section Bibliographie. Ne fonctionne que si l'option inclure les sources est sélectionnée."
 
@@ -27849,7 +27933,7 @@ msgid " (%(birth_date)s - %(death_date)s)"
 msgstr " (%(birth_date)s - %(death_date)s)"
 
 #: ../gramps/plugins/textreport/endoflinereport.py:288
-#: ../gramps/plugins/textreport/indivcomplete.py:1062
+#: ../gramps/plugins/textreport/indivcomplete.py:1061
 #: ../gramps/plugins/textreport/tagreport.py:911
 msgid "The style used for the section headers."
 msgstr "Le style utilisé pour les en-têtes de section."
@@ -27862,8 +27946,8 @@ msgstr "Le style de base pour les intitulés de génération."
 #. translators: for French, else ignore
 #. translators: needed for French, ignore otherwise
 #: ../gramps/plugins/textreport/familygroup.py:126
-#: ../gramps/plugins/textreport/indivcomplete.py:803
-#: ../gramps/plugins/textreport/indivcomplete.py:843
+#: ../gramps/plugins/textreport/indivcomplete.py:802
+#: ../gramps/plugins/textreport/indivcomplete.py:842
 #, python-format
 msgid "%(str1)s: %(str2)s"
 msgstr "%(str1)s : %(str2)s"
@@ -28004,22 +28088,17 @@ msgstr "Le style utilisé pour le texte relatif aux enfants."
 msgid "The style used for the parent's name"
 msgstr "Le style utilisé pour le nom des parents"
 
-#. _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
-#: ../gramps/plugins/textreport/indivcomplete.py:71
-msgid "Sections"
-msgstr "Sections"
-
 # trunk
 #. make sure it's translated, so it can be used below, in "combine"
-#: ../gramps/plugins/textreport/indivcomplete.py:158
+#: ../gramps/plugins/textreport/indivcomplete.py:157
 #, python-format
 msgid "%(str1)s in %(str2)s. "
 msgstr "%(str1)s à %(str2)s. "
 
 #. translators: needed for French, ignore otherwise
-#: ../gramps/plugins/textreport/indivcomplete.py:199
-#: ../gramps/plugins/textreport/indivcomplete.py:209
-#: ../gramps/plugins/textreport/indivcomplete.py:607
+#: ../gramps/plugins/textreport/indivcomplete.py:198
+#: ../gramps/plugins/textreport/indivcomplete.py:208
+#: ../gramps/plugins/textreport/indivcomplete.py:606
 #: ../gramps/plugins/webreport/narrativeweb.py:1026
 #, python-format
 msgid "%(type)s: %(value)s"
@@ -28027,105 +28106,110 @@ msgstr "%(type)s : %(value)s"
 
 # trunk
 #. for example (a stepfather): John Smith, relationship: Step
-#: ../gramps/plugins/textreport/indivcomplete.py:230
+#: ../gramps/plugins/textreport/indivcomplete.py:229
 #, python-format
 msgid "%(parent-name)s, relationship: %(rel-type)s"
 msgstr "%(parent-name)s, relation : %(rel-type)s"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:273
+#: ../gramps/plugins/textreport/indivcomplete.py:272
 msgid "Alternate Parents"
 msgstr "Autres parents possibles"
 
 #. RTL languages are the only reason for "translating" this
-#: ../gramps/plugins/textreport/indivcomplete.py:322
+#: ../gramps/plugins/textreport/indivcomplete.py:321
 #, python-format
 msgid "%(name)s [%(gid)s]"
 msgstr "%(name)s [%(gid)s]"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:387
+#: ../gramps/plugins/textreport/indivcomplete.py:386
 #: ../gramps/plugins/webreport/narrativeweb.py:6008
 msgid "Associations"
 msgstr "Associations"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:511
+#: ../gramps/plugins/textreport/indivcomplete.py:510
 msgid "Images"
 msgstr "Images"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:552
+#: ../gramps/plugins/textreport/indivcomplete.py:551
 msgid "Marriages/Children"
 msgstr "Mariages et enfants"
 
 #. feature request 2356: avoid genitive form
-#: ../gramps/plugins/textreport/indivcomplete.py:748
+#: ../gramps/plugins/textreport/indivcomplete.py:747
 #, python-format
 msgid "Summary of %s"
 msgstr "Fiche de %s"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:822
+#: ../gramps/plugins/textreport/indivcomplete.py:821
 #: ../gramps/plugins/tool/dumpgenderstats.py:63
 msgid "Male"
 msgstr "Masculin"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:824
+#: ../gramps/plugins/textreport/indivcomplete.py:823
 #: ../gramps/plugins/tool/dumpgenderstats.py:64
 msgid "Female"
 msgstr "Féminin"
 
 # master
-#: ../gramps/plugins/textreport/indivcomplete.py:838
+#: ../gramps/plugins/textreport/indivcomplete.py:837
 msgid "(image)"
 msgstr "(image)"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:927
+#: ../gramps/plugins/textreport/indivcomplete.py:926
 msgid "Select the filter to be applied to the report."
 msgstr "Sélectionner le filtre à appliquer au rapport."
 
-#: ../gramps/plugins/textreport/indivcomplete.py:940
+#: ../gramps/plugins/textreport/indivcomplete.py:939
 msgid "List events chronologically"
 msgstr "Lister les événements chronologiquement"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:941
+#: ../gramps/plugins/textreport/indivcomplete.py:940
 msgid "Whether to sort events into chronological order."
 msgstr "Trier ou non les événements dans l'ordre chronologique."
 
-#: ../gramps/plugins/textreport/indivcomplete.py:957
+#: ../gramps/plugins/textreport/indivcomplete.py:956
 msgid "Include Source Information"
 msgstr "Inclure les informations concernant la source"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:958
+#: ../gramps/plugins/textreport/indivcomplete.py:957
 msgid "Whether to cite sources."
 msgstr "Citer ou non les sources."
 
-#: ../gramps/plugins/textreport/indivcomplete.py:971
+#: ../gramps/plugins/textreport/indivcomplete.py:970
 msgid "Whether to include Gramps ID next to names."
 msgstr "Inclure ou non les identifiants Gramps après les noms."
 
 #. ###############################
-#: ../gramps/plugins/textreport/indivcomplete.py:978
+#: ../gramps/plugins/textreport/indivcomplete.py:974
+msgid "Sections"
+msgstr "Sections"
+
+#. ###############################
+#: ../gramps/plugins/textreport/indivcomplete.py:977
 msgid "Event groups"
 msgstr "Groupes d'événements"
 
-#: ../gramps/plugins/textreport/indivcomplete.py:979
+#: ../gramps/plugins/textreport/indivcomplete.py:978
 msgid "Check if a separate section is required."
 msgstr "Vérifier si une section séparée est nécessaire."
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1032
+#: ../gramps/plugins/textreport/indivcomplete.py:1031
 msgid "The style used for category labels."
 msgstr "Style pour l'étiquette des catégories."
 
-#: ../gramps/plugins/textreport/indivcomplete.py:1043
+#: ../gramps/plugins/textreport/indivcomplete.py:1042
 msgid "The style used for the spouse's name."
 msgstr "Style pour le nom de jeune fille."
 
 # /!\ à tester ...
 # master
-#: ../gramps/plugins/textreport/indivcomplete.py:1072
+#: ../gramps/plugins/textreport/indivcomplete.py:1071
 msgid "A style used for image facts."
 msgstr "Le style utilisé pour les images des faits."
 
 # /!\ à tester ...
 # master
-#: ../gramps/plugins/textreport/indivcomplete.py:1082
+#: ../gramps/plugins/textreport/indivcomplete.py:1081
 msgid "A style used for image captions."
 msgstr "Le style utilisé pour les images capturées."
 
@@ -33132,6 +33216,9 @@ msgstr "Au moins une règle doit correspondre"
 #: gtklist.h:8
 msgid "Exactly one rule must apply"
 msgstr "Une seule règle doit correspondre"
+
+#~ msgid "Invalid line %d in GEDCOM file."
+#~ msgstr "Ligne %d  invalide dans le fichier GEDCOM."
 
 #~ msgid "   %s: %s"
 #~ msgstr "  %s : %s"
