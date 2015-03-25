@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-25 09:13-0700\n"
+"POT-Creation-Date: 2015-03-25 18:54+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -8181,7 +8181,7 @@ msgstr ""
 #: ../gramps/grampsapp.py:142
 msgid ""
 "\n"
-"You don't have the python bsddb3 package installed. This package is needed "
+"You don't have the python3 bsddb3 package installed. This package is needed "
 "to start Gramps.\n"
 "\n"
 "Gramps will terminate now."
@@ -17575,7 +17575,8 @@ msgid "The basic style used for the default text display."
 msgstr ""
 
 #: ../gramps/plugins/drawreport/fanchart.py:740
-msgid "The style used for the text display of generation "
+#, python-format
+msgid "The style used for the text display of generation \"%d\""
 msgstr ""
 
 #: ../gramps/plugins/drawreport/statisticschart.py:300
