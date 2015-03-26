@@ -13,8 +13,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-03-25 00:13+0100\n"
-"PO-Revision-Date: 2015-03-25 00:18+0100\n"
+"POT-Creation-Date: 2015-03-26 02:15+0100\n"
+"PO-Revision-Date: 2015-03-26 02:32+0100\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -504,7 +504,7 @@ msgstr ""
 "<b>Gramps Mailinglisten</b><br/> Willst du Antworten zu deinen Fragen über "
 "Gramps? Probiere die gramps-users Liste aus. Viele Menschen sind auf der "
 "Liste. Du bekommst normalerweise schnell eine Antwort. Hast du Fragen an die "
-"Entwicklung von GRAMPS, probiere die gramps-devel Liste. Du kannst die Listen "
+"Entwicklung von Gramps, probiere die gramps-devel Liste. Du kannst die Listen "
 "durch die Auswahl von &quot;Hilfe &gt; Gramps Mailinglisten&quot; sehen."
 
 #: ../data/tips.xml.in.h:31
@@ -517,7 +517,7 @@ msgid ""
 "introducing yourself. Subscription information can be found at &quot;Help "
 "&gt; Gramps Mailing Lists&quot;"
 msgstr ""
-"<b>An Gramps mitarbeiten</b><br/>Willst du bei GRAMPS helfen, kannst aber "
+"<b>An Gramps mitarbeiten</b><br/>Willst du bei Gramps helfen, kannst aber "
 "nicht programmieren? Kein Problem. Ein so großes Projekt wie Gramps benötigt "
 "Menschen mit vielen unterschiedlichen Qualifikationen. Mitarbeit kann sowohl "
 "das Schreiben von Dokumentation, das Testen von Entwicklungsversionen, als "
@@ -3397,7 +3397,7 @@ msgstr "Liefert Fundstelle mit einer bestimmten Gramps-ID"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:46
 msgid "Citations having <count> notes"
-msgstr "Fundstellen mit<Anzahl> Notizen"
+msgstr "Fundstellen mit <Anzahl> Notizen"
 
 #: ../gramps/gen/filters/rules/citation/_hasnote.py:47
 msgid "Matches citations having a certain number of notes"
@@ -3603,7 +3603,7 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:44
 msgid "Every event"
-msgstr "Alle Ereignisse"
+msgstr "Jedes Ereignis"
 
 #: ../gramps/gen/filters/rules/event/_allevents.py:45
 msgid "Matches every event in the database"
@@ -3865,11 +3865,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:44
 msgid "Every family"
-msgstr "Alle Familien"
+msgstr "Jede Familie"
 
 #: ../gramps/gen/filters/rules/family/_allfamilies.py:45
 msgid "Matches every family in the database"
-msgstr "Liefert alle Familien in der Datenbank"
+msgstr "Liefert jede Familie in der Datenbank"
 
 #: ../gramps/gen/filters/rules/family/_changedsince.py:47
 msgid "Families changed after <date time>"
@@ -4596,7 +4596,7 @@ msgstr "Entspricht Personen mit alternativen Namen"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:49
 msgid "People with <count> associations"
-msgstr "Personen mit<Anzahl> Verbindungen"
+msgstr "Personen mit <Anzahl> Verbindungen"
 
 #: ../gramps/gen/filters/rules/person/_hasassociation.py:50
 msgid "Matches people with a certain number of associations"
@@ -5114,8 +5114,8 @@ msgid ""
 "Matches ancestors of the people on the bookmark list not more than N "
 "generations away"
 msgstr ""
-"Entspricht Vorfahren einer Person aus den Lesezeichen, die aber nicht mehrals "
-"<N> Generationen entfernt sind."
+"Entspricht Vorfahren einer Person aus den Lesezeichen, die aber nicht mehr "
+"als <N> Generationen entfernt sind."
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationancestorofdefaultperson.py:47
 msgid "Ancestors of the default person not more than <N> generations away"
@@ -5125,8 +5125,8 @@ msgstr "Vorfahren der Hauptperson, weniger als <N> Generationen entfernt"
 msgid ""
 "Matches ancestors of the default person not more than N generations away"
 msgstr ""
-"Entspricht Personen, die Vorfahren der Hauptperson sind, die aberhöchstens <N>"
-" Generationen entfernt sind."
+"Entspricht Personen, die Vorfahren der Hauptperson sind, die aber höchstens <"
+"N> Generationen entfernt sind."
 
 #: ../gramps/gen/filters/rules/person/_islessthannthgenerationdescendantof.py:46
 msgid "Descendants of <person> not more than <N> generations away"
@@ -5387,11 +5387,11 @@ msgstr "Personen mit dem <Namen>"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:44
 msgid "Every place"
-msgstr "Alle Orte"
+msgstr "Jeder Ort"
 
 #: ../gramps/gen/filters/rules/place/_allplaces.py:45
 msgid "Matches every place in the database"
-msgstr "Liefert alle Orte in der Datenbank"
+msgstr "Liefert jeden Ort in der Datenbank"
 
 #: ../gramps/gen/filters/rules/place/_changedsince.py:47
 msgid "Places changed after <date time>"
@@ -5664,11 +5664,11 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:44
 msgid "Every repository"
-msgstr "Alle Aufbewahrungsorte"
+msgstr "Jeder Aufbewahrungsort"
 
 #: ../gramps/gen/filters/rules/repository/_allrepos.py:45
 msgid "Matches every repository in the database"
-msgstr "Entspricht allen Aufbewahrungsorten in der Datenbank."
+msgstr "Entspricht jedem Aufbewahrungsort in der Datenbank."
 
 #: ../gramps/gen/filters/rules/repository/_changedsince.py:47
 msgid "Repositories changed after <date time>"
@@ -5789,11 +5789,11 @@ msgstr "Entspricht Aufbewahrungsorten, die als vertraulich markiert sind."
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:44
 msgid "Every source"
-msgstr "Alle Quellen"
+msgstr "Jede Quelle"
 
 #: ../gramps/gen/filters/rules/source/_allsources.py:45
 msgid "Matches every source in the database"
-msgstr "Entspricht allen Quellen in der Datenbank."
+msgstr "Entspricht jeder Quelle in der Datenbank."
 
 #: ../gramps/gen/filters/rules/source/_changedsince.py:47
 msgid "Sources changed after <date time>"
@@ -18992,8 +18992,9 @@ msgstr "Der Basisstil, der für die Standardtextanzeige verwendet wird."
 
 #: ../gramps/plugins/drawreport/fanchart.py:734
 #, python-format
-msgid "The style used for the text display of generation %d"
-msgstr "Der Stil, der für die Textanzeige von Generationen %d verwendet wird."
+msgid "The style used for the text display of generation \"%d\""
+msgstr ""
+"Der Stil, der für die Textanzeige von Generationen \"%d\" verwendet wird."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:301
 msgid "Item count"
