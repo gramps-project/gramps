@@ -51,6 +51,15 @@ class PlaceImport(object):
         self.loc2handle[location] = handle
         self.handle2loc[handle] = location
 
+    def remove_location(self, handle):
+        """
+        Remove the location of a place already in the database.
+        """
+        if handle in self.handle2loc:
+            loc = self.handle2loc[handle]
+            del(self.loc2handle[loc])
+            del(self.handle2loc[handle])
+
     def generate_hierarchy(self, trans):
         """
         Generate missing places in the place hierarchy.

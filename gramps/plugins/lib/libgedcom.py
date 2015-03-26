@@ -5459,6 +5459,7 @@ class GedcomParser(UpdateCallback):
                             self.place_names[title].append(place_handle)
                         else:
                             place.merge(old_place)
+                            self.place_import.remove_location(old_place.handle)
                             self.dbase.remove_place(place_handle, self.trans)
                             self.place_names[old_title].remove(place_handle)
                     else:
@@ -5479,7 +5480,7 @@ class GedcomParser(UpdateCallback):
             sub_state = CurrentState()
             sub_state.place = place
             sub_state.level = state.level+1
-            sub_state.pf = PlaceParser()
+            sub_state.pf = self.place_parser
 
             self.__parse_level(sub_state, self.event_place_map, 
                              self.__undefined)
@@ -5625,6 +5626,7 @@ class GedcomParser(UpdateCallback):
                         self.__add_location(place, location)
                     else:
                         place.merge(old_place)
+                        self.place_import.remove_location(old_place.handle)
                         self.dbase.remove_place(place_handle, self.trans)
                         self.place_names[title].remove(place_handle)
                 else:
