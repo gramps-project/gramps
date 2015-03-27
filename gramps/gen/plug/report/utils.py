@@ -32,18 +32,22 @@ A collection of utilities to aid in the generation of reports.
 #
 #-------------------------------------------------------------------------
 import os
-from ...const import GRAMPS_LOCALE as glocale
-_ = glocale.translation.gettext
 
 #------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #------------------------------------------------------------------------
+from ...const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from ...datehandler import get_date
 from ...display.place import displayer as place_displayer
 from ...utils.file import media_path_full
 from ..docgen import IndexMark, INDEX_TYPE_ALP
+
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+    return value
 
 #-------------------------------------------------------------------------
 #
@@ -248,7 +252,7 @@ def get_address_str(addr):
 # People Filters
 #
 #-------------------------------------------------------------------------
-def get_person_filters(person, include_single=True):
+def get_person_filters(person, include_single=True, name_format=None):
     """
     Return a list of filters that are relevant for the given person
 
@@ -256,12 +260,18 @@ def get_person_filters(person, include_single=True):
     :type person: :class:`~.person.Person`
     :param include_single: include a filter to include the single person
     :type include_single: boolean
+    :param name_format: optional format to control display of person's name
+    :type name_format: None or int
     """
-    from ...filters import GenericFilter, rules, CustomFilters
+    from ...filters import GenericFilter, rules, CustomFilters, DeferredFilter
     from ...display.name import displayer as name_displayer
 
     if person:
+        real_format = name_displayer.get_default_format()
+        if name_format is not None:
+            name_displayer.set_default_format(name_format)
         name = name_displayer.display(person)
+        name_displayer.set_default_format(real_format)
         gramps_id = person.get_gramps_id()
     else:
         # Do this in case of command line options query (show=filter)
@@ -273,27 +283,22 @@ def get_person_filters(person, include_single=True):
         filt_id.set_name(name)
         filt_id.add_rule(rules.person.HasIdOf([gramps_id]))
 
-    all = GenericFilter()
-    all.set_name(_("Entire Database"))
+    all = DeferredFilter(_T_("Entire Database"), None)
     all.add_rule(rules.person.Everyone([]))
 
-    des = GenericFilter()
     # feature request 2356: avoid genitive form
-    des.set_name(_("Descendants of %s") % name)
+    des = DeferredFilter(_T_("Descendants of %s"), name)
     des.add_rule(rules.person.IsDescendantOf([gramps_id, 1]))
 
-    df = GenericFilter()
     # feature request 2356: avoid genitive form
-    df.set_name(_("Descendant Families of %s") % name)
+    df = DeferredFilter(_T_("Descendant Families of %s"), name)
     df.add_rule(rules.person.IsDescendantFamilyOf([gramps_id, 1]))
 
-    ans = GenericFilter()
     # feature request 2356: avoid genitive form
-    ans.set_name(_("Ancestors of %s") % name)
+    ans = DeferredFilter(_T_("Ancestors of %s"), name)
     ans.add_rule(rules.person.IsAncestorOf([gramps_id, 1]))
 
-    com = GenericFilter()
-    com.set_name(_("People with common ancestor with %s") % name)
+    com = DeferredFilter(_T_("People with common ancestor with %s"), name)
     com.add_rule(rules.person.HasCommonAncestorWith([gramps_id]))
 
     if include_single:
