@@ -29,6 +29,7 @@ Package providing filtering framework for GRAMPS.
 # Gramps imports
 #
 #------------------------------------------------------------------------
+from ..const import GRAMPS_LOCALE as glocale
 from ..lib.person import Person
 from ..lib.family import Family
 from ..lib.src import Source
