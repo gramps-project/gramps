@@ -30,6 +30,7 @@ Commonly used report options. Call the function, don't copy the code!
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+from gramps.gen.config import config
 from gramps.gen.display.name import displayer as global_name_display
 from gramps.gen.plug.menu import EnumeratedListOption, BooleanOption
 from gramps.gen.proxy import PrivateProxyDb
@@ -65,15 +66,21 @@ def add_name_format_option(menu, category):
     for number, name, format_string, whether_active in format_list:
         name_format.add_item(number, name)
     name_format.set_help(_("Select the format to display names"))
+    current_format = config.get('preferences.name-format')
+    # if this report hasn't ever been run, start with user's current setting
+    name_format.set_value(current_format)
+    # if the report has been run, this line will get the user's old setting
     menu.add_option(category, "name_format", name_format)
+    return name_format
 
 def run_name_format_option(report, menu):
     """
     Run the option for changing the report's name format to a
     report-specific format instead of the user's Edit=>Preferences choice
     """
+    current_format = config.get('preferences.name-format')
     name_format = menu.get_option_by_name("name_format").get_value()
-    if name_format != 0:
+    if name_format != current_format:
         report._name_display.set_default_format(name_format)
 
 def add_private_data_option(menu, category, default=True):
