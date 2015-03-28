@@ -27,7 +27,7 @@ CustomFilters = None
 
 from ..const import CUSTOM_FILTERS
 from ._filterlist import FilterList
-from ._genericfilter import GenericFilter, GenericFilterFactory
+from ._genericfilter import GenericFilter, GenericFilterFactory, DeferredFilter
 from ._paramfilter import ParamFilter
 from ._searchfilter import SearchFilter, ExactSearchFilter
 
