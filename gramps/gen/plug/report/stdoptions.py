@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2013       John Ralls <jralls@ceridwen.us>
-# Copyright (C) 2013-2014  Paul Franklin
+# Copyright (C) 2013-2015  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -82,6 +82,7 @@ def run_name_format_option(report, menu):
     name_format = menu.get_option_by_name("name_format").get_value()
     if name_format != current_format:
         report._name_display.set_default_format(name_format)
+    return name_format
 
 def add_private_data_option(menu, category, default=True):
     """
