@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2008-2011 Reinhard Müller
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2013-2014 Paul Franklin
+# Copyright (C) 2013-2015 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -84,13 +84,16 @@ class RecordsReport(Report):
         self._lang = options.menu.get_option_by_name('trans').get_value()
         self._locale = self.set_locale(self._lang)
 
+        self._nf = stdoptions.run_name_format_option(self, menu)
+
     def write_report(self):
         """
         Build the actual report.
         """
 
-        records = find_records(self.database, self.filter, self.top_size,
-                               self.callname, trans_text=self._)
+        records = find_records(self.database, self.filter,
+                               self.top_size, self.callname,
+                               trans_text=self._, name_format=self._nf)
 
         self.doc.start_paragraph('REC-Title')
         title = self._("Records")
@@ -98,25 +101,9 @@ class RecordsReport(Report):
         self.doc.write_text(title, mark)
         self.doc.end_paragraph()
 
-        if self._lang == 'default':
-            self.doc.start_paragraph('REC-Subtitle')
-            self.doc.write_text(self.filter.get_name())
-            self.doc.end_paragraph()
-        else:
-            # The only way which I thought of to get a desired non-English
-            # filter name if the starting UI is a non-English one, was to
-            # change ReportUtils.get_person_filters so that it creates the
-            # filters with English (untranslated) names, but that would mean
-            # changing every filter.get_name() in every place that the
-            # get_person_filters filters are used, to always translate the
-            # get_name, and I wasn't in the mood to do that to all of them,
-            # so until that happen -- assuming it works, since I didn't try
-            # it to see, since the person's name will be in get_person_filters
-            # but the deferred translation will be where the filter.get_name()
-            # is, so it might not work at all -- but until it does, or another
-            # way is found, there will be no translated subtitle, only a
-            # subtitle if the report's output is in the main/UI language
-            pass # FIXME
+        self.doc.start_paragraph('REC-Subtitle')
+        self.doc.write_text(self.filter.get_name(self._locale))
+        self.doc.end_paragraph()
 
         for (text, varname, top) in records:
             if not self.include[varname]:
@@ -184,7 +171,10 @@ class RecordsReportOptions(MenuReportOptions):
         self.__pid.set_help(_("The center person for the filter"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
-        
+
+        self._nf = stdoptions.add_name_format_option(menu, category_name)
+        self._nf.connect('value-changed', self.__update_filters)
+
         self.__update_filters()
 
         top_size = NumberOption(_("Number of ranks to display"), 3, 1, 100)
@@ -218,7 +208,10 @@ class RecordsReportOptions(MenuReportOptions):
         """
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
-        filter_list = ReportUtils.get_person_filters(person, False)
+        nfv = self._nf.get_value()
+        filter_list = ReportUtils.get_person_filters(person,
+                                                     include_single=False,
+                                                     name_format=nfv)
         self.__filter.set_filters(filter_list)
 
     def __filter_changed(self):
