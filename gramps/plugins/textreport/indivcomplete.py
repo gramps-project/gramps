@@ -932,10 +932,13 @@ class IndivCompleteOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
-        stdoptions.add_name_format_option(menu, category_name)
-        
+        self._nf = stdoptions.add_name_format_option(menu, category_name)
+        self._nf.connect('value-changed', self.__update_filters)
+
         self.__update_filters()
-        
+
+        stdoptions.add_private_data_option(menu, category_name)
+
         sort = BooleanOption(_("List events chronologically"), True)
         sort.set_help(_("Whether to sort events into chronological order."))
         menu.add_option(category_name, "sort", sort)
@@ -950,8 +953,6 @@ class IndivCompleteOptions(MenuReportOptions):
         ################################
         category_name = _("Include")
         ################################
-
-        stdoptions.add_private_data_option(menu, category_name)
 
         cites = BooleanOption(_("Include Source Information"), True)
         cites.set_help(_("Whether to cite sources."))
@@ -988,7 +989,10 @@ class IndivCompleteOptions(MenuReportOptions):
         """
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
-        filter_list = ReportUtils.get_person_filters(person, True)
+        nfv = self._nf.get_value()
+        filter_list = ReportUtils.get_person_filters(person,
+                                                     include_single=True,
+                                                     name_format=nfv)
         self.__filter.set_filters(filter_list)
         
     def __filter_changed(self):
