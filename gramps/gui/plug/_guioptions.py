@@ -241,6 +241,9 @@ class GuiColorOption(Gtk.ColorButton):
         self.changekey = self.connect('color-set', self.__color_changed)
         self.valuekey = self.__option.connect('value-changed', self.__value_changed)
 
+        self.conkey = self.__option.connect('avail-changed', self.__update_avail)
+        self.__update_avail()
+
         self.set_tooltip_text(self.__option.get_help())
         
     def __color_changed(self, obj): # IGNORE:W0613 - obj is unused
@@ -255,6 +258,13 @@ class GuiColorOption(Gtk.ColorButton):
         self.__option.disable_signals()
         self.__option.set_value(value)
         self.__option.enable_signals()
+
+    def __update_avail(self):
+        """
+        Update the availability (sensitivity) of this widget.
+        """
+        avail = self.__option.get_available()
+        self.set_sensitive(avail)
 
     def __value_changed(self):
         """
@@ -271,6 +281,7 @@ class GuiColorOption(Gtk.ColorButton):
         remove stuff that blocks garbage collection
         """
         self.__option.disconnect(self.valuekey)
+        self.__option.disconnect(self.conkey)
         self.__option = None
 
 #-------------------------------------------------------------------------
