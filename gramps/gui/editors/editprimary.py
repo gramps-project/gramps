@@ -234,7 +234,8 @@ class EditPrimary(ManagedWindow, DbGUIElement):
                 _('If you close without saving, the changes you '
                   'have made will be lost'),
                 self._do_close,
-                self.save)
+                self.save,
+                self.window)
             return True
         else:
             self._do_close()
