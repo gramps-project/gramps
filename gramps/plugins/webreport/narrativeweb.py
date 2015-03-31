@@ -142,7 +142,7 @@ from gramps.plugins.lib.libhtml import Html, xml_lang
 # import styled notes from src/plugins/lib/libhtmlbackend.py
 from gramps.plugins.lib.libhtmlbackend import HtmlBackend, process_spaces
 
-from gramps.plugins.lib.libgedcom import make_gedcom_date
+from gramps.plugins.lib.libgedcom import make_gedcom_date, DATE_QUALITY
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gui.pluginmanager import GuiPluginManager
 
@@ -517,14 +517,20 @@ def format_date(date):
         cal = date.get_calendar()
         mod = date.get_modifier()
         quality = date.get_quality()
+        if quality in libgedcom.DATE_QUALITY:
+            qual_text = libgedcom.DATE_QUALITY[quality] + " "
+        else:
+            qual_text = ""
         if mod == Date.MOD_SPAN:
-            val = "FROM %s TO %s" % (
-                make_gedcom_date(start, cal, mod, quality), 
-                make_gedcom_date(date.get_stop_date(), cal, mod, quality))
+            val = "%sFROM %s TO %s" % (
+                qual_text,
+                make_gedcom_date(start, cal, mod, None), 
+                make_gedcom_date(date.get_stop_date(), cal, mod, None))
         elif mod == Date.MOD_RANGE:
-            val = "BET %s AND %s" % (
-                make_gedcom_date(start, cal, mod, quality), 
-                make_gedcom_date(date.get_stop_date(), cal, mod, quality))
+            val = "%sBET %s AND %s" % (
+                qual_text,
+                make_gedcom_date(start, cal, mod, None), 
+                make_gedcom_date(date.get_stop_date(), cal, mod, None))
         else:
             val = make_gedcom_date(start, cal, mod, quality)
         return val
