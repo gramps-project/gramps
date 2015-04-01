@@ -5743,7 +5743,7 @@ class GedcomParser(UpdateCallback):
         """
         while True:
             line = self.__get_next_line()
-            if self.__level_is_finished(line, state.level):
+            if self.__level_is_finished(line, state.level+1):
                 break
             elif line.token == TOKEN_AGE:
                 attr = Attribute()
@@ -5764,7 +5764,7 @@ class GedcomParser(UpdateCallback):
         """
         while True:
             line = self.__get_next_line()
-            if self.__level_is_finished(line, state.level):
+            if self.__level_is_finished(line, state.level+1):
                 break
             elif line.token == TOKEN_AGE:
                 attr = Attribute()
