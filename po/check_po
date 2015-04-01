@@ -116,6 +116,38 @@ class Check_named_fmt( Check ):
                         msgstr = msg.msgstr[1]
                         self.__process( msg, msgid, msgstr )
 
+class Check_mapping_fmt( Check ):
+        # A pattern to find all {}
+        find_map_pat = re.compile('\{ \w+ \}', re.VERBOSE)
+
+        def __init__( self ):
+                Check.__init__( self )
+                self.diag_header = "-------- {} name mismatches --------------"
+                self.summary_text = "{} name mismatches:"
+
+        def __process( self, msg, msgid, msgstr ):
+                # Same number of named formats?
+                fmts1 = self.find_map_pat.findall( msgid )
+                fmts2 = self.find_map_pat.findall( msgstr )
+                if len( fmts1 ) != len( fmts2 ):
+                        self.msgs.append( msg )
+                else:
+                        # Do we have the same named formats?
+                        fmts1.sort()
+                        fmts2.sort()
+                        if fmts1 != fmts2:
+                                self.msgs.append( msg )
+
+        def process( self, msg ):
+                msgid = msg.msgid
+                msgstr = msg.msgstr[0]
+                self.__process( msg, msgid, msgstr )
+
+                if msg.msgidp and len(msg.msgstr) >= 2:
+                        msgid = msg.msgidp
+                        msgstr = msg.msgstr[1]
+                        self.__process( msg, msgid, msgstr )
+
 class Check_missing_sd( Check ):
         # A pattern to find %() without s or d
         # Here is a command to use for testing
@@ -513,6 +545,7 @@ def analyze_msgs( args, fname, msgs, nr_templates = None, nth = 0 ):
         checks.append( Check_fmt( '%s' ) )
         checks.append( Check_fmt( '%d' ) )
         checks.append( Check_named_fmt() )
+        checks.append( Check_mapping_fmt() )
         checks.append( Check_missing_sd() )
         checks.append( Check_runaway() )
         checks.append( Check_xml_chars() )
