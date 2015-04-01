@@ -964,6 +964,8 @@ class StatisticsChartOptions(MenuReportOptions):
 
         self.__update_filters()
         
+        stdoptions.add_private_data_option(menu, category_name)
+
         sortby = EnumeratedListOption(_('Sort chart items by'),
                                       _options.SORT_VALUE )
         for item_idx in range(len(_options.opt_sorts)):
@@ -1006,8 +1008,6 @@ class StatisticsChartOptions(MenuReportOptions):
         bar_items.set_help(_("With fewer items pie chart and legend will be "
                              "used instead of a bar chart."))
         add_option("bar_items", bar_items)
-
-        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 

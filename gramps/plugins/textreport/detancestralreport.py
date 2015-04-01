@@ -757,12 +757,12 @@ class DetAncestorOptions(MenuReportOptions):
 
         stdoptions.add_name_format_option(menu, category)
         
+        stdoptions.add_private_data_option(menu, category)
+
         gen = NumberOption(_("Generations"),10,1,100)
         gen.set_help(_("The number of generations to include in the report"))
         addopt("gen", gen)
         
-        stdoptions.add_private_data_option(menu, category)
-
         pagebbg = BooleanOption(_("Page break between generations"),False)
         pagebbg.set_help(
                      _("Whether to start a new page after each generation."))

@@ -897,6 +897,8 @@ class AncestorTreeOptions(MenuReportOptions):
         
         stdoptions.add_name_format_option(menu, category_name)
 
+        stdoptions.add_private_data_option(menu, category_name)
+
         self.max_gen = NumberOption(_("Generations"), 10, 1, 50)
         self.max_gen.set_help(_("The number of generations to include "
                                 "in the tree"))
@@ -932,8 +934,6 @@ class AncestorTreeOptions(MenuReportOptions):
         centerDisp.add_item( 1, _("Use Mothers display format"))
         centerDisp.set_help(_("Which Display format to use the center person"))
         menu.add_option(category_name, "center_uses", centerDisp)
-
-        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 

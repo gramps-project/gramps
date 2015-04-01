@@ -403,6 +403,8 @@ class DescendantOptions(MenuReportOptions):
         
         stdoptions.add_name_format_option(menu, category_name)
 
+        stdoptions.add_private_data_option(menu, category_name)
+
         numbering = EnumeratedListOption(_("Numbering system"), "Simple")
         numbering.set_items([
                 ("Simple",      _("Simple numbering")), 
@@ -427,8 +429,6 @@ class DescendantOptions(MenuReportOptions):
         dups.set_help(
             _("Whether to show duplicate Family Trees in the report."))
         menu.add_option(category_name, "dups", dups)
-
-        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
