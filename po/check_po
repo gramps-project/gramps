@@ -117,7 +117,7 @@ class Check_named_fmt( Check ):
 
 class Check_mapping_fmt( Check ):
 	# A pattern to find all {}
-	find_map_pat = re.compile('\{ \w+ \} \d* \D', re.VERBOSE)
+	find_map_pat = re.compile('\{ \w+ \}', re.VERBOSE)
 
 	def __init__( self ):
 		Check.__init__( self )
