@@ -642,13 +642,13 @@ class FamilyGroupOptions(MenuReportOptions):
 
         stdoptions.add_name_format_option(menu, category_name)
         
+        stdoptions.add_private_data_option(menu, category_name)
+
         recursive = BooleanOption(_('Recursive'),False)
         recursive.set_help(_("Create reports for all descendants "
                              "of this family."))
         add_option("recursive", recursive)
         
-        stdoptions.add_private_data_option(menu, category_name)
-
         stdoptions.add_localization_option(menu, category_name)
 
         ##########################

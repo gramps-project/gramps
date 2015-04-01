@@ -1358,6 +1358,8 @@ class WebCalOptions(MenuReportOptions):
         name_format.set_help(_("Select the format to display names"))
         menu.add_option(category_name, "name_format", name_format)
 
+        stdoptions.add_private_data_option(menu, category_name, default=False)
+
         ext = EnumeratedListOption(_("File extension"), ".html" )
         for etype in _WEB_EXT:
             ext.add_item(etype, etype)
@@ -1444,8 +1446,6 @@ class WebCalOptions(MenuReportOptions):
         home_link.set_help(_("The link to be included to direct the user to "
                          "the main page of the web site"))
         menu.add_option(category_name, "home_link", home_link)
-
-        stdoptions.add_private_data_option(menu, category_name, default=False)
 
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the calendar"))

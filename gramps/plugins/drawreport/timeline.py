@@ -398,6 +398,8 @@ class TimeLineOptions(MenuReportOptions):
 
         self.__update_filters()
 
+        stdoptions.add_private_data_option(menu, category_name)
+
         sortby = EnumeratedListOption(_('Sort by'), 0 )
         idx = 0
         for item in _get_sort_functions(Sort(self.__db)):
@@ -406,8 +408,6 @@ class TimeLineOptions(MenuReportOptions):
         sortby.set_help( _("Sorting method to use"))
         menu.add_option(category_name,"sortby",sortby)
                 
-        stdoptions.add_private_data_option(menu, category_name)
-
         stdoptions.add_localization_option(menu, category_name)
 
     def __update_filters(self):

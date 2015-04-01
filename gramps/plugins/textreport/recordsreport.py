@@ -177,6 +177,8 @@ class RecordsReportOptions(MenuReportOptions):
 
         self.__update_filters()
 
+        stdoptions.add_private_data_option(menu, category_name)
+
         top_size = NumberOption(_("Number of ranks to display"), 3, 1, 100)
         menu.add_option(category_name, "top_size", top_size)
 
@@ -189,8 +191,6 @@ class RecordsReportOptions(MenuReportOptions):
 
         footer = StringOption(_("Footer text"), "")
         menu.add_option(category_name, "footer", footer)
-
-        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 

@@ -429,6 +429,8 @@ class BirthdayOptions(MenuReportOptions):
 
         self.__update_filters()
 
+        stdoptions.add_private_data_option(menu, category_name)
+
         country = EnumeratedListOption(_("Country for holidays"), 0)
         holiday_table = libholiday.HolidayTable()
         countries = holiday_table.get_countries()
@@ -457,8 +459,6 @@ class BirthdayOptions(MenuReportOptions):
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
         menu.add_option(category_name, "maiden_name", maiden_name)
-
-        stdoptions.add_private_data_option(menu, category_name)
 
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the report"))

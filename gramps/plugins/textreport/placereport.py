@@ -399,6 +399,8 @@ class PlaceOptions(MenuReportOptions):
         places.set_help(_("List of places to report on"))
         menu.add_option(category_name, "places", places)
 
+        stdoptions.add_private_data_option(menu, category_name)
+
         stdoptions.add_name_format_option(menu, category_name)
 
         center = EnumeratedListOption(_("Center on"), "Event")
@@ -407,8 +409,6 @@ class PlaceOptions(MenuReportOptions):
                 ("Person", _("Person"))])
         center.set_help(_("If report is event or person centered"))
         menu.add_option(category_name, "center", center)
-
-        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 

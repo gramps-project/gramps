@@ -342,6 +342,8 @@ class KinshipOptions(MenuReportOptions):
 
         stdoptions.add_name_format_option(menu, category_name)
 
+        stdoptions.add_private_data_option(menu, category_name)
+
         maxdescend = NumberOption(_("Max Descendant Generations"), 2, 1, 20)
         maxdescend.set_help(_("The maximum number of descendant generations"))
         menu.add_option(category_name, "maxdescend", maxdescend)
@@ -361,8 +363,6 @@ class KinshipOptions(MenuReportOptions):
         incaunts = BooleanOption(_("Include aunts/uncles/nephews/nieces"), True)
         incaunts.set_help(_("Whether to include aunts/uncles/nephews/nieces"))
         menu.add_option(category_name, "incaunts", incaunts)        
-
-        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 
