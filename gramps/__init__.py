@@ -20,9 +20,9 @@
 # gen/__init__.py
 
 """
-The core gramps module provides the different packages
+The core gramps modules that provide the different packages
 
-Plugins are loaded dynamically, so they the plugin directory is not included
+Plugins are loaded dynamically, so that plugin directory is not included
 """
 
 __all__ = ["gen", "cli", "gui"]
