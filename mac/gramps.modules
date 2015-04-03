@@ -61,18 +61,8 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     <branch module="source" repo="gramps"
 	    checkoutdir="gramps-git"/>
     <dependencies>
-      <dep package="meta-gtk-osx-python3-gtk3"/>
-      <dep package="meta-gtk-osx-gtk3-core-themes"/>
-      <dep package="goocanvas2"/>
-      <dep package="librsvg"/>
-      <dep package="shared-mime-info"/>
-      <dep package="hunspell"/>
-      <dep package="gtkspell3"/>
-      <dep package="osmgpsmap"/>
-      <dep package="graphviz"/>
-      <dep package="pil"/>
-      <dep package='pyicu'/>
-      <dep package="gexiv2"/>
+      <dep package="meta-python2-modules"/>
+      <dep package="meta-python3-modules"/>
     </dependencies>
   </distutils>
 
@@ -110,6 +100,7 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
   </autotools>
 
   <autotools id="osmgpsmap" skip-autogen="never"
+	     autogenargs="--disable-gtk-doc-html"
 	     supports-non-srcdir-builds="no">
     <branch module="nzjrs/osm-gps-map" revision="1.0.2" repo="github"/>
     <dependencies>
@@ -160,5 +151,33 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
       <dep package='icu'/>
     </dependencies>
   </distutils>
+
+  <metamodule id="meta-python2-modules">
+    <dependencies>
+      <dep package="python"/>
+      <dep package="meta-gtk-osx-gtk3"/>
+      <dep package="gtk-mac-integration-python"/>
+      <dep package="meta-gtk-osx-gtk3-core-themes"/>
+      <dep package="goocanvas2"/>
+      <dep package="librsvg"/>
+      <dep package="shared-mime-info"/>
+      <dep package="hunspell"/>
+      <dep package="gtkspell3"/>
+      <dep package="osmgpsmap"/>
+      <dep package="graphviz"/>
+      <dep package="pil"/>
+      <dep package="gexiv2"/>
+   </dependencies>
+ </metamodule>
+
+ <metamodule id="meta-python3-modules">
+   <dependencies>
+     <dep package="python3"/>
+     <dep package="pycairo-python3"/>
+     <dep package="pygobject3"/>
+     <dep package='pyicu'/>
+     <dep package='pybsddb'/>
+   </dependencies>
+ </metamodule>
 
 </moduleset>
