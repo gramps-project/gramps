@@ -14,7 +14,7 @@ msgstr ""
 "Project-Id-Version: de\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-26 01:50+0100\n"
-"PO-Revision-Date: 2015-03-26 02:12+0100\n"
+"PO-Revision-Date: 2015-04-05 00:16+0200\n"
 "Last-Translator: Mirko Leonhäuser <mirko@leonhaeuser.de>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -3814,7 +3814,7 @@ msgstr "Beschreibung:"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:49
 msgid "Events with <data>"
-msgstr "Ereignisse mit <data>"
+msgstr "Ereignisse mit <Daten>"
 
 #: ../gramps/gen/filters/rules/event/_hasdata.py:50
 msgid "Matches events with data of a particular value"
@@ -19276,9 +19276,10 @@ msgid "The basic style used for the default text display."
 msgstr "Der Basisstil, der für die Standardtextanzeige verwendet wird."
 
 #: ../gramps/plugins/drawreport/fanchart.py:740
-#, fuzzy, python-format
+#, python-format
 msgid "The style used for the text display of generation \"%d\""
-msgstr "Der Stil, der für die Textanzeige von Generationen %d verwendet wird."
+msgstr ""
+"Der Stil, der für die Textanzeige von Generation \"%d\" verwendet wird."
 
 #: ../gramps/plugins/drawreport/statisticschart.py:300
 msgid "Item count"
