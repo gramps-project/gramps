@@ -8,7 +8,7 @@ The main focus of this Gramps-based webapp is collaboration, allow users to easi
 A prototype is on-line at http://gramps-connect.org/
 
 **Requires**
-Django ( https://www.djangoproject.com/ )
+Django   (version 1.7 supported until October 2015) (version 1.8 LTS supported until April 2018) ( https://www.djangoproject.com/ )
 
 **Webapp**
 
