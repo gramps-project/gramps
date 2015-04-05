@@ -251,7 +251,7 @@ class TimeLine(Report):
         Draws the title for the page.
         """
         width = self.doc.get_usable_width()
-        title_one = self._("Timeline Graph")
+        title_one = self._("Timeline Chart")
         title_two = "%(str1)s -- %(str2)s" % {
                         'str1' : self.filter.get_name(self._locale),
                         # feature request 2356: avoid genitive form
