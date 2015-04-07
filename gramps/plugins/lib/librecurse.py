@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2013       Craig Anderson
+# Copyright (C) 2015       Craig Anderson
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,6 +22,86 @@
 """
 
 from gramps.gen.plug.report import utils as ReportUtils
+from gramps.gen.lib import ChildRefType
+
+
+#------------------------------------------------------------------------
+#
+# Livrecurse base objects only
+#
+#------------------------------------------------------------------------
+class _PersonSeen(object):
+    """   librecurse base boject only
+    Keep track of people that have been seen so we can call the correct
+    virtual method.
+    """
+    def __init__(self):
+        self.people_seen = set()
+
+    def add_person(self, level, person_handle, family_handle):
+        """ a person is seen for the first time """
+        pass
+
+    def add_person_again(self, level, person_handle, family_handle):
+        """ a person is seen again """
+        pass
+
+    def _add_person(self, level, person_handle, family_handle):
+        """ Which virtual method to call?
+        """
+        if person_handle is not None and person_handle in self.people_seen:
+            self.add_person_again(level, person_handle, family_handle)
+        else:
+            self.add_person(level, person_handle, family_handle)
+        if person_handle is not None:
+            self.people_seen.add(person_handle)
+
+class _FamilySeen(object):
+    """   librecurse base boject only
+    Keep track of the famalies that have been seen so we can call the correct
+    virtual method.
+    """
+    def __init__(self):
+        self.families_seen = set()
+
+    def add_marriage(self, level, person_handle, family_handle):
+        """ Makes a marriage """
+        pass
+
+    def add_marriage_again(self, level, person_handle, family_handle):
+        """ Makes a marriage """
+        pass
+
+    def _add_marriage(self, level, person_handle, family_handle):
+        """ Makes a marriage """
+        if family_handle in self.families_seen:
+            self.add_marriage_again(level, person_handle, family_handle)
+        else:
+            self.add_marriage(level, person_handle, family_handle)
+        self.families_seen.add(family_handle)
+
+class _StopRecurse(object):
+    """ A simple class to break out the
+        . stop_recursion
+        . can_recurse
+        . continue_recursion
+        methods
+    """
+    def __init__(self):
+        # The default value.  Lets recurse.
+        self.__stop_recursion = False
+
+    def stop_recursion(self):
+        """ Stop Recursion at theis person/family """
+        self.__stop_recursion = True
+
+    def continue_recursion(self):
+        """ Used to allow recursion again """
+        self.__stop_recursion = False
+
+    def can_recurse(self):
+        """ Has the upper class told up to stop or can we continue? """
+        return self.__stop_recursion == False
 
 
 #------------------------------------------------------------------------
@@ -29,15 +109,28 @@ from gramps.gen.plug.report import utils as ReportUtils
 # Class DescendPerson
 #
 #------------------------------------------------------------------------
-class DescendPerson(object):
+class DescendPerson(_StopRecurse, _PersonSeen, _FamilySeen):
     """ Recursive (down) base class
 
     The following methods need to be sub-classed as needed:
     . add_person
-    . add_person_again (called when a person is seen a second more more times)
+    . add_person_again (called when a person is seen a second or more times)
     if you don't want to see marriages don't subclass the following two
     . add_marriage
-    . add_marriage_again (when a marriage is seen a second more more times)
+    . add_marriage_again (when a marriage is seen a second or more times)
+
+    returns:
+    . add_person, add_person_again, add_marriage, add_marriage_again return
+    . . index -> a tuple in the form
+    . . . generation, which generational level >= 1
+    . . . level
+    . . . . 0 = A direct child
+    . . . . 1 = spouse of above (0)
+    . . . . 2 = spouse of 1
+    . . . . 3 = spouse of 2
+    . . . . 4 etc
+    . . person_handle
+    . . family_handle
 
     Public variables:
     . families_seen a set of all famalies seen.
@@ -50,7 +143,7 @@ class DescendPerson(object):
     Methods (tools):
     is_direct_descendant - is this person a direct descendant
     . in the example 'kid 1 of mom and other spouse' is NOT
-    stop_descending - tells the recursion to stop going down
+    stop_recursion - tells the recursion to stop going down
     . mostly used in add_person_again and add_marriage_again
     has_children - checks to see if the person:
     . is NOT already seen and has hildren.
@@ -61,11 +154,13 @@ class DescendPerson(object):
     . . level in (Generagion, Spousal level) tuple
     . . person_handle of the person
     . . family_handle of the family
-    add_person - The recursion found a new person in the tree
-    add_person_again - found a person again
-    . a prolific person or recursion
     add_marriage
     add_marriage_again
+
+    Virtual methods in PersonSeen
+    . add_person - The recursion found a new person in the tree
+    . add_person_again - found a person again
+    . . a prolific person or recursion
 
     Methods (recursive)
     recurse - The main recursive routine. needs:
@@ -78,7 +173,11 @@ class DescendPerson(object):
     . mom (the spouse) is still shown even if s_level == 0
     . . father will have a level of (g_level,0), mother (g_level, 1)
     """
-    def __init__(self, dbase, maxgen, maxspouse):
+    def __init__(self, dbase, maxgen, maxspouse=0):
+        _PersonSeen.__init__(self)
+        _FamilySeen.__init__(self)
+        _StopRecurse.__init__(self)
+
         """ initalized with the
             . database
             . maxgen is the max generations (down) of people to return
@@ -99,10 +198,10 @@ class DescendPerson(object):
 
         self.database = dbase
 
-        self.families_seen = set()
-        self.people_seen = set()
-
+        assert maxgen > 0
         self.max_generations = maxgen
+
+        assert maxspouse >= 0
         self.max_spouses = maxspouse
 
         #can we bold direct descendants?
@@ -112,13 +211,14 @@ class DescendPerson(object):
         #2 - Bold all direct descendants
         self.__bold_now = 1
         self.__this_slevel = -1
-        self.__stop_descending = False
 
     def is_direct_descendant(self):
+        """ Is this person a direct descendant?
+            . Can we bold this perosn and
+            . are they a direct child of the father/mother
+            . . not a spouse
+        """
         return self.__bold_now != 0 and self.__this_slevel == 0
-
-    def stop_descending(self):
-        self.__stop_descending = True
 
     def has_children(self, person_handle):
         """
@@ -140,37 +240,6 @@ class DescendPerson(object):
                     return True
         return False
 
-    def add_person(self, level, person_handle, family_handle):
-        """ Makes a person box """
-        pass
-
-    def add_person_again(self, level, person_handle, family_handle):
-        pass
-
-    def __add_person(self, level, person_handle, family_handle):
-        if person_handle is not None and person_handle in self.people_seen:
-            self.add_person_again(level, person_handle, family_handle)
-        else:
-            self.add_person(level, person_handle, family_handle)
-        if person_handle is not None:
-            self.people_seen.add(person_handle)
-
-    def add_marriage(self, level, person_handle, family_handle):
-        """ Makes a marriage box """
-        pass
-
-    def add_marriage_again(self, level, person_handle, family_handle):
-        """ Makes a marriage box """
-        pass
-
-    def __add_marriage(self, level, person_handle, family_handle):
-        """ Makes a marriage box """
-        if family_handle in self.families_seen:
-            self.add_marriage_again(level, person_handle, family_handle)
-        else:
-            self.add_marriage(level, person_handle, family_handle)
-        self.families_seen.add(family_handle)
-
     def recurse(self, person_handle, g_level, s_level):
         """traverse the descendants recursively
         until either the end of a line is found,
@@ -181,7 +250,7 @@ class DescendPerson(object):
         if not person_handle:
             return
         if g_level > self.max_generations:
-            return
+            return  # one generation too many
         if s_level > 0 and s_level == self.max_spouses:
             return
         #if person_handle in self.people_seen: return
@@ -191,13 +260,13 @@ class DescendPerson(object):
         if s_level == 0:
             val = family_handles[0] if family_handles else None
             self.__this_slevel = s_level
-            self.__add_person((g_level, s_level), person_handle, val)
+            self._add_person((g_level, s_level), person_handle, val)
 
             if self.__bold_now == 1:
                 self.__bold_now = 0
 
-            if self.__stop_descending:
-                self.__stop_descending = False
+            if not self.can_recurse():
+                self.continue_recursion()
                 return
 
         if s_level == 1:
@@ -206,32 +275,32 @@ class DescendPerson(object):
 
         for family_handle in family_handles:
             #Marriage box if the option is there.
-            self.__add_marriage((g_level, s_level + 1),
+            self._add_marriage((g_level, s_level + 1),
                                 person_handle, family_handle)
 
-            if self.__stop_descending:
-                self.__stop_descending = False
-                continue
+            if not self.can_recurse():
+                self.continue_recursion()
+                return
 
             family = self.database.get_family_from_handle(family_handle)
 
             spouse_handle = ReportUtils.find_spouse(person, family)
             if self.max_spouses > s_level:
                 self.__this_slevel = s_level + 1
-                self.__add_person((g_level, s_level + 1),
+                self._add_person((g_level, s_level + 1),
                                   spouse_handle, family_handle)
 
-                if self.__stop_descending:
-                    self.__stop_descending = False
-                    continue
+                if not self.can_recurse:
+                    self.continue_recursion()
+                    return
 
             mykids = [kid.ref for kid in family.get_child_ref_list()]
 
-            if not self.__stop_descending:
+            if self.can_recurse():
                 for child_ref in mykids:
                     self.recurse(child_ref, g_level + 1, 0)
             else:
-                self.__stop_descending = False
+                self.continue_recursion()
 
             if self.max_spouses > s_level:
                 #spouse_handle = ReportUtils.find_spouse(person,family)
@@ -258,17 +327,17 @@ class DescendPerson(object):
         self.__bold_now = 2
         self.__this_slevel = 0
         #if father_h:
-        father_b = self.__add_person((g_level, 0), father_h, family_handle)
+        father_b = self._add_person((g_level, 0), father_h, family_handle)
         #else:
         #    #TODO - should send family_h instead of None?
-        #    father_b = self.__add_person((g_level, 0), None, family_h)
+        #    father_b = self._add_person((g_level, 0), None, family_h)
         #self.people_seen.add(father_h)
 
-        family_b = self.__add_marriage((g_level, 1), father_h, family_handle)
+        family_b = self._add_marriage((g_level, 1), father_h, family_handle)
 
         self.__bold_now = 0
         self.__this_slevel = 1
-        mother_b = self.__add_person((g_level, 1), mother_h, family_handle)
+        mother_b = self._add_person((g_level, 1), mother_h, family_handle)
 
         self.__bold_now = 2
         for child_ref in family.get_child_ref_list():
@@ -298,6 +367,175 @@ class DescendPerson(object):
         if show:
             self.__bold_now = 1
             self.recurse(person_handle, g_level, 0)
+
+
+#------------------------------------------------------------------------
+#
+# Class AscendPerson
+#
+#------------------------------------------------------------------------
+class AscendPerson(_StopRecurse, _PersonSeen):
+    """ Recursive (up) base class
+
+    The following methods need to be sub-classed as needed:
+    . add_person
+    . add_person_again (called when a person is seen a second or more times)
+    if you don't want to see marriages don't subclass the following
+    . add_marriage
+    . . index (below) will be the same as the father
+
+    returns:
+    . add_person, add_person_again, add_marriage all return
+    . . index -> a tuple in the form
+    . . . generation, which generational level >= 1
+    . . . . Center person is 1
+    . . . . Father/Mother is the generational level of the child + 1
+    . . . index
+    . . . . The center person is 1
+    . . . . A father is the  index of the child * 2
+    . . . . A mother is the (index of the child * 2) + 1
+    . . person_handle  (May be None)
+    . . family_handle  (May be None)
+
+    Public variables:
+    . people_seen, a set of all people seen.
+    . . useful for knowing if a recursion (kid marring a grandparent)
+    . . has happened.
+    These can be edited if needed
+    . people_seen, a set of all people seen.
+    . . appending can be useful for excluding parts of the tree
+    """
+
+    def __init__(self, dbase, maxgen, maxfill=0):
+        _PersonSeen.__init__(self)
+        _StopRecurse.__init__(self)
+
+        """ initalized with the
+            . database
+            . maxgen is the max generations (up) of people to return
+            . . maxgen >= 1.  1 will only be the person.
+            . maxfill is the max generations of blank (null) people to return
+            . . maxfil >= 0.  0 (default) is no empty generations
+        """
+        self.database = dbase
+        assert maxgen > 0
+        self.max_generations = maxgen
+        assert maxfill >= 0
+        self.fill_out = maxfill
+
+    def add_marriage(self, index, indi_handle, fams_handle):
+        """ Makes a marriage box and add that person into the Canvas. """
+        # We are not using add_marriage only and not add_marriage_again
+        # because the father will do any _again stuff if needed.
+        pass
+
+    def __fill(self, generation, index, mx_fill):
+        """
+        A skeleton of __iterate as person_handle == family_handle == None
+        """
+        if generation > self.max_generations or mx_fill == 0:
+            # Gone too far.
+            return
+
+        self.add_person((generation, index), None, None)
+
+        if not self.can_recurse():
+            self.continue_recursion()
+            return
+
+        # Recursively call the function. It is okay if the handle is None,
+        # since routine handles a handle of None
+
+        self.__fill(index*2, generation+1, mx_fill-1)
+        if mx_fill > 1:  # marriage of parents
+	    self.add_marriage((generation+1, index*2), None, None)
+            if not self.can_recurse():
+                self.continue_recursion()
+                return
+        self.__fill((index*2)+1, generation+1, mx_fill-1)
+
+    def __iterate(self, person_handle, generation, index):
+        """
+        Recursive function to walk back all parents of the current person.
+        When max_generations are hit, we stop the traversal.
+
+        Code pilfered from gramps/plugins/textreports/ancestorreport.py
+        """
+
+        # check for end of the current recursion level. This happens
+        # if the person handle is None, or if the max_generations is hit
+
+        if generation > self.max_generations:  # too many generations
+            return
+
+        if person_handle is None:  # Ran out of people
+            return self.__fill(generation, index, self.fill_out)
+
+        # retrieve the Person instance from the database from the
+        # passed person_handle and find the parents from the list.
+        # Since this report is for natural parents (birth parents),
+        # we have to handle that parents may not
+        person = self.database.get_person_from_handle(person_handle)
+
+        father_handle = None
+        mother_handle = None
+        fam_handle = None
+        for family_handle in person.get_parent_family_handle_list():
+            family = self.database.get_family_from_handle(family_handle)
+
+            # filter the child_ref_list to find the reference that matches
+            # the passed person. There should be exactly one, but there is
+            # nothing that prevents the same child in the list multiple times.
+
+            ref = [c for c in family.get_child_ref_list()
+                   if c.get_reference_handle() == person_handle]
+            if ref:
+
+                # If the father_handle is not defined and the relationship is
+                # BIRTH, then we have found the birth father. Same applies to
+                # the birth mother. If for some reason, the we have multiple
+                # people defined as the birth parents, we will select based on
+                # priority in the list
+
+                if not father_handle and \
+                   ref[0].get_father_relation() == ChildRefType.BIRTH:
+                    father_handle = family.get_father_handle()
+                    if fam_handle is None:  # Take the first seen only
+                        fam_handle = family_handle 
+                if not mother_handle and \
+                   ref[0].get_mother_relation() == ChildRefType.BIRTH:
+                    mother_handle = family.get_mother_handle()
+                    if fam_handle is None:
+                        fam_handle = family_handle
+            if father_handle and mother_handle:
+                break
+
+	# we have a valid person, add him/her
+        self._add_person((generation, index), person_handle, fam_handle)
+
+	# has the user canceled recursion?
+        if not self.can_recurse():
+            self.continue_recursion()
+            return
+
+        # Recursively call the function. It is okay if the handle is None,
+        self.__iterate(father_handle, generation+1, index*2)  #recurse on dad
+        if generation < self.max_generations or self.fill_out > 0:
+            if father_handle is not None:  # Stil winin max_generations
+                self.add_marriage((generation+1, index*2), father_handle, fam_handle)
+            else:
+                self.add_marriage((generation+1, index*2), mother_handle, fam_handle)
+            if not self.can_recurse():
+                self.continue_recursion()
+                return
+        self.__iterate(mother_handle, generation+1, (index*2)+1)  #recurse mom
+
+    def recurse(self, person_handle):
+        """
+        A simple header to make sure we pass in the correct information
+        """
+        return self.__iterate(person_handle, 1, 1)
+
 
 #------------
 # Jer 29:11: "For I know the plans I have for you," declares the LORD,
