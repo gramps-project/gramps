@@ -836,6 +836,9 @@ class LineBase(object):
         #self.linestr = "None"
         self.start = [start]
         self.end = []
+
+    def add_from(self, person):
+        self.start.append(person)
     
     def add_to(self, person):
         """ add destination boxes to draw this line to """
