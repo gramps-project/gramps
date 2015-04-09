@@ -448,7 +448,7 @@ class AscendPerson(_StopRecurse, _PersonSeen):
 
         self.__fill(index*2, generation+1, mx_fill-1)
         if mx_fill > 1:  # marriage of parents
-	    self.add_marriage((generation+1, index*2), None, None)
+            self.add_marriage((generation+1, index*2), None, None)
             if not self.can_recurse():
                 self.continue_recursion()
                 return
