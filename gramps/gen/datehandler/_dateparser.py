@@ -627,8 +627,12 @@ class DateParser(object):
             else:
                 y = self._get_int(groups[4])
                 if self.dmy:
-                    m = self._get_int(groups[3])
-                    d = self._get_int(groups[1])
+                    if groups[3] is None:
+                        m = self._get_int(groups[1])
+                        d = 0
+                    else:
+                        m = self._get_int(groups[3])
+                        d = self._get_int(groups[1])
                 else:
                     m = self._get_int(groups[1])
                     d = self._get_int(groups[3])
