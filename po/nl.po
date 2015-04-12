@@ -24533,7 +24533,7 @@ msgstr "'%(map)s' vervangen door =>"
 #: ../gramps/plugins/lib/maps/geography.py:385
 #, python-format
 msgid "Clear the '%(map)s' tiles cache."
-msgstr "De '%(map) s' tegels cache wissen."
+msgstr "De '%(map)s' tegels cache wissen."
 
 #: ../gramps/plugins/lib/maps/geography.py:860 ../gramps/plugins/view/geoclose.py:532
 #: ../gramps/plugins/view/geoevents.py:329 ../gramps/plugins/view/geoevents.py:362
