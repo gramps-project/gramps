@@ -1213,7 +1213,7 @@ msgstr "{short_month} {year}"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:240
 msgid "from|{short_month} {year}"
-msgstr "frá"
+msgstr ""
 
 #. second date in a span
 #. If "to <Month>" needs a special inflection in your
@@ -1222,7 +1222,7 @@ msgstr "frá"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:248
 msgid "to|{short_month} {year}"
-msgstr "til"
+msgstr ""
 
 #. first date in a range
 #. If "between <Month>" needs a special inflection in your
@@ -1231,7 +1231,7 @@ msgstr "til"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:256
 msgid "between|{short_month} {year}"
-msgstr "milli"
+msgstr ""
 
 #. second date in a range
 #. If "and <Month>" needs a special inflection in your
@@ -1240,7 +1240,7 @@ msgstr "milli"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:264
 msgid "and|{short_month} {year}"
-msgstr "og"
+msgstr ""
 
 #. If "before <Month>" needs a special inflection in your
 #. language, translate this to "{short_month.f[X]} {year}"
