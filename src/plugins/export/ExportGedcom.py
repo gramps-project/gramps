@@ -536,6 +536,7 @@ class GedcomWriter(UpdateCallback):
         extract the real event to discover the event type.
         
         """
+        adop_written = False
         for event_ref in person.get_event_ref_list():
             event = self.dbase.get_event_from_handle(event_ref.ref)
             etype = int(event.get_type())
@@ -575,10 +576,14 @@ class GedcomWriter(UpdateCallback):
                 if descr:
                     self.__writeln(2, 'NOTE', "Description: " + descr)
             self.__dump_event_stats(event, event_ref)
+            if etype == gen.lib.EventType.ADOPT and not adop_written:
+                adop_written = True
+                self.__adoption_records(person, adop_written)
 
-        self.__adoption_records(person)
+        if not adop_written:
+            self.__adoption_records(person, adop_written)
 
-    def __adoption_records(self, person):
+    def __adoption_records(self, person, adop_written):
         """
         Write Adoption events for each child that has been adopted.
 
@@ -602,7 +607,8 @@ class GedcomWriter(UpdateCallback):
                     adoptions.append((family, child_ref.frel, child_ref.mrel))
 
         for (fam, frel, mrel) in adoptions:
-            self.__writeln(1, 'ADOP', 'Y')
+            if not adop_written:
+                self.__writeln(1, 'ADOP', 'Y')
             self.__writeln(2, 'FAMC', '@%s@' % fam.get_gramps_id())
             if mrel == frel:
                 self.__writeln(3, 'ADOP', 'BOTH')
