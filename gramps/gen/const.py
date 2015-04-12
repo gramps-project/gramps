@@ -49,7 +49,7 @@ from .constfunc import get_env_var, conv_to_unicode
 #
 #-------------------------------------------------------------------------
 PROGRAM_NAME   = "Gramps"
-from ..version import VERSION, VERSION_TUPLE, major_version
+from gramps.version import VERSION, VERSION_TUPLE, major_version
 #-------------------------------------------------------------------------
 #
 # Standard GRAMPS Websites

@@ -42,7 +42,7 @@ import io
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from ...version import VERSION as GRAMPSVERSION, VERSION_TUPLE
+from gramps.version import VERSION as GRAMPSVERSION, VERSION_TUPLE
 from ..const import IMAGE_DIR
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
