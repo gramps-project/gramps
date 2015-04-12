@@ -208,7 +208,7 @@ class GrampsLocale(object):
                 self.lang = loc[0]
                 self.encoding = loc[1]
             else:
-                (lang, loc) = _check_mswin_locale(lang)
+                (lang, loc) = _check_mswin_locale(locale.getdefaultlocale()[0]))
                 if lang:
                     self.lang = lang
                     self.encoding = loc[1]
