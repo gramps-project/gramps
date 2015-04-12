@@ -531,16 +531,27 @@ class GedcomWriter(UpdateCallback):
         extract the real event to discover the event type.
         
         """
+        global adop_written
+        # adop_written is only shared between this function and
+        # _process_person_event. This is rather ugly code, but it is difficult
+        # to support an Adoption event without an Adopted relationship from the
+        # parent(s), an Adopted relationship from the parent(s) without an
+        # event, and both an event and a relationship. All these need to be
+        # supported without duplicating the output of the ADOP GEDCOM tag. See
+        # bug report 2370.
+        adop_written = False
         for event_ref in person.get_event_ref_list():
             event = self.dbase.get_event_from_handle(event_ref.ref)
             if not event: continue
-            self._process_person_event(event, event_ref)
-        self._adoption_records(person)
+            self._process_person_event(person, event, event_ref)
+        if not adop_written:
+            self._adoption_records(person, adop_written)
 
-    def _process_person_event(self, event, event_ref):
+    def _process_person_event(self, person, event, event_ref):
         """
         Process a person event, which is not a BIRTH or DEATH event.
         """
+        global adop_written
         etype = int(event.get_type())
         # if the event is a birth or death, skip it.
         if etype in (EventType.BIRTH, EventType.DEATH):
@@ -577,8 +588,11 @@ class GedcomWriter(UpdateCallback):
             if descr:
                 self._writeln(2, 'NOTE', "Description: " + descr)
         self._dump_event_stats(event, event_ref)
+        if etype == EventType.ADOPT and not adop_written:
+            adop_written = True
+            self._adoption_records(person, adop_written)
 
-    def _adoption_records(self, person):
+    def _adoption_records(self, person, adop_written):
         """
         Write Adoption events for each child that has been adopted.
 
@@ -602,7 +616,8 @@ class GedcomWriter(UpdateCallback):
                     adoptions.append((family, child_ref.frel, child_ref.mrel))
 
         for (fam, frel, mrel) in adoptions:
-            self._writeln(1, 'ADOP', 'Y')
+            if not adop_written:
+                self._writeln(1, 'ADOP', 'Y')
             self._writeln(2, 'FAMC', '@%s@' % fam.get_gramps_id())
             if mrel == frel:
                 self._writeln(3, 'ADOP', 'BOTH')
