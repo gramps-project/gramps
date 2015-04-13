@@ -510,21 +510,26 @@ class AscendPerson(_StopRecurse, _PersonSeen):
             if father_handle and mother_handle:
                 break
 
-	# we have a valid person, add him/her
+        # we have a valid person, add him/her
         self._add_person((generation, index), person_handle, fam_handle)
 
-	# has the user canceled recursion?
+        # has the user canceled recursion?
         if not self.can_recurse():
             self.continue_recursion()
             return
 
         # Recursively call the function. It is okay if the handle is None,
         self.__iterate(father_handle, generation+1, index*2)  #recurse on dad
-        if generation < self.max_generations or self.fill_out > 0:
+        if generation < self.max_generations:
             if father_handle is not None:  # Stil winin max_generations
                 self.add_marriage((generation+1, index*2), father_handle, fam_handle)
-            else:
+            elif mother_handle is not None:
                 self.add_marriage((generation+1, index*2), mother_handle, fam_handle)
+            elif fam_handle is not None:
+                self.add_marriage((generation+1, index*2), None, fam_handle)
+            elif self.fill_out > 0:
+                self.add_marriage((generation+1, index*2), None, None)
+
             if not self.can_recurse():
                 self.continue_recursion()
                 return
