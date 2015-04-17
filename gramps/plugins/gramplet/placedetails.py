@@ -45,7 +45,7 @@ class PlaceDetails(Gramplet):
         self.photo = Photo(self.uistate.screen_height() < 1000)
         self.title = Gtk.Label()
         self.title.set_alignment(0, 0)
-        self.title.modify_font(Pango.FontDescription('sans bold 12'))
+        self.title.override_font(Pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.title, False, True, 7)
         self.grid = Gtk.Grid(orientation=Gtk.Orientation.VERTICAL)
         self.grid.set_column_spacing(10)
@@ -145,7 +145,7 @@ class PlaceDetails(Gramplet):
         Display an empty row to separate groupd of entries.
         """
         label = Gtk.Label(label='')
-        label.modify_font(Pango.FontDescription('sans 4'))
+        label.override_font(Pango.FontDescription('sans 4'))
         label.show()
         self.grid.add(label)
 

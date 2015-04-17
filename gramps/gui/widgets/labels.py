@@ -221,7 +221,7 @@ class GenderLabel(Gtk.Label):
         self.set_alignment(0, 0.5)
         if win():
             pangoFont = Pango.FontDescription('Arial')
-            self.modify_font(pangoFont)
+            self.override_font(pangoFont)
         self.show()
 
 #-------------------------------------------------------------------------

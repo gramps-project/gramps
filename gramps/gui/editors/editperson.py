@@ -444,7 +444,7 @@ class EditPerson(EditPrimary):
             obj.connect('changed', self._changed_name)
 
         self.preview_name = self.top.get_object("full_name")
-        self.preview_name.modify_font(Pango.FontDescription('sans bold 12'))
+        self.preview_name.override_font(Pango.FontDescription('sans bold 12'))
 
     def get_start_date(self):
         """
