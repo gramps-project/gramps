@@ -386,7 +386,7 @@ class ViewManager(CLIManager):
         hpane.add2(self.notebook)
         self.menubar = self.uimanager.get_widget('/MenuBar')
         self.toolbar = self.uimanager.get_widget('/ToolBar')
-        vbox.pack_start(self.menubar, False, True, 0)
+        self.__attach_menubar(vbox)
         vbox.pack_start(self.toolbar, False, True, 0)
         vbox.add(hpane)
         self.statusbar = Statusbar()
@@ -834,13 +834,15 @@ class ViewManager(CLIManager):
 
         self.uimanager.add_ui_from_string(UIDEFAULT)
         self.uimanager.ensure_update()
+
+    def __attach_menubar(self, vbox):
+        vbox.pack_start(self.menubar, False, True, 0)
         if _GTKOSXAPPLICATION:
-            menubar = self.uimanager.get_widget("/MenuBar")
-            menubar.hide()
+            self.menubar.hide()
             quit_item = self.uimanager.get_widget("/MenuBar/FileMenu/Quit")
             about_item = self.uimanager.get_widget("/MenuBar/HelpMenu/About")
             prefs_item = self.uimanager.get_widget("/MenuBar/EditMenu/Preferences")
-            self.macapp.set_menu_bar(menubar)
+            self.macapp.set_menu_bar(self.menubar)
             self.macapp.insert_app_menu_item(about_item, 0)
             self.macapp.insert_app_menu_item(prefs_item, 1)
 
