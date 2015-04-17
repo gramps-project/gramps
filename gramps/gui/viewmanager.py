@@ -7,6 +7,7 @@
 # Copyright (C) 2010       Nick Hall
 # Copyright (C) 2010       Jakim Friant
 # Copyright (C) 2012       Gary Burton
+# Copyright (C) 2012       Doug Blank <doug.blank@gmail.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -20,10 +21,8 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
-
-# $Id$
 
 """
 Manages the main window and the pluggable views
@@ -34,15 +33,11 @@ Manages the main window and the pluggable views
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-from __future__ import print_function
 from collections import defaultdict
 import os
 import time
 import datetime
-from gen.ggettext import sgettext as _
-from cStringIO import StringIO
-from collections import defaultdict
-import sys
+from io import StringIO
 import posixpath
 
 #-------------------------------------------------------------------------
@@ -58,58 +53,62 @@ LOG = logging.getLogger(".")
 # GNOME modules
 #
 #-------------------------------------------------------------------------
-import gtk
+from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from cli.grampscli import CLIManager
-from gui.plug import tool
-from gen.plug import (START, END)
-from gen.plug import REPORT
-from gen.plug.report._constants import standalone_categories
-from gui.plug import (PluginWindows, ReportPluginDialog, ToolPluginDialog)
-from gui.plug.report import report
-from gui.utils import AvailableUpdates
-from gui.pluginmanager import GuiPluginManager
-import Relationship
-import DisplayState
-import const
-import constfunc
-import config
-import Errors
-from QuestionDialog import (ErrorDialog, WarningDialog, QuestionDialog2,
-                            InfoDialog)
-from gui import widgets
-import UndoHistory
-import Utils
-from gui.dbloader import DbLoader
-import GrampsDisplay
-from gui.widgets.progressdialog import ProgressMonitor, GtkProgressDialog
-from gui.configure import GrampsPreferences
-from gen.db.backup import backup
-from gen.db.exceptions import DbException
-from gui.aboutdialog import GrampsAboutDialog
-from gui.navigator import Navigator
-from gui.views.tags import Tags
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.sgettext
+from gramps.cli.grampscli import CLIManager
+from .user import User
+from .plug import tool
+from gramps.gen.plug import (START, END)
+from gramps.gen.plug import REPORT
+from gramps.gen.plug.report._constants import standalone_categories
+from .plug import (PluginWindows, ReportPluginDialog, ToolPluginDialog)
+from .plug.report import report, BookSelector
+from .utils import AvailableUpdates
+from .pluginmanager import GuiPluginManager
+from gramps.gen.relationship import get_relationship_calculator
+from .displaystate import DisplayState, RecentDocsMenu
+from gramps.gen.const import (HOME_DIR, ICON, URL_BUGTRACKER, URL_HOMEPAGE, 
+                              URL_MAILINGLIST, URL_MANUAL_PAGE, URL_WIKISTRING, 
+                              WIKI_EXTRAPLUGINS, URL_BUGHOME)
+from gramps.gen.constfunc import is_quartz, conv_to_unicode
+from gramps.gen.config import config
+from gramps.gen.errors import WindowActiveError
+from .dialog import ErrorDialog, WarningDialog, QuestionDialog2, InfoDialog
+from .widgets import Statusbar
+from .undohistory import UndoHistory
+from gramps.gen.utils.file import media_path_full
+from .dbloader import DbLoader
+from .display import display_help, display_url
+from .configure import GrampsPreferences
+from gramps.gen.db.backup import backup
+from gramps.gen.db.exceptions import DbException
+from .aboutdialog import GrampsAboutDialog
+from .navigator import Navigator
+from .views.tags import Tags
 
 #-------------------------------------------------------------------------
 #
 # Constants
 #
 #-------------------------------------------------------------------------
-if constfunc.is_quartz():
+if is_quartz():
     try:
-        import gtkosx_application as QuartzApp
+        from gi.repository import GtkosxApplication as QuartzApp
         _GTKOSXAPPLICATION = True
     except:
+        print ("Failed to import gtk_osxapplication")
         _GTKOSXAPPLICATION = False
 else:
     _GTKOSXAPPLICATION = False
 
-_UNSUPPORTED = _("Unsupported")
+_UNSUPPORTED = ("Unsupported", _("Unsupported"))
 
 UIDEFAULT = '''<ui>
 <menubar name="MenuBar">
@@ -135,7 +134,7 @@ UIDEFAULT = '''<ui>
     <separator/>
     <placeholder name="TagMenu"/>
     <separator/>
-    <menuitem action="ScratchPad"/>
+    <menuitem action="Clipboard"/>
     <separator/>
     <menuitem action="Preferences"/>
   </menu>
@@ -159,8 +158,12 @@ UIDEFAULT = '''<ui>
     <placeholder name="GoToBook"/>
   </menu>
   <menu action="ReportsMenu">
+    <menuitem action="Books"/>
+    <separator/>
+    <placeholder name="P_ReportsMenu"/>
   </menu>
   <menu action="ToolsMenu">
+    <placeholder name="P_ToolsMenu"/>
   </menu>
   <menu action="WindowsMenu">
     <placeholder name="WinMenu"/>
@@ -183,17 +186,15 @@ UIDEFAULT = '''<ui>
 <toolbar name="ToolBar">
   <placeholder name="CommonNavigation"/>
   <separator/>
-  <toolitem action="ScratchPad"/>
-  <toolitem action="Reports"/>
-  <toolitem action="Tools"/>
-  <separator/>
-  <placeholder name="TagTool"/>
-  <separator/>
   <placeholder name="CommonEdit"/>
-  <separator/>
-  <placeholder name="ViewsInCategory"/>
+  <placeholder name="TagTool"/>
+  <toolitem action="Clipboard"/>
   <separator/>
   <toolitem action="ConfigView"/>
+  <placeholder name="ViewsInCategory"/>
+  <separator/>
+  <toolitem action="Reports"/>
+  <toolitem action="Tools"/>
 </toolbar>
 <accelerator action="F2"/>
 <accelerator action="F3"/>
@@ -205,48 +206,46 @@ UIDEFAULT = '''<ui>
 <accelerator action="F9"/>
 <accelerator action="F11"/>
 <accelerator action="F12"/>
-<accelerator action="<CONTROL>1"/>
-<accelerator action="<CONTROL>2"/>
-<accelerator action="<CONTROL>3"/>
-<accelerator action="<CONTROL>4"/>
-<accelerator action="<CONTROL>5"/>
-<accelerator action="<CONTROL>6"/>
-<accelerator action="<CONTROL>7"/>
-<accelerator action="<CONTROL>8"/>
-<accelerator action="<CONTROL>9"/>
-<accelerator action="<CONTROL>0"/>
-<accelerator action="<CONTROL>BackSpace"/>
-<accelerator action="<CONTROL>J"/>
-<accelerator action="<CONTROL>N"/>
-<accelerator action="<CONTROL>P"/>
+<accelerator action="<PRIMARY>1"/>
+<accelerator action="<PRIMARY>2"/>
+<accelerator action="<PRIMARY>3"/>
+<accelerator action="<PRIMARY>4"/>
+<accelerator action="<PRIMARY>5"/>
+<accelerator action="<PRIMARY>6"/>
+<accelerator action="<PRIMARY>7"/>
+<accelerator action="<PRIMARY>8"/>
+<accelerator action="<PRIMARY>9"/>
+<accelerator action="<PRIMARY>0"/>
+<accelerator action="<PRIMARY>BackSpace"/>
+<accelerator action="<PRIMARY>J"/>
+<accelerator action="<PRIMARY>N"/>
+<accelerator action="<PRIMARY>P"/>
 </ui>
 '''
 
-WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % const.URL_MANUAL_PAGE
-WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % const.URL_MANUAL_PAGE
-WIKI_HELP_PAGE_MAN = '%s' % const.URL_MANUAL_PAGE
+WIKI_HELP_PAGE_FAQ = '%s_-_FAQ' % URL_MANUAL_PAGE
+WIKI_HELP_PAGE_KEY = '%s_-_Keybindings' % URL_MANUAL_PAGE
+WIKI_HELP_PAGE_MAN = '%s' % URL_MANUAL_PAGE
 
 #-------------------------------------------------------------------------
 #
 # ViewManager
 #
 #-------------------------------------------------------------------------
-
 class ViewManager(CLIManager):
     """
-    Overview
-    ========
+    **Overview**
 
     The ViewManager is the session manager of the program.
     Specifically, it manages the main window of the program. It is closely tied
-    into the gtk.UIManager to control all menus and actions.
+    into the Gtk.UIManager to control all menus and actions.
 
-    The ViewManager controls the various Views within the GRAMPS programs.
+    The ViewManager controls the various Views within the Gramps programs.
     Views are organised in categories. The categories can be accessed via
     a sidebar. Within a category, the different views are accesible via the
     toolbar of view menu.
 
-    A View is a particular way of looking a information in the GRAMPS main
+    A View is a particular way of looking a information in the Gramps main
     window. Each view is separate from the others, and has no knowledge of
     the others.
 
@@ -264,13 +263,13 @@ class ViewManager(CLIManager):
 
     """
 
-    def __init__(self, dbstate, view_category_order):
+    def __init__(self, dbstate, view_category_order, user = None):
         """
         The viewmanager is initialised with a dbstate on which GRAMPS is
         working, and a fixed view_category_order, which is the order in which
         the view categories are accessible in the sidebar.
         """
-        CLIManager.__init__(self, dbstate, False)
+        CLIManager.__init__(self, dbstate, setloader=False, user=user)
         if _GTKOSXAPPLICATION:
             self.macapp = QuartzApp.Application()
 
@@ -295,14 +294,18 @@ class ViewManager(CLIManager):
         self.show_toolbar = config.get('interface.toolbar-on')
         self.fullscreen = config.get('interface.fullscreen')
 
-        self.__build_main_window()
+        self.__build_main_window() # sets self.uistate
+        if self.user is None:
+            self.user = User(error=ErrorDialog,
+                    callback=self.uistate.pulse_progressbar,
+                    uistate=self.uistate)
         self.__connect_signals()
         if _GTKOSXAPPLICATION:
             self.macapp.ready()
 
         self.do_reg_plugins(self.dbstate, self.uistate)
         #plugins loaded now set relationship class
-        self.rel_class = Relationship.get_relationship_calculator()
+        self.rel_class = get_relationship_calculator()
         self.uistate.set_relationship_class()
         # Need to call after plugins have been registered
         self.uistate.connect('update-available', self.process_updates)
@@ -334,11 +337,7 @@ class ViewManager(CLIManager):
         """
         Called when add-on updates are available.
         """
-        try:
-            PluginWindows.UpdateAddons(self.uistate, [], addon_update_list)
-        except WindowActiveError:
-            pass
-
+        PluginWindows.UpdateAddons(addon_update_list, self.window)
         self.do_reg_plugins(self.dbstate, self.uistate)
 
     def _errordialog(self, title, errormessage):
@@ -356,21 +355,22 @@ class ViewManager(CLIManager):
         width = config.get('interface.width')
         height = config.get('interface.height')
 
-        self.window = gtk.Window()
-        self.window.set_icon_from_file(const.ICON)
+        self.window = Gtk.Window()
+        self.window.set_icon_from_file(ICON)
+        self.window.set_has_resize_grip(True)
         self.window.set_default_size(width, height)
 
-        vbox = gtk.VBox()
+        vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.window.add(vbox)
-        hpane = gtk.HPaned()
-        self.ebox = gtk.EventBox()
+        hpane = Gtk.Paned()
+        self.ebox = Gtk.EventBox()
 
         self.navigator = Navigator(self)
         self.ebox.add(self.navigator.get_top())
         hpane.add1(self.ebox)
         hpane.show()
 
-        self.notebook = gtk.Notebook()
+        self.notebook = Gtk.Notebook()
         self.notebook.set_scrollable(True)
         self.notebook.set_show_tabs(False)
         self.notebook.show()
@@ -381,17 +381,15 @@ class ViewManager(CLIManager):
         self.menubar = self.uimanager.get_widget('/MenuBar')
         self.toolbar = self.uimanager.get_widget('/ToolBar')
         self.__attach_menubar(vbox)
-        vbox.pack_start(self.toolbar, False)
-        vbox.add(hpane)
-        vbox.pack_end(self.__setup_statusbar(), False)
+        vbox.pack_start(self.toolbar, False, True, 0)
+        vbox.pack_start(hpane, True, True, 0)
+        self.statusbar = Statusbar()
+        self.statusbar.show()
+        vbox.pack_end(self.statusbar, False, True, 0)
         vbox.show()
 
-        self.progress_monitor = ProgressMonitor(
-            GtkProgressDialog, ("", self.window))
-
-        self.uistate = DisplayState.DisplayState(
-            self.window, self.statusbar, self.progress, self.warnbtn,
-            self.uimanager, self.progress_monitor, self)
+        self.uistate = DisplayState(self.window, self.statusbar,
+                                    self.uimanager, self)
 
         # Create history objects
         for nav_type in ('Person', 'Family', 'Event', 'Place', 'Source',
@@ -412,7 +410,7 @@ class ViewManager(CLIManager):
         self.uistate.set_open_widget(openbtn)
         self.toolbar.insert(openbtn, 0)
 
-        self.recent_manager = DisplayState.RecentDocsMenu(
+        self.recent_manager = RecentDocsMenu(
             self.uistate, self.dbstate, self._read_recent_file)
         self.recent_manager.build()
 
@@ -430,45 +428,8 @@ class ViewManager(CLIManager):
 
         # Showing the main window is deferred so that
         # ArgHandler can work without it always shown
-        # But we need to realize it here to have gtk.gdk.window handy
+        # But we need to realize it here to have Gdk.window handy
         self.window.realize()
-
-    def __load_sidebar_plugins(self):
-        """
-        Load the sidebar plugins.
-        """
-        for pdata in self._pmgr.get_reg_sidebars():
-            module = self._pmgr.load_plugin(pdata)
-            if not module:
-                print("Error loading sidebar '%s': skipping content"
-                      % pdata.name)
-                continue
-
-            sidebar_class = getattr(module, pdata.sidebarclass)
-            sidebar_page = sidebar_class(self.dbstate, self.uistate)
-            self.navigator.add(pdata.menu_label, sidebar_page, pdata.order)
-
-    def __setup_statusbar(self):
-        """
-        Create the statusbar that sits at the bottom of the window
-        """
-        self.progress = gtk.ProgressBar()
-        self.progress.set_size_request(100, -1)
-        self.progress.hide()
-
-        self.statusbar = widgets.Statusbar()
-        self.statusbar.show()
-
-        self.warnbtn = widgets.WarnButton()
-
-        hbox2 = gtk.HBox()
-        hbox2.set_spacing(4)
-        hbox2.set_border_width(2)
-        hbox2.pack_start(self.progress, False)
-        hbox2.pack_start(self.warnbtn, False)
-        hbox2.pack_end(self.statusbar, True)
-        hbox2.show()
-        return hbox2
 
     def __setup_navigator(self):
         """
@@ -485,7 +446,7 @@ class ViewManager(CLIManager):
         Build the OPEN button. Since GTK's UIManager does not have support for
         the Open Recent button, we must build in on our own.
         """
-        openbtn = gtk.MenuToolButton('gramps-db')
+        openbtn = Gtk.MenuToolButton.new_from_stock('gramps-db')
         openbtn.connect('clicked', self.__open_activate)
         openbtn.set_sensitive(False)
         openbtn.set_tooltip_text(_("Connect to a recent database"))
@@ -507,15 +468,15 @@ class ViewManager(CLIManager):
         """
         self._file_action_list = [
             ('FileMenu', None, _('_Family Trees')),
-            ('Open', 'gramps-db', _('_Manage Family Trees...'), "<control>o",
+            ('Open', 'gramps-db', _('_Manage Family Trees...'), "<PRIMARY>o",
              _("Manage databases"), self.__open_activate),
             ('OpenRecent', None, _('Open _Recent'), None,
              _("Open an existing database")),
-            ('Quit', gtk.STOCK_QUIT, _('_Quit'), "<control>q", None,
+            ('Quit', Gtk.STOCK_QUIT, _('_Quit'), "<PRIMARY>q", None,
              self.quit),
             ('ViewMenu', None, _('_View')),
             ('EditMenu', None, _('_Edit')),
-            ('Preferences', gtk.STOCK_PREFERENCES, _('_Preferences...'), None,
+            ('Preferences', Gtk.STOCK_PREFERENCES, _('_Preferences...'), None,
              None, self.preferences_activate),
             ('HelpMenu', None, _('_Help')),
             ('HomePage', None, _('Gramps _Home Page'), None, None,
@@ -526,29 +487,30 @@ class ViewManager(CLIManager):
              report_bug_activate),
             ('ExtraPlugins', None, _('_Extra Reports/Tools'), None, None,
              extra_plugins_activate),
-            ('About', gtk.STOCK_ABOUT, _('_About'), None, None,
+            ('About', Gtk.STOCK_ABOUT, _('_About'), None, None,
              self.display_about_box),
             ('PluginStatus', None, _('_Plugin Manager'), None, None,
              self.__plugin_status),
             ('FAQ', None, _('_FAQ'), None, None, faq_activate),
             ('KeyBindings', None, _('_Key Bindings'), None, None, key_bindings),
-            ('UserManual', gtk.STOCK_HELP, _('_User Manual'), 'F1', None,
+            ('UserManual', Gtk.STOCK_HELP, _('_User Manual'), 'F1', None,
              manual_activate),
             ('TipOfDay', None, _('Tip of the Day'), None, None,
              self.tip_of_day_activate),
             ]
 
         self._readonly_action_list = [
-            ('Export', 'gramps-export', _('_Export...'), "<control>e", None,
+            ('Export', 'gramps-export', _('_Export...'), "<PRIMARY>e", None,
              self.export_data),
             ('Backup', None, _("Make Backup..."), None,
              _("Make a Gramps XML backup of the database"), self.quick_backup),
-            ('Abandon', gtk.STOCK_REVERT_TO_SAVED,
+            ('Abandon', Gtk.STOCK_REVERT_TO_SAVED,
              _('_Abandon Changes and Quit'), None, None, self.abort),
             ('Reports', 'gramps-reports', _('_Reports'), None,
              _("Open the reports dialog"), self.reports_clicked),
             ('GoMenu', None, _('_Go')),
             ('ReportsMenu', None, _('_Reports')),
+            ('Books', None, _('Books...'), None, None, self.run_book),
             ('WindowsMenu', None, _('_Windows')),
             ('F2', None, 'F2', "F2", None, self.__keypress),
             ('F3', None, 'F3', "F3", None, self.__keypress),
@@ -559,48 +521,48 @@ class ViewManager(CLIManager):
             ('F8', None, 'F9', "F8", None, self.__keypress),
             ('F9', None, 'F9', "F9", None, self.__keypress),
             ('F11', None, 'F11', "F11", None, self.__keypress),
-            ('<CONTROL>1', None, '<CONTROL>1', "<CONTROL>1", None, self.__gocat),
-            ('<CONTROL>2', None, '<CONTROL>2', "<CONTROL>2", None, self.__gocat),
-            ('<CONTROL>3', None, '<CONTROL>3', "<CONTROL>3", None, self.__gocat),
-            ('<CONTROL>4', None, '<CONTROL>4', "<CONTROL>4", None, self.__gocat),
-            ('<CONTROL>5', None, '<CONTROL>5', "<CONTROL>5", None, self.__gocat),
-            ('<CONTROL>6', None, '<CONTROL>6', "<CONTROL>6", None, self.__gocat),
-            ('<CONTROL>7', None, '<CONTROL>7', "<CONTROL>7", None, self.__gocat),
-            ('<CONTROL>8', None, '<CONTROL>8', "<CONTROL>8", None, self.__gocat),
-            ('<CONTROL>9', None, '<CONTROL>9', "<CONTROL>9", None, self.__gocat),
-            ('<CONTROL>0', None, '<CONTROL>0', "<CONTROL>0", None, self.__gocat),
+            ('<PRIMARY>1', None, '<PRIMARY>1', "<PRIMARY>1", None, self.__gocat),
+            ('<PRIMARY>2', None, '<PRIMARY>2', "<PRIMARY>2", None, self.__gocat),
+            ('<PRIMARY>3', None, '<PRIMARY>3', "<PRIMARY>3", None, self.__gocat),
+            ('<PRIMARY>4', None, '<PRIMARY>4', "<PRIMARY>4", None, self.__gocat),
+            ('<PRIMARY>5', None, '<PRIMARY>5', "<PRIMARY>5", None, self.__gocat),
+            ('<PRIMARY>6', None, '<PRIMARY>6', "<PRIMARY>6", None, self.__gocat),
+            ('<PRIMARY>7', None, '<PRIMARY>7', "<PRIMARY>7", None, self.__gocat),
+            ('<PRIMARY>8', None, '<PRIMARY>8', "<PRIMARY>8", None, self.__gocat),
+            ('<PRIMARY>9', None, '<PRIMARY>9', "<PRIMARY>9", None, self.__gocat),
+            ('<PRIMARY>0', None, '<PRIMARY>0', "<PRIMARY>0", None, self.__gocat),
             # NOTE: CTRL+ALT+NUMBER is set in src/plugins/sidebar/cat...py
-            ('<CONTROL>BackSpace', None, '<CONTROL>BackSpace',
-             "<CONTROL>BackSpace", None, self.__keypress),
-            ('<CONTROL>Delete', None, '<CONTROL>Delete',
-             "<CONTROL>Delete", None, self.__keypress),
-            ('<CONTROL>Insert', None, '<CONTROL>Insert',
-             "<CONTROL>Insert", None, self.__keypress),
+            ('<PRIMARY>BackSpace', None, '<PRIMARY>BackSpace',
+             "<PRIMARY>BackSpace", None, self.__keypress),
+            ('<PRIMARY>Delete', None, '<PRIMARY>Delete',
+             "<PRIMARY>Delete", None, self.__keypress),
+            ('<PRIMARY>Insert', None, '<PRIMARY>Insert',
+             "<PRIMARY>Insert", None, self.__keypress),
             ('F12', None, 'F12', "F12", None, self.__keypress),
-            ('<CONTROL>J', None, '<CONTROL>J',
-             "<CONTROL>J", None, self.__keypress),
-            ('<CONTROL>N', None, '<CONTROL>N', "<CONTROL>N", None,
+            ('<PRIMARY>J', None, '<PRIMARY>J',
+             "<PRIMARY>J", None, self.__keypress),
+            ('<PRIMARY>N', None, '<PRIMARY>N', "<PRIMARY>N", None,
              self.__next_view),
-            ('<CONTROL>P', None, '<CONTROL>P', "<CONTROL>P", None,
+            ('<PRIMARY>P', None, '<PRIMARY>P', "<PRIMARY>P", None,
              self.__prev_view),
             ]
 
         self._action_action_list = [
-            ('ScratchPad', gtk.STOCK_PASTE, _('Clip_board'), "<control>b",
-             _("Open the Clipboard dialog"), self.scratchpad),
-            ('Import', 'gramps-import', _('_Import...'), "<control>i", None,
+            ('Clipboard', Gtk.STOCK_PASTE, _('Clip_board'), "<PRIMARY>b",
+             _("Open the Clipboard dialog"), self.clipboard),
+            ('Import', 'gramps-import', _('_Import...'), "<PRIMARY>i", None,
              self.import_data),
             ('Tools', 'gramps-tools', _('_Tools'), None,
              _("Open the tools dialog"), self.tools_clicked),
             ('BookMenu', None, _('_Bookmarks')),
             ('ToolsMenu', None, _('_Tools')),
-            ('ConfigView', 'gramps-config', _('_Configure View...'),
-             '<shift><control>c', _('Configure the active view'),
+            ('ConfigView', 'gramps-config', _('_Configure...'),
+             '<shift><PRIMARY>c', _('Configure the active view'),
              self.config_view),
             ]
 
         self._file_toggle_action_list = [
-            ('Navigator', None, _('_Navigator'), "<control>m", None,
+            ('Navigator', None, _('_Navigator'), "<PRIMARY>m", None,
              self.navigator_toggle, self.show_navigator ),
             ('Toolbar', None, _('_Toolbar'), None, None, self.toolbar_toggle,
              self.show_toolbar ),
@@ -609,19 +571,28 @@ class ViewManager(CLIManager):
             ]
 
         self._undo_action_list = [
-            ('Undo', gtk.STOCK_UNDO, _('_Undo'), '<control>z', None,
+            ('Undo', Gtk.STOCK_UNDO, _('_Undo'), '<PRIMARY>z', None,
              self.undo),
             ]
 
         self._redo_action_list = [
-            ('Redo', gtk.STOCK_REDO, _('_Redo'), '<shift><control>z', None,
+            ('Redo', Gtk.STOCK_REDO, _('_Redo'), '<shift><PRIMARY>z', None,
              self.redo),
             ]
 
         self._undo_history_action_list = [
             ('UndoHistory', 'gramps-undo-history',
-             _('Undo History...'), "<control>H", None, self.undo_history),
+             _('Undo History...'), "<PRIMARY>H", None, self.undo_history),
             ]
+
+    def run_book(self, action):
+        """
+        Run a book.
+        """
+        try:
+            BookSelector(self.dbstate, self.uistate)
+        except WindowActiveError:
+            return
 
     def __keypress(self, action):
         """
@@ -695,7 +666,7 @@ class ViewManager(CLIManager):
                                  config.get('preferences.use-last-view'))
         self.current_views = defaults[2]
 
-        self.__load_sidebar_plugins()
+        self.navigator.load_plugins(self.dbstate, self.uistate)
 
         self.goto_page(defaults[0], defaults[1])
 
@@ -778,21 +749,21 @@ class ViewManager(CLIManager):
         config.set('interface.width', width)
         config.set('interface.height', height)
         config.save()
-        gtk.main_quit()
+        Gtk.main_quit()
 
     def __backup(self):
         """
         Backup the current file as a backup file.
         """
         if self.dbstate.db.has_changed:
-            self.uistate.set_busy_cursor(1)
+            self.uistate.set_busy_cursor(True)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
             try:
                 backup(self.dbstate.db)
-            except DbException, msg:
+            except DbException as msg:
                 ErrorDialog(_("Error saving backup data"), msg)
-            self.uistate.set_busy_cursor(0)
+            self.uistate.set_busy_cursor(False)
             self.uistate.progress.hide()
 
     def abort(self, obj=None):
@@ -824,7 +795,7 @@ class ViewManager(CLIManager):
         """
         Initialize an action group for the UIManager
         """
-        new_group = gtk.ActionGroup(name)
+        new_group = Gtk.ActionGroup(name=name)
         new_group.add_actions(actions)
         if toggles:
             new_group.add_toggle_actions(toggles)
@@ -836,7 +807,7 @@ class ViewManager(CLIManager):
         """
         Builds the UIManager, and the associated action groups
         """
-        self.uimanager = gtk.UIManager()
+        self.uimanager = Gtk.UIManager()
 
         accelgroup = self.uimanager.get_accel_group()
 
@@ -861,12 +832,11 @@ class ViewManager(CLIManager):
     def __attach_menubar(self, vbox):
         vbox.pack_start(self.menubar, False, True, 0)
         if _GTKOSXAPPLICATION:
-            menubar = self.uimanager.get_widget("/MenuBar")
-            menubar.hide()
+            self.menubar.hide()
             quit_item = self.uimanager.get_widget("/MenuBar/FileMenu/Quit")
             about_item = self.uimanager.get_widget("/MenuBar/HelpMenu/About")
             prefs_item = self.uimanager.get_widget("/MenuBar/EditMenu/Preferences")
-            self.macapp.set_menu_bar(menubar)
+            self.macapp.set_menu_bar(self.menubar)
             self.macapp.insert_app_menu_item(about_item, 0)
             self.macapp.insert_app_menu_item(prefs_item, 1)
 
@@ -876,26 +846,26 @@ class ViewManager(CLIManager):
         """
         try:
             GrampsPreferences(self.uistate, self.dbstate)
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def tip_of_day_activate(self, obj):
         """
         Display Tip of the day
         """
-        import TipOfDay
-        TipOfDay.TipOfDay(self.uistate)
+        from .tipofday import TipOfDay
+        TipOfDay(self.uistate)
 
-    def __plugin_status(self, obj=None):
+    def __plugin_status(self, obj=None, data=None):
         """
         Display plugin status dialog
         """
         try:
             PluginWindows.PluginStatus(self.dbstate, self.uistate, [])
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             pass
 
-    def navigator_toggle(self, obj):
+    def navigator_toggle(self, obj, data=None):
         """
         Set the sidebar based on the value of the toggle button. Save the
         results in the configuration settings
@@ -910,7 +880,7 @@ class ViewManager(CLIManager):
             self.show_navigator = False
         config.save()
 
-    def toolbar_toggle(self, obj):
+    def toolbar_toggle(self, obj, data=None):
         """
         Set the toolbar based on the value of the toggle button. Save the
         results in the configuration settings
@@ -923,7 +893,7 @@ class ViewManager(CLIManager):
             config.set('interface.toolbar-on', False)
         config.save()
 
-    def fullscreen_toggle(self, obj):
+    def fullscreen_toggle(self, obj, data=None):
         """
         Set the main Granps window fullscreen based on the value of the
         toggle button. Save the setting in the config file.
@@ -971,7 +941,7 @@ class ViewManager(CLIManager):
         return None
 
     def __create_dummy_page(self, pdata, error):
-        from gui.views.pageview import DummyPage
+        from .views.pageview import DummyPage
         return DummyPage(pdata.name, pdata, self.dbstate, self.uistate,
                     _("View failed to load. Check error output."), error)
     
@@ -1002,11 +972,11 @@ class ViewManager(CLIManager):
         self.pages.append(page)
 
         # create icon/label for notebook tab (useful for debugging)
-        hbox = gtk.HBox()
-        image = gtk.Image()
-        image.set_from_stock(page.get_stock(), gtk.ICON_SIZE_MENU)
-        hbox.pack_start(image, False)
-        hbox.add(gtk.Label(pdata.name))
+        hbox = Gtk.Box()
+        image = Gtk.Image()
+        image.set_from_stock(page.get_stock(), Gtk.IconSize.MENU)
+        hbox.pack_start(image, False, True, 0)
+        hbox.add(Gtk.Label(label=pdata.name))
         hbox.show_all()
         page_num = self.notebook.append_page(page.get_display(), hbox)
         return page
@@ -1057,8 +1027,8 @@ class ViewManager(CLIManager):
         if _GTKOSXAPPLICATION:
             self.macapp.sync_menubar()
 
-        while gtk.events_pending():
-            gtk.main_iteration()
+        while Gtk.events_pending():
+            Gtk.main_iteration()
 
         self.active_page.change_page()
 
@@ -1074,7 +1044,7 @@ class ViewManager(CLIManager):
         Disconnects the previous page, removing the old action groups
         and removes the old UI components.
         """
-        map(self.uimanager.remove_ui, self.merge_ids)
+        list(map(self.uimanager.remove_ui, self.merge_ids))
 
         if self.active_page:
             self.active_page.set_inactive()
@@ -1119,12 +1089,12 @@ class ViewManager(CLIManager):
         """
         Called when the Open button is clicked, opens the DbManager
         """
-        from dbman import DbManager
+        from .dbman import DbManager
         dialog = DbManager(self.dbstate, self.window)
         value = dialog.run()
         if value:
             (filename, title) = value
-            filename = filename.encode(sys.getfilesystemencoding())
+            filename = conv_to_unicode(filename)
             self.db_loader.read_file(filename)
             self._post_load_newdb(filename, 'x-directory/normal', title)
 
@@ -1139,8 +1109,6 @@ class ViewManager(CLIManager):
         self.__change_redo_label(None)
         self.dbstate.db.undo_history_callback = self.undo_history_update
         self.undo_history_close()
-
-        self.uistate.window.window.set_cursor(None)
 
     def _post_load_newdb(self, filename, filetype, title=None):
         """
@@ -1188,14 +1156,14 @@ class ViewManager(CLIManager):
         Change the UNDO label
         """
         self.uimanager.remove_action_group(self.undoactions)
-        self.undoactions = gtk.ActionGroup('Undo')
+        self.undoactions = Gtk.ActionGroup(name='Undo')
         if label:
             self.undoactions.add_actions([
-                ('Undo', gtk.STOCK_UNDO, label, '<control>z', None, self.undo)])
+                ('Undo', Gtk.STOCK_UNDO, label, '<PRIMARY>z', None, self.undo)])
         else:
             self.undoactions.add_actions([
-                ('Undo', gtk.STOCK_UNDO, _('_Undo'),
-                 '<control>z', None, self.undo)])
+                ('Undo', Gtk.STOCK_UNDO, _('_Undo'),
+                 '<PRIMARY>z', None, self.undo)])
             self.undoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.undoactions, 1)
 
@@ -1204,15 +1172,15 @@ class ViewManager(CLIManager):
         Change the REDO label
         """
         self.uimanager.remove_action_group(self.redoactions)
-        self.redoactions = gtk.ActionGroup('Redo')
+        self.redoactions = Gtk.ActionGroup(name='Redo')
         if label:
             self.redoactions.add_actions([
-                ('Redo', gtk.STOCK_REDO, label, '<shift><control>z',
+                ('Redo', Gtk.STOCK_REDO, label, '<shift><PRIMARY>z',
                  None, self.redo)])
         else:
             self.redoactions.add_actions([
-                ('Redo', gtk.STOCK_UNDO, _('_Redo'),
-                 '<shift><control>z', None, self.redo)])
+                ('Redo', Gtk.STOCK_UNDO, _('_Redo'),
+                 '<shift><PRIMARY>z', None, self.redo)])
             self.redoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.redoactions, 1)
 
@@ -1245,42 +1213,42 @@ class ViewManager(CLIManager):
         """
         Make a quick XML back with or without media.
         """
-        from QuestionDialog import QuestionDialog2
-        window = gtk.Dialog(_("Gramps XML Backup"),
+        from .dialog import QuestionDialog2
+        window = Gtk.Dialog(_("Gramps XML Backup"),
                             self.uistate.window,
-                            gtk.DIALOG_DESTROY_WITH_PARENT, None)
+                            Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
         window.set_size_request(400, -1)
-        ok_button = window.add_button(gtk.STOCK_OK,
-                                      gtk.RESPONSE_APPLY)
-        close_button = window.add_button(gtk.STOCK_CLOSE,
-                                         gtk.RESPONSE_CLOSE)
+        ok_button = window.add_button(Gtk.STOCK_OK,
+                                      Gtk.ResponseType.APPLY)
+        close_button = window.add_button(Gtk.STOCK_CLOSE,
+                                         Gtk.ResponseType.CLOSE)
         vbox = window.get_content_area()
-        hbox = gtk.HBox()
-        label = gtk.Label(_("Path:"))
-        label.set_justify(gtk.JUSTIFY_LEFT)
+        hbox = Gtk.Box()
+        label = Gtk.Label(label=_("Path:"))
+        label.set_justify(Gtk.Justification.LEFT)
         label.set_size_request(90, -1)
         label.set_alignment(0, .5)
-        hbox.pack_start(label, False)
-        path_entry = gtk.Entry()
+        hbox.pack_start(label, False, True, 0)
+        path_entry = Gtk.Entry()
         text = config.get('paths.quick-backup-directory')
         path_entry.set_text(text)
-        hbox.pack_start(path_entry, True)
-        file_entry = gtk.Entry()
-        button = gtk.Button()
+        hbox.pack_start(path_entry, True, True, 0)
+        file_entry = Gtk.Entry()
+        button = Gtk.Button()
         button.connect("clicked",
                        lambda widget: self.select_backup_path(widget, path_entry))
-        image = gtk.Image()
-        image.set_from_stock(gtk.STOCK_OPEN, gtk.ICON_SIZE_BUTTON)
+        image = Gtk.Image()
+        image.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
         image.show()
         button.add(image)
-        hbox.pack_end(button, False)
-        vbox.pack_start(hbox, False)
-        hbox = gtk.HBox()
-        label = gtk.Label(_("File:"))
-        label.set_justify(gtk.JUSTIFY_LEFT)
+        hbox.pack_end(button, False, True, 0)
+        vbox.pack_start(hbox, False, True, 0)
+        hbox = Gtk.Box()
+        label = Gtk.Label(label=_("File:"))
+        label.set_justify(Gtk.Justification.LEFT)
         label.set_size_request(90, -1)
         label.set_alignment(0, .5)
-        hbox.pack_start(label, False)
+        hbox.pack_start(label, False, True, 0)
         struct_time = time.localtime()
         file_entry.set_text(config.get('paths.quick-backup-filename') %
                             {"filename": self.dbstate.db.get_dbname(),
@@ -1292,13 +1260,13 @@ class ViewManager(CLIManager):
                              "seconds": struct_time.tm_sec,
                              "extension": "gpkg",
                              })
-        hbox.pack_end(file_entry, True)
-        vbox.pack_start(hbox, False)
-        hbox = gtk.HBox()
+        hbox.pack_end(file_entry, True, True, 0)
+        vbox.pack_start(hbox, False, True, 0)
+        hbox = Gtk.Box()
         bytes = 0
         mbytes = "0"
         for media in self.dbstate.db.iter_media_objects():
-            fullname = Utils.media_path_full(self.dbstate.db, media.get_path())
+            fullname = media_path_full(self.dbstate.db, media.get_path())
             try:
                 bytes += posixpath.getsize(fullname)
                 length = len(str(bytes))
@@ -1308,96 +1276,79 @@ class ViewManager(CLIManager):
                     mbytes = str(bytes)[:(length-6)]
             except OSError:
                 pass
-        label = gtk.Label(_("Media:"))
-        label.set_justify(gtk.JUSTIFY_LEFT)
+        label = Gtk.Label(label=_("Media:"))
+        label.set_justify(Gtk.Justification.LEFT)
         label.set_size_request(90, -1)
         label.set_alignment(0, .5)
-        hbox.pack_start(label, False)
-        include = gtk.RadioButton(None, "%s (%s %s)" % (_("Include"),
+        hbox.pack_start(label, False, True, 0)
+        include = Gtk.RadioButton(None, "%s (%s %s)" % (_("Include"),
                                                         mbytes, _("Megabyte|MB")))
-        exclude = gtk.RadioButton(include, _("Exclude"))
+        exclude = Gtk.RadioButton.new_with_mnemonic_from_widget(include, _("Exclude"))
         include.connect("toggled", lambda widget: self.media_toggle(widget, file_entry))
-        hbox.pack_start(include, True)
-        hbox.pack_end(exclude, True)
-        vbox.pack_start(hbox, False)
+        hbox.pack_start(include, False, True, 0)
+        hbox.pack_end(exclude, False, True, 0)
+        vbox.pack_start(hbox, False, True, 0)
         window.show_all()
         d = window.run()
         window.hide()
-        if d == gtk.RESPONSE_APPLY:
+        if d == Gtk.ResponseType.APPLY:
             # if file exists, ask if overwrite; else abort
-            basefile = file_entry.get_text()
+            basefile = conv_to_unicode(file_entry.get_text())
             basefile = basefile.replace("/", r"-")
-            filename = os.path.join(path_entry.get_text(), basefile)
-            filename = filename.encode(sys.getfilesystemencoding())
+            filename = os.path.join(conv_to_unicode(path_entry.get_text()),
+                                    basefile)
             if os.path.exists(filename):
-                sfilename = Utils.get_unicode_path_from_env_var(filename)
                 question = QuestionDialog2(
                     _("Backup file already exists! Overwrite?"),
-                    _("The file '%s' exists.") % sfilename,
+                    _("The file '%s' exists.") % filename,
                     _("Proceed and overwrite"),
                     _("Cancel the backup"))
                 yes_no = question.run()
                 if not yes_no:
                     return
-            self.uistate.set_busy_cursor(1)
-            self.pulse_progressbar(0)
+            self.uistate.set_busy_cursor(True)
+            self.uistate.pulse_progressbar(0)
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Making backup..."))
             if include.get_active():
-                from ExportPkg import PackageWriter
-                writer = PackageWriter(self.dbstate.db, filename,
-                       msg_callback=lambda m1, m2: ErrorDialog(m1, m2),
-                       callback=self.pulse_progressbar)
+                from gramps.plugins.export.exportpkg import PackageWriter
+                writer = PackageWriter(self.dbstate.db, filename, self.user)
                 writer.export()
             else:
-                from ExportXml import XmlWriter
-                writer = XmlWriter(self.dbstate.db,
-                       msg_callback=lambda m1, m2: ErrorDialog(m1, m2),
-                       callback=self.pulse_progressbar,
-                       strip_photos=0, compress=1)
+                from gramps.plugins.export.exportxml import XmlWriter
+                writer = XmlWriter(self.dbstate.db, self.user,
+                                   strip_photos=0, compress=1)
                 writer.write(filename)
-            self.uistate.set_busy_cursor(0)
+            self.uistate.set_busy_cursor(False)
             self.uistate.progress.hide()
-            filename = Utils.get_unicode_path_from_env_var(filename)
             self.uistate.push_message(self.dbstate, _("Backup saved to '%s'") % filename)
             config.set('paths.quick-backup-directory', path_entry.get_text())
         else:
             self.uistate.push_message(self.dbstate, _("Backup aborted"))
         window.destroy()
 
-    def pulse_progressbar(self, value, text=None):
-        self.progress.set_fraction(min(value/100.0, 1.0))
-        if text:
-            self.progress.set_text("%s: %d%%" % (text, value))
-        else:
-            self.progress.set_text("%d%%" % value)
-        while gtk.events_pending():
-            gtk.main_iteration()
-
     def select_backup_path(self, widget, path_entry):
         """
         Choose a backup folder. Make sure there is one highlighted in
         right pane, otherwise FileChooserDialog will hang.
         """
-        f = gtk.FileChooserDialog(
+        f = Gtk.FileChooserDialog(
             _("Select backup directory"),
-            action=gtk.FILE_CHOOSER_ACTION_SELECT_FOLDER,
-            buttons=(gtk.STOCK_CANCEL,
-                     gtk.RESPONSE_CANCEL,
-                     gtk.STOCK_APPLY,
-                     gtk.RESPONSE_OK))
+            action=Gtk.FileChooserAction.SELECT_FOLDER,
+            buttons=(Gtk.STOCK_CANCEL,
+                     Gtk.ResponseType.CANCEL,
+                     Gtk.STOCK_APPLY,
+                     Gtk.ResponseType.OK))
         mpath = path_entry.get_text()
         if not mpath:
-            mpath = const.HOME_DIR
+            mpath = HOME_DIR
         f.set_current_folder(os.path.dirname(mpath))
         f.set_filename(os.path.join(mpath, "."))
         status = f.run()
-        if status == gtk.RESPONSE_OK:
+        if status == Gtk.ResponseType.OK:
             filename = f.get_filename()
             if filename:
-                val = Utils.get_unicode_path_from_file_chooser(filename)
-                if val:
-                    path_entry.set_text(val)
+                path_entry.set_text(filename)
         f.destroy()
         return True
 
@@ -1420,7 +1371,7 @@ class ViewManager(CLIManager):
         """
         try:
             ReportPluginDialog(self.dbstate, self.uistate, [])
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
     def tools_clicked(self, obj):
@@ -1429,17 +1380,17 @@ class ViewManager(CLIManager):
         """
         try:
             ToolPluginDialog(self.dbstate, self.uistate, [])
-        except Errors.WindowActiveError:
+        except WindowActiveError:
             return
 
-    def scratchpad(self, obj):
+    def clipboard(self, obj):
         """
-        Displays the Clipboard (was scratchpad)
+        Displays the Clipboard
         """
-        import ScratchPad
+        from .clipboard import ClipboardWindow
         try:
-            ScratchPad.ScratchPadWindow(self.dbstate, self.uistate)
-        except Errors.WindowActiveError:
+            ClipboardWindow(self.dbstate, self.uistate)
+        except WindowActiveError:
             return
 
     def config_view(self, obj):
@@ -1452,26 +1403,25 @@ class ViewManager(CLIManager):
         """
         Calls the undo function on the database
         """
-        self.uistate.set_busy_cursor(1)
+        self.uistate.set_busy_cursor(True)
         self.dbstate.db.undo()
-        self.uistate.set_busy_cursor(0)
+        self.uistate.set_busy_cursor(False)
 
     def redo(self, obj):
         """
         Calls the redo function on the database
         """
-        self.uistate.set_busy_cursor(1)
+        self.uistate.set_busy_cursor(True)
         self.dbstate.db.redo()
-        self.uistate.set_busy_cursor(0)
+        self.uistate.set_busy_cursor(False)
 
     def undo_history(self, obj):
         """
         Displays the Undo history window
         """
         try:
-            self.undo_history_window = UndoHistory.UndoHistory(self.dbstate,
-                                                               self.uistate)
-        except Errors.WindowActiveError:
+            self.undo_history_window = UndoHistory(self.dbstate, self.uistate)
+        except WindowActiveError:
             return
 
     def export_data(self, obj):
@@ -1479,10 +1429,10 @@ class ViewManager(CLIManager):
         Calls the ExportAssistant to export data
         """
         if self.dbstate.db.db_is_open:
-            import ExportAssistant
+            from .plug.export import ExportAssistant
             try:
-                ExportAssistant.ExportAssistant(self.dbstate, self.uistate)
-            except Errors.WindowActiveError:
+                ExportAssistant(self.dbstate, self.uistate)
+            except WindowActiveError:
                 return
 
     def __rebuild_report_and_tool_menus(self):
@@ -1500,7 +1450,7 @@ class ViewManager(CLIManager):
         if self.toolactions:
             self.uistate.uimanager.remove_action_group(self.toolactions)
             self.uistate.uimanager.remove_ui(self.tool_menu_ui_id)
-        self.toolactions = gtk.ActionGroup('ToolWindow')
+        self.toolactions = Gtk.ActionGroup(name='ToolWindow')
         (uidef, actions) = self.build_plugin_menu(
             'ToolsMenu', tool_menu_list, tool.tool_categories,
             make_plugin_callback)
@@ -1516,7 +1466,7 @@ class ViewManager(CLIManager):
         if self.reportactions:
             self.uistate.uimanager.remove_action_group(self.reportactions)
             self.uistate.uimanager.remove_ui(self.report_menu_ui_id)
-        self.reportactions = gtk.ActionGroup('ReportWindow')
+        self.reportactions = Gtk.ActionGroup(name='ReportWindow')
         (uidef, actions) = self.build_plugin_menu(
             'ReportsMenu', report_menu_list, standalone_categories,
             make_plugin_callback)
@@ -1531,9 +1481,10 @@ class ViewManager(CLIManager):
         """
         actions = []
         ofile = StringIO()
-        ofile.write('<ui><menubar name="MenuBar"><menu action="%s">' % text)
+        ofile.write('<ui><menubar name="MenuBar"><menu action="%s">'
+                    '<placeholder name="%s">' % (text, 'P_'+ text))
 
-        menu = gtk.Menu()
+        menu = Gtk.Menu()
         menu.show()
 
         hash_data = defaultdict(list)
@@ -1549,11 +1500,11 @@ class ViewManager(CLIManager):
                    if item != _UNSUPPORTED)
 
         for key in catlist:
-            new_key = key.replace(' ', '-')
+            new_key = key[0].replace(' ', '-')
             ofile.write('<menu action="%s">' % new_key)
-            actions.append((new_key, None, key))
+            actions.append((new_key, None, key[1]))
             pdatas = hash_data[key]
-            pdatas.sort(by_menu_name)
+            pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
                 new_key = pdata.id.replace(' ', '-')
                 menu_name = ("%s...") % pdata.name
@@ -1566,10 +1517,10 @@ class ViewManager(CLIManager):
         # and the unsupported category at the end of the menu
         if _UNSUPPORTED in hash_data:
             ofile.write('<separator/>')
-            ofile.write('<menu action="%s">' % _UNSUPPORTED)
-            actions.append((_UNSUPPORTED, None, _UNSUPPORTED))
+            ofile.write('<menu action="%s">' % _UNSUPPORTED[0])
+            actions.append((_UNSUPPORTED[0], None, _UNSUPPORTED[1]))
             pdatas = hash_data[_UNSUPPORTED]
-            pdatas.sort(by_menu_name)
+            pdatas.sort(key=lambda x: x.name)
             for pdata in pdatas:
                 new_key = pdata.id.replace(' ', '-')
                 menu_name = ("%s...") % pdata.name
@@ -1578,7 +1529,7 @@ class ViewManager(CLIManager):
                                 func(pdata, self.dbstate, self.uistate)))
             ofile.write('</menu>')
 
-        ofile.write('</menu></menubar></ui>')
+        ofile.write('</placeholder></menu></menubar></ui>')
         return (ofile.getvalue(), actions)
 
     def display_about_box(self, obj):
@@ -1591,49 +1542,43 @@ def key_bindings(obj):
     """
     Display key bindings
     """
-    GrampsDisplay.help(webpage=WIKI_HELP_PAGE_KEY)
+    display_help(webpage=WIKI_HELP_PAGE_KEY)
 
 def manual_activate(obj):
     """
     Display the GRAMPS manual
     """
-    GrampsDisplay.help(webpage=WIKI_HELP_PAGE_MAN)
+    display_help(webpage=WIKI_HELP_PAGE_MAN)
 
 def report_bug_activate(obj):
     """
     Display the bug tracker web site
     """
-    GrampsDisplay.url(const.URL_BUGTRACKER)
+    display_url(URL_BUGTRACKER)
 
 def home_page_activate(obj):
     """
     Display the GRAMPS home page
     """
-    GrampsDisplay.url(const.URL_HOMEPAGE)
+    display_url(URL_HOMEPAGE)
 
 def mailing_lists_activate(obj):
     """
     Display the mailing list web page
     """
-    GrampsDisplay.url(const.URL_MAILINGLIST)
+    display_url(URL_MAILINGLIST)
 
 def extra_plugins_activate(obj):
     """
     Display the wiki page with extra plugins
     """
-    GrampsDisplay.url(const.URL_WIKISTRING+const.WIKI_EXTRAPLUGINS)
+    display_url(URL_WIKISTRING+WIKI_EXTRAPLUGINS)
 
 def faq_activate(obj):
     """
     Display FAQ
     """
-    GrampsDisplay.help(webpage=WIKI_HELP_PAGE_FAQ)
-
-def by_menu_name(first, second):
-    """
-    Sorts menu item lists
-    """
-    return cmp(first.name, second.name)
+    display_help(webpage=WIKI_HELP_PAGE_FAQ)
 
 def run_plugin(pdata, dbstate, uistate):
     """
@@ -1650,12 +1595,13 @@ def run_plugin(pdata, dbstate, uistate):
             _('The plugin %(name)s did not load and reported an error.\n\n'
               '%(error_msg)s\n\n'
               'If you are unable to fix the fault yourself then you can '
-              'submit a bug at http://bugs.gramps-project.org or contact '
+              'submit a bug at %(gramps_bugtracker_url)s or contact '
               'the plugin author (%(firstauthoremail)s).\n\n'
               'If you do not want Gramps to try and load this plugin again, '
               'you can hide it by using the Plugin Manager on the '
               'Help menu.') % {
                 'name': pdata.name,
+                'gramps_bugtracker_url' : URL_BUGHOME,
                 'firstauthoremail': pdata.authors_email[0] if
                         pdata.authors_email else '...',
                 'error_msg': pmgr.get_fail_list()[-1][1][1]})
@@ -1669,11 +1615,13 @@ def run_plugin(pdata, dbstate, uistate):
                pdata.category, pdata.require_active,
                )
     else:
-        tool.gui_tool(dbstate, uistate,
-                      getattr(mod, pdata.toolclass),
-                      getattr(mod, pdata.optionclass),
-                      pdata.name, pdata.id, pdata.category,
-                      dbstate.db.request_rebuild)
+        tool.gui_tool(dbstate = dbstate, user = User(uistate = uistate),
+                      tool_class = getattr(mod, pdata.toolclass),
+                      options_class = getattr(mod, pdata.optionclass),
+                      translated_name = pdata.name, 
+                      name = pdata.id, 
+                      category = pdata.category,
+                      callback = dbstate.db.request_rebuild)
 
 def make_plugin_callback(pdata, dbstate, uistate):
     """
@@ -1694,20 +1642,25 @@ def get_available_views():
         mod = pmgr.load_plugin(pdata)
         if not mod or not hasattr(mod, pdata.viewclass):
             #import of plugin failed
+            try:
+                lasterror = pmgr.get_fail_list()[-1][1][1]
+            except:
+                lasterror = '*** No error found, probably error in gpr.py file ***'
             ErrorDialog(
                 _('Failed Loading View'),
                 _('The view %(name)s did not load and reported an error.\n\n'
                   '%(error_msg)s\n\n'
                   'If you are unable to fix the fault yourself then you can '
-                  'submit a bug at http://bugs.gramps-project.org or contact '
+                  'submit a bug at %(gramps_bugtracker_url)s or contact '
                   'the view author (%(firstauthoremail)s).\n\n'
                   'If you do not want Gramps to try and load this view again, '
                   'you can hide it by using the Plugin Manager on the '
                   'Help menu.') % {
                     'name': pdata.name,
+                    'gramps_bugtracker_url' : URL_BUGHOME,
                     'firstauthoremail': pdata.authors_email[0] if
                             pdata.authors_email else '...',
-                    'error_msg': pmgr.get_fail_list()[-1][1][1]})
+                    'error_msg': lasterror})
             continue
         viewclass = getattr(mod, pdata.viewclass)
 
