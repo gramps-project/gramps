@@ -702,4 +702,4 @@ class DateDisplayEn(DateDisplay):
 
     display = DateDisplay.display_formatted
 
-    _locale = _grampslocale.glocale # normally set in register_datehandler
+    _locale = DateDisplay._locale # normally set in register_datehandler
