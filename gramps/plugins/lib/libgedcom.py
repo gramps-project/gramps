@@ -779,6 +779,10 @@ class Lexer(object):
             if func:
                 func(data)
             else:
+                # There will normally only be one space between tag and
+                # line_value, but in case there is more then one, remove extra
+                # spaces after CONC/CONT processing
+                data = data[:2] + (data[2].strip(),) + data[3:]
                 self.current_list.insert(0, data)
 
     def clean_up(self):
@@ -3356,7 +3360,10 @@ class GedcomParser(UpdateCallback):
         if line.token_text == self.subm and self.import_researcher:
             self.dbase.set_researcher(state.res)
         
-        submitter_name = _("SUBM (Submitter): @%s@") % line.token_text
+        if state.res.get_name() == "":
+            submitter_name = _("SUBM (Submitter): @%s@") % line.token_text
+        else:
+            submitter_name = _("SUBM (Submitter): (@%s@) %s") % (line.token_text, state.res.get_name())
         if self.use_def_src:
             repo.set_name(submitter_name)
             repo.set_handle(create_id())
@@ -7405,6 +7412,7 @@ class GedcomParser(UpdateCallback):
                 sattr.set_type(msg)
                 sattr.set_value(line.data)
                 self.def_src.add_attribute(sattr)
+                self.dbase.commit_source(self.def_src, self.trans)
             
     def handle_source(self, line, level, state):
         """
