@@ -40,7 +40,8 @@ export PYTHONPATH="$bundle_lib/python$PYVER/site-packages/gtk-2.0:$PYTHONPATH"
 
 export GRAMPSDIR="$bundle_data"/gramps
 export GRAMPSI18N="$bundle_data"/locale
-export GRAMPSHOME="$HOME/Library/Application Support"
+export USERPROFILE="$HOME"
+export APPDATA="$HOME/Library/Application Support"
 
 # Strip out the argument added by the OS.
 if /bin/expr "x$1" : '^x-psn_' > /dev/null; then
