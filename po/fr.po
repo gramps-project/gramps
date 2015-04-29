@@ -1341,25 +1341,25 @@ msgstr ""
 #. first date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:214
 msgid "from|{short_month} {year}"
-msgstr "de"
+msgstr ""
 
 # trunk
 #. second date in a span
 #: ../gramps/gen/datehandler/_datedisplay.py:218
 msgid "to|{short_month} {year}"
-msgstr "à"
+msgstr ""
 
 # trunk
 #. first date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:222
 msgid "between|{short_month} {year}"
-msgstr "entre"
+msgstr ""
 
 # trunk
 #. second date in a range
 #: ../gramps/gen/datehandler/_datedisplay.py:226
 msgid "and|{short_month} {year}"
-msgstr "et"
+msgstr ""
 
 # trunk
 #. If "before <Month>" needs a special inflection in your
@@ -1375,7 +1375,7 @@ msgstr ""
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:238
 msgid "after|{short_month} {year}"
-msgstr "après"
+msgstr ""
 
 # trunk
 #. If "about <Month>" needs a special inflection in your
@@ -1383,7 +1383,7 @@ msgstr "après"
 #. (where X is one of the month-name inflections you defined)
 #: ../gramps/gen/datehandler/_datedisplay.py:244
 msgid "about|{short_month} {year}"
-msgstr "vers"
+msgstr ""
 
 # trunk
 #. If there is no special inflection for "from <Month>" in your
