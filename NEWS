@@ -1,3 +1,48 @@
+2014-04-30
+Version 3.4.9 of Gramps! "I am no longer infected", a maintenance release.
+* Error converting python2 utf-8 strings to python3 str when loading data from database
+* Gedcom input: SUBN and SUBM record handling
+* [Gedcom] import/export round trip causes lost information
+* [Gedcom] Gramps can't import estim. date period exported by itself
+* [Gedcom] import deletes first char of notes
+* [Gedcom] import of embedded notes attached to media does not work
+* [Gedcom] NameError in importer
+* [Gedcom] export does not export media attached to citations
+* [Gedcom] Errors handling owner/submitter information
+* [Gedcom] Event address is lost on import, i.e. disconnected from event
+* [Gedcom] Entering a witness to an event such as marriage might be ignored
+* [Gedcom] Importing file containing multibyte UTF-8 characters fails
+* Event list in editors does not display content into 'Main Participants' column
+* Fix 'Last Change' column into Person Selector
+* Support creating directories in various scenarios
+* tag_map is not initialized
+* Fix bad handle in explanation note for unknown event
+* Narrative website: Missing webpage for media with missing thumbnail on person page
+* Enable the "default" CSS choice for the narrated web report
+* Crash while scrolling in person view
+* Crash when attempting to create Places Report
+* Error in Session Log gramplet with no active person
+* In Ahnentafel Report, Use Christening Date if no Birth Date Present
+* Family with children but no parents is lost on filtered export
+* Some labels now fit better on citations sidebar filter
+* Can't disable box shadow in SVG descendant tree
+* Descendant tree graphical report, syntax error in svg output
+* Various problems with docgen.TextDoc.add_media_object
+* Spurious spaces in CLI List Family Trees, tab delimited output. Print statements changed to assemble the whole line before output.
+* GuiColorOption missing avail-changed event handler
+* Regression: running gramps from crontab fails
+* Better support for handling custom media attributes on edition
+* DB lock not checked when opening database from the recent opened trees menu item
+* List index out of range" on [initial CLI "gramps -t"]
+* HTML View fails to load on Debian unstable
+* Fix unknown gender relationships hander for the french locale
+* Can't fill in calculated and estimated dates in czech locale
+* Enhance Serbian date handler to handle Cyrillic dates
+* Updated translations: cs, de, fr, hu, it
+* Fix mac menubar setting
+* Fix mac OsmGpsMaps setting
+* Enable PIL with Freetype2 support on mac
+
 2014-05-29
 Version 3.4.8 of Gramps! "Forget about your sin, give the audience a grin", a maintenance release.
 * Database corrupted - TypeError: unhashable type: 'list'
