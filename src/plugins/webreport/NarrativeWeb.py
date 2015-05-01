@@ -5064,14 +5064,14 @@ class DownloadPage(BasePage):
                         else:
                             tcell += "&nbsp;"
 
-        # clear line for proper styling
-        # create footer section
-        footer = self.write_footer()
-        body += (fullclear, footer)
+            # clear line for proper styling
+            # create footer section
+            footer = self.write_footer()
+            body += (fullclear, footer)
 
-        # send page out for processing
-        # and close the file
-        self.XHTMLWriter(downloadpage, of, sio)
+            # send page out for processing
+            # and close the file
+            self.XHTMLWriter(downloadpage, of, sio)
 
 class ContactPage(BasePage):
     def __init__(self, report, title):
