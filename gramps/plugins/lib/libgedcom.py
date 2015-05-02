@@ -3360,10 +3360,14 @@ class GedcomParser(UpdateCallback):
         if line.token_text == self.subm and self.import_researcher:
             self.dbase.set_researcher(state.res)
         
+        localized_submitter = _("(Submitter):")
         if state.res.get_name() == "":
-            submitter_name = _("SUBM (Submitter): @%s@") % line.token_text
+            submitter_name = "SUBM %s @%s@" % ( localized_submitter,
+                                                line.token_text )
         else:
-            submitter_name = _("SUBM (Submitter): (@%s@) %s") % (line.token_text, state.res.get_name())
+            submitter_name = "SUBM %s (@%s@) %s" % ( localized_submitter,
+                                                     line.token_text,
+                                                     state.res.get_name() )
         if self.use_def_src:
             repo.set_name(submitter_name)
             repo.set_handle(create_id())
