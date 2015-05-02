@@ -7,7 +7,7 @@
     <key>CFBundleExecutable</key>
     <string>Gramps</string>
     <key>CFBundleGetInfoString</key>
-    <string>Gramps 3.4.8-1, (C) 1997-2014 The Gramps Team http://www.gramps-project.org</string>
+    <string>Gramps 3.4.9-1, (C) 1997-2015 The Gramps Team http://www.gramps-project.org</string>
     <key>CFBundleIconFile</key>
     <string>gramps.icns</string>
     <key>CFBundleIdentifier</key>
@@ -17,15 +17,15 @@
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleShortVersionString</key>
-    <string>3.4.8-1</string>
+    <string>3.4.9-1</string>
     <key>CFBundleSignature</key>
     <string>????</string>
     <key>CFBundleName</key>
     <string>Gramps</string>
     <key>CFBundleVersion</key>
-    <string>3.4.8-1</string>
+    <string>3.4.9-1</string>
     <key>NSHumanReadableCopyright</key>
-    <string>Copyright 1997 - 2014 The Gramps Team, GNU General Public License.</string>
+    <string>Copyright 1997 - 2015 The Gramps Team, GNU General Public License.</string>
     <key>LSMinimumSystemVersion</key>
     <string>10.5</string>
 </dict>
