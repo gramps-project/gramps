@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2004-2006  Donald N. Allingham
 # Copyright (C) 2013       Vassilii Khachaturov
-# Copyright (C) 2014       Paul Franklin
+# Copyright (C) 2014-2015  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -383,6 +383,56 @@ class DateDisplay(object):
         else:
             return value
 
+    def dd_span(self, date):
+        """
+        Return a text string representing the span date
+        (it may be overridden if a locale-specific date displayer exists)
+        """
+        cal = date.get_calendar()
+        qual_str = self._qual_str[date.get_quality()]
+        scal = self.format_extras(cal, date.get_new_year())
+        d1 = self.display_cal[cal](date.get_start_date(), 
+            # If there is no special inflection for "from <Month>"
+            # in your language, DON'T translate this string.  Otherwise,
+            # "translate" this to "from" in ENGLISH!!! ENGLISH!!!
+                                   inflect=self._("from-date|"))
+        d2 = self.display_cal[cal](date.get_stop_date(), 
+            # If there is no special inflection for "to <Month>"
+            # in your language, DON'T translate this string.  Otherwise,
+            # "translate" this to "to" in ENGLISH!!! ENGLISH!!!
+                                   inflect=self._("to-date|"))
+        return self._("{date_quality}from {date_start} to {date_stop}"
+                      "{nonstd_calendar_and_ny}").format(
+                            date_quality=qual_str, 
+                            date_start=d1, 
+                            date_stop=d2, 
+                            nonstd_calendar_and_ny=scal)
+
+    def dd_range(self, date):
+        """
+        Return a text string representing the range date
+        (it may be overridden if a locale-specific date displayer exists)
+        """
+        cal = date.get_calendar()
+        qual_str = self._qual_str[date.get_quality()]
+        scal = self.format_extras(cal, date.get_new_year())
+        d1 = self.display_cal[cal](date.get_start_date(),
+            # If there is no special inflection for "between <Month>"
+            # in your language, DON'T translate this string.  Otherwise,
+            # "translate" this to "between" in ENGLISH!!! ENGLISH!!!
+                                   inflect=self._("between-date|"))
+        d2 = self.display_cal[cal](date.get_stop_date(),
+            # If there is no special inflection for "and <Month>"
+            # in your language, DON'T translate this string.  Otherwise,
+            # "translate" this to "and" in ENGLISH!!! ENGLISH!!!
+                                   inflect=self._("and-date|"))
+        return self._("{date_quality}between {date_start} and {date_stop}"
+                      "{nonstd_calendar_and_ny}").format(
+                            date_quality=qual_str, 
+                            date_start=d1, 
+                            date_stop=d2, 
+                            nonstd_calendar_and_ny=scal)
+
     def display_formatted(self, date):
         """
         Return a text string representing the date, according to the format.
@@ -401,41 +451,9 @@ class DateDisplay(object):
         elif start == Date.EMPTY:
             return ""
         elif mod == Date.MOD_SPAN:
-            d1 = self.display_cal[cal](start, 
-                # If there is no special inflection for "from <Month>"
-                # in your language, DON'T translate this string.  Otherwise,
-                # "translate" this to "from" in ENGLISH!!! ENGLISH!!!
-                                       inflect=_("from-date|"))
-            d2 = self.display_cal[cal](date.get_stop_date(), 
-                # If there is no special inflection for "to <Month>"
-                # in your language, DON'T translate this string.  Otherwise,
-                # "translate" this to "to" in ENGLISH!!! ENGLISH!!!
-                                       inflect=_("to-date|"))
-            scal = self.format_extras(cal, newyear)
-            return _("{date_quality}from {date_start} to {date_stop}"
-                     "{nonstd_calendar_and_ny}").format(
-                         date_quality=qual_str, 
-                         date_start=d1, 
-                         date_stop=d2, 
-                         nonstd_calendar_and_ny=scal)
+            return self.dd_span(date)
         elif mod == Date.MOD_RANGE:
-            d1 = self.display_cal[cal](start,
-                # If there is no special inflection for "between <Month>"
-                # in your language, DON'T translate this string.  Otherwise,
-                # "translate" this to "between" in ENGLISH!!! ENGLISH!!!
-                                       inflect=_("between-date|"))
-            d2 = self.display_cal[cal](date.get_stop_date(),
-                # If there is no special inflection for "and <Month>"
-                # in your language, DON'T translate this string.  Otherwise,
-                # "translate" this to "and" in ENGLISH!!! ENGLISH!!!
-                                       inflect=_("and-date|"))
-            scal = self.format_extras(cal, newyear)
-            return _("{date_quality}between {date_start} and {date_stop}"
-                     "{nonstd_calendar_and_ny}").format(
-                         date_quality=qual_str, 
-                         date_start=d1, 
-                         date_stop=d2, 
-                         nonstd_calendar_and_ny=scal)
+            return self.dd_range(date)
         else:
             if mod == Date.MOD_BEFORE:
                 # If there is no special inflection for "before <Month>"
