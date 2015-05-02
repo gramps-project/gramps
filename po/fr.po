@@ -5763,7 +5763,7 @@ msgstr ", "
 #: ../gramps/gen/lib/date.py:417
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
-msgstr[0] "{number_of} moi"
+msgstr[0] "{number_of} mois"
 msgstr[1] "{number_of} mois"
 
 # trunk
