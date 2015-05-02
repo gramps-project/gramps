@@ -236,6 +236,7 @@ class IndivCompleteReport(Report):
 
     def write_note(self):
         notelist = self.person.get_note_list()
+        notelist += self.family_notes_list
         if not notelist:
             return
         self.doc.start_table('note','IDS-IndTable')
@@ -263,7 +264,8 @@ class IndivCompleteReport(Report):
 
     def write_alt_parents(self):
 
-        if len(self.person.get_parent_family_handle_list()) < 2:
+        family_handle_list = self.person.get_parent_family_handle_list()
+        if len(family_handle_list) < 2:
             return
         
         self.doc.start_table("altparents","IDS-IndTable")
@@ -274,7 +276,6 @@ class IndivCompleteReport(Report):
         self.doc.end_cell()
         self.doc.end_row()
         
-        family_handle_list = self.person.get_parent_family_handle_list()
         for family_handle in family_handle_list:
             if (family_handle ==
                    self.person.get_main_parents_family_handle()):
@@ -317,9 +318,7 @@ class IndivCompleteReport(Report):
     def get_name(self, person):
         name = self._name_display.display(person)
         if self.use_gramps_id:
-            # RTL languages are the only reason for "translating" this
-            return self._('%(name)s [%(gid)s]') % {
-                                            'name': name, 
+            return '%(name)s [%(gid)s]' % { 'name': name,
                                             'gid': person.get_gramps_id()}
         else:
             return name
@@ -542,7 +541,8 @@ class IndivCompleteReport(Report):
         
     def write_families(self):
 
-        if not len(self.person.get_family_handle_list()):
+        family_handle_list = self.person.get_family_handle_list()
+        if not len(family_handle_list):
             return
         
         self.doc.start_table("three","IDS-IndTable")
@@ -554,9 +554,10 @@ class IndivCompleteReport(Report):
         self.doc.end_row()
         self.doc.end_table()
         
-        for family_handle in self.person.get_family_handle_list():
+        for family_handle in family_handle_list:
             self.doc.start_table("three","IDS-IndTable")
             family = self._db.get_family_from_handle(family_handle)
+            self.family_notes_list += family.get_note_list()
             if self.person.get_handle() == family.get_father_handle():
                 spouse_id = family.get_mother_handle()
             else:
@@ -735,6 +736,7 @@ class IndivCompleteReport(Report):
 
         for count, person_handle in enumerate(ind_list):
             self.person = self._db.get_person_from_handle(person_handle)
+            self.family_notes_list = []
             self.write_person(count)
 
     def write_person(self, count):
