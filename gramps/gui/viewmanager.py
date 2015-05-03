@@ -1299,10 +1299,11 @@ class ViewManager(CLIManager):
                                     basefile)
             if os.path.exists(filename):
                 question = QuestionDialog2(
-                    _("Backup file already exists! Overwrite?"),
-                    _("The file '%s' exists.") % filename,
-                    _("Proceed and overwrite"),
-                    _("Cancel the backup"))
+                        _("Backup file already exists! Overwrite?"),
+                        _("The file '%s' exists.") % filename,
+                        _("Proceed and overwrite"),
+                        _("Cancel the backup"),
+                        parent=self.window)
                 yes_no = question.run()
                 if not yes_no:
                     return
@@ -1333,7 +1334,8 @@ class ViewManager(CLIManager):
         right pane, otherwise FileChooserDialog will hang.
         """
         f = Gtk.FileChooserDialog(
-            _("Select backup directory"),
+            title=_("Select backup directory"),
+            parent=self.window,
             action=Gtk.FileChooserAction.SELECT_FOLDER,
             buttons=(Gtk.STOCK_CANCEL,
                      Gtk.ResponseType.CANCEL,
