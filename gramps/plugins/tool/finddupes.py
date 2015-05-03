@@ -122,7 +122,6 @@ class Merge(tool.Tool,ManagedWindow):
         self.menu.set_active(0)
 
         window = top.toplevel
-        window.show()
         self.set_window(window, top.get_object('title'),
                         _('Find Possible Duplicate People'))
 
@@ -164,7 +163,7 @@ class Merge(tool.Tool,ManagedWindow):
         try:
             self.find_potentials(threshold)
         except AttributeError as msg:
-            RunDatabaseRepair(str(msg))
+            RunDatabaseRepair(str(msg), parent=self.window)
             return
 
         self.options.handler.options_dict['threshold'] = threshold
@@ -186,8 +185,8 @@ class Merge(tool.Tool,ManagedWindow):
     
     def find_potentials(self, thresh):
         self.progress = ProgressMeter(_('Find Duplicates'),
-                                      _('Looking for duplicate people')
-                                     )
+                                      _('Looking for duplicate people'),
+                                     parent=self.window)
 
         index = 0
         males = {}
@@ -550,7 +549,6 @@ class ShowMatches(ManagedWindow):
         
         top = Glade(toplevel="mergelist")
         window = top.toplevel
-        window.show()
         self.set_window(window, top.get_object('title'),
                         _('Potential Merges'))
         
