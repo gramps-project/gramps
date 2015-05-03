@@ -72,7 +72,7 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libgtkmacintegration.2.dylib
+    ${prefix}/lib/libgtkmacintegration-gtk2.2.dylib
   </binary>
 
   <binary>
@@ -100,7 +100,7 @@
   </binary>
 
   <binary>
-    ${prefix}/lib/libtiff.3.dylib
+    ${prefix}/lib/libtiff.5.dylib
   </binary>
 
   <binary dest="${bundle}/Contents/MacOS/">
