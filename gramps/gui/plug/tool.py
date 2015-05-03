@@ -101,7 +101,9 @@ class BatchTool(Tool):
     Should be used for tools using batch transactions.
     """
 
-    def __init__(self, dbstate, user, options_class, name):
+    def __init__(self, dbstate, user, options_class, name, parent=None):
+        if user.uistate:
+            parent = user.uistate.window
         if not user.prompt(
                 _('Undo history warning'),
                 _('Proceeding with this tool will erase the undo history '
@@ -110,7 +112,7 @@ class BatchTool(Tool):
                   'made prior to it.\n\n'
                   'If you think you may want to revert running this tool, '
                   'please stop here and backup your database.'),
-                _('_Proceed with the tool'), _('_Stop')):
+                _('_Proceed with the tool'), _('_Stop'), parent):
             self.fail = True
             return
 

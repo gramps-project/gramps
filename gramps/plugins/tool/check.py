@@ -78,7 +78,7 @@ from gramps.gen.constfunc import handle2internal, conv_to_unicode
 strip_dict = dict.fromkeys(list(range(9))+list(range(11,13))+list(range(14, 32)),  " ")
 
 class ProgressMeter(object):
-    def __init__(self, *args): pass
+    def __init__(self, *args, **kwargs): pass
     def set_pass(self, *args): pass
     def step(self): pass
     def close(self): pass
@@ -88,7 +88,7 @@ class ProgressMeter(object):
 # Low Level repair
 #
 #-------------------------------------------------------------------------
-def cross_table_duplicates(db):
+def cross_table_duplicates(db, uistate):
     """
     Function to find the presence of identical handles that occur in different
     database tables.
@@ -100,7 +100,11 @@ def cross_table_duplicates(db):
     :returns: the presence of cross table duplicate handles
     :rtype: bool
     """
-    progress = ProgressMeter(_('Checking Database'),'')
+    if uistate:
+        parent = uistate.window
+    else:
+        parent = None
+    progress = ProgressMeter(_('Checking Database'),'', parent)
     progress.set_pass(_('Looking for cross table duplicates'), 9)
     logging.info('Looking for cross table duplicates')
     total_nr_handles = 0
@@ -149,7 +153,7 @@ class Check(tool.BatchTool):
         # As such, we run it before starting the transaction.
         # We only do this for the dbdir backend.
         if self.db.__class__.__name__ == 'DbBsddb':
-            if cross_table_duplicates(self.db):
+            if cross_table_duplicates(self.db, uistate):
                 Report(uistate, _(
                     "Your Family Tree contains cross table duplicate handles.\n "
                     "This is bad and can be fixed by making a backup of your\n"
@@ -211,6 +215,11 @@ class Check(tool.BatchTool):
 class CheckIntegrity(object):
     
     def __init__(self, dbstate, uistate, trans):
+        self.uistate = uistate
+        if self.uistate:
+            self.parent_window = self.uistate.window
+        else:
+            self.parent_window = None
         self.db = dbstate.db
         self.trans = trans
         self.bad_photo = []
@@ -238,7 +247,8 @@ class CheckIntegrity(object):
         self.empty_objects = defaultdict(list)
         self.replaced_sourceref = []
         self.last_img_dir = config.get('behavior.addmedia-image-dir')
-        self.progress = ProgressMeter(_('Checking Database'),'')
+        self.progress = ProgressMeter(_('Checking Database'),'',
+                                    parent=self.parent_window)
         self.explanation = Note(_('Objects referenced by this note '
             'were referenced but missing so that is why they have been created '
             'when you ran Check and Repair on %s.') %
@@ -723,7 +733,8 @@ class CheckIntegrity(object):
                               "keep the reference to the missing file, "
                               "or select a new file." 
                                   ) % {'file_name' : '<b>%s</b>' % photo_name},
-                            remove_clicked, leave_clicked, select_clicked)
+                            remove_clicked, leave_clicked, select_clicked,
+                            parent=self.uistate.window)
                         missmedia_action = mmd.default_action
                     elif missmedia_action == 1:
                         logging.warning('    FAIL: media object "%(desc)s" '
