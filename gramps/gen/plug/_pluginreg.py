@@ -1100,10 +1100,16 @@ class PluginRegister(object):
                 continue
             lenpd = len(self.__plugindata)
             full_filename = os.path.join(dir, filename)
-            if sys.version_info[0] < 3:
-                fd = open(full_filename, "r")
-            else:
-                fd = io.open(full_filename, "r", encoding='utf-8')
+            try:
+                if sys.version_info[0] < 3:
+                    fd = open(full_filename, "r")
+                else:
+                    fd = io.open(full_filename, "r", encoding='utf-8')
+            except Exception as msg:
+                print(_('ERROR: Failed reading plugin registration %(filename)s') % \
+                            {'filename' : filename})
+                print(msg)
+                continue
             stream = fd.read()
             fd.close()
             if os.path.exists(os.path.join(os.path.dirname(full_filename),
