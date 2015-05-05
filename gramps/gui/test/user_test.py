@@ -46,9 +46,9 @@ class TestUser_prompt(unittest.TestCase):
     def test_prompt_runs_QuestionDialog2(self):
         with patch('gramps.gui.user.QuestionDialog2') as MockQD:
             self.user.prompt(TestUser.TITLE, TestUser.MSG, 
-                    TestUser.ACCEPT, TestUser.REJECT)
+                             TestUser.ACCEPT, TestUser.REJECT, None)
         MockQD.assert_called_once_with(TestUser.TITLE, TestUser.MSG, 
-                    TestUser.ACCEPT, TestUser.REJECT)
+                                       TestUser.ACCEPT, TestUser.REJECT, None)
         MockQD.return_value.run.assert_called_once_with()
         # TODO test that run's return is the one returned by prompt()...
 
