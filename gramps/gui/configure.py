@@ -96,7 +96,7 @@ class DisplayNameEditor(ManagedWindow):
     def __init__(self, uistate, dbstate, track, dialog):
         # Assumes that there are two methods: dialog.name_changed_check(), 
         # and dialog._build_custom_name_ui() 
-        ManagedWindow.__init__(self, uistate, [], DisplayNameEditor)
+        ManagedWindow.__init__(self, uistate, track, DisplayNameEditor)
         self.dialog = dialog
         self.dbstate = dbstate
         self.set_window(
@@ -135,7 +135,7 @@ UPPERCASE keyword forces uppercase. Extra parentheses, commas are removed. Other
         ManagedWindow.close(self, *obj)
         
     def build_menu_names(self, obj):
-        return (_(" Name Editor"), _("Preferences"))
+        return (_(" Name Editor"), None)
 
 
 #-------------------------------------------------------------------------
@@ -229,12 +229,12 @@ class ConfigureDialog(ManagedWindow):
         except TypeError:
             print("WARNING: ignoring invalid value for '%s'" % constant)
             ErrorDialog(_("Invalid or incomplete format definition."), 
-            obj.get_text())
+                        obj.get_text(), parent=self.window)
             obj.set_text('<b>%s</b>')
         except ValueError:
             print("WARNING: ignoring invalid value for '%s'" % constant)
             ErrorDialog(_("Invalid or incomplete format definition."),
-            obj.get_text())
+                        obj.get_text(), parent=self.window)
             obj.set_text('<b>%s</b>')
         
         self.__config.set(constant, unicode(obj.get_text()))
@@ -769,7 +769,7 @@ class GrampsPreferences(ConfigureDialog):
             # check to see if this pattern already exists
             if self.__check_for_name(translation, node):
                 ErrorDialog(_("This format exists already."), 
-                                           translation)
+                            translation, parent=self.window)
                 self.edit_button.emit('clicked')
                 return
             # else, change the name
@@ -1171,13 +1171,15 @@ class GrampsPreferences(ConfigureDialog):
         config.set('preferences.date-format', obj.get_active())
         OkDialog(_('Change is not immediate'), 
                  _('Changing the date format will not take '
-                   'effect until the next time Gramps is started.'))
+                   'effect until the next time Gramps is started.'),
+                 parent=self.window)
 
     def place_format_changed(self, obj):
         config.set('preferences.place-format', obj.get_active())
         OkDialog(_('Change is not immediate'), 
                  _('Changing the place format will not take '
-                   'effect until the next time Gramps is started.'))
+                   'effect until the next time Gramps is started.'),
+                 parent=self.window)
 
     def date_calendar_changed(self, obj): 
         config.set('preferences.calendar-format-report', obj.get_active())
@@ -1392,13 +1394,14 @@ class GrampsPreferences(ConfigureDialog):
             self.dbstate.db.set_mediapath(None)
 
     def select_mediapath(self, *obj):
-        f = Gtk.FileChooserDialog(
-            _("Select media directory"),
-            action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(Gtk.STOCK_CANCEL,
-                     Gtk.ResponseType.CANCEL,
-                     Gtk.STOCK_APPLY,
-                     Gtk.ResponseType.OK))
+        f = Gtk.FileChooserDialog(title=_("Select media directory"),
+                                  parent=self.window,
+                                  action=Gtk.FileChooserAction.SELECT_FOLDER,
+                                  buttons=(Gtk.STOCK_CANCEL,
+                                           Gtk.ResponseType.CANCEL,
+                                           Gtk.STOCK_APPLY,
+                                           Gtk.ResponseType.OK)
+                                  )
         mpath = self.dbstate.db.get_mediapath()
         if not mpath:
             mpath = HOME_DIR
@@ -1416,13 +1419,14 @@ class GrampsPreferences(ConfigureDialog):
         config.set('behavior.database-path', path)
 
     def select_dbpath(self, *obj):
-        f = Gtk.FileChooserDialog(
-            _("Select database directory"),
-            action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(Gtk.STOCK_CANCEL,
-                     Gtk.ResponseType.CANCEL,
-                     Gtk.STOCK_APPLY,
-                     Gtk.ResponseType.OK))
+        f = Gtk.FileChooserDialog(title=_("Select database directory"),
+                                    parent=self.window,
+                                    action=Gtk.FileChooserAction.SELECT_FOLDER,
+                                    buttons=(Gtk.STOCK_CANCEL,
+                                                Gtk.ResponseType.CANCEL,
+                                                Gtk.STOCK_APPLY,
+                                                Gtk.ResponseType.OK)
+                                    )
         dbpath = config.get('behavior.database-path')
         if not dbpath:
             dbpath = os.path.join(HOME_DIR,'grampsdb')
@@ -1475,7 +1479,7 @@ class GrampsPreferences(ConfigureDialog):
             obj.set_text(str(intval))
 
     def build_menu_names(self, obj):
-        return (_('Preferences'), None)
+        return (_('Preferences'), _('Preferences'))
 
     # FIXME: is this needed?
     def _set_button(self, stock):

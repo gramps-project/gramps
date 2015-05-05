@@ -14203,7 +14203,7 @@ msgstr "Ferdig med nedlasting og installasjon av programtillegg"
 #: ../gramps/gui/plug/_windows.py:1205
 msgid "{number_of} addon was installed."
 msgid_plural "{number_of} addons were installed."
-msgstr[0] "{numer_of} programtillegg ble installert."
+msgstr[0] "{number_of} programtillegg ble installert."
 msgstr[1] "{number_of} programtillegg ble installert."
 
 #: ../gramps/gui/plug/_windows.py:1208
@@ -27606,8 +27606,8 @@ msgstr "Antall flettinger"
 #: ../gramps/plugins/tool/mergecitations.py:231
 msgid "{number_of} citation merged"
 msgid_plural "{number_of} citations merged"
-msgstr[0] "{number} sitering flettet"
-msgstr[1] "{number} siteringer flettet"
+msgstr[0] "{number_of} sitering flettet"
+msgstr[1] "{number_of} siteringer flettet"
 
 #: ../gramps/plugins/tool/notrelated.glade:172
 msgid "_Tag"

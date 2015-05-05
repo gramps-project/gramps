@@ -134,7 +134,6 @@ class EventComparison(tool.Tool,ManagedWindow):
             })
 
         window = self.filterDialog.toplevel
-        window.show()
         self.filters = self.filterDialog.get_object("filter_list")
         self.label = _('Event comparison filter selection')
         self.set_window(window,self.filterDialog.get_object('title'),
@@ -177,7 +176,9 @@ class EventComparison(tool.Tool,ManagedWindow):
     def on_apply_clicked(self, obj):
         cfilter = self.filter_model[self.filters.get_active()][1]
 
-        progress_bar = ProgressMeter(_('Comparing events'),'')
+        progress_bar = ProgressMeter(_('Comparing events'),
+                                        '',
+                                        parent=self.window)
         progress_bar.set_pass(_('Selecting people'),1)
 
         plist = cfilter.apply(self.db,
@@ -190,7 +191,7 @@ class EventComparison(tool.Tool,ManagedWindow):
         self.options.handler.save_options()
 
         if len(plist) == 0:
-            WarningDialog(_("No matches were found"))
+            WarningDialog(_("No matches were found"), parent=self.window)
         else:
             DisplayChart(self.dbstate,self.uistate,plist,self.track)
 
@@ -238,7 +239,6 @@ class DisplayChart(ManagedWindow):
             })
 
         window = self.topDialog.toplevel
-        window.show()
         self.set_window(window, self.topDialog.get_object('title'),
                         _('Event Comparison Results'))
 
@@ -306,7 +306,8 @@ class DisplayChart(ManagedWindow):
         self.progress_bar.close()
 
     def build_row_data(self):
-        self.progress_bar = ProgressMeter(_('Comparing Events'),'')
+        self.progress_bar = ProgressMeter(_('Comparing Events'),'',
+                                            parent=self.window)
         self.progress_bar.set_pass(_('Building data'),len(self.my_list))
         for individual_id in self.my_list:
             individual = self.db.get_person_from_handle(individual_id)

@@ -1407,7 +1407,7 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:240
 msgid "from|{short_month} {year}"
-msgstr "de"
+msgstr ""
 
 # trunk
 #. second date in a span
@@ -1417,7 +1417,7 @@ msgstr "de"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:248
 msgid "to|{short_month} {year}"
-msgstr "à"
+msgstr ""
 
 # trunk
 #. first date in a range
@@ -1427,7 +1427,7 @@ msgstr "à"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:256
 msgid "between|{short_month} {year}"
-msgstr "entre"
+msgstr ""
 
 # trunk
 #. second date in a range
@@ -1437,7 +1437,7 @@ msgstr "entre"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:264
 msgid "and|{short_month} {year}"
-msgstr "et"
+msgstr ""
 
 # trunk
 #. If "before <Month>" needs a special inflection in your
@@ -1455,7 +1455,7 @@ msgstr ""
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:278
 msgid "after|{short_month} {year}"
-msgstr "après"
+msgstr ""
 
 # trunk
 #. If "about <Month>" needs a special inflection in your
@@ -1464,7 +1464,7 @@ msgstr "après"
 #. else leave it untranslated
 #: ../gramps/gen/datehandler/_datedisplay.py:285
 msgid "about|{short_month} {year}"
-msgstr "vers"
+msgstr ""
 
 # trunk
 #. If "estimated <Month>" needs a special inflection in your
@@ -5763,7 +5763,7 @@ msgstr ", "
 #: ../gramps/gen/lib/date.py:417
 msgid "{number_of} month"
 msgid_plural "{number_of} months"
-msgstr[0] "{number_of} moi"
+msgstr[0] "{number_of} mois"
 msgstr[1] "{number_of} mois"
 
 # trunk

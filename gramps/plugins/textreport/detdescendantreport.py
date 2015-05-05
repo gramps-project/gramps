@@ -909,6 +909,8 @@ class DetDescendantOptions(MenuReportOptions):
         
         stdoptions.add_name_format_option(menu, category)
 
+        stdoptions.add_private_data_option(menu, category)
+
         numbering = EnumeratedListOption(_("Numbering system"), "Henry")
         numbering.set_items([
                 ("Henry",      _("Henry numbering")), 
@@ -933,8 +935,6 @@ class DetDescendantOptions(MenuReportOptions):
         pageben.set_help(
                      _("Whether to start a new page before the end notes."))
         add_option("pageben", pageben)
-
-        stdoptions.add_private_data_option(menu, category)
 
         stdoptions.add_localization_option(menu, category)
 

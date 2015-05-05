@@ -90,7 +90,7 @@ class GeneWebWriter(object):
 
         self.dirname = os.path.dirname (self.filename)
         try:
-            self.g = open(self.filename, "w")
+            self.g = open(self.filename, "wb")
         except IOError as msg:
             msg2 = _("Could not create %s") % self.filename
             self.user.notify_error(msg2, str(msg))

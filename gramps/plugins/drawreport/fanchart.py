@@ -653,6 +653,8 @@ class FanChartOptions(MenuReportOptions):
         pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", pid)
             
+        stdoptions.add_private_data_option(menu, category_name)
+
         max_gen = NumberOption(_("Generations"), 5, 1, self.MAX_GENERATIONS)
         max_gen.set_help(_("The number of generations "
                            "to include in the report"))
@@ -689,8 +691,6 @@ class FanChartOptions(MenuReportOptions):
         same_style.set_help(_("You can customize font and color "
                               "for each generation in the style editor"))
         menu.add_option(category_name, "same_style", same_style)
-
-        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 

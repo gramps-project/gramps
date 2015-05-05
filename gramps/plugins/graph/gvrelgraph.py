@@ -11,8 +11,8 @@
 #    Copyright (C) 2009       Gary Burton
 #    Contribution 2009 by     Bob Ham <rah@bash.sh>
 #    Copyright (C) 2010       Jakim Friant
-#    Copyright (C) 2013-2014  Paul Franklin
 #    Copyright (C) 2013       Fedir Zinchuk <fedikw@gmail.com>
+#    Copyright (C) 2013-2015  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -54,7 +54,6 @@ from gramps.gen.plug.report import Report
 from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
-from gramps.gen.datehandler import get_date
 from gramps.gen.lib import ChildRefType, EventRoleType, EventType
 from gramps.gen.utils.file import media_path_full, find_file
 from gramps.gui.thumbnails import get_thumbnail_path
@@ -102,9 +101,6 @@ class RelGraphReport(Report):
         arrow      - Arrow styles for heads and tails.
         showfamily - Whether to show family nodes.
         incid      - Whether to include IDs.
-        incdate    - Whether to include dates.
-        justyears  - Use years only.
-        use_place  - Whether to replace missing dates with place
         url        - Whether to include URLs.
         inclimg    - Include images or not
         imgpos     - Image position, above/beside name
@@ -118,6 +114,7 @@ class RelGraphReport(Report):
         use_roundedcorners - Whether to use rounded corners for females
         name_format    - Preferred format to display names
         incl_private   - Whether to include private data
+        event_choice   - Whether to include dates and/or places
         """
         Report.__init__(self, database, options, user)
 
@@ -128,16 +125,14 @@ class RelGraphReport(Report):
         stdoptions.run_private_data_option(self, menu)
 
         self.includeid = get_value('incid')
-        self.includedates = get_value('incdate')
         self.includeurl = get_value('url')
         self.includeimg = get_value('includeImages')
         self.imgpos     = get_value('imageOnTheSide')
         self.use_roundedcorners = get_value('useroundedcorners')
         self.adoptionsdashed = get_value('dashed')
         self.show_families = get_value('showfamily')
-        self.just_years = get_value('justyears')
-        self.use_place = get_value('use_place')
         self.use_subgraphs = get_value('usesubgraphs')
+        self.event_choice = get_value('event_choice')
 
         self.colorize = get_value('color')
         color_males = get_value('colormales')
@@ -292,28 +287,47 @@ class RelGraphReport(Report):
     def __add_family(self, fam_handle):
         """Add a node for a family and optionally link the spouses to it"""
         fam = self.database.get_family_from_handle(fam_handle)
-        if fam is None: # perhaps from privacy proxy
+        if fam is None:
             return
         fam_id = fam.get_gramps_id()
 
-        label = ""
+        date_label = place_label = None
         for event_ref in fam.get_event_ref_list():
             event = self.database.get_event_from_handle(event_ref.ref)
-            if event is None: # perhaps from privacy proxy
+            if event is None:
                 continue
-            if event.type == EventType.MARRIAGE and \
-              (event_ref.get_role() == EventRoleType.FAMILY or 
-               event_ref.get_role() == EventRoleType.PRIMARY):
-                label = self.get_event_string(event)
+            if (event.type == EventType.MARRIAGE and
+                (event_ref.get_role() == EventRoleType.FAMILY or 
+                 event_ref.get_role() == EventRoleType.PRIMARY)
+               ):
+                date_label = self.get_date_string(event)
+                if not (self.event_choice == 3 and date_label):
+                    place_label = self.get_place_string(event)
                 break
-        if self.includeid == 1 and label: # same line
-            label = "%s (%s)" % (label, fam_id)
-        elif self.includeid == 1 and not label:
+        if self.includeid == 0 and not date_label and not place_label:
+            label = ""
+        elif self.includeid == 0 and not date_label and place_label:
+            label = "(%s)" % place_label
+        elif self.includeid == 0 and date_label and not place_label:
+            label = "(%s)" % date_label
+        elif self.includeid == 0 and date_label and place_label:
+            label = "(%s)\\n(%s)" % (date_label, place_label)
+        elif self.includeid == 1 and not date_label and not place_label:
             label = "(%s)" % fam_id
-        elif self.includeid == 2 and label: # own line
-            label = "%s\\n(%s)" % (label, fam_id)
-        elif self.includeid == 2 and not label:
+        elif self.includeid == 1 and not date_label and place_label:
+            label = "(%s) (%s)" % (fam_id, place_label) # id on same line
+        elif self.includeid == 1 and date_label and not place_label:
+            label = "(%s) (%s)" % (fam_id, date_label) # id on same line
+        elif self.includeid == 1 and date_label and place_label:
+            label = "(%s) (%s)\\n(%s)" % (fam_id, date_label, place_label)
+        elif self.includeid == 2 and not date_label and not place_label:
             label = "(%s)" % fam_id
+        elif self.includeid == 2 and not date_label and place_label:
+            label = "(%s)\\n(%s)" % (fam_id, place_label) # id on own line
+        elif self.includeid == 2 and date_label and not place_label:
+            label = "(%s)\\n(%s)" % (fam_id, date_label) # id on own line
+        elif self.includeid == 2 and date_label and place_label:
+            label = "(%s)\\n(%s)\\n(%s)" % (fam_id, date_label, place_label)
         color = ""
         fill = ""
         style = "solid"
@@ -436,16 +450,27 @@ class RelGraphReport(Report):
         if self.includeid == 1: # same line
             label += " (%s)" % p_id
         elif self.includeid == 2: # own line
-            label = "%s%s(%s)" % (label, lineDelimiter, p_id)
-        if self.includedates:
-            birth, death = self.get_date_strings(person)
-            if birth or death:
+            label += "%s(%s)" % (lineDelimiter, p_id)
+        if self.event_choice != 0:
+            b_date, d_date, b_place, d_place = self.get_event_strings(person)
+            if self.event_choice in [1, 2, 3, 4, 5] and (b_date or d_date):
                 label += '%s(' % lineDelimiter
-                if birth:
-                    label += '%s' % birth
+                if b_date:
+                    label += '%s' % b_date
                 label += ' - '
-                if death:
-                    label += '%s' % death
+                if d_date:
+                    label += '%s' % d_date
+                label += ')'
+            if (self.event_choice in [2, 3, 5, 6] and
+                (b_place or d_place) and
+                not (self.event_choice == 3 and (b_date or d_date))
+               ):
+                label += '%s(' % lineDelimiter
+                if b_place:
+                    label += '%s' % b_place
+                label += ' - '
+                if d_place:
+                    label += '%s' % d_place
                 label += ')'
 
         if self.increlname and self.center_person != person:
@@ -472,41 +497,53 @@ class RelGraphReport(Report):
             # non html label is enclosed by "" so escape other "
             return label.replace('"', '\\\"')
     
-    def get_date_strings(self, person):
+    def get_event_strings(self, person):
         "returns tuple of birth/christening and death/burying date strings"
+
+        birth_date = birth_place = death_date = death_place = ""
+
         birth_event = get_birth_or_fallback(self.database, person)
         if birth_event:
-            birth = self.get_event_string(birth_event)
-        else:
-            birth = ""
+            birth_date = self.get_date_string(birth_event)
+            birth_place = self.get_place_string(birth_event)
 
         death_event = get_death_or_fallback(self.database, person)
         if death_event:
-            death = self.get_event_string(death_event)
-        else:
-            death = ""
+            death_date = self.get_date_string(death_event)
+            death_place = self.get_place_string(death_event)
 
-        return (birth, death)
+        return (birth_date, death_date, birth_place, death_place)
 
-    def get_event_string(self, event):
+    def get_date_string(self, event):
         """
-        return string for for an event label.
+        return date string for an event label.
         
         Based on the data availability and preferences, we select one
         of the following for a given event:
             year only
             complete date
+            empty string
+        """
+        if event and event.get_date_object() is not None:
+            event_date = event.get_date_object()
+            if event_date.get_year_valid():
+                if self.event_choice in [4, 5]:
+                    return '%i' % event_date.get_year()
+                elif self.event_choice in [1, 2, 3]:
+                    return self._get_date(event_date)
+        return ''
+
+    def get_place_string(self, event):
+        """
+        return place string for an event label.
+        
+        Based on the data availability and preferences, we select one
+        of the following for a given event:
             place name
             empty string
         """
-        if event:
-            if event.get_date_object().get_year_valid():
-                if self.just_years:
-                    return '%i' % event.get_date_object().get_year()
-                elif self.includedates:
-                    return self._get_date(event.get_date_object())
-            elif self.use_place:
-                return place_displayer.display_event(self.database, event)
+        if event and self.event_choice in [2, 3, 5, 6]:
+            return place_displayer.display_event(self.database, event)
         return ''
 
 #------------------------------------------------------------------------
@@ -542,11 +579,13 @@ class RelGraphOptions(MenuReportOptions):
         
         self.__pid = PersonOption(_("Center Person"))
         self.__pid.set_help(_("The center person for the report"))
-        add_option("pid", self.__pid)
+        menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
+
+        self._nf = stdoptions.add_name_format_option(menu, category_name)
+        self._nf.connect('value-changed', self.__update_filters)
+
         self.__update_filters()
-        
-        stdoptions.add_name_format_option(menu, category_name)
 
         stdoptions.add_private_data_option(menu, category_name)
 
@@ -556,25 +595,23 @@ class RelGraphOptions(MenuReportOptions):
         add_option = partial(menu.add_option, _("Include"))
         ################################
 
-        self.incdate = BooleanOption(
-                            _("Include Birth, Marriage and Death dates"), True)
-        self.incdate.set_help(_("Include the dates that the individual was "
-                          "born, got married and/or died in the graph labels."))
-        add_option("incdate", self.incdate)
-        self.incdate.connect('value-changed', self.__include_dates_changed)
-        
-        self.justyears = BooleanOption(_("Limit dates to years only"), False)
-        self.justyears.set_help(_("Prints just dates' year, neither "
-                                  "month or day nor date approximation "
-                                  "or interval are shown."))
-        add_option("justyears", self.justyears)
-        
-        use_place = BooleanOption(_("Use place when no date"), True)
-        use_place.set_help(_("When no birth, marriage, or death date is "
-                              "available, the correspondent place field "
-                              "will be used."))
-        add_option("use_place", use_place)
-        
+        self.event_choice = EnumeratedListOption(_('Dates and/or Places'), 0)
+        self.event_choice.add_item(0, _('Do not include any dates or places'))
+        self.event_choice.add_item(1, _('Include (birth, marriage, death) '
+                                         'dates, but no places'))
+        self.event_choice.add_item(2, _('Include (birth, marriage, death) '
+                                         'dates, and places'))
+        self.event_choice.add_item(3, _('Include (birth, marriage, death) '
+                                         'dates, and places if no dates'))
+        self.event_choice.add_item(4, _('Include (birth, marriage, death) '
+                                         'years, but no places'))
+        self.event_choice.add_item(5, _('Include (birth, marriage, death) '
+                                         'years, and places'))
+        self.event_choice.add_item(6, _('Include (birth, marriage, death) '
+                                         'places, but no dates'))
+        self.event_choice.set_help(_("Whether to include dates and/or places"))
+        add_option("event_choice", self.event_choice)
+
         url = BooleanOption(_("Include URLs"), False)
         url.set_help(_("Include a URL in each graph node so "
                        "that PDF and imagemap files can be "
@@ -681,18 +718,12 @@ class RelGraphOptions(MenuReportOptions):
         """
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
-        filter_list = ReportUtils.get_person_filters(person, False)
+        nfv = self._nf.get_value()
+        filter_list = ReportUtils.get_person_filters(person,
+                                                     include_single=False,
+                                                     name_format=nfv)
         self.__filter.set_filters(filter_list)
         
-    def __include_dates_changed(self):
-        """
-        Enable/disable menu items if dates are required
-        """
-        if self.incdate.get_value():
-            self.justyears.set_available(True)
-        else:
-            self.justyears.set_available(False)
-
     def __filter_changed(self):
         """
         Handle filter change. If the filter is not specific to a person,

@@ -114,6 +114,8 @@ class FamilyGroup(Report):
         if event:
             date = self._get_date(event.get_date_object())
             place = place_displayer.display_event(self.database, event)
+            if place is None:
+                place = ''
             descr = event.get_description()
             
             if self.includeAttrs:
@@ -405,6 +407,8 @@ class FamilyGroup(Report):
             place_handle = event.get_place_handle()
             if place_handle:
                 place = place_displayer.display_event(self.database, event)
+                if place is None:
+                    place = ''
 
         self.doc.start_row()
         self.doc.start_cell(text)
@@ -642,13 +646,13 @@ class FamilyGroupOptions(MenuReportOptions):
 
         stdoptions.add_name_format_option(menu, category_name)
         
+        stdoptions.add_private_data_option(menu, category_name)
+
         recursive = BooleanOption(_('Recursive'),False)
         recursive.set_help(_("Create reports for all descendants "
                              "of this family."))
         add_option("recursive", recursive)
         
-        stdoptions.add_private_data_option(menu, category_name)
-
         stdoptions.add_localization_option(menu, category_name)
 
         ##########################

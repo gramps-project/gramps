@@ -31,7 +31,7 @@ import libxslt
 
 from gramps.plugins.lib.libgrampsxml import GRAMPS_XML_VERSION
 from ...const import ROOT_DIR, USER_PLUGINS
-from ....version import VERSION
+from gramps.version import VERSION
 from ...lib import Name, Surname
 from ...const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext

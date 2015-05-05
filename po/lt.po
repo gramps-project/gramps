@@ -22397,7 +22397,7 @@ msgstr "Bet kuri pastabos nuoroda privalo turėti \"hlink\" požymį."
 #. but you may re-order them if needed.
 #: ../gramps/plugins/importer/importxml.py:2495
 msgid "Invalid date {date} in XML {xml}, preserving XML as text"
-msgstr "Negalimą datą {data}, esančią {xml}, išsaugojo XML kaip tekstą."
+msgstr "Negalimą datą {date}, esančią {xml}, išsaugojo XML kaip tekstą."
 
 #: ../gramps/plugins/importer/importxml.py:2545
 #, python-format

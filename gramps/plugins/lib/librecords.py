@@ -4,7 +4,7 @@
 #
 # Copyright (C) 2008-2011 Reinhard Müller
 # Copyright (C) 2010      Jakim Friant
-# Copyright (C) 2013      Paul Franklin
+# Copyright (C) 2013-2015 Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -91,11 +91,13 @@ def _find_death_date(db, person):
     return None
 
 def find_records(db, filter, top_size, callname,
-                 trans_text=glocale.translation.sgettext):
+                 trans_text=glocale.translation.sgettext, name_format=None):
     """
     @param trans_text: allow deferred translation of strings
     @type trans_text: a GrampsLocale sgettext instance
     trans_text is a defined keyword (see po/update_po.py, po/genpot.sh)
+    :param name_format: optional format to control display of person's name
+    :type name_format: None or int
     """
 
     today = datetime.date.today()
@@ -139,7 +141,8 @@ def find_records(db, filter, top_size, callname,
             # Birth date unknown or incomplete, so we can't calculate any age.
             continue
 
-        name = _get_styled_primary_name(person, callname)
+        name = _get_styled_primary_name(person, callname,
+                                        name_format=name_format)
 
         if death_date is None:
             if probably_alive(person, db):
@@ -238,8 +241,10 @@ def find_records(db, filter, top_size, callname,
         mother = db.get_person_from_handle(mother_handle)
 
         name = StyledText(trans_text("%(father)s and %(mother)s")) % {
-                'father': _get_styled_primary_name(father, callname),
-                'mother': _get_styled_primary_name(mother, callname)}
+                'father': _get_styled_primary_name(father, callname,
+                                                   name_format=name_format),
+                'mother': _get_styled_primary_name(mother, callname,
+                                                   name_format=name_format)}
 
         _record(None, family_mostchildren,
                 len(family.get_child_ref_list()),
@@ -349,7 +354,7 @@ CALLNAME_DONTUSE = 0
 CALLNAME_REPLACE = 1
 CALLNAME_UNDERLINE_ADD = 2
 
-def _get_styled(name, callname, placeholder=False):
+def _get_styled(name, callname, placeholder=False, name_format=None):
     """
     Return a StyledText object with the name formatted according to the
     parameters:
@@ -383,7 +388,11 @@ def _get_styled(name, callname, placeholder=False):
                         'call':  n.call,
                         'first': n.first_name}
 
+    real_format = name_displayer.get_default_format()
+    if name_format is not None:
+        name_displayer.set_default_format(name_format)
     text = name_displayer.display_name(n)
+    name_displayer.set_default_format(real_format)
     tags = []
 
     if n.call:
@@ -398,7 +407,8 @@ def _get_styled(name, callname, placeholder=False):
 
     return StyledText(text, tags)
 
-def _get_styled_primary_name(person, callname, placeholder=False):
+def _get_styled_primary_name(person, callname,
+                             placeholder=False, name_format=None):
     """
     Return a StyledText object with the person's name formatted according to
     the parameters:
@@ -410,4 +420,5 @@ def _get_styled_primary_name(person, callname, placeholder=False):
         placeholder if first name or surname are missing.
     """
 
-    return _get_styled(person.get_primary_name(), callname, placeholder)
+    return _get_styled(person.get_primary_name(), callname,
+                       placeholder, name_format)

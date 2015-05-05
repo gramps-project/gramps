@@ -386,6 +386,7 @@ class Extract(object):
     def get_surname(self, person):
         "return surnames for given person"
         # TODO: return all surnames, not just primary ones...
+        # TODO: have the surname fromatted according to the name_format too
         surnames = person.get_primary_name().get_surname().strip()
         if surnames:
             return surnames.split()
@@ -727,8 +728,14 @@ class StatisticsChart(Report):
         get_option_by_name = menu.get_option_by_name
         get_value = lambda name: get_option_by_name(name).get_value()
 
+        lang = menu.get_option_by_name('trans').get_value()
+        rlocale = self.set_locale(lang)
+        # override default gettext, or English output will have "person|Title"
+        self._ = rlocale.translation.sgettext
+
         self.filter_option = get_option_by_name('filter')
         self.filter = self.filter_option.get_filter()
+        filter_name = self.filter.get_name(rlocale)
 
         self.bar_items = get_value('bar_items')
         year_from = get_value('year_from')
@@ -737,9 +744,9 @@ class StatisticsChart(Report):
 
         # title needs both data extraction method name + gender name
         if gender == Person.MALE:
-            genders = _("Men")
+            genders = self._("Men")
         elif gender == Person.FEMALE:
-            genders = _("Women")
+            genders = self._("Women")
         else:
             genders = None
 
@@ -750,10 +757,14 @@ class StatisticsChart(Report):
             'year_to': year_to
         }
 
-        lang = menu.get_option_by_name('trans').get_value()
-        rlocale = self.set_locale(lang)
-        # override default gettext, or English output will have "person|Title"
-        self._ = rlocale.translation.sgettext
+        if genders:
+            span_string = self._("%(genders)s born "
+                                 "%(year_from)04d-%(year_to)04d"
+                                         % mapping )
+        else:
+            span_string = self._("Persons born "
+                                 "%(year_from)04d-%(year_to)04d"
+                                         % mapping )
 
         # extract requested items from the database and count them
         self._user.begin_progress(_('Statistics Charts'), 
@@ -774,15 +785,10 @@ class StatisticsChart(Report):
             # generate sorted item lookup index index
             lookup = self.index_items(table[1], sortby, reverse)
             # document heading
-            mapping['chart_title'] = self._(table[0])
-            if genders:
-                heading = self._("%(genders)s born "
-                                 "%(year_from)04d-%(year_to)04d: "
-                                 "%(chart_title)s") % mapping
-            else:
-                heading = self._("Persons born "
-                                 "%(year_from)04d-%(year_to)04d: "
-                                 "%(chart_title)s") % mapping
+            heading = "%(str1)s -- %(str2)s\n%(str3)s" % {
+                        'str1' : self._(table[0]),
+                        'str2' : span_string,
+                        'str3' : filter_name }
             self.data.append((heading, table[0], table[1], lookup))
             self._user.step_progress()
         self._user.end_progress()
@@ -892,7 +898,7 @@ class StatisticsChart(Report):
         mark = IndexMark(title, INDEX_TYPE_TOC, 2)
         self.doc.center_text('SC-title', title, middle, 0, mark)
         pstyle = style_sheet.get_paragraph_style('SC-Title')
-        yoffset = pt2cm(pstyle.get_font().get_size())
+        yoffset = 2 * pt2cm(pstyle.get_font().get_size())
         #print title
 
         # header
@@ -950,11 +956,16 @@ class StatisticsChartOptions(MenuReportOptions):
         
         self.__pid = PersonOption(_("Filter Person"))
         self.__pid.set_help(_("The center person for the filter."))
-        add_option("pid", self.__pid)
+        menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
-        
+
+        self._nf = stdoptions.add_name_format_option(menu, category_name)
+        self._nf.connect('value-changed', self.__update_filters)
+
         self.__update_filters()
         
+        stdoptions.add_private_data_option(menu, category_name)
+
         sortby = EnumeratedListOption(_('Sort chart items by'),
                                       _options.SORT_VALUE )
         for item_idx in range(len(_options.opt_sorts)):
@@ -998,8 +1009,6 @@ class StatisticsChartOptions(MenuReportOptions):
                              "used instead of a bar chart."))
         add_option("bar_items", bar_items)
 
-        stdoptions.add_private_data_option(menu, category_name)
-
         stdoptions.add_localization_option(menu, category_name)
 
         # -------------------------------------------------
@@ -1031,7 +1040,10 @@ class StatisticsChartOptions(MenuReportOptions):
         """
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
-        filter_list = ReportUtils.get_person_filters(person, False)
+        nfv = self._nf.get_value()
+        filter_list = ReportUtils.get_person_filters(person,
+                                                     include_single=False,
+                                                     name_format=nfv)
         self.__filter.set_filters(filter_list)
         
     def __filter_changed(self):

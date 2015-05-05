@@ -1504,6 +1504,8 @@ class DescendTreeOptions(MenuReportOptions):
 
         stdoptions.add_name_format_option(menu, category_name)
 
+        stdoptions.add_private_data_option(menu, category_name)
+
         self.showparents = BooleanOption(
             _('Start with the parent(s) of the selected first'),
             False)
@@ -1526,8 +1528,6 @@ class DescendTreeOptions(MenuReportOptions):
         compresst.set_help(_("Whether to move people up, where possible, "
         "resulting in a smaller tree"))
         menu.add_option(category_name, "compress_tree", compresst)
-
-        stdoptions.add_private_data_option(menu, category_name)
 
         stdoptions.add_localization_option(menu, category_name)
 

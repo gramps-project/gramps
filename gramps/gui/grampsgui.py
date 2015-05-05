@@ -31,7 +31,7 @@ LOG = logging.getLogger(".grampsgui")
 
 #-------------------------------------------------------------------------
 #
-# GRAMPS Modules
+# Gramps Modules
 #
 #-------------------------------------------------------------------------
 from gramps.gen.config import config
@@ -193,7 +193,7 @@ def register_stock_icons ():
         ('gramps-zoom-best-fit', _('Fit Page'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
         ('gramps-citation', _('Citations'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
         ]
-    # the following icons are not yet in new directory structure
+    #TODO# the following icons are not yet in new directory structure
     # they should be ported in the near future
     items_legacy = [
          ('gramps-export', _('Export'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
@@ -365,7 +365,7 @@ def __startgramps(errors, argparser):
     "by changing the last-view parameter.\n"
                    ), exc_info=True)
     
-    # start GRAMPS, errors stop the gtk loop
+    # start Gramps, errors stop the gtk loop
     try:
         quit_now = False
         exit_code = 0
@@ -383,7 +383,7 @@ def __startgramps(errors, argparser):
                       % e.code, exc_info=True)
     except OSError as e:
         quit_now = True
-        exit_code = e[0] or 1
+        exit_code = e.errno or 1
         try:
             fn = e.filename
         except AttributeError:
@@ -412,7 +412,7 @@ def __startgramps(errors, argparser):
     return False
 
 def startgtkloop(errors, argparser):
-    """ We start the gtk loop and run the function to start up GRAMPS
+    """ We start the gtk loop and run the function to start up Gramps
     """
     if GObject.pygobject_version < (3, 10, 2):
         GObject.threads_init()

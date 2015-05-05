@@ -53,6 +53,10 @@ from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
 #------------------------------------------------------------------------ 
 cal = config.get('preferences.calendar-format-report')
 
+# _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
+def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
+    return value
+
 #------------------------------------------------------------------------
 #
 # Private Functions
@@ -60,8 +64,8 @@ cal = config.get('preferences.calendar-format-report')
 #------------------------------------------------------------------------
 def _get_sort_functions(sort):
     return [
-        (_("sorted by|Birth Date"),sort.by_birthdate_key),
-        (_("sorted by|Name"),sort.by_last_name_key), 
+        (_T_("sorted by|Birth Date"),sort.by_birthdate_key),
+        (_T_("sorted by|Name"),sort.by_last_name_key),
 ]
 
 #------------------------------------------------------------------------
@@ -100,13 +104,14 @@ class TimeLine(Report):
         self.filter = menu.get_option_by_name('filter').get_filter()
 
         self._lang = options.menu.get_option_by_name('trans').get_value()
-        self.set_locale(self._lang)
+        self._locale = self.set_locale(self._lang)
+        self._ = self._locale.translation.sgettext
 
         stdoptions.run_name_format_option(self, menu)
 
         sort_func_num = menu.get_option_by_name('sortby').get_value()
         sort_functions = _get_sort_functions(Sort(self.database))
-        self.sort_name = sort_functions[sort_func_num][0]
+        self.sort_name = self._(sort_functions[sort_func_num][0])
         self.sort_func = sort_functions[sort_func_num][1]
         self.calendar = config.get('preferences.calendar-format-report')
 
@@ -246,39 +251,19 @@ class TimeLine(Report):
         Draws the title for the page.
         """
         width = self.doc.get_usable_width()
-        # feature request 2356: avoid genitive form
-        # FIXME the %(author)s was chosen because it already existed in the
-        # gramps.pot file (in a "string freeze") so should probably be changed
-        # FIXME this concatenation will fail for RTL languages
-        title_two = ( self._("Created for %(author)s")
-                          % { 'author' : self.filter.get_name() } +
-                      ' -- ' +
-                      self._("Sorted by %s") % self.sort_name )
-        # feature request 2356: avoid genitive form
         title_one = self._("Timeline Chart")
-        # FIXME the "Timeline Chart" was chosen because it already existed in
-        # the gramps.pot file (in a "string freeze"); make it "Timeline Graph"
-        if self._lang == 'default':
-            title = title_one + "\n" + title_two
-        else:
-            title = title_one # FIXME
-            # The only way which I thought of to get a desired non-English
-            # filter name if the starting UI is a non-English one, was to
-            # change ReportUtils.get_person_filters so that it creates the
-            # filters with English (untranslated) names, but that would mean
-            # changing every filter.get_name() in every place that the
-            # get_person_filters filters are used, to always translate the
-            # get_name, and I wasn't in the mood to do that to all of them,
-            # so until that happen -- assuming it works, since I didn't try
-            # it to see, since the person's name will be in get_person_filters
-            # but the deferred translation will be where the filter.get_name()
-            # is, so it might not work at all -- but until it does, or another
-            # way is found, there will be no translated subtitle, only a
-            # subtitle if the report's output is in the main/UI language
+        title_two = "%(str1)s -- %(str2)s" % {
+                        'str1' : self.filter.get_name(self._locale),
+                        # feature request 2356: avoid genitive form
+                        'str2' : self._("Sorted by %s") % self.sort_name }
         mark = None
         if toc:
-            mark = IndexMark(title, INDEX_TYPE_TOC, 1)
-        self.doc.center_text('TLG-title', title, width / 2.0, 0, mark)
+            mark = IndexMark(title_one, INDEX_TYPE_TOC, 1)
+        self.doc.center_text('TLG-title', title_one, width / 2.0, 0, mark)
+        style_sheet = self.doc.get_style_sheet()
+        title_font = style_sheet.get_paragraph_style('TLG-Title').get_font()
+        title_y = 1.2 - (pt2cm(title_font.get_size()) * 1.2)
+        self.doc.center_text('TLG-title', title_two, width / 2.0, title_y)
         
     def draw_year_headings(self, year_low, year_high, start_pos, stop_pos):
         """
@@ -408,20 +393,21 @@ class TimeLineOptions(MenuReportOptions):
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
 
+        self._nf = stdoptions.add_name_format_option(menu, category_name)
+        self._nf.connect('value-changed', self.__update_filters)
+
         self.__update_filters()
-        
-        stdoptions.add_name_format_option(menu, category_name)
+
+        stdoptions.add_private_data_option(menu, category_name)
 
         sortby = EnumeratedListOption(_('Sort by'), 0 )
         idx = 0
         for item in _get_sort_functions(Sort(self.__db)):
-            sortby.add_item(idx,item[0])
+            sortby.add_item(idx, _(item[0]))
             idx += 1
         sortby.set_help( _("Sorting method to use"))
         menu.add_option(category_name,"sortby",sortby)
                 
-        stdoptions.add_private_data_option(menu, category_name)
-
         stdoptions.add_localization_option(menu, category_name)
 
     def __update_filters(self):
@@ -430,7 +416,10 @@ class TimeLineOptions(MenuReportOptions):
         """
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
-        filter_list = ReportUtils.get_person_filters(person, False)
+        nfv = self._nf.get_value()
+        filter_list = ReportUtils.get_person_filters(person,
+                                                     include_single=False,
+                                                     name_format=nfv)
         self.__filter.set_filters(filter_list)
         
     def __filter_changed(self):

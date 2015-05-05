@@ -50,9 +50,10 @@ class Progress(object):
     Mirros the same interface that the ExportAssistant uses in the
     selection, but this is for the preview selection.
     """
-    def __init__(self):
+    def __init__(self, uistate):
         from gi.repository import Gtk
-        self.pm = ProgressMeter(_("Selecting Preview Data"), _('Selecting...'))
+        self.pm = ProgressMeter(_("Selecting Preview Data"), _('Selecting...'),
+                                parent=uistate.window)
         self.progress_cnt = 0
         self.title = _("Selecting...")
         while Gtk.events_pending():
@@ -239,7 +240,7 @@ class WriterOptionBox(object):
         Calculate previews to see the selected data.
         """
         self.parse_options()
-        pm = Progress()
+        pm = Progress(self.uistate)
         self.preview_dbase = self.get_filtered_database(self.dbstate.db, pm, preview=True)
         pm.close()
         self.preview_button.set_sensitive(0)

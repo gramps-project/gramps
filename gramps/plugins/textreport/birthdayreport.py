@@ -423,10 +423,13 @@ class BirthdayOptions(MenuReportOptions):
         self.__pid.set_help(_("The center person for the report"))
         menu.add_option(category_name, "pid", self.__pid)
         self.__pid.connect('value-changed', self.__update_filters)
-        
+
+        self._nf = stdoptions.add_name_format_option(menu, category_name)
+        self._nf.connect('value-changed', self.__update_filters)
+
         self.__update_filters()
 
-        stdoptions.add_name_format_option(menu, category_name)
+        stdoptions.add_private_data_option(menu, category_name)
 
         country = EnumeratedListOption(_("Country for holidays"), 0)
         holiday_table = libholiday.HolidayTable()
@@ -456,8 +459,6 @@ class BirthdayOptions(MenuReportOptions):
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
         menu.add_option(category_name, "maiden_name", maiden_name)
-
-        stdoptions.add_private_data_option(menu, category_name)
 
         alive = BooleanOption(_("Include only living people"), True)
         alive.set_help(_("Include only living people in the report"))
@@ -502,7 +503,10 @@ class BirthdayOptions(MenuReportOptions):
         """
         gid = self.__pid.get_value()
         person = self.__db.get_person_from_gramps_id(gid)
-        filter_list = ReportUtils.get_person_filters(person, False)
+        nfv = self._nf.get_value()
+        filter_list = ReportUtils.get_person_filters(person,
+                                                     include_single=False,
+                                                     name_format=nfv)
         self.__filter.set_filters(filter_list)
 
     def make_my_style(self, default_style, name, description, 

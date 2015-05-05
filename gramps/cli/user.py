@@ -109,7 +109,7 @@ class User(user.User):
         """
         self._fileout.write("\r100%\n")
     
-    def prompt(self, title, message, accept_label, reject_label):
+    def prompt(self, title, message, accept_label, reject_label, parent=None):
         """
         Prompt the user with a message to select an alternative.
         
