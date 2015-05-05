@@ -383,7 +383,7 @@ def __startgramps(errors, argparser):
                       % e.code, exc_info=True)
     except OSError as e:
         quit_now = True
-        exit_code = e[0] or 1
+        exit_code = e.errno or 1
         try:
             fn = e.filename
         except AttributeError:
