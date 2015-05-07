@@ -75,10 +75,12 @@ class ListModel(object):
     event_func:     Function called when the user double-clicks on a row.
     mode:           Selection mode for TreeView.  See Gtk documentation.
     list_mode:      "list" or "tree"
+    right_click:    Function called when the user right-clicks on a row.
     """
 
     def __init__(self, tree, dlist, select_func=None, event_func=None, 
-                 mode=Gtk.SelectionMode.SINGLE, list_mode="list"):
+                 mode=Gtk.SelectionMode.SINGLE, list_mode="list", 
+                 right_click=None):
 
         self.tree = tree
         self.tree.set_fixed_height_mode(True)
@@ -86,6 +88,8 @@ class ListModel(object):
         self.data_index = 0
         self.sel_iter = None
         self.list_mode = list_mode # "list", or "tree"
+        self.double_click = None
+        self.right_click = None
 
         for info in dlist:
             col_type = TEXT
@@ -124,8 +128,11 @@ class ListModel(object):
         
         if select_func:
             self.selection.connect('changed', select_func)
-        if event_func:
-            self.double_click = event_func
+        if event_func or right_click:
+            if event_func:
+                self.double_click = event_func
+            if right_click:
+                self.right_click = right_click
             self.tree.connect('button-press-event', self.__button_press)
 
     def __build_image_column(self, cnum, name, renderer, column):
@@ -474,9 +481,15 @@ class ListModel(object):
         """
         Called when a button press is executed
         """
+        from gramps.gui.utils import is_right_click
         if event.type == Gdk.EventType._2BUTTON_PRESS and event.button == 1:
-            self.double_click(obj)
-            return True
+            if self.double_click:
+                self.double_click(obj)
+                return True
+        elif is_right_click(event):
+            if self.right_click:
+                self.right_click(obj, event)
+                return True
         return False
 
     def find(self, info):
