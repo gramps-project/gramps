@@ -34,6 +34,7 @@ _ = glocale.translation.gettext
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
+from gi.repository import Gdk
 
 #------------------------------------------------------------------------
 #
@@ -68,7 +69,8 @@ class Descendant(Gramplet):
                   ('', NOSORT, 1), # tooltip
                   ('', NOSORT, 100)] # handle
         self.model = ListModel(self.view, titles, list_mode="tree", 
-                               event_func=self.cb_double_click)
+                               event_func=self.cb_double_click,
+                               right_click=self.cb_right_click)
         return self.view
 
     def get_has_data(self, active_handle):
@@ -100,6 +102,47 @@ class Descendant(Gramplet):
         except WindowActiveError:
             pass
 
+    def cb_right_click(self, treeview, event):
+        """
+        Handle right click on treeview.
+        """
+        (model, iter_) = treeview.get_selection().get_selected()
+        sensitivity = 1 if iter_ else 0
+        menu = Gtk.Menu()
+        menu.set_title(_('Descendent Menu'))
+        entries = [
+            (_("Edit"), lambda obj: self.cb_double_click(treeview), sensitivity),
+            (None, None, 0),
+            (_("Copy all"), lambda obj: self.on_copy_all(treeview), 1),
+        ]
+        for stock_id, callback, sensitivity in entries:
+            item = Gtk.ImageMenuItem(stock_id)
+            if callback:
+                item.connect("activate", callback)
+            item.set_sensitive(sensitivity)
+            item.show()
+            menu.append(item)
+        self.menu = menu
+        self.menu.popup(None, None, None, None, event.button, event.time)
+
+    def on_copy_all(self, treeview):
+        def rows2text(store, treeiter, indent, level):
+            text = ""
+            while treeiter != None:
+                text += (indent + str(level) + ". " + store[treeiter][0] + " " + store[treeiter][1] + "\n")
+                if store.iter_has_child(treeiter):
+                    childiter = store.iter_children(treeiter)
+                    text += rows2text(store, childiter, indent + (" " * 4), level + 1)
+                treeiter = store.iter_next(treeiter)
+            return text
+        
+        model = treeview.get_model()
+        rootiter = model.get_iter_first()
+        text = rows2text(model, rootiter, "", 1)
+        clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+                                                  Gdk.SELECTION_CLIPBOARD)
+        clipboard.set_text(text, -1)
+    
     def db_changed(self):
         self.update()
 
