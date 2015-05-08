@@ -10,9 +10,9 @@ SHA1=$(lastword $(subst ~g, ,$(UPSTREAM)))
 ORIG=${SOURCEPKG}_${UPSTREAM}.orig.tar.gz
 
 %:
-	dh $@ --with python2
+	dh $@
 
-# Override auto test because upstream do not use the standard unittest discover
+# Override auto test until I know how to run only the webapp ones
 override_dh_auto_test:
 
 # Use webapp clean target
@@ -20,11 +20,11 @@ override_dh_clean:
 	dh_clean
 	$(MAKE) -C gramps/webapp clean
 
-# Override of auto_build
+# Override of auto_build to use webapp makefile
 override_dh_auto_build:
-	python setup.py build
+	$(MAKE) -C gramps/webapp
 
-# Override of auto_install to remove information from package
+# Override of auto_install as webapp has no install target
 override_dh_auto_install:
 	#dh_auto_install
 	# Remove duplicate copyright information
@@ -33,18 +33,18 @@ override_dh_auto_install:
 	#rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/INSTALL
 	# Remove duplicate license information
 	#rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/LICENSE
-	python setup.py install --root=debian/python-gramps --install-layout=deb
+	#python setup.py install --root=debian/python-gramps --install-layout=deb
 
 # Make css style sheets and png icons non-executable
-override_dh_fixperms:
-	dh_fixperms
-	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/css/Web_*.css
-	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/22x22/gramps*.png
-	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/16x16/gramps*.png
+#override_dh_fixperms:
+	#dh_fixperms
+	#chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/css/Web_*.css
+	#chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/22x22/gramps*.png
+	#chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/16x16/gramps*.png
 
 # Avoid compressing COPYING file so that it can appear in the "About" dialog
-override_dh_compress:
-	dh_compress -X COPYING
+#override_dh_compress:
+	#dh_compress -X COPYING
 
 describe-current-version:
 	#This adds current git hash to a previous tagged version
