@@ -32,7 +32,7 @@ import os
 #
 #------------------------------------------------------------------------
 from gramps.gen.const import IMAGE_DIR, ROOT_DIR, DATA_DIR
-from django.conf.urls.defaults import *
+from django.conf.urls import patterns, url, include
 from django.contrib import admin
 
 admin.autodiscover()

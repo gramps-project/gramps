@@ -484,7 +484,7 @@ class PrimaryObject(models.Model):
                                         blank=True) # user edits
     last_changed_by = models.TextField(blank=True, null=True)
 
-    private = models.BooleanField('private')
+    private = models.BooleanField('private', default=True)
     public = models.BooleanField('public', default=True)
     #attributes = models.ManyToManyField("Attribute", blank=True, null=True)
     cache = models.TextField(blank=True, null=True)
@@ -566,7 +566,7 @@ class Person(PrimaryObject):
     The model for the person object
     """
     gender_type = models.ForeignKey('GenderType', verbose_name="Gender")
-    probably_alive = models.BooleanField("Probably alive")
+    probably_alive = models.BooleanField("Probably alive", default=True)
     families = models.ManyToManyField('Family', blank=True, null=True, through="MyFamilies")
     parent_families = models.ManyToManyField('Family', 
                                              related_name="parent_families",
@@ -738,7 +738,7 @@ class Media(DateObject, PrimaryObject):
 class Note(PrimaryObject):
     note_type = models.ForeignKey('NoteType', verbose_name="Type")
     text  = models.TextField(blank=True)
-    preformatted = models.BooleanField('preformatted')
+    preformatted = models.BooleanField('preformatted', default=True)
     references = generic.GenericRelation('NoteRef', #related_name="refs",
                                          content_type_field="object_type",
                                          object_id_field="object_id")
@@ -759,7 +759,7 @@ class SecondaryObject(models.Model):
     """
     class Meta: abstract = True
 
-    private = models.BooleanField()
+    private = models.BooleanField(default=True)
     last_saved = models.DateTimeField('last changed', auto_now=True)
     last_changed = models.DateTimeField('last changed', null=True,
                                         blank=True) # user edits
@@ -776,7 +776,7 @@ class Surname(models.Model):
                                          default=2)
     surname = models.TextField(blank=True)
     prefix = models.TextField(blank=True)
-    primary = models.BooleanField('Primary surname?')
+    primary = models.BooleanField('Primary surname?', default=True)
     connector = models.TextField(blank=True)
     name = models.ForeignKey("Name")
     order = models.PositiveIntegerField()
@@ -794,7 +794,7 @@ class Name(DateObject, SecondaryObject):
     name_type = models.ForeignKey('NameType', verbose_name="Type",
                                   related_name="name_code",
                                   default=2)
-    preferred = models.BooleanField('Preferred name?')
+    preferred = models.BooleanField('Preferred name?', default=True)
     first_name = models.TextField(blank=True)
     suffix = models.TextField(blank=True)
     title = models.TextField(blank=True)
@@ -898,14 +898,14 @@ class SourceAttribute(models.Model):
     key = models.CharField(max_length=80, blank=True)
     value = models.CharField(max_length=80, blank=True)
     source = models.ForeignKey("Source")
-    private = models.BooleanField()
+    private = models.BooleanField(default=True)
     order = models.PositiveIntegerField()
 
 class CitationAttribute(models.Model):
     key = models.CharField(max_length=80, blank=True)
     value = models.CharField(max_length=80, blank=True)
     citation = models.ForeignKey("Citation")
-    private = models.BooleanField()
+    private = models.BooleanField(default=True)
     order = models.PositiveIntegerField()
 
 class Address(DateObject, SecondaryObject):
@@ -933,7 +933,7 @@ class Location(models.Model):
     address = models.ForeignKey("Address", null=True, blank=True)
 
 class Url(models.Model):
-    private = models.BooleanField('private url?')
+    private = models.BooleanField('private url?', default=True)
     path = models.TextField(blank=True, null=True)
     desc = models.TextField(blank=True, null=True)
     url_type = models.ForeignKey('UrlType') 
@@ -944,7 +944,7 @@ class Url(models.Model):
     repository = models.ForeignKey("Repository", null=True, blank=True)
 
 class Attribute(models.Model):
-    private = models.BooleanField('private attribute?')
+    private = models.BooleanField('private attribute?', default=True)
     attribute_type = models.ForeignKey('AttributeType') 
     value = models.TextField(blank=True, null=True)
 
@@ -974,7 +974,7 @@ class BaseRef(models.Model):
     last_changed_by = models.TextField(blank=True, null=True)
 
     #attributes = models.ManyToManyField("Attribute", null=True)
-    private = models.BooleanField()
+    private = models.BooleanField(default=True)
 
     def get_url(self):
         # /person/3536453463/reference/event/2
