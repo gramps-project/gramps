@@ -16,7 +16,7 @@ ORIG=${SOURCEPKG}_${UPSTREAM}.orig.tar.gz
 override_dh_auto_test:
 
 # Use webapp clean target
-override_dh_clean:
+override_dh_auto_clean:
 	dh_clean
 	$(MAKE) -C gramps/webapp clean
 
