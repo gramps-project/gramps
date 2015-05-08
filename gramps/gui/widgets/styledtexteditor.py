@@ -402,13 +402,18 @@ class StyledTextEditor(Gtk.TextView):
             
             if flavor == MAIL:
                 open_menu = Gtk.MenuItem(label=_('_Send Mail To...'))
+                open_menu.set_use_underline(True)
                 copy_menu = Gtk.MenuItem(label=_('Copy _E-mail Address'))
+                copy_menu.set_use_underline(True)
             else:
                 open_menu = Gtk.MenuItem(label=_('_Open Link'))
+                open_menu.set_use_underline(True)
                 copy_menu = Gtk.MenuItem(label=_('Copy _Link Address'))
+                copy_menu.set_use_underline(True)
 
             if flavor == LINK:
                 edit_menu = Gtk.MenuItem(label=_('_Edit Link'))
+                edit_menu.set_use_underline(True)
                 edit_menu.connect('activate', self._edit_url_cb, 
                                   self.url_match[-1], # tag
                                   )
