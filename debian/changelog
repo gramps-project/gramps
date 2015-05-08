@@ -1,4 +1,4 @@
-gramps-connect (4.1.99) utopic; urgency=low
+gramps-connect (4.1.99+20150508~g55c9eec-1) utopic; urgency=low
 
   * First packaging of experimental gramps-connect package
 
