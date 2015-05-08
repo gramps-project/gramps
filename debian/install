@@ -2,3 +2,4 @@
 #debian/gramps.xpm usr/share/pixmaps/
 
 # Add stuff to install here
+gramps/webapp/ usr/share/gramps-connect
