@@ -1,0 +1,4 @@
+# Install icon to the correct place
+#debian/gramps.xpm usr/share/pixmaps/
+
+# Add stuff to install here
