@@ -15,6 +15,11 @@ ORIG=${SOURCEPKG}_${UPSTREAM}.orig.tar.gz
 # Override auto test because upstream do not use the standard unittest discover
 override_dh_auto_test:
 
+# Use webapp clean target
+override_dh_clean:
+	dh_clean
+	$(MAKE) -C gramps/webapp clean
+
 # Override of auto_build
 override_dh_auto_build:
 	python setup.py build
