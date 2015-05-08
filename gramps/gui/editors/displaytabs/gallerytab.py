@@ -506,17 +506,9 @@ class GalleryTab(ButtonTab, DbGUIElement):
                 elif self._DND_EXTRA and mytype == self._DND_EXTRA.drag_type:
                     self.handle_extra_type(mytype, obj)
             except pickle.UnpicklingError:
-        #modern file managers provide URI_LIST. For Windows split sel_data.data
-                if win():
-                    files = sel_data.get_data().split('\n')
-                else:
-                    files =  sel_data.get_uris()
+                files =  sel_data.get_uris()
                 for file in files:
-                    if win():
-                        d = conv_to_unicode((file.replace('\0',' ').strip()), None)
-                    else:
-                        d = file
-                    protocol, site, mfile, j, k, l = urlparse(d)
+                    protocol, site, mfile, j, k, l = urlparse(file)
                     if protocol == "file":
                         name = url2pathname(mfile)
                         mime = get_type(name)
