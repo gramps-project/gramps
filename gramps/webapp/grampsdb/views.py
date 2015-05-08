@@ -46,7 +46,7 @@ from django.shortcuts import get_object_or_404, render_to_response, redirect
 from django.template import Context, RequestContext
 from django.db.models import Q
 from django.forms.models import modelformset_factory
-from django.utils import simplejson
+import simplejson
 
 #------------------------------------------------------------------------
 #
