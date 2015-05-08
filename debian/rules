@@ -4,6 +4,11 @@
 export DH_VERBOSE=1
 export DH_OPTIONS=-v
 
+SOURCEPKG=$(shell dpkg-parsechangelog | sed -n 's/^Source: \(.*\)/\1/p')
+UPSTREAM=$(shell dpkg-parsechangelog | sed -n 's/^Version: \(.*\)-[^-]*/\1/p')
+SHA1=$(lastword $(subst ~g, ,$(UPSTREAM)))
+ORIG=${SOURCEPKG}_${UPSTREAM}.orig.tar.gz
+
 %:
 	dh $@ --with python2
 
@@ -35,3 +40,9 @@ override_dh_fixperms:
 # Avoid compressing COPYING file so that it can appear in the "About" dialog
 override_dh_compress:
 	dh_compress -X COPYING
+
+describe-current-version:
+	git describe --tags upstream | sed 's,^release-,,;s,-,+,;s,-,~,;'
+
+get-orig-source:
+	git archive --format=tar $(SHA1) | gzip -9 > ../$(ORIG)
