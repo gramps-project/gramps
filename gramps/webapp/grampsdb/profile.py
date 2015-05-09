@@ -34,7 +34,7 @@ class Profile(models.Model):
     Used to save additional information of a user, such as
     themes, bookmarks, etc.
     """
-    user = models.ForeignKey(User, unique=True)
+    user = models.OneToOneField(User, related_name="profile")
     theme_type = models.ForeignKey("ThemeType", default=1) # The default is a pk?
 
     def __unicode__(self):

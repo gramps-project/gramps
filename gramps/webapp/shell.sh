@@ -1,1 +1,1 @@
-PYTHONPATH=../.. python -i shell.py
+PYTHONPATH=../.. python3 -i shell.py

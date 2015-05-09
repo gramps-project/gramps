@@ -91,7 +91,7 @@ def context_processor(request):
     global SITENAME
     context = {}
     if request.user.is_authenticated():
-        profile = request.user.get_profile()
+        profile = request.user.profile
         context["css_theme"] = profile.theme_type.name
     else:
         context["css_theme"] = "Web_Mainz.css"
@@ -153,7 +153,7 @@ def user_page(request, username=None):
     """
     if request.user.is_authenticated():
         if username is None:
-            profile = request.user.get_profile()
+            profile = request.user.profile
             username = profile.user.username
         try:
             user = User.objects.get(username=username)
@@ -198,7 +198,7 @@ def process_report_run(request, handle):
     import traceback
     db = DbDjango()
     if request.user.is_authenticated():
-        profile = request.user.get_profile()
+        profile = request.user.profile
         report = Report.objects.get(handle=handle)
         args = {"off": "html"} # basic defaults
         # override from given defaults in table:

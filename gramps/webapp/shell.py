@@ -53,7 +53,10 @@ atexit.register(save_history)
 del atexit, readline, rlcompleter, save_history, historyPath""")
     fp.close()
 
-execfile(pystartup)
+with open(pystartup) as f:
+    code = compile(f.read(), pystartup, 'exec')
+    exec(code, globals(), locals())
+
 from django.conf import settings
 import gramps.webapp.settings as default_settings
 try:
