@@ -4,17 +4,27 @@
 export DH_VERBOSE=1
 export DH_OPTIONS=-v
 
-%:
-	dh $@ --with python2
+SOURCEPKG=$(shell dpkg-parsechangelog | sed -n 's/^Source: \(.*\)/\1/p')
+UPSTREAM=$(shell dpkg-parsechangelog | sed -n 's/^Version: \(.*\)-[^-]*/\1/p')
+SHA1=$(lastword $(subst ~g, ,$(UPSTREAM)))
+ORIG=${SOURCEPKG}_${UPSTREAM}.orig.tar.gz
 
-# Override auto test because upstream do not use the standard unittest discover
+%:
+	dh $@
+
+# Override auto test until I know how to run only the webapp ones
 override_dh_auto_test:
 
-# Override of auto_build
-override_dh_auto_build:
-	python setup.py build
+# Use webapp clean target
+override_dh_auto_clean:
+	dh_clean
+	$(MAKE) -C gramps/webapp clean
 
-# Override of auto_install to remove information from package
+# Override of auto_build to use webapp makefile
+override_dh_auto_build:
+	$(MAKE) -C gramps/webapp
+
+# Override of auto_install as webapp has no install target
 override_dh_auto_install:
 	#dh_auto_install
 	# Remove duplicate copyright information
@@ -23,15 +33,24 @@ override_dh_auto_install:
 	#rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/INSTALL
 	# Remove duplicate license information
 	#rm $(CURDIR)/debian/python-gramps/usr/share/doc/gramps/LICENSE
-	python setup.py install --root=debian/python-gramps --install-layout=deb
+	#python setup.py install --root=debian/python-gramps --install-layout=deb
 
 # Make css style sheets and png icons non-executable
-override_dh_fixperms:
-	dh_fixperms
-	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/css/Web_*.css
-	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/22x22/gramps*.png
-	chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/16x16/gramps*.png
+#override_dh_fixperms:
+	#dh_fixperms
+	#chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/css/Web_*.css
+	#chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/22x22/gramps*.png
+	#chmod a-x $(CURDIR)/debian/python-gramps/usr/share/gramps/images/16x16/gramps*.png
 
 # Avoid compressing COPYING file so that it can appear in the "About" dialog
-override_dh_compress:
-	dh_compress -X COPYING
+#override_dh_compress:
+	#dh_compress -X COPYING
+
+describe-current-version:
+	#This adds current git hash to a previous tagged version
+	#git describe --tags upstream | sed 's,^release-,,;s,-,+,;s,-,~,;'
+	#Prefer to just get the current hash & add to version & date
+	git rev-parse --short HEAD
+
+get-orig-source:
+	git archive --format=tar $(SHA1) | gzip -9 > ../$(ORIG)

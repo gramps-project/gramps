@@ -1,43 +1,21 @@
-Source: gramps
+Source: gramps-connect
 Section: python
 Priority: optional
 Maintainer: Ross Gammon <rossgammon@mail.dk>
-Build-Depends-Indep:
- dh-linktree,
- gettext,
- intltool,
- libxml-parser-perl,
- python-all,
- python-setuptools
 Build-Depends:
  debhelper (>= 9.0.0)
-Standards-Version: 3.9.5
-Vcs-Git: git://anonscm.debian.org/collab-maint/gramps.git
-Vcs-browser: http://anonscm.debian.org/gitweb/?p=collab-maint/gramps.git
+Standards-Version: 3.9.6
 Homepage: http://www.gramps-project.org/
-X-Python-Version: >= 2.7
 
-Package: python-gramps
+Package: gramps-connect
 Architecture: all
 Depends:
- gir1.2-gtk-3.0,
- librsvg2-2,
- python-gi,
- python-gi-cairo,
- xdg-utils,
+ python3-django,
+ python3-simplejson,
+ python3-apsw,
  ${misc:Depends},
  ${python:Depends}
-Recommends:
- graphviz,
- libosmgpsmap-1.0-0-dev,
- python-pyicu
-Suggests:
- fonts-freefont-ttf,
- gir1.2-gexiv2-0.4,
- gir1.2-gtk-gtkspell3-3.0,
- python-pil,
- rcs
-Description: Genealogical research program
+Description: Genealogical research program webapp
  GRAMPS is an Open Source genealogy program written in Python, using
  the GTK/GNOME interface. It is an extremely flexible program fitting
  the needs for both the amateur genealogist and serious genealogical
@@ -45,3 +23,7 @@ Description: Genealogical research program
  GRAMPS has the ability to import GEDCOM files exported from many
  proprietary genealogy programs and can produce a large number of
  reports in many popular formats.
+ .
+ Gramps Connect is the webapp version of Gramps.
+ .
+ This app is very experimental.

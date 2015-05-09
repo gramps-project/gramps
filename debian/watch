@@ -1,4 +1,6 @@
 version=3
 
-opts="dversionmangle=s/\+dfsg//g" \
-http://sf.net/gramps/gramps-(.+)\.tar\.gz
+#opts="dversionmangle=s/\+dfsg//g" \
+#http://sf.net/gramps/gramps-(.+)\.tar\.gz
+
+Gramps connect is extracted from the gramps git master repository
