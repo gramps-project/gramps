@@ -65,6 +65,10 @@ except RuntimeError:
     # already configured; ignore
     pass
 
+# For Django 1.6:
+import django
+django.setup()
+
 from gramps.webapp.grampsdb.models import *
 from gramps.webapp.grampsdb.forms import *
 from gramps.webapp.dbdjango import DbDjango

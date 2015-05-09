@@ -1354,3 +1354,18 @@ class DbDjango(DbWriteBase, DbReadBase):
             return self._tables[table_name]["handle_func"](handle)
         return None
 
+    def is_empty(self):
+        """
+        Is the database empty?
+        """
+        return (self.get_number_of_people() == 0 and
+                self.get_number_of_events() == 0 and
+                self.get_number_of_places() == 0 and
+                self.get_number_of_tags() == 0 and
+                self.get_number_of_families() == 0 and
+                self.get_number_of_notes() == 0 and
+                self.get_number_of_citations() == 0 and
+                self.get_number_of_sources() == 0 and
+                self.get_number_of_media_objects() == 0 and
+                self.get_number_of_repositories() == 0)
+                

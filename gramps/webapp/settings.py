@@ -167,5 +167,8 @@ LOGIN_URL = "/login/"
 LOGOUT_URL = "/logout"
 LOGIN_REDIRECT_URL = "/"
 
+## Changes for Django 1.6:
+LOGGING = None
+
 ## Changes for Django 1.7.1:
 ABSOLUTE_URL_OVERRIDES = {}
