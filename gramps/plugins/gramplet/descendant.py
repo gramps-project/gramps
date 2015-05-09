@@ -48,6 +48,7 @@ from gramps.gen.errors import WindowActiveError
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.datehandler import get_date
 from gramps.gen.utils.db import get_birth_or_fallback, get_death_or_fallback
+from gramps.gui.utils import model_to_text, text_to_clipboard
 
 class Descendant(Gramplet):
 
@@ -126,23 +127,10 @@ class Descendant(Gramplet):
         self.menu.popup(None, None, None, None, event.button, event.time)
 
     def on_copy_all(self, treeview):
-        def rows2text(store, treeiter, indent, level):
-            text = ""
-            while treeiter != None:
-                text += (indent + str(level) + ". " + store[treeiter][0] + " " + store[treeiter][1] + "\n")
-                if store.iter_has_child(treeiter):
-                    childiter = store.iter_children(treeiter)
-                    text += rows2text(store, childiter, indent + (" " * 4), level + 1)
-                treeiter = store.iter_next(treeiter)
-            return text
-        
         model = treeview.get_model()
-        rootiter = model.get_iter_first()
-        text = rows2text(model, rootiter, "", 1)
-        clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
-                                                  Gdk.SELECTION_CLIPBOARD)
-        clipboard.set_text(text, -1)
-    
+        text = model_to_text(model, [0, 1], level=1)
+        text_to_clipboard(text)
+
     def db_changed(self):
         self.update()
 

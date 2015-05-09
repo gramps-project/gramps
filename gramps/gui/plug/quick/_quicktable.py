@@ -49,6 +49,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.simple import SimpleTable
 from gramps.gen.errors import WindowActiveError
+from gramps.gui.utils import model_to_text, text_to_clipboard
 from ...widgets.multitreeview import MultiTreeView
 from ...ddtargets import DdTargets
 from ..quick import run_quick_report_by_name
@@ -118,6 +119,11 @@ class QuickTable(SimpleTable):
         if index is not None:
             self.popup = Gtk.Menu()
             popup = self.popup
+            menu_item = Gtk.MenuItem(label=_("Copy all"))
+            menu_item.connect("activate", lambda widget: text_to_clipboard(model_to_text(treeview.get_model())))
+            popup.append(menu_item)
+            menu_item.show()
+            # Now add more items to popup menu, if available
             if (index is not None and self._link[index]):
             # See details (edit, etc):
                 objclass, handle = self._link[index]

@@ -629,3 +629,47 @@ class AvailableUpdates(threading.Thread):
         self.addon_update_list = available_updates()
         if len(self.addon_update_list) > 0:
             GLib.idle_add(self.emit_update_available)
+
+def model_to_text(model, cols=None, treeiter=None, indent="", 
+                  level=None, sep=", "):
+    """
+    Given a model, return the text from the rows as a string.
+      model - the actual model
+      cols - a list representing the columns to get, or None for all
+      treeiter - (optional), initially, the first iterator
+      ident - the current indent level text
+      level - use None for no level indicator, or number (eg, 1)
+      sep - separating text between columns
+    """
+    text = ""
+    if treeiter is None:
+        treeiter = model.get_iter_first()
+    while treeiter != None:
+        if cols is None:
+            items = sep.join([str(item) for item in model[treeiter][:]])
+        else:
+            items = sep.join([str(model[treeiter][col]) for col in cols])
+        if level is not None:
+            text += (indent + str(level) + ". " + items + "\n")
+        else:
+            text += (indent + items + "\n")
+        if model.iter_has_child(treeiter):
+            childiter = model.iter_children(treeiter)
+            if level is not None:
+                text += model_to_text(model, cols, childiter, indent + (" " * 4), 
+                                      level + 1, sep)
+            else:
+                text += model_to_text(model, cols, childiter, indent + (" " * 4), 
+                                      sep=sep)
+        treeiter = model.iter_next(treeiter)
+    return text
+        
+def text_to_clipboard(text):
+    """
+    Put any text into the clipboard
+    """
+    from gi.repository import Gdk
+    from gi.repository import Gtk
+    clipboard = Gtk.Clipboard.get_for_display(Gdk.Display.get_default(), 
+                                              Gdk.SELECTION_CLIPBOARD)
+    clipboard.set_text(text, -1)
