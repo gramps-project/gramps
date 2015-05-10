@@ -180,8 +180,8 @@ def send_file(request, filename, mimetype):
     iterator for chunks of 8KB.                                                 
     """
     from django.core.servers.basehttp import FileWrapper
-    wrapper = FileWrapper(file(filename))
-    response = HttpResponse(wrapper, mimetype=mimetype)
+    wrapper = FileWrapper(open(filename, mode="rb"))
+    response = HttpResponse(wrapper, content_type=mimetype)
     path, base = os.path.split(filename)
     response['Content-Length'] = os.path.getsize(filename)
     response['Content-Disposition'] = 'attachment; filename=%s' % base
@@ -267,8 +267,8 @@ def process_report_run(request, handle):
         if filename.endswith(".html"):
             # just give it, perhaps in a new tab
             from django.http import HttpResponse
-            response = HttpResponse(mimetype="text/html")
-            for line in open(filename):
+            response = HttpResponse(content_type="text/html")
+            for line in open(filename, mode="rb"):
                 response.write(line)
             return response
         else:
@@ -487,7 +487,7 @@ def action(request, view, handle, act, add_to=None):
             if request.GET["format"] == "json":
                 item = db.get_event_from_handle(obj.handle)
                 content = str(item.to_struct())
-                response = HttpResponse(content, mimetype="application/json")
+                response = HttpResponse(content, content_type="application/json")
                 return response
         view_template = 'view_event_detail.html'
         rd = process_event(request, context, handle, act, add_to)
@@ -503,7 +503,7 @@ def action(request, view, handle, act, add_to=None):
             if request.GET["format"] == "json":
                 item = db.get_family_from_handle(obj.handle)
                 content = str(item.to_struct())
-                response = HttpResponse(content, mimetype="application/json")
+                response = HttpResponse(content, content_type="application/json")
                 return response
         view_template = 'view_family_detail.html'
         rd = process_family(request, context, handle, act, add_to)
@@ -519,7 +519,7 @@ def action(request, view, handle, act, add_to=None):
             if request.GET["format"] == "json":
                 item = db.get_media_from_handle(obj.handle)
                 content = str(item.to_struct())
-                response = HttpResponse(content, mimetype="application/json")
+                response = HttpResponse(content, content_type="application/json")
                 return response
         view_template = 'view_media_detail.html'
         rd = process_media(request, context, handle, act, add_to)
@@ -535,7 +535,7 @@ def action(request, view, handle, act, add_to=None):
             if request.GET["format"] == "json":
                 item = db.get_note_from_handle(obj.handle)
                 content = str(item.to_struct())
-                response = HttpResponse(content, mimetype="application/json")
+                response = HttpResponse(content, content_type="application/json")
                 return response
         view_template = 'view_note_detail.html'
         rd = process_note(request, context, handle, act, add_to)
@@ -551,7 +551,7 @@ def action(request, view, handle, act, add_to=None):
             if request.GET["format"] == "json":
                 person = db.get_person_from_handle(obj.handle)
                 content = str(person.to_struct())
-                response = HttpResponse(content, mimetype="application/json")
+                response = HttpResponse(content, content_type="application/json")
                 return response
         view_template = 'view_person_detail.html'
         rd = process_person(request, context, handle, act, add_to)
@@ -567,7 +567,7 @@ def action(request, view, handle, act, add_to=None):
             if request.GET["format"] == "json":
                 item = db.get_place_from_handle(obj.handle)
                 content = str(item.to_struct())
-                response = HttpResponse(content, mimetype="application/json")
+                response = HttpResponse(content, content_type="application/json")
                 return response
         view_template = 'view_place_detail.html'
         rd = process_place(request, context, handle, act, add_to)
@@ -583,7 +583,7 @@ def action(request, view, handle, act, add_to=None):
             if request.GET["format"] == "json":
                 item = db.get_repository_from_handle(obj.handle)
                 content = str(item.to_struct())
-                response = HttpResponse(content, mimetype="application/json")
+                response = HttpResponse(content, content_type="application/json")
                 return response
         view_template = 'view_repository_detail.html'
         rd = process_repository(request, context, handle, act, add_to)
@@ -599,7 +599,7 @@ def action(request, view, handle, act, add_to=None):
             if request.GET["format"] == "json":
                 item = db.get_citation_from_handle(obj.handle)
                 content = str(item.to_struct())
-                response = HttpResponse(content, mimetype="application/json")
+                response = HttpResponse(content, content_type="application/json")
                 return response
         view_template = 'view_citation_detail.html'
         rd = process_citation(request, context, handle, act, add_to)
@@ -615,7 +615,7 @@ def action(request, view, handle, act, add_to=None):
             if request.GET["format"] == "json":
                 item = db.get_source_from_handle(obj.handle)
                 content = str(item.to_struct())
-                response = HttpResponse(content, mimetype="application/json")
+                response = HttpResponse(content, content_type="application/json")
                 return response
         view_template = 'view_source_detail.html'
         rd = process_source(request, context, handle, act, add_to)
@@ -631,7 +631,7 @@ def action(request, view, handle, act, add_to=None):
             if request.GET["format"] == "json":
                 item = db.get_tag_from_handle(obj.handle)
                 content = str(item.to_struct())
-                response = HttpResponse(content, mimetype="application/json")
+                response = HttpResponse(content, content_type="application/json")
                 return response
         view_template = 'view_tag_detail.html'
         rd = process_tag(request, context, handle, act, add_to)
@@ -1589,4 +1589,4 @@ def process_json_request(request):
         obj = db.get_from_name_and_handle(class_type.__name__, eval(handle_expr))
         if obj:
             response_data["results"].append(obj.to_struct())
-    return HttpResponse(simplejson.dumps(response_data), mimetype="application/json")
+    return HttpResponse(simplejson.dumps(response_data), content_type="application/json")

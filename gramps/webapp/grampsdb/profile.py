@@ -37,7 +37,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, related_name="profile")
     theme_type = models.ForeignKey("ThemeType", default=1) # The default is a pk?
 
-    def __unicode__(self):
+    def __str__(self):
         return str(self.user)
 
 post_save.connect(save_profile, sender=User)

@@ -99,7 +99,7 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
         # FIXME: This should be absolute:
         folder = Config.objects.get(setting="behavior.addmedia-image-dir").value
         # FIXME: media.path should not have any .. for security
-        response = HttpResponse(mimetype=media.mime)
+        response = HttpResponse(content_type=media.mime)
         if NEW_PIL or media_ext != "png":
             image = Image.open("%s/%s" % (folder, media.path))
             image.save(response, media_ext)
@@ -116,7 +116,7 @@ def process_media(request, context, handle, act, add_to=None): # view, edit, sav
         # FIXME: This should be absolute:
         folder = Config.objects.get(setting="behavior.addmedia-image-dir").value
         # FIXME: media.path should not have any .. for security
-        response = HttpResponse(mimetype=media.mime)
+        response = HttpResponse(content_type=media.mime)
         if os.path.exists("%s/thumbnail/%s" % (folder, media.path)):
             if NEW_PIL or media_ext != "png":
                 image = Image.open("%s/thumbnail/%s" % (folder, media.path))
