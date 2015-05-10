@@ -16,7 +16,7 @@ install:
 
     - travis_retry curl https://bootstrap.pypa.io/get-pip.py | sudo python3
     - travis_retry sudo pip3 install Django==1.7
-    - travis_retry sudo pip3 install pyicu
+    - travis_retry sudo pip3 install pyicu==1.8
     - travis_retry sudo pip3 install mock
     - python3 setup.py build
 
