@@ -205,10 +205,18 @@ class DropdownSidebar(BaseSidebar):
             self.viewmanager.notebook.set_current_page(page_no)
         self.__handlers_unblock()
 
-def cb_menu_position(menu, button):
+def cb_menu_position(*args):
     """
     Determine the position of the popup menu.
     """
+    # takes two argument: menu, button
+    if len(args) == 2:
+        menu = args[0]
+        button = args[1]
+    # broken introspection can't handle MenuPositionFunc annotations corectly
+    else:
+        menu = args[0]
+        button = args[3]
     ret_val, x_pos, y_pos = button.get_window().get_origin()
     x_pos += button.get_allocation().x
     y_pos += button.get_allocation().y + button.get_allocation().height
