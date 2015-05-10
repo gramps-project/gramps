@@ -454,7 +454,7 @@ class DjangoInterface(object):
                 media.gramps_id, 
                 conv_to_unicode(media.path, None),
                 str(media.mime), 
-                fix_encoding(media.desc),
+                str(media.desc),
                 media.checksum,
                 attribute_list,
                 citation_list,
@@ -806,6 +806,9 @@ class DjangoInterface(object):
         for family_handle in family_list:
             self.add_family_ref(person, family_handle) 
     
+    def add_alt_name_list(self, place, alt_name_list):
+        print("FIXME: add alt_name_list!", alt_name_list)
+
     ## Export reference objects:
 
     def add_person_ref_default(self, obj, person, private=False, desc=None):
@@ -1579,9 +1582,11 @@ class DjangoInterface(object):
         #obj.save()
     
     def add_place(self, data):
+        ## ('cef246c95c132bcf6a0255d4d17', 'P0036', 'Santa Clara Co., CA, USA', '', '', [('cef243fb5634559442323368f63', None)], 'Santa Clara Co.', [], (3, ''), '', [], [], [], [], [], 1422124781, [], False)
         (handle, gid, title, long, lat,
          place_ref_list,
          name,
+         alt_name_list,
          place_type,
          code,
          alt_location_list,
@@ -1612,6 +1617,7 @@ class DjangoInterface(object):
         (handle, gid, title, long, lat,
          place_ref_list,
          name,
+         alt_name_list,
          place_type,
          code,
          alt_location_list,
@@ -1635,6 +1641,7 @@ class DjangoInterface(object):
         self.add_note_list(place, note_list) 
         self.add_tag_list(place, tag_list)
         self.add_place_ref_list(place, place_ref_list)
+        self.add_alt_name_list(place, alt_name_list)
         count = 1
         for loc_data in alt_location_list:
             self.add_location("place", place, loc_data, count)

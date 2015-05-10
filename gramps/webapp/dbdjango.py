@@ -266,7 +266,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.use_import_cache = True
         self.import_cache = {}
 
-    @transaction.commit_on_success
+    @transaction.atomic
     def commit_import(self):
         """
         Commits the items that were queued up during the last gedcom

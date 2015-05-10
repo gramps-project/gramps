@@ -439,10 +439,10 @@ class Tag(models.Model):
         if self.dji is None:
             self.dji = DjangoInterface()
         raw = self.dji.get_tag(self)
-        return base64.encodestring(pickle.dumps(raw))
+        return base64.encodebytes(pickle.dumps(raw))
 
     def from_cache(self):
-        return pickle.loads(base64.decodestring(self.cache))
+        return pickle.loads(base64.decodebytes(bytes(self.cache, "utf-8")))
 
     def save_cache(self):
         cache = self.make_cache()               
@@ -529,10 +529,10 @@ class PrimaryObject(models.Model):
             raw = self.dji.get_tag(self)
         else:
             raise Exception("Don't know how to get raw '%s'" % type(item))
-        return base64.encodestring(pickle.dumps(raw))
+        return base64.encodebytes(pickle.dumps(raw))
 
     def from_cache(self):
-        return pickle.loads(base64.decodestring(self.cache))
+        return pickle.loads(base64.decodebytes(bytes(self.cache, "utf-8")))
 
     def save_cache(self):
         cache = self.make_cache()               
