@@ -45,6 +45,69 @@ from gramps.gen.utils.id import create_id
 from gramps.webapp.libdjango import DjangoInterface
 from django.db import transaction
 
+class Environment(object):
+    """
+    Implements the Environment API.
+    """
+    def __init__(self, db):
+        self.db = db
+
+    def txn_begin(self):
+        return DjangoTxn("DbDjango Transaction", self.db)
+
+class Table(object):
+    """
+    Implements Table interface.
+    """
+    def __init__(self, funcs):
+        self.funcs = funcs
+
+    def cursor(self):
+        """
+        Returns a Cursor for this Table.
+        """
+        return self.funcs["cursor_func"]()
+
+    def put(key, data, txn=None):
+        self[key] = data
+
+class Map(dict):
+    """
+    Implements the map API for person_map, etc.
+    
+    Takes a Table() as argument.
+    """
+    def __init__(self, tbl, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.db = tbl
+
+class MetaCursor(object):
+    def __init__(self):
+        pass
+    def __enter__(self):
+        return self
+    def __iter__(self):
+        return self.__next__()
+    def __next__(self):
+        for item in []:
+            yield ("", None)
+    def __exit__(self, *args, **kwargs):
+        pass
+    def iter(self):
+        for item in []:
+            yield ("", "")
+        yield None
+    def first(self):
+        self._iter = self.__iter__()
+        return self.next()
+    def next(self):
+        try:
+            return next(self._iter)
+        except:
+            return None
+    def close(self):
+        pass
+
 class Cursor(object):
     def __init__(self, model, func):
         self.model = model
@@ -62,6 +125,16 @@ class Cursor(object):
         for item in self.model.all():
             yield (item.handle, self.func(item.handle))
         yield None
+    def first(self):
+        self._iter = self.__iter__()
+        return self.next()
+    def next(self):
+        try:
+            return next(self._iter)
+        except:
+            return None
+    def close(self):
+        pass
 
 class Bookmarks:
     def get(self):
@@ -90,6 +163,9 @@ class DjangoTxn(DbTxn):
         """
         """
         txn[handle] = new_data
+
+    def commit(self):
+        pass
 
 class DbDjango(DbWriteBase, DbReadBase):
     """
@@ -234,17 +310,18 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.omap_index = 0
         self.rmap_index = 0
         self.nmap_index = 0
-        self.env = None
-        self.person_map = {}
-        self.family_map = {}
-        self.place_map  = {}
-        self.citation_map = {}
-        self.source_map = {}
-        self.repository_map  = {}
-        self.note_map = {}
-        self.media_map  = {}
-        self.event_map  = {}
-        self.metadata   = {}
+        self.env = Environment(self)
+        self.person_map = Map(Table(self._tables["Person"]))
+        self.family_map = Map(Table(self._tables["Family"]))
+        self.place_map  = Map(Table(self._tables["Place"]))
+        self.citation_map = Map(Table(self._tables["Citation"]))
+        self.source_map = Map(Table(self._tables["Source"]))
+        self.repository_map  = Map(Table(self._tables["Repository"]))
+        self.note_map = Map(Table(self._tables["Note"]))
+        self.media_map  = Map(Table(self._tables["Media"]))
+        self.event_map  = Map(Table(self._tables["Event"]))
+        self.tag_map  = Map(Table(self._tables["Tag"]))
+        self.metadata   = Map(Table({"cursor_func": lambda: MetaCursor()}))
         self.name_group = {}
         self.undo_callback = None
         self.redo_callback = None
@@ -944,34 +1021,34 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.dji.Repository.count()
 
     def get_place_cursor(self):
-        return Cursor(self.dji.Place, self.get_raw_place_data).iter()
+        return Cursor(self.dji.Place, self.get_raw_place_data)
 
     def get_person_cursor(self):
-        return Cursor(self.dji.Person, self.get_raw_person_data).iter()
+        return Cursor(self.dji.Person, self.get_raw_person_data)
 
     def get_family_cursor(self):
-        return Cursor(self.dji.Family, self.get_raw_family_data).iter()
+        return Cursor(self.dji.Family, self.get_raw_family_data)
 
     def get_event_cursor(self):
-        return Cursor(self.dji.Event, self.get_raw_event_data).iter()
+        return Cursor(self.dji.Event, self.get_raw_event_data)
 
     def get_citation_cursor(self):
-        return Cursor(self.dji.Citation, self.get_raw_citation_data).iter()
+        return Cursor(self.dji.Citation, self.get_raw_citation_data)
 
     def get_source_cursor(self):
-        return Cursor(self.dji.Source, self.get_raw_source_data).iter()
+        return Cursor(self.dji.Source, self.get_raw_source_data)
 
     def get_note_cursor(self):
-        return Cursor(self.dji.Note, self.get_raw_note_data).iter()
+        return Cursor(self.dji.Note, self.get_raw_note_data)
 
     def get_tag_cursor(self):
-        return Cursor(self.dji.Tag, self.get_raw_tag_data).iter()
+        return Cursor(self.dji.Tag, self.get_raw_tag_data)
 
     def get_repository_cursor(self):
-        return Cursor(self.dji.Repository, self.get_raw_repository_data).iter()
+        return Cursor(self.dji.Repository, self.get_raw_repository_data)
 
     def get_media_cursor(self):
-        return Cursor(self.dji.Media, self.get_raw_object_data).iter()
+        return Cursor(self.dji.Media, self.get_raw_object_data)
 
     def has_gramps_id(self, obj_key, gramps_id):
         key2table = {
@@ -1369,3 +1446,64 @@ class DbDjango(DbWriteBase, DbReadBase):
                 self.get_number_of_media_objects() == 0 and
                 self.get_number_of_repositories() == 0)
                 
+    __callback_map = {}
+
+    def set_prefixes(self, person, media, family, source, citation,
+                     place, event, repository, note):
+        self.set_person_id_prefix(person)
+        self.set_object_id_prefix(media)
+        self.set_family_id_prefix(family)
+        self.set_source_id_prefix(source)
+        self.set_citation_id_prefix(citation)
+        self.set_place_id_prefix(place)
+        self.set_event_id_prefix(event)
+        self.set_repository_id_prefix(repository)
+        self.set_note_id_prefix(note)
+
+    def has_changed(self):
+        return False
+
+    def connect(self, signal, callback):
+        pass
+
+    def find_backlink_handles(self, active_handle):
+        return []
+
+    def get_note_bookmarks(self):
+        return []
+
+    def get_media_bookmarks(self):
+        return []
+
+    def get_repo_bookmarks(self):
+        return []
+
+    def get_citation_bookmarks(self):
+        return []
+
+    def get_source_bookmarks(self):
+        return []
+
+    def get_place_bookmarks(self):
+        return []
+
+    def get_event_bookmarks(self):
+        return []
+
+    def get_bookmarks(self):
+        return []
+
+    def get_family_bookmarks(self):
+        return []
+
+    def get_save_path(self):
+        return "/tmp/"
+
+    def get_origin_types(self):
+        return []
+
+    def get_default_handle(self):
+        return None
+
+    def close(self):
+        pass
