@@ -24,6 +24,7 @@ Provide the database state class
 """
 
 from .db import DbBsddbRead
+from .db import DbReadBase
 from .proxy.proxybase import ProxyDbBase
 from .utils.callback import Callback
 from .config import config
@@ -34,7 +35,7 @@ class DbState(Callback):
     """
 
     __signals__ = {
-        'database-changed' : ((DbBsddbRead, ProxyDbBase), ), 
+        'database-changed' : ((DbReadBase, ProxyDbBase), ), 
         'no-database' :  None, 
         }
 
