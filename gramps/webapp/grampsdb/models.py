@@ -455,9 +455,7 @@ class Tag(models.Model):
         if "save_cache" in kwargs:
             save_cache = kwargs["save_cache"]
             del kwargs["save_cache"]
-        if not save_cache:
-            self.cache = ""
-        else:
+        if save_cache:
             self.cache = self.make_cache()
         models.Model.save(self, *args, **kwargs) # save to db
 
@@ -545,9 +543,7 @@ class PrimaryObject(models.Model):
         if "save_cache" in kwargs:
             save_cache = kwargs["save_cache"]
             del kwargs["save_cache"]
-        if not save_cache:
-            self.cache = ""
-        else:
+        if save_cache:
             self.cache = self.make_cache()
         models.Model.save(self, *args, **kwargs) # save to db
 
