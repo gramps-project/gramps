@@ -498,7 +498,7 @@ class PrimaryObject(models.Model):
                            self.handle)
 
     def get_tag_list(self):
-        return tuple([tag.handle for tag in self.tags.all()])
+        return [tag.handle for tag in self.tags.all()]
 
     def make_cache(self):
         from gramps.webapp.libdjango import DjangoInterface

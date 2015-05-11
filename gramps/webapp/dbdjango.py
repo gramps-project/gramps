@@ -40,6 +40,8 @@ from gramps.gen.lib import (Person, Family, Event, Place, Repository,
                             Citation, Source, Note, MediaObject, Tag, 
                             Researcher)
 from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn
+from gramps.gen.utils.callback import Callback
+from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db import (PERSON_KEY,
                     FAMILY_KEY,
                     CITATION_KEY,
@@ -174,14 +176,39 @@ class DjangoTxn(DbTxn):
     def commit(self):
         pass
 
-class DbDjango(DbWriteBase, DbReadBase):
+class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
     """
+    # Set up dictionary for callback signal handler
+    # ---------------------------------------------
+    # 1. Signals for primary objects
+    __signals__ = dict((obj+'-'+op, signal)
+                       for obj in
+                       ['person', 'family', 'event', 'place',
+                        'source', 'citation', 'media', 'note', 'repository', 'tag']
+                       for op, signal in zip(
+                               ['add',   'update', 'delete', 'rebuild'],
+                               [(list,), (list,),  (list,),   None]
+                       )
+                   )
+    
+    # 2. Signals for long operations
+    __signals__.update(('long-op-'+op, signal) for op, signal in zip(
+        ['start',  'heartbeat', 'end'],
+        [(object,), None,       None]
+        ))
+
+    # 3. Special signal for change in home person
+    __signals__['home-person-changed'] = None
+
+    # 4. Signal for change in person group name, parameters are
+    __signals__['person-groupname-rebuild'] = (str, str)
 
     def __init__(self):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
+        Callback.__init__(self)
         self._tables = {
             'Person':
                 {
@@ -341,8 +368,6 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.import_cache = {}
         self.use_import_cache = False
         self.use_db_cache = True
-        self._signals_enabled = False
-        self._signals = {}
         self.event_names = set()
         self.individual_attributes = set()
         self.family_attributes = set()
@@ -425,9 +450,6 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def transaction_commit(self, txn):
         pass
-
-    def enable_signals(self):
-        self._signals_enabled = True
 
     def request_rebuild(self):
         # caches are ok, but let's compute public's
@@ -1082,7 +1104,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         else:
             return None
 
-    def get_repsoitory_from_gramps_id(self, gramps_id):
+    def get_repository_from_gramps_id(self, gramps_id):
         if self.import_cache:
             for handle in self.import_cache:
                 if self.import_cache[handle].gramps_id == gramps_id:
@@ -1339,7 +1361,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not person.gramps_id and set_gid:
             person.gramps_id = self.find_next_person_gramps_id()
         self.commit_person(person, trans)
-        self.emit("person-add", [person.handle])
+        self.emit("person-add", ([person.handle],))
         return person.handle
 
     def add_family(self, family, trans, set_gid=True):
@@ -1348,7 +1370,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not family.gramps_id and set_gid:
             family.gramps_id = self.find_next_family_gramps_id()
         self.commit_family(family, trans)
-        self.emit("family-add", [family.handle])
+        self.emit("family-add", ([family.handle],))
         return family.handle
 
     def add_citation(self, citation, trans, set_gid=True):
@@ -1357,7 +1379,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not citation.gramps_id and set_gid:
             citation.gramps_id = self.find_next_citation_gramps_id()
         self.commit_citation(citation, trans)
-        self.emit("citation-add", [citation.handle])
+        self.emit("citation-add", ([citation.handle],))
         return citation.handle
 
     def add_source(self, source, trans, set_gid=True):
@@ -1366,7 +1388,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not source.gramps_id and set_gid:
             source.gramps_id = self.find_next_source_gramps_id()
         self.commit_source(source, trans)
-        self.emit("source-add", [source.handle])
+        self.emit("source-add", ([source.handle],))
         return source.handle
 
     def add_repository(self, repository, trans, set_gid=True):
@@ -1375,7 +1397,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not repository.gramps_id and set_gid:
             repository.gramps_id = self.find_next_repository_gramps_id()
         self.commit_repository(repository, trans)
-        self.emit("repository-add", [repository.handle])
+        self.emit("repository-add", ([repository.handle],))
         return repository.handle
 
     def add_note(self, note, trans, set_gid=True):
@@ -1384,7 +1406,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not note.gramps_id and set_gid:
             note.gramps_id = self.find_next_note_gramps_id()
         self.commit_note(note, trans)
-        self.emit("note-add", [note.handle])
+        self.emit("note-add", ([note.handle],))
         return note.handle
 
     def add_place(self, place, trans, set_gid=True):
@@ -1427,135 +1449,157 @@ class DbDjango(DbWriteBase, DbReadBase):
         if self.use_import_cache:
             self.import_cache[person.handle] = person
         else:
-            print("WARNING: haven't written logic to update")
+            import pdb; pdb.set_trace()
             raw = person.serialize()
-            dj_person = self.dji.Person.filter(handle=person.handle)[0]
-            dj_person.cache = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")
-            dj_person.save(save_cache=False) # don't generate the cache from Django objects
-            # FIXME: propagate changes to rest of Django object from cache
-            # How? Maybe delete and re-add?
-        self.emit("person-update", [person.handle])
+            items = self.dji.Person.filter(handle=person.handle)
+            if items.count() > 0:
+                # Hack, for the moment: delete and re-add
+                items[0].delete()
+            self.dji.add_person(person.serialize())
+            self.dji.add_person_detail(person.serialize())
+            if items.count() > 0:
+                self.emit("person-update", ([person.handle],))
+            else:
+                self.emit("person-add", ([person.handle],))
 
     def commit_family(self, family, trans, change_time=None):
         if self.use_import_cache:
             self.import_cache[family.handle] = family
         else:
-            print("WARNING: haven't written logic to update")
             raw = family.serialize()
-            dj_obj = self.dji.Family.filter(handle=family.handle)[0]
-            dj_obj.cache = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")
-            dj_obj.save(save_cache=False) # don't generate the cache from Django objects
-            # FIXME: propagate changes to rest of Django object from cache
-            # How? Maybe delete and re-add?
-        self.emit("family-update", [family.handle])
+            items = self.dji.Family.filter(handle=family.handle)
+            if items.count() > 0:
+                items[0].delete()
+            self.dji.add_family(family.serialize())
+            self.dji.add_family_detail(family.serialize())
+            if items.count() > 0:
+                self.emit("family-update", ([family.handle],))
+            else:
+                self.emit("family-add", ([family.handle],))
 
     def commit_citation(self, citation, trans, change_time=None):
         if self.use_import_cache:
             self.import_cache[citation.handle] = citation
         else:
-            print("WARNING: haven't written logic to update")
             raw = citation.serialize()
-            dj_obj = self.dji.Citation.filter(handle=citation.handle)[0]
-            dj_obj.cache = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")
-            dj_obj.save(save_cache=False) # don't generate the cache from Django objects
-            # FIXME: propagate changes to rest of Django object from cache
-            # How? Maybe delete and re-add?
-        self.emit("citation-update", [citation.handle])
+            items = self.dji.Citation.filter(handle=citation.handle)
+            if items.count() > 0:
+                items[0].delete()
+            self.dji.add_citation(citation.serialize())
+            self.dji.add_citation_detail(citation.serialize())
+            if items.count() > 0:
+                self.emit("citation-update", ([citation.handle],))
+            else:
+                self.emit("citation-add", ([citation.handle],))
 
     def commit_source(self, source, trans, change_time=None):
         if self.use_import_cache:
             self.import_cache[source.handle] = source
         else:
-            print("WARNING: haven't written logic to update")
             raw = source.serialize()
-            dj_obj = self.dji.Source.filter(handle=source.handle)[0]
-            dj_obj.cache = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")
-            dj_obj.save(save_cache=False) # don't generate the cache from Django objects
-            # FIXME: propagate changes to rest of Django object from cache
-            # How? Maybe delete and re-add?
-        self.emit("source-update", [source.handle])
+            items = self.dji.Source.filter(handle=source.handle)
+            if items.count() > 0:
+                items[0].delete()
+            self.dji.add_source(source.serialize())
+            self.dji.add_source_detail(source.serialize())
+            if items.count() > 0:
+                self.emit("source-update", ([source.handle],))
+            else:
+                self.emit("source-add", ([source.handle],))
 
     def commit_repository(self, repository, trans, change_time=None):
         if self.use_import_cache:
             self.import_cache[repository.handle] = repository
         else:
-            print("WARNING: haven't written logic to update")
             raw = repository.serialize()
-            dj_obj = self.dji.Repository.filter(handle=repository.handle)[0]
-            dj_obj.cache = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")
-            dj_obj.save(save_cache=False) # don't generate the cache from Django objects
-            # FIXME: propagate changes to rest of Django object from cache
-            # How? Maybe delete and re-add?
-        self.emit("repository-update", [repository.handle])
+            items = self.dji.Repository.filter(handle=repository.handle)
+            if items.count() > 0:
+                items[0].delete()
+            self.dji.add_repository(repository.serialize())
+            self.dji.add_repository_detail(repository.serialize())
+            if items.count() > 0:
+                self.emit("repository-update", ([repository.handle],))
+            else:
+                self.emit("repository-add", ([repository.handle],))
 
     def commit_note(self, note, trans, change_time=None):
         if self.use_import_cache:
             self.import_cache[note.handle] = note
         else:
-            print("WARNING: haven't written logic to update")
             raw = note.serialize()
-            dj_obj = self.dji.Note.filter(handle=note.handle)[0]
-            dj_obj.cache = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")
-            dj_obj.save(save_cache=False) # don't generate the cache from Django objects
-            # FIXME: propagate changes to rest of Django object from cache
-            # How? Maybe delete and re-add?
-        self.emit("note-update", [note.handle])
+            items = self.dji.Note.filter(handle=note.handle)
+            if items.count() > 0:
+                items[0].delete()
+            self.dji.add_note(note.serialize())
+            self.dji.add_note_detail(note.serialize())
+            if items.count() > 0:
+                self.emit("note-update", ([note.handle],))
+            else:
+                self.emit("note-add", ([note.handle],))
 
     def commit_place(self, place, trans, change_time=None):
         if self.use_import_cache:
             self.import_cache[place.handle] = place
         else:
-            print("WARNING: haven't written logic to update")
             raw = place.serialize()
-            dj_obj = self.dji.Place.filter(handle=place.handle)[0]
-            dj_obj.cache = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")
-            dj_obj.save(save_cache=False) # don't generate the cache from Django objects
-            # FIXME: propagate changes to rest of Django object from cache
-            # How? Maybe delete and re-add?
-        self.emit("place-update", [place.handle])
+            items = self.dji.Place.filter(handle=place.handle)
+            if items.count() > 0:
+                items[0].delete()
+            self.dji.add_place(place.serialize())
+            self.dji.add_place_detail(place.serialize())
+            if items.count() > 0:
+                self.emit("place-update", ([place.handle],))
+            else:
+                self.emit("place-add", ([place.handle],))
 
     def commit_event(self, event, trans, change_time=None):
         if self.use_import_cache:
             self.import_cache[event.handle] = event
         else:
-            print("WARNING: haven't written logic to update")
             raw = event.serialize()
-            dj_obj = self.dji.Event.filter(handle=event.handle)[0]
-            dj_obj.cache = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")
-            dj_obj.save(save_cache=False) # don't generate the cache from Django objects
-            # FIXME: propagate changes to rest of Django object from cache
-            # How? Maybe delete and re-add?
-        self.emit("event-update", [event.handle])
+            items = self.dji.Event.filter(handle=event.handle)
+            if items.count() > 0:
+                items[0].delete()
+            self.dji.add_event(event.serialize())
+            self.dji.add_event_detail(event.serialize())
+            if items.count() > 0:
+                self.emit("event-update", ([event.handle],))
+            else:
+                self.emit("event-add", ([event.handle],))
 
     def commit_tag(self, tag, trans, change_time=None):
         if self.use_import_cache:
             self.import_cache[tag.handle] = tag
         else:
-            print("WARNING: haven't written logic to update")
             raw = tag.serialize()
-            dj_obj = self.dji.Tag.filter(handle=tag.handle)[0]
-            dj_obj.cache = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")
-            dj_obj.save(save_cache=False) # don't generate the cache from Django objects
-            # FIXME: propagate changes to rest of Django object from cache
-            # How? Maybe delete and re-add?
-        self.emit("tag-update", [tag.handle])
+            items = self.dji.Tag.filter(handle=tag.handle)
+            if items.count() > 0:
+                items[0].delete()
+            self.dji.add_tag(tag.serialize())
+            self.dji.add_tag_detail(tag.serialize())
+            if items.count() > 0:
+                self.emit("tag-update", ([tag.handle],))
+            else:
+                self.emit("tag-add", ([tag.handle],))
 
-    def commit_media_object(self, obj, transaction, change_time=None):
+    def commit_media_object(self, media, transaction, change_time=None):
         """
         Commit the specified MediaObject to the database, storing the changes
         as part of the transaction.
         """
         if self.use_import_cache:
-            self.import_cache[obj.handle] = obj
+            self.import_cache[obj.handle] = media
         else:
-            print("WARNING: haven't written logic to update")
-            raw = obj.serialize()
-            dj_obj = self.dji.Media.filter(handle=obj.handle)[0]
-            dj_obj.cache = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")
-            dj_obj.save(save_cache=False) # don't generate the cache from Django objects
-            # FIXME: propagate changes to rest of Django object from cache
-            # How? Maybe delete and re-add?
-        self.emit("media-update", [obj.handle])
+            raw = media.serialize()
+            items = self.dji.Media.filter(handle=media.handle)
+            if items.count() > 0:
+                items[0].delete()
+            self.dji.add_media(media.serialize())
+            self.dji.add_media_detail(media.serialize())
+            if items.count() > 0:
+                self.emit("media-update", ([media.handle],))
+            else:
+                self.emit("media-add", ([media.handle],))
 
     def get_gramps_ids(self, obj_key):
         key2table = {
@@ -1575,9 +1619,6 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def transaction_begin(self, transaction):
         return 
-
-    def disable_signals(self):
-        self._signals_enabled = False
 
     def set_researcher(self, owner):
         pass
@@ -1682,30 +1723,6 @@ class DbDjango(DbWriteBase, DbReadBase):
 
     def has_changed(self):
         return False
-
-    def connect(self, signal, callback):
-        #print("Adding signal: ", signal)
-        if signal in self._signals:
-            self._signals[signal].append(callback)
-        else:
-            self._signals[signal] = [callback]
-
-    def disconnect(self, signal):
-        #print("Disconnecting signal: ", signal)
-        if signal in self._signals:
-            del self._signals[signal]
-
-    def emit(self, sig, items=None):
-        #print("Firing signal: ", sig, items)
-        if self._signals_enabled:
-            if sig in self._signals:
-                for callback in self._signals[sig]:
-                    if items:
-                        callback(items)
-                    else:
-                        callback()
-            else:
-                print("WARNING: no such signal: ", sig)
 
     def find_backlink_handles(self, handle, include_classes=None):
         ## FIXME: figure out how to get objects that refer
@@ -1891,43 +1908,43 @@ class DbDjango(DbWriteBase, DbReadBase):
     # Removals:
     def remove_person(self, handle, txn):
         self.dji.Person.filter(handle=handle)[0].delete()
-        self.emit("person-delete", [handle])
+        self.emit("person-delete", ([handle],))
 
     def remove_source(self, handle, transaction):
         self.dji.Source.filter(handle=handle)[0].delete()
-        self.emit("source-delete", [handle])
+        self.emit("source-delete", ([handle],))
 
     def remove_citation(self, handle, transaction):
         self.dji.Citation.filter(handle=handle)[0].delete()
-        self.emit("citation-delete", [handle])
+        self.emit("citation-delete", ([handle],))
 
     def remove_event(self, handle, transaction):
         self.dji.Event.filter(handle=handle)[0].delete()
-        self.emit("event-delete", [handle])
+        self.emit("event-delete", ([handle],))
 
     def remove_object(self, handle, transaction):
         self.dji.Media.filter(handle=handle)[0].delete()
-        self.emit("media-delete", [handle])
+        self.emit("media-delete", ([handle],))
 
     def remove_place(self, handle, transaction):
         self.dji.Place.filter(handle=handle)[0].delete()
-        self.emit("place-delete", [handle])
+        self.emit("place-delete", ([handle],))
 
     def remove_family(self, handle, transaction):
         self.dji.Family.filter(handle=handle)[0].delete()
-        self.emit("family-delete", [handle])
+        self.emit("family-delete", ([handle],))
 
     def remove_repository(self, handle, transaction):
         self.dji.Repository.filter(handle=handle)[0].delete()
-        self.emit("repository-delete", [handle])
+        self.emit("repository-delete", ([handle],))
 
     def remove_note(self, handle, transaction):
         self.dji.Note.filter(handle=handle)[0].delete()
-        self.emit("note-delete", [handle])
+        self.emit("note-delete", ([handle],))
 
     def remove_tag(self, handle, transaction):
         self.dji.Tag.filter(handle=handle)[0].delete()
-        self.emit("tag-delete", [handle])
+        self.emit("tag-delete", ([handle],))
 
     def remove_from_surname_list(self, person):
         ## FIXME
