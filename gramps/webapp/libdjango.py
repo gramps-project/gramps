@@ -58,11 +58,13 @@ from gramps.gen.constfunc import conv_to_unicode
 #    gperson = dbdjango.DbDjango().get_person_from_handle(handle)
 
 def check_diff(item, raw):
-    encoded = base64.encodestring(pickle.dumps(raw))
+    encoded = str(base64.encodebytes(pickle.dumps(raw)), "utf-8")
     if item.cache != encoded:
         print("Different:", item.__class__.__name__, item.gramps_id)
         print("raw  :", raw)
         print("cache:", item.from_cache())
+        # FIXING, TOO:
+        item.save_cache()
 
 #-------------------------------------------------------------------------
 #
@@ -536,6 +538,7 @@ class DjangoInterface(object):
                 place.lat,
                 place_ref_list,
                 place.name,
+                [], ## FIXME: get_alt_names
                 tuple(place.place_type),
                 place.code,
                 alt_location_list,
@@ -1840,7 +1843,6 @@ class DjangoInterface(object):
         for item in self.Media.all():
             raw = self.get_media(item)
             check_diff(item, raw)
-            encoded = base64.encodestring(pickle.dumps(raw))
             count += 1
         callback(100 * (count/total if total else 0))
 

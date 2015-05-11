@@ -89,13 +89,10 @@ class MetaCursor(object):
     def __iter__(self):
         return self.__next__()
     def __next__(self):
-        for item in []:
-            yield ("", None)
+        yield None
     def __exit__(self, *args, **kwargs):
         pass
     def iter(self):
-        for item in []:
-            yield ("", "")
         yield None
     def first(self):
         self._iter = self.__iter__()
@@ -118,12 +115,12 @@ class Cursor(object):
         return self.__next__()
     def __next__(self):
         for item in self.model.all():
-            yield (item.handle, self.func(item.handle))
+            yield (bytes(item.handle, "utf-8"), self.func(item.handle))
     def __exit__(self, *args, **kwargs):
         pass
     def iter(self):
         for item in self.model.all():
-            yield (item.handle, self.func(item.handle))
+            yield (bytes(item.handle, "utf-8"), self.func(item.handle))
         yield None
     def first(self):
         self._iter = self.__iter__()
@@ -136,11 +133,13 @@ class Cursor(object):
     def close(self):
         pass
 
-class Bookmarks:
+class Bookmarks(object):
+    def __init__(self):
+        self.handles = []
     def get(self):
-        return [] # handles
+        return self.handles
     def append(self, handle):
-        pass
+        self.handles.append(handle)
 
 class DjangoTxn(DbTxn):
     def __init__(self, message, db, table=None):
@@ -334,6 +333,23 @@ class DbDjango(DbWriteBase, DbReadBase):
         self.import_cache = {}
         self.use_import_cache = False
         self.use_db_cache = True
+        self._signals_enabled = False
+        self._signals = {}
+        self.event_names = set()
+        self.individual_attributes = set()
+        self.family_attributes = set()
+        self.source_attributes = set()
+        self.child_ref_types = set()
+        self.family_rel_types = set()
+        self.event_role_names = set()
+        self.name_types = set()
+        self.origin_types = set()
+        self.repository_types = set()
+        self.note_types = set()
+        self.source_media_types = set()
+        self.url_types = set()
+        self.media_attributes = set()
+        self.place_types = set()
 
     def prepare_import(self):
         """
@@ -403,7 +419,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         pass
 
     def enable_signals(self):
-        pass
+        self._signals_enabled = True
 
     def request_rebuild(self):
         # caches are ok, but let's compute public's
@@ -752,17 +768,6 @@ class DbDjango(DbWriteBase, DbReadBase):
             return None
         return self.make_family(family)
 
-    def get_family_from_gramps_id(self, gramps_id):
-        if self.import_cache:
-            for handle in self.import_cache:
-                if self.import_cache[handle].gramps_id == gramps_id:
-                    return self.import_cache[handle]
-        try:
-            family = self.dji.Family.get(gramps_id=gramps_id)
-        except:
-            return None
-        return self.make_family(family)
-
     def get_repository_from_handle(self, handle):
         if handle in self.import_cache:
             return self.import_cache[handle]
@@ -987,6 +992,94 @@ class DbDjango(DbWriteBase, DbReadBase):
         match_list = self.dji.Person.filter(gramps_id=gramps_id)
         if match_list.count() > 0:
             return self.make_person(match_list[0])
+        else:
+            return None
+
+    def get_family_from_gramps_id(self, gramps_id):
+        if self.import_cache:
+            for handle in self.import_cache:
+                if self.import_cache[handle].gramps_id == gramps_id:
+                    return self.import_cache[handle]
+        try:
+            family = self.dji.Family.get(gramps_id=gramps_id)
+        except:
+            return None
+        return self.make_family(family)
+
+    def get_source_from_gramps_id(self, gramps_id):
+        if self.import_cache:
+            for handle in self.import_cache:
+                if self.import_cache[handle].gramps_id == gramps_id:
+                    return self.import_cache[handle]
+        match_list = self.dji.Source.filter(gramps_id=gramps_id)
+        if match_list.count() > 0:
+            return self.make_source(match_list[0])
+        else:
+            return None
+
+    def get_citation_from_gramps_id(self, gramps_id):
+        if self.import_cache:
+            for handle in self.import_cache:
+                if self.import_cache[handle].gramps_id == gramps_id:
+                    return self.import_cache[handle]
+        match_list = self.dji.Citation.filter(gramps_id=gramps_id)
+        if match_list.count() > 0:
+            return self.make_citation(match_list[0])
+        else:
+            return None
+
+    def get_event_from_gramps_id(self, gramps_id):
+        if self.import_cache:
+            for handle in self.import_cache:
+                if self.import_cache[handle].gramps_id == gramps_id:
+                    return self.import_cache[handle]
+        match_list = self.dji.Event.filter(gramps_id=gramps_id)
+        if match_list.count() > 0:
+            return self.make_event(match_list[0])
+        else:
+            return None
+
+    def get_object_from_gramps_id(self, gramps_id):
+        if self.import_cache:
+            for handle in self.import_cache:
+                if self.import_cache[handle].gramps_id == gramps_id:
+                    return self.import_cache[handle]
+        match_list = self.dji.Media.filter(gramps_id=gramps_id)
+        if match_list.count() > 0:
+            return self.make_media(match_list[0])
+        else:
+            return None
+
+    def get_place_from_gramps_id(self, gramps_id):
+        if self.import_cache:
+            for handle in self.import_cache:
+                if self.import_cache[handle].gramps_id == gramps_id:
+                    return self.import_cache[handle]
+        match_list = self.dji.Place.filter(gramps_id=gramps_id)
+        if match_list.count() > 0:
+            return self.make_place(match_list[0])
+        else:
+            return None
+
+    def get_repsoitory_from_gramps_id(self, gramps_id):
+        if self.import_cache:
+            for handle in self.import_cache:
+                if self.import_cache[handle].gramps_id == gramps_id:
+                    return self.import_cache[handle]
+        match_list = self.dji.Repsoitory.filter(gramps_id=gramps_id)
+        if match_list.count() > 0:
+            return self.make_repository(match_list[0])
+        else:
+            return None
+
+    def get_note_from_gramps_id(self, gramps_id):
+        if self.import_cache:
+            for handle in self.import_cache:
+                if self.import_cache[handle].gramps_id == gramps_id:
+                    return self.import_cache[handle]
+        match_list = self.dji.Note.filter(gramps_id=gramps_id)
+        if match_list.count() > 0:
+            return self.make_note(match_list[0])
         else:
             return None
 
@@ -1225,6 +1318,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not person.gramps_id and set_gid:
             person.gramps_id = self.find_next_person_gramps_id()
         self.commit_person(person, trans)
+        self.signal("person-add", [person.handle])
         return person.handle
 
     def add_family(self, family, trans, set_gid=True):
@@ -1233,6 +1327,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not family.gramps_id and set_gid:
             family.gramps_id = self.find_next_family_gramps_id()
         self.commit_family(family, trans)
+        self.signal("family-add", [family.handle])
         return family.handle
 
     def add_citation(self, citation, trans, set_gid=True):
@@ -1241,6 +1336,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not citation.gramps_id and set_gid:
             citation.gramps_id = self.find_next_citation_gramps_id()
         self.commit_citation(citation, trans)
+        self.signal("citation-add", [citation.handle])
         return citation.handle
 
     def add_source(self, source, trans, set_gid=True):
@@ -1249,6 +1345,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not source.gramps_id and set_gid:
             source.gramps_id = self.find_next_source_gramps_id()
         self.commit_source(source, trans)
+        self.signal("source-add", [source.handle])
         return source.handle
 
     def add_repository(self, repository, trans, set_gid=True):
@@ -1257,6 +1354,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not repository.gramps_id and set_gid:
             repository.gramps_id = self.find_next_repository_gramps_id()
         self.commit_repository(repository, trans)
+        self.signal("repository-add", [repository.handle])
         return repository.handle
 
     def add_note(self, note, trans, set_gid=True):
@@ -1265,6 +1363,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         if not note.gramps_id and set_gid:
             note.gramps_id = self.find_next_note_gramps_id()
         self.commit_note(note, trans)
+        self.signal("note-add", [note.handle])
         return note.handle
 
     def add_place(self, place, trans, set_gid=True):
@@ -1304,38 +1403,78 @@ class DbDjango(DbWriteBase, DbReadBase):
         return obj.handle
 
     def commit_person(self, person, trans, change_time=None):
-        self.import_cache[person.handle] = person
+        if self.use_import_cache:
+            self.import_cache[person.handle] = person
+        else:
+            print("WARNING: haven't written logic to update")
+        self.signal("person-update", [person.handle])
 
     def commit_family(self, family, trans, change_time=None):
-        self.import_cache[family.handle] = family
+        if self.use_import_cache:
+            self.import_cache[family.handle] = family
+        else:
+            print("WARNING: haven't written logic to update")
+        self.signal("family-update", [family.handle])
 
     def commit_citation(self, citation, trans, change_time=None):
-        self.import_cache[citation.handle] = citation
+        if self.use_import_cache:
+            self.import_cache[citation.handle] = citation
+        else:
+            print("WARNING: haven't written logic to update")
+        self.signal("citation-update", [citation.handle])
 
     def commit_source(self, source, trans, change_time=None):
-        self.import_cache[source.handle] = source
+        if self.use_import_cache:
+            self.import_cache[source.handle] = source
+        else:
+            print("WARNING: haven't written logic to update")
+        self.signal("source-update", [source.handle])
 
     def commit_repository(self, repository, trans, change_time=None):
-        self.import_cache[repository.handle] = repository
+        if self.use_import_cache:
+            self.import_cache[repository.handle] = repository
+        else:
+            print("WARNING: haven't written logic to update")
+        self.signal("repository-update", [repository.handle])
 
     def commit_note(self, note, trans, change_time=None):
-        self.import_cache[note.handle] = note
+        if self.use_import_cache:
+            self.import_cache[note.handle] = note
+        else:
+            print("WARNING: haven't written logic to update")
+        self.signal("note-update", [note.handle])
 
     def commit_place(self, place, trans, change_time=None):
-        self.import_cache[place.handle] = place
+        if self.use_import_cache:
+            self.import_cache[place.handle] = place
+        else:
+            print("WARNING: haven't written logic to update")
+        self.signal("place-update", [place.handle])
 
     def commit_event(self, event, trans, change_time=None):
-        self.import_cache[event.handle] = event
+        if self.use_import_cache:
+            self.import_cache[event.handle] = event
+        else:
+            print("WARNING: haven't written logic to update")
+        self.signal("event-update", [event.handle])
 
     def commit_tag(self, tag, trans, change_time=None):
-        self.import_cache[tag.handle] = tag
+        if self.use_import_cache:
+            self.import_cache[tag.handle] = tag
+        else:
+            print("WARNING: haven't written logic to update")
+        self.signal("tag-update", [tag.handle])
 
     def commit_media_object(self, obj, transaction, change_time=None):
         """
         Commit the specified MediaObject to the database, storing the changes
         as part of the transaction.
         """
-        self.import_cache[obj.handle] = obj
+        if self.use_import_cache:
+            self.import_cache[obj.handle] = obj
+        else:
+            print("WARNING: haven't written logic to update")
+        self.signal("media-update", [obj.handle])
 
     def get_gramps_ids(self, obj_key):
         key2table = {
@@ -1357,7 +1496,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         return 
 
     def disable_signals(self):
-        pass
+        self._signals_enabled = False
 
     def set_researcher(self, owner):
         pass
@@ -1464,46 +1603,250 @@ class DbDjango(DbWriteBase, DbReadBase):
         return False
 
     def connect(self, signal, callback):
-        pass
+        ## citation-add
+        ## citation-delete
+        ## citation-rebuild
+        ## citation-update
+        #print("Adding signal: ", signal)
+        if signal in self._signals:
+            self._signals[signal].append(callback)
+        else:
+            self._signals[signal] = [callback]
 
-    def find_backlink_handles(self, active_handle):
+    def disconnect(self, signal):
+        #print("Disconnecting signal: ", signal)
+        if signal in self._signals:
+            del self._signals[signal]
+
+    def signal(self, sig, items):
+        #print("Firing signal: ", sig, items)
+        if self._signals_enabled:
+            if sig in self._signals:
+                for callback in self._signals[sig]:
+                    callback(items)
+            else:
+                print("WARNING: no such signal: ", sig)
+
+    def find_backlink_handles(self, handle, include_classes=None):
+        ## FIXME: figure out how to get objects that refer
+        ## to this handle
         return []
 
     def get_note_bookmarks(self):
-        return []
+        return self.note_bookmarks
 
     def get_media_bookmarks(self):
-        return []
+        return self.media_bookmarks
 
     def get_repo_bookmarks(self):
-        return []
+        return self.repo_bookmarks
 
     def get_citation_bookmarks(self):
-        return []
+        return self.citation_bookmarks
 
     def get_source_bookmarks(self):
-        return []
+        return self.source_bookmarks
 
     def get_place_bookmarks(self):
-        return []
+        return self.place_bookmarks
 
     def get_event_bookmarks(self):
-        return []
+        return self.event_bookmarks
 
     def get_bookmarks(self):
-        return []
+        return self.bookmarks
 
     def get_family_bookmarks(self):
-        return []
+        return self.family_bookmarks
 
     def get_save_path(self):
         return "/tmp/"
 
+    ## Get types:
+    def get_event_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Event instances
+        in the database.
+        """
+        return list(self.event_attributes)
+
+    def get_event_types(self):
+        """
+        Return a list of all event types in the database.
+        """
+        return list(self.event_names)
+
+    def get_person_event_types(self):
+        """
+        Deprecated:  Use get_event_types
+        """
+        return list(self.event_names)
+
+    def get_person_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Person instances 
+        in the database.
+        """
+        return list(self.individual_attributes)
+
+    def get_family_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Family instances 
+        in the database.
+        """
+        return list(self.family_attributes)
+
+    def get_family_event_types(self):
+        """
+        Deprecated:  Use get_event_types
+        """
+        return list(self.event_names)
+
+    def get_media_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Media and MediaRef 
+        instances in the database.
+        """
+        return list(self.media_attributes)
+
+    def get_family_relation_types(self):
+        """
+        Return a list of all relationship types assocated with Family
+        instances in the database.
+        """
+        return list(self.family_rel_types)
+
+    def get_child_reference_types(self):
+        """
+        Return a list of all child reference types assocated with Family
+        instances in the database.
+        """
+        return list(self.child_ref_types)
+
+    def get_event_roles(self):
+        """
+        Return a list of all custom event role names assocated with Event
+        instances in the database.
+        """
+        return list(self.event_role_names)
+
+    def get_name_types(self):
+        """
+        Return a list of all custom names types assocated with Person
+        instances in the database.
+        """
+        return list(self.name_types)
+
     def get_origin_types(self):
-        return []
+        """
+        Return a list of all custom origin types assocated with Person/Surname
+        instances in the database.
+        """
+        return list(self.origin_types)
+
+    def get_repository_types(self):
+        """
+        Return a list of all custom repository types assocated with Repository 
+        instances in the database.
+        """
+        return list(self.repository_types)
+
+    def get_note_types(self):
+        """
+        Return a list of all custom note types assocated with Note instances 
+        in the database.
+        """
+        return list(self.note_types)
+
+    def get_source_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Source/Citation
+        instances in the database.
+        """
+        return list(self.source_attributes)
+
+    def get_source_media_types(self):
+        """
+        Return a list of all custom source media types assocated with Source 
+        instances in the database.
+        """
+        return list(self.source_media_types)
+
+    def get_url_types(self):
+        """
+        Return a list of all custom names types assocated with Url instances 
+        in the database.
+        """
+        return list(self.url_types)
+
+    def get_place_types(self):
+        """
+        Return a list of all custom place types assocated with Place instances
+        in the database.
+        """
+        return list(self.place_types)
 
     def get_default_handle(self):
         return None
 
     def close(self):
         pass
+
+    def get_surname_list(self):
+        return []
+
+    def is_open(self):
+        return True
+
+    def get_table_names(self):
+        """Return a list of valid table names."""
+        return list(self._tables.keys())
+
+    def find_initial_person(self):
+        return None
+
+    # Removals:
+    def remove_person(self, handle, txn):
+        self.dji.Person.filter(handle=handle)[0].delete()
+        self.signal("person-delete", [handle])
+
+    def remove_source(self, handle, transaction):
+        self.dji.Source.filter(handle=handle)[0].delete()
+        self.signal("source-delete", [handle])
+
+    def remove_citation(self, handle, transaction):
+        self.dji.Citation.filter(handle=handle)[0].delete()
+        self.signal("citation-delete", [handle])
+
+    def remove_event(self, handle, transaction):
+        self.dji.Event.filter(handle=handle)[0].delete()
+        self.signal("event-delete", [handle])
+
+    def remove_object(self, handle, transaction):
+        self.dji.Media.filter(handle=handle)[0].delete()
+        self.signal("media-delete", [handle])
+
+    def remove_place(self, handle, transaction):
+        self.dji.Place.filter(handle=handle)[0].delete()
+        self.signal("place-delete", [handle])
+
+    def remove_family(self, handle, transaction):
+        self.dji.Family.filter(handle=handle)[0].delete()
+        self.signal("family-delete", [handle])
+
+    def remove_repository(self, handle, transaction):
+        self.dji.Repository.filter(handle=handle)[0].delete()
+        self.signal("repository-delete", [handle])
+
+    def remove_note(self, handle, transaction):
+        self.dji.Note.filter(handle=handle)[0].delete()
+        self.signal("note-delete", [handle])
+
+    def remove_tag(self, handle, transaction):
+        self.dji.Tag.filter(handle=handle)[0].delete()
+        self.signal("tag-delete", [handle])
+
+    def remove_from_surname_list(self, person):
+        ## FIXME
+        pass
+    
