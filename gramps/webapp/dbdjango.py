@@ -926,6 +926,9 @@ class DbDjango(DbWriteBase, DbReadBase):
         return self.make_media(media)
 
     def get_default_person(self):
+        people = self.dji.Person.all()
+        if people.count() > 0:
+            return self.make_person(people[0])
         return None
 
     def iter_people(self):
@@ -1864,6 +1867,9 @@ class DbDjango(DbWriteBase, DbReadBase):
         return list(self.place_types)
 
     def get_default_handle(self):
+        people = self.dji.Person.all()
+        if people.count() > 0:
+            return people[0].handle
         return None
 
     def close(self):
@@ -1880,7 +1886,7 @@ class DbDjango(DbWriteBase, DbReadBase):
         return list(self._tables.keys())
 
     def find_initial_person(self):
-        return None
+        return self.get_default_person()
 
     # Removals:
     def remove_person(self, handle, txn):
@@ -1927,3 +1933,5 @@ class DbDjango(DbWriteBase, DbReadBase):
         ## FIXME
         pass
     
+    def get_dbname(self):
+        return "Django Database"
