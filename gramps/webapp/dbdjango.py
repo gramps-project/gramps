@@ -1449,7 +1449,6 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if self.use_import_cache:
             self.import_cache[person.handle] = person
         else:
-            import pdb; pdb.set_trace()
             raw = person.serialize()
             items = self.dji.Person.filter(handle=person.handle)
             if items.count() > 0:
