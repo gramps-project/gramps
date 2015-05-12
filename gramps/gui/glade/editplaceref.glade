@@ -77,12 +77,12 @@
           <object class="GtkLabel" id="label1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="xalign">0</property>
             <property name="xpad">6</property>
             <property name="ypad">3</property>
             <property name="label" translatable="yes">Reference information</property>
             <property name="use_underline">True</property>
             <property name="justify">center</property>
+            <property name="xalign">0</property>
             <attributes>
               <attribute name="weight" value="bold"/>
             </attributes>
@@ -109,11 +109,11 @@
                   <object class="GtkLabel" id="label513">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
                     <property name="ypad">3</property>
                     <property name="label" translatable="yes">_Date:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
+                    <property name="xalign">0</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -190,13 +190,13 @@
                     <property name="row_spacing">6</property>
                     <property name="column_spacing">12</property>
                     <child>
-                      <object class="GtkLabel" id="label501">
-                        <property name="visible">True</property>
+                      <object class="GtkLabel" id="place_title_label">
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="no_show_all">True</property>
                         <property name="label" translatable="yes">Title:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
+                        <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -207,10 +207,10 @@
                       <object class="GtkLabel" id="place_name_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
                         <property name="label" translatable="yes">Name:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
+                        <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -221,11 +221,11 @@
                       <object class="GtkLabel" id="label504">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">ID:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
+                        <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -236,9 +236,9 @@
                       <object class="GtkLabel" id="label657">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
                         <property name="label" translatable="yes">Latitude:</property>
                         <property name="use_underline">True</property>
+                        <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -269,12 +269,12 @@
                             <property name="width_request">500</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
                             <property name="ypad">4</property>
                             <property name="label" translatable="yes">&lt;b&gt;Note:&lt;/b&gt; Any changes in the enclosing place information will be reflected in the place itself, for places that it encloses.</property>
                             <property name="use_markup">True</property>
                             <property name="justify">fill</property>
                             <property name="wrap">True</property>
+                            <property name="xalign">0</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -293,10 +293,10 @@
                       <object class="GtkLabel" id="label2">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
                         <property name="label" translatable="yes">Type:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
+                        <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -307,10 +307,10 @@
                       <object class="GtkLabel" id="label3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
                         <property name="label" translatable="yes">Longitude:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
+                        <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -368,8 +368,8 @@
                     </child>
                     <child>
                       <object class="UndoableEntry" id="place_title">
-                        <property name="visible">True</property>
                         <property name="can_focus">True</property>
+                        <property name="no_show_all">True</property>
                         <property name="tooltip_text" translatable="yes">Full title of this place.</property>
                         <property name="hexpand">True</property>
                         <property name="invisible_char">●</property>
@@ -447,9 +447,9 @@ You can set these values via the Geography View by searching the place, or via a
                           <object class="GtkLabel" id="label5">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
                             <property name="label" translatable="yes">Code:</property>
                             <property name="use_underline">True</property>
+                            <property name="xalign">0</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -481,8 +481,8 @@ You can set these values via the Geography View by searching the place, or via a
                       <object class="GtkLabel" id="label4">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
                         <property name="label" translatable="yes">Tags:</property>
+                        <property name="xalign">0</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>

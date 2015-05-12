@@ -55,6 +55,7 @@ from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredTagList,
 from gramps.gen.errors import ValidationError
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.config import config
 from ..dialog import ErrorDialog
 from ..glade import Glade
 
@@ -105,9 +106,12 @@ class EditPlace(EditPrimary):
 
     def _setup_fields(self):
         
-        self.title = MonitoredEntry(self.top.get_object("place_title"),
-                                    self.obj.set_title, self.obj.get_title,
-                                    self.db.readonly)
+        if config.get('preferences.place-title'):
+            self.top.get_object("place_title").show()
+            self.top.get_object("place_title_label").show()
+            self.title = MonitoredEntry(self.top.get_object("place_title"),
+                                        self.obj.set_title, self.obj.get_title,
+                                        self.db.readonly)
         
         self.name = MonitoredEntry(self.top.get_object("name_entry"),
                                     self.obj.set_name, self.obj.get_name,

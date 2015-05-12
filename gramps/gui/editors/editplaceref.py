@@ -35,6 +35,7 @@ from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 from gramps.gen.errors import ValidationError
 from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -102,9 +103,13 @@ class EditPlaceRef(EditReference):
                                         self.uistate, self.track, 
                                         self.db.readonly)
 
-        self.title = MonitoredEntry(self.top.get_object("place_title"),
-                                    self.source.set_title, self.source.get_title,
-                                    self.db.readonly)
+        if config.get('preferences.place-title'):
+            self.top.get_object("place_title").show()
+            self.top.get_object("place_title_label").show()
+            self.title = MonitoredEntry(self.top.get_object("place_title"),
+                                        self.source.set_title,
+                                        self.source.get_title,
+                                        self.db.readonly)
         
         self.name = MonitoredEntry(self.top.get_object("name_entry"),
                                     self.source.set_name, self.source.get_name,
