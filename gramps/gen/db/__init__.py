@@ -94,18 +94,3 @@ from .txn import *
 from .exceptions import *
 #from .write import *
 #from .backup import backup, restore
-
-def make_database(id, dbstate):
-    from gramps.cli.grampscli import CLIManager
-    from gramps.gen.plug import BasePluginManager
-    from gramps.cli.user import User
-
-    climanager = CLIManager(dbstate, setloader=False, user=User()) # do not load db_loader
-    climanager.do_reg_plugins(dbstate, None)
-    pmgr = BasePluginManager.get_instance()
-    pdata = pmgr.get_plugin(id)
-
-    mod = pmgr.load_plugin(pdata)
-    database = getattr(mod, pdata.databaseclass)
-    return database()
-
