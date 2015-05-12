@@ -35,6 +35,8 @@ from gramps.gen.lib import NoteType
 from gramps.gen.db import DbTxn
 from gramps.gen.errors import ValidationError
 from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.config import config
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -102,13 +104,18 @@ class EditPlaceRef(EditReference):
                                         self.uistate, self.track, 
                                         self.db.readonly)
 
-        self.title = MonitoredEntry(self.top.get_object("place_title"),
-                                    self.source.set_title, self.source.get_title,
-                                    self.db.readonly)
+        if config.get('preferences.place-title'):
+            self.top.get_object("place_title").show()
+            self.top.get_object("place_title_label").show()
+            self.title = MonitoredEntry(self.top.get_object("place_title"),
+                                        self.source.set_title,
+                                        self.source.get_title,
+                                        self.db.readonly)
         
         self.name = MonitoredEntry(self.top.get_object("name_entry"),
                                     self.source.set_name, self.source.get_name,
-                                    self.db.readonly)
+                                    self.db.readonly,
+                                    changed=self.name_changed)
         
         self.gid = MonitoredEntry(self.top.get_object("gid"),
                                   self.source.set_gramps_id, 
@@ -160,6 +167,13 @@ class EditPlaceRef(EditReference):
             return ValidationError(_("Invalid longitude (syntax: 18\u00b09'") +
                                    _('48.21"E, -18.2412 or -18:9:48.21)'))
 
+    def update_title(self):
+        new_title = place_displayer.display(self.db, self.source)
+        self.top.get_object("preview_title").set_text(new_title)
+
+    def name_changed(self, obj):
+        self.update_title()
+
     def _create_tabbed_pages(self):
         """
         Create the notebook tabs and inserts them into the main
@@ -178,7 +192,8 @@ class EditPlaceRef(EditReference):
                                                self.uistate,
                                                self.track,
                                                self.source.get_placeref_list(),
-                                               self.source.handle)
+                                               self.source.handle,
+                                               self.update_title)
         self._add_tab(notebook, self.placeref_list)
         self.track_ref_for_deletion("placeref_list")
         

@@ -1013,6 +1013,12 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 1, row, 2, 1)
         row += 1
         
+        # Legacy place title mode
+        self.add_checkbox(grid,
+                          _("Display legacy place title field in editors"),
+                          row, 'preferences.place-title', stop=3)
+        row += 1
+
         # Age precision:
         # precision=1 for "year", 2: "year, month" or 3: "year, month, days"
         obox = Gtk.ComboBoxText()
