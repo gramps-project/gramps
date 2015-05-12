@@ -53,29 +53,31 @@ import logging
 # GRAMPS libraries
 #
 #-------------------------------------------------------------------------
-from ..lib.mediaobj import MediaObject
-from ..lib.person import Person
-from ..lib.family import Family
-from ..lib.src import Source
-from ..lib.citation import Citation
-from ..lib.event import Event
-from ..lib.place import Place
-from ..lib.repo import Repository
-from ..lib.note import Note
-from ..lib.tag import Tag
-from ..lib.genderstats import GenderStats
-from ..lib.researcher import Researcher 
-from ..lib.nameorigintype import NameOriginType
+from gramps.gen.lib.mediaobj import MediaObject
+from gramps.gen.lib.person import Person
+from gramps.gen.lib.family import Family
+from gramps.gen.lib.src import Source
+from gramps.gen.lib.citation import Citation
+from gramps.gen.lib.event import Event
+from gramps.gen.lib.place import Place
+from gramps.gen.lib.repo import Repository
+from gramps.gen.lib.note import Note
+from gramps.gen.lib.tag import Tag
+from gramps.gen.lib.genderstats import GenderStats
+from gramps.gen.lib.researcher import Researcher 
+from gramps.gen.lib.nameorigintype import NameOriginType
 
-from .dbconst import *
-from ..utils.callback import Callback
-from ..utils.cast import conv_dbstr_to_unicode
-from . import (BsddbBaseCursor, DbReadBase)
-from ..utils.id import create_id
-from ..errors import DbError
-from ..constfunc import handle2internal, get_env_var
-from ..const import GRAMPS_LOCALE as glocale
+from gramps.gen.utils.callback import Callback
+from gramps.gen.utils.cast import conv_dbstr_to_unicode
+from . import BsddbBaseCursor
+from gramps.gen.db.base import DbReadBase
+from gramps.gen.utils.id import create_id
+from gramps.gen.errors import DbError
+from gramps.gen.constfunc import handle2internal, get_env_var
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
+
+from gramps.gen.db.dbconst import *
 
 LOG = logging.getLogger(DBLOGNAME)
 LOG = logging.getLogger(".citation")
@@ -84,7 +86,6 @@ LOG = logging.getLogger(".citation")
 # constants
 #
 #-------------------------------------------------------------------------
-from .dbconst import *
 
 _SIGBASE = ('person', 'family', 'source', 'citation', 
             'event',  'media', 'place', 'repository',

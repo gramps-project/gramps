@@ -44,7 +44,7 @@ import sys
 #-------------------------------------------------------------------------
 from gramps.gen.recentfiles import recent_files
 from gramps.gen.utils.file import rm_tempdir, get_empty_tempdir
-from gramps.gen.db import DbBsddb
+from gramps.gen.db import make_database
 from .clidbman import CLIDbManager, NAME_FILE, find_locker_name
 
 from gramps.gen.plug import BasePluginManager
@@ -491,7 +491,8 @@ class ArgHandler(object):
                     self.imp_db_path, title = self.dbman.create_new_db_cli()
                 else:
                     self.imp_db_path = get_empty_tempdir("import_dbdir")
-                    newdb = DbBsddb()
+
+                    newdb = make_database("bsddb", self.dbstate)
                     newdb.write_version(self.imp_db_path)
                 
                 try:

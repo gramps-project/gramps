@@ -23,8 +23,8 @@
 Provide the database state class
 """
 
-from .db import DbBsddbRead
 from .db import DbReadBase
+from .db import make_database
 from .proxy.proxybase import ProxyDbBase
 from .utils.callback import Callback
 from .config import config
@@ -45,7 +45,7 @@ class DbState(Callback):
         just a place holder until a real DB is assigned.
         """
         Callback.__init__(self)
-        self.db      = DbBsddbRead()
+        self.db      = make_database("bsddb", self)
         self.open    = False
         self.stack = []
 
@@ -88,7 +88,7 @@ class DbState(Callback):
         """
         self.emit('no-database', ())
         self.db.close()
-        self.db = DbBsddbRead()
+        self.db = make_database("bsddb", self)
         self.db.db_is_open = False
         self.open = False
         self.emit('database-changed', (self.db, ))

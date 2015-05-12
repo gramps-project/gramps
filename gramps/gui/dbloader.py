@@ -55,7 +55,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.cli.grampscli import CLIDbLoader
 from gramps.gen.config import config
-from gramps.gen.db import DbBsddb
+from gramps.gen.db import make_database
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError, 
                                       BsddbDowngradeError, 
                                       DbVersionError, 
@@ -305,7 +305,7 @@ class DbLoader(CLIDbLoader):
         else:
             mode = 'w'
 
-        db = DbBsddb()
+        db = make_database("bsddb", self.dbstate)
         db.disable_signals()
         self.dbstate.no_database()
 

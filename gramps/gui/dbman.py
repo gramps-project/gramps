@@ -73,7 +73,7 @@ _ = glocale.translation.gettext
 from gramps.gen.const import URL_WIKISTRING
 from .user import User
 from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2
-from gramps.gen.db import DbBsddb
+from gramps.gen.db import make_database
 from .pluginmanager import GuiPluginManager
 from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from .ddtargets import DdTargets
@@ -535,8 +535,8 @@ class DbManager(CLIDbManager):
         new_path, newname = self._create_new_db("%s : %s" % (parent_name, name))
         
         self.__start_cursor(_("Extracting archive..."))
-        dbclass = DbBsddb
-        dbase = dbclass()
+
+        dbase = make_database("bsddb", self.dbstate)
         dbase.load(new_path, None)
         
         self.__start_cursor(_("Importing archive..."))
@@ -723,11 +723,10 @@ class DbManager(CLIDbManager):
                 fname = os.path.join(dirname, filename)
                 os.unlink(fname)
 
-        newdb = DbBsddb()
+        newdb = make_database("bsddb", self.dbstate)
         newdb.write_version(dirname)
 
-        dbclass = DbBsddb
-        dbase = dbclass()
+        dbase = make_database("bsddb", self.dbstate)
         dbase.set_save_path(dirname)
         dbase.load(dirname, None)
 

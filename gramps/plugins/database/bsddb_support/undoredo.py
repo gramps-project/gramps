@@ -43,7 +43,7 @@ except:
         DBPageNotFoundError = 0
         DBInvalidArgError = 0
         
-from ..const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 #-------------------------------------------------------------------------
@@ -51,10 +51,10 @@ _ = glocale.translation.gettext
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..constfunc import conv_to_unicode, handle2internal, win
-from .dbconst import *
+from gramps.gen.constfunc import conv_to_unicode, handle2internal, win
+from gramps.gen.db.dbconst import *
 from . import BSDDBTxn
-from ..errors import DbError
+from gramps.gen.errors import DbError
 
 #-------------------------------------------------------------------------
 #

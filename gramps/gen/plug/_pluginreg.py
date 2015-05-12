@@ -70,8 +70,9 @@ VIEW        = 8
 RELCALC     = 9
 GRAMPLET    = 10
 SIDEBAR     = 11
+DATABASE    = 12
 PTYPE       = [REPORT , QUICKREPORT, TOOL, IMPORT, EXPORT, DOCGEN, GENERAL,
-               MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR]
+               MAPSERVICE, VIEW, RELCALC, GRAMPLET, SIDEBAR, DATABASE]
 PTYPE_STR   = {
         REPORT: _('Report') , 
         QUICKREPORT: _('Quickreport'), 
@@ -85,6 +86,7 @@ PTYPE_STR   = {
         RELCALC: _('Relationships'), 
         GRAMPLET: _('Gramplet'),
         SIDEBAR: _('Sidebar'),
+        DATABASE: _('Database'),
         }
 
 #possible report categories
@@ -206,7 +208,7 @@ class PluginData(object):
        The python path where the plugin implementation can be found
     .. attribute:: ptype
        The plugin type. One of REPORT , QUICKREPORT, TOOL, IMPORT,
-        EXPORT, DOCGEN, GENERAL, MAPSERVICE, VIEW, GRAMPLET
+        EXPORT, DOCGEN, GENERAL, MAPSERVICE, VIEW, GRAMPLET, DATABASE
     .. attribute:: authors
        List of authors of the plugin, default=[]
     .. attribute:: authors_email
@@ -349,6 +351,11 @@ class PluginData(object):
        the plugin is appended to the list of plugins. If START, then the
        plugin is prepended. Only set START if you want a plugin to be the
        first in the order of plugins
+
+    Attributes for DATABASE plugins
+
+    .. attribute:: databaseclass
+       The class in the module that is the database class
     """
 
     def __init__(self):
@@ -421,6 +428,8 @@ class PluginData(object):
         self._menu_label = ''
         #VIEW and SIDEBAR attr
         self._order = END
+        #DATABASE attr
+        self._databaseclass = None
         #GENERAL attr
         self._data = []
         self._process = None
@@ -931,6 +940,17 @@ class PluginData(object):
 
     order = property(_get_order, _set_order)
   
+    #DATABASE attributes
+    def _set_databaseclass(self, databaseclass):
+        if not self._ptype == DATABASE:
+            raise ValueError('databaseclass may only be set for DATABASE plugins')
+        self._databaseclass = databaseclass
+
+    def _get_databaseclass(self):
+        return self._databaseclass
+
+    databaseclass = property(_get_databaseclass, _set_databaseclass)
+
     #GENERAL attr
     def _set_data(self, data):
         if not self._ptype in (GENERAL,):
@@ -1032,6 +1052,7 @@ def make_environment(**kwargs):
         'REPORT_MODE_CLI': REPORT_MODE_CLI,
         'TOOL_MODE_GUI': TOOL_MODE_GUI, 
         'TOOL_MODE_CLI': TOOL_MODE_CLI,
+        'DATABASE': DATABASE,
         'GRAMPSVERSION': GRAMPSVERSION,
         'START': START,
         'END': END,
@@ -1296,6 +1317,12 @@ class PluginRegister(object):
         Return a list of :class:`PluginData` that are of type SIDEBAR
         """
         return self.type_plugins(SIDEBAR)
+
+    def database_plugins(self):
+        """
+        Return a list of :class:`PluginData` that are of type DATABASE
+        """
+        return self.type_plugins(DATABASE)
 
     def filter_load_on_reg(self):
         """

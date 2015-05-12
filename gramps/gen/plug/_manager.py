@@ -412,6 +412,11 @@ class BasePluginManager(object):
         """
         return self.__pgr.sidebar_plugins()
     
+    def get_reg_databases(self):
+        """ Return list of registered database backends
+        """
+        return self.__pgr.database_plugins()
+    
     def get_external_opt_dict(self):
         """ Return the dictionary of external options. """
         return self.__external_opt_dict
