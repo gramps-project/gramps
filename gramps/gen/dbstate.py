@@ -24,7 +24,6 @@ Provide the database state class
 """
 
 from .db import DbReadBase
-from .db import make_database
 from .proxy.proxybase import ProxyDbBase
 from .utils.callback import Callback
 from .config import config
@@ -45,7 +44,7 @@ class DbState(Callback):
         just a place holder until a real DB is assigned.
         """
         Callback.__init__(self)
-        self.db      = make_database("bsddb", self)
+        self.db      = self.make_database("bsddb")
         self.open    = False
         self.stack = []
 
@@ -88,7 +87,7 @@ class DbState(Callback):
         """
         self.emit('no-database', ())
         self.db.close()
-        self.db = make_database("bsddb", self)
+        self.db = self.make_database("bsddb")
         self.db.db_is_open = False
         self.open = False
         self.emit('database-changed', (self.db, ))
@@ -122,3 +121,24 @@ class DbState(Callback):
         """
         self.db = self.stack.pop()
         self.emit('database-changed', (self.db, ))
+
+    def make_database(self, id):
+        """
+        Make a database, given a plugin id.
+        """
+        from .plug import BasePluginManager
+        from .const import PLUGINS_DIR, USER_PLUGINS
+
+        pmgr = BasePluginManager.get_instance()
+        pdata = pmgr.get_plugin(id)
+        
+        if not pdata:
+            # This might happen if using gramps from outside, and
+            # we haven't loaded plugins yet
+            pmgr.reg_plugins(PLUGINS_DIR, self, None)
+            pmgr.reg_plugins(USER_PLUGINS, self, None, load_on_reg=True)
+            pdata = pmgr.get_plugin(id)
+
+        mod = pmgr.load_plugin(pdata)
+        database = getattr(mod, pdata.databaseclass)
+        return database()
