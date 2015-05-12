@@ -56,33 +56,34 @@ except:
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..lib.person import Person
-from ..lib.family import Family
-from ..lib.src import Source
-from ..lib.citation import Citation
-from ..lib.event import Event
-from ..lib.place import Place
-from ..lib.repo import Repository
-from ..lib.mediaobj import MediaObject
-from ..lib.note import Note
-from ..lib.tag import Tag
-from ..lib.genderstats import GenderStats
-from ..lib.researcher import Researcher 
+from gramps.gen.lib.person import Person
+from gramps.gen.lib.family import Family
+from gramps.gen.lib.src import Source
+from gramps.gen.lib.citation import Citation
+from gramps.gen.lib.event import Event
+from gramps.gen.lib.place import Place
+from gramps.gen.lib.repo import Repository
+from gramps.gen.lib.mediaobj import MediaObject
+from gramps.gen.lib.note import Note
+from gramps.gen.lib.tag import Tag
+from gramps.gen.lib.genderstats import GenderStats
+from gramps.gen.lib.researcher import Researcher 
 
 from . import (DbBsddbRead, DbWriteBase, BSDDBTxn, 
                     DbTxn, BsddbBaseCursor, BsddbDowngradeError, DbVersionError,
                     DbEnvironmentError, DbUpgradeRequiredError, find_surname,
-                    find_byte_surname, find_surname_name, DbUndoBSDDB as DbUndo,
-                    exceptions)
-from .dbconst import *
-from ..utils.callback import Callback
-from ..utils.cast import conv_dbstr_to_unicode
-from ..utils.id import create_id
-from ..updatecallback import UpdateCallback
-from ..errors import DbError
-from ..constfunc import (win, conv_to_unicode, handle2internal,
+                    find_byte_surname, find_surname_name, DbUndoBSDDB as DbUndo)
+
+from gramps.gen.db import exceptions
+from gramps.gen.db.dbconst import *
+from gramps.gen.utils.callback import Callback
+from gramps.gen.utils.cast import conv_dbstr_to_unicode
+from gramps.gen.utils.id import create_id
+from gramps.gen.updatecallback import UpdateCallback
+from gramps.gen.errors import DbError
+from gramps.gen.constfunc import (win, conv_to_unicode, handle2internal,
                          get_env_var)
-from ..const import HOME_DIR, GRAMPS_LOCALE as glocale
+from gramps.gen.const import HOME_DIR, GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
 _LOG = logging.getLogger(DBLOGNAME)

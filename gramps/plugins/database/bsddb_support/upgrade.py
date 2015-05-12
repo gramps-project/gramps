@@ -39,23 +39,24 @@ from bsddb3 import db
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..const import GRAMPS_LOCALE as glocale
+from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from ..constfunc import handle2internal
-from ..lib.markertype import MarkerType
-from ..lib.nameorigintype import NameOriginType
-from ..lib.place import Place
-from ..lib.placeref import PlaceRef
-from ..lib.placetype import PlaceType
-from ..lib.placename import PlaceName
-from ..lib.eventtype import EventType
-from ..lib.tag import Tag
-from ..utils.file import create_checksum
-from ..utils.id import create_id
+from gramps.gen.constfunc import handle2internal
+from gramps.gen.lib.markertype import MarkerType
+from gramps.gen.lib.nameorigintype import NameOriginType
+from gramps.gen.lib.place import Place
+from gramps.gen.lib.placeref import PlaceRef
+from gramps.gen.lib.placetype import PlaceType
+from gramps.gen.lib.placename import PlaceName
+from gramps.gen.lib.eventtype import EventType
+from gramps.gen.lib.tag import Tag
+from gramps.gen.utils.file import create_checksum
+from gramps.gen.utils.id import create_id
 from . import BSDDBTxn
 from .write import _mkname, SURNAMES
-from .dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
-                      MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, SOURCE_KEY)
+from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, EVENT_KEY, 
+                                   MEDIA_KEY, PLACE_KEY, REPOSITORY_KEY, 
+                                   SOURCE_KEY)
 from gramps.gui.dialog import (InfoDialog)
 
 LOG = logging.getLogger(".upgrade")
@@ -359,7 +360,7 @@ def upgrade_datamap_17(datamap):
     """
     new_srcattr_list = []
     private = False
-    from ..lib.srcattrtype import SrcAttributeType
+    from gramps.gen.lib.srcattrtype import SrcAttributeType
     for (key, value) in datamap.items():
         the_type = SrcAttributeType(key).serialize()
         new_srcattr_list.append((private, the_type, value))

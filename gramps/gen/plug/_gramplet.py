@@ -70,7 +70,6 @@ class Gramplet(object):
         self.connect(self.gui.textview, "motion-notify-event", 
                      self.gui.on_motion)
         self.connect_signal('Person', self._active_changed)
-        
         self._db_changed(self.dbstate.db)
         active_person = self.get_active('Person')
         if active_person: # already changed

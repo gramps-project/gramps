@@ -84,28 +84,13 @@ More details can be found in the manual's
 `Using database API <http://www.gramps-project.org/wiki/index.php?title=Using_database_API>`_.
 """
 
-from .base import *
-from .dbconst import *
-#from .cursor import *
-#from .read import *
-#from .bsddbtxn import *
-from .txn import *
-#from .undoredo import *
-from .exceptions import *
-#from .write import *
-#from .backup import backup, restore
-
-def make_database(id, dbstate):
-    from gramps.cli.grampscli import CLIManager
-    from gramps.gen.plug import BasePluginManager
-    from gramps.cli.user import User
-
-    climanager = CLIManager(dbstate, setloader=False, user=User()) # do not load db_loader
-    climanager.do_reg_plugins(dbstate, None)
-    pmgr = BasePluginManager.get_instance()
-    pdata = pmgr.get_plugin(id)
-
-    mod = pmgr.load_plugin(pdata)
-    database = getattr(mod, pdata.databaseclass)
-    return database()
-
+from gramps.gen.db.base import *
+from gramps.gen.db.dbconst import *
+from .cursor import *
+from .read import *
+from .bsddbtxn import *
+from gramps.gen.db.txn import *
+from .undoredo import *
+from gramps.gen.db.exceptions import *
+from .write import *
+from .backup import backup, restore

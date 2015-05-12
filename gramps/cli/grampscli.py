@@ -49,7 +49,7 @@ from gramps.gen.config import config
 from gramps.gen.const import PLUGINS_DIR, USER_PLUGINS
 from gramps.gen.errors import DbError
 from gramps.gen.dbstate import DbState
-from gramps.gen.db import DbBsddb
+from gramps.gen.db import make_database
 from gramps.gen.db.exceptions import (DbUpgradeRequiredError, 
                                       BsddbDowngradeError, 
                                       DbVersionError, 
@@ -152,9 +152,9 @@ class CLIDbLoader(object):
         else:
             mode = 'w'
 
-        dbclass = DbBsddb
+        db = make_database("bsddb", self.dbstate)
         
-        self.dbstate.change_database(dbclass())
+        self.dbstate.change_database(db)
         self.dbstate.db.disable_signals()
 
         self._begin_progress()

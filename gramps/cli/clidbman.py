@@ -54,7 +54,7 @@ _LOG = logging.getLogger(DBLOGNAME)
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.db import DbBsddb
+from gramps.gen.db import make_database
 from gramps.gen.plug import BasePluginManager
 from gramps.gen.config import config
 from gramps.gen.constfunc import win, conv_to_unicode
@@ -294,7 +294,8 @@ class CLIDbManager(object):
 
         if create_db:
             # write the version number into metadata
-            newdb = DbBsddb()
+            
+            newdb = make_database("bsddb", self.dbstate)
             newdb.write_version(new_path)
 
         (tval, last) = time_val(new_path)
@@ -360,8 +361,8 @@ class CLIDbManager(object):
     
                 # Create a new database
                 self.__start_cursor(_("Importing data..."))
-                dbclass = DbBsddb
-                dbase = dbclass()
+
+                dbase = make_database("bsddb", self.dbstate)
                 dbase.load(new_path, user.callback)
     
                 import_function = plugin.get_import_function()
