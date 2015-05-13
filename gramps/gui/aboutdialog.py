@@ -28,7 +28,12 @@
 import os
 import sys
 import io
-import bsddb3 as bsddb
+
+try:
+    import bsddb3 as bsddb ## ok, in try/except
+    BSDDB_STR = ellipses(str(bsddb.__version__) + " " + str(bsddb.db.version()))
+except:
+    BSDDB_STR = 'not found'
 
 ##import logging
 ##_LOG = logging.getLogger(".GrampsAboutDialog")
@@ -125,7 +130,7 @@ class GrampsAboutDialog(Gtk.AboutDialog):
                  "Distribution: %s")
                 % (ellipses(str(VERSION)),
                    ellipses(str(sys.version).replace('\n','')),
-                   ellipses(str(bsddb.__version__) + " " + str(bsddb.db.version())),
+                   BSDDB_STR,
                    ellipses(get_env_var('LANG','')),
                    ellipses(operatingsystem),
                    ellipses(distribution)))

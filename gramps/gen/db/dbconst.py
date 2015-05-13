@@ -31,8 +31,7 @@ Declare constants used by database modules
 __all__ = (
             ('DBPAGE', 'DBMODE', 'DBCACHE', 'DBLOCKS', 'DBOBJECTS', 'DBUNDO',
              'DBEXT', 'DBMODE_R', 'DBMODE_W', 'DBUNDOFN', 'DBLOCKFN',
-             'DBRECOVFN','BDBVERSFN', 'DBLOGNAME', 'DBFLAGS_O',  'DBFLAGS_R',
-             'DBFLAGS_D', 'SCHVERSFN', 'PCKVERSFN'
+             'DBRECOVFN','BDBVERSFN', 'DBLOGNAME', 'SCHVERSFN', 'PCKVERSFN'
             ) +
             
             ('PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'CITATION_KEY',
@@ -59,18 +58,6 @@ DBCACHE   = 0x4000000       # Size of the shared memory buffer pool
 DBLOCKS   = 100000          # Maximum number of locks supported
 DBOBJECTS = 100000          # Maximum number of simultaneously locked objects
 DBUNDO    = 1000            # Maximum size of undo buffer
-
-try:
-    from bsddb3.db import DB_CREATE, DB_AUTO_COMMIT, DB_DUP, DB_DUPSORT, DB_RDONLY
-    DBFLAGS_O = DB_CREATE | DB_AUTO_COMMIT  # Default flags for database open
-    DBFLAGS_R = DB_RDONLY                   # Flags to open a database read-only
-    DBFLAGS_D = DB_DUP | DB_DUPSORT         # Default flags for duplicate keys
-except:
-    print("WARNING: no bsddb support")
-    # FIXME: make this more abstract to deal with other backends, or do not import
-    DBFLAGS_O = DB_CREATE = DB_AUTO_COMMIT = 0
-    DBFLAGS_R = DB_RDONLY = 0
-    DBFLAGS_D = DB_DUP = DB_DUPSORT = 0
 
 PERSON_KEY     = 0
 FAMILY_KEY     = 1

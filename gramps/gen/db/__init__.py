@@ -86,11 +86,5 @@ More details can be found in the manual's
 
 from .base import *
 from .dbconst import *
-#from .cursor import *
-#from .read import *
-#from .bsddbtxn import *
 from .txn import *
-#from .undoredo import *
 from .exceptions import *
-#from .write import *
-#from .backup import backup, restore
