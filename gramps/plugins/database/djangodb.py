@@ -55,6 +55,11 @@ from gramps.gen.db import (PERSON_KEY,
 from gramps.gen.utils.id import create_id
 from django.db import transaction
 
+## add this directory to sys path, so we can find django_support later:
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
 class Environment(object):
     """
     Implements the Environment API.
@@ -322,10 +327,15 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if directory:
             self.load(directory)
 
-    def load(self, directory, pulse_progress=None, mode=None):
+    def load(self, directory, pulse_progress=None, mode=None, 
+             force_schema_upgrade=False,
+             force_bsddb_upgrade=False,
+             force_bsddb_downgrade=False,
+             force_python_upgrade=False):
         self._directory = directory
         from django.conf import settings
-        default_settings = {}
+        default_settings = {"__file__": 
+                            os.path.join(directory, "default_settings.py")}
         settings_file = os.path.join(directory, "default_settings.py")
         with open(settings_file) as f:
             code = compile(f.read(), settings_file, 'exec')
@@ -1785,7 +1795,10 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return self.family_bookmarks
 
     def get_save_path(self):
-        return "/tmp/"
+        return self._directory
+
+    def set_save_path(self, directory):
+        self._directory = directory
 
     ## Get types:
     def get_event_attribute_types(self):
