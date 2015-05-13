@@ -143,8 +143,12 @@ def get_person_from_handle(db, handle):
         return None
 
 def probably_alive(handle):
+    ## FIXME: need to call after save?
     person = db.get_person_from_handle(handle)
-    return alive(person, db)
+    if person:
+        return alive(person, db)
+    else:
+        return True
 
 def format_number(number, with_grouping=True):
     if number != "":

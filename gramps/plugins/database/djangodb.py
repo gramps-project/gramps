@@ -68,7 +68,7 @@ class Environment(object):
         self.db = db
 
     def txn_begin(self):
-        return DjangoTxn("DbDjango Transaction", self.db)
+        return DjangoTxn("DjangoDb Transaction", self.db)
 
 class Table(object):
     """
@@ -209,6 +209,8 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     # 4. Signal for change in person group name, parameters are
     __signals__['person-groupname-rebuild'] = (str, str)
+
+    __callback_map = {}
 
     def __init__(self, directory=None):
         DbReadBase.__init__(self)
@@ -1745,8 +1747,6 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self.get_number_of_media_objects() == 0 and
                 self.get_number_of_repositories() == 0)
                 
-    __callback_map = {}
-
     def set_prefixes(self, person, media, family, source, citation,
                      place, event, repository, note):
         self.set_person_id_prefix(person)

@@ -29,6 +29,8 @@ import base64
 import time
 import re
 from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn
+from gramps.gen.utils.callback import Callback
+from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db import (PERSON_KEY,
                            FAMILY_KEY,
                            CITATION_KEY,
@@ -53,33 +55,101 @@ from gramps.gen.lib.repo import Repository
 from gramps.gen.lib.note import Note
 from gramps.gen.lib.tag import Tag
 
+class Environment(object):
+    """
+    Implements the Environment API.
+    """
+    def __init__(self, db):
+        self.db = db
+
+    def txn_begin(self):
+        return DictionaryTxn("DictionaryDb Transaction", self.db)
+
+class Table(object):
+    """
+    Implements Table interface.
+    """
+    def __init__(self, funcs):
+        self.funcs = funcs
+
+    def cursor(self):
+        """
+        Returns a Cursor for this Table.
+        """
+        return self.funcs["cursor_func"]()
+
+    def put(key, data, txn=None):
+        self[key] = data
+
+class Map(dict):
+    """
+    Implements the map API for person_map, etc.
+    
+    Takes a Table() as argument.
+    """
+    def __init__(self, tbl, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.db = tbl
+
+class MetaCursor(object):
+    def __init__(self):
+        pass
+    def __enter__(self):
+        return self
+    def __iter__(self):
+        return self.__next__()
+    def __next__(self):
+        yield None
+    def __exit__(self, *args, **kwargs):
+        pass
+    def iter(self):
+        yield None
+    def first(self):
+        self._iter = self.__iter__()
+        return self.next()
+    def next(self):
+        try:
+            return next(self._iter)
+        except:
+            return None
+    def close(self):
+        pass
+
 class Cursor(object):
-    """
-    Iterates through model returning (handle, raw_data)...
-    """
-    def __init__(self, model, func):
-        self.model = model
+    def __init__(self, map, func):
+        self.map = map
         self.func = func
     def __enter__(self):
         return self
     def __iter__(self):
-        return self
+        return self.__next__()
     def __next__(self):
-        for handle in self.model.keys():
-            return (handle, self.func(handle))
-    def next(self):
-        for handle in self.model.keys():
-            return (handle, self.func(handle))
+        for item in self.map.keys():
+            yield (bytes(item, "utf-8"), self.func(item))
     def __exit__(self, *args, **kwargs):
         pass
+    def iter(self):
+        for item in self.map.keys():
+            yield (bytes(item, "utf-8"), self.func(item))
+        yield None
+    def first(self):
+        self._iter = self.__iter__()
+        return self.next()
+    def next(self):
+        try:
+            return next(self._iter)
+        except:
+            return None
     def close(self):
         pass
 
-class Bookmarks:
+class Bookmarks(object):
+    def __init__(self):
+        self.handles = []
     def get(self):
-        return [] # handles
+        return self.handles
     def append(self, handle):
-        pass
+        self.handles.append(handle)
 
 class DictionaryTxn(DbTxn):
     def __init__(self, message, db, batch=False):
@@ -99,13 +169,38 @@ class DictionaryTxn(DbTxn):
         """
         txn[handle] = new_data
 
-class DictionaryDb(DbWriteBase, DbReadBase):
+class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
     """
+    __signals__ = dict((obj+'-'+op, signal)
+                       for obj in
+                       ['person', 'family', 'event', 'place',
+                        'source', 'citation', 'media', 'note', 'repository', 'tag']
+                       for op, signal in zip(
+                               ['add',   'update', 'delete', 'rebuild'],
+                               [(list,), (list,),  (list,),   None]
+                       )
+                   )
+    
+    # 2. Signals for long operations
+    __signals__.update(('long-op-'+op, signal) for op, signal in zip(
+        ['start',  'heartbeat', 'end'],
+        [(object,), None,       None]
+        ))
+
+    # 3. Special signal for change in home person
+    __signals__['home-person-changed'] = None
+
+    # 4. Signal for change in person group name, parameters are
+    __signals__['person-groupname-rebuild'] = (str, str)
+
+    __callback_map = {}
+
     def __init__(self, *args, **kwargs):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
+        Callback.__init__(self)
         self._tables['Person'].update(
             {
                 "handle_func": self.get_person_from_handle, 
@@ -115,6 +210,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                 "handles_func": self.get_person_handles,
                 "add_func": self.add_person,
                 "commit_func": self.commit_person,
+                "iter_func": self.iter_people,
             })
         self._tables['Family'].update(
             {
@@ -125,6 +221,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                 "handles_func": self.get_family_handles,
                 "add_func": self.add_family,
                 "commit_func": self.commit_family,
+                "iter_func": self.iter_families,
             })
         self._tables['Source'].update(
             {
@@ -135,6 +232,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                 "handles_func": self.get_source_handles,
                 "add_func": self.add_source,
                 "commit_func": self.commit_source,
+                "iter_func": self.iter_sources,
                 })
         self._tables['Citation'].update(
             {
@@ -145,6 +243,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                 "handles_func": self.get_citation_handles,
                 "add_func": self.add_citation,
                 "commit_func": self.commit_citation,
+                "iter_func": self.iter_citations,
             })
         self._tables['Event'].update(
             {
@@ -155,6 +254,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                 "handles_func": self.get_event_handles,
                 "add_func": self.add_event,
                 "commit_func": self.commit_event,
+                "iter_func": self.iter_events,
             })
         self._tables['Media'].update(
             {
@@ -165,6 +265,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                 "handles_func": self.get_media_object_handles,
                 "add_func": self.add_object,
                 "commit_func": self.commit_media_object,
+                "iter_func": self.iter_media_objects,
             })
         self._tables['Place'].update(
             {
@@ -175,6 +276,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                 "handles_func": self.get_place_handles,
                 "add_func": self.add_place,
                 "commit_func": self.commit_place,
+                "iter_func": self.iter_places,
             })
         self._tables['Repository'].update(
             {
@@ -185,6 +287,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                 "handles_func": self.get_repository_handles,
                 "add_func": self.add_repository,
                 "commit_func": self.commit_repository,
+                "iter_func": self.iter_repositories,
             })
         self._tables['Note'].update(
             {
@@ -195,6 +298,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                 "handles_func": self.get_note_handles,
                 "add_func": self.add_note,
                 "commit_func": self.commit_note,
+                "iter_func": self.iter_notes,
             })
         self._tables['Tag'].update(
             {
@@ -205,6 +309,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                 "handles_func": self.get_tag_handles,
                 "add_func": self.add_tag,
                 "commit_func": self.commit_tag,
+                "iter_func": self.iter_tags,
             })
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
@@ -218,7 +323,7 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         self.place_bookmarks = Bookmarks()
         self.citation_bookmarks = Bookmarks()
         self.source_bookmarks = Bookmarks()
-        self.repo_bookmarks = Bookmarks()
+        self.repository_bookmarks = Bookmarks()
         self.media_bookmarks = Bookmarks()
         self.note_bookmarks = Bookmarks()
         self.set_person_id_prefix('I%04d')
@@ -249,18 +354,18 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         self.omap_index = 0
         self.rmap_index = 0
         self.nmap_index = 0
-        self.env = None
-        self.person_map      = {}
-        self.family_map      = {}
-        self.place_map       = {}
-        self.citation_map    = {}
-        self.source_map      = {}
-        self.repository_map  = {}
-        self.note_map        = {}
-        self.media_map       = {}
-        self.event_map       = {}
-        self.tag_map         = {}
-        self.metadata   = {}
+        self.env = Environment(self)
+        self.person_map = Map(Table(self._tables["Person"]))
+        self.family_map = Map(Table(self._tables["Family"]))
+        self.place_map  = Map(Table(self._tables["Place"]))
+        self.citation_map = Map(Table(self._tables["Citation"]))
+        self.source_map = Map(Table(self._tables["Source"]))
+        self.repository_map  = Map(Table(self._tables["Repository"]))
+        self.note_map = Map(Table(self._tables["Note"]))
+        self.media_map  = Map(Table(self._tables["Media"]))
+        self.event_map  = Map(Table(self._tables["Event"]))
+        self.tag_map  = Map(Table(self._tables["Tag"]))
+        self.metadata   = Map(Table({"cursor_func": lambda: MetaCursor()}))
         self.name_group = {}
         self.undo_callback = None
         self.redo_callback = None
@@ -284,9 +389,6 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         return None
 
     def transaction_commit(self, txn):
-        pass
-
-    def enable_signals(self):
         pass
 
     def get_undodb(self):
@@ -546,91 +648,107 @@ class DictionaryDb(DbWriteBase, DbReadBase):
         return obj
 
     def get_person_handles(self, sort_handles=False):
-        if sort_handles:
-            raise Exception("Implement!")
-        else:
-            return self.person_map.keys()
+        ## Fixme: implement sort
+        return self.person_map.keys()
 
     def get_family_handles(self):
         return self.family_map.keys()
 
-    def get_event_handles(self):
+    def get_event_handles(self, sort_handles=False):
         return self.event_map.keys()
 
     def get_citation_handles(self, sort_handles=False):
-        if sort_handles:
-            raise Exception("Implement!")
-        else:
-            return self.citation_map.keys()
+        ## Fixme: implement sort
+        return self.citation_map.keys()
 
     def get_source_handles(self, sort_handles=False):
-        if sort_handles:
-            raise Exception("Implement!")
-        else:
-            return self.source_map.keys()
+        ## Fixme: implement sort
+        return self.source_map.keys()
 
     def get_place_handles(self, sort_handles=False):
-        if sort_handles:
-            raise Exception("Implement!")
-        else:
-            return self.place_map.keys()
+        ## Fixme: implement sort
+        return self.place_map.keys()
 
     def get_repository_handles(self):
         return self.repository_map.keys()
 
     def get_media_object_handles(self, sort_handles=False):
-        if sort_handles:
-            raise Exception("Implement!")
-        else:
-            return self.media_map.keys()
+        ## Fixme: implement sort
+        return self.media_map.keys()
 
     def get_note_handles(self):
         return self.note_map.keys()
 
     def get_tag_handles(self, sort_handles=False):
-        if sort_handles:
-            raise Exception("Implement!")
-        else:
-            return self.tag_map.keys()
+        # FIXME: sort
+        return self.tag_map.keys()
 
     def get_event_from_handle(self, handle):
-        return self.event_map[handle]
+        event = None
+        if handle in self.event_map:
+            event = self.event_map[handle]
+        return event
 
     def get_family_from_handle(self, handle): 
-        return self.family_map[handle]
+        family = None
+        if handle in self.family_map:
+            family = self.family_map[handle]
+        return family
 
     def get_repository_from_handle(self, handle):
-        return self.repository_map[handle]
+        repository = None
+        if handle in self.repository_map:
+            repository = self.repository_map[handle]
+        return repository
 
     def get_person_from_handle(self, handle):
-        return self.person_map[handle]
+        person = None
+        if handle in self.person_map:
+            person = self.person_map[handle]
+        return person
 
     def get_place_from_handle(self, handle):
-        place = self.place_map[handle]
+        place = None
+        if handle in self.place_map:
+            place = self.place_map[handle]
         return place
 
     def get_citation_from_handle(self, handle):
-        citation = self.citation_map[handle]
+        citation = None
+        if handle in self.citation_map:
+            citation = self.citation_map[handle]
         return citation
 
     def get_source_from_handle(self, handle):
-        source = self.source_map[handle]
+        source = None
+        if handle in self.source_map:
+            source = self.source_map[handle]
         return source
 
     def get_note_from_handle(self, handle):
-        note = self.note_map[handle]
+        note = None
+        if handle in self.note_map:
+            note = self.note_map[handle]
         return note
 
     def get_object_from_handle(self, handle):
-        media = self.media_map[handle]
+        media = None
+        if handle in self.media_map:
+            media = self.media_map[handle]
         return media
 
     def get_tag_from_handle(self, handle):
-        tag = self.tag_map[handle]
+        tag = None
+        if handle in self.tag_map:
+            tag = self.tag_map[handle]
         return tag
 
     def get_default_person(self):
-        return None
+        handle = self.get_default_handle()
+        if handle:
+            return self.get_person_from_handle(handle)
+        else:
+            return None
 
     def iter_people(self):
         return (person for person in self.person_map.values())
@@ -1203,3 +1321,205 @@ class DictionaryDb(DbWriteBase, DbReadBase):
                 transaction.add(REFERENCE_KEY, TXNDEL, key, old_data, None)
                 #transaction.reference_del.append(str(key))
             self.reference_map.delete(key, txn=txn)
+
+    ## Missing:
+
+    def backup(self):
+        pass
+
+    def close(self):
+        pass
+
+    def find_backlink_handles(self, handle, include_classes=None):
+        return []
+
+    def find_initial_person(self):
+        items = self.person_map.keys()
+        if len(items) > 0:
+            return self.get_person_from_handle(list(items)[0])
+        return None
+
+    def find_place_child_handles(self, handle):
+        return []
+
+    def get_bookmarks(self):
+        return self.bookmarks
+
+    def get_child_reference_types(self):
+        return []
+
+    def get_citation_bookmarks(self):
+        return self.citation_bookmarks
+
+    def get_cursor(self, table, txn=None, update=False, commit=False):
+        pass
+
+    def get_dbname(self):
+        return "DictionaryDb"
+
+    def get_default_handle(self):
+        items = self.person_map.keys()
+        if len(items) > 0:
+            return list(items)[0]
+        return None
+
+    def get_event_attribute_types(self):
+        return []
+
+    def get_event_bookmarks(self):
+        return self.event_bookmarks
+
+    def get_event_roles(self):
+        return []
+
+    def get_event_types(self):
+        return []
+
+    def get_family_attribute_types(self):
+        return []
+
+    def get_family_bookmarks(self):
+        return self.family_bookmarks
+
+    def get_family_event_types(self):
+        return []
+
+    def get_family_relation_types(self):
+        return []
+
+    def get_media_attribute_types(self):
+        return []
+
+    def get_media_bookmarks(self):
+        return self.media_bookmarks
+
+    def get_name_types(self):
+        return []
+
+    def get_note_bookmarks(self):
+        return self.note_bookmarks
+
+    def get_note_types(self):
+        return []
+
+    def get_number_of_records(self, table):
+        return 0
+
+    def get_origin_types(self):
+        return []
+
+    def get_person_attribute_types(self):
+        return []
+
+    def get_person_event_types(self):
+        return []
+
+    def get_place_bookmarks(self):
+        return self.place_bookmarks
+
+    def get_place_tree_cursor(self):
+        return []
+
+    def get_place_types(self):
+        return []
+
+    def get_repo_bookmarks(self):
+        return self.repository_bookmarks
+
+    def get_repository_types(self):
+        return []
+
+    def get_save_path(self):
+        return self._directory
+
+    def get_source_attribute_types(self):
+        return []
+
+    def get_source_bookmarks(self):
+        return self.source_bookmarks
+
+    def get_source_media_types(self):
+        return []
+
+    def get_surname_list(self):
+        return []
+
+    def get_url_types(self):
+        return []
+
+    def has_changed(self):
+        return True
+
+    def is_open(self):
+        return True
+
+    def iter_citation_handles(self):
+        return (key for key in self.citation_map.keys())
+
+    def iter_citations(self):
+        return (key for key in self.citation_map.values())
+
+    def iter_event_handles(self):
+        return (key for key in self.event_map.keys())
+
+    def iter_events(self):
+        return (key for key in self.event_map.values())
+
+    def iter_media_objects(self):
+        return (key for key in self.media_map.values())
+
+    def iter_note_handles(self):
+        return (key for key in self.note_map.keys())
+
+    def iter_notes(self):
+        return (key for key in self.note_map.values())
+
+    def iter_place_handles(self):
+        return (key for key in self.place_map.keys())
+
+    def iter_places(self):
+        return (key for key in self.place_map.values())
+
+    def iter_repositories(self):
+        return (key for key in self.repositories_map.values())
+
+    def iter_repository_handles(self):
+        return (key for key in self.repositories_map.keys())
+
+    def iter_source_handles(self):
+        return (key for key in self.source_map.keys())
+
+    def iter_sources(self):
+        return (key for key in self.source_map.values())
+
+    def iter_tag_handles(self):
+        return (key for key in self.tag_map.keys())
+
+    def iter_tags(self):
+        return (key for key in self.tag_map.values())
+
+    def load(self, directory, pulse_progress, mode, 
+             force_schema_upgrade, 
+             force_bsddb_upgrade, 
+             force_bsddb_downgrade, 
+             force_python_upgrade):
+        self._directory = directory
+
+    def prepare_import(self):
+        pass
+
+    def redo(self, update_history=True):
+        pass
+
+    def restore(self):
+        pass
+
+    def set_prefixes(self, person, media, family, source, citation, 
+                     place, event, repository, note):
+        pass
+
+    def set_save_path(self, directory):
+        self._directory = directory
+
+    def undo(self, update_history=True):
+        pass
