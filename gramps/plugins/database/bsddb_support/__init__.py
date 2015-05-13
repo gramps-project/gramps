@@ -93,4 +93,3 @@ from gramps.gen.db.txn import *
 from .undoredo import *
 from gramps.gen.db.exceptions import *
 from .write import *
-from .backup import backup, restore

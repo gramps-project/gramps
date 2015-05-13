@@ -320,8 +320,6 @@ class Gramplet(object):
             self._idle_id = 0
             LOG.debug("gramplet updater: %s : One time, done!" % self.gui.title)
             return False
-        # FIXME: find out why Data Entry has this error, or just ignore it
-        import bsddb3 as bsddb
         try:
             retval = next(self._generator)
             if not retval:
@@ -332,10 +330,6 @@ class Gramplet(object):
             LOG.debug("gramplet updater: %s: return %s" % 
                       (self.gui.title, retval))
             return retval
-        except bsddb.db.DBCursorClosedError:
-            # not sure why---caused by Data Entry Gramplet
-            LOG.warn("bsddb.db.DBCursorClosedError in: %s" % self.gui.title)
-            return False
         except StopIteration:
             self._idle_id = 0
             self._generator.close()

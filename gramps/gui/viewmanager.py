@@ -87,7 +87,6 @@ from gramps.gen.utils.file import media_path_full
 from .dbloader import DbLoader
 from .display import display_help, display_url
 from .configure import GrampsPreferences
-from gramps.gen.db.backup import backup
 from gramps.gen.db.exceptions import DbException
 from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
@@ -760,7 +759,7 @@ class ViewManager(CLIManager):
             self.uistate.progress.show()
             self.uistate.push_message(self.dbstate, _("Autobackup..."))
             try:
-                backup(self.dbstate.db)
+                self.dbstate.db.backup()
             except DbException as msg:
                 ErrorDialog(_("Error saving backup data"), msg)
             self.uistate.set_busy_cursor(False)

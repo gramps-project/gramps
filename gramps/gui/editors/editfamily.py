@@ -26,7 +26,6 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-from bsddb3 import db as bsddb_db
 import pickle
 
 #-------------------------------------------------------------------------
@@ -1027,10 +1026,11 @@ class EditFamily(EditPrimary):
                )
             
     def save(self, *obj):
-        try:
-            self.__do_save()
-        except bsddb_db.DBRunRecoveryError as msg:
-            RunDatabaseRepair(msg[1])
+        ## FIXME: how to catch a specific error?
+        #try:
+        self.__do_save()
+        #except bsddb_db.DBRunRecoveryError as msg:
+        #    RunDatabaseRepair(msg[1])
 
     def __do_save(self):
         self.ok_button.set_sensitive(False)

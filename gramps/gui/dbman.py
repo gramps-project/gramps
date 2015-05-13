@@ -78,7 +78,6 @@ from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from .ddtargets import DdTargets
 from gramps.gen.recentfiles import rename_filename, remove_filename
 from .glade import Glade
-from gramps.gen.db.backup import restore
 from gramps.gen.db.exceptions import DbException
 
 
@@ -732,7 +731,7 @@ class DbManager(CLIDbManager):
         self.__start_cursor(_("Rebuilding database from backup files"))
         
         try:
-            restore(dbase)
+            dbase.restore()
         except DbException as msg:
             DbManager.ERROR(_("Error restoring backup data"), msg)
 
