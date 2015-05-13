@@ -29,6 +29,7 @@ import time
 import re
 import base64
 import pickle
+import os
 
 #------------------------------------------------------------------------
 #
@@ -52,7 +53,6 @@ from gramps.gen.db import (PERSON_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
 from gramps.gen.utils.id import create_id
-from gramps.webapp.libdjango import DjangoInterface
 from django.db import transaction
 
 class Environment(object):
@@ -205,7 +205,7 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     # 4. Signal for change in person group name, parameters are
     __signals__['person-groupname-rebuild'] = (str, str)
 
-    def __init__(self):
+    def __init__(self, directory=None):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
         Callback.__init__(self)
@@ -303,11 +303,51 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             }
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
-        self.dji = DjangoInterface()
         self.readonly = False
         self.db_is_open = True
         self.name_formats = []
         self.bookmarks = Bookmarks()
+        self.undo_callback = None
+        self.redo_callback = None
+        self.undo_history_callback = None
+        self.modified   = 0
+        self.txn = DjangoTxn("DbDjango Transaction", self)
+        self.transaction = None
+        # Import cache for gedcom import, uses transactions, and
+        # two step adding of objects.
+        self.import_cache = {}
+        self.use_import_cache = False
+        self.use_db_cache = True
+        self._directory = directory
+        if directory:
+            self.load(directory)
+
+    def load(self, directory, pulse_progress=None, mode=None):
+        self._directory = directory
+        from django.conf import settings
+        default_settings = {}
+        settings_file = os.path.join(directory, "default_settings.py")
+        with open(settings_file) as f:
+            code = compile(f.read(), settings_file, 'exec')
+            exec(code, globals(), default_settings)
+
+        class Module(object):
+            def __init__(self, dictionary):
+                self.dictionary = dictionary
+            def __getattr__(self, item):
+                return self.dictionary[item]
+
+        try:
+            settings.configure(Module(default_settings))
+        except RuntimeError:
+            # already configured; ignore
+            pass
+
+        import django
+        django.setup()
+
+        from gramps.webapp.libdjango import DjangoInterface
+        self.dji = DjangoInterface()
         self.family_bookmarks = Bookmarks()
         self.event_bookmarks = Bookmarks()
         self.place_bookmarks = Bookmarks()
@@ -357,17 +397,6 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.tag_map  = Map(Table(self._tables["Tag"]))
         self.metadata   = Map(Table({"cursor_func": lambda: MetaCursor()}))
         self.name_group = {}
-        self.undo_callback = None
-        self.redo_callback = None
-        self.undo_history_callback = None
-        self.modified   = 0
-        self.txn = DjangoTxn("DbDjango Transaction", self)
-        self.transaction = None
-        # Import cache for gedcom import, uses transactions, and
-        # two step adding of objects.
-        self.import_cache = {}
-        self.use_import_cache = False
-        self.use_db_cache = True
         self.event_names = set()
         self.individual_attributes = set()
         self.family_attributes = set()
