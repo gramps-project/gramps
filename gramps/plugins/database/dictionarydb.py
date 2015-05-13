@@ -28,17 +28,17 @@ import pickle
 import base64
 import time
 import re
-from . import DbReadBase, DbWriteBase, DbTxn
-from . import (PERSON_KEY,
-               FAMILY_KEY,
-               CITATION_KEY,
-               SOURCE_KEY,
-               EVENT_KEY,
-               MEDIA_KEY,
-               PLACE_KEY,
-               REPOSITORY_KEY,
-               NOTE_KEY,
-               TAG_KEY)
+from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn
+from gramps.gen.db import (PERSON_KEY,
+                           FAMILY_KEY,
+                           CITATION_KEY,
+                           SOURCE_KEY,
+                           EVENT_KEY,
+                           MEDIA_KEY,
+                           PLACE_KEY,
+                           REPOSITORY_KEY,
+                           NOTE_KEY,
+                           TAG_KEY)
 
 from gramps.gen.utils.id import create_id
 from gramps.gen.lib.researcher import Researcher
