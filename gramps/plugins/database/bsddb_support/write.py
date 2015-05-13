@@ -2428,6 +2428,11 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             version = str(_DBVERSION)
             version_file.write(version)
 
+        versionpath = os.path.join(name, str(DBBACKEND))
+        _LOG.debug("Write database backend file to 'bsddb'")
+        with open(versionpath, "w") as version_file:
+            version_file.write("bsddb")
+
         self.metadata.close()
         self.env.close()
   

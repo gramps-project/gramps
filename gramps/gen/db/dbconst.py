@@ -31,7 +31,8 @@ Declare constants used by database modules
 __all__ = (
             ('DBPAGE', 'DBMODE', 'DBCACHE', 'DBLOCKS', 'DBOBJECTS', 'DBUNDO',
              'DBEXT', 'DBMODE_R', 'DBMODE_W', 'DBUNDOFN', 'DBLOCKFN',
-             'DBRECOVFN','BDBVERSFN', 'DBLOGNAME', 'SCHVERSFN', 'PCKVERSFN'
+             'DBRECOVFN','BDBVERSFN', 'DBLOGNAME', 'SCHVERSFN', 'PCKVERSFN',
+             'DBBACKEND'
             ) +
             
             ('PERSON_KEY', 'FAMILY_KEY', 'SOURCE_KEY', 'CITATION_KEY',
@@ -47,6 +48,7 @@ DBUNDOFN  = "undo.db"       # File name of 'undo' database
 DBLOCKFN  = "lock"          # File name of lock file
 DBRECOVFN = "need_recover"  # File name of recovery file
 BDBVERSFN = "bdbversion.txt"# File name of Berkeley DB version file
+DBBACKEND = "database.txt"  # File name of Database backend file
 SCHVERSFN = "schemaversion.txt"# File name of schema version file
 PCKVERSFN = "pickleupgrade.txt" # Indicator that pickle has been upgrade t Python3
 DBLOGNAME = ".Db"           # Name of logger
