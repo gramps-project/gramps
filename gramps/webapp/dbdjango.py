@@ -1951,3 +1951,57 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     
     def get_dbname(self):
         return "Django Database"
+
+    ## missing
+
+    def find_place_child_handles(self, handle):
+        pass
+
+    def get_cursor(self, table, txn=None, update=False, commit=False):
+        pass
+
+    def get_from_name_and_handle(self, table_name, handle):
+        """
+        Returns a gen.lib object (or None) given table_name and
+        handle.
+
+        Examples:
+
+        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
+        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
+        """
+        if table_name in self._tables:
+            return self._tables[table_name]["handle_func"](handle)
+        return None
+
+    def get_number_of_records(self, table):
+        pass
+
+    def get_place_parent_cursor(self):
+        pass
+
+    def get_place_tree_cursor(self):
+        pass
+
+    def get_table_metadata(self, table_name):
+        """Return the metadata for a valid table name."""
+        if table_name in self._tables:
+            return self._tables[table_name]
+        return None
+
+    def get_transaction_class(self):
+        pass
+
+    def undo(self, update_history=True):
+        # FIXME:
+        return self.undodb.undo(update_history)
+
+    def redo(self, update_history=True):
+        # FIXME:
+        return self.undodb.redo(update_history)
+
+    def backup(self):
+        pass
+
+    def restore(self):
+        pass
