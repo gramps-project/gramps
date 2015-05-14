@@ -54,8 +54,8 @@
               <object class="GtkLabel" id="label714">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
                 <property name="label" translatable="yes">Version description</property>
+                <property name="xalign">0</property>
                 <attributes>
                   <attribute name="weight" value="bold"/>
                 </attributes>
@@ -275,7 +275,6 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="margin_left">12</property>
-                <property name="resize_mode">immediate</property>
                 <property name="orientation">vertical</property>
                 <property name="spacing">6</property>
                 <property name="layout_style">start</property>
