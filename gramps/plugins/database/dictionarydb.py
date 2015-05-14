@@ -1168,7 +1168,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         emit = None
         if not trans.batch:
             if note.handle in self.note_map:
-                emit "note-update"
+                emit = "note-update"
             else:
                 emit = "note-add"
         self.note_map[note.handle] = note
