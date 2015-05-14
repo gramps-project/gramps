@@ -127,13 +127,17 @@ class Cursor(object):
     def __init__(self, model, func):
         self.model = model
         self.func = func
+        self._iter = self.__iter__()
     def __enter__(self):
         return self
     def __iter__(self):
-        return self.__next__()
-    def __next__(self):
         for item in self.model.all():
             yield (bytes(item.handle, "utf-8"), self.func(item.handle))
+    def __next__(self):
+        try:
+            return self._iter.__next__()
+        except StopIteration:
+            return None
     def __exit__(self, *args, **kwargs):
         pass
     def iter(self):
@@ -142,7 +146,10 @@ class Cursor(object):
         yield None
     def first(self):
         self._iter = self.__iter__()
-        return self.next()
+        try:
+            return next(self._iter)
+        except:
+            return
     def next(self):
         try:
             return next(self._iter)
@@ -1494,10 +1501,11 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 items[0].delete()
             self.dji.add_person(person.serialize())
             self.dji.add_person_detail(person.serialize())
-            if items.count() > 0:
-                self.emit("person-update", ([person.handle],))
-            else:
-                self.emit("person-add", ([person.handle],))
+            if not trans.batch:
+                if items.count() > 0:
+                    self.emit("person-update", ([person.handle],))
+                else:
+                    self.emit("person-add", ([person.handle],))
 
     def commit_family(self, family, trans, change_time=None):
         if self.use_import_cache:
@@ -1509,10 +1517,11 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 items[0].delete()
             self.dji.add_family(family.serialize())
             self.dji.add_family_detail(family.serialize())
-            if items.count() > 0:
-                self.emit("family-update", ([family.handle],))
-            else:
-                self.emit("family-add", ([family.handle],))
+            if not trans.batch:
+                if items.count() > 0:
+                    self.emit("family-update", ([family.handle],))
+                else:
+                    self.emit("family-add", ([family.handle],))
 
     def commit_citation(self, citation, trans, change_time=None):
         if self.use_import_cache:
@@ -1524,10 +1533,11 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 items[0].delete()
             self.dji.add_citation(citation.serialize())
             self.dji.add_citation_detail(citation.serialize())
-            if items.count() > 0:
-                self.emit("citation-update", ([citation.handle],))
-            else:
-                self.emit("citation-add", ([citation.handle],))
+            if not trans.batch:
+                if items.count() > 0:
+                    self.emit("citation-update", ([citation.handle],))
+                else:
+                    self.emit("citation-add", ([citation.handle],))
 
     def commit_source(self, source, trans, change_time=None):
         if self.use_import_cache:
@@ -1539,10 +1549,11 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 items[0].delete()
             self.dji.add_source(source.serialize())
             self.dji.add_source_detail(source.serialize())
-            if items.count() > 0:
-                self.emit("source-update", ([source.handle],))
-            else:
-                self.emit("source-add", ([source.handle],))
+            if not trans.batch:
+                if items.count() > 0:
+                    self.emit("source-update", ([source.handle],))
+                else:
+                    self.emit("source-add", ([source.handle],))
 
     def commit_repository(self, repository, trans, change_time=None):
         if self.use_import_cache:
@@ -1554,10 +1565,11 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 items[0].delete()
             self.dji.add_repository(repository.serialize())
             self.dji.add_repository_detail(repository.serialize())
-            if items.count() > 0:
-                self.emit("repository-update", ([repository.handle],))
-            else:
-                self.emit("repository-add", ([repository.handle],))
+            if not trans.batch:
+                if items.count() > 0:
+                    self.emit("repository-update", ([repository.handle],))
+                else:
+                    self.emit("repository-add", ([repository.handle],))
 
     def commit_note(self, note, trans, change_time=None):
         if self.use_import_cache:
@@ -1569,10 +1581,11 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 items[0].delete()
             self.dji.add_note(note.serialize())
             self.dji.add_note_detail(note.serialize())
-            if items.count() > 0:
-                self.emit("note-update", ([note.handle],))
-            else:
-                self.emit("note-add", ([note.handle],))
+            if not trans.batch:
+                if items.count() > 0:
+                    self.emit("note-update", ([note.handle],))
+                else:
+                    self.emit("note-add", ([note.handle],))
 
     def commit_place(self, place, trans, change_time=None):
         if self.use_import_cache:
@@ -1584,10 +1597,11 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 items[0].delete()
             self.dji.add_place(place.serialize())
             self.dji.add_place_detail(place.serialize())
-            if items.count() > 0:
-                self.emit("place-update", ([place.handle],))
-            else:
-                self.emit("place-add", ([place.handle],))
+            if not trans.batch:
+                if items.count() > 0:
+                    self.emit("place-update", ([place.handle],))
+                else:
+                    self.emit("place-add", ([place.handle],))
 
     def commit_event(self, event, trans, change_time=None):
         if self.use_import_cache:
@@ -1599,10 +1613,11 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 items[0].delete()
             self.dji.add_event(event.serialize())
             self.dji.add_event_detail(event.serialize())
-            if items.count() > 0:
-                self.emit("event-update", ([event.handle],))
-            else:
-                self.emit("event-add", ([event.handle],))
+            if not trans.batch:
+                if items.count() > 0:
+                    self.emit("event-update", ([event.handle],))
+                else:
+                    self.emit("event-add", ([event.handle],))
 
     def commit_tag(self, tag, trans, change_time=None):
         if self.use_import_cache:
@@ -1614,10 +1629,11 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 items[0].delete()
             self.dji.add_tag(tag.serialize())
             self.dji.add_tag_detail(tag.serialize())
-            if items.count() > 0:
-                self.emit("tag-update", ([tag.handle],))
-            else:
-                self.emit("tag-add", ([tag.handle],))
+            if not trans.batch:
+                if items.count() > 0:
+                    self.emit("tag-update", ([tag.handle],))
+                else:
+                    self.emit("tag-add", ([tag.handle],))
 
     def commit_media_object(self, media, transaction, change_time=None):
         """
@@ -1633,10 +1649,11 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 items[0].delete()
             self.dji.add_media(media.serialize())
             self.dji.add_media_detail(media.serialize())
-            if items.count() > 0:
-                self.emit("media-update", ([media.handle],))
-            else:
-                self.emit("media-add", ([media.handle],))
+            if not trans.batch:
+                if items.count() > 0:
+                    self.emit("media-update", ([media.handle],))
+                else:
+                    self.emit("media-add", ([media.handle],))
 
     def get_gramps_ids(self, obj_key):
         key2table = {
