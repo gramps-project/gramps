@@ -40,6 +40,7 @@ from ._hasplace import HasPlace
 from ._hasdata import HasData
 from ._hasnolatorlon import HasNoLatOrLon
 from ._inlatlonneighborhood import InLatLonNeighborhood
+from ._isenclosedby import IsEnclosedBy
 from ._matcheseventfilter import MatchesEventFilter
 from ._matchessourceconfidence import MatchesSourceConfidence
 from ._changedsince import ChangedSince
@@ -66,5 +67,6 @@ editor_rule_list = [
     MatchesEventFilter,
     ChangedSince,
     HasTag,
-    HasTitle
+    HasTitle,
+    IsEnclosedBy
 ]
