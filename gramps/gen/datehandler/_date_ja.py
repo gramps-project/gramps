@@ -68,6 +68,7 @@ class DateParserJA(DateParser):
     quality_to_int = {
         'およそ'    : Date.QUAL_ESTIMATED,
         'ごろ'      : Date.QUAL_ESTIMATED,
+        '位'      : Date.QUAL_ESTIMATED,
         '計算上'  : Date.QUAL_CALCULATED,
         }
 
@@ -166,12 +167,13 @@ class DateParserJA(DateParser):
         _span_2 = ['まで', '']
         _range_1 = ['から', 'と', '~', '〜']
         _range_2 = ['までの間', 'の間']
-        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+        self._span =  re.compile("(?P<start>.+)(%s)(?P<stop>\d+)(%s)" %
                                  ('|'.join(_span_1), '|'.join(_span_2)),
                                  re.IGNORECASE)
-        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+        self._range = re.compile("(?P<start>.+)(%s)(?P<stop>.+)(%s)" %
                                  ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
+        self._numeric = re.compile("((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
 
 #-------------------------------------------------------------------------
 #
@@ -215,6 +217,9 @@ class DateDisplayJA(DateDisplay):
                     value = str(date_val[2])
                 else:
                     value = self._tformat.replace('%m', str(date_val[1]))
+                    if date_val[0] == 0: # ignore the zero day and its delimiter
+                        i_day = value.find('%d')
+                        value = value.replace(value[i_day:i_day+3], '')
                     value = value.replace('%d', str(date_val[0]))
                     value = value.replace('%Y', str(date_val[2]))
 
