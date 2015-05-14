@@ -29,12 +29,6 @@ import os
 import sys
 import io
 
-try:
-    import bsddb3 as bsddb ## ok, in try/except
-    BSDDB_STR = ellipses(str(bsddb.__version__) + " " + str(bsddb.db.version()))
-except:
-    BSDDB_STR = 'not found'
-
 ##import logging
 ##_LOG = logging.getLogger(".GrampsAboutDialog")
 
@@ -64,6 +58,20 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.constfunc import get_env_var
 from .display import display_url
+
+def ellipses(text):
+    """
+    Ellipsize text on length 40
+    """
+    if len(text) > 40:
+        return text[:40] + "..."
+    return text
+
+try:
+    import bsddb3 as bsddb ## ok, in try/except
+    BSDDB_STR = ellipses(str(bsddb.__version__) + " " + str(bsddb.db.version()))
+except:
+    BSDDB_STR = 'not found'
 
 #-------------------------------------------------------------------------
 #
@@ -134,14 +142,6 @@ class GrampsAboutDialog(Gtk.AboutDialog):
                    ellipses(get_env_var('LANG','')),
                    ellipses(operatingsystem),
                    ellipses(distribution)))
-
-def ellipses(text):
-    """
-    Ellipsize text on length 40
-    """
-    if len(text) > 40:
-        return text[:40] + "..."
-    return text
 
 #-------------------------------------------------------------------------
 #
