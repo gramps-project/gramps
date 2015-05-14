@@ -22,6 +22,7 @@
 """
 Provide the database state class
 """
+import sys
 
 from .db import DbReadBase
 from .proxy.proxybase import ProxyDbBase
@@ -139,6 +140,34 @@ class DbState(Callback):
             pmgr.reg_plugins(USER_PLUGINS, self, None, load_on_reg=True)
             pdata = pmgr.get_plugin(id)
 
+        ### FIXME: Currently Django needs to reset modules
+        if pdata.id == "djangodb":
+            if self.modules_is_set():
+                self.reset_modules()
+            else:
+                self.save_modules()
+
         mod = pmgr.load_plugin(pdata)
         database = getattr(mod, pdata.databaseclass)
         return database()
+
+    ## FIXME:
+    ## Work-around for databases that need sys refresh (django):
+    def modules_is_set(self):
+        if hasattr(self, "_modules"):
+            return self._modules != None
+        else:
+            self._modules = None
+            return False
+
+    def reset_modules(self):
+        # First, clear out old modules:
+        for key in list(sys.modules.keys()):
+            del(sys.modules[key])
+        # Next, restore previous:
+        for key in self._modules:
+            sys.modules[key] = self._modules[key]
+
+    def save_modules(self):
+        self._modules = sys.modules.copy()
+
