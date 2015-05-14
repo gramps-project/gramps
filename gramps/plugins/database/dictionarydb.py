@@ -29,7 +29,7 @@ import base64
 import time
 import re
 import os
-from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn
+from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn, KEY_TO_NAME_MAP
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db import (PERSON_KEY,
@@ -41,8 +41,7 @@ from gramps.gen.db import (PERSON_KEY,
                            PLACE_KEY,
                            REPOSITORY_KEY,
                            NOTE_KEY,
-                           TAG_KEY,
-                           KEY_TO_NAME_MAP)
+                           TAG_KEY)
 
 from gramps.gen.utils.id import create_id
 from gramps.gen.lib.researcher import Researcher
@@ -1147,12 +1146,12 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.emit("tag-add", ([tag.handle],))
         self.tag_map[tag.handle] = tag
 
-    def commit_media_object(self, obj, transaction, change_time=None):
-        if commit.handle in self.commit_map:
-            self.emit("commit-update", ([commit.handle],))
+    def commit_media_object(self, media, transaction, change_time=None):
+        if media.handle in self.media_map:
+            self.emit("media-update", ([media.handle],))
         else:
-            self.emit("commit-add", ([commit.handle],))
-        self.media_map[obj.handle] = obj
+            self.emit("media-add", ([media.handle],))
+        self.media_map[media.handle] = media
 
     def get_gramps_ids(self, obj_key):
         key2table = {

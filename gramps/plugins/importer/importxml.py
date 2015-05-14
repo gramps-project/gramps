@@ -68,7 +68,7 @@ from gramps.gen.display.name import displayer as name_displayer
 from gramps.gen.db.dbconst import (PERSON_KEY, FAMILY_KEY, SOURCE_KEY, 
                                    EVENT_KEY, MEDIA_KEY, PLACE_KEY, 
                                    REPOSITORY_KEY, NOTE_KEY, TAG_KEY, 
-                                   CITATION_KEY)
+                                   CITATION_KEY, CLASS_TO_KEY_MAP)
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.version import VERSION
 from gramps.gen.config import config
