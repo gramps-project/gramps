@@ -1402,7 +1402,6 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not person.gramps_id and set_gid:
             person.gramps_id = self.find_next_person_gramps_id()
         self.commit_person(person, trans)
-        self.emit("person-add", ([person.handle],))
         return person.handle
 
     def add_family(self, family, trans, set_gid=True):
@@ -1411,7 +1410,6 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not family.gramps_id and set_gid:
             family.gramps_id = self.find_next_family_gramps_id()
         self.commit_family(family, trans)
-        self.emit("family-add", ([family.handle],))
         return family.handle
 
     def add_citation(self, citation, trans, set_gid=True):
@@ -1420,7 +1418,6 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not citation.gramps_id and set_gid:
             citation.gramps_id = self.find_next_citation_gramps_id()
         self.commit_citation(citation, trans)
-        self.emit("citation-add", ([citation.handle],))
         return citation.handle
 
     def add_source(self, source, trans, set_gid=True):
@@ -1429,7 +1426,6 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not source.gramps_id and set_gid:
             source.gramps_id = self.find_next_source_gramps_id()
         self.commit_source(source, trans)
-        self.emit("source-add", ([source.handle],))
         return source.handle
 
     def add_repository(self, repository, trans, set_gid=True):
@@ -1438,7 +1434,6 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not repository.gramps_id and set_gid:
             repository.gramps_id = self.find_next_repository_gramps_id()
         self.commit_repository(repository, trans)
-        self.emit("repository-add", ([repository.handle],))
         return repository.handle
 
     def add_note(self, note, trans, set_gid=True):
@@ -1447,7 +1442,6 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not note.gramps_id and set_gid:
             note.gramps_id = self.find_next_note_gramps_id()
         self.commit_note(note, trans)
-        self.emit("note-add", ([note.handle],))
         return note.handle
 
     def add_place(self, place, trans, set_gid=True):
