@@ -30,6 +30,9 @@ import re
 import base64
 import pickle
 import os
+import logging
+import shutil
+from django.db import transaction
 
 #------------------------------------------------------------------------
 #
@@ -53,12 +56,12 @@ from gramps.gen.db import (PERSON_KEY,
                     REPOSITORY_KEY,
                     NOTE_KEY)
 from gramps.gen.utils.id import create_id
-from django.db import transaction
+from gramps.gen.db.dbconst import *
 
 ## add this directory to sys path, so we can find django_support later:
-import sys
-import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+
+_LOG = logging.getLogger(DBLOGNAME)
 
 class Environment(object):
     """
@@ -2041,3 +2044,17 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def restore(self):
         pass
+
+    def write_version(self, directory):
+        """Write files for a newly created DB."""
+        versionpath = os.path.join(directory, str(DBBACKEND))
+        _LOG.debug("Write database backend file to 'djangodb'")
+        with open(versionpath, "w") as version_file:
+            version_file.write("djangodb")
+        # Write default_settings, sqlite.db
+        defaults = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "django_support", "defaults")
+        _LOG.debug("Copy defaults from: " + defaults)
+        for filename in os.listdir(defaults):
+            fullpath = os.path.abspath(os.path.join(defaults, filename))
+            shutil.copy2(fullpath, directory)
