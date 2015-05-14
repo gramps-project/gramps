@@ -57,7 +57,7 @@ from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
                             StyledText, StyledTextTag, StyledTextTagType, 
                             Surname, Tag, Url, PlaceRef)
 from gramps.gen.db import DbTxn
-from gramps.gen.db.write import CLASS_TO_KEY_MAP
+#from gramps.gen.db.write import CLASS_TO_KEY_MAP
 from gramps.gen.errors import GrampsImportError
 from gramps.gen.utils.id import create_id
 from gramps.gen.utils.db import family_name

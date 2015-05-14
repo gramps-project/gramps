@@ -130,39 +130,6 @@ DBERRS      = (db.DBRunRecoveryError, db.DBAccessError,
 # these maps or modifying the values of the keys will break
 # existing databases.
 
-CLASS_TO_KEY_MAP = {Person.__name__: PERSON_KEY, 
-                    Family.__name__: FAMILY_KEY, 
-                    Source.__name__: SOURCE_KEY, 
-                    Citation.__name__: CITATION_KEY, 
-                    Event.__name__: EVENT_KEY, 
-                    MediaObject.__name__: MEDIA_KEY, 
-                    Place.__name__: PLACE_KEY, 
-                    Repository.__name__:REPOSITORY_KEY,
-                    Note.__name__: NOTE_KEY,
-                    Tag.__name__: TAG_KEY}
-
-KEY_TO_CLASS_MAP = {PERSON_KEY: Person.__name__, 
-                    FAMILY_KEY: Family.__name__, 
-                    SOURCE_KEY: Source.__name__, 
-                    CITATION_KEY: Citation.__name__, 
-                    EVENT_KEY: Event.__name__, 
-                    MEDIA_KEY: MediaObject.__name__, 
-                    PLACE_KEY: Place.__name__, 
-                    REPOSITORY_KEY: Repository.__name__,
-                    NOTE_KEY: Note.__name__,
-                    TAG_KEY: Tag.__name__}
-
-KEY_TO_NAME_MAP = {PERSON_KEY: 'person',
-                   FAMILY_KEY: 'family',
-                   EVENT_KEY: 'event',
-                   SOURCE_KEY: 'source',
-                   CITATION_KEY: 'citation',
-                   PLACE_KEY: 'place',
-                   MEDIA_KEY: 'media',
-                   REPOSITORY_KEY: 'repository',
-                   #REFERENCE_KEY: 'reference',
-                   NOTE_KEY: 'note',
-                   TAG_KEY: 'tag'}
 #-------------------------------------------------------------------------
 #
 # Helper functions

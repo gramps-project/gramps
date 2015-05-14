@@ -28,6 +28,7 @@ import pickle
 import base64
 import time
 import re
+import os
 from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
@@ -40,7 +41,8 @@ from gramps.gen.db import (PERSON_KEY,
                            PLACE_KEY,
                            REPOSITORY_KEY,
                            NOTE_KEY,
-                           TAG_KEY)
+                           TAG_KEY,
+                           KEY_TO_NAME_MAP)
 
 from gramps.gen.utils.id import create_id
 from gramps.gen.lib.researcher import Researcher
@@ -197,7 +199,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     __callback_map = {}
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, directory=None):
         DbReadBase.__init__(self)
         DbWriteBase.__init__(self)
         Callback.__init__(self)
@@ -323,7 +325,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.place_bookmarks = Bookmarks()
         self.citation_bookmarks = Bookmarks()
         self.source_bookmarks = Bookmarks()
-        self.repository_bookmarks = Bookmarks()
+        self.repo_bookmarks = Bookmarks()
         self.media_bookmarks = Bookmarks()
         self.note_bookmarks = Bookmarks()
         self.set_person_id_prefix('I%04d')
@@ -373,6 +375,9 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.modified   = 0
         self.txn = DictionaryTxn("DbDictionary Transaction", self)
         self.transaction = None
+        self._directory = directory
+        if directory:
+            self.load(directory)
 
     def version_supported(self):
         """Return True when the file has a supported version."""
@@ -768,22 +773,64 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 return tag
         return None
 
-    def get_family_from_gramps_id(self, gramps_id):
-        for family in self.family_map.values():
-            if family.gramps_id == gramps_id:
-                return family
-        return None
-
     def get_person_from_gramps_id(self, gramps_id):
         for person in self.person_map.values():
             if person.gramps_id == gramps_id:
                 return person
         return None
 
+    def get_family_from_gramps_id(self, gramps_id):
+        for family in self.family_map.values():
+            if family.gramps_id == gramps_id:
+                return family
+        return None
+
+    def get_citation_from_gramps_id(self, gramps_id):
+        for citation in self.citation_map.values():
+            if citation.gramps_id == gramps_id:
+                return citation
+        return None
+
+    def get_source_from_gramps_id(self, gramps_id):
+        for source in self.source_map.values():
+            if source.gramps_id == gramps_id:
+                return source
+        return None
+
+    def get_event_from_gramps_id(self, gramps_id):
+        for event in self.event_map.values():
+            if event.gramps_id == gramps_id:
+                return event
+        return None
+
+    def get_media_from_gramps_id(self, gramps_id):
+        for media in self.media_map.values():
+            if media.gramps_id == gramps_id:
+                return media
+        return None
+
     def get_place_from_gramps_id(self, gramps_id):
         for place in self.place_map.values():
             if place.gramps_id == gramps_id:
                 return place
+        return None
+
+    def get_repository_from_gramps_id(self, gramps_id):
+        for repository in self.repository_map.values():
+            if repository.gramps_id == gramps_id:
+                return repository
+        return None
+
+    def get_note_from_gramps_id(self, gramps_id):
+        for note in self.note_map.values():
+            if note.gramps_id == gramps_id:
+                return note
+        return None
+
+    def get_tag_from_gramps_id(self, gramps_id):
+        for tag in self.tag_map.values():
+            if tag.gramps_id == gramps_id:
+                return tag
         return None
 
     def get_number_of_people(self):
@@ -1038,33 +1085,73 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return obj.handle
 
     def commit_person(self, person, trans, change_time=None):
+        if person.handle in self.person_map:
+            self.emit("person-update", ([person.handle],))
+        else:
+            self.emit("person-add", ([person.handle],))
         self.person_map[person.handle] = person
 
     def commit_family(self, family, trans, change_time=None):
+        if family.handle in self.family_map:
+            self.emit("family-update", ([family.handle],))
+        else:
+            self.emit("family-add", ([family.handle],))
         self.family_map[family.handle] = family
 
     def commit_citation(self, citation, trans, change_time=None):
+        if citation.handle in self.citation_map:
+            self.emit("citation-update", ([citation.handle],))
+        else:
+            self.emit("citation-add", ([citation.handle],))
         self.citation_map[citation.handle] = citation
 
     def commit_source(self, source, trans, change_time=None):
+        if source.handle in self.source_map:
+            self.emit("source-update", ([source.handle],))
+        else:
+            self.emit("source-add", ([source.handle],))
         self.source_map[source.handle] = source
 
     def commit_repository(self, repository, trans, change_time=None):
+        if repository.handle in self.repository_map:
+            self.emit("repository-update", ([repository.handle],))
+        else:
+            self.emit("repository-add", ([repository.handle],))
         self.repository_map[repository.handle] = repository
 
     def commit_note(self, note, trans, change_time=None):
+        if note.handle in self.note_map:
+            self.emit("note-update", ([note.handle],))
+        else:
+            self.emit("note-add", ([note.handle],))
         self.note_map[note.handle] = note
 
     def commit_place(self, place, trans, change_time=None):
+        if place.handle in self.place_map:
+            self.emit("place-update", ([place.handle],))
+        else:
+            self.emit("place-add", ([place.handle],))
         self.place_map[place.handle] = place
 
     def commit_event(self, event, trans, change_time=None):
+        if event.handle in self.event_map:
+            self.emit("event-update", ([event.handle],))
+        else:
+            self.emit("event-add", ([event.handle],))
         self.event_map[event.handle] = event
 
     def commit_tag(self, tag, trans, change_time=None):
+        if tag.handle in self.tag_map:
+            self.emit("tag-update", ([tag.handle],))
+        else:
+            self.emit("tag-add", ([tag.handle],))
         self.tag_map[tag.handle] = tag
 
     def commit_media_object(self, obj, transaction, change_time=None):
+        if commit.handle in self.commit_map:
+            self.emit("commit-update", ([commit.handle],))
+        else:
+            self.emit("commit-add", ([commit.handle],))
         self.media_map[obj.handle] = obj
 
     def get_gramps_ids(self, obj_key):
@@ -1092,7 +1179,16 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         pass
 
     def request_rebuild(self):
-        pass
+        self.emit('person-rebuild')
+        self.emit('family-rebuild')
+        self.emit('place-rebuild')
+        self.emit('source-rebuild')
+        self.emit('citation-rebuild')
+        self.emit('media-rebuild')
+        self.emit('event-rebuild')
+        self.emit('repository-rebuild')
+        self.emit('note-rebuild')
+        self.emit('tag-rebuild')
 
     def copy_from_db(self, db):
         """
@@ -1163,6 +1259,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.delete_primary_from_reference_map(handle, transaction,
                                                    txn=self.txn)
             self.person_map.delete(handle, txn=self.txn)
+            self.emit("person-delete", ([handle],))
             transaction.add(PERSON_KEY, TXNDEL, handle, person.serialize(), None)
 
     def remove_source(self, handle, transaction):
@@ -1262,6 +1359,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                                    txn=self.txn)
             old_data = data_map.get(handle, txn=self.txn)
             data_map.delete(handle, txn=self.txn)
+            self.emit(KEY_TO_NAME_MAP[key] + "-delete", ([handle],))
             transaction.add(key, TXNDEL, handle, old_data, None)
 
     def delete_primary_from_reference_map(self, handle, transaction, txn=None):
@@ -1328,7 +1426,12 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         pass
 
     def close(self):
-        pass
+        if self._directory:
+            from gramps.plugins.export.exportxml import XmlWriter
+            from gramps.cli.user import User 
+            writer = XmlWriter(self, User(), strip_photos=0, compress=1)
+            filename = os.path.join(self._directory, "data.gramps")
+            writer.write(filename)
 
     def find_backlink_handles(self, handle, include_classes=None):
         return []
@@ -1424,7 +1527,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return []
 
     def get_repo_bookmarks(self):
-        return self.repository_bookmarks
+        return self.repo_bookmarks
 
     def get_repository_types(self):
         return []
@@ -1498,12 +1601,17 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def iter_tags(self):
         return (key for key in self.tag_map.values())
 
-    def load(self, directory, pulse_progress, mode, 
-             force_schema_upgrade, 
-             force_bsddb_upgrade, 
-             force_bsddb_downgrade, 
-             force_python_upgrade):
+    def load(self, directory, pulse_progress=None, mode=None, 
+             force_schema_upgrade=False, 
+             force_bsddb_upgrade=False, 
+             force_bsddb_downgrade=False, 
+             force_python_upgrade=False):
+        from gramps.plugins.importer.importxml import importData
+        from gramps.cli.user import User 
         self._directory = directory
+        filename = os.path.join(directory, "data.gramps")
+        if os.path.isfile(filename):
+            importData(self, filename, User())
 
     def prepare_import(self):
         pass
