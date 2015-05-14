@@ -86,7 +86,6 @@
                   <object class="GtkTreeView" id="plist">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="rules_hint">True</property>
                     <property name="fixed_height_mode">True</property>
                     <child internal-child="selection">
                       <object class="GtkTreeSelection" id="treeview-selection1"/>

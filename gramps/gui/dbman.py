@@ -142,7 +142,6 @@ class DbManager(CLIDbManager):
         self.data_to_delete = None
 
         self.selection = self.dblist.get_selection()
-        self.dblist.set_rules_hint(True)
 
         self.__connect_signals()
         self.__build_interface()
@@ -300,9 +299,6 @@ class DbManager(CLIDbManager):
         column = Gtk.TreeViewColumn(_('Last accessed'), render, text=DATE_COL)
         column.set_sort_column_id(DSORT_COL)
         self.dblist.append_column(column)
-
-        # set the rules hit
-        self.dblist.set_rules_hint(True)
 
     def __populate(self):
         """
