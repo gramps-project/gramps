@@ -614,6 +614,8 @@ class DateParser(object):
         match = self._numeric.match(text)
         if match:
             groups = match.groups()
+            if groups == (None, None, None, None, None):
+                return Date.EMPTY
             if self.ymd:
                 # '1789' and ymd: incomplete date
                 if groups[1] is None:
