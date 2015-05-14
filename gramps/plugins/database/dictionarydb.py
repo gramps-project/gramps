@@ -999,6 +999,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return self.tag_map[handle].serialize()
         return None
 
+    def get_raw_event_data(self, handle):
+        if handle in self.event_map:
+            return self.event_map[handle].serialize()
+        return None
+
     def add_person(self, person, trans, set_gid=True):
         if not person.handle:
             person.handle = create_id()
@@ -1244,22 +1249,9 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
         if self.readonly or not handle:
             return
-        person = self.get_person_from_handle(handle)
-        #self.genderStats.uncount_person (person)
-        #self.remove_from_surname_list(person)
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
-        if transaction.batch:
-            with BSDDBTxn(self.env, self.person_map) as txn:            
-                self.delete_primary_from_reference_map(handle, transaction,
-                                                       txn=txn.txn)
-                txn.delete(handle)
-        else:
-            self.delete_primary_from_reference_map(handle, transaction,
-                                                   txn=self.txn)
-            self.person_map.delete(handle, txn=self.txn)
+        if handle in self.person_map:
+            del self.person_map[handle]
             self.emit("person-delete", ([handle],))
-            transaction.add(PERSON_KEY, TXNDEL, handle, person.serialize(), None)
 
     def remove_source(self, handle, transaction):
         """
@@ -1345,21 +1337,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def __do_remove(self, handle, transaction, data_map, key):
         if self.readonly or not handle:
             return
-
         if isinstance(handle, str):
             handle = handle.encode('utf-8')
-        if transaction.batch:
-            with BSDDBTxn(self.env, data_map) as txn:
-                self.delete_primary_from_reference_map(handle, transaction,
-                                                        txn=txn.txn)
-                txn.delete(handle)
-        else:
-            self.delete_primary_from_reference_map(handle, transaction,
-                                                   txn=self.txn)
-            old_data = data_map.get(handle, txn=self.txn)
-            data_map.delete(handle, txn=self.txn)
+        if handle in data_map:
+            del data_map[handle]
             self.emit(KEY_TO_NAME_MAP[key] + "-delete", ([handle],))
-            transaction.add(key, TXNDEL, handle, old_data, None)
 
     def delete_primary_from_reference_map(self, handle, transaction, txn=None):
         """
