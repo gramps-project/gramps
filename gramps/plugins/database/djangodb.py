@@ -1499,13 +1499,14 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             raw = person.serialize()
             items = self.dji.Person.filter(handle=person.handle)
-            if items.count() > 0:
+            count = items.count()
+            if count > 0:
                 # Hack, for the moment: delete and re-add
                 items[0].delete()
             self.dji.add_person(person.serialize())
             self.dji.add_person_detail(person.serialize())
             if not trans.batch:
-                if items.count() > 0:
+                if count > 0:
                     self.emit("person-update", ([person.handle],))
                 else:
                     self.emit("person-add", ([person.handle],))
@@ -1516,12 +1517,13 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             raw = family.serialize()
             items = self.dji.Family.filter(handle=family.handle)
-            if items.count() > 0:
+            count = items.count()
+            if count > 0:
                 items[0].delete()
             self.dji.add_family(family.serialize())
             self.dji.add_family_detail(family.serialize())
             if not trans.batch:
-                if items.count() > 0:
+                if count > 0:
                     self.emit("family-update", ([family.handle],))
                 else:
                     self.emit("family-add", ([family.handle],))
@@ -1532,12 +1534,13 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             raw = citation.serialize()
             items = self.dji.Citation.filter(handle=citation.handle)
-            if items.count() > 0:
+            count = items.count()
+            if count > 0:
                 items[0].delete()
             self.dji.add_citation(citation.serialize())
             self.dji.add_citation_detail(citation.serialize())
             if not trans.batch:
-                if items.count() > 0:
+                if count > 0:
                     self.emit("citation-update", ([citation.handle],))
                 else:
                     self.emit("citation-add", ([citation.handle],))
@@ -1548,12 +1551,13 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             raw = source.serialize()
             items = self.dji.Source.filter(handle=source.handle)
-            if items.count() > 0:
+            count = items.count()
+            if count > 0:
                 items[0].delete()
             self.dji.add_source(source.serialize())
             self.dji.add_source_detail(source.serialize())
             if not trans.batch:
-                if items.count() > 0:
+                if count > 0:
                     self.emit("source-update", ([source.handle],))
                 else:
                     self.emit("source-add", ([source.handle],))
@@ -1564,12 +1568,13 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             raw = repository.serialize()
             items = self.dji.Repository.filter(handle=repository.handle)
-            if items.count() > 0:
+            count = items.count()
+            if count > 0:
                 items[0].delete()
             self.dji.add_repository(repository.serialize())
             self.dji.add_repository_detail(repository.serialize())
             if not trans.batch:
-                if items.count() > 0:
+                if count > 0:
                     self.emit("repository-update", ([repository.handle],))
                 else:
                     self.emit("repository-add", ([repository.handle],))
@@ -1580,12 +1585,13 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             raw = note.serialize()
             items = self.dji.Note.filter(handle=note.handle)
-            if items.count() > 0:
+            count = items.count()
+            if count > 0:
                 items[0].delete()
             self.dji.add_note(note.serialize())
             self.dji.add_note_detail(note.serialize())
             if not trans.batch:
-                if items.count() > 0:
+                if count > 0:
                     self.emit("note-update", ([note.handle],))
                 else:
                     self.emit("note-add", ([note.handle],))
@@ -1596,12 +1602,13 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             raw = place.serialize()
             items = self.dji.Place.filter(handle=place.handle)
-            if items.count() > 0:
+            count = items.count()
+            if count > 0:
                 items[0].delete()
             self.dji.add_place(place.serialize())
             self.dji.add_place_detail(place.serialize())
             if not trans.batch:
-                if items.count() > 0:
+                if count > 0:
                     self.emit("place-update", ([place.handle],))
                 else:
                     self.emit("place-add", ([place.handle],))
@@ -1612,12 +1619,13 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             raw = event.serialize()
             items = self.dji.Event.filter(handle=event.handle)
-            if items.count() > 0:
+            count = items.count()
+            if count > 0:
                 items[0].delete()
             self.dji.add_event(event.serialize())
             self.dji.add_event_detail(event.serialize())
             if not trans.batch:
-                if items.count() > 0:
+                if count > 0:
                     self.emit("event-update", ([event.handle],))
                 else:
                     self.emit("event-add", ([event.handle],))
@@ -1628,12 +1636,13 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             raw = tag.serialize()
             items = self.dji.Tag.filter(handle=tag.handle)
-            if items.count() > 0:
+            count = items.count()
+            if count > 0:
                 items[0].delete()
             self.dji.add_tag(tag.serialize())
             self.dji.add_tag_detail(tag.serialize())
             if not trans.batch:
-                if items.count() > 0:
+                if count > 0:
                     self.emit("tag-update", ([tag.handle],))
                 else:
                     self.emit("tag-add", ([tag.handle],))
@@ -1648,12 +1657,13 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         else:
             raw = media.serialize()
             items = self.dji.Media.filter(handle=media.handle)
-            if items.count() > 0:
+            count = items.count()
+            if count > 0:
                 items[0].delete()
             self.dji.add_media(media.serialize())
             self.dji.add_media_detail(media.serialize())
             if not trans.batch:
-                if items.count() > 0:
+                if count > 0:
                     self.emit("media-update", ([media.handle],))
                 else:
                     self.emit("media-add", ([media.handle],))
