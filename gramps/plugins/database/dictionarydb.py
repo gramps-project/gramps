@@ -1105,84 +1105,124 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return obj.handle
 
     def commit_person(self, person, trans, change_time=None):
+        emit = None
         if not trans.batch:
             if person.handle in self.person_map:
-                self.emit("person-update", ([person.handle],))
+                emit = "person-update"
             else:
-                self.emit("person-add", ([person.handle],))
+                emit = "person-add"
         self.person_map[person.handle] = person
+        # Emit after added:
+        if emit:
+            self.emit(emit, ([person.handle],))
 
     def commit_family(self, family, trans, change_time=None):
+        emit = None
         if not trans.batch:
             if family.handle in self.family_map:
-                self.emit("family-update", ([family.handle],))
+                emit = "family-update"
             else:
-                self.emit("family-add", ([family.handle],))
+                emit = "family-add"
         self.family_map[family.handle] = family
+        # Emit after added:
+        if emit:
+            self.emit(emit, ([family.handle],))
 
     def commit_citation(self, citation, trans, change_time=None):
+        emit = None
         if not trans.batch:
             if citation.handle in self.citation_map:
-                self.emit("citation-update", ([citation.handle],))
+                emit = "citation-update"
             else:
-                self.emit("citation-add", ([citation.handle],))
+                emit = "citation-add"
         self.citation_map[citation.handle] = citation
+        # Emit after added:
+        if emit:
+            self.emit(emit, ([citation.handle],))
 
     def commit_source(self, source, trans, change_time=None):
+        emit = None
         if not trans.batch:
             if source.handle in self.source_map:
-                self.emit("source-update", ([source.handle],))
+                emit = "source-update"
             else:
-                self.emit("source-add", ([source.handle],))
+                emit = "source-add"
         self.source_map[source.handle] = source
+        # Emit after added:
+        if emit:
+            self.emit(emit, ([source.handle],))
 
     def commit_repository(self, repository, trans, change_time=None):
+        emit = None
         if not trans.batch:
             if repository.handle in self.repository_map:
-                self.emit("repository-update", ([repository.handle],))
+                emit = "repository-update"
             else:
-                self.emit("repository-add", ([repository.handle],))
+                emit = "repository-add"
         self.repository_map[repository.handle] = repository
+        # Emit after added:
+        if emit:
+            self.emit(emit, ([repository.handle],))
 
     def commit_note(self, note, trans, change_time=None):
+        emit = None
         if not trans.batch:
             if note.handle in self.note_map:
-                self.emit("note-update", ([note.handle],))
+                emit "note-update"
             else:
-                self.emit("note-add", ([note.handle],))
+                emit = "note-add"
         self.note_map[note.handle] = note
+        # Emit after added:
+        if emit:
+            self.emit(emit, ([note.handle],))
 
     def commit_place(self, place, trans, change_time=None):
+        emit = None
         if not trans.batch:
             if place.handle in self.place_map:
-                self.emit("place-update", ([place.handle],))
+                emit = "place-update"
             else:
-                self.emit("place-add", ([place.handle],))
+                emit = "place-add"
         self.place_map[place.handle] = place
+        # Emit after added:
+        if emit:
+            self.emit(emit, ([place.handle],))
 
     def commit_event(self, event, trans, change_time=None):
+        emit = None
         if not trans.batch:
             if event.handle in self.event_map:
-                self.emit("event-update", ([event.handle],))
+                emit = "event-update"
             else:
-                self.emit("event-add", ([event.handle],))
+                emit = "event-add"
         self.event_map[event.handle] = event
+        # Emit after added:
+        if emit:
+            self.emit(emit, ([event.handle],))
 
     def commit_tag(self, tag, trans, change_time=None):
+        emit = None
         if not trans.batch:
             if tag.handle in self.tag_map:
-                self.emit("tag-update", ([tag.handle],))
+                emit = "tag-update"
             else:
-                self.emit("tag-add", ([tag.handle],))
+                emit = "tag-add"
         self.tag_map[tag.handle] = tag
+        # Emit after added:
+        if emit:
+            self.emit(emit, ([tag.handle],))
 
     def commit_media_object(self, media, transaction, change_time=None):
+        emit = None
         if not trans.batch:
             if media.handle in self.media_map:
-                self.emit("media-update", ([media.handle],))
+                emit = "media-update"
             else:
-                self.emit("media-add", ([media.handle],))
+                emit = "media-add"
         self.media_map[media.handle] = media
+        # Emit after added:
+        if emit:
+            self.emit(emit, ([media.handle],))
 
     def get_gramps_ids(self, obj_key):
         key2table = {
