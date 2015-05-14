@@ -37,6 +37,7 @@ import logging
 #
 #------------------------------------------------------------------------
 from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn, KEY_TO_NAME_MAP
+from gramps.gen.db.undoredo import DbUndo
 from gramps.gen.db.dbconst import *
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
@@ -390,6 +391,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.modified   = 0
         self.txn = DictionaryTxn("DbDictionary Transaction", self)
         self.transaction = None
+        self.undodb = DbUndo(self)
+        self.abort_possible = False
         self._directory = directory
         if directory:
             self.load(directory)
@@ -1212,7 +1215,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if emit:
             self.emit(emit, ([tag.handle],))
 
-    def commit_media_object(self, media, transaction, change_time=None):
+    def commit_media_object(self, media, trans, change_time=None):
         emit = None
         if not trans.batch:
             if media.handle in self.media_map:
