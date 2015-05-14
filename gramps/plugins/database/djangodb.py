@@ -44,6 +44,7 @@ from gramps.gen.lib import (Person, Family, Event, Place, Repository,
                             Citation, Source, Note, MediaObject, Tag, 
                             Researcher)
 from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn
+from gramps.gen.db.undoredo import DbUndo
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db import (PERSON_KEY,
@@ -335,6 +336,8 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.import_cache = {}
         self.use_import_cache = False
         self.use_db_cache = True
+        self.undodb = DbUndo(self)
+        self.abort_possible = False
         self._directory = directory
         if directory:
             self.load(directory)
