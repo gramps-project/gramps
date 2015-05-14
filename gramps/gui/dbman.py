@@ -72,14 +72,13 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.const import URL_WIKISTRING
 from .user import User
-from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2
+from .dialog import ErrorDialog, QuestionDialog, QuestionDialog2, ICON
 from .pluginmanager import GuiPluginManager
 from gramps.cli.clidbman import CLIDbManager, NAME_FILE, time_val
 from .ddtargets import DdTargets
 from gramps.gen.recentfiles import rename_filename, remove_filename
 from .glade import Glade
 from gramps.gen.db.exceptions import DbException
-
 
 _RETURN = Gdk.keyval_from_name("Return")
 _KP_ENTER = Gdk.keyval_from_name("KP_Enter")
@@ -103,6 +102,25 @@ OPEN_COL  = 5
 STOCK_COL = 6
 
 RCS_BUTTON = { True : _('_Extract'), False : _('_Archive') }
+
+class DatabaseDialog(Gtk.MessageDialog):
+    def __init__(self, parent=None):
+        Gtk.MessageDialog.__init__(self,
+                                parent,
+                                flags=Gtk.DialogFlags.MODAL,
+                                type=Gtk.MessageType.QUESTION,
+                                   )
+        self.set_icon(ICON)
+        self.set_title('')
+
+        self.set_markup('<span size="larger" weight="bold">%s</span>' %
+                        _('Database Backend'))
+        self.format_secondary_text(
+            _("Please select a database backend type"))
+
+        self.add_button("BSDDB Database (standard)", 1)
+        self.add_button("Dictionary (in-memory)", 2)
+        self.add_button("Django Database", 3)
 
 class DbManager(CLIDbManager):
     """
@@ -765,19 +783,27 @@ class DbManager(CLIDbManager):
         message.
         """
         self.new.set_sensitive(False)
-        try:
-            self._create_new_db()
-        except (OSError, IOError) as msg:
-            DbManager.ERROR(_("Could not create Family Tree"),
-                                       str(msg))
+        # popup window and ask for dbid types, if more than one
+        ## FIXME: autoload from plugins
+        dbid = "bsddb"
+        d = DatabaseDialog(self.top)
+        database = d.run()
+        d.destroy()
+        if database >= 0:
+            dbid = {1:"bsddb",2:"dictionarydb",3:"djangodb"}[database]
+            try:
+                self._create_new_db(dbid=dbid)
+            except (OSError, IOError) as msg:
+                DbManager.ERROR(_("Could not create Family Tree"),
+                                str(msg))
         self.new.set_sensitive(True)
 
-    def _create_new_db(self, title=None, create_db=True):
+    def _create_new_db(self, title=None, create_db=True, dbid=None):
         """
         Create a new database, append to model
         """
         new_path, title = self.create_new_db_cli(conv_to_unicode(title, 'utf8'),
-                                                 create_db)
+                                                 create_db, dbid)
         path_name = os.path.join(new_path, NAME_FILE)
         (tval, last) = time_val(new_path)
         node = self.model.append(None, [title, new_path, path_name, 

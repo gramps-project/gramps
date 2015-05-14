@@ -21,7 +21,7 @@
 
 #------------------------------------------------------------------------
 #
-# Gramps Modules
+# Python Modules
 #
 #------------------------------------------------------------------------
 import pickle
@@ -29,7 +29,15 @@ import base64
 import time
 import re
 import os
+import logging
+
+#------------------------------------------------------------------------
+#
+# Gramps Modules
+#
+#------------------------------------------------------------------------
 from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn, KEY_TO_NAME_MAP
+from gramps.gen.db.dbconst import *
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db import (PERSON_KEY,
@@ -55,6 +63,8 @@ from gramps.gen.lib.place import Place
 from gramps.gen.lib.repo import Repository
 from gramps.gen.lib.note import Note
 from gramps.gen.lib.tag import Tag
+
+_LOG = logging.getLogger(DBLOGNAME)
 
 class Environment(object):
     """
@@ -1612,3 +1622,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def undo(self, update_history=True):
         pass
+
+    def write_version(self, directory):
+        """Write files for a newly created DB."""
+        versionpath = os.path.join(directory, str(DBBACKEND))
+        _LOG.debug("Write database backend file to 'dictionarydb'")
+        with open(versionpath, "w") as version_file:
+            version_file.write("dictionarydb")
+

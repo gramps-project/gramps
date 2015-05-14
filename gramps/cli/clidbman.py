@@ -225,7 +225,7 @@ class CLIDbManager(object):
         """
         print(_('Import finished...'))
 
-    def create_new_db_cli(self, title=None, create_db=True):
+    def create_new_db_cli(self, title=None, create_db=True, dbid=None):
         """
         Create a new database.
         """
@@ -244,8 +244,9 @@ class CLIDbManager(object):
 
         if create_db:
             # write the version number into metadata
-            
-            newdb = self.dbstate.make_database("bsddb")
+            if dbid is None:
+                dbid = "bsddb"
+            newdb = self.dbstate.make_database(dbid)
             newdb.write_version(new_path)
 
         (tval, last) = time_val(new_path)
@@ -254,11 +255,11 @@ class CLIDbManager(object):
                                    last, tval, False, ""))
         return new_path, title
 
-    def _create_new_db(self, title=None):
+    def _create_new_db(self, title=None, dbid=None):
         """
         Create a new database, do extra stuff needed
         """
-        return self.create_new_db_cli(title)
+        return self.create_new_db_cli(title, dbid=dbid)
 
     def import_new_db(self, filename, user):
         """
