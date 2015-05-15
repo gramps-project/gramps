@@ -349,6 +349,9 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.abort_possible = False
         self._bm_changes = 0
         self._directory = directory
+        self.full_name = None
+        self.path = None
+        self.brief_name = None
         if directory:
             self.load(directory)
 
@@ -358,6 +361,9 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
              force_bsddb_downgrade=False,
              force_python_upgrade=False):
         self._directory = directory
+        self.full_name = os.path.abspath(self._directory)
+        self.path = self.full_name
+        self.brief_name = os.path.basename(self._directory)
         from django.conf import settings
         default_settings = {"__file__": 
                             os.path.join(directory, "default_settings.py")}
@@ -1836,6 +1842,9 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_save_path(self, directory):
         self._directory = directory
+        self.full_name = os.path.abspath(self._directory)
+        self.path = self.full_name
+        self.brief_name = os.path.basename(self._directory)
 
     ## Get types:
     def get_event_attribute_types(self):
