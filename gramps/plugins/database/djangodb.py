@@ -338,6 +338,7 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.use_db_cache = True
         self.undodb = DbUndo(self)
         self.abort_possible = False
+        self._bm_changes = 0
         self._directory = directory
         if directory:
             self.load(directory)
@@ -2088,3 +2089,16 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         for filename in os.listdir(defaults):
             fullpath = os.path.abspath(os.path.join(defaults, filename))
             shutil.copy2(fullpath, directory)
+
+    def report_bm_change(self):
+        """
+        Add 1 to the number of bookmark changes during this session.
+        """
+        self._bm_changes += 1
+
+    def db_has_bm_changes(self):
+        """
+        Return whethere there were bookmark changes during the session.
+        """
+        return self._bm_changes > 0
+
