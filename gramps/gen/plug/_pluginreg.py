@@ -356,6 +356,9 @@ class PluginData(object):
 
     .. attribute:: databaseclass
        The class in the module that is the database class
+    .. attribute:: reset_system
+       Boolean to indicate that the system (sys.modules) should
+       be reset.
     """
 
     def __init__(self):
@@ -430,6 +433,7 @@ class PluginData(object):
         self._order = END
         #DATABASE attr
         self._databaseclass = None
+        self._reset_system = False
         #GENERAL attr
         self._data = []
         self._process = None
@@ -949,7 +953,16 @@ class PluginData(object):
     def _get_databaseclass(self):
         return self._databaseclass
 
+    def _set_reset_system(self, reset_system):
+        if not self._ptype == DATABASE:
+            raise ValueError('reset_system may only be set for DATABASE plugins')
+        self._reset_system = reset_system
+
+    def _get_reset_system(self):
+        return self._reset_system
+
     databaseclass = property(_get_databaseclass, _set_databaseclass)
+    reset_system = property(_get_reset_system, _set_reset_system)
 
     #GENERAL attr
     def _set_data(self, data):

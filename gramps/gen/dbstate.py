@@ -140,18 +140,16 @@ class DbState(Callback):
             pmgr.reg_plugins(USER_PLUGINS, self, None, load_on_reg=True)
             pdata = pmgr.get_plugin(id)
 
-        ### FIXME: Currently Django needs to reset modules
-        if pdata.id == "djangodb":
-            if self.modules_is_set():
-                self.reset_modules()
-            else:
-                self.save_modules()
+        if pdata:
+            if pdata.reset_system:
+                if self.modules_is_set():
+                    self.reset_modules()
+                else:
+                    self.save_modules()
+            mod = pmgr.load_plugin(pdata)
+            database = getattr(mod, pdata.databaseclass)
+            return database()
 
-        mod = pmgr.load_plugin(pdata)
-        database = getattr(mod, pdata.databaseclass)
-        return database()
-
-    ## FIXME:
     ## Work-around for databases that need sys refresh (django):
     def modules_is_set(self):
         if hasattr(self, "_modules"):
