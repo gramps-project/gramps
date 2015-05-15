@@ -497,6 +497,8 @@ def time_val(dirpath):
             if tval_mod > tval:
                 tval = tval_mod
         last = time.strftime('%x %X', time.localtime(tval))
+        if sys.version_info[0] < 3:
+            last = last.decode(glocale.encoding)
     else:
         tval = 0
         last = _("Never")
