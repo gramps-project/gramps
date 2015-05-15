@@ -89,9 +89,11 @@
               <object class="GtkLabel" id="label631">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
-                <property name="xpad">6</property>
-                <property name="ypad">3</property>
+                <property name="halign">start</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
+                <property name="margin_top">3</property>
+                <property name="margin_bottom">3</property>
                 <property name="label" translatable="yes">Reference information</property>
                 <property name="use_underline">True</property>
                 <property name="justify">center</property>
@@ -121,7 +123,7 @@
                       <object class="GtkLabel" id="label623">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">1</property>
+                        <property name="halign">end</property>
                         <property name="label" translatable="yes">_Media Type:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -136,7 +138,7 @@
                       <object class="GtkLabel" id="label624">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">1</property>
+                        <property name="halign">end</property>
                         <property name="label" translatable="yes">Call n_umber:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -258,7 +260,7 @@
                           <object class="GtkLabel" id="label620">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">1</property>
+                            <property name="halign">end</property>
                             <property name="label" translatable="yes">_Name:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">center</property>
@@ -273,7 +275,7 @@
                           <object class="GtkLabel" id="label621">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">1</property>
+                            <property name="halign">end</property>
                             <property name="label" translatable="yes">_Type:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">center</property>
@@ -320,8 +322,9 @@
                                 <property name="width_request">400</property>
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="xalign">0</property>
-                                <property name="ypad">3</property>
+                                <property name="halign">start</property>
+                                <property name="margin_top">3</property>
+                                <property name="margin_bottom">3</property>
                                 <property name="label" translatable="yes">&lt;b&gt;Note:&lt;/b&gt; Any changes in the shared repository information will be reflected in the repository itself, for all items that reference the repository.</property>
                                 <property name="use_markup">True</property>
                                 <property name="use_underline">True</property>
@@ -344,7 +347,7 @@
                           <object class="GtkLabel" id="label634">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">1</property>
+                            <property name="halign">end</property>
                             <property name="label" translatable="yes">_ID:</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">gid</property>

@@ -92,7 +92,7 @@
                   <object class="GtkLabel" id="label154">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_Event type:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -107,7 +107,7 @@
                   <object class="GtkLabel" id="label155">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_Date:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -159,7 +159,7 @@
                   <object class="GtkLabel" id="label156">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">De_scription:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -188,8 +188,9 @@
                   <object class="GtkLabel" id="label157">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
-                    <property name="ypad">3</property>
+                    <property name="halign">start</property>
+                    <property name="margin_top">3</property>
+                    <property name="margin_bottom">3</property>
                     <property name="label" translatable="yes">_Place:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -232,7 +233,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="hexpand">True</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="ellipsize">end</property>
                           </object>
                         </child>
@@ -307,7 +308,7 @@
                   <object class="GtkLabel" id="label656">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_ID:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">gid</property>
@@ -385,7 +386,7 @@
                       <object class="GtkLabel" id="label1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">Tags:</property>
                       </object>
                       <packing>
@@ -399,8 +400,8 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
-                        <property name="xalign">0</property>
-                        <property name="yalign">0.4699999988079071</property>
+                        <property name="halign">start</property>
+                        <property name="valign">center</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>

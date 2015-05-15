@@ -106,9 +106,11 @@
                       <object class="GtkLabel" id="title">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="xpad">10</property>
-                        <property name="ypad">10</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">10</property>
+                        <property name="margin_right">10</property>
+                        <property name="margin_top">10</property>
+                        <property name="margin_bottom">10</property>
                         <property name="use_markup">True</property>
                         <property name="justify">center</property>
                       </object>
@@ -130,10 +132,12 @@
                   <object class="GtkLabel" id="description">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
-                    <property name="yalign">0</property>
-                    <property name="xpad">10</property>
-                    <property name="ypad">20</property>
+                    <property name="halign">start</property>
+                    <property name="valign">start</property>
+                    <property name="margin_left">10</property>
+                    <property name="margin_right">10</property>
+                    <property name="margin_top">20</property>
+                    <property name="margin_bottom">20</property>
                     <property name="label" translatable="yes">Select a report from those available on the left.</property>
                     <property name="wrap">True</property>
                   </object>
@@ -150,9 +154,11 @@
                       <object class="GtkLabel" id="report_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">1</property>
-                        <property name="xpad">6</property>
-                        <property name="ypad">3</property>
+                        <property name="halign">end</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="label" translatable="yes">Status:</property>
                         <property name="justify">center</property>
                       </object>
@@ -165,8 +171,9 @@
                       <object class="GtkLabel" id="report_status">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="xpad">5</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -177,9 +184,11 @@
                       <object class="GtkLabel" id="label70">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">1</property>
-                        <property name="xpad">6</property>
-                        <property name="ypad">3</property>
+                        <property name="halign">end</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="label" translatable="yes">Author:</property>
                       </object>
                       <packing>
@@ -191,9 +200,11 @@
                       <object class="GtkLabel" id="label71">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">1</property>
-                        <property name="xpad">6</property>
-                        <property name="ypad">3</property>
+                        <property name="halign">end</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="label" translatable="yes">Author's email:</property>
                       </object>
                       <packing>
@@ -205,8 +216,9 @@
                       <object class="GtkLabel" id="author_name">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="xpad">5</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -217,8 +229,9 @@
                       <object class="GtkLabel" id="author_email">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="xpad">5</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>

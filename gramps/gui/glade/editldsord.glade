@@ -112,7 +112,7 @@
                   <object class="GtkLabel" id="label638">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_Date:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -127,7 +127,7 @@
                   <object class="GtkLabel" id="label639">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_Place:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -178,7 +178,7 @@
                   <object class="GtkLabel" id="label645">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">Ordinance:</property>
                   </object>
                   <packing>
@@ -190,7 +190,7 @@
                   <object class="GtkLabel" id="label646">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">LDS _Temple:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">temple</property>
@@ -221,7 +221,7 @@
                 <child>
                   <object class="GtkLabel" id="parents_label">
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_Family:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">parents_select</property>
@@ -235,7 +235,7 @@
                   <object class="GtkLabel" id="parents">
                     <property name="can_focus">False</property>
                     <property name="hexpand">True</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -279,7 +279,7 @@
                   <object class="GtkLabel" id="label647">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_Status:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">status</property>
@@ -320,7 +320,7 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="hexpand">True</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="ellipsize">end</property>
                           </object>
                         </child>

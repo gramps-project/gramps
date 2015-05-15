@@ -111,7 +111,7 @@ primary data for the merged place.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="xalign">0.5</property>
+                    <property name="halign">center</property>
                     <property name="draw_indicator">True</property>
                     <child>
                       <object class="GtkLabel" id="label_handle_btn1">
@@ -133,7 +133,7 @@ primary data for the merged place.</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">False</property>
-                    <property name="xalign">0.5</property>
+                    <property name="halign">center</property>
                     <property name="draw_indicator">True</property>
                     <property name="group">handle_btn1</property>
                     <child>
@@ -210,7 +210,7 @@ primary data for the merged place.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -225,7 +225,7 @@ primary data for the merged place.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">title_btn1</property>
                           </object>
@@ -241,7 +241,7 @@ primary data for the merged place.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -256,7 +256,7 @@ primary data for the merged place.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">lat_btn1</property>
                           </object>
@@ -272,7 +272,7 @@ primary data for the merged place.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -287,7 +287,7 @@ primary data for the merged place.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">long_btn1</property>
                           </object>
@@ -303,7 +303,7 @@ primary data for the merged place.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -318,7 +318,7 @@ primary data for the merged place.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">gramps_btn1</property>
                           </object>
@@ -431,7 +431,7 @@ primary data for the merged place.</property>
                             <property name="receives_default">False</property>
                             <property name="relief">half</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="active">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -448,7 +448,7 @@ primary data for the merged place.</property>
                             <property name="receives_default">False</property>
                             <property name="relief">half</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">name_btn1</property>
                           </object>
@@ -491,7 +491,7 @@ primary data for the merged place.</property>
                             <property name="receives_default">False</property>
                             <property name="relief">half</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="active">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -508,7 +508,7 @@ primary data for the merged place.</property>
                             <property name="receives_default">False</property>
                             <property name="relief">half</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">type_btn1</property>
                           </object>
@@ -551,7 +551,7 @@ primary data for the merged place.</property>
                             <property name="receives_default">False</property>
                             <property name="relief">half</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="active">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
@@ -567,7 +567,7 @@ primary data for the merged place.</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">code_btn1</property>
                           </object>

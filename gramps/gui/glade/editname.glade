@@ -97,8 +97,9 @@
                       <object class="GtkLabel" id="label269">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="xpad">4</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">4</property>
+                        <property name="margin_right">4</property>
                         <property name="label" translatable="yes">_Type:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -188,7 +189,7 @@
                           <object class="GtkLabel" id="label21">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="label" translatable="yes">_Given:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">center</property>
@@ -203,7 +204,7 @@
                           <object class="GtkLabel" id="titlelabel">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="label" translatable="yes">T_itle:</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">title_field</property>
@@ -217,7 +218,7 @@
                           <object class="GtkLabel" id="label4">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="label" translatable="yes">Suffi_x:</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">suffix</property>
@@ -231,7 +232,7 @@
                           <object class="GtkLabel" id="label444">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="label" translatable="yes">C_all Name:</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">call</property>
@@ -261,7 +262,7 @@
                           <object class="GtkLabel" id="label6">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="label" translatable="yes">_Nick Name:</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">nickname</property>
@@ -329,7 +330,7 @@
                       <object class="GtkLabel" id="label3">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">Given Name(s) </property>
                         <attributes>
                           <attribute name="style" value="italic"/>
@@ -380,7 +381,7 @@
                               <object class="GtkLabel" id="label7">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="label" translatable="yes">_Family Nick Name:</property>
                                 <property name="use_underline">True</property>
                                 <property name="mnemonic_widget">familynickname</property>
@@ -420,7 +421,7 @@
                       <object class="GtkLabel" id="label5">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">Family Names </property>
                         <attributes>
                           <attribute name="style" value="italic"/>
@@ -458,7 +459,7 @@
                       <object class="GtkLabel" id="label417">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">G_roup as:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">group_as</property>
@@ -472,7 +473,7 @@
                       <object class="GtkLabel" id="label418">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">_Sort as:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">sort_as</property>
@@ -486,7 +487,7 @@
                       <object class="GtkLabel" id="label419">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">_Display as:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">display_as</property>
@@ -520,7 +521,7 @@ Here you can make sure this person is displayed according to a custom name forma
                       <object class="GtkLabel" id="label435">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">Dat_e:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -618,7 +619,7 @@ You will be asked if you want to group this person only, or all people with this
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0.5</property>
+                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>

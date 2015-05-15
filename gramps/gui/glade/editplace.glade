@@ -90,7 +90,7 @@
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">place_title</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -105,7 +105,7 @@
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">lat_entry</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -120,7 +120,7 @@
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">lon_entry</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
@@ -148,7 +148,7 @@
                     <property name="label" translatable="yes">_ID:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">gid</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -211,7 +211,7 @@ You can set these values via the Geography View by searching the place, or via a
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Code:</property>
                         <property name="use_underline">True</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -286,7 +286,7 @@ You can set these values via the Geography View by searching the place, or via a
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">place|Name:</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -298,7 +298,7 @@ You can set these values via the Geography View by searching the place, or via a
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Type:</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
@@ -342,7 +342,7 @@ You can set these values via the Geography View by searching the place, or via a
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="label" translatable="yes">Tags:</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
@@ -354,7 +354,7 @@ You can set these values via the Geography View by searching the place, or via a
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="hexpand">True</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">3</property>
@@ -366,7 +366,7 @@ You can set these values via the Geography View by searching the place, or via a
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="margin_bottom">6</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <attributes>
                       <attribute name="font-desc" value="Sans Bold 12"/>
                     </attributes>

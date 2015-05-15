@@ -114,7 +114,7 @@
                   <object class="GtkLabel" id="label62">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">Match Threshold</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
@@ -129,7 +129,7 @@
                   <object class="GtkLabel" id="label63">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">Options</property>
                     <attributes>
                       <attribute name="weight" value="bold"/>
@@ -150,7 +150,7 @@
                     <property name="margin_left">12</property>
                     <property name="hexpand">True</property>
                     <property name="use_underline">True</property>
-                    <property name="xalign">0.5</property>
+                    <property name="halign">center</property>
                     <property name="active">True</property>
                     <property name="draw_indicator">True</property>
                   </object>
@@ -287,7 +287,8 @@
               <object class="GtkLabel" id="title1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="ypad">6</property>
+                <property name="margin_top">6</property>
+                <property name="margin_bottom">6</property>
                 <property name="justify">center</property>
               </object>
               <packing>
@@ -360,7 +361,8 @@
           <object class="GtkLabel" id="label44">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="ypad">10</property>
+            <property name="margin_top">10</property>
+            <property name="margin_bottom">10</property>
             <property name="label" translatable="yes">Please be patient. This may take a while.</property>
             <property name="justify">center</property>
             <property name="wrap">True</property>

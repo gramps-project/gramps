@@ -131,7 +131,7 @@
                       <object class="GtkLabel" id="label707">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">_Type:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">type</property>
@@ -164,7 +164,7 @@
                       <object class="GtkLabel" id="label708">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">_ID:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">id</property>
@@ -202,7 +202,7 @@ When not checked, notes are automatically cleaned in the reports, which will imp
 Use monospace font to keep preformatting.</property>
                         <property name="halign">end</property>
                         <property name="use_underline">True</property>
-                        <property name="xalign">0.5</property>
+                        <property name="halign">center</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -246,7 +246,7 @@ Use monospace font to keep preformatting.</property>
                       <object class="GtkLabel" id="label1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">_Tags:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">tag_button</property>

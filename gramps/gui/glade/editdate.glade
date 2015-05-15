@@ -136,7 +136,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="margin_left">6</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">Calenda_r:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">calendar_box</property>
@@ -199,7 +199,7 @@
                         <property name="receives_default">False</property>
                         <property name="tooltip_text" translatable="yes">Old Style/New Style</property>
                         <property name="use_underline">True</property>
-                        <property name="xalign">0.5</property>
+                        <property name="halign">center</property>
                         <property name="draw_indicator">True</property>
                       </object>
                       <packing>
@@ -212,7 +212,7 @@
                       <object class="GtkLabel" id="label717">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">1</property>
+                        <property name="halign">end</property>
                         <property name="label" translatable="yes">Ne_w year begins:  </property>
                         <property name="use_underline">True</property>
                         <property name="justify">right</property>
@@ -255,8 +255,9 @@
                       <object class="GtkLabel" id="label413">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="xpad">6</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
                         <property name="label" translatable="yes">Q_uality</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">quality_box</property>
@@ -286,8 +287,9 @@
                       <object class="GtkLabel" id="label414">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="xpad">6</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
                         <property name="label" translatable="yes">_Type</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">type_box</property>
@@ -316,8 +318,9 @@
                       <object class="GtkLabel" id="label411">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="xpad">6</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
                         <property name="label" translatable="yes">Date</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
@@ -411,8 +414,9 @@
                       <object class="GtkLabel" id="label412">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="xpad">6</property>
+                        <property name="halign">start</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
                         <property name="label" translatable="yes">Second date</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>

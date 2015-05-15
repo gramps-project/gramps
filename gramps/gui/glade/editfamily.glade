@@ -114,7 +114,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_left">6</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="label" translatable="yes">Name:</property>
                               </object>
                               <packing>
@@ -127,7 +127,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_left">6</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="label" translatable="yes">Birth:</property>
                               </object>
                               <packing>
@@ -140,7 +140,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_left">6</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="label" translatable="yes">Death:</property>
                               </object>
                               <packing>
@@ -156,7 +156,7 @@
                                   <object class="GtkLabel" id="label589">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xalign">0</property>
+                                    <property name="halign">start</property>
                                     <property name="label" translatable="yes">Father/partner1</property>
                                     <attributes>
                                       <attribute name="weight" value="bold"/>
@@ -306,7 +306,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="hexpand">True</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -318,7 +318,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="hexpand">True</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -330,7 +330,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="hexpand">True</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="ellipsize">end</property>
                               </object>
                               <packing>
@@ -368,7 +368,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_left">6</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="label" translatable="yes">Name:</property>
                               </object>
                               <packing>
@@ -381,7 +381,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_left">6</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="label" translatable="yes">Birth:</property>
                               </object>
                               <packing>
@@ -394,7 +394,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="margin_left">6</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="label" translatable="yes">Death:</property>
                               </object>
                               <packing>
@@ -407,7 +407,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="hexpand">True</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -419,7 +419,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="hexpand">True</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -434,7 +434,7 @@
                                   <object class="GtkLabel" id="label574">
                                     <property name="visible">True</property>
                                     <property name="can_focus">False</property>
-                                    <property name="xalign">0</property>
+                                    <property name="halign">start</property>
                                     <property name="label" translatable="yes">Mother/partner2</property>
                                     <attributes>
                                       <attribute name="weight" value="bold"/>
@@ -614,7 +614,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="hexpand">True</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                                 <property name="ellipsize">end</property>
                               </object>
                               <packing>
@@ -649,7 +649,7 @@
                       <object class="GtkLabel" id="label542">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">Relationship Information</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
@@ -666,7 +666,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="margin_left">6</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">_ID:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">gid</property>
@@ -694,7 +694,7 @@
                       <object class="GtkLabel" id="label202">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">_Type:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -729,7 +729,7 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="margin_left">6</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">_Tags:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">tag_button</property>

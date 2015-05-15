@@ -89,7 +89,7 @@
                   <object class="GtkLabel" id="label209">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_Date:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -104,7 +104,7 @@
                   <object class="GtkLabel" id="label210">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">St_reet:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -119,7 +119,7 @@
                   <object class="GtkLabel" id="label214">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">C_ity:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -147,7 +147,7 @@
                   <object class="GtkLabel" id="label215">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_State/County:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -162,7 +162,7 @@
                   <object class="GtkLabel" id="label217">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_ZIP/Postal code:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -190,7 +190,7 @@
                   <object class="GtkLabel" id="label216">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">Cou_ntry:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -205,7 +205,7 @@
                   <object class="GtkLabel" id="label295">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">Phon_e:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">phone</property>
@@ -357,7 +357,7 @@ Note: Use Residence Event for genealogical address data.</property>
                   <object class="GtkLabel" id="label1">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_Locality:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">locality</property>
