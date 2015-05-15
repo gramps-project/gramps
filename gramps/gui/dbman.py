@@ -69,6 +69,7 @@ from gi.repository import Pango
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.plug import BasePluginManager
 _ = glocale.translation.gettext
 from gramps.gen.const import URL_WIKISTRING
 from .user import User
@@ -104,7 +105,10 @@ STOCK_COL = 6
 RCS_BUTTON = { True : _('_Extract'), False : _('_Archive') }
 
 class DatabaseDialog(Gtk.MessageDialog):
-    def __init__(self, parent=None):
+    def __init__(self, parent, options):
+        """
+        options = [(pdata, number), ...]
+        """
         Gtk.MessageDialog.__init__(self,
                                 parent,
                                 flags=Gtk.DialogFlags.MODAL,
@@ -112,15 +116,12 @@ class DatabaseDialog(Gtk.MessageDialog):
                                    )
         self.set_icon(ICON)
         self.set_title('')
-
         self.set_markup('<span size="larger" weight="bold">%s</span>' %
-                        _('Database Backend'))
+                        _('Database Backend for New Tree'))
         self.format_secondary_text(
-            _("Please select a database backend type"))
-
-        self.add_button("BSDDB Database (standard)", 1)
-        self.add_button("Dictionary (in-memory)", 2)
-        self.add_button("Django Database", 3)
+            _("Please select a database backend type:"))
+        for option, number in options:
+            self.add_button(option.name, number)
 
 class DbManager(CLIDbManager):
     """
@@ -779,14 +780,24 @@ class DbManager(CLIDbManager):
         message.
         """
         self.new.set_sensitive(False)
-        # popup window and ask for dbid types, if more than one
-        ## FIXME: autoload from plugins
-        dbid = "bsddb"
-        d = DatabaseDialog(self.top)
-        database = d.run()
-        d.destroy()
-        if database >= 0:
-            dbid = {1:"bsddb",2:"dictionarydb",3:"djangodb"}[database]
+        dbid = None
+        pmgr = BasePluginManager.get_instance()
+        pdata = pmgr.get_reg_databases()
+        # If just one database backend, just use it:
+        if len(pdata) == 0:
+            DbManager.ERROR(_("No available database backends"),
+                            _("Please check your dependencies."))
+        elif len(pdata) == 1:
+            dbid = pdata[0].id
+        elif len(pdata) > 1:
+            options = sorted(list(zip(pdata, range(1, len(pdata) + 1))), key=lambda items: items[0].name)
+            d = DatabaseDialog(self.top, options)
+            number = d.run()
+            d.destroy()
+            if number >= 0:
+                dbid = [option[0].id for option in options if option[1] == number][0]
+        ### Now, let's load it up
+        if dbid:
             try:
                 self._create_new_db(dbid=dbid)
             except (OSError, IOError) as msg:
