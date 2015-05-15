@@ -133,12 +133,42 @@ class CLIDbManager(object):
 
     def get_dbdir_summary(self, dirpath, name):
         """
-        Returns (people_count, bsddb_version, schema_version) of
-        current DB.
-        Returns ("Unknown", "Unknown", "Unknown") if invalid DB or other error.
+        dirpath: full path to database
+        name: proper name of family tree
+
+        Returns dictionary of summary item.
+        Should include at least, if possible:
+
+        _("Path")
+        _("Family Tree")
+        _("Last accessed")
+        _("Database backend")
+        _("Locked?")
+
+        and these details:
+
+        _("Number of people")
+        _("Version")
+        _("Schema version")
         """
-        ## Maybe return the txt file contents, for now
-        return ("Unknown", "Unknown", "Unknown")
+        dbid = "bsddb"
+        dbid_path = os.path.join(dirpath, "database.txt")
+        if os.path.isfile(dbid_path):
+            dbid = open(dbid_path).read().strip()
+        try:
+            database = self.dbstate.make_database(dbid)
+            database.load(dirpath, None)
+            retval = database.get_summary()
+        except Exception as msg:
+            retval = {"Unavailable": str(msg)[:74] + "..."}
+        retval.update({
+            _("Family Tree"): name,
+            _("Path"): dirpath,
+            _("Database backend"): dbid,
+            _("Last accessed"): time_val(dirpath)[1],
+            _("Locked?"): self.is_locked(dirpath),
+        })
+        return retval
 
     def family_tree_summary(self):
         """
@@ -149,19 +179,7 @@ class CLIDbManager(object):
         for item in self.current_names:
             (name, dirpath, path_name, last, 
              tval, enable, stock_id) = item
-            count, bsddb_version, schema_version = self.get_dbdir_summary(dirpath, name)
-            retval = {}
-            retval[_("Number of people")] = count
-            if enable:
-                retval[_("Locked?")] = _("yes")
-            else:
-                retval[_("Locked?")] = _("no")
-            retval[_("Bsddb version")] = bsddb_version
-            retval[_("Schema version")] = schema_version
-            retval[_("Family Tree")] = name
-            retval[_("Path")] = dirpath
-            retval[_("Last accessed")] = time.strftime('%x %X', 
-                                                    time.localtime(tval))
+            retval = self.get_dbdir_summary(dirpath, name)
             summary_list.append( retval )
         return summary_list
 
