@@ -404,6 +404,9 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.abort_possible = False
         self._bm_changes = 0
         self._directory = directory
+        self.full_name = None
+        self.path = None
+        self.brief_name = None
         if directory:
             self.load(directory)
 
@@ -1671,6 +1674,9 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         from gramps.plugins.importer.importxml import importData
         from gramps.cli.user import User 
         self._directory = directory
+        self.full_name = os.path.abspath(self._directory)
+        self.path = self.full_name
+        self.brief_name = os.path.basename(self._directory)
         filename = os.path.join(directory, "data.gramps")
         if os.path.isfile(filename):
             importData(self, filename, User())
@@ -1690,6 +1696,9 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_save_path(self, directory):
         self._directory = directory
+        self.full_name = os.path.abspath(self._directory)
+        self.path = self.full_name
+        self.brief_name = os.path.basename(self._directory)
 
     def undo(self, update_history=True):
         pass
