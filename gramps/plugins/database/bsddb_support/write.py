@@ -2448,6 +2448,28 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
         except (OSError, IOError) as msg:
             raise DbException(str(msg))
 
+    def get_summary(self):
+        """
+        Returns dictionary of summary item.
+        Should include, if possible:
+
+        _("Number of people")
+        _("Version")
+        _("Schema version")
+        """
+        schema_version = self.metadata.get(b'version', default=None)
+        bdbversion_file = os.path.join(self.path, BDBVERSFN)
+        if os.path.isfile(bdbversion_file):
+            vers_file = open(bdbversion_file)
+            bsddb_version = vers_file.readline().strip()
+        else:
+            bsddb_version = _("Unknown")
+        return {
+            _("Number of people"): self.get_number_of_people(),
+            _("Schema version"): schema_version,
+            _("Version"): bsddb_version,
+        }
+
 def mk_backup_name(database, base):
     """
     Return the backup name of the database table
