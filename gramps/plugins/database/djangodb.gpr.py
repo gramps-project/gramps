@@ -29,3 +29,4 @@ plg.status = STABLE
 plg.fname = 'djangodb.py'
 plg.ptype = DATABASE
 plg.databaseclass = 'DbDjango'
+plg.reset_system = True
