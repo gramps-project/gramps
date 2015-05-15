@@ -67,6 +67,13 @@ from gramps.gen.lib.tag import Tag
 
 _LOG = logging.getLogger(DBLOGNAME)
 
+def touch(fname, mode=0o666, dir_fd=None, **kwargs):
+    ## After http://stackoverflow.com/questions/1158076/implement-touch-using-python
+    flags = os.O_CREAT | os.O_APPEND
+    with os.fdopen(os.open(fname, flags=flags, mode=mode, dir_fd=dir_fd)) as f:
+        os.utime(f.fileno() if os.utime in os.supports_fd else fname,
+                 dir_fd=None if os.supports_fd else dir_fd, **kwargs)
+
 class Environment(object):
     """
     Implements the Environment API.
@@ -1483,6 +1490,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             writer = XmlWriter(self, User(), strip_photos=0, compress=1)
             filename = os.path.join(self._directory, "data.gramps")
             writer.write(filename)
+            filename = os.path.join(self._directory, "meta_data.db")
+            touch(filename)
 
     def find_backlink_handles(self, handle, include_classes=None):
         return []
