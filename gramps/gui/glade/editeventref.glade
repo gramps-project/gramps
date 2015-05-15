@@ -77,7 +77,7 @@
           <object class="GtkLabel" id="label1">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="xalign">0</property>
+            <property name="halign">start</property>
             <property name="xpad">6</property>
             <property name="ypad">3</property>
             <property name="label" translatable="yes">Reference information</property>
@@ -109,7 +109,7 @@
                   <object class="GtkLabel" id="label513">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                     <property name="ypad">3</property>
                     <property name="label" translatable="yes">_Role:</property>
                     <property name="use_underline">True</property>
@@ -216,7 +216,7 @@
                       <object class="GtkLabel" id="label501">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">_Event type:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -231,7 +231,7 @@
                       <object class="GtkLabel" id="label502">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">_Date:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -246,7 +246,7 @@
                       <object class="GtkLabel" id="label503">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">De_scription:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -261,7 +261,7 @@
                       <object class="GtkLabel" id="label504">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="ypad">3</property>
                         <property name="label" translatable="yes">_Place:</property>
                         <property name="use_underline">True</property>
@@ -277,7 +277,7 @@
                       <object class="GtkLabel" id="label657">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">_ID:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">gid</property>
@@ -300,7 +300,7 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="hexpand">True</property>
-                                <property name="xalign">0</property>
+                                <property name="halign">start</property>
                               </object>
                             </child>
                           </object>
@@ -474,7 +474,7 @@
                           <object class="GtkImage" id="image2651">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="yalign">0</property>
+                            <property name="valign">start</property>
                             <property name="stock">gtk-dialog-warning</property>
                             <property name="icon_size">6</property>
                           </object>
@@ -489,7 +489,7 @@
                             <property name="width_request">500</property>
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                             <property name="ypad">4</property>
                             <property name="label" translatable="yes">&lt;b&gt;Note:&lt;/b&gt; Any changes in the shared event information will be reflected in the event itself, for all participants in the event.</property>
                             <property name="use_markup">True</property>

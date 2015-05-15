@@ -82,7 +82,7 @@
             <property name="label" translatable="yes">Reference information</property>
             <property name="use_underline">True</property>
             <property name="justify">center</property>
-            <property name="xalign">0</property>
+            <property name="halign">start</property>
             <attributes>
               <attribute name="weight" value="bold"/>
             </attributes>
@@ -113,7 +113,7 @@
                     <property name="label" translatable="yes">_Date:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
-                    <property name="xalign">0</property>
+                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -196,7 +196,7 @@
                         <property name="label" translatable="yes">Title:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -210,7 +210,7 @@
                         <property name="label" translatable="yes">Name:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -225,7 +225,7 @@
                         <property name="label" translatable="yes">ID:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -238,7 +238,7 @@
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Latitude:</property>
                         <property name="use_underline">True</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                       </object>
                       <packing>
                         <property name="left_attach">0</property>
@@ -254,7 +254,7 @@
                           <object class="GtkImage" id="image2651">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="yalign">0</property>
+                            <property name="valign">start</property>
                             <property name="stock">gtk-dialog-warning</property>
                             <property name="icon_size">6</property>
                           </object>
@@ -274,7 +274,7 @@
                             <property name="use_markup">True</property>
                             <property name="justify">fill</property>
                             <property name="wrap">True</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                           </object>
                           <packing>
                             <property name="expand">True</property>
@@ -296,7 +296,7 @@
                         <property name="label" translatable="yes">Type:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -310,7 +310,7 @@
                         <property name="label" translatable="yes">Longitude:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -449,7 +449,7 @@ You can set these values via the Geography View by searching the place, or via a
                             <property name="can_focus">False</property>
                             <property name="label" translatable="yes">Code:</property>
                             <property name="use_underline">True</property>
-                            <property name="xalign">0</property>
+                            <property name="halign">start</property>
                           </object>
                           <packing>
                             <property name="expand">False</property>
@@ -482,7 +482,7 @@ You can set these values via the Geography View by searching the place, or via a
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="label" translatable="yes">Tags:</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                       </object>
                       <packing>
                         <property name="left_attach">2</property>
@@ -494,7 +494,7 @@ You can set these values via the Geography View by searching the place, or via a
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                       </object>
                       <packing>
                         <property name="left_attach">3</property>
@@ -518,7 +518,7 @@ You can set these values via the Geography View by searching the place, or via a
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="margin_bottom">6</property>
-                        <property name="xalign">0</property>
+                        <property name="halign">start</property>
                         <attributes>
                           <attribute name="font-desc" value="Sans Bold 12"/>
                         </attributes>

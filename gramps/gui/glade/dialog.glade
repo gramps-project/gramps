@@ -49,7 +49,7 @@
               <object class="GtkImage" id="image2713">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="yalign">0</property>
+                <property name="valign">start</property>
                 <property name="stock">gtk-dialog-warning</property>
                 <property name="icon_size">6</property>
               </object>
@@ -63,7 +63,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>
@@ -79,7 +79,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
-                <property name="xalign">0.5</property>
+                <property name="halign">center</property>
                 <property name="draw_indicator">True</property>
               </object>
               <packing>
@@ -92,7 +92,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="ypad">12</property>
                 <property name="wrap">True</property>
               </object>
@@ -165,7 +165,7 @@
               <object class="GtkImage" id="image2723">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="yalign">0</property>
+                <property name="valign">start</property>
                 <property name="stock">gtk-dialog-info</property>
                 <property name="icon_size">6</property>
               </object>
@@ -178,7 +178,7 @@
               <object class="GtkLabel" id="toplabel">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="xpad">6</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
@@ -374,7 +374,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="xpad">6</property>
                 <property name="ypad">24</property>
                 <property name="use_markup">True</property>
@@ -390,7 +390,7 @@
               <object class="GtkImage" id="image7">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="yalign">0</property>
+                <property name="valign">start</property>
                 <property name="stock">gtk-dialog-warning</property>
                 <property name="icon_size">6</property>
               </object>
@@ -404,7 +404,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="xpad">6</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
@@ -422,7 +422,7 @@
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing media files.</property>
                 <property name="use_underline">True</property>
-                <property name="xalign">0.5</property>
+                <property name="halign">center</property>
                 <property name="draw_indicator">True</property>
               </object>
               <packing>
@@ -510,7 +510,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="xpad">6</property>
                 <property name="ypad">12</property>
                 <property name="use_markup">True</property>
@@ -525,7 +525,7 @@
               <object class="GtkImage" id="image4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="yalign">0</property>
+                <property name="valign">start</property>
                 <property name="stock">gtk-dialog-warning</property>
                 <property name="icon_size">6</property>
               </object>
@@ -539,7 +539,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="xpad">6</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
@@ -767,7 +767,7 @@
               <object class="GtkLabel" id="sd_label2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="xpad">6</property>
                 <property name="label" translatable="yes">label</property>
                 <property name="use_markup">True</property>
@@ -782,7 +782,7 @@
               <object class="GtkImage" id="image2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="yalign">0</property>
+                <property name="valign">start</property>
                 <property name="stock">gtk-dialog-warning</property>
                 <property name="icon_size">6</property>
               </object>
@@ -795,7 +795,7 @@
               <object class="GtkLabel" id="sd_label1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xalign">0</property>
+                <property name="halign">start</property>
                 <property name="xpad">6</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
@@ -812,7 +812,7 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
                 <property name="use_underline">True</property>
-                <property name="xalign">0.5</property>
+                <property name="halign">center</property>
                 <property name="draw_indicator">True</property>
               </object>
               <packing>

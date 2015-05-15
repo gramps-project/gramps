@@ -195,8 +195,8 @@
                       <object class="GtkLabel" id="avail_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="yalign">0</property>
+                        <property name="halign">start</property>
+                        <property name="valign">start</property>
                         <property name="ypad">6</property>
                         <property name="use_markup">True</property>
                         <property name="mnemonic_widget">avail_tree</property>
@@ -249,8 +249,8 @@
                       <object class="GtkLabel" id="book_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="xalign">0</property>
-                        <property name="yalign">0</property>
+                        <property name="halign">start</property>
+                        <property name="valign">start</property>
                         <property name="ypad">6</property>
                         <property name="use_markup">True</property>
                         <property name="mnemonic_widget">book_tree</property>

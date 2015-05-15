@@ -28,8 +28,8 @@
                 <property name="receives_default">False</property>
                 <property name="halign">center</property>
                 <property name="use_underline">True</property>
-                <property name="xalign">0.5</property>
-                <property name="yalign">0</property>
+                <property name="halign">center</property>
+                <property name="valign">start</property>
                 <property name="active">True</property>
                 <property name="draw_indicator">True</property>
               </object>
@@ -60,8 +60,8 @@
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
                 <property name="vexpand">True</property>
-                <property name="xalign">0</property>
-                <property name="yalign">0</property>
+                <property name="halign">start</property>
+                <property name="valign">start</property>
                 <property name="xpad">6</property>
                 <property name="ypad">6</property>
                 <property name="wrap">True</property>
@@ -77,7 +77,7 @@
                 <property name="can_focus">False</property>
                 <property name="valign">start</property>
                 <property name="vexpand">True</property>
-                <property name="yalign">0</property>
+                <property name="valign">start</property>
                 <property name="stock">gtk-missing-image</property>
               </object>
               <packing>
