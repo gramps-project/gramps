@@ -287,7 +287,8 @@
               <object class="GtkLabel" id="title1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="ypad">6</property>
+                <property name="margin_top">6</property>
+                <property name="margin_bottom">6</property>
                 <property name="justify">center</property>
               </object>
               <packing>
@@ -360,7 +361,8 @@
           <object class="GtkLabel" id="label44">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="ypad">10</property>
+            <property name="margin_top">10</property>
+            <property name="margin_bottom">10</property>
             <property name="label" translatable="yes">Please be patient. This may take a while.</property>
             <property name="justify">center</property>
             <property name="wrap">True</property>

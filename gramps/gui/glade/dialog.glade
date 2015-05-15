@@ -93,7 +93,8 @@
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
                 <property name="halign">start</property>
-                <property name="ypad">12</property>
+                <property name="margin_top">12</property>
+                <property name="margin_bottom">12</property>
                 <property name="wrap">True</property>
               </object>
               <packing>
@@ -179,7 +180,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
-                <property name="xpad">6</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>
@@ -375,8 +377,10 @@
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
                 <property name="halign">start</property>
-                <property name="xpad">6</property>
-                <property name="ypad">24</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
+                <property name="margin_top">24</property>
+                <property name="margin_bottom">24</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
                 <property name="ellipsize">start</property>
@@ -405,7 +409,8 @@
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
                 <property name="halign">start</property>
-                <property name="xpad">6</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>
@@ -511,8 +516,10 @@
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
                 <property name="halign">start</property>
-                <property name="xpad">6</property>
-                <property name="ypad">12</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
+                <property name="margin_top">12</property>
+                <property name="margin_bottom">12</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>
@@ -540,7 +547,8 @@
                 <property name="can_focus">False</property>
                 <property name="hexpand">True</property>
                 <property name="halign">start</property>
-                <property name="xpad">6</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>
@@ -657,8 +665,10 @@
                   <object class="GtkLabel" id="qd_label2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="xpad">6</property>
-                    <property name="ypad">6</property>
+                    <property name="margin_left">6</property>
+                    <property name="margin_right">6</property>
+                    <property name="margin_top">6</property>
+                    <property name="margin_bottom">6</property>
                     <property name="label" translatable="yes">label</property>
                     <property name="use_markup">True</property>
                     <property name="wrap">True</property>
@@ -768,7 +778,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
-                <property name="xpad">6</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
                 <property name="label" translatable="yes">label</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
@@ -796,7 +807,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="halign">start</property>
-                <property name="xpad">6</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>

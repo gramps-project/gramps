@@ -253,7 +253,8 @@
               <object class="GtkLabel" id="label30">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xpad">6</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
                 <property name="label" translatable="yes">Note: changes take effect only after this window is closed</property>
                 <attributes>
                   <attribute name="style" value="italic"/>
@@ -382,7 +383,8 @@
               <object class="GtkLabel" id="definition_title">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="ypad">6</property>
+                <property name="margin_top">6</property>
+                <property name="margin_bottom">6</property>
                 <property name="justify">center</property>
               </object>
               <packing>
@@ -564,7 +566,8 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
-                    <property name="xpad">6</property>
+                    <property name="margin_left">6</property>
+                    <property name="margin_right">6</property>
                     <property name="label" translatable="yes">Co_mment:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">comment</property>
@@ -651,7 +654,8 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
-                    <property name="xpad">6</property>
+                    <property name="margin_left">6</property>
+                    <property name="margin_right">6</property>
                     <property name="label" translatable="yes">_Name:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">filter_name</property>
@@ -875,7 +879,8 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="xpad">12</property>
+                        <property name="margin_left">12</property>
+                        <property name="margin_right">12</property>
                         <property name="label" translatable="yes">No rule selected</property>
                         <property name="wrap">True</property>
                       </object>
@@ -908,7 +913,8 @@
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
                         <property name="valign">start</property>
-                        <property name="xpad">12</property>
+                        <property name="margin_left">12</property>
+                        <property name="margin_right">12</property>
                         <property name="label" translatable="yes">No description</property>
                         <property name="wrap">True</property>
                       </object>
@@ -1010,7 +1016,8 @@
           <object class="GtkLabel" id="test_title">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="ypad">6</property>
+            <property name="margin_top">6</property>
+            <property name="margin_bottom">6</property>
           </object>
           <packing>
             <property name="expand">False</property>

@@ -70,7 +70,8 @@
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="ypad">10</property>
+                <property name="margin_top">10</property>
+                <property name="margin_bottom">10</property>
                 <property name="justify">center</property>
               </object>
               <packing>
@@ -83,8 +84,10 @@
               <object class="GtkLabel" id="label4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xpad">12</property>
-                <property name="ypad">12</property>
+                <property name="margin_left">12</property>
+                <property name="margin_right">12</property>
+                <property name="margin_top">12</property>
+                <property name="margin_bottom">12</property>
                 <property name="label" translatable="yes">This tool will rename all events of one type to a different type. Once completed, this cannot be undone by the regular Undo function.</property>
                 <property name="wrap">True</property>
               </object>

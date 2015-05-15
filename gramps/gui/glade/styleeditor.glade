@@ -133,8 +133,10 @@
               <object class="GtkLabel" id="title1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xpad">5</property>
-                <property name="ypad">5</property>
+                <property name="margin_left">5</property>
+                <property name="margin_right">5</property>
+                <property name="margin_top">5</property>
+                <property name="margin_bottom">5</property>
                 <property name="use_markup">True</property>
                 <property name="justify">center</property>
               </object>
@@ -279,7 +281,8 @@
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Type face</property>
                             <property name="justify">center</property>
                             <attributes>
@@ -331,7 +334,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Size</property>
                             <property name="justify">center</property>
                             <attributes>
@@ -375,7 +379,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Color</property>
                             <property name="justify">center</property>
                             <attributes>
@@ -393,7 +398,8 @@
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Options</property>
                             <property name="justify">center</property>
                             <attributes>
@@ -608,7 +614,8 @@
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Alignment</property>
                             <property name="justify">center</property>
                             <property name="ellipsize">end</property>
@@ -626,7 +633,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Background color</property>
                             <property name="justify">center</property>
                             <attributes>
@@ -731,7 +739,8 @@
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Spacing</property>
                             <property name="justify">center</property>
                             <attributes>
@@ -807,7 +816,8 @@
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Borders</property>
                             <property name="justify">center</property>
                             <attributes>
@@ -1245,7 +1255,8 @@
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Borders</property>
                             <property name="justify">center</property>
                             <attributes>
@@ -1400,7 +1411,8 @@
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Line</property>
                             <property name="justify">center</property>
                             <property name="ellipsize">end</property>
@@ -1420,7 +1432,8 @@
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Color</property>
                             <property name="justify">center</property>
                             <property name="ellipsize">end</property>
@@ -1492,7 +1505,8 @@
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
                             <property name="valign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">Shadow</property>
                             <property name="justify">center</property>
                             <property name="ellipsize">end</property>
@@ -1759,7 +1773,8 @@
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="ypad">10</property>
+                <property name="margin_top">10</property>
+                <property name="margin_bottom">10</property>
                 <property name="use_markup">True</property>
                 <property name="justify">center</property>
               </object>

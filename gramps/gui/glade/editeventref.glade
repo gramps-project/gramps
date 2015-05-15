@@ -78,8 +78,10 @@
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <property name="halign">start</property>
-            <property name="xpad">6</property>
-            <property name="ypad">3</property>
+            <property name="margin_left">6</property>
+            <property name="margin_right">6</property>
+            <property name="margin_top">3</property>
+            <property name="margin_bottom">3</property>
             <property name="label" translatable="yes">Reference information</property>
             <property name="use_underline">True</property>
             <property name="justify">center</property>
@@ -110,7 +112,8 @@
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
-                    <property name="ypad">3</property>
+                    <property name="margin_top">3</property>
+                    <property name="margin_bottom">3</property>
                     <property name="label" translatable="yes">_Role:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
@@ -262,7 +265,8 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="ypad">3</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="label" translatable="yes">_Place:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -490,7 +494,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
-                            <property name="ypad">4</property>
+                            <property name="margin_top">4</property>
+                            <property name="margin_bottom">4</property>
                             <property name="label" translatable="yes">&lt;b&gt;Note:&lt;/b&gt; Any changes in the shared event information will be reflected in the event itself, for all participants in the event.</property>
                             <property name="use_markup">True</property>
                             <property name="justify">fill</property>

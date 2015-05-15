@@ -173,7 +173,8 @@
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="ypad">6</property>
+                <property name="margin_top">6</property>
+                <property name="margin_bottom">6</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -424,8 +425,10 @@
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
                         <property name="halign">start</property>
-                        <property name="xpad">2</property>
-                        <property name="ypad">2</property>
+                        <property name="margin_left">2</property>
+                        <property name="margin_right">2</property>
+                        <property name="margin_top">2</property>
+                        <property name="margin_bottom">2</property>
                         <property name="label" translatable="yes">Mi_nimum age to bear a child</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">yngmom</property>
@@ -441,8 +444,10 @@
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
                         <property name="halign">start</property>
-                        <property name="xpad">2</property>
-                        <property name="ypad">2</property>
+                        <property name="margin_left">2</property>
+                        <property name="margin_right">2</property>
+                        <property name="margin_top">2</property>
+                        <property name="margin_bottom">2</property>
                         <property name="label" translatable="yes">Ma_ximum age to bear a child</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">oldmom</property>
@@ -458,8 +463,10 @@
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
                         <property name="halign">start</property>
-                        <property name="xpad">2</property>
-                        <property name="ypad">2</property>
+                        <property name="margin_left">2</property>
+                        <property name="margin_right">2</property>
+                        <property name="margin_top">2</property>
+                        <property name="margin_bottom">2</property>
                         <property name="label" translatable="yes">Maximum number of chil_dren</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">mxchildmom</property>
@@ -538,8 +545,10 @@
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
                         <property name="halign">start</property>
-                        <property name="xpad">2</property>
-                        <property name="ypad">2</property>
+                        <property name="margin_left">2</property>
+                        <property name="margin_right">2</property>
+                        <property name="margin_top">2</property>
+                        <property name="margin_bottom">2</property>
                         <property name="label" translatable="yes">Mi_nimum age to father a child</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">yngdad</property>
@@ -555,8 +564,10 @@
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
                         <property name="halign">start</property>
-                        <property name="xpad">2</property>
-                        <property name="ypad">2</property>
+                        <property name="margin_left">2</property>
+                        <property name="margin_right">2</property>
+                        <property name="margin_top">2</property>
+                        <property name="margin_bottom">2</property>
                         <property name="label" translatable="yes">Ma_ximum age to father a child</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">olddad</property>
@@ -572,8 +583,10 @@
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
                         <property name="halign">start</property>
-                        <property name="xpad">2</property>
-                        <property name="ypad">2</property>
+                        <property name="margin_left">2</property>
+                        <property name="margin_right">2</property>
+                        <property name="margin_top">2</property>
+                        <property name="margin_bottom">2</property>
                         <property name="label" translatable="yes">Maximum number of chil_dren</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">mxchilddad</property>

@@ -89,8 +89,10 @@
               <object class="GtkLabel" id="label18">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="xpad">6</property>
-                <property name="ypad">6</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
+                <property name="margin_top">6</property>
+                <property name="margin_bottom">6</property>
                 <property name="label" translatable="yes">This GEDCOM file has identified itself as using ANSEL encoding. Sometimes, this is in error. If the imported data contains unusual characters, undo the import, and override the character set by selecting a different encoding below.</property>
                 <property name="wrap">True</property>
               </object>
@@ -189,7 +191,8 @@
           <object class="GtkLabel" id="title">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
-            <property name="ypad">6</property>
+            <property name="margin_top">6</property>
+            <property name="margin_bottom">6</property>
             <property name="justify">center</property>
           </object>
           <packing>

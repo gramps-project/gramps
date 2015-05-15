@@ -126,8 +126,10 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="xpad">3</property>
-                        <property name="ypad">3</property>
+                        <property name="margin_left">3</property>
+                        <property name="margin_right">3</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="label" translatable="yes">_Given:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -187,8 +189,10 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="xpad">3</property>
-                        <property name="ypad">3</property>
+                        <property name="margin_left">3</property>
+                        <property name="margin_right">3</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="label" translatable="yes">T_itle:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">title</property>
@@ -235,7 +239,8 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="xpad">3</property>
+                        <property name="margin_left">3</property>
+                        <property name="margin_right">3</property>
                         <property name="label" translatable="yes">_Nick:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">nickname</property>
@@ -371,7 +376,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">General</property>
                             <attributes>
                               <attribute name="weight" value="bold"/>
@@ -436,8 +442,10 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
-                            <property name="xpad">6</property>
-                            <property name="ypad">3</property>
+                            <property name="margin_left">6</property>
+                            <property name="margin_right">6</property>
+                            <property name="margin_top">3</property>
+                            <property name="margin_bottom">3</property>
                             <property name="label" translatable="yes">_Surname:</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">surname</property>
@@ -571,7 +579,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
-                            <property name="xpad">6</property>
+                            <property name="margin_left">6</property>
+                            <property name="margin_right">6</property>
                             <property name="label" translatable="yes">G_ender:</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">gender</property>
@@ -635,7 +644,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
                             <property name="halign">start</property>
-                            <property name="xpad">6</property>
+                            <property name="margin_left">6</property>
+                            <property name="margin_right">6</property>
                             <property name="label" translatable="yes">_Tags:</property>
                             <property name="use_underline">True</property>
                             <property name="mnemonic_widget">tag_button</property>
@@ -692,7 +702,8 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="ypad">3</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="label" translatable="yes">Preferred Name</property>
                         <attributes>
                           <attribute name="weight" value="bold"/>
@@ -708,8 +719,10 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="xpad">3</property>
-                        <property name="ypad">3</property>
+                        <property name="margin_left">3</property>
+                        <property name="margin_right">3</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="label" translatable="yes">_Type:</property>
                         <property name="use_underline">True</property>
                         <property name="justify">center</property>
@@ -726,8 +739,10 @@ Indicate that the surname consists of different parts. Every surname has its own
                         <property name="can_focus">False</property>
                         <property name="hexpand">True</property>
                         <property name="halign">start</property>
-                        <property name="xpad">3</property>
-                        <property name="ypad">3</property>
+                        <property name="margin_left">3</property>
+                        <property name="margin_right">3</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="use_markup">True</property>
                         <property name="ellipsize">end</property>
                       </object>

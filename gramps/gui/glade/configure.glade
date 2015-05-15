@@ -133,8 +133,10 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="xpad">12</property>
-                        <property name="ypad">6</property>
+                        <property name="margin_left">12</property>
+                        <property name="margin_right">12</property>
+                        <property name="margin_top">6</property>
+                        <property name="margin_bottom">6</property>
                         <property name="label" translatable="yes">The following conventions are used:
 &lt;tt&gt;  &lt;b&gt;%f&lt;/b&gt; - Given Name       &lt;b&gt;%F&lt;/b&gt; - GIVEN NAME
   &lt;b&gt;%l&lt;/b&gt; - Surname          &lt;b&gt;%L&lt;/b&gt; - SURNAME

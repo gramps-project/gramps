@@ -107,8 +107,10 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="xpad">10</property>
-                        <property name="ypad">10</property>
+                        <property name="margin_left">10</property>
+                        <property name="margin_right">10</property>
+                        <property name="margin_top">10</property>
+                        <property name="margin_bottom">10</property>
                         <property name="use_markup">True</property>
                         <property name="justify">center</property>
                       </object>
@@ -132,8 +134,10 @@
                     <property name="can_focus">False</property>
                     <property name="halign">start</property>
                     <property name="valign">start</property>
-                    <property name="xpad">10</property>
-                    <property name="ypad">20</property>
+                    <property name="margin_left">10</property>
+                    <property name="margin_right">10</property>
+                    <property name="margin_top">20</property>
+                    <property name="margin_bottom">20</property>
                     <property name="label" translatable="yes">Select a report from those available on the left.</property>
                     <property name="wrap">True</property>
                   </object>
@@ -151,8 +155,10 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">end</property>
-                        <property name="xpad">6</property>
-                        <property name="ypad">3</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="label" translatable="yes">Status:</property>
                         <property name="justify">center</property>
                       </object>
@@ -166,7 +172,8 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="xpad">5</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -178,8 +185,10 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">end</property>
-                        <property name="xpad">6</property>
-                        <property name="ypad">3</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="label" translatable="yes">Author:</property>
                       </object>
                       <packing>
@@ -192,8 +201,10 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">end</property>
-                        <property name="xpad">6</property>
-                        <property name="ypad">3</property>
+                        <property name="margin_left">6</property>
+                        <property name="margin_right">6</property>
+                        <property name="margin_top">3</property>
+                        <property name="margin_bottom">3</property>
                         <property name="label" translatable="yes">Author's email:</property>
                       </object>
                       <packing>
@@ -206,7 +217,8 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="xpad">5</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
@@ -218,7 +230,8 @@
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="halign">start</property>
-                        <property name="xpad">5</property>
+                        <property name="margin_left">5</property>
+                        <property name="margin_right">5</property>
                       </object>
                       <packing>
                         <property name="left_attach">1</property>
