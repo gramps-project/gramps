@@ -393,6 +393,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.transaction = None
         self.undodb = DbUndo(self)
         self.abort_possible = False
+        self._bm_changes = 0
         self._directory = directory
         if directory:
             self.load(directory)
@@ -1688,4 +1689,16 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         _LOG.debug("Write database backend file to 'dictionarydb'")
         with open(versionpath, "w") as version_file:
             version_file.write("dictionarydb")
+
+    def report_bm_change(self):
+        """
+        Add 1 to the number of bookmark changes during this session.
+        """
+        self._bm_changes += 1
+
+    def db_has_bm_changes(self):
+        """
+        Return whethere there were bookmark changes during the session.
+        """
+        return self._bm_changes > 0
 
