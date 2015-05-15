@@ -92,7 +92,6 @@ class UndoHistory(ManagedWindow):
 
         self.renderer = Gtk.CellRendererText()
         self.tree.set_model(self.model)
-        self.tree.set_rules_hint(True)
         #self.tree.append_column(
             #Gtk.TreeViewColumn(_('Original time'), self.renderer,
                                #text=0, foreground=2, background=3))

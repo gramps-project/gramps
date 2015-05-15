@@ -113,7 +113,6 @@ class ListModel(object):
         self.mylist.append(object)
 
         self.function = {}
-        self.tree.set_rules_hint(True)
         self.model = None
         self.selection = None
         self.mode = mode

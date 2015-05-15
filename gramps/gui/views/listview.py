@@ -148,7 +148,6 @@ class ListView(NavigationView):
         filter_box = self.search_bar.build()
 
         self.list = Gtk.TreeView()
-        self.list.set_rules_hint(True)
         self.list.set_headers_visible(True)
         self.list.set_headers_clickable(True)
         self.list.set_fixed_height_mode(True)

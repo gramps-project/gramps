@@ -823,7 +823,6 @@ class GrampsPreferences(ConfigureDialog):
         format_tree.append_column(example_column)
         format_tree.get_selection().connect('changed', 
                                             self.cb_format_tree_select)
-        format_tree.set_rules_hint(True)
 
         # ... and put it into a scrolled win
         format_sw = Gtk.ScrolledWindow()

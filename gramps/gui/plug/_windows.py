@@ -116,7 +116,6 @@ class PluginStatus(ManagedWindow):
                 GObject.TYPE_STRING, GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.selection_reg = self.list_reg.get_selection()
         self.list_reg.set_model(self.model_reg)
-        self.list_reg.set_rules_hint(True)
         self.list_reg.connect('button-press-event', self.button_press_reg)
         col0_reg = Gtk.TreeViewColumn(_('Type'), Gtk.CellRendererText(), text=0)
         col0_reg.set_sort_column_id(0)
@@ -167,7 +166,6 @@ class PluginStatus(ManagedWindow):
                                    GObject.TYPE_STRING, GObject.TYPE_STRING)
         self.selection = self.list.get_selection()
         self.list.set_model(self.model)
-        self.list.set_rules_hint(True)
         self.list.connect('button-press-event', self.button_press)
         self.list.connect('cursor-changed', self.cursor_changed)
         col = Gtk.TreeViewColumn(_('Loaded'), Gtk.CellRendererText(),
@@ -230,7 +228,6 @@ class PluginStatus(ManagedWindow):
                                          GObject.TYPE_STRING, 
                                          GObject.TYPE_STRING)
         self.addon_list.set_model(self.addon_model)
-        self.addon_list.set_rules_hint(True)
         #self.addon_list.connect('button-press-event', self.button_press)
         col = Gtk.TreeViewColumn(_('Addon Name'), Gtk.CellRendererText(),
                                  text=1)
