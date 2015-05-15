@@ -40,6 +40,8 @@ from django.db import transaction
 #
 #------------------------------------------------------------------------
 import gramps
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.lib import (Person, Family, Event, Place, Repository, 
                             Citation, Source, Note, MediaObject, Tag, 
                             Researcher)
@@ -2028,9 +2030,6 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         ## FIXME
         pass
     
-    def get_dbname(self):
-        return "Django Database"
-
     ## missing
 
     def find_place_child_handles(self, handle):
@@ -2110,4 +2109,31 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Return whethere there were bookmark changes during the session.
         """
         return self._bm_changes > 0
+
+    def get_summary(self):
+        """
+        Returns dictionary of summary item.
+        Should include, if possible:
+
+        _("Number of people")
+        _("Version")
+        _("Schema version")
+        """
+        return {
+            _("Number of people"): self.get_number_of_people(),
+        }
+
+    def get_dbname(self):
+        """
+        In Django, the database is in a text file at the path
+        """
+        filepath = os.path.join(self._directory, "name.txt")
+        try:
+            name_file = open(filepath, "r")
+            name = name_file.readline().strip()
+            name_file.close()
+        except (OSError, IOError) as msg:
+            _LOG.error(str(msg))
+            name = None
+        return name
 

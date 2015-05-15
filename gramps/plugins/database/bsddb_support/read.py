@@ -1976,3 +1976,16 @@ class DbBsddbRead(DbReadBase, Callback):
             self.__log_error()
             name = None
         return name
+
+    def get_summary(self):
+        """
+        Returns dictionary of summary item.
+        Should include, if possible:
+
+        _("Number of people")
+        _("Version")
+        _("Schema version")
+        """
+        return {
+            _("Number of people"): self.get_number_of_people(),
+        }
