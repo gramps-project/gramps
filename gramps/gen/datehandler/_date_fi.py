@@ -98,7 +98,8 @@ class DateParserFI(DateParser):
 
     def init_strings(self):
         DateParser.init_strings(self)
-    # date, whitespace
+        self._text2 = re.compile('(\d+)?\.?\s+?%s\.?\s*((\d+)(/\d+)?)?\s*$'
+                                         % self._mon_str, re.IGNORECASE)
         self._span = re.compile("(?P<start>.+)\s+(-)\s+(?P<stop>.+)", 
                            re.IGNORECASE)
         self._range = re.compile(
@@ -114,90 +115,68 @@ class DateDisplayFI(DateDisplay):
     """
     Finnish language date display class. 
     """
-    long_months = ("", "Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu",
-                    "Toukokuu", "Kesäkuu", "Heinäkuu", "Elokuu",
-                    "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu")
-    
-    short_months = ("", "Tammi", "Helmi", "Maali", "Huhti", "Touko",
-                     "Kesäk", "Heinä", "Eloku", "Syysk", "Lokak", "Marra",
-                     "Joulu")
-    
-    calendar = ("", 
-        "juliaaninen", 
-        "heprealainen", 
-        "ranskan v.", 
-        "persialainen", 
-        "islamilainen", 
-        "svensk" 
-        )
-
-    _qual_str = ("", "arviolta", "laskettuna")
-    
     _bce_str = "%s ekr."
 
     formats = (
         "VVVV-KK-PP (ISO)", 
-        "PP.KK.VVVV"
+        "PP.KK.VVVV",
+        "Päivä Kuukausi Vuosi" # Day, full month name, year
         )
-        # normally, this would agree with DateDisplayEn's "formats"
-        # (since no locale-specific _display_gregorian exists, here),
-        # but the locale-specific "display" (below) forces self.format = 1
+        # this definition must agree with its "_display_calendar" method
     
-    def display(self, date):
-        """
-        Return a text string representing the date.
-        """
-        mod = date.get_modifier()
-        qual = date.get_quality()
-        cal = date.get_calendar()
-        start = date.get_start_date()
-        newyear = date.get_new_year()
-        
-        if mod == Date.MOD_TEXTONLY:
-            return date.get_text()
-        if start == Date.EMPTY:
-            return ""
+    display = DateDisplay.display_formatted
 
-        # select numerical date format
-        self.format = 1
+    def _display_calendar(self, date_val, long_months, short_months = None,
+                          inflect=""):
+        # this must agree with its locale-specific "formats" definition
 
-        if mod == Date.MOD_SPAN:
-            d1 = self.display_cal[cal](start)
-            d2 = self.display_cal[cal](date.get_stop_date())
-            text = "%s - %s" % (d1, d2)
-        elif mod == Date.MOD_RANGE:
-            stop = date.get_stop_date()
-            if start[0] == start[1] == 0 and stop[0] == 0 and stop[1] == 0:
-                d1 = self.display_cal[cal](start)
-                d2 = self.display_cal[cal](stop)
-                text = "vuosien %s ja %s välillä" % (d1, d2)
-            else:
-                d1 = self.display_cal[cal](start)
-                d2 = self.display_cal[cal](stop)
-                text = "%s ja %s välillä" % (d1, d2)
+        if short_months is None:
+            # Let the short formats work the same as long formats
+            short_months = long_months
+
+        if self.format == 0:
+            return self.display_iso(date_val)
+        elif self.format == 1:
+            # numerical
+            value = self.dd_dformat01(date_val)
+        # elif self.format == 4:
         else:
-            text = self.display_cal[date.get_calendar()](start)
-            if mod == Date.MOD_AFTER:
-                text = text + " jälkeen"
-            elif mod == Date.MOD_ABOUT:
-                text = "noin " + text
-            elif mod == Date.MOD_BEFORE:
-                text = "ennen " + text
+            # day month_name year
+            value = self.dd_dformat04(date_val, inflect, long_months)
+        if date_val[2] < 0:
+            # TODO fix BUG 7064: non-Gregorian calendars wrongly use BCE notation for negative dates
+            return self._bce_str % value
+        else:
+            return value
 
-        if qual:
-            # prepend quality
-            text = "%s %s" % (self._qual_str[qual], text)
-            
-        if cal or newyear:
-            # append calendar type
-            scal = self.format_extras(cal, newyear)
-            text = "%s %s" % (text, scal)
-    
-        return text
+    def dd_dformat04(self, date_val, inflect, long_months):
+        """
+        day month_name year -- for Finnish locale
+        """
+        year = self._slash_year(date_val[2], date_val[3])
+        if date_val[0] == 0:
+            if date_val[1] == 0:
+                return year
+            else:
+                if inflect:
+                    return self.format_long_month_year(date_val[1], year,
+                                                       inflect, long_months)
+                else:
+                    return "{long_month.f[IN]} {year}".format(
+                             long_month = long_months[date_val[1]],
+                             year = year)
+        else:
+            if not hasattr(long_months[date_val[1]], 'f'): # not a Lexeme
+                return self.dd_dformat01(date_val) # maybe the month is zero
+            return "{day:d}. {long_month.f[P]} {year}".format(
+                     day = date_val[0],
+                     long_month = long_months[date_val[1]],
+                     year = year)
 
 #-------------------------------------------------------------------------
 #
 # Register classes
 #
 #-------------------------------------------------------------------------
-register_datehandler(('fi_FI', 'fi', 'finnish', 'Finnish'), DateParserFI, DateDisplayFI)
+register_datehandler(('fi_FI', 'fi', 'finnish', 'Finnish'),
+                     DateParserFI, DateDisplayFI)
