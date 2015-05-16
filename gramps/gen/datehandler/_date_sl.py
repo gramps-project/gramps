@@ -82,17 +82,21 @@ class DateParserSL(DateParser):
         """
         compiles regular expression strings for matching dates
         """
+
         DateParser.init_strings(self)
-        _span_1 = ['od']
-        _span_2 = ['do']
-        _range_1 = ['med']
-        _range_2 = ['in']
-        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_span_1), '|'.join(_span_2)),
-                                 re.IGNORECASE)
-        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
-                                 ('|'.join(_range_1), '|'.join(_range_2)),
-                                 re.IGNORECASE)
+        # match 'Day. MONTH year.' format with or without dots
+        self._text2 = re.compile('(\d+)?\.?\s*?%s\.?\s*((\d+)(/\d+)?)?\s*\.?$'
+                                % self._mon_str, re.IGNORECASE)
+        # match Day.Month.Year.
+        self._numeric  = re.compile("((\d+)[/\.-])?\s*((\d+)[/\.-])?\s*(\d+)\.?$")
+       
+        self._span  = re.compile("od\s+(?P<start>.+)\s+do\s+(?P<stop>.+)", 
+                                re.IGNORECASE)
+        self._range = re.compile(
+                            "med\s+(?P<start>.+)\s+in\s+(?P<stop>.+)", 
+                            re.IGNORECASE)
+        self._jtext2 = re.compile('(\d+)?.?\s+?%s\s*((\d+)(/\d+)?)?'\
+                                % self._jmon_str, re.IGNORECASE)
 
 #-------------------------------------------------------------------------
 #
