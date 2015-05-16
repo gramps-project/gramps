@@ -147,8 +147,11 @@ def make_unknown(class_arg, explanation, class_func, commit_func, transaction,
     elif isinstance(obj, Tag):
         if not hasattr(make_unknown, 'count'):
             make_unknown.count = 1 #primitive static variable
+        tval = time.strftime('%x %X', time.localtime())
+            if sys.version_info[0] < 3:
+        tval = tval.decode(glocale.encoding)
         obj.set_name(_("Unknown, was missing %(time)s (%(count)d)") % {
-                'time': time.strftime('%x %X', time.localtime()),
+                'time': tval,
                 'count': make_unknown.count})
         make_unknown.count += 1
     else:
