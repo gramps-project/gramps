@@ -1670,7 +1670,7 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         as part of the transaction.
         """
         if self.use_import_cache:
-            self.import_cache[obj.handle] = media
+            self.import_cache[media.handle] = media
         else:
             raw = media.serialize()
             items = self.dji.Media.filter(handle=media.handle)
