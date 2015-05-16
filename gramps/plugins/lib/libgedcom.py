@@ -2735,7 +2735,12 @@ class GedcomParser(UpdateCallback):
         else:
             message = _("GEDCOM import report: %s errors detected") % \
                 self.number_of_errors
-        self.user.info(message, "".join(self.errors), monospaced=True)
+        if hasattr(self.user.uistate, 'window'):
+            parent_window = self.user.uistate.window
+        else:
+            parent_window = None
+        self.user.info(message, "".join(self.errors),
+                       parent=parent_window, monospaced=True)
 
     def __clean_up(self):
         """
