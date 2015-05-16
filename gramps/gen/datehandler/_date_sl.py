@@ -71,8 +71,10 @@ class DateParserSL(DateParser):
     quality_to_int = {
         'ocenjeno'   : Date.QUAL_ESTIMATED,
         'oc.'        : Date.QUAL_ESTIMATED,
+        'po oceni'   : Date.QUAL_ESTIMATED,
         'izračunano' : Date.QUAL_CALCULATED,
         'izrač.'     : Date.QUAL_CALCULATED,
+        'po izračunu': Date.QUAL_CALCULATED,
         }
 
     bce = ["pred našim štetjem", "pred Kristusom",
