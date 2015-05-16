@@ -2,14 +2,14 @@
 # $Id$
 # This file is distributed under the same license as the Gramps package.
 # Copyright (c) 2007 gramps-project
-# Bernard Banko <bernard.banko at t-2.net>, 2007-2015
+# Bernard Banko <beernarrd at gmail.com>, 2007-2015
 msgid ""
 msgstr ""
 "Project-Id-Version: gramps 3.3\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2015-03-25 19:21+0100\n"
-"PO-Revision-Date: 2015-05-04 22:03+0200\n"
-"Last-Translator: Bernard Banko <bernard.banko (at) t-2.net>\n"
+"PO-Revision-Date: 2015-05-16 17:47+0200\n"
+"Last-Translator: Bernard Banko <beernarrd (at) gmail.com>\n"
 "Language-Team: lugos\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
@@ -84,7 +84,11 @@ msgstr "GeneWeb izvorna datoteka"
 
 #: ../data/tips.xml.in.h:1
 msgid "<b>Working with Dates</b><br/>A range of dates can be given by using the format &quot;between January 4, 2000 and March 20, 2003&quot;. You can also indicate the level of confidence in a date and even choose between seven different calendars. Try the button next to the date field in the Events Editor."
-msgstr "<b>Delo z datumi</b><br/>Razpon datumov lahko vnesete z obliko 'od 4. januarja do marca 2003'. Lahko tudi vnesete zanesljivost podatka ter celo izbirate med več različnimi koledarji. Preizkusite gumb poleg vnosnega polja za datum v Urejevalniku dogodkov."
+msgstr ""
+"<b>Delo z datumi</b><br/>Razpon datumov lahko vnesete z obliko 'od 4. "
+"januarja do marca 2003'. Lahko tudi vnesete zanesljivost podatka ter celo "
+"izbirate med več različnimi koledarji. Preizkusite gumb poleg vnosnega polja "
+"za datum v Urejevalniku dogodkov."
 
 #: ../data/tips.xml.in.h:2
 msgid "<b>Editing Objects</b><br/>In most cases double clicking on a name, source, place or media entry will bring up a window to allow you to edit the object. Note that the result can be dependent on context. For example, in the Family View clicking on a parent or child will bring up the Relationship Editor."
@@ -1508,51 +1512,52 @@ msgstr "danes"
 #. DateDisplayer code!
 #: ../gramps/gen/datehandler/_datestrings.py:64
 msgid "localized lexeme inflections||January"
-msgstr "januarja"
+msgstr "i=januar|r=januarja|d=januarju|t=januar|m=januarju|o=januarjem"
 
 #: ../gramps/gen/datehandler/_datestrings.py:65
 msgid "localized lexeme inflections||February"
-msgstr "februarja"
+msgstr "i=februar|r=februarja|d=februarju|t=februar|m=februarju|o=februarjem"
 
 #: ../gramps/gen/datehandler/_datestrings.py:66
 msgid "localized lexeme inflections||March"
-msgstr "marca"
+msgstr "i=marec|r=marca|d=marcu|t=marec|m=marcu|o=marcem"
 
 #: ../gramps/gen/datehandler/_datestrings.py:67
 msgid "localized lexeme inflections||April"
-msgstr "aprila"
+msgstr "i=april|r=aprila|d=aprilu|t=april|m=aprilu|o=aprilom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:68
 msgid "localized lexeme inflections||May"
-msgstr "maja"
+msgstr "i=maj|r=maja|d=maju|t=maj|m=maju|o=majem"
 
 #: ../gramps/gen/datehandler/_datestrings.py:69
 msgid "localized lexeme inflections||June"
-msgstr "junija"
+msgstr "i=junij|r=junija|d=juniju|t=junij|m=juniju|o=junijem"
 
 #: ../gramps/gen/datehandler/_datestrings.py:70
 msgid "localized lexeme inflections||July"
-msgstr "julija"
+msgstr "i=julij|r=julija|d=juliju|t=julij|m=juliju|o=julijem"
 
 #: ../gramps/gen/datehandler/_datestrings.py:71
 msgid "localized lexeme inflections||August"
-msgstr "avgusta"
+msgstr "i=avgust|r=avgusta|d=avgustu|t=avgust|m=avgustu|o=avgustom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:72
 msgid "localized lexeme inflections||September"
-msgstr "septembra"
+msgstr ""
+"i=september|r=semptembra|d=semptembru|t=semptember|m=septembru|o=septembrom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:73
 msgid "localized lexeme inflections||October"
-msgstr "oktobra"
+msgstr "i=oktober|r=oktobra|d=oktobru|t=oktober|m=oktobru|o=oktobrom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:74
 msgid "localized lexeme inflections||November"
-msgstr "novembra"
+msgstr "i=november|r=novembra|d=novembru|t=november|m=novembru|o=novembrom"
 
 #: ../gramps/gen/datehandler/_datestrings.py:75
 msgid "localized lexeme inflections||December"
-msgstr "decembra"
+msgstr "i=december|r=decembra|d=decembru|t=december|m=decembru|o=decembrom"
 
 #. TRANSLATORS: see
 #. http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
@@ -30322,7 +30327,7 @@ msgstr "Pogled za prikaz prednikov izbrane osebe"
 #: ../gramps/plugins/view/view.gpr.py:142
 #: ../gramps/plugins/view/view.gpr.py:157
 msgid "Charts"
-msgstr "Grafični prikazi"
+msgstr "Grafikoni"
 
 #: ../gramps/plugins/view/view.gpr.py:143
 msgid "A view showing parents through a fanchart"
