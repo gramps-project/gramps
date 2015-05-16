@@ -362,6 +362,7 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
              force_bsddb_upgrade=False,
              force_bsddb_downgrade=False,
              force_python_upgrade=False):
+        _LOG.info("Django loading...")
         self._directory = directory
         self.full_name = os.path.abspath(self._directory)
         self.path = self.full_name
@@ -380,9 +381,11 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             def __getattr__(self, item):
                 return self.dictionary[item]
 
+        _LOG.info("Django loading defaults from: " + directory)
         try:
             settings.configure(Module(default_settings))
         except RuntimeError:
+            _LOG.info("Django already configured error! Shouldn't happen!")
             # already configured; ignore
             pass
 
@@ -455,6 +458,7 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.url_types = set()
         self.media_attributes = set()
         self.place_types = set()
+        _LOG.info("Django loading... done!")
 
     def prepare_import(self):
         """
@@ -2108,6 +2112,8 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         for filename in os.listdir(defaults):
             fullpath = os.path.abspath(os.path.join(defaults, filename))
             shutil.copy2(fullpath, directory)
+        # force load, to get all modules loaded because of reset issue
+        self.load(directory)
 
     def report_bm_change(self):
         """
