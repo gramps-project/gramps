@@ -1810,3 +1810,16 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def rebuild_secondary(self, update):
         ## FIXME
         pass
+
+    def prepare_import(self):
+        """
+        Initialization before imports
+        """
+        pass
+
+    def commit_import(self):
+        """
+        Post process after imports
+        """
+        pass
+

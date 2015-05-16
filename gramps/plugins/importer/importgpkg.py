@@ -93,7 +93,9 @@ def impData(database, name, user):
     imp_db_name = os.path.join(tmpdir_path, XMLFILE)  
 
     importer = importData
+    database.prepare_import()
     info = importer(database, imp_db_name, user)
+    database.commit_import()
 
     newmediapath = database.get_mediapath()
     #import of gpkg should not change media path as all media has new paths!
