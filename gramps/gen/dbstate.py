@@ -29,6 +29,14 @@ from .proxy.proxybase import ProxyDbBase
 from .utils.callback import Callback
 from .config import config
 
+#-------------------------------------------------------------------------
+#
+# set up logging
+#
+#-------------------------------------------------------------------------
+import logging
+LOG = logging.getLogger(".dbstate")
+
 class DbState(Callback):
     """
     Provide a class to encapsulate the state of the database.
@@ -152,6 +160,7 @@ class DbState(Callback):
 
     ## Work-around for databases that need sys refresh (django):
     def modules_is_set(self):
+        LOG.warn("modules_is_set?")
         if hasattr(self, "_modules"):
             return self._modules != None
         else:
@@ -159,6 +168,7 @@ class DbState(Callback):
             return False
 
     def reset_modules(self):
+        LOG.warn("reset_modules!")
         # First, clear out old modules:
         for key in list(sys.modules.keys()):
             del(sys.modules[key])
@@ -167,5 +177,6 @@ class DbState(Callback):
             sys.modules[key] = self._modules[key]
 
     def save_modules(self):
+        LOG.warn("save_modules!")
         self._modules = sys.modules.copy()
 
