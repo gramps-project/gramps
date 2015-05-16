@@ -62,8 +62,10 @@ def importData(database, filename, user):
     """Function called by Gramps to import data on persons in VCard format."""
     parser = VCardParser(database)
     try:
+        database.prepare_import()
         with OpenFileOrStdin(filename) as filehandle:
             parser.parse(filehandle)
+        database.commit_import()
     except EnvironmentError as msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return

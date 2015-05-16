@@ -518,7 +518,7 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self.dji.add_tag_detail(obj.serialize())
         self.use_import_cache = False
         self.import_cache = {}
-        self.dji.update_publics()
+        self.request_rebuild()
 
     def transaction_commit(self, txn):
         pass

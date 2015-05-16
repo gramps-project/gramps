@@ -2470,6 +2470,18 @@ class DbBsddb(DbBsddbRead, DbWriteBase, UpdateCallback):
             _("Version"): bsddb_version,
         }
 
+    def prepare_import(self):
+        """
+        Initialization before imports
+        """
+        pass
+
+    def commit_import(self):
+        """
+        Post process after imports
+        """
+        pass
+
 def mk_backup_name(database, base):
     """
     Return the backup name of the database table

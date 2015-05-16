@@ -74,7 +74,9 @@ def _importData(database, filename, user):
         return
 
     try:
+        database.prepare_import()
         status = g.parse_progen_file()
+        database.commit_import()
     except ProgenError as msg:
         user.notify_error(_("Pro-Gen data error"), str(msg))
         return

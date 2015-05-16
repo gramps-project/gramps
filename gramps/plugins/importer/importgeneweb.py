@@ -86,7 +86,9 @@ def importData(database, filename, user):
         return
 
     try:
+        database.prepare_import()
         status = g.parse_geneweb_file()
+        database.commit_import()
     except IOError as msg:
         errmsg = _("%s could not be opened\n") % filename
         user.notify_error(errmsg,str(msg))
