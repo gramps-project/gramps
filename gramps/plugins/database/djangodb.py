@@ -44,7 +44,7 @@ from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.lib import (Person, Family, Event, Place, Repository, 
                             Citation, Source, Note, MediaObject, Tag, 
-                            Researcher)
+                            Researcher, GenderStats)
 from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn
 from gramps.gen.db.undoredo import DbUndo
 from gramps.gen.utils.callback import Callback
@@ -352,6 +352,8 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.full_name = None
         self.path = None
         self.brief_name = None
+        self.genderStats = GenderStats() # can pass in loaded stats as dict
+        self.owner = Researcher()
         if directory:
             self.load(directory)
 
@@ -788,8 +790,7 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return None
 
     def get_researcher(self):
-        obj = Researcher()
-        return obj
+        return self.owner
 
     def get_tag_handles(self, sort_handles=False):
         if sort_handles:
@@ -1704,7 +1705,7 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return 
 
     def set_researcher(self, owner):
-        pass
+        self.owner.set_from(owner)
 
     def copy_from_db(self, db):
         """
@@ -2037,9 +2038,10 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def remove_from_surname_list(self, person):
         ## FIXME
+        ## called by a complete commit_person
         pass
     
-    ## missing
+    ## was missing
 
     def find_place_child_handles(self, handle):
         pass
@@ -2146,3 +2148,8 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             name = None
         return name
 
+    def reindex_reference_map(self):
+        pass
+
+    def rebuild_secondary(self, update):
+        pass

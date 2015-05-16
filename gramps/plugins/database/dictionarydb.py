@@ -38,7 +38,8 @@ import logging
 #------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.db import DbReadBase, DbWriteBase, DbTxn, KEY_TO_NAME_MAP
+from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, 
+                           KEY_TO_NAME_MAP, KEY_TO_CLASS_MAP)
 from gramps.gen.db.undoredo import DbUndo
 from gramps.gen.db.dbconst import *
 from gramps.gen.utils.callback import Callback
@@ -66,6 +67,7 @@ from gramps.gen.lib.place import Place
 from gramps.gen.lib.repo import Repository
 from gramps.gen.lib.note import Note
 from gramps.gen.lib.tag import Tag
+from gramps.gen.lib.genderstats import GenderStats
 
 _LOG = logging.getLogger(DBLOGNAME)
 
@@ -99,8 +101,8 @@ class Table(object):
         """
         return self.funcs["cursor_func"]()
 
-    def put(key, data, txn=None):
-        self[key] = data
+    def put(self, key, data, txn=None):
+        self.funcs["add_func"](data, txn)
 
 class Map(dict):
     """
@@ -137,15 +139,14 @@ class MetaCursor(object):
         pass
 
 class Cursor(object):
-    def __init__(self, map, func):
+    def __init__(self, map):
         self.map = map
-        self.func = func
         self._iter = self.__iter__()
     def __enter__(self):
         return self
     def __iter__(self):
         for item in self.map.keys():
-            yield (bytes(item, "utf-8"), self.func(item))
+            yield (bytes(item, "utf-8"), self.map[item])
     def __next__(self):
         try:
             return self._iter.__next__()
@@ -155,7 +156,7 @@ class Cursor(object):
         pass
     def iter(self):
         for item in self.map.keys():
-            yield (bytes(item, "utf-8"), self.func(item))
+            yield (bytes(item, "utf-8"), self.map[item])
     def first(self):
         self._iter = self.__iter__()
         try:
@@ -383,15 +384,25 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.nmap_index = 0
         self.env = Environment(self)
         self.person_map = Map(Table(self._tables["Person"]))
+        self.person_id_map = {}
         self.family_map = Map(Table(self._tables["Family"]))
+        self.family_id_map = {}
         self.place_map  = Map(Table(self._tables["Place"]))
+        self.place_id_map = {}
         self.citation_map = Map(Table(self._tables["Citation"]))
+        self.citation_id_map = {}
         self.source_map = Map(Table(self._tables["Source"]))
+        self.source_id_map = {}
         self.repository_map  = Map(Table(self._tables["Repository"]))
+        self.repository_id_map = {}
         self.note_map = Map(Table(self._tables["Note"]))
+        self.note_id_map = {}
         self.media_map  = Map(Table(self._tables["Media"]))
+        self.media_id_map = {}
         self.event_map  = Map(Table(self._tables["Event"]))
+        self.event_id_map = {}
         self.tag_map  = Map(Table(self._tables["Tag"]))
+        self.tag_id_map = {}
         self.metadata   = Map(Table({"cursor_func": lambda: MetaCursor()}))
         self.name_group = {}
         self.undo_callback = None
@@ -407,6 +418,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.full_name = None
         self.path = None
         self.brief_name = None
+        self.genderStats = GenderStats() # can pass in loaded stats as dict
+        self.owner = Researcher()
         if directory:
             self.load(directory)
 
@@ -425,12 +438,15 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return None
 
     def transaction_commit(self, txn):
+        ## FIXME
         pass
 
     def get_undodb(self):
+        ## FIXME
         return None
 
     def transaction_abort(self, txn):
+        ## FIXME
         pass
 
     @staticmethod
@@ -687,10 +703,12 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         ## Fixme: implement sort
         return self.person_map.keys()
 
-    def get_family_handles(self):
+    def get_family_handles(self, sort_handles=False):
+        ## Fixme: implement sort
         return self.family_map.keys()
 
     def get_event_handles(self, sort_handles=False):
+        ## Fixme: implement sort
         return self.event_map.keys()
 
     def get_citation_handles(self, sort_handles=False):
@@ -705,78 +723,80 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         ## Fixme: implement sort
         return self.place_map.keys()
 
-    def get_repository_handles(self):
+    def get_repository_handles(self, sort_handles=False):
+        ## Fixme: implement sort
         return self.repository_map.keys()
 
     def get_media_object_handles(self, sort_handles=False):
         ## Fixme: implement sort
         return self.media_map.keys()
 
-    def get_note_handles(self):
+    def get_note_handles(self, sort_handles=False):
+        ## Fixme: implement sort
         return self.note_map.keys()
 
     def get_tag_handles(self, sort_handles=False):
-        # FIXME: sort
+        # FIXME: implement sort
         return self.tag_map.keys()
 
     def get_event_from_handle(self, handle):
         event = None
         if handle in self.event_map:
-            event = self.event_map[handle]
+            event = Event.create(self.event_map[handle])
         return event
 
     def get_family_from_handle(self, handle): 
         family = None
         if handle in self.family_map:
-            family = self.family_map[handle]
+            family = Family.create(self.family_map[handle])
         return family
 
     def get_repository_from_handle(self, handle):
         repository = None
         if handle in self.repository_map:
-            repository = self.repository_map[handle]
+            repository = Repository.create(self.repository_map[handle])
         return repository
 
     def get_person_from_handle(self, handle):
         person = None
         if handle in self.person_map:
-            person = self.person_map[handle]
+            person = Person.create(self.person_map[handle])
         return person
 
     def get_place_from_handle(self, handle):
         place = None
         if handle in self.place_map:
-            place = self.place_map[handle]
+            place = Place.create(self.place_map[handle])
         return place
 
     def get_citation_from_handle(self, handle):
         citation = None
         if handle in self.citation_map:
-            citation = self.citation_map[handle]
+            citation = Citation.create(self.citation_map[handle])
         return citation
 
     def get_source_from_handle(self, handle):
         source = None
         if handle in self.source_map:
-            source = self.source_map[handle]
+            source = Source.create(self.source_map[handle])
         return source
 
     def get_note_from_handle(self, handle):
         note = None
         if handle in self.note_map:
-            note = self.note_map[handle]
+            note = Note.create(self.note_map[handle])
         return note
 
     def get_object_from_handle(self, handle):
         media = None
         if handle in self.media_map:
-            media = self.media_map[handle]
+            media = MediaObject.create(self.media_map[handle])
         return media
 
     def get_tag_from_handle(self, handle):
         tag = None
         if handle in self.tag_map:
-            tag = self.tag_map[handle]
+            tag = Tag.create(self.tag_map[handle])
         return tag
 
     def get_default_person(self):
@@ -787,81 +807,73 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return None
 
     def iter_people(self):
-        return (person for person in self.person_map.values())
+        return (Person.create(person) for person in self.person_map.values())
 
     def iter_person_handles(self):
         return (handle for handle in self.person_map.keys())
 
     def iter_families(self):
-        return (family for family in self.family_map.values())
+        return (Family.create(family) for family in self.family_map.values())
 
     def iter_family_handles(self):
         return (handle for handle in self.family_map.keys())
 
     def get_tag_from_name(self, name):
-        for tag in self.tag_map.values():
+        ## Slow, but typically not too many tags:
+        for data in self.tag_map.values():
+            tag = Tag.create(data)
             if tag.name == name:
                 return tag
         return None
 
     def get_person_from_gramps_id(self, gramps_id):
-        for person in self.person_map.values():
-            if person.gramps_id == gramps_id:
-                return person
+        if gramps_id in self.person_id_map:
+            return Person.create(self.person_id_map[gramps_id])
         return None
 
     def get_family_from_gramps_id(self, gramps_id):
-        for family in self.family_map.values():
-            if family.gramps_id == gramps_id:
-                return family
+        if gramps_id in self.family_id_map:
+            return Family.create(self.family_id_map[gramps_id])
         return None
 
     def get_citation_from_gramps_id(self, gramps_id):
-        for citation in self.citation_map.values():
-            if citation.gramps_id == gramps_id:
-                return citation
+        if gramps_id in self.citation_id_map:
+            return Citation.create(self.citation_id_map[gramps_id])
         return None
 
     def get_source_from_gramps_id(self, gramps_id):
-        for source in self.source_map.values():
-            if source.gramps_id == gramps_id:
-                return source
+        if gramps_id in self.source_id_map:
+            return Source.create(self.source_id_map[gramps_id])
         return None
 
     def get_event_from_gramps_id(self, gramps_id):
-        for event in self.event_map.values():
-            if event.gramps_id == gramps_id:
-                return event
+        if gramps_id in self.event_id_map:
+            return Event.create(self.event_id_map[gramps_id])
         return None
 
     def get_media_from_gramps_id(self, gramps_id):
-        for media in self.media_map.values():
-            if media.gramps_id == gramps_id:
-                return media
+        if gramps_id in self.media_id_map:
+            return MediaObject.create(self.media_id_map[gramps_id])
         return None
 
     def get_place_from_gramps_id(self, gramps_id):
-        for place in self.place_map.values():
-            if place.gramps_id == gramps_id:
-                return place
+        if gramps_id in self.place_id_map:
+            return Place.create(self.place_id_map[gramps_id])
         return None
 
     def get_repository_from_gramps_id(self, gramps_id):
-        for repository in self.repository_map.values():
-            if repository.gramps_id == gramps_id:
-                return repository
+        if gramps_id in self.repository_id_map:
+            return Repository.create(self.repository_id_map[gramps_id])
         return None
 
     def get_note_from_gramps_id(self, gramps_id):
-        for note in self.note_map.values():
-            if note.gramps_id == gramps_id:
-                return note
+        if gramps_id in self.note_id_map:
+            return Note.create(self.note_id_map[gramps_id])
         return None
 
     def get_tag_from_gramps_id(self, gramps_id):
-        for tag in self.tag_map.values():
-            if tag.gramps_id == gramps_id:
-                return tag
+        if gramps_id in self.tag_id_map:
+            return Tag.create(self.tag_id_map[gramps_id])
         return None
 
     def get_number_of_people(self):
@@ -874,7 +886,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return len(self.place_map)
 
     def get_number_of_tags(self):
-        return 0 # FIXME
+        return len(self.tag_map)
 
     def get_number_of_families(self):
         return len(self.family_map)
@@ -895,52 +907,48 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return len(self.repository_map)
 
     def get_place_cursor(self):
-        return Cursor(self.place_map, self.get_raw_place_data)
+        return Cursor(self.place_map)
 
     def get_person_cursor(self):
-        return Cursor(self.person_map, self.get_raw_person_data)
+        return Cursor(self.person_map)
 
     def get_family_cursor(self):
-        return Cursor(self.family_map, self.get_raw_family_data)
+        return Cursor(self.family_map)
 
     def get_event_cursor(self):
-        return Cursor(self.event_map, self.get_raw_event_data)
+        return Cursor(self.event_map)
 
     def get_note_cursor(self):
-        return Cursor(self.note_map, self.get_raw_note_data)
+        return Cursor(self.note_map)
 
     def get_tag_cursor(self):
-        return Cursor(self.tag_map, self.get_raw_tag_data)
+        return Cursor(self.tag_map)
 
     def get_repository_cursor(self):
-        return Cursor(self.repository_map, self.get_raw_repository_data)
+        return Cursor(self.repository_map)
 
     def get_media_cursor(self):
-        return Cursor(self.media_map, self.get_raw_object_data)
+        return Cursor(self.media_map)
 
     def get_citation_cursor(self):
-        return Cursor(self.citation_map, self.get_raw_citation_data)
+        return Cursor(self.citation_map)
 
     def get_source_cursor(self):
-        return Cursor(self.source_map, self.get_raw_source_data)
+        return Cursor(self.source_map)
 
     def has_gramps_id(self, obj_key, gramps_id):
         key2table = {
-            PERSON_KEY:     self.person_map, 
-            FAMILY_KEY:     self.family_map, 
-            SOURCE_KEY:     self.source_map, 
-            CITATION_KEY:   self.citation_map, 
-            EVENT_KEY:      self.event_map, 
-            MEDIA_KEY:      self.media_map, 
-            PLACE_KEY:      self.place_map, 
-            REPOSITORY_KEY: self.repository_map, 
-            NOTE_KEY:       self.note_map, 
+            PERSON_KEY:     self.person_id_map, 
+            FAMILY_KEY:     self.family_id_map, 
+            SOURCE_KEY:     self.source_id_map, 
+            CITATION_KEY:   self.citation_id_map, 
+            EVENT_KEY:      self.event_id_map, 
+            MEDIA_KEY:      self.media_id_map, 
+            PLACE_KEY:      self.place_id_map, 
+            REPOSITORY_KEY: self.repository_id_map, 
+            NOTE_KEY:       self.note_id_map, 
             }
-        map = key2table[obj_key]
-        for item in map.values():
-            if item.gramps_id == gramps_id:
-                return True
-        return False
+        return gramps_id in key2table[obj_key]
 
     def has_person_handle(self, handle):
         return handle in self.person_map
@@ -981,59 +989,61 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         pass
 
     def set_default_person_handle(self, handle):
+        ## FIXME
         pass
 
     def set_mediapath(self, mediapath):
+        ## FIXME
         pass
 
     def get_raw_person_data(self, handle):
         if handle in self.person_map:
-            return self.person_map[handle].serialize()
+            return self.person_map[handle]
         return None
 
     def get_raw_family_data(self, handle):
         if handle in self.family_map:
-            return self.family_map[handle].serialize()
+            return self.family_map[handle]
         return None
 
     def get_raw_citation_data(self, handle):
         if handle in self.citation_map:
-            return self.citation_map[handle].serialize()
+            return self.citation_map[handle]
         return None
 
     def get_raw_source_data(self, handle):
         if handle in self.source_map:
-            return self.source_map[handle].serialize()
+            return self.source_map[handle]
         return None
 
     def get_raw_repository_data(self, handle):
         if handle in self.repository_map:
-            return self.repository_map[handle].serialize()
+            return self.repository_map[handle]
         return None
 
     def get_raw_note_data(self, handle):
         if handle in self.note_map:
-            return self.note_map[handle].serialize()
+            return self.note_map[handle]
         return None
 
     def get_raw_place_data(self, handle):
         if handle in self.place_map:
-            return self.place_map[handle].serialize()
+            return self.place_map[handle]
         return None
 
     def get_raw_object_data(self, handle):
         if handle in self.media_map:
-            return self.media_map[handle].serialize()
+            return self.media_map[handle]
         return None
 
     def get_raw_tag_data(self, handle):
         if handle in self.tag_map:
-            return self.tag_map[handle].serialize()
+            return self.tag_map[handle]
         return None
 
     def get_raw_event_data(self, handle):
         if handle in self.event_map:
-            return self.event_map[handle].serialize()
+            return self.event_map[handle]
         return None
 
     def add_person(self, person, trans, set_gid=True):
@@ -1127,7 +1137,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "person-update"
             else:
                 emit = "person-add"
-        self.person_map[person.handle] = person
+        self.person_map[person.handle] = person.serialize()
+        self.person_id_map[person.gramps_id] = self.person_map[person.handle]
         # Emit after added:
         if emit:
             self.emit(emit, ([person.handle],))
@@ -1139,7 +1150,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "family-update"
             else:
                 emit = "family-add"
-        self.family_map[family.handle] = family
+        self.family_map[family.handle] = family.serialize()
+        self.family_id_map[family.gramps_id] = self.family_map[family.handle]
         # Emit after added:
         if emit:
             self.emit(emit, ([family.handle],))
@@ -1151,7 +1163,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "citation-update"
             else:
                 emit = "citation-add"
-        self.citation_map[citation.handle] = citation
+        self.citation_map[citation.handle] = citation.serialize()
+        self.citation_id_map[citation.gramps_id] = self.citation_map[citation.handle]
         # Emit after added:
         if emit:
             self.emit(emit, ([citation.handle],))
@@ -1163,7 +1176,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "source-update"
             else:
                 emit = "source-add"
-        self.source_map[source.handle] = source
+        self.source_map[source.handle] = source.serialize()
+        self.source_id_map[source.gramps_id] = self.source_map[source.handle]
         # Emit after added:
         if emit:
             self.emit(emit, ([source.handle],))
@@ -1175,7 +1189,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "repository-update"
             else:
                 emit = "repository-add"
-        self.repository_map[repository.handle] = repository
+        self.repository_map[repository.handle] = repository.serialize()
+        self.repository_id_map[repository.gramps_id] = self.repository_map[repository.handle]
         # Emit after added:
         if emit:
             self.emit(emit, ([repository.handle],))
@@ -1187,7 +1202,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "note-update"
             else:
                 emit = "note-add"
-        self.note_map[note.handle] = note
+        self.note_map[note.handle] = note.serialize()
+        self.note_id_map[note.gramps_id] = self.note_map[note.handle]
         # Emit after added:
         if emit:
             self.emit(emit, ([note.handle],))
@@ -1199,7 +1215,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "place-update"
             else:
                 emit = "place-add"
-        self.place_map[place.handle] = place
+        self.place_map[place.handle] = place.serialize()
+        self.place_id_map[place.gramps_id] = self.place_map[place.handle]
         # Emit after added:
         if emit:
             self.emit(emit, ([place.handle],))
@@ -1211,7 +1228,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "event-update"
             else:
                 emit = "event-add"
-        self.event_map[event.handle] = event
+        self.event_map[event.handle] = event.serialize()
+        self.event_id_map[event.gramps_id] = self.event_map[event.handle]
         # Emit after added:
         if emit:
             self.emit(emit, ([event.handle],))
@@ -1223,7 +1241,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "tag-update"
             else:
                 emit = "tag-add"
-        self.tag_map[tag.handle] = tag
+        self.tag_map[tag.handle] = tag.serialize()
+        self.tag_id_map[tag.gramps_id] = self.tag_map[tag.handle]
         # Emit after added:
         if emit:
             self.emit(emit, ([tag.handle],))
@@ -1235,34 +1254,35 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "media-update"
             else:
                 emit = "media-add"
-        self.media_map[media.handle] = media
+        self.media_map[media.handle] = media.serialize()
+        self.media_id_map[media.gramps_id] = self.media_map[media.handle]
         # Emit after added:
         if emit:
             self.emit(emit, ([media.handle],))
 
     def get_gramps_ids(self, obj_key):
         key2table = {
-            PERSON_KEY:     self.person_map, 
-            FAMILY_KEY:     self.family_map, 
-            CITATION_KEY:   self.citation_map, 
-            SOURCE_KEY:     self.source_map, 
-            EVENT_KEY:      self.event_map, 
-            MEDIA_KEY:      self.media_map, 
-            PLACE_KEY:      self.place_map, 
-            REPOSITORY_KEY: self.repository_map, 
-            NOTE_KEY:       self.note_map, 
+            PERSON_KEY:     self.person_id_map, 
+            FAMILY_KEY:     self.family_id_map, 
+            CITATION_KEY:   self.citation_id_map, 
+            SOURCE_KEY:     self.source_id_map, 
+            EVENT_KEY:      self.event_id_map, 
+            MEDIA_KEY:      self.media_id_map, 
+            PLACE_KEY:      self.place_id_map, 
+            REPOSITORY_KEY: self.repository_id_map, 
+            NOTE_KEY:       self.note_id_map, 
             }
-        table = key2table[obj_key]
-        return [item.gramps_id for item in table.values()]
+        return list(key2table[obj_key].keys())
 
     def transaction_begin(self, transaction):
+        ## FIXME
         return 
 
-    def disable_signals(self):
-        pass
-
     def set_researcher(self, owner):
-        pass
+        self.owner.set_from(owner)
+
+    def get_researcher(self):
+        return self.owner
 
     def request_rebuild(self):
         self.emit('person-rebuild')
@@ -1332,7 +1352,9 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if self.readonly or not handle:
             return
         if handle in self.person_map:
+            person = Person.create(self.person_map[handle])
             del self.person_map[handle]
+            del self.person_id_map[person.gramps_id]
             self.emit("person-delete", ([handle],))
 
     def remove_source(self, handle, transaction):
@@ -1341,7 +1363,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         database, preserving the change in the passed transaction. 
         """
         self.__do_remove(handle, transaction, self.source_map, 
-                              SOURCE_KEY)
+                         self.source_id_map, SOURCE_KEY)
 
     def remove_citation(self, handle, transaction):
         """
@@ -1349,7 +1371,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         database, preserving the change in the passed transaction. 
         """
         self.__do_remove(handle, transaction, self.citation_map, 
-                              CITATION_KEY)
+                         self.citation_id_map, CITATION_KEY)
 
     def remove_event(self, handle, transaction):
         """
@@ -1357,7 +1379,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         database, preserving the change in the passed transaction. 
         """
         self.__do_remove(handle, transaction, self.event_map, 
-                              EVENT_KEY)
+                         self.event_id_map, EVENT_KEY)
 
     def remove_object(self, handle, transaction):
         """
@@ -1365,7 +1387,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         database, preserving the change in the passed transaction. 
         """
         self.__do_remove(handle, transaction, self.media_map, 
-                              MEDIA_KEY)
+                         self.media_id_map, MEDIA_KEY)
 
     def remove_place(self, handle, transaction):
         """
@@ -1373,7 +1395,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         database, preserving the change in the passed transaction. 
         """
         self.__do_remove(handle, transaction, self.place_map, 
-                              PLACE_KEY)
+                         self.place_id_map, PLACE_KEY)
 
     def remove_family(self, handle, transaction):
         """
@@ -1381,7 +1403,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         database, preserving the change in the passed transaction. 
         """
         self.__do_remove(handle, transaction, self.family_map, 
-                              FAMILY_KEY)
+                         self.family_id_map, FAMILY_KEY)
 
     def remove_repository(self, handle, transaction):
         """
@@ -1389,7 +1411,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         database, preserving the change in the passed transaction. 
         """
         self.__do_remove(handle, transaction, self.repository_map, 
-                              REPOSITORY_KEY)
+                         self.repository_id_map, REPOSITORY_KEY)
 
     def remove_note(self, handle, transaction):
         """
@@ -1397,7 +1419,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         database, preserving the change in the passed transaction. 
         """
         self.__do_remove(handle, transaction, self.note_map, 
-                              NOTE_KEY)
+                         self.note_id_map, NOTE_KEY)
 
     def remove_tag(self, handle, transaction):
         """
@@ -1405,7 +1427,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         database, preserving the change in the passed transaction. 
         """
         self.__do_remove(handle, transaction, self.tag_map, 
-                              TAG_KEY)
+                         self.tag_id_map, TAG_KEY)
 
     def is_empty(self):
         """
@@ -1416,13 +1438,13 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 return False
         return True
 
-    def __do_remove(self, handle, transaction, data_map, key):
+    def __do_remove(self, handle, transaction, data_map, data_id_map, key):
         if self.readonly or not handle:
             return
-        if isinstance(handle, str):
-            handle = handle.encode('utf-8')
         if handle in data_map:
+            obj = self._tables[KEY_TO_CLASS_MAP[key]]["class_func"].create(data_map[handle])
             del data_map[handle]
+            del data_id_map[obj.gramps_id]
             self.emit(KEY_TO_NAME_MAP[key] + "-delete", ([handle],))
 
     def delete_primary_from_reference_map(self, handle, transaction, txn=None):
@@ -1486,6 +1508,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     ## Missing:
 
     def backup(self):
+        ## FIXME
         pass
 
     def close(self):
@@ -1499,6 +1522,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             touch(filename)
 
     def find_backlink_handles(self, handle, include_classes=None):
+        ## FIXME
         return []
 
     def find_initial_person(self):
@@ -1508,22 +1532,30 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return None
 
     def find_place_child_handles(self, handle):
+        ## FIXME
         return []
 
     def get_bookmarks(self):
         return self.bookmarks
 
     def get_child_reference_types(self):
+        ## FIXME
         return []
 
     def get_citation_bookmarks(self):
         return self.citation_bookmarks
 
     def get_cursor(self, table, txn=None, update=False, commit=False):
+        ## FIXME
+        ## called from a complete find_back_ref
         pass
 
-    def get_dbname(self):
-        return "DictionaryDb"
+    # cursors for lookups in the reference_map for back reference
+    # lookups. The reference_map has three indexes:
+    # the main index: a tuple of (primary_handle, referenced_handle)
+    # the primary_handle index: the primary_handle
+    # the referenced_handle index: the referenced_handle
+    # the main index is unique, the others allow duplicate entries.
 
     def get_default_handle(self):
         items = self.person_map.keys()
@@ -1532,124 +1564,141 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return None
 
     def get_event_attribute_types(self):
+        ## FIXME
         return []
 
     def get_event_bookmarks(self):
         return self.event_bookmarks
 
     def get_event_roles(self):
+        ## FIXME
         return []
 
     def get_event_types(self):
+        ## FIXME
         return []
 
     def get_family_attribute_types(self):
+        ## FIXME
         return []
 
     def get_family_bookmarks(self):
         return self.family_bookmarks
 
     def get_family_event_types(self):
+        ## FIXME
         return []
 
     def get_family_relation_types(self):
+        ## FIXME
         return []
 
     def get_media_attribute_types(self):
+        ## FIXME
         return []
 
     def get_media_bookmarks(self):
         return self.media_bookmarks
 
     def get_name_types(self):
+        ## FIXME
         return []
 
     def get_note_bookmarks(self):
         return self.note_bookmarks
 
     def get_note_types(self):
+        ## FIXME
         return []
 
-    def get_number_of_records(self, table):
-        return 0
-
     def get_origin_types(self):
+        ## FIXME
         return []
 
     def get_person_attribute_types(self):
+        ## FIXME
         return []
 
     def get_person_event_types(self):
+        ## FIXME
         return []
 
     def get_place_bookmarks(self):
         return self.place_bookmarks
 
     def get_place_tree_cursor(self):
+        ## FIXME
         return []
 
     def get_place_types(self):
+        ## FIXME
         return []
 
     def get_repo_bookmarks(self):
         return self.repo_bookmarks
 
     def get_repository_types(self):
+        ## FIXME
         return []
 
     def get_save_path(self):
         return self._directory
 
     def get_source_attribute_types(self):
+        ## FIXME
         return []
 
     def get_source_bookmarks(self):
         return self.source_bookmarks
 
     def get_source_media_types(self):
+        ## FIXME
         return []
 
     def get_surname_list(self):
+        ## FIXME
         return []
 
     def get_url_types(self):
+        ## FIXME
         return []
 
     def has_changed(self):
+        ## FIXME
         return True
 
     def is_open(self):
-        return True
+        return self._directory is not None
 
     def iter_citation_handles(self):
         return (key for key in self.citation_map.keys())
 
     def iter_citations(self):
-        return (key for key in self.citation_map.values())
+        return (Citation.create(key) for key in self.citation_map.values())
 
     def iter_event_handles(self):
         return (key for key in self.event_map.keys())
 
     def iter_events(self):
-        return (key for key in self.event_map.values())
+        return (Events.create(key) for key in self.event_map.values())
 
     def iter_media_objects(self):
-        return (key for key in self.media_map.values())
+        return (MediaObject.create(key) for key in self.media_map.values())
 
     def iter_note_handles(self):
         return (key for key in self.note_map.keys())
 
     def iter_notes(self):
-        return (key for key in self.note_map.values())
+        return (Note.create(key) for key in self.note_map.values())
 
     def iter_place_handles(self):
         return (key for key in self.place_map.keys())
 
     def iter_places(self):
-        return (key for key in self.place_map.values())
+        return (Place.create(key) for key in self.place_map.values())
 
     def iter_repositories(self):
-        return (key for key in self.repositories_map.values())
+        return (Repository.create(key) for key in self.repositories_map.values())
 
     def iter_repository_handles(self):
         return (key for key in self.repositories_map.keys())
@@ -1658,13 +1707,13 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return (key for key in self.source_map.keys())
 
     def iter_sources(self):
-        return (key for key in self.source_map.values())
+        return (Source.create(key) for key in self.source_map.values())
 
     def iter_tag_handles(self):
         return (key for key in self.tag_map.keys())
 
     def iter_tags(self):
-        return (key for key in self.tag_map.values())
+        return (Tag.create(key) for key in self.tag_map.values())
 
     def load(self, directory, pulse_progress=None, mode=None, 
              force_schema_upgrade=False, 
@@ -1682,16 +1731,20 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             importData(self, filename, User())
 
     def prepare_import(self):
+        ## FIXME
         pass
 
     def redo(self, update_history=True):
+        ## FIXME
         pass
 
     def restore(self):
+        ## FIXME
         pass
 
     def set_prefixes(self, person, media, family, source, citation, 
                      place, event, repository, note):
+        ## FIXME
         pass
 
     def set_save_path(self, directory):
@@ -1701,6 +1754,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.brief_name = os.path.basename(self._directory)
 
     def undo(self, update_history=True):
+        ## FIXME
         pass
 
     def write_version(self, directory):
@@ -1749,3 +1803,10 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             name = None
         return name
 
+    def reindex_reference_map(self):
+        ## FIXME
+        pass
+
+    def rebuild_secondary(self, update):
+        ## FIXME
+        pass
