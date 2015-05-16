@@ -249,9 +249,9 @@ class AgeStatsGramplet(Gramplet):
         """
         # first, binify:
         #print "create_bargraph", hash
-        bin = [0] * (max_val/bin_size)
+        bin = [0] * int(max_val/bin_size)
         for value, hash_value in hash.items():
-            bin[value/bin_size] += hash_value
+            bin[int(value/bin_size)] += hash_value
         text = ""
         max_bin = float(max(bin))
         if max_bin != 0:
