@@ -82,6 +82,13 @@ class ErrorView(object):
     def draw_window(self):
         title = "%s - Gramps" % _("Error Report")
         self.top = Gtk.Dialog(title)
+        try:
+            self.top.set_transient_for(self.top.list_toplevels()[-2])
+        except IndexError:
+            self.top.set_position(Gtk.WindowPosition.CENTER)
+            self.top.set_urgency_hint(True)
+            self.top.set_keep_above(True)
+        self.top.set_default_size(800,-1)
         vbox = self.top.get_content_area()
         vbox.set_spacing(5)
         self.top.set_border_width(12)
@@ -127,7 +134,6 @@ class ErrorView(object):
         tb_expander.add(tb_frame)
         
         vbox.pack_start(tb_expander, True, True, 5)
-
 
         self.top.add_button(Gtk.STOCK_CANCEL,Gtk.ResponseType.CANCEL)
         self.top.add_button(_("Report"),Gtk.ResponseType.YES)
