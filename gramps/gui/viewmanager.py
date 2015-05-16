@@ -1591,6 +1591,11 @@ def run_plugin(pdata, dbstate, uistate):
     mod = pmgr.load_plugin(pdata)
     if not mod:
         #import of plugin failed
+        failed = pmgr.get_fail_list()
+        if failed:
+            error_msg = failed[-1][1][1]
+        else:
+            error_msg = "(no error message)"
         ErrorDialog(
             _('Failed Loading Plugin'),
             _('The plugin %(name)s did not load and reported an error.\n\n'
@@ -1605,7 +1610,7 @@ def run_plugin(pdata, dbstate, uistate):
                 'gramps_bugtracker_url' : URL_BUGHOME,
                 'firstauthoremail': pdata.authors_email[0] if
                         pdata.authors_email else '...',
-                'error_msg': pmgr.get_fail_list()[-1][1][1]})
+                  'error_msg': error_msg})
         return
 
     if pdata.ptype == REPORT:
