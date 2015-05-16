@@ -695,10 +695,6 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_name_group_mapping(self, key):
         return None
 
-    def get_researcher(self):
-        obj = Researcher()
-        return obj
-
     def get_person_handles(self, sort_handles=False):
         ## Fixme: implement sort
         return self.person_map.keys()
@@ -1729,10 +1725,6 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         filename = os.path.join(directory, "data.gramps")
         if os.path.isfile(filename):
             importData(self, filename, User())
-
-    def prepare_import(self):
-        ## FIXME
-        pass
 
     def redo(self, update_history=True):
         ## FIXME

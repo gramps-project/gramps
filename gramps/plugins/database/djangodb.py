@@ -96,8 +96,10 @@ class Table(object):
         """
         return self.funcs["cursor_func"]()
 
-    def put(key, data, txn=None):
-        self[key] = data
+    def put(self, key, data, txn=None):
+        ## FIXME: probably needs implementing?
+        #self[key] = data
+        pass
 
 class Map(dict):
     """
@@ -196,6 +198,7 @@ class DjangoTxn(DbTxn):
     def put(self, handle, new_data, txn):
         """
         """
+        ## FIXME: probably not correct?
         txn[handle] = new_data
 
     def commit(self):
@@ -2052,20 +2055,6 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_cursor(self, table, txn=None, update=False, commit=False):
         pass
-
-    def get_from_name_and_handle(self, table_name, handle):
-        """
-        Returns a gen.lib object (or None) given table_name and
-        handle.
-
-        Examples:
-
-        >>> self.get_from_name_and_handle("Person", "a7ad62365bc652387008")
-        >>> self.get_from_name_and_handle("Media", "c3434653675bcd736f23")
-        """
-        if table_name in self._tables:
-            return self._tables[table_name]["handle_func"](handle)
-        return None
 
     def get_number_of_records(self, table):
         pass
