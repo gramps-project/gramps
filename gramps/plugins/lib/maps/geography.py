@@ -68,6 +68,7 @@ from .osmgps import OsmGps
 from .selectionlayer import SelectionLayer
 from .placeselection import PlaceSelection
 from .cairoprint import CairoPrintSave
+from .libkml import Kml
 
 #------------------------------------------------------------------------
 #
@@ -347,6 +348,11 @@ class GeoGraphyView(OsmGps, NavigationView):
 
         add_item = Gtk.MenuItem(label=_("Link place"))
         add_item.connect("activate", self.link_place, event, lat , lon)
+        add_item.show()
+        menu.append(add_item)
+
+        add_item = Gtk.MenuItem(label=_("Add place from kml"))
+        add_item.connect("activate", self.add_place_from_kml, event, lat , lon)
         add_item.show()
         menu.append(add_item)
 
@@ -922,6 +928,48 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.select_fct = PlaceSelection(self.uistate, self.dbstate, self.osm,
                        self.selection_layer, self.place_list,
                        lat, lon, self.__add_place)
+
+    def add_place_from_kml(self, menu, event, lat, lon):
+        """
+        Add new place(s) from a kml file
+
+        1 - ask for a kml file ?
+        2 - Read the kml file.
+        3 - create the place(s) with name and title found in the kml marker.
+
+        """
+        # Ask for the kml file
+        filter = Gtk.FileFilter()
+        filter.add_pattern("*.kml")
+        kml = Gtk.FileChooserDialog(
+            _("Select a kml file used to add places"),
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
+                     Gtk.STOCK_APPLY, Gtk.ResponseType.OK))
+        mpath = HOME_DIR
+        kml.set_current_folder(os.path.dirname(mpath))
+        kml.set_filter(filter)
+
+        status = kml.run()
+        if status == Gtk.ResponseType.OK:
+            val = conv_to_unicode(kml.get_filename())
+            if val:
+                kmlfile = Kml(val)
+                points = kmlfile.add_points()
+                for place in points:
+                    (name, coords) = place
+                    latlong = coords.pop()
+                    (lat, lon) = latlong
+                    new_place = Place()
+                    new_place.set_name(name)
+                    new_place.set_title(name)
+                    new_place.set_latitude(str(lat))
+                    new_place.set_longitude(str(lon))
+                    try:
+                        EditPlace(self.dbstate, self.uistate, [], new_place)
+                    except WindowActiveError:
+                        pass
+        kml.destroy()
 
     def link_place(self, menu, event, lat, lon):
         """
