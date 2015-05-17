@@ -402,7 +402,6 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.event_map  = Map(Table(self._tables["Event"]))
         self.event_id_map = {}
         self.tag_map  = Map(Table(self._tables["Tag"]))
-        self.tag_id_map = {}
         self.metadata   = Map(Table({"cursor_func": lambda: MetaCursor()}))
         self.name_group = {}
         self.undo_callback = None
@@ -867,11 +866,6 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return Note.create(self.note_id_map[gramps_id])
         return None
 
-    def get_tag_from_gramps_id(self, gramps_id):
-        if gramps_id in self.tag_id_map:
-            return Tag.create(self.tag_id_map[gramps_id])
-        return None
-
     def get_number_of_people(self):
         return len(self.person_map)
 
@@ -1238,7 +1232,6 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             else:
                 emit = "tag-add"
         self.tag_map[tag.handle] = tag.serialize()
-        self.tag_id_map[tag.gramps_id] = self.tag_map[tag.handle]
         # Emit after added:
         if emit:
             self.emit(emit, ([tag.handle],))
@@ -1423,7 +1416,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         database, preserving the change in the passed transaction. 
         """
         self.__do_remove(handle, transaction, self.tag_map, 
-                         self.tag_id_map, TAG_KEY)
+                         None, TAG_KEY)
 
     def is_empty(self):
         """
@@ -1440,7 +1433,8 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if handle in data_map:
             obj = self._tables[KEY_TO_CLASS_MAP[key]]["class_func"].create(data_map[handle])
             del data_map[handle]
-            del data_id_map[obj.gramps_id]
+            if data_id_map:
+                del data_id_map[obj.gramps_id]
             self.emit(KEY_TO_NAME_MAP[key] + "-delete", ([handle],))
 
     def delete_primary_from_reference_map(self, handle, transaction, txn=None):
