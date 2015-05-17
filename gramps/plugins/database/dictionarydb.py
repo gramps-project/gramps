@@ -735,60 +735,80 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return self.tag_map.keys()
 
     def get_event_from_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         event = None
         if handle in self.event_map:
             event = Event.create(self.event_map[handle])
         return event
 
     def get_family_from_handle(self, handle): 
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         family = None
         if handle in self.family_map:
             family = Family.create(self.family_map[handle])
         return family
 
     def get_repository_from_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         repository = None
         if handle in self.repository_map:
             repository = Repository.create(self.repository_map[handle])
         return repository
 
     def get_person_from_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         person = None
         if handle in self.person_map:
             person = Person.create(self.person_map[handle])
         return person
 
     def get_place_from_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         place = None
         if handle in self.place_map:
             place = Place.create(self.place_map[handle])
         return place
 
     def get_citation_from_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         citation = None
         if handle in self.citation_map:
             citation = Citation.create(self.citation_map[handle])
         return citation
 
     def get_source_from_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         source = None
         if handle in self.source_map:
             source = Source.create(self.source_map[handle])
         return source
 
     def get_note_from_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         note = None
         if handle in self.note_map:
             note = Note.create(self.note_map[handle])
         return note
 
     def get_object_from_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         media = None
         if handle in self.media_map:
             media = MediaObject.create(self.media_map[handle])
         return media
 
     def get_tag_from_handle(self, handle):
+        if isinstance(handle, bytes):
+            handle = str(handle, "utf-8")
         tag = None
         if handle in self.tag_map:
             tag = Tag.create(self.tag_map[handle])
