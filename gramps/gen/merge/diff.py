@@ -28,7 +28,7 @@ from gramps.cli.user import User
 from ..dbstate import DbState
 from gramps.cli.grampscli import CLIManager
 from ..plug import BasePluginManager
-from ..db.dictionary import DictionaryDb
+from gramps.plugins.database.dictionarydb import DictionaryDb
 from gramps.gen.lib.handle import HandleClass, Handle
 from gramps.gen.lib import *
 from gramps.gen.lib.personref import PersonRef
