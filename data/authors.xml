@@ -43,10 +43,10 @@
  <author uid="jgsack" title="contributor">
   James G Sack &lt;<html:a href="mailto:jgsack@san.rr.com">jgsack@san.rr.com</html:a>&gt;
  </author>
- <author uid="has_no_svn_access" title="contributor">
+ <author uid="has_no_git_access" title="contributor">
   Janne Kovesjärvi &lt;<html:a href="mailto:janne.kovesjarvi@gmail.com">janne.kovesjarvi@gmail.com</html:a>&gt;
  </author>
- <author uid="has_no_svn_access" title="contributor">
+ <author uid="has_no_git_access" title="contributor">
   Jason Simanek &lt;<html:a href="mailto:jsimanek@gmail.com">jsimanek@gmail.com</html:a>&gt;
  </author>
  <author uid="romjerome" title="contributor">
@@ -67,16 +67,16 @@
  <author uid="kdorichev" title="contributor">
   Konstantin Dorichev &lt;<html:a href="mailto:kdorichev@gmail.com">kdorichev@gmail.com</html:a>&gt;
  </author>
- <author uid="has_no_svn_access" title="contributor">
+ <author uid="has_no_git_access" title="contributor">
   Lubo Vasko &lt;<html:a href="mailto:pgval@inMail.sk">pgval@inMail.sk</html:a>&gt;
  </author>
  <author uid="ltosky" title="contributor">
   Luigi Toscano &lt;<html:a href="mailto:luigi.toscano@tiscali.it">luigi.toscano@tiscali.it</html:a>&gt;
  </author>
- <author uid="has_no_svn_access" title="contributor">
+ <author uid="" title="contributor">
   Luiz Gonzaga dos Santos Filho &lt;<html:a href="mailto:lfilho@gmail.com">lfilho@gmail.com</html:a>&gt;
  </author>
- <author uid="has_no_svn_access" title="contributor">
+ <author uid="" title="contributor">
   Łukasz Rymarczyk &lt;<html:a href="mailto:yenidai@poczta.onet.pl">yenidai@poczta.onet.pl</html:a>&gt;
  </author>
  <author uid="m_d_n" title="contributor">
@@ -85,7 +85,7 @@
  <author uid="leonhaeuser" title="contributor">
   Mirko Leonhäuser &lt;<html:a href="mailto:mirko@leonhaeuser.de">mirko@leonhaeuser.de</html:a>&gt;
  </author>
- <author uid="has_no_svn_access" title="contributor">
+ <author uid="" title="contributor">
   Morten Bo Johansen &lt;<html:a href="mailto:mbj@spamcop.net">mbj@spamcop.net</html:a>&gt;
  </author>
  <author uid="loshawlos" title="author">
@@ -106,7 +106,7 @@
  <author uid="noirauds" title="contributor">
   Serge Noiraud &lt;<html:a href="mailto:Serge.Noiraud@free.fr">Serge.Noiraud@free.fr</html:a>&gt;
  </author>
- <author uid="has_no_svn_access" title="contributor">
+ <author uid="" title="contributor">
   Sigmund Lorentsen &lt;<html:a href="mailto:sigmund.lorentsen@tele2.no">sigmund.lorentsen@tele2.no</html:a>&gt;
  </author>
  <author uid="betula" title="contributor">
