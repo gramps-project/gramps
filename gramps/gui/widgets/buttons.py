@@ -42,28 +42,15 @@ from gi.repository import Gtk
 
 #-------------------------------------------------------------------------
 #
-# Constants
-#
-#-------------------------------------------------------------------------
-# STOCK_INFO was added only in Gtk 2.8
-try:
-    INFO_ICON = Gtk.STOCK_INFO
-except AttributeError:
-    INFO_ICON = Gtk.STOCK_DIALOG_INFO
-
-    
-#-------------------------------------------------------------------------
-#
 # IconButton class
 #
 #-------------------------------------------------------------------------
 class IconButton(Gtk.Button):
 
-    def __init__(self, func, handle, icon=Gtk.STOCK_EDIT, 
-                 size=Gtk.IconSize.MENU):
+    def __init__(self, func, handle, icon='gtk-edit', size=Gtk.IconSize.MENU):
         GObject.GObject.__init__(self)
         image = Gtk.Image()
-        image.set_from_stock(icon, size)
+        image.set_from_icon_name(icon, size)
         image.show()
         self.add(image)
         self.set_relief(Gtk.ReliefStyle.NONE)
@@ -89,7 +76,7 @@ class WarnButton(Gtk.Button):
         GObject.GObject.__init__(self)
 
         image = Gtk.Image()
-        image.set_from_stock(INFO_ICON, Gtk.IconSize.MENU)
+        image.set_from_icon_name('dialog-information', Gtk.IconSize.MENU)
         image.show()
         self.add(image)
 
@@ -123,7 +110,7 @@ class SimpleButton(Gtk.Button):
     def __init__(self, image, func):
         GObject.GObject.__init__(self)
         self.set_relief(Gtk.ReliefStyle.NONE)
-        self.add(Gtk.Image.new_from_stock(image, Gtk.IconSize.BUTTON))
+        self.add(Gtk.Image.new_from_icon_name(image, Gtk.IconSize.BUTTON))
         self.connect('clicked', func)
         self.show()
 
@@ -169,13 +156,11 @@ class PrivacyButton(object):
             obj.remove(child)
         image = Gtk.Image()
         if obj.get_active():
-#            image.set_from_icon_name('stock_lock', Gtk.IconSize.MENU)
-            image.set_from_stock('gramps-lock', Gtk.IconSize.MENU)
+            image.set_from_icon_name('gramps-lock', Gtk.IconSize.MENU)
             obj.set_tooltip_text(_('Record is private'))
             self.obj.set_privacy(True)
         else:
-#            image.set_from_icon_name('stock_lock-open', Gtk.IconSize.MENU)
-            image.set_from_stock('gramps-unlock', Gtk.IconSize.MENU)
+            image.set_from_icon_name('gramps-unlock', Gtk.IconSize.MENU)
             obj.set_tooltip_text(_('Record is public'))
             self.obj.set_privacy(False)
         image.show()

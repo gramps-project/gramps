@@ -392,9 +392,9 @@ class DisplayChart(ManagedWindow):
     def on_write_table(self, obj):
         f = Gtk.FileChooserDialog(_("Select filename"),
                                   action=Gtk.FileChooserAction.SAVE,
-                                  buttons=(Gtk.STOCK_CANCEL,
+                                  buttons=(_('_Cancel'),
                                            Gtk.ResponseType.CANCEL,
-                                           Gtk.STOCK_SAVE,
+                                           _('_Save'),
                                            Gtk.ResponseType.OK))
 
         f.set_current_folder(get_curr_dir())

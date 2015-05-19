@@ -51,6 +51,7 @@ from gi.repository import Pango
 #----------------------------------------------------------------
 from .pageview import PageView
 from .navigationview import NavigationView
+from ..actiongroup import ActionGroup
 from ..columnorder import ColumnOrder
 from gramps.gen.config import config
 from gramps.gen.errors import WindowActiveError
@@ -203,23 +204,23 @@ class ListView(NavigationView):
         
         NavigationView.define_actions(self)
 
-        self.edit_action = Gtk.ActionGroup(name=self.title + '/ChangeOrder')
+        self.edit_action = ActionGroup(name=self.title + '/ChangeOrder')
         self.edit_action.add_actions([
-                ('Add', Gtk.STOCK_ADD, _("_Add..."), "<PRIMARY>Insert", 
-                    self.ADD_MSG, self.add), 
-                ('Remove', Gtk.STOCK_REMOVE, _("_Remove"), "<PRIMARY>Delete", 
-                    self.DEL_MSG, self.remove), 
+                ('Add', 'list-add', _("_Add..."), "<PRIMARY>Insert",
+                    self.ADD_MSG, self.add),
+                ('Remove', 'list-remove', _("_Remove"), "<PRIMARY>Delete",
+                    self.DEL_MSG, self.remove),
                 ('Merge', 'gramps-merge', _('_Merge...'), None,
                     self.MERGE_MSG, self.merge),
                 ('ExportTab', None, _('Export View...'), None, None,
-                    self.export), 
+                    self.export),
                 ])
 
         self._add_action_group(self.edit_action)
 
-        self._add_action('Edit', Gtk.STOCK_EDIT, _("action|_Edit..."), 
-                         accel="<PRIMARY>Return", 
-                         tip=self.EDIT_MSG, 
+        self._add_action('Edit', 'gtk-edit', _("action|_Edit..."),
+                         accel="<PRIMARY>Return",
+                         tip=self.EDIT_MSG,
                          callback=self.edit)
         
     def build_columns(self):
@@ -244,7 +245,7 @@ class ListView(NavigationView):
 
             if col_icon is not None:
                 image = Gtk.Image()
-                image.set_from_stock(col_icon, Gtk.IconSize.MENU)
+                image.set_from_icon_name(col_icon, Gtk.IconSize.MENU)
                 image.set_tooltip_text(col_name)
                 image.show()
                 column.set_widget(image)
@@ -265,13 +266,13 @@ class ListView(NavigationView):
 
     def icon(self, column, renderer, model, iter_, col_num):
         '''
-        Set the stock icon property of the cell renderer.  We use a cell data
+        Set the icon-name property of the cell renderer.  We use a cell data
         function because there is a problem returning None from a model.
         '''
-        stock_id = model.get_value(iter_, col_num)
-        if stock_id == '':
-            stock_id = None
-        renderer.set_property('stock_id', stock_id)
+        icon_name = model.get_value(iter_, col_num)
+        if icon_name == '':
+            icon_name = None
+        renderer.set_property('icon-name', icon_name)
 
     def foreground_color(self, column, renderer, model, iter_, data=None):
         '''
@@ -471,7 +472,7 @@ class ListView(NavigationView):
         return None
 
     def drag_begin(self, widget, context):
-        widget.drag_source_set_icon_stock(self.get_stock())
+        widget.drag_source_set_icon_name(self.get_stock())
         
     def drag_data_get(self, widget, context, sel_data, info, time):
         selected_ids = self.selected_handles()
@@ -998,8 +999,8 @@ class ListView(NavigationView):
             _("Export View as Spreadsheet"), 
             self.uistate.window, 
             Gtk.FileChooserAction.SAVE, 
-            (Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, 
-             Gtk.STOCK_SAVE, Gtk.ResponseType.OK))
+            (_('_Cancel'), Gtk.ResponseType.CANCEL,
+             _('_Save'), Gtk.ResponseType.OK))
         chooser.set_do_overwrite_confirmation(True)
 
         combobox = Gtk.ComboBoxText()

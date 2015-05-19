@@ -50,6 +50,7 @@ from ..dbguielement import DbGUIElement
 from ..widgets.grampletbar import GrampletBar
 from ..configure import ConfigureDialog
 from gramps.gen.config import config
+from ..actiongroup import ActionGroup
 
 #------------------------------------------------------------------------------
 #
@@ -350,14 +351,14 @@ class PageView(DbGUIElement):
         Return image associated with the view category, which is used for the 
         icon for the button.
         """
-        return Gtk.STOCK_MISSING_IMAGE
+        return 'image-missing'
 
     def get_viewtype_stock(self):
         """
         Return immage associated with the viewtype inside a view category, it
         will be used for the icon on the button to select view in the category
         """
-        return Gtk.STOCK_MISSING_IMAGE
+        return 'image-missing'
 
     def get_title(self):
         """
@@ -414,26 +415,26 @@ class PageView(DbGUIElement):
         and self.action_toggle_list. The user should define these in 
         self.define_actions
         """
-        self.action_group = Gtk.ActionGroup(name=self.title)
+        self.action_group = ActionGroup(name=self.title)
         if len(self.action_list) > 0:
             self.action_group.add_actions(self.action_list)
         if len(self.action_toggle_list) > 0:
             self.action_group.add_toggle_actions(self.action_toggle_list)
 
-    def _add_action(self, name, stock_icon, label, accel=None, tip=None, 
+    def _add_action(self, name, icon_name, label, accel=None, tip=None,
                    callback=None):
         """
         Add an action to the action list for the current view. 
         """
-        self.action_list.append((name, stock_icon, label, accel, tip, 
+        self.action_list.append((name, icon_name, label, accel, tip,
                                  callback))
 
-    def _add_toggle_action(self, name, stock_icon, label, accel=None, 
+    def _add_toggle_action(self, name, icon_name, label, accel=None,
                            tip=None, callback=None, value=False):
         """
         Add a toggle action to the action list for the current view. 
         """
-        self.action_toggle_list.append((name, stock_icon, label, accel, 
+        self.action_toggle_list.append((name, icon_name, label, accel,
                                         tip, callback, value))
     
     def _add_toolmenu_action(self, name, label, tooltip, callback, 

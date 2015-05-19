@@ -95,7 +95,7 @@ class BackRefList(EmbeddedList):
         This button box is then appended hbox (self).
         Method has signature of, and overrides create_buttons from _ButtonTab.py
         """
-        self.edit_btn = SimpleButton(Gtk.STOCK_EDIT, self.edit_button_clicked)
+        self.edit_btn = SimpleButton('gtk-edit', self.edit_button_clicked)
         self.edit_btn.set_tooltip_text(_('Edit reference'))
 
         hbox = Gtk.Box()

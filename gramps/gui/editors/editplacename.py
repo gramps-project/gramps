@@ -57,11 +57,11 @@ class EditPlaceName(ManagedWindow):
         window = Gtk.Dialog('', uistate.window,
                             Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
 
-        self.cancel_button = window.add_button(Gtk.STOCK_CANCEL,
+        self.cancel_button = window.add_button(_('_Cancel'),
                                               Gtk.ResponseType.CANCEL)
-        self.ok_button = window.add_button(Gtk.STOCK_OK,
+        self.ok_button = window.add_button(_('_OK'),
                                              Gtk.ResponseType.ACCEPT)
-        self.help_button = window.add_button(Gtk.STOCK_HELP,
+        self.help_button = window.add_button(_('_Help'),
                                               Gtk.ResponseType.HELP)
 
         window.connect('response', self.response)

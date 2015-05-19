@@ -59,7 +59,7 @@ class DisplayBuf(ManagedWindow):
                                              document)
         self.set_window(Gtk.Dialog("",document.uistate.window,
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
+                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
                         None, title)
         self.window.set_size_request(600,400)
         scrolled_window = Gtk.ScrolledWindow()

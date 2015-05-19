@@ -63,6 +63,7 @@ from ..display import display_url
 from ..utils import SystemFonts, rgb_to_hex
 from gramps.gen.config import config
 from gramps.gen.constfunc import has_display
+from ..actiongroup import ActionGroup
 
 #-------------------------------------------------------------------------
 #
@@ -472,12 +473,12 @@ class StyledTextEditor(Gtk.TextView):
         # define the actions...
         # ...first the toggle actions, which have a ToggleToolButton as proxy
         format_toggle_actions = [
-            (str(StyledTextTagType.ITALIC), Gtk.STOCK_ITALIC, None, None,
+            (str(StyledTextTagType.ITALIC), 'format-text-italic', None, None,
              _('Italic'), self._on_toggle_action_activate),
-            (str(StyledTextTagType.BOLD), Gtk.STOCK_BOLD, None, None,
+            (str(StyledTextTagType.BOLD), 'format-text-bold', None, None,
              _('Bold'), self._on_toggle_action_activate),
-            (str(StyledTextTagType.UNDERLINE), Gtk.STOCK_UNDERLINE, None, None,
-             _('Underline'), self._on_toggle_action_activate),
+            (str(StyledTextTagType.UNDERLINE), 'format-text-underline', None,
+            None, _('Underline'), self._on_toggle_action_activate),
         ]
         
         self.toggle_actions = [action[0] for action in format_toggle_actions]
@@ -486,11 +487,11 @@ class StyledTextEditor(Gtk.TextView):
         format_actions = [
             (str(StyledTextTagType.FONTCOLOR), 'gramps-font-color', None, None,
              _('Font Color'), self._on_action_activate),
-            (str(StyledTextTagType.HIGHLIGHT), 'gramps-font-bgcolor', None, None,
-             _('Background Color'), self._on_action_activate),
-            (str(StyledTextTagType.LINK), Gtk.STOCK_JUMP_TO, None, None,
+            (str(StyledTextTagType.HIGHLIGHT), 'gramps-font-bgcolor', None,
+            None, _('Background Color'), self._on_action_activate),
+            (str(StyledTextTagType.LINK), 'go-jump', None, None,
              _('Link'), self._on_link_activate),
-            ('clear', Gtk.STOCK_CLEAR, None, None,
+            ('clear', 'edit-clear', None, None,
              _('Clear Markup'), self._format_clear_cb),
         ]
         
@@ -529,14 +530,15 @@ class StyledTextEditor(Gtk.TextView):
         }
 
         # create the action group and insert all the actions
-        self.action_group = Gtk.ActionGroup(name='Format')
+        self.action_group = ActionGroup(name='Format')
         self.action_group.add_toggle_actions(format_toggle_actions)
         self.undo_action = Gtk.Action(name="Undo", label=_('Undo'),
-                                        tooltip=_('Undo'), 
-                                        stock_id=Gtk.STOCK_UNDO)
+                                      tooltip=_('Undo'))
+        self.undo_action.set_icon_name('edit-undo')
         self.undo_action.connect('activate', self.undo)
-        self.redo_action = Gtk.Action.new("Redo", _('Redo'), _('Redo'),
-                                        Gtk.STOCK_REDO)
+        self.redo_action = Gtk.Action.new(name="Redo", label=_('Redo'),
+                                          tooltip=_('Redo'))
+        self.redo_action.set_icon_name('edit-redo')
         self.redo_action.connect('activate', self.redo)
         self.action_group.add_action(self.undo_action)
         self.action_group.add_action(self.redo_action)

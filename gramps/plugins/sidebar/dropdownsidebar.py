@@ -125,7 +125,7 @@ class DropdownSidebar(BaseSidebar):
         self.menu = Gtk.Menu()
         for item in self.views[cat_num]:
             menuitem = Gtk.ImageMenuItem(label=item[1])
-            image = Gtk.Image.new_from_stock(item[2], Gtk.IconSize.MENU)
+            image = Gtk.Image.new_from_icon_name(item[2], Gtk.IconSize.MENU)
             image.show()
             menuitem.set_image(image)
             menuitem.connect("activate", self.cb_menu_clicked, cat_num, item[0])
@@ -175,9 +175,9 @@ class DropdownSidebar(BaseSidebar):
         hbox.show()
         image = Gtk.Image()
         if use_text:
-            image.set_from_stock(cat_icon, Gtk.IconSize.BUTTON)
+            image.set_from_icon_name(cat_icon, Gtk.IconSize.BUTTON)
         else:
-            image.set_from_stock(cat_icon, Gtk.IconSize.DND)
+            image.set_from_icon_name(cat_icon, Gtk.IconSize.DND)
         image.show()
         hbox.pack_start(image, False, False, 0)
         hbox.set_spacing(4)

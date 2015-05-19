@@ -101,7 +101,7 @@ class DisplayNameEditor(ManagedWindow):
         self.dbstate = dbstate
         self.set_window(
             Gtk.Dialog(_('Display Name Editor'),
-                       buttons=(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)), 
+                       buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
             None, _('Display Name Editor'), None)
         grid = self.dialog._build_custom_name_ui()
         label = Gtk.Label(label=_("""The following keywords are replaced with the appropriate name parts:
@@ -177,7 +177,7 @@ class ConfigureDialog(ManagedWindow):
         ManagedWindow.__init__(self, uistate, [], configobj)
         self.set_window(
             Gtk.Dialog(dialogtitle, 
-                       buttons=(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)), 
+                       buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
                        None, dialogtitle, None)
         self.panel = Gtk.Notebook()
         self.panel.set_scrollable(True)
@@ -333,7 +333,7 @@ class ConfigureDialog(ManagedWindow):
         btn = Gtk.Button()
         btn.connect('clicked', callback_sel)
         image = Gtk.Image()
-        image.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
+        image.set_from_icon_name('document-open', Gtk.IconSize.BUTTON)
         image.show()
         btn.add(image)
         hbox.pack_start(entry, True, True, 0)
@@ -837,14 +837,14 @@ class GrampsPreferences(ConfigureDialog):
         self.selected_fmt = ()
         self.iter = None
 
-        self.insert_button = Gtk.Button(stock=Gtk.STOCK_ADD)
+        self.insert_button = Gtk.Button.new_with_mnemonic(_('_Add'))
         self.insert_button.connect('clicked', self.__new_name)
 
-        self.edit_button = Gtk.Button(stock=Gtk.STOCK_EDIT)
+        self.edit_button = Gtk.Button.new_with_mnemonic(_('_Edit'))
         self.edit_button.connect('clicked', self.__edit_name)
         self.edit_button.set_sensitive(False)
 
-        self.remove_button = Gtk.Button(stock=Gtk.STOCK_REMOVE)
+        self.remove_button = Gtk.Button.new_with_mnemonic(_('_Remove'))
         self.remove_button.connect('clicked', self.cb_del_fmt_str)
         self.remove_button.set_sensitive(False)
         
@@ -1402,9 +1402,9 @@ class GrampsPreferences(ConfigureDialog):
         f = Gtk.FileChooserDialog(title=_("Select media directory"),
                                   parent=self.window,
                                   action=Gtk.FileChooserAction.SELECT_FOLDER,
-                                  buttons=(Gtk.STOCK_CANCEL,
+                                  buttons=(_('_Cancel'),
                                            Gtk.ResponseType.CANCEL,
-                                           Gtk.STOCK_APPLY,
+                                           _('_Apply'),
                                            Gtk.ResponseType.OK)
                                   )
         mpath = self.dbstate.db.get_mediapath()
@@ -1427,9 +1427,9 @@ class GrampsPreferences(ConfigureDialog):
         f = Gtk.FileChooserDialog(title=_("Select database directory"),
                                     parent=self.window,
                                     action=Gtk.FileChooserAction.SELECT_FOLDER,
-                                    buttons=(Gtk.STOCK_CANCEL,
+                                    buttons=(_('_Cancel'),
                                                 Gtk.ResponseType.CANCEL,
-                                                Gtk.STOCK_APPLY,
+                                                _('_Apply'),
                                                 Gtk.ResponseType.OK)
                                     )
         dbpath = config.get('behavior.database-path')
@@ -1485,13 +1485,3 @@ class GrampsPreferences(ConfigureDialog):
 
     def build_menu_names(self, obj):
         return (_('Preferences'), _('Preferences'))
-
-    # FIXME: is this needed?
-    def _set_button(self, stock):
-        button = Gtk.Button()
-        image = Gtk.Image()
-        image.set_from_stock(stock, Gtk.IconSize.BUTTON)
-        image.show()
-        button.add(image)
-        button.show()
-        return button

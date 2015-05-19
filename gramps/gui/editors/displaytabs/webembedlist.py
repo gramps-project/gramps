@@ -112,10 +112,10 @@ class WebEmbedList(EmbeddedList):
 
     def get_popup_menu_items(self):
         return [ 
-            (True,  True,  Gtk.STOCK_ADD,     self.add_button_clicked),
-            (False, True,  Gtk.STOCK_EDIT,    self.edit_button_clicked),
-            (True,  True,  Gtk.STOCK_REMOVE,  self.del_button_clicked),
-            (True,  True,  Gtk.STOCK_JUMP_TO, self.jump_button_clicked),
+            (True, _('_Add'), 'list-add', self.add_button_clicked),
+            (False, _('_Edit'), 'gtk-edit', self.edit_button_clicked),
+            (True, _('_Remove'), 'list-remove', self.del_button_clicked),
+            (True, _('_Jump to'), 'go-jump', self.jump_button_clicked),
             ]
 
     def jump_button_clicked(self, obj):

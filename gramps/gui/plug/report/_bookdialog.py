@@ -653,27 +653,32 @@ class BookSelector(ManagedWindow):
         else:
             sensitivity = 0 
         entries = [
-            (Gtk.STOCK_GO_UP, self.on_up_clicked, sensitivity),
-            (Gtk.STOCK_GO_DOWN, self.on_down_clicked, sensitivity),
-            (_("Setup"), self.on_setup_clicked, sensitivity),
-            (Gtk.STOCK_REMOVE, self.on_remove_clicked, sensitivity),
-            (None,None,0),
-            (Gtk.STOCK_CLEAR, self.on_clear_clicked, 1),
-            (Gtk.STOCK_SAVE, self.on_save_clicked, 1),
-            (Gtk.STOCK_OPEN, self.on_open_clicked, 1),
-            (_("Edit"), self.on_edit_clicked, 1),
+            (_('_Up'), 'go-up', self.on_up_clicked, sensitivity),
+            (_('_Down'), 'go-down', self.on_down_clicked, sensitivity),
+            (_("Setup"), None, self.on_setup_clicked, sensitivity),
+            (_('_Remove'), 'list-remove', self.on_remove_clicked, sensitivity),
+            ('', None, None, 0),
+            (_('_Clear'), 'edit-clear', self.on_clear_clicked, 1),
+            (_('_Save'), 'document-save', self.on_save_clicked, 1),
+            (_('_Open'), 'document-open', self.on_open_clicked, 1),
+            (_("Edit"), None, self.on_edit_clicked, 1),
         ]
 
-        menu = Gtk.Menu()
-        menu.set_title(_('Book Menu'))
-        for stock_id, callback, sensitivity in entries:
-            item = Gtk.ImageMenuItem(stock_id)
+        self.menu = Gtk.Menu()
+        self.menu.set_title(_('Book Menu'))
+        for title, icon_name, callback, sensitivity in entries:
+            if icon_name:
+                item = Gtk.ImageMenuItem.new_with_mnemonic(title)
+                img = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.MENU)
+                item.set_image(img)
+            else:
+                item = Gtk.MenuItem.new_with_mnemonic(title)
             if callback:
                 item.connect("activate", callback)
             item.set_sensitive(sensitivity)
             item.show()
-            menu.append(item)
-        menu.popup(None, None, None, None, event.button, event.time)
+            self.menu.append(item)
+        self.menu.popup(None, None, None, None, event.button, event.time)
 
     def build_avail_context_menu(self, event):
         """Builds the menu with the single Add option."""
@@ -684,19 +689,24 @@ class BookSelector(ManagedWindow):
         else:
             sensitivity = 0 
         entries = [
-            (Gtk.STOCK_ADD, self.on_add_clicked, sensitivity),
+            (_('_Add'), 'list-add', self.on_add_clicked, sensitivity),
         ]
 
-        menu = Gtk.Menu()
-        menu.set_title(_('Available Items Menu'))
-        for stock_id, callback, sensitivity in entries:
-            item = Gtk.ImageMenuItem(stock_id)
+        self.menu = Gtk.Menu()
+        self.menu.set_title(_('Available Items Menu'))
+        for title, icon_name, callback, sensitivity in entries:
+            if icon_name:
+                item = Gtk.ImageMenuItem.new_with_mnemonic(title)
+                img = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.MENU)
+                item.set_image(img)
+            else:
+                item = Gtk.MenuItem.new_with_mnemonic(title)
             if callback:
                 item.connect("activate", callback)
             item.set_sensitive(sensitivity)
             item.show()
-            menu.append(item)
-        menu.popup(None, None, None, None, event.button, event.time)
+            self.menu.append(item)
+        self.menu.popup(None, None, None, None, event.button, event.time)
 
     def on_book_ok_clicked(self, obj): 
         """

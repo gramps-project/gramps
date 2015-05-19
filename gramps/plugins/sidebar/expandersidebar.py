@@ -73,7 +73,7 @@ class ExpanderSidebar(BaseSidebar):
 
             catbox = Gtk.Box()
             image = Gtk.Image()
-            image.set_from_stock(cat_icon, Gtk.IconSize.BUTTON)
+            image.set_from_icon_name(cat_icon, Gtk.IconSize.BUTTON)
             catbox.pack_start(image, False, False, 4)
             if use_text:
                 label = Gtk.Label(label=cat_name)
@@ -190,9 +190,9 @@ class ExpanderSidebar(BaseSidebar):
         hbox.show()
         image = Gtk.Image()
         if use_text:
-            image.set_from_stock(view_icon, Gtk.IconSize.BUTTON)
+            image.set_from_icon_name(view_icon, Gtk.IconSize.BUTTON)
         else:
-            image.set_from_stock(view_icon, Gtk.IconSize.DND)
+            image.set_from_icon_name(view_icon, Gtk.IconSize.DND)
         image.show()
         hbox.pack_start(image, False, False, 0)
         hbox.set_spacing(4)

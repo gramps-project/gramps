@@ -114,9 +114,9 @@ class EditTagList(ManagedWindow):
         slist.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         top.vbox.pack_start(slist, 1, 1, 5)
         
-        top.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
-        top.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
-        top.add_button(Gtk.STOCK_OK, Gtk.ResponseType.OK)
+        top.add_button(_('_Help'), Gtk.ResponseType.HELP)
+        top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
+        top.add_button(_('_OK'), Gtk.ResponseType.OK)
         top.show_all()
         return top
 

@@ -92,6 +92,7 @@ from gramps.gen.db.exceptions import DbException
 from .aboutdialog import GrampsAboutDialog
 from .navigator import Navigator
 from .views.tags import Tags
+from .actiongroup import ActionGroup
 
 #-------------------------------------------------------------------------
 #
@@ -446,7 +447,8 @@ class ViewManager(CLIManager):
         Build the OPEN button. Since GTK's UIManager does not have support for
         the Open Recent button, we must build in on our own.
         """
-        openbtn = Gtk.MenuToolButton.new_from_stock('gramps-db')
+        openbtn = Gtk.MenuToolButton()
+        openbtn.set_icon_name('gramps')
         openbtn.connect('clicked', self.__open_activate)
         openbtn.set_sensitive(False)
         openbtn.set_tooltip_text(_("Connect to a recent database"))
@@ -472,11 +474,11 @@ class ViewManager(CLIManager):
              _("Manage databases"), self.__open_activate),
             ('OpenRecent', None, _('Open _Recent'), None,
              _("Open an existing database")),
-            ('Quit', Gtk.STOCK_QUIT, _('_Quit'), "<PRIMARY>q", None,
+            ('Quit', 'application-exit', _('_Quit'), "<PRIMARY>q", None,
              self.quit),
             ('ViewMenu', None, _('_View')),
             ('EditMenu', None, _('_Edit')),
-            ('Preferences', Gtk.STOCK_PREFERENCES, _('_Preferences...'), None,
+            ('Preferences', 'preferences-system', _('_Preferences...'), None,
              None, self.preferences_activate),
             ('HelpMenu', None, _('_Help')),
             ('HomePage', None, _('Gramps _Home Page'), None, None,
@@ -487,13 +489,13 @@ class ViewManager(CLIManager):
              report_bug_activate),
             ('ExtraPlugins', None, _('_Extra Reports/Tools'), None, None,
              extra_plugins_activate),
-            ('About', Gtk.STOCK_ABOUT, _('_About'), None, None,
+            ('About', 'help-about', _('_About'), None, None,
              self.display_about_box),
             ('PluginStatus', None, _('_Plugin Manager'), None, None,
              self.__plugin_status),
             ('FAQ', None, _('_FAQ'), None, None, faq_activate),
             ('KeyBindings', None, _('_Key Bindings'), None, None, key_bindings),
-            ('UserManual', Gtk.STOCK_HELP, _('_User Manual'), 'F1', None,
+            ('UserManual', 'help-browser', _('_User Manual'), 'F1', None,
              manual_activate),
             ('TipOfDay', None, _('Tip of the Day'), None, None,
              self.tip_of_day_activate),
@@ -504,7 +506,7 @@ class ViewManager(CLIManager):
              self.export_data),
             ('Backup', None, _("Make Backup..."), None,
              _("Make a Gramps XML backup of the database"), self.quick_backup),
-            ('Abandon', Gtk.STOCK_REVERT_TO_SAVED,
+            ('Abandon', 'document-revert',
              _('_Abandon Changes and Quit'), None, None, self.abort),
             ('Reports', 'gramps-reports', _('_Reports'), None,
              _("Open the reports dialog"), self.reports_clicked),
@@ -548,7 +550,7 @@ class ViewManager(CLIManager):
             ]
 
         self._action_action_list = [
-            ('Clipboard', Gtk.STOCK_PASTE, _('Clip_board'), "<PRIMARY>b",
+            ('Clipboard', 'edit-paste', _('Clip_board'), "<PRIMARY>b",
              _("Open the Clipboard dialog"), self.clipboard),
             ('Import', 'gramps-import', _('_Import...'), "<PRIMARY>i", None,
              self.import_data),
@@ -571,12 +573,12 @@ class ViewManager(CLIManager):
             ]
 
         self._undo_action_list = [
-            ('Undo', Gtk.STOCK_UNDO, _('_Undo'), '<PRIMARY>z', None,
+            ('Undo', 'edit-undo', _('_Undo'), '<PRIMARY>z', None,
              self.undo),
             ]
 
         self._redo_action_list = [
-            ('Redo', Gtk.STOCK_REDO, _('_Redo'), '<shift><PRIMARY>z', None,
+            ('Redo', 'edit-redo', _('_Redo'), '<shift><PRIMARY>z', None,
              self.redo),
             ]
 
@@ -795,7 +797,7 @@ class ViewManager(CLIManager):
         """
         Initialize an action group for the UIManager
         """
-        new_group = Gtk.ActionGroup(name=name)
+        new_group = ActionGroup(name=name)
         new_group.add_actions(actions)
         if toggles:
             new_group.add_toggle_actions(toggles)
@@ -974,7 +976,7 @@ class ViewManager(CLIManager):
         # create icon/label for notebook tab (useful for debugging)
         hbox = Gtk.Box()
         image = Gtk.Image()
-        image.set_from_stock(page.get_stock(), Gtk.IconSize.MENU)
+        image.set_from_icon_name(page.get_stock(), Gtk.IconSize.MENU)
         hbox.pack_start(image, False, True, 0)
         hbox.add(Gtk.Label(label=pdata.name))
         hbox.show_all()
@@ -1159,10 +1161,10 @@ class ViewManager(CLIManager):
         self.undoactions = Gtk.ActionGroup(name='Undo')
         if label:
             self.undoactions.add_actions([
-                ('Undo', Gtk.STOCK_UNDO, label, '<PRIMARY>z', None, self.undo)])
+                ('Undo', 'edit-undo', label, '<PRIMARY>z', None, self.undo)])
         else:
             self.undoactions.add_actions([
-                ('Undo', Gtk.STOCK_UNDO, _('_Undo'),
+                ('Undo', 'edit-undo', _('_Undo'),
                  '<PRIMARY>z', None, self.undo)])
             self.undoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.undoactions, 1)
@@ -1175,11 +1177,11 @@ class ViewManager(CLIManager):
         self.redoactions = Gtk.ActionGroup(name='Redo')
         if label:
             self.redoactions.add_actions([
-                ('Redo', Gtk.STOCK_REDO, label, '<shift><PRIMARY>z',
+                ('Redo', 'edit-redo', label, '<shift><PRIMARY>z',
                  None, self.redo)])
         else:
             self.redoactions.add_actions([
-                ('Redo', Gtk.STOCK_UNDO, _('_Redo'),
+                ('Redo', 'edit-undo', _('_Redo'),
                  '<shift><PRIMARY>z', None, self.redo)])
             self.redoactions.set_sensitive(False)
         self.uimanager.insert_action_group(self.redoactions, 1)
@@ -1218,9 +1220,9 @@ class ViewManager(CLIManager):
                             self.uistate.window,
                             Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
         window.set_size_request(400, -1)
-        ok_button = window.add_button(Gtk.STOCK_OK,
+        ok_button = window.add_button(_('_OK'),
                                       Gtk.ResponseType.APPLY)
-        close_button = window.add_button(Gtk.STOCK_CLOSE,
+        close_button = window.add_button(_('_Close'),
                                          Gtk.ResponseType.CLOSE)
         vbox = window.get_content_area()
         hbox = Gtk.Box()
@@ -1238,7 +1240,7 @@ class ViewManager(CLIManager):
         button.connect("clicked",
                        lambda widget: self.select_backup_path(widget, path_entry))
         image = Gtk.Image()
-        image.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
+        image.set_from_icon_name('document-open', Gtk.IconSize.BUTTON)
         image.show()
         button.add(image)
         hbox.pack_end(button, False, True, 0)
@@ -1337,9 +1339,9 @@ class ViewManager(CLIManager):
             title=_("Select backup directory"),
             parent=self.window,
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(Gtk.STOCK_CANCEL,
+            buttons=(_('_Cancel'),
                      Gtk.ResponseType.CANCEL,
-                     Gtk.STOCK_APPLY,
+                     _('_Apply'),
                      Gtk.ResponseType.OK))
         mpath = path_entry.get_text()
         if not mpath:

@@ -691,8 +691,8 @@ class CheckIntegrity(object):
                     logging.warning('    FAIL: references to missing file kept')
 
             fs_top = Gtk.FileChooserDialog("%s - Gramps" % _("Select file"),
-                        buttons=(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL,
-                                 Gtk.STOCK_OK, Gtk.ResponseType.OK)
+                        buttons=(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                                 _('_OK'), Gtk.ResponseType.OK)
                         )
             fs_top.set_current_folder(self.last_img_dir)
             response = fs_top.run()

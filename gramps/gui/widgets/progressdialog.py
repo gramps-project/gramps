@@ -435,7 +435,7 @@ class _GtkProgressBar(Gtk.Box):
         # Only display the cancel button is the operation
         # can be canceled.
         if long_op_status.can_cancel():
-            self._cancel = Gtk.Button(stock=Gtk.STOCK_CANCEL)
+            self._cancel = Gtk.Button.new_with_mnemonic(_('_Cancel'))
             self._cancel.connect("clicked", 
                                  lambda x: long_op_status.cancel())
             self._cancel.show()

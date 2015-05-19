@@ -52,8 +52,8 @@ class SearchBar(object):
 
         self.filterbar = Gtk.Box()
         self.filter_text = Gtk.Entry()
-        self.filter_button = Gtk.Button(stock=Gtk.STOCK_FIND)
-        self.clear_button = Gtk.Button(stock=Gtk.STOCK_CLEAR)
+        self.filter_button = Gtk.Button.new_with_mnemonic(_('_Find'))
+        self.clear_button = Gtk.Button.new_with_mnemonic(_('_Clear'))
         self.filter_list = Gtk.ComboBox()
         self.filter_model = Gtk.ListStore(GObject.TYPE_STRING, 
                                           GObject.TYPE_INT, 

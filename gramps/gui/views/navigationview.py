@@ -46,6 +46,7 @@ from gi.repository import Gtk
 #
 #----------------------------------------------------------------
 from .pageview import PageView
+from ..actiongroup import ActionGroup
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from gramps.gen.utils.db import navigation_label
@@ -265,7 +266,7 @@ class NavigationView(PageView):
         """
         Define the bookmark menu actions.
         """
-        self.book_action = Gtk.ActionGroup(name=self.title + '/Bookmark')
+        self.book_action = ActionGroup(name=self.title + '/Bookmark')
         self.book_action.add_actions([
             ('AddBook', 'gramps-bookmark-new', _('_Add Bookmark'), 
              '<PRIMARY>d', None, self.add_bookmark), 
@@ -285,29 +286,29 @@ class NavigationView(PageView):
         Define the navigation menu actions.
         """
         # add the Forward action group to handle the Forward button
-        self.fwd_action = Gtk.ActionGroup(name=self.title + '/Forward')
+        self.fwd_action = ActionGroup(name=self.title + '/Forward')
         self.fwd_action.add_actions([
-            ('Forward', Gtk.STOCK_GO_FORWARD, _("_Forward"), 
-             "%sRight" % mod_key(), _("Go to the next object in the history"), 
+            ('Forward', 'go-next', _("_Forward"),
+             "%sRight" % mod_key(), _("Go to the next object in the history"),
              self.fwd_clicked)
             ])
 
         # add the Backward action group to handle the Forward button
-        self.back_action = Gtk.ActionGroup(name=self.title + '/Backward')
+        self.back_action = ActionGroup(name=self.title + '/Backward')
         self.back_action.add_actions([
-            ('Back', Gtk.STOCK_GO_BACK, _("_Back"), 
-             "%sLeft" % mod_key(), _("Go to the previous object in the history"), 
+            ('Back', 'go-previous', _("_Back"),
+             "%sLeft" % mod_key(), _("Go to the previous object in the history"),
              self.back_clicked)
             ])
 
-        self._add_action('HomePerson', Gtk.STOCK_HOME, _("_Home"), 
-                         accel="%sHome" % mod_key(), 
+        self._add_action('HomePerson', 'go-home', _("_Home"),
+                         accel="%sHome" % mod_key(),
                          tip=_("Go to the default person"), callback=self.home)
 
-        self.other_action = Gtk.ActionGroup(name=self.title + '/PersonOther')
+        self.other_action = ActionGroup(name=self.title + '/PersonOther')
         self.other_action.add_actions([
-                ('SetActive', Gtk.STOCK_HOME, _("Set _Home Person"), None, 
-                 None, self.set_default_person), 
+                ('SetActive', 'go-home', _("Set _Home Person"), None,
+                 None, self.set_default_person),
                 ])
 
         self._add_action_group(self.back_action)
@@ -356,8 +357,8 @@ class NavigationView(PageView):
         text.set_activates_default(True)
         hbox.pack_start(text, False, True, 0)
         dialog.vbox.pack_start(hbox, False, True, 0)
-        dialog.add_buttons(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL, 
-                           Gtk.STOCK_JUMP_TO, Gtk.ResponseType.OK)
+        dialog.add_buttons(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                           _('_Jump to'), Gtk.ResponseType.OK)
         dialog.set_default_response(Gtk.ResponseType.OK)
         dialog.vbox.show_all()
         
@@ -449,7 +450,7 @@ class NavigationView(PageView):
                          "%s%d" % (mod_key(), index), None,
                          make_callback(hobj.push, handle)))
  
-        self.mru_action = Gtk.ActionGroup(name=self.title + '/MRU')
+        self.mru_action = ActionGroup(name=self.title + '/MRU')
         self.mru_action.add_actions(data)
         self.mru_enable()
 

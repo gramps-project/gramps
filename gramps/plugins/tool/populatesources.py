@@ -84,8 +84,8 @@ class PopulateSources(tool.Tool, ManagedWindow):
         dialog = Gtk.Dialog("Populate sources and citations tool",
                                 self.uistate.window,
                                 Gtk.DialogFlags.MODAL|Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT,
-                                 Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT))
+                                (_('_Cancel'), Gtk.ResponseType.REJECT,
+                                 _('_OK'), Gtk.ResponseType.ACCEPT))
         label = Gtk.Label("Enter a valid number of sources and citations."
                           " This will create the requested number of sources,"
                           " and for each source, will create the requested"

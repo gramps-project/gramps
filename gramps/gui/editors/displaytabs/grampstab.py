@@ -108,16 +108,11 @@ class GrampsTab(Gtk.Box):
         icon = self.get_icon_name()
 
         if isinstance(icon, tuple):
-            if icon[0] == 0:
-                func = Gtk.Image.new_from_icon_name
-            else:
-                func = Gtk.Image.new_from_stock
             name = icon[1]
         else:
-            func = Gtk.Image.new_from_stock
             name = icon
         
-        self.tab_image = func(name, Gtk.IconSize.MENU)
+        self.tab_image = Gtk.Image.new_from_icon_name(name, Gtk.IconSize.MENU)
         self.track_ref_for_deletion("tab_image")
         self.label = Gtk.Label(label=self.tab_name)
         self.track_ref_for_deletion("label")
@@ -135,7 +130,7 @@ class GrampsTab(Gtk.Box):
         @returns: stock icon name
         @rtype: str
         """
-        return Gtk.STOCK_NEW
+        return 'document-new'
 
     def get_tab_widget(self):
         """

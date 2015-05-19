@@ -612,13 +612,13 @@ class DetachedWindow(ManagedWindow):
                                              self.title)
         self.set_window(Gtk.Dialog("", gramplet.uistate.window,
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
+                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
                         None,
                         self.title)
         self.window.move(x_pos, y_pos)
         self.window.set_default_size(gramplet.detached_width,
                                      gramplet.detached_height)
-        self.window.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
+        self.window.add_button(_('_Help'), Gtk.ResponseType.HELP)
         self.window.connect('response', self.handle_response)
 
         self.notebook = Gtk.Notebook()
@@ -640,7 +640,7 @@ class DetachedWindow(ManagedWindow):
         """
         Callback for taking care of button clicks.
         """
-        if response in [Gtk.ResponseType.CLOSE, Gtk.STOCK_CLOSE]:
+        if response == Gtk.ResponseType.CLOSE:
             self.close()
         elif response == Gtk.ResponseType.HELP:
             # translated name:
@@ -703,7 +703,7 @@ class TabLabel(Gtk.Box):
 
         self.closebtn = Gtk.Button()
         image = Gtk.Image()
-        image.set_from_stock(Gtk.STOCK_CLOSE, Gtk.IconSize.MENU)
+        image.set_from_icon_name('window-close', Gtk.IconSize.MENU)
         self.closebtn.connect("clicked", callback, gramplet)
         self.closebtn.set_image(image)
         self.closebtn.set_relief(Gtk.ReliefStyle.NONE)

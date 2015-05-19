@@ -154,14 +154,14 @@ class ReportDialog(ManagedWindow):
         self.set_window(window, None, self.get_title())
         self.window.set_modal(True)
 
-        self.help = self.window.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
+        self.help = self.window.add_button(_('_Help'), Gtk.ResponseType.HELP)
         self.help.connect('clicked', self.on_help_clicked)
 
-        self.cancel = self.window.add_button(Gtk.STOCK_CANCEL,
+        self.cancel = self.window.add_button(_('_Cancel'),
                                              Gtk.ResponseType.CANCEL)
         self.cancel.connect('clicked', self.on_cancel)
 
-        self.ok = self.window.add_button(Gtk.STOCK_OK, Gtk.ResponseType.OK)
+        self.ok = self.window.add_button(_('_OK'), Gtk.ResponseType.OK)
         self.ok.connect('clicked', self.on_ok_clicked)
 
         self.window.set_position(Gtk.WindowPosition.CENTER)

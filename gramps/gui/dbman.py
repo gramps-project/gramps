@@ -102,7 +102,7 @@ FILE_COL  = 2
 DATE_COL  = 3
 DSORT_COL = 4
 OPEN_COL  = 5
-STOCK_COL = 6
+ICON_COL = 6
 
 RCS_BUTTON = { True : _('_Extract'), False : _('_Archive') }
 
@@ -113,9 +113,9 @@ class DbManager(CLIDbManager):
     """
     ICON_MAP = {
                 CLIDbManager.ICON_NONE : None,
-                CLIDbManager.ICON_RECOVERY : Gtk.STOCK_DIALOG_ERROR,
+                CLIDbManager.ICON_RECOVERY : 'dialog-error',
                 CLIDbManager.ICON_LOCK : 'gramps-lock',
-                CLIDbManager.ICON_OPEN : Gtk.STOCK_OPEN,
+                CLIDbManager.ICON_OPEN : 'document-open',
                }
 
     ERROR = ErrorDialog
@@ -231,7 +231,7 @@ class DbManager(CLIDbManager):
         is_rev = len(path.get_indices()) > 1
         self.rcs.set_label(RCS_BUTTON[is_rev])
 
-        if store.get_value(node, STOCK_COL) == Gtk.STOCK_OPEN:
+        if store.get_value(node, ICON_COL) == 'document-open':
             self.connect.set_sensitive(False)
             if _RCS_FOUND:
                 self.rcs.set_sensitive(True)
@@ -242,7 +242,7 @@ class DbManager(CLIDbManager):
             else:
                 self.rcs.set_sensitive(False)
 
-        if store.get_value(node, STOCK_COL) == Gtk.STOCK_DIALOG_ERROR:
+        if store.get_value(node, ICON_COL) == 'dialog-error':
             path = conv_to_unicode(store.get_value(node, PATH_COL), 'utf8')
             backup = os.path.join(path, "person.gbkp")
             self.repair.set_sensitive(os.path.isfile(backup))
@@ -289,7 +289,7 @@ class DbManager(CLIDbManager):
         # build the icon column
         render = Gtk.CellRendererPixbuf()
         #icon_column = Gtk.TreeViewColumn(_('Status'), render, 
-                                         #stock_id=STOCK_COL)
+                                         #icon_name=ICON_COL)
         icon_column = Gtk.TreeViewColumn(_('Status'), render)
         icon_column.set_cell_data_func(render, bug_fix)
         self.dblist.append_column(icon_column)
@@ -350,7 +350,7 @@ class DbManager(CLIDbManager):
             if value == Gtk.ResponseType.OK:
                 store, node = self.selection.get_selected()
                 # don't open a locked file
-                if store.get_value(node, STOCK_COL) == 'gramps-lock':
+                if store.get_value(node, ICON_COL) == 'gramps-lock':
                     self.__ask_to_break_lock(store, node)
                     continue 
                 # don't open a version
@@ -398,7 +398,7 @@ class DbManager(CLIDbManager):
             dbpath = conv_to_unicode(store.get_value(node, PATH_COL), 'utf8')
             (tval, last) = time_val(dbpath)
             store.set_value(node, OPEN_COL, 0)
-            store.set_value(node, STOCK_COL, "")
+            store.set_value(node, ICON_COL, "")
             store.set_value(node, DATE_COL, last)
             store.set_value(node, DSORT_COL, tval)
         except IOError:
@@ -966,7 +966,7 @@ def bug_fix(column, renderer, model, iter_, data):
     None using the TreeModel set_value method.  Instead we set it to an empty
     string and convert it to None here.
     """
-    stock_id = model.get_value(iter_, STOCK_COL)
-    if stock_id == '':
-        stock_id = None
-    renderer.set_property('stock_id', stock_id)
+    icon_name = model.get_value(iter_, ICON_COL)
+    if icon_name == '':
+        icon_name = None
+    renderer.set_property('icon-name', icon_name)

@@ -54,17 +54,6 @@ from gi.repository import Pango
 from gramps.gen.errors import MaskError, ValidationError, WindowActiveError
 from .undoableentry import UndoableEntry
 
-#-------------------------------------------------------------------------
-#
-# Constants
-#
-#-------------------------------------------------------------------------
-# STOCK_INFO was added only in Gtk 2.8
-try:
-    INFO_ICON = Gtk.STOCK_INFO
-except AttributeError:
-    INFO_ICON = Gtk.STOCK_DIALOG_INFO
-
 #============================================================================
 #
 # MaskedEntry and ValidatableMaskedEntry copied and merged from the Kiwi
@@ -1021,8 +1010,8 @@ class MaskedEntry(UndoableEntry):
     def set_pixbuf(self, pixbuf):
         self.set_icon_from_pixbuf(Gtk.EntryIconPosition.SECONDARY, pixbuf)
 
-    def set_stock(self, stock_name):
-        self.set_icon_from_stock(Gtk.EntryIconPosition.SECONDARY, stock_name)
+    def set_stock(self, icon_name):
+        self.set_icon_from_icon_name(Gtk.EntryIconPosition.SECONDARY, icon_name)
 
     def update_background(self, color, unset=False):
         maxvalcol = 65535.
@@ -1100,8 +1089,8 @@ class MaskedEntry(UndoableEntry):
 #number = (int, float, long)
 
 VALIDATION_ICON_WIDTH = 16
-MANDATORY_ICON = INFO_ICON
-ERROR_ICON = Gtk.STOCK_STOP
+MANDATORY_ICON = 'dialog-information'
+ERROR_ICON = 'process-stop'
 
 class ValidatableMaskedEntry(MaskedEntry):
     """

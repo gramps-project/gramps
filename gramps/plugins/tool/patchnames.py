@@ -114,7 +114,7 @@ class PatchNames(tool.BatchTool, ManagedWindow):
         winprefix = Gtk.Dialog(_("Default prefix and connector settings"),
                                 self.uistate.window,
                                 Gtk.DialogFlags.MODAL|Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                (Gtk.STOCK_OK, Gtk.ResponseType.ACCEPT))
+                                (_('_OK'), Gtk.ResponseType.ACCEPT))
         
         winprefix.vbox.set_spacing(5)
         hboxpref = Gtk.Box()

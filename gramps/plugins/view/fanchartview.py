@@ -98,7 +98,7 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
     def build_widget(self):
         self.set_fan(fanchart.FanChartWidget(self.dbstate, self.uistate, self.on_popup))
         self.scrolledwindow = Gtk.ScrolledWindow(hadjustment=None, 
-                                                                        vadjustment=None)
+                                                 vadjustment=None)
         self.scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
                                        Gtk.PolicyType.AUTOMATIC)
         self.fan.show_all()
@@ -161,9 +161,9 @@ class FanChartView(fanchart.FanChartGrampsGUI, NavigationView):
         """
         NavigationView.define_actions(self)
 
-        self._add_action('PrintView', Gtk.STOCK_PRINT, _("_Print..."), 
-                         accel="<PRIMARY>P", 
-                         tip=_("Print or save the Fan Chart View"), 
+        self._add_action('PrintView', 'document-print', _("_Print..."),
+                         accel="<PRIMARY>P",
+                         tip=_("Print or save the Fan Chart View"),
                          callback=self.printview)
     def build_tree(self):
         """
