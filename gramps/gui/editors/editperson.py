@@ -687,11 +687,11 @@ class EditPerson(EditPrimary):
         self.track_ref_for_deletion("home_action")
 
         self.all_action.add_actions([
-                ('ActivePerson', Gtk.STOCK_APPLY, _("Make Active Person"),
+                ('ActivePerson', None, _("Make Active Person"),
                     None, None, self._make_active),
                 ])
         self.home_action.add_actions([
-                ('HomePerson', Gtk.STOCK_HOME, _("Make Home Person"),
+                ('HomePerson', 'go-home', _("Make Home Person"),
                     None, None, self._make_home_person),
                 ])
 

@@ -574,6 +574,8 @@ class DateDisplay(object):
             else:
                 return self.format_long_month_year(date_val[1], year,
                                                    inflect, long_months)
+        elif date_val[1] == 0: # month is zero but day is not (see 8477)
+            return self.display_iso(date_val)
         else:
             # TRANSLATORS: this month is ALREADY inflected: ignore it
             return _("{long_month} {day:d}, {year}").format(
@@ -598,6 +600,8 @@ class DateDisplay(object):
             else:
                 return self.format_short_month_year(date_val[1], year,
                                                     inflect, short_months)
+        elif date_val[1] == 0: # month is zero but day is not (see 8477)
+            return self.display_iso(date_val)
         else:
             # TRANSLATORS: this month is ALREADY inflected: ignore it
             return _("{short_month} {day:d}, {year}").format(
@@ -622,6 +626,8 @@ class DateDisplay(object):
             else:
                 return self.format_long_month_year(date_val[1], year,
                                                    inflect, long_months)
+        elif date_val[1] == 0: # month is zero but day is not (see 8477)
+            return self.display_iso(date_val)
         else:
             # TRANSLATORS: this month is ALREADY inflected: ignore it
             return _("{day:d} {long_month} {year}").format(
@@ -646,6 +652,8 @@ class DateDisplay(object):
             else:
                 return self.format_short_month_year(date_val[1], year,
                                                     inflect, short_months)
+        elif date_val[1] == 0: # month is zero but day is not (see 8477)
+            return self.display_iso(date_val)
         else:
             # TRANSLATORS: this month is ALREADY inflected: ignore it
             return _("{day:d} {short_month} {year}").format(

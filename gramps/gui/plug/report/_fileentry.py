@@ -41,7 +41,7 @@ class FileEntry(Gtk.Box):
         self.set_homogeneous(False)
         self.button = Gtk.Button()
         image = Gtk.Image()
-        image.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
+        image.set_from_icon_name('document-open', Gtk.IconSize.BUTTON)
         self.button.add(image)
         self.button.connect('clicked', self.__select_file)
         self.pack_start(self.entry, True, True, 0)
@@ -57,9 +57,9 @@ class FileEntry(Gtk.Box):
         dialog = Gtk.FileChooserDialog(self.title,
                                        self.parent,
                                        action=my_action,
-                                       buttons=(Gtk.STOCK_CANCEL,
+                                       buttons=(_('_Cancel'),
                                                 Gtk.ResponseType.CANCEL,
-                                                Gtk.STOCK_OPEN,
+                                                _('_Open'),
                                                 Gtk.ResponseType.OK))
 
         name = os.path.basename(conv_to_unicode(self.entry.get_text()))

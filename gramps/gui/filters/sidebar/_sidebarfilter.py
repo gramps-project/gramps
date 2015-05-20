@@ -53,7 +53,7 @@ class SidebarFilter(DbGUIElement):
         self.grid.set_border_width(6)
         self.grid.set_row_spacing(6)
         self.grid.set_column_spacing(6)
-        self.apply_btn = Gtk.Button(stock=Gtk.STOCK_FIND)
+        self.apply_btn = Gtk.Button.new_with_mnemonic(_('_Find'))
         self.clear_btn = Gtk.Button()
         
         self._init_interface()
@@ -73,7 +73,7 @@ class SidebarFilter(DbGUIElement):
         hbox = Gtk.Box()
         hbox.show()
         image = Gtk.Image()
-        image.set_from_stock(Gtk.STOCK_UNDO, Gtk.IconSize.BUTTON)
+        image.set_from_icon_name('edit-undo', Gtk.IconSize.BUTTON)
         image.show()
         label = Gtk.Label(label=_('Reset'))
         label.show()
@@ -226,7 +226,7 @@ class SidebarFilter(DbGUIElement):
         """
         hbox = Gtk.Box()
         hbox.pack_start(widget, True, True, 0)
-        hbox.pack_start(widgets.SimpleButton(Gtk.STOCK_EDIT, self.edit_filter),
+        hbox.pack_start(widgets.SimpleButton('gtk-edit', self.edit_filter),
                         False, False, 0)
         self.add_entry(text, hbox)
 

@@ -284,7 +284,11 @@ class UndoableEntry(Gtk.Entry):
         self.set_position(undo_action.offset)
 
     def _undo_delete(self, undo_action):
-        self.insert_text(undo_action.text, undo_action.start)
+        if not isinstance(undo_action.text, str):
+            undo_action.text = conv_to_unicode(undo_action.text, 'utf-8')
+        with warnings.catch_warnings():
+            warnings.simplefilter('ignore')
+            self.insert_text(undo_action.text, undo_action.start)
         if undo_action.delete_key_used:
             self.set_position(undo_action.start)
         else:

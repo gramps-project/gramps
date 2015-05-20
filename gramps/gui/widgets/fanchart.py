@@ -1595,7 +1595,7 @@ class FanChartGrampsGUI(object):
         if not person:
             return 0
 
-        go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,Gtk.IconSize.MENU)
+        go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
         go_image.show()
         go_item = Gtk.ImageMenuItem(name_displayer.display(person))
         go_item.set_image(go_image)
@@ -1603,15 +1603,17 @@ class FanChartGrampsGUI(object):
         go_item.show()
         menu.append(go_item)
 
-        edit_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_EDIT,
-                                                     accel_group=None)
+        edit_item = Gtk.ImageMenuItem.new_with_mnemonic(_('_Edit'))
+        img = Gtk.Image.new_from_icon_name('gtk-edit', Gtk.IconSize.MENU)
+        edit_item.set_image(img)
         edit_item.connect("activate", self.edit_person_cb, person_handle)
         edit_item.show()
         menu.append(edit_item)
         if family_handle:
             family = self.dbstate.db.get_family_from_handle(family_handle)
-            edit_fam_item = Gtk.ImageMenuItem.new_from_stock(
-                                    stock_id=Gtk.STOCK_EDIT, accel_group=None)
+            edit_fam_item = Gtk.ImageMenuItem()
+            img = Gtk.Image.new_from_icon_name('gtk-edit', Gtk.IconSize.MENU)
+            edit_fam_item.set_image(img)
             edit_fam_item.set_label(_("Edit family"))
             edit_fam_item.connect("activate", self.edit_fam_cb, family_handle)
             edit_fam_item.show()
@@ -1627,15 +1629,19 @@ class FanChartGrampsGUI(object):
                 lenfams = len(partner.get_family_handle_list())
                 if lenfams in [0, 1]:
                     lenfams = len(partner.get_parent_family_handle_list())
-            reord_fam_item = Gtk.ImageMenuItem.new_from_stock(
-                           stock_id=Gtk.STOCK_SORT_ASCENDING, accel_group=None)
+            reord_fam_item = Gtk.ImageMenuItem()
+            img = Gtk.Image.new_from_icon_name('view-sort-ascending',
+                                               Gtk.IconSize.MENU)
+            reord_fam_item.set_image(img)
             reord_fam_item.set_label(_("Reorder families"))
             reord_fam_item.connect("activate", self.reord_fam_cb, parth)
             reord_fam_item.set_sensitive(lenfams > 1)
             reord_fam_item.show()
             menu.append(reord_fam_item)
 
-        clipboard_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_COPY, accel_group=None)
+        clipboard_item = Gtk.ImageMenuItem.new_with_mnemonic(_('_Copy'))
+        img = Gtk.Image.new_from_icon_name('edit-copy', Gtk.IconSize.MENU)
+        clipboard_item.set_image(img)
         clipboard_item.connect("activate", self.copy_person_to_clipboard_cb,
                                person_handle)
         clipboard_item.show()
@@ -1663,7 +1669,7 @@ class FanChartGrampsGUI(object):
                 item.set_submenu(Gtk.Menu())
                 sp_menu = item.get_submenu()
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
             go_image.show()
             sp_item = Gtk.ImageMenuItem(name_displayer.display(spouse))
             sp_item.set_image(go_image)
@@ -1703,9 +1709,9 @@ class FanChartGrampsGUI(object):
                 else:
                     label = Gtk.Label(label=escape(name_displayer.display(sib)))
 
-                go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
+                go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
                 go_image.show()
-                sib_item = Gtk.ImageMenuItem(None)
+                sib_item = Gtk.ImageMenuItem()
                 sib_item.set_image(go_image)
                 label.set_use_markup(True)
                 label.show()
@@ -1740,9 +1746,9 @@ class FanChartGrampsGUI(object):
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(child)))
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
             go_image.show()
-            child_item = Gtk.ImageMenuItem(None)
+            child_item = Gtk.ImageMenuItem()
             child_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
@@ -1777,9 +1783,9 @@ class FanChartGrampsGUI(object):
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(par)))
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
             go_image.show()
-            par_item = Gtk.ImageMenuItem(None)
+            par_item = Gtk.ImageMenuItem()
             par_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
@@ -1792,7 +1798,9 @@ class FanChartGrampsGUI(object):
 
         if no_parents:
             #show an add button
-            add_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_ADD, None)
+            add_item = Gtk.ImageMenuItem.new_with_mnemonic(_('_Add'))
+            img = Gtk.Image.new_from_icon_name('list-add', Gtk.IconSize.MENU)
+            add_item.set_image(img)
             add_item.connect("activate", self.on_add_parents, person_handle)
             add_item.show()
             par_menu.append(add_item)
@@ -1818,9 +1826,9 @@ class FanChartGrampsGUI(object):
 
             label = Gtk.Label(label=escape(name_displayer.display(per)))
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO, Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
             go_image.show()
-            per_item = Gtk.ImageMenuItem(None)
+            per_item = Gtk.ImageMenuItem()
             per_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
@@ -1841,8 +1849,9 @@ class FanChartGrampsGUI(object):
         add_menu = item.get_submenu()
         if family_handle:
             # allow to add a child to this family
-            add_child_item = Gtk.ImageMenuItem.new_from_stock(
-                                    stock_id=Gtk.STOCK_ADD, accel_group=None)
+            add_child_item = Gtk.ImageMenuItem()
+            img = Gtk.Image.new_from_icon_name('list-add', Gtk.IconSize.MENU)
+            add_child_item.set_image(img)
             add_child_item.set_label(_("Add child to family"))
             add_child_item.connect("activate", self.add_child_to_fam_cb,
                                    family_handle)
@@ -1850,16 +1859,18 @@ class FanChartGrampsGUI(object):
             add_menu.append(add_child_item)
         elif person_handle:
             #allow to add a partner to this person
-            add_partner_item = Gtk.ImageMenuItem.new_from_stock(
-                                    stock_id=Gtk.STOCK_ADD, accel_group=None)
+            add_partner_item = Gtk.ImageMenuItem()
+            img = Gtk.Image.new_from_icon_name('list-add', Gtk.IconSize.MENU)
+            add_partner_item.set_image(img)
             add_partner_item.set_label(_("Add partner to person"))
             add_partner_item.connect("activate", self.add_partner_to_pers_cb,
                                    person_handle)
             add_partner_item.show()
             add_menu.append(add_partner_item)
             
-        add_pers_item = Gtk.ImageMenuItem.new_from_stock(stock_id=Gtk.STOCK_ADD,
-                                                         accel_group=None)
+        add_pers_item = Gtk.ImageMenuItem()
+        img = Gtk.Image.new_from_icon_name('list-add', Gtk.IconSize.MENU)
+        add_pers_item.set_image(img)
         add_pers_item.set_label(_("Add a person"))
         add_pers_item.connect("activate", self.add_person_cb)
         add_pers_item.show()

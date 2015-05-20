@@ -138,7 +138,7 @@ class DbLoader(CLIDbLoader):
         import_dialog = Gtk.FileChooserDialog(_('Gramps: Import Family Tree'), 
                                        self.uistate.window, 
                                        Gtk.FileChooserAction.OPEN, 
-                                       (Gtk.STOCK_CANCEL, 
+                                       (_('_Cancel'),
                                             Gtk.ResponseType.CANCEL, 
                                         _('Import'), 
                                             Gtk.ResponseType.OK))

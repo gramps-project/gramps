@@ -38,6 +38,7 @@ from gi.repository import Gdk
 #-------------------------------------------------------------------------
 from gramps.gen.plug import (START, END)
 from .pluginmanager import GuiPluginManager
+from .actiongroup import ActionGroup
 
 #-------------------------------------------------------------------------
 #
@@ -113,7 +114,7 @@ class Navigator(object):
                                    self.__menu_button_pressed)
 
         #close_button = Gtk.Button()
-        #img = Gtk.Image.new_from_stock(Gtk.STOCK_CLOSE, Gtk.IconSize.MENU)
+        #img = Gtk.Image.new_from_icon_name('window-close', Gtk.IconSize.MENU)
         #close_button.set_image(img)
         #close_button.set_relief(Gtk.ReliefStyle.NONE)
         #close_button.connect('clicked', self.cb_close_clicked)
@@ -228,7 +229,7 @@ class Navigator(object):
             list(map(uimanager.remove_ui, self.merge_ids))
 
         if cat_num in self.ui_category:
-            self.cat_view_group = Gtk.ActionGroup(name='viewmenu')
+            self.cat_view_group = ActionGroup(name='viewmenu')
             self.cat_view_group.add_radio_actions(
                     self.view_toggle_actions[cat_num], value=view_num,
                     on_change=self.cb_view_clicked, user_data=cat_num)

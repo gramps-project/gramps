@@ -241,9 +241,9 @@ class TestcaseGenerator(tool.BatchTool):
         self.on_dummy_data_clicked(self.check_persons)
         self.top.vbox.pack_start(self.entry_count,0,0,5)
 
-        self.top.add_button(Gtk.STOCK_CANCEL,Gtk.ResponseType.CANCEL)
-        self.top.add_button(Gtk.STOCK_OK,Gtk.ResponseType.OK)
-        self.top.add_button(Gtk.STOCK_HELP,Gtk.ResponseType.HELP)
+        self.top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
+        self.top.add_button(_('_OK'), Gtk.ResponseType.OK)
+        self.top.add_button(_('_Help'), Gtk.ResponseType.HELP)
         self.top.show_all()
 
         response = self.top.run()

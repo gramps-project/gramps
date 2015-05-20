@@ -364,7 +364,7 @@ class GroupEmbeddedList(EmbeddedList):
         STOCK_JUSTIFY_FILL icon, which in the default GTK style
         looks kind of like a list.
         """
-        return Gtk.STOCK_JUSTIFY_FILL
+        return 'format-justify-fill'
 
     def del_button_clicked(self, obj):
         ref = self.get_selected()

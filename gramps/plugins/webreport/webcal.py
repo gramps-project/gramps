@@ -63,7 +63,7 @@ from gramps.gen.plug.menu import (BooleanOption, NumberOption, StringOption,
                                   PersonOption, DestinationOption, NoteOption)
 from gramps.gen.utils.config import get_researcher
 from gramps.gen.utils.alive import probably_alive
-from gramps.gen.datehandler import displayer as _dd
+from gramps.gen.datehandler import displayer as date_displayer
 
 from gramps.gen.display.name import displayer as _nd
 
@@ -494,7 +494,7 @@ class WebCalReport(Report):
 
                 # each year will link to current month.
                 # this will always need an extension added
-                full_month_name = _dd.long_months[self.today.get_month() ]
+                full_month_name = date_displayer.long_months[self.today.get_month() ]
 
                 # Note. We use '/' here because it is a URL, not a OS dependent 
                 # pathname.
@@ -530,8 +530,9 @@ class WebCalReport(Report):
         # An optional link to a home page
         if self.home_link:
             navs.append((self.home_link,  _('Home'),  add_home))
-        navs.extend(
-            (_dd.long_months[month], _dd.short_months[month], True) for month in range(1, 13) )
+        navs.extend((date_displayer.long_months[month],
+                     date_displayer.short_months[month], True)
+                             for month in range(1, 13) )
 
         # Add a link for year_glance() if requested
         navs.append(('fullyearlinked', _('Year Glance'), self.fullyear))
@@ -597,8 +598,8 @@ class WebCalReport(Report):
         """
 
         # define names for long and short month names
-        full_month_name = _dd.long_months[month]
-        abbr_month_name = _dd.short_months[month]
+        full_month_name = date_displayer.long_months[month]
+        abbr_month_name = date_displayer.short_months[month]
 
         # dow (day-of-week) uses Gramps numbering, sunday => 1, etc
         start_dow = self.start_dow
@@ -620,7 +621,7 @@ class WebCalReport(Report):
 
         # Note. gen.datehandler has sunday => 1, monday => 2, etc
         # We slice out the first empty element.
-        day_names = _dd.long_days # use self._dd.long_days when set_locale is used...
+        day_names = date_displayer.long_days # use self._ldd.long_days when set_locale is used ...
 
         def __get_previous_month_day(year, month, day_col):
 
@@ -837,7 +838,7 @@ class WebCalReport(Report):
                 _('Formatting months ...'), 12) as step:
 
             for month in range(1, 13):
-                cal_fname = _dd.long_months[month]
+                cal_fname = date_displayer.long_months[month]
                 of = self.create_file(cal_fname, str(year))
 
                 # Add xml, doctype, meta and stylesheets
@@ -850,7 +851,7 @@ class WebCalReport(Report):
 
                 # Create Month Navigation Menu
                 # identify currentsection for proper highlighting
-                currentsection = _dd.long_months[month]
+                currentsection = date_displayer.long_months[month]
                 body += self.month_navigation(nr_up, year, currentsection, True)
 
                 # build the calendar
@@ -977,13 +978,13 @@ class WebCalReport(Report):
 
         # Create Month Navigation Menu
         # identify currentsection for proper highlighting
-        currentsection = _dd.long_months[month]
+        currentsection = date_displayer.long_months[month]
         body += self.month_navigation(nr_up, year, currentsection, True)
 
         # set date display as in user prevferences 
         content = Html("div", class_="content", id = "OneDay")
         body += content
-        content += Html("h3", _dd.display(event_date), inline = True)
+        content += Html("h3", date_displayer.display(event_date), inline = True)
 
         # list the events
         ordered = Html("ol")
@@ -1200,7 +1201,7 @@ class WebCalReport(Report):
                         'gramps_home_html_start' :
                             '<a href="' + URL_HOMEPAGE + '">' ,
                         'html_end' : '</a>' ,
-                        'date' : _dd.display(Today()) }
+                        'date' : date_displayer.display(Today()) }
             footer += Html("p", msg, id = 'createdate')
 
             copy_nr = self.copy
@@ -1360,6 +1361,10 @@ class WebCalOptions(MenuReportOptions):
 
         stdoptions.add_private_data_option(menu, category_name, default=False)
 
+        alive = BooleanOption(_("Include only living people"), True)
+        alive.set_help(_("Include only living people in the calendar"))
+        menu.add_option(category_name, "alive", alive)
+
         ext = EnumeratedListOption(_("File extension"), ".html" )
         for etype in _WEB_EXT:
             ext.add_item(etype, etype)
@@ -1424,6 +1429,14 @@ class WebCalOptions(MenuReportOptions):
                             "country"))
         menu.add_option(category_name, "country", country)
 
+        # Default selection ????
+        start_dow = EnumeratedListOption(_("First day of week"), 1)
+        for count in range(1, 8):
+            start_dow.add_item(count,
+                               date_displayer.long_days[count].capitalize()) 
+        start_dow.set_help(_("Select the first day of the week for the calendar"))
+        menu.add_option(category_name, "start_dow", start_dow)
+
         maiden_name = EnumeratedListOption(_("Birthday surname"), "own")
         maiden_name.add_item('spouse_first', _("Wives use husband's surname "
                              "(from first family listed)"))
@@ -1433,23 +1446,12 @@ class WebCalOptions(MenuReportOptions):
         maiden_name.set_help(_("Select married women's displayed surname"))
         menu.add_option(category_name, "maiden_name", maiden_name)
 
-        # Default selection ????
-        start_dow = EnumeratedListOption(_("First day of week"), 1)
-        for count in range(1, 8):
-            start_dow.add_item(count, _dd.long_days[count].capitalize()) 
-        start_dow.set_help(_("Select the first day of the week for the calendar"))
-        menu.add_option(category_name, "start_dow", start_dow)
-
         dbname = self.__db.get_dbname()
         default_link = '../../' + dbname + "_NAVWEB/index.html"
         home_link = StringOption(_('Home link'), default_link)
         home_link.set_help(_("The link to be included to direct the user to "
                          "the main page of the web site"))
         menu.add_option(category_name, "home_link", home_link)
-
-        alive = BooleanOption(_("Include only living people"), True)
-        alive.set_help(_("Include only living people in the calendar"))
-        menu.add_option(category_name, "alive", alive)
 
         birthdays = BooleanOption(_("Include birthdays"), True)
         birthdays.set_help(_("Include birthdays in the calendar"))

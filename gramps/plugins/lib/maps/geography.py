@@ -68,6 +68,7 @@ from .osmgps import OsmGps
 from .selectionlayer import SelectionLayer
 from .placeselection import PlaceSelection
 from .cairoprint import CairoPrintSave
+from .libkml import Kml
 
 #------------------------------------------------------------------------
 #
@@ -152,16 +153,11 @@ class GeoGraphyView(OsmGps, NavigationView):
         self.places_found = []
         self.select_fct = None
         self.geo_mainmap = None
-        path = os.path.join(IMAGE_DIR, "48x48",
-                            ('gramps-geo-mainmap' + '.png' ))
-        with open(path, 'rb') as fh: # this is to avoid bug with cairo 1.8.8
-            self.geo_mainmap = cairo.ImageSurface.create_from_png(fh)
-        #self.geo_mainmap = cairo.ImageSurface.create_from_png(path)
-        path = os.path.join(IMAGE_DIR, "48x48",
-                            ('gramps-geo-altmap' + '.png' ))
-        with open(path, 'rb') as fh: # this is to avoid bug with cairo 1.8.8
-            self.geo_altmap = cairo.ImageSurface.create_from_png(fh)
-        #self.geo_altmap = cairo.ImageSurface.create_from_png(path)
+        theme = Gtk.IconTheme.get_default()
+        self.geo_mainmap = theme.load_surface('gramps-geo-mainmap', 48, 1, 
+                                              None, 0)
+        self.geo_altmap = theme.load_surface('gramps-geo-altmap', 48, 1,
+                                             None, 0)
         if ( config.get('geography.map_service') in
             ( constants.OPENSTREETMAP,
               constants.MAPS_FOR_FREE,
@@ -175,11 +171,8 @@ class GeoGraphyView(OsmGps, NavigationView):
         for ident in ( EventType.BIRTH,
                     EventType.DEATH,
                     EventType.MARRIAGE ):
-            path = os.path.join(IMAGE_DIR, "48x48",
-                                (constants.ICONS.get(int(ident), default_image) + '.png' ))
-            with open(path, 'rb') as fh: # this is to avoid bug with cairo 1.8.8
-                self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(fh)
-            #self.geo_othermap[ident] = cairo.ImageSurface.create_from_png(path)
+            icon = constants.ICONS.get(int(ident))
+            self.geo_othermap[ident] = theme.load_surface(icon, 48, 1, None, 0)
 
     def add_bookmark(self, menu):
         mlist = self.selected_handles()
@@ -280,9 +273,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         """
         Associate the print button to the PrintView action.
         """
-        self._add_action('PrintView', Gtk.STOCK_PRINT, _("_Print..."), 
-                         accel="<PRIMARY>P", 
-                         tip=_("Print or save the Map"), 
+        self._add_action('PrintView', 'document-print', _("_Print..."),
+                         accel="<PRIMARY>P",
+                         tip=_("Print or save the Map"),
                          callback=self.printview)
 
     def config_connect(self):
@@ -347,6 +340,11 @@ class GeoGraphyView(OsmGps, NavigationView):
 
         add_item = Gtk.MenuItem(label=_("Link place"))
         add_item.connect("activate", self.link_place, event, lat , lon)
+        add_item.show()
+        menu.append(add_item)
+
+        add_item = Gtk.MenuItem(label=_("Add place from kml"))
+        add_item.connect("activate", self.add_place_from_kml, event, lat , lon)
         add_item.show()
         menu.append(add_item)
 
@@ -923,6 +921,48 @@ class GeoGraphyView(OsmGps, NavigationView):
                        self.selection_layer, self.place_list,
                        lat, lon, self.__add_place)
 
+    def add_place_from_kml(self, menu, event, lat, lon):
+        """
+        Add new place(s) from a kml file
+
+        1 - ask for a kml file ?
+        2 - Read the kml file.
+        3 - create the place(s) with name and title found in the kml marker.
+
+        """
+        # Ask for the kml file
+        filter = Gtk.FileFilter()
+        filter.add_pattern("*.kml")
+        kml = Gtk.FileChooserDialog(
+            _("Select a kml file used to add places"),
+            action=Gtk.FileChooserAction.OPEN,
+            buttons=(_('_Cancel'), Gtk.ResponseType.CANCEL,
+                     _('_Apply'), Gtk.ResponseType.OK))
+        mpath = HOME_DIR
+        kml.set_current_folder(os.path.dirname(mpath))
+        kml.set_filter(filter)
+
+        status = kml.run()
+        if status == Gtk.ResponseType.OK:
+            val = conv_to_unicode(kml.get_filename())
+            if val:
+                kmlfile = Kml(val)
+                points = kmlfile.add_points()
+                for place in points:
+                    (name, coords) = place
+                    latlong = coords.pop()
+                    (lat, lon) = latlong
+                    new_place = Place()
+                    new_place.set_name(name)
+                    new_place.set_title(name)
+                    new_place.set_latitude(str(lat))
+                    new_place.set_longitude(str(lon))
+                    try:
+                        EditPlace(self.dbstate, self.uistate, [], new_place)
+                    except WindowActiveError:
+                        pass
+        kml.destroy()
+
     def link_place(self, menu, event, lat, lon):
         """
         Link an existing place using longitude and latitude of location centered
@@ -1134,9 +1174,9 @@ class GeoGraphyView(OsmGps, NavigationView):
         f = Gtk.FileChooserDialog(
             _("Select tile cache directory for offline mode"),
             action=Gtk.FileChooserAction.SELECT_FOLDER,
-            buttons=(Gtk.STOCK_CANCEL,
+            buttons=(_('_Cancel'),
                      Gtk.ResponseType.CANCEL,
-                     Gtk.STOCK_APPLY,
+                     _('_Apply'),
                      Gtk.ResponseType.OK))
         mpath = config.get('geography.path')
         if not mpath:

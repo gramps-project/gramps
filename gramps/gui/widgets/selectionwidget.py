@@ -310,7 +310,7 @@ class SelectionWidget(Gtk.ScrolledWindow):
         Displays a 'missing image' icon in the widget.
         """
         self.pixbuf = None
-        self.image.set_from_stock(Gtk.STOCK_MISSING_IMAGE, Gtk.IconSize.DIALOG)
+        self.image.set_from_icon_name('image-missing', Gtk.IconSize.DIALOG)
         self.image.queue_draw()
 
     # ======================================================

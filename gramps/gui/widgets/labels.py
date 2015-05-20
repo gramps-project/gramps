@@ -191,8 +191,8 @@ class EditLabel(Gtk.Box):
         Gtk.Box.__init__(self)
         label = BasicLabel(text)
         self.pack_start(label, False, True, 0)
-        self.pack_start(Gtk.Image.new_from_stock(Gtk.STOCK_EDIT, 
-                                                 Gtk.IconSize.MENU), False)
+        self.pack_start(Gtk.Image.new_from_icon_name('gtk-edit',
+                                                     Gtk.IconSize.MENU), False)
         self.set_spacing(4)
         self.show_all()
 

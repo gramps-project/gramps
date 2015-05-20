@@ -677,9 +677,9 @@ class VerifyResults(ManagedWindow):
     def get_image(self, column, cell, model, iter, user_data=None):
         the_type = model.get_value(iter, VerifyResults.OBJ_TYPE_COL)
         if the_type == 'Person':
-            cell.set_property('stock-id', 'gramps-person' )
+            cell.set_property('icon-name', 'gramps-person' )
         elif  the_type == 'Family':
-            cell.set_property('stock-id', 'gramps-family' )
+            cell.set_property('icon-name', 'gramps-family' )
 
     def add_results(self,results):
         (msg,gramps_id, name,the_type,rule_id,severity, handle) = results

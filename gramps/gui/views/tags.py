@@ -50,6 +50,7 @@ from gramps.gen.const import URL_MANUAL_PAGE
 from ..display import display_help
 from ..dialog import ErrorDialog, QuestionDialog2
 import gramps.gui.widgets.progressdialog as progressdlg
+from ..actiongroup import ActionGroup
 
 #-------------------------------------------------------------------------
 #
@@ -203,7 +204,7 @@ class Tags(DbGUIElement):
 
         if self.db is None:
             self.tag_ui = ''
-            self.tag_action = Gtk.ActionGroup(name='Tag')
+            self.tag_action = ActionGroup(name='Tag')
             return
 
         tag_menu = '<menuitem action="NewTag"/>'
@@ -224,7 +225,7 @@ class Tags(DbGUIElement):
         actions.append(('TagButton', 'gramps-tag', _('Tag'), None,
                         _('Tag selected rows'), self.cb_tag_button))
  
-        self.tag_action = Gtk.ActionGroup(name='Tag')
+        self.tag_action = ActionGroup(name='Tag')
         self.tag_action.add_actions(actions)
         
     def cb_tag_button(self, action):
@@ -404,18 +405,18 @@ class OrganizeTagsDialog(object):
         bbox = Gtk.ButtonBox(orientation=Gtk.Orientation.VERTICAL)
         bbox.set_layout(Gtk.ButtonBoxStyle.START)
         bbox.set_spacing(6)
-        up = Gtk.Button(stock=Gtk.STOCK_GO_UP)
-        down = Gtk.Button(stock=Gtk.STOCK_GO_DOWN)
-        add = Gtk.Button(stock=Gtk.STOCK_ADD)
-        edit = Gtk.Button(stock=Gtk.STOCK_EDIT)
-        remove = Gtk.Button(stock=Gtk.STOCK_REMOVE)
+        up = Gtk.Button.new_with_mnemonic(_('_Up'))
+        down = Gtk.Button.new_with_mnemonic(_('_Down'))
+        add = Gtk.Button.new_with_mnemonic(_('_Add'))
+        edit = Gtk.Button.new_with_mnemonic(_('_Edit'))
+        remove = Gtk.Button.new_with_mnemonic(_('_Remove'))
         up.connect('clicked', self.cb_up_clicked)
         down.connect('clicked', self.cb_down_clicked)
         add.connect('clicked', self.cb_add_clicked, top)
         edit.connect('clicked', self.cb_edit_clicked, top)
         remove.connect('clicked', self.cb_remove_clicked, top)
-        top.add_button(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)
-        top.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
+        top.add_button(_('_Close'), Gtk.ResponseType.CLOSE)
+        top.add_button(_('_Help'), Gtk.ResponseType.HELP)
         bbox.add(up)
         bbox.add(down)
         bbox.add(add)
@@ -615,7 +616,7 @@ class EditTag(object):
         hbox.pack_start(self.entry, True, True, 5)
         hbox.pack_start(self.color, False, False, 5)
         
-        top.add_button(Gtk.STOCK_OK, Gtk.ResponseType.OK)
-        top.add_button(Gtk.STOCK_CANCEL, Gtk.ResponseType.CANCEL)
+        top.add_button(_('_OK'), Gtk.ResponseType.OK)
+        top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
         top.show_all()
         return top

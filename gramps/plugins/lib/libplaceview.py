@@ -142,7 +142,7 @@ class PlaceBaseView(ListView):
                                 "Service (OpenstreetMap, Google Maps, ...)"),
                         self.gotomap,
                         _('Select a Map Service'))
-        self._add_action('GotoMap', Gtk.STOCK_JUMP_TO, 
+        self._add_action('GotoMap', 'go-jump',
                         _('_Look up with Map Service'),
                         callback=self.gotomap,
                         tip=_("Attempt to see this location with a Map "
@@ -172,7 +172,8 @@ class PlaceBaseView(ListView):
         ListView.change_page(self)
         #menutoolbutton has to be made and added in correct place on toolbar
         if not self.maptoolbtn:
-            self.maptoolbtn = Gtk.MenuToolButton.new_from_stock(Gtk.STOCK_JUMP_TO)
+            self.maptoolbtn = Gtk.MenuToolButton()
+            self.maptoolbtn.set_icon_name('go-jump')
             self.maptoolbtn.connect('clicked', self.gotomap)
             self.mmenu = self.__create_maps_menu_actions()
             self.maptoolbtn.set_menu(self.mmenu)
@@ -201,7 +202,7 @@ class PlaceBaseView(ListView):
         lbl.show()
         self.mapslistlabel.append(lbl)
         widget.set_label_widget(self.mapslistlabel[-1])
-        widget.set_stock_id(Gtk.STOCK_JUMP_TO)
+        widget.set_icon_name('go-jump')
         if self.drag_info():
             self.list.enable_model_drag_source(Gdk.ModifierType.BUTTON1_MASK,
               [],

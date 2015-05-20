@@ -271,7 +271,7 @@ class WriterOptionBox(object):
             box.pack_start(label, False, True, 0)
             box.pack_start(self.filter_obj, True, True, 0)
             box.pack_start(
-                SimpleButton(Gtk.STOCK_EDIT, 
+                SimpleButton('gtk-edit',
                    lambda obj: self.edit_filter('Person', self.filter_obj)),
                 False, True, 0)
             button.set_tooltip_text(_("Click to see preview after person filter"))
@@ -288,7 +288,7 @@ class WriterOptionBox(object):
             box.pack_start(label_note, False, True, 0)
             box.pack_start(self.filter_note, True, True, 0)
             box.pack_start(
-                SimpleButton(Gtk.STOCK_EDIT, 
+                SimpleButton('gtk-edit',
                    lambda obj: self.edit_filter('Note', self.filter_note)),
                 False, True, 0)
             button.set_tooltip_text(_("Click to see preview after note filter"))
@@ -334,16 +334,14 @@ class WriterOptionBox(object):
         if row == 0:
             up.set_sensitive(0) # can't go up
         image = Gtk.Image()
-        image.set_from_stock(Gtk.STOCK_GO_UP,
-                             Gtk.IconSize.MENU)
+        image.set_from_icon_name('go-up', Gtk.IconSize.MENU)
         up.set_image(image)
         up.row = row - 1
         self.up_n.append(up)
         down = Gtk.Button()
         down.connect("clicked", self.swap)
         image = Gtk.Image()
-        image.set_from_stock(Gtk.STOCK_GO_DOWN,
-                             Gtk.IconSize.MENU)
+        image.set_from_icon_name('go-down', Gtk.IconSize.MENU)
         down.set_image(image)
         down.row = row
         if row == 4:
@@ -384,15 +382,13 @@ class WriterOptionBox(object):
                 up = Gtk.Button()
                 up.set_sensitive(0) 
                 image = Gtk.Image()
-                image.set_from_stock(Gtk.STOCK_GO_UP,
-                                     Gtk.IconSize.MENU)
+                image.set_from_icon_name('go-up', Gtk.IconSize.MENU)
                 up.set_image(image)
                 self.spacer.pack_start(up, False, True, 0)
                 down = Gtk.Button()
                 down.set_sensitive(0) 
                 image = Gtk.Image()
-                image.set_from_stock(Gtk.STOCK_GO_DOWN,
-                                     Gtk.IconSize.MENU)
+                image.set_from_icon_name('go-down', Gtk.IconSize.MENU)
                 down.set_image(image)
                 self.spacer.pack_end(down, False, True, 0)
                 self.spacer_up = up

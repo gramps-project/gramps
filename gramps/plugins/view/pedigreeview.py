@@ -1448,9 +1448,9 @@ class PedigreeView(NavigationView):
                     label.set_use_markup(True)
                     label.show()
                     label.set_alignment(0, 0)
-                    menuitem = Gtk.ImageMenuItem(None)
-                    go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,
-                                                        Gtk.IconSize.MENU)
+                    menuitem = Gtk.ImageMenuItem()
+                    go_image = Gtk.Image.new_from_icon_name('go-jump',
+                                                            Gtk.IconSize.MENU)
                     go_image.show()
                     menuitem.set_image(go_image)
                     menuitem.add(label)
@@ -1537,16 +1537,16 @@ class PedigreeView(NavigationView):
             home_sensitivity = False
             # bug 4884: need to translate the home label
         entries = [
-            (Gtk.STOCK_GO_BACK, self.back_clicked, not hobj.at_front()),
-            (Gtk.STOCK_GO_FORWARD, self.fwd_clicked, not hobj.at_end()),
-            (_("Home"), self.cb_home, home_sensitivity),
+            (_("Pre_vious"), 'go-previous', self.back_clicked, not hobj.at_front()),
+            (_("_Next"), 'go-next', self.fwd_clicked, not hobj.at_end()),
+            (_("_Home"), 'go-home', self.cb_home, home_sensitivity),
         ]
 
-        for stock_id, callback, sensitivity in entries:
-            item = Gtk.ImageMenuItem.new_from_stock(stock_id=stock_id, accel_group=None)
+        for label, icon_name, callback, sensitivity in entries:
+            item = Gtk.ImageMenuItem.new_with_mnemonic(label)
             item.set_sensitive(sensitivity)
-            if stock_id == _("Home"):
-                im = Gtk.Image.new_from_stock(Gtk.STOCK_HOME, Gtk.IconSize.MENU)
+            if icon_name:
+                im = Gtk.Image.new_from_icon_name(icon_name, Gtk.IconSize.MENU)
                 im.show()
                 item.set_image(im)
             if callback:
@@ -1569,21 +1569,19 @@ class PedigreeView(NavigationView):
         item.set_submenu(Gtk.Menu())
         scroll_direction_menu = item.get_submenu()
 
-        scroll_direction_image = Gtk.Image.new_from_stock(Gtk.STOCK_APPLY,
-                                                       Gtk.IconSize.MENU)
-        scroll_direction_image.show()
-
-        entry = Gtk.ImageMenuItem(label=_("Top <-> Bottom"))
+        entry = Gtk.CheckMenuItem(label=_("Top <-> Bottom"))
+        entry.set_draw_as_radio(True)
         entry.connect("activate", self.cb_change_scroll_direction, False)
         if self.scroll_direction == False:
-            entry.set_image(scroll_direction_image)
+            entry.set_active(True)
         entry.show()
         scroll_direction_menu.append(entry)
 
-        entry = Gtk.ImageMenuItem(_("Left <-> Right"))
+        entry = Gtk.CheckMenuItem(_("Left <-> Right"))
+        entry.set_draw_as_radio(True)
         entry.connect("activate", self.cb_change_scroll_direction, True)
         if self.scroll_direction == True:
-            entry.set_image(scroll_direction_image)
+            entry.set_active(True)
         entry.show()
         scroll_direction_menu.append(entry)
 
@@ -1597,7 +1595,10 @@ class PedigreeView(NavigationView):
         self.menu = Gtk.Menu()
         self.menu.set_title(_('People Menu'))
 
-        add_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_ADD, None)
+        add_item = Gtk.ImageMenuItem.new_with_mnemonic(_('_Add'))
+        img = Gtk.Image.new_from_icon_name('list-add', Gtk.IconSize.MENU)
+        img.show()
+        add_item.set_image(img)
         add_item.connect("activate", self.cb_add_parents, person_handle,
                          family_handle)
         add_item.show()
@@ -1627,8 +1628,7 @@ class PedigreeView(NavigationView):
         if not person:
             return 0
 
-        go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,
-                                            Gtk.IconSize.MENU)
+        go_image = Gtk.Image.new_from_icon_name('go-jump', Gtk.IconSize.MENU)
         go_image.show()
         go_item = Gtk.ImageMenuItem(label=name_displayer.display(person))
         go_item.set_image(go_image)
@@ -1636,12 +1636,18 @@ class PedigreeView(NavigationView):
         go_item.show()
         self.menu.append(go_item)
 
-        edit_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_EDIT, None)
+        edit_item = Gtk.ImageMenuItem.new_with_mnemonic(_('_Edit'))
+        img = Gtk.Image.new_from_icon_name('gtk-edit', Gtk.IconSize.MENU)
+        img.show()
+        edit_item.set_image(img)
         edit_item.connect("activate", self.cb_edit_person, person_handle)
         edit_item.show()
         self.menu.append(edit_item)
 
-        clipboard_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_COPY, None)
+        clipboard_item = Gtk.ImageMenuItem.new_with_mnemonic(_('_Copy'))
+        img = Gtk.Image.new_from_icon_name('edit-copy', Gtk.IconSize.MENU)
+        img.show()
+        clipboard_item.set_image(img)
         clipboard_item.connect("activate", self.cb_copy_person_to_clipboard,
                                person_handle)
         clipboard_item.show()
@@ -1669,8 +1675,8 @@ class PedigreeView(NavigationView):
                 item.set_submenu(Gtk.Menu())
                 sp_menu = item.get_submenu()
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,
-                                                Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_icon_name('go-jump',
+                                                    Gtk.IconSize.MENU)
             go_image.show()
             sp_item = Gtk.ImageMenuItem(label=name_displayer.display(spouse))
             sp_item.set_image(go_image)
@@ -1711,8 +1717,8 @@ class PedigreeView(NavigationView):
                 else:
                     label = Gtk.Label(label=escape(name_displayer.display(sib)))
 
-                go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,
-                                                    Gtk.IconSize.MENU)
+                go_image = Gtk.Image.new_from_icon_name('go-jump',
+                                                        Gtk.IconSize.MENU)
                 go_image.show()
                 sib_item = Gtk.ImageMenuItem()
                 sib_item.set_image(go_image)
@@ -1750,10 +1756,10 @@ class PedigreeView(NavigationView):
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(child)))
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,
-                                                Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_icon_name('go-jump',
+                                                    Gtk.IconSize.MENU)
             go_image.show()
-            child_item = Gtk.ImageMenuItem(None)
+            child_item = Gtk.ImageMenuItem()
             child_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
@@ -1790,8 +1796,8 @@ class PedigreeView(NavigationView):
             else:
                 label = Gtk.Label(label=escape(name_displayer.display(par)))
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,
-                                                Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_icon_name('go-jump',
+                                                    Gtk.IconSize.MENU)
             go_image.show()
             par_item = Gtk.ImageMenuItem()
             par_item.set_image(go_image)
@@ -1836,8 +1842,8 @@ class PedigreeView(NavigationView):
 
             label = Gtk.Label(label=escape(name_displayer.display(per)))
 
-            go_image = Gtk.Image.new_from_stock(Gtk.STOCK_JUMP_TO,
-                                                Gtk.IconSize.MENU)
+            go_image = Gtk.Image.new_from_icon_name('go-jump',
+                                                    Gtk.IconSize.MENU)
             go_image.show()
             per_item = Gtk.ImageMenuItem()
             per_item.set_image(go_image)
@@ -1874,12 +1880,18 @@ class PedigreeView(NavigationView):
         if not family:
             return 0
 
-        edit_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_EDIT, None)
+        edit_item = Gtk.ImageMenuItem.new_with_mnemonic(_('_Edit'))
+        img = Gtk.Image.new_from_icon_name('gtk-edit', Gtk.IconSize.MENU)
+        img.show()
+        edit_item.set_image(img)
         edit_item.connect("activate", self.cb_edit_family, family_handle)
         edit_item.show()
         self.menu.append(edit_item)
 
-        clipboard_item = Gtk.ImageMenuItem.new_from_stock(Gtk.STOCK_COPY, None)
+        clipboard_item = Gtk.ImageMenuItem.new_with_mnemonic(_('_Copy'))
+        img = Gtk.Image.new_from_icon_name('edit-copy', Gtk.IconSize.MENU)
+        img.show()
+        clipboard_item.set_image(img)
         clipboard_item.connect("activate", self.cb_copy_family_to_clipboard,
                                family_handle)
         clipboard_item.show()

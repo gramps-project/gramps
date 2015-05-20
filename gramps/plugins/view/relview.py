@@ -60,6 +60,7 @@ from gramps.gen.lib import (ChildRef, EventRoleType, EventType, Family,
 from gramps.gen.lib.date import Today
 from gramps.gen.db import DbTxn
 from gramps.gui.views.navigationview import NavigationView
+from gramps.gui.actiongroup import ActionGroup
 from gramps.gui.editors import EditPerson, EditFamily
 from gramps.gui.editors import FilterEditor
 from gramps.gen.display.name import displayer as name_displayer
@@ -390,15 +391,15 @@ class RelationshipView(NavigationView):
     def define_actions(self):
         NavigationView.define_actions(self)
 
-        self.order_action = Gtk.ActionGroup(name=self.title + '/ChangeOrder')
+        self.order_action = ActionGroup(name=self.title + '/ChangeOrder')
         self.order_action.add_actions([
-            ('ChangeOrder', Gtk.STOCK_SORT_ASCENDING, _('_Reorder'), None ,
+            ('ChangeOrder', 'view-sort-ascending', _('_Reorder'), None ,
             _("Change order of parents and families"), self.reorder),
             ])
 
-        self.family_action = Gtk.ActionGroup(name=self.title + '/Family')
+        self.family_action = ActionGroup(name=self.title + '/Family')
         self.family_action.add_actions([
-            ('Edit', Gtk.STOCK_EDIT, _('Edit...'), "<PRIMARY>Return",
+            ('Edit', 'gtk-edit', _('Edit...'), "<PRIMARY>Return",
                 _("Edit the active person"), self.edit_active),
             ('AddSpouse', 'gramps-spouse', _('Partner'), None ,
                 _("Add a new family with person as parent"), self.add_spouse),
@@ -804,28 +805,28 @@ class RelationshipView(NavigationView):
                 # Show edit-Buttons if toolbar is not visible
                 if self.reorder_sensitive:
                     add = widgets.IconButton(self.reorder_button_press, None, 
-                                             Gtk.STOCK_SORT_ASCENDING)
+                                             'view-sort-ascending')
                     add.set_tooltip_text(ord_msg)
                     hbox.pack_start(add, False, True, 0)
 
-                add = widgets.IconButton(call_fcn, None, Gtk.STOCK_ADD)
+                add = widgets.IconButton(call_fcn, None, 'list-add')
                 add.set_tooltip_text(add_msg)
                 hbox.pack_start(add, False, True, 0)
 
                 if is_parent:
                     add = widgets.IconButton(self.select_family, None,
-                                             Gtk.STOCK_INDEX)
+                                             'gtk-index')
                     add.set_tooltip_text(sel_msg)
                     hbox.pack_start(add, False, True, 0)
 
             if family:
                 edit = widgets.IconButton(self.edit_family, family.handle, 
-                                          Gtk.STOCK_EDIT)
+                                          'gtk-edit')
                 edit.set_tooltip_text(edit_msg)
                 hbox.pack_start(edit, False, True, 0)
                 if not self.dbstate.db.readonly:
                     delete = widgets.IconButton(del_fcn, family.handle, 
-                                                Gtk.STOCK_REMOVE)
+                                                'list-remove')
                     delete.set_tooltip_text(del_msg)
                     hbox.pack_start(delete, False, True, 0)
 
@@ -938,11 +939,11 @@ class RelationshipView(NavigationView):
                     hbox = Gtk.Box()
                     addchild = widgets.IconButton(self.add_child_to_fam, 
                                                   family.handle, 
-                                                  Gtk.STOCK_ADD)
+                                                  'list-add')
                     addchild.set_tooltip_text(_('Add new child to family'))
                     selchild = widgets.IconButton(self.sel_child_to_fam, 
                                                   family.handle, 
-                                                  Gtk.STOCK_INDEX)
+                                                  'gtk-index')
                     selchild.set_tooltip_text(_('Add existing child to family'))
                     hbox.pack_start(addchild, False, True, 0)
                     hbox.pack_start(selchild, False, True, 0)
@@ -1270,7 +1271,7 @@ class RelationshipView(NavigationView):
         name = name_displayer.display(person)
 
         item = Gtk.ImageMenuItem(None)
-        image = Gtk.Image.new_from_stock(Gtk.STOCK_EDIT, Gtk.IconSize.MENU)
+        image = Gtk.Image.new_from_icon_name('gtk-edit', Gtk.IconSize.MENU)
         image.show()
         label = Gtk.Label(label=_("Edit %s") % name)
         label.show()
@@ -1435,11 +1436,11 @@ class RelationshipView(NavigationView):
                 hbox = Gtk.Box()
                 addchild = widgets.IconButton(self.add_child_to_fam, 
                                               family.handle, 
-                                              Gtk.STOCK_ADD)
+                                              'list-add')
                 addchild.set_tooltip_text(_('Add new child to family'))
                 selchild = widgets.IconButton(self.sel_child_to_fam, 
                                               family.handle, 
-                                              Gtk.STOCK_INDEX)
+                                              'gtk-index')
                 selchild.set_tooltip_text(_('Add existing child to family'))                                  
                 hbox.pack_start(addchild, False, True, 0)
                 hbox.pack_start(selchild, False, True, 0)

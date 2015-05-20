@@ -76,7 +76,7 @@ class LastNameDialog(ManagedWindow):
 
         ManagedWindow.__init__(self, uistate, track, self)
         flags = Gtk.DialogFlags.MODAL | Gtk.DialogFlags.DESTROY_WITH_PARENT
-        buttons = (Gtk.STOCK_CANCEL, Gtk.ResponseType.REJECT, Gtk.STOCK_OK, 
+        buttons = (_('_Cancel'), Gtk.ResponseType.REJECT, _('_OK'),
                    Gtk.ResponseType.ACCEPT)
         self.__dlg = Gtk.Dialog(None, uistate.window, flags, buttons)
         self.__dlg.set_position(Gtk.WindowPosition.CENTER_ON_PARENT)
@@ -621,7 +621,7 @@ class GuiPersonOption(Gtk.Box):
         
         pevt = Gtk.EventBox()
         pevt.add(self.__person_label)
-        person_button = widgets.SimpleButton(Gtk.STOCK_INDEX, 
+        person_button = widgets.SimpleButton('gtk-index',
                                              self.__get_person_clicked)
         person_button.set_relief(Gtk.ReliefStyle.NORMAL)
 
@@ -746,7 +746,7 @@ class GuiFamilyOption(Gtk.Box):
         
         pevt = Gtk.EventBox()
         pevt.add(self.__family_label)
-        family_button = widgets.SimpleButton(Gtk.STOCK_INDEX, 
+        family_button = widgets.SimpleButton('gtk-index',
                                              self.__get_family_clicked)
         family_button.set_relief(Gtk.ReliefStyle.NORMAL)
 
@@ -935,7 +935,7 @@ class GuiNoteOption(Gtk.Box):
         
         pevt = Gtk.EventBox()
         pevt.add(self.__note_label)
-        note_button = widgets.SimpleButton(Gtk.STOCK_INDEX, 
+        note_button = widgets.SimpleButton('gtk-index',
                                            self.__get_note_clicked)
         note_button.set_relief(Gtk.ReliefStyle.NORMAL)
 
@@ -1039,7 +1039,7 @@ class GuiMediaOption(Gtk.Box):
         
         pevt = Gtk.EventBox()
         pevt.add(self.__media_label)
-        media_button = widgets.SimpleButton(Gtk.STOCK_INDEX, 
+        media_button = widgets.SimpleButton('gtk-index',
                                             self.__get_media_clicked)
         media_button.set_relief(Gtk.ReliefStyle.NORMAL)
 
@@ -1161,9 +1161,9 @@ class GuiPersonListOption(Gtk.Box):
 
         # now setup the '+' and '-' pushbutton for adding/removing people from 
         # the container
-        self.__add_person = widgets.SimpleButton(Gtk.STOCK_ADD, 
+        self.__add_person = widgets.SimpleButton('list-add',
                                                  self.__add_person_clicked)
-        self.__del_person = widgets.SimpleButton(Gtk.STOCK_REMOVE, 
+        self.__del_person = widgets.SimpleButton('list-remove',
                                                  self.__del_person_clicked)
         self.__vbbox = Gtk.ButtonBox(orientation=Gtk.Orientation.VERTICAL)
         self.__vbbox.add(self.__add_person)
@@ -1338,9 +1338,9 @@ class GuiPlaceListOption(Gtk.Box):
 
         # now setup the '+' and '-' pushbutton for adding/removing places from 
         # the container
-        self.__add_place = widgets.SimpleButton(Gtk.STOCK_ADD, 
+        self.__add_place = widgets.SimpleButton('list-add',
                                                 self.__add_place_clicked)
-        self.__del_place = widgets.SimpleButton(Gtk.STOCK_REMOVE, 
+        self.__del_place = widgets.SimpleButton('list-remove',
                                                 self.__del_place_clicked)
         self.__vbbox = Gtk.ButtonBox(orientation=Gtk.Orientation.VERTICAL)
         self.__vbbox.add(self.__add_place)
@@ -1481,9 +1481,9 @@ class GuiSurnameColorOption(Gtk.Box):
         self.scrolled_window.set_shadow_type(Gtk.ShadowType.OUT)
         self.pack_start(self.scrolled_window, True, True, 0)
 
-        self.add_surname = widgets.SimpleButton(Gtk.STOCK_ADD, 
+        self.add_surname = widgets.SimpleButton('list-add',
                                                 self.__add_clicked)
-        self.del_surname = widgets.SimpleButton(Gtk.STOCK_REMOVE, 
+        self.del_surname = widgets.SimpleButton('list-remove',
                                                 self.__del_clicked)
         self.vbbox = Gtk.ButtonBox(orientation=Gtk.Orientation.VERTICAL)
         self.vbbox.add(self.add_surname)
@@ -1647,7 +1647,7 @@ class GuiDestinationOption(Gtk.Box):
         
         self.__button = Gtk.Button()
         img = Gtk.Image()
-        img.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
+        img.set_from_icon_name('document-open', Gtk.IconSize.BUTTON)
         self.__button.add(img)
         self.__button.connect('clicked', self.__select_file)
         
@@ -1694,9 +1694,9 @@ class GuiDestinationOption(Gtk.Box):
             my_action = Gtk.FileChooserAction.SAVE
         
         fcd = Gtk.FileChooserDialog(_("Save As"), action=my_action,
-                                    buttons=(Gtk.STOCK_CANCEL,
+                                    buttons=(_('_Cancel'),
                                              Gtk.ResponseType.CANCEL,
-                                             Gtk.STOCK_OPEN,
+                                             _('_Open'),
                                              Gtk.ResponseType.OK))
 
         name = os.path.abspath(self.__option.get_value())

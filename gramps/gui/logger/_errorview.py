@@ -95,7 +95,7 @@ class ErrorView(object):
         hbox = Gtk.Box()
         hbox.set_spacing(12)
         image = Gtk.Image()
-        image.set_from_stock(Gtk.STOCK_DIALOG_ERROR, Gtk.IconSize.DIALOG)
+        image.set_from_icon_name('dialog-error', Gtk.IconSize.DIALOG)
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>'
                           % _("Gramps has experienced an unexpected error"))
         label.set_use_markup(True)
@@ -135,9 +135,9 @@ class ErrorView(object):
         
         vbox.pack_start(tb_expander, True, True, 5)
 
-        self.top.add_button(Gtk.STOCK_CANCEL,Gtk.ResponseType.CANCEL)
-        self.top.add_button(_("Report"),Gtk.ResponseType.YES)
-        self.top.add_button(Gtk.STOCK_HELP,Gtk.ResponseType.HELP)
+        self.top.add_button(_('_Cancel'), Gtk.ResponseType.CANCEL)
+        self.top.add_button(_("Report"), Gtk.ResponseType.YES)
+        self.top.add_button(_('_Help'), Gtk.ResponseType.HELP)
 
         self.top.show_all()
 

@@ -235,11 +235,11 @@ class GrampletWindow(ManagedWindow):
                                              self.title)
         self.set_window(Gtk.Dialog("", gramplet.uistate.window,
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
+                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
                         None, self.title)
         self.window.set_size_request(gramplet.detached_width,
                                      gramplet.detached_height)
-        self.window.add_button(Gtk.STOCK_HELP, Gtk.ResponseType.HELP)
+        self.window.add_button(_('_Help'), Gtk.ResponseType.HELP)
         # add gramplet:
         if self.gramplet.pui:
             self.gramplet.pui.active = True
@@ -260,7 +260,7 @@ class GrampletWindow(ManagedWindow):
         """
         Callback for taking care of button clicks.
         """
-        if response in [Gtk.ResponseType.CLOSE, Gtk.STOCK_CLOSE]:
+        if response == Gtk.ResponseType.CLOSE:
             self.close()
         elif response == Gtk.ResponseType.HELP:
             # translated name:
@@ -572,7 +572,7 @@ class GuiGramplet(object):
             label.set_alignment(1.0, 0.5)
             labels.pack_start(label, True, True, 0)
             options.pack_start(self.pui.option_dict[item][0], True, True, 0) # widget
-        save_button = Gtk.Button(stock=Gtk.STOCK_SAVE)
+        save_button = Gtk.Button.new_with_mnemonic(_('_Save'))
         topbox.pack_end(save_button, False, False, 0)
         save_button.connect('clicked', self.pui.save_update_options)
         frame.add(topbox)
@@ -775,11 +775,11 @@ class GridGramplet(GuiGramplet):
         self.gvstate.connect('clicked', self.change_state)
         self.gvproperties = self.xml.get_object('gvproperties')
         self.gvproperties.connect('clicked', self.set_properties)
-        self.xml.get_object('gvcloseimage').set_from_stock(Gtk.STOCK_CLOSE,
+        self.xml.get_object('gvcloseimage').set_from_icon_name('window-close',
                                                            Gtk.IconSize.MENU)
-        self.xml.get_object('gvstateimage').set_from_stock(Gtk.STOCK_REMOVE,
+        self.xml.get_object('gvstateimage').set_from_icon_name('list-remove',
                                                            Gtk.IconSize.MENU)
-        self.xml.get_object('gvpropertiesimage').set_from_stock(Gtk.STOCK_PROPERTIES,
+        self.xml.get_object('gvpropertiesimage').set_from_icon_name('document-properties',
                                                                 Gtk.IconSize.MENU)
 
         # source:
@@ -864,14 +864,14 @@ class GridGramplet(GuiGramplet):
         self.gstate = state
         if state == "minimized":
             self.scrolledwindow.hide()
-            self.xml.get_object('gvstateimage').set_from_stock(Gtk.STOCK_ADD,
+            self.xml.get_object('gvstateimage').set_from_icon_name('list-add',
                                                             Gtk.IconSize.MENU)
             column = self.mainframe.get_parent() # column
             expand, fill, padding, pack = column.query_child_packing(self.mainframe)
             column.set_child_packing(self.mainframe, False, fill, padding, pack)
         else:
             self.scrolledwindow.show()
-            self.xml.get_object('gvstateimage').set_from_stock(Gtk.STOCK_REMOVE,
+            self.xml.get_object('gvstateimage').set_from_icon_name('list-remove',
                                                             Gtk.IconSize.MENU)
             column = self.mainframe.get_parent() # column
             expand, fill, padding, pack = column.query_child_packing(self.mainframe)

@@ -620,7 +620,7 @@ class MonitoredDate(object):
         self.button_obj = button
 
         image = Gtk.Image()
-        image.set_from_stock('gramps-date-edit', Gtk.IconSize.BUTTON)
+        image.set_from_icon_name('gramps-date-edit', Gtk.IconSize.BUTTON)
         self.button_obj.set_image(image)
         self.button_obj.set_relief(Gtk.ReliefStyle.NORMAL)
         self.pixmap_obj = self.button_obj.get_child()
@@ -836,7 +836,7 @@ class MonitoredTagList(object):
         self.label.set_alignment(0, 0.5)
         self.label.set_ellipsize(Pango.EllipsizeMode.END)
         image = Gtk.Image()
-        image.set_from_stock('gramps-tag', Gtk.IconSize.MENU)
+        image.set_from_icon_name('gramps-tag', Gtk.IconSize.MENU)
         button.set_image (image)
         button.set_tooltip_text(_('Edit the tag list'))
         button.connect('button-press-event', self.cb_edit)

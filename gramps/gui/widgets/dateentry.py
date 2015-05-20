@@ -57,7 +57,7 @@ class DateEntry(Gtk.Box):
         self.entry.set_width_chars(13)
         self.pack_start(self.entry, True, True, 0)
         image = Gtk.Image()
-        image.set_from_stock('gramps-date-edit', Gtk.IconSize.BUTTON)
+        image.set_from_icon_name('gramps-date-edit', Gtk.IconSize.BUTTON)
         button = Gtk.Button() 
         button.set_image(image)
         button.set_relief(Gtk.ReliefStyle.NORMAL)

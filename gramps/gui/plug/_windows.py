@@ -100,7 +100,7 @@ class PluginStatus(ManagedWindow):
         self.__preg = PluginRegister.get_instance()
         self.set_window(Gtk.Dialog("", uistate.window,
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
+                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
                         None, self.title)
         self.window.set_size_request(750, 400)
         self.window.connect('response', self.close)
@@ -249,7 +249,7 @@ class PluginStatus(ManagedWindow):
 
         button = Gtk.Button()
         img = Gtk.Image()
-        img.set_from_stock(Gtk.STOCK_OPEN, Gtk.IconSize.BUTTON)
+        img.set_from_icon_name('document-open', Gtk.IconSize.BUTTON)
         button.add(img)
         button.connect('clicked', self.__select_file)
         install_row.pack_start(self.install_addon_path, True, True, 0)
@@ -424,9 +424,9 @@ class PluginStatus(ManagedWindow):
         Select a file from the file system.
         """
         fcd = Gtk.FileChooserDialog(_("Load Addon"), 
-                                    buttons=(Gtk.STOCK_CANCEL,
+                                    buttons=(_('_Cancel'),
                                              Gtk.ResponseType.CANCEL,
-                                             Gtk.STOCK_OPEN,
+                                             _('_Open'),
                                              Gtk.ResponseType.OK))
         name = self.install_addon_path.get_text()
         dir = os.path.dirname(name)
@@ -673,7 +673,7 @@ class PluginTrace(ManagedWindow):
 
         self.set_window(Gtk.Dialog("", uistate.window,
                                    Gtk.DialogFlags.DESTROY_WITH_PARENT,
-                                   (Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
+                                   (_('_Close'), Gtk.ResponseType.CLOSE)),
                         None, title)
         self.window.set_size_request(600, 400)
         self.window.connect('response', self.close)
@@ -729,11 +729,11 @@ class ToolManagedWindowBase(ManagedWindow):
         self.set_window(window, None, self.get_title())
 
         #self.window.connect('response', self.close)
-        self.cancel = self.window.add_button(Gtk.STOCK_CLOSE,
+        self.cancel = self.window.add_button(_('_Close'),
                                              Gtk.ResponseType.CANCEL)
         self.cancel.connect('clicked', self.close)
 
-        self.ok = self.window.add_button(Gtk.STOCK_EXECUTE, Gtk.ResponseType.OK)
+        self.ok = self.window.add_button(_('_Execute'), Gtk.ResponseType.OK)
         self.ok.connect('clicked', self.on_ok_clicked)
 
         self.window.set_default_size(600, -1)

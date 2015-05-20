@@ -70,7 +70,8 @@ OPENGL = True
 #-------------------------------------------------------------------------
 
 #open_icon = QtGui.QIcon.fromTheme('open')
-FAMTREE_ICONPATH = os.path.join(IMAGE_DIR, '22x22', 'gramps.png')
+FAMTREE_ICONPATH = os.path.join(IMAGE_DIR, 'hicolor', '22x22', 'actions',
+                                'gramps.png')
 
 class FamTreeWrapper(QtCore.QObject):
     """

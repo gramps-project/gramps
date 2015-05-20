@@ -117,7 +117,7 @@ class PlaceSelection(ManagedWindow, OsmGps):
         self.layer = layer
         self.set_window(
             Gtk.Dialog(_('Place Selection in a region'),
-                       buttons=(Gtk.STOCK_CLOSE, Gtk.ResponseType.CLOSE)),
+                       buttons=(_('_Close'), Gtk.ResponseType.CLOSE)),
             None, _('Place Selection in a region'), None)
         label = Gtk.Label(label=_('Choose the radius of the selection.\n'
                             'On the map you should see a circle or an'

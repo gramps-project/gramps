@@ -48,6 +48,7 @@ _LOG = logging.getLogger(".gui.personview")
 from gramps.gen.lib import Person, Surname
 from gramps.gen.db import DbTxn
 from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
+from gramps.gui.actiongroup import ActionGroup
 from gramps.gen.utils.string import data_recover_msg
 from gramps.gen.display.name import displayer as name_displayer
 from gramps.gui.dialog import ErrorDialog, QuestionDialog
@@ -336,13 +337,13 @@ class BasePersonView(ListView):
 
         ListView.define_actions(self)
 
-        self.all_action = Gtk.ActionGroup(name=self.title + "/PersonAll")
-        self.edit_action = Gtk.ActionGroup(name=self.title + "/PersonEdit")
+        self.all_action = ActionGroup(name=self.title + "/PersonAll")
+        self.edit_action = ActionGroup(name=self.title + "/PersonEdit")
 
         self.all_action.add_actions([
                 ('FilterEdit', None, _('Person Filter Editor'), None, None,
                 self.filter_editor),
-                ('Edit', Gtk.STOCK_EDIT, _("action|_Edit..."),
+                ('Edit', 'gtk-edit', _("action|_Edit..."),
                 "<PRIMARY>Return", self.EDIT_MSG, self.edit), 
                 ('QuickReport', None, _("Quick View"), None, None, None), 
                 ('WebConnect', None, _("Web Connection"), None, None, None), 
@@ -351,14 +352,14 @@ class BasePersonView(ListView):
 
         self.edit_action.add_actions(
             [
-                ('Add', Gtk.STOCK_ADD, _("_Add..."), "<PRIMARY>Insert", 
-                 self.ADD_MSG, self.add), 
-                ('Remove', Gtk.STOCK_REMOVE, _("_Remove"), "<PRIMARY>Delete", 
+                ('Add', 'list-add', _("_Add..."), "<PRIMARY>Insert",
+                 self.ADD_MSG, self.add),
+                ('Remove', 'list-remove', _("_Remove"), "<PRIMARY>Delete",
                  self.DEL_MSG, self.remove),
                 ('Merge', 'gramps-merge', _('_Merge...'), None,
                  self.MERGE_MSG, self.merge),
                 ('ExportTab', None, _('Export View...'), None, None,
-                 self.export), 
+                 self.export),
                 ])
 
         self._add_action_group(self.edit_action)

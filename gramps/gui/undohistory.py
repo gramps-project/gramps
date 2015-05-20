@@ -69,13 +69,13 @@ class UndoHistory(ManagedWindow):
         window = Gtk.Dialog("", uistate.window,
                             Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
 
-        self.undo_button = window.add_button(Gtk.STOCK_UNDO,
+        self.undo_button = window.add_button(_('_Undo'),
                                              Gtk.ResponseType.REJECT)
-        self.redo_button = window.add_button(Gtk.STOCK_REDO,
+        self.redo_button = window.add_button(_('_Redo'),
                                              Gtk.ResponseType.ACCEPT)
-        self.clear_button = window.add_button(Gtk.STOCK_CLEAR,
+        self.clear_button = window.add_button(_('_Clear'),
                                               Gtk.ResponseType.APPLY)
-        self.close_button = window.add_button(Gtk.STOCK_CLOSE,
+        self.close_button = window.add_button(_('_Close'),
                                               Gtk.ResponseType.CLOSE)
      
         self.set_window(window, None, self.title)

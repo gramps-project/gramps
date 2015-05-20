@@ -262,25 +262,25 @@ class ObjEntry(object):
 
         if use_add:
             image = Gtk.Image()
-            image.set_from_stock(Gtk.STOCK_REMOVE, Gtk.IconSize.BUTTON)
+            image.set_from_icon_name('list-remove', Gtk.IconSize.BUTTON)
             image.show()
             self.share.add(image)
             self.share.set_tooltip_text(self.DEL_STR)
             if self.add_edt is not None:
                 image = Gtk.Image()
-                image.set_from_stock(Gtk.STOCK_EDIT, Gtk.IconSize.BUTTON)
+                image.set_from_icon_name('gtk-edit', Gtk.IconSize.BUTTON)
                 image.show()
                 self.add_edt.add(image)
                 self.add_edt.set_tooltip_text(self.EDIT_STR)
         else:
             image = Gtk.Image()
-            image.set_from_stock(Gtk.STOCK_INDEX, Gtk.IconSize.BUTTON)
+            image.set_from_icon_name('gtk-index', Gtk.IconSize.BUTTON)
             image.show()
             self.share.add(image)
             self.share.set_tooltip_text(self.SHARE_STR)
             if self.add_edt is not None:
                 image = Gtk.Image()
-                image.set_from_stock(Gtk.STOCK_ADD, Gtk.IconSize.BUTTON)
+                image.set_from_icon_name('list-add', Gtk.IconSize.BUTTON)
                 image.show()
                 self.add_edt.add(image)
                 self.add_edt.set_tooltip_text(self.ADD_STR)

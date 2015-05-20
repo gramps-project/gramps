@@ -74,29 +74,28 @@ WIKI_HELP_SEC = _('manual|Using_the_Clipboard')
 #
 #-------------------------------------------------------------------------
 
-_stock_image = os.path.join(IMAGE_DIR,'stock_link.png')
-LINK_PIC = GdkPixbuf.Pixbuf.new_from_file(_stock_image)
+theme = Gtk.IconTheme.get_default()
+LINK_PIC = theme.load_icon('stock_link', 16, 0)
 ICONS = {}
-for (name, file) in (
-    ("media", "gramps-media.png"),
-    ("note", "gramps-notes.png"),
-    ("person", "gramps-person.png"),
-    ("place", "gramps-place.png"),
-    ('address', 'gramps-address.png'),
-    ('attribute', 'gramps-attribute.png'),
-    ('event', 'gramps-event.png'),
-    ('family', 'gramps-family.png'),
-    ('location', 'geo-place-link.png'),
-    ('media', 'gramps-media.png'),
-    ('name', 'geo-show-person.png'),
-    ('repository', 'gramps-repository.png'),
-    ('source', 'gramps-source.png'),
-    ('citation', 'gramps-citation.png'),
-    ('text', 'gramps-font.png'),
-    ('url', 'gramps-geo.png'),
+for (name, icon) in (
+    ("media", "gramps-media"),
+    ("note", "gramps-notes"),
+    ("person", "gramps-person"),
+    ("place", "gramps-place"),
+    ('address', 'gramps-address'),
+    ('attribute', 'gramps-attribute'),
+    ('event', 'gramps-event'),
+    ('family', 'gramps-family'),
+    ('location', 'geo-place-link'),
+    ('media', 'gramps-media'),
+    ('name', 'geo-show-person'),
+    ('repository', 'gramps-repository'),
+    ('source', 'gramps-source'),
+    ('citation', 'gramps-citation'),
+    ('text', 'gramps-font'),
+    ('url', 'gramps-geo'),
     ):
-    _image = os.path.join(IMAGE_DIR, '16x16', file)
-    ICONS[name] = GdkPixbuf.Pixbuf.new_from_file(_image) 
+    ICONS[name] = theme.load_icon(icon, 16, 0)
 
 #-------------------------------------------------------------------------
 #
@@ -174,7 +173,7 @@ def model_contains(model, data):
 #
 #-------------------------------------------------------------------------
 class ClipWrapper(object):
-    UNAVAILABLE_ICON = Gtk.STOCK_DIALOG_ERROR
+    UNAVAILABLE_ICON = 'dialog-error'
 
     def __init__(self, dbstate, obj):
         dbstate.connect('database-changed', self.database_changed)
@@ -1125,7 +1124,7 @@ class ClipboardListView(object):
         o = model.get_value(node, 1)
         if o._dbid != self.dbstate.db.get_dbid():
             if isinstance(o.__class__.UNAVAILABLE_ICON, str):
-                cell.set_property('stock-id', 
+                cell.set_property('icon-name',
                                   o.__class__.UNAVAILABLE_ICON)
             else:
                 cell.set_property('pixbuf', 

@@ -122,9 +122,9 @@ class ButtonTab(GrampsTab):
             self.top_label.set_use_markup(True)
             self.track_ref_for_deletion("top_label")
 
-        self.add_btn  = SimpleButton(Gtk.STOCK_ADD, self.add_button_clicked)
-        self.edit_btn = SimpleButton(Gtk.STOCK_EDIT, self.edit_button_clicked)
-        self.del_btn  = SimpleButton(Gtk.STOCK_REMOVE, self.del_button_clicked)
+        self.add_btn  = SimpleButton('list-add', self.add_button_clicked)
+        self.edit_btn = SimpleButton('gtk-edit', self.edit_button_clicked)
+        self.del_btn  = SimpleButton('list-remove', self.del_button_clicked)
         self.track_ref_for_deletion("add_btn")
         self.track_ref_for_deletion("edit_btn")
         self.track_ref_for_deletion("del_btn")
@@ -134,17 +134,16 @@ class ButtonTab(GrampsTab):
         self.del_btn.set_tooltip_text(self._MSG['del'])
         
         if share_button:
-            self.share_btn = SimpleButton(Gtk.STOCK_INDEX, self.share_button_clicked)
+            self.share_btn = SimpleButton('gtk-index', self.share_button_clicked)
             self.share_btn.set_tooltip_text(self._MSG['share'])
             self.track_ref_for_deletion("share_btn")
         else:
             self.share_btn = None
             
         if move_buttons:
-            self.up_btn = SimpleButton(Gtk.STOCK_GO_UP, self.up_button_clicked)
+            self.up_btn = SimpleButton('go-up', self.up_button_clicked)
             self.up_btn.set_tooltip_text(self._MSG['up'])
-            self.down_btn = SimpleButton(Gtk.STOCK_GO_DOWN, 
-                                                self.down_button_clicked)
+            self.down_btn = SimpleButton('go-down', self.down_button_clicked)
             self.down_btn.set_tooltip_text(self._MSG['down'])
             self.track_ref_for_deletion("up_btn")
             self.track_ref_for_deletion("down_btn")
@@ -153,7 +152,7 @@ class ButtonTab(GrampsTab):
             self.down_btn = None
 
         if jump_button:
-            self.jump_btn = SimpleButton(Gtk.STOCK_JUMP_TO, self.jump_button_clicked)
+            self.jump_btn = SimpleButton('go-jump', self.jump_button_clicked)
             self.track_ref_for_deletion("jump_btn")
             self.jump_btn.set_tooltip_text(self._MSG['jump'])
         else:

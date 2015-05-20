@@ -180,9 +180,9 @@ class CategorySidebar(BaseSidebar):
         hbox.show()
         image = Gtk.Image()
         if use_text:
-            image.set_from_stock(page_stock, Gtk.IconSize.BUTTON)
+            image.set_from_icon_name(page_stock, Gtk.IconSize.BUTTON)
         else:
-            image.set_from_stock(page_stock, Gtk.IconSize.DND)
+            image.set_from_icon_name(page_stock, Gtk.IconSize.DND)
         image.show()
         hbox.pack_start(image, False, False, 0)
         hbox.set_spacing(4)

@@ -125,10 +125,10 @@ class GalleryTab(ButtonTab, DbGUIElement):
 
     def right_click(self, obj, event):
         itemlist = [
-            (True, True, Gtk.STOCK_ADD, self.add_button_clicked), 
-            (True, False, _('Share'), self.share_button_clicked), 
-            (False,True, Gtk.STOCK_EDIT, self.edit_button_clicked), 
-            (True, True, Gtk.STOCK_REMOVE, self.del_button_clicked), 
+            (True, True, 'list-add', self.add_button_clicked),
+            (True, False, _('Share'), self.share_button_clicked),
+            (False,True, 'gtk-edit', self.edit_button_clicked),
+            (True, True, 'list-remove', self.del_button_clicked),
             ]
 
         self.menu = Gtk.Menu()
@@ -138,7 +138,7 @@ class GalleryTab(ButtonTab, DbGUIElement):
         if media_path:
             item = Gtk.ImageMenuItem(_('View'))
             img = Gtk.Image()
-            img.set_from_stock("gramps-viewmedia", Gtk.IconSize.MENU)
+            img.set_from_icon_name("gramps-viewmedia", Gtk.IconSize.MENU)
             item.set_image(img)
             item.connect('activate', make_launcher(media_path))
             item.show()
@@ -162,7 +162,9 @@ class GalleryTab(ButtonTab, DbGUIElement):
         
         for (needs_write_access, image, title, func) in itemlist:
             if image:
-                item = Gtk.ImageMenuItem.new_from_stock(title, None)
+                item = Gtk.ImageMenuItem()
+                img = Gtk.Image.new_from_icon_name(title, Gtk.IconSize.MENU)
+                item.set_image(img)
             else:
                 item = Gtk.MenuItem(label=title)
             item.connect('activate', func)

@@ -56,7 +56,7 @@ from gramps.gen.utils.alive import probably_alive
 import gramps.plugins.lib.libholiday as libholiday
 
 # localization for BirthdayOptions only!!
-from gramps.gen.datehandler import displayer as _dd
+from gramps.gen.datehandler import displayer as date_displayer
 
 # _T_ is a gramps-defined keyword -- see po/update_po.py and po/genpot.sh
 def _T_(value): # enable deferred translations (see Python docs 22.1.3.4)
@@ -431,6 +431,10 @@ class BirthdayOptions(MenuReportOptions):
 
         stdoptions.add_private_data_option(menu, category_name)
 
+        alive = BooleanOption(_("Include only living people"), True)
+        alive.set_help(_("Include only living people in the report"))
+        menu.add_option(category_name, "alive", alive)
+
         country = EnumeratedListOption(_("Country for holidays"), 0)
         holiday_table = libholiday.HolidayTable()
         countries = holiday_table.get_countries()
@@ -446,7 +450,7 @@ class BirthdayOptions(MenuReportOptions):
         menu.add_option(category_name, "country", country)
 
         start_dow = EnumeratedListOption(_("First day of week"), 1)
-        long_days = _dd.long_days
+        long_days = date_displayer.long_days
         for count in range(1, 8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
             start_dow.add_item((count+5) % 7 + 1, long_days[count].capitalize()) 
@@ -459,10 +463,6 @@ class BirthdayOptions(MenuReportOptions):
         maiden_name.add_item("own", _("Wives use their own surname"))
         maiden_name.set_help(_("Select married women's displayed surname"))
         menu.add_option(category_name, "maiden_name", maiden_name)
-
-        alive = BooleanOption(_("Include only living people"), True)
-        alive.set_help(_("Include only living people in the report"))
-        menu.add_option(category_name, "alive", alive)
 
         birthdays = BooleanOption(_("Include birthdays"), True)
         birthdays.set_help(_("Include birthdays in the report"))

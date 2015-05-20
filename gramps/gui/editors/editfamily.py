@@ -134,14 +134,13 @@ class ChildEmbedList(EmbeddedList):
 
     def get_popup_menu_items(self):
         return [
-            (False, True,  (Gtk.STOCK_EDIT, _('Edit child')), 
+            (False, _('Edit child'), 'gtk-edit',
                                             self.edit_child_button_clicked),
-            (True, True, Gtk.STOCK_ADD, self.add_button_clicked),
-            (True, False, _('Add an existing child'), 
-                                            self.share_button_clicked),
-            (False, True,  (Gtk.STOCK_EDIT, _('Edit relationship')), 
+            (True, _('_Add'), 'list-add', self.add_button_clicked),
+            (True, _('Add an existing child'), None, self.share_button_clicked),
+            (False, _('Edit relationship'), 'gtk-edit',
                                             self.edit_button_clicked),
-            (True, True, Gtk.STOCK_REMOVE, self.del_button_clicked),
+            (True, _('_Remove'), 'list-remove', self.del_button_clicked),
             ]
 
     def get_middle_click(self):

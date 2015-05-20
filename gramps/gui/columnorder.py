@@ -104,7 +104,7 @@ class ColumnOrder(Gtk.Box):
         self.tree = Gtk.TreeView()
         self.tree.set_reorderable(True)
         scroll.add(self.tree)
-        self.apply_button = Gtk.Button(stock='gtk-apply')
+        self.apply_button = Gtk.Button.new_with_mnemonic(_('_Apply'))
         btns = Gtk.ButtonBox()
         btns.set_layout(Gtk.ButtonBoxStyle.END)
         btns.pack_start(self.apply_button, True, True, 0)

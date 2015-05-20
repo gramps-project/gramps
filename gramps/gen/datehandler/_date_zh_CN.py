@@ -3,6 +3,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2004-2006  Donald N. Allingham
+# Copyright (C) 2014-2015  Paul Franklin
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -16,7 +17,7 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301  USA
+# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 #
 
 """
@@ -123,12 +124,13 @@ class DateParserZH_CN(DateParser):
         _span_2 = ['至']
         _range_1 = ['介于']
         _range_2 = ['与']
-        self._span =  re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+        self._span =  re.compile("(%s)(?P<start>.+)(%s)(?P<stop>\d+)" %
                                  ('|'.join(_span_1), '|'.join(_span_2)),
                                  re.IGNORECASE)
-        self._range = re.compile("(%s)\s+(?P<start>.+)\s+(%s)\s+(?P<stop>.+)" %
+        self._range = re.compile("(%s)(?P<start>.+)(%s)(?P<stop>\d+)" %
                                  ('|'.join(_range_1), '|'.join(_range_2)),
                                  re.IGNORECASE)
+        self._numeric = re.compile("((\d+)年\s*)?((\d+)月\s*)?(\d+)?日?\s*$")
                                     
 #-------------------------------------------------------------------------
 #
@@ -140,66 +142,35 @@ class DateDisplayZH_CN(DateDisplay):
     Simplified-Chinese language date display class. 
     """
 
-    # this is used to display the 12 gregorian months
-    long_months = ( "", "正月", "二月", "三月", "四月", "五月", 
-                    "六月", "七月", "八月", "九月", "十月", 
-                    "十一月", "十二月" )
-    
-    short_months = ( "", "一月", "二月", "三月", "四月", "五月", "六月",
-                     "七月", "八月", "九月", "十月", "十一月", "十二月" )
-
     formats = (
-        "年年年年-月月-日日 (ISO)",  "数字格式",  "月 日，年",
-        "月 日，年",  "日 月 年",  "日 月 年",
+        "年年年年-月月-日日 (ISO)",  "数字格式",
         )
-        # this must agree with DateDisplayEn's "formats" definition
-        # (since no locale-specific _display_gregorian exists, here)
+        # this definition must agree with its "_display_calendar" method
     
-    calendar = (
-        "", "儒略历", "希伯来历", "法国共和历", 
-        "伊郎历", "伊斯兰历", "瑞典历" 
-        )
-
-    _mod_str = ("", "以前 ", "以后 ", "大约 ", "", "", "")
-
-    _qual_str = ("", "据估计 ", "据计算 ", "")
-
     # FIXME translate these English strings into simplified-Chinese ones
     _bce_str = "%s B.C.E."
 
+    display = DateDisplay.display_formatted
 
-    def display(self, date):
-        """
-        Return a text string representing the date.
-        """
-        mod = date.get_modifier()
-        cal = date.get_calendar()
-        qual = date.get_quality()
-        start = date.get_start_date()
-        newyear = date.get_new_year()
+    def _display_calendar(self, date_val, long_months, short_months = None,
+                          inflect=""):
+        # this must agree with its locale-specific "formats" definition
 
-        qual_str = (self._qual_str)[qual]
+        if short_months is None:
+            # Let the short formats work the same as long formats
+            short_months = long_months
 
-        if mod == Date.MOD_TEXTONLY:
-            return date.get_text()
-        elif start == Date.EMPTY:
-            return ""
-        elif mod == Date.MOD_SPAN:
-            d1 = self.display_cal[cal](start)
-            d2 = self.display_cal[cal](date.get_stop_date())
-            scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s" % (qual_str, '自', d1, '至', d2, scal)
-        elif mod == Date.MOD_RANGE:
-            d1 = self.display_cal[cal](start)
-            d2 = self.display_cal[cal](date.get_stop_date())
-            scal = self.format_extras(cal, newyear)
-            return "%s%s %s %s %s%s之间" % (qual_str, '介于', d1, '与',
-                                        d2, scal)
+        if self.format == 0:
+            return self.display_iso(date_val)
+        # elif self.format == 1:
         else:
-            text = self.display_cal[date.get_calendar()](start)
-            scal = self.format_extras(cal, newyear)
-            return "%s%s%s%s" % (qual_str, (self._mod_str)[mod], text, 
-            scal)
+            # numerical
+            value = self.dd_dformat01(date_val)
+        if date_val[2] < 0:
+            # TODO fix BUG 7064: non-Gregorian calendars wrongly use BCE notation for negative dates
+            return self._bce_str % value
+        else:
+            return value
 
 #-------------------------------------------------------------------------
 #

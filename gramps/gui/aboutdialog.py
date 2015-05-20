@@ -168,14 +168,12 @@ class AuthorParser(handler.ContentHandler):
         self.contributor_list = contributor_list
         
         # initialize all instance variables to make pylint happy
-        self.uid = ""
         self.title = ""
         self.text = ""
         
     def startElement(self, tag, attrs):
         """Handle the start of an element."""
         if tag == "author":
-            self.uid = attrs['uid']
             self.title = attrs['title']
             self.text = ""
             

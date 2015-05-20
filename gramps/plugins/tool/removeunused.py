@@ -95,37 +95,37 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
                          'remove'  : self.db.remove_event,
                          'get_text': self.get_event_text,
                          'editor'  : 'EditEvent',
-                         'stock'   : 'gramps-event',
+                         'icon'    : 'gramps-event',
                          'name_ix' : 4},
             'sources' : {'get_func': self.db.get_source_from_handle,
                          'remove'  : self.db.remove_source,
                          'get_text': None,
                          'editor'  : 'EditSource',
-                         'stock'   : 'gramps-source',
+                         'icon'    : 'gramps-source',
                          'name_ix' : 2},
             'places'  : {'get_func': self.db.get_place_from_handle,
                          'remove'  : self.db.remove_place,
                          'get_text': None,
                          'editor'  : 'EditPlace',
-                         'stock'   : 'gramps-place',
+                         'icon'    : 'gramps-place',
                          'name_ix' : 2},
             'media'   : {'get_func': self.db.get_object_from_handle,
                          'remove'  : self.db.remove_object,
                          'get_text': None,
                          'editor'  : 'EditMedia',
-                         'stock'   : 'gramps-media',
+                         'icon'    : 'gramps-media',
                          'name_ix' : 4},
             'repos'   : {'get_func': self.db.get_repository_from_handle,
                          'remove'  : self.db.remove_repository,
                          'get_text': None,
                          'editor'  : 'EditRepository',
-                         'stock'   : 'gramps-repository',
+                         'icon'    : 'gramps-repository',
                          'name_ix' : 3},
             'notes'   : {'get_func': self.db.get_note_from_handle,
                          'remove'  : self.db.remove_note,
                          'get_text': self.get_note_text,
                          'editor'  : 'EditNote',
-                         'stock'   : 'gramps-notes',
+                         'icon'    : 'gramps-notes',
                          'name_ix' : 2},
             }
 
@@ -352,8 +352,8 @@ class RemoveUnused(tool.Tool, ManagedWindow, UpdateCallback):
 
     def get_image(self, column, cell, model, iter, user_data=None):
         the_type = model.get_value(iter, RemoveUnused.OBJ_TYPE_COL)
-        the_stock = self.tables[the_type]['stock']
-        cell.set_property('stock-id', the_stock)
+        the_icon = self.tables[the_type]['icon']
+        cell.set_property('icon-name', the_icon)
 
     def add_results(self, results):
         (the_type, handle, data) = results

@@ -91,7 +91,7 @@ class DashboardView(PageView):
         """
         Defines the UIManager actions.
         """
-        self._add_action("AddGramplet", Gtk.STOCK_ADD, _("Add a gramplet"))
+        self._add_action("AddGramplet", 'list-add', _("Add a gramplet"))
         self._add_action("RestoreGramplet", None, _("Restore a gramplet"))
 
     def set_inactive(self):

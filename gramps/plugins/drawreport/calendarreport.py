@@ -51,7 +51,7 @@ from gramps.gen.plug.report import utils as ReportUtils
 from gramps.gen.plug.report import MenuReportOptions
 from gramps.gen.plug.report import stdoptions
 from gramps.gen.utils.alive import probably_alive
-from gramps.gen.datehandler import displayer as _dd
+from gramps.gen.datehandler import displayer as date_displayer
 from gramps.gen.lib import (Date, EventRoleType, EventType, Name, NameType,
                             Person, Surname)
 from gramps.gen.lib.date import gregorian
@@ -213,7 +213,7 @@ class Calendar(Report):
         pnumbers = style_sheet.get_paragraph_style("CAL-Numbers")
         numpos = pt2cm(pnumbers.get_font().get_size())
         ptext1style = style_sheet.get_paragraph_style("CAL-Text1style")
-        long_days = self._dd.long_days
+        long_days = self._ldd.long_days
 
         self.doc.start_page()
         width = self.doc.get_usable_width()
@@ -230,7 +230,7 @@ class Calendar(Report):
         # http://gramps-project.org/wiki/index.php?title=Translating_Gramps#Translating_dates
         # to learn how to select proper inflection for your language.
         title = self._("{long_month} {year}").format(
-                                long_month = self._dd.long_months[month],
+                                long_month = self._ldd.long_months[month],
                                 year = year
                                 ).capitalize()
         mark = IndexMark(title, INDEX_TYPE_TOC, 2)
@@ -465,15 +465,11 @@ class CalendarOptions(MenuReportOptions):
         add_option = partial(menu.add_option, category_name)
         ##########################
 
-        year = NumberOption(_("Year of calendar"), time.localtime()[0], 
-                            1000, 3000)
-        year.set_help(_("Year of calendar"))
-        add_option("year", year)
-
         self.__filter = FilterOption(_("Filter"), 0)
         self.__filter.set_help(
                _("Select filter to restrict people that appear on calendar"))
         add_option("filter", self.__filter)
+        self.__filter.connect('value-changed', self.__filter_changed)
         
         self.__pid = PersonOption(_("Center Person"))
         self.__pid.set_help(_("The center person for the report"))
@@ -486,6 +482,22 @@ class CalendarOptions(MenuReportOptions):
         self.__update_filters()
 
         stdoptions.add_private_data_option(menu, category_name)
+
+        alive = BooleanOption(_("Include only living people"), True)
+        alive.set_help(_("Include only living people in the calendar"))
+        add_option("alive", alive)
+
+        stdoptions.add_localization_option(menu, category_name)
+
+        ##########################
+        category_name = _("Content Options")
+        add_option = partial(menu.add_option, category_name)
+        ##########################
+
+        year = NumberOption(_("Year of calendar"), time.localtime()[0], 
+                            1000, 3000)
+        year.set_help(_("Year of calendar"))
+        add_option("year", year)
 
         country = EnumeratedListOption(_("Country for holidays"), 0)
         holiday_table = libholiday.HolidayTable()
@@ -502,7 +514,7 @@ class CalendarOptions(MenuReportOptions):
         add_option("country", country)
 
         start_dow = EnumeratedListOption(_("First day of week"), 1)
-        long_days = _dd.long_days
+        long_days = date_displayer.long_days
         for count in range(1, 8):
             # conversion between gramps numbering (sun=1) and iso numbering (mon=1) of weekdays below
             start_dow.add_item((count+5) % 7 + 1, long_days[count].capitalize()) 
@@ -516,10 +528,6 @@ class CalendarOptions(MenuReportOptions):
         maiden_name.set_help(_("Select married women's displayed surname"))
         add_option("maiden_name", maiden_name)
 
-        alive = BooleanOption(_("Include only living people"), True)
-        alive.set_help(_("Include only living people in the calendar"))
-        add_option("alive", alive)
-
         birthdays = BooleanOption(_("Include birthdays"), True)
         birthdays.set_help(_("Include birthdays in the calendar"))
         add_option("birthdays", birthdays)
@@ -528,10 +536,10 @@ class CalendarOptions(MenuReportOptions):
         anniversaries.set_help(_("Include anniversaries in the calendar"))
         add_option("anniversaries", anniversaries)
 
-        stdoptions.add_localization_option(menu, category_name)
-
+        ##########################
         category_name = _("Text Options")
         add_option = partial(menu.add_option, _("Text Options"))
+        ##########################
 
         text1 = StringOption(_("Text Area 1"), _(_TITLE1)) 
         text1.set_help(_("First line of text at bottom of calendar"))
@@ -556,6 +564,19 @@ class CalendarOptions(MenuReportOptions):
                                                      include_single=False,
                                                      name_format=nfv)
         self.__filter.set_filters(filter_list)
+
+    def __filter_changed(self):
+        """
+        Handle filter change. If the filter is not specific to a person,
+        disable the person option
+        """
+        filter_value = self.__filter.get_value()
+        if filter_value in [1, 2, 3, 4]:
+            # Filters 1, 2, 3 and 4 rely on the center person
+            self.__pid.set_available(True)
+        else:
+            # The rest don't
+            self.__pid.set_available(False)
 
     def make_my_style(self, default_style, name, description, 
                       size=9, font=FONT_SERIF, justified ="left", 

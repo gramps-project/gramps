@@ -106,104 +106,6 @@ except ImportError:
 #
 #-------------------------------------------------------------------------
 
-def register_stock_icons ():
-    """
-    Add the gramps names for its icons (eg gramps-person) to the GTK icon
-    factory. This allows all gramps modules to call up the icons by their name
-    """
-    from .pluginmanager import base_reg_stock_icons
-
-    #iconpath to the base image. The front of the list has highest priority
-    if win():
-        iconpaths = [
-                    (os.path.join(IMAGE_DIR, '48x48'), '.png'),
-                    (IMAGE_DIR, '.png'),
-                    ]
-    else :
-        iconpaths = [
-                    (os.path.join(IMAGE_DIR, 'scalable'), '.svg'),
-                    (IMAGE_DIR, '.svg'), (IMAGE_DIR, '.png'),
-                    ]
-
-    #sizes: menu=16, small_toolbar=18, large_toolbar=24,
-    #       button=20, dnd=32, dialog=48
-    #add to the back of this list to overrule images set at beginning of list
-    extraiconsize = [
-                    (os.path.join(IMAGE_DIR, '22x22'),
-                            Gtk.IconSize.LARGE_TOOLBAR),
-                    (os.path.join(IMAGE_DIR, '16x16'),
-                            Gtk.IconSize.MENU),
-                    (os.path.join(IMAGE_DIR, '22x22'),
-                            Gtk.IconSize.BUTTON),
-                    ]
-
-    items = [
-        ('gramps-db', _('Family Trees'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-address', _('Address'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-attribute', _('Attribute'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        #('gramps-bookmark', _('Bookmarks'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        #('gramps-bookmark-delete', _('Delete bookmark'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-bookmark-new', _('_Add bookmark'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-bookmark-edit', _('Organize Bookmarks'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-config', _('Configure'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-date', _('Date'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-date-edit', _('Edit Date'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-event', _('Events'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-family', _('Family'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-fanchart', _('Fan Chart'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-fanchartdesc', _('Descendant Fan Chart'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-font', _('Font'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-font-color', _('Font Color'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-font-bgcolor', _('Font Background Color'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-gramplet', _('Gramplets'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-geo', _('Geography'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-geo-mainmap', _('Geography'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-geo-altmap', _('Geography'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('geo-show-person', _('GeoPerson'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('geo-show-family', _('GeoFamily'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('geo-show-event', _('GeoEvents'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('geo-show-place', _('GeoPlaces'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-lock', _('Public'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-media', _('Media'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-merge', _('Merge'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-notes', _('Notes'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-parents', _('Parents'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-parents-add', _('Add Parents'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-parents-open', _('Select Parents'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-pedigree', _('Pedigree'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-person', _('Person'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-place', _('Places'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-relation', _('Relationships'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-reports', _('Reports'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-repository', _('Repositories'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-source', _('Sources'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-spouse', _('Add Spouse'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-tag', _('Tag'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-tag-new', _('New Tag'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-tools', _('Tools'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-tree-group', _('Grouped List'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-tree-list', _('List'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-tree-select', _('Select'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-unlock', _('Private'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-view', _('View'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-viewmedia', _('View'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-zoom-in', _('Zoom In'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-zoom-out', _('Zoom Out'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-zoom-fit-width', _('Fit Width'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-zoom-best-fit', _('Fit Page'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ('gramps-citation', _('Citations'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ]
-    #TODO# the following icons are not yet in new directory structure
-    # they should be ported in the near future
-    items_legacy = [
-         ('gramps-export', _('Export'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-         ('gramps-import', _('Import'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-         ('gramps-undo-history', _('Undo History'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-         ('gramps-url', _('URL'), Gdk.ModifierType.CONTROL_MASK, 0, ''),
-        ]
-
-    base_reg_stock_icons(iconpaths, extraiconsize, items+items_legacy)
-
 def _display_welcome_message():
     """
     Display a welcome message to the user.
@@ -257,7 +159,10 @@ class Gramps(object):
         import gettext
 
         _display_welcome_message()
-        register_stock_icons()
+
+        # Append image directory to the theme search path
+        theme = Gtk.IconTheme.get_default()
+        theme.append_search_path(IMAGE_DIR)
 
         if lin() and glocale.lang != 'C' and not gettext.find(GTK_GETTEXT_DOMAIN):
             LOG.warn("GTK translations missing, GUI will be broken, especially for RTL languages!")

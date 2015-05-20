@@ -43,10 +43,10 @@ class Notes(Gramplet):
         top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         
         hbox = Gtk.Box()
-        self.left = SimpleButton(Gtk.STOCK_GO_BACK, self.left_clicked)
+        self.left = SimpleButton('go-previous', self.left_clicked)
         self.left.set_sensitive(False)
         hbox.pack_start(self.left, False, False, 0)
-        self.right = SimpleButton(Gtk.STOCK_GO_FORWARD, self.right_clicked)
+        self.right = SimpleButton('go-next', self.right_clicked)
         self.right.set_sensitive(False)
         hbox.pack_start(self.right, False, False, 0)
         self.page = Gtk.Label()

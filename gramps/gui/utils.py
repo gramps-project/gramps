@@ -167,7 +167,7 @@ class ProgressMeter(object):
 
         if self.__can_cancel:
             self.__dialog.set_size_request(350, 170)
-            self.__cancel_button = Gtk.Button(stock=Gtk.STOCK_CANCEL)
+            self.__cancel_button = Gtk.Button.new_with_mnemonic(_('_Cancel'))
             self.__cancel_button.connect('clicked', self.__cancel_callback)
             self.__dialog.vbox.add(self.__cancel_button)
 
@@ -181,7 +181,7 @@ class ProgressMeter(object):
             area.add_with_viewport(text)
             area.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             self.__dialog.vbox.add(area)
-            self.message_area_ok = Gtk.Button(stock=Gtk.STOCK_OK)
+            self.message_area_ok = Gtk.Button.new_with_mnemonic(_('_OK'))
             self.message_area_ok.connect("clicked", self.close)
             self.message_area_ok.set_sensitive(False)
             self.__dialog.vbox.pack_start(self.message_area_ok, expand=False, fill=False)
