@@ -41,6 +41,8 @@ LOG = logging.getLogger(".grampsqml")
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gen.constfunc import has_display
 from gramps.gen.config import config
 

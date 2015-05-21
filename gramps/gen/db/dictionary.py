@@ -40,6 +40,9 @@ from . import (PERSON_KEY,
                NOTE_KEY,
                TAG_KEY)
 
+from ..const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+from ..errors import DbError
 from ..utils.id import create_id
 from ..lib.researcher import Researcher
 from ..lib.mediaobj import MediaObject
