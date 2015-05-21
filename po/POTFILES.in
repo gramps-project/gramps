@@ -487,13 +487,13 @@ gramps/gui/plug/quick/_quicktable.py
 gramps/gui/plug/quick/_textbufdoc.py
 gramps/gui/plug/report/_bookdialog.py
 gramps/gui/plug/report/_docreportdialog.py
+gramps/gui/plug/report/_fileentry.py
 gramps/gui/plug/report/_graphvizreportdialog.py
 gramps/gui/plug/report/_papermenu.py
 gramps/gui/plug/report/_reportdialog.py
 gramps/gui/plug/report/_stylecombobox.py
 gramps/gui/plug/report/_styleeditor.py
 gramps/gui/plug/tool.py
-gramps/gui/pluginmanager.py
 gramps/gui/selectors/selectcitation.py
 gramps/gui/selectors/selectevent.py
 gramps/gui/selectors/selectfamily.py
@@ -685,6 +685,7 @@ gramps/plugins/tool/ownereditor.py
 gramps/plugins/tool/patchnames.glade
 gramps/plugins/tool/patchnames.py
 gramps/plugins/tool/phpgedviewconnector.py
+gramps/plugins/tool/populatesources.py
 gramps/plugins/tool/rebuild.py
 gramps/plugins/tool/rebuildgenderstat.py
 gramps/plugins/tool/rebuildrefmap.py

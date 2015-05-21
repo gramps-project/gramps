@@ -266,6 +266,7 @@ gramps/gui/glade.py
 gramps/gui/listmodel.py
 gramps/gui/managedwindow.py
 gramps/gui/navigator.py
+gramps/gui/pluginmanager.py
 gramps/gui/thumbnails.py
 gramps/gui/user.py
 gramps/gui/glade/catalog/grampswidgets.py
@@ -327,7 +328,6 @@ gramps/gui/plug/export/__init__.py
 gramps/gui/plug/__init__.py
 gramps/gui/plug/quick/__init__.py
 gramps/gui/plug/report/_drawreportdialog.py
-gramps/gui/plug/report/_fileentry.py
 gramps/gui/plug/report/__init__.py
 gramps/gui/plug/report/_textreportdialog.py
 gramps/gui/plug/report/_webreportdialog.py
@@ -493,7 +493,6 @@ gramps/plugins/sidebar/__init__.py
 # Development tools
 #
 gramps/plugins/tool/__init__.py
-gramps/plugins/tool/populatesources.py
 #
 # plugins/view directory
 #
