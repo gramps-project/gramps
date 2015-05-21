@@ -78,6 +78,8 @@ if PYGOBJ_ERR:
     sys.exit(0)
 
 try:
+    gi.require_version('Pango', '1.0')
+    gi.require_version('PangoCairo', '1.0')
     gi.require_version('Gtk', '3.0')
     #It is important to import Pango before Gtk, or some things start to go
     #wrong in GTK3 !
