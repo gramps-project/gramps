@@ -38,13 +38,13 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="cancel">
-                <property name="label">gtk-cancel</property>
+                <property name="label">_Cancel</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -54,7 +54,7 @@
             </child>
             <child>
               <object class="GtkButton" id="ok">
-                <property name="label">gtk-ok</property>
+                <property name="label">_OK</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -64,7 +64,7 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Accept changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -74,13 +74,13 @@
             </child>
             <child>
               <object class="GtkButton" id="help">
-                <property name="label">gtk-help</property>
+                <property name="label">_Help</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -234,8 +234,8 @@
                 <child>
                   <object class="GtkLabel" id="parents">
                     <property name="can_focus">False</property>
-                    <property name="hexpand">True</property>
                     <property name="halign">start</property>
+                    <property name="hexpand">True</property>
                   </object>
                   <packing>
                     <property name="left_attach">1</property>
@@ -252,7 +252,6 @@
                       <object class="GtkImage" id="image2693">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">gtk-index</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2693-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Selector</property>
@@ -319,8 +318,8 @@
                           <object class="GtkLabel" id="place">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="hexpand">True</property>
                             <property name="halign">start</property>
+                            <property name="hexpand">True</property>
                             <property name="ellipsize">end</property>
                           </object>
                         </child>
@@ -368,7 +367,7 @@
                       <object class="GtkImage" id="image2691">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="icon_name">gtk-dialog-authentication</property>
+                        <property name="icon_name">dialog-password</property>
                         <property name="icon_size">1</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2691-atkobject">

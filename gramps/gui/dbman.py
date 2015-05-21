@@ -126,7 +126,7 @@ class DbManager(CLIDbManager):
         the GTK widgets that are needed.
         """
         CLIDbManager.__init__(self, dbstate)
-        self.glade = Glade()
+        self.glade = Glade(toplevel='dbmanager')
         self.top = self.glade.toplevel
 
         if parent:

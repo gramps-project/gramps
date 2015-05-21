@@ -17,12 +17,12 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button180">
-                <property name="label">gtk-close</property>
+                <property name="label">_Close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -50,7 +50,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="valign">start</property>
-                <property name="stock">gtk-dialog-warning</property>
+                <property name="pixel_size">48</property>
+                <property name="icon_name">dialog-warning</property>
                 <property name="icon_size">6</property>
               </object>
               <packing>
@@ -62,8 +63,8 @@
               <object class="GtkLabel" id="title">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
                 <property name="halign">start</property>
+                <property name="hexpand">True</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>
@@ -78,8 +79,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
                 <property name="halign">center</property>
+                <property name="use_underline">True</property>
                 <property name="draw_indicator">True</property>
               </object>
               <packing>
@@ -91,10 +92,10 @@
               <object class="GtkLabel" id="message">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
                 <property name="halign">start</property>
                 <property name="margin_top">12</property>
                 <property name="margin_bottom">12</property>
+                <property name="hexpand">True</property>
                 <property name="wrap">True</property>
               </object>
               <packing>
@@ -136,12 +137,12 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button182">
-                <property name="label">gtk-close</property>
+                <property name="label">_Close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -167,7 +168,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="valign">start</property>
-                <property name="stock">gtk-dialog-info</property>
+                <property name="pixel_size">48</property>
+                <property name="icon_name">dialog-information</property>
                 <property name="icon_size">6</property>
               </object>
               <packing>
@@ -248,44 +250,13 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button8">
+                <property name="label" translatable="yes">_Remove Object</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Remove object and all references to it from the database</property>
-                <child>
-                  <object class="GtkBox" id="hbox4">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="spacing">2</property>
-                    <child>
-                      <object class="GtkImage" id="image11">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="stock">gtk-delete</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="label8">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">_Remove Object</property>
-                        <property name="use_underline">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -311,6 +282,7 @@
             </child>
             <child>
               <object class="GtkButton" id="button11">
+                <property name="label" translatable="yes">_Select File</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="has_focus">True</property>
@@ -318,39 +290,7 @@
                 <property name="has_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Select replacement for the missing file</property>
-                <child>
-                  <object class="GtkBox" id="hbox3">
-                    <property name="visible">True</property>
-                    <property name="can_focus">False</property>
-                    <property name="halign">center</property>
-                    <property name="spacing">2</property>
-                    <child>
-                      <object class="GtkImage" id="image10">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="stock">gtk-find</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">0</property>
-                      </packing>
-                    </child>
-                    <child>
-                      <object class="GtkLabel" id="label7">
-                        <property name="visible">True</property>
-                        <property name="can_focus">False</property>
-                        <property name="label" translatable="yes">_Select File</property>
-                        <property name="use_underline">True</property>
-                      </object>
-                      <packing>
-                        <property name="expand">False</property>
-                        <property name="fill">False</property>
-                        <property name="position">1</property>
-                      </packing>
-                    </child>
-                  </object>
-                </child>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -375,12 +315,12 @@
               <object class="GtkLabel" id="label3">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
                 <property name="halign">start</property>
                 <property name="margin_left">6</property>
                 <property name="margin_right">6</property>
                 <property name="margin_top">24</property>
                 <property name="margin_bottom">24</property>
+                <property name="hexpand">True</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
                 <property name="ellipsize">start</property>
@@ -395,7 +335,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="valign">start</property>
-                <property name="stock">gtk-dialog-warning</property>
+                <property name="pixel_size">48</property>
+                <property name="icon_name">dialog-warning</property>
                 <property name="icon_size">6</property>
               </object>
               <packing>
@@ -407,10 +348,10 @@
               <object class="GtkLabel" id="label4">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
                 <property name="halign">start</property>
                 <property name="margin_left">6</property>
                 <property name="margin_right">6</property>
+                <property name="hexpand">True</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>
@@ -426,8 +367,8 @@
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">If you check this button, all the missing media files will be automatically treated according to the currently selected option. No further dialogs will be presented for any missing media files.</property>
-                <property name="use_underline">True</property>
                 <property name="halign">center</property>
+                <property name="use_underline">True</property>
                 <property name="draw_indicator">True</property>
               </object>
               <packing>
@@ -514,12 +455,12 @@
               <object class="GtkLabel" id="od_label2">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
                 <property name="halign">start</property>
                 <property name="margin_left">6</property>
                 <property name="margin_right">6</property>
                 <property name="margin_top">12</property>
                 <property name="margin_bottom">12</property>
+                <property name="hexpand">True</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>
@@ -533,7 +474,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="valign">start</property>
-                <property name="stock">gtk-dialog-warning</property>
+                <property name="pixel_size">48</property>
+                <property name="icon_name">dialog-warning</property>
                 <property name="icon_size">6</property>
               </object>
               <packing>
@@ -545,10 +487,10 @@
               <object class="GtkLabel" id="od_label1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="hexpand">True</property>
                 <property name="halign">start</property>
                 <property name="margin_left">6</property>
                 <property name="margin_right">6</property>
+                <property name="hexpand">True</property>
                 <property name="use_markup">True</property>
                 <property name="wrap">True</property>
               </object>
@@ -592,12 +534,12 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="no">
-                <property name="label">gtk-cancel</property>
+                <property name="label">_Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -635,7 +577,8 @@
               <object class="GtkImage" id="image1">
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
-                <property name="stock">gtk-dialog-question</property>
+                <property name="pixel_size">48</property>
+                <property name="icon_name">dialog-question</property>
                 <property name="icon_size">6</property>
               </object>
               <packing>
@@ -730,14 +673,14 @@
             </child>
             <child>
               <object class="GtkButton" id="button2">
-                <property name="label">gtk-cancel</property>
+                <property name="label">_Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="has_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -747,12 +690,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button3">
-                <property name="label">gtk-save</property>
+                <property name="label">_Save</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -794,7 +737,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <property name="valign">start</property>
-                <property name="stock">gtk-dialog-warning</property>
+                <property name="pixel_size">48</property>
+                <property name="icon_name">dialog-warning</property>
                 <property name="icon_size">6</property>
               </object>
               <packing>
@@ -823,8 +767,8 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_underline">True</property>
                 <property name="halign">center</property>
+                <property name="use_underline">True</property>
                 <property name="draw_indicator">True</property>
               </object>
               <packing>

@@ -19,7 +19,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button119">
-                <property name="label">gtk-cancel</property>
+                <property name="label">_Cancel</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -28,7 +28,7 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Abandon changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Abandon changes and close window</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -38,7 +38,7 @@
             </child>
             <child>
               <object class="GtkButton" id="button118">
-                <property name="label">gtk-ok</property>
+                <property name="label">_OK</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -47,7 +47,7 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Accept changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -57,13 +57,13 @@
             </child>
             <child>
               <object class="GtkButton" id="button131">
-                <property name="label">gtk-help</property>
+                <property name="label">_Help</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -142,7 +142,7 @@
                           <object class="GtkImage" id="image2683">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="icon_name">gtk-dialog-authentication</property>
+                            <property name="icon_name">dialog-password</property>
                             <property name="icon_size">1</property>
                             <child internal-child="accessible">
                               <object class="AtkObject" id="image2683-atkobject">
@@ -618,8 +618,8 @@ You will be asked if you want to group this person only, or all people with this
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="use_underline">True</property>
                             <property name="halign">center</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>

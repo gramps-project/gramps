@@ -95,7 +95,7 @@
                               <object class="GtkImage" id="image33">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="stock">gtk-clear</property>
+                                <property name="icon_name">edit-clear</property>
                               </object>
                             </child>
                           </object>
@@ -117,7 +117,7 @@
                               <object class="GtkImage" id="image34">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="stock">gtk-save</property>
+                                <property name="icon_name">document-save</property>
                               </object>
                             </child>
                             <accelerator key="r" signal="activate" modifiers="GDK_CONTROL_MASK"/>
@@ -140,7 +140,7 @@
                               <object class="GtkImage" id="image35">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="stock">gtk-open</property>
+                                <property name="icon_name">document-open</property>
                               </object>
                             </child>
                           </object>
@@ -162,7 +162,7 @@
                               <object class="GtkImage" id="image36">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="stock">gtk-index</property>
+                                <property name="icon_name">gtk-index</property>
                               </object>
                             </child>
                             <accelerator key="s" signal="activate" modifiers="GDK_CONTROL_MASK"/>
@@ -332,7 +332,7 @@
                           <object class="GtkImage" id="image24">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-add</property>
+                            <property name="icon_name">list-add</property>
                           </object>
                         </child>
                         <accelerator key="a" signal="activate" modifiers="GDK_CONTROL_MASK"/>
@@ -355,7 +355,7 @@
                           <object class="GtkImage" id="image25">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-remove</property>
+                            <property name="icon_name">list-remove</property>
                           </object>
                         </child>
                       </object>
@@ -377,7 +377,7 @@
                           <object class="GtkImage" id="image26">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-go-up</property>
+                            <property name="icon_name">go-up</property>
                           </object>
                         </child>
                       </object>
@@ -399,7 +399,7 @@
                           <object class="GtkImage" id="image27">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-go-down</property>
+                            <property name="icon_name">go-down</property>
                           </object>
                         </child>
                       </object>
@@ -421,7 +421,7 @@
                           <object class="GtkImage" id="image28">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-preferences</property>
+                            <property name="icon_name">preferences-desktop</property>
                           </object>
                         </child>
                       </object>
@@ -465,12 +465,12 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button12">
-                <property name="label">gtk-close</property>
+                <property name="label">_Close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="top" swapped="yes"/>
               </object>
               <packing>
@@ -481,12 +481,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button13">
-                <property name="label">gtk-ok</property>
+                <property name="label">_OK</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_book_ok_clicked" swapped="no"/>
               </object>
               <packing>
@@ -522,12 +522,12 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="delete_button">
-                <property name="label">gtk-delete</property>
+                <property name="label">_Delete</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_booklist_delete_clicked" object="top" swapped="yes"/>
               </object>
               <packing>
@@ -538,12 +538,12 @@
             </child>
             <child>
               <object class="GtkButton" id="close_button">
-                <property name="label">gtk-close</property>
+                <property name="label">_Close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_booklist_cancel_clicked" object="top" swapped="yes"/>
               </object>
               <packing>
@@ -554,12 +554,12 @@
             </child>
             <child>
               <object class="GtkButton" id="ok_button">
-                <property name="label">gtk-ok</property>
+                <property name="label">_OK</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_booklist_ok_clicked" object="top" swapped="yes"/>
               </object>
               <packing>

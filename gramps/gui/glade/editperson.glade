@@ -6,7 +6,7 @@
   <object class="GtkImage" id="image1">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-edit</property>
+    <property name="icon_name">gtk-edit</property>
     <child internal-child="accessible">
       <object class="AtkObject" id="image1-atkobject">
         <property name="AtkObject::accessible-description" translatable="yes">Edit</property>
@@ -16,7 +16,7 @@
   <object class="GtkImage" id="image2">
     <property name="visible">True</property>
     <property name="can_focus">False</property>
-    <property name="stock">gtk-add</property>
+    <property name="icon_name">list-add</property>
     <child internal-child="accessible">
       <object class="AtkObject" id="image2-atkobject">
         <property name="AtkObject::accessible-description" translatable="yes">Add</property>
@@ -43,14 +43,15 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button15">
-                <property name="label">gtk-cancel</property>
+                <property name="label">_Cancel</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Abandon changes and close window</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
+                <property name="image_position">bottom</property>
                 <signal name="clicked" handler="destroy_passed_object" object="editperson" swapped="yes"/>
               </object>
               <packing>
@@ -61,14 +62,14 @@
             </child>
             <child>
               <object class="GtkButton" id="ok">
-                <property name="label">gtk-ok</property>
+                <property name="label">_OK</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_apply_person_clicked" object="editperson" swapped="yes"/>
               </object>
               <packing>
@@ -79,13 +80,13 @@
             </child>
             <child>
               <object class="GtkButton" id="button134">
-                <property name="label">gtk-help</property>
+                <property name="label">_Help</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_help_person_clicked" swapped="no"/>
               </object>
               <packing>
@@ -396,14 +397,14 @@ Indicate that the surname consists of different parts. Every surname has its own
                             <property name="can_focus">True</property>
                             <property name="receives_default">True</property>
                             <property name="tooltip_text" translatable="yes">Set person as private data</property>
-                            <property name="relief">none</property>
                             <property name="halign">end</property>
+                            <property name="relief">none</property>
                             <child>
                               <object class="GtkImage" id="image3">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
                                 <property name="pixel_size">16</property>
-                                <property name="icon_name">gtk-dialog-authentication</property>
+                                <property name="icon_name">dialog-password</property>
                                 <child internal-child="accessible">
                                   <object class="AtkObject" id="image3-atkobject">
                                     <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
@@ -737,12 +738,12 @@ Indicate that the surname consists of different parts. Every surname has its own
                       <object class="GtkLabel" id="full_name">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
                         <property name="halign">start</property>
                         <property name="margin_left">3</property>
                         <property name="margin_right">3</property>
                         <property name="margin_top">3</property>
                         <property name="margin_bottom">3</property>
+                        <property name="hexpand">True</property>
                         <property name="use_markup">True</property>
                         <property name="ellipsize">end</property>
                       </object>

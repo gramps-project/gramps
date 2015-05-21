@@ -18,7 +18,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button111">
-                <property name="label">gtk-cancel</property>
+                <property name="label">_Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -27,7 +27,7 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Close window without changes</property>
                 <property name="tooltip_text" translatable="yes">Close window without changes</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -37,7 +37,7 @@
             </child>
             <child>
               <object class="GtkButton" id="ok">
-                <property name="label">gtk-ok</property>
+                <property name="label">_OK</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -45,7 +45,7 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Accept changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -55,12 +55,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button126">
-                <property name="label">gtk-help</property>
+                <property name="label">_Help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -232,8 +232,8 @@
                           <object class="GtkLabel" id="place">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="hexpand">True</property>
                             <property name="halign">start</property>
+                            <property name="hexpand">True</property>
                             <property name="ellipsize">end</property>
                           </object>
                         </child>
@@ -342,7 +342,7 @@
                       <object class="GtkImage" id="image2674">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="icon_name">gtk-dialog-authentication</property>
+                        <property name="icon_name">dialog-password</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2674-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
@@ -399,9 +399,9 @@
                       <object class="GtkLabel" id="tag_label">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="hexpand">True</property>
                         <property name="halign">start</property>
                         <property name="valign">center</property>
+                        <property name="hexpand">True</property>
                       </object>
                       <packing>
                         <property name="expand">True</property>
@@ -415,7 +415,6 @@
                         <property name="can_focus">True</property>
                         <property name="receives_default">True</property>
                         <property name="margin_right">1</property>
-                        <property name="use_stock">True</property>
                         <property name="image_position">right</property>
                       </object>
                       <packing>

@@ -83,13 +83,13 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button8">
-                <property name="label">gtk-cancel</property>
+                <property name="label">_Cancel</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="editor" swapped="yes"/>
               </object>
               <packing>
@@ -100,14 +100,14 @@
             </child>
             <child>
               <object class="GtkButton" id="button7">
-                <property name="label">gtk-ok</property>
+                <property name="label">_OK</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_save_style_clicked" object="editor" swapped="yes"/>
               </object>
               <packing>
@@ -301,9 +301,9 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">center</property>
                             <property name="margin_left">12</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -318,9 +318,9 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">center</property>
                             <property name="margin_left">12</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">roman</property>
                           </object>
@@ -418,9 +418,9 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">center</property>
                             <property name="margin_left">12</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -435,9 +435,9 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">center</property>
                             <property name="margin_left">12</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -452,9 +452,9 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">center</property>
                             <property name="margin_left">12</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -547,9 +547,9 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">center</property>
                             <property name="margin_left">12</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -564,8 +564,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="use_underline">True</property>
                             <property name="halign">center</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">lalign</property>
                           </object>
@@ -581,8 +581,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="use_underline">True</property>
                             <property name="halign">center</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">lalign</property>
                           </object>
@@ -598,8 +598,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="use_underline">True</property>
                             <property name="halign">center</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                             <property name="group">lalign</property>
                           </object>
@@ -650,8 +650,8 @@
                           <object class="GtkLabel" id="label13">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
                             <property name="halign">start</property>
+                            <property name="margin_left">12</property>
                             <property name="label" translatable="yes">First li_ne:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">center</property>
@@ -705,8 +705,8 @@
                           <object class="GtkLabel" id="label11">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
                             <property name="halign">start</property>
+                            <property name="margin_left">12</property>
                             <property name="label" translatable="yes">R_ight:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">center</property>
@@ -721,8 +721,8 @@
                           <object class="GtkLabel" id="label12">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
                             <property name="halign">start</property>
+                            <property name="margin_left">12</property>
                             <property name="label" translatable="yes">L_eft:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">center</property>
@@ -756,8 +756,8 @@
                           <object class="GtkLabel" id="label28">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
                             <property name="halign">start</property>
+                            <property name="margin_left">12</property>
                             <property name="label" translatable="yes">Abo_ve:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">center</property>
@@ -772,8 +772,8 @@
                           <object class="GtkLabel" id="label437">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
                             <property name="halign">start</property>
+                            <property name="margin_left">12</property>
                             <property name="label" translatable="yes">Belo_w:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">center</property>
@@ -906,9 +906,9 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
+                            <property name="halign">center</property>
                             <property name="margin_left">12</property>
                             <property name="use_underline">True</property>
-                            <property name="halign">center</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -923,8 +923,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="use_underline">True</property>
                             <property name="halign">center</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -939,8 +939,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="use_underline">True</property>
                             <property name="halign">center</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -952,8 +952,8 @@
                           <object class="GtkLabel" id="label440">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
                             <property name="halign">start</property>
+                            <property name="margin_left">12</property>
                             <property name="label" translatable="yes">_Padding:</property>
                             <property name="use_underline">True</property>
                             <property name="justify">center</property>
@@ -998,8 +998,8 @@
                             <property name="visible">True</property>
                             <property name="can_focus">True</property>
                             <property name="receives_default">False</property>
-                            <property name="use_underline">True</property>
                             <property name="halign">center</property>
+                            <property name="use_underline">True</property>
                             <property name="draw_indicator">True</property>
                           </object>
                           <packing>
@@ -1317,8 +1317,8 @@
                                 <property name="visible">True</property>
                                 <property name="can_focus">True</property>
                                 <property name="receives_default">False</property>
-                                <property name="margin_left">12</property>
                                 <property name="halign">start</property>
+                                <property name="margin_left">12</property>
                                 <property name="draw_indicator">True</property>
                               </object>
                               <packing>
@@ -1451,8 +1451,8 @@
                           <object class="GtkLabel" id="label34">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
                             <property name="halign">start</property>
+                            <property name="margin_left">12</property>
                             <property name="label" translatable="yes">Style:</property>
                           </object>
                           <packing>
@@ -1464,8 +1464,8 @@
                           <object class="GtkLabel" id="label35">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
                             <property name="halign">start</property>
+                            <property name="margin_left">12</property>
                             <property name="label" translatable="yes">Width:</property>
                           </object>
                           <packing>
@@ -1477,8 +1477,8 @@
                           <object class="GtkLabel" id="label36">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
                             <property name="halign">start</property>
+                            <property name="margin_left">12</property>
                             <property name="label" translatable="yes">Line:</property>
                           </object>
                           <packing>
@@ -1490,8 +1490,8 @@
                           <object class="GtkLabel" id="label37">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
                             <property name="halign">start</property>
+                            <property name="margin_left">12</property>
                             <property name="label" translatable="yes">Fill:</property>
                           </object>
                           <packing>
@@ -1604,8 +1604,8 @@
                           <object class="GtkLabel" id="label40">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="margin_left">12</property>
                             <property name="halign">start</property>
+                            <property name="margin_left">12</property>
                             <property name="label" translatable="yes">Spacing:</property>
                           </object>
                           <packing>
@@ -1724,13 +1724,13 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button2">
-                <property name="label">gtk-cancel</property>
+                <property name="label">_Cancel</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -1740,14 +1740,14 @@
             </child>
             <child>
               <object class="GtkButton" id="button1">
-                <property name="label">gtk-ok</property>
+                <property name="label">_OK</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_ok_clicked" object="styles" swapped="yes"/>
               </object>
               <packing>
@@ -1831,7 +1831,7 @@
                           <object class="GtkImage" id="image2328">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-add</property>
+                            <property name="icon_name">list-add</property>
                             <child internal-child="accessible">
                               <object class="AtkObject" id="image2328-atkobject">
                                 <property name="AtkObject::accessible-description" translatable="yes">Add</property>
@@ -1863,7 +1863,7 @@
                           <object class="GtkImage" id="image2329">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-edit</property>
+                            <property name="icon_name">gtk-edit</property>
                             <child internal-child="accessible">
                               <object class="AtkObject" id="image2329-atkobject">
                                 <property name="AtkObject::accessible-description" translatable="yes">Edition</property>
@@ -1895,7 +1895,7 @@
                           <object class="GtkImage" id="image2330">
                             <property name="visible">True</property>
                             <property name="can_focus">False</property>
-                            <property name="stock">gtk-remove</property>
+                            <property name="icon_name">list-remove</property>
                             <child internal-child="accessible">
                               <object class="AtkObject" id="image2330-atkobject">
                                 <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
