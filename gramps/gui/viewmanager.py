@@ -1229,7 +1229,7 @@ class ViewManager(CLIManager):
         label = Gtk.Label(label=_("Path:"))
         label.set_justify(Gtk.Justification.LEFT)
         label.set_size_request(90, -1)
-        label.set_alignment(0, .5)
+        label.set_halign(Gtk.Align.START)
         hbox.pack_start(label, False, True, 0)
         path_entry = Gtk.Entry()
         text = config.get('paths.quick-backup-directory')
@@ -1249,7 +1249,7 @@ class ViewManager(CLIManager):
         label = Gtk.Label(label=_("File:"))
         label.set_justify(Gtk.Justification.LEFT)
         label.set_size_request(90, -1)
-        label.set_alignment(0, .5)
+        label.set_halign(Gtk.Align.START)
         hbox.pack_start(label, False, True, 0)
         struct_time = time.localtime()
         file_entry.set_text(config.get('paths.quick-backup-filename') %
@@ -1281,7 +1281,7 @@ class ViewManager(CLIManager):
         label = Gtk.Label(label=_("Media:"))
         label.set_justify(Gtk.Justification.LEFT)
         label.set_size_request(90, -1)
-        label.set_alignment(0, .5)
+        label.set_halign(Gtk.Align.START)
         hbox.pack_start(label, False, True, 0)
         include = Gtk.RadioButton(None, "%s (%s %s)" % (_("Include"),
                                                         mbytes, _("Megabyte|MB")))

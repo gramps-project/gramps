@@ -168,7 +168,7 @@ class DocReportDialog(ReportDialog):
         self.make_doc_menu(self.options.handler.get_format_name())
         self.format_menu.connect('changed', self.doc_type_changed)
         label = Gtk.Label(label="%s:" % _("Output Format"))
-        label.set_alignment(0.0, 0.5)
+        label.set_set_halign(Gtk.Align.START)
         self.grid.attach(label, 1, self.row, 1, 1)
         self.format_menu.set_hexpand(True)
         self.grid.attach(self.format_menu, 2, self.row, 2, 1)
@@ -214,7 +214,7 @@ class DocReportDialog(ReportDialog):
         self.html_grid.set_border_width(6)
 
         label = Gtk.Label(label="%s:" % _("CSS file"))
-        label.set_alignment(0.0,0.5)
+        label.set_set_halign(Gtk.Align.START)
         self.html_grid.attach(label, 1, 1, 1, 1)
 
         self.css_combo = Gtk.ComboBoxText()

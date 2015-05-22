@@ -64,8 +64,7 @@ class ToDoGramplet(Gramplet):
         self.page = Gtk.Label()
         hbox.pack_end(self.page, False, False, 10)
         
-        self.title = Gtk.Label()
-        self.title.set_alignment(0, 0)
+        self.title = Gtk.Label(halign=Gtk.Align.START)
         self.title.set_line_wrap(True)
         
         scrolledwindow = Gtk.ScrolledWindow()

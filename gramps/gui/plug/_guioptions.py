@@ -617,7 +617,7 @@ class GuiPersonOption(Gtk.Box):
         self.__uistate = uistate
         self.__track = track
         self.__person_label = Gtk.Label()
-        self.__person_label.set_alignment(0.0, 0.5)
+        self.__person_label.set_halign(Gtk.Align.START)
         
         pevt = Gtk.EventBox()
         pevt.add(self.__person_label)
@@ -742,7 +742,7 @@ class GuiFamilyOption(Gtk.Box):
         self.__uistate = uistate
         self.__track = track
         self.__family_label = Gtk.Label()
-        self.__family_label.set_alignment(0.0, 0.5)
+        self.__family_label.set_halign(Gtk.Align.START)
         
         pevt = Gtk.EventBox()
         pevt.add(self.__family_label)
@@ -931,7 +931,7 @@ class GuiNoteOption(Gtk.Box):
         self.__uistate = uistate
         self.__track = track
         self.__note_label = Gtk.Label()
-        self.__note_label.set_alignment(0.0, 0.5)
+        self.__note_label.set_halign(Gtk.Align.START)
         
         pevt = Gtk.EventBox()
         pevt.add(self.__note_label)
@@ -1035,7 +1035,7 @@ class GuiMediaOption(Gtk.Box):
         self.__uistate = uistate
         self.__track = track
         self.__media_label = Gtk.Label()
-        self.__media_label.set_alignment(0.0, 0.5)
+        self.__media_label.set_halign(Gtk.Align.START)
         
         pevt = Gtk.EventBox()
         pevt.add(self.__media_label)

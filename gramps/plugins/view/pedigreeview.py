@@ -1063,7 +1063,7 @@ class PedigreeView(NavigationView):
                 label.set_justify(Gtk.Justification.LEFT)
                 label.set_use_markup(True)
                 label.set_line_wrap(True)
-                label.set_alignment(0.1, 0.5)
+                label.set_halign(Gtk.Align.START)
                 if self.tree_style in [0, 2]:
                     x_pos = (1 + _width) * (level + 1) + 1
                     y_pos = _delta // 2 + offset * _delta -1 + _height // 2
@@ -1447,7 +1447,7 @@ class PedigreeView(NavigationView):
                         label = Gtk.Label(label=cname)
                     label.set_use_markup(True)
                     label.show()
-                    label.set_alignment(0, 0)
+                    label.set_halign(Gtk.Align.START)
                     menuitem = Gtk.ImageMenuItem()
                     go_image = Gtk.Image.new_from_icon_name('go-jump',
                                                             Gtk.IconSize.MENU)
@@ -1724,7 +1724,7 @@ class PedigreeView(NavigationView):
                 sib_item.set_image(go_image)
                 label.set_use_markup(True)
                 label.show()
-                label.set_alignment(0, 0)
+                label.set_halign(Gtk.Align.START)
                 sib_item.add(label)
                 linked_persons.append(sib_id)
                 sib_item.connect("activate", self.cb_childmenu_changed, sib_id)
@@ -1763,7 +1763,7 @@ class PedigreeView(NavigationView):
             child_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
-            label.set_alignment(0, 0)
+            label.set_halign(Gtk.Align.START)
             child_item.add(label)
             linked_persons.append(child_handle)
             child_item.connect("activate", self.cb_childmenu_changed,
@@ -1803,7 +1803,7 @@ class PedigreeView(NavigationView):
             par_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
-            label.set_alignment(0, 0)
+            label.set_halign(Gtk.Align.START)
             par_item.add(label)
             linked_persons.append(par_id)
             par_item.connect("activate", self.cb_childmenu_changed, par_id)
@@ -1849,7 +1849,7 @@ class PedigreeView(NavigationView):
             per_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
-            label.set_alignment(0, 0)
+            label.set_halign(Gtk.Align.START)
             per_item.add(label)
             per_item.connect("activate", self.cb_childmenu_changed, p_id)
             per_item.show()

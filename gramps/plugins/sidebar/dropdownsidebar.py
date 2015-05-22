@@ -146,14 +146,12 @@ class DropdownSidebar(BaseSidebar):
         # create the button
         button = Gtk.ToggleButton()
         button.set_relief(Gtk.ReliefStyle.NONE)
-        button.set_alignment(0, 0.5)
         self.buttons.append(button)
 
         # create the drop-down button to display views
         if len(self.views[cat_num]) > 1:
             dropdown = Gtk.Button()
             dropdown.set_relief(Gtk.ReliefStyle.NONE)
-            dropdown.set_alignment(0.5, 0.5)
             arrow = Gtk.Arrow(arrow_type=Gtk.ArrowType.DOWN, 
                                         shadow_type=Gtk.ShadowType.NONE)
             dropdown.add(arrow)

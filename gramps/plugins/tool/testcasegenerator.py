@@ -233,7 +233,7 @@ class TestcaseGenerator(tool.BatchTool):
         self.label = Gtk.Label(label=_("Number of people to generate\n"
                                  "(Number is approximate because families "
                                  "are generated)"))
-        self.label.set_alignment(0.0, 0.5)
+        self.label.set_halign(Gtk.Align.START)
         self.top.vbox.pack_start(self.label,0,0,5)
 
         self.entry_count = Gtk.Entry()

@@ -90,9 +90,8 @@ class PythonEvaluation(Gramplet):
         """
         Add a text view to the interface.
         """
-        label = Gtk.Label(name)
+        label = Gtk.Label(halign=Gtk.Align.START)
         label.set_markup('<b>%s</b>' % name)
-        label.set_alignment(0, 0.5)
         self.top.pack_start(label, False, False, 6)
         swin = Gtk.ScrolledWindow()
         swin.set_shadow_type(Gtk.ShadowType.IN)

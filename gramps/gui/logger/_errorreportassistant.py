@@ -260,7 +260,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         label = Gtk.Label(label=_("If you can see that there is any personal "
                             "information included in the error please remove "
                             "it."))
-        label.set_alignment(0.01, 0.5)
+        label.set_halign(Gtk.Align.START)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
 
@@ -339,7 +339,7 @@ class ErrorReportAssistant(Gtk.Assistant):
                             "anything that you know to be wrong or remove "
                             "anything that you would rather not have included "
                             "in the bug report."))
-        label.set_alignment(0.01, 0.5)
+        label.set_halign(Gtk.Align.START)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
 
@@ -416,7 +416,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         label = Gtk.Label(label=_("Please provide as much information as you can "
                              "about what you were doing when the error "
                              "occured."))
-        label.set_alignment(0.01, 0.5)
+        label.set_halign(Gtk.Align.START)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
 
@@ -489,7 +489,7 @@ class ErrorReportAssistant(Gtk.Assistant):
                             "of the error information. Just make sure that it "
                             "does not contain anything that you do not want "
                             "to be sent to the developers."))
-        label.set_alignment(0.01, 0.5)
+        label.set_halign(Gtk.Align.START)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
 
@@ -555,7 +555,7 @@ class ErrorReportAssistant(Gtk.Assistant):
             (_("Use the two buttons below to first copy the bug report to the "
                "clipboard and then open a webbrowser to file a bug report at "),
                URL_BUGTRACKER))
-        label.set_alignment(0.01, 0.5)
+        label.set_halign(Gtk.Align.START)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
         label.set_use_markup(True)
@@ -564,7 +564,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         url_label = Gtk.Label(label=_("Use this button to start a web browser and "
                                 "file a bug report on the Gramps bug tracking "
                                 "system."))
-        url_label.set_alignment(0.01, 0.5)
+        url_label.set_halign(Gtk.Align.START)
         url_label.set_padding(0, 4)
         url_label.set_line_wrap(True)
         url_label.set_size_request(200, -1)
@@ -588,7 +588,7 @@ class ErrorReportAssistant(Gtk.Assistant):
                                  "Then go to the bug tracking website by using "
                                  "the button below, paste the report and click "
                                  "submit report"))
-        clip_label.set_alignment(0.01, 0.5)
+        clip_label.set_halign(Gtk.Align.START)
         clip_label.set_padding(0, 4)
         clip_label.set_line_wrap(True)
         clip_label.set_size_request(200, -1)

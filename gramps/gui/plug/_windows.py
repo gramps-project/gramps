@@ -1003,7 +1003,7 @@ class ToolManagedWindowBase(ManagedWindow):
                 widget.set_hexpand(True)
                 if text:
                     text_widget = Gtk.Label(label='%s:' % text)
-                    text_widget.set_alignment(0.0, 0.5)
+                    text_widget.set_halign(Gtk.Align.START)
                     grid.attach(text_widget, 1, row, 1, 1)
                     grid.attach(widget, 2, row, 1, 1)
                 else:

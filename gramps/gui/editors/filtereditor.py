@@ -488,8 +488,7 @@ class EditRule(ManagedWindow):
             vallist = []
             tlist = []
             pos = 0
-            l2 = Gtk.Label(label=class_obj.name)
-            l2.set_alignment(0, 0.5)
+            l2 = Gtk.Label(label=class_obj.name, halign=Gtk.Align.START)
             l2.show()
             c = Gtk.TreeView()
             #c.set_data('d', pos)
@@ -501,8 +500,7 @@ class EditRule(ManagedWindow):
             grid.set_row_spacing(6)
             grid.show()
             for v in arglist:
-                l = Gtk.Label(label=v)
-                l.set_alignment(1, 0.5)
+                l = Gtk.Label(label=v, halign=Gtk.Align.END)
                 l.show()
                 if v == _('Place:'):
                     t = MyPlaces([])

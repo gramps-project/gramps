@@ -341,7 +341,7 @@ class GrampletBar(Gtk.Notebook):
         tab_label.show()
         msg = _('Select the down arrow on the right corner for adding, removing or restoring gramplets.')
         content = Gtk.Label(label=msg)
-        content.set_alignment(0, 0)
+        content.set_halign(Gtk.Align.START)
         content.set_line_wrap(True)
         content.set_size_request(150, -1)
         content.show()

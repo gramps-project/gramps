@@ -312,7 +312,7 @@ class ConfigureDialog(ManagedWindow):
             config = self.__config
         text = Gtk.Label()
         text.set_line_wrap(line_wrap)
-        text.set_alignment(0.,0.)
+        text.set_halign(Gtk.Align.START)
         text.set_text(label)
         grid.attach(text, 1, index, 8, 1)
 

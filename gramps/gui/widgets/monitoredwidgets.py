@@ -833,7 +833,7 @@ class MonitoredTagList(object):
             self.all_tags.append((tag.get_handle(), tag.get_name()))
 
         self.label = label
-        self.label.set_alignment(0, 0.5)
+        self.label.set_halign(Gtk.Align.START)
         self.label.set_ellipsize(Pango.EllipsizeMode.END)
         image = Gtk.Image()
         image.set_from_icon_name('gramps-tag', Gtk.IconSize.MENU)

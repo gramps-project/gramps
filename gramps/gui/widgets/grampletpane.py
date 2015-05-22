@@ -569,7 +569,7 @@ class GuiGramplet(object):
         topbox.pack_start(hbox, False, False, 0)
         for item in self.pui.option_order:
             label = Gtk.Label(label=item + ":")
-            label.set_alignment(1.0, 0.5)
+            label.set_halign(Gtk.Align.END)
             labels.pack_start(label, True, True, 0)
             options.pack_start(self.pui.option_dict[item][0], True, True, 0) # widget
         save_button = Gtk.Button.new_with_mnemonic(_('_Save'))

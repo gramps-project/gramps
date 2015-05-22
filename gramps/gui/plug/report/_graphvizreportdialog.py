@@ -148,7 +148,7 @@ class GraphvizReportDialog(ReportDialog):
         self.format_menu.set(self.options.handler.get_format_name())
         self.format_menu.connect('changed', self.doc_type_changed)
         label = Gtk.Label(label="%s:" % _("Output Format"))
-        label.set_alignment(0.0, 0.5)
+        label.set_halign(Gtk.Align.START)
         self.grid.attach(label, 1, self.row, 1, 1)
         self.format_menu.set_hexpand(True)
         self.grid.attach(self.format_menu, 2, self.row, 2, 1)

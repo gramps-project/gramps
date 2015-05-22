@@ -560,7 +560,7 @@ class RelationshipView(NavigationView):
         fmt = '<span size="larger" weight="bold">%s</span>'
         text = fmt % escape(name)
         label = widgets.DualMarkupLabel(text, _GenderCode[person.gender],
-                                        x_align=1)
+                                        halign=Gtk.Align.END)
         if self._config.get('preferences.releditbtn'):
             button = widgets.IconButton(self.edit_button_press, 
                                         person.handle)
@@ -742,7 +742,7 @@ class RelationshipView(NavigationView):
         """
         msg = '<span style="italic" weight="heavy">%s</span>' % escape(title)
         hbox = Gtk.Box()
-        label = widgets.MarkupLabel(msg, x_align=1)
+        label = widgets.MarkupLabel(msg, halign=Gtk.Align.END)
         # Draw the collapse/expand button:
         if family is not None:
             if self.check_collapsed(person.handle, family.handle):
@@ -1013,7 +1013,7 @@ class RelationshipView(NavigationView):
             format = "%s"
 
         label = widgets.MarkupLabel(format % escape(title),
-                                    x_align=1, y_align=0)
+                                    halign=Gtk.Align.END)
         if self._config.get('preferences.releditbtn'):
             label.set_padding(0, 5)
 
@@ -1050,7 +1050,7 @@ class RelationshipView(NavigationView):
             self._set_draggable_person(eventbox, handle)
         else:
             link_label = Gtk.Label(label=_('Unknown'))
-            link_label.set_alignment(0, 1)
+            link_label.set_halign(Gtk.Align.START)
             link_label.show()
             vbox.pack_start(link_label, True, True, 0)
             
@@ -1112,7 +1112,7 @@ class RelationshipView(NavigationView):
             format = "%s"
 
         lbl = widgets.MarkupLabel(format % escape(title),
-                                  x_align=1, y_align=.5)
+                                  halign=Gtk.Align.END)
         if self._config.get('preferences.releditbtn'):
             lbl.set_padding(0, 5)
         return lbl
@@ -1174,7 +1174,7 @@ class RelationshipView(NavigationView):
         hbox = Gtk.Box()
         l = widgets.BasicLabel("%d." % index)
         l.set_width_chars(3)
-        l.set_alignment(1.0, 0.5)
+        l.set_halign(Gtk.Align.END)
         hbox.pack_start(l, False, False, 0)
         hbox.pack_start(widgets.LinkBox(link_label, button),
                         False, False, 4)
@@ -1275,7 +1275,7 @@ class RelationshipView(NavigationView):
         image.show()
         label = Gtk.Label(label=_("Edit %s") % name)
         label.show()
-        label.set_alignment(0, 0)
+        label.set_halign(Gtk.Align.START)
 
         item.set_image(image)
         item.add(label)
