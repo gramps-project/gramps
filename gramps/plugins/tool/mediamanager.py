@@ -336,8 +336,8 @@ class ConfirmationPage(Gtk.Box):
         scrolled_window.add(tree)
         self.pack_start(scrolled_window, True, True, 0)
 
-        label3 = Gtk.Label(_('Press Apply to proceed, Cancel to abort, '
-                             'or Back to revisit your options.'))
+        label3 = Gtk.Label(label=_('Press Apply to proceed, Cancel to abort, '
+                                   'or Back to revisit your options.'))
         self.pack_start(label3, False, True, 0)
 
     def prepare(self, index):

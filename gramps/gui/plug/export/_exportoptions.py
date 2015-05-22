@@ -144,7 +144,8 @@ class WriterOptionBox(object):
         widget = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         
         full_database_row = Gtk.Box()
-        full_database_row.pack_start(Gtk.Label(_("Unfiltered Family Tree:")), True, True, 0)
+        label = Gtk.Label(label=_("Unfiltered Family Tree:"))
+        full_database_row.pack_start(label, True, True, 0)
         people_count = len(self.dbstate.db.get_person_handles())
         # translators: leave all/any {...} untranslated
         button = Gtk.Button(ngettext("{number_of} Person",
