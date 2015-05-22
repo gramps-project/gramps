@@ -995,7 +995,7 @@ class GrampletPane(Gtk.ScrolledWindow):
         self.eventb = Gtk.EventBox()
         self.hbox = Gtk.Box(homogeneous=True)
         self.eventb.add(self.hbox)
-        self.add_with_viewport(self.eventb)
+        self.add(self.eventb)
         self.set_kinetic_scrolling(True)
         self.set_capture_button_press(True)
         # Set up drag and drop

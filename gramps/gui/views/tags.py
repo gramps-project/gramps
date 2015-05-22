@@ -399,7 +399,7 @@ class OrganizeTagsDialog(object):
         self.namemodel = ListModel(self.namelist, name_titles)
 
         slist = Gtk.ScrolledWindow()
-        slist.add_with_viewport(self.namelist)
+        slist.add(self.namelist)
         slist.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         box.pack_start(slist, 1, 1, 5)
         bbox = Gtk.ButtonBox(orientation=Gtk.Orientation.VERTICAL)

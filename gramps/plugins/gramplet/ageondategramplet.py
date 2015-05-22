@@ -80,7 +80,7 @@ class AgeOnDateGramplet(Gramplet):
         vbox.pack_start(hbox, False, True, 0)
         vbox.pack_start(button, False, True, 0)
         self.gui.get_container_widget().remove(self.gui.textview)
-        self.gui.get_container_widget().add_with_viewport(vbox)
+        self.gui.get_container_widget().add(vbox)
         vbox.show_all()
 
     def post_init(self):

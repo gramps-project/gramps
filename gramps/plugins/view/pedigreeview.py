@@ -595,7 +595,7 @@ class PedigreeView(NavigationView):
         event_box.connect("button-release-event", self.cb_bg_button_release)
         #Signal for controll motion-notify when left mouse button pressed
         event_box.connect("motion-notify-event", self.cb_bg_motion_notify_event)
-        self.scrolledwindow.add_with_viewport(event_box)
+        self.scrolledwindow.add(event_box)
 
         self.table = Gtk.Grid()
         # force LTR layout of the tree, even though the text might be RTL!
@@ -1191,7 +1191,7 @@ class PedigreeView(NavigationView):
                                                 vadjustment=None)
                         frame.set_shadow_type(Gtk.ShadowType.NONE)
                         frame.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.NEVER)
-                        frame.add_with_viewport(label)
+                        frame.add(label)
                         table_widget.attach(frame, x_pos, y_pos, 1, 1)
         table_widget.show_all()
 

@@ -127,7 +127,7 @@ class ErrorView(object):
         scroll.set_size_request(-1, 60)
         
         tb_frame.add(scroll)
-        scroll.add_with_viewport(tb_label)
+        scroll.add(tb_label)
 
         tb_expander = Gtk.Expander(label='<span weight="bold">%s</span>' % _("Error Detail"))
         tb_expander.set_use_markup(True)

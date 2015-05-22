@@ -61,7 +61,7 @@ class ExpanderSidebar(BaseSidebar):
 
         self.window = Gtk.ScrolledWindow()
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.window.add_with_viewport(vbox)
+        self.window.add(vbox)
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
         

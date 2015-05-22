@@ -612,7 +612,7 @@ class EditRule(ManagedWindow):
 
             # put the grid into a scrollable area:
             scrolled_win = Gtk.ScrolledWindow()
-            scrolled_win.add_with_viewport(grid)
+            scrolled_win.add(grid)
             scrolled_win.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             scrolled_win.show()
             self.notebook.append_page(scrolled_win, Gtk.Label(label=class_obj.name))

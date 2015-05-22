@@ -178,7 +178,7 @@ class ProgressMeter(object):
             text.set_border_width(6)
             text.set_editable(False)
             self.message_area = text
-            area.add_with_viewport(text)
+            area.add(text)
             area.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
             self.__dialog.vbox.add(area)
             self.message_area_ok = Gtk.Button.new_with_mnemonic(_('_OK'))

@@ -1371,7 +1371,7 @@ class ClipboardWindow(ManagedWindow):
         mtv = MultiTreeView(self.dbstate, self.uistate, _("Clipboard"))
         scrolledwindow = self.top.get_object('scrolledwindow86')
         scrolledwindow.remove(objectlist)
-        scrolledwindow.add_with_viewport(mtv)
+        scrolledwindow.add(mtv)
         self.object_list = ClipboardListView(self.dbstate, mtv)
         self.object_list.get_selection().connect('changed',
                                                  self.set_clear_btn_sensitivity)

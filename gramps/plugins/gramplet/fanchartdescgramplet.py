@@ -70,7 +70,7 @@ class FanChartDescGramplet(FanChartDescGrampsGUI, Gramplet):
         self.set_fan(FanChartDescWidget(self.dbstate, self.uistate, self.on_popup))
         # Replace the standard textview with the fan chart widget:
         self.gui.get_container_widget().remove(self.gui.textview)
-        self.gui.get_container_widget().add_with_viewport(self.fan)
+        self.gui.get_container_widget().add(self.fan)
         # Make sure it is visible:
         self.fan.show()
 

@@ -47,7 +47,7 @@ class Filter(Gramplet):
                                         self.__filter_clicked)
         self.widget = self.filter.get_widget()                          
         self.gui.get_container_widget().remove(self.gui.textview)
-        self.gui.get_container_widget().add_with_viewport(self.widget)
+        self.gui.get_container_widget().add(self.widget)
         self.widget.show_all()
 
     def __filter_clicked(self):
