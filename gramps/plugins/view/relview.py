@@ -30,7 +30,7 @@ Relationship View
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
-import cgi
+from html import escape
 import pickle
 
 #-------------------------------------------------------------------------
@@ -206,7 +206,7 @@ class RelationshipView(NavigationView):
 
     def person_update(self, handle_list):
         if self.active:
-            person  = self.get_active()
+            person = self.get_active()
             if person:
                 while not self.change_person(person):
                     pass
@@ -219,7 +219,7 @@ class RelationshipView(NavigationView):
         """Large change to person database"""
         if self.active:
             self.bookmarks.redraw()
-            person  = self.get_active()
+            person = self.get_active()
             if person:
                 while not self.change_person(person):
                     pass
@@ -230,7 +230,7 @@ class RelationshipView(NavigationView):
 
     def family_update(self, handle_list):
         if self.active:
-            person  = self.get_active()
+            person = self.get_active()
             if person:
                 while not self.change_person(person):
                     pass
@@ -241,7 +241,7 @@ class RelationshipView(NavigationView):
 
     def family_add(self, handle_list):
         if self.active:
-            person  = self.get_active()
+            person = self.get_active()
             if person:
                 while not self.change_person(person):
                     pass
@@ -252,7 +252,7 @@ class RelationshipView(NavigationView):
 
     def family_delete(self, handle_list):
         if self.active:
-            person  = self.get_active()
+            person = self.get_active()
             if person:
                 while not self.change_person(person):
                     pass
@@ -263,7 +263,7 @@ class RelationshipView(NavigationView):
 
     def family_rebuild(self):
         if self.active:
-            person  = self.get_active()
+            person = self.get_active()
             if person:
                 while not self.change_person(person):
                     pass
@@ -558,7 +558,7 @@ class RelationshipView(NavigationView):
         # name and edit button
         name = name_displayer.display(person)
         fmt = '<span size="larger" weight="bold">%s</span>'
-        text = fmt % cgi.escape(name)
+        text = fmt % escape(name)
         label = widgets.DualMarkupLabel(text, _GenderCode[person.gender],
                                         x_align=1)
         if self._config.get('preferences.releditbtn'):
@@ -740,7 +740,7 @@ class RelationshipView(NavigationView):
         Shows following elements:
         (collapse/expand arrow, Parents/Family title label, Family gramps_id, and add-choose-edit-delete buttons)
         """
-        msg = '<span style="italic" weight="heavy">%s</span>' % cgi.escape(title)
+        msg = '<span style="italic" weight="heavy">%s</span>' % escape(title)
         hbox = Gtk.Box()
         label = widgets.MarkupLabel(msg, x_align=1)
         # Draw the collapse/expand button:
@@ -1012,7 +1012,7 @@ class RelationshipView(NavigationView):
         else:
             format = "%s"
 
-        label = widgets.MarkupLabel(format % cgi.escape(title),
+        label = widgets.MarkupLabel(format % escape(title),
                                     x_align=1, y_align=0)
         if self._config.get('preferences.releditbtn'):
             label.set_padding(0, 5)
@@ -1111,7 +1111,7 @@ class RelationshipView(NavigationView):
         else:
             format = "%s"
 
-        lbl = widgets.MarkupLabel(format % cgi.escape(title),
+        lbl = widgets.MarkupLabel(format % escape(title),
                                   x_align=1, y_align=.5)
         if self._config.get('preferences.releditbtn'):
             lbl.set_padding(0, 5)
@@ -1201,11 +1201,11 @@ class RelationshipView(NavigationView):
         if birth and birth.get_type() != EventType.BIRTH:
             sdate = get_date(birth)
             if sdate:
-                bdate  = "<i>%s</i>" % cgi.escape(sdate)
+                bdate = "<i>%s</i>" % escape(sdate)
             else:
                 bdate = ""
         elif birth:
-            bdate  = cgi.escape(get_date(birth))
+            bdate = escape(get_date(birth))
         else:
             bdate = ""
 
@@ -1213,11 +1213,11 @@ class RelationshipView(NavigationView):
         if death and death.get_type() != EventType.DEATH:
             sdate = get_date(death)
             if sdate:
-                ddate  = "<i>%s</i>" % cgi.escape(sdate)
+                ddate = "<i>%s</i>" % escape(sdate)
             else:
                 ddate = ""
         elif death:
-            ddate  = cgi.escape(get_date(death))
+            ddate = escape(get_date(death))
         else:
             ddate = ""
 
@@ -1292,7 +1292,7 @@ class RelationshipView(NavigationView):
             pass
 
     def write_relationship(self, box, family):
-        msg = _('Relationship type: %s') % cgi.escape(str(family.get_relationship()))
+        msg = _('Relationship type: %s') % escape(str(family.get_relationship()))
         box.add(widgets.MarkupLabel(msg))
 
     def write_relationship_events(self, vbox, family):

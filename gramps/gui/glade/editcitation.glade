@@ -25,12 +25,12 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="help">
-                <property name="label">gtk-help</property>
+                <property name="label" translatable="yes">_Help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -40,12 +40,12 @@
             </child>
             <child>
               <object class="GtkButton" id="cancel">
-                <property name="label">gtk-cancel</property>
+                <property name="label" translatable="yes">_Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -55,12 +55,12 @@
             </child>
             <child>
               <object class="GtkButton" id="ok">
-                <property name="label">gtk-ok</property>
+                <property name="label" translatable="yes">_OK</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -333,7 +333,7 @@ Very High =Direct and primary evidence used, or by dominance of the evidence </p
                   <object class="GtkImage" id="image2677">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="icon_name">gtk-dialog-authentication</property>
+                    <property name="icon_name">dialog-password</property>
                     <child internal-child="accessible">
                       <object class="AtkObject" id="image2677-atkobject">
                         <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>

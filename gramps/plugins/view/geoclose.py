@@ -33,7 +33,7 @@ _ = glocale.translation.gettext
 import operator
 from gi.repository import Gtk
 from math import *
-import cgi
+from html import escape
 
 #-------------------------------------------------------------------------
 #
@@ -249,11 +249,11 @@ class GeoClose(GeoGraphyView):
         if birth and birth.get_type() != EventType.BIRTH:
             sdate = get_date(birth)
             if sdate:
-                bdate  = "<i>%s</i>" % cgi.escape(sdate)
+                bdate = "<i>%s</i>" % escape(sdate)
             else:
                 bdate = ""
         elif birth:
-            bdate = cgi.escape(get_date(birth))
+            bdate = escape(get_date(birth))
         else:
             bdate = ""
         return bdate
@@ -266,11 +266,11 @@ class GeoClose(GeoGraphyView):
         if death and death.get_type() != EventType.DEATH:
             sdate = get_date(death)
             if sdate:
-                ddate  = "<i>%s</i>" % cgi.escape(sdate)
+                ddate = "<i>%s</i>" % escape(sdate)
             else:
                 ddate = ""
         elif death:
-            ddate  = cgi.escape(get_date(death))
+            ddate = escape(get_date(death))
         else:
             ddate = ""
         return ddate

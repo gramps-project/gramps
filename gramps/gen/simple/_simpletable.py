@@ -24,7 +24,7 @@
 Provide a simplified table creation interface
 """
 
-import cgi
+from html import escape
 from ..const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.sgettext
 from ..lib import (Person, Family, Event, Source, Place, Citation,
@@ -153,7 +153,7 @@ class SimpleTable(object):
                 if item.get_valid():
                     if item.format:
                         self.set_cell_markup(col, row, 
-                                             item.format % cgi.escape(text))
+                                             item.format % escape(text))
                     self.row_sort_val(col, item.sortval)
                 else:
                     # sort before others:
@@ -161,7 +161,7 @@ class SimpleTable(object):
                     # give formatted version:
                     invalid_date_format = config.get('preferences.invalid-date-format')
                     self.set_cell_markup(col, row,
-                                         invalid_date_format % cgi.escape(text))
+                                         invalid_date_format % escape(text))
                 if (self._link_col == col or link is None):
                     link = ('Date', item)
             elif isinstance(item, Span):
@@ -261,7 +261,7 @@ class SimpleTable(object):
             elif y in self._cell_markup[x]:
                 return self._cell_markup[x][y]
             else:
-                return cgi.escape(data)
+                return escape(data)
         else:
             if y is None: 
                 return False # no markup for this column

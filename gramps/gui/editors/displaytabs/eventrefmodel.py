@@ -38,7 +38,7 @@ from gi.repository import Pango
 WEIGHT_NORMAL = Pango.Weight.NORMAL
 WEIGHT_BOLD = Pango.Weight.BOLD
 
-import cgi
+from html import escape
 
 #-------------------------------------------------------------------------
 #
@@ -145,7 +145,7 @@ class EventRefModel(Gtk.TreeStore):
         event = self.db.get_event_from_handle(event_ref.ref)
         retval = get_date(event)
         if not get_date_valid(event):
-            return invalid_date_format % cgi.escape(retval)
+            return invalid_date_format % escape(retval)
         else:
             return retval
 

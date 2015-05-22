@@ -28,7 +28,7 @@ CitationBaseModel classes for GRAMPS.
 # python modules
 #
 #-------------------------------------------------------------------------
-import cgi
+from html import escape
 import logging
 log = logging.getLogger(".")
 LOG = logging.getLogger(".citation")
@@ -90,7 +90,7 @@ class CitationBaseModel(object):
             citation.unserialize(data)
             date_str =  get_date(citation)
             if date_str != "":
-                retval = cgi.escape(date_str)
+                retval = escape(date_str)
             if not get_date_valid(citation):
                 return INVALID_DATE_FORMAT % retval
             else:

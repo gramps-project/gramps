@@ -62,7 +62,7 @@ class Leak(Gramplet):
     def init(self):
         self.gui.WIDGET = self.build_gui()
         self.gui.get_container_widget().remove(self.gui.textview)
-        self.gui.get_container_widget().add_with_viewport(self.gui.WIDGET)
+        self.gui.get_container_widget().add(self.gui.WIDGET)
 
         flags = gc.DEBUG_UNCOLLECTABLE|gc.DEBUG_SAVEALL
         if hasattr(gc, "DEBUG_OBJECTS"):
@@ -85,7 +85,7 @@ class Leak(Gramplet):
         self.list = Gtk.TreeView()
         self.list.set_headers_visible(True)
         self.list.connect('button-press-event', self._button_press)
-        self.scroll.add_with_viewport(self.list)
+        self.scroll.add(self.list)
         #make a model
         self.modeldata = []
         self.model = Gtk.ListStore(int, str)

@@ -40,6 +40,8 @@ from gi.repository import Gtk
 # gramps modules
 #
 #-------------------------------------------------------------------------
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
 from gramps.gui.utils import ProgressMeter
 from gramps.gui.plug import tool
 from gramps.gui.dialog import OkDialog

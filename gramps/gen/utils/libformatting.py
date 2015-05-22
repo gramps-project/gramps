@@ -28,7 +28,7 @@ recompute
 # Python modules
 #
 #-------------------------------------------------------------------------
-from cgi import escape
+from html import escape
 
 #-------------------------------------------------------------------------
 #
@@ -73,17 +73,17 @@ class FormattingHelper(object):
         text = ""
         marriage = get_marriage_or_fallback(self.dbstate.db, family)
         if marriage and use_markup and marriage.get_type() != EventType.MARRIAGE:
-            mdate  = "<i>%s %s</i>" % (marriage.get_type().get_abbreviation(), 
+            mdate = "<i>%s %s</i>" % (marriage.get_type().get_abbreviation(),
                                        escape(get_date(marriage)))
             mplace = "<i>%s</i>" % escape(self.get_place_name(marriage.get_place_handle()))
             name = "<i>%s</i>" % str(marriage.get_type())
         elif marriage and use_markup:
-            mdate  = "%s %s" % (marriage.get_type().get_abbreviation(), 
+            mdate = "%s %s" % (marriage.get_type().get_abbreviation(),
                                 escape(get_date(marriage)))
             mplace = escape(self.get_place_name(marriage.get_place_handle()))
             name = str(marriage.get_type())
         elif marriage:
-            mdate  = "%s %s" % (marriage.get_type().get_abbreviation(), 
+            mdate = "%s %s" % (marriage.get_type().get_abbreviation(),
                                 get_date(marriage))
             mplace = self.get_place_name(marriage.get_place_handle())
             name = str(marriage.get_type())
@@ -149,28 +149,28 @@ class FormattingHelper(object):
         if line_count >= 3:
             birth = get_birth_or_fallback(self.dbstate.db, person)
             if birth and use_markup and birth.get_type() != EventType.BIRTH:
-                bdate  = "<i>%s</i>" % escape(get_date(birth))
+                bdate = "<i>%s</i>" % escape(get_date(birth))
                 bplace = "<i>%s</i>" % escape(self.get_place_name(
                                                     birth.get_place_handle()))
             elif birth and use_markup:
-                bdate  = escape(get_date(birth))
+                bdate = escape(get_date(birth))
                 bplace = escape(self.get_place_name(birth.get_place_handle()))
             elif birth:
-                bdate  = get_date(birth)
+                bdate = get_date(birth)
                 bplace = self.get_place_name(birth.get_place_handle())
             else:
                 bdate = ""
                 bplace = ""
             death = get_death_or_fallback(self.dbstate.db, person)
             if death and use_markup and death.get_type() != EventType.DEATH:
-                ddate  = "<i>%s</i>" % escape(get_date(death))
+                ddate = "<i>%s</i>" % escape(get_date(death))
                 dplace = "<i>%s</i>" % escape(self.get_place_name(
                                                     death.get_place_handle()))
             elif death and use_markup:
-                ddate  = escape(get_date(death))
+                ddate = escape(get_date(death))
                 dplace = escape(self.get_place_name(death.get_place_handle()))
             elif death:
-                ddate  = get_date(death)
+                ddate = get_date(death)
                 dplace = self.get_place_name(death.get_place_handle())
             else:
                 ddate = ""

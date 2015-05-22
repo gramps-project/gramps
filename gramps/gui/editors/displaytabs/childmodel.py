@@ -24,7 +24,7 @@
 #
 #-------------------------------------------------------------------------
 from gi.repository import Gtk
-import cgi
+from html import escape
 
 #-------------------------------------------------------------------------
 #
@@ -76,7 +76,7 @@ class ChildModel(Gtk.ListStore):
             if birth.get_type() == EventType.BIRTH:
                 return get_date(birth)
             else:
-                return '<i>%s</i>' % cgi.escape(get_date(birth))
+                return '<i>%s</i>' % escape(get_date(birth))
         else:
             return ""
 
@@ -99,7 +99,7 @@ class ChildModel(Gtk.ListStore):
             if death.get_type() == EventType.DEATH:
                 return get_date(death)
             else:
-                return '<i>%s</i>' % cgi.escape(get_date(death))
+                return '<i>%s</i>' % escape(get_date(death))
         else:
             return ""
 

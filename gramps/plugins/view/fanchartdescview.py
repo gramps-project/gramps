@@ -104,7 +104,7 @@ class FanChartDescView(fanchartdesc.FanChartDescGrampsGUI, NavigationView):
         self.scrolledwindow.set_policy(Gtk.PolicyType.AUTOMATIC,
                                        Gtk.PolicyType.AUTOMATIC)
         self.fan.show_all()
-        self.scrolledwindow.add_with_viewport(self.fan)
+        self.scrolledwindow.add(self.fan)
 
         return self.scrolledwindow
 

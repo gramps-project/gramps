@@ -21,13 +21,13 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button108">
-                <property name="label">gtk-close</property>
+                <property name="label" translatable="yes">_Close</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="destroy_passed_object" object="report" swapped="yes"/>
               </object>
               <packing>

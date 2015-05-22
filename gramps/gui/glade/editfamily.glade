@@ -18,7 +18,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="cancel">
-                <property name="label">gtk-cancel</property>
+                <property name="label" translatable="yes">_Cancel</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -27,7 +27,7 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Abandon changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Abandon changes and close window</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -37,7 +37,7 @@
             </child>
             <child>
               <object class="GtkButton" id="ok">
-                <property name="label">gtk-ok</property>
+                <property name="label" translatable="yes">_OK</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -47,7 +47,7 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Accept changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -57,13 +57,13 @@
             </child>
             <child>
               <object class="GtkButton" id="button119">
-                <property name="label">gtk-help</property>
+                <property name="label" translatable="yes">_Help</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -113,8 +113,8 @@
                               <object class="GtkLabel" id="label577">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_left">6</property>
                                 <property name="halign">start</property>
+                                <property name="margin_left">6</property>
                                 <property name="label" translatable="yes">Name:</property>
                               </object>
                               <packing>
@@ -126,8 +126,8 @@
                               <object class="GtkLabel" id="label578">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_left">6</property>
                                 <property name="halign">start</property>
+                                <property name="margin_left">6</property>
                                 <property name="label" translatable="yes">Birth:</property>
                               </object>
                               <packing>
@@ -139,8 +139,8 @@
                               <object class="GtkLabel" id="label579">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_left">6</property>
                                 <property name="halign">start</property>
+                                <property name="margin_left">6</property>
                                 <property name="label" translatable="yes">Death:</property>
                               </object>
                               <packing>
@@ -179,7 +179,7 @@
                                       <object class="GtkImage" id="image2671">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="stock">gtk-index</property>
+                                        <property name="icon_name">gtk-index</property>
                                         <child internal-child="accessible">
                                           <object class="AtkObject" id="image2671-atkobject">
                                             <property name="AtkObject::accessible-description" translatable="yes">Selector</property>
@@ -211,7 +211,7 @@
                                       <object class="GtkImage" id="image2697">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="stock">gtk-add</property>
+                                        <property name="icon_name">list-add</property>
                                         <child internal-child="accessible">
                                           <object class="AtkObject" id="image2697-atkobject">
                                             <property name="AtkObject::accessible-description" translatable="yes">Add</property>
@@ -242,7 +242,7 @@
                                       <object class="GtkImage" id="image2724">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="stock">gtk-remove</property>
+                                        <property name="icon_name">list-remove</property>
                                         <child internal-child="accessible">
                                           <object class="AtkObject" id="image2724-atkobject">
                                             <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
@@ -273,7 +273,7 @@
                                       <object class="GtkImage" id="image2725">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="stock">gtk-edit</property>
+                                        <property name="icon_name">gtk-edit</property>
                                         <child internal-child="accessible">
                                           <object class="AtkObject" id="image2725-atkobject">
                                             <property name="AtkObject::accessible-description" translatable="yes">Edition</property>
@@ -305,8 +305,8 @@
                               <object class="GtkLabel" id="fbirth">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="hexpand">True</property>
                                 <property name="halign">start</property>
+                                <property name="hexpand">True</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -317,8 +317,8 @@
                               <object class="GtkLabel" id="fdeath">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="hexpand">True</property>
                                 <property name="halign">start</property>
+                                <property name="hexpand">True</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -329,8 +329,8 @@
                               <object class="GtkLabel" id="fname">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="hexpand">True</property>
                                 <property name="halign">start</property>
+                                <property name="hexpand">True</property>
                                 <property name="ellipsize">end</property>
                               </object>
                               <packing>
@@ -367,8 +367,8 @@
                               <object class="GtkLabel" id="label565">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_left">6</property>
                                 <property name="halign">start</property>
+                                <property name="margin_left">6</property>
                                 <property name="label" translatable="yes">Name:</property>
                               </object>
                               <packing>
@@ -380,8 +380,8 @@
                               <object class="GtkLabel" id="label567">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_left">6</property>
                                 <property name="halign">start</property>
+                                <property name="margin_left">6</property>
                                 <property name="label" translatable="yes">Birth:</property>
                               </object>
                               <packing>
@@ -393,8 +393,8 @@
                               <object class="GtkLabel" id="label568">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="margin_left">6</property>
                                 <property name="halign">start</property>
+                                <property name="margin_left">6</property>
                                 <property name="label" translatable="yes">Death:</property>
                               </object>
                               <packing>
@@ -406,8 +406,8 @@
                               <object class="GtkLabel" id="mdeath">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="hexpand">True</property>
                                 <property name="halign">start</property>
+                                <property name="hexpand">True</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -418,8 +418,8 @@
                               <object class="GtkLabel" id="mbirth">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="hexpand">True</property>
                                 <property name="halign">start</property>
+                                <property name="hexpand">True</property>
                               </object>
                               <packing>
                                 <property name="left_attach">1</property>
@@ -457,7 +457,7 @@
                                       <object class="GtkImage" id="image2670">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="stock">gtk-index</property>
+                                        <property name="icon_name">gtk-index</property>
                                         <child internal-child="accessible">
                                           <object class="AtkObject" id="image2670-atkobject">
                                             <property name="AtkObject::accessible-description" translatable="yes">Selector</property>
@@ -488,7 +488,7 @@
                                       <object class="GtkImage" id="image2698">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="stock">gtk-add</property>
+                                        <property name="icon_name">list-add</property>
                                         <child internal-child="accessible">
                                           <object class="AtkObject" id="image2698-atkobject">
                                             <property name="AtkObject::accessible-description" translatable="yes">Add</property>
@@ -522,7 +522,7 @@
                                       <object class="GtkImage" id="image2672">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="icon_name">gtk-dialog-authentication</property>
+                                        <property name="icon_name">dialog-password</property>
                                         <child internal-child="accessible">
                                           <object class="AtkObject" id="image2672-atkobject">
                                             <property name="AtkObject::accessible-name" translatable="yes">Privacy</property>
@@ -550,7 +550,7 @@
                                       <object class="GtkImage" id="image2726">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="stock">gtk-remove</property>
+                                        <property name="icon_name">list-remove</property>
                                         <child internal-child="accessible">
                                           <object class="AtkObject" id="image2726-atkobject">
                                             <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
@@ -581,7 +581,7 @@
                                       <object class="GtkImage" id="image2727">
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
-                                        <property name="stock">gtk-edit</property>
+                                        <property name="icon_name">gtk-edit</property>
                                         <child internal-child="accessible">
                                           <object class="AtkObject" id="image2727-atkobject">
                                             <property name="AtkObject::accessible-description" translatable="yes">Edition</property>
@@ -613,8 +613,8 @@
                               <object class="GtkLabel" id="mname">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="hexpand">True</property>
                                 <property name="halign">start</property>
+                                <property name="hexpand">True</property>
                                 <property name="ellipsize">end</property>
                               </object>
                               <packing>
@@ -665,8 +665,8 @@
                       <object class="GtkLabel" id="label229">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_left">6</property>
                         <property name="halign">start</property>
+                        <property name="margin_left">6</property>
                         <property name="label" translatable="yes">_ID:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">gid</property>
@@ -728,8 +728,8 @@
                       <object class="GtkLabel" id="label1">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="margin_left">6</property>
                         <property name="halign">start</property>
+                        <property name="margin_left">6</property>
                         <property name="label" translatable="yes">_Tags:</property>
                         <property name="use_underline">True</property>
                         <property name="mnemonic_widget">tag_button</property>
@@ -786,15 +786,6 @@
                         <property name="top_attach">2</property>
                         <property name="width">3</property>
                       </packing>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
-                    </child>
-                    <child>
-                      <placeholder/>
                     </child>
                   </object>
                   <packing>

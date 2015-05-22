@@ -22,7 +22,7 @@
 # Python modules
 #
 #------------------------------------------------------------------------
-import cgi
+from html import escape
 
 #------------------------------------------------------------------------
 #
@@ -196,11 +196,11 @@ class PedigreeGramplet(Gramplet):
         if birth and birth.get_type() != EventType.BIRTH:
             sdate = get_date(birth)
             if sdate:
-                bdate  = "<i>%s</i>" % cgi.escape(sdate)
+                bdate = "<i>%s</i>" % escape(sdate)
             else:
                 bdate = ""
         elif birth:
-            bdate  = cgi.escape(get_date(birth))
+            bdate = escape(get_date(birth))
         else:
             bdate = ""
 
@@ -208,11 +208,11 @@ class PedigreeGramplet(Gramplet):
         if death and death.get_type() != EventType.DEATH:
             sdate = get_date(death)
             if sdate:
-                ddate  = "<i>%s</i>" % cgi.escape(sdate)
+                ddate = "<i>%s</i>" % escape(sdate)
             else:
                 ddate = ""
         elif death:
-            ddate  = cgi.escape(get_date(death))
+            ddate = escape(get_date(death))
         else:
             ddate = ""
 

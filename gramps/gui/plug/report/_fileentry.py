@@ -24,6 +24,9 @@ import os
 from gi.repository import Gtk
 from gi.repository import GObject
 from gramps.gen.constfunc import conv_to_unicode, get_curr_dir
+from gramps.gen.const import GRAMPS_LOCALE as glocale
+_ = glocale.translation.gettext
+
 class FileEntry(Gtk.Box):
     """ A widget that allows the user to select a file from the file system """
     def __init__(self, defname, title, parent=None):

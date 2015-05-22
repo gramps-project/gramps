@@ -478,6 +478,6 @@ def find_locker_name(dirpath):
         # feature request 2356: avoid genitive form
         last = _("Locked by %s") % username
         ifile.close()
-    except (OSError, IOError):
+    except (OSError, IOError, UnicodeDecodeError):
         last = _("Unknown")
     return last

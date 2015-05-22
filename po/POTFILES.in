@@ -13,6 +13,7 @@ gramps/gen/datehandler/_datedisplay.py
 gramps/gen/datehandler/_datestrings.py
 gramps/gen/datehandler/_dateparser.py
 gramps/gen/db/base.py
+gramps/gen/db/dictionary.py
 gramps/gen/db/exceptions.py
 gramps/gen/db/undoredo.py
 gramps/gen/db/upgrade.py
@@ -296,6 +297,7 @@ gramps/gen/lib/srcattrtype.py
 gramps/gen/lib/styledtexttagtype.py
 gramps/gen/lib/surnamebase.py
 gramps/gen/lib/urltype.py
+gramps/gen/merge/diff.py
 gramps/gen/merge/mergecitationquery.py
 gramps/gen/merge/mergeeventquery.py
 gramps/gen/merge/mergefamilyquery.py
@@ -305,6 +307,7 @@ gramps/gen/merge/mergepersonquery.py
 gramps/gen/merge/mergeplacequery.py
 gramps/gen/merge/mergerepositoryquery.py
 gramps/gen/merge/mergesourcequery.py
+gramps/gen/merge/test/merge_ref_test.py
 gramps/gen/mime/_pythonmime.py
 gramps/gen/mime/_winmime.py
 gramps/gen/plug/_gramplet.py
@@ -323,6 +326,7 @@ gramps/gen/plug/report/stdoptions.py
 gramps/gen/plug/report/utils.py
 gramps/gen/plug/utils.py
 gramps/gen/proxy/private.py
+gramps/gen/recentfiles.py
 gramps/gen/relationship.py
 gramps/gen/simple/_simpleaccess.py
 gramps/gen/utils/alive.py
@@ -338,6 +342,7 @@ gramps/gen/utils/string.py
 gramps/gen/utils/unknown.py
 gramps/grampsapp.py
 gramps/gui/aboutdialog.py
+gramps/gui/autocomp.py
 gramps/gui/clipboard.py
 gramps/gui/columnorder.py
 gramps/gui/configure.py
@@ -482,13 +487,13 @@ gramps/gui/plug/quick/_quicktable.py
 gramps/gui/plug/quick/_textbufdoc.py
 gramps/gui/plug/report/_bookdialog.py
 gramps/gui/plug/report/_docreportdialog.py
+gramps/gui/plug/report/_fileentry.py
 gramps/gui/plug/report/_graphvizreportdialog.py
 gramps/gui/plug/report/_papermenu.py
 gramps/gui/plug/report/_reportdialog.py
 gramps/gui/plug/report/_stylecombobox.py
 gramps/gui/plug/report/_styleeditor.py
 gramps/gui/plug/tool.py
-gramps/gui/pluginmanager.py
 gramps/gui/selectors/selectcitation.py
 gramps/gui/selectors/selectevent.py
 gramps/gui/selectors/selectfamily.py
@@ -526,6 +531,8 @@ gramps/gui/widgets/reorderfam.py
 gramps/gui/widgets/styledtextbuffer.py
 gramps/gui/widgets/styledtexteditor.py
 gramps/gui/widgets/validatedmaskedentry.py
+gramps/guiQML/grampsqml.py
+gramps/guiQML/views/dbman.py
 gramps/plugins/docgen/asciidoc.py
 gramps/plugins/docgen/docgen.gpr.py
 gramps/plugins/docgen/gtkprint.glade
@@ -660,6 +667,7 @@ gramps/plugins/tool/changenames.py
 gramps/plugins/tool/changetypes.glade
 gramps/plugins/tool/changetypes.py
 gramps/plugins/tool/check.py
+gramps/plugins/tool/dateparserdisplaytest.py
 gramps/plugins/tool/dumpgenderstats.py
 gramps/plugins/tool/eventcmp.glade
 gramps/plugins/tool/eventcmp.py
@@ -676,6 +684,8 @@ gramps/plugins/tool/ownereditor.glade
 gramps/plugins/tool/ownereditor.py
 gramps/plugins/tool/patchnames.glade
 gramps/plugins/tool/patchnames.py
+gramps/plugins/tool/phpgedviewconnector.py
+gramps/plugins/tool/populatesources.py
 gramps/plugins/tool/rebuild.py
 gramps/plugins/tool/rebuildgenderstat.py
 gramps/plugins/tool/rebuildrefmap.py
@@ -685,6 +695,7 @@ gramps/plugins/tool/removeunused.glade
 gramps/plugins/tool/removeunused.py
 gramps/plugins/tool/reorderids.py
 gramps/plugins/tool/sortevents.py
+gramps/plugins/tool/testcasegenerator.py
 gramps/plugins/tool/tools.gpr.py
 gramps/plugins/tool/verify.glade
 gramps/plugins/tool/verify.py

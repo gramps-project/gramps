@@ -27,7 +27,7 @@ __all__ = ["LinkLabel", "EditLabel", "BasicLabel", "GenderLabel",
 #
 #-------------------------------------------------------------------------
 import os
-import cgi
+from html import escape
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 import logging
@@ -112,7 +112,7 @@ class LinkLabel(Gtk.EventBox):
             else:
                 raise AttributeError("invalid theme: '%s'" % theme)
 
-        self.orig_text = cgi.escape(label[0])
+        self.orig_text = escape(label[0])
         self.gender = label[1]
         self.decoration = format
         text = '<span %s>%s</span>' % (self.decoration, self.orig_text)

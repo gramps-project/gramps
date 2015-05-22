@@ -42,7 +42,7 @@ import cairo
 import math
 import colorsys
 import pickle
-from cgi import escape
+from html import escape
 
 #-------------------------------------------------------------------------
 #

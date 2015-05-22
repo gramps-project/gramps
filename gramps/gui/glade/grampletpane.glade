@@ -65,7 +65,7 @@
                       <object class="GtkImage" id="gvpropertiesimage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">gtk-properties</property>
+                        <property name="icon_name">document-properties</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="gvpropertiesimage-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Config</property>
@@ -98,7 +98,7 @@
                       <object class="GtkImage" id="gvstateimage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">gtk-remove</property>
+                        <property name="icon_name">list-remove</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="gvstateimage-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Remove</property>
@@ -131,7 +131,7 @@
                       <object class="GtkImage" id="gvcloseimage">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">gtk-close</property>
+                        <property name="icon_name">window-close</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="gvcloseimage-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Close</property>

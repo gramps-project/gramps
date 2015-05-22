@@ -18,13 +18,13 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="cancel">
-                <property name="label">gtk-cancel</property>
+                <property name="label" translatable="yes">_Cancel</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -34,7 +34,7 @@
             </child>
             <child>
               <object class="GtkButton" id="ok">
-                <property name="label">gtk-ok</property>
+                <property name="label" translatable="yes">_OK</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -44,7 +44,7 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Accept changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -54,13 +54,13 @@
             </child>
             <child>
               <object class="GtkButton" id="help">
-                <property name="label">gtk-help</property>
+                <property name="label" translatable="yes">_Help</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -144,7 +144,7 @@ Note: Use Events instead for relations connected to specific time frames or occa
                       <object class="GtkImage" id="image2694">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="icon_name">gtk-dialog-authentication</property>
+                        <property name="icon_name">dialog-password</property>
                         <property name="icon_size">1</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2694-atkobject">
@@ -174,8 +174,8 @@ Note: Use Events instead for relations connected to specific time frames or occa
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
                         <property name="tooltip_text" translatable="yes">Use the select button to choose a person that has an association to the edited person.</property>
-                        <property name="hexpand">True</property>
                         <property name="halign">start</property>
+                        <property name="hexpand">True</property>
                       </object>
                     </child>
                   </object>
@@ -195,7 +195,7 @@ Note: Use Events instead for relations connected to specific time frames or occa
                       <object class="GtkImage" id="image2695">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">gtk-index</property>
+                        <property name="icon_name">gtk-index</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2695-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Selector</property>

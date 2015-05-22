@@ -17,7 +17,6 @@ gramps/gen/dbstate.py
 gramps/gen/errors.py
 gramps/gen/git_revision.py
 gramps/gen/__init__.py
-gramps/gen/recentfiles.py
 gramps/gen/sort.py
 gramps/gen/soundex.py
 gramps/gen/updatecallback.py
@@ -60,8 +59,6 @@ gramps/gen/db/backup.py
 gramps/gen/db/bsddbtxn.py
 gramps/gen/db/cursor.py
 gramps/gen/db/dbconst.py
-gramps/gen/db/dictionary.py
-#gramps/gen/db/read.py
 gramps/gen/db/test/db_test.py
 gramps/gen/db/txn.py
 #
@@ -177,8 +174,6 @@ gramps/gen/lib/witness.py
 # gen.merge package
 #
 gramps/gen/merge/__init__.py
-gramps/gen/merge/diff.py
-gramps/gen/merge/test/merge_ref_test.py
 #
 # gen mime API
 #
@@ -263,7 +258,6 @@ gramps/gen/utils/docgen/tabbeddoc.py
 # gui - GUI code
 #
 gramps/gui/__init__.py
-gramps/gui/autocomp.py
 gramps/gui/basesidebar.py
 gramps/gui/dbguielement.py
 gramps/gui/ddtargets.py
@@ -272,6 +266,7 @@ gramps/gui/glade.py
 gramps/gui/listmodel.py
 gramps/gui/managedwindow.py
 gramps/gui/navigator.py
+gramps/gui/pluginmanager.py
 gramps/gui/thumbnails.py
 gramps/gui/user.py
 gramps/gui/glade/catalog/grampswidgets.py
@@ -333,7 +328,6 @@ gramps/gui/plug/export/__init__.py
 gramps/gui/plug/__init__.py
 gramps/gui/plug/quick/__init__.py
 gramps/gui/plug/report/_drawreportdialog.py
-gramps/gui/plug/report/_fileentry.py
 gramps/gui/plug/report/__init__.py
 gramps/gui/plug/report/_textreportdialog.py
 gramps/gui/plug/report/_webreportdialog.py
@@ -384,7 +378,6 @@ gramps/gui/widgets/valuetoolitem.py
 #
 # gui qt (do not need translation yet)
 #
-gramps/guiQML/grampsqml.py
 gramps/guiQML/__init__.py
 gramps/guiQML/qmlwidgets/TextButton.qml
 gramps/guiQML/qmlwidgets/TopBar.qml
@@ -392,7 +385,6 @@ gramps/guiQML/questiondialog.py
 gramps/guiQML/viewmanager.py
 gramps/guiQML/views/centralview.py
 gramps/guiQML/views/centralview.qml
-gramps/guiQML/views/dbman.py
 gramps/guiQML/views/dbman.qml
 gramps/guiQML/views/__init__.py
 gramps/guiQML/views/peopleview.qml
@@ -500,11 +492,7 @@ gramps/plugins/sidebar/__init__.py
 #
 # Development tools
 #
-gramps/plugins/tool/dateparserdisplaytest.py
 gramps/plugins/tool/__init__.py
-gramps/plugins/tool/phpgedviewconnector.py
-gramps/plugins/tool/populatesources.py
-gramps/plugins/tool/testcasegenerator.py
 #
 # plugins/view directory
 #

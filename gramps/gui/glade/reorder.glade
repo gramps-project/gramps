@@ -21,13 +21,13 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="cancel">
-                <property name="label">gtk-cancel</property>
+                <property name="label" translatable="yes">_Cancel</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -37,13 +37,13 @@
             </child>
             <child>
               <object class="GtkButton" id="ok">
-                <property name="label">gtk-ok</property>
+                <property name="label" translatable="yes">_OK</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -95,7 +95,7 @@
                       <object class="GtkImage" id="image2714">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">gtk-go-up</property>
+                        <property name="icon_name">go-up</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2714-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Arrow top</property>
@@ -125,7 +125,7 @@
                       <object class="GtkImage" id="image2715">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">gtk-go-down</property>
+                        <property name="icon_name">go-down</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2715-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Arrow bottom</property>
@@ -230,7 +230,7 @@
                       <object class="GtkImage" id="image2716">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">gtk-go-up</property>
+                        <property name="icon_name">go-up</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2716-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Arrow top</property>
@@ -260,7 +260,7 @@
                       <object class="GtkImage" id="image2717">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="stock">gtk-go-down</property>
+                        <property name="icon_name">go-down</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2717-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Arrow bottom</property>

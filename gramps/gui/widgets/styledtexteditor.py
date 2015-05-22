@@ -202,15 +202,6 @@ class StyledTextEditor(Gtk.TextView):
 
         self._connect_signals()
 
-        # we want to disable the unicode menu in the popup
-        settings = Gtk.Settings.get_default()
-        try:
-            self.show_unicode = settings.get_property('gtk-show-unicode-menu')
-            settings.set_property('gtk-show-unicode-menu', False)
-        except:
-            #GTK wants to deprecate show-unicode-menu, this prepares for this
-            self.show_unicode = False
-        
         # variable to not copy to clipboard on double/triple click
         self.selclick = False
 
@@ -246,19 +237,6 @@ class StyledTextEditor(Gtk.TextView):
         else:
             window.set_cursor(REGULAR_CURSOR)
             self.url_match = None
-        
-    def on_unrealize(self, widget):
-        """
-        Signal handler.
-        
-        Set the default Gtk settings back before leaving.
-        """
-        try:
-            settings = Gtk.Settings.get_default()
-            settings.set_property('gtk-show-unicode-menu', self.show_unicode)
-        except:
-            #GTK wants to deprecate show-unicode-menu, this prepares for this
-            pass
         
     def on_key_press_event(self, widget, event):
         """Signal handler.
@@ -461,7 +439,6 @@ class StyledTextEditor(Gtk.TextView):
         self.connect('button-press-event', self.on_button_press_event)
         self.connect('button-release-event', self.on_button_release_event)
         self.connect('populate-popup', self.on_populate_popup)
-        self.connect('unrealize', self.on_unrealize)
         
     def _create_toolbar(self):
         """

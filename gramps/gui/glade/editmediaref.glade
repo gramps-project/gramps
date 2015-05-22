@@ -41,12 +41,12 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button84">
-                <property name="label">gtk-cancel</property>
+                <property name="label" translatable="yes">_Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -56,13 +56,13 @@
             </child>
             <child>
               <object class="GtkButton" id="button82">
-                <property name="label">gtk-ok</property>
+                <property name="label" translatable="yes">_OK</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -72,12 +72,12 @@
             </child>
             <child>
               <object class="GtkButton" id="button104">
-                <property name="label">gtk-help</property>
+                <property name="label" translatable="yes">_Help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -287,7 +287,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                               <object class="GtkImage" id="image2686">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="icon_name">gtk-dialog-authentication</property>
+                                <property name="icon_name">dialog-password</property>
                                 <property name="icon_size">1</property>
                                 <child internal-child="accessible">
                                   <object class="AtkObject" id="image2686-atkobject">
@@ -439,7 +439,8 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                               <object class="GtkImage" id="image2705">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="stock">gtk-dialog-warning</property>
+                                <property name="pixel_size">48</property>
+                                <property name="icon_name">dialog-warning</property>
                                 <property name="icon_size">6</property>
                               </object>
                               <packing>
@@ -609,7 +610,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                               <object class="GtkImage" id="image2710">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="icon_name">gtk-dialog-authentication</property>
+                                <property name="icon_name">dialog-password</property>
                                 <property name="icon_size">1</property>
                                 <child internal-child="accessible">
                                   <object class="AtkObject" id="image2710-atkobject">
@@ -653,7 +654,7 @@ You can use the mouse on the picture to select a region, or use these spinbutton
                               <object class="GtkImage" id="image2673">
                                 <property name="visible">True</property>
                                 <property name="can_focus">False</property>
-                                <property name="stock">gtk-open</property>
+                                <property name="icon_name">document-open</property>
                                 <property name="icon_size">1</property>
                                 <child internal-child="accessible">
                                   <object class="AtkObject" id="image2673-atkobject">

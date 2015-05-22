@@ -59,7 +59,7 @@ class DropdownSidebar(BaseSidebar):
 
         self.window = Gtk.ScrolledWindow()
         grid = Gtk.Grid()
-        self.window.add_with_viewport(grid)
+        self.window.add(grid)
         self.window.set_policy(Gtk.PolicyType.NEVER, Gtk.PolicyType.AUTOMATIC)
         self.window.show()
         

@@ -18,12 +18,12 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="cancel">
-                <property name="label">gtk-cancel</property>
+                <property name="label" translatable="yes">_Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -33,13 +33,13 @@
             </child>
             <child>
               <object class="GtkButton" id="ok">
-                <property name="label">gtk-ok</property>
+                <property name="label" translatable="yes">_OK</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="has_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -49,12 +49,12 @@
             </child>
             <child>
               <object class="GtkButton" id="help">
-                <property name="label">gtk-help</property>
+                <property name="label" translatable="yes">_Help</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -86,11 +86,11 @@
                   <object class="GtkLabel" id="place_title_label">
                     <property name="can_focus">False</property>
                     <property name="no_show_all">True</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_Title:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">place_title</property>
-                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -101,11 +101,11 @@
                   <object class="GtkLabel" id="label249">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">L_atitude:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">lat_entry</property>
-                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -116,11 +116,11 @@
                   <object class="GtkLabel" id="label250">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_Longitude:</property>
                     <property name="use_underline">True</property>
                     <property name="justify">center</property>
                     <property name="mnemonic_widget">lon_entry</property>
-                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
@@ -145,10 +145,10 @@
                   <object class="GtkLabel" id="label655">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
+                    <property name="halign">start</property>
                     <property name="label" translatable="yes">_ID:</property>
                     <property name="use_underline">True</property>
                     <property name="mnemonic_widget">gid</property>
-                    <property name="halign">start</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -209,9 +209,9 @@ You can set these values via the Geography View by searching the place, or via a
                       <object class="GtkLabel" id="label5">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
+                        <property name="halign">start</property>
                         <property name="label" translatable="yes">Code:</property>
                         <property name="use_underline">True</property>
-                        <property name="halign">start</property>
                       </object>
                       <packing>
                         <property name="expand">False</property>
@@ -249,7 +249,7 @@ You can set these values via the Geography View by searching the place, or via a
                       <object class="GtkImage" id="image">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="icon_name">gtk-dialog-authentication</property>
+                        <property name="icon_name">dialog-password</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
@@ -274,7 +274,6 @@ You can set these values via the Geography View by searching the place, or via a
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
-                    <property name="use_stock">True</property>
                   </object>
                   <packing>
                     <property name="left_attach">4</property>
@@ -285,8 +284,8 @@ You can set these values via the Geography View by searching the place, or via a
                   <object class="GtkLabel" id="place_name_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">place|Name:</property>
                     <property name="halign">start</property>
+                    <property name="label" translatable="yes">place|Name:</property>
                   </object>
                   <packing>
                     <property name="left_attach">0</property>
@@ -297,8 +296,8 @@ You can set these values via the Geography View by searching the place, or via a
                   <object class="GtkLabel" id="label4">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Type:</property>
                     <property name="halign">start</property>
+                    <property name="label" translatable="yes">Type:</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
@@ -341,8 +340,8 @@ You can set these values via the Geography View by searching the place, or via a
                   <object class="GtkLabel" id="label2">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="label" translatable="yes">Tags:</property>
                     <property name="halign">start</property>
+                    <property name="label" translatable="yes">Tags:</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>
@@ -353,8 +352,8 @@ You can set these values via the Geography View by searching the place, or via a
                   <object class="GtkLabel" id="tag_label">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="hexpand">True</property>
                     <property name="halign">start</property>
+                    <property name="hexpand">True</property>
                   </object>
                   <packing>
                     <property name="left_attach">3</property>
@@ -365,8 +364,8 @@ You can set these values via the Geography View by searching the place, or via a
                   <object class="GtkLabel" id="preview_title">
                     <property name="visible">True</property>
                     <property name="can_focus">False</property>
-                    <property name="margin_bottom">6</property>
                     <property name="halign">start</property>
+                    <property name="margin_bottom">6</property>
                     <attributes>
                       <attribute name="font-desc" value="Sans Bold 12"/>
                     </attributes>

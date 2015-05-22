@@ -19,13 +19,13 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button125">
-                <property name="label">gtk-cancel</property>
+                <property name="label" translatable="yes">_Cancel</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -35,7 +35,7 @@
             </child>
             <child>
               <object class="GtkButton" id="button124">
-                <property name="label">gtk-ok</property>
+                <property name="label" translatable="yes">_OK</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
@@ -45,7 +45,7 @@
                 <property name="has_tooltip">True</property>
                 <property name="tooltip_markup">Accept changes and close window</property>
                 <property name="tooltip_text" translatable="yes">Accept changes and close window</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -55,13 +55,13 @@
             </child>
             <child>
               <object class="GtkButton" id="button130">
-                <property name="label">gtk-help</property>
+                <property name="label" translatable="yes">_Help</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">True</property>
-                <property name="use_stock">True</property>
+                <property name="use_underline">True</property>
               </object>
               <packing>
                 <property name="expand">False</property>
@@ -144,7 +144,7 @@
                       <object class="GtkImage" id="image2687">
                         <property name="visible">True</property>
                         <property name="can_focus">False</property>
-                        <property name="icon_name">gtk-dialog-authentication</property>
+                        <property name="icon_name">dialog-password</property>
                         <child internal-child="accessible">
                           <object class="AtkObject" id="image2687-atkobject">
                             <property name="AtkObject::accessible-description" translatable="yes">Privacy</property>
@@ -198,13 +198,13 @@
                 </child>
                 <child>
                   <object class="GtkButton" id="jump">
-                    <property name="label">gtk-jump-to</property>
+                    <property name="label" translatable="yes">_Jump to</property>
                     <property name="use_action_appearance">False</property>
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
                     <property name="receives_default">True</property>
                     <property name="tooltip_text" translatable="yes">Open the web address in the default browser.</property>
-                    <property name="use_stock">True</property>
+                    <property name="use_underline">True</property>
                   </object>
                   <packing>
                     <property name="left_attach">2</property>

@@ -110,7 +110,7 @@ class EditTagList(ManagedWindow):
         self.namemodel = ListModel(view, columns)
 
         slist = Gtk.ScrolledWindow()
-        slist.add_with_viewport(view)
+        slist.add(view)
         slist.set_policy(Gtk.PolicyType.AUTOMATIC, Gtk.PolicyType.AUTOMATIC)
         top.vbox.pack_start(slist, 1, 1, 5)
         
