@@ -561,7 +561,7 @@ class EditFamily(EditPrimary):
                    DdTargets.FAMILY_LINK.target_flags,
                    DdTargets.FAMILY_LINK.app_id)
         self.contexteventbox.drag_source_set_target_list(tglist)
-        self.contexteventbox.drag_source_set_icon_stock('gramps-family')
+        self.contexteventbox.drag_source_set_icon_name('gramps-family')
         self.contexteventbox.connect('drag_data_get', self.on_drag_data_get_family)
 
     def on_drag_data_get_family(self,widget, context, sel_data, info, time):
@@ -584,7 +584,7 @@ class EditFamily(EditPrimary):
                            DdTargets.PERSON_LINK.target_flags,
                            DdTargets.PERSON_LINK.app_id)
                 event_box.drag_source_set_target_list(tglist)
-                event_box.drag_source_set_icon_stock('gramps-person')
+                event_box.drag_source_set_icon_name('gramps-person')
                 event_box.connect('drag_data_get', on_drag_data_get)
             #Disallow drop:
             if event_box.drag_dest_get_target_list():

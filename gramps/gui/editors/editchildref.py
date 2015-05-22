@@ -113,7 +113,7 @@ class EditChildRef(EditSecondary):
                    DdTargets.PERSON_LINK.target_flags,
                    DdTargets.PERSON_LINK.app_id)
         self.label_event_box.drag_source_set_target_list(tglist)
-        self.label_event_box.drag_source_set_icon_stock('gramps-person')
+        self.label_event_box.drag_source_set_icon_name('gramps-person')
         self.label_event_box.connect('drag_data_get', self.drag_data_get)
 
     def _setup_fields(self):

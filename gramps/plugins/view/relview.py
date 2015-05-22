@@ -1091,7 +1091,7 @@ class RelationshipView(NavigationView):
                    dnd_type.target_flags,
                    dnd_type.app_id)
         eventbox.drag_source_set_target_list(tglist)
-        eventbox.drag_source_set_icon_stock(stock_icon)
+        eventbox.drag_source_set_icon_name(stock_icon)
         eventbox.connect('drag_data_get',
                          self._make_drag_data_get_func(object_h, dnd_type))
 

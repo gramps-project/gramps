@@ -964,7 +964,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
     def on_drag_begin(self, widget, data):
         """Set up some inital conditions for drag. Set up icon."""
         self.in_drag = True
-        self.drag_source_set_icon_stock('gramps-person')
+        self.drag_source_set_icon_name('gramps-person')
 
     def on_drag_end(self, widget, data):
         """Set up some inital conditions for drag. Set up icon."""
