@@ -1262,9 +1262,9 @@ class RelationshipView(NavigationView):
         if button_activated(event, _LEFT_BUTTON):
             self.change_active(handle)
         elif button_activated(event, _RIGHT_BUTTON):
-            myMenu = Gtk.Menu()
-            myMenu.append(self.build_menu_item(handle))
-            myMenu.popup(None, None, None, None, event.button, event.time)
+            self.myMenu = Gtk.Menu()
+            self.myMenu.append(self.build_menu_item(handle))
+            self.myMenu.popup(None, None, None, None, event.button, event.time)
 
     def build_menu_item(self, handle):
         person = self.dbstate.db.get_person_from_handle(handle)
