@@ -51,7 +51,7 @@ class ToDo(Gramplet):
         self.right.set_tooltip_text(_('Next To Do note'))
         self.right.set_sensitive(False)
         hbox.pack_start(self.right, False, False, 0)
-        self.edit = SimpleButton('gtk-edit' self.edit_clicked)
+        self.edit = SimpleButton('gtk-edit', self.edit_clicked)
         self.edit.set_tooltip_text(_('Edit the selected To Do note'))
         self.edit.set_sensitive(False)
         hbox.pack_start(self.edit, False, False, 0)
