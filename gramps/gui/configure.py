@@ -1339,7 +1339,7 @@ class GrampsPreferences(ConfigureDialog):
         checkbutton.connect("toggled", self.toggle_hide_previous_addons)
 
         grid.attach(checkbutton, 1, current_line, 1, 1)
-        button = Gtk.Button(_("Check now"))
+        button = Gtk.Button(label=_("Check now"))
         button.connect("clicked", self.check_for_updates)
         grid.attach(button, 3, current_line, 1, 1)
 

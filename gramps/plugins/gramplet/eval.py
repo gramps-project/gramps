@@ -74,10 +74,10 @@ class PythonEvaluation(Gramplet):
         self.error = self.__add_text_view(_("Error"))
         
         bbox = Gtk.ButtonBox()
-        apply_button = Gtk.Button(_("Apply"))
+        apply_button = Gtk.Button(label=_("Apply"))
         apply_button.connect('clicked', self.apply_clicked)
         bbox.pack_start(apply_button, False, False, 6)
-        clear_button = Gtk.Button(_("Clear"))
+        clear_button = Gtk.Button(label=_("Clear"))
         clear_button.connect('clicked', self.clear_clicked)
         bbox.pack_start(clear_button, False, False, 6)
         self.top.pack_start(bbox, False, False, 6)

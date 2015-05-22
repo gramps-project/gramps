@@ -177,12 +177,12 @@ class WriterOptionBox(object):
             row += 1
 
         hbox = Gtk.Box()
-        self.advanced_button = Gtk.Button(_("Change order"))
+        self.advanced_button = Gtk.Button(label=_("Change order"))
         self.advanced_button.set_size_request(150, -1)
         self.proxy_options_showing = False
         self.advanced_button.connect("clicked", self.show_options)
         hbox.pack_end(self.advanced_button, False, True, 0)
-        self.preview_button = Gtk.Button(_("Calculate Previews"))
+        self.preview_button = Gtk.Button(label=_("Calculate Previews"))
         self.preview_button.connect("clicked", self.preview)
         hbox.pack_end(self.preview_button, False, True, 0)
         widget.pack_start(hbox, False, True, 0)

@@ -106,7 +106,7 @@ class Leak(Gramplet):
         self.top.pack_start(self.scroll, True, True, 6)
         
         bbox = Gtk.ButtonBox()
-        apply_button = Gtk.Button(_("Refresh"))
+        apply_button = Gtk.Button(label=_("Refresh"))
         apply_button.connect('clicked', self.apply_clicked)
         bbox.pack_start(apply_button, False, False, 6)
         self.top.pack_start(bbox,  False, False, 6)
