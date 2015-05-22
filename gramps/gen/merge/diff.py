@@ -390,6 +390,12 @@ class Struct(object):
     def __eq__(self, other):
         if isinstance(other, Struct):
             return self.struct == other.struct
+        elif isinstance(self.struct, list):
+            ## FIXME: self.struct can be a dict, list, etc
+            for item in self.struct:
+                if item == other:
+                    return True
+            return False
         else:
             return self.struct == other
 
