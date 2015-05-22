@@ -23,7 +23,7 @@
 # python modules
 #
 #-------------------------------------------------------------------------
-import cgi
+from html import escape
 import logging
 log = logging.getLogger(".")
 
@@ -149,7 +149,7 @@ class EventModel(FlatBaseModel):
             event.unserialize(data)
             date_str =  get_date(event)
             if date_str != "":
-                retval = cgi.escape(date_str)
+                retval = escape(date_str)
             if not get_date_valid(event):
                 return INVALID_DATE_FORMAT % retval
             else:

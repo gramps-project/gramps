@@ -27,7 +27,7 @@
 # Python modules
 #
 #-------------------------------------------------------------------------
-from cgi import escape
+from html import escape
 import math
 import os
 import pickle
