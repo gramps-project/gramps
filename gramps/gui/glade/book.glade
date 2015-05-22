@@ -465,7 +465,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button12">
-                <property name="label">_Close</property>
+                <property name="label" translatable="yes">_Close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -481,7 +481,7 @@
             </child>
             <child>
               <object class="GtkButton" id="button13">
-                <property name="label">_OK</property>
+                <property name="label" translatable="yes">_OK</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -522,7 +522,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="delete_button">
-                <property name="label">_Delete</property>
+                <property name="label" translatable="yes">_Delete</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -538,7 +538,7 @@
             </child>
             <child>
               <object class="GtkButton" id="close_button">
-                <property name="label">_Close</property>
+                <property name="label" translatable="yes">_Close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -554,7 +554,7 @@
             </child>
             <child>
               <object class="GtkButton" id="ok_button">
-                <property name="label">_OK</property>
+                <property name="label" translatable="yes">_OK</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>

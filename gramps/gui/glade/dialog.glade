@@ -17,7 +17,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button180">
-                <property name="label">_Close</property>
+                <property name="label" translatable="yes">_Close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -137,7 +137,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="button182">
-                <property name="label">_Close</property>
+                <property name="label" translatable="yes">_Close</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -534,7 +534,7 @@
             <property name="layout_style">end</property>
             <child>
               <object class="GtkButton" id="no">
-                <property name="label">_Cancel</property>
+                <property name="label" translatable="yes">_Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
@@ -673,7 +673,7 @@
             </child>
             <child>
               <object class="GtkButton" id="button2">
-                <property name="label">_Cancel</property>
+                <property name="label" translatable="yes">_Cancel</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="has_focus">True</property>
@@ -690,7 +690,7 @@
             </child>
             <child>
               <object class="GtkButton" id="button3">
-                <property name="label">_Save</property>
+                <property name="label" translatable="yes">_Save</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
