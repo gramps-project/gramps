@@ -20,7 +20,8 @@ import gramps
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, 
-                           KEY_TO_NAME_MAP, KEY_TO_CLASS_MAP)
+                           KEY_TO_NAME_MAP, KEY_TO_CLASS_MAP, 
+                           CLASS_TO_KEY_MAP)
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
 from gramps.gen.db.undoredo import DbUndo
@@ -1245,6 +1246,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return obj.handle
 
     def commit_person(self, person, trans, change_time=None):
+        ## FIXME: update reference, for back references
         emit = None
         if person.handle in self.person_map:
             emit = "person-update"
@@ -1271,6 +1273,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.emit(emit, ([person.handle],))
 
     def commit_family(self, family, trans, change_time=None):
+        ## FIXME: update reference, for back references
         emit = None
         if family.handle in self.family_map:
             emit = "family-update"
@@ -1292,6 +1295,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.emit(emit, ([family.handle],))
 
     def commit_citation(self, citation, trans, change_time=None):
+        ## FIXME: update reference, for back references
         emit = None
         if citation.handle in self.citation_map:
             emit = "citation-update"
@@ -1317,6 +1321,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.emit(emit, ([citation.handle],))
 
     def commit_source(self, source, trans, change_time=None):
+        ## FIXME: update reference, for back references
         emit = None
         if source.handle in self.source_map:
             emit = "source-update"
@@ -1342,6 +1347,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.emit(emit, ([source.handle],))
 
     def commit_repository(self, repository, trans, change_time=None):
+        ## FIXME: update reference, for back references
         emit = None
         if repository.handle in self.repository_map:
             emit = "repository-update"
@@ -1362,6 +1368,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.emit(emit, ([repository.handle],))
 
     def commit_note(self, note, trans, change_time=None):
+        ## FIXME: update reference, for back references
         emit = None
         if note.handle in self.note_map:
             emit = "note-update"
@@ -1382,6 +1389,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.emit(emit, ([note.handle],))
 
     def commit_place(self, place, trans, change_time=None):
+        ## FIXME: update reference, for back references
         emit = None
         if place.handle in self.place_map:
             emit = "place-update"
@@ -1407,6 +1415,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.emit(emit, ([place.handle],))
 
     def commit_event(self, event, trans, change_time=None):
+        ## FIXME: update reference, for back references
         emit = None
         if event.handle in self.event_map:
             emit = "event-update"
@@ -1429,6 +1438,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.emit(emit, ([event.handle],))
 
     def commit_tag(self, tag, trans, change_time=None):
+        ## FIXME: update reference, for back references
         emit = None
         if tag.handle in self.tag_map:
             emit = "tag-update"
@@ -1451,6 +1461,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.emit(emit, ([tag.handle],))
 
     def commit_media_object(self, media, trans, change_time=None):
+        ## FIXME: update reference, for back references
         emit = None
         if media.handle in self.media_map:
             emit = "media-update"
@@ -1675,64 +1686,6 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                [handle])
             self.emit(KEY_TO_NAME_MAP[key] + "-delete", ([handle],))
 
-    def delete_primary_from_reference_map(self, handle, transaction, txn=None):
-        """
-        Remove all references to the primary object from the reference_map.
-        handle should be utf-8
-        """
-        primary_cur = self.get_reference_map_primary_cursor()
-
-        try:
-            ret = primary_cur.set(handle)
-        except:
-            ret = None
-        
-        remove_list = set()
-        while (ret is not None):
-            (key, data) = ret
-            
-            # data values are of the form:
-            #   ((primary_object_class_name, primary_object_handle),
-            #    (referenced_object_class_name, referenced_object_handle))
-            
-            # so we need the second tuple give us a reference that we can
-            # combine with the primary_handle to get the main key.
-            main_key = (handle.decode('utf-8'), pickle.loads(data)[1][1])
-            
-            # The trick is not to remove while inside the cursor,
-            # but collect them all and remove after the cursor is closed
-            remove_list.add(main_key)
-
-            ret = primary_cur.next_dup()
-
-        primary_cur.close()
-
-        # Now that the cursor is closed, we can remove things
-        for main_key in remove_list:
-            self.__remove_reference(main_key, transaction, txn)
-
-    def __remove_reference(self, key, transaction, txn):
-        """
-        Remove the reference specified by the key, preserving the change in 
-        the passed transaction.
-        """
-        if isinstance(key, tuple):
-            #create a byte string key, first validity check in python 3!
-            for val in key:
-                if isinstance(val, bytes):
-                    raise DbError(_('An attempt is made to save a reference key '
-                        'which is partly bytecode, this is not allowed.\n'
-                        'Key is %s') % str(key))
-            key = str(key)
-        if isinstance(key, str):
-            key = key.encode('utf-8')
-        if not self.readonly:
-            if not transaction.batch:
-                old_data = self.reference_map.get(key, txn=txn)
-                transaction.add(REFERENCE_KEY, TXNDEL, key, old_data, None)
-                #transaction.reference_del.append(str(key))
-            self.reference_map.delete(key, txn=txn)
-
     ## Missing:
 
     def backup(self):
@@ -1751,8 +1704,28 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.dbapi.close()
 
     def find_backlink_handles(self, handle, include_classes=None):
-        ## FIXME
-        return []
+        """
+        Find all objects that hold a reference to the object handle.
+        
+        Returns an interator over a list of (class_name, handle) tuples.
+
+        :param handle: handle of the object to search for.
+        :type handle: database handle
+        :param include_classes: list of class names to include in the results.
+            Default: None means include all classes.
+        :type include_classes: list of class names
+
+        Note that this is a generator function, it returns a iterator for
+        use in loops. If you want a list of the results use::
+
+            result_list = list(find_backlink_handles(handle))
+        """
+        cur = self.dbapi.execute("SELECT * from reference WHERE ref_handle = ?;",
+                                 [handle])
+        rows = cur.fetchall()
+        for row in rows:
+            if (include_classes is None) or (row["obj_class"] in include_classes):
+                yield (row["obj_class"], row["obj_handle"])
 
     def find_initial_person(self):
         items = self.person_map.keys()
@@ -2015,6 +1988,13 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                     order_by  TEXT             ,
                                     blob      TEXT
         );""")
+        # Reference
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS reference (
+                                    obj_handle    TEXT,
+                                    obj_class     TEXT,
+                                    ref_handle    TEXT,
+                                    ref_class     TEXT
+        );""")
         ## Indices:
         self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
                                   order_by ON person (order_by);
@@ -2033,6 +2013,9 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """)
         self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
                                   order_by ON tag (order_by);
+        """)
+        self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
+                                  ref_handle ON reference (ref_handle);
         """)
 
     def redo(self, update_history=True):
@@ -2111,13 +2094,43 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             name = None
         return name
 
-    def reindex_reference_map(self):
-        ## FIXME
-        pass
+    def reindex_reference_map(self, callback):
+        callback(4)
+        self.dbapi.execute("DELETE FROM reference;")
+        primary_table = (
+            (self.get_person_cursor, Person),
+            (self.get_family_cursor, Family),
+            (self.get_event_cursor, Event),
+            (self.get_place_cursor, Place),
+            (self.get_source_cursor, Source),
+            (self.get_citation_cursor, Citation),
+            (self.get_media_cursor, MediaObject),
+            (self.get_repository_cursor, Repository),
+            (self.get_note_cursor, Note),
+            (self.get_tag_cursor, Tag),
+        )
+        # Now we use the functions and classes defined above
+        # to loop through each of the primary object tables.
+        for cursor_func, class_func in primary_table:
+            logging.info("Rebuilding %s reference map" %
+                         class_func.__name__)
+            with cursor_func() as cursor:
+                for found_handle, val in cursor:
+                    obj = class_func.create(val)
+                    references = set(obj.get_referenced_handles_recursively())
+                    # handle addition of new references
+                    for (ref_class_name, ref_handle) in references:
+                        self.dbapi.execute("INSERT into reference VALUES(?, ?, ?, ?);",
+                                           [obj.handle, 
+                                            obj.__class__.__name__,
+                                            ref_handle, 
+                                            ref_class_name])
+                                            
+        self.dbapi.commit()
+        callback(5)
 
     def rebuild_secondary(self, update):
-        ## FIXME
-        pass
+        self.reindex_reference_map(update)
 
     def prepare_import(self):
         """
