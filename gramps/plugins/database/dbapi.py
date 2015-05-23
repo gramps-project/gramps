@@ -9,6 +9,7 @@ import time
 import re
 import os
 import logging
+import shutil
 
 #------------------------------------------------------------------------
 #
@@ -1261,6 +1262,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self.dbapi.execute("""insert into person(handle, gramps_id, blob) 
                                                   values(?, ?, ?);""", 
                                    [person.handle, person.gramps_id, pickle.dumps(person.serialize())])
+            self.dbapi.commit()
         # Emit after added:
         if emit:
             self.emit(emit, ([person.handle],))
@@ -1281,6 +1283,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 self.dbapi.execute("insert into family values(?, ?, ?);", 
                                    [family.handle, family.gramps_id, 
                                     pickle.dumps(family.serialize())])
+            self.dbapi.commit()
         # Emit after added:
         if emit:
             self.emit(emit, ([family.handle],))
@@ -1300,6 +1303,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "citation-add"
                 self.dbapi.execute("insert into citation values(?, ?, ?);", 
                            [citation.handle, citation.gramps_id, pickle.dumps(citation.serialize())])
+            self.dbapi.commit()
         # Emit after added:
         if emit:
             self.emit(emit, ([citation.handle],))
@@ -1319,6 +1323,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "source-add"
                 self.dbapi.execute("insert into source values(?, ?, ?);", 
                            [source.handle, source.gramps_id, pickle.dumps(source.serialize())])
+            self.dbapi.commit()
         # Emit after added:
         if emit:
             self.emit(emit, ([source.handle],))
@@ -1338,6 +1343,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "repository-add"
                 self.dbapi.execute("insert into repository values(?, ?, ?);", 
                            [repository.handle, repository.gramps_id, pickle.dumps(repository.serialize())])
+            self.dbapi.commit()
         # Emit after added:
         if emit:
             self.emit(emit, ([repository.handle],))
@@ -1357,6 +1363,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "note-add"
                 self.dbapi.execute("insert into note values(?, ?, ?);", 
                            [note.handle, note.gramps_id, pickle.dumps(note.serialize())])
+            self.dbapi.commit()
         # Emit after added:
         if emit:
             self.emit(emit, ([note.handle],))
@@ -1376,6 +1383,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "place-add"
                 self.dbapi.execute("insert into place values(?, ?, ?);", 
                            [place.handle, place.gramps_id, pickle.dumps(place.serialize())])
+            self.dbapi.commit()
         # Emit after added:
         if emit:
             self.emit(emit, ([place.handle],))
@@ -1395,6 +1403,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "event-add"
                 self.dbapi.execute("insert into event values(?, ?, ?);", 
                            [event.handle, event.gramps_id, pickle.dumps(event.serialize())])
+            self.dbapi.commit()
         # Emit after added:
         if emit:
             self.emit(emit, ([event.handle],))
@@ -1412,6 +1421,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "tag-add"
                 self.dbapi.execute("insert into tag values(?, ?);", 
                            [tag.handle, pickle.dumps(tag.serialize())])
+            self.dbapi.commit()
         # Emit after added:
         if emit:
             self.emit(emit, ([tag.handle],))
@@ -1431,6 +1441,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 emit = "media-add"
                 self.dbapi.execute("insert into media values(?, ?, ?);", 
                            [media.handle, media.gramps_id, pickle.dumps(media.serialize())])
+            self.dbapi.commit()
         # Emit after added:
         if emit:
             self.emit(emit, ([media.handle],))
@@ -1706,6 +1717,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             writer.write(filename)
             filename = os.path.join(self._directory, "meta_data.db")
             touch(filename)
+            self.dbapi.close()
 
     def find_backlink_handles(self, handle, include_classes=None):
         ## FIXME
@@ -1907,9 +1919,15 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
              force_bsddb_downgrade=False, 
              force_python_upgrade=False):
         # Run code from directory
-        import sqlite3
-        self.dbapi = sqlite3.connect(':memory:')
-        self.dbapi.row_factory = sqlite3.Row # allows access by name
+        default_settings = {"__file__": 
+                            os.path.join(directory, "default_settings.py")}
+        settings_file = os.path.join(directory, "default_settings.py")
+        with open(settings_file) as f:
+            code = compile(f.read(), settings_file, 'exec')
+            exec(code, globals(), default_settings)
+
+        self.dbapi = default_settings["dbapi"]
+            
         # make sure schema is up to date:
         self.dbapi.execute("""CREATE TABLE IF NOT EXISTS person (
                                     handle    TEXT PRIMARY KEY NOT NULL,
@@ -1990,6 +2008,13 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         _LOG.debug("Write database backend file to 'dbapi'")
         with open(versionpath, "w") as version_file:
             version_file.write("dbapi")
+        # Write default_settings, sqlite.db
+        defaults = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                                "dbapi_support", "defaults")
+        _LOG.debug("Copy defaults from: " + defaults)
+        for filename in os.listdir(defaults):
+            fullpath = os.path.abspath(os.path.join(defaults, filename))
+            shutil.copy2(fullpath, directory)
 
     def report_bm_change(self):
         """
