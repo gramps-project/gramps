@@ -356,7 +356,7 @@ class GeneWebParser(object):
 
     def read_children_source_line(self,line,fields):
         csrc = self.get_or_create_source(self.decode(fields[1]))
-        self.current_child_source_handle = csrc
+        self.current_child_source_handle = csrc.handle
         return None
 
     def read_family_comment(self,line,fields):
