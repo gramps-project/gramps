@@ -1,24 +1,3 @@
-# Gramps - a GTK+/GNOME based genealogy program
-#
-# Copyright (C) 2012         Douglas S. Blank <doug.blank@gmail.com>
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write to the Free Software
-# Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
-#
-
-""" Implements a Db interface as a Dictionary """
-
 #------------------------------------------------------------------------
 #
 # Python Modules
@@ -36,14 +15,15 @@ import logging
 # Gramps Modules
 #
 #------------------------------------------------------------------------
+import gramps
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, 
                            KEY_TO_NAME_MAP, KEY_TO_CLASS_MAP)
-from gramps.gen.db.undoredo import DbUndo
-from gramps.gen.db.dbconst import *
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
+from gramps.gen.db.undoredo import DbUndo
+from gramps.gen.db.dbconst import *
 from gramps.gen.db import (PERSON_KEY,
                            FAMILY_KEY,
                            CITATION_KEY,
@@ -86,7 +66,7 @@ class Environment(object):
         self.db = db
 
     def txn_begin(self):
-        return DictionaryTxn("DictionaryDb Transaction", self.db)
+        return DBAPITxn("DBAPIDb Transaction", self.db)
 
 class Table(object):
     """
@@ -104,15 +84,36 @@ class Table(object):
     def put(self, key, data, txn=None):
         self.funcs["add_func"](data, txn)
 
-class Map(dict):
+class Map(object):
     """
     Implements the map API for person_map, etc.
     
     Takes a Table() as argument.
     """
-    def __init__(self, tbl, *args, **kwargs):
+    def __init__(self, table, 
+                 keys_func="handles_func", 
+                 contains_func="has_handle_func",
+                 *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.db = tbl
+        self.table = table
+        self.keys_func = keys_func
+        self.contains_func = contains_func
+
+    def keys(self):
+        return self.table.funcs[self.keys_func]()
+
+    def values(self):
+        return self.table.funcs["cursor_func"]()
+
+    def __contains__(self, key):
+        return self.table.funcs[self.contains_func](key)
+
+    def __getitem__(self, key):
+        if self.table.funcs[self.contains_func](key):
+            return self.table.funcs["raw_func"](key)
+
+    def __len__(self):
+        return self.table.funcs["count_func"]()
 
 class MetaCursor(object):
     def __init__(self):
@@ -179,7 +180,7 @@ class Bookmarks(object):
     def append(self, handle):
         self.handles.append(handle)
 
-class DictionaryTxn(DbTxn):
+class DBAPITxn(DbTxn):
     def __init__(self, message, db, batch=False):
         DbTxn.__init__(self, message, db, batch)
 
@@ -197,7 +198,7 @@ class DictionaryTxn(DbTxn):
         """
         txn[handle] = new_data
 
-class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
+class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     """
     A Gramps Database Backend. This replicates the grampsdb functions.
     """
@@ -239,6 +240,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "add_func": self.add_person,
                 "commit_func": self.commit_person,
                 "iter_func": self.iter_people,
+                "ids_func": self.get_person_gramps_ids,
+                "has_handle_func": self.has_handle_for_person,
+                "has_gramps_id_func": self.has_gramps_id_for_person,
+                "count": self.get_number_of_people,
+                "raw_func": self._get_raw_person_data,
             })
         self._tables['Family'].update(
             {
@@ -250,6 +256,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "add_func": self.add_family,
                 "commit_func": self.commit_family,
                 "iter_func": self.iter_families,
+                "ids_func": self.get_family_gramps_ids,
+                "has_handle_func": self.has_handle_for_family,
+                "has_gramps_id_func": self.has_gramps_id_for_family,
+                "count": self.get_number_of_families,
+                "raw_func": self._get_raw_family_data,
             })
         self._tables['Source'].update(
             {
@@ -261,6 +272,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "add_func": self.add_source,
                 "commit_func": self.commit_source,
                 "iter_func": self.iter_sources,
+                "ids_func": self.get_source_gramps_ids,
+                "has_handle_func": self.has_handle_for_source,
+                "has_gramps_id_func": self.has_gramps_id_for_source,
+                "count": self.get_number_of_sources,
+                "raw_func": self._get_raw_source_data,
                 })
         self._tables['Citation'].update(
             {
@@ -272,6 +288,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "add_func": self.add_citation,
                 "commit_func": self.commit_citation,
                 "iter_func": self.iter_citations,
+                "ids_func": self.get_citation_gramps_ids,
+                "has_handle_func": self.has_handle_for_citation,
+                "has_gramps_id_func": self.has_gramps_id_for_citation,
+                "count": self.get_number_of_citations,
+                "raw_func": self._get_raw_citation_data,
             })
         self._tables['Event'].update(
             {
@@ -283,6 +304,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "add_func": self.add_event,
                 "commit_func": self.commit_event,
                 "iter_func": self.iter_events,
+                "ids_func": self.get_event_gramps_ids,
+                "has_handle_func": self.has_handle_for_event,
+                "has_gramps_id_func": self.has_gramps_id_for_event,
+                "count": self.get_number_of_events,
+                "raw_func": self._get_raw_event_data,
             })
         self._tables['Media'].update(
             {
@@ -294,6 +320,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "add_func": self.add_object,
                 "commit_func": self.commit_media_object,
                 "iter_func": self.iter_media_objects,
+                "ids_func": self.get_media_gramps_ids,
+                "has_handle_func": self.has_handle_for_media,
+                "has_gramps_id_func": self.has_gramps_id_for_media,
+                "count": self.get_number_of_media_objects,
+                "raw_func": self._get_raw_media_data,
             })
         self._tables['Place'].update(
             {
@@ -305,6 +336,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "add_func": self.add_place,
                 "commit_func": self.commit_place,
                 "iter_func": self.iter_places,
+                "ids_func": self.get_place_gramps_ids,
+                "has_handle_func": self.has_handle_for_place,
+                "has_gramps_id_func": self.has_gramps_id_for_place,
+                "count": self.get_number_of_places,
+                "raw_func": self._get_raw_place_data,
             })
         self._tables['Repository'].update(
             {
@@ -316,6 +352,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "add_func": self.add_repository,
                 "commit_func": self.commit_repository,
                 "iter_func": self.iter_repositories,
+                "ids_func": self.get_repository_gramps_ids,
+                "has_handle_func": self.has_handle_for_repository,
+                "has_gramps_id_func": self.has_gramps_id_for_repository,
+                "count": self.get_number_of_repositories,
+                "raw_func": self._get_raw_repository_data,
             })
         self._tables['Note'].update(
             {
@@ -327,6 +368,11 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "add_func": self.add_note,
                 "commit_func": self.commit_note,
                 "iter_func": self.iter_notes,
+                "ids_func": self.get_note_gramps_ids,
+                "has_handle_func": self.has_handle_for_note,
+                "has_gramps_id_func": self.has_gramps_id_for_note,
+                "count": self.get_number_of_notes,
+                "raw_func": self._get_raw_note_data,
             })
         self._tables['Tag'].update(
             {
@@ -338,6 +384,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "add_func": self.add_tag,
                 "commit_func": self.commit_tag,
                 "iter_func": self.iter_tags,
+                "count": self.get_number_of_tags,
             })
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
@@ -364,15 +411,15 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.set_repository_id_prefix('R%04d')
         self.set_note_id_prefix('N%04d')
         # ----------------------------------
-        self.id_trans  = DictionaryTxn("ID Transaction", self)
-        self.fid_trans = DictionaryTxn("FID Transaction", self)
-        self.pid_trans = DictionaryTxn("PID Transaction", self)
-        self.cid_trans = DictionaryTxn("CID Transaction", self)
-        self.sid_trans = DictionaryTxn("SID Transaction", self)
-        self.oid_trans = DictionaryTxn("OID Transaction", self)
-        self.rid_trans = DictionaryTxn("RID Transaction", self)
-        self.nid_trans = DictionaryTxn("NID Transaction", self)
-        self.eid_trans = DictionaryTxn("EID Transaction", self)
+        self.id_trans  = DBAPITxn("ID Transaction", self)
+        self.fid_trans = DBAPITxn("FID Transaction", self)
+        self.pid_trans = DBAPITxn("PID Transaction", self)
+        self.cid_trans = DBAPITxn("CID Transaction", self)
+        self.sid_trans = DBAPITxn("SID Transaction", self)
+        self.oid_trans = DBAPITxn("OID Transaction", self)
+        self.rid_trans = DBAPITxn("RID Transaction", self)
+        self.nid_trans = DBAPITxn("NID Transaction", self)
+        self.eid_trans = DBAPITxn("EID Transaction", self)
         self.cmap_index = 0
         self.smap_index = 0
         self.emap_index = 0
@@ -384,23 +431,41 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.nmap_index = 0
         self.env = Environment(self)
         self.person_map = Map(Table(self._tables["Person"]))
-        self.person_id_map = {}
+        self.person_id_map = Map(Table(self._tables["Person"]),
+                                 keys_func="ids_func",
+                                 contains_func="has_gramps_id_func")
         self.family_map = Map(Table(self._tables["Family"]))
-        self.family_id_map = {}
+        self.family_id_map = Map(Table(self._tables["Family"]),
+                                 keys_func="ids_func",
+                                 contains_func="has_gramps_id_func")
         self.place_map  = Map(Table(self._tables["Place"]))
-        self.place_id_map = {}
+        self.place_id_map = Map(Table(self._tables["Place"]),
+                                 keys_func="ids_func",
+                                 contains_func="has_gramps_id_func")
         self.citation_map = Map(Table(self._tables["Citation"]))
-        self.citation_id_map = {}
+        self.citation_id_map = Map(Table(self._tables["Citation"]),
+                                 keys_func="ids_func",
+                                 contains_func="has_gramps_id_func")
         self.source_map = Map(Table(self._tables["Source"]))
-        self.source_id_map = {}
+        self.source_id_map = Map(Table(self._tables["Source"]),
+                                 keys_func="ids_func",
+                                 contains_func="has_gramps_id_func")
         self.repository_map  = Map(Table(self._tables["Repository"]))
-        self.repository_id_map = {}
+        self.repository_id_map = Map(Table(self._tables["Repository"]),
+                                 keys_func="ids_func",
+                                 contains_func="has_gramps_id_func")
         self.note_map = Map(Table(self._tables["Note"]))
-        self.note_id_map = {}
+        self.note_id_map = Map(Table(self._tables["Note"]),
+                                 keys_func="ids_func",
+                                 contains_func="has_gramps_id_func")
         self.media_map  = Map(Table(self._tables["Media"]))
-        self.media_id_map = {}
+        self.media_id_map = Map(Table(self._tables["Media"]),
+                                 keys_func="ids_func",
+                                 contains_func="has_gramps_id_func")
         self.event_map  = Map(Table(self._tables["Event"]))
-        self.event_id_map = {}
+        self.event_id_map = Map(Table(self._tables["Event"]), 
+                                 keys_func="ids_func",
+                                 contains_func="has_gramps_id_func")
         self.tag_map  = Map(Table(self._tables["Tag"]))
         self.metadata   = Map(Table({"cursor_func": lambda: MetaCursor()}))
         self.name_group = {}
@@ -408,7 +473,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.redo_callback = None
         self.undo_history_callback = None
         self.modified   = 0
-        self.txn = DictionaryTxn("DbDictionary Transaction", self)
+        self.txn = DBAPITxn("DBAPI Transaction", self)
         self.transaction = None
         self.undodb = DbUndo(self)
         self.abort_possible = False
@@ -696,50 +761,70 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_person_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self.person_map.keys()
+        cur = self.dbapi.execute("select handle from person;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
 
     def get_family_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self.family_map.keys()
+        cur = self.dbapi.execute("select handle from family;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
 
     def get_event_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self.event_map.keys()
+        cur = self.dbapi.execute("select handle from event;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
 
     def get_citation_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self.citation_map.keys()
+        cur = self.dbapi.execute("select handle from citation;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
 
     def get_source_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self.source_map.keys()
+        cur = self.dbapi.execute("select handle from source;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
 
     def get_place_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self.place_map.keys()
+        cur = self.dbapi.execute("select handle from place;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
 
     def get_repository_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self.repository_map.keys()
+        cur = self.dbapi.execute("select handle from repository;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
 
     def get_media_object_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self.media_map.keys()
+        cur = self.dbapi.execute("select handle from media;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
 
     def get_note_handles(self, sort_handles=False):
         ## Fixme: implement sort
-        return self.note_map.keys()
+        cur = self.dbapi.execute("select handle from note;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
 
     def get_tag_handles(self, sort_handles=False):
         # FIXME: implement sort
-        return self.tag_map.keys()
+        cur = self.dbapi.execute("select handle from tag;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
 
     def get_event_from_handle(self, handle):
         if isinstance(handle, bytes):
             handle = str(handle, "utf-8")
         event = None
         if handle in self.event_map:
-            event = Event.create(self.event_map[handle])
+            event = Event.create(self._get_raw_event_data(handle))
         return event
 
     def get_family_from_handle(self, handle): 
@@ -747,7 +832,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         family = None
         if handle in self.family_map:
-            family = Family.create(self.family_map[handle])
+            family = Family.create(self._get_raw_family_data(handle))
         return family
 
     def get_repository_from_handle(self, handle):
@@ -755,7 +840,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         repository = None
         if handle in self.repository_map:
-            repository = Repository.create(self.repository_map[handle])
+            repository = Repository.create(self._get_raw_repository_data(handle))
         return repository
 
     def get_person_from_handle(self, handle):
@@ -763,7 +848,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         person = None
         if handle in self.person_map:
-            person = Person.create(self.person_map[handle])
+            person = Person.create(self._get_raw_person_data(handle))
         return person
 
     def get_place_from_handle(self, handle):
@@ -771,7 +856,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         place = None
         if handle in self.place_map:
-            place = Place.create(self.place_map[handle])
+            place = Place.create(self._get_raw_place_data(handle))
         return place
 
     def get_citation_from_handle(self, handle):
@@ -779,7 +864,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         citation = None
         if handle in self.citation_map:
-            citation = Citation.create(self.citation_map[handle])
+            citation = Citation.create(self._get_raw_citation_data(handle))
         return citation
 
     def get_source_from_handle(self, handle):
@@ -787,7 +872,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         source = None
         if handle in self.source_map:
-            source = Source.create(self.source_map[handle])
+            source = Source.create(self._get_raw_source_data(handle))
         return source
 
     def get_note_from_handle(self, handle):
@@ -795,7 +880,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         note = None
         if handle in self.note_map:
-            note = Note.create(self.note_map[handle])
+            note = Note.create(self._get_raw_note_data(handle))
         return note
 
     def get_object_from_handle(self, handle):
@@ -803,7 +888,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         media = None
         if handle in self.media_map:
-            media = MediaObject.create(self.media_map[handle])
+            media = MediaObject.create(self._get_raw_media_data(handle))
         return media
 
     def get_tag_from_handle(self, handle):
@@ -811,7 +896,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             handle = str(handle, "utf-8")
         tag = None
         if handle in self.tag_map:
-            tag = Tag.create(self.tag_map[handle])
+            tag = Tag.create(self._get_raw_tag_data(handle))
         return tag
 
     def get_default_person(self):
@@ -822,13 +907,13 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return None
 
     def iter_people(self):
-        return (Person.create(person) for person in self.person_map.values())
+        return (Person.create(data[1]) for data in self.get_person_cursor())
 
     def iter_person_handles(self):
-        return (handle for handle in self.person_map.keys())
+        return (data[0] for data in self.get_person_cursor())
 
     def iter_families(self):
-        return (Family.create(family) for family in self.family_map.values())
+        return (Family.create(data[1]) for data in self.get_family_cursor())
 
     def iter_family_handles(self):
         return (handle for handle in self.family_map.keys())
@@ -887,34 +972,54 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return None
 
     def get_number_of_people(self):
-        return len(self.person_map)
+        cur = self.dbapi.execute("select count(handle) from person;")
+        row = cur.fetchone()
+        return row[0]
 
     def get_number_of_events(self):
-        return len(self.event_map)
+        cur = self.dbapi.execute("select count(handle) from event;")
+        row = cur.fetchone()
+        return row[0]
 
     def get_number_of_places(self):
-        return len(self.place_map)
+        cur = self.dbapi.execute("select count(handle) from place;")
+        row = cur.fetchone()
+        return row[0]
 
     def get_number_of_tags(self):
-        return len(self.tag_map)
+        cur = self.dbapi.execute("select count(handle) from tag;")
+        row = cur.fetchone()
+        return row[0]
 
     def get_number_of_families(self):
-        return len(self.family_map)
+        cur = self.dbapi.execute("select count(handle) from family;")
+        row = cur.fetchone()
+        return row[0]
 
     def get_number_of_notes(self):
-        return len(self.note_map)
+        cur = self.dbapi.execute("select count(handle) from note;")
+        row = cur.fetchone()
+        return row[0]
 
     def get_number_of_citations(self):
-        return len(self.citation_map)
+        cur = self.dbapi.execute("select count(handle) from citation;")
+        row = cur.fetchone()
+        return row[0]
 
     def get_number_of_sources(self):
-        return len(self.source_map)
+        cur = self.dbapi.execute("select count(handle) from source;")
+        row = cur.fetchone()
+        return row[0]
 
     def get_number_of_media_objects(self):
-        return len(self.media_map)
+        cur = self.dbapi.execute("select count(handle) from media;")
+        row = cur.fetchone()
+        return row[0]
 
     def get_number_of_repositories(self):
-        return len(self.repository_map)
+        cur = self.dbapi.execute("select count(handle) from repository;")
+        row = cur.fetchone()
+        return row[0]
 
     def get_place_cursor(self):
         return Cursor(self.place_map)
@@ -1142,129 +1247,190 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def commit_person(self, person, trans, change_time=None):
         emit = None
-        if not trans.batch:
+        if True or not trans.batch:
             if person.handle in self.person_map:
                 emit = "person-update"
+                self.dbapi.execute("""UPDATE person SET gramps_id = ?, 
+                                                        blob = ? 
+                                                    WHERE handle = ?;""",
+                                   [person.gramps_id, 
+                                    pickle.dumps(person.serialize()),
+                                    person.handle])
             else:
                 emit = "person-add"
-        self.person_map[person.handle] = person.serialize()
-        self.person_id_map[person.gramps_id] = self.person_map[person.handle]
+                self.dbapi.execute("""insert into person(handle, gramps_id, blob) 
+                                                  values(?, ?, ?);""", 
+                                   [person.handle, person.gramps_id, pickle.dumps(person.serialize())])
         # Emit after added:
         if emit:
             self.emit(emit, ([person.handle],))
 
     def commit_family(self, family, trans, change_time=None):
         emit = None
-        if not trans.batch:
+        if True or not trans.batch:
             if family.handle in self.family_map:
                 emit = "family-update"
+                self.dbapi.execute("""UPDATE family SET gramps_id = ?, 
+                                                        blob = ? 
+                                                    WHERE handle = ?;""",
+                                   [family.gramps_id, 
+                                    pickle.dumps(family.serialize()),
+                                    family.handle])
             else:
                 emit = "family-add"
-        self.family_map[family.handle] = family.serialize()
-        self.family_id_map[family.gramps_id] = self.family_map[family.handle]
+                self.dbapi.execute("insert into family values(?, ?, ?);", 
+                                   [family.handle, family.gramps_id, 
+                                    pickle.dumps(family.serialize())])
         # Emit after added:
         if emit:
             self.emit(emit, ([family.handle],))
 
     def commit_citation(self, citation, trans, change_time=None):
         emit = None
-        if not trans.batch:
+        if True or not trans.batch:
             if citation.handle in self.citation_map:
                 emit = "citation-update"
+                self.dbapi.execute("""UPDATE citation SET gramps_id = ?, 
+                                                        blob = ? 
+                                                    WHERE handle = ?;""",
+                                   [citation.gramps_id, 
+                                    pickle.dumps(citation.serialize()),
+                                    citation.handle])
             else:
                 emit = "citation-add"
-        self.citation_map[citation.handle] = citation.serialize()
-        self.citation_id_map[citation.gramps_id] = self.citation_map[citation.handle]
+                self.dbapi.execute("insert into citation values(?, ?, ?);", 
+                           [citation.handle, citation.gramps_id, pickle.dumps(citation.serialize())])
         # Emit after added:
         if emit:
             self.emit(emit, ([citation.handle],))
 
     def commit_source(self, source, trans, change_time=None):
         emit = None
-        if not trans.batch:
+        if True or not trans.batch:
             if source.handle in self.source_map:
                 emit = "source-update"
+                self.dbapi.execute("""UPDATE source SET gramps_id = ?, 
+                                                        blob = ? 
+                                                    WHERE handle = ?;""",
+                                   [source.gramps_id, 
+                                    pickle.dumps(source.serialize()),
+                                    source.handle])
             else:
                 emit = "source-add"
-        self.source_map[source.handle] = source.serialize()
-        self.source_id_map[source.gramps_id] = self.source_map[source.handle]
+                self.dbapi.execute("insert into source values(?, ?, ?);", 
+                           [source.handle, source.gramps_id, pickle.dumps(source.serialize())])
         # Emit after added:
         if emit:
             self.emit(emit, ([source.handle],))
 
     def commit_repository(self, repository, trans, change_time=None):
         emit = None
-        if not trans.batch:
+        if True or not trans.batch:
             if repository.handle in self.repository_map:
                 emit = "repository-update"
+                self.dbapi.execute("""UPDATE repository SET gramps_id = ?, 
+                                                        blob = ? 
+                                                    WHERE handle = ?;""",
+                                   [repository.gramps_id, 
+                                    pickle.dumps(repository.serialize()),
+                                    repository.handle])
             else:
                 emit = "repository-add"
-        self.repository_map[repository.handle] = repository.serialize()
-        self.repository_id_map[repository.gramps_id] = self.repository_map[repository.handle]
+                self.dbapi.execute("insert into repository values(?, ?, ?);", 
+                           [repository.handle, repository.gramps_id, pickle.dumps(repository.serialize())])
         # Emit after added:
         if emit:
             self.emit(emit, ([repository.handle],))
 
     def commit_note(self, note, trans, change_time=None):
         emit = None
-        if not trans.batch:
+        if True or not trans.batch:
             if note.handle in self.note_map:
                 emit = "note-update"
+                self.dbapi.execute("""UPDATE note SET gramps_id = ?, 
+                                                        blob = ? 
+                                                    WHERE handle = ?;""",
+                                   [note.gramps_id, 
+                                    pickle.dumps(note.serialize()),
+                                    note.handle])
             else:
                 emit = "note-add"
-        self.note_map[note.handle] = note.serialize()
-        self.note_id_map[note.gramps_id] = self.note_map[note.handle]
+                self.dbapi.execute("insert into note values(?, ?, ?);", 
+                           [note.handle, note.gramps_id, pickle.dumps(note.serialize())])
         # Emit after added:
         if emit:
             self.emit(emit, ([note.handle],))
 
     def commit_place(self, place, trans, change_time=None):
         emit = None
-        if not trans.batch:
+        if True or not trans.batch:
             if place.handle in self.place_map:
                 emit = "place-update"
+                self.dbapi.execute("""UPDATE place SET gramps_id = ?, 
+                                                        blob = ? 
+                                                    WHERE handle = ?;""",
+                                   [place.gramps_id, 
+                                    pickle.dumps(place.serialize()),
+                                    place.handle])
             else:
                 emit = "place-add"
-        self.place_map[place.handle] = place.serialize()
-        self.place_id_map[place.gramps_id] = self.place_map[place.handle]
+                self.dbapi.execute("insert into place values(?, ?, ?);", 
+                           [place.handle, place.gramps_id, pickle.dumps(place.serialize())])
         # Emit after added:
         if emit:
             self.emit(emit, ([place.handle],))
 
     def commit_event(self, event, trans, change_time=None):
         emit = None
-        if not trans.batch:
+        if True or not trans.batch:
             if event.handle in self.event_map:
                 emit = "event-update"
+                self.dbapi.execute("""UPDATE event SET gramps_id = ?, 
+                                                        blob = ? 
+                                                    WHERE handle = ?;""",
+                                   [event.gramps_id, 
+                                    pickle.dumps(event.serialize()),
+                                    event.handle])
             else:
                 emit = "event-add"
-        self.event_map[event.handle] = event.serialize()
-        self.event_id_map[event.gramps_id] = self.event_map[event.handle]
+                self.dbapi.execute("insert into event values(?, ?, ?);", 
+                           [event.handle, event.gramps_id, pickle.dumps(event.serialize())])
         # Emit after added:
         if emit:
             self.emit(emit, ([event.handle],))
 
     def commit_tag(self, tag, trans, change_time=None):
         emit = None
-        if not trans.batch:
+        if True or not trans.batch:
             if tag.handle in self.tag_map:
                 emit = "tag-update"
+                self.dbapi.execute("""UPDATE tag SET blob = ? 
+                                             WHERE handle = ?;""",
+                                   [pickle.dumps(tag.serialize()),
+                                    tag.handle])
             else:
                 emit = "tag-add"
-        self.tag_map[tag.handle] = tag.serialize()
+                self.dbapi.execute("insert into tag values(?, ?);", 
+                           [tag.handle, pickle.dumps(tag.serialize())])
         # Emit after added:
         if emit:
             self.emit(emit, ([tag.handle],))
 
     def commit_media_object(self, media, trans, change_time=None):
         emit = None
-        if not trans.batch:
+        if True or not trans.batch:
             if media.handle in self.media_map:
                 emit = "media-update"
+                self.dbapi.execute("""UPDATE media SET gramps_id = ?, 
+                                                        blob = ? 
+                                                    WHERE handle = ?;""",
+                                   [media.gramps_id, 
+                                    pickle.dumps(media.serialize()),
+                                    media.handle])
             else:
                 emit = "media-add"
-        self.media_map[media.handle] = media.serialize()
-        self.media_id_map[media.gramps_id] = self.media_map[media.handle]
+                self.dbapi.execute("insert into media values(?, ?, ?);", 
+                           [media.handle, media.gramps_id, pickle.dumps(media.serialize())])
         # Emit after added:
         if emit:
             self.emit(emit, ([media.handle],))
@@ -1321,7 +1487,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         Get the transaction class associated with this database backend.
         """
-        return DictionaryTxn
+        return DBAPITxn
 
     def get_from_name_and_handle(self, table_name, handle):
         """
@@ -1362,8 +1528,9 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             return
         if handle in self.person_map:
             person = Person.create(self.person_map[handle])
-            del self.person_map[handle]
-            del self.person_id_map[person.gramps_id]
+            #del self.person_map[handle]
+            #del self.person_id_map[person.gramps_id]
+            self.dbapi.execute("DELETE from person WHERE handle = ?;", [handle])
             self.emit("person-delete", ([handle],))
 
     def remove_source(self, handle, transaction):
@@ -1448,13 +1615,22 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return True
 
     def __do_remove(self, handle, transaction, data_map, data_id_map, key):
+        key2table = {
+            PERSON_KEY:     "person", 
+            FAMILY_KEY:     "family", 
+            SOURCE_KEY:     "source", 
+            CITATION_KEY:   "citation", 
+            EVENT_KEY:      "event", 
+            MEDIA_KEY:      "media", 
+            PLACE_KEY:      "place", 
+            REPOSITORY_KEY: "repository", 
+            NOTE_KEY:       "note", 
+            }
         if self.readonly or not handle:
             return
         if handle in data_map:
-            obj = self._tables[KEY_TO_CLASS_MAP[key]]["class_func"].create(data_map[handle])
-            del data_map[handle]
-            if data_id_map:
-                del data_id_map[obj.gramps_id]
+            self.dbapi.execute("DELETE from %s WHERE handle = ?;" % key2table[key], 
+                               [handle])
             self.emit(KEY_TO_NAME_MAP[key] + "-delete", ([handle],))
 
     def delete_primary_from_reference_map(self, handle, transaction, txn=None):
@@ -1681,64 +1857,109 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return self._directory is not None
 
     def iter_citation_handles(self):
-        return (key for key in self.citation_map.keys())
+        return (data[0] for data in self.get_citation_cursor())
 
     def iter_citations(self):
-        return (Citation.create(key) for key in self.citation_map.values())
+        return (Citation.create(data[1]) for data in self.get_citation_cursor())
 
     def iter_event_handles(self):
-        return (key for key in self.event_map.keys())
+        return (data[0] for data in self.get_event_cursor())
 
     def iter_events(self):
-        return (Event.create(key) for key in self.event_map.values())
+        return (Event.create(data[1]) for data in self.get_event_cursor())
 
     def iter_media_objects(self):
-        return (MediaObject.create(key) for key in self.media_map.values())
+        return (MediaObject.create(data[1]) for data in self.get_media_cursor())
 
     def iter_note_handles(self):
-        return (key for key in self.note_map.keys())
+        return (data[0] for data in self.get_note_cursor())
 
     def iter_notes(self):
-        return (Note.create(key) for key in self.note_map.values())
+        return (Note.create(data[1]) for data in self.get_note_cursor())
 
     def iter_place_handles(self):
-        return (key for key in self.place_map.keys())
+        return (data[0] for data in self.get_place_cursor())
 
     def iter_places(self):
-        return (Place.create(key) for key in self.place_map.values())
+        return (Place.create(data[1]) for data in self.get_place_cursor())
 
     def iter_repositories(self):
-        return (Repository.create(key) for key in self.repositories_map.values())
+        return (Repository.create(data[1]) for data in self.get_repository_cursor())
 
     def iter_repository_handles(self):
-        return (key for key in self.repositories_map.keys())
+        return (data[0] for data in self.get_repository_cursor())
 
     def iter_source_handles(self):
-        return (key for key in self.source_map.keys())
+        return (data[0] for data in self.get_source_cursor())
 
     def iter_sources(self):
-        return (Source.create(key) for key in self.source_map.values())
+        return (Source.create(data[1]) for data in self.get_source_cursor())
 
     def iter_tag_handles(self):
-        return (key for key in self.tag_map.keys())
+        return (data[0] for data in self.get_tag_cursor())
 
     def iter_tags(self):
-        return (Tag.create(key) for key in self.tag_map.values())
+        return (Tag.create(data[1]) for data in self.get_tag_cursor())
 
     def load(self, directory, pulse_progress=None, mode=None, 
              force_schema_upgrade=False, 
              force_bsddb_upgrade=False, 
              force_bsddb_downgrade=False, 
              force_python_upgrade=False):
-        from gramps.plugins.importer.importxml import importData
-        from gramps.cli.user import User 
-        self._directory = directory
-        self.full_name = os.path.abspath(self._directory)
-        self.path = self.full_name
-        self.brief_name = os.path.basename(self._directory)
-        filename = os.path.join(directory, "data.gramps")
-        if os.path.isfile(filename):
-            importData(self, filename, User())
+        # Run code from directory
+        import sqlite3
+        self.dbapi = sqlite3.connect(':memory:')
+        self.dbapi.row_factory = sqlite3.Row # allows access by name
+        # make sure schema is up to date:
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS person (
+                                    handle    TEXT PRIMARY KEY NOT NULL,
+                                    gramps_id TEXT             ,
+                                    blob      TEXT
+        );""")
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS family (
+                                    handle    TEXT PRIMARY KEY NOT NULL,
+                                    gramps_id TEXT             ,
+                                    blob      TEXT
+        );""")
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS source (
+                                    handle    TEXT PRIMARY KEY NOT NULL,
+                                    gramps_id TEXT             ,
+                                    blob      TEXT
+        );""")
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS citation (
+                                    handle    TEXT PRIMARY KEY NOT NULL,
+                                    gramps_id TEXT             ,
+                                    blob      TEXT
+        );""")
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS event (
+                                    handle    TEXT PRIMARY KEY NOT NULL,
+                                    gramps_id TEXT             ,
+                                    blob      TEXT
+        );""")
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS media (
+                                    handle    TEXT PRIMARY KEY NOT NULL,
+                                    gramps_id TEXT             ,
+                                    blob      TEXT
+        );""")
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS place (
+                                    handle    TEXT PRIMARY KEY NOT NULL,
+                                    gramps_id TEXT             ,
+                                    blob      TEXT
+        );""")
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS repository (
+                                    handle    TEXT PRIMARY KEY NOT NULL,
+                                    gramps_id TEXT             ,
+                                    blob      TEXT
+        );""")
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS note (
+                                    handle    TEXT PRIMARY KEY NOT NULL,
+                                    gramps_id TEXT             ,
+                                    blob      TEXT
+        );""")
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS tag (
+                                    handle    TEXT PRIMARY KEY NOT NULL,
+                                    blob      TEXT
+        );""")
 
     def redo(self, update_history=True):
         ## FIXME
@@ -1766,9 +1987,9 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def write_version(self, directory):
         """Write files for a newly created DB."""
         versionpath = os.path.join(directory, str(DBBACKEND))
-        _LOG.debug("Write database backend file to 'dictionarydb'")
+        _LOG.debug("Write database backend file to 'dbapi'")
         with open(versionpath, "w") as version_file:
-            version_file.write("dictionarydb")
+            version_file.write("dbapi")
 
     def report_bm_change(self):
         """
@@ -1797,7 +2018,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_dbname(self):
         """
-        In DictionaryDb, the database is in a text file at the path
+        In DBAPI, the database is in a text file at the path
         """
         filepath = os.path.join(self._directory, "name.txt")
         try:
@@ -1819,13 +2040,192 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def prepare_import(self):
         """
-        Initialization before imports
+        DBAPI does not commit data on gedcom import, but saves them
+        for later commit.
         """
         pass
 
     def commit_import(self):
         """
-        Post process after imports
+        Commits the items that were queued up during the last gedcom
+        import for two step adding.
         """
         pass
+
+    def has_handle_for_person(self, key):
+        cur = self.dbapi.execute("select * from person where handle = ?", [key])
+        return cur.fetchone() != None
+
+    def has_handle_for_family(self, key):
+        cur = self.dbapi.execute("select * from family where handle = ?", [key])
+        return cur.fetchone() != None
+
+    def has_handle_for_source(self, key):
+        cur = self.dbapi.execute("select * from source where handle = ?", [key])
+        return cur.fetchone() != None
+
+    def has_handle_for_citation(self, key):
+        cur = self.dbapi.execute("select * from citation where handle = ?", [key])
+        return cur.fetchone() != None
+
+    def has_handle_for_event(self, key):
+        cur = self.dbapi.execute("select * from event where handle = ?", [key])
+        return cur.fetchone() != None
+
+    def has_handle_for_media(self, key):
+        cur = self.dbapi.execute("select * from media where handle = ?", [key])
+        return cur.fetchone() != None
+
+    def has_handle_for_place(self, key):
+        cur = self.dbapi.execute("select * from place where handle = ?", [key])
+        return cur.fetchone() != None
+
+    def has_handle_for_repository(self, key):
+        cur = self.dbapi.execute("select * from repository where handle = ?", [key])
+        return cur.fetchone() != None
+
+    def has_handle_for_note(self, key):
+        cur = self.dbapi.execute("select * from note where handle = ?", [key])
+        return cur.fetchone() != None
+
+    def has_gramps_id_for_person(self, key):
+        cur = self.dbapi.execute("select * from person where gramps_id = ?", [key])
+        return cur.fetchone() != None
+
+    def has_gramps_id_for_family(self, key):
+        cur = self.dbapi.execute("select * from family where gramps_id = ?", [key])
+        return cur.fetchone() != None
+
+    def has_gramps_id_for_source(self, key):
+        cur = self.dbapi.execute("select * from source where gramps_id = ?", [key])
+        return cur.fetchone() != None
+
+    def has_gramps_id_for_citation(self, key):
+        cur = self.dbapi.execute("select * from citation where gramps_id = ?", [key])
+        return cur.fetchone() != None
+
+    def has_gramps_id_for_event(self, key):
+        cur = self.dbapi.execute("select * from event where gramps_id = ?", [key])
+        return cur.fetchone() != None
+
+    def has_gramps_id_for_media(self, key):
+        cur = self.dbapi.execute("select * from media where gramps_id = ?", [key])
+        return cur.fetchone() != None
+
+    def has_gramps_id_for_place(self, key):
+        cur = self.dbapi.execute("select * from place where gramps_id = ?", [key])
+        return cur.fetchone() != None
+
+    def has_gramps_id_for_repository(self, key):
+        cur = self.dbapi.execute("select * from repository where gramps_id = ?", [key])
+        return cur.fetchone() != None
+
+    def has_gramps_id_for_note(self, key):
+        cur = self.dbapi.execute("select * from note where gramps_id = ?", [key])
+        return cur.fetchone() != None
+
+    def get_person_gramps_ids(self):
+        cur = self.dbapi.execute("select gramps_id from person;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
+
+    def get_family_gramps_ids(self):
+        cur = self.dbapi.execute("select gramps_id from family;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
+
+    def get_source_gramps_ids(self):
+        cur = self.dbapi.execute("select gramps_id from source;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
+
+    def get_citation_gramps_ids(self):
+        cur = self.dbapi.execute("select gramps_id from citation;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
+
+    def get_event_gramps_ids(self):
+        cur = self.dbapi.execute("select gramps_id from event;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
+
+    def get_media_gramps_ids(self):
+        cur = self.dbapi.execute("select gramps_id from media;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
+
+    def get_place_gramps_ids(self):
+        cur = self.dbapi.execute("select gramps from place;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
+
+    def get_repository_gramps_ids(self):
+        cur = self.dbapi.execute("select gramps_id from repository;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
+
+    def get_note_gramps_ids(self):
+        cur = self.dbapi.execute("select gramps_id from note;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
+
+    def _get_raw_person_data(self, key):
+        cur = self.dbapi.execute("select blob from person where handle = ?", [key])
+        row = cur.fetchone()
+        if row:
+            return pickle.loads(row[0])
+
+    def _get_raw_family_data(self, key):
+        cur = self.dbapi.execute("select blob from family where handle = ?", [key])
+        row = cur.fetchone()
+        if row:
+            return pickle.loads(row[0])
+
+    def _get_raw_source_data(self, key):
+        cur = self.dbapi.execute("select blob from source where handle = ?", [key])
+        row = cur.fetchone()
+        if row:
+            return pickle.loads(row[0])
+
+    def _get_raw_citation_data(self, key):
+        cur = self.dbapi.execute("select blob from citation where handle = ?", [key])
+        row = cur.fetchone()
+        if row:
+            return pickle.loads(row[0])
+
+    def _get_raw_event_data(self, key):
+        cur = self.dbapi.execute("select blob from event where handle = ?", [key])
+        row = cur.fetchone()
+        if row:
+            return pickle.loads(row[0])
+
+    def _get_raw_media_data(self, key):
+        cur = self.dbapi.execute("select blob from media where handle = ?", [key])
+        row = cur.fetchone()
+        if row:
+            return pickle.loads(row[0])
+
+    def _get_raw_place_data(self, key):
+        cur = self.dbapi.execute("select blob from place where handle = ?", [key])
+        row = cur.fetchone()
+        if row:
+            return pickle.loads(row[0])
+
+    def _get_raw_repository_data(self, key):
+        cur = self.dbapi.execute("select blob from repository where handle = ?", [key])
+        row = cur.fetchone()
+        if row:
+            return pickle.loads(row[0])
+
+    def _get_raw_note_data(self, key):
+        cur = self.dbapi.execute("select blob from note where handle = ?", [key])
+        row = cur.fetchone()
+        if row:
+            return pickle.loads(row[0])
+
+    def _get_raw_tag_data(self, key):
+        cur = self.dbapi.execute("select blob from tag where handle = ?", [key])
+        row = cur.fetchone()
+        if row:
+            return pickle.loads(row[0])
 
