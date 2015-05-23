@@ -38,16 +38,8 @@ from gramps.gen.db import (PERSON_KEY,
 
 from gramps.gen.utils.id import create_id
 from gramps.gen.lib.researcher import Researcher
-from gramps.gen.lib.mediaobj import MediaObject
-from gramps.gen.lib.person import Person
-from gramps.gen.lib.family import Family
-from gramps.gen.lib.src import Source
-from gramps.gen.lib.citation import Citation
-from gramps.gen.lib.event import Event
-from gramps.gen.lib.place import Place
-from gramps.gen.lib.repo import Repository
-from gramps.gen.lib.note import Note
-from gramps.gen.lib.tag import Tag
+from gramps.gen.lib import (Tag, MediaObject, Person, Family, Source, Citation, Event,
+                            Place, Repository, Note, NameOriginType)
 from gramps.gen.lib.genderstats import GenderStats
 
 _LOG = logging.getLogger(DBLOGNAME)
@@ -761,62 +753,70 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return None
 
     def get_person_handles(self, sort_handles=False):
-        ## Fixme: implement sort
-        cur = self.dbapi.execute("select handle from person;")
+        if sort_handles:
+            cur = self.dbapi.execute("SELECT handle FROM person ORDER BY order_by;")
+        else:
+            cur = self.dbapi.execute("SELECT handle FROM person;")
         rows = cur.fetchall()
         return [row[0] for row in rows]
 
-    def get_family_handles(self, sort_handles=False):
-        ## Fixme: implement sort
+    def get_family_handles(self):
         cur = self.dbapi.execute("select handle from family;")
         rows = cur.fetchall()
         return [row[0] for row in rows]
 
-    def get_event_handles(self, sort_handles=False):
-        ## Fixme: implement sort
+    def get_event_handles(self):
         cur = self.dbapi.execute("select handle from event;")
         rows = cur.fetchall()
         return [row[0] for row in rows]
 
     def get_citation_handles(self, sort_handles=False):
-        ## Fixme: implement sort
-        cur = self.dbapi.execute("select handle from citation;")
+        if sort_handles:
+            cur = self.dbapi.execute("select handle from citation ORDER BY order_by;")
+        else:
+            cur = self.dbapi.execute("select handle from citation;")
         rows = cur.fetchall()
         return [row[0] for row in rows]
 
     def get_source_handles(self, sort_handles=False):
-        ## Fixme: implement sort
-        cur = self.dbapi.execute("select handle from source;")
+        if sort_handles:
+            cur = self.dbapi.execute("select handle from source ORDER BY order_by;")
+        else:
+            cur = self.dbapi.execute("select handle from source;")
         rows = cur.fetchall()
         return [row[0] for row in rows]
 
     def get_place_handles(self, sort_handles=False):
-        ## Fixme: implement sort
-        cur = self.dbapi.execute("select handle from place;")
+        if sort_handles:
+            cur = self.dbapi.execute("select handle from place ORDER BY order_by;")
+        else:
+            cur = self.dbapi.execute("select handle from place;")
         rows = cur.fetchall()
         return [row[0] for row in rows]
 
-    def get_repository_handles(self, sort_handles=False):
-        ## Fixme: implement sort
+    def get_repository_handles(self):
         cur = self.dbapi.execute("select handle from repository;")
         rows = cur.fetchall()
         return [row[0] for row in rows]
 
     def get_media_object_handles(self, sort_handles=False):
-        ## Fixme: implement sort
-        cur = self.dbapi.execute("select handle from media;")
+        if sort_handles:
+            cur = self.dbapi.execute("select handle from media ORDER BY order_by;")
+        else:
+            cur = self.dbapi.execute("select handle from media;")
         rows = cur.fetchall()
         return [row[0] for row in rows]
 
-    def get_note_handles(self, sort_handles=False):
-        ## Fixme: implement sort
+    def get_note_handles(self):
         cur = self.dbapi.execute("select handle from note;")
         rows = cur.fetchall()
         return [row[0] for row in rows]
 
     def get_tag_handles(self, sort_handles=False):
-        # FIXME: implement sort
-        cur = self.dbapi.execute("select handle from tag;")
+        if sort_handles:
+            cur = self.dbapi.execute("select handle from tag ORDER BY order_by;")
+        else:
+            cur = self.dbapi.execute("select handle from tag;")
         rows = cur.fetchall()
         return [row[0] for row in rows]
 
@@ -1252,16 +1252,21 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             if person.handle in self.person_map:
                 emit = "person-update"
                 self.dbapi.execute("""UPDATE person SET gramps_id = ?, 
+                                                        order_by = ?,
                                                         blob = ? 
                                                     WHERE handle = ?;""",
                                    [person.gramps_id, 
+                                    self._order_by_person_key(person),
                                     pickle.dumps(person.serialize()),
                                     person.handle])
             else:
                 emit = "person-add"
-                self.dbapi.execute("""insert into person(handle, gramps_id, blob) 
-                                                  values(?, ?, ?);""", 
-                                   [person.handle, person.gramps_id, pickle.dumps(person.serialize())])
+                self.dbapi.execute("""insert into person(handle, order_by, gramps_id, blob) 
+                                                  values(?, ?, ?, ?);""", 
+                                   [person.handle, 
+                                    self._order_by_person_key(person),
+                                    person.gramps_id, 
+                                    pickle.dumps(person.serialize())])
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1294,15 +1299,20 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             if citation.handle in self.citation_map:
                 emit = "citation-update"
                 self.dbapi.execute("""UPDATE citation SET gramps_id = ?, 
-                                                        blob = ? 
+                                                          order_by = ?,
+                                                          blob = ? 
                                                     WHERE handle = ?;""",
                                    [citation.gramps_id, 
+                                    self._order_by_citation_key(citation),
                                     pickle.dumps(citation.serialize()),
                                     citation.handle])
             else:
                 emit = "citation-add"
-                self.dbapi.execute("insert into citation values(?, ?, ?);", 
-                           [citation.handle, citation.gramps_id, pickle.dumps(citation.serialize())])
+                self.dbapi.execute("insert into citation values(?, ?, ?, ?);", 
+                           [citation.handle, 
+                            self._order_by_citation_key(citation),
+                            citation.gramps_id, 
+                            pickle.dumps(citation.serialize())])
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1314,15 +1324,20 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             if source.handle in self.source_map:
                 emit = "source-update"
                 self.dbapi.execute("""UPDATE source SET gramps_id = ?, 
+                                                        order_by = ?,
                                                         blob = ? 
                                                     WHERE handle = ?;""",
                                    [source.gramps_id, 
+                                    self._order_by_source_key(source),
                                     pickle.dumps(source.serialize()),
                                     source.handle])
             else:
                 emit = "source-add"
-                self.dbapi.execute("insert into source values(?, ?, ?);", 
-                           [source.handle, source.gramps_id, pickle.dumps(source.serialize())])
+                self.dbapi.execute("insert into source values(?, ?, ?, ?);", 
+                           [source.handle, 
+                            self._order_by_source_key(source),
+                            source.gramps_id, 
+                            pickle.dumps(source.serialize())])
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1374,15 +1389,20 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             if place.handle in self.place_map:
                 emit = "place-update"
                 self.dbapi.execute("""UPDATE place SET gramps_id = ?, 
-                                                        blob = ? 
+                                                       order_by = ?,
+                                                       blob = ? 
                                                     WHERE handle = ?;""",
                                    [place.gramps_id, 
+                                    self._order_by_place_key(place),
                                     pickle.dumps(place.serialize()),
                                     place.handle])
             else:
                 emit = "place-add"
-                self.dbapi.execute("insert into place values(?, ?, ?);", 
-                           [place.handle, place.gramps_id, pickle.dumps(place.serialize())])
+                self.dbapi.execute("insert into place values(?, ?, ?, ?);", 
+                           [place.handle, 
+                            self._order_by_place_key(place),
+                            place.gramps_id, 
+                            pickle.dumps(place.serialize())])
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1402,7 +1422,9 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             else:
                 emit = "event-add"
                 self.dbapi.execute("insert into event values(?, ?, ?);", 
-                           [event.handle, event.gramps_id, pickle.dumps(event.serialize())])
+                           [event.handle, 
+                            event.gramps_id, 
+                            pickle.dumps(event.serialize())])
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1413,14 +1435,18 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if True or not trans.batch:
             if tag.handle in self.tag_map:
                 emit = "tag-update"
-                self.dbapi.execute("""UPDATE tag SET blob = ? 
+                self.dbapi.execute("""UPDATE tag SET blob = ?,
+                                                     order_by = ?
                                              WHERE handle = ?;""",
                                    [pickle.dumps(tag.serialize()),
+                                    self._order_by_tag_key(tag),
                                     tag.handle])
             else:
                 emit = "tag-add"
-                self.dbapi.execute("insert into tag values(?, ?);", 
-                           [tag.handle, pickle.dumps(tag.serialize())])
+                self.dbapi.execute("insert into tag values(?, ?, ?);", 
+                           [tag.handle, 
+                            self._order_by_tag_key(tag),
+                            pickle.dumps(tag.serialize())])
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1432,15 +1458,20 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             if media.handle in self.media_map:
                 emit = "media-update"
                 self.dbapi.execute("""UPDATE media SET gramps_id = ?, 
-                                                        blob = ? 
+                                                       order_by = ?,
+                                                       blob = ? 
                                                     WHERE handle = ?;""",
                                    [media.gramps_id, 
+                                    self._order_by_media_key(media),
                                     pickle.dumps(media.serialize()),
                                     media.handle])
             else:
                 emit = "media-add"
-                self.dbapi.execute("insert into media values(?, ?, ?);", 
-                           [media.handle, media.gramps_id, pickle.dumps(media.serialize())])
+                self.dbapi.execute("insert into media values(?, ?, ?, ?);", 
+                           [media.handle, 
+                            self._order_by_media_key(media),
+                            media.gramps_id, 
+                            pickle.dumps(media.serialize())])
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1931,6 +1962,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # make sure schema is up to date:
         self.dbapi.execute("""CREATE TABLE IF NOT EXISTS person (
                                     handle    TEXT PRIMARY KEY NOT NULL,
+                                    order_by  TEXT             ,
                                     gramps_id TEXT             ,
                                     blob      TEXT
         );""")
@@ -1941,11 +1973,13 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         );""")
         self.dbapi.execute("""CREATE TABLE IF NOT EXISTS source (
                                     handle    TEXT PRIMARY KEY NOT NULL,
+                                    order_by  TEXT             ,
                                     gramps_id TEXT             ,
                                     blob      TEXT
         );""")
         self.dbapi.execute("""CREATE TABLE IF NOT EXISTS citation (
                                     handle    TEXT PRIMARY KEY NOT NULL,
+                                    order_by  TEXT             ,
                                     gramps_id TEXT             ,
                                     blob      TEXT
         );""")
@@ -1956,11 +1990,13 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         );""")
         self.dbapi.execute("""CREATE TABLE IF NOT EXISTS media (
                                     handle    TEXT PRIMARY KEY NOT NULL,
+                                    order_by  TEXT             ,
                                     gramps_id TEXT             ,
                                     blob      TEXT
         );""")
         self.dbapi.execute("""CREATE TABLE IF NOT EXISTS place (
                                     handle    TEXT PRIMARY KEY NOT NULL,
+                                    order_by  TEXT             ,
                                     gramps_id TEXT             ,
                                     blob      TEXT
         );""")
@@ -1976,6 +2012,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         );""")
         self.dbapi.execute("""CREATE TABLE IF NOT EXISTS tag (
                                     handle    TEXT PRIMARY KEY NOT NULL,
+                                    order_by  TEXT             ,
                                     blob      TEXT
         );""")
 
@@ -2253,4 +2290,33 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         row = cur.fetchone()
         if row:
             return pickle.loads(row[0])
+
+    def _order_by_person_key(self, person):
+        """
+        All non pa/matronymic surnames are used in indexing.
+        pa/matronymic not as they change for every generation!
+        returns a byte string
+        """
+        if person.primary_name and person.primary_name.surname_list:
+            order_by = " ".join([x.surname for x in person.primary_name.surname_list if not 
+                                 (int(x.origintype) in [NameOriginType.PATRONYMIC, 
+                                                        NameOriginType.MATRONYMIC]) ])
+        else:
+            order_by = ""
+        return glocale.sort_key(order_by)
+
+    def _order_by_place_key(self, place):
+        return glocale.sort_key(place.title)
+
+    def _order_by_source_key(self, source):
+        return glocale.sort_key(source.title)
+
+    def _order_by_citation_key(self, citation):
+        return glocale.sort_key(citation.page)
+
+    def _order_by_media_key(self, media):
+        return glocale.sort_key(media.desc)
+
+    def _order_by_tag_key(self, tag):
+        return glocale.sort_key(tag.get_name())
 
