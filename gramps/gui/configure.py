@@ -312,7 +312,7 @@ class ConfigureDialog(ManagedWindow):
             config = self.__config
         text = Gtk.Label()
         text.set_line_wrap(line_wrap)
-        text.set_alignment(0.,0.)
+        text.set_halign(Gtk.Align.START)
         text.set_text(label)
         grid.attach(text, 1, index, 8, 1)
 
@@ -1339,7 +1339,7 @@ class GrampsPreferences(ConfigureDialog):
         checkbutton.connect("toggled", self.toggle_hide_previous_addons)
 
         grid.attach(checkbutton, 1, current_line, 1, 1)
-        button = Gtk.Button(_("Check now"))
+        button = Gtk.Button(label=_("Check now"))
         button.connect("clicked", self.check_for_updates)
         grid.attach(button, 3, current_line, 1, 1)
 

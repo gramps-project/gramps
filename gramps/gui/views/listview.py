@@ -1005,7 +1005,7 @@ class ListView(NavigationView):
 
         combobox = Gtk.ComboBoxText()
         label = Gtk.Label(label=_("Format:"))
-        label.set_alignment(1.0, 0.5)
+        label.set_halign(Gtk.Align.END)
         box = Gtk.Box()
         box.pack_start(label, True, True, padding=12)
         box.pack_start(combobox, False, False, 0)

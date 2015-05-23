@@ -318,7 +318,7 @@ class ReportDialog(ManagedWindow):
 
         # Styles Frame
         label = Gtk.Label(label="%s:" % _("Style"))
-        label.set_alignment(0.0, 0.5)
+        label.set_halign(Gtk.Align.START)
 
         self.style_menu = StyleComboBox()
         self.style_menu.set_hexpand(True)
@@ -361,7 +361,7 @@ class ReportDialog(ManagedWindow):
         grid.set_row_spacing(6)
         
         label = Gtk.Label(label="<b>%s</b>" % _("Report Options"))
-        label.set_alignment(0.0, 0.5)
+        label.set_halign(Gtk.Align.START)
         label.set_use_markup(True)
         
         self.notebook.append_page(grid, label)
@@ -371,7 +371,7 @@ class ReportDialog(ManagedWindow):
             widget.set_hexpand(True)
             if text:
                 text_widget = Gtk.Label(label="%s:" % text)
-                text_widget.set_alignment(0.0, 0.0)
+                text_widget.set_halign(Gtk.Align.START)
                 grid.attach(text_widget, 1, row, 1, 1)
                 grid.attach(widget, 2, row, 1, 1)
             else:
@@ -395,7 +395,7 @@ class ReportDialog(ManagedWindow):
                 widget.set_hexpand(True)
                 if text:
                     text_widget = Gtk.Label(label='%s:' % text)
-                    text_widget.set_alignment(0.0, 0.5)
+                    text_widget.set_halign(Gtk.Align.START)
                     grid.attach(text_widget, 1, row, 1, 1)
                     if isinstance(widget, GuiTextOption):
                         grid.attach(widget, 2, row, 1, 1)
@@ -451,7 +451,7 @@ class ReportDialog(ManagedWindow):
         # need any labels at top:
         label = Gtk.Label(label="<b>%s</b>" % _('Document Options'))
         label.set_use_markup(1)
-        label.set_alignment(0.0, 0.5)
+        label.set_halign(Gtk.Align.START)
         self.grid.set_border_width(12)
         self.grid.attach(label, 0, self.row, 4, 1)
         self.row += 1
@@ -465,7 +465,7 @@ class ReportDialog(ManagedWindow):
 
         # Save Frame
         self.doc_label = Gtk.Label(label="%s:" % _("Filename"))
-        self.doc_label.set_alignment(0.0, 0.5)
+        self.doc_label.set_halign(Gtk.Align.START)
 
         self.grid.attach(self.doc_label, 1, self.row, 1, 1)
         self.target_fileentry.set_hexpand(True)
@@ -613,7 +613,7 @@ class ReportDialog(ManagedWindow):
                                                 self.uistate, self.track)
             if has_label:
                 widget_text = Gtk.Label('%s:' % option.get_label())
-                widget_text.set_alignment(0.0, 0.0)
+                widget_text.set_halign(Gtk.Align.START)
                 self.grid.attach(widget_text, 1, self.row, 1, 1)
                 self.doc_widgets.append(widget_text)
             self.grid.attach(widget, 2, self.row, 2, 1)

@@ -265,7 +265,7 @@ class ErrorReportAssistant(Gtk.Assistant):
         label = Gtk.Label(label=_("If you can see that there is any personal "
                             "information included in the error please remove "
                             "it."))
-        label.set_alignment(0.01, 0.5)
+        label.set_halign(Gtk.Align.START)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
 
@@ -310,7 +310,7 @@ class ErrorReportAssistant(Gtk.Assistant):
 
         error_details_frame.add(error_details_box)
 
-        side_label = Gtk.Label(_("This is the detailed Gramps error "
+        side_label = Gtk.Label(label=_("This is the detailed Gramps error "
                                  "information, don't worry if you do not "
                                  "understand it. You will have the opportunity "
                                  "to add further detail about the error "
@@ -340,11 +340,11 @@ class ErrorReportAssistant(Gtk.Assistant):
         """
         Build the system information page.
         """
-        label = Gtk.Label(label=_("Please check the information below and correct "
-                            "anything that you know to be wrong or remove "
-                            "anything that you would rather not have included "
-                            "in the bug report."))
-        label.set_alignment(0.01, 0.5)
+        label = Gtk.Label(label=_("Please check the information below and "
+                            "correct anything that you know to be wrong or "
+                            "remove anything that you would rather not have "
+                            "included in the bug report."))
+        label.set_halign(Gtk.Align.START)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
 
@@ -390,9 +390,9 @@ class ErrorReportAssistant(Gtk.Assistant):
 
         sys_information_frame.add(sys_information_box)
 
-        side_label = Gtk.Label(label=_("This is the information about your system "
-                                 "that will help the developers to fix the "
-                                 "bug."))
+        side_label = Gtk.Label(label=_("This is the information about your "
+                                 "system that will help the developers to fix "
+                                 "the bug."))
 
         side_label.set_line_wrap(True)
 
@@ -418,10 +418,10 @@ class ErrorReportAssistant(Gtk.Assistant):
         """
         Build the further information page.
         """
-        label = Gtk.Label(label=_("Please provide as much information as you can "
-                             "about what you were doing when the error "
+        label = Gtk.Label(label=_("Please provide as much information as you "
+                             "can about what you were doing when the error "
                              "occured."))
-        label.set_alignment(0.01, 0.5)
+        label.set_halign(Gtk.Align.START)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
 
@@ -462,8 +462,8 @@ class ErrorReportAssistant(Gtk.Assistant):
 
         user_information_frame.add(user_information_box)
 
-        side_label = Gtk.Label(label=_("This is your opportunity to describe what "
-                                 "you were doing when the error occured."))
+        side_label = Gtk.Label(label=_("This is your opportunity to describe "
+                                 "what you were doing when the error occured."))
 
         side_label.set_line_wrap(True)
 
@@ -489,12 +489,12 @@ class ErrorReportAssistant(Gtk.Assistant):
         """
         Build the bug report summary page.
         """
-        label = Gtk.Label(_("Please check that the information is correct, "
-                            "do not worry if you don't understand the detail "
-                            "of the error information. Just make sure that it "
-                            "does not contain anything that you do not want "
-                            "to be sent to the developers."))
-        label.set_alignment(0.01, 0.5)
+        label = Gtk.Label(label=_("Please check that the information is "
+                            "correct, do not worry if you don't understand the "
+                            "detail of the error information. Just make sure "
+                            "that it does not contain anything that you do not "
+                            "want to be sent to the developers."))
+        label.set_halign(Gtk.Align.START)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
 
@@ -526,10 +526,10 @@ class ErrorReportAssistant(Gtk.Assistant):
 
         summary_frame.add(summary_box)
 
-        side_label = Gtk.Label(label=_("This is the completed bug report. The next "
-                                 "page of the assistant will help you to file "
-                                 "a bug on the Gramps bug tracking system "
-                                 "website."))
+        side_label = Gtk.Label(label=_("This is the completed bug report. "
+                                 "The next page of the assistant will help you "
+                                 "to file a bug on the Gramps bug tracking "
+                                 "system website."))
 
         side_label.set_line_wrap(True)
 
@@ -560,16 +560,16 @@ class ErrorReportAssistant(Gtk.Assistant):
             (_("Use the two buttons below to first copy the bug report to the "
                "clipboard and then open a webbrowser to file a bug report at "),
                URL_BUGTRACKER))
-        label.set_alignment(0.01, 0.5)
+        label.set_halign(Gtk.Align.START)
         label.set_padding(0, 4)
         label.set_line_wrap(True)
         label.set_use_markup(True)
 
 
-        url_label = Gtk.Label(label=_("Use this button to start a web browser and "
-                                "file a bug report on the Gramps bug tracking "
-                                "system."))
-        url_label.set_alignment(0.01, 0.5)
+        url_label = Gtk.Label(label=_("Use this button to start a web browser "
+                                "and file a bug report on the Gramps bug "
+                                "tracking system."))
+        url_label.set_halign(Gtk.Align.START)
         url_label.set_padding(0, 4)
         url_label.set_line_wrap(True)
         url_label.set_size_request(200, -1)
@@ -588,12 +588,12 @@ class ErrorReportAssistant(Gtk.Assistant):
         url_frame = Gtk.Frame()
         url_frame.add(url_box)
         
-        clip_label = Gtk.Label(_("Use this button "
+        clip_label = Gtk.Label(label=_("Use this button "
                                  "to copy the bug report onto the clipboard. "
                                  "Then go to the bug tracking website by using "
                                  "the button below, paste the report and click "
                                  "submit report"))
-        clip_label.set_alignment(0.01, 0.5)
+        clip_label.set_halign(Gtk.Align.START)
         clip_label.set_padding(0, 4)
         clip_label.set_line_wrap(True)
         clip_label.set_size_request(200, -1)
@@ -625,10 +625,10 @@ class ErrorReportAssistant(Gtk.Assistant):
 
         outer_frame.add(inner_box)
 
-        side_label = Gtk.Label(label=_("This is the final step. Use the buttons on "
-                                 "this page to start a web browser and file a "
-                                 "bug report on the Gramps bug tracking "
-                                 "system."))
+        side_label = Gtk.Label(label=_("This is the final step. Use the "
+                                 "buttons on this page to start a web browser "
+                                 "and file a bug report on the Gramps bug "
+                                 "tracking system."))
 
         side_label.set_line_wrap(True)
 

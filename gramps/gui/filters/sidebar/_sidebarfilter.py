@@ -135,7 +135,7 @@ class SidebarFilter(DbGUIElement):
         label = Gtk.Label()
         label.set_text('<b>%s</b>' % heading)
         label.set_use_markup(True)
-        label.set_alignment(0, 0.5)
+        label.set_halign(Gtk.Align.START)
         self.grid.attach(label, 1, self.position, 1, 1)
         self.position += 1
 

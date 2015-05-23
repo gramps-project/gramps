@@ -167,7 +167,7 @@ class ObjEntry(object):
                                self._DND_TYPE.app_id)
                     self.label_event_box.drag_source_set_target_list(tglist)
                     if self._DND_ICON:
-                        self.label_event_box.drag_source_set_icon_stock(self._DND_ICON)
+                        self.label_event_box.drag_source_set_icon_name(self._DND_ICON)
                     self.label_event_box.connect('drag_data_get', self.drag_data_get)
             else:
                 if self.label.drag_source_get_target_list():

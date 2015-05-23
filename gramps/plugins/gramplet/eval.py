@@ -74,10 +74,10 @@ class PythonEvaluation(Gramplet):
         self.error = self.__add_text_view(_("Error"))
         
         bbox = Gtk.ButtonBox()
-        apply_button = Gtk.Button(_("Apply"))
+        apply_button = Gtk.Button(label=_("Apply"))
         apply_button.connect('clicked', self.apply_clicked)
         bbox.pack_start(apply_button, False, False, 6)
-        clear_button = Gtk.Button(_("Clear"))
+        clear_button = Gtk.Button(label=_("Clear"))
         clear_button.connect('clicked', self.clear_clicked)
         bbox.pack_start(clear_button, False, False, 6)
         self.top.pack_start(bbox, False, False, 6)
@@ -90,9 +90,8 @@ class PythonEvaluation(Gramplet):
         """
         Add a text view to the interface.
         """
-        label = Gtk.Label(name)
+        label = Gtk.Label(halign=Gtk.Align.START)
         label.set_markup('<b>%s</b>' % name)
-        label.set_alignment(0, 0.5)
         self.top.pack_start(label, False, False, 6)
         swin = Gtk.ScrolledWindow()
         swin.set_shadow_type(Gtk.ShadowType.IN)

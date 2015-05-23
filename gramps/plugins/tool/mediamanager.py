@@ -318,9 +318,9 @@ class ConfirmationPage(Gtk.Box):
         self.set_border_width(12)
 
         self.confirm = Gtk.Label()
+        self.confirm.set_halign(Gtk.Align.START)
         self.confirm.set_line_wrap(True)
         self.confirm.set_use_markup(True)
-        self.confirm.set_alignment(0, 0.5)
         self.pack_start(self.confirm, False, True, 0)
 
         scrolled_window = Gtk.ScrolledWindow()
@@ -336,8 +336,8 @@ class ConfirmationPage(Gtk.Box):
         scrolled_window.add(tree)
         self.pack_start(scrolled_window, True, True, 0)
 
-        label3 = Gtk.Label(_('Press Apply to proceed, Cancel to abort, '
-                             'or Back to revisit your options.'))
+        label3 = Gtk.Label(label=_('Press Apply to proceed, Cancel to abort, '
+                                   'or Back to revisit your options.'))
         self.pack_start(label3, False, True, 0)
 
     def prepare(self, index):
@@ -494,8 +494,8 @@ class PathChange(BatchOp):
         grid.attach(self.from_entry, 1, 0, 1, 1)
         
         from_label = Gtk.Label(label=_('_Replace:'))
+        from_label.set_halign(Gtk.Align.START)
         from_label.set_use_underline(True)
-        from_label.set_alignment(0, 0.5)
         from_label.set_mnemonic_widget(self.from_entry)
         grid.attach(from_label, 0, 0, 1, 1)
 
@@ -504,8 +504,8 @@ class PathChange(BatchOp):
         grid.attach(self.to_entry, 1, 1, 1, 1)
 
         to_label = Gtk.Label(label=_('_With:'))
+        to_label.set_halign(Gtk.Align.START)
         to_label.set_use_underline(True)
-        to_label.set_alignment(0, 0.5)
         to_label.set_mnemonic_widget(self.to_entry)
         grid.attach(to_label, 0, 1, 1, 1)
 

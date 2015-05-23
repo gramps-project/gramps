@@ -126,7 +126,7 @@ class LinkLabel(Gtk.EventBox):
         
         self.label = Gtk.Label(label=text)
         self.label.set_use_markup(True)
-        self.label.set_alignment(0, 0.5)
+        self.label.set_halign(Gtk.Align.START)
 
         hbox = Gtk.Box()
         hbox.pack_start(self.label, False, False, 0)
@@ -205,7 +205,7 @@ class BasicLabel(Gtk.Label):
 
     def __init__(self, text, ellipsize=Pango.EllipsizeMode.NONE):
         GObject.GObject.__init__(self, label=text)
-        self.set_alignment(0, 0.5)
+        self.set_halign(Gtk.Align.START)
         self.set_ellipsize(ellipsize)
         self.show()
 
@@ -218,7 +218,7 @@ class GenderLabel(Gtk.Label):
 
     def __init__(self, text):
         GObject.GObject.__init__(self, label=text)
-        self.set_alignment(0, 0.5)
+        self.set_halign(Gtk.Align.START)
         if win():
             pangoFont = Pango.FontDescription('Arial')
             self.override_font(pangoFont)
@@ -231,9 +231,9 @@ class GenderLabel(Gtk.Label):
 #-------------------------------------------------------------------------
 class MarkupLabel(Gtk.Label):
 
-    def __init__(self, text, x_align=0, y_align=0.5):
+    def __init__(self, text, halign=Gtk.Align.START):
         GObject.GObject.__init__(self, label=text)
-        self.set_alignment(x_align, y_align)
+        self.set_halign(halign)
         self.set_use_markup(True)
         self.show_all()
 
@@ -244,10 +244,10 @@ class MarkupLabel(Gtk.Label):
 #-------------------------------------------------------------------------
 class DualMarkupLabel(Gtk.Box):
 
-    def __init__(self, text, alt, x_align=0, y_align=0.5):
+    def __init__(self, text, alt, halign=Gtk.Align.START):
         Gtk.Box.__init__(self)
         label = Gtk.Label(label=text)
-        label.set_alignment(x_align, y_align)
+        label.set_halign(halign)
         label.set_use_markup(True)
 
         self.pack_start(label, False, False, 0)

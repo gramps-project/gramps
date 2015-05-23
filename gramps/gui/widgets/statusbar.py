@@ -64,7 +64,7 @@ class Statusbar(Gtk.Box):
         self.__status.show()
 
         self.__filter = Gtk.Label()
-        self.__filter.set_alignment(1.0, 0.5)
+        self.__filter.set_halign(Gtk.Align.END)
         self.__filter.show()
 
         self.pack_start(self.__warnbtn, False, True, 4)

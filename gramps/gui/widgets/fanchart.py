@@ -964,7 +964,7 @@ class FanChartBaseWidget(Gtk.DrawingArea):
     def on_drag_begin(self, widget, data):
         """Set up some inital conditions for drag. Set up icon."""
         self.in_drag = True
-        self.drag_source_set_icon_stock('gramps-person')
+        self.drag_source_set_icon_name('gramps-person')
 
     def on_drag_end(self, widget, data):
         """Set up some inital conditions for drag. Set up icon."""
@@ -1715,7 +1715,7 @@ class FanChartGrampsGUI(object):
                 sib_item.set_image(go_image)
                 label.set_use_markup(True)
                 label.show()
-                label.set_alignment(0,0)
+                label.set_halign(Gtk.Align.START)
                 sib_item.add(label)
                 linked_persons.append(sib_id)
                 sib_item.connect("activate", self.on_childmenu_changed, sib_id)
@@ -1752,7 +1752,7 @@ class FanChartGrampsGUI(object):
             child_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
-            label.set_alignment(0,0)
+            label.set_halign(Gtk.Align.START)
             child_item.add(label)
             linked_persons.append(child_handle)
             child_item.connect("activate", self.on_childmenu_changed, child_handle)
@@ -1789,7 +1789,7 @@ class FanChartGrampsGUI(object):
             par_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
-            label.set_alignment(0,0)
+            label.set_halign(Gtk.Align.START)
             par_item.add(label)
             linked_persons.append(par_id)
             par_item.connect("activate", self.on_childmenu_changed, par_id)
@@ -1832,7 +1832,7 @@ class FanChartGrampsGUI(object):
             per_item.set_image(go_image)
             label.set_use_markup(True)
             label.show()
-            label.set_alignment(0, 0)
+            label.set_halign(Gtk.Align.START)
             per_item.add(label)
             per_item.connect("activate", self.on_childmenu_changed, p_id)
             per_item.show()

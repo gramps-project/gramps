@@ -71,7 +71,7 @@ class AgeOnDateGramplet(Gramplet):
         label = Gtk.Label()
         label.set_text(_("Date") + ":")
         self.entry = Gtk.Entry()
-        button = Gtk.Button(_("Run"))
+        button = Gtk.Button(label=_("Run"))
         button.connect("clicked", self.run)
         ##self.filter = 
         hbox.pack_start(label, False, True, 0)

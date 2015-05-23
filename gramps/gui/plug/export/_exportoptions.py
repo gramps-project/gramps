@@ -144,7 +144,8 @@ class WriterOptionBox(object):
         widget = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         
         full_database_row = Gtk.Box()
-        full_database_row.pack_start(Gtk.Label(_("Unfiltered Family Tree:")), True, True, 0)
+        label = Gtk.Label(label=_("Unfiltered Family Tree:"))
+        full_database_row.pack_start(label, True, True, 0)
         people_count = len(self.dbstate.db.get_person_handles())
         # translators: leave all/any {...} untranslated
         button = Gtk.Button(ngettext("{number_of} Person",
@@ -177,12 +178,12 @@ class WriterOptionBox(object):
             row += 1
 
         hbox = Gtk.Box()
-        self.advanced_button = Gtk.Button(_("Change order"))
+        self.advanced_button = Gtk.Button(label=_("Change order"))
         self.advanced_button.set_size_request(150, -1)
         self.proxy_options_showing = False
         self.advanced_button.connect("clicked", self.show_options)
         hbox.pack_end(self.advanced_button, False, True, 0)
-        self.preview_button = Gtk.Button(_("Calculate Previews"))
+        self.preview_button = Gtk.Button(label=_("Calculate Previews"))
         self.preview_button.connect("clicked", self.preview)
         hbox.pack_end(self.preview_button, False, True, 0)
         widget.pack_start(hbox, False, True, 0)
@@ -263,7 +264,7 @@ class WriterOptionBox(object):
             # Frame Person:
             self.filter_obj = Gtk.ComboBox()
             label = Gtk.Label(label=_('_Person Filter') + ": ")
-            label.set_alignment(0, 0.5)
+            label.set_halign(Gtk.Align.START)
             label.set_size_request(150, -1)
             label.set_use_underline(True)
             label.set_mnemonic_widget(self.filter_obj)
@@ -280,7 +281,7 @@ class WriterOptionBox(object):
             # Objects for choosing a Note filter:
             self.filter_note = Gtk.ComboBox()
             label_note = Gtk.Label(label=_('_Note Filter') + ": ")
-            label_note.set_alignment(0, 0.5)
+            label_note.set_halign(Gtk.Align.START)
             label_note.set_size_request(150, -1)
             label_note.set_use_underline(True)
             label_note.set_mnemonic_widget(self.filter_note)
@@ -295,7 +296,7 @@ class WriterOptionBox(object):
         elif proxy_name == "privacy":
             # Frame 3:
             label = Gtk.Label(label=_("Privacy Filter") + ":")
-            label.set_alignment(0, 0.5)
+            label.set_halign(Gtk.Align.START)
             label.set_size_request(150, -1)
             box = Gtk.Box()
             box.pack_start(label, False, True, 0)
@@ -304,7 +305,7 @@ class WriterOptionBox(object):
         elif proxy_name == "living":
             # Frame 4:
             label = Gtk.Label(label=_("Living Filter") + ":")
-            label.set_alignment(0, 0.5)
+            label.set_halign(Gtk.Align.START)
             label.set_size_request(150, -1)
             box = Gtk.Box()
             box.pack_start(label, False, True, 0)
@@ -315,7 +316,7 @@ class WriterOptionBox(object):
             # Frame 5:
             self.reference_filter = Gtk.ComboBox()
             label = Gtk.Label(label=_('Reference Filter') + ": ")
-            label.set_alignment(0, 0.5)
+            label.set_halign(Gtk.Align.START)
             label.set_size_request(150, -1)
             box = Gtk.Box()
             box.pack_start(label, False, True, 0)

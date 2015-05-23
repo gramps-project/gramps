@@ -349,7 +349,7 @@ class StyleEditor(object):
 
         for i in range(t.get_columns()):
             hbox = Gtk.Box()
-            label = Gtk.Label(_('Column %d:') % (i + 1))
+            label = Gtk.Label(label=_('Column %d:') % (i + 1))
             hbox.pack_start(label, False, False, 6)
             spin = Gtk.SpinButton()
             spin.set_range(0, 100)

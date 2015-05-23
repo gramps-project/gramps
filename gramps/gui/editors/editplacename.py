@@ -68,7 +68,7 @@ class EditPlaceName(ManagedWindow):
         self.set_window(window, None, _('Place Name Editor'))
 
         hbox = Gtk.Box()
-        label = Gtk.Label(_('Place Name:'))
+        label = Gtk.Label(label=_('Place Name:'))
         self.entry = Gtk.Entry()
         if index >= 0:
             self.entry.set_text(data[index])

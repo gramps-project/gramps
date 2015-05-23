@@ -39,8 +39,7 @@ class RepositoryDetails(Gramplet):
         """
         self.top = Gtk.Box()
         vbox = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
-        self.name = Gtk.Label()
-        self.name.set_alignment(0, 0)
+        self.name = Gtk.Label(halign=Gtk.Align.START)
         self.name.override_font(Pango.FontDescription('sans bold 12'))
         vbox.pack_start(self.name, fill=True, expand=False, padding=7)
         self.grid = Gtk.Grid(orientation=Gtk.Orientation.VERTICAL)
@@ -54,11 +53,10 @@ class RepositoryDetails(Gramplet):
         """
         Add a row to the table.
         """
-        label = Gtk.Label(label=title + ':')
-        label.set_alignment(1, 0)
+        label = Gtk.Label(label=title + ':', halign=Gtk.Align.END,
+                          valign=Gtk.Align.START)
         label.show()
-        value = Gtk.Label(label=value)
-        value.set_alignment(0, 0)
+        value = Gtk.Label(label=value, halign=Gtk.Align.START)
         value.show()
         self.grid.add(label)
         self.grid.attach_next_to(value, label, Gtk.PositionType.RIGHT, 1, 1)

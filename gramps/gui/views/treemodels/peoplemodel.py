@@ -30,7 +30,7 @@ TreeModel for the GRAMPS Person tree.
 # Standard python modules
 #
 #-------------------------------------------------------------------------
-import cgi
+from html import escape
 
 #-------------------------------------------------------------------------
 #
@@ -290,7 +290,7 @@ class PeopleBaseModel(object):
                 else:
                     date_str = get_date(birth)
                     if date_str != "":
-                        retval = cgi.escape(date_str)
+                        retval = escape(date_str)
                 if not get_date_valid(birth):
                     return invalid_date_format % retval
                 else:
@@ -310,7 +310,7 @@ class PeopleBaseModel(object):
                 if sort_mode:
                     retval = "%09d" % event.get_date_object().get_sort_value()
                 else:
-                    retval = "<i>%s</i>" % cgi.escape(date_str)
+                    retval = "<i>%s</i>" % escape(date_str)
                 if not get_date_valid(event):
                     return invalid_date_format % retval
                 else:
@@ -345,7 +345,7 @@ class PeopleBaseModel(object):
                 else:
                     date_str = get_date(event)
                     if date_str != "":
-                        retval = cgi.escape(date_str)
+                        retval = escape(date_str)
                 if not get_date_valid(event):
                     return invalid_date_format % retval
                 else:
@@ -367,7 +367,7 @@ class PeopleBaseModel(object):
                 if sort_mode:
                     retval = "%09d" % event.get_date_object().get_sort_value()
                 else:
-                    retval = "<i>%s</i>" % cgi.escape(date_str)
+                    retval = "<i>%s</i>" % escape(date_str)
                 if not get_date_valid(event):
                     return invalid_date_format % retval
                 else:
@@ -385,7 +385,7 @@ class PeopleBaseModel(object):
                 if event:
                     place_title = place_displayer.display_event(self.db, event)
                     if place_title:
-                        return cgi.escape(place_title)
+                        return escape(place_title)
             except:
                 return ''
         
@@ -399,7 +399,7 @@ class PeopleBaseModel(object):
 
                     place_title = place_displayer.display_event(self.db, event)
                     if place_title:
-                        return "<i>%s</i>" % cgi.escape(place_title)
+                        return "<i>%s</i>" % escape(place_title)
         return ""
 
     def column_death_place(self, data):
@@ -413,7 +413,7 @@ class PeopleBaseModel(object):
                 if event:
                     place_title = place_displayer.display_event(self.db, event)
                     if place_title:
-                        return cgi.escape(place_title)
+                        return escape(place_title)
             except:
                 return ''
         
@@ -428,7 +428,7 @@ class PeopleBaseModel(object):
 
                     place_title = place_displayer.display_event(self.db, event)
                     if place_title:
-                        return "<i>%s</i>" % cgi.escape(place_title)
+                        return "<i>%s</i>" % escape(place_title)
         return ""
 
     def _get_parents_data(self, data):

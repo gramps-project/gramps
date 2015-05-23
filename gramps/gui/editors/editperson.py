@@ -263,7 +263,7 @@ class EditPerson(EditPrimary):
                                    [], 
                                    Gdk.DragAction.COPY)
         self.contexteventbox.drag_source_set_target_list(tglist)
-        self.contexteventbox.drag_source_set_icon_stock('gramps-person')
+        self.contexteventbox.drag_source_set_icon_name('gramps-person')
         self.contexteventbox.connect('drag_data_get', self._top_drag_data_get)
 
     def _connect_db_signals(self):

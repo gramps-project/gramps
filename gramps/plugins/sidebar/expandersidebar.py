@@ -172,7 +172,6 @@ class ExpanderSidebar(BaseSidebar):
         # create the button
         button = Gtk.ToggleButton()
         button.set_relief(Gtk.ReliefStyle.NONE)
-        button.set_alignment(0, 0.5)
         self.buttons.append(button)
         self.lookup[(cat_num, view_num)] = len(self.buttons) - 1
 

@@ -76,8 +76,7 @@ class Leak(Gramplet):
         self.top = Gtk.Box(orientation=Gtk.Orientation.VERTICAL)
         self.top.set_border_width(6)
 
-        self.label = Gtk.Label()        
-        self.label.set_alignment(0, 0.5)
+        self.label = Gtk.Label(halign=Gtk.Align.START)
         self.top.pack_start(self.label, False, False, 6)
 
         self.scroll = Gtk.ScrolledWindow()
@@ -106,7 +105,7 @@ class Leak(Gramplet):
         self.top.pack_start(self.scroll, True, True, 6)
         
         bbox = Gtk.ButtonBox()
-        apply_button = Gtk.Button(_("Refresh"))
+        apply_button = Gtk.Button(label=_("Refresh"))
         apply_button.connect('clicked', self.apply_clicked)
         bbox.pack_start(apply_button, False, False, 6)
         self.top.pack_start(bbox,  False, False, 6)
