@@ -495,16 +495,14 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return None
 
     def transaction_commit(self, txn):
-        ## FIXME
-        pass
+        self.dbapi.commit()
 
     def get_undodb(self):
         ## FIXME
         return None
 
     def transaction_abort(self, txn):
-        ## FIXME
-        pass
+        self.dbapi.rollback()
 
     @staticmethod
     def _validated_id_prefix(val, default):
@@ -1248,25 +1246,25 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def commit_person(self, person, trans, change_time=None):
         emit = None
-        if True or not trans.batch:
-            if person.handle in self.person_map:
-                emit = "person-update"
-                self.dbapi.execute("""UPDATE person SET gramps_id = ?, 
-                                                        order_by = ?,
-                                                        blob = ? 
-                                                    WHERE handle = ?;""",
-                                   [person.gramps_id, 
-                                    self._order_by_person_key(person),
-                                    pickle.dumps(person.serialize()),
-                                    person.handle])
-            else:
-                emit = "person-add"
-                self.dbapi.execute("""insert into person(handle, order_by, gramps_id, blob) 
-                                                  values(?, ?, ?, ?);""", 
-                                   [person.handle, 
-                                    self._order_by_person_key(person),
-                                    person.gramps_id, 
-                                    pickle.dumps(person.serialize())])
+        if person.handle in self.person_map:
+            emit = "person-update"
+            self.dbapi.execute("""UPDATE person SET gramps_id = ?, 
+                                                    order_by = ?,
+                                                    blob = ? 
+                                                WHERE handle = ?;""",
+                               [person.gramps_id, 
+                                self._order_by_person_key(person),
+                                pickle.dumps(person.serialize()),
+                                person.handle])
+        else:
+            emit = "person-add"
+            self.dbapi.execute("""insert into person(handle, order_by, gramps_id, blob) 
+                                              values(?, ?, ?, ?);""", 
+                               [person.handle, 
+                                self._order_by_person_key(person),
+                                person.gramps_id, 
+                                pickle.dumps(person.serialize())])
+        if not trans.batch:
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1274,20 +1272,20 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def commit_family(self, family, trans, change_time=None):
         emit = None
-        if True or not trans.batch:
-            if family.handle in self.family_map:
-                emit = "family-update"
-                self.dbapi.execute("""UPDATE family SET gramps_id = ?, 
-                                                        blob = ? 
-                                                    WHERE handle = ?;""",
-                                   [family.gramps_id, 
-                                    pickle.dumps(family.serialize()),
-                                    family.handle])
-            else:
-                emit = "family-add"
-                self.dbapi.execute("insert into family values(?, ?, ?);", 
-                                   [family.handle, family.gramps_id, 
-                                    pickle.dumps(family.serialize())])
+        if family.handle in self.family_map:
+            emit = "family-update"
+            self.dbapi.execute("""UPDATE family SET gramps_id = ?, 
+                                                    blob = ? 
+                                                WHERE handle = ?;""",
+                               [family.gramps_id, 
+                                pickle.dumps(family.serialize()),
+                                family.handle])
+        else:
+            emit = "family-add"
+            self.dbapi.execute("insert into family values(?, ?, ?);", 
+                               [family.handle, family.gramps_id, 
+                                pickle.dumps(family.serialize())])
+        if not trans.batch:
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1295,24 +1293,24 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def commit_citation(self, citation, trans, change_time=None):
         emit = None
-        if True or not trans.batch:
-            if citation.handle in self.citation_map:
-                emit = "citation-update"
-                self.dbapi.execute("""UPDATE citation SET gramps_id = ?, 
-                                                          order_by = ?,
-                                                          blob = ? 
-                                                    WHERE handle = ?;""",
-                                   [citation.gramps_id, 
-                                    self._order_by_citation_key(citation),
-                                    pickle.dumps(citation.serialize()),
-                                    citation.handle])
-            else:
-                emit = "citation-add"
-                self.dbapi.execute("insert into citation values(?, ?, ?, ?);", 
-                           [citation.handle, 
-                            self._order_by_citation_key(citation),
-                            citation.gramps_id, 
-                            pickle.dumps(citation.serialize())])
+        if citation.handle in self.citation_map:
+            emit = "citation-update"
+            self.dbapi.execute("""UPDATE citation SET gramps_id = ?, 
+                                                      order_by = ?,
+                                                      blob = ? 
+                                                WHERE handle = ?;""",
+                               [citation.gramps_id, 
+                                self._order_by_citation_key(citation),
+                                pickle.dumps(citation.serialize()),
+                                citation.handle])
+        else:
+            emit = "citation-add"
+            self.dbapi.execute("insert into citation values(?, ?, ?, ?);", 
+                       [citation.handle, 
+                        self._order_by_citation_key(citation),
+                        citation.gramps_id, 
+                        pickle.dumps(citation.serialize())])
+        if not trans.batch:
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1320,24 +1318,24 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def commit_source(self, source, trans, change_time=None):
         emit = None
-        if True or not trans.batch:
-            if source.handle in self.source_map:
-                emit = "source-update"
-                self.dbapi.execute("""UPDATE source SET gramps_id = ?, 
-                                                        order_by = ?,
-                                                        blob = ? 
-                                                    WHERE handle = ?;""",
-                                   [source.gramps_id, 
-                                    self._order_by_source_key(source),
-                                    pickle.dumps(source.serialize()),
-                                    source.handle])
-            else:
-                emit = "source-add"
-                self.dbapi.execute("insert into source values(?, ?, ?, ?);", 
-                           [source.handle, 
-                            self._order_by_source_key(source),
-                            source.gramps_id, 
-                            pickle.dumps(source.serialize())])
+        if source.handle in self.source_map:
+            emit = "source-update"
+            self.dbapi.execute("""UPDATE source SET gramps_id = ?, 
+                                                    order_by = ?,
+                                                    blob = ? 
+                                                WHERE handle = ?;""",
+                               [source.gramps_id, 
+                                self._order_by_source_key(source),
+                                pickle.dumps(source.serialize()),
+                                source.handle])
+        else:
+            emit = "source-add"
+            self.dbapi.execute("insert into source values(?, ?, ?, ?);", 
+                       [source.handle, 
+                        self._order_by_source_key(source),
+                        source.gramps_id, 
+                        pickle.dumps(source.serialize())])
+        if not trans.batch:
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1345,19 +1343,19 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def commit_repository(self, repository, trans, change_time=None):
         emit = None
-        if True or not trans.batch:
-            if repository.handle in self.repository_map:
-                emit = "repository-update"
-                self.dbapi.execute("""UPDATE repository SET gramps_id = ?, 
-                                                        blob = ? 
-                                                    WHERE handle = ?;""",
-                                   [repository.gramps_id, 
-                                    pickle.dumps(repository.serialize()),
-                                    repository.handle])
-            else:
-                emit = "repository-add"
-                self.dbapi.execute("insert into repository values(?, ?, ?);", 
-                           [repository.handle, repository.gramps_id, pickle.dumps(repository.serialize())])
+        if repository.handle in self.repository_map:
+            emit = "repository-update"
+            self.dbapi.execute("""UPDATE repository SET gramps_id = ?, 
+                                                    blob = ? 
+                                                WHERE handle = ?;""",
+                               [repository.gramps_id, 
+                                pickle.dumps(repository.serialize()),
+                                repository.handle])
+        else:
+            emit = "repository-add"
+            self.dbapi.execute("insert into repository values(?, ?, ?);", 
+                       [repository.handle, repository.gramps_id, pickle.dumps(repository.serialize())])
+        if not trans.batch:
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1365,19 +1363,19 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def commit_note(self, note, trans, change_time=None):
         emit = None
-        if True or not trans.batch:
-            if note.handle in self.note_map:
-                emit = "note-update"
-                self.dbapi.execute("""UPDATE note SET gramps_id = ?, 
-                                                        blob = ? 
-                                                    WHERE handle = ?;""",
-                                   [note.gramps_id, 
-                                    pickle.dumps(note.serialize()),
-                                    note.handle])
-            else:
-                emit = "note-add"
-                self.dbapi.execute("insert into note values(?, ?, ?);", 
-                           [note.handle, note.gramps_id, pickle.dumps(note.serialize())])
+        if note.handle in self.note_map:
+            emit = "note-update"
+            self.dbapi.execute("""UPDATE note SET gramps_id = ?, 
+                                                    blob = ? 
+                                                WHERE handle = ?;""",
+                               [note.gramps_id, 
+                                pickle.dumps(note.serialize()),
+                                note.handle])
+        else:
+            emit = "note-add"
+            self.dbapi.execute("insert into note values(?, ?, ?);", 
+                       [note.handle, note.gramps_id, pickle.dumps(note.serialize())])
+        if not trans.batch:
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1385,24 +1383,24 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def commit_place(self, place, trans, change_time=None):
         emit = None
-        if True or not trans.batch:
-            if place.handle in self.place_map:
-                emit = "place-update"
-                self.dbapi.execute("""UPDATE place SET gramps_id = ?, 
-                                                       order_by = ?,
-                                                       blob = ? 
-                                                    WHERE handle = ?;""",
-                                   [place.gramps_id, 
-                                    self._order_by_place_key(place),
-                                    pickle.dumps(place.serialize()),
-                                    place.handle])
-            else:
-                emit = "place-add"
-                self.dbapi.execute("insert into place values(?, ?, ?, ?);", 
-                           [place.handle, 
-                            self._order_by_place_key(place),
-                            place.gramps_id, 
-                            pickle.dumps(place.serialize())])
+        if place.handle in self.place_map:
+            emit = "place-update"
+            self.dbapi.execute("""UPDATE place SET gramps_id = ?, 
+                                                   order_by = ?,
+                                                   blob = ? 
+                                                WHERE handle = ?;""",
+                               [place.gramps_id, 
+                                self._order_by_place_key(place),
+                                pickle.dumps(place.serialize()),
+                                place.handle])
+        else:
+            emit = "place-add"
+            self.dbapi.execute("insert into place values(?, ?, ?, ?);", 
+                       [place.handle, 
+                        self._order_by_place_key(place),
+                        place.gramps_id, 
+                        pickle.dumps(place.serialize())])
+        if not trans.batch:
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1410,21 +1408,21 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def commit_event(self, event, trans, change_time=None):
         emit = None
-        if True or not trans.batch:
-            if event.handle in self.event_map:
-                emit = "event-update"
-                self.dbapi.execute("""UPDATE event SET gramps_id = ?, 
-                                                        blob = ? 
-                                                    WHERE handle = ?;""",
-                                   [event.gramps_id, 
-                                    pickle.dumps(event.serialize()),
-                                    event.handle])
-            else:
-                emit = "event-add"
-                self.dbapi.execute("insert into event values(?, ?, ?);", 
-                           [event.handle, 
-                            event.gramps_id, 
-                            pickle.dumps(event.serialize())])
+        if event.handle in self.event_map:
+            emit = "event-update"
+            self.dbapi.execute("""UPDATE event SET gramps_id = ?, 
+                                                    blob = ? 
+                                                WHERE handle = ?;""",
+                               [event.gramps_id, 
+                                pickle.dumps(event.serialize()),
+                                event.handle])
+        else:
+            emit = "event-add"
+            self.dbapi.execute("insert into event values(?, ?, ?);", 
+                       [event.handle, 
+                        event.gramps_id, 
+                        pickle.dumps(event.serialize())])
+        if not trans.batch:
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1432,21 +1430,21 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def commit_tag(self, tag, trans, change_time=None):
         emit = None
-        if True or not trans.batch:
-            if tag.handle in self.tag_map:
-                emit = "tag-update"
-                self.dbapi.execute("""UPDATE tag SET blob = ?,
-                                                     order_by = ?
-                                             WHERE handle = ?;""",
-                                   [pickle.dumps(tag.serialize()),
-                                    self._order_by_tag_key(tag),
-                                    tag.handle])
-            else:
-                emit = "tag-add"
-                self.dbapi.execute("insert into tag values(?, ?, ?);", 
-                           [tag.handle, 
-                            self._order_by_tag_key(tag),
-                            pickle.dumps(tag.serialize())])
+        if tag.handle in self.tag_map:
+            emit = "tag-update"
+            self.dbapi.execute("""UPDATE tag SET blob = ?,
+                                                 order_by = ?
+                                         WHERE handle = ?;""",
+                               [pickle.dumps(tag.serialize()),
+                                self._order_by_tag_key(tag),
+                                tag.handle])
+        else:
+            emit = "tag-add"
+            self.dbapi.execute("insert into tag values(?, ?, ?);", 
+                       [tag.handle, 
+                        self._order_by_tag_key(tag),
+                        pickle.dumps(tag.serialize())])
+        if not trans.batch:
             self.dbapi.commit()
         # Emit after added:
         if emit:
@@ -1454,24 +1452,24 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def commit_media_object(self, media, trans, change_time=None):
         emit = None
-        if True or not trans.batch:
-            if media.handle in self.media_map:
-                emit = "media-update"
-                self.dbapi.execute("""UPDATE media SET gramps_id = ?, 
-                                                       order_by = ?,
-                                                       blob = ? 
-                                                    WHERE handle = ?;""",
-                                   [media.gramps_id, 
-                                    self._order_by_media_key(media),
-                                    pickle.dumps(media.serialize()),
-                                    media.handle])
-            else:
-                emit = "media-add"
-                self.dbapi.execute("insert into media values(?, ?, ?, ?);", 
-                           [media.handle, 
-                            self._order_by_media_key(media),
-                            media.gramps_id, 
-                            pickle.dumps(media.serialize())])
+        if media.handle in self.media_map:
+            emit = "media-update"
+            self.dbapi.execute("""UPDATE media SET gramps_id = ?, 
+                                                   order_by = ?,
+                                                   blob = ? 
+                                                WHERE handle = ?;""",
+                               [media.gramps_id, 
+                                self._order_by_media_key(media),
+                                pickle.dumps(media.serialize()),
+                                media.handle])
+        else:
+            emit = "media-add"
+            self.dbapi.execute("insert into media values(?, ?, ?, ?);", 
+                       [media.handle, 
+                        self._order_by_media_key(media),
+                        media.gramps_id, 
+                        pickle.dumps(media.serialize())])
+        if not trans.batch:
             self.dbapi.commit()
         # Emit after added:
         if emit:
