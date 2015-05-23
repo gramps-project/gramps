@@ -1490,7 +1490,9 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return list(key2table[obj_key].keys())
 
     def transaction_begin(self, transaction):
-        ## FIXME
+        """
+        Transactions are handled automatically by the db layer.
+        """
         return 
 
     def set_researcher(self, owner):
@@ -2013,6 +2015,25 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                     order_by  TEXT             ,
                                     blob      TEXT
         );""")
+        ## Indices:
+        self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
+                                  order_by ON person (order_by);
+        """)
+        self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
+                                  order_by ON source (order_by);
+        """)
+        self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
+                                  order_by ON citation (order_by);
+        """)
+        self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
+                                  order_by ON media (order_by);
+        """)
+        self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
+                                  order_by ON place (order_by);
+        """)
+        self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
+                                  order_by ON tag (order_by);
+        """)
 
     def redo(self, update_history=True):
         ## FIXME
