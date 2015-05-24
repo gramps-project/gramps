@@ -462,7 +462,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                  contains_func="has_gramps_id_func")
         self.tag_map  = Map(Table(self._tables["Tag"]))
         self.metadata   = Map(Table({"cursor_func": lambda: MetaCursor()}))
-        self.name_group = {}
+        ## FIXME: add appropriate methods:
+        self.name_group = Map(Table({"handles_func": self.get_name_group_keys,  # keys
+                                     "has_handle_func": self.has_name_group_key, # key in table 
+                                     "cursor_func": None, # create a cursor, values
+                                     "add_func": self.set_name_group_mapping, # add a key, value
+                                     "count_func": None})) # how many items?
         self.undo_callback = None
         self.redo_callback = None
         self.undo_history_callback = None
@@ -746,10 +751,16 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return None
 
     def get_name_group_keys(self):
-        return []
+        cur = self.dbapi.execute("select name from name_group order by name;")
+        rows = cur.fetchall()
+        return [row[0] for row in rows]
 
     def get_name_group_mapping(self, key):
-        return None
+        cur = self.dbapi.execute("select grouping from name_group where name = ?;", 
+                                 [key])
+        row = cur.fetchone()
+        if row:
+            return row[0]
 
     def get_person_handles(self, sort_handles=False):
         if sort_handles:
@@ -1096,12 +1107,22 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return handle in self.media_map
 
     def has_name_group_key(self, key):
-        # FIXME:
-        return False
+        cur = self.dbapi.execute("select grouping from name_group where name = ?;", 
+                                 [key])
+        row = cur.fetchone()
+        return True if row else False
 
-    def set_name_group_mapping(self, key, value):
-        # FIXME:
-        pass
+    def set_name_group_mapping(self, name, grouping):
+        sname = name.encode("utf-8")
+        cur = self.dbapi.execute("SELECT * from name_group where name = ?;", 
+                                 [sname])
+        row = cur.fetchone()
+        if row:
+            cur = self.dbapi.execute("DELETE from name_group where name = ?;", 
+                                     [sname])
+        cur = self.dbapi.execute("INSERT into name_group (name, grouping) VALUES(?, ?);",
+                                 [sname, grouping])
+        self.dbapi.commit()
 
     def set_default_person_handle(self, handle):
         ## FIXME
@@ -1260,8 +1281,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 person.handle])
         else:
             emit = "person-add"
-            self.dbapi.execute("""insert into person(handle, order_by, gramps_id, blob) 
-                                              values(?, ?, ?, ?);""", 
+            self.dbapi.execute("""insert into person (handle, order_by, gramps_id, blob)
+                            values(?, ?, ?, ?);""", 
                                [person.handle, 
                                 self._order_by_person_key(person),
                                 person.gramps_id, 
@@ -1285,7 +1306,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 family.handle])
         else:
             emit = "family-add"
-            self.dbapi.execute("insert into family values(?, ?, ?);", 
+            self.dbapi.execute("""insert into family (handle, gramps_id, blob)
+                    values(?, ?, ?);""", 
                                [family.handle, family.gramps_id, 
                                 pickle.dumps(family.serialize())])
         if not trans.batch:
@@ -1309,7 +1331,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 citation.handle])
         else:
             emit = "citation-add"
-            self.dbapi.execute("insert into citation values(?, ?, ?, ?);", 
+            self.dbapi.execute("""insert into citation (handle, order_by, gramps_id, blob)
+                     values(?, ?, ?, ?);""", 
                        [citation.handle, 
                         self._order_by_citation_key(citation),
                         citation.gramps_id, 
@@ -1335,7 +1358,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 source.handle])
         else:
             emit = "source-add"
-            self.dbapi.execute("insert into source values(?, ?, ?, ?);", 
+            self.dbapi.execute("""insert into source (handle, order_by, gramps_id, blob)
+                    values(?, ?, ?, ?);""", 
                        [source.handle, 
                         self._order_by_source_key(source),
                         source.gramps_id, 
@@ -1359,7 +1383,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 repository.handle])
         else:
             emit = "repository-add"
-            self.dbapi.execute("insert into repository values(?, ?, ?);", 
+            self.dbapi.execute("""insert into repository (handle, gramps_id, blob)
+                     values(?, ?, ?);""", 
                        [repository.handle, repository.gramps_id, pickle.dumps(repository.serialize())])
         if not trans.batch:
             self.dbapi.commit()
@@ -1380,7 +1405,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 note.handle])
         else:
             emit = "note-add"
-            self.dbapi.execute("insert into note values(?, ?, ?);", 
+            self.dbapi.execute("""insert into note (handle, gramps_id, blob)
+                     values(?, ?, ?);""", 
                        [note.handle, note.gramps_id, pickle.dumps(note.serialize())])
         if not trans.batch:
             self.dbapi.commit()
@@ -1403,7 +1429,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 place.handle])
         else:
             emit = "place-add"
-            self.dbapi.execute("insert into place values(?, ?, ?, ?);", 
+            self.dbapi.execute("""insert into place (handle, order_by, gramps_id, blob)
+                    values(?, ?, ?, ?);""", 
                        [place.handle, 
                         self._order_by_place_key(place),
                         place.gramps_id, 
@@ -1427,7 +1454,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 event.handle])
         else:
             emit = "event-add"
-            self.dbapi.execute("insert into event values(?, ?, ?);", 
+            self.dbapi.execute("""insert into event (handle, gramps_id, blob)
+                  values(?, ?, ?);""", 
                        [event.handle, 
                         event.gramps_id, 
                         pickle.dumps(event.serialize())])
@@ -1450,7 +1478,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 tag.handle])
         else:
             emit = "tag-add"
-            self.dbapi.execute("insert into tag values(?, ?, ?);", 
+            self.dbapi.execute("""insert into tag (handle, order_by, blob)
+                  values(?, ?, ?);""", 
                        [tag.handle, 
                         self._order_by_tag_key(tag),
                         pickle.dumps(tag.serialize())])
@@ -1475,7 +1504,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 media.handle])
         else:
             emit = "media-add"
-            self.dbapi.execute("insert into media values(?, ?, ?, ?);", 
+            self.dbapi.execute("""insert into media (handle, order_by, gramps_id, blob)
+                  values(?, ?, ?, ?);""", 
                        [media.handle, 
                         self._order_by_media_key(media),
                         media.gramps_id, 
@@ -1747,18 +1777,6 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_citation_bookmarks(self):
         return self.citation_bookmarks
 
-    def get_cursor(self, table, txn=None, update=False, commit=False):
-        ## FIXME
-        ## called from a complete find_back_ref
-        pass
-
-    # cursors for lookups in the reference_map for back reference
-    # lookups. The reference_map has three indexes:
-    # the main index: a tuple of (primary_handle, referenced_handle)
-    # the primary_handle index: the primary_handle
-    # the referenced_handle index: the referenced_handle
-    # the main index is unique, the others allow duplicate entries.
-
     def get_default_handle(self):
         items = self.person_map.keys()
         if len(items) > 0:
@@ -1988,12 +2006,16 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                     order_by  TEXT             ,
                                     blob      TEXT
         );""")
-        # Reference
+        # Secondary:
         self.dbapi.execute("""CREATE TABLE IF NOT EXISTS reference (
                                     obj_handle    TEXT,
                                     obj_class     TEXT,
                                     ref_handle    TEXT,
                                     ref_class     TEXT
+        );""")
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS name_group (
+                                    name     TEXT PRIMARY KEY NOT NULL,
+                                    grouping TEXT
         );""")
         ## Indices:
         self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
@@ -2120,7 +2142,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                     references = set(obj.get_referenced_handles_recursively())
                     # handle addition of new references
                     for (ref_class_name, ref_handle) in references:
-                        self.dbapi.execute("INSERT into reference VALUES(?, ?, ?, ?);",
+                        self.dbapi.execute("""INSERT into reference (obj_handle, obj_class, ref_handle, ref_class)
+                                                 VALUES(?, ?, ?, ?);""",
                                            [obj.handle, 
                                             obj.__class__.__name__,
                                             ref_handle, 
