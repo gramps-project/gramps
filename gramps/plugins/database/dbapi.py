@@ -1287,7 +1287,6 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return obj.handle
 
     def commit_person(self, person, trans, change_time=None):
-        ## FIXME: update reference, for back references
         emit = None
         if person.handle in self.person_map:
             emit = "person-update"
@@ -1309,12 +1308,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 pickle.dumps(person.serialize())])
         if not trans.batch:
             self.dbapi.commit()
+            self.update_backlinks(person)
         # Emit after added:
         if emit:
             self.emit(emit, ([person.handle],))
 
     def commit_family(self, family, trans, change_time=None):
-        ## FIXME: update reference, for back references
         emit = None
         if family.handle in self.family_map:
             emit = "family-update"
@@ -1332,12 +1331,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 pickle.dumps(family.serialize())])
         if not trans.batch:
             self.dbapi.commit()
+            self.update_backlinks(family)
         # Emit after added:
         if emit:
             self.emit(emit, ([family.handle],))
 
     def commit_citation(self, citation, trans, change_time=None):
-        ## FIXME: update reference, for back references
         emit = None
         if citation.handle in self.citation_map:
             emit = "citation-update"
@@ -1359,12 +1358,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                         pickle.dumps(citation.serialize())])
         if not trans.batch:
             self.dbapi.commit()
+            self.update_backlinks(citation)
         # Emit after added:
         if emit:
             self.emit(emit, ([citation.handle],))
 
     def commit_source(self, source, trans, change_time=None):
-        ## FIXME: update reference, for back references
         emit = None
         if source.handle in self.source_map:
             emit = "source-update"
@@ -1386,12 +1385,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                         pickle.dumps(source.serialize())])
         if not trans.batch:
             self.dbapi.commit()
+            self.update_backlinks(source)
         # Emit after added:
         if emit:
             self.emit(emit, ([source.handle],))
 
     def commit_repository(self, repository, trans, change_time=None):
-        ## FIXME: update reference, for back references
         emit = None
         if repository.handle in self.repository_map:
             emit = "repository-update"
@@ -1408,12 +1407,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                        [repository.handle, repository.gramps_id, pickle.dumps(repository.serialize())])
         if not trans.batch:
             self.dbapi.commit()
+            self.update_backlinks(repository)
         # Emit after added:
         if emit:
             self.emit(emit, ([repository.handle],))
 
     def commit_note(self, note, trans, change_time=None):
-        ## FIXME: update reference, for back references
         emit = None
         if note.handle in self.note_map:
             emit = "note-update"
@@ -1430,12 +1429,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                        [note.handle, note.gramps_id, pickle.dumps(note.serialize())])
         if not trans.batch:
             self.dbapi.commit()
+            self.update_backlinks(note)
         # Emit after added:
         if emit:
             self.emit(emit, ([note.handle],))
 
     def commit_place(self, place, trans, change_time=None):
-        ## FIXME: update reference, for back references
         emit = None
         if place.handle in self.place_map:
             emit = "place-update"
@@ -1457,12 +1456,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                         pickle.dumps(place.serialize())])
         if not trans.batch:
             self.dbapi.commit()
+            self.update_backlinks(place)
         # Emit after added:
         if emit:
             self.emit(emit, ([place.handle],))
 
     def commit_event(self, event, trans, change_time=None):
-        ## FIXME: update reference, for back references
         emit = None
         if event.handle in self.event_map:
             emit = "event-update"
@@ -1479,14 +1478,47 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                        [event.handle, 
                         event.gramps_id, 
                         pickle.dumps(event.serialize())])
+
+        self.update_event_attributes(
+            [str(attr.type) for attr in event.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+
+        if event.type.is_custom():
+            self.update_event_names(str(event.type))
+
         if not trans.batch:
             self.dbapi.commit()
+            self.update_backlinks(event)
+
         # Emit after added:
         if emit:
             self.emit(emit, ([event.handle],))
 
+    def update_backlinks(self, obj):
+        # First, delete the current references:
+        self.dbapi.execute("DELETE FROM reference where obj_handle = ?;",
+                           [obj.handle])
+        # Now, add the current ones:
+        references = set(obj.get_referenced_handles_recursively())
+        for (ref_class_name, ref_handle) in references:
+            self.dbapi.execute("""INSERT into reference 
+                       (obj_handle, obj_class, ref_handle, ref_class)
+                       VALUES(?, ?, ?, ?);""",
+                               [obj.handle, 
+                                obj.__class__.__name__,
+                                ref_handle, 
+                                ref_class_name])
+        # Will commit later
+
+    def update_event_attributes(self, attr_list):
+        # FIXME
+        pass
+
+    def update_event_names(self, event_type):
+        # FIXME
+        pass
+
     def commit_tag(self, tag, trans, change_time=None):
-        ## FIXME: update reference, for back references
         emit = None
         if tag.handle in self.tag_map:
             emit = "tag-update"
@@ -1505,12 +1537,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                         pickle.dumps(tag.serialize())])
         if not trans.batch:
             self.dbapi.commit()
+            self.update_backlinks(tag)
         # Emit after added:
         if emit:
             self.emit(emit, ([tag.handle],))
 
     def commit_media_object(self, media, trans, change_time=None):
-        ## FIXME: update reference, for back references
         emit = None
         if media.handle in self.media_map:
             emit = "media-update"
@@ -1532,6 +1564,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                         pickle.dumps(media.serialize())])
         if not trans.batch:
             self.dbapi.commit()
+            self.update_backlinks(media)
         # Emit after added:
         if emit:
             self.emit(emit, ([media.handle],))
@@ -2197,7 +2230,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         Commits the items that were queued up during the last gedcom
         import for two step adding.
         """
-        pass
+        self.reindex_reference_map(lambda n: n)
 
     def has_handle_for_person(self, key):
         cur = self.dbapi.execute("select * from person where handle = ?", [key])
