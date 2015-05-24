@@ -340,55 +340,68 @@ class MissingMediaDialog(object):
         return True
 
 class MultiSelectDialog(object):
-    def __init__(self, msg1, msg2, task1, task2, task3, parent=None):
+    def __init__(self, msg1_func, msg2_func, items, lookup,
+                 cancel_func=None, no_func=None, yes_func=None, 
+                 parent=None):
+        """
+        """
         self.xml = Glade(toplevel='multiselectdialog')
               
         self.top = self.xml.toplevel
         self.top.set_icon(ICON)
-        self.top.set_title("%s - Gramps" % msg1)
-
-        self.task1 = task1
-        self.task2 = task2
-        self.task3 = task3
-        self.default_action = 0
-        self.last_action = 0
+        
+        self.msg1_func = msg1_func
+        self.msg2_func = msg2_func
+        self.items = items
+        self.lookup = lookup
+        self.cancel_func = cancel_func
+        self.no_func = no_func
+        self.yes_func = yes_func
         
         label1 = self.xml.get_object('label6')
-        label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
-        label1.set_use_markup(True)
-        
         label2 = self.xml.get_object('label5')
-        label2.set_text(msg2)
-        label2.set_use_markup(True)
-
         check_button = self.xml.get_object('apply_to_rest')
 
         if parent:
             self.top.set_transient_for(parent)
-        self.top.show()
         self.top.connect('delete_event', self.warn)
-        response = Gtk.ResponseType.DELETE_EVENT
 
-        # Need some magic here, because an attempt to close the dialog
-        # with the X button not only emits the 'delete_event' signal
-        # but also exits with the RESPONSE_DELETE_EVENT
-        while response == Gtk.ResponseType.DELETE_EVENT:
-            response = self.top.run()
+        default_action = 0
+        for selected in items:
+            item = self.lookup(selected)
+            if default_action == 0:
+                msg1 = self.msg1_func(item)
+                msg2 = self.msg2_func(item)
+                
+                self.top.set_title("%s - Gramps" % msg1)
+                label1.set_text('<span weight="bold" size="larger">%s</span>' % msg1)
+                label1.set_use_markup(True)
+                label2.set_text(msg2)
+                label2.set_use_markup(True)
+                self.top.show()
+                
+                # Need some magic here, because an attempt to close the dialog
+                # with the X button not only emits the 'delete_event' signal
+                # but also exits with the RESPONSE_DELETE_EVENT
+                response = Gtk.ResponseType.DELETE_EVENT
+                while response == Gtk.ResponseType.DELETE_EVENT:
+                    response = self.top.run()
 
-        if check_button.get_active():
-            self.default_action = response
-        else:
-            self.default_action = 0
-        self.last_action = response
-        if response == 1:
-            if self.task1:
-                self.task1()
-        elif response == 2:
-            if self.task2:
-                self.task2()
-        elif response == 3:
-            if self.task3:
-                self.task3()
+                if check_button.get_active():
+                    default_action = response
+            else:
+                response = default_action
+            ### Now do it
+            if response == 1: # Cancel
+                if self.cancel_func:
+                    self.cancel_func()
+                break
+            elif response == 2: # No
+                if self.no_func:
+                    self.no_func()
+            elif response == 3: # Yes
+                if self.yes_func:
+                    self.yes_func()
         self.top.destroy()
 
     def warn(self, obj, obj2):
