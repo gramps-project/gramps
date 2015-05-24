@@ -748,7 +748,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return gid
 
     def get_mediapath(self):
-        return None
+        cur = self.dbapi.execute("select * from metadata where setting = ?", ["media-path"])
+        row = cur.fetchone()
+        if row:
+            return row["value"]
+        else:
+            return None
 
     def get_name_group_keys(self):
         cur = self.dbapi.execute("select name from name_group order by name;")
@@ -1125,12 +1130,27 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.dbapi.commit()
 
     def set_default_person_handle(self, handle):
-        ## FIXME
-        pass
+        cur = self.dbapi.execute("select * from metadata where setting = ?", ["default-person"])
+        row = cur.fetchone()
+        if row:
+            cur = self.dbapi.execute("UPDATE metadata SET value = ? WHERE setting = ?;", 
+                                     [handle, "default-person"])
+        else:
+            cur = self.dbapi.execute("INSERT INTO metadata (setting, value) VALUES (?, ?);", 
+                                     ["default-person", handle])
+        self.emit('home-person-changed')
+        self.dbapi.commit()
 
     def set_mediapath(self, mediapath):
-        ## FIXME
-        pass
+        cur = self.dbapi.execute("select * from metadata where setting = ?", ["media-path"])
+        row = cur.fetchone()
+        if row:
+            cur = self.dbapi.execute("UPDATE metadata SET value = ? WHERE setting = ?;", 
+                                     [mediapath, "media-path"])
+        else:
+            cur = self.dbapi.execute("INSERT INTO metadata (setting, value) VALUES (?, ?);", 
+                                     ["media-path", mediapath])
+        self.dbapi.commit()
 
     def get_raw_person_data(self, handle):
         if handle in self.person_map:
@@ -1615,6 +1635,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             #del self.person_id_map[person.gramps_id]
             self.dbapi.execute("DELETE from person WHERE handle = ?;", [handle])
             self.emit("person-delete", ([handle],))
+            if not transaction.batch:
+                self.dbapi.commit()
 
     def remove_source(self, handle, transaction):
         """
@@ -1715,6 +1737,8 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.dbapi.execute("DELETE from %s WHERE handle = ?;" % key2table[key], 
                                [handle])
             self.emit(KEY_TO_NAME_MAP[key] + "-delete", ([handle],))
+            if not transaction.batch:
+                self.dbapi.commit()
 
     ## Missing:
 
@@ -1778,10 +1802,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return self.citation_bookmarks
 
     def get_default_handle(self):
-        items = self.person_map.keys()
-        if len(items) > 0:
-            return list(items)[0]
-        return None
+        cur = self.dbapi.execute("select * from metadata where setting = ?", ["default-person"])
+        row = cur.fetchone()
+        if row:
+            return row["value"]
+        else:
+            return None
 
     def get_event_attribute_types(self):
         ## FIXME
@@ -2016,6 +2042,10 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.dbapi.execute("""CREATE TABLE IF NOT EXISTS name_group (
                                     name     TEXT PRIMARY KEY NOT NULL,
                                     grouping TEXT
+        );""")
+        self.dbapi.execute("""CREATE TABLE IF NOT EXISTS metadata (
+                                    setting  TEXT PRIMARY KEY NOT NULL,
+                                    value    TEXT
         );""")
         ## Indices:
         self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
