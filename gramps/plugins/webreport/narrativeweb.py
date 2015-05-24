@@ -517,8 +517,8 @@ def format_date(date):
         cal = date.get_calendar()
         mod = date.get_modifier()
         quality = date.get_quality()
-        if quality in libgedcom.DATE_QUALITY:
-            qual_text = libgedcom.DATE_QUALITY[quality] + " "
+        if quality in DATE_QUALITY:
+            qual_text = DATE_QUALITY[quality] + " "
         else:
             qual_text = ""
         if mod == Date.MOD_SPAN:
