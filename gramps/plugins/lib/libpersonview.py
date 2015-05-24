@@ -51,7 +51,7 @@ from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.actiongroup import ActionGroup
 from gramps.gen.utils.string import data_recover_msg
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gui.dialog import ErrorDialog, QuestionDialog
+from gramps.gui.dialog import ErrorDialog, MultiSelectDialog
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gen.config import config
@@ -286,18 +286,34 @@ class BasePersonView(ListView):
         """
         Remove a person from the database.
         """
+        self._multi_select_dialog = None
         for sel in self.selected_handles():
             person = self.dbstate.db.get_person_from_handle(sel)
             self.active_person = person
-            name = name_displayer.display(person) 
-
-            msg = _('Deleting the person will remove the person '
-                             'from the database.')
-            msg = "%s %s" % (msg, data_recover_msg)
-            QuestionDialog(_('Delete %s?') % name, 
-                                          msg, 
-                                          _('_Delete Person'), 
-                                          self.delete_person_response)
+            if (self._multi_select_dialog and 
+                self._multi_select_dialog.default_action != 0):
+                # Repeat previous choice
+                if self._multi_select_dialog.default_action == 1: # Cancel
+                    break
+                elif self._multi_select_dialog.default_action == 2: # No
+                    break
+                elif self._multi_select_dialog.default_action == 3: # Yes
+                    self.delete_person_response()
+            elif (self._multi_select_dialog and 
+                  self._multi_select_dialog.last_action == 1): # Cancel
+                # Cancel the rest of the operations
+                break
+            else:
+                # Ask to delete; option to cancel, delete rest
+                name = name_displayer.display(person) + (" [%s]" % person.gramps_id)
+                msg = _('Deleting the person will remove the person '
+                        'from the database.')
+                self._multi_select_dialog = MultiSelectDialog(_('Delete %s?') % name, 
+                                                              msg, 
+                                                              None, # Cancel function
+                                                              None, # No function
+                                                              self.delete_person_response) # Yes
+        self._multi_select_dialog = None
 
     def delete_person_response(self):
         """
