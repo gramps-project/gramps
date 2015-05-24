@@ -289,11 +289,11 @@ class BasePersonView(ListView):
         handles = self.selected_handles()
         if len(handles) == 1:
             person = self._lookup_person(handles[0])
-            name = self._message1_format(person)
-            msg = self._message2_format(person)
-            msg = "%s %s" % (msg, data_recover_msg)
-            QuestionDialog(_('Delete %s?') % name, 
-                           msg, 
+            msg1 = self._message1_format(person)
+            msg2 = self._message2_format(person)
+            msg2 = "%s %s" % (msg2, data_recover_msg)
+            QuestionDialog(msg1, 
+                           msg2, 
                            _('_Delete Person'), 
                            self.delete_person_response)
         else:
