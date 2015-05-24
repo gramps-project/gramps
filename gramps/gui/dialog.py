@@ -394,14 +394,14 @@ class MultiSelectDialog(object):
             ### Now do it
             if response == 1: # Cancel
                 if self.cancel_func:
-                    self.cancel_func()
+                    self.cancel_func(item)
                 break
             elif response == 2: # No
                 if self.no_func:
-                    self.no_func()
+                    self.no_func(item)
             elif response == 3: # Yes
                 if self.yes_func:
-                    self.yes_func()
+                    self.yes_func(item)
         self.top.destroy()
 
     def warn(self, obj, obj2):

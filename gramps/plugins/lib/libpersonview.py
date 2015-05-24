@@ -292,12 +292,14 @@ class BasePersonView(ListView):
             msg1 = self._message1_format(person)
             msg2 = self._message2_format(person)
             msg2 = "%s %s" % (msg2, data_recover_msg)
+            # This gets person to delete deom self.active_person:
             QuestionDialog(msg1, 
                            msg2, 
                            _('_Delete Person'), 
                            self.delete_person_response)
         else:
             # Ask to delete; option to cancel, delete rest
+            # This gets person to delete from parameter
             MultiSelectDialog(self._message1_format,
                               self._message2_format, 
                               handles,
@@ -320,7 +322,7 @@ class BasePersonView(ListView):
         self.active_person = person
         return person
 
-    def delete_person_response(self):
+    def delete_person_response(self, person=None):
         """
         Deletes the person from the database.
         """
