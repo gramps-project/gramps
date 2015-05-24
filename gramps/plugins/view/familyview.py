@@ -229,18 +229,55 @@ class FamilyView(ListView):
             pass
 
     def remove(self, obj):
-        from gramps.gui.dialog import QuestionDialog2
+        """
+        Method called when deleting a family from a family view.
+        """
+        from gramps.gui.dialog import QuestionDialog, MultiSelectDialog
         from gramps.gen.utils.string import data_recover_msg
-        msg = _('Deleting item will remove it from the database.')
-        msg = msg + '\n' + data_recover_msg
-        q = QuestionDialog2(_('Delete %s?') % _('family'), msg,
-                       _('_Delete Item'), _('Cancel'))
-        if q.run():
-            self.uistate.set_busy_cursor(True)
-            list(map(self.dbstate.db.remove_family_relationships,
-                self.selected_handles()))
-            self.build_tree()
-            self.uistate.set_busy_cursor(False)
+        handles = self.selected_handles()
+        if len(handles) == 1:
+            family = self.dbstate.db.get_family_from_handle(handles[0])
+            msg1 = self._message1_format(family)
+            msg2 = self._message2_format(family)
+            msg2 = "%s %s" % (msg2, data_recover_msg)
+            QuestionDialog(msg1, 
+                           msg2, 
+                           _('_Delete Family'), 
+                           lambda: self.delete_family_response(family))
+        else:
+            MultiSelectDialog(self._message1_format,
+                              self._message2_format, 
+                              handles,
+                              self.dbstate.db.get_family_from_handle,
+                              yes_func=self.delete_family_response)
+
+    def _message1_format(self, family):
+        """
+        Header format for remove dialogs.
+        """
+        return _('Delete %s?') % (_('family') + 
+                                  (" [%s]" % family.gramps_id))
+
+    def _message2_format(self, family):
+        """
+        Detailed message format for the remove dialogs.
+        """
+        return _('Deleting item will remove it from the database.')
+
+    def delete_family_response(self, family):
+        """
+        Deletes the family from the database. Callback to remove
+        dialogs.
+        """
+        from gramps.gen.db import DbTxn
+        # set the busy cursor, so the user knows that we are working
+        self.uistate.set_busy_cursor(True)
+        # create the transaction
+        with DbTxn('', self.dbstate.db) as trans:
+            gramps_id = family.gramps_id
+            self.dbstate.db.remove_family_relationships(family.handle, trans)
+            trans.set_description(_("Family [%s]") % gramps_id)
+        self.uistate.set_busy_cursor(False)
     
     def edit(self, obj):
         for handle in self.selected_handles():

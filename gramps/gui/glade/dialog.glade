@@ -397,6 +397,169 @@
       <action-widget response="3">button11</action-widget>
     </action-widgets>
   </object>
+  <object class="GtkDialog" id="multiselectdialog">
+    <property name="can_focus">False</property>
+    <property name="default_width">600</property>
+    <property name="type_hint">dialog</property>
+    <child internal-child="vbox">
+      <object class="GtkBox" id="vbox143">
+        <property name="visible">True</property>
+        <property name="can_focus">False</property>
+        <property name="orientation">vertical</property>
+        <child internal-child="action_area">
+          <object class="GtkButtonBox" id="hbuttonbox50">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="layout_style">end</property>
+            <child>
+              <object class="GtkButton" id="button183">
+                <property name="label" translatable="yes">_Cancel</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">Cancel the rest of the operations</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button184">
+                <property name="label" translatable="yes">_No</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">Do not apply the operation to this item</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkButton" id="button185">
+                <property name="label" translatable="yes">_Yes</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="has_focus">True</property>
+                <property name="can_default">True</property>
+                <property name="has_default">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">Apply the operation to this item</property>
+                <property name="use_underline">True</property>
+              </object>
+              <packing>
+                <property name="expand">False</property>
+                <property name="fill">False</property>
+                <property name="position">2</property>
+              </packing>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">True</property>
+            <property name="pack_type">end</property>
+            <property name="position">0</property>
+          </packing>
+        </child>
+        <child>
+          <object class="GtkGrid" id="table82">
+            <property name="visible">True</property>
+            <property name="can_focus">False</property>
+            <property name="border_width">12</property>
+            <child>
+              <object class="GtkLabel" id="label5">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
+                <property name="margin_top">24</property>
+                <property name="margin_bottom">24</property>
+                <property name="hexpand">True</property>
+                <property name="use_markup">True</property>
+                <property name="wrap">True</property>
+                <property name="ellipsize">start</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">1</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkImage" id="image8">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="valign">start</property>
+                <property name="pixel_size">48</property>
+                <property name="icon_name">dialog-warning</property>
+                <property name="icon_size">6</property>
+              </object>
+              <packing>
+                <property name="left_attach">0</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkLabel" id="label6">
+                <property name="visible">True</property>
+                <property name="can_focus">False</property>
+                <property name="halign">start</property>
+                <property name="margin_left">6</property>
+                <property name="margin_right">6</property>
+                <property name="hexpand">True</property>
+                <property name="use_markup">True</property>
+                <property name="wrap">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">0</property>
+              </packing>
+            </child>
+            <child>
+              <object class="GtkCheckButton" id="apply_to_rest">
+                <property name="label" translatable="yes">_Use this answer for the rest of the items</property>
+                <property name="visible">True</property>
+                <property name="can_focus">True</property>
+                <property name="receives_default">False</property>
+                <property name="tooltip_text" translatable="yes">If you check this button, your next answer will apply to the rest of the selected items</property>
+                <property name="halign">center</property>
+                <property name="use_underline">True</property>
+                <property name="draw_indicator">True</property>
+              </object>
+              <packing>
+                <property name="left_attach">1</property>
+                <property name="top_attach">2</property>
+              </packing>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+            <child>
+              <placeholder/>
+            </child>
+          </object>
+          <packing>
+            <property name="expand">False</property>
+            <property name="fill">False</property>
+            <property name="position">1</property>
+          </packing>
+        </child>
+      </object>
+    </child>
+    <action-widgets>
+      <action-widget response="1">button183</action-widget>
+      <action-widget response="2">button184</action-widget>
+      <action-widget response="3">button185</action-widget>
+    </action-widgets>
+  </object>
   <object class="GtkDialog" id="optiondialog">
     <property name="can_focus">False</property>
     <property name="type_hint">dialog</property>

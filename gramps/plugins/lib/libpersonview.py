@@ -51,7 +51,7 @@ from gramps.gui.views.listview import ListView, TEXT, MARKUP, ICON
 from gramps.gui.actiongroup import ActionGroup
 from gramps.gen.utils.string import data_recover_msg
 from gramps.gen.display.name import displayer as name_displayer
-from gramps.gui.dialog import ErrorDialog, QuestionDialog
+from gramps.gui.dialog import ErrorDialog, MultiSelectDialog, QuestionDialog
 from gramps.gen.errors import WindowActiveError
 from gramps.gui.views.bookmarks import PersonBookmarks
 from gramps.gen.config import config
@@ -286,20 +286,43 @@ class BasePersonView(ListView):
         """
         Remove a person from the database.
         """
-        for sel in self.selected_handles():
-            person = self.dbstate.db.get_person_from_handle(sel)
-            self.active_person = person
-            name = name_displayer.display(person) 
+        handles = self.selected_handles()
+        if len(handles) == 1:
+            person = self._lookup_person(handles[0])
+            msg1 = self._message1_format(person)
+            msg2 = self._message2_format(person)
+            msg2 = "%s %s" % (msg2, data_recover_msg)
+            # This gets person to delete deom self.active_person:
+            QuestionDialog(msg1, 
+                           msg2, 
+                           _('_Delete Person'), 
+                           self.delete_person_response)
+        else:
+            # Ask to delete; option to cancel, delete rest
+            # This gets person to delete from parameter
+            MultiSelectDialog(self._message1_format,
+                              self._message2_format, 
+                              handles,
+                              self._lookup_person,
+                              yes_func=self.delete_person_response) # Yes
 
-            msg = _('Deleting the person will remove the person '
-                             'from the database.')
-            msg = "%s %s" % (msg, data_recover_msg)
-            QuestionDialog(_('Delete %s?') % name, 
-                                          msg, 
-                                          _('_Delete Person'), 
-                                          self.delete_person_response)
+    def _message1_format(self, person):
+        return _('Delete %s?') % (name_displayer.display(person) + 
+                                  (" [%s]" % person.gramps_id))
 
-    def delete_person_response(self):
+    def _message2_format(self, person):
+        return _('Deleting the person will remove the person '
+                 'from the database.')
+
+    def _lookup_person(self, handle):
+        """
+        Get the next person from handle.
+        """
+        person = self.dbstate.db.get_person_from_handle(handle)
+        self.active_person = person
+        return person
+
+    def delete_person_response(self, person=None):
         """
         Deletes the person from the database.
         """
