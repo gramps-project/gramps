@@ -1725,7 +1725,7 @@ class DictionaryDb(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def iter_tags(self):
         return (Tag.create(key) for key in self.tag_map.values())
 
-    def load(self, directory, pulse_progress=None, mode=None, 
+    def load(self, directory, callback=None, mode=None, 
              force_schema_upgrade=False, 
              force_bsddb_upgrade=False, 
              force_bsddb_downgrade=False, 
