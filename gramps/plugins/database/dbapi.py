@@ -167,12 +167,33 @@ class Cursor(object):
         pass
 
 class Bookmarks(object):
-    def __init__(self):
-        self.handles = []
+    def __init__(self, default=[]):
+        self.handles = list(default)
+
+    def set(self, handles):
+        self.handles = list(handles)
+
     def get(self):
         return self.handles
+
     def append(self, handle):
         self.handles.append(handle)
+
+    def append_list(self, handles):
+        self.handles += handles
+
+    def remove(self, handle):
+        self.handles.remove(handle)
+
+    def pop(self, item):
+        return self.handles.pop(item)
+
+    def insert(self, pos, item):
+        self.handles.insert(pos, item)
+
+    def close(self):
+        del self.handles
+    
 
 class DBAPITxn(DbTxn):
     def __init__(self, message, db, batch=False):
@@ -386,6 +407,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.readonly = False
         self.db_is_open = True
         self.name_formats = []
+        # Bookmarks:
         self.bookmarks = Bookmarks()
         self.family_bookmarks = Bookmarks()
         self.event_bookmarks = Bookmarks()
@@ -443,7 +465,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.source_map = Map(Table(self._tables["Source"]))
         self.source_id_map = Map(Table(self._tables["Source"]),
                                  keys_func="ids_func",
-                                 contains_func="has_gramps_id_func")
+                                contains_func="has_gramps_id_func")
         self.repository_map  = Map(Table(self._tables["Repository"]))
         self.repository_id_map = Map(Table(self._tables["Repository"]),
                                  keys_func="ids_func",
@@ -478,6 +500,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.abort_possible = False
         self._bm_changes = 0
         self._directory = directory
+        self._has_changed = False
         self.full_name = None
         self.path = None
         self.brief_name = None
@@ -502,10 +525,6 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def transaction_commit(self, txn):
         self.dbapi.commit()
-
-    def get_undodb(self):
-        ## FIXME
-        return None
 
     def transaction_abort(self, txn):
         self.dbapi.rollback()
@@ -748,12 +767,42 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return gid
 
     def get_mediapath(self):
-        cur = self.dbapi.execute("select * from metadata where setting = ?", ["media-path"])
+        return self.get_metadata("media-path", "")
+
+    def set_mediapath(self, mediapath):
+        return self.set_metadata("media-path", mediapath)
+
+    def get_metadata(self, key, default=[]):
+        """
+        Get an item from the database.
+        """
+        cur = self.dbapi.execute("SELECT * FROM metadata WHERE setting = ?;", [key])
         row = cur.fetchone()
         if row:
-            return row["value"]
+            return pickle.loads(row["value"])
+        elif default == []:
+            return []
         else:
-            return None
+            return default
+
+    def set_metadata(self, key, value):
+        """
+        key: string
+        value: item, will be serialized here
+        """
+        cur = self.dbapi.execute("SELECT * FROM metadata WHERE setting = ?;", [key])
+        row = cur.fetchone()
+        if row:
+            cur = self.dbapi.execute("UPDATE metadata SET value = ? WHERE setting = ?;", 
+                                     [pickle.dumps(value), key])
+        else:
+            cur = self.dbapi.execute("INSERT INTO metadata (setting, value) VALUES (?, ?);", 
+                                     [key, pickle.dumps(value)])
+        self.dbapi.commit()
+
+    def set_default_person_handle(self, handle):
+        self.set_metadata("default-person-handle", handle)
+        self.emit('home-person-changed')
 
     def get_name_group_keys(self):
         cur = self.dbapi.execute("select name from name_group order by name;")
@@ -1129,29 +1178,6 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                  [sname, grouping])
         self.dbapi.commit()
 
-    def set_default_person_handle(self, handle):
-        cur = self.dbapi.execute("select * from metadata where setting = ?", ["default-person"])
-        row = cur.fetchone()
-        if row:
-            cur = self.dbapi.execute("UPDATE metadata SET value = ? WHERE setting = ?;", 
-                                     [handle, "default-person"])
-        else:
-            cur = self.dbapi.execute("INSERT INTO metadata (setting, value) VALUES (?, ?);", 
-                                     ["default-person", handle])
-        self.emit('home-person-changed')
-        self.dbapi.commit()
-
-    def set_mediapath(self, mediapath):
-        cur = self.dbapi.execute("select * from metadata where setting = ?", ["media-path"])
-        row = cur.fetchone()
-        if row:
-            cur = self.dbapi.execute("UPDATE metadata SET value = ? WHERE setting = ?;", 
-                                     [mediapath, "media-path"])
-        else:
-            cur = self.dbapi.execute("INSERT INTO metadata (setting, value) VALUES (?, ?);", 
-                                     ["media-path", mediapath])
-        self.dbapi.commit()
-
     def get_raw_person_data(self, handle):
         if handle in self.person_map:
             return self.person_map[handle]
@@ -1312,6 +1338,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([person.handle],))
+        self._has_changed = True
 
     def commit_family(self, family, trans, change_time=None):
         emit = None
@@ -1335,6 +1362,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([family.handle],))
+        self._has_changed = True
 
     def commit_citation(self, citation, trans, change_time=None):
         emit = None
@@ -1362,6 +1390,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([citation.handle],))
+        self._has_changed = True
 
     def commit_source(self, source, trans, change_time=None):
         emit = None
@@ -1389,6 +1418,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([source.handle],))
+        self._has_changed = True
 
     def commit_repository(self, repository, trans, change_time=None):
         emit = None
@@ -1411,6 +1441,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([repository.handle],))
+        self._has_changed = True
 
     def commit_note(self, note, trans, change_time=None):
         emit = None
@@ -1433,6 +1464,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([note.handle],))
+        self._has_changed = True
 
     def commit_place(self, place, trans, change_time=None):
         emit = None
@@ -1460,6 +1492,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([place.handle],))
+        self._has_changed = True
 
     def commit_event(self, event, trans, change_time=None):
         emit = None
@@ -1493,6 +1526,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([event.handle],))
+        self._has_changed = True
 
     def update_backlinks(self, obj):
         # First, delete the current references:
@@ -1773,12 +1807,6 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             if not transaction.batch:
                 self.dbapi.commit()
 
-    ## Missing:
-
-    def backup(self):
-        ## FIXME
-        pass
-
     def close(self):
         if self._directory:
             from gramps.plugins.export.exportxml import XmlWriter
@@ -1788,6 +1816,39 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             writer.write(filename)
             filename = os.path.join(self._directory, "meta_data.db")
             touch(filename)
+            # Save metadata
+            self.set_metadata('bookmarks', self.bookmarks.get())
+            self.set_metadata('family_bookmarks', self.family_bookmarks.get())
+            self.set_metadata('event_bookmarks', self.event_bookmarks.get())
+            self.set_metadata('source_bookmarks', self.source_bookmarks.get())
+            self.set_metadata('citation_bookmarks', self.citation_bookmarks.get())
+            self.set_metadata('repo_bookmarks', self.repo_bookmarks.get())
+            self.set_metadata('media_bookmarks', self.media_bookmarks.get())
+            self.set_metadata('place_bookmarks', self.place_bookmarks.get())
+            self.set_metadata('note_bookmarks', self.note_bookmarks.get())
+            
+            # Custom type values, sets
+            self.set_metadata('event_names', self.event_names)
+            self.set_metadata('fattr_names', self.family_attributes)
+            self.set_metadata('pattr_names', self.individual_attributes)
+            self.set_metadata('sattr_names', self.source_attributes)
+            self.set_metadata('marker_names', self.marker_names)
+            self.set_metadata('child_refs', self.child_ref_types)
+            self.set_metadata('family_rels', self.family_rel_types)
+            self.set_metadata('event_roles', self.event_role_names)
+            self.set_metadata('name_types', self.name_types)
+            self.set_metadata('origin_types', self.origin_types)
+            self.set_metadata('repo_types', self.repository_types)
+            self.set_metadata('note_types', self.note_types)
+            self.set_metadata('sm_types', self.source_media_types)
+            self.set_metadata('url_types', self.url_types)
+            self.set_metadata('mattr_names', self.media_attributes)
+            self.set_metadata('eattr_names', self.event_attributes)
+            self.set_metadata('place_types', self.place_types)
+            
+            # surname list
+            self.set_metadata('surname_list', self.surname_list)
+            
             self.dbapi.close()
 
     def find_backlink_handles(self, handle, include_classes=None):
@@ -1815,136 +1876,185 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 yield (row["obj_class"], row["obj_handle"])
 
     def find_initial_person(self):
-        items = self.person_map.keys()
-        if len(items) > 0:
-            return self.get_person_from_handle(list(items)[0])
-        return None
-
-    def find_place_child_handles(self, handle):
-        ## FIXME
-        return []
+        handle = self.get_default_handle()
+        person = None
+        if handle:
+            person = self.get_person_from_handle(handle)
+            if person:
+                return person
+        cur = self.dbapi.execute("SELECT handle FROM person;")
+        row = cur.fetchone()
+        if row:
+            return row[0]
 
     def get_bookmarks(self):
         return self.bookmarks
-
-    def get_child_reference_types(self):
-        ## FIXME
-        return []
 
     def get_citation_bookmarks(self):
         return self.citation_bookmarks
 
     def get_default_handle(self):
-        cur = self.dbapi.execute("select * from metadata where setting = ?", ["default-person"])
-        row = cur.fetchone()
-        if row:
-            return row["value"]
-        else:
-            return None
+        return self.get_metadata("default-person-handle", None)
 
-    def get_event_attribute_types(self):
-        ## FIXME
-        return []
-
-    def get_event_bookmarks(self):
-        return self.event_bookmarks
-
-    def get_event_roles(self):
-        ## FIXME
-        return []
-
-    def get_event_types(self):
-        ## FIXME
-        return []
-
-    def get_family_attribute_types(self):
-        ## FIXME
-        return []
-
-    def get_family_bookmarks(self):
-        return self.family_bookmarks
-
-    def get_family_event_types(self):
-        ## FIXME
-        return []
-
-    def get_family_relation_types(self):
-        ## FIXME
-        return []
-
-    def get_media_attribute_types(self):
-        ## FIXME
-        return []
-
-    def get_media_bookmarks(self):
-        return self.media_bookmarks
-
-    def get_name_types(self):
-        ## FIXME
-        return []
-
-    def get_note_bookmarks(self):
-        return self.note_bookmarks
-
-    def get_note_types(self):
-        ## FIXME
-        return []
-
-    def get_origin_types(self):
-        ## FIXME
-        return []
-
-    def get_person_attribute_types(self):
-        ## FIXME
-        return []
-
-    def get_person_event_types(self):
-        ## FIXME
-        return []
-
-    def get_place_bookmarks(self):
-        return self.place_bookmarks
-
-    def get_place_tree_cursor(self):
-        ## FIXME
-        return []
-
-    def get_place_types(self):
-        ## FIXME
-        return []
-
-    def get_repo_bookmarks(self):
-        return self.repo_bookmarks
-
-    def get_repository_types(self):
-        ## FIXME
-        return []
-
-    def get_save_path(self):
-        return self._directory
-
-    def get_source_attribute_types(self):
-        ## FIXME
-        return []
-
-    def get_source_bookmarks(self):
-        return self.source_bookmarks
-
-    def get_source_media_types(self):
+    def find_place_child_handles(self, handle):
         ## FIXME
         return []
 
     def get_surname_list(self):
-        ## FIXME
-        return []
+        """
+        Return the list of locale-sorted surnames contained in the database.
+        """
+        return self.surname_list
+
+    def get_event_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Event instances
+        in the database.
+        """
+        return list(self.event_attributes)
+
+    def get_event_types(self):
+        """
+        Return a list of all event types in the database.
+        """
+        return list(self.event_names)
+
+    def get_person_event_types(self):
+        """
+        Deprecated:  Use get_event_types
+        """
+        return list(self.event_names)
+
+    def get_person_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Person instances 
+        in the database.
+        """
+        return list(self.individual_attributes)
+
+    def get_family_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Family instances 
+        in the database.
+        """
+        return list(self.family_attributes)
+
+    def get_family_event_types(self):
+        """
+        Deprecated:  Use get_event_types
+        """
+        return list(self.event_names)
+
+    def get_media_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Media and MediaRef 
+        instances in the database.
+        """
+        return list(self.media_attributes)
+
+    def get_family_relation_types(self):
+        """
+        Return a list of all relationship types assocated with Family
+        instances in the database.
+        """
+        return list(self.family_rel_types)
+
+    def get_child_reference_types(self):
+        """
+        Return a list of all child reference types assocated with Family
+        instances in the database.
+        """
+        return list(self.child_ref_types)
+
+    def get_event_roles(self):
+        """
+        Return a list of all custom event role names assocated with Event
+        instances in the database.
+        """
+        return list(self.event_role_names)
+
+    def get_name_types(self):
+        """
+        Return a list of all custom names types assocated with Person
+        instances in the database.
+        """
+        return list(self.name_types)
+
+    def get_origin_types(self):
+        """
+        Return a list of all custom origin types assocated with Person/Surname
+        instances in the database.
+        """
+        return list(self.origin_types)
+
+    def get_repository_types(self):
+        """
+        Return a list of all custom repository types assocated with Repository 
+        instances in the database.
+        """
+        return list(self.repository_types)
+
+    def get_note_types(self):
+        """
+        Return a list of all custom note types assocated with Note instances 
+        in the database.
+        """
+        return list(self.note_types)
+
+    def get_source_attribute_types(self):
+        """
+        Return a list of all Attribute types assocated with Source/Citation
+        instances in the database.
+        """
+        return list(self.source_attributes)
+
+    def get_source_media_types(self):
+        """
+        Return a list of all custom source media types assocated with Source 
+        instances in the database.
+        """
+        return list(self.source_media_types)
 
     def get_url_types(self):
-        ## FIXME
-        return []
+        """
+        Return a list of all custom names types assocated with Url instances 
+        in the database.
+        """
+        return list(self.url_types)
+
+    def get_place_types(self):
+        """
+        Return a list of all custom place types assocated with Place instances
+        in the database.
+        """
+        return list(self.place_types)
+
+    def get_event_bookmarks(self):
+        return self.event_bookmarks
+
+    def get_family_bookmarks(self):
+        return self.family_bookmarks
+
+    def get_media_bookmarks(self):
+        return self.media_bookmarks
+
+    def get_note_bookmarks(self):
+        return self.note_bookmarks
+
+    def get_place_bookmarks(self):
+        return self.place_bookmarks
+
+    def get_repo_bookmarks(self):
+        return self.repo_bookmarks
+
+    def get_save_path(self):
+        return self._directory
+
+    def get_source_bookmarks(self):
+        return self.source_bookmarks
 
     def has_changed(self):
-        ## FIXME
-        return True
+        return self._has_changed
 
     def is_open(self):
         return self._directory is not None
@@ -1994,7 +2104,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def iter_tags(self):
         return (Tag.create(data[1]) for data in self.get_tag_cursor())
 
-    def load(self, directory, pulse_progress=None, mode=None, 
+    def load(self, directory, callback=None, mode=None, 
              force_schema_upgrade=False, 
              force_bsddb_upgrade=False, 
              force_bsddb_downgrade=False, 
@@ -2102,29 +2212,56 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.dbapi.execute("""CREATE INDEX IF NOT EXISTS 
                                   ref_handle ON reference (ref_handle);
         """)
+        # Load metadata
+        self.bookmarks.set(self.get_metadata('bookmarks'))
+        self.family_bookmarks.set(self.get_metadata('family_bookmarks'))
+        self.event_bookmarks.set(self.get_metadata('event_bookmarks'))
+        self.source_bookmarks.set(self.get_metadata('source_bookmarks'))
+        self.citation_bookmarks.set(self.get_metadata('citation_bookmarks'))
+        self.repo_bookmarks.set(self.get_metadata('repo_bookmarks'))
+        self.media_bookmarks.set(self.get_metadata('media_bookmarks'))
+        self.place_bookmarks.set(self.get_metadata('place_bookmarks'))
+        self.note_bookmarks.set(self.get_metadata('note_bookmarks'))
 
-    def redo(self, update_history=True):
-        ## FIXME
-        pass
-
-    def restore(self):
-        ## FIXME
-        pass
-
+        # Custom type values
+        self.event_names = self.get_metadata('event_names', set())
+        self.family_attributes = self.get_metadata('fattr_names', set())
+        self.individual_attributes = self.get_metadata('pattr_names', set())
+        self.source_attributes = self.get_metadata('sattr_names', set())
+        self.marker_names = self.get_metadata('marker_names', set())
+        self.child_ref_types = self.get_metadata('child_refs', set())
+        self.family_rel_types = self.get_metadata('family_rels', set())
+        self.event_role_names = self.get_metadata('event_roles', set())
+        self.name_types = self.get_metadata('name_types', set())
+        self.origin_types = self.get_metadata('origin_types', set())
+        self.repository_types = self.get_metadata('repo_types', set())
+        self.note_types = self.get_metadata('note_types', set())
+        self.source_media_types = self.get_metadata('sm_types', set())
+        self.url_types = self.get_metadata('url_types', set())
+        self.media_attributes = self.get_metadata('mattr_names', set())
+        self.event_attributes = self.get_metadata('eattr_names', set())
+        self.place_types = self.get_metadata('place_types', set())
+        
+        # surname list
+        self.surname_list = self.get_metadata('surname_list')
+        
     def set_prefixes(self, person, media, family, source, citation, 
                      place, event, repository, note):
-        ## FIXME
-        pass
+        self.set_person_id_prefix(person)
+        self.set_object_id_prefix(media)
+        self.set_family_id_prefix(family)
+        self.set_source_id_prefix(source)
+        self.set_citation_id_prefix(citation)
+        self.set_place_id_prefix(place)
+        self.set_event_id_prefix(event)
+        self.set_repository_id_prefix(repository)
+        self.set_note_id_prefix(note)
 
     def set_save_path(self, directory):
         self._directory = directory
         self.full_name = os.path.abspath(self._directory)
         self.path = self.full_name
         self.brief_name = os.path.basename(self._directory)
-
-    def undo(self, update_history=True):
-        ## FIXME
-        pass
 
     def write_version(self, directory):
         """Write files for a newly created DB."""
@@ -2437,4 +2574,24 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def _order_by_tag_key(self, tag):
         return glocale.sort_key(tag.get_name())
+
+    def backup(self):
+        ## FIXME
+        pass
+
+    def restore(self):
+        ## FIXME
+        pass
+
+    def get_undodb(self):
+        ## FIXME
+        return None
+
+    def undo(self, update_history=True):
+        ## FIXME
+        pass
+
+    def redo(self, update_history=True):
+        ## FIXME
+        pass
 

@@ -360,7 +360,7 @@ class DbDjango(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if directory:
             self.load(directory)
 
-    def load(self, directory, pulse_progress=None, mode=None, 
+    def load(self, directory, callback=None, mode=None, 
              force_schema_upgrade=False,
              force_bsddb_upgrade=False,
              force_bsddb_downgrade=False,
