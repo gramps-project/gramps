@@ -10,6 +10,7 @@ import re
 import os
 import logging
 import shutil
+import bisect
 
 #------------------------------------------------------------------------
 #
@@ -1374,6 +1375,20 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         emit = None
         if person.handle in self.person_map:
             emit = "person-update"
+            old_person = self.get_person_from_handle(person.handle)
+            # Update gender statistics if necessary
+            if (old_person.gender != person.gender or
+                old_person.primary_name.first_name !=
+                  person.primary_name.first_name):
+
+                self.genderStats.uncount_person(old_person)
+                self.genderStats.count_person(person)
+            # Update surname list if necessary
+            if (self._order_by_person_key(person) != 
+                self._order_by_person_key(old_person)):
+                self.remove_from_surname_list(old_person)
+                self.add_to_surname_list(person, trans.batch)
+            # update the person:
             self.dbapi.execute("""UPDATE person SET gramps_id = ?, 
                                                     order_by = ?,
                                                     blob = ? 
@@ -1384,6 +1399,9 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                 person.handle])
         else:
             emit = "person-add"
+            self.genderStats.count_person(person)
+            self.add_to_surname_list(person, trans.batch)
+            # Insert the person:
             self.dbapi.execute("""insert into person (handle, order_by, gramps_id, blob)
                             values(?, ?, ?, ?);""", 
                                [person.handle, 
@@ -1393,10 +1411,67 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not trans.batch:
             self.dbapi.commit()
             self.update_backlinks(person)
+        # Other misc update tasks:
+        self.individual_attributes.update(
+            [str(attr.type) for attr in person.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+
+        self.event_role_names.update([str(eref.role)
+                                      for eref in person.event_ref_list
+                                      if eref.role.is_custom()])
+
+        self.name_types.update([str(name.type)
+                                for name in ([person.primary_name]
+                                             + person.alternate_names)
+                                if name.type.is_custom()])
+        all_surn = []  # new list we will use for storage
+        all_surn += person.primary_name.get_surname_list() 
+        for asurname in person.alternate_names:
+            all_surn += asurname.get_surname_list()
+        self.origin_types.update([str(surn.origintype) for surn in all_surn
+                                if surn.origintype.is_custom()])
+        all_surn = None
+        self.url_types.update([str(url.type) for url in person.urls
+                               if url.type.is_custom()])
+        attr_list = []
+        for mref in person.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
         # Emit after added:
         if emit:
             self.emit(emit, ([person.handle],))
         self._has_changed = True
+
+    def add_to_surname_list(self, person, batch_transaction):
+        """
+        Add surname to surname list
+        """
+        if batch_transaction:
+            return
+        name = conv_to_unicode(self._order_by_person_key(person), 'utf-8')
+        i = bisect.bisect(self.surname_list, name)
+        if 0 < i <= len(self.surname_list):
+            if self.surname_list[i-1] != name:
+                self.surname_list.insert(i, name)
+        else:
+            self.surname_list.insert(i, name)
+
+    def remove_from_surname_list(self, person):
+        """
+        Check whether there are persons with the same surname left in
+        the database. 
+        
+        If not then we need to remove the name from the list.
+        The function must be overridden in the derived class.
+        """
+        name = self._order_by_person_key(person)
+        if isinstance(name, str):
+            uname = name
+            name = name.encode('utf-8')
+        else:
+            uname = str(name)
+        # FIXME: check database
 
     def commit_family(self, family, trans, change_time=None):
         emit = None
@@ -1417,6 +1492,31 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not trans.batch:
             self.dbapi.commit()
             self.update_backlinks(family)
+        # Misc updates:
+        self.family_attributes.update(
+            [str(attr.type) for attr in family.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+
+        rel_list = []
+        for ref in family.child_ref_list:
+            if ref.frel.is_custom():
+                rel_list.append(str(ref.frel))
+            if ref.mrel.is_custom():
+                rel_list.append(str(ref.mrel))
+        self.child_ref_types.update(rel_list)
+
+        self.event_role_names.update(
+            [str(eref.role) for eref in family.event_ref_list
+             if eref.role.is_custom()])
+
+        if family.type.is_custom():
+            self.family_rel_types.add(str(family.type))
+
+        attr_list = []
+        for mref in family.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
         # Emit after added:
         if emit:
             self.emit(emit, ([family.handle],))
@@ -1445,6 +1545,17 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not trans.batch:
             self.dbapi.commit()
             self.update_backlinks(citation)
+        # Misc updates:
+        attr_list = []
+        for mref in citation.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
+
+        self.source_attributes.update(
+            [str(attr.type) for attr in citation.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+
         # Emit after added:
         if emit:
             self.emit(emit, ([citation.handle],))
@@ -1473,6 +1584,19 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not trans.batch:
             self.dbapi.commit()
             self.update_backlinks(source)
+        # Misc updates:
+        self.source_media_types.update(
+            [str(ref.media_type) for ref in source.reporef_list
+             if ref.media_type.is_custom()])       
+
+        attr_list = []
+        for mref in source.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
+        self.source_attributes.update(
+            [str(attr.type) for attr in source.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
         # Emit after added:
         if emit:
             self.emit(emit, ([source.handle],))
@@ -1496,6 +1620,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not trans.batch:
             self.dbapi.commit()
             self.update_backlinks(repository)
+        # Misc updates:
+        if repository.type.is_custom():
+            self.repository_types.add(str(repository.type))
+
+        self.url_types.update([str(url.type) for url in repository.urls
+                               if url.type.is_custom()])
         # Emit after added:
         if emit:
             self.emit(emit, ([repository.handle],))
@@ -1519,6 +1649,9 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not trans.batch:
             self.dbapi.commit()
             self.update_backlinks(note)
+        # Misc updates:
+        if note.type.is_custom():
+            self.note_types.add(str(note.type))        
         # Emit after added:
         if emit:
             self.emit(emit, ([note.handle],))
@@ -1547,6 +1680,18 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not trans.batch:
             self.dbapi.commit()
             self.update_backlinks(place)
+        # Misc updates:
+        if place.get_type().is_custom():
+            self.place_types.add(str(place.get_type()))
+
+        self.url_types.update([str(url.type) for url in place.urls
+                               if url.type.is_custom()])
+
+        attr_list = []
+        for mref in place.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
         # Emit after added:
         if emit:
             self.emit(emit, ([place.handle],))
@@ -1569,18 +1714,20 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                        [event.handle, 
                         event.gramps_id, 
                         pickle.dumps(event.serialize())])
-
-        self.update_event_attributes(
-            [str(attr.type) for attr in event.attribute_list
-             if attr.type.is_custom() and str(attr.type)])
-
-        if event.type.is_custom():
-            self.update_event_names(str(event.type))
-
         if not trans.batch:
             self.dbapi.commit()
             self.update_backlinks(event)
-
+        # Misc updates:
+        self.event_attributes.update(
+            [str(attr.type) for attr in event.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
+        if event.type.is_custom():
+            self.event_names.add(str(event.type))
+        attr_list = []
+        for mref in event.media_list:
+            attr_list += [str(attr.type) for attr in mref.attribute_list
+                          if attr.type.is_custom() and str(attr.type)]
+        self.media_attributes.update(attr_list)
         # Emit after added:
         if emit:
             self.emit(emit, ([event.handle],))
@@ -1657,6 +1804,10 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         if not trans.batch:
             self.dbapi.commit()
             self.update_backlinks(media)
+        # Misc updates:
+        self.media_attributes.update(
+            [str(attr.type) for attr in media.attribute_list
+             if attr.type.is_custom() and str(attr.type)])
         # Emit after added:
         if emit:
             self.emit(emit, ([media.handle],))
@@ -1953,10 +2104,6 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def get_default_handle(self):
         return self.get_metadata("default-person-handle", None)
-
-    def find_place_child_handles(self, handle):
-        ## FIXME
-        return []
 
     def get_surname_list(self):
         """
