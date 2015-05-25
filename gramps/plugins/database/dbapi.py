@@ -19,12 +19,11 @@ import shutil
 import gramps
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
-from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, 
+from gramps.gen.db import (DbReadBase, DbWriteBase, DbTxn, DbUndo,
                            KEY_TO_NAME_MAP, KEY_TO_CLASS_MAP, 
                            CLASS_TO_KEY_MAP)
 from gramps.gen.utils.callback import Callback
 from gramps.gen.updatecallback import UpdateCallback
-from gramps.gen.db.undoredo import DbUndo
 from gramps.gen.db.dbconst import *
 from gramps.gen.db import (PERSON_KEY,
                            FAMILY_KEY,
@@ -51,6 +50,71 @@ def touch(fname, mode=0o666, dir_fd=None, **kwargs):
     with os.fdopen(os.open(fname, flags=flags, mode=mode, dir_fd=dir_fd)) as f:
         os.utime(f.fileno() if os.utime in os.supports_fd else fname,
                  dir_fd=None if os.supports_fd else dir_fd, **kwargs)
+
+class DBAPIUndo(DbUndo):
+    def __init__(self, grampsdb, path):
+        super(DBAPIUndo, self).__init__(grampsdb)
+        self.undodb = grampsdb
+        self.path = path
+
+    def open(self, value=None):
+        """
+        Open the backing storage.  Needs to be overridden in the derived
+        class.
+        """
+        pass
+        # FIXME
+
+    def close(self):
+        """
+        Close the backing storage.  Needs to be overridden in the derived
+        class.
+        """        
+        pass
+        # FIXME
+
+    def append(self, value):
+        """
+        Add a new entry on the end.  Needs to be overridden in the derived
+        class.
+        """        
+        pass
+        # FIXME
+
+    def __getitem__(self, index):
+        """
+        Returns an entry by index number.  Needs to be overridden in the
+        derived class.
+        """        
+        return None
+        # FIXME
+
+    def __setitem__(self, index, value):
+        """
+        Set an entry to a value.  Needs to be overridden in the derived class.
+        """           
+        pass
+        # FIXME
+
+    def __len__(self):
+        """
+        Returns the number of entries.  Needs to be overridden in the derived
+        class.
+        """         
+        return 0
+        # FIXME
+
+    def __redo(self, update_history):
+        """
+        """
+        pass
+        # FIXME
+
+    def __undo(self, update_history):
+        """
+        """
+        pass
+        # FIXME
 
 class Environment(object):
     """
@@ -427,6 +491,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.set_repository_id_prefix('R%04d')
         self.set_note_id_prefix('N%04d')
         # ----------------------------------
+        self.undodb = None
         self.id_trans  = DBAPITxn("ID Transaction", self)
         self.fid_trans = DBAPITxn("FID Transaction", self)
         self.pid_trans = DBAPITxn("PID Transaction", self)
@@ -484,19 +549,12 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                                  contains_func="has_gramps_id_func")
         self.tag_map  = Map(Table(self._tables["Tag"]))
         self.metadata   = Map(Table({"cursor_func": lambda: MetaCursor()}))
-        ## FIXME: add appropriate methods:
-        self.name_group = Map(Table({"handles_func": self.get_name_group_keys,  # keys
-                                     "has_handle_func": self.has_name_group_key, # key in table 
-                                     "cursor_func": None, # create a cursor, values
-                                     "add_func": self.set_name_group_mapping, # add a key, value
-                                     "count_func": None})) # how many items?
         self.undo_callback = None
         self.redo_callback = None
         self.undo_history_callback = None
         self.modified   = 0
         self.txn = DBAPITxn("DBAPI Transaction", self)
         self.transaction = None
-        self.undodb = DbUndo(self)
         self.abort_possible = False
         self._bm_changes = 0
         self._directory = directory
@@ -984,7 +1042,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return (handle for handle in self.family_map.keys())
 
     def get_tag_from_name(self, name):
-        ## Slow, but typically not too many tags:
+        ## FIXME: Slow, but typically not too many tags:
         for data in self.tag_map.values():
             tag = Tag.create(data)
             if tag.name == name:
@@ -2244,6 +2302,11 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         
         # surname list
         self.surname_list = self.get_metadata('surname_list')
+
+        self._directory = directory
+        self.undolog = os.path.join(self._directory, DBUNDOFN)
+        self.undodb = DBAPIUndo(self, self.undolog)
+        self.undodb.open()
         
     def set_prefixes(self, person, media, family, source, citation, 
                      place, event, repository, note):
@@ -2576,22 +2639,22 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         return glocale.sort_key(tag.get_name())
 
     def backup(self):
-        ## FIXME
+        """
+        If you wish to support an optional backup routine, put it here.
+        """
         pass
 
     def restore(self):
-        ## FIXME
+        """
+        If you wish to support an optional restore routine, put it here.
+        """
         pass
 
     def get_undodb(self):
-        ## FIXME
-        return None
+        return self.undodb
 
     def undo(self, update_history=True):
-        ## FIXME
-        pass
+        return self.undodb.undo(update_history)
 
     def redo(self, update_history=True):
-        ## FIXME
-        pass
-
+        return self.undodb.redo(update_history)

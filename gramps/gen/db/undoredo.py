@@ -1,4 +1,10 @@
+#-------------------------------------------------------------------------
+#
+# Standard python modules
+#
+#-------------------------------------------------------------------------
 import time
+import pickle
 from collections import deque
 
 class DbUndo(object):
@@ -19,6 +25,20 @@ class DbUndo(object):
         self.redoq = deque()
         self.undo_history_timestamp = time.time()
         self.txn = None
+        # N.B. the databases have to be in the same order as the numbers in
+        # xxx_KEY in gen/db/dbconst.py
+        self.mapbase = (
+                        self.db.person_map,
+                        self.db.family_map,
+                        self.db.source_map,
+                        self.db.event_map,
+                        self.db.media_map,
+                        self.db.place_map,
+                        self.db.repository_map,
+                        self.db.note_map,
+                        self.db.tag_map,
+                        self.db.citation_map,
+                        )
 
     def clear(self):
         """
@@ -85,6 +105,16 @@ class DbUndo(object):
         """         
         raise NotImplementedError
 
+    def __redo(self, update_history):
+        """
+        """
+        raise NotImplementedError
+
+    def __undo(self, update_history):
+        """
+        """
+        raise NotImplementedError
+
     def commit(self, txn, msg):
         """
         Commit the transaction to the undo/redo database.  "txn" should be
@@ -110,27 +140,40 @@ class DbUndo(object):
             return False
         return self.__redo(update_history)
 
-    def undoredo(func):
+    def undo_reference(self, data, handle, db_map):
         """
-        Decorator function to wrap undo and redo operations within a bsddb
-        transaction.  It also catches bsddb errors and raises an exception
-        as appropriate
+        Helper method to undo a reference map entry
         """
-        pass
+        try:
+            if data is None:
+                db_map.delete(handle, txn=self.txn)
+            else:
+                db_map.put(handle, data, txn=self.txn)
 
-    def __redo(self, update_history=True):
-        """
-        Access the last undone transaction, and revert the data to the state 
-        before the transaction was undone.
-        """
-        pass
+        except DBERRS as msg:
+            self.db._log_error()
+            raise DbError(msg)
 
-    def __undo(self, db=None, update_history=True):
+    def undo_data(self, data, handle, db_map, emit, signal_root):
         """
-        Access the last committed transaction, and revert the data to the 
-        state before the transaction was committed.
+        Helper method to undo/redo the changes made
         """
-        pass
+        try:
+            if data is None:
+                emit(signal_root + '-delete', ([handle2internal(handle)],))
+                db_map.delete(handle, txn=self.txn)
+            else:
+                ex_data = db_map.get(handle, txn=self.txn)
+                if ex_data:
+                    signal = signal_root + '-update'
+                else:
+                    signal = signal_root + '-add'
+                db_map.put(handle, data, txn=self.txn)
+                emit(signal, ([handle2internal(handle)],))
+
+        except DBERRS as msg:
+            self.db._log_error()
+            raise DbError(msg)
 
     undo_count = property(lambda self:len(self.undoq))
     redo_count = property(lambda self:len(self.redoq))
