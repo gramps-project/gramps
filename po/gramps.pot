@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-24 21:47-0700\n"
+"POT-Creation-Date: 2015-05-26 19:11+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2576,6 +2576,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_hasdata.py:54
 #: ../gramps/gen/filters/rules/place/_hasplace.py:60
 #: ../gramps/gen/filters/rules/place/_hastitle.py:51
+#: ../gramps/gen/filters/rules/place/_isenclosedby.py:51
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:53
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:53
 #: ../gramps/gen/filters/rules/repository/_matchesnamesubstringof.py:45
@@ -2713,6 +2714,7 @@ msgstr ""
 #: ../gramps/gen/filters/rules/person/_isrelatedwith.py:44
 #: ../gramps/gen/filters/rules/person/_matchidof.py:44
 #: ../gramps/gen/filters/rules/person/_relationshippathbetween.py:45
+#: ../gramps/gen/filters/rules/place/_isenclosedby.py:48
 #: ../gramps/gui/editors/filtereditor.py:517
 #: ../gramps/gui/glade/editplaceref.glade:230
 msgid "ID:"
@@ -4952,6 +4954,14 @@ msgid ""
 "Matches places with latitude or longitude positioned in a rectangle of given "
 "height and width (in degrees), and with middlepoint the given latitude and "
 "longitude."
+msgstr ""
+
+#: ../gramps/gen/filters/rules/place/_isenclosedby.py:49
+msgid "Places enclosed by another place"
+msgstr ""
+
+#: ../gramps/gen/filters/rules/place/_isenclosedby.py:50
+msgid "Matches a place enclosed by a particular place"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_matcheseventfilter.py:50
