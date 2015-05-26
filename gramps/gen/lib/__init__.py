@@ -34,6 +34,7 @@ from .eventref import EventRef
 from .ldsord import LdsOrd
 from .mediaref import MediaRef 
 from .name import Name
+from .placename import PlaceName
 from .placeref import PlaceRef
 from .reporef import RepoRef
 from .surname import Surname

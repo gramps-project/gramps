@@ -28,7 +28,7 @@ from .editreference import RefTab, EditReference
 from ..glade import Glade
 from ..widgets import (MonitoredDate, MonitoredEntry, MonitoredDataType,
                        PrivacyButton, MonitoredTagList)
-from .displaytabs import (PlaceRefEmbedList, AltNameEmbedList,
+from .displaytabs import (PlaceRefEmbedList, PlaceNameEmbedList,
                           LocationEmbedList, CitationEmbedList,
                           GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from gramps.gen.lib import NoteType
@@ -37,6 +37,7 @@ from gramps.gen.errors import ValidationError
 from gramps.gen.utils.place import conv_lat_lon
 from gramps.gen.display.place import displayer as place_displayer
 from gramps.gen.config import config
+from ..dialog import ErrorDialog
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -113,7 +114,8 @@ class EditPlaceRef(EditReference):
                                         self.db.readonly)
         
         self.name = MonitoredEntry(self.top.get_object("name_entry"),
-                                    self.source.set_name, self.source.get_name,
+                                    self.source.get_name().set_value,
+                                    self.source.get_name().get_value,
                                     self.db.readonly,
                                     changed=self.name_changed)
         
@@ -197,10 +199,10 @@ class EditPlaceRef(EditReference):
         self._add_tab(notebook, self.placeref_list)
         self.track_ref_for_deletion("placeref_list")
         
-        self.alt_name_list = AltNameEmbedList(self.dbstate,
-                                              self.uistate,
-                                              self.track,
-                                              self.source.alt_names)
+        self.alt_name_list = PlaceNameEmbedList(self.dbstate,
+                                                self.uistate,
+                                                self.track,
+                                                self.source.alt_names)
         self._add_tab(notebook, self.alt_name_list)
         self.track_ref_for_deletion("alt_name_list")
 
@@ -252,6 +254,14 @@ class EditPlaceRef(EditReference):
         self._setup_notebook_tabs(notebook)
 
     def save(self, *obj):
+        self.ok_button.set_sensitive(False)
+
+        if self.source.get_name().get_value().strip() == '':
+            msg1 = _("Cannot save place. Name not entered.")
+            msg2 = _("You must enter a name before saving.")
+            ErrorDialog(msg1, msg2)
+            self.ok_button.set_sensitive(True)
+            return
 
         if self.source.handle:
             with DbTxn(_("Modify Place"), self.db) as trans:

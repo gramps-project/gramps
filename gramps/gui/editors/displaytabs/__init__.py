@@ -35,7 +35,6 @@ from .childmodel import ChildModel
 from .grampstab import GrampsTab
 from .embeddedlist import EmbeddedList, TEXT_COL, MARKUP_COL, ICON_COL
 from .addrembedlist import AddrEmbedList
-from .altnameembedlist import AltNameEmbedList
 from .attrembedlist import AttrEmbedList
 from .backreflist import BackRefList
 from .eventattrembedlist import EventAttrEmbedList
@@ -57,6 +56,7 @@ from .personeventembedlist import PersonEventEmbedList
 from .personrefembedlist import PersonRefEmbedList
 from .personbackreflist import PersonBackRefList
 from .placebackreflist import PlaceBackRefList
+from .placenameembedlist import PlaceNameEmbedList
 from .placerefembedlist import PlaceRefEmbedList
 from .repoembedlist import RepoEmbedList
 from .surnametab import SurnameTab

@@ -35,21 +35,28 @@ def get_location_list(db, place, date=None):
     if date is None:
         date = Today()
     visited = [place.handle]
-    lines = [(place.name, place.get_type())]
+    lines = [(__get_name(place, date), place.get_type())]
     while True:
         handle = None
         for placeref in place.get_placeref_list():
             ref_date = placeref.get_date_object()
             if ref_date.is_empty() or date.match(ref_date):
                 handle = placeref.ref
+                break
         if handle is None or handle in visited:
             break
         place = db.get_place_from_handle(handle)
         if place is None:
             break
         visited.append(handle)
-        lines.append((place.name, place.get_type()))
+        lines.append((__get_name(place, date), place.get_type()))
     return lines
+
+def __get_name(place, date):
+    for place_name in place.get_all_names():
+        name_date = place_name.get_date_object()
+        if name_date.is_empty() or date.match(name_date):
+            return place_name.get_value()
 
 #-------------------------------------------------------------------------
 #
@@ -77,7 +84,7 @@ def get_locations(db, place):
     containing dictionaries of place types and names.
     """
     locations = []
-    todo = [(place, [(int(place.get_type()), place.get_all_names())],
+    todo = [(place, [(int(place.get_type()), __get_all_names(place))],
             [place.handle])]
     while len(todo):
         place, tree, visited = todo.pop()
@@ -86,12 +93,15 @@ def get_locations(db, place):
                 parent_place = db.get_place_from_handle(parent.ref)
                 if parent_place is not None:
                     parent_tree = tree + [(int(parent_place.get_type()),
-                                           parent_place.get_all_names())]
+                                           __get_all_names(parent_place))]
                     parent_visited = visited + [parent.ref]
                     todo.append((parent_place, parent_tree, parent_visited))
         if len(place.get_placeref_list()) == 0:
             locations.append(dict(tree))
     return locations
+
+def __get_all_names(place):
+    return [name.get_value() for name in place.get_all_names()]
 
 #-------------------------------------------------------------------------
 #

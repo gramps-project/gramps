@@ -78,6 +78,6 @@ class HasData(Rule):
         Match any name in a list of names.
         """
         for name in place.get_all_names():
-            if self.match_substring(0, name):
+            if self.match_substring(0, name.get_value()):
                 return True
         return False

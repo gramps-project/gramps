@@ -126,7 +126,7 @@ class Locations(Gramplet, DbGUIElement):
             place_date = get_date(placeref)
             place_sort = '%012d' % placeref.get_date_object().get_sort_value()
             parent_place = self.dbstate.db.get_place_from_handle(placeref.ref)
-            parent_name = parent_place.get_name()
+            parent_name = parent_place.get_name().get_value()
             parent_type = str(parent_place.get_type())
 
             parent_node = self.model.add([placeref.ref,

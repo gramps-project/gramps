@@ -1,6 +1,6 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2011 Nick Hall
+# Copyright (C) 2011,2015  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -108,7 +108,7 @@ class PlaceDetails(Gramplet):
         self.title.set_text(title)
 
         self.clear_grid()
-        self.add_row(_('Name'), place.get_name())
+        self.add_row(_('Name'), place.get_name().get_value())
         self.add_row(_('Type'), place.get_type())
         self.display_separator()
         self.display_alt_names(place)
@@ -125,7 +125,7 @@ class PlaceDetails(Gramplet):
         """
         Display alternative names for the place.
         """
-        alt_names = place .get_alternative_names()
+        alt_names = [name.get_value() for name in place.get_alternative_names()]
         if len(alt_names) > 0:
             self.add_row(_('Alternative Names'), '\n'.join(alt_names))
 

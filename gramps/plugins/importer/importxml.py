@@ -47,15 +47,15 @@ LOG = logging.getLogger(".ImportXML")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.mime import get_type
-from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef, 
-                            ChildRefType, Citation, Date, DateError, Event, EventRef, 
-                            EventRoleType, EventType, Family, LdsOrd, Location, 
-                            MediaObject, MediaRef, Name, NameOriginType, 
-                            NameType, Note, NoteType, Person, PersonRef, 
-                            Place, RepoRef, Repository, Researcher, Source, 
-                            SrcAttribute, SrcAttributeType, PlaceType,
-                            StyledText, StyledTextTag, StyledTextTagType, 
-                            Surname, Tag, Url, PlaceRef)
+from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
+                            ChildRefType, Citation, Date, DateError, Event,
+                            EventRef, EventRoleType, EventType, Family, LdsOrd,
+                            Location, MediaObject, MediaRef, Name,
+                            NameOriginType, NameType, Note, NoteType, Person,
+                            PersonRef, Place, PlaceName, PlaceRef, PlaceType,
+                            RepoRef, Repository, Researcher, Source,
+                            SrcAttribute, SrcAttributeType, StyledText,
+                            StyledTextTag, StyledTextTagType, Surname, Tag, Url)
 from gramps.gen.db import DbTxn
 from gramps.gen.db.write import CLASS_TO_KEY_MAP
 from gramps.gen.errors import GrampsImportError
@@ -539,7 +539,10 @@ class GrampsParser(UpdateCallback):
         self.attribute = None
         self.srcattribute = None
         self.placeobj = None
+        self.placeref = None
+        self.place_name = None
         self.locations = 0
+        self.place_names = 0
         self.place_map = {}
         self.place_import = PlaceImport(self.db)
 
@@ -1149,11 +1152,14 @@ class GrampsParser(UpdateCallback):
             self.inaugurate_id(attrs.get('id'), PLACE_KEY, self.placeobj)
         self.placeobj.private = bool(attrs.get("priv"))
         self.placeobj.change = int(attrs.get('change', self.change))
-        if self.__xml_version >= (1, 6, 0):
-            self.placeobj.name = attrs.get('name', '')
-            if 'type' in attrs:
-                self.placeobj.place_type.set_from_xml_str(attrs.get('type'))
+        if self.__xml_version == (1, 6, 0):
+            place_name = PlaceName()
+            place_name.set_value(attrs.get('name', ''))
+            self.placeobj.name = place_name
+        if 'type' in attrs:
+            self.placeobj.place_type.set_from_xml_str(attrs.get('type'))
         self.info.add('new-object', PLACE_KEY, self.placeobj)
+        self.place_names = 0
         
         # GRAMPS LEGACY: title in the placeobj tag
         self.placeobj.title = attrs.get('title', '')
@@ -1192,8 +1198,9 @@ class GrampsParser(UpdateCallback):
                 for level, name in enumerate(location):
                     if name:
                         break
-
-                self.placeobj.set_name(name)
+                place_name = PlaceName()
+                place_name.set_value(name)
+                self.placeobj.set_name(place_name)
                 type_num = 7 - level if name else PlaceType.UNKNOWN
                 self.placeobj.set_type(PlaceType(type_num))
                 codes = [attrs.get('postal'), attrs.get('phone')]
@@ -1692,6 +1699,23 @@ class GrampsParser(UpdateCallback):
         self.person.add_family_handle(handle)
 
     def start_name(self, attrs):
+        if self.person:
+            self.start_person_name(attrs)
+        else:
+            self.start_place_name(attrs)
+
+    def start_place_name(self, attrs):
+        self.place_name = PlaceName()
+        self.place_name.set_value(attrs["value"])
+        if "lang" in attrs:
+             self.place_name.set_language(attrs["lang"])
+        if self.place_names == 0:
+            self.placeobj.set_name(self.place_name)
+        else:
+            self.placeobj.add_alternative_name(self.place_name)
+        self.place_names += 1
+
+    def start_person_name(self, attrs):
         if not self.in_witness:
             self.name = Name()
             name_type = attrs.get('type', "Birth Name")
@@ -2321,8 +2345,10 @@ class GrampsParser(UpdateCallback):
             date_value = self.name.get_date_object()
         elif self.event:
             date_value = self.event.get_date_object()
-        else:
+        elif self.placeref:
             date_value = self.placeref.get_date_object()
+        elif self.place_name:
+            date_value = self.place_name.get_date_object()
 
         start = attrs['start'].split('-')
         stop  = attrs['stop'].split('-')
@@ -2411,8 +2437,10 @@ class GrampsParser(UpdateCallback):
             date_value = self.name.get_date_object()
         elif self.event:
             date_value = self.event.get_date_object()
-        else:
+        elif self.placeref:
             date_value = self.placeref.get_date_object()
+        elif self.place_name:
+            date_value = self.place_name.get_date_object()
 
         bce = 1
         val = attrs['val']
@@ -2585,7 +2613,9 @@ class GrampsParser(UpdateCallback):
         self.placeobj.code = tag
 
     def stop_alt_name(self, tag):
-        self.placeobj.add_alternative_name(tag)
+        place_name = PlaceName()
+        place_name.set_value(tag)
+        self.placeobj.add_alternative_name(place_name)
 
     def stop_placeobj(self, *tag):
         self.db.commit_place(self.placeobj, self.trans, 
@@ -2658,7 +2688,16 @@ class GrampsParser(UpdateCallback):
                              self.event.get_change_time())
         self.event = None
 
-    def stop_name(self, tag):
+    def stop_name(self, attrs):
+        if self.person:
+            self.stop_person_name(attrs)
+        else:
+            self.stop_place_name(attrs)
+
+    def stop_place_name(self, tag):
+        self.place_name = None
+
+    def stop_person_name(self, tag):
         if self.in_witness:
             # Parse witnesses created by older gramps
             note = Note()

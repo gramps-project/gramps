@@ -731,6 +731,21 @@ class GrampsXmlWriter(UpdateCallback):
             self.write_date(date, index+1)
             self.g.write('%s</placeref>\n' % sp)
 
+    def dump_place_name(self, place_name, index=1):
+        sp = "  " * index
+        value = place_name.get_value()
+        date = place_name.get_date_object()
+        lang = place_name.get_language()
+        self.g.write('%s<name value="%s"' % (sp, self.fix(value)))
+        if lang:
+            self.g.write(' lang="%s"' % self.fix(lang))
+        if date.is_empty():
+            self.g.write('/>\n')
+        else:
+            self.g.write('>\n')
+            self.write_date(date, index+1)
+            self.g.write('%s</name>\n' % sp)
+
     def write_event(self,event,index=1):
         if not event:
             return
@@ -1196,9 +1211,7 @@ class GrampsXmlWriter(UpdateCallback):
 
     def write_place_obj(self, place, index=1):
         self.write_primary_tag("placeobj", place, index, close=False)
-        pname = self.fix(place.get_name())
         ptype = self.fix(place.get_type().xml_str())
-        self.g.write(' name="%s"' % pname)
         self.g.write(' type="%s"' % ptype)
         self.g.write('>\n')
 
@@ -1206,8 +1219,10 @@ class GrampsXmlWriter(UpdateCallback):
         code = self.fix(place.get_code())
         self.write_line_nofix("ptitle", title, index+1)
         self.write_line_nofix("code", code, index+1)
-        for name in place.get_alternative_names():
-            self.write_line("alt_name", name, index+1)
+
+        self.dump_place_name(place.get_name(), index+1)
+        for pname in place.get_alternative_names():
+            self.dump_place_name(pname, index+1)
 
         longitude = self.fix(place.get_longitude())
         lat = self.fix(place.get_latitude())

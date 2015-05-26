@@ -47,6 +47,7 @@ from ..lib.nameorigintype import NameOriginType
 from ..lib.place import Place
 from ..lib.placeref import PlaceRef
 from ..lib.placetype import PlaceType
+from ..lib.placename import PlaceName
 from ..lib.eventtype import EventType
 from ..lib.tag import Tag
 from ..utils.file import create_checksum
@@ -79,6 +80,40 @@ def gramps_upgrade_pickle(self):
 
     with BSDDBTxn(self.env, self.metadata) as txn:
         txn.put(b'upgraded', 'Yes')
+
+def gramps_upgrade_18(self):
+    """
+    Upgrade database from version 17 to 18.
+    """
+    length = len(self.place_map)
+    self.set_total(length)
+
+    # ---------------------------------
+    # Modify Place
+    # ---------------------------------
+    # Convert name fields to use PlaceName.
+    for handle in self.place_map.keys():
+        place = self.place_map[handle]
+        new_place = list(place)
+        name = PlaceName()
+        name.set_value(new_place[6])
+        new_place[6] = name.serialize()
+        alt_names = []
+        for name in new_place[7]:
+            alt_name = PlaceName()
+            alt_name.set_value(name)
+            alt_names.append(alt_name.serialize())
+        new_place[7] = alt_names
+        new_place = tuple(new_place)
+        with BSDDBTxn(self.env, self.place_map) as txn:
+            if isinstance(handle, str):
+                handle = handle.encode('utf-8')
+            txn.put(handle, new_place)
+        self.update()
+
+    # Bump up database version. Separate transaction to save metadata.
+    with BSDDBTxn(self.env, self.metadata) as txn:
+        txn.put(b'version', 18)
 
 def gramps_upgrade_17(self):
     """

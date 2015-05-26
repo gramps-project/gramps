@@ -576,7 +576,7 @@ class ClipPlaceRef(ClipObjWrapper):
             base = self._db.get_place_from_handle(self._obj.ref)
             if base:
                 self._title = base.gramps_id
-                self._value = str(base.get_name())
+                self._value = place_displayer.display(self._db, base)
 
 class ClipName(ClipObjWrapper):
 
@@ -593,6 +593,22 @@ class ClipName(ClipObjWrapper):
         if self._obj:
             self._title = str(self._obj.get_type())
             self._value = self._obj.get_name()
+
+class ClipPlaceName(ClipObjWrapper):
+
+    DROP_TARGETS = [DdTargets.PLACENAME]
+    DRAG_TARGET  = DdTargets.PLACENAME
+    ICON         = ICONS['name']
+
+    def __init__(self, dbstate, obj):
+        super(ClipPlaceName, self).__init__(dbstate, obj)
+        self._type  = _("Place Name")
+        self.refresh()
+
+    def refresh(self):
+        if self._obj:
+            self._title = get_date(self._obj)
+            self._value = self._obj.get_value()
 
 class ClipSurname(ClipObjWrapper):
 
@@ -1099,6 +1115,7 @@ class ClipboardListView(object):
         self.register_wrapper_class(ClipAttribute)
         self.register_wrapper_class(ClipFamilyAttribute)
         self.register_wrapper_class(ClipName)
+        self.register_wrapper_class(ClipPlaceName)
         self.register_wrapper_class(ClipRepositoryLink)
         self.register_wrapper_class(ClipMediaObj)
         self.register_wrapper_class(ClipMediaRef)

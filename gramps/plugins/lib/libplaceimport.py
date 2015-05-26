@@ -27,7 +27,7 @@ Helper class for importing places.
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib import Place, PlaceType, PlaceRef
+from gramps.gen.lib import Place, PlaceName, PlaceType, PlaceRef
 from gramps.gen.constfunc import handle2internal
 
 #-------------------------------------------------------------------------
@@ -106,7 +106,9 @@ class PlaceImport(object):
         Add a missing place to the database.
         """
         place = Place()
-        place.name = name
+        place_name = PlaceName()
+        place_name.set_value(name)
+        place.name = place_name
         place.title = title
         place.place_type = PlaceType(7-type_num)
         if parent is not None:

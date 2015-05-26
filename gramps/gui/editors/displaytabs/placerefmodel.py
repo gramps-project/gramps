@@ -2,6 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
+# Copyright (C) 2015       Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -45,7 +46,7 @@ class PlaceRefModel(Gtk.ListStore):
         for obj in obj_list:
             place = self.db.get_place_from_handle(obj.ref)
             self.append(row=[place.get_gramps_id(),
-                             place.get_name(),
+                             place.get_name().get_value(),
                              str(place.get_type()), 
                              displayer.display(obj.date), 
                              obj, ])

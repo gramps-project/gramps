@@ -32,6 +32,7 @@ Place object for Gramps.
 #-------------------------------------------------------------------------
 from .primaryobj import PrimaryObject
 from .placeref import PlaceRef
+from .placename import PlaceName
 from .placetype import PlaceType
 from .citationbase import CitationBase
 from .notebase import NoteBase
@@ -79,7 +80,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
             self.long = ""
             self.lat = ""
             self.title = ""
-            self.name = ""
+            self.name = PlaceName()
             self.alt_names = []
             self.placeref_list = []
             self.place_type = PlaceType()
@@ -106,7 +107,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         return (self.handle, self.gramps_id, self.title, self.long, self.lat,
                 [pr.serialize() for pr in self.placeref_list], 
-                self.name, self.alt_names,
+                self.name.serialize(),
+                [an.serialize() for an in self.alt_names],
                 self.place_type.serialize(), self.code,
                 [al.serialize() for al in self.alt_loc],
                 UrlBase.serialize(self),
@@ -142,8 +144,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 "long": self.long, 
                 "lat": self.lat,
                 "placeref_list": [pr.to_struct() for pr in self.placeref_list],
-                "name": self.name, 
-                "alt_names": self.alt_names,
+                "name": self.name.to_struct(),
+                "alt_names": [an.to_struct() for an in self.alt_names],
                 "place_type": self.place_type.to_struct(), 
                 "code": self.code, 
                 "alt_loc": [al.to_struct() for al in self.alt_loc],
@@ -169,8 +171,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
                 struct.get("long", default.long),
                 struct.get("lat", default.lat),
                 [PlaceRef.from_struct(pr) for pr in struct.get("placeref_list", default.placeref_list)],
-                struct.get("name", default.name),
-                struct.get("alt_names", default.alt_names),
+                PlaceName.from_struct(struct.get("name", {})),
+                [PlaceName.from_struct(an) for an in struct.get("alt_names", default.alt_names)],
                 PlaceType.from_struct(struct.get("place_type", {})), 
                 struct.get("code", default.code),
                 [Location.from_struct(al) for al in struct.get("alt_loc", default.alt_loc)],
@@ -192,7 +194,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :type data: tuple
         """
         (self.handle, self.gramps_id, self.title, self.long, self.lat,
-         placeref_list, self.name, self.alt_names, the_type, self.code,
+         placeref_list, name, alt_names, the_type, self.code,
          alt_loc, urls, media_list, citation_list, note_list,
          self.change, tag_list, self.private) = data
 
@@ -200,6 +202,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         self.place_type.unserialize(the_type)
         self.alt_loc = [Location().unserialize(al) for al in alt_loc]
         self.placeref_list = [PlaceRef().unserialize(pr) for pr in placeref_list]
+        self.name = PlaceName().unserialize(name)
+        self.alt_names = [PlaceName().unserialize(an) for an in alt_names]
         UrlBase.unserialize(self, urls)
         MediaBase.unserialize(self, media_list)
         CitationBase.unserialize(self, citation_list)
@@ -214,7 +218,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :returns: Returns the list of all textual attributes of the object.
         :rtype: list
         """
-        return [self.long, self.lat, self.title, self.name, self.gramps_id]
+        return [self.long, self.lat, self.title, self.gramps_id]
 
     def get_text_data_child_list(self):
         """
@@ -224,7 +228,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :rtype: list
         """
 
-        ret = self.media_list + self.alt_loc + self.urls
+        ret = (self.media_list + self.alt_loc + self.urls +
+               self.name + self.alt_names)
         return ret
 
     def get_citation_child_list(self):
@@ -306,8 +311,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         """
         Set the name of the Place object.
 
-        :param title: name to assign to the Place
-        :type title: str
+        :param name: name to assign to the Place
+        :type name: PlaceName
         """
         self.name = name
 
@@ -316,7 +321,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         Return the name of the Place object.
 
         :returns: Returns the name of the Place
-        :rtype: str
+        :rtype: PlaceName
         """
         return self.name
 
@@ -325,7 +330,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         Return a list of all names of the Place object.
 
         :returns: Returns a list of all names of the Place
-        :rtype: list
+        :rtype: list of PlaceName
         """
         return [self.name] + self.alt_names
 
@@ -485,7 +490,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         Return a list of alternative names for the current Place.
 
         :returns: Returns the alternative names for the Place
-        :rtype: list of strings
+        :rtype: list of PlaceName
         """
         return self.alt_names
 
@@ -495,7 +500,7 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
 
         :param name_list: The list of names to assign to the Place's internal
                           list.
-        :type name_list: list of strings
+        :type name_list: list of PlaceName
         """
         self.alt_names = name_list
 

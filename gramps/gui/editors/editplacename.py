@@ -2,7 +2,7 @@
 # Gramps - a GTK+/GNOME based genealogy program
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
-# Copyright (C) 2014       Nick Hall
+# Copyright (C) 2014-2015  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -31,9 +31,10 @@ from gi.repository import Gtk
 # Gramps modules
 #
 #-------------------------------------------------------------------------
-from ..managedwindow import ManagedWindow
+from .editsecondary import EditSecondary
+from ..glade import Glade
+from ..widgets import MonitoredDate, MonitoredEntry
 from ..dialog import ErrorDialog
-from ..display import display_help
 from gramps.gen.const import GRAMPS_LOCALE as glocale
 _ = glocale.translation.gettext
 
@@ -42,62 +43,53 @@ _ = glocale.translation.gettext
 # EditPlaceName class
 #
 #-------------------------------------------------------------------------
-class EditPlaceName(ManagedWindow):
+class EditPlaceName(EditSecondary):
+    """
+    Displays a dialog that allows the user to edit a place name.
+    """
+    def __init__(self, dbstate, uistate, track, pname, callback):
+        EditSecondary.__init__(self, dbstate, uistate, track, pname, callback)
 
-    def __init__(self, dbstate, uistate, track, data, index, callback):
-        ManagedWindow.__init__(self, uistate, track, self.__class__)
-
-        self.data = data
-        self.index = index
-        self.callback = callback
-
+    def _local_init(self):
         self.width_key = 'interface.place-name-width'
         self.height_key = 'interface.place-name-height'
 
-        window = Gtk.Dialog('', uistate.window,
-                            Gtk.DialogFlags.DESTROY_WITH_PARENT, None)
+        self.top = Glade()
+        self.set_window(self.top.toplevel,
+                        self.top.get_object("title"),
+                        _('Place Name Editor'))
 
-        self.cancel_button = window.add_button(_('_Cancel'),
-                                              Gtk.ResponseType.CANCEL)
-        self.ok_button = window.add_button(_('_OK'),
-                                             Gtk.ResponseType.ACCEPT)
-        self.help_button = window.add_button(_('_Help'),
-                                              Gtk.ResponseType.HELP)
+    def _setup_fields(self):
+        self.value = MonitoredEntry(
+            self.top.get_object("value"), self.obj.set_value,
+            self.obj.get_value, self.db.readonly)
 
-        window.connect('response', self.response)
-        self.set_window(window, None, _('Place Name Editor'))
+        self.date = MonitoredDate(
+            self.top.get_object("date_entry"),
+            self.top.get_object("date_stat"),
+            self.obj.get_date_object(),
+            self.uistate,
+            self.track,
+            self.db.readonly)
 
-        hbox = Gtk.Box()
-        label = Gtk.Label(label=_('Place Name:'))
-        self.entry = Gtk.Entry()
-        if index >= 0:
-            self.entry.set_text(data[index])
-        hbox.pack_start(label, False, False, 4)
-        hbox.pack_start(self.entry, True, True, 4)
-        hbox.show_all()
-        window.vbox.pack_start(hbox, False, False, 4)
+        self.language = MonitoredEntry(
+            self.top.get_object("language"), self.obj.set_language,
+            self.obj.get_language, self.db.readonly)
 
-        self._set_size()
-        self.show()
+    def _connect_signals(self):
+        self.define_help_button(self.top.get_object('help'))
+        self.define_cancel_button(self.top.get_object('cancel'))
+        self.define_ok_button(self.top.get_object('ok'),self.save)
 
-    def response(self, obj, response_id):
-        if response_id == Gtk.ResponseType.CANCEL:
-            self.close()
-        if response_id == Gtk.ResponseType.ACCEPT:
-            self.save()
-        if response_id == Gtk.ResponseType.HELP:
-            display_help('', '')
+    def build_menu_names(self, obj):
+        return (_('Place Name'),_('Place Name Editor'))
 
     def save(self, *obj):
-        place_name = self.entry.get_text()
-        if not place_name:
+        if not self.obj.get_value():
             ErrorDialog(_("Cannot save place name"),
                 _("The place name cannot be empty"))
             return
-        if self.index >= 0:
-            self.data[self.index] = place_name
-        else:
-            self.data.append(place_name)
+
         if self.callback:
-            self.callback(place_name)
+            self.callback(self.obj)
         self.close()

@@ -118,7 +118,7 @@ class PlaceBaseModel(object):
         return str(data[2])
 
     def column_name(self, data):
-        return str(data[6])
+        return str(data[6][0])
 
     def column_longitude(self, data):
         if not data[3]:

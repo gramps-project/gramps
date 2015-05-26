@@ -3,7 +3,7 @@
 #
 # Copyright (C) 2000-2006  Donald N. Allingham
 # Copyright (C) 2009       Gary Burton
-# Copyright (C) 2010       Nick Hall
+# Copyright (C) 2010,2015  Nick Hall
 # Copyright (C) 2011       Tim G L lyons
 #
 # This program is free software; you can redistribute it and/or modify
@@ -47,7 +47,7 @@ from gramps.gen.lib import NoteType, Place
 from gramps.gen.db import DbTxn
 from gramps.gen.utils.location import get_location_list
 from .editprimary import EditPrimary
-from .displaytabs import (PlaceRefEmbedList, AltNameEmbedList,
+from .displaytabs import (PlaceRefEmbedList, PlaceNameEmbedList,
                           LocationEmbedList, CitationEmbedList,
                           GalleryTab, NoteTab, WebEmbedList, PlaceBackRefList)
 from ..widgets import (MonitoredEntry, PrivacyButton, MonitoredTagList,
@@ -114,7 +114,8 @@ class EditPlace(EditPrimary):
                                         self.db.readonly)
         
         self.name = MonitoredEntry(self.top.get_object("name_entry"),
-                                    self.obj.set_name, self.obj.get_name,
+                                    self.obj.get_name().set_value,
+                                    self.obj.get_name().get_value,
                                     self.db.readonly,
                                     changed=self.name_changed)
         
@@ -195,10 +196,10 @@ class EditPlace(EditPrimary):
         self._add_tab(notebook, self.placeref_list)
         self.track_ref_for_deletion("placeref_list")
         
-        self.alt_name_list = AltNameEmbedList(self.dbstate,
-                                              self.uistate,
-                                              self.track,
-                                              self.obj.alt_names)
+        self.alt_name_list = PlaceNameEmbedList(self.dbstate,
+                                                self.uistate,
+                                                self.track,
+                                                self.obj.alt_names)
         self._add_tab(notebook, self.alt_name_list)
         self.track_ref_for_deletion("alt_name_list")
 
@@ -253,15 +254,9 @@ class EditPlace(EditPrimary):
 
     def save(self, *obj):
         self.ok_button.set_sensitive(False)
-        if self.object_is_empty():
-            ErrorDialog(_("Cannot save place"),
-                        _("No data exists for this place. Please "
-                          "enter data or cancel the edit."))
-            self.ok_button.set_sensitive(True)
-            return
 
-        if self.obj.get_name().strip() == '':
-            msg1 = _("Cannot save location. Name not entered.")
+        if self.obj.get_name().get_value().strip() == '':
+            msg1 = _("Cannot save place. Name not entered.")
             msg2 = _("You must enter a name before saving.") 
             ErrorDialog(msg1, msg2)
             self.ok_button.set_sensitive(True)

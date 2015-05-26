@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2014      Nick Hall
+# Copyright (C) 2014-2015  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,17 +30,21 @@ from gi.repository import Gtk
 # Gramps classes
 #
 #-------------------------------------------------------------------------
-
+from gramps.gen.datehandler import get_date
 
 #-------------------------------------------------------------------------
 #
-# AltNameModel
+# PlaceNameModel
 #
 #-------------------------------------------------------------------------
-class AltNameModel(Gtk.ListStore):
+class PlaceNameModel(Gtk.ListStore):
 
-    def __init__(self, place_name_list, db):
-        Gtk.ListStore.__init__(self, str)
+    def __init__(self, obj_list, db):
+        Gtk.ListStore.__init__(self, str, str, str, object)
         self.db = db
-        for place_name in place_name_list:
-            self.append(row=[place_name])
+        for obj in obj_list:
+            self.append(row=[obj.get_value(),
+                             get_date(obj),
+                             obj.get_language(),
+                             obj,
+                             ])

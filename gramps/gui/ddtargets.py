@@ -138,6 +138,7 @@ class _DdTargets(object):
         self.NAME               = _DdType(self, 'name')
         self.NOTE_LINK          = _DdType(self, 'note-link')
         self.PLACE_LINK         = _DdType(self, 'place-link')
+        self.PLACENAME          = _DdType(self, 'placename')
         self.PLACEREF           = _DdType(self, 'placeref')
         self.REPO_LINK          = _DdType(self, 'repo-link')
         self.REPOREF            = _DdType(self, 'reporef')
@@ -149,7 +150,7 @@ class _DdTargets(object):
         self.PERSONREF          = _DdType(self, 'personref')
         self.SOURCEREF          = _DdType(self, 'srcref')
         self.SOURCE_LINK        = _DdType(self, 'source-link')
-        self.SRCATTRIBUTE          = _DdType(self, 'sattr')
+        self.SRCATTRIBUTE       = _DdType(self, 'sattr')
         self.URL                = _DdType(self, 'url')
         self.SURNAME            = _DdType(self, 'surname')
         self.CITATION_LINK      = _DdType(self, 'citation-link')
@@ -170,6 +171,7 @@ class _DdTargets(object):
             self.NOTE_LINK, 
             self.PLACE_LINK, 
             self.PLACEREF, 
+            self.PLACENAME,
             self.PERSON_LINK, 
             self.FAMILY_LINK, 
             self.LINK_LIST, 
