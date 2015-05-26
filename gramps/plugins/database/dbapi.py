@@ -10,7 +10,6 @@ import re
 import os
 import logging
 import shutil
-import bisect
 
 #------------------------------------------------------------------------
 #
@@ -463,8 +462,10 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "handles_func": self.get_tag_handles,
                 "add_func": self.add_tag,
                 "commit_func": self.commit_tag,
+                "has_handle_func": self.has_handle_for_tag,
                 "iter_func": self.iter_tags,
                 "count": self.get_number_of_tags,
+                "raw_func": self._get_raw_tag_data,
             })
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
@@ -1449,13 +1450,13 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         if batch_transaction:
             return
-        name = conv_to_unicode(self._order_by_person_key(person), 'utf-8')
-        i = bisect.bisect(self.surname_list, name)
-        if 0 < i <= len(self.surname_list):
-            if self.surname_list[i-1] != name:
-                self.surname_list.insert(i, name)
-        else:
-            self.surname_list.insert(i, name)
+        #name = self._order_by_person_key(person)
+        #i = bisect.bisect(self.surname_list, name)
+        #if 0 < i <= len(self.surname_list):
+        #    if self.surname_list[i-1] != name:
+        #        self.surname_list.insert(i, name)
+        #else:
+        #    self.surname_list.insert(i, name)
 
     def remove_from_surname_list(self, person):
         """
@@ -1466,11 +1467,11 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         The function must be overridden in the derived class.
         """
         name = self._order_by_person_key(person)
-        if isinstance(name, str):
-            uname = name
-            name = name.encode('utf-8')
-        else:
-            uname = str(name)
+        #if isinstance(name, str):
+        #    uname = name
+        #    name = name.encode('utf-8')
+        #else:
+        #    uname = str(name)
         # FIXME: check database
 
     def commit_family(self, family, trans, change_time=None):
@@ -2613,6 +2614,10 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def has_handle_for_note(self, key):
         cur = self.dbapi.execute("select * from note where handle = ?", [key])
+        return cur.fetchone() != None
+
+    def has_handle_for_tag(self, key):
+        cur = self.dbapi.execute("select * from tag where handle = ?", [key])
         return cur.fetchone() != None
 
     def has_gramps_id_for_person(self, key):
