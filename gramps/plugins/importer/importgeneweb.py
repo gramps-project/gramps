@@ -44,6 +44,7 @@ LOG = logging.getLogger(".ImportGeneWeb")
 #
 #-------------------------------------------------------------------------
 from gramps.gen.const import GRAMPS_LOCALE as glocale
+from gramps.gen.utils.libformatting import ImportInfo
 _ = glocale.translation.gettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.errors import GedcomError
@@ -91,6 +92,7 @@ def importData(database, filename, user):
         errmsg = _("%s could not be opened\n") % filename
         user.notify_error(errmsg,str(msg))
         return
+    return ImportInfo({_("Results"): _("done")})
 
 #-------------------------------------------------------------------------
 # For a description of the file format see

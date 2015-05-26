@@ -40,6 +40,7 @@ from gramps.gen.errors import DbError, GedcomError
 from gramps.gui.glade import Glade
 from gramps.plugins.lib.libmixin import DbMixin
 from gramps.plugins.lib import libgedcom
+from gramps.gen.utils.libformatting import ImportInfo
 # The following code is necessary to ensure that when Help->Plugin
 # Manager->Reload is executed, not only is the top-level exportgedcom file
 # reloaded, but also the dependent libgedcom. This ensures that testing can have
@@ -143,3 +144,4 @@ def importData(database, filename, user):
     except GedcomError as msg:
         user.notify_error(_('Error reading GEDCOM file'), str(msg))
         return
+    return ImportInfo({_("Results"): _("done")})

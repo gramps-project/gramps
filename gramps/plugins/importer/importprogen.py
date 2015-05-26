@@ -54,6 +54,7 @@ from gramps.gen.lib import (Attribute, AttributeType, ChildRef, Date, Event,
                             NameType, Note, NoteType, Person, Place, Source, 
                             Surname, Citation, Location, NameOriginType)
 from gramps.gen.db import DbTxn
+from gramps.gen.utils.libformatting import ImportInfo
 
 class ProgenError(Exception):
     """Error used to report Progen errors."""
@@ -81,6 +82,7 @@ def _importData(database, filename, user):
     except IOError as msg:
         user.notify_error(_("%s could not be opened") % filename, str(msg))
         return
+    return ImportInfo({_("Results"): _("done")})
 
 
 def _find_from_handle(progen_id, table):
