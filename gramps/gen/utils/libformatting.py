@@ -197,3 +197,31 @@ class FormattingHelper(object):
         self._text_cache = {}
         self._markup_cache = {}
 
+
+class ImportInfo(object):
+    """
+    Class object that can hold information about the import
+    """
+    def __init__(self, default_info=None):
+        """
+        Init of the import class.
+        
+        This creates the datastructures to hold info
+        """
+        if default_info is None:
+            self.info = {}
+        else:
+            self.info = default_info
+        
+    def info_text(self):
+        """
+        Construct an info message from the data in the class.
+        """
+        text = ""
+        for key in self.info:
+            # Do not fail; can this fail?
+            try:
+                text += "%s: %s\n" % (key, self.info[key])
+            except:
+                pass
+        return text

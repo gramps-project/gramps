@@ -51,7 +51,6 @@ _ = glocale.translation.sgettext
 ngettext = glocale.translation.ngettext # else "nearby" comments are ignored
 from gramps.gen.lib import ChildRef, Citation, Event, EventRef, EventType, Family, FamilyRelType, Name, NameType, Note, NoteType, Person, Place, Source, Surname, Tag
 from gramps.gen.db import DbTxn
-from gramps.gen.plug.utils import OpenFileOrStdin
 from gramps.gen.datehandler import parser as _dp
 from gramps.gen.utils.string import gender as gender_map
 from gramps.gen.utils.id import create_id
@@ -59,6 +58,7 @@ from gramps.gen.lib.eventroletype import EventRoleType
 from gramps.gen.constfunc import conv_to_unicode
 from gramps.gen.config import config
 from gramps.gen.display.place import displayer as place_displayer
+from gramps.gen.utils.libformatting import ImportInfo
 
 #-------------------------------------------------------------------------
 #
@@ -75,54 +75,6 @@ def get_primary_event_ref_from_type(dbase, person, event_name):
             if event and event.type.is_type(event_name):
                 return ref
     return None
-
-#-------------------------------------------------------------------------
-#
-# Encoding support for CSV, from http://docs.python.org/lib/csv-examples.html
-#
-#-------------------------------------------------------------------------
-class UTF8Recoder(object):
-    """
-    Iterator that reads an encoded stream and reencodes the input to UTF-8
-    """
-    def __init__(self, stream, encoding):
-        self.reader = codecs.getreader(encoding)(stream)
-
-    def __iter__(self):
-        return self
-
-    def __next__(self):
-        "Encode the next line of the file."
-        return self.reader.next().encode("utf-8")
-
-    next = __next__
-
-class UnicodeReader(object):
-    """
-    A CSV reader which will iterate over lines in the CSV file,
-    which is encoded in the given encoding.
-    """
-
-    def __init__(self, csvfile, encoding="utf-8", **kwds):
-        self.first_row = True
-        csvfile = UTF8Recoder(csvfile, encoding)
-        self.reader = csv.reader(csvfile, **kwds)
-
-    def __next__(self):
-        "Read the next line of the file."
-        row = next(self.reader)
-        rowlist = [conv_to_unicode(s, "utf-8") for s in row]
-        # Add check for Byte Order Mark (Windows, Notepad probably):
-        if self.first_row:
-            if len(rowlist) > 0 and rowlist[0].startswith("\ufeff"):
-                rowlist[0] = rowlist[0][1:]
-            self.first_row = False
-        return rowlist
-
-    def __iter__(self):
-        return self
-
-    next = __next__
 
 #-------------------------------------------------------------------------
 #
@@ -152,13 +104,13 @@ def importData(dbase, filename, user):
                                          config.get('preferences.tag-on-import') else None))
     try:
         dbase.prepare_import()
-        with OpenFileOrStdin(filename, 'b') as filehandle:
+        with open(filename, 'r') as filehandle:
             parser.parse(filehandle)
         dbase.commit_import()
     except EnvironmentError as err:
         user.notify_error(_("%s could not be opened\n") % filename, str(err))
         return
-    return None # This module doesn't provide info about what got imported.
+    return ImportInfo({_("Results"): _("done")})
 
 #-------------------------------------------------------------------------
 #
@@ -262,12 +214,11 @@ class CSVParser(object):
 
     def read_csv(self, filehandle):
         "Read the data from the file and return it as a list."
-        reader = UnicodeReader(filehandle)
         try:
-            data = [[r.strip() for r in row] for row in reader]
+            data = [[r.strip() for r in row] for row in csv.reader(filehandle)]
         except csv.Error as err:
             self.user.notify_error(_('format error: line %(line)d: %(zero)s') % {
-                        'line' : reader.reader.line_num, 'zero' : err } )
+                        'line' : reader.line_num, 'zero' : err } )
             return None
         return data
 

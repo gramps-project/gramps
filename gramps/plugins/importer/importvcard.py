@@ -52,6 +52,7 @@ from gramps.gen.lib import (Address, Date, DateError, Event, EventRef,
         EventType, Name, NameType, Person, Surname, Url, UrlType)
 from gramps.gen.db import DbTxn
 from gramps.gen.plug.utils import OpenFileOrStdin
+from gramps.gen.utils.libformatting import ImportInfo
 
 #-------------------------------------------------------------------------
 #
@@ -72,7 +73,7 @@ def importData(database, filename, user):
     except GrampsImportError as msg:
         user.notify_error(_("%s could not be opened\n") % filename, str(msg))
         return
-    return None # This module doesn't provide info about what got imported.
+    return ImportInfo({_("Results"): _("done")})
 
 
 def splitof_nameprefix(name):

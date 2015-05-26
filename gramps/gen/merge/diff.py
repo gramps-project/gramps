@@ -195,7 +195,9 @@ def import_as_dict(filename, user=None):
                     #print("ERROR:", name, exception)
                 return False
             import_function = getattr(mod, pdata.import_function)
-            import_function(db, filename, user)
+            results = import_function(db, filename, user)
+            if results is None:
+                return None
             return db
     return None
 
@@ -311,9 +313,10 @@ def diff_db_to_file(old_db, filename, user=None):
         user = User()
     # First, get data as a DictionaryDb
     new_db = import_as_dict(filename, user, user)
-    # Next get differences:
-    diffs, m_old, m_new = diff_dbs(old_db, new_db, user)
-    return diffs, m_old, m_new
+    if new_db is not None:
+        # Next get differences:
+        diffs, m_old, m_new = diff_dbs(old_db, new_db, user)
+        return diffs, m_old, m_new
     
 def from_struct(struct):
     """
