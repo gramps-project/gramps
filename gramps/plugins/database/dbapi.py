@@ -2099,7 +2099,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         cur = self.dbapi.execute("SELECT handle FROM person;")
         row = cur.fetchone()
         if row:
-            return row[0]
+            return self.get_person_from_handle(row[0])
 
     def get_bookmarks(self):
         return self.bookmarks
