@@ -170,12 +170,13 @@
             </child>
             <child>
               <object class="GtkButton" id="button26">
-                <property name="label">_Apply</property>
+                <property name="label" translatable="yes">_Apply</property>
                 <property name="use_action_appearance">False</property>
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="can_default">True</property>
                 <property name="receives_default">False</property>
+                <property name="use_underline">True</property>
                 <signal name="clicked" handler="on_apply_clicked" object="filters" swapped="yes"/>
               </object>
               <packing>
