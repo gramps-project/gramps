@@ -10713,7 +10713,7 @@ msgstr "Parrain"
 # trunk
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:68
 msgid "Enclosed By"
-msgstr "Lié à"
+msgstr "Fait partie de"
 
 #: ../gramps/gui/editors/displaytabs/placerefembedlist.py:137
 msgid "Place cycle detected"
