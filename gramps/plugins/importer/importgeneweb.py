@@ -659,9 +659,10 @@ class GeneWebParser(object):
                 death_source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif field == '#buri' and idx < len(fields):
-                LOG.debug("Burial Date: %s" % fields[idx])
-                bur_date = self.parse_date(self.decode(fields[idx]))
-                idx += 1
+                if fields[idx][0]!='#': # bug in GeneWeb: empty #buri fields
+                    LOG.debug("Burial Date: %s" % fields[idx])
+                    bur_date = self.parse_date(self.decode(fields[idx]))
+                    idx += 1
             elif field == '#crem' and idx < len(fields):
                 LOG.debug("Cremention Date: %s" % fields[idx])
                 crem_date = self.parse_date(self.decode(fields[idx]))
