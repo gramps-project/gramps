@@ -243,6 +243,7 @@ gramps/gen/filters/rules/place/_hassourceof.py
 gramps/gen/filters/rules/place/_hastag.py
 gramps/gen/filters/rules/place/_hastitle.py
 gramps/gen/filters/rules/place/_inlatlonneighborhood.py
+gramps/gen/filters/rules/place/_isenclosedby.py
 gramps/gen/filters/rules/place/_matcheseventfilter.py
 gramps/gen/filters/rules/place/_matchesfilter.py
 gramps/gen/filters/rules/place/_matchessourceconfidence.py
