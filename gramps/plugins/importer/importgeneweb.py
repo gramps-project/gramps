@@ -644,9 +644,8 @@ class GeneWebParser(object):
                 birth_source = self.get_or_create_source(self.decode(fields[idx]))
                 idx += 1
             elif field[0] == '!':
-                LOG.debug("Baptize at: %s" % fields[idx])
-                bapt_date = self.parse_date(self.decode(fields[idx][1:]))
-                idx += 1
+                LOG.debug("Baptize at: %s" % field[1:])
+                bapt_date = self.parse_date(self.decode(field[1:]))
             elif field == '#bp' and idx < len(fields):
                 LOG.debug("Birth Place: %s" % fields[idx])
                 birth_place = self.get_or_create_place(self.decode(fields[idx]))
