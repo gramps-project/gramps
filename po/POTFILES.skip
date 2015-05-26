@@ -532,11 +532,4 @@ gramps/webapp/grampsdb/view/png.py
 #   Glade files
 #
 gramps/gui/glade/gramps.glade
-gramps/plugins/export/exportcsv.glade
-gramps/plugins/export/exportftree.glade
-gramps/plugins/export/exportgeneweb.glade
-gramps/plugins/export/exportvcalendar.glade
-gramps/plugins/export/exportvcard.glade
 gramps/plugins/tool/check.glade
-# Development tools
-gramps/plugins/tool/phpgedview.glade
