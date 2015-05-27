@@ -90,8 +90,8 @@ class MergePlace(ManagedWindow):
             self.get_widget(widget_name).set_label(PLACE_NAME)
         entry1 = self.get_widget("name1")
         entry2 = self.get_widget("name2")
-        entry1.set_text(self.pl1.get_name())
-        entry2.set_text(self.pl2.get_name())
+        entry1.set_text(self.pl1.get_name().get_value())
+        entry2.set_text(self.pl2.get_name().get_value())
         if entry1.get_text() == entry2.get_text():
             for widget_name in ('name1', 'name2', 'name_btn1', 'name_btn2'):
                 self.get_widget(widget_name).set_sensitive(False)

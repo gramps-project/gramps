@@ -420,3 +420,25 @@ plg.category = CATEGORY_TEXT
 plg.reportclass = 'RecordsReport'
 plg.optionclass = 'RecordsReportOptions'
 plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI, REPORT_MODE_BKI]
+
+#------------------------------------------------------------------------
+#
+# Records Report
+#
+#------------------------------------------------------------------------
+
+plg = newplugin()
+plg.id = 'notelinkreport'
+plg.name = _("Note Link Report")
+plg.description = _("Shows status of links in notes")
+plg.version = '1.0'
+plg.gramps_target_version = MODULE_VERSION
+plg.status = STABLE
+plg.fname = 'notelinkreport.py'
+plg.ptype = REPORT
+plg.authors = ["Doug Blank"]
+plg.authors_email = ["doug.blank@gmail.com"]
+plg.category = CATEGORY_TEXT
+plg.reportclass = 'NoteLinkReport'
+plg.optionclass = 'NoteLinkOptions'
+plg.report_modes = [REPORT_MODE_GUI, REPORT_MODE_CLI, REPORT_MODE_BKI]

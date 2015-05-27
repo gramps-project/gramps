@@ -119,9 +119,7 @@
                   <object class="UndoableEntry" id="language">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Mail address. 
-
-Note: Use Residence Event for genealogical address data.</property>
+                    <property name="tooltip_text" translatable="yes">Language in which the name is written.</property>
                     <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>
@@ -169,7 +167,7 @@ Note: Use Residence Event for genealogical address data.</property>
                   <object class="ValidatableMaskedEntry" id="date_entry">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Date at which the address is valid.</property>
+                    <property name="tooltip_text" translatable="yes">Date range in which the name is valid.</property>
                     <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>
@@ -182,9 +180,7 @@ Note: Use Residence Event for genealogical address data.</property>
                   <object class="UndoableEntry" id="value">
                     <property name="visible">True</property>
                     <property name="can_focus">True</property>
-                    <property name="tooltip_text" translatable="yes">Mail address. 
-
-Note: Use Residence Event for genealogical address data.</property>
+                    <property name="tooltip_text" translatable="yes" context="place">The name of the place.</property>
                     <property name="hexpand">True</property>
                     <property name="invisible_char">●</property>
                   </object>

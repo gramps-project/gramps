@@ -52,7 +52,7 @@ def run(database, document, obj):
                     tagvalue = ref_obj
                     tagcheck = _("Ok")
                 else:
-                    tagvalue = styledtext_tag.value
+                    tagvalue = lvalue
                     tagcheck = _("Failed: missing object")
             else:
                 tagtype = _("Internet")

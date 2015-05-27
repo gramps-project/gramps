@@ -50,8 +50,12 @@ class PlaceName(SecondaryObject, DateBase):
         Create a new PlaceName instance, copying from the source if present.
         """
         DateBase.__init__(self, source)
-        self.value = ''
-        self.lang = ''
+        if source:
+            self.value = source.value
+            self.lang = source.lang
+        else:
+            self.value = ''
+            self.lang = ''
 
     def serialize(self):
         """
