@@ -5543,27 +5543,35 @@ class GedcomParser(UpdateCallback):
                 location = self.__get_first_loc(old_place)
                 place = old_place
             else:
-                # This is the first ADDR
-                refs = list(self.dbase.find_backlink_handles(place_handle))
-                # We haven't commited the event yet, so the place will not be
-                # linked to it. If there are any refs they will be from other
-                # events (etc)
-                if len(refs) == 0:
-                    place = self.__find_place(title, location)
-                    if place is None:
-                        place = old_place
-                        self.__add_location(place, location)
+                try:
+                    # This is the first ADDR
+                    refs = list(self.dbase.find_backlink_handles(place_handle))
+                    # We haven't commited the event yet, so the place will not be
+                    # linked to it. If there are any refs they will be from other
+                    # events (etc)
+                    if len(refs) == 0:
+                        place = self.__find_place(title, location)
+                        if place is None:
+                            place = old_place
+                            self.__add_location(place, location)
+                        else:
+                            place.merge(old_place)
+                            self.place_import.remove_location(old_place.handle)
+                            self.dbase.remove_place(place_handle, self.trans)
+                            self.place_names[title].remove(place_handle)
                     else:
-                        place.merge(old_place)
-                        self.place_import.remove_location(old_place.handle)
-                        self.dbase.remove_place(place_handle, self.trans)
-                        self.place_names[title].remove(place_handle)
-                else:
+                        place = self.__find_place(title, location)
+                        if place is None:
+                            place = self.__create_place(title, location)
+                        else:
+                            pass
+                except:
                     place = self.__find_place(title, location)
                     if place is None:
                         place = self.__create_place(title, location)
                     else:
                         pass
+                    print(free_form, place_handle)
         else:
             # The first thing we encounter is ADDR
             title = ""
