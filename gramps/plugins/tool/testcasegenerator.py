@@ -50,7 +50,7 @@ from gramps.gen.lib import (Address, Attribute, AttributeType, ChildRef,
                 ChildRefType, Citation, Date, Event, EventRef, EventRoleType, 
                 EventType, Family, FamilyRelType, GrampsType, LdsOrd, Location, 
                 MediaObject, MediaRef, Name, NameOriginType, NameType, Note,
-                NoteType, Person, PersonRef, Place, PlaceType, PlaceRef,
+                NoteType, Person, PersonRef, Place, PlaceType, PlaceRef, PlaceName,
                 RepoRef, Repository, RepositoryType, Source, SourceMediaType,
                 SrcAttribute, SrcAttributeType, Surname, Tag, Url, UrlType)
 from gramps.gen.lib.addressbase import AddressBase
@@ -194,6 +194,7 @@ class TestcaseGenerator(tool.BatchTool):
     def init_gui(self,uistate):
         title = "%s - Gramps" % _("Generate testcases")
         self.top = Gtk.Dialog(title, parent=uistate.window)
+        self.window = uistate.window
         self.top.set_default_size(400,150)
         self.top.vbox.set_spacing(5)
         label = Gtk.Label(label='<span size="larger" weight="bold">%s</span>' % _("Generate testcases"))
@@ -1670,7 +1671,7 @@ class TestcaseGenerator(tool.BatchTool):
         
         if isinstance(o, Place):
             o.set_title(self.rand_text(self.LONG))
-            o.set_name(self.rand_text(self.SHORT))
+            o.set_name(PlaceName(value=self.rand_text(self.SHORT)))
             o.set_code(self.rand_text(self.SHORT))
             if randint(0, 1) == 1:
                 if randint(0, 4) == 1:

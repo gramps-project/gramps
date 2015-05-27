@@ -314,6 +314,8 @@ class Place(CitationBase, NoteBase, MediaBase, UrlBase, PrimaryObject):
         :param name: name to assign to the Place
         :type name: PlaceName
         """
+        if not isinstance(name, PlaceName):
+            raise ValueError("Place.set_name(name) requires a PlaceName()")
         self.name = name
 
     def get_name(self):

@@ -45,7 +45,7 @@ class PlaceName(SecondaryObject, DateBase):
     This class is for keeping information about place names.
     """
 
-    def __init__(self, source=None):
+    def __init__(self, source=None, **kwargs):
         """
         Create a new PlaceName instance, copying from the source if present.
         """
@@ -56,6 +56,11 @@ class PlaceName(SecondaryObject, DateBase):
         else:
             self.value = ''
             self.lang = ''
+        for key in kwargs:
+            if key in ["value", "lang"]:
+                setattr(self, key, kwargs[key])
+            else:
+                raise AttributeError("PlaceName does not have property '%s'" % key)
 
     def serialize(self):
         """
