@@ -44,9 +44,10 @@ from gi.repository import Gtk
 # GRAMPS modules
 #
 #-------------------------------------------------------------------------
-from gramps.gen.lib.placetype import PlaceType
+from gramps.gen.lib import Place, PlaceType
 from gramps.gen.datehandler import format_time
 from gramps.gen.utils.place import conv_lat_lon
+from gramps.gen.display.place import displayer as place_displayer
 from .flatbasemodel import FlatBaseModel
 from .treebasemodel import TreeBaseModel
 
@@ -115,7 +116,9 @@ class PlaceBaseModel(object):
         return len(self.fmap)+1
 
     def column_title(self, data):
-        return str(data[2])
+        place = Place()
+        place.unserialize(data)
+        return place_displayer.display(self.db, place)
 
     def column_name(self, data):
         return str(data[6][0])
