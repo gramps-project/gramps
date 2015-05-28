@@ -554,7 +554,7 @@ class DbManager(CLIDbManager):
                 _("Remove the '%s' Family Tree?") % self.data_to_delete[0],
                 _("Removing this Family Tree will permanently destroy the data."),
                 _("Remove Family Tree"),
-                self.__really_delete_db)
+                self.__really_delete_db, parent=self.top)
         else:
             rev = self.data_to_delete[0]
             parent = store[(path[0],)][0]
@@ -566,7 +566,7 @@ class DbManager(CLIDbManager):
                 _("Removing this version will prevent you from "
                   "extracting it in the future."),
                 _("Remove version"),
-                self.__really_delete_version)
+                self.__really_delete_version, parent=self.top)
 
     def __really_delete_db(self):
         """
