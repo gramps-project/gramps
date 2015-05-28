@@ -1145,7 +1145,7 @@ class ClipboardListView(object):
     
     def object_pixbuf(self, column, cell, model, node, user_data=None):
         o = model.get_value(node, 1)
-        if o._dbid != self.dbstate.db.get_dbid():
+        if o._dbid is not None and o._dbid != self.dbstate.db.get_dbid():
             if isinstance(o.__class__.UNAVAILABLE_ICON, str):
                 cell.set_property('icon-name',
                                   o.__class__.UNAVAILABLE_ICON)
