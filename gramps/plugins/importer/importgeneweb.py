@@ -76,60 +76,60 @@ pevents_map = {
     "#bapt" : EventType.BAPTISM, #Epers_Baptism
     "#deat" : EventType.DEATH, #Epers_Death
     "#buri" : EventType.BURIAL, #Epers_Burial
-    "#crem" : EventType.CREMATION, #Epers_Cremation
-    "#acco" : EventType((EventType.CUSTOM, _('Accomplishment'))) , #Epers_Accomplishment
-    "#acqu" : EventType((EventType.CUSTOM, _('Acquisition'))), #Epers_Acquisition
-    "#adhe" : EventType((EventType.CUSTOM, _('Adhesion'))), #Epers_Adhesion
-    "#awar" : EventType((EventType.CUSTOM, _('Award'))), #Epers_Decoration
+    "#crem" : EventType.CREMATION,
+    "#acco" : EventType((EventType.CUSTOM, _('Accomplishment'))) ,
+    "#acqu" : EventType((EventType.CUSTOM, _('Acquisition'))),
+    "#adhe" : EventType((EventType.CUSTOM, _('Adhesion'))),
+    "#awar" : EventType((EventType.CUSTOM, _('Award'))),
     "#bapl" : LdsOrd.BAPTISM, #Epers_BaptismLDS
     "#barm" : EventType.BAR_MITZVAH, #Epers_BarMitzvah
     "#basm" : EventType.BAS_MITZVAH, #Epers_BatMitzvah
     "#bles" : EventType.BLESS, #Epers_Benediction
-    "#cens" : EventType.CENSUS, #Epers_Recensement
-    "#chgn" : EventType((EventType.CUSTOM, _('Change Name'))), #Epers_ChangeName
-    "#circ" : EventType((EventType.CUSTOM, _('Circumcision'))), #Epers_Circumcision
+    "#cens" : EventType.CENSUS,
+    "#chgn" : EventType((EventType.CUSTOM, _('Change Name'))),
+    "#circ" : EventType((EventType.CUSTOM, _('Circumcision'))),
     "#conf" : EventType.CONFIRMATION, #Epers_Confirmation
     "#conl" : LdsOrd.CONFIRMATION, #Epers_ConfirmationLDS
-    "#degr" : EventType.DEGREE, #Epers_Diploma
-    "#demm" : EventType((EventType.CUSTOM, _('Military Demobilisation'))), #Epers_DemobilisationMilitaire
-    "#dist" : EventType((EventType.CUSTOM, _('Award'))), #Epers_Distinction
+    "#degr" : EventType.DEGREE,
+    "#demm" : EventType((EventType.CUSTOM, _('Military Demobilisation'))),
+    "#dist" : EventType((EventType.CUSTOM, _('Award'))),
     "#dotl" : LdsOrd.ENDOWMENT, #Epers_DotationLDS
     "#educ" : EventType.EDUCATION, #Epers_Education
     "#elec" : EventType.ELECTED, #Epers_Election
-    "#emig" : EventType.EMIGRATION, #Epers_Emigration
-    "#endl" : EventType((EventType.CUSTOM, _('Dotation'))), #Epers_Dotation
-    "#exco" : EventType((EventType.CUSTOM, _('Excommunication'))), #Epers_Excommunication
-    "#fcom" : EventType.FIRST_COMMUN, #Epers_FirstCommunion
-    "#flkl" : EventType((EventType.CUSTOM, _('LDS Family Link'))), #Epers_FamilyLinkLDS
-    "#fune" : EventType((EventType.CUSTOM, _('Funeral'))), #Epers_Funeral
-    "#grad" : EventType.GRADUATION, #Epers_Graduate
-    "#hosp" : EventType((EventType.CUSTOM, _('Hospitalisation'))), #Epers_Hospitalisation
-    "#illn" : EventType((EventType.CUSTOM, _('Illness'))), #Epers_Illness
-    "#immi" : EventType.IMMIGRATION, #Epers_Immigration
-    "#lpas" : EventType((EventType.CUSTOM, _('List Passenger'))), #Epers_ListePassenger
-    "#mdis" : EventType((EventType.CUSTOM, _('Military Distinction'))), #Epers_MilitaryDistinction
-    "#mobm" : EventType((EventType.CUSTOM, _('Militaty Mobilisation'))), #Epers_MobilisationMilitaire
-    "#mpro" : EventType((EventType.CUSTOM, _('Military Promotion'))), #Epers_MilitaryPromotion
+    "#emig" : EventType.EMIGRATION,
+    "#endl" : EventType((EventType.CUSTOM, _('Dotation'))),
+    "#exco" : EventType((EventType.CUSTOM, _('Excommunication'))),
+    "#fcom" : EventType.FIRST_COMMUN,
+    "#flkl" : EventType((EventType.CUSTOM, _('LDS Family Link'))),
+    "#fune" : EventType((EventType.CUSTOM, _('Funeral'))),
+    "#grad" : EventType.GRADUATION,
+    "#hosp" : EventType((EventType.CUSTOM, _('Hospitalisation'))),
+    "#illn" : EventType((EventType.CUSTOM, _('Illness'))),
+    "#immi" : EventType.IMMIGRATION,
+    "#lpas" : EventType((EventType.CUSTOM, _('List Passenger'))),
+    "#mdis" : EventType((EventType.CUSTOM, _('Military Distinction'))),
+    "#mobm" : EventType((EventType.CUSTOM, _('Militaty Mobilisation'))),
+    "#mpro" : EventType((EventType.CUSTOM, _('Military Promotion'))),
     "#mser" : EventType.MILITARY_SERV, #Epers_MilitaryService
     "#natu" : EventType.NATURALIZATION, #Epers_Naturalisation
     "#occu" : EventType.OCCUPATION, #Epers_Occupation
     "#ordn" : EventType.ORDINATION, #Epers_Ordination
     "#prop" : EventType.PROPERTY, #Epers_Property
     "#resi" : EventType.RESIDENCE, #Epers_Residence
-    "#reti" : EventType.RETIREMENT, #Epers_Retired
+    "#reti" : EventType.RETIREMENT,
     "#slgc" : EventType((EventType.CUSTOM, _('LDS Seal to child'))), #Epers_ScellentChildLDS
     "#slgp" : LdsOrd.SEAL_TO_PARENTS, #Epers_ScellentParentLDS
-    "#slgs" : LdsOrd.SEAL_TO_SPOUSE, #Epers_ScellentSpouseLDS
+    "#slgs" : LdsOrd.SEAL_TO_SPOUSE,
     "#vteb" : EventType((EventType.CUSTOM, _('Sold property'))), #Epers_VenteBien
     "#will" : EventType.WILL, #Epers_Will
                      }
 
 fevents_map = {
     "#marr" : EventType.MARRIAGE, #Efam_Marriage
-    "#nmar" : EventType.NUM_MARRIAGES, #Efam_NoMarriage
+    "#nmar" : EventType.NUM_MARRIAGES,
     "#nmen" : EventType((EventType.CUSTOM, _('No mention'))), #Efam_NoMention
     "#enga" : EventType.ENGAGEMENT, #Efam_Engage
-    "#div"  : EventType.DIVORCE, #Efam_Divorce
+    "#div"  : EventType.DIVORCE,
     "#sep"  : EventType((EventType.CUSTOM, _('Separated'))), #Efam_Separated
     "#anul" : EventType.ANNULMENT, #Efam_Annulation
     "#marb" : EventType.MARR_BANNS, #Efam_MarriageBann

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-28 17:52+0200\n"
+"POT-Creation-Date: 2015-05-28 18:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20755,8 +20755,8 @@ msgstr ""
 #: ../gramps/plugins/importer/importcsv.py:109
 #: ../gramps/plugins/importer/importgedcom.py:124
 #: ../gramps/plugins/importer/importgedcom.py:138
-#: ../gramps/plugins/importer/importgeneweb.py:86
-#: ../gramps/plugins/importer/importgeneweb.py:92
+#: ../gramps/plugins/importer/importgeneweb.py:153
+#: ../gramps/plugins/importer/importgeneweb.py:159
 #: ../gramps/plugins/importer/importvcard.py:69
 #: ../gramps/plugins/importer/importvcard.py:72
 #, python-format
@@ -20765,7 +20765,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:111
 #: ../gramps/plugins/importer/importgedcom.py:147
-#: ../gramps/plugins/importer/importgeneweb.py:95
+#: ../gramps/plugins/importer/importgeneweb.py:162
 #: ../gramps/plugins/importer/importprogen.py:85
 #: ../gramps/plugins/importer/importvcard.py:74
 msgid "Results"
@@ -20773,7 +20773,7 @@ msgstr ""
 
 #: ../gramps/plugins/importer/importcsv.py:111
 #: ../gramps/plugins/importer/importgedcom.py:147
-#: ../gramps/plugins/importer/importgeneweb.py:95
+#: ../gramps/plugins/importer/importgeneweb.py:162
 #: ../gramps/plugins/importer/importprogen.py:85
 #: ../gramps/plugins/importer/importvcard.py:74
 msgid "done"
@@ -20946,7 +20946,7 @@ msgstr ""
 
 #. translators: leave all/any {...} untranslated
 #: ../gramps/plugins/importer/importcsv.py:295
-#: ../gramps/plugins/importer/importgeneweb.py:187
+#: ../gramps/plugins/importer/importgeneweb.py:274
 #: ../gramps/plugins/importer/importvcard.py:233
 msgid "Import Complete: {number_of} second"
 msgid_plural "Import Complete: {number_of} seconds"
@@ -21010,11 +21010,96 @@ msgstr ""
 msgid "Error reading GEDCOM file"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgeneweb.py:122
+#: ../gramps/plugins/importer/importgeneweb.py:80
+msgid "Accomplishment"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:81
+msgid "Acquisition"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:82
+msgid "Adhesion"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:83
+#: ../gramps/plugins/importer/importgeneweb.py:95
+msgid "Award"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:89
+msgid "Change Name"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:90
+msgid "Circumcision"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:94
+msgid "Military Demobilisation"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:100
+msgid "Dotation"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:101
+msgid "Excommunication"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:103
+msgid "LDS Family Link"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:104
+msgid "Funeral"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:106
+msgid "Hospitalisation"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:107
+msgid "Illness"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:109
+msgid "List Passenger"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:110
+msgid "Military Distinction"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:111
+msgid "Militaty Mobilisation"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:112
+msgid "Military Promotion"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:120
+msgid "LDS Seal to child"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:123
+msgid "Sold property"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:130
+msgid "No mention"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:133
+msgid "Separated"
+msgstr ""
+
+#: ../gramps/plugins/importer/importgeneweb.py:197
 msgid "GeneWeb import"
 msgstr ""
 
-#: ../gramps/plugins/importer/importgeneweb.py:824
+#: ../gramps/plugins/importer/importgeneweb.py:911
 msgid "Invalid date {date} in {gw_snippet}, preserving date as text."
 msgstr ""
 
