@@ -635,12 +635,18 @@ class ClipText(ClipWrapper):
     def __init__(self, dbstate, obj):
         super(ClipText, self).__init__(dbstate, obj)
         self._type  = _("Text")
-        self._pickle = str(self._obj, "utf-8")
+        if isinstance(self._obj, bytes):
+            self._pickle = str(self._obj, "utf-8")
+        else:
+            self._pickle = self._obj
         self.refresh()
 
     def refresh(self):
         self._title = _("Text")
-        self._value = str(self._obj, "utf-8")
+        if isinstance(self._obj, bytes):
+            self._value = str(self._obj, "utf-8")
+        else:
+            self._value = self._obj
 
 class ClipMediaObj(ClipHandleWrapper):
 
