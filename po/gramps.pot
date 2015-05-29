@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-28 18:27+0200\n"
+"POT-Creation-Date: 2015-05-29 16:26+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2925,8 +2925,8 @@ msgstr ""
 #: ../gramps/gui/glade/mergedata.glade:775
 #: ../gramps/gui/glade/mergemedia.glade:213
 #: ../gramps/gui/glade/mergemedia.glade:229
-#: ../gramps/gui/glade/mergeplace.glade:208
-#: ../gramps/gui/glade/mergeplace.glade:223
+#: ../gramps/gui/glade/mergeplace.glade:206
+#: ../gramps/gui/glade/mergeplace.glade:221
 #: ../gramps/gui/glade/mergesource.glade:213
 #: ../gramps/gui/glade/mergesource.glade:229
 msgid "Title:"
@@ -3708,8 +3708,8 @@ msgstr ""
 #: ../gramps/gui/glade/mergeevent.glade:229
 #: ../gramps/gui/glade/mergenote.glade:246
 #: ../gramps/gui/glade/mergenote.glade:262
-#: ../gramps/gui/glade/mergeplace.glade:488
-#: ../gramps/gui/glade/mergeplace.glade:505
+#: ../gramps/gui/glade/mergeplace.glade:486
+#: ../gramps/gui/glade/mergeplace.glade:503
 #: ../gramps/gui/glade/mergerepository.glade:246
 #: ../gramps/gui/glade/mergerepository.glade:262
 msgid "Type:"
@@ -4771,6 +4771,8 @@ msgstr ""
 #: ../gramps/gui/glade/editplaceref.glade:214
 #: ../gramps/gui/glade/mergeperson.glade:224
 #: ../gramps/gui/glade/mergeperson.glade:240
+#: ../gramps/gui/glade/mergeplace.glade:426
+#: ../gramps/gui/glade/mergeplace.glade:443
 #: ../gramps/plugins/gramplet/soundgen.py:65
 msgid "Name:"
 msgstr ""
@@ -4784,8 +4786,8 @@ msgstr ""
 #: ../gramps/gen/filters/rules/place/_hasdata.py:50
 #: ../gramps/gui/glade/editplace.glade:213
 #: ../gramps/gui/glade/editplaceref.glade:444
-#: ../gramps/gui/glade/mergeplace.glade:548
-#: ../gramps/gui/glade/mergeplace.glade:565
+#: ../gramps/gui/glade/mergeplace.glade:546
+#: ../gramps/gui/glade/mergeplace.glade:563
 msgid "Code:"
 msgstr ""
 
@@ -4926,15 +4928,15 @@ msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:49
 #: ../gramps/gui/glade/editplaceref.glade:244
-#: ../gramps/gui/glade/mergeplace.glade:239
-#: ../gramps/gui/glade/mergeplace.glade:254
+#: ../gramps/gui/glade/mergeplace.glade:237
+#: ../gramps/gui/glade/mergeplace.glade:252
 msgid "Latitude:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:49
 #: ../gramps/gui/glade/editplaceref.glade:317
-#: ../gramps/gui/glade/mergeplace.glade:270
-#: ../gramps/gui/glade/mergeplace.glade:285
+#: ../gramps/gui/glade/mergeplace.glade:268
+#: ../gramps/gui/glade/mergeplace.glade:283
 msgid "Longitude:"
 msgstr ""
 
@@ -5070,7 +5072,6 @@ msgid "Address:"
 msgstr ""
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:49
-#: ../gramps/plugins/tool/phpgedview.glade:206
 msgid "URL:"
 msgstr ""
 
@@ -6644,7 +6645,7 @@ msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr ""
 
 #: ../gramps/gen/merge/mergeplacequery.py:60
-#: ../gramps/gui/merge/mergeplace.py:76
+#: ../gramps/gui/merge/mergeplace.py:78
 msgid "Merge Places"
 msgstr ""
 
@@ -11371,9 +11372,7 @@ msgstr ""
 
 #: ../gramps/gui/editors/editplace.py:84
 #: ../gramps/gui/glade/editplace.glade:288
-#: ../gramps/gui/glade/mergeplace.glade:428
-#: ../gramps/gui/glade/mergeplace.glade:445
-#: ../gramps/gui/merge/mergeplace.py:54
+#: ../gramps/gui/merge/mergeplace.py:56
 msgid "place|Name:"
 msgstr ""
 
@@ -13521,8 +13520,8 @@ msgstr ""
 #: ../gramps/gui/glade/mergenote.glade:328
 #: ../gramps/gui/glade/mergeperson.glade:290
 #: ../gramps/gui/glade/mergeperson.glade:306
-#: ../gramps/gui/glade/mergeplace.glade:301
-#: ../gramps/gui/glade/mergeplace.glade:316
+#: ../gramps/gui/glade/mergeplace.glade:299
+#: ../gramps/gui/glade/mergeplace.glade:314
 #: ../gramps/gui/glade/mergerepository.glade:279
 #: ../gramps/gui/glade/mergerepository.glade:295
 #: ../gramps/gui/glade/mergesource.glade:345
@@ -13540,7 +13539,7 @@ msgstr ""
 #: ../gramps/gui/glade/mergemedia.glade:472
 #: ../gramps/gui/glade/mergenote.glade:487
 #: ../gramps/gui/glade/mergeperson.glade:427
-#: ../gramps/gui/glade/mergeplace.glade:638
+#: ../gramps/gui/glade/mergeplace.glade:636
 #: ../gramps/gui/glade/mergerepository.glade:415
 #: ../gramps/gui/glade/mergesource.glade:529
 msgid "Detailed Selection"
@@ -13573,12 +13572,12 @@ msgid "Title selection"
 msgstr ""
 
 #: ../gramps/gui/glade/mergedata.glade:576
-#: ../gramps/gui/glade/mergeplace.glade:182
+#: ../gramps/gui/glade/mergeplace.glade:180
 msgid "Place 1"
 msgstr ""
 
 #: ../gramps/gui/glade/mergedata.glade:593
-#: ../gramps/gui/glade/mergeplace.glade:196
+#: ../gramps/gui/glade/mergeplace.glade:194
 msgid "Place 2"
 msgstr ""
 
@@ -13709,9 +13708,9 @@ msgid ""
 "primary data for the merged place."
 msgstr ""
 
-#: ../gramps/gui/glade/mergeplace.glade:622
+#: ../gramps/gui/glade/mergeplace.glade:620
 msgid ""
-"Alternate locations, sources, urls, media objects and notes of both places "
+"Alternative names, sources, urls, media objects and notes of both places "
 "will be combined."
 msgstr ""
 
@@ -14569,7 +14568,7 @@ msgstr ""
 msgid "Addresses"
 msgstr ""
 
-#: ../gramps/gui/merge/mergeplace.py:52
+#: ../gramps/gui/merge/mergeplace.py:54
 msgid "manual|Merge_Places"
 msgstr ""
 
@@ -15930,7 +15929,6 @@ msgstr ""
 
 #: ../gramps/gui/viewmanager.py:1249
 #: ../gramps/plugins/importer/importgedcom.glade:289
-#: ../gramps/plugins/tool/phpgedview.glade:158
 msgid "File:"
 msgstr ""
 
@@ -29249,75 +29247,6 @@ msgstr ""
 
 #: ../gramps/plugins/tool/patchnames.py:484
 msgid "Extract information from names"
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedview.glade:19
-#: ../gramps/plugins/tool/phpgedview.glade:85
-msgid "phpGedView import"
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedview.glade:103
-msgid "http://"
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedview.glade:170
-msgid "Username:"
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedview.glade:182
-msgid "Password:"
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:204
-#: ../gramps/plugins/tool/phpgedviewconnector.py:215
-msgid "Fetching index list..."
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:218
-#: ../gramps/plugins/tool/phpgedviewconnector.py:222
-msgid "Fetching records..."
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:327
-msgid "Logging in..."
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:330
-msgid "Fetching GEDCOM..."
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:334
-msgid "Importing GEDCOM..."
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:341
-msgid "Error: login failed"
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:342
-#: ../gramps/plugins/tool/phpgedviewconnector.py:367
-msgid "done."
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:347
-msgid "Connecting..."
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:349
-msgid "Get version..."
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:352
-#, python-format
-msgid "Version %s"
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:353
-msgid "Reading file list..."
-msgstr ""
-
-#: ../gramps/plugins/tool/phpgedviewconnector.py:366
-msgid "Error: Invalid URL"
 msgstr ""
 
 #: ../gramps/plugins/tool/rebuild.py:77
