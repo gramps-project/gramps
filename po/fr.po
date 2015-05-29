@@ -26,8 +26,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 4.1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-28 18:27+0200\n"
-"PO-Revision-Date: 2015-05-28 19:15+0100\n"
+"POT-Creation-Date: 2015-05-29 16:26+0200\n"
+"PO-Revision-Date: 2015-05-29 16:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: French <traduc@traduc.org>\n"
 "Language: fr\n"
@@ -3023,8 +3023,8 @@ msgstr "Correspond aux citations ayant un nombre de références"
 #: ../gramps/gui/glade/mergedata.glade:775
 #: ../gramps/gui/glade/mergemedia.glade:213
 #: ../gramps/gui/glade/mergemedia.glade:229
-#: ../gramps/gui/glade/mergeplace.glade:208
-#: ../gramps/gui/glade/mergeplace.glade:223
+#: ../gramps/gui/glade/mergeplace.glade:206
+#: ../gramps/gui/glade/mergeplace.glade:221
 #: ../gramps/gui/glade/mergesource.glade:213
 #: ../gramps/gui/glade/mergesource.glade:229
 msgid "Title:"
@@ -3847,8 +3847,8 @@ msgstr "Correspond à un objet medium avec l'identifiant Gramps spécifié"
 #: ../gramps/gui/glade/mergeevent.glade:229
 #: ../gramps/gui/glade/mergenote.glade:246
 #: ../gramps/gui/glade/mergenote.glade:262
-#: ../gramps/gui/glade/mergeplace.glade:488
-#: ../gramps/gui/glade/mergeplace.glade:505
+#: ../gramps/gui/glade/mergeplace.glade:486
+#: ../gramps/gui/glade/mergeplace.glade:503
 #: ../gramps/gui/glade/mergerepository.glade:246
 #: ../gramps/gui/glade/mergerepository.glade:262
 msgid "Type:"
@@ -4978,6 +4978,8 @@ msgstr "Correspond aux lieux ayant une donnée de citation particulière"
 #: ../gramps/gui/glade/editplaceref.glade:214
 #: ../gramps/gui/glade/mergeperson.glade:224
 #: ../gramps/gui/glade/mergeperson.glade:240
+#: ../gramps/gui/glade/mergeplace.glade:426
+#: ../gramps/gui/glade/mergeplace.glade:443
 #: ../gramps/plugins/gramplet/soundgen.py:65
 msgid "Name:"
 msgstr "Nom :"
@@ -4992,8 +4994,8 @@ msgstr "Type de lieu :"
 #: ../gramps/gen/filters/rules/place/_hasdata.py:50
 #: ../gramps/gui/glade/editplace.glade:213
 #: ../gramps/gui/glade/editplaceref.glade:444
-#: ../gramps/gui/glade/mergeplace.glade:548
-#: ../gramps/gui/glade/mergeplace.glade:565
+#: ../gramps/gui/glade/mergeplace.glade:546
+#: ../gramps/gui/glade/mergeplace.glade:563
 msgid "Code:"
 msgstr "Code :"
 
@@ -5150,15 +5152,15 @@ msgstr "Correspond aux lieux avec un titre précis "
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:49
 #: ../gramps/gui/glade/editplaceref.glade:244
-#: ../gramps/gui/glade/mergeplace.glade:239
-#: ../gramps/gui/glade/mergeplace.glade:254
+#: ../gramps/gui/glade/mergeplace.glade:237
+#: ../gramps/gui/glade/mergeplace.glade:252
 msgid "Latitude:"
 msgstr "Latitude :"
 
 #: ../gramps/gen/filters/rules/place/_inlatlonneighborhood.py:49
 #: ../gramps/gui/glade/editplaceref.glade:317
-#: ../gramps/gui/glade/mergeplace.glade:270
-#: ../gramps/gui/glade/mergeplace.glade:285
+#: ../gramps/gui/glade/mergeplace.glade:268
+#: ../gramps/gui/glade/mergeplace.glade:283
 msgid "Longitude:"
 msgstr "Longitude :"
 
@@ -5298,7 +5300,6 @@ msgid "Address:"
 msgstr "Adresse :"
 
 #: ../gramps/gen/filters/rules/repository/_hasrepo.py:49
-#: ../gramps/plugins/tool/phpgedview.glade:206
 msgid "URL:"
 msgstr "URL :"
 
@@ -6999,7 +7000,7 @@ msgid "Multiple families get merged. This is unusual, the merge is aborted."
 msgstr "Plusieurs familles ont été fusionnées. Ce n'est pas habituel, la fusion est annulée."
 
 #: ../gramps/gen/merge/mergeplacequery.py:60
-#: ../gramps/gui/merge/mergeplace.py:76
+#: ../gramps/gui/merge/mergeplace.py:78
 msgid "Merge Places"
 msgstr "Fusionner les lieux"
 
@@ -12054,9 +12055,7 @@ msgstr "Vous devriez plutôt sélectionner un individu ou annuler l'édition"
 
 #: ../gramps/gui/editors/editplace.py:84
 #: ../gramps/gui/glade/editplace.glade:288
-#: ../gramps/gui/glade/mergeplace.glade:428
-#: ../gramps/gui/glade/mergeplace.glade:445
-#: ../gramps/gui/merge/mergeplace.py:54
+#: ../gramps/gui/merge/mergeplace.py:56
 msgid "place|Name:"
 msgstr "Nom du lieu"
 
@@ -14293,8 +14292,8 @@ msgstr "Source 2 "
 #: ../gramps/gui/glade/mergenote.glade:328
 #: ../gramps/gui/glade/mergeperson.glade:290
 #: ../gramps/gui/glade/mergeperson.glade:306
-#: ../gramps/gui/glade/mergeplace.glade:301
-#: ../gramps/gui/glade/mergeplace.glade:316
+#: ../gramps/gui/glade/mergeplace.glade:299
+#: ../gramps/gui/glade/mergeplace.glade:314
 #: ../gramps/gui/glade/mergerepository.glade:279
 #: ../gramps/gui/glade/mergerepository.glade:295
 #: ../gramps/gui/glade/mergesource.glade:345
@@ -14314,7 +14313,7 @@ msgstr "Les notes, objets media et données des deux citations seront combinés.
 #: ../gramps/gui/glade/mergemedia.glade:472
 #: ../gramps/gui/glade/mergenote.glade:487
 #: ../gramps/gui/glade/mergeperson.glade:427
-#: ../gramps/gui/glade/mergeplace.glade:638
+#: ../gramps/gui/glade/mergeplace.glade:636
 #: ../gramps/gui/glade/mergerepository.glade:415
 #: ../gramps/gui/glade/mergesource.glade:529
 msgid "Detailed Selection"
@@ -14348,12 +14347,12 @@ msgid "Title selection"
 msgstr "Sélection du titre"
 
 #: ../gramps/gui/glade/mergedata.glade:576
-#: ../gramps/gui/glade/mergeplace.glade:182
+#: ../gramps/gui/glade/mergeplace.glade:180
 msgid "Place 1"
 msgstr "Lieu 1"
 
 #: ../gramps/gui/glade/mergedata.glade:593
-#: ../gramps/gui/glade/mergeplace.glade:196
+#: ../gramps/gui/glade/mergeplace.glade:194
 msgid "Place 2"
 msgstr "Lieu 2"
 
@@ -14528,9 +14527,9 @@ msgstr ""
 " utilisées en priorité pour le lieu fusionné."
 
 # trunk
-#: ../gramps/gui/glade/mergeplace.glade:622
-msgid "Alternate locations, sources, urls, media objects and notes of both places will be combined."
-msgstr "Emplacements alternatifs, sources, urls, objets media et notes des deux lieux vont être rassemblés."
+#: ../gramps/gui/glade/mergeplace.glade:620
+msgid "Alternative names, sources, urls, media objects and notes of both places will be combined."
+msgstr "Noms alternatifs, sources, urls, objets media et notes des deux lieux vont être rassemblés."
 
 # trunk
 #: ../gramps/gui/glade/mergerepository.glade:98
@@ -15459,7 +15458,7 @@ msgid "Addresses"
 msgstr "Adresses"
 
 # manuel wiki
-#: ../gramps/gui/merge/mergeplace.py:52
+#: ../gramps/gui/merge/mergeplace.py:54
 msgid "manual|Merge_Places"
 msgstr "Fusion des lieux"
 
@@ -16923,7 +16922,6 @@ msgstr "Sauvegarde Gramps XML"
 
 #: ../gramps/gui/viewmanager.py:1249
 #: ../gramps/plugins/importer/importgedcom.glade:289
-#: ../gramps/plugins/tool/phpgedview.glade:158
 msgid "File:"
 msgstr "Fichier :"
 
@@ -29973,22 +29971,22 @@ msgstr "Vérifier et réparer"
 # master
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:67
 msgid "Start date test?"
-msgstr ""
+msgstr "Démarrer le test sur la date ?"
 
 # master
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:68
 msgid "This test will create many persons and events in the current database. Do you really want to run this test?"
-msgstr ""
+msgstr "Ce test va créer de nombreuses personnes et événements dans votre base de données actuelle. Voulez-vous vraiment lancer ce test ?"
 
 # master
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:71
 msgid "Run test"
-msgstr ""
+msgstr "Lancer le test"
 
 # master
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:80
 msgid "Running Date Test"
-msgstr ""
+msgstr "Lancement du test sur la date"
 
 # master
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:82
@@ -30044,16 +30042,14 @@ msgstr "Génération des dates"
 #. (4,7,1789,False,5,88,1876,False),"Text comment")
 #. dates.append( d)
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:181
-#, fuzzy
 msgid "Date Test Plugin"
-msgstr "Greffons chargés"
+msgstr "Greffon de test sur les dates"
 
 # master
 #. create pass and fail tags
 #: ../gramps/plugins/tool/dateparserdisplaytest.py:187
-#, fuzzy
 msgid "Pass"
-msgstr "Pâque juive"
+msgstr "Processus"
 
 # trunk
 #: ../gramps/plugins/tool/dumpgenderstats.py:46
@@ -30684,104 +30680,6 @@ msgstr "Nom de famille composé"
 msgid "Extract information from names"
 msgstr "Extraire les données depuis les noms"
 
-# master
-#: ../gramps/plugins/tool/phpgedview.glade:19
-#: ../gramps/plugins/tool/phpgedview.glade:85
-#, fuzzy
-msgid "phpGedView import"
-msgstr "Importation GeneWeb"
-
-# master
-#: ../gramps/plugins/tool/phpgedview.glade:103
-msgid "http://"
-msgstr "http://"
-
-# master
-#: ../gramps/plugins/tool/phpgedview.glade:170
-#, fuzzy
-msgid "Username:"
-msgstr "Nom de famille"
-
-# master
-#: ../gramps/plugins/tool/phpgedview.glade:182
-#, fuzzy
-msgid "Password:"
-msgstr "Pâque juive"
-
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:204
-#: ../gramps/plugins/tool/phpgedviewconnector.py:215
-msgid "Fetching index list..."
-msgstr ""
-
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:218
-#: ../gramps/plugins/tool/phpgedviewconnector.py:222
-#, fuzzy
-msgid "Fetching records..."
-msgstr "Enregistrement manquant "
-
-# Substantif (GNOME fr)
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:327
-#, fuzzy
-msgid "Logging in..."
-msgstr "Chargement des greffons..."
-
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:330
-msgid "Fetching GEDCOM..."
-msgstr ""
-
-# Substantif (GNOME fr)
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:334
-#, fuzzy
-msgid "Importing GEDCOM..."
-msgstr "Importation des données..."
-
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:341
-#, fuzzy
-msgid "Error: login failed"
-msgstr "Erreur à l'ouverture du fichier."
-
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:342
-#: ../gramps/plugins/tool/phpgedviewconnector.py:367
-msgid "done."
-msgstr "fait."
-
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:347
-#, fuzzy
-msgid "Connecting..."
-msgstr "Sélection en cours..."
-
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:349
-#, fuzzy
-msgid "Get version..."
-msgstr "Version du schéma"
-
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:352
-#, fuzzy, python-format
-msgid "Version %s"
-msgstr "Version"
-
-# Substantif (GNOME fr)
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:353
-#, fuzzy
-msgid "Reading file list..."
-msgstr "Lecture des données..."
-
-# master
-#: ../gramps/plugins/tool/phpgedviewconnector.py:366
-msgid "Error: Invalid URL"
-msgstr ""
-
 # trunk
 # Substantif (GNOME fr)
 #: ../gramps/plugins/tool/rebuild.py:77
@@ -31045,9 +30943,8 @@ msgstr "Trier les événements familiaux de l'individu"
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:195
 #: ../gramps/plugins/tool/testcasegenerator.py:200
-#, fuzzy
 msgid "Generate testcases"
-msgstr "Filtres généraux"
+msgstr "Génère des tests de cas"
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:204
@@ -31055,42 +30952,38 @@ msgid ""
 "Generate low level database errors\n"
 "Correction needs database reload"
 msgstr ""
+"Génère des erreurs de bas niveau sur la base\n"
+"La correction nécessite de relancer la base de données."
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:209
-#, fuzzy
 msgid "Generate database errors"
-msgstr "Erreur de donnée Pro-Gen"
+msgstr "Génère des erreurs dans la base de données"
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:213
-#, fuzzy
 msgid "Generate dummy data"
-msgstr "Généré par"
+msgstr "Génère des données"
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:218
-#, fuzzy
 msgid "Generate long names"
-msgstr "Générations "
+msgstr "Génération de noms longs"
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:222
-#, fuzzy
 msgid "Add special characters"
-msgstr "Caractère %s illégal"
+msgstr "Ajout d'un caractère spécial"
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:226
-#, fuzzy
 msgid "Add serial number"
-msgstr "Numéro d'identifiant"
+msgstr "Ajout d'un numéro d'identifiant"
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:230
-#, fuzzy
 msgid "Add line break"
-msgstr "Ajouter un retrait après le nom"
+msgstr "Ajout d'une coupure de ligne"
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:234
@@ -31098,30 +30991,29 @@ msgid ""
 "Number of people to generate\n"
 "(Number is approximate because families are generated)"
 msgstr ""
+"Nombre d'individus à générer\n"
+"(le nombre est approximatif car des familles sont générées)"
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:284
-#, fuzzy
 msgid "Generating testcases"
-msgstr "Création du rapport"
+msgstr "Génération de tests de cas"
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:289
 msgid "Generating low level database errors"
-msgstr ""
+msgstr "Génération d'erreurs de bas niveau sur la base de données"
 
 # Substantif (GNOME fr)
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:301
-#, fuzzy
 msgid "Generating families"
-msgstr "Écriture des familles"
+msgstr "Génération de familles"
 
 # master
 #: ../gramps/plugins/tool/testcasegenerator.py:332
-#, fuzzy
 msgid "Generating database errors"
-msgstr "Création du rapport"
+msgstr "Génération d'erreurs dans la base de données"
 
 # master
 #. Creates a media object with character encoding errors. This tests
@@ -31193,7 +31085,7 @@ msgstr "Création du rapport"
 #: ../gramps/plugins/tool/testcasegenerator.py:1449
 #, python-format
 msgid "Testcase generator step %d"
-msgstr ""
+msgstr "Générateur de test de cas, étape %d"
 
 #: ../gramps/plugins/tool/tools.gpr.py:35
 msgid "Fix Capitalization of Family Names"
@@ -34238,6 +34130,70 @@ msgstr "Au moins une règle doit correspondre"
 #: gtklist.h:8
 msgid "Exactly one rule must apply"
 msgstr "Une seule règle doit correspondre"
+
+# master
+#, fuzzy
+#~ msgid "phpGedView import"
+#~ msgstr "Importation GeneWeb"
+
+# master
+#~ msgid "http://"
+#~ msgstr "http://"
+# master
+#, fuzzy
+#~ msgid "Username:"
+#~ msgstr "Nom de famille"
+
+# master
+#, fuzzy
+#~ msgid "Password:"
+#~ msgstr "Pâque juive"
+
+# master
+#, fuzzy
+#~ msgid "Fetching records..."
+#~ msgstr "Enregistrement manquant "
+
+# Substantif (GNOME fr)
+# master
+#, fuzzy
+#~ msgid "Logging in..."
+#~ msgstr "Chargement des greffons..."
+
+# Substantif (GNOME fr)
+# master
+#, fuzzy
+#~ msgid "Importing GEDCOM..."
+#~ msgstr "Importation des données..."
+
+# master
+#, fuzzy
+#~ msgid "Error: login failed"
+#~ msgstr "Erreur à l'ouverture du fichier."
+
+# master
+#~ msgid "done."
+#~ msgstr "fait."
+# master
+#, fuzzy
+#~ msgid "Connecting..."
+#~ msgstr "Sélection en cours..."
+
+# master
+#, fuzzy
+#~ msgid "Get version..."
+#~ msgstr "Version du schéma"
+
+# master
+#, fuzzy
+#~ msgid "Version %s"
+#~ msgstr "Version"
+
+# Substantif (GNOME fr)
+# master
+#, fuzzy
+#~ msgid "Reading file list..."
+#~ msgstr "Lecture des données..."
 
 #~ msgid "Cannot save place"
 #~ msgstr "Impossible d'enregistrer le lieu"
