@@ -692,8 +692,6 @@ gramps/plugins/tool/ownereditor.glade
 gramps/plugins/tool/ownereditor.py
 gramps/plugins/tool/patchnames.glade
 gramps/plugins/tool/patchnames.py
-gramps/plugins/tool/phpgedview.glade
-gramps/plugins/tool/phpgedviewconnector.py
 gramps/plugins/tool/populatesources.py
 gramps/plugins/tool/rebuild.py
 gramps/plugins/tool/rebuildgenderstat.py
