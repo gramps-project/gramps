@@ -849,7 +849,7 @@ class SimpleAccess(object):
         :return: list of repositories in the database
         :rtype: list
         """
-        return self.__all_objects(self.dbase.get_repsoitory_cursor, 
+        return self.__all_objects(self.dbase.get_repository_cursor, 
                                   self.dbase.get_repository_from_handle)
 
     def all_media(self):

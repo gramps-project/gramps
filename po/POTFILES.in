@@ -353,7 +353,6 @@ gramps/gui/dialog.py
 gramps/gui/displaystate.py
 gramps/gui/editors/addmedia.py
 gramps/gui/editors/displaytabs/addrembedlist.py
-gramps/gui/editors/displaytabs/altnameembedlist.py
 gramps/gui/editors/displaytabs/attrembedlist.py
 gramps/gui/editors/displaytabs/backreflist.py
 gramps/gui/editors/displaytabs/backrefmodel.py
@@ -371,6 +370,7 @@ gramps/gui/editors/displaytabs/namemodel.py
 gramps/gui/editors/displaytabs/notetab.py
 gramps/gui/editors/displaytabs/personeventembedlist.py
 gramps/gui/editors/displaytabs/personrefembedlist.py
+gramps/gui/editors/displaytabs/placenameembedlist.py
 gramps/gui/editors/displaytabs/placerefembedlist.py
 gramps/gui/editors/displaytabs/repoembedlist.py
 gramps/gui/editors/displaytabs/srcattrembedlist.py
@@ -442,6 +442,7 @@ gramps/gui/glade/editnote.glade
 gramps/gui/glade/editperson.glade
 gramps/gui/glade/editpersonref.glade
 gramps/gui/glade/editplace.glade
+gramps/gui/glade/editplacename.glade
 gramps/gui/glade/editplaceref.glade
 gramps/gui/glade/editreporef.glade
 gramps/gui/glade/editrepository.glade
@@ -660,6 +661,7 @@ gramps/plugins/textreport/endoflinereport.py
 gramps/plugins/textreport/familygroup.py
 gramps/plugins/textreport/indivcomplete.py
 gramps/plugins/textreport/kinshipreport.py
+gramps/plugins/textreport/notelinkreport.py
 gramps/plugins/textreport/numberofancestorsreport.py
 gramps/plugins/textreport/placereport.py
 gramps/plugins/textreport/recordsreport.py
@@ -690,8 +692,6 @@ gramps/plugins/tool/ownereditor.glade
 gramps/plugins/tool/ownereditor.py
 gramps/plugins/tool/patchnames.glade
 gramps/plugins/tool/patchnames.py
-gramps/plugins/tool/phpgedview.glade
-gramps/plugins/tool/phpgedviewconnector.py
 gramps/plugins/tool/populatesources.py
 gramps/plugins/tool/rebuild.py
 gramps/plugins/tool/rebuildgenderstat.py
