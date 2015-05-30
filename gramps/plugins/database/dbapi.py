@@ -131,8 +131,13 @@ class Table(object):
     """
     Implements Table interface.
     """
-    def __init__(self, funcs):
-        self.funcs = funcs
+    def __init__(self, db, table_name, funcs=None):
+        self.db = db
+        self.table_name = table_name
+        if funcs:
+            self.funcs = funcs
+        else:
+            self.funcs = db._tables[table_name]
 
     def cursor(self):
         """
@@ -157,6 +162,7 @@ class Map(object):
         self.table = table
         self.keys_func = keys_func
         self.contains_func = contains_func
+        self.txn = DBAPITxn("Dummy transaction", db=self.table.db, batch=True)
 
     def keys(self):
         return self.table.funcs[self.keys_func]()
@@ -170,6 +176,16 @@ class Map(object):
     def __getitem__(self, key):
         if self.table.funcs[self.contains_func](key):
             return self.table.funcs["raw_func"](key)
+
+    def __setitem__(self, key, value):
+        """
+        This is only done in a low-level raw import.
+
+        value: serialized object
+        key: bytes key (ignored in this implementation)
+        """
+        obj = self.table.funcs["class_func"].create(value)
+        self.table.funcs["commit_func"](obj, self.txn)
 
     def __len__(self):
         return self.table.funcs["count_func"]()
@@ -515,44 +531,44 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.rmap_index = 0
         self.nmap_index = 0
         self.env = Environment(self)
-        self.person_map = Map(Table(self._tables["Person"]))
-        self.person_id_map = Map(Table(self._tables["Person"]),
+        self.person_map = Map(Table(self, "Person"))
+        self.person_id_map = Map(Table(self, "Person"),
                                  keys_func="ids_func",
                                  contains_func="has_gramps_id_func")
-        self.family_map = Map(Table(self._tables["Family"]))
-        self.family_id_map = Map(Table(self._tables["Family"]),
+        self.family_map = Map(Table(self, "Family"))
+        self.family_id_map = Map(Table(self, "Family"),
                                  keys_func="ids_func",
                                  contains_func="has_gramps_id_func")
-        self.place_map  = Map(Table(self._tables["Place"]))
-        self.place_id_map = Map(Table(self._tables["Place"]),
+        self.place_map  = Map(Table(self, "Place"))
+        self.place_id_map = Map(Table(self, "Place"),
                                  keys_func="ids_func",
                                  contains_func="has_gramps_id_func")
-        self.citation_map = Map(Table(self._tables["Citation"]))
-        self.citation_id_map = Map(Table(self._tables["Citation"]),
+        self.citation_map = Map(Table(self, "Citation"))
+        self.citation_id_map = Map(Table(self, "Citation"),
                                  keys_func="ids_func",
                                  contains_func="has_gramps_id_func")
-        self.source_map = Map(Table(self._tables["Source"]))
-        self.source_id_map = Map(Table(self._tables["Source"]),
+        self.source_map = Map(Table(self, "Source"))
+        self.source_id_map = Map(Table(self, "Source"),
                                  keys_func="ids_func",
                                 contains_func="has_gramps_id_func")
-        self.repository_map  = Map(Table(self._tables["Repository"]))
-        self.repository_id_map = Map(Table(self._tables["Repository"]),
+        self.repository_map  = Map(Table(self, "Repository"))
+        self.repository_id_map = Map(Table(self, "Repository"),
                                  keys_func="ids_func",
                                  contains_func="has_gramps_id_func")
-        self.note_map = Map(Table(self._tables["Note"]))
-        self.note_id_map = Map(Table(self._tables["Note"]),
+        self.note_map = Map(Table(self, "Note"))
+        self.note_id_map = Map(Table(self, "Note"),
                                  keys_func="ids_func",
                                  contains_func="has_gramps_id_func")
-        self.media_map  = Map(Table(self._tables["Media"]))
-        self.media_id_map = Map(Table(self._tables["Media"]),
+        self.media_map  = Map(Table(self, "Media"))
+        self.media_id_map = Map(Table(self, "Media"),
                                  keys_func="ids_func",
                                  contains_func="has_gramps_id_func")
-        self.event_map  = Map(Table(self._tables["Event"]))
-        self.event_id_map = Map(Table(self._tables["Event"]), 
+        self.event_map  = Map(Table(self, "Event"))
+        self.event_id_map = Map(Table(self, "Event"), 
                                  keys_func="ids_func",
                                  contains_func="has_gramps_id_func")
-        self.tag_map  = Map(Table(self._tables["Tag"]))
-        self.metadata   = Map(Table({"cursor_func": lambda: MetaCursor()}))
+        self.tag_map  = Map(Table(self, "Tag"))
+        self.metadata   = Map(Table(self, "Metadata", funcs={"cursor_func": lambda: MetaCursor()}))
         self.undo_callback = None
         self.redo_callback = None
         self.undo_history_callback = None
