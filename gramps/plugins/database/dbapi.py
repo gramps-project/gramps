@@ -577,7 +577,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.transaction = None
         self.abort_possible = False
         self._bm_changes = 0
-        self._has_changed = False
+        self.has_changed = False
         self.genderStats = GenderStats() # can pass in loaded stats as dict
         self.owner = Researcher()
         if directory:
@@ -1456,7 +1456,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([person.handle],))
-        self._has_changed = True
+        self.has_changed = True
 
     def add_to_surname_list(self, person, batch_transaction):
         """
@@ -1546,7 +1546,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([family.handle],))
-        self._has_changed = True
+        self.has_changed = True
 
     def commit_citation(self, citation, trans, change_time=None):
         emit = None
@@ -1585,7 +1585,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([citation.handle],))
-        self._has_changed = True
+        self.has_changed = True
 
     def commit_source(self, source, trans, change_time=None):
         emit = None
@@ -1626,7 +1626,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([source.handle],))
-        self._has_changed = True
+        self.has_changed = True
 
     def commit_repository(self, repository, trans, change_time=None):
         emit = None
@@ -1655,7 +1655,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([repository.handle],))
-        self._has_changed = True
+        self.has_changed = True
 
     def commit_note(self, note, trans, change_time=None):
         emit = None
@@ -1681,7 +1681,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([note.handle],))
-        self._has_changed = True
+        self.has_changed = True
 
     def commit_place(self, place, trans, change_time=None):
         emit = None
@@ -1721,7 +1721,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([place.handle],))
-        self._has_changed = True
+        self.has_changed = True
 
     def commit_event(self, event, trans, change_time=None):
         emit = None
@@ -1757,7 +1757,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # Emit after added:
         if emit:
             self.emit(emit, ([event.handle],))
-        self._has_changed = True
+        self.has_changed = True
 
     def update_backlinks(self, obj):
         # First, delete the current references:
@@ -2036,11 +2036,6 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def close(self):
         if self._directory:
-            from gramps.plugins.export.exportxml import XmlWriter
-            from gramps.cli.user import User 
-            writer = XmlWriter(self, User(), strip_photos=0, compress=1)
-            filename = os.path.join(self._directory, "data.gramps")
-            writer.write(filename)
             filename = os.path.join(self._directory, "meta_data.db")
             touch(filename)
             # Save metadata
@@ -2276,9 +2271,6 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
     def get_source_bookmarks(self):
         return self.source_bookmarks
 
-    def has_changed(self):
-        return self._has_changed
-
     def is_open(self):
         return self._directory is not None
 
@@ -2492,9 +2484,9 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
             self.path = self.full_name
             self.brief_name = os.path.basename(self._directory)
         else:
-            self.full_name = ""
-            self.path = ""
-            self.brief_name = ""
+            self.full_name = None
+            self.path = None
+            self.brief_name = None
 
     def write_version(self, directory):
         """Write files for a newly created DB."""
@@ -2834,7 +2826,11 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         """
         If you wish to support an optional backup routine, put it here.
         """
-        pass
+        from gramps.plugins.export.exportxml import XmlWriter
+        from gramps.cli.user import User 
+        writer = XmlWriter(self, User(), strip_photos=0, compress=1)
+        filename = os.path.join(self._directory, "data.gramps")
+        writer.write(filename)
 
     def restore(self):
         """
