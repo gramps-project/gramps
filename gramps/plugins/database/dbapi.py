@@ -468,6 +468,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
                 "count": self.get_number_of_tags,
                 "raw_func": self._get_raw_tag_data,
             })
+        self.set_save_path(directory)
         # skip GEDCOM cross-ref check for now:
         self.set_feature("skip-check-xref", True)
         self.set_feature("skip-import-additions", True)
@@ -560,11 +561,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         self.transaction = None
         self.abort_possible = False
         self._bm_changes = 0
-        self._directory = directory
         self._has_changed = False
-        self.full_name = None
-        self.path = None
-        self.brief_name = None
         self.genderStats = GenderStats() # can pass in loaded stats as dict
         self.owner = Researcher()
         if directory:
@@ -2455,7 +2452,7 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
         # surname list
         self.surname_list = self.get_metadata('surname_list')
 
-        self._directory = directory
+        self.set_save_path(directory)
         self.undolog = os.path.join(self._directory, DBUNDOFN)
         self.undodb = DBAPIUndo(self, self.undolog)
         self.undodb.open()
@@ -2474,9 +2471,14 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def set_save_path(self, directory):
         self._directory = directory
-        self.full_name = os.path.abspath(self._directory)
-        self.path = self.full_name
-        self.brief_name = os.path.basename(self._directory)
+        if directory:
+            self.full_name = os.path.abspath(self._directory)
+            self.path = self.full_name
+            self.brief_name = os.path.basename(self._directory)
+        else:
+            self.full_name = ""
+            self.path = ""
+            self.brief_name = ""
 
     def write_version(self, directory):
         """Write files for a newly created DB."""
@@ -2832,3 +2834,10 @@ class DBAPI(DbWriteBase, DbReadBase, UpdateCallback, Callback):
 
     def redo(self, update_history=True):
         return self.undodb.redo(update_history)
+
+    def get_dbid(self):
+        """
+        We use the file directory name as the unique ID for
+        this database on this computer.
+        """
+        return self.brief_name
