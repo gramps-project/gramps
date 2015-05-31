@@ -45,7 +45,6 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib import NoteType, Place
 from gramps.gen.db import DbTxn
-from gramps.gen.utils.location import get_location_list
 from .editprimary import EditPrimary
 from .displaytabs import (PlaceRefEmbedList, PlaceNameEmbedList,
                           LocationEmbedList, CitationEmbedList,
