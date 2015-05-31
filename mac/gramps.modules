@@ -132,6 +132,10 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
     </dependencies>
   </autotools>
 
+  <distutils id="setuptools">
+    <branch module="s/setuptools/setuptools-16.0.tar.gz"
+	    version="16.0" repo="pymodules"/>
+  </distutils>
   <distutils id="pil">
     <!--branch module="Imaging-1.1.7.tar.gz" version="1.1.7" repo="pythonware">
       <patch file="Imaging-Freetype2.patch" strip="1"/-->
@@ -140,6 +144,9 @@ gtk-mac-bundler gtk-osx-build/projects/gramps/gramps.bundle
 	    hash="md5:3fdc9f16a1b60366ae8158b424655d10">
       <patch file="Pillow-tk-setup.patch" strip="1"/>
     </branch>
+    <dependencies>
+      <dep package="setuptools"/>
+    </dependencies>
   </distutils>
 
  <distutils id='pyicu'>
