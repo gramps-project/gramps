@@ -483,7 +483,7 @@ class GrampsPreferences(ConfigureDialog):
             self.add_behavior_panel,
             self.add_famtree_panel,
             self.add_formats_panel,
-            self.add_place_panel,
+            self.add_places_panel,
             self.add_text_panel,
             self.add_prefix_panel,
             self.add_date_panel,
@@ -1098,7 +1098,7 @@ class GrampsPreferences(ConfigureDialog):
         row += 1
         return _('Display'), grid
 
-    def add_place_panel(self, configdialog):
+    def add_places_panel(self, configdialog):
         row = 0
         grid = Gtk.Grid()
         grid.set_border_width(12)
@@ -1115,6 +1115,20 @@ class GrampsPreferences(ConfigureDialog):
 
         self.add_checkbox(grid, _("Reverse display order"),
                           row, 'preferences.place-reverse', stop=3)
+        row += 1
+
+        # Place restriction
+        obox = Gtk.ComboBoxText()
+        formats = [_("Full place name"),
+                   _("-> Hamlet/VillageTown/City"),
+                   _("Hamlet/VillageTown/City ->")]
+        list(map(obox.append_text, formats))
+        active = config.get('preferences.place-restrict')
+        obox.set_active(active)
+        obox.connect('changed', self.place_restrict_changed)
+        lwidget = BasicLabel("%s: " % _('Restrict'))
+        grid.attach(lwidget, 0, row, 1, 1)
+        grid.attach(obox, 1, row, 2, 1)
         row += 1
 
         self.add_entry(grid, _("Language"),
@@ -1177,6 +1191,10 @@ class GrampsPreferences(ConfigureDialog):
     def check_for_updates_changed(self, obj):
         active = obj.get_active()
         config.set('behavior.check-for-updates', active)
+
+    def place_restrict_changed(self, obj):
+        active = obj.get_active()
+        config.set('preferences.place-restrict', active)
 
     def date_format_changed(self, obj):
         config.set('preferences.date-format', obj.get_active())

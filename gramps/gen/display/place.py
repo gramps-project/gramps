@@ -56,6 +56,15 @@ class PlaceDisplay(object):
         else:
             lang = config.get('preferences.place-lang')
             places = get_location_list(db, place, date, lang)
+
+            if config.get('preferences.place-restrict') > 0:
+                index = _find_populated_place(places)
+                if index is not None:
+                    if config.get('preferences.place-restrict') == 1:
+                        places = places[:index+1]
+                    else:
+                        places = places[index:]
+
             names = [item[0] for item in places]
 
             if config.get('preferences.place-number'):
@@ -67,5 +76,13 @@ class PlaceDisplay(object):
                 names.reverse()
 
             return ", ".join(names)
+
+def _find_populated_place(places):
+    populated_place = None
+    for index, item in enumerate(places):
+        if int(item[1]) in [PlaceType.HAMLET, PlaceType.VILLAGE,
+                            PlaceType.TOWN, PlaceType.CITY]:
+            populated_place = index
+    return populated_place
 
 displayer = PlaceDisplay()
