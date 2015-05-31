@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-05-29 16:26+0200\n"
+"POT-Creation-Date: 2015-05-31 12:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -688,7 +688,7 @@ msgstr ""
 #: ../gramps/cli/arghandler.py:437 ../gramps/cli/arghandler.py:438
 #: ../gramps/cli/arghandler.py:440 ../gramps/cli/clidbman.py:67
 #: ../gramps/cli/clidbman.py:211 ../gramps/gui/clipboard.py:968
-#: ../gramps/gui/configure.py:1393
+#: ../gramps/gui/configure.py:1372
 msgid "Family Tree"
 msgstr ""
 
@@ -1029,7 +1029,7 @@ msgid ""
 "\n"
 msgstr ""
 
-#: ../gramps/cli/clidbman.py:493 ../gramps/gui/configure.py:1301
+#: ../gramps/cli/clidbman.py:493 ../gramps/gui/configure.py:1280
 msgid "Never"
 msgstr ""
 
@@ -1322,23 +1322,23 @@ msgstr ""
 msgid "Imported %Y/%m/%d %H:%M:%S"
 msgstr ""
 
-#: ../gramps/gen/config.py:298
+#: ../gramps/gen/config.py:297
 msgid "Missing Given Name"
 msgstr ""
 
-#: ../gramps/gen/config.py:299
+#: ../gramps/gen/config.py:298
 msgid "Missing Record"
 msgstr ""
 
-#: ../gramps/gen/config.py:300
+#: ../gramps/gen/config.py:299
 msgid "Missing Surname"
 msgstr ""
 
-#: ../gramps/gen/config.py:307 ../gramps/gen/config.py:309
+#: ../gramps/gen/config.py:306 ../gramps/gen/config.py:308
 msgid "Living"
 msgstr ""
 
-#: ../gramps/gen/config.py:308
+#: ../gramps/gen/config.py:307
 msgid "Private Record"
 msgstr ""
 
@@ -6187,7 +6187,7 @@ msgstr ""
 msgid "Married Name"
 msgstr ""
 
-#: ../gramps/gen/lib/notetype.py:80 ../gramps/gui/configure.py:1346
+#: ../gramps/gen/lib/notetype.py:80 ../gramps/gui/configure.py:1325
 #: ../gramps/gui/editors/editeventref.py:78
 #: ../gramps/gui/editors/editmediaref.py:97
 #: ../gramps/gui/editors/editplaceref.py:70
@@ -7205,7 +7205,7 @@ msgid "Graphs"
 msgstr ""
 
 #: ../gramps/gen/plug/report/_constants.py:53 ../gramps/gui/clipboard.py:637
-#: ../gramps/gui/clipboard.py:645 ../gramps/gui/configure.py:1144
+#: ../gramps/gui/clipboard.py:645 ../gramps/gui/configure.py:1130
 #: ../gramps/gui/filters/sidebar/_notesidebarfilter.py:95
 #: ../gramps/plugins/textreport/custombooktext.py:126
 #: ../gramps/plugins/textreport/tagreport.py:483
@@ -8594,7 +8594,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: ../gramps/gui/clipboard.py:962 ../gramps/gui/configure.py:1003
+#: ../gramps/gui/clipboard.py:962
 #: ../gramps/gui/editors/displaytabs/citationembedlist.py:81
 #: ../gramps/gui/editors/displaytabs/repoembedlist.py:67
 #: ../gramps/gui/filters/sidebar/_citationsidebarfilter.py:105
@@ -8660,8 +8660,8 @@ msgstr ""
 msgid "Drag and drop the columns to change the order"
 msgstr ""
 
-#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1407
-#: ../gramps/gui/configure.py:1432 ../gramps/gui/plug/_dialogs.py:123
+#: ../gramps/gui/columnorder.py:107 ../gramps/gui/configure.py:1386
+#: ../gramps/gui/configure.py:1411 ../gramps/gui/plug/_dialogs.py:123
 #: ../gramps/gui/viewmanager.py:1344
 #: ../gramps/plugins/lib/maps/geography.py:940
 #: ../gramps/plugins/lib/maps/geography.py:1179
@@ -8669,7 +8669,7 @@ msgid "_Apply"
 msgstr ""
 
 #. #################
-#: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1118
+#: ../gramps/gui/columnorder.py:128 ../gramps/gui/configure.py:1104
 #: ../gramps/plugins/drawreport/ancestortree.py:832
 #: ../gramps/plugins/drawreport/descendtree.py:1535
 msgid "Display"
@@ -8753,7 +8753,7 @@ msgstr ""
 msgid " Name Editor"
 msgstr ""
 
-#: ../gramps/gui/configure.py:156 ../gramps/gui/configure.py:1487
+#: ../gramps/gui/configure.py:156 ../gramps/gui/configure.py:1466
 #: ../gramps/gui/views/pageview.py:607
 msgid "Preferences"
 msgstr ""
@@ -8980,142 +8980,128 @@ msgid "Date format"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1003
-msgid "Automatic"
+msgid "Enable automatic place title generation"
 msgstr ""
 
 #: ../gramps/gui/configure.py:1010
-msgid "Place format"
-msgstr ""
-
-#: ../gramps/gui/configure.py:1017
-msgid "Display legacy place title field in editors"
-msgstr ""
-
-#: ../gramps/gui/configure.py:1024
 msgid "Years"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1025
+#: ../gramps/gui/configure.py:1011
 msgid "Years, Months"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1026
+#: ../gramps/gui/configure.py:1012
 msgid "Years, Months, Days"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1038
+#: ../gramps/gui/configure.py:1024
 msgid "Age display precision (requires restart)"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1051
+#: ../gramps/gui/configure.py:1037
 msgid "Calendar on reports"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1064
+#: ../gramps/gui/configure.py:1050
 msgid "Surname guessing"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1077
+#: ../gramps/gui/configure.py:1063
 msgid "Default family relationship"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1084
+#: ../gramps/gui/configure.py:1070
 msgid "Height multiple surname box (pixels)"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1091
+#: ../gramps/gui/configure.py:1077
 msgid "Active person's name and ID"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1092
+#: ../gramps/gui/configure.py:1078
 msgid "Relationship to home person"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1101
+#: ../gramps/gui/configure.py:1087
 msgid "Status bar"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1108
+#: ../gramps/gui/configure.py:1094
 msgid "Show text in sidebar buttons (requires restart)"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1114
+#: ../gramps/gui/configure.py:1100
 msgid "Show close button in gramplet bar tabs"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1126
+#: ../gramps/gui/configure.py:1112
 msgid "Missing surname"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1129
+#: ../gramps/gui/configure.py:1115
 msgid "Missing given name"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1132
+#: ../gramps/gui/configure.py:1118
 msgid "Missing record"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1135
+#: ../gramps/gui/configure.py:1121
 msgid "Private surname"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1138
+#: ../gramps/gui/configure.py:1124
 msgid "Private given name"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1141
+#: ../gramps/gui/configure.py:1127
 msgid "Private record"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1177 ../gramps/gui/configure.py:1184
+#: ../gramps/gui/configure.py:1163
 msgid "Change is not immediate"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1178
+#: ../gramps/gui/configure.py:1164
 msgid ""
 "Changing the date format will not take effect until the next time Gramps is "
 "started."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1185
-msgid ""
-"Changing the place format will not take effect until the next time Gramps is "
-"started."
-msgstr ""
-
-#: ../gramps/gui/configure.py:1199
+#: ../gramps/gui/configure.py:1178
 msgid "Date about range"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1202
+#: ../gramps/gui/configure.py:1181
 msgid "Date after range"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1205
+#: ../gramps/gui/configure.py:1184
 msgid "Date before range"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1208
+#: ../gramps/gui/configure.py:1187
 msgid "Maximum age probably alive"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1211
+#: ../gramps/gui/configure.py:1190
 msgid "Maximum sibling age difference"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1214
+#: ../gramps/gui/configure.py:1193
 msgid "Minimum years between generations"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1217
+#: ../gramps/gui/configure.py:1196
 msgid "Average years between generations"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1220
+#: ../gramps/gui/configure.py:1199
 msgid "Markup for invalid date format"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1223
+#: ../gramps/gui/configure.py:1202
 #, python-format
 msgid ""
 "Convenience markups are:\n"
@@ -9133,137 +9119,137 @@ msgid ""
 "will display <u><b>Underlined bold date</b></u>.\n"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1237
+#: ../gramps/gui/configure.py:1216
 msgid "Dates"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1247
+#: ../gramps/gui/configure.py:1226
 msgid "Add default source on GEDCOM import"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1251
+#: ../gramps/gui/configure.py:1230
 msgid "Add tag on import"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1262
+#: ../gramps/gui/configure.py:1241
 msgid "Enable spelling checker"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1271
+#: ../gramps/gui/configure.py:1250
 #, python-format
 msgid ""
 "GtkSpell not loaded. Spell checking will not be available.\n"
 "To build it for Gramps see %(gramps_wiki_build_spell_url)s"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1278
+#: ../gramps/gui/configure.py:1257
 msgid "Display Tip of the Day"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1283
+#: ../gramps/gui/configure.py:1262
 msgid "Remember last view displayed"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1288
+#: ../gramps/gui/configure.py:1267
 msgid "Max generations for relationships"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1294
+#: ../gramps/gui/configure.py:1273
 msgid "Base path for relative media paths"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1302
+#: ../gramps/gui/configure.py:1281
 msgid "Once a month"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1303
+#: ../gramps/gui/configure.py:1282
 msgid "Once a week"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1304
+#: ../gramps/gui/configure.py:1283
 msgid "Once a day"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1305
+#: ../gramps/gui/configure.py:1284
 msgid "Always"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1310
+#: ../gramps/gui/configure.py:1289
 msgid "Check for updates"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1316
+#: ../gramps/gui/configure.py:1295
 msgid "Updated addons only"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1317
+#: ../gramps/gui/configure.py:1296
 msgid "New addons only"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1318
+#: ../gramps/gui/configure.py:1297
 msgid "New and updated addons"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1328
+#: ../gramps/gui/configure.py:1307
 msgid "What to check"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1333
+#: ../gramps/gui/configure.py:1312
 msgid "Where to check"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1337
+#: ../gramps/gui/configure.py:1316
 msgid "Do not ask about previously notified addons"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1342
+#: ../gramps/gui/configure.py:1321
 msgid "Check now"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1352
+#: ../gramps/gui/configure.py:1331
 msgid "Checking Addons Failed"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1353
+#: ../gramps/gui/configure.py:1332
 msgid "The addon repository appears to be unavailable. Please try again later."
 msgstr ""
 
-#: ../gramps/gui/configure.py:1362
+#: ../gramps/gui/configure.py:1341
 msgid "There are no available addons of this type"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1363
+#: ../gramps/gui/configure.py:1342
 #, python-format
 msgid "Checked for '%s'"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1364
+#: ../gramps/gui/configure.py:1343
 msgid "' and '"
 msgstr ""
 
 #. List of translated strings used here
 #. Dead code for l10n
-#: ../gramps/gui/configure.py:1369
+#: ../gramps/gui/configure.py:1348
 msgid "new"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1369
+#: ../gramps/gui/configure.py:1348
 msgid "update"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1382
+#: ../gramps/gui/configure.py:1361
 msgid "Family Tree Database path"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1390
+#: ../gramps/gui/configure.py:1369
 msgid "Automatically load last Family Tree"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1402
+#: ../gramps/gui/configure.py:1381
 msgid "Select media directory"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1405 ../gramps/gui/configure.py:1430
+#: ../gramps/gui/configure.py:1384 ../gramps/gui/configure.py:1409
 #: ../gramps/gui/dbloader.py:141 ../gramps/gui/editors/edittaglist.py:118
 #: ../gramps/gui/glade/addmedia.glade:24
 #: ../gramps/gui/glade/baseselector.glade:24
@@ -9323,7 +9309,7 @@ msgstr ""
 msgid "_Cancel"
 msgstr ""
 
-#: ../gramps/gui/configure.py:1427
+#: ../gramps/gui/configure.py:1406
 msgid "Select database directory"
 msgstr ""
 
@@ -10620,7 +10606,7 @@ msgstr ""
 #: ../gramps/gui/editors/editevent.py:248
 #: ../gramps/gui/editors/editmedia.py:288
 #: ../gramps/gui/editors/editperson.py:847
-#: ../gramps/gui/editors/editplace.py:285
+#: ../gramps/gui/editors/editplace.py:284
 #: ../gramps/gui/editors/editreference.py:287
 #: ../gramps/gui/editors/editrepository.py:179
 #: ../gramps/gui/editors/editsource.py:199
@@ -11370,75 +11356,75 @@ msgstr ""
 msgid "You must either select a person or Cancel the edit"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:84
+#: ../gramps/gui/editors/editplace.py:83
 #: ../gramps/gui/glade/editplace.glade:288
 #: ../gramps/gui/merge/mergeplace.py:56
 msgid "place|Name:"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:89
+#: ../gramps/gui/editors/editplace.py:88
 #: ../gramps/gui/editors/editplaceref.py:95
 #, python-format
 msgid "Place: %s"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:91
+#: ../gramps/gui/editors/editplace.py:90
 #: ../gramps/gui/editors/editplaceref.py:97
 msgid "New Place"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:169
+#: ../gramps/gui/editors/editplace.py:168
 #: ../gramps/gui/editors/editplaceref.py:169
 msgid "Invalid latitude (syntax: 18\\u00b09'"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:170
+#: ../gramps/gui/editors/editplace.py:169
 #: ../gramps/gui/editors/editplaceref.py:170
 msgid "48.21\"S, -18.2412 or -18:9:48.21)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:172
+#: ../gramps/gui/editors/editplace.py:171
 #: ../gramps/gui/editors/editplaceref.py:172
 msgid "Invalid longitude (syntax: 18\\u00b09'"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:173
+#: ../gramps/gui/editors/editplace.py:172
 #: ../gramps/gui/editors/editplaceref.py:173
 msgid "48.21\"E, -18.2412 or -18:9:48.21)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:183
+#: ../gramps/gui/editors/editplace.py:182
 #: ../gramps/plugins/lib/maps/geography.py:854
 #: ../gramps/plugins/view/geoplaces.py:322
 #: ../gramps/plugins/view/geoplaces.py:348
 msgid "Edit Place"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:274
+#: ../gramps/gui/editors/editplace.py:273
 #: ../gramps/gui/editors/editplaceref.py:275
 msgid "Cannot save place. Name not entered."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:275
+#: ../gramps/gui/editors/editplace.py:274
 #: ../gramps/gui/editors/editplaceref.py:276
 msgid "You must enter a name before saving."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:284
+#: ../gramps/gui/editors/editplace.py:283
 msgid "Cannot save place. ID already exists."
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:298
+#: ../gramps/gui/editors/editplace.py:297
 #, python-format
 msgid "Add Place (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:303
+#: ../gramps/gui/editors/editplace.py:302
 #, python-format
 msgid "Edit Place (%s)"
 msgstr ""
 
-#: ../gramps/gui/editors/editplace.py:328
+#: ../gramps/gui/editors/editplace.py:327
 #, python-format
 msgid "Delete Place (%s)"
 msgstr ""
