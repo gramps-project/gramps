@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2014       Nick Hall
+# Copyright (C) 2014-2015  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -29,6 +29,7 @@ Class handling displaying of places.
 #-------------------------------------------------------------------------
 from ..config import config
 from ..utils.location import get_location_list
+from ..lib import PlaceType
 
 #-------------------------------------------------------------------------
 #
@@ -53,7 +54,18 @@ class PlaceDisplay(object):
         if not config.get('preferences.place-auto'):
             return place.title
         else:
-            names = [item[0] for item in get_location_list(db, place, date)]
+            lang = config.get('preferences.place-lang')
+            places = get_location_list(db, place, date, lang)
+            names = [item[0] for item in places]
+
+            if config.get('preferences.place-number'):
+                if len(places) > 1 and int(places[0][1]) == PlaceType.NUMBER:
+                    names = names[1:]
+                    names[0] = places[0][0] + ' ' + names[0]
+
+            if config.get('preferences.place-reverse'):
+                names.reverse()
+
             return ", ".join(names)
 
 displayer = PlaceDisplay()

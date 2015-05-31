@@ -483,6 +483,7 @@ class GrampsPreferences(ConfigureDialog):
             self.add_behavior_panel,
             self.add_famtree_panel,
             self.add_formats_panel,
+            self.add_place_panel,
             self.add_text_panel,
             self.add_prefix_panel,
             self.add_date_panel,
@@ -998,12 +999,6 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 1, row, 2, 1)
         row += 1
         
-        # Automatic place title generation
-        self.add_checkbox(grid,
-                          _("Enable automatic place title generation"),
-                          row, 'preferences.place-auto', stop=3)
-        row += 1
-
         # Age precision:
         # precision=1 for "year", 2: "year, month" or 3: "year, month, days"
         obox = Gtk.ComboBoxText()
@@ -1102,6 +1097,31 @@ class GrampsPreferences(ConfigureDialog):
                           extra_callback=self.cb_grampletbar_close)
         row += 1
         return _('Display'), grid
+
+    def add_place_panel(self, configdialog):
+        row = 0
+        grid = Gtk.Grid()
+        grid.set_border_width(12)
+        grid.set_column_spacing(6)
+        grid.set_row_spacing(6)
+
+        self.add_checkbox(grid, _("Enable automatic place title generation"),
+                          row, 'preferences.place-auto', stop=3)
+        row += 1
+
+        self.add_checkbox(grid, _("Suppress comma after house number"),
+                          row, 'preferences.place-number', stop=3)
+        row += 1
+
+        self.add_checkbox(grid, _("Reverse display order"),
+                          row, 'preferences.place-reverse', stop=3)
+        row += 1
+
+        self.add_entry(grid, _("Language"),
+                          row, 'preferences.place-lang')
+        row += 1
+
+        return _('Places'), grid
 
     def add_text_panel(self, configdialog):
         row = 0
