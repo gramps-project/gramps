@@ -10207,7 +10207,7 @@ msgstr ""
 "\n"
 "Avant de lancer la réparation, vérifiez que votre arbre familial ne peut plus être ouvert, pour que le soutien de la base de données corrige automatiquement certaines erreurs.\n"
 "\n"
-"%%(bold_start)sDétails :%(bold_end)s La réparation d'un arbre familial utilise actuellement la dernière sauvegarde de votre arbre familial, que Gramps a généré lors de la dernière utilisation. Si vous avez travaillé durant plusieurs heures/jours sans avoir fermé Gramps, alors toutes ces informations seront perdues ! Si la réparation échoue, l'arbre familial original sera également perdu, c'est pourquoi une sauvegarde est nécessaire. Si la réparation échoue ou que vous avez perdu trop de données, vous pourrez corriger l'arbre familial manuellement. Voir la page internet\n"
+"%(bold_start)sDétails :%(bold_end)s La réparation d'un arbre familial utilise actuellement la dernière sauvegarde de votre arbre familial, que Gramps a généré lors de la dernière utilisation. Si vous avez travaillé durant plusieurs heures/jours sans avoir fermé Gramps, alors toutes ces informations seront perdues ! Si la réparation échoue, l'arbre familial original sera également perdu, c'est pourquoi une sauvegarde est nécessaire. Si la réparation échoue ou que vous avez perdu trop de données, vous pourrez corriger l'arbre familial manuellement. Voir la page internet\n"
 "%(gramps_wiki_recover_url)s\n"
 "Avant de faire la réparation, essayez d'ouvrir votre arbre familial avec la méthode normale. Certaines erreurs qui peuvent être corrigées automatiquement activent parfois le bouton de réparation. Dans ce cas, vous pouvez désactiver cette action de réparation en supprimant le fichier %(recover_file)s dans le répertoire de votre arbre familial."
 
