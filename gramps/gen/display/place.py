@@ -27,13 +27,8 @@ Class handling displaying of places.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from ..config import config
 from ..utils.location import get_location_list
-
-try:
-    from ..config import config
-    WITH_GRAMPS_CONFIG=True
-except ImportError:
-    WITH_GRAMPS_CONFIG=False
 
 #-------------------------------------------------------------------------
 #
@@ -41,12 +36,6 @@ except ImportError:
 #
 #-------------------------------------------------------------------------
 class PlaceDisplay(object):
-
-    def __init__(self):
-        if WITH_GRAMPS_CONFIG:
-            self.default_format = config.get('preferences.place-format')
-        else:
-            self.default_format = 0
 
     def display_event(self, db, event):
         if not event:
@@ -61,9 +50,9 @@ class PlaceDisplay(object):
     def display(self, db, place, date=None):
         if not place:
             return ""
-        if self.default_format == 0:
+        if not config.get('preferences.place-auto'):
             return place.title
-        elif self.default_format == 1:
+        else:
             names = [item[0] for item in get_location_list(db, place, date)]
             return ", ".join(names)
 

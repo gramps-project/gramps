@@ -105,7 +105,7 @@ class EditPlaceRef(EditReference):
                                         self.uistate, self.track, 
                                         self.db.readonly)
 
-        if config.get('preferences.place-title'):
+        if not config.get('preferences.place-auto'):
             self.top.get_object("place_title").show()
             self.top.get_object("place_title_label").show()
             self.title = MonitoredEntry(self.top.get_object("place_title"),

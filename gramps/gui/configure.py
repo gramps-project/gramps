@@ -998,24 +998,10 @@ class GrampsPreferences(ConfigureDialog):
         grid.attach(obox, 1, row, 2, 1)
         row += 1
         
-        # Place format:
-        obox = Gtk.ComboBoxText()
-        formats = [_('Title'), _('Automatic')]
-        list(map(obox.append_text, formats))
-        active = config.get('preferences.place-format')
-        if active >= len(formats):
-            active = 0
-        obox.set_active(active)
-        obox.connect('changed', self.place_format_changed)
-        lwidget = BasicLabel("%s: " % _('Place format'))
-        grid.attach(lwidget, 0, row, 1, 1)
-        grid.attach(obox, 1, row, 2, 1)
-        row += 1
-        
-        # Legacy place title mode
+        # Automatic place title generation
         self.add_checkbox(grid,
-                          _("Display legacy place title field in editors"),
-                          row, 'preferences.place-title', stop=3)
+                          _("Enable automatic place title generation"),
+                          row, 'preferences.place-auto', stop=3)
         row += 1
 
         # Age precision:
@@ -1176,13 +1162,6 @@ class GrampsPreferences(ConfigureDialog):
         config.set('preferences.date-format', obj.get_active())
         OkDialog(_('Change is not immediate'), 
                  _('Changing the date format will not take '
-                   'effect until the next time Gramps is started.'),
-                 parent=self.window)
-
-    def place_format_changed(self, obj):
-        config.set('preferences.place-format', obj.get_active())
-        OkDialog(_('Change is not immediate'), 
-                 _('Changing the place format will not take '
                    'effect until the next time Gramps is started.'),
                  parent=self.window)
 
