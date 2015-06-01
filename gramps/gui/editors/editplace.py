@@ -45,7 +45,6 @@ from gi.repository import Gtk
 #-------------------------------------------------------------------------
 from gramps.gen.lib import NoteType, Place
 from gramps.gen.db import DbTxn
-from gramps.gen.utils.location import get_location_list
 from .editprimary import EditPrimary
 from .displaytabs import (PlaceRefEmbedList, PlaceNameEmbedList,
                           LocationEmbedList, CitationEmbedList,
@@ -106,7 +105,7 @@ class EditPlace(EditPrimary):
 
     def _setup_fields(self):
         
-        if config.get('preferences.place-title'):
+        if not config.get('preferences.place-auto'):
             self.top.get_object("place_title").show()
             self.top.get_object("place_title_label").show()
             self.title = MonitoredEntry(self.top.get_object("place_title"),

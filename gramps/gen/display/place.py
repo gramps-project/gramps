@@ -1,7 +1,7 @@
 #
 # Gramps - a GTK+/GNOME based genealogy program
 #
-# Copyright (C) 2014       Nick Hall
+# Copyright (C) 2014-2015  Nick Hall
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -27,13 +27,9 @@ Class handling displaying of places.
 # Gramps modules
 #
 #-------------------------------------------------------------------------
+from ..config import config
 from ..utils.location import get_location_list
-
-try:
-    from ..config import config
-    WITH_GRAMPS_CONFIG=True
-except ImportError:
-    WITH_GRAMPS_CONFIG=False
+from ..lib import PlaceType
 
 #-------------------------------------------------------------------------
 #
@@ -41,12 +37,6 @@ except ImportError:
 #
 #-------------------------------------------------------------------------
 class PlaceDisplay(object):
-
-    def __init__(self):
-        if WITH_GRAMPS_CONFIG:
-            self.default_format = config.get('preferences.place-format')
-        else:
-            self.default_format = 0
 
     def display_event(self, db, event):
         if not event:
@@ -61,10 +51,38 @@ class PlaceDisplay(object):
     def display(self, db, place, date=None):
         if not place:
             return ""
-        if self.default_format == 0:
+        if not config.get('preferences.place-auto'):
             return place.title
-        elif self.default_format == 1:
-            names = [item[0] for item in get_location_list(db, place, date)]
+        else:
+            lang = config.get('preferences.place-lang')
+            places = get_location_list(db, place, date, lang)
+
+            if config.get('preferences.place-restrict') > 0:
+                index = _find_populated_place(places)
+                if index is not None:
+                    if config.get('preferences.place-restrict') == 1:
+                        places = places[:index+1]
+                    else:
+                        places = places[index:]
+
+            names = [item[0] for item in places]
+
+            if config.get('preferences.place-number'):
+                if len(places) > 1 and int(places[0][1]) == PlaceType.NUMBER:
+                    names = names[1:]
+                    names[0] = places[0][0] + ' ' + names[0]
+
+            if config.get('preferences.place-reverse'):
+                names.reverse()
+
             return ", ".join(names)
+
+def _find_populated_place(places):
+    populated_place = None
+    for index, item in enumerate(places):
+        if int(item[1]) in [PlaceType.HAMLET, PlaceType.VILLAGE,
+                            PlaceType.TOWN, PlaceType.CITY]:
+            populated_place = index
+    return populated_place
 
 displayer = PlaceDisplay()

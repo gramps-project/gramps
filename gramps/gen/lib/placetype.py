@@ -59,6 +59,7 @@ class PlaceType(GrampsType):
     HAMLET       = 17
     FARM         = 18
     BUILDING     = 19
+    NUMBER       = 20
 
     _CUSTOM = CUSTOM
     _DEFAULT = UNKNOWN
@@ -85,6 +86,7 @@ class PlaceType(GrampsType):
         (HAMLET,       _("Hamlet"),       "Hamlet"),
         (FARM,         _("Farm"),         "Farm"),
         (BUILDING,     _("Building"),     "Building"),
+        (NUMBER,       _("Number"),       "Number"),
         ]
 
     def __init__(self, value=None):

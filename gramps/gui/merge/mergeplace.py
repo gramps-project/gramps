@@ -78,7 +78,7 @@ class MergePlace(ManagedWindow):
                         _("Merge Places"))
         
         # Detailed selection widgets
-        if config.get('preferences.place-title'):
+        if not config.get('preferences.place-auto'):
             title1 = self.pl1.get_title()
             title2 = self.pl2.get_title()
             entry1 = self.get_widget("title1")
